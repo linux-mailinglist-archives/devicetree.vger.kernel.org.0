@@ -2,107 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6573AB52A4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 18:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5677B52B2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 18:16:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730006AbfIQQMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 12:12:38 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:39560 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726965AbfIQQMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 12:12:38 -0400
-Received: by mail-io1-f68.google.com with SMTP id a1so8961946ioc.6;
-        Tue, 17 Sep 2019 09:12:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=WEnd6CA2jothE5bzqT12cUNUGcNA3mMbmNkUCnktma0=;
-        b=Y8QIhZ+mpfw2Dc8DUoh3Vg0RCtS632bvaOxR2MyzC/t+T7ADNqaVqoaU59sFo6EcCn
-         llAGQDzMGgUdcvVlwxXT935otNrZba7U65A4hxjdwfA5zI43ge2E3pO7JPHfnL5WXYuz
-         W2Nqtwlw8N6PBypphkowTlhNqj5ZWq56psxAhywwtfmGKmfJNE2pmTf20PPNT0WCJ1dR
-         z65m8X2gv9iQnTDbUXFVtR9e60bCXVgNel0cjqPVH+ygAFWc2szpH7Wl9yYgWJWmw5Fd
-         Wcjm41n3p4jKVUO+Pf88Bd+ZJvmLe+Krk4EkJOfcOTwcQu3dtI8N0lEoYF0oKQ8SAwwv
-         KHOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=WEnd6CA2jothE5bzqT12cUNUGcNA3mMbmNkUCnktma0=;
-        b=NYFMZwZItPTXaK13JG2qq32cz2x1c8DqpNhP5APdcWFK++z+B2bQtLUEjRxEB2E7g/
-         JL5qf7fBp8r5xNrvsx8FqNApTQVzfVGvGXIaviIFoRf0ROgU55JErJ2y2qLJhBp7jivg
-         eEuOQ53CWYN2N35n4ElhOjmtjVW6kocKE8o/WPgoLggWOzrNvP0n5JVBQSbSiaZHjo5M
-         K0n0lJzLAmNm0wxFvR+Mg2Oio7c+/LSbeU38XLUmh8xXCbD0URXtScGx4dgGS4YoW3yu
-         hnRLVpw5+Ow0IascHlsTsIlPDVkWDpxhr/69n8/MJxtdpNHvPfZoqhWOnbOA3SjIwFwS
-         YarQ==
-X-Gm-Message-State: APjAAAU1x7tWdBkXr2wJdlCBJG5CGdt7nDJkgJfnkzbex1FUESkSGZYA
-        68d/sK4XKvFP575NLt4Au9U=
-X-Google-Smtp-Source: APXvYqw82gd41rtWEeRFIHmEkIZ2K8Aglv1g8Yt6qRLTT0Ioa2nHqoN00Z0QQU7dccgXgV/FSJ8H7w==
-X-Received: by 2002:a05:6602:10a:: with SMTP id s10mr1068356iot.171.1568736756502;
-        Tue, 17 Sep 2019 09:12:36 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id p25sm2090487ioo.35.2019.09.17.09.12.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 09:12:35 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-omap@vger.kernel.org, adam.ford@logicpd.com,
-        Adam Ford <aford173@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ARM: logicpd-torpedo-37xx-devkit-28: Reference new DRM panel
-Date:   Tue, 17 Sep 2019 11:12:13 -0500
-Message-Id: <20190917161214.2913-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190917161214.2913-1-aford173@gmail.com>
-References: <20190917161214.2913-1-aford173@gmail.com>
+        id S1730260AbfIQQP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 12:15:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50796 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727053AbfIQQP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 12:15:58 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 164C320665;
+        Tue, 17 Sep 2019 16:15:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568736957;
+        bh=3RfxZ/IZRnYxFC1OVcnqcIb/VSA/1/sfRLUt35vct4c=;
+        h=In-Reply-To:References:To:From:Subject:Date:From;
+        b=tjYxyLWtXB6LY7Ag0wNoqsm17313qW5GXEgwrJ85UOiuibbvz+CbCB9Qvif3Ciqns
+         LMOdOUOgXJ5knWaBtpB8dkHrfYn/SgYPGZ1owqnILyN6BRa8ie/HnwHNVrujcap1UU
+         kXvi/2lpa5rCxIOf+oaeySHkcV+rHRIUNflCUzfc=
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1568375771-22933-13-git-send-email-gokulsri@codeaurora.org>
+References: <1568375771-22933-1-git-send-email-gokulsri@codeaurora.org> <1568375771-22933-13-git-send-email-gokulsri@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        david.brown@linaro.org, devicetree@vger.kernel.org,
+        gokulsri@codeaurora.org, jassisinghbrar@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        mark.rutland@arm.com, mturquette@baylibre.com,
+        nprakash@codeaurora.org, ohad@wizery.com, robh+dt@kernel.org,
+        sricharan@codeaurora.org
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH V2 12/12] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
+User-Agent: alot/0.8.1
+Date:   Tue, 17 Sep 2019 09:15:56 -0700
+Message-Id: <20190917161557.164C320665@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the removal of the panel-dpi from the omap drivers, the
-LCD no longer works.  This patch points the device tree to
-a newly created panel named "logicpd,type28"
+Quoting Gokul Sriram Palanisamy (2019-09-13 04:56:11)
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/=
+qcom/ipq8074.dtsi
+> index 6a61a63..0ea026e 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -431,6 +485,78 @@
+>                                       "axi_m_sticky";
+>                         status =3D "disabled";
+>                 };
+> +
+> +               apcs: syscon@b111000 {
+> +                       compatible =3D "syscon";
+> +                       reg =3D <0x0b111000 0x1000>;
+> +               };
+> +
+> +               tcsr_q6: syscon@1945000 {
+> +                       compatible =3D "syscon";
+> +                       reg =3D <0x01945000 0xe000>;
+> +               };
+> +
+> +               tcsr_mutex_regs: syscon@193d000 {
+> +                       compatible =3D "syscon";
+> +                       reg =3D <0x01905000 0x8000>;
+> +               };
+> +
+> +               apcs_glb: mailbox@b111000 {
 
-Fixes: 8bf4b1621178 ("drm/omap: Remove panel-dpi driver")
+This is the same as the syscon above. What's going on?
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-
-diff --git a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-index 07ac99b9cda6..00c426bd51a0 100644
---- a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-+++ b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-@@ -11,22 +11,8 @@
- #include "logicpd-torpedo-37xx-devkit.dts"
- 
- &lcd0 {
--
-+	/* This isn't the exact LCD, but the timings meet spec */
-+	/* To make it work, set CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK=4 */
-+	compatible = "logicpd,type28";
- 	label = "28";
--
--	panel-timing {
--		clock-frequency = <9000000>;
--		hactive = <480>;
--		vactive = <272>;
--		hfront-porch = <3>;
--		hback-porch = <2>;
--		hsync-len = <42>;
--		vback-porch = <3>;
--		vfront-porch = <2>;
--		vsync-len = <11>;
--		hsync-active = <1>;
--		vsync-active = <1>;
--		de-active = <1>;
--		pixelclk-active = <0>;
--	};
- };
--- 
-2.17.1
-
+> +                       compatible =3D "qcom,ipq8074-apcs-apps-global";
+> +                       reg =3D <0x0b111000 0x1000>;
+> +
+> +                       #mbox-cells =3D <1>;
+> +               };
