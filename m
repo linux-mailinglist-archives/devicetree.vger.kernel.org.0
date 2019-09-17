@@ -2,141 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB83B4EA6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 15:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE936B4EB8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 15:05:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726548AbfIQNAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 09:00:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49348 "EHLO mail.kernel.org"
+        id S1727471AbfIQNFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 09:05:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51674 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726523AbfIQNAs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 09:00:48 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        id S1727024AbfIQNFw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 09:05:52 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 868212171F;
-        Tue, 17 Sep 2019 13:00:46 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id ACE5521897;
+        Tue, 17 Sep 2019 13:05:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568725246;
-        bh=X4jhLlVfIWPwWC9KTpr/8HXl1E17S2vkdaVA4OMT1kY=;
+        s=default; t=1568725551;
+        bh=6dx+pGYbMKZYGufowQPf+5IJvdiHtWxdf/mNfFBW+XI=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=w23Lq/oJU+s6apUIRVuiK+YDX/N1xhNqJQlDdyNSTIIS4llYBBHacGEQ4aqAxGUuj
-         swxkGkjJb55MoIUleuTHruTOzw4PJ6ScUbiB8dK8dThqn73CtcAfz7yYD6OC1CjiEe
-         SgQHfXKUW6kyRCfP9dgas9zlDtsMiCLVoEctYW10=
-Received: by mail-qk1-f182.google.com with SMTP id y144so3853163qkb.7;
-        Tue, 17 Sep 2019 06:00:46 -0700 (PDT)
-X-Gm-Message-State: APjAAAX/xkEYXtg7QKUDjwjEkBtso4SZ9vUr0nHUSxdDBRDcOZFpFkkJ
-        u7abdOBnPiwyP+Uf9sKG1nzUVvD/kV8fww7gZQ==
-X-Google-Smtp-Source: APXvYqwdHDSINgFsGh7pd2VEEZGaLj8zK4i6nJuMiwayyOSSoGvfQtn7Pl9ax/5kobBzpP58bbURF5hI6SMlAzFUqBc=
-X-Received: by 2002:a37:be87:: with SMTP id o129mr3660621qkf.254.1568725245764;
- Tue, 17 Sep 2019 06:00:45 -0700 (PDT)
+        b=Y0AjA5Ai77LxzbSqLfZnFwbvFq6nGMeUSrnIqextmcWyJY8IFhnKTk4DKegpGcAPF
+         51sMV/v90zXf9r53PWp/Vk/jglOBRJq8FJ6r9zkFw22al9veV1fET0kW6MLWU4jjHN
+         FDBB7NtqwpDA0Pikh9YORVSDrIiqi1HFHDB5FgXw=
+Received: by mail-qk1-f181.google.com with SMTP id s18so3898903qkj.3;
+        Tue, 17 Sep 2019 06:05:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAXakWmkwrS00yehNpyet9X+drlZ7x8oR1/1Z7yMCYdsDoY9K1UY
+        IoDkLaGTF4KrlNTcecsTqoRHeWYuG/UfKXYOJg==
+X-Google-Smtp-Source: APXvYqz2HPAde8iLviBNps8veZshe4FIhl9v/4PCg3wURvc7VWi1W+/WDS08X9I33YRoPGdWrfn+3FvonmV20YnIfeo=
+X-Received: by 2002:a37:be87:: with SMTP id o129mr3695035qkf.254.1568725550865;
+ Tue, 17 Sep 2019 06:05:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190917083634.11510-1-horms+renesas@verge.net.au>
-In-Reply-To: <20190917083634.11510-1-horms+renesas@verge.net.au>
+References: <CGME20190917120517eucas1p1188d244fac2d10d7990363ff25ffb70d@eucas1p1.samsung.com>
+ <20190917111413.22711-1-m.falkowski@samsung.com> <20190917120452.28135-1-m.falkowski@samsung.com>
+In-Reply-To: <20190917120452.28135-1-m.falkowski@samsung.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Sep 2019 08:00:34 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLCYp8nmvoHtCNcLDKOKJ1bmL5FxQPwSREBLSy2-fZ=Vg@mail.gmail.com>
-Message-ID: <CAL_JsqLCYp8nmvoHtCNcLDKOKJ1bmL5FxQPwSREBLSy2-fZ=Vg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: rtc: rtc-sh: convert bindings to json-schema
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Date:   Tue, 17 Sep 2019 08:05:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJmjUR63i_hKUuZwDu42rebwABHu62bQoxTRRJu5yObEA@mail.gmail.com>
+Message-ID: <CAL_JsqJmjUR63i_hKUuZwDu42rebwABHu62bQoxTRRJu5yObEA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: sound: Convert Samsung I2S controller
+ to dt-schema
+To:     Maciej Falkowski <m.falkowski@samsung.com>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sangbeom Kim <sbkim73@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 3:37 AM Simon Horman <horms+renesas@verge.net.au> wrote:
+On Tue, Sep 17, 2019 at 7:05 AM Maciej Falkowski
+<m.falkowski@samsung.com> wrote:
 >
-> Convert Real Time Clock for Renesas SH and ARM SoCs bindings documentation
-> to json-schema.  Also name bindings documentation file according to the
-> compat string being documented.
+> Convert Samsung I2S controller to newer dt-schema format.
 >
-> Also correct syntax error in interrupts field in example.
->
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > ---
-> * Based on v5.3
-> * Tested using:
->   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
->   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+> v2:
+> - Added missing Signed-off-by certificate
 > ---
->  .../devicetree/bindings/rtc/renesas,sh-rtc.yaml    | 66 ++++++++++++++++++++++
->  Documentation/devicetree/bindings/rtc/rtc-sh.txt   | 28 ---------
->  2 files changed, 66 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-sh.txt
->
-> diff --git a/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+>  .../devicetree/bindings/sound/samsung-i2s.txt |  84 -------------
+>  .../bindings/sound/samsung-i2s.yaml           | 119 ++++++++++++++++++
+>  2 files changed, 119 insertions(+), 84 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/samsung-i2s.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+
+> diff --git a/Documentation/devicetree/bindings/sound/samsung-i2s.yaml b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
 > new file mode 100644
-> index 000000000000..07dbcd4436ce
+> index 000000000000..59dc76035cb4
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
-> @@ -0,0 +1,66 @@
+> +++ b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+> @@ -0,0 +1,119 @@
 > +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/rtc/renesas,sh-rtc.yaml#
+> +$id: http://devicetree.org/schemas/sound/samsung-i2s.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Real Time Clock for Renesas SH and ARM SoCs
+> +title: Samsung SoC I2S controller
 > +
 > +maintainers:
-> +  - Chris Brandt <chris.brandt@renesas.com>
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +  - Sangbeom Kim <sbkim73@samsung.com>
+> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - const: renesas,r7s72100-rtc  # RZ/A1H
-> +      - const: renesas,sh-rtc
+> +    description: |
+> +      samsung,s3c6410-i2s: for 8/16/24bit stereo I2S.
+> +
+> +      samsung,s5pv210-i2s: for 8/16/24bit multichannel(5.1) I2S with
+> +      secondary fifo, s/w reset control and internal mux for root clk src.
+> +
+> +      samsung,exynos5420-i2s: for 8/16/24bit multichannel(5.1) I2S for
+> +      playback, stereo channel capture, secondary fifo using internal
+> +      or external dma, s/w reset control, internal mux for root clk src
+> +      and 7.1 channel TDM support for playback. TDM (Time division multiplexing)
+> +      is to allow transfer of multiple channel audio data on single data line.
+> +
+> +      samsung,exynos7-i2s: with all the available features of exynos5 i2s.
+> +
+> +      exynos7 I2S has 7.1 channel TDM support for capture, secondary fifo
+> +      with only external dma and more no.of root clk sampling frequencies.
+> +
+> +      samsung,exynos7-i2s1: I2S1 on previous samsung platforms supports
+> +      stereo channels. exynos7 i2s1 upgraded to 5.1 multichannel with
+> +      slightly modified bit offsets.
+> +    enum:
+> +      - "samsung,s3c6410-i2s"
+> +      - "samsung,s5pv210-i2s"
+> +      - "samsung,exynos5420-i2s"
+> +      - "samsung,exynos7-i2s"
+> +      - "samsung,exynos7-i2s1"
+
+No need for quotes here.
+
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    maxItems: 3
+> +  dmas:
+> +    description: list of DMA controller phandle and DMA request line ordered pairs.
+
+How many?
+
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: alarm
-> +      - const: period
-> +      - const: carry
+> +  dma-names:
+> +    description: |
+> +      identifier string for each DMA request line in the dmas property.
+> +      These strings correspond 1:1 with the ordered pairs in dmas.
 > +
 > +  clocks:
-> +    # The functional clock source for the RTC controller must be listed
-> +    # first (if it exists). Additionally, potential clock counting sources
-> +    # are to be listed.
-> +    true
-
-Surely you can give some range...
-
+> +    minItems: 1
+> +    maxItems: 3
 > +
 > +  clock-names:
-> +    # The functional clock must be labeled as "fck". Other clocks
-> +    # may be named in accordance to the SoC hardware manuals.
-> +    true
-
-While not ideal, you can do:
-
-minItems: 1
-maxItems: 4
-items:
-  enum: [ set, of, possible, clock, names, in, any, order ]
-
-Note 'items' here is a schema, not a list.
-
-Your dt-schema install may need updating as I only recently adjusted
-the meta-schema to allow this.
-
-Rob
+> +    oneOf:
+> +      - items:
+> +          - const: iis
+> +      - items:
+> +          - const: iis
+> +          - const: i2s_opclk0
+> +      - items:
+> +          - const: iis
+> +          - const: i2s_opclk0
+> +          - const: i2s_opclk1
+> +    description: |
+> +      "iis" is the i2s bus clock.
+> +      For i2s1 and i2s2 - "iis", "i2s_opclk0"
+> +      For i2s0 - "iis", "i2s_opclk0", "i2s_opclk1"
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  samsung,idma-addr:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Internal DMA register base address of the audio
+> +      sub system(used in secondary sound source).
+> +
+> +  pinctrl-0:
+> +    description: Should specify pin control groups used for this controller.
+> +
+> +  pinctrl-names:
+> +    const: default
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - dmas
+> +  - dma-names
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    i2s0: i2s@3830000 {
+> +        compatible = "samsung,s5pv210-i2s";
+> +        reg = <0x03830000 0x100>;
+> +        dmas = <&pdma0 10
+> +                &pdma0 9
+> +                &pdma0 8>;
+> +        dma-names = "tx", "rx", "tx-sec";
+> +        clocks = <&clock_audss 0>, // EXYNOS_I2S_BUS
+> +                <&clock_audss 0>, // EXYNOS_I2S_BUS
+> +                <&clock_audss 0>; // EXYNOS_SCLK_I2S
+> +        clock-names = "iis", "i2s_opclk0", "i2s_opclk1";
+> +        #clock-cells = <1>;
+> +        samsung,idma-addr = <0x03000000>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&i2s0_bus>;
+> +        #sound-dai-cells = <1>;
+> +    };
+> +
+> --
+> 2.17.1
+>
