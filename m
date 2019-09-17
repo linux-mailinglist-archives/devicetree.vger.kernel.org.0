@@ -2,191 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCB29B4E67
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 14:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FDE2B4E6D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 14:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727440AbfIQMsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 08:48:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42546 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727698AbfIQMsb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 08:48:31 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1361E21881;
-        Tue, 17 Sep 2019 12:48:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568724510;
-        bh=ccmEI6jZEd0dOUV90lbi49MGNfgvUALxit4VtkX8yr8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=zuYtax/u6DxLdcesja2Bzozu71Z59ywEVfBi8wEzD6d4cIJLifBIOluvDQIwMnn32
-         uvbLpNEZ4qkRfT5wFMRiR9TjNgCDopsPFTSFq62J6vBDg8GroEDyM3V+IxlMxkU+jv
-         /pl7BNcxp1Hf+J3szEULioPAf2sCsIAKck+brZE4=
-Received: by mail-qt1-f171.google.com with SMTP id j1so4256105qth.1;
-        Tue, 17 Sep 2019 05:48:30 -0700 (PDT)
-X-Gm-Message-State: APjAAAWPvPXFdHPAPzLQdHSHt7BWr6FHewRkbbXlskTsHRDiougzP3ab
-        h8YmBoXtxKPguPRMizUdgFcH1KY+/uBrVVddIQ==
-X-Google-Smtp-Source: APXvYqyr4Sa3bzrHc9k8TKTb9uIVN+/yUg2kGr/uVQsXPc/jXmcL9I6oVZNUR0qdtqJ7ccPbnmXjS/UzryFxdZb5mwM=
-X-Received: by 2002:ac8:100d:: with SMTP id z13mr3425109qti.224.1568724509250;
- Tue, 17 Sep 2019 05:48:29 -0700 (PDT)
+        id S1728585AbfIQMto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 08:49:44 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:48882 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727814AbfIQMto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 08:49:44 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190917124942euoutp01b0a9c8fb37628b74fc9f1b3585ce7207~FOrJMP3bc3170931709euoutp01v
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2019 12:49:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190917124942euoutp01b0a9c8fb37628b74fc9f1b3585ce7207~FOrJMP3bc3170931709euoutp01v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1568724582;
+        bh=NfVVI3xJYBq/jjenL0ou7bm2nFkLHH0Jtu3uUHH24yg=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=EmApee/2kazNf3wRukQGnJNg0NKGuzSCfqI8/z2uVuv2mId8136bdJYiiLZZVHjo1
+         JDlYmGCI0QuA9tKuJanDVS8u/ewcHUBQXbCeqS5bvSzEwgt7045g+QjxFWCRxoExXL
+         mgA/+Xwv/B7CJgDxz/F0EkEBn+8z7qfTHryyuUVQ=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190917124942eucas1p151a036391a8af376a7aaee6e92521a3c~FOrInwU002868128681eucas1p1p;
+        Tue, 17 Sep 2019 12:49:42 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 7B.4F.04374.566D08D5; Tue, 17
+        Sep 2019 13:49:41 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190917124941eucas1p1d9aea1195afbc4e16646b72f911eda0c~FOrHxQjU_2867728677eucas1p13;
+        Tue, 17 Sep 2019 12:49:41 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190917124940eusmtrp2a5e847be2a082419bc73dc24d0482d7b~FOrHjDa5T3002230022eusmtrp2Q;
+        Tue, 17 Sep 2019 12:49:40 +0000 (GMT)
+X-AuditID: cbfec7f5-4ddff70000001116-67-5d80d6650f08
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 7B.5A.04166.466D08D5; Tue, 17
+        Sep 2019 13:49:40 +0100 (BST)
+Received: from [106.120.51.75] (unknown [106.120.51.75]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190917124940eusmtip17ff79b4afe0c6abb7be257bb7536597e~FOrG7rxQa1459914599eusmtip1I;
+        Tue, 17 Sep 2019 12:49:40 +0000 (GMT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: sound: Convert Samsung I2S
+ controller to dt-schema
+To:     Maciej Falkowski <m.falkowski@samsung.com>,
+        linux-kernel@vger.kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, krzk@kernel.org,
+        sbkim73@samsung.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, a.hajda@samsung.com,
+        m.szyprowski@samsung.com
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <1c1264ac-f657-1e3d-360f-af0cbc58549a@samsung.com>
+Date:   Tue, 17 Sep 2019 14:49:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190916153357.3880-1-horms+renesas@verge.net.au>
- <20190916153357.3880-2-horms+renesas@verge.net.au> <20190917112937.g3jna2kc7rw7zynd@verge.net.au>
-In-Reply-To: <20190917112937.g3jna2kc7rw7zynd@verge.net.au>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Sep 2019 07:48:17 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJmfrPZA7=uWG_DOOzFsLsHeg2=+86d_91mnmyv9UeLJg@mail.gmail.com>
-Message-ID: <CAL_JsqJmfrPZA7=uWG_DOOzFsLsHeg2=+86d_91mnmyv9UeLJg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: bus: simple-pm-bus: convert bindings to json-schema
-To:     Simon Horman <horms@verge.net.au>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190917120452.28135-1-m.falkowski@samsung.com>
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTYRTHfe7u7r2Kq+vUPJgpjN601KygG5UkWQwy8ENBGCNven2pbcpu
+        mi+EQzFsmslAzRU5P1RrODORXgyFpjnLao3svcxSK5UV6JZUlm27SX77/c/5n+d/DjyUSGoX
+        h1O56uOcRs0qZUQAfqP/x+NY7rlWsWHwZzzzuu2xmBlyWDGm/sMYwTT3eaTd3k4y34eqMOZp
+        1wWCOWfvwZiRijaCsfS9I5lLLxwYU9ndRzIOkwvbKZG3z5QT8taLrUh+2/COlHeYTxPy2k4z
+        ks90RKYSaQHbMzllbiGniU9MD8gx1p8l8psiimZfOQgtagrVIX8K6M0w/eA87mUpbUKgrwzT
+        oQAPuxAMt3zHBTGDoF/3RLww8eV3g1hoXEFgdz4kBOFE0PDHK/ypYFoBn6sv+d4NoVNgcLgH
+        eU0iugaD5utWn4mgE+DMvVrkZQmdCLqv13wDOL0K3lu+kl4OpQ/C9EivWPAEwf2mMZ/Hn94B
+        z6bcmJdFdBiUu66KBY6Cm84LIm8Y0BMkGB3PkbB3MjxpH8AFDoZJWycpcATM327GhIEKBDV3
+        3pCCqEPw3mb8N70Nem0OTwTliYiGa13xQjkJLn+ZxbxloJfAS2eQsMQS0N9oFAllCVSdkgru
+        lfDL3IgJHA7VY/N4HZIZFp1mWHSOYdE5hv+5RoSbURhXwKuyOX6TmjsRx7MqvkCdHZeRp+pA
+        nm82+MfmvoV65o5YEU0hWaAEHmkVUjFbyBerrAgokSxEknqyTCGVZLLFJZwm77CmQMnxVrSc
+        wmVhklK/kUNSOps9zh3juHxOs9DFKP9wLXIccMfldmURzxpXri/pj3Wt1atTEoMioWV1Wln0
+        xnVp0kLiw9BHMs/063Lg6OqyNRn9Kcnj+7b2mSaidpVPFo2a3ZKSLcvwo7Fvlt3VfsqKuZLe
+        PbFi76iFDfmp36P4Fsq/9bPYrKWtS3Wtu1NqzHWBxPmY/OCBiPG5/crdU0VJMpzPYRNiRBqe
+        /QsjvHvHYgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAIsWRmVeSWpSXmKPExsVy+t/xu7op1xpiDS7eMrG4te4cq8WVi4eY
+        LKY+fMJmMf8IkHv+/AZ2i29XOpgsLu+aw2Yx4/w+JosHzevYLNYeuctusfT6RSaL1r1H2C0u
+        rvjC5MDrseFzE5vHmnlrGD12zrrL7rFpVSebR9+WVYwenzfJBbBF6dkU5ZeWpCpk5BeX2CpF
+        G1oY6RlaWugZmVjqGRqbx1oZmSrp29mkpOZklqUW6dsl6GUsmNrPVjBTpuL7zYtsDYwzRbsY
+        OTkkBEwkXvydxgpiCwksZZRof8vWxcgBFJeSmN+iBFEiLPHnWhdQmAuo5DWjxMWrn9lAEsIC
+        sRKNp/6A2SICPhKn7+1jBCliFuhhklje0gPVcZhR4uz/JWBVbAKGEr1H+xhBbF4BO4mud+tZ
+        QGwWAVWJ+2vfsYPYogIREod3zIKqEZQ4OfMJWA2ngK3E1ddfmUBsZgF1iT/zLjFD2OISTV9W
+        skLY8hLb385hnsAoNAtJ+ywkLbOQtMxC0rKAkWUVo0hqaXFuem6xoV5xYm5xaV66XnJ+7iZG
+        YOxuO/Zz8w7GSxuDDzEKcDAq8fAeONUQK8SaWFZcmXuIUYKDWUmEN6C2PlaINyWxsiq1KD++
+        qDQntfgQoynQcxOZpUST84FpJa8k3tDU0NzC0tDc2NzYzEJJnLdD4GCMkEB6YklqdmpqQWoR
+        TB8TB6dUA2OfdGqXgsJZ0wQJY4XE2pOCnz+fYc24rn3qVaGXpvhBM8uc5f+jZx+ozp+wfknI
+        lC27ChRKTrc5vXp8/ctszeabLif+PhfPjJN0ZBda6vkrt9J4/oQ9h1kn1h7dZX1QKoW5LU+r
+        YS/vm964vvX/99lbr4hJtK82Mbxkvspo0fnGZ1celIv+d1diKc5INNRiLipOBADfug8+8wIA
+        AA==
+X-CMS-MailID: 20190917124941eucas1p1d9aea1195afbc4e16646b72f911eda0c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190917120517eucas1p1188d244fac2d10d7990363ff25ffb70d
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190917120517eucas1p1188d244fac2d10d7990363ff25ffb70d
+References: <20190917111413.22711-1-m.falkowski@samsung.com>
+        <CGME20190917120517eucas1p1188d244fac2d10d7990363ff25ffb70d@eucas1p1.samsung.com>
+        <20190917120452.28135-1-m.falkowski@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 6:29 AM Simon Horman <horms@verge.net.au> wrote:
->
-> On Mon, Sep 16, 2019 at 05:33:56PM +0200, Simon Horman wrote:
-> > Convert Simple Power-Managed Bus bindings documentation to json-schema.
-> >
-> > As a side effect of this change only simple-pm-bus is used in example. A
-> > follow-up patch will provide an example for the separately documented
-> > Renesas Bus State Controller (BSC) that uses "renesas,bsc-sh73a0" and
-> > "renesas,bsc" compat strings.
-> >
-> > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> > ---
-> > * Tested using:
-> >   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> >   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> > ---
-> >  .../devicetree/bindings/bus/simple-pm-bus.txt      | 44 --------------
-> >  .../devicetree/bindings/bus/simple-pm-bus.yaml     | 68 ++++++++++++++++++++++
-> >  2 files changed, 68 insertions(+), 44 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.txt
-> >  create mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.txt b/Documentation/devicetree/bindings/bus/simple-pm-bus.txt
-> > deleted file mode 100644
-> > index 6f15037131ed..000000000000
-> > --- a/Documentation/devicetree/bindings/bus/simple-pm-bus.txt
-> > +++ /dev/null
-> > @@ -1,44 +0,0 @@
-> > -Simple Power-Managed Bus
-> > -========================
-> > -
-> > -A Simple Power-Managed Bus is a transparent bus that doesn't need a real
-> > -driver, as it's typically initialized by the boot loader.
-> > -
-> > -However, its bus controller is part of a PM domain, or under the control of a
-> > -functional clock.  Hence, the bus controller's PM domain and/or clock must be
-> > -enabled for child devices connected to the bus (either on-SoC or externally)
-> > -to function.
-> > -
-> > -While "simple-pm-bus" follows the "simple-bus" set of properties, as specified
-> > -in the Devicetree Specification, it is not an extension of "simple-bus".
-> > -
-> > -
-> > -Required properties:
-> > -  - compatible: Must contain at least "simple-pm-bus".
-> > -             Must not contain "simple-bus".
-> > -             It's recommended to let this be preceded by one or more
-> > -             vendor-specific compatible values.
-> > -  - #address-cells, #size-cells, ranges: Must describe the mapping between
-> > -             parent address and child address spaces.
-> > -
-> > -Optional platform-specific properties for clock or PM domain control (at least
-> > -one of them is required):
-> > -  - clocks: Must contain a reference to the functional clock(s),
-> > -  - power-domains: Must contain a reference to the PM domain.
-> > -Please refer to the binding documentation for the clock and/or PM domain
-> > -providers for more details.
-> > -
-> > -
-> > -Example:
-> > -
-> > -     bsc: bus@fec10000 {
-> > -             compatible = "renesas,bsc-sh73a0", "renesas,bsc",
-> > -                          "simple-pm-bus";
-> > -             #address-cells = <1>;
-> > -             #size-cells = <1>;
-> > -             ranges = <0 0 0x20000000>;
-> > -             reg = <0xfec10000 0x400>;
-> > -             interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
-> > -             clocks = <&zb_clk>;
-> > -             power-domains = <&pd_a4s>;
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> > new file mode 100644
-> > index 000000000000..72a3644974e3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> > @@ -0,0 +1,68 @@
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/bus/simple-pm-bus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Simple Power-Managed Bus
-> > +
-> > +maintainers:
-> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> > +
-> > +description: |
-> > +  A Simple Power-Managed Bus is a transparent bus that doesn't need a real
-> > +  driver, as it's typically initialized by the boot loader.
-> > +
-> > +  However, its bus controller is part of a PM domain, or under the control
-> > +  of a functional clock.  Hence, the bus controller's PM domain and/or
-> > +  clock must be enabled for child devices connected to the bus (either
-> > +  on-SoC or externally) to function.
-> > +
-> > +  While "simple-pm-bus" follows the "simple-bus" set of properties, as
-> > +  specified in the Devicetree Specification, it is not an extension of
-> > +  "simple-bus".
-> > +
-> > +
->
-> There is an extra blank line above, I will plan to remove it in v2.
->
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +       - const: simple-pm-bus
->
-> The following patch, for Renesas BSC, also
-> describes the simple-pm-bus but also requires other compatible
-> strings to be present.
->
-> In order to facilitate that I tried the following:
->
->    compatible:
->       contains:
->          const: simple-pm-bus
->       additionalItems: true
->
-> This allows make dtbs_check DT_SCHEMA_FILES=.../simple-pm-bus.yaml to pass
-> in cases where there are more compat strings pesent. However
-> make dtbs_check DT_SCHEMA_FILES=...renesas,bsc.yaml (schema file
-> introduced in following patch) fails in the case
-> where the only compat string is simple-pm-bus.
->
-> make dtbs_check DT_SCHEMA_FILES=...renesas,bsc.yaml also fails
-> due to the reg property not being present for the same compat case,
-> which should be valid according to simple-pm-bus.yaml.
->
-> Does anyone have any guidance on how to proceed?
+On 9/17/19 14:04, Maciej Falkowski wrote:
+> Convert Samsung I2S controller to newer dt-schema format.
+> 
+> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-You'll need a custom 'select' in renesas,bsc.yaml that leaves out
-"simple-pm-bus". See "panel-lvds" users in linux-next for an example.
+> --- a/Documentation/devicetree/bindings/sound/samsung-i2s.txt
+> +++ /dev/null
+> @@ -1,84 +0,0 @@
+> -* Samsung I2S controller
 
-Rob
+> -- clocks: Handle to iis clock and RCLK source clk.
+> -- clock-names:
+> -  i2s0 uses some base clocks from CMU and some are from audio subsystem internal
+> -  clock controller. The clock names for i2s0 should be "iis", "i2s_opclk0" and
+> -  "i2s_opclk1" as shown in the example below.
+> -  i2s1 and i2s2 uses clocks from CMU. The clock names for i2s1 and i2s2 should
+> -  be "iis" and "i2s_opclk0".
+> -  "iis" is the i2s bus clock and i2s_opclk0, i2s_opclk1 are sources of the root
+> -  clk. i2s0 has internal mux to select the source of root clk and i2s1 and i2s2
+> -  doesn't have any such mux.
+> -
+> -There are following clocks available at the I2S device nodes:
+> - CLK_I2S_CDCLK    - the CDCLK (CODECLKO) gate clock,
+> - CLK_I2S_RCLK_PSR - the RCLK prescaler divider clock (corresponding to the
+> -		    IISPSR register),
+> - CLK_I2S_RCLK_SRC - the RCLKSRC mux clock (corresponding to RCLKSRC bit in
+> -		    IISMOD register).
+> -
+> -Refer to the SoC datasheet for availability of the above clocks.
+> -The CLK_I2S_RCLK_PSR and CLK_I2S_RCLK_SRC clocks are usually only available
+> -in the IIS Multi Audio Interface.
+> -
+> -Note: Old DTs may not have the #clock-cells property and then not use the I2S
+> -node as a clock supplier.
+
+> -Example:
+> -
+> -i2s0: i2s@3830000 {
+
+> -	clocks = <&clock_audss EXYNOS_I2S_BUS>,
+> -		<&clock_audss EXYNOS_I2S_BUS>,
+> -		<&clock_audss EXYNOS_SCLK_I2S>;
+
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/samsung-i2s.yaml b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+> new file mode 100644
+> index 000000000000..59dc76035cb4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+
+> +properties:
+
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    oneOf:
+> +      - items:
+> +          - const: iis
+> +      - items:
+> +          - const: iis
+> +          - const: i2s_opclk0
+> +      - items:
+> +          - const: iis
+> +          - const: i2s_opclk0
+> +          - const: i2s_opclk1
+> +    description: |
+> +      "iis" is the i2s bus clock.
+> +      For i2s1 and i2s2 - "iis", "i2s_opclk0"
+> +      For i2s0 - "iis", "i2s_opclk0", "i2s_opclk1"
+
+My impression is that there is a significant information loss in conversion
+of: clocks, clock-names properties.  Can't we describe the meaning of 
+CLK_I2S_CDCLK, CLK_I2S_RCLK_PSR, CLK_I2S_RCLK_SRC supplier clocks similarly 
+as it was in txt version?
+
+> +examples:
+> +  - |
+> +    i2s0: i2s@3830000 {
+> +        compatible = "samsung,s5pv210-i2s";
+> +        reg = <0x03830000 0x100>;
+> +        dmas = <&pdma0 10
+> +                &pdma0 9
+> +                &pdma0 8>;
+> +        dma-names = "tx", "rx", "tx-sec";
+> +        clocks = <&clock_audss 0>, // EXYNOS_I2S_BUS
+> +                <&clock_audss 0>, // EXYNOS_I2S_BUS
+> +                <&clock_audss 0>; // EXYNOS_SCLK_I2S
+
+It should not be <&clock_audss 0> for each clock, each clock has different
+index as indicated by the commented out macro definitions.
+		
+> +        clock-names = "iis", "i2s_opclk0", "i2s_opclk1";
+
+-- 
+Thanks,
+Sylwester
