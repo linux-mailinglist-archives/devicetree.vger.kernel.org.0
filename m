@@ -2,211 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE936B4EB8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 15:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2366AB4EC2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 15:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727471AbfIQNFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 09:05:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51674 "EHLO mail.kernel.org"
+        id S1727269AbfIQNGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 09:06:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52362 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727024AbfIQNFw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 09:05:52 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        id S1727338AbfIQNGv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 09:06:51 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ACE5521897;
-        Tue, 17 Sep 2019 13:05:51 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3243F218AF;
+        Tue, 17 Sep 2019 13:06:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568725551;
-        bh=6dx+pGYbMKZYGufowQPf+5IJvdiHtWxdf/mNfFBW+XI=;
+        s=default; t=1568725611;
+        bh=ZHIePGln3f4h07VukY0MeVhuUP5fwb7l29HzhWWd+ow=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Y0AjA5Ai77LxzbSqLfZnFwbvFq6nGMeUSrnIqextmcWyJY8IFhnKTk4DKegpGcAPF
-         51sMV/v90zXf9r53PWp/Vk/jglOBRJq8FJ6r9zkFw22al9veV1fET0kW6MLWU4jjHN
-         FDBB7NtqwpDA0Pikh9YORVSDrIiqi1HFHDB5FgXw=
-Received: by mail-qk1-f181.google.com with SMTP id s18so3898903qkj.3;
-        Tue, 17 Sep 2019 06:05:51 -0700 (PDT)
-X-Gm-Message-State: APjAAAXakWmkwrS00yehNpyet9X+drlZ7x8oR1/1Z7yMCYdsDoY9K1UY
-        IoDkLaGTF4KrlNTcecsTqoRHeWYuG/UfKXYOJg==
-X-Google-Smtp-Source: APXvYqz2HPAde8iLviBNps8veZshe4FIhl9v/4PCg3wURvc7VWi1W+/WDS08X9I33YRoPGdWrfn+3FvonmV20YnIfeo=
-X-Received: by 2002:a37:be87:: with SMTP id o129mr3695035qkf.254.1568725550865;
- Tue, 17 Sep 2019 06:05:50 -0700 (PDT)
+        b=JAlJT20sTa2zdk54zgz8tx/Q5mf7OHyTAW1t/0/CEnkce/q1nSeD/Cu1ZJ7rSEntH
+         0Mt//EVsO387NnByBgGPVTOR6AdYcN3qPmHMf3cghxcV6pN9jqe6EN38rZxXba+1/v
+         D9RoL9Fb4fbykkbzOVtb2/l9Y6axCk/ZGY4AoArw=
+Received: by mail-qt1-f180.google.com with SMTP id j31so4291677qta.5;
+        Tue, 17 Sep 2019 06:06:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAUthIHqKzGcZuIhGylWWjLu7AAIGlZaH44beLRZ1tZd8mTIzDpf
+        SM+3aC6/k5ZThNDIMyEK4SradtS+xuiJutX9pw==
+X-Google-Smtp-Source: APXvYqxnS0Z5LmkDuQ50y6Gr4mI8Kgy0qSiRhYSoIZh0SJy6AW488AB8oDYlSbtoB2ySP/ohUFmAtoK+kR+slsdpxlk=
+X-Received: by 2002:a0c:9e20:: with SMTP id p32mr3037773qve.39.1568725610350;
+ Tue, 17 Sep 2019 06:06:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <CGME20190917120517eucas1p1188d244fac2d10d7990363ff25ffb70d@eucas1p1.samsung.com>
- <20190917111413.22711-1-m.falkowski@samsung.com> <20190917120452.28135-1-m.falkowski@samsung.com>
-In-Reply-To: <20190917120452.28135-1-m.falkowski@samsung.com>
+References: <1568724492-32087-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1568724492-32087-1-git-send-email-biju.das@bp.renesas.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Sep 2019 08:05:38 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJmjUR63i_hKUuZwDu42rebwABHu62bQoxTRRJu5yObEA@mail.gmail.com>
-Message-ID: <CAL_JsqJmjUR63i_hKUuZwDu42rebwABHu62bQoxTRRJu5yObEA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: sound: Convert Samsung I2S controller
- to dt-schema
-To:     Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
+Date:   Tue, 17 Sep 2019 08:06:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJHtThoDphNt+iTkeU7E7Ojr=sVVMz95-r95OEd7XpS8A@mail.gmail.com>
+Message-ID: <CAL_JsqJHtThoDphNt+iTkeU7E7Ojr=sVVMz95-r95OEd7XpS8A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: renesas: Add HopeRun RZ/G2N boards
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 7:05 AM Maciej Falkowski
-<m.falkowski@samsung.com> wrote:
+On Tue, Sep 17, 2019 at 7:55 AM Biju Das <biju.das@bp.renesas.com> wrote:
 >
-> Convert Samsung I2S controller to newer dt-schema format.
+> This patch adds board HiHope RZ/G2N (the main board, powered by
+> the R8A774B1) and board HiHope RZ/G2 EX (the expansion board
+> that sits on top of the HiHope RZ/G2N). Both boards are made
+> by Jiangsu HopeRun Software Co., Ltd. (a.k.a. HopeRun).
 >
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > ---
-> v2:
-> - Added missing Signed-off-by certificate
-> ---
->  .../devicetree/bindings/sound/samsung-i2s.txt |  84 -------------
->  .../bindings/sound/samsung-i2s.yaml           | 119 ++++++++++++++++++
->  2 files changed, 119 insertions(+), 84 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/samsung-i2s.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+>  Documentation/devicetree/bindings/arm/renesas.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-> diff --git a/Documentation/devicetree/bindings/sound/samsung-i2s.yaml b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
-> new file mode 100644
-> index 000000000000..59dc76035cb4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/samsung-i2s.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung SoC I2S controller
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +  - Sangbeom Kim <sbkim73@samsung.com>
-> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-> +
-> +properties:
-> +  compatible:
-> +    description: |
-> +      samsung,s3c6410-i2s: for 8/16/24bit stereo I2S.
-> +
-> +      samsung,s5pv210-i2s: for 8/16/24bit multichannel(5.1) I2S with
-> +      secondary fifo, s/w reset control and internal mux for root clk src.
-> +
-> +      samsung,exynos5420-i2s: for 8/16/24bit multichannel(5.1) I2S for
-> +      playback, stereo channel capture, secondary fifo using internal
-> +      or external dma, s/w reset control, internal mux for root clk src
-> +      and 7.1 channel TDM support for playback. TDM (Time division multiplexing)
-> +      is to allow transfer of multiple channel audio data on single data line.
-> +
-> +      samsung,exynos7-i2s: with all the available features of exynos5 i2s.
-> +
-> +      exynos7 I2S has 7.1 channel TDM support for capture, secondary fifo
-> +      with only external dma and more no.of root clk sampling frequencies.
-> +
-> +      samsung,exynos7-i2s1: I2S1 on previous samsung platforms supports
-> +      stereo channels. exynos7 i2s1 upgraded to 5.1 multichannel with
-> +      slightly modified bit offsets.
-> +    enum:
-> +      - "samsung,s3c6410-i2s"
-> +      - "samsung,s5pv210-i2s"
-> +      - "samsung,exynos5420-i2s"
-> +      - "samsung,exynos7-i2s"
-> +      - "samsung,exynos7-i2s1"
-
-No need for quotes here.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    description: list of DMA controller phandle and DMA request line ordered pairs.
-
-How many?
-
-> +
-> +  dma-names:
-> +    description: |
-> +      identifier string for each DMA request line in the dmas property.
-> +      These strings correspond 1:1 with the ordered pairs in dmas.
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - const: iis
-> +      - items:
-> +          - const: iis
-> +          - const: i2s_opclk0
-> +      - items:
-> +          - const: iis
-> +          - const: i2s_opclk0
-> +          - const: i2s_opclk1
-> +    description: |
-> +      "iis" is the i2s bus clock.
-> +      For i2s1 and i2s2 - "iis", "i2s_opclk0"
-> +      For i2s0 - "iis", "i2s_opclk0", "i2s_opclk1"
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  samsung,idma-addr:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Internal DMA register base address of the audio
-> +      sub system(used in secondary sound source).
-> +
-> +  pinctrl-0:
-> +    description: Should specify pin control groups used for this controller.
-> +
-> +  pinctrl-names:
-> +    const: default
-> +
-> +  "#sound-dai-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - dmas
-> +  - dma-names
-> +  - clocks
-> +  - clock-names
-> +
-> +examples:
-> +  - |
-> +    i2s0: i2s@3830000 {
-> +        compatible = "samsung,s5pv210-i2s";
-> +        reg = <0x03830000 0x100>;
-> +        dmas = <&pdma0 10
-> +                &pdma0 9
-> +                &pdma0 8>;
-> +        dma-names = "tx", "rx", "tx-sec";
-> +        clocks = <&clock_audss 0>, // EXYNOS_I2S_BUS
-> +                <&clock_audss 0>, // EXYNOS_I2S_BUS
-> +                <&clock_audss 0>; // EXYNOS_SCLK_I2S
-> +        clock-names = "iis", "i2s_opclk0", "i2s_opclk1";
-> +        #clock-cells = <1>;
-> +        samsung,idma-addr = <0x03000000>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&i2s0_bus>;
-> +        #sound-dai-cells = <1>;
-> +    };
-> +
-> --
-> 2.17.1
->
+Reviewed-by: Rob Herring <robh@kernel.org>
