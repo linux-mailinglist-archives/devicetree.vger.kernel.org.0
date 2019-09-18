@@ -2,242 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 847B4B634D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 14:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A96B635D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 14:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbfIRMeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 08:34:05 -0400
-Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:1434 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725902AbfIRMeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 08:34:05 -0400
-Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
-        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8ICXJBM029525;
-        Wed, 18 Sep 2019 05:33:40 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=proofpoint;
- bh=ZXKfpxxl6xzOXemPDXXdxgZTUKsstAW4xEkots+ZYaY=;
- b=I63ToQrj5LtYfpkQdg48VlxuZg+dazo5AIc7a5oNnzatZYv86BXoyEs9Kx9Z0oSXgip3
- PqW7gr+jZlNBCbD0IacWz1sO3uI75tVESqa/kwCNil6YbNpF/L012OYsNYmz7LKddurZ
- CoHWWTvaPPryHdA44+ZNyxb4m25mNpqG8Ie8rEhja0oshw9zelGJYh5A1qWUSBToX/Gm
- MDikmCV7PKc2pdYauf6Da+yEKhqECleLZM2hr/p8tmbrsWzHmX+gT9BKjcsW01kDC1rJ
- CJandDmpNEMJMz6T6iWiF4Xsij2jUfbARPdWOlrnFALpzuI+AW7kc8k/xQVr3hPiWsax /Q== 
-Received: from nam03-co1-obe.outbound.protection.outlook.com (mail-co1nam03lp2052.outbound.protection.outlook.com [104.47.40.52])
-        by mx0b-0014ca01.pphosted.com with ESMTP id 2v37ktat4h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 18 Sep 2019 05:33:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KOwVYNysaSK+GsQcrRZMlpiXAjfpXqEpmNLLXy/KgLagyp0WTl3ilCO4c9b2R8SrOVv8e4ZQhuOXPxbRwBCzkdmqboJlrPgeQqpxjITOTm0/Ktn/M/l8Qcf5FbMhasOikDiQwvQPUcXGywmom/0aPnxDDoDlPTVBqZ64+x1x+eIJqlcjgx1olwmurafMRiJ1hH2Ak21bKtNlOpPuw11MRBRc15+U1J/q5mFXth9eSzPsIrXRjHe1lshI93CaP6uXOpw7KjLVzMeo5f7l8O4DaFP4hE7LW17qv7+fKyFQsI3S5NBEWnPceQe/651F7PRrzV55TfeauEAW3o9pBohqtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZXKfpxxl6xzOXemPDXXdxgZTUKsstAW4xEkots+ZYaY=;
- b=lIBu8vRW0DnLrWOk+XfEO+fitNLIRT3Hlmuzea07+x7R6TNEvsFyIfHN6H626qJUUjkN2H4J8s8T9JezW3sEOYgIAaTvnnE/SqdENVcBtjPGD3X+zYH3toou0UU+iclsIA2N/Jbm/elLKjZwgry/0uOpzg94zr0jeqThML0hPJielosrzOrMyYnoFdWgWUz45hWZsh5UZwuPCWXA1+D7m40wqTVNryg4f2FW9hWLLeEDb5SQTdP/Dv9zdKQSFxkwBT4sx/iPIB2+KsD72jlwQ/OktXEdVaYUcgVM+6PjI2TpkBWHWSMDmUDB509PfFnLJVkkFszuKd9h/MwEShOETg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 158.140.1.28) smtp.rcpttodomain=ti.com smtp.mailfrom=cadence.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=cadence.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZXKfpxxl6xzOXemPDXXdxgZTUKsstAW4xEkots+ZYaY=;
- b=polgT42OOEqJ2q4VakCYeEtZ7d15QPDFZbJ8TkBMV/+VJ1042bqSflADPl9JwaTdDUhw3ErH5VmSd/AalO5xt99+dhkpffMGWGAfLw312k5haHuAav2u9njpUYB20DPQ3QgQqdDT1GOj9mkSDD/IFyoJaEAS1x3xy+41ngBFJzE=
-Received: from CH2PR07CA0026.namprd07.prod.outlook.com (2603:10b6:610:20::39)
- by DM5PR07MB3865.namprd07.prod.outlook.com (2603:10b6:3:eb::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.15; Wed, 18 Sep
- 2019 12:33:36 +0000
-Received: from BY2NAM05FT031.eop-nam05.prod.protection.outlook.com
- (2a01:111:f400:7e52::202) by CH2PR07CA0026.outlook.office365.com
- (2603:10b6:610:20::39) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.17 via Frontend
- Transport; Wed, 18 Sep 2019 12:33:36 +0000
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- cadence.com discourages use of 158.140.1.28 as permitted sender)
-Received: from sjmaillnx2.cadence.com (158.140.1.28) by
- BY2NAM05FT031.mail.protection.outlook.com (10.152.100.168) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.10 via Frontend Transport; Wed, 18 Sep 2019 12:33:36 +0000
-Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
-        by sjmaillnx2.cadence.com (8.14.4/8.14.4) with ESMTP id x8ICXXpI003200
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Wed, 18 Sep 2019 05:33:34 -0700
-X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
-Received: from maileu3.global.cadence.com (10.160.88.99) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3; Wed, 18 Sep 2019 14:33:32 +0200
-Received: from lvlogina.cadence.com (10.165.176.102) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3 via Frontend Transport; Wed, 18 Sep 2019 14:33:32 +0200
-Received: from lvlogina.cadence.com (localhost.localdomain [127.0.0.1])
-        by lvlogina.cadence.com (8.14.4/8.14.4) with ESMTP id x8ICXWI3000935;
-        Wed, 18 Sep 2019 13:33:32 +0100
-Received: (from piotrs@localhost)
-        by lvlogina.cadence.com (8.14.4/8.14.4/Submit) id x8ICXVGq000933;
-        Wed, 18 Sep 2019 13:33:31 +0100
-From:   Piotr Sroka <piotrs@cadence.com>
-CC:     Kazuhiro Kasai <kasai.kazuhiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [v7 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
-Date:   Wed, 18 Sep 2019 13:31:45 +0100
-Message-ID: <20190918123223.31745-1-piotrs@cadence.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20190918122923.28737-1-piotrs@cadence.com>
-References: <20190918122923.28737-1-piotrs@cadence.com>
+        id S1731162AbfIRMg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 08:36:57 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41169 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbfIRMg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 08:36:57 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w17so5784798oiw.8;
+        Wed, 18 Sep 2019 05:36:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TGvS6AhUHn5wf4afwTlLa7uTvF5Onr61XOQ/Aq65EDw=;
+        b=qTUvkhvx0YzDWQob2m2Am5cOXu0qOELP3yBP4mrRnlZMMEM+xC60K3AknmBOXvplyE
+         RPWeTFERbp1PRuXBwVKSopP/md8IRUArYuvONXcgigljRiMPGOCPN58PBTHQsruXDV4B
+         eZnuTN1NYN5u1XAZNE6Bmg2r8r5pdOZxND9Ij8gKdtHEKbabCY7LJYau6Lf5qRs0tX4d
+         W6rs79OVmocBJovwLJPO1d9MFmLq+9fsrkmW4O8x0mIX/49RxL8BMO21cCY4lDJp6P4J
+         RnEkg23MKEWiN+h2v86DdCQ8DtVV3YQ4Cyq0CapZUVarg4KMC/acbp5+WpMhKFraLwbj
+         Qn/A==
+X-Gm-Message-State: APjAAAWhyGk00785u5sPIE7jqLYYJF3RAdlz76v4+DvwMIWVHpQo+Lxl
+        uhw6GDwAlP2IrTPPy/RqVw==
+X-Google-Smtp-Source: APXvYqwHsTIV2zcgkEiykj1HNn8414Z7SeIjp6LokpIJB26rTRdmqxJN2riKchid6WJKJLxLC/bZ5Q==
+X-Received: by 2002:aca:1303:: with SMTP id e3mr1821190oii.6.1568810215772;
+        Wed, 18 Sep 2019 05:36:55 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id c12sm1616286otp.49.2019.09.18.05.36.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Sep 2019 05:36:55 -0700 (PDT)
+Date:   Wed, 18 Sep 2019 07:36:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Sebastian Reichel <sre@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v2 08/11] dt-bindings: arm: samsung: Convert Exynos
+ System Registers bindings to json-schema
+Message-ID: <20190918123654.GA318@bogus>
+References: <20190907092007.9946-1-krzk@kernel.org>
+ <20190907092007.9946-8-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-OrganizationHeadersPreserved: maileu3.global.cadence.com
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(136003)(396003)(346002)(376002)(199004)(189003)(36092001)(478600001)(87636003)(5660300002)(70586007)(70206006)(109986005)(2906002)(76130400001)(42186006)(50226002)(4326008)(16586007)(48376002)(54906003)(316002)(486006)(7636002)(305945005)(1076003)(8936002)(1671002)(356004)(7416002)(50466002)(2616005)(336012)(36756003)(26826003)(6666004)(446003)(76176011)(426003)(86362001)(186003)(51416003)(26005)(476003)(47776003)(126002)(8676002)(246002)(11346002)(266003);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR07MB3865;H:sjmaillnx2.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:corp.Cadence.COM;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a20fe372-a398-416c-5a57-08d73c346cfe
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);SRVR:DM5PR07MB3865;
-X-MS-TrafficTypeDiagnostic: DM5PR07MB3865:
-X-Microsoft-Antispam-PRVS: <DM5PR07MB38658DB04A1AB4B14661B350DD8E0@DM5PR07MB3865.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:525;
-X-Forefront-PRVS: 01644DCF4A
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: 3R6BftLp8SE2ipIBNr0pNyn/ZMkwS8RAsm4U4+nc0JEA02Puyo7xVqjdu8Pe2S8DHpklX1wp2at2P71BgsXruUAVSA22pyBz0gYBdxsUq7bucAZDK8ZKesOOp6UBmpx2otey5lJqPGg6daqmxW60ZMcxevtTCHH9oEBTFcqd9QqSol8wJnYK3fprbmw/Auy5GRaTPDtdGxOVaORPTb24X0tNG/5PymvbTK08/8V/MDOZhT1NRFvOUglVk/NvqUkodjGRPCrZFncIr2zlOKuaackZGEEeV4MoAM4FXtklexXy478+8K2IAWR32TmxAJ1o7vCyH+eZ4FhFm4tbP5ekUW4jUUBbmlBxYDctnnqe1r/hcmuvFi1q+j7URD7DVwkKG8EsFZnexwMNVnLIkO7ZuHtKrXi/Vvyy4u5qJZC95tE=
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2019 12:33:36.0328
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a20fe372-a398-416c-5a57-08d73c346cfe
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx2.cadence.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR07MB3865
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
- definitions=2019-09-18_07:2019-09-17,2019-09-18 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 malwarescore=0
- suspectscore=0 adultscore=0 phishscore=0 spamscore=0 mlxscore=0
- mlxlogscore=999 impostorscore=0 lowpriorityscore=0 bulkscore=0
- clxscore=1015 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-1908290000 definitions=main-1909180128
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190907092007.9946-8-krzk@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the bindings used by Cadence NAND controller driver
+On Sat, Sep 07, 2019 at 11:20:04AM +0200, Krzysztof Kozlowski wrote:
+> Convert Samsung Exynos System Registers (SYSREG) bindings to DT schema
+> format using json-schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> Example somehow fails:
+> Documentation/devicetree/bindings/arm/samsung/pmu.example.dt.yaml:
+> system-controller@10040000: compatible:0: 'samsung,exynos5250-pmu' is
+> not one of ['samsung,exynos4-sysreg', 'samsung,exynos5-sysreg']
+> 
+> It seems that PMU schema is applied to sysreq nodes (and vice-versa).
+> ---
+>  .../bindings/arm/samsung/sysreg.txt           | 19 -----------
+>  .../bindings/arm/samsung/sysreg.yaml          | 33 +++++++++++++++++++
+>  2 files changed, 33 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/samsung/sysreg.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/samsung/sysreg.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/sysreg.txt b/Documentation/devicetree/bindings/arm/samsung/sysreg.txt
+> deleted file mode 100644
+> index 4fced6e9d5e4..000000000000
+> --- a/Documentation/devicetree/bindings/arm/samsung/sysreg.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -SAMSUNG S5P/Exynos SoC series System Registers (SYSREG)
+> -
+> -Properties:
+> - - compatible : should contain two values. First value must be one from following list:
+> -		- "samsung,exynos4-sysreg" - for Exynos4 based SoCs,
+> -		- "samsung,exynos5-sysreg" - for Exynos5 based SoCs.
+> -		second value must be always "syscon".
+> - - reg : offset and length of the register set.
+> -
+> -Example:
+> -	syscon@10010000 {
+> -		compatible = "samsung,exynos4-sysreg", "syscon";
+> -		reg = <0x10010000 0x400>;
+> -	};
+> -
+> -	syscon@10050000 {
+> -		compatible = "samsung,exynos5-sysreg", "syscon";
+> -		reg = <0x10050000 0x5000>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/sysreg.yaml b/Documentation/devicetree/bindings/arm/samsung/sysreg.yaml
+> new file mode 100644
+> index 000000000000..a3d44646e441
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/samsung/sysreg.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/samsung/sysreg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung S5P/Exynos SoC series System Registers (SYSREG)
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - samsung,exynos4-sysreg
+> +          - samsung,exynos5-sysreg
+> +      - const: syscon
 
-Signed-off-by: Piotr Sroka <piotrs@cadence.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes for v7:
-- none
-Changes for v6:
-- add documentation for address-cells and size-cells
-- remove not needed space
-- put myself as maintainer of the Cadence nand driver bindings
-Changes for v5:
-- replace "_" by "-" in all properties
-- change compatible name from cdns,hpnfc to cdns,hp-nfc
-Changes for v4:
-- add commit message
-Changes for v3:
-- add unit suffix for board_delay 
-- move child description to proper place
-- remove prefix cadence_ for reg and sdma fields
-Changes for v2:
-- remove chip dependends parameters from dts bindings
-- add names for register ranges in dts bindings
-- add generic bindings to describe NAND chip representation
----
- .../bindings/mtd/cadence-nand-controller.txt       | 53 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+The problem is this will by default match any node with 'syscon'. You 
+have to add a custom 'select' entry. See the LVDS panel bindings for an 
+example.
 
-diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-new file mode 100644
-index 000000000000..f3893c4d3c6a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-@@ -0,0 +1,53 @@
-+* Cadence NAND controller
-+
-+Required properties:
-+  - compatible : "cdns,hp-nfc"
-+  - reg : Contains two entries, each of which is a tuple consisting of a
-+	  physical address and length. The first entry is the address and
-+	  length of the controller register set. The second entry is the
-+	  address and length of the Slave DMA data port.
-+  - reg-names: should contain "reg" and "sdma"
-+  - #address-cells: should be 1. The cell encodes the chip select connection.
-+  - #size-cells : should be 0.
-+  - interrupts : The interrupt number.
-+  - clocks: phandle of the controller core clock (nf_clk).
-+
-+Optional properties:
-+  - dmas: shall reference DMA channel associated to the NAND controller
-+  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
-+    round trip delay for the signals and is used for deciding on values
-+    associated with data read capture. The example formula for SDR mode is
-+    the following:
-+    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
-+    + DQ PAD delay
-+
-+Child nodes represent the available NAND chips.
-+
-+Required properties of NAND chips:
-+  - reg: shall contain the native Chip Select ids from 0 to max supported by
-+    the cadence nand flash controller
-+
-+See Documentation/devicetree/bindings/mtd/nand.txt for more details on
-+generic bindings.
-+
-+Example:
-+
-+nand_controller: nand-controller@60000000 {
-+	  compatible = "cdns,hp-nfc";
-+	  #address-cells = <1>;
-+	  #size-cells = <0>;
-+	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
-+	  reg-names = "reg", "sdma";
-+	  clocks = <&nf_clk>;
-+	  cdns,board-delay-ps = <4830>;
-+	  interrupts = <2 0>;
-+	  nand@0 {
-+	      reg = <0>;
-+	      label = "nand-1";
-+	  };
-+	  nand@1 {
-+	      reg = <1>;
-+	      label = "nand-2";
-+	  };
-+
-+};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 16e16445b88b..94d78f4e29ba 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3584,6 +3584,7 @@ M:	Piotr Sroka <piotrs@cadence.com>
- L:	linux-mtd@lists.infradead.org
- S:	Maintained
- F:	drivers/mtd/nand/raw/cadence-nand-controller.c
-+F:	Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
- 
- CADET FM/AM RADIO RECEIVER DRIVER
- M:	Hans Verkuil <hverkuil@xs4all.nl>
--- 
-2.15.0
+I'd like to kill off 'syscon'...
 
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +examples:
+> +  - |
+> +    syscon@10010000 {
+> +      compatible = "samsung,exynos4-sysreg", "syscon";
+> +      reg = <0x10010000 0x400>;
+> +    };
+> +
+> +    syscon@10050000 {
+> +      compatible = "samsung,exynos5-sysreg", "syscon";
+> +      reg = <0x10050000 0x5000>;
+> +    };
+> -- 
+> 2.17.1
+> 
