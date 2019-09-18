@@ -2,72 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B1F8B62E8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 14:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32580B632D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 14:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730863AbfIRMPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 08:15:04 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:45815 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727637AbfIRMPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 08:15:04 -0400
-Received: by mail-ot1-f66.google.com with SMTP id 41so6050039oti.12;
-        Wed, 18 Sep 2019 05:15:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=iwhCp5qcYnf6sA1iPmnMj21Y3p/sdCHl5i/JOjrNkTo=;
-        b=JWcmNX9mHjO6yPg7q6T7VIlwSY+o0UtFBDKRwQcHRN8Y42/mR8nFbmlCgf792+ytjq
-         p/iUYWLo5IEuJeVB4zSawkBdMIVprO6fBnC+1mEJPwHK8r764VOhg3I1cm8sZCIT5Mve
-         hNkivmR6wHgZXn5geHtt5BkBnLAy6ler2AoHOVCOUdQbGetkVJ41ruWS+ckvFnjyh4Xh
-         YAVM+8hKOTI/qWfwni+qUnkD406BO0jaUYMi7Yy3iQCW30CKuy5JlZBfef9xkzDdoIFp
-         dF0/os4cHICJoL5hZh2u3QqpF/6a34BfTm8GWuTh4Lz7/ReKrlttT+B+YR7VajSVPJly
-         BotA==
-X-Gm-Message-State: APjAAAWWnfMg33aZslhFfvV5fqbZX+91GxmU5DMWzf90591QXqLhllFv
-        PlD+VCbRXhhIwGbziX2adQ==
-X-Google-Smtp-Source: APXvYqylx/gSShddZtCWoCwVr8YsIaFdNTEn4984KKX/F9Ola6SeUx0xaI9HwZ9jz5zzmHxuvk370A==
-X-Received: by 2002:a9d:7e97:: with SMTP id m23mr2633158otp.324.1568808902856;
-        Wed, 18 Sep 2019 05:15:02 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v6sm1721538oie.4.2019.09.18.05.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Sep 2019 05:15:02 -0700 (PDT)
-Date:   Wed, 18 Sep 2019 07:15:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: phy-qcom-qmp: Add sm8150 UFS phy
- compatible string
-Message-ID: <20190918121501.GA32535@bogus>
-References: <20190906051017.26846-1-vkoul@kernel.org>
- <20190906051017.26846-3-vkoul@kernel.org>
+        id S1726900AbfIRM1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 08:27:33 -0400
+Received: from mail-sz.amlogic.com ([211.162.65.117]:56694 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726359AbfIRM1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 08:27:33 -0400
+X-Greylist: delayed 903 seconds by postgrey-1.27 at vger.kernel.org; Wed, 18 Sep 2019 08:27:32 EDT
+Received: from droid12-sz.software.amlogic (10.28.8.22) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Wed, 18 Sep 2019
+ 20:13:25 +0800
+From:   Xingyu Chen <xingyu.chen@amlogic.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Kevin Hilman <khilman@baylibre.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH 0/3] reset: meson: add Meson-A1 SoC support
+Date:   Wed, 18 Sep 2019 20:12:24 +0800
+Message-ID: <1568808746-1153-1-git-send-email-xingyu.chen@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190906051017.26846-3-vkoul@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.28.8.22]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  6 Sep 2019 10:40:16 +0530, Vinod Koul wrote:
-> Document "qcom,sdm845-qmp-ufs-phy" compatible string for QMP UFS PHY
-> found on SM8150.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
+This patchset adds support for Meson-A1 SoC Reset Controller. A new struct
+meson_reset_param is introduced to describe the register differences between
+Meson-A1 and previous SoCs
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This patchset is based on A1 DTBv4[1].
+[1] https://lore.kernel.org/linux-amlogic/1568276370-54181-1-git-send-email-jianxin.pan@amlogic.com
+
+Xingyu Chen (3):
+  arm64: dts: meson: add reset controller for Meson-A1 SoC
+  dt-bindings: reset: add bindings for the Meson-A1 SoC Reset Controller
+  reset: add support for the Meson-A1 SoC Reset Controller
+
+ .../bindings/reset/amlogic,meson-reset.txt         |  4 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  6 +++
+ drivers/reset/reset-meson.c                        | 35 ++++++++++---
+ include/dt-bindings/reset/amlogic,meson-a1-reset.h | 59 ++++++++++++++++++++++
+ 4 files changed, 95 insertions(+), 9 deletions(-)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-reset.h
+
+-- 
+2.7.4
+
