@@ -2,134 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC763B6A3F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 20:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA29B6A7D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 20:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729768AbfIRSHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 14:07:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34096 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727481AbfIRSHb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 14:07:31 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C2BB521907;
-        Wed, 18 Sep 2019 18:07:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568830049;
-        bh=XzJzeNxP8bcSnXYl+BgI5Ibmb/8qVl2V7xrrPu1TKHs=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=ezGRyKUxJeuNeLIdwwgat+b3wVh6TDBnB1pbmXczV11d3tyA9yNj1j916mXxVJ3VR
-         0l/Lc8NdVrEXWF+E7BlODp31uMOr35vDaCeOLv58D+ilrwgbDMloOjA+b659HSzqDH
-         uV7nS+atNfBTwjArfqAQMM1uTljOw5FSQKCp3kco=
-Content-Type: text/plain; charset="utf-8"
+        id S2388815AbfIRSYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 14:24:54 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:33966 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388793AbfIRSYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 14:24:51 -0400
+Received: by mail-io1-f67.google.com with SMTP id q1so1560402ion.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 11:24:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9gPHsl5MGafDizMhJaXlJwLXsMzDh1ZKR3owfwW7eEw=;
+        b=KS7mlFR2kYZtKZLYic9KTEy8y8YhqrWC5gUb9WrC/SSt6dH2xLi5fyfB/IM9nURwQz
+         DUekaLCyNL1i8ITYPCZLY8Flwm/fzYSvKtMI9KJT+w8tPLuuwJ3zJICqSBQTqXISknro
+         ew4MTUtCP5sGGMDVAKzpG040d6oFFUAVnLJMxMJw0rUoOY9zZx0IsLwegNvTjEiVy3fL
+         U4zN7gPCjvhfmtqjm37dJwPBXyTpyWZ0aTz7xeBwpfKePUwCanSzWXODZg3khJTvtznz
+         lQNOy8kDW5X+A9BKks9UgwPd43GkXChYA+gH+RdTqg5nOG6eLwvA4IBQAaN3rRT3mgA7
+         evSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9gPHsl5MGafDizMhJaXlJwLXsMzDh1ZKR3owfwW7eEw=;
+        b=OkAttcg3vS/KXgZXYWthAVZhUYYQ0I7Pp7dkANr1u+Sbaqe/94oqE5SZ0MKNvENwyd
+         mxAPtx68BQLTiJfpa8OOrA95OViC+B5JSo/V/nJeMxRlnpz4eslaCJHKxoVIzUlJGujS
+         Cfl7foBkFFOvllC8mWqxhPXVKtg9IzrK6esn0bTp2P2902fleLMas5JfD/YO5MzSt+O5
+         tV4xqMW7hfUXMaQd6JTR6r+uu8js3zs/mWGU/itTpDQLTqBKEp0n2BydfyyMr3ww/8Hv
+         H8AQ4R1u5URA8wwHtYPdXP2GOmHcUY7gWxE5BLV46zP+wi9lbPTvHyiUEmMw2enRrNbu
+         ihAQ==
+X-Gm-Message-State: APjAAAVhb+A96aKpzIwcaju9kKahdr8o6wt006rn5ZG2m9eMoTBs7UZN
+        Q84I6LmJ0OE7bYCJIrwrWYmgk9htdu+s5pR5+D+irg==
+X-Google-Smtp-Source: APXvYqwTNqNxGkvhQrvIve8ulxfhIJR74fxSNr+7tatQwwBPQBCBy+Miqdmsa3o8F93SsRvO4dlzQ+KDmRdNEzHO5z0=
+X-Received: by 2002:a5d:8b07:: with SMTP id k7mr740866ion.20.1568831089859;
+ Wed, 18 Sep 2019 11:24:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190908194241.GL52127@atomide.com>
-References: <20190905215532.8357-1-tony@atomide.com> <20190907035518.EB40C208C3@mail.kernel.org> <20190908194241.GL52127@atomide.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH] clk: ti: clkctrl: Fix hidden dependency to node name with reg-names
-User-Agent: alot/0.8.1
-Date:   Wed, 18 Sep 2019 11:07:28 -0700
-Message-Id: <20190918180729.C2BB521907@mail.kernel.org>
+References: <1568815340-30401-1-git-send-email-pragnesh.patel@sifive.com> <CAL_JsqJwsLkQGjjoS_RvBXjSq4irrVPEpwrwTv7wL732YHM4dg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJwsLkQGjjoS_RvBXjSq4irrVPEpwrwTv7wL732YHM4dg@mail.gmail.com>
+From:   Pragnesh Patel <pragnesh.patel@sifive.com>
+Date:   Wed, 18 Sep 2019 23:54:36 +0530
+Message-ID: <CAN8ut8LObxfEEQbhmncToG8u=Ec6rESLYHcriT5cu7RAHxbDqw@mail.gmail.com>
+Subject: Re: [PATCH] regulator: dt-bindings: Fix building error for dt_binding_check
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Tony Lindgren (2019-09-08 12:42:41)
-> * Stephen Boyd <sboyd@kernel.org> [190907 03:55]:
-> > Quoting Tony Lindgren (2019-09-05 14:55:32)
-> > > We currently have a hidden dependency to the device tree node name for
-> > > the clkctrl clocks. Instead of using standard node name like "clock",=
- we
-> > > must use "l4-per-clkctrl" naming so the clock driver can find the
-> >=20
-> > The node name is "clk" though.
->=20
-> Yes for some it's "clk" and for some it's "l4-per-clkctrl".
->=20
-> In general, the clock node name should be "clock@foo", rather than
-> "clk@foo", right?
+On Wed, Sep 18, 2019 at 7:58 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Wed, Sep 18, 2019 at 9:02 AM Pragnesh Patel
+> <pragnesh.patel@sifive.com> wrote:
+> >
+>
+> The subject could be more specific rather than being one that applies
+> to any dt_binding_check breakage in regulators.
+>
 
-I don't think it really matters but sure, clock is nicer because that's
-a more standard node name than the vowel-less one.
+Thanks for pointing me out, I will take care this in future patches.
 
->=20
-> > > associated clock domain. Further, if "clk" is specified for a clock n=
-ode
-> > > name, the driver sets TI_CLK_CLKCTRL_COMPAT flag that uses different
-> > > logic with earlier naming for the clock node name.
-> > >=20
-> > > If the clock node naming dependency is not understood, the related
-> > > clockdomain is not found, or a wrong one can get used if a clock mana=
-ger
-> > > instance has multiple domains.
-> > >=20
-> > > As each clkctrl instance represents a single clock domain with it's
-> > > reg property describing the clocks available in that clock domain,
-> > > we can simply use "reg-names" property for the clock domain.
-> > >=20
-> > > This simplifies things and removes the hidden dependency to the node
-> > > name. And then later on, we should be able to drop the related code
-> > > for parsing the node names.
-> > >=20
-> > > Let's also update the binding to use standard "clock" node naming
-> > > instead of "clk".
-> > >=20
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Signed-off-by: Tony Lindgren <tony@atomide.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/clock/ti-clkctrl.txt |  6 +++++-
-> > >  drivers/clk/ti/clkctrl.c                               | 10 ++++++++=
---
-> > >  2 files changed, 13 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/clock/ti-clkctrl.txt b=
-/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
-> > > --- a/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
-> > > +++ b/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
-> > > @@ -20,15 +20,19 @@ Required properties :
-> > >  - #clock-cells : shall contain 2 with the first entry being the inst=
-ance
-> > >                  offset from the clock domain base and the second bei=
-ng the
-> > >                  clock index
-> > > +- reg : clock registers
-> > > +- reg-names : clock register names for the clock, should be same as =
-the
-> > > +             domain name
-> >=20
-> > Is this necessary? I'd rather see that the names of the clks don't
-> > actually matter by means of connecting the clk tree through the "clocks"
-> > property when the parent clks are provided by external nodes and through
-> > direct pointers when they're within a controller. If that works then it
-> > should be possible to ignore this name in general?
->=20
-> This is not for names of the clocks :) This is to name the clock
-> provider register range. The name of the register range is the
-> same as the clockdomain that this range of clocks belongs to.
-> This property is used by the clock provider on init to initialize the
-> clock provider, not when a clock is requested.
->=20
-> In this case a clkctrl clock provider instance has one to some tens
-> clocks where they all belong to the same domain. If some similar clock
-> would have multiple domains, then it would simply just have multiple
-> reg ranges and multiple reg-names properties.
->=20
-> Or do you have some better ideas on how to name a clock controller
-> in the device tree?
->=20
+> > Compatible property is not of type 'string' so replace enum
+> > with items.
+> >
+> > Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
+> > ---
+> >  Documentation/devicetree/bindings/regulator/fixed-regulator.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> > index a78150c..8d4a7b2 100644
+> > --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> > +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> > @@ -29,7 +29,7 @@ if:
+> >
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > +    items:
+> >        - const: regulator-fixed
+> >        - const: regulator-fixed-clock
+>
+> This means you expect: compatible = "regulator-fixed", "regulator-fixed-clock";
+>
+> Did you actually run 'dt_binding_check' because it should fail on the example?
+>
+> I gave you exact change to make. Just remove 'const: ' on each entry.
 
-Why does the name of the clock controller or clkdm_name matter? Using a
-string from reg-names smells like a workaround to describe some sort of
-linkage between things that isn't being described in DT today.
+Thanks for correcting me, i rechecked "make dt_binding_check" and it's failed.
+I will send the patch again with the updated subject line.
 
+>
+> Rob
