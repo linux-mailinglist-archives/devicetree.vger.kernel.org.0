@@ -2,112 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 48CA2B665A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33E5B665C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731281AbfIROqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 10:46:08 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:20194 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731213AbfIROqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 10:46:07 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8IEhrtO014963;
-        Wed, 18 Sep 2019 09:45:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=/PkaBLjqrZnFFsfMPPGd9OsWu3s/ywG4YE1D4v04UF0=;
- b=KNsjjCzjN0eYGWBtNt8IsihwEEOw+70uSyugZ0kv4joMGKCtiFwEvgTMkhLxd/D7Z6Gt
- IKyQS2IiQJ/ik5Cmr58H+9KB2pABeU5wxjBfk9D3Z72k0MuEj3GbIXnOaRodFAbOlAW4
- rTNNLEBrIFSDUmufaua6aKqlHwAtb/ZZTKG1bkQEWrksB+gqOidoWY2aTmwcnXjw4Z16
- SpmXlDMRH4xYQktdSCWQ+QwSGqF5zJvlMvPCg6KL5mYh9u0u2FcnXTxHUOSl9PkOsSHK
- 7h+EKzC22PJ+1sHzE64SMmgtsNFSQOd8Nv5XqtV9o7ancveMqRewd0rrIwGSc4mYKWMf /A== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2v382qs8fs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 18 Sep 2019 09:45:55 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 18 Sep
- 2019 15:45:53 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Wed, 18 Sep 2019 15:45:53 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 9044B2C3;
-        Wed, 18 Sep 2019 14:45:53 +0000 (UTC)
-Date:   Wed, 18 Sep 2019 14:45:53 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk@kernel.org>,
-        <sbkim73@samsung.com>, <alsa-devel@alsa-project.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <patches@opensource.cirrus.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <b.zolnierkie@samsung.com>,
-        <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v1 7/9] ASoC: samsung: arndale: Add support for WM1811
- CODEC
-Message-ID: <20190918144553.GJ10204@ediswmail.ad.cirrus.com>
-References: <20190918104634.15216-1-s.nawrocki@samsung.com>
- <CGME20190918104705eucas1p1c01dc05bff199188677915e2bb8f7472@eucas1p1.samsung.com>
- <20190918104634.15216-8-s.nawrocki@samsung.com>
+        id S1731213AbfIROq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 10:46:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48824 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730029AbfIROq0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 10:46:26 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 956C920665;
+        Wed, 18 Sep 2019 14:46:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568817986;
+        bh=sh1/pWZQhmLEdoTgy9qc8FXTS1/RZaYcRnv+3EKj65E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iLwZ/6VIpFCY9nmCA/pyN0QOt0xG9M/wyRbUo2JejYMhSu66brQVBmIP8uqq8zLId
+         m/S/imTVnNLYNb2unr1BoQwtKGdVyqTtOIlmQNM/KzvSs8iSdvtoWP5eDlZ5WnFaw4
+         4rlc9Dwz41fHMSDoK2WE021TSBxPVvCmIq6ooAb0=
+Date:   Wed, 18 Sep 2019 16:46:23 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Ondrej Jirman <megous@megous.com>
+Subject: Re: [PATCH v2] arm64: dts: allwinner: a64: pine64-plus: Add PHY
+ regulator delay
+Message-ID: <20190918144623.tkwrhykb3sxqbr6d@gilmour>
+References: <20190909184235.13196-1-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="td5nie2iuibay3rv"
 Content-Disposition: inline
-In-Reply-To: <20190918104634.15216-8-s.nawrocki@samsung.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- bulkscore=0 adultscore=0 spamscore=0 mlxlogscore=999 impostorscore=0
- phishscore=0 mlxscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
- definitions=main-1909180146
+In-Reply-To: <20190909184235.13196-1-jernej.skrabec@siol.net>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 12:46:32PM +0200, Sylwester Nawrocki wrote:
-> The Arndale boards come with different types of the audio daughter
-> board.  In order to support the WM1811 one we add new definition of
-> an ASoC card which will be registered when the driver matches on
-> "samsung,arndale-wm1811" compatible.  There is no runtime detection of
-> the audio daughter board type at the moment, compatible string of the
-> audio card needs to be adjusted in DT, e.g. by the bootloader,
-> depending on actual audio board (CODEC) used.
-> 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> ---
-> -static const struct of_device_id samsung_arndale_rt5631_of_match[] __maybe_unused = {
-> -	{ .compatible = "samsung,arndale-rt5631", },
-> -	{ .compatible = "samsung,arndale-alc5631", },
-> +static const struct of_device_id arndale_audio_of_match[] __maybe_unused = {
 
-If your removing the of_match_ptr below I think the
-__maybe_unused should be removed as well.
+--td5nie2iuibay3rv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
-Charles
+On Mon, Sep 09, 2019 at 08:42:35PM +0200, Jernej Skrabec wrote:
+> Depending on kernel and bootloader configuration, it's possible that
+> Realtek ethernet PHY isn't powered on properly. According to the
+> datasheet, it needs 30ms to power up and then some more time before it
+> can be used.
+>
+> Fix that by adding 100ms ramp delay to regulator responsible for
+> powering PHY.
+>
+> Fixes: 94dcfdc77fc5 ("arm64: allwinner: pine64-plus: Enable dwmac-sun8i")
+> Suggested-by: Ondrej Jirman <megous@megous.com>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-> +	{ .compatible = "samsung,arndale-rt5631",  .data = &arndale_rt5631 },
-> +	{ .compatible = "samsung,arndale-alc5631", .data = &arndale_rt5631 },
-> +	{ .compatible = "samsung,arndale-wm1811",  .data = &arndale_wm1811 },
->  	{},
->  };
-> -MODULE_DEVICE_TABLE(of, samsung_arndale_rt5631_of_match);
-> +MODULE_DEVICE_TABLE(of, arndale_of_match);
->  
->  static struct platform_driver arndale_audio_driver = {
->  	.driver = {
-> -		.name   = "arndale-audio",
-> +		.name = "arndale-audio",
->  		.pm = &snd_soc_pm_ops,
-> -		.of_match_table = of_match_ptr(samsung_arndale_rt5631_of_match),
-> +		.of_match_table = arndale_audio_of_match,
+Queued as a fix for 5.4, thanks!
+Maxime
+
+--td5nie2iuibay3rv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXYJDPwAKCRDj7w1vZxhR
+xdK4AP0RZ4CscsTpkYmuYSXG3hH/C10hoz66XEjSw3F/uixspAD+O2C20oxlnZhd
+xnwehkcetGTGELnGwpmVspE3HGCD+gA=
+=CDeL
+-----END PGP SIGNATURE-----
+
+--td5nie2iuibay3rv--
