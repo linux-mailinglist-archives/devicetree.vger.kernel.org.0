@@ -2,295 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C08B6657
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CA2B665A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730712AbfIROpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 10:45:13 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:46846 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731329AbfIROpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 10:45:13 -0400
-Received: by mail-wr1-f65.google.com with SMTP id o18so7174217wrv.13;
-        Wed, 18 Sep 2019 07:45:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/xnclpVaHd+NllhxPMolxeibUYUOR+39w2PvmhuOKVw=;
-        b=Hy684wk6W87IoRJ1qeP1j6BDsjqqSlG5wyBqS8hsM7btUNh9BjKMpcHo4NJHd1BLGU
-         U3H8RHIAwJDEUG59/2T/P7zrq+h25+Mp/E6RtbaAxE2lk/LfXiKhaTDJenFh0CJNYI2E
-         luxIUVeOTrAjlWCiUnu48Ao16jwnlOj1aNYa4HgbYS3i3g8pysJOqS3zT+5VlxnutJS5
-         buKSpA5yUdoDZXsDW+BNQDocYfB7GqxayiRiYMITr+oE2Gr1nT0Dw5nAPZx5lfHKITaU
-         q4gPAhzudKDJKQBHHdwdaGEVHIn/YLuM9jVCBdXQ4Tk7QjvRuexy/p09Rrugoxb1QwBP
-         Z6Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/xnclpVaHd+NllhxPMolxeibUYUOR+39w2PvmhuOKVw=;
-        b=da7XIGf63FLAGDVwvbx/5ietrOPXG7VxSubdnL3q97ylu+ZmsHiz+TzyL41fn2g5wQ
-         6sFFrR2CqrDLYWbL6AvbGCuQLsO1wfS0XnKlvYJxnSUOuEh226R50iaEQgxD6FDZpWkp
-         fJTMZnaUFqLKueNgfQwnfetDkptFVu3wg2unxcA/tKdUWH9+1ULBWQau06skv2Jg2hWH
-         PBiUqIydQpTOEQYSLMyHoKmvqBEjv/vbDF2xzQ00CQtgicMyiuTf99VQwPdVXSvdjk39
-         s/MhrnPKD5V31MlkQyGtXTCsDcSLbntoG3zVoUIxFE8ywS4hD6fKqiJ8KBq4l9Nt3Jql
-         oyjQ==
-X-Gm-Message-State: APjAAAXI6Dcy6jhWga3shLUfBW6UBamw5CR8RSSdgLCbvC7icgsG2aIf
-        2sirBwpSWGuqrrn13P9NojY=
-X-Google-Smtp-Source: APXvYqzLdTwE2U8zgXSGPzA1uE+Yv+z1ljYwWaiR+AR+VTG1TkYmliwmin+MiET7NZd7gP9036aR5w==
-X-Received: by 2002:a05:6000:1002:: with SMTP id a2mr3247566wrx.272.1568817908265;
-        Wed, 18 Sep 2019 07:45:08 -0700 (PDT)
-Received: from arch-dsk-01 ([77.126.41.65])
-        by smtp.gmail.com with ESMTPSA id i74sm2896563wmg.44.2019.09.18.07.45.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Sep 2019 07:45:07 -0700 (PDT)
-Date:   Wed, 18 Sep 2019 17:45:02 +0300
-From:   tinywrkb <tinywrkb@gmail.com>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
-        Baruch Siach <baruch@tkos.co.il>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
- max-speed
-Message-ID: <20190918144502.GA2795497@arch-dsk-01>
-References: <20190910155507.491230-1-tinywrkb@gmail.com>
- <20190910185033.GD9761@lunn.ch>
- <87muf6oyvr.fsf@tarshish>
- <20190915135652.GC3427@lunn.ch>
- <20190917124101.GA1200564@arch-dsk-01>
- <20190917125434.GH20778@lunn.ch>
- <20190917133253.GA1210141@arch-dsk-01>
- <20190917223013.GC25745@shell.armlinux.org.uk>
- <20190917224347.GD25745@shell.armlinux.org.uk>
+        id S1731281AbfIROqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 10:46:08 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:20194 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1731213AbfIROqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 10:46:07 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8IEhrtO014963;
+        Wed, 18 Sep 2019 09:45:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=/PkaBLjqrZnFFsfMPPGd9OsWu3s/ywG4YE1D4v04UF0=;
+ b=KNsjjCzjN0eYGWBtNt8IsihwEEOw+70uSyugZ0kv4joMGKCtiFwEvgTMkhLxd/D7Z6Gt
+ IKyQS2IiQJ/ik5Cmr58H+9KB2pABeU5wxjBfk9D3Z72k0MuEj3GbIXnOaRodFAbOlAW4
+ rTNNLEBrIFSDUmufaua6aKqlHwAtb/ZZTKG1bkQEWrksB+gqOidoWY2aTmwcnXjw4Z16
+ SpmXlDMRH4xYQktdSCWQ+QwSGqF5zJvlMvPCg6KL5mYh9u0u2FcnXTxHUOSl9PkOsSHK
+ 7h+EKzC22PJ+1sHzE64SMmgtsNFSQOd8Nv5XqtV9o7ancveMqRewd0rrIwGSc4mYKWMf /A== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 2v382qs8fs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 18 Sep 2019 09:45:55 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 18 Sep
+ 2019 15:45:53 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Wed, 18 Sep 2019 15:45:53 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 9044B2C3;
+        Wed, 18 Sep 2019 14:45:53 +0000 (UTC)
+Date:   Wed, 18 Sep 2019 14:45:53 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk@kernel.org>,
+        <sbkim73@samsung.com>, <alsa-devel@alsa-project.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <b.zolnierkie@samsung.com>,
+        <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v1 7/9] ASoC: samsung: arndale: Add support for WM1811
+ CODEC
+Message-ID: <20190918144553.GJ10204@ediswmail.ad.cirrus.com>
+References: <20190918104634.15216-1-s.nawrocki@samsung.com>
+ <CGME20190918104705eucas1p1c01dc05bff199188677915e2bb8f7472@eucas1p1.samsung.com>
+ <20190918104634.15216-8-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20190917224347.GD25745@shell.armlinux.org.uk>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190918104634.15216-8-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 adultscore=0 spamscore=0 mlxlogscore=999 impostorscore=0
+ phishscore=0 mlxscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
+ definitions=main-1909180146
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 11:43:47PM +0100, Russell King - ARM Linux admin wrote:
-> On Tue, Sep 17, 2019 at 11:30:13PM +0100, Russell King - ARM Linux admin wrote:
-> > On Tue, Sep 17, 2019 at 04:32:53PM +0300, tinywrkb wrote:
-> > > Here's the output of # mii-tool -v -v eth0 
-> > > 
-> > > * linux-test-5.1rc1-a2703de70942-without_bad_commit
-> > > 
-> > > Using SIOCGMIIPHY=0x8947
-> > > eth0: negotiated 100baseTx-FD flow-control, link ok
-> > >   registers for MII PHY 0:
-> > >     3100 796d 004d d072 15e1 c5e1 000f 0000
-> > >     0000 0000 0800 0000 0000 0000 0000 a000
-> > >     0000 0000 0000 f420 082c 0000 04e8 0000
-> > >     3200 3000 0000 063d 0000 0000 0000 0000
-> > 
-> > I'll also mention some other discrepencies that I've just spotted in
-> > this register set.
-> > 
-> > The BMSR is 0x796d.  Bit 2 is the link status, which is indicating
-> > that link is up.  Bit 5 indicates negotiation complete, which it
-> > claims it is.
-> > 
-> > The PHY has a second status register at 0x11 which gives real time
-> > information.  That is 0x0000.  Bit 10 indicates link up, and is
-> > indicating that the link is down.  Bit 11 is saying that the speed
-> > and duplex is not resolved either.
-> > 
-> > So, there's contradictory information being reported by this PHY.
-> > 
-> > This brings up several questions:
-> > 1. what is the _true_ state of the link?  Is the link up or down?
-> > 
-> > 2. what does the link partner think is the current link state and
-> >    results of negotiation?
-> > 
-> > 3. should we be reading the register at 0x11 to determine the
-> >    negotiation results and link state (maybe logically anding the
-> >    present state with the BMSR link state)?
-> > 
-> > 
-> > Compare that to a correctly functioning AR8035 such as I have in my
-> > cubox-i4 connected to a Netgear GS116 switch:
-> > 
-> >    3100 796d 004d d072 15e1 c5e1 000d 2001
-> >    0000 0200 3c00 0000 0000 4007 b29a a000
-> >    0862 bc1c 0000 0000 082c 0000 07e8 0000
-> >    3200 3000 0000 063e 0000 0005 2d47 8100.
-
-My Cubox-i4 (no issue getting an IP address and GbE) is connected to the
-same switch as the Cubox-i2 (the one affected by this bug).
-mii-tool output for my Cubox-i4:
-
-Using SIOCGMIIPHY=0x8947
-  eth0: negotiated 1000baseT-FD flow-control, link ok
-    registers for MII PHY 4:
-      3100 796d 004d d072 15e1 c5e1 000d 0000
-      0000 0200 3800 0000 0000 0000 0000 a000
-      0000 0000 0000 0000 082c 0000 04e8 0000
-      3200 3000 0000 063e 0000 0000 0000 0000
-    product info: vendor 00:13:74, model 7 rev 2
-    basic mode:   autonegotiation enabled
-    basic status: autonegotiation complete, link ok
-    capabilities: 1000baseT-FD 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD
-    advertising:  1000baseT-FD 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD flow-control
-    link partner: 1000baseT-FD 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD flow-control
-
-> > 
-> > BMSR is again 0x796d.  The PHY specific status register this time
-> > is 0xbc1c, which indicates 1G, full duplex, resolved, link up, no
-> > smartspeed downgrade, tx/rx pause.
-> > 
-> > The register at 0x10 is a control register, which is strangely also
-> > different between our two.  Apparently in your PHY configuration,
-> > auto-MDI crossover mode is disabled, you are forced to MDI mode.
-> > On hardware reset, this register contains 0x0862, as per my
-> > example above, but yours is zero.
-> > 
-> > I don't think the difference in register 0x10 can be explained away
-> > by operation of the smartspeed feature - so maybe my theory about
-> > the advertisement registers being cleared by the PHY is wrong.  The
-> > question is: how is 0x10 getting reset to zero in your setup?  Maybe
-> > something has corrupted the configuration of the PHY in ways that
-> > Linux doesn't know how to reprogram?
-> > 
-> > Have you tried power-cycling the cubox-i?
-
-Yes, it doesn't help.
-
+On Wed, Sep 18, 2019 at 12:46:32PM +0200, Sylwester Nawrocki wrote:
+> The Arndale boards come with different types of the audio daughter
+> board.  In order to support the WM1811 one we add new definition of
+> an ASoC card which will be registered when the driver matches on
+> "samsung,arndale-wm1811" compatible.  There is no runtime detection of
+> the audio daughter board type at the moment, compatible string of the
+> audio card needs to be adjusted in DT, e.g. by the bootloader,
+> depending on actual audio board (CODEC) used.
 > 
-> Hopefully one last thing, which will explain why you may not be able
-> to get an IP address even with some of these tweaks I've been getting
-> you to try.  Do you have either none or both of these commits in your
-> kernel?
-> 
-> 0672d22a1924 ("ARM: dts: imx: Fix the AR803X phy-mode")
-> 6d4cd041f0af ("net: phy: at803x: disable delay only for RGMII mode")
-> 
-> I think you'll have the latter but not the former.  You will need the
-> former if you have the latter.
-> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> -static const struct of_device_id samsung_arndale_rt5631_of_match[] __maybe_unused = {
+> -	{ .compatible = "samsung,arndale-rt5631", },
+> -	{ .compatible = "samsung,arndale-alc5631", },
+> +static const struct of_device_id arndale_audio_of_match[] __maybe_unused = {
 
-I was checked-out at 5502b218e001 ("net: phy: use
-phy_resolve_aneg_linkmode in genphy_read_status") so I was missing both.
+If your removing the of_match_ptr below I think the
+__maybe_unused should be removed as well.
 
+Thanks,
+Charles
 
-> Could you try this patch instead - it seems that the PHY needs to be
-> soft-reset for the write to take effect, and _even_ for the clearance
-> of the bit to become visible in the register.
-> 
-> I'm not expecting this on its own to solve anything, but it should at
-> least mean that the at803x doesn't modify the advertisement registers
-> itself.  It may mean that the link doesn't even come up without forcing
-> the advertisement via the ethtool command I mentioned before.
-> 
-> Thanks.
-> 
->  drivers/net/phy/at803x.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
-> index b3893347804d..69a58c0e6b42 100644
-> --- a/drivers/net/phy/at803x.c
-> +++ b/drivers/net/phy/at803x.c
-> @@ -296,6 +296,16 @@ static int at803x_config_init(struct phy_device *phydev)
->         if (ret < 0)
->                 return ret;
-> 
-> +       /* Disable smartspeed */
-> +       ret = phy_modify(phydev, 0x14, BIT(5), 0);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       /* Must soft-reset the PHY for smartspeed disable to take effect */
-> +       ret = genphy_soft_reset(phydev);
-
-With the smartspeed disabled + soft reset patch against v5.1-rc1 +
-cherry-pick the missing 0672d22a1924 ("ARM: dts: imx: Fix the AR803X
-phy-mode") I'm finally getting an IP address.
-
-Note that I do need the genphy soft reset without it I don't get an IP
-address.
-
-Also tested v5.3 with the patch and it does work.
-
-I'm adding the output for v5.3 with this patch.
-
-# mii-tool -v -v eth0
-  Using SIOCGMIIPHY=0x8947
-  eth0: negotiated 100baseTx-FD flow-control, link ok
-    registers for MII PHY 0:
-      3100 796d 004d d072 15e1 45e1 0007 0000
-      0000 0200 0000 0000 0000 0000 0000 a000
-      0000 0000 0000 f400 080c 0000 04e8 0000
-      3200 3000 0000 063d 0000 0000 0000 0000
-    product info: vendor 00:13:74, model 7 rev 2
-    basic mode:   autonegotiation enabled
-    basic status: autonegotiation complete, link ok
-    capabilities: 1000baseT-FD 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD
-    advertising:  1000baseT-FD 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD flow-control
-    link partner: 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD flow-control
-
-# ethtool eth0
-  Settings for eth0:
-  	Supported ports: [ TP MII ]
-  	Supported link modes:   10baseT/Half 10baseT/Full
-  	                        100baseT/Half 100baseT/Full
-  	                        1000baseT/Full
-  	                        1000baseX/Full
-  	Supported pause frame use: Symmetric
-  	Supports auto-negotiation: Yes
-  	Supported FEC modes: Not reported
-  	Advertised link modes:  10baseT/Half 10baseT/Full
-  	                        100baseT/Half 100baseT/Full
-  	                        1000baseT/Full
-  	                        1000baseX/Full
-  	Advertised pause frame use: Symmetric
-  	Advertised auto-negotiation: Yes
-  	Advertised FEC modes: Not reported
-  	Link partner advertised link modes:  10baseT/Half 10baseT/Full
-  	                                     100baseT/Half 100baseT/Full
-  	Link partner advertised pause frame use: Symmetric
-  	Link partner advertised auto-negotiation: Yes
-  	Link partner advertised FEC modes: Not reported
-  	Speed: 100Mb/s
-  	Duplex: Full
-  	Port: MII
-  	PHYAD: 0
-  	Transceiver: internal
-  	Auto-negotiation: on
-  	Supports Wake-on: d
-  	Wake-on: d
-  	Link detected: yes
-
-# journalctl -b | egrep -i 'phy|eth|fec'|grep -v usb
-  kernel: Booting Linux on physical CPU 0x0
-  kernel: libphy: Fixed MDIO Bus: probed
-  kernel: libphy: fec_enet_mii_bus: probed
-  kernel: fec 2188000.ethernet eth0: registered PHC device 0
-  kernel: Atheros 8035 ethernet 2188000.ethernet-1:00: attached PHY driver [Atheros 8035 ethernet] (mii_bus:phy_addr=2188000.ethernet-1:00, irq=POLL)
-  kernel: Atheros 8035 ethernet 2188000.ethernet-1:00: PHY advertising (00,00000200,000022ef) more modes than genphy supports, some modes not advertised.
-  kernel: fec 2188000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx
-  kernel: IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
-  systemd-networkd[364]: eth0: Gained carrier
-  systemd-networkd[364]: eth0: DHCPv4 address 192.168.15.101/24 via 192.168.15.1
-  systemd-networkd[364]: eth0: Gained IPv6LL
-  systemd-networkd[364]: eth0: Configured
-
-> I think this thread is a good illustration why breaking existing DT
-> compatibility - even for the sake of fixing a bug - is just bad news.
-> 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-> According to speedtest.net: 11.9Mbps down 500kbps up
+> +	{ .compatible = "samsung,arndale-rt5631",  .data = &arndale_rt5631 },
+> +	{ .compatible = "samsung,arndale-alc5631", .data = &arndale_rt5631 },
+> +	{ .compatible = "samsung,arndale-wm1811",  .data = &arndale_wm1811 },
+>  	{},
+>  };
+> -MODULE_DEVICE_TABLE(of, samsung_arndale_rt5631_of_match);
+> +MODULE_DEVICE_TABLE(of, arndale_of_match);
+>  
+>  static struct platform_driver arndale_audio_driver = {
+>  	.driver = {
+> -		.name   = "arndale-audio",
+> +		.name = "arndale-audio",
+>  		.pm = &snd_soc_pm_ops,
+> -		.of_match_table = of_match_ptr(samsung_arndale_rt5631_of_match),
+> +		.of_match_table = arndale_audio_of_match,
