@@ -2,114 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6993CB665F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54FD7B666B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730712AbfIROq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 10:46:59 -0400
-Received: from foss.arm.com ([217.140.110.172]:43338 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730029AbfIROq7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 10:46:59 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 546751000;
-        Wed, 18 Sep 2019 07:46:58 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E98923F67D;
-        Wed, 18 Sep 2019 07:46:56 -0700 (PDT)
-Date:   Wed, 18 Sep 2019 15:46:54 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1731273AbfIROv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 10:51:56 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:38978 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731141AbfIROvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 10:51:55 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8IEmnIM003847;
+        Wed, 18 Sep 2019 09:51:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=5hkaW0zVB7pcDMi7la/yr03m+5UIiW5/+enC+Tt7FrY=;
+ b=NzRZlvVH0WikQpVg4jkJ7trlB5b57VQFLxAmP3HFWcBceJqchsh5EkPnBzJ9Wev9vr47
+ ExQrYrB2Mq3GceLfWSDL5Y7nZBzXyc9JTC1nwaxYQrILhskZ9qqdAHtkUciEZApakSu6
+ V2y8S5Dj3/nKRrHBXaIrWbHGWHijHv86BxWJAuAOxndKE/zYNP2u8JYFSMWF2QHSK9GM
+ ITaHZl/5mByIgMMg43ARiNoWZhCgEcKH+VTeHXLEobqqNTwPrwX01PKApN9D6kSOg9bD
+ 5vbYYVSVbr4qRKAVSCmjiVnXo2wKQLPigFQs0HhOFubmBx1CpCDZiPInnde8rt1+/rRF 9w== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2v37m198ga-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 18 Sep 2019 09:51:44 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 18 Sep
+ 2019 15:51:42 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Wed, 18 Sep 2019 15:51:42 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 584A92C1;
+        Wed, 18 Sep 2019 14:51:42 +0000 (UTC)
+Date:   Wed, 18 Sep 2019 14:51:42 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk@kernel.org>,
+        <sbkim73@samsung.com>, <alsa-devel@alsa-project.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH V6 1/2] dt-bindings: mailbox: add binding doc for the
- ARM SMC/HVC mailbox
-Message-ID: <20190918154654.6fb7e7f5@donnerap.cambridge.arm.com>
-In-Reply-To: <CABb+yY3drgYHk2_SZMgGhgSisB7wMVKFSx8VVabCcXkGByvgwg@mail.gmail.com>
-References: <1568626884-5189-1-git-send-email-peng.fan@nxp.com>
-        <1568626884-5189-2-git-send-email-peng.fan@nxp.com>
-        <20190917183115.3e40180f@donnerap.cambridge.arm.com>
-        <CABb+yY2CP1i9fZMoPua=-mLCUpYrcO28xF5UXDeRD2XTYe7mEg@mail.gmail.com>
-        <20190918104347.285bd7ad@donnerap.cambridge.arm.com>
-        <CABb+yY3drgYHk2_SZMgGhgSisB7wMVKFSx8VVabCcXkGByvgwg@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        <linux-samsung-soc@vger.kernel.org>, <b.zolnierkie@samsung.com>,
+        <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v1 8/9] ASoC: samsung: arndale: Add missing OF node
+ dereferencing
+Message-ID: <20190918145142.GK10204@ediswmail.ad.cirrus.com>
+References: <20190918104634.15216-1-s.nawrocki@samsung.com>
+ <CGME20190918104713eucas1p2ccfa8e9dff2cda9e8f88ac42dda2b680@eucas1p2.samsung.com>
+ <20190918104634.15216-9-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20190918104634.15216-9-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 phishscore=0 priorityscore=1501 spamscore=0
+ adultscore=0 suspectscore=0 mlxscore=0 mlxlogscore=917 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
+ definitions=main-1909180147
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Sep 2019 09:19:46 -0500
-Jassi Brar <jassisinghbrar@gmail.com> wrote:
-
-Hi,
-
-> On Wed, Sep 18, 2019 at 4:44 AM Andre Przywara <andre.przywara@arm.com> wrote:
+On Wed, Sep 18, 2019 at 12:46:33PM +0200, Sylwester Nawrocki wrote:
+> Ensure there is no OF node references kept when the driver is removed/unbound.
 > 
-> >  
-> > > which needs 9 arguments to work. The fact that the fist argument is
-> > > always going to be same on a platform is just the way we use this
-> > > instruction.
-> > >  
-> > > > We should be as strict as possible to avoid any security issues.
-> > > >  
-> > > Any example of such a security issue?  
-> >
-> > Someone finds a way to trick some mailbox client to send a crafted message to the mailbox.
-> >  
-> What if someone finds a way to trick the block layer to erase 'sda' ?
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
 
-Yes, the Linux block driver control the whole block device, it can do whatever it wants.
-The firmware provides an interface for multiple users, and the mailbox controller just uses *one part* of it. So we should make sure that it's the right part.
+Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
->  That is called "bug in the code".
-> It does happen in every subsystem but we don't stop implementing new
-> features .... we write flexible code and then fix any bug.
-> 
-> 
-> > Do you have any example of a use case where the mailbox client needs to provide the function ID?
-> >  
-> FSL_SIP_SCMI_1/2 ?
-
-Huh? Where does the SCPI or SCMI driver provide this? Those clients don't even provide any arguments. Adding some would defeat the whole point of having this mailbox in the first place, which was to provide a drop-in replacement for a hardware mailbox device used on other platforms.
-
-> But that is not the main point, which is to be consistent (not
-> ignoring first argument because someone may find a bug to exploit) and
-> flexible.
-
-Please read the SMCCC[1]: The first argument is in r1/w1/x1. r0/w0 is the function ID, and this is a specific value (fixed by the firmware implementation, see Peng's ATF patch) and not up to be guessed by a client.
-
-Please keep in mind that we should *NOT* do smc calls without following the SMCCC spec.
-
-> > > > The firmware certainly knows the function ID it implements. The firmware controls the DT. So it is straight-forward to put the ID into the DT. The firmware could even do this at boot time, dynamically, before passing on the DT to the non-secure world (bootloader or kernel).
-> > > >
-> > > > What would be the use case of this functionality?
-> > > >  
-> > > At least for flexibility and consistency.  
-> >
-> > I appreciate the flexibility idea, but when creating an interface, especially a generic one to any kind of firmware, you should be as strict as possible, to avoid clashes in the future.
-> >  
-> I really don't see how there can be clashes with more complete and
-> flexible implementation.
-
-Platform A uses PSCI, but no other SMCCC services, so in your scenario you assign a valid function ID say from the SIP range and tell the mailbox *client* to use it. Now you want to run this client on platform B, which happens to have chosen this very function ID for the "set fire on the device" SMCCC service.
-So now you would need to assign different IDs to the *client*, depending on the platform? That doesn't make sense. The solution is that you just assign the function ID to the controller, in the (platform specific) DT, so it naturally matches the platform requirements. You can even change it over time, as long as you change both the DT and firmware at the same time.
-The client (SCPI, for instance) is totally ignorant about this communication detail, it just needs some mailbox to request services.
-
-That's why I think the function ID (which is part of the SMCCC protocol, not of the mailbox service!) should just be set in the controller DT node and nowhere else.
-
-Cheers,
-Andre.
-
-[1] http://infocenter.arm.com/help/topic/com.arm.doc.den0028b/ARM_DEN0028B_SMC_Calling_Convention.pdf
+Thanks,
+Charles
