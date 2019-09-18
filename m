@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0075FB5F42
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 10:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F198B5F54
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 10:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726593AbfIRIbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 04:31:35 -0400
-Received: from mga17.intel.com ([192.55.52.151]:43235 "EHLO mga17.intel.com"
+        id S1727354AbfIRIgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 04:36:06 -0400
+Received: from foss.arm.com ([217.140.110.172]:37364 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725866AbfIRIbf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 04:31:35 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Sep 2019 01:31:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,520,1559545200"; 
-   d="scan'208";a="211784281"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga004.fm.intel.com with ESMTP; 18 Sep 2019 01:31:31 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1iAVN4-0003pj-J4; Wed, 18 Sep 2019 11:31:30 +0300
-Date:   Wed, 18 Sep 2019 11:31:30 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>, robh+dt@kernel.org,
-        bparrot@ti.com, simon.budig@kernelconcepts.de, hdegoede@redhat.com,
-        fcooper@ti.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
- wakeup-source documentation
-Message-ID: <20190918083130.GQ2680@smile.fi.intel.com>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-3-m.felsch@pengutronix.de>
- <20190917170743.GO237523@dtor-ws>
- <20190917171814.owcttekv56xgmsts@pengutronix.de>
- <20190917172658.GQ237523@dtor-ws>
- <20190918080609.ynra4m5dbbze5dbz@pengutronix.de>
+        id S1726422AbfIRIgG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 04:36:06 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C814F337;
+        Wed, 18 Sep 2019 01:36:03 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E2E03F59C;
+        Wed, 18 Sep 2019 01:36:03 -0700 (PDT)
+Date:   Wed, 18 Sep 2019 09:36:01 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Al Grant <Al.Grant@arm.com>, Leo Yan <leo.yan@linaro.org>,
+        devicetree@vger.kernel.org,
+        Coresight ML <coresight@lists.linaro.org>
+Subject: Re: [PATCH v6 0/3] coresight: etm4x: save/restore ETMv4 context
+ across CPU low power states
+Message-ID: <20190918083601.GX9720@e119886-lin.cambridge.arm.com>
+References: <20190913115312.12943-1-andrew.murray@arm.com>
+ <CANLsYkzhB3OBpLTAR54p771OSLxj+NYF8_kE=aMp7SkdNzaxwA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190918080609.ynra4m5dbbze5dbz@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CANLsYkzhB3OBpLTAR54p771OSLxj+NYF8_kE=aMp7SkdNzaxwA@mail.gmail.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 10:06:09AM +0200, Marco Felsch wrote:
-> On 19-09-17 10:26, Dmitry Torokhov wrote:
-> > On Tue, Sep 17, 2019 at 07:18:14PM +0200, Marco Felsch wrote:
-> > > On 19-09-17 10:07, Dmitry Torokhov wrote:
-
-> > What I was trying to say is that I have not actually seen DTB that is
-> > part of hardware or separately upgradable frimware (not talking about
-> > ppc or sparc boxes, but ones that might be using this driver). It is
-> > always built into the kernel in my experience, so backward compatibility
-> > is simply a tool that is being used to prevent us from being too wild
-> > with hacking on bindings, but rarely a practical concern.
+On Tue, Sep 17, 2019 at 01:37:10PM -0600, Mathieu Poirier wrote:
+> Hi Andrew,
 > 
-> Thanks, now I got you :)
+> On Fri, 13 Sep 2019 at 05:53, Andrew Murray <andrew.murray@arm.com> wrote:
 > 
-> > In cases like this I think it is worthwhile to simply update in-tree
-> > DTS and arrive at a sane binding.
+> [...]
 > 
-> I'm with you, should we wait for Rob's ack before we go this way?
+> >
+> > Andrew Murray (3):
+> >   coresight: etm4x: save/restore state across CPU low power states
+> >   dt-bindings: arm: coresight: Add support for
+> >     coresight-loses-context-with-cpu
+> 
+> I have picked-up patches 1 and 2.  As per the conversation we had in
+> Cambridge where we kept finding ways to break things when dealing with
+> an external agent, I have not applied the 3 patch.
 
-I also support this way.
+Thanks for the picking these up. No worries about patch 3.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks,
 
+Andrew Murray
 
+> 
+> Thanks,
+> Mathieu
+> 
+> >   coresight: etm4x: save/restore state for external agents
+> >
+> >  .../devicetree/bindings/arm/coresight.txt     |   9 +
+> >  drivers/hwtracing/coresight/coresight-etm4x.c | 351 +++++++++++++++++-
+> >  drivers/hwtracing/coresight/coresight-etm4x.h |  64 ++++
+> >  drivers/hwtracing/coresight/coresight.c       |   8 +-
+> >  include/linux/coresight.h                     |  13 +
+> >  5 files changed, 443 insertions(+), 2 deletions(-)
+> >
+> > --
+> > 2.21.0
+> >
