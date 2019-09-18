@@ -2,91 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01098B66F4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 17:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9512AB66F9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 17:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731610AbfIRPU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 11:20:57 -0400
-Received: from muru.com ([72.249.23.125]:33638 "EHLO muru.com"
+        id S1729446AbfIRPWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 11:22:24 -0400
+Received: from mga18.intel.com ([134.134.136.126]:41972 "EHLO mga18.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731607AbfIRPU5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 11:20:57 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id EB9EC806C;
-        Wed, 18 Sep 2019 15:21:27 +0000 (UTC)
-Date:   Wed, 18 Sep 2019 08:20:53 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Ankur Tyagi <ankur.tyagi@gallagher.com>
-Cc:     t-kristo@ti.com, mturquette@baylibre.com, sboyd@kernel.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] clk: ti: am3: Update AM3 GPIO number as per
- datasheet
-Message-ID: <20190918152053.GB5610@atomide.com>
-References: <20190917234829.91132-1-ankur.tyagi@gallagher.com>
- <20190917234829.91132-2-ankur.tyagi@gallagher.com>
+        id S1726982AbfIRPWY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 11:22:24 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Sep 2019 08:22:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,521,1559545200"; 
+   d="scan'208";a="186494395"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga008.fm.intel.com with ESMTP; 18 Sep 2019 08:22:19 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1iAbmb-0001OA-Nd; Wed, 18 Sep 2019 18:22:17 +0300
+Date:   Wed, 18 Sep 2019 18:22:17 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Joe Perches <joe@perches.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Arnaldo Carvalho de Melo <acme@redhat.com>,
+        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
+        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>
+Subject: Re: [PATCH v7 01/13] tools lib traceevent: Convert remaining %p[fF]
+ users to %p[sS]
+Message-ID: <20190918152217.GR2680@smile.fi.intel.com>
+References: <20190918133419.7969-1-sakari.ailus@linux.intel.com>
+ <20190918133419.7969-2-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917234829.91132-2-ankur.tyagi@gallagher.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190918133419.7969-2-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Sep 18, 2019 at 04:34:07PM +0300, Sakari Ailus wrote:
+> There are no in-kernel %p[fF] users left. Convert the traceevent tool,
+> too, to align with the kernel.
 
-* Ankur Tyagi <ankur.tyagi@gallagher.com> [190917 23:49]:
-> Sitara technical reference manual numbers GPIO from 0 whereas in
-> code GPIO are numbered from 1
+>  function. The _tep_ argument is the trace event parser context. The _name_ is
+> -the name of the function, the string is copied internally. The _addr_ is
+> -the start address of the function. The _mod_ is the kernel module
+> -the function may be in (NULL for none).
+> +the name of the function, the string is copied internally. The _addr_ is the
+> +start address of the function. The _mod_ is the kernel module the function may
+> +be in (NULL for none).
 
-If this is a cosmetic fix, please add it to the description.
-Then if there is also some other fix, that should be done
-separately
+I think this is unneeded churn (reformating string). But since maintainer Acked
+this, I don't care much. But think about burden to the Git index in million of
+instances around the world.
 
-> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
-> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-> @@ -129,7 +129,7 @@
->  
->  		target-module@7000 {			/* 0x44e07000, ap 14 20.0 */
->  			compatible = "ti,sysc-omap2", "ti,sysc";
-> -			ti,hwmods = "gpio1";
-> +			ti,hwmods = "gpio0";
->  			reg = <0x7000 0x4>,
->  			      <0x7010 0x4>,
->  			      <0x7114 0x4>;
-
-Let's simplify things a bit first :) We should be able to drop
-the "ti,hwmods" property for all gpio instances and the related
-platform data. I'll post a patch for that after -rc1.
-
-If there's some non-cosmetic fix here too, we should naturally
-apply a fix for that first.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> -			clocks = <&l4_wkup_clkctrl AM3_L4_WKUP_GPIO1_CLKCTRL 0>,
-> -				 <&l4_wkup_clkctrl AM3_L4_WKUP_GPIO1_CLKCTRL 18>;
-> +			clocks = <&l4_wkup_clkctrl AM3_L4_WKUP_GPIO0_CLKCTRL 0>,
-> +				 <&l4_wkup_clkctrl AM3_L4_WKUP_GPIO0_CLKCTRL 18>;
-
-Not sure if this renumbering helps.. It might actually make it easier
-to introduce weird bugs if older dtb is used with a newer kernel.
-
-> @@ -72,9 +72,9 @@ static const struct omap_clkctrl_reg_data am3_l4_per_clkctrl_regs[] __initconst
->  	{ AM3_RNG_CLKCTRL, NULL, CLKF_SW_SUP, "rng_fck" },
->  	{ AM3_AES_CLKCTRL, NULL, CLKF_SW_SUP, "aes0_fck", "l3_clkdm" },
->  	{ AM3_SHAM_CLKCTRL, NULL, CLKF_SW_SUP, "l3_gclk", "l3_clkdm" },
-> +	{ AM3_GPIO1_CLKCTRL, am3_gpio1_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
->  	{ AM3_GPIO2_CLKCTRL, am3_gpio2_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
->  	{ AM3_GPIO3_CLKCTRL, am3_gpio3_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
-> -	{ AM3_GPIO4_CLKCTRL, am3_gpio4_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
->  	{ AM3_TPCC_CLKCTRL, NULL, CLKF_SW_SUP, "l3_gclk", "l3_clkdm" },
->  	{ AM3_D_CAN0_CLKCTRL, NULL, CLKF_SW_SUP, "dcan0_fck" },
->  	{ AM3_D_CAN1_CLKCTRL, NULL, CLKF_SW_SUP, "dcan1_fck" },
-
-So is this just renumbering, or do we have some other real bug
-too here?
-
-Regards,
-
-Tony
