@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9512AB66F9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 17:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B39E1B66F7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 17:22:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729446AbfIRPWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 11:22:24 -0400
-Received: from mga18.intel.com ([134.134.136.126]:41972 "EHLO mga18.intel.com"
+        id S1731622AbfIRPW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 11:22:26 -0400
+Received: from muru.com ([72.249.23.125]:33652 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726982AbfIRPWY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 11:22:24 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Sep 2019 08:22:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,521,1559545200"; 
-   d="scan'208";a="186494395"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga008.fm.intel.com with ESMTP; 18 Sep 2019 08:22:19 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1iAbmb-0001OA-Nd; Wed, 18 Sep 2019 18:22:17 +0300
-Date:   Wed, 18 Sep 2019 18:22:17 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Joe Perches <joe@perches.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Arnaldo Carvalho de Melo <acme@redhat.com>,
-        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
-        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>
-Subject: Re: [PATCH v7 01/13] tools lib traceevent: Convert remaining %p[fF]
- users to %p[sS]
-Message-ID: <20190918152217.GR2680@smile.fi.intel.com>
-References: <20190918133419.7969-1-sakari.ailus@linux.intel.com>
- <20190918133419.7969-2-sakari.ailus@linux.intel.com>
+        id S1726982AbfIRPW0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 11:22:26 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 353C6806C;
+        Wed, 18 Sep 2019 15:22:57 +0000 (UTC)
+Date:   Wed, 18 Sep 2019 08:22:22 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     Ankur Tyagi <ankur.tyagi@gallagher.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] clk: ti: Update AM3/4 GPIO number as per datasheet
+Message-ID: <20190918152222.GC5610@atomide.com>
+References: <20190917021521.7012-1-ankur.tyagi@gallagher.com>
+ <795a3b86-64cd-c01e-c5a0-7239836d37e1@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190918133419.7969-2-sakari.ailus@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <795a3b86-64cd-c01e-c5a0-7239836d37e1@ti.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 04:34:07PM +0300, Sakari Ailus wrote:
-> There are no in-kernel %p[fF] users left. Convert the traceevent tool,
-> too, to align with the kernel.
+* Tero Kristo <t-kristo@ti.com> [190917 06:49]:
+> On 17/09/2019 05:15, Ankur Tyagi wrote:
+> > Sitara technical reference manual numbers GPIO from 0 whereas
+> > in code GPIO are numbered from 1.
+> > 
+> > Changes since v1:
+> > - Combine changes in single patch to avoid compilation failure
+> > - Update AM4 GPIO numbers as well
+> 
+> So this is still not quite right, split am3 / am4 to their separate patches,
+> there is no need to combine those two.
+> 
+> Also, you still introduce a compile breakage between this patch and the DT
+> patch.
+> 
+> Tony, any thoughts on this? I would just leave the things as is, as the
+> existing setup works just fine. We just have a cosmetic issue of having the
+> index off-by-one compared to TRM on the clocks layer, and it is not visible
+> to user either as we have gpio0-3 nodes in the DT. Nobody except the main
+> gpio node should touch the gpio clkctrl clocks.
 
->  function. The _tep_ argument is the trace event parser context. The _name_ is
-> -the name of the function, the string is copied internally. The _addr_ is
-> -the start address of the function. The _mod_ is the kernel module
-> -the function may be in (NULL for none).
-> +the name of the function, the string is copied internally. The _addr_ is the
-> +start address of the function. The _mod_ is the kernel module the function may
-> +be in (NULL for none).
+I commented a bit on the newer version "[PATCH v3 1/2] clk: ti: am3:
+Update AM3 GPIO number as per datasheet". If there's a real bug lurking
+around we should fix that first.
 
-I think this is unneeded churn (reformating string). But since maintainer Acked
-this, I don't care much. But think about burden to the Git index in million of
-instances around the world.
+Regards,
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+TOny
