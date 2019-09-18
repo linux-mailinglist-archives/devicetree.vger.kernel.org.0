@@ -2,85 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D237AB605B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 11:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2162BB606D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 11:33:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730847AbfIRJaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 05:30:46 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:41761 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730886AbfIRJae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 05:30:34 -0400
-X-UUID: b875e6f36739409d953cb1601143ca32-20190918
-X-UUID: b875e6f36739409d953cb1601143ca32-20190918
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1070762403; Wed, 18 Sep 2019 17:30:31 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 18 Sep 2019 17:30:27 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 18 Sep 2019 17:30:27 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Ryder Lee <ryder.lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH v8 11/11] arm: dts: mediatek: add mt7629 pwm support
-Date:   Wed, 18 Sep 2019 17:28:59 +0800
-Message-ID: <1568798939-16038-12-git-send-email-sam.shih@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1568798939-16038-1-git-send-email-sam.shih@mediatek.com>
-References: <1568798939-16038-1-git-send-email-sam.shih@mediatek.com>
+        id S1726824AbfIRJdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 05:33:32 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:50884 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726818AbfIRJdc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 05:33:32 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8I9LiLC012659;
+        Wed, 18 Sep 2019 11:33:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=w2DW76qUSewnb1/9cIUq9BbK5Drmqq+tMdxCCn/J9V8=;
+ b=I1Zy9RDpW/qOpImzeliSW2ZhFKIYE8lxtzo/CF1AWxe4+MUxtIhUp3wyGNcWHCcEuJIv
+ 9aJCw9kB3R88uCEbYslFaKO/y7xUYyFSggCKFamcvKDhSiTijdJ249Pbb+pBRxumeHgc
+ 3htuC9vMVKdNB9dMsXDwjm7qFub3LaFR2E8c4hlb4ng4ojoTKCCXb2CK2Buva2JntihK
+ yaO6OEPgYskuDPWU8YSTw4G81dYeer/pCoJNwFSqWjJ4XU2GFRa/jG/3y9jhYDtq/cA2
+ 3dMHqy6mART+qbblqv5hqPxboPsTrna8U0+k49PX5fBvBfX8JOdeD3701d8x79NWS2xn Cg== 
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2v37kh39fw-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 18 Sep 2019 11:33:17 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2783951;
+        Wed, 18 Sep 2019 09:33:10 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D249C2B06B4;
+        Wed, 18 Sep 2019 11:33:09 +0200 (CEST)
+Received: from lmecxl0923.lme.st.com (10.75.127.51) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 18 Sep
+ 2019 11:33:09 +0200
+Subject: Re: [PATCH V6 0/3] mmc: mmci: add busy detect for stm32 sdmmc variant
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20190905122112.29672-1-ludovic.Barre@st.com>
+From:   Ludovic BARRE <ludovic.barre@st.com>
+Message-ID: <940e3ce8-1a4f-7e03-dfec-25330051ea5f@st.com>
+Date:   Wed, 18 Sep 2019 11:33:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <20190905122112.29672-1-ludovic.Barre@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
+ definitions=2019-09-18_06:2019-09-17,2019-09-18 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds pwm support for MT7629.
+hi Ulf
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
----
- arch/arm/boot/dts/mt7629.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Just a "gentleman ping" about this series and
+https://lkml.org/lkml/2019/9/4/747
 
-diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-index 9608bc2ccb3f..493be9a9453b 100644
---- a/arch/arm/boot/dts/mt7629.dtsi
-+++ b/arch/arm/boot/dts/mt7629.dtsi
-@@ -241,6 +241,22 @@
- 			status = "disabled";
- 		};
- 
-+		pwm: pwm@11006000 {
-+			compatible = "mediatek,mt7629-pwm",
-+				     "mediatek,mt7622-pwm";
-+			reg = <0 0x11006000 0 0x1000>;
-+			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_PWM_SEL>,
-+				 <&pericfg CLK_PERI_PWM_PD>,
-+				 <&pericfg CLK_PERI_PWM1_PD>;
-+			clock-names = "top", "main", "pwm1";
-+			assigned-clocks = <&topckgen CLK_TOP_PWM_SEL>;
-+			assigned-clock-parents =
-+					<&topckgen CLK_TOP_UNIVPLL2_D4>;
-+			num-pwms = <1>;
-+			status = "disabled";
-+		};
-+
- 		i2c: i2c@11007000 {
- 			compatible = "mediatek,mt7629-i2c",
- 				     "mediatek,mt2712-i2c";
--- 
-2.17.1
+Regards
+Ludo
 
+Le 9/5/19 à 2:21 PM, Ludovic Barre a écrit :
+> From: Ludovic Barre <ludovic.barre@st.com>
+> 
+> This patch series adds busy detect for stm32 sdmmc variant.
+> Some adaptations are required:
+> -On sdmmc the data timer is started on data transfert
+> and busy state, so we must add hardware busy timeout support.
+> -Add busy_complete callback at mmci_host_ops to allow to define
+> a specific busy completion by variant.
+> -Add sdmmc busy_complete callback.
+> 
+> V6:
+> -mmci_start_command: set datatimer only on rsp_busy flag
+> (remove host->mrq->data).
+> -move max_busy_timeout in set_ios callback.
+> -typo fix: err_msk, clks on one lines.
+> 
+> V5:
+> -Replaces !cmd->data to !host->mrq->data to avoid overwrite
+>   of datatimer register by the first command (cmd23, without data) of
+>   SBC request.
+> 
+> V4:
+> -Re-work with busy_complete callback
+> -In series, move "mmc: mmci: add hardware busy timeout feature" in
+> first to simplify busy_complete prototype with err_msk parameter.
+> 
+> V3:
+> -rebase on latest mmc next
+> -replace re-read by status parameter.
+> 
+> V2:
+> -mmci_cmd_irq cleanup in separate patch.
+> -simplify the busy_detect_flag exclude
+> -replace sdmmc specific comment in
+> "mmc: mmci: avoid fake busy polling in mmci_irq"
+> to focus on common behavior
+> 
+> Ludovic Barre (3):
+>    mmc: mmci: add hardware busy timeout feature
+>    mmc: mmci: add busy_complete callback
+>    mmc: mmci: sdmmc: add busy_complete callback
+> 
+>   drivers/mmc/host/mmci.c             | 183 +++++++++++++++++-----------
+>   drivers/mmc/host/mmci.h             |   7 +-
+>   drivers/mmc/host/mmci_stm32_sdmmc.c |  38 ++++++
+>   3 files changed, 156 insertions(+), 72 deletions(-)
+> 
