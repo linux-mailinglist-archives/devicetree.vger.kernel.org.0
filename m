@@ -2,66 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF972B5E8F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 10:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D5BB5EA2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 10:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729354AbfIRIFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 04:05:18 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:27074 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729339AbfIRIFR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 04:05:17 -0400
-X-IronPort-AV: E=Sophos;i="5.64,519,1559487600"; 
-   d="scan'208";a="26658131"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 18 Sep 2019 17:05:16 +0900
-Received: from renesas-VirtualBox.ree.adwin.renesas.com (unknown [10.226.37.56])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2322141CA6B6;
-        Wed, 18 Sep 2019 17:05:13 +0900 (JST)
-From:   Gareth Williams <gareth.williams.jx@renesas.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/4] dt-bindings: snps,dw-apb-ssi: Add optional clock domain information
-Date:   Wed, 18 Sep 2019 09:04:34 +0100
-Message-Id: <1568793876-9009-3-git-send-email-gareth.williams.jx@renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
-References: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
+        id S1729464AbfIRIGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 04:06:22 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:59505 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725298AbfIRIGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 04:06:21 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iAUyY-0004o8-KH; Wed, 18 Sep 2019 10:06:10 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iAUyX-0006cV-2Z; Wed, 18 Sep 2019 10:06:09 +0200
+Date:   Wed, 18 Sep 2019 10:06:09 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     robh+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+        bparrot@ti.com, andy.shevchenko@gmail.com,
+        simon.budig@kernelconcepts.de, hdegoede@redhat.com, fcooper@ti.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
+ wakeup-source documentation
+Message-ID: <20190918080609.ynra4m5dbbze5dbz@pengutronix.de>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-3-m.felsch@pengutronix.de>
+ <20190917170743.GO237523@dtor-ws>
+ <20190917171814.owcttekv56xgmsts@pengutronix.de>
+ <20190917172658.GQ237523@dtor-ws>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190917172658.GQ237523@dtor-ws>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:04:14 up 123 days, 14:22, 70 users,  load average: 0.11, 0.10,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Note in the bindings documentation that pclk should be renamed if a clock
-domain is used to enable the optional bus clock.
+On 19-09-17 10:26, Dmitry Torokhov wrote:
+> On Tue, Sep 17, 2019 at 07:18:14PM +0200, Marco Felsch wrote:
+> > Hi Dmitry,
+> > 
+> > On 19-09-17 10:07, Dmitry Torokhov wrote:
+> > > On Tue, Sep 17, 2019 at 05:58:04PM +0200, Marco Felsch wrote:
+> > > > The default driver behaviour is to enable the wakeup-source everytime.
+> > > > There are hardware designs which have a dedicated gpio to act as wakeup
+> > > > device. So it must be allowed to disable the wakeup-source capability.
+> > > > 
+> > > > This patch adds the binding documentation to disable the wakeup-source
+> > > > capability.
+> > > > 
+> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > ---
+> > > >  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt      | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > index 870b8c5cce9b..4d6524fe3cf4 100644
+> > > > --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > @@ -35,6 +35,10 @@ Optional properties:
+> > > >   - pinctrl-0:   a phandle pointing to the pin settings for the
+> > > >                  control gpios
+> > > >  
+> > > > + - edt,disable-wakeup-source: If left the device will act as wakeup-source
+> > > > +			      (for legacy compatibility). Add the property
+> > > > +			      so the device won't act as wakeup-source.
+> > > 
+> > > I think this is too ugly and I consider it being a bug in the driver
+> > > that it enables wakeup unconditionally.
+> > 
+> > That's right.
+> > 
+> > > Let's just update DTS in tree for devices that actually want it (I am
+> > > curious how many that do not declare "wakeup-source" have it working and
+> > > actually want it) and key the dirver behavior off the standard property.
+> > 
+> > There are a few DTS using this driver and the current driver behaviour.
+> > We need to keep the backward compatibility since the DTB is part of the
+> > firmware and firmware isn't always included during a system-update. I
+> > know its ugly but IMHO that's the right way to go to keep the backward
+> > compatibility. Let us see what the DT-folk says.
+> > 
+> > > Until we start seeing this controller in devices that actually have DTS
+> > > in hardware device tree I think it is better to use standard property.
+> > 
+> > Sorry, I didn't get you here..
+> 
+> What I was trying to say is that I have not actually seen DTB that is
+> part of hardware or separately upgradable frimware (not talking about
+> ppc or sparc boxes, but ones that might be using this driver). It is
+> always built into the kernel in my experience, so backward compatibility
+> is simply a tool that is being used to prevent us from being too wild
+> with hacking on bindings, but rarely a practical concern.
 
-Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
----
-v2: Introduced this patch.
----
- Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Thanks, now I got you :)
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-index f54c8c3..3ed08ee 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-@@ -16,7 +16,8 @@ Required properties:
- Optional properties:
- - clock-names : Contains the names of the clocks:
-     "ssi_clk", for the core clock used to generate the external SPI clock.
--    "pclk", the interface clock, required for register access.
-+    "pclk", the interface clock, required for register access. If a clock domain
-+     used to enable this clock then it should be named "pclk_clkdomain".
- - cs-gpios : Specifies the gpio pins to be used for chipselects.
- - num-cs : The number of chipselects. If omitted, this will default to 4.
- - reg-io-width : The I/O register width (in bytes) implemented by this
+> In cases like this I think it is worthwhile to simply update in-tree
+> DTS and arrive at a sane binding.
+
+I'm with you, should we wait for Rob's ack before we go this way?
+
+Regards,
+  Marco
+
+> Thanks.
+> 
+> -- 
+> Dmitry
+> 
+
 -- 
-2.7.4
-
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
