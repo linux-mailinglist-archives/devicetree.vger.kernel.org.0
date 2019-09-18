@@ -2,142 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8541BB65C8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A4F5B65D4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728360AbfIROVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 10:21:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727056AbfIROVk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 10:21:40 -0400
-Received: from mail-yw1-f51.google.com (mail-yw1-f51.google.com [209.85.161.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8DC762067B;
-        Wed, 18 Sep 2019 14:21:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568816498;
-        bh=wXgtDQ2Bk9vjBzgeHu+dOpDd3lEyXdo3Em4I00Qq0go=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GD8v6IR4n4ZFgYbHm4vs9fdVL0NBUorWvqvJHWa6MP0LPCqjmy/PtK6aRVG5s2IqP
-         GYXzm9YSypo9MsFMZfRbqMm38/8YmfgHGKiuzKo5iqlZV6wgW0sZ0dsm8lGJBWEamP
-         rjAfeX4yXPpsQjqB4lUUpEJvtiPfe9EBUsi7diQg=
-Received: by mail-yw1-f51.google.com with SMTP id j128so11153ywf.0;
-        Wed, 18 Sep 2019 07:21:38 -0700 (PDT)
-X-Gm-Message-State: APjAAAVEMhh0WkQjAtmwE3Eb/AI8yqm8p/GbO3inhJlmddEZM9fL0gwf
-        +Kc3ou6/fdeCj5xTEZXhZL0ZVAMd9gVrIOPPIA==
-X-Google-Smtp-Source: APXvYqzliDG2Xy58F978kJGtp6vQ1A2AyEZNr8e3uVSmktEs+lZEJgI2FWH3qKtnlcumLLeZFhha8AUbhOFoHfMVSDo=
-X-Received: by 2002:a81:9182:: with SMTP id i124mr3466623ywg.279.1568816497852;
- Wed, 18 Sep 2019 07:21:37 -0700 (PDT)
+        id S1726421AbfIROXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 10:23:06 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:33938 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726330AbfIROXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 10:23:06 -0400
+Received: by mail-io1-f67.google.com with SMTP id q1so16638767ion.1;
+        Wed, 18 Sep 2019 07:23:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8hOkftNxCx/aWELaDJaTVsr1hHwRKS/6DkQyi3nkXNo=;
+        b=tiaefsAejMqIgoXecf2HVZ6uIEzJD89WgVfxPiUxd2wHa6nLzUze9o9GVpjummntml
+         7WwLZ0MXTA59q4jDtNtRrYrkAdCLRVZ7nfYDR58y4svtOoPHkCSLbXxcbMkyCtErkmIM
+         9gCBiErpQ8rA/lOYi6jn6wu0tl86UdRkk8Fjaxyw97vvX2IbE/bIqTs+43mniCCVwgd+
+         QDgVKIeAchxQSDqjl8U6m2m7i4mRywfVhQtu6dcanIX09OKAWLNWNlIdwhJ1n/DJ9fmM
+         MlLOjQwo40B4150GKMdJgMsYej5F+af/4uNUWja8Nd9FAsf9r+cuTOBrXeABpjfrgzue
+         LKqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8hOkftNxCx/aWELaDJaTVsr1hHwRKS/6DkQyi3nkXNo=;
+        b=GMCLneJzFp1hfcWNHqqTBDymWpfJdq7O9FQ/RbBNJSt69Q/ZFhLVDs56SxwWNJQdtQ
+         g2HE9FB81/ONwdOtuvC/tK6DZ+v7lzW4UY0kGleTFQ5KjXlreSj1/w45nVb5rDJQlJsq
+         hB7b0SpzD40g14wkz0oh0DxSeVohk6AMZbhCwrTLzRipWpDqagjnzbizfLbSp9DSno5o
+         cnZ5OMHF8ckUZUoV4TWMRguHvbsRcMOelDL9A02xXv0Vi8qW1uF3PEoOTBeWLY3acUiA
+         EXSeZt+K9D2Vt+9TB2eeD/nBbUlSsMhRJCT/aNdFYgE3qFxwIdv2flhWJTY73RcplbfK
+         HWfQ==
+X-Gm-Message-State: APjAAAW3J9l3xcNJAbfe1sL2wqOQeu27K64IH27RUszcfMFq9JRWlhbg
+        RL99qPHdYiI037v9SCiOtUw5RcABgeGd2/+hV1V74sxq
+X-Google-Smtp-Source: APXvYqxiBAlP+n9Q7FILgic2xGszsDwFKNDSkihvLtOowMxpoCcjP8dfA+h9rXTnJorshM46ixQcptHHt7Al/USCw3Y=
+X-Received: by 2002:a5d:8a0f:: with SMTP id w15mr5572006iod.239.1568816585433;
+ Wed, 18 Sep 2019 07:23:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190910114559.22810-1-peter.ujfalusi@ti.com> <20190910114559.22810-2-peter.ujfalusi@ti.com>
- <20190918132835.GA4527@bogus> <d76ffc38-8e68-656a-325b-37de9b01e015@ti.com>
-In-Reply-To: <d76ffc38-8e68-656a-325b-37de9b01e015@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 18 Sep 2019 09:21:26 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLJn4dmnjU=7kVgiosAU=o+fSJNH6578D92fGbdOR8Zfw@mail.gmail.com>
-Message-ID: <CAL_JsqLJn4dmnjU=7kVgiosAU=o+fSJNH6578D92fGbdOR8Zfw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: dmaengine: dma-common: Change
- dma-channel-mask to uint32-array
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     Vinod <vkoul@kernel.org>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
+References: <1568626884-5189-1-git-send-email-peng.fan@nxp.com>
+ <1568626884-5189-3-git-send-email-peng.fan@nxp.com> <20190917183856.2342beed@donnerap.cambridge.arm.com>
+ <AM0PR04MB44813D62FF7E6762BB17460E888E0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <20190918110037.4edefb2f@donnerap.cambridge.arm.com> <CABb+yY2G8s9gV8Pu+f__8-bubjCJsVQrQikbVMZXmpTwSMBxiQ@mail.gmail.com>
+ <20190918145832.0bb72e16@donnerap.cambridge.arm.com>
+In-Reply-To: <20190918145832.0bb72e16@donnerap.cambridge.arm.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 18 Sep 2019 09:22:54 -0500
+Message-ID: <CABb+yY3irsE0U-bex4G60Lwpewea6=pE1vSzi72Z+5DafmC8Xg@mail.gmail.com>
+Subject: Re: [PATCH V6 2/2] mailbox: introduce ARM SMC based mailbox
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        devicetree@vger.kernel.org
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 9:04 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrot=
-e:
+On Wed, Sep 18, 2019 at 8:58 AM Andre Przywara <andre.przywara@arm.com> wrote:
 >
->
->
-> On 18/09/2019 16.28, Rob Herring wrote:
-> > On Tue, Sep 10, 2019 at 02:45:57PM +0300, Peter Ujfalusi wrote:
-> >> Make the dma-channel-mask to be usable for controllers with more than =
-32
-> >> channels.
-> >>
-> >> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/dma/dma-common.yaml | 10 +++++++++-
-> >>  1 file changed, 9 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml b/D=
-ocumentation/devicetree/bindings/dma/dma-common.yaml
-> >> index ed0a49a6f020..41460946be64 100644
-> >> --- a/Documentation/devicetree/bindings/dma/dma-common.yaml
-> >> +++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
-> >> @@ -25,11 +25,19 @@ properties:
-> >>        Used to provide DMA controller specific information.
-> >>
-> >>    dma-channel-mask:
-> >> -    $ref: /schemas/types.yaml#definitions/uint32
-> >>      description:
-> >>        Bitmask of available DMA channels in ascending order that are
-> >>        not reserved by firmware and are available to the
-> >>        kernel. i.e. first channel corresponds to LSB.
-> >> +    allOf:
-> >> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +        items:
-> >> +          minItems =3D 1
-> >
-> > '=3D'? Just making up the syntax?
->
-> Opps, sorry.
->
-> >
-> >> +          maxItems =3D 255 # Should be enough
-> >> +          - description: Mask of channels 0-31
-> >> +          - description: Mask of channels 32-63
-> >
-> > You are mixing a schema and list here...
->
-> Should I extend the description with something like this:
-> "The first item in the array is for channels 0-31, the second is for
-> channels 32-63, etc."
->
-> To make sure that it is used in a correct and consistent manner.
 
-Sure.
+> > > Also there is mbox_chan_txdone() with which a controller driver can signal TX completion explicitly.
+> > >
+> > No. Controller can use that only if it has specified txdone_irq, which
+> > is not the case here.
+>
+> I see. So does the framework handle the case where both txdone_poll and txdone_irq are false?
+>
+Of course. If there is no IRQ or POLL mechanism for controller to
+detect tx-done, the only way left is for client driver to know by some
+'ack' response (if any). The client should call mbox_client_txdone()
 
->
-> >> +          ...
-> >
-> > That's end of doc marker in YAML...
->
-> I believe I need some reading to do for YAML..
->
-> >
-> >> +          - description: Mask of chnanels X-(X+31)
-> >
-> > Obviously, this was not validated with 'make dt_binding_check'.
-> make dt_bindings_check
-> make: *** No rule to make target 'dt_bindings_check'.  Stop.
-
-Read Documentation/devicetree/writing-schema.md (or .rst in next).
-
-Either your config doesn't have DTC enabled or you don't have
-dt-schema installed.
-
->
-> > What you  want is:
-> >
-> >     allOf:
-> >       - $ref: /schemas/types.yaml#/definitions/uint32-array
-> >       - minItems: 1
-> >         maxItems: 255 # Should be enough
->
-> OK and thanks for the comments.
->
-> - P=C3=A9ter
->
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Thanks
