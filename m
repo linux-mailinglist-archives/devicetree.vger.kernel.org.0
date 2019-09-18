@@ -2,154 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A3FB6619
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0389B6627
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:32:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727542AbfIROaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 10:30:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42062 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727273AbfIROaR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 10:30:17 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0BD8F218AE;
-        Wed, 18 Sep 2019 14:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568817015;
-        bh=n7hEc4U3JFOCFiwdHi6OxEy+MNo9Uxm6c6RnEDR8WCk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u0FC0ls3vLRORjqiIUVr1q5uIM4D5c4rEUU4iQtMFK+Zkh4h99Regs1s/KZ3GBhWq
-         Cl8vuE9rrla1mh+Y+QW3Vxw9p3O8xmlC2DfI34/YeRkgXBIDmStGfXKkhtIJ9zmCf2
-         EZ12GpdDZk3k7CnbMblC+5hiUGtkMC/B7Ps3/BLY=
-Date:   Wed, 18 Sep 2019 16:30:12 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 5/6] media: sun4i: Add H3 deinterlace driver
-Message-ID: <20190918143012.4o54doeauiv3j42z@gilmour>
-References: <20190912175132.411-1-jernej.skrabec@siol.net>
- <20190912175132.411-6-jernej.skrabec@siol.net>
- <20190912202647.wfcjur7yxhlelvd6@localhost.localdomain>
- <3227980.eWD6USAIP4@jernej-laptop>
+        id S1731255AbfIROcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 10:32:14 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:48108 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731242AbfIROcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 10:32:13 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8IEEBG9005771;
+        Wed, 18 Sep 2019 09:32:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=85mW0bFWiiIVuyJiPKM02zlJFmWQIMDT9ECHIvX0eJQ=;
+ b=AaegY7/Y2PorFSTmv1tusBxEPcjnGNa9+O9pQlrOHZyxaS1oObNe3xbsuJ77XJt/FytV
+ ai5CyyauW39nVL7SDis0U7KeZSzTKukIKufMtwUoShvJHhUZ499pdnyNTQ9hgdcuNZNm
+ du3u6jEfTBhbFrgSnvrOqZyLQsWUoplVxmY+J8DGixg89IL6RhcQuZ5T8NSyTxOMmzaF
+ iS2eg/unL2hWZkWN3ugb5aVWRjRWBC+8I99UdPS8P0+6z8y4no2c5/uJ5dxBQlJZFWZy
+ YhU8Efld9uy/LdmNvghxltvCz0tRAeEG95akwMHhZqqioH5bHXF0zOI50aMkGMJSNBfE RA== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2v37m197ex-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 18 Sep 2019 09:31:59 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 18 Sep
+ 2019 15:31:57 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Wed, 18 Sep 2019 15:31:57 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id DA4CD2C3;
+        Wed, 18 Sep 2019 14:31:57 +0000 (UTC)
+Date:   Wed, 18 Sep 2019 14:31:57 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk@kernel.org>,
+        <sbkim73@samsung.com>, <alsa-devel@alsa-project.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <b.zolnierkie@samsung.com>,
+        <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v1 4/9] ASoC: wm8994: Add support for MCLKn clock gating
+Message-ID: <20190918143157.GH10204@ediswmail.ad.cirrus.com>
+References: <20190918104634.15216-1-s.nawrocki@samsung.com>
+ <CGME20190918104700eucas1p1ef0775632f5c7259fb54cab8efc96c50@eucas1p1.samsung.com>
+ <20190918104634.15216-5-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="murlg7gnizd4neyj"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <3227980.eWD6USAIP4@jernej-laptop>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190918104634.15216-5-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 phishscore=0 priorityscore=1501 spamscore=0
+ adultscore=0 suspectscore=0 mlxscore=0 mlxlogscore=999 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
+ definitions=main-1909180144
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 18, 2019 at 12:46:29PM +0200, Sylwester Nawrocki wrote:
+> As an intermediate step before covering the clocking subsystem
+> of the CODEC entirely by the clk API add handling of external CODEC's
+> master clocks in DAPM events when the AIFn clocks are sourced directly
+> from MCLKn; when FLLn are used we enable/disable respective MCLKn
+> before/after FLLn is enabled/disabled.
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> @@ -2260,8 +2321,28 @@ static int _wm8994_set_fll(struct snd_soc_component *component, int id, int src,
+>  	/* Clear any pending completion from a previous failure */
+>  	try_wait_for_completion(&wm8994->fll_locked[id]);
+>  
+> +	switch (src) {
+> +	case WM8994_FLL_SRC_MCLK1:
+> +		mclk = control->mclk[0].clk;
+> +		break;
+> +	case WM8994_FLL_SRC_MCLK2:
+> +		mclk = control->mclk[1].clk;
+> +		break;
+> +	default:
+> +		mclk = NULL;
+> +	}
+> +
+>  	/* Enable (with fractional mode if required) */
+>  	if (freq_out) {
+> +		if (mclk) {
+> +			ret = clk_prepare_enable(mclk);
+> +			if (ret < 0) {
+> +				dev_err(component->dev,
+> +					"Failed to enable MCLK for FLL%d\n",
+> +					id + 1);
+> +				return ret;
+> +			}
+> +		}
+>  		/* Enable VMID if we need it */
+>  		if (!was_enabled) {
+>  			active_reference(component);
+> @@ -2315,6 +2396,8 @@ static int _wm8994_set_fll(struct snd_soc_component *component, int id, int src,
+>  
+>  			active_dereference(component);
+>  		}
+> +		if (mclk)
+> +			clk_disable_unprepare(mclk);
 
---murlg7gnizd4neyj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't think this works in the case of changing active FLLs.
+The driver looks like it allows changing the FLL configuration
+whilst the FLL is already active in which case it you would have
+two wm8994_set_fll calls enabling the FLL but only a single one
+disabling it. Resulting in the FLL being off but the MCLK being
+left enabled.
 
-Hi,
-
-On Sat, Sep 14, 2019 at 08:42:22AM +0200, Jernej =C5=A0krabec wrote:
-> Dne =C4=8Detrtek, 12. september 2019 ob 22:26:47 CEST je Maxime Ripard na=
-pisal(a):
-> > Hi,
-> >
-> > On Thu, Sep 12, 2019 at 07:51:31PM +0200, Jernej Skrabec wrote:
-> > > +	dev->regmap =3D devm_regmap_init_mmio(dev->dev, dev->base,
-> > > +
-> &deinterlace_regmap_config);
-> > > +	if (IS_ERR(dev->regmap)) {
-> > > +		dev_err(dev->dev, "Couldn't create deinterlace
-> regmap\n");
-> > > +
-> > > +		return PTR_ERR(dev->regmap);
-> > > +	}
-> > > +
-> > > +	ret =3D clk_prepare_enable(dev->bus_clk);
-> > > +	if (ret) {
-> > > +		dev_err(dev->dev, "Failed to enable bus clock\n");
-> > > +
-> > > +		return ret;
-> > > +	}
-> >
-> > Do you need to keep the bus clock enabled all the time? Usually, for
-> > the SoCs that have a reset line, you only need it to read / write to
-> > the registers, not to have the controller actually running.
-> >
-> > If you don't, then regmap_init_mmio_clk will take care of that for
-> > you.
-> >
-> > > +	clk_set_rate(dev->mod_clk, 300000000);
-> > > +
-> > > +	ret =3D clk_prepare_enable(dev->mod_clk);
-> > > +	if (ret) {
-> > > +		dev_err(dev->dev, "Failed to enable mod clock\n");
-> > > +
-> > > +		goto err_bus_clk;
-> > > +	}
-> > > +
-> > > +	ret =3D clk_prepare_enable(dev->ram_clk);
-> > > +	if (ret) {
-> > > +		dev_err(dev->dev, "Failed to enable ram clock\n");
-> > > +
-> > > +		goto err_mod_clk;
-> > > +	}
-> > > +
-> > > +	ret =3D reset_control_reset(dev->rstc);
-> > > +	if (ret) {
-> > > +		dev_err(dev->dev, "Failed to apply reset\n");
-> > > +
-> > > +		goto err_ram_clk;
-> > > +	}
-> >
-> > This could be moved to a runtime_pm hook, with get_sync called in the
-> > open. That way you won't leave the device powered on if it's unused.
->
-> Currently I'm looking at sun4i_csi.c as an example of runtime ops, but it
-> seems a bit wrong to have suspend and resume function marked with
-> __maybe_unused because they are the only functions which enable needed cl=
-ocks.
-> If CONFIG_PM is not enabled, then this driver simply won't work, because
-> clocks will never get enabled. I guess I can implement runtime pm ops in =
-the
-> same way and add additional handling when CONFIG_PM is not enabled, right?
-
-Ah, right. I guess you can either add a depends on PM, or you can call
-the function directly and use set_active like we're doing in the SPI
-driver.
-
-> BTW, which callback is get_sync? I don't see it in dev_pm_ops. I suppose I
-> need only runtime_suspend and runtime_resume.
-
-get_sync is the user facing API, ie what you call when you want the
-device to be powered up. This will call runtime_resume if needed
-(there were no users, and you become the first one), and on the parent
-devices if needed too (even though it's not our case).
-
-> Off topic: sun6i_csi.c includes linux/pm_runtime.h but it doesn't have an=
-y kind
-> of power management as far as I can see.
-
-That's probably something we can remove then
-
-Thanks!
-Maxime
-
---murlg7gnizd4neyj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXYI/dAAKCRDj7w1vZxhR
-xevqAQCkxjBKYVgA/AYg52M5egxPmCw9EbU+dTVOFOS3HnL94wD8C/1DfMGYclzH
-K2NXT3v5e5dek4yjiUUAdMyPuzrn4gU=
-=xZgs
------END PGP SIGNATURE-----
-
---murlg7gnizd4neyj--
+Thanks,
+Charles
