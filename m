@@ -2,132 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10FD9B6897
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 19:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41AFFB68A1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 19:06:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729399AbfIRRAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 13:00:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57974 "EHLO mail.kernel.org"
+        id S1727761AbfIRRGm convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 18 Sep 2019 13:06:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:45332 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727821AbfIRRAw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 13:00:52 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2AEAF21848;
-        Wed, 18 Sep 2019 17:00:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568826051;
-        bh=+VV0O6MMtZyWgdqUHiASXwOLRO7jkiwEUpT92RQzt4g=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=1PMW3AoOt/ymX/M1dp08qnsJqv3s/b+YM+GZZMumAjq6O6h/eRnWn0TVcvCuvXQKE
-         GIKROoeOINGme7kF9BlLqLmQZ9g5x2+dkI8RtpxuRROFwu0Wrr+xqeVmy4v3YdzPcZ
-         2KPRvNqzdwk1QRrlVeSzfqA2zLlNFPqxw2kBVMPk=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <DB7PR04MB51953099D6331F4F844A45EFE28E0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-References: <20190829105919.44363-1-wen.he_1@nxp.com> <20190829105919.44363-2-wen.he_1@nxp.com> <20190916202637.B5F542067B@mail.kernel.org> <DB7PR04MB51953099D6331F4F844A45EFE28E0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-Cc:     Leo Li <leoyang.li@nxp.com>,
-        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
+        id S1726908AbfIRRGm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 13:06:42 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4E800337;
+        Wed, 18 Sep 2019 10:06:41 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC10B3F59C;
+        Wed, 18 Sep 2019 10:06:39 -0700 (PDT)
+Date:   Wed, 18 Sep 2019 18:06:37 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Wen He <wen.he_1@nxp.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: RE: [EXT] Re: [v4 2/2] clk: ls1028a: Add clock driver for Display output interface
-User-Agent: alot/0.8.1
-Date:   Wed, 18 Sep 2019 10:00:50 -0700
-Message-Id: <20190918170051.2AEAF21848@mail.kernel.org>
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH V6 1/2] dt-bindings: mailbox: add binding doc for the
+ ARM SMC/HVC mailbox
+Message-ID: <20190918180637.1ac3ae08@donnerap.cambridge.arm.com>
+In-Reply-To: <CABb+yY3gJpK5ghS1u-e=f-msO+=oVvX=zDNj3Jg2i0-uJHrLiA@mail.gmail.com>
+References: <1568626884-5189-1-git-send-email-peng.fan@nxp.com>
+        <1568626884-5189-2-git-send-email-peng.fan@nxp.com>
+        <20190917183115.3e40180f@donnerap.cambridge.arm.com>
+        <CABb+yY2CP1i9fZMoPua=-mLCUpYrcO28xF5UXDeRD2XTYe7mEg@mail.gmail.com>
+        <20190918104347.285bd7ad@donnerap.cambridge.arm.com>
+        <CABb+yY3drgYHk2_SZMgGhgSisB7wMVKFSx8VVabCcXkGByvgwg@mail.gmail.com>
+        <20190918154654.6fb7e7f5@donnerap.cambridge.arm.com>
+        <CABb+yY3gJpK5ghS1u-e=f-msO+=oVvX=zDNj3Jg2i0-uJHrLiA@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Wen He (2019-09-18 02:20:26)
-> > -----Original Message-----
-> > From: Stephen Boyd <sboyd@kernel.org>
-> > Quoting Wen He (2019-08-29 03:59:19)
-> > > diff --git a/drivers/clk/clk-plldig.c b/drivers/clk/clk-plldig.c new
-> > > file mode 100644 index 000000000000..d3239bcf59de
-> > > --- /dev/null
-> > > +++ b/drivers/clk/clk-plldig.c
-> > > @@ -0,0 +1,298 @@
-[...]
->=20
-> >=20
-> > > +
-> > > +/* Maximum of the divider */
-> > > +#define MAX_RFDPHI1          63
-> > > +
-> > > +/* Best value of multiplication factor divider */
-> > > +#define PLLDIG_DEFAULE_MULT         44
-> > > +
-> > > +/*
-> > > + * Clock configuration relationship between the PHI1
-> > > +frequency(fpll_phi) and
-> > > + * the output frequency of the PLL is determined by the PLLDV,
-> > > +according to
-> > > + * the following equation:
-> > > + * fpll_phi =3D (pll_ref * mfd) / div_rfdphi1  */ struct
-> > > +plldig_phi1_param {
-> > > +       unsigned long rate;
-> > > +       unsigned int rfdphi1;
-> > > +       unsigned int mfd;
-> > > +};
-> > > +
-> > > +enum plldig_phi1_freq_range {
-> > > +       PHI1_MIN        =3D 27000000U,
-> > > +       PHI1_MAX        =3D 600000000U
-> > > +};
-> >=20
-> > Please just inline these values in the one place they're used.
-> >=20
-> > > +
-> > > +struct clk_plldig {
-> > > +       struct clk_hw hw;
-> > > +       void __iomem *regs;
-> > > +       struct device *dev;
-> >=20
-> > Please remove this, it is unused.
->=20
-> It is used for probe.
+On Wed, 18 Sep 2019 10:31:57 -0500
+Jassi Brar <jassisinghbrar@gmail.com> wrote:
 
-Use a local variable and don't store it away forever in the struct.
+Hi,
 
-> >=20
-> > > +
-> > > +       val =3D readl(data->regs + PLLDIG_REG_PLLDV);
-> > > +       val =3D phi1_param.mfd;
-> > > +       rfdphi1 =3D phi1_param.rfdphi1;
-> > > +       val |=3D rfdphi1;
-> > > +
-> > > +       writel(val, data->regs + PLLDIG_REG_PLLDV);
-> > > +
-> > > +       /* delay 200us make sure that old lock state is cleared */
-> > > +       udelay(200);
-> > > +
-> > > +       /* Wait until PLL is locked or timeout (maximum 1000 usecs) */
-> > > +       ret =3D readl_poll_timeout_atomic(data->regs + PLLDIG_REG_PLL=
-SR,
-> > cond,
-> > > +                                       cond & PLLDIG_LOCK_MASK,
-> > 0,
-> > > +                                       USEC_PER_MSEC);
-> > > +
-> > > +       return ret;
-> >=20
-> > Just return readl_poll_timeout_atomic(...) here.
->=20
-> Maybe use below code will to best describes.
->=20
-> If (ret)
->         return -ETIMEOUT;
->=20
-> return 0;
+> On Wed, Sep 18, 2019 at 9:46 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > On Wed, 18 Sep 2019 09:19:46 -0500
+> > Jassi Brar <jassisinghbrar@gmail.com> wrote:
+> >
+> > Hi,
+> >  
+> > > On Wed, Sep 18, 2019 at 4:44 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> > >  
+> > > >  
+> > > > > which needs 9 arguments to work. The fact that the fist argument is
+> > > > > always going to be same on a platform is just the way we use this
+> > > > > instruction.
+> > > > >  
+> > > > > > We should be as strict as possible to avoid any security issues.
+> > > > > >  
+> > > > > Any example of such a security issue?  
+> > > >
+> > > > Someone finds a way to trick some mailbox client to send a crafted message to the mailbox.
+> > > >  
+> > > What if someone finds a way to trick the block layer to erase 'sda' ?  
+> >
+> > Yes, the Linux block driver control the whole block device, it can do whatever it wants.
+> >  
+> Sorry, it doesn't make any sense.
 
-No, just return readl_poll_timeout_atomic().
+What I meant is that in contrast to a block driver the SMC interface is a shared resource. The mailbox controller is just using a tiny part of that. We must make sure to not interfere with the other services offered by firmware.
+ 
+> > >  That is called "bug in the code".
+> > > It does happen in every subsystem but we don't stop implementing new
+> > > features .... we write flexible code and then fix any bug.
+> > >
+> > >  
+> > > > Do you have any example of a use case where the mailbox client needs to provide the function ID?
+> > > >  
+> > > FSL_SIP_SCMI_1/2 ?  
+> >
+> > Huh? Where does the SCPI or SCMI driver provide this? Those clients don't even provide any arguments. Adding some would defeat the whole point of having this mailbox in the first place, which was to provide a drop-in replacement for a hardware mailbox device used on other platforms.
+> >  
+> SCPI/SCMI implementation is broken. I did NAK it.
+> With the 'smc' mailbox you may get away without have to program the
+> channel before transmit, but not every controller is natively so.
+> 
+> > > But that is not the main point, which is to be consistent (not
+> > > ignoring first argument because someone may find a bug to exploit) and
+> > > flexible.  
+> >
+> > Please read the SMCCC[1]: The first argument is in r1/w1/x1. r0/w0 is the function ID, and this is a specific value (fixed by the firmware implementation, see Peng's ATF patch) and not up to be guessed by a client.
+> >  
+> The first argument of smc call is the function-id
+>   arm_smccc_hvc(function_id, arg0, arg1, arg2, arg3, arg4, arg5, 0, &res);
+
+As I wrote we can't safely use a bare smc call. We must comply with the SMCCC, because there are a possible multitude of services the firmware offers. PSCI is a one obvious example.
+And SMCCC says:
+When an SMC32/HVC32 call is made from AArch32:
+   • A Function Identifier is passed in register R0.
+   • Arguments are passed in registers R1-R6.
+   • Results are returned in R0-R3.
+...
+(similar for SMC64)
+
+So arguments start from r1/x1.
+
+> >
+> > That's why I think the function ID (which is part of the SMCCC protocol, not of the mailbox service!) should just be set in the controller DT node and nowhere else.
+> >  
+> Actually that is the very reason func-id should be a client thing and
+> passed via client's DT node :)
+> It is general understanding that protocol specific bits should not be
+> a part of controller driver, but the client(protocol) driver.
+
+There are *two* protocols to consider here:
+One is the outer SMCCC protocol, which establishes communication between the mailbox controller driver and the firmware. SMCCC defines very precisely the meaning of r0/w0 for that, but leaves the rest (x1-x6) to the user. Think of the function ID being the equivalent of an MMIO base address. You can use it to select several instances of one type of mailbox. It's the task of the controller driver to abstract from that. Surely you wouldn't provide the MMIO base address of the particular mailbox in the client's DT node.
+
+The *client* protocol is then wrapped inside this, using the six argument registers that SMCCC gives us. This is indeed up to the client to use and it dictates its meaning.
+
+Maybe there is some misunderstanding that this mailbox is really a SMCCC mailbox rather than a pure SMC mailbox? Should we use a different naming like smccc_mailbox or firmware_mbox instead?
+
+> Page-7 Function-ID specifies :-
+> 1) The service to be invoked.
+> 2) The function to be invoked.
+
+"Service" is the term used for a "group of functions". PSCI is one service, for instance. It's typically determined by some upper bits. Inside this service there are several functions, like CPU_ON or SYSTEM_RESET, typically using low order bits.
+In our case the service is the mailbox, and there is just one function, the actual doorbell. We could have introduced more functions (like disocvery, information or statistics), but there is no real need for that.
+
+Cheers,
+Andre.
+
+> 3) The calling convention (32-bit or 64-bit) that is in use.
+> 4) The call type (fast or yielding) that is in use.
+> 
+> Even if we turn blind to 2,3 & 4, but (1) shouts like a runtime property.
+
+> 
+> Thanks.
 
