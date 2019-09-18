@@ -2,84 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A4F5B65D4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD906B6611
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 16:28:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726421AbfIROXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 10:23:06 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:33938 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726330AbfIROXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 10:23:06 -0400
-Received: by mail-io1-f67.google.com with SMTP id q1so16638767ion.1;
-        Wed, 18 Sep 2019 07:23:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8hOkftNxCx/aWELaDJaTVsr1hHwRKS/6DkQyi3nkXNo=;
-        b=tiaefsAejMqIgoXecf2HVZ6uIEzJD89WgVfxPiUxd2wHa6nLzUze9o9GVpjummntml
-         7WwLZ0MXTA59q4jDtNtRrYrkAdCLRVZ7nfYDR58y4svtOoPHkCSLbXxcbMkyCtErkmIM
-         9gCBiErpQ8rA/lOYi6jn6wu0tl86UdRkk8Fjaxyw97vvX2IbE/bIqTs+43mniCCVwgd+
-         QDgVKIeAchxQSDqjl8U6m2m7i4mRywfVhQtu6dcanIX09OKAWLNWNlIdwhJ1n/DJ9fmM
-         MlLOjQwo40B4150GKMdJgMsYej5F+af/4uNUWja8Nd9FAsf9r+cuTOBrXeABpjfrgzue
-         LKqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8hOkftNxCx/aWELaDJaTVsr1hHwRKS/6DkQyi3nkXNo=;
-        b=GMCLneJzFp1hfcWNHqqTBDymWpfJdq7O9FQ/RbBNJSt69Q/ZFhLVDs56SxwWNJQdtQ
-         g2HE9FB81/ONwdOtuvC/tK6DZ+v7lzW4UY0kGleTFQ5KjXlreSj1/w45nVb5rDJQlJsq
-         hB7b0SpzD40g14wkz0oh0DxSeVohk6AMZbhCwrTLzRipWpDqagjnzbizfLbSp9DSno5o
-         cnZ5OMHF8ckUZUoV4TWMRguHvbsRcMOelDL9A02xXv0Vi8qW1uF3PEoOTBeWLY3acUiA
-         EXSeZt+K9D2Vt+9TB2eeD/nBbUlSsMhRJCT/aNdFYgE3qFxwIdv2flhWJTY73RcplbfK
-         HWfQ==
-X-Gm-Message-State: APjAAAW3J9l3xcNJAbfe1sL2wqOQeu27K64IH27RUszcfMFq9JRWlhbg
-        RL99qPHdYiI037v9SCiOtUw5RcABgeGd2/+hV1V74sxq
-X-Google-Smtp-Source: APXvYqxiBAlP+n9Q7FILgic2xGszsDwFKNDSkihvLtOowMxpoCcjP8dfA+h9rXTnJorshM46ixQcptHHt7Al/USCw3Y=
-X-Received: by 2002:a5d:8a0f:: with SMTP id w15mr5572006iod.239.1568816585433;
- Wed, 18 Sep 2019 07:23:05 -0700 (PDT)
+        id S1727273AbfIRO2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 10:28:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41310 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725902AbfIRO2H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 10:28:07 -0400
+Received: from mail-yw1-f52.google.com (mail-yw1-f52.google.com [209.85.161.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B54C021924;
+        Wed, 18 Sep 2019 14:28:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568816886;
+        bh=5q3vXpVfMLjl2YjmXJxZQQGV0EcKWrcgUz73C6x30T8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Ba4o1lo7H5M0Bkey9QjJgKlytYEold2+Tr92Oqq0XjWXTRuMaQk4ECpE4Bcym2OoU
+         VgOzQtw36JtjoKjet0E68dqGZP8Nd3HV/mWlk4cC+CsLkHv+QLhsQue6x3PVcQ+B85
+         f0mQW+XOismF1Y0ZPox7DdF9Sw0qS7H7gFEP7r7M=
+Received: by mail-yw1-f52.google.com with SMTP id x64so10239ywg.3;
+        Wed, 18 Sep 2019 07:28:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAVBmvHxHJu/K8/0KIsv4ylPxJncORXqSL0I7nJriNi4F03ySc4t
+        wsBp/hgI1MW+a/YS6fDgCOJiiDt/7G7YOI+RrQ==
+X-Google-Smtp-Source: APXvYqw5G3bt/di0lrSkj1nCOaZlaS4Q/2r0yUPllZ9ZY6HdMcYoemkSqKqz/JjUcEKUGYaRq4XiSyhtyxGmFrcKgVY=
+X-Received: by 2002:a0d:ddc9:: with SMTP id g192mr3210591ywe.281.1568816885977;
+ Wed, 18 Sep 2019 07:28:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <1568626884-5189-1-git-send-email-peng.fan@nxp.com>
- <1568626884-5189-3-git-send-email-peng.fan@nxp.com> <20190917183856.2342beed@donnerap.cambridge.arm.com>
- <AM0PR04MB44813D62FF7E6762BB17460E888E0@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <20190918110037.4edefb2f@donnerap.cambridge.arm.com> <CABb+yY2G8s9gV8Pu+f__8-bubjCJsVQrQikbVMZXmpTwSMBxiQ@mail.gmail.com>
- <20190918145832.0bb72e16@donnerap.cambridge.arm.com>
-In-Reply-To: <20190918145832.0bb72e16@donnerap.cambridge.arm.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Wed, 18 Sep 2019 09:22:54 -0500
-Message-ID: <CABb+yY3irsE0U-bex4G60Lwpewea6=pE1vSzi72Z+5DafmC8Xg@mail.gmail.com>
-Subject: Re: [PATCH V6 2/2] mailbox: introduce ARM SMC based mailbox
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+References: <1568815340-30401-1-git-send-email-pragnesh.patel@sifive.com>
+In-Reply-To: <1568815340-30401-1-git-send-email-pragnesh.patel@sifive.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 18 Sep 2019 09:27:53 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJwsLkQGjjoS_RvBXjSq4irrVPEpwrwTv7wL732YHM4dg@mail.gmail.com>
+Message-ID: <CAL_JsqJwsLkQGjjoS_RvBXjSq4irrVPEpwrwTv7wL732YHM4dg@mail.gmail.com>
+Subject: Re: [PATCH] regulator: dt-bindings: Fix building error for dt_binding_check
+To:     Pragnesh Patel <pragnesh.patel@sifive.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 8:58 AM Andre Przywara <andre.przywara@arm.com> wrote:
+On Wed, Sep 18, 2019 at 9:02 AM Pragnesh Patel
+<pragnesh.patel@sifive.com> wrote:
 >
 
-> > > Also there is mbox_chan_txdone() with which a controller driver can signal TX completion explicitly.
-> > >
-> > No. Controller can use that only if it has specified txdone_irq, which
-> > is not the case here.
->
-> I see. So does the framework handle the case where both txdone_poll and txdone_irq are false?
->
-Of course. If there is no IRQ or POLL mechanism for controller to
-detect tx-done, the only way left is for client driver to know by some
-'ack' response (if any). The client should call mbox_client_txdone()
+The subject could be more specific rather than being one that applies
+to any dt_binding_check breakage in regulators.
 
-Thanks
+> Compatible property is not of type 'string' so replace enum
+> with items.
+>
+> Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
+> ---
+>  Documentation/devicetree/bindings/regulator/fixed-regulator.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> index a78150c..8d4a7b2 100644
+> --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> @@ -29,7 +29,7 @@ if:
+>
+>  properties:
+>    compatible:
+> -    enum:
+> +    items:
+>        - const: regulator-fixed
+>        - const: regulator-fixed-clock
+
+This means you expect: compatible = "regulator-fixed", "regulator-fixed-clock";
+
+Did you actually run 'dt_binding_check' because it should fail on the example?
+
+I gave you exact change to make. Just remove 'const: ' on each entry.
+
+Rob
