@@ -2,63 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B39E1B66F7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 17:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7636CB671B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 17:32:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731622AbfIRPW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 11:22:26 -0400
-Received: from muru.com ([72.249.23.125]:33652 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726982AbfIRPW0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 11:22:26 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 353C6806C;
-        Wed, 18 Sep 2019 15:22:57 +0000 (UTC)
-Date:   Wed, 18 Sep 2019 08:22:22 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Tero Kristo <t-kristo@ti.com>
-Cc:     Ankur Tyagi <ankur.tyagi@gallagher.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] clk: ti: Update AM3/4 GPIO number as per datasheet
-Message-ID: <20190918152222.GC5610@atomide.com>
-References: <20190917021521.7012-1-ankur.tyagi@gallagher.com>
- <795a3b86-64cd-c01e-c5a0-7239836d37e1@ti.com>
+        id S1727057AbfIRPcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 11:32:11 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:33649 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726983AbfIRPcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 11:32:11 -0400
+Received: by mail-io1-f65.google.com with SMTP id m11so284822ioo.0;
+        Wed, 18 Sep 2019 08:32:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5hHyYF5L2cgk61bB7AKoE7ghGd7YLktDIb71RXFYwSY=;
+        b=YGgeI6B01Qbog0Pa8A7w51DPvf6RmdRxnRonGsnP62fuwGd88IDN4UG+lpD6Ddc7xq
+         M+ty3J2sAtJwaP6/ch1pJsoyndUWaw/Ub+pS5MixJO1WTrlL/g85/PgB0AqOHxZWJ5ku
+         UB6/nJVXTJ4SNxqv1vkhVLB4nAr7no1B5Ux7DR973UTvJ6+Xm5eOQCi3hQryWMqWP4dL
+         ggJZqKslPKINu2g/xR4e0Ot7fATqFIXXCz0oQO2mKQudImW1IKjISqfz99SjP9wc8r0j
+         cy2m4J16+7lqIDur6yQhPftxjN8F7DpVh6DLNoGvCHae2IbITtYI5w12iOuM9KILqSX0
+         yPsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5hHyYF5L2cgk61bB7AKoE7ghGd7YLktDIb71RXFYwSY=;
+        b=qe2eXOVczynb5tFNJNHPDxL0i2o5xiNcVFcQuW2FGmMFQ6wb53bRnPr/yJEzb5+kN1
+         kgLLWvM5Gh+wFt7vc9jefHQiKJft3h53litQcQ76TcrKuzwU58DdN01OSHVeQ0Uisty5
+         8bx63o9WlGcD8nalCQWv937dyu6yc4ytrHeVrdz+iNJBlfwCwYpCIIJWyI3AmEUpCkSi
+         /9GZ+rZfN7Ot92yDO7gPiGSbbqt2DAmRJIvGPdXcGkziLA/PonLYpV1d+kdRwhzfUFrA
+         szdO4TApgt5Z+fjNnI3dlcAVPZGM+SbGdEin1a8phHMClcZzMaU50CMu3Ie9lUrO0R+I
+         M/Lg==
+X-Gm-Message-State: APjAAAX0KKmgAsIOtltv78EpVCOR3I8YwGxWbzI5FPWWP3AOM62OtCA6
+        FUB4u/C79vNJCFPHXR9Axv55p0vATU/hzlzgXclSJOoK
+X-Google-Smtp-Source: APXvYqwk4f9W7fDif2wT0qTh3jeOw9SsTKj3pGjsr5Z9tYewP5UlYXoB5pDU86HPHtHxIvu0cXMLbgMMc0CrPu6wwAI=
+X-Received: by 2002:a5e:c749:: with SMTP id g9mr5644589iop.7.1568820728787;
+ Wed, 18 Sep 2019 08:32:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <795a3b86-64cd-c01e-c5a0-7239836d37e1@ti.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <1568626884-5189-1-git-send-email-peng.fan@nxp.com>
+ <1568626884-5189-2-git-send-email-peng.fan@nxp.com> <20190917183115.3e40180f@donnerap.cambridge.arm.com>
+ <CABb+yY2CP1i9fZMoPua=-mLCUpYrcO28xF5UXDeRD2XTYe7mEg@mail.gmail.com>
+ <20190918104347.285bd7ad@donnerap.cambridge.arm.com> <CABb+yY3drgYHk2_SZMgGhgSisB7wMVKFSx8VVabCcXkGByvgwg@mail.gmail.com>
+ <20190918154654.6fb7e7f5@donnerap.cambridge.arm.com>
+In-Reply-To: <20190918154654.6fb7e7f5@donnerap.cambridge.arm.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 18 Sep 2019 10:31:57 -0500
+Message-ID: <CABb+yY3gJpK5ghS1u-e=f-msO+=oVvX=zDNj3Jg2i0-uJHrLiA@mail.gmail.com>
+Subject: Re: [PATCH V6 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tero Kristo <t-kristo@ti.com> [190917 06:49]:
-> On 17/09/2019 05:15, Ankur Tyagi wrote:
-> > Sitara technical reference manual numbers GPIO from 0 whereas
-> > in code GPIO are numbered from 1.
-> > 
-> > Changes since v1:
-> > - Combine changes in single patch to avoid compilation failure
-> > - Update AM4 GPIO numbers as well
-> 
-> So this is still not quite right, split am3 / am4 to their separate patches,
-> there is no need to combine those two.
-> 
-> Also, you still introduce a compile breakage between this patch and the DT
-> patch.
-> 
-> Tony, any thoughts on this? I would just leave the things as is, as the
-> existing setup works just fine. We just have a cosmetic issue of having the
-> index off-by-one compared to TRM on the clocks layer, and it is not visible
-> to user either as we have gpio0-3 nodes in the DT. Nobody except the main
-> gpio node should touch the gpio clkctrl clocks.
+On Wed, Sep 18, 2019 at 9:46 AM Andre Przywara <andre.przywara@arm.com> wro=
+te:
+>
+> On Wed, 18 Sep 2019 09:19:46 -0500
+> Jassi Brar <jassisinghbrar@gmail.com> wrote:
+>
+> Hi,
+>
+> > On Wed, Sep 18, 2019 at 4:44 AM Andre Przywara <andre.przywara@arm.com>=
+ wrote:
+> >
+> > >
+> > > > which needs 9 arguments to work. The fact that the fist argument is
+> > > > always going to be same on a platform is just the way we use this
+> > > > instruction.
+> > > >
+> > > > > We should be as strict as possible to avoid any security issues.
+> > > > >
+> > > > Any example of such a security issue?
+> > >
+> > > Someone finds a way to trick some mailbox client to send a crafted me=
+ssage to the mailbox.
+> > >
+> > What if someone finds a way to trick the block layer to erase 'sda' ?
+>
+> Yes, the Linux block driver control the whole block device, it can do wha=
+tever it wants.
+>
+Sorry, it doesn't make any sense.
 
-I commented a bit on the newer version "[PATCH v3 1/2] clk: ti: am3:
-Update AM3 GPIO number as per datasheet". If there's a real bug lurking
-around we should fix that first.
+> >  That is called "bug in the code".
+> > It does happen in every subsystem but we don't stop implementing new
+> > features .... we write flexible code and then fix any bug.
+> >
+> >
+> > > Do you have any example of a use case where the mailbox client needs =
+to provide the function ID?
+> > >
+> > FSL_SIP_SCMI_1/2 ?
+>
+> Huh? Where does the SCPI or SCMI driver provide this? Those clients don't=
+ even provide any arguments. Adding some would defeat the whole point of ha=
+ving this mailbox in the first place, which was to provide a drop-in replac=
+ement for a hardware mailbox device used on other platforms.
+>
+SCPI/SCMI implementation is broken. I did NAK it.
+With the 'smc' mailbox you may get away without have to program the
+channel before transmit, but not every controller is natively so.
 
-Regards,
+> > But that is not the main point, which is to be consistent (not
+> > ignoring first argument because someone may find a bug to exploit) and
+> > flexible.
+>
+> Please read the SMCCC[1]: The first argument is in r1/w1/x1. r0/w0 is the=
+ function ID, and this is a specific value (fixed by the firmware implement=
+ation, see Peng's ATF patch) and not up to be guessed by a client.
+>
+The first argument of smc call is the function-id
+  arm_smccc_hvc(function_id, arg0, arg1, arg2, arg3, arg4, arg5, 0, &res);
 
-TOny
+
+>
+> That's why I think the function ID (which is part of the SMCCC protocol, =
+not of the mailbox service!) should just be set in the controller DT node a=
+nd nowhere else.
+>
+Actually that is the very reason func-id should be a client thing and
+passed via client's DT node :)
+It is general understanding that protocol specific bits should not be
+a part of controller driver, but the client(protocol) driver.
+
+Page-7 Function-ID specifies :-
+1) The service to be invoked.
+2) The function to be invoked.
+3) The calling convention (32-bit or 64-bit) that is in use.
+4) The call type (fast or yielding) that is in use.
+
+Even if we turn blind to 2,3 & 4, but (1) shouts like a runtime property.
+
+Thanks.
