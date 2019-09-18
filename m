@@ -2,159 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC9BB621F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 13:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C208B623A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 13:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727004AbfIRLPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 07:15:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60644 "EHLO mail.kernel.org"
+        id S1730078AbfIRL0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 07:26:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38788 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726958AbfIRLPe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 07:15:34 -0400
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+        id S1730065AbfIRL0o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 07:26:44 -0400
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0EA8A21920;
-        Wed, 18 Sep 2019 11:15:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3D18321924;
+        Wed, 18 Sep 2019 11:26:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568805333;
-        bh=Z1ZIFhhy6smRaUk/cnY/1dt44ZCoDTqFKOckpsCYBxw=;
+        s=default; t=1568806002;
+        bh=3pmcbb5IGNv6UVVCEUYcu4A9L8uAUcH4rxuI8B/12LY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tdoNm7MQM6vlD8Re6p+4+TuUhvb08H7edBsKvOUfJfR+FTIcHmtJQQ5J8sWbMUlSS
-         b2JaTeE+3aiZE+izXmc0Pyc0Cd+i5ljeUswsogSlbZV/K2cvcGTxGHiWIYVlUjaGnh
-         X7j3MRHojIedB0CkIhuMj+sG/4fs441A5OUQi3i0=
-Received: by mail-lj1-f172.google.com with SMTP id q64so6763815ljb.12;
-        Wed, 18 Sep 2019 04:15:32 -0700 (PDT)
-X-Gm-Message-State: APjAAAXt2KJioMhrcpVLvBIGZIK6vDigNmtFQ5lLNnuhab8/dEar847O
-        yRGC+hOy7nVFLDOZRC4c3VGEWqJC7qnNPmOL5xA=
-X-Google-Smtp-Source: APXvYqwqIMrcCSDnVOm7QL2aENfE9D2HYtsS7Rg6tiAb7a6LF8Si7qSp+YiCRLA7O5nuNdgm649/uCGZusiMIQO21ws=
-X-Received: by 2002:a2e:3201:: with SMTP id y1mr1880694ljy.5.1568805331254;
- Wed, 18 Sep 2019 04:15:31 -0700 (PDT)
+        b=LjbE/Ir0aZZYCh9MO2PZBxyrtu7b0gHWAfhLJPjbNBGxiwaxl9qv8RDXxU2iq/Zmp
+         mYFteaCPua5j4OI0VN17o4QHyaRlwYo+LqCULMvbMsM9wwMMXPft5Nm/jEEl5ZYu91
+         S6mVIjlDvjE2hZMUuyADh002Fyk1Ew2hFSj60fF8=
+Received: by mail-lj1-f169.google.com with SMTP id m7so6163528lji.2;
+        Wed, 18 Sep 2019 04:26:42 -0700 (PDT)
+X-Gm-Message-State: APjAAAU/lWS08tv0DxuGxB2rAwEObyPiD+o4wZVo4cMyiegmkkG/MAgw
+        MIv+Ovku5T93HHEg9arIfPUAlg5S0g6AzGKMCp0=
+X-Google-Smtp-Source: APXvYqxLQFwGNOEyIWCb1AqfUIXqxWQhby8CiTgWvnzCEPxUQnhdtdDF3pzXyGJO5Yg7Zv4E9iuuS9SzIFnvci+Qqe4=
+X-Received: by 2002:a2e:9608:: with SMTP id v8mr1979111ljh.40.1568806000442;
+ Wed, 18 Sep 2019 04:26:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <CGME20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5@eucas1p2.samsung.com>
- <20190917111413.22711-1-m.falkowski@samsung.com> <20190917120627.28357-1-m.falkowski@samsung.com>
-In-Reply-To: <20190917120627.28357-1-m.falkowski@samsung.com>
+References: <20190907144541.16949-1-krzk@kernel.org> <20190912170145.GA17889@bogus>
+In-Reply-To: <20190912170145.GA17889@bogus>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 18 Sep 2019 13:15:19 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPc=OXLY3ynUKGhVduuiSyzT_1Po19Hhwd6fGkbaar8GQQ@mail.gmail.com>
-Message-ID: <CAJKOXPc=OXLY3ynUKGhVduuiSyzT_1Po19Hhwd6fGkbaar8GQQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: sound: Convert Samsung SMDK audio complex
-To:     Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, sbkim73@samsung.com,
-        s.nawrocki@samsung.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
+Date:   Wed, 18 Sep 2019 13:26:29 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfsUw-+yRc=GF+t=1pE7D3dF_wpRUwZpmfLnRbDyEmKeQ@mail.gmail.com>
+Message-ID: <CAJKOXPfsUw-+yRc=GF+t=1pE7D3dF_wpRUwZpmfLnRbDyEmKeQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Convert Samsung SoC watchdog
+ bindings to json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Sep 2019 at 14:06, Maciej Falkowski <m.falkowski@samsung.com> wrote:
+On Fri, 13 Sep 2019 at 16:36, Rob Herring <robh@kernel.org> wrote:
 >
-> Convert Samsung SMDK audio complex to newer dt-schema format.
+> On Sat, Sep 07, 2019 at 04:45:40PM +0200, Krzysztof Kozlowski wrote:
+> > Convert Samsung S3C/S5P/Exynos watchdog bindings to DT schema format
+> > using json-schema.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  .../bindings/watchdog/samsung-wdt.txt         | 35 ----------
+> >  .../bindings/watchdog/samsung-wdt.yaml        | 69 +++++++++++++++++++
+> >  2 files changed, 69 insertions(+), 35 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
 >
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
-> v2:
-> - Added missing Signed-off-by certificate
-
-I understood you cannot certify that you have the rights to send the
-patch. Adding someone's else Signed-off-by does not solve the problem
-of lack of such permission. Marek could certify that but you cannot
-certify for him. Otherwise it really makes the process bogus - anyone
-can add Linus' SoB and say that Linus certified the rights to include
-this contribution.
-
-In my understanding of Developer's Certificate of Origin 1.1, these
-patches do not meet the criteria and therefore should not be included
-from that point of view.
-
-One minor comment further.
-
-> ---
->  .../bindings/sound/samsung,smdk-wm8994.txt    | 14 -------
->  .../bindings/sound/samsung,smdk-wm8994.yaml   | 38 +++++++++++++++++++
->  2 files changed, 38 insertions(+), 14 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
-> deleted file mode 100644
-> index 4686646fb122..000000000000
-> --- a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
-> +++ /dev/null
-> @@ -1,14 +0,0 @@
-> -Samsung SMDK audio complex
-> -
-> -Required properties:
-> -- compatible : "samsung,smdk-wm8994"
-> -- samsung,i2s-controller: The phandle of the Samsung I2S0 controller
-> -- samsung,audio-codec: The phandle of the WM8994 audio codec
-> -Example:
-> -
-> -sound {
-> -               compatible = "samsung,smdk-wm8994";
-> -
-> -               samsung,i2s-controller = <&i2s0>;
-> -               samsung,audio-codec = <&wm8994>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
-> new file mode 100644
-> index 000000000000..a66c0dfdeb57
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/samsung,smdk-wm8994.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung SoC SMDK audio complex
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +  - Sangbeom Kim <sbkim73@samsung.com>
+> > diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > new file mode 100644
+> > index 000000000000..39f1ca3bc4db
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/watchdog/samsung-wdt.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Samsung SoC Watchdog Timer Controller
+> > +
+> > +maintainers:
+> > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > +
+> > +description: |+
+> > +  The Samsung's Watchdog controller is used for resuming system operation
+> > +  after a preset amount of time during which the WDT reset event has not
+> > +  occurred.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - samsung,s3c2410-wdt                   # for S3C2410
+> > +      - samsung,s3c6410-wdt                   # for S3C6410, S5PV210 and Exynos4
+> > +      - samsung,exynos5250-wdt                # for Exynos5250
+> > +      - samsung,exynos5420-wdt                # for Exynos5420
+> > +      - samsung,exynos7-wdt                   # for Exynos7
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  samsung,syscon-phandle:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > +    description:
+> > +      Phandle to the PMU system controller node (in case of Exynos5250
+> > +      and Exynos5420).
+> > +
+> > +  timeout-sec:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Watchdog timeout in seconds.
+>
+> We need a common schema for this and the node name.
 
-Unfortunately there was no mails coming from Sangbeom Kim so I think
-he is not active in maintaining these pieces. Let's skip this entry.
+Common schema in dt-schema or in Linux kernel bindings? If the latter,
+I can add it.
+
+> Also note that anything with a unit suffix already has a type
+> definition, so we don't really need to define it again.
+
+Right.
 
 Best regards,
 Krzysztof
-
-> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: "samsung,smdk-wm8994"
-> +
-> +  samsung,i2s-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of the Samsung I2S0 controller
-> +
-> +  samsung,audio-codec:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of the WM8994 audio codec
-> +
-> +required:
-> +  - compatible
-> +  - samsung,i2s-controller
-> +  - samsung,audio-codec
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible = "samsung,smdk-wm8994";
-> +        samsung,i2s-controller = <&i2s0>;
-> +        samsung,audio-codec = <&wm8994>;
-> +    };
-> +
-> --
-> 2.17.1
->
