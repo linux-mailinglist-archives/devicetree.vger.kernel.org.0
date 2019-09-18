@@ -2,204 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A60B64CF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 15:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6D1B64DD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 15:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730390AbfIRNjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 09:39:20 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:53984 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730220AbfIRNjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 09:39:20 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8IDd3Q0063141;
-        Wed, 18 Sep 2019 08:39:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568813943;
-        bh=vkbh30yrcTCJfdINM2lP7OAypyq1xtHtfVYZDkgedpI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=DkaJsqsvrA56bw6yvKDhdB7f/dpGcLTj2F7l5rJpC6belqMlpY6HRUoaPGZ745n+T
-         brAerETOSwQDssM4dNfqjp2TpkE9dZUSuhKJ2Cgje4BmDCD88SLgCdGZ4CbnCxIuoH
-         Lx1DZfbt9nwmc6wf+4mFgLK3/7QBH+UncwLBHFLA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8IDd35g029671
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 18 Sep 2019 08:39:03 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 18
- Sep 2019 08:38:59 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 18 Sep 2019 08:38:59 -0500
-Received: from a0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8IDcocF047879;
-        Wed, 18 Sep 2019 08:38:59 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, <jejb@linux.ibm.com>,
-        Martin K Petersen <martin.petersen@oracle.com>
-CC:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        Janek Kotas <jank@cadence.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <nsekhar@ti.com>
-Subject: [PATCH 2/2] scsi: ufs: Add driver for TI wrapper for Cadence UFS IP
-Date:   Wed, 18 Sep 2019 19:09:21 +0530
-Message-ID: <20190918133921.25844-3-vigneshr@ti.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190918133921.25844-1-vigneshr@ti.com>
-References: <20190918133921.25844-1-vigneshr@ti.com>
+        id S1726799AbfIRNlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 09:41:11 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34342 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726853AbfIRNlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 09:41:11 -0400
+Received: by mail-wr1-f66.google.com with SMTP id a11so7017219wrx.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 06:41:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=Le2QH/5p+c8aA6YAOFY1HqDcS4tnXWKjjmJndzg7vug=;
+        b=VAw2COz9hJ2GODw4TUYBOjfVafamFQnhqcHSPoGtSL0UpHXJ9HJuVTTAOypbw/e5qx
+         nMNd6i1KOl6WeqCM4D0ok9G8UJFmOJrWjiLWaHI0cZAi0qHSYNFzMHIBNFOk3H62hQ70
+         CHh9MzUKVzxtb2P6/IH/mtlonsiPEY8GPDRL1GKwiNDjDUiP9ueltLepxrefCUgQvvFZ
+         OuLrURYApNhn1n2i1L7upc8GZYAeOH1npStQebjXti8ELLDaKP7yAtRo53Jckej27KnQ
+         eYhf8WM6WxDh0q4AZejqt6ACZHHmWXTvTtnjXQGLhQQo85xay3SnkTkDQZfbLei3fg5O
+         uPdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=Le2QH/5p+c8aA6YAOFY1HqDcS4tnXWKjjmJndzg7vug=;
+        b=PqwzraAogTWkShiE76yKes4kKtZW9IlkIRxSL/JLsMT46bSPdNJrKP07IL4HFSergo
+         WzAaV1/MRYC/8Jd7Aav61HWRT+XWzbmrqLq/2MqS9yUWOevEdGiNbssJWJBfXlu4j5As
+         j86O2aFIt2X1xrybDpfD/0D8MAvKhFSmV/ClS9f+AiObJdwI3x74uJIgCHPVXUcTlM/P
+         6D6qZOiWPldJF8RwemYko1AsNkp7IWgQNQgOSXEixRbCokIVzDbfUictACvMWxS5OJzR
+         K8UpIpmwjMUAw/+NUfdf9GI9nOllCSgU7gQyL1W82DcBKbhV1kEd2iLuzQxXh7bUG8wV
+         5rKw==
+X-Gm-Message-State: APjAAAWcY3Mf3PO5u9n102UoacFlFFINfkXy5HDiF8J2Ywu7cigamzRt
+        TVj6rU5xFAoQK9FEYiSsVMw6mQ==
+X-Google-Smtp-Source: APXvYqxv03GXuQ6Ll5/5yUHHr2Cqd6aGyprQTYFaVpTYbV1oBVZZcCF8gqYRsSTnVTCyAl0s5B26hg==
+X-Received: by 2002:a5d:6043:: with SMTP id j3mr3140609wrt.337.1568814068663;
+        Wed, 18 Sep 2019 06:41:08 -0700 (PDT)
+Received: from localhost ([195.200.173.126])
+        by smtp.gmail.com with ESMTPSA id b22sm3332004wmj.36.2019.09.18.06.41.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Sep 2019 06:41:07 -0700 (PDT)
+Date:   Wed, 18 Sep 2019 06:41:06 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Yash Shah <yash.shah@sifive.com>
+cc:     Palmer Dabbelt <palmer@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Subject: Re: [PATCH] riscv: dts: Add DT support for SiFive FU540 PWM driver
+In-Reply-To: <CAJ2_jOHJ5zuxDc6gsFiZou+-yVg=pr+uSHGJB8VPT1O-Bu3idg@mail.gmail.com>
+Message-ID: <alpine.DEB.2.21.9999.1909180639530.29677@viisi.sifive.com>
+References: <CAJ2_jOGO-isv52rnwRusV7jtyCY_JWYWAj9opN3Zg6ZbZr-8-w@mail.gmail.com> <mhng-c8b87e96-987e-4577-acc2-1e22c9b81b10@palmer-si-x1e> <CAJ2_jOHJ5zuxDc6gsFiZou+-yVg=pr+uSHGJB8VPT1O-Bu3idg@mail.gmail.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI's J721e SoC has a Cadence UFS IP with a TI specific wrapper. This is
-a minimal driver to configure the wrapper. It releases the UFS slave
-device out of reset and sets up registers to indicate PHY reference
-clock input frequency before probing child Cadence UFS driver.
+On Mon, 16 Sep 2019, Yash Shah wrote:
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> On Sat, Sep 14, 2019 at 2:50 AM Palmer Dabbelt <palmer@sifive.com> wrote:
+> >
+> > On Tue, 10 Sep 2019 02:52:07 PDT (-0700), yash.shah@sifive.com wrote:
+> > > Hi,
+> > >
+> > > Any comments on this patch?
+> >
+> > I don't see "sifive,pwm0" in the DT bindings documentation, and it doesn't
+> > match our standard way of doing these things (which would have at least
+> > "sifive,fu540-c000-pwm").
+> 
+> "sifive,pwm0" is present in the DT bindings documentation at
+> Documentation/devicetree/bindings/pwm/pwm-sifive.txt
+> Yes, I agree that this patch is missing "sifive,fu540-c000-pwm". I
+> will add it along with "sifive,pwm0" and repost as version 2.
+
+Fixed the compat string here and also dropped the superfluous reg-names 
+property from pwm1.  Queued for v5.4-rc, thanks.
+
+
+- Paul
+
+From: Yash Shah <yash.shah@sifive.com>
+Date: Wed, 21 Aug 2019 14:53:40 +0530
+Subject: [PATCH] riscv: dts: Add DT support for SiFive FU540 PWM driver
+
+Add the PWM DT node in SiFive FU540 soc-specific DT file.
+Enable the PWM nodes in HiFive Unleashed board-specific DT file.
+
+Signed-off-by: Yash Shah <yash.shah@sifive.com>
+Cc: Palmer Dabbelt <palmer@sifive.com>
+[paul.walmsley@sifive.com: added chip-specific compatible string;
+ dropped reg-names string from pwm1]
+Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
 ---
- drivers/scsi/ufs/Kconfig        | 10 ++++
- drivers/scsi/ufs/Makefile       |  1 +
- drivers/scsi/ufs/ti-j721e-ufs.c | 90 +++++++++++++++++++++++++++++++++
- 3 files changed, 101 insertions(+)
- create mode 100644 drivers/scsi/ufs/ti-j721e-ufs.c
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi     | 18 ++++++++++++++++++
+ .../boot/dts/sifive/hifive-unleashed-a00.dts   |  8 ++++++++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/drivers/scsi/ufs/Kconfig b/drivers/scsi/ufs/Kconfig
-index 0b845ab7c3bf..d14c2243e02a 100644
---- a/drivers/scsi/ufs/Kconfig
-+++ b/drivers/scsi/ufs/Kconfig
-@@ -132,6 +132,16 @@ config SCSI_UFS_HISI
- 	  Select this if you have UFS controller on Hisilicon chipset.
- 	  If unsure, say N.
+diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+index 42b5ec223100..5a29211d396e 100644
+--- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
++++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+@@ -230,6 +230,24 @@
+ 			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
++		pwm0: pwm@10020000 {
++			compatible = "sifive,fu540-c000-pwm", "sifive,pwm0";
++			reg = <0x0 0x10020000 0x0 0x1000>;
++			interrupt-parent = <&plic0>;
++			interrupts = <42 43 44 45>;
++			clocks = <&prci PRCI_CLK_TLCLK>;
++			#pwm-cells = <3>;
++			status = "disabled";
++		};
++		pwm1: pwm@10021000 {
++			compatible = "sifive,fu540-c000-pwm", "sifive,pwm0";
++			reg = <0x0 0x10021000 0x0 0x1000>;
++			interrupt-parent = <&plic0>;
++			interrupts = <46 47 48 49>;
++			clocks = <&prci PRCI_CLK_TLCLK>;
++			#pwm-cells = <3>;
++			status = "disabled";
++		};
  
-+config SCSI_UFS_TI_J721E
-+	tristate "TI glue layer for Cadence UFS Controller"
-+	depends on OF && HAS_IOMEM && (ARCH_K3 || COMPILE_TEST)
-+	help
-+	  This selects driver for TI glue layer for Cadence UFS Host
-+	  Controller IP.
+ 	};
+ };
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 93d68cbd64fe..104d334511cd 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -85,3 +85,11 @@
+ 		reg = <0>;
+ 	};
+ };
 +
-+	  Selects this if you have TI platform with UFS controller.
-+	  If unsure, say N.
-+
- config SCSI_UFS_BSG
- 	bool "Universal Flash Storage BSG device node"
- 	depends on SCSI_UFSHCD
-diff --git a/drivers/scsi/ufs/Makefile b/drivers/scsi/ufs/Makefile
-index 2a9097939bcb..94c6c5d7334b 100644
---- a/drivers/scsi/ufs/Makefile
-+++ b/drivers/scsi/ufs/Makefile
-@@ -11,3 +11,4 @@ obj-$(CONFIG_SCSI_UFSHCD_PCI) += ufshcd-pci.o
- obj-$(CONFIG_SCSI_UFSHCD_PLATFORM) += ufshcd-pltfrm.o
- obj-$(CONFIG_SCSI_UFS_HISI) += ufs-hisi.o
- obj-$(CONFIG_SCSI_UFS_MEDIATEK) += ufs-mediatek.o
-+obj-$(CONFIG_SCSI_UFS_TI_J721E) += ti-j721e-ufs.o
-diff --git a/drivers/scsi/ufs/ti-j721e-ufs.c b/drivers/scsi/ufs/ti-j721e-ufs.c
-new file mode 100644
-index 000000000000..a653bf1902f3
---- /dev/null
-+++ b/drivers/scsi/ufs/ti-j721e-ufs.c
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
-+//
-+
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+
-+#define UFS_SS_CTRL		0x4
-+#define UFS_SS_RST_N_PCS	BIT(0)
-+#define UFS_SS_CLK_26MHZ	BIT(4)
-+
-+static int ti_j721e_ufs_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	unsigned long clk_rate;
-+	void __iomem *regbase;
-+	struct clk *clk;
-+	u32 reg = 0;
-+	int ret;
-+
-+	regbase = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(regbase))
-+		return PTR_ERR(regbase);
-+
-+	/* Select MPHY refclk frequency */
-+	clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk)) {
-+		dev_err(dev, "Cannot claim MPHY clock.\n");
-+		return PTR_ERR(clk);
-+	}
-+	clk_rate = clk_get_rate(clk);
-+	if (clk_rate == 26000000)
-+		reg |= UFS_SS_CLK_26MHZ;
-+	devm_clk_put(dev, clk);
-+
-+	pm_runtime_enable(dev);
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0) {
-+		pm_runtime_put_noidle(dev);
-+		return ret;
-+	}
-+
-+	/*  Take UFS slave device out of reset */
-+	reg |= UFS_SS_RST_N_PCS;
-+	writel(reg, regbase + UFS_SS_CTRL);
-+
-+	ret = of_platform_populate(pdev->dev.of_node, NULL, NULL,
-+				   dev);
-+	if (ret) {
-+		dev_err(dev, "failed to populate child nodes %d\n", ret);
-+		pm_runtime_put_sync(dev);
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_j721e_ufs_remove(struct platform_device *pdev)
-+{
-+	of_platform_depopulate(&pdev->dev);
-+	pm_runtime_put_sync(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ti_j721e_ufs_of_match[] = {
-+	{
-+		.compatible = "ti,j721e-ufs",
-+	},
-+	{ },
++&pwm0 {
++	status = "okay";
 +};
 +
-+static struct platform_driver ti_j721e_ufs_driver = {
-+	.probe	= ti_j721e_ufs_probe,
-+	.remove	= ti_j721e_ufs_remove,
-+	.driver	= {
-+		.name   = "ti-j721e-ufs",
-+		.of_match_table = ti_j721e_ufs_of_match,
-+	},
++&pwm1 {
++	status = "okay";
 +};
-+module_platform_driver(ti_j721e_ufs_driver);
-+
-+MODULE_AUTHOR("Vignesh Raghavendra <vigneshr@ti.com>");
-+MODULE_DESCRIPTION("TI UFS host controller glue driver");
-+MODULE_LICENSE("GPL v2");
 -- 
 2.23.0
 
