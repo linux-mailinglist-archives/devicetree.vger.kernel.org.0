@@ -2,69 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 162D7B6D4C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 22:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0BBB6D59
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 22:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390960AbfIRUL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 16:11:28 -0400
-Received: from viti.kaiser.cx ([85.214.81.225]:42250 "EHLO viti.kaiser.cx"
+        id S2391169AbfIRUNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 16:13:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33632 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390933AbfIRUL2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Sep 2019 16:11:28 -0400
-X-Greylist: delayed 1909 seconds by postgrey-1.27 at vger.kernel.org; Wed, 18 Sep 2019 16:11:27 EDT
-Received: from dslb-084-059-234-127.084.059.pools.vodafone-ip.de ([84.59.234.127] helo=martin-debian-1.paytec.ch)
-        by viti.kaiser.cx with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <martin@kaiser.cx>)
-        id 1iAfnW-0001vE-I4; Wed, 18 Sep 2019 21:39:30 +0200
-From:   Martin Kaiser <martin@kaiser.cx>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Martin Kaiser <martin@kaiser.cx>
-Subject: [PATCH] dt-bindings: display: imx: fix native-mode setting
-Date:   Wed, 18 Sep 2019 21:38:53 +0200
-Message-Id: <20190918193853.25689-1-martin@kaiser.cx>
-X-Mailer: git-send-email 2.11.0
+        id S2391137AbfIRUNS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Sep 2019 16:13:18 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C6F3021BE5;
+        Wed, 18 Sep 2019 20:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568837596;
+        bh=7yqTiFhnfOQD1ehV4j3dV3361bQH6KOjLCmrP9XuYao=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JlSwulvYPbZcQ+Kx888pCMj/MpNfLeCJBzzVzKM5RgftKgq6k71CdfOnqLUo9c7v2
+         zaRIwbkhoyGSeG9Ok/bo6UpgUj5JM8xcoOORRd4RDTt+Uv+WA9x+dWc/dNRazg+RE6
+         fZH2fI/pqosb98SZEuYG16sh8Y6wBh1hFuZdcXk0=
+Received: by mail-qt1-f175.google.com with SMTP id n7so1327947qtb.6;
+        Wed, 18 Sep 2019 13:13:16 -0700 (PDT)
+X-Gm-Message-State: APjAAAVWA/bSjuIL9eKGR67EXJKuca7+p+/1dwNBPKuRaUvuxVx4e0Fa
+        paJaFEopBlOMaLAvIee5AxVRocj+jnB+72CF9g==
+X-Google-Smtp-Source: APXvYqzp8jEBWLktbjqa8bVQ9eRqJy+dpg6cUJktk5xlfJC86kD0oRlkwkg/pklVSZjObNEm5xalq1A+S1M86ezXcdE=
+X-Received: by 2002:ac8:100d:: with SMTP id z13mr6081504qti.224.1568837595963;
+ Wed, 18 Sep 2019 13:13:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190918184656.7633-1-rananta@codeaurora.org>
+In-Reply-To: <20190918184656.7633-1-rananta@codeaurora.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 18 Sep 2019 15:13:04 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ2WeW0JHSHZuvo9bbc7JSFBr_qCuOp97i=b6Q+OPY7Cg@mail.gmail.com>
+Message-ID: <CAL_JsqJ2WeW0JHSHZuvo9bbc7JSFBr_qCuOp97i=b6Q+OPY7Cg@mail.gmail.com>
+Subject: Re: [PATCH] of: Add of_get_memory_prop()
+To:     Raghavendra Rao Ananta <rananta@codeaurora.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Trilok Soni <tsoni@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to
-Documentation/devicetree/bindings/display/panel/display-timing.txt,
-native-mode is a property of the display-timings node.
+On Wed, Sep 18, 2019 at 1:47 PM Raghavendra Rao Ananta
+<rananta@codeaurora.org> wrote:
+>
+> On some embedded systems, the '/memory' dt-property gets updated
+> by the bootloader (for example, the DDR configuration) and then
+> gets passed onto the kernel. The device drivers may have to read
+> the properties at runtime to make decisions. Hence, add
+> of_get_memory_prop() for the device drivers to query the requested
 
-If it's located outside of display-timings, the native-mode setting is
-ignored and the first display timing is used.
+Function name doesn't match. Device drivers don't need to access the FDT.
 
-We've already fixed the board definitions which got this wrong. Fix the
-example in the imx framebuffer bindings as well.
+> properties.
+>
+> Signed-off-by: Raghavendra Rao Ananta <rananta@codeaurora.org>
+> ---
+>  drivers/of/fdt.c       | 27 +++++++++++++++++++++++++++
+>  include/linux/of_fdt.h |  1 +
+>  2 files changed, 28 insertions(+)
 
-Signed-off-by: Martin Kaiser <martin@kaiser.cx>
----
- Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+We don't add kernel api's without users.
 
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt b/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
-index e5a8b363d829..f4df9e83bcd2 100644
---- a/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
-+++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
-@@ -38,10 +38,10 @@ Example:
- 
- 	display0: display0 {
- 		model = "Primeview-PD050VL1";
--		native-mode = <&timing_disp0>;
- 		bits-per-pixel = <16>;
- 		fsl,pcr = <0xf0c88080>;	/* non-standard but required */
- 		display-timings {
-+			native-mode = <&timing_disp0>;
- 			timing_disp0: 640x480 {
- 				hactive = <640>;
- 				vactive = <480>;
--- 
-2.11.0
+>
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 223d617ecfe1..925cf2852433 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -79,6 +79,33 @@ void __init of_fdt_limit_memory(int limit)
+>         }
+>  }
+>
+> +/**
+> + * of_fdt_get_memory_prop - Return the requested property from the /memory node
+> + *
+> + * On match, returns a non-zero positive value which represents the property
+> + * value. Otherwise returns -ENOENT.
+> + */
+> +int of_fdt_get_memory_prop(const char *pname)
+> +{
+> +       int memory;
+> +       int len;
+> +       fdt32_t *prop = NULL;
+> +
+> +       if (!pname)
+> +               return -EINVAL;
+> +
+> +       memory = fdt_path_offset(initial_boot_params, "/memory");
 
+Memory nodes should have a unit-address, so this won't work frequently.
+
+> +       if (memory > 0)
+> +               prop = fdt_getprop_w(initial_boot_params, memory,
+> +                                 pname, &len);
+> +
+> +       if (!prop || len != sizeof(u32))
+> +               return -ENOENT;
+> +
+> +       return fdt32_to_cpu(*prop);
+> +}
+> +EXPORT_SYMBOL_GPL(of_fdt_get_memory_prop);
+> +
+>  static bool of_fdt_device_is_available(const void *blob, unsigned long node)
+>  {
+>         const char *status = fdt_getprop(blob, node, "status", NULL);
+> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+> index acf820e88952..537f29373358 100644
+> --- a/include/linux/of_fdt.h
+> +++ b/include/linux/of_fdt.h
+> @@ -38,6 +38,7 @@ extern char __dtb_end[];
+>  /* Other Prototypes */
+>  extern u64 of_flat_dt_translate_address(unsigned long node);
+>  extern void of_fdt_limit_memory(int limit);
+> +extern int of_fdt_get_memory_prop(const char *pname);
+>  #endif /* CONFIG_OF_FLATTREE */
+>
+>  #ifdef CONFIG_OF_EARLY_FLATTREE
+> --
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+>
