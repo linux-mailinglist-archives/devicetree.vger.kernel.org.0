@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22053B6CBA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 21:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CFABB6CD7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 21:41:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731566AbfIRTiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 15:38:15 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:35992 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726676AbfIRTiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 15:38:15 -0400
-Received: by mail-lj1-f193.google.com with SMTP id v24so1146069ljj.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 12:38:14 -0700 (PDT)
+        id S1727648AbfIRTlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 15:41:32 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:34364 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729275AbfIRTlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 15:41:32 -0400
+Received: by mail-lj1-f194.google.com with SMTP id h2so1173402ljk.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 12:41:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=kYdtJ7oCFnyBm2ZB4A+7C5h6gT7MMWnprnThe/izcYI=;
-        b=FJYQZJbLlwnYy90gnbw5gVV6ZxnBb7ZVOPYNbwk/X+uv7Q2AcvUbaxXr5/I3hc68iC
-         o1mnY1UhXLgFzBZgYShNRfik8r1itqOopd6dCzEH/iFUnarQHiflR2MAQp1g87ruIzZa
-         GzycbwAQfEs/XaWi9qqDvP4CUHCYoSy9wDLwc=
+        bh=DUtNy6zmsY/nY12iTbVrTLFA5neR54fGcg9sdDNwfEY=;
+        b=fVyFu7iCUvOtyuHv+Xj2YthhNrZOr4I5cNqzFjMxLMOPNrE71+G8H1jVo9wOMKgtTc
+         TNIIlFcXqPJtyGWq7EIhgQ/QTvke2Pgso2evo8wAVJRrFT99b162lg4tZoUwvjLXnxF5
+         bBF15QD8KKnIOevl3afUFS9klNlHkQ2aatRIk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kYdtJ7oCFnyBm2ZB4A+7C5h6gT7MMWnprnThe/izcYI=;
-        b=PnwxKd1uNkb2c2rDHdjX3fufgbQpyPPKLVD2vmF8QYCx+w0RTiOKhCnq1jKk7P6gHf
-         qbiLIDfLTKiyororS7u8hAuan6qOGV3h+ZVtY34FCERowdIxZFLn2Eo7/PRVeSweAlAz
-         zLeTmSDC6X1fIEKsqqHkUhgBqDy8hEBt9FKvRFhZhM1as+MU6G4pmkxqg79I38SSjbJK
-         JQqOFI0ASnk+oLDqmevUR6z5J0TcFqtjS4hVqPo6wrTXnHvP4oNkuHrmm7IGoGZ3Mi2u
-         CvNjVWzJt/Wu/DugSx0Kf941FaOJNqLSnFyDV84CC/uGQaFfKXSIlT/8OjFEkHVJ78Mo
-         JoYw==
-X-Gm-Message-State: APjAAAUKvG9lnzVkEzMP4EgWWFAmMvoSpEKFkL8xZTomIuiTmxBThagL
-        Fuv5SrpCYLfq11NrYXjpEwZ5Ui8edcQ=
-X-Google-Smtp-Source: APXvYqyuOqCiSzQYIdPotTDUVxI6L6tCiBGcQg05SFpOqnlxfJPnUkrdYVgpraauxVF142Cbe8sIAg==
-X-Received: by 2002:a2e:87ca:: with SMTP id v10mr3223912ljj.53.1568835492982;
-        Wed, 18 Sep 2019 12:38:12 -0700 (PDT)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
-        by smtp.gmail.com with ESMTPSA id x15sm1318232lff.54.2019.09.18.12.38.11
+        bh=DUtNy6zmsY/nY12iTbVrTLFA5neR54fGcg9sdDNwfEY=;
+        b=dfeZmHg39l9cttok+O06OnrSIKu4Ohc3NuaS+yTzGdfB2+qgFzrxKWp2Un+tT+Ho6M
+         TBOdFNelQYZLigXgAfj3Es8cXiz2Bm1T0SH5s0S1/h4ecOR470RvptuunC2l42vo7KGZ
+         mSuH3ovscV6oi1vxlx3a4CzbbaEdAj9jR6MmcQNupW91lNuf0tkOxlP4SMcOa8lshr3w
+         tVOq4ETyy2sUxbeh5nAYFaMJHaxUGYxuPhNjzI6vEhmAK6xaITRKqdfnYYUZUT3X7gms
+         RAgEsr/0cYSpH4ND7mQ3ckORW3hXlt+uZO/dUE76Pg2naJZfRealyPgV4hV0QnqS1gvM
+         p37Q==
+X-Gm-Message-State: APjAAAW5PjgV5705E9WTgS/wu4vw1XfAglo/10jJ9VIcK3T2ZOmcBAvJ
+        epLxRaZoqAaqn+c9aJcE+jtdQ58kpmE=
+X-Google-Smtp-Source: APXvYqyPYnPYzP6TXOu0dyhkW555BmXKJ0KdJr2IMTDAo1Xzjb5ojvA623R8qQoCTr19L5DQgRB80g==
+X-Received: by 2002:a2e:9096:: with SMTP id l22mr3165834ljg.125.1568835690145;
+        Wed, 18 Sep 2019 12:41:30 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id a8sm1198857ljf.47.2019.09.18.12.41.28
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Sep 2019 12:38:11 -0700 (PDT)
-Received: by mail-lj1-f170.google.com with SMTP id 7so1113971ljw.7
-        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 12:38:11 -0700 (PDT)
-X-Received: by 2002:a2e:9bcc:: with SMTP id w12mr3122310ljj.181.1568835490845;
- Wed, 18 Sep 2019 12:38:10 -0700 (PDT)
+        Wed, 18 Sep 2019 12:41:29 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id a22so1178202ljd.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 12:41:28 -0700 (PDT)
+X-Received: by 2002:a2e:9881:: with SMTP id b1mr3145788ljj.134.1568835688462;
+ Wed, 18 Sep 2019 12:41:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190910160903.65694-1-swboyd@chromium.org> <20190910160903.65694-4-swboyd@chromium.org>
-In-Reply-To: <20190910160903.65694-4-swboyd@chromium.org>
+References: <20190910160903.65694-1-swboyd@chromium.org> <20190910160903.65694-6-swboyd@chromium.org>
+In-Reply-To: <20190910160903.65694-6-swboyd@chromium.org>
 From:   Evan Green <evgreen@chromium.org>
-Date:   Wed, 18 Sep 2019 12:37:34 -0700
-X-Gmail-Original-Message-ID: <CAE=gft6YdNszcJV67CwcY2gOgPHrJ1+SnKMLr63f2bix2aZXXA@mail.gmail.com>
-Message-ID: <CAE=gft6YdNszcJV67CwcY2gOgPHrJ1+SnKMLr63f2bix2aZXXA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] memremap: Add support for read-only memory mappings
+Date:   Wed, 18 Sep 2019 12:40:52 -0700
+X-Gmail-Original-Message-ID: <CAE=gft6=4m79QX8Bca9izRUUkumio_YKBNY8aY=XPjj=WE_BYA@mail.gmail.com>
+Message-ID: <CAE=gft6=4m79QX8Bca9izRUUkumio_YKBNY8aY=XPjj=WE_BYA@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] soc: qcom: cmd-db: Map with read-only mappings
 To:     Stephen Boyd <swboyd@chromium.org>
 Cc:     Dan Williams <dan.j.williams@intel.com>,
         LKML <linux-kernel@vger.kernel.org>,
@@ -73,12 +73,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, Sep 10, 2019 at 9:09 AM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> Sometimes we have memories that are supposed to be read-only, but when
-> we map these regions the best we can do is map them as write-back with
-> MEMREMAP_WB. Introduce a read-only memory mapping (MEMREMAP_RO) that
-> allows us to map reserved memory regions as read-only. This way, we're
-> less likely to see these special memory regions become corrupted by
-> stray writes to them.
+> The command DB is read-only already to the kernel because everything is
+> const marked once we map it. Let's go one step further and try to map
+> the memory as read-only in the page tables. This should make it harder
+> for random code to corrupt the database and change the contents.
 >
 > Cc: Evan Green <evgreen@chromium.org>
 > Cc: Rob Herring <robh+dt@kernel.org>
@@ -90,97 +88,27 @@ On Tue, Sep 10, 2019 at 9:09 AM Stephen Boyd <swboyd@chromium.org> wrote:
 > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  include/linux/io.h |  1 +
->  kernel/iomem.c     | 20 +++++++++++++++++---
->  2 files changed, 18 insertions(+), 3 deletions(-)
+>  drivers/soc/qcom/cmd-db.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/include/linux/io.h b/include/linux/io.h
-> index accac822336a..15a63efcd153 100644
-> --- a/include/linux/io.h
-> +++ b/include/linux/io.h
-> @@ -148,6 +148,7 @@ enum {
->         MEMREMAP_WC = 1 << 2,
->         MEMREMAP_ENC = 1 << 3,
->         MEMREMAP_DEC = 1 << 4,
-> +       MEMREMAP_RO = 1 << 5,
->  };
+> diff --git a/drivers/soc/qcom/cmd-db.c b/drivers/soc/qcom/cmd-db.c
+> index 10a34d26b753..6365e8260282 100644
+> --- a/drivers/soc/qcom/cmd-db.c
+> +++ b/drivers/soc/qcom/cmd-db.c
+> @@ -240,7 +240,8 @@ static int cmd_db_dev_probe(struct platform_device *pdev)
+>  {
+>         int ret = 0;
 >
->  void *memremap(resource_size_t offset, size_t size, unsigned long flags);
-> diff --git a/kernel/iomem.c b/kernel/iomem.c
-> index 62c92e43aa0d..6d76b7398714 100644
-> --- a/kernel/iomem.c
-> +++ b/kernel/iomem.c
-> @@ -19,6 +19,13 @@ static void *arch_memremap_wb(resource_size_t offset, unsigned long size)
->  }
->  #endif
->
-> +#ifndef arch_memremap_ro
-> +static void *arch_memremap_ro(resource_size_t offset, unsigned long size)
-> +{
-> +       return NULL;
-> +}
-> +#endif
-> +
->  #ifndef arch_memremap_can_ram_remap
->  static bool arch_memremap_can_ram_remap(resource_size_t offset, size_t size,
->                                         unsigned long flags)
-> @@ -45,7 +52,7 @@ static void *try_ram_remap(resource_size_t offset, size_t size,
->   * @offset: iomem resource start address
->   * @size: size of remap
->   * @flags: any of MEMREMAP_WB, MEMREMAP_WT, MEMREMAP_WC,
-> - *               MEMREMAP_ENC, MEMREMAP_DEC
-> + *               MEMREMAP_ENC, MEMREMAP_DEC, MEMREMAP_RO
->   *
->   * memremap() is "ioremap" for cases where it is known that the resource
->   * being mapped does not have i/o side effects and the __iomem
-> @@ -53,6 +60,9 @@ static void *try_ram_remap(resource_size_t offset, size_t size,
->   * mapping types will be attempted in the order listed below until one of
->   * them succeeds.
->   *
-> + * MEMREMAP_RO - establish a mapping whereby writes are ignored/rejected.
-> + * Attempts to map System RAM with this mapping type will fail.
+> -       cmd_db_header = devm_memremap_reserved_mem(&pdev->dev, MEMREMAP_WB);
+> +       cmd_db_header = devm_memremap_reserved_mem(&pdev->dev,
+> +                                                  MEMREMAP_RO | MEMREMAP_WB);
 
-Why should attempts to map RAM with this flag fail? MEMREMAP_WB will
-allow RAM and quietly give you back the direct mapping, so it seems
-like at least some values in this function allow RAM.
+It seems weird to have both flags, like: "It's read-only, but if it
+ever did get written to somehow, make it writeback".
 
-Oh, I see a comment below about "Enforce that this mapping is not
-aliasing System RAM". I guess this is worried about cache coloring?
-But is that a problem with RO mappings? I guess the RO mappings could
-get partially stale, so if the memory were being updated out from
-under you, you might see some updates but not others. Was that the
-rationale?
-
-> + *
->   * MEMREMAP_WB - matches the default mapping for System RAM on
->   * the architecture.  This is usually a read-allocate write-back cache.
->   * Moreover, if MEMREMAP_WB is specified and the requested remap region is RAM
-> @@ -84,7 +94,10 @@ void *memremap(resource_size_t offset, size_t size, unsigned long flags)
->         }
->
->         /* Try all mapping types requested until one returns non-NULL */
-> -       if (flags & MEMREMAP_WB) {
-> +       if ((flags & MEMREMAP_RO) && is_ram != REGION_INTERSECTS)
-> +               addr = arch_memremap_ro(offset, size);
-> +
-> +       if (!addr && (flags & MEMREMAP_WB)) {
->                 /*
->                  * MEMREMAP_WB is special in that it can be satisfied
->                  * from the direct map.  Some archs depend on the
-> @@ -103,7 +116,8 @@ void *memremap(resource_size_t offset, size_t size, unsigned long flags)
->          * address mapping.  Enforce that this mapping is not aliasing
->          * System RAM.
->          */
-> -       if (!addr && is_ram == REGION_INTERSECTS && flags != MEMREMAP_WB) {
-> +       if (!addr && is_ram == REGION_INTERSECTS &&
-> +           (flags != MEMREMAP_WB || flags != MEMREMAP_RO)) {
-
-Isn't this condition always true? Did you mean flags != MEM_REMAP_WB
-&& flags != MEMREMAP_RO?
-
->                 WARN_ONCE(1, "memremap attempted on ram %pa size: %#lx\n",
->                                 &offset, (unsigned long) size);
->                 return NULL;
+>         if (IS_ERR(cmd_db_header)) {
+>                 ret = PTR_ERR(cmd_db_header);
+>                 cmd_db_header = NULL;
 > --
 > Sent by a computer through tubes
 >
