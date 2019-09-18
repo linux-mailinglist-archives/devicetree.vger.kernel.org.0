@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DA29B6A7D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 20:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 783A0B6ACB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2019 20:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388815AbfIRSYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Sep 2019 14:24:54 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:33966 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388793AbfIRSYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 14:24:51 -0400
-Received: by mail-io1-f67.google.com with SMTP id q1so1560402ion.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 11:24:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9gPHsl5MGafDizMhJaXlJwLXsMzDh1ZKR3owfwW7eEw=;
-        b=KS7mlFR2kYZtKZLYic9KTEy8y8YhqrWC5gUb9WrC/SSt6dH2xLi5fyfB/IM9nURwQz
-         DUekaLCyNL1i8ITYPCZLY8Flwm/fzYSvKtMI9KJT+w8tPLuuwJ3zJICqSBQTqXISknro
-         ew4MTUtCP5sGGMDVAKzpG040d6oFFUAVnLJMxMJw0rUoOY9zZx0IsLwegNvTjEiVy3fL
-         U4zN7gPCjvhfmtqjm37dJwPBXyTpyWZ0aTz7xeBwpfKePUwCanSzWXODZg3khJTvtznz
-         lQNOy8kDW5X+A9BKks9UgwPd43GkXChYA+gH+RdTqg5nOG6eLwvA4IBQAaN3rRT3mgA7
-         evSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9gPHsl5MGafDizMhJaXlJwLXsMzDh1ZKR3owfwW7eEw=;
-        b=OkAttcg3vS/KXgZXYWthAVZhUYYQ0I7Pp7dkANr1u+Sbaqe/94oqE5SZ0MKNvENwyd
-         mxAPtx68BQLTiJfpa8OOrA95OViC+B5JSo/V/nJeMxRlnpz4eslaCJHKxoVIzUlJGujS
-         Cfl7foBkFFOvllC8mWqxhPXVKtg9IzrK6esn0bTp2P2902fleLMas5JfD/YO5MzSt+O5
-         tV4xqMW7hfUXMaQd6JTR6r+uu8js3zs/mWGU/itTpDQLTqBKEp0n2BydfyyMr3ww/8Hv
-         H8AQ4R1u5URA8wwHtYPdXP2GOmHcUY7gWxE5BLV46zP+wi9lbPTvHyiUEmMw2enRrNbu
-         ihAQ==
-X-Gm-Message-State: APjAAAVhb+A96aKpzIwcaju9kKahdr8o6wt006rn5ZG2m9eMoTBs7UZN
-        Q84I6LmJ0OE7bYCJIrwrWYmgk9htdu+s5pR5+D+irg==
-X-Google-Smtp-Source: APXvYqwTNqNxGkvhQrvIve8ulxfhIJR74fxSNr+7tatQwwBPQBCBy+Miqdmsa3o8F93SsRvO4dlzQ+KDmRdNEzHO5z0=
-X-Received: by 2002:a5d:8b07:: with SMTP id k7mr740866ion.20.1568831089859;
- Wed, 18 Sep 2019 11:24:49 -0700 (PDT)
+        id S1729512AbfIRSre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Sep 2019 14:47:34 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:45738 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726527AbfIRSre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Sep 2019 14:47:34 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 996B3602DB; Wed, 18 Sep 2019 18:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568832453;
+        bh=5oS7pWst8ob1JtyReeLEB0WMmJKEh6kxEfBnEFKFVE0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Z47PlhiQ1VQ0yvvQ5HzdI7NbB6BLbGtFf/1xyomqQLLCyeaGRIHJN4efPfou8GDme
+         sHZdc8tPrn0CStN1WsKOlqohHEa0XrwgN/7Y1ufc9iIVsM6U359JWVs1TJRxXgqYJ4
+         2wJxgSOH4JD+lszdyvPCvXt+M74LGOeG3uZKg28w=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from rananta-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rananta@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8920060252;
+        Wed, 18 Sep 2019 18:47:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568832452;
+        bh=5oS7pWst8ob1JtyReeLEB0WMmJKEh6kxEfBnEFKFVE0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=T034DQ0x0R1exTeJt37DGcybgX0iMkpaOvNCDUmDo0An2yMmSuUmAfBb4xqrtvD8d
+         RGlE1Op66HU192SCaE1Bbaqv8mLizOX3fKpm6pAKm6lwT6BK4iao2x8x9yqZFFQXgT
+         3z87qq4vGadDHjniXeyDztUdpZwVTWZ03B9ICorg=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8920060252
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rananta@codeaurora.org
+From:   Raghavendra Rao Ananta <rananta@codeaurora.org>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     tsoni@codeaurora.org, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Raghavendra Rao Ananta <rananta@codeaurora.org>
+Subject: [PATCH] of: Add of_get_memory_prop()
+Date:   Wed, 18 Sep 2019 11:46:56 -0700
+Message-Id: <20190918184656.7633-1-rananta@codeaurora.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <1568815340-30401-1-git-send-email-pragnesh.patel@sifive.com> <CAL_JsqJwsLkQGjjoS_RvBXjSq4irrVPEpwrwTv7wL732YHM4dg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJwsLkQGjjoS_RvBXjSq4irrVPEpwrwTv7wL732YHM4dg@mail.gmail.com>
-From:   Pragnesh Patel <pragnesh.patel@sifive.com>
-Date:   Wed, 18 Sep 2019 23:54:36 +0530
-Message-ID: <CAN8ut8LObxfEEQbhmncToG8u=Ec6rESLYHcriT5cu7RAHxbDqw@mail.gmail.com>
-Subject: Re: [PATCH] regulator: dt-bindings: Fix building error for dt_binding_check
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 7:58 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Wed, Sep 18, 2019 at 9:02 AM Pragnesh Patel
-> <pragnesh.patel@sifive.com> wrote:
-> >
->
-> The subject could be more specific rather than being one that applies
-> to any dt_binding_check breakage in regulators.
->
+On some embedded systems, the '/memory' dt-property gets updated
+by the bootloader (for example, the DDR configuration) and then
+gets passed onto the kernel. The device drivers may have to read
+the properties at runtime to make decisions. Hence, add
+of_get_memory_prop() for the device drivers to query the requested
+properties.
 
-Thanks for pointing me out, I will take care this in future patches.
+Signed-off-by: Raghavendra Rao Ananta <rananta@codeaurora.org>
+---
+ drivers/of/fdt.c       | 27 +++++++++++++++++++++++++++
+ include/linux/of_fdt.h |  1 +
+ 2 files changed, 28 insertions(+)
 
-> > Compatible property is not of type 'string' so replace enum
-> > with items.
-> >
-> > Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
-> > ---
-> >  Documentation/devicetree/bindings/regulator/fixed-regulator.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> > index a78150c..8d4a7b2 100644
-> > --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> > +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> > @@ -29,7 +29,7 @@ if:
-> >
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > +    items:
-> >        - const: regulator-fixed
-> >        - const: regulator-fixed-clock
->
-> This means you expect: compatible = "regulator-fixed", "regulator-fixed-clock";
->
-> Did you actually run 'dt_binding_check' because it should fail on the example?
->
-> I gave you exact change to make. Just remove 'const: ' on each entry.
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 223d617ecfe1..925cf2852433 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -79,6 +79,33 @@ void __init of_fdt_limit_memory(int limit)
+ 	}
+ }
+ 
++/**
++ * of_fdt_get_memory_prop - Return the requested property from the /memory node
++ *
++ * On match, returns a non-zero positive value which represents the property
++ * value. Otherwise returns -ENOENT.
++ */
++int of_fdt_get_memory_prop(const char *pname)
++{
++	int memory;
++	int len;
++	fdt32_t *prop = NULL;
++
++	if (!pname)
++		return -EINVAL;
++
++	memory = fdt_path_offset(initial_boot_params, "/memory");
++	if (memory > 0)
++		prop = fdt_getprop_w(initial_boot_params, memory,
++				  pname, &len);
++
++	if (!prop || len != sizeof(u32))
++		return -ENOENT;
++
++	return fdt32_to_cpu(*prop);
++}
++EXPORT_SYMBOL_GPL(of_fdt_get_memory_prop);
++
+ static bool of_fdt_device_is_available(const void *blob, unsigned long node)
+ {
+ 	const char *status = fdt_getprop(blob, node, "status", NULL);
+diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+index acf820e88952..537f29373358 100644
+--- a/include/linux/of_fdt.h
++++ b/include/linux/of_fdt.h
+@@ -38,6 +38,7 @@ extern char __dtb_end[];
+ /* Other Prototypes */
+ extern u64 of_flat_dt_translate_address(unsigned long node);
+ extern void of_fdt_limit_memory(int limit);
++extern int of_fdt_get_memory_prop(const char *pname);
+ #endif /* CONFIG_OF_FLATTREE */
+ 
+ #ifdef CONFIG_OF_EARLY_FLATTREE
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-Thanks for correcting me, i rechecked "make dt_binding_check" and it's failed.
-I will send the patch again with the updated subject line.
-
->
-> Rob
