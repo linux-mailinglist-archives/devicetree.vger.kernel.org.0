@@ -2,251 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDE5B7DAF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 17:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 657ABB7DE7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 17:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390999AbfISPKZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 19 Sep 2019 11:10:25 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:37260 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404000AbfISPKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 11:10:20 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 47C1425AD81;
-        Fri, 20 Sep 2019 01:10:17 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 4BC9494444E; Thu, 19 Sep 2019 17:10:15 +0200 (CEST)
-Date:   Thu, 19 Sep 2019 17:10:15 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: bus: simple-pm-bus: convert bindings to
- json-schema
-Message-ID: <20190919151014.4azdfh2feg5ot6no@verge.net.au>
-References: <20190916153357.3880-1-horms+renesas@verge.net.au>
- <20190916153357.3880-2-horms+renesas@verge.net.au>
- <CAL_JsqJHiAmH0eeUMLH1q9X6e+88EVZrmMtM33rVWCyBAszY8A@mail.gmail.com>
+        id S2390217AbfISPPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 11:15:00 -0400
+Received: from mail-eopbgr1400105.outbound.protection.outlook.com ([40.107.140.105]:7536
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388792AbfISPO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Sep 2019 11:14:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SxJvXapZy82u/cW7L5URA1JOoKfiJZQYAOijxbWOaq8ngX8Fc4/mSj9MzertunKUJmfKGiaZGtRn/SvrQR1ct2+wrwVe7Roqg07sLE3S3HZpidJVTEhCpUC9uao9YGxJ7bs/7zc9qpukdxP+kaU6bO1VWQnSVkMpmD3ZZtQfw9jrAbwhbh2noXqqwfZ7lvo7QooGxKozUAC6+jlxfWDnt7qnTAgFD3+OfhiQ27uLNF3ZwJFFnlqVOe1AbfTGHx0J9Ksho902caf0jUoz47MMQE09oppBzu04twCmGhvCeppIGw6cs5Ct/Vph0WxWfFEvwKp0Kfp0jGFsEDX/kewHWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d54qF5KyRcFDMuU7uOvRwwg3QTwvNOI9J9LE1KUf8ig=;
+ b=Z+F3rchv4KtIiqKtbQ3hrCwqAOo3AVyKrDXaW5V1W24Yl1JEyvoIAiFu8qOLi8fMdD8glMLbS22dLa7Wrih4xPtSfSHhV54vSHZWUp0ETJ3p/xLd6HaHyMTVcLd2Ma9QaivZTaY7U6M3vyiKTza+jmOi4++y3lQZps2ijaErzJCMzKGy7+vnLa74kUiyh8NKQdh+Pc4rA1e+sWNLg1ALU6hkyDq5qYyau49YL+buAut338+vHFRalzGESG6OrHJMlfDdxBi/QuyX2tP6t9zTua5mCpmDK/9sP7h6ouWNypA9OOE0jvP0nyKAlOXkDbGQM7uaTehMcOWDEZek50kFoQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d54qF5KyRcFDMuU7uOvRwwg3QTwvNOI9J9LE1KUf8ig=;
+ b=rfMB9jkL5eNxT/Im0eoB2vrkoFijMsB5jY16UbciWVbjXv0dlOSlVAgtgW4poCTCGAiOgtZyvLemEmbAZ9SXO1ZemlC05fj5wlANMTUU6OL1A1duHQfw4gMgOTEPiK+VHwy3WyXKA53DmbbgZaNMGMAUqNxNJ0P7zvvRLfL9FY0=
+Received: from TYAPR01MB2925.jpnprd01.prod.outlook.com (20.177.103.14) by
+ TYAPR01MB5295.jpnprd01.prod.outlook.com (20.177.105.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.20; Thu, 19 Sep 2019 15:14:55 +0000
+Received: from TYAPR01MB2925.jpnprd01.prod.outlook.com
+ ([fe80::d81b:cb:a3b1:6ab6]) by TYAPR01MB2925.jpnprd01.prod.outlook.com
+ ([fe80::d81b:cb:a3b1:6ab6%6]) with mapi id 15.20.2284.009; Thu, 19 Sep 2019
+ 15:14:55 +0000
+From:   Gareth Williams <gareth.williams.jx@renesas.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 0/4] spi: dw: Add basic runtime PM support
+Thread-Topic: [PATCH v2 0/4] spi: dw: Add basic runtime PM support
+Thread-Index: AQHVbfe+ROhh0nvwh02I6bi+YHxnp6czAROAgAAX74A=
+Date:   Thu, 19 Sep 2019 15:14:54 +0000
+Message-ID: <TYAPR01MB292515FE4C74044CA53321C5DF890@TYAPR01MB2925.jpnprd01.prod.outlook.com>
+References: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
+ <20190919133113.GK3642@sirena.co.uk>
+In-Reply-To: <20190919133113.GK3642@sirena.co.uk>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=gareth.williams.jx@renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 83651859-173a-4562-3aba-08d73d14209f
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TYAPR01MB5295;
+x-ms-traffictypediagnostic: TYAPR01MB5295:|TYAPR01MB5295:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TYAPR01MB52958C88ADE8D211A3BC5F08DF890@TYAPR01MB5295.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4303;
+x-forefront-prvs: 016572D96D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(376002)(366004)(346002)(136003)(39850400004)(199004)(189003)(476003)(6116002)(26005)(66066001)(11346002)(99286004)(86362001)(71200400001)(71190400001)(6436002)(9686003)(55016002)(52536014)(25786009)(6246003)(446003)(186003)(6916009)(7736002)(81156014)(66446008)(305945005)(66556008)(486006)(6506007)(4744005)(33656002)(3846002)(8936002)(478600001)(64756008)(4326008)(102836004)(54906003)(74316002)(8676002)(81166006)(66476007)(7696005)(2906002)(5660300002)(229853002)(14454004)(66946007)(76176011)(256004)(316002)(76116006);DIR:OUT;SFP:1102;SCL:1;SRVR:TYAPR01MB5295;H:TYAPR01MB2925.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 1/7DCCHgx+sZEQD/074Pv78E6FTo1dMsQRdPNuKbyvI/poWOmBuqBJVHgFrYbLvKGOYC4czlI7xQJuWiKoVBvQ5+Qp+pVi+DceZ3SSg7Yy4hNYTfVX7Tm9jh7JwGL1xsawfr0eRXq7LEBsBppf1Y4KRZmaRImk8oizogyJMg1HgDaUk2jPn896Up27OYaC0GdXUyAR7lp9fpqkav+ZeEkKMwSjkGgf3vnAjFC/MfBkWh6/BaDbRT25Hp1rR949W24cGeLFqHix7kygSUqcNv6u8hsYQK0tiDQ5DdpobOIPfIRPK+Hv+towHOQeJ+XcavxGdRRUeuEfSnXHdQq2/BYjBR7omXgYwR8gTUdXOwd4MdQqNgF6KnrXoNIrYSK9zPU3swkNSkU42arLaCYwfh6kud4/0gV+BO+BJauCoX4t0=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <CAL_JsqJHiAmH0eeUMLH1q9X6e+88EVZrmMtM33rVWCyBAszY8A@mail.gmail.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83651859-173a-4562-3aba-08d73d14209f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2019 15:14:54.9192
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: D2ZMCC4I/bVk3+RN0NxWcO3QpNPwdCQzx638vU+TuJMCx5LVhWGHwSh98SWyGYG8dfgkQBPK99mEwduc2pK+KH9wryWwFzqpMVfJoByT84w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5295
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 07:12:16AM -0500, Rob Herring wrote:
-> On Mon, Sep 16, 2019 at 10:35 AM Simon Horman
-> <horms+renesas@verge.net.au> wrote:
+Hi Mark,
+
+On Wed, Sep 19, 2019 at 14:31:32AM +0100, Mark Brown wrote:
+
+> On Wed, Sep 18, 2019 at 09:04:32AM +0100, Gareth Williams wrote:
+>=20
+> > Gareth Williams (1):
+> >   dt-bindings: snps,dw-apb-ssi: Add optional clock domain information
 > >
-> > Convert Simple Power-Managed Bus bindings documentation to json-schema.
-> >
-> > As a side effect of this change only simple-pm-bus is used in example. A
-> > follow-up patch will provide an example for the separately documented
-> > Renesas Bus State Controller (BSC) that uses "renesas,bsc-sh73a0" and
-> > "renesas,bsc" compat strings.
-> >
-> > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> > ---
-> > * Tested using:
-> >   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> >   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> > ---
-> >  .../devicetree/bindings/bus/simple-pm-bus.txt      | 44 --------------
-> >  .../devicetree/bindings/bus/simple-pm-bus.yaml     | 68 ++++++++++++++++++++++
-> >  2 files changed, 68 insertions(+), 44 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.txt
-> >  create mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> 
-> > diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> > new file mode 100644
-> > index 000000000000..72a3644974e3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> > @@ -0,0 +1,68 @@
-> 
-> SPDX tag?
-> 
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/bus/simple-pm-bus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Simple Power-Managed Bus
-> > +
-> > +maintainers:
-> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> > +
-> > +description: |
-> > +  A Simple Power-Managed Bus is a transparent bus that doesn't need a real
-> > +  driver, as it's typically initialized by the boot loader.
-> > +
-> > +  However, its bus controller is part of a PM domain, or under the control
-> > +  of a functional clock.  Hence, the bus controller's PM domain and/or
-> > +  clock must be enabled for child devices connected to the bus (either
-> > +  on-SoC or externally) to function.
-> > +
-> > +  While "simple-pm-bus" follows the "simple-bus" set of properties, as
-> > +  specified in the Devicetree Specification, it is not an extension of
-> > +  "simple-bus".
-> > +
-> > +
-> > +properties:
-> 
-> Add $nodename in here.
+> > Phil Edworthy (3):
+> >   dt: spi: Add Renesas RZ/N1 binding documentation
+>=20
+> Please use subject lines matching the style for the subsystem.  This make=
+s it
+> easier for people to identify relevant patches.  This isn't even consiste=
+nt
+> within the series :(
+Sorry about that, I will correct the subject lines for V3.
+Is there a set convention for the subsystem I should follow in future?
+Or should I follow the style of the individual files I work on?
 
+Kind Regards,
 
-For now I have gone with:
-
-  $nodename:
-    pattern: "^bus@[0-9a-f]+$"
-
-But this implies updating both msm8996.dtsi and the proposed
-example (see below) to use bus@ rather than agnoc@.
-
-If this is the right way to to then perhaps it is best to use the
-following until msm8996.dtsi is updated.
-
-  $nodename:
-    pattern: "^(bus|agnoc)@[0-9a-f]+$"
-
-> 
-> > +  compatible:
-> > +    items:
-> > +       - const: simple-pm-bus
-> 
-> extra leading space.
-> 
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> 
-> 1 or 2 should be valid...
-> 
-> > +
-> > +  ranges:
-> > +    # Mapping between parent address and child address spaces.
-> > +    maxItems: 1
-> 
-> empty or multiple ranges should be possible.
-> 
-> > +
-> > +  clocks:
-> > +    # Functional clocks
-> > +    # Required if power-domains is absent, optional otherwise
-> > +    minItems: 1
-> 
-> This will imply maxItems is 1 which I don't think you want.
-> 
-> Though more than 1 starts to mean you need to know specifically what the h/w is.
-
-I have changed this to:
-
-  clocks: true
-    # Functional clocks
-    # Required if power-domains is absent, optional otherwise
-
-> > +
-> > +  power-domains:
-> > +    # Required if clocks is absent, optional otherwise
-> > +    minItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +  - ranges
-> 
-> This will capture what you commented above:
-> 
-> oneOf:
->   - required:
->       - clocks
->   - required:
->       - power-domains
-
-Thanks. Unfortunately dtbs_check does not seem happy
-if both clocks and power-domains are present.
-
-# cr make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-...
-/home/horms/projects/linux/renesas/arch/arm/boot/dts/r8a73a4-ape6evm.dt.yaml: bus@fec10000: {'compatible': ['renesas,bsc-r8a73a4', 'renesas,bsc', 'simple-pm-bus'], '#address-cells': [[1]], '#size-cells': [[1]], 'ranges': [[0, 0, 0, 536870912]], 'reg': [[0, 4274061312, 0, 1024]], 'clocks': [[27]], 'power-domains': [[15]], 'flash@0': {'compatible': ['cfi-flash', 'mtd-rom'], 'reg': [[0, 134217728]], 'bank-width': [[2]], 'partitions': {'compatible': ['fixed-partitions'], '#address-cells': [[1]], '#size-cells': [[1]], 'partition@0': {'label': ['uboot'], 'reg': [[0, 262144]], 'read-only': True}, 'partition@40000': {'label': ['uboot-env'], 'reg': [[262144, 262144]], 'read-only': True}, 'partition@80000': {'label': ['flash'], 'reg': [[524288, 133693440]]}}}, 'ethernet@8000000': {'compatible': ['smsc,lan9220', 'smsc,lan9115'], 'reg': [[134217728, 4096]], 'interrupt-parent': [[18]], 'interrupts': [[8, 4]], 'phy-mode': ['mii'], 'reg-io-width': [[4]], 'smsc,irq-active-high': True, 'smsc,irq-push-pull': True, 'vdd33a-supply': [[23]], 'vddvario-supply': [[28]]}, '$nodename': ['bus@fec10000']} is valid under each of {'required': ['power-domains']}, {'required': ['clocks']}
-{'$filename': '/home/horms/projects/linux/renesas/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml',
- '$id': 'http://devicetree.org/schemas/bus/simple-pm-bus.yaml#',
- '$schema': 'http://devicetree.org/meta-schemas/core.yaml#',
- '$select_validator': <jsonschema.validators.create.<locals>.Validator object at 0x7fa9f2596048>,
- 'oneOf': [{'required': ['clocks']}, {'required': ['power-domains']}],
- 'patternProperties': {'pinctrl-[0-9]+': True},
- 'properties': {'#address-cells': {'items': {'items': {'const': 1},
-                                             'type': 'array'},
-                                   'type': 'array'},
-                '#size-cells': {'items': {'items': {'enum': [1, 2]},
-                                          'type': 'array'},
-                                'type': 'array'},
-                '$nodename': {'additionalItems': False,
-                              'items': [{'pattern': '^(bus|agnoc)(@.*|-[0-9a-f])*$'}],
-                              'maxItems': 1,
-                              'minItems': 1,
-                              'type': 'array'},
-                'clocks': True,
-                'compatible': {'contains': {'const': 'simple-pm-bus'}},
-                'phandle': True,
-                'pinctrl-names': True,
-                'power-domains': {'maxItems': 1, 'minItems': 1},
-                'ranges': True,
-                'status': True},
- 'required': ['compatible', '#address-cells', '#size-cells', 'ranges'],
- 'select': {'properties': {'compatible': {'contains': {'enum': ['simple-pm-bus']}}},
-            'required': ['compatible']},
- 'title': 'Simple Power-Managed Bus'}
-
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    bsc: bus@fec10000 {
-> > +        compatible = "simple-pm-bus";
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        ranges = <0 0 0x20000000>;
-> > +        reg = <0xfec10000 0x400>;
-> 
-> If you have reg, then it shouldn't be "simple-pm-bus" unless you can
-> function without accessing the regs.
-> 
-> > +        interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> Not documented?
-> 
-> > +        clocks = <&zb_clk>;
-> > +        power-domains = <&pd_a4s>;
-> > +    };
-
-As per discussion elsewhere in this thread, I have updated this to the
-example in msm8996.dtsi.
-
-    agnoc@0 {
-        power-domains = <&gcc AGGRE0_NOC_GDSC>;
-        compatible = "simple-pm-bus";
-        #address-cells = <1>;
-        #size-cells = <1>;
-        ranges;
-    };
-
-> > --
-> > 2.11.0
-> >
-> 
+Gareth
