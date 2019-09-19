@@ -2,85 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A1BB7274
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 07:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E8AB7296
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 07:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731958AbfISFHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 01:07:37 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:59206 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731914AbfISFHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Sep 2019 01:07:37 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8113020039E;
-        Thu, 19 Sep 2019 07:07:35 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9F8862000D8;
-        Thu, 19 Sep 2019 07:07:25 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 9C87F402E6;
-        Thu, 19 Sep 2019 13:07:13 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        leonard.crestez@nxp.com, daniel.lezcano@linaro.org,
-        ping.bai@nxp.com, daniel.baluta@nxp.com, jun.li@nxp.com,
-        l.stach@pengutronix.de, abel.vesa@nxp.com,
-        andrew.smirnov@gmail.com, angus@akkea.ca, ccaione@baylibre.com,
-        agx@sigxcpu.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] arm64: dts: imx8mn: Use correct clock for usdhc's ipg clk
-Date:   Thu, 19 Sep 2019 13:05:59 +0800
-Message-Id: <1568869559-28611-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568869559-28611-1-git-send-email-Anson.Huang@nxp.com>
-References: <1568869559-28611-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2387865AbfISF2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 01:28:43 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:45104 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387611AbfISF2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 01:28:43 -0400
+Received: by mail-pl1-f195.google.com with SMTP id u12so1034331pls.12
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 22:28:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E8KFyd/TP6XKCfQ2oRClCpzfGJuYKDTzZWJ6RMaNc7U=;
+        b=XpIyaEirHSq/r7bNW+OHgSAFA4nLR1NS2ExLkb1HX9sjR961wapQb1OBvviY1rbtlu
+         QrV9Hma5WMowRwq5dKiuIDQrSUmfckih2b5OLxxW3mCBI99/LHD7dMJcGOLQ6prwBQSq
+         sWviVTRlu10qfi+H7BjPBzB1uZS5rYWg+X6q0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E8KFyd/TP6XKCfQ2oRClCpzfGJuYKDTzZWJ6RMaNc7U=;
+        b=JHXJq5143cmMimn/TlsnMZ2oFo6hjH7jFOHxtaHgVsb4K84ZrWPqw/jBDB6r5Tx5fx
+         nSHx5DoIm9RdKzpySoX4KqPAX5nM5yTh7d2Akipj8Wbpm+KLXSPl4sWZ4PB6KeCGccqZ
+         R97iPwW+Mrn435VEh+j+fUNfNoffYGSIBuz7za0PKKUSK0a3qusKlifjWHPQdBBX3QwT
+         fQoGCTgTHZgfwu40F7M+D+t+YRzVVaSaCyX1UOtuCb4JMpq2EGqBvVt7yk+l/UES0yi3
+         WJRy3W96o+A1hZfWsE8aNuZWBNbBpr/tgfGILzH0uVjo0mngcTsVIbaqUIjLDSbLOq0e
+         IExw==
+X-Gm-Message-State: APjAAAUzvrlwS8xRbc2xQsCQmThr1uEGXKtfE79B8DzGcQXt9nWDhqFY
+        1FfKLvkSnKhfsxZAcB/jqM5O3w==
+X-Google-Smtp-Source: APXvYqyXep4j3PxBeU3HcFSA72SjdVCFY3JFDwTX+hv+32+q1l8s4NYodtDu9DB7lZ+aFuZ2ut2P8g==
+X-Received: by 2002:a17:902:7485:: with SMTP id h5mr8110269pll.240.1568870922029;
+        Wed, 18 Sep 2019 22:28:42 -0700 (PDT)
+Received: from localhost.localdomain ([49.206.200.127])
+        by smtp.gmail.com with ESMTPSA id z20sm5051930pjn.12.2019.09.18.22.28.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Sep 2019 22:28:41 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Levin Du <djw@t-chip.com.cn>,
+        Akash Gajjar <akash@openedev.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 0/6] arm64: dts: rockchip: ROC-PC fixes
+Date:   Thu, 19 Sep 2019 10:58:16 +0530
+Message-Id: <20190919052822.10403-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On i.MX8MN, usdhc's ipg clock is from IMX8MN_CLK_IPG_ROOT,
-assign it explicitly instead of using IMX8MN_CLK_DUMMY.
+This series is trying to fix the Linux boot and other
+regulators stuff for ROC-RK3399-PC board.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+patch 1: attach pinctrl to pwm2 pin
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 6cb6c9c..725a3a3 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -594,7 +594,7 @@
- 				compatible = "fsl,imx8mn-usdhc", "fsl,imx7d-usdhc";
- 				reg = <0x30b40000 0x10000>;
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&clk IMX8MN_CLK_DUMMY>,
-+				clocks = <&clk IMX8MN_CLK_IPG_ROOT>,
- 					 <&clk IMX8MN_CLK_NAND_USDHC_BUS>,
- 					 <&clk IMX8MN_CLK_USDHC1_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
-@@ -610,7 +610,7 @@
- 				compatible = "fsl,imx8mn-usdhc", "fsl,imx7d-usdhc";
- 				reg = <0x30b50000 0x10000>;
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&clk IMX8MN_CLK_DUMMY>,
-+				clocks = <&clk IMX8MN_CLK_IPG_ROOT>,
- 					 <&clk IMX8MN_CLK_NAND_USDHC_BUS>,
- 					 <&clk IMX8MN_CLK_USDHC2_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
-@@ -624,7 +624,7 @@
- 				compatible = "fsl,imx8mn-usdhc", "fsl,imx7d-usdhc";
- 				reg = <0x30b60000 0x10000>;
- 				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&clk IMX8MN_CLK_DUMMY>,
-+				clocks = <&clk IMX8MN_CLK_IPG_ROOT>,
- 					 <&clk IMX8MN_CLK_NAND_USDHC_BUS>,
- 					 <&clk IMX8MN_CLK_USDHC3_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
+patch 2-4: libretech naming conventions
+
+patch 5-6: regulator renaming, input rails fixes
+
+Any inputs?
+Jagan.
+
+Jagan Teki (6):
+  arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
+  dt-bindings: arm: rockchip: Use libretech for roc-pc binding
+  arm64: dts: rockchip: Use libretech model, compatible for ROC-PC
+  arm64: dts: rockchip: Rename roc-pc with libretech notation
+  arm64: dts: rockchip: Rename vcc12v_sys into dc_12v for roc-rk3399-pc
+  arm64: dts: rockchip: Fix roc-rk3399-pc regulator input rails
+
+ .../devicetree/bindings/arm/rockchip.yaml     | 11 +++---
+ arch/arm64/boot/dts/rockchip/Makefile         |  2 +-
+ ...dts => rk3399-libretech-roc-rk3399-pc.dts} | 38 ++++++++++---------
+ 3 files changed, 27 insertions(+), 24 deletions(-)
+ rename arch/arm64/boot/dts/rockchip/{rk3399-roc-pc.dts => rk3399-libretech-roc-rk3399-pc.dts} (95%)
+
 -- 
-2.7.4
+2.18.0.321.gffc6fa0e3
 
