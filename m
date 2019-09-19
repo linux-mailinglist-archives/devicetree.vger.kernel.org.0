@@ -2,25 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFDC2B74E3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEBC9B74E7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731341AbfISIR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 04:17:28 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:47282 "EHLO
+        id S1731565AbfISIRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 04:17:32 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:30251 "EHLO
         relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727273AbfISIR2 (ORCPT
+        by vger.kernel.org with ESMTP id S1731373AbfISIRc (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Sep 2019 04:17:28 -0400
+        Thu, 19 Sep 2019 04:17:32 -0400
 X-IronPort-AV: E=Sophos;i="5.64,522,1559487600"; 
-   d="scan'208";a="26979394"
+   d="scan'208";a="26979413"
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 19 Sep 2019 17:17:26 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 19 Sep 2019 17:17:31 +0900
 Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 72E3C41F812F;
-        Thu, 19 Sep 2019 17:17:24 +0900 (JST)
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id DB41B41F812C;
+        Thu, 19 Sep 2019 17:17:28 +0900 (JST)
 From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
 Cc:     Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -28,9 +29,9 @@ Cc:     Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
         linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 1/8] dt-bindings: power: rcar-sysc: Document r8a774b1 sysc
-Date:   Thu, 19 Sep 2019 09:17:09 +0100
-Message-Id: <1568881036-4404-2-git-send-email-biju.das@bp.renesas.com>
+Subject: [PATCH v2 3/8] dt-bindings: reset: rcar-rst: Document r8a774b1 reset module
+Date:   Thu, 19 Sep 2019 09:17:11 +0100
+Message-Id: <1568881036-4404-4-git-send-email-biju.das@bp.renesas.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1568881036-4404-1-git-send-email-biju.das@bp.renesas.com>
 References: <1568881036-4404-1-git-send-email-biju.das@bp.renesas.com>
@@ -39,28 +40,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document bindings for the RZ/G2N (a.k.a. R8A774B1) system controller.
+Document bindings for the RZ/G2N (R8A774B1) reset module.
 
 Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 ---
 V1-->V2
- * No change
+* No change
 ---
- Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt | 1 +
+ Documentation/devicetree/bindings/reset/renesas,rst.txt | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt
-index eae2a88..712caa5 100644
---- a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt
-+++ b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt
-@@ -12,6 +12,7 @@ Required properties:
-       - "renesas,r8a7745-sysc" (RZ/G1E)
-       - "renesas,r8a77470-sysc" (RZ/G1C)
-       - "renesas,r8a774a1-sysc" (RZ/G2M)
-+      - "renesas,r8a774b1-sysc" (RZ/G2N)
-       - "renesas,r8a774c0-sysc" (RZ/G2E)
-       - "renesas,r8a7779-sysc" (R-Car H1)
-       - "renesas,r8a7790-sysc" (R-Car H2)
+diff --git a/Documentation/devicetree/bindings/reset/renesas,rst.txt b/Documentation/devicetree/bindings/reset/renesas,rst.txt
+index b03c48a..d6d6769 100644
+--- a/Documentation/devicetree/bindings/reset/renesas,rst.txt
++++ b/Documentation/devicetree/bindings/reset/renesas,rst.txt
+@@ -20,6 +20,7 @@ Required properties:
+ 		  - "renesas,r8a7745-rst" (RZ/G1E)
+ 		  - "renesas,r8a77470-rst" (RZ/G1C)
+ 		  - "renesas,r8a774a1-rst" (RZ/G2M)
++		  - "renesas,r8a774b1-rst" (RZ/G2N)
+ 		  - "renesas,r8a774c0-rst" (RZ/G2E)
+ 		  - "renesas,r8a7778-reset-wdt" (R-Car M1A)
+ 		  - "renesas,r8a7779-reset-wdt" (R-Car H1)
 -- 
 2.7.4
 
