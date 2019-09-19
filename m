@@ -2,166 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F57EB7409
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D59B740A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:28:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388549AbfISH2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 03:28:12 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:35385 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732035AbfISH2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:28:07 -0400
-Received: by mail-pl1-f194.google.com with SMTP id s17so1198826plp.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 00:28:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=H3ZFg6Ip4/ySx02vg351K3EIXCHgNEDMYbg7+0FsxGE=;
-        b=BzOacMNyjiA5peSOoO00KtvDPv26/JEZvsyWkdGfR2lPQci/mNE/pJ0rq0rT40j0u1
-         VRw8MyxfaeL+ZiJ2Tkqk1cSSJLlT9qTdJeOrHcNPE3UhanyV5WCw7dW33StrwxTgaULQ
-         pQGLJQRhElY0qbQ6V+sds1rlmAGfqYcTjcZcnjdeYViNkhTfxPSXubGkFKSbM+enkeox
-         RXFNcQNt1yqh0SO42/gjTEJLERjGpGZn4r5/iDIhB8nVYbEuUvK+XXfVHDdCJaGf70iI
-         +SHbSe1Mwb7aHOKKW5XH+mD2wDztSDHWCRqvjAXYn4frH6eeWoC97Xg1JXFn6SAez6tx
-         pBxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=H3ZFg6Ip4/ySx02vg351K3EIXCHgNEDMYbg7+0FsxGE=;
-        b=Jo3CbrGpfmgNt8twA2O08LPWWXjpr1GFlUIbM8oNYabLBXCq/yArbnun452vU9MHXq
-         iONhu1HZ08DgIG1JaxSeOUN2RnGzux7TSxgK8lSSmQ4F16sqDGQHHDfuD0gmZBmDZxzy
-         j7DcX2sCEqMXi/eDENUyb/cn23LJOUIWBOdmGjliBHkBZZSXZoZXTCZriEXEc1N93m4x
-         Z6prICODPkunJnX0IuBDz2nEGhkRBDkf3YhQRaj0L07P/XkIGuMh8KSt0bq7WKBcXO2/
-         sjqEL+hG8N39ifNex1/QRmWazaClWdosiGcgNaPwIzEM+k0FWCpdjp/K1dux+NXU7us/
-         kk1Q==
-X-Gm-Message-State: APjAAAVopbpdvnTcYnKNFTeplYe1vi/RStbV5DsHBeohVt3aVTzOl8Yr
-        1pkvWKFoZg/VrLdfPw7HddPVzg==
-X-Google-Smtp-Source: APXvYqxjEWjRDxJHD23SXvXvigFy1rALZ2KN9JN0mQ+aijgBGvLLUSvpPERf9/0gk8rACJ+u3C0iIA==
-X-Received: by 2002:a17:902:322:: with SMTP id 31mr8498009pld.150.1568878086106;
-        Thu, 19 Sep 2019 00:28:06 -0700 (PDT)
-Received: from localhost.localdomain (36-228-113-219.dynamic-ip.hinet.net. [36.228.113.219])
-        by smtp.gmail.com with ESMTPSA id u31sm25491414pgn.93.2019.09.19.00.28.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Sep 2019 00:28:05 -0700 (PDT)
-From:   Green Wan <green.wan@sifive.com>
-Cc:     linux-hackers@sifive.com, Green Wan <green.wan@sifive.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: dmaengine: sf-pdma: add bindins for SiFive PDMA
-Date:   Thu, 19 Sep 2019 15:27:26 +0800
-Message-Id: <20190919072756.1973-1-green.wan@sifive.com>
-X-Mailer: git-send-email 2.17.1
-To:     unlisted-recipients:; (no To-header on input)
+        id S2388550AbfISH2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 03:28:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41150 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728850AbfISH2b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Sep 2019 03:28:31 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 35E3121A49;
+        Thu, 19 Sep 2019 07:28:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568878110;
+        bh=4pZybG6ie1wq7kPEzXnAIhWrkHP0YAIy7EvNqXIs0nk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Hpi/Z6J0YAAbOxVs8ZaWgVSCqvrnR8B7P+/GUdLyupwWwixlPgAcGD61FvCiaJp8C
+         al+551ZPFPd3WOzm1y60AcTOlN8g0hc+qUf41kMC2I+ez+w5cUzQJhwDK2kKA3L993
+         YZahqK7xDgB73pcopGFoZRnJm9SuxVvlD7F/bxOA=
+Received: by mail-oi1-f182.google.com with SMTP id w6so1832859oie.11;
+        Thu, 19 Sep 2019 00:28:30 -0700 (PDT)
+X-Gm-Message-State: APjAAAVGMTNa52RjONtZZXyXp0fHnuYltVR83OxsBDG2TwOWhqcfNYRf
+        JMiUck6PtypxEMyQyI76VTK4LhKhbMmpuDorg8s=
+X-Google-Smtp-Source: APXvYqxcWCabkIkAYweLFABw3mTwh5ueZcYmaLJriDnmtFR+Tcfb38WjBVsL3eNPszwXlF4vNOXyKPu8g8TjuXaQDIc=
+X-Received: by 2002:aca:cf51:: with SMTP id f78mr1302933oig.8.1568878109494;
+ Thu, 19 Sep 2019 00:28:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <CGME20190916100719eucas1p206fe95982b774840b5d6e62ba9c42c79@eucas1p2.samsung.com>
+ <20190916100704.26692-1-l.luba@partner.samsung.com> <20190916100704.26692-4-l.luba@partner.samsung.com>
+ <CAJKOXPcxG-mMKy5u-b0+xj_sOmrq5yq5-LYJx0Ds6_+yo_=JbA@mail.gmail.com> <4a0d1d2c-cd1d-5df4-d4b1-f2dd1ef3bb72@partner.samsung.com>
+In-Reply-To: <4a0d1d2c-cd1d-5df4-d4b1-f2dd1ef3bb72@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Thu, 19 Sep 2019 09:28:18 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfBueaf2UVik8x2L_D_PTxdkvRukuWL3xh_jDiLKtt7pQ@mail.gmail.com>
+Message-ID: <CAJKOXPfBueaf2UVik8x2L_D_PTxdkvRukuWL3xh_jDiLKtt7pQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: ddr: Add bindings for Samsung LPDDR3 memories
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        willy.mh.wolff.ml@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT bindings document for Platform DMA(PDMA) driver of board,
-HiFive Unleashed Rev A00.
+On Thu, 19 Sep 2019 at 08:49, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>
+> Hi Krzysztof,
+>
+> On 9/18/19 8:51 PM, Krzysztof Kozlowski wrote:
+> > On Mon, 16 Sep 2019 at 12:07, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+> >>
+> >> Add compatible for Samsung k3qf2f20db LPDDR3 memory bindings.
+> >> Introduce minor fixes in the old documentation.
+> >>
+> >> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/ddr/lpddr3.txt | 9 ++++++---
+> >>   1 file changed, 6 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/ddr/lpddr3.txt b/Documentation/devicetree/bindings/ddr/lpddr3.txt
+> >> index 3b2485b84b3f..49afe794daaa 100644
+> >> --- a/Documentation/devicetree/bindings/ddr/lpddr3.txt
+> >> +++ b/Documentation/devicetree/bindings/ddr/lpddr3.txt
+> >> @@ -1,7 +1,9 @@
+> >>   * LPDDR3 SDRAM memories compliant to JEDEC JESD209-3C
+> >>
+> >>   Required properties:
+> >> -- compatible : Should be  - "jedec,lpddr3"
+> >> +- compatible : should be one of the following:
+> >> +       Generic default - "jedec,lpddr3".
+> >
+> > The convention is first compatible, then description. I gave you the
+> > example to base on - at25. Why making it different?
+>
+> I have checked at25 that you pointed me to and also checked at24, which
+> has a bit longer "compatible" section.
+>
+> I found that there are many "jedec,spi-nor" compatible devices, which I
+> thought would be a better example for my "jedec,lpddr3".
+> For example, two configurations, where you have a single labels or dual
+> (with specific device)
+> arch/arm/boot/dts/imx6dl-rex-basic.dts:
+> compatible = "sst,sst25vf016b", "jedec,spi-nor";
+> arch/arm/boot/dts/imx6q-ba16.dtsi:
+> compatible = "jedec,spi-nor";
+>
+> The 'compatible' in documentation for the "jedec,spi-nor" is slightly
+> different (similar to at24).
+> Documentation/devicetree/bindings/mtd/jedec,spi-nor.txt
+> It has a long explanation, which is also OK. So I thought that it is
+> quite flexible what you put in there.
 
-Signed-off-by: Green Wan <green.wan@sifive.com>
----
- .../bindings/dma/sifive,fu540-c000-pdma.yaml  | 63 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+It is flexible but I see clear pattern in existing sources:
+  jedec,spi-nor.txt
+  compatible : May include a device-specific ..
+  ...
+  Supported chip names:
+    at25df321a
+    ...
 
-diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-new file mode 100644
-index 000000000000..b5423f1cfcaf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/sifive,fu540-c000-pdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive Unleashed Rev C000 Platform DMA
-+
-+maintainers:
-+  - Green Wan <green.wan@sifive.com>
-+  - Palmer Debbelt <palmer@sifive.com>
-+  - Paul Walmsley <paul.walmsley@sifive.com>
-+
-+description: |
-+  Platform DMA is a DMA engine of SiFive Unleashed. It supports 4
-+  channels. Each channel has 2 interrupts. One is for DMA done and
-+  the other is for DME error.
-+
-+  In different SoC, DMA could be attached to different IRQ line.
-+  DT file need to be changed to meet the difference. For technical
-+  doc,
-+
-+  https://static.dev.sifive.com/FU540-C000-v1.0.pdf
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: sifive,fu540-c000-pdma
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 8
-+    maxItems: 8
-+
-+  interrupt-parent:
-+    description:
-+      Interrupt parent must correspond to the name PLIC interrupt
-+      controller, i.e. "plic0"
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-parent
-+  - interrupts
-+  - '#dma-cells'
-+
-+examples:
-+  - |
-+    dma@3000000 {
-+      compatible = "sifive,fu540-c000-pdma";
-+      reg = <0x0 0x3000000 0x0 0x8000>;
-+      interrupt-parent = <&plic0>;
-+      interrupts = <23 24 25 26 27 28 29 30>;
-+      #dma-cells = <1>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 49f75d1b7b51..d0caa09a479e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14591,6 +14591,11 @@ F:	drivers/media/usb/siano/
- F:	drivers/media/usb/siano/
- F:	drivers/media/mmc/siano/
- 
-+SIFIVE PDMA DRIVER
-+M:	Green Wan <green.wan@sifive.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-+
- SIFIVE DRIVERS
- M:	Palmer Dabbelt <palmer@sifive.com>
- M:	Paul Walmsley <paul.walmsley@sifive.com>
--- 
-2.17.1
+  at25.txt:
+  - compatible : Should be "<vendor>,<type>", and generic value "atmel,at25".
+    Example "<vendor>,<type>" values:
+      "anvo,anv32e61w"
+      "microchip,25lc040"
 
+In these cases the doc says that "compatible should be" and then you
+have the list of values. Your example says that the compatible should
+be "Generic default" or "For Samsung 542x SoC"... :) The difference is
+slight but putting the value first is a simple and elegant solution.
+In your case one has to go to the end of sentence to find the most
+important information - the compatible value.
+
+> I have also checked Cadance QSPI controller.
+> Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+> The controller might be built-in into different vendor SoC's
+> and the "compatible" is ready to reflect it in similar fashion but
+> with a short explanation in this section.
+
+I see. I do not find this pattern as much readable as jedec-spi-nor or
+at25 therefore I mentioned them as an example to base on ("Exactly the
+same as AT24 or AT25 EEPROM bindings."). We can avoid also this entire
+discussion with YAML (which also follows approach of at25 - value
+first).
+
+> Therefore, what you see in the patch draw heavily on Cadence's qspi,
+> with a bit of inspiration from jedec,spi-nor usage.
+>
+> Should I change it to at25 "compatible" style and send next patch?
+
+Yes, please. Or go to YAML and make entire discussion obsolete.
+
+Best regards,
+Krzysztof
