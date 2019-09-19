@@ -2,125 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D17B5B73E1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C572FB7401
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:26:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727517AbfISHRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 03:17:48 -0400
-Received: from skedge03.snt-world.com ([91.208.41.68]:39798 "EHLO
-        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727435AbfISHRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:17:47 -0400
-Received: from sntmail10s.snt-is.com (unknown [10.203.32.183])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by skedge03.snt-world.com (Postfix) with ESMTPS id E59A367AB45;
-        Thu, 19 Sep 2019 09:17:44 +0200 (CEST)
-Received: from sntmail14r.snt-is.com (10.203.32.184) by sntmail10s.snt-is.com
- (10.203.32.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 19 Sep
- 2019 09:17:44 +0200
-Received: from sntmail14r.snt-is.com ([fe80::c8f3:eae9:52c2:11a8]) by
- sntmail14r.snt-is.com ([fe80::c8f3:eae9:52c2:11a8%3]) with mapi id
- 15.01.1713.004; Thu, 19 Sep 2019 09:17:44 +0200
-From:   Schrempf Frieder <frieder.schrempf@kontron.de>
-To:     Anson Huang <Anson.Huang@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "leonard.crestez@nxp.com" <leonard.crestez@nxp.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "ping.bai@nxp.com" <ping.bai@nxp.com>,
-        "daniel.baluta@nxp.com" <daniel.baluta@nxp.com>,
-        "jun.li@nxp.com" <jun.li@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "abel.vesa@nxp.com" <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     "Linux-imx@nxp.com" <Linux-imx@nxp.com>
-Subject: Re: [PATCH 2/3] arm64: dts: imx8mm: Use correct clock for usdhc's ipg
- clk
-Thread-Topic: [PATCH 2/3] arm64: dts: imx8mm: Use correct clock for usdhc's
- ipg clk
-Thread-Index: AQHVbqhJada8Xsj3oEetJoKRBs2eSKcyddCA
-Date:   Thu, 19 Sep 2019 07:17:44 +0000
-Message-ID: <c680d114-1c14-6bf8-226c-2fdd98350158@kontron.de>
-References: <1568869559-28611-1-git-send-email-Anson.Huang@nxp.com>
- <1568869559-28611-2-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1568869559-28611-2-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.9.193]
-x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F14B5A1009A44548B13FE27527380192@snt-world.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: E59A367AB45.A1B78
-X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
-X-SnT-MailScanner-SpamCheck: 
-X-SnT-MailScanner-From: frieder.schrempf@kontron.de
-X-SnT-MailScanner-To: abel.vesa@nxp.com, agx@sigxcpu.org,
-        andrew.smirnov@gmail.com, angus@akkea.ca, anson.huang@nxp.com,
-        ccaione@baylibre.com, daniel.baluta@nxp.com,
-        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
-        festevam@gmail.com, jun.li@nxp.com, kernel@pengutronix.de,
-        l.stach@pengutronix.de, leonard.crestez@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com, ping.bai@nxp.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-X-Spam-Status: No
+        id S1731873AbfISH0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 03:26:46 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35875 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732034AbfISH0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:26:46 -0400
+Received: by mail-pg1-f194.google.com with SMTP id m29so1369730pgc.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 00:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=LT2z44LmrD8QiD0ZavUH6kqFzDYzxRxS7Yx8XNbtmgg=;
+        b=CtQFocnZL4WmYuwxWCYhyEntS5rlt+d1KJfZ+HqgKSog1hBrz8eBhoC7C/vROml3Oh
+         AS++a3QV9CsqrBUzgONj0CPB5SzjdH18bMPKvGgPA/TopigokdBDKHJTdr2MO1vdwu9A
+         oyCWz79UboRAvyHMV8QE2A7lSeDLGuy7FrLbe9azF3v/ppn5HSRegEli0MrxXI71FkLn
+         7yfJlz4wFoUsQnY8gyFCjw+j4+J/lNhR4t6muGEMsg+gZJDjn/b2iBzpZqO4xYbYZDtE
+         6QkI5t16FOK6ssoLnkapKTHBxwKZrINNCZ9xNk6K4eQVuS85UDsRcxDa4Ln//yQ10cn8
+         PDNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=LT2z44LmrD8QiD0ZavUH6kqFzDYzxRxS7Yx8XNbtmgg=;
+        b=JcGLhLsEkb6Msw3cH5PIKVutfsYhrUXoLPtKqrqDIMrdnfV3QgiS1cac/9szkeEOhb
+         DGgrSMFUxTYVNtafco0VXf0JNy58u1+qm6a8muMFtVp4fMfhw++cpGfXK8S6tciqtcOj
+         mvHJ/vWDJPOuwELE8xGCrsUW8jVUDFTqYIWKWJIo2nzlU6A/jG+Z8+R9+yuxLaXj1E99
+         A4V1GS5cVRaSbYmHT2+9OhW4/Dnr5WSgT8cBiY4YrIWkPhdn8xuB/MhmczNUAdKxoTHN
+         VHkeFSBuGEJSLNIYVDKTHFDy5sqPUTpMjpu007u2h+IrLxjzlIMfDHmIR8mDQDC8ISqJ
+         +Xiw==
+X-Gm-Message-State: APjAAAUtyCfGqwqU9ez8bRpDrdkoE4RcHmyqOFvTrWqeZe1tMIVeBYuv
+        jaYFPnU1D7GIw3O+myu5GI9UoQ==
+X-Google-Smtp-Source: APXvYqzj/tUGOJg5wnHc5YqepfesJlG4rD39ze0qs4Fw4GBM+v3Y4zCzaZ44ydGQGaexDNA219KQ3A==
+X-Received: by 2002:a63:3c46:: with SMTP id i6mr7623466pgn.18.1568878004335;
+        Thu, 19 Sep 2019 00:26:44 -0700 (PDT)
+Received: from localhost.localdomain (36-228-113-219.dynamic-ip.hinet.net. [36.228.113.219])
+        by smtp.gmail.com with ESMTPSA id b2sm10453620pfd.81.2019.09.19.00.26.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2019 00:26:43 -0700 (PDT)
+From:   Green Wan <green.wan@sifive.com>
+Cc:     linux-hackers@sifive.com, Green Wan <green.wan@sifive.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] dmaengine: sf-pdma: Add platform dma driver
+Date:   Thu, 19 Sep 2019 15:26:03 +0800
+Message-Id: <20190919072634.1885-1-green.wan@sifive.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5zb24sDQoNCkkgaGF2ZSBhIHF1ZXN0aW9uLCB0aGF0IGlzIG5vdCBkaXJlY3RseSByZWxh
-dGVkIHRvIHRoaXMgcGF0Y2guDQpJIHNlZSB0aGF0IGZvciB0aGUgdXNkaGMxIGFuZCB1c2RoYzMg
-bm9kZXMsIHRoZXJlIGlzIGFuICdhc3NpZ25lZC1jbG9jaycgDQphbmQgJ2Fzc2lnbmVkLWNsb2Nr
-LXJhdGVzJyBwcm9wZXJ0eSBidXQgbm90IGZvciB1c2RoYzIuIFRoZSBzYW1lIGFwcGxpZXMgDQp0
-byB0aGUgbXg4bXEgYW5kIG14OG1uIGR0c2kgZmlsZS4NCg0KSXMgdGhlcmUgYW55IHJlYXNvbiBm
-b3IgdGhpcz8gSWYgbm90IGNhbiB5b3UgZml4IGl0Pw0KDQpUaGFua3MsDQpGcmllZGVyDQoNCk9u
-IDE5LjA5LjE5IDA3OjA1LCBBbnNvbiBIdWFuZyB3cm90ZToNCj4gT24gaS5NWDhNTSwgdXNkaGMn
-cyBpcGcgY2xvY2sgaXMgZnJvbSBJTVg4TU1fQ0xLX0lQR19ST09ULA0KPiBhc3NpZ24gaXQgZXhw
-bGljaXRseSBpbnN0ZWFkIG9mIHVzaW5nIElNWDhNTV9DTEtfRFVNTVkuDQo+IA0KPiBTaWduZWQt
-b2ZmLWJ5OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gLS0tDQo+ICAgYXJj
-aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kgfCA2ICsrKy0tLQ0KPiAgIDEg
-ZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZm
-IC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kgYi9hcmNo
-L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiBpbmRleCA3YzRkY2NlLi44
-YWFmYWQyIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
-bW0uZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRz
-aQ0KPiBAQCAtNjk0LDcgKzY5NCw3IEBADQo+ICAgCQkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDht
-bS11c2RoYyIsICJmc2wsaW14N2QtdXNkaGMiOw0KPiAgIAkJCQlyZWcgPSA8MHgzMGI0MDAwMCAw
-eDEwMDAwPjsNCj4gICAJCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyIElSUV9UWVBFX0xFVkVM
-X0hJR0g+Ow0KPiAtCQkJCWNsb2NrcyA9IDwmY2xrIElNWDhNTV9DTEtfRFVNTVk+LA0KPiArCQkJ
-CWNsb2NrcyA9IDwmY2xrIElNWDhNTV9DTEtfSVBHX1JPT1Q+LA0KPiAgIAkJCQkJIDwmY2xrIElN
-WDhNTV9DTEtfTkFORF9VU0RIQ19CVVM+LA0KPiAgIAkJCQkJIDwmY2xrIElNWDhNTV9DTEtfVVNE
-SEMxX1JPT1Q+Ow0KPiAgIAkJCQljbG9jay1uYW1lcyA9ICJpcGciLCAiYWhiIiwgInBlciI7DQo+
-IEBAIC03MTAsNyArNzEwLDcgQEANCj4gICAJCQkJY29tcGF0aWJsZSA9ICJmc2wsaW14OG1tLXVz
-ZGhjIiwgImZzbCxpbXg3ZC11c2RoYyI7DQo+ICAgCQkJCXJlZyA9IDwweDMwYjUwMDAwIDB4MTAw
-MDA+Ow0KPiAgIAkJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjMgSVJRX1RZUEVfTEVWRUxfSElH
-SD47DQo+IC0JCQkJY2xvY2tzID0gPCZjbGsgSU1YOE1NX0NMS19EVU1NWT4sDQo+ICsJCQkJY2xv
-Y2tzID0gPCZjbGsgSU1YOE1NX0NMS19JUEdfUk9PVD4sDQo+ICAgCQkJCQkgPCZjbGsgSU1YOE1N
-X0NMS19OQU5EX1VTREhDX0JVUz4sDQo+ICAgCQkJCQkgPCZjbGsgSU1YOE1NX0NMS19VU0RIQzJf
-Uk9PVD47DQo+ICAgCQkJCWNsb2NrLW5hbWVzID0gImlwZyIsICJhaGIiLCAicGVyIjsNCj4gQEAg
-LTcyNCw3ICs3MjQsNyBAQA0KPiAgIAkJCQljb21wYXRpYmxlID0gImZzbCxpbXg4bW0tdXNkaGMi
-LCAiZnNsLGlteDdkLXVzZGhjIjsNCj4gICAJCQkJcmVnID0gPDB4MzBiNjAwMDAgMHgxMDAwMD47
-DQo+ICAgCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyNCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsN
-Cj4gLQkJCQljbG9ja3MgPSA8JmNsayBJTVg4TU1fQ0xLX0RVTU1ZPiwNCj4gKwkJCQljbG9ja3Mg
-PSA8JmNsayBJTVg4TU1fQ0xLX0lQR19ST09UPiwNCj4gICAJCQkJCSA8JmNsayBJTVg4TU1fQ0xL
-X05BTkRfVVNESENfQlVTPiwNCj4gICAJCQkJCSA8JmNsayBJTVg4TU1fQ0xLX1VTREhDM19ST09U
-PjsNCj4gICAJCQkJY2xvY2stbmFtZXMgPSAiaXBnIiwgImFoYiIsICJwZXIiOw0KPiA=
+Add PDMA driver support for SiFive HiFive Unleashed RevA00 board. Mainly follows
+DMAengine controller doc[1] to implement and take other DMA drivers as reference.
+Such as
+
+  - drivers/dma/fsl-edma.c
+  - drivers/dma/dw-edma/
+  - drivers/dma/pxa-dma.c
+
+Using DMA test client[2] to test. Detailed datasheet is doc[3]. Driver supports:
+
+ - 4 physical DMA channels, share same DONE and error interrupt handler. 
+ - Support MEM_TO_MEM
+ - Tested by DMA test client
+ - patches include DT Bindgins document and dts for fu450-c000 SoC. Separate dts
+   patch for easier review and apply to different branch or SoC platform.
+ - retry 1 time if DMA error occurs.
+
+[Reference Doc]
+ [1] ./Documentation/driver-api/dmaengine/provider.rst
+ [2] ./Documentation/driver-api/dmaengine/dmatest.rst
+ [3] https://static.dev.sifive.com/FU540-C000-v1.0.pdf 
+
+[Simple steps to test of DMA Test client]
+ $ echo 1 > /sys/module/dmatest/parameters/iterations
+ $ echo dma0chan0 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan1 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan2 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan3 > /sys/module/dmatest/parameters/channel
+ $ echo 1 > /sys/module/dmatest/parameters/run
+
+Green Wan (3):
+  dt-bindings: dmaengine: sf-pdma: add bindins for SiFive PDMA
+  riscv: dts: add support for PDMA device of HiFive Unleashed Rev A00
+  dmaengine: sf-pdma: add platform DMA support for HiFive Unleashed A00
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  63 ++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |   7 +
+ drivers/dma/Kconfig                           |   2 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/sf-pdma/Kconfig                   |   6 +
+ drivers/dma/sf-pdma/Makefile                  |   1 +
+ drivers/dma/sf-pdma/sf-pdma.c                 | 623 ++++++++++++++++++
+ drivers/dma/sf-pdma/sf-pdma.h                 | 124 ++++
+ 9 files changed, 833 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+ create mode 100644 drivers/dma/sf-pdma/Kconfig
+ create mode 100644 drivers/dma/sf-pdma/Makefile
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.c
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.h
+
+-- 
+2.17.1
+
