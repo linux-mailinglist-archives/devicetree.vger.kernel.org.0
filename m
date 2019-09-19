@@ -2,136 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3A2B81CF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 21:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D290AB81F4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 21:54:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404507AbfISTwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 15:52:01 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:44891 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404506AbfISTwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 15:52:01 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w6so3753729oie.11;
-        Thu, 19 Sep 2019 12:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5TGlGC+JLaD/AldQw5ZGualV4WVo3kjSxq0zFR0ZtbU=;
-        b=AOWoIL06JK00MJztsJhQJPncAFu0EnZglQ7WbeZ4O0m2Gzt6yfmanZafgvK2NegZ5o
-         tzfC/vtmhpnw4e2Hx4AG1tNNkCygq/DQrzx99M1VCysTiR4C69BOHu59RTDJDxaj1aWE
-         NVE9WYNSg8p75UxldE+NVw5azNkhgAkdVvxv3ztDTvZSNhTp4Yc5SLjjnCZgWSVe9TYK
-         tZ0nOkWrR1PCJiu7fUtMqq3vTmB7cMAh7krUbfE5/Ny5OGmc3JizjlTM4o+QqUTGjAL3
-         SOa2SeZD4nWEmwVg1q90VDNwKmtxb1MyEvKFSzZ7KzRiY4LRj05q/SnV6w+tedmv/W5S
-         OBow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5TGlGC+JLaD/AldQw5ZGualV4WVo3kjSxq0zFR0ZtbU=;
-        b=Xt/uoxW0GwCyGvRbpGk9DTRe7i8+H2l4znAkCjDaHCJugjE80aWr+jY063CelOW7Qh
-         Xebq1mjdZbxvHvh9K6CjbEyHQgHPXc1koY3kmxNLyfL5d6fqiXn5CfYGFp0u2Q3bHrkp
-         YclthBRoWx90DI5tNHZD+kQAPOlv1VDJzSbC/9WQ4S2ZKt6JGYQDoxnWbb3LpYGXUKOx
-         a9eQS6R//Vf/gmC6TtaE90t3y6yTM/l1InGmDSSP1eSENwh8BI5VdjXpmMujv6SLhu55
-         ReGBVbBn/Smq0wYjsPuR3E9w0237betVn5IvT5uPZqpLhgZ5gPas8J2XIPU4o+1sxTVW
-         HiEQ==
-X-Gm-Message-State: APjAAAU8O9/K2YNCpPjaUYMsF3LmqynWlbc6yRHGa4Kng677W/HlJI4l
-        uZsZhJInFZ/NcYENx7NnbqWngprMZ4dOVRDGFjU=
-X-Google-Smtp-Source: APXvYqxRpe7ZDiMV3MjvAdU49+4Mmk19JBcGeqjdlSMgYHLipUrCVTVISZMUupnGn493/BXmTVMqkM+p+VrHLLKaQjY=
-X-Received: by 2002:aca:3ad6:: with SMTP id h205mr3862718oia.129.1568922720335;
- Thu, 19 Sep 2019 12:52:00 -0700 (PDT)
+        id S2389264AbfISTyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 15:54:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42426 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387854AbfISTyw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Sep 2019 15:54:52 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id ACC9721924;
+        Thu, 19 Sep 2019 19:54:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568922891;
+        bh=NKeHsjE9y7nzQ8bAyeySvn4Pq7CKSbTu+e+36rl6Wxo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BcSOxA+eFw++/YClQslyED8fMsXKHPPI8vtL84o6dVNJAIbQRkqdc1w565fVgGX3/
+         nYbL7F4fSNBPFIqXi8g3tmc33ZotDgNvGMfGYMLtNS8fGm9e5wvoN8HX0b2emp5GKj
+         2x53yfrJ0Ar7a+L1vi7eYnnul08bUUK+N+zmHc3Q=
+Received: by mail-qt1-f180.google.com with SMTP id 3so3391248qta.1;
+        Thu, 19 Sep 2019 12:54:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAXXzIxZ1n52F6LkFDOwyE0z7CxF+vGLY3fz6hlPjrJ5GIf1ELYc
+        AUyopqox0WKHekNckzw56RJacJdiGZCoGp/B7A==
+X-Google-Smtp-Source: APXvYqz+8osRNXbt3CtV46VPmD8JNxl+29Q1bDc72UZd/+b0HeyXjy+hyOaYu5e/za8SVmBxq3mr0divdiMrmZGdnw4=
+X-Received: by 2002:ac8:444f:: with SMTP id m15mr5229280qtn.110.1568922890902;
+ Thu, 19 Sep 2019 12:54:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <90cc600d6f7ded68f5a618b626bd9cffa5edf5c3.1566531960.git.eswara.kota@linux.intel.com>
- <3813e658-1600-d878-61a4-29b4fe51b281@linux.intel.com> <CAFBinCA_B9psNGBeDyhkewhoutNh6HsLUN+TRfO_8vuNqhis4Q@mail.gmail.com>
- <48b90943-e23d-a27a-c743-f321345c9151@linux.intel.com> <CAFBinCD1oKxYm8QD7XfZUWq_HC5A4GLMmLCnZrcRvpTxrKo30w@mail.gmail.com>
- <19719490-178a-18fd-64f2-f77d955897f7@linux.intel.com> <CAFBinCDmi4HN4Ayg4T8aKUeu4hrUmVQ+z-hTN-6XMhiOCUcHjg@mail.gmail.com>
- <34336c9a-8e87-8f84-2ae8-032b7967928f@linux.intel.com> <CAFBinCDfM3ssHisMBKXZUFkfoAFw51TaUuKt_aBgtD-mN+9fhg@mail.gmail.com>
- <657d796d-cb1b-472d-fe67-f7b9bf12fd79@linux.intel.com> <CAFBinCA5sRp1-siqZqJzFL2nuD3BtjrbD65QtpWbnTgtPNXY1A@mail.gmail.com>
- <cebd8f1d-90ab-87e7-9a34-f5c760688ce5@linux.intel.com> <CAFBinCCXo50OX6=8Fz-=nRKuELU_fMOCX=z6iwAcw0_Tfgn1ug@mail.gmail.com>
- <da347f1c-864c-7d68-33c8-045e46651f45@linux.intel.com> <CAFBinCDhLYmiORvHdZJAN5cuUjc6eWJK5n9Qg26B0dEhhqUqVQ@mail.gmail.com>
- <389f360a-a993-b9a8-4b50-ad87bcfec767@linux.intel.com>
-In-Reply-To: <389f360a-a993-b9a8-4b50-ad87bcfec767@linux.intel.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 19 Sep 2019 21:51:48 +0200
-Message-ID: <CAFBinCBwrTajCrSf-UqZY5gHqUSn0UTmbc_TLPNVZrPyY5jpOA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
-To:     Dilip Kota <eswara.kota@linux.intel.com>, p.zabel@pengutronix.de
-Cc:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
-        cheol.yong.kim@intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
-        robh@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>
+References: <20190917174817.GA27938@bogus> <20190919123001.23081-1-t-kristo@ti.com>
+In-Reply-To: <20190919123001.23081-1-t-kristo@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 19 Sep 2019 14:54:39 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+x93K9=L4s6ZdmsDb__==kP36WbM_WY1pB-_QNPOhsGw@mail.gmail.com>
+Message-ID: <CAL_Jsq+x93K9=L4s6ZdmsDb__==kP36WbM_WY1pB-_QNPOhsGw@mail.gmail.com>
+Subject: Re: [PATCHv6 01/10] dt-bindings: omap: add new binding for PRM instances
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Suman Anna <s-anna@ti.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dilip,
-
-(sorry for the late reply)
-
-On Thu, Sep 12, 2019 at 8:38 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
-[...]
-> The major difference between the vrx200 and lgm is:
-> 1.) RCU in vrx200 is having multiple register regions wheres RCU in lgm
-> has one single register region.
-> 2.) Register offsets and bit offsets are different.
+On Thu, Sep 19, 2019 at 7:30 AM Tero Kristo <t-kristo@ti.com> wrote:
 >
-> So enhancing the intel-reset-syscon.c to provide compatibility/support
-> for vrx200.
-> Please check the below dtsi binding proposal and let me know your view.
+> Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
+> of these will act as a power domain controller and potentially as a reset
+> provider.
 >
-> rcu0:reset-controller@00000000 {
->      compatible= "intel,rcu-lgm";
->      reg = <0x0000000 0x80000>, <reg_set2 size>, <reg_set3 size>,
-> <reg_set4 size>;
-I'm not sure that I understand what are reg_set2/3/4 for
-the first resource (0x80000 at 0x0) already covers the whole LGM RCU,
-so what is the purpose of the other register resources
-
->     intel,global-reset = <0x10 30>;
->     #reset-cells = <3>;
-> };
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> ---
+> v6: added common compatible as per request from Tony Lindgren. This is
+>     to simplify the support code in patch #10 of the series slightly
 >
-> "#reset-cells":
->    const:3
->    description: |
->      The 1st cell is the reset register offset.
->      The 2nd cell is the reset set bit offset.
->      The 3rd cell is the reset status bit offset.
-I think this will work fine for VRX200 (and even older SoCs)
-as you have described in your previous emails we can determine the
-status offset from the reset offset using a simple if/else
+>  .../devicetree/bindings/arm/omap/prm-inst.txt | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/omap/prm-inst.txt
 
-for LGM I like your initial suggestion with #reset-cells = <2> because
-it's easier to read and write.
-
-> Reset driver takes care of parsing the register address "reg" as per the
-> ".data" structure in struct of_device_id.
-> Reset driver takes care of traversing the status register offset.
-the differentiation between two and three #reset-cells can also happen
-based on the struct of_device_id:
-- the LGM implementation would simply also use the reset bit as status
-bit (only two cells are needed)
-- the implementation for earlier SoCs would parse the third cell and
-use that as status bit
-
-Philipp, can you please share your opinion on how to move forward with
-the reset-intel driver from this series?
-The reset_control_ops from the reset-intel driver are (in my opinion)
-a bug-fixed and improved version of what we already have in
-drivers/reset/reset-lantiq.c. The driver is NOT simply copy and paste
-because the register layout was greatly simplified for the newer SoCs
-(for which there is reset-intel) compared to the older ones
-(reset-lantiq).
-Dilip's suggestion (in my own words) is that you take his new
-reset-intel driver, then we will work on porting reset-lantiq over to
-that so in the end we can drop the reset-lantiq driver. This approach
-means more work for me (as I am probably the one who then has to do
-the work to port reset-lantiq over to reset-intel). I'm happy to do
-that work if you think that it's worth following this approach.
-So I want your opinion on this before I spend any effort on porting
-reset-lantiq over to reset-intel.
-
-
-Martin
+Reviewed-by: Rob Herring <robh@kernel.org>
