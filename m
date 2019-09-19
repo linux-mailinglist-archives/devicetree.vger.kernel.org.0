@@ -2,151 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 006F0B7916
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 14:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E98D5B796D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 14:30:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388986AbfISMOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 08:14:21 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:33811 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388585AbfISMOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 08:14:20 -0400
-Received: by mail-ot1-f65.google.com with SMTP id m19so1014535otp.1;
-        Thu, 19 Sep 2019 05:14:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QvLoduNjWDq0irr4KmoFrcMnRkzTNuqWd9dd0EIo4qA=;
-        b=NUcHB4ECLWXZ5lpvpWEbL1VzzRnEePXy357KUTmGR/L5wncupdtS2ZbK8kJ5XSCPR+
-         Hfd0t5v76KPx9gQenG6e/4FveSYQlm2Iq4KUzRFe5RBUqJv2rwQfEh4Lp39KJWHlCtH3
-         J3yBe7f8Fw8itjKBEiytVCxLg0v4ZzkvxcDakqCzSKIiP6g+iSksgL7GTwmjmfH1s9WV
-         vYHtsEWFqlLNF+9/X+Jg7kIUyEPQUzjQGFEN6TR2je+HHYNm6Z7mJRjXHytwQq/qu8ab
-         /QRsin83kUbQ2IYGBP6uC2uaq9zhmy+SWAZEO6dyW6qCZAtzqmPIQzYQ1V+OBMzjqRYS
-         X3lQ==
-X-Gm-Message-State: APjAAAU2Nq5vwPXjKxBpR8rWzE4k8tyyzI9U6RbAxSORw1EdZ9646z23
-        JS6ZI7h9l29RkHNOVVn50vZeaWgFiBNZIXMeBTU=
-X-Google-Smtp-Source: APXvYqxpJBNDWF7UZ7/K/0JRvYuxdPCLIvwKYAzQ/RK4j0IdrJdhtUuq0yye09WgmEfrGPF+voRk28xoNDEpfn0vwgw=
-X-Received: by 2002:a9d:730d:: with SMTP id e13mr2241059otk.145.1568895259523;
- Thu, 19 Sep 2019 05:14:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <1568819121-32737-1-git-send-email-ykaneko0929@gmail.com> <20190919120333.77qabr675rne7zlu@verge.net.au>
-In-Reply-To: <20190919120333.77qabr675rne7zlu@verge.net.au>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 19 Sep 2019 14:14:07 +0200
-Message-ID: <CAMuHMdWHyzwkqQv-4Dpo-omO7Z96NATANjyrtufbZQ7naCDPQQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas-irqc: convert bindings
- to json-schema
-To:     Simon Horman <horms@verge.net.au>
-Cc:     Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S2390329AbfISMaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 08:30:20 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:46760 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389347AbfISMaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 08:30:19 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8JCU5Oa127637;
+        Thu, 19 Sep 2019 07:30:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568896205;
+        bh=F+n1rsuLrfMe5CItyh0FKyzxNzdl4TWNUEWsERsnn/c=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=HaKj6eiIcizrmEfFq5MvgBz2M9Nm9jN1itAeHvmI10aQdHnY9IzWwiT64Z06ftRon
+         Xn7NBMz5SKBXWRwI7nro8ktcJ1cBeZO/lZlhwoY3ksTOctWDF/yi38YgJ0Mj0k8qr3
+         eMe4rIAD+hF8PThUnZqGRfu/+04kU94qn7hZCXt8=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8JCU4aM037316;
+        Thu, 19 Sep 2019 07:30:04 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 19
+ Sep 2019 07:30:01 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 19 Sep 2019 07:30:04 -0500
+Received: from sokoban.bb.dnainternet.fi (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8JCU2Pe084177;
+        Thu, 19 Sep 2019 07:30:02 -0500
+From:   Tero Kristo <t-kristo@ti.com>
+To:     <ssantosh@kernel.org>, <p.zabel@pengutronix.de>,
+        <robh+dt@kernel.org>, <tony@atomide.com>
+CC:     <linux-omap@vger.kernel.org>, <s-anna@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCHv6 01/10] dt-bindings: omap: add new binding for PRM instances
+Date:   Thu, 19 Sep 2019 15:30:01 +0300
+Message-ID: <20190919123001.23081-1-t-kristo@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190917174817.GA27938@bogus>
+References: <20190917174817.GA27938@bogus>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
+of these will act as a power domain controller and potentially as a reset
+provider.
 
-On Thu, Sep 19, 2019 at 2:03 PM Simon Horman <horms@verge.net.au> wrote:
-> On Thu, Sep 19, 2019 at 12:05:21AM +0900, Yoshihiro Kaneko wrote:
-> > Convert Renesas Interrupt Controller bindings documentation to json-schema.
-> >
-> > Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
+Signed-off-by: Tero Kristo <t-kristo@ti.com>
+---
+v6: added common compatible as per request from Tony Lindgren. This is
+    to simplify the support code in patch #10 of the series slightly
 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-> > @@ -0,0 +1,84 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,irqc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
-> > +
-> > +maintainers:
-> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,irqc-r8a73a4        # R-Mobile APE6
-> > +          - renesas,irqc-r8a7743        # RZ/G1M
-> > +          - renesas,irqc-r8a7744        # RZ/G1N
-> > +          - renesas,irqc-r8a7745        # RZ/G1E
-> > +          - renesas,irqc-r8a77470       # RZ/G1C
-> > +          - renesas,irqc-r8a7790        # R-Car H2
-> > +          - renesas,irqc-r8a7791        # R-Car M2-W
-> > +          - renesas,irqc-r8a7792        # R-Car V2H
-> > +          - renesas,irqc-r8a7793        # R-Car M2-N
-> > +          - renesas,irqc-r8a7794        # R-Car E2
-> > +          - renesas,intc-ex-r8a774a1    # RZ/G2M
-> > +          - renesas,intc-ex-r8a774c0    # RZ/G2E
-> > +          - renesas,intc-ex-r8a7795     # R-Car H3
-> > +          - renesas,intc-ex-r8a7796     # R-Car M3-W
-> > +          - renesas,intc-ex-r8a77965    # R-Car M3-N
-> > +          - renesas,intc-ex-r8a77970    # R-Car V3M
-> > +          - renesas,intc-ex-r8a77980    # R-Car V3H
-> > +          - renesas,intc-ex-r8a77990    # R-Car E3
-> > +          - renesas,intc-ex-r8a77995    # R-Car D3
-> > +      - const: renesas,irqc
-> > +
-> > +  '#interrupt-cells':
-> > +    # an interrupt index and flags, as defined in interrupts.txt in
-> > +    # this directory
-> > +    const: 2
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 32
->
-> Is 'interrupts' required?
+ .../devicetree/bindings/arm/omap/prm-inst.txt | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/omap/prm-inst.txt
 
-Yes, there must be one upstream interrupt for each supported interrupt input.
-The number of inputs is SoC-specific.
-
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/r8a7790-clock.h>
-> > +
-> > +    irqc0: interrupt-controller@e61c0000 {
-> > +        compatible = "renesas,irqc-r8a7790", "renesas,irqc";
-> > +        #interrupt-cells = <2>;
-> > +        interrupt-controller;
-> > +        reg = <0 0xe61c0000 0 0x200>;
-> > +        interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <0 1 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <0 2 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <0 3 IRQ_TYPE_LEVEL_HIGH>;
-
-While at it, one may want to replace s/0/GIC_SPI/.
-
-> > +        clocks = <&mstp4_clks R8A7790_CLK_IRQC>;
-
-and update clocks for the new CPG/MSTP bindings.
-
-> > +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/arm/omap/prm-inst.txt b/Documentation/devicetree/bindings/arm/omap/prm-inst.txt
+new file mode 100644
+index 000000000000..31f8d8b44a51
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/omap/prm-inst.txt
+@@ -0,0 +1,30 @@
++OMAP PRM instance bindings
++
++Power and Reset Manager is an IP block on OMAP family of devices which
++handle the power domains and their current state, and provide reset
++handling for the domains and/or separate IP blocks under the power domain
++hierarchy.
++
++Required properties:
++- compatible:	Must contain one of the following:
++		"ti,am3-prm-inst"
++		"ti,am4-prm-inst"
++		"ti,omap4-prm-inst"
++		"ti,omap5-prm-inst"
++		"ti,dra7-prm-inst"
++		and additionally must contain:
++		"ti,omap-prm-inst"
++- reg:		Contains PRM instance register address range
++		(base address and length)
++
++Optional properties:
++- #reset-cells:	Should be 1 if the PRM instance in question supports resets.
++
++Example:
++
++prm_dsp2: prm@1b00 {
++	compatible = "ti,omap-prm-inst", "ti,dra7-prm-inst";
++	reg = <0x1b00 0x40>;
++	#reset-cells = <1>;
++	clocks = <&dsp2_clkctrl DRA7_DSP2_MMU0_DSP2_CLKCTRL 0>;
++};
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
