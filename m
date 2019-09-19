@@ -2,92 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A3AAB7410
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 663ABB744B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:38:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388567AbfISH3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 03:29:21 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:46142 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388569AbfISH3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:29:21 -0400
-Received: by mail-pl1-f195.google.com with SMTP id q24so1162818plr.13
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 00:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=OFOaylH6u5pbrPHCYuJfQmib6XY1jyUZj3KgxSUlnf8=;
-        b=WT2Pxo9+vdqo+cFeBngcdvpi/70AZ90ZQaQMGg5JQjt+rxT2ODU+n9g4ZmXKtXKH82
-         PhGmkNWBY/WNJICfL3iDv1Rq9a1KHX0HSP804LwIiZN5fotqQQnQM/TkebS5E7x40fl/
-         Sh33Iwz4ftxRxh+Lzb9q/nSa985dmZDZ9nj2rtEJ4emyA+OT6csvZJQATB9i83PMrHFi
-         eFv2O9xdHjfmbAA6yQtsPDWgi2KfduxhvnSaaHkA975eaknOLaprO3aHEIjBre3eW3yF
-         nEKHrIsLWEdXM4Rm9tGK+f4jdFQ3DzWjU46mKBh/DDKZRuBeYDkuknAOvdg3912sQwtf
-         sFdA==
+        id S1727843AbfISHii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 03:38:38 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:35942 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725320AbfISHii (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:38:38 -0400
+Received: by mail-wm1-f65.google.com with SMTP id m18so253928wmc.1;
+        Thu, 19 Sep 2019 00:38:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=OFOaylH6u5pbrPHCYuJfQmib6XY1jyUZj3KgxSUlnf8=;
-        b=XkBbc36q/W8UPGHvpLOEf8o0+CW9txu1gFaQc4bAu8NpYIwIKmYBeiVMD5mAonldRg
-         HLXPZP/94k5Yp6o+0adL80EApFXsEIsLaHZNmPQXDSXhzpEWVrWizK9aGPl2vJfRKhe6
-         KNxviasCcFZovLwU7/LBFGxIvjFAnAf3QvXSE2+eUcfegkEdSFzIX70DOfyNeeIMyCPa
-         jaDUyLaIImmMskcbZiS6r/h2BIVuDP8c1UGe3XkV4fTA0Uqj/JJvmCaPj3E44XEOYuXw
-         ME0/tEN9QNrzl6Apy15t5mQ4fcz7A1QMZ6KlGpQxS+lTrF8b5/aNMk4uydKIP7K010NB
-         R3BQ==
-X-Gm-Message-State: APjAAAUWtEQ6NckBphJOOd9Dn6UGi2KU1jtHeGw2ncOMOJVhfEf9Pe/P
-        6FJbeF6YZmdFt4AFFjDcQzxhdg==
-X-Google-Smtp-Source: APXvYqwsapyHm6wAGVWo7hnSXqyZwiK5M1XVWSUnIBQGDny0XMJWzBKktws1pfvK6npX5ze1JEqclw==
-X-Received: by 2002:a17:902:14b:: with SMTP id 69mr8386982plb.286.1568878160122;
-        Thu, 19 Sep 2019 00:29:20 -0700 (PDT)
-Received: from localhost.localdomain (36-228-113-219.dynamic-ip.hinet.net. [36.228.113.219])
-        by smtp.gmail.com with ESMTPSA id d20sm13029211pfq.88.2019.09.19.00.29.17
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Y6zSWuxS8jgyDbyMqezvXVURezmzAxVKdd2OMOE7VDY=;
+        b=Q98K4MXgI2ofMOUzG0L/WgzRc2zT2vPuK0DYmLcMZR2zG0ydoOzI17+zvvHJXHIGDg
+         s8DX5nBd9UmT+vtMTK4w7UlRYprZqAqgA7BWtgeOFSUVitF/M36qiRvR0QUjR8Cn5FHW
+         DJf3nqnldyDXCsvBU2SsEwI9evQeUhIr+iIB0vae9Bx67OYX/osLu8oSoZeRYUQyClbw
+         mjZzIdAh4Xk+cJ3G2JfDQ8qr2sljC9gUnmThcLPv3mk8lMn0/CB6pCsCGeyr+Z9Z375m
+         lp2x/ao1b6DARtYEkXXjsUGVJjsNUMq6lp34EJB5UXOEeVjEJiNfPcg4h5+hLfREfjHU
+         xHAQ==
+X-Gm-Message-State: APjAAAX0dqyh17Cgz7/CWInYmNFZkHsX5CtQQ+BoM91rmAuV3y7xR66G
+        qhbV8wLrBIo7H0mhv4PMLuZp7Yhi
+X-Google-Smtp-Source: APXvYqzeq1U2LjJ1HD4/VWXclkN5qptlSoaU/lte93RCCam6t7j6L/Q8uKt9u97GzYcvPFW7th/KiA==
+X-Received: by 2002:a7b:c5ce:: with SMTP id n14mr1515680wmk.17.1568878715640;
+        Thu, 19 Sep 2019 00:38:35 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id t203sm6892411wmf.42.2019.09.19.00.38.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Sep 2019 00:29:19 -0700 (PDT)
-From:   Green Wan <green.wan@sifive.com>
-Cc:     linux-hackers@sifive.com, Green Wan <green.wan@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Yash Shah <yash.shah@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Bin Meng <bmeng.cn@gmail.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] riscv: dts: add support for PDMA device of HiFive Unleashed Rev A00
-Date:   Thu, 19 Sep 2019 15:28:59 +0800
-Message-Id: <20190919072903.2083-1-green.wan@sifive.com>
-X-Mailer: git-send-email 2.17.1
-To:     unlisted-recipients:; (no To-header on input)
+        Thu, 19 Sep 2019 00:38:34 -0700 (PDT)
+Date:   Thu, 19 Sep 2019 09:38:32 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        ckeepax@opensource.cirrus.com, sbkim73@samsung.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v1 1/9] ASoC: wm8994: Do not register inapplicable
+ controls for WM1811
+Message-ID: <20190919073832.GA13195@pi3>
+References: <20190918104634.15216-1-s.nawrocki@samsung.com>
+ <CGME20190918104653eucas1p2e23ccbd05b3b780300adc9f4cb7a4c49@eucas1p2.samsung.com>
+ <20190918104634.15216-2-s.nawrocki@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190918104634.15216-2-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PDMA support to (arch/riscv/boot/dts/sifive/fu540-c000.dtsi)
+On Wed, Sep 18, 2019 at 12:46:26PM +0200, Sylwester Nawrocki wrote:
+> In case of WM1811 device there are currently being registered controls
+> referring to registers not existing on that device.
+> It has been noticed when getting values of "AIF1ADC2 Volume", "AIF1DAC2
+> Volume" controls was failing during ALSA state restoring at boot time:
+>  "amixer: Mixer hw:0 load error: Device or resource busy"
+> 
+> Reading some registers through I2C was failing with EBUSY error and indeed
+> those registers were not available according to the datasheet.
+> 
+> To fix this controls not available on WM1811 are moved to a separate array
+> and registered only for WM8994 and WM8958.
+> 
+> There are some further differences between WM8994 and WM1811, e.g. registers
+> 603h, 604h, 605h, which are not covered in this patch.
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+>  sound/soc/codecs/wm8994.c | 43 +++++++++++++++++++++++----------------
+>  1 file changed, 26 insertions(+), 17 deletions(-)
 
-Signed-off-by: Green Wan <green.wan@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 42b5ec223100..d3030d7fb45c 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -164,6 +164,13 @@
- 			clocks = <&prci PRCI_CLK_TLCLK>;
- 			status = "disabled";
- 		};
-+		dma: dma@3000000 {
-+			compatible = "sifive,fu540-c000-pdma";
-+			reg = <0x0 0x3000000 0x0 0x8000>;
-+			interrupt-parent = <&plic0>;
-+			interrupts = <23 24 25 26 27 28 29 30>;
-+			#dma-cells = <1>;
-+		};
- 		uart1: serial@10011000 {
- 			compatible = "sifive,fu540-c000-uart", "sifive,uart0";
- 			reg = <0x0 0x10011000 0x0 0x1000>;
--- 
-2.17.1
+Best regards,
+Krzysztof
 
