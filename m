@@ -2,129 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B26DB8231
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 22:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E50B8242
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 22:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392458AbfISUHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 16:07:11 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:39170 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390722AbfISUHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 16:07:11 -0400
-Received: by mail-oi1-f195.google.com with SMTP id w144so3859155oia.6;
-        Thu, 19 Sep 2019 13:07:10 -0700 (PDT)
+        id S2403793AbfISUKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 16:10:14 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:55737 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390722AbfISUKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 16:10:14 -0400
+Received: by mail-wm1-f66.google.com with SMTP id a6so6099871wma.5;
+        Thu, 19 Sep 2019 13:10:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6SLgslheBeIIJex/gf/ZVhEBmirzOWHGUduUXl+JfS0=;
-        b=f8nGhVnviG2KbGnxig/mqrpCztbeYB17qB2d4v8zgIMpIo21id++eyGrhRa7Hetlhu
-         1uIaChRD0JXsIkhaEnLlOVilPn+4x4RCBwn4qftOj/Hn1jiDkcWSr9iSRfpGqYg8IPyg
-         p6KZ5T0M5XXE7g4URtoFpVBwAr8qDD1kwXGZhmKQ5TN4D/ZBt9h1HabeDijheKoZ1Hq6
-         Am7QREthxBCAoFRWZlZc9Dn8FvVmj/Ct4TgYQLr4ctdbmmcuJtv86n7ETES+bEZxL1mQ
-         EVg7zzKRiWTN263W8ohXIHHzWdDRk8eIf0Lm/Lzn+chRgIy7X91h9B9AXapeP4UZEFK4
-         1Pqg==
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Ui082kyKjt1/1o7RzJrjZO997JL6kup+ExToXqhxJMU=;
+        b=toYbAnrSKOeo+97xyuYVK+bebCzY6l98E48PbXIEQvnQmcXEeCEmx5HICKfC5H1cHR
+         qGpyUqOTXQGATYkBL8Ou0V9SHJbSijP7i2Q2IT/tnj2f5HFa/UmS6mGpInStCvRbU/6i
+         Ci2rRpGJ4e3bc/qZJNkFeEayhGUQzSg/fsjsZhRt9hTzqHA7It/Y/M/yvV3+oMqsIM7n
+         OLvmQE0TV7khh7WWZzgQufGVbZReMyY6q0RjoNNx1qxx/hU3o8hGCcQ3x1pd4Lohc+tS
+         98V0QoC6s5X0jvn96WQNtRb1S8mutD9w/qESSM50Gos8loPQSyzRSJcYm0MdlwVXNCLk
+         H0iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6SLgslheBeIIJex/gf/ZVhEBmirzOWHGUduUXl+JfS0=;
-        b=LRo5IFeo7bCrSGTPwzfrS3V9994tSJ6StNPbYplCww/oZi062QD+1Ceusj+wGxsKTc
-         2S1ZWmHUWjuU7/+GG38QkQ8zFQlUUun4bmwcy73ioa/dbMnMFM5sby0WaCGgbA8EhpfW
-         pUPte2TuX/Z/tWC3hHILfw4liAmCvP4JV75rm/kCPYK4YCFPpVwG0M69vl9ogyUAE1Fh
-         Hj8ODuEtG3JLKpAyzS2mvqr84BBF+UQRbUGq3769TT0vm4LXPokdKWg06XHLkAElbyj7
-         J+1oIHZG0l1QesIKgLM0CvON8ccbM/SQbWZ3uS66kyTD+sdc/XBzv5LhW9+K886WXoqk
-         iYig==
-X-Gm-Message-State: APjAAAUzfXZ6uql9XutpVXopOzfL846dSj/7bH8GtlgN/4KY23ZbsorT
-        8MaLMGXdjmQzJ4AWbSABlQe2Yq0UrmSCuY5ZJPPiDOW5
-X-Google-Smtp-Source: APXvYqxs8KaOnta4oS+qOBnum0sYdK4kwfRs3AjdmxE14hPdeI3PYvm+RSVJQcA/eiB1hLB6FfwDBOgY14u/8HhKXfM=
-X-Received: by 2002:aca:3ad6:: with SMTP id h205mr3915280oia.129.1568923630403;
- Thu, 19 Sep 2019 13:07:10 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Ui082kyKjt1/1o7RzJrjZO997JL6kup+ExToXqhxJMU=;
+        b=aMymLY1+VmJVtNIW0YHy03eIspaIfKyrx3zk+Vv43uyJzzm5Ls82mOhxaqltqRM759
+         SRvnq2Wcz+o4wAC48YIbWR6heYQJJRvMA7wQ6CsimV9M7iLH7rOYp/TSw4soAtaz1VAk
+         QGpUmzF+oYYBiUvHVEzvvpl2IOd+MvRCvicgoVFlfN+dM1id/0oF8wV947lwLpCz7bI5
+         M9CkQ3rHrxpbNR6wjVLWORtItVnc98on5eY4uC9jElOFrNrtm/515GAoxNUyJJzWRG5y
+         Zj8+5q7an3Mu9Os5wJ3o46YhhMHfG4Ph/ZRTjzVYrlMkDUtay1Z8EPdKAlbqsuhpS0bh
+         zsPg==
+X-Gm-Message-State: APjAAAV1fqrPnLO1qQZSr73gMRlzRsC9vA8N78TmDdLU9G+CpuVLquUX
+        lsEvum1GWqQSDd5lEbPj622RL54c
+X-Google-Smtp-Source: APXvYqyMAM5DcuYnLnmgCpMFZkJQYk9IBeGkN3Ve918FG3CgxZlL4tfQtcmyarddQhy9jeQFK5v1PQ==
+X-Received: by 2002:a7b:c8c3:: with SMTP id f3mr4158075wml.157.1568923811297;
+        Thu, 19 Sep 2019 13:10:11 -0700 (PDT)
+Received: from [192.168.1.19] (bgr130.neoplus.adsl.tpnet.pl. [83.28.81.130])
+        by smtp.gmail.com with ESMTPSA id t6sm10991335wmf.8.2019.09.19.13.10.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Sep 2019 13:10:10 -0700 (PDT)
+Subject: Re: [PATCH v11 2/2] leds: add LED driver for EL15203000 board
+To:     Oleh Kravchenko <oleg@kaa.org.ua>, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org, pavel@ucw.cz, dmurphy@ti.com
+References: <20190919125313.24081-1-oleg@kaa.org.ua>
+ <20190919125313.24081-3-oleg@kaa.org.ua>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=jacek.anaszewski@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <86064ea2-03fb-dac5-49f0-1bfc94940852@gmail.com>
+Date:   Thu, 19 Sep 2019 22:10:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <1568895064-4116-1-git-send-email-jianxin.pan@amlogic.com> <1568895064-4116-2-git-send-email-jianxin.pan@amlogic.com>
-In-Reply-To: <1568895064-4116-2-git-send-email-jianxin.pan@amlogic.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 19 Sep 2019 22:06:59 +0200
-Message-ID: <CAFBinCCxeYgso3WQWqNgWUwwCM835uo_6FftVv0YwYTFJV2Ovw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: power: add Amlogic secure power domains bindings
-To:     Jianxin Pan <jianxin.pan@amlogic.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Zhiqiang Liang <zhiqiang.liang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190919125313.24081-3-oleg@kaa.org.ua>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianxin,
+Hi Oleh,
 
-On Thu, Sep 19, 2019 at 2:11 PM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
->
-> Add the bindings for the Amlogic Secure power domains, controlling the
-> secure power domains.
->
-> The bindings targets the Amlogic A1 and C1 compatible SoCs, in which the
-> power domain registers are in secure world.
->
-> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
-> Signed-off-by: Zhiqiang Liang <zhiqiang.liang@amlogic.com>
+On 9/19/19 2:53 PM, Oleh Kravchenko wrote:
+> This patch adds a LED class driver for the LEDs found on
+> the Crane Merchandising System EL15203000 LEDs board
+> (aka RED LEDs board).
+> 
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+> Reviewed-by: Dan Murphy <dmurphy@ti.com>
 > ---
->  .../bindings/power/amlogic,meson-sec-pwrc.yaml     | 32 ++++++++++++++++++++++
->  include/dt-bindings/power/meson-a1-power.h         | 32 ++++++++++++++++++++++
->  2 files changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->  create mode 100644 include/dt-bindings/power/meson-a1-power.h
->
-> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-> new file mode 100644
-> index 00000000..327e0d9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-> @@ -0,0 +1,32 @@
-> +# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +# Copyright (c) 2019 Amlogic, Inc
-> +# Author: Jianxin Pan <jianxin.pan@amlogic.com>
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson Secure Power Domains
-> +
-> +maintainers:
-> +  - Jianxin Pan <jianxin.pan@amlogic.com>
-> +
-> +description: |+
-> +  A1/C1 series The Secure Power Domains node should be the child of a syscon
-> +  node with the required property.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson-a1-pwrc
-> +
-> +required:
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +    pwrc: power-controller {
-> +          compatible = "amlogic,meson-a1-pwrc";
-> +    };
-not a comment about this binding but about the secure monitor in general:
-there's a recent discussion about the secure monitor in the nvmem bindings: [0]
+>  .../testing/sysfs-class-led-driver-el15203000 | 139 +++++++
+>  drivers/leds/Kconfig                          |  13 +
+>  drivers/leds/Makefile                         |   1 +
+>  drivers/leds/leds-el15203000.c                | 357 ++++++++++++++++++
+>  4 files changed, 510 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-el15203000
+>  create mode 100644 drivers/leds/leds-el15203000.c
 
 
-Martin
+Thank you for your work on this set.
 
+Applied to the for-5.5 branch.
 
-[0] https://www.spinics.net/lists/arm-kernel/msg750010.html
+-- 
+Best regards,
+Jacek Anaszewski
