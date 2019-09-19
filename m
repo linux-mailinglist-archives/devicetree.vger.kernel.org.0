@@ -2,178 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A3AB7364
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 08:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D17B5B73E1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388496AbfISGtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 02:49:14 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:42493 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387758AbfISGtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 02:49:13 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190919064911euoutp015900d2b87d795ab6a0b4bfe5dbfa6348~FxC8MvZP63265532655euoutp01f
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 06:49:11 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190919064911euoutp015900d2b87d795ab6a0b4bfe5dbfa6348~FxC8MvZP63265532655euoutp01f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568875751;
-        bh=p7qbrmP5w9u16xdsgKqpm4yWd7pNksehgriKSn5DTq0=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Il5L/GaddKTrNT403tAY0NHMzilpvdBoZlBOF3X5UXNMFdBMIktCZvYpKr/qBfb7L
-         v76RqXyLfpPOCFN531Ap+5FA5allt0HjsgG76ACO2DY1q/h6UbAxXqrYMxIj91ipgb
-         b/Yq67SjhIqMjKLYn2PF+c52VBdtKAk3DYiB8AhE=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190919064910eucas1p1f5d583718810e243d7a5d531253e04ea~FxC7XnmQd2575425754eucas1p1K;
-        Thu, 19 Sep 2019 06:49:10 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 62.95.04309.6E4238D5; Thu, 19
-        Sep 2019 07:49:10 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190919064909eucas1p1ba3cd25428c7b0162de535cf3f038cc6~FxC6jS9eX2169821698eucas1p1m;
-        Thu, 19 Sep 2019 06:49:09 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190919064909eusmtrp15d2cf82b862c88a7e834d47d06e671a3~FxC6Sc9VV1215012150eusmtrp1t;
-        Thu, 19 Sep 2019 06:49:09 +0000 (GMT)
-X-AuditID: cbfec7f4-ae1ff700000010d5-69-5d8324e6ff34
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 11.94.04117.5E4238D5; Thu, 19
-        Sep 2019 07:49:09 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190919064908eusmtip27eebb3e295389c59a871b84f5b28a15b~FxC5pTwOV1178711787eusmtip25;
-        Thu, 19 Sep 2019 06:49:08 +0000 (GMT)
-Subject: Re: [PATCH v2 3/3] dt-bindings: ddr: Add bindings for Samsung
- LPDDR3 memories
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-pm@vger.kernel.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        willy.mh.wolff.ml@gmail.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <4a0d1d2c-cd1d-5df4-d4b1-f2dd1ef3bb72@partner.samsung.com>
-Date:   Thu, 19 Sep 2019 08:49:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAJKOXPcxG-mMKy5u-b0+xj_sOmrq5yq5-LYJx0Ds6_+yo_=JbA@mail.gmail.com>
+        id S1727517AbfISHRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 03:17:48 -0400
+Received: from skedge03.snt-world.com ([91.208.41.68]:39798 "EHLO
+        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727435AbfISHRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:17:47 -0400
+Received: from sntmail10s.snt-is.com (unknown [10.203.32.183])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by skedge03.snt-world.com (Postfix) with ESMTPS id E59A367AB45;
+        Thu, 19 Sep 2019 09:17:44 +0200 (CEST)
+Received: from sntmail14r.snt-is.com (10.203.32.184) by sntmail10s.snt-is.com
+ (10.203.32.183) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 19 Sep
+ 2019 09:17:44 +0200
+Received: from sntmail14r.snt-is.com ([fe80::c8f3:eae9:52c2:11a8]) by
+ sntmail14r.snt-is.com ([fe80::c8f3:eae9:52c2:11a8%3]) with mapi id
+ 15.01.1713.004; Thu, 19 Sep 2019 09:17:44 +0200
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Anson Huang <Anson.Huang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "leonard.crestez@nxp.com" <leonard.crestez@nxp.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "ping.bai@nxp.com" <ping.bai@nxp.com>,
+        "daniel.baluta@nxp.com" <daniel.baluta@nxp.com>,
+        "jun.li@nxp.com" <jun.li@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "abel.vesa@nxp.com" <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     "Linux-imx@nxp.com" <Linux-imx@nxp.com>
+Subject: Re: [PATCH 2/3] arm64: dts: imx8mm: Use correct clock for usdhc's ipg
+ clk
+Thread-Topic: [PATCH 2/3] arm64: dts: imx8mm: Use correct clock for usdhc's
+ ipg clk
+Thread-Index: AQHVbqhJada8Xsj3oEetJoKRBs2eSKcyddCA
+Date:   Thu, 19 Sep 2019 07:17:44 +0000
+Message-ID: <c680d114-1c14-6bf8-226c-2fdd98350158@kontron.de>
+References: <1568869559-28611-1-git-send-email-Anson.Huang@nxp.com>
+ <1568869559-28611-2-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1568869559-28611-2-git-send-email-Anson.Huang@nxp.com>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTcRTH++3eu3sVZ9dpetCoGFrZQ3tzoRJ7EIOIEioiEZvuoqLTtesj
-        s2gZPvERaaXDR1Iy05m2hppghK5UJJ1WmoqoaWqlUD5WllabV8n/Pud7vud3zhd+FCbuJVyp
-        sMhoVhUpi5AIbfGa1/PtO8fcbwXsqk1zZJ7mVRFMz+w4wRQb2wkme+QrxnR0VJPMm8RJktGP
-        dBPM2/oCITOTaURMXscLAVNpHCCZ0p5OAdN/s0zIJDUYSaZpMoVgzC0fkS8t1RXpkPS5ZoCU
-        6svThNJnj25IswzlSDqj33BGeNH2kJyNCItlVd4+l2xDzWneyi7HK98m7mJq9IRORzYU0Pvg
-        c9YkkY5sKTFdhiApo1XAF7MI0pIHML6YQfCyqES4MtI/XojzDS0C7WgOyRdTCEyz6iWXI30B
-        1GW5Ais70Z7Qs/hjaQlGN+KQVz9vaVCUkPaCuvLLVo+IPgHdOj2yMk57QPW8mbTyOss700NN
-        BO9xgNb8Udw6akP7gX5BbpUx2gX6RosFPG+E2qmCpauBXiShp6GX4K8+Du8NpuUEjvCl2UDy
-        vB7acjJwnjlQZ5Ygnq/BSHbhsucgNDV3Eta9mCVLVb03Lx+BBpNhSQbaHj5MOfAn2MOdmvsY
-        L4sgNVnMu7eCIcMk4NkZtLp75G0k0azKpVkVRrMqjOb/3gcIL0cubAynCGG5PZFsnBcnU3Ax
-        kSFewVEKPbJ8uLY/zbN1qH4hqBHRFJLYiX5uSQwQE7JYLl7RiIDCJE6igv0WSSSXxV9lVVGB
-        qpgIlmtEbhQucRElrBnyF9Mhsmg2nGWVrGqlK6BsXNXosCHDvSrRLzg0t8TU9Thh80TmK7f8
-        qtiG1j5lqNmttiJwTuc1fN50wG7wXfDJioLqhECjThc3omjO9qzUKgPdTgu2fxLFqpS+1b/s
-        hAptJkpp75/+fs4jNXyTv2/Qwx3Oypa1g0cXfI+dmgv+7WMeK44olV/f6x+UVeYwXHj2b4wE
-        50Jlu7dhKk72D8690llsAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLIsWRmVeSWpSXmKPExsVy+t/xe7pPVZpjDTY1ylhsnLGe1eL6l+es
-        FvOPnGO16H/8mtni/PkN7BZnm96wW2x6fI3V4vKuOWwWn3uPMFrMOL+PyWLtkbvsFkuvX2Sy
-        uN24gs2ide8RdovDb9pZLb6deMToIOCxZt4aRo+ds+6ye2xa1cnmsXlJvUffllWMHp83yQWw
-        RenZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJalFunbJehlfOvU
-        L7gkXPHhxVTmBsZ1Al2MnBwSAiYSt5/PZeli5OIQEljKKDH75m42iISYxKR929khbGGJP9e6
-        2CCKXjNKnFs9BaxIWCBCoufYdFYQW0RAU+L63++sIEXMAodYJD5tPc4I0TGBSeL03llAozg4
-        2AT0JHasKgRp4BVwk7i2ZhMjiM0ioCqx4ec3sG2iQEMP75jFCFEjKHFy5hMWkFZOgUCJTX9S
-        QMLMAmYS8zY/ZIawxSVuPZnPBGHLS2x/O4d5AqPQLCTds5C0zELSMgtJywJGllWMIqmlxbnp
-        ucVGesWJucWleel6yfm5mxiBUb3t2M8tOxi73gUfYhTgYFTi4f2h3hQrxJpYVlyZe4hRgoNZ
-        SYR3jilQiDclsbIqtSg/vqg0J7X4EKMp0G8TmaVEk/OBCSevJN7Q1NDcwtLQ3Njc2MxCSZy3
-        Q+BgjJBAemJJanZqakFqEUwfEwenVAOjw3veWSEGC69u2jAtxJxn6TKHRWeeR3U8tvd2exSU
-        5ZilvMSgPSh6kvMG+7gnNe91S/5Ozdn+U/Xl91nl+5iFc5fLPNhfX81ZHihzvledN5R5EjMv
-        74x4NrOD2h8+rbtz/0apNLvquWe86xIfBt1f+3ve09APt+9Pc9h3Vu68+LF/5f/50yYZKLEU
-        ZyQaajEXFScCAHgiRS8AAwAA
-X-CMS-MailID: 20190919064909eucas1p1ba3cd25428c7b0162de535cf3f038cc6
-X-Msg-Generator: CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.9.193]
+x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190916100719eucas1p206fe95982b774840b5d6e62ba9c42c79
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190916100719eucas1p206fe95982b774840b5d6e62ba9c42c79
-References: <CGME20190916100719eucas1p206fe95982b774840b5d6e62ba9c42c79@eucas1p2.samsung.com>
-        <20190916100704.26692-1-l.luba@partner.samsung.com>
-        <20190916100704.26692-4-l.luba@partner.samsung.com>
-        <CAJKOXPcxG-mMKy5u-b0+xj_sOmrq5yq5-LYJx0Ds6_+yo_=JbA@mail.gmail.com>
+Content-ID: <F14B5A1009A44548B13FE27527380192@snt-world.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SnT-MailScanner-Information: Please contact the ISP for more information
+X-SnT-MailScanner-ID: E59A367AB45.A1B78
+X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
+X-SnT-MailScanner-SpamCheck: 
+X-SnT-MailScanner-From: frieder.schrempf@kontron.de
+X-SnT-MailScanner-To: abel.vesa@nxp.com, agx@sigxcpu.org,
+        andrew.smirnov@gmail.com, angus@akkea.ca, anson.huang@nxp.com,
+        ccaione@baylibre.com, daniel.baluta@nxp.com,
+        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        festevam@gmail.com, jun.li@nxp.com, kernel@pengutronix.de,
+        l.stach@pengutronix.de, leonard.crestez@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, mark.rutland@arm.com, ping.bai@nxp.com,
+        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+X-Spam-Status: No
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 9/18/19 8:51 PM, Krzysztof Kozlowski wrote:
-> On Mon, 16 Sep 2019 at 12:07, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->>
->> Add compatible for Samsung k3qf2f20db LPDDR3 memory bindings.
->> Introduce minor fixes in the old documentation.
->>
->> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->> ---
->>   Documentation/devicetree/bindings/ddr/lpddr3.txt | 9 ++++++---
->>   1 file changed, 6 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/ddr/lpddr3.txt b/Documentation/devicetree/bindings/ddr/lpddr3.txt
->> index 3b2485b84b3f..49afe794daaa 100644
->> --- a/Documentation/devicetree/bindings/ddr/lpddr3.txt
->> +++ b/Documentation/devicetree/bindings/ddr/lpddr3.txt
->> @@ -1,7 +1,9 @@
->>   * LPDDR3 SDRAM memories compliant to JEDEC JESD209-3C
->>
->>   Required properties:
->> -- compatible : Should be  - "jedec,lpddr3"
->> +- compatible : should be one of the following:
->> +       Generic default - "jedec,lpddr3".
-> 
-> The convention is first compatible, then description. I gave you the
-> example to base on - at25. Why making it different?
-
-I have checked at25 that you pointed me to and also checked at24, which
-has a bit longer "compatible" section.
-
-I found that there are many "jedec,spi-nor" compatible devices, which I
-thought would be a better example for my "jedec,lpddr3".
-For example, two configurations, where you have a single labels or dual
-(with specific device)
-arch/arm/boot/dts/imx6dl-rex-basic.dts:
-compatible = "sst,sst25vf016b", "jedec,spi-nor";
-arch/arm/boot/dts/imx6q-ba16.dtsi:
-compatible = "jedec,spi-nor";
-
-The 'compatible' in documentation for the "jedec,spi-nor" is slightly
-different (similar to at24).
-Documentation/devicetree/bindings/mtd/jedec,spi-nor.txt
-It has a long explanation, which is also OK. So I thought that it is
-quite flexible what you put in there.
-
-I have also checked Cadance QSPI controller.
-Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
-The controller might be built-in into different vendor SoC's
-and the "compatible" is ready to reflect it in similar fashion but
-with a short explanation in this section.
-
-Therefore, what you see in the patch draw heavily on Cadence's qspi,
-with a bit of inspiration from jedec,spi-nor usage.
-
-Should I change it to at25 "compatible" style and send next patch?
-
-PS. Thank you for taking the other two patches. I will not respond in
-their threads to keep the traffic low.
-
-Regards,
-Lukasz
+SGkgQW5zb24sDQoNCkkgaGF2ZSBhIHF1ZXN0aW9uLCB0aGF0IGlzIG5vdCBkaXJlY3RseSByZWxh
+dGVkIHRvIHRoaXMgcGF0Y2guDQpJIHNlZSB0aGF0IGZvciB0aGUgdXNkaGMxIGFuZCB1c2RoYzMg
+bm9kZXMsIHRoZXJlIGlzIGFuICdhc3NpZ25lZC1jbG9jaycgDQphbmQgJ2Fzc2lnbmVkLWNsb2Nr
+LXJhdGVzJyBwcm9wZXJ0eSBidXQgbm90IGZvciB1c2RoYzIuIFRoZSBzYW1lIGFwcGxpZXMgDQp0
+byB0aGUgbXg4bXEgYW5kIG14OG1uIGR0c2kgZmlsZS4NCg0KSXMgdGhlcmUgYW55IHJlYXNvbiBm
+b3IgdGhpcz8gSWYgbm90IGNhbiB5b3UgZml4IGl0Pw0KDQpUaGFua3MsDQpGcmllZGVyDQoNCk9u
+IDE5LjA5LjE5IDA3OjA1LCBBbnNvbiBIdWFuZyB3cm90ZToNCj4gT24gaS5NWDhNTSwgdXNkaGMn
+cyBpcGcgY2xvY2sgaXMgZnJvbSBJTVg4TU1fQ0xLX0lQR19ST09ULA0KPiBhc3NpZ24gaXQgZXhw
+bGljaXRseSBpbnN0ZWFkIG9mIHVzaW5nIElNWDhNTV9DTEtfRFVNTVkuDQo+IA0KPiBTaWduZWQt
+b2ZmLWJ5OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gLS0tDQo+ICAgYXJj
+aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kgfCA2ICsrKy0tLQ0KPiAgIDEg
+ZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiBpbmRleCA3YzRkY2NlLi44
+YWFmYWQyIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+bW0uZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRz
+aQ0KPiBAQCAtNjk0LDcgKzY5NCw3IEBADQo+ICAgCQkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDht
+bS11c2RoYyIsICJmc2wsaW14N2QtdXNkaGMiOw0KPiAgIAkJCQlyZWcgPSA8MHgzMGI0MDAwMCAw
+eDEwMDAwPjsNCj4gICAJCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyIElSUV9UWVBFX0xFVkVM
+X0hJR0g+Ow0KPiAtCQkJCWNsb2NrcyA9IDwmY2xrIElNWDhNTV9DTEtfRFVNTVk+LA0KPiArCQkJ
+CWNsb2NrcyA9IDwmY2xrIElNWDhNTV9DTEtfSVBHX1JPT1Q+LA0KPiAgIAkJCQkJIDwmY2xrIElN
+WDhNTV9DTEtfTkFORF9VU0RIQ19CVVM+LA0KPiAgIAkJCQkJIDwmY2xrIElNWDhNTV9DTEtfVVNE
+SEMxX1JPT1Q+Ow0KPiAgIAkJCQljbG9jay1uYW1lcyA9ICJpcGciLCAiYWhiIiwgInBlciI7DQo+
+IEBAIC03MTAsNyArNzEwLDcgQEANCj4gICAJCQkJY29tcGF0aWJsZSA9ICJmc2wsaW14OG1tLXVz
+ZGhjIiwgImZzbCxpbXg3ZC11c2RoYyI7DQo+ICAgCQkJCXJlZyA9IDwweDMwYjUwMDAwIDB4MTAw
+MDA+Ow0KPiAgIAkJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjMgSVJRX1RZUEVfTEVWRUxfSElH
+SD47DQo+IC0JCQkJY2xvY2tzID0gPCZjbGsgSU1YOE1NX0NMS19EVU1NWT4sDQo+ICsJCQkJY2xv
+Y2tzID0gPCZjbGsgSU1YOE1NX0NMS19JUEdfUk9PVD4sDQo+ICAgCQkJCQkgPCZjbGsgSU1YOE1N
+X0NMS19OQU5EX1VTREhDX0JVUz4sDQo+ICAgCQkJCQkgPCZjbGsgSU1YOE1NX0NMS19VU0RIQzJf
+Uk9PVD47DQo+ICAgCQkJCWNsb2NrLW5hbWVzID0gImlwZyIsICJhaGIiLCAicGVyIjsNCj4gQEAg
+LTcyNCw3ICs3MjQsNyBAQA0KPiAgIAkJCQljb21wYXRpYmxlID0gImZzbCxpbXg4bW0tdXNkaGMi
+LCAiZnNsLGlteDdkLXVzZGhjIjsNCj4gICAJCQkJcmVnID0gPDB4MzBiNjAwMDAgMHgxMDAwMD47
+DQo+ICAgCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyNCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsN
+Cj4gLQkJCQljbG9ja3MgPSA8JmNsayBJTVg4TU1fQ0xLX0RVTU1ZPiwNCj4gKwkJCQljbG9ja3Mg
+PSA8JmNsayBJTVg4TU1fQ0xLX0lQR19ST09UPiwNCj4gICAJCQkJCSA8JmNsayBJTVg4TU1fQ0xL
+X05BTkRfVVNESENfQlVTPiwNCj4gICAJCQkJCSA8JmNsayBJTVg4TU1fQ0xLX1VTREhDM19ST09U
+PjsNCj4gICAJCQkJY2xvY2stbmFtZXMgPSAiaXBnIiwgImFoYiIsICJwZXIiOw0KPiA=
