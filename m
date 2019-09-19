@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7218B729E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 07:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F9AB72A2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 07:29:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388151AbfISF3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 01:29:01 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43459 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388147AbfISF3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 01:29:01 -0400
-Received: by mail-pf1-f193.google.com with SMTP id a2so1481081pfo.10
-        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 22:29:01 -0700 (PDT)
+        id S2388173AbfISF3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 01:29:07 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:40318 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388167AbfISF3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 01:29:06 -0400
+Received: by mail-pg1-f194.google.com with SMTP id w10so1189873pgj.7
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2019 22:29:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=pjzjQZaNXsKJUrobfVyNEoaPXPZ7j/Y7jZihfDcfLTc=;
-        b=ma2szWh3fZ0CthnlLq01YhUIhLic/fGiuCo9bW1ntc7zj8RhLiStft18NL8DLCIKhD
-         xol1qetrlBNmmOldxCqP5M1RBVdgatiqw+pXn6vDzbf9GnHsMTuvjPKDbxRhYt7WVTXo
-         yU1N7/WQtkp69Zn2xKy4/PwlAlrecXGJsszkc=
+        bh=7UOcZwhIF06MhGn+HJKXs6pdfSRqhxVhEIb50OgmNOI=;
+        b=Y7HZPUIUZqEK4jo+BJve1KpFrqXMnsuT4bQMzaur4NSxYR5oJZEaU/x99ezt/hgzfm
+         M8PBWQosHOZYlBM54/Fa5fMIwPZQ7ECsrS5UPQMAhp40MvbZCPvEYUe+LfiUyItaU+O5
+         VrurC+B1oAuvwLo1lyOl7ZjDnYwRIKRGoziX0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=pjzjQZaNXsKJUrobfVyNEoaPXPZ7j/Y7jZihfDcfLTc=;
-        b=KFQ6Lqp3zZdtuAo3WcAZLEEQGpyy1Sk8Tj3heL5goF2Z7VX6tBCFd7AAB2B13pNoPr
-         zJ0S1rJ9GTdUwp2EpIRM4d6SIoRbHRWy5kGMDQIpC8hRkbQqDNJjjv5KaRFC6bbue0zR
-         vIei3d0saIuVSZF/SBGGQVlyI82BbR48T5NxMK1zKLaSpYDc48YySxdZUm6rfSpuRkh7
-         EFBg9cIQC6bINWWXHyuPhST4HW02bJLNfnlZIYId8r/uAr67RFgPYci+tMbngX8azsuS
-         1IKaMjmrIretmN3Cx4mpz2uDCoU/EVATdysJGubTikyfngxO6TYn51Pjmb9kGaSoilsS
-         T2rw==
-X-Gm-Message-State: APjAAAW919Rw24GOHHkPWSWyViF+LZ3NaaE2M7Lotg3IxZw0HmpgRTld
-        UCwi0LYYca+faizmzLE9i0oaDg==
-X-Google-Smtp-Source: APXvYqwMn2793F7u+gsqgIZ7WKzwlSoslHkIYECsncXAbvmDGov1nn2gfmltxgWM2us7xFP2Cmf6JA==
-X-Received: by 2002:a63:1c22:: with SMTP id c34mr7195695pgc.435.1568870940513;
-        Wed, 18 Sep 2019 22:29:00 -0700 (PDT)
+        bh=7UOcZwhIF06MhGn+HJKXs6pdfSRqhxVhEIb50OgmNOI=;
+        b=dw7H4dCvxIyjd21BOokjOuwzva/KZi9cIoaF5VyB7mfZKFobIPtOsN+cxqynT+hl4B
+         B2VdaVkIJCNM9Ug8M7tCXNPAxFAUAbJ5+YDMc3TLCp6DPX1nMkWh1AiqrVXJNDq67kS7
+         JkhEbTmgi5eJUQkvKbFob3SY8KMInxwnKV3sNzArvUrNppiKMYtSZ/WSE4KQj2/ewNaQ
+         G/8Hy+UUIRPcNm7TMGNLPN5iteFOW5v7BtrNc8XBHiGxWkmsM2H/yK/U3UubD8Sk2QeD
+         IWKmUDY6lN0s9+kJmBwGDS9ZUyScZwLUsYKmVX5v0G5T3qzTv2FgiTGORuF14yGiamI8
+         nG6Q==
+X-Gm-Message-State: APjAAAW4aAB9XM4ZDKrRnqbqQF+XTfoP9qTYgilsbGKybz1MI4uhT6zm
+        OWdD4YKFHZsVcMaZBFaNwe9v1w==
+X-Google-Smtp-Source: APXvYqwhNboYAOFo2Eq0/XPNnZNqgcNjmWaxGA4Hw7IJ25NN0lvkUgCVt3/UnpQ1hpCwXf1Vlu0p/A==
+X-Received: by 2002:a62:fb06:: with SMTP id x6mr724333pfm.186.1568870945159;
+        Wed, 18 Sep 2019 22:29:05 -0700 (PDT)
 Received: from localhost.localdomain ([49.206.200.127])
-        by smtp.gmail.com with ESMTPSA id z20sm5051930pjn.12.2019.09.18.22.28.56
+        by smtp.gmail.com with ESMTPSA id z20sm5051930pjn.12.2019.09.18.22.29.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Sep 2019 22:29:00 -0700 (PDT)
+        Wed, 18 Sep 2019 22:29:04 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Levin Du <djw@t-chip.com.cn>,
         Akash Gajjar <akash@openedev.com>,
@@ -51,9 +51,9 @@ Cc:     Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 4/6] arm64: dts: rockchip: Rename roc-pc with libretech notation
-Date:   Thu, 19 Sep 2019 10:58:20 +0530
-Message-Id: <20190919052822.10403-5-jagan@amarulasolutions.com>
+Subject: [PATCH 5/6] arm64: dts: rockchip: Rename vcc12v_sys into dc_12v for roc-rk3399-pc
+Date:   Thu, 19 Sep 2019 10:58:21 +0530
+Message-Id: <20190919052822.10403-6-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190919052822.10403-1-jagan@amarulasolutions.com>
 References: <20190919052822.10403-1-jagan@amarulasolutions.com>
@@ -64,47 +64,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Though the ROC-PC is manufactured by firefly, it is co-designed
-by libretch like other Libretech computer boards from allwinner,
-amlogic does.
+It is always better practice to follow regulator naming conventions
+as per the schematics for future references.
 
-So, it is always meaningful to keep maintain those vendors who
-are part of design participation so-that the linux mainline
-code will expose outside world who are the makers of such
-hardware prototypes.
+This would indeed helpful to review and check the naming convention
+directly on schematics, both for the code reviewers and the developers.
 
-So, rename the existing rk3399-roc-pc.dts with libretch notation,
-rk3399-libretech-roc-rk3399-pc.dts
+So, rename vcc12v_sys into dc_12v as per rk3399 power tree as per
+roc-rk3399-pc schematics.
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile                           | 2 +-
- .../{rk3399-roc-pc.dts => rk3399-libretech-roc-rk3399-pc.dts}   | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename arch/arm64/boot/dts/rockchip/{rk3399-roc-pc.dts => rk3399-libretech-roc-rk3399-pc.dts} (100%)
+ .../boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts  | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 1f18a9392d15..73c10ddb4300 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -21,12 +21,12 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-captain.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-v.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-leez-p710.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-libretech-roc-rk3399-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
--dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock960.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts
-similarity index 100%
-rename from arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
-rename to arch/arm64/boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts
+index e09bcbdd92f5..51242ea5447d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-libretech-roc-rk3399-pc.dts
+@@ -57,9 +57,9 @@
+ 	 * should be placed inside mp8859, but not until mp8859 has
+ 	 * its own dt-binding.
+ 	 */
+-	vcc12v_sys: mp8859-dcdc1 {
++	dc_12v: mp8859-dcdc1 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "vcc12v_sys";
++		regulator-name = "dc_12v";
+ 		regulator-always-on;
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <12000000>;
+@@ -85,7 +85,7 @@
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+-		vin-supply = <&vcc12v_sys>;
++		vin-supply = <&dc_12v>;
+ 	};
+ 
+ 	/* Actually 3 regulators (host0, 1, 2) controlled by the same gpio */
+@@ -118,7 +118,7 @@
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&vcc12v_sys>;
++		vin-supply = <&dc_12v>;
+ 	};
+ 
+ 	vdd_log: vdd-log {
 -- 
 2.18.0.321.gffc6fa0e3
 
