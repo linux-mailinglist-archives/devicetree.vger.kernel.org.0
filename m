@@ -2,90 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56517B7557
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 697CAB75C1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 11:11:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728879AbfISIm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 04:42:27 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45948 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725320AbfISIm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 04:42:27 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8J8gOfh101089;
-        Thu, 19 Sep 2019 03:42:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568882544;
-        bh=9XCz0KQ8VIy2bXU54yGvLcGfJbHxfuMAFwL9AuUQbJk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=xrjPviqfg+AoBvCYwkGfIVJzvNHcMKKfdZPgYiXzNRUqew/vzw98kzX3G0wpL/T6z
-         XFVwNs4LQo5vigsv+vDuJg00o5S0Vfw3j8IKm1PQNSeWBkNfYMULvbzUWAGKd7x12U
-         WCbjFjHEdy3HffU6n9+7kKVvWbpNA+dn/3T6VxbA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8J8gOpr020085
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 19 Sep 2019 03:42:24 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 19
- Sep 2019 03:42:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 19 Sep 2019 03:42:24 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8J8gMRU029946;
-        Thu, 19 Sep 2019 03:42:22 -0500
-Subject: Re: [PATCH v2 1/3] dt-bindings: dmaengine: dma-common: Change
- dma-channel-mask to uint32-array
-To:     Rob Herring <robh@kernel.org>
-CC:     Vinod <vkoul@kernel.org>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        <devicetree@vger.kernel.org>
-References: <20190910114559.22810-1-peter.ujfalusi@ti.com>
- <20190910114559.22810-2-peter.ujfalusi@ti.com> <20190918132835.GA4527@bogus>
- <d76ffc38-8e68-656a-325b-37de9b01e015@ti.com>
- <CAL_JsqLJn4dmnjU=7kVgiosAU=o+fSJNH6578D92fGbdOR8Zfw@mail.gmail.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <a1e4bf6a-ad7d-aa72-82c0-5cbb5af5bd0d@ti.com>
-Date:   Thu, 19 Sep 2019 11:42:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2388567AbfISJK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 05:10:58 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:32088 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1731224AbfISJK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 05:10:57 -0400
+X-UUID: 3716ffef6de04f6a88ba48542a5b9d48-20190919
+X-UUID: 3716ffef6de04f6a88ba48542a5b9d48-20190919
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 2031416643; Thu, 19 Sep 2019 17:10:48 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 19 Sep 2019 17:10:42 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 19 Sep 2019 17:10:42 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 01/11] dt-bindings: phy-mtk-tphy: add two optional properties for u2phy
+Date:   Thu, 19 Sep 2019 17:10:32 +0800
+Message-ID: <1568884242-22775-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLJn4dmnjU=7kVgiosAU=o+fSJNH6578D92fGbdOR8Zfw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-TM-SNTS-SMTP: BE4D4063DDEC7536BAE0BAA55DF0EE46D1F974EE2D0A5767EE74E38203827FAD2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add two optional properties, one for tuning J-K voltage by INTR,
+another for disconnect threshold, both of them are related with
+connect detection
 
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v3: change commit log
 
-On 18/09/2019 17.21, Rob Herring wrote:
->>>> +          - description: Mask of chnanels X-(X+31)
->>>
->>> Obviously, this was not validated with 'make dt_binding_check'.
->> make dt_bindings_check
->> make: *** No rule to make target 'dt_bindings_check'.  Stop.
-> 
-> Read Documentation/devicetree/writing-schema.md (or .rst in next).
-> 
-> Either your config doesn't have DTC enabled or you don't have
-> dt-schema installed.
+v2: change description
+---
+ Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I have reinstalled dt-schema and added $HOME/.local/bin to PATH and now
-'make dt_binding_check' is working and passing for dma-common.yaml.
+diff --git a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+index a5f7a4f0dbc1..ce6abfbdfbe1 100644
+--- a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
++++ b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+@@ -52,6 +52,8 @@ Optional properties (PHY_TYPE_USB2 port (child) node):
+ - mediatek,eye-vrt	: u32, the selection of VRT reference voltage
+ - mediatek,eye-term	: u32, the selection of HS_TX TERM reference voltage
+ - mediatek,bc12	: bool, enable BC12 of u2phy if support it
++- mediatek,discth	: u32, the selection of disconnect threshold
++- mediatek,intr	: u32, the selection of internal R (resistance)
+ 
+ Example:
+ 
+-- 
+2.23.0
 
-For some reason it did not validate the new dma-domain.yaml from another
-series, I guess it need to be added to some list?
-
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
