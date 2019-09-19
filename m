@@ -2,148 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77582B7AC4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 15:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6301AB7AC8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 15:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390519AbfISNq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 09:46:26 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:39622 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390518AbfISNqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 09:46:25 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190919134623euoutp020091964139dbf311331020ff98e62596~F2vNUyu7Q2749327493euoutp02Y
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 13:46:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190919134623euoutp020091964139dbf311331020ff98e62596~F2vNUyu7Q2749327493euoutp02Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568900783;
-        bh=1IqbBg5jzrfPhD7Enp7RUpljzJikFkWLSh4zCwaVL0Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ae7QTE+C5awLxDdsZOghpPNETQBzwT8g+6shgkRlnc+yh0rhobR4S3Q3T4B/+/1r8
-         piWbrjTVyBLgsgBM5ynFQWZIvZTVyjA7jIL3N6c9QCD9HC/DSUwKURUCmD/ZEtvAKu
-         qWds2iJYwv4Rx8iUdeNdP8GuR+wSDDyZuIxM9/20=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190919134623eucas1p287bcda319064f0fc610e66b41d60d0be~F2vM2M3Rb0635006350eucas1p20;
-        Thu, 19 Sep 2019 13:46:23 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 77.95.04309.EA6838D5; Thu, 19
-        Sep 2019 14:46:23 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe~F2vL7QmDs1263812638eucas1p1R;
-        Thu, 19 Sep 2019 13:46:22 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190919134622eusmtrp27e280ea520aa6d3b4d93dbaabaeab3b7~F2vLtMw2u0895108951eusmtrp2U;
-        Thu, 19 Sep 2019 13:46:22 +0000 (GMT)
-X-AuditID: cbfec7f4-ae1ff700000010d5-25-5d8386ae7489
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id B1.0A.04166.EA6838D5; Thu, 19
-        Sep 2019 14:46:22 +0100 (BST)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190919134621eusmtip1ea7d16f6768cd638aec9a2f87b94e507~F2vLQW_v40983909839eusmtip1g;
-        Thu, 19 Sep 2019 13:46:21 +0000 (GMT)
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-To:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Maciej Falkowski <m.falkowski@samsung.com>, krzk@kernel.org,
-        mark.rutland@arm.com, robh@kernel.org, a.hajda@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH v2 resend] ARM: dts: exynos: remove obsolete IRQ lines
-Date:   Thu, 19 Sep 2019 15:45:47 +0200
-Message-Id: <20190919134547.11671-1-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <CAJKOXPcs5K46U9mF8evCpbEap_j0Sd5kUk-xiWjwyihAL7te=Q@mail.gmail.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42LZduznOd31bc2xBquLLG6tO8dqMf8IkDh/
-        fgO7xeVdc9gsZpzfx2TxoHkdm8XaI3fZLZZev8hk8X/PDnYHTo8189Ywemxa1cnm0bdlFaPH
-        501yASxRXDYpqTmZZalF+nYJXBld0yaxFrzkq7g2YSlzA2MzTxcjJ4eEgInE056tbCC2kMAK
-        RokjXwS7GLmA7C+MEq2d15khnM+MEhPedLDBdFz5MZENIrGcUaJ7wTEWuJatL48yglSxCRhK
-        dL3tAusQEUiUuP27nx2kiFlgDaPEl2/vWLsYOTiEBdwkVi00B6lhEVCVaNx5hh3E5hWwldi9
-        9jkjxDZ5idUbDjCD2JwCgRI/3s9nApkjIfCdTWLvr6/sEEUuEms2HmeFsIUlXh3fAhWXkfi/
-        E6ahmVHi4bm17BBOD6PE5aYZUCusJQ4fvwh2EbOApsT6XfoQYUeJ/20LmEHCEgJ8EjfeCoKE
-        mYHMSdumQ4V5JTrahCCq1SRmHV8Ht/bghUvMELaHxLRpB9khAbSEUWLTkzXsExjlZyEsW8DI
-        uIpRPLW0ODc9tdgoL7Vcrzgxt7g0L10vOT93EyMwXZz+d/zLDsZdf5IOMQpwMCrx8CqUN8cK
-        sSaWFVfmHmKU4GBWEuGdY9oUK8SbklhZlVqUH19UmpNafIhRmoNFSZy3muFBtJBAemJJanZq
-        akFqEUyWiYNTqoFRTNDG031Z7PcX22cYq52r03dMCM2pDj5b9m3+AvstDyqeV8wrLJ5cx7Xj
-        Wn1GdVVqzqTq1CsSbJqnWpv4X6769V8gYn5KzVYOJ4YSc0ndZze/zl3U79iwRyH268kXj+T/
-        ZnuqGIs6CLxLvXTKdaZOxE4TO8Z/E6WM0+yKOVubmW/tPrZje64SS3FGoqEWc1FxIgCvvl85
-        EwMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrELMWRmVeSWpSXmKPExsVy+t/xu7rr2ppjDSa9Z7K4te4cq8X8I0Di
-        /PkN7BaXd81hs5hxfh+TxYPmdWwWa4/cZbdYev0ik8X/PTvYHTg91sxbw+ixaVUnm0ffllWM
-        Hp83yQWwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJalFunb
-        JehldE2bxFrwkq/i2oSlzA2MzTxdjJwcEgImEld+TGTrYuTiEBJYyihxZnszE0RCRuLktAZW
-        CFtY4s+1LqiiT4wSd57NYgZJsAkYSnS9BUlwcogIJEssPryTEaSIWWATo8TOFZeBHA4OYQE3
-        iVULzUFqWARUJRp3nmEHsXkFbCV2r33OCLFAXmL1hgNgMzkFAiV+vJ8PdoSQQIDEvIZrLBMY
-        +RYwMqxiFEktLc5Nzy021CtOzC0uzUvXS87P3cQIDN9tx35u3sF4aWPwIUYBDkYlHl6F8uZY
-        IdbEsuLK3EOMEhzMSiK8c0ybYoV4UxIrq1KL8uOLSnNSiw8xmgIdNZFZSjQ5HxhbeSXxhqaG
-        5haWhubG5sZmFkrivB0CB2OEBNITS1KzU1MLUotg+pg4OKUaGDvaDv9Tqm4QlawwWW/psmfa
-        /ecppeaN+hKuwle6eOKmxjQKlNvrvPm5PGNbl6Evg/6LN1JSJ+scnq5uO7jIbuHPPds+R2io
-        /WG5zrWwyJm9VUrcxnn3d70l1n2aATWJTx+ziemtsxHoPc8m84bJd0c584OLX2U+da+rdkl8
-        Y3o7b4W4+f4wJZbijERDLeai4kQA1esEIHUCAAA=
-X-CMS-MailID: 20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe
-References: <CAJKOXPcs5K46U9mF8evCpbEap_j0Sd5kUk-xiWjwyihAL7te=Q@mail.gmail.com>
-        <CGME20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe@eucas1p1.samsung.com>
+        id S2390531AbfISNqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 09:46:36 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:37000 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390323AbfISNqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 09:46:36 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8JDkRnV100805;
+        Thu, 19 Sep 2019 08:46:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568900787;
+        bh=vGbwM4NbY+he7iaH6paryMD4bbgV3tLQKkI1ZMsbxNk=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=CH8I4cVYQ5OiiVKH+B2TRZQTQy8GJL5/ITI9ukdXjj1SLvISkpR3EXiuZB62Edpfn
+         8d0RdvkrWVshPbP+UHXwPm6rprXvgmwsb+xG8xTGJ48PqmWD6MSzbCOEtEA3pIR964
+         ZJNbOUfjuD5K62bJtSlTAT+lyEc1AP6wVXFwbhQc=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8JDkRKN003387
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 19 Sep 2019 08:46:27 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 19
+ Sep 2019 08:46:23 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 19 Sep 2019 08:46:26 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8JDkQ8T115113;
+        Thu, 19 Sep 2019 08:46:26 -0500
+Subject: Re: [PATCH v11 1/2] dt-bindings: Add docs for EL15203000
+To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
+        <linux-leds@vger.kernel.org>, <jacek.anaszewski@gmail.com>,
+        <pavel@ucw.cz>
+References: <20190919125313.24081-1-oleg@kaa.org.ua>
+ <20190919125313.24081-2-oleg@kaa.org.ua>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <76f24ad8-a375-45f8-a1e1-f9e90bcbc95d@ti.com>
+Date:   Thu, 19 Sep 2019 08:49:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190919125313.24081-2-oleg@kaa.org.ua>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maciej Falkowski <m.falkowski@samsung.com>
+Oleh
 
-In commit 7222e8db2d50 ("iommu/exynos: Fix build errors") Exynos3250
-iommu driver stopped supporting two IRQ lines. The second IRQ line in DTS
-is ignored and is not needed.
-
-Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- arch/arm/boot/dts/exynos3250.dtsi | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
-index 784818490376..190d9160a5d1 100644
---- a/arch/arm/boot/dts/exynos3250.dtsi
-+++ b/arch/arm/boot/dts/exynos3250.dtsi
-@@ -314,8 +314,7 @@
- 		sysmmu_jpeg: sysmmu@11a60000 {
- 			compatible = "samsung,exynos-sysmmu";
- 			reg = <0x11a60000 0x1000>;
--			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "sysmmu", "master";
- 			clocks = <&cmu CLK_SMMUJPEG>, <&cmu CLK_JPEG>;
- 			power-domains = <&pd_cam>;
-@@ -355,8 +354,7 @@
- 		sysmmu_fimd0: sysmmu@11e20000 {
- 			compatible = "samsung,exynos-sysmmu";
- 			reg = <0x11e20000 0x1000>;
--			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "sysmmu", "master";
- 			clocks = <&cmu CLK_SMMUFIMD0>, <&cmu CLK_FIMD0>;
- 			power-domains = <&pd_lcd0>;
-@@ -507,8 +505,7 @@
- 		sysmmu_mfc: sysmmu@13620000 {
- 			compatible = "samsung,exynos-sysmmu";
- 			reg = <0x13620000 0x1000>;
--			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "sysmmu", "master";
- 			clocks = <&cmu CLK_SMMUMFC_L>, <&cmu CLK_MFC>;
- 			power-domains = <&pd_mfc>;
--- 
-2.17.1
-
-
-
+On 9/19/19 7:53 AM, Oleh Kravchenko wrote:
+> Add documentation and example for dt-bindings EL15203000.
+> LED board (aka RED LED board) from Crane Merchandising Systems.
+>
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+Reviewed-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>   .../bindings/leds/leds-el15203000.txt         | 69 +++++++++++++++++++
+>   1 file changed, 69 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-el15203000.txt
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-el15203000.txt b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
+> new file mode 100644
+> index 000000000000..1bcd341967f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
+> @@ -0,0 +1,69 @@
+> +Crane Merchandising System - EL15203000 LED driver
+> +--------------------------------------------------
+> +
+> +This LED Board (aka RED LEDs board) is widely used in
+> +coffee vending machines produced by Crane Merchandising Systems.
+> +The board manages 3 LEDs and supports predefined blinking patterns
+> +for specific leds.
+> +
+> +Vending area LED encoded with symbol 'V' (hex code 0x56).
+> +Doesn't have any hardware blinking pattern.
+> +
+> +Screen light tube LED which surrounds vending machine screen and
+> +encoded with symbol 'S' (hex code 0x53). Supports blinking breathing pattern.
+> +
+> +Water Pipe LED encoded with symbol 'P' (hex code 0x50) and
+> +actually consists from 5 LEDs that exposed by protocol like one LED.
+> +Supports next patterns:
+> +- cascade pattern
+> +- inversed cascade pattern
+> +- bounce pattern
+> +- inversed bounce pattern
+> +
+> +Required properties:
+> +- compatible : "crane,el15203000"
+> +- #address-cells : must be 1
+> +- #size-cells : must be 0
+> +
+> +Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
+> +apply. In particular, "reg" and "spi-max-frequency" properties must be given.
+> +
+> +Optional LED sub-node properties:
+> +- function:
+> +	see Documentation/devicetree/bindings/leds/common.txt
+> +- color:
+> +	see Documentation/devicetree/bindings/leds/common.txt
+> +
+> +Example
+> +-------
+> +
+> +#include <dt-bindings/leds/common.h>
+> +
+> +led-controller@0 {
+> +	compatible = "crane,el15203000";
+> +	reg = <0>;
+> +	spi-max-frequency = <50000>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	/* water pipe */
+> +	led@50 {
+> +		reg = <0x50>;
+> +		function = "pipe";
+> +		color = <LED_COLOR_ID_RED>;
+> +	};
+> +
+> +	/* screen frame */
+> +	led@53 {
+> +		reg = <0x53>;
+> +		function = "screen";
+> +		color = <LED_COLOR_ID_RED>;
+> +	};
+> +
+> +	/* vending area */
+> +	led@56 {
+> +		reg = <0x56>;
+> +		function = "vend";
+> +		color = <LED_COLOR_ID_RED>;
+> +	};
+> +};
