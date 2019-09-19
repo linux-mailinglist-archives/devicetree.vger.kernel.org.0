@@ -2,64 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA02CB8311
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 23:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C3FB834C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 23:28:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732873AbfISVBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 17:01:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47638 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730064AbfISVBs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Sep 2019 17:01:48 -0400
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 21FDE21907;
-        Thu, 19 Sep 2019 21:01:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568926908;
-        bh=pTzJxKFtHzsFwv08HHiMxyoILkD7Kk17iVtmqY6HnSw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QWr+eunpCbYG2cDPgzLFnPHIAtshnYRBoUOvuOgqCGLcnx9nWBayQStf51jNLBqD8
-         SyMxCbA3WnsalY/1+4JigVn1QGrF9DXY/3O20X2x72KsgdqlHMf7lux2Sp/ICdHZeh
-         pv/wnN+ZpUtCTspoAumsdwWUfhULgWHENIbfwAFM=
-Received: by mail-qt1-f170.google.com with SMTP id 3so3638572qta.1;
-        Thu, 19 Sep 2019 14:01:48 -0700 (PDT)
-X-Gm-Message-State: APjAAAXR3D8yOdVfwqFaQcbcBm+aasIdm0puLzZbjgDFsEGFC9Mpr5q3
-        SXyXqiljAVRsZBBolohr2qKM/mVOHWCJjhxMPA==
-X-Google-Smtp-Source: APXvYqxHBKF4+0mpQm4YpK6lBbUtMJVpbErIBqD7uo6MWilec40UMJ9sSjFXnGjKC27OI/MaLRWZOCYaL07yRJhb1Ik=
-X-Received: by 2002:ac8:444f:: with SMTP id m15mr5555945qtn.110.1568926907326;
- Thu, 19 Sep 2019 14:01:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <1568875145-2864-1-git-send-email-pragnesh.patel@sifive.com>
-In-Reply-To: <1568875145-2864-1-git-send-email-pragnesh.patel@sifive.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 19 Sep 2019 16:01:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJktitBsBuQ5Zsfj5xvK+5T8jBXbjJkTtqo+NXnZe56fA@mail.gmail.com>
-Message-ID: <CAL_JsqJktitBsBuQ5Zsfj5xvK+5T8jBXbjJkTtqo+NXnZe56fA@mail.gmail.com>
-Subject: Re: [PATCH] fixed-regulator: dt-bindings: Fixed building error for
- compatible property
-To:     Pragnesh Patel <pragnesh.patel@sifive.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S2392773AbfISV1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 17:27:32 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:38555 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392769AbfISV1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 17:27:32 -0400
+Received: by mail-pl1-f193.google.com with SMTP id w10so2191768plq.5
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 14:27:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1eFwN6VQoIVgZTWyIrMDT1Z2HKm27mGWj9Z/avCv2WM=;
+        b=WLLAVHKMkEqkBrDpAUPZfZ4ytCC0Dlr6FMIuwsZ9AN8V0mNiNaW0jkxD95BnZiHMxi
+         qarYueI8ei+IBtKxRMpotJ2s/Mu7DyoZMkUqsJ9CNz7GgdKrLBlOwiDogELObnn2UHpR
+         CGFCDa9DSeEbBcsNPanhYfWmTWJjwgz29GAMU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1eFwN6VQoIVgZTWyIrMDT1Z2HKm27mGWj9Z/avCv2WM=;
+        b=oSMJnDr4jpEE+4/1nJ/mop0oVo0PccxeSLJBukFxzMmVONogsvFTGngcqyoD42hXfo
+         X5tFLs4wyBq9HT1PbppCehSv6PS2Vr8nIO7BBMd8hN5AN43k7HfwTWAzlIG28yZmIrs2
+         VSk18GCmdwXSfRfS6BvZsC+ExEzjMFQ+sXw71dRY0zTxbvpqhuuly670tstW9wUqnQYY
+         GDQMYxnpwiGrrbfyIGoyqafL63hpGWsV/odzrW9obI5fPBXHZczT7t9wNw/jgJHoD9/r
+         Co2huEI9y/0+r6tlAg4LduvRTIzSRodqlsHU6FJT8Bp2nTV1za9VyWw9yznWc0I4fBLR
+         JFTg==
+X-Gm-Message-State: APjAAAX7UGHVymKDfSjoudUEUrmLowNpKFCZ2JNl95CJtBfYdqhVlUQe
+        rBE0Jthea3axeNBjBXvUsDybfg==
+X-Google-Smtp-Source: APXvYqzUrqDmlhSeuD997w0UB8kD5+ZRkrKOf7RYGruGWm+SZRArLf5CFPjvg0kYdcqo1SOAwcQ1sQ==
+X-Received: by 2002:a17:902:b20a:: with SMTP id t10mr12318381plr.277.1568928451427;
+        Thu, 19 Sep 2019 14:27:31 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
+        by smtp.gmail.com with ESMTPSA id 197sm28584015pge.39.2019.09.19.14.27.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2019 14:27:30 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     mka@chromium.org, Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: rockchip: Add cpu id to rk3288 efuse node
+Date:   Thu, 19 Sep 2019 14:26:41 -0700
+Message-Id: <20190919142611.1.I309434f00a2a9be71e4437991fe08abc12f06e2e@changeid>
+X-Mailer: git-send-email 2.23.0.351.gc4317032e6-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 19, 2019 at 1:39 AM Pragnesh Patel
-<pragnesh.patel@sifive.com> wrote:
->
-> Compatible property is not of type 'string', so remove const:
-> from it.
->
-> Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
-> ---
->  Documentation/devicetree/bindings/regulator/fixed-regulator.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+This just adds in another field of what's stored in the e-fuse on
+rk3288.  Though I can't personally promise that every rk3288 out there
+has the CPU ID stored in the eFuse at this location, there is some
+evidence that it is correct:
+- This matches what was in the Chrome OS 3.14 branch (see
+  EFUSE_CHIP_UID_OFFSET and EFUSE_CHIP_UID_LEN) for rk3288.
+- The upstream rk3399 dts file has this same data at the same offset
+  and with the same length, indiciating that this is likely common for
+  several modern Rockchip SoCs.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ arch/arm/boot/dts/rk3288.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index cc893e154fe5..415b48fc3ce8 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -1391,6 +1391,9 @@
+ 		clocks = <&cru PCLK_EFUSE256>;
+ 		clock-names = "pclk_efuse";
+ 
++		cpu_id: cpu-id@7 {
++			reg = <0x07 0x10>;
++		};
+ 		cpu_leakage: cpu_leakage@17 {
+ 			reg = <0x17 0x1>;
+ 		};
+-- 
+2.23.0.351.gc4317032e6-goog
+
