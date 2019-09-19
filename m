@@ -2,86 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD5FB7A88
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 15:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02FCAB7A8E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 15:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390003AbfISNbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 09:31:19 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35150 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389999AbfISNbT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 09:31:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=JyAlY6UIhywYtset6XBZK5PunxSRA0O1GFSEjQPW0TA=; b=NnhC7vS7q68YrtR4QJdielghM
-        DsttULbXxzytm4cpca5wYi6hou+RVfnKYOyEvIpILb5hexDq2F9CJPNVBiPQGTJLBWEVcbJ3Sqc4Q
-        h/pC8lIQKU5g7hqgZavVok/HXb5ZmiNtCe4Uveljk96pd9XwhI4hfWjUP0zsSa4pZX/2g=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iAwWg-0002pX-Uh; Thu, 19 Sep 2019 13:31:14 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 2019A2742939; Thu, 19 Sep 2019 14:31:14 +0100 (BST)
-Date:   Thu, 19 Sep 2019 14:31:13 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
+        id S2390107AbfISNcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 09:32:45 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:34604 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390044AbfISNcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 09:32:45 -0400
+Received: by mail-oi1-f195.google.com with SMTP id 83so2747018oii.1;
+        Thu, 19 Sep 2019 06:32:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=6Vbzint3TNkF0RwuJRnvSz0zFNi0mSUxmrLncCYz9Sc=;
+        b=OV6EVrlTMNweLWfFFk/d7AqbBHbtp8fHoNhSSqrGUc4RxoTzD6a4217jslhB+HBSQK
+         KX1SA2V6weBpFD4AacseJILPD98S8ktAw9ys2k19bBnJQ1lkVPVflEUuMecDmLzDejlF
+         3FhrB5LMUFeB/N9c+Kw6LpooC1IZw+GJzMVUbkAd2BWSHsCfnhyg4idtS5zDDQQMxM/T
+         CFlK/v+jSEglRDyKpIr+kTWrHc7sE2eWo+REC2YDf0qAxBVABJcR5VKIsHhAFdG3tWq8
+         N0VjCItt4wt3xlSmLo1L0bBiL5jo95eIcPhrghfe0UgjEiDI/97E+FJ73JyBMzeDnP0Z
+         HmJw==
+X-Gm-Message-State: APjAAAVl9RJiGon7LJnLnb5fwz06ilv/mU5Stk+kvnHwYzGVJHCCifv5
+        zZUJcOZUz1kGINokcitpnw==
+X-Google-Smtp-Source: APXvYqzK08G1BtpQyRdlr3bjTtuu66Pn1FaJm7NcodUZdbVk+gT9gx+YwSgdEuoRELSfmX52YLpvVA==
+X-Received: by 2002:aca:dcc4:: with SMTP id t187mr2208633oig.136.1568899963907;
+        Thu, 19 Sep 2019 06:32:43 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 17sm482618oiz.3.2019.09.19.06.32.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2019 06:32:42 -0700 (PDT)
+Date:   Thu, 19 Sep 2019 08:32:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Peter Rosin <peda@axentia.se>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] spi: dw: Add basic runtime PM support
-Message-ID: <20190919133113.GK3642@sirena.co.uk>
-References: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v2] of: restore old handling of cells_name=NULL in
+  of_*_phandle_with_args()
+Message-ID: <20190919133242.GA27990@bogus>
+References: <20190918063837.8196-1-u.kleine-koenig@pengutronix.de>
+ <b00ca30f-2c06-7722-96b2-123d15751cb6@axentia.se>
+ <20190918084748.hnjkiq7wc5b35wjh@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tcC6YSqBgqqkz7Sb"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
-X-Cookie: I'll be Grateful when they're Dead.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190918084748.hnjkiq7wc5b35wjh@pengutronix.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 18 Sep 2019 10:47:48 +0200, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?=          wrote:
+> Before commit e42ee61017f5 ("of: Let of_for_each_phandle fallback to
+> non-negative cell_count") the iterator functions calling
+> of_for_each_phandle assumed a cell count of 0 if cells_name was NULL.
+> This corner case was missed when implementing the fallback logic in
+> e42ee61017f5 and resulted in an endless loop.
+> 
+> Restore the old behaviour of of_count_phandle_with_args() and
+> of_parse_phandle_with_args() and add a check to
+> of_phandle_iterator_init() to prevent a similar failure as a safety
+> precaution. of_parse_phandle_with_args_map() doesn't need a similar fix
+> as cells_name isn't NULL there.
+> 
+> Affected drivers are:
+>  - drivers/base/power/domain.c
+>  - drivers/base/power/domain.c
+>  - drivers/clk/ti/clk-dra7-atl.c
+>  - drivers/hwmon/ibmpowernv.c
+>  - drivers/i2c/muxes/i2c-demux-pinctrl.c
+>  - drivers/iommu/mtk_iommu.c
+>  - drivers/net/ethernet/freescale/fman/mac.c
+>  - drivers/opp/of.c
+>  - drivers/perf/arm_dsu_pmu.c
+>  - drivers/regulator/of_regulator.c
+>  - drivers/remoteproc/imx_rproc.c
+>  - drivers/soc/rockchip/pm_domains.c
+>  - sound/soc/fsl/imx-audmix.c
+>  - sound/soc/fsl/imx-audmix.c
+>  - sound/soc/meson/axg-card.c
+>  - sound/soc/samsung/tm2_wm5110.c
+>  - sound/soc/samsung/tm2_wm5110.c
+> 
+> Thanks to Geert Uytterhoeven for reporting the issue, Peter Rosin for
+> helping pinpoint the actual problem and the testers for confirming this
+> fix.
+> 
+> Fixes: e42ee61017f5 ("of: Let of_for_each_phandle fallback to non-negative cell_count")
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> ---
+> 
+> On Wed, Sep 18, 2019 at 08:01:05AM +0000, Peter Rosin wrote:
+> > On 2019-09-18 08:38, Uwe Kleine-König wrote:
+> > >  EXPORT_SYMBOL(of_parse_phandle_with_args);
+> > >  
+> > > @@ -1765,6 +1779,18 @@ int of_count_phandle_with_args(const struct device_node *np, const char *list_na
+> > >  	struct of_phandle_iterator it;
+> > >  	int rc, cur_index = 0;
+> > >  
+> > > +	/* If cells_name is NULL we assume a cell count of 0 */
+> > > +	if (cells_name == NULL) {
+> > 
+> > A couple of nits.
+> > 
+> > I don't know if there are other considerations, but in the previous two
+> > hunks you use !cells_name instead of comparing explicitly with NULL.
+> > Personally, I find the shorter form more readable, and in the name of
+> > consistency bla bla...
+> 
+> Ack, changed to !cells_name here, too.
+> 
+> > 
+> > Also, the comment explaining this NULL-check didn't really make sense
+> > to me until I realized that knowing the cell count to be zero makes
+> > counting trivial. Something along those lines should perhaps be in the
+> > comment?
+> 
+> You're right, I extended the comment a bit.
+>  
+> > But as I said, these are nits. Feel free to ignore.
+> 
+> I considered resending already anyhow as I fatfingerd my email address.
+> this is fixed now, too. Additionally I fixed a typo in one of the
+> comments.
+> 
+> Thanks for your feedback.
+> 
+> Best regards
+> Uwe
+> 
+>  drivers/of/base.c | 35 +++++++++++++++++++++++++++++++++--
+>  1 file changed, 33 insertions(+), 2 deletions(-)
+> 
 
---tcC6YSqBgqqkz7Sb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks.
 
-On Wed, Sep 18, 2019 at 09:04:32AM +0100, Gareth Williams wrote:
-
-> Gareth Williams (1):
->   dt-bindings: snps,dw-apb-ssi: Add optional clock domain information
->=20
-> Phil Edworthy (3):
->   dt: spi: Add Renesas RZ/N1 binding documentation
-
-Please use subject lines matching the style for the subsystem.  This
-makes it easier for people to identify relevant patches.  This isn't
-even consistent within the series :(
-
---tcC6YSqBgqqkz7Sb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2DgyEACgkQJNaLcl1U
-h9CySAgAgDnSgZkYFNYM2rEOjD3mK2F8DU/d10qh1tJqQkX5Fo7DqE0mxuvcJfAM
-kdtdWxCG5DRh2q3iM2T7k20iU9tQOjiW3E0dL4W4pUSObgat68DxlTXe2ag/fntc
-VwC6D1+AIoNFnOXTYKYPt8Pp+NqBlgNxHByHW7KXxbbSDgslBZESYG9fLQBf+KJ/
-FrMgo8aRnez6Sv1adY2aCSGwZxK643tL5ZgVBdv3+KjObqdlSex4EbphqkEO8mVY
-eoGKz7X3EDv/IeJfHNoy3O3Y3w064iEnv8ioO6+XTKDiVkntQV1xxmDjnQs6fNy/
-A5PqKEMRpy36c5gNU3JP9C72+3PjxA==
-=73/l
------END PGP SIGNATURE-----
-
---tcC6YSqBgqqkz7Sb--
+Rob
