@@ -2,207 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC82AB78DA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 14:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA048B78E2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 14:06:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388661AbfISMDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 08:03:42 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:57370 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388575AbfISMDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 08:03:42 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 0999D25AD81;
-        Thu, 19 Sep 2019 22:03:39 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 103A194444E; Thu, 19 Sep 2019 14:03:37 +0200 (CEST)
-Date:   Thu, 19 Sep 2019 14:03:36 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas-irqc: convert bindings
- to json-schema
-Message-ID: <20190919120333.77qabr675rne7zlu@verge.net.au>
-References: <1568819121-32737-1-git-send-email-ykaneko0929@gmail.com>
+        id S2390118AbfISMGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 08:06:40 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44434 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390109AbfISMGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 08:06:40 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8JC6Vri122162;
+        Thu, 19 Sep 2019 07:06:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568894791;
+        bh=Fgg9PI8CGT84V1hXEN2LopExOj2bwZ2mgwiMPsavBVo=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=YvDWraA1R2DKN7uD6O6SIkk4E2Yfd3wN4+rdKIsR6E3Xs4wZlPUZPWf2+/TMiOwO9
+         SU2WpJaW2BpT7NKFXg+R9B4W+B7eqY3LurZTBxi1G9URx2gpCZ2PNsmm+I+doowIrb
+         VahF0IhK7APR0/vMOGSaB+jLL8msKF/iGyVoKt2c=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8JC6VL4010579;
+        Thu, 19 Sep 2019 07:06:31 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 19
+ Sep 2019 07:06:30 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 19 Sep 2019 07:06:26 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8JC6UOC052573;
+        Thu, 19 Sep 2019 07:06:30 -0500
+Subject: Re: [PATCH v10 1/2] dt-bindings: Add docs for EL15203000
+To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
+        <linux-leds@vger.kernel.org>, <jacek.anaszewski@gmail.com>,
+        <pavel@ucw.cz>
+References: <20190919083518.21569-1-oleg@kaa.org.ua>
+ <20190919083518.21569-2-oleg@kaa.org.ua>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <bc46d0ac-8519-66ac-5dd7-be169337fdf6@ti.com>
+Date:   Thu, 19 Sep 2019 07:09:17 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1568819121-32737-1-git-send-email-ykaneko0929@gmail.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190919083518.21569-2-oleg@kaa.org.ua>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 19, 2019 at 12:05:21AM +0900, Yoshihiro Kaneko wrote:
-> Convert Renesas Interrupt Controller bindings documentation to json-schema.
-> 
-> Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
+Oleh
+
+On 9/19/19 3:35 AM, Oleh Kravchenko wrote:
+> Add documentation and example for dt-bindings EL15203000.
+> LED board (aka RED LED board) from Crane Merchandising Systems.
+>
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
 > ---
-> 
-> v2
-> - Add SPDX tag.
-> - Document interrupt-contoller, reg, interrupts, power-domains and resets
->   properties.
-> - Add addtionalProperties.
-> 
-> ---
->  .../bindings/interrupt-controller/renesas,irqc.txt | 48 -------------
->  .../interrupt-controller/renesas,irqc.yaml         | 84 ++++++++++++++++++++++
->  2 files changed, 84 insertions(+), 48 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
-> deleted file mode 100644
-> index f977ea7..0000000
-> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
-> +++ /dev/null
-> @@ -1,48 +0,0 @@
-> -DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
-> -
-> -Required properties:
-> -
-> -- compatible: must be "renesas,irqc-<soctype>" or "renesas,intc-ex-<soctype>",
-> -	      and "renesas,irqc" as fallback.
-> -  Examples with soctypes are:
-> -    - "renesas,irqc-r8a73a4" (R-Mobile APE6)
-> -    - "renesas,irqc-r8a7743" (RZ/G1M)
-> -    - "renesas,irqc-r8a7744" (RZ/G1N)
-> -    - "renesas,irqc-r8a7745" (RZ/G1E)
-> -    - "renesas,irqc-r8a77470" (RZ/G1C)
-> -    - "renesas,irqc-r8a7790" (R-Car H2)
-> -    - "renesas,irqc-r8a7791" (R-Car M2-W)
-> -    - "renesas,irqc-r8a7792" (R-Car V2H)
-> -    - "renesas,irqc-r8a7793" (R-Car M2-N)
-> -    - "renesas,irqc-r8a7794" (R-Car E2)
-> -    - "renesas,intc-ex-r8a774a1" (RZ/G2M)
-> -    - "renesas,intc-ex-r8a774c0" (RZ/G2E)
-> -    - "renesas,intc-ex-r8a7795" (R-Car H3)
-> -    - "renesas,intc-ex-r8a7796" (R-Car M3-W)
-> -    - "renesas,intc-ex-r8a77965" (R-Car M3-N)
-> -    - "renesas,intc-ex-r8a77970" (R-Car V3M)
-> -    - "renesas,intc-ex-r8a77980" (R-Car V3H)
-> -    - "renesas,intc-ex-r8a77990" (R-Car E3)
-> -    - "renesas,intc-ex-r8a77995" (R-Car D3)
-> -- #interrupt-cells: has to be <2>: an interrupt index and flags, as defined in
-> -  interrupts.txt in this directory
-> -- clocks: Must contain a reference to the functional clock.
-> -
-> -Optional properties:
-> -
-> -- any properties, listed in interrupts.txt, and any standard resource allocation
-> -  properties
-> -
-> -Example:
-> -
-> -	irqc0: interrupt-controller@e61c0000 {
-> -		compatible = "renesas,irqc-r8a7790", "renesas,irqc";
-> -		#interrupt-cells = <2>;
-> -		interrupt-controller;
-> -		reg = <0 0xe61c0000 0 0x200>;
-> -		interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <0 1 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <0 2 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <0 3 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&mstp4_clks R8A7790_CLK_IRQC>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+>   .../bindings/leds/leds-el15203000.txt         | 71 +++++++++++++++++++
+>   1 file changed, 71 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-el15203000.txt
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-el15203000.txt b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
 > new file mode 100644
-> index 0000000..18497c3
+> index 000000000000..0091cd6d055c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,irqc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/Documentation/devicetree/bindings/leds/leds-el15203000.txt
+> @@ -0,0 +1,71 @@
+> +Crane Merchandising System - EL15203000 LED driver
+> +--------------------------------------------------
 > +
-> +title: DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
+> +This LED Board (aka RED LEDs board) is widely used in
+> +coffee vending machines produced by Crane Merchandising Systems.
+> +The board manages 3 LEDs and supports predefined blinking patterns
+> +for specific leds.
 > +
-> +maintainers:
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +Vending area LED encoded with symbol 'V' (hex code 0x56).
+> +Doesn't have any hardware blinking pattern.
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,irqc-r8a73a4        # R-Mobile APE6
-> +          - renesas,irqc-r8a7743        # RZ/G1M
-> +          - renesas,irqc-r8a7744        # RZ/G1N
-> +          - renesas,irqc-r8a7745        # RZ/G1E
-> +          - renesas,irqc-r8a77470       # RZ/G1C
-> +          - renesas,irqc-r8a7790        # R-Car H2
-> +          - renesas,irqc-r8a7791        # R-Car M2-W
-> +          - renesas,irqc-r8a7792        # R-Car V2H
-> +          - renesas,irqc-r8a7793        # R-Car M2-N
-> +          - renesas,irqc-r8a7794        # R-Car E2
-> +          - renesas,intc-ex-r8a774a1    # RZ/G2M
-> +          - renesas,intc-ex-r8a774c0    # RZ/G2E
-> +          - renesas,intc-ex-r8a7795     # R-Car H3
-> +          - renesas,intc-ex-r8a7796     # R-Car M3-W
-> +          - renesas,intc-ex-r8a77965    # R-Car M3-N
-> +          - renesas,intc-ex-r8a77970    # R-Car V3M
-> +          - renesas,intc-ex-r8a77980    # R-Car V3H
-> +          - renesas,intc-ex-r8a77990    # R-Car E3
-> +          - renesas,intc-ex-r8a77995    # R-Car D3
-> +      - const: renesas,irqc
+> +Screen light tube LED which surrounds vending machine screen and
+> +encoded with symbol 'S' (hex code 0x53). Supports blinking breathing pattern.
 > +
-> +  '#interrupt-cells':
-> +    # an interrupt index and flags, as defined in interrupts.txt in
-> +    # this directory
-> +    const: 2
+> +Water Pipe LED encoded with symbol 'P' (hex code 0x50) and
+> +actually consists from 5 LEDs that exposed by protocol like one LED.
+> +Supports next patterns:
+> +- cascade pattern
+> +- inversed cascade pattern
+> +- bounce pattern
+> +- inversed bounce pattern
 > +
-> +  interrupt-controller: true
+> +Required properties:
+> +- compatible : "crane,el15203000"
+> +- #address-cells : must be 1
+> +- #size-cells : must be 0
 > +
-> +  reg:
-> +    maxItems: 1
+> +Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
+> +apply. In particular, "reg" and "spi-max-frequency" properties must be given.
 > +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 32
+> +Optional LED sub-node properties:
+> +- function:
+> +	see Documentation/devicetree/bindings/leds/common.txt
+> +- color:
+> +	see Documentation/devicetree/bindings/leds/common.txt
+> +- label:
+> +	see Documentation/devicetree/bindings/leds/common.txt (deprecated)
 
-Is 'interrupts' required?
+You missed this in my v7 comments you should remove the label property.
 
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#interrupt-cells'
-> +  - interrupt-controller
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/r8a7790-clock.h>
-> +
-> +    irqc0: interrupt-controller@e61c0000 {
-> +        compatible = "renesas,irqc-r8a7790", "renesas,irqc";
-> +        #interrupt-cells = <2>;
-> +        interrupt-controller;
-> +        reg = <0 0xe61c0000 0 0x200>;
-> +        interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <0 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <0 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <0 3 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&mstp4_clks R8A7790_CLK_IRQC>;
-> +    };
-> -- 
-> 1.9.1
-> 
+https://www.spinics.net/lists/linux-leds/msg13288.html
+
+Dan
+
+
