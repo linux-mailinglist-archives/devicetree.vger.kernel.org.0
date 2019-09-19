@@ -2,596 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10834B7532
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D6C0B7537
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388194AbfISIfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 04:35:33 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:57314 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387617AbfISIfd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Sep 2019 04:35:33 -0400
-Received: from oleh-pc.lan (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id 17F281A2443C;
-        Thu, 19 Sep 2019 11:35:30 +0300 (EEST)
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz, dmurphy@ti.com
-Cc:     Oleh Kravchenko <oleg@kaa.org.ua>
-Subject: [PATCH v10 2/2] leds: add LED driver for EL15203000 board
-Date:   Thu, 19 Sep 2019 11:35:18 +0300
-Message-Id: <20190919083518.21569-3-oleg@kaa.org.ua>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190919083518.21569-1-oleg@kaa.org.ua>
-References: <20190919083518.21569-1-oleg@kaa.org.ua>
+        id S2388135AbfISIg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 04:36:27 -0400
+Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:62326 "EHLO
+        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387617AbfISIg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 04:36:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1568882184; x=1600418184;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=peYmu9C6wVgjhm29Lt+//jwlKJnQBBI6R1TRcKcWe7s=;
+  b=jaDPDGHJJlh2HqOBo8rR38uPHwPpzx+7pVGRkJtIfhP8VDAdwapmk/ux
+   daAiNm0qtXS7Wp/v2N+A66e0ZESJTBj3vJiEZmMpKXEikv42AwN8aaynS
+   RuvUDvXP1S7iGzlkCp+fDMawPS8qNOXLjZBlDapDMv5fPVrY7WfB1mJCw
+   A=;
+X-IronPort-AV: E=Sophos;i="5.64,522,1559520000"; 
+   d="scan'208";a="421981783"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2c-6f38efd9.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 19 Sep 2019 08:36:22 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
+        by email-inbound-relay-2c-6f38efd9.us-west-2.amazon.com (Postfix) with ESMTPS id D0453A1C03;
+        Thu, 19 Sep 2019 08:36:20 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 19 Sep 2019 08:36:20 +0000
+Received: from [10.125.238.52] (10.43.160.153) by EX13D01EUB001.ant.amazon.com
+ (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Thu, 19 Sep
+ 2019 08:36:11 +0000
+Subject: Re: [PATCH v2 2/2] EDAC: al-mc-edac: Introduce Amazon's Annapurna
+ Labs Memory Controller EDAC
+To:     James Morse <james.morse@arm.com>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <bp@alien8.de>,
+        <mchehab@kernel.org>, <davem@davemloft.net>,
+        <gregkh@linuxfoundation.org>, <nicolas.ferre@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-edac@vger.kernel.org>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <hhhawa@amazon.com>,
+        <ronenk@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <amirkl@amazon.com>, <barakw@amazon.com>
+References: <1568529835-15319-1-git-send-email-talel@amazon.com>
+ <1568529835-15319-3-git-send-email-talel@amazon.com>
+ <4f6cd17c-c56f-b9d2-d6e0-1711de415f47@arm.com>
+From:   "Shenhar, Talel" <talel@amazon.com>
+Message-ID: <fe52b9bb-6d3a-92be-b54a-c93003cc9b4b@amazon.com>
+Date:   Thu, 19 Sep 2019 11:36:06 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <4f6cd17c-c56f-b9d2-d6e0-1711de415f47@arm.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.43.160.153]
+X-ClientProxiedBy: EX13D21UWA002.ant.amazon.com (10.43.160.246) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a LED class driver for the LEDs found on
-the Crane Merchandising System EL15203000 LEDs board
-(aka RED LEDs board).
+Thanks for the review.
 
-Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
-Reviewed-by: Dan Murphy <dmurphy@ti.com>
----
- .../testing/sysfs-class-led-driver-el15203000 | 139 +++++++
- drivers/leds/Kconfig                          |  13 +
- drivers/leds/Makefile                         |   1 +
- drivers/leds/leds-el15203000.c                | 357 ++++++++++++++++++
- 4 files changed, 510 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-el15203000
- create mode 100644 drivers/leds/leds-el15203000.c
 
-diff --git a/Documentation/ABI/testing/sysfs-class-led-driver-el15203000 b/Documentation/ABI/testing/sysfs-class-led-driver-el15203000
-new file mode 100644
-index 000000000000..f520ece9b64c
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-led-driver-el15203000
-@@ -0,0 +1,139 @@
-+What:		/sys/class/leds/<led>/hw_pattern
-+Date:		September 2019
-+KernelVersion:	5.5
-+Description:
-+		Specify a hardware pattern for the EL15203000 LED.
-+		The LEDs board supports only predefined patterns by firmware
-+		for specific LEDs.
-+
-+		Breathing mode for Screen frame light tube:
-+		"0 4000 1 4000"
-+
-+		    ^
-+		    |
-+		Max-|     ---
-+		    |    /   \
-+		    |   /     \
-+		    |  /       \     /
-+		    | /         \   /
-+		Min-|-           ---
-+		    |
-+		    0------4------8--> time (sec)
-+
-+		Cascade mode for Pipe LED:
-+		"1 800 2 800 4 800 8 800 16 800"
-+
-+		      ^
-+		      |
-+		0 On -|----+                   +----+                   +---
-+		      |    |                   |    |                   |
-+		  Off-|    +-------------------+    +-------------------+
-+		      |
-+		1 On -|    +----+                   +----+
-+		      |    |    |                   |    |
-+		  Off |----+    +-------------------+    +------------------
-+		      |
-+		2 On -|         +----+                   +----+
-+		      |         |    |                   |    |
-+		  Off-|---------+    +-------------------+    +-------------
-+		      |
-+		3 On -|              +----+                   +----+
-+		      |              |    |                   |    |
-+		  Off-|--------------+    +-------------------+    +--------
-+		      |
-+		4 On -|                   +----+                   +----+
-+		      |                   |    |                   |    |
-+		  Off-|-------------------+    +-------------------+    +---
-+		      |
-+		      0---0.8--1.6--2.4--3.2---4---4.8--5.6--6.4--7.2---8--> time (sec)
-+
-+		Inverted cascade mode for Pipe LED:
-+		"30 800 29 800 27 800 23 800 15 800"
-+
-+		      ^
-+		      |
-+		0 On -|    +-------------------+    +-------------------+
-+		      |    |                   |    |                   |
-+		  Off-|----+                   +----+                   +---
-+		      |
-+		1 On -|----+    +-------------------+    +------------------
-+		      |    |    |                   |    |
-+		  Off |    +----+                   +----+
-+		      |
-+		2 On -|---------+    +-------------------+    +-------------
-+		      |         |    |                   |    |
-+		  Off-|         +----+                   +----+
-+		      |
-+		3 On -|--------------+    +-------------------+    +--------
-+		      |              |    |                   |    |
-+		  Off-|              +----+                   +----+
-+		      |
-+		4 On -|-------------------+    +-------------------+    +---
-+		      |                   |    |                   |    |
-+		  Off-|                   +----+                   +----+
-+		      |
-+		      0---0.8--1.6--2.4--3.2---4---4.8--5.6--6.4--7.2---8--> time (sec)
-+
-+		Bounce mode for Pipe LED:
-+		"1 800 2 800 4 800 8 800 16 800 16 800 8 800 4 800 2 800 1 800"
-+
-+		      ^
-+		      |
-+		0 On -|----+                                       +--------
-+		      |    |                                       |
-+		  Off-|    +---------------------------------------+
-+		      |
-+		1 On -|    +----+                             +----+
-+		      |    |    |                             |    |
-+		  Off |----+    +-----------------------------+    +--------
-+		      |
-+		2 On -|         +----+                   +----+
-+		      |         |    |                   |    |
-+		  Off-|---------+    +-------------------+    +-------------
-+		      |
-+		3 On -|              +----+         +----+
-+		      |              |    |         |    |
-+		  Off-|--------------+    +---------+    +------------------
-+		      |
-+		4 On -|                   +---------+
-+		      |                   |         |
-+		  Off-|-------------------+         +-----------------------
-+		      |
-+		      0---0.8--1.6--2.4--3.2---4---4.8--5.6--6.4--7.2---8--> time (sec)
-+
-+		Inverted bounce mode for Pipe LED:
-+		"30 800 29 800 27 800 23 800 15 800 15 800 23 800 27 800 29 800 30 800"
-+
-+		      ^
-+		      |
-+		0 On -|    +---------------------------------------+
-+		      |    |                                       |
-+		  Off-|----+                                       +--------
-+		      |
-+		1 On -|----+    +-----------------------------+    +--------
-+		      |    |    |                             |    |
-+		  Off |    +----+                             +----+
-+		      |
-+		2 On -|---------+    +-------------------+    +-------------
-+		      |         |    |                   |    |
-+		  Off-|         +----+                   +----+
-+		      |
-+		3 On -|--------------+    +---------+    +------------------
-+		      |              |    |         |    |
-+		  Off-|              +----+         +----+
-+		      |
-+		4 On -|-------------------+         +-----------------------
-+		      |                   |         |
-+		  Off-|                   +---------+
-+		      |
-+		      0---0.8--1.6--2.4--3.2---4---4.8--5.6--6.4--7.2---8--> time (sec)
-+
-+What:		/sys/class/leds/<led>/repeat
-+Date:		September 2019
-+KernelVersion:	5.5
-+Description:
-+		EL15203000 supports only indefinitely patterns,
-+		so this file should always store -1.
-+
-+		For more info, please see:
-+		Documentation/ABI/testing/sysfs-class-led-trigger-pattern
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 1988de1d64c0..6e7703fd03d0 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -132,6 +132,19 @@ config LEDS_CR0014114
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-cr0014114.
- 
-+config LEDS_EL15203000
-+	tristate "LED Support for Crane EL15203000"
-+	depends on LEDS_CLASS
-+	depends on SPI
-+	depends on OF
-+	help
-+	  This option enables support for EL15203000 LED Board
-+	  (aka RED LED board) which is widely used in coffee vending
-+	  machines produced by Crane Merchandising Systems.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-el15203000.
-+
- config LEDS_LM3530
- 	tristate "LCD Backlight driver for LM3530"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 41fb073a39c1..2da39e896ce8 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_LEDS_LM36274)		+= leds-lm36274.o
- # LED SPI Drivers
- obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
- obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
-+obj-$(CONFIG_LEDS_EL15203000)		+= leds-el15203000.o
- 
- # LED Userspace Drivers
- obj-$(CONFIG_LEDS_USER)			+= uleds.o
-diff --git a/drivers/leds/leds-el15203000.c b/drivers/leds/leds-el15203000.c
-new file mode 100644
-index 000000000000..298b13e4807a
---- /dev/null
-+++ b/drivers/leds/leds-el15203000.c
-@@ -0,0 +1,357 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Crane Merchandising Systems. All rights reserved.
-+// Copyright (C) 2019 Oleh Kravchenko <oleg@kaa.org.ua>
-+
-+#include <linux/delay.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi.h>
-+
-+/*
-+ * EL15203000 SPI protocol description:
-+ * +-----+---------+
-+ * | LED | COMMAND |
-+ * +-----+---------+
-+ * |  1  |    1    |
-+ * +-----+---------+
-+ * (*) LEDs MCU board expects 20 msec delay per byte.
-+ *
-+ * LEDs:
-+ * +----------+--------------+-------------------------------------------+
-+ * |    ID    |     NAME     |         DESCRIPTION                       |
-+ * +----------+--------------+-------------------------------------------+
-+ * | 'P' 0x50 |     Pipe     | Consists from 5 LEDs, controlled by board |
-+ * +----------+--------------+-------------------------------------------+
-+ * | 'S' 0x53 | Screen frame | Light tube around the screen              |
-+ * +----------+--------------+-------------------------------------------+
-+ * | 'V' 0x56 | Vending area | Highlights a cup of coffee                |
-+ * +----------+--------------+-------------------------------------------+
-+ *
-+ * COMMAND:
-+ * +----------+-----------------+--------------+--------------+
-+ * |  VALUES  |       PIPE      | SCREEN FRAME | VENDING AREA |
-+ * +----------+-----------------+--------------+--------------+
-+ * | '0' 0x30 |                      Off                      |
-+ * +----------+-----------------------------------------------+
-+ * | '1' 0x31 |                      On                       |
-+ * +----------+-----------------+--------------+--------------+
-+ * | '2' 0x32 |     Cascade     |   Breathing  |
-+ * +----------+-----------------+--------------+
-+ * | '3' 0x33 | Inverse cascade |
-+ * +----------+-----------------+
-+ * | '4' 0x34 |     Bounce      |
-+ * +----------+-----------------+
-+ * | '5' 0x35 | Inverse bounce  |
-+ * +----------+-----------------+
-+ */
-+
-+/* EL15203000 default settings */
-+#define EL_FW_DELAY_USEC	20000ul
-+#define EL_PATTERN_DELAY_MSEC	800u
-+#define EL_PATTERN_LEN		10u
-+#define EL_PATTERN_HALF_LEN	(EL_PATTERN_LEN / 2)
-+
-+enum el15203000_command {
-+	/* for all LEDs */
-+	EL_OFF			= '0',
-+	EL_ON			= '1',
-+
-+	/* for Screen LED */
-+	EL_SCREEN_BREATHING	= '2',
-+
-+	/* for Pipe LED */
-+	EL_PIPE_CASCADE		= '2',
-+	EL_PIPE_INV_CASCADE	= '3',
-+	EL_PIPE_BOUNCE		= '4',
-+	EL_PIPE_INV_BOUNCE	= '5',
-+};
-+
-+struct el15203000_led {
-+	struct el15203000	*priv;
-+	struct led_classdev	ldev;
-+	u32			reg;
-+};
-+
-+struct el15203000 {
-+	struct device		*dev;
-+	struct mutex		lock;
-+	struct spi_device	*spi;
-+	unsigned long		delay;
-+	size_t			count;
-+	struct el15203000_led	leds[];
-+};
-+
-+static int el15203000_cmd(struct el15203000_led *led, u8 brightness)
-+{
-+	int		ret;
-+	u8		cmd[2];
-+	size_t		i;
-+
-+	mutex_lock(&led->priv->lock);
-+
-+	dev_dbg(led->priv->dev, "Set brightness of 0x%02x(%c) to 0x%02x(%c)",
-+		led->reg, led->reg, brightness, brightness);
-+
-+	/* to avoid SPI mistiming with firmware we should wait some time */
-+	if (time_after(led->priv->delay, jiffies)) {
-+		dev_dbg(led->priv->dev, "Wait %luus to sync",
-+			EL_FW_DELAY_USEC);
-+
-+		usleep_range(EL_FW_DELAY_USEC,
-+			     EL_FW_DELAY_USEC + 1);
-+	}
-+
-+	cmd[0] = led->reg;
-+	cmd[1] = brightness;
-+
-+	for (i = 0; i < ARRAY_SIZE(cmd); i++) {
-+		if (i)
-+			usleep_range(EL_FW_DELAY_USEC,
-+				     EL_FW_DELAY_USEC + 1);
-+
-+		ret = spi_write(led->priv->spi, &cmd[i], sizeof(cmd[i]));
-+		if (ret) {
-+			dev_err(led->priv->dev,
-+				"spi_write() error %d", ret);
-+			break;
-+		}
-+	}
-+
-+	led->priv->delay = jiffies + usecs_to_jiffies(EL_FW_DELAY_USEC);
-+
-+	mutex_unlock(&led->priv->lock);
-+
-+	return ret;
-+}
-+
-+static int el15203000_set_blocking(struct led_classdev *ldev,
-+				   enum led_brightness brightness)
-+{
-+	struct el15203000_led *led = container_of(ldev,
-+						  struct el15203000_led,
-+						  ldev);
-+
-+	return el15203000_cmd(led, brightness == LED_OFF ? EL_OFF : EL_ON);
-+}
-+
-+static int el15203000_pattern_set_S(struct led_classdev *ldev,
-+				    struct led_pattern *pattern,
-+				    u32 len, int repeat)
-+{
-+	struct el15203000_led *led = container_of(ldev,
-+						  struct el15203000_led,
-+						  ldev);
-+
-+	if (repeat > 0 || len != 2 ||
-+	    pattern[0].delta_t != 4000 || pattern[0].brightness != 0 ||
-+	    pattern[1].delta_t != 4000 || pattern[1].brightness != 1)
-+		return -EINVAL;
-+
-+	dev_dbg(led->priv->dev, "Breathing mode for 0x%02x(%c)",
-+		led->reg, led->reg);
-+
-+	return el15203000_cmd(led, EL_SCREEN_BREATHING);
-+}
-+
-+static bool is_cascade(const struct led_pattern *pattern, u32 len,
-+		       bool inv, bool right)
-+{
-+	int val, t;
-+	u32 i;
-+
-+	if (len != EL_PATTERN_HALF_LEN)
-+		return false;
-+
-+	val = right ? BIT(4) : BIT(0);
-+
-+	for (i = 0; i < len; i++) {
-+		t = inv ? ~val & GENMASK(4, 0) : val;
-+
-+		if (pattern[i].delta_t != EL_PATTERN_DELAY_MSEC ||
-+		    pattern[i].brightness != t)
-+			return false;
-+
-+		val = right ? val >> 1 : val << 1;
-+	}
-+
-+	return true;
-+}
-+
-+static bool is_bounce(const struct led_pattern *pattern, u32 len, bool inv)
-+{
-+	if (len != EL_PATTERN_LEN)
-+		return false;
-+
-+	return is_cascade(pattern, EL_PATTERN_HALF_LEN, inv, false) &&
-+	       is_cascade(pattern + EL_PATTERN_HALF_LEN,
-+			  EL_PATTERN_HALF_LEN, inv, true);
-+}
-+
-+static int el15203000_pattern_set_P(struct led_classdev *ldev,
-+				    struct led_pattern *pattern,
-+				    u32 len, int repeat)
-+{
-+	u8			cmd;
-+	struct el15203000_led	*led = container_of(ldev,
-+						    struct el15203000_led,
-+						    ldev);
-+
-+	if (repeat > 0)
-+		return -EINVAL;
-+
-+	if (is_cascade(pattern, len, false, false)) {
-+		dev_dbg(led->priv->dev, "Cascade mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_CASCADE;
-+	} else if (is_cascade(pattern, len, true, false)) {
-+		dev_dbg(led->priv->dev, "Inverse cascade mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_INV_CASCADE;
-+	} else if (is_bounce(pattern, len, false)) {
-+		dev_dbg(led->priv->dev, "Bounce mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_BOUNCE;
-+	} else if (is_bounce(pattern, len, true)) {
-+		dev_dbg(led->priv->dev, "Inverse bounce mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_INV_BOUNCE;
-+	} else {
-+		dev_err(led->priv->dev, "Invalid hw_pattern for 0x%02x(%c)!",
-+			led->reg, led->reg);
-+
-+		return -EINVAL;
-+	}
-+
-+	return el15203000_cmd(led, cmd);
-+}
-+
-+static int el15203000_pattern_clear(struct led_classdev *ldev)
-+{
-+	struct el15203000_led	*led = container_of(ldev,
-+						    struct el15203000_led,
-+						    ldev);
-+
-+	return el15203000_cmd(led, EL_OFF);
-+}
-+
-+static int el15203000_probe_dt(struct el15203000 *priv)
-+{
-+	struct el15203000_led	*led = priv->leds;
-+	struct fwnode_handle	*child;
-+	int			ret;
-+
-+	device_for_each_child_node(priv->dev, child) {
-+		struct led_init_data init_data = {};
-+
-+		ret = fwnode_property_read_u32(child, "reg", &led->reg);
-+		if (ret) {
-+			dev_err(priv->dev, "LED without ID number");
-+			fwnode_handle_put(child);
-+
-+			break;
-+		}
-+
-+		if (led->reg > U8_MAX) {
-+			dev_err(priv->dev, "LED value %d is invalid", led->reg);
-+			fwnode_handle_put(child);
-+
-+			return -EINVAL;
-+		}
-+
-+		fwnode_property_read_string(child, "linux,default-trigger",
-+					    &led->ldev.default_trigger);
-+
-+		led->priv			  = priv;
-+		led->ldev.max_brightness	  = LED_ON;
-+		led->ldev.brightness_set_blocking = el15203000_set_blocking;
-+
-+		if (led->reg == 'S') {
-+			led->ldev.pattern_set	= el15203000_pattern_set_S;
-+			led->ldev.pattern_clear	= el15203000_pattern_clear;
-+		} else if (led->reg == 'P') {
-+			led->ldev.pattern_set	= el15203000_pattern_set_P;
-+			led->ldev.pattern_clear	= el15203000_pattern_clear;
-+		}
-+
-+		init_data.fwnode = child;
-+		ret = devm_led_classdev_register_ext(priv->dev, &led->ldev,
-+						     &init_data);
-+		if (ret) {
-+			dev_err(priv->dev,
-+				"failed to register LED device %s, err %d",
-+				led->ldev.name, ret);
-+			fwnode_handle_put(child);
-+
-+			break;
-+		}
-+
-+		led++;
-+	}
-+
-+	return ret;
-+}
-+
-+static int el15203000_probe(struct spi_device *spi)
-+{
-+	struct el15203000	*priv;
-+	size_t			count;
-+
-+	count = device_get_child_node_count(&spi->dev);
-+	if (!count) {
-+		dev_err(&spi->dev, "LEDs are not defined in device tree!");
-+		return -ENODEV;
-+	}
-+
-+	priv = devm_kzalloc(&spi->dev, struct_size(priv, leds, count),
-+			    GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	mutex_init(&priv->lock);
-+	priv->count	= count;
-+	priv->dev	= &spi->dev;
-+	priv->spi	= spi;
-+	priv->delay	= jiffies -
-+			  usecs_to_jiffies(EL_FW_DELAY_USEC);
-+
-+	spi_set_drvdata(spi, priv);
-+
-+	return el15203000_probe_dt(priv);
-+}
-+
-+static int el15203000_remove(struct spi_device *spi)
-+{
-+	struct el15203000 *priv = spi_get_drvdata(spi);
-+
-+	mutex_destroy(&priv->lock);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id el15203000_dt_ids[] = {
-+	{ .compatible = "crane,el15203000", },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, el15203000_dt_ids);
-+
-+static struct spi_driver el15203000_driver = {
-+	.probe		= el15203000_probe,
-+	.remove		= el15203000_remove,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= el15203000_dt_ids,
-+	},
-+};
-+
-+module_spi_driver(el15203000_driver);
-+
-+MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
-+MODULE_DESCRIPTION("el15203000 LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("spi:el15203000");
--- 
-2.21.0
+On 9/18/2019 8:47 PM, James Morse wrote:
+> Hi Talel,
+>
+> On 15/09/2019 07:43, Talel Shenhar wrote:
+>> The Amazon's Annapurna Labs Memory Controller EDAC supports ECC capability
+>> for error detection and correction (Single bit error correction, Double
+>> detection). This driver introduces EDAC driver for that capability.
+> Is there any documentation for this memory controller?
+Unfortunately, we don't have public documentation for it.
+>
+>
+>> diff --git a/drivers/edac/al_mc_edac.c b/drivers/edac/al_mc_edac.c
+>> new file mode 100644
+>> index 0000000..f9763d4
+>> --- /dev/null
+>> +++ b/drivers/edac/al_mc_edac.c
+>> @@ -0,0 +1,382 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+>> + */
+>> +#include <linux/bitfield.h>
+> #include <linux/bitops.h> for hweight_long()
 
+shall be part of v3.
+
+btw: do you use some tool to catch those missing includes?
+
+>
+>> +#include <linux/edac.h>
+>> +#include <linux/of_irq.h>
+> #include <linux/platform_device.h> for platform_get_resource()
+shall be part of v3.
+>
+>> +#include "edac_module.h"
+>> +/* Registers Values */
+>> +#define AL_MC_MSTR_DEV_CFG_X4	0
+>> +#define AL_MC_MSTR_DEV_CFG_X8	1
+>> +#define AL_MC_MSTR_DEV_CFG_X16	2
+>> +#define AL_MC_MSTR_DEV_CFG_X32	3
+>> +#define AL_MC_MSTR_RANKS_MAX 4
+> Is this a fixed property of the memory controller, or is it a limit imposed from somewhere
+> else. (Does it need to come from the DT?)
+
+Yes. this is a fixed behavior hence not part of dt.
+
+>
+>
+>> +#define AL_MC_MSTR_DATA_BUS_WIDTH_X64	0
+>> +
+>> +#define DRV_NAME "al_mc_edac"
+>> +#define AL_MC_EDAC_MSG_MAX 256
+>> +#define AL_MC_EDAC_MSG(message, buffer_size, type,			\
+>> +		       rank, row, bg, bank, column, syn0, syn1, syn2)	\
+>> +	snprintf(message, buffer_size,					\
+>> +		 "%s rank=0x%x row=0x%x bg=0x%x bank=0x%x col=0x%x "	\
+>> +		 "syn0: 0x%x syn1: 0x%x syn2: 0x%x",			\
+>> +		 type == HW_EVENT_ERR_UNCORRECTED ? "UE" : "CE",	\
+>> +		 rank, row, bg, bank, column, syn0, syn1, syn2)
+>> +
+>> +struct al_mc_edac {
+>> +	void __iomem *mmio_base;
+>> +	int irq_ce;
+>> +	int irq_ue;
+>> +};
+>> +
+>> +static int al_mc_edac_handle_ce(struct mem_ctl_info *mci)
+>> +{
+>> +	struct al_mc_edac *al_mc = mci->pvt_info;
+>> +	u32 eccerrcnt;
+>> +	u16 ce_count;
+>> +	u32 ecccaddr0;
+>> +	u32 ecccaddr1;
+>> +	u32 ecccsyn0;
+>> +	u32 ecccsyn1;
+>> +	u32 ecccsyn2;
+>> +	u8 rank;
+>> +	u32 row;
+>> +	u8 bg;
+>> +	u8 bank;
+>> +	u16 column;
+>> +	char msg[AL_MC_EDAC_MSG_MAX];
+> (Some of these could go on the same line, same with UE below)
+Shall be part of v3
+> +
+> +	edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci,
+> +			     ce_count, 0, 0, 0, 0, 0, -1, mci->ctl_name, msg);
+> You used active_ranks as the layer size in al_mc_edac_probe(). Can't you supply the rank here?
+>
+> (If its not useful, why is it setup like this in al_mc_edac_probe()?)
+
+Seems it can be removed from probe.
+
+Shall be part of v3.
+
+>
+>
+> +	u8 bank;
+> +	u16 column;
+> +	char msg[AL_MC_EDAC_MSG_MAX];
+> +
+> +	eccerrcnt = readl_relaxed(al_mc->mmio_base + AL_MC_ECC_ERR_COUNT);
+> +	ue_count = FIELD_GET(AL_MC_ECC_ERR_COUNT_UE, eccerrcnt);
+> +	if (!ue_count)
+> +		return 0;
+> +
+> +	eccuaddr0 = readl_relaxed(al_mc->mmio_base + AL_MC_ECC_UE_ADDR0);
+> +	eccuaddr1 = readl_relaxed(al_mc->mmio_base + AL_MC_ECC_UE_ADDR1);
+> +	eccusyn0 = readl_relaxed(al_mc->mmio_base + AL_MC_ECC_UE_SYND0);
+> +	eccusyn1 = readl_relaxed(al_mc->mmio_base + AL_MC_ECC_UE_SYND1);
+> +	eccusyn2 = readl_relaxed(al_mc->mmio_base + AL_MC_ECC_UE_SYND2);
+> +
+> +	writel(AL_MC_ECC_CLEAR_UE_COUNT | AL_MC_ECC_CLEAR_UE_ERR,
+> +	       al_mc->mmio_base + AL_MC_ECC_CLEAR);
+> +
+> +	dev_dbg(mci->pdev, "eccuaddr0=0x%08x eccuaddr1=0x%08x\n",
+> +		eccuaddr0, eccuaddr1);
+> +
+> +	rank = FIELD_GET(AL_MC_ECC_UE_ADDR0_RANK, eccuaddr0);
+> +	row = FIELD_GET(AL_MC_ECC_UE_ADDR0_ROW, eccuaddr0);
+> +
+> +	bg = FIELD_GET(AL_MC_ECC_UE_ADDR1_BG, eccuaddr1);
+> +	bank = FIELD_GET(AL_MC_ECC_UE_ADDR1_BANK, eccuaddr1);
+> +	column = FIELD_GET(AL_MC_ECC_UE_ADDR1_COLUMN, eccuaddr1);
+> +
+> +	AL_MC_EDAC_MSG(msg, sizeof(msg), HW_EVENT_ERR_UNCORRECTED,
+> +		       rank, row, bg, bank, column,
+> +		       eccusyn0, eccusyn1, eccusyn2);
+> +
+> +	edac_mc_handle_error(HW_EVENT_ERR_UNCORRECTED, mci,
+> +			     ue_count, 0, 0, 0, 0, 0, -1, mci->ctl_name, msg);
+>
+> What happens when this code runs at the same time as the corrected error handler calling
+> edac_mc_handler_error() with this same mci?
+>
+> This could happen on a second CPU, or on one cpu if the corrected handler is polled.
+>
+> edac_mc_handle_error() memset's the edac_raw_error_desc in mci, so it can't be called in
+> parallel, or twice on the same cpu.
+>
+> I think you need an irqsave spinlock around the calls to edac_mc_handle_error().
+
+shall add locks in v3.
+
+>
+>> +
+>> +static irqreturn_t al_mc_edac_irq_handler_ue(int irq, void *info)
+>> +{
+>> +	struct platform_device *pdev = info;
+>> +	struct mem_ctl_info *mci = platform_get_drvdata(pdev);
+>> +	int ue_count;
+>> +
+>> +	ue_count = al_mc_edac_handle_ue(mci);
+>> +	if (ue_count)
+>> +		return IRQ_HANDLED;
+>> +	else
+>> +		return IRQ_NONE;
+>> +}
+> As you don't use ue_count, wouldn't this be clearer:
+>
+> | if (al_mc_edac_handle_ue(mci))
+> | 	return IRQ_HANDLED;
+> | return IRQ_NONE;
+>
+> ?
+ack, shall add to v3
+>
+>> +static int al_mc_edac_probe(struct platform_device *pdev)
+>> +{
+>> +	struct resource *resource;
+>> +	void __iomem *mmio_base;
+>> +	unsigned int active_ranks;
+>> +	struct edac_mc_layer layers[1];
+>> +	struct mem_ctl_info *mci;
+>> +	struct al_mc_edac *al_mc;
+>> +	int ret;
+>> +
+>> +	resource = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> platform_get_resource() can fail, returning NULL.
+ack, shall add to v3
+>
+>
+> +
+> +	if (al_mc->irq_ue > 0) {
+> +		ret = devm_request_irq(&pdev->dev,
+> +				       al_mc->irq_ue,
+> +				       al_mc_edac_irq_handler_ue,
+>> +				       0,
+> As you know when your device has triggered the interrupt from the error counter, could
+> these be IRQF_SHARED?
+ack, shall add to v3
+>
+>> +static int al_mc_edac_remove(struct platform_device *pdev)
+>> +{
+>> +	struct mem_ctl_info *mci = platform_get_drvdata(pdev);
+>> +
+>> +	edac_mc_del_mc(&pdev->dev);
+>> +	edac_mc_free(mci);
+> What stops your interrupt firing here? You've free'd the memory it uses.
+>
+> I think you need to devm_free_irq() the interrupts before you free the memory.
+ack, shall add to v3
+>
+>> +MODULE_LICENSE("GPL v2");
+>> +MODULE_AUTHOR("Talel Shenhar");
+>> +MODULE_DESCRIPTION("Amazon's Annapurna Lab's Memory Controller EDAC Driver");
+> (Kconfig says this is 'bool', so it can't be built as a module, having these is a bit odd)
+
+ack, shall add to v3
+
+while at it, shall consider changing to trisate so it can really be 
+build as a module as well.
+
+>
+>
+>
+> Thanks,
+>
+> James
