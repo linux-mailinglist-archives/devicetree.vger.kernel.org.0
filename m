@@ -2,101 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1020B7CE0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 16:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A71AFB7CF9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 16:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388006AbfISOdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 10:33:25 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:54812 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727273AbfISOdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 10:33:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=1sx8mKM+Bqm7cSb1Up4PL3u1Qlhzk3VQwMObKwWPKAQ=; b=jghkJ8niX5s9SkPtmb5Vk052N
-        dGOo/9p/fCMyxtvd6uQK5Tdxl4yN7ZOW7+pTUoKfrX0Ro4pQVYHWsxaVvpNiRJb9xy9LfsKKCv+Yk
-        /goRd7N7GK1W3tQ+/YU9X9qIXsDBB7xX5yezln/lW84i3v8o46OqS69TYlkrkiElff3Eo=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iAxUh-00042Q-4N; Thu, 19 Sep 2019 14:33:15 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 89B272742939; Thu, 19 Sep 2019 15:33:14 +0100 (BST)
-Date:   Thu, 19 Sep 2019 15:33:14 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        lgirdwood@gmail.com, sbkim73@samsung.com,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com
-Subject: Re: [PATCH v1 2/9] mfd: wm8994: Add support for MCLKn clock control
-Message-ID: <20190919143314.GM3642@sirena.co.uk>
-References: <20190918104634.15216-1-s.nawrocki@samsung.com>
- <CGME20190918104656eucas1p1d9cad1394b08d05a99151c4fbc9425ce@eucas1p1.samsung.com>
- <20190918104634.15216-3-s.nawrocki@samsung.com>
- <20190919075924.GB13195@pi3>
- <20190919125020.GJ3642@sirena.co.uk>
- <20190919143116.GL10204@ediswmail.ad.cirrus.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yr/DzoowOgTDcSCF"
-Content-Disposition: inline
-In-Reply-To: <20190919143116.GL10204@ediswmail.ad.cirrus.com>
-X-Cookie: I'll be Grateful when they're Dead.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1732506AbfISOgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 10:36:19 -0400
+Received: from anchovy1.45ru.net.au ([203.30.46.145]:52677 "EHLO
+        anchovy1.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732591AbfISOgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 10:36:19 -0400
+Received: (qmail 12600 invoked by uid 5089); 19 Sep 2019 14:36:16 -0000
+Received: by simscan 1.2.0 ppid: 12571, pid: 12572, t: 0.0425s
+         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
+X-RBL:  $rbltext
+Received: from unknown (HELO preid-c7.electromag.com.au) (preid@electromag.com.au@118.208.174.34)
+  by anchovy1.45ru.net.au with ESMTPA; 19 Sep 2019 14:36:16 -0000
+Received: by preid-c7.electromag.com.au (Postfix, from userid 1000)
+        id D0C41201AF901; Thu, 19 Sep 2019 22:36:11 +0800 (AWST)
+From:   Phil Reid <preid@electromag.com.au>
+To:     jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        preid@electromag.com.au, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, michal.simek@xilinx.com
+Subject: [PATCH v2 0/2] iio: core: Add optional symbolic label to device attributes
+Date:   Thu, 19 Sep 2019 22:36:06 +0800
+Message-Id: <1568903768-65998-1-git-send-email-preid@electromag.com.au>
+X-Mailer: git-send-email 1.8.3.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+If a label is defined in the device tree for this device add that
+to the device specific attributes. This is useful for userspace to
+be able to identify an individual device when multiple identical
+chips are present in the system.
 
---yr/DzoowOgTDcSCF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Similar to leds, display labels etc.
 
-On Thu, Sep 19, 2019 at 02:31:16PM +0000, Charles Keepax wrote:
-> On Thu, Sep 19, 2019 at 01:50:20PM +0100, Mark Brown wrote:
+Changes from V1:
+- Update commit message for dt_bind commit
+- Update example label for dt-binding
 
-> > Yeah.  IIRC when these were added a machine driver was grabbing them.  I
-> > don't think that machine driver ever made it's way upstream though.
+I haven't added Rob's reviewed-by from V1. Wasnt't
+sure if the changes are minor enough to keep that.
 
-> If you mean for the Arizona stuff, the machine driver using that
-> was sound/soc/samsung/tm2_wm5110.c. Sylwester upstreamed it along
-> with the patches.
+Phil Reid (2):
+  dt-binding: iio: Add optional label property
+  iio: core: Add optional symbolic label to device attributes
 
-No, there was a WM8994 thing before that.
+ Documentation/devicetree/bindings/iio/iio-bindings.txt |  5 +++++
+ drivers/iio/industrialio-core.c                        | 17 +++++++++++++++++
+ include/linux/iio/iio.h                                |  1 +
+ 3 files changed, 23 insertions(+)
 
-> I think on wm8994 the clocks probably are only needed by the
-> audio part of the driver, so probably can be moved in there,
-> although as a disclaimer I have done a lot less with parts
-> of that era. However on Arizona the clocking is needed from
-> various parts of the driver so couldn't be moved exclusively
-> to the codec driver.
+-- 
+1.8.3.1
 
-Yes, they're only needed by the audio part of the driver.
-
---yr/DzoowOgTDcSCF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2DkakACgkQJNaLcl1U
-h9CyCQf+MMpoS4FlVQq+9Xt+0Uket4UES+rOnjdNVAtME5x6rwp/rW3bJeTlegL3
-qviOHfnz9mgXwuCeR5RxotyqaZ6WB0ihYC/Y1TXFxaM5mN8Xqg4s3tWs0roBVc5q
-wFKYpZr1heeoP8/2Meitj68poZHiUIGcU5E8Lgs9qDDJK5hwzVZ/1hJTvY4Dx5GN
-ZuWslKMKAitY8sH2wV2+kDB1JY0poPsScarR/z3MozVoEIg6ABbc/EwX8MObf4a5
-0QiV/9mSwrQ2Ctjd1nnr8/a8wOMkKdqiHYbCRYB5dy432Dh3oWZ5eRqUodDDR9eK
-uLi3a+I6dtNmKmWHdMYaoRG//ylGlA==
-=ebz9
------END PGP SIGNATURE-----
-
---yr/DzoowOgTDcSCF--
