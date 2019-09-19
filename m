@@ -2,203 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C42F9B769D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 11:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EF2B76B7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 11:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388883AbfISJrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 05:47:48 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35290 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388872AbfISJrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 05:47:45 -0400
-Received: by mail-wm1-f65.google.com with SMTP id y21so3195680wmi.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 02:47:43 -0700 (PDT)
+        id S2388940AbfISJwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 05:52:04 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:40666 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388872AbfISJwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 05:52:04 -0400
+Received: by mail-ed1-f68.google.com with SMTP id v38so2603910edm.7
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 02:52:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=0p8PJFm343mkDyUK1kcLoeazmTgyFgYAv1YKHEZ0wic=;
-        b=0ZKB+2yWmVQkfXIMUzyUUU85P/CHRA+yZ/Xp6HbLHCkH0D0PgwD0ZT0MyRMnDMfwIl
-         3SYttbXLY2mFRvRAVgCbC8EuEeaYXBdhl3pCzUnKdYsGsdnqKet8jTc//tOgEA4EeU5b
-         mchSGGKISpDzcRfoXQgDlX/RqVeafWvdRKG0F6DbBLQmWYz3X/6l0m4FCmRbGxFG80V5
-         B4DetCb+XN0koqpFjABxrPoztepBUZnjRL6mgc85BhVhOBhXMT1adYq24iis/tS1IHi6
-         mnpWikLzJYf69LEHelu4pScDs0R51VOIZk5fFdA3fvoRszXxFPnsMKd7zT0q4yzmq4fp
-         fVow==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=x+n4lCgot+6z/yJEq2Koj577geXvlfzM3+LhYlkJWVM=;
+        b=OGuAwxmvSGPKJmnOcso5b85IhrbgLEB6QX1KBeNjwAvwa1dHCD7QQqIkfaJEo4gzO2
+         DR+AS0p7lwwNdZ1hoAqr9wgaU7mUJPRlPfn+3j0op/gIKCrSVmMje6zQsUJop+mwpo4Q
+         sCQRzeHlg2GYwYg6ig64Gz/6H+VLsLoMIGqEY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=0p8PJFm343mkDyUK1kcLoeazmTgyFgYAv1YKHEZ0wic=;
-        b=p8NbqA3PaAMAoo+J83bXjT6h6ivKSmhIxaTGdC0hcPIKMRFsYq67o6DASoXafAKuV8
-         vVBRbeO0k5ceEmdHbu6ufrT+Y1oFIu6u7ozJAqhBcLsf1piA6nfYBe8Hq+K19nocenCt
-         VohqAp+63QhLHQUFm2HUvRKyTSs3kE/+UQpEXcd8AHzRZYEu4XxG1fJvXfFmY8XlVh3j
-         0hjN4cCdtg7QUFGSnm5LwSoz1h3EudCAwTMyW7hWjWB+zhgYYTUEJPuMYEhrBYYubtPg
-         0WPtc+KiMvMAhPTJmZ3XuXtVXPrB4ZFFKjOuNbQwVA7bHqaASQSGyml1dsxJ9QJf+2yO
-         ekHw==
-X-Gm-Message-State: APjAAAXvWHD5f4fpHPNx79cjzm3lgjgxIAe4aIuz2SfmvCdkW57fZUh2
-        toPNFzfmpvEKWCBDqPCCUO5M7A==
-X-Google-Smtp-Source: APXvYqx1yyOtKHmh61Sl0KRLhE2VzwYwXScwSqTkeTG71qjhTRYR40qvO/LxsUxT8abtvM1xwHOqwQ==
-X-Received: by 2002:a1c:720a:: with SMTP id n10mr2234248wmc.0.1568886462342;
-        Thu, 19 Sep 2019 02:47:42 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id z189sm7765108wmc.25.2019.09.19.02.47.41
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Sep 2019 02:47:41 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson: Add capacity-dmips-mhz attributes to
- G12B
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Frank Hartung <supervisedthinking@gmail.com>
-References: <1568429380-3231-1-git-send-email-christianshewitt@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <881d927d-cddd-350e-d907-9a33f53ff980@baylibre.com>
-Date:   Thu, 19 Sep 2019 11:47:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=x+n4lCgot+6z/yJEq2Koj577geXvlfzM3+LhYlkJWVM=;
+        b=pn7SvERl6xpRnBeVRbRSAev0DCkv4NiiR+aWLWI4X/Qtphay88fas92knhaTlEHFVO
+         wdJFvxn3oLoS3VdbvozHZoXaQeot4VyHzNt0sXrgL0bkS8q0KEj8tXldXwvQaXuuT+bV
+         S5bHVdK6TT81+Bise5vcFek7Id/RMKmardG8UGRw6GXeuhSuTZZbR5JF9oScyORihItx
+         UMfLiSOv6/84/fRTdP/7rsVZgOsmXZD2hhJkWtUCSqmst5kWiCeMVEib3toPrMyPliIl
+         DKjHWqN9tvd6mN6gu6Vo91hFORNtmqTxfZDc6KW1sVIK3l8D2T/8uK5bdeSD1L/l6tv+
+         kTDQ==
+X-Gm-Message-State: APjAAAXnRzZxmUmPwvhKeJY+q+ZRZS+ZQoEoXXc71qUxk25JYe8Qh5/y
+        oR2cIDLzt7sjvpbwfs3ojUSPFo5Md2LGWA==
+X-Google-Smtp-Source: APXvYqwPJBA0RyRy6yICQMsr/PyOVN2XTX80stLKftnK8Fwqmcj89FSeTGORc438TQi28UGYSruBXA==
+X-Received: by 2002:a05:6402:17ad:: with SMTP id j13mr15125424edy.212.1568886721223;
+        Thu, 19 Sep 2019 02:52:01 -0700 (PDT)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
+        by smtp.gmail.com with ESMTPSA id z65sm1544175ede.86.2019.09.19.02.52.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Sep 2019 02:52:01 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id a6so3629564wma.5
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 02:52:01 -0700 (PDT)
+X-Received: by 2002:a7b:c956:: with SMTP id i22mr2184516wml.90.1568886289132;
+ Thu, 19 Sep 2019 02:44:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1568429380-3231-1-git-send-email-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190909192244.9367-1-frederic.chen@mediatek.com>
+ <20190909192244.9367-5-frederic.chen@mediatek.com> <CAAFQd5DEn_N26M7B4X7fKHVA=XBtWJN=Y4VF7D9B=TkgXf_i+Q@mail.gmail.com>
+ <1568223671.19171.12.camel@mtksdccf07> <CAAFQd5Cd2-dyQnMEy0LBwaajn7UfzEbHiJp7AkDy=T8Zy6t_=A@mail.gmail.com>
+ <1568886066.19171.16.camel@mtksdccf07>
+In-Reply-To: <1568886066.19171.16.camel@mtksdccf07>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 19 Sep 2019 18:44:37 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5DL9NjNFFiEUxWL-D3o_BNakx70fQym4bOST+wjm75ZkQ@mail.gmail.com>
+Message-ID: <CAAFQd5DL9NjNFFiEUxWL-D3o_BNakx70fQym4bOST+wjm75ZkQ@mail.gmail.com>
+Subject: Re: [RFC PATCH V3 4/5] platform: mtk-isp: Add Mediatek DIP driver
+To:     Frederic Chen <frederic.chen@mediatek.com>
+Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?SG9sbWVzIENoaW91ICjpgrHmjLop?= 
+        <holmes.chiou@mediatek.com>,
+        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree@vger.kernel.org, Shik Chen <shik@chromium.org>,
+        suleiman@chromium.org,
+        =?UTF-8?B?QWxsYW4gWWFuZyAo5qWK5pm66YieKQ==?= 
+        <Allan.Yang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2019 04:49, Christian Hewitt wrote:
-> From: Frank Hartung <supervisedthinking@gmail.com>
-> 
-> From: Frank Hartung <supervisedthinking@gmail.com>
-> 
-> Meson G12B SoCs (S922X and A311D) are a big-little design where not all CPUs
-> are equal; the A53s cores are weaker than the A72s.
-> 
-> Include capacity-dmips-mhz properties to tell the OS there is a difference
-> in processing capacity. The dmips values are based on similar submissions for
-> other A53/A72 SoCs: HiSilicon 3660 [1] and Rockchip RK3399 [2].
-> 
-> This change is particularly beneficial for use-cases like retro gaming where
-> emulators often run on a single core. The OS now chooses an A72 core instead
-> of an A53 core.
-> 
-> [1] https://lore.kernel.org/patchwork/patch/862742/
-> [2] https://patchwork.kernel.org/patch/10836577/
-> 
-> Signed-off-by: Frank Hartung <supervisedthinking@gmail.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> index 5628ccd..7f78d88 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> @@ -49,6 +49,7 @@
->  			compatible = "arm,cortex-a53";
->  			reg = <0x0 0x0>;
->  			enable-method = "psci";
-> +			capacity-dmips-mhz = <592>;
->  			next-level-cache = <&l2>;
->  		};
->  
-> @@ -57,6 +58,7 @@
->  			compatible = "arm,cortex-a53";
->  			reg = <0x0 0x1>;
->  			enable-method = "psci";
-> +			capacity-dmips-mhz = <592>;
->  			next-level-cache = <&l2>;
->  		};
->  
-> @@ -65,6 +67,7 @@
->  			compatible = "arm,cortex-a73";
->  			reg = <0x0 0x100>;
->  			enable-method = "psci";
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&l2>;
->  		};
->  
-> @@ -73,6 +76,7 @@
->  			compatible = "arm,cortex-a73";
->  			reg = <0x0 0x101>;
->  			enable-method = "psci";
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&l2>;
->  		};
->  
-> @@ -81,6 +85,7 @@
->  			compatible = "arm,cortex-a73";
->  			reg = <0x0 0x102>;
->  			enable-method = "psci";
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&l2>;
->  		};
->  
-> @@ -89,6 +94,7 @@
->  			compatible = "arm,cortex-a73";
->  			reg = <0x0 0x103>;
->  			enable-method = "psci";
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&l2>;
->  		};
->  
-> 
+On Thu, Sep 19, 2019 at 6:41 PM Frederic Chen
+<frederic.chen@mediatek.com> wrote:
+>
+> Dear Tomasz,
+>
+>
+> On Thu, 2019-09-12 at 14:58 +0900, Tomasz Figa wrote:
+> > On Thu, Sep 12, 2019 at 2:41 AM Frederic Chen
+> > <frederic.chen@mediatek.com> wrote:
+> > >
+> > > Hi Tomasz,
+> > >
+> > > I appreciate your helpful comments.
+> > >
+> > >
+> > > On Tue, 2019-09-10 at 13:04 +0900, Tomasz Figa wrote:
+> > > > Hi Frederic,
+> > > >
+> > > > On Tue, Sep 10, 2019 at 4:23 AM <frederic.chen@mediatek.com> wrote:
+> > > > >
+> > > > > From: Frederic Chen <frederic.chen@mediatek.com>
+> > > > >
+> > > > > This patch adds the driver of Digital Image Processing (DIP)
+> > > > > unit in Mediatek ISP system, providing image format
+> > > > > conversion, resizing, and rotation features.
+> > > > >
+> > > > > The mtk-isp directory will contain drivers for multiple IP
+> > > > > blocks found in Mediatek ISP system. It will include ISP
+> > > > > Pass 1 driver(CAM), sensor interface driver, DIP driver and
+> > > > > face detection driver.
+> > > > >
+> > > > > Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
+> > > > > ---
+> > > > >  drivers/media/platform/mtk-isp/Makefile       |    7 +
+> > > > >  .../media/platform/mtk-isp/isp_50/Makefile    |    7 +
+> > > > >  .../platform/mtk-isp/isp_50/dip/Makefile      |   18 +
+> > > > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-dev.c |  650 +++++
+> > > > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-dev.h |  566 +++++
+> > > > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-hw.h  |  156 ++
+> > > > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-sys.c |  521 ++++
+> > > > >  .../mtk-isp/isp_50/dip/mtk_dip-v4l2.c         | 2255 +++++++++++++++++
+> > > > >  8 files changed, 4180 insertions(+)
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/Makefile
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/Makefile
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/Makefile
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-dev.c
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-dev.h
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-hw.h
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
+> > > > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-v4l2.c
+> > > > >
+> > > >
+> > > > Thanks for sending v3!
+> > > >
+> > > > I'm going to do a full review a bit later, but please check one
+> > > > comment about power handling below.
+> > > >
+> > > > Other than that one comment, from a quick look, I think we only have a
+> > > > number of style issues left. Thanks for the hard work!
+> > > >
+> > > > [snip]
+> > > > > +static void dip_runner_func(struct work_struct *work)
+> > > > > +{
+> > > > > +       struct mtk_dip_request *req = mtk_dip_hw_mdp_work_to_req(work);
+> > > > > +       struct mtk_dip_dev *dip_dev = req->dip_pipe->dip_dev;
+> > > > > +       struct img_config *config_data =
+> > > > > +               (struct img_config *)req->working_buf->config_data.vaddr;
+> > > > > +
+> > > > > +       /*
+> > > > > +        * Call MDP/GCE API to do HW excecution
+> > > > > +        * Pass the framejob to MDP driver
+> > > > > +        */
+> > > > > +       pm_runtime_get_sync(dip_dev->dev);
+> > > > > +       mdp_cmdq_sendtask(dip_dev->mdp_pdev, config_data,
+> > > > > +                         &req->img_fparam.frameparam, NULL, false,
+> > > > > +                         dip_mdp_cb_func, req);
+> > > > > +}
+> > > > [snip]
+> > > > > +static void dip_composer_workfunc(struct work_struct *work)
+> > > > > +{
+> > > > > +       struct mtk_dip_request *req = mtk_dip_hw_fw_work_to_req(work);
+> > > > > +       struct mtk_dip_dev *dip_dev = req->dip_pipe->dip_dev;
+> > > > > +       struct img_ipi_param ipi_param;
+> > > > > +       struct mtk_dip_hw_subframe *buf;
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       down(&dip_dev->sem);
+> > > > > +
+> > > > > +       buf = mtk_dip_hw_working_buf_alloc(req->dip_pipe->dip_dev);
+> > > > > +       if (!buf) {
+> > > > > +               dev_err(req->dip_pipe->dip_dev->dev,
+> > > > > +                       "%s:%s:req(%p): no free working buffer available\n",
+> > > > > +                       __func__, req->dip_pipe->desc->name, req);
+> > > > > +       }
+> > > > > +
+> > > > > +       req->working_buf = buf;
+> > > > > +       mtk_dip_wbuf_to_ipi_img_addr(&req->img_fparam.frameparam.subfrm_data,
+> > > > > +                                    &buf->buffer);
+> > > > > +       memset(buf->buffer.vaddr, 0, DIP_SUB_FRM_SZ);
+> > > > > +       mtk_dip_wbuf_to_ipi_img_sw_addr(&req->img_fparam.frameparam.config_data,
+> > > > > +                                       &buf->config_data);
+> > > > > +       memset(buf->config_data.vaddr, 0, DIP_COMP_SZ);
+> > > > > +
+> > > > > +       if (!req->img_fparam.frameparam.tuning_data.present) {
+> > > > > +               /*
+> > > > > +                * When user enqueued without tuning buffer,
+> > > > > +                * it would use driver internal buffer.
+> > > > > +                */
+> > > > > +               dev_dbg(dip_dev->dev,
+> > > > > +                       "%s: frame_no(%d) has no tuning_data\n",
+> > > > > +                       __func__, req->img_fparam.frameparam.frame_no);
+> > > > > +
+> > > > > +               mtk_dip_wbuf_to_ipi_tuning_addr
+> > > > > +                               (&req->img_fparam.frameparam.tuning_data,
+> > > > > +                                &buf->tuning_buf);
+> > > > > +               memset(buf->tuning_buf.vaddr, 0, DIP_TUNING_SZ);
+> > > > > +       }
+> > > > > +
+> > > > > +       mtk_dip_wbuf_to_ipi_img_sw_addr(&req->img_fparam.frameparam.self_data,
+> > > > > +                                       &buf->frameparam);
+> > > > > +       memcpy(buf->frameparam.vaddr, &req->img_fparam.frameparam,
+> > > > > +              sizeof(req->img_fparam.frameparam));
+> > > > > +       ipi_param.usage = IMG_IPI_FRAME;
+> > > > > +       ipi_param.frm_param.handle = req->id;
+> > > > > +       ipi_param.frm_param.scp_addr = (u32)buf->frameparam.scp_daddr;
+> > > > > +
+> > > > > +       mutex_lock(&dip_dev->hw_op_lock);
+> > > > > +       atomic_inc(&dip_dev->num_composing);
+> > > > > +       ret = scp_ipi_send(dip_dev->scp_pdev, SCP_IPI_DIP, &ipi_param,
+> > > > > +                          sizeof(ipi_param), 0);
+> > > >
+> > > > We're not holding the pm_runtime enable count here
+> > > > (pm_runtime_get_sync() wasn't called), so rproc_shutdown() might have
+> > > > been called. Wouldn't that affect the ability for this IPI to run?
+> > > >
+> > > > We had a related discussion with Jerry on the FD series and I think
+> > > > the conclusion is:
+> > > > a) if there is any state that needs to be preserved between jobs, that
+> > > > would be cleared by rproc_shutdown() then we need to call
+> > > > rproc_boot/shutdown() when we start/stop streaming.
+> > > > b) it there is no such state, we can keep them inside runtime PM
+> > > > callbacks, but we need to call pm_runtime_get_sync() before sending an
+> > > > IPI and pm_runtime_mark_last_busy() + pm_runtime_put_autosuspend()
+> > > > after the SCP signals completion. In this case the runtime PM
+> > > > autosuspend delay should be set to around 2-3 times the delay needed
+> > > > for rproc_shutdown() + rproc_boot() to complete.
+> > >
+> > > Since each IMG_IPI_FRAME command is stateless, I would like to
+> > > use pm_runtime_get_sync()/ pm_runtime_mark_last_busy()/
+> > > pm_runtime_put_autosuspend() to fix this issue (solution b).
+> >
+> > What does IMG_IPI_INIT do then? Do we need it at all?
+> >
+> > I'm worried about the fact that we call rproc_boot(), IMG_IPI_INIT and
+> > then rproc_shutdown(). The latter can completely shutdown the SCP and
+> > clear any state there. How would the effects of IMG_IPI_INIT be
+> > preserved until IMG_IPI_FRAME is called?
+> >
+>
+> The command IMG_IPI_INIT is to initialize the DIP hardware. Although the
+> DIP hardware status is not cleared when SCP is powered off, it can still
+> be cleared after mtk_dip_runtime_suspend() is called (it means that DIP
+> is going to be powered off).
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Great, that's exactly what I wanted to confirm. Thanks. :)
+
+>
+> I would like to re-initialize the DIP with IMG_IPI_INIT in
+> mtk_dip_runtime_resume() to handle this case. Is is OK?
+>
+
+Makes sense.
+
+Best regards,
+Tomasz
