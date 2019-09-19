@@ -2,179 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74715B7EC8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 18:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B91B7F60
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 18:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391660AbfISQJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 12:09:12 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:37544 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391655AbfISQJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 12:09:11 -0400
-Received: by mail-oi1-f194.google.com with SMTP id i16so3221871oie.4;
-        Thu, 19 Sep 2019 09:09:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=hO5ur43UWRQwBhSoXO1A1AHBjyep85Hij+KLBit2aJw=;
-        b=fBx1m2K1wGG1ZbBKVSYNktigxEL/WLNGDX3S+XVZm6jR7jbiwUSUivM6saOEIOzWz9
-         BkH3Ob4SdNqnIduk3E61SVTqadWUT2c/LImSigPHakBbpWvc3bh80KwMQBme8jHT6nTA
-         p40AyMDkJO2Sga4WSgAgMPib6OcSdyatOqfEfSLE5Aa8g7yWPVF6lfTo9qij/zWNxS8q
-         BH4W8kEpM7xPdNCB7vzNbh2N7GK6t4rdSktJ28dWSGe14pD3OPBEqXlg3Zl75MykcXdm
-         6U142vdApDQmg+4nycB128OkJ7UVTrtoqZwg/D+BTlvT7fZXqp/aZlacGYcaMJgXdKUh
-         /XYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=hO5ur43UWRQwBhSoXO1A1AHBjyep85Hij+KLBit2aJw=;
-        b=hN2owDfrZYqaL3VAVGhNWGNM12JTIMge7WeDaM10EyeNpX4Yal///gl1dcott107Nf
-         xHsHDoAF5ChYTzwvS7CZWCubsSVTpfez8uEpe4RlCIiFbKmdE0dG923Azz1hN/Rp3RYp
-         lIupdQnNa7T1CRKKVif5mO/QpSg4IeIMZWdtewGXPCmfrTBKj/UhALz0MQRfA3OY4/cv
-         Uz3PbNI2wvpUPxhoBmIf5L8L16KBz9A0htVyZL+oy1+S49ww8q0g595jkVpYlyZtFvyM
-         MTmlzTrWTm/i5C652XwlyYiXgD+i5oJt8lrZsvdwUm+u24uugAgI+Ao5u3rUqbSgfwyH
-         evrw==
-X-Gm-Message-State: APjAAAUs+XVR+xG2us/cdGZ9PXE7+GrKKw92aJfz5WIuO5CYd5Zk75Tq
-        CbJ3hTQJL1OW+8ZTT/3OqL1fEtdx2bUwHxbydog=
-X-Google-Smtp-Source: APXvYqxkoGIp83bYyfTVAM0Jq1mCy/2KR+OkOsuailbVhYYL60KwjLwQzMgOt7eJCTxowXtqrWzJg1UKmrBFxeYlgiw=
-X-Received: by 2002:aca:dad4:: with SMTP id r203mr3001298oig.102.1568909350532;
- Thu, 19 Sep 2019 09:09:10 -0700 (PDT)
+        id S1732063AbfISQu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 12:50:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55930 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726007AbfISQuz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Sep 2019 12:50:55 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 43CEB21928;
+        Thu, 19 Sep 2019 16:50:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568911855;
+        bh=ot8wbjfWT9q2gjJdJL4MxeqVbJLsG2eM1RpCwH8Urco=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=mmkyfNBjsXIMuPQSXxbGqeYy5E8JDmsoy2rXCd5XnGogeV5yPBdB7sZO9Fevb04GZ
+         gj3KE01iHDIv8DA+Jh5PsEJagtuRYTDy42jJ4EGheXKmXu5zKgGCDrws8eTkN/GIw+
+         Ik+SoCVQL/v8OxwUeswE7qcaBD/P4o+UaB2mV6zk=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <1568819121-32737-1-git-send-email-ykaneko0929@gmail.com>
- <20190919120333.77qabr675rne7zlu@verge.net.au> <CAMuHMdWHyzwkqQv-4Dpo-omO7Z96NATANjyrtufbZQ7naCDPQQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWHyzwkqQv-4Dpo-omO7Z96NATANjyrtufbZQ7naCDPQQ@mail.gmail.com>
-From:   Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Date:   Fri, 20 Sep 2019 01:08:59 +0900
-Message-ID: <CAH1o70LSiPHOPS8=0XQH1xNhyFJgwXnBSXDcrs87xemnV22Jeg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas-irqc: convert bindings
- to json-schema
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190919141224.GH5610@atomide.com>
+References: <20190905215532.8357-1-tony@atomide.com> <256788c4-ae09-3c72-b563-b9707c4751b4@ti.com> <20190919141224.GH5610@atomide.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-omap@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+To:     Tero Kristo <t-kristo@ti.com>, Tony Lindgren <tony@atomide.com>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH] clk: ti: clkctrl: Fix hidden dependency to node name with reg-names
+User-Agent: alot/0.8.1
+Date:   Thu, 19 Sep 2019 09:50:54 -0700
+Message-Id: <20190919165055.43CEB21928@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert-san,
+Quoting Tony Lindgren (2019-09-19 07:12:24)
+> Hi,
+>=20
+> * Tero Kristo <t-kristo@ti.com> [190919 06:46]:
+> > On 06/09/2019 00:55, Tony Lindgren wrote:
+> > > diff --git a/Documentation/devicetree/bindings/clock/ti-clkctrl.txt b=
+/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+> > > --- a/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+> > > +++ b/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+> > > @@ -20,15 +20,19 @@ Required properties :
+> > >   - #clock-cells : shall contain 2 with the first entry being the ins=
+tance
+> > >              offset from the clock domain base and the second being t=
+he
+> > >              clock index
+> > > +- reg : clock registers
+> > > +- reg-names : clock register names for the clock, should be same as =
+the
+> > > +         domain name
+> >=20
+> > Hmm, I think using the reg-names property like this is kind of wrong.
+> > Basically, reg and reg-names have pretty much nothing in common. Should=
+n't
+> > you instead use something like ti,clkdm-name? This also breaks with SoCs
+> > like am3, which have mutant clkctrl entries like the one here:
+> >=20
+> >                 l4ls_clkctrl: l4ls-clkctrl@38 {
+> >                         compatible =3D "ti,clkctrl";
+> >                         reg =3D <0x38 0x2c>, <0x6c 0x28>, <0xac 0xc>, <=
+0xc0
+> > 0x1c>, <0xec 0xc>, <0x10c 0x8>, <0x130 0x4>;
+> >                         #clock-cells =3D <2>;
+> >                 };
+> >=20
+> > What would you think single entry in reg-names would mean in this case?
+>=20
+> Oh right, I forgot about the mixed register case again.
+> These are all in l4ls domain..
+>=20
+> So sounds like the best option is just to allow adding more
+> specific compatible values like this for the omap4 rng case:
+>=20
+>         l4_secure_clkctrl: clock@1a0 {
+>                 compatible =3D "ti,clkctrl-omap4-l4-secure", "ti,clkctrl";
+>                 reg =3D <0x1a0 0x28>;
+>                 #clock-cells =3D <2>;
+>         };
+>=20
+> And then use match data to get the domain name on init.
+>=20
 
-Thanks for your review.
-I will update this patch.
+The existing ti,clkctrl binding is pretty weird. I still believe that
+the CM container node should be the only node and it should be logic in
+the driver that describes the clks provided by the CM node. I guess I
+have to just ignore this stuff because it's all working!=20
 
-2019=E5=B9=B49=E6=9C=8819=E6=97=A5(=E6=9C=A8) 21:14 Geert Uytterhoeven <gee=
-rt@linux-m68k.org>:
->
-> Hi Simon,
->
-> On Thu, Sep 19, 2019 at 2:03 PM Simon Horman <horms@verge.net.au> wrote:
-> > On Thu, Sep 19, 2019 at 12:05:21AM +0900, Yoshihiro Kaneko wrote:
-> > > Convert Renesas Interrupt Controller bindings documentation to json-s=
-chema.
-> > >
-> > > Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
->
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,=
-irqc.yaml
-> > > @@ -0,0 +1,84 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,irqc=
-.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
-> > > +
-> > > +maintainers:
-> > > +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - renesas,irqc-r8a73a4        # R-Mobile APE6
-> > > +          - renesas,irqc-r8a7743        # RZ/G1M
-> > > +          - renesas,irqc-r8a7744        # RZ/G1N
-> > > +          - renesas,irqc-r8a7745        # RZ/G1E
-> > > +          - renesas,irqc-r8a77470       # RZ/G1C
-> > > +          - renesas,irqc-r8a7790        # R-Car H2
-> > > +          - renesas,irqc-r8a7791        # R-Car M2-W
-> > > +          - renesas,irqc-r8a7792        # R-Car V2H
-> > > +          - renesas,irqc-r8a7793        # R-Car M2-N
-> > > +          - renesas,irqc-r8a7794        # R-Car E2
-> > > +          - renesas,intc-ex-r8a774a1    # RZ/G2M
-> > > +          - renesas,intc-ex-r8a774c0    # RZ/G2E
-> > > +          - renesas,intc-ex-r8a7795     # R-Car H3
-> > > +          - renesas,intc-ex-r8a7796     # R-Car M3-W
-> > > +          - renesas,intc-ex-r8a77965    # R-Car M3-N
-> > > +          - renesas,intc-ex-r8a77970    # R-Car V3M
-> > > +          - renesas,intc-ex-r8a77980    # R-Car V3H
-> > > +          - renesas,intc-ex-r8a77990    # R-Car E3
-> > > +          - renesas,intc-ex-r8a77995    # R-Car D3
-> > > +      - const: renesas,irqc
-> > > +
-> > > +  '#interrupt-cells':
-> > > +    # an interrupt index and flags, as defined in interrupts.txt in
-> > > +    # this directory
-> > > +    const: 2
-> > > +
-> > > +  interrupt-controller: true
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    minItems: 1
-> > > +    maxItems: 32
-> >
-> > Is 'interrupts' required?
->
-> Yes, there must be one upstream interrupt for each supported interrupt in=
-put.
-> The number of inputs is SoC-specific.
->
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    #include <dt-bindings/clock/r8a7790-clock.h>
-> > > +
-> > > +    irqc0: interrupt-controller@e61c0000 {
-> > > +        compatible =3D "renesas,irqc-r8a7790", "renesas,irqc";
-> > > +        #interrupt-cells =3D <2>;
-> > > +        interrupt-controller;
-> > > +        reg =3D <0 0xe61c0000 0 0x200>;
-> > > +        interrupts =3D <0 0 IRQ_TYPE_LEVEL_HIGH>,
-> > > +                     <0 1 IRQ_TYPE_LEVEL_HIGH>,
-> > > +                     <0 2 IRQ_TYPE_LEVEL_HIGH>,
-> > > +                     <0 3 IRQ_TYPE_LEVEL_HIGH>;
->
-> While at it, one may want to replace s/0/GIC_SPI/.
->
-> > > +        clocks =3D <&mstp4_clks R8A7790_CLK_IRQC>;
->
-> and update clocks for the new CPG/MSTP bindings.
->
-> > > +    };
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
