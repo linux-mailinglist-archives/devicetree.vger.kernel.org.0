@@ -2,160 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02FCAB7A8E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 15:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77582B7AC4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 15:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390107AbfISNcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 09:32:45 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34604 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390044AbfISNcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 09:32:45 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 83so2747018oii.1;
-        Thu, 19 Sep 2019 06:32:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=6Vbzint3TNkF0RwuJRnvSz0zFNi0mSUxmrLncCYz9Sc=;
-        b=OV6EVrlTMNweLWfFFk/d7AqbBHbtp8fHoNhSSqrGUc4RxoTzD6a4217jslhB+HBSQK
-         KX1SA2V6weBpFD4AacseJILPD98S8ktAw9ys2k19bBnJQ1lkVPVflEUuMecDmLzDejlF
-         3FhrB5LMUFeB/N9c+Kw6LpooC1IZw+GJzMVUbkAd2BWSHsCfnhyg4idtS5zDDQQMxM/T
-         CFlK/v+jSEglRDyKpIr+kTWrHc7sE2eWo+REC2YDf0qAxBVABJcR5VKIsHhAFdG3tWq8
-         N0VjCItt4wt3xlSmLo1L0bBiL5jo95eIcPhrghfe0UgjEiDI/97E+FJ73JyBMzeDnP0Z
-         HmJw==
-X-Gm-Message-State: APjAAAVl9RJiGon7LJnLnb5fwz06ilv/mU5Stk+kvnHwYzGVJHCCifv5
-        zZUJcOZUz1kGINokcitpnw==
-X-Google-Smtp-Source: APXvYqzK08G1BtpQyRdlr3bjTtuu66Pn1FaJm7NcodUZdbVk+gT9gx+YwSgdEuoRELSfmX52YLpvVA==
-X-Received: by 2002:aca:dcc4:: with SMTP id t187mr2208633oig.136.1568899963907;
-        Thu, 19 Sep 2019 06:32:43 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 17sm482618oiz.3.2019.09.19.06.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Sep 2019 06:32:42 -0700 (PDT)
-Date:   Thu, 19 Sep 2019 08:32:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Peter Rosin <peda@axentia.se>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2] of: restore old handling of cells_name=NULL in
-  of_*_phandle_with_args()
-Message-ID: <20190919133242.GA27990@bogus>
-References: <20190918063837.8196-1-u.kleine-koenig@pengutronix.de>
- <b00ca30f-2c06-7722-96b2-123d15751cb6@axentia.se>
- <20190918084748.hnjkiq7wc5b35wjh@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190918084748.hnjkiq7wc5b35wjh@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2390519AbfISNq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 09:46:26 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:39622 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390518AbfISNqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 09:46:25 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190919134623euoutp020091964139dbf311331020ff98e62596~F2vNUyu7Q2749327493euoutp02Y
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2019 13:46:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190919134623euoutp020091964139dbf311331020ff98e62596~F2vNUyu7Q2749327493euoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1568900783;
+        bh=1IqbBg5jzrfPhD7Enp7RUpljzJikFkWLSh4zCwaVL0Y=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ae7QTE+C5awLxDdsZOghpPNETQBzwT8g+6shgkRlnc+yh0rhobR4S3Q3T4B/+/1r8
+         piWbrjTVyBLgsgBM5ynFQWZIvZTVyjA7jIL3N6c9QCD9HC/DSUwKURUCmD/ZEtvAKu
+         qWds2iJYwv4Rx8iUdeNdP8GuR+wSDDyZuIxM9/20=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190919134623eucas1p287bcda319064f0fc610e66b41d60d0be~F2vM2M3Rb0635006350eucas1p20;
+        Thu, 19 Sep 2019 13:46:23 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 77.95.04309.EA6838D5; Thu, 19
+        Sep 2019 14:46:23 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe~F2vL7QmDs1263812638eucas1p1R;
+        Thu, 19 Sep 2019 13:46:22 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190919134622eusmtrp27e280ea520aa6d3b4d93dbaabaeab3b7~F2vLtMw2u0895108951eusmtrp2U;
+        Thu, 19 Sep 2019 13:46:22 +0000 (GMT)
+X-AuditID: cbfec7f4-ae1ff700000010d5-25-5d8386ae7489
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id B1.0A.04166.EA6838D5; Thu, 19
+        Sep 2019 14:46:22 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190919134621eusmtip1ea7d16f6768cd638aec9a2f87b94e507~F2vLQW_v40983909839eusmtip1g;
+        Thu, 19 Sep 2019 13:46:21 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Maciej Falkowski <m.falkowski@samsung.com>, krzk@kernel.org,
+        mark.rutland@arm.com, robh@kernel.org, a.hajda@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH v2 resend] ARM: dts: exynos: remove obsolete IRQ lines
+Date:   Thu, 19 Sep 2019 15:45:47 +0200
+Message-Id: <20190919134547.11671-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <CAJKOXPcs5K46U9mF8evCpbEap_j0Sd5kUk-xiWjwyihAL7te=Q@mail.gmail.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42LZduznOd31bc2xBquLLG6tO8dqMf8IkDh/
+        fgO7xeVdc9gsZpzfx2TxoHkdm8XaI3fZLZZev8hk8X/PDnYHTo8189Ywemxa1cnm0bdlFaPH
+        501yASxRXDYpqTmZZalF+nYJXBld0yaxFrzkq7g2YSlzA2MzTxcjJ4eEgInE056tbCC2kMAK
+        RokjXwS7GLmA7C+MEq2d15khnM+MEhPedLDBdFz5MZENIrGcUaJ7wTEWuJatL48yglSxCRhK
+        dL3tAusQEUiUuP27nx2kiFlgDaPEl2/vWLsYOTiEBdwkVi00B6lhEVCVaNx5hh3E5hWwldi9
+        9jkjxDZ5idUbDjCD2JwCgRI/3s9nApkjIfCdTWLvr6/sEEUuEms2HmeFsIUlXh3fAhWXkfi/
+        E6ahmVHi4bm17BBOD6PE5aYZUCusJQ4fvwh2EbOApsT6XfoQYUeJ/20LmEHCEgJ8EjfeCoKE
+        mYHMSdumQ4V5JTrahCCq1SRmHV8Ht/bghUvMELaHxLRpB9khAbSEUWLTkzXsExjlZyEsW8DI
+        uIpRPLW0ODc9tdgoL7Vcrzgxt7g0L10vOT93EyMwXZz+d/zLDsZdf5IOMQpwMCrx8CqUN8cK
+        sSaWFVfmHmKU4GBWEuGdY9oUK8SbklhZlVqUH19UmpNafIhRmoNFSZy3muFBtJBAemJJanZq
+        akFqEUyWiYNTqoFRTNDG031Z7PcX22cYq52r03dMCM2pDj5b9m3+AvstDyqeV8wrLJ5cx7Xj
+        Wn1GdVVqzqTq1CsSbJqnWpv4X6769V8gYn5KzVYOJ4YSc0ndZze/zl3U79iwRyH268kXj+T/
+        ZnuqGIs6CLxLvXTKdaZOxE4TO8Z/E6WM0+yKOVubmW/tPrZje64SS3FGoqEWc1FxIgCvvl85
+        EwMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrELMWRmVeSWpSXmKPExsVy+t/xu7rr2ppjDSa9Z7K4te4cq8X8I0Di
+        /PkN7BaXd81hs5hxfh+TxYPmdWwWa4/cZbdYev0ik8X/PTvYHTg91sxbw+ixaVUnm0ffllWM
+        Hp83yQWwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJalFunb
+        JehldE2bxFrwkq/i2oSlzA2MzTxdjJwcEgImEld+TGTrYuTiEBJYyihxZnszE0RCRuLktAZW
+        CFtY4s+1LqiiT4wSd57NYgZJsAkYSnS9BUlwcogIJEssPryTEaSIWWATo8TOFZeBHA4OYQE3
+        iVULzUFqWARUJRp3nmEHsXkFbCV2r33OCLFAXmL1hgNgMzkFAiV+vJ8PdoSQQIDEvIZrLBMY
+        +RYwMqxiFEktLc5Nzy021CtOzC0uzUvXS87P3cQIDN9tx35u3sF4aWPwIUYBDkYlHl6F8uZY
+        IdbEsuLK3EOMEhzMSiK8c0ybYoV4UxIrq1KL8uOLSnNSiw8xmgIdNZFZSjQ5HxhbeSXxhqaG
+        5haWhubG5sZmFkrivB0CB2OEBNITS1KzU1MLUotg+pg4OKUaGDvaDv9Tqm4QlawwWW/psmfa
+        /ecppeaN+hKuwle6eOKmxjQKlNvrvPm5PGNbl6Evg/6LN1JSJ+scnq5uO7jIbuHPPds+R2io
+        /WG5zrWwyJm9VUrcxnn3d70l1n2aATWJTx+ziemtsxHoPc8m84bJd0c584OLX2U+da+rdkl8
+        Y3o7b4W4+f4wJZbijERDLeai4kQA1esEIHUCAAA=
+X-CMS-MailID: 20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe
+References: <CAJKOXPcs5K46U9mF8evCpbEap_j0Sd5kUk-xiWjwyihAL7te=Q@mail.gmail.com>
+        <CGME20190919134622eucas1p1947abc201f86d414bd0b0635f2d91cfe@eucas1p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Sep 2019 10:47:48 +0200, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?=          wrote:
-> Before commit e42ee61017f5 ("of: Let of_for_each_phandle fallback to
-> non-negative cell_count") the iterator functions calling
-> of_for_each_phandle assumed a cell count of 0 if cells_name was NULL.
-> This corner case was missed when implementing the fallback logic in
-> e42ee61017f5 and resulted in an endless loop.
-> 
-> Restore the old behaviour of of_count_phandle_with_args() and
-> of_parse_phandle_with_args() and add a check to
-> of_phandle_iterator_init() to prevent a similar failure as a safety
-> precaution. of_parse_phandle_with_args_map() doesn't need a similar fix
-> as cells_name isn't NULL there.
-> 
-> Affected drivers are:
->  - drivers/base/power/domain.c
->  - drivers/base/power/domain.c
->  - drivers/clk/ti/clk-dra7-atl.c
->  - drivers/hwmon/ibmpowernv.c
->  - drivers/i2c/muxes/i2c-demux-pinctrl.c
->  - drivers/iommu/mtk_iommu.c
->  - drivers/net/ethernet/freescale/fman/mac.c
->  - drivers/opp/of.c
->  - drivers/perf/arm_dsu_pmu.c
->  - drivers/regulator/of_regulator.c
->  - drivers/remoteproc/imx_rproc.c
->  - drivers/soc/rockchip/pm_domains.c
->  - sound/soc/fsl/imx-audmix.c
->  - sound/soc/fsl/imx-audmix.c
->  - sound/soc/meson/axg-card.c
->  - sound/soc/samsung/tm2_wm5110.c
->  - sound/soc/samsung/tm2_wm5110.c
-> 
-> Thanks to Geert Uytterhoeven for reporting the issue, Peter Rosin for
-> helping pinpoint the actual problem and the testers for confirming this
-> fix.
-> 
-> Fixes: e42ee61017f5 ("of: Let of_for_each_phandle fallback to non-negative cell_count")
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> ---
-> 
-> On Wed, Sep 18, 2019 at 08:01:05AM +0000, Peter Rosin wrote:
-> > On 2019-09-18 08:38, Uwe Kleine-König wrote:
-> > >  EXPORT_SYMBOL(of_parse_phandle_with_args);
-> > >  
-> > > @@ -1765,6 +1779,18 @@ int of_count_phandle_with_args(const struct device_node *np, const char *list_na
-> > >  	struct of_phandle_iterator it;
-> > >  	int rc, cur_index = 0;
-> > >  
-> > > +	/* If cells_name is NULL we assume a cell count of 0 */
-> > > +	if (cells_name == NULL) {
-> > 
-> > A couple of nits.
-> > 
-> > I don't know if there are other considerations, but in the previous two
-> > hunks you use !cells_name instead of comparing explicitly with NULL.
-> > Personally, I find the shorter form more readable, and in the name of
-> > consistency bla bla...
-> 
-> Ack, changed to !cells_name here, too.
-> 
-> > 
-> > Also, the comment explaining this NULL-check didn't really make sense
-> > to me until I realized that knowing the cell count to be zero makes
-> > counting trivial. Something along those lines should perhaps be in the
-> > comment?
-> 
-> You're right, I extended the comment a bit.
->  
-> > But as I said, these are nits. Feel free to ignore.
-> 
-> I considered resending already anyhow as I fatfingerd my email address.
-> this is fixed now, too. Additionally I fixed a typo in one of the
-> comments.
-> 
-> Thanks for your feedback.
-> 
-> Best regards
-> Uwe
-> 
->  drivers/of/base.c | 35 +++++++++++++++++++++++++++++++++--
->  1 file changed, 33 insertions(+), 2 deletions(-)
-> 
+From: Maciej Falkowski <m.falkowski@samsung.com>
 
-Applied, thanks.
+In commit 7222e8db2d50 ("iommu/exynos: Fix build errors") Exynos3250
+iommu driver stopped supporting two IRQ lines. The second IRQ line in DTS
+is ignored and is not needed.
 
-Rob
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+ arch/arm/boot/dts/exynos3250.dtsi | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
+index 784818490376..190d9160a5d1 100644
+--- a/arch/arm/boot/dts/exynos3250.dtsi
++++ b/arch/arm/boot/dts/exynos3250.dtsi
+@@ -314,8 +314,7 @@
+ 		sysmmu_jpeg: sysmmu@11a60000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x11a60000 0x1000>;
+-			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUJPEG>, <&cmu CLK_JPEG>;
+ 			power-domains = <&pd_cam>;
+@@ -355,8 +354,7 @@
+ 		sysmmu_fimd0: sysmmu@11e20000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x11e20000 0x1000>;
+-			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUFIMD0>, <&cmu CLK_FIMD0>;
+ 			power-domains = <&pd_lcd0>;
+@@ -507,8 +505,7 @@
+ 		sysmmu_mfc: sysmmu@13620000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x13620000 0x1000>;
+-			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUMFC_L>, <&cmu CLK_MFC>;
+ 			power-domains = <&pd_mfc>;
+-- 
+2.17.1
+
+
+
