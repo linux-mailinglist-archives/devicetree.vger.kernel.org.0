@@ -2,151 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2C6B747C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F71FB7486
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 09:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728879AbfISH6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 03:58:37 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:32772 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727033AbfISH6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:58:37 -0400
-Received: by mail-oi1-f193.google.com with SMTP id e18so1992038oii.0;
-        Thu, 19 Sep 2019 00:58:36 -0700 (PDT)
+        id S1731171AbfISH7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 03:59:30 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:50591 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731156AbfISH73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 03:59:29 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 5so3197630wmg.0;
+        Thu, 19 Sep 2019 00:59:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7gzgxvKneHeLUz/ZHsURkSXb+QEFiAaX6Im27DEWXsw=;
-        b=EvP1JxongnASLSTqxOC9cg6vKdv5o9oUqmH+GEgNkYS1Q4nEDEfFMDgkkdySM+OY91
-         4g7TtX1pdRTKz0TBxHMC7ZiBH05YaTMMqai3sOb8HzPQFFl2hDgnkxYxu1tvbRfB8EhV
-         7TXMR592oEpkm87xfU9VliFz8dPddluh2UH54/a7tcNGPfTkkqFF4ZJNPAE+NzuiPxmE
-         5j/3kZxu2kRx5K0hqeqtvlVwbmxbldZthB9peLibZh5QTRc7dGPyalpPOXM6L3Wtb9Km
-         u4TWqheiybRsz9lAYrC1xAVuQH3nNLdPzjTkzQpTnDv7Gb3Ww6+JPo0CUcX/jjpv7rEN
-         WcSQ==
-X-Gm-Message-State: APjAAAVPbAfGWh19jzqOeU7NbXZNSNC74LEzeMXTRxWcRpUvct3X9JpL
-        C7d/KG1XAZPl5E8yVCVv7gj7bAHk/UDtG3/xt+Y=
-X-Google-Smtp-Source: APXvYqxf1sEYGXWTjnimeWPrpnLdxl6qIsuH8BxLaYq8kEqCjkSoUa+pku/AhqCl9hYvN40oGfj9lkPMxStg54f52NE=
-X-Received: by 2002:aca:4890:: with SMTP id v138mr1333545oia.57.1568879916166;
- Thu, 19 Sep 2019 00:58:36 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=yy/C8I+qsXanLkKnOE9DEzrTwx4wGS6sU0a5cnC4r3Y=;
+        b=Uq2amqzSBa5AiEgRoJuzjZimVzoctiCVQvxWXNBSK3ewRM8TAz43RLt1pZh4Gh5nId
+         TDe/VSXMwdFK9ANuBhVjL/uMwiRmIIjPb0iQFJ7fc3j/kzT+WThc2Doa7LCLo3Jrm/YF
+         V4KLDUvQDoDXXD510rkOUOCMaxbkRcfitCNC11vgmq1xAKhnKCJstTbyVpd3xCiQmNQF
+         C0EJ0vZhwHyUMj9WDVQ4JLkzktrzV/cbW6LAdm/NQmPWdZRovgsmjUFk038wYP5BydBN
+         R9ijuAE+c0X4cdfP2QL/3nC5t4NSkAeHU9MS0AUmrk+7pU0tlGk22RzfIGcQRV7TzQG5
+         2otw==
+X-Gm-Message-State: APjAAAU8Jve7jZjbRJDcbuvV8SBfDD59tfdlV7mRkUq6mg9UPa6TrafK
+        p/nqr79SNs4VG1/XNojVuHA=
+X-Google-Smtp-Source: APXvYqy2o5grp6Rt7mjN78sEBbbA8GDZ94gEvftdESomIA11VKGYguGkQaar5ppls9OkNxJQa4i9kg==
+X-Received: by 2002:a1c:8097:: with SMTP id b145mr1641289wmd.29.1568879967329;
+        Thu, 19 Sep 2019 00:59:27 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id q22sm3339362wmj.5.2019.09.19.00.59.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2019 00:59:26 -0700 (PDT)
+Date:   Thu, 19 Sep 2019 09:59:24 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        ckeepax@opensource.cirrus.com, sbkim73@samsung.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v1 2/9] mfd: wm8994: Add support for MCLKn clock control
+Message-ID: <20190919075924.GB13195@pi3>
+References: <20190918104634.15216-1-s.nawrocki@samsung.com>
+ <CGME20190918104656eucas1p1d9cad1394b08d05a99151c4fbc9425ce@eucas1p1.samsung.com>
+ <20190918104634.15216-3-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-References: <20190918133419.7969-1-sakari.ailus@linux.intel.com> <20190918133419.7969-9-sakari.ailus@linux.intel.com>
-In-Reply-To: <20190918133419.7969-9-sakari.ailus@linux.intel.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Thu, 19 Sep 2019 09:58:24 +0200
-Message-ID: <CAJZ5v0hhOowv93-7wApvetr10bO+geTX_giH_2kHWmsRGdWFFw@mail.gmail.com>
-Subject: Re: [PATCH v7 08/13] lib/vsprintf: Remove support for %pF and %pf in
- favour of %pS and %ps
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Joe Perches <joe@perches.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190918104634.15216-3-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 3:34 PM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> %pS and %ps are now the preferred conversion specifiers to print function
-> names. The functionality is equivalent; remove the old, deprecated %pF
-> and %pf support.
->
-> Depends-on: commit 2d44d165e939 ("scsi: lpfc: Convert existing %pf users to %ps")
+On Wed, Sep 18, 2019 at 12:46:27PM +0200, Sylwester Nawrocki wrote:
+> The WM1811/WM8994/WM8958 audio CODEC DT bindings specify two optional
+> clocks: "MCLK1", "MCLK2". Add code for getting those clocks in the MFD
+> part of the wm8994 driver so they can be further handled in the audio
+> CODEC part.
 
-Where is this commit present?
+I think these are needed only for the codec so how about getting them in
+codec's probe?
 
-Not in the mainline as of today.
+Best regards,
+Krzysztof
 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 > ---
->  Documentation/core-api/printk-formats.rst | 10 ----------
->  lib/vsprintf.c                            |  8 ++------
->  scripts/checkpatch.pl                     |  1 -
->  3 files changed, 2 insertions(+), 17 deletions(-)
->
-> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
-> index c6224d039bcbe..922a29eb70e6c 100644
-> --- a/Documentation/core-api/printk-formats.rst
-> +++ b/Documentation/core-api/printk-formats.rst
-> @@ -86,8 +86,6 @@ Symbols/Function Pointers
->
->         %pS     versatile_init+0x0/0x110
->         %ps     versatile_init
-> -       %pF     versatile_init+0x0/0x110
-> -       %pf     versatile_init
->         %pSR    versatile_init+0x9/0x110
->                 (with __builtin_extract_return_addr() translation)
->         %pB     prev_fn_of_versatile_init+0x88/0x88
-> @@ -97,14 +95,6 @@ The ``S`` and ``s`` specifiers are used for printing a pointer in symbolic
->  format. They result in the symbol name with (S) or without (s)
->  offsets. If KALLSYMS are disabled then the symbol address is printed instead.
->
-> -Note, that the ``F`` and ``f`` specifiers are identical to ``S`` (``s``)
-> -and thus deprecated. We have ``F`` and ``f`` because on ia64, ppc64 and
-> -parisc64 function pointers are indirect and, in fact, are function
-> -descriptors, which require additional dereferencing before we can lookup
-> -the symbol. As of now, ``S`` and ``s`` perform dereferencing on those
-> -platforms (when needed), so ``F`` and ``f`` exist for compatibility
-> -reasons only.
-> -
->  The ``B`` specifier results in the symbol name with offsets and should be
->  used when printing stack backtraces. The specifier takes into
->  consideration the effect of compiler optimisations which may occur
-> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-> index b0967cf17137d..b00b57f9f911f 100644
-> --- a/lib/vsprintf.c
-> +++ b/lib/vsprintf.c
-> @@ -909,7 +909,7 @@ char *symbol_string(char *buf, char *end, void *ptr,
->  #ifdef CONFIG_KALLSYMS
->         if (*fmt == 'B')
->                 sprint_backtrace(sym, value);
-> -       else if (*fmt != 'f' && *fmt != 's')
-> +       else if (*fmt != 's')
->                 sprint_symbol(sym, value);
->         else
->                 sprint_symbol_no_offset(sym, value);
-> @@ -2007,9 +2007,7 @@ static char *kobject_string(char *buf, char *end, void *ptr,
->   *
->   * - 'S' For symbolic direct pointers (or function descriptors) with offset
->   * - 's' For symbolic direct pointers (or function descriptors) without offset
-> - * - 'F' Same as 'S'
-> - * - 'f' Same as 's'
-> - * - '[FfSs]R' as above with __builtin_extract_return_addr() translation
-> + * - '[Ss]R' as above with __builtin_extract_return_addr() translation
->   * - 'B' For backtraced symbolic direct pointers with offset
->   * - 'R' For decoded struct resource, e.g., [mem 0x0-0x1f 64bit pref]
->   * - 'r' For raw struct resource, e.g., [mem 0x0-0x1f flags 0x201]
-> @@ -2112,8 +2110,6 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
->               struct printf_spec spec)
->  {
->         switch (*fmt) {
-> -       case 'F':
-> -       case 'f':
->         case 'S':
->         case 's':
->                 ptr = dereference_symbol_descriptor(ptr);
-> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> index 93a7edfe0f059..a60c241112cd4 100755
-> --- a/scripts/checkpatch.pl
-> +++ b/scripts/checkpatch.pl
-> @@ -6012,7 +6012,6 @@ sub process {
->                                         my $ext_type = "Invalid";
->                                         my $use = "";
->                                         if ($bad_specifier =~ /p[Ff]/) {
-> -                                               $ext_type = "Deprecated";
->                                                 $use = " - use %pS instead";
->                                                 $use =~ s/pS/ps/ if ($bad_specifier =~ /pf/);
->                                         }
-> --
-> 2.20.1
->
+>  drivers/mfd/wm8994-core.c       | 9 +++++++++
+>  include/linux/mfd/wm8994/core.h | 9 +++++++++
+>  2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/mfd/wm8994-core.c b/drivers/mfd/wm8994-core.c
+> index 1e9fe7d92597..02c19a0bdeb0 100644
+> --- a/drivers/mfd/wm8994-core.c
+> +++ b/drivers/mfd/wm8994-core.c
+> @@ -7,6 +7,7 @@
+>   * Author: Mark Brown <broonie@opensource.wolfsonmicro.com>
+>   */
+>  
+> +#include <linux/clk.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/slab.h>
+> @@ -333,6 +334,14 @@ static int wm8994_device_init(struct wm8994 *wm8994, int irq)
+>  
+>  	dev_set_drvdata(wm8994->dev, wm8994);
+>  
+> +	wm8994->mclk[WM8994_MCLK1].id = "MCLK1";
+> +	wm8994->mclk[WM8994_MCLK2].id = "MCLK2";
+> +
+> +	ret = devm_clk_bulk_get_optional(wm8994->dev, ARRAY_SIZE(wm8994->mclk),
+> +					 wm8994->mclk);
+> +	if (ret != 0)
+> +		return ret;
+> +
+>  	/* Add the on-chip regulators first for bootstrapping */
+>  	ret = mfd_add_devices(wm8994->dev, 0,
+>  			      wm8994_regulator_devs,
+> diff --git a/include/linux/mfd/wm8994/core.h b/include/linux/mfd/wm8994/core.h
+> index e8b093522ffd..320297a1b70c 100644
+> --- a/include/linux/mfd/wm8994/core.h
+> +++ b/include/linux/mfd/wm8994/core.h
+> @@ -10,12 +10,19 @@
+>  #ifndef __MFD_WM8994_CORE_H__
+>  #define __MFD_WM8994_CORE_H__
+>  
+> +#include <linux/clk.h>
+>  #include <linux/mutex.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/regmap.h>
+>  
+>  #include <linux/mfd/wm8994/pdata.h>
+>  
+> +enum {
+> +	WM8994_MCLK1,
+> +	WM8994_MCLK2,
+> +	WM8994_NUM_MCLK
+> +};
+> +
+>  enum wm8994_type {
+>  	WM8994 = 0,
+>  	WM8958 = 1,
+> @@ -60,6 +67,8 @@ struct wm8994 {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+>  
+> +	struct clk_bulk_data mclk[WM8994_NUM_MCLK];
+> +
+>  	bool ldo_ena_always_driven;
+>  
+>  	int gpio_base;
+> -- 
+> 2.17.1
+> 
