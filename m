@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A785DB7491
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4005B7496
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 10:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728879AbfISIAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 04:00:20 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36316 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727033AbfISIAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 04:00:19 -0400
-Received: by mail-oi1-f194.google.com with SMTP id k20so1979742oih.3;
-        Thu, 19 Sep 2019 01:00:19 -0700 (PDT)
+        id S2388276AbfISIA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 04:00:27 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:40044 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388273AbfISIA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 04:00:27 -0400
+Received: by mail-wr1-f65.google.com with SMTP id l3so1997328wru.7;
+        Thu, 19 Sep 2019 01:00:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hioETfU5gPztyUmzdSWWdbfkJJTc6dlm5y+dbhCL8R4=;
-        b=N2OtSJoNzPDbijtPCMqu/MBOBIWeFBQUdritkXrgkwAWhn/KxsWiHmtg7Q1Ez/1u8B
-         yY+UCRmVrOvSEo2KXAfD3r94WkUm9tLfu76UkWQyuLcuJ3AEk1SGRdtU9ukxycb83akc
-         cyPzWvi/kVSDZtFWIx+B3btHlg3zaq3B2XgFdLx7aqLN0+6lJfkHwSj1910ovQL8FsSa
-         BImG2xPkroMHAS0CtIto/TYcjc4NcdcwJ7sxdRd//ULsHh6ojYCss5H7HjLwxlR4l9mc
-         fCCrYko1FAUgK9zB7fyOabzylpevsoDMC27f7l/3QS18ZDOqK/jOefnwCkUIKMk6Zg/z
-         Z6rw==
-X-Gm-Message-State: APjAAAXGHlWyiCecYhgD22L5hrf+k1MqRbmLxoVhZNy4NIsdQyUs/tXt
-        xXlkIEoIhinmeiOe5hcMwrqSxEKqWG9O+NGoi4ZrIA==
-X-Google-Smtp-Source: APXvYqylkZhk/PgUvzR9MUbnwm+Jmx9a7SqGV5LCTWYriGa/DgUV0OJhNIYh6ze4wXxDMwE+bw1OTYe6fLzOYlHGG4c=
-X-Received: by 2002:aca:db44:: with SMTP id s65mr1289673oig.103.1568880019040;
- Thu, 19 Sep 2019 01:00:19 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XYLP8EKg1aWYrdXosmUlGT0i0haeJe1I34kspHyVEH0=;
+        b=KMAbcgWDkMUR8RQ7xbkdqLkR8YjCUxTkvw51oHjO/Z0Jwa/08RF6JU0WUzxX19r7qu
+         qR/LZpLpHzqSm2+p5Zb8551pxERA0pIZdZo10IF9NL2RcKuHHvViBkat8uWzSokEEp6C
+         eoHjHDAr2ydjD1PvftfCOgbYqDyF+GTox6UWTwRme58hwS3Ooiu/iksLnZotQhl9Ot82
+         j4wNik19IONubogYL0jTV2iGNtJPjdBre/yx322ZAJG16exUlY7JAUmvyzJKs23h0Q1W
+         1TlKUdc4WSdT6A9+eqCDsXu4cZu/ky3LqgCyjq2CllY8x5xX/fympC62aoHvFKGsohBW
+         9aOw==
+X-Gm-Message-State: APjAAAVFt5vE5JQTtergTaErVVI474d1ppV3rOd5d5O6U8gzRgxJw/2V
+        S5ei66hB47QTl1+rnAM4eU0=
+X-Google-Smtp-Source: APXvYqxkZJuMnz/5Yv5b+cZRtdqNk41lsPPfWQ5dJ873pZVxw48691hLCmWcac5LtqPWpbV9fXoJ9Q==
+X-Received: by 2002:adf:f50d:: with SMTP id q13mr6370586wro.187.1568880025167;
+        Thu, 19 Sep 2019 01:00:25 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id u10sm15346109wrg.55.2019.09.19.01.00.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2019 01:00:24 -0700 (PDT)
+Date:   Thu, 19 Sep 2019 10:00:21 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        ckeepax@opensource.cirrus.com, sbkim73@samsung.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v1 3/9] ASoC: wm8994: Add support for setting MCLKn clock
+ rate
+Message-ID: <20190919080021.GC13195@pi3>
+References: <20190918104634.15216-1-s.nawrocki@samsung.com>
+ <CGME20190918104658eucas1p2c1f07d3e8b915d8c3a448b80d2af5df0@eucas1p2.samsung.com>
+ <20190918104634.15216-4-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-References: <20190918133419.7969-1-sakari.ailus@linux.intel.com>
-In-Reply-To: <20190918133419.7969-1-sakari.ailus@linux.intel.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Thu, 19 Sep 2019 10:00:08 +0200
-Message-ID: <CAJZ5v0iHv=-t3qA3VBfC6ryPOmC8QW9pxwFvEw6SQQZ3CwsScw@mail.gmail.com>
-Subject: Re: [PATCH v7 00/13] Device property improvements, add %pfw format specifier
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Joe Perches <joe@perches.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190918104634.15216-4-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 18, 2019 at 3:34 PM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi all,
->
-> This set adds functionality into the device property API (counting a
-> node's parents as well as obtaining its name) in order to support printing
-> fwnode names using a new conversion specifier "%pfw". The names that are
-> produced are equivalent to its OF counterpart "%pOF" on OF systems for the
-> two supported modifiers ("f" and "P").
->
-> Printing a node's name is something that's been available on OF for a long
-> time and if something is converted to device property API (such as the
-> V4L2 fwnode framework) it always got removed of a nice feature that was
-> sometimes essential in debugging. With this set, that no longer is the
-> case.
->
-> Note: the set now depends on 2d44d165e939 ("scsi: lpfc: Convert existing
-> %pf users to %ps") that is expected from the linux-scsi tree. It is
+On Wed, Sep 18, 2019 at 12:46:28PM +0200, Sylwester Nawrocki wrote:
+> Extend the set_sysclk() handler so we also set frequency of the MCLK1,
+> MCLK2 clocks through clk API when those clocks are specified in DT for
+> the device.
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+>  sound/soc/codecs/wm8994.c | 30 +++++++++++++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
 
-OK, so I will be expecting a refresh of the series when the above
-commit appears in the mainline.
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Cheers,
-Rafael
+Best regards,
+Krzysztof
+
