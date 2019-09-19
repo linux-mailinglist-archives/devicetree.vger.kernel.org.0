@@ -2,175 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D62E1B790B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 14:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 006F0B7916
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 14:14:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390240AbfISMNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 08:13:25 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:45830 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390226AbfISMNV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Sep 2019 08:13:21 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 33D291A0084;
-        Thu, 19 Sep 2019 14:13:20 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 08B9A1A01CD;
-        Thu, 19 Sep 2019 14:13:13 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5A9DC40309;
-        Thu, 19 Sep 2019 20:13:04 +0800 (SGT)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, lars@metafoo.de
-Subject: [PATCH V3 4/4] ASoC: fsl_asrc: Fix error with S24_3LE format bitstream in i.MX8
-Date:   Thu, 19 Sep 2019 20:11:42 +0800
-Message-Id: <0fe619f4c8f0898cf51c7324c9a0784c5782ed91.1568861098.git.shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1568861098.git.shengjiu.wang@nxp.com>
-References: <cover.1568861098.git.shengjiu.wang@nxp.com>
-In-Reply-To: <cover.1568861098.git.shengjiu.wang@nxp.com>
-References: <cover.1568861098.git.shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2388986AbfISMOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 08:14:21 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33811 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388585AbfISMOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 08:14:20 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m19so1014535otp.1;
+        Thu, 19 Sep 2019 05:14:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QvLoduNjWDq0irr4KmoFrcMnRkzTNuqWd9dd0EIo4qA=;
+        b=NUcHB4ECLWXZ5lpvpWEbL1VzzRnEePXy357KUTmGR/L5wncupdtS2ZbK8kJ5XSCPR+
+         Hfd0t5v76KPx9gQenG6e/4FveSYQlm2Iq4KUzRFe5RBUqJv2rwQfEh4Lp39KJWHlCtH3
+         J3yBe7f8Fw8itjKBEiytVCxLg0v4ZzkvxcDakqCzSKIiP6g+iSksgL7GTwmjmfH1s9WV
+         vYHtsEWFqlLNF+9/X+Jg7kIUyEPQUzjQGFEN6TR2je+HHYNm6Z7mJRjXHytwQq/qu8ab
+         /QRsin83kUbQ2IYGBP6uC2uaq9zhmy+SWAZEO6dyW6qCZAtzqmPIQzYQ1V+OBMzjqRYS
+         X3lQ==
+X-Gm-Message-State: APjAAAU2Nq5vwPXjKxBpR8rWzE4k8tyyzI9U6RbAxSORw1EdZ9646z23
+        JS6ZI7h9l29RkHNOVVn50vZeaWgFiBNZIXMeBTU=
+X-Google-Smtp-Source: APXvYqxpJBNDWF7UZ7/K/0JRvYuxdPCLIvwKYAzQ/RK4j0IdrJdhtUuq0yye09WgmEfrGPF+voRk28xoNDEpfn0vwgw=
+X-Received: by 2002:a9d:730d:: with SMTP id e13mr2241059otk.145.1568895259523;
+ Thu, 19 Sep 2019 05:14:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <1568819121-32737-1-git-send-email-ykaneko0929@gmail.com> <20190919120333.77qabr675rne7zlu@verge.net.au>
+In-Reply-To: <20190919120333.77qabr675rne7zlu@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 19 Sep 2019 14:14:07 +0200
+Message-ID: <CAMuHMdWHyzwkqQv-4Dpo-omO7Z96NATANjyrtufbZQ7naCDPQQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas-irqc: convert bindings
+ to json-schema
+To:     Simon Horman <horms@verge.net.au>
+Cc:     Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is error "aplay: pcm_write:2023: write error: Input/output error"
-on i.MX8QM/i.MX8QXP platform for S24_3LE format.
+Hi Simon,
 
-In i.MX8QM/i.MX8QXP, the DMA is EDMA, which don't support 24bit
-sample, but we didn't add any constraint, that cause issues.
+On Thu, Sep 19, 2019 at 2:03 PM Simon Horman <horms@verge.net.au> wrote:
+> On Thu, Sep 19, 2019 at 12:05:21AM +0900, Yoshihiro Kaneko wrote:
+> > Convert Renesas Interrupt Controller bindings documentation to json-schema.
+> >
+> > Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
 
-So we need to query the caps of dma, then update the hw parameters
-according to the caps.
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+> > @@ -0,0 +1,84 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,irqc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
+> > +
+> > +maintainers:
+> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - renesas,irqc-r8a73a4        # R-Mobile APE6
+> > +          - renesas,irqc-r8a7743        # RZ/G1M
+> > +          - renesas,irqc-r8a7744        # RZ/G1N
+> > +          - renesas,irqc-r8a7745        # RZ/G1E
+> > +          - renesas,irqc-r8a77470       # RZ/G1C
+> > +          - renesas,irqc-r8a7790        # R-Car H2
+> > +          - renesas,irqc-r8a7791        # R-Car M2-W
+> > +          - renesas,irqc-r8a7792        # R-Car V2H
+> > +          - renesas,irqc-r8a7793        # R-Car M2-N
+> > +          - renesas,irqc-r8a7794        # R-Car E2
+> > +          - renesas,intc-ex-r8a774a1    # RZ/G2M
+> > +          - renesas,intc-ex-r8a774c0    # RZ/G2E
+> > +          - renesas,intc-ex-r8a7795     # R-Car H3
+> > +          - renesas,intc-ex-r8a7796     # R-Car M3-W
+> > +          - renesas,intc-ex-r8a77965    # R-Car M3-N
+> > +          - renesas,intc-ex-r8a77970    # R-Car V3M
+> > +          - renesas,intc-ex-r8a77980    # R-Car V3H
+> > +          - renesas,intc-ex-r8a77990    # R-Car E3
+> > +          - renesas,intc-ex-r8a77995    # R-Car D3
+> > +      - const: renesas,irqc
+> > +
+> > +  '#interrupt-cells':
+> > +    # an interrupt index and flags, as defined in interrupts.txt in
+> > +    # this directory
+> > +    const: 2
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 32
+>
+> Is 'interrupts' required?
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- sound/soc/fsl/fsl_asrc.c     |  4 +--
- sound/soc/fsl/fsl_asrc.h     |  3 +++
- sound/soc/fsl/fsl_asrc_dma.c | 52 +++++++++++++++++++++++++++++++-----
- 3 files changed, 50 insertions(+), 9 deletions(-)
+Yes, there must be one upstream interrupt for each supported interrupt input.
+The number of inputs is SoC-specific.
 
-diff --git a/sound/soc/fsl/fsl_asrc.c b/sound/soc/fsl/fsl_asrc.c
-index 584badf956d2..0bf91a6f54b9 100644
---- a/sound/soc/fsl/fsl_asrc.c
-+++ b/sound/soc/fsl/fsl_asrc.c
-@@ -115,7 +115,7 @@ static void fsl_asrc_sel_proc(int inrate, int outrate,
-  * within range [ANCA, ANCA+ANCB-1], depends on the channels of pair A
-  * while pair A and pair C are comparatively independent.
-  */
--static int fsl_asrc_request_pair(int channels, struct fsl_asrc_pair *pair)
-+int fsl_asrc_request_pair(int channels, struct fsl_asrc_pair *pair)
- {
- 	enum asrc_pair_index index = ASRC_INVALID_PAIR;
- 	struct fsl_asrc *asrc_priv = pair->asrc_priv;
-@@ -158,7 +158,7 @@ static int fsl_asrc_request_pair(int channels, struct fsl_asrc_pair *pair)
-  *
-  * It clears the resource from asrc_priv and releases the occupied channels.
-  */
--static void fsl_asrc_release_pair(struct fsl_asrc_pair *pair)
-+void fsl_asrc_release_pair(struct fsl_asrc_pair *pair)
- {
- 	struct fsl_asrc *asrc_priv = pair->asrc_priv;
- 	enum asrc_pair_index index = pair->index;
-diff --git a/sound/soc/fsl/fsl_asrc.h b/sound/soc/fsl/fsl_asrc.h
-index 38af485bdd22..2b57e8c53728 100644
---- a/sound/soc/fsl/fsl_asrc.h
-+++ b/sound/soc/fsl/fsl_asrc.h
-@@ -462,4 +462,7 @@ struct fsl_asrc {
- #define DRV_NAME "fsl-asrc-dai"
- extern struct snd_soc_component_driver fsl_asrc_component;
- struct dma_chan *fsl_asrc_get_dma_channel(struct fsl_asrc_pair *pair, bool dir);
-+int fsl_asrc_request_pair(int channels, struct fsl_asrc_pair *pair);
-+void fsl_asrc_release_pair(struct fsl_asrc_pair *pair);
-+
- #endif /* _FSL_ASRC_H */
-diff --git a/sound/soc/fsl/fsl_asrc_dma.c b/sound/soc/fsl/fsl_asrc_dma.c
-index 01052a0808b0..c1c8ee4aca54 100644
---- a/sound/soc/fsl/fsl_asrc_dma.c
-+++ b/sound/soc/fsl/fsl_asrc_dma.c
-@@ -16,13 +16,11 @@
- 
- #define FSL_ASRC_DMABUF_SIZE	(256 * 1024)
- 
--static const struct snd_pcm_hardware snd_imx_hardware = {
-+static struct snd_pcm_hardware snd_imx_hardware = {
- 	.info = SNDRV_PCM_INFO_INTERLEAVED |
- 		SNDRV_PCM_INFO_BLOCK_TRANSFER |
- 		SNDRV_PCM_INFO_MMAP |
--		SNDRV_PCM_INFO_MMAP_VALID |
--		SNDRV_PCM_INFO_PAUSE |
--		SNDRV_PCM_INFO_RESUME,
-+		SNDRV_PCM_INFO_MMAP_VALID,
- 	.buffer_bytes_max = FSL_ASRC_DMABUF_SIZE,
- 	.period_bytes_min = 128,
- 	.period_bytes_max = 65535, /* Limited by SDMA engine */
-@@ -276,6 +274,11 @@ static int fsl_asrc_dma_startup(struct snd_pcm_substream *substream)
- 	struct device *dev = component->dev;
- 	struct fsl_asrc *asrc_priv = dev_get_drvdata(dev);
- 	struct fsl_asrc_pair *pair;
-+	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
-+	u8 dir = tx ? OUT : IN;
-+	struct dma_chan *tmp_chan;
-+	struct snd_dmaengine_dai_dma_data *dma_data;
-+	int ret;
- 
- 	pair = kzalloc(sizeof(struct fsl_asrc_pair), GFP_KERNEL);
- 	if (!pair)
-@@ -285,9 +288,44 @@ static int fsl_asrc_dma_startup(struct snd_pcm_substream *substream)
- 
- 	runtime->private_data = pair;
- 
--	snd_pcm_hw_constraint_integer(substream->runtime,
--				      SNDRV_PCM_HW_PARAM_PERIODS);
--	snd_soc_set_runtime_hwparams(substream, &snd_imx_hardware);
-+	ret = snd_pcm_hw_constraint_integer(substream->runtime,
-+					    SNDRV_PCM_HW_PARAM_PERIODS);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to set pcm hw params periods\n");
-+		return ret;
-+	}
-+
-+	/* Request a temp pair, which is release in the end */
-+	ret = fsl_asrc_request_pair(1, pair);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to request asrc pair\n");
-+		return ret;
-+	}
-+
-+	tmp_chan = fsl_asrc_get_dma_channel(pair, dir);
-+	if (!tmp_chan) {
-+		dev_err(dev, "can't get dma channel\n");
-+		return -EINVAL;
-+	}
-+
-+	dma_data = snd_soc_dai_get_dma_data(rtd->cpu_dai, substream);
-+
-+	ret = snd_dmaengine_pcm_refine_runtime_hwparams(substream,
-+							dma_data,
-+							&snd_imx_hardware,
-+							tmp_chan);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to set runtime hwparams\n");
-+		return ret;
-+	}
-+
-+	ret = snd_soc_set_runtime_hwparams(substream, &snd_imx_hardware);
-+	if (ret)
-+		return ret;
-+
-+	dma_release_channel(tmp_chan);
-+	fsl_asrc_release_pair(pair);
-+
- 
- 	return 0;
- }
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/clock/r8a7790-clock.h>
+> > +
+> > +    irqc0: interrupt-controller@e61c0000 {
+> > +        compatible = "renesas,irqc-r8a7790", "renesas,irqc";
+> > +        #interrupt-cells = <2>;
+> > +        interrupt-controller;
+> > +        reg = <0 0xe61c0000 0 0x200>;
+> > +        interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <0 1 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <0 2 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <0 3 IRQ_TYPE_LEVEL_HIGH>;
+
+While at it, one may want to replace s/0/GIC_SPI/.
+
+> > +        clocks = <&mstp4_clks R8A7790_CLK_IRQC>;
+
+and update clocks for the new CPG/MSTP bindings.
+
+> > +    };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.21.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
