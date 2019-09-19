@@ -2,42 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 250B9B76C8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 11:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF33B76EF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2019 12:02:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388966AbfISJ44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Sep 2019 05:56:56 -0400
-Received: from skedge03.snt-world.com ([91.208.41.68]:57976 "EHLO
-        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388819AbfISJ44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Sep 2019 05:56:56 -0400
-Received: from sntmail11s.snt-is.com (unknown [10.203.32.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by skedge03.snt-world.com (Postfix) with ESMTPS id 13C5767B341;
-        Thu, 19 Sep 2019 11:56:52 +0200 (CEST)
-Received: from sntmail14r.snt-is.com (10.203.32.184) by sntmail11s.snt-is.com
- (10.203.32.181) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 19 Sep
- 2019 11:56:51 +0200
-Received: from sntmail14r.snt-is.com ([fe80::c8f3:eae9:52c2:11a8]) by
- sntmail14r.snt-is.com ([fe80::c8f3:eae9:52c2:11a8%3]) with mapi id
- 15.01.1713.004; Thu, 19 Sep 2019 11:56:51 +0200
-From:   Schrempf Frieder <frieder.schrempf@kontron.de>
-To:     Anson Huang <Anson.Huang@nxp.com>,
+        id S2389008AbfISKCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Sep 2019 06:02:01 -0400
+Received: from mail-eopbgr80071.outbound.protection.outlook.com ([40.107.8.71]:2286
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388966AbfISKCB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Sep 2019 06:02:01 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Uum/bUwjIjrkIqrAEskZ0F1pK8d3ZB5x00BpYreNs3xXHuafkBS4dEBew+z7JmYY0p96fgPoj381UQHafbPsePKkxVzqMQbD7Ce2eTEN9qkM9If4wdK4hB+AeXO759LSh1bY9y/dHPiNfpOnsXMeE3aK6rt18TLL4gX71NWObyGNmmmTz54u96KMM6BfZPYtSslSmOzT1l0GO2fJcZFOaikDAJN4mVVVzlsbPkL40VltUSVkzhMK364H+/0d+wghkXFpk1Y9inEARSHG6A8LD9WcGYDF/jMJsSGh6Alw8MPV78gLpTnpXmPsRb5PJgheZI3qlixWZutVKUallNcDvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wC/ip0vaqmRjLlxfup04aMPvWEi804Vf624fec5JaZs=;
+ b=Wd8HAU3+LIlAnC+55znTarrZu30v5viRqy1beVHxzT8rFp3CgqATaBOX6FAj7wBr5B7sd4naa3+5C3tJPOBmUEDUxDW885VyY5h1ITLz5ETRHH5nPdb74AoELWYxClXq0x4d4fTcQfvdq8u8AYmiUd0IATXU/ghGdQyKUIJPj15kfrqZAu3FBErEvyUy0dHeY+DwF9+1DzjzY7FJ6+GPzWkoD+tYvqsp1fTs3jYa1/+g3B9RxsNVTjmyHTu/rtUn3OKziHofNV965FGgbgJrpUz7z+YfMXFOrDba0/qLOxwP+yOiHRucEtFeMZ56toU6UUugKM70E1RLLI+hsUtlDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wC/ip0vaqmRjLlxfup04aMPvWEi804Vf624fec5JaZs=;
+ b=SWZhd7j6ca2HdyPzxbFcR3213DKKiWPBVNkYgZXhL4CVh66c39gJmIc7CGJGgOIlkM7UVLoqbIUW/FdpUxaAAxfkxrbpLNFkSiopdjSWK7prLFJPwLoEMw+wTYY7zms/gJSZofp+6GwfprpZwWk7fApAremuetxX+n2yyZ3INqA=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3705.eurprd04.prod.outlook.com (52.134.70.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.20; Thu, 19 Sep 2019 10:01:57 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::8958:299c:bc54:2a38]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::8958:299c:bc54:2a38%7]) with mapi id 15.20.2284.009; Thu, 19 Sep 2019
+ 10:01:57 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>,
         Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         "shawnguo@kernel.org" <shawnguo@kernel.org>,
         "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
         "kernel@pengutronix.de" <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        "leonard.crestez@nxp.com" <leonard.crestez@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
         "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "ping.bai@nxp.com" <ping.bai@nxp.com>,
-        "daniel.baluta@nxp.com" <daniel.baluta@nxp.com>,
-        "jun.li@nxp.com" <jun.li@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>, Jun Li <jun.li@nxp.com>,
         "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "abel.vesa@nxp.com" <abel.vesa@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
         "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
         "angus@akkea.ca" <angus@akkea.ca>,
         "ccaione@baylibre.com" <ccaione@baylibre.com>,
@@ -46,56 +56,57 @@ To:     Anson Huang <Anson.Huang@nxp.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: Missing 'assigned-clocks' in usdhc node of i.MX8MQ/MM/MN dtsi?
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: Missing 'assigned-clocks' in usdhc node of i.MX8MQ/MM/MN dtsi?
 Thread-Topic: Missing 'assigned-clocks' in usdhc node of i.MX8MQ/MM/MN dtsi?
-Thread-Index: AQHVbtCPIpmeLD1Wgkq8yfUNmKVWtQ==
-Date:   Thu, 19 Sep 2019 09:56:51 +0000
-Message-ID: <e6ce599e-597a-6f67-d5d1-5487f50c7d0d@kontron.de>
-Accept-Language: de-DE, en-US
+Thread-Index: AQHVbtCPIpmeLD1Wgkq8yfUNmKVWtacyxFuA
+Date:   Thu, 19 Sep 2019 10:01:57 +0000
+Message-ID: <DB3PR0402MB39167149796B0DD51442FD07F5890@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <e6ce599e-597a-6f67-d5d1-5487f50c7d0d@kontron.de>
+In-Reply-To: <e6ce599e-597a-6f67-d5d1-5487f50c7d0d@kontron.de>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.9.193]
-x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8acf25c6-e1d6-42e7-3535-08d73ce86851
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3705;
+x-ms-traffictypediagnostic: DB3PR0402MB3705:|DB3PR0402MB3705:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB3PR0402MB3705CCBEB870B481BDFDD3A4F5890@DB3PR0402MB3705.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 016572D96D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(376002)(39860400002)(366004)(136003)(199004)(189003)(81166006)(81156014)(2201001)(2501003)(33656002)(76176011)(14454004)(14444005)(316002)(7696005)(256004)(52536014)(9686003)(7416002)(55016002)(5660300002)(110136005)(99286004)(6246003)(6436002)(6506007)(86362001)(66476007)(6636002)(71190400001)(66556008)(66066001)(66446008)(74316002)(64756008)(4744005)(76116006)(229853002)(71200400001)(305945005)(66946007)(2906002)(7736002)(26005)(44832011)(11346002)(102836004)(186003)(6116002)(8676002)(8936002)(446003)(3846002)(486006)(478600001)(476003)(25786009)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3705;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ar7+9Vqt7zsfVtXKe6+7oVKOPf70oxJ6sGvNNwjhjuZTFT9Tg2eu0xKzlb8p03FM1j5DeeVijccpTR7jAwgaHJn0hV8TDKMVPzztEhWhmHDPL0CJQIsc4zoylVXZHkeAJR6kurfAaPMDBCBNfJGYa4Wbw+g+L6Ch4Erkfu+jTWOb+xEUvfFOD6dXX8ig+pAtiI2RzzlyaBCTUD2cuyYzqPBX3E2e46fS5OlF7dlRlZoBn4PyDdMk1WHU/tniMAr8r2ImXdAjQKLfqFSOu0+P0HUIn8SWqdB6/XXUOHS956/qaUPSPncx8NOqgerg/WQ3nQnvOtcDm9UXEifS7qwni7zb9GwQEGJ7H/JfD6ET73DRB8IXJLfljQu/ldpx4eLO+huBex8z2Vj1ADMO2oMw9MRKM4BmJJECQvJjCD2w4bE=
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <000AF8B8BF44EA4F81E89ED1E2CF7D13@snt-world.com>
 Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: 13C5767B341.A2528
-X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
-X-SnT-MailScanner-SpamCheck: 
-X-SnT-MailScanner-From: frieder.schrempf@kontron.de
-X-SnT-MailScanner-To: abel.vesa@nxp.com, agx@sigxcpu.org,
-        andrew.smirnov@gmail.com, angus@akkea.ca, anson.huang@nxp.com,
-        ccaione@baylibre.com, daniel.baluta@nxp.com,
-        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
-        festevam@gmail.com, jun.li@nxp.com, kernel@pengutronix.de,
-        l.stach@pengutronix.de, leonard.crestez@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com, ping.bai@nxp.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-X-Spam-Status: No
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8acf25c6-e1d6-42e7-3535-08d73ce86851
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2019 10:01:57.4577
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GxUGQUYdVZFihaoGkoEiJuSPPoKqKIPcavs/qrZsRMYyoESQzg3pp8GeXwah6OytvGdiQfV/9BPbUEp8lNjrGA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3705
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCkkgd29uZGVyIHdoeSBpbXg4bXEuZHRzaSwgaW14OG1tLmR0c2kgYW5kIGlteDhtbi5k
-dHNpIGhhdmUgDQonYXNzaWduZWQtY2xvY2tzJyBhbmQgJ2Fzc2lnbmVkLWNsb2NrLXJhdGVzJyBz
-ZXQgZm9yIGFsbCB1c2RoYyBub2RlcywgDQpleGNlcHQgZm9yIHVzZGhjMi4NCg0KSXMgdGhpcyBv
-biBwdXJwb3NlPyBJcyBpdCBhIGZsYXc/DQoNClRoYW5rcywNCkZyaWVkZXINCg0KRXh0cmFjdCBm
-cm9tIGlteDhtbS5kdHNpOg0KDQp1c2RoYzE6IG1tY0AzMGI0MDAwMCB7DQoJWy4uLl0NCglhc3Np
-Z25lZC1jbG9ja3MgPSA8JmNsayBJTVg4TU1fQ0xLX1VTREhDMT47DQoJYXNzaWduZWQtY2xvY2st
-cmF0ZXMgPSA8NDAwMDAwMDAwPjsNCglbLi4uXQ0KfTsNCg0KdXNkaGMyOiBtbWNAMzBiNTAwMDAg
-ew0KCWNvbXBhdGlibGUgPSAiZnNsLGlteDhtbS11c2RoYyIsICJmc2wsaW14N2QtdXNkaGMiOw0K
-CXJlZyA9IDwweDMwYjUwMDAwIDB4MTAwMDA+Ow0KCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMyBJ
-UlFfVFlQRV9MRVZFTF9ISUdIPjsNCgljbG9ja3MgPSA8JmNsayBJTVg4TU1fQ0xLX0RVTU1ZPiwN
-CgkJIDwmY2xrIElNWDhNTV9DTEtfTkFORF9VU0RIQ19CVVM+LA0KCQkgPCZjbGsgSU1YOE1NX0NM
-S19VU0RIQzJfUk9PVD47DQoJY2xvY2stbmFtZXMgPSAiaXBnIiwgImFoYiIsICJwZXIiOw0KCWZz
-bCx0dW5pbmctc3RhcnQtdGFwID0gPDIwPjsNCglmc2wsdHVuaW5nLXN0ZXA9IDwyPjsNCglidXMt
-d2lkdGggPSA8ND47DQoJc3RhdHVzID0gImRpc2FibGVkIjsNCn07DQoNCnVzZGhjMzogbW1jQDMw
-YjYwMDAwIHsNCglbLi4uXQ0KCWFzc2lnbmVkLWNsb2NrcyA9IDwmY2xrIElNWDhNTV9DTEtfVVNE
-SEMzX1JPT1Q+Ow0KCWFzc2lnbmVkLWNsb2NrLXJhdGVzID0gPDQwMDAwMDAwMD47DQoJWy4uLl0N
-Cn07DQo=
+SGksIFNjaHJlbXBmDQoNCj4gSGksDQo+IA0KPiBJIHdvbmRlciB3aHkgaW14OG1xLmR0c2ksIGlt
+eDhtbS5kdHNpIGFuZCBpbXg4bW4uZHRzaSBoYXZlICdhc3NpZ25lZC0NCj4gY2xvY2tzJyBhbmQg
+J2Fzc2lnbmVkLWNsb2NrLXJhdGVzJyBzZXQgZm9yIGFsbCB1c2RoYyBub2RlcywgZXhjZXB0IGZv
+ciB1c2RoYzIuDQo+IA0KPiBJcyB0aGlzIG9uIHB1cnBvc2U/IElzIGl0IGEgZmxhdz8NCg0KSSBk
+b24ndCB0aGluayBpdCBpcyBvbiBwdXJwb3NlLCBpdCBzaG91bGQgYmUgYSBmbGF3LCBJIHdpbGwg
+ZG91YmxlIGNoZWNrIHdpdGggb3VyIHVzZGhjIG93bmVyLA0KaWYgaXQgaXMgaW5kZWVkIGEgZmxh
+dywgd2Ugd2lsbCBzdW1taXQgYSBwYXRjaCB0byBmaXggaXQsIHRoYW5rcyBmb3IgcmVtaW5kZXIu
+DQoNClRoYW5rcywNCkFuc29uDQoNCg==
