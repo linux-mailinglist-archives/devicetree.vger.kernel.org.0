@@ -2,106 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 793B5B9461
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 17:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 109ADB9469
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 17:51:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403836AbfITPuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 11:50:12 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:26533 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403812AbfITPuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 11:50:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568994608;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=MnCEgfHZvgWsZRec/fRQjSxgJ/Izm/Pc0S5ceTXJhwY=;
-        b=PZeYjfQ5mmhG74JwVgMg2pc5DX+8oTIjCPFqCi/T9rZR/7U69JiLvvkge8WpL2yUbr
-        Kd24OSvrgqaLsg5scsbUjldf9l1OhnvKryMoHS+sBLMLLO7hFQ2Xme1FuaicCVt3+FV7
-        YQLziMfzf7z0pMvciW/Lh523MmNZoFwlG8A1w6if6vRVb6KSo5550fzMWtO8cGY8+51f
-        L2gbkFljGJxIm3AW1/yWAOzF1KkP4E7tlCUsvPplDHNsrdDszNfWjf26z4UzN05C8L8t
-        IrNHEWl7IYlQ9CBRaGBEaBUCe9wPwMKQwFeSbMd5wgeIqzAQAywyVeqtBjYm006oGLYx
-        lV4w==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGHPrpwDCpeWQ="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
-        with ESMTPSA id u036f9v8KFo7pDC
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 20 Sep 2019 17:50:07 +0200 (CEST)
-Content-Type: text/plain; charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20190920172947.51c1fdec@aktux>
-Date:   Fri, 20 Sep 2019 17:50:06 +0200
-Cc:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <96E62EC2-2A3E-4722-A9DE-3F320B0A98B0@goldelico.com>
-References: <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com> <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com> <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com> <20190831084852.5e726cfa@aktux> <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com> <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com> <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com> <CACRpkdZvpPOM1Ug-=GHf7Z-2VEbJz3Cuo7+0yDFuNm5ShXK8=Q@mail.gmail.com> <7DF102BC-C818-4D27-988F-150C7527E6CC@goldelico.com> <20190920142059.GO5610@atomide.com> <633E7AD9-A909-4619-BBD7-8CFD965FDFF7@goldelico.com> <20190920172947.51c1fdec@aktux>
-To:     Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: Apple Mail (2.3124)
+        id S2404369AbfITPvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 11:51:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51584 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404366AbfITPvE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Sep 2019 11:51:04 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A256421835;
+        Fri, 20 Sep 2019 15:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568994662;
+        bh=Gk8b96/zmrgvgnCdppmwZEWWClB9i1dZv17q7MLhgfc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OZM0VO15KguCMz8L73yAu9wwfmIvWTtRKsRWtXbjJFKVXMMLe2p8bfBQAQkCKcL2U
+         ZC9RtUZrL5eJL0Hk2B8lfXus6Mb7THpBP0h7NAF9u+kkBEJeVMK5UCXfPgFFwcMQVI
+         OoR623SUjj3mRa2R4ehGSSj+mTawpcia4HoOgbSk=
+Received: by mail-qt1-f181.google.com with SMTP id c3so9160727qtv.10;
+        Fri, 20 Sep 2019 08:51:02 -0700 (PDT)
+X-Gm-Message-State: APjAAAWXGvSPhFcDMnd4THmP6ll6O7mP+E75eYS4Kj3lHCTLtyL1HRen
+        yl9J2Wb3SIHdR9DwrylD1o3W5auVUWbsxSkq9g==
+X-Google-Smtp-Source: APXvYqwMIrqIhbU+PH2zwmKFyZZ7p9gmNZDVfDvJtsMY/FngbKyrGtmiBbkzWBc5h/SVux0vE5Rh9MaGgWH9K6YJIV0=
+X-Received: by 2002:ac8:444f:: with SMTP id m15mr4046894qtn.110.1568994661811;
+ Fri, 20 Sep 2019 08:51:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190918173141.4314-1-krzk@kernel.org> <20190918173141.4314-8-krzk@kernel.org>
+In-Reply-To: <20190918173141.4314-8-krzk@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 20 Sep 2019 10:50:50 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+0ikCageBv3TSwx0tp=ZDkrFwpFVt2gJHWsFe2f-K2pA@mail.gmail.com>
+Message-ID: <CAL_Jsq+0ikCageBv3TSwx0tp=ZDkrFwpFVt2gJHWsFe2f-K2pA@mail.gmail.com>
+Subject: Re: [PATCH v2 8/8] dt-bindings: pwm: Convert Samsung PWM bindings to json-schema
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        linux-tegra@vger.kernel.org,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 18, 2019 at 12:32 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> Convert Samsung PWM (S3C, S5P and Exynos SoCs) bindings to DT schema
+> format using json-schema.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> ---
+>
+> Changes since v1:
+> 1. Indent example with four spaces (more readable),
+> 2. Fix samsung,pwm-outputs after review,
+> 3. Remove double-quotes from clock names.
+> ---
+>  .../devicetree/bindings/pwm/pwm-samsung.txt   |  51 ---------
+>  .../devicetree/bindings/pwm/pwm-samsung.yaml  | 107 ++++++++++++++++++
+>  2 files changed, 107 insertions(+), 51 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt b/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
+> deleted file mode 100644
+> index 5538de9c2007..000000000000
+> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
+> +++ /dev/null
+> @@ -1,51 +0,0 @@
+> -* Samsung PWM timers
+> -
+> -Samsung SoCs contain PWM timer blocks which can be used for system clock source
+> -and clock event timers, as well as to drive SoC outputs with PWM signal. Each
+> -PWM timer block provides 5 PWM channels (not all of them can drive physical
+> -outputs - see SoC and board manual).
+> -
+> -Be aware that the clocksource driver supports only uniprocessor systems.
+> -
+> -Required properties:
+> -- compatible : should be one of following:
+> -    samsung,s3c2410-pwm - for 16-bit timers present on S3C24xx SoCs
+> -    samsung,s3c6400-pwm - for 32-bit timers present on S3C64xx SoCs
+> -    samsung,s5p6440-pwm - for 32-bit timers present on S5P64x0 SoCs
+> -    samsung,s5pc100-pwm - for 32-bit timers present on S5PC100, S5PV210,
+> -                         Exynos4210 rev0 SoCs
+> -    samsung,exynos4210-pwm - for 32-bit timers present on Exynos4210,
+> -                          Exynos4x12, Exynos5250 and Exynos5420 SoCs
+> -- reg: base address and size of register area
+> -- interrupts: list of timer interrupts (one interrupt per timer, starting at
+> -  timer 0)
+> -- clock-names: should contain all following required clock names:
+> -    - "timers" - PWM base clock used to generate PWM signals,
+> -  and any subset of following optional clock names:
+> -    - "pwm-tclk0" - first external PWM clock source,
+> -    - "pwm-tclk1" - second external PWM clock source.
+> -  Note that not all IP variants allow using all external clock sources.
+> -  Refer to SoC documentation to learn which clock source configurations
+> -  are available.
+> -- clocks: should contain clock specifiers of all clocks, which input names
+> -  have been specified in clock-names property, in same order.
+> -- #pwm-cells: should be 3. See pwm.txt in this directory for a description of
+> -  the cells format. The only third cell flag supported by this binding is
+> -  PWM_POLARITY_INVERTED.
+> -
+> -Optional properties:
+> -- samsung,pwm-outputs: list of PWM channels used as PWM outputs on particular
+> -    platform - an array of up to 5 elements being indices of PWM channels
+> -    (from 0 to 4), the order does not matter.
+> -
+> -Example:
+> -       pwm@7f006000 {
+> -               compatible = "samsung,s3c6400-pwm";
+> -               reg = <0x7f006000 0x1000>;
+> -               interrupt-parent = <&vic0>;
+> -               interrupts = <23>, <24>, <25>, <27>, <28>;
+> -               clocks = <&clock 67>;
+> -               clock-names = "timers";
+> -               samsung,pwm-outputs = <0>, <1>;
+> -               #pwm-cells = <3>;
+> -       }
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+> new file mode 100644
+> index 000000000000..06d11faabff6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-samsung.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung SoC PWM timers
+> +
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +
+> +description: |+
+> +  Samsung SoCs contain PWM timer blocks which can be used for system clock source
+> +  and clock event timers, as well as to drive SoC outputs with PWM signal. Each
+> +  PWM timer block provides 5 PWM channels (not all of them can drive physical
+> +  outputs - see SoC and board manual).
+> +
+> +  Be aware that the clocksource driver supports only uniprocessor systems.
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,s3c2410-pwm             # 16-bit, S3C24xx
+> +      - samsung,s3c6400-pwm             # 32-bit, S3C64xx
+> +      - samsung,s5p6440-pwm             # 32-bit, S5P64x0
+> +      - samsung,s5pc100-pwm             # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
+> +      - samsung,exynos4210-pwm          # 32-bit, Exynos
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    description: |
+> +      Should contain all following required clock names:
+> +      - "timers" - PWM base clock used to generate PWM signals,
+> +      and any subset of following optional clock names:
+> +      - "pwm-tclk0" - first external PWM clock source,
+> +      - "pwm-tclk1" - second external PWM clock source.
+> +      Note that not all IP variants allow using all external clock sources.
+> +      Refer to SoC documentation to learn which clock source configurations
+> +      are available.
+> +    oneOf:
+> +      - items:
+> +        - const: timers
+> +      - items:
+> +        - const: timers
+> +        - const: pwm-tclk0
+> +      - items:
+> +        - const: timers
+> +        - const: pwm-tclk1
+> +      - items:
+> +        - const: timers
+> +        - const: pwm-tclk0
+> +        - const: pwm-tclk1
+> +
+> +  interrupts:
+> +    description:
+> +      One interrupt per timer, starting at timer 0.
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  "#pwm-cells":
+> +    description:
+> +      The only third cell flag supported by this binding
+> +      is PWM_POLARITY_INVERTED.
+> +    const: 3
+> +
+> +  samsung,pwm-outputs:
+> +    description:
+> +      A list of PWM channels used as PWM outputs on particular platform.
+> +      It is an array of up to 5 elements being indices of PWM channels
+> +      (from 0 to 4), the order does not matter.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +      - uniqueItems: true
+> +      - items:
+> +          minimum: 0
+> +          maximum: 4
+> +
+> +required:
+> +  - clocks
+> +  - clock-names
+> +  - compatible
+> +  - interrupts
+> +  - "#pwm-cells"
+> +  - reg
 
-> Am 20.09.2019 um 17:29 schrieb Andreas Kemnade <andreas@kemnade.info>:
->=20
-> On Fri, 20 Sep 2019 16:54:18 +0200
-> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->=20
->>> Am 20.09.2019 um 16:20 schrieb Tony Lindgren <tony@atomide.com>:
->>>=20
->>> * H. Nikolaus Schaller <hns@goldelico.com> [190920 09:19]: =20
->>>>> Am 20.09.2019 um 10:55 schrieb Linus Walleij =
-<linus.walleij@linaro.org>:
->>>>> I suggest to go both way:
->>>>> apply this oneliner and tag for stable so that GTA04 works
->>>>> again.
->>>>>=20
->>>>> Then for the next kernel think about a possible more abitious
->>>>> whitelist solution and after adding that remove *all* =
-"spi-cs-high"
->>>>> flags from all device trees in the kernel after fixing them
->>>>> all up. =20
->>>>=20
->>>> Ok, that looks like a viable path. =20
->>>=20
->>> Please repost the oneline so people can ack easily. At least
->>> I've already lost track of this thread. =20
->>=20
->> It is all here:
->>=20
->> https://patchwork.kernel.org/patch/11035253/
->>=20
-> It is the full one (incl. documentation), not the oneline and does not
-> apply.
+additionalProperties: false
 
-Looks as if it was sitting too long in the queue and linux-next has =
-changed
-the basis in the meantime, while v5.3 has not yet.
+should work here. And in the rng binding too.
 
-Documentation/devicetree/bindings/spi/spi-bus.txt -> spi-controller.yaml
-
-So it should still apply for v5.3.1 and earlier and we need both =
-versions.
-One for stable and one for linux-next. I don't know how to handle such =
-cases.
-
-BR,
-Nikolaus
-
+Rob
