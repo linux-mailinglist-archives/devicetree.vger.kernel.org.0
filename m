@@ -2,113 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C6070B999B
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 00:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D0E2B99D5
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 00:51:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387425AbfITWU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 18:20:28 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:44069 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730008AbfITWU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 18:20:28 -0400
-Received: by mail-pl1-f196.google.com with SMTP id q15so3815572pll.11
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 15:20:28 -0700 (PDT)
+        id S2406575AbfITWvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 18:51:49 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:37177 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406570AbfITWvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 18:51:48 -0400
+Received: by mail-pl1-f195.google.com with SMTP id b10so3860265plr.4;
+        Fri, 20 Sep 2019 15:51:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:to:from:subject:user-agent:date;
-        bh=G6ArsEBvUBRFvndBKzVZmq8gvZ8T+N7qYPjPD+3Z5yo=;
-        b=nRlHbGH5wNwG5+TmN8Kv4+cFBbowXlpJ1u8t4kt1EkGEUblzPAiKYRS3o8mTTeSuWK
-         jiQgSAlVukgSn/p9gKZzwOy0fFtmRQdU3027Bytif2lW1DugSKor9x03okTp0yc2RCXH
-         +AUJjbXZcdcM1CTFdNGGh1ksWA14j1kdNkTgE=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=0P3XLXQhDOk6yT8L9UZqipY6hQ6gvzDoPp4owKec9vk=;
+        b=XxpsH7YCa/PUyweMsFxZ83TPOyD0WUZjPit3c8pITmQgtwko6irwDaxc9pADFQztvC
+         4U90FTq1tsr90gbU3BH0dXMjgwrxN9irMCPTc5p97PU3oec9/cqWzdg6C2yhY/HsfNln
+         aScdV6JxcUYSWR5y5Hv9upvbjhCmXfYVsD9tu4NY5ITzk7+s1hqedARflggKmV1Dur7v
+         fiOu8/6RUGHJEhmjdorBPStTRSD4Ln8RO9iV39xPXYgVi3HpcU5c3nwZPcYP/tfnsq7x
+         oh49U2WdVkdA819mAvnTSbQQg3Gu+tax53st1QAbHmpdvq4sxTse2UtHV/IylCvTkm9n
+         Q3vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:date;
-        bh=G6ArsEBvUBRFvndBKzVZmq8gvZ8T+N7qYPjPD+3Z5yo=;
-        b=UpnNt4yhp9JoOd4eeQMaHgb6nDG5aqJ4Yl+K/VdPZveh/EoGxQpcjqkvmT/Sru5fq1
-         K5Mq1AITaUdHW3HtNUXeL2DMuSg9gxMjW4Dlswb+rYZ6kRFkqQ4rzPtgsbv4iY3z8Hrf
-         DoQrAO6femWttA4aYf8P/XvRUcf9N6NvZjzyHdAvmUAW2d38JGMn9F0+QaFKJPM25tDJ
-         U1W9qLDj4QZlDWUnYLBYTJpQWP7QYjL1bZ+p9UP73bP9yNYXFul7vBh8tU+iiiigcIIG
-         7w9S/mNkh0YgtPY9Ku1+X/1yZ6uKmKNh5YEpqGq5PRA0Yf6VHu3xAAQouJh6GasK/QdS
-         mjlQ==
-X-Gm-Message-State: APjAAAWRZ5e2jVo6D6p4Rr4CFJ2AArfqG07lMr/p9LJXNBdc2T3MzYoX
-        J+XSGePrA3R7sil7stq0qWtZpw==
-X-Google-Smtp-Source: APXvYqxPOvFQKjjFVKyK+RgTiwbSXqMoV+qulfuBR8SdTO6EJKRGIkHEVxF3TOJ3gdJ4DQZv4biPHQ==
-X-Received: by 2002:a17:902:a9c7:: with SMTP id b7mr19438785plr.133.1569018027798;
-        Fri, 20 Sep 2019 15:20:27 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id p88sm3152333pjp.22.2019.09.20.15.20.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2019 15:20:26 -0700 (PDT)
-Message-ID: <5d8550aa.1c69fb81.39edc.83fc@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=0P3XLXQhDOk6yT8L9UZqipY6hQ6gvzDoPp4owKec9vk=;
+        b=mNivWr3hPxn9ZEYMye0BafcMw2KmUWGF1X96XFjbhNe0BuTh5TXOpwtq2VYivcGSb8
+         LbneMsikX5qjRU5QdJMl+boupADVgKqG6zezefGs9VDUDSQh74obVVoQU3YX/tf26qOu
+         DxNhnBN7XcSt2RC4a2/PqjqOJKYgYywSDbDfJCcDWdE3yBPXDcRi9ZZBwJe5Jcc3xHZf
+         ccFogUhmUYTkKQwWkdJCQtPuL8J/cGfnQqMbSZ0W57TO7Rb8VYxpc5I8B4AUX9v0b7wJ
+         xsFhJ/UqimlNal1dUMH4s8GjpjmXRERYtXKNotVoA1cJW46DeHoUq3HT19fl1GkvivyP
+         Dcrw==
+X-Gm-Message-State: APjAAAW4yH/iOttwx3D/bzpxTvuCPmuIMghK/4fyBxc6lYj5beCbO2ZX
+        zvW3bgzBvrNK2Qn4Jv9cTHc=
+X-Google-Smtp-Source: APXvYqxuXYaN7Iqu31wZ7eEfynHGlkievoHDsqLPDXtQ855SljuXpLCmyBe3bDgUiLJ0h23ehjlQAQ==
+X-Received: by 2002:a17:902:fe91:: with SMTP id x17mr19665279plm.106.1569019907795;
+        Fri, 20 Sep 2019 15:51:47 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id g24sm2039646pfi.81.2019.09.20.15.51.46
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 20 Sep 2019 15:51:47 -0700 (PDT)
+Date:   Fri, 20 Sep 2019 15:50:58 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, lars@metafoo.de
+Subject: Re: [PATCH V3 3/4] ASoC: pcm_dmaengine: Extract
+ snd_dmaengine_pcm_refine_runtime_hwparams
+Message-ID: <20190920225055.GB21389@Asurada-Nvidia.nvidia.com>
+References: <cover.1568861098.git.shengjiu.wang@nxp.com>
+ <57e3bda7b94fecf94d17f2eacf1c6beebcac74ff.1568861098.git.shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190917215020.GA15853@codeaurora.org>
-References: <20190829181203.2660-1-ilina@codeaurora.org> <20190829181203.2660-6-ilina@codeaurora.org> <5d6d1b72.1c69fb81.ee88.efcf@mx.google.com> <102c9268-c4ce-6133-3b0a-67c2fcba1e7a@arm.com> <20190903170722.GA31716@codeaurora.org> <5d71a247.1c69fb81.2146f.7ed2@mx.google.com> <20190913195326.GA3293@codeaurora.org> <20190917215020.GA15853@codeaurora.org>
-Cc:     Rob Herring <robh@kernel.org>, evgreen@chromium.org,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
-        mkshah@codeaurora.org, linux-gpio@vger.kernel.org,
-        rnayak@codeaurora.org, devicetree@vger.kernel.org, maz@kernel.org,
-        sibis@codeaurora.org
-To:     Lina Iyer <ilina@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH RFC 05/14] dt-bindings/interrupt-controller: pdc: add SPI config register
-User-Agent: alot/0.8.1
-Date:   Fri, 20 Sep 2019 15:20:25 -0700
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <57e3bda7b94fecf94d17f2eacf1c6beebcac74ff.1568861098.git.shengjiu.wang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lina Iyer (2019-09-17 14:50:20)
-> On Fri, Sep 13 2019 at 13:53 -0600, Lina Iyer wrote:
-> >On Thu, Sep 05 2019 at 18:03 -0600, Stephen Boyd wrote:
-> >>Quoting Lina Iyer (2019-09-03 10:07:22)
-> >>>On Mon, Sep 02 2019 at 07:58 -0600, Marc Zyngier wrote:
-> >>>>On 02/09/2019 14:38, Rob Herring wrote:
-> >>>>> On Thu, Aug 29, 2019 at 12:11:54PM -0600, Lina Iyer wrote:
-> >>>These are not GIC registers but located on the PDC interface to the GI=
-C.
-> >>>They may or may not be secure access controlled, depending on the SoC.
-> >>>
-> >>
-> >>It looks like it falls under this "mailbox" device which is really the
-> >>catch all bucket for bits with no home besides they're related to the
-> >>apps CPUs/subsystem.
-> >>
-> >Thanks for pointing to this.
-> >>      apss_shared: mailbox@17990000 {
-> >>              compatible =3D "qcom,sdm845-apss-shared";
-> >>              reg =3D <0 0x17990000 0 0x1000>;
-> >But this doesn't seem correct. The registers in this page are all not
-> >mailbox door bell registers. We should restrict the space allocated to
-> >the mbox to 0xC or something, definitely, not the whole page. They all
-> >cannot be treated as a mailbox registers.
+On Thu, Sep 19, 2019 at 08:11:41PM +0800, Shengjiu Wang wrote:
+> When set the runtime hardware parameters, we may need to query
+> the capability of DMA to complete the parameters.
+> 
+> This patch is to Extract this operation from
+> dmaengine_pcm_set_runtime_hwparams function to a separate function
+> snd_dmaengine_pcm_refine_runtime_hwparams, that other components
+> which need this feature can call this function.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-Well the binding is already done and this is the compatible string for
-this node and register region. Sounds like this node is a mailbox plus
-some more stuff in the same page.
+> @@ -145,58 +140,15 @@ static int dmaengine_pcm_set_runtime_hwparams(struct snd_pcm_substream *substrea
 
-> >>              #mbox-cells =3D <1>;
-> >>      };
-> >>
-> >>Can you point to this node with a phandle and then parse the reg
-> >>property out of it to use in the scm readl/writel APIs? Maybe it can be
-> >>a two cell property with <&apps_shared 0xf0> to indicate the offset to
-> >>the registers to read/write? In non-secure mode presumably we need to
-> >>also write these registers? Good news is that there's a regmap for this
-> >>driver already, so maybe that can be acquired from the pdc driver.
-> >>
-> >The register space collection seems to be mix of different types of
-> >application processor registers that should probably not be grouped up
-> >under one subsystem. A single regmap doesn't seem correct either.
+> +	ret = snd_dmaengine_pcm_refine_runtime_hwparams(substream,
+> +							dma_data,
+> +							&hw,
+> +							chan);
+> +	if (ret)
+> +		return ret;
+>  
+>  	return snd_soc_set_runtime_hwparams(substream, &hw);
+> +
+> }
 
-Why isn't a single regmap correct? The PDC driver should be able to use
-it to read/write into this register space. The lock on the regmap will
-need to be changed to a raw lock though for RT. Otherwise it looks OK to
-me.
+Just a nit, why add a line here? :)
 
+The rest looks good to me, not sure whether the name "refine"
+would be the best one though, would like to wait for opinions
+from others.
+
+Thanks
