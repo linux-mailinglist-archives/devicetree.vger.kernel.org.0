@@ -2,170 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 884F4B9630
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 19:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66472B97B8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 21:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406022AbfITREO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 13:04:14 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:57796 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405970AbfITREI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 13:04:08 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KH47hj012353;
-        Fri, 20 Sep 2019 12:04:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568999047;
-        bh=gyIsxxx4ZBo8ek35yKhb/ta0vNTwS1riHVKZyO1uT68=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=vJZe3oU7LSYeHNANgXfpCgtmmdZKj9UPyA0fL0w5uwrb0xLHb4K8mgUlHBlmZbRLG
-         rHsK5YQhf+K2ZuUItWA1tEStoPSIkd4vYZsSmrgKVuMjxIPabqX8Crik+rqM68e84Y
-         Xca7lFNVrT9YNAJo9oDYVU+SeP7E6qWyIfojjVuk=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8KH47P5102749
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 20 Sep 2019 12:04:07 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 20
- Sep 2019 12:04:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 20 Sep 2019 12:04:01 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KH3r77054719;
-        Fri, 20 Sep 2019 12:04:06 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v3 13/13] media: am437x-vpfe: Remove print_fourcc helper
-Date:   Fri, 20 Sep 2019 12:05:54 -0500
-Message-ID: <20190920170554.29666-14-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190920170554.29666-1-bparrot@ti.com>
-References: <20190920170554.29666-1-bparrot@ti.com>
+        id S1729527AbfITTUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 15:20:31 -0400
+Received: from userp2130.oracle.com ([156.151.31.86]:41632 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725869AbfITTUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 15:20:31 -0400
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x8KJEGx6115790;
+        Fri, 20 Sep 2019 19:20:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2019-08-05;
+ bh=NTgWiBq1iOSn7E4DUsV0oOzifM6YvCmeXgLvP8GhXpQ=;
+ b=YJKcSsRRnT6afxtXsPMppGt9Rgkn3BMTmHFs4rS80XEMtJlg07xr3xOg0BkHYrBPE0P7
+ plAegF0BTsqJu3KYg89buLvo30tikcoaGPK7xcVr6YI2vauuoTBbUT6nOf9U7dlcdRad
+ ksMXwxFoKnzLkVIwm1/8z4NUq81YrXd97kh5mglsvKTBdG7cLzQPpCn4LQxC0MVhvIOP
+ 46S2wPdldNUvautuBloWAPBCLrIvnJ4sZIpXw/RApFzhFx8Y7C0tXE3rxpMAv5RjaBz1
+ Qk4KFmbHZsXoFcpggeo6XsUZ0bp4GGdmKQeQOTQFugjOmL42rH0tpChD4HavXf+SaMnj bQ== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by userp2130.oracle.com with ESMTP id 2v3vb5cb1m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 20 Sep 2019 19:19:59 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x8KJJWuj126991;
+        Fri, 20 Sep 2019 19:19:59 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by userp3020.oracle.com with ESMTP id 2v4vpmtufj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 20 Sep 2019 19:19:59 +0000
+Received: from abhmp0001.oracle.com (abhmp0001.oracle.com [141.146.116.7])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x8KJJvCb002952;
+        Fri, 20 Sep 2019 19:19:58 GMT
+Received: from [10.209.227.25] (/10.209.227.25)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Fri, 20 Sep 2019 12:19:57 -0700
+Subject: Re: [PATCHv5 00/10] soc: ti: add OMAP PRM driver (for reset)
+To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
+Cc:     linux-omap@vger.kernel.org, ssantosh@kernel.org,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20190912113916.20093-1-t-kristo@ti.com>
+ <20190920142849.GS5610@atomide.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <13a77bd8-72bd-6a44-9141-d5492be82d82@oracle.com>
+Date:   Fri, 20 Sep 2019 12:19:56 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20190920142849.GS5610@atomide.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9386 signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1908290000 definitions=main-1909200156
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9386 signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1908290000
+ definitions=main-1909200156
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-print_fourcc helper function was used for debug log to convert a pixel
-format code into its readable form for display purposes. But since it
-used a single static buffer to perform the conversion this might lead to
-display format issue when more than one instance was invoked
-simultaneously.
+On 9/20/19 7:28 AM, Tony Lindgren wrote:
+> * Tero Kristo <t-kristo@ti.com> [190912 04:39]:
+>> Hi,
+>>
+>> V5 of the series, re-sent the whole series as one patch was dropped.
+>> Changes compared to v3/v4:
+>>
+>> - removed dependency towards clock driver (patch #5 was completely
+>>    dropped compared to v3/v4)
+>> - dropped clocks property from dt binding
+>> - re-added the pdata patch which was accidentally dropped out (it has
+>>    dependency towards this series.)
+>>
+>> The new implementation (without clock driver dependency) relies on the
+>> bus driver to sequence events properly, otherwise some timeouts will
+>> occur either at clock driver or reset driver end.
+> 
+> With the two updated patches seems like we're done with this
+> series?
+> 
+> If so, I suggest either Santosh or me sets up an immutable
+> branch against v5.3 or v5.4-rc1 that we all can merge in.
+> I will need it for the related dts changes at least.
+> 
+I will pick this up Tony and apply it once v5.4-rc1 is out.
 
-Instead we make use of the new standard macros to log the fourcc value
-in a human readable format.
-
-This patch is dependent on the following series:
-
-Link: https://patchwork.kernel.org/project/linux-media/list/?series=174497
-
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- drivers/media/platform/am437x/am437x-vpfe.c | 40 ++++++++-------------
- 1 file changed, 14 insertions(+), 26 deletions(-)
-
-diff --git a/drivers/media/platform/am437x/am437x-vpfe.c b/drivers/media/platform/am437x/am437x-vpfe.c
-index 447610b67db4..fea30d701af5 100644
---- a/drivers/media/platform/am437x/am437x-vpfe.c
-+++ b/drivers/media/platform/am437x/am437x-vpfe.c
-@@ -151,20 +151,6 @@ static unsigned int __get_bytesperpixel(struct vpfe_device *vpfe,
- 	return bpp;
- }
- 
--/*  Print Four-character-code (FOURCC) */
--static char *print_fourcc(u32 fmt)
--{
--	static char code[5];
--
--	code[0] = (unsigned char)(fmt & 0xff);
--	code[1] = (unsigned char)((fmt >> 8) & 0xff);
--	code[2] = (unsigned char)((fmt >> 16) & 0xff);
--	code[3] = (unsigned char)((fmt >> 24) & 0xff);
--	code[4] = '\0';
--
--	return code;
--}
--
- static inline u32 vpfe_reg_read(struct vpfe_ccdc *ccdc, u32 offset)
- {
- 	return ioread32(ccdc->ccdc_cfg.base_addr + offset);
-@@ -612,8 +598,8 @@ static int vpfe_ccdc_set_pixel_format(struct vpfe_ccdc *ccdc, u32 pixfmt)
- {
- 	struct vpfe_device *vpfe = container_of(ccdc, struct vpfe_device, ccdc);
- 
--	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%s\n",
--		 __func__, ccdc->ccdc_cfg.if_type, print_fourcc(pixfmt));
-+	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:" v4l2_fourcc_conv "\n",
-+		 __func__, ccdc->ccdc_cfg.if_type, v4l2_fourcc_args(pixfmt));
- 
- 	if (ccdc->ccdc_cfg.if_type == VPFE_RAW_BAYER) {
- 		ccdc->ccdc_cfg.bayer.pix_fmt = CCDC_PIXFMT_RAW;
-@@ -900,8 +886,8 @@ static int vpfe_config_ccdc_image_format(struct vpfe_device *vpfe)
- 	u32 bpp;
- 	int ret = 0;
- 
--	vpfe_dbg(1, vpfe, "pixelformat: %s\n",
--		print_fourcc(vpfe->fmt.fmt.pix.pixelformat));
-+	vpfe_dbg(1, vpfe, "pixelformat: " v4l2_fourcc_conv "\n",
-+		 v4l2_fourcc_args(vpfe->fmt.fmt.pix.pixelformat));
- 
- 	if (vpfe_ccdc_set_pixel_format(&vpfe->ccdc,
- 			vpfe->fmt.fmt.pix.pixelformat) < 0) {
-@@ -1342,8 +1328,9 @@ static int vpfe_calc_format_size(struct vpfe_device *vpfe,
- 	f->fmt.pix.sizeimage = f->fmt.pix.bytesperline *
- 			       f->fmt.pix.height;
- 
--	vpfe_dbg(3, vpfe, "%s: fourcc: %s size: %dx%d bpl:%d img_size:%d\n",
--		 __func__, print_fourcc(f->fmt.pix.pixelformat),
-+	vpfe_dbg(3, vpfe,
-+		 "%s: fourcc: " v4l2_fourcc_conv " size: %dx%d bpl:%d img_size:%d\n",
-+		 __func__,  v4l2_fourcc_args(f->fmt.pix.pixelformat),
- 		 f->fmt.pix.width, f->fmt.pix.height,
- 		 f->fmt.pix.bytesperline, f->fmt.pix.sizeimage);
- 
-@@ -1378,8 +1365,8 @@ static int vpfe_enum_fmt(struct file *file, void  *priv,
- 
- 	f->pixelformat = fmt->fourcc;
- 
--	vpfe_dbg(1, vpfe, "%s: mbus index: %d code: %x pixelformat: %s\n",
--		 __func__, f->index, fmt->code, print_fourcc(fmt->fourcc));
-+	vpfe_dbg(1, vpfe, "%s: mbus index: %d code: %x pixelformat: " v4l2_fourcc_conv "\n",
-+		 __func__, f->index, fmt->code, v4l2_fourcc_args(fmt->fourcc));
- 
- 	return 0;
- }
-@@ -1528,8 +1515,8 @@ static int vpfe_enum_size(struct file *file, void  *priv,
- 	fsize->discrete.width = fse.max_width;
- 	fsize->discrete.height = fse.max_height;
- 
--	vpfe_dbg(1, vpfe, "%s: index: %d pixformat: %s size: %dx%d\n",
--		 __func__, fsize->index, print_fourcc(fsize->pixel_format),
-+	vpfe_dbg(1, vpfe, "%s: index: %d pixformat: " v4l2_fourcc_conv " size: %dx%d\n",
-+		 __func__, fsize->index, v4l2_fourcc_args(fsize->pixel_format),
- 		 fsize->discrete.width, fsize->discrete.height);
- 
- 	return 0;
-@@ -2202,8 +2189,9 @@ vpfe_async_bound(struct v4l2_async_notifier *notifier,
- 				continue;
- 			vpfe->active_fmt[i] = fmt;
- 			vpfe_dbg(3, vpfe,
--				 "matched fourcc: %s code: %04x idx: %d\n",
--				 print_fourcc(fmt->fourcc), mbus_code.code, i);
-+				 "matched fourcc: " v4l2_fourcc_conv " code: %04x idx: %d\n",
-+				 v4l2_fourcc_args(fmt->fourcc),
-+				 mbus_code.code, i);
- 			vpfe->num_active_fmt = ++i;
- 		}
- 	}
--- 
-2.17.1
-
+Regards,
+Santosh
