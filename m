@@ -2,115 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E67DB94A0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 17:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20F60B94C5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 18:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404288AbfITPzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 11:55:39 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:10280 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404245AbfITPzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 11:55:39 -0400
-X-Greylist: delayed 327 seconds by postgrey-1.27 at vger.kernel.org; Fri, 20 Sep 2019 11:55:37 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568994936;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=uUMbCnYSLXnGdgjLVbP4VbN11g3hGGb6cdy/jR7kWKU=;
-        b=YYnvNrszAMBNzWybl7WI00EEtYBWeVGt0g9xswUI0lSgDvbVY3nxU9Uj0bHS9xq9pi
-        rLgBeZYj2scIo9MGFIfW7AFFh1XEY0f4Zmu9MS75s/p3KQhx6RKsos3O1IRRQDFbyU5k
-        eysXpSbr37FEUr2Wuq6uk/eV0nPnx7WTkERCpvlIeYyg78EcWsPLElOMJ52fmJxjz8/b
-        /Oz7nOo6rDL1Ppv4Xemnb+FEujTJwu2TMIm1cwQr6x3V4PsfCSOIjVDKY7L4DbwYIsU+
-        Ms+cmPgr7LnLAyrb9x8hy8P2DWceoVBnbjRDJUT7a5CoMrFb/oPfb9s6NajusmRuhYrC
-        awAQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGHPrpwDCpeWQ="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
-        with ESMTPSA id u036f9v8KFtUpEA
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 20 Sep 2019 17:55:30 +0200 (CEST)
-Content-Type: text/plain; charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <96E62EC2-2A3E-4722-A9DE-3F320B0A98B0@goldelico.com>
-Date:   Fri, 20 Sep 2019 17:55:30 +0200
-Cc:     Andreas Kemnade <andreas@kemnade.info>,
+        id S1727868AbfITQAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 12:00:50 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:55329 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727529AbfITQAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 12:00:50 -0400
+Received: by mail-wm1-f65.google.com with SMTP id a6so3065090wma.5;
+        Fri, 20 Sep 2019 09:00:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zm58YNY6Dy+Y0x1r7jLVH4bkhWKD3Gwt53hXtKO8kq8=;
+        b=PA5SoWs5YJ+mR1VNHbFtFU5u1HRpQcwttSgksag3UkYq/nWLYBtPTGIr4ii4OUrF0K
+         JSrTZo7JEJ1HQ9tyNk2rBgAB2hpJvLPH9KFKWGKRElT2xVO3TM1oTp37CisknRvQ4qZ2
+         CouMnFj8dC7Cj+O4s3Vaid0yR8vBw9tJjWZzt4giywTL5plWfjrVgudITYX7cokpq907
+         3aufnatdsqrHdj2x+Zt8eo4+3W4uDYgdc7TBTOJd3xZO1/bPywCOLltHTdh7TuL9vKge
+         s1LfFdjMzzTQxXTbopwl50bDYbr4LbQEz1Uf+t5kgjNWW0tlosSt68Zf2+z4d93a/2H+
+         dtcA==
+X-Gm-Message-State: APjAAAWGO2MY3x2GkzfIMSNJrHSm0u4rtxrxMsXZuYbwKTYkT4Gnxnia
+        HErktLDuD1xMulTwT37oecM=
+X-Google-Smtp-Source: APXvYqw5RsD4Q4Q/FLEEgM3Of3VABy7B6J+NrKyPTgMB+TInjENdG+0BV+2fXjhurlW8C7a/bE4Ueg==
+X-Received: by 2002:a1c:61d6:: with SMTP id v205mr2801780wmb.35.1568995246746;
+        Fri, 20 Sep 2019 09:00:46 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id g11sm2832677wmh.45.2019.09.20.09.00.45
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 20 Sep 2019 09:00:45 -0700 (PDT)
+Date:   Fri, 20 Sep 2019 18:00:43 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <9FCCE3A0-6223-44EC-868D-76018B6F5CD5@goldelico.com>
-References: <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com> <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com> <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com> <20190831084852.5e726cfa@aktux> <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com> <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com> <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com> <CACRpkdZvpPOM1Ug-=GHf7Z-2VEbJz3Cuo7+0yDFuNm5ShXK8=Q@mail.gmail.com> <7DF102BC-C818-4D27-988F-150C7527E6CC@goldelico.com> <20190920142059.GO5610@atomide.com> <633E7AD9-A909-4619-BBD7-8CFD965FDFF7@goldelico.com> <20190920172947.51c1fdec@aktux> <96E62EC2-2A3E-4722-A9DE-3F320B0A98B0@goldelico.com>
-To:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
-X-Mailer: Apple Mail (2.3124)
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Convert Samsung SoC watchdog
+ bindings to json-schema
+Message-ID: <20190920160043.GA3928@kozik-lap>
+References: <20190907144541.16949-1-krzk@kernel.org>
+ <20190912170145.GA17889@bogus>
+ <CAJKOXPfsUw-+yRc=GF+t=1pE7D3dF_wpRUwZpmfLnRbDyEmKeQ@mail.gmail.com>
+ <CAL_JsqLtQ4yYJJiUcBrje+6SKiaXTmF-Cej_=ykeWKO+9ytM4Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLtQ4yYJJiUcBrje+6SKiaXTmF-Cej_=ykeWKO+9ytM4Q@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Sep 20, 2019 at 10:46:27AM -0500, Rob Herring wrote:
+> On Wed, Sep 18, 2019 at 6:26 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On Fri, 13 Sep 2019 at 16:36, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sat, Sep 07, 2019 at 04:45:40PM +0200, Krzysztof Kozlowski wrote:
+> > > > Convert Samsung S3C/S5P/Exynos watchdog bindings to DT schema format
+> > > > using json-schema.
+> > > >
+> > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > > ---
+> > > >  .../bindings/watchdog/samsung-wdt.txt         | 35 ----------
+> > > >  .../bindings/watchdog/samsung-wdt.yaml        | 69 +++++++++++++++++++
+> > > >  2 files changed, 69 insertions(+), 35 deletions(-)
+> > > >  delete mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
+> > > >  create mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > >
+> > >
+> > > > diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..39f1ca3bc4db
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > > > @@ -0,0 +1,69 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/watchdog/samsung-wdt.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Samsung SoC Watchdog Timer Controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > > > +
+> > > > +description: |+
+> > > > +  The Samsung's Watchdog controller is used for resuming system operation
+> > > > +  after a preset amount of time during which the WDT reset event has not
+> > > > +  occurred.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - samsung,s3c2410-wdt                   # for S3C2410
+> > > > +      - samsung,s3c6410-wdt                   # for S3C6410, S5PV210 and Exynos4
+> > > > +      - samsung,exynos5250-wdt                # for Exynos5250
+> > > > +      - samsung,exynos5420-wdt                # for Exynos5420
+> > > > +      - samsung,exynos7-wdt                   # for Exynos7
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupts:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  samsung,syscon-phandle:
+> > > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > > > +    description:
+> > > > +      Phandle to the PMU system controller node (in case of Exynos5250
+> > > > +      and Exynos5420).
+> > > > +
+> > > > +  timeout-sec:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description:
+> > > > +      Watchdog timeout in seconds.
+> > >
+> > > We need a common schema for this and the node name.
+> >
+> > Common schema in dt-schema or in Linux kernel bindings? If the latter,
+> > I can add it.
+> 
+> In the kernel is fine.
 
-> Am 20.09.2019 um 17:50 schrieb H. Nikolaus Schaller =
-<hns@goldelico.com>:
->=20
->=20
->> Am 20.09.2019 um 17:29 schrieb Andreas Kemnade =
-<andreas@kemnade.info>:
->>=20
->> On Fri, 20 Sep 2019 16:54:18 +0200
->> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->>=20
->>>> Am 20.09.2019 um 16:20 schrieb Tony Lindgren <tony@atomide.com>:
->>>>=20
->>>> * H. Nikolaus Schaller <hns@goldelico.com> [190920 09:19]: =20
->>>>>> Am 20.09.2019 um 10:55 schrieb Linus Walleij =
-<linus.walleij@linaro.org>:
->>>>>> I suggest to go both way:
->>>>>> apply this oneliner and tag for stable so that GTA04 works
->>>>>> again.
->>>>>>=20
->>>>>> Then for the next kernel think about a possible more abitious
->>>>>> whitelist solution and after adding that remove *all* =
-"spi-cs-high"
->>>>>> flags from all device trees in the kernel after fixing them
->>>>>> all up. =20
->>>>>=20
->>>>> Ok, that looks like a viable path. =20
->>>>=20
->>>> Please repost the oneline so people can ack easily. At least
->>>> I've already lost track of this thread. =20
->>>=20
->>> It is all here:
->>>=20
->>> https://patchwork.kernel.org/patch/11035253/
->>>=20
->> It is the full one (incl. documentation), not the oneline and does =
-not
->> apply.
->=20
-> Looks as if it was sitting too long in the queue and linux-next has =
-changed
-> the basis in the meantime, while v5.3 has not yet.
->=20
-> Documentation/devicetree/bindings/spi/spi-bus.txt -> =
-spi-controller.yaml
->=20
-> So it should still apply for v5.3.1 and earlier and we need both =
-versions.
-> One for stable and one for linux-next. I don't know how to handle such =
-cases.
+I'll add it in next version then.
 
-Ok, here is a correction of this statement:
-
-It applies fine to v5.2 and v5.3 already uses the spi-controller.yaml
+Best regards,
+Krzysztof
 
