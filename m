@@ -2,93 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F912B8C1F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 09:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13C21B8C33
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 10:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404904AbfITH5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 03:57:46 -0400
-Received: from mail-sh.amlogic.com ([58.32.228.43]:41549 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388411AbfITH5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 03:57:46 -0400
-Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 20 Sep
- 2019 15:58:41 +0800
-Subject: Re: [PATCH 2/3] soc: amlogic: Add support for Secure power domains
- controller
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>,
-        Zhiqiang Liang <zhiqiang.liang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-References: <1568895064-4116-1-git-send-email-jianxin.pan@amlogic.com>
- <1568895064-4116-3-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCDv2m_0tP+rdT1tgXhMs-hPE_cJ9TmO8h9ftDvJXvby+g@mail.gmail.com>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <dc57566d-81e2-5851-ff6d-e39dcf246a47@amlogic.com>
-Date:   Fri, 20 Sep 2019 15:58:40 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2391029AbfITIBU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 Sep 2019 04:01:20 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:55657 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390941AbfITIBU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 04:01:20 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 7036AE0008;
+        Fri, 20 Sep 2019 08:01:17 +0000 (UTC)
+Date:   Fri, 20 Sep 2019 10:01:16 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>
+Subject: Re: [PATCH 0/8] AP807 clocks support
+Message-ID: <20190920100116.08bb38ac@xps13>
+In-Reply-To: <20190918050720.B390B214AF@mail.kernel.org>
+References: <20190805100310.29048-1-miquel.raynal@bootlin.com>
+        <20190918050720.B390B214AF@mail.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDv2m_0tP+rdT1tgXhMs-hPE_cJ9TmO8h9ftDvJXvby+g@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.226]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Hi Stephen,
 
-On 2019/9/20 4:03, Martin Blumenstingl wrote:
-> Hi Jianxin,
+Stephen Boyd <sboyd@kernel.org> wrote on Tue, 17 Sep 2019 22:07:19
+-0700:
+
+> Quoting Miquel Raynal (2019-08-05 03:03:02)
+> > Hello,
+> > 
+> > This is the first batch of changes (out of three) to support the brand
+> > new Marvell CN9130 SoCs which are made of one AP807 and one CP115.
+> > 
+> > This clock series applies on top of Gregory's "AP806 CPU clocks" [1].
+> > 
+> > [1] https://patchwork.kernel.org/cover/11038577/  
 > 
-> I added three comments below from a quick glance at this driver (I
-> didn't have time for a complete review)
-> 
-> On Thu, Sep 19, 2019 at 2:11 PM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> [...]
->> +               pm_genpd_init(&dom->base, NULL,
->> +                             (match->domains[i].get_power ?
->> +                             match->domains[i].get_power(dom) : true));
-> .get_power is never NULL in this driver so the ": true" part is
-> effectively a no-op
-> 
-OK, I will remove it. Thanks for your time.
-> [...]
->> +static const struct of_device_id meson_secure_pwrc_match_table[] = {
->> +       {
->> +               .compatible = "amlogic,meson-a1-pwrc",
->> +               .data = &meson_secure_a1_pwrc_data,
->> +       },
->> +       { }
-> many drivers use a /* sentinel */ comment inside { }
-> 
-OK, I will add this comment line.
-> [...]
->> +arch_initcall_sync(meson_secure_pwrc_init);
-> why arch_initcall_sync instead of builtin_platform_driver?
-> $ grep -R arch_initcall_sync drivers/soc/
-> $
-> 
-> 
-> Martin
-> 
-The power-domain is depended by many other drivers, arch_initcall_sync is used to make power-domain probe earlier.
-Maybe I need to switch back to builtin_platform_driver when use APIs from meson_sm.c. 
-> .
+> Ugh I found this series stashed away and never merged to clk-next.
 > 
 
+No problem, thanks for merging it!
+
+
+Cheers,
+Miquèl
