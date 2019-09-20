@@ -2,125 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E7BB9057
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 15:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A61CDB90D6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 15:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727261AbfITNHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 09:07:16 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:47838 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725842AbfITNHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 09:07:15 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190920130713euoutp0186ac6a84069cd2845ef111e1fab9a629~GJ2SlSf8j0075000750euoutp01i
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 13:07:13 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190920130713euoutp0186ac6a84069cd2845ef111e1fab9a629~GJ2SlSf8j0075000750euoutp01i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568984833;
-        bh=RBnORndzl0r5DR9rLoc1/OmKlMa2JITIDuEsjCDUmJM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mhtJSnGD9ALbAFp6MhBMMaI6gsS1jOMd8H4j+Gi3dpedHWYbq18P+f7B4SLMXKtHi
-         qdUNtK/0O5As1V4ID3CsIyjKh6LvB1zIjcCOaI/0mQFLAraGRSX20KqbEgYu2n4sB6
-         vbuk8pGZrVUtC0ZqWM2rFF2gKcCFB0JTk2nA3/KM=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190920130712eucas1p225301468b166f458d2b9fbc914c69e6b~GJ2RtZ7nS0795407954eucas1p2w;
-        Fri, 20 Sep 2019 13:07:12 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 40.1B.04374.00FC48D5; Fri, 20
-        Sep 2019 14:07:12 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190920130711eucas1p29497b40981e4e0a24769ced4e06be208~GJ2QyD4141017610176eucas1p2k;
-        Fri, 20 Sep 2019 13:07:11 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190920130711eusmtrp21e270937a7a286a63d5c1254caba0674~GJ2QbmfsK1249212492eusmtrp25;
-        Fri, 20 Sep 2019 13:07:11 +0000 (GMT)
-X-AuditID: cbfec7f5-4f7ff70000001116-02-5d84cf00da5d
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 6D.91.04117.EFEC48D5; Fri, 20
-        Sep 2019 14:07:10 +0100 (BST)
-Received: from AMDC3061.DIGITAL.local (unknown [106.120.51.75]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190920130710eusmtip2e93b81b07e4cab6c4af2ada6403edf60~GJ2PvEbAU1601916019eusmtip2X;
-        Fri, 20 Sep 2019 13:07:10 +0000 (GMT)
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-To:     broonie@kernel.org, krzk@kernel.org
-Cc:     lgirdwood@gmail.com, ckeepax@opensource.cirrus.com,
-        sbkim73@samsung.com, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: [PATCH v2 10/10] ARM: exynos_defconfig: Enable Arndale audio driver
-Date:   Fri, 20 Sep 2019 15:07:02 +0200
-Message-Id: <20190920130702.529-1-s.nawrocki@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190920130218.32690-2-s.nawrocki@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0VSfUgTYRz2vdvtbqvJNQVfVmYMJQz8orKLLJJqHBhoRUGJ1WqHWtuUnZpa
-        kM2vpaarCEWkiUXKotQp5gdazumSoackIYmZZh+z8iMtiMzlvFn/Pb/f8zy/5+HlJVBpLSYj
-        krVpjE6rVMuFYkFL3y8uxIvLSwgfLhZRI8NWhGqsqMeoe5PTQmok3wIok20QoziuAad+jhgQ
-        yvL+NUZVcF0I9cQ2jlOLc88xKr/ThlM9XwsxarhuCTnoTTcs6oV0W+U4TlvMN4V008PrdHmV
-        C9ClzWZAL1q2xuFnxFEqRp2cwejCDpwXJz2qcuGpnVhmbv8CkgM+CYqAiIDkLrjS1CwsAmJC
-        StYBOFbfB/hhCcCy6WUPswjgjVETvm65P9DiIWoB/OwoQf9ZxgxO1K0SkhHwVm8pcGNfcjuc
-        qNBjbhFKOhFo7H2KuAkf8ih88NG0eoogBGQQ/F6T5F5LyL1wfqpdyKcFwMcNL9ZuisgoqG/q
-        WkuGZAsO5+yznkqHodNShvDYB87Ymz37LdDVZkJ4Qy6AJR1jOD8YAZywVwNetQ/22IcxdwuU
-        DIb17WFuCMlo+Gc+iIfecPTbJrcYXYV3WspRfi2BhgIpfyMQ/jaXexrIYPG0S8BLaOhq9eWf
-        pwzA3slG3AgCKv9HVQNgBn5MOqtJZNidWuZKKKvUsOnaxNCLKRoLWP0+jhX7j1bQtXzBCkgC
-        yDdK6L68BCmmzGCzNFYACVTuK6narU+QSlTKrGxGl3JOl65mWCvYTAjkfpKrXu/ipWSiMo25
-        zDCpjG6dRQiRLAfEdx7x9r/bMSC+xMVmWn1Oc+yJN0Wu23H5Z18avjh6Mo6Xa8wd/nsORSkC
-        p4audS40M7HZMyGywqGaZT9zZEc0zoUrshTdsWpLcMysf0rMK8184CFVzGCk4UNhwdvkUnFq
-        FWlzDW1QMUXR3f3HnA6j37Pg/QpLjL445VTQyW1yAZukjNiB6ljlX3HmpJU6AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgkeLIzCtJLcpLzFFi42I5/e/4Pd1/51piDT7vsbG4cvEQk8XGGetZ
-        LaY+fMJmcaV1E6PF/CPnWC3On9/AbvHtSgeTxabH11gtZpzfx2Sx9shddovP7/ezWrTuPcJu
-        cfhNO6vFxRVfmBz4PDZ8bmLz2DnrLrvHplWdbB6bl9R7TJ/zn9Gjb8sqRo/Pm+QC2KP0bIry
-        S0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLLUov07RL0MpbN+c9esJe1
-        ovnkR6YGxucsXYycHBICJhLzzm5j62Lk4hASWMooMWXbbqYuRg6ghJTE/BYliBphiT/XuqBq
-        PjFKHP4xlwkkwSZgKNF7tI8RxBYR0JTomHebFaSIWeA7k8SBxyeZQRLCAj4Si5/NZwMZyiKg
-        KvFpUQZImFfAUuLDo11sEAvkJVZvOABWzilgI9G0eR9YXEjAWmLa3BbmCYx8CxgZVjGKpJYW
-        56bnFhvpFSfmFpfmpesl5+duYgTGwrZjP7fsYOx6F3yIUYCDUYmH1+NYS6wQa2JZcWXuIUYJ
-        DmYlEd45pk2xQrwpiZVVqUX58UWlOanFhxhNgW6ayCwlmpwPjNO8knhDU0NzC0tDc2NzYzML
-        JXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2Mh98uE59xquh/8uPNaS4buSdPmXbl3RW12ye1
-        nV+9X/D8n4zagUlXpmp+4y9NZfpRW/P1PUvqb+s3e2wUzVNdisu9Ov92al45mlH8zZlPffuD
-        KRdfBvAcPhjsaJiinpcSq/F/Z5nZ/V0NF3YGvWqU9MsynBGxKuDOxX4xhwtreRiiwrcfXTw1
-        XYmlOCPRUIu5qDgRAFXHQuibAgAA
-X-CMS-MailID: 20190920130711eucas1p29497b40981e4e0a24769ced4e06be208
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190920130711eucas1p29497b40981e4e0a24769ced4e06be208
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190920130711eucas1p29497b40981e4e0a24769ced4e06be208
-References: <20190920130218.32690-2-s.nawrocki@samsung.com>
-        <CGME20190920130711eucas1p29497b40981e4e0a24769ced4e06be208@eucas1p2.samsung.com>
+        id S1728195AbfITNmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 09:42:38 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:34716 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726924AbfITNmi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 09:42:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=xBchC21co1zSoAA232XoJcRl/YGG2YtjdTp+sQB4kOU=; b=kWpv/wvvqybuA9gJqkZMShqqR
+        V7SElLbkefrx1lTEaEbPafBqUmi3tODqq71K9VLs6XdoXOtRoUHN7DWRQhWKghSabT9BzWFzcUoAc
+        Ia3zii3x5bTkTcQfkvKXatbAH3JI3i+oFQCud0xT8/IxJg0jOn7JkRoHhb2+d3aMX0b53vW+LFW7w
+        fnWHtKPNKd08uge+YTUIQMtmVXFJKoalOwu6jo65aKYinLJmQPuxyiU8+8LaujWRVsIgBovQsEO25
+        R/rSrdxVH2yZzqmjGRXS2gAksl4YHw6ys+YKuL7Xufywy55womoXyJ3eWaUbbEAjjfKjsR7wLP/tW
+        HnXE8I4gA==;
+Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:41870)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iBJAz-00048q-TJ; Fri, 20 Sep 2019 14:42:22 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iBJAt-0005ql-Vd; Fri, 20 Sep 2019 14:42:15 +0100
+Date:   Fri, 20 Sep 2019 14:42:15 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     tinywrkb <tinywrkb@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+        Baruch Siach <baruch@tkos.co.il>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
+ max-speed
+Message-ID: <20190920134215.GM25745@shell.armlinux.org.uk>
+References: <20190917124101.GA1200564@arch-dsk-01>
+ <20190917125434.GH20778@lunn.ch>
+ <20190917133253.GA1210141@arch-dsk-01>
+ <20190917133942.GR25745@shell.armlinux.org.uk>
+ <20190917151707.GV25745@shell.armlinux.org.uk>
+ <20190917153027.GW25745@shell.armlinux.org.uk>
+ <20190917163427.GA1475935@arch-dsk-01>
+ <20190917170419.GX25745@shell.armlinux.org.uk>
+ <20190917171913.GY25745@shell.armlinux.org.uk>
+ <20190917214201.GB25745@shell.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190917214201.GB25745@shell.armlinux.org.uk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable audio driver for Exynos5250 based Arndale boards to improve
-testing coverage.
+On Tue, Sep 17, 2019 at 10:42:01PM +0100, Russell King - ARM Linux admin wrote:
+> On Tue, Sep 17, 2019 at 06:19:13PM +0100, Russell King - ARM Linux admin wrote:
+> > whether you can get the link to come up at all.  You might need to see
+> > whether wiggling the RJ45 helps (I've had that sort of thing with some
+> > cables.)
+> > 
+> > You might also need "ethtool -s eth0 advertise ffcf" after trying that
+> > if it doesn't work to take the gigabit speeds out of the advertisement.
+> > 
+> > Thanks.
+> > 
+> >  drivers/net/phy/at803x.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
+> > index b3893347804d..85cf4a4a5e81 100644
+> > --- a/drivers/net/phy/at803x.c
+> > +++ b/drivers/net/phy/at803x.c
+> > @@ -296,6 +296,11 @@ static int at803x_config_init(struct phy_device *phydev)
+> >  	if (ret < 0)
+> >  		return ret;
+> >  
+> > +	/* Disable smartspeed */
+> > +	ret = phy_modify(phydev, 0x14, BIT(5), 0);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> >  	/* The RX and TX delay default is:
+> >  	 *   after HW reset: RX delay enabled and TX delay disabled
+> >  	 *   after SW reset: RX delay enabled, while TX delay retains the
+> 
+> Hi,
+> 
+> Could you try this patch instead - it seems that the PHY needs to be
+> soft-reset for the write to take effect, and _even_ for the clearance
+> of the bit to become visible in the register.
+> 
+> I'm not expecting this on its own to solve anything, but it should at
+> least mean that the at803x doesn't modify the advertisement registers
+> itself.  It may mean that the link doesn't even come up without forcing
+> the advertisement via the ethtool command I mentioned before.
+> 
+> Thanks.
+> 
+>  drivers/net/phy/at803x.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
+> index b3893347804d..69a58c0e6b42 100644
+> --- a/drivers/net/phy/at803x.c
+> +++ b/drivers/net/phy/at803x.c
+> @@ -296,6 +296,16 @@ static int at803x_config_init(struct phy_device *phydev)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	/* Disable smartspeed */
+> +	ret = phy_modify(phydev, 0x14, BIT(5), 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Must soft-reset the PHY for smartspeed disable to take effect */
+> +	ret = genphy_soft_reset(phydev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>  	/* The RX and TX delay default is:
+>  	 *   after HW reset: RX delay enabled and TX delay disabled
+>  	 *   after SW reset: RX delay enabled, while TX delay retains the
 
-Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
----
- arch/arm/configs/exynos_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Bad news I'm afraid.  It looks like the AR8035 has a bug in it.
+Disabling the SmartSpeed feature appears to make register 9, the
+1000BASET control register, read-only.
 
-diff --git a/arch/arm/configs/exynos_defconfig b/arch/arm/configs/exynos_defconfig
-index 2e6a863d25aa..8d4d6bb5c47b 100644
---- a/arch/arm/configs/exynos_defconfig
-+++ b/arch/arm/configs/exynos_defconfig
-@@ -227,6 +227,7 @@ CONFIG_SND_SOC_SAMSUNG_SMDK_WM8994=y
- CONFIG_SND_SOC_SMDK_WM8994_PCM=y
- CONFIG_SND_SOC_SNOW=y
- CONFIG_SND_SOC_ODROID=y
-+CONFIG_SND_SOC_ARNDALE=y
- CONFIG_SND_SIMPLE_CARD=y
- CONFIG_USB=y
- CONFIG_USB_ANNOUNCE_NEW_DEVICES=y
+For example:
+
+Reading 0x0009=0x0200
+Writing 0x0014=0x082c	<= smartspeed enabled
+Writing 0x0000=0xb100	<= soft reset
+Writing 0x0009=0x0600
+Reading 0x0009=0x0600	<= it took the value
+
+Reading 0x0009=0x0600
+Writing 0x0014=0x080c	<= smartspeed disabled
+Writing 0x0000=0xb100	<= soft reset
+Writing 0x0009=0x0200
+Reading 0x0009=0x0600	<= it ignored the write
+
+Reading 0x0009=0x0600
+Writing 0x0014=0x082c	<= smartspeed enabled
+Writing 0x0000=0xb100	<= soft reset
+Writing 0x0009=0x0200
+Reading 0x0009=0x0200	<= it took the value
+
+If it's going to make register 9 read-only when smartspeed is disabled,
+then that's another failure mode and autonegotiation cockup just
+waiting to happen - which I spotted when trying to configure the
+advertisement using ethtool, and finding that it was impossible to stop
+1000baseT/Full being advertised.
+
+I think the only sane approach - at least until we have something more
+reasonable in place - is to base the negotiation result off what is
+actually stored in the PHY registers at the time the link comes up, and
+not on the cached versions of what we should be advertising.
+
+5502b218e001 has caused this regression, and where we are now after
+more than a week of trying to come up with some fix for this
+regression, the only solution that seems to work without introducing
+more failures is to revert that commit.
+
+Adding Heiner (original commit author), Florian, David and netdev.
+
+Thoughts?
+
 -- 
-2.17.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
