@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B141B94F9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 18:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4852B950A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 18:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389133AbfITQLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 12:11:36 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.168]:23170 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388473AbfITQLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 12:11:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568995893;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=pMuJS7ZxGerg+itWYAGiO02bP41ocHFhwtgwC16Oy+4=;
-        b=hGBWKLKzjWq3O6h9+xukeP0VNFzjSOGlXzAbD90kDzOf6DTvEQbgUQX3w7HREfAIfq
-        Y35h0dABORrrcyTE02T2xt8VEkxoYBg2LU67Yd6zKLqTyMEYVYsYMRCet11YxBb8pcex
-        Y43ANkTglCf7V9Hy/SxbLzmjW4BnBJnH6wntosDZObE/UaL7ojL6dyV4+knHRTkhER1W
-        K1NHNXLk62k8igubIjX4iNEFUiRmubjHHoXHQ5H6buDbRpAoTbvxdkQ34+6JV2Y83e1N
-        S6ihrJV01pq8BFOCsYKRDXF6JsgPFsl7tm3M1yFWsBpMxuqEmLfhtfgzGejR7pPNbwNu
-        LNOg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UNf2AyPw8lBX+A"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
-        with ESMTPSA id u036f9v8KGBFpHV
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 20 Sep 2019 18:11:15 +0200 (CEST)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, broonie@kernel.org,
-        linus.walleij@linaro.org
-Cc:     stable@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v2] DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again
-Date:   Fri, 20 Sep 2019 18:11:15 +0200
-Message-Id: <c031340840daba810bb2a612c35eea7fab307e56.1568995874.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.19.1
+        id S2392989AbfITQP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 12:15:27 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:39509 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387398AbfITQP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 12:15:27 -0400
+Received: by mail-wr1-f65.google.com with SMTP id r3so7344457wrj.6;
+        Fri, 20 Sep 2019 09:15:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mZnFO9Ewh2eNA3kI4bmGo64jHJtIOUeAunxMfA3rJR0=;
+        b=DCPL56qummiSkGb2pFXl4RuXOW8tRZ/HZQATdC6kmaExQn878P9ehhGzPRrNLGRHia
+         Ta0XiDT5HaUaTZcKzrpMLfeOD3kkhhdKhuePtRpSGx/pHKnhXoyQNnc9gZidt3gncLjC
+         xSocYARlUJh+lD2bIbVVvfxCnrdrmyRpAB5I8gyUgHnPYRO6mOHHy6ukmpCU6U1x9c8Z
+         voBqvN+Nur4+fSJe1A0WhCQoLkf7oqRjRbTiH2ESRQitfr/ve8ammTsLZ28mgtnFnJo+
+         3R9YiiKBDu8r0RwotkE0DiGXGn7UQAaLeR7ytSW/RqqErfNrsEK/1K2njtbHxzPbxYd+
+         zd5A==
+X-Gm-Message-State: APjAAAX30OUnVnPhEzkd+xQW70JM3B8io5szzAIvd4FfE0ZnafAm+Gma
+        byJXS4arrD0q7XrB+IcSYL3MPb6U
+X-Google-Smtp-Source: APXvYqwub7RCds9mJxkWGp0upNTTjKyrnJAsYwMTzC3Lz+vJzLAKvve0lx0GcT4jcO2IZKwg04pt9g==
+X-Received: by 2002:adf:b648:: with SMTP id i8mr181221wre.372.1568996124939;
+        Fri, 20 Sep 2019 09:15:24 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id h125sm3279449wmf.31.2019.09.20.09.15.23
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 20 Sep 2019 09:15:24 -0700 (PDT)
+Date:   Fri, 20 Sep 2019 18:15:21 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Convert Samsung SoC watchdog
+ bindings to json-schema
+Message-ID: <20190920161521.GA6004@kozik-lap>
+References: <20190907144541.16949-1-krzk@kernel.org>
+ <20190912170145.GA17889@bogus>
+ <CAJKOXPfsUw-+yRc=GF+t=1pE7D3dF_wpRUwZpmfLnRbDyEmKeQ@mail.gmail.com>
+ <CAL_JsqLtQ4yYJJiUcBrje+6SKiaXTmF-Cej_=ykeWKO+9ytM4Q@mail.gmail.com>
+ <CAL_JsqJcE4+3gxoBAeKH1w=4+QFEaR9axqgBqLb=eW8jJqT1YQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJcE4+3gxoBAeKH1w=4+QFEaR9axqgBqLb=eW8jJqT1YQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit 6953c57ab172 "gpio: of: Handle SPI chipselect legacy bindings"
+On Fri, Sep 20, 2019 at 10:52:56AM -0500, Rob Herring wrote:
+> On Fri, Sep 20, 2019 at 10:46 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Sep 18, 2019 at 6:26 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Fri, 13 Sep 2019 at 16:36, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Sat, Sep 07, 2019 at 04:45:40PM +0200, Krzysztof Kozlowski wrote:
+> > > > > Convert Samsung S3C/S5P/Exynos watchdog bindings to DT schema format
+> > > > > using json-schema.
+> > > > >
+> > > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > > > ---
+> > > > >  .../bindings/watchdog/samsung-wdt.txt         | 35 ----------
+> > > > >  .../bindings/watchdog/samsung-wdt.yaml        | 69 +++++++++++++++++++
+> > > > >  2 files changed, 69 insertions(+), 35 deletions(-)
+> > > > >  delete mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
+> > > > >  create mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > > >
+> > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..39f1ca3bc4db
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> > > > > @@ -0,0 +1,69 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/watchdog/samsung-wdt.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Samsung SoC Watchdog Timer Controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > > > > +
+> > > > > +description: |+
+> > > > > +  The Samsung's Watchdog controller is used for resuming system operation
+> > > > > +  after a preset amount of time during which the WDT reset event has not
+> > > > > +  occurred.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - samsung,s3c2410-wdt                   # for S3C2410
+> > > > > +      - samsung,s3c6410-wdt                   # for S3C6410, S5PV210 and Exynos4
+> > > > > +      - samsung,exynos5250-wdt                # for Exynos5250
+> > > > > +      - samsung,exynos5420-wdt                # for Exynos5420
+> > > > > +      - samsung,exynos7-wdt                   # for Exynos7
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  interrupts:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  samsung,syscon-phandle:
+> > > > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > > > > +    description:
+> > > > > +      Phandle to the PMU system controller node (in case of Exynos5250
+> > > > > +      and Exynos5420).
+> > > > > +
+> > > > > +  timeout-sec:
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > +    description:
+> > > > > +      Watchdog timeout in seconds.
+> > > >
+> > > > We need a common schema for this and the node name.
+> > >
+> > > Common schema in dt-schema or in Linux kernel bindings? If the latter,
+> > > I can add it.
+> >
+> > In the kernel is fine.
+> 
+> Actually, Maxime has already done one.
 
-did introduce logic to centrally handle the legacy spi-cs-high property
-in combination with cs-gpios. This assumes that the polarity
-of the CS has to be inverted if spi-cs-high is missing, even
-and especially if non-legacy GPIO_ACTIVE_HIGH is specified.
+I see. I'll use them then.
 
-The DTS for the GTA04 was orginally introduced under the assumption
-that there is no need for spi-cs-high if the gpio is defined with
-proper polarity GPIO_ACTIVE_HIGH.
 
-This was not a problem until gpiolib changed the interpretation of
-GPIO_ACTIVE_HIGH and missing spi-cs-high.
-
-The effect is that the missing spi-cs-high is now interpreted as CS being
-low (despite GPIO_ACTIVE_HIGH) which turns off the SPI interface when the
-panel is to be programmed by the panel driver.
-
-Therefore, we have to add the redundant and legacy spi-cs-high property
-to properly activate CS.
-
-Cc: stable@vger.kernel.org
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/arm/boot/dts/omap3-gta04.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index b295f6fad2a5..954c216140ad 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -120,6 +120,7 @@
- 			spi-max-frequency = <100000>;
- 			spi-cpol;
- 			spi-cpha;
-+			spi-cs-high;
- 
- 			backlight= <&backlight>;
- 			label = "lcd";
--- 
-2.19.1
+Best regards,
+Krzysztof
 
