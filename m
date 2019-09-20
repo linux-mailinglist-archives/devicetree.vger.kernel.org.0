@@ -2,264 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83122B90F3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 15:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E68AB912F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 15:53:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728513AbfITNse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 09:48:34 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36877 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728494AbfITNse (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 09:48:34 -0400
-Received: by mail-ot1-f67.google.com with SMTP id k32so6240224otc.4;
-        Fri, 20 Sep 2019 06:48:33 -0700 (PDT)
+        id S1728330AbfITNxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 09:53:13 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:35685 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727481AbfITNxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 09:53:13 -0400
+Received: by mail-oi1-f193.google.com with SMTP id x3so1815111oig.2;
+        Fri, 20 Sep 2019 06:53:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wyzOgChbiOArfvFaPvRpSR8QfOu1l1w0Piqw31gm3Gs=;
-        b=XNtBPkQtidrgDGuutxEZlkm8phe2NiCahGHpeXi8+EZlrr9ewoLF3BofPFnBPP55u0
-         m3HiqOQ1aNbqRy2XVE2WTA2YvOymo9FYq1lm1c7+bIjhzVzM3KlHKK6TUTG2nKhfDgXE
-         IZtCAxfEgz+MbGq9+V9Qm+6aJHQrcaCrUgag1DJyrupOCmcsG0htuPhF6+3CuFzl/MOV
-         n+vX0PtwCJ5LldtjKI2YSpAULJvIIEipknJUqp2eb9hZ+EdoY8SzvtNjqEk9wPX/GvYX
-         AAGOLanNClBrfsIt/82dcTaAI8C1ifbqXI+/IZ0NhOhEK2+/bVMwAGkTn/Nh0s45v4/j
-         t0uA==
-X-Gm-Message-State: APjAAAX2Jju72JH06mf5b0fZgS1tUB/Kdf1dePbe1cmjGIe1eKFMe2jL
-        TMz22VoNexhJ3jksUjbrPN+Lqj0=
-X-Google-Smtp-Source: APXvYqxpFuDK5AFDI/+NJB/5aivaWoCqTuWiyvp26NI2QumaORZpdI7qLGoWLFnmpbIxLOFM3fsf/w==
-X-Received: by 2002:a9d:5544:: with SMTP id h4mr11471400oti.347.1568987312829;
-        Fri, 20 Sep 2019 06:48:32 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id w20sm403259otq.72.2019.09.20.06.48.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2019 06:48:32 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, Joerg Roedel <joro@8bytes.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        iommu@lists.linux-foundation.org
-Subject: [PATCH 2/2] dt-bindings: iommu: Convert Arm SMMUv3 to DT schema
-Date:   Fri, 20 Sep 2019 08:48:29 -0500
-Message-Id: <20190920134829.16432-2-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190920134829.16432-1-robh@kernel.org>
-References: <20190920134829.16432-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ew6nG7uE2nCglBGvtLTGWDJ9g6OFEZPeUvSfGAO1CvA=;
+        b=IAU/mk6WiSwaigieZcQpajVAoiautaBfkbsIPHVW4hGPEFuXnHqB179zLx6SpOjYgV
+         m/zaJqvWiioFLB7GaQnwAHVL6raQj58qK0R4/BvvDMKeLPqUaV48G4maj+pUqjEiYnFA
+         8s+ljXNFEEMt1Yc1gKdAsnzLQLmeXlHdV45aaViP5Lfh2rgSjTqA12bIKAYEnL4oAr4H
+         Ej2xvfSAkoVduhhrUxcpMauA0F8fzS+iXSBgGCvG6vi8aOk5wIBQlzUo9YGhzFq18h+R
+         UQMICcAsxYpZbJfofc2t6GbdstvqULXL1ZdiZibrRA3DEg0MT5wdHO/i5xZWcXauuJfd
+         Ktcg==
+X-Gm-Message-State: APjAAAXCJquuXUedhfXd2Bk8ILTLhKQl+UYkEGLk+rUYqg/IXdNPW1u7
+        u+bkOcQGNLki+VItC+cA8JoUDdr5wqxP2msdoAo=
+X-Google-Smtp-Source: APXvYqxyoTNvKH7T458ph8kh+7/xWwRdrE5jz5zjyMR4oIb1jJD/RFwuE2RDNv0DtrqX2JS96ax+IqIjH9IvJiK/VZw=
+X-Received: by 2002:aca:dad4:: with SMTP id r203mr3113597oig.102.1568987591649;
+ Fri, 20 Sep 2019 06:53:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1568724324-26995-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1568724324-26995-1-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 20 Sep 2019 15:53:00 +0200
+Message-ID: <CAMuHMdXOicpnUC7UNHT+P1bMsTKgm2oVsewnzjo4MmznwnNahA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: sh-sci: Document r8a774b1 bindings
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Arm SMMv3 binding to the DT schema format.
+On Tue, Sep 17, 2019 at 2:52 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> RZ/G2N (R8A774B1) SoC also has the R-Car Gen3 compatible SCIF and
+> HSCIF ports, so document the SoC specific bindings.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-Cc: Joerg Roedel <joro@8bytes.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Robin Murphy <Robin.Murphy@arm.com>
-Cc: iommu@lists.linux-foundation.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/iommu/arm,smmu-v3.txt |  77 -------------
- .../bindings/iommu/arm,smmu-v3.yaml           | 103 ++++++++++++++++++
- 2 files changed, 103 insertions(+), 77 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt
- create mode 100644 Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt
-deleted file mode 100644
-index c9abbf3e4f68..000000000000
---- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt
-+++ /dev/null
-@@ -1,77 +0,0 @@
--* ARM SMMUv3 Architecture Implementation
--
--The SMMUv3 architecture is a significant departure from previous
--revisions, replacing the MMIO register interface with in-memory command
--and event queues and adding support for the ATS and PRI components of
--the PCIe specification.
--
--** SMMUv3 required properties:
--
--- compatible        : Should include:
--
--                      * "arm,smmu-v3" for any SMMUv3 compliant
--                        implementation. This entry should be last in the
--                        compatible list.
--
--- reg               : Base address and size of the SMMU.
--
--- interrupts        : Non-secure interrupt list describing the wired
--                      interrupt sources corresponding to entries in
--                      interrupt-names. If no wired interrupts are
--                      present then this property may be omitted.
--
--- interrupt-names   : When the interrupts property is present, should
--                      include the following:
--                      * "eventq"    - Event Queue not empty
--                      * "priq"      - PRI Queue not empty
--                      * "cmdq-sync" - CMD_SYNC complete
--                      * "gerror"    - Global Error activated
--                      * "combined"  - The combined interrupt is optional,
--				      and should only be provided if the
--				      hardware supports just a single,
--				      combined interrupt line.
--				      If provided, then the combined interrupt
--				      will be used in preference to any others.
--
--- #iommu-cells      : See the generic IOMMU binding described in
--                        devicetree/bindings/pci/pci-iommu.txt
--                      for details. For SMMUv3, must be 1, with each cell
--                      describing a single stream ID. All possible stream
--                      IDs which a device may emit must be described.
--
--** SMMUv3 optional properties:
--
--- dma-coherent      : Present if DMA operations made by the SMMU (page
--                      table walks, stream table accesses etc) are cache
--                      coherent with the CPU.
--
--                      NOTE: this only applies to the SMMU itself, not
--                      masters connected upstream of the SMMU.
--
--- msi-parent        : See the generic MSI binding described in
--                        devicetree/bindings/interrupt-controller/msi.txt
--                      for a description of the msi-parent property.
--
--- hisilicon,broken-prefetch-cmd
--                    : Avoid sending CMD_PREFETCH_* commands to the SMMU.
--
--- cavium,cn9900-broken-page1-regspace
--                    : Replaces all page 1 offsets used for EVTQ_PROD/CONS,
--		      PRIQ_PROD/CONS register access with page 0 offsets.
--		      Set for Cavium ThunderX2 silicon that doesn't support
--		      SMMU page1 register space.
--
--** Example
--
--        smmu@2b400000 {
--                compatible = "arm,smmu-v3";
--                reg = <0x0 0x2b400000 0x0 0x20000>;
--                interrupts = <GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
--                             <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>,
--                             <GIC_SPI 77 IRQ_TYPE_EDGE_RISING>,
--                             <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>;
--                interrupt-names = "eventq", "priq", "cmdq-sync", "gerror";
--                dma-coherent;
--                #iommu-cells = <1>;
--                msi-parent = <&its 0xff0000>;
--        };
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-new file mode 100644
-index 000000000000..1c97bcfbf82b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-@@ -0,0 +1,103 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iommu/arm,smmu-v3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM SMMUv3 Architecture Implementation
-+
-+maintainers:
-+  - Will Deacon <will@kernel.org>
-+  - Robin Murphy <Robin.Murphy@arm.com>
-+
-+description: |+
-+  The SMMUv3 architecture is a significant departure from previous
-+  revisions, replacing the MMIO register interface with in-memory command
-+  and event queues and adding support for the ATS and PRI components of
-+  the PCIe specification.
-+
-+properties:
-+  $nodename:
-+    pattern: "^iommu@[0-9a-f]*"
-+  compatible:
-+    const: arm,smmu-v3
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 4
-+
-+  interrupt-names:
-+    oneOf:
-+      - const: combined
-+        description:
-+          The combined interrupt is optional, and should only be provided if the
-+          hardware supports just a single, combined interrupt line.
-+          If provided, then the combined interrupt will be used in preference to
-+          any others.
-+      - items:
-+          - const: eventq     # Event Queue not empty
-+          - const: priq       # PRI Queue not empty
-+          - const: cmdq-sync  # CMD_SYNC complete
-+          - const: gerror     # Global Error activated
-+      - items:
-+          - const: eventq
-+          - const: gerror
-+          - const: priq
-+      - items:
-+          - const: eventq
-+          - const: gerror
-+      - items:
-+          - const: eventq
-+          - const: priq
-+
-+  '#iommu-cells':
-+    const: 1
-+
-+  dma-coherent:
-+    description: |
-+      Present if page table walks made by the SMMU are cache coherent with the
-+      CPU.
-+
-+      NOTE: this only applies to the SMMU itself, not masters connected
-+      upstream of the SMMU.
-+
-+  msi-parent: true
-+
-+  hisilicon,broken-prefetch-cmd:
-+    type: boolean
-+    description: Avoid sending CMD_PREFETCH_* commands to the SMMU.
-+
-+  cavium,cn9900-broken-page1-regspace:
-+    type: boolean
-+    description:
-+      Replaces all page 1 offsets used for EVTQ_PROD/CONS, PRIQ_PROD/CONS
-+      register access with page 0 offsets. Set for Cavium ThunderX2 silicon that
-+      doesn't support SMMU page1 register space.
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#iommu-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |+
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    iommu@2b400000 {
-+            compatible = "arm,smmu-v3";
-+            reg = <0x2b400000 0x20000>;
-+            interrupts = <GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 77 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>;
-+            interrupt-names = "eventq", "priq", "cmdq-sync", "gerror";
-+            dma-coherent;
-+            #iommu-cells = <1>;
-+            msi-parent = <&its 0xff0000>;
-+    };
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.20.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
