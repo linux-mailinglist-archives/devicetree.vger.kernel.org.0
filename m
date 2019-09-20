@@ -2,81 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3FF6B8FC6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 14:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9875B8FD1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 14:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406321AbfITM2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 08:28:21 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36558 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406113AbfITM2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 08:28:21 -0400
-Received: by mail-wr1-f65.google.com with SMTP id y19so6605816wrd.3;
-        Fri, 20 Sep 2019 05:28:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GA3pOvw9cvyvH9sQ+qekD5v2QhBspBBVn0FQG6OPUYU=;
-        b=RxjJh/Tbs0notO6fx7MLNPTa/FabYt7579brB6eYll9t36KyZIpMjXvbO8G+yC6QtQ
-         vh1wUMaAqqo4QUS1wgO6TIgh2u99ftffUvOmfH5l1dLP+7QYkacj/woGfB/6vyUJKOMU
-         UAXnCYYVCTho1x3PgX0avo35EFW0cVB96nJ7CPU9p+GPOgQR8i2qU8xDh+DjYQ6wxJoV
-         XNWOYzQ6aon+lGV8vdr/sPwTletI4rSIOCqEn+UGr8n5r1d6UgYX2IfzUIKI1eEaEYud
-         JoZZ2hbH1G3+2QwJ2T6ZUvYUkSadWREwPyOA1q1XG/+kUn0KFu0U/FUIX/2Eq3WtpX4q
-         II1w==
-X-Gm-Message-State: APjAAAXkIY23MXNtRxMeD3Ra9hrlXBdz3jBOxrsrxfbP9IDi+QLxh9LT
-        4BVgGi+IC7AGkKc2YGyTQOk=
-X-Google-Smtp-Source: APXvYqxmnGq2oEEutMlmvckBo6TPiKxSSizcfXtvJxNZXc6nbSs9KT2dgYsJ0qwY1AyhJqAnzhcTjg==
-X-Received: by 2002:a5d:430f:: with SMTP id h15mr11854947wrq.177.1568982499009;
-        Fri, 20 Sep 2019 05:28:19 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id n8sm2186709wma.7.2019.09.20.05.28.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2019 05:28:18 -0700 (PDT)
-Date:   Fri, 20 Sep 2019 14:28:15 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Maciej Falkowski <m.falkowski@samsung.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>
-Subject: Re: [PATCH 1/2] ARM: dts: exynos: split phandle in dmas property
-Message-ID: <20190920122815.GB26862@pi3>
-References: <CAL_JsqJ=QWk07y=h7dHFiRrKuE7NGoUr50bu3kiOC+YU8qS9jg@mail.gmail.com>
- <CGME20190920121525eucas1p27562c205c41200221540b720c9084fb4@eucas1p2.samsung.com>
- <20190920121431.31678-1-m.szyprowski@samsung.com>
+        id S2406111AbfITMaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 08:30:11 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:36404 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404361AbfITMaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 08:30:11 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KCU2YC033049;
+        Fri, 20 Sep 2019 07:30:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568982602;
+        bh=Ol6M1ir1cCrFdmazeVk2q4bf7wGJSKlf95XAGkQx4QI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=g6ERzpJLElkXyrwSOCdMpa7F1RcjgTNgqoC+4auEB6mhfweL9MVlnHxcYuu4uorgO
+         dEuVOG9IUnsqWNRKO4/gSW/+qnBCev1RV9dpzJs17FOWNY34+cTyDR4HwJd0MT/IOt
+         ADi2t+SMA5Jh6YGisQvtGT3gz+kAI1dnbB7B/1Rs=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8KCU2G7130077
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 20 Sep 2019 07:30:02 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 20
+ Sep 2019 07:30:02 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 20 Sep 2019 07:29:58 -0500
+Received: from [10.250.98.129] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KCU0tP108372;
+        Fri, 20 Sep 2019 07:30:00 -0500
+Subject: Re: [PATCH v3 2/3] leds: Add control of the voltage/current regulator
+ to the LED core
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <daniel.thompson@linaro.org>
+CC:     <dmurphy@ti.com>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20190717135948.19340-1-jjhiblot@ti.com>
+ <20190717135948.19340-3-jjhiblot@ti.com>
+ <4bd3b558-ea5b-0d2e-16b2-5b2e8bb484d2@gmail.com>
+ <49152281-059c-6006-4c0f-a6be96a12707@ti.com>
+ <928fd71b-d1d3-cbf3-1aed-ae7fa97f6cf0@gmail.com>
+From:   Jean-Jacques Hiblot <jjhiblot@ti.com>
+Message-ID: <ce73712c-8931-9177-fbbf-f42dc3d656e6@ti.com>
+Date:   Fri, 20 Sep 2019 14:29:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190920121431.31678-1-m.szyprowski@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <928fd71b-d1d3-cbf3-1aed-ae7fa97f6cf0@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 20, 2019 at 02:14:30PM +0200, Marek Szyprowski wrote:
-> From: Maciej Falkowski <m.falkowski@samsung.com>
-> 
-> Change representation of phandle array as then
-> dt-schema counts number of its items properly.
-> 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->  arch/arm/boot/dts/exynos5250.dtsi | 14 +++++++-------
->  arch/arm/boot/dts/exynos5410.dtsi |  6 +++---
->  arch/arm/boot/dts/exynos5420.dtsi | 14 +++++++-------
->  3 files changed, 17 insertions(+), 17 deletions(-)
+Hi Jacek,
 
-Looks good, I'll take it after merge window but why this is in-reply-to
-(inside thread) of completely different patchset?
+On 18/07/2019 19:49, Jacek Anaszewski wrote:
+> On 7/18/19 3:31 PM, Jean-Jacques Hiblot wrote:
+>> On 18/07/2019 14:24, Jacek Anaszewski wrote:
+>>> Hi Jean,
+>>>
+>>> Thank you for the updated patch set.
+>>>
+>>> I have some more comments below.
+>>>
+>>> On 7/17/19 3:59 PM, Jean-Jacques Hiblot wrote:
+>>>>    +static bool __led_need_regulator_update(struct led_classdev
+>>>> *led_cdev,
+>>>> +                    int brightness)
+>>>> +{
+>>>> +    bool new_state = (brightness != LED_OFF);
+>>> How about:
+>>>
+>>> bool new_state = !!brightness;
+>> Throughout the code LED_OFF is used when the LED is turned off. I think
+>> it would be more consistent to use it there too.
+> Basically brightness is a scalar and 0 always means off.
+> We treat enum led_brightness as a legacy type - it is no
+> longer valid on the whole its span since LED_FULL = 255
+> was depreciated with addition of max_brightness property.
+>
+> IMHO use of reverse logic here only hinders code analysis.
+>
+>>>> +
+>>>> +    return led_cdev->regulator && led_cdev->regulator_state !=
+>>>> new_state;
+>>>> +}
+>>>> +static int __led_handle_regulator(struct led_classdev *led_cdev,
+>>>> +                int brightness)
+>>>> +{
+>>>> +    int rc;
+>>>> +
+>>>> +    if (__led_need_regulator_update(led_cdev, brightness)) {
+>>>> +
+>>>> +        if (brightness != LED_OFF)
+>>>> +            rc = regulator_enable(led_cdev->regulator);
+>>>> +        else
+>>>> +            rc = regulator_disable(led_cdev->regulator);
+>>>> +        if (rc)
+>>>> +            return rc;
+>>>> +
+>>>> +        led_cdev->regulator_state = (brightness != LED_OFF);
+>>>> +    }
+>>>> +    return 0;
+>>>> +}
+>>> Let's have these function names without leading underscores.
+>> OK.
+>>>>    static int __led_set_brightness(struct led_classdev *led_cdev,
+>>>>                    enum led_brightness value)
+>>>>    {
+>>>> @@ -115,6 +142,8 @@ static void set_brightness_delayed(struct
+>>>> work_struct *ws)
+>>>>        if (ret == -ENOTSUPP)
+>>>>            ret = __led_set_brightness_blocking(led_cdev,
+>>>>                        led_cdev->delayed_set_value);
+>>>> +    __led_handle_regulator(led_cdev, led_cdev->delayed_set_value)
+>>> If you called it from __led_set_brightness() and
+>> We cannot call it from __led_set_brightness() because it is supposed not
+>> to block.
+> You're right. The problematic part is that with regulator handling
+> we cannot treat the whole brightness setting operation uniformly
+> for brightness_set op case, i.e. without mediation of a workqueue.
+>
+> Now you have to fire workqueue in led_set_brightness_nopm()
+> even for brightness_set() op path, if regulator state needs update.
+> This is ugly and can be misleading. Can be also error prone and
+> have non-obvious implications for software blink state transitions.
 
-Best regards,
-Krzysztof
+Taking your queue I reworked the series to take better care of the 
+concurrency issues.
 
+I believe it's in better shape right now.
+
+>
+> I think we would first need to improve locking between the workqueue
+> and led_timer_function(). I proposed a patch [0] over a year
+> ago.
+
+I tried the patch and get a lot of warning because of triggers on 
+storage devices.
+
+Making led_set_brightness() not callable from a IRQ context, is probably 
+not the right approach anymore.
+
+
+JJ
+
+>
+> Only then we could think of adding another asynchronous dependency
+> to the brightness setting chain.
+>
+> [0] https://lkml.org/lkml/2018/1/17/1144
+>
