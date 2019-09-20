@@ -2,285 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74C75B9A24
+	by mail.lfdr.de (Postfix) with ESMTP id 176D3B9A20
 	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 01:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407108AbfITXUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 19:20:01 -0400
-Received: from mail-pl1-f202.google.com ([209.85.214.202]:39480 "EHLO
-        mail-pl1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407119AbfITXT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 19:19:59 -0400
-Received: by mail-pl1-f202.google.com with SMTP id d11so5402882plo.6
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 16:19:58 -0700 (PDT)
+        id S2407104AbfITXT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 19:19:56 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:44713 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407096AbfITXTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 19:19:55 -0400
+Received: by mail-pl1-f196.google.com with SMTP id q15so3872749pll.11
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 16:19:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=edaAP1Y5TWGPl4n15/X44YeJ589/gy1ST6MOkLKJF6o=;
-        b=Oq8rASLZBOeemn1oEOECx2UZsaWh1KG+C93n2TkizHU4ntFPyioh9Kl3zF/P4Xr1oI
-         HDoJU8dJnAQ+mcAVAzxHUODvRIbOXJJlDZZ1VsL16wIDSdYXdFNQx9C68+VSrfPYb1Z3
-         K137MmZy3RFx/4/AmcfyxN2cM/dodgePyScag8UHu7BVN95joJtkAfjqW3SKy9VCZDyL
-         yTcgsGeWW2F3TekBD/wqxsNV1ninkzHJg8aaW8YB40uzK2lTpip9Xak8wYoJJ8GiRBS+
-         uGNvthZGsihE72LIulRlQOUKlbdezhbvKyUXpwZ/lKnziGbShRnhMnHu4mP6TqSb5J2L
-         PaAw==
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:cc:to:from:subject:user-agent:date;
+        bh=x3KkooxIJHeflg3Q/MEdAWrgYVbuQ7dU5z8XbMOS1lc=;
+        b=QzLHfKdIn3q1t4ZF2RMzkmMjfTHq/FprJnnZJs3zYFU7y2qEoRaLlRN0Y7Jq0AdNAC
+         PDfaWzDyVmNcPgDP160yRKk+6DjeC8GYQEpY8ACjMkLlsfsLOmx+dwv1tNluk5ekf3ru
+         UgXwy6ysHSMAxJ7o+Uw8r0YgF2N9y5ueHmVKo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=edaAP1Y5TWGPl4n15/X44YeJ589/gy1ST6MOkLKJF6o=;
-        b=IVZIr5odBLCRpPMuqIi7JnqzTYzNz+/zQFZN3W7Jd8Mu3gvRdeSvI9Hy6GxVKklym/
-         qCXFWEZqkMOBtx2EHL2aNomE6dA8yr9faGp8mkCvd1ZkpjQaGJdBcNg6HOC9nCAq+4aa
-         k52k79xN0ZN96+41Rjwe1fqxoMeiDAfSLr+7sCCTkw/BmrNSnq7kE6ubw8DvaqlfCoI+
-         3MRqiIlBFnNs7wvLh4YPizN6HySCN1xiqhLjrgHT351PO2gE9QzAikbwQtOlKE6Ar4KH
-         2gx5W++lRn2/HPNdh+Atha/yDGBrseseApR8DwfWi52uwCPAC5dvwCkrqGnr96rjgNpR
-         X2tQ==
-X-Gm-Message-State: APjAAAXNn1WM/eaA9du9MDwj21ZHTjGVgHwvZDRkLrfxAsoYq6a8dydm
-        1xY44Zf/Zed7p8GDW1IOD6xUTxLgBOkuRvbjpMHIeQ==
-X-Google-Smtp-Source: APXvYqzLK5Wz9nsCbJbCDQqMOjypebgDTYugLJXpVuXvFFtCSero7etbcjCIjGWMrvT1//hm5Za2m/3CiIYsa/JnbzK9dg==
-X-Received: by 2002:a63:4612:: with SMTP id t18mr17845727pga.85.1569021598008;
- Fri, 20 Sep 2019 16:19:58 -0700 (PDT)
-Date:   Fri, 20 Sep 2019 16:19:11 -0700
-In-Reply-To: <20190920231923.141900-1-brendanhiggins@google.com>
-Message-Id: <20190920231923.141900-8-brendanhiggins@google.com>
-Mime-Version: 1.0
-References: <20190920231923.141900-1-brendanhiggins@google.com>
-X-Mailer: git-send-email 2.23.0.351.gc4317032e6-goog
-Subject: [PATCH v16 07/19] kunit: test: add initial tests
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, torvalds@linux-foundation.org,
-        Brendan Higgins <brendanhiggins@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:date;
+        bh=x3KkooxIJHeflg3Q/MEdAWrgYVbuQ7dU5z8XbMOS1lc=;
+        b=lpux/HsglG/l2GEk2jcxOuqI7Snrr7/npgSPABIfCPCNQp/CpL3ZgBrBvo3875CRjZ
+         I7WMcJ0tCqN9HI6PaBrQkDYqCQcqAcN3H/0zKOhkp2DhFGMM3b3UzS/5nDEn4heq5cdk
+         5/HmaYkq+x7/u0N2re5tB4eWk33IQB23Y7iCnRgqpmFYtKrsTU7sCKXbbSSF1hftMhO0
+         fd56Ufp7xsuvjXVU8VLnRTczpxdp6JDqUhT/hk4ofKrdi4Xl31QZzG2dal38M56hKo2/
+         eHb6G0cjHsoeOrZESI2k0rMHgwC6jt4608GxzzhohOwKyOVXufev26K5H/cjYymRKZrQ
+         STDQ==
+X-Gm-Message-State: APjAAAXE1jZOtfTVWVP12kIS/nBr5EnvAmGlrfQastOZe50qNFtga5a/
+        bMOFCx04NPUydm77+kxE+sAjyg==
+X-Google-Smtp-Source: APXvYqw+23bVFXVYDopNzEoteLtijFTF7+FHjQV5JUkx0GnkKnOeZTAyxgjw8he9IKiO6G9R5MvM2g==
+X-Received: by 2002:a17:902:5a89:: with SMTP id r9mr18599724pli.206.1569021594105;
+        Fri, 20 Sep 2019 16:19:54 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id a4sm2720148pgq.6.2019.09.20.16.19.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2019 16:19:53 -0700 (PDT)
+Message-ID: <5d855e99.1c69fb81.1d457.733b@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAHLCerNqsf1j4vsOPjdav8+UtXtGP55k6_==jjg1QeZ1qCX1RA@mail.gmail.com>
+References: <cover.1569015835.git.amit.kucheria@linaro.org> <f627e66c455f52b5662bef6526d7c72869808401.1569015835.git.amit.kucheria@linaro.org> <5d854c82.1c69fb81.66e1f.96ab@mx.google.com> <CAHLCerPqEK2sSGGtDj85DH+qCzgtWi4ainuQv8BgQ3-Dgi93BQ@mail.gmail.com> <5d854e1d.1c69fb81.4f771.9391@mx.google.com> <CAHLCerNqsf1j4vsOPjdav8+UtXtGP55k6_==jjg1QeZ1qCX1RA@mail.gmail.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Brian Masney <masneyb@onstation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH v4 09/15] arm64: dts: msm8996: thermal: Add interrupt support
+User-Agent: alot/0.8.1
+Date:   Fri, 20 Sep 2019 16:19:52 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a test for string stream along with a simpler example.
+Quoting Amit Kucheria (2019-09-20 15:14:58)
+> On Fri, Sep 20, 2019 at 3:09 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Ok so the plan is to change DT and then change it back? That sounds
+> > quite bad so please fix the thermal core to not care about this before
+> > applying these changes so that we don't churn DT.
+>=20
+> Hi Stephen,
+>=20
+> Our emails crossed paths. I think we could just make the property
+> optional so that we can remove the property completely for drivers
+> that support interrupts. Comments?
 
-Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
----
- lib/kunit/Kconfig              | 21 ++++++++
- lib/kunit/Makefile             |  4 ++
- lib/kunit/example-test.c       | 88 ++++++++++++++++++++++++++++++++++
- lib/kunit/string-stream-test.c | 52 ++++++++++++++++++++
- 4 files changed, 165 insertions(+)
- create mode 100644 lib/kunit/example-test.c
- create mode 100644 lib/kunit/string-stream-test.c
+OK. This means that the delay properties become irrelevant once an
+interrupt is there? I guess that's OK. My concern is that we need to
+choose one or the other when it would be simpler to have both and
+fallback to the delays so that DT migration strategies are purely
+additive. It's not like the delays aren't calculated to be those numbers
+anymore. They're just not going to be used.
 
-diff --git a/lib/kunit/Kconfig b/lib/kunit/Kconfig
-index 330ae83527c2..a6092f506b79 100644
---- a/lib/kunit/Kconfig
-+++ b/lib/kunit/Kconfig
-@@ -14,4 +14,25 @@ config KUNIT
- 	  architectures. For more information, please see
- 	  Documentation/dev-tools/kunit/.
- 
-+config KUNIT_TEST
-+	bool "KUnit test for KUnit"
-+	depends on KUNIT
-+	help
-+	  Enables the unit tests for the KUnit test framework. These tests test
-+	  the KUnit test framework itself; the tests are both written using
-+	  KUnit and test KUnit. This option should only be enabled for testing
-+	  purposes by developers interested in testing that KUnit works as
-+	  expected.
-+
-+config KUNIT_EXAMPLE_TEST
-+	bool "Example test for KUnit"
-+	depends on KUNIT
-+	help
-+	  Enables an example unit test that illustrates some of the basic
-+	  features of KUnit. This test only exists to help new users understand
-+	  what KUnit is and how it is used. Please refer to the example test
-+	  itself, lib/kunit/example-test.c, for more information. This option
-+	  is intended for curious hackers who would like to understand how to
-+	  use KUnit for kernel development.
-+
- endmenu
-diff --git a/lib/kunit/Makefile b/lib/kunit/Makefile
-index 6dcbe309036b..4e46450bcb3a 100644
---- a/lib/kunit/Makefile
-+++ b/lib/kunit/Makefile
-@@ -1,3 +1,7 @@
- obj-$(CONFIG_KUNIT) +=			test.o \
- 					string-stream.o \
- 					assert.o
-+
-+obj-$(CONFIG_KUNIT_TEST) +=		string-stream-test.o
-+
-+obj-$(CONFIG_KUNIT_EXAMPLE_TEST) +=	example-test.o
-diff --git a/lib/kunit/example-test.c b/lib/kunit/example-test.c
-new file mode 100644
-index 000000000000..f64a829aa441
---- /dev/null
-+++ b/lib/kunit/example-test.c
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Example KUnit test to show how to use KUnit.
-+ *
-+ * Copyright (C) 2019, Google LLC.
-+ * Author: Brendan Higgins <brendanhiggins@google.com>
-+ */
-+
-+#include <kunit/test.h>
-+
-+/*
-+ * This is the most fundamental element of KUnit, the test case. A test case
-+ * makes a set EXPECTATIONs and ASSERTIONs about the behavior of some code; if
-+ * any expectations or assertions are not met, the test fails; otherwise, the
-+ * test passes.
-+ *
-+ * In KUnit, a test case is just a function with the signature
-+ * `void (*)(struct kunit *)`. `struct kunit` is a context object that stores
-+ * information about the current test.
-+ */
-+static void example_simple_test(struct kunit *test)
-+{
-+	/*
-+	 * This is an EXPECTATION; it is how KUnit tests things. When you want
-+	 * to test a piece of code, you set some expectations about what the
-+	 * code should do. KUnit then runs the test and verifies that the code's
-+	 * behavior matched what was expected.
-+	 */
-+	KUNIT_EXPECT_EQ(test, 1 + 1, 2);
-+}
-+
-+/*
-+ * This is run once before each test case, see the comment on
-+ * example_test_suite for more information.
-+ */
-+static int example_test_init(struct kunit *test)
-+{
-+	kunit_info(test, "initializing\n");
-+
-+	return 0;
-+}
-+
-+/*
-+ * Here we make a list of all the test cases we want to add to the test suite
-+ * below.
-+ */
-+static struct kunit_case example_test_cases[] = {
-+	/*
-+	 * This is a helper to create a test case object from a test case
-+	 * function; its exact function is not important to understand how to
-+	 * use KUnit, just know that this is how you associate test cases with a
-+	 * test suite.
-+	 */
-+	KUNIT_CASE(example_simple_test),
-+	{}
-+};
-+
-+/*
-+ * This defines a suite or grouping of tests.
-+ *
-+ * Test cases are defined as belonging to the suite by adding them to
-+ * `kunit_cases`.
-+ *
-+ * Often it is desirable to run some function which will set up things which
-+ * will be used by every test; this is accomplished with an `init` function
-+ * which runs before each test case is invoked. Similarly, an `exit` function
-+ * may be specified which runs after every test case and can be used to for
-+ * cleanup. For clarity, running tests in a test suite would behave as follows:
-+ *
-+ * suite.init(test);
-+ * suite.test_case[0](test);
-+ * suite.exit(test);
-+ * suite.init(test);
-+ * suite.test_case[1](test);
-+ * suite.exit(test);
-+ * ...;
-+ */
-+static struct kunit_suite example_test_suite = {
-+	.name = "example",
-+	.init = example_test_init,
-+	.test_cases = example_test_cases,
-+};
-+
-+/*
-+ * This registers the above test suite telling KUnit that this is a suite of
-+ * tests that need to be run.
-+ */
-+kunit_test_suite(example_test_suite);
-diff --git a/lib/kunit/string-stream-test.c b/lib/kunit/string-stream-test.c
-new file mode 100644
-index 000000000000..75229e267c32
---- /dev/null
-+++ b/lib/kunit/string-stream-test.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * KUnit test for struct string_stream.
-+ *
-+ * Copyright (C) 2019, Google LLC.
-+ * Author: Brendan Higgins <brendanhiggins@google.com>
-+ */
-+
-+#include <kunit/string-stream.h>
-+#include <kunit/test.h>
-+#include <linux/slab.h>
-+
-+static void string_stream_test_empty_on_creation(struct kunit *test)
-+{
-+	struct string_stream *stream = alloc_string_stream(test, GFP_KERNEL);
-+
-+	KUNIT_EXPECT_TRUE(test, string_stream_is_empty(stream));
-+}
-+
-+static void string_stream_test_not_empty_after_add(struct kunit *test)
-+{
-+	struct string_stream *stream = alloc_string_stream(test, GFP_KERNEL);
-+
-+	string_stream_add(stream, "Foo");
-+
-+	KUNIT_EXPECT_FALSE(test, string_stream_is_empty(stream));
-+}
-+
-+static void string_stream_test_get_string(struct kunit *test)
-+{
-+	struct string_stream *stream = alloc_string_stream(test, GFP_KERNEL);
-+	char *output;
-+
-+	string_stream_add(stream, "Foo");
-+	string_stream_add(stream, " %s", "bar");
-+
-+	output = string_stream_get_string(stream);
-+	KUNIT_EXPECT_STREQ(test, output, "Foo bar");
-+}
-+
-+static struct kunit_case string_stream_test_cases[] = {
-+	KUNIT_CASE(string_stream_test_empty_on_creation),
-+	KUNIT_CASE(string_stream_test_not_empty_after_add),
-+	KUNIT_CASE(string_stream_test_get_string),
-+	{}
-+};
-+
-+static struct kunit_suite string_stream_test_suite = {
-+	.name = "string-stream-test",
-+	.test_cases = string_stream_test_cases
-+};
-+kunit_test_suite(string_stream_test_suite);
--- 
-2.23.0.351.gc4317032e6-goog
+>=20
+> That is a bigger change to the bindings and I don't want to hold the
+> tsens interrupt support hostage to agreement on this.
+
+Alright. I admit I haven't looked into the details but is it hard for
+some reason to make it use interrupts before delays?
 
