@@ -2,170 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C033B8C14
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 09:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F912B8C1F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 09:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437653AbfITHzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 03:55:06 -0400
-Received: from mout.perfora.net ([74.208.4.197]:58371 "EHLO mout.perfora.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2437650AbfITHzF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Sep 2019 03:55:05 -0400
-Received: from marcel-nb-toradex-int.cardiotech.int ([81.221.138.184]) by
- mrelay.perfora.net (mreueus001 [74.208.5.2]) with ESMTPSA (Nemesis) id
- 0LvjHG-1i7uKf0Dqm-017VAu; Fri, 20 Sep 2019 09:54:29 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, info@logictechno.com,
-        j.bauer@endrich.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: [PATCH v1 2/2] drm/panel: simple: add display timings for logic technologies displays
-Date:   Fri, 20 Sep 2019 09:54:11 +0200
-Message-Id: <20190920075411.15735-2-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190920075411.15735-1-marcel@ziswiler.com>
-References: <20190920075411.15735-1-marcel@ziswiler.com>
+        id S2404904AbfITH5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 03:57:46 -0400
+Received: from mail-sh.amlogic.com ([58.32.228.43]:41549 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388411AbfITH5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 03:57:46 -0400
+Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 20 Sep
+ 2019 15:58:41 +0800
+Subject: Re: [PATCH 2/3] soc: amlogic: Add support for Secure power domains
+ controller
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     Kevin Hilman <khilman@baylibre.com>,
+        <linux-amlogic@lists.infradead.org>,
+        Zhiqiang Liang <zhiqiang.liang@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+References: <1568895064-4116-1-git-send-email-jianxin.pan@amlogic.com>
+ <1568895064-4116-3-git-send-email-jianxin.pan@amlogic.com>
+ <CAFBinCDv2m_0tP+rdT1tgXhMs-hPE_cJ9TmO8h9ftDvJXvby+g@mail.gmail.com>
+From:   Jianxin Pan <jianxin.pan@amlogic.com>
+Message-ID: <dc57566d-81e2-5851-ff6d-e39dcf246a47@amlogic.com>
+Date:   Fri, 20 Sep 2019 15:58:40 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:sLEHM5ID9bpkaIBR8unNP/vrUtJPExDKWaW13ABHK2a71XWqLsr
- 9qVh9qGuJ6urbc4F+rb9guOpFZI2OTT/ZAACP/2LblYf8A5Rk50zBO7sqeoC8QOqsjYFpD6
- c3JAPZ/k39M5eZxNfowloFsS+vRMB/5bnAUB5rnta/VVlglsy2TQ/fy6X8LuzIcRM8tSn+Y
- Fecd3RLQm40vB+PcKaAyw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:rM8OH6nkw0Q=:u7QyUop3rCQyx8mtBudJSK
- sLtrcTa50J82vAPT3ZHfV7s3KdJNwisv4bHEB97pIjmZWTdA85VAi7HpTDrWiHPHvAVsRVhhM
- la2JqoHOW1xPoJkhDkF1D8L/8OJSsC+q88k+apPVW7iDgj7uQKOStPUWwrdOnqDdku+H6Cz8M
- 3ZR/6uDkjrnbL099c+FLZ/ISydfZmy8nKmTIWV7kJyd6rJFMDRwKneqsTXXjYWwYfDlsxDu9D
- 04vQzA0rZkiro21l11XNtMarayek2+pj1seTBGKwthh1sqCEXboR5SyuWqNJnlKWKUnEkcXg1
- bvXKYT2hQidjQepOSDdp8dU5TJFFJXsj/4T+vyiewWg6KuXj2MP+qrIWEXV8iBEGS5TrlUH0F
- +tWx4H8kT8dyVowBAhBqMTxRy8cWGyni2sxqVgxedA1h2tTZWxp2Nek1r1M4ozFpofirFW8Hv
- PFlKYuvPlb/DFGfeOl4Lxd8+4gM+l+mOovj3PgbBrJII0mE7AEafzAFp7XWWyycMD627ae1v/
- 9hb2gXk9Unr/OYgsvL61/WeI+A/nohPspp03pheosvy0rxGIaRs6e8+hzocFt1dapowf/XOOq
- 8/P+vUMtH1PxTXUXbh6bTGfJQLbIW4YiugbyRuAHGX40q/gmEPaLbglpjksYv3szmDA2L/FhL
- ye/FpF/uRLrFyg94PW43L5qu4/4wGvK8U/MSdDN15GtIuMwacmMoW1CT16jxhUeT9mOWFURUI
- LyD5/fsSFdfgLFX+Y1GootShu+XClMwIYQyciMb49NqQF1gtwc88ehh9iPAMZ0+14D7Fi5/M9
- zlgA3atxSiRyxKAYWRdNIYal785/I4XDRQrOcqTiZsOBc7wcB7axjgB33n+Ct4rw87O9NVwrG
- w6DBSzdSXnXfDQgFPRhpt4IkN+/Hnn2lfCf4gweZc=
+In-Reply-To: <CAFBinCDv2m_0tP+rdT1tgXhMs-hPE_cJ9TmO8h9ftDvJXvby+g@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.29.226]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Hi Martin,
 
-Add display timings for the following 3 display panels manufactured by
-Logic Technologies Limited:
-
-- LT161010-2NHC e.g. as found in the Toradex Capacitive Touch Display
-  7" Parallel [1]
-- LT161010-2NHR e.g. as found in the Toradex Resistive Touch Display 7"
-  Parallel [2]
-- LT170410-2WHC e.g. as found in the Toradex Capacitive Touch Display
-  10.1" LVDS [3]
-
-Those panels may also be distributed by Endrich Bauelemente Vertriebs
-GmbH [4].
-
-[1] https://docs.toradex.com/104497-7-inch-parallel-capacitive-touch-display-800x480-datasheet.pdf
-[2] https://docs.toradex.com/104498-7-inch-parallel-resistive-touch-display-800x480.pdf
-[3] https://docs.toradex.com/105952-10-1-inch-lvds-capacitive-touch-display-1280x800-datasheet.pdf
-[4] https://www.endrich.com/isi50_isi30_tft-displays/lt170410-1whc_isi30
-
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-
----
-
- drivers/gpu/drm/panel/panel-simple.c | 65 ++++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 28fa6ba7b767..42bd0de25167 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2034,6 +2034,62 @@ static const struct panel_desc lg_lp129qe = {
- 	},
- };
- 
-+static const struct display_timing logictechno_lt161010_2nh_timing = {
-+	.pixelclock = { 26400000, 33300000, 46800000 },
-+	.hactive = { 800, 800, 800 },
-+	.hfront_porch = { 16, 210, 354 },
-+	.hback_porch = { 46, 46, 46 },
-+	.hsync_len = { 1, 20, 40 },
-+	.vactive = { 480, 480, 480 },
-+	.vfront_porch = { 7, 22, 147 },
-+	.vback_porch = { 23, 23, 23 },
-+	.vsync_len = { 1, 10, 20 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-+		 DISPLAY_FLAGS_SYNC_POSEDGE,
-+};
-+
-+static const struct panel_desc logictechno_lt161010_2nh = {
-+	.timings = &logictechno_lt161010_2nh_timing,
-+	.num_timings = 1,
-+	.size = {
-+		.width = 154,
-+		.height = 86,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-+		     DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-+		     DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-+};
-+
-+static const struct display_timing logictechno_lt170410_2whc_timing = {
-+	.pixelclock = { 68900000, 71100000, 7340000 },
-+	.hactive = { 1280, 1280, 1280 },
-+	.hfront_porch = { 23, 60, 71 },
-+	.hback_porch = { 23, 60, 71 },
-+	.hsync_len = { 15, 40, 47 },
-+	.vactive = { 800, 800, 800 },
-+	.vfront_porch = { 5, 7, 10 },
-+	.vback_porch = { 5, 7, 10 },
-+	.vsync_len = { 6, 9, 12 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-+		 DISPLAY_FLAGS_SYNC_POSEDGE,
-+};
-+
-+static const struct panel_desc logictechno_lt170410_2whc = {
-+	.timings = &logictechno_lt170410_2whc_timing,
-+	.num_timings = 1,
-+	.size = {
-+		.width = 217,
-+		.height = 136,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-+		     DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-+		     DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-+};
-+
- static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
- 	.clock = 30400,
- 	.hdisplay = 800,
-@@ -3264,6 +3320,15 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "lg,lp129qe",
- 		.data = &lg_lp129qe,
-+	}, {
-+		.compatible = "logictechno,lt161010-2nhc",
-+		.data = &logictechno_lt161010_2nh,
-+	}, {
-+		.compatible = "logictechno,lt161010-2nhr",
-+		.data = &logictechno_lt161010_2nh,
-+	}, {
-+		.compatible = "logictechno,lt170410-2whc",
-+		.data = &logictechno_lt170410_2whc,
- 	}, {
- 		.compatible = "mitsubishi,aa070mc01-ca1",
- 		.data = &mitsubishi_aa070mc01,
--- 
-2.21.0
+On 2019/9/20 4:03, Martin Blumenstingl wrote:
+> Hi Jianxin,
+> 
+> I added three comments below from a quick glance at this driver (I
+> didn't have time for a complete review)
+> 
+> On Thu, Sep 19, 2019 at 2:11 PM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+> [...]
+>> +               pm_genpd_init(&dom->base, NULL,
+>> +                             (match->domains[i].get_power ?
+>> +                             match->domains[i].get_power(dom) : true));
+> .get_power is never NULL in this driver so the ": true" part is
+> effectively a no-op
+> 
+OK, I will remove it. Thanks for your time.
+> [...]
+>> +static const struct of_device_id meson_secure_pwrc_match_table[] = {
+>> +       {
+>> +               .compatible = "amlogic,meson-a1-pwrc",
+>> +               .data = &meson_secure_a1_pwrc_data,
+>> +       },
+>> +       { }
+> many drivers use a /* sentinel */ comment inside { }
+> 
+OK, I will add this comment line.
+> [...]
+>> +arch_initcall_sync(meson_secure_pwrc_init);
+> why arch_initcall_sync instead of builtin_platform_driver?
+> $ grep -R arch_initcall_sync drivers/soc/
+> $
+> 
+> 
+> Martin
+> 
+The power-domain is depended by many other drivers, arch_initcall_sync is used to make power-domain probe earlier.
+Maybe I need to switch back to builtin_platform_driver when use APIs from meson_sm.c. 
+> .
+> 
 
