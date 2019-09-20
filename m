@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92765B9376
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 16:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 130C8B93FA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 17:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387979AbfITOyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 10:54:23 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:22719 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387967AbfITOyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 10:54:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568991261;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=zlI+sG/w2ccshOLWrb2MvMajGz31uouLUfoFlWo0kvs=;
-        b=KLOx5yaNVi8t93VCckMAH4sgFd6/aSOXBlggWxb9RcKw0JyH3Nj2XF9KL0RVb56Oj2
-        TOh/w/DSYhi62uTrTcmHcb38NSIebO3ofgP8mQ8NfvEgYcWhLgYfn6sELkLbNJxlwaKf
-        rh9v3S9Qp9sTUdEtlTaCycw+cAV95NfaPCnRSDCdPRz4AcoZsuMNNnzTjflfUqk5PkTN
-        9utmoTrICbw0MCM0BSxnL4xVfoxhQYNz4lo9bYbW+zfbzP5fV8ZLiEjaGwJxEqUJqphM
-        YYEpIqROrbRQQZUPnAElSzQbb1E+t+RyHtWBhtFbGiNw2EB4LwpJ/IpLmXpCCh73NFtE
-        ghiA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGHPrpwDCpeWQ="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
-        with ESMTPSA id u036f9v8KEsJp0V
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 20 Sep 2019 16:54:19 +0200 (CEST)
-Content-Type: text/plain; charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20190920142059.GO5610@atomide.com>
-Date:   Fri, 20 Sep 2019 16:54:18 +0200
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Rob Herring <robh@kernel.org>,
+        id S2403868AbfITP3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 11:29:49 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:42385 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403864AbfITP3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 11:29:49 -0400
+Received: by mail-oi1-f193.google.com with SMTP id i185so2075466oif.9;
+        Fri, 20 Sep 2019 08:29:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Jmj2KmkeqZHY14e8aj4j1MYgM+D0yE3jNPssOYmrPsU=;
+        b=ImMZdDrqUwl3A+Wt/5BpECXgNyZZbq5HzYy4bKepmGxGpbowmyLptvnH2haSdAUDAs
+         /wWGI2zs/FyaT8oYnZdRWFZohKZupoGMbTacByOwcrYvdHVx7j6Q8qi3SZdbMz2WMhup
+         ZmDvMQBdtK8SRejVwM5m3fQZgU9GxWc2Gi3D06uwqBo5xSSI+nEYcZWiiYECBumQboih
+         M3Z7lqN+AzGbEsff2x3FAS94Y8+gLALykN/5FdbhAUOhirFkcq5AmVGz3FZay+mfYTrP
+         KZT3Kk73jYXdODqu9OsJaGGSOU7uvvlluwBlZiOcaKByWfIhuKRBNWsezxpTNS/Hd7OC
+         XIAQ==
+X-Gm-Message-State: APjAAAXBRSteIKlVtbvUUrlVsbKuzw7qxT3Sj0jAMJQQ514Ovz5JgMtX
+        0Z3e2gl80mZ4/p4yrMHTHdyePkHJeogbsbkKtHxATg==
+X-Google-Smtp-Source: APXvYqzW1S5QjTIZY3mpo1WLtk2oYySFqS77BEpCo7TGf10lHk5fW6L429XmmrLHN2kw/cTxD3ktLD4ZMCZjbnAg3Ho=
+X-Received: by 2002:aca:f305:: with SMTP id r5mr3280529oih.131.1568993388655;
+ Fri, 20 Sep 2019 08:29:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <1568881036-4404-1-git-send-email-biju.das@bp.renesas.com> <1568881036-4404-4-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1568881036-4404-4-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 20 Sep 2019 17:29:37 +0200
+Message-ID: <CAMuHMdWKXePEM7UHXpk5q7HLRfmObt-85H5yT_NZpZb=k4jVMg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] dt-bindings: reset: rcar-rst: Document r8a774b1
+ reset module
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>
-Content-Transfer-Encoding: 7bit
-Message-Id: <633E7AD9-A909-4619-BBD7-8CFD965FDFF7@goldelico.com>
-References: <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com> <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com> <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com> <20190831084852.5e726cfa@aktux> <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com> <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com> <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com> <CACRpkdZvpPOM1Ug-=GHf7Z-2VEbJz3Cuo7+0yDFuNm5ShXK8=Q@mail.gmail.com> <7DF102BC-C818-4D27-988F-150C7527E6CC@goldelico.com> <20190920142059.GO5610@atomide.com>
-To:     Tony Lindgren <tony@atomide.com>
-X-Mailer: Apple Mail (2.3124)
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 19, 2019 at 10:17 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Document bindings for the RZ/G2N (R8A774B1) reset module.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-> Am 20.09.2019 um 16:20 schrieb Tony Lindgren <tony@atomide.com>:
-> 
-> * H. Nikolaus Schaller <hns@goldelico.com> [190920 09:19]:
->>> Am 20.09.2019 um 10:55 schrieb Linus Walleij <linus.walleij@linaro.org>:
->>> I suggest to go both way:
->>> apply this oneliner and tag for stable so that GTA04 works
->>> again.
->>> 
->>> Then for the next kernel think about a possible more abitious
->>> whitelist solution and after adding that remove *all* "spi-cs-high"
->>> flags from all device trees in the kernel after fixing them
->>> all up.
->> 
->> Ok, that looks like a viable path.
-> 
-> Please repost the oneline so people can ack easily. At least
-> I've already lost track of this thread.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-It is all here:
+Gr{oetje,eeting}s,
 
-https://patchwork.kernel.org/patch/11035253/
+                        Geert
 
-Best regards,
-Nikolaus
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
