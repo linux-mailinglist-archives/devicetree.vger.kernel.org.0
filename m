@@ -2,80 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE3BBB8BBD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 09:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E4EB8C10
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 09:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437587AbfITHrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 03:47:45 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:46989 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437581AbfITHrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 03:47:45 -0400
-Received: by mail-ua1-f66.google.com with SMTP id m21so1918623ual.13
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 00:47:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fxglbnyqNsy9IrMeX1phK/aGWuTchg+w3X2HNfK/9CM=;
-        b=mRkPMjzvPBVfAeCHVbJTYmrEh8uq38ZKVM8E8AFU6NzBMCkin/nd1eIBhx73UcvIPj
-         hZ9cLZl7VRnRHz0r9b+vw/tUY5l1L8pgCBGOVyccwzB3loxNIAfhw8f57iYt1IVFHmMG
-         3ihqT7adb8ixIuRyXLY28hq5ZvJnUjZr99BB8J0MuUtrXiFlrJAhlWPEp5EDSLnkwd6j
-         gjJUOVRjbfeyDNz7/rz7jmEHiaLot6qL149wtDhUGZaREGUjVZZCucZTaTlcf93XPL/+
-         tkpHNvmoPXhsNOFXcMyryFbNn/lRqf4ubcSr7Nk6ZF/pyAtrNhtGObkvcyf+0/vSpDDJ
-         xc4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fxglbnyqNsy9IrMeX1phK/aGWuTchg+w3X2HNfK/9CM=;
-        b=U8rKjvuG1JpdEXbAmdmED7X+0VMcBV3MFfTPruNOjSp3dnnGHj74lCsYaV5qylpM0P
-         KsZ94XNfIcvmb+s4QHlNtGdsJ0g8U5il5HUeYCWKTWlXt5gS+vdcGj79AzdOvrWwX/rY
-         4iali8ZhL9PuB/tN+4sKLB2LOPpJChcOM2+Xf9VdvrxXMWBv1802+u0uqPICwgKUV0bI
-         ChIonzoktGcoqrSpW0JTjPbRpglM/j+yO+4I59VBPIUkBAV+DmYjJZp2CN5E2cPog3e8
-         3d6VQ1m6plzZZaZ2bMyn6crOk3YpLBxSmjuyCvVWsv5lNVtqhMNI3SJ9iabvUslE8d8m
-         viFg==
-X-Gm-Message-State: APjAAAXuCQGtPwSoXT2rPDbh19W4kUFpo02SROqtG8jJZOw67NsQ58Bv
-        eFwySCYGzaO0oQM2yxAIeSmUywj0RPVCLeDY/tkzjSmd
-X-Google-Smtp-Source: APXvYqyIPD8otiC6oiySJICKUArdhKAFf1jxKg7NkboCvLV7vKR9MnpHuTM4AuE9NqL9JQuhAM9Efy4otC84oobLXJw=
-X-Received: by 2002:ab0:1856:: with SMTP id j22mr8516177uag.19.1568965664676;
- Fri, 20 Sep 2019 00:47:44 -0700 (PDT)
+        id S2437638AbfITHzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 03:55:03 -0400
+Received: from mout.perfora.net ([74.208.4.197]:39083 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2437613AbfITHzC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Sep 2019 03:55:02 -0400
+Received: from marcel-nb-toradex-int.cardiotech.int ([81.221.138.184]) by
+ mrelay.perfora.net (mreueus001 [74.208.5.2]) with ESMTPSA (Nemesis) id
+ 0MGPxO-1iOTHF1O7c-00DD9w; Fri, 20 Sep 2019 09:54:25 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, info@logictechno.com,
+        j.bauer@endrich.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH v1 1/2] dt-bindings: add vendor prefix for logic technologies limited
+Date:   Fri, 20 Sep 2019 09:54:10 +0200
+Message-Id: <20190920075411.15735-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190905122112.29672-1-ludovic.Barre@st.com> <940e3ce8-1a4f-7e03-dfec-25330051ea5f@st.com>
-In-Reply-To: <940e3ce8-1a4f-7e03-dfec-25330051ea5f@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 20 Sep 2019 09:47:07 +0200
-Message-ID: <CAPDyKFoha6q1CmhLXREz8OAzd4UiBDKpHo46J1PLGMkf8CStpg@mail.gmail.com>
-Subject: Re: [PATCH V6 0/3] mmc: mmci: add busy detect for stm32 sdmmc variant
-To:     Ludovic BARRE <ludovic.barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:aQ4xStQWFccokTsnwpMEsTr19zszagYxLLJLxeRBk1kzhDNkFOH
+ OrZ9Z8sDaQaaZb6xOeD/vWutzISjM1DTSh6UJYijeN+XiP8EdCOrEZKWF4hkg3spLLizROy
+ +UkbkPMgL/DS0gbg2ANuzNFBui2iNVF5anESWW8FarmZZ4NeB+dZ2ZvBrrkJWq4sLiJJGAl
+ 7MVJ0O27AFsX/SdKp+C2g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:PwRLMrILxo4=:PGyhiCBnO2wa5RDaAzVr3D
+ X73wKMW9ke5Dk/nwMKjw89XtApvNKHMmMqWcTxv1fICC4wiCoZH7FsEeDy77pEWtKR4Neq4lD
+ rS4styjUA87UXWbHVl6pjHuHQzdCpUDE0vkQYSYgy2xjbqSfibf+XTi6mOaKnO2hSTe0jwH7h
+ fC3QuknNBvnUPwYZ3N/32JXAkJgsQAq6S3pt/TVK3NNSIgI2I1ptheSYL+vrvw1OX40wznRGh
+ yriEpDCjBPM45qowDdzQrU/VnnYKbVEf99WQb1HYVQrcqKutrLHE5xzPZ97BIEWC0El3LU+uh
+ Yl+zT2/Hp7Nz4XdrJ4ZWQ7Mj2+6+Dni1uCnaV+FOSQsoO+AdzVNuS6kqsDifoVy/Moeww/0lK
+ QE28vmRQsQ5pk/Gk5vcQ6z8xvgSs+k2DwawGRKbCcsqX68J/12xIfGKw8i3AqLgnevtRv5yvo
+ ttY8qimSw3nZ2RZ7OzcNuEer3MqD8W5tUlNkZhvmMhChfboEfuWZtn1b6tzw6I4YMyT4OVtHS
+ PqPFbQGX7YlgYJgRakdNFgFtueHOGf7+h7flMYQ0PCaESgQWxz3T2+7pwCsjvNQ8cDtQIyDep
+ 6Cb91WcfVDN0ZGJczFtXo2m7M1ctl/ds39f5TESiKcgEufncwNkSeKxlRytJVhpABmL4AuKCV
+ lrZD/Oc6ZT3q/ZRFF3bMajtfkTVrUa/xEQOjhdy+UbVrHCopY77Vi5qNF/A5fl9V0GsXTRZd1
+ NCZWSFUCKuGypZab2x3tcAJc1YAr7fHcJB2XIbsUfYwEof/KLOCiPE/hwItHMS6wrEY1ElbDH
+ ReFNUWIqGWaJOtsrx++YUVbSCXN1T6zz/Pr3rNVtvRIMWgzsOrtxMrwUIEin9w95w0mF5T/Z5
+ 1o4nFqCpM7GCpMaHV/+z/FxXqHdA4qSMKZ/nAjPYg=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Sep 2019 at 11:33, Ludovic BARRE <ludovic.barre@st.com> wrote:
->
-> hi Ulf
->
-> Just a "gentleman ping" about this series and
-> https://lkml.org/lkml/2019/9/4/747
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Thanks for pinging, I will come to this as soon as I can. September
-has been a busy month, being on the road most of the time.
+Add vendor prefix for Logic Technologies Limited [1] which is a Chinese
+display manufacturer e.g. distributed by German Endrich Bauelemente
+Vertriebs GmbH [2].
 
-Apologize for the delays!
+[1] https://logictechno.com/contact-us/
+[2] https://www.endrich.com/isi50_isi30_tft-displays/lt170410-1whc_isi30
 
-[...]
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Kind regards
-Uffe
+---
+
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 967e78c5ec0a..1441146f394f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -541,6 +541,8 @@ patternProperties:
+     description: Linear Technology Corporation
+   "^logicpd,.*":
+     description: Logic PD, Inc.
++  "^logictechno,.*":
++    description: Logic Technologies Limited
+   "^longcheer,.*":
+     description: Longcheer Technology (Shanghai) Co., Ltd.
+   "^lsi,.*":
+-- 
+2.21.0
+
