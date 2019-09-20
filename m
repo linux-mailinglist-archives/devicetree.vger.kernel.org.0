@@ -2,142 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A8EB8D46
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 10:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A523B8D4D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 10:59:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437886AbfITIzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 04:55:41 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:38935 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2408390AbfITIzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 04:55:39 -0400
-Received: by mail-lf1-f67.google.com with SMTP id 72so4478193lfh.6
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 01:55:37 -0700 (PDT)
+        id S2393202AbfITI7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 04:59:44 -0400
+Received: from mail-pg1-f179.google.com ([209.85.215.179]:34679 "EHLO
+        mail-pg1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393130AbfITI7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 04:59:44 -0400
+Received: by mail-pg1-f179.google.com with SMTP id n9so3472611pgc.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 01:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=agjOW8fEWWSUH9GPuMddR7LZQGwwWJK0R3sCAqQNNUM=;
-        b=riWHbheMlhjS0/BRj5Q0HX6KJlVe8YW2UdvSV/+r2JXEB0QY8iWQ5mMbZYwZ0qG6+C
-         S+Pla7kA81GEVyOfGdrHTxtIes3FzIt+uT60WnVIcEWpZnwijCccvhPYa7cQ+IMPuYmt
-         quZVESx8r3C39VFLu5OMRE00LUtyGF9V9y/KC0Qjbm4hnsL71TaBhIDFcMG3yOtCuyeG
-         XYOVJYNlvv4smxbmqOr8BCLzpa4O3LW2BA8tH+P12KmYiMl0DXrAs5eXVQTwTAOZtcgX
-         TcX1N92zSaG4zUGVc2FPaeWzeTWLUCoUaZIpda/cLgMS3WjMzUoofWDvtk+Lob8/+nak
-         /hmg==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=fl7tvYNwHE+ftYPEVIMQMzgm5oG99WNIuJI3GxZgUsA=;
+        b=hyZVfm0sFvnfaVQ8yA97zAHqoWuJ7+HR/2+eWXOyui1BFw6qlUB9f6vMq+kKuLsiA8
+         OBIaI5j/gM9V8KHksAR8fWJEpJgawjRYNS88Ea1YGS21kOK56j8DU5YpyzqqL+8IXwiG
+         YJTqMcklLsVrIbiCcrpICEEFsmW0JbG3X1KGLjxJHBIBDnifxUco/NWjDfIlI/bePnrJ
+         dH+SsPUMJfqh/jZWhd2RwSxI8c1KRL3fxgGyNnkNT6xqNMNGoBxECIlYE57tlnqriDqa
+         oQ+WuCYAEFr/C9eYGbbvAz/n+gfcyfoI3V0rZfSqXJLMyNGzEp8K/ZUZjcB/J/Q1BEj6
+         cuoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=agjOW8fEWWSUH9GPuMddR7LZQGwwWJK0R3sCAqQNNUM=;
-        b=ZIqkoG/+tZhRzzzgCfJrgSMEITvGQDzqa/bt0OIinFvY52roXqsA3Jhub7qHVRNsdm
-         v3oSRbOb8LCS+WO2gIPuZshbRt/uYwJBLe7CcMiVLwKVueJOl8brtQAoyU2GjcOpFtUW
-         v6a+NTLEQUYVSclhid6E+4fpqTd5nnw+ZUZMSWZVVhHELZ3SoO2QVq5Ye/NWWZaI6rgy
-         XlzBdwnO4YM7475fKRQOBRFrSiKbVpbTTlZ55Ezo3X/GU2zSe7qkrnhUS7TAy8O1uYbi
-         u48UewTL5CVOXFM6//+dFdT9p4qtCqoOAeKcA51qkxMFQTATgl5vMPEkT80NPOsujccB
-         6IWg==
-X-Gm-Message-State: APjAAAUJYaaM/ue+dHeJOzOul1BVuiTb+IvULOgwNNOGWSp8dVmzv/dR
-        caS85jquC+SWnhRDNkdBGaIXrR4Pb1GFQ8nJwTL9zg==
-X-Google-Smtp-Source: APXvYqzdv/WKlLJKAfAI4o8MIqgF26BHmG4sQZMrQ74tDgEzNegyR5ACtMU3sDtEHscw5drG+ZTqWly3lmqBUcL6nbo=
-X-Received: by 2002:a19:48c3:: with SMTP id v186mr8211999lfa.141.1568969736324;
- Fri, 20 Sep 2019 01:55:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1562597164.git.hns@goldelico.com> <8ae7cf816b22ef9cecee0d789fcf9e8a06495c39.1562597164.git.hns@goldelico.com>
- <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com>
- <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com>
- <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com>
- <20190831084852.5e726cfa@aktux> <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com>
- <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com> <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com>
-In-Reply-To: <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 20 Sep 2019 10:55:24 +0200
-Message-ID: <CACRpkdZvpPOM1Ug-=GHf7Z-2VEbJz3Cuo7+0yDFuNm5ShXK8=Q@mail.gmail.com>
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy
- spi-cs-high to make display work again
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
-        Rob Herring <robh@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=fl7tvYNwHE+ftYPEVIMQMzgm5oG99WNIuJI3GxZgUsA=;
+        b=ujr54QHa4Bo8Tz5V1WaHUEf/gXi1MGV+8g9ZYaYJwPczI/RL5eNOIiQbquIuOPHYv1
+         4XgLDIbsZ9YvsE+4ui4JHZcmLnVbIfPcH8gq5yyIrDY66tXDEsiA0vgkpLqcCXnAvmk6
+         Y/21sMDGP9z7A+0yugaDjKlIuAelHuSDyYTHsNOunVNE4y1O24LCM/vLA7+cPlXfo/J9
+         fj24AcvHl2aK8hv554yUr/YOx8emombfpq5T4xi+AQmYkhhBwv8Anz18MS/UtCX3r4hI
+         2KwkNtR713Fqp1Apcr9+DAOmhOx5MsKZXGaK6gIl+Xh3RhKn98TU/cTARzS7kqJd517d
+         8Alw==
+X-Gm-Message-State: APjAAAWan76YzqmoKG4SYzs+PaWSad9+OR7gx6tBct+LFUf+2S4ygifO
+        dVU4Fl8UMNp69a5WfUnEelyb4g==
+X-Google-Smtp-Source: APXvYqzmet1EfGHuUHqh6NTQ1lvfZsx/K1gCHSn3id2QMeiTRQkBQBnhD+Yp5VeV4ljcAy19JYpMFQ==
+X-Received: by 2002:a17:90a:aa0a:: with SMTP id k10mr3457599pjq.18.1568969983538;
+        Fri, 20 Sep 2019 01:59:43 -0700 (PDT)
+Received: from localhost.localdomain (36-228-113-219.dynamic-ip.hinet.net. [36.228.113.219])
+        by smtp.gmail.com with ESMTPSA id h3sm1144046pgb.13.2019.09.20.01.59.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2019 01:59:42 -0700 (PDT)
+From:   Green Wan <green.wan@sifive.com>
+Cc:     linux-hackers@sifive.com, Green Wan <green.wan@sifive.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] dmaengine: sf-pdma: Add platform dma driver
+Date:   Fri, 20 Sep 2019 16:58:59 +0800
+Message-Id: <20190920085930.19380-1-green.wan@sifive.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 4:26 PM H. Nikolaus Schaller <hns@goldelico.com> wrote:
-> > Am 17.09.2019 um 00:52 schrieb Linus Walleij <linus.walleij@linaro.org>:
-> > On Mon, Sep 16, 2019 at 12:59 PM H. Nikolaus Schaller <hns@goldelico.com> wrote:
-> >
-> >> ping.
-> >>
-> >> Device omap3-gta04 is neither working with v5.3 nor linux-next quite a while and we need a solution.
-> >
-> > Can't we just apply the last part of the patch in this thread:
-> >
-> > diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi
-> > b/arch/arm/boot/dts/omap3-gta04.dtsi
-> > index 9a9a29fe88ec..47bab8e1040e 100644
-> > --- a/arch/arm/boot/dts/omap3-gta04.dtsi
-> > +++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-> > @@ -124,6 +124,7 @@
-> >                        spi-max-frequency = <100000>;
-> >                        spi-cpol;
-> >                        spi-cpha;
-> > +                       spi-cs-high;
-> >
-> >                        backlight= <&backlight>;
-> >                        label = "lcd";
-> >
-> >
-> > Surely this fixes the problem?
->
-> yes, it is a workaround, but appears to violate some policies.
-> E.g. the spi-cs-high; is undocumented but DT bindings maintainer
-> seems to be against documenting it as I had proposed in my
-> other patch.
+Add PDMA driver support for SiFive HiFive Unleashed RevA00 board. Mainly follows
+DMAengine controller doc[1] to implement and take other DMA drivers as reference.
+Such as
 
-It is documented as a boolean in
-Documentation/devicetree/bindings/spi/spi-controller.yaml
-with the following description:
+  - drivers/dma/fsl-edma.c
+  - drivers/dma/dw-edma/
+  - drivers/dma/pxa-dma.c
 
-      spi-cs-high:
-        $ref: /schemas/types.yaml#/definitions/flag
-        description:
-          The device requires the chip select active high.
+Using DMA test client[2] to test. Detailed datasheet is doc[3]. Driver supports:
 
-So I don't think it is about it being undocumented.
+ - 4 physical DMA channels, share same DONE and error interrupt handler. 
+ - Support MEM_TO_MEM
+ - Tested by DMA test client
+ - patches include DT Bindgins document and dts for fu450-c000 SoC. Separate dts
+   patch for easier review and apply to different branch or SoC platform.
+ - retry 1 time if DMA error occurs.
 
-> Rather he seems to have proposed a white-list in the driver code.
-> So that the legacy mode is only becoming active for those systems
-> which really need the legacy mode instead of everyone.
+[Reference Doc]
+ [1] ./Documentation/driver-api/dmaengine/provider.rst
+ [2] ./Documentation/driver-api/dmaengine/dmatest.rst
+ [3] https://static.dev.sifive.com/FU540-C000-v1.0.pdf 
 
-Yeah that seems like a plausible way forward if we want to
-move away from the legacy way of specifying polarity.
+[Simple steps to test of DMA Test client]
+ $ echo 1 > /sys/module/dmatest/parameters/iterations
+ $ echo dma0chan0 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan1 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan2 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan3 > /sys/module/dmatest/parameters/channel
+ $ echo 1 > /sys/module/dmatest/parameters/run
 
-> Then, we do not need this patch for GTA04.
+[Expected test result]
+[ 7756.975356] dmatest: dma0chan0-copy0: summary 11208260 tests, 0 failures 36207.82 iops 579325 KB/s (0)
+[ 7756.984093] dmatest: dma0chan1-copy0: summary 11206263 tests, 0 failures 36007.36 iops 576117 KB/s (0)
+[ 7756.993453] dmatest: dma0chan2-copy0: summary 10929638 tests, 0 failures 33984.39 iops 543750 KB/s (0)
+[ 7757.003008] dmatest: dma0chan3-copy0: summary 11204208 tests, 0 failures 35759.65 iops 572154 KB/s (0)
 
-We don't need to implement the perfect solution up front.
-We can aim for that in the long run. I usually go by the IETF
-motto "rough consensus and running code".
+Green Wan (3):
+  dt-bindings: dmaengine: sf-pdma: add bindins for SiFive PDMA
+  riscv: dts: add support for PDMA device of HiFive Unleashed Rev A00
+  dmaengine: sf-pdma: add platform DMA support for HiFive Unleashed A00
 
-> So its up to you to decide which way to go. We are happy with
-> any one that makes mainline work again asap...
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  55 ++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |   7 +
+ drivers/dma/Kconfig                           |   2 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/sf-pdma/Kconfig                   |   6 +
+ drivers/dma/sf-pdma/Makefile                  |   1 +
+ drivers/dma/sf-pdma/sf-pdma.c                 | 623 ++++++++++++++++++
+ drivers/dma/sf-pdma/sf-pdma.h                 | 124 ++++
+ 9 files changed, 825 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+ create mode 100644 drivers/dma/sf-pdma/Kconfig
+ create mode 100644 drivers/dma/sf-pdma/Makefile
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.c
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.h
 
-I suggest to go both way:
-apply this oneliner and tag for stable so that GTA04 works
-again.
+-- 
+2.17.1
 
-Then for the next kernel think about a possible more abitious
-whitelist solution and after adding that remove *all* "spi-cs-high"
-flags from all device trees in the kernel after fixing them
-all up.
-
-Yours,
-Linus Walleij
