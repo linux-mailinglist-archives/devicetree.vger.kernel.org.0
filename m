@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D22B9187
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 16:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C091B9190
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 16:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728843AbfITOTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 10:19:33 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39652 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728297AbfITOTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 10:19:33 -0400
-Received: by mail-ot1-f66.google.com with SMTP id s22so6321489otr.6;
-        Fri, 20 Sep 2019 07:19:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BzB31z3sVdWe77IeCnt9cm7LCOT5gYcMOK0stpI5ND4=;
-        b=T8Pfl/DjS/tV/AFWbf/qxx/1aW3whFMP/q+tLBSsGj+lm6TBUU+yfLi2SGRzKBrjKN
-         veeP92Wo0ZHFQ7x1Rw2mYWS+eCNVnF8ucP7u78awFYw8XRmWgO3ENtSEdDHEtWPy0enV
-         /F5iZpfo3PRz85i0yYimDDSoxG5LnNyLzvicE0EJjmBiAuZW3q5YWbdZIkpk36zbwezo
-         iRbL/5xKYRtU8kXq0uQznuuf5NXGYZTbF+d3qbqCxuvHz4fQleCLA7q9CXwJ4Jwt/eoT
-         zNNhkbN+zwuvtqa8aQZqUkGcLH+1tdqU2ylXblL6cd/WxdS3zInY+oXWIdRzybF4kqnT
-         EurA==
-X-Gm-Message-State: APjAAAUSPqlZmsoebGXRE+dlEG96QyDZEizPVSy4gukPvuxC8lkyecMr
-        J6i6M72uQpCgwkroSnLBrsc7yxZhw2EGWFtII1Y=
-X-Google-Smtp-Source: APXvYqysdyZHTCbeSgdbJB9LG0YGHkhr58DoXCPYCu9RXMEygbkbDs0zbac8xRtfJxl+BeYi1lx9Tb011UOS6p2pwbI=
-X-Received: by 2002:a9d:5784:: with SMTP id q4mr10945574oth.107.1568989172838;
- Fri, 20 Sep 2019 07:19:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <1568881036-4404-1-git-send-email-biju.das@bp.renesas.com> <1568881036-4404-2-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1568881036-4404-2-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 20 Sep 2019 16:19:21 +0200
-Message-ID: <CAMuHMdVgXrq74xCC1q9GKpxLo5-xWdibtvaYXXSuAbhjgOf8JA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] dt-bindings: power: rcar-sysc: Document r8a774b1 sysc
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S2387849AbfITOVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 10:21:03 -0400
+Received: from muru.com ([72.249.23.125]:33990 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387817AbfITOVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Sep 2019 10:21:03 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id D36A980AA;
+        Fri, 20 Sep 2019 14:21:33 +0000 (UTC)
+Date:   Fri, 20 Sep 2019 07:20:59 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Rob Herring <robh@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree <devicetree@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>
+Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy
+ spi-cs-high to make display work again
+Message-ID: <20190920142059.GO5610@atomide.com>
+References: <20190724194259.GA25847@bogus>
+ <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com>
+ <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com>
+ <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com>
+ <20190831084852.5e726cfa@aktux>
+ <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com>
+ <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com>
+ <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com>
+ <CACRpkdZvpPOM1Ug-=GHf7Z-2VEbJz3Cuo7+0yDFuNm5ShXK8=Q@mail.gmail.com>
+ <7DF102BC-C818-4D27-988F-150C7527E6CC@goldelico.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7DF102BC-C818-4D27-988F-150C7527E6CC@goldelico.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 19, 2019 at 10:17 AM Biju Das <biju.das@bp.renesas.com> wrote:
-> Document bindings for the RZ/G2N (a.k.a. R8A774B1) system controller.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+* H. Nikolaus Schaller <hns@goldelico.com> [190920 09:19]:
+> > Am 20.09.2019 um 10:55 schrieb Linus Walleij <linus.walleij@linaro.org>:
+> > I suggest to go both way:
+> > apply this oneliner and tag for stable so that GTA04 works
+> > again.
+> > 
+> > Then for the next kernel think about a possible more abitious
+> > whitelist solution and after adding that remove *all* "spi-cs-high"
+> > flags from all device trees in the kernel after fixing them
+> > all up.
+> 
+> Ok, that looks like a viable path.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.5.
+Please repost the oneline so people can ack easily. At least
+I've already lost track of this thread.
 
-Gr{oetje,eeting}s,
+Regards,
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Tony
