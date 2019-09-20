@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A50E1B93FB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 17:29:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56128B941C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 17:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403873AbfITP3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 11:29:55 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:50946 "EHLO mail.andi.de1.cc"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403864AbfITP3z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Sep 2019 11:29:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=qh3P5/SZMYKeIWLUA96JzcgTyGmu9FuvTbiIGrMfEvc=; b=UGc1aAATcQvu8kew+5z5uUDMos
-        FJ+EtD7qYHgZb1Ambevwl5xKBLP8y5kq8J6gM8hGDKTizffhMUE3XNGZjBZ+UN4QQAmNEAAg0x5Xc
-        94xQszMY6rh/l/Tb5Sy3jIvfScKQgniVncqOby3wkaTdj4La844i9y0iKqMtX+DXZDQs=;
-Received: from p5dcc3979.dip0.t-ipconnect.de ([93.204.57.121] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1iBKqy-0000hs-PO; Fri, 20 Sep 2019 17:29:49 +0200
-Date:   Fri, 20 Sep 2019 17:29:47 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy
- spi-cs-high to make display work again
-Message-ID: <20190920172947.51c1fdec@aktux>
-In-Reply-To: <633E7AD9-A909-4619-BBD7-8CFD965FDFF7@goldelico.com>
-References: <20190724194259.GA25847@bogus>
-        <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com>
-        <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com>
-        <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com>
-        <20190831084852.5e726cfa@aktux>
-        <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com>
-        <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com>
-        <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com>
-        <CACRpkdZvpPOM1Ug-=GHf7Z-2VEbJz3Cuo7+0yDFuNm5ShXK8=Q@mail.gmail.com>
-        <7DF102BC-C818-4D27-988F-150C7527E6CC@goldelico.com>
-        <20190920142059.GO5610@atomide.com>
-        <633E7AD9-A909-4619-BBD7-8CFD965FDFF7@goldelico.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2404127AbfITPgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 11:36:24 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:39449 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404126AbfITPgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 11:36:24 -0400
+Received: by mail-oi1-f195.google.com with SMTP id w144so2114017oia.6
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 08:36:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wZ4E+3xQPlRfGWiHf91pAqjECWWINrd5qiSpF9xPch4=;
+        b=PD2d8JmV5QqMLgzAEbD+jyXP3UiHgGZ9tjTGUMEhQdI9lOY2OaMfEfUtgVe0DJmMDD
+         9vR57YcpejOlLfH5nRr43gJFDHy96OzjFIe5+UMBjDO8wQ6CoOjK7KV5L2flLI1j1fcO
+         Ei7Kh4KyJ4doLhfwWdVI0aQAHu4Tzv6T0zkzFlQ0xKVMNl+YbX3yyWX5ZYuyWTYf/15w
+         3blSb5H1ZyCVfY8cfwXKIKNe6tnie83MJfltITAj447lnbBYpjgJjieg4N/+NTtNA8hA
+         3CRcS8VsV1lIf3axnsgFs6Jm0ks/y+P2d/G+kZZVvHT6fQF7G649a7Xooohw5nVe0ajR
+         Ta4g==
+X-Gm-Message-State: APjAAAXDGtPqJc2bkLTtx5F5AkDFM7n1NyBsayjjfikX8tdVgl/8N2aC
+        u1bjoZ+GJcOuLJoPnKCcUA==
+X-Google-Smtp-Source: APXvYqzkBJLKw/GcElqOTNdV8gsrbNW4HfrE6RWxrrt7y1DSP4w2/ZzEGqLhCl+xXh9SC4Ypohg6fw==
+X-Received: by 2002:aca:b2c4:: with SMTP id b187mr3487644oif.93.1568993783178;
+        Fri, 20 Sep 2019 08:36:23 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id b5sm737419otp.36.2019.09.20.08.36.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2019 08:36:22 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [RFC PATCH] arm: dts: integratorap: Remove top level dma-ranges
+Date:   Fri, 20 Sep 2019 10:36:22 -0500
+Message-Id: <20190920153622.14616-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Sep 2019 16:54:18 +0200
-"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
+'dma-ranges' at the top level doesn't make sense. 'dma-ranges' implies
+there is a parent bus node with '#address-cells' and '#size-cells' which
+is impossible here.
 
-> > Am 20.09.2019 um 16:20 schrieb Tony Lindgren <tony@atomide.com>:
-> > 
-> > * H. Nikolaus Schaller <hns@goldelico.com> [190920 09:19]:  
-> >>> Am 20.09.2019 um 10:55 schrieb Linus Walleij <linus.walleij@linaro.org>:
-> >>> I suggest to go both way:
-> >>> apply this oneliner and tag for stable so that GTA04 works
-> >>> again.
-> >>> 
-> >>> Then for the next kernel think about a possible more abitious
-> >>> whitelist solution and after adding that remove *all* "spi-cs-high"
-> >>> flags from all device trees in the kernel after fixing them
-> >>> all up.  
-> >> 
-> >> Ok, that looks like a viable path.  
-> > 
-> > Please repost the oneline so people can ack easily. At least
-> > I've already lost track of this thread.  
-> 
-> It is all here:
-> 
-> https://patchwork.kernel.org/patch/11035253/
-> 
-It is the full one (incl. documentation), not the oneline and does not
-apply. Now lets not discuss whether it is well documented or not. First
-get it fixed. 
+Likely this translation needs to be moved down to sub-nodes that need
+it.
 
-Regards,
-Andreas
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+This probably worked due to bugs in dma-ranges address translations (or 
+lack of).
+
+AFAICT, only PCI needs dma-ranges. The TRM says inbound PCI addresses 
+are 1:1. So a translation from child address 0x80000000 to cpu address 
+0x0 seems wrong. The v3 PCI driver also fails to look at parent nodes 
+for dma-ranges.
+
+ arch/arm/boot/dts/integratorap.dts | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/integratorap.dts b/arch/arm/boot/dts/integratorap.dts
+index 94d2ff9836d0..198d66181c50 100644
+--- a/arch/arm/boot/dts/integratorap.dts
++++ b/arch/arm/boot/dts/integratorap.dts
+@@ -9,7 +9,6 @@
+ / {
+ 	model = "ARM Integrator/AP";
+ 	compatible = "arm,integrator-ap";
+-	dma-ranges = <0x80000000 0x0 0x80000000>;
+ 
+ 	cpus {
+ 		#address-cells = <1>;
+-- 
+2.20.1
+
