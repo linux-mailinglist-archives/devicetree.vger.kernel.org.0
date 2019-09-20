@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5B05B8EB3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 12:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2187B8EEB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2019 13:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438119AbfITKzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 06:55:42 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:48296 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438081AbfITKzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 06:55:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=8p0tY0f9xgBLFACe9M44AaAuW3o+Zlx8X15TpbGjey0=; b=Zl9hMBg/roqkXI+Pn3oamK2TD
-        eBKwtp2d9cnX2CLxqgZ6D0L0SCUNEZJ6Clvk5wUvYeFLDCHTeMjaL78DKbyBZdlrXLTiyOztoMBsR
-        v5WWKy4w2sIxj/7BIYREs9VBeudFUHgH7HmvHeCbJIuKDPwadEUyA7NRPpO+555K2D/CE=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iBGZf-0001aG-Di; Fri, 20 Sep 2019 10:55:39 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id D8D01274293C; Fri, 20 Sep 2019 11:55:38 +0100 (BST)
-Date:   Fri, 20 Sep 2019 11:55:38 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Pragnesh Patel <pragnesh.patel@sifive.com>
-Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] fixed-regulator: dt-bindings: Fixed building error for
- compatible property
-Message-ID: <20190920105538.GB3822@sirena.co.uk>
-References: <1568875145-2864-1-git-send-email-pragnesh.patel@sifive.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="b5gNqxB1S1yM7hjW"
-Content-Disposition: inline
-In-Reply-To: <1568875145-2864-1-git-send-email-pragnesh.patel@sifive.com>
-X-Cookie: Stay away from hurricanes for a while.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2393606AbfITLXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 07:23:34 -0400
+Received: from mail-ua1-f73.google.com ([209.85.222.73]:37355 "EHLO
+        mail-ua1-f73.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393566AbfITLXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 07:23:33 -0400
+Received: by mail-ua1-f73.google.com with SMTP id h15so1331443uan.4
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 04:23:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=hep84HJPFRulrNlOvjkEVuv4ZKit6N15wB3bwjarbgk=;
+        b=Z/emBQL1DqYbcp89S3q7t12kkucc+TJR6Lf/05JnghF/PmEjCjm6ecHsL5yTFcDSkk
+         BuZcZESP6hEYAJHAcAW9Yp0e3tPaBerzbVNJk2nlRgXIHArx9Iys8CbyGsPuB5Dt44kO
+         coRvhwGfh/dDhPwPmPGe1FQMbd7ajJPPxnsa/4DS9RMLxt94ozQhTiffhJJjr/FVjCFu
+         uz07pZ6ZeipethCmcPoLGJwl8B14I949pfK9ETmLU3DSXShuJG3ccwSR9OKSeuo8f2nl
+         B5R8oB0yUfwYKuRosjJ2+okFqRTADxxPdFCOW8E1XvO00Wyy7iCv9u0WAG3jSFcuuc9/
+         pUHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=hep84HJPFRulrNlOvjkEVuv4ZKit6N15wB3bwjarbgk=;
+        b=mkHz1tXYGUf3HXhrg3v677Ov1fan0oGCzW4JtjkiGcViDGeg7y0sc2km5FDORlRXTg
+         e1DeqGkqi9O8Qbk62mjDM+aW1bWGMPEJo8Rs5Q9nF6vNTEs6dOwVIgS7eqxsPH4aB9Va
+         PqltlMSZ74lf8fma5wLV6t0eGv0SO53eBAKbyGV/Yy/7XxcEaredRoPUlzzgvjY6qWB4
+         nEXKIDptYD+F3j7tRjRlXDUasKBMnA6w2+/UfZesvfsl5bixYdkUaq8zl6m80JGlXUAZ
+         VckaMY0VK/63Q+TgVnDIP5zgiFvindoDkvj79NiAGgqkrDMzi8kG24GYukEWuf20HFBh
+         l7NA==
+X-Gm-Message-State: APjAAAUUE2HpsJlnIZjLSKSTaP4sA9MpjQH+R5YnH8BCm1mMXv6uwCCw
+        Pj8VK5cBUREtbjb6lgH0ocUJPC5JC+8q
+X-Google-Smtp-Source: APXvYqzASBzoQOQzUuQD2pzeJ0aIjJs/JADydCufHOaFm1ObLphSnJcLphvmcVNa2p092vV8ySNsPfFUGDOT
+X-Received: by 2002:a1f:ec5:: with SMTP id 188mr7841727vko.90.1568978612490;
+ Fri, 20 Sep 2019 04:23:32 -0700 (PDT)
+Date:   Fri, 20 Sep 2019 19:23:20 +0800
+Message-Id: <20190920112320.166052-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.351.gc4317032e6-goog
+Subject: [PATCH] ASoC: dt-bindings: mt8183: add missing update
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     broonie@kernel.org
+Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, cychiang@google.com, dgreid@google.com,
+        tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Headset codec is optional.  Add missing update to DT binding document.
 
---b5gNqxB1S1yM7hjW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: a962a809e5e4 ("ASoC: mediatek: mt8183: make headset codec optional")
+Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+---
+ .../bindings/sound/mt8183-mt6358-ts3a227-max98357.txt         | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-On Thu, Sep 19, 2019 at 12:09:04PM +0530, Pragnesh Patel wrote:
-> Compatible property is not of type 'string', so remove const:
-> from it.
+diff --git a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
+index d6d5207fa996..17ff3892f439 100644
+--- a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
++++ b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
+@@ -2,9 +2,11 @@ MT8183 with MT6358, TS3A227 and MAX98357 CODECS
+ 
+ Required properties:
+ - compatible : "mediatek,mt8183_mt6358_ts3a227_max98357"
+-- mediatek,headset-codec: the phandles of ts3a227 codecs
+ - mediatek,platform: the phandle of MT8183 ASoC platform
+ 
++Optional properties:
++- mediatek,headset-codec: the phandles of ts3a227 codecs
++
+ Example:
+ 
+ 	sound {
+-- 
+2.23.0.351.gc4317032e6-goog
 
-Please use subject lines matching the style for the subsystem.  This
-makes it easier for people to identify relevant patches.  There's no
-need to resubmit to fix this alone.
-
---b5gNqxB1S1yM7hjW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2EsCkACgkQJNaLcl1U
-h9CKhwf+O7GegnloAg4l4BjReZMOu45L2Pdn4/Ua9uM40hSO+MKWFBZlFYJWz/Pe
-+b3y1K+kLxQY+z+OnkT23Rr/j4h4FXeKgKdWwjek7va80C+1EPzOYM28VfF8PF86
-rMnymJPk0vbq6Xm05nZX++dApXDPLHMJHVpLh3lZUoNz4b++K9nWUhNpGsRWLNFY
-TyjGqyyGS08YbjCAUp+pJqGmVUSqW2JJBE1HrR/ru5h8RqL7+mBbAmR0GdnSwNIp
-rUQazY+9heCGRjz/Qjamgkp4HPozARGTFgcYjhSVpAOcaFlQdFfPTTwyUANM3woC
-5Thuz1bWC8uJiLZvwTuXPmdYODDusA==
-=hxy2
------END PGP SIGNATURE-----
-
---b5gNqxB1S1yM7hjW--
