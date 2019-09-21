@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0113FB9DFB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 15:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFCFEB9E62
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 17:13:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389590AbfIUNPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Sep 2019 09:15:15 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:55755 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389497AbfIUNPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Sep 2019 09:15:15 -0400
-Received: by mail-wm1-f68.google.com with SMTP id a6so5187805wma.5;
-        Sat, 21 Sep 2019 06:15:13 -0700 (PDT)
+        id S2438036AbfIUPMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Sep 2019 11:12:46 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43715 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2438000AbfIUPMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Sep 2019 11:12:46 -0400
+Received: by mail-wr1-f66.google.com with SMTP id q17so9584768wrx.10;
+        Sat, 21 Sep 2019 08:12:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=CUIiObmZUoLOjlcmGuE4Z8qsrk1peXb9nnaXkFScf1o=;
-        b=aEQ/uRYvCsbX944pwrZC5Zi5+pI6s/P143IvpXdlQXMblp/gr0TEwvb4/jIY8KcTPb
-         h+OCadPSshMmMPvaxG+aDklS4bI+8UV1JUuif5+/cH6ND7u1pCPlRypNjKUUSwZlcfVY
-         fmOmGc8jEjdrmt2rxdLStr2mvlAdNsGDr/SrNSboflvindXVGUKuxoMwkhXbfAgD7kXD
-         ds2xaFd7dONWCaZm0mLYpGcfY18vZi6cbUNr7JCDZAZ7y8bfR+bZaJZLCL3MaN0W9/8b
-         tqoH4C7+jAVoy4HWXeff+DTBMlGe4VHPROBfJn0KzOOWdKjEpBrMct/Vjc06IqQSo+hy
-         Tt8g==
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cy8BeFSyyxwCJlrN4qHH8AR4EXYnev9cLyrShu/UrkQ=;
+        b=k3ebWKuhTvDBaawmONRTOFMM7lDUOFLxEasIcVIStcSneASkrQBwEuItFSSDjr6B6Y
+         FKWFRvcEQPXg2Dd19GWK2TKxBjMZ2hVNlD5X/F6Rx4Xt8+yaPHAeD8mCowQMYBOEY3an
+         ga1FPmCX/J4lWpGGJnSkWSNVzkTK2D3vDe3nAX7+TK++LbxiHMyJOXWufs8ACJx7iXH4
+         s5Tgf9j1diNERktWhqYDIExnwrcf4tumXTylzW1J5jBZz1F2lOkWJDBbIIuoSWy44C16
+         CYG8kbsWaJmtwZikJBokiia/zDpwyZr7khG+xqZGkk7ImZD9UM1tqlS8tPraGmEnIamM
+         WHyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=CUIiObmZUoLOjlcmGuE4Z8qsrk1peXb9nnaXkFScf1o=;
-        b=hUOwraT4lbTUFS6aNrfbjM1SZ4BL2cbGbao6vbsmzUqbxzlBeocHgDlqP+Ela9dKDk
-         i3VF3y/glfzCwX6+0sju/htBGlpexK78vSwedTby2TNX2co5fflIbMtkrgHqE9UqcEs2
-         CPvRzQW4/4q21E/sQXVS5QpySgS8nBsp6z3sy3Dlji+Lz9avOLs4cKdWlLKd70Rkd2Kr
-         jeCNxDq9hl1dUOGOZGePSUcARIFlX78MvYzFShcxT5VvP/uMZdXqnNT6ZYZ+HWoaMHVT
-         s363UtIoNjwZG+juRixGLl/Srn/I/ug6AISprvtePdT1qIV6/vX/eIKzdbemD1NxL+1R
-         Nbyg==
-X-Gm-Message-State: APjAAAWldX3f3coGyQJTAnEu7hjgcEM7AbBwGPg/7DjfWGw6twpXUVAu
-        rzD+EzdiN1lqEBt/CLa8tpacgHWi0eLtBA==
-X-Google-Smtp-Source: APXvYqwjrERzxUIeZTPWyTYAXdg1ZTPDKGaLOeQoXI2vdua+67gV4Ml3mGFKjPE7ijQS8GUVUSa4Hw==
-X-Received: by 2002:a05:600c:295d:: with SMTP id n29mr6713359wmd.36.1569071712994;
-        Sat, 21 Sep 2019 06:15:12 -0700 (PDT)
-Received: from apple.sigmaris.info ([84.93.172.212])
-        by smtp.gmail.com with ESMTPSA id g11sm5676349wmh.45.2019.09.21.06.15.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sat, 21 Sep 2019 06:15:12 -0700 (PDT)
-From:   Hugh Cole-Baker <sigmaris@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Akash Gajjar <Akash_Gajjar@mentor.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Hugh Cole-Baker <sigmaris@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: fix Rockpro64 RK808 interrupt line
-Date:   Sat, 21 Sep 2019 14:14:57 +0100
-Message-Id: <20190921131457.36258-1-sigmaris@gmail.com>
-X-Mailer: git-send-email 2.17.2 (Apple Git-113)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cy8BeFSyyxwCJlrN4qHH8AR4EXYnev9cLyrShu/UrkQ=;
+        b=W9ihDxjV/nDgXfjm+Kbaaf4tq2hUhPXqRy7GdmcfUeq8JlHOOJHWin5MxE52iIPEjW
+         9PJ3hR6qZNPGA4+oWrmsn+V5f0+zeePQCeKHlRGa+TVhq8IGGn3joqI7xR9RFyGrskke
+         c+zekes6gPnXH8QYcqMh4gfD5MttzyBWVwpvwWG+nWCZZNPb0y6JSDcRAkSpGmRLT+Io
+         Lg7FWi2ZGjJAeTQyPyxIBZv9FMN0n3ZFcvWitgSHaeRlaiWl3zv6reK0Fgm6aWzf+qBS
+         wvHguyO4zPlJh2kvi/oUhwKx+iBvluxO0OyVzZpa5+8XwMtl8MACB9idBhpFScT/HPhj
+         VuMQ==
+X-Gm-Message-State: APjAAAXPYW1AZlFKYRFMgCb40paAMYxGAGycBtn9iqlATBTNbkDIBLjZ
+        Gj+5jwfV/M7a+L9xN6zjzso=
+X-Google-Smtp-Source: APXvYqw/V5JLWLvUR93P5+Lb2v8QiSrmRjA9KV1rVw9muLj69o9nmSCWZTmtDbJFGQj4P8XZwTRQ3Q==
+X-Received: by 2002:adf:ec44:: with SMTP id w4mr14678602wrn.251.1569078763876;
+        Sat, 21 Sep 2019 08:12:43 -0700 (PDT)
+Received: from blackbox.darklights.net (p200300F133CE0B0028BAA8C744A6F562.dip0.t-ipconnect.de. [2003:f1:33ce:b00:28ba:a8c7:44a6:f562])
+        by smtp.googlemail.com with ESMTPSA id y186sm10712491wmb.41.2019.09.21.08.12.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Sep 2019 08:12:43 -0700 (PDT)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     narmstrong@baylibre.com, jbrunet@baylibre.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, khilman@baylibre.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH 0/5] provide the XTAL clock via OF on Meson8/8b/8m2
+Date:   Sat, 21 Sep 2019 17:12:18 +0200
+Message-Id: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the pinctrl and interrupt specifier for RK808 to use GPIO3_B2. On the
-Rockpro64 schematic [1] page 16, it shows GPIO3_B2 used for the interrupt
-line PMIC_INT_L from the RK808, and there's a note which translates as:
-"PMU termination GPIO1_C5 changed to this".
+So far the HHI clock controller has been providing the XTAL clock on
+Amlogic Meson8/Meson8b/Meson8m2 SoCs.
+This is not correct because the XTAL is actually a crystal on the
+boards and the SoC has a dedicated input for it.
 
-Tested by setting an RTC wakealarm and checking /proc/interrupts counters.
-Without this patch, neither the rockchip_gpio_irq counter for the RK808,
-nor the RTC alarm counter increment when the alarm time is reached.
-With this patch, both interrupt counters increment by 1 as expected.
+This updates the dt-bindings of the HHI clock controller and defines
+a fixed-clock in meson.dtsi (along with switching everything over to
+use this clock).
+The clock driver needs three updates to use this:
+- patch #2 uses clk_hw_set_parent in the CPU clock notifier. This drops
+  the explicit reference to CLKID_XTAL while at the same time making
+  the code much easier (thanks to Neil for providing this new method
+  as part of the G12A CPU clock bringup!)
+- patch #3 ensures that the clock driver doesn't rely on it's internal
+  XTAL clock while not losing support for older .dtbs that don't have
+  the XTAL clock input yet
+- with patch #4 the clock controller's own XTAL clock is not registered
+  anymore when a clock input is provided via OF
 
-[1] http://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
+This series is a functional no-op. It's main goal is to better represent
+how the actual hardware looks like.
 
-Fixes: e4f3fb4 ("arm64: dts: rockchip: add initial dts support for Rockpro64")
-Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
-index 0401d4ec1f45..c27d8a6ae1c5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
-@@ -247,8 +247,8 @@
- 	rk808: pmic@1b {
- 		compatible = "rockchip,rk808";
- 		reg = <0x1b>;
--		interrupt-parent = <&gpio1>;
--		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
- 		#clock-cells = <1>;
- 		clock-output-names = "xin32k", "rk808-clkout2";
- 		pinctrl-names = "default";
-@@ -574,7 +574,7 @@
- 
- 	pmic {
- 		pmic_int_l: pmic-int-l {
--			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-+			rockchip,pins = <3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 
- 		vsel1_gpio: vsel1-gpio {
+Martin Blumenstingl (5):
+  dt-bindings: clock: meson8b: add the clock inputs
+  clk: meson: meson8b: use clk_hw_set_parent in the CPU clock notifier
+  clk: meson: meson8b: change references to the XTAL clock to use the
+    name
+  clk: meson: meson8b: don't register the XTAL clock when provided via
+    OF
+  ARM: dts: meson: provide the XTAL clock using a fixed-clock
+
+ .../bindings/clock/amlogic,meson8b-clkc.txt   |   5 +
+ arch/arm/boot/dts/meson.dtsi                  |   7 ++
+ arch/arm/boot/dts/meson6.dtsi                 |   7 --
+ arch/arm/boot/dts/meson8.dtsi                 |  15 +--
+ arch/arm/boot/dts/meson8b-ec100.dts           |   2 +-
+ arch/arm/boot/dts/meson8b-mxq.dts             |   2 +-
+ arch/arm/boot/dts/meson8b-odroidc1.dts        |   2 +-
+ arch/arm/boot/dts/meson8b.dtsi                |  15 +--
+ drivers/clk/meson/meson8b.c                   | 106 +++++++++---------
+ 9 files changed, 87 insertions(+), 74 deletions(-)
+
 -- 
-2.17.2 (Apple Git-113)
+2.23.0
 
