@@ -2,109 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B052BB9B6B
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 02:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83A86B9BAB
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 02:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437517AbfIUAUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 20:20:08 -0400
-Received: from mail-pf1-f201.google.com ([209.85.210.201]:32836 "EHLO
-        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437485AbfIUAT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 20:19:57 -0400
-Received: by mail-pf1-f201.google.com with SMTP id z4so5866701pfn.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 17:19:55 -0700 (PDT)
+        id S2405102AbfIUAV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 20:21:56 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:38091 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404801AbfIUAV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 20:21:56 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 3so3739040wmi.3;
+        Fri, 20 Sep 2019 17:21:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=GL8bIr8dLG5/Kc/Y8WKLabBIaZO7WJH2uwuCEH7n76U=;
-        b=JOe+XfR60TVQqjAO/rFGpvwAcA/DeU0SVyM/HI2Zhgf+PtyQB0/LAoxlOspG28eTUB
-         KN9jxB3mTzgH/VAIVLmulJHeZb79W2QD+ooJERsLdgQedeMWn7VcN7Es1aYnH0Gkhhwi
-         IWLHePrpOKcGs0YbMH6P+d7N9pQmEfolkxrEGwDrz/ATDZir+fRfFHmN/SDktuIu5Rh2
-         YIeerHsfSRWFqIBf6DnJxi13eT3crcKMRNm5YJ3SiPsnPe1bj3g68f8sQWHI3XdZy9LM
-         zpm7N5ugYQFlZqq0A7vg+AC3kwfWXBikM38GfptB+DWaOMSZABTa2cAcFPjPTvyX4Vkh
-         9gwg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XHJ9lYvrLBjSA+5OXjXI5pOAx2G8npxwl7Z/2aD5dU8=;
+        b=NpDCwV+UW6oee+XRpK2UVCLWIUwO0Md7+DetDUVgS0jvJOYbdf9r6S8Vzeh4X/ABeQ
+         00qRmzToJRkwAtsLqVfIepuDnET0dWcmpukSMeV80zMMRh2uwiidYlDkedYknQhPUNkK
+         QAqUTzatjeJFR/xDw0oBWHCqVwrSKUCStA2s2mhWylSw1gyaFHqAb7yLhOHa/fSWpYF2
+         bhytNBYw8WElHOG/DbAcHK6WR8BABa+diF+xLwpTMPGbnE0W20ou83Hi37+IrfljJN5r
+         l9QAE2Aw/y8tO0PEa16BKvV4qk3Ykq75/dwx/959lCVpghQz3HLf6Jq9nsNK10eB3xcz
+         kYHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=GL8bIr8dLG5/Kc/Y8WKLabBIaZO7WJH2uwuCEH7n76U=;
-        b=jU0ink9QjJjwKj+gWfppJxHrdOlR4p5LVmwyOT4avQJqlcCObGkY4b/+TEzsBEa5f8
-         TuKSR1hLn5rftXX1RFDbnrNZ5SQFMBAZU2nt/cjXlzm8p1cDjlsCNyqQQeTHhP/PHJco
-         EYeVjTLD/K8WMxK0a2wiFMg+aCC7OoMf1JC2sjzQy4MLDYw0lO6JgkD6sflF143tluO+
-         XGiyXWllsHpNM6h2e2hRIZLl7tKO96RG+7x7fQJZXfi7blrgc6PVG4Wmxh8HqItPtxAA
-         XXUsHLCbWX9CrMrvH35ZrQoxaMRMc34FQI4vtrEh3xR3uBZg/f3VLvCb3U8aNilj3zuK
-         WwJw==
-X-Gm-Message-State: APjAAAWvVSefZ/Ts4W5Cg6VzaBBR/aRmfuhNJWYuLoluqs/0OPr3U06B
-        he1SC6Z/nI1Yp8/uHVFNgDMIFhRmd0iPlvwCeT6sww==
-X-Google-Smtp-Source: APXvYqzXl1Z5WO9dWeLbpxv4VzPzrj0gpja77fNZj2M2QIzsJxEJrlfVmtKghEGLDfEqjyLta/fW30aIAzXg7GqHAbqviQ==
-X-Received: by 2002:a63:b954:: with SMTP id v20mr17995160pgo.140.1569025194919;
- Fri, 20 Sep 2019 17:19:54 -0700 (PDT)
-Date:   Fri, 20 Sep 2019 17:18:54 -0700
-In-Reply-To: <20190921001855.200947-1-brendanhiggins@google.com>
-Message-Id: <20190921001855.200947-19-brendanhiggins@google.com>
-Mime-Version: 1.0
-References: <20190921001855.200947-1-brendanhiggins@google.com>
-X-Mailer: git-send-email 2.23.0.351.gc4317032e6-goog
-Subject: [PATCH v17 18/19] MAINTAINERS: add proc sysctl KUnit test to PROC
- SYSCTL section
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, torvalds@linux-foundation.org,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Iurii Zaikin <yzaikin@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XHJ9lYvrLBjSA+5OXjXI5pOAx2G8npxwl7Z/2aD5dU8=;
+        b=mLZzpIo9ttieVDn2JfdKOwpOBNbPa9tF1yLtBirHTOdUnMW+BnRYZ2UIWRLD4Z87gN
+         VQLvcMPJKaXgRjVDsQnmt23I4CUho5pBbTdxBAmeHPAVkiqDTUJeN0hg3vED1t7X9gp9
+         uZvUO34IaWz8yFqrtbkP+BI/bNlPfG6j974mwz5DMwSuOQjkMBOV53VxrYs+3EiQm3Xh
+         4kpzlEtCcUSeO3v1u9Ae6NFZjQHRUw4Z5KLGA7HiQ9r6TjG8MOBKkucINiDPzN68VGHr
+         zf0THxeq1VkAZDMFTiHtyBVDiIxWEKBFvKCciJkm1p0oiPqd5FmMdD8wpU/sNZhX8wDz
+         iO9w==
+X-Gm-Message-State: APjAAAX01ZHK+8ak/86ibQfa3fpjtR8qPZVlgwCdRL9LW2kvVnS8wgF1
+        zP7xSlV+4tiNKdoTGvvjTTs=
+X-Google-Smtp-Source: APXvYqwMxYtoqKooBGyy0pH7gq5YdtL2O70ocG4lE/5916002wFSan/ESxh7Vbq8DsLpyTLO9bWXow==
+X-Received: by 2002:a1c:66c2:: with SMTP id a185mr5163969wmc.2.1569025312507;
+        Fri, 20 Sep 2019 17:21:52 -0700 (PDT)
+Received: from localhost (p200300E41F0FEE00021F3CFFFE37B91B.dip0.t-ipconnect.de. [2003:e4:1f0f:ee00:21f:3cff:fe37:b91b])
+        by smtp.gmail.com with ESMTPSA id t13sm6667421wra.70.2019.09.20.17.21.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2019 17:21:50 -0700 (PDT)
+Date:   Sat, 21 Sep 2019 02:21:49 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sam Shih <sam.shih@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v9 07/11] dt-bindings: pwm: pwm-mediatek: add a property
+ "num-pwms"
+Message-ID: <20190921002149.GB86019@mithrandir>
+References: <1568933351-8584-1-git-send-email-sam.shih@mediatek.com>
+ <1568933351-8584-8-git-send-email-sam.shih@mediatek.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="xgyAXRrhYN0wYx8y"
+Content-Disposition: inline
+In-Reply-To: <1568933351-8584-8-git-send-email-sam.shih@mediatek.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for the new proc sysctl KUnit test to the PROC SYSCTL section,
-and add Iurii as a maintainer.
 
-Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-Cc: Iurii Zaikin <yzaikin@google.com>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-Acked-by: Luis Chamberlain <mcgrof@kernel.org>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+--xgyAXRrhYN0wYx8y
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e3d0d184ae4e..6663d4accd36 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12983,12 +12983,14 @@ F:	Documentation/filesystems/proc.txt
- PROC SYSCTL
- M:	Luis Chamberlain <mcgrof@kernel.org>
- M:	Kees Cook <keescook@chromium.org>
-+M:	Iurii Zaikin <yzaikin@google.com>
- L:	linux-kernel@vger.kernel.org
- L:	linux-fsdevel@vger.kernel.org
- S:	Maintained
- F:	fs/proc/proc_sysctl.c
- F:	include/linux/sysctl.h
- F:	kernel/sysctl.c
-+F:	kernel/sysctl-test.c
- F:	tools/testing/selftests/sysctl/
- 
- PS3 NETWORK SUPPORT
--- 
-2.23.0.351.gc4317032e6-goog
+On Fri, Sep 20, 2019 at 06:49:07AM +0800, Sam Shih wrote:
+> From: Ryder Lee <ryder.lee@mediatek.com>
+>=20
+> This adds a property "num-pwms" in example so that we could
+> specify the number of PWM channels via device tree.
+>=20
+> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Acked-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+> ---
+> Changes since v6:
+> Follow reviewers's comments:
+> - The subject should indicate this is for Mediatek
+>=20
+> Changes since v5:
+> - Add an Acked-by tag
+> - This file is original v4 patch 5/10
+> (https://patchwork.kernel.org/patch/11102577/)
+>=20
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 
+You failed to address Rob's questions repeatedly and I agree with him
+that you can just as easily derive the number of PWMs from the specific
+compatible string. I won't be applying this and none of the patches that
+depend on it.
+
+Thierry
+
+--xgyAXRrhYN0wYx8y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2FbRoACgkQ3SOs138+
+s6Gohw/+NufS4BYOFKibVi7zlUVi/rDMwlkt6F4pkhnyohrqgpTCBy9F9h2ogtxO
+QywrdiuhNuV49zxKHNgpXVQFmYpaUVuCsNaGHGZegyF182jcYtTraRfGm50PJf/F
+x/ppM52eCnkM8gMIq+/ZQ3WYmpjhoFw5746ToZyy4m8mhXmQZqAwVFBOfce70jI6
+Q8g6TNP93ayNLFVf4Hd2UNTN6d17l7sa8LKwWJqRulbH/PwnD/8seCkdBmEwcbdy
+0qPYAkxAkGLfdN9mn+vf3sk+1N+qaLS0ich28ev/y/Ece8ey+RIHy894iZUko0is
+j68nY8DRsf9S5YeZ6RfMQQbAiEaA+LWOLckX44XgQTQRrgAGBOsmfLgZVGQVrKCq
+oQVl9Fg7FX30ZsIkNTAkpEX8bERLjj7XkpUvJLo+SYKA0xzrA34RM+RGTXGxA82O
+7mb8nuqyPXdiVtWkcrne+IiggZoix3DBBsv9ujKNo2rYsSP3yEJiZpki/4GNsdhR
+kKv17KdvVoP51ls+wUvxzI6Kr/DZeYIkrcWWNjNdig/XTzlyUeXdUsq9jYWz4UA3
+MS9/0ZQSYdkuhIpcQPDduLx562SN6sykZi9cgcclULK7RqUv+rtlAg2zZty2WXtZ
+TpxE5tnTnXlMHiaC7YnKbleL6K4l9qmoALx/oUvq9CZTJxEEHJY=
+=P6kM
+-----END PGP SIGNATURE-----
+
+--xgyAXRrhYN0wYx8y--
