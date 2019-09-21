@@ -2,81 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA82BB9CBD
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 08:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC0EB9D28
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 11:23:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405124AbfIUGr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Sep 2019 02:47:56 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46482 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726452AbfIUGr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Sep 2019 02:47:56 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 59C9B60736; Sat, 21 Sep 2019 06:47:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569048475;
-        bh=GtnPkrkrPh+SadImv6m1ielDnGM4Hbs5LQQoKjVZaV4=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=mXIxgFAg2TXFFSSZOm/0ubweqVzC+DTAOeK8cGuso48BoQMvtaF78pYcXg6l3Ju/q
-         SOlN+IY49CosLdnEHWSo0xeXrw6I2A4at99ihJLxY8rG0Np75sMgzymMA/hHZ0HAOg
-         w58okSS40Jrci0L0WVh9E+dlY0zMizu4mTfCASi4=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,MISSING_DATE,MISSING_MID,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6941A60863;
-        Sat, 21 Sep 2019 06:47:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569048474;
-        bh=GtnPkrkrPh+SadImv6m1ielDnGM4Hbs5LQQoKjVZaV4=;
-        h=Subject:From:In-Reply-To:References:To:Cc:From;
-        b=M8rfGF+cm/pRtzIQbYY7BUkMYfgpPQXOjxwJ1Ij3/Gx01JSJE6wUF3l4P27l5sKYI
-         du/qdHzXKZESo3d88PvoICNndHjKbTHeZeTMhn/GJBRhWzUDu/A0S1c3ogvc9235vp
-         LRIqEi2LFu1f77kt4zNS1pDdQc2Fj08kxnLCLfmQ=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6941A60863
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-Content-Type: text/plain; charset="utf-8"
+        id S2392557AbfIUJXY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 21 Sep 2019 05:23:24 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:34957 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391840AbfIUJXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Sep 2019 05:23:24 -0400
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id ABD2B240003;
+        Sat, 21 Sep 2019 09:23:19 +0000 (UTC)
+Date:   Sat, 21 Sep 2019 11:23:18 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-pm@vger.kernel.org,
+        <marek.behun@nic.cz>
+Subject: Re: [PATCH v3 0/4] Prepare Armada 3700 PCIe suspend to RAM support
+Message-ID: <20190921112318.46d0372c@xps13>
+In-Reply-To: <20190920165402.4B5DB207FC@mail.kernel.org>
+References: <20190627125245.26788-1-miquel.raynal@bootlin.com>
+        <20190917173154.722CB2171F@mail.kernel.org>
+        <20190920100301.0674a5b6@xps13>
+        <20190920165402.4B5DB207FC@mail.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v3 1/2] dt: bindings: add dt entry for XO calibration
- support
-From:   Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20190401091926.19119-2-govinds@codeaurora.org>
-References: <20190401091926.19119-2-govinds@codeaurora.org>
-To:     Govind Singh <govinds@codeaurora.org>
-Cc:     ath10k@lists.infradead.org, robh@kernel.org,
-        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        Govind Singh <govinds@codeaurora.org>
-User-Agent: pwcli/0.0.0-git (https://github.com/kvalo/pwcli/) Python/2.7.12
-Message-Id: <20190921064755.59C9B60736@smtp.codeaurora.org>
-Date:   Sat, 21 Sep 2019 06:47:55 +0000 (UTC)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Govind Singh <govinds@codeaurora.org> wrote:
+Hi Stephen,
 
-> Add dt binding to get xo calibration data support for wifi rf clock.
+Stephen Boyd <sboyd@kernel.org> wrote on Fri, 20 Sep 2019 09:54:01
+-0700:
+
+> Quoting Miquel Raynal (2019-09-20 01:03:01)
+> > Hi Stephen,
+> > 
+> > Stephen Boyd <sboyd@kernel.org> wrote on Tue, 17 Sep 2019 10:31:53
+> > -0700:
+> >   
+> > > Quoting Miquel Raynal (2019-06-27 05:52:41)  
+> > > > Hello,
+> > > > 
+> > > > As part of an effort to bring suspend to RAM support to the Armada
+> > > > 3700 SoC (main target: ESPRESSObin board), there are small things to
+> > > > do in the Armada 3700 peripherals clock driver:
+> > > > 
+> > > > * On this SoC, the PCIe controller gets fed by a gated clock in the
+> > > >   south bridge. This clock is missing in the current driver, patch 1
+> > > >   adds it.
+> > > > 
+> > > > * Because of a constraint in the PCI core, the resume function of a
+> > > >   PCIe controller driver must be run at an early stage
+> > > >   (->suspend/resume_noirq()), before the core tries to ->read/write()
+> > > >   in the PCIe registers to do more configuration. Hence, the PCIe
+> > > >   clock must be resumed before. This is enforced thanks to two
+> > > >   changes:
+> > > >   1/ Add device links to the clock framework. This enforce order in
+> > > >      the PM core: the clocks are resumed before the consumers. Series
+> > > >      has been posted, see [1].
+> > > >   2/ Even with the above feature, the clock's resume() callback is
+> > > >      called after the PCI controller's resume_noirq() callback. The
+> > > >      only way to fix this is to change the "priority" of the clock
+> > > >      suspend/resume callbacks. This is done in patch 2.
+> > > > 
+> > > > * The bindings are updated with the PCI clock in patch 4 while patch 3
+> > > >   is just a typo correction in the same file.
+> > > > 
+> > > > If there is anything unclear please feel free to ask.
+> > > >     
+> > > 
+> > > Should I drop this patch series?
+> > >   
+> > 
+> > No, if it is right for you I would really prefer to have it merged
+> > (sorry for the delay in answering though) because it will be still
+> > needed, no matter how clock dependencies are handled.
+> > 
+> >   
 > 
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Ok. I'll apply it after the merge window. Let me know if it's more
+> urgent than that.
+> 
 
-2 patches applied to ath-next branch of ath.git, thanks.
+No it's not, 5.5 is fine.
 
-892022e108dd dt: bindings: ath10k: add dt entry for XO calibration support
-75f545e85744 ath10k: Add xo calibration support for wifi rf clock
 
--- 
-https://patchwork.kernel.org/patch/10879475/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Thanks,
+Miquèl
