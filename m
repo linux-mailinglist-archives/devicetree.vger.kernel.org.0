@@ -2,77 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A517B9BEE
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 03:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8ADB9C04
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2019 05:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437018AbfIUB7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Sep 2019 21:59:04 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:39975 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404897AbfIUB7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 21:59:03 -0400
-Received: by mail-qk1-f196.google.com with SMTP id y144so9246036qkb.7
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2019 18:59:03 -0700 (PDT)
+        id S1730812AbfIUDDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Sep 2019 23:03:01 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:35933 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730800AbfIUDDB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Sep 2019 23:03:01 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 67so7848713oto.3;
+        Fri, 20 Sep 2019 20:03:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=netronome-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :organization:mime-version:content-transfer-encoding;
-        bh=K0xV+Q/+lH76qOTLHDeb3Rh6Bv6ZBT2WraMP2UWkKjo=;
-        b=kUQMMuXZKtVLWjQKUDQyrAgbpeaceIA2XHUy6ZVa7euUj6gsHX7ejCXN1o5KhlEC1A
-         n9RgkwV5q6GBbqTktGELZT4rqF4ta0V87SpGEOhE87LFAy6xJa23LYNqwhPGFusvoTZy
-         7LbfRvKH9XX3VsE5OebA1n/TP1v3Exnb79JTXEcL6HQNgZ7Y8DAeqDs5NIig/ifoRmWA
-         YvvJ+fQ/smPo9ehuAVdoJkXID6d1AWQRdQ8DTnvj2dtaRJVuyCvRE2f9H7ykzsheISxe
-         ZchxaBNF/R8FLjKAvkwL2YbOCVgHnDRfVBOxFpCi+aPETJwHn6+BUqqpuiUW+qvmbtOl
-         cqmw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=6gFD/fDRv/9BVI9TlIlHkBgJAj7cIjjTmLQI72YYXcA=;
+        b=FxJnbU/8qi91ikGeF2YAGu5W/1MPutptBXbL8re5lWxx+cWXoxbobbRKcumzlelA6P
+         WpFRjCVPALLTnqdzLBJfXl8lnQaWmpU/dHbVxodCDPiMuCZd2uxztCJmV3yPRfnarKFd
+         iKPRuSkJEU50iPEaxqL5HbCQOi7iUlUxXNzuQUFeR5565ICTrAxsLp1JDJh70H57rTGJ
+         KNRyJkGgxvzdv1T5gSG6AMZqr6PuBpAYmrcCoiF9GEnl4FnSD0zWOr1IrlPgSrMFBFyi
+         Oq5O1FjToa/c+/3UeUn0ClVH4hD9td56yn9fnRHoTCM2SR7YNB3sVdK0y7LGGNTsu4fr
+         kItA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:organization:mime-version:content-transfer-encoding;
-        bh=K0xV+Q/+lH76qOTLHDeb3Rh6Bv6ZBT2WraMP2UWkKjo=;
-        b=OdGHcusPCavi/hhgKFxafCuXEca/KIW6UzRmcVdnh1cDw92ke+b1lS0KTDG6lw/YXf
-         3y8eZ8AFUz0iRUMoZV4ah4u3N5a4DnA9bxyIfjkATR+op+dAGLEUvoy6TU4IxELABayj
-         8r8S63P2DeZULPD7mCTJEi+SMHFllzmMJ07og8gPhLILnXTjM/9SQPEES+RNgYPpyRvC
-         3XJ+8RvoGjk1ufiiAAdSk68mjGK3H2Mml6yPMvI53xxSarsMpZLqPPq2y6NngX+t5Ftz
-         F2tVcJtryPkGCH4dyt/0fclELfAzkvIqvy3gO322hvGoF+KdLpoPhpZRspi5vC/hyF9z
-         d5Bw==
-X-Gm-Message-State: APjAAAVrFFwS/aKnxiBZ+D4nGSkChXA1HJMp7jOjRlsXRrxRGIM2qQFD
-        vSz1MDXSfkOqsxWF9AtOoZMXbw==
-X-Google-Smtp-Source: APXvYqzjGPQtE8Y6sHZG9JaqI1r/KJoOZFrWFWqe4IGv9iu7j2P2VgCYm0PYtma5uli6Vxi6rkdlAw==
-X-Received: by 2002:a37:2e42:: with SMTP id u63mr6729022qkh.157.1569031143058;
-        Fri, 20 Sep 2019 18:59:03 -0700 (PDT)
-Received: from cakuba.netronome.com ([66.60.152.14])
-        by smtp.gmail.com with ESMTPSA id w131sm2150108qka.85.2019.09.20.18.59.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2019 18:59:02 -0700 (PDT)
-Date:   Fri, 20 Sep 2019 18:58:59 -0700
-From:   Jakub Kicinski <jakub.kicinski@netronome.com>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: remove un-implemented property
-Message-ID: <20190920185859.6ebf05f1@cakuba.netronome.com>
-In-Reply-To: <20190918111447.3084-1-alexandru.ardelean@analog.com>
-References: <20190918111447.3084-1-alexandru.ardelean@analog.com>
-Organization: Netronome Systems, Ltd.
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=6gFD/fDRv/9BVI9TlIlHkBgJAj7cIjjTmLQI72YYXcA=;
+        b=Z78K2ILDW7W4+qkl1HDI34D/Df1dRbmU9AAz8UdLFzf1aOObswQLyKGHvOQdx7KYtE
+         vtrS49NqUOcej2b1D/iY5RR+9k7Q/nlME4ZTTT3LcAbtGHBwqgVm03LT9uszBFEGtDpI
+         pMCiJMTpYXaIEQvNyHv7UeqYTn03L5cppN0ERFEbmlAzoq02qjHYk2M/2/2rHWK7nRzQ
+         75b05v8G6Wf29VjiixUBr0Y589ch7Bt/abaYd6EHwDSt0BtqQgy2qZrgt54MrGrhyZ+V
+         TkLRj6mQVq+o9Px3rcfJn6Qz/B2TAbWLE+XC+x+nbmw6yuvLt+knBHlGWViCFHN3U647
+         5AJA==
+X-Gm-Message-State: APjAAAWL14xnd7me+tsFbCWhpDHLvdZQY4i673MH5tntSLnaovjXg3Tf
+        Ir6GRngAomsMHKcCwYi/FyxT6gGhENA=
+X-Google-Smtp-Source: APXvYqyXPVkDY7hQglG0MvS65/Unv3MrmHtIShSvZEG+9S/nXwMYGG5g6aOny/42LS499QCusEQFug==
+X-Received: by 2002:a05:6830:10d8:: with SMTP id z24mr2271108oto.281.1569034980487;
+        Fri, 20 Sep 2019 20:03:00 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id o184sm1244843oia.28.2019.09.20.20.02.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Sep 2019 20:02:58 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: net: dwmac: fix 'mac-mode' type
+To:     Jakub Kicinski <jakub.kicinski@netronome.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@st.com, andrew@lunn.ch
+References: <20190917103052.13456-1-alexandru.ardelean@analog.com>
+ <20190920181141.52cfee67@cakuba.netronome.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <f189cdbc-b399-7700-a39a-ba185df4af49@gmail.com>
+Date:   Fri, 20 Sep 2019 20:02:58 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190920181141.52cfee67@cakuba.netronome.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Sep 2019 14:14:47 +0300, Alexandru Ardelean wrote:
-> The `adi,disable-energy-detect` property was implemented in an initial
-> version of the `adin` driver series, but after a review it was discarded in
-> favor of implementing the ETHTOOL_PHY_EDPD phy-tunable option.
-> 
-> With the ETHTOOL_PHY_EDPD control, it's possible to disable/enable
-> Energy-Detect-Power-Down for the `adin` PHY, so this device-tree is not
-> needed.
-> 
-> Fixes: 767078132ff9 ("dt-bindings: net: add bindings for ADIN PHY driver")
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 
-Applied, thank you!
+
+On 9/20/2019 6:11 PM, Jakub Kicinski wrote:
+> On Tue, 17 Sep 2019 13:30:52 +0300, Alexandru Ardelean wrote:
+>> The 'mac-mode' property is similar to 'phy-mode' and 'phy-connection-type',
+>> which are enums of mode strings.
+>>
+>> The 'dwmac' driver supports almost all modes declared in the 'phy-mode'
+>> enum (except for 1 or 2). But in general, there may be a case where
+>> 'mac-mode' becomes more generic and is moved as part of phylib or netdev.
+>>
+>> In any case, the 'mac-mode' field should be made an enum, and it also makes
+>> sense to just reference the 'phy-connection-type' from
+>> 'ethernet-controller.yaml'. That will also make it more future-proof for new
+>> modes.
+>>
+>> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> 
+> Applied, thank you!
+> 
+> FWIW I had to add the Fixes tag by hand, either ozlabs patchwork or my
+> git-pw doesn't have the automagic handling there, yet.
+
+AFAICT the ozlabs patchwork instance does not do it, but if you have
+patchwork administrative rights (the jango administration panel I mean)
+then it is simple to add the regular expression to the list of tags that
+patchwork already recognized. Had tried getting that included by
+default, but it also counted all of those tags and therefore was not
+particularly fine grained:
+
+https://lists.ozlabs.org/pipermail/patchwork/2017-January/003910.html
+-- 
+Florian
