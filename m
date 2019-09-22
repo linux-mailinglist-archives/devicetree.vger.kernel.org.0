@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF2A2BA5ED
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 21:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E193BA621
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 21:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390154AbfIVSqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 14:46:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42996 "EHLO mail.kernel.org"
+        id S2391098AbfIVSrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 14:47:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44180 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390149AbfIVSqn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 14:46:43 -0400
+        id S2391090AbfIVSrl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Sep 2019 14:47:41 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AEFA1214AF;
-        Sun, 22 Sep 2019 18:46:41 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CD27D2186A;
+        Sun, 22 Sep 2019 18:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569178002;
-        bh=laBXdjhEBj/+X/JVTuEkEsHnRzQeu89qrZqIqosxvkg=;
+        s=default; t=1569178060;
+        bh=ulMTkWJfiEqWgPk5C5vp6qg69ZA6Dm1K3OpYYqcV01o=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=0cjrGVl0lewtS1m9wU/GdJHd0XJoWK56G1vpc80YJzufgkGjN3JFjQnOBM7l/p2jW
-         a5u/zQa1A6/JnD+r7cu7WhE5jTT/eneGJToYABRJk2H15y02YRHzQaLDYPvF791a0L
-         /keOVVhk3Wnn6WyARXPjujcuR8Zsf9ceM+fcV3SI=
+        b=QKJDPtva8wDMQPND42pSTsXL+rEUHK1o5HXENi2ak8ylF7ZcQoDr3Jzd9QR1nAc+6
+         mQF9thTMe7Wdwshn5vxZUc2ZIaTZ6YfWlI7qrjYMTQQXM8AlT5PCaeIeRc/NrbgtnJ
+         xYaeLyfMy4wYdw0A/22uRH8EM+0Pm1lDixnxr1N0=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Niklas Cassel <niklas.cassel@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.3 091/203] arm64: dts: qcom: qcs404-evb: Mark WCSS clocks protected
-Date:   Sun, 22 Sep 2019 14:41:57 -0400
-Message-Id: <20190922184350.30563-91-sashal@kernel.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.3 136/203] arm64: dts: meson: fix boards regulators states format
+Date:   Sun, 22 Sep 2019 14:42:42 -0400
+Message-Id: <20190922184350.30563-136-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190922184350.30563-1-sashal@kernel.org>
 References: <20190922184350.30563-1-sashal@kernel.org>
@@ -45,46 +45,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
 
-[ Upstream commit 54d895bea43c94f31304d59f82d755b7f4b59e7c ]
+[ Upstream commit f9717178b9be9477877d4c3776c61ff56d854ddf ]
 
-'7d0c76bdf227 ("clk: qcom: Add WCSS gcc clock control for QCS404")'
-introduces two new clocks to gcc. These are not used before
-clk_disable_unused() and as such the clock framework tries to disable
-them.
+This fixes the following DT schemas check errors:
+meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
+meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
+meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
+meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
+meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
 
-But on the EVB these registers are only accessible through TrustZone, so
-these clocks must be marked as "protected" to prevent the clock code
-from touching them.
-
-Numerical values are used as the constants are not yet available in a
-common tree.
-
-Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
-Reported-by: Mark Brown <broonie@kernel.org>
-Reported-by: Niklas Cassel <niklas.cassel@linaro.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts          | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts        | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts           | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi              | 4 ++--
+ .../arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts   | 4 ++--
+ 6 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 11c0a7137823d..db6df76e97a1a 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -61,7 +61,9 @@
- 	protected-clocks = <GCC_BIMC_CDSP_CLK>,
- 			   <GCC_CDSP_CFG_AHB_CLK>,
- 			   <GCC_CDSP_BIMC_CLK_SRC>,
--			   <GCC_CDSP_TBU_CLK>;
-+			   <GCC_CDSP_TBU_CLK>,
-+			   <141>, /* GCC_WCSS_Q6_AHB_CLK */
-+			   <142>; /* GCC_WCSS_Q6_AXIM_CLK */
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 4e916e1f71f76..1c2a9ca491c02 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+@@ -66,8 +66,8 @@
+ 		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+ 		gpios-states = <0>;
  
- &pms405_spmi_regulators {
+-		states = <3300000 0
+-			  1800000 1>;
++		states = <3300000 0>,
++			 <1800000 1>;
+ 	};
+ 
+ 	flash_1v8: regulator-flash_1v8 {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index b636912a27157..afcf8a9f667b9 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -75,8 +75,8 @@
+ 		gpios-states = <1>;
+ 
+ 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
+-		states = <1800000 0
+-			  3300000 1>;
++		states = <1800000 0>,
++			 <3300000 1>;
+ 	};
+ 
+ 	vddio_boot: regulator-vddio_boot {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 9972b1515da61..6039adda12eec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -77,8 +77,8 @@
+ 		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
+ 		gpios-states = <0>;
+ 
+-		states = <3300000 0
+-			  1800000 1>;
++		states = <3300000 0>,
++			 <1800000 1>;
+ 	};
+ 
+ 	vcc1v8: regulator-vcc1v8 {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index e8f925871edfc..89f7b41b0e9ef 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -46,8 +46,8 @@
+ 		gpios-states = <1>;
+ 
+ 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
+-		states = <1800000 0
+-			  3300000 1>;
++		states = <1800000 0>,
++			 <3300000 1>;
+ 
+ 		regulator-settling-time-up-us = <10000>;
+ 		regulator-settling-time-down-us = <150000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+index 796baea7a0bfb..c8d74e61dec18 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+@@ -38,8 +38,8 @@
+ 		gpios-states = <1>;
+ 
+ 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
+-		states = <1800000 0
+-			  3300000 1>;
++		states = <1800000 0>,
++			 <3300000 1>;
+ 	};
+ 
+ 	vddio_boot: regulator-vddio_boot {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+index 26907ac829301..c433a031841f6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+@@ -38,8 +38,8 @@
+ 		gpios-states = <1>;
+ 
+ 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
+-		states = <1800000 0
+-			  3300000 1>;
++		states = <1800000 0>,
++			 <3300000 1>;
+ 	};
+ 
+ 	vddio_boot: regulator-vddio_boot {
 -- 
 2.20.1
 
