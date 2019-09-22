@@ -2,119 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB77BA2AC
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 14:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF21ABA310
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 18:14:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728988AbfIVMiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 08:38:12 -0400
-Received: from inca-roads.misterjones.org ([213.251.177.50]:45505 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728826AbfIVMiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 08:38:12 -0400
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why)
-        by cheepnis.misterjones.org with esmtpsa (TLSv1.2:AES256-GCM-SHA384:256)
-        (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1iC17v-0003vt-Fm; Sun, 22 Sep 2019 14:38:07 +0200
-Date:   Sun, 22 Sep 2019 13:38:05 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        bcm-kernel-feedback-list@broadcom.com (open list:BROADCOM BMIPS MIPS
-        ARCHITECTURE),
-        linux-mips@vger.kernel.org (open list:BROADCOM BMIPS MIPS ARCHITECTURE)
-Subject: Re: [PATCH v2 5/5] irqchip/irq-bcm7038-l1: Support
- brcm,int-fwd-mask
-Message-ID: <20190922133805.2cdf2d99@why>
-In-Reply-To: <20190913191542.9908-6-f.fainelli@gmail.com>
-References: <20190913191542.9908-1-f.fainelli@gmail.com>
-        <20190913191542.9908-6-f.fainelli@gmail.com>
-Organization: Approximate
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2387642AbfIVQN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 12:13:56 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:46614 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387471AbfIVQN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 12:13:56 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 98F198031F; Sun, 22 Sep 2019 18:13:39 +0200 (CEST)
+Date:   Sun, 22 Sep 2019 18:13:47 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        dmitry.torokhov@gmail.com, aisheng.dong@nxp.com,
+        ulf.hansson@linaro.org, fugang.duan@nxp.com, peng.fan@nxp.com,
+        daniel.baluta@nxp.com, leonard.crestez@nxp.com, mripard@kernel.org,
+        olof@lixom.net, arnd@arndb.de, jagan@amarulasolutions.com,
+        bjorn.andersson@linaro.org, dinguyen@kernel.org,
+        marcin.juszkiewicz@linaro.org, stefan@agner.ch,
+        gregkh@linuxfoundation.org, andriy.shevchenko@linux.intel.com,
+        yuehaibing@huawei.com, tglx@linutronix.de, ronald@innovation.ch,
+        m.felsch@pengutronix.de, ping.bai@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V2 1/5] dt-bindings: fsl: scu: add scu power key binding
+Message-ID: <20190922161347.GB1999@bug>
+References: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, linux-kernel@vger.kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, mark.rutland@arm.com, cernekee@gmail.com, devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Sep 2019 12:15:42 -0700
-Florian Fainelli <f.fainelli@gmail.com> wrote:
+Hi!
 
-> On some specific chips like 7211 we need to leave some interrupts
-> untouched/forwarded to the VPU which is another agent in the system
-> making use of that interrupt controller hardware (goes to both ARM GIC
-> and VPU L1 interrupt controller). Make that possible by using the
-> existing brcm,int-fwd-mask property.
+> NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
+> system controller, the system controller is in charge of system
+> power, clock and power key event etc. management, Linux kernel
+> has to communicate with system controller via MU (message unit)
+> IPC to get power key event, add binding doc for i.MX system
+> controller power key driver.
 > 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
->  drivers/irqchip/irq-bcm7038-l1.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-bcm7038-l1.c b/drivers/irqchip/irq-bcm7038-l1.c
-> index 0673a44bbdc2..811a34201dd4 100644
-> --- a/drivers/irqchip/irq-bcm7038-l1.c
-> +++ b/drivers/irqchip/irq-bcm7038-l1.c
-> @@ -44,6 +44,7 @@ struct bcm7038_l1_chip {
->  	struct list_head	list;
->  	u32			wake_mask[MAX_WORDS];
->  #endif
-> +	u32			irq_fwd_mask[MAX_WORDS];
->  	u8			affinity[MAX_WORDS * IRQS_PER_WORD];
->  };
->  
-> @@ -265,6 +266,7 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
->  	resource_size_t sz;
->  	struct bcm7038_l1_cpu *cpu;
->  	unsigned int i, n_words, parent_irq;
-> +	int ret;
->  
->  	if (of_address_to_resource(dn, idx, &res))
->  		return -EINVAL;
-> @@ -278,6 +280,14 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
->  	else if (intc->n_words != n_words)
->  		return -EINVAL;
->  
-> +	ret = of_property_read_u32_array(dn , "brcm,int-fwd-mask",
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-What is the exact meaning of "fwd"? Forward? FirmWare Dementia?
-
-> +					 intc->irq_fwd_mask, n_words);
-> +	if (ret != 0 && ret != -EINVAL) {
-> +		/* property exists but has the wrong number of words */
-> +		pr_err("invalid brcm,int-fwd-mask property\n");
-> +		return -EINVAL;
-> +	}
+> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> @@ -157,6 +157,15 @@ Required properties:
+>  Optional properties:
+>  - timeout-sec: contains the watchdog timeout in seconds.
+>  
+> +Power key bindings based on SCU Message Protocol
+> +------------------------------------------------------------
 > +
->  	cpu = intc->cpus[idx] = kzalloc(sizeof(*cpu) + n_words * sizeof(u32),
->  					GFP_KERNEL);
->  	if (!cpu)
-> @@ -288,8 +298,9 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
->  		return -ENOMEM;
->  
->  	for (i = 0; i < n_words; i++) {
-> -		l1_writel(0xffffffff, cpu->map_base + reg_mask_set(intc, i));
-> -		cpu->mask_cache[i] = 0xffffffff;
-> +		l1_writel(0xffffffff & ~intc->irq_fwd_mask[i],
-> +			  cpu->map_base + reg_mask_set(intc, i));
-> +		cpu->mask_cache[i] = 0xffffffff & ~intc->irq_fwd_mask[i];
+> +Required properties:
+> +- compatible: should be:
+> +              "fsl,imx8qxp-sc-pwrkey"
+> +              followed by "fsl,imx-sc-pwrkey";
+> +- linux,keycodes: See Documentation/devicetree/bindings/input/keys.txt
 
-I seem to remember that (0xffffffff & whatever) == whatever, as long as
-'whatever' is a 32bit quantity. So what it this for?
+Actually there's no reason for having "linux,keycodes" property when it is always
+a power button.
 
-	M.
+Best regards,
+									Pavel
 -- 
-Without deviation from the norm, progress is not possible.
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
