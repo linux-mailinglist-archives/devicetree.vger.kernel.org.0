@@ -2,86 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A2A2BABEA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 00:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89108BAC0C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 00:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729143AbfIVWVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 18:21:04 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:40041 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbfIVWVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 18:21:04 -0400
-Received: by mail-pg1-f196.google.com with SMTP id w10so6824977pgj.7
-        for <devicetree@vger.kernel.org>; Sun, 22 Sep 2019 15:21:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=netronome-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :organization:mime-version:content-transfer-encoding;
-        bh=PmAznyfs4k+mWd//xBrPme3TcumsUBoHQjEZq6u+NLY=;
-        b=Q9CxQCZVN3CeKim3T14DI+dzH5PlCDTA8QmbsW+C8eax7IIA/NB0aFCLOE5uEMlnah
-         n9HfkK054QH0pzmBa/MaaPHryLTCxiQvGwyx9m2DBJ3+fWXwG4tZ1JBoHBYs79JyChbx
-         r5rFDF448s/NfZ2lrFLEI/35LniKtZVDGfAnyeOltNGUbu+hXauDlNLnNAaQqWncuzo2
-         +3937Vc7WBUdbsp3LzrmK2ZIuYecnYyYnVMqeOVgiI0Tg/28mg73wkAS2nR2q0eakRY3
-         9/YK/KVHUUOG6XAHJmFirHgZxtOEbFencrEJwS4yKpWhp/Wx/AxSLIA3VX7LS190gJnR
-         PoVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:organization:mime-version:content-transfer-encoding;
-        bh=PmAznyfs4k+mWd//xBrPme3TcumsUBoHQjEZq6u+NLY=;
-        b=CvA0/tG5t2NmBceuJEqUKPT9zcyZ9xNVeIHxXOCp6Fa9nAIOe6VJK4YJ1ZIgfxUuJm
-         34xCMeBbDEE3+X2W+WiwbUf1hDrPrWWQ6iHCCRNnBGD2i4hZlusYhXfmH7KYCqE9lPGl
-         FBDT09LwuqyCus4mz5ssrM9speBYsVftMxjqaGCQYQ+EmJ81ntz4v4Yf0gxBl+m3QNAN
-         CqMfCF7JKB1prCYTyBO1GtGJ1IbJnMsOD9zyHeNhdNYzw5JapygE5vYxOrS2X1ox0qQA
-         ve/TZLxTf3CoMkLVn1WS+z3Wcd0o+EcduSFlmdYgusq4Qyoz+QwNs/mnde6V6gJ7YjaB
-         v7sQ==
-X-Gm-Message-State: APjAAAXk/gdt6SNOElAODO+lQtrAYFZEKDKKWMPSo0FfF7dVA9VFUTIS
-        iCuRH3hWfeEvjy1wJ0/FmAPmUQ==
-X-Google-Smtp-Source: APXvYqzciIn5+C8G7UZYhYgLD06dOmlQZq70XrUrVD2u2KT92kUx/KmLzyi/sFi09I3djSRu2p/rmQ==
-X-Received: by 2002:a17:90a:8087:: with SMTP id c7mr17644769pjn.56.1569190380757;
-        Sun, 22 Sep 2019 15:13:00 -0700 (PDT)
-Received: from cakuba.netronome.com (c-73-202-202-92.hsd1.ca.comcast.net. [73.202.202.92])
-        by smtp.gmail.com with ESMTPSA id r187sm7877357pfc.105.2019.09.22.15.12.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Sep 2019 15:13:00 -0700 (PDT)
-Date:   Sun, 22 Sep 2019 15:12:57 -0700
-From:   Jakub Kicinski <jakub.kicinski@netronome.com>
-To:     Christophe Roullier <christophe.roullier@st.com>
-Cc:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
-        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <andrew@lunn.ch>
-Subject: Re: [PATCH  0/5] net: ethernet: stmmac: some fixes and optimization
-Message-ID: <20190922151257.51173d89@cakuba.netronome.com>
-In-Reply-To: <20190920053817.13754-1-christophe.roullier@st.com>
-References: <20190920053817.13754-1-christophe.roullier@st.com>
-Organization: Netronome Systems, Ltd.
+        id S2389094AbfIVWxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 18:53:05 -0400
+Received: from mga04.intel.com ([192.55.52.120]:43447 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388766AbfIVWxF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Sep 2019 18:53:05 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Sep 2019 15:53:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,538,1559545200"; 
+   d="scan'208";a="182339433"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 22 Sep 2019 15:52:59 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1iCAix-0002dh-6t; Mon, 23 Sep 2019 06:52:59 +0800
+Date:   Mon, 23 Sep 2019 06:52:35 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+Cc:     kbuild-all@01.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v6 2/2] drm/bridge: Add NWL MIPI DSI host controller
+ support
+Message-ID: <201909230644.qfSKbNf9%lkp@intel.com>
+References: <c0ac0b203fb65ae7efd1b9b54664b491ca2fb157.1569170717.git.agx@sigxcpu.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c0ac0b203fb65ae7efd1b9b54664b491ca2fb157.1569170717.git.agx@sigxcpu.org>
+X-Patchwork-Hint: ignore
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Sep 2019 07:38:12 +0200, Christophe Roullier wrote:
-> Some improvements (manage syscfg as optional clock, update slew rate of
-> ETH_MDIO pin, Enable gating of the MAC TX clock during TX low-power mode)
-> Fix warning build message when W=1
+Hi "Guido,
 
-There seems to be some new features/cleanups (or improvements as
-you say) here. Could you explain the negative impact not applying 
-these changes will have? Patches 1 and 3 in particular.
+I love your patch! Perhaps something to improve:
 
-net-next is now closed [1], and will reopen some time after the merge
-window is over. For now we are only expecting fixes for the net tree.
+[auto build test WARNING on linus/master]
+[cannot apply to v5.3 next-20190920]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-Could you (a) provide stronger motivation these changes are fixes; or
-(b) separate the fixes from improvements?
+url:    https://github.com/0day-ci/linux/commits/Guido-G-nther/drm-bridge-Add-NWL-MIPI-DSI-host-controller-support/20190923-005010
 
-Thank you!
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
 
-[1] https://www.kernel.org/doc/html/latest/networking/netdev-FAQ.html
+smatch warnings:
+drivers/gpu/drm/bridge/nwl-dsi.c:272 nwl_dsi_config_dpi() warn: unsigned 'color_format' is never less than zero.
+
+vim +/color_format +272 drivers/gpu/drm/bridge/nwl-dsi.c
+
+   245	
+   246	static int nwl_dsi_config_dpi(struct nwl_dsi *dsi)
+   247	{
+   248		u32 color_format, mode;
+   249		bool burst_mode;
+   250		int hfront_porch, hback_porch, vfront_porch, vback_porch;
+   251		int hsync_len, vsync_len;
+   252	
+   253		hfront_porch = dsi->mode.hsync_start - dsi->mode.hdisplay;
+   254		hsync_len = dsi->mode.hsync_end - dsi->mode.hsync_start;
+   255		hback_porch = dsi->mode.htotal - dsi->mode.hsync_end;
+   256	
+   257		vfront_porch = dsi->mode.vsync_start - dsi->mode.vdisplay;
+   258		vsync_len = dsi->mode.vsync_end - dsi->mode.vsync_start;
+   259		vback_porch = dsi->mode.vtotal - dsi->mode.vsync_end;
+   260	
+   261		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hfront_porch = %d\n", hfront_porch);
+   262		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hback_porch = %d\n", hback_porch);
+   263		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hsync_len = %d\n", hsync_len);
+   264		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hdisplay = %d\n", dsi->mode.hdisplay);
+   265		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vfront_porch = %d\n", vfront_porch);
+   266		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vback_porch = %d\n", vback_porch);
+   267		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vsync_len = %d\n", vsync_len);
+   268		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vactive = %d\n", dsi->mode.vdisplay);
+   269		DRM_DEV_DEBUG_DRIVER(dsi->dev, "clock = %d kHz\n", dsi->mode.clock);
+   270	
+   271		color_format = nwl_dsi_get_dpi_pixel_format(dsi->format);
+ > 272		if (color_format < 0) {
+   273			DRM_DEV_ERROR(dsi->dev, "Invalid color format 0x%x\n",
+   274				      dsi->format);
+   275			return color_format;
+   276		}
+   277		DRM_DEV_DEBUG_DRIVER(dsi->dev, "pixel fmt = %d\n", dsi->format);
+   278	
+   279		nwl_dsi_write(dsi, NWL_DSI_INTERFACE_COLOR_CODING, NWL_DSI_DPI_24_BIT);
+   280		nwl_dsi_write(dsi, NWL_DSI_PIXEL_FORMAT, color_format);
+   281		/*
+   282		 * Adjusting input polarity based on the video mode results in
+   283		 * a black screen so always pick active low:
+   284		 */
+   285		nwl_dsi_write(dsi, NWL_DSI_VSYNC_POLARITY,
+   286			      NWL_DSI_VSYNC_POLARITY_ACTIVE_LOW);
+   287		nwl_dsi_write(dsi, NWL_DSI_HSYNC_POLARITY,
+   288			      NWL_DSI_HSYNC_POLARITY_ACTIVE_LOW);
+   289	
+   290		burst_mode = (dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_BURST) &&
+   291			     !(dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE);
+   292	
+   293		if (burst_mode) {
+   294			nwl_dsi_write(dsi, NWL_DSI_VIDEO_MODE, NWL_DSI_VM_BURST_MODE);
+   295			nwl_dsi_write(dsi, NWL_DSI_PIXEL_FIFO_SEND_LEVEL, 256);
+   296		} else {
+   297			mode = ((dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE) ?
+   298					NWL_DSI_VM_BURST_MODE_WITH_SYNC_PULSES :
+   299					NWL_DSI_VM_NON_BURST_MODE_WITH_SYNC_EVENTS);
+   300			nwl_dsi_write(dsi, NWL_DSI_VIDEO_MODE, mode);
+   301			nwl_dsi_write(dsi, NWL_DSI_PIXEL_FIFO_SEND_LEVEL,
+   302				      dsi->mode.hdisplay);
+   303		}
+   304	
+   305		nwl_dsi_write(dsi, NWL_DSI_HFP, hfront_porch);
+   306		nwl_dsi_write(dsi, NWL_DSI_HBP, hback_porch);
+   307		nwl_dsi_write(dsi, NWL_DSI_HSA, hsync_len);
+   308	
+   309		nwl_dsi_write(dsi, NWL_DSI_ENABLE_MULT_PKTS, 0x0);
+   310		nwl_dsi_write(dsi, NWL_DSI_BLLP_MODE, 0x1);
+   311		nwl_dsi_write(dsi, NWL_DSI_USE_NULL_PKT_BLLP, 0x0);
+   312		nwl_dsi_write(dsi, NWL_DSI_VC, 0x0);
+   313	
+   314		nwl_dsi_write(dsi, NWL_DSI_PIXEL_PAYLOAD_SIZE, dsi->mode.hdisplay);
+   315		nwl_dsi_write(dsi, NWL_DSI_VACTIVE, dsi->mode.vdisplay - 1);
+   316		nwl_dsi_write(dsi, NWL_DSI_VBP, vback_porch);
+   317		nwl_dsi_write(dsi, NWL_DSI_VFP, vfront_porch);
+   318	
+   319		return 0;
+   320	}
+   321	
+
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
