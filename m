@@ -2,121 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C6ABA324
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 18:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E1BBA339
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 18:47:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387633AbfIVQ3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 12:29:20 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:42724 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387604AbfIVQ3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 12:29:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=rGqXLDwoxSJ+wMClTeqCK7DBN64mFNHAm3f7xeAfO/Y=; b=Jqrmyr//FV9HMLM96+iNkQrG9
-        U4Uoy/pOrdbQVcKQBj9xPvAkV/nzrJpOJ1bdtxIXDSdsG2VLMEJv6TViNNLTSyi4UdBQYPKzaxcrJ
-        2T4t8mrKe78jij/lNHM3wjTob7KcsjUa815F7f3Aihj/SleVztJIvrssWkutND3UYT6Rv/iySkIdf
-        NfuXnPzxcoef19ZF0a6xFA3k17U3TqdtEDvk5uN2TMgl2RW2OQ0GTb2A3YN0AuqPW+csabIMBu0CZ
-        MEZI3cTzBe5bCL5Kj08Onh8n/iaXULqCTmLm39f238LK0to8z19ySnG8XjQR5JizEmVVeaKJZ1gFo
-        +Z/Ym2Tyg==;
-Received: from [2601:1c0:6280:3f0::9a1f]
-        by bombadil.infradead.org with esmtpsa (Exim 4.92.2 #3 (Red Hat Linux))
-        id 1iC4iv-00076b-DS; Sun, 22 Sep 2019 16:28:33 +0000
-Subject: Re: [PATCH v17 07/19] kunit: test: add initial tests
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
-        torvalds@linux-foundation.org
-References: <20190921001855.200947-1-brendanhiggins@google.com>
- <20190921001855.200947-8-brendanhiggins@google.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <944ac47d-1411-9ebd-d0d4-a616c88c9c20@infradead.org>
-Date:   Sun, 22 Sep 2019 09:28:28 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2388084AbfIVQrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 12:47:22 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:42420 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387583AbfIVQrW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Sep 2019 12:47:22 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 6F537FB03;
+        Sun, 22 Sep 2019 18:47:19 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id Td5ZANlq7Bxv; Sun, 22 Sep 2019 18:47:15 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 22C934012D; Sun, 22 Sep 2019 09:47:12 -0700 (PDT)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH v6 0/2] drm: bridge: Add NWL MIPI DSI host controller support
+Date:   Sun, 22 Sep 2019 09:47:10 -0700
+Message-Id: <cover.1569170717.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-In-Reply-To: <20190921001855.200947-8-brendanhiggins@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/20/19 5:18 PM, Brendan Higgins wrote:
-> Add a test for string stream along with a simpler example.
-> 
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> ---
->  lib/kunit/Kconfig              | 25 ++++++++++
->  lib/kunit/Makefile             |  4 ++
->  lib/kunit/example-test.c       | 88 ++++++++++++++++++++++++++++++++++
->  lib/kunit/string-stream-test.c | 52 ++++++++++++++++++++
->  4 files changed, 169 insertions(+)
->  create mode 100644 lib/kunit/example-test.c
->  create mode 100644 lib/kunit/string-stream-test.c
-> 
-> diff --git a/lib/kunit/Kconfig b/lib/kunit/Kconfig
-> index 666b9cb67a74..3868c226cf31 100644
-> --- a/lib/kunit/Kconfig
-> +++ b/lib/kunit/Kconfig
-> @@ -11,3 +11,28 @@ menuconfig KUNIT
->  	  special hardware when using UML. Can also be used on most other
->  	  architectures. For more information, please see
->  	  Documentation/dev-tools/kunit/.
-> +
-> +if KUNIT
+This adds initial support for the NWL MIPI DSI Host controller found on i.MX8
+SoCs.
 
-The 'if' above provides the dependency clause, so the 2 'depends on KUNIT'
-below are not needed.  They are redundant.
+It adds support for the i.MX8MQ but the same IP core can also be found on e.g.
+i.MX8QXP. I added the necessary hooks to support other imx8 variants but since
+I only have imx8mq boards to test I omitted the platform data for other SoCs.
 
-> +
-> +config KUNIT_TEST
-> +	bool "KUnit test for KUnit"
-> +	depends on KUNIT
-> +	help
-> +	  Enables the unit tests for the KUnit test framework. These tests test
-> +	  the KUnit test framework itself; the tests are both written using
-> +	  KUnit and test KUnit. This option should only be enabled for testing
-> +	  purposes by developers interested in testing that KUnit works as
-> +	  expected.
-> +
-> +config KUNIT_EXAMPLE_TEST
-> +	bool "Example test for KUnit"
-> +	depends on KUNIT
-> +	help
-> +	  Enables an example unit test that illustrates some of the basic
-> +	  features of KUnit. This test only exists to help new users understand
-> +	  what KUnit is and how it is used. Please refer to the example test
-> +	  itself, lib/kunit/example-test.c, for more information. This option
-> +	  is intended for curious hackers who would like to understand how to
-> +	  use KUnit for kernel development.
-> +
-> +endif # KUNIT
+The code is based on NXPs BSP so I added Robert Chiras as
+Co-authored-by.
+
+The most notable changes over the BSP driver are
+ - Calculate HS mode timing from phy_configure_opts_mipi_dphy
+ - Perform all clock setup via DT
+ - Merge nwl-imx and nwl drivers
+ - Add B0 silion revision quirk
+ - become a bridge driver to hook into mxsfb (from what I read[0] DCSS, which
+   also can drive the nwl on the imx8mq will likely not become part of
+   imx-display-subsystem so it makes sense to make it drive a bridge for dsi as
+   well).
+ - Use panel_bridge to attach the panel
+ - Use multiplex framework instead of accessing syscon directly
+
+This has been tested on a Librem 5 devkit using mxsfb with Robert's patches[1]
+and the rocktech-jh057n00900 panel driver on next-20190807. The DCSS can later
+on also act as input source too.
+
+Changes from v5:
+- Per review comments by Andrzej Hajda
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/235281.html
+  - Fix include file ordering
+  - Add a comment to nwl_dsi_platform_data that will allow to add support
+    at least for the i.MX8QM
+  - Merge driver into a single file plus the register defs in a separate header
+- Make more functions and structs static
+
+Changes from v4:
+- Collect Reviewed-by: from Rob Herring, thanks!
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/233979.html
+- Spotted by kbuild test robot <lkp@intel.com>
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/233860.html
+  https://lists.freedesktop.org/archives/dri-devel/2019-September/233863.html
+  - fix format string for size_t
+  - Use DIV64_U64_ROUND_UP to fix build on 32 bit architectures
+    We can't use simple shift sind d and n are similar in size and
+    we need full precision
+- Fix debug cfg_t_post debug print out
+- Avoid PSEC_PER_SEC
+- Move timeout / overflow handling out of nwl_dsi_finish_transmission,
+  it would never end up being reported since the call to the function
+  was guarded by flags.
+- Drop 'support for' from KConfig title to make it match the other
+  drivers in that submenu
+
+Changes from v3:
+- Per review comments by Robert Chiras
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/232580.html
+  - Add Robert's {Signed-off,Tested}-by:
+  - Respect number of lanes when calculting bandwidth limits
+  - Drop duplicate NWL_DSI_ENABLE_MULT_PKTS setup
+- Per testing by Rober Chiras
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/233688.html
+  - Drop duplicate (and too early) drm_bridge_add() in nwl_dir_probe() that
+    made mxsfb fail to connect to the bridge since the panel_bridge was not up
+    yet. drm_bridge_add() happens in nwl_dsi_host_attach() where after the
+    panel_bridge was set up.
+- Per review comments by Rob Herring on bindings
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/233196.html
+  - drop description from power-domains and resets
+  - allow BSD 2 clause license as well
+  - make ports more specific
+  - add #address-cells, #size-cells as required
+  - use additionalProperties
+  - panel is of type object
+
+Changes from v2:
+- Per review comments by Rob Herring
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/230448.html
+  - bindings:
+    - Simplify by restricting to fsl,imx8mq-nwl-dsi
+    - document reset lines
+    - add port@{0,1}
+    - use a real compatible string for the panel
+    - resets are required
+- Per review comments by Arnd Bergmann
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/230868.html
+  - Don't access iomuxc_gpr regs directly. This allows us to drop the
+    first patch in the series with the iomuxc_gpr field defines.
+- Per review comments by Laurent Pinchart
+  Fix wording in bindings
+- Add mux-controls to bindings
+- Don't print error message on dphy probe deferral
+
+Changes from v1:
+- Per review comments by Sam Ravnborg
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228130.html
+  - Change binding docs to YAML
+  - build: Don't always visit imx-nwl/
+  - build: Add header-test-y
+  - Sort headers according to DRM convention
+  - Use drm_display_mode instead of videmode
+- Per review comments by Fabio Estevam
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228299.html
+  - Don't restrict build to ARCH_MXC
+  - Drop unused includes
+  - Drop unreachable code in imx_nwl_dsi_bridge_mode_fixup()
+  - Drop remaining calls of dev_err() and use DRM_DEV_ERR()
+    consistently.
+  - Use devm_platform_ioremap_resource()
+  - Drop devm_free_irq() in probe() error path
+  - Use single line comments where sufficient
+  - Use <linux/time64.h> instead of defining USEC_PER_SEC
+  - Make input source select imx8 specific
+  - Drop <asm/unaligned.h> inclusion (after removal of get_unaligned_le32)
+  - Drop all EXPORT_SYMBOL_GPL() for functions used in the same module
+    but different source files.
+  - Drop nwl_dsi_enable_{rx,tx}_clock() by invoking clk_prepare_enable()
+    directly
+  - Remove pointless comment
+- Laurent Pinchart
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228313.html
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228308.html
+  - Drop (on iMX8MQ) unused csr regmap
+  - Use NWL_MAX_PLATFORM_CLOCKS everywhere
+  - Drop get_unaligned_le32() usage
+  - remove duplicate 'for the' in binding docs
+  - Don't include unused <linux/clk-provider.h>
+  - Don't include unused <linux/component.h>
+  - Drop dpms_mode for tracking state, trust the drm layer on that
+  - Use pm_runtime_put() instead of pm_runtime_put_sync()
+  - Don't overwrite encoder type
+  - Make imx_nwl_platform_data const
+  - Use the reset controller API instead of open coding that platform specific
+    part
+  - Use <linux/bitfield.h> intead of making up our own defines
+  - name mipi_dsi_transfer less generic: nwl_dsi_transfer
+  - ensure clean in .remove by calling mipi_dsi_host_unregister.
+  - prefix constants by NWL_DSI_
+  - properly format transfer_direction enum
+  - simplify platform clock handling
+  - Don't modify state in mode_fixup() and use mode_set() instead
+  - Drop bridge detach(), already handle by nwl_dsi_host_detach()
+  - Drop USE_*_QUIRK() macros
+- Drop (for now) unused clock defnitions. 'pixel' and 'bypass' clock will be
+  used for i.MX8 SoCs but since they're unused atm drop the definitions - but
+  keep the logic to enable/disable several clocks in place since we know we'll
+  need it in the future.
+
+Changes from v0:
+- Add quirk for IMQ8MQ silicon B0 revision to not mess with the
+  system reset controller on power down since enable() won't work
+  otherwise.
+- Drop devm_free_irq() handled by the device driver core
+- Disable tx esc clock after the phy power down to unbreak
+  disable/enable (unblank/blank)
+- Add ports to dt binding docs
+- Select GENERIC_PHY_MIPI_DPHY instead of GENERIC_PHY for
+  phy_mipi_dphy_get_default_config
+- Select DRM_MIPI_DSI
+- Include drm_print.h to fix build on next-20190408
+- Drop some debugging messages
+- Newline terminate all DRM_ printouts
+- Turn component driver into a drm bridge
+
+[0]: https://lists.freedesktop.org/archives/dri-devel/2019-May/219484.html
+[1]: https://patchwork.freedesktop.org/series/62822/
+
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Andrzej Hajda <a.hajda@samsung.com>, Neil Armstrong <narmstrong@baylibre.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@siol.net>, Lee Jones <lee.jones@linaro.org>, Guido Günther <agx@sigxcpu.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Robert Chiras <robert.chiras@nxp.com>, Sam Ravnborg <sam@ravnborg.org>, Fabio Estevam <festevam@gmail.com>, Arnd Bergmann <arnd@arndb.de>, Andrzej Hajda <a.hajda@samsung.com>
 
 
+Guido Günther (2):
+  dt-bindings: display/bridge: Add binding for NWL mipi dsi host
+    controller
+  drm/bridge: Add NWL MIPI DSI host controller support
+
+ .../bindings/display/bridge/nwl-dsi.yaml      |  176 +++
+ drivers/gpu/drm/bridge/Kconfig                |   16 +
+ drivers/gpu/drm/bridge/Makefile               |    3 +
+ drivers/gpu/drm/bridge/nwl-dsi.c              | 1180 +++++++++++++++++
+ drivers/gpu/drm/bridge/nwl-dsi.h              |  144 ++
+ 5 files changed, 1519 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi.c
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi.h
 
 -- 
-~Randy
+2.23.0.rc1
+
