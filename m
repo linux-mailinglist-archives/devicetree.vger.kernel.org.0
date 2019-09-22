@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 808CABA5C1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 21:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF2A2BA5ED
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 21:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389237AbfIVSp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 14:45:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41076 "EHLO mail.kernel.org"
+        id S2390154AbfIVSqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 14:46:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42996 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389230AbfIVSp0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 14:45:26 -0400
+        id S2390149AbfIVSqn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Sep 2019 14:46:43 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0BC82214AF;
-        Sun, 22 Sep 2019 18:45:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id AEFA1214AF;
+        Sun, 22 Sep 2019 18:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569177925;
-        bh=JJNj1JIfEKumpLPmvbYYR+Yiy/6Lw903RFyWTOdYqXQ=;
+        s=default; t=1569178002;
+        bh=laBXdjhEBj/+X/JVTuEkEsHnRzQeu89qrZqIqosxvkg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JAUNqdeGnHnuxk1NCwc+3kwPPMBMsvRZicL3pL18o9IfUIIjoMnSRHXRU4+QHuzff
-         IcPLJi+LEn4ZXVGqLvLKlLQwVJUbbUuar24MS8x62h1LeHPwDGq8cmq89aqH1XDc28
-         ZId6hwUyN6vEequ/hM+1V/9g74UaKgbuuEBn18J4=
+        b=0cjrGVl0lewtS1m9wU/GdJHd0XJoWK56G1vpc80YJzufgkGjN3JFjQnOBM7l/p2jW
+         a5u/zQa1A6/JnD+r7cu7WhE5jTT/eneGJToYABRJk2H15y02YRHzQaLDYPvF791a0L
+         /keOVVhk3Wnn6WyARXPjujcuR8Zsf9ceM+fcV3SI=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Anson Huang <Anson.Huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.3 037/203] arm64: dts: imx8mq: Correct OPP table according to latest datasheet
-Date:   Sun, 22 Sep 2019 14:41:03 -0400
-Message-Id: <20190922184350.30563-37-sashal@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.3 091/203] arm64: dts: qcom: qcs404-evb: Mark WCSS clocks protected
+Date:   Sun, 22 Sep 2019 14:41:57 -0400
+Message-Id: <20190922184350.30563-91-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190922184350.30563-1-sashal@kernel.org>
 References: <20190922184350.30563-1-sashal@kernel.org>
@@ -44,59 +45,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-[ Upstream commit 9eced3a2f224a62a233761e8af18c907c532e192 ]
+[ Upstream commit 54d895bea43c94f31304d59f82d755b7f4b59e7c ]
 
-According to latest datasheet (Rev.1, 10/2018) from below links,
-in the consumer datasheet, 1.5GHz is mentioned as highest opp but
-depends on speed grading fuse, and in the industrial datasheet,
-1.3GHz is mentioned as highest opp but depends on speed grading
-fuse. 1.5GHz and 1.3GHz opp use same voltage, so no need for
-consumer part to support 1.3GHz opp, with same voltage, CPU should
-run at highest frequency in order to go into idle as quick as
-possible, this can save power.
+'7d0c76bdf227 ("clk: qcom: Add WCSS gcc clock control for QCS404")'
+introduces two new clocks to gcc. These are not used before
+clk_disable_unused() and as such the clock framework tries to disable
+them.
 
-That means for consumer part, 1GHz/1.5GHz are supported, for
-industrial part, 800MHz/1.3GHz are supported, and then check the
-speed grading fuse to limit the highest CPU frequency further.
-Correct the market segment bits in opp table to make them work
-according to datasheets.
+But on the EVB these registers are only accessible through TrustZone, so
+these clocks must be marked as "protected" to prevent the clock code
+from touching them.
 
-https://www.nxp.com/docs/en/data-sheet/IMX8MDQLQIEC.pdf
-https://www.nxp.com/docs/en/data-sheet/IMX8MDQLQCEC.pdf
+Numerical values are used as the constants are not yet available in a
+common tree.
 
-Fixes: 12629c5c3749 ("arm64: dts: imx8mq: Add cpu speed grading and all OPPs")
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Reviewed-by: Leonard Crestez <leonard.crestez@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
+Reported-by: Mark Brown <broonie@kernel.org>
+Reported-by: Niklas Cassel <niklas.cassel@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 52aae341d0da5..d1f4eb197af26 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -169,15 +169,14 @@
- 		opp-1300000000 {
- 			opp-hz = /bits/ 64 <1300000000>;
- 			opp-microvolt = <1000000>;
--			opp-supported-hw = <0xc>, <0x7>;
-+			opp-supported-hw = <0xc>, <0x4>;
- 			clock-latency-ns = <150000>;
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+index 11c0a7137823d..db6df76e97a1a 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+@@ -61,7 +61,9 @@
+ 	protected-clocks = <GCC_BIMC_CDSP_CLK>,
+ 			   <GCC_CDSP_CFG_AHB_CLK>,
+ 			   <GCC_CDSP_BIMC_CLK_SRC>,
+-			   <GCC_CDSP_TBU_CLK>;
++			   <GCC_CDSP_TBU_CLK>,
++			   <141>, /* GCC_WCSS_Q6_AHB_CLK */
++			   <142>; /* GCC_WCSS_Q6_AXIM_CLK */
+ };
  
- 		opp-1500000000 {
- 			opp-hz = /bits/ 64 <1500000000>;
- 			opp-microvolt = <1000000>;
--			/* Consumer only but rely on speed grading */
--			opp-supported-hw = <0x8>, <0x7>;
-+			opp-supported-hw = <0x8>, <0x3>;
- 			clock-latency-ns = <150000>;
- 		};
- 	};
+ &pms405_spmi_regulators {
 -- 
 2.20.1
 
