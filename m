@@ -2,95 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C20BBA136
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 08:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA46BBA148
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 08:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727577AbfIVGEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 02:04:34 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:35237 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727453AbfIVGEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 02:04:34 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 46bcNc4NSLz1rK4Q;
-        Sun, 22 Sep 2019 08:04:32 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 46bcNc4BHCz1qqkb;
-        Sun, 22 Sep 2019 08:04:32 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id MDlRqTc9Cnk6; Sun, 22 Sep 2019 08:04:31 +0200 (CEST)
-X-Auth-Info: ql7TW5oEUst6fnsIVESQC8zKpMvwzu2qLWE9+T/FRL8=
-Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Sun, 22 Sep 2019 08:04:31 +0200 (CEST)
-Received: from pollux.denx.de (pollux [192.168.1.1])
-        by mail-internal.denx.de (Postfix) with ESMTP id 0F7B618530C;
-        Sun, 22 Sep 2019 08:04:05 +0200 (CEST)
-Received: by pollux.denx.de (Postfix, from userid 515)
-        id 0B2FA1A0097; Sun, 22 Sep 2019 08:04:05 +0200 (CEST)
-From:   Heiko Schocher <hs@denx.de>
-To:     linux-kernel@vger.kernel.org
-Cc:     Heiko Schocher <hs@denx.de>, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 1/2] misc: add cc1101 devicetree binding
-Date:   Sun, 22 Sep 2019 08:03:55 +0200
-Message-Id: <20190922060356.58763-2-hs@denx.de>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190922060356.58763-1-hs@denx.de>
-References: <20190922060356.58763-1-hs@denx.de>
+        id S1727655AbfIVGzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 02:55:53 -0400
+Received: from smtp-fw-6001.amazon.com ([52.95.48.154]:63907 "EHLO
+        smtp-fw-6001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727640AbfIVGzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 02:55:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1569135352; x=1600671352;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=gWgdLrARls0GrnyzF+OrQtm8H+2wz1GFIztrAN9r0t0=;
+  b=YOa1vj/dmMitq29uqqFrdO/BUbVwqk5ugtNDaYbb1c17kRsGHP8+Jn82
+   26usevx4I7B6isNeQ9UvB/PTWC2gHgXNZp7qd7AHlfG3VJ/Z5xAaHgZGV
+   n7Gnu5d9heRNHszrhtKuh2LQh1Gv+C2STBSP7dI5bsPfZDIUFVgYlg8gT
+   s=;
+X-IronPort-AV: E=Sophos;i="5.64,535,1559520000"; 
+   d="scan'208";a="416736677"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1d-9ec21598.us-east-1.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6001.iad6.amazon.com with ESMTP; 22 Sep 2019 06:55:49 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
+        by email-inbound-relay-1d-9ec21598.us-east-1.amazon.com (Postfix) with ESMTPS id 68832A22E2;
+        Sun, 22 Sep 2019 06:55:49 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Sun, 22 Sep 2019 06:55:48 +0000
+Received: from [10.125.238.52] (10.43.161.176) by EX13D01EUB001.ant.amazon.com
+ (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Sun, 22 Sep
+ 2019 06:55:42 +0000
+Subject: Re: [UNVERIFIED SENDER] Re: [UNVERIFIED SENDER] Re: [PATCH v2 2/3]
+ soc: amazon: al-pos: Introduce Amazon's Annapurna Labs POS driver
+To:     James Morse <james.morse@arm.com>
+CC:     Marc Zyngier <maz@kernel.org>, <robh+dt@kernel.org>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <mark.rutland@arm.com>, <nicolas.ferre@microchip.com>,
+        <mchehab+samsung@kernel.org>, <shawn.lin@rock-chips.com>,
+        <gregkh@linuxfoundation.org>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1568142310-17622-1-git-send-email-talel@amazon.com>
+ <1568142310-17622-3-git-send-email-talel@amazon.com>
+ <86d0g6syva.wl-maz@kernel.org>
+ <3205f7ae-5568-c064-23ac-ea726246173b@amazon.com>
+ <865zlxsxtd.wl-maz@kernel.org>
+ <36f19b3f-46d3-f6d0-3681-71e3a9bb52ce@amazon.com>
+ <93e5ac72-13e1-4672-16f0-62ee6b8a8390@arm.com>
+From:   "Shenhar, Talel" <talel@amazon.com>
+Message-ID: <dde86fec-ca92-a2a9-2d63-42c33c8594b0@amazon.com>
+Date:   Sun, 22 Sep 2019 09:55:36 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <93e5ac72-13e1-4672-16f0-62ee6b8a8390@arm.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.43.161.176]
+X-ClientProxiedBy: EX13D17UWC001.ant.amazon.com (10.43.162.188) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add devicetree binding for cc1101 misc driver.
 
-Signed-off-by: Heiko Schocher <hs@denx.de>
----
+On 9/19/2019 5:42 PM, James Morse wrote:
+> Hi guys,
+>
+> On 12/09/2019 10:19, Shenhar, Talel wrote:
+>> On 9/12/2019 11:50 AM, Marc Zyngier wrote:
+>>> On Thu, 12 Sep 2019 07:50:03 +0100,
+>>> "Shenhar, Talel" <talel@amazon.com> wrote:
+>>>> On 9/11/2019 5:15 PM, Marc Zyngier wrote:
+>>>>> On Tue, 10 Sep 2019 20:05:09 +0100,
+>>>>> Talel Shenhar <talel@amazon.com> wrote:
+>>>>>
+>> James, will love your input from EDAC point of view, does it make sense to plug
+>> un-correctable only event to EDAC?
+> I think this device is an example of something like a "Fabric switch units" in
+> Documentation/driver-api/edac.rst. It makes sense that it should be described as a
+> 'device' to edac. You can then use the existing user-space tools to control/report/monitor
+> the values.
 
- .../devicetree/bindings/misc/cc1101.txt       | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/cc1101.txt
+Thank you James,
 
-diff --git a/Documentation/devicetree/bindings/misc/cc1101.txt b/Documentation/devicetree/bindings/misc/cc1101.txt
-new file mode 100644
-index 0000000000000..afea6acf4a9c5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/cc1101.txt
-@@ -0,0 +1,27 @@
-+driver cc1101 Low-Power Sub-1 GHz RF Transceiver chip from Texas
-+Instruments.
-+
-+Requires node properties:
-+- compatible : should be "ti,cc1101";
-+- reg        : Chip select address of device, see:
-+               Documentation/devicetree/bindings/spi/spi-bus.txt
-+- gpios      : list of 2 gpios, first gpio is for GDO0 pin
-+               second for GDO2 pin, see more:
-+               Documentation/devicetree/bindings/gpio/gpio.txt
-+
-+Recommended properties:
-+ - spi-max-frequency: Definition as per
-+                Documentation/devicetree/bindings/spi/spi-bus.txt
-+ - freq       : used spi frequency for communication with cc1101 chip
-+
-+example:
-+
-+&ecspi4 {
-+        cc1101@0 {
-+                compatible = "ti,cc1101";
-+                spi-max-frequency = <10000000>;
-+                reg = <0>;
-+                freq = <5000000>;
-+                gpios = <&gpio2 11 GPIO_ACTIVE_HIGH &gpio5 8 GPIO_ACTIVE_HIGH>;
-+        };
-+};
--- 
-2.21.0
+Will port this logic to be edac device.
 
+>
+>
+> Thanks,
+>
+> James
