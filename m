@@ -2,98 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA46BBA148
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 08:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A29BA1C1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 12:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727655AbfIVGzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 02:55:53 -0400
-Received: from smtp-fw-6001.amazon.com ([52.95.48.154]:63907 "EHLO
-        smtp-fw-6001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727640AbfIVGzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 02:55:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1569135352; x=1600671352;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=gWgdLrARls0GrnyzF+OrQtm8H+2wz1GFIztrAN9r0t0=;
-  b=YOa1vj/dmMitq29uqqFrdO/BUbVwqk5ugtNDaYbb1c17kRsGHP8+Jn82
-   26usevx4I7B6isNeQ9UvB/PTWC2gHgXNZp7qd7AHlfG3VJ/Z5xAaHgZGV
-   n7Gnu5d9heRNHszrhtKuh2LQh1Gv+C2STBSP7dI5bsPfZDIUFVgYlg8gT
-   s=;
-X-IronPort-AV: E=Sophos;i="5.64,535,1559520000"; 
-   d="scan'208";a="416736677"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1d-9ec21598.us-east-1.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6001.iad6.amazon.com with ESMTP; 22 Sep 2019 06:55:49 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
-        by email-inbound-relay-1d-9ec21598.us-east-1.amazon.com (Postfix) with ESMTPS id 68832A22E2;
-        Sun, 22 Sep 2019 06:55:49 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Sun, 22 Sep 2019 06:55:48 +0000
-Received: from [10.125.238.52] (10.43.161.176) by EX13D01EUB001.ant.amazon.com
- (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Sun, 22 Sep
- 2019 06:55:42 +0000
-Subject: Re: [UNVERIFIED SENDER] Re: [UNVERIFIED SENDER] Re: [PATCH v2 2/3]
- soc: amazon: al-pos: Introduce Amazon's Annapurna Labs POS driver
-To:     James Morse <james.morse@arm.com>
-CC:     Marc Zyngier <maz@kernel.org>, <robh+dt@kernel.org>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <mark.rutland@arm.com>, <nicolas.ferre@microchip.com>,
-        <mchehab+samsung@kernel.org>, <shawn.lin@rock-chips.com>,
-        <gregkh@linuxfoundation.org>, <dwmw@amazon.co.uk>,
-        <benh@kernel.crashing.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1568142310-17622-1-git-send-email-talel@amazon.com>
- <1568142310-17622-3-git-send-email-talel@amazon.com>
- <86d0g6syva.wl-maz@kernel.org>
- <3205f7ae-5568-c064-23ac-ea726246173b@amazon.com>
- <865zlxsxtd.wl-maz@kernel.org>
- <36f19b3f-46d3-f6d0-3681-71e3a9bb52ce@amazon.com>
- <93e5ac72-13e1-4672-16f0-62ee6b8a8390@arm.com>
-From:   "Shenhar, Talel" <talel@amazon.com>
-Message-ID: <dde86fec-ca92-a2a9-2d63-42c33c8594b0@amazon.com>
-Date:   Sun, 22 Sep 2019 09:55:36 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.0
+        id S1728140AbfIVKYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 06:24:15 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:35130 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727492AbfIVKYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 06:24:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=xLiXZz7ulDDbMepjtUEDk/czdplbAPrLVsiUAga50wQ=; b=n+DGehhQ0RbNTVJJuJ0+13oRC
+        DHFvF3/9U17e5nVkuqL3nFLPMrqQoctaZ4ailL1SnuHK/GeA7ku+b0QtTjNb+uvv1UL1BGaJnQGe7
+        I/r6j0M4laB44+NXa7tqpke55v3XrDyk/I+p04uK60s2L7tLSQi+YPwXM/LJm6orSmMW/0tjEWR37
+        qDiM72wn84jyAlcpuSSDuOJEAlerhGeeiM+ScxV//+8flhv3GexfoqNyxA3za5V5jO2Xei8KXB5fV
+        9FwtXCQzpMLdl0x+EhVafyo/m8Mh96SyqXnzKgCkiJKDqY6Mphl+pbHdYbA5y2nmzSz/C8ST43Ob+
+        ZwjeKJgLA==;
+Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:35104)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iBz20-0006RF-Dv; Sun, 22 Sep 2019 11:23:52 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iBz1p-0007e5-Px; Sun, 22 Sep 2019 11:23:41 +0100
+Date:   Sun, 22 Sep 2019 11:23:41 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Robin Murphy <robin.murphy@arm.com>,
+        dann frazier <dann.frazier@canonical.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mmc@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: [PATCH 0/3] Fix sdhci-of-esdhc DMA coherency
+Message-ID: <20190922102341.GO25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <93e5ac72-13e1-4672-16f0-62ee6b8a8390@arm.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.43.161.176]
-X-ClientProxiedBy: EX13D17UWC001.ant.amazon.com (10.43.162.188) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 9/19/2019 5:42 PM, James Morse wrote:
-> Hi guys,
->
-> On 12/09/2019 10:19, Shenhar, Talel wrote:
->> On 9/12/2019 11:50 AM, Marc Zyngier wrote:
->>> On Thu, 12 Sep 2019 07:50:03 +0100,
->>> "Shenhar, Talel" <talel@amazon.com> wrote:
->>>> On 9/11/2019 5:15 PM, Marc Zyngier wrote:
->>>>> On Tue, 10 Sep 2019 20:05:09 +0100,
->>>>> Talel Shenhar <talel@amazon.com> wrote:
->>>>>
->> James, will love your input from EDAC point of view, does it make sense to plug
->> un-correctable only event to EDAC?
-> I think this device is an example of something like a "Fabric switch units" in
-> Documentation/driver-api/edac.rst. It makes sense that it should be described as a
-> 'device' to edac. You can then use the existing user-space tools to control/report/monitor
-> the values.
+The following patch set is a result of looking at the ADMA errors
+observed on SolidRun's LX2160A board, caused by coherency mismatch
+between DT and hardware.
 
-Thank you James,
+The first patch improves the debugging by dumping the ADMA table
+using the DMA address, which can be compared with the DMA address
+reported in the register dump.  It also prints the interrupt status
+that we read, whereas the register dump contains the _cleared_
+interrupt status.
 
-Will port this logic to be edac device.
+The second patch modifies sdhci-of-esdhc to set the DMA snoop bit
+depending on whether DT marks the device as coherent or not.  With
+this patch applied, driver will now set the hardware to match the
+contents of DT, rather than always DMA snooping.  As explained by
+Robin, if the hardware snoops the CPU caches, but the DMA API layer
+does not expect this, the hardware can read stale data.  The hardware
+state and the DMA API must always agree wrt this, for the sake of
+data integrity.  Mismatch risks substantial filesystem corruption.
 
->
->
-> Thanks,
->
-> James
+The third patch marks the LX2160A esdhc devices as dma-coherent.
+Other users of the driver are not touched; I do not have the
+information to know whether DMA snooping (coherency) is available
+on other SoCs using this driver.  However, given the risk of
+filesystem corruption, it is important no matter what that the
+DMA API layer and the hardware agree - even if it means defaulting
+to being non-coherent.
+
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  2 ++
+ drivers/mmc/host/sdhci-of-esdhc.c              |  7 ++++++-
+ drivers/mmc/host/sdhci.c                       | 15 ++++++++++-----
+ 3 files changed, 18 insertions(+), 6 deletions(-)
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
