@@ -2,95 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A29BA1C1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 12:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E908BA1D4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 12:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728140AbfIVKYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 06:24:15 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:35130 "EHLO
+        id S1728224AbfIVK10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 06:27:26 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:35236 "EHLO
         pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727492AbfIVKYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 06:24:14 -0400
+        with ESMTP id S1728182AbfIVK10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 06:27:26 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
-        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=xLiXZz7ulDDbMepjtUEDk/czdplbAPrLVsiUAga50wQ=; b=n+DGehhQ0RbNTVJJuJ0+13oRC
-        DHFvF3/9U17e5nVkuqL3nFLPMrqQoctaZ4ailL1SnuHK/GeA7ku+b0QtTjNb+uvv1UL1BGaJnQGe7
-        I/r6j0M4laB44+NXa7tqpke55v3XrDyk/I+p04uK60s2L7tLSQi+YPwXM/LJm6orSmMW/0tjEWR37
-        qDiM72wn84jyAlcpuSSDuOJEAlerhGeeiM+ScxV//+8flhv3GexfoqNyxA3za5V5jO2Xei8KXB5fV
-        9FwtXCQzpMLdl0x+EhVafyo/m8Mh96SyqXnzKgCkiJKDqY6Mphl+pbHdYbA5y2nmzSz/C8ST43Ob+
-        ZwjeKJgLA==;
-Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:35104)
+        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
+        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
+        In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=rDaPGjegBkRVuWNVB5u9BDngFnZRonTrW3ESE1XJei8=; b=EY+WmVSu/Ub7XpvofTXmI5CDOu
+        6W7roQ9Qo7EdAz/jJyJQjGdLMySI5JJRMg6LiXE6B2kXFsHZUMiaBMrcRBcLMeTp5bxzqGou/dQ42
+        LUb4VFuhil0W96uStuANvpCSu98MzK06dRHWIKPVi1gWaH68UjAkHGjOrJR9LdXQ5I5uPycju8407
+        0C2IJ5dEx5u/RtOwp5X/lweaTdbEZzWuEPK2fNEdJoWA7GHDTDDg3AifsPl/vB3bdYBwsGIRv+WNE
+        5idnvbjmhBVcYDmuKB9myNmNRg7fNYZUZyuUOr6QL3u61cbbnQG67IwVhsJZqSvUkJ+pPIhXOLGeR
+        U7+5GqVA==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:33946 helo=rmk-PC.armlinux.org.uk)
         by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
         (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1iBz20-0006RF-Dv; Sun, 22 Sep 2019 11:23:52 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1iBz1p-0007e5-Px; Sun, 22 Sep 2019 11:23:41 +0100
-Date:   Sun, 22 Sep 2019 11:23:41 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1iBz57-0006Se-LB; Sun, 22 Sep 2019 11:27:05 +0100
+Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.82_1-5b7a7c0-XX)
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1iBz55-0008Mj-CX; Sun, 22 Sep 2019 11:27:03 +0100
+In-Reply-To: <20190922102341.GO25745@shell.armlinux.org.uk>
+References: <20190922102341.GO25745@shell.armlinux.org.uk>
+From:   Russell King <rmk+kernel@armlinux.org.uk>
 To:     Robin Murphy <robin.murphy@arm.com>,
         dann frazier <dann.frazier@canonical.com>,
         Will Deacon <will.deacon@arm.com>,
         Nicolin Chen <nicoleotsuka@gmail.com>,
         "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: [PATCH 0/3] Fix sdhci-of-esdhc DMA coherency
-Message-ID: <20190922102341.GO25745@shell.armlinux.org.uk>
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma coherent
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
+Date:   Sun, 22 Sep 2019 11:27:03 +0100
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The LX2160A esdhc controllers are setup by the driver to be DMA
+coherent, but without marking them as such in DT, Linux thinks they
+are not.  This can lead to random sporadic DMA errors, even to the
+extent of preventing boot, such as:
 
-The following patch set is a result of looking at the ADMA errors
-observed on SolidRun's LX2160A board, caused by coherency mismatch
-between DT and hardware.
+mmc0: ADMA error
+mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
+mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00002202
+mmc0: sdhci: Blk size:  0x00000008 | Blk cnt:  0x00000001
+mmc0: sdhci: Argument:  0x00000000 | Trn mode: 0x00000013
+mmc0: sdhci: Present:   0x01f50008 | Host ctl: 0x00000038
+mmc0: sdhci: Power:     0x00000003 | Blk gap:  0x00000000
+mmc0: sdhci: Wake-up:   0x00000000 | Clock:    0x000040d8
+mmc0: sdhci: Timeout:   0x00000003 | Int stat: 0x00000001
+mmc0: sdhci: Int enab:  0x037f108f | Sig enab: 0x037f108b
+mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00002202
+mmc0: sdhci: Caps:      0x35fa0000 | Caps_1:   0x0000af00
+mmc0: sdhci: Cmd:       0x0000333a | Max curr: 0x00000000
+mmc0: sdhci: Resp[0]:   0x00000920 | Resp[1]:  0x001d8a33
+mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x3f400e00
+mmc0: sdhci: Host ctl2: 0x00000000
+mmc0: sdhci: ADMA Err:  0x00000009 | ADMA Ptr: 0x000000236d43820c
+mmc0: sdhci: ============================================
+mmc0: error -5 whilst initialising SD card
 
-The first patch improves the debugging by dumping the ADMA table
-using the DMA address, which can be compared with the DMA address
-reported in the register dump.  It also prints the interrupt status
-that we read, whereas the register dump contains the _cleared_
-interrupt status.
+These are caused by the device's descriptor fetch hitting speculatively
+loaded CPU cache lines that the CPU does not see through the normal,
+non-cacheable DMA coherent mapping that it uses for non-coherent
+devices.
 
-The second patch modifies sdhci-of-esdhc to set the DMA snoop bit
-depending on whether DT marks the device as coherent or not.  With
-this patch applied, driver will now set the hardware to match the
-contents of DT, rather than always DMA snooping.  As explained by
-Robin, if the hardware snoops the CPU caches, but the DMA API layer
-does not expect this, the hardware can read stale data.  The hardware
-state and the DMA API must always agree wrt this, for the sake of
-data integrity.  Mismatch risks substantial filesystem corruption.
+DT and the device must agree wrt whether the device is DMA coherent or
+not.
 
-The third patch marks the LX2160A esdhc devices as dma-coherent.
-Other users of the driver are not touched; I do not have the
-information to know whether DMA snooping (coherency) is available
-on other SoCs using this driver.  However, given the risk of
-filesystem corruption, it is important no matter what that the
-DMA API layer and the hardware agree - even if it means defaulting
-to being non-coherent.
+Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+---
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
- arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  2 ++
- drivers/mmc/host/sdhci-of-esdhc.c              |  7 ++++++-
- drivers/mmc/host/sdhci.c                       | 15 ++++++++++-----
- 3 files changed, 18 insertions(+), 6 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index 36b153e3da47..508af23edef0 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -593,6 +593,7 @@
+ 			reg = <0x0 0x2140000 0x0 0x10000>;
+ 			interrupts = <0 28 0x4>; /* Level high type */
+ 			clocks = <&clockgen 4 1>;
++			dma-coherent;
+ 			voltage-ranges = <1800 1800 3300 3300>;
+ 			sdhci,auto-cmd12;
+ 			little-endian;
+@@ -605,6 +606,7 @@
+ 			reg = <0x0 0x2150000 0x0 0x10000>;
+ 			interrupts = <0 63 0x4>; /* Level high type */
+ 			clocks = <&clockgen 4 1>;
++			dma-coherent;
+ 			voltage-ranges = <1800 1800 3300 3300>;
+ 			sdhci,auto-cmd12;
+ 			broken-cd;
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+2.7.4
+
