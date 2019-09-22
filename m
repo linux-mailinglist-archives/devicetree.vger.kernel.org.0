@@ -2,99 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB4CBA8F2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 21:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AC31BA8CB
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 21:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730508AbfIVTJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 15:09:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33932 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394979AbfIVS7B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 14:59:01 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 04A7C2190F;
-        Sun, 22 Sep 2019 18:58:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569178741;
-        bh=O45hS1XFtek78qi/yy2DUdGSAsD3n7PiKl6lfkTw7f8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MGd22Cr6bZQ73OO9V1oPXyFvK7mriGl4OC6MQ071igkN97ZdA4vRRMAzWzLMIipYm
-         6DYmHeE2R66CK55W7KZyxUpy9tM6d1K239hiQIpPMCcLre6QqkQ4N4pQWxoT9j3rNv
-         RiEnO7EQeqWto1n1tVfJ6d1zckuiisNxZoTMq9fg=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 67/89] ARM: dts: exynos: Mark LDO10 as always-on on Peach Pit/Pi Chromebooks
-Date:   Sun, 22 Sep 2019 14:56:55 -0400
-Message-Id: <20190922185717.3412-67-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190922185717.3412-1-sashal@kernel.org>
-References: <20190922185717.3412-1-sashal@kernel.org>
+        id S2393969AbfIVTIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 15:08:13 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:34988 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393940AbfIVTIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 15:08:13 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 205so7670532pfw.2;
+        Sun, 22 Sep 2019 12:08:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=j6ihdIbEezb6H/uIwxr2v6+zkYRv2caNc+xhgdDtRXQ=;
+        b=A5w0lOOiaLMZXHPxikGhEOSTfhr1n2Ew1OmTFFD9NDyT+E9JHjZokik/1GRBxb7umo
+         gKMYTBXdwX4tXnDnOP3IEIjqKRwtwF5cjDJ+SrwnBIFHbsb8g15mNcfTfEx1SSphoJNi
+         XJLKbSy3I1Mf5Tn2hWUsMzHHBhVKis4Jn+R+5Ox/eAOuQdAl2rz32GOCeQAblZcICe6v
+         yN0LOe2/Hw4hUYCbJIiFpaXVnY7EOvVqkdWsvGYv7CpLWfqh3XzERP7wrJdBacrdT0AV
+         W2pryA/XYRChTTrqUXA0dipaxjeVXASXiVLG2XsqtXRpBGZ2CN2lP4rsREZNs+gpFt1A
+         ayqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=j6ihdIbEezb6H/uIwxr2v6+zkYRv2caNc+xhgdDtRXQ=;
+        b=qIUAo5TC0Qz8CrPS96DEdCkTNEYBUyQubHb52WtvjH42Q9vjM2v29jWNJmJPfkbDxi
+         KaFMRYEKXefdETqZtnKvfS8OfFVQLQKbaY3g0EDbSdKK2xtiUWVT3cuMvnxf+MzDb001
+         2mZOg25ADtBRYH0nWGM38Tbr/sLNi+ru4j4Z5/Lh+e4ojs7zw2TB5yPKA/Sl1xwv6h6t
+         jr30UB5M9sP6VxMUukRFlGYEicaABPw824C8jMEFa8MhGZPrpQ60fI29G1MZQtAAE3ML
+         ezFFauq5cCDujbKXdQjcfaFGu0apMFKAQSZfx2ahOYMVI36c8k6phjHjDU9xE0CCy5Uu
+         oEnw==
+X-Gm-Message-State: APjAAAU6AZfb8hi4eJL3Yz0jozb3vcCeicwjJhX1GmHv1wT2qGkZ8kl+
+        f/RoCH43ca2ucXIJ/xROwLN1kcBYU/0=
+X-Google-Smtp-Source: APXvYqxmtiztMzG+4DPbL6NnXBHk3TmKqs0UNOa6z+LVEnLYUvwELIJZ6Cfel81bmwtktrvay//rYQ==
+X-Received: by 2002:a63:d909:: with SMTP id r9mr25741098pgg.381.1569179291974;
+        Sun, 22 Sep 2019 12:08:11 -0700 (PDT)
+Received: from [10.230.28.130] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id fa24sm3565152pjb.13.2019.09.22.12.08.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Sep 2019 12:08:11 -0700 (PDT)
+Subject: Re: [PATCH v2 5/5] irqchip/irq-bcm7038-l1: Support brcm,int-fwd-mask
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>
+References: <20190913191542.9908-1-f.fainelli@gmail.com>
+ <20190913191542.9908-6-f.fainelli@gmail.com> <20190922133805.2cdf2d99@why>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <260e61b8-a083-743e-43fc-70b9ea644e0e@gmail.com>
+Date:   Sun, 22 Sep 2019 12:08:10 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+In-Reply-To: <20190922133805.2cdf2d99@why>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Szyprowski <m.szyprowski@samsung.com>
 
-[ Upstream commit 5b0eeeaa37615df37a9a30929b73e9defe61ca84 ]
 
-Commit aff138bf8e37 ("ARM: dts: exynos: Add TMU nodes regulator supply
-for Peach boards") assigned LDO10 to Exynos Thermal Measurement Unit,
-but it turned out that it supplies also some other critical parts and
-board freezes/crashes when it is turned off.
+On 9/22/2019 5:38 AM, Marc Zyngier wrote:
+> On Fri, 13 Sep 2019 12:15:42 -0700
+> Florian Fainelli <f.fainelli@gmail.com> wrote:
+> 
+>> On some specific chips like 7211 we need to leave some interrupts
+>> untouched/forwarded to the VPU which is another agent in the system
+>> making use of that interrupt controller hardware (goes to both ARM GIC
+>> and VPU L1 interrupt controller). Make that possible by using the
+>> existing brcm,int-fwd-mask property.
+>>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>  drivers/irqchip/irq-bcm7038-l1.c | 15 +++++++++++++--
+>>  1 file changed, 13 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/irqchip/irq-bcm7038-l1.c b/drivers/irqchip/irq-bcm7038-l1.c
+>> index 0673a44bbdc2..811a34201dd4 100644
+>> --- a/drivers/irqchip/irq-bcm7038-l1.c
+>> +++ b/drivers/irqchip/irq-bcm7038-l1.c
+>> @@ -44,6 +44,7 @@ struct bcm7038_l1_chip {
+>>  	struct list_head	list;
+>>  	u32			wake_mask[MAX_WORDS];
+>>  #endif
+>> +	u32			irq_fwd_mask[MAX_WORDS];
+>>  	u8			affinity[MAX_WORDS * IRQS_PER_WORD];
+>>  };
+>>  
+>> @@ -265,6 +266,7 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>  	resource_size_t sz;
+>>  	struct bcm7038_l1_cpu *cpu;
+>>  	unsigned int i, n_words, parent_irq;
+>> +	int ret;
+>>  
+>>  	if (of_address_to_resource(dn, idx, &res))
+>>  		return -EINVAL;
+>> @@ -278,6 +280,14 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>  	else if (intc->n_words != n_words)
+>>  		return -EINVAL;
+>>  
+>> +	ret = of_property_read_u32_array(dn , "brcm,int-fwd-mask",
+> 
+> What is the exact meaning of "fwd"? Forward? FirmWare Dementia?
 
-The mentioned commit made Exynos TMU a consumer of that regulator and in
-typical case Exynos TMU driver keeps it enabled from early boot. However
-there are such configurations (example is multi_v7_defconfig), in which
-some of the regulators are compiled as modules and are not available
-from early boot. In such case it may happen that LDO10 is turned off by
-regulator core, because it has no consumers yet (in this case consumer
-drivers cannot get it, because the supply regulators for it are not yet
-available). This in turn causes the board to crash. This patch restores
-'always-on' property for the LDO10 regulator.
+Here it is meant to be "forward", we have defined this property name
+before for irq-bcm7120-l2.c and felt like reusing the same name to avoid
+multiplying properties would be appropriate, see patch #4. If you prefer
+something named brcm,firmware-configured-mask, let me know.
 
-Fixes: aff138bf8e37 ("ARM: dts: exynos: Add TMU nodes regulator supply for Peach boards")
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/exynos5420-peach-pit.dts | 1 +
- arch/arm/boot/dts/exynos5800-peach-pi.dts  | 1 +
- 2 files changed, 2 insertions(+)
+> 
+>> +					 intc->irq_fwd_mask, n_words);
+>> +	if (ret != 0 && ret != -EINVAL) {
+>> +		/* property exists but has the wrong number of words */
+>> +		pr_err("invalid brcm,int-fwd-mask property\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>>  	cpu = intc->cpus[idx] = kzalloc(sizeof(*cpu) + n_words * sizeof(u32),
+>>  					GFP_KERNEL);
+>>  	if (!cpu)
+>> @@ -288,8 +298,9 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>  		return -ENOMEM;
+>>  
+>>  	for (i = 0; i < n_words; i++) {
+>> -		l1_writel(0xffffffff, cpu->map_base + reg_mask_set(intc, i));
+>> -		cpu->mask_cache[i] = 0xffffffff;
+>> +		l1_writel(0xffffffff & ~intc->irq_fwd_mask[i],
+>> +			  cpu->map_base + reg_mask_set(intc, i));
+>> +		cpu->mask_cache[i] = 0xffffffff & ~intc->irq_fwd_mask[i];
+> 
+> I seem to remember that (0xffffffff & whatever) == whatever, as long as
+> 'whatever' is a 32bit quantity. So what it this for?
 
-diff --git a/arch/arm/boot/dts/exynos5420-peach-pit.dts b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-index c91eff8475a87..7ccee2cfe4812 100644
---- a/arch/arm/boot/dts/exynos5420-peach-pit.dts
-+++ b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-@@ -426,6 +426,7 @@
- 				regulator-name = "vdd_ldo10";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
- 				regulator-state-mem {
- 					regulator-off-in-suspend;
- 				};
-diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-index daad5d425cf5c..0900b38f60b4f 100644
---- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-+++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-@@ -426,6 +426,7 @@
- 				regulator-name = "vdd_ldo10";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
- 				regulator-state-mem {
- 					regulator-off-in-suspend;
- 				};
+It is 0xffff_ffff & ~whatever here. In the absence of this property
+being specified, the data is all zeroed out, so we would have
+0xffff_ffff & 0xffff_ffff which is 0xffff_ffff. If this property is
+specified, we would have one more or bits set, and it would be e.g.:
+0x100 so we would have 0xffff_ffff & ~(0x100) = 0xffff_feff which is
+what we would want here to preserve whatever the firmware has already
+configured. In hindsight, it may be safer to make sure no one in Linux
+can actually map that interrupt, so we would need something like this in
+addition to what we already have in this patch:
+
+diff --git a/drivers/irqchip/irq-bcm7038-l1.c
+b/drivers/irqchip/irq-bcm7038-l1.c
+index fc75c61233aa..558e74be0d60 100644
+--- a/drivers/irqchip/irq-bcm7038-l1.c
++++ b/drivers/irqchip/irq-bcm7038-l1.c
+@@ -300,6 +300,14 @@ static struct irq_chip bcm7038_l1_irq_chip = {
+ static int bcm7038_l1_map(struct irq_domain *d, unsigned int virq,
+                          irq_hw_number_t hw_irq)
+ {
++       struct bcm7038_l1_chip *intc = d->host_data;
++       int i;
++
++       for (i = 0; i < intc->n_words; i++) {
++               if (intc->irq_fwd_mask[i] & BIT(hw_irq))
++                       return -EINVAL;
++       }
++
+        irq_set_chip_and_handler(virq, &bcm7038_l1_irq_chip,
+handle_level_irq);
+        irq_set_chip_data(virq, d->host_data);
+        irqd_set_single_target(irq_desc_get_irq_data(irq_to_desc(virq)));
 -- 
-2.20.1
-
+Florian
