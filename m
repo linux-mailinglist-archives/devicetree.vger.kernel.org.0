@@ -2,25 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8EEBA3C0
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 20:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EE5FBA432
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 20:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388776AbfIVSoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 14:44:23 -0400
-Received: from mail3-relais-sop.national.inria.fr ([192.134.164.104]:19458
-        "EHLO mail3-relais-sop.national.inria.fr" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388761AbfIVSoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 14:44:22 -0400
-X-IronPort-AV: E=Sophos;i="5.64,537,1559512800"; 
-   d="scan'208";a="320239964"
-Received: from ip-215.net-89-2-7.rev.numericable.fr (HELO hadrien) ([89.2.7.215])
-  by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Sep 2019 20:43:48 +0200
-Date:   Sun, 22 Sep 2019 20:43:48 +0200 (CEST)
-From:   Julia Lawall <julia.lawall@lip6.fr>
-X-X-Sender: jll@hadrien
-To:     =?ISO-8859-15?Q?Guido_G=FCnther?= <agx@sigxcpu.org>
-cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        id S2390169AbfIVSqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 14:46:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42970 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390057AbfIVSqm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Sep 2019 14:46:42 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D46C6208C2;
+        Sun, 22 Sep 2019 18:46:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569178001;
+        bh=Obtjp4ZwBmT/y2TVxxCzMnVGIK54jgwwUKhCZT0umyM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=wo2+l2ko6hl07Ck97ORlyh+Cks+oMevLoSAELWdw8L9XLWBMLPr4GF+UYuIVnlAFw
+         tIUterq1w8susn0/WH+s+Z1QWxYCMPGEkqZ+hjpAv+2X2oCRmzMeGRDoSqYnik1t2v
+         7SbsVXF6P+wDijtSHLtlHDR5jA508tMkDjUqPxUc=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
+        Ilya Ledvich <ilya@compulab.co.il>,
+        Igor Grinberg <grinberg@compulab.co.il>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -28,160 +35,92 @@ cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?ISO-8859-15?Q?Guido_G=FCnther?= <agx@sigxcpu.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
-        kbuild-all@01.org
-Subject: Re: [PATCH v6 2/2] drm/bridge: Add NWL MIPI DSI host controller
- support (fwd)
-Message-ID: <alpine.DEB.2.21.1909222042340.2575@hadrien>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.3 090/203] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
+Date:   Sun, 22 Sep 2019 14:41:56 -0400
+Message-Id: <20190922184350.30563-90-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190922184350.30563-1-sashal@kernel.org>
+References: <20190922184350.30563-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-348580464-1569177829=:2575"
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+From: AndrÃ© Draszik <git@andred.net>
 
---8323329-348580464-1569177829=:2575
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8BIT
+[ Upstream commit 9846a4524ac90b63496580b7ad50674b40d92a8f ]
 
-Hello,
+Recent changes to the atheros at803x driver caused
+ethernet to stop working on this board.
+In particular commit 6d4cd041f0af
+("net: phy: at803x: disable delay only for RGMII mode")
+and commit cd28d1d6e52e
+("net: phy: at803x: Disable phy delay for RGMII mode")
+fix the AR8031 driver to configure the phy's (RX/TX)
+delays as per the 'phy-mode' in the device tree.
 
-Color_format is unsigned, so it won't be less than 0 on line 272.
+This now prevents ethernet from working on this board.
 
-julia
+It used to work before those commits, because the
+AR8031 comes out of reset with RX delay enabled, and
+the at803x driver didn't touch the delay configuration
+at all when "rgmii" mode was selected, and because
+arch/arm/mach-imx/mach-imx7d.c:ar8031_phy_fixup()
+unconditionally enables TX delay.
 
----------- Forwarded message ----------
-Date: Mon, 23 Sep 2019 02:29:34 +0800
-From: kbuild test robot <lkp@intel.com>
-To: kbuild@01.org
-Cc: Julia Lawall <julia.lawall@lip6.fr>
-Subject: Re: [PATCH v6 2/2] drm/bridge: Add NWL MIPI DSI host controller support
+Since above commits ar8031_phy_fixup() also has no
+effect anymore, and the end-result is that all delays
+are disabled in the phy, no ethernet.
 
-CC: kbuild-all@01.org
-In-Reply-To: <c0ac0b203fb65ae7efd1b9b54664b491ca2fb157.1569170717.git.agx@sigxcpu.org>
-References: <c0ac0b203fb65ae7efd1b9b54664b491ca2fb157.1569170717.git.agx@sigxcpu.org>
-TO: "Guido Günther" <agx@sigxcpu.org>
-CC:
+Update the device tree to restore functionality.
 
-Hi "Guido,
-
-I love your patch! Perhaps something to improve:
-
-[auto build test WARNING on linus/master]
-[cannot apply to v5.3 next-20190920]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
-
-url:    https://github.com/0day-ci/linux/commits/Guido-G-nther/drm-bridge-Add-NWL-MIPI-DSI-host-controller-support/20190923-005010
-:::::: branch date: 2 hours ago
-:::::: commit date: 2 hours ago
-
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
-Reported-by: Julia Lawall <julia.lawall@lip6.fr>
-
->> drivers/gpu/drm/bridge/nwl-dsi.c:272:5-17: WARNING: Unsigned expression compared with zero: color_format < 0
-
-# https://github.com/0day-ci/linux/commit/060069512cb50e3218b55005b6cc92b82e0a7856
-git remote add linux-review https://github.com/0day-ci/linux
-git remote update linux-review
-git checkout 060069512cb50e3218b55005b6cc92b82e0a7856
-vim +272 drivers/gpu/drm/bridge/nwl-dsi.c
-
-060069512cb50e Guido Günther 2019-09-22  245
-060069512cb50e Guido Günther 2019-09-22  246  static int nwl_dsi_config_dpi(struct nwl_dsi *dsi)
-060069512cb50e Guido Günther 2019-09-22  247  {
-060069512cb50e Guido Günther 2019-09-22  248  	u32 color_format, mode;
-060069512cb50e Guido Günther 2019-09-22  249  	bool burst_mode;
-060069512cb50e Guido Günther 2019-09-22  250  	int hfront_porch, hback_porch, vfront_porch, vback_porch;
-060069512cb50e Guido Günther 2019-09-22  251  	int hsync_len, vsync_len;
-060069512cb50e Guido Günther 2019-09-22  252
-060069512cb50e Guido Günther 2019-09-22  253  	hfront_porch = dsi->mode.hsync_start - dsi->mode.hdisplay;
-060069512cb50e Guido Günther 2019-09-22  254  	hsync_len = dsi->mode.hsync_end - dsi->mode.hsync_start;
-060069512cb50e Guido Günther 2019-09-22  255  	hback_porch = dsi->mode.htotal - dsi->mode.hsync_end;
-060069512cb50e Guido Günther 2019-09-22  256
-060069512cb50e Guido Günther 2019-09-22  257  	vfront_porch = dsi->mode.vsync_start - dsi->mode.vdisplay;
-060069512cb50e Guido Günther 2019-09-22  258  	vsync_len = dsi->mode.vsync_end - dsi->mode.vsync_start;
-060069512cb50e Guido Günther 2019-09-22  259  	vback_porch = dsi->mode.vtotal - dsi->mode.vsync_end;
-060069512cb50e Guido Günther 2019-09-22  260
-060069512cb50e Guido Günther 2019-09-22  261  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "hfront_porch = %d\n", hfront_porch);
-060069512cb50e Guido Günther 2019-09-22  262  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "hback_porch = %d\n", hback_porch);
-060069512cb50e Guido Günther 2019-09-22  263  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "hsync_len = %d\n", hsync_len);
-060069512cb50e Guido Günther 2019-09-22  264  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "hdisplay = %d\n", dsi->mode.hdisplay);
-060069512cb50e Guido Günther 2019-09-22  265  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "vfront_porch = %d\n", vfront_porch);
-060069512cb50e Guido Günther 2019-09-22  266  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "vback_porch = %d\n", vback_porch);
-060069512cb50e Guido Günther 2019-09-22  267  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "vsync_len = %d\n", vsync_len);
-060069512cb50e Guido Günther 2019-09-22  268  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "vactive = %d\n", dsi->mode.vdisplay);
-060069512cb50e Guido Günther 2019-09-22  269  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "clock = %d kHz\n", dsi->mode.clock);
-060069512cb50e Guido Günther 2019-09-22  270
-060069512cb50e Guido Günther 2019-09-22  271  	color_format = nwl_dsi_get_dpi_pixel_format(dsi->format);
-060069512cb50e Guido Günther 2019-09-22 @272  	if (color_format < 0) {
-060069512cb50e Guido Günther 2019-09-22  273  		DRM_DEV_ERROR(dsi->dev, "Invalid color format 0x%x\n",
-060069512cb50e Guido Günther 2019-09-22  274  			      dsi->format);
-060069512cb50e Guido Günther 2019-09-22  275  		return color_format;
-060069512cb50e Guido Günther 2019-09-22  276  	}
-060069512cb50e Guido Günther 2019-09-22  277  	DRM_DEV_DEBUG_DRIVER(dsi->dev, "pixel fmt = %d\n", dsi->format);
-060069512cb50e Guido Günther 2019-09-22  278
-060069512cb50e Guido Günther 2019-09-22  279  	nwl_dsi_write(dsi, NWL_DSI_INTERFACE_COLOR_CODING, NWL_DSI_DPI_24_BIT);
-060069512cb50e Guido Günther 2019-09-22  280  	nwl_dsi_write(dsi, NWL_DSI_PIXEL_FORMAT, color_format);
-060069512cb50e Guido Günther 2019-09-22  281  	/*
-060069512cb50e Guido Günther 2019-09-22  282  	 * Adjusting input polarity based on the video mode results in
-060069512cb50e Guido Günther 2019-09-22  283  	 * a black screen so always pick active low:
-060069512cb50e Guido Günther 2019-09-22  284  	 */
-060069512cb50e Guido Günther 2019-09-22  285  	nwl_dsi_write(dsi, NWL_DSI_VSYNC_POLARITY,
-060069512cb50e Guido Günther 2019-09-22  286  		      NWL_DSI_VSYNC_POLARITY_ACTIVE_LOW);
-060069512cb50e Guido Günther 2019-09-22  287  	nwl_dsi_write(dsi, NWL_DSI_HSYNC_POLARITY,
-060069512cb50e Guido Günther 2019-09-22  288  		      NWL_DSI_HSYNC_POLARITY_ACTIVE_LOW);
-060069512cb50e Guido Günther 2019-09-22  289
-060069512cb50e Guido Günther 2019-09-22  290  	burst_mode = (dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_BURST) &&
-060069512cb50e Guido Günther 2019-09-22  291  		     !(dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE);
-060069512cb50e Guido Günther 2019-09-22  292
-060069512cb50e Guido Günther 2019-09-22  293  	if (burst_mode) {
-060069512cb50e Guido Günther 2019-09-22  294  		nwl_dsi_write(dsi, NWL_DSI_VIDEO_MODE, NWL_DSI_VM_BURST_MODE);
-060069512cb50e Guido Günther 2019-09-22  295  		nwl_dsi_write(dsi, NWL_DSI_PIXEL_FIFO_SEND_LEVEL, 256);
-060069512cb50e Guido Günther 2019-09-22  296  	} else {
-060069512cb50e Guido Günther 2019-09-22  297  		mode = ((dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE) ?
-060069512cb50e Guido Günther 2019-09-22  298  				NWL_DSI_VM_BURST_MODE_WITH_SYNC_PULSES :
-060069512cb50e Guido Günther 2019-09-22  299  				NWL_DSI_VM_NON_BURST_MODE_WITH_SYNC_EVENTS);
-060069512cb50e Guido Günther 2019-09-22  300  		nwl_dsi_write(dsi, NWL_DSI_VIDEO_MODE, mode);
-060069512cb50e Guido Günther 2019-09-22  301  		nwl_dsi_write(dsi, NWL_DSI_PIXEL_FIFO_SEND_LEVEL,
-060069512cb50e Guido Günther 2019-09-22  302  			      dsi->mode.hdisplay);
-060069512cb50e Guido Günther 2019-09-22  303  	}
-060069512cb50e Guido Günther 2019-09-22  304
-060069512cb50e Guido Günther 2019-09-22  305  	nwl_dsi_write(dsi, NWL_DSI_HFP, hfront_porch);
-060069512cb50e Guido Günther 2019-09-22  306  	nwl_dsi_write(dsi, NWL_DSI_HBP, hback_porch);
-060069512cb50e Guido Günther 2019-09-22  307  	nwl_dsi_write(dsi, NWL_DSI_HSA, hsync_len);
-060069512cb50e Guido Günther 2019-09-22  308
-060069512cb50e Guido Günther 2019-09-22  309  	nwl_dsi_write(dsi, NWL_DSI_ENABLE_MULT_PKTS, 0x0);
-060069512cb50e Guido Günther 2019-09-22  310  	nwl_dsi_write(dsi, NWL_DSI_BLLP_MODE, 0x1);
-060069512cb50e Guido Günther 2019-09-22  311  	nwl_dsi_write(dsi, NWL_DSI_USE_NULL_PKT_BLLP, 0x0);
-060069512cb50e Guido Günther 2019-09-22  312  	nwl_dsi_write(dsi, NWL_DSI_VC, 0x0);
-060069512cb50e Guido Günther 2019-09-22  313
-060069512cb50e Guido Günther 2019-09-22  314  	nwl_dsi_write(dsi, NWL_DSI_PIXEL_PAYLOAD_SIZE, dsi->mode.hdisplay);
-060069512cb50e Guido Günther 2019-09-22  315  	nwl_dsi_write(dsi, NWL_DSI_VACTIVE, dsi->mode.vdisplay - 1);
-060069512cb50e Guido Günther 2019-09-22  316  	nwl_dsi_write(dsi, NWL_DSI_VBP, vback_porch);
-060069512cb50e Guido Günther 2019-09-22  317  	nwl_dsi_write(dsi, NWL_DSI_VFP, vfront_porch);
-060069512cb50e Guido Günther 2019-09-22  318
-060069512cb50e Guido Günther 2019-09-22  319  	return 0;
-060069512cb50e Guido Günther 2019-09-22  320  }
-060069512cb50e Guido Günther 2019-09-22  321
-
+Signed-off-by: AndrÃ© Draszik <git@andred.net>
+CC: Ilya Ledvich <ilya@compulab.co.il>
+CC: Igor Grinberg <grinberg@compulab.co.il>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Mark Rutland <mark.rutland@arm.com>
+CC: Shawn Guo <shawnguo@kernel.org>
+CC: Sascha Hauer <s.hauer@pengutronix.de>
+CC: Pengutronix Kernel Team <kernel@pengutronix.de>
+CC: Fabio Estevam <festevam@gmail.com>
+CC: NXP Linux Team <linux-imx@nxp.com>
+CC: devicetree@vger.kernel.org
+CC: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
---8323329-348580464-1569177829=:2575--
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+index e61567437d73c..62d5e9a4a7818 100644
+--- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+@@ -44,7 +44,7 @@
+ 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
+ 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+ 	assigned-clock-rates = <0>, <100000000>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethphy0>;
+ 	fsl,magic-packet;
+ 	status = "okay";
+@@ -70,7 +70,7 @@
+ 			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
+ 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+ 	assigned-clock-rates = <0>, <100000000>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethphy1>;
+ 	fsl,magic-packet;
+ 	status = "okay";
+-- 
+2.20.1
+
