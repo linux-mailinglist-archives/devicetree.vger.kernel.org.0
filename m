@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EE5FBA432
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 20:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03374BA4CA
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2019 20:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390169AbfIVSqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 14:46:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42970 "EHLO mail.kernel.org"
+        id S2392975AbfIVSvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 14:51:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50132 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390057AbfIVSqm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 14:46:42 -0400
+        id S2392935AbfIVSvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Sep 2019 14:51:54 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D46C6208C2;
-        Sun, 22 Sep 2019 18:46:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8440821D6C;
+        Sun, 22 Sep 2019 18:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569178001;
+        s=default; t=1569178313;
         bh=Obtjp4ZwBmT/y2TVxxCzMnVGIK54jgwwUKhCZT0umyM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wo2+l2ko6hl07Ck97ORlyh+Cks+oMevLoSAELWdw8L9XLWBMLPr4GF+UYuIVnlAFw
-         tIUterq1w8susn0/WH+s+Z1QWxYCMPGEkqZ+hjpAv+2X2oCRmzMeGRDoSqYnik1t2v
-         7SbsVXF6P+wDijtSHLtlHDR5jA508tMkDjUqPxUc=
+        b=I+cA4INjsYAS1GShJtGqcYrBhrskXLy8o7UWphiAk2Tvli/VMoie9VoSapzPfhHci
+         rgfYpJuw1ewFr9y0UDKL7cPMGy1KSH2CJHjcY+1HoWAoSWWs4fHpvgDQs+BlhtlJ19
+         w6m9HtKaPKVz6/sjvea6HfafOmKQi8pNCusD1e4A=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
@@ -37,12 +37,12 @@ Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.3 090/203] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
-Date:   Sun, 22 Sep 2019 14:41:56 -0400
-Message-Id: <20190922184350.30563-90-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.2 081/185] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
+Date:   Sun, 22 Sep 2019 14:47:39 -0400
+Message-Id: <20190922184924.32534-81-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190922184350.30563-1-sashal@kernel.org>
-References: <20190922184350.30563-1-sashal@kernel.org>
+In-Reply-To: <20190922184924.32534-1-sashal@kernel.org>
+References: <20190922184924.32534-1-sashal@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 X-stable: review
