@@ -2,157 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0595BAF4B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E91DFBAF57
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406123AbfIWIZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 04:25:02 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:45389 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405296AbfIWIZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:25:02 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1iCJeW-000794-FX; Mon, 23 Sep 2019 10:25:00 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1iCJeV-0008W6-GZ; Mon, 23 Sep 2019 10:24:59 +0200
-Date:   Mon, 23 Sep 2019 10:24:59 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] pwm: mxs: implement ->apply
-Message-ID: <20190923082459.huqpbz5eseonkscv@pengutronix.de>
-References: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
- <20190923081348.6843-2-linux@rasmusvillemoes.dk>
+        id S2406903AbfIWI0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 04:26:38 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:8051 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406738AbfIWI0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:26:38 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d8881c20000>; Mon, 23 Sep 2019 01:26:42 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Mon, 23 Sep 2019 01:26:36 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Mon, 23 Sep 2019 01:26:36 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Sep
+ 2019 08:26:35 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Mon, 23 Sep 2019 08:26:35 +0000
+Received: from nkristam-ubuntu.nvidia.com (Not Verified[10.19.65.118]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d8881b80002>; Mon, 23 Sep 2019 01:26:35 -0700
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+To:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>, <kishon@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nagarjuna Kristam <nkristam@nvidia.com>
+Subject: [Patch V10 0/8] Tegra XUSB gadget driver support
+Date:   Mon, 23 Sep 2019 13:55:44 +0530
+Message-ID: <1569227152-3030-1-git-send-email-nkristam@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190923081348.6843-2-linux@rasmusvillemoes.dk>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1569227202; bh=TQWUu3EvPEvMja19g0StMEbdSblEghIIYzuVtM1CCvs=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=gioQp35VTOkU8bF//Qv3L08/FaOc5Gf/sQYVTCKUmTwQ0qNq8Kz78LYxDqTasNjx1
+         h1TY2ztYb9IWh/Y4pE4Za6kSuMn3UCDqvZkTbqZ4v5MUlVxqEQsO/OZa9OvkwQBZ7C
+         FSlyFHQURQ7y3IAM3f8wrYmpfLdFNtTwX/v3Is7yQqEm743+gd/DugHa//r5hz1qWF
+         sYa5ohz9CYNc2OuAjZJx4h2EzW5BZjs+B9g8I2QgYdk1oYc7XMMMoHXCbVzOUowRTO
+         xdVXDIzcx7LoZOzxAthyv79dhUl2k/hmzJDUuAeA19gUIWhCx7ZLSOG4OyzSEJss+Y
+         PXDPVBTHQFl8A==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rasmus,
+Patches 1-3 are phy driver changes to add support for device
+mode.
+Patches 4-7 are changes related to XUSB device mode
+controller driver.
+Patch 8 is to enable drivers for XUDC support in defconfig
 
-On Mon, Sep 23, 2019 at 10:13:45AM +0200, Rasmus Villemoes wrote:
-> In preparation for supporting setting the polarity, switch the driver
-> to support the ->apply method.
-> 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-> ---
->  drivers/pwm/pwm-mxs.c | 62 +++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
-> 
-> diff --git a/drivers/pwm/pwm-mxs.c b/drivers/pwm/pwm-mxs.c
-> index 04c0f6b95c1a..c70c26a9ff68 100644
-> --- a/drivers/pwm/pwm-mxs.c
-> +++ b/drivers/pwm/pwm-mxs.c
-> @@ -26,6 +26,7 @@
->  #define  PERIOD_PERIOD_MAX	0x10000
->  #define  PERIOD_ACTIVE_HIGH	(3 << 16)
->  #define  PERIOD_INACTIVE_LOW	(2 << 18)
-> +#define  PERIOD_POLARITY_NORMAL	(PERIOD_ACTIVE_HIGH | PERIOD_INACTIVE_LOW)
->  #define  PERIOD_CDIV(div)	(((div) & 0x7) << 20)
->  #define  PERIOD_CDIV_MAX	8
->  
-> @@ -41,6 +42,66 @@ struct mxs_pwm_chip {
->  
->  #define to_mxs_pwm_chip(_chip) container_of(_chip, struct mxs_pwm_chip, chip)
->  
-> +static int mxs_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			 struct pwm_state *state)
-> +{
-> +	struct mxs_pwm_chip *mxs = to_mxs_pwm_chip(chip);
-> +	int ret, div = 0;
-> +	unsigned int period_cycles, duty_cycles;
-> +	unsigned long rate;
-> +	unsigned long long c;
-> +
-> +	if (state->polarity != PWM_POLARITY_NORMAL)
-> +		return -ENOTSUPP;
-> +
-> +	rate = clk_get_rate(mxs->clk);
-> +	while (1) {
-> +		c = rate / cdiv[div];
-> +		c = c * state->period;
-> +		do_div(c, 1000000000);
-> +		if (c < PERIOD_PERIOD_MAX)
-> +			break;
-> +		div++;
-> +		if (div >= PERIOD_CDIV_MAX)
-> +			return -EINVAL;
-> +	}
-> +
-> +	period_cycles = c;
-> +	c *= state->duty_cycle;
-> +	do_div(c, state->period);
-> +	duty_cycles = c;
-> +
-> +	/*
-> +	 * If the PWM channel is disabled, make sure to turn on the clock
-> +	 * before writing the register. Otherwise, keep it enabled.
-> +	 */
-> +	if (!pwm_is_enabled(pwm)) {
-> +		ret = clk_prepare_enable(mxs->clk);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	writel(duty_cycles << 16,
-> +	       mxs->base + PWM_ACTIVE0 + pwm->hwpwm * 0x20);
-> +	writel(PERIOD_PERIOD(period_cycles) | PERIOD_POLARITY_NORMAL | PERIOD_CDIV(div),
-> +	       mxs->base + PWM_PERIOD0 + pwm->hwpwm * 0x20);
-> +
-> +	if (state->enabled) {
-> +		if (!pwm_is_enabled(pwm)) {
-> +			/*
-> +			 * The clock was enabled above. Just enable
-> +			 * the channel in the control register.
-> +			 */
-> +			writel(1 << pwm->hwpwm, mxs->base + PWM_CTRL + SET);
-> +		}
-> +	} else {
-> +		if (pwm_is_enabled(pwm))
-> +			writel(1 << pwm->hwpwm, mxs->base + PWM_CTRL + CLR);
-> +		clk_disable_unprepare(mxs->clk);
-> +	}
-> +	return 0;
-> +}
+Test Steps(USB 2.0):
+- Enable "USB Gadget precomposed configurations" in defconfig
+- Build, flash and boot Jetson TX1
+- Connect Jetson TX1 and Ubuntu device using USB A to Micro B
+  cable
+- After boot on Jetson TX1 terminal usb0 network device should be
+  enumerated
+- Assign static ip to usb0 on Jetson TX1 and corresponding net
+  device on ubuntu
+- Run ping test and transfer test(used scp) to check data transfer
+  communication
 
-Maybe it would be easier to review when converting from .config +
-.enable + .disable to .apply in a single step. (Note this "maybe" is
-honest, I'm not entirely sure.)
+SS mode is verified by enabling Type A port as peripheral
+---
+v10:
+* Patches 1,2,4,5,7,8 - No changes.
+* Patch 3 has braces added to one single line else condition.
+* Patch 6 has update on compatible string as per suggestion from Chunfeng.
+---
+v9:
+* Patches 1,2,3,4,5 - No changes.
+* Patch 6 has update on compatible string as per suggestion from Chunfeng.
+* Patch 7 has comment fixes as suggested by Chunfeng.
+* Patch 8 has CONFIG_USB_GPIO enabled as module additionally.
+---
+v8:
+* Patches 1,2,3,4,5,8 - No changes.
+* Patch 6 has update on compatible string as per change done in [1].
+* Patch 7 has issue fix, where device mode didnot got enabled after resume
+  from suspend.
+---
+v7:
+* Patches 1,2,3,4,5,6,8 - No changes.
+* Patch 7 - Comments from Balbi and Chunfun adrresed.
+  Added COMPILE_TEST in Kconfig and updated dependencies.
+---
+v6:
+* Patches 1,2,3,7,8 - No changes.
+* Patch 4,5,6 - Comments from Rob addressed, updated usb connector driver
+  compatibility string.
+---
+v5:
+* Patches 1-3 - Commit subject updated as per inputs from Thierry.
+* Patch 4 - Added reg-names used on Tegra210 in the bindings doc
+* Enabled xudc driver as module instead of part of kernel in patch 8.
+* Patched 5-8 - No changes.
+---
+v4:
+* patch 1 - no changes.
+* corrected companion device search based on inputs from Thierry in patch 2.
+* removed unneeded dev variable and corrected value read in
+  tegra210_utmi_port_reset function in patch 3.
+* dt binding doc and dtb files are corrected for alignments.
+  Replaced extcon-usb-gpio with usb role switch.
+* Added support for USB role switch instead of extcon-usb-gpio and other minor
+  comments as suggested by Chunfeng.
+* Enabled xudc driver as module instead of part of kernel in patch 8.
+---
+V3:
+* Rebased patch 1 to top of tree.
+* Fixed bug in patch 2, where xudc interrupts dont get generated if USB host
+  mode fails to probe. Moved fake port detection logic to generic xusb.c. fake
+  usb port data is updated based on soc flag need_fake_usb3_port.
+* Added extra lines whereever necessary to make code more readable in patch 3
+  and 7.
+* dt binding doc is corrected for typos and extcon references. Also added
+  details for clocks and removed xusb_ references to clock and power-domain
+  names and accordingly patch 5 is updated.
+* removed avdd-pll-utmip-supply in patch 6, as its now part of padctl driver.
+* Patch 8 has no changes.
+---
+V2:
+* Patches 1-3 are new patches in this series, which splits unified features
+  patch to speprated features and removes need of port-fake entry in DT.
+* Patch 4 is re-arragend dt-bindings patch which incorporates previous
+  patch comments to sort DT entries alphabetically, addresses name changes
+  and PM domain details added.
+* Patch 5-6 are re-arranged DT patches with major changes - sort entries
+  alphabetically, and adds clock names.
+* Patch 7 is UDC driver tegra XUSB device mode controller with major
+  changes - remove un-used module params, lockinng for device_mode flag,
+  moving un-needed info logs to debug level, making changes feature flag
+  dependent rather than SOC based macros and other error handling in probe.
+* Patch 8 has no changes.
 
-There is a bug: If the PWM is running at (say) period=100ms, duty=0ms
-and we call
-pwm_apply_state(pwm, { .enabled = false, duty=100000, period=1000000 });
-the output might get high which it should not.
+Nagarjuna Kristam (8):
+  phy: tegra: xusb: Add XUSB dual mode support on Tegra210
+  phy: tegra: xusb: Add usb3 port fake support on Tegra210
+  phy: tegra: xusb: Add vbus override support on Tegra210
+  dt-bindings: usb: Add NVIDIA Tegra XUSB device mode controller binding
+  arm64: tegra: Add xudc node for Tegra210
+  arm64: tegra: Enable xudc on Jetson TX1
+  usb: gadget: Add UDC driver for tegra XUSB device mode controller
+  arm64: defconfig: Enable tegra XUDC support
 
-Also there is a bug already in .config: You are not supposed to call
-clk_get_rate if the clk might be off.
-
-Best regards
-Uwe
+ .../devicetree/bindings/usb/nvidia,tegra-xudc.txt  |  110 +
+ arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi     |   31 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   19 +
+ arch/arm64/configs/defconfig                       |    2 +
+ drivers/phy/tegra/xusb-tegra210.c                  |  134 +-
+ drivers/phy/tegra/xusb.c                           |   87 +
+ drivers/phy/tegra/xusb.h                           |    4 +
+ drivers/usb/gadget/udc/Kconfig                     |   11 +
+ drivers/usb/gadget/udc/Makefile                    |    1 +
+ drivers/usb/gadget/udc/tegra-xudc.c                | 3787 ++++++++++++++++++++
+ include/linux/phy/tegra/xusb.h                     |    4 +-
+ 11 files changed, 4186 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+ create mode 100644 drivers/usb/gadget/udc/tegra-xudc.c
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+2.7.4
+
