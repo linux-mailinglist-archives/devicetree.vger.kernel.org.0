@@ -2,109 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB4F3BB5AF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 15:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8C58BB5ED
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 15:58:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404599AbfIWNpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 09:45:19 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:44454 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725854AbfIWNpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 09:45:18 -0400
-Received: by mail-io1-f65.google.com with SMTP id j4so33441064iog.11;
-        Mon, 23 Sep 2019 06:45:18 -0700 (PDT)
+        id S2436988AbfIWN6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 09:58:51 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:33700 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2408325AbfIWN6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 09:58:50 -0400
+Received: by mail-wm1-f66.google.com with SMTP id r17so15071050wme.0;
+        Mon, 23 Sep 2019 06:58:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=II3Z/ePw+kluHJAh79jkfAHhBKN0+PEn+7sKnI4/9O4=;
-        b=LRIxgemCeo1xWi9guI7emc3IqoiMCWFHvsGEbD3szsHx+S8v43Ax2NGNrtoREyn2Bz
-         vhnkmPK37M8KzQsgFNpeQ+BcY5h/4VC72ASTQkmKZFETngnZgV1M86XBfzG60leuCeYs
-         563KI6gOtg2Ce7d1NMNGrrAYJiU2WaB9WV23rE+x6LA9JhY1eytJKSG14aTC/KvjYA1n
-         gjRa5pf0opTGYsQOJAhOHxgr15AJXj9sfeSKMd5XroMv52TCQgRkb0VoaDoZ7IBXq97v
-         aw8aj0jbzaySkiFHq/CcsyQl8tAs8gEdCDPa3DgVSik6vPjiWbrz6fWg/2rzp9h/8uh8
-         vXNQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=ZSlSPovVH1C68HHuoR4mSQt38eq8rnNz8O+7+IIEJig=;
+        b=QPSSJfL1aOg0nq6EnFGDAX7XlU42tnIVmczj8rIsX5h7ye7qZAzW8HgeCcRbIaYivD
+         leHtKefJX9inNLpsg29zoSbZUAsu1Ztb/Te8kGNOMzUVGx5DuI01caxEPmBZsw4MStt4
+         Sy+SzOMjP64BXgLzwKjbpoji3L4ERPu+ZcP/+5NJkfJ8iL+lxhStreaTfWYJlYCx/lYo
+         ZLv3U2z9hxt/CJHrJeixWhrIBR5l5Lluf4qYKIS/D96ewEHBNARanlno6tQtkieattru
+         mOklnv3Twz5Xx4lN1XAyRKm1f2PZihr7o3ELGBtHmD8As09NSWZEW79Y6UGGyX8T8X+f
+         XeAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=II3Z/ePw+kluHJAh79jkfAHhBKN0+PEn+7sKnI4/9O4=;
-        b=oyjP3LRkn7nNKmgUOrO7+GXZ6vxuENB69sBmQwtY2qDhndRXN2Ky7ZusxRm/GJXiYK
-         4ZI1pSFcxov6/J07ygYTxEtQWeFlM3+6eCRm/dvuCvlRnF/cV1tNv8sXDJrgL6qtfZ4g
-         0ggPU3o/15M7+5HgPhpTbcPdBgdfeBklWxUjMvbMfXRi8akaasuLtJOI1EKPr/SDeqfK
-         wsd6RHD6B9dV6AZDdHiWyeYpVtcSmVHzTWb5++vyjYucXeTARx1Mz2fdB0ufSckDyDUq
-         ivKeOsEgTf+ho7yldU0riDZSWRB3QbCdRnA7gN5hA7J12IY1JlYTLCkECR9YNsvFc9xp
-         9Ejw==
-X-Gm-Message-State: APjAAAX2Hmfn4JJz0+xxq5NRVvmEjRV21DHjLPg5PxPRB8+4t0eTxf1h
-        q4J31JaogcGn7MOGqlN4ErE=
-X-Google-Smtp-Source: APXvYqyL7wQoJ473oflZEdH5F1MQH5u5UVaHY3bRwruszPd0fFxVNFp6Y7enr88bqIkoM2DZxCPn8Q==
-X-Received: by 2002:a6b:7509:: with SMTP id l9mr127293ioh.34.1569246317680;
-        Mon, 23 Sep 2019 06:45:17 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id x2sm8844474iob.74.2019.09.23.06.45.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2019 06:45:15 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-omap@vger.kernel.org, adam.ford@logicpd.com,
-        Adam Ford <aford173@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ZSlSPovVH1C68HHuoR4mSQt38eq8rnNz8O+7+IIEJig=;
+        b=VmFV4tiLHRH49XLV4wiEinLU0b5/b2iL+H1EcTx7mNztP7EhS3GNHTBO+7VICBwOH8
+         SX9xZqZDc1AbO5QTwylelPd7ZH0l8ZRobC6HolOK8ChiXugwb4vxn+hBdXYzP/LgONta
+         2OoMmh/VAgi2/+LFvLodofj6qZ0XS+XDe05NAudNmHK/nioKbZ0HO3l0ScCLCizBMS0A
+         aimBwe4yiXzkHM38zuVJH4LtgbK8hi1YyacouAGwAl4lYrX6dUY9GEQRqFDrymvsP5u2
+         EVndoSTWXm0tl35OrJ5mX6WTVcaNEKCBYmcF5ulaXaC9o/pYvoNexQvD7th67M8whvUX
+         qZ/w==
+X-Gm-Message-State: APjAAAVY+zE4WDMiWHe4ZU0Ctg7XN8pAosAZSlCDHnOsipbVGinlcYpX
+        9LMbiQWU2wE79Ft9sEbcQeo=
+X-Google-Smtp-Source: APXvYqx354pK1bP9ANp8dSug8kkg4bI3GeLLbi+p/0E/n8GXT82lX6mUk9A81nyGuEqzAyLDF194Zg==
+X-Received: by 2002:a1c:b745:: with SMTP id h66mr13360541wmf.70.1569247128568;
+        Mon, 23 Sep 2019 06:58:48 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+        by smtp.gmail.com with ESMTPSA id h17sm25266184wme.6.2019.09.23.06.58.45
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 23 Sep 2019 06:58:47 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 3/3] ARM: logicpd-torpedo-37xx-devkit-28: Reference new DRM panel
-Date:   Mon, 23 Sep 2019 08:44:49 -0500
-Message-Id: <20190923134449.22326-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190923134449.22326-1-aford173@gmail.com>
-References: <20190923134449.22326-1-aford173@gmail.com>
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Oleg Ivanov <balbes-150@yandex.ru>,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v4 0/3] arm64: meson-g12b: Add support for the Ugoos AM6
+Date:   Mon, 23 Sep 2019 17:57:54 +0400
+Message-Id: <1569247077-5212-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the removal of the panel-dpi from the omap drivers, the
-LCD no longer works.  This patch points the device tree to
-a newly created panel named "logicpd,type28"
+This patchset adds support for the Ugoos AM6, an Android STB based on
+the Amlogic W400 reference design with the S922X chipset.
 
-Fixes: 8bf4b1621178 ("drm/omap: Remove panel-dpi driver")
+v2: correction of minor nits
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
----
-V2:  Remove legacy 'label' from binding
+v3: address regulator and GPIO corrections from Neil Armstrong (using
+schematic excerpts from Ugoos) and related v2 comments from Martin
+Blumenstingle. Add acks on patches 1/2 from Rob Herring.
 
-diff --git a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-index 07ac99b9cda6..cdb89b3e2a9b 100644
---- a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-+++ b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-@@ -11,22 +11,6 @@
- #include "logicpd-torpedo-37xx-devkit.dts"
- 
- &lcd0 {
--
--	label = "28";
--
--	panel-timing {
--		clock-frequency = <9000000>;
--		hactive = <480>;
--		vactive = <272>;
--		hfront-porch = <3>;
--		hback-porch = <2>;
--		hsync-len = <42>;
--		vback-porch = <3>;
--		vfront-porch = <2>;
--		vsync-len = <11>;
--		hsync-active = <1>;
--		vsync-active = <1>;
--		de-active = <1>;
--		pixelclk-active = <0>;
--	};
-+	/* To make it work, set CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK=4 */
-+	compatible = "logicpd,type28";
- };
+v4: address nits from Martin except for the vcc_3v3 node as it's not
+known how to handle the vcc_3v3 regulator managed by ATF firmware, so
+it remains untouched/undeclared like other g12a/g12b/sm1 boards.
+
+Christian Hewitt (3):
+  dt-bindings: Add vendor prefix for Ugoos
+  dt-bindings: arm: amlogic: Add support for the Ugoos AM6
+  arm64: dts: meson-g12b-ugoos-am6: add initial device-tree
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      | 557 +++++++++++++++++++++
+ 4 files changed, 561 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
+
 -- 
-2.17.1
+2.7.4
 
