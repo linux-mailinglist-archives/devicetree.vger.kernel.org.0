@@ -2,171 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D503BAE29
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 08:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EE2BBAE30
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 08:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404880AbfIWG4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 02:56:52 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:53405 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404837AbfIWG4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 02:56:52 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190923065648euoutp01be9b4d464e019ad9f40f35835e707320~G-uvOPUOt1868718687euoutp01Y
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 06:56:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190923065648euoutp01be9b4d464e019ad9f40f35835e707320~G-uvOPUOt1868718687euoutp01Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1569221808;
-        bh=7Rfe9iUIE3HzKPxCJrJahPXXP+94a5ihjD5YoIEzClk=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=toeq10M+xAq369X9H+BtAWRfn8GkrcTxatRqctbTGNRi7ebgEieDYkfNh8EiCwmNt
-         WflvGfWxC+stUc7bfxnQ7+NqQO5AoaPk4/g5p6GHb+KYl/ws2jgxBNvYTmBf815Np8
-         7SbXWMbAK+IOOCpi2Lrx8jOYNF8sBGGmWxWhzaS8=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190923065648eucas1p1f200b147807ba647c11906db1e13976f~G-uu2ot6E2705827058eucas1p1Q;
-        Mon, 23 Sep 2019 06:56:48 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 40.23.04374.0BC688D5; Mon, 23
-        Sep 2019 07:56:48 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190923065648eucas1p112eb5c7cbcbd79b8dcb7840f1186e384~G-uuYi76R0835308353eucas1p1E;
-        Mon, 23 Sep 2019 06:56:48 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190923065647eusmtrp1cc5aff0ad8736f373a58777588a19a14~G-uuXhKGC1701517015eusmtrp1c;
-        Mon, 23 Sep 2019 06:56:47 +0000 (GMT)
-X-AuditID: cbfec7f5-4ddff70000001116-cd-5d886cb06ed3
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id F5.24.04166.FAC688D5; Mon, 23
-        Sep 2019 07:56:47 +0100 (BST)
-Received: from [106.120.51.15] (unknown [106.120.51.15]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190923065647eusmtip2b3de707c374bff63e519288d66d1c27f~G-utoGUbP1425114251eusmtip2h;
-        Mon, 23 Sep 2019 06:56:47 +0000 (GMT)
-Subject: Re: [RFT v3 4/8] ARM: dts: exynos: Remove MCT subnode for interrupt
- map on Exynos4210
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <c1d02aa3-b5f2-1c5b-0b7b-8749e7c0ce9a@samsung.com>
-Date:   Mon, 23 Sep 2019 08:56:46 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
-        Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20190921170152.5033-4-krzk@kernel.org>
-Content-Transfer-Encoding: 7bit
+        id S2405153AbfIWG6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 02:58:32 -0400
+Received: from mail-eopbgr140104.outbound.protection.outlook.com ([40.107.14.104]:1792
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2405033AbfIWG6c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 02:58:32 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KqHXjokuk78RrZ32nO2QcZY9maP2OO8RNIeFd70tC4+Dg85ZoUEBHdFKdexhR3FYMGtsObwxw2lhQbziEH5imc+565pZyVBWtg8RqOeUGDgB2MnGgMitPbh76Kx5bAeiyFN8f2fZMhylLSdU0y0mhz48mq2vJopWid8OC86OxgSat2Ro6w8aGdyR8K6xaB/0VGszEpA8aQ8Sqm6RxXFHam+8ccjhERkSM0Q4Dmmth0gX8zQBOszQrhGFJ+3cKswXLA4GJSoFV4w3E8dH4LKTULFDk8KO5Xlh+OBrEab/OquxLxK2jkNLF2c6w12Yz8uTVI5JIErNzSgZLcpMWT0viw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nMM3g0Bd70PmuHdtrqIlbaGL+CTziTGgjrOBmdOC2JM=;
+ b=R2D9IWWfbfQ//Ic2HuSixukU4s1766Pk/ji5wE4cbyHYAEv0nWfExgX89B8b0N0nWaWq7YAgrBhL5It6xX5pRqWweHfOJLMg5t9020uAXmGBA7qQ21c7RdnYhM8EXtYYlH4gD4QE02YWtk2t8sxwLeYS6kxZQlkm8tbmhQJd+T4SU7weG+mXIiZlfUYSftI5hJ/h5u3CJdOYTqcjrOeur0Tuvv3FXo+JwBVFcEzqglzxOJk0CfWX+sPQfT26beYk8cvZM+R/p4K27cNSZVcsm+t67/AK8vJYpCO6qLRoD77qGsqbQCzSpSTEBX4S8qLRdRcSslM6MfBlfzyTmuGkkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nMM3g0Bd70PmuHdtrqIlbaGL+CTziTGgjrOBmdOC2JM=;
+ b=AKqekBveH0LqwWSlSCcqTAGY1WFoomS0O7VLUDpmE5N8b4z8g/18dVp/IAI2RZj4I1OgzbxH1+z2+0NR3lwa5L12st+dud0nGHN8MnThnuGUyEfKFqL7R6yI3hMoWOtetXxjhgCP/CR0DtjRSkLs7wygGmEjRlZgh9UtIVZJ4NI=
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
+ VI1PR0502MB3998.eurprd05.prod.outlook.com (52.134.18.28) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.18; Mon, 23 Sep 2019 06:58:28 +0000
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::1179:c881:a516:644d]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::1179:c881:a516:644d%3]) with mapi id 15.20.2284.023; Mon, 23 Sep 2019
+ 06:58:28 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     Max Krummenacher <max.krummenacher@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Luka Pivk <luka.pivk@toradex.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: regulator: add regulator-fixed-clock
+ binding
+Thread-Topic: [PATCH v2 3/3] dt-bindings: regulator: add regulator-fixed-clock
+ binding
+Thread-Index: AQHVZ5/14/SgXrjoXUmhwZqwM+HFaKcwWYmAgAiP0IA=
+Date:   Mon, 23 Sep 2019 06:58:27 +0000
+Message-ID: <8301e3026d583d8d05eb1e73535b9a733b9b25fd.camel@toradex.com>
+References: <20190910062103.39641-1-philippe.schenker@toradex.com>
+         <20190910062103.39641-4-philippe.schenker@toradex.com>
+         <CAL_JsqLyawEariYuaHJ+Lyt1DhJe9fdAE88ANrhHAokWJhUOdw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLyawEariYuaHJ+Lyt1DhJe9fdAE88ANrhHAokWJhUOdw@mail.gmail.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRju29nZjsvVcSq+aSkM7CLlBYUOVGIgsfoRJYGgLF158DYvbE6z
-        fkyS1MRSjHQt0XnD+22KeUnDeRmmTc2yMrt4GWG5dbGbUdrm0fLf8z3P877P88JHYIJR3JmI
-        jk+iZfESqZDDY7cPrRgONUuzxN5rea5Ui6oJp4qX91AlAwacyp3/gFFjY81cSjs/hVOTXUUc
-        SjXWy6Iqn02wqGs9A1wq07iIUa3a21iArai+uB6JtLXXOaKZqfsckdlg4IpaK5Sim221SLSs
-        dT3DDeEdjaCl0cm0zMs/nBf1cWQWT2zZeal8epqVhha2ZyMbAkg/6K9Lx7IRjxCQ1Qgm6qsx
-        qyAgvyKYX7ZhhGUE7TVfsM0JvfkRlxGqEGTNpW9MmCyughArtifDoba7EreaHEgzCzQL39dN
-        GElDt2kIt2IO6QPZpmyOFfNJf2hbUq/zbNIdFtW5bCt2JMXw+qceYzx2MHxnYZ23sbTQpY3j
-        zE43uGcq2tjvBNMLJSxrMJBzXNAODHGZ2oFQNv2GzWB7eK9v2+B3w8itHDYzkI5g1tDAZR45
-        CCavqhDjOgL9+glLHGGJOABNXV4MfRwq9aXISgO5A56b7JgSOyC/vRBjaD5kZQgY915Q6xv/
-        xfaNP8bykFC95TT1lnPUW85R/8/VIHYtcqIV8rhIWu4bT6d4yiVxckV8pOfFhDgtsvyxkVX9
-        tw7U+/uCDpEEEtryP7VkigW4JFmeGqdDQGBCB77WI0Ms4EdIUi/TsoQwmUJKy3XIhWALnfhX
-        tr0NFZCRkiQ6lqYTadmmyiJsnNPQw8aw/b3mff1lxiAx2XviQUJ56C7iM3lw8OnhkqrTL4+N
-        jwc3vArKL49dGo7pTFGmVvr9cVQGO04qwd797lr53LlMt1/FZzWDLR2+uFLlcIpn7ntxQ1C4
-        ohkNcPE+2Ww01k31VPT9kK16dWZpVxajY0Znap4sFpxvfZffEVjqoBCy5VESHw9MJpf8BUIT
-        8/hfAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPIsWRmVeSWpSXmKPExsVy+t/xe7rrczpiDdYttrTYOGM9q8W8z7IW
-        84+cY7Xof/ya2eL8+Q3sFpseX2O1uLxrDpvFjPP7mCyWXr/IZNG69wi7RfvTl8wWmzdNZXbg
-        8Vgzbw2jx6ZVnWwed67tYfN4d+4cu8fmJfUefVtWMXp83iQXwB6lZ1OUX1qSqpCRX1xiqxRt
-        aGGkZ2hpoWdkYqlnaGwea2VkqqRvZ5OSmpNZllqkb5egl/H+9EPWgo38FYtv3WJqYHzC3cXI
-        ySEhYCJx/N1Z9i5GLg4hgaWMEq27HrJAJGQkTk5rYIWwhSX+XOtigyh6zShx6N59JpCEsECC
-        xKrdS1lBEiIC75gk3jxfyw6SYBZIlZjYNJUJomMjo8SNN1OZQRJsAoYSXW9BRnFy8ArYSWx5
-        MwtsBYuAqsTLWf1Aqzk4RAViJTbtNYMoEZQ4OfMJ2EWcQKcearjACjHfTGLe5ofMELa8xPa3
-        c6BscYlbT+YzTWAUmoWkfRaSlllIWmYhaVnAyLKKUSS1tDg3PbfYUK84Mbe4NC9dLzk/dxMj
-        MHK3Hfu5eQfjpY3BhxgFOBiVeHg/bGyPFWJNLCuuzD3EKMHBrCTCu0mrLVaINyWxsiq1KD++
-        qDQntfgQoynQbxOZpUST84FJJa8k3tDU0NzC0tDc2NzYzEJJnLdD4GCMkEB6YklqdmpqQWoR
-        TB8TB6dUA2P1KtZOn6lnLn19H7f4yT1+t3bZauc1BVcO6XzbGXhB1M24rKaRtVvi4HaGIx8U
-        HBrEO+/e809QPftyvRT/4n1KwbbiR+NPG+/Y8UhmmpyFZdbkv8qW1s4P1nOnCc7bu4KtTOXV
-        vu+m3dpCgu0MsjPlBNNNm7988l7rGiG1bteUi2npkiKGO5RYijMSDbWYi4oTAR2RidXyAgAA
-X-CMS-MailID: 20190923065648eucas1p112eb5c7cbcbd79b8dcb7840f1186e384
-X-Msg-Generator: CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=philippe.schenker@toradex.com; 
+x-originating-ip: [46.140.72.82]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e7a46346-1a0c-4d12-9ad3-08d73ff36fd2
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3998;
+x-ms-traffictypediagnostic: VI1PR0502MB3998:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0502MB399868F5A83925140623475FF4850@VI1PR0502MB3998.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0169092318
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(376002)(346002)(136003)(396003)(366004)(39840400004)(199004)(189003)(2906002)(478600001)(86362001)(14454004)(25786009)(305945005)(2616005)(476003)(64756008)(66556008)(66476007)(102836004)(6506007)(53546011)(99286004)(7736002)(11346002)(486006)(36756003)(26005)(186003)(66946007)(76176011)(3846002)(6116002)(76116006)(91956017)(66446008)(66066001)(6512007)(446003)(118296001)(44832011)(6246003)(6486002)(229853002)(54906003)(4326008)(71200400001)(71190400001)(316002)(14444005)(8676002)(81156014)(81166006)(6436002)(5660300002)(256004)(8936002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3998;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: m6PbiyXjzvmfq+0iXVrexOo7C6sqJG48zuBIqQDyHCgfbePRy6ehC4R5+xDlk3pmrws3N/DsrOuUMDb+hYPBOJTTrPL4YqFQD1HawNy1T2P1c+IO8A+8eVdkfAsmHw2zLzhtyBwPhWIgF+knuVguaG4ix3Rzf7obQv2tze7Iy3/3ELlIQ6ah88KryDxNI6w9TN4Sp92Zb8vxtO3yfgCD7dZLbOUfHXSl05DB4pjeQxdcuYX5QAYs+EK4bOrbZUZ+gOMUe/uhW+STVZPOUW+KDw+mJnZ619um4G+aDjsInHkcm/8eMO8Cc+AawWg33PsCzduHCTc8t8hf0l3pXpb7+Xf+9yizE2GXaGlnChdluKlyAHg1lgEKCDPRyBJJWohPKMInJD6eNol9ry4JAG1MICEPpD/Le+F0KszlgdaAlso=
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190921203810epcas3p39f3d9e3224d2c5ef61c1e18df2ab403d
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190921203810epcas3p39f3d9e3224d2c5ef61c1e18df2ab403d
-References: <20190921170152.5033-1-krzk@kernel.org>
-        <CGME20190921203810epcas3p39f3d9e3224d2c5ef61c1e18df2ab403d@epcas3p3.samsung.com>
-        <20190921170152.5033-4-krzk@kernel.org>
+Content-ID: <CE5D67FBDC8FD04E80074638E0D29A0E@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7a46346-1a0c-4d12-9ad3-08d73ff36fd2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 06:58:27.9521
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2OEcSRRLoc7GKjCoGKnLo0smHNOZDBCOJdnTIkntZs3GkirERJUIm6d2FtVT8htLxXMqJkj2GDda5AhSQJ6IA/tkDQpRaSnGSpV1mR3c4RQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3998
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 21.09.2019 19:01, Krzysztof Kozlowski wrote:
-> Multi Core Timer node has interrupts routed to two different parents -
-> GIC and combiner.  This was modeled with a interrupt-map within a
-> subnode but can be expressed in an easier and more common way, directly
-> in the node itself.
-
-Maybe we should simply use 'interrupts-extended' based approach and 
-simplify mct node even more (get rid of interrupt-parent, interrupts, 
-size/address cells)?
-
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> ---
->
-> Not tested.
-> ---
->   arch/arm/boot/dts/exynos4210.dtsi | 16 ++++++----------
->   1 file changed, 6 insertions(+), 10 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/exynos4210.dtsi b/arch/arm/boot/dts/exynos4210.dtsi
-> index 6d3f19562aab..38c49ab8c733 100644
-> --- a/arch/arm/boot/dts/exynos4210.dtsi
-> +++ b/arch/arm/boot/dts/exynos4210.dtsi
-> @@ -109,23 +109,19 @@
->   		mct: timer@10050000 {
->   			compatible = "samsung,exynos4210-mct";
->   			reg = <0x10050000 0x800>;
-> -			interrupt-parent = <&mct_map>;
-> -			interrupts = <0>, <1>, <2>, <3>, <4>, <5>;
->   			clocks = <&clock CLK_FIN_PLL>, <&clock CLK_MCT>;
->   			clock-names = "fin_pll", "mct";
-> -
-> -			mct_map: mct-map {
-> -				#interrupt-cells = <1>;
-> -				#address-cells = <0>;
-> -				#size-cells = <0>;
-> -				interrupt-map =
-> -					<0 &gic 0 57 IRQ_TYPE_LEVEL_HIGH>,
-> +			#address-cells = <0>;
-> +			#size-cells = <0>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-parent = <&mct>;
-> +			interrupts = <0>, <1>, <2>, <3>, <4>, <5>;
-> +			interrupt-map = <0 &gic 0 57 IRQ_TYPE_LEVEL_HIGH>,
->   					<1 &gic 0 69 IRQ_TYPE_LEVEL_HIGH>,
->   					<2 &combiner 12 6>,
->   					<3 &combiner 12 7>,
->   					<4 &gic 0 42 IRQ_TYPE_LEVEL_HIGH>,
->   					<5 &gic 0 48 IRQ_TYPE_LEVEL_HIGH>;
-> -			};
->   		};
->   
->   		watchdog: watchdog@10060000 {
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+T24gVHVlLCAyMDE5LTA5LTE3IGF0IDE1OjEzIC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVHVlLCBTZXAgMTAsIDIwMTkgYXQgMToyMSBBTSBQaGlsaXBwZSBTY2hlbmtlcg0KPiA8cGhp
+bGlwcGUuc2NoZW5rZXJAdG9yYWRleC5jb20+IHdyb3RlOg0KPiA+IFRoaXMgYWRkcyB0aGUgZG9j
+dW1lbnRhdGlvbiB0byB0aGUgY29tcGF0aWJsZSByZWd1bGF0b3ItZml4ZWQtY2xvY2suDQo+ID4g
+VGhpcyBiaW5kaW5nIGlzIGEgc3BlY2lhbCBiaW5kaW5nIG9mIHJlZ3VsYXRvci1maXhlZCBhbmQg
+YWRkcyB0aGUNCj4gPiBhYmlsaXR5IHRvIGFkZCBhIGNsb2NrIHRvIHJlZ3VsYXRvci1maXhlZCwg
+c28gdGhlIHJlZ3VsYXRvciBjYW4gYmUNCj4gPiBlbmFibGVkIGFuZCBkaXNhYmxlZCB3aXRoIHRo
+YXQgY2xvY2suIElmIHRoZSBzcGVjaWFsIGNvbXBhdGlibGUNCj4gPiByZWd1bGF0b3ItZml4ZWQt
+Y2xvY2sgaXMgdXNlZCBpdCBpcyBtYW5kYXRvcnkgdG8gc3VwcGx5IGEgY2xvY2suDQo+ID4gDQo+
+ID4gU2lnbmVkLW9mZi1ieTogUGhpbGlwcGUgU2NoZW5rZXIgPHBoaWxpcHBlLnNjaGVua2VyQHRv
+cmFkZXguY29tPg0KPiA+IA0KPiA+IC0tLQ0KPiA+IA0KPiA+IENoYW5nZXMgaW4gdjI6DQo+ID4g
+LSBDaGFuZ2Ugc2VsZWN0OiB0byBpZjoNCj4gPiAtIENoYW5nZSBpdGVtczogdG8gZW51bToNCj4g
+PiAtIERlZmluZWQgaG93IG1hbnkgY2xvY2tzIHNob3VsZCBiZSBnaXZlbg0KPiA+IA0KPiA+ICAu
+Li4vYmluZGluZ3MvcmVndWxhdG9yL2ZpeGVkLXJlZ3VsYXRvci55YW1sICAgfCAxOQ0KPiA+ICsr
+KysrKysrKysrKysrKysrKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyks
+IDEgZGVsZXRpb24oLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3JlZ3VsYXRvci9maXhlZC0NCj4gPiByZWd1bGF0b3IueWFtbCBiL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvZml4ZWQtDQo+ID4gcmVn
+dWxhdG9yLnlhbWwNCj4gPiBpbmRleCBhNjUwYjQ1NzA4NWQuLmE3ODE1MGM0N2FhMiAxMDA2NDQN
+Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVndWxhdG9yL2Zp
+eGVkLQ0KPiA+IHJlZ3VsYXRvci55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3JlZ3VsYXRvci9maXhlZC0NCj4gPiByZWd1bGF0b3IueWFtbA0KPiA+IEBA
+IC0xOSw5ICsxOSwxOSBAQCBkZXNjcmlwdGlvbjoNCj4gPiAgYWxsT2Y6DQo+ID4gICAgLSAkcmVm
+OiAicmVndWxhdG9yLnlhbWwjIg0KPiA+IA0KPiA+ICtpZjoNCj4gPiArICBwcm9wZXJ0aWVzOg0K
+PiA+ICsgICAgY29tcGF0aWJsZToNCj4gPiArICAgICAgY29udGFpbnM6DQo+ID4gKyAgICAgICAg
+Y29uc3Q6IHJlZ3VsYXRvci1maXhlZC1jbG9jaw0KPiA+ICsgIHJlcXVpcmVkOg0KPiA+ICsgICAg
+LSBjbG9ja3MNCj4gPiArDQo+ID4gIHByb3BlcnRpZXM6DQo+ID4gICAgY29tcGF0aWJsZToNCj4g
+PiAtICAgIGNvbnN0OiByZWd1bGF0b3ItZml4ZWQNCj4gPiArICAgIGVudW06DQo+ID4gKyAgICAg
+IC0gY29uc3Q6IHJlZ3VsYXRvci1maXhlZA0KPiA+ICsgICAgICAtIGNvbnN0OiByZWd1bGF0b3It
+Zml4ZWQtY2xvY2sNCj4gDQo+ICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIGlzIGZhaWxpbmcuIFlv
+dSBuZWVkIHRvIGRyb3AgJ2NvbnN0OiAnLiBQbGVhc2UNCj4gc2VuZCBhIHBhdGNoIHRvIGZpeCB0
+aGlzLg0KPiANCj4gUm9iDQoNCkhpIFJvYiwgDQoNClRoYW5rcyBmb3IgcG9pbnRpbmcgdGhpcyBv
+dXQsIEkgd2Fzbid0IGF3YXJlIG9mIHRoYXQgYW5kIG9mICdtYWtlDQpkdF9iaW5kaW5nX2NoZWNr
+Jy4gSSB3YXMgc2VhcmNoaW5nIGZvciBpdCwgYnV0IG5vdCBmaW5kaW5nIHRoYXQgb25lLA0KdGhh
+bmtzIGZvciBtZW50aW9uaW5nIGl0LiBJIHdpbGwgaW1tZWRpYXRlbHkgcGF0Y2ggdGhhdCBhbmQg
+c2VuZCBpdA0KcmlnaHQgYXdheS4NCg0KUGhpbGlwcGUNCg==
