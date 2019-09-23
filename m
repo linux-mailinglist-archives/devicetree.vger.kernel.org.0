@@ -2,164 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89108BAC0C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 00:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D061BAC76
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 03:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389094AbfIVWxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Sep 2019 18:53:05 -0400
-Received: from mga04.intel.com ([192.55.52.120]:43447 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388766AbfIVWxF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Sep 2019 18:53:05 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Sep 2019 15:53:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,538,1559545200"; 
-   d="scan'208";a="182339433"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 22 Sep 2019 15:52:59 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
-        (envelope-from <lkp@intel.com>)
-        id 1iCAix-0002dh-6t; Mon, 23 Sep 2019 06:52:59 +0800
-Date:   Mon, 23 Sep 2019 06:52:35 +0800
-From:   kbuild test robot <lkp@intel.com>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     kbuild-all@01.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v6 2/2] drm/bridge: Add NWL MIPI DSI host controller
- support
-Message-ID: <201909230644.qfSKbNf9%lkp@intel.com>
-References: <c0ac0b203fb65ae7efd1b9b54664b491ca2fb157.1569170717.git.agx@sigxcpu.org>
+        id S2391429AbfIWB6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Sep 2019 21:58:48 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:51443 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2391419AbfIWB6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Sep 2019 21:58:48 -0400
+X-UUID: 9df3d1a65e8d4ed89f1ae385a2a4f21d-20190923
+X-UUID: 9df3d1a65e8d4ed89f1ae385a2a4f21d-20190923
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 915901570; Mon, 23 Sep 2019 09:58:41 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 23 Sep 2019 09:58:40 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 23 Sep 2019 09:58:39 +0800
+Message-ID: <1569203920.25491.9.camel@mtksdaap41>
+Subject: Re: [RFC, v3, 4/4] media: platform: mtk-mdp3: Add Mediatek MDP3
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+CC:     <hans.verkuil@cisco.com>,
+        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
+        <matthias.bgg@gmail.com>, <mchehab@kernel.org>,
+        <devicetree@vger.kernel.org>, <Sean.Cheng@mediatek.com>,
+        <Rynn.Wu@mediatek.com>, <srv_heupstream@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        <holmes.chiou@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
+        <jungo.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <yuzhao@chromium.org>, <linux-mediatek@lists.infradead.org>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <zwisler@chromium.org>, <christie.yu@mediatek.com>,
+        <frederic.chen@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>
+Date:   Mon, 23 Sep 2019 09:58:40 +0800
+In-Reply-To: <20190911094013.5892-1-bibby.hsieh@mediatek.com>
+References: <20190911094013.5892-1-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c0ac0b203fb65ae7efd1b9b54664b491ca2fb157.1569170717.git.agx@sigxcpu.org>
-X-Patchwork-Hint: ignore
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Guido,
+Hi, Bibby:
 
-I love your patch! Perhaps something to improve:
+On Wed, 2019-09-11 at 17:40 +0800, Bibby Hsieh wrote:
+> From: daoyuan huang <daoyuan.huang@mediatek.com>
+> 
+> This patch adds driver for Media Data Path 3 (MDP3).
+> Each modules' related operation control is sited in mtk-mdp3-comp.c
+> Each modules' register table is defined in file with "mdp_reg_"
+> and "mmsys_" prefix
+> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
+> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
+> Probe, power, suspend/resume, system level functions are defined in
+> mtk-mdp3-core.c
+> 
+> Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
+> ---
 
-[auto build test WARNING on linus/master]
-[cannot apply to v5.3 next-20190920]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+[snip]
 
-url:    https://github.com/0day-ci/linux/commits/Guido-G-nther/drm-bridge-Add-NWL-MIPI-DSI-host-controller-support/20190923-005010
+> +
+> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+> new file mode 100644
+> index 000000000000..bd8f274fcaa9
+> --- /dev/null
+> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+> @@ -0,0 +1,504 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2018 MediaTek Inc.
+> + * Author: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> + */
+> +
+> +#include <linux/platform_device.h>
+> +#include "mtk-mdp3-cmdq.h"
+> +#include "mtk-mdp3-comp.h"
+> +#include "mtk-mdp3-core.h"
+> +#include "mtk-mdp3-m2m.h"
+> +
+> +#include "mdp-platform.h"
+> +#include "mmsys_mutex.h"
+> +
+> +#define DISP_MUTEX_MDP_FIRST	(5)
+> +#define DISP_MUTEX_MDP_COUNT	(5)
+> +
+> +#define MDP_PATH_MAX_COMPS	IMG_MAX_COMPONENTS
+> +
+> +struct mdp_path {
+> +	struct mdp_dev		*mdp_dev;
+> +	struct mdp_comp_ctx	comps[MDP_PATH_MAX_COMPS];
+> +	u32			num_comps;
+> +	const struct img_config	*config;
+> +	const struct img_ipi_frameparam *param;
+> +	const struct v4l2_rect	*composes[IMG_MAX_HW_OUTPUTS];
+> +	struct v4l2_rect	bounds[IMG_MAX_HW_OUTPUTS];
+> +};
+> +
+> +#define has_op(ctx, op) \
+> +	(ctx->comp->ops && ctx->comp->ops->op)
+> +#define call_op(ctx, op, ...) \
+> +	(has_op(ctx, op) ? ctx->comp->ops->op(ctx, ##__VA_ARGS__) : 0)
+> +
+> +struct mdp_path_subfrm {
+> +	s32	mutex_id;
+> +	u32	mutex_mod;
+> +	s32	sofs[MDP_PATH_MAX_COMPS];
+> +	u32	num_sofs;
+> +};
+> +
+> +static bool is_output_disable(const struct img_compparam *param, u32 count)
+> +{
+> +	return (count < param->num_subfrms) ?
+> +		(param->frame.output_disable ||
+> +		param->subfrms[count].tile_disable) :
+> +		true;
+> +}
+> +
+> +static int mdp_path_subfrm_require(struct mdp_path_subfrm *subfrm,
+> +				   const struct mdp_path *path,
+> +				   struct mdp_cmd *cmd, u32 count)
+> +{
+> +	const struct img_config *config = path->config;
+> +	const struct mdp_comp_ctx *ctx;
+> +	phys_addr_t mm_mutex = path->mdp_dev->mm_mutex.reg_base;
+> +	s32 mutex_id = -1;
+> +	u32 mutex_sof = 0;
+> +	int mdp_color = 0;
+> +	int index;
+> +	u8 subsys_id = path->mdp_dev->mm_mutex.subsys_id;
+> +
+> +	/* Default value */
+> +	memset(subfrm, 0, sizeof(*subfrm));
+> +
+> +	for (index = 0; index < config->num_components; index++) {
+> +		ctx = &path->comps[index];
+> +		if (is_output_disable(ctx->param, count))
+> +			continue;
+> +		switch (ctx->comp->id) {
+> +		/**********************************************
+> +		 * Name            MSB LSB
+> +		 * DISP_MUTEX_MOD   23   0
+> +		 *
+> +		 * Specifies which modules are in this mutex.
+> +		 * Every bit denotes a module. Bit definition:
+> +		 *  2 mdp_rdma0
+> +		 *  4 mdp_rsz0
+> +		 *  5 mdp_rsz1
+> +		 *  6 mdp_tdshp
+> +		 *  7 mdp_wrot0
+> +		 *  8 mdp_wdma
+> +		 *  13 mdp_color
+> +		 *  23 mdp_aal
+> +		 *  24 mdp_ccorr
+> +		 **********************************************/
+> +		case MDP_AAL0:
+> +			subfrm->mutex_mod |= 1 << 23;
+> +			break;
+> +		case MDP_CCORR0:
+> +			subfrm->mutex_mod |= 1 << 24;
+> +			break;
+> +		case MDP_COLOR0:
+> +			if (mdp_color)
+> +				subfrm->mutex_mod |= 1 << 13;
+> +			break;
+> +		case MDP_WDMA:
+> +			subfrm->mutex_mod |= 1 << 8;
+> +			subfrm->sofs[subfrm->num_sofs++] = MDP_WDMA;
+> +			break;
+> +		case MDP_WROT0:
+> +			subfrm->mutex_mod |= 1 << 7;
+> +			subfrm->sofs[subfrm->num_sofs++] = MDP_WROT0;
+> +			break;
+> +		case MDP_TDSHP0:
+> +			subfrm->mutex_mod |= 1 << 6;
+> +			subfrm->sofs[subfrm->num_sofs++] = MDP_TDSHP0;
+> +			break;
+> +		case MDP_SCL1:
+> +			subfrm->mutex_mod |= 1 << 5;
+> +			subfrm->sofs[subfrm->num_sofs++] = MDP_SCL1;
+> +			break;
+> +		case MDP_SCL0:
+> +			subfrm->mutex_mod |= 1 << 4;
+> +			subfrm->sofs[subfrm->num_sofs++] = MDP_SCL0;
+> +			break;
+> +		case MDP_RDMA0:
+> +			mutex_id = DISP_MUTEX_MDP_FIRST + 1;
+> +			subfrm->mutex_mod |= 1 << 2;
+> +			subfrm->sofs[subfrm->num_sofs++] = MDP_RDMA0;
+> +			break;
+> +		case MDP_IMGI:
+> +			mutex_id = DISP_MUTEX_MDP_FIRST;
+> +			break;
+> +		case MDP_WPEI:
+> +			mutex_id = DISP_MUTEX_MDP_FIRST + 3;
+> +			break;
+> +		case MDP_WPEI2:
+> +			mutex_id = DISP_MUTEX_MDP_FIRST + 4;
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +	}
+> +
+> +	subfrm->mutex_id = mutex_id;
+> +	if (-1 == mutex_id) {
+> +		mdp_err("No mutex assigned");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (subfrm->mutex_mod) {
+> +		/* Set mutex modules */
+> +		MM_REG_WRITE(cmd, subsys_id, mm_mutex, MM_MUTEX_MOD,
+> +			     subfrm->mutex_mod, 0x07FFFFFF);
+> +		MM_REG_WRITE(cmd, subsys_id, mm_mutex, MM_MUTEX_SOF,
+> +			     mutex_sof, 0x00000007);
+> +	}
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
+In [1], mdp3 device has a pointer to mutex device, and you directly
+write mutex register in mdp3 driver.
 
-smatch warnings:
-drivers/gpu/drm/bridge/nwl-dsi.c:272 nwl_dsi_config_dpi() warn: unsigned 'color_format' is never less than zero.
+		mdp_rdma0: mdp_rdma0@14001000 {
+			compatible = "mediatek,mt8183-mdp-rdma",
+				     "mediatek,mt8183-mdp3";
 
-vim +/color_format +272 drivers/gpu/drm/bridge/nwl-dsi.c
+			mediatek,mm-mutex = <&mutex>;
+		};
 
-   245	
-   246	static int nwl_dsi_config_dpi(struct nwl_dsi *dsi)
-   247	{
-   248		u32 color_format, mode;
-   249		bool burst_mode;
-   250		int hfront_porch, hback_porch, vfront_porch, vback_porch;
-   251		int hsync_len, vsync_len;
-   252	
-   253		hfront_porch = dsi->mode.hsync_start - dsi->mode.hdisplay;
-   254		hsync_len = dsi->mode.hsync_end - dsi->mode.hsync_start;
-   255		hback_porch = dsi->mode.htotal - dsi->mode.hsync_end;
-   256	
-   257		vfront_porch = dsi->mode.vsync_start - dsi->mode.vdisplay;
-   258		vsync_len = dsi->mode.vsync_end - dsi->mode.vsync_start;
-   259		vback_porch = dsi->mode.vtotal - dsi->mode.vsync_end;
-   260	
-   261		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hfront_porch = %d\n", hfront_porch);
-   262		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hback_porch = %d\n", hback_porch);
-   263		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hsync_len = %d\n", hsync_len);
-   264		DRM_DEV_DEBUG_DRIVER(dsi->dev, "hdisplay = %d\n", dsi->mode.hdisplay);
-   265		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vfront_porch = %d\n", vfront_porch);
-   266		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vback_porch = %d\n", vback_porch);
-   267		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vsync_len = %d\n", vsync_len);
-   268		DRM_DEV_DEBUG_DRIVER(dsi->dev, "vactive = %d\n", dsi->mode.vdisplay);
-   269		DRM_DEV_DEBUG_DRIVER(dsi->dev, "clock = %d kHz\n", dsi->mode.clock);
-   270	
-   271		color_format = nwl_dsi_get_dpi_pixel_format(dsi->format);
- > 272		if (color_format < 0) {
-   273			DRM_DEV_ERROR(dsi->dev, "Invalid color format 0x%x\n",
-   274				      dsi->format);
-   275			return color_format;
-   276		}
-   277		DRM_DEV_DEBUG_DRIVER(dsi->dev, "pixel fmt = %d\n", dsi->format);
-   278	
-   279		nwl_dsi_write(dsi, NWL_DSI_INTERFACE_COLOR_CODING, NWL_DSI_DPI_24_BIT);
-   280		nwl_dsi_write(dsi, NWL_DSI_PIXEL_FORMAT, color_format);
-   281		/*
-   282		 * Adjusting input polarity based on the video mode results in
-   283		 * a black screen so always pick active low:
-   284		 */
-   285		nwl_dsi_write(dsi, NWL_DSI_VSYNC_POLARITY,
-   286			      NWL_DSI_VSYNC_POLARITY_ACTIVE_LOW);
-   287		nwl_dsi_write(dsi, NWL_DSI_HSYNC_POLARITY,
-   288			      NWL_DSI_HSYNC_POLARITY_ACTIVE_LOW);
-   289	
-   290		burst_mode = (dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_BURST) &&
-   291			     !(dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE);
-   292	
-   293		if (burst_mode) {
-   294			nwl_dsi_write(dsi, NWL_DSI_VIDEO_MODE, NWL_DSI_VM_BURST_MODE);
-   295			nwl_dsi_write(dsi, NWL_DSI_PIXEL_FIFO_SEND_LEVEL, 256);
-   296		} else {
-   297			mode = ((dsi->dsi_mode_flags & MIPI_DSI_MODE_VIDEO_SYNC_PULSE) ?
-   298					NWL_DSI_VM_BURST_MODE_WITH_SYNC_PULSES :
-   299					NWL_DSI_VM_NON_BURST_MODE_WITH_SYNC_EVENTS);
-   300			nwl_dsi_write(dsi, NWL_DSI_VIDEO_MODE, mode);
-   301			nwl_dsi_write(dsi, NWL_DSI_PIXEL_FIFO_SEND_LEVEL,
-   302				      dsi->mode.hdisplay);
-   303		}
-   304	
-   305		nwl_dsi_write(dsi, NWL_DSI_HFP, hfront_porch);
-   306		nwl_dsi_write(dsi, NWL_DSI_HBP, hback_porch);
-   307		nwl_dsi_write(dsi, NWL_DSI_HSA, hsync_len);
-   308	
-   309		nwl_dsi_write(dsi, NWL_DSI_ENABLE_MULT_PKTS, 0x0);
-   310		nwl_dsi_write(dsi, NWL_DSI_BLLP_MODE, 0x1);
-   311		nwl_dsi_write(dsi, NWL_DSI_USE_NULL_PKT_BLLP, 0x0);
-   312		nwl_dsi_write(dsi, NWL_DSI_VC, 0x0);
-   313	
-   314		nwl_dsi_write(dsi, NWL_DSI_PIXEL_PAYLOAD_SIZE, dsi->mode.hdisplay);
-   315		nwl_dsi_write(dsi, NWL_DSI_VACTIVE, dsi->mode.vdisplay - 1);
-   316		nwl_dsi_write(dsi, NWL_DSI_VBP, vback_porch);
-   317		nwl_dsi_write(dsi, NWL_DSI_VFP, vfront_porch);
-   318	
-   319		return 0;
-   320	}
-   321	
 
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+ 		mutex: mutex@14016000 {
+ 			compatible = "mediatek,mt8183-disp-mutex";
+ 			reg = <0 0x14016000 0 0x1000>;
+ 		};
+
+But mutex already has its own driver in mediatek drm driver [2]. This is
+not a good design. I would like all mutex device register is controlled
+in single driver. 
+
+[1] https://patchwork.kernel.org/patch/11140747/
+[2]
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/mediatek/mtk_drm_ddp.c?h=v5.3#n429
+
+Regards,
+CK
+
+> +	return 0;
+> +}
+
+
+
