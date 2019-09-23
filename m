@@ -2,121 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA61BB1E4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 12:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 993E2BB1F0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 12:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436803AbfIWKGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 06:06:25 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37045 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436801AbfIWKGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 06:06:25 -0400
-Received: by mail-wm1-f68.google.com with SMTP id f22so1453777wmc.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 03:06:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=efP++C+n842ztdoruWHDsU5t7UYA9AhqrH+sQr0d664=;
-        b=WC9lw/G4j9t7XfO7TyQQ+hQwJ2ffDW97T4DSfot/iXZ28CL777HiBBFAXG72dy3Xp/
-         qBCUZFBu3ifqNu7HsTfJAg1/QfIzikeAXdne7P0iP6wKqE7joi4zx56TH6xqHy51C5e+
-         53pQbs3zcWxdoKDXbZcmIsdLLGblPgAN7jVTknzeleIIR6dGZxC0YVniDjjFnvt419YH
-         YBvdsaqx4r0HU0oLhLTwO0NzXSZF5KA+nEn3DOxdEQbJZ+6hsPxnWj6z+1Y6JA++yGcH
-         WpF9gYtNUAoOcabk2M3GM4Exu56zcPS5sOpzP4PmmGXJomuH4VHZuA14bTmGPxLv4TsE
-         LXmQ==
+        id S2405551AbfIWKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 06:10:03 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:35875 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405389AbfIWKKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 06:10:03 -0400
+Received: by mail-wm1-f65.google.com with SMTP id m18so8620943wmc.1;
+        Mon, 23 Sep 2019 03:10:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=efP++C+n842ztdoruWHDsU5t7UYA9AhqrH+sQr0d664=;
-        b=LsGeV8GsIDTxAqMPo0PgAz/HX8Xg7Ft4XY/fXBlWF7GFLZNG/m75YHp/65AhuWoUV0
-         BNFiwwRVB1Ocs3tKFXsHMq+v89QEdZVU7qO6Rtveqv5Qvn7806+wv7BwcLxok5ZupfTm
-         KJnfQyjgDsG/bbTimmiQwUP6hgg9L/GRzPEJcaVq2aGXPhUlWbPJrvL56nYYWtmhnbS/
-         UkUMADK7FrruZDmYyQK5NPWbNXiR1rGw/nB7+AvqW1uTfPYAZ2b46iHfzKUKvxDB0QY9
-         wriNrLYB+56eiEmutsELM1bG90+AlIVmhvu8Ya3FijbOAAUNekzr6X4GY+nVndrdaa6U
-         wvnA==
-X-Gm-Message-State: APjAAAXB8z7j/eV/o8ik/TjHFxPCw4IRhAcasJBi1Edd1rMCnmPzOulc
-        BtCglql5mGOO0oWb8ZADYgXqDA==
-X-Google-Smtp-Source: APXvYqz2luNiHMrLwslAQi441uViJJb8E2s1paCFVoS208d5LL0ax7NHmxfoN7H9JcWe1ml1uW1Kiw==
-X-Received: by 2002:a1c:6841:: with SMTP id d62mr13297447wmc.48.1569233182680;
-        Mon, 23 Sep 2019 03:06:22 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id t1sm9644294wrn.57.2019.09.23.03.06.21
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=h9qXlBn1SwboKu5LtxJjQDTNKEcy+/lavbTXOBsjGHM=;
+        b=bY+mHPeyAFJik7UQhJyESFoWV6qxWdr9WsK4+VSn3dLxy48ZwCXZ2T5Nsm02IWGIxH
+         8+i6pCPrcFC/wpPTh7z6LIrvtoJkitEywYT8MYlb4gKPrz6yjPkbJ/RIB5n+n4G9n8tw
+         WCzu/lh9w+hZiTj+6bnuPER5i5Kqqstnoa39uja3Rkr90k3Radqu3HXnyhk+HOOEmZE0
+         BK+W27FDobZ9+mFIC+Xznrr7eQwC5V8cc2L8JjAddt404cA25Bz7TlMG4Odu7QBWvXWm
+         FS0IEdZmfKvTmCNgR7CkKlHUfp2bvysCjAMvXhTq+Z30bL3OvzGMOuzetb0cNFx01cXh
+         heMw==
+X-Gm-Message-State: APjAAAW4FntxOCcucdzjbmRCswrhdkiuCfjgFMYW3ZyYBWRSNqa6lEvS
+        hNTbQ6NkdrfmHMT/LTGfgxM=
+X-Google-Smtp-Source: APXvYqwZ70GVq/wsIIytWY8nE0tIFLrgynh5FI/RtkKc0x6HwJVU1rez82f8Fjm1XocHptXshd8PFg==
+X-Received: by 2002:a1c:150:: with SMTP id 77mr2056857wmb.116.1569233401030;
+        Mon, 23 Sep 2019 03:10:01 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id l9sm9539317wme.45.2019.09.23.03.09.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2019 03:06:22 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        narmstrong@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/6] add the DDR clock controller on Meson8 and Meson8b
-In-Reply-To: <20190921151835.770263-1-martin.blumenstingl@googlemail.com>
-References: <20190921151835.770263-1-martin.blumenstingl@googlemail.com>
-Date:   Mon, 23 Sep 2019 12:06:21 +0200
-Message-ID: <1jsgons4wy.fsf@starbuckisacylon.baylibre.com>
+        Mon, 23 Sep 2019 03:10:00 -0700 (PDT)
+Date:   Mon, 23 Sep 2019 12:09:57 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     ckeepax@opensource.cirrus.com, broonie@kernel.org,
+        lgirdwood@gmail.com, sbkim73@samsung.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v2 03/10] ASoC: wm8994: Add support for setting MCLK
+ clock rate
+Message-ID: <20190923100957.GA4723@pi3>
+References: <20190920130218.32690-1-s.nawrocki@samsung.com>
+ <CGME20190920130316eucas1p2de713006a13c62c0b895c2e33e0d14c7@eucas1p2.samsung.com>
+ <20190920130218.32690-4-s.nawrocki@samsung.com>
+ <7334ce45-f192-4421-aa3d-d142582153ef@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7334ce45-f192-4421-aa3d-d142582153ef@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 21 Sep 2019 at 17:18, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+On Mon, Sep 23, 2019 at 11:10:48AM +0200, Sylwester Nawrocki wrote:
+> On 9/20/19 15:02, Sylwester Nawrocki wrote:
+> > Extend the set_sysclk() handler so we also set frequency of the MCLK1,
+> > MCLK2 clocks through clk API when those clocks are specified in DT.
+> > 
+> > Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> Sorry, I squashed other patch to this one but forgot to remove above tags, 
+> not sure if those still stand as there was rather significant change in 
+> the patch. 
 
-> Meson8 and Meson8b SoCs embed a DDR clock controller in their MMCBUS
-> registers. This series:
-> - adds support for this DDR clock controller (patches 0 and 1)
-> - wires up the DDR PLL as input for two audio clocks (patches 2 and 3)
+It's good. For the record:
 
-Have you been able to validate somehow that DDR rate calculated by CCF
-is the actual rate that gets to the audio clocks ?
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-While I understand the interest for completeness, I suspect the having
-the DDR clock as an audio parent was just for debugging purpose. IOW,
-I'm not sure if adding this parent is useful to an actual audio use
-case. As far as audio would be concerned, I think we are better of
-without this parent.
+Best regards,
+Krzysztof
 
-> - adds the DDR clock controller to meson8.dtsi and meson8b.dtsi
->
-
-Could you please separate the driver and DT series in the future ? Those
-take different paths and are meant for different maintainers.
-
-> Special thanks go out to Alexandre Mergnat for switching the Amlogic
-> clock drivers over to parent_hws and parent_data. That made this series
-> a lot easier for me!
->
-> This series depends on my other series from [0]:
-> "provide the XTAL clock via OF on Meson8/8b/8m2"
->
->
-> [0] https://patchwork.kernel.org/cover/11155515/
->
->
-> Martin Blumenstingl (6):
->   dt-bindings: clock: add the Amlogic Meson8 DDR clock controller
->     binding
->   clk: meson: add a driver for the Meson8/8b/8m2 DDR clock controller
->   clk: meson: meson8b: use of_clk_hw_register to register the clocks
->   clk: meson: meson8b: add the ddr_pll input for the audio clocks
->   ARM: dts: meson8: add the DDR clock controller
->   ARM: dts: meson8b: add the DDR clock controller
->
->  .../clock/amlogic,meson8-ddr-clkc.yaml        |  50 ++++++
->  arch/arm/boot/dts/meson8.dtsi                 |  13 +-
->  arch/arm/boot/dts/meson8b.dtsi                |  13 +-
->  drivers/clk/meson/Makefile                    |   2 +-
->  drivers/clk/meson/meson8-ddr.c                | 153 ++++++++++++++++++
->  drivers/clk/meson/meson8b.c                   |  36 ++---
->  include/dt-bindings/clock/meson8-ddr-clkc.h   |   4 +
->  7 files changed, 245 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,meson8-ddr-clkc.yaml
->  create mode 100644 drivers/clk/meson/meson8-ddr.c
->  create mode 100644 include/dt-bindings/clock/meson8-ddr-clkc.h
->
-> -- 
-> 2.23.0
