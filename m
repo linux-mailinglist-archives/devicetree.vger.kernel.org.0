@@ -2,74 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41961BBACB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 19:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35FCABBAF0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 20:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502214AbfIWRxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 13:53:06 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:33149 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502187AbfIWRxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 13:53:06 -0400
-Received: by mail-lf1-f68.google.com with SMTP id y127so10862849lfc.0;
-        Mon, 23 Sep 2019 10:53:04 -0700 (PDT)
+        id S2440307AbfIWSGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 14:06:33 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:46019 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394147AbfIWSGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 14:06:33 -0400
+Received: by mail-pl1-f193.google.com with SMTP id u12so6823117pls.12
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 11:06:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+nETwLTcSQNmZKDmVi3TZpXZbExngQu+m9w5qr6AGgs=;
-        b=HxgUpwh1K4Osq1CBS6h200IBzNKMlXxZJys8/y+WGEwmFuLCQp0b6rEEUvK4oLDrSP
-         Rf7BTmAo0PpUHFLQDsmvhM0ybmsgDKyVNHrLOOg28zyy6cwdACR+PiZGMx18dGOmsBZx
-         0GpfvuBlxJ6dZOGT/U6eIf5QD8rNo9HWz+NqmbEKcLINC54FQrJIoWGnq3OhWVvW3kyg
-         WFQUO66ofXEapR7mEAEVYxUI7b+ZupKsrvET1yIDXCpucBhsSRGiBD41mce2wJ7jQdtb
-         6V/A5WAcmVlM2IUla0zbhVBQjd0gBrEb4NBmZ5ryqvxcwyflVrm3VTIY0tE/IvZgCQPV
-         i+ZQ==
+        bh=nhneKc2j612Q2N+13gaGbKUVRsMhSSxGH7dWRfDGMkM=;
+        b=T1+NUcrIy3lmkEWKUYoZizpT4pz7k1bgugAw5x236rFYSY4jiXwwGSkW/t3eTOgxZZ
+         BdFUIyPtNrmuOnFW8pMCBh0TOJ0ymwQs3hrr2tpjSwDy/Jn7hGK64HYhWlOR+Pme/Rjs
+         q1skpdHUJIQUzoH1STCk8Qg+RNLa+nlemSvf5GuWwDF1JHGzH7MzOgvgGfuUDt1Yjlx+
+         jLfCXyd8JabRhAP+sdDZJeube1e/2Pp2+w4UQdEthm0TnALHcGP03fa6VfY8gUFfbf65
+         93WWIiL7H75Fl011ZWNdHPF+hL1hlBHne2JyK6E63p3OCh/BSVxvl8asUe8na9vlCXYJ
+         Puqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+nETwLTcSQNmZKDmVi3TZpXZbExngQu+m9w5qr6AGgs=;
-        b=Ycb1znWqfcTr5ah0axsdMWrXBgB+jwxtO6yoM/5oYNggvR2mBEvBzECs3E2L24PRki
-         VlTDkN9MhrAeeY9UhUXXInjmIrx/JG/tHWsjyJr/VcVJAO+agV59+sY3eexQ8eGtI3hS
-         z6MT/3JuANVCbjMjdkmWV6Xdp3u/7Pcrex2TIurp8R0zhD9+3l3JRyNdMIGvsE8/aOHX
-         1aJsfWnmx4XBcM1+4Az93N4YlfrWzMGsvnzRvM3fh1c0ZS9rVvL5Km946+DkUpXGnfPO
-         n4pqeusi9w9u6HDRuvo2WTO/cBn84IOZdxtTOZW0w9Oyfw4dvPtTtkdVY//w9jsFl4Xg
-         v0UA==
-X-Gm-Message-State: APjAAAU0QVkdDkbdtaWR3CMRJpPSlzQZbBL8jPzNr/qlD/YOHQ49ovqn
-        m3sVUrpRxehoZ31PY4BSZIidCLucB5BaF90q980=
-X-Google-Smtp-Source: APXvYqzkPsMgK6FybRHJ7x3Iz6w0uc///8DUQ3Vvh8wWfmwZxx/RPFfskdkY4Ly0GSlEFtOJmRtRNOME7RHtvOCscs8=
-X-Received: by 2002:a19:6008:: with SMTP id u8mr500304lfb.12.1569261183720;
- Mon, 23 Sep 2019 10:53:03 -0700 (PDT)
+        bh=nhneKc2j612Q2N+13gaGbKUVRsMhSSxGH7dWRfDGMkM=;
+        b=tnthJpv1HZLeMPNrkIOxPhGDAbQ1bFRHdQr224/t+2rZzbh7NddUi4H009vZlacx14
+         DdtcGrbdAm9SxKeasLFKNWbZyiriMuJh6SonNLmXr1cQtvpr549YF5Gpy+l3bEo/Ss8z
+         /OqW8DtYhl0/Xb4o0ldHSzWG5XEwukfT/BrHiPBuFf9gDEFyJrkHbZnU6/ipOKZ/9aaw
+         OqkmtY34AD9lANwvxaTiKIbD6wYm56eDWfIIw8yFiWme3XLMMuzd+2v8hlTg4fA3TfXn
+         l04KC8mX0j6I1B1wzgX1lw1iwItNYts5wkOHkw7+wkShMN6k6EXvEJbFt5JfsFvj2QXk
+         gDTg==
+X-Gm-Message-State: APjAAAXRfRzHsZ5OjbRXWIJWSfyOyOY579cePXineDB6AKvfANdTwws0
+        uMb5jm4mky+eAwkoSpw9OjJtA7HQlAtF+BY71DhGHQ==
+X-Google-Smtp-Source: APXvYqwfsjyOL3n2LFVEPJm/qlWBl4UOe3/cXY8+uFis2YYWhVkjpN1GVmQ/ETS5lMq5TdaURd2f4h4p74UheIpwH8I=
+X-Received: by 2002:a17:902:ff0e:: with SMTP id f14mr1025347plj.325.1569261990405;
+ Mon, 23 Sep 2019 11:06:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com>
- <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
- <CAOMZO5AOVfBpz2Azh65iT_W3CBZUxf9KnqA=kdow7XWd4j--Qg@mail.gmail.com> <45ad0ec1bfd5af4f46efd7d24c627822ac17fdbf.camel@pengutronix.de>
-In-Reply-To: <45ad0ec1bfd5af4f46efd7d24c627822ac17fdbf.camel@pengutronix.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 23 Sep 2019 14:53:07 -0300
-Message-ID: <CAOMZO5C7d6ovHSyaXNWD4NmTNF-r8jw1tCLxNuh1BmD4JReMjQ@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: imx8mq: add DCSS node
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20190923090249.127984-1-brendanhiggins@google.com>
+ <20190923090249.127984-16-brendanhiggins@google.com> <d87eba35-ae09-0c53-bbbe-51ee9dc9531f@infradead.org>
+In-Reply-To: <d87eba35-ae09-0c53-bbbe-51ee9dc9531f@infradead.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Mon, 23 Sep 2019 11:06:19 -0700
+Message-ID: <CAFd5g45y-NWzbn8E8hUg=n4U5E+N6_4D8eCXhQ74Y0N4zqVW=w@mail.gmail.com>
+Subject: Re: [PATCH v18 15/19] Documentation: kunit: add documentation for KUnit
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Felix Guo <felixguoxiuping@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 2:01 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+On Mon, Sep 23, 2019 at 8:48 AM Randy Dunlap <rdunlap@infradead.org> wrote:
+>
+> On 9/23/19 2:02 AM, Brendan Higgins wrote:
+> > Add documentation for KUnit, the Linux kernel unit testing framework.
+> > - Add intro and usage guide for KUnit
+> > - Add API reference
+> >
+> > Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
+> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> > Cc: Jonathan Corbet <corbet@lwn.net>
+> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> > ---
+> >  Documentation/dev-tools/index.rst           |   1 +
+> >  Documentation/dev-tools/kunit/api/index.rst |  16 +
+> >  Documentation/dev-tools/kunit/api/test.rst  |  11 +
+> >  Documentation/dev-tools/kunit/faq.rst       |  62 +++
+> >  Documentation/dev-tools/kunit/index.rst     |  79 +++
+> >  Documentation/dev-tools/kunit/start.rst     | 180 ++++++
+> >  Documentation/dev-tools/kunit/usage.rst     | 576 ++++++++++++++++++++
+> >  7 files changed, 925 insertions(+)
+> >  create mode 100644 Documentation/dev-tools/kunit/api/index.rst
+> >  create mode 100644 Documentation/dev-tools/kunit/api/test.rst
+> >  create mode 100644 Documentation/dev-tools/kunit/faq.rst
+> >  create mode 100644 Documentation/dev-tools/kunit/index.rst
+> >  create mode 100644 Documentation/dev-tools/kunit/start.rst
+> >  create mode 100644 Documentation/dev-tools/kunit/usage.rst
+>
+>
+> > diff --git a/Documentation/dev-tools/kunit/start.rst b/Documentation/dev-tools/kunit/start.rst
+> > new file mode 100644
+> > index 000000000000..6dc229e46bb3
+> > --- /dev/null
+> > +++ b/Documentation/dev-tools/kunit/start.rst
+> > @@ -0,0 +1,180 @@
+> > +.. SPDX-License-Identifier: GPL-2.0
+> > +
+> > +===============
+> > +Getting Started
+> > +===============
+> > +
+> > +Installing dependencies
+> > +=======================
+> > +KUnit has the same dependencies as the Linux kernel. As long as you can build
+> > +the kernel, you can run KUnit.
+> > +
+> > +KUnit Wrapper
+> > +=============
+> > +Included with KUnit is a simple Python wrapper that helps format the output to
+> > +easily use and read KUnit output. It handles building and running the kernel, as
+> > +well as formatting the output.
+> > +
+> > +The wrapper can be run with:
+> > +
+> > +.. code-block:: bash
+> > +
+> > +   ./tools/testing/kunit/kunit.py run
+> > +
+> > +Creating a kunitconfig
+> > +======================
+> > +The Python script is a thin wrapper around Kbuild as such, it needs to be
+>
+>                                        around Kbuild. As such,
 
-> No, they are not. Those are imx-irqsteer IRQs, this controller has 0
-> irq cells, so the description in this patch is correct.
+Thanks for pointing this out.
 
-Good point, thanks!
+>
+> > +configured with a ``kunitconfig`` file. This file essentially contains the
+> > +regular Kernel config, with the specific test targets as well.
+> > +
+> > +.. code-block:: bash
+> > +
+> > +     git clone -b master https://kunit.googlesource.com/kunitconfig $PATH_TO_KUNITCONFIG_REPO
+> > +     cd $PATH_TO_LINUX_REPO
+> > +     ln -s $PATH_TO_KUNIT_CONFIG_REPO/kunitconfig kunitconfig
+> > +
+> > +You may want to add kunitconfig to your local gitignore.
+> > +
+> > +Verifying KUnit Works
+> > +---------------------
+> > +
+> > +To make sure that everything is set up correctly, simply invoke the Python
+> > +wrapper from your kernel repo:
+> > +
+> > +.. code-block:: bash
+> > +
+> > +     ./tools/testing/kunit/kunit.py
+> > +
+> > +.. note::
+> > +   You may want to run ``make mrproper`` first.
+>
+> I normally use O=builddir when building kernels.
+> Does this support using O=builddir ?
+
+Yep, it supports specifying a separate build directory.
+
+> > +
+> > +If everything worked correctly, you should see the following:
+> > +
+> > +.. code-block:: bash
+> > +
+> > +     Generating .config ...
+> > +     Building KUnit Kernel ...
+> > +     Starting KUnit Kernel ...
+> > +
+> > +followed by a list of tests that are run. All of them should be passing.
+> > +
+> > +.. note::
+> > +   Because it is building a lot of sources for the first time, the ``Building
+> > +   kunit kernel`` step may take a while.
+> > +
+> > +Writing your first test
+> > +=======================
+>
+> [snip]
+>
+> > diff --git a/Documentation/dev-tools/kunit/usage.rst b/Documentation/dev-tools/kunit/usage.rst
+> > new file mode 100644
+> > index 000000000000..c6e69634e274
+> > --- /dev/null
+> > +++ b/Documentation/dev-tools/kunit/usage.rst
+>
+> TBD...
+
+What did you mean by this comment?
+
+Cheers
