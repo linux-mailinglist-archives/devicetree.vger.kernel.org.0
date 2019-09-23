@@ -2,156 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B1CBAFFC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11F3BB006
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:54:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731912AbfIWIwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 04:52:45 -0400
-Received: from foss.arm.com ([217.140.110.172]:38874 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731734AbfIWIwp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 04:52:45 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A56D1000;
-        Mon, 23 Sep 2019 01:52:44 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DD0883F59C;
-        Mon, 23 Sep 2019 01:52:42 -0700 (PDT)
-Subject: Re: [PATCH v2 5/5] irqchip/irq-bcm7038-l1: Support brcm,int-fwd-mask
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
-        <linux-mips@vger.kernel.org>
-References: <20190913191542.9908-1-f.fainelli@gmail.com>
- <20190913191542.9908-6-f.fainelli@gmail.com> <20190922133805.2cdf2d99@why>
- <260e61b8-a083-743e-43fc-70b9ea644e0e@gmail.com>
-From:   Marc Zyngier <maz@kernel.org>
-Organization: Approximate
-Message-ID: <fbc07e1e-8c72-8728-2acb-647db533e31b@kernel.org>
-Date:   Mon, 23 Sep 2019 09:52:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1731973AbfIWIyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 04:54:17 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37675 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731971AbfIWIyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:54:17 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iCK6p-0002FR-FW; Mon, 23 Sep 2019 10:54:15 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iCK6o-0000rV-MN; Mon, 23 Sep 2019 10:54:14 +0200
+Date:   Mon, 23 Sep 2019 10:54:14 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/4] pwm: mxs: add support for inverse polarity
+Message-ID: <20190923085414.6d3gbby6gglpjsfe@pengutronix.de>
+References: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
+ <20190923081348.6843-4-linux@rasmusvillemoes.dk>
+ <20190923082735.tzxyhvjlnztsxhsc@pengutronix.de>
+ <d2b29144-3de8-4561-3292-49db7e697aca@rasmusvillemoes.dk>
 MIME-Version: 1.0
-In-Reply-To: <260e61b8-a083-743e-43fc-70b9ea644e0e@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d2b29144-3de8-4561-3292-49db7e697aca@rasmusvillemoes.dk>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2019 20:08, Florian Fainelli wrote:
+On Mon, Sep 23, 2019 at 10:45:56AM +0200, Rasmus Villemoes wrote:
+> On 23/09/2019 10.27, Uwe Kleine-König wrote:
+> > On Mon, Sep 23, 2019 at 10:13:47AM +0200, Rasmus Villemoes wrote:
+> >>
+> >>  
+> >> +	pol_bits = state->polarity == PWM_POLARITY_NORMAL ?
+> >> +		PERIOD_POLARITY_NORMAL : PERIOD_POLARITY_INVERSE;
+> >> +
+> >>  	writel(duty_cycles << 16,
+> >>  	       mxs->base + PWM_ACTIVE0 + pwm->hwpwm * 0x20);
+> >> -	writel(PERIOD_PERIOD(period_cycles) | PERIOD_POLARITY_NORMAL | PERIOD_CDIV(div),
+> >> +	writel(PERIOD_PERIOD(period_cycles) | pol_bits | PERIOD_CDIV(div),
+> > 
+> > When will this affect the output? Only on the next start of a period, or
+> > immediatly? Can it happen that this results in a mixed output (i.e. a
+> > period that has already the new duty cycle from the line above but not
+> > the new polarity (or period)?
 > 
-> 
-> On 9/22/2019 5:38 AM, Marc Zyngier wrote:
->> On Fri, 13 Sep 2019 12:15:42 -0700
->> Florian Fainelli <f.fainelli@gmail.com> wrote:
->>
->>> On some specific chips like 7211 we need to leave some interrupts
->>> untouched/forwarded to the VPU which is another agent in the system
->>> making use of that interrupt controller hardware (goes to both ARM GIC
->>> and VPU L1 interrupt controller). Make that possible by using the
->>> existing brcm,int-fwd-mask property.
->>>
->>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->>> ---
->>>  drivers/irqchip/irq-bcm7038-l1.c | 15 +++++++++++++--
->>>  1 file changed, 13 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/irqchip/irq-bcm7038-l1.c b/drivers/irqchip/irq-bcm7038-l1.c
->>> index 0673a44bbdc2..811a34201dd4 100644
->>> --- a/drivers/irqchip/irq-bcm7038-l1.c
->>> +++ b/drivers/irqchip/irq-bcm7038-l1.c
->>> @@ -44,6 +44,7 @@ struct bcm7038_l1_chip {
->>>  	struct list_head	list;
->>>  	u32			wake_mask[MAX_WORDS];
->>>  #endif
->>> +	u32			irq_fwd_mask[MAX_WORDS];
->>>  	u8			affinity[MAX_WORDS * IRQS_PER_WORD];
->>>  };
->>>  
->>> @@ -265,6 +266,7 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
->>>  	resource_size_t sz;
->>>  	struct bcm7038_l1_cpu *cpu;
->>>  	unsigned int i, n_words, parent_irq;
->>> +	int ret;
->>>  
->>>  	if (of_address_to_resource(dn, idx, &res))
->>>  		return -EINVAL;
->>> @@ -278,6 +280,14 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
->>>  	else if (intc->n_words != n_words)
->>>  		return -EINVAL;
->>>  
->>> +	ret = of_property_read_u32_array(dn , "brcm,int-fwd-mask",
->>
->> What is the exact meaning of "fwd"? Forward? FirmWare Dementia?
-> 
-> Here it is meant to be "forward", we have defined this property name
-> before for irq-bcm7120-l2.c and felt like reusing the same name to avoid
-> multiplying properties would be appropriate, see patch #4. If you prefer
-> something named brcm,firmware-configured-mask, let me know.
+> The data sheet says "Also, when the user reprograms the channel in this
+> manner, the new register values will not take effect until the beginning
+> of a new output period. This eliminates the potential for output
+> glitches that could occur if the registers were updated while the
+> channel was enabled and in the middle of a cycle.". So I think this
+> should be ok. "this manner" refers to the registers being written in the
+> proper order (first ACTIVEn, then PERIODn).
 
-It's just a name, but I found it a bit confusing. Bah, never mind.
+OK. IMHO this is worth a code comment.
 
->>
->>> +					 intc->irq_fwd_mask, n_words);
->>> +	if (ret != 0 && ret != -EINVAL) {
->>> +		/* property exists but has the wrong number of words */
->>> +		pr_err("invalid brcm,int-fwd-mask property\n");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>>  	cpu = intc->cpus[idx] = kzalloc(sizeof(*cpu) + n_words * sizeof(u32),
->>>  					GFP_KERNEL);
->>>  	if (!cpu)
->>> @@ -288,8 +298,9 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
->>>  		return -ENOMEM;
->>>  
->>>  	for (i = 0; i < n_words; i++) {
->>> -		l1_writel(0xffffffff, cpu->map_base + reg_mask_set(intc, i));
->>> -		cpu->mask_cache[i] = 0xffffffff;
->>> +		l1_writel(0xffffffff & ~intc->irq_fwd_mask[i],
->>> +			  cpu->map_base + reg_mask_set(intc, i));
->>> +		cpu->mask_cache[i] = 0xffffffff & ~intc->irq_fwd_mask[i];
->>
->> I seem to remember that (0xffffffff & whatever) == whatever, as long as
->> 'whatever' is a 32bit quantity. So what it this for?
-> 
-> It is 0xffff_ffff & ~whatever here.
+Best regards
+Uwe
 
-Which doesn't change anything.
-
-> In the absence of this property
-> being specified, the data is all zeroed out, so we would have
-> 0xffff_ffff & 0xffff_ffff which is 0xffff_ffff. If this property is
-> specified, we would have one more or bits set, and it would be e.g.:
-> 0x100 so we would have 0xffff_ffff & ~(0x100) = 0xffff_feff which is
-> what we would want here to preserve whatever the firmware has already
-> configured.
-
-OK, I must be stupid:
-
-#include <stdio.h>
-
-int main(int argc, char *argv[])
-{
-	unsigned int v = 0x100;
-	printf ("%x\n", ~v);
-}
-maz@filthy-habit$ ./x
-fffffeff
-
-You might as well OR it with zeroes, if you want.
-
-	M.
 -- 
-Jazz is not dead, it just smells funny...
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
