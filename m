@@ -2,98 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB16FBBA03
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 18:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C5DBBA17
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 19:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390848AbfIWQyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 12:54:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55474 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390806AbfIWQyo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 12:54:44 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1B1C20882;
-        Mon, 23 Sep 2019 16:54:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569257683;
-        bh=WIRo18P9vD/7u8trD2h5S5GUAMjZkH6LD3wnIxh+LOU=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=fX3kSzm/O/ZTERhPGEutWFuA1d/8Ed2hikLwxeh5MenpYAXPjUKlP3dfXISawejj5
-         xeQc8eKDua9XPOO55Rrz9O1fkhEVBinMe2ccKxfmk32T4jNVJEwGulEIAeRQ2UPToM
-         y5+IBkiYLYvmn4dwpBZ97FWmejIAmww4YSNNsOXs=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
-References: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com> <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
-Cc:     devicetree@vger.kernel.org, agx@sigxcpu.org,
-        linux-kernel@vger.kernel.org,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
-To:     Fabio Estevam <festevam@gmail.com>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-From:   Stephen Boyd <sboyd@kernel.org>
+        id S2502153AbfIWRBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 13:01:09 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37867 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388187AbfIWRBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 13:01:09 -0400
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1iCRhw-0003at-P2; Mon, 23 Sep 2019 19:01:04 +0200
+Message-ID: <45ad0ec1bfd5af4f46efd7d24c627822ac17fdbf.camel@pengutronix.de>
 Subject: Re: [PATCH 5/5] arm64: dts: imx8mq: add DCSS node
-User-Agent: alot/0.8.1
-Date:   Mon, 23 Sep 2019 09:54:42 -0700
-Message-Id: <20190923165443.D1B1C20882@mail.kernel.org>
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Date:   Mon, 23 Sep 2019 19:00:58 +0200
+In-Reply-To: <CAOMZO5AOVfBpz2Azh65iT_W3CBZUxf9KnqA=kdow7XWd4j--Qg@mail.gmail.com>
+References: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com>
+         <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
+         <CAOMZO5AOVfBpz2Azh65iT_W3CBZUxf9KnqA=kdow7XWd4j--Qg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Laurentiu Palcu (2019-09-23 07:13:19)
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mq.dtsi
-> index 52aae34..d4aa778 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -871,6 +871,31 @@
->                                 interrupt-controller;
->                                 #interrupt-cells =3D <1>;
->                         };
-> +
-> +                       dcss: dcss@0x32e00000 {
+Am Montag, den 23.09.2019, 13:12 -0300 schrieb Fabio Estevam:
+> Hi Laurentiu,
+> 
+> On Mon, Sep 23, 2019 at 11:14 AM Laurentiu Palcu
+> <laurentiu.palcu@nxp.com> wrote:
+> 
+> > +
+> > +                       dcss: dcss@0x32e00000 {
+> 
+> Node names should be generic, so:
+> 
+> dcss: display-controller@32e00000
+> 
+> > +                               #address-cells = <1>;
+> > +                               #size-cells = <0>;
+> > +                               compatible = "nxp,imx8mq-dcss";
+> > +                               reg = <0x32e00000 0x2D000>,
+> > <0x32e2f000 0x1000>;
+> 
+> 0x2d000 for consistency.
+> 
+> > +                               interrupts = <6>, <8>, <9>;
+> 
+> The interrupts are passed in the <GIC_SPI xxx IRQ_TYPE_LEVEL_HIGH>
+> format.
 
-Drop the 0x prefix on node names.
+No, they are not. Those are imx-irqsteer IRQs, this controller has 0
+irq cells, so the description in this patch is correct.
 
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               compatible =3D "nxp,imx8mq-dcss";
-> +                               reg =3D <0x32e00000 0x2D000>, <0x32e2f000=
- 0x1000>;
-> +                               interrupts =3D <6>, <8>, <9>;
-> +                               interrupt-names =3D "ctx_ld", "ctxld_kick=
-", "vblank";
-> +                               interrupt-parent =3D <&irqsteer>;
-> +                               clocks =3D <&clk IMX8MQ_CLK_DISP_APB_ROOT=
->,
-> +                                        <&clk IMX8MQ_CLK_DISP_AXI_ROOT>,
-> +                                        <&clk IMX8MQ_CLK_DISP_RTRM_ROOT>,
-> +                                        <&clk IMX8MQ_VIDEO2_PLL_OUT>,
-> +                                        <&clk IMX8MQ_CLK_DISP_DTRC>;
-> +                               clock-names =3D "apb", "axi", "rtrm", "pi=
-x", "dtrc";
-> +                               assigned-clocks =3D <&clk IMX8MQ_CLK_DISP=
-_AXI>,
-> +                                                 <&clk IMX8MQ_CLK_DISP_R=
-TRM>,
-> +                                                 <&clk IMX8MQ_VIDEO2_PLL=
-1_REF_SEL>;
-> +                               assigned-clock-parents =3D <&clk IMX8MQ_S=
-YS1_PLL_800M>,
-> +                                                        <&clk IMX8MQ_SYS=
-1_PLL_800M>,
-> +                                                        <&clk IMX8MQ_CLK=
-_27M>;
-> +                               assigned-clock-rates =3D <800000000>,
-> +                                                          <400000000>;
-> +                               status =3D "disabled";
-> +                       };
+Regards,
+Lucas
 
