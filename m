@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71733BB15A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7B31BB168
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407089AbfIWJZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 05:25:30 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:27944 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2407083AbfIWJZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 05:25:29 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8N9OhOp004541;
-        Mon, 23 Sep 2019 04:25:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=OenETI2BlyjKLCH8My5ZcKXoQz9o782ZPMAD8kB1A9Y=;
- b=I9VIqGAavSGxcFxwBs8KSWLUHZ/NGrnt9Enxz4YMZe57fIC9yRlsXcpDYcQ9PeQz6vuJ
- AQhDwBRlmZ8N0DDZ9R8zJuwmzo1gLhalJN1DsDJs4aPzBzc+UPobGnu9fLwXycJriV8N
- wObM9s9Ln1DMN0J3VNgcoPgB4epsjdqLFB8vUQVMaZiCm8/DhtIwaKoeBa4W7q4I/E05
- LnQOvjk+HoxJbsQzxKu52f1swLW8rvNdfqZLKDSc86J/AK7kjdRVAd9eXmVZwrCw5Lu4
- 0DEXCk58FQjeywMSNNdNddmbO49xyFYumqlP2DfCS9aKR2M4qfD2DC8L4N0oqhZUrM5g CA== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2v5h9238qa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 23 Sep 2019 04:25:19 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 23 Sep
- 2019 10:25:17 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Mon, 23 Sep 2019 10:25:17 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 612982C1;
-        Mon, 23 Sep 2019 09:25:17 +0000 (UTC)
-Date:   Mon, 23 Sep 2019 09:25:17 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-CC:     <krzk@kernel.org>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <sbkim73@samsung.com>, <alsa-devel@alsa-project.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <patches@opensource.cirrus.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <b.zolnierkie@samsung.com>,
-        <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v2 03/10] ASoC: wm8994: Add support for setting MCLK
- clock rate
-Message-ID: <20190923092517.GO10204@ediswmail.ad.cirrus.com>
-References: <20190920130218.32690-1-s.nawrocki@samsung.com>
- <CGME20190920130316eucas1p2de713006a13c62c0b895c2e33e0d14c7@eucas1p2.samsung.com>
- <20190920130218.32690-4-s.nawrocki@samsung.com>
- <7334ce45-f192-4421-aa3d-d142582153ef@samsung.com>
+        id S2391603AbfIWJ3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 05:29:06 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:53862 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391425AbfIWJ3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 05:29:05 -0400
+Received: by mail-wm1-f67.google.com with SMTP id i16so9028538wmd.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 02:29:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=GEpINich1yHe3dgZoPsu7jVZJFRHWW9gHMhxo+QabyU=;
+        b=i37B/ZflJfkoKuajMXjNBpIfwnDxpv2aCG8IlKdAD2ERPODOixf2OFXEjZMczk7Rbg
+         uQLUHo8E1xjO/JL9H0/3eszTjCSzplCQRPgPQnJFhFCFiLcxFh48ai1/KWwFfNWe0vZB
+         2nrg6RtcVBh9xq04+xtpyxGbxKhLWFyJ4PXvghuAvXqJK4fpELjI22nwS8Br6ZJFSEqI
+         0Ob7+mzq5cLJcSN5kyfDi7lNDh8b0gVoLhy9eaKKdUmbIvj+hR6PfTnwpEU9Y7Jf++bk
+         5cVo/4ER7i0Dsz5syGQl5IQvxwpNc1yKuo5BPmbMtu+q2DyJIZpwObIkNpcSG+Gsvx+B
+         0qRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=GEpINich1yHe3dgZoPsu7jVZJFRHWW9gHMhxo+QabyU=;
+        b=PH3DdzwDkxlxvM9MgQMyanS8PgEMyfdA4QT6/k9XfUX/YqGEz1vgV3GQz1bY29neXX
+         bewddSB5uDzvWuEx51OHRii+48R0835pLUUeaKvL+YCTU1hMrySvbnfa6f+1tKxRfVD6
+         +IRyYgaPpOy6ELaPqV8Gc798gPOUa5Y38p+84bW/aK0fDnLYbNc2okSFTaLoiQRVFTCa
+         JwnaitSvNlK3KyKmqG3jEpZBZQJDa4TlkYLL4QVm9vzRhd+NXWts8ry21H1Fb4/1hvP5
+         5D87reiDzdL5XzV/YPasvdGtTYpzZc8CFJX4LOn+dzLa6KfnBWf4tUVITUaEn2SXY6gM
+         EoLw==
+X-Gm-Message-State: APjAAAUOyUaTG4NeQHSbDzryewZ0vRcHwdoCjKxv9BhNeh7/3p7FnmL4
+        FD3FWlZ5aXO2NoyLYZvR6LTPsg==
+X-Google-Smtp-Source: APXvYqzJCTFPvn4OkSp1B7p5RsJXP7ouCiApbSz9+KpAzUBc/BCRGheeUmLPmjYjv5eRZC9qVVnXRA==
+X-Received: by 2002:a1c:4384:: with SMTP id q126mr14214521wma.153.1569230943323;
+        Mon, 23 Sep 2019 02:29:03 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id b194sm18418427wmg.46.2019.09.23.02.29.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2019 02:29:02 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        narmstrong@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 0/5] provide the XTAL clock via OF on Meson8/8b/8m2
+In-Reply-To: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
+References: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
+Date:   Mon, 23 Sep 2019 11:29:01 +0200
+Message-ID: <1jzhivs6n6.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <7334ce45-f192-4421-aa3d-d142582153ef@samsung.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 priorityscore=1501
- adultscore=0 mlxlogscore=742 bulkscore=0 phishscore=0 clxscore=1015
- impostorscore=0 spamscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
- definitions=main-1909230094
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 11:10:48AM +0200, Sylwester Nawrocki wrote:
-> On 9/20/19 15:02, Sylwester Nawrocki wrote:
-> > Extend the set_sysclk() handler so we also set frequency of the MCLK1,
-> > MCLK2 clocks through clk API when those clocks are specified in DT.
-> > 
-> > Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> > Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Sorry, I squashed other patch to this one but forgot to remove above tags, 
-> not sure if those still stand as there was rather significant change in 
-> the patch. 
-> 
+On Sat 21 Sep 2019 at 17:12, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-I am happy with my tag being there.
+> So far the HHI clock controller has been providing the XTAL clock on
+> Amlogic Meson8/Meson8b/Meson8m2 SoCs.
+> This is not correct because the XTAL is actually a crystal on the
+> boards and the SoC has a dedicated input for it.
+>
+> This updates the dt-bindings of the HHI clock controller and defines
+> a fixed-clock in meson.dtsi (along with switching everything over to
+> use this clock).
+> The clock driver needs three updates to use this:
+> - patch #2 uses clk_hw_set_parent in the CPU clock notifier. This drops
+>   the explicit reference to CLKID_XTAL while at the same time making
+>   the code much easier (thanks to Neil for providing this new method
+>   as part of the G12A CPU clock bringup!)
+> - patch #3 ensures that the clock driver doesn't rely on it's internal
+>   XTAL clock while not losing support for older .dtbs that don't have
+>   the XTAL clock input yet
+> - with patch #4 the clock controller's own XTAL clock is not registered
+>   anymore when a clock input is provided via OF
+>
+> This series is a functional no-op. It's main goal is to better represent
+> how the actual hardware looks like.
 
-Thanks,
-Charles
+I'm a bit unsure about this series.
+
+On one hand, I totally agree with you ... having the xtal in DT is the
+right way to do it ... when done from the start
+
+On the other hand, things have been this way for years, they are working
+and going for xtal in DT does not solve any pending issue. Doing this
+means adding complexity in the driver to support both methods. It is
+also quite a significant change in DT :/
+
+I'll defer this one to Kevin
+
+>
+>
+> Martin Blumenstingl (5):
+>   dt-bindings: clock: meson8b: add the clock inputs
+>   clk: meson: meson8b: use clk_hw_set_parent in the CPU clock notifier
+>   clk: meson: meson8b: change references to the XTAL clock to use the
+>     name
+>   clk: meson: meson8b: don't register the XTAL clock when provided via
+>     OF
+>   ARM: dts: meson: provide the XTAL clock using a fixed-clock
+>
+>  .../bindings/clock/amlogic,meson8b-clkc.txt   |   5 +
+>  arch/arm/boot/dts/meson.dtsi                  |   7 ++
+>  arch/arm/boot/dts/meson6.dtsi                 |   7 --
+>  arch/arm/boot/dts/meson8.dtsi                 |  15 +--
+>  arch/arm/boot/dts/meson8b-ec100.dts           |   2 +-
+>  arch/arm/boot/dts/meson8b-mxq.dts             |   2 +-
+>  arch/arm/boot/dts/meson8b-odroidc1.dts        |   2 +-
+>  arch/arm/boot/dts/meson8b.dtsi                |  15 +--
+>  drivers/clk/meson/meson8b.c                   | 106 +++++++++---------
+>  9 files changed, 87 insertions(+), 74 deletions(-)
+>
+> -- 
+> 2.23.0
