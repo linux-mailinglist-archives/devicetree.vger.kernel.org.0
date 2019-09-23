@@ -2,101 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2567CBBD6A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 22:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07A82BBD88
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 23:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388120AbfIWU5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 16:57:32 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:45548 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388071AbfIWU5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 16:57:31 -0400
-Received: by mail-ot1-f66.google.com with SMTP id 41so13386246oti.12;
-        Mon, 23 Sep 2019 13:57:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6c25qQsTeIPE9y+3+ZT0AbIPmrbpxHVzGa7akuxeXBU=;
-        b=u0KoNwONLVDAye4B3NjPMQ0GIaXgrAmo677MziXVwc764mY7LMwTeDRHZwk1Q47ozk
-         y9L8n4cGn9k8n0tsNkAUhQMErMbFm9EVlmHMcECZGs8gxDCgpCUYXXcWKlJb01S/ontV
-         iJ/MfYNg0kaVadJBS5nehHQRaIbVQ9M8psrma9m3cCoyAJDD65MKOGgDapVVVYZcEFf+
-         pa7hj1X/GyknoHHerWjEMPqGG4pI0e3SXekz0FoaYWezcIq1bv6W/lE8D/d1dVLiSeOr
-         HjGRf6zGSHd6AWwWrAUtCIMg3COMZSx1qBmi4mh/w88UqvaR+gdHxnOm/6B96OH9k6bl
-         c0UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6c25qQsTeIPE9y+3+ZT0AbIPmrbpxHVzGa7akuxeXBU=;
-        b=eIqrzfYb9v4fP5Mc2PY7TWEUkQtLRmFO9A1BPiM4KviRuzvswcSniYmRjHQSn+oatQ
-         dWhr0CxXPRzIf9ZoQj9D/JQhnY9agaYHKV3tN9MpsCWYfeJrttcA80bdG3PDVGG4m45H
-         IxlHtjk+oT0lZXbkxauOfm5EhGYdCHp5StSM4PVUrDABnfYiMx2eJcG/uE/oE8hEPjno
-         u4fS8QCCngLOGXM4jrXxsazhTyDKkpu3ORqY5oNEF9Q6iMQKC+otRzS90QSkftphoeWg
-         MEYfG7veJE2QEoF8S4YYjax0vuM8NvzZ+cCqHPnLViDs5WD1jdE0OWvtdEYO+dlN648g
-         TdAA==
-X-Gm-Message-State: APjAAAV04TsWFrRs16TcukqxgLUaRbeWXk3AsKD/Mt7yUtWrACpzVkHe
-        VETnSpuDALuKG/AT+WLzNxnfp/t+0RQsexDYoEw=
-X-Google-Smtp-Source: APXvYqx9NdiDBVuyqZt9xSlPQAPNa3d0edQayrOgAnpbJnLWMpJMaNDfO9DISDG4XF7q6HeXFGHY3XzGml8EDUXbPgE=
-X-Received: by 2002:a9d:7d17:: with SMTP id v23mr181560otn.81.1569272250579;
- Mon, 23 Sep 2019 13:57:30 -0700 (PDT)
+        id S2388192AbfIWVEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 17:04:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44478 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387617AbfIWVEA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 17:04:00 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E8C5121D6C;
+        Mon, 23 Sep 2019 21:03:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569272639;
+        bh=2HYumd6bd7QRJSQoXTVBAjk+hlSmBUlgr4Tc4zusLQ0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=SHMrH9mKtbzwDtautaW56F2gZJ/7E26XI4ICgPvRlM2lw+pLFtdV72SS0gDbQ/7HS
+         AeF0TEgpXua/5uF0IIjl/uUUH1J5LvFIlwbsiufWPQIEZBC0dx7DYaYtQ2TW6sJIMa
+         zkwHenm3uaGVC+R8S0DPDmBSgnZb4rOdS4r+QbTY=
+Received: by mail-qt1-f170.google.com with SMTP id n7so18930536qtb.6;
+        Mon, 23 Sep 2019 14:03:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAVHjmQNMh2IxGQwnhegSYdW/5ibSpn8rB8VqNabAsmmwxsWL5JO
+        QpYQ/z4En4Cq1CYfyVTzp8sNNBFoxt3srmiUKA==
+X-Google-Smtp-Source: APXvYqyb1clyCP0EtxyvXy3tkLKx/+18o0FpEUsDXY0uUXP5M9qYVVG7aLQNU81ezk89PZ/fmRTJyZLQgdFP8aVfF+U=
+X-Received: by 2002:ac8:6915:: with SMTP id e21mr2219537qtr.224.1569272638075;
+ Mon, 23 Sep 2019 14:03:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
- <20190921151223.768842-5-martin.blumenstingl@googlemail.com> <1jwodzs6ir.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jwodzs6ir.fsf@starbuckisacylon.baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 23 Sep 2019 22:57:19 +0200
-Message-ID: <CAFBinCDrN2Rvu6ry+voB5itU6X+ezCzT=ZkQ6Qz8rz_+1kCLCg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] clk: meson: meson8b: don't register the XTAL clock
- when provided via OF
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org, khilman@baylibre.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org
+References: <cover.1566570260.git.leonard.crestez@nxp.com> <3f27038292c09c8bf07a086eac759132c100aedb.1566570260.git.leonard.crestez@nxp.com>
+ <20190917201956.GA10780@bogus> <VI1PR04MB70237046A8DF88936C7A83F8EE850@VI1PR04MB7023.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB70237046A8DF88936C7A83F8EE850@VI1PR04MB7023.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 23 Sep 2019 16:03:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLj9FdoSwt7HZwoX42GS9RJ6Zeze=bUZs-tia2oS+OzUA@mail.gmail.com>
+Message-ID: <CAL_JsqLj9FdoSwt7HZwoX42GS9RJ6Zeze=bUZs-tia2oS+OzUA@mail.gmail.com>
+Subject: Re: [RFCv4 3/7] dt-bindings: devfreq: imx: Describe interconnect properties
+To:     Leonard Crestez <leonard.crestez@nxp.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 11:31 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Mon, Sep 23, 2019 at 12:42 PM Leonard Crestez
+<leonard.crestez@nxp.com> wrote:
 >
-> On Sat 21 Sep 2019 at 17:12, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+> On 17.09.2019 23:20, Rob Herring wrote:
+> > On Fri, Aug 23, 2019 at 05:36:56PM +0300, Leonard Crestez wrote:
+> >> The interconnect-node-id property is parsed by the imx interconnect
+> >> driver to find nodes on which frequencies can be adjusted.
+> >>
+> >> Add #interconnect-cells so that device drivers can request paths from
+> >> bus nodes instead of requiring a separate "virtual" node to represent
+> >> the interconnect itself.
+> >>
+> >> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/devfreq/imx-ddrc.yaml | 5 +++++
+> >>   Documentation/devicetree/bindings/devfreq/imx.yaml      | 5 +++++
+> >>   2 files changed, 10 insertions(+)
+> >
+> > Please combine this with the other series for devfreq support.
 >
-> > The XTAL clock is an actual crystal on the PCB. Thus the meson8b clock
-> > driver should not register the XTAL clock - instead it should be
-> > provided via .dts and then passed to the clock controller.
-> >
-> > Skip the registration of the XTAL clock if a parent clock is provided
-> > via OF. Fall back to registering the XTAL clock if this is not the case
-> > to keep support for old .dtbs.
-> >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > ---
-> >  drivers/clk/meson/meson8b.c | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> > index b785b67baf2b..15ec14fde2a0 100644
-> > --- a/drivers/clk/meson/meson8b.c
-> > +++ b/drivers/clk/meson/meson8b.c
-> > @@ -3682,10 +3682,16 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
-> >               meson8b_clk_regmaps[i]->map = map;
-> >
-> >       /*
-> > -      * register all clks
-> > -      * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
-> > +      * always skip CLKID_UNUSED and also skip XTAL if the .dtb provides the
-> > +      * XTAL clock as input.
-> >        */
-> > -     for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
-> > +     if (of_clk_get_parent_count(np))
->
-> If we are going for this, I'd prefer if could explicity check for the
-> clock named "xtal" instead of just checking if DT has clocks.
-OK, I'll wait a few days and then fix this in v2
+> I understand that having two series which add to the same bindings file
+> is odd but the devfreq and interconnect parts are independent to a very
+> large degree and devfreq can be useful on it's own.
 
+To start with, I'm suspicious of any 'devfreq' binding because that's
+a Linux thing. I somewhat expect that the interconnect binding should
+replace the devfreq binding, but I haven't been able to investigate.
 
-Martin
+> The only reason devfreq bindings are updated is to avoid adding a
+> "virtual" node for interconnect. Since DT is a big source of confusion
+> here can you read https://patchwork.kernel.org/cover/11111865/#22883457
+> and maybe offer some advice?
+
+Design something that matches the structure of the h/w not how Linux
+drivers happen to be structured. I can't tell what that is without any
+context around adding a couple of properties. Nor do I have the time
+to dig into each SoC vendor's bus structure if it's even documented
+publicly.
+
+I also don't follow why you need 'interconnect-node-id' and if you do,
+it should be a common property.
+
+Rob
