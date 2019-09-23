@@ -2,132 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3C9BAFA7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81618BAFDF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438473AbfIWIe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 04:34:29 -0400
-Received: from mail-sz.amlogic.com ([211.162.65.117]:17196 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390945AbfIWIe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:34:28 -0400
-Received: from droid12-sz.software.amlogic (10.28.8.22) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 23 Sep 2019
- 16:35:23 +0800
-From:   Xingyu Chen <xingyu.chen@amlogic.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-CC:     Xingyu Chen <xingyu.chen@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 2/3] dt-bindings: reset: add bindings for the Meson-A1 SoC Reset Controller
-Date:   Mon, 23 Sep 2019 16:34:20 +0800
-Message-ID: <1569227661-4261-3-git-send-email-xingyu.chen@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569227661-4261-1-git-send-email-xingyu.chen@amlogic.com>
-References: <1569227661-4261-1-git-send-email-xingyu.chen@amlogic.com>
+        id S1728307AbfIWIqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 04:46:02 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:39036 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731475AbfIWIqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:46:01 -0400
+Received: by mail-lf1-f67.google.com with SMTP id 72so9445221lfh.6
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 01:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=BJHjML3SI9D2+EbTLuvMPDk5GTC8ZZ5KbbxFlhyt+ws=;
+        b=UsZPbcuZRmE+Z3GSClH5/Mu9pa0xactT8q65lCY9ZQRMxMBG6shGQrEFWmS0QPKePT
+         NbH/aWlJIVV/9FnXQijrVB5eG14WBp07hOFwnBLnZojOsILfMyD9JEsCCB6pT1OcWCp4
+         eMpNQCu4hZN0omTdSXytMm98/IpN8fCAY9LZQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=BJHjML3SI9D2+EbTLuvMPDk5GTC8ZZ5KbbxFlhyt+ws=;
+        b=iQasgH3bXygZZWuKexmkgsQ78DivW2WE8SDsv3Ighy0RmLzWkCRZZsO0A6orZwNL2p
+         LFqDXh1+R79dIlmEgjGIgEdMERn4hljIwgk4qOHqLrsVcsb2UZE6AGBHZRTCwG3CwG8P
+         MlEDSwRcf4tsPVDJuz2tOyK025L4xfAGjj7tLiASecuzM4Eo4pGjglqfgKZvkYpakTeR
+         982E4FzMXwb66R3Azs7PZP3d1w70KEWHHofeB4gXVO56FM04QQtw7/z1UCZNIXDOTSEi
+         4eh6CRmpb/HWVIQn8JN23irVsJN76J1d0NY+MaHbZpB/PN/De1Bijt4S0tNgYMJCTH2z
+         tgYQ==
+X-Gm-Message-State: APjAAAWlZWHiuIHEfJoPDc19wBWQzabNqvFiHryUIH/JlpeGWE+cAlPs
+        BhclbLb2PP1EwiAIpYQmpKhTlQ==
+X-Google-Smtp-Source: APXvYqwfwYktaF6d2R/jJPuhIAVMBaQ1LbNQL8tbVJGh4whnsoZQo/JOgdIOZpuQji6Y+7cNLWAfXQ==
+X-Received: by 2002:a19:4f5a:: with SMTP id a26mr15849533lfk.116.1569228358242;
+        Mon, 23 Sep 2019 01:45:58 -0700 (PDT)
+Received: from [172.16.11.28] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id 134sm2072003lfk.70.2019.09.23.01.45.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 23 Sep 2019 01:45:57 -0700 (PDT)
+Subject: Re: [PATCH 3/4] pwm: mxs: add support for inverse polarity
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
+ <20190923081348.6843-4-linux@rasmusvillemoes.dk>
+ <20190923082735.tzxyhvjlnztsxhsc@pengutronix.de>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Message-ID: <d2b29144-3de8-4561-3292-49db7e697aca@rasmusvillemoes.dk>
+Date:   Mon, 23 Sep 2019 10:45:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.28.8.22]
+In-Reply-To: <20190923082735.tzxyhvjlnztsxhsc@pengutronix.de>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT bindings for the Meson-A1 SoC Reset Controller include file,
-and also slightly update documentation.
+On 23/09/2019 10.27, Uwe Kleine-König wrote:
+> On Mon, Sep 23, 2019 at 10:13:47AM +0200, Rasmus Villemoes wrote:
+>>
+>>  
+>> +	pol_bits = state->polarity == PWM_POLARITY_NORMAL ?
+>> +		PERIOD_POLARITY_NORMAL : PERIOD_POLARITY_INVERSE;
+>> +
+>>  	writel(duty_cycles << 16,
+>>  	       mxs->base + PWM_ACTIVE0 + pwm->hwpwm * 0x20);
+>> -	writel(PERIOD_PERIOD(period_cycles) | PERIOD_POLARITY_NORMAL | PERIOD_CDIV(div),
+>> +	writel(PERIOD_PERIOD(period_cycles) | pol_bits | PERIOD_CDIV(div),
+> 
+> When will this affect the output? Only on the next start of a period, or
+> immediatly? Can it happen that this results in a mixed output (i.e. a
+> period that has already the new duty cycle from the line above but not
+> the new polarity (or period)?
 
-Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
----
- .../bindings/reset/amlogic,meson-reset.yaml        |  1 +
- include/dt-bindings/reset/amlogic,meson-a1-reset.h | 59 ++++++++++++++++++++++
- 2 files changed, 60 insertions(+)
- create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-reset.h
+The data sheet says "Also, when the user reprograms the channel in this
+manner, the new register values will not take effect until the beginning
+of a new output period. This eliminates the potential for output
+glitches that could occur if the registers were updated while the
+channel was enabled and in the middle of a cycle.". So I think this
+should be ok. "this manner" refers to the registers being written in the
+proper order (first ACTIVEn, then PERIODn).
 
-diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-index 00917d8..b3f57d8 100644
---- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-@@ -16,6 +16,7 @@ properties:
-       - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-       - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-       - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-+      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
- 
-   reg:
-     maxItems: 1
-diff --git a/include/dt-bindings/reset/amlogic,meson-a1-reset.h b/include/dt-bindings/reset/amlogic,meson-a1-reset.h
-new file mode 100644
-index 00000000..8d76a47
---- /dev/null
-+++ b/include/dt-bindings/reset/amlogic,meson-a1-reset.h
-@@ -0,0 +1,59 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+ *
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ * Author: Xingyu Chen <xingyu.chen@amlogic.com>
-+ *
-+ */
-+
-+#ifndef _DT_BINDINGS_AMLOGIC_MESON_A1_RESET_H
-+#define _DT_BINDINGS_AMLOGIC_MESON_A1_RESET_H
-+
-+/* RESET0 */
-+#define RESET_AM2AXI_VAD		1
-+#define RESET_PSRAM			4
-+#define RESET_PAD_CTRL			5
-+#define RESET_TEMP_SENSOR		7
-+#define RESET_AM2AXI_DEV		8
-+#define RESET_SPICC_A			10
-+#define RESET_MSR_CLK			11
-+#define RESET_AUDIO			12
-+#define RESET_ANALOG_CTRL		13
-+#define RESET_SAR_ADC			14
-+#define RESET_AUDIO_VAD			15
-+#define RESET_CEC			16
-+#define RESET_PWM_EF			17
-+#define RESET_PWM_CD			18
-+#define RESET_PWM_AB			19
-+#define RESET_IR_CTRL			21
-+#define RESET_I2C_S_A			22
-+#define RESET_I2C_M_D			24
-+#define RESET_I2C_M_C			25
-+#define RESET_I2C_M_B			26
-+#define RESET_I2C_M_A			27
-+#define RESET_I2C_PROD_AHB		28
-+#define RESET_I2C_PROD			29
-+
-+/* RESET1 */
-+#define RESET_ACODEC			32
-+#define RESET_DMA			33
-+#define RESET_SD_EMMC_A			34
-+#define RESET_USBCTRL			36
-+#define RESET_USBPHY			38
-+#define RESET_RSA			42
-+#define RESET_DMC			43
-+#define RESET_IRQ_CTRL			45
-+#define RESET_NIC_VAD			47
-+#define RESET_NIC_AXI			48
-+#define RESET_RAMA			49
-+#define RESET_RAMB			50
-+#define RESET_ROM			53
-+#define RESET_SPIFC			54
-+#define RESET_GIC			55
-+#define RESET_UART_C			56
-+#define RESET_UART_B			57
-+#define RESET_UART_A			58
-+#define RESET_OSC_RING			59
-+
-+/* RESET2 Reserved */
-+
-+#endif
--- 
-2.7.4
-
+Rasmus
