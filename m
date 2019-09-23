@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6FEDBB69A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0338BB6B4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:28:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437638AbfIWOXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 10:23:24 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:26629 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2437634AbfIWOXX (ORCPT
+        id S2439870AbfIWO2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 10:28:41 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:21291 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2439850AbfIWO2l (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 10:23:23 -0400
+        Mon, 23 Sep 2019 10:28:41 -0400
 X-IronPort-AV: E=Sophos;i="5.64,540,1559487600"; 
-   d="scan'208";a="27259366"
+   d="scan'208";a="27040314"
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 23 Sep 2019 23:23:22 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 23 Sep 2019 23:28:39 +0900
 Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6A0344211C19;
-        Mon, 23 Sep 2019 23:23:19 +0900 (JST)
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 54F8142121CD;
+        Mon, 23 Sep 2019 23:28:37 +0900 (JST)
 From:   Biju Das <biju.das@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
 Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         Simon Horman <horms@verge.net.au>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
         linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] dt-bindings: thermal: rcar-gen3-thermal: Add r8a774b1 support
-Date:   Mon, 23 Sep 2019 15:23:09 +0100
-Message-Id: <1569248589-52372-1-git-send-email-biju.das@bp.renesas.com>
+Subject: [PATCH] dt-bindings: timer: renesas, cmt: Document r8a774b1 CMT support
+Date:   Mon, 23 Sep 2019 15:28:27 +0100
+Message-Id: <1569248907-62107-1-git-send-email-biju.das@bp.renesas.com>
 X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RZ/G2N (R8A774B1) SoC bindings.
+Document SoC specific bindings for RZ/G2N (r8a774b1) SoC.
 
 Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 ---
- Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.txt | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/timer/renesas,cmt.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.txt b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.txt
-index b6ab60f..12c740b 100644
---- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.txt
-+++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.txt
-@@ -8,6 +8,7 @@ Required properties:
- - compatible		: "renesas,<soctype>-thermal",
- 			  Examples with soctypes are:
- 			    - "renesas,r8a774a1-thermal" (RZ/G2M)
-+			    - "renesas,r8a774b1-thermal" (RZ/G2N)
- 			    - "renesas,r8a7795-thermal" (R-Car H3)
- 			    - "renesas,r8a7796-thermal" (R-Car M3-W)
- 			    - "renesas,r8a77965-thermal" (R-Car M3-N)
+diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.txt b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+index c5220bc..7b1f454 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
++++ b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+@@ -32,6 +32,8 @@ Required Properties:
+     - "renesas,r8a77470-cmt1" for the 48-bit CMT1 device included in r8a77470.
+     - "renesas,r8a774a1-cmt0" for the 32-bit CMT0 device included in r8a774a1.
+     - "renesas,r8a774a1-cmt1" for the 48-bit CMT1 device included in r8a774a1.
++    - "renesas,r8a774b1-cmt0" for the 32-bit CMT0 device included in r8a774b1.
++    - "renesas,r8a774b1-cmt1" for the 48-bit CMT1 device included in r8a774b1.
+     - "renesas,r8a774c0-cmt0" for the 32-bit CMT0 device included in r8a774c0.
+     - "renesas,r8a774c0-cmt1" for the 48-bit CMT1 device included in r8a774c0.
+     - "renesas,r8a7790-cmt0" for the 32-bit CMT0 device included in r8a7790.
 -- 
 2.7.4
 
