@@ -2,152 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 066A8BB0DB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65ECFBB0F0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405487AbfIWJFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 05:05:15 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:44072 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729494AbfIWJFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 05:05:14 -0400
-Received: by mail-pg1-f196.google.com with SMTP id g3so6079054pgs.11
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 02:05:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v8pa0Tk6FlMlkzD8bXA6NA6bMdvmrzwl4PAFIDbVMYM=;
-        b=NvXQgh6IW3soN2kC6YtQSTm4nJDtjH7T1g1wwUk4J2MMTXgFeWqE4zDVwCvgvthfAE
-         WGgMCY+3F8tX2ulk7a71LHHwNjjj6szslWqQDPwjwKZALkV5YkTouU1UbPdDScjYS1A3
-         tU4aEIFZK99BR3XOVeaN/cSOFn3rfi7yObVLV3PWs+NfL5qPlxMyeRQLXGH1oSX1DcR+
-         Y00Kq9GxGhG7rrAxC5FyQBB+KSDkFMah1k7qmSzRXBnClfBw0q/Abrxnd2xhD8r5qEtT
-         Tri2HbzI2Jc1bPenj4gaZNMu/v3ap/CxdJdQ2lrX7Qpp+yqg86whqYHZk9TgPcLogoid
-         i1DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v8pa0Tk6FlMlkzD8bXA6NA6bMdvmrzwl4PAFIDbVMYM=;
-        b=AnkS0fBHL6Emb2FSdpCzwAlLFUWQ9e5eL3nVbEZaRiDbZnESAcIyuTDxiRbCYuS+3m
-         J7+9HD5Yuaa6oXQoAw+4Qwi6Dq4JWiizOK43Ja/4tyfeDmffo/k3YCthqMle6Tw0FJtB
-         c7fPEmR35mOhZQT9JLs5dvho5AmGSMG3LaDSQX4gwu0o5E6wv90IOmsCt9Ib4FRW0o76
-         B0bo5+SUUJ8lQAh4viaZcVYdBi2zDvJtzTfGiuKi9J6LC4sVvHAsp/8qFw5ZdQhoBjSe
-         OvgAnFYPMHOhLKw7NczhxKMQZNOiCnIjscIGGbfssR4Ih5qGYjrEAHn2qKJ1nQIvRf1U
-         js3Q==
-X-Gm-Message-State: APjAAAWORA9nmBbrirKxJRFkkvbkNtPm3toG6RoQ3xMFTPqo4lumuI5y
-        bIfi24mKnTCb2A8/Pw7yl5ZX6aGHpGWmye9IbCT80g==
-X-Google-Smtp-Source: APXvYqwcsKtiLcxSzZRbvj/9c2PAwvr8gZTaDk07lPhILKUwjb/s/yL4yzfAO84TT2ZemaVLn8TDzTeRlveY2nu9F6o=
-X-Received: by 2002:a17:90a:1746:: with SMTP id 6mr5388129pjm.117.1569229513429;
- Mon, 23 Sep 2019 02:05:13 -0700 (PDT)
+        id S1726730AbfIWJHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 05:07:35 -0400
+Received: from mail-eopbgr00131.outbound.protection.outlook.com ([40.107.0.131]:1352
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726020AbfIWJHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 05:07:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ue7R7a4HZaau7RElEm0W36wIc9B07O/hVvqHpbJ1tOq7e92LrR85iQdSBoDZ3awcE0FmhFZgu03XzZwoILl6MksJlTvGlQx+uQ1ii+xgabnx0PzJz4wAobjrIXUERQYNt0zC8+F7ExDN09X89hliqpG64PdUA0tJ2xax3z0J8cEiohgwyZ9gtsrsYdYiMz7E6C6miaTeBrkJnBM6d+sWC0C9sKPXzkpuFzlczi04RFqXIyK69ynS2s827pSHTwKsJV0E+qnwCkNVz58eSgKSyDLnd3MvAn8L9mtD8dGR4GOOcfSOt2Yfy0mbaR00mxI3g5KuqMmJ52+nOkgx0IzWkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kvquhNSsVtQb+bdWIl5cbds+dAgrB0L/xnIFrbx7OaM=;
+ b=NBTugUFqeYNTrmLKpiwA9LZBP4ZGrP4F5C2fH05OIYyFRYFcVRpnrdj9oJNYfmJbXsp29/b241iNi74qOPWTR55wU0F7fWenKPG0/ZuUKGHFIZ/JZ81l7CyKdMUKIbV74EQIe7kn5kElEkkM7UBYkZQoUD+N7fksytc3bo9u2z9ewrlJ/0fEJB7ZhbfUzvTguBbzHG0hj0B4rKaSyX8T0Zj0XIt0sLPlKksnjydum6RFlHcUxqsOX/uskaEWNYuVi3uIyewWanU9jqUWcgJpf01PShNI7CstgiZMZ3caLJcYuv6g60qsJTv+efJyZONSbaQeCPRxHUlMI24j65fn0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kvquhNSsVtQb+bdWIl5cbds+dAgrB0L/xnIFrbx7OaM=;
+ b=oM22KBNHUgAz/m9JRugOr8SJUorn+wbm8k8CPwc3CnTIwjfKAw5xxEzTMwo/n1g32Vop9iB9tdgM3+/IwZ/g/XOdaXYupKHjrK0EkLZU8Hx3PXqsplOkTX9lqZtydGyn0ZHNFn0IGLgUXSz4JFhkYpgvgWiRvs6VVIuu1sWLuYU=
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
+ VI1PR0502MB3998.eurprd05.prod.outlook.com (52.134.18.28) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.18; Mon, 23 Sep 2019 09:07:31 +0000
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::1179:c881:a516:644d]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::1179:c881:a516:644d%3]) with mapi id 15.20.2284.023; Mon, 23 Sep 2019
+ 09:07:31 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     "marcel@ziswiler.com" <marcel@ziswiler.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+CC:     "info@logictechno.com" <info@logictechno.com>,
+        "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "icenowy@aosc.io" <icenowy@aosc.io>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        "j.bauer@endrich.com" <j.bauer@endrich.com>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: add vendor prefix for logic
+ technologies limited
+Thread-Topic: [PATCH v1 1/2] dt-bindings: add vendor prefix for logic
+ technologies limited
+Thread-Index: AQHVb4i4IUSP2AwIZ0a1numwyARFt6c4/ZYA
+Date:   Mon, 23 Sep 2019 09:07:31 +0000
+Message-ID: <c01adde46cbae1d1fd96142699964be4cc50b1fb.camel@toradex.com>
+References: <20190920075411.15735-1-marcel@ziswiler.com>
+In-Reply-To: <20190920075411.15735-1-marcel@ziswiler.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=philippe.schenker@toradex.com; 
+x-originating-ip: [46.140.72.82]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 623a0d77-bed4-45d3-6ddf-08d740057763
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3998;
+x-ms-traffictypediagnostic: VI1PR0502MB3998:
+x-ms-exchange-purlcount: 2
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0502MB3998A148721ED8CB3A04AE9AF4850@VI1PR0502MB3998.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2089;
+x-forefront-prvs: 0169092318
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(979002)(4636009)(396003)(366004)(39840400004)(136003)(346002)(376002)(199004)(189003)(966005)(478600001)(2906002)(86362001)(2501003)(14454004)(25786009)(305945005)(2616005)(476003)(64756008)(66556008)(66476007)(66946007)(6506007)(102836004)(99286004)(7736002)(36756003)(11346002)(486006)(186003)(26005)(76176011)(7416002)(6116002)(3846002)(76116006)(91956017)(66446008)(66066001)(6512007)(6486002)(446003)(44832011)(118296001)(6246003)(6436002)(4326008)(6306002)(54906003)(71200400001)(71190400001)(110136005)(316002)(8676002)(5660300002)(229853002)(8936002)(256004)(81156014)(81166006)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3998;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: gPFlSnaogp6aXGBQO3RrjoCJpRHa6scdpe3vSTu/LsDJXvk53snJ2OEIfipfQUFd6Uj3Xph3fG3UydjSaQLjySpjKWelSoL1JvWMwF1lY/9Aw3hZgdZ2MzgszoQSBdpFVLCvW1YNdZAPn8l+bfF3o7B19a+KukhTyLf9QIrlC5zhADcSFQmIxQVN+x2umymMyEBPuKhQZqhZVB1u8BF5sB+sZIp+mJpPhyrICXd8l27/SzNe5zwaE5ubiSAiUlKtNpUme3J+R+jUAWh4qq0TrwIfWzy3Loz3NvcZCxWeYDZPRem1zs9nbI+51uo35ivTITgsycoxWpmoeeAsZTqNGb3r8UzP4mDpkMjhTC4fO6yO4jDVksn7KO9LRP7s0zbye6Jn30MCyFHzzbuQtK9lbPv3U4GFXfOkVuPr4qN4dRw=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DD1B69EE8639114A9D5A17707CD8BDA9@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190921001855.200947-1-brendanhiggins@google.com>
- <20190921001855.200947-8-brendanhiggins@google.com> <944ac47d-1411-9ebd-d0d4-a616c88c9c20@infradead.org>
-In-Reply-To: <944ac47d-1411-9ebd-d0d4-a616c88c9c20@infradead.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Mon, 23 Sep 2019 02:05:02 -0700
-Message-ID: <CAFd5g44e9bdK8h5+U1MkqPNuf2k9vnu-iPFLTzGajEHPEcRpHQ@mail.gmail.com>
-Subject: Re: [PATCH v17 07/19] kunit: test: add initial tests
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 623a0d77-bed4-45d3-6ddf-08d740057763
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 09:07:31.6304
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zQcetqy9A8CW5zDJoD3ovptEgL0XW+2IjYp7o9nhb0jzxuhg28i1dcLIir+gzhQ9zOWyTNNsH6IQ4haL+YOL+qAxWXdcpMEaQcG9qCrzhz4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3998
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 22, 2019 at 9:28 AM Randy Dunlap <rdunlap@infradead.org> wrote:
->
-> On 9/20/19 5:18 PM, Brendan Higgins wrote:
-> > Add a test for string stream along with a simpler example.
-> >
-> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> > ---
-> >  lib/kunit/Kconfig              | 25 ++++++++++
-> >  lib/kunit/Makefile             |  4 ++
-> >  lib/kunit/example-test.c       | 88 ++++++++++++++++++++++++++++++++++
-> >  lib/kunit/string-stream-test.c | 52 ++++++++++++++++++++
-> >  4 files changed, 169 insertions(+)
-> >  create mode 100644 lib/kunit/example-test.c
-> >  create mode 100644 lib/kunit/string-stream-test.c
-> >
-> > diff --git a/lib/kunit/Kconfig b/lib/kunit/Kconfig
-> > index 666b9cb67a74..3868c226cf31 100644
-> > --- a/lib/kunit/Kconfig
-> > +++ b/lib/kunit/Kconfig
-> > @@ -11,3 +11,28 @@ menuconfig KUNIT
-> >         special hardware when using UML. Can also be used on most other
-> >         architectures. For more information, please see
-> >         Documentation/dev-tools/kunit/.
-> > +
-> > +if KUNIT
->
-> The 'if' above provides the dependency clause, so the 2 'depends on KUNIT'
-> below are not needed.  They are redundant.
-
-Thanks for catching that. I fixed it in the new revision I just sent out.
-
-> > +
-> > +config KUNIT_TEST
-> > +     bool "KUnit test for KUnit"
-> > +     depends on KUNIT
-> > +     help
-> > +       Enables the unit tests for the KUnit test framework. These tests test
-> > +       the KUnit test framework itself; the tests are both written using
-> > +       KUnit and test KUnit. This option should only be enabled for testing
-> > +       purposes by developers interested in testing that KUnit works as
-> > +       expected.
-> > +
-> > +config KUNIT_EXAMPLE_TEST
-> > +     bool "Example test for KUnit"
-> > +     depends on KUNIT
-> > +     help
-> > +       Enables an example unit test that illustrates some of the basic
-> > +       features of KUnit. This test only exists to help new users understand
-> > +       what KUnit is and how it is used. Please refer to the example test
-> > +       itself, lib/kunit/example-test.c, for more information. This option
-> > +       is intended for curious hackers who would like to understand how to
-> > +       use KUnit for kernel development.
-> > +
-> > +endif # KUNIT
-
-Cheers
+T24gRnJpLCAyMDE5LTA5LTIwIGF0IDA5OjU0ICswMjAwLCBNYXJjZWwgWmlzd2lsZXIgd3JvdGU6
+DQo+IEZyb206IE1hcmNlbCBaaXN3aWxlciA8bWFyY2VsLnppc3dpbGVyQHRvcmFkZXguY29tPg0K
+PiANCj4gQWRkIHZlbmRvciBwcmVmaXggZm9yIExvZ2ljIFRlY2hub2xvZ2llcyBMaW1pdGVkIFsx
+XSB3aGljaCBpcyBhDQo+IENoaW5lc2UNCj4gZGlzcGxheSBtYW51ZmFjdHVyZXIgZS5nLiBkaXN0
+cmlidXRlZCBieSBHZXJtYW4gRW5kcmljaCBCYXVlbGVtZW50ZQ0KPiBWZXJ0cmllYnMgR21iSCBb
+Ml0uDQo+IA0KPiBbMV0gaHR0cHM6Ly9sb2dpY3RlY2huby5jb20vY29udGFjdC11cy8NCj4gWzJd
+IA0KPiBodHRwczovL3d3dy5lbmRyaWNoLmNvbS9pc2k1MF9pc2kzMF90ZnQtZGlzcGxheXMvbHQx
+NzA0MTAtMXdoY19pc2kzMA0KPiANCj4gU2lnbmVkLW9mZi1ieTogTWFyY2VsIFppc3dpbGVyIDxt
+YXJjZWwuemlzd2lsZXJAdG9yYWRleC5jb20+DQoNClJldmlld2VkLWJ5OiBQaGlsaXBwZSBTY2hl
+bmtlciA8cGhpbGlwcGUuc2NoZW5rZXJAdG9yYWRleC5jb20+DQoNCj4gDQo+IC0tLQ0KPiANCj4g
+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy92ZW5kb3ItcHJlZml4ZXMueWFtbCB8
+IDIgKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1n
+aXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVzLnlh
+bWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVz
+LnlhbWwNCj4gaW5kZXggOTY3ZTc4YzVlYzBhLi4xNDQxMTQ2ZjM5NGYgMTAwNjQ0DQo+IC0tLSBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy92ZW5kb3ItcHJlZml4ZXMueWFtbA0K
+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVz
+LnlhbWwNCj4gQEAgLTU0MSw2ICs1NDEsOCBAQCBwYXR0ZXJuUHJvcGVydGllczoNCj4gICAgICBk
+ZXNjcmlwdGlvbjogTGluZWFyIFRlY2hub2xvZ3kgQ29ycG9yYXRpb24NCj4gICAgIl5sb2dpY3Bk
+LC4qIjoNCj4gICAgICBkZXNjcmlwdGlvbjogTG9naWMgUEQsIEluYy4NCj4gKyAgIl5sb2dpY3Rl
+Y2hubywuKiI6DQo+ICsgICAgZGVzY3JpcHRpb246IExvZ2ljIFRlY2hub2xvZ2llcyBMaW1pdGVk
+DQo+ICAgICJebG9uZ2NoZWVyLC4qIjoNCj4gICAgICBkZXNjcmlwdGlvbjogTG9uZ2NoZWVyIFRl
+Y2hub2xvZ3kgKFNoYW5naGFpKSBDby4sIEx0ZC4NCj4gICAgIl5sc2ksLioiOg0K
