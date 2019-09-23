@@ -2,63 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7CDBB6C0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A17BB6D3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437914AbfIWObG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 10:31:06 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:47382 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2394127AbfIWObF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 10:31:05 -0400
-X-IronPort-AV: E=Sophos;i="5.64,540,1559487600"; 
-   d="scan'208";a="27259636"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 23 Sep 2019 23:31:03 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6E5CB4212275;
-        Mon, 23 Sep 2019 23:31:01 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: renesas: tmu: Document r8a774b1 bindings
-Date:   Mon, 23 Sep 2019 15:30:52 +0100
-Message-Id: <1569249052-1037-1-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S2437619AbfIWOd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 10:33:29 -0400
+Received: from foss.arm.com ([217.140.110.172]:43344 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2437427AbfIWOd3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 10:33:29 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 438731000;
+        Mon, 23 Sep 2019 07:33:28 -0700 (PDT)
+Received: from [10.1.196.133] (e112269-lin.cambridge.arm.com [10.1.196.133])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A8F293F59C;
+        Mon, 23 Sep 2019 07:33:26 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: mt8183: Add node for the Mali GPU
+To:     Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Dominik Behr <dbehr@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nick Fan <nick.fan@mediatek.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190905081546.42716-1-drinkcat@chromium.org>
+ <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
+ <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
+ <20190913181729.GB3115@kevin>
+ <CANMq1KD++==d0Mb6T2gKU1T7c_MaedswOYdxqEqEKKUL1bxgiw@mail.gmail.com>
+ <20190919123243.GA3457@kevin>
+From:   Steven Price <steven.price@arm.com>
+Message-ID: <3dfa9e3c-9a78-90d1-68c9-7b64a3d734e4@arm.com>
+Date:   Mon, 23 Sep 2019 15:33:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190919123243.GA3457@kevin>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RZ/G2N (R8A774B1) SoC in the Renesas TMU bindings.
+On 19/09/2019 13:32, Alyssa Rosenzweig wrote:
+>>> By the time MT8183 shows up in more concrete devices, it will, certainly
+>>> in kernel-space and likely in userspace as well. At present, the DDK can
+>>> be modified to run on top of the in-tree Mali drivers, i.e. "Bifrost on
+>>> mainline linux-next (+ page table/compatible patches), with blob
+>>> userspace".
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- Documentation/devicetree/bindings/timer/renesas,tmu.txt | 1 +
- 1 file changed, 1 insertion(+)
+Actually most(?) Bifrost GPUs support the "legacy" 'LPAE-ish' page table
+format. So the only kernel change *required* is adding the compatible
+string (and any SoC-specific quirks).
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.txt b/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-index 9dff7e5..29159f4 100644
---- a/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-+++ b/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-@@ -11,6 +11,7 @@ Required Properties:
-   - compatible: must contain one or more of the following:
-     - "renesas,tmu-r8a7740" for the r8a7740 TMU
-     - "renesas,tmu-r8a774a1" for the r8a774A1 TMU
-+    - "renesas,tmu-r8a774b1" for the r8a774B1 TMU
-     - "renesas,tmu-r8a774c0" for the r8a774C0 TMU
-     - "renesas,tmu-r8a7778" for the r8a7778 TMU
-     - "renesas,tmu-r8a7779" for the r8a7779 TMU
--- 
-2.7.4
+The support for "blob-on-Panfrost" is currently an experimental internal
+investigation. So I can't make any promises about it ever being released
+publicly.
+
+>>> While the open userspace isn't ready here quite yet, I would definitely
+>>> encourage upstream kernel for ChromeOS, since then there's no need to
+>>> maintain the out-of-tree GPU driver.
+>>
+>> That's an interesting idea, I had no idea, thanks for the info!
+>>
+>> Would that work with midgard as well? We have released hardware with
+>> RK3288/3399, so it might be nice to experiment with these first.
+> 
+> Yes, the above would work with Midgard as well with no changes needed.
+> Ping Steven about thtat (CC'd).
+
+Indeed since it's the same kernel driver the same compatibility layer
+can be used to run Midgard DDK blob on Panfrost. Although given the
+progress that has already occurred with the Mesa Panfrost user space you
+might be able to simply switch to a completely open stack (available now).
+
+Again I'm afraid I'm not in a position to give any guarantees that my
+prototype blob-on-Panfrost work will actually be released or timescales
+of when. However since the current focus internally is on newer GPUs I'm
+less confident that there will be interest for Midgard DDK on Panfrost.
+
+Steve
+
+>>> More immediately, per Rob's review, it's important that the bindings
+>>> accepted upstream work with the in-tree Bifrost driver. Conceptually,
+>>> once Mesa supports Bifrost, if I install Debian on a MT8183 board,
+>>> everything should just work. I shouldn't need MT-specific changes / need
+>>> to change names for the DT. Regardless of which kernel driver you end up
+>>> using, minimally sharing the DT is good for everyone :-)
+>>
+>> Yes. I'll try to dig further with MTK, but this may take some time.
+> 
+> Thank you!
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
