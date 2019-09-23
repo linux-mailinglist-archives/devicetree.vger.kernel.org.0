@@ -2,110 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EAE3BB175
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94807BB1BF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:56:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405478AbfIWJbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 05:31:45 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:40286 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407148AbfIWJbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 05:31:45 -0400
-Received: by mail-wm1-f65.google.com with SMTP id b24so8455614wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 02:31:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=x3JttSp0N6ofBW5LzQ0aulDXvYerTBb+rX2QpQHK3GA=;
-        b=wrdIO1PoBF2ps/wgVPQ7uZgIs5Zg0O6ec2Mr5yDnG+hTFoHtn0Gydw0y2TxLNoO7RS
-         uzvON/ffkt8vQQwgbhQdf3Dm1NkL2eTxSaLF3pVN9rRInxT2rs8wVgjagDecCPN3VvRv
-         IUuyLvPkD1/PlRKdlyhxvW335/fBDsuKetZwZszZNU8n3cBX4CkiA/4RzSb/AsJnPJAZ
-         rxQ8xZt3QRrn63KbNcrr2D9xv5NvUpA878d8d37TxTIwnW9UOhO5a92vPuLtccS/mDxw
-         3sgvVDUOXZTePA1JrDwk3o6qSml1QB5fvshCdgkifFi0U2UzrXbkKAI6UDibIxNwIiQX
-         sq6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=x3JttSp0N6ofBW5LzQ0aulDXvYerTBb+rX2QpQHK3GA=;
-        b=fhtBArV7wDKHqPo2Uf2i8Vp7m5I4ppZZFxs6kgNSD+bEXmpuKjqqNnaetVNDAYeYxW
-         XyeHw8iWNVJXOec0x4mtz7AoM/tjE7hBcK3vpv47I2PcXkPTeFlMSAjbKbBhO3EMQu7h
-         626rvee1gae2Ib64yyCn0bwKcN1pxXAA8m/Qqjj1zEswozFU7pkL5b19WVUyojYF54l1
-         QbKy32q1hfpnIPctAJL6lTMMcd9/zWmfMNpPvSRBRZ/QgXu11Z3cYZst12RoGIbeq0uh
-         tw0wgGnwjqWb5cD46jvtnDDxWUQ1+mnKjM9gwEuSydQd0W+FmTMNWB03ER0chJnrym9U
-         c/Dg==
-X-Gm-Message-State: APjAAAU3Jj7LULfrmXGLUQ+8/nxc9Wg74dSbFk5C4yshY+Qbrmy0PnSH
-        tmU8/H5X2RWzCJSnyYxLP+JeRg==
-X-Google-Smtp-Source: APXvYqyjmPFntItpiTfyGO7Ke1GU6GekG2Zcx3JJvC7jGTA2yTviIKEUlhQB4iQRI8K745mhVLBAxw==
-X-Received: by 2002:a7b:c758:: with SMTP id w24mr11891113wmk.148.1569231102351;
-        Mon, 23 Sep 2019 02:31:42 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id v4sm15675554wrg.56.2019.09.23.02.31.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2019 02:31:41 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        narmstrong@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 4/5] clk: meson: meson8b: don't register the XTAL clock when provided via OF
-In-Reply-To: <20190921151223.768842-5-martin.blumenstingl@googlemail.com>
-References: <20190921151223.768842-1-martin.blumenstingl@googlemail.com> <20190921151223.768842-5-martin.blumenstingl@googlemail.com>
-Date:   Mon, 23 Sep 2019 11:31:40 +0200
-Message-ID: <1jwodzs6ir.fsf@starbuckisacylon.baylibre.com>
+        id S2406072AbfIWJ4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 05:56:47 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:60452 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405201AbfIWJ4r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 05:56:47 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id CFEE1FB03;
+        Mon, 23 Sep 2019 11:56:44 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id v9IW8wa-mQuy; Mon, 23 Sep 2019 11:56:42 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 64590486BC; Mon, 23 Sep 2019 02:56:42 -0700 (PDT)
+Date:   Mon, 23 Sep 2019 02:56:42 -0700
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v6 1/2] dt-bindings: display/bridge: Add binding for NWL
+ mipi dsi host controller
+Message-ID: <20190923095642.GA8381@bogon.m.sigxcpu.org>
+References: <cover.1569170717.git.agx@sigxcpu.org>
+ <CGME20190922164722epcas3p2c44bddf9e6fd86cae5ab72ca078296b8@epcas3p2.samsung.com>
+ <3bef8eb6a7dd32406e31c68f39ccde3accb58222.1569170717.git.agx@sigxcpu.org>
+ <18619804-ffe8-f3a5-aa54-ab590b3a83c0@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <18619804-ffe8-f3a5-aa54-ab590b3a83c0@samsung.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 21 Sep 2019 at 17:12, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Hi,
+On Mon, Sep 23, 2019 at 10:59:34AM +0200, Andrzej Hajda wrote:
+> On 22.09.2019 18:47, Guido Günther wrote:
+> > The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
+> >
+> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> > Tested-by: Robert Chiras <robert.chiras@nxp.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../bindings/display/bridge/nwl-dsi.yaml      | 176 ++++++++++++++++++
+> >  1 file changed, 176 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+> > new file mode 100644
+> > index 000000000000..31119c7885ff
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+> > @@ -0,0 +1,176 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: https://protect2.fireeye.com/url?k=7c9397fbdbbe3fd5.7c921cb4-87fc4542b5f41502&u=http://devicetree.org/schemas/display/bridge/nwl-dsi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Northwest Logic MIPI-DSI controller on i.MX SoCs
+> > +
+> > +maintainers:
+> > +  - Guido Gúnther <agx@sigxcpu.org>
+> > +  - Robert Chiras <robert.chiras@nxp.com>
+> > +
+> > +description: |
+> > +  NWL MIPI-DSI host controller found on i.MX8 platforms. This is a dsi bridge for
+> > +  the SOCs NWL MIPI-DSI host controller.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: fsl,imx8mq-nwl-dsi
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: DSI core clock
+> > +      - description: RX_ESC clock (used in escape mode)
+> > +      - description: TX_ESC clock (used in escape mode)
+> > +      - description: PHY_REF clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: core
+> > +      - const: rx_esc
+> > +      - const: tx_esc
+> > +      - const: phy_ref
+> > +
+> > +  mux-controls:
+> > +    description:
+> > +      mux controller node to use for operating the input mux
+> > +
+> > +  phys:
+> > +    maxItems: 1
+> > +    description:
+> > +      A phandle to the phy module representing the DPHY
+> > +
+> > +  phy-names:
+> > +    items:
+> > +      - const: dphy
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: dsi byte reset line
+> > +      - description: dsi dpi reset line
+> > +      - description: dsi esc reset line
+> > +      - description: dsi pclk reset line
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: byte
+> > +      - const: dpi
+> > +      - const: esc
+> > +      - const: pclk
+> > +
+> > +  ports:
+> > +    type: object
+> > +    description:
+> > +      A node containing DSI input & output port nodes with endpoint
+> > +      definitions as documented in
+> > +      Documentation/devicetree/bindings/graph.txt.
+> > +    properties:
+> > +      port@0:
+> > +        type: object
+> > +        description:
+> > +          Input port node to receive pixel data from the
+> > +          display controller
+> > +
+> > +      port@1:
+> > +        type: object
+> > +        description:
+> > +          DSI output port node to the panel or the next bridge
+> > +          in the chain
+> > +
+> > +      '#address-cells':
+> > +        const: 1
+> > +
+> > +      '#size-cells':
+> > +        const: 0
+> > +
+> > +    required:
+> > +      - '#address-cells'
+> > +      - '#size-cells'
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +    additionalProperties: false
+> > +
+> > +patternProperties:
+> > +  "^panel@[0-9]+$":
+> > +    type: object
+> > +
+> > +required:
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +  - clock-names
+> > +  - clocks
+> > +  - compatible
+> > +  - interrupts
+> > +  - mux-controls
+> 
+> 
+> As I understand mux is not a part of the device, so maybe would be safer
+> to make it optional.
 
-> The XTAL clock is an actual crystal on the PCB. Thus the meson8b clock
-> driver should not register the XTAL clock - instead it should be
-> provided via .dts and then passed to the clock controller.
->
-> Skip the registration of the XTAL clock if a parent clock is provided
-> via OF. Fall back to registering the XTAL clock if this is not the case
-> to keep support for old .dtbs.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/clk/meson/meson8b.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index b785b67baf2b..15ec14fde2a0 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -3682,10 +3682,16 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
->  		meson8b_clk_regmaps[i]->map = map;
->  
->  	/*
-> -	 * register all clks
-> -	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
-> +	 * always skip CLKID_UNUSED and also skip XTAL if the .dtb provides the
-> +	 * XTAL clock as input.
->  	 */
-> -	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
-> +	if (of_clk_get_parent_count(np))
+I had mux-sel required for imx8mq *only* but Rob suggested to make things
+required in general until we add other SoCs:
 
-If we are going for this, I'd prefer if could explicity check for the
-clock named "xtal" instead of just checking if DT has clocks.
+    https://lore.kernel.org/linux-arm-kernel/CAL_JsqK-5=WMZgNuJDTJ3Dm3YOJNw_9QCrPOOSe7MQzMV26pHw@mail.gmail.com/
 
-> +		i = CLKID_PLL_FIXED;
-> +	else
-> +		i = CLKID_XTAL;
-> +
-> +	/* register all clks */
-> +	for (; i < CLK_NR_CLKS; i++) {
->  		/* array might be sparse */
->  		if (!clk_hw_onecell_data->hws[i])
->  			continue;
-> -- 
-> 2.23.0
+Cheers,
+ -- Guido
+
+> 
+> 
+> Regards
+> 
+> Andrzej
+> 
+> 
+> > +  - phy-names
+> > +  - phys
+> > +  - ports
+> > +  - reg
+> > +  - reset-names
+> > +  - resets
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > + - |
+> > +
+> > +   mipi_dsi: mipi_dsi@30a00000 {
+> > +              #address-cells = <1>;
+> > +              #size-cells = <0>;
+> > +              compatible = "fsl,imx8mq-nwl-dsi";
+> > +              reg = <0x30A00000 0x300>;
+> > +              clocks = <&clk 163>, <&clk 244>, <&clk 245>, <&clk 164>;
+> > +              clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
+> > +              interrupts = <0 34 4>;
+> > +              mux-controls = <&mux 0>;
+> > +              power-domains = <&pgc_mipi>;
+> > +              resets = <&src 0>, <&src 1>, <&src 2>, <&src 3>;
+> > +              reset-names = "byte", "dpi", "esc", "pclk";
+> > +              phys = <&dphy>;
+> > +              phy-names = "dphy";
+> > +
+> > +              panel@0 {
+> > +                      compatible = "rocktech,jh057n00900";
+> > +                      reg = <0>;
+> > +                      port@0 {
+> > +                           panel_in: endpoint {
+> > +                                     remote-endpoint = <&mipi_dsi_out>;
+> > +                           };
+> > +                      };
+> > +              };
+> > +
+> > +              ports {
+> > +                    #address-cells = <1>;
+> > +                    #size-cells = <0>;
+> > +
+> > +                    port@0 {
+> > +                           reg = <0>;
+> > +                           mipi_dsi_in: endpoint {
+> > +                                        remote-endpoint = <&lcdif_mipi_dsi>;
+> > +                           };
+> > +                    };
+> > +                    port@1 {
+> > +                           reg = <1>;
+> > +                           mipi_dsi_out: endpoint {
+> > +                                         remote-endpoint = <&panel_in>;
+> > +                           };
+> > +                    };
+> > +              };
+> > +      };
+> 
+> 
