@@ -2,132 +2,451 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20255BB8CC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 18:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22312BB8FC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 18:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732709AbfIWQAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 12:00:18 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42435 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728464AbfIWQAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 12:00:18 -0400
-Received: by mail-oi1-f196.google.com with SMTP id i185so8010388oif.9
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 09:00:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fMf30JzA7hKObE9R0byNtMQ8HAHmHVRxMKBzO0OruG4=;
-        b=uNIDskcLkzBp+Nh3z+C/2S8s97a7/9r/xvxf1ssKrcGO5LN6FKa8zp7aJxtbGIXqxw
-         m/C/2XMCbW5VsaQ1ahH+uVsj1zRGYETa1prn1S8gL6xYjpYYGfIPIVwInffSwuTeD9Oh
-         scPsZD5Dp7+SeA7kTANxdhq/LP0a1AYyXtJhf4hVwXiJWXIkHfgaqQgeBrrkA/66VzQL
-         WcPk8ODuxZvOipwRTMYcccQ7G61WjniWwoP7KU1LzZvKf0A3Aht2MTGF4GLI8190kaKy
-         MHg5uuKXPhRiAo/J4m8IR4SCqM+pdDq3diKo55CHlpnTiuPyJ9oqbb/np64/crfPc3eC
-         TVVA==
-X-Gm-Message-State: APjAAAUlswXMPW2SVABDFOdmHaUXYvWUbmOVJm6To048lasr6c9dz1e0
-        q7ifHYGUYDMisfxcEjjUhtHvHcY/Sas=
-X-Google-Smtp-Source: APXvYqwG6VZNk5gs8me+XTWxpyUGLZixqWnTV/cUhWJgRdFRXZCEB9S6Ar6SNZwqrJMl/bEzyJTAnQ==
-X-Received: by 2002:aca:5b84:: with SMTP id p126mr726048oib.4.1569254416989;
-        Mon, 23 Sep 2019 09:00:16 -0700 (PDT)
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com. [209.85.210.49])
-        by smtp.gmail.com with ESMTPSA id t30sm4121571otj.40.2019.09.23.09.00.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Sep 2019 09:00:16 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id c10so12553244otd.9
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 09:00:15 -0700 (PDT)
-X-Received: by 2002:a05:6830:454:: with SMTP id d20mr471097otc.63.1569254415765;
- Mon, 23 Sep 2019 09:00:15 -0700 (PDT)
+        id S1732862AbfIWQEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 12:04:02 -0400
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.114]:47982 "EHLO
+        mail1.bemta26.messagelabs.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728211AbfIWQEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 12:04:01 -0400
+Received: from [85.158.142.194] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+        by server-3.bemta.az-b.eu-central-1.aws.symcld.net id 57/4D-25862-BECE88D5; Mon, 23 Sep 2019 16:03:55 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA1WSf0wbZRzGee/a4yDUHIWF7xpYsmZDp7RQ1O3
+  2w7hsJtaExc0R1Bl0xzhoY3stbdkKomMjCCsZY86KdkWGG9OUCQSmAg7JOhiMjc3wa2NB6LQY
+  KYrjx1SmQ++4MvW/z/d5nnvf5718SVw+RChI1m5jLRxjUBLhEl0itkkV+Lk0PWn88DraecdP0
+  NWd16W0x9kqocfvdSH6t8FSjB5ocxP03bYhnC5u7wzdSmpbXd+Faps8Rwjt6PAFQnvsQZJ2rm
+  nVTukeqZ7LMNn3SnW/du41l+vtbT3d0kJ09BUHCicRVYvD6UZ3qAOF8cNlCTh8u0SjGcGfRxc
+  IwZBQPTg0Xw0VDDn1AQb3C73BwY/A4w5gQoqgaDjR4yMEI5ryYjDmOrk04FQDgvL3vUhIRVG7
+  4fvBYonA0VQq9M3UESInQ+1sO+5AJH/fWmhrTBRkGcXA6MgQEmQ5xcHF99IEOYx6BsprAhKxd
+  hzMH6rDBcapGLjtr17qAxQFZy7cwEVeAZM/LErFPAtXDt9Cop4AfTf9QVbCx1WdQY6D/uqyIO
+  +AgbHTSHgKUBMIhiqKsOWPF5r6CZFpOFMmPIvkeQ0sevNE2QwnJi4GO8TDV8M3MDESC86SsAq
+  U6PpPa5ET4NTXs4TIT8DZminctfQjIuHKR37JKSTxIDrDos/W2YyM3qDSJCWpNJonVRtUmg1q
+  Jl+VoWZzVftYzmZheFPNHLCqrXnGfYZMNcfamhC/YZk5oZEtyNs5pfailSSmXCGz5ZSmyx/JM
+  GXm6Rir7g1LroG1elEsSSpBNvoj70Va2GzWnqU38Hu6bAMZoYyWPT3F2zKrmTFa9dmi1YtUZM
+  Vk1Se4XMKZOFYRI9sW4EOUENLlcg+PWN72fhSniJKhkJAQeYSZtRj1tv/7ARRDImWU7JdJ/pQ
+  IPWd7eFOAL4HxJap3FAslbMy/lqIQw0DffLx1JNr3XH39hyXVl9iUqGd7s57v7x59rWS1+e2a
+  3W8mb5/7++W5hoUi+wvt7JfrjWvY2S8qGjdpE63S86mXA11lBze+VTfitnb351TudIFqXlOrL
+  miYn5tmjt9LGefCz6UNDxR7tn6TF9JSv83yR3ret+cOpHye89hBtznffmTztbHyyuSEp/bnTs
+  euT8s0/DS92nnNU2TaY3rx0V63kovfMnOoo+CzV30rFy+5nJWDDyay6qfuTF8//87Q2WOgeTc
+  2y624n3+T27LuJdOgJn+8fXtqXNf+lFW7fJktv3eM1qpiyjoCAb/j5MzGtX19nxr/6govuPX6
+  Xbi9ubinKv5qg1Ji1TGax3GLlfkHnpeQYGgEAAA=
+X-Env-Sender: Adam.Thomson.Opensource@diasemi.com
+X-Msg-Ref: server-2.tower-239.messagelabs.com!1569254634!341955!1
+X-Originating-IP: [104.47.2.58]
+X-SYMC-ESS-Client-Auth: mailfrom-relay-check=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.43.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 22696 invoked from network); 23 Sep 2019 16:03:54 -0000
+Received: from mail-db5eur01lp2058.outbound.protection.outlook.com (HELO EUR01-DB5-obe.outbound.protection.outlook.com) (104.47.2.58)
+  by server-2.tower-239.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 23 Sep 2019 16:03:54 -0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FK+GXQBQaCsMiFDfkS+mlXb3hSB74IrkFnfqGm/WtiIt4mDzgZOJgfPV/dPMZLO8tK6E8UIaOAIjv7aOyvWJvoZucyE9BIvaEJeTx+O7jhUeVgDWlkMQ0dC+rzPfocjUi2C7tCYgNXloywWu/ksygdWTJz3Osaq0zJb0cxGa1VySeJZd5kbbFm+H6+TlPRjtI5VVTTw5a4FkwrbpF29hZUPRtfuY6wxGsxVJSvwhIFkNY9w+4w7/pOhFZmvhS2r/dOCHNIK/d6SYB1oUi0rKfvorH2c0XZbvDon+e7gOkMZRCVjnqBiuftvkn8bkS0XW0WgzhbtRhHvqnInGkfYNxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FgaFl2kjSHE8nk3NeJddzP9Nkvv8/c90Uq2+nJDUat0=;
+ b=d2TNqcBbbEwYy2nuCpcr18zmhkRgZ+NSFKKupQqnA1PLHCiRg2W9EiNbkQ4Png52SZfpyfC1yHCP1ePGo76a7wl/3jDf9dBBcYP9fSBPSIJ0wTeCmPaQYRwB7lx3DpqXHOueKbvMpm8SS1mdj7b186P0l/iVnWMlgoO6/SI7P6LYd3+1j34oGTBHZE67iTx0LwybFiTwGm4UrVVp61IUAJBd20jT7choFmrba7LHGGQG5Hp/RbzjkSyABi+EQfIiUZ/UxEW/qRTq0yV+lr87SNhjf8zSNsm9UruCswEem7rpswAz9f5Y3gIzepdwbytEhppmUdpwlw+L1uCIv/uuJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
+ dkim=pass header.d=diasemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector2-dialogsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FgaFl2kjSHE8nk3NeJddzP9Nkvv8/c90Uq2+nJDUat0=;
+ b=kU6or75R3kGckrM+QuucGs/k59+yurWHMmGJ0pscIVLJzHVGJSS7mP5spUmfVKX0HZo0+mwmwwM722QZk+IiKYjqV8eHT4j9wqROJ1oLt8wuE4NtYZNttB0YDGrS/FDVxTJiwlTvnEcYKro/0bzRQdGOuZ7F+XJkZcbZwXiiwu8=
+Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM (10.169.154.136) by
+ AM5PR1001MB1107.EURPRD10.PROD.OUTLOOK.COM (10.169.154.140) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.26; Mon, 23 Sep 2019 16:03:39 +0000
+Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::15de:593a:8380:b8ef]) by AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::15de:593a:8380:b8ef%12]) with mapi id 15.20.2284.023; Mon, 23 Sep
+ 2019 16:03:39 +0000
+From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        Support Opensource <Support.Opensource@diasemi.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        Steve Twiss <stwiss.opensource@diasemi.com>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/5] regulator: da9062: fix suspend_enable/disable
+ preparation
+Thread-Topic: [PATCH 1/5] regulator: da9062: fix suspend_enable/disable
+ preparation
+Thread-Index: AQHVbVV3QWLw5KxYw0mhM4DQgisfYqc5deOw
+Date:   Mon, 23 Sep 2019 16:03:39 +0000
+Message-ID: <AM5PR1001MB0994BD2F5D5635085B836A7980850@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+References: <20190917124246.11732-1-m.felsch@pengutronix.de>
+ <20190917124246.11732-2-m.felsch@pengutronix.de>
+In-Reply-To: <20190917124246.11732-2-m.felsch@pengutronix.de>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [165.225.80.228]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 79118081-98f9-4b2e-22e6-08d7403f994e
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:AM5PR1001MB1107;
+x-ms-traffictypediagnostic: AM5PR1001MB1107:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM5PR1001MB1107541E6A9DC327B80F70EFA7850@AM5PR1001MB1107.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0169092318
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39850400004)(136003)(346002)(396003)(376002)(366004)(199004)(189003)(66556008)(66446008)(64756008)(76176011)(11346002)(8676002)(3846002)(446003)(6246003)(305945005)(7736002)(54906003)(76116006)(6636002)(33656002)(52536014)(81156014)(4326008)(15650500001)(25786009)(81166006)(66946007)(9686003)(66476007)(8936002)(110136005)(53546011)(6506007)(7696005)(476003)(486006)(26005)(71200400001)(55236004)(102836004)(2906002)(186003)(71190400001)(478600001)(229853002)(74316002)(66066001)(14454004)(99286004)(5660300002)(30864003)(6436002)(6116002)(55016002)(86362001)(2501003)(14444005)(256004)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR1001MB1107;H:AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: diasemi.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: WQ3RhxQm6zB+VDr4Nq8QFEVIVNbzcti5kHXgHPytUO6hksLjMsiefv1bhJXxvDvGpPo5v2VdDpjD7XW5OQ/P445Wh9ACWaLaiRMjqUiRQWMJL0PkhpsCpWTpdVEYqV5wWp+OVfvRjWRG1hSPumLUOh00WzvyHpMddtQx4RN1txbVba+5pU04E0v0QEl4w4Pcip7+g2AM04S8cbRMxDGL0VQFLMMhaiw0GzqfuO+54Kr8Wlefzi0wYe1UST1/20wwh/LNICNPj0zET1C1PkvME0ZpxJtfxEQpux6Q8FducUt08fFGjyxgMWX3HFYwmkjrEr24NfS+o9Hp5ArlIT1KZRhckAq5FtLjHaETu1BZiTt5PqWHQphfiQwhqmxsK8fFGJZTjiq0e8Myp2x06t4pe+tZYpQp2T4zQHwtk7V4WmI=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20190922102341.GO25745@shell.armlinux.org.uk> <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
-In-Reply-To: <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Mon, 23 Sep 2019 11:00:07 -0500
-X-Gmail-Original-Message-ID: <CADRPPNT-hKbO_8Y0PKg-FLsJ_GKE2nbZob6BGagpATMyYPdNsw@mail.gmail.com>
-Message-ID: <CADRPPNT-hKbO_8Y0PKg-FLsJ_GKE2nbZob6BGagpATMyYPdNsw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma coherent
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        dann frazier <dann.frazier@canonical.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79118081-98f9-4b2e-22e6-08d7403f994e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 16:03:39.3817
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: z8ciHFSPi2olw9kmD5KsUXLmOwPwiDf1Fon0JdsM04FPJyN6CS6C1YcbWo63uLppLS6e3LZtPRRaPjuZ29CFw437dJqgxKKx/z8N50pWidA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR1001MB1107
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 22, 2019 at 2:26 PM Russell King <rmk+kernel@armlinux.org.uk> wrote:
->
-> The LX2160A esdhc controllers are setup by the driver to be DMA
-> coherent, but without marking them as such in DT, Linux thinks they
-> are not.  This can lead to random sporadic DMA errors, even to the
-> extent of preventing boot, such as:
->
-> mmc0: ADMA error
-> mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
-> mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00002202
-> mmc0: sdhci: Blk size:  0x00000008 | Blk cnt:  0x00000001
-> mmc0: sdhci: Argument:  0x00000000 | Trn mode: 0x00000013
-> mmc0: sdhci: Present:   0x01f50008 | Host ctl: 0x00000038
-> mmc0: sdhci: Power:     0x00000003 | Blk gap:  0x00000000
-> mmc0: sdhci: Wake-up:   0x00000000 | Clock:    0x000040d8
-> mmc0: sdhci: Timeout:   0x00000003 | Int stat: 0x00000001
-> mmc0: sdhci: Int enab:  0x037f108f | Sig enab: 0x037f108b
-> mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00002202
-> mmc0: sdhci: Caps:      0x35fa0000 | Caps_1:   0x0000af00
-> mmc0: sdhci: Cmd:       0x0000333a | Max curr: 0x00000000
-> mmc0: sdhci: Resp[0]:   0x00000920 | Resp[1]:  0x001d8a33
-> mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x3f400e00
-> mmc0: sdhci: Host ctl2: 0x00000000
-> mmc0: sdhci: ADMA Err:  0x00000009 | ADMA Ptr: 0x000000236d43820c
-> mmc0: sdhci: ============================================
-> mmc0: error -5 whilst initialising SD card
->
-> These are caused by the device's descriptor fetch hitting speculatively
-> loaded CPU cache lines that the CPU does not see through the normal,
-> non-cacheable DMA coherent mapping that it uses for non-coherent
-> devices.
->
-> DT and the device must agree wrt whether the device is DMA coherent or
-> not.
->
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+On 17 September 2019 13:43, Marco Felsch wrote:
 
-Acked-by: Li Yang <leoyang.li@nxp.com>
+> Currently the suspend reg_field maps to the pmic voltage selection bits
+> and is used during suspend_enabe/disable() and during get_mode(). This
+> seems to be wrong for both use cases.
+>
+> Use case one (suspend_enabe/disable):
+> Those callbacks are used to mark a regulator device as enabled/disabled
+> during suspend. Marking the regulator enabled during suspend is done by
+> the LDOx_CONF/BUCKx_CONF bit within the LDOx_CONT/BUCKx_CONT
+> registers.
+> Setting this bit tells the DA9062 PMIC state machine to keep the
+> regulator on in POWERDOWN mode and switch to suspend voltage.
+>
+> Use case two (get_mode):
+> The get_mode callback is used to retrieve the active mode state. Since
+> the regulator-setting-A is used for the active state and
+> regulator-setting-B for the suspend state there is no need to check
+> which regulator setting is active.
+>
 
+So I believe you're correct with the above statements. The driver, rather t=
+han
+enabling/disabling a regulator in system suspend, will instead put the regu=
+lator
+to a low power state, which is definitely not the desired outcome. Thanks f=
+or
+rectifying this.
+
+Reviewed-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+
+> Fixes: 4068e5182ada ("regulator: da9062: DA9062 regulator driver")
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
->  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/regulator/da9062-regulator.c | 118 +++++++++++----------------
+>  1 file changed, 47 insertions(+), 71 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> index 36b153e3da47..508af23edef0 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> @@ -593,6 +593,7 @@
->                         reg = <0x0 0x2140000 0x0 0x10000>;
->                         interrupts = <0 28 0x4>; /* Level high type */
->                         clocks = <&clockgen 4 1>;
-> +                       dma-coherent;
->                         voltage-ranges = <1800 1800 3300 3300>;
->                         sdhci,auto-cmd12;
->                         little-endian;
-> @@ -605,6 +606,7 @@
->                         reg = <0x0 0x2150000 0x0 0x10000>;
->                         interrupts = <0 63 0x4>; /* Level high type */
->                         clocks = <&clockgen 4 1>;
-> +                       dma-coherent;
->                         voltage-ranges = <1800 1800 3300 3300>;
->                         sdhci,auto-cmd12;
->                         broken-cd;
+> diff --git a/drivers/regulator/da9062-regulator.c b/drivers/regulator/da9=
+062-
+> regulator.c
+> index 2ffc64622451..9b2ca472f70c 100644
+> --- a/drivers/regulator/da9062-regulator.c
+> +++ b/drivers/regulator/da9062-regulator.c
+> @@ -136,7 +136,6 @@ static int da9062_buck_set_mode(struct regulator_dev
+> *rdev, unsigned mode)
+>  static unsigned da9062_buck_get_mode(struct regulator_dev *rdev)
+>  {
+>  	struct da9062_regulator *regl =3D rdev_get_drvdata(rdev);
+> -	struct regmap_field *field;
+>  	unsigned int val, mode =3D 0;
+>  	int ret;
+>
+> @@ -158,18 +157,7 @@ static unsigned da9062_buck_get_mode(struct
+> regulator_dev *rdev)
+>  		return REGULATOR_MODE_NORMAL;
+>  	}
+>
+> -	/* Detect current regulator state */
+> -	ret =3D regmap_field_read(regl->suspend, &val);
+> -	if (ret < 0)
+> -		return 0;
+> -
+> -	/* Read regulator mode from proper register, depending on state */
+> -	if (val)
+> -		field =3D regl->suspend_sleep;
+> -	else
+> -		field =3D regl->sleep;
+> -
+> -	ret =3D regmap_field_read(field, &val);
+> +	ret =3D regmap_field_read(regl->sleep, &val);
+>  	if (ret < 0)
+>  		return 0;
+>
+> @@ -208,21 +196,9 @@ static int da9062_ldo_set_mode(struct regulator_dev
+> *rdev, unsigned mode)
+>  static unsigned da9062_ldo_get_mode(struct regulator_dev *rdev)
+>  {
+>  	struct da9062_regulator *regl =3D rdev_get_drvdata(rdev);
+> -	struct regmap_field *field;
+>  	int ret, val;
+>
+> -	/* Detect current regulator state */
+> -	ret =3D regmap_field_read(regl->suspend, &val);
+> -	if (ret < 0)
+> -		return 0;
+> -
+> -	/* Read regulator mode from proper register, depending on state */
+> -	if (val)
+> -		field =3D regl->suspend_sleep;
+> -	else
+> -		field =3D regl->sleep;
+> -
+> -	ret =3D regmap_field_read(field, &val);
+> +	ret =3D regmap_field_read(regl->sleep, &val);
+>  	if (ret < 0)
+>  		return 0;
+>
+> @@ -408,10 +384,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK1_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK1_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK1_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK1_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK1_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK1_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9061_ID_BUCK2,
+> @@ -444,10 +420,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK3_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK3_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK3_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK3_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK3_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK3_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9061_ID_BUCK3,
+> @@ -480,10 +456,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK4_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK4_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK4_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK4_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK4_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK4_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9061_ID_LDO1,
+> @@ -509,10 +485,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO1_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO1_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO1_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO1_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO1_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO1_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO1_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -542,10 +518,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO2_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO2_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO2_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO2_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO2_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO2_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO2_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO2_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -575,10 +551,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO3_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO3_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO3_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO3_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO3_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO3_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO3_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -608,10 +584,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO4_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO4_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO4_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO4_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO4_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO4_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO4_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -652,10 +628,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK1_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK1_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK1_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK1_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK1_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK1_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_BUCK2,
+> @@ -688,10 +664,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK2_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK2_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK2_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK2_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK2_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK2_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK2_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_BUCK3,
+> @@ -724,10 +700,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK3_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK3_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK3_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK3_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK3_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK3_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_BUCK4,
+> @@ -760,10 +736,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK4_MODE_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_BUCK4_MODE_MASK)) - 1),
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VBUCK4_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_BUCK4_CONT,
+> +			__builtin_ffs((int)DA9062AA_BUCK4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VBUCK4_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_BUCK4_CONF_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_LDO1,
+> @@ -789,10 +765,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO1_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO1_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO1_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO1_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO1_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO1_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO1_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -822,10 +798,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO2_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO2_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO2_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO2_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO2_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO2_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO2_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO2_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -855,10 +831,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO3_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO3_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO3_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO3_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO3_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO3_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO3_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -888,10 +864,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz((DA9062AA_LDO4_SL_B_MASK)) - 1),
+>  		.suspend_vsel_reg =3D DA9062AA_VLDO4_B,
+> -		.suspend =3D REG_FIELD(DA9062AA_DVC_1,
+> -			__builtin_ffs((int)DA9062AA_VLDO4_SEL_MASK) - 1,
+> +		.suspend =3D REG_FIELD(DA9062AA_LDO4_CONT,
+> +			__builtin_ffs((int)DA9062AA_LDO4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> -			__builtin_clz((DA9062AA_VLDO4_SEL_MASK)) - 1),
+> +			__builtin_clz(DA9062AA_LDO4_CONF_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO4_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
 > --
-> 2.7.4
->
+> 2.20.1
+
