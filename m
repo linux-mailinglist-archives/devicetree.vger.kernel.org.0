@@ -2,128 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01494BAF30
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0595BAF4B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391890AbfIWIS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 04:18:57 -0400
-Received: from mail-eopbgr40095.outbound.protection.outlook.com ([40.107.4.95]:11266
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388933AbfIWIS5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 04:18:57 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i82nAsjazQ0wi8/b2mGaYFfUMdjJZkXg0o30N9ICCiQOqVb99e2RUUCvokJbXPESScYgtugQAYfXnLpKrNlpukzUEDcQb/uTdRXdD8H0BQjueH2ab55JP+a9Ee4kAdXkVSstljV9rWIz04zyG9Omnh/ew/dTNo1RJWnIcBAvClmIDuf0bUD9l5bALge/TfBGPxQQxg7892GTphNDavJwvbaqOzdD4OtUCuJBkrKB76v+h6JwrKKUNk4UpIwG5rrGRuY/EfNCJ8pacQd9FVuSo1vdoj8O43388j1Z+IaxUGz7mDF5/b6RNwgMgOi6vAnD/BukwrYIcUULlYgeRclvkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ouc8B1fyULoPu0k5IaAFty3VQHQRF8moAhSQy9SBOEQ=;
- b=CWKclOXYf0yKCMPVr2k22cyb8NekVHA50h94TacemrijXfAnVk7Al6KrUpzr3eT05HPOmkzN2BtK2NxytSzEBbSErYQkdssXxZjSaJamaAH/7f1txKSi4t2rLH7ZvILQHPoeqtkAqIshyESYJIiz7sRqbs1bskVxjOAWZGfJqeXdrkZ3DxL2JFnDxzzQBuuVQKnTF9jmI2OIGGYHT/ENShtbFtWRENGCphVyTfI8d5RJk2kC6hPpUoyhE2unHGe+7rLMXXt3W42y2ql3SLKY9fi18edhCjvvMApZwORp9FOTywqLMrUNpWIAowdLfGbBHkwPXojR2hG70rYAauQMpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ouc8B1fyULoPu0k5IaAFty3VQHQRF8moAhSQy9SBOEQ=;
- b=Xosq1/0uuinoWxw5bGqW1l4RQw5qk4sZqNRzo2ZkcUUJZ9HzbWDMzPivkas6ttNufIPyb3ucK9soannqdJp2rD5H+ztZX+PL9zGTgTwcHHJqfUwZ6Vx74JxYnV38iao/maAaH83fnDyid/yRlECcyOIBRvH9XBfLlH25I+iyD8o=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB4064.eurprd05.prod.outlook.com (52.134.18.154) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.18; Mon, 23 Sep 2019 08:18:50 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::1179:c881:a516:644d]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::1179:c881:a516:644d%3]) with mapi id 15.20.2284.023; Mon, 23 Sep 2019
- 08:18:50 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
+        id S2406123AbfIWIZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 04:25:02 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:45389 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405296AbfIWIZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:25:02 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iCJeW-000794-FX; Mon, 23 Sep 2019 10:25:00 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iCJeV-0008W6-GZ; Mon, 23 Sep 2019 10:24:59 +0200
+Date:   Mon, 23 Sep 2019 10:24:59 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Luka Pivk <luka.pivk@toradex.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>
-Subject: [PATCH] dt-bindings: fixed-regulator: fix compatible enum
-Thread-Topic: [PATCH] dt-bindings: fixed-regulator: fix compatible enum
-Thread-Index: AQHVceeHVIIm60zvTk22ZU5xn+t7mg==
-Date:   Mon, 23 Sep 2019 08:18:49 +0000
-Message-ID: <20190923081840.23391-1-philippe.schenker@toradex.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: PR2P264CA0036.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:101:1::24) To VI1PR0502MB3965.eurprd05.prod.outlook.com
- (2603:10a6:803:23::29)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.23.0
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a431d751-c87e-4b88-fcfa-08d73ffea9b5
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB4064;
-x-ms-traffictypediagnostic: VI1PR0502MB4064:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB40641CBA4E1D9467080DB529F4850@VI1PR0502MB4064.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3276;
-x-forefront-prvs: 0169092318
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(366004)(39840400004)(376002)(136003)(346002)(189003)(199004)(71190400001)(186003)(81156014)(81166006)(54906003)(4326008)(44832011)(66556008)(64756008)(66446008)(66946007)(8676002)(476003)(2616005)(99286004)(107886003)(14454004)(66066001)(26005)(66476007)(316002)(486006)(478600001)(25786009)(8936002)(110136005)(2501003)(305945005)(36756003)(52116002)(50226002)(6512007)(6116002)(5660300002)(7736002)(86362001)(6436002)(1076003)(256004)(386003)(3846002)(102836004)(6486002)(4744005)(6506007)(71200400001)(2906002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB4064;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: bdj9mrTebMJrdW/e+9n+9UcvFgoA+xB2VXcWBO4W1Dn843lnJ59Ae2znSaHQImai+sfwzncE8OZIu74A6zaLMlXxWBknIdILaFkLWGhiNcTLcKLjdGyZQZsPZgfvcPe01H49KGavI/izkGOcxelfCCvNCtK1/ZiL1cXn9cYvLL1iwD1sRANkRT187WPhYwZZ6dYHBgbEvOyaYXhB0+HlZnxdoORY5KqaNIqE66HwwXweib3P9/0B2JpSgdsvD4SKKnVZGKRdwNE3EkvKZPkDNtStsUpOqvg0UsFRF0aACozV4+27sTZdVlhg5pdNQU6ptNG5IVZNwPdKY2aSEf+wGjZAK2w2sfDew5rpY07q1gLOb7c6x/j5Y1zTapIzWwIunb0aQz0aVCLBltNEXMfVf9U52swk3q5AWAMQsJ93tKU=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/4] pwm: mxs: implement ->apply
+Message-ID: <20190923082459.huqpbz5eseonkscv@pengutronix.de>
+References: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
+ <20190923081348.6843-2-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a431d751-c87e-4b88-fcfa-08d73ffea9b5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 08:18:50.0242
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cHA4jz8caEPD33i+sTcif7sz6TBPCLCuhvzTmOWl5TedrrId57yuPS0kGljx/WHMrsfunw+K6s3wLvOlF6uKszG/Hv5MinG+yATu6TRX2+Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB4064
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190923081348.6843-2-linux@rasmusvillemoes.dk>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove 'const:' in the compatible enum. This was breaking
-make dt_binding_check since it has more than one compatible string.
+Hello Rasmus,
 
-Fixes: 9c86d003d620 ("dt-bindings: regulator: add regulator-fixed-clock bin=
-ding")
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+On Mon, Sep 23, 2019 at 10:13:45AM +0200, Rasmus Villemoes wrote:
+> In preparation for supporting setting the polarity, switch the driver
+> to support the ->apply method.
+> 
+> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> ---
+>  drivers/pwm/pwm-mxs.c | 62 +++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+> 
+> diff --git a/drivers/pwm/pwm-mxs.c b/drivers/pwm/pwm-mxs.c
+> index 04c0f6b95c1a..c70c26a9ff68 100644
+> --- a/drivers/pwm/pwm-mxs.c
+> +++ b/drivers/pwm/pwm-mxs.c
+> @@ -26,6 +26,7 @@
+>  #define  PERIOD_PERIOD_MAX	0x10000
+>  #define  PERIOD_ACTIVE_HIGH	(3 << 16)
+>  #define  PERIOD_INACTIVE_LOW	(2 << 18)
+> +#define  PERIOD_POLARITY_NORMAL	(PERIOD_ACTIVE_HIGH | PERIOD_INACTIVE_LOW)
+>  #define  PERIOD_CDIV(div)	(((div) & 0x7) << 20)
+>  #define  PERIOD_CDIV_MAX	8
+>  
+> @@ -41,6 +42,66 @@ struct mxs_pwm_chip {
+>  
+>  #define to_mxs_pwm_chip(_chip) container_of(_chip, struct mxs_pwm_chip, chip)
+>  
+> +static int mxs_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			 struct pwm_state *state)
+> +{
+> +	struct mxs_pwm_chip *mxs = to_mxs_pwm_chip(chip);
+> +	int ret, div = 0;
+> +	unsigned int period_cycles, duty_cycles;
+> +	unsigned long rate;
+> +	unsigned long long c;
+> +
+> +	if (state->polarity != PWM_POLARITY_NORMAL)
+> +		return -ENOTSUPP;
+> +
+> +	rate = clk_get_rate(mxs->clk);
+> +	while (1) {
+> +		c = rate / cdiv[div];
+> +		c = c * state->period;
+> +		do_div(c, 1000000000);
+> +		if (c < PERIOD_PERIOD_MAX)
+> +			break;
+> +		div++;
+> +		if (div >= PERIOD_CDIV_MAX)
+> +			return -EINVAL;
+> +	}
+> +
+> +	period_cycles = c;
+> +	c *= state->duty_cycle;
+> +	do_div(c, state->period);
+> +	duty_cycles = c;
+> +
+> +	/*
+> +	 * If the PWM channel is disabled, make sure to turn on the clock
+> +	 * before writing the register. Otherwise, keep it enabled.
+> +	 */
+> +	if (!pwm_is_enabled(pwm)) {
+> +		ret = clk_prepare_enable(mxs->clk);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	writel(duty_cycles << 16,
+> +	       mxs->base + PWM_ACTIVE0 + pwm->hwpwm * 0x20);
+> +	writel(PERIOD_PERIOD(period_cycles) | PERIOD_POLARITY_NORMAL | PERIOD_CDIV(div),
+> +	       mxs->base + PWM_PERIOD0 + pwm->hwpwm * 0x20);
+> +
+> +	if (state->enabled) {
+> +		if (!pwm_is_enabled(pwm)) {
+> +			/*
+> +			 * The clock was enabled above. Just enable
+> +			 * the channel in the control register.
+> +			 */
+> +			writel(1 << pwm->hwpwm, mxs->base + PWM_CTRL + SET);
+> +		}
+> +	} else {
+> +		if (pwm_is_enabled(pwm))
+> +			writel(1 << pwm->hwpwm, mxs->base + PWM_CTRL + CLR);
+> +		clk_disable_unprepare(mxs->clk);
+> +	}
+> +	return 0;
+> +}
 
----
+Maybe it would be easier to review when converting from .config +
+.enable + .disable to .apply in a single step. (Note this "maybe" is
+honest, I'm not entirely sure.)
 
- .../devicetree/bindings/regulator/fixed-regulator.yaml        | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+There is a bug: If the PWM is running at (say) period=100ms, duty=0ms
+and we call
+pwm_apply_state(pwm, { .enabled = false, duty=100000, period=1000000 });
+the output might get high which it should not.
 
-diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.ya=
-ml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-index a78150c47aa2..f32416968197 100644
---- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-@@ -30,8 +30,8 @@ if:
- properties:
-   compatible:
-     enum:
--      - const: regulator-fixed
--      - const: regulator-fixed-clock
-+      - regulator-fixed
-+      - regulator-fixed-clock
-=20
-   regulator-name: true
-=20
---=20
-2.23.0
+Also there is a bug already in .config: You are not supposed to call
+clk_get_rate if the clk might be off.
 
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
