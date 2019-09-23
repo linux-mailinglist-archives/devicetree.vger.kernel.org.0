@@ -2,67 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AF94BBAB2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 19:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B3A3BBABB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 19:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407556AbfIWRrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 13:47:13 -0400
-Received: from muru.com ([72.249.23.125]:34280 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389763AbfIWRrN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 13:47:13 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 8F9E4809F;
-        Mon, 23 Sep 2019 17:47:44 +0000 (UTC)
-Date:   Mon, 23 Sep 2019 10:47:09 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     santosh.shilimkar@oracle.com
-Cc:     Tero Kristo <t-kristo@ti.com>, linux-omap@vger.kernel.org,
-        ssantosh@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
-        s-anna@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCHv5 00/10] soc: ti: add OMAP PRM driver (for reset)
-Message-ID: <20190923174709.GY5610@atomide.com>
-References: <20190912113916.20093-1-t-kristo@ti.com>
- <20190920142849.GS5610@atomide.com>
- <13a77bd8-72bd-6a44-9141-d5492be82d82@oracle.com>
+        id S2440225AbfIWRwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 13:52:18 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:46239 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2440204AbfIWRwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 13:52:18 -0400
+Received: by mail-wr1-f67.google.com with SMTP id o18so14956823wrv.13
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 10:52:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J5xWe+jm90yt27MDgJHfM/0OsrYeneBcV2U5/FBqZXM=;
+        b=RJCdD2UcBy5rSmxCKyA+IWUMExwyNYv/iysMIENg6WzHFqVLy6AzmiJD+jBlR3odIB
+         0Fixe3R3YCaRnAwEyAKUMiCXntnLqowbE/VMbRoJv4R1/SOc4nzvbMix0DWpxywdAoGV
+         S12HJ0aenUoFNdXKrLWXL9F9HJBLyRR2DRps5G8C1O7roRcmalgSbUK9hM3hQlNuyAF1
+         StEeSjzaskarExHCd6Gor48puZkPCgpXI/aRiQRil5MGtKT1X8eRu4tEr3TSpiFXov+O
+         NAMSIqh4RJSiPJ7OZoefwBERXNMosNWRWA5Q72Aob8WdOOc2IbFxIva+oYo0kmv7wJu8
+         5qlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J5xWe+jm90yt27MDgJHfM/0OsrYeneBcV2U5/FBqZXM=;
+        b=HXB6RK92b09g77f1/xhnjhK1HDmL0NqzGYGC334VtfMZUSMt79JVx7lahO9HXGcGYM
+         HpKK6sOhiWLN0HP/Pe1tK12S09IvDhBJZIzjQsehlzoBv03J5Q5D2Pb0ntlu+46QcfxV
+         Ec6algFDE2G7t+06ddsxGJyND3b6es/ZWOcHWbckC4tOP75CloG98/EDt7iQYtjxD3W5
+         nSs2bW8NjbFwZKHsPMQUNTtAq5tBnzY9GhGaxrr75oJo7m9PF1ZPbEZp5ZVypjkxwI7J
+         NTBTKBdEjXauUcoZWcWpkfhHh/+187CO+8k2RT57+e3sVkAJHGlLhbtd2DoSGgdRDVgl
+         MDyw==
+X-Gm-Message-State: APjAAAWIxDeXQ2BJhAm3wRxw/B472Wfk1lY97zP7j5cfj6snglx+jePc
+        3D4yR0tw0bRzwlRYb1F1lsQa4Q==
+X-Google-Smtp-Source: APXvYqxDdCcLRh2RCGXD0+IJbaDL+1u4PDEk1tZ/jVW8T9vyfpsBW4LNr8WoGnyaQ2FDrGDaVXBsEg==
+X-Received: by 2002:adf:f949:: with SMTP id q9mr511487wrr.382.1569261134086;
+        Mon, 23 Sep 2019 10:52:14 -0700 (PDT)
+Received: from debian-brgl.home ([2a01:cb1d:af:5b00:6d6c:8493:1ab5:dad7])
+        by smtp.gmail.com with ESMTPSA id a192sm13606962wma.1.2019.09.23.10.52.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2019 10:52:13 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH] dt-bindings: at24: convert the binding document to yaml
+Date:   Mon, 23 Sep 2019 19:52:11 +0200
+Message-Id: <20190923175211.2060-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13a77bd8-72bd-6a44-9141-d5492be82d82@oracle.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* santosh.shilimkar@oracle.com <santosh.shilimkar@oracle.com> [190920 19:20]:
-> On 9/20/19 7:28 AM, Tony Lindgren wrote:
-> > * Tero Kristo <t-kristo@ti.com> [190912 04:39]:
-> > > Hi,
-> > > 
-> > > V5 of the series, re-sent the whole series as one patch was dropped.
-> > > Changes compared to v3/v4:
-> > > 
-> > > - removed dependency towards clock driver (patch #5 was completely
-> > >    dropped compared to v3/v4)
-> > > - dropped clocks property from dt binding
-> > > - re-added the pdata patch which was accidentally dropped out (it has
-> > >    dependency towards this series.)
-> > > 
-> > > The new implementation (without clock driver dependency) relies on the
-> > > bus driver to sequence events properly, otherwise some timeouts will
-> > > occur either at clock driver or reset driver end.
-> > 
-> > With the two updated patches seems like we're done with this
-> > series?
-> > 
-> > If so, I suggest either Santosh or me sets up an immutable
-> > branch against v5.3 or v5.4-rc1 that we all can merge in.
-> > I will need it for the related dts changes at least.
-> > 
-> I will pick this up Tony and apply it once v5.4-rc1 is out.
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-OK thanks.
+Convert the binding document for at24 EEPROMs from txt to yaml. The
+compatible property uses a regex pattern to address all the possible
+combinations of "vendor,model" strings.
 
-Tony
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+---
+ .../devicetree/bindings/eeprom/at24.txt       |  90 +--------------
+ .../devicetree/bindings/eeprom/at24.yaml      | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 109 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
+
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Documentation/devicetree/bindings/eeprom/at24.txt
+index 22aead844d0f..c94acbb8cb0c 100644
+--- a/Documentation/devicetree/bindings/eeprom/at24.txt
++++ b/Documentation/devicetree/bindings/eeprom/at24.txt
+@@ -1,89 +1 @@
+-EEPROMs (I2C)
+-
+-Required properties:
+-
+-  - compatible: Must be a "<manufacturer>,<model>" pair. The following <model>
+-                values are supported (assuming "atmel" as manufacturer):
+-
+-                "atmel,24c00",
+-                "atmel,24c01",
+-                "atmel,24cs01",
+-                "atmel,24c02",
+-                "atmel,24cs02",
+-                "atmel,24mac402",
+-                "atmel,24mac602",
+-                "atmel,spd",
+-                "atmel,24c04",
+-                "atmel,24cs04",
+-                "atmel,24c08",
+-                "atmel,24cs08",
+-                "atmel,24c16",
+-                "atmel,24cs16",
+-                "atmel,24c32",
+-                "atmel,24cs32",
+-                "atmel,24c64",
+-                "atmel,24cs64",
+-                "atmel,24c128",
+-                "atmel,24c256",
+-                "atmel,24c512",
+-                "atmel,24c1024",
+-                "atmel,24c2048",
+-
+-                If <manufacturer> is not "atmel", then a fallback must be used
+-                with the same <model> and "atmel" as manufacturer.
+-
+-                Example:
+-                        compatible = "microchip,24c128", "atmel,24c128";
+-
+-                Supported manufacturers are:
+-
+-                "catalyst",
+-                "microchip",
+-                "nxp",
+-                "ramtron",
+-                "renesas",
+-                "rohm",
+-                "st",
+-
+-                Some vendors use different model names for chips which are just
+-                variants of the above. Known such exceptions are listed below:
+-
+-                "nxp,se97b" - the fallback is "atmel,24c02",
+-                "renesas,r1ex24002" - the fallback is "atmel,24c02"
+-                "renesas,r1ex24016" - the fallback is "atmel,24c16"
+-                "renesas,r1ex24128" - the fallback is "atmel,24c128"
+-                "rohm,br24t01" - the fallback is "atmel,24c01"
+-
+-  - reg: The I2C address of the EEPROM.
+-
+-Optional properties:
+-
+-  - pagesize: The length of the pagesize for writing. Please consult the
+-              manual of your device, that value varies a lot. A wrong value
+-              may result in data loss! If not specified, a safety value of
+-              '1' is used which will be very slow.
+-
+-  - read-only: This parameterless property disables writes to the eeprom.
+-
+-  - size: Total eeprom size in bytes.
+-
+-  - no-read-rollover: This parameterless property indicates that the
+-                      multi-address eeprom does not automatically roll over
+-                      reads to the next slave address. Please consult the
+-                      manual of your device.
+-
+-  - wp-gpios: GPIO to which the write-protect pin of the chip is connected.
+-
+-  - address-width: number of address bits (one of 8, 16).
+-
+-  - num-addresses: total number of i2c slave addresses this device takes
+-
+-Example:
+-
+-eeprom@52 {
+-	compatible = "atmel,24c32";
+-	reg = <0x52>;
+-	pagesize = <32>;
+-	wp-gpios = <&gpio1 3 0>;
+-	num-addresses = <8>;
+-};
++This file has been moved to at24.yaml.
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+new file mode 100644
+index 000000000000..28c8b068c8a1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: GPL-2.0
++# Copyright 2019 BayLibre SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: I2C EEPROMs compatible with Atmel's AT24
++
++maintainers:
++  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
++
++properties:
++  compatible:
++    additionalItems: true
++    maxItems: 2
++    pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24(c|cs|mac)[0-9]+$"
++    oneOf:
++      - const: nxp,se97b
++      - const: renesas,r1ex24002
++      - const: renesas,r1ex24016
++      - const: renesas,r1ex24128
++      - const: rohm,br24t01
++    contains:
++      enum:
++        - atmel,24c00
++        - atmel,24c01
++        - atmel,24cs01
++        - atmel,24c02
++        - atmel,24cs02
++        - atmel,24mac402
++        - atmel,24mac602
++        - atmel,spd
++        - atmel,24c04
++        - atmel,24cs04
++        - atmel,24c08
++        - atmel,24cs08
++        - atmel,24c16
++        - atmel,24cs16
++        - atmel,24c32
++        - atmel,24cs32
++        - atmel,24c64
++        - atmel,24cs64
++        - atmel,24c128
++        - atmel,24c256
++        - atmel,24c512
++        - atmel,24c1024
++        - atmel,24c2048
++
++  reg:
++    description:
++      The I2C slave address of the EEPROM.
++    maxItems: 1
++
++  pagesize:
++    description:
++      The length of the pagesize for writing. Please consult the
++      manual of your device, that value varies a lot. A wrong value
++      may result in data loss! If not specified, a safety value of
++      '1' is used which will be very slow.
++    type: integer
++
++  read-only:
++    description:
++      This parameterless property disables writes to the eeprom.
++    type: boolean
++
++  size:
++    description:
++      Total eeprom size in bytes.
++    type: integer
++
++  no-read-rollover:
++    description:
++      This parameterless property indicates that the multi-address
++      eeprom does not automatically roll over reads to the next slave
++      address. Please consult the manual of your device.
++    type: boolean
++
++  wp-gpios:
++    description:
++      GPIO to which the write-protect pin of the chip is connected.
++    maxItems: 1
++
++  address-width:
++    description:
++      Number of address bits (one of 8, 16).
++    type: integer
++
++  num-addresses:
++    description:
++      Total number of i2c slave addresses this device takes.
++    type: integer
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    eeprom@52 {
++        compatible = "microchip,24c32", "atmel,24c32";
++        reg = <0x52>;
++        pagesize = <32>;
++        wp-gpios = <&gpio1 3 0>;
++        num-addresses = <8>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a400af0501c9..3c7ced686966 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2698,7 +2698,7 @@ M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
+ L:	linux-i2c@vger.kernel.org
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/eeprom/at24.txt
++F:	Documentation/devicetree/bindings/eeprom/at24.yaml
+ F:	drivers/misc/eeprom/at24.c
+ 
+ ATA OVER ETHERNET (AOE) DRIVER
+-- 
+2.23.0
+
