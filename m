@@ -2,126 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65ECFBB0F0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99330BB100
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726730AbfIWJHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 05:07:35 -0400
-Received: from mail-eopbgr00131.outbound.protection.outlook.com ([40.107.0.131]:1352
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726020AbfIWJHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 05:07:35 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ue7R7a4HZaau7RElEm0W36wIc9B07O/hVvqHpbJ1tOq7e92LrR85iQdSBoDZ3awcE0FmhFZgu03XzZwoILl6MksJlTvGlQx+uQ1ii+xgabnx0PzJz4wAobjrIXUERQYNt0zC8+F7ExDN09X89hliqpG64PdUA0tJ2xax3z0J8cEiohgwyZ9gtsrsYdYiMz7E6C6miaTeBrkJnBM6d+sWC0C9sKPXzkpuFzlczi04RFqXIyK69ynS2s827pSHTwKsJV0E+qnwCkNVz58eSgKSyDLnd3MvAn8L9mtD8dGR4GOOcfSOt2Yfy0mbaR00mxI3g5KuqMmJ52+nOkgx0IzWkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kvquhNSsVtQb+bdWIl5cbds+dAgrB0L/xnIFrbx7OaM=;
- b=NBTugUFqeYNTrmLKpiwA9LZBP4ZGrP4F5C2fH05OIYyFRYFcVRpnrdj9oJNYfmJbXsp29/b241iNi74qOPWTR55wU0F7fWenKPG0/ZuUKGHFIZ/JZ81l7CyKdMUKIbV74EQIe7kn5kElEkkM7UBYkZQoUD+N7fksytc3bo9u2z9ewrlJ/0fEJB7ZhbfUzvTguBbzHG0hj0B4rKaSyX8T0Zj0XIt0sLPlKksnjydum6RFlHcUxqsOX/uskaEWNYuVi3uIyewWanU9jqUWcgJpf01PShNI7CstgiZMZ3caLJcYuv6g60qsJTv+efJyZONSbaQeCPRxHUlMI24j65fn0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kvquhNSsVtQb+bdWIl5cbds+dAgrB0L/xnIFrbx7OaM=;
- b=oM22KBNHUgAz/m9JRugOr8SJUorn+wbm8k8CPwc3CnTIwjfKAw5xxEzTMwo/n1g32Vop9iB9tdgM3+/IwZ/g/XOdaXYupKHjrK0EkLZU8Hx3PXqsplOkTX9lqZtydGyn0ZHNFn0IGLgUXSz4JFhkYpgvgWiRvs6VVIuu1sWLuYU=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3998.eurprd05.prod.outlook.com (52.134.18.28) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.18; Mon, 23 Sep 2019 09:07:31 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::1179:c881:a516:644d]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::1179:c881:a516:644d%3]) with mapi id 15.20.2284.023; Mon, 23 Sep 2019
- 09:07:31 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "marcel@ziswiler.com" <marcel@ziswiler.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-CC:     "info@logictechno.com" <info@logictechno.com>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "icenowy@aosc.io" <icenowy@aosc.io>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        "j.bauer@endrich.com" <j.bauer@endrich.com>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: add vendor prefix for logic
- technologies limited
-Thread-Topic: [PATCH v1 1/2] dt-bindings: add vendor prefix for logic
- technologies limited
-Thread-Index: AQHVb4i4IUSP2AwIZ0a1numwyARFt6c4/ZYA
-Date:   Mon, 23 Sep 2019 09:07:31 +0000
-Message-ID: <c01adde46cbae1d1fd96142699964be4cc50b1fb.camel@toradex.com>
-References: <20190920075411.15735-1-marcel@ziswiler.com>
-In-Reply-To: <20190920075411.15735-1-marcel@ziswiler.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 623a0d77-bed4-45d3-6ddf-08d740057763
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3998;
-x-ms-traffictypediagnostic: VI1PR0502MB3998:
-x-ms-exchange-purlcount: 2
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB3998A148721ED8CB3A04AE9AF4850@VI1PR0502MB3998.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2089;
-x-forefront-prvs: 0169092318
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(979002)(4636009)(396003)(366004)(39840400004)(136003)(346002)(376002)(199004)(189003)(966005)(478600001)(2906002)(86362001)(2501003)(14454004)(25786009)(305945005)(2616005)(476003)(64756008)(66556008)(66476007)(66946007)(6506007)(102836004)(99286004)(7736002)(36756003)(11346002)(486006)(186003)(26005)(76176011)(7416002)(6116002)(3846002)(76116006)(91956017)(66446008)(66066001)(6512007)(6486002)(446003)(44832011)(118296001)(6246003)(6436002)(4326008)(6306002)(54906003)(71200400001)(71190400001)(110136005)(316002)(8676002)(5660300002)(229853002)(8936002)(256004)(81156014)(81166006)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3998;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: gPFlSnaogp6aXGBQO3RrjoCJpRHa6scdpe3vSTu/LsDJXvk53snJ2OEIfipfQUFd6Uj3Xph3fG3UydjSaQLjySpjKWelSoL1JvWMwF1lY/9Aw3hZgdZ2MzgszoQSBdpFVLCvW1YNdZAPn8l+bfF3o7B19a+KukhTyLf9QIrlC5zhADcSFQmIxQVN+x2umymMyEBPuKhQZqhZVB1u8BF5sB+sZIp+mJpPhyrICXd8l27/SzNe5zwaE5ubiSAiUlKtNpUme3J+R+jUAWh4qq0TrwIfWzy3Loz3NvcZCxWeYDZPRem1zs9nbI+51uo35ivTITgsycoxWpmoeeAsZTqNGb3r8UzP4mDpkMjhTC4fO6yO4jDVksn7KO9LRP7s0zbye6Jn30MCyFHzzbuQtK9lbPv3U4GFXfOkVuPr4qN4dRw=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DD1B69EE8639114A9D5A17707CD8BDA9@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1726030AbfIWJIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 05:08:54 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:50864 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731943AbfIWJIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 05:08:54 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 03979634C87;
+        Mon, 23 Sep 2019 12:07:52 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1iCKK0-0002AD-TH; Mon, 23 Sep 2019 12:07:52 +0300
+Date:   Mon, 23 Sep 2019 12:07:52 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com
+Subject: Re: [PATCH v3 3/3] MAINTAINERS: Add entry for IMX290 CMOS image
+ sensor driver
+Message-ID: <20190923090752.GK5525@valkosipuli.retiisi.org.uk>
+References: <20190830091943.22646-1-manivannan.sadhasivam@linaro.org>
+ <20190830091943.22646-4-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 623a0d77-bed4-45d3-6ddf-08d740057763
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 09:07:31.6304
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zQcetqy9A8CW5zDJoD3ovptEgL0XW+2IjYp7o9nhb0jzxuhg28i1dcLIir+gzhQ9zOWyTNNsH6IQ4haL+YOL+qAxWXdcpMEaQcG9qCrzhz4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3998
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190830091943.22646-4-manivannan.sadhasivam@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDE5LTA5LTIwIGF0IDA5OjU0ICswMjAwLCBNYXJjZWwgWmlzd2lsZXIgd3JvdGU6
-DQo+IEZyb206IE1hcmNlbCBaaXN3aWxlciA8bWFyY2VsLnppc3dpbGVyQHRvcmFkZXguY29tPg0K
-PiANCj4gQWRkIHZlbmRvciBwcmVmaXggZm9yIExvZ2ljIFRlY2hub2xvZ2llcyBMaW1pdGVkIFsx
-XSB3aGljaCBpcyBhDQo+IENoaW5lc2UNCj4gZGlzcGxheSBtYW51ZmFjdHVyZXIgZS5nLiBkaXN0
-cmlidXRlZCBieSBHZXJtYW4gRW5kcmljaCBCYXVlbGVtZW50ZQ0KPiBWZXJ0cmllYnMgR21iSCBb
-Ml0uDQo+IA0KPiBbMV0gaHR0cHM6Ly9sb2dpY3RlY2huby5jb20vY29udGFjdC11cy8NCj4gWzJd
-IA0KPiBodHRwczovL3d3dy5lbmRyaWNoLmNvbS9pc2k1MF9pc2kzMF90ZnQtZGlzcGxheXMvbHQx
-NzA0MTAtMXdoY19pc2kzMA0KPiANCj4gU2lnbmVkLW9mZi1ieTogTWFyY2VsIFppc3dpbGVyIDxt
-YXJjZWwuemlzd2lsZXJAdG9yYWRleC5jb20+DQoNClJldmlld2VkLWJ5OiBQaGlsaXBwZSBTY2hl
-bmtlciA8cGhpbGlwcGUuc2NoZW5rZXJAdG9yYWRleC5jb20+DQoNCj4gDQo+IC0tLQ0KPiANCj4g
-IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy92ZW5kb3ItcHJlZml4ZXMueWFtbCB8
-IDIgKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1n
-aXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVzLnlh
-bWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVz
-LnlhbWwNCj4gaW5kZXggOTY3ZTc4YzVlYzBhLi4xNDQxMTQ2ZjM5NGYgMTAwNjQ0DQo+IC0tLSBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy92ZW5kb3ItcHJlZml4ZXMueWFtbA0K
-PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9yLXByZWZpeGVz
-LnlhbWwNCj4gQEAgLTU0MSw2ICs1NDEsOCBAQCBwYXR0ZXJuUHJvcGVydGllczoNCj4gICAgICBk
-ZXNjcmlwdGlvbjogTGluZWFyIFRlY2hub2xvZ3kgQ29ycG9yYXRpb24NCj4gICAgIl5sb2dpY3Bk
-LC4qIjoNCj4gICAgICBkZXNjcmlwdGlvbjogTG9naWMgUEQsIEluYy4NCj4gKyAgIl5sb2dpY3Rl
-Y2hubywuKiI6DQo+ICsgICAgZGVzY3JpcHRpb246IExvZ2ljIFRlY2hub2xvZ2llcyBMaW1pdGVk
-DQo+ICAgICJebG9uZ2NoZWVyLC4qIjoNCj4gICAgICBkZXNjcmlwdGlvbjogTG9uZ2NoZWVyIFRl
-Y2hub2xvZ3kgKFNoYW5naGFpKSBDby4sIEx0ZC4NCj4gICAgIl5sc2ksLioiOg0K
+On Fri, Aug 30, 2019 at 02:49:43PM +0530, Manivannan Sadhasivam wrote:
+> Add MAINTAINERS entry for Sony IMX290 CMOS image sensor driver.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f7c84004187d..0ee261fca602 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14962,6 +14962,14 @@ S:	Maintained
+>  F:	drivers/media/i2c/imx274.c
+>  F:	Documentation/devicetree/bindings/media/i2c/imx274.txt
+>  
+> +SONY IMX290 SENSOR DRIVER
+> +M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> +L:	linux-media@vger.kernel.org
+> +T:	git git://linuxtv.org/media_tree.git
+> +S:	Maintained
+> +F:	drivers/media/i2c/imx290.c
+> +F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
+> +
+>  SONY IMX319 SENSOR DRIVER
+>  M:	Bingbu Cao <bingbu.cao@intel.com>
+>  L:	linux-media@vger.kernel.org
+
+Please squash this change to the first patch.
+
+-- 
+Sakari Ailus
