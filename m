@@ -2,96 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4EE3BB402
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 14:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88ED1BB46A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 14:53:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404705AbfIWMkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 08:40:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36482 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404312AbfIWMkl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 08:40:41 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7696120835;
-        Mon, 23 Sep 2019 12:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569242440;
-        bh=l8vQZJIUvgkbP7LvWo9qwqFBsXsB44W0ABkn+VKhM9I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=J6kcKYiTgnK4nzc8sAa0nnjlvXAPOaM/O0PtmhjWxEKUCCsJvqjuFyB/lw9anHQf9
-         SgsK9KsGX4I0xgHnmVdIMIFTUUxAnjxrbS0DmCJV4pQKYxINqTNJWZ0PcfNFDFVtRn
-         9LsB6vvCQv/kmH81olflVKNpXGK57MrW/1J81WB8=
-Received: by mail-qk1-f180.google.com with SMTP id 4so15164110qki.6;
-        Mon, 23 Sep 2019 05:40:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAVMhn5/TwS91b0LE/GqqrcYR8AQGW14/8SeJHyrgjCa6VNBGKWT
-        wGgv0rVxSYD4c/Og4B/YNpKp/WIob1cM/2SVGA==
-X-Google-Smtp-Source: APXvYqz1pRqdLHsZJ6v7adCjiCuwEUNtG/aVqx8Kf1vfsRAqll0GVsbffAMnKewWt9yYsxHCla7JrcE26Y0aCEoDskw=
-X-Received: by 2002:a05:620a:549:: with SMTP id o9mr17340620qko.223.1569242439684;
- Mon, 23 Sep 2019 05:40:39 -0700 (PDT)
+        id S2439638AbfIWMxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 08:53:41 -0400
+Received: from 1.mo6.mail-out.ovh.net ([46.105.56.136]:33278 "EHLO
+        1.mo6.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390719AbfIWMxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 08:53:41 -0400
+X-Greylist: delayed 12600 seconds by postgrey-1.27 at vger.kernel.org; Mon, 23 Sep 2019 08:53:40 EDT
+Received: from player718.ha.ovh.net (unknown [10.109.146.173])
+        by mo6.mail-out.ovh.net (Postfix) with ESMTP id 70C8E1E2709
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 11:17:02 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player718.ha.ovh.net (Postfix) with ESMTPSA id BC385A087C8B;
+        Mon, 23 Sep 2019 09:16:50 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Julien Boibessot <julien.boibessot@armadeus.com>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH 1/1] ARM: dts: imx28: add poweroff support
+Date:   Mon, 23 Sep 2019 11:17:00 +0200
+Message-Id: <20190923091700.22517-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190916153357.3880-1-horms+renesas@verge.net.au>
- <20190916153357.3880-2-horms+renesas@verge.net.au> <CAL_JsqJHiAmH0eeUMLH1q9X6e+88EVZrmMtM33rVWCyBAszY8A@mail.gmail.com>
- <20190919151014.4azdfh2feg5ot6no@verge.net.au> <CAL_Jsq+y5o-jBX9emVpW+q7n+Tde2ON0TqHmm9gFj7emUURL7Q@mail.gmail.com>
- <20190923115328.lpb5qeu6poacrb6y@verge.net.au>
-In-Reply-To: <20190923115328.lpb5qeu6poacrb6y@verge.net.au>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 23 Sep 2019 07:40:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLVyuQTZo1CoxoesNM=FfDrXphYK8pfqFrGyeZLEi5pjg@mail.gmail.com>
-Message-ID: <CAL_JsqLVyuQTZo1CoxoesNM=FfDrXphYK8pfqFrGyeZLEi5pjg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: bus: simple-pm-bus: convert bindings to json-schema
-To:     Simon Horman <horms@verge.net.au>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 10200090206580266236
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrvdekgddugecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 6:53 AM Simon Horman <horms@verge.net.au> wrote:
->
-> On Thu, Sep 19, 2019 at 02:33:58PM -0500, Rob Herring wrote:
-> > On Thu, Sep 19, 2019 at 10:10 AM Simon Horman <horms@verge.net.au> wrote:
-> > >
-> > > On Tue, Sep 17, 2019 at 07:12:16AM -0500, Rob Herring wrote:
-> > > > On Mon, Sep 16, 2019 at 10:35 AM Simon Horman
-> > > > <horms+renesas@verge.net.au> wrote:
->
-> ...
->
-> > > > > +
-> > > > > +  power-domains:
-> > > > > +    # Required if clocks is absent, optional otherwise
-> > > > > +    minItems: 1
-> > > > > +
-> > > > > +required:
-> > > > > +  - compatible
-> > > > > +  - '#address-cells'
-> > > > > +  - '#size-cells'
-> > > > > +  - ranges
-> > > >
-> > > > This will capture what you commented above:
-> > > >
-> > > > oneOf:
-> > > >   - required:
-> > > >       - clocks
-> > > >   - required:
-> > > >       - power-domains
-> > >
-> > > Thanks. Unfortunately dtbs_check does not seem happy
-> > > if both clocks and power-domains are present.
-> >
-> > I was thinking it was either or. Use 'anyOf' instead.
->
-> Thanks, perhaps the tooling needs updating to handle this.
+This add poweroff support using the generic syscon-poweroff driver.
 
-Indeed. Now fixed.
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+---
+ arch/arm/boot/dts/imx28.dtsi | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-Rob
+diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
+index e14d8ef0158b..37fa8131a022 100644
+--- a/arch/arm/boot/dts/imx28.dtsi
++++ b/arch/arm/boot/dts/imx28.dtsi
+@@ -1114,8 +1114,16 @@
+ 			};
+ 
+ 			power: power@80044000 {
++				compatible = "syscon", "simple-mfd";
+ 				reg = <0x80044000 0x2000>;
+-				status = "disabled";
++
++				mxs_poweroff: mxs-poweroff {
++					compatible = "syscon-poweroff";
++					regmap = <&power>;
++					offset = <0x104>;
++					value = <0x3E770001>;
++					status = "disabled";
++				};
+ 			};
+ 
+ 			saif1: saif@80046000 {
+-- 
+2.21.0
+
