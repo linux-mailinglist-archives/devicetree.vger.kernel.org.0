@@ -2,100 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9DDBAF0A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01494BAF30
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437321AbfIWIOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 04:14:02 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:43092 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437243AbfIWIN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 04:13:59 -0400
-Received: by mail-lf1-f68.google.com with SMTP id u3so9358322lfl.10
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2019 01:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=yaEGfYYzHwOCfVyIlgvVjUBZGDRTASgoNwVywAAbPHY=;
-        b=ewfXG73buI74XMq7fZvVCWZKlgR+0TiV4JG9jO/fe49Cgrg27am4riX0e0bPmvYroq
-         u1b3ifBwwoH+Hu3VVrsI7kvp9IgLIBUnoVgqO1+NL1lZp+dR74yHyrgZ1unaAXzC4J6X
-         kayGRA9zv0hm5PTVKc5F3g/2+TsbFV+athuPM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yaEGfYYzHwOCfVyIlgvVjUBZGDRTASgoNwVywAAbPHY=;
-        b=WqvjYll7Nflj0uIOVEi80WDxFi8vxrnps6SUBKgakXGqA4GDc4f2XtUVkaQU1ckqAm
-         Qzi45pWGDESjNYMbPSOjcg0tRsm0wTic+5Ek/CXbbzGM4WKHfWETJ/FW+qvzA67pGKd1
-         0vR41/XJJppRef8w1lEBdRMF+yDIHNfOAQ2w6NvDsvHRFqUyjdTW8A0K1gCTpyaoTsQQ
-         Tw5vZBRQj2oBSv7aV2IneEW5VYCkwlKAGMm4g/t9tiHOGrb4lmcGQGgVJhZ9MW0pdfBA
-         W1r6BXApd+R/VKboAnZ/31xpK0ZqXY37EmnKL6u+R6Ymf6E+BMJH0+qofSKXKJRZO0Jl
-         bq8g==
-X-Gm-Message-State: APjAAAUwFPR2kjyt5/m7glh+EzhmGTB+sxCnq8OzV5C9JmnlznxFvdfn
-        OA/NaoszbslzK7cTdvZziNI+Rg==
-X-Google-Smtp-Source: APXvYqwa45HyJC3lNRp5/zE7lrzcpW7gGM4PVnCUaEY3v11W5wPXc/WNYcX42D8uo4bAGlw71Tm2Fg==
-X-Received: by 2002:a19:c396:: with SMTP id t144mr16546948lff.14.1569226436978;
-        Mon, 23 Sep 2019 01:13:56 -0700 (PDT)
-Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id c21sm2054946lff.61.2019.09.23.01.13.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2019 01:13:56 -0700 (PDT)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S2391890AbfIWIS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 04:18:57 -0400
+Received: from mail-eopbgr40095.outbound.protection.outlook.com ([40.107.4.95]:11266
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388933AbfIWIS5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 04:18:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i82nAsjazQ0wi8/b2mGaYFfUMdjJZkXg0o30N9ICCiQOqVb99e2RUUCvokJbXPESScYgtugQAYfXnLpKrNlpukzUEDcQb/uTdRXdD8H0BQjueH2ab55JP+a9Ee4kAdXkVSstljV9rWIz04zyG9Omnh/ew/dTNo1RJWnIcBAvClmIDuf0bUD9l5bALge/TfBGPxQQxg7892GTphNDavJwvbaqOzdD4OtUCuJBkrKB76v+h6JwrKKUNk4UpIwG5rrGRuY/EfNCJ8pacQd9FVuSo1vdoj8O43388j1Z+IaxUGz7mDF5/b6RNwgMgOi6vAnD/BukwrYIcUULlYgeRclvkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ouc8B1fyULoPu0k5IaAFty3VQHQRF8moAhSQy9SBOEQ=;
+ b=CWKclOXYf0yKCMPVr2k22cyb8NekVHA50h94TacemrijXfAnVk7Al6KrUpzr3eT05HPOmkzN2BtK2NxytSzEBbSErYQkdssXxZjSaJamaAH/7f1txKSi4t2rLH7ZvILQHPoeqtkAqIshyESYJIiz7sRqbs1bskVxjOAWZGfJqeXdrkZ3DxL2JFnDxzzQBuuVQKnTF9jmI2OIGGYHT/ENShtbFtWRENGCphVyTfI8d5RJk2kC6hPpUoyhE2unHGe+7rLMXXt3W42y2ql3SLKY9fi18edhCjvvMApZwORp9FOTywqLMrUNpWIAowdLfGbBHkwPXojR2hG70rYAauQMpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ouc8B1fyULoPu0k5IaAFty3VQHQRF8moAhSQy9SBOEQ=;
+ b=Xosq1/0uuinoWxw5bGqW1l4RQw5qk4sZqNRzo2ZkcUUJZ9HzbWDMzPivkas6ttNufIPyb3ucK9soannqdJp2rD5H+ztZX+PL9zGTgTwcHHJqfUwZ6Vx74JxYnV38iao/maAaH83fnDyid/yRlECcyOIBRvH9XBfLlH25I+iyD8o=
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
+ VI1PR0502MB4064.eurprd05.prod.outlook.com (52.134.18.154) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.18; Mon, 23 Sep 2019 08:18:50 +0000
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::1179:c881:a516:644d]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::1179:c881:a516:644d%3]) with mapi id 15.20.2284.023; Mon, 23 Sep 2019
+ 08:18:50 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] dt-bindings: pwm: mxs-pwm: Increase #pwm-cells
-Date:   Mon, 23 Sep 2019 10:13:48 +0200
-Message-Id: <20190923081348.6843-5-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
-References: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
+        Liam Girdwood <lgirdwood@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Luka Pivk <luka.pivk@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>
+Subject: [PATCH] dt-bindings: fixed-regulator: fix compatible enum
+Thread-Topic: [PATCH] dt-bindings: fixed-regulator: fix compatible enum
+Thread-Index: AQHVceeHVIIm60zvTk22ZU5xn+t7mg==
+Date:   Mon, 23 Sep 2019 08:18:49 +0000
+Message-ID: <20190923081840.23391-1-philippe.schenker@toradex.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: PR2P264CA0036.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:101:1::24) To VI1PR0502MB3965.eurprd05.prod.outlook.com
+ (2603:10a6:803:23::29)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=philippe.schenker@toradex.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.23.0
+x-originating-ip: [46.140.72.82]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a431d751-c87e-4b88-fcfa-08d73ffea9b5
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB4064;
+x-ms-traffictypediagnostic: VI1PR0502MB4064:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0502MB40641CBA4E1D9467080DB529F4850@VI1PR0502MB4064.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-forefront-prvs: 0169092318
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(366004)(39840400004)(376002)(136003)(346002)(189003)(199004)(71190400001)(186003)(81156014)(81166006)(54906003)(4326008)(44832011)(66556008)(64756008)(66446008)(66946007)(8676002)(476003)(2616005)(99286004)(107886003)(14454004)(66066001)(26005)(66476007)(316002)(486006)(478600001)(25786009)(8936002)(110136005)(2501003)(305945005)(36756003)(52116002)(50226002)(6512007)(6116002)(5660300002)(7736002)(86362001)(6436002)(1076003)(256004)(386003)(3846002)(102836004)(6486002)(4744005)(6506007)(71200400001)(2906002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB4064;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: bdj9mrTebMJrdW/e+9n+9UcvFgoA+xB2VXcWBO4W1Dn843lnJ59Ae2znSaHQImai+sfwzncE8OZIu74A6zaLMlXxWBknIdILaFkLWGhiNcTLcKLjdGyZQZsPZgfvcPe01H49KGavI/izkGOcxelfCCvNCtK1/ZiL1cXn9cYvLL1iwD1sRANkRT187WPhYwZZ6dYHBgbEvOyaYXhB0+HlZnxdoORY5KqaNIqE66HwwXweib3P9/0B2JpSgdsvD4SKKnVZGKRdwNE3EkvKZPkDNtStsUpOqvg0UsFRF0aACozV4+27sTZdVlhg5pdNQU6ptNG5IVZNwPdKY2aSEf+wGjZAK2w2sfDew5rpY07q1gLOb7c6x/j5Y1zTapIzWwIunb0aQz0aVCLBltNEXMfVf9U52swk3q5AWAMQsJ93tKU=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a431d751-c87e-4b88-fcfa-08d73ffea9b5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 08:18:50.0242
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cHA4jz8caEPD33i+sTcif7sz6TBPCLCuhvzTmOWl5TedrrId57yuPS0kGljx/WHMrsfunw+K6s3wLvOlF6uKszG/Hv5MinG+yATu6TRX2+Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB4064
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to increase the pwm-cells for the optional flags parameter, in
-order to implement support for polarity setting via DT.
+Remove 'const:' in the compatible enum. This was breaking
+make dt_binding_check since it has more than one compatible string.
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Fixes: 9c86d003d620 ("dt-bindings: regulator: add regulator-fixed-clock bin=
+ding")
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+
 ---
- Documentation/devicetree/bindings/pwm/mxs-pwm.txt | 4 ++--
+
+ .../devicetree/bindings/regulator/fixed-regulator.yaml        | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pwm/mxs-pwm.txt b/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
-index 96cdde5f6208..1697dcd3b07c 100644
---- a/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
-+++ b/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
-@@ -3,7 +3,7 @@ Freescale MXS PWM controller
- Required properties:
- - compatible: should be "fsl,imx23-pwm"
- - reg: physical base address and length of the controller's registers
--- #pwm-cells: should be 2. See pwm.txt in this directory for a description of
-+- #pwm-cells: should be 3. See pwm.txt in this directory for a description of
-   the cells format.
- - fsl,pwm-number: the number of PWM devices
- 
-@@ -12,6 +12,6 @@ Example:
- pwm: pwm@80064000 {
- 	compatible = "fsl,imx28-pwm", "fsl,imx23-pwm";
- 	reg = <0x80064000 0x2000>;
--	#pwm-cells = <2>;
-+	#pwm-cells = <3>;
- 	fsl,pwm-number = <8>;
- };
--- 
-2.20.1
+diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.ya=
+ml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+index a78150c47aa2..f32416968197 100644
+--- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+@@ -30,8 +30,8 @@ if:
+ properties:
+   compatible:
+     enum:
+-      - const: regulator-fixed
+-      - const: regulator-fixed-clock
++      - regulator-fixed
++      - regulator-fixed-clock
+=20
+   regulator-name: true
+=20
+--=20
+2.23.0
 
