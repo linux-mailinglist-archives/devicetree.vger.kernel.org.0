@@ -2,129 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC0D4BADAA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 08:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F203DBADB5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 08:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390426AbfIWGLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 02:11:22 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:53134 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387519AbfIWGLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 02:11:22 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3CD4C6074F; Mon, 23 Sep 2019 06:11:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569219081;
-        bh=8DolRLs0GbfRHEgHoy6D7zlaerPJVBczUABbhVDLUi4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oGrEaNnakGpEe5eeevgLZyjKQYarQ+KmOKEku2A2RRy0wOxjPnHLA0jCRA48gJtfb
-         CcoXEeCdUr4oIx8TryxNb4rq5oc936rJnSGL2z+NB2PyzSOz3UKWfDMaVDc3yXdr/S
-         aRtpQIoAPECCKeJPgbAWjby/ArVS9h8tRFiBQZSQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 7830E6076C;
-        Mon, 23 Sep 2019 06:11:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569219080;
-        bh=8DolRLs0GbfRHEgHoy6D7zlaerPJVBczUABbhVDLUi4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QC8zG9kFbGEwFoxBqr9a42xT6Vl1DJ/YA+GXa+TvHWqdM6AKHxyIlI5No+UCDbaX2
-         rMWKS+dgm6Wy2OuHgNrQXO/Rmz5xf0CoCSStpcQ7zq5KlWDBDjWNuo+RLZCkvNbfCh
-         V5+4DA5Q1OdwVeyVX5e+efrZrKIJ2FjsJELqrzFE=
+        id S2392858AbfIWGRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 02:17:37 -0400
+Received: from mga04.intel.com ([192.55.52.120]:47196 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387519AbfIWGRg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 02:17:36 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Sep 2019 23:17:36 -0700
+X-IronPort-AV: E=Sophos;i="5.64,539,1559545200"; 
+   d="scan'208";a="179024428"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Sep 2019 23:17:34 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 249B820C9F; Mon, 23 Sep 2019 09:17:32 +0300 (EEST)
+Date:   Mon, 23 Sep 2019 09:17:32 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Prabhakar Lad <prabhakar.csengg@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [Patch v2 5/7] media: i2c: ov2659: Add powerdown/reset gpio
+ handling
+Message-ID: <20190923061731.GZ5781@paasikivi.fi.intel.com>
+References: <20190919203955.15125-1-bparrot@ti.com>
+ <20190919203955.15125-6-bparrot@ti.com>
+ <20190920101706.GX5781@paasikivi.fi.intel.com>
+ <20190920165529.it7urirm6epg4woq@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 23 Sep 2019 11:41:20 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Lina Iyer <ilina@codeaurora.org>, Rob Herring <robh@kernel.org>,
-        evgreen@chromium.org, linus.walleij@linaro.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, rnayak@codeaurora.org,
-        devicetree@vger.kernel.org, maz@kernel.org,
-        linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [PATCH RFC 05/14] dt-bindings/interrupt-controller: pdc: add SPI
- config register
-In-Reply-To: <5d8550aa.1c69fb81.39edc.83fc@mx.google.com>
-References: <20190829181203.2660-1-ilina@codeaurora.org>
- <20190829181203.2660-6-ilina@codeaurora.org>
- <5d6d1b72.1c69fb81.ee88.efcf@mx.google.com>
- <102c9268-c4ce-6133-3b0a-67c2fcba1e7a@arm.com>
- <20190903170722.GA31716@codeaurora.org>
- <5d71a247.1c69fb81.2146f.7ed2@mx.google.com>
- <20190913195326.GA3293@codeaurora.org>
- <20190917215020.GA15853@codeaurora.org>
- <5d8550aa.1c69fb81.39edc.83fc@mx.google.com>
-Message-ID: <6b6c357d7cccecd70e88852d7c487114@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190920165529.it7urirm6epg4woq@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-09-21 03:50, Stephen Boyd wrote:
-> Quoting Lina Iyer (2019-09-17 14:50:20)
->> On Fri, Sep 13 2019 at 13:53 -0600, Lina Iyer wrote:
->> >On Thu, Sep 05 2019 at 18:03 -0600, Stephen Boyd wrote:
->> >>Quoting Lina Iyer (2019-09-03 10:07:22)
->> >>>On Mon, Sep 02 2019 at 07:58 -0600, Marc Zyngier wrote:
->> >>>>On 02/09/2019 14:38, Rob Herring wrote:
->> >>>>> On Thu, Aug 29, 2019 at 12:11:54PM -0600, Lina Iyer wrote:
->> >>>These are not GIC registers but located on the PDC interface to the GIC.
->> >>>They may or may not be secure access controlled, depending on the SoC.
->> >>>
->> >>
->> >>It looks like it falls under this "mailbox" device which is really the
->> >>catch all bucket for bits with no home besides they're related to the
->> >>apps CPUs/subsystem.
->> >>
->> >Thanks for pointing to this.
->> >>      apss_shared: mailbox@17990000 {
->> >>              compatible = "qcom,sdm845-apss-shared";
->> >>              reg = <0 0x17990000 0 0x1000>;
->> >But this doesn't seem correct. The registers in this page are all not
->> >mailbox door bell registers. We should restrict the space allocated to
->> >the mbox to 0xC or something, definitely, not the whole page. They all
->> >cannot be treated as a mailbox registers.
-> 
-> Well the binding is already done and this is the compatible string for
-> this node and register region. Sounds like this node is a mailbox plus
-> some more stuff in the same page.
-> 
+Hi Benoit,
 
-Bjorn already noticed ^^ during the
-original review. Hence the compatible
-was correctly named "apss-shared"
-instead of following the older bindings.
-
->> >>              #mbox-cells = <1>;
->> >>      };
->> >>
->> >>Can you point to this node with a phandle and then parse the reg
->> >>property out of it to use in the scm readl/writel APIs? Maybe it can be
->> >>a two cell property with <&apps_shared 0xf0> to indicate the offset to
->> >>the registers to read/write? In non-secure mode presumably we need to
->> >>also write these registers? Good news is that there's a regmap for this
->> >>driver already, so maybe that can be acquired from the pdc driver.
->> >>
->> >The register space collection seems to be mix of different types of
->> >application processor registers that should probably not be grouped up
->> >under one subsystem. A single regmap doesn't seem correct either.
+On Fri, Sep 20, 2019 at 11:55:29AM -0500, Benoit Parrot wrote:
+...
+> > > @@ -1400,6 +1440,18 @@ static int ov2659_probe(struct i2c_client *client)
+> > >  	    ov2659->xvclk_frequency > 27000000)
+> > >  		return -EINVAL;
+> > >  
+> > > +	/* Optional gpio don't fail if not present */
+> > > +	ov2659->pwdn_gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
+> > > +						    GPIOD_OUT_LOW);
+> > > +	if (IS_ERR(ov2659->pwdn_gpio))
+> > > +		return PTR_ERR(ov2659->pwdn_gpio);
+> > > +
+> > > +	/* Optional gpio don't fail if not present */
+> > > +	ov2659->resetb_gpio = devm_gpiod_get_optional(&client->dev, "reset",
+> > > +						      GPIOD_OUT_HIGH);
+> > > +	if (IS_ERR(ov2659->resetb_gpio))
+> > > +		return PTR_ERR(ov2659->resetb_gpio);
+> > > +
+> > >  	v4l2_ctrl_handler_init(&ov2659->ctrls, 2);
+> > >  	ov2659->link_frequency =
+> > >  			v4l2_ctrl_new_std(&ov2659->ctrls, &ov2659_ctrl_ops,
+> > > @@ -1445,6 +1497,9 @@ static int ov2659_probe(struct i2c_client *client)
+> > >  	ov2659->frame_size = &ov2659_framesizes[2];
+> > >  	ov2659->format_ctrl_regs = ov2659_formats[0].format_ctrl_regs;
+> > >  
+> > > +	pm_runtime_enable(&client->dev);
+> > > +	pm_runtime_get_sync(&client->dev);
+> > 
+> > This makes the driver depend on runtime PM.
 > 
-> Why isn't a single regmap correct? The PDC driver should be able to use
-> it to read/write into this register space. The lock on the regmap will
-> need to be changed to a raw lock though for RT. Otherwise it looks OK 
-> to
-> me.
+> Obviously.
+> Why? Is that bad?
+
+Well, if it is, then it should be listed in driver's dependencies in
+Kconfig.
+
+> 
+> > 
+> > See e.g. the smiapp driver for an example how to make it work without. It
+> > wasn't trivial. :I You won't need autosuspend.
+> 
+> I took a look at that driver, but I don't get your reference to being able
+> to work without runtime pm!
+
+The driver didn't need runtime PM, so it'd be nice to continue work
+without.
+
+What smiapp does is that it powers the sensor on first *without* runtime
+PM, and then proceeds to set up runtime PM if it's available. The sensor
+will only be powered off when the device is unbound with runtime PM
+disabled.
+
+Regarding the smiapp driver, you can replace pm_runtime_get_noresume() and
+all the autoidle lines with pm_runtime_idle() call after
+pm_runtime_enable() in the ov2659 driver.
+
+> That driver looks pretty similar to ov7740.c which I used as a reference
+> for this.
+
+I guess in practice many sensor drivers don't work without it on DT-based
+systems I'm afraid. :-( They should be fixed.
 
 -- 
--- Sibi Sankar --
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Kind regards,
+
+Sakari Ailus
+sakari.ailus@linux.intel.com
