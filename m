@@ -2,86 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B6FBB628
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A30BB648
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730969AbfIWOEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 10:04:13 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:34715 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730874AbfIWOEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 10:04:13 -0400
-X-IronPort-AV: E=Sophos;i="5.64,539,1559487600"; 
-   d="scan'208";a="27039632"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Sep 2019 23:04:12 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D3C6A40078B1;
-        Mon, 23 Sep 2019 23:04:09 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: [PATCH 5/5] arm64: dts: renesas: Add HiHope RZ/G2N sub board support
-Date:   Mon, 23 Sep 2019 15:03:46 +0100
-Message-Id: <1569247426-28215-6-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569247426-28215-1-git-send-email-biju.das@bp.renesas.com>
-References: <1569247426-28215-1-git-send-email-biju.das@bp.renesas.com>
+        id S2394096AbfIWONN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 10:13:13 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:37795 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389738AbfIWONN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 10:13:13 -0400
+X-Originating-IP: 86.250.200.211
+Received: from aptenodytes (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 139B920012;
+        Mon, 23 Sep 2019 14:13:04 +0000 (UTC)
+Date:   Mon, 23 Sep 2019 16:13:04 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] dt-bindings: gpio: Add binding document for xylon
+ logicvc-gpio
+Message-ID: <20190923141304.GD57525@aptenodytes>
+References: <20190910152855.111588-1-paul.kocialkowski@bootlin.com>
+ <20190910152855.111588-2-paul.kocialkowski@bootlin.com>
+ <5d7ba96d.1c69fb81.59623.6c9f@mx.google.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hxkXGo8AKqTJ+9QI"
+Content-Disposition: inline
+In-Reply-To: <5d7ba96d.1c69fb81.59623.6c9f@mx.google.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HiHope RZ/G2N sub board sits below the HiHope RZ/G2N main board.
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile                     |  1 +
- arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts | 15 +++++++++++++++
- 2 files changed, 16 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
+--hxkXGo8AKqTJ+9QI
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 3a6a0fb..72234e1 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m.dtb
- dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m-ex.dtb
- dtb-$(CONFIG_ARCH_R8A774B1) += r8a774b1-hihope-rzg2n.dtb
-+dtb-$(CONFIG_ARCH_R8A774B1) += r8a774b1-hihope-rzg2n-ex.dtb
- dtb-$(CONFIG_ARCH_R8A774C0) += r8a774c0-cat874.dtb r8a774c0-ek874.dtb
- dtb-$(CONFIG_ARCH_R8A7795) += r8a7795-salvator-x.dtb r8a7795-h3ulcb.dtb
- dtb-$(CONFIG_ARCH_R8A7795) += r8a7795-h3ulcb-kf.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts b/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
-new file mode 100644
-index 0000000..ab47c0b
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the HiHope RZ/G2N sub board
-+ *
-+ * Copyright (C) 2019 Renesas Electronics Corp.
-+ */
-+
-+#include "r8a774b1-hihope-rzg2n.dts"
-+#include "hihope-rzg2-ex.dtsi"
-+
-+/ {
-+	model = "HopeRun HiHope RZ/G2N with sub board";
-+	compatible = "hoperun,hihope-rzg2-ex", "hoperun,hihope-rzg2n",
-+		     "renesas,r8a774b1";
-+};
--- 
-2.7.4
+Hi,
 
+On Fri 13 Sep 19, 15:36, Rob Herring wrote:
+> On Tue, Sep 10, 2019 at 05:28:54PM +0200, Paul Kocialkowski wrote:
+> > The Xylon LogiCVC display controller exports some GPIOs, which are
+> > exposed as a dedicated driver.
+> >=20
+> > This introduces the associated device-tree bindings documentation.
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  .../bindings/gpio/xylon,logicvc-gpio.txt      | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/gpio/xylon,logicv=
+c-gpio.txt
+>=20
+> Please consider using the new DT schema format.
+
+Sure, I will give it a try.
+
+> > diff --git a/Documentation/devicetree/bindings/gpio/xylon,logicvc-gpio.=
+txt b/Documentation/devicetree/bindings/gpio/xylon,logicvc-gpio.txt
+> > new file mode 100644
+> > index 000000000000..4835659cb90b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpio/xylon,logicvc-gpio.txt
+> > @@ -0,0 +1,48 @@
+> > +Xylon LogiCVC GPIO controller
+> > +
+> > +The Xylon LogiCVC is a display controller that contains a number of GP=
+IO pins,
+> > +meant to be used for controlling display-related signals.
+> > +
+> > +In practice, the GPIOs can be used for any purpose they might be neede=
+d for.
+> > +
+> > +The controller exposes GPIOs from the display and power control regist=
+ers,
+> > +which are mapped by the driver as follows:
+> > +- GPIO[4:0] (display control) mapped to index 0-4
+> > +- EN_BLIGHT (power control) mapped to index 5
+> > +- EN_VDD (power control) mapped to index 6
+> > +- EN_VEE (power control) mapped to index 7
+> > +- V_EN (power control) mapped to index 8
+> > +
+> > +The driver was implemented and tested for version 3.02.a of the contro=
+ller,
+> > +but should be compatible with version 4 as well.
+> > +
+> > +Required properties:
+> > +- compatible: Should contain "xylon,logicvc-3.02.a-gpio".
+> > +- gpio-controller: Marks the device node as a gpio controller.
+> > +- #gpio-cells: Should be 2. The first cell is the pin number and
+> > +  the second cell is used to specify the gpio polarity:
+> > +    0 =3D Active high,
+> > +    1 =3D Active low.
+>=20
+> No need to define these standard flags again here.
+>=20
+> > +- gpio,syscon-dev: Syscon phandle representing the logicvc instance.
+>=20
+> Don't need this. It's the parent.
+
+Note that this is de-facto already supported by the gpio-syscon driver: the
+driver supports either an explicit syscon dev with this property or having =
+the
+parent as syscon.
+
+I assumed that mentioning both was good for the sake of diversity, but let's
+stick to parent node then.
+
+> > +
+> > +Example:
+> > +
+> > +	logicvc: logicvc@43c00000 {
+> > +		compatible =3D "syscon", "simple-mfd";
+>=20
+> This device needs a device specific compatible. These 2 alone are not=20
+> desired.
+
+Thanks for the heads-up. I'll introduce a new compatible, describing a mfd
+device then.
+
+> Please define everything that's in the chip as much as you can.=20
+>=20
+> > +		reg =3D <0x43c00000 0x6000>;
+> > +
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <1>;
+> > +
+> > +		logicvc_gpio: display-gpio@40 {
+>=20
+> Use standard node names: gpio@40
+>=20
+> You may not even need a child node here. It depends on what other child=
+=20
+> nodes you have and whether they have their own DT resources.
+>=20
+> > +			compatible =3D "xylon,logicvc-3.02.a-gpio";
+> > +			reg =3D <0x40 0x40>;
+> > +			gpio-controller;
+> > +			#gpio-cells =3D <2>;
+> > +			gpio,syscon-dev =3D <&logicvc>;
+> > +		};
+> > +	};
+> > +
+> > +Note: the device-tree node should either be declared as a child of the=
+ logicvc
+> > +syscon node or the syscon node should be precised with the gpio,syscon=
+-dev
+> > +property. Both are shown in the example above.
+>=20
+> Why? Just pick one and a child node is the preference.
+
+That was for the sake of diversity, but having both at once could probably =
+be
+misleading too.
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--hxkXGo8AKqTJ+9QI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl2I0vAACgkQ3cLmz3+f
+v9GGEggAkGDGF0qjUMVm5LCjsWQCdoEM4/ZESNSB/Br2iFJ79Q6ig9da0U8JtFC0
+KGskjRdJXwMBG6IZtnYW5R/LPnMwGSGM5kPOMXlUsS773rxo8M+yY7cBrBC243Zv
+YRzJrMDOGLa/RiTti7Cfmh5G01vyk7gWzHumIJcjpKvOfC7nFAUM521rgHsNx7Jt
+j0/dp/wSQvKXhcAYmaB1a+cN4HNqx50qPo+EF9j7wMSNaJBIxvovZ/3Cv6FA8VtW
+myZfpag94NyuFtPy5IB3gzAMBq/WzQhi9tSLt8aCuQm/wUE+6iT4qavRgECPUJxO
+X7g8tyYka4VFz0kln6WyPdgmZ36NWg==
+=RTko
+-----END PGP SIGNATURE-----
+
+--hxkXGo8AKqTJ+9QI--
