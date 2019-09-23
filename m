@@ -2,90 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B5F3BAFF5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B1CBAFFC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 10:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731578AbfIWIv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 04:51:27 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:54418 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731734AbfIWIv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 04:51:26 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8N8nBFA006747;
-        Mon, 23 Sep 2019 03:51:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=BjpMtBhJnZ6yh/cP1ZHvKQ1eEYxgByGKmNnK9h7ukFI=;
- b=FV0NWlKenyfQ9wRSBC+FzmSlIWKuiRI5Huzbh6gvWWvoXO2gD/MN+NfF2krpBpML4N6M
- vP919MnDOvEPBvrmYJHA38ERSbU8z7JljFdu0QF99uvs5N08V/FFZ4rTIOVZpbUQOQWg
- IhkSdYUbeqY44JdXjW5l2M10rM2RSwjI3KO6pZBxjQOS+CbCbOK+oPMPrIqzaywuHQ9E
- KMa9fZttu5DiKPOdrKWPk21QDsUQTW2flraMGhF85jp2OutEl2eL0+UFcPZTbZ/n02kh
- 4O/kWd5xpPyPvac32mQ8jOZCv+Q7j+w6pkr5/3bhtuSHlRC+MhR1/3ZeVdYIQGiaaqQL Eg== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2v5h923796-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 23 Sep 2019 03:51:08 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 23 Sep
- 2019 09:51:05 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Mon, 23 Sep 2019 09:51:05 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id B94A02B3;
-        Mon, 23 Sep 2019 08:51:05 +0000 (UTC)
-Date:   Mon, 23 Sep 2019 08:51:05 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-CC:     <broonie@kernel.org>, <krzk@kernel.org>, <lgirdwood@gmail.com>,
-        <sbkim73@samsung.com>, <alsa-devel@alsa-project.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <patches@opensource.cirrus.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <b.zolnierkie@samsung.com>,
-        <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v2 04/10] ASoC: wm8994: Add support for MCLKn clock gating
-Message-ID: <20190923085105.GN10204@ediswmail.ad.cirrus.com>
-References: <20190920130218.32690-1-s.nawrocki@samsung.com>
- <CGME20190920130317eucas1p188d724710077d704f768798c6555c741@eucas1p1.samsung.com>
- <20190920130218.32690-5-s.nawrocki@samsung.com>
+        id S1731912AbfIWIwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 04:52:45 -0400
+Received: from foss.arm.com ([217.140.110.172]:38874 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731734AbfIWIwp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 04:52:45 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A56D1000;
+        Mon, 23 Sep 2019 01:52:44 -0700 (PDT)
+Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DD0883F59C;
+        Mon, 23 Sep 2019 01:52:42 -0700 (PDT)
+Subject: Re: [PATCH v2 5/5] irqchip/irq-bcm7038-l1: Support brcm,int-fwd-mask
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>
+References: <20190913191542.9908-1-f.fainelli@gmail.com>
+ <20190913191542.9908-6-f.fainelli@gmail.com> <20190922133805.2cdf2d99@why>
+ <260e61b8-a083-743e-43fc-70b9ea644e0e@gmail.com>
+From:   Marc Zyngier <maz@kernel.org>
+Organization: Approximate
+Message-ID: <fbc07e1e-8c72-8728-2acb-647db533e31b@kernel.org>
+Date:   Mon, 23 Sep 2019 09:52:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190920130218.32690-5-s.nawrocki@samsung.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 priorityscore=1501
- adultscore=0 mlxlogscore=943 bulkscore=0 phishscore=0 clxscore=1015
- impostorscore=0 spamscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
- definitions=main-1909230089
+In-Reply-To: <260e61b8-a083-743e-43fc-70b9ea644e0e@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 20, 2019 at 03:02:13PM +0200, Sylwester Nawrocki wrote:
-> As an intermediate step before covering the clocking subsystem
-> of the CODEC entirely by the clk API add handling of external CODEC's
-> master clocks in DAPM events when the AIFn clocks are sourced directly
-> from MCLKn; when FLLn are used we enable/disable respective MCLKn
-> before/after FLLn is enabled/disabled.
+On 22/09/2019 20:08, Florian Fainelli wrote:
 > 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> ---
+> 
+> On 9/22/2019 5:38 AM, Marc Zyngier wrote:
+>> On Fri, 13 Sep 2019 12:15:42 -0700
+>> Florian Fainelli <f.fainelli@gmail.com> wrote:
+>>
+>>> On some specific chips like 7211 we need to leave some interrupts
+>>> untouched/forwarded to the VPU which is another agent in the system
+>>> making use of that interrupt controller hardware (goes to both ARM GIC
+>>> and VPU L1 interrupt controller). Make that possible by using the
+>>> existing brcm,int-fwd-mask property.
+>>>
+>>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>>> ---
+>>>  drivers/irqchip/irq-bcm7038-l1.c | 15 +++++++++++++--
+>>>  1 file changed, 13 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/irqchip/irq-bcm7038-l1.c b/drivers/irqchip/irq-bcm7038-l1.c
+>>> index 0673a44bbdc2..811a34201dd4 100644
+>>> --- a/drivers/irqchip/irq-bcm7038-l1.c
+>>> +++ b/drivers/irqchip/irq-bcm7038-l1.c
+>>> @@ -44,6 +44,7 @@ struct bcm7038_l1_chip {
+>>>  	struct list_head	list;
+>>>  	u32			wake_mask[MAX_WORDS];
+>>>  #endif
+>>> +	u32			irq_fwd_mask[MAX_WORDS];
+>>>  	u8			affinity[MAX_WORDS * IRQS_PER_WORD];
+>>>  };
+>>>  
+>>> @@ -265,6 +266,7 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>>  	resource_size_t sz;
+>>>  	struct bcm7038_l1_cpu *cpu;
+>>>  	unsigned int i, n_words, parent_irq;
+>>> +	int ret;
+>>>  
+>>>  	if (of_address_to_resource(dn, idx, &res))
+>>>  		return -EINVAL;
+>>> @@ -278,6 +280,14 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>>  	else if (intc->n_words != n_words)
+>>>  		return -EINVAL;
+>>>  
+>>> +	ret = of_property_read_u32_array(dn , "brcm,int-fwd-mask",
+>>
+>> What is the exact meaning of "fwd"? Forward? FirmWare Dementia?
+> 
+> Here it is meant to be "forward", we have defined this property name
+> before for irq-bcm7120-l2.c and felt like reusing the same name to avoid
+> multiplying properties would be appropriate, see patch #4. If you prefer
+> something named brcm,firmware-configured-mask, let me know.
 
-Looks good to me:
+It's just a name, but I found it a bit confusing. Bah, never mind.
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+>>
+>>> +					 intc->irq_fwd_mask, n_words);
+>>> +	if (ret != 0 && ret != -EINVAL) {
+>>> +		/* property exists but has the wrong number of words */
+>>> +		pr_err("invalid brcm,int-fwd-mask property\n");
+>>> +		return -EINVAL;
+>>> +	}
+>>> +
+>>>  	cpu = intc->cpus[idx] = kzalloc(sizeof(*cpu) + n_words * sizeof(u32),
+>>>  					GFP_KERNEL);
+>>>  	if (!cpu)
+>>> @@ -288,8 +298,9 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>>  		return -ENOMEM;
+>>>  
+>>>  	for (i = 0; i < n_words; i++) {
+>>> -		l1_writel(0xffffffff, cpu->map_base + reg_mask_set(intc, i));
+>>> -		cpu->mask_cache[i] = 0xffffffff;
+>>> +		l1_writel(0xffffffff & ~intc->irq_fwd_mask[i],
+>>> +			  cpu->map_base + reg_mask_set(intc, i));
+>>> +		cpu->mask_cache[i] = 0xffffffff & ~intc->irq_fwd_mask[i];
+>>
+>> I seem to remember that (0xffffffff & whatever) == whatever, as long as
+>> 'whatever' is a 32bit quantity. So what it this for?
+> 
+> It is 0xffff_ffff & ~whatever here.
 
-Thanks,
-Charles
+Which doesn't change anything.
+
+> In the absence of this property
+> being specified, the data is all zeroed out, so we would have
+> 0xffff_ffff & 0xffff_ffff which is 0xffff_ffff. If this property is
+> specified, we would have one more or bits set, and it would be e.g.:
+> 0x100 so we would have 0xffff_ffff & ~(0x100) = 0xffff_feff which is
+> what we would want here to preserve whatever the firmware has already
+> configured.
+
+OK, I must be stupid:
+
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+	unsigned int v = 0x100;
+	printf ("%x\n", ~v);
+}
+maz@filthy-habit$ ./x
+fffffeff
+
+You might as well OR it with zeroes, if you want.
+
+	M.
+-- 
+Jazz is not dead, it just smells funny...
