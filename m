@@ -2,83 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33ECDBB132
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C410BB138
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731721AbfIWJQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 05:16:49 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:45445 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730121AbfIWJQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 05:16:49 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r5so12995770wrm.12;
-        Mon, 23 Sep 2019 02:16:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=eUZTQEw4J0qVIA2fDKv3wKt2hX7/DxEBMom/U6HeJCA=;
-        b=N/cEFqQDG/hhkIEtHHciF8USLjg74HjhuqS8OBBWPp3Lxi9unwN9Wf/VAs2g//3m/f
-         HAaoLTF1syxzHz6YoOObRmxj20IcGMlYogohfjYFVwMxhIgymtuiVx5TWowRgdKF+GLM
-         yJviEiUWZqnXgdH+oOmpvLYHyEwRUujXOzPtcsyHKf+jYJJJiLdhyFQiBJhQReTjBowL
-         018cAgwZQDNBf2mwYQ0E2Tj8TAHcRgKT7iuhyqEVX/Ji6EFevyV6h/teq0TOkMZLgYYT
-         uGcoK6QBCIiuqUvUYeESIfpmKX+zGraeUjx0SYR1BtBJUAB2v2nw3qlL8prI4uv0ldtl
-         Zf9A==
-X-Gm-Message-State: APjAAAUaUJwQrwn7TyPcSMNSxy9YnGT1w8dcywitKnz7C6LkKO6dXG5y
-        8i8K7Zy6EUme9Lw6t0szCHg=
-X-Google-Smtp-Source: APXvYqy/K8AUiDccc2Dhtcu7DPXS49zP6PhLDw4ZT1thoebNST6dXSKJcAdR933mVGIR+GOsw17Now==
-X-Received: by 2002:adf:e9ce:: with SMTP id l14mr13891459wrn.264.1569230206656;
-        Mon, 23 Sep 2019 02:16:46 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id y19sm9238322wmi.13.2019.09.23.02.16.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2019 02:16:25 -0700 (PDT)
-Date:   Mon, 23 Sep 2019 11:16:22 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com,
-        ckeepax@opensource.cirrus.com, sbkim73@samsung.com,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com
-Subject: Re: [PATCH v2 07/10] ASoC: samsung: arndale: Add support for WM1811
- CODEC
-Message-ID: <20190923091622.GC4577@pi3>
-References: <20190920130218.32690-1-s.nawrocki@samsung.com>
- <CGME20190920130321eucas1p2efe85adb3df4c546a7d81326b4c75873@eucas1p2.samsung.com>
- <20190920130218.32690-8-s.nawrocki@samsung.com>
+        id S1731967AbfIWJSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 05:18:05 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:46559 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727358AbfIWJSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 05:18:05 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iCKTc-0005wP-Px; Mon, 23 Sep 2019 11:17:48 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iCKTZ-0001wK-TP; Mon, 23 Sep 2019 11:17:45 +0200
+Date:   Mon, 23 Sep 2019 11:17:45 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/4] pwm: mxs: implement ->apply
+Message-ID: <20190923091745.ehvz4zi2riyanmug@pengutronix.de>
+References: <20190923081348.6843-1-linux@rasmusvillemoes.dk>
+ <20190923081348.6843-2-linux@rasmusvillemoes.dk>
+ <20190923082459.huqpbz5eseonkscv@pengutronix.de>
+ <a6407644-0b5b-ba46-9435-0d14be9066a5@rasmusvillemoes.dk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190920130218.32690-8-s.nawrocki@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a6407644-0b5b-ba46-9435-0d14be9066a5@rasmusvillemoes.dk>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 20, 2019 at 03:02:16PM +0200, Sylwester Nawrocki wrote:
-> The Arndale boards come with different types of the audio daughter
-> board.  In order to support the WM1811 one we add new definition of
-> an ASoC card which will be registered when the driver matches on
-> "samsung,arndale-wm1811" compatible.  There is no runtime detection of
-> the audio daughter board type at the moment, compatible string of the
-> audio card needs to be adjusted in DT, e.g. by the bootloader,
-> depending on actual audio board (CODEC) used.
+Hello,
+
+[expanded the recipents to include RMK and the clk list]
+
+On Mon, Sep 23, 2019 at 11:04:39AM +0200, Rasmus Villemoes wrote:
+> On 23/09/2019 10.24, Uwe Kleine-König wrote:
+> > Also there is a bug already in .config: You are not supposed to call
+> > clk_get_rate if the clk might be off.
 > 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> ---
-> Changes since v1:
->  - removed unneeded __maybe_used attribute
-> ---
->  sound/soc/samsung/Kconfig          |  2 +
->  sound/soc/samsung/arndale_rt5631.c | 85 +++++++++++++++++++++++++-----
->  2 files changed, 74 insertions(+), 13 deletions(-)
+> Interesting, I didn't know that. So the prepare_enable logic needs to be
+> moved before we start computing the period/duty cycles. Do you know why
+> it has apparently worked so far? I would have thought such a rule would
+> be enforced by the clock framework, or at least produced a warning.
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+FTR: This is documented in the kerneldoc code comment to clk_get_rate in
+include/linux/clk.h.
 
-Best regards,
-Krzysztof
+Assuming this is relevant, it might indeed make sense to add a
+WARN_ONCE for this.
 
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
