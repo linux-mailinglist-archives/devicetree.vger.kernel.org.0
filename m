@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99330BB100
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2EBBBB0FD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 11:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726030AbfIWJIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 05:08:54 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:50864 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731943AbfIWJIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 05:08:54 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 03979634C87;
-        Mon, 23 Sep 2019 12:07:52 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iCKK0-0002AD-TH; Mon, 23 Sep 2019 12:07:52 +0300
-Date:   Mon, 23 Sep 2019 12:07:52 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH v3 3/3] MAINTAINERS: Add entry for IMX290 CMOS image
- sensor driver
-Message-ID: <20190923090752.GK5525@valkosipuli.retiisi.org.uk>
-References: <20190830091943.22646-1-manivannan.sadhasivam@linaro.org>
- <20190830091943.22646-4-manivannan.sadhasivam@linaro.org>
+        id S1727892AbfIWJIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 05:08:15 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:46940 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727444AbfIWJIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 05:08:15 -0400
+Received: by mail-wr1-f66.google.com with SMTP id o18so12969650wrv.13;
+        Mon, 23 Sep 2019 02:08:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=tmMoz215KHiHYt4Ll2Ro4BC6di5AJcGWo8A7DQ1dHmY=;
+        b=spkdFHh/oMTfpTRpISpunkIPtspnttXvqdla93pY+RKHSOmkqcNAsGZetdWDppTaYm
+         JU20vl3Z43vrylD5aPyp+iW4pcUd7rkPDxoaXiTkWwrtxjXmELRoBxZ9QKXDyJECU7O4
+         SGCBagaEMvr/eos13/gxDopF08KqTGjpJGZ+DNE9rwYsImKYz0vr0WcwaBYEVoo+OqOO
+         Rw77eHQIukiW752I9dhLv1rfcK1GILWzHQM3Q1Vt1jT3cTP/v36md6t6oK4aEVWbHCYZ
+         O/IEAjN8w5S+gadMvq7a2rhjwEQyhXMGSRuW4383c94L5IkIOQ9CW+OsN/9o5sZuuajV
+         nOsQ==
+X-Gm-Message-State: APjAAAUHa45vCcAW3RX9xZoFe8Gf+O4LxXM5h+9msN5HtojJ9GmJS/x6
+        CJNCa83H8CpupDznrLtyaGk1Jxyd
+X-Google-Smtp-Source: APXvYqxxz7xafqgEfOSFCn8V7BM7y8g8X0JT9J5mDxENqXlljKM+EhY7wNQyUH3m4B3AzLz2RugrKg==
+X-Received: by 2002:a5d:49cb:: with SMTP id t11mr12649575wrs.158.1569229691633;
+        Mon, 23 Sep 2019 02:08:11 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id a13sm21942066wrf.73.2019.09.23.02.08.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2019 02:08:10 -0700 (PDT)
+Date:   Mon, 23 Sep 2019 11:08:07 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        ckeepax@opensource.cirrus.com, sbkim73@samsung.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v2 02/10] ASoC: samsung: arndale: Add missing OF node
+ dereferencing
+Message-ID: <20190923090807.GA4577@pi3>
+References: <20190920130218.32690-1-s.nawrocki@samsung.com>
+ <CGME20190920130315eucas1p2a31543214fedcdfe86196f176f554a35@eucas1p2.samsung.com>
+ <20190920130218.32690-3-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190830091943.22646-4-manivannan.sadhasivam@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190920130218.32690-3-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 02:49:43PM +0530, Manivannan Sadhasivam wrote:
-> Add MAINTAINERS entry for Sony IMX290 CMOS image sensor driver.
+On Fri, Sep 20, 2019 at 03:02:11PM +0200, Sylwester Nawrocki wrote:
+> Ensure there is no OF node references kept when the driver
+> is removed/unbound.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 > ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f7c84004187d..0ee261fca602 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14962,6 +14962,14 @@ S:	Maintained
->  F:	drivers/media/i2c/imx274.c
->  F:	Documentation/devicetree/bindings/media/i2c/imx274.txt
->  
-> +SONY IMX290 SENSOR DRIVER
-> +M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +L:	linux-media@vger.kernel.org
-> +T:	git git://linuxtv.org/media_tree.git
-> +S:	Maintained
-> +F:	drivers/media/i2c/imx290.c
-> +F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
-> +
->  SONY IMX319 SENSOR DRIVER
->  M:	Bingbu Cao <bingbu.cao@intel.com>
->  L:	linux-media@vger.kernel.org
+> Changes since v1:
+>  - rebased to beginning of the series
+> ---
+>  sound/soc/samsung/arndale_rt5631.c | 34 ++++++++++++++++++++++++++----
+>  1 file changed, 30 insertions(+), 4 deletions(-)
 
-Please squash this change to the first patch.
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
--- 
-Sakari Ailus
+Best regards,
+Krzysztof
+
