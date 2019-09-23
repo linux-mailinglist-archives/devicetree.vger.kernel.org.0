@@ -2,111 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56A17BB6D3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EBDEBB6F8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437619AbfIWOd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 10:33:29 -0400
-Received: from foss.arm.com ([217.140.110.172]:43344 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2437427AbfIWOd3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 10:33:29 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 438731000;
-        Mon, 23 Sep 2019 07:33:28 -0700 (PDT)
-Received: from [10.1.196.133] (e112269-lin.cambridge.arm.com [10.1.196.133])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A8F293F59C;
-        Mon, 23 Sep 2019 07:33:26 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: mt8183: Add node for the Mali GPU
-To:     Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Dominik Behr <dbehr@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
+        id S2440025AbfIWOjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 10:39:40 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:46667 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2438136AbfIWOjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 10:39:40 -0400
+Received: by mail-pg1-f196.google.com with SMTP id a3so8097911pgm.13;
+        Mon, 23 Sep 2019 07:39:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sJoG4/F1I+TtaRnM/HMHSRHzFNBAwV4xic8q4mc4yYo=;
+        b=eI1DfEo5UhMuksPO0WZHtJKkmk1L3H/N8+V9oqi7lcqn915bxgvBS2KEgnk6o4AUdD
+         Umuej+xN3D+Ho8ZJmOruImaefZQnZU3Sh+pns/gPk1O+3GdTtriJaFzP2M1SchyfgAKe
+         +MkyZVW0UHaIUUl3T5BQet+vljodDKTjJ8yGZoiHNm2NE/7DRutcABx3fRpI7qecWkTC
+         3kPdhegY3NuR/w5zDCQhh32SjF/+RRgHJ6fgWOthC5zCVbTl691SqfMjcsHEQPscVaIR
+         ladt7lP3v6qsihUYBbFrcvjwOijrlcMkx1bZ6q8xuvrGRNM/oUgOEaZWlixhp9+jxBqE
+         JugA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sJoG4/F1I+TtaRnM/HMHSRHzFNBAwV4xic8q4mc4yYo=;
+        b=eTgtYDht8Ow17MM3fAXh1cwqN0jM9buRjB3HuUeAiSM6raAMxu24UHGIoLQFgrbphb
+         HSdK942+HawH1KpvbRuknWFxJUDghSnNhSN4kjuZqmbw0akmQoFJcD0jJfFVi4Dkjr1Q
+         LzFtO5I8eCPH7izQEP4ZTQkxqLSpKHzhCou3pEH/PEK99wDLy5Xn1r2x6yiCpm6jnXxS
+         amEHwtPWAk5OEZXLG8StB4ewE563UidiB1mNzsjUI/Qk9ZkE8xZFwL3oo0SZSHtWctG2
+         1uCaCupYTOHRxm57j9ilCNUW/B2lQk1Zm7I2DSHQONNEBF7enPoGZLdX/tmizP2DWQ6S
+         JyRg==
+X-Gm-Message-State: APjAAAW3kAedV7ActBl0TSif67q4rYo07whgThCoBtkV9OBJvaOq18sV
+        2Q8RPkrqrpkKLcffkALssKexxIBJlZI=
+X-Google-Smtp-Source: APXvYqxtmmwyKS6PK/mR/D9CxatWeCtX/L+59liROKwU8CoRgIb72mveTBWkLdvefNCsiJFbUAbN8A==
+X-Received: by 2002:a62:870a:: with SMTP id i10mr33261778pfe.259.1569249579034;
+        Mon, 23 Sep 2019 07:39:39 -0700 (PDT)
+Received: from [10.230.28.130] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y15sm13013373pfp.111.2019.09.23.07.39.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Sep 2019 07:39:38 -0700 (PDT)
+Subject: Re: [PATCH v2 5/5] irqchip/irq-bcm7038-l1: Support brcm,int-fwd-mask
+To:     Marc Zyngier <maz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nick Fan <nick.fan@mediatek.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190905081546.42716-1-drinkcat@chromium.org>
- <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
- <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
- <20190913181729.GB3115@kevin>
- <CANMq1KD++==d0Mb6T2gKU1T7c_MaedswOYdxqEqEKKUL1bxgiw@mail.gmail.com>
- <20190919123243.GA3457@kevin>
-From:   Steven Price <steven.price@arm.com>
-Message-ID: <3dfa9e3c-9a78-90d1-68c9-7b64a3d734e4@arm.com>
-Date:   Mon, 23 Sep 2019 15:33:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>
+References: <20190913191542.9908-1-f.fainelli@gmail.com>
+ <20190913191542.9908-6-f.fainelli@gmail.com> <20190922133805.2cdf2d99@why>
+ <260e61b8-a083-743e-43fc-70b9ea644e0e@gmail.com>
+ <fbc07e1e-8c72-8728-2acb-647db533e31b@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <8b0f18ef-7b72-e6fd-9930-0f698ced270b@gmail.com>
+Date:   Mon, 23 Sep 2019 07:39:36 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.0
 MIME-Version: 1.0
-In-Reply-To: <20190919123243.GA3457@kevin>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <fbc07e1e-8c72-8728-2acb-647db533e31b@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2019 13:32, Alyssa Rosenzweig wrote:
->>> By the time MT8183 shows up in more concrete devices, it will, certainly
->>> in kernel-space and likely in userspace as well. At present, the DDK can
->>> be modified to run on top of the in-tree Mali drivers, i.e. "Bifrost on
->>> mainline linux-next (+ page table/compatible patches), with blob
->>> userspace".
 
-Actually most(?) Bifrost GPUs support the "legacy" 'LPAE-ish' page table
-format. So the only kernel change *required* is adding the compatible
-string (and any SoC-specific quirks).
 
-The support for "blob-on-Panfrost" is currently an experimental internal
-investigation. So I can't make any promises about it ever being released
-publicly.
-
->>> While the open userspace isn't ready here quite yet, I would definitely
->>> encourage upstream kernel for ChromeOS, since then there's no need to
->>> maintain the out-of-tree GPU driver.
+On 9/23/2019 1:52 AM, Marc Zyngier wrote:
+> On 22/09/2019 20:08, Florian Fainelli wrote:
 >>
->> That's an interesting idea, I had no idea, thanks for the info!
 >>
->> Would that work with midgard as well? We have released hardware with
->> RK3288/3399, so it might be nice to experiment with these first.
-> 
-> Yes, the above would work with Midgard as well with no changes needed.
-> Ping Steven about thtat (CC'd).
-
-Indeed since it's the same kernel driver the same compatibility layer
-can be used to run Midgard DDK blob on Panfrost. Although given the
-progress that has already occurred with the Mesa Panfrost user space you
-might be able to simply switch to a completely open stack (available now).
-
-Again I'm afraid I'm not in a position to give any guarantees that my
-prototype blob-on-Panfrost work will actually be released or timescales
-of when. However since the current focus internally is on newer GPUs I'm
-less confident that there will be interest for Midgard DDK on Panfrost.
-
-Steve
-
->>> More immediately, per Rob's review, it's important that the bindings
->>> accepted upstream work with the in-tree Bifrost driver. Conceptually,
->>> once Mesa supports Bifrost, if I install Debian on a MT8183 board,
->>> everything should just work. I shouldn't need MT-specific changes / need
->>> to change names for the DT. Regardless of which kernel driver you end up
->>> using, minimally sharing the DT is good for everyone :-)
+>> On 9/22/2019 5:38 AM, Marc Zyngier wrote:
+>>> On Fri, 13 Sep 2019 12:15:42 -0700
+>>> Florian Fainelli <f.fainelli@gmail.com> wrote:
+>>>
+>>>> On some specific chips like 7211 we need to leave some interrupts
+>>>> untouched/forwarded to the VPU which is another agent in the system
+>>>> making use of that interrupt controller hardware (goes to both ARM GIC
+>>>> and VPU L1 interrupt controller). Make that possible by using the
+>>>> existing brcm,int-fwd-mask property.
+>>>>
+>>>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>>>> ---
+>>>>  drivers/irqchip/irq-bcm7038-l1.c | 15 +++++++++++++--
+>>>>  1 file changed, 13 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/irqchip/irq-bcm7038-l1.c b/drivers/irqchip/irq-bcm7038-l1.c
+>>>> index 0673a44bbdc2..811a34201dd4 100644
+>>>> --- a/drivers/irqchip/irq-bcm7038-l1.c
+>>>> +++ b/drivers/irqchip/irq-bcm7038-l1.c
+>>>> @@ -44,6 +44,7 @@ struct bcm7038_l1_chip {
+>>>>  	struct list_head	list;
+>>>>  	u32			wake_mask[MAX_WORDS];
+>>>>  #endif
+>>>> +	u32			irq_fwd_mask[MAX_WORDS];
+>>>>  	u8			affinity[MAX_WORDS * IRQS_PER_WORD];
+>>>>  };
+>>>>  
+>>>> @@ -265,6 +266,7 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>>>  	resource_size_t sz;
+>>>>  	struct bcm7038_l1_cpu *cpu;
+>>>>  	unsigned int i, n_words, parent_irq;
+>>>> +	int ret;
+>>>>  
+>>>>  	if (of_address_to_resource(dn, idx, &res))
+>>>>  		return -EINVAL;
+>>>> @@ -278,6 +280,14 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>>>  	else if (intc->n_words != n_words)
+>>>>  		return -EINVAL;
+>>>>  
+>>>> +	ret = of_property_read_u32_array(dn , "brcm,int-fwd-mask",
+>>>
+>>> What is the exact meaning of "fwd"? Forward? FirmWare Dementia?
 >>
->> Yes. I'll try to dig further with MTK, but this may take some time.
+>> Here it is meant to be "forward", we have defined this property name
+>> before for irq-bcm7120-l2.c and felt like reusing the same name to avoid
+>> multiplying properties would be appropriate, see patch #4. If you prefer
+>> something named brcm,firmware-configured-mask, let me know.
 > 
-> Thank you!
+> It's just a name, but I found it a bit confusing. Bah, never mind.
 > 
+>>>
+>>>> +					 intc->irq_fwd_mask, n_words);
+>>>> +	if (ret != 0 && ret != -EINVAL) {
+>>>> +		/* property exists but has the wrong number of words */
+>>>> +		pr_err("invalid brcm,int-fwd-mask property\n");
+>>>> +		return -EINVAL;
+>>>> +	}
+>>>> +
+>>>>  	cpu = intc->cpus[idx] = kzalloc(sizeof(*cpu) + n_words * sizeof(u32),
+>>>>  					GFP_KERNEL);
+>>>>  	if (!cpu)
+>>>> @@ -288,8 +298,9 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
+>>>>  		return -ENOMEM;
+>>>>  
+>>>>  	for (i = 0; i < n_words; i++) {
+>>>> -		l1_writel(0xffffffff, cpu->map_base + reg_mask_set(intc, i));
+>>>> -		cpu->mask_cache[i] = 0xffffffff;
+>>>> +		l1_writel(0xffffffff & ~intc->irq_fwd_mask[i],
+>>>> +			  cpu->map_base + reg_mask_set(intc, i));
+>>>> +		cpu->mask_cache[i] = 0xffffffff & ~intc->irq_fwd_mask[i];
+>>>
+>>> I seem to remember that (0xffffffff & whatever) == whatever, as long as
+>>> 'whatever' is a 32bit quantity. So what it this for?
+>>
+>> It is 0xffff_ffff & ~whatever here.
 > 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> Which doesn't change anything.
 > 
+>> In the absence of this property
+>> being specified, the data is all zeroed out, so we would have
+>> 0xffff_ffff & 0xffff_ffff which is 0xffff_ffff. If this property is
+>> specified, we would have one more or bits set, and it would be e.g.:
+>> 0x100 so we would have 0xffff_ffff & ~(0x100) = 0xffff_feff which is
+>> what we would want here to preserve whatever the firmware has already
+>> configured.
+> 
+> OK, I must be stupid:
+> 
+> #include <stdio.h>
+> 
+> int main(int argc, char *argv[])
+> {
+> 	unsigned int v = 0x100;
+> 	printf ("%x\n", ~v);
+> }
+> maz@filthy-habit$ ./x
+> fffffeff
+> 
+> You might as well OR it with zeroes, if you want.
 
+Not sure I understand your point here.
+
+We used to write 0xffff_ffff to both the hardware and the mask cache to
+have all interrupts masked by default. Now we want to have some bits
+optionally set to 0 (unmasked), based on the brcm,int-fwd-mask property,
+which is what this patch achieves (or tries to). If we write, say
+0xffff_feff to the hardware, which has a Write Only register behavior,
+then we also want to have the mask cache be set to the same value for
+consistency if nothing else. Am I failing at doing what I just described
+and also failing at see it?
+-- 
+Florian
