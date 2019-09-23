@@ -2,103 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5668BB5F8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 15:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B99DBB61D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439768AbfIWN7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 09:59:12 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:33265 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437571AbfIWN7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 09:59:12 -0400
-X-Originating-IP: 86.250.200.211
-Received: from aptenodytes (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 4E620E0012;
-        Mon, 23 Sep 2019 13:59:09 +0000 (UTC)
-Date:   Mon, 23 Sep 2019 15:59:08 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] dt-bindings: gpio: Add binding document for xylon
- logicvc-gpio
-Message-ID: <20190923135908.GC57525@aptenodytes>
-References: <20190910152855.111588-1-paul.kocialkowski@bootlin.com>
- <20190910152855.111588-2-paul.kocialkowski@bootlin.com>
- <CACRpkdYrTCnrW6-28+RhdMZ4cB5VcqG6T-5aABvvEgiZ3iri2Q@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Bu8it7iiRSEf40bY"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYrTCnrW6-28+RhdMZ4cB5VcqG6T-5aABvvEgiZ3iri2Q@mail.gmail.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        id S1730823AbfIWOEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 10:04:00 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:8821 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728860AbfIWOEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 10:04:00 -0400
+X-IronPort-AV: E=Sophos;i="5.64,540,1559487600"; 
+   d="scan'208";a="27258785"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 23 Sep 2019 23:03:58 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id C1A9540078B1;
+        Mon, 23 Sep 2019 23:03:56 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH 0/5] Add RZ/G2N SYS-DMAC/SCIF/HSCIF/GPIO/EthernetAVB support
+Date:   Mon, 23 Sep 2019 15:03:41 +0100
+Message-Id: <1569247426-28215-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series add SYS-DMAC/SCIF/HSCIF/GPIO/EthernetAVB driver support
+for RZ/G2N SoC.
 
---Bu8it7iiRSEf40bY
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series depend upon
+https://patchwork.kernel.org/patch/11148845/
 
-Hi,
+Biju Das (5):
+  arm64: dts: renesas: r8a774b1: Add SYS-DMAC device nodes
+  arm64: dts: renesas: r8a774b1: Add SCIF and HSCIF nodes
+  arm64: dts: renesas: r8a774b1: Add GPIO device nodes
+  arm64: dts: renesas: r8a774b1: Add Ethernet AVB node
+  arm64: dts: renesas: Add HiHope RZ/G2N sub board support
 
-On Thu 12 Sep 19, 10:19, Linus Walleij wrote:
-> On Tue, Sep 10, 2019 at 4:29 PM Paul Kocialkowski
-> <paul.kocialkowski@bootlin.com> wrote:
->=20
-> > The Xylon LogiCVC display controller exports some GPIOs, which are
-> > exposed as a dedicated driver.
-> >
-> > This introduces the associated device-tree bindings documentation.
-> >
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> (...)
-> > +The controller exposes GPIOs from the display and power control regist=
-ers,
-> > +which are mapped by the driver as follows:
-> > +- GPIO[4:0] (display control) mapped to index 0-4
-> > +- EN_BLIGHT (power control) mapped to index 5
-> > +- EN_VDD (power control) mapped to index 6
-> > +- EN_VEE (power control) mapped to index 7
-> > +- V_EN (power control) mapped to index 8
->=20
-> This should be reflected in the gpio-line-names in the example
-> and in your device trees.
+ arch/arm64/boot/dts/renesas/Makefile               |   1 +
+ .../boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts  |  15 +
+ arch/arm64/boot/dts/renesas/r8a774b1.dtsi          | 383 ++++++++++++++++++++-
+ 3 files changed, 387 insertions(+), 12 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-ex.dts
 
-Thanks, I didn't know about it until now!
+-- 
+2.7.4
 
-Cheers,
-
-Paul
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---Bu8it7iiRSEf40bY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl2Iz6wACgkQ3cLmz3+f
-v9Ge/Qf/V4OjLLSvFC8UlTYdc4Kdoazi93MSGndrpRjnjx6zjgxVIN1iSUOtPUWk
-t9JqNHAsIKfhKfVZ3gOosU/q7hSNlAY/3U9F73VxErLqKhyrQRqJO9obel/eITE5
-/7ATIkhm+2Ejjn24oHZn9RaqJQhi0JT7IaYmwBGssq0ZYyF2IF+rxUFpDioj4iia
-j2Iog14fAHWjP9a4eeNz6rjf7M+RuTgfAQ4c/4r7xkp2t39s5puSYFU3EZ4mOuA+
-8OcqcqqF0fGY8mj3dBDe/U7IzpoT2Nk9e1Qj/Zy+PsIgZbUG06kJ5AgNjXGuADi0
-qzuNWl1mhPC3VNLXdPqTwLLP+MgE1Q==
-=h+JT
------END PGP SIGNATURE-----
-
---Bu8it7iiRSEf40bY--
