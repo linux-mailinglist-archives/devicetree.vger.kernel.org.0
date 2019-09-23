@@ -2,110 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A315FBB92A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 18:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6BC4BB932
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 18:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387925AbfIWQKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 12:10:20 -0400
-Received: from mail.skyhub.de ([5.9.137.197]:55442 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387819AbfIWQKU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 12:10:20 -0400
-Received: from zn.tnic (p200300EC2F060400F50F96FF27F9741F.dip0.t-ipconnect.de [IPv6:2003:ec:2f06:400:f50f:96ff:27f9:741f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E9A9C1EC06F3;
-        Mon, 23 Sep 2019 18:10:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1569255019;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=0bYHJtGISqNLfydtAdxQkWGpoo+d0+T8UOA0chvqHlw=;
-        b=jS3wfbvgqiJdEaJhcbl1NZ9T3NsvZykOI3R0zqhcICq0S3Hm8baZ2GDBrjVuDcUATFeLYi
-        TkcUGJd1TJA11Smq0lLKO9cIuaVPOfb7GkjvFz61pbalctaGxEXGlNlF2GDo3lP5zICRiH
-        KJh2EPdWb9Cx/83PZ3mAfZM9ZJyIopw=
-Date:   Mon, 23 Sep 2019 18:10:15 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Lei Wang <leiwang_git@outlook.com>
-Cc:     "james.morse@arm.com" <james.morse@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "sashal@kernel.org" <sashal@kernel.org>,
-        "hangl@microsoft.com" <hangl@microsoft.com>,
-        "lewan@microsoft.com" <lewan@microsoft.com>,
-        "ruizhao@microsoft.com" <ruizhao@microsoft.com>,
-        "scott.branden@broadcom.com" <scott.branden@broadcom.com>,
-        "yuqing.shen@broadcom.com" <yuqing.shen@broadcom.com>,
-        "ray.jui@broadcom.com" <ray.jui@broadcom.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: edac: arm-dmc520.txt
-Message-ID: <20190923161015.GI15355@zn.tnic>
-References: <BY5PR04MB6599EAA659A53B2331CB812586890@BY5PR04MB6599.namprd04.prod.outlook.com>
+        id S1731558AbfIWQMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 12:12:42 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:43152 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728465AbfIWQMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 12:12:41 -0400
+Received: by mail-lf1-f68.google.com with SMTP id u3so10550110lfl.10;
+        Mon, 23 Sep 2019 09:12:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1hzRvLmUM+ysGZky33iPZSKotjWOEXjXtFvGtAqUHW0=;
+        b=KFwU3oIIuCsBoUbTlON6Ye3xOEX1qg4RElY+lAR4eAhlleuHeZRzS418f9YNW5ONPD
+         ICDQZc7C6ZDCWoQST5RUU5CWJYkqY39FRY87a7jpH/4vITDuzLQ4VW9AmgKqpcZ2Ps5X
+         ZFjiabeek2WH8HUJ9SJy8rBMDxgWNpp19ZRPDcGQg9HPSnjdCDoss6o9O7cCq/MdDPGd
+         CC5fjnwswE7vGvevXiqD17ZZrFi3nzMnbCQRruaS40lnGxzLz63kGlBtKyxhrLbtOexp
+         JYigpZQtzRw85JGhV+QoAdNI6EBtKLYOfH4do+MqOtTyTH1g1aezJa4lfwc5n570ba3l
+         MOWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1hzRvLmUM+ysGZky33iPZSKotjWOEXjXtFvGtAqUHW0=;
+        b=Z03FGsOPJf3djlLNcZJNsl2pHbZ3VfSNqquZwOPVcFzMskqyPwsi+S4g4IQnlTpGQN
+         Oj2jdCHV3Y72V3cEFpn4gtI+FrSmbO/X7Ix/JDBv5FjXLsrUtD176SDgW0SL2Ta++SLy
+         aYaEN/t9xR00dAtAbClP6f2roJaWtIyR9vhuzZNKUSmoVKeSdL+adp5cbu9rI0vnVfKC
+         Z9ErEXl2hoLaa/e5+mXTarvYICStBXnseHv3BgHWVV5s4qAd1EGhTnyUnV2dOdDGU4qU
+         NCf3r/KFMs+H0mIJK8N/TXvw1CKCWpGQ54NrPSEomperRwvMVpGGOJwN4r4/mc9RP8Ee
+         upyg==
+X-Gm-Message-State: APjAAAUpUiQvpzBkq4ZcQDNnPuARl9abu8gFu/9wzPU9LU0wlEwZy8Xz
+        DUIMUZzwBXu5bZEOmN9SOV6XIdYlcljHGcwvYXA=
+X-Google-Smtp-Source: APXvYqxCaLtqla4IXcVqTac5HqTY/oD5Unli/bJZAhH0Tw01CYJFkAE93ed3DzQbUW3I7SVs6tFeBPdykxbJX2qVK/c=
+X-Received: by 2002:ac2:47e3:: with SMTP id b3mr236808lfp.80.1569255159037;
+ Mon, 23 Sep 2019 09:12:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BY5PR04MB6599EAA659A53B2331CB812586890@BY5PR04MB6599.namprd04.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com> <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
+In-Reply-To: <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 23 Sep 2019 13:12:42 -0300
+Message-ID: <CAOMZO5AOVfBpz2Azh65iT_W3CBZUxf9KnqA=kdow7XWd4j--Qg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: imx8mq: add DCSS node
+To:     Laurentiu Palcu <laurentiu.palcu@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 19, 2019 at 06:37:00PM +0000, Lei Wang wrote:
-> This is the device tree bindings for new EDAC driver dmc520_edac.c.
-> 
-> Signed-off-by: Lei Wang <leiwang_git@outlook.com>
-> Reviewed-by: James Morse <james.morse@arm.com>
-> 
-> ---
->     No change in v6.
-> ---
->  .../devicetree/bindings/edac/arm-dmc520.txt   | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/arm-dmc520.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/edac/arm-dmc520.txt b/Documentation/devicetree/bindings/edac/arm-dmc520.txt
-> new file mode 100644
-> index 000000000000..71e7aa32971a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/arm-dmc520.txt
-> @@ -0,0 +1,26 @@
-> +* ARM DMC-520 EDAC node
-> +
-> +Required properties:
-> +- compatible		: "brcm,dmc-520", "arm,dmc-520".
-> +- reg			: Address range of the DMC-520 registers.
-> +- interrupts		: DMC-520 interrupt numbers. The example below specifies
-> +			  two interrupt lines for dram_ecc_errc_int and
-> +			  dram_ecc_errd_int.
-> +- interrupt-config	: This is an array of interrupt masks. For each of the
-> +			  above interrupt line, add one interrupt mask element to
-> +			  it. That is, there is a 1:1 mapping from each interrupt
-> +			  line to an interrupt mask. An interrupt mask can represent
-> +			  multiple interrupts being enabled. Refer to interrupt_control
-> +			  register in DMC-520 TRM for interrupt mapping. In the example
-> +			  below, the interrupt configuration enables dram_ecc_errc_int
-> +			  and dram_ecc_errd_int. And each interrupt is connected to
-> +			  a separate interrupt line.
-> +
-> +Example:
-> +
-> +dmc0: dmc@200000 {
-> +	compatible = "brcm,dmc-520", "arm,dmc-520";
-> +	reg = <0x200000 0x80000>;
-> +	interrupts = <0x0 0x349 0x4>, <0x0 0x34B 0x4>;
-> +	interrupt-config = <0x4>, <0x8>;
-> +};
-> -- 
+Hi Laurentiu,
 
-Still needs a DT person ACK.
+On Mon, Sep 23, 2019 at 11:14 AM Laurentiu Palcu
+<laurentiu.palcu@nxp.com> wrote:
 
--- 
-Regards/Gruss,
-    Boris.
+> +
+> +                       dcss: dcss@0x32e00000 {
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Node names should be generic, so:
+
+dcss: display-controller@32e00000
+
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                               compatible = "nxp,imx8mq-dcss";
+> +                               reg = <0x32e00000 0x2D000>, <0x32e2f000 0x1000>;
+
+0x2d000 for consistency.
+
+> +                               interrupts = <6>, <8>, <9>;
+
+The interrupts are passed in the <GIC_SPI xxx IRQ_TYPE_LEVEL_HIGH> format.
