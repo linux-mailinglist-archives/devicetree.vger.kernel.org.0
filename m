@@ -2,89 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F4EBB65B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4310BB65F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 16:14:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730459AbfIWOOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 10:14:32 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:56864 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732495AbfIWOO2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Sep 2019 10:14:28 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6CA141A02EB;
-        Mon, 23 Sep 2019 16:14:26 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5F44F1A0262;
-        Mon, 23 Sep 2019 16:14:26 +0200 (CEST)
-Received: from fsr-ub1664-121.ea.freescale.net (fsr-ub1664-121.ea.freescale.net [10.171.82.171])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id DCA1820613;
-        Mon, 23 Sep 2019 16:14:25 +0200 (CEST)
-From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     agx@sigxcpu.org, l.stach@pengutronix.de,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        id S1732529AbfIWOOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 10:14:48 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:40483 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727107AbfIWOOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 10:14:48 -0400
+Received: by mail-wr1-f67.google.com with SMTP id l3so14128915wru.7;
+        Mon, 23 Sep 2019 07:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=/ipEvkTrDUAQZ6A9pj0LrEG9sqsJpRZyjqmkY4uDpwI=;
+        b=aAgSh8i96OGbdM5LwzM1GgkU446nP7S236VaBnX9OkxS4QhsBI9a4qDoNc/if9ZPEK
+         ElwXynkGa4OEfoOvhaZliPGOjQolMPhBPmjjhKYxYqm3fXjaqfKbeMDpvcO7MukVM63d
+         n89B3qJHbaUV1VECag9lVca4gVrBSqhB6NktMa9cVHez0s6+0mMmLmWZaKTkQSewPFne
+         wCUpH/RBNl6PPNt2mfVM+Eg4XwFt+YsQGZFei78N01wJRDREQW68K8pnzmDoHxybui4K
+         IxU0DifKXjBCcickZHDaEQeS6ihiFew8iBdhtVcMsCKSzuJQk8IiqgAEy4k4rVGXqs/I
+         It1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/ipEvkTrDUAQZ6A9pj0LrEG9sqsJpRZyjqmkY4uDpwI=;
+        b=GONvqzCMnkMvcK2quhHxyOZimfFBCYSnmFenCwBPBQ+hPbFS1DXkLEAPETRpaYJAq1
+         3Ugp0+BAPI1jX4R6KRzZbWoSjp186JisFt4PFUNLiF2+E05Skylcrgsub2mh8qX+IQQI
+         6D/mzbig9Hnmj0/a3qziCDx3FM+UuJ1dpcclrCZu+mi1FziP2lka5rAiyCYyc33v6pPL
+         1aqwWFQ2ZRIhN0ioRMw/G23C9+bNiUtzBjkse3+ngpPe5K/aq+HdlwvWB4bw4sIfI3AX
+         mXTw439o06D5JlLwdIJgnXs7FFJMQ5kOOrm0jfqg0vEtUr0HWoYnJ9HvC0FT+2aFFUbP
+         /7hQ==
+X-Gm-Message-State: APjAAAUdJpDwNhF9E4fjD114oG11Vxp1I23vI2HiooXl9aGLka6P4tSc
+        Xnn1fHtj8NIU4YNx/mKlzbTBkp7zKKU=
+X-Google-Smtp-Source: APXvYqw9HAjjnuXBdavuZ0SRshgnZYju0QLuOimouoUS/1DbePdxtej/ae9JRg50dT7Zh7zfycLseA==
+X-Received: by 2002:a5d:4985:: with SMTP id r5mr12325276wrq.139.1569248086133;
+        Mon, 23 Sep 2019 07:14:46 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+        by smtp.gmail.com with ESMTPSA id h17sm7001700wmb.33.2019.09.23.07.14.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 23 Sep 2019 07:14:45 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: imx8mq: add DCSS node
-Date:   Mon, 23 Sep 2019 17:13:19 +0300
-Message-Id: <1569248002-2485-6-git-send-email-laurentiu.palcu@nxp.com>
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Oleg Ivanov <balbes-150@yandex.ru>,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v5 0/3] arm64: meson-g12b: Add support for the Ugoos AM6
+Date:   Mon, 23 Sep 2019 18:13:53 +0400
+Message-Id: <1569248036-6729-1-git-send-email-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com>
-References: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the node for iMX8MQ Display Controller Subsystem.
+This patchset adds support for the Ugoos AM6, an Android STB based on
+the Amlogic W400 reference design with the S922X chipset.
 
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+v2: correction of minor nits
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 52aae34..d4aa778 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -871,6 +871,31 @@
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
- 			};
-+
-+			dcss: dcss@0x32e00000 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "nxp,imx8mq-dcss";
-+				reg = <0x32e00000 0x2D000>, <0x32e2f000 0x1000>;
-+				interrupts = <6>, <8>, <9>;
-+				interrupt-names = "ctx_ld", "ctxld_kick", "vblank";
-+				interrupt-parent = <&irqsteer>;
-+				clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>,
-+					 <&clk IMX8MQ_CLK_DISP_AXI_ROOT>,
-+					 <&clk IMX8MQ_CLK_DISP_RTRM_ROOT>,
-+					 <&clk IMX8MQ_VIDEO2_PLL_OUT>,
-+					 <&clk IMX8MQ_CLK_DISP_DTRC>;
-+				clock-names = "apb", "axi", "rtrm", "pix", "dtrc";
-+				assigned-clocks = <&clk IMX8MQ_CLK_DISP_AXI>,
-+						  <&clk IMX8MQ_CLK_DISP_RTRM>,
-+						  <&clk IMX8MQ_VIDEO2_PLL1_REF_SEL>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_800M>,
-+							 <&clk IMX8MQ_SYS1_PLL_800M>,
-+							 <&clk IMX8MQ_CLK_27M>;
-+				assigned-clock-rates = <800000000>,
-+							   <400000000>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		gpu: gpu@38000000 {
+v3: address regulator and GPIO corrections from Neil Armstrong (using
+schematic excerpts from Ugoos) and related v2 comments from Martin
+Blumenstingle. Add acks on patches 1/2 from Rob Herring.
+
+v4: address nits from Martin except for the vcc_3v3 node as it's not
+known how to handle the vcc_3v3 regulator managed by ATF firmware, so
+it remains untouched/undeclared like other g12a/g12b/sm1 boards.
+
+v5: corrected some tabs v spaces issues introduced in v4.
+
+Christian Hewitt (3):
+  dt-bindings: Add vendor prefix for Ugoos
+  dt-bindings: arm: amlogic: Add support for the Ugoos AM6
+  arm64: dts: meson-g12b-ugoos-am6: add initial device-tree
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      | 557 +++++++++++++++++++++
+ 4 files changed, 561 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
+
 -- 
 2.7.4
 
