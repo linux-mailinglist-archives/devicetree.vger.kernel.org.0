@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 993E2BB1F0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 12:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CDAABB20D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2019 12:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405551AbfIWKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 06:10:03 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35875 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405389AbfIWKKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 06:10:03 -0400
-Received: by mail-wm1-f65.google.com with SMTP id m18so8620943wmc.1;
-        Mon, 23 Sep 2019 03:10:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=h9qXlBn1SwboKu5LtxJjQDTNKEcy+/lavbTXOBsjGHM=;
-        b=bY+mHPeyAFJik7UQhJyESFoWV6qxWdr9WsK4+VSn3dLxy48ZwCXZ2T5Nsm02IWGIxH
-         8+i6pCPrcFC/wpPTh7z6LIrvtoJkitEywYT8MYlb4gKPrz6yjPkbJ/RIB5n+n4G9n8tw
-         WCzu/lh9w+hZiTj+6bnuPER5i5Kqqstnoa39uja3Rkr90k3Radqu3HXnyhk+HOOEmZE0
-         BK+W27FDobZ9+mFIC+Xznrr7eQwC5V8cc2L8JjAddt404cA25Bz7TlMG4Odu7QBWvXWm
-         FS0IEdZmfKvTmCNgR7CkKlHUfp2bvysCjAMvXhTq+Z30bL3OvzGMOuzetb0cNFx01cXh
-         heMw==
-X-Gm-Message-State: APjAAAW4FntxOCcucdzjbmRCswrhdkiuCfjgFMYW3ZyYBWRSNqa6lEvS
-        hNTbQ6NkdrfmHMT/LTGfgxM=
-X-Google-Smtp-Source: APXvYqwZ70GVq/wsIIytWY8nE0tIFLrgynh5FI/RtkKc0x6HwJVU1rez82f8Fjm1XocHptXshd8PFg==
-X-Received: by 2002:a1c:150:: with SMTP id 77mr2056857wmb.116.1569233401030;
-        Mon, 23 Sep 2019 03:10:01 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id l9sm9539317wme.45.2019.09.23.03.09.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2019 03:10:00 -0700 (PDT)
-Date:   Mon, 23 Sep 2019 12:09:57 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     ckeepax@opensource.cirrus.com, broonie@kernel.org,
-        lgirdwood@gmail.com, sbkim73@samsung.com,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com
-Subject: Re: [PATCH v2 03/10] ASoC: wm8994: Add support for setting MCLK
- clock rate
-Message-ID: <20190923100957.GA4723@pi3>
-References: <20190920130218.32690-1-s.nawrocki@samsung.com>
- <CGME20190920130316eucas1p2de713006a13c62c0b895c2e33e0d14c7@eucas1p2.samsung.com>
- <20190920130218.32690-4-s.nawrocki@samsung.com>
- <7334ce45-f192-4421-aa3d-d142582153ef@samsung.com>
+        id S1727141AbfIWKPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 06:15:35 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:57820 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407636AbfIWKPe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 06:15:34 -0400
+Received: from [5.158.153.52] (helo=kurt.tec.linutronix.de)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
+        (Exim 4.80)
+        (envelope-from <kurt@linutronix.de>)
+        id 1iCLNS-0001oR-9t; Mon, 23 Sep 2019 12:15:30 +0200
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        devicetree@vger.kernel.org, Kurt Kanzenbach <kurt@linutronix.de>
+Subject: [PATCH v6 0/2] Add support for Layerscape external interrupt lines
+Date:   Mon, 23 Sep 2019 12:15:11 +0200
+Message-Id: <20190923101513.32719-1-kurt@linutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7334ce45-f192-4421-aa3d-d142582153ef@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 11:10:48AM +0200, Sylwester Nawrocki wrote:
-> On 9/20/19 15:02, Sylwester Nawrocki wrote:
-> > Extend the set_sysclk() handler so we also set frequency of the MCLK1,
-> > MCLK2 clocks through clk API when those clocks are specified in DT.
-> > 
-> > Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> > Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Sorry, I squashed other patch to this one but forgot to remove above tags, 
-> not sure if those still stand as there was rather significant change in 
-> the patch. 
+Hi,
 
-It's good. For the record:
+this is a respin of getting the support for the Layerscape's external interrupt
+lines. The last version from Rasmus Villemoes can be found here:
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+ https://lkml.kernel.org/r/20180223210901.23480-1-rasmus.villemoes@prevas.dk/
 
-Best regards,
-Krzysztof
+Rasmus Villemoes ran out of time, so I prepared v6.
+
+Changes since v5:
+
+ - Rebase to v5.3.0
+ - Integrated Thomas Gleixner comments:
+   - Adjust order of local variables
+   - Use irq_chip_set_type_parent()
+   - Cleanup of irq headers
+ - Integrated Rob Herring comments:
+   - Add #address-cells and #size-cells to parent
+ - Use ARCH_LAYERSCAPE, as this feature is not LS1021A specific
+
+It is tested on a Layerscape LS2088A.
+
+Thanks,
+Kurt
+
+Rasmus Villemoes (2):
+  irqchip: Add support for Layerscape external interrupt lines
+  dt/bindings: Add bindings for Layerscape external irqs
+
+ .../interrupt-controller/fsl,ls-extirq.txt    |  47 +++++
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-ls-extirq.c               | 174 ++++++++++++++++++
+ 3 files changed, 222 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+ create mode 100644 drivers/irqchip/irq-ls-extirq.c
+
+-- 
+2.20.1
 
