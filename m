@@ -2,233 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6910DBBF79
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 02:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D73D6BBF97
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 03:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503235AbfIXAwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 20:52:42 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:49670 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392180AbfIXAwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 20:52:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=jh2HpGC5bGaRmxvM2gOqp+wVb3QEYlE1PNWZkFQUHFE=; b=oEYDBQJd0G/4BY0pCNUO+Lv9r
-        SqJaqivdZfguVcMkF6Y2uZ9VZXSqFwWxAS1hwrPFws9ouIBwFs5XWJmHMhgeyw6W/4vZ/ql81m4jh
-        nT+Wk4ZCGSEEbxJ8okLALAofdkVzWZZ+tRRh2oumeDlAPhpYYo8GD0r6X4ouXOWR6iHqDbaP0bGtE
-        L5GfQXZmvOdaB9HbMgRdH18QAKRnVfBVyyqUW/FSrT0L/cN0HN2iJbX8MzV+j3CIFl9EyeT2m6PlN
-        peTnf4da6+6XPCugTap6mPKGe6caLFDpbjnaUxgSlpo6zp4aakMicOtwx41xxvl2ITgiQaFASk5qs
-        dSlYgx8qg==;
-Received: from [2601:1c0:6280:3f0::9a1f]
-        by bombadil.infradead.org with esmtpsa (Exim 4.92.2 #3 (Red Hat Linux))
-        id 1iCZ3R-00047x-0N; Tue, 24 Sep 2019 00:51:45 +0000
-Subject: Re: [PATCH v18 15/19] Documentation: kunit: add documentation for
- KUnit
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
-        torvalds@linux-foundation.org,
-        Felix Guo <felixguoxiuping@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>
-References: <20190923090249.127984-1-brendanhiggins@google.com>
- <20190923090249.127984-16-brendanhiggins@google.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <9cd80aa2-fc8d-1fed-838b-cf4951692b6d@infradead.org>
-Date:   Mon, 23 Sep 2019 17:51:41 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190923090249.127984-16-brendanhiggins@google.com>
-Content-Type: text/plain; charset=utf-8
+        id S2392044AbfIXBOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 21:14:08 -0400
+Received: from mail-eopbgr30068.outbound.protection.outlook.com ([40.107.3.68]:23937
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2391681AbfIXBOH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 21:14:07 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ITWN+49fiFBMCYlP/Var00VkEwKnsB36P8rqITzzUa6Ee3S9ocf9+F4jZc9OV1x4XToOyfjNk3Sr0Shc1HBQlqLNqgv74FcoNM7ul/fiUnP+M2AAr8FZ/moPB/vw6ZL85SmHOMVUOvZkXrqVktonA0P2pQUoLJjrxN6BrO5D7lTsuwd/UuHoMnvqzEIeEQJKiv/0KSNV0hXK/T1Qfx3KZPonkGCGHD/cRTjMNz1j1z751EUZt429gfAcnmlN4Fp2F2D91lIfaRRtoimZQ9CF3U8T0+dU/KGQof71pdiuxTInLkudf+Er8XJyj50bB1muRrHaxI5h0zUqBAWyPFsq8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3WxFS7UmptMzToPNfknEYNcbfNJ7tnjtu+DHgKSayhs=;
+ b=BiLjx71vkOnPFt3TtIR13iJBW+Hx/jfwAmI9v2GjjShvDQr1OvvNQpBlVN6hvw3BuFCYUkOLq4bvglIR2zhRnEO9xYX7VDqriMP8Kt2gKASiopa1FVae7pqfD6DkfC6J82qgfJ4QY4ct/Og23AzpXKF0L/piMgIqtF2rFKn+Po56oxV7sHNjF96bYTaLuEdcqhbT3CXv3POVdvoDtdx73RolJf6ukOl6uGHOqoBOw5wq7pGzV1EqmpowxrUP9kxIBeukyCAIrTJMZMbL/4FiadrGgxvuLUkRdWg07/+chrNLSbc+q6zCVtGgl50doa58kM9if/+5PlEB47GOoGb7qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3WxFS7UmptMzToPNfknEYNcbfNJ7tnjtu+DHgKSayhs=;
+ b=H+W+m+QZ5AfmzXwLG7AyFJH/YerjN4c5mLasS9VYfO5EyC9FEUf5HCZfOC4UhozqyQ09AuP6wLEATLnvCf40Xy3VXv4LamovnFJRLEkjolgaqnnr9MYTk9XDPO068PbzmN1WDxBMqF+aVFxmcBwqUNAxfis5ca88UxSXGr2SJMc=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB5396.eurprd04.prod.outlook.com (20.178.113.213) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.20; Tue, 24 Sep 2019 01:14:03 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6ca2:ec08:2b37:8ab8]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6ca2:ec08:2b37:8ab8%6]) with mapi id 15.20.2284.023; Tue, 24 Sep 2019
+ 01:14:03 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V8 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Topic: [PATCH V8 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Index: AQHVcnVaog47u9gB7k2DLgSr2MVvDA==
+Date:   Tue, 24 Sep 2019 01:14:03 +0000
+Message-ID: <1569287538-10854-1-git-send-email-peng.fan@nxp.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK0P153CA0001.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:203:18::13) To AM0PR04MB4481.eurprd04.prod.outlook.com
+ (2603:10a6:208:70::15)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1f1bcfb6-8d04-4f4e-d1ee-08d7408c7d09
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5396;
+x-ms-traffictypediagnostic: AM0PR04MB5396:|AM0PR04MB5396:
+x-ms-exchange-purlcount: 6
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB53969CD26D072B680FE2BDFC88840@AM0PR04MB5396.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0170DAF08C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(366004)(39860400002)(396003)(136003)(346002)(189003)(199004)(66066001)(6436002)(36756003)(478600001)(2201001)(316002)(14454004)(966005)(305945005)(66946007)(26005)(86362001)(71200400001)(66446008)(64756008)(66476007)(71190400001)(6116002)(3846002)(256004)(14444005)(99286004)(6306002)(386003)(66556008)(486006)(6512007)(186003)(6486002)(2501003)(6506007)(2906002)(4326008)(2616005)(102836004)(8676002)(54906003)(110136005)(8936002)(52116002)(81166006)(50226002)(5660300002)(81156014)(44832011)(15650500001)(7736002)(25786009)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5396;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: xh2JBC9Y281Y7s7XRdyGRsl6hUkOqOAGbH7CKjbw6dOHzUNr/NouyInImhHtwyJ4t481d5g6R7d5w0gIWxWZ8gDTMAPcpVGqcr6EMYHEw0RF60jK4zUglIhksyRHJ7q3pwyvNDGf1yPKkH4/tFRY7HNGS1NDrNZTzvFX2t3SnuQdn0FTxw0NhDv36aB6/dhKDfPJSe9dgNGpTHzlq7oodxk9e1nmuNwfutcvq4ignVl3m7RIKsALWNAq/PFW9RrcXETPMKJwnbGbKtJo4yaMGN9bbJYhMNMQlrnh0bkA7XZgsjKQEUwuEBI588fe/MGYBS90zbGht3TypEAQCHBUpJz6CXvn/fRMzZj4ALJDfeiXax+XxGmVbK8rbcwqSWKIk5r6DexgsEmRraWklZzdIJv0B9K2m6Jzv316X7y38N4=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f1bcfb6-8d04-4f4e-d1ee-08d7408c7d09
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2019 01:14:03.6707
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pRuuc9kkInW4SMu47IoXg6PqcekHZGf30+BP69ogjzrTYJuTmYn/kCUM1LKNSRFAMWiDhLajck/yBoyDYwQA1Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5396
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/23/19 2:02 AM, Brendan Higgins wrote:
+From: Peng Fan <peng.fan@nxp.com>
 
-> diff --git a/Documentation/dev-tools/kunit/usage.rst b/Documentation/dev-tools/kunit/usage.rst
-> new file mode 100644
-> index 000000000000..c6e69634e274
-> --- /dev/null
-> +++ b/Documentation/dev-tools/kunit/usage.rst
-> @@ -0,0 +1,576 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +===========
-> +Using KUnit
-> +===========
-> +
-> +The purpose of this document is to describe what KUnit is, how it works, how it
-> +is intended to be used, and all the concepts and terminology that are needed to
-> +understand it. This guide assumes a working knowledge of the Linux kernel and
-> +some basic knowledge of testing.
-> +
-> +For a high level introduction to KUnit, including setting up KUnit for your
-> +project, see :doc:`start`.
-> +
-> +Organization of this document
-> +=============================
-> +
-> +This document is organized into two main sections: Testing and Isolating
-> +Behavior. The first covers what a unit test is and how to use KUnit to write
+V8:
+Add missed arm-smccc-mbox.h
 
-                              what unit tests are
-would agree with the following "them."
+V7:
+Typo fix
+#mbox-cells changed to 0
+Add a new header file arm-smccc-mbox.h
+Use ARM_SMCCC_IS_64
 
-> +them. The second covers how to use KUnit to isolate code and make it possible
-> +to unit test code that was otherwise un-unit-testable.
-> +
-> +Testing
-> +=======
-> +
+Andre,
+  The function_id is still kept in arm_smccc_mbox_cmd, because arm,func-id
+property is optional, so clients could pass function_id to mbox driver.
 
-[snip]
+V6:
+Switch to per-channel a mbox controller
+Drop arm,num-chans, transports, method
+Add arm,hvc-mbox compatible
+Fix smc/hvc args, drop client id and use correct type.
+https://patchwork.kernel.org/cover/11146641/
 
+V5:
+yaml fix
+https://patchwork.kernel.org/cover/11117741/
 
-> +
-> +Test Suites
-> +~~~~~~~~~~~
-> +
-> +Now obviously one unit test isn't very helpful; the power comes from having
-> +many test cases covering all of your behaviors. Consequently it is common to
+V4:
+yaml fix for num-chans in patch 1/2.
+https://patchwork.kernel.org/cover/11116521/
 
-                   covering all of a unit's behaviors.
+V3:
+Drop interrupt
+Introduce transports for mem/reg usage
+Add chan-id for mem usage
+Convert to yaml format
+https://patchwork.kernel.org/cover/11043541/
 
-> +have many *similar* tests; in order to reduce duplication in these closely
-> +related tests most unit testing frameworks provide the concept of a *test
-> +suite*, in KUnit we call it a *test suite*; all it is is just a collection of
+V2:
+This is a modified version from Andre Przywara's patch series
+https://lore.kernel.org/patchwork/cover/812997/.
+The modification are mostly:
+Introduce arm,num-chans
+Introduce arm_smccc_mbox_cmd
+txdone_poll and txdone_irq are both set to false
+arm,func-ids are kept, but as an optional property.
+Rewords SCPI to SCMI, because I am trying SCMI over SMC, not SCPI.
+Introduce interrupts notification.
 
-                                             . This is just a collection of
+[1] is a draft implementation of i.MX8MM SCMI ATF implementation that
+use smc as mailbox, power/clk is included, but only part of clk has been
+implemented to work with hardware, power domain only supports get name
+for now.
 
-> +test cases for a unit of code with a set up function that gets invoked before
-> +every test cases and then a tear down function that gets invoked after every
+The traditional Linux mailbox mechanism uses some kind of dedicated hardwar=
+e
+IP to signal a condition to some other processing unit, typically a dedicat=
+ed
+management processor.
+This mailbox feature is used for instance by the SCMI protocol to signal a
+request for some action to be taken by the management processor.
+However some SoCs does not have a dedicated management core to provide
+those services. In order to service TEE and to avoid linux shutdown
+power and clock that used by TEE, need let firmware to handle power
+and clock, the firmware here is ARM Trusted Firmware that could also
+run SCMI service.
 
-   every test case
+The existing SCMI implementation uses a rather flexible shared memory
+region to communicate commands and their parameters, it still requires a
+mailbox to actually trigger the action.
 
-> +test case completes.
-> +
-> +Example:
-> +
-> +.. code-block:: c
-> +
-> +	static struct kunit_case example_test_cases[] = {
-> +		KUNIT_CASE(example_test_foo),
-> +		KUNIT_CASE(example_test_bar),
-> +		KUNIT_CASE(example_test_baz),
-> +		{}
-> +	};
-> +
-> +	static struct kunit_suite example_test_suite = {
-> +		.name = "example",
-> +		.init = example_test_init,
-> +		.exit = example_test_exit,
-> +		.test_cases = example_test_cases,
-> +	};
-> +	kunit_test_suite(example_test_suite);
-> +
-> +In the above example the test suite, ``example_test_suite``, would run the test
-> +cases ``example_test_foo``, ``example_test_bar``, and ``example_test_baz``,
-> +each would have ``example_test_init`` called immediately before it and would
-> +have ``example_test_exit`` called immediately after it.
-> +``kunit_test_suite(example_test_suite)`` registers the test suite with the
-> +KUnit test framework.
-> +
-> +.. note::
-> +   A test case will only be run if it is associated with a test suite.
-> +
-> +For a more information on these types of things see the :doc:`api/test`.
+This patch series provides a Linux mailbox compatible service which uses
+smc calls to invoke firmware code, for instance taking care of SCMI request=
+s.
+The actual requests are still communicated using the standard SCMI way of
+shared memory regions, but a dedicated mailbox hardware IP can be replaced =
+via
+this new driver.
 
-   For more
+This simple driver uses the architected SMC calling convention to trigger
+firmware services, also allows for using "HVC" calls to call into hyperviso=
+rs
+or firmware layers running in the EL2 exception level.
 
-> +
-> +Isolating Behavior
-> +==================
-> +
+Patch 1 contains the device tree binding documentation, patch 2 introduces
+the actual mailbox driver.
 
-[snip]
+Please note that this driver just provides a generic mailbox mechanism,
+It could support synchronous TX/RX, or synchronous TX with asynchronous
+RX. And while providing SCMI services was the reason for this exercise,
+this driver is in no way bound to this use case, but can be used genericall=
+y
+where the OS wants to signal a mailbox condition to firmware or a
+hypervisor.
+Also the driver is in no way meant to replace any existing firmware
+interface, but actually to complement existing interfaces.
 
-> +
-> +.. _kunit-on-non-uml:
-> +
-> +KUnit on non-UML architectures
-> +==============================
-> +
-> +By default KUnit uses UML as a way to provide dependencies for code under test.
-> +Under most circumstances KUnit's usage of UML should be treated as an
-> +implementation detail of how KUnit works under the hood. Nevertheless, there
-> +are instances where being able to run architecture specific code, or test
-
-                           I would drop the comma above.
-
-> +against real hardware is desirable. For these reasons KUnit supports running on
-> +other architectures.
-> +
-> +Running existing KUnit tests on non-UML architectures
-> +-----------------------------------------------------
-> +
-
-[snip]
-
-> +Writing new tests for other architectures
-> +-----------------------------------------
-> +
-> +The first thing you must do is ask yourself whether it is necessary to write a
-> +KUnit test for a specific architecture, and then whether it is necessary to
-> +write that test for a particular piece of hardware. In general, writing a test
-> +that depends on having access to a particular piece of hardware or software (not
-> +included in the Linux source repo) should be avoided at all costs.
-> +
-> +Even if you only ever plan on running your KUnit test on your hardware
-> +configuration, other people may want to run your tests and may not have access
-> +to your hardware. If you write your test to run on UML, then anyone can run your
-> +tests without knowing anything about your particular setup, and you can still
-> +run your tests on your hardware setup just by compiling for your architecture.
-> +
-> +.. important::
-> +   Always prefer tests that run on UML to tests that only run under a particular
-> +   architecture, and always prefer tests that run under QEMU or another easy
-> +   (and monitarily free) to obtain software environment to a specific piece of
-
-           monetarily
-
-> +   hardware.
-> +
-> +Nevertheless, there are still valid reasons to write an architecture or hardware
-> +specific test: for example, you might want to test some code that really belongs
-> +in ``arch/some-arch/*``. Even so, try your best to write the test so that it
-> +does not depend on physical hardware: if some of your test cases don't need the
-> +hardware, only require the hardware for tests that actually need it.
-> +
-> +Now that you have narrowed down exactly what bits are hardware specific, the
-> +actual procedure for writing and running the tests is pretty much the same as
-> +writing normal KUnit tests. One special caveat is that you have to reset
-> +hardware state in between test cases; if this is not possible, you may only be
-> +able to run one test case per invocation.
-> +
-> +.. TODO(brendanhiggins@google.com): Add an actual example of an architecture
-> +   dependent KUnit test.
+[1] https://github.com/MrVan/arm-trusted-firmware/tree/scmi
 
 
--- 
-~Randy
+Peng Fan (2):
+  dt-bindings: mailbox: add binding doc for the ARM SMC/HVC mailbox
+  mailbox: introduce ARM SMC based mailbox
+
+ .../devicetree/bindings/mailbox/arm-smc.yaml       |  95 ++++++++++++
+ drivers/mailbox/Kconfig                            |   7 +
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/arm-smc-mailbox.c                  | 168 +++++++++++++++++=
+++++
+ include/linux/mailbox/arm-smccc-mbox.h             |  22 +++
+ 5 files changed, 294 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+ create mode 100644 drivers/mailbox/arm-smc-mailbox.c
+ create mode 100644 include/linux/mailbox/arm-smccc-mbox.h
+
+--=20
+2.16.4
+
