@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 910C6BC5CA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 12:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C5CBC5EC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 12:54:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409555AbfIXKpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 06:45:52 -0400
-Received: from mx2.suse.de ([195.135.220.15]:57638 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2409506AbfIXKpw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 06:45:52 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 52C51AF26;
-        Tue, 24 Sep 2019 10:45:50 +0000 (UTC)
-Date:   Tue, 24 Sep 2019 12:45:49 +0200
-From:   Petr Mladek <pmladek@suse.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Rob Herring <robh@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Joe Perches <joe@perches.com>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v7 09/13] lib/vsprintf: Add a note on re-using %pf or %pF
-Message-ID: <20190924104549.qiayzhr7zikja7sp@pathway.suse.cz>
-References: <20190918133419.7969-1-sakari.ailus@linux.intel.com>
- <20190918133419.7969-10-sakari.ailus@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190918133419.7969-10-sakari.ailus@linux.intel.com>
-User-Agent: NeoMutt/20170912 (1.9.0)
+        id S2394571AbfIXKyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 06:54:20 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:41506 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2438798AbfIXKyU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Sep 2019 06:54:20 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4CB771A0192;
+        Tue, 24 Sep 2019 12:54:18 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B31481A00DE;
+        Tue, 24 Sep 2019 12:54:11 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C906D4029F;
+        Tue, 24 Sep 2019 18:54:01 +0800 (SGT)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
+        festevam@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, lars@metafoo.de
+Subject: [PATCH V4 0/4] update supported sample format
+Date:   Tue, 24 Sep 2019 18:52:31 +0800
+Message-Id: <cover.1569296075.git.shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 2019-09-18 16:34:15, Sakari Ailus wrote:
-> Add a note warning of re-use of obsolete %pf or %pF extensions.
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
-> ---
->  lib/vsprintf.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-> index b00b57f9f911f..df59818537b52 100644
-> --- a/lib/vsprintf.c
-> +++ b/lib/vsprintf.c
-> @@ -2008,6 +2008,8 @@ static char *kobject_string(char *buf, char *end, void *ptr,
->   * - 'S' For symbolic direct pointers (or function descriptors) with offset
->   * - 's' For symbolic direct pointers (or function descriptors) without offset
->   * - '[Ss]R' as above with __builtin_extract_return_addr() translation
-> + * - '[Ff]' Obsolete an now unsupported extension for printing direct pointers
-> + *	    or function descriptors. Be careful when re-using %pf or %pF!
+This patch serial is to update the supported format for fsl_asrc
+and fix some format issue.
 
-I am not a native speaker but the sentence is hard to parse to me.
-Also I miss the word 'symbolic'. IMHO, it described that the output
-was a symbol name.
+Shengjiu Wang (4):
+  ASoC: fsl_asrc: Use in(out)put_format instead of in(out)put_word_width
+  ASoC: fsl_asrc: update supported sample format
+  ASoC: pcm_dmaengine: Extract snd_dmaengine_pcm_refine_runtime_hwparams
+  ASoC: fsl_asrc: Fix error with S24_3LE format bitstream in i.MX8
 
-What about something like?
+changes in v2
+- extract snd_dmaengine_pcm_set_runtime_hwparams in one
+  separate path.
+- 4th patch depends on 3rd patch
 
-  * - '[Ff]' %pf and %pF were obsoleted and later removed in favor of
-  *	    %ps and %pS. Be careful when re-using these specifiers.
+changes in v3
+- Fix build report by kbuild test robot <lkp@intel.com>
+- change snd_dmaengine_pcm_set_runtime_hwparams to
+  snd_dmaengine_pcm_refine_runtime_hwparams
 
-Best Regards,
-Petr
+changes in v4
+- update according to Nicolin's comments.
+
+ include/sound/dmaengine_pcm.h         |  5 ++
+ sound/core/pcm_dmaengine.c            | 83 +++++++++++++++++++++++++++
+ sound/soc/fsl/fsl_asrc.c              | 65 ++++++++++++++-------
+ sound/soc/fsl/fsl_asrc.h              |  7 ++-
+ sound/soc/fsl/fsl_asrc_dma.c          | 59 ++++++++++++++++---
+ sound/soc/soc-generic-dmaengine-pcm.c | 61 ++------------------
+ 6 files changed, 193 insertions(+), 87 deletions(-)
+
+-- 
+2.21.0
+
