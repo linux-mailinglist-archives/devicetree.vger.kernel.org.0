@@ -2,221 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE7BBD55C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 01:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D08B3BD59A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 01:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392745AbfIXXMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 19:12:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50906 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389437AbfIXXMZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 19:12:25 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9012C207FD;
-        Tue, 24 Sep 2019 23:12:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569366743;
-        bh=+j5AnNwQqbgf/RjmaOj47PhlrItx9j7FWIaZz17xSJk=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=gH92DrEndcCCHU6/4MPa6jo3NtGaa0u6iNz3U6tb/8zo5SH7Nob3dwlKOkhSyzZzi
-         xl0loW0SfMexj9nNqeKL+9BK7JyvK9IaxjatCtf5c1xUm492fCGe6H2XwmlhxrCJg3
-         Y1ea2aiR/GKHMN9nu5jHURN4wlEJGNE6G/RBOQho=
-Content-Type: text/plain; charset="utf-8"
+        id S2442113AbfIXXyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 19:54:08 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:38826 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388576AbfIXXyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 19:54:08 -0400
+Received: by mail-wm1-f67.google.com with SMTP id 3so2150653wmi.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 16:54:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:subject:to:cc:references:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=obNyCqqGzElvX7boXde6fghsyxBcR3pkK61f0Ir2WaE=;
+        b=egLwcybANyqSdgRAu9EcaRb3zkdDSUzA8up5iGrUH1nSg/9R21k6DUoH5TKYnLSRES
+         p90H6yNYvY3NUYffvlkjJn3TZu7unDdviFFCoY+cAss2Sye+j4YueusDO3Rrw6gCQx+p
+         VPY9bXIE60S8kkT51PbkVrZcHzMVvSDmlZluI7dfH589h3nSgKUsE2CNV065yoI7/MTU
+         luzfS+RbH+MLXdf9OaW5TY3+73jqTkb/XKlGl+XV57wkdcwDlgplxn/+ffRUx+vAq4tY
+         ldGg3FLU/pG/kSxFvgiaSfAYDj0B+CscmAkYV5mp7Qr8SdgEvXzgOzGF2fn/BII5EMBg
+         WvkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:cc:references:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=obNyCqqGzElvX7boXde6fghsyxBcR3pkK61f0Ir2WaE=;
+        b=rl+7FQ9cOZqNXKXV3rNbVhIMGUKKHovq2WWwWKREDG9Z0iNdPFplkiqk7vGDi6hr0G
+         5mMRl36STGUnyQ/JZVVSA5kRbucnmBxqqm3d5LfjAufQ4aipNm+iDDC1c71J9TeWXwH3
+         Trf9avV/eIsGRQKPnf62zkM59DVf4YxomB2QcqdpYyy1Cr0WcNiICbzAKAAvAIPxiJwd
+         oIJdZa+YdH0VDO4FB0krQknsDQD7q+XpxfXoP1isAm4xaGU9G+/hUbEUlmnD2f2duw9u
+         tXhAq8z3kSwNRgbTBUQnU7YdiBBtm3A4rXlPYdJVdNBRizvZYBiq944Dt63yyNgOttE2
+         yNwg==
+X-Gm-Message-State: APjAAAXbnpawJpMr0DARNtDXUG5Tr1iYL/aUvKu6aEWda7VSNfg8iKjF
+        XmQr6RG10K/zYbwHc4+tysz81w==
+X-Google-Smtp-Source: APXvYqzflTAM8iumIshFfr3fGMFxcB2qaZiCOYlcUNAliFXq2xJSsk/JdWUDV4wUYd58MwxFalpQwg==
+X-Received: by 2002:a1c:6a03:: with SMTP id f3mr3355287wmc.167.1569369244941;
+        Tue, 24 Sep 2019 16:54:04 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id t8sm2884615wrx.76.2019.09.24.16.54.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 24 Sep 2019 16:54:04 -0700 (PDT)
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH V3 09/10] interconnect: mediatek: Add mt8183 interconnect
+ provider driver
+To:     Henry Chen <henryc.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>
+Cc:     Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Linux PM list <linux-pm@vger.kernel.org>
+References: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
+ <1566995328-15158-10-git-send-email-henryc.chen@mediatek.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <ff52d219-1621-37de-3b70-d10d95bf370f@linaro.org>
+Date:   Tue, 24 Sep 2019 16:53:57 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org>
-References: <20190918095018.17979-1-tdas@codeaurora.org> <20190918095018.17979-4-tdas@codeaurora.org> <20190918213946.DC03521924@mail.kernel.org> <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org>
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>, robh+dt@kernel.org
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC) driver for SC7180
-User-Agent: alot/0.8.1
-Date:   Tue, 24 Sep 2019 16:12:22 -0700
-Message-Id: <20190924231223.9012C207FD@mail.kernel.org>
+In-Reply-To: <1566995328-15158-10-git-send-email-henryc.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2019-09-23 01:01:11)
-> Hi Stephen,
->=20
-> Thanks for your comments.
->=20
-> On 9/19/2019 3:09 AM, Stephen Boyd wrote:
-> > Quoting Taniya Das (2019-09-18 02:50:18)
-> >> diff --git a/drivers/clk/qcom/gcc-sc7180.c b/drivers/clk/qcom/gcc-sc71=
-80.c
-> >> new file mode 100644
-> >> index 000000000000..d47865d5408f
-> >> --- /dev/null
-> >> +++ b/drivers/clk/qcom/gcc-sc7180.c
-> >> @@ -0,0 +1,2515 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-> >> + */
-> >> +
-> >> +#include <linux/err.h>
-> >> +#include <linux/kernel.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_device.h>
-> >> +#include <linux/regmap.h>
-> >=20
-> > include clk-provider.h
-> >=20
->=20
-> will add this header.
-> Currently the <drivers/clk/qcom/clk-regmap.h> already includes it.
+Hi Henry,
 
-Yes but it should be included in any clk-provider drivers too.
+Please CC also the linux-pm@ list.
 
-> >> +
-> >> +/* Leave the clock ON for parent config_noc_clk to be kept enabled */
-> >> +static struct clk_branch gcc_disp_ahb_clk =3D {
-> >> +       .halt_reg =3D 0xb00c,
-> >> +       .halt_check =3D BRANCH_HALT,
-> >> +       .hwcg_reg =3D 0xb00c,
-> >> +       .hwcg_bit =3D 1,
-> >> +       .clkr =3D {
-> >> +               .enable_reg =3D 0xb00c,
-> >> +               .enable_mask =3D BIT(0),
-> >> +               .hw.init =3D &(struct clk_init_data){
-> >> +                       .name =3D "gcc_disp_ahb_clk",
-> >> +                       .flags =3D CLK_IS_CRITICAL,
-> >=20
-> > Does this assume the display is left enabled out of the bootloader? Why
-> > is this critical to system operation? Maybe it is really
-> > CLK_IGNORE_UNUSED?
-> >=20
->=20
-> This clock is not kept enabled by bootloader. But leaving this ON for=20
-> clients on config noc.
+On 8/28/19 05:28, Henry Chen wrote:
+> Introduce Mediatek MT8183 specific provider driver using the
+> interconnect framework.
+> 
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+> ---
+>  drivers/interconnect/Kconfig            |   1 +
+>  drivers/interconnect/Makefile           |   1 +
+>  drivers/interconnect/mediatek/Kconfig   |  13 ++
+>  drivers/interconnect/mediatek/Makefile  |   3 +
+>  drivers/interconnect/mediatek/mtk-emi.c | 246 ++++++++++++++++++++++++++++++++
+>  5 files changed, 264 insertions(+)
+>  create mode 100644 drivers/interconnect/mediatek/Kconfig
+>  create mode 100644 drivers/interconnect/mediatek/Makefile
+>  create mode 100644 drivers/interconnect/mediatek/mtk-emi.c
+> 
+[..]
+> +
+> +#define MT8183_MAX_LINKS	6
 
-Please see below comment for the other critical clk with no parent.
+Looks like 1 is enough. Sorry for missing this in my earlier review.
 
->=20
-> >> +                       .ops =3D &clk_branch2_ops,
-> >> +               },
-> >> +       },
-> >> +};
-> >> +
-[...]
-> >> +static struct clk_branch gcc_ufs_phy_phy_aux_clk =3D {
-> >> +       .halt_reg =3D 0x77094,
-> >> +       .halt_check =3D BRANCH_HALT,
-> >> +       .hwcg_reg =3D 0x77094,
-> >> +       .hwcg_bit =3D 1,
-> >> +       .clkr =3D {
-> >> +               .enable_reg =3D 0x77094,
-> >> +               .enable_mask =3D BIT(0),
-> >> +               .hw.init =3D &(struct clk_init_data){
-> >> +                       .name =3D "gcc_ufs_phy_phy_aux_clk",
-> >> +                       .parent_data =3D &(const struct clk_parent_dat=
-a){
-> >> +                               .hw =3D &gcc_ufs_phy_phy_aux_clk_src.c=
-lkr.hw,
-> >> +                       },
-> >> +                       .num_parents =3D 1,
-> >> +                       .flags =3D CLK_SET_RATE_PARENT,
-> >> +                       .ops =3D &clk_branch2_ops,
-> >> +               },
-> >> +       },
-> >> +};
-> >> +
-> >> +static struct clk_branch gcc_ufs_phy_rx_symbol_0_clk =3D {
-> >> +       .halt_reg =3D 0x7701c,
-> >> +       .halt_check =3D BRANCH_HALT_SKIP,
-> >=20
-> > Again, nobody has fixed the UFS driver to not need to do this halt skip
-> > check for these clks? It's been over a year.
-> >=20
->=20
-> The UFS_PHY_RX/TX clocks could be left enabled due to certain HW boot=20
-> configuration and thus during the late initcall of clk_disable there=20
-> could be warnings of "clock stuck ON" in the dmesg. That is the reason=20
-> also to use the BRANCH_HALT_SKIP flag.
+> +
+> +/**
+> + * struct mtk_icc_node - Mediatek specific interconnect nodes
+> + * @name: the node name used in debugfs
+> + * @ep: true if the node is an end point.
+> + * @id: a unique node identifier
+> + * @links: an array of nodes where we can go next while traversing
+> + * @num_links: the total number of @links
+> + * @buswidth: width of the interconnect between a node and the bus
+> + * @sum_avg: current sum aggregate value of all avg bw kBps requests
+> + * @max_peak: current max aggregate value of all peak bw kBps requests
+> + */
+> +struct mtk_icc_node {
+> +	unsigned char *name;
+> +	bool ep;
+> +	u16 id;
+> +	u16 links[MT8183_MAX_LINKS];
+> +	u16 num_links;
+> +	u16 buswidth;
+> +	u64 sum_avg;
+> +	u64 max_peak;
+> +};
+> +
+> +struct mtk_icc_desc {
+> +	struct mtk_icc_node **nodes;
+> +	size_t num_nodes;
+> +};
+> +
+> +#define DEFINE_MNODE(_name, _id, _buswidth, _ep, ...)	\
+> +		static struct mtk_icc_node _name = {			\
+> +		.name = #_name,						\
+> +		.id = _id,						\
+> +		.buswidth = _buswidth,					\
+> +		.ep = _ep,						\
+> +		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
+> +}
+> +
+> +DEFINE_MNODE(ddr_emi, SLAVE_DDR_EMI, 1024, 1, 0);
+> +DEFINE_MNODE(mcusys, MASTER_MCUSYS, 256, 0, SLAVE_DDR_EMI);
+> +DEFINE_MNODE(gpu, MASTER_GPUSYS, 256, 0, SLAVE_DDR_EMI);
+> +DEFINE_MNODE(mmsys, MASTER_MMSYS, 256, 0, SLAVE_DDR_EMI);
+> +DEFINE_MNODE(mm_vpu, MASTER_MM_VPU, 128, 0, MASTER_MMSYS);
+> +DEFINE_MNODE(mm_disp, MASTER_MM_DISP, 128, 0, MASTER_MMSYS);
+> +DEFINE_MNODE(mm_vdec, MASTER_MM_VDEC, 128, 0, MASTER_MMSYS);
+> +DEFINE_MNODE(mm_venc, MASTER_MM_VENC, 128, 0, MASTER_MMSYS);
+> +DEFINE_MNODE(mm_cam, MASTER_MM_CAM, 128, 0, MASTER_MMSYS);
+> +DEFINE_MNODE(mm_img, MASTER_MM_IMG, 128, 0, MASTER_MMSYS);
+> +DEFINE_MNODE(mm_mdp, MASTER_MM_MDP, 128, 0, MASTER_MMSYS);
+> +
+[..]
 
-Oh that's bad. Why do the clks stay on when we try to turn them off?
+> +static int emi_icc_aggregate(struct icc_node *node, u32 avg_bw,
+> +			      u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
+> +{
 
->=20
-> I would also check internally for the UFS driver fix you are referring he=
-re.
+The prototype of this function has changed meanwhile, so you might want to update.
 
-Sure. I keep asking but nothing is done :(
+[..]
+> +static int emi_icc_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +	const struct mtk_icc_desc *desc;
+> +	struct icc_node *node;
+> +	struct icc_onecell_data *data;
+> +	struct icc_provider *provider;
+> +	struct mtk_icc_node **mnodes;
+> +	size_t num_nodes, i, j;
+> +
+> +	desc = of_device_get_match_data(&pdev->dev);
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	mnodes = desc->nodes;
+> +	num_nodes = desc->num_nodes;
+> +
+> +	provider = devm_kzalloc(&pdev->dev, sizeof(*provider), GFP_KERNEL);
+> +	if (!provider)
+> +		return -ENOMEM;
+> +
+> +	data = devm_kcalloc(&pdev->dev, num_nodes, sizeof(*node), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	provider->dev = &pdev->dev;
+> +	provider->set = emi_icc_set;
+> +	provider->aggregate = emi_icc_aggregate;
+> +	provider->xlate = of_icc_xlate_onecell;
+> +	INIT_LIST_HEAD(&provider->nodes);
+> +	provider->data = data;
+> +
+> +	ret = icc_provider_add(provider);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "error adding interconnect provider\n");
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < num_nodes; i++) {
+> +		node = icc_node_create(mnodes[i]->id);
+> +		if (IS_ERR(node)) {
+> +			ret = PTR_ERR(node);
+> +			goto err;
+> +		}
+> +
+> +		node->name = mnodes[i]->name;
+> +		node->data = mnodes[i];
+> +		icc_node_add(node, provider);
+> +
+> +		dev_dbg(&pdev->dev, "registered node %s, num link: %d\n",
+> +			mnodes[i]->name, mnodes[i]->num_links);
+> +
+> +		/* populate links */
+> +		for (j = 0; j < mnodes[i]->num_links; j++)
+> +			icc_link_create(node, mnodes[i]->links[j]);
+> +
+> +		data->nodes[i] = node;
+> +	}
+> +	data->num_nodes = num_nodes;
+> +
+> +	platform_set_drvdata(pdev, provider);
+> +
+> +	return 0;
+> +err:
+> +	list_for_each_entry(node, &provider->nodes, node_list) {
+> +		icc_node_del(node);
+> +		icc_node_destroy(node->id);
+> +	}
+> +
+> +	icc_provider_del(provider);
 
->=20
-> >> +       .clkr =3D {
-> >> +               .enable_reg =3D 0x7701c,
-> >> +               .enable_mask =3D BIT(0),
-> >> +               .hw.init =3D &(struct clk_init_data){
-> >> +                       .name =3D "gcc_ufs_phy_rx_symbol_0_clk",
-> >> +                       .ops =3D &clk_branch2_ops,
-> >> +               },
-> >> +       },
-> >> +};
-> >> +
-[...]
-> >> +
-> >> +static struct clk_branch gcc_usb3_prim_phy_pipe_clk =3D {
-> >> +       .halt_reg =3D 0xf058,
-> >> +       .halt_check =3D BRANCH_HALT_SKIP,
-> >=20
-> > Why does this need halt_skip?
->=20
-> This is required as the source is external PHY, so we want to not check=20
-> for HALT.
+You can just call emi_icc_remove() instead of the above.
 
-This doesn't really answer my question. If the source is an external phy
-then it should be listed as a clock in the DT binding and the parent
-should be specified here. Unless something doesn't work because of that?
+Thanks,
+Georgi
 
->=20
-> >=20
-> >> +       .clkr =3D {
-> >> +               .enable_reg =3D 0xf058,
-> >> +               .enable_mask =3D BIT(0),
-> >> +               .hw.init =3D &(struct clk_init_data){
-> >> +                       .name =3D "gcc_usb3_prim_phy_pipe_clk",
-> >> +                       .ops =3D &clk_branch2_ops,
-> >> +               },
-> >> +       },
-> >> +};
-> >> +
-> >> +static struct clk_branch gcc_usb_phy_cfg_ahb2phy_clk =3D {
-> >> +       .halt_reg =3D 0x6a004,
-> >> +       .halt_check =3D BRANCH_HALT,
-> >> +       .hwcg_reg =3D 0x6a004,
-> >> +       .hwcg_bit =3D 1,
-> >> +       .clkr =3D {
-> >> +               .enable_reg =3D 0x6a004,
-> >> +               .enable_mask =3D BIT(0),
-> >> +               .hw.init =3D &(struct clk_init_data){
-> >> +                       .name =3D "gcc_usb_phy_cfg_ahb2phy_clk",
-> >> +                       .ops =3D &clk_branch2_ops,
-> >> +               },
-> >> +       },
-> >> +};
-> >> +
-> >> +/* Leave the clock ON for parent config_noc_clk to be kept enabled */
-> >=20
-> > There's no parent though... So I guess this means it keeps it enabled
-> > implicitly in hardware?
-> >=20
->=20
-> These are not left enabled, but want to leave them enabled for clients=20
-> on config NOC.
-
-Sure. It just doesn't make sense to create clk structures and expose
-them in the kernel when we just want to turn the bits on and leave them
-on forever. Why not just do some register writes in probe for this
-driver? Doesn't that work just as well and use less memory?
-
+> +	return ret;
+> +}
+> +
+> +static int emi_icc_remove(struct platform_device *pdev)
+> +{
+> +	struct icc_provider *provider = platform_get_drvdata(pdev);
+> +	struct icc_node *n;
+> +
+> +	list_for_each_entry(n, &provider->nodes, node_list) {
+> +		icc_node_del(n);
+> +		icc_node_destroy(n->id);
+> +	}
+> +
+> +	return icc_provider_del(provider);
+> +}
