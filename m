@@ -2,126 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 53BA3BD085
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 19:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 727C5BD0EF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 19:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407452AbfIXRXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 13:23:21 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:44226 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407055AbfIXRXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 13:23:21 -0400
-Received: by mail-wr1-f65.google.com with SMTP id i18so2829753wru.11
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 10:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zojDqhIDCVa616KN7v7PXKcR+n3TBwC2cffseILAS8Y=;
-        b=V0acmw1iJ5RBkC5LpIbyw+IvcVgmzKokEwS7utek9s8pSqnOYmD545QAUQGVet8zNs
-         6g+6V8Fds7Z2wu0dO4BufUP+UOAGIL5yk4vrfRXCNmXsuyHxPP8WbCyx5R3z53xAty0z
-         E/A+HJ2vV6CvIFmfp9xG8Cc/0FAt/2AGAr2dM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zojDqhIDCVa616KN7v7PXKcR+n3TBwC2cffseILAS8Y=;
-        b=LksrFv19V5uHwNdUiDgkSwSbgO9B6OzJGEV0iaUle/VYOwFNkOmfntXn7VpyhZRxZi
-         +nHHmegZ9mrs808hAMsDJ+mKd04NAMSobF1hX0mqJ+SUlrXKB7LQoynjkDUBGWNQP8uW
-         36pNDl3zH0aHOxYZXzQKk+X9WfRu5qCnD7iWOXc4uBvjOxOj/3H4lYGgMgQG7cD9vgXy
-         tc/kcVhqdTbj3t+vzVG28RYeV2gjQ2Ur+/YI0jxIy4NRKLJ8CCow5+0HRYZyMkUd5Kwu
-         FG5vHhMNh1HnjUXfgLeCRYiWJ05yEJykTbDqb1ixdW+WOuz5Nvh/7IZO/F2JaB/kI+/J
-         nw2A==
-X-Gm-Message-State: APjAAAUjhWxFYjD//2ZdmD0CVRFrXz/RUnwbNxj/wnP7dvGtPKVlqZjD
-        nDCywUvhk3Gu1Y21MBOWEYYJdQ==
-X-Google-Smtp-Source: APXvYqzr1eNgy01G5ZmPie1GWfVJKyFXlGRTrtigOTJblOF8z3EvSnaXA/4EHakD7hQmv1T23Zruag==
-X-Received: by 2002:a5d:6951:: with SMTP id r17mr3365604wrw.208.1569345798765;
-        Tue, 24 Sep 2019 10:23:18 -0700 (PDT)
-Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id o12sm4269440wrm.23.2019.09.24.10.23.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 24 Sep 2019 10:23:18 -0700 (PDT)
-Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
-To:     Wolfram Sang <wsa@the-dreams.de>
-Cc:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lori Hikichi <lori.hikichi@broadcom.com>,
-        Icarus Chau <icarus.chau@broadcom.com>,
-        Shivaraj Shetty <sshetty1@broadcom.com>
-References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
- <20190830125626.GC2870@ninjato>
- <3e70fa7e-de13-4edd-2e17-b7c56e91d220@broadcom.com>
- <20190831094940.GA1138@kunai>
- <540c4e2d-0dd5-5260-30b2-e1589b279d71@broadcom.com>
- <20190904213745.GG23608@ninjato>
-From:   Ray Jui <ray.jui@broadcom.com>
-Message-ID: <5ab79d0e-eb54-8fe1-1ca3-e763a17c6426@broadcom.com>
-Date:   Tue, 24 Sep 2019 10:23:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1731156AbfIXRuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 13:50:40 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36700 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726910AbfIXRuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 13:50:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=w1/8bGByujMGBxY7WOdtfIlR1B3nsSl2LOvw1SymH6M=; b=JeDXDKe2r+Y61Qg0LubTrvz4D
+        CNPychaF1OZcz0kczc5YHHZQhcWC7bzYYue+nMdkb7kVCuYzx9McCu42CUWG3mFQc7xYVnSIguDfY
+        CdiCraKXiRG8M315TiwareUbq//7AVwVL97W9zN0C5lxYn5sTIHsUHBC+JVnA8gDg7CCs=;
+Received: from [12.157.10.118] (helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1iCoxS-0002Ii-6A; Tue, 24 Sep 2019 17:50:38 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id 99FEFD02FC7; Tue, 24 Sep 2019 18:50:36 +0100 (BST)
+Date:   Tue, 24 Sep 2019 10:50:36 -0700
+From:   Mark Brown <broonie@kernel.org>
+To:     Claus Stovgaard <claus.stovgaard@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org
+Subject: Re: State of spidev from devicetree
+Message-ID: <20190924175036.GA2036@sirena.org.uk>
+References: <CAHirDJ_gtrjL_nq0T2qvn_kv9-UweL+=bc7EBLrTfNfNkVn0QA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190904213745.GG23608@ninjato>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="1MV0VfA6Y2yiVCnw"
+Content-Disposition: inline
+In-Reply-To: <CAHirDJ_gtrjL_nq0T2qvn_kv9-UweL+=bc7EBLrTfNfNkVn0QA@mail.gmail.com>
+X-Cookie: Be careful!  UGLY strikes 9 out of 10!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
 
-On 9/4/19 2:37 PM, Wolfram Sang wrote:
-> 
->> I think you are right that the controller does not seem to support
->> additional I2C features in addition to SMBUS.
->>
->> However, my concern of switching to the smbus_xfer API is:
->>
->> 1) Some customers might have used I2C_RDWR based API from i2cdev. Changing
->> from master_xfer to smbus_xfer may break the existing applications that are
->> already developed.
-> 
-> Well, given that you add new quirks in the original patch here, you are
-> kind of breaking it already. Most transfers which are not SMBus-alike
-> transfers would now be rejected. For SMBus-alike transfers which are
-> sent via I2C_RDWR (which is ugly), I have to think about it.
-> 
->> 2) The sound subsystem I2C regmap based implementation seems to be using
->> i2c_ based API instead of smbus_ based API. Does this mean this will also
->> break most of the audio codec drivers with I2C regmap API based usage?
-> 
-> I don't think so. If you check regmap_get_i2c_bus() then it checks the
-> adapter functionality and chooses the best transfer option then. I may
-> be missing something but I would wonder if the sound system does
-> something special and different.
-> 
+--1MV0VfA6Y2yiVCnw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-We did more investigation on this.
+On Tue, Sep 24, 2019 at 02:52:59PM +0200, Claus Stovgaard wrote:
 
-First of all, like you said, there's no concern on regmap based API, the 
-smbus_xfer only based approach should just work.
+> What is yours response to the idea of creating a custom-hardware binding
+> for spidev, intended to be used for programmable hardware unknown at the
+> devicetree time.
 
-Secondly, for most i2ctools like i2cget, i2cset, i2cdump, there's no 
-concern either, given that they already use I2C_SMBUS based IOCTL.
+You should use a device tree overlay to describe whatever
+hardware you've instantiated on your FPGA then load the overlay
+along with your FPGA image.
 
-However, for i2ctransfer or any customer applications that use I2C_RDWR 
-IOCTL, i2c_transfer (master_xfer) is the only supported function. And we 
-can confirm we do have at least one customer using i2ctransfer for 
-EEPROM access on their system, e.g.,  i2ctransfer 1 w2@0x50 0x00 0x00 r64.
+--1MV0VfA6Y2yiVCnw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In my opinion, it's probably better to continue to support master_xfer 
-in our driver (with obvious limitations), in order to allow i2ctransfer 
-(or any apps that use I2C RDWR) to continue to work.
+-----BEGIN PGP SIGNATURE-----
 
-What do you think?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2KV2sACgkQJNaLcl1U
+h9CfCAgAgpnOWa5r0/h0bsDj1diMrHbB1YVhM8iVST3lb2eMpq9dySrQ+Kx1gbsh
+CMpV+HUNlDP+ktOapuiKUr+NWd46ov4szfeSp+dHBrkA/yMwWVhIpAAcasC9pqoZ
+ss6h4n7FlxJa2vUHEK90CW247hITTHW64jyrQUt3pSJ6jjZYhpwY4vkcjsawSUfq
+EtnI0fW0eQXs8Pi4vsnGDm8Sb0qfgxomN1J9eusuqrodvkYJi0iAKzV5PUymEQIH
+6d4qsK9SRjskX2PoFAK3hLyKJnYz6d/BkC7oFhKiMmntDuSZSqic/Esr7r0KbnOJ
+XGYH9RzoXqUk4iXf4Ky3vIpZWHTfUA==
+=dyAF
+-----END PGP SIGNATURE-----
 
-Regards,
-
-Ray
+--1MV0VfA6Y2yiVCnw--
