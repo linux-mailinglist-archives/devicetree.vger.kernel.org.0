@@ -2,104 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A39BCC38
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 18:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500D2BCC49
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 18:20:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439211AbfIXQPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 12:15:21 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:55758 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388230AbfIXQPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 12:15:06 -0400
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x8OG8Ste103654;
-        Tue, 24 Sep 2019 12:14:45 -0400
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2v7n2vmmaw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Sep 2019 12:14:45 -0400
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x8OGAX24009034;
-        Tue, 24 Sep 2019 16:14:44 GMT
-Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
-        by ppma01wdc.us.ibm.com with ESMTP id 2v5bg6x0sk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Sep 2019 16:14:44 +0000
-Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
-        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x8OGEgKu44892472
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 24 Sep 2019 16:14:42 GMT
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id A0A86BE061;
-        Tue, 24 Sep 2019 16:14:42 +0000 (GMT)
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id EFC35BE04F;
-        Tue, 24 Sep 2019 16:14:41 +0000 (GMT)
-Received: from talon7.ibm.com (unknown [9.41.179.222])
-        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Tue, 24 Sep 2019 16:14:41 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        andrew@aj.id.au, joel@jms.id.au, mark.rutland@arm.com,
-        robh+dt@kernel.org, maz@kernel.org, jason@lakedaemon.net,
-        tglx@linutronix.de, Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH 4/4] ARM: dts: aspeed: ast2600: Add SCU interrupt controllers
-Date:   Tue, 24 Sep 2019 11:14:32 -0500
-Message-Id: <1569341672-27632-5-git-send-email-eajames@linux.ibm.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1569341672-27632-1-git-send-email-eajames@linux.ibm.com>
-References: <1569341672-27632-1-git-send-email-eajames@linux.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-24_07:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=664 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1908290000 definitions=main-1909240147
+        id S1727040AbfIXQUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 12:20:39 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:45351 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725963AbfIXQUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 12:20:39 -0400
+Received: by mail-ed1-f66.google.com with SMTP id h33so2358876edh.12;
+        Tue, 24 Sep 2019 09:20:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=jGaYIvx5eMd2C8W/Ntjb7BFiKQ1bZogo0tZfXc3/zIc=;
+        b=ngYhG1/r7NA2i5Q2IKHFn1PWl4b7ZDF2BiFZbaJGQB6cTzVzvh5BNmQKxxrKrj8naF
+         cVwVen+dZXMaQfupoRu3+ffJ4UJ+HEo+ZfQoijKa3jh6hS9eydyI+gNiDBh5xDo/iB/k
+         1quZQnW0va2qcmqMBjsABDHprwEeTgGhly9EiBsh8gWvjpAXkjzmojioarPBSR7QoQF6
+         A5Dp1TGM7GggNWD9CuDIoSS658uU+4wQAFJQ6iTOgdrsa0okbUVEnyjSfzi1+cz2HTyh
+         sD7BYxLLY7jL3zfKAs1r8GP8istN1ATWzJcFz6Lwp9PVtdZ4FYKXJwep4UrLfOJkgUfr
+         +x8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=jGaYIvx5eMd2C8W/Ntjb7BFiKQ1bZogo0tZfXc3/zIc=;
+        b=kEkvMfKhpt0WHx7/tC4+k6IZKs/f0hPGyV+mOl8TFxH+RVCpElgE0L3pA/jEZITZ7Z
+         TyfnnkSqE2ycf/hyXk/Hb2Ppg2DdYKpZeec7ESgXuZt56RHR+tY4nilgoCEfCzEeYAy8
+         CyDQRyfwuBE2EJ3KyT07MyCbzjd67tzZOkqnF52yaEaeTp33GTmN/fPf2MseOrZeTjiP
+         lef0g1DBIDOr19298t5CQ3ebEEHtMNK0AZW5LiCKXDuG3xGMWgeicHdxVOVny61r82WK
+         MD1S0659KF1b7LMG9bq7zO1XVAyEwYzEdjqMJVMm1yPhFX8OHS7s40Hmnp0d2tVGeSQM
+         /eSg==
+X-Gm-Message-State: APjAAAV13o7bkdkvnYuR7PmkwKseneNPyqJzAfZw+nJl1PHa83R2caGA
+        BT0LqwPEmN2H990pjbHREQg=
+X-Google-Smtp-Source: APXvYqy1z09jDJqczIuE4DqBONcKoRnAnyHD+uSGkuKv3lqECLD/pZ/WdZJV5iYePeFfBfQWUbI1vw==
+X-Received: by 2002:a17:906:d8c8:: with SMTP id re8mr3325112ejb.130.1569342035905;
+        Tue, 24 Sep 2019 09:20:35 -0700 (PDT)
+Received: from localhost (ip1f113d5e.dynamic.kabel-deutschland.de. [31.17.61.94])
+        by smtp.gmail.com with ESMTPSA id g19sm253301eje.0.2019.09.24.09.20.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 24 Sep 2019 09:20:34 -0700 (PDT)
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     oliver.graute@gmail.com, m.felsch@pengutronix.de,
+        narmstrong@baylibre.com, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCHv6 0/2] Variscite DART-6UL SoM support
+Date:   Tue, 24 Sep 2019 18:20:19 +0200
+Message-Id: <1569342022-15901-1-git-send-email-oliver.graute@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the interrupt controllers provided by the SCU.
+Need feedback to the following patches which adds support for a DART-6UL Board
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Need feedback if the division between customboard and SoM is done right
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index 3a1422f..d89f1e6 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -159,6 +159,24 @@
- 					compatible = "aspeed,ast2600-smpmem";
- 					reg = <0x180 0x40>;
- 				};
-+
-+				scu_ic0: interrupt-controller@0 {
-+					#interrupt-cells = <1>;
-+					compatible = "aspeed,ast2600-scu-ic0";
-+					reg = <0x560 0x4>;
-+					interrupt-parent = <&gic>;
-+					interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+					interrupt-controller;
-+				};
-+
-+				scu_ic1: interrupt-controller@1 {
-+					#interrupt-cells = <1>;
-+					compatible = "aspeed,ast2600-scu-ic1";
-+					reg = <0x570 0x4>;
-+					interrupt-parent = <&gic>;
-+					interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-+					interrupt-controller;
-+				};
- 			};
- 
- 			rng: hwrng@1e6e2524 {
+Need some feedback why ethernet RX is not working the right way. RX is deaf.
+
+Need feedback howto document propertys and compatible the right way
+
+
+Product Page: https://www.variscite.com/product/evaluation-kits/dart-6ul-kits
+
+Oliver Graute (2):
+  ARM: dts: imx6ul: Add Variscite DART-6UL SoM support
+  ARM: dts: Add support for i.MX6 UltraLite DART Variscite Customboard
+
+ arch/arm/boot/dts/Makefile                         |   1 +
+ .../boot/dts/imx6ul-imx6ull-var-dart-common.dtsi   | 445 +++++++++++++++++++++
+ arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts    | 196 +++++++++
+ 3 files changed, 642 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6ul-imx6ull-var-dart-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+
 -- 
-1.8.3.1
+2.7.4
 
