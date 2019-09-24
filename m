@@ -2,131 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88717BD2FD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 21:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 808BFBD471
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 23:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727862AbfIXTrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 15:47:08 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:36087 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726251AbfIXTrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 15:47:08 -0400
-Received: by mail-ot1-f68.google.com with SMTP id 67so2612064oto.3;
-        Tue, 24 Sep 2019 12:47:08 -0700 (PDT)
+        id S1727890AbfIXVof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 17:44:35 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:36461 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbfIXVof (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 17:44:35 -0400
+Received: by mail-pg1-f193.google.com with SMTP id t14so1578425pgs.3;
+        Tue, 24 Sep 2019 14:44:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8TaXClZL44x6R6m23BGIIOYUw8sFdA7SimmvF1Bs6II=;
+        b=PiWxYZbA9Phtp8IDK7idRhXLPFpVl8Nivv0bnnYLe3e3GtA0prmh/cyb4fHtq4Gim9
+         aqlwpu5kw/gwGvZgr1PevcKG1YZRm4NRav9JQY8t4jD9ouA1/i6jCrKJGPq1MnRdm8Za
+         zcVcS52Iw7UOovvfOTsRw0smUUa/8C1pIbP5pRVkoBa2JcIuY3/NaibW6X98J/DrVnPP
+         u4jagDKOIj26zhiMKPopz6CkiPG+busIukqq/hxVnslcJhWs4Uqbf5clU765/Ug97tzP
+         vOBIcRr6706g6selmfD9KRihs4X4HljViLD/zguw80jjUXENnR6hn1v0FEDtWG+aN/C7
+         T+Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZHPQMpVO9op7Vu0vGkUhBj5SViO1WuLEbRF6XVcQOi4=;
-        b=XMCjfiHw9rCPPMVdqspV9asYROMEz+icTyxy8n4ElaKWz/n2RJFsGVewttWItYJF24
-         WtIbmNR+hGjziFoJspGcp+IocxW6MrH65ebwL3vxhgJnDvJ1jCILD0dzZjI96j5sFl9s
-         L3c469l9FK8e7JKm68lA0ZD9wGKIoizT4/PakDKQKRd60fPBSoC0LU/7a+1ZLoo3ISs2
-         hw85pijJnypNqR3hhiqlUP3sQ4yYhOCjV09X4ccHWIfoTNbC2Cx/YfwWjvQBORSVky/R
-         trBVwVk7hcPBdGqse6FM3QzGS36+mJdL4FguRbkaR/qJ7qcsJZmNqJVSt1QcEV1Ezp0G
-         8sAw==
-X-Gm-Message-State: APjAAAUQe8y2Nd9eZHioBdgmjsjliuG7rB+dS7roBdmIBixjENox+NGk
-        SvSFy9Mp6ychIXlwut3rHMHNQ+o=
-X-Google-Smtp-Source: APXvYqzq/V8n0w/j43BKO8sETLatIuXKrfBSN9UzNEGxdt2zAohbFjRF2fosDLt5LIb+wo7rpBbC2w==
-X-Received: by 2002:a9d:6405:: with SMTP id h5mr839756otl.115.1569354427442;
-        Tue, 24 Sep 2019 12:47:07 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id e18sm868660oib.57.2019.09.24.12.47.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2019 12:47:06 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH] dt-bindings: riscv: Fix CPU schema errors
-Date:   Tue, 24 Sep 2019 14:47:05 -0500
-Message-Id: <20190924194705.32240-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8TaXClZL44x6R6m23BGIIOYUw8sFdA7SimmvF1Bs6II=;
+        b=m6hwrDFZQljKqYn9xb2lspH47tRt6ugwVT9tb1PdP7hK2D/PiRmTqapFZjFRuLYmnC
+         cHSHvN+FEhDg868zt8T14N5ZWdy6V5d0b9ORduEs59VQyMulbHqO8W1tUdmtukTzPd28
+         z+CUsR9o0yjbLwA84Ko2pTv1056rzYR/ot5ZBxKGunskf26C4SSrdK2atPRCGepWF6ua
+         +jFW2XsnwnZd1R0HYbQ6hdgeXPEl5CjCn/6L2iWF+OotjdEb53urOps2YnQZwc70udQm
+         HwTfCVRI97rVj3qF6aq8mlRxmFdEffKCj3bkQSViVbBha9YC2V2UTpWLnalyp6sTrS/K
+         G7sA==
+X-Gm-Message-State: APjAAAV47cC4cMXHhoT0f+osmGVuHsQliuW+97pMN21JGUqcjeLgkKt2
+        JMiOZ7+dv92O3s4kIVC8SgQ=
+X-Google-Smtp-Source: APXvYqx85giUVZhiQHsCv//r2YbURAPCdsrA+9rcufqztCRKD6LsbMJVknHc1eyohUWvf/YPUk/5ZA==
+X-Received: by 2002:a65:64d5:: with SMTP id t21mr5237437pgv.43.1569361472982;
+        Tue, 24 Sep 2019 14:44:32 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id b22sm4651877pfo.85.2019.09.24.14.44.31
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 24 Sep 2019 14:44:32 -0700 (PDT)
+Date:   Tue, 24 Sep 2019 14:43:44 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, lars@metafoo.de
+Subject: Re: [PATCH V4 4/4] ASoC: fsl_asrc: Fix error with S24_3LE format
+ bitstream in i.MX8
+Message-ID: <20190924214343.GA964@Asurada-Nvidia.nvidia.com>
+References: <cover.1569296075.git.shengjiu.wang@nxp.com>
+ <b93ce3dced55bbad8e0b4b7e700cf394b1ae1551.1569296075.git.shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b93ce3dced55bbad8e0b4b7e700cf394b1ae1551.1569296075.git.shengjiu.wang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the errors in the RiscV CPU DT schema:
+On Tue, Sep 24, 2019 at 06:52:35PM +0800, Shengjiu Wang wrote:
+> There is error "aplay: pcm_write:2023: write error: Input/output error"
+> on i.MX8QM/i.MX8QXP platform for S24_3LE format.
+> 
+> In i.MX8QM/i.MX8QXP, the DMA is EDMA, which don't support 24bit
+> sample, but we didn't add any constraint, that cause issues.
+> 
+> So we need to query the caps of dma, then update the hw parameters
+> according to the caps.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  sound/soc/fsl/fsl_asrc.c     |  4 +--
+>  sound/soc/fsl/fsl_asrc.h     |  3 ++
+>  sound/soc/fsl/fsl_asrc_dma.c | 59 +++++++++++++++++++++++++++++++-----
+>  3 files changed, 56 insertions(+), 10 deletions(-)
+> 
+> @@ -270,12 +268,17 @@ static int fsl_asrc_dma_hw_free(struct snd_pcm_substream *substream)
+>  
+>  static int fsl_asrc_dma_startup(struct snd_pcm_substream *substream)
+>  {
+> +	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
+>  	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+>  	struct snd_pcm_runtime *runtime = substream->runtime;
+>  	struct snd_soc_component *component = snd_soc_rtdcom_lookup(rtd, DRV_NAME);
+> +	struct snd_dmaengine_dai_dma_data *dma_data;
+>  	struct device *dev = component->dev;
+>  	struct fsl_asrc *asrc_priv = dev_get_drvdata(dev);
+>  	struct fsl_asrc_pair *pair;
+> +	struct dma_chan *tmp_chan = NULL;
+> +	u8 dir = tx ? OUT : IN;
+> +	int ret = 0;
+>  
+>  	pair = kzalloc(sizeof(struct fsl_asrc_pair), GFP_KERNEL);
 
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+Sorry, I didn't catch it previously. We would need to release
+this memory also for all error-out paths, as the code doesn't
+have any error-out routine, prior to applying this change.
 
-Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
-Cc: Paul Walmsley <paul.walmsley@sifive.com>
-Cc: Palmer Dabbelt <palmer@sifive.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-riscv@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/riscv/cpus.yaml       | 25 ++++++++++---------
- 1 file changed, 13 insertions(+), 12 deletions(-)
+>  	if (!pair)
+> @@ -285,11 +288,51 @@ static int fsl_asrc_dma_startup(struct snd_pcm_substream *substream)
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index c899111aa5e3..e7321688f7b9 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -12,15 +12,17 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - sifive,rocket0
--          - sifive,e5
--          - sifive,e51
--          - sifive,u54-mc
--          - sifive,u54
--          - sifive,u5
--      - const: riscv
-+    oneOf:
-+      - items:
-+          - enum:
-+              - sifive,rocket0
-+              - sifive,e5
-+              - sifive,e51
-+              - sifive,u54-mc
-+              - sifive,u54
-+              - sifive,u5
-+          - const: riscv
-+      - const: riscv    # Simulator only
-     description:
-       Identifies that the hart uses the RISC-V instruction set
-       and identifies the type of the hart.
-@@ -51,8 +53,6 @@ properties:
-       https://riscv.org/specifications/
- 
-   timebase-frequency:
--    type: integer
--    minimum: 1
-     description:
-       Specifies the clock frequency of the system timer in Hz.
-       This value is common to all harts on a single system image.
-@@ -86,9 +86,9 @@ examples:
-     cpus {
-         #address-cells = <1>;
-         #size-cells = <0>;
--        timebase-frequency = <1000000>;
-         cpu@0 {
-                 clock-frequency = <0>;
-+                timebase-frequency = <1000000>;
-                 compatible = "sifive,rocket0", "riscv";
-                 device_type = "cpu";
-                 i-cache-block-size = <64>;
-@@ -104,6 +104,7 @@ examples:
-         };
-         cpu@1 {
-                 clock-frequency = <0>;
-+                timebase-frequency = <1000000>;
-                 compatible = "sifive,rocket0", "riscv";
-                 d-cache-block-size = <64>;
-                 d-cache-sets = <64>;
--- 
-2.20.1
+> +	/* Request a dummy pair, which will be released later.
+> +	 * Request pair function needs channel num as input, for this
+> +	 * dummy pair, we just request "1" channel temporary.
+> +	 */
 
+"temporary" => "temporarily"
+
+> +	ret = fsl_asrc_request_pair(1, pair);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to request asrc pair\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Request a dummy dma channel, which will be release later. */
+
+"release" => "released"
