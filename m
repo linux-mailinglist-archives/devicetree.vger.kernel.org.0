@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3C1BD239
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 20:58:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67622BD243
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 21:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406696AbfIXS6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 14:58:06 -0400
-Received: from sauhun.de ([88.99.104.3]:44258 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404799AbfIXS6G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 14:58:06 -0400
-Received: from localhost (unknown [90.85.113.197])
-        by pokefinder.org (Postfix) with ESMTPSA id 4C5152C039D;
-        Tue, 24 Sep 2019 20:58:03 +0200 (CEST)
-Date:   Tue, 24 Sep 2019 20:57:57 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Ray Jui <ray.jui@broadcom.com>
-Cc:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lori Hikichi <lori.hikichi@broadcom.com>,
-        Icarus Chau <icarus.chau@broadcom.com>,
-        Shivaraj Shetty <sshetty1@broadcom.com>
-Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
-Message-ID: <20190924185757.GA1538@kunai>
-References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
- <20190830125626.GC2870@ninjato>
- <3e70fa7e-de13-4edd-2e17-b7c56e91d220@broadcom.com>
- <20190831094940.GA1138@kunai>
- <540c4e2d-0dd5-5260-30b2-e1589b279d71@broadcom.com>
- <20190904213745.GG23608@ninjato>
- <5ab79d0e-eb54-8fe1-1ca3-e763a17c6426@broadcom.com>
+        id S1730821AbfIXTA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 15:00:56 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:38670 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726947AbfIXTA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 15:00:56 -0400
+Received: by mail-io1-f68.google.com with SMTP id u8so7117125iom.5;
+        Tue, 24 Sep 2019 12:00:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/poXcNaPImsCkHOsb+IHz5eVbMSJsczlFsct2m7oOgc=;
+        b=sHJ1UGr+A5LvATOEjqybLlMDMbqFel8di7dayKOPx29Eq4zK27NF6UK61rwXBgsVS8
+         ExvK/uGFmCIem6mJf6kDaCQHrK9znWnzSrGVx7ZFlR8FaTy5PNI7OkBRqMErhI7G6ylc
+         lRzUNSWihhvzFiExeDyjpZpO0NiW9VSiLSvJoDTyeuTlrifxOkTqM8jr1JQ188OE8+cT
+         DrzKZy08l9YqSJke2WvzO4iUxr+6ObioHkazKnkgqjMV08uGMSsOAfAc+sOROOHnK8Ze
+         13vCc6G82L4dBo9XVWvaV1WMJrL0FLVmor3AFyXIB9OkMqcwcebvN6Wx1Y/he54s8kQC
+         DC+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/poXcNaPImsCkHOsb+IHz5eVbMSJsczlFsct2m7oOgc=;
+        b=nb4XFH41V025S11tGnuMmfPLHltLG67ZL0Th6oXR2JWrvCyzIah+ozud5CVK+jWfFX
+         yzpFgMqsuOa50WBeutI07ZFFDgTP6q5zCEFuJu9dW2+DBb8rAUbR2Pt5hg0J4ae+dYY1
+         moykb9gKw9bv2kSjFQKl2ZrOKmmRZKpCUjqO9B/49GQLJZ5LXRADakoDl4K3/06NYC0G
+         YwoWwMiYfCIWHVvhyYrYLOSKaCUvsbbhCpXysl2iILaJMxHSjjXsRav4VeGIR1otYg/M
+         7trS9AqWN0UxZbEspsBHjGm4bctWorSSaMsNRLdF/TeG3ky5BM4suww4o2xHuRK1tTqf
+         KMgw==
+X-Gm-Message-State: APjAAAV6oL8vCn2XN1UPTpOBYcsqBocVZlUQCRzv79bf5FtN1acKwxvT
+        oR9V+x28lFiahLNY6SiBUsK1hp5PKSw4LYubFyg=
+X-Google-Smtp-Source: APXvYqy/VoYXHn8FHc4GUb/SVvX9H/ShxuZ2vA5n7J/xs1YmNhW/qWGzu14sSS7Rn1ed3AM95fvhp3hDB5tF927bIYs=
+X-Received: by 2002:a05:6638:3a5:: with SMTP id z5mr307586jap.95.1569351654867;
+ Tue, 24 Sep 2019 12:00:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DocE+STaALJfprDB"
-Content-Disposition: inline
-In-Reply-To: <5ab79d0e-eb54-8fe1-1ca3-e763a17c6426@broadcom.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190923134449.22326-1-aford173@gmail.com> <20190923134449.22326-2-aford173@gmail.com>
+ <CAL_JsqJB54aTWNxh+FsEOBRFEWXBi6WZE3pzqo+LJWM781v-PQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJB54aTWNxh+FsEOBRFEWXBi6WZE3pzqo+LJWM781v-PQ@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 24 Sep 2019 14:00:43 -0500
+Message-ID: <CAHCN7xJy4=gdSz5Thhy_be-NNFhf4FaJ=iv8=F3sXbPwaQu1xA@mail.gmail.com>
+Subject: Re: [PATCH V2 2/3] dt-bindings: Add Logic PD Type 28 display panel
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 24, 2019 at 1:56 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Sep 23, 2019 at 8:45 AM Adam Ford <aford173@gmail.com> wrote:
+> >
+> > This patch adds documentation of device tree bindings for the WVGA panel
+> > Logic PD Type 28 display.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> > V2:  Use YAML instead of TXT for binding
+>
+> Fails to build with 'make dt_binding_check':
+>
+> https://patchwork.ozlabs.org/patch/1166057/
+>
+> Looks like a tab character used perhaps.
 
---DocE+STaALJfprDB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I am not familiar with yaml.  I thought I copied an existing file but
+apparently it didn't work.  Is there a recommended editor that know
+this markup language?  Better yet, is there a script I can run to
+convert a text file to the yaml?
 
-
-> In my opinion, it's probably better to continue to support master_xfer in
-> our driver (with obvious limitations), in order to allow i2ctransfer (or =
-any
-> apps that use I2C RDWR) to continue to work.
->=20
-> What do you think?
-
-Yes, don't break it for users. We should have paid more attention to it
-in the beginning. But, while not ideal, it is not such a big deal to
-keep it like this.
-
-Thanks for your investigations!
-
-
---DocE+STaALJfprDB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl2KZzEACgkQFA3kzBSg
-Kbam+A//dpJL9KQfjH0vct83wG2I23jh0ofw2vQQ0Oz4QCKWS+Vz9dex7nvEiecY
-Pua7zt0evVz6Du44tpAJGpsydjgNJBdEWjZp4rxksVNpyc5SOkF186eEdjjN633L
-LqCpl6TgqyZhVXCs9H1y9WGy47i9xEH4B+gRG3SwEx19Wc47pUnURQrWA/7HGnjF
-7tzEIdZTJKLBU0BzGQqXJ2bo5mf1Vt2eT112G3Uj+yh5/TifFnjGKqv4rGG4uE8W
-pXkOg94Jb0ywSl2YWV8axsAIyNVNzW74lxkvsRoPuZ/qcCdw9n+U8YoXeOKJuJEc
-6BCH4UDC5mf/m88q70UyZwryz2xZtkvS7Df7JU92dbWRgHG5SNAW6cHo3FDKO6km
-uWWqMAidEhBw3t8SXbzhQkjyuxTEGNue/LcX+SYhWEXqSiuNQ4Kudr/imW4B6NAC
-X1G+fUxdyQlEgju1g28Bfh6cSH7DZ0v20k/cy7Pdqa4yPp3LhgUnRkfLdNH1qo2R
-judxCqo824+GiMU5vAQYkA8+ZI5WFPqX8KCEmhqh8qCH++NAnqxmpwmVS4FmvN9X
-5bGDRe71F8Z5UTXKTc+IajEc6Nu0+XUN68rNAlpM/NLD2Q0kRJVHh+bFoWrkwNdf
-ODfzxF5EI/Uz/G4N6pytdB2SFMdTCvSieG/kqk/K1zTVZUWplw8=
-=5VKZ
------END PGP SIGNATURE-----
-
---DocE+STaALJfprDB--
+adam
+>
+> Rob
