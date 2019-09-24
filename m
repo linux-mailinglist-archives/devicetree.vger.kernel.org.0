@@ -2,87 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E04BD27E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 21:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88717BD2FD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 21:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730406AbfIXTSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 15:18:24 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:43213 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730309AbfIXTSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 15:18:23 -0400
-Received: by mail-pg1-f193.google.com with SMTP id v27so1816722pgk.10
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 12:18:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=a7+izJYYosgd7zHjanZYValds7ow3BOFmZCRlJjVnPA=;
-        b=iN0dsE6qKEf18ktGqXha+auVSqp1K9xsRtMPakuGHFG5GXMgMn/FjaEvv30rbYUkvc
-         KkvVYNIU1IoK1teGbHrMvl62L/bi5bZRkDyCGCT9Tq4N40wmOmir9d15H85r75snX3ZQ
-         6ZoK8xU1dvXNRxgB5Wc9prpKH4IMjmwHXXdp226FIHRAHWhlZX2mGv+eypuYusoBhyoP
-         +fWKmlso70BGBmLOaR5glrwv+xAWjHOHGQq9zREpORZRVIwGAo7L/AhoB/0gG8mfE9Sl
-         rvIikkb0lAcHo+OGd0mgDOgVXdlAW77/eRG0CjgO7Ius8pMvuM60aupsVZ1rEgPI57oL
-         LIJQ==
+        id S1727862AbfIXTrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 15:47:08 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:36087 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726251AbfIXTrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 15:47:08 -0400
+Received: by mail-ot1-f68.google.com with SMTP id 67so2612064oto.3;
+        Tue, 24 Sep 2019 12:47:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=a7+izJYYosgd7zHjanZYValds7ow3BOFmZCRlJjVnPA=;
-        b=suvxsDVJIoM2F8o/Q45y01UCUjFYsE6PeEbL9aIJjcM3ZLKBUfG0dj2aAFGPDoSAz3
-         +IgOZZn9ri+2CMa4gUJuQwu8O/diEHPhRdXA+sLm3sLtQe3EyuSNI9c96g6k96IvxNtk
-         lajukP4AlfFHK18/pu0CqrcEm9fYarF7YnlNaSO9uKH6ARcibAYOg5Y4702hAKMa7JJY
-         yX37JfqPZNiCKjZI4Ppy5tIgouruD4IgtbvftCV2NxshLttza+swm+xutDuRa9DPRxUv
-         CaWjPZ241LeZLTPG1fJVhyWBFdU1YDdtFDyrqTwJAw89kaq0zQfLuMXn0ZdwaGMf75ap
-         acHA==
-X-Gm-Message-State: APjAAAXKPeT7GV/ZZvtDI08TL8pWDjBa6UenEFfOSzqbuJGRC2kYDBG0
-        nDTQ0Eq6YJctyJjTC7XumLBThg==
-X-Google-Smtp-Source: APXvYqwUtX0FY4xf/0UwDn+yg9UjZNFwrHooHBidGhmXaRY+URNGLcdC2hpL39Xw/wCmWCAaTsx6Tg==
-X-Received: by 2002:a62:1cf:: with SMTP id 198mr5251106pfb.31.1569352703005;
-        Tue, 24 Sep 2019 12:18:23 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id v43sm4926886pjb.1.2019.09.24.12.18.22
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 24 Sep 2019 12:18:22 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Oleg Ivanov <balbes-150@yandex.ru>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH v5 0/3] arm64: meson-g12b: Add support for the Ugoos AM6
-In-Reply-To: <1569248036-6729-1-git-send-email-christianshewitt@gmail.com>
-References: <1569248036-6729-1-git-send-email-christianshewitt@gmail.com>
-Date:   Tue, 24 Sep 2019 12:18:21 -0700
-Message-ID: <7hpnjp5wqq.fsf@baylibre.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZHPQMpVO9op7Vu0vGkUhBj5SViO1WuLEbRF6XVcQOi4=;
+        b=XMCjfiHw9rCPPMVdqspV9asYROMEz+icTyxy8n4ElaKWz/n2RJFsGVewttWItYJF24
+         WtIbmNR+hGjziFoJspGcp+IocxW6MrH65ebwL3vxhgJnDvJ1jCILD0dzZjI96j5sFl9s
+         L3c469l9FK8e7JKm68lA0ZD9wGKIoizT4/PakDKQKRd60fPBSoC0LU/7a+1ZLoo3ISs2
+         hw85pijJnypNqR3hhiqlUP3sQ4yYhOCjV09X4ccHWIfoTNbC2Cx/YfwWjvQBORSVky/R
+         trBVwVk7hcPBdGqse6FM3QzGS36+mJdL4FguRbkaR/qJ7qcsJZmNqJVSt1QcEV1Ezp0G
+         8sAw==
+X-Gm-Message-State: APjAAAUQe8y2Nd9eZHioBdgmjsjliuG7rB+dS7roBdmIBixjENox+NGk
+        SvSFy9Mp6ychIXlwut3rHMHNQ+o=
+X-Google-Smtp-Source: APXvYqzq/V8n0w/j43BKO8sETLatIuXKrfBSN9UzNEGxdt2zAohbFjRF2fosDLt5LIb+wo7rpBbC2w==
+X-Received: by 2002:a9d:6405:: with SMTP id h5mr839756otl.115.1569354427442;
+        Tue, 24 Sep 2019 12:47:07 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id e18sm868660oib.57.2019.09.24.12.47.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Sep 2019 12:47:06 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH] dt-bindings: riscv: Fix CPU schema errors
+Date:   Tue, 24 Sep 2019 14:47:05 -0500
+Message-Id: <20190924194705.32240-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
+Fix the errors in the RiscV CPU DT schema:
 
-> This patchset adds support for the Ugoos AM6, an Android STB based on
-> the Amlogic W400 reference design with the S922X chipset.
->
-> v2: correction of minor nits
->
-> v3: address regulator and GPIO corrections from Neil Armstrong (using
-> schematic excerpts from Ugoos) and related v2 comments from Martin
-> Blumenstingle. Add acks on patches 1/2 from Rob Herring.
->
-> v4: address nits from Martin except for the vcc_3v3 node as it's not
-> known how to handle the vcc_3v3 regulator managed by ATF firmware, so
-> it remains untouched/undeclared like other g12a/g12b/sm1 boards.
->
-> v5: corrected some tabs v spaces issues introduced in v4.
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
 
-Queued for v5.5,
+Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
+Cc: Paul Walmsley <paul.walmsley@sifive.com>
+Cc: Palmer Dabbelt <palmer@sifive.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-riscv@lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/riscv/cpus.yaml       | 25 ++++++++++---------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
 
-Thanks,
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index c899111aa5e3..e7321688f7b9 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -12,15 +12,17 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - sifive,rocket0
+-          - sifive,e5
+-          - sifive,e51
+-          - sifive,u54-mc
+-          - sifive,u54
+-          - sifive,u5
+-      - const: riscv
++    oneOf:
++      - items:
++          - enum:
++              - sifive,rocket0
++              - sifive,e5
++              - sifive,e51
++              - sifive,u54-mc
++              - sifive,u54
++              - sifive,u5
++          - const: riscv
++      - const: riscv    # Simulator only
+     description:
+       Identifies that the hart uses the RISC-V instruction set
+       and identifies the type of the hart.
+@@ -51,8 +53,6 @@ properties:
+       https://riscv.org/specifications/
+ 
+   timebase-frequency:
+-    type: integer
+-    minimum: 1
+     description:
+       Specifies the clock frequency of the system timer in Hz.
+       This value is common to all harts on a single system image.
+@@ -86,9 +86,9 @@ examples:
+     cpus {
+         #address-cells = <1>;
+         #size-cells = <0>;
+-        timebase-frequency = <1000000>;
+         cpu@0 {
+                 clock-frequency = <0>;
++                timebase-frequency = <1000000>;
+                 compatible = "sifive,rocket0", "riscv";
+                 device_type = "cpu";
+                 i-cache-block-size = <64>;
+@@ -104,6 +104,7 @@ examples:
+         };
+         cpu@1 {
+                 clock-frequency = <0>;
++                timebase-frequency = <1000000>;
+                 compatible = "sifive,rocket0", "riscv";
+                 d-cache-block-size = <64>;
+                 d-cache-sets = <64>;
+-- 
+2.20.1
 
-Kevin
