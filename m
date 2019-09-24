@@ -2,207 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C55BC5E9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 12:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9130EBC5F9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 12:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440769AbfIXKyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 06:54:00 -0400
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.69]:51821 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2438798AbfIXKyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 06:54:00 -0400
-Received: from [46.226.52.194] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-5.bemta.az-b.eu-west-1.aws.symcld.net id 38/A8-04297-4C5F98D5; Tue, 24 Sep 2019 10:53:56 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA1WSf0wbZRjH+/bu2oO0+lKKvDawuermMmlpwci
-  5TUOiLtVsZhkmZixkO8ZJq6Vtem1WxBi2URdghqlbM37Z4gpqWaIUWXCwdKkdgaosLuHHJjoY
-  LG5tMwTqQBjMXlum/vd5nu/3ee77Xh4Sk/wikJGMzcKYDbReLkjFtbmpBYof/qotUf3Ys5GKt
-  gZxyhkYJijPme9x6vSDL/lUt/MBoP68OIJR9ksBYaFQMztuF2q8nlqBZmK0X6BpWFVpFrwb9h
-  LFhM5QarQdIrQnm4Zw05zU5reHiGoQgHUglQSwHUMtE+ewOpASKwZwFPZaE0I3QCsf/y3gChw
-  OYmjKHeVzhQQ6+Mg36xJyIxI4A9CJqQKOBZBCnw1Oxiek0MtHl4+vEVyBwU6ARk73xSfS4avo
-  wiUPqANkzPUaurd6mGtLYR4aW+oScIzDzSjiWiI4FkManVs8G7dL4Ltocr6Ka6fAHajRHSASs
-  bNR9Ghn/AkYzEQ3Zpx8jhGEyN1/FUtwBro7vZb0M2jo2DhI9HPQz2MzSZajz1sDSc5G15z1Sd
-  6DIvMN8XcheBugprab/PXh7wacSROF3PV2nMuJ4DNozV+ZQBO6FaQSji2o/34AT3AW6rqySJw
-  CuU3/SZ3gHOTqmxck+DnU0RbGmuI/Ig0NNc7gLoB7AFVq1pVrLRW0Tq9Qq1QKtTpPoX6RUqip
-  AiX9vqJUyVgVRxjWolAr6SOskq2sOKwvUxoYixfErqvMNNDXC5YbI0o/eJLkyzPEDwO1JZLHS
-  o1llVqa1R40W/UM6wdZJClHYjIa09LMTDlje0enj93ouoxIkVwq3hW7UomYNdEVrK48IQWBgj
-  x1t/ULTIIbjAZGlimu4XZAzqS1Gh6tWL/0ayBbli4GPB5PIjIx5gqd5f96CGSSQJ4u3s1tEek
-  MlkdfCsVC8GMhnn4lHsJC/yvJqvlFJblvflBE+VJu47svhwujlg/F+6fTWGXnWyZ+7/bfV290
-  GZXdeY7AhalvR359ilg4fyyQOciePHFnxeGuWhRe4eUX3lmYbuc5vqGDK7af9tmj1uLR18Mh1
-  1HqQPGmnJbC3p3ANzmxde+hWfuZ/Iai8807i7bfmnuoag72XJ3cXK8aF32SElU9HvI4WrBG8r
-  evhx3Usm//tg336y+q4bMH72nDG2u0o9GayPNS/xuf7jhrtI5df3tpj2eWYFGBr68KW+mxzbF
-  dLzd3//HSzaCFfg/vqDI/0ZExuOWF6n1YRGSpdflVGXmySuWw/CvXgV3L7R9llbR1Hg/kbr0+
-  ng/lOKul1dswM0v/A0Pzv15kBAAA
-X-Env-Sender: Adam.Thomson.Opensource@diasemi.com
-X-Msg-Ref: server-24.tower-282.messagelabs.com!1569322435!14046!1
-X-Originating-IP: [104.47.10.55]
-X-SYMC-ESS-Client-Auth: mailfrom-relay-check=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.43.12; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 26750 invoked from network); 24 Sep 2019 10:53:55 -0000
-Received: from mail-db5eur03lp2055.outbound.protection.outlook.com (HELO EUR03-DB5-obe.outbound.protection.outlook.com) (104.47.10.55)
-  by server-24.tower-282.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP; 24 Sep 2019 10:53:55 -0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jHTDQKOBHkdId4cEh7gfst/sec8kZh1+s6Cuqo+iAYBgY/KWvS9NiuO+p5L/Zi9uohzjTDN3x9I4o9C7oNChTIAas2w0vS00qfSCJg0JM/s2BM4ttSdJ66uQ+AvZjzRvNlKBOj45T7vzpMld+Hgzc/C7rBkQvfUwW6mpL3WsQ8UrTb+wbWYrElwLWveFpaCSEfVuEbzppx3yze8t5wLyuCmVJifz60BRgU7aNPzxXFivbRCs5N8f31oUBpVDR09GrQa5C5UBR+OCKOosO2vNXJLmQVFuBDbiS9lxiNUVLCxN0xwiCfyuifvKRYQc/K9eP/u1/mzWuxM9/l+S0d8Cew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DhfWTG6EKV6waTUu1Uiq0OXP/kvGXyn4nRMRaqWC6Qc=;
- b=c5DDrwszWRKd5am679GlEq8jm5omh7KgZGZSxX3rivVZB8Ilqswarqs81iM8ZTBD7XJzwDIlHhm5I3hPxlzWNQxeZ4wTqXx+56ZsAbQeBrHN5CsDnq/c+reeKkL8lHBuuedI00dfCCPJu6TkQlTHyOvf41FA92PlMY/Qa8QQi6NH7N+cnVdO4/wBaSVQjifFPtYQpBDqXEHYkdeS/SM96AMx//gyQJSRJREupOcthDd0AbSanGHiw02MC1zK9PjiZZ2WTyWzJS3VAKXyZ+3ut/wMZEQIx9eAnAELnRh56KojCQ14KQ0OXa8y0bbCuIGyEMk3qR1K859CoX5gKiShlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
- dkim=pass header.d=diasemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dialogsemiconductor.onmicrosoft.com;
- s=selector2-dialogsemiconductor-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DhfWTG6EKV6waTUu1Uiq0OXP/kvGXyn4nRMRaqWC6Qc=;
- b=P0YObNVSX/0puweVmZ7dSDYkr/qjUhjZ4J1FKZ7FGhZOl3WxSwdFUmtmDEEYI0pFw8BEzks4/NYt0plqS7DHbbY4zq0Qe4sCVOaWg1p+FM4aU7w8oSi3mPTIeyPs40D87Wzz95+cR3/8hZxjDnISypJp5v31Gt8+jfukCGDm7O8=
-Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM (10.169.154.136) by
- AM5PR1001MB1121.EURPRD10.PROD.OUTLOOK.COM (10.169.154.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.22; Tue, 24 Sep 2019 10:53:53 +0000
-Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::15de:593a:8380:b8ef]) by AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::15de:593a:8380:b8ef%12]) with mapi id 15.20.2284.023; Tue, 24 Sep
- 2019 10:53:53 +0000
-From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Support Opensource <Support.Opensource@diasemi.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: RE: [PATCH 1/3] dt-bindings: mfd: da9062: add gpio bindings
-Thread-Topic: [PATCH 1/3] dt-bindings: mfd: da9062: add gpio bindings
-Thread-Index: AQHVbUbz3PrucF7MmkCso7BNDJppGKc6sf5A
-Date:   Tue, 24 Sep 2019 10:53:53 +0000
-Message-ID: <AM5PR1001MB099472B4C90EF215134EF5AB80840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
-References: <20190917105902.445-1-m.felsch@pengutronix.de>
- <20190917105902.445-2-m.felsch@pengutronix.de>
-In-Reply-To: <20190917105902.445-2-m.felsch@pengutronix.de>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.225.80.228]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dfb68768-c5ba-4ea0-db41-08d740dd7d97
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:AM5PR1001MB1121;
-x-ms-traffictypediagnostic: AM5PR1001MB1121:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM5PR1001MB112181DAB21AB269B9424A7FA7840@AM5PR1001MB1121.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 0170DAF08C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(136003)(346002)(39860400002)(366004)(376002)(37524003)(199004)(189003)(55016002)(86362001)(25786009)(33656002)(478600001)(9686003)(76116006)(446003)(5660300002)(66556008)(66476007)(64756008)(66446008)(8676002)(81156014)(6506007)(186003)(26005)(99286004)(229853002)(110136005)(76176011)(54906003)(8936002)(52536014)(14454004)(81166006)(6436002)(66946007)(316002)(6246003)(71200400001)(71190400001)(74316002)(305945005)(2906002)(53546011)(55236004)(3846002)(6116002)(256004)(7696005)(2501003)(7736002)(66066001)(11346002)(476003)(2201001)(486006)(4326008)(102836004);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR1001MB1121;H:AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: diasemi.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: SGJeeBq3qpXCXYf65O6HNQ6QicgThlMwfE5y3xBF+u26CbC9QaaXgbzYG6DPlLPpFzGrcX1nSgj2M3RZKVuZB6IIdxXYdACwAz8Pt7RpMNsCVJYeat6/zf3wX4MGxqA2dk7nKMDOmW+4m8H/q1SG7lI+Hrvie4pvkHaegPK9Ltj8QdFGPIfkVUaF+qrhbxjIbRoUip3LCe95z10adcmDT8NLtJeq3b0jj7ed4+FYs47W8Y4CzA9WgbHy1COyHbIB4Sc9sKrmfPJlftouWxTpGMWNLO7CLP4ETBTBM8n/4NN+1MArSQ3AoysNCPK+UJQeszSMNXUqkxtkME3Qpv1lJ8fNCA6M4cA9G4UbJVyWErwWJr/pHgzfpY0Vx3dz4mTFXmBsQAG6Yad53NPLvSiMTP/mVkBDNXEzg7vvwSkppYc=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2394354AbfIXK40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 06:56:26 -0400
+Received: from mga02.intel.com ([134.134.136.20]:45875 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388652AbfIXK4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Sep 2019 06:56:25 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 24 Sep 2019 03:56:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,543,1559545200"; 
+   d="scan'208";a="388818463"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 24 Sep 2019 03:56:20 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1iCiUW-000FWz-Ej; Tue, 24 Sep 2019 18:56:20 +0800
+Date:   Tue, 24 Sep 2019 18:56:08 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Xia Jiang <xia.jiang@mediatek.com>
+Cc:     kbuild-all@01.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tfiga@chromium.org>, srv_heupstream@mediatek.com,
+        Xia Jiang <xia.jiang@mediatek.com>
+Subject: Re: [PATCH v3 5/5] media: platform: Add jpeg dec/enc feature
+Message-ID: <201909241844.UH843Yx0%lkp@intel.com>
+References: <20190924074303.22713-6-xia.jiang@mediatek.com>
 MIME-Version: 1.0
-X-OriginatorOrg: diasemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfb68768-c5ba-4ea0-db41-08d740dd7d97
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2019 10:53:53.4389
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /HPUVm4NDBbNAmdggN2Tj0SPYOG4vjGdufZTMn0d4GsEAoubXM8I4iT1nV+9PwytJeJ9vMjDwHhJjnV3KPy4wOAc92K/MjUmNsNXdyCfnP8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR1001MB1121
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190924074303.22713-6-xia.jiang@mediatek.com>
+X-Patchwork-Hint: ignore
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17 September 2019 11:59, Marco Felsch wrote:
+Hi Xia,
 
-> Add gpio device documentation to make the da9062 gpios available for
-> users.
->=20
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  .../devicetree/bindings/gpio/gpio-da9062.txt  | 26 +++++++++++++++++++
->  .../devicetree/bindings/mfd/da9062.txt        |  3 +++
->  2 files changed, 29 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-da9062.tx=
-t
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-da9062.txt
-> b/Documentation/devicetree/bindings/gpio/gpio-da9062.txt
-> new file mode 100644
-> index 000000000000..b0f9236a7176
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-da9062.txt
-> @@ -0,0 +1,26 @@
-> +GPIO driver for DA9062 Power management IC (PMIC)
-> +
-> +Device has 5 GPIO pins which can be configured as GPIO as well as the
-> +special IO functions.
-> +
-> +Required properties:
-> +-------------------
-> +- compatible      : Should be "dlg,da9062-gpio".
-> +- gpio-controller : Marks the device node as a gpio controller.
-> +- #gpio-cells     : Should be two. The first cell is the pin number and =
-the
-> +                    second cell is used to specify the gpio polarity.
-> +
-> +See Documentation/devicetree/bindings/gpio/gpio.txt for further informat=
-ion
-> on
-> +GPIO bindings.
+Thank you for the patch! Perhaps something to improve:
 
-As mentioned for your other patch set where the regulator driver makes use =
-of
-GPIOs for control, I think here you should probably have pinctrl to define
-alternate functions of each GPIO. It seems that mostly pinctrl drivers supp=
-ort
-GPIO functionality rather than the other way, so maybe that's the direction
-to go in? Maybe Linus has some input on this too.
+[auto build test WARNING on linuxtv-media/master]
+[cannot apply to v5.3 next-20190920]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-> +
-> +Example:
-> +--------
-> +	pmic@58 {
-> +		...
-> +		pmic_gpio: gpio {
-> +			compatible =3D "dlg,da9062-gpio";
-> +			gpio-controller;
-> +			#gpio-cells =3D <2>;
-> +		};
-> +		...
-> +	};
-> diff --git a/Documentation/devicetree/bindings/mfd/da9062.txt
-> b/Documentation/devicetree/bindings/mfd/da9062.txt
-> index edca653a5777..eec69c4f0697 100644
-> --- a/Documentation/devicetree/bindings/mfd/da9062.txt
-> +++ b/Documentation/devicetree/bindings/mfd/da9062.txt
-> @@ -13,6 +13,7 @@ da9062-rtc              :               : Real-Time Clo=
-ck
->  da9062-onkey            :               : On Key
->  da9062-watchdog         :               : Watchdog Timer
->  da9062-thermal          :               : Thermal
-> +da9062-gpio             :               : GPIOs
->=20
->  The DA9061 PMIC consists of:
->=20
-> @@ -76,6 +77,8 @@ Sub-nodes:
->=20
->  - thermal : See ../thermal/da9062-thermal.txt
->=20
-> +- gpio : See ../gpio/gpio-da9062.txt
-> +
->  Example:
->=20
->  	pmic0: da9062@58 {
-> --
-> 2.20.1
+url:    https://github.com/0day-ci/linux/commits/Xia-Jiang/Add-support-for-mt2701-JPEG-ENC-support/20190924-161234
+base:   git://linuxtv.org/media_tree.git master
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-rc1-7-g2b96cd8-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
 
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+
+   include/linux/sched.h:609:43: sparse: sparse: bad integer constant expression
+   include/linux/sched.h:609:73: sparse: sparse: invalid named zero-width bitfield `value'
+   include/linux/sched.h:610:43: sparse: sparse: bad integer constant expression
+   include/linux/sched.h:610:67: sparse: sparse: invalid named zero-width bitfield `bucket_id'
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: incompatible types in comparison expression (different signedness):
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    unsigned int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: cast from unknown type
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: incompatible types in comparison expression (different signedness):
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    unsigned int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: incompatible types in comparison expression (different signedness):
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    unsigned int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: cast from unknown type
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: incompatible types in comparison expression (different signedness):
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    unsigned int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: cast from unknown type
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: incompatible types in comparison expression (different signedness):
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    unsigned int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse:    int *
+>> drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:338:42: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:341:41: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:417:34: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: cast from unknown type
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: incompatible types in comparison expression (different signedness):
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    unsigned int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse:    int *
+   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c:419:33: sparse: sparse: cast from unknown type
+
+vim +338 drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+
+   316	
+   317	static int mtk_jpeg_try_fmt_mplane(struct v4l2_format *f,
+   318					   struct mtk_jpeg_fmt *fmt,
+   319					   struct mtk_jpeg_ctx *ctx, int q_type)
+   320	{
+   321		struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
+   322		struct mtk_jpeg_dev *jpeg = ctx->jpeg;
+   323		int i, align_w, align_h;
+   324	
+   325		memset(pix_mp->reserved, 0, sizeof(pix_mp->reserved));
+   326		pix_mp->field = V4L2_FIELD_NONE;
+   327	
+   328		if (ctx->state != MTK_JPEG_INIT) {
+   329			mtk_jpeg_adjust_fmt_mplane(ctx, f);
+   330			goto end;
+   331		}
+   332	
+   333		pix_mp->num_planes = fmt->colplanes;
+   334		pix_mp->pixelformat = fmt->fourcc;
+   335	
+   336		if (q_type == MTK_JPEG_FMT_TYPE_OUTPUT) {
+   337			if (jpeg->mode == MTK_JPEG_ENC) {
+ > 338				pix_mp->height = clamp(pix_mp->height,
+   339						       MTK_JPEG_MIN_HEIGHT,
+   340						       MTK_JPEG_MAX_HEIGHT);
+   341				pix_mp->width = clamp(pix_mp->width,
+   342						      MTK_JPEG_MIN_WIDTH,
+   343						      MTK_JPEG_MAX_WIDTH);
+   344				align_w = pix_mp->width;
+   345				align_h = pix_mp->height;
+   346				align_w = round_up(align_w, 2);
+   347				if (pix_mp->num_planes == 1U) {
+   348					align_w = align_w << 1;
+   349					mtk_jpeg_bound_align_image(&align_w,
+   350								   MTK_JPEG_MIN_WIDTH,
+   351								   MTK_JPEG_MAX_WIDTH,
+   352								   5, &align_h,
+   353								   MTK_JPEG_MIN_HEIGHT,
+   354								   MTK_JPEG_MAX_HEIGHT,
+   355								   3);
+   356					pix_mp->plane_fmt[0].bytesperline = align_w;
+   357					pix_mp->plane_fmt[0].sizeimage =
+   358						align_w * align_h;
+   359				} else if (pix_mp->num_planes == 2U) {
+   360					mtk_jpeg_bound_align_image(&align_w,
+   361								   MTK_JPEG_MIN_WIDTH,
+   362								   MTK_JPEG_MAX_WIDTH,
+   363								   4, &align_h,
+   364								   MTK_JPEG_MIN_HEIGHT,
+   365								   MTK_JPEG_MAX_HEIGHT,
+   366								   4);
+   367					pix_mp->plane_fmt[0].bytesperline = align_w;
+   368					pix_mp->plane_fmt[0].sizeimage =
+   369						align_w * align_h;
+   370					pix_mp->plane_fmt[1].bytesperline = align_w;
+   371					pix_mp->plane_fmt[1].sizeimage =
+   372						(align_w * align_h) / 2;
+   373				} else {
+   374					v4l2_err(&ctx->jpeg->v4l2_dev,
+   375						 "Unsupport num planes = %d\n",
+   376						 pix_mp->num_planes);
+   377				}
+   378				goto end;
+   379			} else {
+   380				struct v4l2_plane_pix_format *pfmt =
+   381							&pix_mp->plane_fmt[0];
+   382	
+   383				mtk_jpeg_bound_align_image(&pix_mp->width,
+   384							   MTK_JPEG_MIN_WIDTH,
+   385						   MTK_JPEG_MAX_WIDTH, 0,
+   386							   &pix_mp->height,
+   387							   MTK_JPEG_MIN_HEIGHT,
+   388						   MTK_JPEG_MAX_HEIGHT, 0);
+   389	
+   390				pfmt->bytesperline = 0;
+   391				/* Source size must be aligned to 128 */
+   392				pfmt->sizeimage = mtk_jpeg_align(pfmt->sizeimage, 128);
+   393				if (pfmt->sizeimage == 0)
+   394					pfmt->sizeimage = MTK_JPEG_DEFAULT_SIZEIMAGE;
+   395	
+   396				goto end;
+   397			}
+   398		}
+   399	
+   400		/* type is MTK_JPEG_FMT_TYPE_CAPTURE */
+   401		if (jpeg->mode == MTK_JPEG_ENC) {
+   402			mtk_jpeg_bound_align_image(&pix_mp->width, MTK_JPEG_MIN_WIDTH,
+   403						   MTK_JPEG_MAX_WIDTH, 0,
+   404						   &pix_mp->height, MTK_JPEG_MIN_HEIGHT,
+   405						   MTK_JPEG_MAX_HEIGHT, 0);
+   406	
+   407			if (fmt->fourcc == V4L2_PIX_FMT_JPEG) {
+   408				pix_mp->plane_fmt[0].bytesperline = 0;
+   409				pix_mp->plane_fmt[0].sizeimage =
+   410					mtk_jpeg_align(pix_mp->plane_fmt[0].sizeimage,
+   411						       128);
+   412				if (pix_mp->plane_fmt[0].sizeimage == 0)
+   413					pix_mp->plane_fmt[0].sizeimage =
+   414						MTK_JPEG_DEFAULT_SIZEIMAGE;
+   415			}
+   416		} else {
+   417			pix_mp->height = clamp(pix_mp->height, MTK_JPEG_MIN_HEIGHT,
+   418					       MTK_JPEG_MAX_HEIGHT);
+   419			pix_mp->width = clamp(pix_mp->width, MTK_JPEG_MIN_WIDTH,
+   420					      MTK_JPEG_MAX_WIDTH);
+   421			mtk_jpeg_bound_align_image(&pix_mp->width, MTK_JPEG_MIN_WIDTH,
+   422						   MTK_JPEG_MAX_WIDTH, fmt->h_align,
+   423						   &pix_mp->height,
+   424						   MTK_JPEG_MIN_HEIGHT,
+   425						   MTK_JPEG_MAX_HEIGHT, fmt->v_align);
+   426	
+   427			for (i = 0; i < fmt->colplanes; i++) {
+   428				struct v4l2_plane_pix_format *pfmt =
+   429						&pix_mp->plane_fmt[i];
+   430				u32 stride = pix_mp->width * fmt->h_sample[i] / 4;
+   431				u32 h = pix_mp->height * fmt->v_sample[i] / 4;
+   432	
+   433				pfmt->bytesperline = stride;
+   434				pfmt->sizeimage = stride * h;
+   435			}
+   436		}
+   437	
+   438		for (i = 0; i < fmt->colplanes; i++) {
+   439			struct v4l2_plane_pix_format *pfmt =
+   440					&pix_mp->plane_fmt[i];
+   441			memset(pfmt->reserved, 0, sizeof(pfmt->reserved));
+   442		}
+   443	end:
+   444		v4l2_dbg(2, debug, &jpeg->v4l2_dev, "wxh:%ux%u\n",
+   445			 pix_mp->width, pix_mp->height);
+   446		for (i = 0; i < pix_mp->num_planes; i++) {
+   447			v4l2_dbg(2, debug, &jpeg->v4l2_dev,
+   448				 "plane[%d] bpl=%u, size=%u\n",
+   449				 i,
+   450				 pix_mp->plane_fmt[i].bytesperline,
+   451				 pix_mp->plane_fmt[i].sizeimage);
+   452		}
+   453		return 0;
+   454	}
+   455	
+
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
