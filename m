@@ -2,135 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AB9FBCA7D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 16:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CCE3BCA92
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 16:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731061AbfIXOos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 10:44:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33896 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726130AbfIXOos (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 10:44:48 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7034E20640;
-        Tue, 24 Sep 2019 14:44:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569336286;
-        bh=hsYmAgy4HUyqWVE3XYU8otCVEWiUKOZy0obIq0KY9fc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fY5Pw4VpEqdzsU4EX8RtSjM9czFmKim+EQIzlwMydEam/t89uAfwiDt8YO2U2ksZv
-         dO9ciKLlwZOpmjdd/0q1ymBadmtBBJnkZMcinczzE9Na8qm5JOtktaAYLGh/aJs5NK
-         H7IErRieGE+4K+Bmsfhggv/a3iRKwn+VlvpVJD3Y=
-Received: by mail-qt1-f180.google.com with SMTP id x5so2434892qtr.7;
-        Tue, 24 Sep 2019 07:44:46 -0700 (PDT)
-X-Gm-Message-State: APjAAAXb8BFjtnD74Ra4l9uSM+0Og4TyliVEnMwzUdPGWzUirCKtThRX
-        KN6qQBFnj3zTGV/Jnf5wl3QJ4PgnLUktYYsjcw==
-X-Google-Smtp-Source: APXvYqzQBwQZq9kQYPNN0Kyc/fhj2qS/SrpDIz9/+J5rKVq0Ej/70VauM4kI1FV1RPFaEgictUsNkC4ch7tW4xPWQz0=
-X-Received: by 2002:ac8:6915:: with SMTP id e21mr3238306qtr.224.1569336285554;
- Tue, 24 Sep 2019 07:44:45 -0700 (PDT)
+        id S1731024AbfIXOr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 10:47:58 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34910 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726060AbfIXOr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 10:47:57 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8OElpj4035406;
+        Tue, 24 Sep 2019 09:47:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569336471;
+        bh=TXLiWsgLS6zqBq6pXxzlutr7tMcfrndBxh5tD9dOtac=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=RwO1zwKXB3pLKh8yo4Koq2/OakQIiCYvtV51uQV0IRM2OnaYVAZG+MXUnx13Yh8YW
+         JujdqS/mzMCKL3ge2uYAlMMRqfraStheA+eyZlEQpsegaeiJV5bqR3Bi/VH+LzNLxR
+         8yQxnNHgTk4QGt3qOP11QgjEYdriZCofElsFTO8U=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8OElptx106281;
+        Tue, 24 Sep 2019 09:47:51 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 24
+ Sep 2019 09:47:45 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 24 Sep 2019 09:47:51 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8OElogq013583;
+        Tue, 24 Sep 2019 09:47:51 -0500
+Subject: Re: [PATCH v8 7/9] dt: bindings: lp50xx: Introduce the lp50xx family
+ of RGB drivers
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20190920174139.30079-1-dmurphy@ti.com>
+ <20190920174139.30079-8-dmurphy@ti.com>
+ <73a95bac-7433-5b06-5701-c742307aa004@gmail.com>
+ <ba92d95a-9f2c-6b37-74d3-4e3a87ad28bf@ti.com>
+ <6788e600-460a-7846-04d0-480268e674a1@gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <5c1091b6-788e-79b2-a6ac-911401b58ed3@ti.com>
+Date:   Tue, 24 Sep 2019 09:52:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190910115037.23539-1-peter.ujfalusi@ti.com> <20190910115037.23539-2-peter.ujfalusi@ti.com>
- <5d7ba96c.1c69fb81.ee467.32b9@mx.google.com> <82254a3e-12fe-14d8-d49a-6627dd1d3559@ti.com>
-In-Reply-To: <82254a3e-12fe-14d8-d49a-6627dd1d3559@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 24 Sep 2019 09:44:33 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLZ-fNvFcgTorat=TX9Fmexrw3o3iv=Z5hTb3GX6iKgxg@mail.gmail.com>
-Message-ID: <CAL_JsqLZ-fNvFcgTorat=TX9Fmexrw3o3iv=Z5hTb3GX6iKgxg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: dma: Add documentation for DMA domains
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     Vinod <vkoul@kernel.org>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <6788e600-460a-7846-04d0-480268e674a1@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 16, 2019 at 6:21 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
->
->
->
-> On 13/09/2019 17.36, Rob Herring wrote:
-> > On Tue, Sep 10, 2019 at 02:50:35PM +0300, Peter Ujfalusi wrote:
-> >> On systems where multiple DMA controllers available, non Slave (for example
-> >> memcpy operation) users can not be described in DT as there is no device
-> >> involved from the DMA controller's point of view, DMA binding is not usable.
-> >> However in these systems still a peripheral might need to be serviced by or
-> >> it is better to serviced by specific DMA controller.
-> >> When a memcpy is used to/from a memory mapped region for example a DMA in the
-> >> same domain can perform better.
-> >> For generic software modules doing mem 2 mem operations it also matter that
-> >> they will get a channel from a controller which is faster in DDR to DDR mode
-> >> rather then from the first controller happen to be loaded.
-> >>
-> >> This property is inherited, so it may be specified in a device node or in any
-> >> of its parent nodes.
-> >
-> > If a device needs mem2mem dma, I think we should just use the existing
-> > dma binding. The provider will need a way to define cell values which
-> > mean mem2mem.
->
-> But isn't it going to be an abuse of the binding? Each DMA controller
-> would hack this in different ways, probably using out of range DMA
-> request/trigger number or if they have direction in the binding or some
-> other parameter would be set to something invalid...
-
-What's in the cells is defined by the provider which can define
-whatever they want. We do standardize that in some cases.
-
-I think we have some cases where we set the channel priority in the
-cells. What if someone wants to do that for mem2mem as well?
-
-> > For generic s/w, it should be able to query the dma speed or get a
-> > preferred one IMO. It's not a DT problem.
-> >
-> > We measure memcpy speeds at boot time to select the fastest
-> > implementation for a chip, why not do that for mem2mem DMA?
->
-> It would make an impact on boot time since the tests would need to be
-> done with a large enough copy to be able to see clearly which one is faster.
-
-Have you measured it? It could be done in parallel and may have little
-to no impact.
-
-> Also we should be able to handle different probing orders:
-> client1 should have mem2mem channel from dma2.
->
-> - dma1 probes
-> - client1 probes and asks for a mem2mem channel
-> - dma2 probes
->
-> Here client1 should deffer until dma2 is probed.
-
-Depending on the driver, don't make the decision in probe, but when
-you start using the driver. For example, serial drivers decide on DMA
-or no DMA in open().
-
-> Probably the property should be dma-mem2mem-domain to be more precise on
-> it's purpose and avoid confusion?
->
-> >
-> >>
-> >> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> >> ---
-> >>  .../devicetree/bindings/dma/dma-domain.yaml   | 88 +++++++++++++++++++
-> >>  1 file changed, 88 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/dma/dma-domain.yaml
-> >
-> > Note that you have several errors in your schema. Run 'make dt_bindings_check'.
->
-> That does not do anything on my system, but git dt-doc-validate running
-> via https://github.com/robherring/yaml-bindings.git.
-
-It should do *something*... Do you have libyaml-dev installed?
-
-BTW, while I still mirror to that repo, use
-https://github.com/devicetree-org/dt-schema instead.
-
 Rob
+
+On 9/23/19 4:42 PM, Jacek Anaszewski wrote:
+> Dan,
+>
+> On 9/23/19 5:28 PM, Dan Murphy wrote:
+>> Jacek
+>>
+>> On 9/21/19 10:13 AM, Jacek Anaszewski wrote:
+>>> Dan,
+>>>
+>>> On 9/20/19 7:41 PM, Dan Murphy wrote:
+>>>> Introduce the bindings for the Texas Instruments LP5036, LP5030, LP5024,
+>>>> LP5018, LP5012 and LP5009 RGB LED device driver.  The
+>>>> LP5036/30/24/18/12/9
+>>>> can control RGB LEDs individually or as part of a control bank group.
+>>>> These devices have the ability to adjust the mixing control for the RGB
+>>>> LEDs to obtain different colors independent of the overall brightness of
+>>>> the LED grouping.
+>>>>
+>>>> Datasheet:
+>>>> http://www.ti.com/lit/ds/symlink/lp5012.pdf
+>>>> http://www.ti.com/lit/ds/symlink/lp5024.pdf
+>>>> http://www.ti.com/lit/ds/symlink/lp5036.pdf
+>>>>
+>>>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>>>> ---
+>>>>    .../devicetree/bindings/leds/leds-lp50xx.txt  | 148 ++++++++++++++++++
+>>>>    1 file changed, 148 insertions(+)
+>>>>    create mode 100644
+>>>> Documentation/devicetree/bindings/leds/leds-lp50xx.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.txt
+>>>> b/Documentation/devicetree/bindings/leds/leds-lp50xx.txt
+>>>> new file mode 100644
+>>>> index 000000000000..9d05f43042e0
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.txt
+>>>> @@ -0,0 +1,148 @@
+>>>> +* Texas Instruments - LP5009/12/18/24/30/36 RGB LED driver
+>>>> +
+>>>> +The LP50XX is multi-channel, I2C RGB LED Drivers that can group RGB
+>>>> LEDs into
+>>>> +a LED group or control them individually.
+>>>> +
+>>>> +The difference in these RGB LED drivers is the number of supported
+>>>> RGB modules.
+>>>> +
+>>>> +Required parent properties:
+>>>> +    - compatible:
+>>>> +        "ti,lp5009"
+>>>> +        "ti,lp5012"
+>>>> +        "ti,lp5018"
+>>>> +        "ti,lp5024"
+>>>> +        "ti,lp5030"
+>>>> +        "ti,lp5036"
+>>>> +    - reg :  I2C slave address
+>>>> +        lp5009/12 - 0x28
+>>>> +        lp5018/24 - 0x28
+>>>> +        lp5030/36 - 0x30
+>>>> +    - #address-cells : 1
+>>>> +    - #size-cells : 0
+>>>> +
+>>>> +Optional parent properties:
+>>>> +    - enable-gpios : gpio pin to enable/disable the device.
+>>>> +    - vled-supply : LED supply
+>>>> +
+>>>> +Required child properties:
+>>>> +    - #address-cells : 1
+>>>> +    - #size-cells : 0
+>>>> +    - reg : This is the LED module number.
+>>>> +    - color : see Documentation/devicetree/bindings/leds/common.txt
+>>>> +    - function : see Documentation/devicetree/bindings/leds/common.txt
+>>>> +
+>>>> +Required child properties only is LED modules will be banked:
+>>>> +    - ti,led-bank : This property denotes the LED module numbers
+>>>> that will
+>>>> +            be controlled as a single RGB cluster.  Each LED module
+>>>> +            number will be controlled by a single LED class instance.
+>>>> +            There can only be one instance of the ti,led-bank
+>>>> +            property for each device node.
+>>>> +
+>>>> +Required grandchildren properties:
+>>>> +    - reg : A single entry denoting the LED module that controls
+>>>> +        the RGB cluster.
+>>>> +    - color : see
+>>>> Documentation/devicetree/bindings/leds/leds-multicolor.txt
+>>>> +    - led-sources : see
+>>>> Documentation/devicetree/bindings/leds/common.txt
+>>>> +
+>>>> +The LED outputs associated with the LED modules are defined in Table
+>>>> 1 of the
+>>>> +corresponding data sheets.
+>>> We must enclose this information here.
+>> That will make this doc pretty messy especially with the LP5036 entries.
+>>
+>> I would have to do ascii art to make it understandable and basically
+>> there is not a delta in the lesser devices in the outputs
+>>
+>> I don't see value in reproducing this data sheet contents in the
+>> dt-bindings.
+> IMO DT bindings should be self-contained. We cannot assume that
+> user will always have Internet access.
+>
+>> For example (LP5012) and then for the LP5036 multiply this by 3
+>>
+>> Table 1.
+>>
+>> Bank Number and LED Number Assignment
+>> OUT NUMBER BANK NUMBER  RGB LED MODULE NUMBER
+>> OUT0                    Bank A
+>> OUT1                    Bank B                        LED0
+>> OUT2                    Bank C
+>>
+>> OUT3                    Bank A
+>> OUT4                    Bank B                        LED1
+>> OUT5                    Bank C
+>>
+>> OUT6                    Bank A
+>> OUT7                    Bank B                        LED2
+>> OUT8                    Bank C
+>>
+>> OUT9 (LP5012 only) Bank A
+>> OUT10 (LP5012 only) Bank B                  LED3
+>> OUT11 (LP5012 only) Bank C
+>
+> I'd say it is required. But let's wait for DT guys' opinion.
+>
+Do you have an opinion on whether we need to publish in the DT the 
+output to module map?
+
+This is the last item I have to fix before submitting v9.
+
+Dan
+
+
+>>>> +
+>>>> +LP5009 - 2 Total RGB cluster LED outputs 0-1
+>> This should be 3 total not 2
+>>
+>> Dan
+>>
+>>>> +LP5012 - 4 Total RGB cluster LED outputs 0-3
+>>>> +LP5018 - 6 Total RGB cluster LED outputs 0-5
+>>>> +LP5024 - 8 Total RGB cluster LED outputs 0-7
+>>>> +LP5030 - 10 Total RGB cluster LED outputs 0-9
+>>>> +LP5036 - 12 Total RGB cluster LED outputs 0-11
+>>>> +
+>>>> +Optional child properties:
+>>>> +    - label : see Documentation/devicetree/bindings/leds/common.txt
+>>>> +    - linux,default-trigger :
+>>>> +       see Documentation/devicetree/bindings/leds/common.txt
+>>>> +
+>>>> +Examples:
+>>>> +led-controller@29 {
+>>>> +    #address-cells = <1>;
+>>>> +    #size-cells = <0>;
+>>>> +    compatible = "ti,lp5024";
+>>>> +    reg = <0x29>;
+>>>> +    enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+>>>> +    vled-supply = <&vmmcsd_fixed>;
+>>>> +
+>>>> +    multi-led@1 {
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <0>;
+>>>> +        reg = <1>;
+>>>> +        color = <LED_COLOR_ID_MULTI>;
+>>>> +        function = LED_FUNCTION_STATUS;
+>>>> +
+>>>> +        led@3 {
+>>>> +            reg = <3>;
+>>>> +            color = <LED_COLOR_ID_RED>;
+>>>> +        };
+>>>> +
+>>>> +        led@4 {
+>>>> +            reg = <4>;
+>>>> +            color = <LED_COLOR_ID_GREEN>;
+>>>> +        };
+>>>> +
+>>>> +        led@5 {
+>>>> +            reg = <5>;
+>>>> +            color = <LED_COLOR_ID_BLUE>;
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    multi-led@2 {
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <0>;
+>>>> +        reg = <2>;
+>>>> +        color = <LED_COLOR_ID_MULTI>;
+>>>> +        function = LED_FUNCTION_STANDBY;
+>>>> +        ti,led-bank = <2 3 5>;
+>>>> +
+>>>> +        led@6 {
+>>>> +            reg = <0x6>;
+>>>> +            color = <LED_COLOR_ID_RED>;
+>>>> +            led-sources = <6 9 15>;
+>>>> +        };
+>>>> +
+>>>> +        led@7 {
+>>>> +            reg = <0x7>;
+>>>> +            color = <LED_COLOR_ID_GREEN>;
+>>>> +            led-sources = <7 10 16>;
+>>>> +        };
+>>>> +
+>>>> +        led@8 {
+>>>> +            reg = <0x8>;
+>>>> +            color = <LED_COLOR_ID_BLUE>;
+>>>> +            led-sources = <8 11 17>;
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    multi-led@4 {
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <0>;
+>>>> +        reg = <4>;
+>>>> +        color = <LED_COLOR_ID_MULTI>;
+>>>> +        function = LED_FUNCTION_ACTIVITY;
+>>>> +
+>>>> +        led@12 {
+>>>> +            reg = <12>;
+>>>> +            color = <LED_COLOR_ID_RED>;
+>>>> +        };
+>>>> +
+>>>> +        led@13 {
+>>>> +            reg = <13>;
+>>>> +            color = <LED_COLOR_ID_GREEN>;
+>>>> +        };
+>>>> +
+>>>> +        led@14 {
+>>>> +            reg = <14>;
+>>>> +            color = <LED_COLOR_ID_BLUE>;
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +For more product information please see the link below:
+>>>> +http://www.ti.com/lit/ds/symlink/lp5012.pdf
+>>>> +http://www.ti.com/lit/ds/symlink/lp5024.pdf
+>>>> +http://www.ti.com/lit/ds/symlink/lp5036.pdf
+>>>>
