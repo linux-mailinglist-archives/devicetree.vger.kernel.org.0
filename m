@@ -2,175 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF66ABCB14
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 17:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C99F7BCBE4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 17:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732401AbfIXPUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 11:20:34 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:44071 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732342AbfIXPUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 11:20:33 -0400
-Received: by mail-wr1-f68.google.com with SMTP id i18so2400631wru.11;
-        Tue, 24 Sep 2019 08:20:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BehAsP/zGvLbMGAOB59imbbS81RZk/Eob4lWno5h7ug=;
-        b=jpP2iYg9uF04ZRifEEs8MFoQpyL9SonauLqcbHD9YmfWcMSeGc3pjkleaEaFHP9GlL
-         7/LcS+QvxsoInPT55Whd24ChTaPDxLQhKUXreGBL1BQa6ze1ui7h512yQYJm3ZyodMaJ
-         DM1VLHmc5bgCRGsLCNs3o3lalU24qDC9VLUKEg6WBgD7689/5bS76R/K+U3kc4fjUtzH
-         2AfFmefmvQkC17ucCnn5/kFFkQnqicUyaF7oaULDemu0txiCvGtJULRWyj4RqYqSS7if
-         FROaqXK9Bmziw0m9Yv2xfKjQDco4E2EsfBdDFTOv68FcLv/EGrDYPUzReFHu0qV1XAgn
-         djJQ==
-X-Gm-Message-State: APjAAAVyLLTtV+JrfK9PXwDKLo0Zae8Xg6jORqLkBeHKBvTFK1fFQLW5
-        92LkTuQ0XKb3Ljj2A2lmunE=
-X-Google-Smtp-Source: APXvYqyy8MgFCfM7xqDj+hRCjQuQBkjKGh9FOEEQ3dNdjyah3yXeSBlkJCLDGZmzRdpOkQ9aU7M2+w==
-X-Received: by 2002:adf:db06:: with SMTP id s6mr2848445wri.41.1569338431334;
-        Tue, 24 Sep 2019 08:20:31 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id g13sm2674561wrm.42.2019.09.24.08.20.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2019 08:20:30 -0700 (PDT)
-Date:   Tue, 24 Sep 2019 17:20:28 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Maciej Falkowski <m.falkowski@samsung.com>
-Subject: Re: [PATCH] dt-bindings: sound: Convert Samsung Exynos5433 TM2(E)
- audio complex with WM5110 codec to dt-schema
-Message-ID: <20190924152028.GD9218@pi3>
-References: <CGME20190924150230eucas1p295da8f6aa018aec4acabc068f6e1afa1@eucas1p2.samsung.com>
- <20190924150146.15972-1-m.szyprowski@samsung.com>
+        id S2437647AbfIXPwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 11:52:34 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:42560 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390624AbfIXPwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 11:52:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=uMRpyMWNwJKJpnxqT6YsZkEtepZFeyzBpvTiDie8B1U=; b=SL7nl0vhym8w2ntt4lOTF8EIZ
+        7lXGyEXmwwuTutRwU+thNstMMLoWA90wZo+Et5Mz2dSjtpkrDvK2CcsOLH/EOFIT9wy7HXPjtfBds
+        ZQQAm8ndFpuCDNj2iLUswNzCtWOHL4QuSvq2AI7v74FNirop5a34IC5A0NfukWcyp+2fApJNwDDbv
+        8VFdiDElJqOeX9NxVWrggo0iHrOObLDqIt+ZtUoPwhq+FaKCOu+s0R6ULK8ilvAhCZVUfh39xdJjZ
+        R5fgbY+tEid44gduh7Xk710exO9IVilCgknT99AufgYMaBzjUGd2POCtUV+o335BbVFNR/CBXAGM4
+        f1e2pq69w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47694)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iCn74-0002kh-Vk; Tue, 24 Sep 2019 16:52:27 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iCn71-0001Np-Pk; Tue, 24 Sep 2019 16:52:23 +0100
+Date:   Tue, 24 Sep 2019 16:52:23 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, linux-pci@vger.kernel.org,
+        Zhiqiang.Hou@nxp.com, linux-kernel@vger.kernel.org,
+        leoyang.li@nxp.com, Minghuan.Lian@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, bhelgaas@google.com,
+        andrew.murray@arm.com, kishon@ti.com, shawnguo@kernel.org,
+        mingkai.hu@nxp.com
+Subject: Re: [PATCH 0/6] Add the Mobiveil EP and Layerscape Gen4 EP driver
+ support
+Message-ID: <20190924155223.GX25745@shell.armlinux.org.uk>
+References: <20190916021742.22844-1-xiaowei.bao@nxp.com>
+ <20190924141847.GW25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190924150146.15972-1-m.szyprowski@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190924141847.GW25745@shell.armlinux.org.uk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 05:01:46PM +0200, Marek Szyprowski wrote:
-> From: Maciej Falkowski <m.falkowski@samsung.com>
+On Tue, Sep 24, 2019 at 03:18:47PM +0100, Russell King - ARM Linux admin wrote:
+> On Mon, Sep 16, 2019 at 10:17:36AM +0800, Xiaowei Bao wrote:
+> > This patch set are for adding Mobiveil EP driver and adding PCIe Gen4
+> > EP driver of NXP Layerscape platform.
+> > 
+> > This patch set depends on:
+> > https://patchwork.kernel.org/project/linux-pci/list/?series=159139
+> > 
+> > Xiaowei Bao (6):
+> >   PCI: mobiveil: Add the EP driver support
+> >   dt-bindings: Add DT binding for PCIE GEN4 EP of the layerscape
+> >   PCI: mobiveil: Add PCIe Gen4 EP driver for NXP Layerscape SoCs
+> >   PCI: mobiveil: Add workaround for unsupported request error
+> >   arm64: dts: lx2160a: Add PCIe EP node
+> >   misc: pci_endpoint_test: Add the layerscape PCIe GEN4 EP device
+> >     support
+> > 
+> >  .../bindings/pci/layerscape-pcie-gen4.txt          |  28 +-
+> >  MAINTAINERS                                        |   3 +
+> >  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |  56 ++
+> >  drivers/misc/pci_endpoint_test.c                   |   2 +
+> >  drivers/pci/controller/mobiveil/Kconfig            |  22 +-
+> >  drivers/pci/controller/mobiveil/Makefile           |   2 +
+> >  .../controller/mobiveil/pcie-layerscape-gen4-ep.c  | 169 ++++++
+> >  drivers/pci/controller/mobiveil/pcie-mobiveil-ep.c | 568 +++++++++++++++++++++
+> >  drivers/pci/controller/mobiveil/pcie-mobiveil.c    |  99 +++-
+> >  drivers/pci/controller/mobiveil/pcie-mobiveil.h    |  72 +++
+> >  10 files changed, 1009 insertions(+), 12 deletions(-)
+> >  create mode 100644 drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
+> >  create mode 100644 drivers/pci/controller/mobiveil/pcie-mobiveil-ep.c
 > 
-> Convert Samsung Exynos5433 TM2(E) audio complex with WM5110 codec to newer dt-schema format.
+> Hi,
 > 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->  .../bindings/sound/samsung,tm2-audio.txt      | 42 ----------
->  .../bindings/sound/samsung,tm2-audio.yaml     | 83 +++++++++++++++++++
->  2 files changed, 83 insertions(+), 42 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
+> I've applied "PCI: mobiveil: Fix the CPU base address setup in inbound
+> window" and your patch set to 5.3, which seems to be able to detect the
+> PCIe card I have plugged in:
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
-> deleted file mode 100644
-> index f5ccc12ddc00..000000000000
-> --- a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
-> +++ /dev/null
-> @@ -1,42 +0,0 @@
-> -Samsung Exynos5433 TM2(E) audio complex with WM5110 codec
-> -
-> -Required properties:
-> -
-> - - compatible		 : "samsung,tm2-audio"
-> - - model		 : the user-visible name of this sound complex
-> - - audio-codec		 : the first entry should be phandle of the wm5110 audio
-> -			   codec node, as described in ../mfd/arizona.txt;
-> -			   the second entry should be phandle of the HDMI
-> -			   transmitter node
-> - - i2s-controller	 : the list of phandle and argument tuples pointing to
-> -			   I2S controllers, the first entry should be I2S0 and
-> -			   the second one I2S1
-> - - audio-amplifier	 : the phandle of the MAX98504 amplifier
-> - - samsung,audio-routing : a list of the connections between audio components;
-> -			   each entry is a pair of strings, the first being the
-> -			   connection's sink, the second being the connection's
-> -			   source; valid names for sources and sinks are the
-> -			   WM5110's and MAX98504's pins and the jacks on the
-> -			   board: HP, SPK, Main Mic, Sub Mic, Third Mic,
-> -			   Headset Mic
-> - - mic-bias-gpios	 : GPIO pin that enables the Main Mic bias regulator
-> -
-> -
-> -Example:
-> -
-> -sound {
-> -	compatible = "samsung,tm2-audio";
-> -	audio-codec = <&wm5110>, <&hdmi>;
-> -	i2s-controller = <&i2s0 0>, <&i2s1 0>;
-> -	audio-amplifier = <&max98504>;
-> -	mic-bias-gpios = <&gpr3 2 0>;
-> -	model = "wm5110";
-> -	samsung,audio-routing =
-> -		"HP", "HPOUT1L",
-> -		"HP", "HPOUT1R",
-> -		"SPK", "SPKOUT",
-> -		"SPKOUT", "HPOUT2L",
-> -		"SPKOUT", "HPOUT2R",
-> -		"Main Mic", "MICBIAS2",
-> -		"IN1R", "Main Mic";
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
-> new file mode 100644
-> index 000000000000..377f8cbe17b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/samsung,tm2-audio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung Exynos SoC Exynos5433 TM2(E) audio complex with WM5110 codec
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: samsung,tm2-audio
-> +
-> +  model:
-> +    maxItems: 1
+> layerscape-pcie-gen4 3800000.pcie: host bridge /soc/pcie@3800000 ranges:
+> layerscape-pcie-gen4 3800000.pcie:   MEM 0xa040000000..0xa07fffffff -> 0x40000000
+> layerscape-pcie-gen4 3800000.pcie: PCI host bridge to bus 0000:00
+> pci_bus 0000:00: root bus resource [bus 00-ff]
+> pci_bus 0000:00: root bus resource [mem 0xa040000000-0xa07fffffff] (bus address
+> [0x40000000-0x7fffffff])
+> pci 0000:00:00.0: [1957:8d90] type 01 class 0x060400
+> pci 0000:00:00.0: enabling Extended Tags
+> pci 0000:00:00.0: supports D1 D2
+> pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+> pci 0000:01:00.0: [15b3:6750] type 00 class 0x020000
+> pci 0000:01:00.0: reg 0x10: [mem 0xa040000000-0xa0400fffff 64bit]
+> pci 0000:01:00.0: reg 0x18: [mem 0xa040800000-0xa040ffffff 64bit pref]
+> pci 0000:01:00.0: reg 0x30: [mem 0xa041000000-0xa0410fffff pref]
+> pci 0000:00:00.0: up support 3 enabled 0
+> pci 0000:00:00.0: dn support 1 enabled 0
+> pci 0000:00:00.0: BAR 9: assigned [mem 0xa040000000-0xa0407fffff 64bit pref]
+> pci 0000:00:00.0: BAR 8: assigned [mem 0xa040800000-0xa0409fffff]
+> pci 0000:01:00.0: BAR 2: assigned [mem 0xa040000000-0xa0407fffff 64bit pref]
+> pci 0000:01:00.0: BAR 0: assigned [mem 0xa040800000-0xa0408fffff 64bit]
+> pci 0000:01:00.0: BAR 6: assigned [mem 0xa040900000-0xa0409fffff pref]
+> pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+> pci 0000:00:00.0:   bridge window [mem 0xa040800000-0xa0409fffff]
+> pci 0000:00:00.0:   bridge window [mem 0xa040000000-0xa0407fffff 64bit pref]
+> pci 0000:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256pci 0000:01:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256pcieport 0000:00:00.0: PCIe capabilities: 0x13
+> pcieport 0000:00:00.0: init_service_irqs: -19
+> 
+> However, a bit later in the kernel boot, I get:
+> 
+> SError Interrupt on CPU1, code 0xbf000002 -- SError
+> CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.3.0+ #392
+> Hardware name: SolidRun LX2160A COM express type 7 module (DT)
+> pstate: 60400085 (nZCv daIf +PAN -UAO)
+> pc : pci_generic_config_read+0xb0/0xc0
+> lr : pci_generic_config_read+0x1c/0xc0
+> sp : ffffff8010f9baf0
+> x29: ffffff8010f9baf0 x28: ffffff8010d620a0
+> x27: ffffff8010d79000 x26: ffffff8010d62000
+> x25: ffffff8010cb06d4 x24: 0000000000000000
+> x23: ffffff8010e499b8 x22: ffffff8010f9bbaf
+> x21: 0000000000000000 x20: ffffffe2eda11800
+> x19: ffffff8010f62158 x18: ffffff8010bdede0
+> x17: ffffff8010bdede8 x16: ffffff8010b96970
+> x15: ffffffffffffffff x14: ffffffffff000000
+> x13: ffffffffffffffff x12: 0000000000000030
+> x11: 0101010101010101 x10: 7f7f7f7f7f7f7f7f
+> x9 : 2dff716475687163 x8 : ffffffffffffffff
+> x7 : fefefefefefefefe x6 : 0000000000000000
+> x5 : 0000000000000000 x4 : ffffff8010f9bb6c
+> x3 : 0000000000000001 x2 : 0000000000000003
+> x1 : 0000000000000000 x0 : 0000000000000000
+> Kernel panic - not syncing: Asynchronous SError Interrupt
+> CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.3.0+ #392
+> Hardware name: SolidRun LX2160A COM express type 7 module (DT)
+> Call trace:
+>  dump_backtrace+0x0/0x120
+>  show_stack+0x14/0x1c
+>  dump_stack+0x9c/0xc0
+>  panic+0x148/0x34c
+>  print_tainted+0x0/0xa8
+>  arm64_serror_panic+0x74/0x80
+>  do_serror+0x8c/0x13c
+>  el1_error+0xbc/0x160
+>  pci_generic_config_read+0xb0/0xc0
+>  pci_bus_read_config_byte+0x64/0x90
+>  pci_read_config_byte+0x40/0x48
+>  pci_assign_irq+0x34/0xc8
+>  pci_device_probe+0x28/0x148
+>  really_probe+0x1c4/0x2d0
+>  driver_probe_device+0x58/0xfc
+>  device_driver_attach+0x68/0x70
+>  __driver_attach+0x94/0xdc
+>  bus_for_each_dev+0x50/0xa0
+>  driver_attach+0x20/0x28
+>  bus_add_driver+0x14c/0x200
+>  driver_register+0x6c/0x124
+>  __pci_register_driver+0x48/0x50
+>  mlx4_init+0x154/0x180
+>  do_one_initcall+0x30/0x250
+>  kernel_init_freeable+0x23c/0x32c
+>  kernel_init+0x10/0xfc
+>  ret_from_fork+0x10/0x18
+> SMP: stopping secondary CPUs
+> Kernel Offset: disabled
+> CPU features: 0x0002,21006008
+> Memory Limit: none
+> 
+> and there it dies.  Any ideas?
 
-$ref to string, then maxItems are not needed.
-Add description (copy-paste).
+The failing access seems to be:
 
-> +
-> +  audio-codec:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
-> +      - items:
-> +          - description: |
-> +              phandle of the wm5110 audio codec node,
-> +              as described in ../mfd/arizona.txt;
-> +          - description: phandle of the HDMI transmitter node.
-> +
-> +  i2s-controller:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
-> +      - items:
-> +          - description: phandle of the I2S0.
-> +          - description: phandle of the I2S1.
-> +
-> +  audio-amplifier:
+        pci_read_config_byte(dev, PCI_INTERRUPT_PIN, &pin);
 
-Can you order the nodes here and in required section by name (except
-compatible which should be first)?
+for the Mellanox Ethernet card.  Presumably, being a PCIe ethernet
+card, it doesn't implement this register (just a guess), and aborts
+the PCI transaction, which is presumably triggering the above SError.
 
-Best regards,
-Krzysztof
+Note that I've used this card with the Macchiatobin (Armada 8040)
+without issue.
 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
