@@ -2,104 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B7D7BD4C2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 23:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 923AEBD4DE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 00:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403926AbfIXV7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 17:59:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60378 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387723AbfIXV7d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 17:59:33 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6156D217D7;
-        Tue, 24 Sep 2019 21:59:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569362372;
-        bh=7EnBQLGJXbJ0krx6sf9eAXMt0SpVcFYHvJ4Ffxc+GEI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZUjBfJ5y+ysHUqZVHvVQV6vmXEF5m5l7X/D3o8MMo6T+fnXCBe1Len91UdIVSmNm8
-         1+IgmCK2yWkyLXKdLfON0wTF2uVY6/Zj+z4CbqBQ8S1mTFhTzxJ4K+kIhlIbeitlp5
-         qXtcO6SJzhSJ74/8s14mN0YBxYms1LJJP0SwTimA=
-Received: by mail-qt1-f179.google.com with SMTP id x4so4100980qtq.8;
-        Tue, 24 Sep 2019 14:59:32 -0700 (PDT)
-X-Gm-Message-State: APjAAAUSipfNLAs0r3iY98Oq51rlrlAyRzY6XaLme2e9ZLFqmU4bXOcs
-        y3XFqQogK86HIUelflV99P3yYhl0p6JxbjmCsw==
-X-Google-Smtp-Source: APXvYqxu7lx2ORNXYuD01RyoAdK8YY//zQYn3oJnMVZaPVMMDgXcioCqkbUXveNdRfpBkQzN/4OY/SjTncH5t1k8eUk=
-X-Received: by 2002:ac8:6982:: with SMTP id o2mr5274643qtq.143.1569362371529;
- Tue, 24 Sep 2019 14:59:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
-In-Reply-To: <20190924181244.7159-1-nsaenzjulienne@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 24 Sep 2019 16:59:20 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
-Message-ID: <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
-Subject: Re: [PATCH 00/11] of: Fix DMA configuration for non-DT masters
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>, etnaviv@lists.freedesktop.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-pci@vger.kernel.org, Matthias Brugger <mbrugger@suse.com>,
-        Robin Murphy <robin.murphy@arm.com>,
+        id S2437968AbfIXWYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 18:24:06 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:37794 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2410630AbfIXWYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 18:24:06 -0400
+Received: by mail-wm1-f66.google.com with SMTP id f22so1967384wmc.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 15:24:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xfRFVkwkZkzLU7wLRDGsHMd8P8PHN/2mWFJxcO4s7yQ=;
+        b=bC4zjM/qQley88yoN1EN4Khq52YC1EVZnPVnorS8QVonyQije6SNxXsss+W1BCmGm9
+         QW8mDw4yWhAVxFZkbCH+fGd1m2Sv8k5TBQC277KT/58VgiPO3scryeuWGQ7YPbkQ4lFk
+         1PlP+6vLAbi2aDsCK51nH+idhJcdxrYGYdjIw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xfRFVkwkZkzLU7wLRDGsHMd8P8PHN/2mWFJxcO4s7yQ=;
+        b=QnJOhJZLR5ndm+/zuZ7UiZWp6aa7NvsEClj04R/T/f9kztYcA6iIcNL+BXVH0MPpdQ
+         2w7svzBLNkr+NIj40jnd3MoIW/NC94GbupCsLLfja3WIcluCzfIDyinYX/PEXCfAapy7
+         dnnS2NVSJIHSh56HVBT9/XdNKFCMVMdczbZV8jiF/7B6801m3LFKD6Pvz80OjRucu8XJ
+         aOK0WHwa3eb2TPOwfDJea2AedfysJS3z0agfh4nrctYFvc2OPg3dUyS+gA8rqoNFmOko
+         +Cb2WlRCqaeJIO6Uc9pyExR1GCAAQbf1233mPDQWCfTWsNlwZfUeo2RMZ50uIiEF3ygU
+         3IWw==
+X-Gm-Message-State: APjAAAXDLiRROGzQn29f4LsVWeoMWS62jiiimOTNBcfXxOWYTN/IBsHy
+        9kmSssRUKtdCxtvcFXwpqSKvnw==
+X-Google-Smtp-Source: APXvYqygBR89fKBdCAQmPjpAqiV1ouU4IH0prxfGmTO/KT1bW4/bbP1SDFUrQEK1nfCjt9ckb/vW8g==
+X-Received: by 2002:a1c:7509:: with SMTP id o9mr2944752wmc.21.1569363843889;
+        Tue, 24 Sep 2019 15:24:03 -0700 (PDT)
+Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
+        by smtp.gmail.com with ESMTPSA id 94sm1749646wrk.92.2019.09.24.15.23.59
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 24 Sep 2019 15:24:02 -0700 (PDT)
+Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
+To:     Wolfram Sang <wsa@the-dreams.de>
+Cc:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
         Florian Fainelli <f.fainelli@gmail.com>,
-        james.quinlan@broadcom.com, Stefan Wahren <wahrenst@gmx.net>,
-        Dan Williams <dan.j.williams@intel.com>,
-        freedreno <freedreno@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lori Hikichi <lori.hikichi@broadcom.com>,
+        Icarus Chau <icarus.chau@broadcom.com>,
+        Shivaraj Shetty <sshetty1@broadcom.com>
+References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
+ <20190830125626.GC2870@ninjato>
+ <3e70fa7e-de13-4edd-2e17-b7c56e91d220@broadcom.com>
+ <20190831094940.GA1138@kunai>
+ <540c4e2d-0dd5-5260-30b2-e1589b279d71@broadcom.com>
+ <20190904213745.GG23608@ninjato>
+ <5ab79d0e-eb54-8fe1-1ca3-e763a17c6426@broadcom.com>
+ <20190924185757.GA1538@kunai>
+From:   Ray Jui <ray.jui@broadcom.com>
+Message-ID: <e00520d8-5367-83a5-9c17-d2d8b0c983c3@broadcom.com>
+Date:   Tue, 24 Sep 2019 15:23:57 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190924185757.GA1538@kunai>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 1:12 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> Hi All,
-> this series tries to address one of the issues blocking us from
-> upstreaming Broadcom's STB PCIe controller[1]. Namely, the fact that
-> devices not represented in DT which sit behind a PCI bus fail to get the
-> bus' DMA addressing constraints.
->
-> This is due to the fact that of_dma_configure() assumes it's receiving a
-> DT node representing the device being configured, as opposed to the PCIe
-> bridge node we currently pass. This causes the code to directly jump
-> into PCI's parent node when checking for 'dma-ranges' and misses
-> whatever was set there.
->
-> To address this I create a new API in OF - inspired from Robin Murphys
-> original proposal[2] - which accepts a bus DT node as it's input in
-> order to configure a device's DMA constraints. The changes go deep into
-> of/address.c's implementation, as a device being having a DT node
-> assumption was pretty strong.
->
-> On top of this work, I also cleaned up of_dma_configure() removing its
-> redundant arguments and creating an alternative function for the special cases
-> not applicable to either the above case or the default usage.
->
-> IMO the resulting functions are more explicit. They will probably
-> surface some hacky usages that can be properly fixed as I show with the
-> DT fixes on the Layerscape platform.
->
-> This was also tested on a Raspberry Pi 4 with a custom PCIe driver and
-> on a Seattle AMD board.
 
-Humm, I've been working on this issue too. Looks similar though yours
-has a lot more churn and there's some other bugs I've found.
 
-Can you test out this branch[1]. I don't have any h/w needing this,
-but wrote a unittest and tested with modified QEMU.
+On 9/24/19 11:57 AM, Wolfram Sang wrote:
+> 
+>> In my opinion, it's probably better to continue to support master_xfer in
+>> our driver (with obvious limitations), in order to allow i2ctransfer (or any
+>> apps that use I2C RDWR) to continue to work.
+>>
+>> What do you think?
+> 
+> Yes, don't break it for users. We should have paid more attention to it
+> in the beginning. But, while not ideal, it is not such a big deal to
+> keep it like this.
+> 
+> Thanks for your investigations!
+> 
 
-Rob
+Thanks, Wolfram.
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dma-masks
+Let's please continue with the review process on the current patch then?
+
+Note the patch was already internally reviewed by me.
+
+Please help to review it and let us know if there's any change that 
+needs to be made?
+
+Regards,
+
+Ray
