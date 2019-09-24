@@ -2,113 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF45EBC053
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 04:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64559BC07D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 04:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404289AbfIXCsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Sep 2019 22:48:30 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:36437 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389572AbfIXCsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Sep 2019 22:48:30 -0400
-Received: by mail-pl1-f195.google.com with SMTP id f19so280583plr.3;
-        Mon, 23 Sep 2019 19:48:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=deTOHyUuNbmlHO4aRp949wtOhcFU4gVUPh8sJQJUCQ4=;
-        b=acEtyVqI1ptDNYGn6laviDUrBylL5GoPdDcuHygbZ+r0EG6dJgy3UhfejSjbj/MxY/
-         pJo+0Pl8XVXXJsj7QoI6/Qng9qMCYChNMpBE5TfxDx8EMI29QMb1oOFKu75IjTwYNUA1
-         GW9CIg+GUJAbOsi+aTfiA/a4NGmVsdPtl95NR6j0a3zMoa091keyiT2mQyvQyjIzawaT
-         CErq+02tdfxO/i4eBlVu0q5HPQpSBDn98Ww9nDI8ztlF8C5w6fUPqtfDhvXNs2OXIO2r
-         R9toIqwVwxXpPBXywaSEZhoOfbX/JM+pF+9/3x3Nh44napQ0D/vXSRvRstOt3bOQa0xA
-         piWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=deTOHyUuNbmlHO4aRp949wtOhcFU4gVUPh8sJQJUCQ4=;
-        b=NR67zeu3veXNKPsM5FNYxqNnvfK+dKTL/nfIvbcxdnCuQqA790T104qesxz7I12JWT
-         pfp6nUPBeQl/QfZYNknMbIpaXgaJdldeK8CslFmnUORL2l1+uuupE0FQuUGJKf8JuJPW
-         0bvaxIKNWXw1pJJ7IMpgmy/fmvk8lX/1ChTdXybSbDYDeKN4mu603ZVaG5Cfk5f0Swxk
-         Cbkx8CnUfZqtqSXjlEPyPgMusW71ogK6phCLUZtgUVmpxZkUMkTGp38jXXjfDZ3ayyVe
-         wEa5rSmj/b7nnals57jiIn9gKKk4Bn2yyyYBYXejAr3L7MPA6UEvmTYHTwiafGQiHjpq
-         uLCQ==
-X-Gm-Message-State: APjAAAW/oD1DeR3Nfd3unNHoZBRadz8kPMKqGThmoOBcVJhLTjIKIF9c
-        WWZNWAm4UcWRaU7gv00GP3o=
-X-Google-Smtp-Source: APXvYqwod2IWhSzAzWT7j2NclyNInJfApNQQnV0sqhYQNVBP35uINV509q2WmEDB4J1pRDnwm0n1fQ==
-X-Received: by 2002:a17:902:5a44:: with SMTP id f4mr442688plm.31.1569293309631;
-        Mon, 23 Sep 2019 19:48:29 -0700 (PDT)
-Received: from [10.230.28.130] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id a17sm150278pfi.178.2019.09.23.19.48.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Sep 2019 19:48:28 -0700 (PDT)
-Subject: Re: [PATCH V8 2/2] mailbox: introduce ARM SMC based mailbox
-To:     Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <1569287538-10854-1-git-send-email-peng.fan@nxp.com>
- <1569287538-10854-3-git-send-email-peng.fan@nxp.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <1f01ea8e-8953-82ae-933c-721385dc0c13@gmail.com>
-Date:   Mon, 23 Sep 2019 19:48:27 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.0
-MIME-Version: 1.0
-In-Reply-To: <1569287538-10854-3-git-send-email-peng.fan@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S2408838AbfIXC4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Sep 2019 22:56:24 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:60504 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728992AbfIXC4X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Sep 2019 22:56:23 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A7A28200386;
+        Tue, 24 Sep 2019 04:56:21 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0D92320021A;
+        Tue, 24 Sep 2019 04:56:17 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7BA284029F;
+        Tue, 24 Sep 2019 10:56:11 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     leoyang.li@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, ran.wang_1@nxp.com
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
+Subject: [v3,1/3] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
+Date:   Tue, 24 Sep 2019 10:45:46 +0800
+Message-Id: <20190924024548.4356-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+Description:
+	- Reading configuration register RCPM_IPPDEXPCR1
+	  always return zero
 
-On 9/23/2019 6:14 PM, Peng Fan wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> This mailbox driver implements a mailbox which signals transmitted data
-> via an ARM smc (secure monitor call) instruction. The mailbox receiver
-> is implemented in firmware and can synchronously return data when it
-> returns execution to the non-secure world again.
-> An asynchronous receive path is not implemented.
-> This allows the usage of a mailbox to trigger firmware actions on SoCs
-> which either don't have a separate management processor or on which such
-> a core is not available. A user of this mailbox could be the SCP
-> interface.
-> 
-> Modified from Andre Przywara's v2 patch
-> https://lore.kernel.org/patchwork/patch/812999/
-> 
-> Cc: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
+Workaround:
+	- Save register RCPM_IPPDEXPCR1's value to
+	  register SCFG_SPARECR8.(uboot's psci also
+	  need reading value from the register SCFG_SPARECR8
+	  to set register RCPM_IPPDEXPCR1)
 
-[snip]
+Impact:
+	- FlexTimer module will cannot wakeup system in
+	  deep sleep on SoC LS1021A
 
-> +typedef unsigned long (smc_mbox_fn)(unsigned int, unsigned long,
-> +				    unsigned long, unsigned long,
-> +				    unsigned long, unsigned long,
-> +				    unsigned long);
-> +static smc_mbox_fn *invoke_smc_mbox_fn;
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+---
+Change in v3:
+	- update commit message
+	- rename property name
+	  fsl,rcpm-scfg -> fsl,ippdexpcr-alt-addr
 
-Sorry for spotting this so late, the only thing that concerns me here
-with this singleton is if we happen to have both an arm,smc-mbox and
-arm,hvc-mbox configured in the system, this would not work. I do not
-believe this could be a functional use case, but we should probably
-guard against that or better yet, move that into the arm_smc_chan_data
-private structure?
+Change in v2:
+	- fix stype problems
+
+ drivers/soc/fsl/rcpm.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/drivers/soc/fsl/rcpm.c b/drivers/soc/fsl/rcpm.c
+index 82c0ad5e663e..7f42b17d3f29 100644
+--- a/drivers/soc/fsl/rcpm.c
++++ b/drivers/soc/fsl/rcpm.c
+@@ -13,6 +13,8 @@
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
+ #include <linux/kernel.h>
++#include <linux/regmap.h>
++#include <linux/mfd/syscon.h>
+ 
+ #define RCPM_WAKEUP_CELL_MAX_SIZE	7
+ 
+@@ -29,6 +31,9 @@ static int rcpm_pm_prepare(struct device *dev)
+ 	struct rcpm		*rcpm;
+ 	u32 value[RCPM_WAKEUP_CELL_MAX_SIZE + 1], tmp;
+ 	int i, ret, idx;
++	struct regmap * scfg_addr_regmap = NULL;
++	u32 reg_offset[RCPM_WAKEUP_CELL_MAX_SIZE + 1];
++	u32 reg_value = 0;
+ 
+ 	rcpm = dev_get_drvdata(dev);
+ 	if (!rcpm)
+@@ -63,6 +68,22 @@ static int rcpm_pm_prepare(struct device *dev)
+ 					tmp |= value[i + 1];
+ 					iowrite32be(tmp, rcpm->ippdexpcr_base + i * 4);
+ 				}
++				/* Workaround of errata A-008646 on SoC LS1021A: There is a bug of
++				 * register ippdexpcr1. Reading configuration register RCPM_IPPDEXPCR1
++				 * always return zero. So save ippdexpcr1's value to register SCFG_SPARECR8.
++				 * And the value of ippdexpcr1 will be read from SCFG_SPARECR8.
++				 */
++				scfg_addr_regmap = syscon_regmap_lookup_by_phandle(np, "fsl,ippdexpcr-alt-addr");
++				if (scfg_addr_regmap) {
++					if (of_property_read_u32_array(dev->of_node,
++					    "fsl,ippdexpcr-alt-addr", reg_offset, rcpm->wakeup_cells + 1)) {
++						scfg_addr_regmap = NULL;
++						continue;
++					}
++					regmap_read(scfg_addr_regmap, reg_offset[i + 1], &reg_value);
++					/* Write value to register SCFG_SPARECR8 */
++					regmap_write(scfg_addr_regmap, reg_offset[i + 1], tmp | reg_value);
++				}
+ 			}
+ 		}
+ 	} while (ws = wakeup_source_get_next(ws));
 -- 
-Florian
+2.17.1
+
