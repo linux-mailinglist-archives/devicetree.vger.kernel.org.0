@@ -2,222 +2,587 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FA18BC506
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 11:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A56BC529
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 11:48:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2504301AbfIXJkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 05:40:01 -0400
-Received: from mail-eopbgr00067.outbound.protection.outlook.com ([40.107.0.67]:31374
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2504300AbfIXJkB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 05:40:01 -0400
+        id S2389462AbfIXJsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 05:48:52 -0400
+Received: from mail1.bemta26.messagelabs.com ([85.158.142.114]:54008 "EHLO
+        mail1.bemta26.messagelabs.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2392592AbfIXJsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Sep 2019 05:48:51 -0400
+Received: from [85.158.142.201] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+        by server-3.bemta.az-b.eu-central-1.aws.symcld.net id 1B/72-25862-B76E98D5; Tue, 24 Sep 2019 09:48:43 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA1WSf0wbZRjH+/au14NQchQIrwRm0ikaR0vbmXh
+  oZhanS1mmA13mMBnsGCc9015rW7LiEn4MiHRAJSKwdY6WFdShA4czsglk1kJguillMrKwSUNH
+  HWwLdmykQcH2Dqb+9/k+3+/7vM/75sER6TSWitNWC21iKZ0Mi0W1WbFb5UfmbAeUV1dxssUfw
+  Ein96qI7G65gJK/PxwG5KNrdUJy4uKnGLl48TeErB30irfjmguOm2JNX7cN00xPDmCaj/5Wah
+  70bcoVvSNi2CKD9aBI21L5MTB+3gCsPSNz4kqwZj4GYnFAdCHQVzMIeDGCQl/9hxgvvgFwpTH
+  MCZQYReBq8IEoKqREixD65scQXgQAPHPWFnFicIwgYfPoDHckifAI4S3HSU4gRC+A9k88IJpK
+  JN6AYf8XHCcRuTAU7kF4VkPv4HVhlFHiaRgcP45FWUJQsLd1hWMpwcLzbUscxxDb4NGGMMeAS
+  IdLVV9yfRAiBd4IOLk+kCBg58AvCM/J8M7sqojP03Ds6BTg65nwyvXAOstg+ynvOqdDn7N+nV
+  +HVXY3Gn0MJG4DOH7ta2TjcI1tcJ1J2FlfGwnhEX4KrnrK+LIReqd/QvhyBmx0s3w5DZ4bXhY
+  1gSzHf6bmORO6vg9hPG+Bn3UsIA7uJxLg2IkA6gJoN8guMjElWoueYnRylVIpV6m2yl+Qq59X
+  K6gP5EUKulR+iGYtJiriKqjDZoW5TH9IV6xgaUsfiCxa8fviUD+YctxVeMATuFCWLFnz2g5I4
+  4sMxWVayqwtNJXqaLMHpOG4DEpuByJegokuoa3vMrrIum7YEI+TJUkuRW2J2UjpzUwJb10Gcr
+  zpzqnTiBRlDSydmiJZnI2EiGhIW8o+brGx9D6QnpooAQKBQBpnpE16xvJ/fx6k4ECWKPFHr4p
+  jWMvjm+YjQwgjQ2zewQ1hof61UiuF5c8gy8YFV9tk+ST28MUR19743JSdI+Nf5ZnqOu0N8bv3
+  qVoKg8kxv768f+LKjmx2aNFAP5o9Ya9ojg2cz74/PTG6982ddcbQsxWv/nA3v3c5f9yaG1fwt
+  jth6rVwwF26XXuMLbiRc/hS8vC9TfvF6dveCua80m8YCrkrmbH7PnVdf1tIqQ6+pOjNmNlDky
+  fL1e+l/SjIO7Kruaewy5XjqL4s6LlXPX/T32SfE63sXpzrSKrEMp6sZbq+RfPzzhRMopKF7OD
+  Emv2cc0+X8laFv3rXd8mJM07PaUNsR0PrkujPAb3O5V5Afs5s7T7415ahs5uZ+fas+CpBI/XH
+  8Zp22z4ZatZSqucQk5n6B6LcIRlvBAAA
+X-Env-Sender: Adam.Thomson.Opensource@diasemi.com
+X-Msg-Ref: server-19.tower-246.messagelabs.com!1569318522!131308!1
+X-Originating-IP: [104.47.10.51]
+X-SYMC-ESS-Client-Auth: mailfrom-relay-check=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.43.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 26100 invoked from network); 24 Sep 2019 09:48:43 -0000
+Received: from mail-db5eur03lp2051.outbound.protection.outlook.com (HELO EUR03-DB5-obe.outbound.protection.outlook.com) (104.47.10.51)
+  by server-19.tower-246.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP; 24 Sep 2019 09:48:43 -0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YOgEeVt9vlJVZDsurc1EQneToBJ6QZZ8WIsJfLGAEwIGWqhnbbENnrYB71CmA3yq3KE7LtXIrbrf6sUxTuwkT3iGG41O7qYNzULhcObv8/PgJuM+NKziWf0Js5NInl6Cd1hJ6JsGRoNv0PHb3nRaSHmdKqIoK44JIWxVjJBMtcjBT8aBcMZoY5v6Oxr05Mzggrmt9f/T7GhJ+cFLGbGFqM3ziTxC5WzUafzljLO59kzj75AVBRj1SiV5WuB6NTbWUXgasjigdaen3+CdekwykF+7DX4t38e5J5RLti2uFKrOOxql5Y6CFaBv2dfbud2XUmDFype99YgfznSfk79W0w==
+ b=lwYOppx4HoD4KwwtEdyUtSMs4kpQbATvpwMMYXZigYz+IkqUTsJrv1s0tfIW5O4sl448/Gb6de7ZSR2XV0RK8ibnmsEnPIj19Bemg0fDo+R0XiVdvsYFgSaxB9hIcDWKnX08KZ4+iT9aU4gHDfYBHEC96QXdGwqzsrIfVw1pcaHziCcwBTQBI5zUlNVsfh6Z1vG9Hv7ZdQVDtBhCVyRpVtOtAisySY1V2WanbBpIShgXeYIERoY4K00TNgF7NhPsKvxGqdelwBdz79HIP0e5Tirbu5zz9aIimJLkl/4wMK4FM7opAELLUwk0BZc8v4wsT7LsfzBMOuY0218IGYBIfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wz0Kso3t+UOd86smnVFoGzYLV4qVYfDQ5UddDsPC0Z0=;
- b=XJ2Wpq0p7i0IvFCSCUSCCktW1JC0dG/EvgpFQ9YPC3MycXm5WPBR3rm/w8w/8j3jKJB9gumrBMD13ZujDiHwy03NpuWRWuxkGDkzAUIMwWpOcy/3THXM8NXWSFW9/cJ9VGDWvFGM4jCNS637mwmUYO1DvaPTyeUdqeaOlvCs85l19gseZ/ZLXh6mm3vzfstjql/Dzr9rev1kRPEFq47q0YY2p6ux/MuvppTU/nVKx6cjdDD+ixYe/wqFqpkZtMlr2JxyV8mMIgD9h/IAww96KyUZl9UW4DDIQZimh7lChgklPGK2o9lzQsqfay2nF3rQOh1Ajoa4I476i2BANuHLvA==
+ bh=n6JMEMpLHqpYZ1YfjuxnkY20KWvovaYOokyCGXDhAqU=;
+ b=SI/I1YVxXpYMXFAtfAZUMkiy7PM6xghBxSjAYoFeT/PXInSlrefx8f9qXVm6fbJ4D2oV11LiDSmruaP5yOj4+0Z3nnj0CrocjbEf78orreEjUmJ4OpsbfQiZFCyBr1mUJ4xvmSRiUwS1/qCeYje7LPKyQciFK9ffHRLkFY1JE7ks+nwVI/U6a3ctjpLzpFWkdzSrWWf7dzLg0AhERqq8Q6Fdzs2BItCh7JNeOi/g0Pu2n5yda0HFuqq2IiNPSgQ1tvYAlrJpZHjprHJ23vuPDLdYPEY+VHaWvOJg12pdI1Xq78pqrA2elw1iNPAJIG4I1uyg4iDP0zkqP9ynLUmrEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
+ dkim=pass header.d=diasemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector2-dialogsemiconductor-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wz0Kso3t+UOd86smnVFoGzYLV4qVYfDQ5UddDsPC0Z0=;
- b=SI1X04GHHerigxjWpJAlnPQXI5Ftj2SvOEip+WfglaNoS5O1fRU3ZNVd2rHuimk5rgajoGdVRVltt6MQcu5opvXEYotLhQUnRrjf4lQCuKDWA5FmDj8m8TTDNOnUYy3NWzobyJSXq8m4++56Shf6IhV++uc6Fa7dySIynTtYanU=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB4898.eurprd04.prod.outlook.com (20.177.41.158) with Microsoft SMTP
+ bh=n6JMEMpLHqpYZ1YfjuxnkY20KWvovaYOokyCGXDhAqU=;
+ b=WI3MpiYr1JV6J0k3bpl5BdXL1vgo4SmrLJuHFTtIDsIpSTm4qLV3xq0o/lPeXrP3NBy1OZOWegzKxeuiDstzC+w+JAetqz04lMMzJL6TgyFVNUtPE8hJTPGq8Y2Yzv/j0Iq0qXNEZj2RXJUQKF97oh2QgJIqJ/G91naQcK2xYSg=
+Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM (10.169.154.136) by
+ AM5PR1001MB1041.EURPRD10.PROD.OUTLOOK.COM (10.169.155.12) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.20; Tue, 24 Sep 2019 09:39:57 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::6ca2:ec08:2b37:8ab8]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::6ca2:ec08:2b37:8ab8%6]) with mapi id 15.20.2284.023; Tue, 24 Sep 2019
- 09:39:57 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     =?utf-8?B?QW5kcsOpIFByenl3YXJh?= <andre.przywara@arm.com>,
+ 15.20.2284.20; Tue, 24 Sep 2019 09:48:41 +0000
+Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::15de:593a:8380:b8ef]) by AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::15de:593a:8380:b8ef%12]) with mapi id 15.20.2284.023; Tue, 24 Sep
+ 2019 09:48:41 +0000
+From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        Support Opensource <Support.Opensource@diasemi.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH V7 0/2] mailbox: arm: introduce smc triggered mailbox
-Thread-Topic: [PATCH V7 0/2] mailbox: arm: introduce smc triggered mailbox
-Thread-Index: AQHVcdlNWqhZHpusdUul3c2IEB+mNac6SpkAgABJPnA=
-Date:   Tue, 24 Sep 2019 09:39:56 +0000
-Message-ID: <AM0PR04MB44815CAA10EAB980B094679688840@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <1569220514-27903-1-git-send-email-peng.fan@nxp.com>
- <30b20102-40d5-1446-1513-e64b47459db8@arm.com>
-In-Reply-To: <30b20102-40d5-1446-1513-e64b47459db8@arm.com>
-Accept-Language: en-US
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        Steve Twiss <stwiss.opensource@diasemi.com>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 3/5] regulator: da9062: add voltage selection gpio support
+Thread-Topic: [PATCH 3/5] regulator: da9062: add voltage selection gpio
+ support
+Thread-Index: AQHVbVV5b5NAUSiX10OK40SnYhU/rac6n6rQ
+Date:   Tue, 24 Sep 2019 09:48:41 +0000
+Message-ID: <AM5PR1001MB099431ECB45A103A22646CB680840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+References: <20190917124246.11732-1-m.felsch@pengutronix.de>
+ <20190917124246.11732-4-m.felsch@pengutronix.de>
+In-Reply-To: <20190917124246.11732-4-m.felsch@pengutronix.de>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.68]
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [165.225.80.228]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 31e46045-3678-4390-0e12-08d740d3293e
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:AM0PR04MB4898;
-x-ms-traffictypediagnostic: AM0PR04MB4898:|AM0PR04MB4898:
-x-ms-exchange-purlcount: 3
+x-ms-office365-filtering-correlation-id: 8a44a3c3-a695-4db2-f6de-08d740d461b9
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:AM5PR1001MB1041;
+x-ms-traffictypediagnostic: AM5PR1001MB1041:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB48981131038714AE8AE518AB88840@AM0PR04MB4898.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-microsoft-antispam-prvs: <AM5PR1001MB1041907C952E5FD1637672BFA7840@AM5PR1001MB1041.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:1360;
 x-forefront-prvs: 0170DAF08C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(366004)(39860400002)(396003)(346002)(136003)(51914003)(199004)(189003)(99286004)(66476007)(110136005)(5660300002)(66556008)(8676002)(76176011)(52536014)(486006)(66446008)(44832011)(966005)(81156014)(6436002)(8936002)(26005)(2201001)(102836004)(2501003)(4326008)(45080400002)(229853002)(6246003)(14454004)(256004)(6306002)(3846002)(55016002)(71200400001)(33656002)(186003)(53546011)(305945005)(81166006)(6116002)(7696005)(476003)(66066001)(71190400001)(14444005)(316002)(6506007)(7736002)(25786009)(54906003)(2906002)(11346002)(64756008)(76116006)(15650500001)(478600001)(9686003)(74316002)(66946007)(86362001)(446003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4898;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(136003)(376002)(366004)(39860400002)(346002)(189003)(199004)(74316002)(305945005)(52536014)(76116006)(6436002)(66476007)(7736002)(229853002)(64756008)(6116002)(3846002)(86362001)(2906002)(66446008)(33656002)(66946007)(110136005)(478600001)(5660300002)(25786009)(256004)(14454004)(14444005)(30864003)(66066001)(4326008)(476003)(446003)(71190400001)(55016002)(71200400001)(316002)(8936002)(99286004)(486006)(11346002)(9686003)(54906003)(55236004)(6246003)(2501003)(6506007)(6636002)(53546011)(66556008)(81166006)(186003)(102836004)(76176011)(8676002)(81156014)(26005)(7696005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR1001MB1041;H:AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: diasemi.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: nUOBWOW7J9s2QgZxHNp/9MY6hp+OHwwhDmabQf7f32bcwWezfVAnG/jHV4+W7OH+LClzm2CCetqsC+3FptemwgOUJaccfPCCCTsrukBJeSMNFe2fro55hJpo36aEM13gjpt/fzYEQGth6aKL/pMpvqFmFj54tY0JAmYaXQJUF7Au1uwIrQJ+LS6e1CYhTlMqvAxXUGjbilhCKXLw1pmocgCTai3vWan827Ni4Dj8yW2KhIbJrfoBerGVpIESgvxgzjDmcySzXh0rK3TKRln1Xwm0u4nxEdMhpLHsnhbO328roqZXaverCiWKEmO/weMlPi1ifSbZVEb/uK2MMFI64PxHbDmFc1M0j+5HGgpQHPZe3KsftaisaBt8U2etNMkDh9KxiLbR6tIRTm2RwLJb4b2LqmDFA0A4MsIXiUyZqVI=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: LxkMpKJFQ7DRob4paNhhoybhU9UWtOntx1tsAXp1vRLG8/dMSWTBflvw6qW1puomn7KfYBRXp4W3ThjRhj60Kp33vSULL5nq9Z2JwhwzR5h33uQCKrMqi8j351mgvOWJBJsUBZikddvH/WXW30nRVn63PahZFlDWVCV4bfJH7eKgz4uyFzAAtBkuKF24KqxklxWAEfMFMsnM2RKqQigtVE+OzaYsY+xHM3jcwdKk5nzVHAN4VRbC0elzTMTfVSixMBwJHK16QynJoHMSViOo8L/0gyYiQKdquLuAt71ULy7Vqkn30CigT37berrircmdzHiHK3DGwGNoHK1zxiOCQEwJxxoVvjOe94NjXXLvudc2B6saV1h5tOO9Mw6wTSTt6xjSZ0Zq1hPa6VCS92Fkj5E1Z/qTVz6a+oFlm9HFLW0=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31e46045-3678-4390-0e12-08d740d3293e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2019 09:39:56.8985
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a44a3c3-a695-4db2-f6de-08d740d461b9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2019 09:48:41.1277
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Vtck0EF/+gJk9vHEnjb7jZvm2+WeyCSgOOyXftOajnGGC/myFdEznbeh4Rdz56uJqF9Y7+wr54YLQY2X8wZuOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4898
+X-MS-Exchange-CrossTenant-userprincipalname: Cv9Na81eGH0pFKJhNkJOLzdHaF1VKfqD0x9S70tZIf+99x/s3TttloFnNVfKHGjTo6CGSy0SawPndNnQdh8YpJ8DSbHlRyy7RrumMlelNyM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR1001MB1041
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmUsDQoNCj4gU3ViamVjdDogUmU6IFtQQVRDSCBWNyAwLzJdIG1haWxib3g6IGFybTog
-aW50cm9kdWNlIHNtYyB0cmlnZ2VyZWQgbWFpbGJveA0KPiANCj4gT24gMjMvMDkvMjAxOSAwNzoz
-NiwgUGVuZyBGYW4gd3JvdGU6DQo+IA0KPiBIaSBQZW5nLA0KPiANCj4gdGhhbmtzIGZvciB0aGUg
-dXBkYXRlIQ0KPiANCj4gPiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gPg0K
-PiA+IFY3Og0KPiA+IFR5cG8gZml4DQo+ID4gI21ib3gtY2VsbHMgY2hhbmdlZCB0byAwDQo+ID4g
-QWRkIGEgbmV3IGhlYWRlciBmaWxlIGFybS1zbWNjYy1tYm94LmggVXNlIEFSTV9TTUNDQ19JU182
-NA0KPiA+DQo+ID4gQW5kcmUsDQo+ID4gICBUaGUgZnVuY3Rpb25faWQgaXMgc3RpbGwga2VwdCBp
-biBhcm1fc21jY2NfbWJveF9jbWQsIGJlY2F1c2UNCj4gPiBhcm0sZnVuYy1pZCBwcm9wZXJ0eSBp
-cyBvcHRpb25hbCwgc28gY2xpZW50cyBjb3VsZCBwYXNzIGZ1bmN0aW9uX2lkIHRvIG1ib3gNCj4g
-ZHJpdmVyLg0KPiANCj4gV2VsbCwgdG8gYmUgaG9uZXN0LCB0aGlzIGlzIHRoZSBtYWluIHRoaW5n
-IEkgYW0gb3Bwb3Npbmc6DQo+IA0KPiBJdCBzaG91bGQgKm5vdCogYmUgb3B0aW9uYWwuDQo+IA0K
-PiBUaGUgY29udHJvbGxlciBkcml2ZXIgRFQgbm9kZSBzaG91bGQgKmFsd2F5cyogY29udGFpbiB0
-aGUgZnVuY3Rpb24gSUQuDQo+IFRoZSByZWFzb25zIGZvciB0aGF0IEkgZXhwbGFpbmVkIGluIHRo
-ZSBvdGhlciBlbWFpbHMgdG8gSmFzc2k6DQo+IFdlIGNhbid0IHNhZmVseSBleGVjdXRlIHNtYyBj
-YWxscyBmcm9tIHRoZSBMaW51eCBrZXJuZWwsIHVubGVzcyB3ZSBhbHNvDQo+IGNvbXBseSB3aXRo
-IHRoZSBTTUNDQyBzdGFuZGFyZC4gU28gd2Ugc2hvdWxkIG5vdCBsZWF2ZSB0aGUgY2hvaWNlIG9m
-IHRoZQ0KPiBmdW5jdGlvbiBJRCB0byB0aGUgbWFpbGJveCBjbGllbnQuDQo+IEFsc28gdGhpcyBt
-dWNoIGJldHRlciBzZXBhcmF0ZXMgdGhlIG1haWxib3ggY29udHJvbGxlciBkcml2ZXIgZnJvbSB0
-aGUgY2xpZW50Lg0KPiANCj4gU28gSSB0aGluayB3ZSBzaG91bGQgcmVhY2ggYW4gYWdyZWVtZW50
-IGhlcmUuDQoNCkkgYW0gb2sgdG8gbWFyayBpdCBhcyBhIHJlcXVpcmVkIHByb3BlcnR5IGluIHY5
-LCBidXQgSSBhbSBub3Qgc3VyZSBKYXNzaSBhY2NlcHQgaXQuDQoNClRoYW5rcywNClBlbmcuDQoN
-Cj4gDQo+IENoZWVycywNCj4gQW5kcmUNCj4gDQo+ID4gVjY6DQo+ID4gU3dpdGNoIHRvIHBlci1j
-aGFubmVsIGEgbWJveCBjb250cm9sbGVyIERyb3AgYXJtLG51bS1jaGFucywNCj4gPiB0cmFuc3Bv
-cnRzLCBtZXRob2QgQWRkIGFybSxodmMtbWJveCBjb21wYXRpYmxlIEZpeCBzbWMvaHZjIGFyZ3Ms
-IGRyb3ANCj4gPiBjbGllbnQgaWQgYW5kIHVzZSBjb3JyZWN0IHR5cGUuDQo+ID4gaHR0cHM6Ly9l
-dXIwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJG
-cGF0Yw0KPiA+DQo+IGh3b3JrLmtlcm5lbC5vcmclMkZjb3ZlciUyRjExMTQ2NjQxJTJGJmFtcDtk
-YXRhPTAyJTdDMDElN0NwZW5nLmYNCj4gYW4lNDBuDQo+ID4NCj4geHAuY29tJTdDNTJkN2UzMzFj
-MjIyNDI2ODUyYTUwOGQ3NDBhZTdkNDIlN0M2ODZlYTFkM2JjMmI0YzZmYTkNCj4gMmNkOTljNWMN
-Cj4gPg0KPiAzMDE2MzUlN0MwJTdDMCU3QzYzNzA0ODk5MDUwNzE3NzM0NiZhbXA7c2RhdGE9TiUy
-QldkRVhoOVFYbg0KPiBGNGNuMkRqQ3dIaw0KPiA+IHFwRDFKeHRQJTJCQmZRd24zRTNsellzJTNE
-JmFtcDtyZXNlcnZlZD0wDQo+ID4NCj4gPiBWNToNCj4gPiB5YW1sIGZpeA0KPiA+IGh0dHBzOi8v
-ZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUy
-RnBhdGMNCj4gPg0KPiBod29yay5rZXJuZWwub3JnJTJGY292ZXIlMkYxMTExNzc0MSUyRiZhbXA7
-ZGF0YT0wMiU3QzAxJTdDcGVuZy5mDQo+IGFuJTQwbg0KPiA+DQo+IHhwLmNvbSU3QzUyZDdlMzMx
-YzIyMjQyNjg1MmE1MDhkNzQwYWU3ZDQyJTdDNjg2ZWExZDNiYzJiNGM2ZmE5DQo+IDJjZDk5YzVj
-DQo+ID4NCj4gMzAxNjM1JTdDMCU3QzAlN0M2MzcwNDg5OTA1MDcxNzczNDYmYW1wO3NkYXRhPVhj
-Uk0lMkZINFpRQVUNCj4gUW1UJTJGRGxHenENCj4gPiA5M0xqbFZoVVl1dkVtZFlTZXppdlRvZyUz
-RCZhbXA7cmVzZXJ2ZWQ9MA0KPiA+DQo+ID4gVjQ6DQo+ID4geWFtbCBmaXggZm9yIG51bS1jaGFu
-cyBpbiBwYXRjaCAxLzIuDQo+ID4gaHR0cHM6Ly9ldXIwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5v
-dXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGcGF0Yw0KPiA+DQo+IGh3b3JrLmtlcm5lbC5v
-cmclMkZjb3ZlciUyRjExMTE2NTIxJTJGJmFtcDtkYXRhPTAyJTdDMDElN0NwZW5nLmYNCj4gYW4l
-NDBuDQo+ID4NCj4geHAuY29tJTdDNTJkN2UzMzFjMjIyNDI2ODUyYTUwOGQ3NDBhZTdkNDIlN0M2
-ODZlYTFkM2JjMmI0YzZmYTkNCj4gMmNkOTljNWMNCj4gPg0KPiAzMDE2MzUlN0MwJTdDMCU3QzYz
-NzA0ODk5MDUwNzE3NzM0NiZhbXA7c2RhdGE9OGYwRXRmbmQyOVE2TEh4DQo+IGJ5bUxWeXZFRQ0K
-PiA+IDdFbEdaek4zdVZNY0lMJTJCbVpOUSUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiA+DQo+ID4gVjM6
-DQo+ID4gRHJvcCBpbnRlcnJ1cHQNCj4gPiBJbnRyb2R1Y2UgdHJhbnNwb3J0cyBmb3IgbWVtL3Jl
-ZyB1c2FnZSBBZGQgY2hhbi1pZCBmb3IgbWVtIHVzYWdlDQo+ID4gQ29udmVydCB0byB5YW1sIGZv
-cm1hdA0KPiA+IGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20v
-P3VybD1odHRwcyUzQSUyRiUyRnBhdGMNCj4gPg0KPiBod29yay5rZXJuZWwub3JnJTJGY292ZXIl
-MkYxMTA0MzU0MSUyRiZhbXA7ZGF0YT0wMiU3QzAxJTdDcGVuZy5mDQo+IGFuJTQwbg0KPiA+DQo+
-IHhwLmNvbSU3QzUyZDdlMzMxYzIyMjQyNjg1MmE1MDhkNzQwYWU3ZDQyJTdDNjg2ZWExZDNiYzJi
-NGM2ZmE5DQo+IDJjZDk5YzVjDQo+ID4NCj4gMzAxNjM1JTdDMCU3QzAlN0M2MzcwNDg5OTA1MDcx
-NzczNDYmYW1wO3NkYXRhPVUyJTJCamFVMDZJdTBoDQo+IFVMdUN6MFJUMXINCj4gPiB2aFNmanN1
-JTJCV3VLempUZlk3TXVOdyUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiA+DQo+ID4gVjI6DQo+ID4gVGhp
-cyBpcyBhIG1vZGlmaWVkIHZlcnNpb24gZnJvbSBBbmRyZSBQcnp5d2FyYSdzIHBhdGNoIHNlcmll
-cw0KPiA+DQo+IGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20v
-P3VybD1odHRwcyUzQSUyRiUyRmxvcmUua2UNCj4gcm5lbC5vcmclMkZwYXRjaHdvcmslMkZjb3Zl
-ciUyRjgxMjk5NyUyRiZhbXA7ZGF0YT0wMiU3QzAxJTdDcGUNCj4gbmcuZmFuJTQwbnhwLmNvbSU3
-QzUyZDdlMzMxYzIyMjQyNjg1MmE1MDhkNzQwYWU3ZDQyJTdDNjg2ZWExZDMNCj4gYmMyYjRjNmZh
-OTJjZDk5YzVjMzAxNjM1JTdDMCU3QzAlN0M2MzcwNDg5OTA1MDcxNzczNDYmYW1wO3NkYQ0KPiB0
-YT1ka3UlMkJmVCUyQkRMaWxWVTVUMGZkSE16dVVpNERZQ003YVYxRlFCNHZhS0NWRSUzRCZhbXA7
-cmUNCj4gc2VydmVkPTAuDQo+ID4gVGhlIG1vZGlmaWNhdGlvbiBhcmUgbW9zdGx5Og0KPiA+IElu
-dHJvZHVjZSBhcm0sbnVtLWNoYW5zDQo+ID4gSW50cm9kdWNlIGFybV9zbWNjY19tYm94X2NtZA0K
-PiA+IHR4ZG9uZV9wb2xsIGFuZCB0eGRvbmVfaXJxIGFyZSBib3RoIHNldCB0byBmYWxzZSBhcm0s
-ZnVuYy1pZHMgYXJlDQo+ID4ga2VwdCwgYnV0IGFzIGFuIG9wdGlvbmFsIHByb3BlcnR5Lg0KPiA+
-IFJld29yZHMgU0NQSSB0byBTQ01JLCBiZWNhdXNlIEkgYW0gdHJ5aW5nIFNDTUkgb3ZlciBTTUMs
-IG5vdCBTQ1BJLg0KPiA+IEludHJvZHVjZSBpbnRlcnJ1cHRzIG5vdGlmaWNhdGlvbi4NCj4gPg0K
-PiA+IFsxXSBpcyBhIGRyYWZ0IGltcGxlbWVudGF0aW9uIG9mIGkuTVg4TU0gU0NNSSBBVEYgaW1w
-bGVtZW50YXRpb24gdGhhdA0KPiA+IHVzZSBzbWMgYXMgbWFpbGJveCwgcG93ZXIvY2xrIGlzIGlu
-Y2x1ZGVkLCBidXQgb25seSBwYXJ0IG9mIGNsayBoYXMNCj4gPiBiZWVuIGltcGxlbWVudGVkIHRv
-IHdvcmsgd2l0aCBoYXJkd2FyZSwgcG93ZXIgZG9tYWluIG9ubHkgc3VwcG9ydHMgZ2V0DQo+ID4g
-bmFtZSBmb3Igbm93Lg0KPiA+DQo+ID4gVGhlIHRyYWRpdGlvbmFsIExpbnV4IG1haWxib3ggbWVj
-aGFuaXNtIHVzZXMgc29tZSBraW5kIG9mIGRlZGljYXRlZA0KPiA+IGhhcmR3YXJlIElQIHRvIHNp
-Z25hbCBhIGNvbmRpdGlvbiB0byBzb21lIG90aGVyIHByb2Nlc3NpbmcgdW5pdCwNCj4gPiB0eXBp
-Y2FsbHkgYSBkZWRpY2F0ZWQgbWFuYWdlbWVudCBwcm9jZXNzb3IuDQo+ID4gVGhpcyBtYWlsYm94
-IGZlYXR1cmUgaXMgdXNlZCBmb3IgaW5zdGFuY2UgYnkgdGhlIFNDTUkgcHJvdG9jb2wgdG8NCj4g
-PiBzaWduYWwgYSByZXF1ZXN0IGZvciBzb21lIGFjdGlvbiB0byBiZSB0YWtlbiBieSB0aGUgbWFu
-YWdlbWVudCBwcm9jZXNzb3IuDQo+ID4gSG93ZXZlciBzb21lIFNvQ3MgZG9lcyBub3QgaGF2ZSBh
-IGRlZGljYXRlZCBtYW5hZ2VtZW50IGNvcmUgdG8NCj4gcHJvdmlkZQ0KPiA+IHRob3NlIHNlcnZp
-Y2VzLiBJbiBvcmRlciB0byBzZXJ2aWNlIFRFRSBhbmQgdG8gYXZvaWQgbGludXggc2h1dGRvd24N
-Cj4gPiBwb3dlciBhbmQgY2xvY2sgdGhhdCB1c2VkIGJ5IFRFRSwgbmVlZCBsZXQgZmlybXdhcmUg
-dG8gaGFuZGxlIHBvd2VyDQo+ID4gYW5kIGNsb2NrLCB0aGUgZmlybXdhcmUgaGVyZSBpcyBBUk0g
-VHJ1c3RlZCBGaXJtd2FyZSB0aGF0IGNvdWxkIGFsc28NCj4gPiBydW4gU0NNSSBzZXJ2aWNlLg0K
-PiA+DQo+ID4gVGhlIGV4aXN0aW5nIFNDTUkgaW1wbGVtZW50YXRpb24gdXNlcyBhIHJhdGhlciBm
-bGV4aWJsZSBzaGFyZWQgbWVtb3J5DQo+ID4gcmVnaW9uIHRvIGNvbW11bmljYXRlIGNvbW1hbmRz
-IGFuZCB0aGVpciBwYXJhbWV0ZXJzLCBpdCBzdGlsbCByZXF1aXJlcw0KPiA+IGEgbWFpbGJveCB0
-byBhY3R1YWxseSB0cmlnZ2VyIHRoZSBhY3Rpb24uDQo+ID4NCj4gPiBUaGlzIHBhdGNoIHNlcmll
-cyBwcm92aWRlcyBhIExpbnV4IG1haWxib3ggY29tcGF0aWJsZSBzZXJ2aWNlIHdoaWNoDQo+ID4g
-dXNlcyBzbWMgY2FsbHMgdG8gaW52b2tlIGZpcm13YXJlIGNvZGUsIGZvciBpbnN0YW5jZSB0YWtp
-bmcgY2FyZSBvZiBTQ01JDQo+IHJlcXVlc3RzLg0KPiA+IFRoZSBhY3R1YWwgcmVxdWVzdHMgYXJl
-IHN0aWxsIGNvbW11bmljYXRlZCB1c2luZyB0aGUgc3RhbmRhcmQgU0NNSSB3YXkNCj4gPiBvZiBz
-aGFyZWQgbWVtb3J5IHJlZ2lvbnMsIGJ1dCBhIGRlZGljYXRlZCBtYWlsYm94IGhhcmR3YXJlIElQ
-IGNhbiBiZQ0KPiA+IHJlcGxhY2VkIHZpYSB0aGlzIG5ldyBkcml2ZXIuDQo+ID4NCj4gPiBUaGlz
-IHNpbXBsZSBkcml2ZXIgdXNlcyB0aGUgYXJjaGl0ZWN0ZWQgU01DIGNhbGxpbmcgY29udmVudGlv
-biB0bw0KPiA+IHRyaWdnZXIgZmlybXdhcmUgc2VydmljZXMsIGFsc28gYWxsb3dzIGZvciB1c2lu
-ZyAiSFZDIiBjYWxscyB0byBjYWxsDQo+ID4gaW50byBoeXBlcnZpc29ycyBvciBmaXJtd2FyZSBs
-YXllcnMgcnVubmluZyBpbiB0aGUgRUwyIGV4Y2VwdGlvbiBsZXZlbC4NCj4gPg0KPiA+IFBhdGNo
-IDEgY29udGFpbnMgdGhlIGRldmljZSB0cmVlIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiwgcGF0Y2gg
-Mg0KPiA+IGludHJvZHVjZXMgdGhlIGFjdHVhbCBtYWlsYm94IGRyaXZlci4NCj4gPg0KPiA+IFBs
-ZWFzZSBub3RlIHRoYXQgdGhpcyBkcml2ZXIganVzdCBwcm92aWRlcyBhIGdlbmVyaWMgbWFpbGJv
-eA0KPiA+IG1lY2hhbmlzbSwgSXQgY291bGQgc3VwcG9ydCBzeW5jaHJvbm91cyBUWC9SWCwgb3Ig
-c3luY2hyb25vdXMgVFggd2l0aA0KPiA+IGFzeW5jaHJvbm91cyBSWC4gQW5kIHdoaWxlIHByb3Zp
-ZGluZyBTQ01JIHNlcnZpY2VzIHdhcyB0aGUgcmVhc29uIGZvcg0KPiA+IHRoaXMgZXhlcmNpc2Us
-IHRoaXMgZHJpdmVyIGlzIGluIG5vIHdheSBib3VuZCB0byB0aGlzIHVzZSBjYXNlLCBidXQNCj4g
-PiBjYW4gYmUgdXNlZCBnZW5lcmljYWxseSB3aGVyZSB0aGUgT1Mgd2FudHMgdG8gc2lnbmFsIGEg
-bWFpbGJveA0KPiA+IGNvbmRpdGlvbiB0byBmaXJtd2FyZSBvciBhIGh5cGVydmlzb3IuDQo+ID4g
-QWxzbyB0aGUgZHJpdmVyIGlzIGluIG5vIHdheSBtZWFudCB0byByZXBsYWNlIGFueSBleGlzdGlu
-ZyBmaXJtd2FyZQ0KPiA+IGludGVyZmFjZSwgYnV0IGFjdHVhbGx5IHRvIGNvbXBsZW1lbnQgZXhp
-c3RpbmcgaW50ZXJmYWNlcy4NCj4gPg0KPiA+IFsxXQ0KPiA+IGh0dHBzOi8vZXVyMDEuc2FmZWxp
-bmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmdpdGgNCj4gPg0K
-PiB1Yi5jb20lMkZNclZhbiUyRmFybS10cnVzdGVkLWZpcm13YXJlJTJGdHJlZSUyRnNjbWkmYW1w
-O2RhdGE9MDINCj4gJTdDMDElNw0KPiA+DQo+IENwZW5nLmZhbiU0MG54cC5jb20lN0M1MmQ3ZTMz
-MWMyMjI0MjY4NTJhNTA4ZDc0MGFlN2Q0MiU3QzY4NmVhDQo+IDFkM2JjMmI0DQo+ID4NCj4gYzZm
-YTkyY2Q5OWM1YzMwMTYzNSU3QzAlN0MwJTdDNjM3MDQ4OTkwNTA3MTc3MzQ2JmFtcDtzZGF0YT1m
-RkUNCj4gS0s4allhcDUNCj4gPiBpZ3BINkVTR1RIWWZuaEJaTXNMMnpCJTJCZHlrTWRPUHdnJTNE
-JmFtcDtyZXNlcnZlZD0wDQo+ID4NCj4gPg0KPiA+DQo+ID4gUGVuZyBGYW4gKDIpOg0KPiA+ICAg
-ZHQtYmluZGluZ3M6IG1haWxib3g6IGFkZCBiaW5kaW5nIGRvYyBmb3IgdGhlIEFSTSBTTUMvSFZD
-IG1haWxib3gNCj4gPiAgIG1haWxib3g6IGludHJvZHVjZSBBUk0gU01DIGJhc2VkIG1haWxib3gN
-Cj4gPg0KPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9tYWlsYm94L2FybS1zbWMueWFtbCAg
-ICAgICB8ICA5NQ0KPiArKysrKysrKysrKysNCj4gPiAgZHJpdmVycy9tYWlsYm94L0tjb25maWcg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDcgKw0KPiA+ICBkcml2ZXJzL21haWxib3gv
-TWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMiArDQo+ID4gIGRyaXZlcnMv
-bWFpbGJveC9hcm0tc21jLW1haWxib3guYyAgICAgICAgICAgICAgICAgIHwgMTY4DQo+ICsrKysr
-KysrKysrKysrKysrKysrKw0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDI3MiBpbnNlcnRpb25zKCsp
-DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9tYWlsYm94L2FybS1zbWMueWFtbA0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
-dmVycy9tYWlsYm94L2FybS1zbWMtbWFpbGJveC5jDQo+ID4NCg0K
+On 17 September 2019 13:43, Marco Felsch wrote:
+
+> The DA9062/1 devices can switch their regulator voltages between
+> voltage-A (active) and voltage-B (suspend) settings. Switching the
+> voltages can be controlled by ther internal state-machine or by a gpio
+> input signal and can be configured for each individual regulator. This
+> commit adds the gpio-based voltage switching support.
+>=20
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  drivers/regulator/da9062-regulator.c | 149 +++++++++++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>=20
+> diff --git a/drivers/regulator/da9062-regulator.c b/drivers/regulator/da9=
+062-
+> regulator.c
+> index 9b2ca472f70c..9d6eb7625948 100644
+> --- a/drivers/regulator/da9062-regulator.c
+> +++ b/drivers/regulator/da9062-regulator.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/module.h>
+>  #include <linux/init.h>
+>  #include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/slab.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> @@ -15,6 +16,7 @@
+>  #include <linux/regulator/machine.h>
+>  #include <linux/regulator/of_regulator.h>
+>  #include <linux/mfd/da9062/core.h>
+> +#include <linux/mfd/da9062/gpio.h>
+>  #include <linux/mfd/da9062/registers.h>
+>=20
+>  /* Regulator IDs */
+> @@ -50,6 +52,7 @@ struct da9062_regulator_info {
+>  	struct reg_field sleep;
+>  	struct reg_field suspend_sleep;
+>  	unsigned int suspend_vsel_reg;
+> +	struct reg_field vsel_gpi;
+>  	/* Event detection bit */
+>  	struct reg_field oc_event;
+>  };
+> @@ -65,6 +68,7 @@ struct da9062_regulator {
+>  	struct regmap_field			*suspend;
+>  	struct regmap_field			*sleep;
+>  	struct regmap_field			*suspend_sleep;
+> +	struct regmap_field			*vsel_gpi;
+>  };
+>=20
+>  /* Encapsulates all information for the regulators driver */
+> @@ -351,6 +355,65 @@ static const struct regulator_ops da9062_ldo_ops =3D=
+ {
+>  	.set_suspend_mode	=3D da9062_ldo_set_suspend_mode,
+>  };
+>=20
+> +static int da9062_config_gpi(struct device_node *np,
+> +			     const struct regulator_desc *desc,
+> +			     struct regulator_config *cfg, const char *gpi_id)
+> +{
+> +	struct da9062_regulator *regl =3D cfg->driver_data;
+> +	struct gpio_desc *gpi;
+> +	unsigned int nr;
+> +	int ret;
+> +	char *prop, *label;
+> +
+> +	prop =3D kasprintf(GFP_KERNEL, "dlg,%s-sense-gpios", gpi_id);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +	label =3D kasprintf(GFP_KERNEL, "%s-%s-gpi", desc->name, gpi_id);
+> +	if (!label) {
+> +		ret =3D -ENOMEM;
+> +		goto free;
+
+If we use the generic bindings names then the above will change I guess.
+
+> +	}
+> +
+> +	/*
+> +	 * We only must ensure that the gpio device is probed before the
+> +	 * regulator driver so no need to store the reference global. Luckily
+> +	 * devm_* releases the gpio upon a unbound action.
+> +	 */
+> +	gpi =3D devm_gpiod_get_from_of_node(cfg->dev, np, prop, 0, GPIOD_IN |
+> +					  GPIOD_FLAGS_BIT_NONEXCLUSIVE,
+> label);
+> +	if (IS_ERR(gpi)) {
+> +		ret =3D PTR_ERR(gpi);
+> +		goto free;
+> +	}
+> +
+> +	if (!gpi) {
+> +		ret =3D 0;
+> +		goto free;
+> +	}
+> +
+> +	/* We need the local number */
+> +	nr =3D da9062_gpio_get_hwgpio(gpi);
+> +	if (nr < 1 || nr > 3) {
+> +		ret =3D -EINVAL;
+> +		goto free;
+> +	}
+> +
+> +	ret =3D regmap_field_write(regl->vsel_gpi, nr);
+
+Actually thinking about this some more, should we really be setting alterna=
+te
+functions of the GPIO here? Would this not be done through GPIO/Pinmux
+frameworks? That way the GPIO would be blocked off from other's requesting =
+it.
+This seems a little unsafe, unless I'm mistaken.
+
+> +
+> +free:
+> +	kfree(prop);
+> +	kfree(label);
+> +
+> +	return ret;
+> +}
+> +
+> +static int da9062_parse_dt(struct device_node *np,
+> +			   const struct regulator_desc *desc,
+> +			   struct regulator_config *cfg)
+> +{
+> +	return da9062_config_gpi(np, desc, cfg, "vsel");
+> +}
+> +
+>  /* DA9061 Regulator information */
+>  static const struct da9062_regulator_info local_da9061_regulator_info[] =
+=3D {
+>  	{
+> @@ -358,6 +421,7 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  		.desc.name =3D "DA9061 BUCK1",
+>  		.desc.of_match =3D of_match_ptr("buck1"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (300) * 1000,
+>  		.desc.uV_step =3D (10) * 1000,
+> @@ -388,12 +452,17 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK1_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK1_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK1_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK1_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9061_ID_BUCK2,
+>  		.desc.name =3D "DA9061 BUCK2",
+>  		.desc.of_match =3D of_match_ptr("buck2"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (800) * 1000,
+>  		.desc.uV_step =3D (20) * 1000,
+> @@ -424,12 +493,17 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK3_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK3_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK3_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK3_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9061_ID_BUCK3,
+>  		.desc.name =3D "DA9061 BUCK3",
+>  		.desc.of_match =3D of_match_ptr("buck3"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (530) * 1000,
+>  		.desc.uV_step =3D (10) * 1000,
+> @@ -460,12 +534,17 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK4_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK4_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK4_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK4_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9061_ID_LDO1,
+>  		.desc.name =3D "DA9061 LDO1",
+>  		.desc.of_match =3D of_match_ptr("ldo1"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -489,6 +568,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO1_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO1_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO1_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO1_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO1_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -499,6 +582,7 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  		.desc.name =3D "DA9061 LDO2",
+>  		.desc.of_match =3D of_match_ptr("ldo2"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -522,6 +606,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO2_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO2_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO2_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO2_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO2_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO2_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -532,6 +620,7 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  		.desc.name =3D "DA9061 LDO3",
+>  		.desc.of_match =3D of_match_ptr("ldo3"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -555,6 +644,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO3_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO3_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO3_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO3_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO3_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -565,6 +658,7 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  		.desc.name =3D "DA9061 LDO4",
+>  		.desc.of_match =3D of_match_ptr("ldo4"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -588,6 +682,10 @@ static const struct da9062_regulator_info
+> local_da9061_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO4_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO4_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO4_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO4_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO4_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -602,6 +700,7 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  		.desc.name =3D "DA9062 BUCK1",
+>  		.desc.of_match =3D of_match_ptr("buck1"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (300) * 1000,
+>  		.desc.uV_step =3D (10) * 1000,
+> @@ -632,12 +731,17 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK1_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK1_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK1_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK1_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_BUCK2,
+>  		.desc.name =3D "DA9062 BUCK2",
+>  		.desc.of_match =3D of_match_ptr("buck2"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (300) * 1000,
+>  		.desc.uV_step =3D (10) * 1000,
+> @@ -668,12 +772,17 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK2_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK2_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK2_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK2_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK2_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_BUCK3,
+>  		.desc.name =3D "DA9062 BUCK3",
+>  		.desc.of_match =3D of_match_ptr("buck3"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (800) * 1000,
+>  		.desc.uV_step =3D (20) * 1000,
+> @@ -704,12 +813,17 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK3_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK3_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK3_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK3_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_BUCK4,
+>  		.desc.name =3D "DA9062 BUCK4",
+>  		.desc.of_match =3D of_match_ptr("buck4"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_buck_ops,
+>  		.desc.min_uV =3D (530) * 1000,
+>  		.desc.uV_step =3D (10) * 1000,
+> @@ -740,12 +854,17 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_BUCK4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_BUCK4_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_BUCK4_CONT,
+> +			__builtin_ffs((int)DA9062AA_VBUCK4_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VBUCK4_GPI_MASK) - 1),
+>  	},
+>  	{
+>  		.desc.id =3D DA9062_ID_LDO1,
+>  		.desc.name =3D "DA9062 LDO1",
+>  		.desc.of_match =3D of_match_ptr("ldo1"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -769,6 +888,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO1_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO1_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO1_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO1_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO1_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO1_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -779,6 +902,7 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  		.desc.name =3D "DA9062 LDO2",
+>  		.desc.of_match =3D of_match_ptr("ldo2"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -802,6 +926,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO2_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO2_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO2_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO2_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO2_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO2_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -812,6 +940,7 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  		.desc.name =3D "DA9062 LDO3",
+>  		.desc.of_match =3D of_match_ptr("ldo3"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -835,6 +964,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO3_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO3_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO3_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO3_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO3_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO3_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -845,6 +978,7 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  		.desc.name =3D "DA9062 LDO4",
+>  		.desc.of_match =3D of_match_ptr("ldo4"),
+>  		.desc.regulators_node =3D of_match_ptr("regulators"),
+> +		.desc.of_parse_cb =3D da9062_parse_dt,
+>  		.desc.ops =3D &da9062_ldo_ops,
+>  		.desc.min_uV =3D (900) * 1000,
+>  		.desc.uV_step =3D (50) * 1000,
+> @@ -868,6 +1002,10 @@ static const struct da9062_regulator_info
+> local_da9062_regulator_info[] =3D {
+>  			__builtin_ffs((int)DA9062AA_LDO4_CONF_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+>  			__builtin_clz(DA9062AA_LDO4_CONF_MASK) - 1),
+> +		.vsel_gpi =3D REG_FIELD(DA9062AA_LDO4_CONT,
+> +			__builtin_ffs((int)DA9062AA_VLDO4_GPI_MASK) - 1,
+> +			sizeof(unsigned int) * 8 -
+> +			__builtin_clz(DA9062AA_VLDO4_GPI_MASK) - 1),
+>  		.oc_event =3D REG_FIELD(DA9062AA_STATUS_D,
+>  			__builtin_ffs((int)DA9062AA_LDO4_ILIM_MASK) - 1,
+>  			sizeof(unsigned int) * 8 -
+> @@ -988,6 +1126,15 @@ static int da9062_regulator_probe(struct
+> platform_device *pdev)
+>  				return PTR_ERR(regl->suspend_sleep);
+>  		}
+>=20
+> +		if (regl->info->vsel_gpi.reg) {
+> +			regl->vsel_gpi =3D devm_regmap_field_alloc(
+> +					&pdev->dev,
+> +					chip->regmap,
+> +					regl->info->vsel_gpi);
+> +			if (IS_ERR(regl->vsel_gpi))
+> +				return PTR_ERR(regl->vsel_gpi);
+> +		}
+> +
+>  		/* Register regulator */
+>  		memset(&config, 0, sizeof(config));
+>  		config.dev =3D chip->dev;
+> @@ -997,6 +1144,8 @@ static int da9062_regulator_probe(struct
+> platform_device *pdev)
+>  		regl->rdev =3D devm_regulator_register(&pdev->dev, &regl->desc,
+>  						     &config);
+>  		if (IS_ERR(regl->rdev)) {
+> +			if (PTR_ERR(regl->rdev) =3D=3D -EPROBE_DEFER)
+> +				return -EPROBE_DEFER;
+>  			dev_err(&pdev->dev,
+>  				"Failed to register %s regulator\n",
+>  				regl->desc.name);
+> --
+> 2.20.1
+
