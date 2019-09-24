@@ -2,217 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CE10BCAB6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 16:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21F32BCAC9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2019 17:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731312AbfIXO64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 10:58:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37830 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725877AbfIXO64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Sep 2019 10:58:56 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8D3422168B;
-        Tue, 24 Sep 2019 14:58:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569337134;
-        bh=W5MeLhZS5sZtf9zaqV5bUOaPwvhvXSys/vKD9YXq2Aw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W3DdP+rxCmtHzXrHnvsa4TWvWycRBThGjmG5edqmsozQ0EdQTU5Zq274LVPuNnSRU
-         DmFZ1uPREQO4ALK33o1blCj06tSJfdGJQ0qKkTlHgxnXrLA0+SVrk78uERKXeT4amZ
-         tKHg5Iy2x12Cbs2DDdkyOCr7OmMcjhwnaGF+p+2g=
-Received: by mail-qk1-f176.google.com with SMTP id q203so2095271qke.1;
-        Tue, 24 Sep 2019 07:58:54 -0700 (PDT)
-X-Gm-Message-State: APjAAAVDVLMlgkvMfNZc5Syi1DBPqsrwd8NmeG+Zh2o8S1IRK5WMO8sV
-        GAhRO4vSli5oG6z6nVd7tqE+RW4MFkV69UrlMQ==
-X-Google-Smtp-Source: APXvYqzrsNdKm8ga0UPpciXHC3g0dXA3eN4kckY6MLSWPLk4pOq1pfp+X/Pc6CUjYP4Cf0OZwWsApY6kKpDO3/fnRiY=
-X-Received: by 2002:a05:620a:12d5:: with SMTP id e21mr2874837qkl.152.1569337133701;
- Tue, 24 Sep 2019 07:58:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190910153409.111901-1-paul.kocialkowski@bootlin.com>
- <20190910153409.111901-2-paul.kocialkowski@bootlin.com> <20190913143510.GA9504@bogus>
- <20190913155815.GA1554@aptenodytes> <CAL_Jsq+dzT1xrfBy2QQHLx9MUNukWWq5eXyOecVV8h0z5ziC8g@mail.gmail.com>
- <20190923153311.GE57525@aptenodytes>
-In-Reply-To: <20190923153311.GE57525@aptenodytes>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 24 Sep 2019 09:58:42 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJLfAb0xhmBoX+GUcv5wsuHBOs8wZ=Hkw3x03kfsPgOqg@mail.gmail.com>
-Message-ID: <CAL_JsqJLfAb0xhmBoX+GUcv5wsuHBOs8wZ=Hkw3x03kfsPgOqg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: Add xylon logicvc bindings documentation
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1730370AbfIXPCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 11:02:33 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:32919 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725877AbfIXPCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 11:02:32 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190924150231euoutp0150d8d8fc7b13345c15c4730230ed6b07~HaAGjPtae3053830538euoutp01S
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 15:02:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190924150231euoutp0150d8d8fc7b13345c15c4730230ed6b07~HaAGjPtae3053830538euoutp01S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1569337351;
+        bh=Kcx8u3C9GjgjM7Fhh6E8ZKxs1htYdyHkRFX2tVGkFGA=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=pexGuttKpzBaNu3yU7ElPI3FocCJoJ6EL/xFpEIpaWT4fJXfIgV3MTpZBgQx+/uZ/
+         PZtKnPXT2T8difJeBvriKja1Qx+iWdJK/wpyHeTS8tWq9YDfEuP2HxQK0GPa7cGSIV
+         NU74pvvId0lMYymPXS8ZpLhNV3PyfhMaRXsP8RCM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190924150230eucas1p2f09b36b872a7eab97a5b6ee644b3aeef~HaAF-IeBg1397913979eucas1p2F;
+        Tue, 24 Sep 2019 15:02:30 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id A5.C9.04374.6003A8D5; Tue, 24
+        Sep 2019 16:02:30 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190924150230eucas1p295da8f6aa018aec4acabc068f6e1afa1~HaAFrJu3f0400504005eucas1p26;
+        Tue, 24 Sep 2019 15:02:30 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190924150230eusmtrp1c31cc381d4d44f763f65ed2995c1ff89~HaAFpk90w2674326743eusmtrp1M;
+        Tue, 24 Sep 2019 15:02:30 +0000 (GMT)
+X-AuditID: cbfec7f5-4ddff70000001116-f7-5d8a3006c15c
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id DA.6C.04166.6003A8D5; Tue, 24
+        Sep 2019 16:02:30 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190924150229eusmtip2b860a511b3cff6ca7f1f15a704247b76~HaAFE5KwK0655206552eusmtip2E;
+        Tue, 24 Sep 2019 15:02:29 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH] dt-bindings: sound: Convert Samsung Exynos5433 TM2(E) audio
+ complex with WM5110 codec to dt-schema
+Date:   Tue, 24 Sep 2019 17:01:46 +0200
+Message-Id: <20190924150146.15972-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjleLIzCtJLcpLzFFi42LZduzneV02g65Yg81t+hZXLh5ispj68Amb
+        xfwj51gtzp/fwG7x7UoHk8XlXXPYLGac38dk8aB5HZvF2iN32S2WXr/IZNG69wi7xeE37awO
+        PB4bPjexeayZt4bRY+esu+wem1Z1snn0bVnF6PF5k1wAWxSXTUpqTmZZapG+XQJXxr3+j2wF
+        UzUrLrzYwtLA+Eq+i5GTQ0LARKKheRtjFyMXh5DACkaJpm3ToZwvjBKPOl6wQDifGSVud09n
+        7WLkAGu5cDQXIr6cUeL3pQsscB0zLp9mBpnLJmAo0fW2iw3EFhGokzh75gjYWGaBI0wSzfd/
+        M4EkhAVKJf5+ecEKYrMIqEpMfr6MEcTmFbCVmL7gOgvEgfISqzccYAZplhBoZpdYcBiiQULA
+        RaJxXw+ULSzx6vgWdghbRuL05B4WqAZGiYfn1rJDOD2MEpebZjBCVFlLHD5+EewhZgFNifW7
+        9CHCjhJvn1xlhPiTT+LGW0GQMDOQOWnbdGaIMK9ER5sQRLWaxKzj6+DWHrxwiRnC9pBYt/4B
+        2GlCArESp5bNYJ3AKDcLYdcCRsZVjOKppcW56anFxnmp5XrFibnFpXnpesn5uZsYgank9L/j
+        X3cw7vuTdIhRgINRiYfXgbUrVog1say4MvcQowQHs5II7ywZoBBvSmJlVWpRfnxRaU5q8SFG
+        aQ4WJXHeaoYH0UIC6YklqdmpqQWpRTBZJg5OqQbGKYc0/7WHJa2dO3fT/+n3JHWuBuu8Diye
+        0jo/9+S6xriI7H3NBWGRks79HhZX2b9NdLbk+VhvpRPIfipCUV5E+vLZniXa8ab5bYdVen/b
+        Tnn541WhygP+cxOnz5KW9X6pvnbpp/iun8ybZSpWhvn+OmIkJ3ChwsjE+dtll3/3511mCJez
+        eWyoxFKckWioxVxUnAgAEqBpuSEDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCLMWRmVeSWpSXmKPExsVy+t/xe7psBl2xBi/XiVpcuXiIyWLqwyds
+        FvOPnGO1OH9+A7vFtysdTBaXd81hs5hxfh+TxYPmdWwWa4/cZbdYev0ik0Xr3iPsFofftLM6
+        8Hhs+NzE5rFm3hpGj52z7rJ7bFrVyebRt2UVo8fnTXIBbFF6NkX5pSWpChn5xSW2StGGFkZ6
+        hpYWekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6Gff6P7IVTNWsuPBiC0sD4yv5LkYODgkB
+        E4kLR3O7GLk4hASWMkrM/dHO2sXICRSXkTg5rQHKFpb4c62LDaLoE6PEq8Oz2UESbAKGEl1v
+        IRIiAk2MEsc2z2QBcZgFTjFJ3Lg6hRGkSligWGJXw0pmEJtFQFVi8vNlYHFeAVuJ6Quus0Cs
+        kJdYveEA8wRGngWMDKsYRVJLi3PTc4sN9YoTc4tL89L1kvNzNzECQ3jbsZ+bdzBe2hh8iFGA
+        g1GJh9eBtStWiDWxrLgy9xCjBAezkgjvLBmgEG9KYmVValF+fFFpTmrxIUZToOUTmaVEk/OB
+        8ZVXEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaPiYNTqoGx5966qOhnby7N
+        O57pJrpAiuud52/PTI0/iTMK73WLn02TPhnqc6lquo/TovCZ/ilBfBN2H3WJm/RngZGn1b5D
+        DwNP3Knk7rkQV3zz5t3U47stVwR8mvB3yv6lT6Vaa0JDveZfvlkTmNrTu03U5PbBiU83Tdvz
+        O3rmmt39roc3TLKbeIo7m2/rfiWW4oxEQy3mouJEAAKxDPt3AgAA
+X-CMS-MailID: 20190924150230eucas1p295da8f6aa018aec4acabc068f6e1afa1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190924150230eucas1p295da8f6aa018aec4acabc068f6e1afa1
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190924150230eucas1p295da8f6aa018aec4acabc068f6e1afa1
+References: <CGME20190924150230eucas1p295da8f6aa018aec4acabc068f6e1afa1@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 10:33 AM Paul Kocialkowski
-<paul.kocialkowski@bootlin.com> wrote:
->
-> Hi,
->
-> On Fri 13 Sep 19, 20:16, Rob Herring wrote:
-> > On Fri, Sep 13, 2019 at 4:58 PM Paul Kocialkowski
-> > <paul.kocialkowski@bootlin.com> wrote:
-> > >
-> > > Hi Rob and thanks for the review!
-> > >
-> > > On Fri 13 Sep 19, 15:35, Rob Herring wrote:
-> > > > On Tue, Sep 10, 2019 at 05:34:08PM +0200, Paul Kocialkowski wrote:
-> > > > > The Xylon LogiCVC is a display controller implemented as programmable
-> > > > > logic in Xilinx FPGAs.
-> > > > >
-> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > > ---
-> > > > >  .../bindings/display/xylon,logicvc.txt        | 188 ++++++++++++++++++
-> > > > >  1 file changed, 188 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/display/xylon,logicvc.txt
-> > > >
-> > > > Consider converting this to DT schema format. See
-> > > > Documentation/devicetree/writing-schema.rst (.md in 5.3).
-> > >
-> > > Oh right, that would certainly be much more future-proof!
-> > >
-> > > > > diff --git a/Documentation/devicetree/bindings/display/xylon,logicvc.txt b/Documentation/devicetree/bindings/display/xylon,logicvc.txt
-> > > > > new file mode 100644
-> > > > > index 000000000000..eb4b1553888a
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/display/xylon,logicvc.txt
-> > > > > @@ -0,0 +1,188 @@
-> > > > > +Xylon LogiCVC display controller
-> > > > > +
-> > > > > +The Xylon LogiCVC is a display controller that supports multiple layers.
-> > > > > +It is usually implemented as programmable logic and was optimized for use
-> > > > > +with Xilinx Zynq-7000 SoCs and Xilinx FPGAs.
-> > > > > +
-> > > > > +Because the controller is intended for use in a FPGA, most of the configuration
-> > > > > +of the controller takes place at logic configuration bitstream synthesis time.
-> > > > > +As a result, many of the device-tree bindings are meant to reflect the
-> > > > > +synthesis configuration. These do not allow configuring the controller
-> > > > > +differently than synthesis configuration.
-> > > > > +
-> > > > > +Layers are declared in the "layers" sub-node and have dedicated configuration.
-> > > > > +In version 3 of the controller, each layer has fixed memory offset and address
-> > > > > +starting from the video memory base address for its framebuffer. With version 4,
-> > > > > +framebuffers are configured with a direct memory address instead.
-> > > > > +
-> > > > > +Matching synthesis parameters are provided when applicable.
-> > > > > +
-> > > > > +Required properties:
-> > > > > +- compatible: Should be one of:
-> > > > > +  "xylon,logicvc-3.02.a-display"
-> > > > > +  "xylon,logicvc-4.01.a-display"
-> > > > > +- reg: Physical base address and size for the controller registers.
-> > > > > +- clocks: List of phandle and clock-specifier pairs, one for each entry
-> > > > > +  in 'clock-names'
-> > > > > +- clock-names: List of clock names that should at least contain:
-> > > > > +  - "vclk": The VCLK video clock input.
-> > > > > +- interrupts: The interrupt to use for VBLANK signaling.
-> > > > > +- xylon,display-interface: Display interface in use, should be one of:
-> > > > > +  - "lvds-4bits": 4-bit LVDS interface (C_DISPLAY_INTERFACE == 4).
-> > > > > +- xylon,display-colorspace: Display output colorspace in use, should be one of:
-> > > > > +  - "rgb": RGB colorspace (C_DISPLAY_COLOR_SPACE == 0).
-> > > > > +- xylon,display-depth: Display output depth in use (C_PIXEL_DATA_WIDTH).
-> > > > > +- xylon,row-stride: Fixed number of pixels in a framebuffer row (C_ROW_STRIDE).
-> > > > > +- xylon,layers-count: The number of available layers (C_NUM_OF_LAYERS).
-> > > >
-> > > > Presumably some of this is determined by the display attached. Isn't it
-> > > > safe to assume the IP was configured correctly for the intended display
-> > > > and you can just get this from the panel?
-> > >
-> > > Layers are what corresponds to DRM planes, which are not actually indicated
-> > > by the panel but are a charasteristic of the display controller. In our case,
-> > > this is directly selected at bitstream synthesis time for the controller.
-> > >
-> > > So I'm afraid there is no way we can auto-detect this from the driver.
-> >
-> > Sorry, I referring to the set of properties above. In particular,
-> > xylon,display-interface and xylon,display-colorspace, though I don't
-> > know if the latter is talking in memory format or on the wire format.
->
-> Both of these are about the wire format, which is also "hardcoded" at synthesis
-> time with no way to be detected afterwards, as far as I know. Memory format is
-> described in the layer sub-nodes.
+From: Maciej Falkowski <m.falkowski@samsung.com>
 
-You have to attach the controller to something at the other end of the
-wire. A panel is only going to support 1 or a few wire formats, so you
-do likely know because the panel knows. In the case that a panel
-supports multiple wire formats, we do have some standard properties
-there. See the LVDS panel binding.
+Convert Samsung Exynos5433 TM2(E) audio complex with WM5110 codec to newer dt-schema format.
 
->
-> > Actually for xylon,layers-count, You should just count the child nodes
-> > of 'layers'.
->
-> Oh that's a good point, thanks!
->
-> > > > > +Optional properties:
-> > > > > +- memory-region: phandle to a node describing memory, as specified in:
-> > > > > +  Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > > > > +- clock-names: List of clock names that can optionally contain:
-> > > > > +  - "vclk2": The VCLK2 doubled-rate video clock input.
-> > > > > +  - "lvdsclk": The LVDS clock.
-> > > > > +  - "lvdsclkn": The LVDS clock inverted.
-> > > >
-> > > > How are these really optional?
-> > >
-> > > Well, the controller currently only supports LVDS, but more interfaces may be
-> > > added later, so the lvdsclk clock will be optional when another interface
-> > > is used instead. Maybe I'm mistaken about how to categorize them though.
-> > >
-> > > My understanding is that the need for vclk2 and lvdsclkn depend on the target
-> > > FPGA family. I've developped the driver without the need for them, but the
-> > > datasheet states that they may be needed (but doesn't provide significant
-> > > details about their role though).
-> >
-> > Not sure what to tell you then. You'll see it becomes a bit messy to
-> > describe in schema. Ideally we define the exact number, order, and
-> > values possible (or sets of those).
->
-> I'll try to do my best.
->
-> > > > > +- xylon,syscon: Syscon phandle representing the logicvc instance.
-> > > > > +- xylon,dithering: Dithering module is enabled (C_XCOLOR).
-> > > > > +- xylon,background-layer: The last layer is used to display a black background
-> > > > > +  (C_USE_BACKGROUND). It must still be registered.
-> > > > > +- xylon,layers-configurable: Configuration of layers' size, position and offset
-> > > > > +  is enabled (C_USE_SIZE_POSITION).
-> > > >
-> > > > I would think this will effectively have to be enabled to make this
-> > > > usable with DRM. I'm not sure if a "standard" userspace would use any of
-> > > > the layers if all this is fixed.
-> > >
-> > > I was going with the same assumption, but drm_atomic_helper_check_plane_state
-> > > has a can_position parameter, which will check that the plane covers the
-> > > whole CRTC if set to false. So I guess it is somewhat expected that this can
-> > > be the case and some drivers (e.g. arm/hdlcd_crtc.c) also set this to false.
-> >
-> > Certainly atomic can fail on anything not supported. My question is
-> > more whether userspace has some minimum requirements. A cursor
-> > couldn't deal with can_position=false for example.
->
-> Right, so I suppose that using an overlay plane as cursor wouldn't work
-> in this situation. Well, I haven't found any formal definition of what minimal
-> requirements are expected from overlay planes. I would expect userspace that
-> tries to use an overlay plane as a cursor to have a software fallback as soon
-> as something goes wrong. My feeling is that overlay planes are provided on a
-> "best-effort" basis, though contradiction is welcome here.
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+ .../bindings/sound/samsung,tm2-audio.txt      | 42 ----------
+ .../bindings/sound/samsung,tm2-audio.yaml     | 83 +++++++++++++++++++
+ 2 files changed, 83 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
 
-For sure, there's always a software fallback. While we shouldn't let a
-specific OS's requirements dictate DT bindings, I just wonder if some
-of the configuration ends up always having to be set a certain way.
-Clearly, you could be writing the whole software stack and do a fixed
-configuration, but would you still be using DT at that point?
+diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
+deleted file mode 100644
+index f5ccc12ddc00..000000000000
+--- a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Samsung Exynos5433 TM2(E) audio complex with WM5110 codec
+-
+-Required properties:
+-
+- - compatible		 : "samsung,tm2-audio"
+- - model		 : the user-visible name of this sound complex
+- - audio-codec		 : the first entry should be phandle of the wm5110 audio
+-			   codec node, as described in ../mfd/arizona.txt;
+-			   the second entry should be phandle of the HDMI
+-			   transmitter node
+- - i2s-controller	 : the list of phandle and argument tuples pointing to
+-			   I2S controllers, the first entry should be I2S0 and
+-			   the second one I2S1
+- - audio-amplifier	 : the phandle of the MAX98504 amplifier
+- - samsung,audio-routing : a list of the connections between audio components;
+-			   each entry is a pair of strings, the first being the
+-			   connection's sink, the second being the connection's
+-			   source; valid names for sources and sinks are the
+-			   WM5110's and MAX98504's pins and the jacks on the
+-			   board: HP, SPK, Main Mic, Sub Mic, Third Mic,
+-			   Headset Mic
+- - mic-bias-gpios	 : GPIO pin that enables the Main Mic bias regulator
+-
+-
+-Example:
+-
+-sound {
+-	compatible = "samsung,tm2-audio";
+-	audio-codec = <&wm5110>, <&hdmi>;
+-	i2s-controller = <&i2s0 0>, <&i2s1 0>;
+-	audio-amplifier = <&max98504>;
+-	mic-bias-gpios = <&gpr3 2 0>;
+-	model = "wm5110";
+-	samsung,audio-routing =
+-		"HP", "HPOUT1L",
+-		"HP", "HPOUT1R",
+-		"SPK", "SPKOUT",
+-		"SPKOUT", "HPOUT2L",
+-		"SPKOUT", "HPOUT2R",
+-		"Main Mic", "MICBIAS2",
+-		"IN1R", "Main Mic";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
+new file mode 100644
+index 000000000000..377f8cbe17b8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/samsung,tm2-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung Exynos SoC Exynos5433 TM2(E) audio complex with WM5110 codec
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++  - Sylwester Nawrocki <s.nawrocki@samsung.com>
++
++properties:
++  compatible:
++    const: samsung,tm2-audio
++
++  model:
++    maxItems: 1
++
++  audio-codec:
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/phandle-array
++      - items:
++          - description: |
++              phandle of the wm5110 audio codec node,
++              as described in ../mfd/arizona.txt;
++          - description: phandle of the HDMI transmitter node.
++
++  i2s-controller:
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/phandle-array
++      - items:
++          - description: phandle of the I2S0.
++          - description: phandle of the I2S1.
++
++  audio-amplifier:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle of the MAX98504 amplifier.
++
++  samsung,audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      List of the connections between audio components.
++      Each entry is a pair of strings, the first being the
++      connection's sink, the second being the connection's
++      source. Valid names for sources and sinks are
++      the WM5110's and MAX98504's pins and the jacks on the
++      board: HP, SPK, Main Mic, Sub Mic, Third Mic, Headset Mic.
++
++  mic-bias-gpios:
++    description: GPIO pin that enables the Main Mic bias regulator.
++    maxItems: 1
++
++required:
++  - compatible
++  - model
++  - audio-codec
++  - i2s-controller
++  - audio-amplifier
++  - samsung,audio-routing
++  - mic-bias-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "samsung,tm2-audio";
++        model = "wm5110";
++        audio-codec = <&wm5110>, <&hdmi>;
++        i2s-controller = <&i2s0 0>, <&i2s1 0>;
++        audio-amplifier = <&max98504>;
++        mic-bias-gpios = <&gpr3>;
++        samsung,audio-routing =
++                "HP", "HPOUT1L",
++                "HP", "HPOUT1R",
++                "SPK", "SPKOUT",
++                "SPKOUT", "HPOUT2L",
++                "SPKOUT", "HPOUT2R",
++                "Main Mic", "MICBIAS2",
++                "IN1R", "Main Mic";
++    };
++
+-- 
+2.17.1
 
-Rob
+
+
