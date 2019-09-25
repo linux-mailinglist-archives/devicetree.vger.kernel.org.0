@@ -2,164 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5382FBDFFC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 16:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A5BBE01A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 16:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727775AbfIYO3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 10:29:47 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:43181 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407228AbfIYO3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 10:29:47 -0400
-Received: by mail-wr1-f68.google.com with SMTP id q17so7215628wrx.10
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 07:29:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=01Kh5AUUblqFWi3ZNkHBI22OYBLpt/UY9FlNGz+JAZo=;
-        b=TqcyhXTeBpjPbXHmATEWSbSMssHKlceadH9bNBK2rEENOV8S59lTjB19hASMn9u81X
-         Uy53gHROuQETn6BSE3uKBX6Cc2RA0fAdrZx5yXDdezp2nLFGbasbMavfwf7uHfWF7j6G
-         0cvSzxdT58fjITWfyWuC2b8+l6b0lt4N3OMerdFAbiWKZa+NjbD9T3kKONiLTpNnNIWl
-         fLlOG5d9ez5gNmTciSj0ziVc3cr7T/pZh2Vv/fOd4E8DREYe7DDPddyw2hzLHKNWrafD
-         nQva2H+kPP1F+lSYq5sQfjH+uHcxz0TfCRYNQH4UhPQ0AE81x2sJLZom1dCejyBfP0j/
-         2yDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=01Kh5AUUblqFWi3ZNkHBI22OYBLpt/UY9FlNGz+JAZo=;
-        b=ZldFEJARGJQTpYvLGmyfOUzC7BiOMctt0YMY4zfQlBq008aLTXjgKJf2VbJui1+Fho
-         7LRwEMvyENC2FVUIJkXQT/xkXG722oxaHpG0FcmcVs10rh5ztHafEc61ImZyKEVN6+4s
-         rIY3Av8rwoS/kksukoAJxUJWgBoN8VwYYgRQzaBfi/9rqSwL8HnOI4qp/8vu2d+JfmV3
-         U6tQ/rGE5iwwDwqe4rBKh4RUDDaqUmVNRsWydXhWIMh+JkCgIK3BGW5COfDiZdskyGu6
-         o9Gvnn6Wsn2Xcm1Txp+fE/LL64KWqElZVEjcNZdB32D1Srjf9+JW0VDr03MdcZa+WlXC
-         M3xA==
-X-Gm-Message-State: APjAAAUi1hz3lYqxXxyL74/eM5t/tI5HvDqfiw5U58HwQcKTW86jtbkP
-        IHFdCZUb98P0FZu5BZn2wErMwL5k5fI=
-X-Google-Smtp-Source: APXvYqw6ta3lyXW5QXoDceAQYURMJqtEe8XE0Kee6BcYwayFrIM0iklE0ITqg8crPV7uy5OUMdOb5Q==
-X-Received: by 2002:a5d:6812:: with SMTP id w18mr9321474wru.250.1569421784891;
-        Wed, 25 Sep 2019 07:29:44 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id i5sm3814592wmd.21.2019.09.25.07.29.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2019 07:29:44 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Jian Hu <jian.hu@amlogic.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Jian Hu <jian.hu@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: meson: add A1 clock controller bindings
-In-Reply-To: <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
-References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com> <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
-Date:   Wed, 25 Sep 2019 16:29:43 +0200
-Message-ID: <1j4l10motk.fsf@starbuckisacylon.baylibre.com>
+        id S1725839AbfIYOcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 10:32:45 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:21256 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726124AbfIYOcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 10:32:45 -0400
+X-UUID: 2abc322b535c41f0a8e71b7fcb1f7a62-20190925
+X-UUID: 2abc322b535c41f0a8e71b7fcb1f7a62-20190925
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1816407912; Wed, 25 Sep 2019 22:32:41 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 25 Sep 2019 22:32:39 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 25 Sep 2019 22:32:40 +0800
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Sam Shih <sam.shih@mediatek.com>
+Subject: [PATCH v10 0/12] Add mt7629 and fix mt7628 pwm
+Date:   Wed, 25 Sep 2019 22:32:25 +0800
+Message-ID: <1569421957-20765-1-git-send-email-sam.shih@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 25 Sep 2019 at 19:44, Jian Hu <jian.hu@amlogic.com> wrote:
+Changes since v10
+  1. Follow reviewers's comments:
+  - derive the number of PWMs from the specific compatible string
+  2. Add mt7629 pwm description
+  3. Add mt7628 fixed-clock description
 
-In addition to the comment expressed by Stephen on patch 2
+Changes since v9:
+  1. PATCH 03/11: Add an Acked-by tag
 
-> Add the documentation to support Amlogic A1 clock driver,
-> and add A1 clock controller bindings.
->
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
-> ---
->  .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |  65 +++++++++++++
->  include/dt-bindings/clock/a1-clkc.h                | 102 +++++++++++++++++++++
->  2 files changed, 167 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-clkc.h
->
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> new file mode 100644
-> index 0000000..f012eb2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> @@ -0,0 +1,65 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson A1 Clock Control Unit Device Tree Bindings
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
-> +
-> +properties:
-> +  compatible:
-> +    - enum:
-> +        - amlogic,a1-clkc
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 3
-> +    items:
-> +      - description: peripheral registers
-> +      - description: cpu registers
-> +      - description: pll registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: peripheral
-> +      - const: pll
-> +      - const: cpu
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    items:
-> +      - description: Input Oscillator (usually at 24MHz)
-> +
-> +  clock-names:
-> +    maxItems: 1
-> +    items:
-> +      - const: xtal
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - "#clock-cells"
-> +
-> +examples:
-> +  - |
-> +    clkc: clock-controller {
-> +        compatible = "amlogic,a1-clkc";
-> +        reg = <0x0 0xfe000800 0x0 0x100>,
-> +              <0x0 0xfe007c00 0x0 0x21c>,
-> +              <0x0 0xfd000080 0x0 0x20>;
-> +        reg-names = "peripheral", "pll", "cpu";
+Changes since v8:
+  1. Fix warning and build-error for patch 04/11
 
-I'm sorry but I don't agree with this. You are trying to regroup several
-controllers into one with this, and it is not OK
+Changes since v7:
+  1. PATCH v7 10/11: Add a missed Reviewed-by tag
 
-By the looks of it there are 3 different controllers, including one you
-did not implement in the driver.
+Changes since v6:
+  1. Due to we can use fixed-clock in DT
+     We removed has_clks and fixed-clock properties 
 
-> +        clocks = <&xtal;
-> +        clock-names = "xtal";
-> +        #clock-cells = <1>;
+Changes since v5:
+- Follow reviewer's comments:
+  1. the license stuff is a separate change
+  2. split fix mt7628 pwm into a single patch
+  3. to ensure to not use mtk_pwm_clk_name[10] 
+     (After dynamic allocate clock array patch, 
+      this is no need to check)
+  4. Use clock-frequency property to replace 
+     the use of has_clks
+
+Changes since v4:
+- Follow reviewer's comments (v3: pwm: mediatek: add a property "num-pwms")
+  Move the changes of droping the check for of_device_get_match_data
+  returning non-NULL to next patch
+- Follow reviewers's comments 
+  (v3: pwm: mediatek: allocate the clks array dynamically)
+  1. use pc->soc->has_clks to check clocks exist or not.
+  2. Add error message when probe() unable to get clks
+- Fixes bug when SoC is old mips which has no complex clock tree.
+if clocks not exist, use the new property from DT to apply period 
+calculation; otherwise, use clk_get_rate to get clock frequency and 
+apply period calculation.
+
+Changes since v3:
+- add a new property "clock-frequency" and fix mt7628 pwm
+- add mt7629 pwm support
+
+Changes since v2:
+- use num-pwms instead of mediatek,num-pwms.
+- rename the member from num_pwms to fallback_num_pwms to make it 
+  more obvious that it doesn't represent the actually used value.
+- add a dev_warn and a expressive comment to help other developers 
+  to not start adding num_pwms in the compatible_data.
+
+Changes since v1:
+- add some checks for backwards compatibility.
+
+
+
+Ryder Lee (5):
+  pwm: mediatek: add a property "num-pwms"
+  dt-bindings: pwm: pwm-mediatek: add a property "num-pwms"
+  arm64: dts: mt7622: add a property "num-pwms" for PWM
+  arm: dts: mt7623: add a property "num-pwms" for PWM
+  dt-bindings: pwm: update bindings for MT7629 SoC
+
+Sam Shih (7):
+  pwm: mediatek: droping the check for of_device_get_match_data
+  pwm: mediatek: remove a property "has-clks"
+  pwm: mediatek: allocate the clks array dynamically
+  pwm: mediatek: use pwm_mediatek as common prefix
+  pwm: mediatek: update license and switch to SPDX tag
+  pwm: mediatek: Add MT7629 compatible string
+  arm: dts: mediatek: add mt7629 pwm support
+
+ .../devicetree/bindings/pwm/pwm-mediatek.txt  |  11 +-
+ arch/arm/boot/dts/mt7623.dtsi                 |   1 +
+ arch/arm/boot/dts/mt7629.dtsi                 |  15 ++
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   1 +
+ drivers/pwm/pwm-mediatek.c                    | 249 +++++++++---------
+ 5 files changed, 155 insertions(+), 122 deletions(-)
+
+-- 
+2.17.1
+
