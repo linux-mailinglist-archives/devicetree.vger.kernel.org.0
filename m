@@ -2,538 +2,420 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3C20BE1D7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 18:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 032E7BE1E6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 18:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732362AbfIYQAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 12:00:04 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:43465 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727780AbfIYQAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 12:00:04 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iD9hu-0004J7-Op; Wed, 25 Sep 2019 17:59:58 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iD9ht-0007QO-TZ; Wed, 25 Sep 2019 17:59:57 +0200
-Date:   Wed, 25 Sep 2019 17:59:57 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-Cc:     Support Opensource <Support.Opensource@diasemi.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/5] regulator: da9062: add voltage selection gpio support
-Message-ID: <20190925155957.de6odahy2ebhzx5c@pengutronix.de>
-References: <20190917124246.11732-1-m.felsch@pengutronix.de>
- <20190917124246.11732-4-m.felsch@pengutronix.de>
- <AM5PR1001MB099431ECB45A103A22646CB680840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+        id S2439824AbfIYQE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 12:04:58 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:45124 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439799AbfIYQE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 12:04:57 -0400
+Received: by mail-wr1-f68.google.com with SMTP id r5so7573205wrm.12
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 09:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ij6KjSR+lw1BQY7TXj2EigwOZMb+P0hFM5LFXgBiMgc=;
+        b=GttsSrREeRUalnrJO1ptygwbrFti+NUmA+9jgc4ur0uQ9+X4LpZyPCAT7vCxbbiLw3
+         kAyG89zLM9zJMPbTMuocLLp0dLRr5Am8Md+Tscbjk3MUvPfghJ8tVBswRVqgHNbH5Mon
+         LGL92mP9pZcFezVxWmKlz5RqktX9M+gdfWtbgNs2iEikm8J+FeZEnqpUpn1Pu83NFuRl
+         erCLkY8vVm4xFbzD6pTBg6VhvPlhyVwXiNLRzT77QipX0vKMph1feCwxrsPn6WWvTZsY
+         hmk9OQCMSuCapLDOtFMh0M+fnnMxzshPsdmIICUtU5754gUiujJcJRiP1Dd50NYnNb/v
+         C7/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ij6KjSR+lw1BQY7TXj2EigwOZMb+P0hFM5LFXgBiMgc=;
+        b=cRBb45lnre6s6t/RNr8n4vGaYx/oqSBlvglpcdtnJ/RGwVUn8q2PyvwrH8aTVfG47S
+         MTM33h9k6NKNMSIsp6LTpjjAzIviiR5UDYOB+8d/xkQsJfNVpAGXZsh4wgedppTPSasP
+         rYntVPxU2dMBuXkfWt/BVORPmEHES88rngvSfgqOoy/0VwjJ8ZxBSbnz5ejgJWdiofiu
+         TZIZbZbPXNEb/H4mvxTLAiqkFvSey/1nJfyr+raBdkBOOLNBgcyM2fILWoBghciC/BG3
+         ZvFSyit7NG4IQ2mVI4VhrJche2hbzz/NY4cCiPN3NK1rYbup+261mHBDbZ3Cy1HraZQ6
+         i9eA==
+X-Gm-Message-State: APjAAAXMLk4fxhwk3j9LJ21uxDAJN23rinR3JSgGnZ2RtWXRN/oH1U/R
+        CJjWl2OP8WmzyivOk83KNrXOaQ==
+X-Google-Smtp-Source: APXvYqwCfOwN9m3fxmaibVuR6yyr8B/+xl1IYzzE4PtAv/mPVljXgIGmruoyXXzsfwt4PaIMjAj8xA==
+X-Received: by 2002:adf:ef05:: with SMTP id e5mr9791832wro.127.1569427494026;
+        Wed, 25 Sep 2019 09:04:54 -0700 (PDT)
+Received: from localhost.localdomain (amontpellier-652-1-281-69.w109-210.abo.wanadoo.fr. [109.210.96.69])
+        by smtp.gmail.com with ESMTPSA id a7sm5760321wra.43.2019.09.25.09.04.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2019 09:04:53 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Rosin <peda@axentia.se>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH v2] dt-bindings: at24: convert the binding document to yaml
+Date:   Wed, 25 Sep 2019 18:04:51 +0200
+Message-Id: <20190925160451.11116-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM5PR1001MB099431ECB45A103A22646CB680840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 17:51:58 up 130 days, 22:10, 84 users,  load average: 0.10, 0.04,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-On 19-09-24 09:48, Adam Thomson wrote:
-> On 17 September 2019 13:43, Marco Felsch wrote:
-> 
-> > The DA9062/1 devices can switch their regulator voltages between
-> > voltage-A (active) and voltage-B (suspend) settings. Switching the
-> > voltages can be controlled by ther internal state-machine or by a gpio
-> > input signal and can be configured for each individual regulator. This
-> > commit adds the gpio-based voltage switching support.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >  drivers/regulator/da9062-regulator.c | 149 +++++++++++++++++++++++++++
-> >  1 file changed, 149 insertions(+)
-> > 
-> > diff --git a/drivers/regulator/da9062-regulator.c b/drivers/regulator/da9062-
-> > regulator.c
-> > index 9b2ca472f70c..9d6eb7625948 100644
-> > --- a/drivers/regulator/da9062-regulator.c
-> > +++ b/drivers/regulator/da9062-regulator.c
-> > @@ -7,6 +7,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/init.h>
-> >  #include <linux/err.h>
-> > +#include <linux/gpio/consumer.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/of.h>
-> >  #include <linux/platform_device.h>
-> > @@ -15,6 +16,7 @@
-> >  #include <linux/regulator/machine.h>
-> >  #include <linux/regulator/of_regulator.h>
-> >  #include <linux/mfd/da9062/core.h>
-> > +#include <linux/mfd/da9062/gpio.h>
-> >  #include <linux/mfd/da9062/registers.h>
-> > 
-> >  /* Regulator IDs */
-> > @@ -50,6 +52,7 @@ struct da9062_regulator_info {
-> >  	struct reg_field sleep;
-> >  	struct reg_field suspend_sleep;
-> >  	unsigned int suspend_vsel_reg;
-> > +	struct reg_field vsel_gpi;
-> >  	/* Event detection bit */
-> >  	struct reg_field oc_event;
-> >  };
-> > @@ -65,6 +68,7 @@ struct da9062_regulator {
-> >  	struct regmap_field			*suspend;
-> >  	struct regmap_field			*sleep;
-> >  	struct regmap_field			*suspend_sleep;
-> > +	struct regmap_field			*vsel_gpi;
-> >  };
-> > 
-> >  /* Encapsulates all information for the regulators driver */
-> > @@ -351,6 +355,65 @@ static const struct regulator_ops da9062_ldo_ops = {
-> >  	.set_suspend_mode	= da9062_ldo_set_suspend_mode,
-> >  };
-> > 
-> > +static int da9062_config_gpi(struct device_node *np,
-> > +			     const struct regulator_desc *desc,
-> > +			     struct regulator_config *cfg, const char *gpi_id)
-> > +{
-> > +	struct da9062_regulator *regl = cfg->driver_data;
-> > +	struct gpio_desc *gpi;
-> > +	unsigned int nr;
-> > +	int ret;
-> > +	char *prop, *label;
-> > +
-> > +	prop = kasprintf(GFP_KERNEL, "dlg,%s-sense-gpios", gpi_id);
-> > +	if (!prop)
-> > +		return -ENOMEM;
-> > +	label = kasprintf(GFP_KERNEL, "%s-%s-gpi", desc->name, gpi_id);
-> > +	if (!label) {
-> > +		ret = -ENOMEM;
-> > +		goto free;
-> 
-> If we use the generic bindings names then the above will change I guess.
+Convert the binding document for at24 EEPROMs from txt to yaml. The
+compatible property uses a regex pattern to address all the possible
+combinations of "vendor,model" strings.
 
-Yes.
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+---
+v1 -> v2:
+- modified the compatible property: we now list all possible combinations and
+  non-standard types with appropriate fallbacks to be as strict as possible
+- minor changes to other properties: added constraints, converted to enums
+  where applicable and referenced the types from schema
 
-> > +	}
-> > +
-> > +	/*
-> > +	 * We only must ensure that the gpio device is probed before the
-> > +	 * regulator driver so no need to store the reference global. Luckily
-> > +	 * devm_* releases the gpio upon a unbound action.
-> > +	 */
-> > +	gpi = devm_gpiod_get_from_of_node(cfg->dev, np, prop, 0, GPIOD_IN |
-> > +					  GPIOD_FLAGS_BIT_NONEXCLUSIVE,
-> > label);
-> > +	if (IS_ERR(gpi)) {
-> > +		ret = PTR_ERR(gpi);
-> > +		goto free;
-> > +	}
-> > +
-> > +	if (!gpi) {
-> > +		ret = 0;
-> > +		goto free;
-> > +	}
-> > +
-> > +	/* We need the local number */
-> > +	nr = da9062_gpio_get_hwgpio(gpi);
-> > +	if (nr < 1 || nr > 3) {
-> > +		ret = -EINVAL;
-> > +		goto free;
-> > +	}
-> > +
-> > +	ret = regmap_field_write(regl->vsel_gpi, nr);
-> 
-> Actually thinking about this some more, should we really be setting alternate
-> functions of the GPIO here? Would this not be done through GPIO/Pinmux
-> frameworks? That way the GPIO would be blocked off from other's requesting it.
-> This seems a little unsafe, unless I'm mistaken.
+Rob: please advise whether it's possible to somehow encapsulate the list
+of vendors in some kind of variable to not repeat it everywhere. I didn't
+find any such example.
 
-The GPIO is used as input, see the flags I passed to
-devm_gpiod_get_from_of_node(). What I did here is to tell the regulator
-to listen to the gpio input instead of the sequencer. But as I said the
-gpio is still configured as input which is absolutly correct. Please
-check [1] chapter 7.7.1
+The file passes a test with dt-doc-validate.
 
-[1] https://www.dialog-semiconductor.com/sites/default/files/da9062-a_datasheet_2v3.pdf
+ .../devicetree/bindings/eeprom/at24.txt       |  90 +-------
+ .../devicetree/bindings/eeprom/at24.yaml      | 214 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 216 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
 
-Regards,
-  Marco
-
-> > +
-> > +free:
-> > +	kfree(prop);
-> > +	kfree(label);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int da9062_parse_dt(struct device_node *np,
-> > +			   const struct regulator_desc *desc,
-> > +			   struct regulator_config *cfg)
-> > +{
-> > +	return da9062_config_gpi(np, desc, cfg, "vsel");
-> > +}
-> > +
-> >  /* DA9061 Regulator information */
-> >  static const struct da9062_regulator_info local_da9061_regulator_info[] = {
-> >  	{
-> > @@ -358,6 +421,7 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  		.desc.name = "DA9061 BUCK1",
-> >  		.desc.of_match = of_match_ptr("buck1"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (300) * 1000,
-> >  		.desc.uV_step = (10) * 1000,
-> > @@ -388,12 +452,17 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK1_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK1_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK1_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK1_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK1_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9061_ID_BUCK2,
-> >  		.desc.name = "DA9061 BUCK2",
-> >  		.desc.of_match = of_match_ptr("buck2"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (800) * 1000,
-> >  		.desc.uV_step = (20) * 1000,
-> > @@ -424,12 +493,17 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK3_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK3_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK3_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK3_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK3_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9061_ID_BUCK3,
-> >  		.desc.name = "DA9061 BUCK3",
-> >  		.desc.of_match = of_match_ptr("buck3"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (530) * 1000,
-> >  		.desc.uV_step = (10) * 1000,
-> > @@ -460,12 +534,17 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK4_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK4_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK4_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK4_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK4_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9061_ID_LDO1,
-> >  		.desc.name = "DA9061 LDO1",
-> >  		.desc.of_match = of_match_ptr("ldo1"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -489,6 +568,10 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO1_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO1_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO1_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO1_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO1_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO1_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -499,6 +582,7 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  		.desc.name = "DA9061 LDO2",
-> >  		.desc.of_match = of_match_ptr("ldo2"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -522,6 +606,10 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO2_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO2_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO2_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO2_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO2_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO2_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -532,6 +620,7 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  		.desc.name = "DA9061 LDO3",
-> >  		.desc.of_match = of_match_ptr("ldo3"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -555,6 +644,10 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO3_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO3_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO3_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO3_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO3_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO3_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -565,6 +658,7 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  		.desc.name = "DA9061 LDO4",
-> >  		.desc.of_match = of_match_ptr("ldo4"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -588,6 +682,10 @@ static const struct da9062_regulator_info
-> > local_da9061_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO4_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO4_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO4_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO4_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO4_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO4_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -602,6 +700,7 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  		.desc.name = "DA9062 BUCK1",
-> >  		.desc.of_match = of_match_ptr("buck1"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (300) * 1000,
-> >  		.desc.uV_step = (10) * 1000,
-> > @@ -632,12 +731,17 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK1_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK1_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK1_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK1_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK1_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9062_ID_BUCK2,
-> >  		.desc.name = "DA9062 BUCK2",
-> >  		.desc.of_match = of_match_ptr("buck2"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (300) * 1000,
-> >  		.desc.uV_step = (10) * 1000,
-> > @@ -668,12 +772,17 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK2_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK2_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK2_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK2_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK2_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9062_ID_BUCK3,
-> >  		.desc.name = "DA9062 BUCK3",
-> >  		.desc.of_match = of_match_ptr("buck3"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (800) * 1000,
-> >  		.desc.uV_step = (20) * 1000,
-> > @@ -704,12 +813,17 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK3_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK3_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK3_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK3_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK3_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9062_ID_BUCK4,
-> >  		.desc.name = "DA9062 BUCK4",
-> >  		.desc.of_match = of_match_ptr("buck4"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_buck_ops,
-> >  		.desc.min_uV = (530) * 1000,
-> >  		.desc.uV_step = (10) * 1000,
-> > @@ -740,12 +854,17 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_BUCK4_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_BUCK4_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_BUCK4_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VBUCK4_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VBUCK4_GPI_MASK) - 1),
-> >  	},
-> >  	{
-> >  		.desc.id = DA9062_ID_LDO1,
-> >  		.desc.name = "DA9062 LDO1",
-> >  		.desc.of_match = of_match_ptr("ldo1"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -769,6 +888,10 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO1_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO1_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO1_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO1_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO1_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO1_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -779,6 +902,7 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  		.desc.name = "DA9062 LDO2",
-> >  		.desc.of_match = of_match_ptr("ldo2"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -802,6 +926,10 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO2_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO2_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO2_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO2_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO2_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO2_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -812,6 +940,7 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  		.desc.name = "DA9062 LDO3",
-> >  		.desc.of_match = of_match_ptr("ldo3"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -835,6 +964,10 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO3_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO3_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO3_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO3_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO3_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO3_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -845,6 +978,7 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  		.desc.name = "DA9062 LDO4",
-> >  		.desc.of_match = of_match_ptr("ldo4"),
-> >  		.desc.regulators_node = of_match_ptr("regulators"),
-> > +		.desc.of_parse_cb = da9062_parse_dt,
-> >  		.desc.ops = &da9062_ldo_ops,
-> >  		.desc.min_uV = (900) * 1000,
-> >  		.desc.uV_step = (50) * 1000,
-> > @@ -868,6 +1002,10 @@ static const struct da9062_regulator_info
-> > local_da9062_regulator_info[] = {
-> >  			__builtin_ffs((int)DA9062AA_LDO4_CONF_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> >  			__builtin_clz(DA9062AA_LDO4_CONF_MASK) - 1),
-> > +		.vsel_gpi = REG_FIELD(DA9062AA_LDO4_CONT,
-> > +			__builtin_ffs((int)DA9062AA_VLDO4_GPI_MASK) - 1,
-> > +			sizeof(unsigned int) * 8 -
-> > +			__builtin_clz(DA9062AA_VLDO4_GPI_MASK) - 1),
-> >  		.oc_event = REG_FIELD(DA9062AA_STATUS_D,
-> >  			__builtin_ffs((int)DA9062AA_LDO4_ILIM_MASK) - 1,
-> >  			sizeof(unsigned int) * 8 -
-> > @@ -988,6 +1126,15 @@ static int da9062_regulator_probe(struct
-> > platform_device *pdev)
-> >  				return PTR_ERR(regl->suspend_sleep);
-> >  		}
-> > 
-> > +		if (regl->info->vsel_gpi.reg) {
-> > +			regl->vsel_gpi = devm_regmap_field_alloc(
-> > +					&pdev->dev,
-> > +					chip->regmap,
-> > +					regl->info->vsel_gpi);
-> > +			if (IS_ERR(regl->vsel_gpi))
-> > +				return PTR_ERR(regl->vsel_gpi);
-> > +		}
-> > +
-> >  		/* Register regulator */
-> >  		memset(&config, 0, sizeof(config));
-> >  		config.dev = chip->dev;
-> > @@ -997,6 +1144,8 @@ static int da9062_regulator_probe(struct
-> > platform_device *pdev)
-> >  		regl->rdev = devm_regulator_register(&pdev->dev, &regl->desc,
-> >  						     &config);
-> >  		if (IS_ERR(regl->rdev)) {
-> > +			if (PTR_ERR(regl->rdev) == -EPROBE_DEFER)
-> > +				return -EPROBE_DEFER;
-> >  			dev_err(&pdev->dev,
-> >  				"Failed to register %s regulator\n",
-> >  				regl->desc.name);
-> > --
-> > 2.20.1
-> 
-> 
-
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Documentation/devicetree/bindings/eeprom/at24.txt
+index 22aead844d0f..c94acbb8cb0c 100644
+--- a/Documentation/devicetree/bindings/eeprom/at24.txt
++++ b/Documentation/devicetree/bindings/eeprom/at24.txt
+@@ -1,89 +1 @@
+-EEPROMs (I2C)
+-
+-Required properties:
+-
+-  - compatible: Must be a "<manufacturer>,<model>" pair. The following <model>
+-                values are supported (assuming "atmel" as manufacturer):
+-
+-                "atmel,24c00",
+-                "atmel,24c01",
+-                "atmel,24cs01",
+-                "atmel,24c02",
+-                "atmel,24cs02",
+-                "atmel,24mac402",
+-                "atmel,24mac602",
+-                "atmel,spd",
+-                "atmel,24c04",
+-                "atmel,24cs04",
+-                "atmel,24c08",
+-                "atmel,24cs08",
+-                "atmel,24c16",
+-                "atmel,24cs16",
+-                "atmel,24c32",
+-                "atmel,24cs32",
+-                "atmel,24c64",
+-                "atmel,24cs64",
+-                "atmel,24c128",
+-                "atmel,24c256",
+-                "atmel,24c512",
+-                "atmel,24c1024",
+-                "atmel,24c2048",
+-
+-                If <manufacturer> is not "atmel", then a fallback must be used
+-                with the same <model> and "atmel" as manufacturer.
+-
+-                Example:
+-                        compatible = "microchip,24c128", "atmel,24c128";
+-
+-                Supported manufacturers are:
+-
+-                "catalyst",
+-                "microchip",
+-                "nxp",
+-                "ramtron",
+-                "renesas",
+-                "rohm",
+-                "st",
+-
+-                Some vendors use different model names for chips which are just
+-                variants of the above. Known such exceptions are listed below:
+-
+-                "nxp,se97b" - the fallback is "atmel,24c02",
+-                "renesas,r1ex24002" - the fallback is "atmel,24c02"
+-                "renesas,r1ex24016" - the fallback is "atmel,24c16"
+-                "renesas,r1ex24128" - the fallback is "atmel,24c128"
+-                "rohm,br24t01" - the fallback is "atmel,24c01"
+-
+-  - reg: The I2C address of the EEPROM.
+-
+-Optional properties:
+-
+-  - pagesize: The length of the pagesize for writing. Please consult the
+-              manual of your device, that value varies a lot. A wrong value
+-              may result in data loss! If not specified, a safety value of
+-              '1' is used which will be very slow.
+-
+-  - read-only: This parameterless property disables writes to the eeprom.
+-
+-  - size: Total eeprom size in bytes.
+-
+-  - no-read-rollover: This parameterless property indicates that the
+-                      multi-address eeprom does not automatically roll over
+-                      reads to the next slave address. Please consult the
+-                      manual of your device.
+-
+-  - wp-gpios: GPIO to which the write-protect pin of the chip is connected.
+-
+-  - address-width: number of address bits (one of 8, 16).
+-
+-  - num-addresses: total number of i2c slave addresses this device takes
+-
+-Example:
+-
+-eeprom@52 {
+-	compatible = "atmel,24c32";
+-	reg = <0x52>;
+-	pagesize = <32>;
+-	wp-gpios = <&gpio1 3 0>;
+-	num-addresses = <8>;
+-};
++This file has been moved to at24.yaml.
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+new file mode 100644
+index 000000000000..46a0abc9199a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+@@ -0,0 +1,214 @@
++# SPDX-License-Identifier: GPL-2.0
++# Copyright 2019 BayLibre SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: I2C EEPROMs compatible with Atmel's AT24
++
++maintainers:
++  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
++
++properties:
++  compatible:
++    minItems: 1
++    maxItems: 2
++    oneOf:
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c00$"
++        - const: atmel,24c00
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c01$"
++        - const: atmel,24c01
++      - items:
++        - const: rohm,br24t01
++        - const: atmel,24c01
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs01$"
++        - const: atmel,24cs01
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c02$"
++        - const: atmel,24c02
++      - items:
++        - const: nxp,se97b
++        - const: atmel,24c02
++      - items:
++        - const: renesas,r1ex24002
++        - const: atmel,24c02
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs02$"
++        - const: atmel,24cs02
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24mac402$"
++        - const: atmel,24mac402
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24mac602$"
++        - const: atmel,24mac602
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),spd$"
++        - const: atmel,spd
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c04$"
++        - const: atmel,24c04
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs04$"
++        - const: atmel,24cs04
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c08$"
++        - const: atmel,24c08
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs08$"
++        - const: atmel,24cs08
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c16$"
++        - const: atmel,24c16
++      - items:
++        - const: renesas,r1ex24016
++        - const: atmel,24c16
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs16$"
++        - const: atmel,24cs16
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c32$"
++        - const: atmel,24c32
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs32$"
++        - const: atmel,24cs32
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c64$"
++        - const: atmel,24c64
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24cs64$"
++        - const: atmel,24cs64
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c128$"
++        - const: atmel,24c128
++      - items:
++        - const: renesas,r1ex24128
++        - const: atmel,24c128
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c256$"
++        - const: atmel,24c256
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c512$"
++        - const: atmel,24c512
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c1024$"
++        - const: atmel,24c1024
++      - items:
++        - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),24c20148$"
++        - const: atmel,24c2048
++      - items:
++        - const: atmel,24c00
++      - items:
++        - const: atmel,24c01
++      - items:
++        - const: atmel,24cs01
++      - items:
++        - const: atmel,24c02
++      - items:
++        - const: atmel,24cs02
++      - items:
++        - const: atmel,24mac402
++      - items:
++        - const: atmel,24mac602
++      - items:
++        - const: atmel,spd
++      - items:
++        - const: atmel,24c04
++      - items:
++        - const: atmel,24cs04
++      - items:
++        - const: atmel,24c08
++      - items:
++        - const: atmel,24cs08
++      - items:
++        - const: atmel,24c16
++      - items:
++        - const: atmel,24cs16
++      - items:
++        - const: atmel,24c32
++      - items:
++        - const: atmel,24cs32
++      - items:
++        - const: atmel,24c64
++      - items:
++        - const: atmel,24cs64
++      - items:
++        - const: atmel,24c128
++      - items:
++        - const: atmel,24c256
++      - items:
++        - const: atmel,24c512
++      - items:
++        - const: atmel,24c1024
++      - items:
++        - const: atmel,24c2048
++
++  reg:
++    description:
++      I2C slave address of the EEPROM.
++    maxItems: 1
++
++  pagesize:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The length of the pagesize for writing. Please consult the
++      manual of your device, that value varies a lot. A wrong value
++      may result in data loss! If not specified, a safety value of
++      '1' is used which will be very slow.
++    enum: [ 1, 8, 16, 32, 64, 128, 258 ]
++    default: 1
++
++  read-only:
++    $ref: /schemas/types.yaml#definitions/flag
++    description:
++      This parameterless property disables writes to the eeprom.
++
++  size:
++    description:
++      Total eeprom size in bytes.
++    type: integer
++
++  no-read-rollover:
++    $ref: /schemas/types.yaml#definitions/flag
++    description:
++      This parameterless property indicates that the multi-address
++      eeprom does not automatically roll over reads to the next slave
++      address. Please consult the manual of your device.
++
++  wp-gpios:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      GPIO to which the write-protect pin of the chip is connected.
++    maxItems: 1
++
++  address-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Number of address bits (one of 8, 16).
++    default: 8
++    enum: [ 8, 16 ]
++
++  num-addresses:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Total number of i2c slave addresses this device takes.
++    default: 1
++    minimum: 1
++    maximum: 8
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    eeprom@52 {
++        compatible = "microchip,24c32", "atmel,24c32";
++        reg = <0x52>;
++        pagesize = <32>;
++        wp-gpios = <&gpio1 3 0>;
++        num-addresses = <8>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a400af0501c9..3c7ced686966 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2698,7 +2698,7 @@ M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
+ L:	linux-i2c@vger.kernel.org
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/eeprom/at24.txt
++F:	Documentation/devicetree/bindings/eeprom/at24.yaml
+ F:	drivers/misc/eeprom/at24.c
+ 
+ ATA OVER ETHERNET (AOE) DRIVER
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.23.0
+
