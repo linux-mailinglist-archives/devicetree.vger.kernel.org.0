@@ -2,106 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21559BE174
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 17:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8266BE1AA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 17:51:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725992AbfIYPiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 11:38:18 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:42030 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726045AbfIYPiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 11:38:18 -0400
-Received: by mail-pl1-f195.google.com with SMTP id e5so2607076pls.9
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 08:38:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=WFyqEgFIXxDXsQf02spjWBC+c1Pk2Y/AZt1ZdKS3tA0=;
-        b=tWn/kRPqMPGbuXIzsOQ3jYnu0K8MkMr7J/sgCjQyg6vQG8W3iTJTBPN9qn1qlHbmiN
-         UutdLyvi6XCwK0nucSF4RTb6iPVQ6+PIqBvpF2ylnBKKKrWUUMncHU3E+uCfyLpPeAmV
-         T4kIAK5iNhiGkmpQ0pe/02JJaiyr6yJCgzPPUTIIWtk+FRdJ0UK4k3BiKBiIt8dCQ6p/
-         mtUMbrrhaxAhH5a7xAioNHKGHpMnNMamS/HKvuaCKmstAEYkW2+2VjnAW/mcZ7mfrAoi
-         1nF3NtVAt3TYcgiyF3jgxeK++/wEiO/ZcKZat+SAXpKRU6j9TpGHkj126isvZrSJJG4L
-         CDDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=WFyqEgFIXxDXsQf02spjWBC+c1Pk2Y/AZt1ZdKS3tA0=;
-        b=rv0AWrX9FYieoV1vC2DMtF7iBgVZJT51SolQc9B/yZJ4S+fSZPx4I1bhISmmXnY3id
-         56LKp9u0haHhfrfFVTcNDLFD5Hd2F/F94uCwqAM4B5FATCVPVMrR3lZNSgHouYxQlG+L
-         Ubw3UY6Y99UyrFmGfc+w4B528fAuyVDUb9/85JRnWYo/uQOTB1Kd20xl3B9OqJoCwoPp
-         cIIltCQIwZ8h5huipKnj9jlB8dCNrJrFWV7F/WxY0E23hpPtX9GLVMJqEtlipfyiY+EG
-         OcKHPl/wM/axccQfbLno7ajJD/WMs2VoRLq48xxO/sp7GYD+L9SJ/iAi0ZviRluXI3+B
-         RJ9g==
-X-Gm-Message-State: APjAAAWHT9E5OFMsmZZoKoPkdcRAS7V9fIdUZRto+wF98UewW/ATvf51
-        xmtj9I3Yxkfc3mrIoEHDdNgMWw==
-X-Google-Smtp-Source: APXvYqyft+7qNq+VTiDUPPC3DvrO2fmyWnYZPaP16bOgVGDreSGRpYghqu73A1VZ3op5y0JgX4nOag==
-X-Received: by 2002:a17:902:ab89:: with SMTP id f9mr9627821plr.295.1569425897030;
-        Wed, 25 Sep 2019 08:38:17 -0700 (PDT)
-Received: from dell ([12.157.10.118])
-        by smtp.gmail.com with ESMTPSA id g202sm11313147pfb.155.2019.09.25.08.38.15
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 25 Sep 2019 08:38:15 -0700 (PDT)
-Date:   Wed, 25 Sep 2019 16:38:13 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Wolfram Sang <wsa@the-dreams.de>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, alokc@codeaurora.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, vkoul@kernel.org,
-        linux-i2c@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
- Lenovo Yoga C630
-Message-ID: <20190925153813.GD4469@dell>
-References: <20190906061448.GJ26880@dell>
- <20190906065018.GA1019@kunai>
- <20190906075600.GL26880@dell>
- <20190906102355.GA3146@kunai>
- <20190906105445.GO26880@dell>
- <20190906183139.GB19123@kunai>
- <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
- <20190913142821.GD1022@kunai>
- <20190913161345.GB8466@tuxbook-pro>
- <20190913161748.GF1022@kunai>
+        id S2391733AbfIYPv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 11:51:58 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:45801 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387835AbfIYPv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 11:51:58 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iD9a4-0003aB-SQ; Wed, 25 Sep 2019 17:51:52 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iD9a3-00075g-RB; Wed, 25 Sep 2019 17:51:51 +0200
+Date:   Wed, 25 Sep 2019 17:51:51 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Cc:     Support Opensource <Support.Opensource@diasemi.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        Steve Twiss <stwiss.opensource@diasemi.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: da9062: add regulator voltage
+ selection documentation
+Message-ID: <20190925155151.75uaxfiiei3i23tz@pengutronix.de>
+References: <20190917124246.11732-1-m.felsch@pengutronix.de>
+ <20190917124246.11732-3-m.felsch@pengutronix.de>
+ <AM5PR1001MB0994ABEF9C32BFB7BEA099B680840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190913161748.GF1022@kunai>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <AM5PR1001MB0994ABEF9C32BFB7BEA099B680840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 17:42:18 up 130 days, 22:00, 84 users,  load average: 0.12, 0.07,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Sep 2019, Wolfram Sang wrote:
+Hi Adam,
 
+On 19-09-24 09:23, Adam Thomson wrote:
+> On 17 September 2019 13:43, Marco Felsch wrote:
 > 
-> > It seems linux-next is now pulling from the soc.git, rather than
-> > arm-soc.git, but Arnd is still pushing patches to arm-soc.git.
+> > Add the documentation which describe the voltage selection gpio support.
+> > This property can be applied to each subnode within the 'regulators'
+> > node so each regulator can be configured differently.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/da9062.txt | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/da9062.txt
+> > b/Documentation/devicetree/bindings/mfd/da9062.txt
+> > index edca653a5777..9d9820d8177d 100644
+> > --- a/Documentation/devicetree/bindings/mfd/da9062.txt
+> > +++ b/Documentation/devicetree/bindings/mfd/da9062.txt
+> > @@ -66,6 +66,15 @@ Sub-nodes:
+> >    details of individual regulator device can be found in:
+> >    Documentation/devicetree/bindings/regulator/regulator.txt
+> > 
+> > +  Optional regulator device-specific properties:
+> > +  - dlg,vsel-sense-gpios : The GPIO reference which should be used by the
+> > +    regulator to switch the voltage between active/suspend voltage settings. If
+> > +    the signal is active the active-settings are applied else the suspend
+> > +    settings are applied. Attention: Sharing the same gpio for other purposes
+> > +    or across multiple regulators is possible but the gpio settings must be the
+> > +    same. Also the gpio phandle must refer to to the dlg,da9062-gpio device
+> > +    other gpios are not allowed and make no sense.
+> > +
 > 
-> Can you ask them to fix this?
-> 
-> > Arnd says that the patch will be in v5.4 and I merged Arnd's tree and
-> > gave it a spin here and this patch makes it boot. So please merge this
-> > patch for v5.4 as well.
-> 
-> No worries, this is clearly a bugfix. So it will easily go in with the
-> same release as the DTS file.
+> Should we not use the binding names that are defined in 'gpio-regulator.yaml' as
+> these seem to be generic and would probably serve the purpose here?
 
-DTS file now upstream (44acee207844).
+Hm.. as the description says:
+
+8<--------------------------------------------------
+gpios:
+   description: Array of one or more GPIO pins used to select the
+   regulator voltage/current listed in "states".
+8<--------------------------------------------------
+
+But we don't have a "states" property and we can't select between
+voltage or current.
+
+Regards,
+  Marco
+
+> >  - rtc : This node defines settings required for the Real-Time Clock associated
+> >    with the DA9062. There are currently no entries in this binding, however
+> >    compatible = "dlg,da9062-rtc" should be added if a node is created.
+> > --
+> > 2.20.1
+> 
+> 
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
