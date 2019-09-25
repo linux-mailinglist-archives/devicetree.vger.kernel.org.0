@@ -2,349 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82CB3BE68F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 22:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90580BE6AB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 22:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393280AbfIYUiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 16:38:11 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:43603 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727102AbfIYUiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 16:38:11 -0400
-Received: by mail-ot1-f66.google.com with SMTP id o44so6071927ota.10;
-        Wed, 25 Sep 2019 13:38:10 -0700 (PDT)
+        id S2393291AbfIYUwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 16:52:08 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:41467 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393339AbfIYUwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 16:52:08 -0400
+Received: by mail-io1-f65.google.com with SMTP id r26so491727ioh.8;
+        Wed, 25 Sep 2019 13:52:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QlumAdAZpco+DbubUz8rFBgcYHpYwul2c4C7CU0Axuo=;
+        b=i9sQ7q63jYd+GikWtOSHX7Jv0SdmJVRJgnoBxRhbsdC+wND57OtQg3m6kKxdiKeNqj
+         STq0m0U/nOW77EYviwsFfDWh+oo3bMM03L5pXFUjSR/qNOOrFLDnYvQ97a3Fbb0MvCuJ
+         HqGMdBtiD2Wz/l69DnIW56STOs7X15i8lOlCWYwYKe4qgAhyTWKGnkXKjPgZhKtJw+YB
+         OxN42Q33rArVLtWtN7QNmvAeg1LP+6PZno5aJcTNlGzBw4QTIgYYGE49pm0RY8f4WfyE
+         szes2X4g+DpEA3abuH0MT0klABfvrSZmZZI6RepWag0hFWSQk1pZ6k31kYwho0nZ+APr
+         gpxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zQInuGkMe3qovTinqfkdgEQXIzP462jilxqOggaZr10=;
-        b=b293AGJ8oRlR8kbFobsZo8yR3NUASeNb/MeGTY65XpLmd9XQPGJz1fC1MlA7bnySgU
-         rDki0niWeXj4h0w8HEo9LBRGh0ZVsZ4YXJPWT/cpjlwpp4ZyGW+jsv6G2g5BD0kBVs6J
-         JyISq/qECvijQC+SwhuPTT1LHz2HTqLzT/KxVG5sqUjgnzpcC739tikyoMTcgqFPXE4b
-         FT2YyJqtM1wedPufDbTnXd0KYgPOUylFmkTdu3JSirmEFossASJo4DvtnvoLQU0NwQNN
-         qIg60kLEN12mrpAovSBWqgf9w6ookNPQ3I1HhiLpSIxLRH0DKfAj4AyWO8ztzTAZkwVw
-         sFbA==
-X-Gm-Message-State: APjAAAW+dYMCVZO2i/PO8AZ6Jg8QHIS78kzCtSjTNUtZSSOSDnsEVhby
-        TqP8i/M9w7WOWJKmJHIhoA47t2g=
-X-Google-Smtp-Source: APXvYqyk1Afya9jmf/Y/Fv6BHf9KAdKv807HPJpds+ch3rf9S/rNjs5pqgG0Dty4TVQXSEKpZ6hbTw==
-X-Received: by 2002:a9d:68c6:: with SMTP id i6mr24397oto.350.1569443889889;
-        Wed, 25 Sep 2019 13:38:09 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id l4sm1836352otj.64.2019.09.25.13.38.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2019 13:38:09 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Peter Rosin <peda@axentia.se>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: at24: convert the binding document to yaml
-Date:   Wed, 25 Sep 2019 15:38:08 -0500
-Message-Id: <20190925203808.14249-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QlumAdAZpco+DbubUz8rFBgcYHpYwul2c4C7CU0Axuo=;
+        b=SvrkIqJYB/sigbtFO/oPv4bL0DWuJuAJKsJBLd0YC5MbL9Ull9Uz3HTerNzRFJZhur
+         ab4qMgjVotE8OrdSlCaTMUusoqIarWMami+76JVenWnxDYvsiFnY10VoZJ9vqGK98NfR
+         wd98PNQ38GkcJnsO3vyfTCV4uiodlmQMRcceYUXNFOkePeNDOn7nl6MRSyJux+hx6T9s
+         lLUAtBVm28xaQSlMlVmUm9S1nFz8sKWBl3c+qTzpNkyQF4LB0BxQ8QFMgkX326fqu9eY
+         ZKCgi1kTnqZKimmC6dDR3hoLonAIGNY4+Xl7M1HXbTtbuCpHC92f9/0nM8FtbKptkua9
+         vKRg==
+X-Gm-Message-State: APjAAAVF8sfwZjxylJdAr/HJAfWB3FQKPYaUuaYPcQvUNfX4bUpM/caK
+        HvSGzUy56n/YckXybdtbbAQ8p86yfvVyQZQlkYs=
+X-Google-Smtp-Source: APXvYqzq/zJ2FRL2qW+Bz7wvGDq7olEEl903VGt8aFe4OSW1v/Dt/wgQUXQRB5mI9LzTg6yFug5Ufd+8p3GuhJtGlEk=
+X-Received: by 2002:a6b:8e92:: with SMTP id q140mr1522196iod.205.1569444726948;
+ Wed, 25 Sep 2019 13:52:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190510194229.20628-1-aford173@gmail.com> <af325707-3e42-493d-e858-77878ef06138@ti.com>
+ <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com> <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
+In-Reply-To: <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 25 Sep 2019 15:51:55 -0500
+Message-ID: <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to dts
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+On Tue, May 28, 2019 at 10:53 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+>
+> Hi,
+>
+> On 28/05/2019 18:09, Adam Ford wrote:
+> > On Tue, May 28, 2019 at 4:11 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+> >>
+> >> Hi,
+> >>
+> >> On 10/05/2019 22:42, Adam Ford wrote:
+> >>> Currently the source code is compiled using hard-coded values
+> >>> from CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK.  This patch allows this
+> >>> clock divider value to be moved to the device tree and be changed
+> >>> without having to recompile the kernel.
+> >>>
+> >>> Signed-off-by: Adam Ford <aford173@gmail.com>
+> >>
+> >> I understand why you want to do this, but I'm not sure it's a good idea.
+> >> It's really something the driver should figure out, and if we add it to
+> >> the DT, it effectively becomes an ABI.
+> >>
+> >> That said... I'm not sure how good of a job the driver could ever do, as
+> >> it can't know the future scaling needs of the userspace at the time it
+> >> is configuring the clock. And so, I'm not nacking this patch, but I
+> >> don't feel very good about this patch...
+> >>
+> >> The setting also affects all outputs (exluding venc), which may not be
+> >> what the user wants. Then again, I think this setting is really only
+> >> needed on OMAP2 & 3, which have only a single output. But that's the
+> >> same with the current kconfig option, of course.
+> >>
+> >> So, the current CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK is an ugly hack, in my
+> >> opinion, and moving it to DT makes it a worse hack =). But I don't have
+> >> any good suggestions either.
+> >
+> > As it stands the Logic PD OMAP35 and AM37/DM37 boards (SOM-LV and
+> > Torpedo) require this to be hard coded to 4 or it hangs during start.
+> > This is the case for all versions 4.2+.  I haven't tested it with
+> > older stuff.  Tony has a DM3730 Torpedo kit and reported the hanging
+> > issue to me. I told him to set that value to 4 to make it not hang.
+> > He asked that I move it to the DT to avoid custom kernels.  I agree
+> > it's a hack, but if it's create a customized defconfig file for 4
+> > boards or modify the device tree, it seems like the device tree
+> > approach is less intrusive.
+>
+> Ok, well, I think that's a separate thing from its intended use. The
+> point of the kconfig option is to ensure that the fclk/pclk ratio stays
+> under a certain number to allow enough scaling range. It should never
+> affect a basic non-scaling use case, unless you set it to a too high
+> value, which prevents finding any pclk.
+>
+> Has anyone debugged why the hang is happening?
+I started to debug this, but I got distracted when I noticed the LCD
+did't work at all on modern kernels.  I have that fixed now, so I can
+go back to investigating this.
 
-Convert the binding document for at24 EEPROMs from txt to yaml. The
-compatible property uses a regex pattern to address all the possible
-combinations of "vendor,model" strings.
+Working version:
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-[robh: rework compatible schema, fix missing allOf for $ref, fix errors in example]
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Here's my reworking of compatible schema and all the other fixes I 
-found. The inner 'oneOf' is probably a little excessive given the number 
-of lines. All it does is ensure both compatible strings have the same 
-part number.
+[    7.999359] DISPC: dispc_runtime_get
+[    7.999542] DSS: dss_restore_context
+[    7.999542] DSS: context restored
+[    7.999572] DISPC: dispc_runtime_put
+[    7.999603] DISPC: dispc_save_context
+[    7.999633] DISPC: context saved
+[    7.999694] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    7.999694] [drm] No driver support for vblank timestamp query.
+[    8.025909] DSS: dss_save_context
+[    8.025939] DSS: context saved
+[    8.031951] DISPC: dispc_runtime_get
+[    8.032043] DSS: dss_restore_context
+[    8.032043] DSS: context restored
+[    8.032073] DPI: dpi_set_timings
+[    8.032104] DISPC: dispc_ovl_setup 0, pa 0x9e900000, pa_uv
+0x00000000, sw 480, 0,0, 480x272 -> 480x272, cmode 34325258, rot 1,
+chan 0 repl 1
+[    8.032135] DISPC: scrw 480, width 480
+[    8.032135] DISPC: offset0 0, offset1 0, row_inc 1, pix_inc 1
+[    8.032135] DISPC: 0,0 480x272 -> 480x272
+[    8.032135] DISPC: dispc_enable_plane 0, 1
+[    8.032165] DISPC: dispc_runtime_get
+[    8.032196] DISPC: dispc_runtime_get
+[    8.032196] DSS: set fck to 36000000
+[    8.032257] DISPC: lck = 36000000 (1)
+[    8.032257] DISPC: pck = 9000000 (4)
+[    8.034240] DISPC: channel 0 xres 480 yres 272
+[    8.034271] DISPC: pck 9000000
+[    8.034271] DISPC: hsync_len 42 hfp 3 hbp 2 vsw 11 vfp 2 vbp 3
+[    8.034271] DISPC: vsync_level 1 hsync_level 1 data_pclk_edge 1
+de_level 1 sync_pclk_edge -1
+[    8.034271] DISPC: hsync 17077Hz, vsync 59Hz
+[    8.493347] DISPC: dispc_runtime_put
+[    8.493438] Console: switching to colour frame buffer device 60x34
+[    8.493774] DISPC: dispc_runtime_get
+[    8.493835] DISPC: dispc_ovl_setup 0, pa 0x9e900000, pa_uv
+0x00000000, sw 480, 0,0, 480x272 -> 480x272, cmode 34325258, rot 1,
+chan 0 repl 1
+[    8.493896] DISPC: scrw 480, width 480
+[    8.493896] DISPC: offset0 0, offset1 0, row_inc 1, pix_inc 1
+[    8.493927] DISPC: 0,0 480x272 -> 480x272
+[    8.493957] DISPC: dispc_enable_plane 0, 1
+[    8.493988] DISPC: GO LCD
+[    8.506774] DISPC: dispc_runtime_put
+[    8.512298] omapdrm omapdrm.0: fb0: omapdrmdrmfb frame buffer device
+[    8.516632] [drm] Initialized omapdrm 1.0.0 20110917 for omapdrm.0 on minor 0
+[    8.581359] wlcore: WARNING Detected unconfigured mac address in
+nvs, derive from fuse instead.
+[    8.581359] wlcore: WARNING Your device performance is not optimized.
+[    8.581390] wlcore: WARNING Please use the calibrator tool to
+configure your device.
+[    8.583862] wlcore: loaded
+[    9.520355] DISPC: dispc_runtime_get
+[    9.520446] DISPC: dispc_ovl_setup 0, pa 0x9e900000, pa_uv
+0x00000000, sw 480, 0,0, 480x272 -> 480x272, cmode 34325258, rot 1,
+chan 0 repl 1
+[    9.520477] DISPC: scrw 480, width 480
+[    9.520507] DISPC: offset0 0, offset1 0, row_inc 1, pix_inc 1
+[    9.520538] DISPC: 0,0 480x272 -> 480x272
+[    9.520568] DISPC: dispc_enable_plane 0, 1
+[    9.520599] DISPC: GO LCD
+[    9.535400] DISPC: dispc_runtime_put
 
-Getting these errors checking Arm dts files:
 
-arch/arm/boot/dts/at91-tse850-3.dt.yaml: jc42@18: compatible: ['nxp,se97b', 'jedec,jc-42.4-temp'] is not valid under any of the given schemas
-arch/arm/boot/dts/at91-nattis-2-natte-2.dt.yaml: temp@18: compatible: ['nxp,se97b', 'jedec,jc-42.4-temp'] is not valid under any of the given schemas
-arch/arm/boot/dts/imx7d-mba7.dt.yaml: temperature-sensor-eeprom@1e: compatible: ['nxp,se97b', 'jedec,jc-42.4-temp'] is not valid under any of the given schemas
-arch/arm/boot/dts/imx7s-mba7.dt.yaml: temperature-sensor-eeprom@1e: compatible: ['nxp,se97b', 'jedec,jc-42.4-temp'] is not valid under any of the given schemas
+The Non-working version with the divisor set to 0:
 
- .../devicetree/bindings/eeprom/at24.txt       |  90 +---------
- .../devicetree/bindings/eeprom/at24.yaml      | 154 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 156 insertions(+), 90 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
+[   10.719512] DSS: dss_runtime_get
+[   10.723022] DSS: dss_restore_context
+[   10.726623] DSS: OMAP DSS rev 2.0
+[   10.730041] DSS: dss_runtime_put
+[   10.733306] DSS: dss_save_context
+[   10.736633] DSS: context saved
+[   10.740417] DSS: dss_restore_context
+[   10.744018] DSS: context restored
+[   10.748046] DISPC: dispc_runtime_get
+[   10.751770] DISPC: fifo(0) threshold (bytes), old 960/1023, new 960/1023
+[   10.758514] DISPC: fifo(1) threshold (bytes), old 960/1023, new 960/1023
+[   10.765289] DISPC: fifo(2) threshold (bytes), old 960/1023, new 960/1023
+[   10.772033] DISPC: dispc_restore_context
+[   10.775970] DISPC: dispc_restore_gamma_tables()
+[   10.780578] DISPC: fifo(0) threshold (bytes), old 960/1023, new 960/1023
+[   10.787322] DISPC: fifo(1) threshold (bytes), old 960/1023, new 960/1023
+[   10.794067] DISPC: fifo(2) threshold (bytes), old 960/1023, new 960/1023
+[   10.800842] omapdss_dispc 48050400.dispc: OMAP DISPC rev 3.0
+[   10.806518] DISPC: dispc_runtime_put
+[   10.810150] DISPC: dispc_save_context
+[   10.813873] DISPC: context saved
+[   10.817291] omapdss_dss 48050000.dss: bound 48050400.dispc (ops
+hdmi5_configure [omapdss])
+[   10.927215] DSS: dss_save_context
+[   10.930725] DSS: context saved
+[   11.097503] omapdrm omapdrm.0: DMM not available, disable DMM support
+[   11.104248] omapdss_dss 48050000.dss: connect(NULL, 48050000.dss)
+[   11.110473] omapdss_dss 48050000.dss: connect(48050000.dss, NULL)
+[   11.116729] DISPC: dispc_runtime_get
+[   11.120452] DSS: dss_restore_context
+[   11.124053] DSS: context restored
+[   11.127410] DISPC: dispc_runtime_put
+[   11.131072] DISPC: dispc_save_context
+[   11.134765] DISPC: context saved
+[   11.138092] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[   11.144775] [drm] No driver support for vblank timestamp query.
+[   11.156372] DSS: dss_save_context
+[   11.159729] DSS: context saved
 
-diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Documentation/devicetree/bindings/eeprom/at24.txt
-index 22aead844d0f..c94acbb8cb0c 100644
---- a/Documentation/devicetree/bindings/eeprom/at24.txt
-+++ b/Documentation/devicetree/bindings/eeprom/at24.txt
-@@ -1,89 +1 @@
--EEPROMs (I2C)
--
--Required properties:
--
--  - compatible: Must be a "<manufacturer>,<model>" pair. The following <model>
--                values are supported (assuming "atmel" as manufacturer):
--
--                "atmel,24c00",
--                "atmel,24c01",
--                "atmel,24cs01",
--                "atmel,24c02",
--                "atmel,24cs02",
--                "atmel,24mac402",
--                "atmel,24mac602",
--                "atmel,spd",
--                "atmel,24c04",
--                "atmel,24cs04",
--                "atmel,24c08",
--                "atmel,24cs08",
--                "atmel,24c16",
--                "atmel,24cs16",
--                "atmel,24c32",
--                "atmel,24cs32",
--                "atmel,24c64",
--                "atmel,24cs64",
--                "atmel,24c128",
--                "atmel,24c256",
--                "atmel,24c512",
--                "atmel,24c1024",
--                "atmel,24c2048",
--
--                If <manufacturer> is not "atmel", then a fallback must be used
--                with the same <model> and "atmel" as manufacturer.
--
--                Example:
--                        compatible = "microchip,24c128", "atmel,24c128";
--
--                Supported manufacturers are:
--
--                "catalyst",
--                "microchip",
--                "nxp",
--                "ramtron",
--                "renesas",
--                "rohm",
--                "st",
--
--                Some vendors use different model names for chips which are just
--                variants of the above. Known such exceptions are listed below:
--
--                "nxp,se97b" - the fallback is "atmel,24c02",
--                "renesas,r1ex24002" - the fallback is "atmel,24c02"
--                "renesas,r1ex24016" - the fallback is "atmel,24c16"
--                "renesas,r1ex24128" - the fallback is "atmel,24c128"
--                "rohm,br24t01" - the fallback is "atmel,24c01"
--
--  - reg: The I2C address of the EEPROM.
--
--Optional properties:
--
--  - pagesize: The length of the pagesize for writing. Please consult the
--              manual of your device, that value varies a lot. A wrong value
--              may result in data loss! If not specified, a safety value of
--              '1' is used which will be very slow.
--
--  - read-only: This parameterless property disables writes to the eeprom.
--
--  - size: Total eeprom size in bytes.
--
--  - no-read-rollover: This parameterless property indicates that the
--                      multi-address eeprom does not automatically roll over
--                      reads to the next slave address. Please consult the
--                      manual of your device.
--
--  - wp-gpios: GPIO to which the write-protect pin of the chip is connected.
--
--  - address-width: number of address bits (one of 8, 16).
--
--  - num-addresses: total number of i2c slave addresses this device takes
--
--Example:
--
--eeprom@52 {
--	compatible = "atmel,24c32";
--	reg = <0x52>;
--	pagesize = <32>;
--	wp-gpios = <&gpio1 3 0>;
--	num-addresses = <8>;
--};
-+This file has been moved to at24.yaml.
-diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
-new file mode 100644
-index 000000000000..5faa03014cc5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-@@ -0,0 +1,154 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+# Copyright 2019 BayLibre SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: I2C EEPROMs compatible with Atmel's AT24
-+
-+maintainers:
-+  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - allOf:
-+          - minItems: 1
-+            maxItems: 2
-+            items:
-+              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|mac)[0-9]+|spd)$"
-+              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-+          - oneOf:
-+              - items:
-+                  pattern: c00$
-+              - items:
-+                  pattern: c01$
-+              - items:
-+                  pattern: c02$
-+              - items:
-+                  pattern: c04$
-+              - items:
-+                  pattern: c08$
-+              - items:
-+                  pattern: c16$
-+              - items:
-+                  pattern: cs16$
-+              - items:
-+                  pattern: c32$
-+              - items:
-+                  pattern: cs32$
-+              - items:
-+                  pattern: c64$
-+              - items:
-+                  pattern: cs64$
-+              - items:
-+                  pattern: c128$
-+              - items:
-+                  pattern: cs128$
-+              - items:
-+                  pattern: c256$
-+              - items:
-+                  pattern: cs256$
-+              - items:
-+                  pattern: c512$
-+              - items:
-+                  pattern: cs512$
-+              - items:
-+                  pattern: c1024$
-+              - items:
-+                  pattern: cs1024$
-+              - items:
-+                  pattern: c2048$
-+              - items:
-+                  pattern: cs2048$
-+              - items:
-+                  pattern: spd$
-+      - items:
-+          - const: rohm,br24t01
-+          - const: atmel,24c01
-+      - items:
-+          - const: nxp,se97b
-+          - const: atmel,24c02
-+      - items:
-+          - const: renesas,r1ex24002
-+          - const: atmel,24c02
-+      - items:
-+          - const: renesas,r1ex24016
-+          - const: atmel,24c16
-+      - items:
-+          - const: renesas,r1ex24128
-+          - const: atmel,24c128
-+
-+  reg:
-+    maxItems: 1
-+
-+  pagesize:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The length of the pagesize for writing. Please consult the
-+      manual of your device, that value varies a lot. A wrong value
-+      may result in data loss! If not specified, a safety value of
-+      '1' is used which will be very slow.
-+    enum: [ 1, 8, 16, 32, 64, 128, 258 ]
-+    default: 1
-+
-+  read-only:
-+    $ref: /schemas/types.yaml#definitions/flag
-+    description:
-+      This parameterless property disables writes to the eeprom.
-+
-+  size:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Total eeprom size in bytes.
-+
-+  no-read-rollover:
-+    $ref: /schemas/types.yaml#definitions/flag
-+    description:
-+      This parameterless property indicates that the multi-address
-+      eeprom does not automatically roll over reads to the next slave
-+      address. Please consult the manual of your device.
-+
-+  wp-gpios:
-+    description:
-+      GPIO to which the write-protect pin of the chip is connected.
-+    maxItems: 1
-+
-+  address-width:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Number of address bits (one of 8, 16).
-+    default: 8
-+    enum: [ 8, 16 ]
-+
-+  num-addresses:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Total number of i2c slave addresses this device takes.
-+    default: 1
-+    minimum: 1
-+    maximum: 8
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      eeprom@52 {
-+          compatible = "microchip,24c32", "atmel,24c32";
-+          reg = <0x52>;
-+          pagesize = <32>;
-+          wp-gpios = <&gpio1 3 0>;
-+          num-addresses = <8>;
-+      };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a50e97a63bc8..a65e6bcd957b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2687,7 +2687,7 @@ M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
- L:	linux-i2c@vger.kernel.org
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
- S:	Maintained
--F:	Documentation/devicetree/bindings/eeprom/at24.txt
-+F:	Documentation/devicetree/bindings/eeprom/at24.yaml
- F:	drivers/misc/eeprom/at24.c
- 
- ATA OVER ETHERNET (AOE) DRIVER
--- 
-2.20.1
+** hang **
 
+I noticed there doesn't seem to be the calculation for setting fck,
+pck or any of the timings.  Are there any more debug options I can
+enable?
+
+I would prefer to fix the calculation so the display can work without
+the defconfig or device tree modification, and then we dump this all
+together.
+
+>
+> If we can't fix the bug itself, rather than adding a DT option, we could
+> change add a min_fck_per_pck field (as you do), keep the kconfig option,
+> and set the min_fck_per_pck based on the kconfig option, _or_ in case of
+> those affected SoCs, set the min_fck_per_pck even without the kconfig
+> option.
+>
+>   Tomi
+>
+
+thanks
+
+adam
+> --
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
