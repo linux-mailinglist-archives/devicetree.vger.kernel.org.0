@@ -2,111 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C798BD840
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 08:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7369DBD84E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 08:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2411877AbfIYGYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 02:24:13 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:45338 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404570AbfIYGYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 02:24:13 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id EA4E861197; Wed, 25 Sep 2019 06:24:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569392651;
-        bh=efyvQV7q7fIN6ZkOeoxT6VazF4LiJT3OJPSTTXRZbJQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ogaMPrR+nmcQbEvlzytpjir1Xy/qKVqEGmn5ROTxTq8C81BvoSE7POnTLXwIKgBgj
-         tx2zGwFW0ps/spY586xrdcflVRQUGMzPTX2cpk44BPmodH+EHNAYbeknxeheXjecJd
-         8sVlaO1xL6gSyL71OJWFVeW4BymdvSCHhuuWwUg0=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 3292560128;
-        Wed, 25 Sep 2019 06:24:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569392651;
-        bh=efyvQV7q7fIN6ZkOeoxT6VazF4LiJT3OJPSTTXRZbJQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ogaMPrR+nmcQbEvlzytpjir1Xy/qKVqEGmn5ROTxTq8C81BvoSE7POnTLXwIKgBgj
-         tx2zGwFW0ps/spY586xrdcflVRQUGMzPTX2cpk44BPmodH+EHNAYbeknxeheXjecJd
-         8sVlaO1xL6gSyL71OJWFVeW4BymdvSCHhuuWwUg0=
+        id S2404522AbfIYGaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 02:30:15 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:51289 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391660AbfIYGaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 02:30:15 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iD0oQ-0000V4-7q; Wed, 25 Sep 2019 08:30:06 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iD0oN-0004YK-QR; Wed, 25 Sep 2019 08:30:03 +0200
+Date:   Wed, 25 Sep 2019 08:30:03 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Sam Shih <sam.shih@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v9 03/11] pwm: mediatek: remove a property "has-clks"
+Message-ID: <20190925063003.aht4platmfalcqru@pengutronix.de>
+References: <1568933351-8584-1-git-send-email-sam.shih@mediatek.com>
+ <1568933351-8584-4-git-send-email-sam.shih@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 25 Sep 2019 11:54:11 +0530
-From:   ppvk@codeaurora.org
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, asutoshd@codeaurora.org,
-        vbadigan@codeaurora.org, stummala@codeaurora.org,
-        sayalil@codeaurora.org, rampraka@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Subhash Jadavani <subhashj@codeaurora.org>,
-        Andy Gross <agross@kernel.org>, linux-mmc-owner@vger.kernel.org
-Subject: Re: [RFC 1/2] mmc: sdhci-msm: Add support for bus bandwidth voting
-In-Reply-To: <616c7a8c-a1cf-2043-4ea4-f452ee90f083@linaro.org>
-References: <1567774037-2344-1-git-send-email-ppvk@codeaurora.org>
- <1567774037-2344-2-git-send-email-ppvk@codeaurora.org>
- <616c7a8c-a1cf-2043-4ea4-f452ee90f083@linaro.org>
-Message-ID: <d10c21360d4830c864374a57c491c21c@codeaurora.org>
-X-Sender: ppvk@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1568933351-8584-4-git-send-email-sam.shih@mediatek.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-09-12 18:26, Georgi Djakov wrote:
-> Hi Pradeep,
+On Fri, Sep 20, 2019 at 06:49:03AM +0800, Sam Shih wrote:
+> We can use fixed-clock to repair mt7628 pwm during configure from
+> userspace. The SoC is legacy MIPS and has no complex clock tree.
+> Due to we can get clock frequency for period calculation from DT
+> fixed-clock, so we can remove has-clock property, and directly
+> use devm_clk_get and clk_get_rate.
 > 
-> Thanks for the patch!
-> 
-> On 9/6/19 15:47, Pradeep P V K wrote:
->> Vote for the MSM bus bandwidth required by SDHC driver
->> based on the clock frequency and bus width of the card.
->> Otherwise,the system clocks may run at minimum clock speed
->> and thus affecting the performance.
->> 
->> This change is based on Georgi Djakov [RFC]
->> (https://lkml.org/lkml/2018/10/11/499)
-> 
-> I am just wondering whether do we really need to predefine the 
-> bandwidth values
-> in DT? Can't we use the computations from the above patch or is there 
-> any
-> problem with that approach?
-> 
-> Thanks,
-> Georgi
+> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> Acked-by: Uwe Kleine-Kö <u.kleine-koenig@pengutronix.de>
+> ---
+> Changes since v9:
+> Added an Acked-by tag
 
-Hi Georgi,
+Argh, my name was croped and ended up in this state in
+5c50982af47ffe36df3e31bc9e11be5a067ddd18. Thierry, any chance to repair
+that? Something
+like
 
-By using the direct required bandwidth(bw / 1000) values, it will not 
-guarantee
-that all the NOC clocks are running in the same voltage corner as 
-required,
-which is very crucial for power concern devices like Mobiles etc.
-Also, it will not guarantee that the value passed is in proper Clock 
-Plans domain
-there by effecting the requested Bandwidth.
-I think, you already aware of these consequences on using direct 
-bandwidth values for
-RPMh based devices.
+	git filter-branch --msg-filter 'sed "s/Kleine-Kö /Kleine-König /"' linus/master..
 
-The value the we passed in DT will make sure that all the NOC clocks 
-between the end points
-are running in the same voltage corners as required and also it will 
-guarantee that
-the requested BW's for the clients are obtained.
+Thanks
+Uwe
 
-Hence the reason for passing the predefined bandwidth values in DT.
-
-Thanks and Regards,
-Pradeep
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
