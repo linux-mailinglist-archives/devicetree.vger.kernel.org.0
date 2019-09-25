@@ -2,119 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73266BE0E3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 17:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 972D1BE120
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 17:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437307AbfIYPJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 11:09:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:51802 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2437241AbfIYPJU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 11:09:20 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 19E381000;
-        Wed, 25 Sep 2019 08:09:19 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3A1433F59C;
-        Wed, 25 Sep 2019 08:09:14 -0700 (PDT)
-Subject: Re: [PATCH 00/11] of: Fix DMA configuration for non-DT masters
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>, etnaviv@lists.freedesktop.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-pci@vger.kernel.org, Matthias Brugger <mbrugger@suse.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        james.quinlan@broadcom.com, Stefan Wahren <wahrenst@gmx.net>,
-        Dan Williams <dan.j.williams@intel.com>,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
- <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
- <d1a31a2ec8eb2f226b1fb41f6c24ffb47c3bf7c7.camel@suse.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <e404c65b-5a66-6f91-5b38-8bf89a7697b2@arm.com>
-Date:   Wed, 25 Sep 2019 16:09:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2439418AbfIYPU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 11:20:57 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:35402 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726128AbfIYPU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 11:20:56 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PFKsrI125193;
+        Wed, 25 Sep 2019 10:20:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569424854;
+        bh=1TPs+PNmYkoQWTZgbmCZluJSZbvWjeIv343i7k1kfn8=;
+        h=From:To:CC:Subject:Date;
+        b=sOJctlcWMYelI8YA5Mz4YiPJxO1hppFiVtNyeHKy5riTEfFJCnuft1dyTfttIaOZJ
+         TXS3tsXgYSLQUKR26sN2eCkkLDa46dlo6ih5XWlzL6nDb6AP2Tj/LsVdIKnj/tWFkR
+         sJ5dPaxbHikCVP/YoQY1j1iuRqKDbSNcEF0fD6wU=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8PFKsQB128695
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 25 Sep 2019 10:20:54 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 25
+ Sep 2019 10:20:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 25 Sep 2019 10:20:47 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PFKssn047659;
+        Wed, 25 Sep 2019 10:20:54 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch 0/3] media: ov5640: updates
+Date:   Wed, 25 Sep 2019 10:22:58 -0500
+Message-ID: <20190925152301.21645-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <d1a31a2ec8eb2f226b1fb41f6c24ffb47c3bf7c7.camel@suse.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2019 15:52, Nicolas Saenz Julienne wrote:
-> On Tue, 2019-09-24 at 16:59 -0500, Rob Herring wrote:
->> On Tue, Sep 24, 2019 at 1:12 PM Nicolas Saenz Julienne
->> <nsaenzjulienne@suse.de> wrote:
->>> Hi All,
->>> this series tries to address one of the issues blocking us from
->>> upstreaming Broadcom's STB PCIe controller[1]. Namely, the fact that
->>> devices not represented in DT which sit behind a PCI bus fail to get the
->>> bus' DMA addressing constraints.
->>>
->>> This is due to the fact that of_dma_configure() assumes it's receiving a
->>> DT node representing the device being configured, as opposed to the PCIe
->>> bridge node we currently pass. This causes the code to directly jump
->>> into PCI's parent node when checking for 'dma-ranges' and misses
->>> whatever was set there.
->>>
->>> To address this I create a new API in OF - inspired from Robin Murphys
->>> original proposal[2] - which accepts a bus DT node as it's input in
->>> order to configure a device's DMA constraints. The changes go deep into
->>> of/address.c's implementation, as a device being having a DT node
->>> assumption was pretty strong.
->>>
->>> On top of this work, I also cleaned up of_dma_configure() removing its
->>> redundant arguments and creating an alternative function for the special
->>> cases
->>> not applicable to either the above case or the default usage.
->>>
->>> IMO the resulting functions are more explicit. They will probably
->>> surface some hacky usages that can be properly fixed as I show with the
->>> DT fixes on the Layerscape platform.
->>>
->>> This was also tested on a Raspberry Pi 4 with a custom PCIe driver and
->>> on a Seattle AMD board.
->>
->> Humm, I've been working on this issue too. Looks similar though yours
->> has a lot more churn and there's some other bugs I've found.
-> 
-> That's good news, and yes now that I see it, some stuff on my series is overly
-> complicated. Specially around of_translate_*().
-> 
-> On top of that, you removed in of_dma_get_range():
-> 
-> -	/*
-> -	 * At least empty ranges has to be defined for parent node if
-> -	 * DMA is supported
-> -	 */
-> -	if (!ranges)
-> -		break;
-> 
-> Which I assumed was bound to the standard and makes things easier.
-> 
->> Can you test out this branch[1]. I don't have any h/w needing this,
->> but wrote a unittest and tested with modified QEMU.
-> 
-> I reviewed everything, I did find a minor issue, see the patch attached.
+This patch series is a collection of patches we have been carrying for a
+while.
 
-WRT that patch, the original intent of "force_dma" was purely to 
-consider a device DMA-capable regardless of the presence of 
-"dma-ranges". Expecting of_dma_configure() to do anything for a non-OF 
-device has always been bogus - magic paravirt devices which appear out 
-of nowhere and expect to be treated as genuine DMA masters are a 
-separate problem that we haven't really approached yet.
+First, it adds support for PIXEL_RATE control which is used by some
+CSI2 receiver driver to properly set-up their DPHY.
 
-Robin.
+Then we fix an issue related to having extra sensor enable/disable in
+the register array for the 1920x1080 mode.
+
+Finally we restrict the largest resolution which should only be
+available at the lowest FPS.
+
+Benoit Parrot (3):
+  media: ov5640: add PIXEL_RATE control
+  media: ov5640: Fix 1920x1080 mode to remove extra enable/disable
+  media: ov5640: Make 2592x1944 mode only available at 15 fps
+
+ drivers/media/i2c/ov5640.c | 33 +++++++++++++++++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
+
+-- 
+2.17.1
+
