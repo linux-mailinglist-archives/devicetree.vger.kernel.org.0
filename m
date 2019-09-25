@@ -2,237 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 792EFBD725
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 06:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74EEEBD7D5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 07:41:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2633912AbfIYEVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 00:21:05 -0400
-Received: from mail-eopbgr40087.outbound.protection.outlook.com ([40.107.4.87]:38907
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2393276AbfIYEVF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 00:21:05 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E1t+EWkSuOQNyJu+gTesN+AA092Mj2qMuYFxEpTmYhzQ6FyqZQii0teQ5WKY9YU8YfdvRFRSPqCqwy6iUo3W9PK3arIxqAJvkcAWx51Q/Jqjq2OZrKQ61YKkmX5Q6eaKh0WQ6EjK9VK2hNIsEyUQ8D+0y9rhnF9xVoGppDuo2o6ABBEcqA22XWunG5bWb0IKzx8hiv10dLRPqJWbGZI9d9q2gaGXLw7sBFZXE96kkegwNnyK5JHU9d1gmjVS6qirqlCzXZ2lAJctQuteey/0574DcjnnTZMLXDuzcWdBhJIIJj29xfXEm9JdlwxrNXMhnB2gITEjr5jzzstHr2T0EQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7bNViU+H4OT41P5xc4/eS9rZMyylBGXYUnt0p+fNMaM=;
- b=WFd77ANpSopNXs2nWWQu0AD2qvyN004VLbTgHgDLUNuSPt/tJLbXDoIr19VOh6G1rHOk3pHzqLFaitJkMf8FukCQNXKxwXuBA21LmZe2S8d5wz2YoANIWFA7XI/nG7Wr/cfDTGmy4anoVt9WEKhcxXq5ffl79gtaZYpo1r5ZC6QjhZqZZdzO1mYYDoVVwEngsoYrkomGgYunkSIXXaBNkvoj3fmK7lEeuyuwmIuF1//je2UEsVYaXAx3576XJkTmkijHKxnCaAXH6X+jHxvJBiVfnJfCZgKBiWGLI5XR6ykmXB6jLiFtt/TjZL6FvpatJ7hBpn3kydJKnSbzvHfs+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7bNViU+H4OT41P5xc4/eS9rZMyylBGXYUnt0p+fNMaM=;
- b=qmAZ0rtwE3EBZcabCJpiBIgv7XFcgUoKZRwu1vcfA5sKlwIDEYjvpvsr6VlBXC3/FUTT/VPsageMPIB3EicF+iWgKzr/crxOOhd0sE7do6vUhzmYUXHCfiEaA8UMVGZ/5oVQk3JeKZGofymxLFMi9C+WcZyTISkvwr0QRGzzB78=
-Received: from DB7PR04MB4490.eurprd04.prod.outlook.com (52.135.138.150) by
- DB7PR04MB4220.eurprd04.prod.outlook.com (52.135.131.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.20; Wed, 25 Sep 2019 04:21:01 +0000
-Received: from DB7PR04MB4490.eurprd04.prod.outlook.com
- ([fe80::4427:96f2:f651:6dfa]) by DB7PR04MB4490.eurprd04.prod.outlook.com
- ([fe80::4427:96f2:f651:6dfa%5]) with mapi id 15.20.2284.023; Wed, 25 Sep 2019
- 04:21:00 +0000
-From:   Biwen Li <biwen.li@nxp.com>
-To:     Leo Li <leoyang.li@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Ran Wang <ran.wang_1@nxp.com>
-CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [v3,3/3] Documentation: dt: binding: fsl: Add
- 'fsl,ippdexpcr-alt-addr' property
-Thread-Topic: [v3,3/3] Documentation: dt: binding: fsl: Add
- 'fsl,ippdexpcr-alt-addr' property
-Thread-Index: AQHVcoOnab7d5ysBNkWsXmY0PrfSuKc6/L+AgAC3JZCAAAkFAIAAANMggAABmICAAAIKMIAAAb8AgAACHkCAAAZAMA==
-Date:   Wed, 25 Sep 2019 04:21:00 +0000
-Message-ID: <DB7PR04MB4490684FE0E95695E89173948F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
-References: <20190924024548.4356-1-biwen.li@nxp.com>
- <20190924024548.4356-3-biwen.li@nxp.com>
- <AM0PR04MB667690EE76D327D0FC09F7818F840@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <DB7PR04MB449034C4BBAA89685A2130F78F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
- <AM0PR04MB66762594DDFC6E5B00BD103C8F870@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <DB7PR04MB4490FECDC76507AADC35948E8F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
- <AM0PR04MB6676BD24B814C3D1D67CF9F88F870@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <DB7PR04MB4490EAE9591B5AE7112C9D188F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
- <AM0PR04MB6676B8A6F7C7C3BC822B45B28F870@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <DB7PR04MB44902BADDDFD090BAF4178C68F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
-In-Reply-To: <DB7PR04MB44902BADDDFD090BAF4178C68F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biwen.li@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4dddadb6-cadb-4864-3d9c-08d7416fc5ae
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB7PR04MB4220;
-x-ms-traffictypediagnostic: DB7PR04MB4220:|DB7PR04MB4220:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB422053D18B496356B9510E718F870@DB7PR04MB4220.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 01713B2841
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(189003)(199004)(74316002)(26005)(305945005)(52536014)(7736002)(33656002)(66476007)(229853002)(64756008)(3846002)(66446008)(2906002)(86362001)(76116006)(66946007)(14444005)(5660300002)(25786009)(478600001)(6116002)(256004)(110136005)(14454004)(66066001)(476003)(71190400001)(55016002)(11346002)(9686003)(71200400001)(4326008)(99286004)(486006)(54906003)(2940100002)(81156014)(44832011)(6506007)(2501003)(6246003)(316002)(186003)(102836004)(446003)(8676002)(7696005)(8936002)(66556008)(6636002)(6436002)(81166006)(76176011)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4220;H:DB7PR04MB4490.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: GC8hJbU44SOz2jrg8HjT4lOVgwasMQGrqN1cktwoQuRJLQ0lCkNzdNz10cvkGabzFIKbqLT/C7T2p9CPFNnuQrs1FSybz4UnN5RrcDfPho41gT/DrPmNCMnTsiTFZTyp5r7ddhTD7+Pwbmf5tbZu+LFcy/0rlfDb7OxzxDFnD/3lYK0xzPmjBHcBpAlk7+f2w1i8lyUmQ0xn2gSWPbQfET4w6/oIg0lQmr1/E06CIkeM4Aih73fLf6QrhO6RJDdFYr0UvrShMwJvfN4iC3wNDvWAizyC2cqY55O1FHKmBC+buKe+7/ozDT4Xe7uwnWwSXVkzD3MkdAunAkcdr7Z8Nk5Pnxc0jLItTbWaTN4OWkvRd8GLzxm9Bj4qlTqhrwmLSOryHe5scg/oXC+OZ0PtmYyCfwwQBKGJZ6VJ8oCIJvI=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2411741AbfIYFlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 01:41:36 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:37336 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2411724AbfIYFlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 01:41:36 -0400
+Received: by mail-pg1-f196.google.com with SMTP id c17so2568065pgg.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 22:41:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SMmj88Vr2l+xbZTK/K4atYZIDcxMS64bKPr57HDmIYI=;
+        b=C1NbiwNtjlXTB9x++cXzglb3d3D+ImIUC9JjRVW878u4eONBMNiLKP4MGygGhFo7lK
+         e4x5Iy5yPYX/Kf/e+zMVXtaVw8ACEAHjX8vfNhe9e//vwtRnZw/0lb/NtcirM+inu/To
+         tNXxsXVdTQYs27NFYNmGHD9deK0rNmVktMDU0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SMmj88Vr2l+xbZTK/K4atYZIDcxMS64bKPr57HDmIYI=;
+        b=EAI2BvgEvYAZcvH+xeUXo6Tq+j4hI6XWrT5fFoXxXlgvdAym7VFXIYAl7S03QenblW
+         Ziuqcq6+yhOLDsJVKePtwgFV7JgD+Q+xPMkNs3ZTHqLjmwIyaXXxoJIQgf//ePcxi7fl
+         fCMEw2OLtuPEDi18d8AkqOp/t38mwCcJxeCxrshLnNe5sQNu89ytm6h6uEbcVpxjfbEg
+         z/MRKxGHAbKjDTTOO6BBMrPSdH6RBJUcOwN5dVdgtHdteInGz+bm2kYq4z23o1QFt3yV
+         naSh5lKvo+S5A4aageJbX9aaMZEMopu5Gjzo39sUNxZS59GQu/CHCTu0W7IYhuqDTzbD
+         o4mQ==
+X-Gm-Message-State: APjAAAWfu7bLtRTQSYs6aTS1vW6tWsG8+YE43RK+Yoj44jAkWQ8GLNJv
+        cRF4zdhNFnYkNDG70uLryox/tw==
+X-Google-Smtp-Source: APXvYqzIdxtQTexWuejObIPusF+Jq6P2KW0CJO27N8YbknDzpjAq1m179AKDu99+yDB7J9F/5nTCpw==
+X-Received: by 2002:a65:6799:: with SMTP id e25mr7341485pgr.271.1569390095094;
+        Tue, 24 Sep 2019 22:41:35 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id g12sm6551472pfb.97.2019.09.24.22.41.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Sep 2019 22:41:34 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        David Dai <daidavid1@codeaurora.org>
+Subject: [RFC PATCH] interconnect: Replace of_icc_get() with icc_get() and reduce DT binding
+Date:   Tue, 24 Sep 2019 22:41:33 -0700
+Message-Id: <20190925054133.206992-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.23.0.351.gc4317032e6-goog
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4dddadb6-cadb-4864-3d9c-08d7416fc5ae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2019 04:21:00.8411
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: a+1pcrM7oEO4ET9TkuPrI3cCiFdkMCe5PXaMfVtKn6Ae2vYbGrX4/C9zWkPrZWueFxBXb1YCQzufeV+CYH6rqA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4220
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > >
-> > > > > > > > >
-> > > > > > > > > The 'fsl,ippdexpcr-alt-addr' property is used to handle
-> > > > > > > > > an errata
-> > > > > > > > > A-008646 on LS1021A
-> > > > > > > > >
-> > > > > > > > > Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> > > > > > > > > ---
-> > > > > > > > > Change in v3:
-> > > > > > > > > 	- rename property name
-> > > > > > > > > 	  fsl,rcpm-scfg -> fsl,ippdexpcr-alt-addr
-> > > > > > > > >
-> > > > > > > > > Change in v2:
-> > > > > > > > > 	- update desc of the property 'fsl,rcpm-scfg'
-> > > > > > > > >
-> > > > > > > > >  Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 14
-> > > > > > > > > ++++++++++++++
-> > > > > > > > >  1 file changed, 14 insertions(+)
-> > > > > > > > >
-> > > > > > > > > diff --git
-> > > > > > > > > a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > > > > b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > > > > index 5a33619d881d..157dcf6da17c 100644
-> > > > > > > > > --- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > > > > +++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > > > > @@ -34,6 +34,11 @@ Chassis Version		Example
-> > > Chips
-> > > > > > > > >  Optional properties:
-> > > > > > > > >   - little-endian : RCPM register block is Little Endian.
-> > > > > > > > > Without it
-> > > > RCPM
-> > > > > > > > >     will be Big Endian (default case).
-> > > > > > > > > + - fsl,ippdexpcr-alt-addr : Must add the property for
-> > > > > > > > > + SoC LS1021A,
-> > > > > > > >
-> > > > > > > > You probably should mention this is related to a hardware
-> > > > > > > > issue on LS1021a and only needed on LS1021a.
-> > > > > > > Okay, got it, thanks, I will add this in v4.
-> > > > > > > >
-> > > > > > > > > +   Must include n + 1 entries (n =3D
-> > > > > > > > > + #fsl,rcpm-wakeup-cells, such
-> > as:
-> > > > > > > > > +   #fsl,rcpm-wakeup-cells equal to 2, then must include
-> > > > > > > > > + 2
-> > > > > > > > > + +
-> > > > > > > > > + 1
-> > > > entries).
-> > > > > > > >
-> > > > > > > > #fsl,rcpm-wakeup-cells is the number of IPPDEXPCR
-> > > > > > > > registers on an
-> > > > SoC.
-> > > > > > > > However you are defining an offset to scfg registers here.
-> > > > > > > > Why these two are related?  The length here should
-> > > > > > > > actually be related to the #address-cells of the soc/.
-> > > > > > > > But since this is only needed for LS1021, you can
-> > > > > > > just make it 3.
-> > > > > > > I need set the value of IPPDEXPCR resgiters from ftm_alarm0
-> > > > > > > device node(fsl,rcpm-wakeup =3D <&rcpm 0x0 0x20000000>;
-> > > > > > > 0x0 is a value for IPPDEXPCR0, 0x20000000 is a value for
-> > > > IPPDEXPCR1).
-> > > > > > > But because of the hardware issue on LS1021A, I need store
-> > > > > > > the value of IPPDEXPCR registers to an alt address. So I
-> > > > > > > defining an offset to scfg registers, then RCPM driver get
-> > > > > > > an abosolute address from offset, RCPM driver write the
-> > > > > > > value of IPPDEXPCR registers to these abosolute
-> > > > > > > addresses(backup the value of IPPDEXPCR
-> > > > registers).
-> > > > > >
-> > > > > > I understand what you are trying to do.  The problem is that
-> > > > > > the new fsl,ippdexpcr-alt-addr property contains a phandle and =
-an
-> offset.
-> > > > > > The size of it shouldn't be related to #fsl,rcpm-wakeup-cells.
-> > > > > You maybe like this: fsl,ippdexpcr-alt-addr =3D <&scfg 0x51c>;/*
-> > > > > SCFG_SPARECR8 */
-> > > >
-> > > > No.  The #address-cell for the soc/ is 2, so the offset to scfg
-> > > > should be 0x0 0x51c.  The total size should be 3, but it shouldn't
-> > > > be coming from #fsl,rcpm-wakeup-cells like you mentioned in the
-> binding.
-> > > Oh, I got it. You want that fsl,ippdexpcr-alt-add is relative with
-> > > #address-cells instead of #fsl,rcpm-wakeup-cells.
-> >
-> > Yes.
-> I got an example from drivers/pci/controller/dwc/pci-layerscape.c
-> and arch/arm/boot/dts/ls1021a.dtsi as follows:
-> fsl,pcie-scfg =3D <&scfg 0>, 0 is an index
->=20
-> In my fsl,ippdexpcr-alt-addr =3D <&scfg 0x0 0x51c>, It means that 0x0 is =
-an alt
-> offset address for IPPDEXPCR0, 0x51c is an alt offset address For
-> IPPDEXPCR1 instead of 0x0 and 0x51c compose to an alt address of
-> SCFG_SPARECR8.
-Maybe I need write it as:
-fsl,ippdexpcr-alt-addr =3D <&scfg 0x0 0x0 0x0 0x51c>;
-first two 0x0 compose an alt offset address for IPPDEXPCR0,
-last 0x0 and 0x51c compose an alt address for IPPDEXPCR1,
+I don't see any users of icc_get() in the kernel today, and adding them
+doesn't make sense. That's because adding calls to that function in a
+driver will make the driver SoC specific given that the arguments are
+some sort of source and destination numbers that would typically be
+listed in DT or come from platform data so they can match a global
+numberspace of interconnect numbers. It would be better to follow the
+approach of other kernel frameworks where the API is the same no matter
+how the platform is described (i.e. platform data, DT, ACPI, etc.) and
+swizzle the result in the framework to match whatever the device is by
+checking for a DT node pointer or a fwnode pointer, etc. Therefore,
+install icc_get() as the defacto API and make drivers use that instead
+of of_icc_get() which implies the driver is DT specific when it doesn't
+need to be.
 
-Best Regards,
-Biwen Li=20
-> >
-> > Regards,
-> > Leo
-> > > >
-> > > > > >
-> > > > > > > >
-> > > > > > > > > +   The first entry must be a link to the SCFG device nod=
-e.
-> > > > > > > > > +   The non-first entry must be offset of registers of SC=
-FG.
-> > > > > > > > >
-> > > > > > > > >  Example:
-> > > > > > > > >  The RCPM node for T4240:
-> > > > > > > > > @@ -43,6 +48,15 @@ The RCPM node for T4240:
-> > > > > > > > >  		#fsl,rcpm-wakeup-cells =3D <2>;
-> > > > > > > > >  	};
-> > > > > > > > >
-> > > > > > > > > +The RCPM node for LS1021A:
-> > > > > > > > > +	rcpm: rcpm@1ee2140 {
-> > > > > > > > > +		compatible =3D "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-
-> > > > > 2.1+";
-> > > > > > > > > +		reg =3D <0x0 0x1ee2140 0x0 0x8>;
-> > > > > > > > > +		#fsl,rcpm-wakeup-cells =3D <2>;
-> > > > > > > > > +		fsl,ippdexpcr-alt-addr =3D <&scfg 0x0 0x51c>; /*
-> > > > > > > > > SCFG_SPARECR8 */
-> > > > > > > > > +	};
-> > > > > > > > > +
-> > > > > > > > > +
-> > > > > > > > >  * Freescale RCPM Wakeup Source Device Tree Bindings
-> > > > > > > > >  -------------------------------------------
-> > > > > > > > >  Required fsl,rcpm-wakeup property should be added to a
-> > > > > > > > > device node if the device
-> > > > > > > > > --
-> > > > > > > > > 2.17.1
+The DT binding could also be simplified somewhat. Currently a path needs
+to be specified in DT for each and every use case that is possible for a
+device to want. Typically the path is to memory, which looks to be
+reserved for in the binding with the "dma-mem" named path, but sometimes
+the path is from a device to the CPU or more generically from a device
+to another device which could be a CPU, cache, DMA master, or another
+device if some sort of DMA to DMA scenario is happening. Let's remove
+the pair part of the binding so that we just list out a device's
+possible endpoints on the bus or busses that it's connected to.
+
+If the kernel wants to figure out what the path is to memory or the CPU
+or a cache or something else it should be able to do that by finding the
+node for the "destination" endpoint, extracting that node's
+"interconnects" property, and deriving the path in software. For
+example, we shouldn't need to write out each use case path by path in DT
+for each endpoint node that wants to set a bandwidth to memory. We
+should just be able to indicate what endpoint(s) a device sits on based
+on the interconnect provider in the system and then walk the various
+interconnects to find the path from that source endpoint to the
+destination endpoint.
+
+Obviously this patch doesn't compile but I'm sending it out to start
+this discussion so we don't get stuck on the binding or the kernel APIs
+for a long time. It looks like we should be OK in terms of backwards
+compatibility because we can just ignore the second element in an old
+binding, but maybe we'll want to describe paths in different directions
+(e.g. the path from the CPU to the SD controller may be different than
+the path the SD controller takes to the CPU) and that may require
+extending interconnect-names to indicate what direction/sort of path it
+is. I'm basically thinking about master vs. slave ports in AXI land.
+
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: <linux-pm@vger.kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Evan Green <evgreen@chromium.org>
+Cc: David Dai <daidavid1@codeaurora.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
+ .../bindings/interconnect/interconnect.txt    | 19 ++++---------------
+ include/linux/interconnect.h                  | 13 ++-----------
+ 2 files changed, 6 insertions(+), 26 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/interconnect/interconnect.txt b/Documentation/devicetree/bindings/interconnect/interconnect.txt
+index 6f5d23a605b7..f8979186b8a7 100644
+--- a/Documentation/devicetree/bindings/interconnect/interconnect.txt
++++ b/Documentation/devicetree/bindings/interconnect/interconnect.txt
+@@ -11,7 +11,7 @@ The interconnect provider binding is intended to represent the interconnect
+ controllers in the system. Each provider registers a set of interconnect
+ nodes, which expose the interconnect related capabilities of the interconnect
+ to consumer drivers. These capabilities can be throughput, latency, priority
+-etc. The consumer drivers set constraints on interconnect path (or endpoints)
++etc. The consumer drivers set constraints on interconnect paths (or endpoints)
+ depending on the use case. Interconnect providers can also be interconnect
+ consumers, such as in the case where two network-on-chip fabrics interface
+ directly.
+@@ -42,23 +42,12 @@ multiple paths from different providers depending on use case and the
+ components it has to interact with.
+ 
+ Required properties:
+-interconnects : Pairs of phandles and interconnect provider specifier to denote
+-	        the edge source and destination ports of the interconnect path.
+-
+-Optional properties:
+-interconnect-names : List of interconnect path name strings sorted in the same
+-		     order as the interconnects property. Consumers drivers will use
+-		     interconnect-names to match interconnect paths with interconnect
+-		     specifier pairs.
+-
+-                     Reserved interconnect names:
+-			 * dma-mem: Path from the device to the main memory of
+-			            the system
++interconnects : phandle and interconnect provider specifier to denote
++	        the edge source for this node.
+ 
+ Example:
+ 
+ 	sdhci@7864000 {
+ 		...
+-		interconnects = <&pnoc MASTER_SDCC_1 &bimc SLAVE_EBI_CH0>;
+-		interconnect-names = "sdhc-mem";
++		interconnects = <&pnoc MASTER_SDCC_1>;
+ 	};
+diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
+index d70a914cba11..e1ae704f5ab1 100644
+--- a/include/linux/interconnect.h
++++ b/include/linux/interconnect.h
+@@ -25,23 +25,14 @@ struct device;
+ 
+ #if IS_ENABLED(CONFIG_INTERCONNECT)
+ 
+-struct icc_path *icc_get(struct device *dev, const int src_id,
+-			 const int dst_id);
+-struct icc_path *of_icc_get(struct device *dev, const char *name);
++struct icc_path *icc_get(struct device *dev, const char *name);
+ void icc_put(struct icc_path *path);
+ int icc_set_bw(struct icc_path *path, u32 avg_bw, u32 peak_bw);
+ void icc_set_tag(struct icc_path *path, u32 tag);
+ 
+ #else
+ 
+-static inline struct icc_path *icc_get(struct device *dev, const int src_id,
+-				       const int dst_id)
+-{
+-	return NULL;
+-}
+-
+-static inline struct icc_path *of_icc_get(struct device *dev,
+-					  const char *name)
++static inline struct icc_path *icc_get(struct device *dev, const char *name)
+ {
+ 	return NULL;
+ }
+
+base-commit: b5b3bd898ba99fb0fb6aed3b23ec6353a1724d6f
+-- 
+Sent by a computer through tubes
 
