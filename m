@@ -2,103 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB91BE70D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 23:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8720BE750
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 23:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726137AbfIYV0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 17:26:43 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:57310 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726139AbfIYV0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 17:26:43 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PLQTJJ089587;
-        Wed, 25 Sep 2019 16:26:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569446789;
-        bh=L31cUsQNSVbjLWHHKpLMzPbfxz4gfU8gEYEWZo7VRD4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=p2r1071HZ9y8EGc8xiGpOsXeJy2yAEfOjLCL17cM0ykGWc8amevRRcsEDHaD7tfOI
-         oU33SWp5+ZQOxSUIiJD3iBh2zdw1XS5il1t2emezEn4wE+FuZS7E7VR5IjnQbT6+7L
-         L3VWeUcY49QtSuA7Qe3S7H6av7k/UR5+rG+P/TxQ=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PLQTGV030025;
-        Wed, 25 Sep 2019 16:26:29 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 25
- Sep 2019 16:26:29 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 25 Sep 2019 16:26:22 -0500
-Received: from [10.250.197.29] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PLQRXj125159;
-        Wed, 25 Sep 2019 16:26:28 -0500
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
- dts
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Adam Ford <aford173@gmail.com>, <linux-omap@vger.kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        <adam.ford@logicpd.com>
-References: <20190510194229.20628-1-aford173@gmail.com>
- <af325707-3e42-493d-e858-77878ef06138@ti.com>
-From:   "Andrew F. Davis" <afd@ti.com>
-Message-ID: <93c141c6-6519-4855-2424-f7b348b5df25@ti.com>
-Date:   Wed, 25 Sep 2019 14:26:27 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727079AbfIYVdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 17:33:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727058AbfIYVdh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Sep 2019 17:33:37 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 95011222BD;
+        Wed, 25 Sep 2019 21:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569447215;
+        bh=TszXw7S5GIEzEo992EEMfz4W0WtzSxu1MBpaBhf4tmw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QlI2Sj1D5LJahPlbpQRPzC/Kfp42A3NwekR29GtyvfIPAZlvPN1zAfycydpBTfcd8
+         IvT8WVCyptqcO23hrQq7/1AbSsfzPRa68TLRQRP+hrXx+5Qsz/4M4CfEt25gMVn9on
+         EMq0EmayAeKNvnaIFqzE8CzGz5kGoSiMNjw4W64I=
+Received: by mail-qt1-f181.google.com with SMTP id m15so298885qtq.2;
+        Wed, 25 Sep 2019 14:33:35 -0700 (PDT)
+X-Gm-Message-State: APjAAAU/MDgYmsvDWUxhr0S/Q958v/NMn7J4JTGJNu6zn2KE6uwZuvLx
+        +uW755Pt4Q2Nc+sOQUjGxURuNzeHmiO1sPSfVA==
+X-Google-Smtp-Source: APXvYqy9YJ9VRUtFzrkZ+iKb5Tx5rlamJJuwaAKBRmCflwCEbYKpuVBbZPPVrEImTOCJgn8Jl5TlEwRQfbhe0HNZXOU=
+X-Received: by 2002:a0c:8a6d:: with SMTP id 42mr1647258qvu.138.1569447214653;
+ Wed, 25 Sep 2019 14:33:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <af325707-3e42-493d-e858-77878ef06138@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190924181244.7159-1-nsaenzjulienne@suse.de> <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
+ <d1a31a2ec8eb2f226b1fb41f6c24ffb47c3bf7c7.camel@suse.de> <e404c65b-5a66-6f91-5b38-8bf89a7697b2@arm.com>
+ <43fb5fe1de317d65a4edf592f88ea150c6e3b8cc.camel@suse.de> <CAL_JsqLhx500cx3YLoC7HL1ux3bBpV+fEA2Qnk7D5RFGgiGzSw@mail.gmail.com>
+ <aa4c8d62-7990-e385-2bb1-cec55148f0a8@arm.com>
+In-Reply-To: <aa4c8d62-7990-e385-2bb1-cec55148f0a8@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 25 Sep 2019 16:33:23 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKKYcHPnA80ZwLY=Sk3e5MqrimedUhWQ5+iuPZXQxYHdA@mail.gmail.com>
+Message-ID: <CAL_JsqKKYcHPnA80ZwLY=Sk3e5MqrimedUhWQ5+iuPZXQxYHdA@mail.gmail.com>
+Subject: Re: [PATCH 00/11] of: Fix DMA configuration for non-DT masters
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        devicetree@vger.kernel.org, Matthias Brugger <mbrugger@suse.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        etnaviv@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stefan Wahren <wahrenst@gmx.net>, james.quinlan@broadcom.com,
+        linux-pci@vger.kernel.org,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>, xen-devel@lists.xenproject.org,
+        Dan Williams <dan.j.williams@intel.com>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/28/19 4:11 AM, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 10/05/2019 22:42, Adam Ford wrote:
->> Currently the source code is compiled using hard-coded values
->> from CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK.  This patch allows this
->> clock divider value to be moved to the device tree and be changed
->> without having to recompile the kernel.
->>
->> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
-> I understand why you want to do this, but I'm not sure it's a good idea.
-> It's really something the driver should figure out, and if we add it to
-> the DT, it effectively becomes an ABI.
-> 
-> That said... I'm not sure how good of a job the driver could ever do, as
-> it can't know the future scaling needs of the userspace at the time it
-> is configuring the clock. And so, I'm not nacking this patch, but I
-> don't feel very good about this patch...
-> 
-> The setting also affects all outputs (exluding venc), which may not be
-> what the user wants. Then again, I think this setting is really only
-> needed on OMAP2 & 3, which have only a single output. But that's the
-> same with the current kconfig option, of course.
-> 
-> So, the current CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK is an ugly hack, in my
-> opinion, and moving it to DT makes it a worse hack =). But I don't have
-> any good suggestions either.
-> 
+On Wed, Sep 25, 2019 at 11:52 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 25/09/2019 17:16, Rob Herring wrote:
+> > On Wed, Sep 25, 2019 at 10:30 AM Nicolas Saenz Julienne
+> > <nsaenzjulienne@suse.de> wrote:
+> >>
+> >> On Wed, 2019-09-25 at 16:09 +0100, Robin Murphy wrote:
+> >>> On 25/09/2019 15:52, Nicolas Saenz Julienne wrote:
+> >>>> On Tue, 2019-09-24 at 16:59 -0500, Rob Herring wrote:
+> >>>>> On Tue, Sep 24, 2019 at 1:12 PM Nicolas Saenz Julienne
+> >>>>> <nsaenzjulienne@suse.de> wrote:
+> >>>>>> Hi All,
+> >>>>>> this series tries to address one of the issues blocking us from
+> >>>>>> upstreaming Broadcom's STB PCIe controller[1]. Namely, the fact that
+> >>>>>> devices not represented in DT which sit behind a PCI bus fail to get the
+> >>>>>> bus' DMA addressing constraints.
+> >>>>>>
+> >>>>>> This is due to the fact that of_dma_configure() assumes it's receiving a
+> >>>>>> DT node representing the device being configured, as opposed to the PCIe
+> >>>>>> bridge node we currently pass. This causes the code to directly jump
+> >>>>>> into PCI's parent node when checking for 'dma-ranges' and misses
+> >>>>>> whatever was set there.
+> >>>>>>
+> >>>>>> To address this I create a new API in OF - inspired from Robin Murphys
+> >>>>>> original proposal[2] - which accepts a bus DT node as it's input in
+> >>>>>> order to configure a device's DMA constraints. The changes go deep into
+> >>>>>> of/address.c's implementation, as a device being having a DT node
+> >>>>>> assumption was pretty strong.
+> >>>>>>
+> >>>>>> On top of this work, I also cleaned up of_dma_configure() removing its
+> >>>>>> redundant arguments and creating an alternative function for the special
+> >>>>>> cases
+> >>>>>> not applicable to either the above case or the default usage.
+> >>>>>>
+> >>>>>> IMO the resulting functions are more explicit. They will probably
+> >>>>>> surface some hacky usages that can be properly fixed as I show with the
+> >>>>>> DT fixes on the Layerscape platform.
+> >>>>>>
+> >>>>>> This was also tested on a Raspberry Pi 4 with a custom PCIe driver and
+> >>>>>> on a Seattle AMD board.
+> >>>>>
+> >>>>> Humm, I've been working on this issue too. Looks similar though yours
+> >>>>> has a lot more churn and there's some other bugs I've found.
+> >>>>
+> >>>> That's good news, and yes now that I see it, some stuff on my series is
+> >>>> overly
+> >>>> complicated. Specially around of_translate_*().
+> >>>>
+> >>>> On top of that, you removed in of_dma_get_range():
+> >>>>
+> >>>> -   /*
+> >>>> -    * At least empty ranges has to be defined for parent node if
+> >>>> -    * DMA is supported
+> >>>> -    */
+> >>>> -   if (!ranges)
+> >>>> -           break;
+> >>>>
+> >>>> Which I assumed was bound to the standard and makes things easier.
+> >>>>
+> >>>>> Can you test out this branch[1]. I don't have any h/w needing this,
+> >>>>> but wrote a unittest and tested with modified QEMU.
+> >>>>
+> >>>> I reviewed everything, I did find a minor issue, see the patch attached.
+> >>>
+> >>> WRT that patch, the original intent of "force_dma" was purely to
+> >>> consider a device DMA-capable regardless of the presence of
+> >>> "dma-ranges". Expecting of_dma_configure() to do anything for a non-OF
+> >>> device has always been bogus - magic paravirt devices which appear out
+> >>> of nowhere and expect to be treated as genuine DMA masters are a
+> >>> separate problem that we haven't really approached yet.
+> >>
+> >> I agree it's clearly abusing the function. I have no problem with the behaviour
+> >> change if it's OK with you.
+>
+> Thinking about it, you could probably just remove that call from the Xen
+> DRM driver now anyway - since the dma-direct rework, we lost the ability
+> to set dma_dummy_ops by default, and NULL ops now represent what it
+> (presumably) wants.
 
+Not xen_dma_ops? In any case, I'll send out a patch for the the Xen
+folks to comment on.
 
-Module param?
+> >> Robin, have you looked into supporting multiple dma-ranges? It's the next thing
+> >> we need for BCM STB's PCIe. I'll have a go at it myself if nothing is in the
+> >> works already.
+> >
+> > Multiple dma-ranges as far as configuring inbound windows should work
+> > already other than the bug when there's any parent translation. But if
+> > you mean supporting multiple DMA offsets and masks per device in the
+> > DMA API, there's nothing in the works yet.
+>
+> There's also the in-between step of making of_dma_get_range() return a
+> size based on all the dma-ranges entries rather than only the first one
+> - otherwise, something like [1] can lead to pretty unworkable default
+> masks. We implemented that when doing acpi_dma_get_range(), it's just
+> that the OF counterpart never caught up.
 
-Andrew
+Right. I suppose we assume any holes in the ranges are addressable by
+the device but won't get used for other reasons (such as no memory
+there). However, to be correct, the range of the dma offset plus mask
+would need to be within the min start and max end addresses. IOW,
+while we need to round up (0xa_8000_0000 - 0x2c1c_0000) to the next
+power of 2, the 'correct' thing to do is round down.
 
+Rob
 
->  Tomi
-> 
+> [1]
+> http://linux-arm.org/git?p=linux-rm.git;a=commitdiff;h=a2814af56b3486c2985a95540a88d8f9fa3a699f
