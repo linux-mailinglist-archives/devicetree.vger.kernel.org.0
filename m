@@ -2,199 +2,372 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5247BDEFB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 15:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE26BDF2D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 15:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406475AbfIYN2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 09:28:46 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:44920 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406357AbfIYN2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 09:28:46 -0400
-Received: by mail-pg1-f193.google.com with SMTP id g3so3222328pgs.11
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 06:28:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:to:from:subject:user-agent:date;
-        bh=7Qtpz8pP6Xtu5hQMQ/OiLIkOhJi8maiQgK4EToDIyWo=;
-        b=hVpA5j2jkOlUR1iZj0yYcJSI/3wijEBgu5VEoQl7T6aKe26hhNP35ZCbaju9c2MrkK
-         mqw6fvaSnImSH61s1jS6oKzkUazLpBpwO09F+fslKYjNG8rs2hnfdqonQSXsrHoTBhY7
-         P6Q5ISOKhcmaxqLIV8gsrLUT2FTrF3icZpIcQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:date;
-        bh=7Qtpz8pP6Xtu5hQMQ/OiLIkOhJi8maiQgK4EToDIyWo=;
-        b=mGSfj1HO3S3A6IwtU0Waq/TMA93qGZHR+sxX+17mEG4cOPq+QBnZZ+bq00+aSClsPU
-         KvNVkuuJ9pssTOK3VqSilco78y5e3iN977td9i/qrjIBcL5D2lJGYWBUdZVMJ0Z0sTHA
-         LNT1gcHdKMZpPqWlybdf9nG1mln5YYITk7jANICQjGkCpOXDk1hoAMzr06wTHtd+9R10
-         LQy64OlNo1QYvZX82n0zmBEu1xmDATAjtH3OZwK3IkTOy5cxX0LO5khvE/bEdsstfVbg
-         1nPE1sXeM4Ug7Ef1lRy361z9Ja6Ja3n6KlcY2hLtPC55KWaOnQhdaifPIBwHfjK8IgYK
-         wJ+w==
-X-Gm-Message-State: APjAAAXg/8CvSVUrJ+fgSgpY2WCyb3str2VD2XFxLIz14RwFZ4XFdEDf
-        YHVdTzx4/1rkhq/TadGTWDsu1w==
-X-Google-Smtp-Source: APXvYqwuTDywmZkXR49l0QQyuPDwUOxcYvZ2qEuCze7dUJp0lEXUsMF+xad0MMk/74xUr8QHQOF1Pw==
-X-Received: by 2002:a62:27c3:: with SMTP id n186mr9544535pfn.58.1569418124305;
-        Wed, 25 Sep 2019 06:28:44 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id c1sm4606591pfb.135.2019.09.25.06.28.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2019 06:28:43 -0700 (PDT)
-Message-ID: <5d8b6b8b.1c69fb81.14b36.c053@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190925055933.GA2810@tuxbook-pro>
-References: <20190925054133.206992-1-swboyd@chromium.org> <20190925055933.GA2810@tuxbook-pro>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        id S2406735AbfIYNk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 09:40:56 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:44845 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405569AbfIYNk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 09:40:56 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190925134054euoutp02f9a4731f28a181c63c2ba193498106ad~HsiH8tGJY2964929649euoutp02O
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 13:40:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190925134054euoutp02f9a4731f28a181c63c2ba193498106ad~HsiH8tGJY2964929649euoutp02O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1569418854;
+        bh=f0AmX9FlrHbNXAtWzVC0R1bkttK0ZP6JLzQMl2nV4tE=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=eqkYlGR4HRz72LogFFLyNnujDq2XUmoyio/fF5sAwF80SVZJaJdwhA6VMXoopqPFD
+         It7Tq50zESTrfNh7GtTwIKwh0wgiZMjjydWHBsZqPbvPQFIknkKwaEAjTxgrwYYFUp
+         sCLggefj65v1dOuFIDi0liBJu6ldM3nmxhbpshIU=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190925134053eucas1p17263031006a31308e81603811f36a295~HsiHkiLAV1688916889eucas1p17;
+        Wed, 25 Sep 2019 13:40:53 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 59.2A.04309.56E6B8D5; Wed, 25
+        Sep 2019 14:40:53 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190925134053eucas1p1ae1d6b5a345046b685c0fa0de1c31746~HsiHSaIqk0883308833eucas1p1P;
+        Wed, 25 Sep 2019 13:40:53 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190925134053eusmtrp1eba1efa09fcd37e1938ba9bac3fa0ec6~HsiHRVdx_1297212972eusmtrp1_;
+        Wed, 25 Sep 2019 13:40:53 +0000 (GMT)
+X-AuditID: cbfec7f4-afbff700000010d5-96-5d8b6e65a650
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id DB.A1.04166.56E6B8D5; Wed, 25
+        Sep 2019 14:40:53 +0100 (BST)
+Received: from [106.120.51.15] (unknown [106.120.51.15]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190925134052eusmtip2106b84878db25e3d1385666da6f83d53~HsiGprZQ51295012950eusmtip24;
+        Wed, 25 Sep 2019 13:40:52 +0000 (GMT)
+Subject: Re: [PATCH v4 1/8] dt-bindings: timer: Convert Exynos MCT bindings
+ to json-schema
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Evan Green <evgreen@chromium.org>,
-        David Dai <daidavid1@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [RFC PATCH] interconnect: Replace of_icc_get() with icc_get() and reduce DT binding
-User-Agent: alot/0.8.1
-Date:   Wed, 25 Sep 2019 06:28:42 -0700
+        linux-samsung-soc@vger.kernel.org
+Cc:     Sylwester Nawrocki <snawrocki@kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <aa4acd33-eff3-175f-b86a-459ba8c1d17c@samsung.com>
+Date:   Wed, 25 Sep 2019 15:40:52 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+        Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <20190923161411.9236-1-krzk@kernel.org>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SfyyUcRzH+97z3D3P3Zw9d5hPQttttakQq/WQWay1Z2rNYtqEOnlG4067
+        8yP6I1HiiJYKl7AwTpx2RKnIKVczJzTMWj8cNem0RRubrDtPyn+vz/vz/jzvz+e7h8SkQ3w3
+        8pwyjVUp5SkygQjvHFgxe7PKoti9k79201N6M5+uXvSga17aoNQyj9HDww8J2mAZ59Nj3VUC
+        umK4h0c3TIzw6KvPXxL0tdk5jG433MYOOTAt1S2IMTQXCpj3488EzILZTDDt9ZeYko5mxCwa
+        PMOJaFFQAptyLoNV+QafESVZ9E3E+Y7jF4pKB1AOWgjQICEJ1D7QlNzDNUhESqkmBNfzPvK5
+        YgnB6sJTgisWEVjnegUbI3fbOhDXaERQWzWB7A0pZUXQ/iPMzk5UDLR1ra2bnKkyDHr7devT
+        GOUN5QvfMTsLKD/QWDXrupgKBt2VlXUdp3ZAXZ2ZZ2cXKhY+LJswziOBN5UzuJ2Fti3qCywE
+        983t0GWtwjh2hamZGp49GKhpAmZ/azBu7cPw886Xv+wE30wdBMfuMFhWjHMDeQg+m1sJrihG
+        MJZbgTjXQeg3jdiehrRFeEFbty8nh8Cr1zqeXQbKESatEm4JR7jZWY5xshgK8qWceydoTfp/
+        sX1vR7EbSKbddJp20znaTedo/+fWIrwZubLpakUiq/ZXspk+arlCna5M9DmbqjAg2082uGZa
+        eoy6V+ONiCKRzEH8IqooVsqXZ6izFEYEJCZzFmvdNbFScYI8K5tVpZ5WpaewaiPaRuIyV/HF
+        LZ9OSalEeRqbzLLnWdVGl0cK3XKQf75Vld2jK1/VNTp/Fe6nvYZaP+H6oZCjYQeOUfEBjMdl
+        YfT09ISWnY2onI7waYjM26qID9N79hTenzrBRLvFdYaOJge2RZamGyuNkvll0a34qLns8CNB
+        KVkSS2DoZH7nu8A+BJk0czItxoXeUxLnNZ4rdlp+wH80JXlCimW4OknutwtTqeV/ACdIsm9g
+        AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHIsWRmVeSWpSXmKPExsVy+t/xe7qped2xBttnSFjcWneO1WLeZ1mL
+        +UeAjP7Hr5ktzp/fwG6x6fE1VovLu+awWcw4v4/JYun1i0wWrXuPsFu0P33JbLF501RmBx6P
+        NfPWMHpsWtXJ5nHn2h42j3fnzrF7bF5S79G3ZRWjx+dNcgHsUXo2RfmlJakKGfnFJbZK0YYW
+        RnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZj9etYC/Y4lfR3X+MsYHxnWUXIyeH
+        hICJxOz1Wxi7GLk4hASWMkr8+n+UBSIhI3FyWgMrhC0s8edaFxtE0WtGiX8r1zGCJIQFYiR2
+        73rLDmKLCExllrh5qRbEZhbQlZj+7g0zREM7o8SBvsdgRWwChhJdb0EmcXLwCthJrGz5yQxi
+        swioSixefI6pi5GDQ1QgVmLTXjOIEkGJkzOfgB3ECXTpkg6IMcwCZhLzNj9khrDlJba/nQNl
+        i0vcejKfaQKj0Cwk7bOQtMxC0jILScsCRpZVjCKppcW56bnFhnrFibnFpXnpesn5uZsYgXG7
+        7djPzTsYL20MPsQowMGoxMN7IKw7Vog1say4MvcQowQHs5II7yyZrlgh3pTEyqrUovz4otKc
+        1OJDjKZAv01klhJNzgemlLySeENTQ3MLS0NzY3NjMwslcd4OgYMxQgLpiSWp2ampBalFMH1M
+        HJxSDYwsj2XKirRiPk26x845Z7Xc3KnuT5gUX9z/yzDF3C2Hyd8ieV/Xvxkugg6ie29rBk6U
+        VnHxKTsmbLV+vkVJrNJN9er6X9elVxelePpmlWx7prEg8BTbuy1la17VzGe8ylh0qnTB/lqz
+        AyujDukeePRlcqXEdtEr0mcyY1f53DQSiCxabWyoK6PEUpyRaKjFXFScCAAxGhDE8QIAAA==
+X-CMS-MailID: 20190925134053eucas1p1ae1d6b5a345046b685c0fa0de1c31746
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190923161449epcas3p4bf25ddc76d4893a93b9472c3a286f410
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190923161449epcas3p4bf25ddc76d4893a93b9472c3a286f410
+References: <CGME20190923161449epcas3p4bf25ddc76d4893a93b9472c3a286f410@epcas3p4.samsung.com>
+        <20190923161411.9236-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2019-09-24 22:59:33)
-> On Tue 24 Sep 22:41 PDT 2019, Stephen Boyd wrote:
->=20
-> > The DT binding could also be simplified somewhat. Currently a path needs
-> > to be specified in DT for each and every use case that is possible for a
-> > device to want. Typically the path is to memory, which looks to be
-> > reserved for in the binding with the "dma-mem" named path, but sometimes
-> > the path is from a device to the CPU or more generically from a device
-> > to another device which could be a CPU, cache, DMA master, or another
-> > device if some sort of DMA to DMA scenario is happening. Let's remove
-> > the pair part of the binding so that we just list out a device's
-> > possible endpoints on the bus or busses that it's connected to.
-> >=20
-> > If the kernel wants to figure out what the path is to memory or the CPU
-> > or a cache or something else it should be able to do that by finding the
-> > node for the "destination" endpoint, extracting that node's
-> > "interconnects" property, and deriving the path in software. For
-> > example, we shouldn't need to write out each use case path by path in DT
-> > for each endpoint node that wants to set a bandwidth to memory. We
-> > should just be able to indicate what endpoint(s) a device sits on based
-> > on the interconnect provider in the system and then walk the various
-> > interconnects to find the path from that source endpoint to the
-> > destination endpoint.
-> >=20
->=20
-> But doesn't this implies that the other end of the path is always some
-> specific node, e.g. DDR? With a single node how would you describe
-> CPU->LLCC or GPU->OCIMEM?
+Hi Krzysztof,
 
-By only specifying the endpoint the device uses it describes what the
-hardware block interfaces with. It doesn't imply that there's only one
-other end of the path. It implies that the paths should be discoverable
-by walking the interconnect graph given some source device node and
-target device node. In most cases the target device node will be a DDR
-controller node, but sometimes it could be LLCC or OCIMEM. We may need
-to add some sort of "get the DDR controller device" API or work it into
-the interconnect API somehow to indicate what target endpoint is
-desired. By not listing all those paths in DT we gain flexibility to add
-more paths later on without having to update or tweak DT to describe
-more paths/routes through the interconnect.
+On 23.09.2019 18:14, Krzysztof Kozlowski wrote:
+> Convert Samsung Exynos Soc Multi Core Timer bindings to DT schema format
+> using json-schema.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> ---
+>
+> Changes since v3:
+> 1. Use interrupts-extended instead of interrupts-map.
+>
+> Changes since v1:
+> 1. Indent example with four spaces (more readable),
+> 2. Rename nodes in example to timer,
+> 3. Remove mct-map subnode.
+> ---
+>   .../bindings/timer/samsung,exynos4210-mct.txt |  88 ------------
+>   .../timer/samsung,exynos4210-mct.yaml         | 125 ++++++++++++++++++
+>   2 files changed, 125 insertions(+), 88 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.txt
+>   create mode 100644 Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.txt b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.txt
+> deleted file mode 100644
+> index 8f78640ad64c..000000000000
+> --- a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.txt
+> +++ /dev/null
+> @@ -1,88 +0,0 @@
+> -Samsung's Multi Core Timer (MCT)
+> -
+> -The Samsung's Multi Core Timer (MCT) module includes two main blocks, the
+> -global timer and CPU local timers. The global timer is a 64-bit free running
+> -up-counter and can generate 4 interrupts when the counter reaches one of the
+> -four preset counter values. The CPU local timers are 32-bit free running
+> -down-counters and generate an interrupt when the counter expires. There is
+> -one CPU local timer instantiated in MCT for every CPU in the system.
+> -
+> -Required properties:
+> -
+> -- compatible: should be "samsung,exynos4210-mct".
+> -  (a) "samsung,exynos4210-mct", for mct compatible with Exynos4210 mct.
+> -  (b) "samsung,exynos4412-mct", for mct compatible with Exynos4412 mct.
+> -
+> -- reg: base address of the mct controller and length of the address space
+> -  it occupies.
+> -
+> -- interrupts: the list of interrupts generated by the controller. The following
+> -  should be the order of the interrupts specified. The local timer interrupts
+> -  should be specified after the four global timer interrupts have been
+> -  specified.
+> -
+> -	0: Global Timer Interrupt 0
+> -	1: Global Timer Interrupt 1
+> -	2: Global Timer Interrupt 2
+> -	3: Global Timer Interrupt 3
+> -	4: Local Timer Interrupt 0
+> -	5: Local Timer Interrupt 1
+> -	6: ..
+> -	7: ..
+> -	i: Local Timer Interrupt n
+> -
+> -  For MCT block that uses a per-processor interrupt for local timers, such
+> -  as ones compatible with "samsung,exynos4412-mct", only one local timer
+> -  interrupt might be specified, meaning that all local timers use the same
+> -  per processor interrupt.
+> -
+> -Example 1: In this example, the IP contains two local timers, using separate
+> -	   interrupts, so two local timer interrupts have been specified,
+> -	   in addition to four global timer interrupts.
+> -
+> -	mct@10050000 {
+> -		compatible = "samsung,exynos4210-mct";
+> -		reg = <0x10050000 0x800>;
+> -		interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> -			     <0 42 0>, <0 48 0>;
+> -	};
+> -
+> -Example 2: In this example, the timer interrupts are connected to two separate
+> -	   interrupt controllers. Hence, an interrupt-map is created to map
+> -	   the interrupts to the respective interrupt controllers.
+> -
+> -	mct@101c0000 {
+> -		compatible = "samsung,exynos4210-mct";
+> -		reg = <0x101C0000 0x800>;
+> -		interrupt-parent = <&mct_map>;
+> -		interrupts = <0>, <1>, <2>, <3>, <4>, <5>;
+> -
+> -		mct_map: mct-map {
+> -			#interrupt-cells = <1>;
+> -			#address-cells = <0>;
+> -			#size-cells = <0>;
+> -			interrupt-map = <0 &gic 0 57 0>,
+> -					<1 &gic 0 69 0>,
+> -					<2 &combiner 12 6>,
+> -					<3 &combiner 12 7>,
+> -					<4 &gic 0 42 0>,
+> -					<5 &gic 0 48 0>;
+> -		};
+> -	};
+> -
+> -Example 3: In this example, the IP contains four local timers, but using
+> -	   a per-processor interrupt to handle them. Either all the local
+> -	   timer interrupts can be specified, with the same interrupt specifier
+> -	   value or just the first one.
+> -
+> -	mct@10050000 {
+> -		compatible = "samsung,exynos4412-mct";
+> -		reg = <0x10050000 0x800>;
+> -
+> -		/* Both ways are possible in this case. Either: */
+> -		interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> -			     <0 42 0>;
+> -		/* or: */
+> -		interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> -			     <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+> new file mode 100644
+> index 000000000000..bff3f54a398f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/samsung,exynos4210-mct.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung Exynos SoC Multi Core Timer (MCT)
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +
+> +description: |+
+> +  The Samsung's Multi Core Timer (MCT) module includes two main blocks, the
+> +  global timer and CPU local timers. The global timer is a 64-bit free running
+> +  up-counter and can generate 4 interrupts when the counter reaches one of the
+> +  four preset counter values. The CPU local timers are 32-bit free running
+> +  down-counters and generate an interrupt when the counter expires. There is
+> +  one CPU local timer instantiated in MCT for every CPU in the system.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos4210-mct
+> +      - samsung,exynos4412-mct
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      Interrupts should be put in specific order. This is, the local timer
+> +      interrupts should be specified after the four global timer interrupts
+> +      have been specified:
+> +      0: Global Timer Interrupt 0
+> +      1: Global Timer Interrupt 1
+> +      2: Global Timer Interrupt 2
+> +      3: Global Timer Interrupt 3
+> +      4: Local Timer Interrupt 0
+> +      5: Local Timer Interrupt 1
+> +      6: ..
+> +      7: ..
+> +      i: Local Timer Interrupt n
+> +      For MCT block that uses a per-processor interrupt for local timers, such
+> +      as ones compatible with "samsung,exynos4412-mct", only one local timer
+> +      interrupt might be specified, meaning that all local timers use the same
+> +      per processor interrupt.
+> +    minItems: 5               # 4 Global + 1 local
+> +    maxItems: 20              # 4 Global + 16 local
+> +
+> +  interrupts-extended:
+> +    description: |
+> +      If interrupts are coming from different controllers, this property
+> +      can be used instead of regular "interrupts" property.
+> +      The format is exactly the same as with "interrupts".
+> +      Interrupts should be put in specific order. This is, the local timer
+> +    minItems: 5               # 4 Global + 1 local
+> +    maxItems: 20              # 4 Global + 16 local
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - reg
+> +
+> +allOf:
+> +  - if:
+> +      not:
+> +        required:
+> +          - interrupts
+> +    then:
+> +      required:
+> +        - interrupts-extended
+> +
+> +examples:
+> +  - |
+> +    // In this example, the IP contains two local timers, using separate
+> +    // interrupts, so two local timer interrupts have been specified,
+> +    // in addition to four global timer interrupts.
+> +
+> +    timer@10050000 {
+> +        compatible = "samsung,exynos4210-mct";
+> +        reg = <0x10050000 0x800>;
+> +        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> +                     <0 42 0>, <0 48 0>;
+> +    };
+> +
+> +  - |
+> +    // In this example, the timer interrupts are connected to two separate
+> +    // interrupt controllers. Hence, an interrupts-extended is needed.
+> +
+> +    timer@101c0000 {
+> +        compatible = "samsung,exynos4210-mct";
+> +        reg = <0x101C0000 0x800>;
+> +        interrupts-extended = <&gic 0 57 0>,
+> +                              <&gic 0 69 0>,
+> +                              <&combiner 12 6>,
+> +                              <&combiner 12 7>,
+> +                              <&gic 0 42 0>,
+> +                              <&gic 0 48 0>;
+> +    };
+> +
+> +  - |
+> +    // In this example, the IP contains four local timers, but using
+> +    // a per-processor interrupt to handle them. Only one first local
+> +    // interrupt is specified.
+> +
+> +    timer@10050000 {
+> +        compatible = "samsung,exynos4412-mct";
+> +        reg = <0x10050000 0x800>;
+> +
+> +        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> +                     <0 42 0>;
+> +    };
+> +
+> +  - |
+> +    // In this example, the IP contains four local timers, but using
+> +    // a per-processor interrupt to handle them. All the local timer
+> +    // interrupts are specified.
+> +
+> +    timer@10050000 {
+> +        compatible = "samsung,exynos4412-mct";
+> +        reg = <0x10050000 0x800>;
+> +
+> +        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> +                     <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
+> +    };
+I would add "#include <dt-bindings/interrupt-controller/arm-gic.h>" and
+replace zeros with proper defines like GIC_SPI and GIC_PPI. The last two
+examples describes per-processor-interrupts, but have 0 in the specifier
+cell 0. I would also use proper IRQ_TYPE_LEVEL_HIGH at cell 3 instead
+of 0. I would also consider adding artificial 'interrupt-parent = &git'
+property to the 1st, 3rd and 4th examples to make it clear that they
+refer to ARM GIC bindings.
 
->=20
-> > Obviously this patch doesn't compile but I'm sending it out to start
-> > this discussion so we don't get stuck on the binding or the kernel APIs
-> > for a long time. It looks like we should be OK in terms of backwards
-> > compatibility because we can just ignore the second element in an old
-> > binding, but maybe we'll want to describe paths in different directions
-> > (e.g. the path from the CPU to the SD controller may be different than
-> > the path the SD controller takes to the CPU) and that may require
-> > extending interconnect-names to indicate what direction/sort of path it
-> > is. I'm basically thinking about master vs. slave ports in AXI land.
-> >=20
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: <linux-pm@vger.kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: <devicetree@vger.kernel.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Evan Green <evgreen@chromium.org>
-> > Cc: David Dai <daidavid1@codeaurora.org>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> > ---
-> >  .../bindings/interconnect/interconnect.txt    | 19 ++++---------------
-> >  include/linux/interconnect.h                  | 13 ++-----------
-> >  2 files changed, 6 insertions(+), 26 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/interconnect/interconnec=
-t.txt b/Documentation/devicetree/bindings/interconnect/interconnect.txt
-> > index 6f5d23a605b7..f8979186b8a7 100644
-> > --- a/Documentation/devicetree/bindings/interconnect/interconnect.txt
-> > +++ b/Documentation/devicetree/bindings/interconnect/interconnect.txt
-> > @@ -11,7 +11,7 @@ The interconnect provider binding is intended to repr=
-esent the interconnect
-> >  controllers in the system. Each provider registers a set of interconne=
-ct
-> >  nodes, which expose the interconnect related capabilities of the inter=
-connect
-> >  to consumer drivers. These capabilities can be throughput, latency, pr=
-iority
-> > -etc. The consumer drivers set constraints on interconnect path (or end=
-points)
-> > +etc. The consumer drivers set constraints on interconnect paths (or en=
-dpoints)
-> >  depending on the use case. Interconnect providers can also be intercon=
-nect
-> >  consumers, such as in the case where two network-on-chip fabrics inter=
-face
-> >  directly.
-> > @@ -42,23 +42,12 @@ multiple paths from different providers depending o=
-n use case and the
-> >  components it has to interact with.
-> > =20
-> >  Required properties:
-> > -interconnects : Pairs of phandles and interconnect provider specifier =
-to denote
-> > -             the edge source and destination ports of the interconnect=
- path.
-> > -
-> > -Optional properties:
-> > -interconnect-names : List of interconnect path name strings sorted in =
-the same
-> > -                  order as the interconnects property. Consumers drive=
-rs will use
-> > -                  interconnect-names to match interconnect paths with =
-interconnect
-> > -                  specifier pairs.
-> > -
-> > -                     Reserved interconnect names:
-> > -                      * dma-mem: Path from the device to the main memo=
-ry of
-> > -                                 the system
-> > +interconnects : phandle and interconnect provider specifier to denote
-> > +             the edge source for this node.
-> > =20
-> >  Example:
-> > =20
-> >       sdhci@7864000 {
-> >               ...
-> > -             interconnects =3D <&pnoc MASTER_SDCC_1 &bimc SLAVE_EBI_CH=
-0>;
-> > -             interconnect-names =3D "sdhc-mem";
-> > +             interconnects =3D <&pnoc MASTER_SDCC_1>;
->=20
-> This example seems incomplete, as it doesn't describe the path between
-> CPU and the config space, with this in place I think you need the
-> interconnect-names.
->=20
->=20
-> But with a single interconnect, the interconnect-names should be
-> omitted, as done in other frameworks.
->=20
-
-Sure, no names makes sense when it's just one path.
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
