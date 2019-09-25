@@ -2,175 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 825E6BDB13
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 11:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56C50BDB4A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 11:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732808AbfIYJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 05:34:32 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43449 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387428AbfIYJeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 05:34:25 -0400
-Received: by mail-wr1-f67.google.com with SMTP id q17so5834158wrx.10
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 02:34:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4QqOEvMqoCoUF7f1Dy17fvae1Nl1QHGOxlBQdkZghTQ=;
-        b=t374Xv6jPUHTL79Zgkxi/GSH1HMJT3V058CR7ElIAfrg6QdNyOPKmYSI6Tptw9PFjH
-         Yy3Ac5hwUSiLuptZw5c5vARlkXVh5fZ9IxGzCG5Ae1HLiF230SXzn6QQnarE2asbs5ea
-         Z0zfPzlW30Hkxu7dOHm49ta3PbUMtBCXxk0HYW9Vp40RfzJn+WFrtFpyzzHoJcIVuA61
-         iD6mr4/24pj1TKmaqWWmBr+SzxSZXDj/eFJ/pK6jGcr3LFSxVq1Wwf5CHxy4iA6ZzKDB
-         sVtfoStqA9vjHj6pdoXgypFtDBiCnyFIw8zcGk00L4Banxe0xKHO7iSWulcKtzPBsN6P
-         Tw/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4QqOEvMqoCoUF7f1Dy17fvae1Nl1QHGOxlBQdkZghTQ=;
-        b=Dh67B+q4BuyCyYSwfaSAfbPlFyNPhLoLs9b7VPwgJnre5opUXNZo3pcqCsfAsPstLb
-         eujObF6d2QuaNx+f3CZ7mWHe/VxYLtVoJ+pUStifUg+uTv7pG6u+Q/LUvn87nenHQToY
-         zvKiw+6Hjq2E2QaOl+s/vX/U4XziVb+4/fADWUby9BU3lMOaO/09P4X8jk0PrvpJysym
-         an+Pt07GovpJJGyznkvYpXCHlzFAuKveYkr5KJThLvEJbsNztlWn+kPtmMmVka1/6ok9
-         yPR3wp6ZR2aJb7YoUDghhTPvAUqDQ+UmrLEwAlDZX0pH1oyAti7guE+gFgpauqjMRv+P
-         A1rQ==
-X-Gm-Message-State: APjAAAUFsOcFpaABOGWVJ/z8qGWf6JYBcCFTUE6CEpbblDIARDCzuqlT
-        1uRr7yxwL76H+P44dfMw1nwECA==
-X-Google-Smtp-Source: APXvYqzdk4+6z20DfPXX7A08NwxtUu+BoD7RqzK4rts9K9MTVCg1XgXs5fVakZPPvjm9cz/Rx8m2Yg==
-X-Received: by 2002:a5d:670c:: with SMTP id o12mr8602618wru.103.1569404062291;
-        Wed, 25 Sep 2019 02:34:22 -0700 (PDT)
-Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id i1sm4268476wmb.19.2019.09.25.02.34.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2019 02:34:21 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: g12a: add audio devices resets
-Date:   Wed, 25 Sep 2019 11:33:58 +0200
-Message-Id: <20190925093358.15476-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
+        id S1727608AbfIYJmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 05:42:20 -0400
+Received: from mail.e-cards24.eu ([80.211.5.241]:46989 "EHLO mail.e-cards24.eu"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727576AbfIYJmU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Sep 2019 05:42:20 -0400
+X-Greylist: delayed 418 seconds by postgrey-1.27 at vger.kernel.org; Wed, 25 Sep 2019 05:42:19 EDT
+Received: by mail.e-cards24.eu (Postfix, from userid 1001)
+        id D5C79A0997; Wed, 25 Sep 2019 11:34:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=e-cards24.eu; s=mail;
+        t=1569404116; bh=fQR3K+aF6eB/J5xLzPQdcJA7mmHK2rvyHVQtX4RUwaw=;
+        h=Date:From:To:Subject:From;
+        b=FVoD+WMgrXlG12afijHxCkBRc7k45xUb2eIOhVmyWma0qXXWeZAAjAqxgFos3xj1b
+         pbxfeDy4oI8vn/q6Bb1ClwFl8RvsK3ttouEszvjR+pAQdFJ+H8170aLYOhu5xUCmBj
+         4xT0DF0mQIkf8MPZRXwHA3AbCYVahNhxwfjeJeCI=
+Received: by mail.e-cards24.eu for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 09:34:47 GMT
+Message-ID: <20190925113408-0.1.a.6eq.0.k736id00n8@e-cards24.eu>
+Date:   Wed, 25 Sep 2019 09:34:47 GMT
+From:   =?UTF-8?Q?
+         "=D0=9C=D0=90=D0=A0=D0=A2=D0=98=D0=9D_=D0=A2=D0=9E=D0=9D=D0=A7=D0=95=D0=92"
+         ?= <martin.tonchev@e-cards24.eu>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?=D0=90=D0=BD=D0=B3=D0=B0=D0=B6=D0=B8=D1=80=D0=B0=D0=BD_=D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB?=
+X-Mailer: mail.e-cards24.eu
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Provide the reset lines coming from the audio clock controller to
-the audio devices of the g12 family
+=D0=97=D0=B4=D1=80=D0=B0=D0=B2=D0=B5=D0=B9=D1=82=D0=B5,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 28 +++++++++++++++++-----
- 1 file changed, 22 insertions(+), 6 deletions(-)
+=D0=92=D1=8A=D0=B2 =D0=B2=D1=81=D0=B5=D0=BA=D0=B8=D0=B4=D0=BD=D0=B5=D0=B2=
+=D0=BD=D0=B8=D1=82=D0=B5 =D1=81=D0=B8 =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=BD=
+=D0=B8 =D0=BA=D0=BE=D0=BD=D1=82=D0=B0=D0=BA=D1=82=D0=B8 =D1=81 =D1=80=D0=B0=
+=D0=B7=D0=BB=D0=B8=D1=87=D0=BD=D0=B8 =D0=BF=D0=B0=D1=80=D1=82=D0=BD=D1=8C=
+=D0=BE=D1=80=D0=B8 =D1=81=D0=B5 =D1=83=D0=B1=D0=B5=D0=B4=D0=B8=D1=85=D0=BC=
+=D0=B5, =D1=87=D0=B5 =D0=B4=D0=BE=D0=BF=D1=8A=D0=BB=D0=BD=D0=B8=D1=82=D0=B5=
+=D0=BB=D0=BD=D0=B8=D1=82=D0=B5 =D1=81=D1=82=D0=B8=D0=BC=D1=83=D0=BB=D0=B8=
+ =D0=B7=D0=B0 =D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0 =D0=BF=
+=D1=80=D0=B5=D0=B4=D1=81=D1=82=D0=B0=D0=B2=D0=BB=D1=8F=D0=B2=D0=B0=D1=82 =
+=D0=B5=D0=B4=D0=B8=D0=BD =D0=BE=D1=82 =D0=BD=D0=B0=D0=B9-=D0=B4=D0=BE=D0=B1=
+=D1=80=D0=B5 =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=B5=D1=89=D0=B8=D1=82=D0=B5=
+ =D0=BC=D0=B5=D1=85=D0=B0=D0=BD=D0=B8=D0=B7=D0=BC=D0=B8 =D0=B7=D0=B0 =D0=B7=
+=D0=B0=D1=81=D0=B8=D0=BB=D0=B2=D0=B0=D0=BD=D0=B5 =D0=BD=D0=B0 =D0=B5=D1=84=
+=D0=B5=D0=BA=D1=82=D0=B8=D0=B2=D0=BD=D0=BE=D1=81=D1=82=D1=82=D0=B0 =D0=B8=
+ =D0=BB=D0=BE=D1=8F=D0=BB=D0=BD=D0=BE=D1=81=D1=82=D1=82=D0=B0 =D0=BD=D0=B0=
+ =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=BD=D0=BE=D1=82=D0=BE =D0=BC=D1=8F=D1=81=
+=D1=82=D0=BE.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-index 0d9df29994f3..3cf74fc96434 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-@@ -103,7 +103,9 @@
- 			sound-name-prefix = "TODDR_A";
- 			interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
--			resets = <&arb AXG_ARB_TODDR_A>;
-+			resets = <&arb AXG_ARB_TODDR_A>,
-+				 <&clkc_audio AUD_RESET_TODDR_A>;
-+			reset-names = "arb", "rst";
- 			status = "disabled";
- 		};
- 
-@@ -115,7 +117,9 @@
- 			sound-name-prefix = "TODDR_B";
- 			interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
--			resets = <&arb AXG_ARB_TODDR_B>;
-+			resets = <&arb AXG_ARB_TODDR_B>,
-+				 <&clkc_audio AUD_RESET_TODDR_B>;
-+			reset-names = "arb", "rst";
- 			status = "disabled";
- 		};
- 
-@@ -127,7 +131,9 @@
- 			sound-name-prefix = "TODDR_C";
- 			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
--			resets = <&arb AXG_ARB_TODDR_C>;
-+			resets = <&arb AXG_ARB_TODDR_C>,
-+				 <&clkc_audio AUD_RESET_TODDR_C>;
-+			reset-names = "arb", "rst";
- 			status = "disabled";
- 		};
- 
-@@ -139,7 +145,9 @@
- 			sound-name-prefix = "FRDDR_A";
- 			interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
--			resets = <&arb AXG_ARB_FRDDR_A>;
-+			resets = <&arb AXG_ARB_FRDDR_A>,
-+				 <&clkc_audio AUD_RESET_FRDDR_A>;
-+			reset-names = "arb", "rst";
- 			status = "disabled";
- 		};
- 
-@@ -151,7 +159,9 @@
- 			sound-name-prefix = "FRDDR_B";
- 			interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
--			resets = <&arb AXG_ARB_FRDDR_B>;
-+			resets = <&arb AXG_ARB_FRDDR_B>,
-+				 <&clkc_audio AUD_RESET_FRDDR_B>;
-+			reset-names = "arb", "rst";
- 			status = "disabled";
- 		};
- 
-@@ -163,7 +173,9 @@
- 			sound-name-prefix = "FRDDR_C";
- 			interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
--			resets = <&arb AXG_ARB_FRDDR_C>;
-+			resets = <&arb AXG_ARB_FRDDR_C>,
-+				 <&clkc_audio AUD_RESET_FRDDR_C>;
-+			reset-names = "arb", "rst";
- 			status = "disabled";
- 		};
- 
-@@ -249,6 +261,7 @@
- 			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
- 				 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
- 			clock-names = "pclk", "refclk";
-+			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
- 			status = "disabled";
- 		};
- 
-@@ -261,6 +274,7 @@
- 			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
- 				 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
- 			clock-names = "pclk", "mclk";
-+			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
- 			status = "disabled";
- 		};
- 
-@@ -318,6 +332,7 @@
- 			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
- 				 <&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
- 			clock-names = "pclk", "mclk";
-+			resets = <&clkc_audio AUD_RESET_SPDIFOUT_B>;
- 			status = "disabled";
- 		};
- 
-@@ -326,6 +341,7 @@
- 			reg = <0x0 0x744 0x0 0x4>;
- 			#sound-dai-cells = <1>;
- 			sound-name-prefix = "TOHDMITX";
-+			resets = <&clkc_audio AUD_RESET_TOHDMITX>;
- 			status = "disabled";
- 		};
- 	};
--- 
-2.21.0
+=D0=A2=D0=BE=D1=87=D0=BD=D0=BE =D0=BF=D0=BE=D0=B2=D0=B8=D1=88=D0=B0=D0=B2=
+=D0=B0=D0=BD=D0=B5=D1=82=D0=BE =D0=BD=D0=B0 =D0=B0=D0=BD=D0=B3=D0=B0=D0=B6=
+=D0=B8=D1=80=D0=B0=D0=BD=D0=BE=D1=81=D1=82=D1=82=D0=B0 =D0=BA=D1=8A=D0=BC=
+ =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=BD=D0=B0=D1=82=D0=B0 =D1=81=D1=80=D0=B5=
+=D0=B4=D0=B0 =D0=BF=D0=BE=D1=81=D1=82=D0=B5=D0=BF=D0=B5=D0=BD=D0=BD=D0=BE=
+ =D1=81=D1=82=D0=B0=D0=BD=D0=B0 =D0=BE=D1=81=D0=BD=D0=BE=D0=B2=D0=BD=D0=B0=
+ =D0=B3=D1=80=D0=B8=D0=B6=D0=B0 =D0=BD=D0=B0 =D0=BF=D0=BE=D0=B2=D0=B5=D1=87=
+=D0=B5=D1=82=D0=BE =D0=B1=D0=B8=D0=B7=D0=BD=D0=B5=D1=81 =D0=BB=D0=B8=D0=B4=
+=D0=B5=D1=80=D0=B8 =D0=B2 =D1=81=D1=82=D1=80=D0=B0=D0=BD=D0=B0=D1=82=D0=B0=
+=2E
 
+=D0=98=D0=BC=D0=B5=D0=BD=D0=BD=D0=BE =D0=BF=D0=BE=D1=80=D0=B0=D0=B4=D0=B8=
+ =D1=82=D0=BE=D0=B2=D0=B0, =D0=BA=D0=BE=D0=BC=D0=BF=D0=B0=D0=BD=D0=B8=D0=B8=
+=D1=82=D0=B5 =D0=B2=D1=81=D0=B5 =D0=BF=D0=BE-=D1=87=D0=B5=D1=81=D1=82=D0=BE=
+ =D0=B8=D0=B7=D0=B1=D0=B8=D1=80=D0=B0=D1=82 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=
+=D1=80=D0=B8=D1=82=D0=B5 =D0=B7=D0=B0 =D1=85=D1=80=D0=B0=D0=BD=D0=B0 =D0=BA=
+=D0=B0=D1=82=D0=BE =D1=81=D0=BE=D1=86=D0=B8=D0=B0=D0=BB=D0=BD=D0=B0 =D0=BF=
+=D1=80=D0=B8=D0=B4=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B0, =D0=BA=D0=BE=D1=8F=
+=D1=82=D0=BE =D0=B1=D0=B8 =D0=BC=D0=BE=D0=B3=D0=BB=D0=B0 =D0=B4=D0=B0 =D0=
+=B1=D1=8A=D0=B4=D0=B5 =D0=BE=D0=BF=D0=BE=D0=BB=D0=B7=D0=BE=D1=82=D0=B2=D0=
+=BE=D1=80=D0=B5=D0=BD=D0=B0 =D0=BF=D0=BE =D0=B8=D0=B7=D0=B1=D0=BE=D1=80 =D0=
+=BD=D0=B0 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=D1=8F - =D0=B2=
+ =D0=BC=D0=B0=D0=B3=D0=B0=D0=B7=D0=B8=D0=BD=D0=B8, =D1=80=D0=B5=D1=81=D1=82=
+=D0=BE=D1=80=D0=B0=D0=BD=D1=82=D0=B8 =D0=B8=D0=BB=D0=B8 =D0=BE=D0=BD=D0=BB=
+=D0=B0=D0=B9=D0=BD =D0=B7=D0=B0=D0=B2=D0=B5=D0=B4=D0=B5=D0=BD=D0=B8=D1=8F=
+=2E
+
+=D0=9E=D1=81=D0=B2=D0=B5=D0=BD =D0=BF=D0=BE-=D1=81=D0=B5=D1=80=D0=B8=D0=BE=
+=D0=B7=D0=BD=D0=B0=D1=82=D0=B0 =D0=B0=D0=BD=D0=B3=D0=B0=D0=B6=D0=B8=D1=80=
+=D0=B0=D0=BD=D0=BE=D1=81=D1=82 =D0=B8 =D0=BB=D0=BE=D1=8F=D0=BB=D0=BD=D0=BE=
+=D1=81=D1=82, =D0=BA=D0=BE=D1=8F=D1=82=D0=BE =D1=81=D0=B5 =D0=BD=D0=B0=D0=
+=B1=D0=BB=D1=8E=D0=B4=D0=B0=D0=B2=D0=B0 =D0=BF=D1=80=D0=B8 =D1=81=D0=BB=D1=
+=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=D0=B8=D1=82=D0=B5 =D1=81=D0=BB=D0=B5=D0=
+=B4 =D0=BF=D1=80=D0=B8=D0=BB=D0=B0=D0=B3=D0=B0=D0=BD=D0=B5=D1=82=D0=BE =D0=
+=BD=D0=B0 =D1=82=D0=B0=D0=B7=D0=B8 =D0=BC=D1=8F=D1=80=D0=BA=D0=B0, =D0=BA=
+=D0=BE=D0=BC=D0=BF=D0=B0=D0=BD=D0=B8=D0=B8=D1=82=D0=B5 =D0=BF=D0=BE=D0=BB=
+=D1=83=D1=87=D0=B0=D0=B2=D0=B0=D1=82 =D0=B8 =D0=B4=D0=BE=D0=BF=D1=8A=D0=BB=
+=D0=BD=D0=B8=D1=82=D0=B5=D0=BB=D0=B5=D0=BD =D1=81=D1=82=D0=B8=D0=BC=D1=83=
+=D0=BB =D0=BE=D1=82 =D0=BC=D0=B5=D1=81=D1=82=D0=BD=D0=BE=D1=82=D0=BE =D0=B4=
+=D0=B0=D0=BD=D1=8A=D1=87=D0=BD=D0=BE=D1=82=D0=BE =D0=B7=D0=B0=D0=BA=D0=BE=
+=D0=BD=D0=BE=D0=B4=D0=B0=D1=82=D0=B5=D0=BB=D1=81=D1=82=D0=B2=D0=BE.
+
+=D0=91=D0=B8=D1=85=D1=82=D0=B5 =D0=BB=D0=B8 =D0=B8=D1=81=D0=BA=D0=B0=D0=BB=
+=D0=B8 =D0=B4=D0=B0 =D0=92=D0=B8 =D0=B7=D0=B0=D0=BF=D0=BE=D0=B7=D0=BD=D0=B0=
+=D0=B5=D0=BC =D0=BF=D0=BE-=D0=BF=D0=BE=D0=B4=D1=80=D0=BE=D0=B1=D0=BD=D0=BE=
+ =D1=81 =D1=82=D0=B5=D0=B7=D0=B8 =D1=80=D0=B5=D1=88=D0=B5=D0=BD=D0=B8=D1=8F=
+, =D0=BA=D0=BE=D0=B8=D1=82=D0=BE =D0=B2=D1=8F=D1=80=D0=B2=D0=B0=D0=BC=D0=B5=
+ =D0=B1=D0=B8=D1=85=D0=B0 =D0=B1=D0=B8=D0=BB=D0=B8 =D0=BF=D0=BE=D0=B4=D1=85=
+=D0=BE=D0=B4=D1=8F=D1=89=D0=B8 =D0=B8 =D0=B7=D0=B0 =D0=92=D0=B0=D1=88=D0=B0=
+=D1=82=D0=B0 =D0=BA=D0=BE=D0=BC=D0=BF=D0=B0=D0=BD=D0=B8=D1=8F =D0=B8 =D1=81=
+=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=D0=B8?
+
+
+=D0=9C=D0=90=D0=A0=D0=A2=D0=98=D0=9D =D0=A2=D0=9E=D0=9D=D0=A7=D0=95=D0=92
+www.e-cards24.eu
