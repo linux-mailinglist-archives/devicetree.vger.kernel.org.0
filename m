@@ -2,295 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D08B3BD59A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 01:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A5C3BD644
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 04:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2442113AbfIXXyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Sep 2019 19:54:08 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:38826 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388576AbfIXXyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Sep 2019 19:54:08 -0400
-Received: by mail-wm1-f67.google.com with SMTP id 3so2150653wmi.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2019 16:54:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:subject:to:cc:references:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=obNyCqqGzElvX7boXde6fghsyxBcR3pkK61f0Ir2WaE=;
-        b=egLwcybANyqSdgRAu9EcaRb3zkdDSUzA8up5iGrUH1nSg/9R21k6DUoH5TKYnLSRES
-         p90H6yNYvY3NUYffvlkjJn3TZu7unDdviFFCoY+cAss2Sye+j4YueusDO3Rrw6gCQx+p
-         VPY9bXIE60S8kkT51PbkVrZcHzMVvSDmlZluI7dfH589h3nSgKUsE2CNV065yoI7/MTU
-         luzfS+RbH+MLXdf9OaW5TY3+73jqTkb/XKlGl+XV57wkdcwDlgplxn/+ffRUx+vAq4tY
-         ldGg3FLU/pG/kSxFvgiaSfAYDj0B+CscmAkYV5mp7Qr8SdgEvXzgOzGF2fn/BII5EMBg
-         WvkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=obNyCqqGzElvX7boXde6fghsyxBcR3pkK61f0Ir2WaE=;
-        b=rl+7FQ9cOZqNXKXV3rNbVhIMGUKKHovq2WWwWKREDG9Z0iNdPFplkiqk7vGDi6hr0G
-         5mMRl36STGUnyQ/JZVVSA5kRbucnmBxqqm3d5LfjAufQ4aipNm+iDDC1c71J9TeWXwH3
-         Trf9avV/eIsGRQKPnf62zkM59DVf4YxomB2QcqdpYyy1Cr0WcNiICbzAKAAvAIPxiJwd
-         oIJdZa+YdH0VDO4FB0krQknsDQD7q+XpxfXoP1isAm4xaGU9G+/hUbEUlmnD2f2duw9u
-         tXhAq8z3kSwNRgbTBUQnU7YdiBBtm3A4rXlPYdJVdNBRizvZYBiq944Dt63yyNgOttE2
-         yNwg==
-X-Gm-Message-State: APjAAAXbnpawJpMr0DARNtDXUG5Tr1iYL/aUvKu6aEWda7VSNfg8iKjF
-        XmQr6RG10K/zYbwHc4+tysz81w==
-X-Google-Smtp-Source: APXvYqzflTAM8iumIshFfr3fGMFxcB2qaZiCOYlcUNAliFXq2xJSsk/JdWUDV4wUYd58MwxFalpQwg==
-X-Received: by 2002:a1c:6a03:: with SMTP id f3mr3355287wmc.167.1569369244941;
-        Tue, 24 Sep 2019 16:54:04 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id t8sm2884615wrx.76.2019.09.24.16.54.00
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 24 Sep 2019 16:54:04 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [PATCH V3 09/10] interconnect: mediatek: Add mt8183 interconnect
- provider driver
-To:     Henry Chen <henryc.chen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>
-Cc:     Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Linux PM list <linux-pm@vger.kernel.org>
-References: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
- <1566995328-15158-10-git-send-email-henryc.chen@mediatek.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <ff52d219-1621-37de-3b70-d10d95bf370f@linaro.org>
-Date:   Tue, 24 Sep 2019 16:53:57 -0700
-MIME-Version: 1.0
-In-Reply-To: <1566995328-15158-10-git-send-email-henryc.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8
+        id S2633771AbfIYCJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Sep 2019 22:09:09 -0400
+Received: from mail-eopbgr140081.outbound.protection.outlook.com ([40.107.14.81]:39153
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2389401AbfIYCJJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Sep 2019 22:09:09 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LXaT3d8drmG5EUG2JlDd/HipV7sAYaOAgANzSYW4QxUOl8QdJEell8l2/VbPzjIp8vD/J5zcFJKu/t18RQb3wuV+Z9KOlPZqrUKNQ6ld4h6jjV+4vkYim72IfejGzdqcJ0gJTfXghcWKxzMbOnD4YU1QoUO87HXM4hNqNlUIBd8XJjaK5DUFEBseTNJwAZ6mP00Q+SxwblWbSnGIXZWMT9HEoWc3Gk18rloiW+u7/aCuhAexbRGMWoEn1ZDzbsnovZdFxOsd9VK7do0+c54LQZAKwZVS0End55KI2vLiobPS++FA2YNcF12YtHbbGhYOtewwVTXeSsbWzpEJaWdP1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+Jl2nPB2K53BgB4d/OGg7loTW2jHUGBeb7LcciZEA54=;
+ b=O0JIK5hqFBr5wjXUWaUBlpJLlpLCsg7V8xKUGA5XX4Xd4P4YaWRrS7kh46gBVXIrWGV47BpYIWfiZ1uzCopg1jsZABAeZL14W7U2okyE6tCyj69Fgmfl22AfY2Pmz4+Y0RW19G0Q28GWIbGtPxKAznXLCzlYEyhzBdgdqSa/kpMVkUtbLpM/szYtCQeT+K7QQbwXv4qb3rGCfswBQjsjaaqe6gRlmmU7NXH3g7KP/Rid1AYN/AGVMDYlqlAkc3wkgcbY41QxaU2U5bcgquutaov6QE3K2vhkpsQ86izkqO6GHed8HZuzrz6gxdqYyTpu6vCLBwKHs0fkCsmj2eTbug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+Jl2nPB2K53BgB4d/OGg7loTW2jHUGBeb7LcciZEA54=;
+ b=hsyHzuzz90jWUi1inBxWuNI/q5PCZu2uvAn91MIcpJlLenNdocgHywbe36Wk88ilUs/jf+146m53NmPqVC+YgpdCGiv1XA6AXVVoRJii3uO46xDsGSvV0ddkV3368/4wpqw5OGUKGd3ieVlSl3NQoOImIEY3E9fHoI58MCCOYjc=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB4451.eurprd04.prod.outlook.com (52.135.149.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.25; Wed, 25 Sep 2019 02:09:04 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6ca2:ec08:2b37:8ab8]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::6ca2:ec08:2b37:8ab8%6]) with mapi id 15.20.2284.023; Wed, 25 Sep 2019
+ 02:09:04 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V9 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Topic: [PATCH V9 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Index: AQHVc0Y0k9JRzjAEaUGpwXgSV3qtEQ==
+Date:   Wed, 25 Sep 2019 02:09:04 +0000
+Message-ID: <1569377224-5755-1-git-send-email-peng.fan@nxp.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK0PR03CA0041.apcprd03.prod.outlook.com
+ (2603:1096:203:2f::29) To AM0PR04MB4481.eurprd04.prod.outlook.com
+ (2603:10a6:208:70::15)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fb77d6f4-8357-4347-1d5f-08d7415d5701
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:AM0PR04MB4451;
+x-ms-traffictypediagnostic: AM0PR04MB4451:|AM0PR04MB4451:
+x-ms-exchange-purlcount: 6
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB4451C12B10A15F53544C778088870@AM0PR04MB4451.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01713B2841
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(366004)(396003)(136003)(39860400002)(346002)(189003)(199004)(8676002)(2501003)(66446008)(6116002)(66946007)(6512007)(6306002)(102836004)(6436002)(66476007)(64756008)(26005)(186003)(86362001)(44832011)(386003)(6506007)(54906003)(66556008)(486006)(316002)(8936002)(2616005)(476003)(25786009)(7736002)(256004)(15650500001)(14444005)(305945005)(99286004)(66066001)(14454004)(71200400001)(50226002)(81166006)(81156014)(110136005)(3846002)(478600001)(2906002)(52116002)(966005)(2201001)(36756003)(5660300002)(71190400001)(4326008)(6486002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4451;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 2n/EmYWMd1Fz4UmkI03/MuYXTF3yqARHgFWgbZCqdTwfquJLOdY6hrCzj6yFOLzpC9Awxo76Q3dIb4+bNk2t10EdAyEtvq0iYhaH28nwkssud8A/T22acIbk7SiRz5BC1iI77lARgY6YqSF2Oezu281VjRBKtI+KRk+nlYnbmXw0Zpk7lmDMYYsOfLW2+4yj5bVOXwNihja92mrM3R5o7jJbdRoQCJwlovp+WLmwwVqH9pBCliU2k+OXLq+uF26//hCLhUcpp23QRdwNb24URDVQ9zsMYXd22SLOtNfKsTlNl8syZ2QacSV7qtrFMN6DPCwdEvdiweuwgr5lOq5pEZT+fz4hqJlyTIoCMWSR3ZNSwBv+DlQkHLDVk2CyYMWWtR3eUsIDQT54O8sFDoKG5mANRU0LWsZHGTaxZhm1R/Cf2ddsNJF8r5yZ524HoBlLPYG/4mcDvetdjLRikBsUpw==
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb77d6f4-8357-4347-1d5f-08d7415d5701
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2019 02:09:04.5148
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gGeFiY8J1+XP36q5213MFxPBFQzRGc7I6i3Gt+VdqhUaqaovh0Tvl6UpWEpob2tJXtnzycCD2D6Xc2/n3WVJrw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4451
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Henry,
+From: Peng Fan <peng.fan@nxp.com>
 
-Please CC also the linux-pm@ list.
+V9:
+ - Add Florian's R-b tag in patch 1/2
+ - Mark arm,func-id as a required property per Andre's comments in patch 1/=
+2.
+ - Make invoke_smc_mbox_fn as a private entry in a channal per Florian's
+   comments in pach 2/2
+ - Include linux/types.h in arm-smccc-mbox.h in patch 2/2
+ - Drop function_id from arm_smccc_mbox_cmd since func-id is from DT
+   in patch 2/2/.
 
-On 8/28/19 05:28, Henry Chen wrote:
-> Introduce Mediatek MT8183 specific provider driver using the
-> interconnect framework.
-> 
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
-> ---
->  drivers/interconnect/Kconfig            |   1 +
->  drivers/interconnect/Makefile           |   1 +
->  drivers/interconnect/mediatek/Kconfig   |  13 ++
->  drivers/interconnect/mediatek/Makefile  |   3 +
->  drivers/interconnect/mediatek/mtk-emi.c | 246 ++++++++++++++++++++++++++++++++
->  5 files changed, 264 insertions(+)
->  create mode 100644 drivers/interconnect/mediatek/Kconfig
->  create mode 100644 drivers/interconnect/mediatek/Makefile
->  create mode 100644 drivers/interconnect/mediatek/mtk-emi.c
-> 
-[..]
-> +
-> +#define MT8183_MAX_LINKS	6
+   Andre,
+    I have marked arm,func-id as a required property and dropped function-i=
+d
+    from client, please see whether you are happy with the patchset.
+    Hope we could finalize and get patches land in.
 
-Looks like 1 is enough. Sorry for missing this in my earlier review.
+   Thanks,
+   Peng.
 
-> +
-> +/**
-> + * struct mtk_icc_node - Mediatek specific interconnect nodes
-> + * @name: the node name used in debugfs
-> + * @ep: true if the node is an end point.
-> + * @id: a unique node identifier
-> + * @links: an array of nodes where we can go next while traversing
-> + * @num_links: the total number of @links
-> + * @buswidth: width of the interconnect between a node and the bus
-> + * @sum_avg: current sum aggregate value of all avg bw kBps requests
-> + * @max_peak: current max aggregate value of all peak bw kBps requests
-> + */
-> +struct mtk_icc_node {
-> +	unsigned char *name;
-> +	bool ep;
-> +	u16 id;
-> +	u16 links[MT8183_MAX_LINKS];
-> +	u16 num_links;
-> +	u16 buswidth;
-> +	u64 sum_avg;
-> +	u64 max_peak;
-> +};
-> +
-> +struct mtk_icc_desc {
-> +	struct mtk_icc_node **nodes;
-> +	size_t num_nodes;
-> +};
-> +
-> +#define DEFINE_MNODE(_name, _id, _buswidth, _ep, ...)	\
-> +		static struct mtk_icc_node _name = {			\
-> +		.name = #_name,						\
-> +		.id = _id,						\
-> +		.buswidth = _buswidth,					\
-> +		.ep = _ep,						\
-> +		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
-> +}
-> +
-> +DEFINE_MNODE(ddr_emi, SLAVE_DDR_EMI, 1024, 1, 0);
-> +DEFINE_MNODE(mcusys, MASTER_MCUSYS, 256, 0, SLAVE_DDR_EMI);
-> +DEFINE_MNODE(gpu, MASTER_GPUSYS, 256, 0, SLAVE_DDR_EMI);
-> +DEFINE_MNODE(mmsys, MASTER_MMSYS, 256, 0, SLAVE_DDR_EMI);
-> +DEFINE_MNODE(mm_vpu, MASTER_MM_VPU, 128, 0, MASTER_MMSYS);
-> +DEFINE_MNODE(mm_disp, MASTER_MM_DISP, 128, 0, MASTER_MMSYS);
-> +DEFINE_MNODE(mm_vdec, MASTER_MM_VDEC, 128, 0, MASTER_MMSYS);
-> +DEFINE_MNODE(mm_venc, MASTER_MM_VENC, 128, 0, MASTER_MMSYS);
-> +DEFINE_MNODE(mm_cam, MASTER_MM_CAM, 128, 0, MASTER_MMSYS);
-> +DEFINE_MNODE(mm_img, MASTER_MM_IMG, 128, 0, MASTER_MMSYS);
-> +DEFINE_MNODE(mm_mdp, MASTER_MM_MDP, 128, 0, MASTER_MMSYS);
-> +
-[..]
+V8:
+Add missed arm-smccc-mbox.h
 
-> +static int emi_icc_aggregate(struct icc_node *node, u32 avg_bw,
-> +			      u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
-> +{
+V7:
+Typo fix
+#mbox-cells changed to 0
+Add a new header file arm-smccc-mbox.h
+Use ARM_SMCCC_IS_64
 
-The prototype of this function has changed meanwhile, so you might want to update.
+Andre,
+  The function_id is still kept in arm_smccc_mbox_cmd, because arm,func-id
+property is optional, so clients could pass function_id to mbox driver.
 
-[..]
-> +static int emi_icc_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	const struct mtk_icc_desc *desc;
-> +	struct icc_node *node;
-> +	struct icc_onecell_data *data;
-> +	struct icc_provider *provider;
-> +	struct mtk_icc_node **mnodes;
-> +	size_t num_nodes, i, j;
-> +
-> +	desc = of_device_get_match_data(&pdev->dev);
-> +	if (!desc)
-> +		return -EINVAL;
-> +
-> +	mnodes = desc->nodes;
-> +	num_nodes = desc->num_nodes;
-> +
-> +	provider = devm_kzalloc(&pdev->dev, sizeof(*provider), GFP_KERNEL);
-> +	if (!provider)
-> +		return -ENOMEM;
-> +
-> +	data = devm_kcalloc(&pdev->dev, num_nodes, sizeof(*node), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	provider->dev = &pdev->dev;
-> +	provider->set = emi_icc_set;
-> +	provider->aggregate = emi_icc_aggregate;
-> +	provider->xlate = of_icc_xlate_onecell;
-> +	INIT_LIST_HEAD(&provider->nodes);
-> +	provider->data = data;
-> +
-> +	ret = icc_provider_add(provider);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "error adding interconnect provider\n");
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < num_nodes; i++) {
-> +		node = icc_node_create(mnodes[i]->id);
-> +		if (IS_ERR(node)) {
-> +			ret = PTR_ERR(node);
-> +			goto err;
-> +		}
-> +
-> +		node->name = mnodes[i]->name;
-> +		node->data = mnodes[i];
-> +		icc_node_add(node, provider);
-> +
-> +		dev_dbg(&pdev->dev, "registered node %s, num link: %d\n",
-> +			mnodes[i]->name, mnodes[i]->num_links);
-> +
-> +		/* populate links */
-> +		for (j = 0; j < mnodes[i]->num_links; j++)
-> +			icc_link_create(node, mnodes[i]->links[j]);
-> +
-> +		data->nodes[i] = node;
-> +	}
-> +	data->num_nodes = num_nodes;
-> +
-> +	platform_set_drvdata(pdev, provider);
-> +
-> +	return 0;
-> +err:
-> +	list_for_each_entry(node, &provider->nodes, node_list) {
-> +		icc_node_del(node);
-> +		icc_node_destroy(node->id);
-> +	}
-> +
-> +	icc_provider_del(provider);
+V6:
+Switch to per-channel a mbox controller
+Drop arm,num-chans, transports, method
+Add arm,hvc-mbox compatible
+Fix smc/hvc args, drop client id and use correct type.
+https://patchwork.kernel.org/cover/11146641/
 
-You can just call emi_icc_remove() instead of the above.
+V5:
+yaml fix
+https://patchwork.kernel.org/cover/11117741/
 
-Thanks,
-Georgi
+V4:
+yaml fix for num-chans in patch 1/2.
+https://patchwork.kernel.org/cover/11116521/
 
-> +	return ret;
-> +}
-> +
-> +static int emi_icc_remove(struct platform_device *pdev)
-> +{
-> +	struct icc_provider *provider = platform_get_drvdata(pdev);
-> +	struct icc_node *n;
-> +
-> +	list_for_each_entry(n, &provider->nodes, node_list) {
-> +		icc_node_del(n);
-> +		icc_node_destroy(n->id);
-> +	}
-> +
-> +	return icc_provider_del(provider);
-> +}
+V3:
+Drop interrupt
+Introduce transports for mem/reg usage
+Add chan-id for mem usage
+Convert to yaml format
+https://patchwork.kernel.org/cover/11043541/
+
+V2:
+This is a modified version from Andre Przywara's patch series
+https://lore.kernel.org/patchwork/cover/812997/.
+The modification are mostly:
+Introduce arm,num-chans
+Introduce arm_smccc_mbox_cmd
+txdone_poll and txdone_irq are both set to false
+arm,func-ids are kept, but as an optional property.
+Rewords SCPI to SCMI, because I am trying SCMI over SMC, not SCPI.
+Introduce interrupts notification.
+
+[1] is a draft implementation of i.MX8MM SCMI ATF implementation that
+use smc as mailbox, power/clk is included, but only part of clk has been
+implemented to work with hardware, power domain only supports get name
+for now.
+
+The traditional Linux mailbox mechanism uses some kind of dedicated hardwar=
+e
+IP to signal a condition to some other processing unit, typically a dedicat=
+ed
+management processor.
+This mailbox feature is used for instance by the SCMI protocol to signal a
+request for some action to be taken by the management processor.
+However some SoCs does not have a dedicated management core to provide
+those services. In order to service TEE and to avoid linux shutdown
+power and clock that used by TEE, need let firmware to handle power
+and clock, the firmware here is ARM Trusted Firmware that could also
+run SCMI service.
+
+The existing SCMI implementation uses a rather flexible shared memory
+region to communicate commands and their parameters, it still requires a
+mailbox to actually trigger the action.
+
+This patch series provides a Linux mailbox compatible service which uses
+smc calls to invoke firmware code, for instance taking care of SCMI request=
+s.
+The actual requests are still communicated using the standard SCMI way of
+shared memory regions, but a dedicated mailbox hardware IP can be replaced =
+via
+this new driver.
+
+This simple driver uses the architected SMC calling convention to trigger
+firmware services, also allows for using "HVC" calls to call into hyperviso=
+rs
+or firmware layers running in the EL2 exception level.
+
+Patch 1 contains the device tree binding documentation, patch 2 introduces
+the actual mailbox driver.
+
+Please note that this driver just provides a generic mailbox mechanism,
+It could support synchronous TX/RX, or synchronous TX with asynchronous
+RX. And while providing SCMI services was the reason for this exercise,
+this driver is in no way bound to this use case, but can be used genericall=
+y
+where the OS wants to signal a mailbox condition to firmware or a
+hypervisor.
+Also the driver is in no way meant to replace any existing firmware
+interface, but actually to complement existing interfaces.
+
+[1] https://github.com/MrVan/arm-trusted-firmware/tree/scmi
+
+
+Peng Fan (2):
+  dt-bindings: mailbox: add binding doc for the ARM SMC/HVC mailbox
+  mailbox: introduce ARM SMC based mailbox
+
+ .../devicetree/bindings/mailbox/arm-smc.yaml       |  96 ++++++++++++
+ drivers/mailbox/Kconfig                            |   7 +
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/arm-smc-mailbox.c                  | 167 +++++++++++++++++=
+++++
+ include/linux/mailbox/arm-smccc-mbox.h             |  20 +++
+ 5 files changed, 292 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+ create mode 100644 drivers/mailbox/arm-smc-mailbox.c
+ create mode 100644 include/linux/mailbox/arm-smccc-mbox.h
+
+--=20
+2.16.4
+
