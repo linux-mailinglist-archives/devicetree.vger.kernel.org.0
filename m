@@ -2,100 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FBD1BE057
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 16:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E14CBE092
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 16:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732556AbfIYOfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 10:35:51 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38298 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730669AbfIYOfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 10:35:51 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PEZXQh009127;
-        Wed, 25 Sep 2019 09:35:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569422133;
-        bh=Vr6ZNVx+133zoSre+n4gSJjThy4BgNGHqTs8gT9hzm8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=w0GBSoOEYRYazebOWPlPnNxGrvB4waTQhLzKrVh4jnqwl2BaAm18t3ONj5I72ngX9
-         2l3s1zhZuj0zW5kkraDQfyvgavj+5w6JrXj8+klm10a7dhaJnRzhoU6R3dZTf+r9yI
-         r7gBKHj7Q7B1EbDn2whKawdJT5OC71FcWbUfz2KU=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PEZW7g046462;
-        Wed, 25 Sep 2019 09:35:33 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 25
- Sep 2019 09:35:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 25 Sep 2019 09:35:25 -0500
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PEZWNs107138;
-        Wed, 25 Sep 2019 09:35:32 -0500
-Date:   Wed, 25 Sep 2019 09:37:41 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-CC:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [Patch v3 6/8] media: i2c: ov2659: Add powerdown/reset gpio
- handling
-Message-ID: <20190925143741.25qn2wuyiwapsehr@ti.com>
-References: <20190924164414.21897-1-bparrot@ti.com>
- <20190924164414.21897-7-bparrot@ti.com>
- <20190925095154.GL9467@paasikivi.fi.intel.com>
+        id S2438052AbfIYOxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 10:53:06 -0400
+Received: from mx2.suse.de ([195.135.220.15]:57190 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726036AbfIYOxG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Sep 2019 10:53:06 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 47F59AEE1;
+        Wed, 25 Sep 2019 14:53:02 +0000 (UTC)
+Message-ID: <d1a31a2ec8eb2f226b1fb41f6c24ffb47c3bf7c7.camel@suse.de>
+Subject: Re: [PATCH 00/11] of: Fix DMA configuration for non-DT masters
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>, etnaviv@lists.freedesktop.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-pci@vger.kernel.org, Matthias Brugger <mbrugger@suse.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        james.quinlan@broadcom.com, Stefan Wahren <wahrenst@gmx.net>,
+        Dan Williams <dan.j.williams@intel.com>,
+        freedreno <freedreno@lists.freedesktop.org>
+Date:   Wed, 25 Sep 2019 16:52:59 +0200
+In-Reply-To: <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
+References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
+         <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-5Mzcra9IsjRjM5vnaomh"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190925095154.GL9467@paasikivi.fi.intel.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sakari Ailus <sakari.ailus@linux.intel.com> wrote on Wed [2019-Sep-25 12:51:54 +0300]:
-> Hi Benoit,
-> 
-> On Tue, Sep 24, 2019 at 11:44:12AM -0500, Benoit Parrot wrote:
-> > On some board it is possible that the sensor 'powerdown' and or 'reset'
-> > pin might be controlled by gpio instead of being tied.
-> > 
-> > To implement we add pm_runtime support which will handle the power
-> > up/down sequence when it is available otherwise the sensor will be
-> > powered on at module insertion/probe and powered off at module removal.
-> > 
-> > Now originally the driver assumed that the sensor would always stay
-> > powered and keep its register setting. We cannot assume this anymore, so
-> > every time we "power up" we need to re-program the initial registers
-> > configuration first. This was previously done only at probe time.
-> > 
-> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> 
-> Thanks for the update.
-> 
-> I missed the control interface is accessible also when the device is not
-> streaming, and the driver doesn't appear to power on the sensor for that,
-> leading to a failing I²C write.
-> 
-> Could you address that as well, either here or as a separate patch? E.g.
-> the smiapp driver does this.
 
-Yes, I missed that also.
-I'll add a check in .s_ctrl().
+--=-5Mzcra9IsjRjM5vnaomh
+Content-Type: multipart/mixed; boundary="=-QzsDiLgE5dpWVAyKk5Wj"
 
-Benoit
 
-> 
-> -- 
-> Kind regards,
-> 
-> Sakari Ailus
-> sakari.ailus@linux.intel.com
+--=-QzsDiLgE5dpWVAyKk5Wj
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 2019-09-24 at 16:59 -0500, Rob Herring wrote:
+> On Tue, Sep 24, 2019 at 1:12 PM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > Hi All,
+> > this series tries to address one of the issues blocking us from
+> > upstreaming Broadcom's STB PCIe controller[1]. Namely, the fact that
+> > devices not represented in DT which sit behind a PCI bus fail to get th=
+e
+> > bus' DMA addressing constraints.
+> >=20
+> > This is due to the fact that of_dma_configure() assumes it's receiving =
+a
+> > DT node representing the device being configured, as opposed to the PCI=
+e
+> > bridge node we currently pass. This causes the code to directly jump
+> > into PCI's parent node when checking for 'dma-ranges' and misses
+> > whatever was set there.
+> >=20
+> > To address this I create a new API in OF - inspired from Robin Murphys
+> > original proposal[2] - which accepts a bus DT node as it's input in
+> > order to configure a device's DMA constraints. The changes go deep into
+> > of/address.c's implementation, as a device being having a DT node
+> > assumption was pretty strong.
+> >=20
+> > On top of this work, I also cleaned up of_dma_configure() removing its
+> > redundant arguments and creating an alternative function for the specia=
+l
+> > cases
+> > not applicable to either the above case or the default usage.
+> >=20
+> > IMO the resulting functions are more explicit. They will probably
+> > surface some hacky usages that can be properly fixed as I show with the
+> > DT fixes on the Layerscape platform.
+> >=20
+> > This was also tested on a Raspberry Pi 4 with a custom PCIe driver and
+> > on a Seattle AMD board.
+>=20
+> Humm, I've been working on this issue too. Looks similar though yours
+> has a lot more churn and there's some other bugs I've found.
+
+That's good news, and yes now that I see it, some stuff on my series is ove=
+rly
+complicated. Specially around of_translate_*().
+
+On top of that, you removed in of_dma_get_range():
+
+-	/*
+-	 * At least empty ranges has to be defined for parent node if
+-	 * DMA is supported
+-	 */
+-	if (!ranges)
+-		break;
+
+Which I assumed was bound to the standard and makes things easier.
+
+> Can you test out this branch[1]. I don't have any h/w needing this,
+> but wrote a unittest and tested with modified QEMU.
+
+I reviewed everything, I did find a minor issue, see the patch attached.
+
+Also I tested your branch both on an RPi4, with a PCI device that depends o=
+n
+these changes and by comparing the OF debugs logs on a Layerscape board whi=
+ch
+uses dma-ranges, dma-coherent and IOMMU. All works as expected.
+
+Will you send this series for v5.5? Please keep me in the loop, I'll review=
+ and
+test the final version.
+
+Regards,
+Nicolas
+
+
+--=-QzsDiLgE5dpWVAyKk5Wj
+Content-Disposition: attachment;
+	filename*0=0001-of-device-do-not-bail-of_dma_configure-when-force_dm.pat;
+	filename*1=ch
+Content-Type: text/x-patch;
+	name="0001-of-device-do-not-bail-of_dma_configure-when-force_dm.patch";
+	charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+RnJvbSAyNmQ1MTg1M2MyNWMwNGMyOGRiYzA5MDYxOTUxYTkzYzEwMmRhYmNkIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBOaWNvbGFzIFNhZW56IEp1bGllbm5lIDxuc2FlbnpqdWxpZW5u
+ZUBzdXNlLmRlPgpEYXRlOiBXZWQsIDI1IFNlcCAyMDE5IDE2OjI2OjU3ICswMjAwClN1YmplY3Q6
+IFtQQVRDSF0gb2Y6IGRldmljZTogZG8gbm90IGJhaWwgb2ZfZG1hX2NvbmZpZ3VyZSgpIHdoZW4g
+Zm9yY2VfZG1hIGlzCiBzZXQKClNvbWUgWGVuIGRldmljZXMgY2FsbCBvZl9kbWFfY29uZmlndXJl
+KCkgd2l0aG91dCBhbiBhY3R1YWwgRFQgbm9kZSBpbgpvcmRlciBmb3IgaXQgdG8gc2V0IGl0cyAn
+ZG1hX29wcycuIFRoYXQncyB0aGUgb3JpZ2luYWwgaW50ZW50IG9mCidmb3JjZV9kbWEnLCBob25v
+ciB0aGF0IGJlaGF2aW91ci4KClNpZ25lZC1vZmYtYnk6IE5pY29sYXMgU2FlbnogSnVsaWVubmUg
+PG5zYWVuemp1bGllbm5lQHN1c2UuZGU+Ci0tLQogZHJpdmVycy9vZi9kZXZpY2UuYyB8IDIgLS0K
+IDEgZmlsZSBjaGFuZ2VkLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvb2Yv
+ZGV2aWNlLmMgYi9kcml2ZXJzL29mL2RldmljZS5jCmluZGV4IGE0NTI2MWUyMTE0NC4uN2JjMDBm
+NzI0NjhmIDEwMDY0NAotLS0gYS9kcml2ZXJzL29mL2RldmljZS5jCisrKyBiL2RyaXZlcnMvb2Yv
+ZGV2aWNlLmMKQEAgLTEwMCw4ICsxMDAsNiBAQCBpbnQgb2ZfZG1hX2NvbmZpZ3VyZShzdHJ1Y3Qg
+ZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vfbm9kZSAqcGFyZW50LCBib29sIGZvcmNlXwogCW5w
+ID0gZGV2LT5vZl9ub2RlOwogCWlmICghbnApCiAJCW5wID0gcGFyZW50OwotCWlmICghbnApCi0J
+CXJldHVybiAtRU5PREVWOwogCiAJcmV0ID0gb2ZfZG1hX2dldF9yYW5nZShucCwgJmRtYV9hZGRy
+LCAmcGFkZHIsICZzaXplKTsKIAlpZiAocmV0IDwgMCkgewotLSAKMi4yMy4wCgo=
+
+
+--=-QzsDiLgE5dpWVAyKk5Wj--
+
+--=-5Mzcra9IsjRjM5vnaomh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2Lf0sACgkQlfZmHno8
+x/7mvQf6A++shc7v4vCUvlFLh6kIZ0UPBKuSnxpUpUn+R3BMoS6J5Ce/ma0SOzIJ
+MRQmawROuL2F6qf0g3ykdpnaSD14TAEB9UnJzLoTkprKRFRhdq4pQjCDGDWIpWSO
+fW6GnBbCLaTa0r38siU1DvnV3ZXCNnmN+lO5mqEp380R7cLwMj0hrH4mzkNuSUHK
+uKWLMd/ZZyDk7e2j1qZ2bXg6PRRSfXZfU7Oqtwt6k7JNoPB/HneraMxoO43EyzDA
+qt4Fxx6cDsZQAPbqJPChpSN4USdi0rN171NlKW3+PRsGfZN4LzUF3MoK2uvReV0n
+DhW7JoNOzqhh0pk2iPTRov0M+zbYEg==
+=jmQ8
+-----END PGP SIGNATURE-----
+
+--=-5Mzcra9IsjRjM5vnaomh--
+
