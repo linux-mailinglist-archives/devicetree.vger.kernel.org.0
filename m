@@ -2,148 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1228DBD82E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 08:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C798BD840
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 08:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2411773AbfIYGOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 02:14:40 -0400
-Received: from mail-eopbgr30077.outbound.protection.outlook.com ([40.107.3.77]:34150
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2404606AbfIYGOj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 02:14:39 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gKDK3UC++eWzCA8xg8JJYb/w2Xk/o+cP0ff/91YN+1eI9CWNfwP3xAKEudh1oUT8rjk4tPXi2spYeyaZnZfpC/oe8+4GYzEiANvrwiAjXoO8sFGocNMYwyd6MmbbOBED5PdDKl5BtTtskZIBGtCvWbDizDul3gQxD4POoJmF/JSJ+C8jjbLAyqcPCvMHTXWul11prsCQDiURToaOJsptGUJDpQSZqssNUbojL1KQ0cCrXebqem6cj39G+DonXJMu7edsBnUYn85Cx0Vrwi1wzZUZpeZkcEcvjwHisEUAXf1YNA9MfOgZ9FBk73LgqutEYhoNrfshdpstaBH8IT+NAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vFFqjkSTwjWJ61G2p/Ns/OxWyB6zFWGzNWYZpu9nznk=;
- b=Aij/c5v5dCNbt8Tt4sEmUwhjB/fdHayD2EAwI+zAf4bXcWhHHwtKA2b8icZRAT/rwnVxCwT9zR1mhHHbOO03CSiDahv3+5BlxKLOJtA3AGA/t3qoBUnI3KIxu6WyKPQwkaplMwZi4rJDgRawtaNDi0fjbPFC63lAwjM9EpAjtaCjjXM/zvHRLdP3YhkrkjgUSBfIh8CnysXdbtonxdziS2dkhdjfdEiNNYfPlhMeIufpZj/IvyyELpAoJpkx1xepviS617ev5PRjmfLWGg1a+jNZU5p00LpUOoyAkvgO/B5a8IZe7GJ3s1Fw8BCFcq0MY1L9Bm8WeAVd+Qr43PVkaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vFFqjkSTwjWJ61G2p/Ns/OxWyB6zFWGzNWYZpu9nznk=;
- b=S10PDyI7YCAR4PxxQliKTCExL4i+UEoFomsWNGj2kI3ccX3NYeJd4VNOc7AH3RWyZ7CDpPXRVHcP8Nivou400pPzOgYOioqbKYUDU8aYEFOZG3dY0zw6I2RgmApdMXxQmSeiJGaQYWKQVWxQ8VYw1NuobEfOUgDAXCkYQpaKLBQ=
-Received: from VI1PR04MB6237.eurprd04.prod.outlook.com (20.179.24.74) by
- VI1PR04MB4270.eurprd04.prod.outlook.com (52.134.31.33) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.23; Wed, 25 Sep 2019 06:14:35 +0000
-Received: from VI1PR04MB6237.eurprd04.prod.outlook.com
- ([fe80::c887:7d43:1e17:9485]) by VI1PR04MB6237.eurprd04.prod.outlook.com
- ([fe80::c887:7d43:1e17:9485%7]) with mapi id 15.20.2284.023; Wed, 25 Sep 2019
- 06:14:35 +0000
-From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        =?iso-8859-1?Q?Guido_G=FCnther?= <agx@sigxcpu.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: Re: [PATCH 4/5] dt-bindings: display: imx: add bindings for DCSS
-Thread-Topic: Re: [PATCH 4/5] dt-bindings: display: imx: add bindings for DCSS
-Thread-Index: AQHVc2iALMH+ZTgD6EK6yTZZJtKpAg==
-Date:   Wed, 25 Sep 2019 06:14:34 +0000
-Message-ID: <20190925061433.GA16686@fsr-ub1664-121>
-References: <1569248002-2485-1-git-send-email-laurentiu.palcu@nxp.com>
- <1569248002-2485-5-git-send-email-laurentiu.palcu@nxp.com>
- <CAL_JsqK1egTpkqsgVUMUiYzKvVJ=nWtJu+OeujJotRCD9ADsnw@mail.gmail.com>
-In-Reply-To: <CAL_JsqK1egTpkqsgVUMUiYzKvVJ=nWtJu+OeujJotRCD9ADsnw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=laurentiu.palcu@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b7e88fe7-1cb8-41d3-2b44-08d7417fa331
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB4270;
-x-ms-traffictypediagnostic: VI1PR04MB4270:|VI1PR04MB4270:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB42709C77C7BD6966E5858437FF870@VI1PR04MB4270.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
-x-forefront-prvs: 01713B2841
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(7916004)(366004)(346002)(39860400002)(376002)(396003)(136003)(189003)(199004)(52314003)(478600001)(966005)(71200400001)(71190400001)(5660300002)(3846002)(6116002)(1076003)(81156014)(81166006)(26005)(7416002)(7736002)(8936002)(305945005)(8676002)(45080400002)(66066001)(316002)(2906002)(14454004)(86362001)(54906003)(99286004)(25786009)(102836004)(44832011)(6512007)(9686003)(476003)(33716001)(256004)(446003)(33656002)(229853002)(6486002)(6436002)(6306002)(11346002)(66446008)(64756008)(66556008)(66476007)(4326008)(76116006)(91956017)(186003)(6246003)(6916009)(486006)(76176011)(53546011)(6506007)(66946007);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4270;H:VI1PR04MB6237.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 7Zp2xphtbR3Umwk5sHTwyIfeXBtZzn9hrl0gj2whMI8NJfvublIRnRw75w34IlqUXXQBxSENt1wvESitBrh545vk1fKCkZcywpq7MJkDS7iet+y/evsniXt9pOTeB7tUvdL50E2o5sabuBYfDoHg3TyA+pJykjtebqF8aQdqkcXSvaiDLkFgpcDg8hhDLVhGlPNJXRqRlQqSonjjF5kCjuefDRVmmP93JuIFWTLRkac3Cd2nVHdRjlOQXdz/Ek6zIkAb75MkGG2kfnQEeaWG4HlVn9vn+f70qXJPSfX1GcVIVJ1cJqYm9n2iqVI+XuS7ADqzEoGTJ453XZjf7u7AFZ3/bJMxbTqE2tSN8YU68B5yZYf92EZiOZKW+aBZCAAvvEclj2VTTLN1fVAt0eOgyn1mDzeJ9NGtfxnLaCVzrqFStPq6TxnL4gJahjxpsu0h4EMxZecdOjkKzSSoXO6LPw==
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <C68E1DEA7D81984A98B5320990996987@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S2411877AbfIYGYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 02:24:13 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:45338 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404570AbfIYGYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 02:24:13 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id EA4E861197; Wed, 25 Sep 2019 06:24:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569392651;
+        bh=efyvQV7q7fIN6ZkOeoxT6VazF4LiJT3OJPSTTXRZbJQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ogaMPrR+nmcQbEvlzytpjir1Xy/qKVqEGmn5ROTxTq8C81BvoSE7POnTLXwIKgBgj
+         tx2zGwFW0ps/spY586xrdcflVRQUGMzPTX2cpk44BPmodH+EHNAYbeknxeheXjecJd
+         8sVlaO1xL6gSyL71OJWFVeW4BymdvSCHhuuWwUg0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 3292560128;
+        Wed, 25 Sep 2019 06:24:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569392651;
+        bh=efyvQV7q7fIN6ZkOeoxT6VazF4LiJT3OJPSTTXRZbJQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ogaMPrR+nmcQbEvlzytpjir1Xy/qKVqEGmn5ROTxTq8C81BvoSE7POnTLXwIKgBgj
+         tx2zGwFW0ps/spY586xrdcflVRQUGMzPTX2cpk44BPmodH+EHNAYbeknxeheXjecJd
+         8sVlaO1xL6gSyL71OJWFVeW4BymdvSCHhuuWwUg0=
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7e88fe7-1cb8-41d3-2b44-08d7417fa331
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2019 06:14:34.9365
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jzdu8ZmyCyuD0/aVGrKqMrcMdF1X2aCj+R19uN93QSR0fefFJbBgZ8g0kAdxg74wYma/gkMG8WvKbQx16BcUfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4270
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 25 Sep 2019 11:54:11 +0530
+From:   ppvk@codeaurora.org
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, asutoshd@codeaurora.org,
+        vbadigan@codeaurora.org, stummala@codeaurora.org,
+        sayalil@codeaurora.org, rampraka@codeaurora.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Subhash Jadavani <subhashj@codeaurora.org>,
+        Andy Gross <agross@kernel.org>, linux-mmc-owner@vger.kernel.org
+Subject: Re: [RFC 1/2] mmc: sdhci-msm: Add support for bus bandwidth voting
+In-Reply-To: <616c7a8c-a1cf-2043-4ea4-f452ee90f083@linaro.org>
+References: <1567774037-2344-1-git-send-email-ppvk@codeaurora.org>
+ <1567774037-2344-2-git-send-email-ppvk@codeaurora.org>
+ <616c7a8c-a1cf-2043-4ea4-f452ee90f083@linaro.org>
+Message-ID: <d10c21360d4830c864374a57c491c21c@codeaurora.org>
+X-Sender: ppvk@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2019-09-12 18:26, Georgi Djakov wrote:
+> Hi Pradeep,
+> 
+> Thanks for the patch!
+> 
+> On 9/6/19 15:47, Pradeep P V K wrote:
+>> Vote for the MSM bus bandwidth required by SDHC driver
+>> based on the clock frequency and bus width of the card.
+>> Otherwise,the system clocks may run at minimum clock speed
+>> and thus affecting the performance.
+>> 
+>> This change is based on Georgi Djakov [RFC]
+>> (https://lkml.org/lkml/2018/10/11/499)
+> 
+> I am just wondering whether do we really need to predefine the 
+> bandwidth values
+> in DT? Can't we use the computations from the above patch or is there 
+> any
+> problem with that approach?
+> 
+> Thanks,
+> Georgi
 
-On Tue, Sep 24, 2019 at 01:53:28PM -0500, Rob Herring wrote:
-> On Mon, Sep 23, 2019 at 9:14 AM Laurentiu Palcu <laurentiu.palcu@nxp.com>=
- wrote:
-> >
-> > Add bindings for iMX8MQ Display Controller Subsystem.
-> >
-> > Signed-off-by: Laurentiu Palcu <laurentiu.palcu@nxp.com>
-> > ---
-> >  .../bindings/display/imx/nxp,imx8mq-dcss.yaml      | 86 ++++++++++++++=
-++++++++
-> >  1 file changed, 86 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,i=
-mx8mq-dcss.yaml
->=20
-> Fails to build with 'make dt_binding_check':
+Hi Georgi,
 
-Must be because of the extra '0x' Stephen Boyd pointed out. Funny thing
-is I ran:
+By using the direct required bandwidth(bw / 1000) values, it will not 
+guarantee
+that all the NOC clocks are running in the same voltage corner as 
+required,
+which is very crucial for power concern devices like Mobiles etc.
+Also, it will not guarantee that the value passed is in proper Clock 
+Plans domain
+there by effecting the requested Bandwidth.
+I think, you already aware of these consequences on using direct 
+bandwidth values for
+RPMh based devices.
 
-make dtbs_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/display=
-/imx/nxp,imx8mq-dcss.yaml
+The value the we passed in DT will make sure that all the NOC clocks 
+between the end points
+are running in the same voltage corners as required and also it will 
+guarantee that
+the requested BW's for the clients are obtained.
 
-at my side, before sending out the patchset, and it passed. The command
-also runs dt_binding_check, AFAIS:
+Hence the reason for passing the predefined bandwidth values in DT.
 
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
-  CHKDT   Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yam=
-l
-  DTC     Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.exa=
-mple.dt.yaml
-  CHECK   Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.exa=
-mple.dt.yaml
-
-Not sure what I'm doing wrong when running it. I should've catched that. :/
-
-Anyway, already fixed it and will be included in v2.
-
-Thanks,
-laurentiu
-
-
->=20
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
-work.ozlabs.org%2Fpatch%2F1166073%2F&amp;data=3D02%7C01%7Claurentiu.palcu%4=
-0nxp.com%7Cf97847ce739b46fdb72308d74120858b%7C686ea1d3bc2b4c6fa92cd99c5c301=
-635%7C0%7C0%7C637049480244424980&amp;sdata=3Dfjyq52livEnMAQYzVAGqO%2FOtmLS8=
-3dungSvPqHYle10%3D&amp;reserved=3D0=
+Thanks and Regards,
+Pradeep
