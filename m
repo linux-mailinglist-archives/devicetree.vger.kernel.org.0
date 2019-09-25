@@ -2,96 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 247C5BDAC3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 11:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 825E6BDB13
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 11:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726537AbfIYJPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 05:15:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52126 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726185AbfIYJPb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 05:15:31 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C17A020673;
-        Wed, 25 Sep 2019 09:15:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569402925;
-        bh=Z2Uag+DwW909ph/1HOySpUCCmNKluWCbwO7QFKK6F8E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LUAdHLEB0Njr3vPkEeYEnn9UJ65aNeraXjCw8vvFf6X7fzKvIP2kobELTTOGaz+Ai
-         F/6Pk5OGh6G++u9o8W46kH+kpymk6XLNk9oIVvO3P5dgTlNDCS89SC0ZdQYzlIooNS
-         HHynK47zEbah8oMWrSK4ChXXBYoripfPPxhyqVt0=
-Date:   Wed, 25 Sep 2019 11:15:22 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        David Dai <daidavid1@codeaurora.org>
-Subject: Re: [RFC PATCH] interconnect: Replace of_icc_get() with icc_get()
- and reduce DT binding
-Message-ID: <20190925091522.jf5q2jdo6njfkxto@gilmour>
-References: <20190925054133.206992-1-swboyd@chromium.org>
+        id S1732808AbfIYJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 05:34:32 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:43449 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387428AbfIYJeZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 05:34:25 -0400
+Received: by mail-wr1-f67.google.com with SMTP id q17so5834158wrx.10
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 02:34:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4QqOEvMqoCoUF7f1Dy17fvae1Nl1QHGOxlBQdkZghTQ=;
+        b=t374Xv6jPUHTL79Zgkxi/GSH1HMJT3V058CR7ElIAfrg6QdNyOPKmYSI6Tptw9PFjH
+         Yy3Ac5hwUSiLuptZw5c5vARlkXVh5fZ9IxGzCG5Ae1HLiF230SXzn6QQnarE2asbs5ea
+         Z0zfPzlW30Hkxu7dOHm49ta3PbUMtBCXxk0HYW9Vp40RfzJn+WFrtFpyzzHoJcIVuA61
+         iD6mr4/24pj1TKmaqWWmBr+SzxSZXDj/eFJ/pK6jGcr3LFSxVq1Wwf5CHxy4iA6ZzKDB
+         sVtfoStqA9vjHj6pdoXgypFtDBiCnyFIw8zcGk00L4Banxe0xKHO7iSWulcKtzPBsN6P
+         Tw/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4QqOEvMqoCoUF7f1Dy17fvae1Nl1QHGOxlBQdkZghTQ=;
+        b=Dh67B+q4BuyCyYSwfaSAfbPlFyNPhLoLs9b7VPwgJnre5opUXNZo3pcqCsfAsPstLb
+         eujObF6d2QuaNx+f3CZ7mWHe/VxYLtVoJ+pUStifUg+uTv7pG6u+Q/LUvn87nenHQToY
+         zvKiw+6Hjq2E2QaOl+s/vX/U4XziVb+4/fADWUby9BU3lMOaO/09P4X8jk0PrvpJysym
+         an+Pt07GovpJJGyznkvYpXCHlzFAuKveYkr5KJThLvEJbsNztlWn+kPtmMmVka1/6ok9
+         yPR3wp6ZR2aJb7YoUDghhTPvAUqDQ+UmrLEwAlDZX0pH1oyAti7guE+gFgpauqjMRv+P
+         A1rQ==
+X-Gm-Message-State: APjAAAUFsOcFpaABOGWVJ/z8qGWf6JYBcCFTUE6CEpbblDIARDCzuqlT
+        1uRr7yxwL76H+P44dfMw1nwECA==
+X-Google-Smtp-Source: APXvYqzdk4+6z20DfPXX7A08NwxtUu+BoD7RqzK4rts9K9MTVCg1XgXs5fVakZPPvjm9cz/Rx8m2Yg==
+X-Received: by 2002:a5d:670c:: with SMTP id o12mr8602618wru.103.1569404062291;
+        Wed, 25 Sep 2019 02:34:22 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id i1sm4268476wmb.19.2019.09.25.02.34.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2019 02:34:21 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: g12a: add audio devices resets
+Date:   Wed, 25 Sep 2019 11:33:58 +0200
+Message-Id: <20190925093358.15476-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="aomtcuidegtr2wsv"
-Content-Disposition: inline
-In-Reply-To: <20190925054133.206992-1-swboyd@chromium.org>
-User-Agent: NeoMutt/20180716
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Provide the reset lines coming from the audio clock controller to
+the audio devices of the g12 family
 
---aomtcuidegtr2wsv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 28 +++++++++++++++++-----
+ 1 file changed, 22 insertions(+), 6 deletions(-)
 
-Hi Stephen,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+index 0d9df29994f3..3cf74fc96434 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+@@ -103,7 +103,9 @@
+ 			sound-name-prefix = "TODDR_A";
+ 			interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
+ 			clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
+-			resets = <&arb AXG_ARB_TODDR_A>;
++			resets = <&arb AXG_ARB_TODDR_A>,
++				 <&clkc_audio AUD_RESET_TODDR_A>;
++			reset-names = "arb", "rst";
+ 			status = "disabled";
+ 		};
+ 
+@@ -115,7 +117,9 @@
+ 			sound-name-prefix = "TODDR_B";
+ 			interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
+ 			clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
+-			resets = <&arb AXG_ARB_TODDR_B>;
++			resets = <&arb AXG_ARB_TODDR_B>,
++				 <&clkc_audio AUD_RESET_TODDR_B>;
++			reset-names = "arb", "rst";
+ 			status = "disabled";
+ 		};
+ 
+@@ -127,7 +131,9 @@
+ 			sound-name-prefix = "TODDR_C";
+ 			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
+ 			clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
+-			resets = <&arb AXG_ARB_TODDR_C>;
++			resets = <&arb AXG_ARB_TODDR_C>,
++				 <&clkc_audio AUD_RESET_TODDR_C>;
++			reset-names = "arb", "rst";
+ 			status = "disabled";
+ 		};
+ 
+@@ -139,7 +145,9 @@
+ 			sound-name-prefix = "FRDDR_A";
+ 			interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
+ 			clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
+-			resets = <&arb AXG_ARB_FRDDR_A>;
++			resets = <&arb AXG_ARB_FRDDR_A>,
++				 <&clkc_audio AUD_RESET_FRDDR_A>;
++			reset-names = "arb", "rst";
+ 			status = "disabled";
+ 		};
+ 
+@@ -151,7 +159,9 @@
+ 			sound-name-prefix = "FRDDR_B";
+ 			interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
+ 			clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
+-			resets = <&arb AXG_ARB_FRDDR_B>;
++			resets = <&arb AXG_ARB_FRDDR_B>,
++				 <&clkc_audio AUD_RESET_FRDDR_B>;
++			reset-names = "arb", "rst";
+ 			status = "disabled";
+ 		};
+ 
+@@ -163,7 +173,9 @@
+ 			sound-name-prefix = "FRDDR_C";
+ 			interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
+ 			clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
+-			resets = <&arb AXG_ARB_FRDDR_C>;
++			resets = <&arb AXG_ARB_FRDDR_C>,
++				 <&clkc_audio AUD_RESET_FRDDR_C>;
++			reset-names = "arb", "rst";
+ 			status = "disabled";
+ 		};
+ 
+@@ -249,6 +261,7 @@
+ 			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
+ 				 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
+ 			clock-names = "pclk", "refclk";
++			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -261,6 +274,7 @@
+ 			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
+ 				 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
+ 			clock-names = "pclk", "mclk";
++			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -318,6 +332,7 @@
+ 			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
+ 				 <&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
+ 			clock-names = "pclk", "mclk";
++			resets = <&clkc_audio AUD_RESET_SPDIFOUT_B>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -326,6 +341,7 @@
+ 			reg = <0x0 0x744 0x0 0x4>;
+ 			#sound-dai-cells = <1>;
+ 			sound-name-prefix = "TOHDMITX";
++			resets = <&clkc_audio AUD_RESET_TOHDMITX>;
+ 			status = "disabled";
+ 		};
+ 	};
+-- 
+2.21.0
 
-On Tue, Sep 24, 2019 at 10:41:33PM -0700, Stephen Boyd wrote:
-> The DT binding could also be simplified somewhat. Currently a path needs
-> to be specified in DT for each and every use case that is possible for a
-> device to want. Typically the path is to memory, which looks to be
-> reserved for in the binding with the "dma-mem" named path, but sometimes
-> the path is from a device to the CPU or more generically from a device
-> to another device which could be a CPU, cache, DMA master, or another
-> device if some sort of DMA to DMA scenario is happening. Let's remove
-> the pair part of the binding so that we just list out a device's
-> possible endpoints on the bus or busses that it's connected to.
->
-> If the kernel wants to figure out what the path is to memory or the CPU
-> or a cache or something else it should be able to do that by finding the
-> node for the "destination" endpoint, extracting that node's
-> "interconnects" property, and deriving the path in software. For
-> example, we shouldn't need to write out each use case path by path in DT
-> for each endpoint node that wants to set a bandwidth to memory. We
-> should just be able to indicate what endpoint(s) a device sits on based
-> on the interconnect provider in the system and then walk the various
-> interconnects to find the path from that source endpoint to the
-> destination endpoint.
-
-The dma-mem name is used by the OF core to adjust the mapping of the
-devices as well. So, any solution needs to be generic (or provide a
-generic helper).
-
-Maxime
-
---aomtcuidegtr2wsv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXYswKgAKCRDj7w1vZxhR
-xe8UAQC3EqIcKg882wsQj/TdlIO/sf9HoBIDnQnVNJ2t2kaPsAD/Qsa+D9ZQUlKc
-qhYx4agifh1/WXVN4H+Wb39VO4vx5wk=
-=Z0s1
------END PGP SIGNATURE-----
-
---aomtcuidegtr2wsv--
