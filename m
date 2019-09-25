@@ -2,142 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 108E9BDEAA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 15:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47CE9BDEB3
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 15:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406199AbfIYNMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 09:12:55 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:35242 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405921AbfIYNMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 09:12:55 -0400
-Received: by mail-oi1-f196.google.com with SMTP id x3so4838453oig.2;
-        Wed, 25 Sep 2019 06:12:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rWmNOzJx7r5Dye9C9HIH0fNSv2YxMODD9DtwUooioH0=;
-        b=ruQzoHdTMWwmnAsnSkl57AoGCobZlq1wl23YTT3mgE4LDlXSLcph5VpE2ryVudfP6F
-         6+/q2f4691F8mZbKyH/LI2LDnHIyANY/mk+wShyMZf//FIfa2Is4EWpX7rhSyjL7rmCL
-         04l8aiFmxcyyLL/XkaQpCCGby56HyRcL7ZbLZ4BaGtsjud46+peqRCqPI1SxPswFUwBF
-         QEcO7rf9Xl/0Er2Yncv3Y67qXt+5N9mDQyv0MU//oLK6sQQV0DznvFlwcAAfWNtO0Wn7
-         aStPZ2z0EcL0I0VCBtY/DnxVui/sbBulZK6MqW8RZdZrs5sbEDzz66mcMojBpgiMgWck
-         Hsyw==
-X-Gm-Message-State: APjAAAVSvuc2K1QOfMkqSB86AXK3CfQ9iupfXvOXq+t85OEsJ1hDgW43
-        lg8qmCtd9CtA/jpc5tVYNw==
-X-Google-Smtp-Source: APXvYqyRNeRQsJUXICdwZXRKjWmcbdmyDUjLs3J1t5NtgQFrB53QCFp+8qBs1OaZ1ObrHbQTOmgU9g==
-X-Received: by 2002:aca:59c6:: with SMTP id n189mr4519258oib.127.1569417174055;
-        Wed, 25 Sep 2019 06:12:54 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id 11sm1628329otg.62.2019.09.25.06.12.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2019 06:12:53 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: riscv: Fix CPU schema errors
-Date:   Wed, 25 Sep 2019 08:12:52 -0500
-Message-Id: <20190925131252.19359-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S2406276AbfIYNOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 09:14:32 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:50937 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406269AbfIYNOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 09:14:32 -0400
+X-Originating-IP: 86.250.200.211
+Received: from aptenodytes (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2E2C7C000A;
+        Wed, 25 Sep 2019 13:14:29 +0000 (UTC)
+Date:   Wed, 25 Sep 2019 15:14:28 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: Document the Xylon LogiCVC
+ display controller
+Message-ID: <20190925131428.GA207379@aptenodytes>
+References: <20190925084932.147971-1-paul.kocialkowski@bootlin.com>
+ <20190925084932.147971-2-paul.kocialkowski@bootlin.com>
+ <CAL_JsqJY+d9frxuxspvo2SQ=vpWMCAWZfMODA-jm_rKu1GOEaw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="vtzGhvizbBRQ85DL"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJY+d9frxuxspvo2SQ=vpWMCAWZfMODA-jm_rKu1GOEaw@mail.gmail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the errors in the RiscV CPU DT schema:
 
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
-Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+--vtzGhvizbBRQ85DL
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
-Cc: Paul Walmsley <paul.walmsley@sifive.com>
-Cc: Palmer Dabbelt <palmer@sifive.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-riscv@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Add timebase-frequency to simulator example.
+Hi,
 
- .../devicetree/bindings/riscv/cpus.yaml       | 26 ++++++++++---------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+On Wed 25 Sep 19, 08:07, Rob Herring wrote:
+> On Wed, Sep 25, 2019 at 3:49 AM Paul Kocialkowski
+> <paul.kocialkowski@bootlin.com> wrote:
+> >
+> > The Xylon LogiCVC is a display controller implemented as programmable
+> > logic in Xilinx FPGAs.
+> >
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  .../display/xylon,logicvc-display.yaml        | 314 ++++++++++++++++++
+> >  1 file changed, 314 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/xylon,log=
+icvc-display.yaml
+>=20
+> Error: Documentation/devicetree/bindings/display/xylon,logicvc-display.ex=
+ample.dts:17.1-6
+> syntax error
+> FATAL ERROR: Unable to parse input tree
+> scripts/Makefile.lib:321: recipe for target
+> 'Documentation/devicetree/bindings/display/xylon,logicvc-display.example.=
+dt.yaml'
+> failed
+> make[1]: *** [Documentation/devicetree/bindings/display/xylon,logicvc-dis=
+play.example.dt.yaml]
+> Error 1
+> Makefile:1282: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index b261a3015f84..eb0ef19829b6 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -24,15 +24,17 @@ description: |
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - sifive,rocket0
--          - sifive,e5
--          - sifive,e51
--          - sifive,u54-mc
--          - sifive,u54
--          - sifive,u5
--      - const: riscv
-+    oneOf:
-+      - items:
-+          - enum:
-+              - sifive,rocket0
-+              - sifive,e5
-+              - sifive,e51
-+              - sifive,u54-mc
-+              - sifive,u54
-+              - sifive,u5
-+          - const: riscv
-+      - const: riscv    # Simulator only
-     description:
-       Identifies that the hart uses the RISC-V instruction set
-       and identifies the type of the hart.
-@@ -67,8 +69,6 @@ properties:
-       lowercase to simplify parsing.
- 
-   timebase-frequency:
--    type: integer
--    minimum: 1
-     description:
-       Specifies the clock frequency of the system timer in Hz.
-       This value is common to all harts on a single system image.
-@@ -102,9 +102,9 @@ examples:
-     cpus {
-         #address-cells = <1>;
-         #size-cells = <0>;
--        timebase-frequency = <1000000>;
-         cpu@0 {
-                 clock-frequency = <0>;
-+                timebase-frequency = <1000000>;
-                 compatible = "sifive,rocket0", "riscv";
-                 device_type = "cpu";
-                 i-cache-block-size = <64>;
-@@ -120,6 +120,7 @@ examples:
-         };
-         cpu@1 {
-                 clock-frequency = <0>;
-+                timebase-frequency = <1000000>;
-                 compatible = "sifive,rocket0", "riscv";
-                 d-cache-block-size = <64>;
-                 d-cache-sets = <64>;
-@@ -153,6 +154,7 @@ examples:
-                 device_type = "cpu";
-                 reg = <0>;
-                 compatible = "riscv";
-+                timebase-frequency = <1000000>;
-                 riscv,isa = "rv64imafdc";
-                 mmu-type = "riscv,sv48";
-                 interrupt-controller {
--- 
-2.20.1
+Okay I hadn't realized the example is extracted and tested, so I included .=
+=2E.
+in there. My mistake, sorry.
 
+I did the testing with the dt-schema tools directly, on an out-of-tree dts,
+not in-kernel-tree.
+
+Will fix with v3 then.
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--vtzGhvizbBRQ85DL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl2LaDQACgkQ3cLmz3+f
+v9GDfAf7BGkW/MJkbSMHAOH7JJPvjMO6DZKdGlxsc7aseFvyex7joJAYutxV5TeF
+zo5GZKigVItIuoKdkctHGdFJ/W/13C90SOMEx8NntTFv4Aan00ZF2/PPypkCQUKO
+bPbIDnRC6lvdCb5L5ZP+y7d08yrq3Vbhoyz37LUyXahd3eqYS2EwS4m43jtEKsz2
+lSTQ2BGmRth/wDJrFVoq1H40+JRX6GsePcmhOuXmKiAx9a2LErnbhgbWKo+48var
+m1BxAMtecR4lFp7qWE7L1OdKGy4L3VlzszEcUEMtdb/zPWy8o6pJMaySL5aQtyjI
+Ps/os9b9Kh316ykRUf5mkAuHk5izdg==
+=9Fif
+-----END PGP SIGNATURE-----
+
+--vtzGhvizbBRQ85DL--
