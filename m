@@ -2,113 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30947BE913
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 01:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13570BE944
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 01:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729065AbfIYXmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 19:42:43 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:41819 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732925AbfIYXmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 19:42:43 -0400
-Received: by mail-pg1-f196.google.com with SMTP id s1so286048pgv.8
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 16:42:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1oH7lj03wYz79i/zPzaUWTT6QxHftIiKZMYorEdLMBo=;
-        b=SwSWOlZdAHc54NN1P9/DI2Ev3uZ/2WR8GFuUWdKYhLAOmYqLprdUfFmMCJEqLxlumz
-         3gOwyocfMNPC5M7hckWXzk3Rb4ZOTIPwsJgqDLfh/tJuTauP3QP7ouMIgG2co4Dxsh2N
-         ONNf//SkblbTzF6TOSU4VjZUHtJE/eqTSl+FUEtAm/JAnmTR7oFsPZnkStJMlK3EmNyU
-         x+D9tbHrBIS6nv+BjgNvZ2Pnzwkar4rUHApgf6W2gTINQOWudc0WUMvfGmCPFC4pDIcP
-         ztFQcEf7Wwl1j8gw1Vtii9E6qVYU6UfUWSHm+di9rXUEWL1caDGAOutBXIaEGkH8m8tx
-         Jstw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=1oH7lj03wYz79i/zPzaUWTT6QxHftIiKZMYorEdLMBo=;
-        b=ucsINq4tU4GZ3K09On5sd6nawwyKOsUgVoqdtJRtHkzjJauvWciiYUJR9V+8xv3mxS
-         tnp2JRP0/9aXqdFJYKcQb2b6UtZU74sSuoLZrxFf+16po1zDGFNBI+NSoGUur+Uk7w/+
-         psAEIXfe9zpdCcCexH9qlbbH/RbwPBuyi/TVilEAygdakOfiy8hlR5bcLZP6udajXye6
-         1AarmA/oSIjGkfkGaMjIydMZgULfJPHpPKMm16clCkzifwcNpBgzZ93L8ycMTKqhz+O+
-         NiepL8ksfwTHarTvgc4rp68TroTerKIBbb13tA99/dVt4FpGa/nRSaGNKKEOhM2NKKNy
-         Dkug==
-X-Gm-Message-State: APjAAAWP53+N3PES4Dw3MgUu6o4nuTxCLjaH6tbPytcMuwQVqdMNJFHl
-        fKlvx6lcrvbzh/ZPekCegdMvFQ==
-X-Google-Smtp-Source: APXvYqxBu00R/fhIXx8pELMq6NqJTAGfty4xq7C26/kBFDvAHrojlE9S5uCP8hyRBRU/G8IJBrwdGw==
-X-Received: by 2002:a63:221f:: with SMTP id i31mr441694pgi.251.1569454960022;
-        Wed, 25 Sep 2019 16:42:40 -0700 (PDT)
-Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id d1sm131127pfc.98.2019.09.25.16.42.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2019 16:42:39 -0700 (PDT)
-From:   John Stultz <john.stultz@linaro.org>
-To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     Yu Chen <chenyu56@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        John Stultz <john.stultz@linaro.org>
-Subject: [PATCH 5/5] usb: dwc3: dwc3-of-simple: Add support for dwc3 of Hisilicon Soc Platform
-Date:   Wed, 25 Sep 2019 23:42:24 +0000
-Message-Id: <20190925234224.95216-6-john.stultz@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190925234224.95216-1-john.stultz@linaro.org>
-References: <20190925234224.95216-1-john.stultz@linaro.org>
+        id S1728907AbfIYX4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 19:56:04 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:59904 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728647AbfIYX4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 19:56:04 -0400
+Received: from pendragon.bb.dnainternet.fi (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 55A6397A;
+        Thu, 26 Sep 2019 01:56:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1569455761;
+        bh=LsxsQWRMWEie0cMQDmjcsjqNHiEuOtzzJDQ7Itfkjzs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=NOWd+y9dfBkrDuDWulKfhZFlNCdN+eYq+s8ErZlHtrTTr8DRW1B9n5vz9dcSmVefA
+         eLpyG649kPMP1IbA9WypT88iGpUUctqISToSK4sfkZAg+zRDhZQTY6XXmOmVQzhMNH
+         qUqWwVVR24zZF0uNoOyaE4y8IMcGxcfUy0hYaVco=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Satish Kumar Nagireddy <SATISHNA@xilinx.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v9 1/4] dt-bindings: display: xlnx: Add ZynqMP DP subsystem bindings
+Date:   Thu, 26 Sep 2019 02:55:41 +0300
+Message-Id: <20190925235544.11524-2-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190925235544.11524-1-laurent.pinchart@ideasonboard.com>
+References: <20190925235544.11524-1-laurent.pinchart@ideasonboard.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yu Chen <chenyu56@huawei.com>
+From: Hyun Kwon <hyun.kwon@xilinx.com>
 
-This patch adds support for the poweron and shutdown of dwc3 core
-on Hisilicon Soc Platform.
+The bindings describe the ZynqMP DP subsystem. They don't support the
+interface with the programmable logic (FPGA) or audio yet.
 
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Felipe Balbi <balbi@kernel.org>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Yu Chen <chenyu56@huawei.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc: linux-usb@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Yu Chen <chenyu56@huawei.com>
-Signed-off-by: John Stultz <john.stultz@linaro.org>
+Signed-off-by: Hyun Kwon <hyun.kwon@xilinx.com>
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- drivers/usb/dwc3/dwc3-of-simple.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Changes since v8:
 
-diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
-index bdac3e7d7b18..78617500edee 100644
---- a/drivers/usb/dwc3/dwc3-of-simple.c
-+++ b/drivers/usb/dwc3/dwc3-of-simple.c
-@@ -51,7 +51,8 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
- 	 * Some controllers need to toggle the usb3-otg reset before trying to
- 	 * initialize the PHY, otherwise the PHY times out.
- 	 */
--	if (of_device_is_compatible(np, "rockchip,rk3399-dwc3"))
-+	if (of_device_is_compatible(np, "rockchip,rk3399-dwc3") ||
-+	    of_device_is_compatible(np, "hisilicon,hi3660-dwc3"))
- 		simple->need_reset = true;
- 
- 	if (of_device_is_compatible(np, "amlogic,meson-axg-dwc3") ||
-@@ -183,6 +184,7 @@ static const struct of_device_id of_dwc3_simple_match[] = {
- 	{ .compatible = "amlogic,meson-axg-dwc3" },
- 	{ .compatible = "amlogic,meson-gxl-dwc3" },
- 	{ .compatible = "allwinner,sun50i-h6-dwc3" },
-+	{ .compatible = "hisilicon,hi3660-dwc3" },
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_dwc3_simple_match);
+- Convert to yaml
+- Rename aclk to dp_apb_clk
+---
+ .../display/xlnx/xlnx,zynqmp-dpsub.yaml       | 153 ++++++++++++++++++
+ 1 file changed, 153 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
+new file mode 100644
+index 000000000000..e72264a5215d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
+@@ -0,0 +1,153 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/xlnx/xlnx,zynqmp-dpsub.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx ZynqMP DisplayPort Subsystem
++
++description: |
++  The DisplayPort subsystem of Xilinx ZynqMP (Zynq UltraScale+ MPSoC)
++  implements the display and audio pipelines based on the DisplayPort v1.2
++  standard. The subsystem includes multiple functional blocks as below:
++
++               +------------------------------------------------------------+
++  +--------+   | +----------------+     +-----------+                       |
++  | DPDMA  | --->|                | --> |   Video   | Video +-------------+ |
++  | 4x vid |   | |                |     | Rendering | -+--> |             | |   +------+
++  | 2x aud |   | |  Audio/Video   | --> | Pipeline  |  |    | DisplayPort |---> | PHY0 |
++  +--------+   | | Buffer Manager |     +-----------+  |    |   Source    | |   +------+
++               | |    and STC     |     +-----------+  |    | Controller  | |   +------+
++  Live Video --->|                | --> |   Audio   | Audio |             |---> | PHY1 |
++               | |                |     |   Mixer   | --+-> |             | |   +------+
++  Live Audio --->|                | --> |           |  ||   +-------------+ |
++               | +----------------+     +-----------+  ||                   |
++               +---------------------------------------||-------------------+
++                                                       vv
++                                                 Blended Video and
++                                                 Mixed Audio to PL
++
++  The Buffer Manager interacts with external interface such as DMA engines or
++  live audio/video streams from the programmable logic. The Video Rendering
++  Pipeline blends the video and graphics layers and performs colorspace
++  conversion. The Audio Mixer mixes the incoming audio streams. The DisplayPort
++  Source Controller handles the DisplayPort protocol and connects to external
++  PHYs.
++
++  The subsystem supports 2 video and 2 audio streams, and various pixel formats
++  and depths up to 4K@30 resolution.
++
++  Please refer to "Zynq UltraScale+ Device Technical Reference Manual"
++  (https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf)
++  for more details.
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++
++properties:
++  compatible:
++    const: xlnx,zynqmp-dpsub-1.7
++
++  reg:
++    maxItems: 4
++  reg-names:
++    items:
++      - const: dp
++      - const: blend
++      - const: av_buf
++      - const: aud
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    description:
++      The AXI clock and at least one video clock are mandatory, the audio clock
++      optional.
++    minItems: 2
++    maxItems: 4
++    items:
++      - description: AXI clock
++      - description: Audio clock
++      - description: Non-live video clock (from Processing System)
++      - description: Live video clock (from Programmable Logic)
++  clock-names:
++    minItems: 2
++    maxItems: 4
++    items:
++      - const: dp_apb_clk
++      - const: dp_aud_clk
++      - const: dp_vtc_pixel_clk_in
++      - const: dp_live_video_in_clk
++
++  power-domains:
++    maxItems: 1
++
++  dmas:
++    maxItems: 4
++    items:
++      - description: Video layer, plane 0 (RGB or luma)
++      - description: Video layer, plane 1 (U/V or U)
++      - description: Video layer, plane 2 (V)
++      - description: Graphics layer
++  dma-names:
++    items:
++      - const: vid0
++      - const: vid1
++      - const: vid2
++      - const: gfx0
++
++  phys:
++    description: PHYs for the DP data lanes
++    minItems: 1
++    maxItems: 2
++  phy-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: dp-phy0
++      - const: dp-phy1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - dmas
++  - dma-names
++  - phys
++  - phy-names
++
++additionalProperties: false
++
++examples:
++  - |
++    display@fd4a0000 {
++      compatible = "xlnx,zynqmp-dpsub-1.7";
++      reg = <0x0 0xfd4a0000 0x0 0x1000>,
++            <0x0 0xfd4aa000 0x0 0x1000>,
++            <0x0 0xfd4ab000 0x0 0x1000>,
++            <0x0 0xfd4ac000 0x0 0x1000>;
++      reg-names = "dp", "blend", "av_buf", "aud";
++      interrupts = <0 119 4>;
++      interrupt-parent = <&gic>;
++
++      clock-names = "dp_apb_clk", "dp_aud_clk", "dp_live_video_in_clk";
++      clocks = <&dp_aclk>, <&clkc 17>, <&si570_1>;
++
++      power-domains = <&pd_dp>;
++
++      dma-names = "vid0", "vid1", "vid2", "gfx0";
++      dmas = <&xlnx_dpdma 0>,
++             <&xlnx_dpdma 1>,
++             <&xlnx_dpdma 2>,
++             <&xlnx_dpdma 3>;
++
++      phys = <&lane1>, <&lane0>;
++      phy-names = "dp-phy0", "dp-phy1";
++    };
++
++...
 -- 
-2.17.1
+Regards,
+
+Laurent Pinchart
 
