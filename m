@@ -2,268 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91659BDCED
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 13:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE2DBDCFD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 13:23:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391088AbfIYLUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 07:20:22 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:38344 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391030AbfIYLUV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 07:20:21 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3E945611FA; Wed, 25 Sep 2019 11:20:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569410420;
-        bh=wK9KEmFipLDrDnWaH/q2ovLeKhYmmFwPCcdeTWnZ16o=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=UAMxgepSGhANJbuEu7nCuBZqSwJ4vG7uKWf2e3oPWDH7fz6Wh3MPJexXu8P9B2H8y
-         EvJpLz1fI7LN2OYdGaL83FJE/eX+ktMGbYstxfzXMrPBEF1WVVN+A+tVwEcxnMZ7h1
-         AunO/hWAK+UVuFZjQLMP39/5jWtKI4bF3m6fDtSo=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.206.28.9] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BD52D611FA;
-        Wed, 25 Sep 2019 11:20:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569410419;
-        bh=wK9KEmFipLDrDnWaH/q2ovLeKhYmmFwPCcdeTWnZ16o=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=iPmNa2BXOz0bqIjQsZhaRQNxtPDxOLKPfTpU5u98qQLDk4TzdXpDVfzmBnvaZVR9P
-         5ey7Om4mqp9lJOCvEqDcY1Vwwx4UtoR6UnvzDpGS73fLz+DzEeIefOrz0B82BoQwXO
-         Kkz9eI5P8sJWSmVMgxKGVurNFPFstub+PaPUMpn4=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BD52D611FA
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC)
- driver for SC7180
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>, robh+dt@kernel.org
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20190918095018.17979-1-tdas@codeaurora.org>
- <20190918095018.17979-4-tdas@codeaurora.org>
- <20190918213946.DC03521924@mail.kernel.org>
- <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org>
- <20190924231223.9012C207FD@mail.kernel.org>
-From:   Taniya Das <tdas@codeaurora.org>
-Message-ID: <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org>
-Date:   Wed, 25 Sep 2019 16:50:07 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1732577AbfIYLX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 07:23:27 -0400
+Received: from mail-eopbgr690080.outbound.protection.outlook.com ([40.107.69.80]:30946
+        "EHLO NAM04-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1732365AbfIYLX1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Sep 2019 07:23:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=H2NG9lpuEw86uJ+pfSKLlg3i3N/g55tICGPS2W63JLt0l8+3Dq2WcowQSh7YMpS6KsnO2wgsw4w+ha/QExNpraypn5Qj1LxdwNwRbgWd7HDw52NfZ6nwgaAipxwPSd8WonnEiPYuSYHmFkHdfHIsS5vNPhqKNuUhKpF28io68JsoO6F+pfLO5MHW5BZLzgICAOaQ90S7h7F5wDd0iUVBpK064RqEBHZGyvkv1WRwT8+/arU5NuTPd9S9GTIBhf40/M5t6cPH/9SbNMSjI9bT8qLpXsuehhYoaZSdpGet1DhNeyO54YvsMoju8bVOCF88aAfq1r0hu6ucn6SZFcmZAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nN6NwXBfFtn85lGXs1aqP90unR49CODvj5CUW+h4Hvc=;
+ b=Xnmmd3INSM8EIQdTUl+aPH9OUsTjkNxl0AJv4WFtQ1seW9TYcYgIWcgZK2ALppt86Ur1wUxu70FhA5AsMRaM/D82/4+en7DLddwdWGIlJ1Erbo5EgR8s7sxJC8yPxAlg6oq12LZ2GfoNIpFqaj8LoYX7xNao6E0OjLBHlOqCQeToIQ2EZWOh8I93rZdZ65wwKmDnNPNLKEUeQznQLUA8zB4eopnRwo3CxKX6EYqHNhHvZiZcpxnLLq6MuVPWfgEOdTx1IbKuVJlUd43uJmldleByLZFLYLNFU+XEz7Qw2HmYA60Lxg3mImj5tQTRKp9HmN65u/9Whvthb/WQf5RunQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nN6NwXBfFtn85lGXs1aqP90unR49CODvj5CUW+h4Hvc=;
+ b=NVSs3RDswedk0wdojfSeJehvpZBOmbjJ+VcBU23jjf/ozV9PJCKAUyBb1VlABA8J3HI9RxsVoPx6w7k3KeHcXwHNzoKn2SXUkf7FDHdtfUXnf8OAlMHZgFos3EC3+xFNTB69FGQXqHssTkLcRd0bpFnNuhfuRHRZCpzMmQaoHP0=
+Received: from BL0PR02CA0059.namprd02.prod.outlook.com (2603:10b6:207:3d::36)
+ by BYAPR02MB5255.namprd02.prod.outlook.com (2603:10b6:a03:66::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2284.26; Wed, 25 Sep
+ 2019 11:23:23 +0000
+Received: from BL2NAM02FT036.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::207) by BL0PR02CA0059.outlook.office365.com
+ (2603:10b6:207:3d::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2178.16 via Frontend
+ Transport; Wed, 25 Sep 2019 11:23:23 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.100)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
+Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
+ BL2NAM02FT036.mail.protection.outlook.com (10.152.77.154) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2284.25
+ via Frontend Transport; Wed, 25 Sep 2019 11:23:23 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]:39658 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1iD5OE-00075I-CF; Wed, 25 Sep 2019 04:23:22 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1iD5O9-0004nc-8x; Wed, 25 Sep 2019 04:23:17 -0700
+Received: from [10.140.6.59] (helo=xhdshubhraj40.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1iD5O2-0004n8-Kx; Wed, 25 Sep 2019 04:23:11 -0700
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org, arnd@arndb.de,
+        gregkh@linuxfoundation.org, michal.simek@xilinx.com,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [RFC PATCH 1/2] dt-bindings: misc: Add dt bindings for flex noc Performance Monitor
+Date:   Wed, 25 Sep 2019 16:53:06 +0530
+Message-Id: <2de75a74ef4086090c532d3b80b7d6dcd115e45e.1569410216.git.shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.1.1
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(376002)(396003)(136003)(39860400002)(346002)(189003)(199004)(36756003)(486006)(51416003)(7696005)(70206006)(70586007)(118296001)(6916009)(2616005)(476003)(426003)(9786002)(5660300002)(107886003)(36386004)(4326008)(106002)(5024004)(14444005)(2361001)(336012)(186003)(316002)(48376002)(50226002)(126002)(47776003)(44832011)(305945005)(356004)(8746002)(6666004)(50466002)(8936002)(81166006)(81156014)(2351001)(2906002)(478600001)(26005)(8676002)(5001870100001);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR02MB5255;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-100.xilinx.com,xapps1.xilinx.com;MX:1;A:1;
 MIME-Version: 1.0
-In-Reply-To: <20190924231223.9012C207FD@mail.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2b9c6c5a-02b2-4d9f-0ace-08d741aac6dc
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(4709080)(1401327)(4618075)(2017052603328);SRVR:BYAPR02MB5255;
+X-MS-TrafficTypeDiagnostic: BYAPR02MB5255:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB52552F3D611B573D0C9A11AFAA870@BYAPR02MB5255.namprd02.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Forefront-PRVS: 01713B2841
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: BetaiznP+W67d78KLvJVmqg/1e7FbppA/2i0eF/nu0YZXdgmPGdDY+JAKKsLGxavL3AYmKgd2TwqZWMyXixfeZxodPGXjwks1j7eswmf6y9K7/UkXQXAx5CazH3DSmYcZ/xPLwjsNJ1XGDlG7hXwuj0zIu2xufTRqTubgGg+hkscqv1ZOTwsXRO8XcgmzhDsUlohvU8r9j1wnua6cvxae9RaRUFIegjozdNG8JHOFKCuFH8oK3hrJRJFz1BiFUxsgp4xYbo9Eh4AFZ948SsIl0EtgaDuvwe3waKR58Mk1UQ4DTQ8t1M9KJU0Uwzl9xfuM4jAcRsCuapQSz4JpJKgZ+T4YjYVO2cspg2TgfdX1f+RIJBaqmRulaY86At+71U+uM7ADipbucYyH+k1YwIMvmX/U3mr9b/8rtv3sPf2gv0=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2019 11:23:23.1028
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b9c6c5a-02b2-4d9f-0ace-08d741aac6dc
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5255
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Add dt bindings for flexnoc Performance Monitor.
+The flexnoc counters for read and write response and requests are
+supported.
 
-Please find my comments.
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+---
+ .../devicetree/bindings/misc/xlnx,flexnoc.txt      | 24 ++++++++++++++++++=
+++++
+ 1 file changed, 24 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt
 
-On 9/25/2019 4:42 AM, Stephen Boyd wrote:
-> Quoting Taniya Das (2019-09-23 01:01:11)
->> Hi Stephen,
->>
->> Thanks for your comments.
->>
->> On 9/19/2019 3:09 AM, Stephen Boyd wrote:
->>> Quoting Taniya Das (2019-09-18 02:50:18)
->>>> diff --git a/drivers/clk/qcom/gcc-sc7180.c b/drivers/clk/qcom/gcc-sc7180.c
->>>> new file mode 100644
->>>> index 000000000000..d47865d5408f
->>>> --- /dev/null
->>>> +++ b/drivers/clk/qcom/gcc-sc7180.c
->>>> @@ -0,0 +1,2515 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
->>>> + */
->>>> +
->>>> +#include <linux/err.h>
->>>> +#include <linux/kernel.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/of_device.h>
->>>> +#include <linux/regmap.h>
->>>
->>> include clk-provider.h
->>>
->>
->> will add this header.
->> Currently the <drivers/clk/qcom/clk-regmap.h> already includes it.
-> 
-> Yes but it should be included in any clk-provider drivers too.
-> 
->>>> +
->>>> +/* Leave the clock ON for parent config_noc_clk to be kept enabled */
->>>> +static struct clk_branch gcc_disp_ahb_clk = {
->>>> +       .halt_reg = 0xb00c,
->>>> +       .halt_check = BRANCH_HALT,
->>>> +       .hwcg_reg = 0xb00c,
->>>> +       .hwcg_bit = 1,
->>>> +       .clkr = {
->>>> +               .enable_reg = 0xb00c,
->>>> +               .enable_mask = BIT(0),
->>>> +               .hw.init = &(struct clk_init_data){
->>>> +                       .name = "gcc_disp_ahb_clk",
->>>> +                       .flags = CLK_IS_CRITICAL,
->>>
->>> Does this assume the display is left enabled out of the bootloader? Why
->>> is this critical to system operation? Maybe it is really
->>> CLK_IGNORE_UNUSED?
->>>
->>
->> This clock is not kept enabled by bootloader. But leaving this ON for
->> clients on config noc.
-> 
-> Please see below comment for the other critical clk with no parent.
-> 
->>
->>>> +                       .ops = &clk_branch2_ops,
->>>> +               },
->>>> +       },
->>>> +};
->>>> +
-> [...]
->>>> +static struct clk_branch gcc_ufs_phy_phy_aux_clk = {
->>>> +       .halt_reg = 0x77094,
->>>> +       .halt_check = BRANCH_HALT,
->>>> +       .hwcg_reg = 0x77094,
->>>> +       .hwcg_bit = 1,
->>>> +       .clkr = {
->>>> +               .enable_reg = 0x77094,
->>>> +               .enable_mask = BIT(0),
->>>> +               .hw.init = &(struct clk_init_data){
->>>> +                       .name = "gcc_ufs_phy_phy_aux_clk",
->>>> +                       .parent_data = &(const struct clk_parent_data){
->>>> +                               .hw = &gcc_ufs_phy_phy_aux_clk_src.clkr.hw,
->>>> +                       },
->>>> +                       .num_parents = 1,
->>>> +                       .flags = CLK_SET_RATE_PARENT,
->>>> +                       .ops = &clk_branch2_ops,
->>>> +               },
->>>> +       },
->>>> +};
->>>> +
->>>> +static struct clk_branch gcc_ufs_phy_rx_symbol_0_clk = {
->>>> +       .halt_reg = 0x7701c,
->>>> +       .halt_check = BRANCH_HALT_SKIP,
->>>
->>> Again, nobody has fixed the UFS driver to not need to do this halt skip
->>> check for these clks? It's been over a year.
->>>
->>
->> The UFS_PHY_RX/TX clocks could be left enabled due to certain HW boot
->> configuration and thus during the late initcall of clk_disable there
->> could be warnings of "clock stuck ON" in the dmesg. That is the reason
->> also to use the BRANCH_HALT_SKIP flag.
-> 
-> Oh that's bad. Why do the clks stay on when we try to turn them off?
->
-
-Those could be due to the configuration selected by HW and SW cannot 
-override them, so traditionally we have never polled for CLK_OFF for 
-these clocks.
-
->>
->> I would also check internally for the UFS driver fix you are referring here.
-> 
-> Sure. I keep asking but nothing is done :(
-> 
->>
->>>> +       .clkr = {
->>>> +               .enable_reg = 0x7701c,
->>>> +               .enable_mask = BIT(0),
->>>> +               .hw.init = &(struct clk_init_data){
->>>> +                       .name = "gcc_ufs_phy_rx_symbol_0_clk",
->>>> +                       .ops = &clk_branch2_ops,
->>>> +               },
->>>> +       },
->>>> +};
->>>> +
-> [...]
->>>> +
->>>> +static struct clk_branch gcc_usb3_prim_phy_pipe_clk = {
->>>> +       .halt_reg = 0xf058,
->>>> +       .halt_check = BRANCH_HALT_SKIP,
->>>
->>> Why does this need halt_skip?
->>
->> This is required as the source is external PHY, so we want to not check
->> for HALT.
-> 
-> This doesn't really answer my question. If the source is an external phy
-> then it should be listed as a clock in the DT binding and the parent
-> should be specified here. Unless something doesn't work because of that?
-> 
-
-The USB phy is managed by the USB driver and clock driver is not aware 
-if USB driver models the phy as a clock. Thus we do want to keep a 
-dependency on the parent and not poll for CLK_ENABLE.
-
->>
->>>
->>>> +       .clkr = {
->>>> +               .enable_reg = 0xf058,
->>>> +               .enable_mask = BIT(0),
->>>> +               .hw.init = &(struct clk_init_data){
->>>> +                       .name = "gcc_usb3_prim_phy_pipe_clk",
->>>> +                       .ops = &clk_branch2_ops,
->>>> +               },
->>>> +       },
->>>> +};
->>>> +
->>>> +static struct clk_branch gcc_usb_phy_cfg_ahb2phy_clk = {
->>>> +       .halt_reg = 0x6a004,
->>>> +       .halt_check = BRANCH_HALT,
->>>> +       .hwcg_reg = 0x6a004,
->>>> +       .hwcg_bit = 1,
->>>> +       .clkr = {
->>>> +               .enable_reg = 0x6a004,
->>>> +               .enable_mask = BIT(0),
->>>> +               .hw.init = &(struct clk_init_data){
->>>> +                       .name = "gcc_usb_phy_cfg_ahb2phy_clk",
->>>> +                       .ops = &clk_branch2_ops,
->>>> +               },
->>>> +       },
->>>> +};
->>>> +
->>>> +/* Leave the clock ON for parent config_noc_clk to be kept enabled */
->>>
->>> There's no parent though... So I guess this means it keeps it enabled
->>> implicitly in hardware?
->>>
->>
->> These are not left enabled, but want to leave them enabled for clients
->> on config NOC.
-> 
-> Sure. It just doesn't make sense to create clk structures and expose
-> them in the kernel when we just want to turn the bits on and leave them
-> on forever. Why not just do some register writes in probe for this
-> driver? Doesn't that work just as well and use less memory?
-> 
-
-Even if I write these registers during probe, the late init check 
-'clk_core_is_enabled' would return true and would be turned OFF, that is 
-the reason for marking them CRITICAL.
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation.
-
+diff --git a/Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt b/Docu=
+mentation/devicetree/bindings/misc/xlnx,flexnoc.txt
+new file mode 100644
+index 0000000..6b533bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt
+@@ -0,0 +1,24 @@
++* Xilinx Flexnoc Performance Monitor driver
++
++The FlexNoc Performance Monitor has counters for monitoring
++the read and the write transaction counter.
++
++Required properties:
++- compatible: "xlnx,flexnoc-pm-2.7"
++- reg : Address and length of register sets for each device in
++       "reg-names"
++- reg-names : The names of the register addresses corresponding to the
++               registers filled in "reg"
++               - funnel: base address of the funnel registers
++               - baselpd: base address of the LPD PM registers
++               - basefpd: base address FPD PM registers
++
++Example:
++++++++++
++performance-monitor@f0920000 {
++               compatible =3D "xlnx,flexnoc-pm-2.7";
++               reg-names =3D "funnel", "baselpd", "basefpd";
++               reg =3D <0x0 0xf0920000 0x0 0x1000>,
++                       <0x0 0xf0980000 0x0 0x9000>,
++                       <0x0 0xf0b80000 0x0 0x9000>;
++};
 --
+2.1.1
+
+This email and any attachments are intended for the sole use of the named r=
+ecipient(s) and contain(s) confidential information that may be proprietary=
+, privileged or copyrighted under applicable law. If you are not the intend=
+ed recipient, do not read, copy, or forward this email message or any attac=
+hments. Delete this email message and any attachments immediately.
