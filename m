@@ -2,98 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB37BDC8F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 13:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6950BDCBA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 13:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390611AbfIYLBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 07:01:32 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:37462 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390478AbfIYLBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 07:01:31 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x8PAsJ3J087136;
-        Wed, 25 Sep 2019 11:01:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2019-08-05;
- bh=w6XAuF/qcTj8cDqYC4cfHG6Vdy4EsYsV65lu58h90F0=;
- b=AebTbWJCGZNNDdraBA50pdnHEUsukU3Qbh4gXU+N4wbWDwXAqP4V6i52AETufF34/VlI
- gpuJFXeR2YQqQBttefqut93lY0Z4MM/FXYSADqRtCRqUY8RJtYNVvu8dRTtmFZgdhCxJ
- toDh0VvUTS+5X6NTxa98cAAelEGETWRZJLdFiPR8Nnt5LLT50KQj2lsDS+9GkZH0q7eu
- uA4aMT3yw5sSjyHeEeuG8Maakf++oMEC3cpGCcD+f3EBTBGB6LWqGYc273OmoDwYBx4v
- IQv9DvwdSZf5ek2RCKrL6RlmDnOd78P3pg3HFhO6T9in6UkuV3QE4oMPgRF3WqfH3U+u EA== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by userp2130.oracle.com with ESMTP id 2v5b9tuvmk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 25 Sep 2019 11:01:18 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x8PAx40S131861;
-        Wed, 25 Sep 2019 11:01:17 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by aserp3030.oracle.com with ESMTP id 2v82tjpg5h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 25 Sep 2019 11:01:17 +0000
-Received: from abhmp0019.oracle.com (abhmp0019.oracle.com [141.146.116.25])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x8PB18pt029392;
-        Wed, 25 Sep 2019 11:01:10 GMT
-Received: from mwanda (/41.57.98.10)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Wed, 25 Sep 2019 04:01:08 -0700
-Date:   Wed, 25 Sep 2019 14:01:00 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Dongpo Li <lidongpo@hisilicon.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+        id S2404304AbfIYLIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 07:08:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34784 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404293AbfIYLIs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Sep 2019 07:08:48 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E87692082F;
+        Wed, 25 Sep 2019 11:08:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569409727;
+        bh=FMDS8H1Rv7cPuJUqBeDnNtTPKy6Ryfmb3rVdLRw8l9s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Lj4oicj7cJomaLMxHcbWE1rG5FrENpsW1jl+RsL9x5er1qVQYkoSJY0yn10wz6AB+
+         Lj+HNMxEgLqmFVWgK3ottEq09ElWg180t4nwcklu03yNkJYU62yghpTpItEQuxm3Y4
+         lVw/xkgnCx6kjo7/gDQbhoGB+G9pTcTFT0VQWprI=
+Date:   Wed, 25 Sep 2019 13:08:44 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-janitors@vger.kernel.org
-Subject: [PATCH net] of: mdio: Fix a signedness bug in
- of_phy_get_and_connect()
-Message-ID: <20190925110100.GL3264@mwanda>
+        Mark Rutland <mark.rutland@arm.com>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Jared D . McNeill" <jmcneill@netbsd.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
+Message-ID: <20190925110844.qfm5ris7xeze44th@gilmour>
+References: <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
+ <20190807115614.phm7sbyae6yajkug@flea>
+ <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+ <20190808162628.pthvy3tgf3naj76s@flea>
+ <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+ <20190812080420.saelmqb36vkelxn4@flea>
+ <CA+E=qVchsqOF_hVD-qBuKwi7PTMYtUR-LE2dD_mpptFJcWE_yw@mail.gmail.com>
+ <20190813053905.hu2hyi7fah2vujzz@flea>
+ <CA+E=qVegU8M09tmbxGUaBSoueGU6PRsAtr9XWrc8V8HnCPjULg@mail.gmail.com>
+ <CA+E=qVeArUV0u_17ty=HgaU35TwcBfQjSOJf0A5yM6L6+W-0Og@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="xfvtyfmvyh5dzqpu"
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9390 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1908290000 definitions=main-1909250112
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9390 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1908290000
- definitions=main-1909250112
+In-Reply-To: <CA+E=qVeArUV0u_17ty=HgaU35TwcBfQjSOJf0A5yM6L6+W-0Og@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "iface" variable is an enum and in this context GCC treats it as
-an unsigned int so the error handling is never triggered.
 
-Fixes: b78624125304 ("of_mdio: Abstract a general interface for phy connect")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/of/of_mdio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--xfvtyfmvyh5dzqpu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/of/of_mdio.c b/drivers/of/of_mdio.c
-index 000b95787df1..bd6129db6417 100644
---- a/drivers/of/of_mdio.c
-+++ b/drivers/of/of_mdio.c
-@@ -362,7 +362,7 @@ struct phy_device *of_phy_get_and_connect(struct net_device *dev,
- 	int ret;
- 
- 	iface = of_get_phy_mode(np);
--	if (iface < 0)
-+	if ((int)iface < 0)
- 		return NULL;
- 	if (of_phy_is_fixed_link(np)) {
- 		ret = of_phy_register_fixed_link(np);
--- 
-2.20.1
+On Mon, Sep 23, 2019 at 04:55:59PM -0700, Vasily Khoruzhick wrote:
+> On Mon, Sep 23, 2019 at 4:51 PM Vasily Khoruzhick <anarsoul@gmail.com> wrote:
+> >
+> > On Mon, Aug 12, 2019 at 10:39 PM Maxime Ripard
+> > <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > On Mon, Aug 12, 2019 at 11:01:51AM -0700, Vasily Khoruzhick wrote:
+> > > > On Mon, Aug 12, 2019 at 1:04 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > >
+> > > > > On Thu, Aug 08, 2019 at 12:59:07PM -0700, Vasily Khoruzhick wrote:
+> > > > > > On Thu, Aug 8, 2019 at 9:26 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > > > >
+> > > > > > > On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick wrote:
+> > > > > > > > On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > > > > > >
+> > > > > > > > > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
+> > > > > > > > > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > > > > > > >
+> > > > > > > > > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
+> > > > > > > > > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
+> > > > > > > > > > > >>
+> > > > > > > > > > > >> Vasily Khoruzhick writes:
+> > > > > > > > > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > > > > > > > >>>>
+> > > > > > > > > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
+> > > > > > > > > > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
+> > > > > > > > > > > >>>>> as result 'perf top' shows no events.
+> > > > > > > > > > > >>>>
+> > > > > > > > > > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
+> > > > > > > > > > > >>>> It could well just be that the interrupt numbers are wrong...
+> > > > > > > > > > > >>>
+> > > > > > > > > > > >>> Looks like it does, at least result looks plausible:
+> > > > > > > > > > > >>
+> > > > > > > > > > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
+> > > > > > > > > > > >>
+> > > > > > > > > > > >> Unfortunately I wasn't aware that perf stat is a poor test for
+> > > > > > > > > > > >> the interrupts part of the node, when I added it. So I'm not too
+> > > > > > > > > > > >> surprised I got it wrong.
+> > > > > > > > > > > >>
+> > > > > > > > > > > >> However, it would be unfortunate if the node got removed completely,
+> > > > > > > > > > > >> because perf stat would not work anymore. Maybe we can only remove
+> > > > > > > > > > > >> the interrupts or just fix them even if the HW doesn't work?
+> > > > > > > > > > > >
+> > > > > > > > > > > > I'm not familiar with PMU driver. Is it possible to get it working
+> > > > > > > > > > > > without interrupts?
+> > > > > > > > > > >
+> > > > > > > > > > > Yup - you get a grumpy message from the driver, it will refuse sampling
+> > > > > > > > > > > events (the ones which weren't working anyway), and if you measure
+> > > > > > > > > > > anything for long enough that a counter overflows you'll get wonky
+> > > > > > > > > > > results. But for counting hardware events over relatively short periods
+> > > > > > > > > > > it'll still do the job.
+> > > > > > > > > >
+> > > > > > > > > > I tried to drop interrupts completely from the node but 'perf top' is
+> > > > > > > > > > still broken. Though now in different way: it complains "cycles: PMU
+> > > > > > > > > > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
+> > > > > > > > > > stat'"
+> > > > > > > > >
+> > > > > > > > > I have no idea if that's the culprit, but what is the state of the
+> > > > > > > > > 0x09010000 register?
+> > > > > > > >
+> > > > > > > > What register is that and how do I check it?
+> > > > > > >
+> > > > > > > It's in the CPUX Configuration block, and the bits are labelled as CPU
+> > > > > > > Debug Reset.
+> > > > > > >
+> > > > > > > And if you have busybox, you can use devmem.
+> > > > > >
+> > > > > > CPUX configuration block is at 0x01700000 according to A64 user
+> > > > > > manual, and particular register you're interested in is at 0x01700080,
+> > > > > > its value is 0x1110110F.
+> > > > > >
+> > > > > > Bits 16-19 are not defined in user manual and are not set.
+> > > > >
+> > > > > Sorry, I somehow thought this was for the H6...
+> > > > >
+> > > > > I don't have any idea then :/
+> > > >
+> > > > OK, so what should we do? 'perf top'/'perf record' work fine if PMU
+> > > > node is dropped, but they don't work if PMU node is present (even with
+> > > > interrupts dropped). I'd prefer to have 'perf top' and 'perf record'
+> > > > working instead of 'perf stat'
+> > >
+> > > Well, it doesn't work so we should just remove the node, and if
+> > > someone wants it back, they should figure it out.
+> >
+> > Hey Maxime,
+> >
+> > So can you merge this patch?
+>
+> Added new Maxime's email to CC
 
+Queued as a fix for 5.4, thanks!
+Maxime
+
+--xfvtyfmvyh5dzqpu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXYtKvAAKCRDj7w1vZxhR
+xR1uAP97hTHRaN8dhsyjKWxKH1xeWMcMtioTmtYPAjmrULwgpQD+PRLN3idwDWf8
+1xX4j9HiktGKEPSFa5JcdzrqH2NtLAU=
+=roCs
+-----END PGP SIGNATURE-----
+
+--xfvtyfmvyh5dzqpu--
