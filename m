@@ -2,177 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1881BE8EB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 01:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 945EFBE908
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 01:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728801AbfIYX3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 19:29:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36656 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725821AbfIYX3Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 19:29:25 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 53AFD21D7E;
-        Wed, 25 Sep 2019 23:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569454163;
-        bh=Ogg+uhTUXRNcF6bTJQEM/wrb2sVSMMLx7Q3Fdy6eWac=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0jz1v3MjS3mMCH8E6uViwYWmbwPNI1iTIFvCgg2g+HqOWPkCtIOwT01xXy6cy/+il
-         keRrKEhT6RTgKwp14lw2Eo27EFSeq6flnQMyNKfJ3UqFtnZfyWPEkzwWxmIDzaMkSQ
-         lRLbhLNprKDr74pstGkHjAsyUs3aUShzL9/yKEn0=
-Received: by mail-qt1-f172.google.com with SMTP id c3so565995qtv.10;
-        Wed, 25 Sep 2019 16:29:23 -0700 (PDT)
-X-Gm-Message-State: APjAAAXwf0Jay7qCqhlkl094s/SAvIIu6c6L71afaRhWYx5VkEwZd8lL
-        c76XSTDZzxAMSVrgJ0JJv2nWkzieldLLZTOW4Q==
-X-Google-Smtp-Source: APXvYqyVnFfKD4/M5dyzxw92n4hx9dvyADlYPxaSGLejDMBQ+TSPDAwfcMApLzsyRir8CgdchHqVSeqSR5dpXSyyVWI=
-X-Received: by 2002:ac8:444f:: with SMTP id m15mr1101854qtn.110.1569454162399;
- Wed, 25 Sep 2019 16:29:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190925131252.19359-1-robh@kernel.org> <mhng-c69fa4ff-9752-4ded-8a4f-ae86113bd9ae@palmer-si-x1e>
-In-Reply-To: <mhng-c69fa4ff-9752-4ded-8a4f-ae86113bd9ae@palmer-si-x1e>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 25 Sep 2019 18:29:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJH59Hh6SkQyyAGkK21dR5DJxzja8GPYd3mg+kEVQ-0EQ@mail.gmail.com>
-Message-ID: <CAL_JsqJH59Hh6SkQyyAGkK21dR5DJxzja8GPYd3mg+kEVQ-0EQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: riscv: Fix CPU schema errors
-To:     Palmer Dabbelt <palmer@sifive.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1732100AbfIYXma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 19:42:30 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:42125 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725821AbfIYXma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 19:42:30 -0400
+Received: by mail-pl1-f194.google.com with SMTP id e5so137329pls.9
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 16:42:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=FWq12v0l25/25NHMUK4x2Bta04DqoQNuL8vSuCdOZpk=;
+        b=gNJujOSQp9rC6EBCot02UBfTX6szLQqPNSCL8LnBSnoJCNczdvFcwNsTJVle7vT4Y5
+         NMnaxxBxuFqZ+56NgxwpggTKzYoN/5Rg/Pqp5BJ3Tq3+RsW6jq3zXsP8/se7U9orjbSX
+         9f0+d6YL8zW+yzEFVzJ3gsBVtouSXL1YeE+K0N3XAjLIHiC2vOnKJSaz+jJHLkL81abs
+         po5FQOPWG3C79YXEPAdy20G94bIm/ch/FEldpAFsu2HXMwtAAOZTEb7Yv/5mXvqvbWmS
+         kgnQtJxFUmofT3KLeJqhXiyy+4MSxzl68WqCkB7r4qK+83ytYYIucWf2yxMkzuaP+oO9
+         veFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=FWq12v0l25/25NHMUK4x2Bta04DqoQNuL8vSuCdOZpk=;
+        b=SHxjb9fmQX8/z2qIBXRellOqWlMKuMVhi7ceFAVUAzkpxAmI2BGiYguA8hCOuMtv5T
+         Lh5SFk+Dg3Uf3ZZeWugk3B0gE6HtcxgGohS53Ayu0xf9ZWC23kCE/p88VHrzLtX3Oq2D
+         2UmB5IQRnlh894Ca2E0KvPdG2o5Jg3+FYRY44kU3ErFbwpi6X3lHQi9VSXX0ccPAgG+s
+         VJStHEAcF+ITZAGuugluc6rDY65JVBf473/5av4utJKlVCm6V9Bj4wuncAbhqCdnBF8/
+         N5ai1UY9TgQ1unYjuxqab0xaiWf55RpaGkXEEf9VJ2zj8kWifKvPxGdNXXGaOAu9xC+9
+         pMSg==
+X-Gm-Message-State: APjAAAVi0c8qEF7BxFd2iE3guNJaBS4FCpiPigql61beLFDvm9fnchMI
+        INRg95wdhqaKomC4wib15tn83w==
+X-Google-Smtp-Source: APXvYqwmyQNpRkoi+PIX6YyGFxcPt01EWCgLGoSA83cTmN2ppk/KQEiIQ2Ddl5rsamhhyyDC7ie73Q==
+X-Received: by 2002:a17:902:8d98:: with SMTP id v24mr687990plo.265.1569454949571;
+        Wed, 25 Sep 2019 16:42:29 -0700 (PDT)
+Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
+        by smtp.gmail.com with ESMTPSA id d1sm131127pfc.98.2019.09.25.16.42.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2019 16:42:28 -0700 (PDT)
+From:   John Stultz <john.stultz@linaro.org>
+To:     lkml <linux-kernel@vger.kernel.org>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [RFC][PATCH 0/5] dwc3: Changes for HiKey960 support
+Date:   Wed, 25 Sep 2019 23:42:19 +0000
+Message-Id: <20190925234224.95216-1-john.stultz@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 4:24 PM Palmer Dabbelt <palmer@sifive.com> wrote:
->
-> On Wed, 25 Sep 2019 06:12:52 PDT (-0700), robh@kernel.org wrote:
-> > Fix the errors in the RiscV CPU DT schema:
-> >
-> > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
-> > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
-> > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
-> > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
-> > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
-> >
-> > Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
-> > Cc: Paul Walmsley <paul.walmsley@sifive.com>
-> > Cc: Palmer Dabbelt <palmer@sifive.com>
-> > Cc: Albert Ou <aou@eecs.berkeley.edu>
-> > Cc: linux-riscv@lists.infradead.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > v2:
-> >  - Add timebase-frequency to simulator example.
-> >
-> >  .../devicetree/bindings/riscv/cpus.yaml       | 26 ++++++++++---------
-> >  1 file changed, 14 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index b261a3015f84..eb0ef19829b6 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -24,15 +24,17 @@ description: |
-> >
-> >  properties:
-> >    compatible:
-> > -    items:
-> > -      - enum:
-> > -          - sifive,rocket0
-> > -          - sifive,e5
-> > -          - sifive,e51
-> > -          - sifive,u54-mc
-> > -          - sifive,u54
-> > -          - sifive,u5
-> > -      - const: riscv
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - sifive,rocket0
-> > +              - sifive,e5
-> > +              - sifive,e51
-> > +              - sifive,u54-mc
-> > +              - sifive,u54
-> > +              - sifive,u5
-> > +          - const: riscv
-> > +      - const: riscv    # Simulator only
-> >      description:
-> >        Identifies that the hart uses the RISC-V instruction set
-> >        and identifies the type of the hart.
-> > @@ -67,8 +69,6 @@ properties:
-> >        lowercase to simplify parsing.
-> >
-> >    timebase-frequency:
-> > -    type: integer
-> > -    minimum: 1
-> >      description:
-> >        Specifies the clock frequency of the system timer in Hz.
-> >        This value is common to all harts on a single system image.
-> > @@ -102,9 +102,9 @@ examples:
-> >      cpus {
-> >          #address-cells = <1>;
-> >          #size-cells = <0>;
-> > -        timebase-frequency = <1000000>;
-> >          cpu@0 {
-> >                  clock-frequency = <0>;
-> > +                timebase-frequency = <1000000>;
-> >                  compatible = "sifive,rocket0", "riscv";
-> >                  device_type = "cpu";
-> >                  i-cache-block-size = <64>;
-> > @@ -120,6 +120,7 @@ examples:
-> >          };
-> >          cpu@1 {
-> >                  clock-frequency = <0>;
-> > +                timebase-frequency = <1000000>;
-> >                  compatible = "sifive,rocket0", "riscv";
-> >                  d-cache-block-size = <64>;
-> >                  d-cache-sets = <64>;
-> > @@ -153,6 +154,7 @@ examples:
-> >                  device_type = "cpu";
-> >                  reg = <0>;
-> >                  compatible = "riscv";
-> > +                timebase-frequency = <1000000>;
-> >                  riscv,isa = "rv64imafdc";
-> >                  mmu-type = "riscv,sv48";
-> >                  interrupt-controller {
->
-> Looking at this spec
->
->     https://github.com/devicetree-org/devicetree-specification/releases/download/v0.2/devicetree-specification-v0.2.pdf
->
-> section 3.7 says
->
->     Properties that have identical values across cpu nodes may be placed in the
->     /cpus node instead. A client program must
->     first examine a specific cpu node, but if an expected property is not found
->     then it should look at the parent /cpus node.
->     This results in a less verbose representation of properties which are
->     identical across all CPUs.
+I've been carrying for awhile some patches that Yu Chen was
+previously pushing upstream to enable USB on the HiKey960 board
+and I wanted to try to nudge them forward as I'm not sure as to
+what his plans are.
 
-The cpu sections of the spec are certainly not perfect. They are
-largely from PPC with only the most obviously things wrong fixed...
+I've reviewed some of the feedback from his last series, and
+tried to clean things up a little bit. However, there are still
+some dt binding bits between the misc switch driver and how it
+interacts with the rt1711 and dwc3 driver that I'm unsure of.
 
-> I can never figure out if I'm looking at the right DT specifications so it's
-> possible that is defunct,
+However, there were some simpler parts of the patch set that I
+wanted to send out to see if we could make some progress on
+those parts while I continue to work on the more complex bits.
 
-Why? What's not clear which one to look at? If you start at
-devicetree.org the above is where you end up.
+You can find the full set of changes to get USB working on the
+board here:
+ https://git.linaro.org/people/john.stultz/android-dev.git/log/?id=e2f983603b4d89c021929842142ca7c3370422cf 
 
-> I just bring this up because we've got an outstanding
-> bug in our port where we're not respecting what section 3.7 says and are only
-> looking at /cpus/timebase-frequency instead of /cpus/cpu@*/timebase-frequency,
-> and I'm wondering if the fix should allow for looking at
-> /cpus/timebase-frequency or just not bother.
+This series is just the more trivial changes, along with some
+missing binding documentation that I've added.
 
-It's perfectly fine for some deviation for each arch or being more
-restrictive. For Arm, we've generally gone the direction of everything
-goes into the cpu nodes. So tell me what you want, I just need the
-warnings gone.
+I'd greatly appreciate any review or feedback on this series!
 
-Rob
+thanks
+-john
+
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Felipe Balbi <balbi@kernel.org>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Yu Chen <chenyu56@huawei.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+
+John Stultz (2):
+  dt-bindings: usb: dwc3: Add a property to do a CGTL soft reset on mode
+    switching
+  dt-bindings: usb: dwc3: of-simple: add compatible for HiSi
+
+Yu Chen (3):
+  usb: dwc3: Execute GCTL Core Soft Reset while switch mode for
+    Hisilicon Kirin Soc
+  usb: dwc3: Increase timeout for CmdAct cleared by device controller
+  usb: dwc3: dwc3-of-simple: Add support for dwc3 of Hisilicon Soc
+    Platform
+
+ .../devicetree/bindings/usb/dwc3.txt          |  2 +
+ .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
+ drivers/usb/dwc3/core.c                       | 20 +++++++
+ drivers/usb/dwc3/core.h                       |  3 ++
+ drivers/usb/dwc3/dwc3-of-simple.c             |  4 +-
+ drivers/usb/dwc3/gadget.c                     |  2 +-
+ 6 files changed, 81 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+
+-- 
+2.17.1
+
