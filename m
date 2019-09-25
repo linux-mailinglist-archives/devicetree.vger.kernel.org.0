@@ -2,231 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F9B1BE254
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 18:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DE79BE2D4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2019 18:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505126AbfIYQTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 12:19:09 -0400
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.3]:50347 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2502064AbfIYQTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 12:19:08 -0400
-Received: from [46.226.52.98] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-3.bemta.az-a.eu-west-1.aws.symcld.net id EB/3A-26280-7739B8D5; Wed, 25 Sep 2019 16:19:03 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFJsWRWlGSWpSXmKPExsWSoc9grVs2uTv
-  WoO+jnMXUh0/YLOYfOcdqsWrqThaL+1+PMlp8u9LBZHF51xw2iw+7rjJbtO49wu7A4bFz1l12
-  j02rOtk87lzbw+bR/9fA4/MmuQDWKNbMvKT8igTWjCW9bWwFk2UqLr5cyNrAuE2si5GLg1FgK
-  bPE8zkn2SGcYywSv6Y/Z4NwNjNK/O79CeawCJxglvhz4TAriCMkMJVJYlXTJiYI5wmjxMzet0
-  BlnBxsAhYSk088ALNFBOIljs89ywxSxAzSvm3SL3aQhLBAosTm+W+YIIqSJH59eMoIYTtJzJx
-  8B6yGRUBVYlnfS2YQmxeofuedC4wQ274xSjT+3AvWwClgK3Hzxg4WEJtRQFbiS+NqsAZmAXGJ
-  W0/mgy2QEBCQWLLnPDOELSrx8vE/Voj6VImTTTcYIeI6EmevP4GylSTmzT0CZctKXJrfDWX7S
-  pxpP8kCcoSEwFNGibf3zsE198/eD7XAQmJJdysLhC0lceLiUaBlHEC2isS/Q5UQ4QKJ80f/Qt
-  2mJnHjTQfzBEaDWUjOhrB1JBbs/sQGYWtLLFv4mnkWOCwEJU7OfMKygJFlFaN5UlFmekZJbmJ
-  mjq6hgYGuoaGRrqGlsa65kV5ilW6iXmqpbnlqcYmuoV5iebFecWVuck6KXl5qySZGYDJLKTjo
-  sYOx88hrvUOMkhxMSqK8ATndsUJ8SfkplRmJxRnxRaU5qcWHGGU4OJQkeDdOAMoJFqWmp1akZ
-  eYAEytMWoKDR0mE98JEoDRvcUFibnFmOkTqFKMux4SXcxcxC7Hk5eelSonzzgWZIQBSlFGaBz
-  cCluQvMcpKCfMyMjAwCPEUpBblZpagyr9iFOdgVBLmVQJZxZOZVwK36RXQEUxAR+Tlgx1Rkoi
-  QkmpgmrddJyZnhqiwTlHhLJsnF0vuzPnHZ7ry6YJHJl5+dxtmbsiabNQybcVW04b3chJR2XNZ
-  V0pJ7T7bnBVf4tu1O8no/EuRdx3FLR8svT2+Cjv/++Swtzy2SSisqipE22fu+jkrlFk23lLVa
-  K14/uXvrw37ct49W+AZOW3H8ecFTVH7Lj35svRrpK7TWhn+W8KnjzjoCUavldjydFJHaUpx5c
-  z98W5HZNJcPxwxcF0YYH1/KfuNp9drK4KZGuZyz9k+5VFoDOujuhJFGYeLeg+P1XU6NXx9K75
-  ijizzirhH5zaefvtnbevhh31ng3N72UVd570x6V47cfJKUZHta/+4PDf5cS+8N9T252H+1+d6
-  WJRYijMSDbWYi4oTAerIpP9tBAAA
-X-Env-Sender: Adam.Thomson.Opensource@diasemi.com
-X-Msg-Ref: server-25.tower-262.messagelabs.com!1569428340!6956!1
-X-Originating-IP: [104.47.0.59]
-X-SYMC-ESS-Client-Auth: mailfrom-relay-check=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.43.12; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 12885 invoked from network); 25 Sep 2019 16:19:02 -0000
-Received: from mail-he1eur01lp2059.outbound.protection.outlook.com (HELO EUR01-HE1-obe.outbound.protection.outlook.com) (104.47.0.59)
-  by server-25.tower-262.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 25 Sep 2019 16:19:02 -0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HvWzEQ3cmva2lr7bwCVrvX+hBvB6N698193iK+01UxzEH3h7QzoU49iOvYzhSf02z1RnS2VaTgd9qumMgMh7RGlx7jpsL9hIUk7YJN4g2UJfbyYFG/PO6PspdTudv6X8udUgN4yWKGrlqEDNgZ9GuGMtHqGQP5KjaxvfwNjSZpuasi90i2kw6N48O0rYCRq1+PzZWndD3+rj5loEZdjVutam5XE5EY90PSjUkAImetsIFdfh05TlNbLImBQYf8fup7sW6EubLiYFwqJ6GDQtcQ1x+eFap285CcLnxcT6CVAgKJ1VuJV4YxhVlhpRxquEf3To+fbCmTES7D63VGE2Rw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CYfh4xr/BWUeKoZCmm8lWo9GvItq83hi+SGpJv+bRpY=;
- b=HAlViV6pJyuM0s4JVBJZLulqODSGbP/irzb5aNc8Ie9Pkv36kgUdAwjseKJRmuP82NwUvDoTPH/Uxv7iOr5NGJID+dx8lbJk+pFVtsoFF1i74Ja3lnEkpNS6I1hOkL1iOb1I72RjhbhXx9zqrZfyKeL3XurWz340HQm+1b/AftU+8fH22xZAZSDSw+pag5v5eTSusg50Tjl85qcbNve6ltNceHx8IaTf/mcu1bUonY3lMvyXjcqQzMePMsabk4WcsPWKBE43rbrDeuxckk3rO16ssZDerCBQ8lEaQNjw5oNi6vM4FrEMcezMatnO0ZMC3uIdm5GPMcncO7ONO4Q2hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
- dkim=pass header.d=diasemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dialogsemiconductor.onmicrosoft.com;
- s=selector2-dialogsemiconductor-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CYfh4xr/BWUeKoZCmm8lWo9GvItq83hi+SGpJv+bRpY=;
- b=PbLbHEegUomdUsJCTl0S1+YnHOdeWxzdVD3f5DmQsX+7ZQGxIXKxgtIjERdvi1gXtgIBDbXBS173CrMD8U1GJewo5y6w4ZQ8VgefMQr2ejt/SUEPbP8IYf9vSVtBsnjvfOPhDVy8mzkpPuOZXOiGHgcOHvoEu0h9FJ+5c/eASG0=
-Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM (10.169.154.136) by
- AM5PR1001MB1010.EURPRD10.PROD.OUTLOOK.COM (10.169.153.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.21; Wed, 25 Sep 2019 16:18:59 +0000
-Received: from AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::15de:593a:8380:b8ef]) by AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::15de:593a:8380:b8ef%12]) with mapi id 15.20.2284.023; Wed, 25 Sep
- 2019 16:18:59 +0000
-From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-CC:     Support Opensource <Support.Opensource@diasemi.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 2/5] dt-bindings: mfd: da9062: add regulator voltage
- selection documentation
-Thread-Topic: [PATCH 2/5] dt-bindings: mfd: da9062: add regulator voltage
- selection documentation
-Thread-Index: AQHVbVV1957uISHJUEeJggkt0eobi6c6l9DggAH/z4CAAAcsgA==
-Date:   Wed, 25 Sep 2019 16:18:59 +0000
-Message-ID: <AM5PR1001MB09941810C3AE97110DD82E0F80870@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
-References: <20190917124246.11732-1-m.felsch@pengutronix.de>
- <20190917124246.11732-3-m.felsch@pengutronix.de>
- <AM5PR1001MB0994ABEF9C32BFB7BEA099B680840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
- <20190925155151.75uaxfiiei3i23tz@pengutronix.de>
-In-Reply-To: <20190925155151.75uaxfiiei3i23tz@pengutronix.de>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.225.80.228]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c57c08f4-a840-4d92-1a93-08d741d4125c
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:AM5PR1001MB1010;
-x-ms-traffictypediagnostic: AM5PR1001MB1010:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM5PR1001MB1010267DD02FE7AA3E6C85E5A7870@AM5PR1001MB1010.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01713B2841
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(366004)(39860400002)(396003)(376002)(346002)(199004)(189003)(99286004)(6436002)(102836004)(5660300002)(478600001)(33656002)(186003)(7696005)(71190400001)(71200400001)(6506007)(305945005)(74316002)(53546011)(14454004)(55236004)(52536014)(54906003)(3846002)(6116002)(110136005)(316002)(76176011)(25786009)(4326008)(966005)(11346002)(81166006)(7736002)(2906002)(476003)(446003)(6246003)(8936002)(81156014)(55016002)(64756008)(6306002)(66446008)(66556008)(26005)(76116006)(66066001)(9686003)(8676002)(486006)(66946007)(86362001)(256004)(229853002)(14444005)(66476007);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR1001MB1010;H:AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: diasemi.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: aniAiNSo+nbcbZZRcCmmSq12JVIA8eZcTSt6XVjinvLM5EtIz3XNJuk23wfjV9KrvzaBOU7S3GL5BTpXOWiieBaBRBLf/oDxOjM+NaCBoLuUxsGoCB0OnTBVFrdVEnVAIvvtQ/IXfjwmdwqoaRrToXsP79idf/yXNqP9ybjM8FjzTF/7g17nkdLgqHG+8N73XKKAGDHEsLWooLo4g5vemKuJBomQMVHk9mzvVKde6RoqIslEisHM5ljHYqL7dobTqS4upSmU7FJaO5pmR1VKpvj1QxLwi5uF/xkTm1oy5R2NanlFFdpHy8ogbOvsOPbkJT8XpXGkQ5+NUDExCZkIuwf76M8W1znZlR0WLWeGDOwmoXhK+mWqihOySf+S9AZO/6fA9hZty+PvbmUX6viLxmpWtwRejXNsNCdde0VtHpSHUovvdQGMPbz1LYQF0iTOOum4u5GP+CXNq9gLza08Pg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2389737AbfIYQvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 12:51:45 -0400
+Received: from smtp1.de.adit-jv.com ([93.241.18.167]:33598 "EHLO
+        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731087AbfIYQvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 12:51:45 -0400
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 4507E3C0579;
+        Wed, 25 Sep 2019 18:51:42 +0200 (CEST)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id igRcfk_nOYsN; Wed, 25 Sep 2019 18:51:36 +0200 (CEST)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 671E63C04C1;
+        Wed, 25 Sep 2019 18:51:36 +0200 (CEST)
+Received: from vmlxhi-102.adit-jv.com (10.72.93.184) by HI2EXCH01.adit-jv.com
+ (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.468.0; Wed, 25 Sep
+ 2019 18:51:35 +0200
+Date:   Wed, 25 Sep 2019 18:51:33 +0200
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Harish Jenny K N <harish_kandiga@mentor.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Phil Reid <preid@electromag.com.au>,
+        Enrico Weigelt <info@metux.net>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+Message-ID: <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
 MIME-Version: 1.0
-X-OriginatorOrg: diasemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c57c08f4-a840-4d92-1a93-08d741d4125c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2019 16:18:59.1843
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fj0Bu6SfO7+fz1qt1aZ3DoxdnWtRcTdKHqYmR06kiRfet0MyjXdWvP6J9mL8MvDS6pWkHU5PoyrSNjiMer9XTXAYOQvuH8GYQPVZCHsy0Iw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR1001MB1010
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+User-Agent: Mutt/1.12.1+40 (7f8642d4ee82) (2019-06-28)
+X-Originating-IP: [10.72.93.184]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25 September 2019 16:52, Marco Felsch wrote:
+Hi All,
 
-> Hi Adam,
->=20
-> On 19-09-24 09:23, Adam Thomson wrote:
-> > On 17 September 2019 13:43, Marco Felsch wrote:
-> >
-> > > Add the documentation which describe the voltage selection gpio suppo=
-rt.
-> > > This property can be applied to each subnode within the 'regulators'
-> > > node so each regulator can be configured differently.
-> > >
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > ---
-> > >  Documentation/devicetree/bindings/mfd/da9062.txt | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > b/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > index edca653a5777..9d9820d8177d 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > +++ b/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > @@ -66,6 +66,15 @@ Sub-nodes:
-> > >    details of individual regulator device can be found in:
-> > >    Documentation/devicetree/bindings/regulator/regulator.txt
-> > >
-> > > +  Optional regulator device-specific properties:
-> > > +  - dlg,vsel-sense-gpios : The GPIO reference which should be used b=
-y the
-> > > +    regulator to switch the voltage between active/suspend voltage s=
-ettings.
-> If
-> > > +    the signal is active the active-settings are applied else the su=
-spend
-> > > +    settings are applied. Attention: Sharing the same gpio for other=
- purposes
-> > > +    or across multiple regulators is possible but the gpio settings =
-must be the
-> > > +    same. Also the gpio phandle must refer to to the dlg,da9062-gpio=
- device
-> > > +    other gpios are not allowed and make no sense.
-> > > +
-> >
-> > Should we not use the binding names that are defined in 'gpio-regulator=
-.yaml'
-> as
-> > these seem to be generic and would probably serve the purpose here?
->=20
-> Hm.. as the description says:
->=20
-> 8<--------------------------------------------------
-> gpios:
->    description: Array of one or more GPIO pins used to select the
->    regulator voltage/current listed in "states".
-> 8<--------------------------------------------------
->=20
-> But we don't have a "states" property and we can't select between
-> voltage or current.
+I've additionally Cc-ed Laurent and Stephen, since their fruitful
+discussion in [1] back in 2014 concluded with a useful documentation
+update [2] which is precisely related to the interpretation and usage
+of the polarity flag in GPIO specifiers.
 
-Yes I think I was at cross purposes when I made this remark. The bindings t=
-here
-describe the GPOs that are used to enable/disable and set voltage/current f=
-or
-regulators and the supported voltage/current levels that can be configured =
-in
-this manner. What you're describing is the GPI for DA9061/2. If you look at
-GPIO handling in existing regulator drivers I believe they all deal with ex=
-ternal
-GPOs that are configured to enable/disable and set voltage/current limits r=
-ather
-than the GPI on the PMIC itself. That's why I'm thinking that the configura=
-tions
-you're doing here should actually be in a pinctrl or GPIO driver.
+I've also Cc-ed those people who have participated in reviewing the
+previous patch iterations (Geert, Phil, Enrico).
 
-I'd be interested in hearing Mark's view on this though as he has far more
-experience in this area than I do.
+Before leaving this thread in limbo, I would like to attempt clarifying
+what it actually tried to accomplish, one more time.
 
->=20
-> Regards,
->   Marco
->=20
-> > >  - rtc : This node defines settings required for the Real-Time Clock =
-associated
-> > >    with the DA9062. There are currently no entries in this binding, h=
-owever
-> > >    compatible =3D "dlg,da9062-rtc" should be added if a node is creat=
-ed.
-> > > --
-> > > 2.20.1
-> >
-> >
->=20
-> --
-> Pengutronix e.K.                           |                             =
-|
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  =
-|
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
+First of all, it stems from the need to implement a specific customer
+requirement. Whether this requirement is sane or not, that's actually
+a very important question, but I haven't found much discussion around
+it the comments posted so far.
+
+To paraphrase what Harish stated in [3], the customer has a list of GPIO
+pins which need to be controlled from userspace. Of course, the customer
+can set the polarity of those pins from userspace, as pointed out by
+Linus in [4] (thanks!). But, keeping track of GPIO polarity in userspace
+is seen like a burden. The customer thinks that the right place for this
+HW-specific detail is in device trees. Do you think this preference
+is ill-formed?
+
+If we hog a GPIO pin in DTS (which allows specifying its polarity),
+userspace no longer has access to that pin. There isn't a way to define
+GPIO polarity by means of DTS without affecting userspace access
+(can anybody contradict this statement?).
+
+Whether it is obvious or not, the main goal of this series is actually
+to provide the possibility of inverting the default ACTIVE_HIGH polarity
+for GPIO pin X _via DTS_ while still allowing to operate on that pin
+_from userspace_. My two questions are then:
+ - I hope it is something sane to desire?
+ - If it is sane, how can this be accomplished, if the functionality
+   implemented by Harish doesn't pass the community review?
+
+[1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
+[3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+[4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+
+-- 
+Best Regards,
+Eugeniu
