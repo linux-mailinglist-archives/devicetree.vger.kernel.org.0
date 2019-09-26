@@ -2,132 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3E1BF939
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 20:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2BA1BF946
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 20:37:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727764AbfIZSel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 14:34:41 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42122 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbfIZSel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 14:34:41 -0400
-Received: by mail-oi1-f195.google.com with SMTP id i185so2969930oif.9;
-        Thu, 26 Sep 2019 11:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NGmse8tCqZQZ4pc5Rd9nycCZrtTO2C0KKH3W2gH74ZQ=;
-        b=UgV7Uh+BjMLCWW04clvdJpCdRfDq+LPqUWtOYblF8YWz4YKYeXATM5GBrymb/Sk+uQ
-         S81PNoDJWIh2MnYlFgrJJyqp4nJIPSEnWcQcU9diyD7BzDBQk15Xq03a2s9hdNP2x0Gv
-         LycDh6FqujeKrx/3oAaZ1qrF9pDZklAuacpqB1EbUABmeQEyCF3XqGsYD7ya6ukjJAek
-         DEZHtXpSpDRBRERpBikNPBMDwlpHgQgE9z6uGXS/Ge9WNOrjEdT4a86+wC0dfksXnAB5
-         6wACcrdJIdl5YFIKME8vJ7Blt1qGTY/vzSMBgtbkwKLvPS3zxgplPCWYOS0jKRSfbq/p
-         diGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NGmse8tCqZQZ4pc5Rd9nycCZrtTO2C0KKH3W2gH74ZQ=;
-        b=bqsppv18mbOx6v6HCdH5jZMSKonigt/iB2p+lvyZ7edfUAM9fEEAXcL41SIvcHrcQy
-         ZOewdHbPXOehHO1MPWsT3AkQx6CQ7n+Ir3wIwOAgmU2Df218FbuT+hiqj10tbgm9lvVM
-         WfkHuSgIEGVfTuZOSe+V5LAMeD9hi0HMavbKvGcLt0WBppBqgM7dslv0rmjSjJk0gcvn
-         oDlTNMAJk0oJZo4f2kLThxjmnCWDmd9z/Ya5t+0RLVv16vyLXQthARAjn1mDtQVUR+Qs
-         ZpjYdCP6oeW3qDTNX/XDzY1BsmA4IJDKHdXAJ/dZ/6OzVnAmSFjLVnXQDKENQm9nP8wT
-         dTsQ==
-X-Gm-Message-State: APjAAAXEOkGvc1fKag8Ksp0J8v4GZJ2p1nVHOA5Low2rgZuPzdplfNza
-        7FAk/5j5savrn3MS6GFuzc4RBuFWcwfLZcU9Wgnt2g==
-X-Google-Smtp-Source: APXvYqxuPwoB6TKSeyJqIwODjZis0k+ZmHBg9WFAB8/8pKYdueaEYWwk2+HM7MX9vjrMpv/LByMTiav/h+fuf+x5A5g=
-X-Received: by 2002:aca:4d08:: with SMTP id a8mr3946038oib.39.1569522879867;
- Thu, 26 Sep 2019 11:34:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
- <1jzhivs6n6.fsf@starbuckisacylon.baylibre.com> <CAFBinCA0NaCJEDfNEg+LRfW3wxfNFGbXmGS+z7D5792TsupVAA@mail.gmail.com>
- <7h7e5wt2m1.fsf@baylibre.com>
-In-Reply-To: <7h7e5wt2m1.fsf@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 26 Sep 2019 20:34:28 +0200
-Message-ID: <CAFBinCAv=_3vWSanQg1S5EXBVzdgTu2Ub3Hyad_ajF3v6PcbGQ@mail.gmail.com>
-Subject: Re: [PATCH 0/5] provide the XTAL clock via OF on Meson8/8b/8m2
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1728457AbfIZShE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 14:37:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728413AbfIZShE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Sep 2019 14:37:04 -0400
+Received: from localhost.localdomain (unknown [194.230.155.145])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 38AD820872;
+        Thu, 26 Sep 2019 18:37:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569523023;
+        bh=mp0cAdKqEqH/s9D+3ht8kbYbJ5u3i3m3qD9oNpDN+K4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=h9Edz85612LyGIUz2DxRyySgApO6Tt3gb7FCJN5UBhbsJSfrIe/yWvrl1nlYoGuEs
+         IZ4hJF6ntWeoZ3YD0fSUKRjxj2BWLCLtv2q6qip3DdKlZkwfl//fsqL7Q84QkCePh6
+         9/5293kg2lwsw7idmxCfCLhQb6oG30V/G0lRtxHY=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH] dt-bindings: timer: Use defines instead of numbers in Exynos MCT examples
+Date:   Thu, 26 Sep 2019 20:36:43 +0200
+Message-Id: <20190926183643.7118-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
+Make the examples in Exynos Multi Core Timer bindings more readable and
+bring them closer to real DTS by using defines for interrupt flags.
 
-On Thu, Sep 26, 2019 at 12:47 AM Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->
-> > Hi Jerome,
-> >
-> > On Mon, Sep 23, 2019 at 11:29 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> >>
-> >> On Sat 21 Sep 2019 at 17:12, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-> >>
-> >> > So far the HHI clock controller has been providing the XTAL clock on
-> >> > Amlogic Meson8/Meson8b/Meson8m2 SoCs.
-> >> > This is not correct because the XTAL is actually a crystal on the
-> >> > boards and the SoC has a dedicated input for it.
-> >> >
-> >> > This updates the dt-bindings of the HHI clock controller and defines
-> >> > a fixed-clock in meson.dtsi (along with switching everything over to
-> >> > use this clock).
-> >> > The clock driver needs three updates to use this:
-> >> > - patch #2 uses clk_hw_set_parent in the CPU clock notifier. This drops
-> >> >   the explicit reference to CLKID_XTAL while at the same time making
-> >> >   the code much easier (thanks to Neil for providing this new method
-> >> >   as part of the G12A CPU clock bringup!)
-> >> > - patch #3 ensures that the clock driver doesn't rely on it's internal
-> >> >   XTAL clock while not losing support for older .dtbs that don't have
-> >> >   the XTAL clock input yet
-> >> > - with patch #4 the clock controller's own XTAL clock is not registered
-> >> >   anymore when a clock input is provided via OF
-> >> >
-> >> > This series is a functional no-op. It's main goal is to better represent
-> >> > how the actual hardware looks like.
-> >>
-> >> I'm a bit unsure about this series.
-> >>
-> >> On one hand, I totally agree with you ... having the xtal in DT is the
-> >> right way to do it ... when done from the start
-> > yep
-> >
-> >> On the other hand, things have been this way for years, they are working
-> >> and going for xtal in DT does not solve any pending issue. Doing this
-> >> means adding complexity in the driver to support both methods. It is
-> >> also quite a significant change in DT :/
-> > my two main motivations were:
-> > - keeping the 32-bit SoCs as similar as possible to the 64-bit ones in
-> > terms of "how are the [clock] drivers implemented"
-> > - with the DDR clock controller the .dts looked weird: &ddr_clkc took
-> > CLKID_XTAL from &clkc as input and &clkc took DDR_CLKID_DDR_PLL as
-> > input from &ddr_clkc
-> >
-> > RE complexity in the driver to support both:
-> > I still have a cleanup of the meson8b.c init code on my TODO-list
-> > because we're still supporting .dtbs without parent syscon
-> > my plan is to drop that code-path along with the newly added fallback
-> > for "skip CLKID_XTAL" (assuming this is accepted) together for v5.6 or
-> > v5.7
->
-> TBH, I'm big(ish) "functional no-op" changes like this are not things I
-> get super exicted about, especially for SoCs that have been working well
-> for awhile, and are do not have a large (upstream) userbase.
->
-> OTOH, since Martin is doing most of the heavy lifting for keeping this
-> platform working upstream, I'm happy to take the changes, as long as
-> Martin is willing to deal with any fallout.
-I agree: it has to work and if it doesn't then I will have to fix it so it is
-so I will be taking care of any fallout
+Suggested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
+---
 
-Martin
+Rebased on top of:
+https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=177667&state=*
+---
+ .../timer/samsung,exynos4210-mct.yaml         | 37 ++++++++++++++-----
+ 1 file changed, 27 insertions(+), 10 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+index bff3f54a398f..c4d152009f76 100644
+--- a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
++++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+@@ -75,51 +75,68 @@ examples:
+     // In this example, the IP contains two local timers, using separate
+     // interrupts, so two local timer interrupts have been specified,
+     // in addition to four global timer interrupts.
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     timer@10050000 {
+         compatible = "samsung,exynos4210-mct";
+         reg = <0x10050000 0x800>;
+-        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+-                     <0 42 0>, <0 48 0>;
++        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+     };
+ 
+   - |
+     // In this example, the timer interrupts are connected to two separate
+     // interrupt controllers. Hence, an interrupts-extended is needed.
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     timer@101c0000 {
+         compatible = "samsung,exynos4210-mct";
+         reg = <0x101C0000 0x800>;
+-        interrupts-extended = <&gic 0 57 0>,
+-                              <&gic 0 69 0>,
++        interrupts-extended = <&gic GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
++                              <&gic GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+                               <&combiner 12 6>,
+                               <&combiner 12 7>,
+-                              <&gic 0 42 0>,
+-                              <&gic 0 48 0>;
++                              <&gic GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++                              <&gic GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+     };
+ 
+   - |
+     // In this example, the IP contains four local timers, but using
+     // a per-processor interrupt to handle them. Only one first local
+     // interrupt is specified.
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     timer@10050000 {
+         compatible = "samsung,exynos4412-mct";
+         reg = <0x10050000 0x800>;
+ 
+-        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+-                     <0 42 0>;
++        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+     };
+ 
+   - |
+     // In this example, the IP contains four local timers, but using
+     // a per-processor interrupt to handle them. All the local timer
+     // interrupts are specified.
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     timer@10050000 {
+         compatible = "samsung,exynos4412-mct";
+         reg = <0x10050000 0x800>;
+ 
+-        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+-                     <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
++        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+     };
+-- 
+2.17.1
+
