@@ -2,213 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B5CABF698
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 18:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1431BF6B4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 18:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727431AbfIZQXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 12:23:46 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:43367 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbfIZQXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 12:23:45 -0400
-Received: by mail-pg1-f193.google.com with SMTP id v27so1816847pgk.10
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 09:23:44 -0700 (PDT)
+        id S1727483AbfIZQaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 12:30:01 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:39008 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727482AbfIZQaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 12:30:01 -0400
+Received: by mail-pl1-f196.google.com with SMTP id s17so1531376plp.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 09:30:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=5KJXkwykZKMxFzMHYA7DO1LT2mHdYgxlgFlqTK43aSg=;
-        b=AN9tMr/xQI6ixjCkoOmGxFdfQQtzy7Olh9LVYyYm42aA6ePb3swjBmTLHJbDhDG9c0
-         m5sPVQYWjy4J96xClewSCc6+peXtW96QKUk3yBLYrK31fpIxgabsfI9rRa5cZzLh4cNr
-         aVBYR8He61kDNtVrQWRiVcdpVmJMik1lgj+t6QFUnD2C7MbYsC3LJpfhOKW0vF7+AWDr
-         ULvseh5sJ3UZ15ccyuqK1N3Vbyz/NxUVWqq8BGpNiRhLS4Ph7LFD26WxlZp2MLcyPk5w
-         n5tdImLhl1Jqs1CiX409ZOVDPm2M7503awCd/tQopa4Bs5821cSrOpImfVJoT6cbGuqI
-         nKHw==
+        d=pensando.io; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=iUBOjyHfuR7bXfhhUiHsxfKRvIQzrO86xTAr8Ifre0Q=;
+        b=y3h5OT0UmQqXJi0n0rBvqkcTo+13EdxQBhESuHKUhhUdt4HIIcVQewbszw7316Jbj3
+         B26hOzlkXv8XsgeN5pGs7wsfUu35kRVDjdfbd80Cz2QkLIg0M3MsvsJVJdd9QD5RXeiy
+         6UEhQ9sxyZ6zQojKZM8g8YSAiU0HmfS6EeGLmm2G3M5zDUXby8glVotg/+s3ve95UAlT
+         DAQ0U/ntgxEnEPfGxe+68Qz99D7tUdj8cjDtGb+44i81+8OKBcckxrd+3wvZeL0MsCVS
+         GUydrXVlNXeNeT9yD3EB7dKB2lMU1zF3uY6+lKZ9hv2ld2NLoMT31L6wdQwnvoc03z5L
+         JHDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=5KJXkwykZKMxFzMHYA7DO1LT2mHdYgxlgFlqTK43aSg=;
-        b=CGbu9mfLJ2cN9+KW1/6qHLYpDQvaeafVrJsh6FmOS4fWKxDC9yb0G3e2oiVVwzriVs
-         Q951tbp/bgXfDxo1nATewHRp2N1U4004jU9gbZFC9GNUY3zsTaN5sSoUWp7gzQbZ1Fh4
-         DDO76eiKivsMx09goRyixtaDWry+3a7pn8N041EnM9ENpvHa9uopwnphGCpKD5GwQgaP
-         UwVJoWX2aMN1QpY7e105T3y+D148yot9UKjkAcN3IBh6xfD+wjOZmJGoe7RsFLWX+9+A
-         b+ehnS0VyDetjoYQlsH7PRAPVdqrLR+NeEdjTsrXikdCF0Cb/VQWGI+I0lGB7qd4uGwV
-         kRrA==
-X-Gm-Message-State: APjAAAWgsP/N8QdHQXEGCgSFaRSFNC/JU4XT/qYrLMMLgjCb8+T6adGU
-        19eZS+70/C1XvPm+xsGJBWB1sA==
-X-Google-Smtp-Source: APXvYqyXRYUH9jhldr03tJ4HTnP6NcLAFrGaRJdGlX81M87HTImuFCaOBIrqy502qWA3AiMe4YNO+g==
-X-Received: by 2002:a17:90a:8c15:: with SMTP id a21mr4308094pjo.99.1569515023652;
-        Thu, 26 Sep 2019 09:23:43 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id y144sm3041925pfb.188.2019.09.26.09.23.42
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 26 Sep 2019 09:23:42 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jianxin Pan <jianxin.pan@amlogic.com>,
-        linux-amlogic@lists.infradead.org
-Cc:     Zhiqiang Liang <zhiqiang.liang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: Re: [PATCH 2/3] soc: amlogic: Add support for Secure power domains controller
-In-Reply-To: <3859c748-01f0-4dbd-05d6-20fff31edf11@amlogic.com>
-References: <1568895064-4116-1-git-send-email-jianxin.pan@amlogic.com> <1568895064-4116-3-git-send-email-jianxin.pan@amlogic.com> <7hh850t2wy.fsf@baylibre.com> <3859c748-01f0-4dbd-05d6-20fff31edf11@amlogic.com>
-Date:   Thu, 26 Sep 2019 09:23:42 -0700
-Message-ID: <7ha7arrppt.fsf@baylibre.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=iUBOjyHfuR7bXfhhUiHsxfKRvIQzrO86xTAr8Ifre0Q=;
+        b=R2Omvmw/PF70+F16negxTqegzrABc8Nyw8AxXoOurqOpCYMWjBJpwi3+uH1KZcev1g
+         IAETeOK1t33ErBksHCEr3Al/XVyceqqjwHWmeD9m22q4hf7BMX6bv2JlaeHESVRwfQ29
+         MnRpgWewRkbrKBa1+wqu7ksfTH5meLiTgVtRagn0S+ldBiX7rWiTEhNnFzgCcqTWgtUe
+         nIo6cGcxKGpwXj6ugN7IMoNqH6vIp7ieMtsNBZXKo7YhLLrmPwKgrBRAm7DGrBRmu6uh
+         jrMzOFo43nhQPc0AVXkVs5iW+7BHrJnL7hj/MA4PC2BQffllbCypGaoLfaDqVYUcIC1U
+         apMw==
+X-Gm-Message-State: APjAAAVVn9TLt/JMvhakneboYI+JAXeLS8rHt+wUPiA0lWHrrKjA/WoB
+        5LiJT848G1asXi2z2Kr0xtFQNw==
+X-Google-Smtp-Source: APXvYqzWSovEndvhpUlPPG2KWsLiHc/5J0wB0jU8KW7kk3lkOzlRWdHFYbFHIpUg2H8EkpfjsR5P5g==
+X-Received: by 2002:a17:902:8a88:: with SMTP id p8mr4822043plo.152.1569515400373;
+        Thu, 26 Sep 2019 09:30:00 -0700 (PDT)
+Received: from Shannons-MacBook-Pro.local (static-50-53-47-17.bvtn.or.frontiernet.net. [50.53.47.17])
+        by smtp.gmail.com with ESMTPSA id e127sm3547209pfe.37.2019.09.26.09.29.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 Sep 2019 09:29:59 -0700 (PDT)
+Subject: Re: [PATCH 1/3] docs: fix some broken references
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        corbet@lwn.net
+Cc:     Mauro Carvalho Chehab <mchehab@infradead.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Saeed Mahameed <saeedm@mellanox.com>,
+        Leon Romanovsky <leon@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Pensando Drivers <drivers@pensando.io>,
+        Steve French <sfrench@samba.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-mips@vger.kernel.org, netdev@vger.kernel.org,
+        linux-rdma@vger.kernel.org, linux-cifs@vger.kernel.org,
+        samba-technical@lists.samba.org, linux-riscv@lists.infradead.org
+References: <b87385b2ac6ce6c75df82062fce2976149bbaa6b.1569330078.git.mchehab+samsung@kernel.org>
+From:   Shannon Nelson <snelson@pensando.io>
+Message-ID: <81dc41d5-606a-7638-1d11-4fe53e9c2a7f@pensando.io>
+Date:   Thu, 26 Sep 2019 09:29:56 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <b87385b2ac6ce6c75df82062fce2976149bbaa6b.1569330078.git.mchehab+samsung@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jianxin Pan <jianxin.pan@amlogic.com> writes:
-
-> Hi Kevin,
+On 9/24/19 6:01 AM, Mauro Carvalho Chehab wrote:
+> There are a number of documentation files that got moved or
+> renamed. update their references.
 >
-> Thanks for your review. Please see my comments below.
->
->
-> On 2019/9/26 6:41, Kevin Hilman wrote:
->> Hi Jianxin,
->> 
->> Jianxin Pan <jianxin.pan@amlogic.com> writes:
->> 
->>> Add support for the Amlogic Secure Power controller. In A1/C1 series, power
->>> control registers are in secure domain, and should be accessed by smc.
->>>
->>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->>> Signed-off-by: Zhiqiang Liang <zhiqiang.liang@amlogic.com>
->> 
->> Thanks for the new power domain driver.
->> 
->>> ---
->>>  drivers/soc/amlogic/Kconfig             |  13 +++
->>>  drivers/soc/amlogic/Makefile            |   1 +
->>>  drivers/soc/amlogic/meson-secure-pwrc.c | 182 ++++++++++++++++++++++++++++++++
->>>  3 files changed, 196 insertions(+)
->>>  create mode 100644 drivers/soc/amlogic/meson-secure-pwrc.c
->>>
->>> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
->>> index bc2c912..6cb06e7 100644
->>> --- a/drivers/soc/amlogic/Kconfig
->>> +++ b/drivers/soc/amlogic/Kconfig
->>> @@ -48,6 +48,19 @@ config MESON_EE_PM_DOMAINS
->>>  	  Say yes to expose Amlogic Meson Everything-Else Power Domains as
->>>  	  Generic Power Domains.
->>>  
->>> +config MESON_SECURE_PM_DOMAINS
->>> +	bool "Amlogic Meson Secure Power Domains driver"
->>> +	depends on ARCH_MESON || COMPILE_TEST
->>> +	depends on PM && OF
->>> +	depends on HAVE_ARM_SMCCC
->>> +	default ARCH_MESON
->>> +	select PM_GENERIC_DOMAINS
->>> +	select PM_GENERIC_DOMAINS_OF
->>> +	help
->>> +	  Support for the power controller on Amlogic A1/C1 series.
->>> +	  Say yes to expose Amlogic Meson Secure Power Domains as Generic
->>> +	  Power Domains.
->>> +
->>>  config MESON_MX_SOCINFO
->>>  	bool "Amlogic Meson MX SoC Information driver"
->>>  	depends on ARCH_MESON || COMPILE_TEST
->>> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
->>> index de79d044..7b8c5d3 100644
->>> --- a/drivers/soc/amlogic/Makefile
->>> +++ b/drivers/soc/amlogic/Makefile
->>> @@ -5,3 +5,4 @@ obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
->>>  obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
->>>  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
->>>  obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
->>> +obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
->>> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
->>> new file mode 100644
->>> index 00000000..00c7232
->>> --- /dev/null
->>> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
->>> @@ -0,0 +1,182 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> [...]
->>> +
->>> +static bool pwrc_secure_get_power(struct meson_secure_pwrc_domain *pwrc_domain)
->>> +{
->>> +	struct arm_smccc_res res;
->>> +
->>> +	arm_smccc_smc(SMC_PWRC_GET, pwrc_domain->index, 0,
->>> +		      0, 0, 0, 0, 0, &res);
->>> +
->>> +	return res.a0 & 0x1;
->> 
->> Please use a #define with a readable name for this mask.
->> The return type of this smc is bool. I will remove 0x1 mask in next version. 
->
-> Another question about smc:
-> In this driver, no share memory is needed, and I use arm_smccc_smc() directly.
-> Should I add secure-monitor = <&sm> in dtb and use meson_sm_call() from sm driver instead? 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 
-Yes, that would be preferred.
+>   drivers/net/ethernet/pensando/ionic/ionic_if.h            | 4 ++--
 
->>> +}
->> 
->> What does the return value for this function mean?  Does true mean
->> "powered off" or "powered on">
-> The return vaule for SMC_PWRC_GET :
-> 0 -> power on
-> 1 -> power off> See the rename I just did on the ee-pwrc driver:
->> https://lore.kernel.org/linux-amlogic/20190925213528.21515-2-khilman@kernel.org/
->> I will follow and rename to _is_off() in the next verson.
->>> +static int meson_secure_pwrc_off(struct generic_pm_domain *domain)
->>> +{
->>> +	struct arm_smccc_res res;
->>> +	struct meson_secure_pwrc_domain *pwrc_domain =
-> [...]
->>> +
->>> +#define SEC_PD(__name, __flag)			\
->>> +{						\
->>> +	.name = #__name,			\
->>> +	.index = PWRC_##__name##_ID,		\
->>> +	.get_power = pwrc_secure_get_power,	\
->>> +	.flags = __flag,			\
->>> +}
->>> +
->>> +static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
->>> +	SEC_PD(DSPA,	0),
->>> +	SEC_PD(DSPB,	0),
->>> +	SEC_PD(UART,	GENPD_FLAG_ALWAYS_ON),
->> 
->> This flag should only be used for domains where there are no linux
->> drivers.
->> 
->> Rather than using this flag, you need to add a 'power-domain' property
->> to the uart driver in DT, and then update the meson_uart driver to use
->> the runtime PM API so that the domain is enabled whenever the UART is in
->> use.
->
-> PM_UART Power domain is shared by uart, msr, jtag and cec.
-> Uart should keep working in BL31, after kernel suspend and before kernel resume.
+Acked-by: Shannon Nelson <snelson@pensando.io>
 
-OK.
-
->> 
->>> +	SEC_PD(DMC,	GENPD_FLAG_ALWAYS_ON),
->> 
->> Please explain the need for ALWAYS_ON.
->> 
-> PM_DMC is used for DDR PHY ana/dig and DMC. 
-> There is no linux drver for them, and it should be always on. 
->
-> I will add comments for all these always on domains.
-
-OK, thank you.
-
-
-Kevin
