@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2CC1BF4D0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 16:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DF09BF4D9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 16:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbfIZONZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 10:13:25 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:39572 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726500AbfIZONY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 10:13:24 -0400
-Received: by mail-wm1-f67.google.com with SMTP id v17so2753853wml.4;
-        Thu, 26 Sep 2019 07:13:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=hBZ8CcivE1NYUxc5O3ZPMVIRE/wsSIlTMNpDwyj/BXg=;
-        b=IEvvVf363u2geGo2S9jgMBQ+X78E5PxplaUygSnwwX9IKYFKkpxMu2VR10bZE6PJyT
-         uF5BdQYKIXM7w1st/HEkeVUpBa/vmMm8/iIZymztHgHIQsW5YoYuiYUjh5QmUZVAKhRH
-         ir2CwBtSH7qoGNZq5N+TGkeYcGpqyIarPWVU2V8jKhGdajYRMLNsUO4VMNKYxmDJR5Tu
-         yoiy6SVRlnG2PFyVlbbQS83l4WCN19H5/76+1AN2W8A3f8ZTeaj/L88KCujMIM70YQUw
-         mo96wVatsSsNFW8HeZtOL1IAlaKClyORbWZ+b0bblDQ+0r2yUxfH0Z2h+QuhjMU4ufd9
-         NvTQ==
-X-Gm-Message-State: APjAAAVt495lbWjUEGdB42EnwvJ4qkMTVlP9Utp2zHnYaBL6OF/bRa0G
-        y0Gh+Qhecbq84/qPbmJV+d7McQs0
-X-Google-Smtp-Source: APXvYqwFGmBsmHkzm5BSclLX9I0aHlju/5ZEtE1O/WmLwArVHDoSrkBS7RuTKuyW+Dop4GgKC7Wfrg==
-X-Received: by 2002:a1c:9dc1:: with SMTP id g184mr3132920wme.77.1569507200896;
-        Thu, 26 Sep 2019 07:13:20 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id h63sm4348246wmf.15.2019.09.26.07.13.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2019 07:13:20 -0700 (PDT)
-Date:   Thu, 26 Sep 2019 16:13:17 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Maciej Falkowski <m.falkowski@samsung.com>
-Subject: Re: [PATCH v2] ASoC: samsung: i2s: Document clocks macros
-Message-ID: <20190926141317.GA16044@pi3>
-References: <CGME20190926110226eucas1p24dbb1b39ffa3f607aa28c0c4d9ff6aba@eucas1p2.samsung.com>
- <20190926110219.6144-1-m.szyprowski@samsung.com>
+        id S1726984AbfIZOPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 10:15:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36542 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726975AbfIZOPP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Sep 2019 10:15:15 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C9546222C7
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 14:15:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569507314;
+        bh=syFB0s8Z9+UBGBqrI+vXSPb73kAHmkg+VCZHK6EDWk4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DpE+lMxmAkejkULP2WYcECnvDCLbMsCbcl0ESFTtWGdhXQ1xABq8KZlq3mBG764Gz
+         sJOBkq7MdBBTnBsXE+mQovDaX+cKNpIIIAZA772lwu65G4i31k+s3Q/gJh4VM2iGWp
+         6ahrtGVgks6X60SQjQzCrYOcnMzn9/RHrlt/KDwI=
+Received: by mail-qt1-f181.google.com with SMTP id u40so2990825qth.11
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 07:15:14 -0700 (PDT)
+X-Gm-Message-State: APjAAAUbUWPjaXWSXCU5AkLRUKv5ONR9PqCHcXAL1B1nUMsP8KwoVBs1
+        xlA1qqcHu0LoFJfneAIlszyGMqGOOO9A0A3CAw==
+X-Google-Smtp-Source: APXvYqwIMIe5OEpAgQT8ClcMlHD627oH2q+knkeerrGnhKgwkBYias9cnbzPSO8cBDCsspBtxFeoksLM+M7YJRGk9HM=
+X-Received: by 2002:a0c:fa49:: with SMTP id k9mr2880504qvo.72.1569507313951;
+ Thu, 26 Sep 2019 07:15:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190926110219.6144-1-m.szyprowski@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190925235544.11524-1-laurent.pinchart@ideasonboard.com> <20190925235544.11524-2-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20190925235544.11524-2-laurent.pinchart@ideasonboard.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 26 Sep 2019 09:15:01 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL7-33B4CaEX0r5V7PhX9EnghxNfcbZNLT4yo+FLeCOCA@mail.gmail.com>
+Message-ID: <CAL_JsqL7-33B4CaEX0r5V7PhX9EnghxNfcbZNLT4yo+FLeCOCA@mail.gmail.com>
+Subject: Re: [PATCH v9 1/4] dt-bindings: display: xlnx: Add ZynqMP DP
+ subsystem bindings
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Satish Kumar Nagireddy <SATISHNA@xilinx.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 26, 2019 at 01:02:19PM +0200, Marek Szyprowski wrote:
-> From: Maciej Falkowski <m.falkowski@samsung.com>
-> 
-> Document clocks macros with their description
-> from 'Documentation/devicetree/bindings/sound/samsung-i2s.txt'
-> 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+On Wed, Sep 25, 2019 at 6:56 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> From: Hyun Kwon <hyun.kwon@xilinx.com>
+>
+> The bindings describe the ZynqMP DP subsystem. They don't support the
+> interface with the programmable logic (FPGA) or audio yet.
+>
+> Signed-off-by: Hyun Kwon <hyun.kwon@xilinx.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
-> v2:
-> - Added proper commit message and description
-> - Moved comments to the right side
-> 
-> Best regards,
-> Maciej Falkowski
+> Changes since v8:
+>
+> - Convert to yaml
+> - Rename aclk to dp_apb_clk
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
-
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml:
+display@fd4a0000: clock-names:2: 'dp_vtc_pixel_clk_in' was expected
