@@ -2,70 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF09BF4D9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 16:15:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC48BF4F9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 16:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726984AbfIZOPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 10:15:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36542 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726975AbfIZOPP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Sep 2019 10:15:15 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C9546222C7
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 14:15:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569507314;
-        bh=syFB0s8Z9+UBGBqrI+vXSPb73kAHmkg+VCZHK6EDWk4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DpE+lMxmAkejkULP2WYcECnvDCLbMsCbcl0ESFTtWGdhXQ1xABq8KZlq3mBG764Gz
-         sJOBkq7MdBBTnBsXE+mQovDaX+cKNpIIIAZA772lwu65G4i31k+s3Q/gJh4VM2iGWp
-         6ahrtGVgks6X60SQjQzCrYOcnMzn9/RHrlt/KDwI=
-Received: by mail-qt1-f181.google.com with SMTP id u40so2990825qth.11
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 07:15:14 -0700 (PDT)
-X-Gm-Message-State: APjAAAUbUWPjaXWSXCU5AkLRUKv5ONR9PqCHcXAL1B1nUMsP8KwoVBs1
-        xlA1qqcHu0LoFJfneAIlszyGMqGOOO9A0A3CAw==
-X-Google-Smtp-Source: APXvYqwIMIe5OEpAgQT8ClcMlHD627oH2q+knkeerrGnhKgwkBYias9cnbzPSO8cBDCsspBtxFeoksLM+M7YJRGk9HM=
-X-Received: by 2002:a0c:fa49:: with SMTP id k9mr2880504qvo.72.1569507313951;
- Thu, 26 Sep 2019 07:15:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190925235544.11524-1-laurent.pinchart@ideasonboard.com> <20190925235544.11524-2-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20190925235544.11524-2-laurent.pinchart@ideasonboard.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 26 Sep 2019 09:15:01 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL7-33B4CaEX0r5V7PhX9EnghxNfcbZNLT4yo+FLeCOCA@mail.gmail.com>
-Message-ID: <CAL_JsqL7-33B4CaEX0r5V7PhX9EnghxNfcbZNLT4yo+FLeCOCA@mail.gmail.com>
-Subject: Re: [PATCH v9 1/4] dt-bindings: display: xlnx: Add ZynqMP DP
- subsystem bindings
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+        id S1726984AbfIZOXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 10:23:30 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:53116 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726500AbfIZOXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 10:23:30 -0400
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B9C91B25;
+        Thu, 26 Sep 2019 16:23:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1569507808;
+        bh=xxT1mkrHMMZ7msB0GFgxJOGGFCvytnN0N4yY+3OwfHg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QfB5jKEiuzy0RfRWBPjOMvTQONh6FEoNE+YfT1Ww//e2XTI17PghB/miLlXupeDze
+         r1Y8faYdz/zSXqB1BqNqneO6UZp3BY3dn0NkJSq5/EcJeX5Q5lFYpFmT11JEJxMhGh
+         wOlstdcEKkAC9QWLTPbinoIuTZFF61hh2LK4aHy0=
+Date:   Thu, 26 Sep 2019 17:23:18 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         Michal Simek <michal.simek@xilinx.com>,
         Hyun Kwon <hyun.kwon@xilinx.com>,
         Satish Kumar Nagireddy <SATISHNA@xilinx.com>,
         devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v9 1/4] dt-bindings: display: xlnx: Add ZynqMP DP
+ subsystem bindings
+Message-ID: <20190926142318.GB16469@pendragon.ideasonboard.com>
+References: <20190925235544.11524-1-laurent.pinchart@ideasonboard.com>
+ <20190925235544.11524-2-laurent.pinchart@ideasonboard.com>
+ <CAL_JsqL7-33B4CaEX0r5V7PhX9EnghxNfcbZNLT4yo+FLeCOCA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqL7-33B4CaEX0r5V7PhX9EnghxNfcbZNLT4yo+FLeCOCA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 6:56 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> From: Hyun Kwon <hyun.kwon@xilinx.com>
->
-> The bindings describe the ZynqMP DP subsystem. They don't support the
-> interface with the programmable logic (FPGA) or audio yet.
->
-> Signed-off-by: Hyun Kwon <hyun.kwon@xilinx.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Changes since v8:
->
-> - Convert to yaml
-> - Rename aclk to dp_apb_clk
+Hi Rob,
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml:
-display@fd4a0000: clock-names:2: 'dp_vtc_pixel_clk_in' was expected
+On Thu, Sep 26, 2019 at 09:15:01AM -0500, Rob Herring wrote:
+> On Wed, Sep 25, 2019 at 6:56 PM Laurent Pinchart wrote:
+> >
+> > From: Hyun Kwon <hyun.kwon@xilinx.com>
+> >
+> > The bindings describe the ZynqMP DP subsystem. They don't support the
+> > interface with the programmable logic (FPGA) or audio yet.
+> >
+> > Signed-off-by: Hyun Kwon <hyun.kwon@xilinx.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> > Changes since v8:
+> >
+> > - Convert to yaml
+> > - Rename aclk to dp_apb_clk
+> 
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml:
+> display@fd4a0000: clock-names:2: 'dp_vtc_pixel_clk_in' was expected
+
+If you allow me to steal a bit of your brain time, could you help me
+expressing the clocks constraint ?
+
+  clocks:
+    description:
+      The AXI clock and at least one video clock are mandatory, the audio clock
+      optional.
+    minItems: 2
+    maxItems: 4
+    items:
+      - description: AXI clock
+      - description: Audio clock
+      - description: Non-live video clock (from Processing System)
+      - description: Live video clock (from Programmable Logic)
+  clock-names:
+    minItems: 2
+    maxItems: 4
+    items:
+      - const: dp_apb_clk
+      - const: dp_aud_clk
+      - const: dp_vtc_pixel_clk_in
+      - const: dp_live_video_in_clk
+
+dp_apb_clk is required, dp_aud_clk is optional, and at least one of
+dp_vtc_pixel_clk_in and dp_live_video_in_clk is required.
+
+-- 
+Regards,
+
+Laurent Pinchart
