@@ -2,331 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AB5CBEF86
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC07BEF9A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:30:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726618AbfIZKZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 06:25:40 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:54944 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726743AbfIZKZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 06:25:40 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id B74A525AF0D;
-        Thu, 26 Sep 2019 20:25:37 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id B1EDF943750; Thu, 26 Sep 2019 12:25:35 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726089AbfIZK3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 06:29:45 -0400
+Received: from us-smtp-2.mimecast.com ([205.139.110.61]:27063 "EHLO
+        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726038AbfIZK3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Sep 2019 06:29:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1569493781;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=4oywSfuMp7J3ZB2f2owykN0tPRscErPawez4SzM22Ns=;
+        b=jGKB7/BsVrDga4dlSolLZZ8dMMKcM3fFGBNaRWEEoUcGAVKxIvlleMzt+mMyFGkWsPx6Ba
+        kKvqM6r4v2UNI4lTYsvQgHXFwVmPU+kvefswaZwnxl9dIUg8d4lrr7XHgGAvCDXmRvCnPa
+        KPubikpQilpBygsXbGAfh8+2TkYsJzA=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-322-JsuCysVVOzGjId3SdbwD-w-1; Thu, 26 Sep 2019 06:29:40 -0400
+Received: by mail-qt1-f199.google.com with SMTP id n59so1848388qtd.8
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 03:29:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=moofdL//faBtrlG0QLSwcgJuXbtQtXBYxvEroylMNe4=;
+        b=ZDOHOedn0mESYuTPG9H/uIGIDjDAun9JqEh9jNqwmKEIhCr3rnq38k+kqvfvLQMmM/
+         ot8/RQSMuSrMoPEuB+teUnbGmzVG/oglxF4V57GcK5RR+f/C3xm5bU9rRrmrUrnBKIS5
+         y73HbWxBicjU+WYPGd5Hg6TUE1urYaASVznPPBlF/1xmNb758QpuGgxR2CjX/vf8+08J
+         UBivUQ9lxptK/59CQjsAeFgDhngTamklxJZd2GBQhdpFOnGcb+uj76TCLMfRXNEaVId5
+         9GiciZF2iPoyqMcV6DHwQaxPZL2IoU/sTkywr0IfosoDWVCtwt8DgeBLobb7LgZuVGUn
+         vMYA==
+X-Gm-Message-State: APjAAAXaMGOUtq9a0sUbQ0Ju6GxVRoj3hVzqidkk0S3XupPLmgkjHtUV
+        AMVazpAL2Xv70whT7SvhPWdiWzRxGzRPgeLlbsl7x31mF7HgNm8wb99zxpRdSkSst/9S5QbF3QE
+        bhwtBr/ZJkoVUU4/7kxksjTLmJ4fLw+DITwbZxw==
+X-Received: by 2002:ac8:3059:: with SMTP id g25mr3075838qte.154.1569493779595;
+        Thu, 26 Sep 2019 03:29:39 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzsScPkvBToNaCgQHFMqKC2sezTDhPUdJKx5v4PFh8OGV4vbajMH4T7PPcAVVGnW8bn0drX9dfPHM+HPwomTzc=
+X-Received: by 2002:ac8:3059:: with SMTP id g25mr3075822qte.154.1569493779304;
+ Thu, 26 Sep 2019 03:29:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190925094326.41693-1-vicamo.yang@canonical.com> <20190925094326.41693-2-vicamo.yang@canonical.com>
+In-Reply-To: <20190925094326.41693-2-vicamo.yang@canonical.com>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Thu, 26 Sep 2019 12:29:27 +0200
+Message-ID: <CAO-hwJJsJPQxBLTPpHnvERiCtkWUfbwB-5ZcJFTcXu-c07GuNg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] HID: i2c-hid: allow delay after SET_POWER
+To:     You-Sheng Yang <vicamo.yang@canonical.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH] dt-bindings: spi: sh-msiof: Convert bindings to json-schema
-Date:   Thu, 26 Sep 2019 12:25:33 +0200
-Message-Id: <20190926102533.17829-1-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
+        Jiri Kosina <jikos@kernel.org>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        Hui Wang <hui.wang@canonical.com>, Julian Sax <jsbc@gmx.de>,
+        HungNien Chen <hn.chen@weidahitech.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+X-MC-Unique: JsuCysVVOzGjId3SdbwD-w-1
+X-Mimecast-Spam-Score: 0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas HSPI bindings documentation to json-schema.
-Also name bindings documentation file according to the compat string
-being documented.
+Hi,
 
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
----
-Based on v5.3
-Tested using:
-  ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-  ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
----
- .../devicetree/bindings/spi/renesas,sh-msiof.yaml  | 158 +++++++++++++++++++++
- Documentation/devicetree/bindings/spi/sh-msiof.txt | 105 --------------
- 2 files changed, 158 insertions(+), 105 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
- delete mode 100644 Documentation/devicetree/bindings/spi/sh-msiof.txt
 
-diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-new file mode 100644
-index 000000000000..4afaa48c1666
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-@@ -0,0 +1,158 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/renesas,sh-msiof.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas MSIOF SPI controller
-+
-+maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: renesas,msiof-sh73a0     # SH-Mobile AG5
-+          - const: renesas,sh-mobile-msiof  # generic SH-Mobile compatible
-+                                            # device
-+      - items:
-+          - enum:
-+              - renesas,msiof-r8a7743       # RZ/G1M
-+              - renesas,msiof-r8a7744       # RZ/G1N
-+              - renesas,msiof-r8a7745       # RZ/G1E
-+              - renesas,msiof-r8a77470      # RZ/G1C
-+              - renesas,msiof-r8a7790       # R-Car H2
-+              - renesas,msiof-r8a7791       # R-Car M2-W
-+              - renesas,msiof-r8a7792       # R-Car V2H
-+              - renesas,msiof-r8a7793       # R-Car M2-N
-+              - renesas,msiof-r8a7794       # R-Car E2
-+          - const: renesas,rcar-gen2-msiof  # generic R-Car Gen2 and RZ/G1
-+                                            # compatible device
-+      - items:
-+          - enum:
-+              - renesas,msiof-r8a774a1      # RZ/G2M
-+              - renesas,msiof-r8a774c0      # RZ/G2E
-+              - renesas,msiof-r8a7795       # R-Car H3
-+              - renesas,msiof-r8a7796       # R-Car M3-W
-+              - renesas,msiof-r8a77965      # R-Car M3-N
-+              - renesas,msiof-r8a77970      # R-Car V3M
-+              - renesas,msiof-r8a77980      # R-Car V3H
-+              - renesas,msiof-r8a77990      # R-Car E3
-+              - renesas,msiof-r8a77995      # R-Car D3
-+          - const: renesas,rcar-gen3-msiof  # generic R-Car Gen3 and RZ/G2
-+                                            # compatible device
-+      - items:
-+          - const: renesas,sh-msiof  # deprecated
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    oneOf:
-+      - items:
-+          - description: CPU and DMA engine registers
-+      - items:
-+          - description: CPU registers
-+          - description: DMA engine registers
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  num-cs:
-+    description: |
-+      Total number of chip selects (default is 1).
-+      Up to 3 native chip selects are supported:
-+        0: MSIOF_SYNC
-+        1: MSIOF_SS1
-+        2: MSIOF_SS2
-+      Hardware limitations related to chip selects:
-+        - Native chip selects are always deasserted in between transfers
-+          that are part of the same message.  Use cs-gpios to work around
-+          this.
-+        - All slaves using native chip selects must use the same spi-cs-high
-+          configuration.  Use cs-gpios to work around this.
-+        - When using GPIO chip selects, at least one native chip select must
-+          be left unused, as it will be driven anyway.
-+    minimum: 1
-+    maximum: 3
-+    default: 1
-+
-+  dmas:
-+    minItems: 2
-+    maxItems: 4
-+
-+  dma-names:
-+    minItems: 2
-+    maxItems: 4
-+    items:
-+      enum: [ tx, rx ]
-+
-+  renesas,dtdl:
-+    description: delay sync signal (setup) in transmit mode.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum:
-+          - 0    # no bit delay
-+          - 50   # 0.5-clock-cycle delay
-+          - 100  # 1-clock-cycle delay
-+          - 150  # 1.5-clock-cycle delay
-+          - 200  # 2-clock-cycle delay
-+
-+  renesas,syncdl:
-+    description: delay sync signal (hold) in transmit mode
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum:
-+          - 0    # no bit delay
-+          - 50   # 0.5-clock-cycle delay
-+          - 100  # 1-clock-cycle delay
-+          - 150  # 1.5-clock-cycle delay
-+          - 200  # 2-clock-cycle delay
-+          - 300  # 3-clock-cycle delay
-+
-+  renesas,tx-fifo-size:
-+    # deprecated for soctype-specific bindings
-+    description: |
-+      Override the default TX fifo size.  Unit is words.  Ignored if 0.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - maxItems: 1
-+    default: 64
-+
-+  renesas,rx-fifo-size:
-+    # deprecated for soctype-specific bindings
-+    description: |
-+      Override the default RX fifo size.  Unit is words.  Ignored if 0.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - maxItems: 1
-+    default: 64
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7791-clock.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    msiof0: spi@e6e20000 {
-+        compatible = "renesas,msiof-r8a7791", "renesas,rcar-gen2-msiof";
-+        reg = <0 0xe6e20000 0 0x0064>;
-+        interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
-+        dmas = <&dmac0 0x51>, <&dmac0 0x52>;
-+        dma-names = "tx", "rx";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/spi/sh-msiof.txt b/Documentation/devicetree/bindings/spi/sh-msiof.txt
-deleted file mode 100644
-index 18e14ee257b2..000000000000
---- a/Documentation/devicetree/bindings/spi/sh-msiof.txt
-+++ /dev/null
-@@ -1,105 +0,0 @@
--Renesas MSIOF spi controller
--
--Required properties:
--- compatible           : "renesas,msiof-r8a7743" (RZ/G1M)
--			 "renesas,msiof-r8a7744" (RZ/G1N)
--			 "renesas,msiof-r8a7745" (RZ/G1E)
--			 "renesas,msiof-r8a77470" (RZ/G1C)
--			 "renesas,msiof-r8a774a1" (RZ/G2M)
--			 "renesas,msiof-r8a774c0" (RZ/G2E)
--			 "renesas,msiof-r8a7790" (R-Car H2)
--			 "renesas,msiof-r8a7791" (R-Car M2-W)
--			 "renesas,msiof-r8a7792" (R-Car V2H)
--			 "renesas,msiof-r8a7793" (R-Car M2-N)
--			 "renesas,msiof-r8a7794" (R-Car E2)
--			 "renesas,msiof-r8a7795" (R-Car H3)
--			 "renesas,msiof-r8a7796" (R-Car M3-W)
--			 "renesas,msiof-r8a77965" (R-Car M3-N)
--			 "renesas,msiof-r8a77970" (R-Car V3M)
--			 "renesas,msiof-r8a77980" (R-Car V3H)
--			 "renesas,msiof-r8a77990" (R-Car E3)
--			 "renesas,msiof-r8a77995" (R-Car D3)
--			 "renesas,msiof-sh73a0" (SH-Mobile AG5)
--			 "renesas,sh-mobile-msiof" (generic SH-Mobile compatibile device)
--			 "renesas,rcar-gen2-msiof" (generic R-Car Gen2 and RZ/G1 compatible device)
--			 "renesas,rcar-gen3-msiof" (generic R-Car Gen3 and RZ/G2 compatible device)
--			 "renesas,sh-msiof"      (deprecated)
--
--			 When compatible with the generic version, nodes
--			 must list the SoC-specific version corresponding
--			 to the platform first followed by the generic
--			 version.
--
--- reg                  : A list of offsets and lengths of the register sets for
--			 the device.
--			 If only one register set is present, it is to be used
--			 by both the CPU and the DMA engine.
--			 If two register sets are present, the first is to be
--			 used by the CPU, and the second is to be used by the
--			 DMA engine.
--- interrupts           : Interrupt specifier
--- #address-cells       : Must be <1>
--- #size-cells          : Must be <0>
--
--Optional properties:
--- clocks               : Must contain a reference to the functional clock.
--- num-cs               : Total number of chip selects (default is 1).
--			 Up to 3 native chip selects are supported:
--			   0: MSIOF_SYNC
--			   1: MSIOF_SS1
--			   2: MSIOF_SS2
--			 Hardware limitations related to chip selects:
--			   - Native chip selects are always deasserted in
--			     between transfers that are part of the same
--			     message.  Use cs-gpios to work around this.
--			   - All slaves using native chip selects must use the
--			     same spi-cs-high configuration.  Use cs-gpios to
--			     work around this.
--			   - When using GPIO chip selects, at least one native
--			     chip select must be left unused, as it will be
--			     driven anyway.
--- dmas                 : Must contain a list of two references to DMA
--			 specifiers, one for transmission, and one for
--			 reception.
--- dma-names            : Must contain a list of two DMA names, "tx" and "rx".
--- spi-slave            : Empty property indicating the SPI controller is used
--			 in slave mode.
--- renesas,dtdl         : delay sync signal (setup) in transmit mode.
--			 Must contain one of the following values:
--			 0   (no bit delay)
--			 50  (0.5-clock-cycle delay)
--			 100 (1-clock-cycle delay)
--			 150 (1.5-clock-cycle delay)
--			 200 (2-clock-cycle delay)
--
--- renesas,syncdl       : delay sync signal (hold) in transmit mode.
--			 Must contain one of the following values:
--			 0   (no bit delay)
--			 50  (0.5-clock-cycle delay)
--			 100 (1-clock-cycle delay)
--			 150 (1.5-clock-cycle delay)
--			 200 (2-clock-cycle delay)
--			 300 (3-clock-cycle delay)
--
--Optional properties, deprecated for soctype-specific bindings:
--- renesas,tx-fifo-size : Overrides the default tx fifo size given in words
--			 (default is 64)
--- renesas,rx-fifo-size : Overrides the default rx fifo size given in words
--			 (default is 64)
--
--Pinctrl properties might be needed, too.  See
--Documentation/devicetree/bindings/pinctrl/renesas,*.
--
--Example:
--
--	msiof0: spi@e6e20000 {
--		compatible = "renesas,msiof-r8a7791",
--			     "renesas,rcar-gen2-msiof";
--		reg = <0 0xe6e20000 0 0x0064>;
--		interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
--		dmas = <&dmac0 0x51>, <&dmac0 0x52>;
--		dma-names = "tx", "rx";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--- 
-2.11.0
+On Wed, Sep 25, 2019 at 11:43 AM You-Sheng Yang
+<vicamo.yang@canonical.com> wrote:
+>
+> According to HID over I2C specification v1.0 section 7.2.8, a device is
+> allowed to take at most 1 second to make the transition to the specified
+> power state. On some touchpad devices implements Microsoft Precision
+> Touchpad, it may fail to execute following set PTP mode command without
+> the delay and leaves the device in an unsupported Mouse mode.
+>
+> This change adds a post-setpower-delay-ms device property that allows
+> specifying the delay after a SET_POWER command is issued.
+
+I must confess I have at least 2 problems with your series:
+- this patch is quite hard to review. There are unrelated changes and
+it should be split in at least 2 (I'll detail this in the code review
+below)
+- you are basically adding a new quirk when Windows doesn't need it.
+
+So before we merge this, I'd like to actually know if Windows is doing
+the same and if we could not mimic what Windows is doing to prevent
+further similar quirks in the future.
+
+
+>
+> References: https://bugzilla.kernel.org/show_bug.cgi?id=3D204991
+> Signed-off-by: You-Sheng Yang <vicamo.yang@canonical.com>
+> ---
+>  .../bindings/input/hid-over-i2c.txt           |  2 +
+>  drivers/hid/i2c-hid/i2c-hid-core.c            | 46 +++++++++++--------
+>  include/linux/platform_data/i2c-hid.h         |  3 ++
+>  3 files changed, 32 insertions(+), 19 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt b/D=
+ocumentation/devicetree/bindings/input/hid-over-i2c.txt
+> index c76bafaf98d2f..d82faae335da0 100644
+> --- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> +++ b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> @@ -32,6 +32,8 @@ device-specific compatible properties, which should be =
+used in addition to the
+>  - vdd-supply: phandle of the regulator that provides the supply voltage.
+>  - post-power-on-delay-ms: time required by the device after enabling its=
+ regulators
+
+Why are you removing those 2 properties?
+
+>    or powering it on, before it is ready for communication.
+> +- post-setpower-delay-ms: time required by the device after a SET_POWER =
+command
+> +  before it finished the state transition.
+
+couple of issues:
+- the name might not be the best. It is similar to the
+post-power-on-delay while having a complete different impact. (note: I
+don't have a better name at hand)
+- checkpatch complains that device tree changes should be in a
+separate patch, and I tend to agree.
+
+>
+>  Example:
+>
+> diff --git a/drivers/hid/i2c-hid/i2c-hid-core.c b/drivers/hid/i2c-hid/i2c=
+-hid-core.c
+> index 2a7c6e33bb1c4..a5bc2786dc440 100644
+> --- a/drivers/hid/i2c-hid/i2c-hid-core.c
+> +++ b/drivers/hid/i2c-hid/i2c-hid-core.c
+> @@ -168,6 +168,7 @@ static const struct i2c_hid_quirks {
+>         __u16 idVendor;
+>         __u16 idProduct;
+>         __u32 quirks;
+> +       __u32 post_setpower_delay_ms;
+>  } i2c_hid_quirks[] =3D {
+>         { USB_VENDOR_ID_WEIDA, HID_ANY_ID,
+>                 I2C_HID_QUIRK_SET_PWR_WAKEUP_DEV },
+> @@ -189,21 +190,20 @@ static const struct i2c_hid_quirks {
+>   * i2c_hid_lookup_quirk: return any quirks associated with a I2C HID dev=
+ice
+>   * @idVendor: the 16-bit vendor ID
+>   * @idProduct: the 16-bit product ID
+> - *
+> - * Returns: a u32 quirks value.
+>   */
+> -static u32 i2c_hid_lookup_quirk(const u16 idVendor, const u16 idProduct)
+> +static void i2c_hid_set_quirk(struct i2c_hid *ihid,
+> +               const u16 idVendor, const u16 idProduct)
+>  {
+> -       u32 quirks =3D 0;
+>         int n;
+>
+>         for (n =3D 0; i2c_hid_quirks[n].idVendor; n++)
+>                 if (i2c_hid_quirks[n].idVendor =3D=3D idVendor &&
+>                     (i2c_hid_quirks[n].idProduct =3D=3D (__u16)HID_ANY_ID=
+ ||
+> -                    i2c_hid_quirks[n].idProduct =3D=3D idProduct))
+> -                       quirks =3D i2c_hid_quirks[n].quirks;
+> -
+> -       return quirks;
+> +                    i2c_hid_quirks[n].idProduct =3D=3D idProduct)) {
+> +                       ihid->quirks =3D i2c_hid_quirks[n].quirks;
+> +                       ihid->pdata.post_setpower_delay_ms =3D
+> +                               i2c_hid_quirks[n].post_setpower_delay_ms;
+> +               }
+
+Why are you changing the signature of i2c_hid_set_quirk? If this is
+really a good thing to do, it should go in a separate patch.
+
+>  }
+>
+>  static int __i2c_hid_command(struct i2c_client *client,
+> @@ -431,8 +431,22 @@ static int i2c_hid_set_power(struct i2c_client *clie=
+nt, int power_state)
+>             power_state =3D=3D I2C_HID_PWR_SLEEP)
+>                 ihid->sleep_delay =3D jiffies + msecs_to_jiffies(20);
+>
+> -       if (ret)
+> +       if (ret) {
+>                 dev_err(&client->dev, "failed to change power setting.\n"=
+);
+> +               goto set_pwr_exit;
+> +       }
+> +
+> +       /*
+> +        * The HID over I2C specification states that if a DEVICE needs t=
+ime
+> +        * after the PWR_ON request, it should utilise CLOCK stretching.
+> +        * However, it has been observered that the Windows driver provid=
+es a
+> +        * 1ms sleep between the PWR_ON and RESET requests and that some =
+devices
+> +        * rely on this.
+> +        */
+> +       if (ihid->pdata.post_setpower_delay_ms)
+> +               msleep(ihid->pdata.post_setpower_delay_ms);
+> +       else
+> +               usleep_range(1000, 5000);
+
+Moving up this part needs definitively to be in a separate patch as
+well, with a good explanation on why.
+
+Cheers,
+Benjamin
+
+>
+>  set_pwr_exit:
+>         return ret;
+> @@ -456,15 +470,6 @@ static int i2c_hid_hwreset(struct i2c_client *client=
+)
+>         if (ret)
+>                 goto out_unlock;
+>
+> -       /*
+> -        * The HID over I2C specification states that if a DEVICE needs t=
+ime
+> -        * after the PWR_ON request, it should utilise CLOCK stretching.
+> -        * However, it has been observered that the Windows driver provid=
+es a
+> -        * 1ms sleep between the PWR_ON and RESET requests and that some =
+devices
+> -        * rely on this.
+> -        */
+> -       usleep_range(1000, 5000);
+> -
+>         i2c_hid_dbg(ihid, "resetting...\n");
+>
+>         ret =3D i2c_hid_command(client, &hid_reset_cmd, NULL, 0);
+> @@ -1023,6 +1028,9 @@ static void i2c_hid_fwnode_probe(struct i2c_client =
+*client,
+>         if (!device_property_read_u32(&client->dev, "post-power-on-delay-=
+ms",
+>                                       &val))
+>                 pdata->post_power_delay_ms =3D val;
+> +       if (!device_property_read_u32(&client->dev, "post-setpower-delay-=
+ms",
+> +                                     &val))
+> +               pdata->post_setpower_delay_ms =3D val;
+>  }
+>
+>  static int i2c_hid_probe(struct i2c_client *client,
+> @@ -1145,7 +1153,7 @@ static int i2c_hid_probe(struct i2c_client *client,
+>                  client->name, hid->vendor, hid->product);
+>         strlcpy(hid->phys, dev_name(&client->dev), sizeof(hid->phys));
+>
+> -       ihid->quirks =3D i2c_hid_lookup_quirk(hid->vendor, hid->product);
+> +       i2c_hid_set_quirk(ihid, hid->vendor, hid->product);
+>
+>         ret =3D hid_add_device(hid);
+>         if (ret) {
+> diff --git a/include/linux/platform_data/i2c-hid.h b/include/linux/platfo=
+rm_data/i2c-hid.h
+> index c628bb5e10610..71682f2ad8a53 100644
+> --- a/include/linux/platform_data/i2c-hid.h
+> +++ b/include/linux/platform_data/i2c-hid.h
+> @@ -20,6 +20,8 @@
+>   * @hid_descriptor_address: i2c register where the HID descriptor is sto=
+red.
+>   * @supplies: regulators for powering on the device.
+>   * @post_power_delay_ms: delay after powering on before device is usable=
+.
+> + * @post_setpower_delay_ms: delay after SET_POWER command before device
+> + *                          completes state transition.
+>   *
+>   * Note that it is the responsibility of the platform driver (or the acp=
+i 5.0
+>   * driver, or the flattened device tree) to setup the irq related to the=
+ gpio in
+> @@ -36,6 +38,7 @@ struct i2c_hid_platform_data {
+>         u16 hid_descriptor_address;
+>         struct regulator_bulk_data supplies[2];
+>         int post_power_delay_ms;
+> +       int post_setpower_delay_ms;
+>  };
+>
+>  #endif /* __LINUX_I2C_HID_H */
+> --
+> 2.23.0
+>
 
