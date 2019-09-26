@@ -2,134 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 922EBBEF66
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB5CBEF86
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726826AbfIZKRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 06:17:55 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:22410 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726520AbfIZKRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Sep 2019 06:17:55 -0400
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8QAD77A013210;
-        Thu, 26 Sep 2019 06:17:18 -0400
-Received: from nam05-co1-obe.outbound.protection.outlook.com (mail-co1nam05lp2053.outbound.protection.outlook.com [104.47.48.53])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2v6hkcq1nr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 Sep 2019 06:17:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fMgL6LZTy753z2vtUMUvUZZuNwsx4qvIQRmjXtVYkJHUqSAxFPd4eXkBp4s8s3DUpaJvYkSuBDxX7sTvmc4IRK5cleenLOGJX1NBELdPws1KD6ig4gZ7Cncc6F1+iHVF7VCsOVE53jatzsHWu0GR84bx6Uj68uy2rZ9OeKe32c4/37QOJgHERdfJ3MK3cY9+V6mmphkZ3hF19l4/XSgEYF13jVO2Phnv7PZMDE/duVMO5/nlHV+bEFMq0K4YVykXiLp9UWK0CJQ+4b16PR4AGJJDLLUaqwaUOD7D5NVoeeGAl66UTu8lXFHq0ehQ/DNPjHKyWiMYLZLB9KvJJyaLDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FIcIT2r8DIW2C3qXtZFveXdYWvbQL4Aq9ugLNLXT1QM=;
- b=QwKk3l7di2c27AGTplOttAsaBd+JmHP626KykbRBZ6YEpyTdztqT9a5VZVArAKmhnQt9+GTU/Qu2+25iUnMPq7fNbvH9AEKColwk+lR481V2JOECciNXnMha2OBL5UpWQlakqINEvnaiB5GeU5sGNJZFk3VF9vJxO7bgWEiYeiu/iN0DOa1JKFK5uG4R1dv8Dq/LmQvZQwT0fW/xZfcFgGVT61CkPh+12KSODdsxM3kBc2Vop1/SCAYOB4U9bQ0EQXIBWgVR8oAK37r4rHdC4zz9xJ05Tbb7nyfiu03WyTcg8LIUmOJyscg5zSfvLvzIT9nNtgCMbNGoFJwWzIfYsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FIcIT2r8DIW2C3qXtZFveXdYWvbQL4Aq9ugLNLXT1QM=;
- b=g6EW2o/hFV9gR4+uTMg7EL3Ci+Zo67yFDYqBMsvI35T1F+wDEs475wRx3Wq5xhBikX/mA5nN9C5fFw9jtQUG6DoBEteIU7z3cqqsloEX+HbWEy5VuT3rkssTTpW3Zep9+Kj3zHpJVCQCmKJC7NGyDh4ga+gnElQGspncmfVywWU=
-Received: from MN2PR03MB5117.namprd03.prod.outlook.com (52.132.171.137) by
- MN2PR03MB5087.namprd03.prod.outlook.com (52.132.169.9) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.20; Thu, 26 Sep 2019 10:17:14 +0000
-Received: from MN2PR03MB5117.namprd03.prod.outlook.com
- ([fe80::9db6:a133:7d27:643]) by MN2PR03MB5117.namprd03.prod.outlook.com
- ([fe80::9db6:a133:7d27:643%4]) with mapi id 15.20.2284.028; Thu, 26 Sep 2019
- 10:17:14 +0000
-From:   "Sa, Nuno" <Nuno.Sa@analog.com>
-To:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-CC:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>
-Subject: Re: [PATCH 0/3] LTC2947 support
-Thread-Topic: [PATCH 0/3] LTC2947 support
-Thread-Index: AQHVctaYm6ZaYzcfm0mzoiGNZr08w6c9wZKA
-Date:   Thu, 26 Sep 2019 10:17:14 +0000
-Message-ID: <67d13d31e7ed90c08a181422c9b72e6a68ad7c39.camel@analog.com>
-References: <20190924124945.491326-1-nuno.sa@analog.com>
-In-Reply-To: <20190924124945.491326-1-nuno.sa@analog.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.71.226.54]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 273c8fc3-4b63-4a44-f215-08d7426ab3df
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:MN2PR03MB5087;
-x-ms-traffictypediagnostic: MN2PR03MB5087:
-x-microsoft-antispam-prvs: <MN2PR03MB5087FA9D63DA8777435B3E7499860@MN2PR03MB5087.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0172F0EF77
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(396003)(346002)(136003)(39860400002)(366004)(199004)(189003)(2501003)(6486002)(81166006)(14444005)(81156014)(6436002)(14454004)(6512007)(86362001)(256004)(305945005)(3846002)(478600001)(186003)(6246003)(71200400001)(2906002)(71190400001)(99286004)(36756003)(26005)(2201001)(446003)(66946007)(316002)(110136005)(7736002)(5660300002)(66476007)(11346002)(4326008)(8676002)(102836004)(6116002)(66446008)(66556008)(66066001)(91956017)(64756008)(76176011)(6506007)(54906003)(118296001)(76116006)(476003)(2616005)(8936002)(486006)(25786009)(229853002);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR03MB5087;H:MN2PR03MB5117.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: analog.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: AD1sfgrkBPdbN6qn3OngG4nc+kZpL7ZlD519hdDqdV167X8fYgWlX+ywnrLVC4WtSWdgXopqqjMb+6GSssn54CKeqvuPUlixVIJ9y4Y2I5jBnZ9N1PTa+MPycB0W29Y1K7TG0JvZJ8knI0JS0oxukammH9fw2PieCiX1IB2EDgiv0fZdZXx0QF01V2diVMi5TNU4L/hoKaC44WsLMe/A/LuBWYNYAxSB8n6zNFpev7/c7fuQ2A9nCXS+xa88vVpYsXYyPRanccSO5YXFOgThpfF0D8E4lldLOt7xHkzsG9BF2W8RbO8HBaMDOjqvGCLhZS/O04aukvccbqKliZNCC4OO5YOs9CalTTMSfnWLxvSQNLElDztMC0T+skoOksKfPyuJLHp314sUF4RJQ/JYsVdX6990LJ3BSpiZafGr/AU=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <ABCF6EB5A47B6246B78700CB695B564C@namprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 273c8fc3-4b63-4a44-f215-08d7426ab3df
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 10:17:14.7258
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: x0V+SbP2i/KDon5Arr/1BEGR02lUNduhkU9a1CgXs1rPjgnHiuyc7jMVK+l7Km2zYZ19VKhm9bMlyDPZN5GH4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR03MB5087
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-09-26_04:2019-09-25,2019-09-26 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 clxscore=1015 mlxscore=0 suspectscore=0 lowpriorityscore=0
- priorityscore=1501 adultscore=0 spamscore=0 malwarescore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1909260096
+        id S1726618AbfIZKZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 06:25:40 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:54944 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726743AbfIZKZk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 06:25:40 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id B74A525AF0D;
+        Thu, 26 Sep 2019 20:25:37 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id B1EDF943750; Thu, 26 Sep 2019 12:25:35 +0200 (CEST)
+From:   Simon Horman <horms+renesas@verge.net.au>
+To:     Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Simon Horman <horms+renesas@verge.net.au>
+Subject: [PATCH] dt-bindings: spi: sh-msiof: Convert bindings to json-schema
+Date:   Thu, 26 Sep 2019 12:25:33 +0200
+Message-Id: <20190926102533.17829-1-horms+renesas@verge.net.au>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDE5LTA5LTI0IGF0IDE0OjQ5ICswMjAwLCBOdW5vIFPDoSB3cm90ZToNCj4gDQo+
-IFRoaXMgc2VyaWVzIGFkZHMgc3VwcG9ydCBmb3IgdGhlIExUQzI5NDcgaHdtb24gZGV2aWNlLiBU
-aGUgZGV2aWNlDQo+IHN1cHBvcnRzIHBvd2VyWzEtKl1fbWluX2FsYXJtLCBzbyB0aGF0IGl0IG1h
-a2VzIHVzZSBvZg0KPiB0aGUgSFdNT05fUF9NSU5fQUxBUk0gbWFzay4gVGhpcyBicmluZ3MgbWUg
-dG8gdGhlIGZpcnN0IHBhdGNoLCB3aGljaA0KPiBpcyBhDQo+IGZpeCBvbiB0aGUgaHdtb24gc3Vi
-c3lzdGVtIGZvciB0aGUgSFdNT05fUF9NSU5fQUxBUk0gbWFzay4gSXQgd2FzDQo+IGRlZmluaW5n
-DQo+IHRoZSBzYW1lIG1hc2sgYXMgSFdNT05fUF9NQVhfQUxBUk0uDQo+IFRoZSByZXN0IG9mIHRo
-ZSBzZXJpZXMgaXMgdGhlIHVzdWFsIGZvciBhIG5ldyBkZXZpY2UuDQo+IA0KPiBOdW5vIFPDoSAo
-Myk6DQo+ICAgaHdtb246IEZpeCBIV01PTl9QX01JTl9BTEFSTSBtYXNrDQo+ICAgaHdtb246IEFk
-ZCBzdXBwb3J0IGZvciAgbHRjMjk0Nw0KPiAgIGR0LWJpbmRpbmdzOiBpaW86IEFkZCBsdGMyOTQ3
-IGRvY3VtZW50YXRpb24NCg0KT2ssIEkgd2lsbCB3YWl0IGZvciBmdXJ0aGVyIHJldmlld3MsIGJ1
-dCB0aGUgZHQtYmluZGluZ3MgcGF0Y2gNCmRlZmluaXRlbHkgbmVlZCB0byBiZSByZW5hbWVkIHRv
-ICpkdC1iaW5kaW5nczogaHdtb24qIDooLg0KIA0KPiANCj4gIC4uLi9iaW5kaW5ncy9od21vbi9h
-ZGksbHRjMjk0Ny55YW1sICAgICAgICAgICB8ICAxMDEgKysNCj4gIERvY3VtZW50YXRpb24vaHdt
-b24vbHRjMjk0Ny5yc3QgICAgICAgICAgICAgICB8ICAxMTAgKysNCj4gIE1BSU5UQUlORVJTICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMTEgKw0KPiAgZHJpdmVycy9od21v
-bi9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAyNyArDQo+ICBkcml2ZXJzL2h3
-bW9uL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAzICsNCj4gIGRyaXZlcnMv
-aHdtb24vbHRjMjk0Ny1jb3JlLmMgICAgICAgICAgICAgICAgICB8IDE0MjENCj4gKysrKysrKysr
-KysrKysrKysNCj4gIGRyaXZlcnMvaHdtb24vbHRjMjk0Ny1pMmMuYyAgICAgICAgICAgICAgICAg
-ICB8ICAgNDkgKw0KPiAgZHJpdmVycy9od21vbi9sdGMyOTQ3LXNwaS5jICAgICAgICAgICAgICAg
-ICAgIHwgICA1MCArDQo+ICBkcml2ZXJzL2h3bW9uL2x0YzI5NDcuaCAgICAgICAgICAgICAgICAg
-ICAgICAgfCAgIDEyICsNCj4gIGluY2x1ZGUvbGludXgvaHdtb24uaCAgICAgICAgICAgICAgICAg
-ICAgICAgICB8ICAgIDIgKy0NCj4gIDEwIGZpbGVzIGNoYW5nZWQsIDE3ODUgaW5zZXJ0aW9ucygr
-KSwgMSBkZWxldGlvbigtKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+IERvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9od21vbi9hZGksbHRjMjk0Ny55YW1sDQo+ICBjcmVhdGUgbW9k
-ZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9od21vbi9sdGMyOTQ3LnJzdA0KPiAgY3JlYXRlIG1vZGUg
-MTAwNjQ0IGRyaXZlcnMvaHdtb24vbHRjMjk0Ny1jb3JlLmMNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0
-NCBkcml2ZXJzL2h3bW9uL2x0YzI5NDctaTJjLmMNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
-ZXJzL2h3bW9uL2x0YzI5NDctc3BpLmMNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2h3
-bW9uL2x0YzI5NDcuaA0KPiANCg0K
+Convert Renesas HSPI bindings documentation to json-schema.
+Also name bindings documentation file according to the compat string
+being documented.
+
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+---
+Based on v5.3
+Tested using:
+  ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+  ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+---
+ .../devicetree/bindings/spi/renesas,sh-msiof.yaml  | 158 +++++++++++++++++++++
+ Documentation/devicetree/bindings/spi/sh-msiof.txt | 105 --------------
+ 2 files changed, 158 insertions(+), 105 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/sh-msiof.txt
+
+diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+new file mode 100644
+index 000000000000..4afaa48c1666
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+@@ -0,0 +1,158 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/renesas,sh-msiof.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas MSIOF SPI controller
++
++maintainers:
++  - Geert Uytterhoeven <geert+renesas@glider.be>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: renesas,msiof-sh73a0     # SH-Mobile AG5
++          - const: renesas,sh-mobile-msiof  # generic SH-Mobile compatible
++                                            # device
++      - items:
++          - enum:
++              - renesas,msiof-r8a7743       # RZ/G1M
++              - renesas,msiof-r8a7744       # RZ/G1N
++              - renesas,msiof-r8a7745       # RZ/G1E
++              - renesas,msiof-r8a77470      # RZ/G1C
++              - renesas,msiof-r8a7790       # R-Car H2
++              - renesas,msiof-r8a7791       # R-Car M2-W
++              - renesas,msiof-r8a7792       # R-Car V2H
++              - renesas,msiof-r8a7793       # R-Car M2-N
++              - renesas,msiof-r8a7794       # R-Car E2
++          - const: renesas,rcar-gen2-msiof  # generic R-Car Gen2 and RZ/G1
++                                            # compatible device
++      - items:
++          - enum:
++              - renesas,msiof-r8a774a1      # RZ/G2M
++              - renesas,msiof-r8a774c0      # RZ/G2E
++              - renesas,msiof-r8a7795       # R-Car H3
++              - renesas,msiof-r8a7796       # R-Car M3-W
++              - renesas,msiof-r8a77965      # R-Car M3-N
++              - renesas,msiof-r8a77970      # R-Car V3M
++              - renesas,msiof-r8a77980      # R-Car V3H
++              - renesas,msiof-r8a77990      # R-Car E3
++              - renesas,msiof-r8a77995      # R-Car D3
++          - const: renesas,rcar-gen3-msiof  # generic R-Car Gen3 and RZ/G2
++                                            # compatible device
++      - items:
++          - const: renesas,sh-msiof  # deprecated
++
++  reg:
++    minItems: 1
++    maxItems: 2
++    oneOf:
++      - items:
++          - description: CPU and DMA engine registers
++      - items:
++          - description: CPU registers
++          - description: DMA engine registers
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  num-cs:
++    description: |
++      Total number of chip selects (default is 1).
++      Up to 3 native chip selects are supported:
++        0: MSIOF_SYNC
++        1: MSIOF_SS1
++        2: MSIOF_SS2
++      Hardware limitations related to chip selects:
++        - Native chip selects are always deasserted in between transfers
++          that are part of the same message.  Use cs-gpios to work around
++          this.
++        - All slaves using native chip selects must use the same spi-cs-high
++          configuration.  Use cs-gpios to work around this.
++        - When using GPIO chip selects, at least one native chip select must
++          be left unused, as it will be driven anyway.
++    minimum: 1
++    maximum: 3
++    default: 1
++
++  dmas:
++    minItems: 2
++    maxItems: 4
++
++  dma-names:
++    minItems: 2
++    maxItems: 4
++    items:
++      enum: [ tx, rx ]
++
++  renesas,dtdl:
++    description: delay sync signal (setup) in transmit mode.
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++      - enum:
++          - 0    # no bit delay
++          - 50   # 0.5-clock-cycle delay
++          - 100  # 1-clock-cycle delay
++          - 150  # 1.5-clock-cycle delay
++          - 200  # 2-clock-cycle delay
++
++  renesas,syncdl:
++    description: delay sync signal (hold) in transmit mode
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++      - enum:
++          - 0    # no bit delay
++          - 50   # 0.5-clock-cycle delay
++          - 100  # 1-clock-cycle delay
++          - 150  # 1.5-clock-cycle delay
++          - 200  # 2-clock-cycle delay
++          - 300  # 3-clock-cycle delay
++
++  renesas,tx-fifo-size:
++    # deprecated for soctype-specific bindings
++    description: |
++      Override the default TX fifo size.  Unit is words.  Ignored if 0.
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++      - maxItems: 1
++    default: 64
++
++  renesas,rx-fifo-size:
++    # deprecated for soctype-specific bindings
++    description: |
++      Override the default RX fifo size.  Unit is words.  Ignored if 0.
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++      - maxItems: 1
++    default: 64
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#address-cells'
++  - '#size-cells'
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a7791-clock.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    msiof0: spi@e6e20000 {
++        compatible = "renesas,msiof-r8a7791", "renesas,rcar-gen2-msiof";
++        reg = <0 0xe6e20000 0 0x0064>;
++        interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
++        dmas = <&dmac0 0x51>, <&dmac0 0x52>;
++        dma-names = "tx", "rx";
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
+diff --git a/Documentation/devicetree/bindings/spi/sh-msiof.txt b/Documentation/devicetree/bindings/spi/sh-msiof.txt
+deleted file mode 100644
+index 18e14ee257b2..000000000000
+--- a/Documentation/devicetree/bindings/spi/sh-msiof.txt
++++ /dev/null
+@@ -1,105 +0,0 @@
+-Renesas MSIOF spi controller
+-
+-Required properties:
+-- compatible           : "renesas,msiof-r8a7743" (RZ/G1M)
+-			 "renesas,msiof-r8a7744" (RZ/G1N)
+-			 "renesas,msiof-r8a7745" (RZ/G1E)
+-			 "renesas,msiof-r8a77470" (RZ/G1C)
+-			 "renesas,msiof-r8a774a1" (RZ/G2M)
+-			 "renesas,msiof-r8a774c0" (RZ/G2E)
+-			 "renesas,msiof-r8a7790" (R-Car H2)
+-			 "renesas,msiof-r8a7791" (R-Car M2-W)
+-			 "renesas,msiof-r8a7792" (R-Car V2H)
+-			 "renesas,msiof-r8a7793" (R-Car M2-N)
+-			 "renesas,msiof-r8a7794" (R-Car E2)
+-			 "renesas,msiof-r8a7795" (R-Car H3)
+-			 "renesas,msiof-r8a7796" (R-Car M3-W)
+-			 "renesas,msiof-r8a77965" (R-Car M3-N)
+-			 "renesas,msiof-r8a77970" (R-Car V3M)
+-			 "renesas,msiof-r8a77980" (R-Car V3H)
+-			 "renesas,msiof-r8a77990" (R-Car E3)
+-			 "renesas,msiof-r8a77995" (R-Car D3)
+-			 "renesas,msiof-sh73a0" (SH-Mobile AG5)
+-			 "renesas,sh-mobile-msiof" (generic SH-Mobile compatibile device)
+-			 "renesas,rcar-gen2-msiof" (generic R-Car Gen2 and RZ/G1 compatible device)
+-			 "renesas,rcar-gen3-msiof" (generic R-Car Gen3 and RZ/G2 compatible device)
+-			 "renesas,sh-msiof"      (deprecated)
+-
+-			 When compatible with the generic version, nodes
+-			 must list the SoC-specific version corresponding
+-			 to the platform first followed by the generic
+-			 version.
+-
+-- reg                  : A list of offsets and lengths of the register sets for
+-			 the device.
+-			 If only one register set is present, it is to be used
+-			 by both the CPU and the DMA engine.
+-			 If two register sets are present, the first is to be
+-			 used by the CPU, and the second is to be used by the
+-			 DMA engine.
+-- interrupts           : Interrupt specifier
+-- #address-cells       : Must be <1>
+-- #size-cells          : Must be <0>
+-
+-Optional properties:
+-- clocks               : Must contain a reference to the functional clock.
+-- num-cs               : Total number of chip selects (default is 1).
+-			 Up to 3 native chip selects are supported:
+-			   0: MSIOF_SYNC
+-			   1: MSIOF_SS1
+-			   2: MSIOF_SS2
+-			 Hardware limitations related to chip selects:
+-			   - Native chip selects are always deasserted in
+-			     between transfers that are part of the same
+-			     message.  Use cs-gpios to work around this.
+-			   - All slaves using native chip selects must use the
+-			     same spi-cs-high configuration.  Use cs-gpios to
+-			     work around this.
+-			   - When using GPIO chip selects, at least one native
+-			     chip select must be left unused, as it will be
+-			     driven anyway.
+-- dmas                 : Must contain a list of two references to DMA
+-			 specifiers, one for transmission, and one for
+-			 reception.
+-- dma-names            : Must contain a list of two DMA names, "tx" and "rx".
+-- spi-slave            : Empty property indicating the SPI controller is used
+-			 in slave mode.
+-- renesas,dtdl         : delay sync signal (setup) in transmit mode.
+-			 Must contain one of the following values:
+-			 0   (no bit delay)
+-			 50  (0.5-clock-cycle delay)
+-			 100 (1-clock-cycle delay)
+-			 150 (1.5-clock-cycle delay)
+-			 200 (2-clock-cycle delay)
+-
+-- renesas,syncdl       : delay sync signal (hold) in transmit mode.
+-			 Must contain one of the following values:
+-			 0   (no bit delay)
+-			 50  (0.5-clock-cycle delay)
+-			 100 (1-clock-cycle delay)
+-			 150 (1.5-clock-cycle delay)
+-			 200 (2-clock-cycle delay)
+-			 300 (3-clock-cycle delay)
+-
+-Optional properties, deprecated for soctype-specific bindings:
+-- renesas,tx-fifo-size : Overrides the default tx fifo size given in words
+-			 (default is 64)
+-- renesas,rx-fifo-size : Overrides the default rx fifo size given in words
+-			 (default is 64)
+-
+-Pinctrl properties might be needed, too.  See
+-Documentation/devicetree/bindings/pinctrl/renesas,*.
+-
+-Example:
+-
+-	msiof0: spi@e6e20000 {
+-		compatible = "renesas,msiof-r8a7791",
+-			     "renesas,rcar-gen2-msiof";
+-		reg = <0 0xe6e20000 0 0x0064>;
+-		interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
+-		dmas = <&dmac0 0x51>, <&dmac0 0x52>;
+-		dma-names = "tx", "rx";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-- 
+2.11.0
+
