@@ -2,87 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B3CBF447
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 15:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDC87BF45F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 15:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726963AbfIZNni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 09:43:38 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37803 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726216AbfIZNni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 09:43:38 -0400
-Received: by mail-ot1-f67.google.com with SMTP id k32so2040282otc.4;
-        Thu, 26 Sep 2019 06:43:37 -0700 (PDT)
+        id S1726973AbfIZNu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 09:50:26 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:39663 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726094AbfIZNu0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 09:50:26 -0400
+Received: by mail-wm1-f65.google.com with SMTP id v17so2657367wml.4;
+        Thu, 26 Sep 2019 06:50:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9iQoPR6Dtfrg/kE8q+V9kP7orp4W3/CCPYRyl7Gtb8k=;
-        b=guMkHhRJaJ3Ux/FHRXJT0P4MeUtGGiK/rkAENC+yUAMg6B+dXjh2IHQ0cVs8YesbiG
-         jxDK4UzarLmyjWne5gE0xMwVG/G/j6LSx5LZSF/2F2w5n2U/rivzwuBxIEN2ZXHUbxoz
-         K3oBtYN9GmcQPxgr/xSLsdFap8InPp8NRh2tifWzH+VTY6STM/h6McdUVpAKLSHdK/BU
-         esCDmp6AachOXo8h07G4B9W/buBcwQCWk6HI11B/fZjMGEzgtKloF6HNVjVPfyS5PBKU
-         51ff25v8PHhEkJVdgEDupt+UayXaQ/bAFi0yxuJVaSOKAAPziuxa/1xugqHDmsjXQoip
-         iztg==
-X-Gm-Message-State: APjAAAXFb0o9lnSWxSky/hJDnomBmfh2gUaQx8Ij1HA/DAUiiAimUEe4
-        9wNrdpxg+JebZBrpTN5NBe2p8oq+PnOAZK56XQo=
-X-Google-Smtp-Source: APXvYqzlY4Qa2PVNWrJbCqqT0iWOU7qRw7aWWoYKaXfqDi5MwjlVBKkxQqUWNJew3hac3avWmm/1CejGsR0tfw3UU/4=
-X-Received: by 2002:a9d:730d:: with SMTP id e13mr2635252otk.145.1569505417194;
- Thu, 26 Sep 2019 06:43:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <1569310619-31071-1-git-send-email-biju.das@bp.renesas.com>
- <CAMuHMdXwpSeQPUtKT4g6Oa14w71WM9dw5xXj3DUZ8Qj6=9OM0g@mail.gmail.com> <OSBPR01MB2103FBD1E80060A718C32FCFB8860@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSBPR01MB2103FBD1E80060A718C32FCFB8860@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Sep 2019 15:43:26 +0200
-Message-ID: <CAMuHMdX1Q5p6X1+35Q1ApDC3REbxpBnG5vRncwbHXcCLmCXqxg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: sh_mobile: Add r8a774b1 support
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=D/8T5m7hbGHRf18FTM0IPCMPxpbgEnnIkFO3iBtgMoI=;
+        b=nQeKbai9YfR0Lrh+v0Hm9coCUK2o2jf61jrhYnhIaM18AwruBNjJEHdF/5i5+TTG/g
+         AGxQLmDdjgz8DH+ueLcpD5Vo+RnIIvwWcdDAWs0QxBYbNrO45+yH12RSirMaiY6toBz/
+         9acX+ypWSOO1OEtg/KFQgqyYw1EL68j8l5Pv7wYPkqy3xwZspWu9t12tpvguTJEO2LfZ
+         uzlngXLGgTvKCrUKhOQh0atIo+agbvjXjhRhpb/kKoFuDoSlfIzJP63bioaKqnEm9R6L
+         k8J26BHcOQd7Ji7LLRNqML8A/NUBa0avUJMavs4OKAx6VfJX98jmvs9VG8FYeo9qNF8d
+         azSQ==
+X-Gm-Message-State: APjAAAXrkWUbK6bgltNptlEpbxYCL/N5rbV9+owfHrefj3Z11MLTjvTV
+        i0S7BX9sPU/cbVgSAJkqZBI=
+X-Google-Smtp-Source: APXvYqzdU1cIa3FD+JAPYVAaH707n4teHQKT/IIvZ7iBM1sXGF77mTWqzqflvK9u9d6gvprBoDLiEg==
+X-Received: by 2002:a7b:c949:: with SMTP id i9mr2903344wml.136.1569505823617;
+        Thu, 26 Sep 2019 06:50:23 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id l9sm2945985wme.45.2019.09.26.06.50.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2019 06:50:22 -0700 (PDT)
+Date:   Thu, 26 Sep 2019 15:50:20 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Brown <broonie@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maciej Falkowski <m.falkowski@samsung.com>
+Subject: Re: [PATCH] dt-bindings: sound: Convert Samsung Exynos Odroid
+ XU3/XU4 audio complex to dt-schema
+Message-ID: <20190926135020.GB15876@pi3>
+References: <CGME20190926120115eucas1p20280a4e50c826d43bea7bfe5d670aebe@eucas1p2.samsung.com>
+ <20190926120111.8478-1-m.szyprowski@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190926120111.8478-1-m.szyprowski@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Thu, Sep 26, 2019 at 02:01:11PM +0200, Marek Szyprowski wrote:
+> From: Maciej Falkowski <m.falkowski@samsung.com>
+> 
+> Convert Samsung Exynos Odroid XU3/XU4 audio complex with MAX98090 codec
+> to newer dt-schema format.
+> 
+> 'clocks' property is unneeded in the bindings and is left undefined in 'properties'.
+> 
+> 'samsung,audio-widgets' and 'samsung,audio-routing' are optional from driver
+> perspective and they are set as unrequired.
+> 
+> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+>  .../bindings/sound/samsung,odroid.txt         | 54 -----------
+>  .../bindings/sound/samsung,odroid.yaml        | 91 +++++++++++++++++++
+>  2 files changed, 91 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/samsung,odroid.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/samsung,odroid.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,odroid.txt b/Documentation/devicetree/bindings/sound/samsung,odroid.txt
+> deleted file mode 100644
+> index e9da2200e173..000000000000
+> --- a/Documentation/devicetree/bindings/sound/samsung,odroid.txt
+> +++ /dev/null
+> @@ -1,54 +0,0 @@
+> -Samsung Exynos Odroid XU3/XU4 audio complex with MAX98090 codec
+> -
+> -Required properties:
+> -
+> - - compatible - "hardkernel,odroid-xu3-audio" - for Odroid XU3 board,
+> -		"hardkernel,odroid-xu4-audio" - for Odroid XU4 board (deprecated),
+> -		"samsung,odroid-xu3-audio" - for Odroid XU3 board (deprecated),
+> -		"samsung,odroid-xu4-audio" - for Odroid XU4 board (deprecated)
+> - - model - the user-visible name of this sound complex
+> - - clocks - should contain entries matching clock names in the clock-names
+> -    property
+> - - samsung,audio-widgets - this property specifies off-codec audio elements
+> -   like headphones or speakers, for details see widgets.txt
+> - - samsung,audio-routing - a list of the connections between audio
+> -   components;  each entry is a pair of strings, the first being the
+> -   connection's sink, the second being the connection's source;
+> -   valid names for sources and sinks are the MAX98090's pins (as
+> -   documented in its binding), and the jacks on the board
+> -
+> -   For Odroid X2:
+> -     "Headphone Jack", "Mic Jack", "DMIC"
+> -
+> -   For Odroid U3, XU3:
+> -     "Headphone Jack", "Speakers"
+> -
+> -   For Odroid XU4:
+> -     no entries
+> -
+> -Required sub-nodes:
+> -
+> - - 'cpu' subnode with a 'sound-dai' property containing the phandle of the I2S
+> -    controller
+> - - 'codec' subnode with a 'sound-dai' property containing list of phandles
+> -    to the CODEC nodes, first entry must be corresponding to the MAX98090
+> -    CODEC and the second entry must be the phandle of the HDMI IP block node
+> -
+> -Example:
+> -
+> -sound {
+> -	compatible = "hardkernel,odroid-xu3-audio";
+> -	model = "Odroid-XU3";
+> -	samsung,audio-routing =
+> -		"Headphone Jack", "HPL",
+> -		"Headphone Jack", "HPR",
+> -		"IN1", "Mic Jack",
+> -		"Mic Jack", "MICBIAS";
+> -
+> -	cpu {
+> -		sound-dai = <&i2s0 0>;
+> -	};
+> -	codec {
+> -		sound-dai = <&hdmi>, <&max98090>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,odroid.yaml b/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
+> new file mode 100644
+> index 000000000000..db6d3ea3180e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/samsung,odroid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung Exynos Odroid XU3/XU4 audio complex with MAX98090 codec
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: hardkernel,odroid-xu3-audio
+> +
+> +      - const: hardkernel,odroid-xu4-audio
+> +        deprecated: true
+> +
+> +      - const: samsung,odroid-xu3-audio
+> +        deprecated: true
+> +
+> +      - const: samsung,odroid-xu4-audio
+> +        deprecated: true
+> +
+> +  model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: The user-visible name of this sound complex.
+> +
+> +  cpu:
 
-On Thu, Sep 26, 2019 at 2:49 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] dt-bindings: i2c: sh_mobile: Add r8a774b1 support
-> >
-> > On Tue, Sep 24, 2019 at 9:37 AM Biju Das <biju.das@bp.renesas.com> wrote:
-> > > Document RZ/G2N (R8A774B1) SoC bindings.
-> > >
-> > > Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > >  Documentation/devicetree/bindings/i2c/i2c-sh_mobile.txt | 1 +
-> >
-> > Documentation/devicetree/bindings/i2c/renesas,iic.txt
->
-> OK. Will send V2 with the above file name change.
+Continuing discussion from TM2 audio, these are not standard properties,
+so they can be in some reasonable order. Ordering might not only bring
+readability but also solve conflicts of simultaneous edits.  The same in
+"required" section (except compatible).
 
-I don't know if that is needed.  Perhaps Wolfram is as good as git cherry-pick,
-when applying patches against changed filenames? ;-)
+> +    type: object
+> +    properties:
+> +      sound-dai:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description: phandles to the I2S controllers
+> +
+> +  codec:
+> +    type: object
+> +    properties:
+> +      sound-dai:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description: |
+> +          List of phandles to the CODEC nodes,
+> +          first entry must be corresponding to the MAX98090 CODEC and
+> +          the second entry must be the phandle of the HDMI IP block node.
+> +
+> +  samsung,audio-widgets:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: |
+> +      This property specifies off-codec audio elements
+> +      like headphones or speakers, for details see widgets.txt
+> +
+> +  samsung,audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: |
+> +      List of the connections between audio
 
-Gr{oetje,eeting}s,
+Too early word wrap.
 
-                        Geert
+Rest looks good to me, so with the changes:
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
+
