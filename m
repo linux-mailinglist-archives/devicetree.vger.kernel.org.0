@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8D8BEA31
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 03:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2BFBEA4E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 03:49:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391174AbfIZBea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 21:34:30 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:45848 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2388759AbfIZBe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 21:34:29 -0400
-X-UUID: 02390ec3819943f59fad01eaed510d65-20190926
-X-UUID: 02390ec3819943f59fad01eaed510d65-20190926
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1057313941; Thu, 26 Sep 2019 09:34:20 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 26 Sep
- 2019 09:34:19 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 26 Sep 2019 09:34:17 +0800
-Message-ID: <1569461658.32135.12.camel@mhfsdcap03>
-Subject: Re: [PATCH 4/5] dt-bindings: usb: dwc3: of-simple: add compatible
- for HiSi
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     John Stultz <john.stultz@linaro.org>
-CC:     lkml <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "Andy Shevchenko" <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date:   Thu, 26 Sep 2019 09:34:18 +0800
-In-Reply-To: <20190925234224.95216-5-john.stultz@linaro.org>
-References: <20190925234224.95216-1-john.stultz@linaro.org>
-         <20190925234224.95216-5-john.stultz@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S2391337AbfIZBty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 21:49:54 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:33113 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388759AbfIZBty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 21:49:54 -0400
+Received: by mail-pf1-f193.google.com with SMTP id q10so768212pfl.0;
+        Wed, 25 Sep 2019 18:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=uI3653QvRfDun5vRH9qyIawnNKEumCLQmRxicnF+xIE=;
+        b=BmhqPRhlQgpby6NkH48NMswsV+CwXScc+2OJ4w/Kc48zNgHHAfS2FqHNPwzS+O0xB6
+         6ocLda3/dxNOPh9j3Rv4CSYsH+9gMHSJKJblwGho55ICTrYxOb6AdPD8tdBI3DtrleLI
+         i7Fcl/1yXHmmVQeNqf39ZNrySFVSen2JoClH6PQhbsFZWrxgPm9Gj4TxA+Vp7L7RnLTd
+         Ogwiv5cMP6Lvy6MjRCbnuVAQkAw9iHmCnOiLSbdgQ/ybBe85RQkDQ63NhNgHiQ621/Zc
+         DsHnR7LUv8gvc57oGKi1HAnqVnRM1qfPt0kZJFNzgXDQw+rWN+BfxVItLiGg/ED/h0c+
+         tx+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=uI3653QvRfDun5vRH9qyIawnNKEumCLQmRxicnF+xIE=;
+        b=TOTuX6qAFBGiAjFi18M6MSRwPW2BDZpvmAJn6k+oRUWpTclbJxXRz3Uec9wI33nAx3
+         5wQq051aaOj54lgGqqu7AL3KN0AH/X/8DmyOGuB42FoCWE+0em0pDDBZS3Zzni+diXOg
+         PCMC4bQpL7Qa3WmtuY1qm8vex88MwtoolmbNx/UYD1f7e13nqKaTbBdK+/qNqR37fprJ
+         aenbcAeoA3ZvlqQrYYiFbg3aYiTw9DHc+2JWCKoQkYkMG1uhhRwPOuFJrCarxC2NnRsk
+         QDMd+Ugtx97GUUsscfuyGYOnBZZKMUx7P9N9H87c/iTNnA57yvk3oAN6Y/uREPEuCgxj
+         0O4g==
+X-Gm-Message-State: APjAAAUX+CJBZH+YGZf3iPyi2q/Sh7xg7V5NbN4Iq6s80UBxNgMZBVYH
+        cEIykvAT2AGaRuB4Yti9OQ8=
+X-Google-Smtp-Source: APXvYqxBJIYCpZx86R9ytnHhKp607PqA7avrf7WrBtzA3FCSAUzgHNDVzVxOo3YZNahIPTbhg92bhg==
+X-Received: by 2002:a17:90a:1b46:: with SMTP id q64mr817457pjq.76.1569462593023;
+        Wed, 25 Sep 2019 18:49:53 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id d14sm324463pfh.36.2019.09.25.18.49.52
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 25 Sep 2019 18:49:52 -0700 (PDT)
+Date:   Wed, 25 Sep 2019 18:49:06 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, lars@metafoo.de
+Subject: Re: [PATCH V5 4/4] ASoC: fsl_asrc: Fix error with S24_3LE format
+ bitstream in i.MX8
+Message-ID: <20190926014905.GA24545@Asurada-Nvidia.nvidia.com>
+References: <cover.1569387932.git.shengjiu.wang@nxp.com>
+ <7c05d8396fd8c4f9d41c13a85e7486f3664bc73f.1569387932.git.shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: F93ADA76283739A391119E64EF2F43EF159D1815EA94474BA56A6CF3A64D18CB2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7c05d8396fd8c4f9d41c13a85e7486f3664bc73f.1569387932.git.shengjiu.wang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-09-25 at 23:42 +0000, John Stultz wrote:
-> Add necessary compatible flag for HiSi's DWC3 so
-> dwc3-of-simple will probe.
-> 
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Felipe Balbi <balbi@kernel.org>
-> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Yu Chen <chenyu56@huawei.com>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> Cc: linux-usb@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: John Stultz <john.stultz@linaro.org>
-> ---
->  .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/hisi,dwc3.txt b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> new file mode 100644
-> index 000000000000..dc31b8a3c006
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> @@ -0,0 +1,52 @@
-> +HiSi SuperSpeed DWC3 USB SoC controller
-> +
-> +Required properties:
-> +- compatible:		should contain "hisilicon,hi3660-dwc3" for HiSi SoC
-> +- clocks:		A list of phandle + clock-specifier pairs for the
-> +			clocks listed in clock-names
-> +- clock-names:		Should contain the following:
-> +  "clk_usb3phy_ref"	Phy reference clk
-It's not good idea to apply phy's clock in dwc3's node
+Just a small concern...
 
-> +  "aclk_usb3otg"	USB3 OTG aclk
+On Thu, Sep 26, 2019 at 09:29:51AM +0800, Shengjiu Wang wrote:
+>  static int fsl_asrc_dma_startup(struct snd_pcm_substream *substream)
+>  {
 > +
-> +- assigned-clocks:	Should be:
-> +				HI3660_ACLK_GATE_USB3OTG
-> +- assigned-clock-rates: Should be:
-> +				229Mhz (229000000) for HI3660_ACLK_GATE_USB3OTG
-> +
-> +Optional properties:
-> +- resets:		Phandle to reset control that resets core and wrapper.
-> +
-> +Required child node:
-> +A child node must exist to represent the core DWC3 IP block. The name of
-> +the node is not important. The content of the node is defined in dwc3.txt.
-> +
-> +Example device nodes:
-> +
-> +	usb3: hisi_dwc3 {
-> +		compatible = "hisilicon,hi3660-dwc3";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		clocks = <&crg_ctrl HI3660_CLK_ABB_USB>,
-> +			 <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
-> +		clock-names = "clk_usb3phy_ref", "aclk_usb3otg";
-> +
-> +		assigned-clocks = <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
-> +		assigned-clock-rates = <229 000 000>;
-> +		resets = <&crg_rst 0x90 8>,
-> +			 <&crg_rst 0x90 7>,
-> +			 <&crg_rst 0x90 6>,
-> +			 <&crg_rst 0x90 5>;
-> +
-> +		dwc3: dwc3@ff100000 {
-> +			compatible = "snps,dwc3";
-> +			reg = <0x0 0xff100000 0x0 0x100000>;
-> +			interrupts = <0 159 4>, <0 161 4>;
-> +			phys = <&usb_phy>;
-> +			phy-names = "usb3-phy";
-> +			dr_mode = "otg";
-> +
-> +			...
-> +		};
-> +	};
+> +	release_pair = false;
+> +	ret = snd_soc_set_runtime_hwparams(substream, &snd_imx_hardware);
 
+This set_runtime_hwparams() always returns 0 for now, but if
+one day it changes and it fails here, kfree() will be still
+ignored although the startup() gets error-out.
 
+We could avoid this if we continue to ignore the return value
+like the current code. Or we may check ret at kfree() also?
+
+> +
+> +out:
+> +	dma_release_channel(tmp_chan);
+> +
+> +dma_chan_err:
+> +	fsl_asrc_release_pair(pair);
+> +
+> +req_pair_err:
+> +	if (release_pair)
+> +		kfree(pair);
+> +
+> +	return ret;
+>  }
