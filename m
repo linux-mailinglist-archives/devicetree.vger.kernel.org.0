@@ -2,97 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB774BF06A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A649BF0C5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 13:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726802AbfIZKxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 06:53:21 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:41498 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726762AbfIZKxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 06:53:21 -0400
-Received: by mail-io1-f65.google.com with SMTP id r26so5259548ioh.8;
-        Thu, 26 Sep 2019 03:53:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=07TZjLhLzFQD/d/peiuV+KiApqHJ0vC82cYd9ZCGW3I=;
-        b=lIBa6S8No25wVSZ5OCudotLs3QnSkUDyAEFTtWdhBSUVnDRrlkXvLDgFtxtXdNmehK
-         dAzU29e+4ePHpmLtLt0IwEaGXkMIyzPU7A698T3pNHzZAWSSYgjwoFL6rsjhY2DJIKDM
-         PRVDHjGrpJNvmdprSqaC12xs6qQvoWFnLKRKXm9vdPWLiS9Q4Cx7yWE5EOpecBzXzi+n
-         CpkVfEMgEu3JFob6ios7fRsgDRzLhMDxBPgs6Vf+/vqD5gh9mmpetrt0ZXZNKv4Mo9b0
-         SvPrUE3Eowl0FKu+rabY1pbjGQ/uGk4fU+zZLVjV4/c+fCaLpzeXzXbliXzUp+7Bh5h3
-         eLzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=07TZjLhLzFQD/d/peiuV+KiApqHJ0vC82cYd9ZCGW3I=;
-        b=NfqwXiUJZUAoAUq4wvXNGqMd0VC/PTViJHh2M86D7wPMnSun/YO9it3IA826BemMpQ
-         TNPeKcrg7FiTfcWH4KdVSgtXK+J0XAPivc9W/S7mBulo+V29mw4yq7+QE5u3p+amoIGC
-         aEwAaYUlH+BLoSi56nq8Y8vZ6Fe8QRx67L4Qdll4vUtIOGXbjoJIiBXSzSCa3UMvspNx
-         IcM/l+anfyhqhlf2WCrf7wZs83BtiUMAUCBRwG2Mu6c06eMrziq7EKYByQ1l9dvw4ERK
-         QXYa6+Tf4mhiTYeB5ppYE8lT1+/R76q1duRT4fLvAsSs5L37bx96Lil6Srznj7mI843L
-         7nmw==
-X-Gm-Message-State: APjAAAVKHQB+f0FPT7qO1MdHb22qRtTaTlfHo1fk7/2b/Oios26n41Wh
-        HgMFFPsKfkRBrGHgMKw/2wz37zF5o43N7S87bVzjNw==
-X-Google-Smtp-Source: APXvYqxN48IwDqdlkhPJvWfp5fy13UB08I+go8HDZg/Y1UhOHe3uy98kP5lBC01mtdXruP+pH7sTAHjdETKxcLhv7is=
-X-Received: by 2002:a6b:fe11:: with SMTP id x17mr2916340ioh.6.1569495200143;
- Thu, 26 Sep 2019 03:53:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190902054935.4899-1-linux.amoon@gmail.com> <7ha7asuj6q.fsf@baylibre.com>
-In-Reply-To: <7ha7asuj6q.fsf@baylibre.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Thu, 26 Sep 2019 16:23:08 +0530
-Message-ID: <CANAwSgSvPmtzCzbaLC6LOfov9e32V9koUhF=5VAaKO87EHKw8A@mail.gmail.com>
-Subject: Re: [PATCHv4-next 0/3] Odroid c2 usb fixs rebase on linux-next
-To:     Kevin Hilman <khilman@baylibre.com>
+        id S1725806AbfIZLC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 07:02:29 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:35855 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbfIZLC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 07:02:28 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190926110227euoutp01f15c4a9d89e6d4e3f904d82b845c0832~H_BEEwKT_0919009190euoutp01H
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 11:02:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190926110227euoutp01f15c4a9d89e6d4e3f904d82b845c0832~H_BEEwKT_0919009190euoutp01H
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1569495747;
+        bh=T1vG9yJ0SrvHDQJfyMirTT552HaxAD38CrVYzRGiMrA=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=vV+vsVcpVWomhaEqJilNT2Zsq8sW11jXNZViSCGly36ahapYZoqN+3/yVt0ZrSj3r
+         hUK8FJ/KY/amTMFidA1ZdLksfG/I74zS80TZMoJlZCNjNGhzS6UqZtMGTrvVsG7/v9
+         e4wN0UE8Q4yvOM8H7HGt/MV7Yr4zOLKBrSrt7i0o=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190926110226eucas1p2a5a0fb04e6ecd1ce99ed81599a1e85d4~H_BDry20e0586305863eucas1p20;
+        Thu, 26 Sep 2019 11:02:26 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 45.D8.04374.2CA9C8D5; Thu, 26
+        Sep 2019 12:02:26 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190926110226eucas1p24dbb1b39ffa3f607aa28c0c4d9ff6aba~H_BDSjD0z0586305863eucas1p2z;
+        Thu, 26 Sep 2019 11:02:26 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190926110226eusmtrp25ba1e9e4c5004f2f562a43e1a591292b~H_BDK4MpT2039620396eusmtrp2B;
+        Thu, 26 Sep 2019 11:02:26 +0000 (GMT)
+X-AuditID: cbfec7f5-4ddff70000001116-5b-5d8c9ac2c1e3
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 51.E9.04166.2CA9C8D5; Thu, 26
+        Sep 2019 12:02:26 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190926110225eusmtip162bc8419c3a731febe25b42acf6782c0~H_BCiMLpZ2692226922eusmtip1R;
+        Thu, 26 Sep 2019 11:02:25 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH v2] ASoC: samsung: i2s: Document clocks macros
+Date:   Thu, 26 Sep 2019 13:02:19 +0200
+Message-Id: <20190926110219.6144-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphleLIzCtJLcpLzFFi42LZduznOd1Ds3piDdrea1pcuXiIyWLqwyds
+        FvOPnGO1OH9+A7vFtysdTBaXd81hs5hxfh+TxYPmdWwWa4/cZbdYev0ik0Xr3iPsFofftLM6
+        8Hhs+NzE5rFm3hpGj52z7rJ7bFrVyebRt2UVo8fnTXIBbFFcNimpOZllqUX6dglcGT+X32Ev
+        2MhVsan3PHsD4yWOLkYODgkBE4k9nxm7GLk4hARWMEqce32MBcL5wihxeN0S9i5GTiDnM6PE
+        ztmiMA2zp0LVLGeUmHviByNcw53mGWANbAKGEl1vu9hAbBGBOomzZ46AFTELHGGSaL7/mwkk
+        ISxgJ3F8bQ8LiM0ioCrx8vQSsAZeARuJKRtugNVICMhLrN5wgBmkWUKgmV3i39mTzBAJF4mv
+        /3oYIWxhiVfHt7BD2DIS/3fOZ4JqYJR4eG4tO4TTwyhxuWkGVIe1xOHjF1lBHmIW0JRYv0sf
+        IuwoceXNVhaIP/kkbrwVBAkzA5mTtk1nhgjzSnS0CUFUq0nMOr4Obu3BC5egTvOQ+LP6Hisk
+        5GIlDvYuYZnAKDcLYdcCRsZVjOKppcW56anFxnmp5XrFibnFpXnpesn5uZsYgWnk9L/jX3cw
+        7vuTdIhRgINRiYf3QFh3rBBrYllxZe4hRgkOZiURXt/Inlgh3pTEyqrUovz4otKc1OJDjNIc
+        LErivNUMD6KFBNITS1KzU1MLUotgskwcnFINjLFybCdDTugHlQkdv5Yd0flwwp+Mn+EmoVEC
+        D3hehYlcDtVP3vft3voDh8qeqR7ZdqdZWOi8ZQBzjK8b555DB6fEJwYcPNOdse66yJ9122p1
+        50juMHh2iCMq/8C1UtVVtq9i/nf2d3iyWNQVps3KksvfF3Qx7x+L1wcN380z3jhVRxX1Tirv
+        VWIpzkg01GIuKk4EAFo3rPUfAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCLMWRmVeSWpSXmKPExsVy+t/xu7qHZvXEGnTOZLW4cvEQk8XUh0/Y
+        LOYfOcdqcf78BnaLb1c6mCwu75rDZjHj/D4miwfN69gs1h65y26x9PpFJovWvUfYLQ6/aWd1
+        4PHY8LmJzWPNvDWMHjtn3WX32LSqk82jb8sqRo/Pm+QC2KL0bIryS0tSFTLyi0tslaINLYz0
+        DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLLUov07RL0Mn4uv8NesJGrYlPvefYGxkscXYwcHBIC
+        JhKzp7J0MXJxCAksZZTo6G4FcjiB4jISJ6c1sELYwhJ/rnWxQRR9YpT4+2whE0iCTcBQoust
+        REJEoIlR4tjmmWCjmAVOMUncuDqFEaRKWMBO4vjaHrCxLAKqEi9PL2EDsXkFbCSmbLjBBLFC
+        XmL1hgPMExh5FjAyrGIUSS0tzk3PLTbUK07MLS7NS9dLzs/dxAgM4W3Hfm7ewXhpY/AhRgEO
+        RiUe3gNh3bFCrIllxZW5hxglOJiVRHh9I3tihXhTEiurUovy44tKc1KLDzGaAi2fyCwlmpwP
+        jK+8knhDU0NzC0tDc2NzYzMLJXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2ManbsrZOVu5bp
+        8lzX+s25PsXg2fQrJyb/apkSyOkqOSnjOsfKvY89WFSeajr3vK7af3FToU6p0M7uWIfzlez8
+        G2TvumeyPT+8pE8qWu4h47WVCltaw2q59220EGY5m+Xy+8M00z0u96coifP8Upj7fGXUIfVk
+        JfUtxsdv/JvzWDt59coHSZxblViKMxINtZiLihMBXlom33cCAAA=
+X-CMS-MailID: 20190926110226eucas1p24dbb1b39ffa3f607aa28c0c4d9ff6aba
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190926110226eucas1p24dbb1b39ffa3f607aa28c0c4d9ff6aba
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190926110226eucas1p24dbb1b39ffa3f607aa28c0c4d9ff6aba
+References: <CGME20190926110226eucas1p24dbb1b39ffa3f607aa28c0c4d9ff6aba@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
+From: Maciej Falkowski <m.falkowski@samsung.com>
 
-On Thu, 26 Sep 2019 at 03:34, Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Anand Moon <linux.amoon@gmail.com> writes:
->
-> > Some time ago I had tired to enable usb bus 1 for Odroid C2/C1
-> > but it's look like some more work is needed to u-boot and
-> > usb_phy driver to initialize this port.
-> >
-> > Below patches tries to address the issue regarding usb bus 2 (4 port)
-> > while disable the usb bus 1 on this board.
-> >
-> > Previous patch
-> > [0] https://lkml.org/lkml/2019/1/29/325
-> >
-> > Re send below series based re based on linux-next-20190830.
-> > For review and testing.
-> >
-> > [1] https://patchwork.kernel.org/cover/11113091/
-> >
-> > Small changes from previous series.
-> > Fix the commit message for patch 1
->
-> Queued for v5.5.
->
-> I fixed up the typo in patch 2/3 when applying as suggested by Martin.
->
-> Kevin
+Document clocks macros with their description
+from 'Documentation/devicetree/bindings/sound/samsung-i2s.txt'
 
-Thanks,
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+v2:
+- Added proper commit message and description
+- Moved comments to the right side
 
-Best Regards
--Anand
+Best regards,
+Maciej Falkowski
+---
+ include/dt-bindings/sound/samsung-i2s.h | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/include/dt-bindings/sound/samsung-i2s.h b/include/dt-bindings/sound/samsung-i2s.h
+index 77545f14c379..250de0d6c734 100644
+--- a/include/dt-bindings/sound/samsung-i2s.h
++++ b/include/dt-bindings/sound/samsung-i2s.h
+@@ -2,8 +2,14 @@
+ #ifndef _DT_BINDINGS_SAMSUNG_I2S_H
+ #define _DT_BINDINGS_SAMSUNG_I2S_H
+ 
+-#define CLK_I2S_CDCLK		0
+-#define CLK_I2S_RCLK_SRC	1
+-#define CLK_I2S_RCLK_PSR	2
++#define CLK_I2S_CDCLK		0 /* the CDCLK (CODECLKO) gate clock */
++
++#define CLK_I2S_RCLK_SRC	1 /* the RCLKSRC mux clock (corresponding to
++				   * RCLKSRC bit in IISMOD register)
++				   */
++
++#define CLK_I2S_RCLK_PSR	2 /* the RCLK prescaler divider clock
++				   * (corresponding to the IISPSR register)
++				   */
+ 
+ #endif /* _DT_BINDINGS_SAMSUNG_I2S_H */
+-- 
+2.17.1
+
+
+
