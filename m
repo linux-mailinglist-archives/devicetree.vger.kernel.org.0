@@ -2,120 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C82BEB08
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 05:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F32BBEB17
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 06:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391561AbfIZD5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 23:57:21 -0400
-Received: from mail-eopbgr70055.outbound.protection.outlook.com ([40.107.7.55]:4162
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726207AbfIZD5V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Sep 2019 23:57:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MBEwGvOsb0xlGOAxch+x7m+IRtpGnfZoBQVXg2o49V3rshhjbJbey8S8yXut/47KhUOWRMfK94DDc7y4l/GYbfz1Qva/P5Pt1ziKVpwclIKeFfItBQEsFlu0pOkafwaPx6PNBw/IuSnQ2PiME7MAsLirGquD9uQFALCkKyDknPLhcSbZJZ3ak6p+eifa7qwdSqyz7DmluWrYxHriYKBOSpCv+1somCuSFJreaNJNLWsHkTMUVI+7z1bqn4qCZLn5gAm1Vaj/pt/8LFxnYNESkdsDP4WMdGny8wDzGCVfnXMYnKg1YZts9/8F0s2Hcl+fYlaoAsYBfu76lTVxu7HqmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NFtETIWmItbz8sgkDjSwYdwaW7nZaOXUhJA46UX0nYw=;
- b=DU9MiRJdy2c6qntScnFDMFCb8veqf3Gr8iZexBzBCqXLHbXx2n59GO3ecjZo46jbWQJTPSwt6vSQtWP1B1Id6mQl/+26Q9hxRcaw4iQyXKH993+hhUEf2nKP7HbOvek4IAQpTVbDVr/F8mVwav6IeQWAF1ApJqaWl9mD5U+9jPdxyfXOq2XK0qOHvkyT+ZXBlIBaVchNOqmK3fHxNaRhRC1rZ6H+0Le6lOWvpudAtAmOdUIjz3q1CUUSgL1m1r65sV69XKqvnrybNuQ/8l1oiDJoH93xkQoNzr1xEXaijG33juWG+IWYqVTEs1Vf+RpKR2kCNVXM0WFbEeRZfYQeBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NFtETIWmItbz8sgkDjSwYdwaW7nZaOXUhJA46UX0nYw=;
- b=iarMhq+c76PXDwhA5OMOii1bNsVBD7m0A2I8v/gDbAb4lnCoMpRh0qdO3f2WaEDL4dKbfleIpjRWlaWR0P/wNdiF8gCCPJAMDbB61rH6g+tKNSHe5w5UsN0AEmB2OAaL/J7u9L+cObJwH1c5A2l8pARuoNEYGbUfe17LltC+BAo=
-Received: from AM6PR04MB6470.eurprd04.prod.outlook.com (20.179.246.160) by
- AM6PR04MB5847.eurprd04.prod.outlook.com (20.179.2.213) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.23; Thu, 26 Sep 2019 03:57:17 +0000
-Received: from AM6PR04MB6470.eurprd04.prod.outlook.com
- ([fe80::85ae:95e1:4532:2cdc]) by AM6PR04MB6470.eurprd04.prod.outlook.com
- ([fe80::85ae:95e1:4532:2cdc%5]) with mapi id 15.20.2284.023; Thu, 26 Sep 2019
- 03:57:17 +0000
-From:   "S.j. Wang" <shengjiu.wang@nxp.com>
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-CC:     "timur@kernel.org" <timur@kernel.org>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>
-Subject: Re: [PATCH V5 4/4] ASoC: fsl_asrc: Fix error with S24_3LE format
- bitstream in i.MX8
-Thread-Topic: [PATCH V5 4/4] ASoC: fsl_asrc: Fix error with S24_3LE format
- bitstream in i.MX8
-Thread-Index: AdV0HmLgytY2LH8gSNeymPbPUv29fw==
-Date:   Thu, 26 Sep 2019 03:57:16 +0000
-Message-ID: <AM6PR04MB6470AFE4170063A6F1429C33E3860@AM6PR04MB6470.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=shengjiu.wang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cfbbd9ea-8e00-43c8-dd06-08d742359f5b
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB5847;
-x-ms-traffictypediagnostic: AM6PR04MB5847:
-x-microsoft-antispam-prvs: <AM6PR04MB5847FCC5C07CBC6F185A78AFE3860@AM6PR04MB5847.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0172F0EF77
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(366004)(136003)(376002)(39860400002)(199004)(189003)(7736002)(3846002)(305945005)(66556008)(64756008)(66446008)(74316002)(186003)(66476007)(86362001)(14454004)(66946007)(8676002)(486006)(81156014)(71190400001)(55016002)(71200400001)(4326008)(76116006)(229853002)(102836004)(81166006)(9686003)(52536014)(7696005)(478600001)(2906002)(6246003)(33656002)(6436002)(4744005)(66066001)(26005)(6506007)(25786009)(1411001)(316002)(7416002)(476003)(6916009)(54906003)(8936002)(256004)(5660300002)(6116002)(99286004);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB5847;H:AM6PR04MB6470.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: m5cnDYf4gGcgD5+R5Voar6Ga3w+HbFLMuUaTk0Fzj2B1n9shEgECVJk5/MZtuFX9VJI4me7PPTI/gKw7cnLbLTNU1jkRbSmjWp2VNMAt84hoJI8xrNkvOBXYA4U3XfQ7eeUKGRlZx5FoyndUMV+673mteWlRQ1HomIxxp2clwqmruvXK2bsArufHE7A2tKynQXWRSKTEHlM6Y16KAGfLP/nIgbSfVWF5LSD01oAbEUdfe8IKEds+LNSfZweU2i4r+Z0kaYVbI36fHw0CPc14PHkJWsghIMutqvZHt+K/1Sn365zNj3LLQPyP1/JQe+FUVSVwcD3Z/Bz/ejQoN2GS0ftvk7rQ02sFdwIyXCxJKsEJWQ6aylCg+ov5fQrvIDw6+nX5SOaHcz+x/DI1qk5L5roLw4L0YzT3HJZpPEjEahs=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726438AbfIZEGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 00:06:50 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:33946 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726202AbfIZEGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 00:06:50 -0400
+Received: by mail-wr1-f66.google.com with SMTP id a11so987986wrx.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 21:06:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6O3te8B9v8EP6DXpJUILeaiDwfu4hKzbhFKk3O+2hIc=;
+        b=v3tngBRzkkXSqdYaxFo8J7luIFDI39Ap3QuDsvssko/+ZHYvZuvrad7LKYrqWn91h+
+         7PGLiYa+aajdMpuogbeUQG3uwqfjFeU0Uy2i/HscJCvA0DDmSPgZXvUedBp+XsButXN1
+         popFqiRWQbu3GOuijlgg9In8sebmnJQlTBTfHZc73ic4kkFFJd73rxDM2TWM4a+ZWa0t
+         pJ4BEH7j4LlPSfEru9bRZGRXRme/NKEG1OTinK8bg0lq9vfj3ejSGkacxvmU7QpQfYnr
+         rEo4EewiFnPDtCfjV1o5V6SmGG4k7zRPL932ypV1FIv3YZpiFhK/hV1f9FuZtEDIC0fp
+         0j7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6O3te8B9v8EP6DXpJUILeaiDwfu4hKzbhFKk3O+2hIc=;
+        b=PH9udrvE09cM29Yx9xMRbxTYezn/0f6xfQqxYh8rR1CHxxAecRhp9VfTOw4z7ZoEyT
+         uWi6p8cWyrn9v2WwIJls7HzKFmRhCRGV3yyaxTlqpCzm3dp2cwWSnlA88aImdtLTCe5g
+         qp+qxWV5NPJbApPhOx+OpfO6XpEFvOTB+v6ruhJwewEuuxM2ATGLXx3e0zMDu0Yk9az1
+         oiUl4iySFiFTlT1mYFR+Qmtm9qTN+TKvWZBtnA93mkSQZxD/4rdVARMGGzkl/lsV0FzO
+         lM5d5gSfcvWFhuPSoaSy4+RSdx6eShomTEQS9F9RNLdxpqqSoak6pMbV3PC8Ooi90cds
+         OFZQ==
+X-Gm-Message-State: APjAAAVxIFThfIWGN34vGMVVp6AyyLBg10YCIMuv0ga8EbdcMVkesbfW
+        wmfFh1TbmVpOqvNjRRQc7kaLUCfdEmQI2BUkG7rlHg==
+X-Google-Smtp-Source: APXvYqxi/aX/Sa4He/GsphASBb2GpvqD6GZsxYhQ8cRbVT/ddgFXaL5HlvJdKn0pRwCVZ5q5FZsT6iLR5jdo5KkMGYs=
+X-Received: by 2002:adf:d08b:: with SMTP id y11mr1171535wrh.50.1569470807953;
+ Wed, 25 Sep 2019 21:06:47 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfbbd9ea-8e00-43c8-dd06-08d742359f5b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 03:57:16.9532
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2LHO7HIpoqI9HKouJNSskC4JAfxwdBbNTA9TRqzUnx+uVp74hDe5Naikfn9iMQlFIowf6uSBGl2pD1Ixj90/bQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5847
+References: <20190925234224.95216-1-john.stultz@linaro.org>
+ <20190925234224.95216-5-john.stultz@linaro.org> <1569461658.32135.12.camel@mhfsdcap03>
+In-Reply-To: <1569461658.32135.12.camel@mhfsdcap03>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Wed, 25 Sep 2019 21:06:34 -0700
+Message-ID: <CALAqxLX=csTtnqr2Hc9v_R8ex8zPj_P1JvSyjZXUKEqSaF=gPA@mail.gmail.com>
+Subject: Re: [PATCH 4/5] dt-bindings: usb: dwc3: of-simple: add compatible for HiSi
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-
-> Just a small concern...
->=20
-> On Thu, Sep 26, 2019 at 09:29:51AM +0800, Shengjiu Wang wrote:
-> >  static int fsl_asrc_dma_startup(struct snd_pcm_substream *substream)
-> > {
+On Wed, Sep 25, 2019 at 6:34 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+> On Wed, 2019-09-25 at 23:42 +0000, John Stultz wrote:
+> > +++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+> > @@ -0,0 +1,52 @@
+> > +HiSi SuperSpeed DWC3 USB SoC controller
 > > +
-> > +     release_pair =3D false;
-> > +     ret =3D snd_soc_set_runtime_hwparams(substream,
-> > + &snd_imx_hardware);
->=20
-> This set_runtime_hwparams() always returns 0 for now, but if one day it
-> changes and it fails here, kfree() will be still ignored although the sta=
-rtup()
-> gets error-out.
->=20
-> We could avoid this if we continue to ignore the return value like the
-> current code. Or we may check ret at kfree() also?
+> > +Required properties:
+> > +- compatible:                should contain "hisilicon,hi3660-dwc3" for HiSi SoC
+> > +- clocks:            A list of phandle + clock-specifier pairs for the
+> > +                     clocks listed in clock-names
+> > +- clock-names:               Should contain the following:
+> > +  "clk_usb3phy_ref"  Phy reference clk
+> It's not good idea to apply phy's clock in dwc3's node
 
-I like to ignore the return value.
+Hey! Thanks for taking a look at this!
 
-Best regards
-Wang shengjiu
+So first, my apologies, I'm not the driver author and I don't have any
+real specs on the hardware other then what's in the source tree I'm
+working on.  Not the ideal person to be documenting the binding, but I
+realized we still needed some binding documentation (although a few
+other dwc-of-simple compat entries are undocumented), so this is my
+rough stab at it. :/
+
+Given the name clk_usb3phy_ref I'm assuming its a phy reference clock,
+but I honestly don't know if I'm getting that wrong.  It all seems to
+be leveraging the fact that the dwc-of-simple driver batch enables and
+disables all the clocks w/o really looking at the names.
+
+Do you have a recommendation for what would be best here? I suspect
+it's necessary to enable/disable the clk in a similar path(though I'm
+unfortunately traveling this week so I can't validate that). Do I try
+to move the clk_usb3phy_ref clock enable/disable handling to somewhere
+else?
+
+thanks
+-john
