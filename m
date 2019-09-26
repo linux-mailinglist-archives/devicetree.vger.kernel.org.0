@@ -2,63 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63495BEBA7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 07:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A487BEC1E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 08:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392043AbfIZFaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 01:30:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45854 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388384AbfIZFaC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Sep 2019 01:30:02 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 289192146E;
-        Thu, 26 Sep 2019 05:30:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569475801;
-        bh=ih6FlBjGy8NvLVT5ABx1cYC1s8sHdn6Wkvf3RuY0i1k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=054SUC9HpC/tYrn5c51FO5ks1yDgps8WdbO8lJMd/ugcQ877/HJ8aXWFSDjLz1btx
-         +NuKazreoHFXhF/j/xWNqEnuyKniyjfEOOvvNCv++tWqLOAKtIsbFpbFb0nmdgF/mK
-         qIQ3yqLRWwJBp3xCsEUTd1iuoz8DfP1xnDFMf4IA=
-Date:   Thu, 26 Sep 2019 07:29:59 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, arnd@arndb.de, michal.simek@xilinx.com
-Subject: Re: [RFC PATCHv2 1/3] dt-bindings: misc: Add dt bindings for flex
- noc Performance Monitor
-Message-ID: <20190926052959.GA1562021@kroah.com>
-References: <2de75a74ef4086090c532d3b80b7d6dcd115e45e.1569474867.git.shubhrajyoti.datta@xilinx.com>
+        id S2391055AbfIZGms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 02:42:48 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:36474 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730840AbfIZGms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 02:42:48 -0400
+X-UUID: 87a7eb932c434a26b6a2752212b3a60c-20190926
+X-UUID: 87a7eb932c434a26b6a2752212b3a60c-20190926
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1732559118; Thu, 26 Sep 2019 14:42:38 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32DR.mediatek.inc
+ (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 26 Sep
+ 2019 14:42:31 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 26 Sep 2019 14:42:31 +0800
+Message-ID: <1569480152.32135.16.camel@mhfsdcap03>
+Subject: Re: [PATCH 4/5] dt-bindings: usb: dwc3: of-simple: add compatible
+ for HiSi
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     John Stultz <john.stultz@linaro.org>
+CC:     lkml <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "Andy Shevchenko" <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Date:   Thu, 26 Sep 2019 14:42:32 +0800
+In-Reply-To: <CALAqxLX=csTtnqr2Hc9v_R8ex8zPj_P1JvSyjZXUKEqSaF=gPA@mail.gmail.com>
+References: <20190925234224.95216-1-john.stultz@linaro.org>
+         <20190925234224.95216-5-john.stultz@linaro.org>
+         <1569461658.32135.12.camel@mhfsdcap03>
+         <CALAqxLX=csTtnqr2Hc9v_R8ex8zPj_P1JvSyjZXUKEqSaF=gPA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2de75a74ef4086090c532d3b80b7d6dcd115e45e.1569474867.git.shubhrajyoti.datta@xilinx.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: E0897C00FF5A48C643B6E3A0CCD82EB91C0B8C7106D547DC0ED3E419E52155B12000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 26, 2019 at 10:46:24AM +0530, Shubhrajyoti Datta wrote:
-> Add dt bindings for flexnoc Performance Monitor.
-> The flexnoc counters for read and write response and requests are
-> supported.
+On Wed, 2019-09-25 at 21:06 -0700, John Stultz wrote:
+> On Wed, Sep 25, 2019 at 6:34 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+> > On Wed, 2019-09-25 at 23:42 +0000, John Stultz wrote:
+> > > +++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+> > > @@ -0,0 +1,52 @@
+> > > +HiSi SuperSpeed DWC3 USB SoC controller
+> > > +
+> > > +Required properties:
+> > > +- compatible:                should contain "hisilicon,hi3660-dwc3" for HiSi SoC
+> > > +- clocks:            A list of phandle + clock-specifier pairs for the
+> > > +                     clocks listed in clock-names
+> > > +- clock-names:               Should contain the following:
+> > > +  "clk_usb3phy_ref"  Phy reference clk
+> > It's not good idea to apply phy's clock in dwc3's node
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> ---
->  .../devicetree/bindings/misc/xlnx,flexnoc.txt      | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt
+> Hey! Thanks for taking a look at this!
+> 
+> So first, my apologies, I'm not the driver author and I don't have any
+> real specs on the hardware other then what's in the source tree I'm
+> working on.  Not the ideal person to be documenting the binding, but I
+> realized we still needed some binding documentation (although a few
+> other dwc-of-simple compat entries are undocumented), so this is my
+> rough stab at it. :/
+> 
+> Given the name clk_usb3phy_ref I'm assuming its a phy reference clock,
+> but I honestly don't know if I'm getting that wrong.  It all seems to
+> be leveraging the fact that the dwc-of-simple driver batch enables and
+> disables all the clocks w/o really looking at the names.
+> 
+> Do you have a recommendation for what would be best here? I suspect
+> it's necessary to enable/disable the clk in a similar path(though I'm
+> unfortunately traveling this week so I can't validate that). Do I try
+> to move the clk_usb3phy_ref clock enable/disable handling to somewhere
+> else?
+If it's phy clock, we should enable/disable it in phy driver, maybe we'd
+better ask for help from Yu Chen
 
-<snip>
+> 
+> thanks
+> -john
 
-Why are these "RFC"?
 
-I guess you don't want them merged because you are not thinking that
-they are good enough?  What needs to be done on them that you are
-sending them out now?
-
-greg k-h
