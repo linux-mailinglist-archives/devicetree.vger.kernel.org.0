@@ -2,130 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B617BEFF3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB774BF06A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 12:54:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725883AbfIZKpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 06:45:00 -0400
-Received: from mx2.suse.de ([195.135.220.15]:58398 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725813AbfIZKo7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Sep 2019 06:44:59 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 4D89AAFA7;
-        Thu, 26 Sep 2019 10:44:56 +0000 (UTC)
-Message-ID: <307b988d0c67fb1c42166eca12742bcfda09d92d.camel@suse.de>
-Subject: Re: [PATCH 00/11] of: Fix DMA configuration for non-DT masters
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        etnaviv@lists.freedesktop.org,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>, james.quinlan@broadcom.com,
-        linux-pci@vger.kernel.org, linux-tegra@vger.kernel.org,
-        xen-devel@lists.xenproject.org,
-        Dan Williams <dan.j.williams@intel.com>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>
-Date:   Thu, 26 Sep 2019 12:44:53 +0200
-In-Reply-To: <CAL_JsqKKYcHPnA80ZwLY=Sk3e5MqrimedUhWQ5+iuPZXQxYHdA@mail.gmail.com>
-References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
-         <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
-         <d1a31a2ec8eb2f226b1fb41f6c24ffb47c3bf7c7.camel@suse.de>
-         <e404c65b-5a66-6f91-5b38-8bf89a7697b2@arm.com>
-         <43fb5fe1de317d65a4edf592f88ea150c6e3b8cc.camel@suse.de>
-         <CAL_JsqLhx500cx3YLoC7HL1ux3bBpV+fEA2Qnk7D5RFGgiGzSw@mail.gmail.com>
-         <aa4c8d62-7990-e385-2bb1-cec55148f0a8@arm.com>
-         <CAL_JsqKKYcHPnA80ZwLY=Sk3e5MqrimedUhWQ5+iuPZXQxYHdA@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-spHfnjbbIi+e7UZn+wYh"
-User-Agent: Evolution 3.32.4 
+        id S1726802AbfIZKxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 06:53:21 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:41498 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726762AbfIZKxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 06:53:21 -0400
+Received: by mail-io1-f65.google.com with SMTP id r26so5259548ioh.8;
+        Thu, 26 Sep 2019 03:53:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=07TZjLhLzFQD/d/peiuV+KiApqHJ0vC82cYd9ZCGW3I=;
+        b=lIBa6S8No25wVSZ5OCudotLs3QnSkUDyAEFTtWdhBSUVnDRrlkXvLDgFtxtXdNmehK
+         dAzU29e+4ePHpmLtLt0IwEaGXkMIyzPU7A698T3pNHzZAWSSYgjwoFL6rsjhY2DJIKDM
+         PRVDHjGrpJNvmdprSqaC12xs6qQvoWFnLKRKXm9vdPWLiS9Q4Cx7yWE5EOpecBzXzi+n
+         CpkVfEMgEu3JFob6ios7fRsgDRzLhMDxBPgs6Vf+/vqD5gh9mmpetrt0ZXZNKv4Mo9b0
+         SvPrUE3Eowl0FKu+rabY1pbjGQ/uGk4fU+zZLVjV4/c+fCaLpzeXzXbliXzUp+7Bh5h3
+         eLzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=07TZjLhLzFQD/d/peiuV+KiApqHJ0vC82cYd9ZCGW3I=;
+        b=NfqwXiUJZUAoAUq4wvXNGqMd0VC/PTViJHh2M86D7wPMnSun/YO9it3IA826BemMpQ
+         TNPeKcrg7FiTfcWH4KdVSgtXK+J0XAPivc9W/S7mBulo+V29mw4yq7+QE5u3p+amoIGC
+         aEwAaYUlH+BLoSi56nq8Y8vZ6Fe8QRx67L4Qdll4vUtIOGXbjoJIiBXSzSCa3UMvspNx
+         IcM/l+anfyhqhlf2WCrf7wZs83BtiUMAUCBRwG2Mu6c06eMrziq7EKYByQ1l9dvw4ERK
+         QXYa6+Tf4mhiTYeB5ppYE8lT1+/R76q1duRT4fLvAsSs5L37bx96Lil6Srznj7mI843L
+         7nmw==
+X-Gm-Message-State: APjAAAVKHQB+f0FPT7qO1MdHb22qRtTaTlfHo1fk7/2b/Oios26n41Wh
+        HgMFFPsKfkRBrGHgMKw/2wz37zF5o43N7S87bVzjNw==
+X-Google-Smtp-Source: APXvYqxN48IwDqdlkhPJvWfp5fy13UB08I+go8HDZg/Y1UhOHe3uy98kP5lBC01mtdXruP+pH7sTAHjdETKxcLhv7is=
+X-Received: by 2002:a6b:fe11:: with SMTP id x17mr2916340ioh.6.1569495200143;
+ Thu, 26 Sep 2019 03:53:20 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190902054935.4899-1-linux.amoon@gmail.com> <7ha7asuj6q.fsf@baylibre.com>
+In-Reply-To: <7ha7asuj6q.fsf@baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Thu, 26 Sep 2019 16:23:08 +0530
+Message-ID: <CANAwSgSvPmtzCzbaLC6LOfov9e32V9koUhF=5VAaKO87EHKw8A@mail.gmail.com>
+Subject: Re: [PATCHv4-next 0/3] Odroid c2 usb fixs rebase on linux-next
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Kevin,
 
---=-spHfnjbbIi+e7UZn+wYh
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 26 Sep 2019 at 03:34, Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Anand Moon <linux.amoon@gmail.com> writes:
+>
+> > Some time ago I had tired to enable usb bus 1 for Odroid C2/C1
+> > but it's look like some more work is needed to u-boot and
+> > usb_phy driver to initialize this port.
+> >
+> > Below patches tries to address the issue regarding usb bus 2 (4 port)
+> > while disable the usb bus 1 on this board.
+> >
+> > Previous patch
+> > [0] https://lkml.org/lkml/2019/1/29/325
+> >
+> > Re send below series based re based on linux-next-20190830.
+> > For review and testing.
+> >
+> > [1] https://patchwork.kernel.org/cover/11113091/
+> >
+> > Small changes from previous series.
+> > Fix the commit message for patch 1
+>
+> Queued for v5.5.
+>
+> I fixed up the typo in patch 2/3 when applying as suggested by Martin.
+>
+> Kevin
 
-> > > > Robin, have you looked into supporting multiple dma-ranges? It's th=
-e
-> > > > next thing
-> > > > we need for BCM STB's PCIe. I'll have a go at it myself if nothing =
-is in
-> > > > the
-> > > > works already.
-> > >=20
-> > > Multiple dma-ranges as far as configuring inbound windows should work
-> > > already other than the bug when there's any parent translation. But i=
-f
-> > > you mean supporting multiple DMA offsets and masks per device in the
-> > > DMA API, there's nothing in the works yet.
+Thanks,
 
-Sorry, I meant supporting multiple DMA offsets[1]. I think I could still ma=
-ke
-it with a single DMA mask though.
-
-> > There's also the in-between step of making of_dma_get_range() return a
-> > size based on all the dma-ranges entries rather than only the first one
-> > - otherwise, something like [1] can lead to pretty unworkable default
-> > masks. We implemented that when doing acpi_dma_get_range(), it's just
-> > that the OF counterpart never caught up.
->=20
-> Right. I suppose we assume any holes in the ranges are addressable by
-> the device but won't get used for other reasons (such as no memory
-> there). However, to be correct, the range of the dma offset plus mask
-> would need to be within the min start and max end addresses. IOW,
-> while we need to round up (0xa_8000_0000 - 0x2c1c_0000) to the next
-> power of 2, the 'correct' thing to do is round down.
-
-IIUC I also have this issue on my list. The RPi4 PCIe block has an integrat=
-ion
-bug that only allows DMA to the lower 3GB. With dma-ranges of size 0xc000_0=
-000
-you get a 32bit DMA mask wich is not what you need. So far I faked it in th=
-e
-device-tree but I guess it be better to add an extra check in
-of_dma_configure(), decrease the mask and print some kind of warning statin=
-g
-that DMA addressing is suboptimal.
-
-Regards,
-Nicolas
-
-[1] https://lkml.org/lkml/2018/9/19/641
-
-
---=-spHfnjbbIi+e7UZn+wYh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2MlqUACgkQlfZmHno8
-x/6+gwgAlzKCB9vN8cCZUfRnnPT+EcYA2/s3oFjf1ar+/e5UsMfCNI5W7cJaKzg9
-w0PGZ5VKk5N0wpkGIpUjOYQ9J5PFZwu5bqsce0zWywlRlYCexKvzpQfkplWi0JuI
-cVAt9Sw5mle+ppW+x9T5UlBcHoCByuQDG9ga44Z7O4jrk/lIp7vK2fmSN3hIEcHV
-gUPxojWighnxCu+5COgwa182Ncfo3tTLw39oV8uiLOzxXxVkprxdxQHakXPoyg1o
-WH0OvR09u1lXZAQ1qKtOxHNgKcrNzpr69VBUL/WYvrSqKdg0EI8QRmkByk5cYgrC
-ztco//83y3fCRh8dEph0BSrKU3/vFA==
-=P2KB
------END PGP SIGNATURE-----
-
---=-spHfnjbbIi+e7UZn+wYh--
-
+Best Regards
+-Anand
