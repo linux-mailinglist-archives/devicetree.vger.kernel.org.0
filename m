@@ -2,79 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 506E1BEA64
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 04:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63934BEABA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 04:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727762AbfIZCJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Sep 2019 22:09:22 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:46640 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727407AbfIZCJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Sep 2019 22:09:22 -0400
-Received: by mail-pl1-f194.google.com with SMTP id q24so305114plr.13
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2019 19:09:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=4Qvr+Vq36lJK7eT6do5ApSmMPZYoIZa8xsw9/sgUwoA=;
-        b=CxvxN1Ogf01q/7maIA+Lps+CDXG/nyEYsAaIxrAqtTBnkzCyjIWSN4lNyu6m5WU7fU
-         AAisYDU6GvpyuyFuhVx9OGU0JOBF4jCcnQq7H/ol4gq1d7ObG3zM/btlwhflxRrPBcJm
-         Zz8YTv9WfqZcPH8zc10iV+kvExXG2VgYiKAlEpCo8eHFi4a2jy0qQXEU0neryX5nsgiU
-         bAAKJFyH9ItwH5NHZFDHeu9nwOENXyJFOvQHImXYdIf3wI0pUNsUxOTN6hk4Yo4h7uLD
-         ET8l2bTm5+YYG0HVlWQzRYHnhD2KUScW9c48I4te1HYQkqGbHPPHnJaROjwHhNx4bTVT
-         vg/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=4Qvr+Vq36lJK7eT6do5ApSmMPZYoIZa8xsw9/sgUwoA=;
-        b=O320Pg8LzFSzYY/SRQcpGOJKc5uIHslNse5UT7LBFpPOf+FXkzRdyCwYksIGvxU4lM
-         ElbcaZqO0z0dtgF/+Tv/9UY7+ENRXpwzcllk0am6MJPYlcnaxhFeuGP9kLnLdFAkkkib
-         U4hKrv5ND0yxk6lWfsWTLAZEAZaP0S1tdvv0wjKmXabM8NI9viNvKF5mFIoHmYBW7i1u
-         H42JAcRiaVLfr/Jh8n6rTFakUDdy08cQTim0l7zCiElXWtuOD/AU1U7Tmf4yCTcawme6
-         pIG9cHYpNP3LTNmpD+JitQDW5zNx2T4ccv0sv1Kl3wog7bys/CWnOk8LOk1eA093mGyd
-         hU5g==
-X-Gm-Message-State: APjAAAWBE07ZF/xlutMj3vEmB9YpAs2/7vqydp+wlXCHu9Rl6ghTwIO1
-        w1jGGvUm+K8Tmjgzm8vyZ6Dk8w==
-X-Google-Smtp-Source: APXvYqw+uH1sv1ftk9JTvni+8fEIkYi1Eg0n64bz8iq+sLbx2N8otKyBHJqizMA2EP+GOJW2vHjRDw==
-X-Received: by 2002:a17:902:ac98:: with SMTP id h24mr1668421plr.64.1569463761775;
-        Wed, 25 Sep 2019 19:09:21 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id c128sm332461pfc.166.2019.09.25.19.09.20
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 25 Sep 2019 19:09:21 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Chrisitian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH 0/6] arm64: meson-gx: misc fixes and updates
-In-Reply-To: <1568041287-7805-1-git-send-email-christianshewitt@gmail.com>
-References: <1568041287-7805-1-git-send-email-christianshewitt@gmail.com>
-Date:   Wed, 25 Sep 2019 19:09:19 -0700
-Message-ID: <7himpfst9s.fsf@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S1726826AbfIZCwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Sep 2019 22:52:02 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:56076 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725768AbfIZCwC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Sep 2019 22:52:02 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id AA44D2004DD;
+        Thu, 26 Sep 2019 04:51:59 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 173CF200049;
+        Thu, 26 Sep 2019 04:51:55 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2A031402D5;
+        Thu, 26 Sep 2019 10:51:49 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     leoyang.li@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, ran.wang_1@nxp.com
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
+Subject: [v4,1/3] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
+Date:   Thu, 26 Sep 2019 10:41:16 +0800
+Message-Id: <20190926024118.15931-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
+Description:
+	- Reading configuration register RCPM_IPPDEXPCR1
+	  always return zero
 
-> This patchset:
->
-> - Fixes bluetooth on Khadas VIM2
-> - Fixes bluetooth on Khadas VIM
-> - Fixes GPIO key dt on Khadas VIM
-> - Updates model for AML-S805X-CC
-> - Updates model/compatible for AML-S905X-CC
+Workaround:
+	- Save register RCPM_IPPDEXPCR1's value to
+	  register SCFG_SPARECR8.(uboot's psci also
+	  need reading value from the register SCFG_SPARECR8
+	  to set register RCPM_IPPDEXPCR1)
 
-Queued for v5.5.
+Impact:
+	- FlexTimer module will cannot wakeup system in
+	  deep sleep on SoC LS1021A
 
-Thanks for the updates/fixups,
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+---
+Change in v4:
+	- rename property name
+	  fsl,ippdexpcr-alt-addr -> fsl,ippdexpcr1-alt-addr
 
-Kevin
+Change in v3:
+	- update commit message
+	- rename property name
+	  fsl,rcpm-scfg -> fsl,ippdexpcr-alt-addr
+
+Change in v2:
+	- fix stype problems
+
+ drivers/soc/fsl/rcpm.c | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/drivers/soc/fsl/rcpm.c b/drivers/soc/fsl/rcpm.c
+index 82c0ad5e663e..9a29c482fc2e 100644
+--- a/drivers/soc/fsl/rcpm.c
++++ b/drivers/soc/fsl/rcpm.c
+@@ -13,6 +13,8 @@
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
+ #include <linux/kernel.h>
++#include <linux/regmap.h>
++#include <linux/mfd/syscon.h>
+ 
+ #define RCPM_WAKEUP_CELL_MAX_SIZE	7
+ 
+@@ -29,6 +31,9 @@ static int rcpm_pm_prepare(struct device *dev)
+ 	struct rcpm		*rcpm;
+ 	u32 value[RCPM_WAKEUP_CELL_MAX_SIZE + 1], tmp;
+ 	int i, ret, idx;
++	struct regmap *scfg_addr_regmap = NULL;
++	u32 reg_offset[RCPM_WAKEUP_CELL_MAX_SIZE + 1];
++	u32 reg_value = 0;
+ 
+ 	rcpm = dev_get_drvdata(dev);
+ 	if (!rcpm)
+@@ -63,6 +68,34 @@ static int rcpm_pm_prepare(struct device *dev)
+ 					tmp |= value[i + 1];
+ 					iowrite32be(tmp, rcpm->ippdexpcr_base + i * 4);
+ 				}
++				/* Workaround of errata A-008646 on SoC LS1021A:
++				 * There is a bug of register ippdexpcr1.
++				 * Reading configuration register RCPM_IPPDEXPCR1
++				 * always return zero. So save ippdexpcr1's value
++				 * to register SCFG_SPARECR8.And the value of
++				 * ippdexpcr1 will be read from SCFG_SPARECR8.
++				 */
++				scfg_addr_regmap = syscon_regmap_lookup_by_phandle(np,
++										   "fsl,ippdexpcr1-alt-addr");
++				if (scfg_addr_regmap && (1 == i)) {
++					if (of_property_read_u32_array(dev->of_node,
++					    "fsl,ippdexpcr1-alt-addr",
++					    reg_offset,
++					    1 + sizeof(u64)/sizeof(u32))) {
++						scfg_addr_regmap = NULL;
++						continue;
++					}
++					/* Read value from register SCFG_SPARECR8 */
++					regmap_read(scfg_addr_regmap,
++						    (u32)(((u64)(reg_offset[1] << (sizeof(u32) * 8) |
++						    reg_offset[2])) & 0xffffffff),
++						    &reg_value);
++					/* Write value to register SCFG_SPARECR8 */
++					regmap_write(scfg_addr_regmap,
++						     (u32)(((u64)(reg_offset[1] << (sizeof(u32) * 8) |
++						     reg_offset[2])) & 0xffffffff),
++						     tmp | reg_value);
++				}
+ 			}
+ 		}
+ 	} while (ws = wakeup_source_get_next(ws));
+-- 
+2.17.1
+
