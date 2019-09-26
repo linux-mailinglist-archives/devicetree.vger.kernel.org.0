@@ -2,214 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8046BFBB8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 01:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FFC6BFBF1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 01:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728483AbfIZXQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 19:16:55 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:39884 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728270AbfIZXQz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 19:16:55 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r3so592757wrj.6
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2019 16:16:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EjCi2EVKEO9MNaLzSFEPFOS+gH77W2l8Y4dxTk44W7g=;
-        b=HsC6hIg2jBQDPOwnYUdM++he3ysu/qvXKFyuQ6nYtzHS9bkuw5037MDlbXSpSMcczo
-         yQG0/JsOJUrwCxjqMuvc505Z29diKoJ45ReBJIZsL7e7Y6fmPZ4wWelBuPIibEXoHE6A
-         haEOPWBjloRXJ7WactVoXb/LahjqH7wQvv3uk8aVM5/vd3AMl09wFIHwxjTv8LQfcI4K
-         D+HRIIvSICJrNV+6un8jNUjMx55HmiDIAPPHhkik3lVMhHFlw321OzmnfHTxY3uVNTyF
-         LiVhZzSX+y539lY4A3b9t6CDyr3h6Ktkgsm6/M9EHNP8itmcl3Hfq6qKehRzJKhTrtso
-         daXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EjCi2EVKEO9MNaLzSFEPFOS+gH77W2l8Y4dxTk44W7g=;
-        b=G7yAIU+VNoGzGY8orbNsLbahrGhNZY30TlsHxNsTuW/W36WZpznNOgQqJ0zTJfw20y
-         YMyBxX6j9e7sGqoNy8016fuwNweqDREi9DLAwrswJx1pgJP7fFG78fuGiNmUTDVypd52
-         VETR4UXNAdw2zgaUqw2nLkL9V6KUuvIHXp9xR7EF48TAA/Nq+Ke+Ee+6XCh2uBhg2apb
-         zjfxR824NvzNpGNJOJ3+Qp38I6jDp/mBcszxzMF9Ho2u27+VPAswt4it660xuYEWvsW2
-         li3XOSdOKRBKeiPznMouR1OvlORuAegHyGj/nAtfJOjjThMQcOB9cRrcIT6WPU7WuP2C
-         SnUA==
-X-Gm-Message-State: APjAAAVARr4FEkFfnNPZB/KZILQUkIZmGc0a/Ed/B8hJlQtZ20leQ4yc
-        nX46AIkR3b4A3mEqZy0PCal8qw==
-X-Google-Smtp-Source: APXvYqzdx4pJgp/+Ml1Bkt9bsB1vDr2MP1XIHb71Z8dzF4eRLaWIkEDtTHvJAqj8sJ2bf2HNCfqMiA==
-X-Received: by 2002:a5d:6049:: with SMTP id j9mr615213wrt.213.1569539812909;
-        Thu, 26 Sep 2019 16:16:52 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id c10sm582111wrf.58.2019.09.26.16.16.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 26 Sep 2019 16:16:52 -0700 (PDT)
-Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: Add OSM L3 DT bindings
-To:     Sibi Sankar <sibis@codeaurora.org>, robh+dt@kernel.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mark.rutland@arm.com,
-        evgreen@chromium.org, daidavid1@codeaurora.org,
-        saravanak@google.com
-References: <20190821091132.14994-1-sibis@codeaurora.org>
- <20190821091132.14994-2-sibis@codeaurora.org>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- mQINBFjTuRcBEACyAOVzghvyN19Sa/Nit4LPBWkICi5W20p6bwiZvdjhtuh50H5q4ktyxJtp
- 1+s8dMSa/j58hAWhrc2SNL3fttOCo+MM1bQWwe8uMBQJP4swgXf5ZUYkSssQlXxGKqBSbWLB
- uFHOOBTzaQBaNgsdXo+mQ1h8UCgM0zQOmbs2ort8aHnH2i65oLs5/Xgv/Qivde/FcFtvEFaL
- 0TZ7odM67u+M32VetH5nBVPESmnEDjRBPw/DOPhFBPXtal53ZFiiRr6Bm1qKVu3dOEYXHHDt
- nF13gB+vBZ6x5pjl02NUEucSHQiuCc2Aaavo6xnuBc3lnd4z/xk6GLBqFP3P/eJ56eJv4d0B
- 0LLgQ7c1T3fU4/5NDRRCnyk6HJ5+HSxD4KVuluj0jnXW4CKzFkKaTxOp7jE6ZD/9Sh74DM8v
- etN8uwDjtYsM07I3Szlh/I+iThxe/4zVtUQsvgXjwuoOOBWWc4m4KKg+W4zm8bSCqrd1DUgL
- f67WiEZgvN7tPXEzi84zT1PiUOM98dOnmREIamSpKOKFereIrKX2IcnZn8jyycE12zMkk+Sc
- ASMfXhfywB0tXRNmzsywdxQFcJ6jblPNxscnGMh2VlY2rezmqJdcK4G4Lprkc0jOHotV/6oJ
- mj9h95Ouvbq5TDHx+ERn8uytPygDBR67kNHs18LkvrEex/Z1cQARAQABtChHZW9yZ2kgRGph
- a292IDxnZW9yZ2kuZGpha292QGxpbmFyby5vcmc+iQI+BBMBAgAoBQJY07kXAhsDBQkHhM4A
- BgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRCyi/eZcnWWUuvsD/4miikUeAO6fU2Xy3fT
- l7RUCeb2Uuh1/nxYoE1vtXcow6SyAvIVTD32kHXucJJfYy2zFzptWpvD6Sa0Sc58qe4iLY4j
- M54ugOYK7XeRKkQHFqqR2T3g/toVG1BOLS2atooXEU+8OFbpLkBXbIdItqJ1M1SEw8YgKmmr
- JlLAaKMq3hMb5bDQx9erq7PqEKOB/Va0nNu17IL58q+Q5Om7S1x54Oj6LiG/9kNOxQTklOQZ
- t61oW1Ewjbl325fW0/Lk0QzmfLCrmGXXiedFEMRLCJbVImXVKdIt/Ubk6SAAUrA5dFVNBzm2
- L8r+HxJcfDeEpdOZJzuwRyFnH96u1Xz+7X2V26zMU6Wl2+lhvr2Tj7spxjppR+nuFiybQq7k
- MIwyEF0mb75RLhW33sdGStCZ/nBsXIGAUS7OBj+a5fm47vQKv6ekg60oRTHWysFSJm1mlRyq
- exhI6GwUo5GM/vE36rIPSJFRRgkt6nynoba/1c4VXxfhok2rkP0x3CApJ5RimbvITTnINY0o
- CU6f1ng1I0A1UTi2YcLjFq/gmCdOHExT4huywfu1DDf0p1xDyPA1FJaii/gJ32bBP3zK53hM
- dj5S7miqN7F6ZpvGSGXgahQzkGyYpBR5pda0m0k8drV2IQn+0W8Qwh4XZ6/YdfI81+xyFlXc
- CJjljqsMCJW6PdgEH7kCDQRY07kXARAAvupGd4Jdd8zRRiF+jMpv6ZGz8L55Di1fl1YRth6m
- lIxYTLwGf0/p0oDLIRldKswena3fbWh5bbTMkJmRiOQ/hffhPSNSyyh+WQeLY2kzl6geiHxD
- zbw37e2hd3rWAEfVFEXOLnmenaUeJFyhA3Wd8OLdRMuoV+RaLhNfeHctiEn1YGy2gLCq4VNb
- 4Wj5hEzABGO7+LZ14hdw3hJIEGKtQC65Jh/vTayGD+qdwedhINnIqslk9tCQ33a+jPrCjXLW
- X29rcgqigzsLHH7iVHWA9R5Aq7pCy5hSFsl4NBn1uV6UHlyOBUuiHBDVwTIAUnZ4S8EQiwgv
- WQxEkXEWLM850V+G6R593yZndTr3yydPgYv0xEDACd6GcNLR/x8mawmHKzNmnRJoOh6Rkfw2
- fSiVGesGo83+iYq0NZASrXHAjWgtZXO1YwjW9gCQ2jYu9RGuQM8zIPY1VDpQ6wJtjO/KaOLm
- NehSR2R6tgBJK7XD9it79LdbPKDKoFSqxaAvXwWgXBj0Oz+Y0BqfClnAbxx3kYlSwfPHDFYc
- R/ppSgnbR5j0Rjz/N6Lua3S42MDhQGoTlVkgAi1btbdV3qpFE6jglJsJUDlqnEnwf03EgjdJ
- 6KEh0z57lyVcy5F/EUKfTAMZweBnkPo+BF2LBYn3Qd+CS6haZAWaG7vzVJu4W/mPQzsAEQEA
- AYkCJQQYAQIADwUCWNO5FwIbDAUJB4TOAAAKCRCyi/eZcnWWUhlHD/0VE/2x6lKh2FGP+QHH
- UTKmiiwtMurYKJsSJlQx0T+j/1f+zYkY3MDX+gXa0d0xb4eFv8WNlEjkcpSPFr+pQ7CiAI33
- 99kAVMQEip/MwoTYvM9NXSMTpyRJ/asnLeqa0WU6l6Z9mQ41lLzPFBAJ21/ddT4xeBDv0dxM
- GqaH2C6bSnJkhSfSja9OxBe+F6LIAZgCFzlogbmSWmUdLBg+sh3K6aiBDAdZPUMvGHzHK3fj
- gHK4GqGCFK76bFrHQYgiBOrcR4GDklj4Gk9osIfdXIAkBvRGw8zg1zzUYwMYk+A6v40gBn00
- OOB13qJe9zyKpReWMAhg7BYPBKIm/qSr82aIQc4+FlDX2Ot6T/4tGUDr9MAHaBKFtVyIqXBO
- xOf0vQEokkUGRKWBE0uA3zFVRfLiT6NUjDQ0vdphTnsdA7h01MliZLQ2lLL2Mt5lsqU+6sup
- Tfql1omgEpjnFsPsyFebzcKGbdEr6vySGa3Cof+miX06hQXKe99a5+eHNhtZJcMAIO89wZmj
- 7ayYJIXFqjl/X0KBcCbiAl4vbdBw1bqFnO4zd1lMXKVoa29UHqby4MPbQhjWNVv9kqp8A39+
- E9xw890l1xdERkjVKX6IEJu2hf7X3MMl9tOjBK6MvdOUxvh1bNNmXh7OlBL1MpJYY/ydIm3B
- KEmKjLDvB0pePJkdTw==
-Message-ID: <53e76100-b7c9-1069-b571-b17271fe41c5@linaro.org>
-Date:   Thu, 26 Sep 2019 16:16:47 -0700
+        id S1726593AbfIZX2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 19:28:30 -0400
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:46913 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728643AbfIZX23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 19:28:29 -0400
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A07FB886BF;
+        Fri, 27 Sep 2019 11:28:26 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1569540506;
+        bh=6RbE8qI20kMEdMD7hJsrS7/ArZwF7p3FRXfaz2j2zVo=;
+        h=From:To:Cc:Subject:Date;
+        b=AOasu4YE/rNgmlEt3wbns6XCP6oVTh0K6isgfuhvYjMlI+JPZzJPV0IrCnkbSQL6/
+         YmO4JqAy9/taOwnxf1lBz1p8OSiMIPw2L8dlmbm9sHA6Xs1mqBBHDZTsOXU/PJHZHc
+         Y/qRJ4aehuhymI5FtPp+LsRmVjygQS1hOu7piaVucp99TDvH28u2maRlzH/sDzTlND
+         GW5njq0M2kljLxlfGyVjFryKJ53NrVQrx7fevF1+cooONCK/PGu3snPG+vbKh+UEst
+         +0JqDG7Fbo3WKXWWN4chJ9rXxviLH+F4H3Dkg+V6kxop0GqD0zjARCvu7V1qplJM/3
+         JZZ+fYXkSK8qw==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5d8d49980000>; Fri, 27 Sep 2019 11:28:26 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by smtp (Postfix) with ESMTP id 13C2C13EED0;
+        Fri, 27 Sep 2019 11:28:28 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 592FD28003E; Fri, 27 Sep 2019 11:28:24 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     jason@lakedaemon.net, andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/3] ARM: dts: SDRAM and L2 cache EDAC for Armada SoCs
+Date:   Fri, 27 Sep 2019 11:28:17 +1200
+Message-Id: <20190926232820.27676-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-In-Reply-To: <20190821091132.14994-2-sibis@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sibi,
+This series was waiting for the armada_xp edac driver to be accepted.
+Now that it has the relevant nodes can be added to the Armada SoCs. So
+that boards can use the EDAC driver if they have the hardware support.
 
-On 8/21/19 02:11, Sibi Sankar wrote:
-> Add bindings for Operating State Manager (OSM) L3 interconnect provider
-> on SDM845 SoCs.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
->  .../bindings/interconnect/qcom,osm-l3.yaml    | 56 +++++++++++++++++++
->  .../dt-bindings/interconnect/qcom,osm-l3.h    | 12 ++++
->  2 files changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,osm-l3.h
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> new file mode 100644
-> index 0000000000000..dab2b6875ab27
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/qcom,osm-l3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Operating State Manager (OSM) L3 Interconnect Provider
-> +
-> +maintainers:
-> +  - Sibi Sankar <sibis@codeaurora.org>
-> +
-> +description:
-> +  L3 cache bandwidth requirements on Qualcomm SoCs is serviced by the OSM.
-> +  The OSM L3 interconnect provider aggregates the L3 bandwidth requests
-> +  from CPU/GPU and relays it to the OSM.
-> +
-> +properties:
-> +  compatible:
-> +    const: "qcom,sdm845-osm-l3"
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: xo clock
-> +      - description: alternate clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xo
-> +      - const: alternate
-> +
-> +  '#interconnect-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#interconnect-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    osm_l3: interconnect@17d41000 {
-> +      compatible = "qcom,sdm845-osm-l3";
-> +      reg = <0x17d41000 0x1400>;
-> +
-> +      clocks = <&rpmhcc 0>, <&gcc 165>;
-> +      clock-names = "xo", "alternate";
-> +
-> +      #interconnect-cells = <1>;
-> +    };
+The db-xc3-24g4xg.dts board doesn't have an ECC chip for it's DDR but it
+can use the L2 cache parity and ecc support.
 
-Are we going to do the bandwidth scaling from some cpufreq driver? Under which
-DT node will we put the "interconnects" property?
+Chris Packham (3):
+  ARM: dts: armada-xp: enable L2 cache parity and ecc on db-xc3-24g4xg
+  ARM: dts: mvebu: add sdram controller node to Armada-38x
+  ARM: dts: armada-xp: add label to sdram-controller node
 
-Thanks,
-Georgi
+ arch/arm/boot/dts/armada-38x.dtsi             | 5 +++++
+ arch/arm/boot/dts/armada-xp-98dx3236.dtsi     | 2 +-
+ arch/arm/boot/dts/armada-xp-db-xc3-24g4xg.dts | 5 +++++
+ arch/arm/boot/dts/armada-xp.dtsi              | 2 +-
+ 4 files changed, 12 insertions(+), 2 deletions(-)
 
-> diff --git a/include/dt-bindings/interconnect/qcom,osm-l3.h b/include/dt-bindings/interconnect/qcom,osm-l3.h
-> new file mode 100644
-> index 0000000000000..54858ff7674d7
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,osm-l3.h
-> @@ -0,0 +1,12 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2019 The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_OSM_L3_H
-> +#define __DT_BINDINGS_INTERCONNECT_QCOM_OSM_L3_H
-> +
-> +#define MASTER_OSM_L3_APPS	0
-> +#define SLAVE_OSM_L3		1
-> +
-> +#endif
-> 
+--=20
+2.23.0
+
