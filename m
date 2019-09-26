@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0DFBF2D2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 14:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04400BF303
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 14:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726010AbfIZMV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 08:21:58 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42450 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725768AbfIZMV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 08:21:58 -0400
-Received: by mail-oi1-f195.google.com with SMTP id i185so1856539oif.9;
-        Thu, 26 Sep 2019 05:21:57 -0700 (PDT)
+        id S1726330AbfIZMaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 08:30:02 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34195 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726001AbfIZMaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 08:30:01 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m19so1842254otp.1;
+        Thu, 26 Sep 2019 05:30:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=j92yBWpsApqNGriuRGCqtENz0+Kfgx9dM50H4SPtORk=;
-        b=XZKpvGz6bUH0knYdQv8SjiMH9tUYuEbgWWEhDCNW2J/q8TUWdRdunmroj8UaGi6jcn
-         kWHx0xR/j+qDZSi5Ru2XNBtKS/Ko6M6JDyl+kjwmVcCyNCyY7jzWV391aiY5jyB9rOt/
-         hKIbDxSx9LgYIIjusX47Pc3hGSsiFBHSuRal4Qpl5s5LuuUww0uVJv4SCHai4F+BkLMm
-         rKNi0i8a1IU2k3vTftbgjYGKZY2DU3MgvI0R9baOwkmSaWBH9cRqsSamWsUWfD5CnUwf
-         XXpft65rN4EJ4vYUcPM1Cl2pRONVPnwticKS7L/quSp1PkvE980GU6h/TV8NiJOzWZwK
-         Dq7g==
-X-Gm-Message-State: APjAAAWwuoBx+MzkzoGr52ixbbEX1OE5jcSCMDsXMGM+3blRI+LBtAp+
-        zsTp0rxOStrNWk8hdHaLJ7F3PKDHf0sG8BzIVVA=
-X-Google-Smtp-Source: APXvYqx+FxmUmJby7V1uHy9Kg9yhfbA9OpM/S+Z0ztTo02qPebYEVuQBHgakFilaxLedm2hXT899aUNcsXX/RmNwUYc=
-X-Received: by 2002:aca:cdc7:: with SMTP id d190mr2329805oig.148.1569500517341;
- Thu, 26 Sep 2019 05:21:57 -0700 (PDT)
+        bh=oJJH7c5Zoj531ptgrS+I6xbKj34WO31mf5Hp3BAxJlI=;
+        b=KnjQP1UJ9Tj/tV3fB2G4OaXXgW1w77j2fa+fqAm90CgwDzi/Ufm3meX+R0hVifDn2z
+         Sf6hueZvPkFVkwIZqDcHNu7Y0yv+5FC/0geE54InMoIrHxE8teVsq526T9o3DV6LUUhj
+         MNERHPK2RgbK+EHyKoeD68bkALfWEsJq/7Km8BcU2HC0AkGWOgZPHBT2AqBGAmtONG5a
+         BV3sQEO3KR+CxJfpRHoEzcm9v3gm1NgCLXD9NpPoOBzqnjCCjIcACRibFunFsf0BV1K2
+         nnH1Fa1BfTj7RgmC6KiVqPwanAdHAFO1JUhFKhgRzwpn7EQ/OIqGDK6o5/l/Hz7RWL0i
+         RNIA==
+X-Gm-Message-State: APjAAAXQn59Ia82W3msmqM876OE0EYjKsbWo2X2dchujda0vU4kehBGU
+        GYXMxl85WKY4gQQKw8bIDfAquH48KbeuHtLsBhw=
+X-Google-Smtp-Source: APXvYqxQ5nDWf+QViSnoTMdDQxAvHVUfXRiLX2Bq6HYe4MkOQoHeudp3c7jCIoFhciCeMVI5V28Dlnm1CHRerw+nvok=
+X-Received: by 2002:a9d:730d:: with SMTP id e13mr2375699otk.145.1569501000905;
+ Thu, 26 Sep 2019 05:30:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAHirDJ_gtrjL_nq0T2qvn_kv9-UweL+=bc7EBLrTfNfNkVn0QA@mail.gmail.com>
- <20190924175036.GA2036@sirena.org.uk>
-In-Reply-To: <20190924175036.GA2036@sirena.org.uk>
+References: <1569245078-26031-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1569245078-26031-1-git-send-email-biju.das@bp.renesas.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Sep 2019 14:21:46 +0200
-Message-ID: <CAMuHMdXbRQXarvV=86rssSiRnuKMSFWJLRbU3VH9tcCV_FeOGQ@mail.gmail.com>
-Subject: Re: State of spidev from devicetree
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Claus Stovgaard <claus.stovgaard@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>
+Date:   Thu, 26 Sep 2019 14:29:49 +0200
+Message-ID: <CAMuHMdW+AwUFTbN6+084jZdYdVHYdi1wzBGAxkreqcQCGXm8zw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: dmaengine: rcar-dmac: Document R8A774B1 bindings
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, dmaengine@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 26, 2019 at 12:50 PM Mark Brown <broonie@kernel.org> wrote:
-> On Tue, Sep 24, 2019 at 02:52:59PM +0200, Claus Stovgaard wrote:
->
-> > What is yours response to the idea of creating a custom-hardware binding
-> > for spidev, intended to be used for programmable hardware unknown at the
-> > devicetree time.
->
-> You should use a device tree overlay to describe whatever
-> hardware you've instantiated on your FPGA then load the overlay
-> along with your FPGA image.
+On Mon, Sep 23, 2019 at 3:24 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> Renesas RZ/G2N (R8A774B1) SoC has DMA controllers compatible
+> with this driver, therefore document RZ/G2N specific bindings.
 
-And after that, you can bind spidev to the device in the overlay using
-sysfs, cfr. commit 5039563e7c25eccd ("spi: Add driver_override SPI device
-attribute").
+Please don't mention "driver", as DT bindings are intended to be
+implementation-agnostic.
+
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+
+For the actual change:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
 
                         Geert
 
-
---
+-- 
 Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
 In personal conversations with technical people, I call myself a hacker. But
