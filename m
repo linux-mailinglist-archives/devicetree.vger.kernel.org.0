@@ -2,353 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3D0BF9DF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 21:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B65E0BF9F7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2019 21:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728607AbfIZTLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Sep 2019 15:11:24 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39006 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728069AbfIZTLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Sep 2019 15:11:24 -0400
-Received: by mail-ot1-f65.google.com with SMTP id s22so116087otr.6;
-        Thu, 26 Sep 2019 12:11:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=bFL9v6D93ACN9q3ttEmF32gjw/ecfuNEclRJg6gg4Zo=;
-        b=O58Wcbv3FiMAUnw5p2J5B07Dnq0IfzxJgsMaNqAjVaAwlktzwLj9CeURq2LBDlmR+0
-         cVAdpbmdFY4X/nQOEFfvwnyEXEEW4SqCVI5mZKCRDJ264cyAsAFi2YmXrzRKb0eoA2RF
-         LEJpozpSxBXWuGePXOr2fQOwTSnBsUoxtVngz2DiscbjujQ/JDbl5CZJh7QH+t8ahykZ
-         FFwevnfP6q6HFc+xwpQkQcnhGZEeefDEc8LmBs9KVp5tDGGadC/TpkILlO8jSGmWkSFq
-         cYBrRYAvguN9+h3P6k3IQ7kZ6nMrIUawGmYTw0HrDRI52/ZVe+zmZY1dRog1icaQKLUG
-         uEfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=bFL9v6D93ACN9q3ttEmF32gjw/ecfuNEclRJg6gg4Zo=;
-        b=bmkyOoJBA+0Fkq2SjQkA4OA5TItXwuIzMETUsW7+Gnw/AfN0acsxBpd6wibjd0jPf9
-         8VgrFuzz95ER8bqHSJwQZRAvvDgzuqPxDDEnSrkR8TSHZo2Zl/6lvoSV+tZci7BqvInp
-         q89BM5mhez7gyEiz4bhTUKwP6RtrxeDW8dal5klyMP6sHBVRMhQNfxksIwQIgeONNadG
-         DkmV26JFW9mIWv1mkMUFrWAdrDrSGGAexTpYIpA4zFljoApseY1NbAdioRej69M3fAfa
-         JtYcXJ547eU/xej+i0BKmVQdFKfnWQrH5Je6+sEgNNYrwjxXtAA/6RYP4BmeJb6j1fIx
-         0Y0A==
-X-Gm-Message-State: APjAAAXUVrL8w8m3nyN0fcXjb30G7wxPRfpiycFlzGba1214+Z9R7Q0a
-        PPfgpPfWCBPtxmaYM8+KOENA7oqYcpkd0HQ5CwIFDos9
-X-Google-Smtp-Source: APXvYqy0XWM7wxtAieVkO2swc9qGgC6AOjtJ/hvDAjWmDyqt+0jHpfcN8jYTv07FPatR60lUUG0nezt/afXfUIFlGMw=
-X-Received: by 2002:a9d:3445:: with SMTP id v63mr211032otb.192.1569525081276;
- Thu, 26 Sep 2019 12:11:21 -0700 (PDT)
+        id S1728648AbfIZTTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Sep 2019 15:19:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57670 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727707AbfIZTTz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Sep 2019 15:19:55 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0E6E9222C3;
+        Thu, 26 Sep 2019 19:19:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569525594;
+        bh=lDV2/khWaCrqwoPtDSkiXURiNo/w2nq/BGLRwKWnt3s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UqZixSfq2qYAapsIRWiOOX8W8WjKwlDOjiARabmw1Fza88xRWBB5MbLfopnH2Vq0N
+         A9YTz69jPJ95S+FCDm4Tm6I5BwtL6vRXYOSchaFUnt9uyjjUxy2psa+ZNXGwRB6Njp
+         Qp4luf7HPi9E4FDPC+LfqadJhJ6w5eS8I7IBiy9o=
+Received: by mail-qt1-f179.google.com with SMTP id l3so4293219qtr.4;
+        Thu, 26 Sep 2019 12:19:54 -0700 (PDT)
+X-Gm-Message-State: APjAAAXmzRFujkWbs6SkRnz5/U6/sqv20j+pGrTKwRvpebckP7OFjn20
+        FHJtBylOlzbqq+fSvULPNmI5uIaLixK4ct9raA==
+X-Google-Smtp-Source: APXvYqw/LWFeEuod/2bEzvhpoq5Re0c34dJP7Z9CwXq9dlPB6PTnXxBBlMZnG5YvRmYy0v6GNNoQOcxScphRMrO/kYg=
+X-Received: by 2002:ac8:75c7:: with SMTP id z7mr5824094qtq.136.1569525593230;
+ Thu, 26 Sep 2019 12:19:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <1569008061-10459-1-git-send-email-ykaneko0929@gmail.com> <20190923113042.rz2ooqjrupvmt7si@verge.net.au>
-In-Reply-To: <20190923113042.rz2ooqjrupvmt7si@verge.net.au>
-From:   Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Date:   Fri, 27 Sep 2019 04:11:10 +0900
-Message-ID: <CAH1o70KT8CDGhS723GgXG+60TTnDchHfpvQ2+1f8A1wy0DFnRA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: irqchip: renesas: intc-irqpin: convert
- bindings to json-schema
-To:     Simon Horman <horms@verge.net.au>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <CGME20190926125619eucas1p249ac149ef1e1a3eb975dae94b08cd7be@eucas1p2.samsung.com>
+ <20190926125614.10408-1-m.szyprowski@samsung.com> <20190926140315.GA16002@pi3>
+ <0d3831ae-e33d-774d-02f7-fba45a95d25c@samsung.com> <CAL_JsqL4LZdkWkDkZdEpv4Sh840GywfHhLgmWjYCm9z+QPxrLg@mail.gmail.com>
+ <f06da64d-58de-1d51-48d4-95a6efd417d0@samsung.com>
+In-Reply-To: <f06da64d-58de-1d51-48d4-95a6efd417d0@samsung.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 26 Sep 2019 14:19:41 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+yWL3ZSnvHbGb4B0zHptQtFXjvOUJe0pNSHmH05GN-PA@mail.gmail.com>
+Message-ID: <CAL_Jsq+yWL3ZSnvHbGb4B0zHptQtFXjvOUJe0pNSHmH05GN-PA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: gpu: Convert Samsung Image Scaler to dt-schema
+To:     Maciej Falkowski <m.falkowski@samsung.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Inki Dae <inki.dae@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon-san,
-
-Thank you for your review.
-
-2019=E5=B9=B49=E6=9C=8823=E6=97=A5(=E6=9C=88) 20:30 Simon Horman <horms@ver=
-ge.net.au>:
+On Thu, Sep 26, 2019 at 11:54 AM Maciej Falkowski
+<m.falkowski@samsung.com> wrote:
 >
-> On Sat, Sep 21, 2019 at 04:34:21AM +0900, Yoshihiro Kaneko wrote:
-> > Convert R-/SH-Mobile IRQPin Controller bindings documentation to json-s=
-chema.
+>
+> On 9/26/19 5:35 PM, Rob Herring wrote:
+> > On Thu, Sep 26, 2019 at 9:47 AM Maciej Falkowski
+> > <m.falkowski@samsung.com> wrote:
+> >>
+> >> On 9/26/19 4:03 PM, Krzysztof Kozlowski wrote:
+> >>> On Thu, Sep 26, 2019 at 02:56:14PM +0200, Marek Szyprowski wrote:
+> >>>> From: Maciej Falkowski <m.falkowski@samsung.com>
+> >>>>
+> >>>> Convert Samsung Image Scaler to newer dt-schema format.
+> >>>>
+> >>>> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> >>>> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> >>>> ---
+> >>>> v2:
+> >>>> - Removed quotation marks from string in 'compatible' property
+> >>>> - Added if-then statement for 'clocks' and 'clock-names' property
+> >>>> - Added include directive to example
+> >>>> - Added GIC_SPI macro to example
+> >>>>
+> >>>> Best regards,
+> >>>> Maciej Falkowski
+> >>>> ---
+> >>>>    .../bindings/gpu/samsung-scaler.txt           | 27 -------
+> >>>>    .../bindings/gpu/samsung-scaler.yaml          | 71 +++++++++++++++++++
+> >>>>    2 files changed, 71 insertions(+), 27 deletions(-)
+> >>>>    delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.txt
+> >>>>    create mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.txt b/Documentation/devicetree/bindings/gpu/samsung-scaler.txt
+> >>>> deleted file mode 100644
+> >>>> index 9c3d98105dfd..000000000000
+> >>>> --- a/Documentation/devicetree/bindings/gpu/samsung-scaler.txt
+> >>>> +++ /dev/null
+> >>>> @@ -1,27 +0,0 @@
+> >>>> -* Samsung Exynos Image Scaler
+> >>>> -
+> >>>> -Required properties:
+> >>>> -  - compatible : value should be one of the following:
+> >>>> -    (a) "samsung,exynos5420-scaler" for Scaler IP in Exynos5420
+> >>>> -    (b) "samsung,exynos5433-scaler" for Scaler IP in Exynos5433
+> >>>> -
+> >>>> -  - reg : Physical base address of the IP registers and length of memory
+> >>>> -      mapped region.
+> >>>> -
+> >>>> -  - interrupts : Interrupt specifier for scaler interrupt, according to format
+> >>>> -             specific to interrupt parent.
+> >>>> -
+> >>>> -  - clocks : Clock specifier for scaler clock, according to generic clock
+> >>>> -         bindings. (See Documentation/devicetree/bindings/clock/exynos*.txt)
+> >>>> -
+> >>>> -  - clock-names : Names of clocks. For exynos scaler, it should be "mscl"
+> >>>> -              on 5420 and "pclk", "aclk" and "aclk_xiu" on 5433.
+> >>>> -
+> >>>> -Example:
+> >>>> -    scaler@12800000 {
+> >>>> -            compatible = "samsung,exynos5420-scaler";
+> >>>> -            reg = <0x12800000 0x1294>;
+> >>>> -            interrupts = <0 220 IRQ_TYPE_LEVEL_HIGH>;
+> >>>> -            clocks = <&clock CLK_MSCL0>;
+> >>>> -            clock-names = "mscl";
+> >>>> -    };
+> >>>> diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..af19930d052e
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+> >>>> @@ -0,0 +1,71 @@
+> >>>> +# SPDX-License-Identifier: GPL-2.0
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: https://protect2.fireeye.com/url?k=1ffa720fd467d028.1ffbf940-9a5a550397b4da2b&u=http://devicetree.org/schemas/gpu/samsung-scaler.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Samsung Exynos SoC Image Scaler
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Inki Dae <inki.dae@samsung.com>
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    enum:
+> >>>> +      - samsung,exynos5420-scaler
+> >>>> +      - samsung,exynos5433-scaler
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    maxItems: 1
+> >>>> +
+> >> Hi Krzysztof,
+> > Please work on your quoting. Reply below what you are replying to.
 > >
-> > Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
-> > ---
-> >  .../interrupt-controller/renesas,intc-irqpin.txt   |  62 -------------
-> >  .../interrupt-controller/renesas,intc-irqpin.yaml  | 102 +++++++++++++=
-++++++++
-> >  2 files changed, 102 insertions(+), 62 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/renesas,intc-irqpin.txt
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/renesas,intc-irqpin.yaml
+> >> By "Midgard" I assume that you referred to
+> >> 'Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml'.
+> >>
+> >> I think that 'clocks' and 'clock-names' properties before if statement
+> >> serve different purpose in this schema.
+> >> It totally has about 10 different compatibles grouped in five pairs.
+> >> Then schema declares for 'clocks' minItems as one and maxItems as two and
+> >> later it overrides this boundaries with if statement for particular
+> >> compatibles.
+> > It's not an override, but an AND. So what's under 'properties' has to
+> > be the looser constraints than what is under an if/then schema.
+> Hi Rob,
+> Thank you for explaining that.
+> >> Well, then clearly, the purpose is to declare boundaries for all of
+> >> pairs and
+> >> not to provide easy-to-find definition for this properties.
+> >>
+> >> In my schema I directly set boundaries per compatible with single
+> >> if-else statement.
+> >> I didn't know what to put before then as if statement is already
+> >> self-explanatory.
+> >>
+> >> Best regards,
+> >> Maciej Falkowski
+> >>
+> >>> I am repeating myself... leave the clocks and clock-names.
+> >>>
+> >>> "I think it is worth to leave the clocks and clock-names here (could be
+> >>> empty or with min/max values for number of items). This makes it easy to
+> >>> find the properties by humans.
+> > I agree.
 > >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ren=
-esas,intc-irqpin.txt b/Documentation/devicetree/bindings/interrupt-controll=
-er/renesas,intc-irqpin.txt
-> > deleted file mode 100644
-> > index 772c550..0000000
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,in=
-tc-irqpin.txt
-> > +++ /dev/null
-> > @@ -1,62 +0,0 @@
-> > -DT bindings for the R-/SH-Mobile irqpin controller
-> > -
-> > -Required properties:
-> > -
-> > -- compatible: has to be "renesas,intc-irqpin-<soctype>", "renesas,intc=
--irqpin"
-> > -  as fallback.
-> > -  Examples with soctypes are:
-> > -    - "renesas,intc-irqpin-r8a7740" (R-Mobile A1)
-> > -    - "renesas,intc-irqpin-r8a7778" (R-Car M1A)
-> > -    - "renesas,intc-irqpin-r8a7779" (R-Car H1)
-> > -    - "renesas,intc-irqpin-sh73a0" (SH-Mobile AG5)
-> > -
-> > -- reg: Base address and length of each register bank used by the exter=
-nal
-> > -  IRQ pins driven by the interrupt controller hardware module. The bas=
-e
-> > -  addresses, length and number of required register banks varies with =
-soctype.
-> > -- interrupt-controller: Identifies the node as an interrupt controller=
-.
-> > -- #interrupt-cells: has to be <2>: an interrupt index and flags, as de=
-fined in
-> > -  interrupts.txt in this directory.
-> > -- interrupts: Must contain a list of interrupt specifiers. For each in=
-terrupt
-> > -  provided by this irqpin controller instance, there must be one entry=
-,
-> > -  referring to the corresponding parent interrupt.
-> > -
-> > -Optional properties:
-> > -
-> > -- any properties, listed in interrupts.txt, and any standard resource =
-allocation
-> > -  properties
-> > -- sense-bitfield-width: width of a single sense bitfield in the SENSE =
-register,
-> > -  if different from the default 4 bits
-> > -- control-parent: disable and enable interrupts on the parent interrup=
-t
-> > -  controller, needed for some broken implementations
-> > -- clocks: Must contain a reference to the functional clock.  This prop=
-erty is
-> > -  mandatory if the hardware implements a controllable functional clock=
- for
-> > -  the irqpin controller instance.
-> > -- power-domains: Must contain a reference to the power domain. This pr=
-operty is
-> > -  mandatory if the irqpin controller instance is part of a controllabl=
-e power
-> > -  domain.
-> > -
-> > -
-> > -Example
-> > --------
-> > -
-> > -     irqpin1: interrupt-controller@e6900004 {
-> > -             compatible =3D "renesas,intc-irqpin-r8a7740",
-> > -                          "renesas,intc-irqpin";
-> > -             #interrupt-cells =3D <2>;
-> > -             interrupt-controller;
-> > -             reg =3D <0xe6900004 4>,
-> > -                     <0xe6900014 4>,
-> > -                     <0xe6900024 1>,
-> > -                     <0xe6900044 1>,
-> > -                     <0xe6900064 1>;
-> > -             interrupts =3D <0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH
-> > -                           0 149 IRQ_TYPE_LEVEL_HIGH>;
-> > -             clocks =3D <&mstp2_clks R8A7740_CLK_INTCA>;
-> > -             power-domains =3D <&pd_a4s>;
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ren=
-esas,intc-irqpin.yaml b/Documentation/devicetree/bindings/interrupt-control=
-ler/renesas,intc-irqpin.yaml
-> > new file mode 100644
-> > index 0000000..d4d3cf8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,in=
-tc-irqpin.yaml
-> > @@ -0,0 +1,102 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,intc-i=
-rqpin.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: DT bindings for the R-/SH-Mobile irqpin controller
-> > +
-> > +maintainers:
-> > +  - Geert Uytterhoeven <geert+renesas@xxxxxxxxx>
->
-> I guess Geert's email address got fuzzed somehow.
-
-I will fix it...
-
->
-> > +  - Guennadi Liakhovetski <g.liakhovetski@gmx.de>
->
-> I believe that its been a while since Guennadi worked in this area.
-> I'd suggest not including him as a maintainer of this binding.
-
-I understood.
-
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,intc-irqpin-r8a7740  # R-Mobile A1
-> > +          - renesas,intc-irqpin-r8a7778  # R-Car M1A
-> > +          - renesas,intc-irqpin-r8a7779  # R-Car H1
-> > +          - renesas,intc-irqpin-sh73a0   # SH-Mobile AG5
-> > +      - const: renesas,intc-irqpin
-> > +
-> > +  reg:
-> > +    # Base address and length of each register bank used by the extern=
-al
-> > +    # IRQ pins driven by the interrupt controller hardware module. The=
- base
-> > +    # addresses, length and number of required register banks varies w=
-ith
-> > +    # soctype.
-> > +    minItems: 1
-> > +    maxItems: 6
-> > +
-> > +  interrupt-controller: true
-> > +    # Identifies the node as an interrupt controller.
-> > +
-> > +  '#interrupt-cells':
-> > +    # an interrupt index and flags, as defined in interrupts.txt in th=
-is
-> > +    # directory.
-> > +    const: 2
-> > +
-> > +  interrupts:
-> > +    # Must contain a list of interrupt specifiers. For each interrupt
-> > +    # provided by this irqpin controller instance, there must be one e=
-ntry,
-> > +    # referring to the corresponding parent interrupt.
-> > +    maxItems: 1
-> > +
-> > +  sense-bitfield-width:
-> > +    # width of a single sense bitfield in the SENSE register, if diffe=
-rent
-> > +    # from the default 4 bits
-> > +    maxItems: 1
->
-> I wonder if we need to give this field a type, something like this?
->
->   sense-bitfield-width:
->     # Comment
->     $ref: /schemas/types.yaml#/definitions/uint32
->     maxItems: 1
-
-I will do it.
-
->
->     Also, I wonder if there should be some constraints on the values.
->     (I don't know if these constraints are correct)
->
->     minimum: 1
->     maximum: 64
->     default: 4
-
-I don't know the correct maximum value.
-
->
-> > +
-> > +  control-parent:
-> > +    # disable and enable interrupts on the parent interrupt controller=
-,
-> > +    # needed for some broken implementations
-> > +    maxItems: 1
->
-> I think we can describe this as a boolean.
->
->   control-parent:
->      # Comment
->      type: boolean
-
-I will do it.
-
->
->
-> > +
-> > +  clocks:
-> > +    # Must contain a reference to the functional clock.  This property=
- is
-> > +    # mandatory if the hardware implements a controllable functional c=
-lock for
-> > +    # the irqpin controller instance.
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    # Must contain a reference to the power domain. This property is
-> > +    # mandatory if the irqpin controller instance is part of a control=
-lable
-> > +    # power domain.
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupt-controller
-> > +  - '#interrupt-cells'
-> > +  - interrupts
->
-> Is 'clocks' also required?
-
-It is explained that 'clocks' is optional in renesas,intc-irqpin.txt.
-In fact, 'clocks' is not defined in the irqpin node of r8a7778.dtsi
-and r8a7779.dtsi.
-
-
-Regards,
-Kaneko
-
->
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/r8a7740-clock.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    irqpin1: interrupt-controller@e6900004 {
-> > +        compatible =3D "renesas,intc-irqpin-r8a7740",
-> > +                     "renesas,intc-irqpin";
-> > +        #interrupt-cells =3D <2>;
-> > +        interrupt-controller;
-> > +        reg =3D <0xe6900004 4>,
-> > +              <0xe6900014 4>,
-> > +              <0xe6900024 1>,
-> > +              <0xe6900044 1>,
-> > +              <0xe6900064 1>;
-> > +        interrupts =3D <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> > +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks =3D <&mstp2_clks R8A7740_CLK_INTCA>;
-> > +        power-domains =3D <&pd_a4s>;
-> > +    };
-> > --
-> > 1.9.1
+> > Let me put it another way. You need to add an 'additionalProperties:
+> > false' and (I think) to make that work you'll need them listed here.
 > >
+> > Rob
+>
+> So when properties are only defined inside if-then scope,
+> they are labeled as 'additional' as they are not defined inside
+> scope of 'properties'. It is mandatory then to mention 'clock' and
+> 'clock-names' there if 'additionalProperties: false' .
+
+Yes, which makes additionalProperties a bit fragile and can't be used
+if we include a common schema. There's a fix for that coming in
+json-schema draft8 called 'unevaluatedProperties'.
+
+> However I had not set it intentionally as there are additional
+> properties in some bindings,
+> exactly 'iommu' and 'power-domains' are undocumented.
+> Is it a good way to put them in 'properties' just to be able to forbid
+> additional properties?
+
+Simply put, they should be documented too.
+
+Rob
