@@ -2,233 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97BDFC01CC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE071C01D0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725882AbfI0JJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 05:09:00 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:50357 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725946AbfI0JI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 05:08:59 -0400
-Received: by mail-wm1-f65.google.com with SMTP id 5so5733586wmg.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 02:08:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=D3OzD1hf0H56gcDrQbyUaQfmUYWImUAVbM45JNOexLY=;
-        b=i1noes0UtmrZd/alh2IDqWXcEtnNh/Cq4JZFYWtHORnTgHJwiplImllKMhBLTMl+ZH
-         g5qk08JX76gy/KNeTXTXOQXpwQFrSdN9TM0N8gNEGchdsHaJj2v2FtAnnFuQ1kL2zz1o
-         YTUgfWC04rdBN5c6kqF+xnjVoIGZo6QpwN5NQ0IAtaL8dJgYSh9PZ9ywgLznVkDq8wp0
-         /ByQuIrrOak1yCZ8QPngDkWWav86XPR7+vkx1X32ZwyYiGWhd9SF1g7xKD8clPMmJtuL
-         R4bonXwOwdE/O43jSvXjXDW3FcxwQsH096WrrBjyCVSg7wxAVxzC1zetgqpTl9ZZKd95
-         Klzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=D3OzD1hf0H56gcDrQbyUaQfmUYWImUAVbM45JNOexLY=;
-        b=m4AbmEdwNhGmlhlWWykZogZ/8D/ciC8kQRLnUfY6+ZEZ9YRGb3WalymJToZio49K9w
-         Ge40L9a2myn0ULBifQQ/Xc2lp1W/8+P9x6315ltltrvoWTFJopays5RaHA8Sinj9tYpj
-         RkdYx4kvAPT73Bo8plXM/mHO4bZRk20YkzH49yytyxNB0Ecd30SDTAXJCRe095P6Cukg
-         6os+upa9SC6yxMncFTwWSm4ttjVJQat0DqH0bAoyuVmqDZpTLEjgJQyVLyqaPSV/hFoK
-         1NpSyPG3prFtd84TpOEHGzi3lU/tBqedLEpccYkWU1hlYAAVVvP8/tk61sFvA+1x0bkF
-         VDGA==
-X-Gm-Message-State: APjAAAWKydqlk2kLym9w2xO8yV49OpeN8iwvXV+faJHB/IYQGNprP4rV
-        nB19ANjuA2KH65wWwXdLajnJgw==
-X-Google-Smtp-Source: APXvYqyLvZvD/UjYpUX7ivAodhd31r3/tNz71w9iOXQroqd+5CfjIXg4vF7pBXTMm+o5v8TMFQsldw==
-X-Received: by 2002:a1c:29c4:: with SMTP id p187mr6773759wmp.28.1569575335838;
-        Fri, 27 Sep 2019 02:08:55 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id o19sm2072963wro.50.2019.09.27.02.08.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 27 Sep 2019 02:08:55 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson: g12a: add audio devices resets
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190925093358.15476-1-jbrunet@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <9ff3a6f8-13c2-856f-f37b-dd96cb45faad@baylibre.com>
-Date:   Fri, 27 Sep 2019 11:08:54 +0200
+        id S1726080AbfI0JJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 05:09:21 -0400
+Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31]:51155 "EHLO
+        lb3-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725946AbfI0JJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 05:09:20 -0400
+Received: from [IPv6:2001:420:44c1:2577:2521:77be:ff76:8085] ([IPv6:2001:420:44c1:2577:2521:77be:ff76:8085])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id DmFWiKcBR9D4hDmFZiBCrX; Fri, 27 Sep 2019 11:09:17 +0200
+Subject: Re: [PATCH v10 01/14] dt-bindings: connector: analog: add sdtv
+ standards property
+To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20190830101646.6530-1-m.felsch@pengutronix.de>
+ <20190830101646.6530-2-m.felsch@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <d5906500-105e-d87d-6ac0-cc8cbd220283@xs4all.nl>
+Date:   Fri, 27 Sep 2019 11:09:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190925093358.15476-1-jbrunet@baylibre.com>
+In-Reply-To: <20190830101646.6530-2-m.felsch@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfFZlSVHEuT2hNeFvy1zNPjhpkyI1ZZWVWeoieQ2NmpXNM+uHCRm4ml3JAk0A0atfwfovQ0EtT4+lk3DhYStb2Z46VofbNATnqIymfQp2VmSVzTm2iicW
+ 4EZYX/Emk6UqvOauSX2kxPGAVR/nSESoLWR9uYAUtaejvsZmtIISDRmW/DvOdgpN7pm2AvtoQfbpgrSMDXuAmYNdfNFBmMIlJ7kLeIi6i4lVjktx9WMv0/Lm
+ 3DxkdEk6tNb9Vu9Ix0Wvyus5UHcFhkqx+LneHKrmleSl3OB8urNXxe8PGsLKYr4TE9tZJ6hIf27Ho6DHrfcwlyZIYyVhJkQbsQ3BgqNoVQkHwb6LD/Ytx9DD
+ 2gVtnCe0ANiPjtzHgf6++K35rrUcgy5JaZugSkTR4zM0n6U8rbTma6Bn2j7xPvF9gnLXMqFn7Njh6NGpeN5gZ8irER8Z0puF4nzte3nYKMdubAKJ0cs29YFg
+ BA5nZzgefDJGROU5Y0a4ZlVw58QKPESya5VzLmnTL42EaYqRlVCxlJt+xgSu+pS7btROGYju3JMxyp5RDhUhV1rfT9r3ZEWkTz4iRiapVyOnMlrSJbry4yAS
+ t/OhehR+QAMu+XxjrU6PEuRoUYtZZOYvTgVQVQsP/lsunq+XNQfLeGjfXlNOI9qH3Z0=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2019 11:33, Jerome Brunet wrote:
-> Provide the reset lines coming from the audio clock controller to
-> the audio devices of the g12 family
+Hi Marco,
+
+On 8/30/19 12:16 PM, Marco Felsch wrote:
+> Some connectors no matter if in- or output supports only a limited
+> range of sdtv standards. It doesn't matter if the hardware behind that
+> connector supports more than the listed formats since the users are
+> restriced by a label e.g. to plug only a camera into this connector
+> which uses the PAL format.
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> This patch adds the capability to describe such limitation within the
+> firmware. There are no format restrictions if the property isn't
+> present, so it's completely backward compatible.
+
+I got this warnings:
+
+WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.txt
+
+I do think it makes sense to split this up into three patches: first
+adding the sdtv-standards.h, then the update to analog-tv-connector.txt
+and finally the videodev.h patch.
+
+Regards,
+
+	Hans
+
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 28 +++++++++++++++++-----
->  1 file changed, 22 insertions(+), 6 deletions(-)
+> [1] https://patchwork.kernel.org/cover/10794703/
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-> index 0d9df29994f3..3cf74fc96434 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-> @@ -103,7 +103,9 @@
->  			sound-name-prefix = "TODDR_A";
->  			interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
->  			clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
-> -			resets = <&arb AXG_ARB_TODDR_A>;
-> +			resets = <&arb AXG_ARB_TODDR_A>,
-> +				 <&clkc_audio AUD_RESET_TODDR_A>;
-> +			reset-names = "arb", "rst";
->  			status = "disabled";
->  		};
+> v10:
+> - fix typo within comment s/TV_STD_*/SDTV_STD_*/
+> 
+> v8:
+> Hi Rob,
+> 
+> I dropped your r b tag becuase of the changes I made in this version.
+> Please can you have look on it again? Luckily this would be the last
+> time ;-)
+> 
+> - move definition to include/dt-bindings/display
+> - rename tvnorms.h to sdtv-standards.h
+> - TVORMS_* -> SDTV_STD_*
+> - add sync comments
+> - adapt commit message
+> - fix bindings documentation
+> 
+> v7:
+> I kept Robs r b tag because I only changed the example and extended
+> TVNORM_* macros.
+> 
+> - fix some style issues
+> - add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
+> 
+> v6:
+> - tvnorms.h: use tabs instead of spaces
+> - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+> 
+> v2-v4:
+> - nothing since the patch was squashed from series [1] into this
+>   series.
+> 
+>  .../display/connector/analog-tv-connector.txt |  6 ++
+>  include/dt-bindings/display/sdtv-standards.h  | 76 +++++++++++++++++++
+>  include/uapi/linux/videodev2.h                |  4 +
+>  3 files changed, 86 insertions(+)
+>  create mode 100644 include/dt-bindings/display/sdtv-standards.h
+> 
+> diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> index 0c0970c210ab..883bcb2604c7 100644
+> --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> @@ -6,16 +6,22 @@ Required properties:
 >  
-> @@ -115,7 +117,9 @@
->  			sound-name-prefix = "TODDR_B";
->  			interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
->  			clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
-> -			resets = <&arb AXG_ARB_TODDR_B>;
-> +			resets = <&arb AXG_ARB_TODDR_B>,
-> +				 <&clkc_audio AUD_RESET_TODDR_B>;
-> +			reset-names = "arb", "rst";
->  			status = "disabled";
->  		};
+>  Optional properties:
+>  - label: a symbolic name for the connector
+> +- sdtv-standards: limit the supported TV standards on a connector to the given
+> +                  ones. If not specified all TV standards are allowed.
+> +                  Possible TV standards are defined in
+> +                  include/dt-bindings/display/sdtv-standards.h.
 >  
-> @@ -127,7 +131,9 @@
->  			sound-name-prefix = "TODDR_C";
->  			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
->  			clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
-> -			resets = <&arb AXG_ARB_TODDR_C>;
-> +			resets = <&arb AXG_ARB_TODDR_C>,
-> +				 <&clkc_audio AUD_RESET_TODDR_C>;
-> +			reset-names = "arb", "rst";
->  			status = "disabled";
->  		};
+>  Required nodes:
+>  - Video port for TV input
 >  
-> @@ -139,7 +145,9 @@
->  			sound-name-prefix = "FRDDR_A";
->  			interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
->  			clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-> -			resets = <&arb AXG_ARB_FRDDR_A>;
-> +			resets = <&arb AXG_ARB_FRDDR_A>,
-> +				 <&clkc_audio AUD_RESET_FRDDR_A>;
-> +			reset-names = "arb", "rst";
->  			status = "disabled";
->  		};
+>  Example
+>  -------
+> +#include <dt-bindings/display/sdtv-standards.h>
 >  
-> @@ -151,7 +159,9 @@
->  			sound-name-prefix = "FRDDR_B";
->  			interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
->  			clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
-> -			resets = <&arb AXG_ARB_FRDDR_B>;
-> +			resets = <&arb AXG_ARB_FRDDR_B>,
-> +				 <&clkc_audio AUD_RESET_FRDDR_B>;
-> +			reset-names = "arb", "rst";
->  			status = "disabled";
->  		};
+>  tv: connector {
+>  	compatible = "composite-video-connector";
+>  	label = "tv";
+> +	sdtv-standards = <(SDTV_STD_PAL | SDTV_STD_NTSC)>;
 >  
-> @@ -163,7 +173,9 @@
->  			sound-name-prefix = "FRDDR_C";
->  			interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
->  			clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
-> -			resets = <&arb AXG_ARB_FRDDR_C>;
-> +			resets = <&arb AXG_ARB_FRDDR_C>,
-> +				 <&clkc_audio AUD_RESET_FRDDR_C>;
-> +			reset-names = "arb", "rst";
->  			status = "disabled";
->  		};
+>  	port {
+>  		tv_connector_in: endpoint {
+> diff --git a/include/dt-bindings/display/sdtv-standards.h b/include/dt-bindings/display/sdtv-standards.h
+> new file mode 100644
+> index 000000000000..fbc1a3db2ea7
+> --- /dev/null
+> +++ b/include/dt-bindings/display/sdtv-standards.h
+> @@ -0,0 +1,76 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
+> +/*
+> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_DISPLAY_SDTV_STDS_H
+> +#define _DT_BINDINGS_DISPLAY_SDTV_STDS_H
+> +
+> +/*
+> + * Attention: Keep the SDTV_STD_* bit definitions in sync with
+> + * include/uapi/linux/videodev2.h V4L2_STD_* bit definitions.
+> + */
+> +/* One bit for each standard */
+> +#define SDTV_STD_PAL_B		0x00000001
+> +#define SDTV_STD_PAL_B1		0x00000002
+> +#define SDTV_STD_PAL_G		0x00000004
+> +#define SDTV_STD_PAL_H		0x00000008
+> +#define SDTV_STD_PAL_I		0x00000010
+> +#define SDTV_STD_PAL_D		0x00000020
+> +#define SDTV_STD_PAL_D1		0x00000040
+> +#define SDTV_STD_PAL_K		0x00000080
+> +
+> +#define SDTV_STD_PAL		(SDTV_STD_PAL_B		| \
+> +				 SDTV_STD_PAL_B1	| \
+> +				 SDTV_STD_PAL_G		| \
+> +				 SDTV_STD_PAL_H		| \
+> +				 SDTV_STD_PAL_I		| \
+> +				 SDTV_STD_PAL_D		| \
+> +				 SDTV_STD_PAL_D1	| \
+> +				 SDTV_STD_PAL_K)
+> +
+> +#define SDTV_STD_PAL_M		0x00000100
+> +#define SDTV_STD_PAL_N		0x00000200
+> +#define SDTV_STD_PAL_Nc		0x00000400
+> +#define SDTV_STD_PAL_60		0x00000800
+> +
+> +#define SDTV_STD_NTSC_M		0x00001000	/* BTSC */
+> +#define SDTV_STD_NTSC_M_JP	0x00002000	/* EIA-J */
+> +#define SDTV_STD_NTSC_443	0x00004000
+> +#define SDTV_STD_NTSC_M_KR	0x00008000	/* FM A2 */
+> +
+> +#define SDTV_STD_NTSC		(SDTV_STD_NTSC_M	| \
+> +				 SDTV_STD_NTSC_M_JP	| \
+> +				 SDTV_STD_NTSC_M_KR)
+> +
+> +#define SDTV_STD_SECAM_B	0x00010000
+> +#define SDTV_STD_SECAM_D	0x00020000
+> +#define SDTV_STD_SECAM_G	0x00040000
+> +#define SDTV_STD_SECAM_H	0x00080000
+> +#define SDTV_STD_SECAM_K	0x00100000
+> +#define SDTV_STD_SECAM_K1	0x00200000
+> +#define SDTV_STD_SECAM_L	0x00400000
+> +#define SDTV_STD_SECAM_LC	0x00800000
+> +
+> +#define SDTV_STD_SECAM		(SDTV_STD_SECAM_B	| \
+> +				 SDTV_STD_SECAM_D	| \
+> +				 SDTV_STD_SECAM_G	| \
+> +				 SDTV_STD_SECAM_H	| \
+> +				 SDTV_STD_SECAM_K	| \
+> +				 SDTV_STD_SECAM_K1	| \
+> +				 SDTV_STD_SECAM_L	| \
+> +				 SDTV_STD_SECAM_LC)
+> +
+> +/* Standards for Countries with 60Hz Line frequency */
+> +#define SDTV_STD_525_60		(SDTV_STD_PAL_M		| \
+> +				 SDTV_STD_PAL_60	| \
+> +				 SDTV_STD_NTSC		| \
+> +				 SDTV_STD_NTSC_443)
+> +
+> +/* Standards for Countries with 50Hz Line frequency */
+> +#define SDTV_STD_625_50		(SDTV_STD_PAL		| \
+> +				 SDTV_STD_PAL_N		| \
+> +				 SDTV_STD_PAL_Nc	| \
+> +				 SDTV_STD_SECAM)
+> +
+> +#endif /* _DT_BINDINGS_DISPLAY_SDTV_STDS_H */
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index 530638dffd93..bc7acade02a0 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -1208,6 +1208,10 @@ struct v4l2_selection {
 >  
-> @@ -249,6 +261,7 @@
->  			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
->  				 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
->  			clock-names = "pclk", "refclk";
-> +			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
->  			status = "disabled";
->  		};
+>  typedef __u64 v4l2_std_id;
 >  
-> @@ -261,6 +274,7 @@
->  			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
->  				 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
->  			clock-names = "pclk", "mclk";
-> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
->  			status = "disabled";
->  		};
->  
-> @@ -318,6 +332,7 @@
->  			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
->  				 <&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
->  			clock-names = "pclk", "mclk";
-> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT_B>;
->  			status = "disabled";
->  		};
->  
-> @@ -326,6 +341,7 @@
->  			reg = <0x0 0x744 0x0 0x4>;
->  			#sound-dai-cells = <1>;
->  			sound-name-prefix = "TOHDMITX";
-> +			resets = <&clkc_audio AUD_RESET_TOHDMITX>;
->  			status = "disabled";
->  		};
->  	};
+> +/*
+> + * Attention: Keep the V4L2_STD_* bit definitions in sync with
+> + * include/dt-bindings/display/sdtv-standards.h SDTV_STD_* bit definitions.
+> + */
+>  /* one bit for each */
+>  #define V4L2_STD_PAL_B          ((v4l2_std_id)0x00000001)
+>  #define V4L2_STD_PAL_B1         ((v4l2_std_id)0x00000002)
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
