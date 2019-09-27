@@ -2,90 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1AFC049A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 13:50:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CCE2C04D2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727305AbfI0Lul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 07:50:41 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:39779 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbfI0Lul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 07:50:41 -0400
-Received: by mail-lf1-f67.google.com with SMTP id 72so1688473lfh.6
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 04:50:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jtkPzUdh0BjwnTFcU6cDEv31BuC4wG3MpqjO9vOb5nc=;
-        b=dHkG+HnC9dM6qd1tsawE2B77CGjpChpBeEsSBUvLKNrVXpX+osBDmU/jLYHZPm1B/P
-         2dyDxSkFmTP8ieUdkcZKpDi2kNeo10lBoWrXT9wdZ615R12K9KGFf6J/OrMdVyWQEX/z
-         wYgpsuDlMp9FCPoF7j0EiuKNEMBtaw/LYAUt7RIkCAlVR/MANI5zfMMqmxqGDQcnXtAL
-         2OY3vl+bQvPLR8uEP6OVKQm7w0g52y6Li38Svuxw5AE7QBLcb9eP1aPHP9bXfcFj5qG3
-         0/jxw0iG4icNXkyuWt9atKmkl1Z8zGcUZmaUcKj8BAHOSFFYokiX4pBiyg/QJksov5nt
-         4GIA==
+        id S1726116AbfI0MHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 08:07:04 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:39184 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726087AbfI0MHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:07:04 -0400
+Received: by mail-ot1-f68.google.com with SMTP id s22so2004291otr.6;
+        Fri, 27 Sep 2019 05:07:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jtkPzUdh0BjwnTFcU6cDEv31BuC4wG3MpqjO9vOb5nc=;
-        b=aF8naiIELLb2fQsXDgJQzkyvYc3RvA3ajfDjTFcCX7vqWajQbCrIaGKN2eWUoUOcFB
-         s2CPyfqpVCqOoJ+2HCminV4sMzMFqHx2nFUfl+wm4VT7gVWLDf9kbhiJAYykOV4F94Im
-         vumAiBZ3yONLcvOJKu1YZn1j1ZvnolqZpaxyoDiuyUzdp64L+wR3/Eqzwd/5VdSPd1P1
-         +v7tLQPCh+qXA57WbXoAffTh/G7cw84j8/iHXdytRkdWccoQLRBSq3asoTziI3RM5qvw
-         awDpX7MZhFaVc3cM97AJRhLZSWpuFz2KKJC8DPcJlQW8mNlSs3NVBwP3ur4wl8wjgrID
-         Y5+w==
-X-Gm-Message-State: APjAAAXEFPKAVqeDNQgrRlGjmuiQEOX4BDpJKRHrxSvTGrzgXoryz1W9
-        Yw67TqrYqy6KHuW6rg2ctlxuJN04xbx+CTQW8bLawg==
-X-Google-Smtp-Source: APXvYqyF/AMU9HIQoJBR4mgMcIh/XR7QQxXA0oPACvNrMQJcYHLmYcQQw76chmDwmpMjtdY1kzoSIQzHJDEllWzZAzI=
-X-Received: by 2002:a19:48c3:: with SMTP id v186mr2493316lfa.141.1569585039656;
- Fri, 27 Sep 2019 04:50:39 -0700 (PDT)
+        bh=cQUfrwmtNA9Ew4P666b0rG4KYFsmfzKC7caBKHjOR7A=;
+        b=W8m7ZyTGJpiwmlRZmZ50KewVLpzrTP30eCAjEzzjxm+ZZqmaD1BOr7p/JnXzwbIPF5
+         ZSq1LJlq/M7fIkHxYqgONpuZ3Klcbc5tvYqStqygxJMVPzptIBtl9n29cGC8K2zkkMGI
+         PJ3eqLa0zvQZI6asqQhedG5Ts9ZVkbssR0bxb1NgB3GjgzwKMaQuT+Kvh/SP/UZU3pZV
+         5as1G7n2v11N/6D7B0BQPUCcwQNsmQvqofnZPkBq/qcCX/1xmynzy5lbeU+3lJFL5yHn
+         hBBd4H1Vm72CrYJh7dWZq7vC1fpXCCMRGJpCN43UkfyfOjGcE5fdglKbBFx0YuY3geCF
+         iYCA==
+X-Gm-Message-State: APjAAAVC/IidycCFW872z0OG4HINA9fmSfqG9i+kEGafZWcQ3vGjoIoP
+        q35s5hsv2oIHuPmwiCnPMgVAiMU6mTCkkigXo6Wh37dD2Vs=
+X-Google-Smtp-Source: APXvYqw91liXfST0dl+4xdw5CaXGSUDfkMlGkTAUpJkjnVji/bz+InlrkHEmdtczbDZxYDCO2f1/2hhRB9TstrUR0lk=
+X-Received: by 2002:a9d:404d:: with SMTP id o13mr2952804oti.39.1569586023005;
+ Fri, 27 Sep 2019 05:07:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <1569439337-10482-1-git-send-email-hongweiz@ami.com> <1569439337-10482-3-git-send-email-hongweiz@ami.com>
-In-Reply-To: <1569439337-10482-3-git-send-email-hongweiz@ami.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 27 Sep 2019 13:50:28 +0200
-Message-ID: <CACRpkdY4RsqAOykyS-9GEFvF--3bmf=UjzADx8U18z=gTHBb4g@mail.gmail.com>
-Subject: Re: [v2, 2/2] gpio: dts: aspeed: Add SGPIO driver
-To:     Hongwei Zhang <hongweiz@ami.com>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
+References: <1568725530-55241-1-git-send-email-biju.das@bp.renesas.com> <1568725530-55241-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1568725530-55241-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 27 Sep 2019 14:06:51 +0200
+Message-ID: <CAMuHMdW7erKQHKjf7ca2yjY-gUfQV5CHaT8HEoz7zPR26OnCnw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: renesas: Initial r8a774b1 SoC device tree
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Benjamin Gaignard <benjamin.gaignard@linaro.org>,
-        Doug Anderson <armlinux@m.disordat.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 9:22 PM Hongwei Zhang <hongweiz@ami.com> wrote:
+Hi Biju,
 
-> Add SGPIO driver support for Aspeed AST2500 SoC.
+On Tue, Sep 17, 2019 at 3:12 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> Basic support for the RZ/G2N (R8A774B1) SoC. Added placeholders
+> to avoid compilation error with the common platform code.
 >
-> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-I sent a separate patch to fix this up the way I want it with the file
-named gpio-aspeed-sgpio.c and CONFIG_GPIO_ASPEED_SGPIO.
+Thanks for your patch!
 
-I don't want to mix up the namespaces of something Aspeed-generic
-with the namespace of the GPIO subsystem. SGPIO is the name
-of a specific Aspeed component.
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
 
-Yours,
-Linus Walleij
+> +               avb: ethernet@e6800000 {
+> +                       reg = <0 0xe6800000 0 0x800>, <0 0xe6a00000 0 0x10000>;
+
+According to the documentation, RZ/G2N does not have the stream buffer,
+so the second register block should be omitted.
+
+> +                       /* placeholder */
+> +               };
+
+The rest looks OK, so with the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
