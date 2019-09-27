@@ -2,206 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66FC5C0826
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFED8C0835
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727289AbfI0O77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 10:59:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37680 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726926AbfI0O77 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 10:59:59 -0400
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6829621850;
-        Fri, 27 Sep 2019 14:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569596397;
-        bh=4ZeYZF5rfbOcG858xzs2UwUFuWnyzoDXLMnGJ65sEOI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eOebfeeBI4f0mYoksJW1Y9n3kCLeskoOArGkJBt8tBWzHKTGpdq3YXxTW645sqMdO
-         DfBbu/KsaKFO0OEGtzThnSXQNYIhGWX+4Bt5+SCzTRm2nzvNLv56BYz9SG2trR4+9n
-         m4zEeAH1bnMU+V0A4RkoEu394mYdEGuT7dH3Kt3c=
-Received: by mail-lj1-f171.google.com with SMTP id m7so2836524lji.2;
-        Fri, 27 Sep 2019 07:59:57 -0700 (PDT)
-X-Gm-Message-State: APjAAAXn7iBCWhH/Jg/rqNtCIlPeUq++v5PE12xdSFUcG77F3rNEQYAQ
-        kXiWrN5//SBocpDJIUxRsmmIReu/L7YsGBk9WhE=
-X-Google-Smtp-Source: APXvYqyfR4W0pf9jJu2HbF52tES3d61o9HB32ILl9iSDh6Qefr/bZ3EwJ3A3TAx3XoN+Yim9v2KMdTelKqFcDQfA3zc=
-X-Received: by 2002:a2e:7c17:: with SMTP id x23mr3207763ljc.210.1569596395620;
- Fri, 27 Sep 2019 07:59:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <CGME20190927143314eucas1p2d419866cd740207426cd37cb6fdff468@eucas1p2.samsung.com>
- <20190927143306.12133-1-m.szyprowski@samsung.com>
-In-Reply-To: <20190927143306.12133-1-m.szyprowski@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 27 Sep 2019 16:59:44 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdbDropa0iL6YP4Fb4aFSEXQ87thOk5mN+cSCU=i+ZwUw@mail.gmail.com>
-Message-ID: <CAJKOXPdbDropa0iL6YP4Fb4aFSEXQ87thOk5mN+cSCU=i+ZwUw@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: gpu: Convert Samsung Image Scaler to dt-schema
-To:     Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
+        id S1727955AbfI0PBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:01:17 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:39802 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727950AbfI0PBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:01:17 -0400
+Received: by mail-pg1-f193.google.com with SMTP id o10so3649006pgs.6
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 08:01:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=iwywjeDVM8AUXGeKWR8/wgyVViur6euGe/EV6CXLnA4=;
+        b=ACha3qtOmm8aMd5st7ZxGBhYIPjBuXy5+2otP0xUoraIIecCGmuHIWDt2u7uTS4ADo
+         E50Zbwf6CEQtKMY7XhFnMTr7e1Tg4rF6r5fSwi10j8TutNzRKkmEQRZiNf8AhoviTC5+
+         YK9f/ab1VLS8lILbhSSHrXssxv08DLjBqEYqqXpVtFMfW7CaVx2E108c/MQUTxKnbw/0
+         qDMnVPYRFYuyZgEXhobiJaDKtpqg3Hf9Lk10ueZZzztmdmBwP4ECGINlIvRsLnjLaxNq
+         3Fl+YFTCFapqA1dlozq1gieRe5EPh2nTHum0nzIuU+0zBUcfJtLnRNaijA/ORuiYT5m5
+         mPdg==
+X-Gm-Message-State: APjAAAWLSIupeIQfJgjD9p3Qh+ZZ9C4ktb9kjcFn7DHvKfGf5AO0zd/K
+        dVT8V3UvMuUfIX/ccubgbAOZgw==
+X-Google-Smtp-Source: APXvYqxCiNCa9+/WHmk6ynVp+bPUVj9CZfNwljUVZCSHmmBcwDkub/iysw40+Wm+iTSfFTH0pY7V8g==
+X-Received: by 2002:a62:1cd2:: with SMTP id c201mr4896904pfc.51.1569596476331;
+        Fri, 27 Sep 2019 08:01:16 -0700 (PDT)
+Received: from localhost ([2601:647:5b80:29f7:1bdd:d748:9a4e:8083])
+        by smtp.gmail.com with ESMTPSA id x68sm3785991pfd.183.2019.09.27.08.01.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 08:01:15 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 08:01:14 -0700
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 1/3] include: fpga: adi-axi-common: Define version macros
+Message-ID: <20190927150114.GA2146@archbox>
+References: <20190926103925.194973-1-nuno.sa@analog.com>
+ <20190926103925.194973-2-nuno.sa@analog.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190926103925.194973-2-nuno.sa@analog.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Sep 2019 at 16:33, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
->
-> From: Maciej Falkowski <m.falkowski@samsung.com>
->
-> Convert Samsung Image Scaler to newer dt-schema format.
->
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
-> v3:
-> - Fixed description of 'clocks' property:
-> rather than 'mscl clock', 'pclk clock'
-> - Added empty line within if-else statement
-> - Added 'additionalProperties: false'
-> - Listed all missing 'properties' in properties scope
->
-> Best regards,
-> Maciej Falkowski
-> ---
->  .../bindings/gpu/samsung-scaler.txt           | 27 -------
->  .../bindings/gpu/samsung-scaler.yaml          | 81 +++++++++++++++++++
->  2 files changed, 81 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.txt b/Documentation/devicetree/bindings/gpu/samsung-scaler.txt
-> deleted file mode 100644
-> index 9c3d98105dfd..000000000000
-> --- a/Documentation/devicetree/bindings/gpu/samsung-scaler.txt
-> +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -* Samsung Exynos Image Scaler
-> -
-> -Required properties:
-> -  - compatible : value should be one of the following:
-> -       (a) "samsung,exynos5420-scaler" for Scaler IP in Exynos5420
-> -       (b) "samsung,exynos5433-scaler" for Scaler IP in Exynos5433
-> -
-> -  - reg : Physical base address of the IP registers and length of memory
-> -         mapped region.
-> -
-> -  - interrupts : Interrupt specifier for scaler interrupt, according to format
-> -                specific to interrupt parent.
-> -
-> -  - clocks : Clock specifier for scaler clock, according to generic clock
-> -            bindings. (See Documentation/devicetree/bindings/clock/exynos*.txt)
-> -
-> -  - clock-names : Names of clocks. For exynos scaler, it should be "mscl"
-> -                 on 5420 and "pclk", "aclk" and "aclk_xiu" on 5433.
-> -
-> -Example:
-> -       scaler@12800000 {
-> -               compatible = "samsung,exynos5420-scaler";
-> -               reg = <0x12800000 0x1294>;
-> -               interrupts = <0 220 IRQ_TYPE_LEVEL_HIGH>;
-> -               clocks = <&clock CLK_MSCL0>;
-> -               clock-names = "mscl";
-> -       };
-> diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
-> new file mode 100644
-> index 000000000000..5317ac64426a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/samsung-scaler.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung Exynos SoC Image Scaler
-> +
-> +maintainers:
-> +  - Inki Dae <inki.dae@samsung.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,exynos5420-scaler
-> +      - samsung,exynos5433-scaler
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks: {}
-> +  clock-names: {}
-> +  iommus: {}
-> +  power-domains: {}
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: samsung,exynos5420-scaler
-> +
-> +then:
-> +  properties:
-> +    clocks:
-> +      items:
-> +        - description: mscl clock
-> +
-> +    clock-names:
-> +      items:
-> +        - const: mscl
-> +
-> +else:
-> +  properties:
-> +    clocks:
-> +      items:
-> +        - description: pclk clock
-> +        - description: aclk clock
-> +        - description: aclk_xiu clock
-> +
-> +    clock-names:
-> +      items:
-> +        - const: pclk
-> +        - const: aclk
-> +        - const: aclk_xiu
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/exynos5420.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    scaler@12800000 {
-> +        compatible = "samsung,exynos5420-scaler";
-> +        reg = <0x12800000 0x1294>;
-> +        interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&clock CLK_MSCL0>;
-> +        clock-names = "mscl";
-> +    };
-> +
-> +...
+Hi Nuno,
 
-You have some left-overs at the end. With cleaning them:
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Thu, Sep 26, 2019 at 12:39:23PM +0200, Nuno Sá wrote:
+> Add commom macros to "parse" ADI HDL cores version, in terms of
+> major, minor and patch.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  include/linux/fpga/adi-axi-common.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/include/linux/fpga/adi-axi-common.h b/include/linux/fpga/adi-axi-common.h
+> index 7fc95d5c95bb..5bc5603e6bc8 100644
+> --- a/include/linux/fpga/adi-axi-common.h
+> +++ b/include/linux/fpga/adi-axi-common.h
+> @@ -16,4 +16,8 @@
+>  #define ADI_AXI_PCORE_VER(major, minor, patch)	\
+>  	(((major) << 16) | ((minor) << 8) | (patch))
+>  
+> +#define ADI_AXI_PCORE_VER_MAJOR(version)	(((version) >> 16) & 0xff)
+> +#define ADI_AXI_PCORE_VER_MINOR(version)	(((version) >> 8) & 0xff)
+> +#define ADI_AXI_PCORE_VER_PATCH(version)	((version) & 0xff)
+> +
+>  #endif /* ADI_AXI_COMMON_H_ */
+> -- 
+> 2.23.0
+> 
 
-Best regards,
-Krzysztof
+While implemented in an FPGA I'm not sure if this needs to go into
+includelinux/fpga/.
+
+I'd suggest to add this to the actual driver for now, and once you have
+multiple users you can find a common location.
+
+Cheers,
+Moritz
