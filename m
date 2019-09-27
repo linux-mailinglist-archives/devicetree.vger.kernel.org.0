@@ -2,143 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2A3C0711
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 16:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8CC1C074C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 16:26:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726843AbfI0OMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 10:12:36 -0400
-Received: from mail-eopbgr1400120.outbound.protection.outlook.com ([40.107.140.120]:33728
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726540AbfI0OMf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 10:12:35 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WOerX3gxgZ+394dazaX7vOhTFaN8oI6rOrgjEGYw+Q+vs+MbcgI17wcg6pw+AKD8TPO9RD5UFiJSqVGKnZMvZoNjnEYj53GQmamL2nU5DsaRXMVVhGmGHxOkrd23jTJTsKfTyU4Iw7uajYfycz8ASv8/8Xmfs/hgW14laW7y0LLM1MnAc5o4xeDfSf3aPEjnfv3sy8jV6hWqIwkTJWPKw/LjyZch6ET3aw9fTLsnWmdCXjYVogCSgKIIqojmFG5allnpq45kaCW5hzXXbTncmOj00I80madBTnovXPw0BXN4mD0QqRZ8gT5TQM9cest3tebUyAK6iIx7wSFhZui1Wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nggTYu3GDTe2Rfniv1IYQtfowb6huEM6XtQpaAxdoIY=;
- b=k6yDWUcwY+iELrD4e80AmFP8sBjh8UGrpGHsRqqMjRY5NfMPj5zlt9lCCHI38oS2XjHdgfGYuFke1vwROnbDx8tZk4JZoEoNN6aNSm8ciMqMCDoTVd0hOJZURoVtxgcC3q/99Wzq+/q9ZE10sBJPcATwl45LfxfevEg0xcWU0PjC7koEAQRC8izU7+rGN2M4WCQfEBPhpaTJe3HfONFx9Tdc5t5FvRl+4Az7G/6PIlAlzt/+Goqz+rI7ALF0CbaiQOlozYh70XZw+8bMCjCYuBjsEKxhOm0a94hg4L1sQ+09G4jRwlzdz9FAUHl84uhOSHNa2q3PFNVtLeR8JQ2zQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nggTYu3GDTe2Rfniv1IYQtfowb6huEM6XtQpaAxdoIY=;
- b=UEhz/weCBnafwXAbLTrAf2uA1qtKVyK99EXv2mGaC1HMukrRn6WX1pgpmfXtPu3gzvw/1o8fIux9Tr71N2bJ1iriZI3aA4cC8nucgQ5rzhujZf/nmdyRwgnapq6mTybKPdarSNVN8ibvDtja4Z0l2hG/kKeJJYRwAzvdlqJNLbc=
-Received: from OSAPR01MB3025.jpnprd01.prod.outlook.com (52.134.248.22) by
- OSAPR01MB4804.jpnprd01.prod.outlook.com (20.179.178.81) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.18; Fri, 27 Sep 2019 14:12:30 +0000
-Received: from OSAPR01MB3025.jpnprd01.prod.outlook.com
- ([fe80::b993:ed23:2838:426d]) by OSAPR01MB3025.jpnprd01.prod.outlook.com
- ([fe80::b993:ed23:2838:426d%4]) with mapi id 15.20.2284.028; Fri, 27 Sep 2019
- 14:12:30 +0000
-From:   Vincent Cheng <vincent.cheng.xh@renesas.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "richardcochran@gmail.com" <richardcochran@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] ptp: Add a ptp clock driver for IDT ClockMatrix.
-Thread-Topic: [PATCH v2 2/2] ptp: Add a ptp clock driver for IDT ClockMatrix.
-Thread-Index: AQHVdOaUGQW79lTjH0S8HdFcGJicBKc/c3EAgAAd5IA=
-Date:   Fri, 27 Sep 2019 14:12:30 +0000
-Message-ID: <20190927141215.GA24424@renesas.com>
-References: <1569556128-22212-1-git-send-email-vincent.cheng.xh@renesas.com>
- <1569556128-22212-2-git-send-email-vincent.cheng.xh@renesas.com>
- <20190927122518.GA25474@lunn.ch>
-In-Reply-To: <20190927122518.GA25474@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [173.195.53.163]
-x-clientproxiedby: BYAPR03CA0012.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::25) To OSAPR01MB3025.jpnprd01.prod.outlook.com
- (2603:1096:604:2::22)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=vincent.cheng.xh@renesas.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 589f8e70-dce1-473e-2dc7-08d74354bb89
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: OSAPR01MB4804:
-x-microsoft-antispam-prvs: <OSAPR01MB4804A9E3BDC3B03A5B45A0CBD2810@OSAPR01MB4804.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0173C6D4D5
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(136003)(366004)(376002)(396003)(39860400002)(199004)(189003)(99286004)(76176011)(6486002)(81156014)(8676002)(81166006)(229853002)(33656002)(8936002)(25786009)(6512007)(64756008)(66446008)(6246003)(5660300002)(14454004)(478600001)(66556008)(4326008)(2906002)(1076003)(66946007)(66476007)(86362001)(2616005)(11346002)(486006)(476003)(386003)(6506007)(102836004)(7736002)(6436002)(3846002)(305945005)(6916009)(446003)(54906003)(26005)(66066001)(316002)(52116002)(71190400001)(256004)(71200400001)(36756003)(186003)(6116002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSAPR01MB4804;H:OSAPR01MB3025.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Bwyqspw9FyXoOKKIJo5FyPn7jmeGKBjmvtzo3zFpWfpOsk1t6AbvdWymp8Mp/OAZqw6hlIe1tKB770xvHgbI8YNsZQZRElV9BzpEfH027F2ZwX73KznIsvQ+mydJx6E7geSocig7qSLbwNHI5AxELqxmQO1LkrFiR3qSFwFj5245zXMSNAIR/wfG+ibu2cqBStp1KLgzvsqUCokw6CmzDChtFF0dCerXHCorlVlTX/GBcwmP1R+mgSx9SDF/MgVn0VEQ/x6Ds/FDD1leGE4mBAFJfUj87BCgm7K+LbqgXBxFXcI7pzk5R835FN72Daz3UC+IRi+3OyDlaNujM01RwwIsbeweTMv7eGm6rJ4Yo7eQ8k2402ffEBOQN9+btBAaxiwMbUr1KsHKMKmm+iH+Ht9y+ASKQ4SYlkj0coQw3dY=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <8E637F3650C0904CA0867BC8DA56FB57@jpnprd01.prod.outlook.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 589f8e70-dce1-473e-2dc7-08d74354bb89
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 14:12:30.1486
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qIu7eIO/oumB1vZe1fygRtBRXuIhj12CyenV4lrjT/+btemBY2B1pkMKJBl4DBFvZjYxTK4B1i8UeC7Rlx2ipWbsXIxRENBvrmSlGMXrw5c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB4804
+        id S1727769AbfI0O0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 10:26:21 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:22992 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727207AbfI0O0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 10:26:21 -0400
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x8REMCJ5107260
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 10:26:19 -0400
+Received: from e06smtp07.uk.ibm.com (e06smtp07.uk.ibm.com [195.75.94.103])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2v9m2ur8ug-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 10:26:19 -0400
+Received: from localhost
+        by e06smtp07.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <nayna@linux.ibm.com>;
+        Fri, 27 Sep 2019 15:26:17 +0100
+Received: from b06cxnps4075.portsmouth.uk.ibm.com (9.149.109.197)
+        by e06smtp07.uk.ibm.com (192.168.101.137) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Fri, 27 Sep 2019 15:26:11 +0100
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (b06wcsmtp001.portsmouth.uk.ibm.com [9.149.105.160])
+        by b06cxnps4075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x8REQ9mQ56033366
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 27 Sep 2019 14:26:09 GMT
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 6769BA4064;
+        Fri, 27 Sep 2019 14:26:09 +0000 (GMT)
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 7F861A405C;
+        Fri, 27 Sep 2019 14:26:05 +0000 (GMT)
+Received: from swastik.ibm.com (unknown [9.80.207.173])
+        by b06wcsmtp001.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Fri, 27 Sep 2019 14:26:05 +0000 (GMT)
+From:   Nayna Jain <nayna@linux.ibm.com>
+To:     linuxppc-dev@ozlabs.org, linux-efi@vger.kernel.org,
+        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Jeremy Kerr <jk@ozlabs.org>,
+        Matthew Garret <matthew.garret@nebula.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Claudio Carvalho <cclaudio@linux.ibm.com>,
+        George Wilson <gcwilson@linux.ibm.com>,
+        Elaine Palmer <erpalmer@us.ibm.com>,
+        Eric Ricther <erichte@linux.ibm.com>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nayna Jain <nayna@linux.ibm.com>
+Subject: [PATCH v6 0/9] powerpc: Enabling IMA arch specific secure boot policies
+Date:   Fri, 27 Sep 2019 10:25:51 -0400
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+x-cbid: 19092714-0028-0000-0000-000003A3417A
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19092714-0029-0000-0000-0000246563D4
+Message-Id: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-27_06:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1908290000 definitions=main-1909270134
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCBTZXAgMjcsIDIwMTkgYXQgMDg6MjU6MThBTSBFRFQsIEFuZHJldyBMdW5uIHdyb3Rl
-Og0KPj4gK3N0YXRpYyBzMzIgaWR0Y21feGZlcihzdHJ1Y3QgaWR0Y20gKmlkdGNtLA0KPj4gKwkJ
-ICAgICAgdTggcmVnYWRkciwNCj4+ICsJCSAgICAgIHU4ICpidWYsDQo+PiArCQkgICAgICB1MTYg
-Y291bnQsDQo+PiArCQkgICAgICBib29sIHdyaXRlKQ0KPj4gK3sNCj4+ICsJc3RydWN0IGkyY19j
-bGllbnQgKmNsaWVudCA9IGlkdGNtLT5jbGllbnQ7DQo+PiArCXN0cnVjdCBpMmNfbXNnIG1zZ1sy
-XTsNCj4+ICsJczMyIGNudDsNCj4+ICsNCj4+ICsJbXNnWzBdLmFkZHIgPSBjbGllbnQtPmFkZHI7
-DQo+PiArCW1zZ1swXS5mbGFncyA9IDA7DQo+PiArCW1zZ1swXS5sZW4gPSAxOw0KPj4gKwltc2db
-MF0uYnVmID0gJnJlZ2FkZHI7DQo+PiArDQo+PiArCW1zZ1sxXS5hZGRyID0gY2xpZW50LT5hZGRy
-Ow0KPj4gKwltc2dbMV0uZmxhZ3MgPSB3cml0ZSA/IDAgOiBJMkNfTV9SRDsNCj4+ICsJbXNnWzFd
-LmxlbiA9IGNvdW50Ow0KPj4gKwltc2dbMV0uYnVmID0gYnVmOw0KPj4gKw0KPj4gKwljbnQgPSBp
-MmNfdHJhbnNmZXIoY2xpZW50LT5hZGFwdGVyLCBtc2csIDIpOw0KPj4gKw0KPj4gKwlpZiAoY250
-IDwgMCkgew0KPj4gKwkJZGV2X2VycigmY2xpZW50LT5kZXYsICJpMmNfdHJhbnNmZXIgcmV0dXJu
-ZWQgJWRcbiIsIGNudCk7DQo+PiArCQlyZXR1cm4gY250Ow0KPj4gKwl9IGVsc2UgaWYgKGNudCAh
-PSAyKSB7DQo+PiArCQlkZXZfZXJyKCZjbGllbnQtPmRldiwNCj4+ICsJCQkiaTJjX3RyYW5zZmVy
-IHNlbnQgb25seSAlZCBvZiAlZCBtZXNzYWdlc1xuIiwgY250LCAyKTsNCj4+ICsJCXJldHVybiAt
-RUlPOw0KPj4gKwl9DQo+PiArDQo+PiArCXJldHVybiAwOw0KPj4gK30NCj4+ICsNCj4+ICtzdGF0
-aWMgczMyIGlkdGNtX3BhZ2Vfb2Zmc2V0KHN0cnVjdCBpZHRjbSAqaWR0Y20sIHU4IHZhbCkNCj4+
-ICt7DQo+PiArCXU4IGJ1Zls0XTsNCj4+ICsJczMyIGVycjsNCj4NCj5IaSBWaW5jZW50DQoNCkhp
-IEFuZHJldywNCg0KVGhhbmsteW91IGZvciBsb29raW5nIGF0IHRoZSBwYXRjaC4NCg0KPkFsbCB5
-b3VyIGZ1bmN0aW9ucyByZXR1cm4gczMyLCByYXRoZXIgdGhhbiB0aGUgdXN1YWwgaW50LiBlcnIg
-aXMgYW4NCj5zMzIuICBpMmNfdHJhbnNmZXIoKSB3aWxsIHJldHVybiBhbiBpbnQsIHdoaWNoIHlv
-dSB0aGVuIGFzc2lnbiB0byBhbg0KPnMzMi4gIEkndmUgbm8gaWRlYSwgYnV0IG1heWJlIHRoZSBz
-dGF0aWMgY29kZSBjaGVja2VycyBsaWtlIHNtYXRjaA0KPndpbGwgY29tcGxhaW4gYWJvdXQgdGhp
-cywgZXNwZWNpYWxseSBvbiA2NCBiaXQgc3lzdGVtcz8gSSBzdXNwZWN0IG9uDQo+NjQgYml0IG1h
-Y2hpbmVzLCB0aGUgY29tcGlsZXIgd2lsbCBiZSBnZW5lcmF0aW5nIHdvcnNlIGNvZGUsIG1hc2tp
-bmcNCj5yZWdpc3RlcnM/IE1heWJlIHVzZSBpbnQsIG5vdCBzMzI/DQoNCk9vcHMuICBZb3UgYXJl
-IGNvcnJlY3QsIEkgbWVzc2VkIHVwIHdoZW4gdHJ5aW5nIHRvIHN0YW5kYXJkaXplDQpvbiBsaW51
-eCB0eXBlcy5oLiAgSSB3aWxsIGdvIHRocm91Z2ggdGhlIGNvZGUgdG8gZW5zdXJlIGludCBpcyB1
-c2VkDQpmb3IgZXJyb3IgY29kZXMgYW5kIHJldHVybiB2YWx1ZXMuDQoNCj4+ICsJY2FzZSBPVVRQ
-VVRfTUFTS19QTEwyX0FERFIgKyAxOg0KPj4gKwkJU0VUX1UxNl9NU0IoaWR0Y20tPmNoYW5uZWxb
-Ml0ub3V0cHV0X21hc2ssIHZhbCk7DQo+PiArCQlicmVhazsNCj4+ICsJY2FzZSBPVVRQVVRfTUFT
-S19QTEwzX0FERFI6DQo+PiArCQlTRVRfVTE2X0xTQihpZHRjbS0+Y2hhbm5lbFszXS5vdXRwdXRf
-bWFzaywgdmFsKTsNCj4+ICsJCWJyZWFrOw0KPj4gKwljYXNlIE9VVFBVVF9NQVNLX1BMTDNfQURE
-UiArIDE6DQo+PiArCQlTRVRfVTE2X01TQihpZHRjbS0+Y2hhbm5lbFszXS5vdXRwdXRfbWFzaywg
-dmFsKTsNCj4+ICsJCWJyZWFrOw0KPj4gKwlkZWZhdWx0Og0KPj4gKwkJZXJyID0gLTE7DQo+DQo+
-RUlOVkFMPw0KDQpZZXMsIHdpbGwgcmVwbGFjZSB3aXRoIC1FSU5WQUwuICBUaGFua3MuDQoNCj4+
-ICtzdGF0aWMgdm9pZCBzZXRfZGVmYXVsdF9mdW5jdGlvbl9wb2ludGVycyhzdHJ1Y3QgaWR0Y20g
-KmlkdGNtKQ0KPj4gK3sNCj4+ICsJaWR0Y20tPl9pZHRjbV9nZXR0aW1lID0gX2lkdGNtX2dldHRp
-bWU7DQo+PiArCWlkdGNtLT5faWR0Y21fc2V0dGltZSA9IF9pZHRjbV9zZXR0aW1lOw0KPj4gKwlp
-ZHRjbS0+X2lkdGNtX3Jkd3IgPSBpZHRjbV9yZHdyOw0KPj4gKwlpZHRjbS0+X3N5bmNfcGxsX291
-dHB1dCA9IHN5bmNfcGxsX291dHB1dDsNCj4+ICt9DQo+DQo+V2h5IGRvZXMgdGhpcyBpbmRpcmVj
-dGlvbj8gQXJlIHRoZSBTUEkgdmVyc2lvbnMgb2YgdGhlIHNpbGljb24/DQoNClRoZSBpbmRpcmVj
-dGlvbiBpcyB0byBlbmFibGUgdXMgdG8gcmVwbGFjZSB0aG9zZSBmdW5jdGlvbnMgaW4NCm91ciB1
-bml0IHRlc3RzIHdpdGggbW9ja2VkIGZ1bmN0aW9ucy4NCg0KSSByZWFkIHNvbWV3aGVyZSB0aGF0
-IEkgc2hvdWxkIGxlYXZlIGEgd2VlayBiZXR3ZWVuIHNlbmRpbmcgYQ0KcmV2aXNlZCBwYXRjaCBz
-ZXJpZXMuICBJcyB0aGlzIGEgZ29vZCBydWxlIHRvIGZvbGxvdz8NCg0KUmVnYXJkcywNClZpbmNl
-bnQNCg==
+This patchset extends the previous version of the patchset[1] by adding
+the support for checking against the binary blacklisted hashes.
+
+IMA subsystem supports custom, built-in, arch-specific policies to define
+the files to be measured and appraised. These policies are honored based
+on the priority where arch-specific policies is the highest and custom
+is the lowest.
+
+PowerNV systems uses the linux based bootloader and kexec the Host OS.
+It rely on IMA for signature verification of the kernel before doing the
+kexec. This patchset adds support for powerpc arch specific ima policies
+that are defined based on system's OS secureboot and trustedboot state.
+The OS secureboot and trustedboot state are determined via device-tree
+properties.
+
+The verification needs to be done only for the binaries which are not
+blacklisted. The kernel currently checks against the blacklisted keys.
+However that results in blacklisting all the binaries that are signed by
+that key. In order to prevent single binary from loading, it is required
+to support checking against blacklisting of the binary hash. This patchset
+adds the support in IMA to check against blacklisted hashes for the files
+signed by appended signature.
+
+[1] http://patchwork.ozlabs.org/cover/1149262/ 
+
+Changelog:
+v6:
+* includes feedbacks from Michael Ellerman on the patchset v5
+  * removed email ids from comments
+  * add the doc for the device-tree
+  * renames the secboot.c to secure_boot.c and secboot.h to secure_boot.h
+  * other code specific fixes
+* split the patches to differentiate between secureboot and trustedboot
+state of the system
+* adds the patches to support the blacklisting of the binary hash.
+
+v5:
+* secureboot state is now read via device tree entry rather than OPAL
+secure variables
+* ima arch policies are updated to use policy based template for
+measurement rules
+
+v4:
+* Fixed the build issue as reported by Satheesh Rajendran.
+
+v3:
+* OPAL APIs in Patch 1 are updated to provide generic interface based on
+key/keylen. This patchset updates kernel OPAL APIs to be compatible with
+generic interface.
+* Patch 2 is cleaned up to use new OPAL APIs.
+* Since OPAL can support different types of backend which can vary in the
+variable interpretation, the Patch 2 is updated to add a check for the
+backend version
+* OPAL API now expects consumer to first check the supported backend version
+before calling other secvar OPAL APIs. This check is now added in patch 2.
+* IMA policies in Patch 3 is updated to specify appended signature and
+per policy template.
+* The patches now are free of any EFIisms.
+
+v2:
+
+* Removed Patch 1: powerpc/include: Override unneeded early ioremap
+functions
+* Updated Subject line and patch description of the Patch 1 of this series
+* Removed dependency of OPAL_SECVAR on EFI, CPU_BIG_ENDIAN and UCS2_STRING
+* Changed OPAL APIs from static to non-static. Added opal-secvar.h for the
+same
+* Removed EFI hooks from opal_secvar.c
+* Removed opal_secvar_get_next(), opal_secvar_enqueue() and
+opal_query_variable_info() function
+* get_powerpc_sb_mode() in secboot.c now directly calls OPAL Runtime API
+rather than via EFI hooks.
+* Fixed log messages in get_powerpc_sb_mode() function.
+* Added dependency for PPC_SECURE_BOOT on configs PPC64 and OPAL_SECVAR
+* Replaced obj-$(CONFIG_IMA) with obj-$(CONFIG_PPC_SECURE_BOOT) in
+arch/powerpc/kernel/Makefile
+
+Nayna Jain (9):
+  dt-bindings: ibm,secureboot: secure boot specific properties for
+    PowerNV
+  powerpc: detect the secure boot mode of the system
+  powerpc: add support to initialize ima policy rules
+  powerpc: detect the trusted boot state of the system
+  powerpc/ima: add measurement rules to ima arch specific policy
+  ima: make process_buffer_measurement() non-static
+  ima: check against blacklisted hashes for files with modsig
+  ima: deprecate permit_directio, instead use appraise_flag
+  powerpc/ima: update ima arch policy to check for blacklist
+
+ Documentation/ABI/testing/ima_policy          |  3 +-
+ .../bindings/powerpc/ibm,secureboot.rst       | 76 +++++++++++++++
+ .../devicetree/bindings/powerpc/secvar.rst    | 89 +++++++++++++++++
+ arch/powerpc/Kconfig                          | 12 +++
+ arch/powerpc/include/asm/secure_boot.h        | 37 +++++++
+ arch/powerpc/kernel/Makefile                  |  2 +
+ arch/powerpc/kernel/ima_arch.c                | 71 ++++++++++++++
+ arch/powerpc/kernel/secure_boot.c             | 96 +++++++++++++++++++
+ include/linux/ima.h                           |  3 +-
+ security/integrity/ima/ima.h                  | 15 +++
+ security/integrity/ima/ima_appraise.c         | 35 +++++++
+ security/integrity/ima/ima_main.c             | 37 +++----
+ security/integrity/ima/ima_policy.c           | 12 ++-
+ security/integrity/integrity.h                |  1 +
+ 14 files changed, 468 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/powerpc/ibm,secureboot.rst
+ create mode 100644 Documentation/devicetree/bindings/powerpc/secvar.rst
+ create mode 100644 arch/powerpc/include/asm/secure_boot.h
+ create mode 100644 arch/powerpc/kernel/ima_arch.c
+ create mode 100644 arch/powerpc/kernel/secure_boot.c
+
+-- 
+2.20.1
+
