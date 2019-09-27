@@ -2,297 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40508C019E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3906C01C6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725911AbfI0JBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 05:01:42 -0400
-Received: from lb1-smtp-cloud7.xs4all.net ([194.109.24.24]:47331 "EHLO
-        lb1-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725890AbfI0JBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 05:01:42 -0400
-Received: from [IPv6:2001:420:44c1:2577:2521:77be:ff76:8085] ([IPv6:2001:420:44c1:2577:2521:77be:ff76:8085])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id Dm87iKZNH9D4hDm8BiBAn5; Fri, 27 Sep 2019 11:01:39 +0200
-Subject: Re: [PATCH v10 08/14] media: tvp5150: add FORMAT_TRY support for
- get/set selection handlers
-To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-References: <20190830101646.6530-1-m.felsch@pengutronix.de>
- <20190830101646.6530-9-m.felsch@pengutronix.de>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <05b9b16f-dcd6-b76b-7e37-c246f4465515@xs4all.nl>
-Date:   Fri, 27 Sep 2019 11:01:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726030AbfI0JHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 05:07:32 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:44044 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725882AbfI0JHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 05:07:32 -0400
+Received: by mail-ot1-f66.google.com with SMTP id 21so1609178otj.11;
+        Fri, 27 Sep 2019 02:07:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MDFyyEdK+vKqU3JXiF1KcbZp6UF/IB17v+0c7RhigIY=;
+        b=ASoqVpCNanrru3NX7t8+tC7KvEu1jyBYmDQQPa/GycKVL6bLTMHlrd2kzxlr9aYGu6
+         8ZrNS+aRVPKwrg/jvOkVg7WS+IRQaxD4trFh2eV1s6rhkhTi6klQHj3PsBHIvhgDjmer
+         VF0IVXcQHmkGg0e0L/tazBidFvo+Yh3cn5UPBW2cHT9cBgba8FVZPWlhTXTPZ9pfjhNy
+         J/7MnILrO84gnjXO/P8Kwy9d0JmHk1azHwOrxpaSJ2oOKMXS9Rlcy2lnhFEN1/vnffTv
+         hRALeH+q2jKW+kwRS5LyyEhg7SPlxBY1hF4/cbam0MjinGKh49EPZu1pvwnDDmMTOY8X
+         RhQQ==
+X-Gm-Message-State: APjAAAXaW1w+UkbYKJSk4+GVeZTYe2YfL+/T8u5NSqR9kHEXy6BEBg1+
+        JPYJI9jxH7fbahO7pRDuUrVkQGBTAJJW8BibxJ8=
+X-Google-Smtp-Source: APXvYqx5dG79Zr5f0GKbd+i6d5GP5zna35OsBqzvA3CjbQgVd+2WcitMS0qBclhvTJJPtI3deczSCwAClZscI+T22fQ=
+X-Received: by 2002:a9d:193:: with SMTP id e19mr2246207ote.107.1569575251321;
+ Fri, 27 Sep 2019 02:07:31 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190830101646.6530-9-m.felsch@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfJQzT3WR5Z6gEy23i3GU2Sy+pCmnviIzLYUuKhd9nqw96E8nb7Utg719byTfis+NcnK4ZEdxh/AG9IMY2taWz5P8KT4bAyCr5UkUOor564UgYsIaC/pX
- vawbbx2DoAz11D/h/m/koOxs3vfherRORvGli9HrbR+vyu/1sm2K2oCI+1yxpBAqSqmnhNg1ZdiQvQhIvQX8WCS1fCwSsQFerhXUD21J1TmNz9eedJnrXAUf
- gX9q8YK6afRgOdOQiojoS0c1zmygmO0UFny/xR2eEcIEMuxHxgi1dldJRq82Ab/AlLKWdtCIqbHbCUOLBvGxI2umcwGQ++yM33szAFNfWcWALsTyTc6wF24h
- +eKJWU1gYPUzSx5xycus6De1NZpx6vk5mwPMN7k29EvjET4DP0Su9o9JqkFtI5vM7d+WSX/wjcu4T2FCy9bQEPLbFqC7/1w3JUt5SfOc5XlFi4hqkVOU4n5X
- MuMwpGZrMbkZS1rvbWT7MJEuxNiqDuZXRxDhXB9ZmDMsWyHSjJGMTSyNHHdpuMJcKTN0F0lvYZQGhmico/iWrAtqhpGEzmtzUOKFqK2w84FrimvZhTLn2GUk
- DdqrW0sY2kp8mLRSd/tNifOsw/hCfqLNSBvvVQbtIasBpA==
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com> <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+In-Reply-To: <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 27 Sep 2019 11:07:20 +0200
+Message-ID: <CAMuHMdVt3yDiJzkbUGMdkKKd4+CJ0btWuO-J=YZL+pAo99_WXg@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Harish Jenny K N <harish_kandiga@mentor.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Phil Reid <preid@electromag.com.au>,
+        Enrico Weigelt <info@metux.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/19 12:16 PM, Marco Felsch wrote:
-> Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
-> the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
-> no way to try different selections. The patch adds a helper function to
-> select the correct selection memory space (sub-device file handle or
-> driver state) which will be set/returned.
-> 
-> The selection rectangle is updated if the format is FORMAT_ACTIVE and
-> the rectangle position and/or size differs from the current set
-> rectangle.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Hi Eugeniu,
 
-One checkpatch warning:
+On Wed, Sep 25, 2019 at 6:51 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> I've additionally Cc-ed Laurent and Stephen, since their fruitful
+> discussion in [1] back in 2014 concluded with a useful documentation
+> update [2] which is precisely related to the interpretation and usage
+> of the polarity flag in GPIO specifiers.
+>
+> I've also Cc-ed those people who have participated in reviewing the
+> previous patch iterations (Geert, Phil, Enrico).
+>
+> Before leaving this thread in limbo, I would like to attempt clarifying
+> what it actually tried to accomplish, one more time.
+>
+> First of all, it stems from the need to implement a specific customer
+> requirement. Whether this requirement is sane or not, that's actually
+> a very important question, but I haven't found much discussion around
+> it the comments posted so far.
+>
+> To paraphrase what Harish stated in [3], the customer has a list of GPIO
+> pins which need to be controlled from userspace. Of course, the customer
+> can set the polarity of those pins from userspace, as pointed out by
+> Linus in [4] (thanks!). But, keeping track of GPIO polarity in userspace
+> is seen like a burden. The customer thinks that the right place for this
+> HW-specific detail is in device trees. Do you think this preference
+> is ill-formed?
+>
+> If we hog a GPIO pin in DTS (which allows specifying its polarity),
+> userspace no longer has access to that pin. There isn't a way to define
+> GPIO polarity by means of DTS without affecting userspace access
+> (can anybody contradict this statement?).
+>
+> Whether it is obvious or not, the main goal of this series is actually
+> to provide the possibility of inverting the default ACTIVE_HIGH polarity
+> for GPIO pin X _via DTS_ while still allowing to operate on that pin
+> _from userspace_. My two questions are then:
+>  - I hope it is something sane to desire?
+>  - If it is sane, how can this be accomplished, if the functionality
+>    implemented by Harish doesn't pass the community review?
+>
+> [1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
+> [3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+> [4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
 
-CHECK: Alignment should match open parenthesis
-#170: FILE: drivers/media/i2c/tvp5150.c:1155:
-+               crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
-+                                               sel->which);
+My standard reply would be: describe the device connected to the GPIO(s)
+in DT.  The GPIO line polarities are specified in the device's "gpios"
+properties.
 
-I'd have fixed this myself, but since there are some changes needed
-elsewhere, you can pick this up as well for a v11.
+BTW, can you give an example of what's actually connected to those
+GPIOs?
+Is it a complex device (the GPIO is only a part of it, it's also hanging
+off e.g. an I2C bus)?
+Is it something simple (e.g. an LED ("gpio-leds"), relay, or actuator)?
 
-And some more comments below:
+Next step would be to use the device from Linux.  For that to work, you
+need a dedicated driver (for the complex case), or something generic
+(for the simple case).
+The latter is not unlike e.g. spidev.  Once you have a generic driver,
+you can use "driver_override" in sysfs to bind the generic driver to
+your device.  See e.g. commit 5039563e7c25eccd ("spi: Add
+driver_override SPI device attribute").
 
-> ---
-> Changelog:
-> 
-> v10:
-> - __tvp5150_get_pad_crop: drop confusing fall-through
-> - set_selection: fix FORMAT_TRY handling if CONFIG_VIDEO_V4L2_SUBDEV_API
->                  is disabled. Adapt sel->r and return 0.
-> v8:
-> - adapt commit message
-> - remove wrong FORMAT_TRY handling for tvp5150_fill_fmt() handling
-> - return 0 during set_selection if FORMAT_TRY was requested and
->   CONFIG_VIDEO_V4L2_SUBDEV_API is disabled
-> - return -EINVAL during get_selection if FORMAT_TRY was requested and
->   CONFIG_VIDEO_V4L2_SUBDEV_API is disabled
-> v7:
-> - __tvp5150_get_pad_crop(): return error on default case
-> - simplify __tvp5150_get_pad_crop() error handling
-> - tvp5150_set_selection() squash __tvp5150_set_selection() execution
->   conditions
-> v6:
-> nothing
-> v5:
->  - handle stub for v4l2_subdev_get_try_crop() internal since commit
->    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
->    isn't anymore part of this series.
->  - add error handling of __tvp5150_get_pad_crop()
-> v4:
->  - fix merge conflict due to rebase on top of media-tree/master
->  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
-> 
->  drivers/media/i2c/tvp5150.c | 113 ++++++++++++++++++++++++++----------
->  1 file changed, 81 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index c1542a89e8c8..636e8737ac44 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -19,6 +19,7 @@
->  #include <media/v4l2-ctrls.h>
->  #include <media/v4l2-fwnode.h>
->  #include <media/v4l2-mc.h>
-> +#include <media/v4l2-rect.h>
->  
->  #include "tvp5150_reg.h"
->  
-> @@ -995,6 +996,25 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
->  		crop->height = TVP5150_V_MAX_OTHERS;
->  }
->  
-> +static struct v4l2_rect *
-> +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
-> +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
-> +		       enum v4l2_subdev_format_whence which)
+Currently we don't have a "generic" driver for GPIOs. We do have the
+GPIO chardev interface, which exports a full gpio_chip.
+It indeed looks like this "gpio-inverter" could be used as a generic
+driver.  But it is limited to GPIOs that are inverted, which rules out
+some use cases.
 
-Please don't use __ in the function name. Double underscores should never be
-used in C code since that's reserved for use by the compiler. What's wrong
-with just plain tvp5150_get_pad_crop()?
+So what about making it more generic, and dropping the "inverter" from
+its name, and the "inverted" from the "inverted-gpios" property? After
+all the inversion can be specified by the polarity of the GPIO cells in
+the "gpios" property, and the GPIO core will take care of it[*]?
+Which boils down to adding a simple DT interface to my gpio-aggregator
+("[PATCH/RFC v2 0/5] gpio: Add GPIO Aggregator Driver",
+ https://lore.kernel.org/lkml/20190911143858.13024-1-geert+renesas@glider.be/).
+And now I have realized[*], we probably no longer need the GPIO
+Forwarder Helper, as there is no need to add inversion on top.
 
-> +{
-> +	switch (which) {
-> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
-> +		return &decoder->rect;
-> +	case V4L2_SUBDEV_FORMAT_TRY:
-> +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
-> +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
-> +#else
-> +		return ERR_PTR(-EINVAL);
-> +#endif
-> +	default:
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +}
-> +
->  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
->  			    struct v4l2_subdev_pad_config *cfg,
->  			    struct v4l2_subdev_format *format)
-> @@ -1019,17 +1039,51 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
->  	return 0;
->  }
->  
-> +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
-> +{
-> +	struct tvp5150 *decoder = to_tvp5150(sd);
-> +	v4l2_std_id std;
-> +
-> +	/* Calculate height based on current standard */
-> +	if (decoder->norm == V4L2_STD_ALL)
-> +		std = tvp5150_read_std(sd);
-> +	else
-> +		std = decoder->norm;
-> +
-> +	return (std & V4L2_STD_525_60) ?
-> +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
-> +}
-> +
-> +static inline void
-> +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect *rect)
+Gr{oetje,eeting}s,
 
-You can drop 'inline', there is no need for that.
+                        Geert
 
-I'd also rename the function to something more understandable. E.g.
-tvp5150_set_hw_selection().
 
-> +{
-> +	struct tvp5150 *decoder = to_tvp5150(sd);
-> +	unsigned int hmax = tvp5150_get_hmax(sd);
-> +
-> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect->top);
-> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> +		     rect->top + rect->height - hmax);
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> +		     rect->left >> TVP5150_CROP_SHIFT);
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> +		     rect->left | (1 << TVP5150_CROP_SHIFT));
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> +		     (rect->left + rect->width - TVP5150_MAX_CROP_LEFT) >>
-> +		     TVP5150_CROP_SHIFT);
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> +		     rect->left + rect->width - TVP5150_MAX_CROP_LEFT);
-> +}
-> +
->  static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  				 struct v4l2_subdev_pad_config *cfg,
->  				 struct v4l2_subdev_selection *sel)
->  {
->  	struct tvp5150 *decoder = to_tvp5150(sd);
->  	struct v4l2_rect *rect = &sel->r;
-> -	v4l2_std_id std;
-> -	int hmax;
-> +	struct v4l2_rect *crop;
-> +	unsigned int hmax;
->  
-> -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
-> -	    sel->target != V4L2_SEL_TGT_CROP)
-> +	if (sel->target != V4L2_SEL_TGT_CROP)
->  		return -EINVAL;
->  
->  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
-> @@ -1038,17 +1092,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  	/* tvp5150 has some special limits */
->  	rect->left = clamp(rect->left, 0, TVP5150_MAX_CROP_LEFT);
->  	rect->top = clamp(rect->top, 0, TVP5150_MAX_CROP_TOP);
-> -
-> -	/* Calculate height based on current standard */
-> -	if (decoder->norm == V4L2_STD_ALL)
-> -		std = tvp5150_read_std(sd);
-> -	else
-> -		std = decoder->norm;
-> -
-> -	if (std & V4L2_STD_525_60)
-> -		hmax = TVP5150_V_MAX_525_60;
-> -	else
-> -		hmax = TVP5150_V_MAX_OTHERS;
-> +	hmax = tvp5150_get_hmax(sd);
->  
->  	/*
->  	 * alignments:
-> @@ -1061,20 +1105,23 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  			      hmax - TVP5150_MAX_CROP_TOP - rect->top,
->  			      hmax - rect->top, 0, 0);
->  
-> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect->top);
-> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> -		     rect->top + rect->height - hmax);
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> -		     rect->left >> TVP5150_CROP_SHIFT);
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> -		     rect->left | (1 << TVP5150_CROP_SHIFT));
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> -		     (rect->left + rect->width - TVP5150_MAX_CROP_LEFT) >>
-> -		     TVP5150_CROP_SHIFT);
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> -		     rect->left + rect->width - TVP5150_MAX_CROP_LEFT);
-> +	if (!IS_ENABLED(CONFIG_VIDEO_V4L2_SUBDEV_API) &&
-> +	    sel->which == V4L2_SUBDEV_FORMAT_TRY)
-> +		return 0;
-> +
-> +	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
-> +	if (IS_ERR(crop))
-> +		return PTR_ERR(crop);
-> +
-> +	/*
-> +	 * Update output image size if the selection (crop) rectangle size or
-> +	 * position has been modified.
-> +	 */
-> +	if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
-> +	    !v4l2_rect_equal(rect, crop))
-> +		__tvp5150_set_selection(sd, rect);
->  
-> -	decoder->rect = *rect;
-> +	*crop = *rect;
->  
->  	return 0;
->  }
-> @@ -1084,11 +1131,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
->  				 struct v4l2_subdev_selection *sel)
->  {
->  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
-> +	struct v4l2_rect *crop;
->  	v4l2_std_id std;
->  
-> -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-> -		return -EINVAL;
-> -
->  	switch (sel->target) {
->  	case V4L2_SEL_TGT_CROP_BOUNDS:
->  		sel->r.left = 0;
-> @@ -1106,7 +1151,11 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
->  			sel->r.height = TVP5150_V_MAX_OTHERS;
->  		return 0;
->  	case V4L2_SEL_TGT_CROP:
-> -		sel->r = decoder->rect;
-> +		crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
-> +						sel->which);
-> +		if (IS_ERR(crop))
-> +			return PTR_ERR(crop);
-> +		sel->r = *crop;
->  		return 0;
->  	default:
->  		return -EINVAL;
-> 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Regards,
-
-	Hans
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
