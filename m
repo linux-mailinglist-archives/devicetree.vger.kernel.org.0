@@ -2,95 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF41C0B9F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9DCFC0BCA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728565AbfI0Sp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:45:26 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:46760 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728557AbfI0SpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:45:25 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RIjNon094652;
-        Fri, 27 Sep 2019 13:45:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569609923;
-        bh=el6xBccVRv/5yB0JgEibd6gsfz3+Qhm7A7FTfc6+HGE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=N8oKdL9phhAfgMUxOkdJowtIN2W8oAXKw0g3vdkW53B7qA5b30J2/MLXpYi6aw5TL
-         djQEnfs0jxDvP5ydvX7SW3g709JclGQrdaLZb1StKsdzYgOX0OkhEivMNKT0MHbR6P
-         yZfZNvoiuaRa0v6dUs329qHPU4jShNn8sIJGuJxk=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8RIjN0o075026
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Sep 2019 13:45:23 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
- Sep 2019 13:45:23 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 27 Sep 2019 13:45:15 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RIjEVd122194;
-        Fri, 27 Sep 2019 13:45:23 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v4 8/8] media: i2c: ov2659: Switch to SPDX Licensing
-Date:   Fri, 27 Sep 2019 13:47:22 -0500
-Message-ID: <20190927184722.31989-9-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190927184722.31989-1-bparrot@ti.com>
-References: <20190927184722.31989-1-bparrot@ti.com>
+        id S1726004AbfI0Sv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 14:51:56 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:37171 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725990AbfI0Sv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:51:56 -0400
+Received: by mail-ot1-f68.google.com with SMTP id k32so3140586otc.4;
+        Fri, 27 Sep 2019 11:51:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=d41cCTl7w3rkM7T7TH1Wjkv6CwKEi+5QRtnS63WD5ZM=;
+        b=Pc7c0jdRUhiQMJMyfJBbfl6M1L8VwnUvd5Zn1MSnnIBqdqVwqBAtO6HzVHCN36jO3I
+         QODPHIU25vl89//TY7kO9Jwt+E2FDC/KKxphI+2U/3JI/W//HsPMVZyx4VRnk2+C7lsK
+         LCJEhlZOzWzc8prg3L6q/GRThvmSArhLnljK7YHe9rs7hTjs4N0kZHmMPfY5vOqLhF1t
+         DPKDgHemyTC9poSdSEZ+Ex6BDKYmFUbU+lhHuBlZZRJJFclOI0n3r7RJUaAHB0DZwRIe
+         mbNBg1qM6H/OJ8BGlsvD/V41cXhDcEuQwKzKhqBR3ywC/S5y31uK6CNZTFT/hpYVFD+c
+         ElwQ==
+X-Gm-Message-State: APjAAAXx3q9hYjaIaDrWYiKMhe92/u6YD5uywBGlwOaZwV6MrQ5UBtqN
+        v52PHZyOoYi0pPBYwA+v3A==
+X-Google-Smtp-Source: APXvYqy7kAP35+kBMD+IB6YfX5awR9sKBq4fbOg1XNya+RBpUkbPY3uEzjMNx9j7YtN3dMZyiE8Z7Q==
+X-Received: by 2002:a05:6830:443:: with SMTP id d3mr4430310otc.93.1569610314662;
+        Fri, 27 Sep 2019 11:51:54 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v75sm1961767oia.6.2019.09.27.11.51.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 11:51:53 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 13:51:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, adam.ford@logicpd.com,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 2/3] dt-bindings: Add Logic PD Type 28 display panel
+Message-ID: <20190927185153.GA982@bogus>
+References: <20190925184239.22330-1-aford173@gmail.com>
+ <20190925184239.22330-2-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190925184239.22330-2-aford173@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch to SPDX licensing and drop the redundant GPL text.
+On Wed, Sep 25, 2019 at 01:42:37PM -0500, Adam Ford wrote:
+> This patch adds documentation of device tree bindings for the WVGA panel
+> Logic PD Type 28 display.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+> V3:  Correct build errors from 'make dt_binding_check'
+> V2:  Use YAML instead of TXT for binding
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> new file mode 100644
+> index 000000000000..74ba650ea7a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0+ OR X11)
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- drivers/media/i2c/ov2659.c | 14 +-------------
- 1 file changed, 1 insertion(+), 13 deletions(-)
+(GPL-2.0-only OR BSD-2-Clause) please.
 
-diff --git a/drivers/media/i2c/ov2659.c b/drivers/media/i2c/ov2659.c
-index 720310e0725d..e6da23d3a555 100644
---- a/drivers/media/i2c/ov2659.c
-+++ b/drivers/media/i2c/ov2659.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-only
- /*
-  * Omnivision OV2659 CMOS Image Sensor driver
-  *
-@@ -5,19 +6,6 @@
-  *
-  * Benoit Parrot <bparrot@ti.com>
-  * Lad, Prabhakar <prabhakar.csengg@gmail.com>
-- *
-- * This program is free software; you may redistribute it and/or modify
-- * it under the terms of the GNU General Public License as published by
-- * the Free Software Foundation; version 2 of the License.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-- * SOFTWARE.
-  */
- 
- #include <linux/clk.h>
--- 
-2.17.1
+X11 is pretty much never right unless this is copyright X Consortium.
 
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
+> +
+> +maintainers:
+> +  - Adam Ford <aford173@gmail.com>
+> +
+
+You need:
+
+allOf:
+  - $ref: panel-common.yaml#
+
+> +properties:
+> +  compatible:
+> +    const: logicpd,type28
+> +
+
+> +  power-supply:
+> +    description: Regulator to provide the supply voltage
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description: GPIO pin to enable or disable the panel
+> +    maxItems: 1
+> +
+> +  backlight:
+> +    description: Backlight used by the panel
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+
+These 3 are all defined in the common schema, so you just need 'true' 
+for the value to indicate they apply to this panel and to make 
+'additionalProperties: false' happy.
+
+> +
+> +required:
+> +  - compatible
+
+Are the rest really optional? 
+
+> +
+> +additionalProperties: false
+> -- 
+> 2.17.1
+> 
