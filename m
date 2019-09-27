@@ -2,149 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A8B1C093B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 18:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF05CC094B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 18:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727942AbfI0QLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 12:11:21 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:35214 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727273AbfI0QLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 12:11:20 -0400
-Received: by mail-ot1-f66.google.com with SMTP id z6so2725523otb.2;
-        Fri, 27 Sep 2019 09:11:20 -0700 (PDT)
+        id S1727355AbfI0QNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 12:13:32 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:45326 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727349AbfI0QNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 12:13:32 -0400
+Received: by mail-oi1-f193.google.com with SMTP id o205so5624732oib.12;
+        Fri, 27 Sep 2019 09:13:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=X3psm7pGYecaR7OkJEumX87W65GK4kSG3NWHyS2qiTE=;
-        b=r43PAhduF3KjjdjLsEKqRjwC3U6VP2X2Oimesstu3qcxlO4DNUYgLciWZM31vG/zj5
-         edfiSUd0h0yOuiP234LSx7IZdcjdID2HX8/KpAhIg6v2HuqUGBpNVMOqTL/pa552XZS5
-         tsErxZ43+DiXbwlp4PoBbj78OdpmxqjlptZrRuojD+btwlcrJvJ+9oex3LbXo1+J8VzV
-         zp81MWu6LvqQIkIuWma1qGLLdiGQm+cVKSlEfAL3ycVSnklF1OtSq2K3OozSeef3T6qj
-         Kz/1HaY8Cea7/q82M74Yhjfd7URWpc8IWUCPJwzL02KDw2IAmvu5PyuC6HhDy94rYxCc
-         qQmQ==
-X-Gm-Message-State: APjAAAVnDYAIc/cnFZvh6blc0vAZOwA4OszSRFPCrmslOICXfyrOidM2
-        1HxzhZUlkKuZoPveiIkUUg==
-X-Google-Smtp-Source: APXvYqx0O6aVdbfcDbCuLSszWiQ1sdG/x54on6BSIouX78Hf7vhKRounNeFyG5WUapqkzKVQbu4fpw==
-X-Received: by 2002:a05:6830:17d8:: with SMTP id p24mr3932919ota.72.1569600679834;
-        Fri, 27 Sep 2019 09:11:19 -0700 (PDT)
+        bh=R0kFwxjKhbKX7zTefNj1C9kL38Pdttr44VLkkd4aR6M=;
+        b=IZpCYSWlF+BoeMTK/82g/bQvxkT1+8ZiggCwYMFZ50/QWwsyrgPY8MODo5VGNBGuPG
+         rangAF24vxBp4Go2zNCo2AA92Qu75ZFzkVBzzlHm8JHyQa2JWrUyXde2FwraoZph2aQo
+         rfIAMVJjfuvPLBHmzuxScGfjdrAYdU1QeMyidWjI0/YuuVxmpgqKinZTsCGoOHsEr/69
+         2djhBm+F1jP09QmkMa150C1J5o0rTwUmQrYTcFdwogMgdrKQLU7l/v5Gynme8K04PipY
+         zB2rBEgmOIOhtSw9qoaDmgopRvC/2VSL8YWSLmnUl5BZYxdfDdjSr6K3TCK4cjnh14gL
+         aSnw==
+X-Gm-Message-State: APjAAAWBw88ep7ZOpxPcmYyDf6gdqC9fmr7cCFER24etOaJ4edwFLqHl
+        loeWZ+mf65gOzDrKwOwGojhI7DA=
+X-Google-Smtp-Source: APXvYqxiXG4nUbngZE7HV8pQpIyNW2FpjPrxNR4WhkRALYxubiNWTduYFFSLqHtfuti/TCRrBze2Ag==
+X-Received: by 2002:aca:ebd1:: with SMTP id j200mr7380934oih.111.1569600811153;
+        Fri, 27 Sep 2019 09:13:31 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n17sm1011131otk.5.2019.09.27.09.11.19
+        by smtp.gmail.com with ESMTPSA id w13sm1689397oih.54.2019.09.27.09.13.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 09:11:19 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 11:11:18 -0500
+        Fri, 27 Sep 2019 09:13:30 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 11:13:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt/bindings: Add bindings for Layerscape external
- irqs
-Message-ID: <20190927161118.GA19333@bogus>
-References: <20190923101513.32719-1-kurt@linutronix.de>
- <20190923101513.32719-3-kurt@linutronix.de>
+To:     Biwen Li <biwen.li@nxp.com>
+Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        Martin Fuzzey <mfuzzey@parkeon.com>
+Subject: Re: [v5,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some properties
+Message-ID: <20190927161330.GA22996@bogus>
+References: <20190919014520.15500-1-biwen.li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190923101513.32719-3-kurt@linutronix.de>
+In-Reply-To: <20190919014520.15500-1-biwen.li@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 12:15:13PM +0200, Kurt Kanzenbach wrote:
-> From: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+On Thu, 19 Sep 2019 09:45:19 +0800, Biwen Li wrote:
+> Add some properties for pcf85263/pcf85363 as follows:
+>   - nxp,rtc-interrupt-type: integer type
+>   - nxp,rtc-interrupt-output-pin: string type
+>   - quartz-load-femtofarads: integer type
+>   - quartz-drive-strength-ohms: integer type
+>   - nxp,quartz-low-jitter: bool type
+>   - wakeup-source: bool type
 > 
-> This adds Device Tree binding documentation for the external interrupt
-> lines with configurable polarity present on some Layerscape SOCs.
-> 
-> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+> Signed-off-by: Martin Fuzzey <mfuzzey@parkeon.com>
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
 > ---
+> Change in v5:
+> 	- Replace nxp,quartz-drive-strength with
+> 	  quartz-drive-strength-ohms
+> 	- Select ohm unit for quartz drive strength
 > 
-> Changes since v5:
+> Change in v4:
+> 	- Drop robust defines in include/dt-bindings/rtc/pcf85363.h
+> 	- Add nxp,rtc-interrupt-type property
+> 	- Replace interrupt-output-pin with nxp,rtc-interrupt-output-pin
 > 
->  - Add #address-cells and #size-cells to parent
->  - Mention LS2088A and the ISC unit
-
-Repeating some of my lost comments from v2 2 years ago...
-
+> Change in v3:
+> 	- None
 > 
-> .../interrupt-controller/fsl,ls-extirq.txt    | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+> Change in v2:
+> 	- Replace properties name
+> 	  quartz-load-capacitance -> quartz-load-femtofarads
+> 	  quartz-drive-strength -> nxp,quartz-drive-strength
+> 	  quartz-low-jitter -> nxp,quartz-low-jitter
+> 	- Replace drive strength name
+> 	  PCF85263_QUARTZDRIVE_NORMAL -> PCF85263_QUARTZDRIVE_100ko
+> 	  PCF85263_QUARTZDRIVE_LOW -> PCF85263_QUARTZDRIVE_60ko
+> 	  PCF85263_QUARTZDRIVE_HIGH -> PCF85263_QUARTZDRIVE_500ko
+> 	- Set default interrupt-output-pin as "INTA"
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-> new file mode 100644
-> index 000000000000..7b53f9cc8019
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-> @@ -0,0 +1,47 @@
-> +* Freescale Layerscape external IRQs
-> +
-> +Some Layerscape SOCs (LS1021A, LS1043A, LS1046A, LS2088A) support
-> +inverting the polarity of certain external interrupt lines.
-> +
-> +The device node must be a child of the node representing the
-> +Supplemental Configuration Unit (SCFG) or the Interrupt Sampling
-> +Control (ISC) Unit.
-> +
-> +Required properties:
-> +- compatible: should be "fsl,<soc-name>-extirq", e.g. "fsl,ls1021a-extirq".
-> +- interrupt-controller: Identifies the node as an interrupt controller
-> +- #interrupt-cells: Must be 2. The first element is the index of the
-> +  external interrupt line. The second element is the trigger type.
-> +- interrupt-parent: phandle of GIC.
-> +- reg: Specifies the Interrupt Polarity Control Register (INTPCR) in the SCFG.
-> +- fsl,extirq-map: Specifies the mapping to interrupt numbers in the parent
-> +  interrupt controller. Interrupts are mapped one-to-one to parent
-> +  interrupts.
-
-This should be an 'interrupt-map' instead.
-
-> +
-> +Optional properties:
-> +- fsl,bit-reverse: This boolean property should be set on the LS1021A
-> +  if the SCFGREVCR register has been set to all-ones (which is usually
-> +  the case), meaning that all reads and writes of SCFG registers are
-> +  implicitly bit-reversed. Other compatible platforms do not have such
-> +  a register.
-
-Couldn't you just read that register and tell?
-
-Does this apply to only the extirq register or all of scfg?
-
-> +
-> +Example:
-> +	scfg: scfg@1570000 {
-> +		compatible = "fsl,ls1021a-scfg", "syscon";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-
-As the child node(s) are memory mapped, this should not be 0. And you 
-need 'ranges'.
-
-> +		...
-> +		extirq: interrupt-controller {
-> +			compatible = "fsl,ls1021a-extirq";
-> +			#interrupt-cells = <2>;
-> +			interrupt-controller;
-> +			interrupt-parent = <&gic>;
-> +			reg = <0x1ac>;
-> +			fsl,extirq-map = <163 164 165 167 168 169>;
-> +			fsl,bit-reverse;
-> +		};
-> +	};
-> +
-> +
-> +	interrupts-extended = <&gic GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-> +			      <&extirq 1 IRQ_TYPE_LEVEL_LOW>;
-> -- 
-> 2.20.1
+>  .../devicetree/bindings/rtc/pcf85363.txt      | 44 ++++++++++++++++++-
+>  include/dt-bindings/rtc/pcf85363.h            | 14 ++++++
+>  2 files changed, 57 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/rtc/pcf85363.h
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
