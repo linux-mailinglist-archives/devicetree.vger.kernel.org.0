@@ -2,411 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76013C084E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23136C0891
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727791AbfI0PGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 11:06:24 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:41955 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727784AbfI0PGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:06:24 -0400
-Received: by mail-io1-f65.google.com with SMTP id r26so17115285ioh.8
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 08:06:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=XPC+nIjew0iTqiVnsUuOIA6zrMVDeRWmWqmZPK0+k80=;
-        b=QGJ7oEl7Nh7cZcOdbiAu9TJGowf/sOF4sjc62i4FSgMk8gfRVYd8NCl5ZLd9/DAlt0
-         zYknYocjlFeL++THBId6DuWZpaTK/vUPPqpzke8MkBg5RZylHBfZ8XuqdhiK1rWlNdjX
-         BBvnfhDyIH4OjXpWGxPEAuXnPLztWnR8bcbJGZmMXD1/hjxEySRiAyoJdK+zZuoPzK4l
-         Gf0LEgrxP+X1OyJGR7Z2S8R/Z71plVRV5YO30GSpKunC5c/8onPWNqnsy3UDqtS1W+mN
-         V00DwStSL3jKKr72kC11WilgZlqWV/PdvAhrC9Vb18d3NKktvhaAPWl3uFzYKA4ODDEQ
-         hS1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XPC+nIjew0iTqiVnsUuOIA6zrMVDeRWmWqmZPK0+k80=;
-        b=ScJB59HcZJltzLn7mXvxjb7ryMgiydz7SG6S7bDk4FVzfhflla5nTqpJFLg04iW1fO
-         FNgcoyHTchsBTqBZrJ88+UlSVW/Qpx2aAfhuodh7cRVfbTouHBIoyy1GkhcFijDSL1f8
-         zqQYUK0BgTrCfsenuK0KkYasBK1iS+77dwhjx43ZtmKNae13sIiWHHTiYwFl6RwDznLw
-         eHxe1edp1GZeagpPvg/8GwTbdfMvwI3Ayi5jBnqYoT+MVrIPoL9M6MlGfb15mPMxEAz0
-         Q25ivvf5X8eCiLcLvO+jkPYW2nxiZfMlBb4t49K9G1Fzq0wtpt7cuIZ/o46lQy45VmbW
-         +8Tw==
-X-Gm-Message-State: APjAAAXiCUsc/NxBTXVGEYSr8dC3pwWjz47wEfgp4hUClbSMo7ulXe3K
-        OgaC6HF3ZFFgZX0YtkAAoQP2qAkEP6qRRuYYDhQq4A==
-X-Google-Smtp-Source: APXvYqxGwqrtKYe+togh6kJeyUF+saASbccKsCL5SAQ3NuX/QJFF2nRQZx33348xyos1e1+1jq5HvGLyi1uCTqcfyNM=
-X-Received: by 2002:a02:b156:: with SMTP id s22mr8324721jah.102.1569596781873;
- Fri, 27 Sep 2019 08:06:21 -0700 (PDT)
+        id S1727349AbfI0P1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:27:49 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:36565 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727366AbfI0P1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:27:48 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 9C71B8054F; Fri, 27 Sep 2019 17:27:31 +0200 (CEST)
+Date:   Fri, 27 Sep 2019 17:27:45 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        tfiga@google.com, Rob Herring <robh+dt@kernel.org>,
+        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/11] dt-bindings: video-interfaces: Document
+ 'location' property
+Message-ID: <20190927152745.GA23113@amd>
+References: <20190912201055.13964-1-jacopo@jmondi.org>
+ <20190912201055.13964-2-jacopo@jmondi.org>
 MIME-Version: 1.0
-References: <20190927134220.8734-1-robh@kernel.org>
-In-Reply-To: <20190927134220.8734-1-robh@kernel.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 27 Sep 2019 17:06:09 +0200
-Message-ID: <CAMRc=MctTVh99vE+dfd25ienWEjtMNwrM200f1im--fx9ALo7Q@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: at24: convert the binding document to yaml
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Peter Rosin <peda@axentia.se>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="+QahgC5+KEYLbs62"
+Content-Disposition: inline
+In-Reply-To: <20190912201055.13964-2-jacopo@jmondi.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pt., 27 wrz 2019 o 15:42 Rob Herring <robh@kernel.org> napisa=C5=82(a):
->
-> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
->
-> Convert the binding document for at24 EEPROMs from txt to yaml. The
-> compatible property uses a regex pattern to address all the possible
-> combinations of "vendor,model" strings.
->
-> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> [robh: rework compatible schema, fix missing allOf for $ref, fix errors i=
-n example]
-> Signed-off-by: Rob Herring <robh@kernel.org>
+
+--+QahgC5+KEYLbs62
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+> Add the 'location' device property, used to specify a device mounting
+> position. The property is particularly meaningful for mobile devices
+> with a well defined usage orientation.
+>=20
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 > ---
-> v4:
-> - Add a $nodename definition
->
-> - Turns out the compatible schema is too complex for generating a 'select=
-'
-> schema and only a small subset where getting validated. So we need a
-> custom 'select' schema. This in turn fixes the issue with the nxp,se97b
-> binding.
+>  .../devicetree/bindings/media/video-interfaces.txt    | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt=
+ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> index f884ada0bffc..e71b90a29d7a 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> @@ -89,6 +89,17 @@ Optional properties
+>    but a number of degrees counter clockwise. Typical values are 0 and 180
+>    (upside down).
+>=20
+> +- location: The device, typically an image sensor or a flash LED, mounti=
+ng
+> +  location expressed as a position relative to the usage orientation of =
+the
+> +  system where the device is installed on.
+> +  Possible values are:
+> +  0 - Front. The device is mounted on the front facing side of the syste=
+m For
+> +  mobile devices such as smartphones, tablets and laptops the front side=
+ is the
+> +  user facing side.
 
-Thanks again!
+I don't think this is nearly enough of description. We have phones
+with displays and cameras at both sides, where both sides can be used
+to operate the system.
 
->
-> Now we get a different set of errors checking Arm dts files (omitting
-> a bunch of node name ones):
->
+We have phone with display spanning both sides -- Mi Max.
 
-> arch/arm/boot/dts/at91-dvk_som60.dt.yaml: eeprom@57: compatible: ['giante=
-c,gt24c32a', 'atmel,24c32'] is not valid under any of the given schemas
+https://www.idnes.cz/mobil/telefony/xiaomi-mi-mix-alpha-predstaveni.A190924=
+_105858_telefony_oma
 
-This is because nobody bothered adding 'giantec,gt24c32a' to previous
-.txt bindings. I'll add this in a follow-up patch.
+We have Galaxy Fold.
 
-> arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs01@5f: compatible: ['atm=
-el,24cs01'] is not valid under any of the given schemas
-> arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs08@5c: compatible: ['atm=
-el,24cs08'] is not valid under any of the given schemas
->
+https://www.samsung.com/global/galaxy/galaxy-fold/
 
-These look fine at first glance, I'm not sure what the problem here
-is. I'll take a look at these as soon as I can.
+What is front side when device can be used in different
+configurations?
 
-Bart
+Could we instead say that it is "main" vs "selfie" camera?
 
-> These all look to be real.
-> ---
->  .../devicetree/bindings/eeprom/at24.txt       |  90 +---------
->  .../devicetree/bindings/eeprom/at24.yaml      | 164 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 166 insertions(+), 90 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
->
-> diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Document=
-ation/devicetree/bindings/eeprom/at24.txt
-> index 22aead844d0f..c94acbb8cb0c 100644
-> --- a/Documentation/devicetree/bindings/eeprom/at24.txt
-> +++ b/Documentation/devicetree/bindings/eeprom/at24.txt
-> @@ -1,89 +1 @@
-> -EEPROMs (I2C)
-> -
-> -Required properties:
-> -
-> -  - compatible: Must be a "<manufacturer>,<model>" pair. The following <=
-model>
-> -                values are supported (assuming "atmel" as manufacturer):
-> -
-> -                "atmel,24c00",
-> -                "atmel,24c01",
-> -                "atmel,24cs01",
-> -                "atmel,24c02",
-> -                "atmel,24cs02",
-> -                "atmel,24mac402",
-> -                "atmel,24mac602",
-> -                "atmel,spd",
-> -                "atmel,24c04",
-> -                "atmel,24cs04",
-> -                "atmel,24c08",
-> -                "atmel,24cs08",
-> -                "atmel,24c16",
-> -                "atmel,24cs16",
-> -                "atmel,24c32",
-> -                "atmel,24cs32",
-> -                "atmel,24c64",
-> -                "atmel,24cs64",
-> -                "atmel,24c128",
-> -                "atmel,24c256",
-> -                "atmel,24c512",
-> -                "atmel,24c1024",
-> -                "atmel,24c2048",
-> -
-> -                If <manufacturer> is not "atmel", then a fallback must b=
-e used
-> -                with the same <model> and "atmel" as manufacturer.
-> -
-> -                Example:
-> -                        compatible =3D "microchip,24c128", "atmel,24c128=
-";
-> -
-> -                Supported manufacturers are:
-> -
-> -                "catalyst",
-> -                "microchip",
-> -                "nxp",
-> -                "ramtron",
-> -                "renesas",
-> -                "rohm",
-> -                "st",
-> -
-> -                Some vendors use different model names for chips which a=
-re just
-> -                variants of the above. Known such exceptions are listed =
-below:
-> -
-> -                "nxp,se97b" - the fallback is "atmel,24c02",
-> -                "renesas,r1ex24002" - the fallback is "atmel,24c02"
-> -                "renesas,r1ex24016" - the fallback is "atmel,24c16"
-> -                "renesas,r1ex24128" - the fallback is "atmel,24c128"
-> -                "rohm,br24t01" - the fallback is "atmel,24c01"
-> -
-> -  - reg: The I2C address of the EEPROM.
-> -
-> -Optional properties:
-> -
-> -  - pagesize: The length of the pagesize for writing. Please consult the
-> -              manual of your device, that value varies a lot. A wrong va=
-lue
-> -              may result in data loss! If not specified, a safety value =
-of
-> -              '1' is used which will be very slow.
-> -
-> -  - read-only: This parameterless property disables writes to the eeprom=
-.
-> -
-> -  - size: Total eeprom size in bytes.
-> -
-> -  - no-read-rollover: This parameterless property indicates that the
-> -                      multi-address eeprom does not automatically roll o=
-ver
-> -                      reads to the next slave address. Please consult th=
-e
-> -                      manual of your device.
-> -
-> -  - wp-gpios: GPIO to which the write-protect pin of the chip is connect=
-ed.
-> -
-> -  - address-width: number of address bits (one of 8, 16).
-> -
-> -  - num-addresses: total number of i2c slave addresses this device takes
-> -
-> -Example:
-> -
-> -eeprom@52 {
-> -       compatible =3D "atmel,24c32";
-> -       reg =3D <0x52>;
-> -       pagesize =3D <32>;
-> -       wp-gpios =3D <&gpio1 3 0>;
-> -       num-addresses =3D <8>;
-> -};
-> +This file has been moved to at24.yaml.
-> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documen=
-tation/devicetree/bindings/eeprom/at24.yaml
-> new file mode 100644
-> index 000000000000..036068335a4b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +# Copyright 2019 BayLibre SAS
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: I2C EEPROMs compatible with Atmel's AT24
-> +
-> +maintainers:
-> +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^eeprom@[0-9a-f]{1,2}$"
-> +  compatible:
-> +    oneOf:
-> +      - allOf:
-> +          - minItems: 1
-> +            maxItems: 2
-> +            items:
-> +              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas=
-|rohm|st),(24(c|cs|mac)[0-9]+|spd)$"
-> +              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-> +          - oneOf:
-> +              - items:
-> +                  pattern: c00$
-> +              - items:
-> +                  pattern: c01$
-> +              - items:
-> +                  pattern: c02$
-> +              - items:
-> +                  pattern: c04$
-> +              - items:
-> +                  pattern: c08$
-> +              - items:
-> +                  pattern: c16$
-> +              - items:
-> +                  pattern: cs16$
-> +              - items:
-> +                  pattern: c32$
-> +              - items:
-> +                  pattern: cs32$
-> +              - items:
-> +                  pattern: c64$
-> +              - items:
-> +                  pattern: cs64$
-> +              - items:
-> +                  pattern: c128$
-> +              - items:
-> +                  pattern: cs128$
-> +              - items:
-> +                  pattern: c256$
-> +              - items:
-> +                  pattern: cs256$
-> +              - items:
-> +                  pattern: c512$
-> +              - items:
-> +                  pattern: cs512$
-> +              - items:
-> +                  pattern: c1024$
-> +              - items:
-> +                  pattern: cs1024$
-> +              - items:
-> +                  pattern: c2048$
-> +              - items:
-> +                  pattern: cs2048$
-> +              - items:
-> +                  pattern: spd$
-> +      - items:
-> +          - const: rohm,br24t01
-> +          - const: atmel,24c01
-> +      - items:
-> +          - const: nxp,se97b
-> +          - const: atmel,24c02
-> +      - items:
-> +          - const: renesas,r1ex24002
-> +          - const: atmel,24c02
-> +      - items:
-> +          - const: renesas,r1ex24016
-> +          - const: atmel,24c16
-> +      - items:
-> +          - const: renesas,r1ex24128
-> +          - const: atmel,24c128
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  pagesize:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The length of the pagesize for writing. Please consult the
-> +      manual of your device, that value varies a lot. A wrong value
-> +      may result in data loss! If not specified, a safety value of
-> +      '1' is used which will be very slow.
-> +    enum: [ 1, 8, 16, 32, 64, 128, 258 ]
-> +    default: 1
-> +
-> +  read-only:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      This parameterless property disables writes to the eeprom.
-> +
-> +  size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Total eeprom size in bytes.
-> +
-> +  no-read-rollover:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      This parameterless property indicates that the multi-address
-> +      eeprom does not automatically roll over reads to the next slave
-> +      address. Please consult the manual of your device.
-> +
-> +  wp-gpios:
-> +    description:
-> +      GPIO to which the write-protect pin of the chip is connected.
-> +    maxItems: 1
-> +
-> +  address-width:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Number of address bits (one of 8, 16).
-> +    default: 8
-> +    enum: [ 8, 16 ]
-> +
-> +  num-addresses:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Total number of i2c slave addresses this device takes.
-> +    default: 1
-> +    minimum: 1
-> +    maximum: 8
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      eeprom@52 {
-> +          compatible =3D "microchip,24c32", "atmel,24c32";
-> +          reg =3D <0x52>;
-> +          pagesize =3D <32>;
-> +          wp-gpios =3D <&gpio1 3 0>;
-> +          num-addresses =3D <8>;
-> +      };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a50e97a63bc8..a65e6bcd957b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2687,7 +2687,7 @@ M:        Bartosz Golaszewski <bgolaszewski@baylibr=
-e.com>
->  L:     linux-i2c@vger.kernel.org
->  T:     git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
->  S:     Maintained
-> -F:     Documentation/devicetree/bindings/eeprom/at24.txt
-> +F:     Documentation/devicetree/bindings/eeprom/at24.yaml
->  F:     drivers/misc/eeprom/at24.c
->
->  ATA OVER ETHERNET (AOE) DRIVER
-> --
-> 2.20.1
->
+Notebooks usually have just "selfie" camera, tablets often have
+both... DSLRs have just "main" camera.
+
+Best regards,
+
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--+QahgC5+KEYLbs62
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl2OKnEACgkQMOfwapXb+vKKAgCfYmjlA9n1hExHQbiCr02po1sr
+074AoIYkRdpXlF79DPVHouVBXtp4PSYj
+=c3we
+-----END PGP SIGNATURE-----
+
+--+QahgC5+KEYLbs62--
