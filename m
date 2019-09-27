@@ -2,112 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19126BFEB4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 07:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F99EBFED9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 08:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725808AbfI0Fwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 01:52:50 -0400
-Received: from anchovy2.45ru.net.au ([203.30.46.146]:51372 "EHLO
-        anchovy2.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725800AbfI0Fwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 01:52:50 -0400
-Received: (qmail 13822 invoked by uid 5089); 27 Sep 2019 05:52:48 -0000
-Received: by simscan 1.2.0 ppid: 13638, pid: 13641, t: 0.0842s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?192.168.0.128?) (preid@electromag.com.au@203.59.235.95)
-  by anchovy3.45ru.net.au with ESMTPA; 27 Sep 2019 05:52:47 -0000
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Enrico Weigelt <info@metux.net>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, Eugeniu Rosca <roscaeugeniu@gmail.com>
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
-From:   Phil Reid <preid@electromag.com.au>
-Message-ID: <c1418e82-ed98-14e5-9858-e5ebd12de3b7@electromag.com.au>
-Date:   Fri, 27 Sep 2019 13:52:36 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1725804AbfI0GIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 02:08:36 -0400
+Received: from mail-sz.amlogic.com ([211.162.65.117]:34453 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbfI0GIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 02:08:36 -0400
+Received: from [10.28.19.114] (10.28.19.114) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 27 Sep
+ 2019 14:08:34 +0800
+Subject: Re: [PATCH 1/2] dt-bindings: clock: meson: add A1 clock controller
+ bindings
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+CC:     Jianxin Pan <jianxin.pan@amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
+ <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
+ <1j4l10motk.fsf@starbuckisacylon.baylibre.com>
+From:   Jian Hu <jian.hu@amlogic.com>
+Message-ID: <d9b23872-3d6f-ddb0-d44b-174fb2984232@amlogic.com>
+Date:   Fri, 27 Sep 2019 14:08:34 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.3
 MIME-Version: 1.0
-In-Reply-To: <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
+In-Reply-To: <1j4l10motk.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.28.19.114]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2019 00:51, Eugeniu Rosca wrote:
-> Hi All,
-> 
-> I've additionally Cc-ed Laurent and Stephen, since their fruitful
-> discussion in [1] back in 2014 concluded with a useful documentation
-> update [2] which is precisely related to the interpretation and usage
-> of the polarity flag in GPIO specifiers.
-> 
-> I've also Cc-ed those people who have participated in reviewing the
-> previous patch iterations (Geert, Phil, Enrico).
-> 
-> Before leaving this thread in limbo, I would like to attempt clarifying
-> what it actually tried to accomplish, one more time.
-> 
-> First of all, it stems from the need to implement a specific customer
-> requirement. Whether this requirement is sane or not, that's actually
-> a very important question, but I haven't found much discussion around
-> it the comments posted so far.
-> 
-> To paraphrase what Harish stated in [3], the customer has a list of GPIO
-> pins which need to be controlled from userspace. Of course, the customer
-> can set the polarity of those pins from userspace, as pointed out by
-> Linus in [4] (thanks!). But, keeping track of GPIO polarity in userspace
-> is seen like a burden. The customer thinks that the right place for this
-> HW-specific detail is in device trees. Do you think this preference
-> is ill-formed?
-> 
-> If we hog a GPIO pin in DTS (which allows specifying its polarity),
-> userspace no longer has access to that pin. There isn't a way to define
-> GPIO polarity by means of DTS without affecting userspace access
-> (can anybody contradict this statement?).
-> 
-> Whether it is obvious or not, the main goal of this series is actually
-> to provide the possibility of inverting the default ACTIVE_HIGH polarity
-> for GPIO pin X _via DTS_ while still allowing to operate on that pin
-> _from userspace_. My two questions are then:
->   - I hope it is something sane to desire?
->   - If it is sane, how can this be accomplished, if the functionality
->     implemented by Harish doesn't pass the community review?
-> 
-> [1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
-> [3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
-> [4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
-> 
+Hi, Jerome
 
-I still think the concept is very useful.
+Thank you for review.
 
-A related issue for example is that some drivers want to enforce the GPIO consumer to be open drain.
-Eg see i2c-imx or i2c-davinci for examples
+On 2019/9/25 22:29, Jerome Brunet wrote:
+> On Wed 25 Sep 2019 at 19:44, Jian Hu <jian.hu@amlogic.com> wrote:
+> 
+> In addition to the comment expressed by Stephen on patch 2
+> 
+got it.
+>> Add the documentation to support Amlogic A1 clock driver,
+>> and add A1 clock controller bindings.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>> ---
+>>   .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |  65 +++++++++++++
+>>   include/dt-bindings/clock/a1-clkc.h                | 102 +++++++++++++++++++++
+>>   2 files changed, 167 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>>   create mode 100644 include/dt-bindings/clock/a1-clkc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>> new file mode 100644
+>> index 0000000..f012eb2
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>> @@ -0,0 +1,65 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> + */
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Amlogic Meson A1 Clock Control Unit Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>> +  - Jian Hu <jian.hu@jian.hu.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    - enum:
+>> +        - amlogic,a1-clkc
+>> +
+>> +  reg:
+>> +    minItems: 1
+>> +    maxItems: 3
+>> +    items:
+>> +      - description: peripheral registers
+>> +      - description: cpu registers
+>> +      - description: pll registers
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: peripheral
+>> +      - const: pll
+>> +      - const: cpu
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    items:
+>> +      - description: Input Oscillator (usually at 24MHz)
+>> +
+>> +  clock-names:
+>> +    maxItems: 1
+>> +    items:
+>> +      - const: xtal
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - clocks
+>> +  - clock-names
+>> +  - "#clock-cells"
+>> +
+>> +examples:
+>> +  - |
+>> +    clkc: clock-controller {
+>> +        compatible = "amlogic,a1-clkc";
+>> +        reg = <0x0 0xfe000800 0x0 0x100>,
+>> +              <0x0 0xfe007c00 0x0 0x21c>,
+>> +              <0x0 0xfd000080 0x0 0x20>;
+>> +        reg-names = "peripheral", "pll", "cpu";
+> 
+> I'm sorry but I don't agree with this. You are trying to regroup several
+> controllers into one with this, and it is not OK
+> 
+> By the looks of it there are 3 different controllers, including one you
+> did not implement in the driver.
+> 
+Yes, In A1, the clock registers include three regions.
 
-But suppose I've connected the gpio to the i2c bus via a FET (which is an inverter with open drain output).
-We're basically saying I can't model that FET's existence in the dts.
-So I can't accurately describe my hardware in the dts to ensure the software does the right thing without the inverter.
-That is drive the GPIO output as push / pull.
+I agree with your opinion. I will implement the two clock drivers of 
+peripheral and plls first in PATCH V2. And CPU clock driver will be sent 
+after the patches are merged.
 
-It's probably good the drivers do enforce this kind of open drain thing to prevent dts error destroying hardware.
-But it does prevent some hardware designs from working if we can't model the bits in between.
-
-
--- 
-Regards
-Phil Reid
+>> +        clocks = <&xtal;
+>> +        clock-names = "xtal";
+>> +        #clock-cells = <1>;
+> 
+> .
+> 
