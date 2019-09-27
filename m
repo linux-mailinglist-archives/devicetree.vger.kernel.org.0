@@ -2,111 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92467C04EC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D034AC04ED
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727099AbfI0MOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 08:14:11 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:46915 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726116AbfI0MOL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:14:11 -0400
-Received: by mail-io1-f68.google.com with SMTP id c6so15561220ioo.13;
-        Fri, 27 Sep 2019 05:14:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XJJtNuqioZl6sa+W5Rtd/VG7UjoMxElWqoWFvVmwcPg=;
-        b=iROi2TOrPbDzeqog2o0irRLDYv8v0KQxALF63dP95BRHup05sWPpMyhjL8kxbpnyUl
-         9rlyIezwuakpTw24pXZQuDTN5ePY1nXjUTJw/ORTVKLPHr08x+DR2fAHWXJAXM/XapbP
-         2SRvVM6DubGI/ojN759mp2E01zstJgN+YsNaR8VbCOivsWZFBw3j7x3TBnuAmeUOc2b4
-         4yU1ltsIaulzT0xipQDIjckwMUOPeuxWhmX5T6yzKWYhIS2Kbe5xXa8UhNi24k+O6BQ1
-         6PP/D77y76Lb7Upg1jzA+KtGKbBy7q25jgPBcJx3HT+5pHqciyJYyW1A11MIjJSUeNgT
-         7Png==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XJJtNuqioZl6sa+W5Rtd/VG7UjoMxElWqoWFvVmwcPg=;
-        b=CowIxsp9KdcKzs9FVzdXQ+DWROajpK94dFP1gw4rDO4J5gatRAIFIpAz3Wd9zfF3qm
-         CAgjJTl5HnAjzioPWHCIOWKdR91CfORpD/uwqufsXyrohmbRPoETDC49UXQDqRDbYxbC
-         BTfQ27ph8cX7IW0iRPBn9jKODyj/domkQnbX4YrzBWPEorf8bObd0JE1/dMtV3ZppJwD
-         Ksq56QEp7fbFz6/naBF7lcPrwE906hLfZPDGu+yOLNLtlyClgXPAxUv82aLpMBf/iGTy
-         bsOpYBVRt5MNse270MsxxPm3ZZW0oFC1Dur4GpqHSgKfCoWW+Cmh6au4T5JEzTDEFHh7
-         SDZg==
-X-Gm-Message-State: APjAAAUSTZfsI07nHl+e1HJLuu6SrjqbvfaMUYmnYMN/49wGes6GJACm
-        ZqQaqYpyHdg7SGbSipe7ADV/QzXVdn84QMW6CXFn4Y0oFlw=
-X-Google-Smtp-Source: APXvYqwyOKCiZQF6ncWvp6oVJF/zzgcf1p5FbkC23Qgharm/Cg3vsMj4M3mHWcQhIQJk7EAyi5Ecx3hZvquvq5qC//8=
-X-Received: by 2002:a92:3f0a:: with SMTP id m10mr4235717ila.158.1569586450690;
- Fri, 27 Sep 2019 05:14:10 -0700 (PDT)
+        id S1726144AbfI0MOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 08:14:48 -0400
+Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:45529 "EHLO
+        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725992AbfI0MOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 08:14:48 -0400
+Received: from [IPv6:2001:420:44c1:2577:2521:77be:ff76:8085] ([IPv6:2001:420:44c1:2577:2521:77be:ff76:8085])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id Dp8ziLh7W9D4hDp93iC0PW; Fri, 27 Sep 2019 14:14:45 +0200
+Subject: Re: [PATCH v10 07/14] media: tvp5150: fix set_selection rectangle
+ handling
+To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+References: <20190830101646.6530-1-m.felsch@pengutronix.de>
+ <20190830101646.6530-8-m.felsch@pengutronix.de>
+ <20190927121334.xjt4pneuohppy44n@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <d613ad34-d6fa-44a2-3705-2f72c4ee4330@xs4all.nl>
+Date:   Fri, 27 Sep 2019 14:14:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190510194229.20628-1-aford173@gmail.com> <af325707-3e42-493d-e858-77878ef06138@ti.com>
- <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
- <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com> <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
- <845055e2-8182-de74-2077-629fdf50ac6c@ti.com> <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
- <f6012b3a-7b96-6020-d09d-c458fa8742d8@ti.com>
-In-Reply-To: <f6012b3a-7b96-6020-d09d-c458fa8742d8@ti.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 27 Sep 2019 07:13:59 -0500
-Message-ID: <CAHCN7x+ysOEXFCE5DXvoPh6sQBdnHRE8t-KJfcijWesJRx9iXg@mail.gmail.com>
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to dts
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190927121334.xjt4pneuohppy44n@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfB5GfU5afttLAtcKnXz+zIDnAGqcX5oBAlr2K48SWGaGMxUErHNf3BQMRA7U4A+Md02rcH0BQAFxy2faoXYKxxoRjDqvA8kdnTk96SRl4Om6hdZl0VnO
+ AsvFOUIenBHGH6GPA0ti4X450hpbNyMZySR5KnAq0ePlOgX+8uB17LPYtyVZ0ZxJFnYqUz7mMsF7UJtkxmLatUO1egsPWvJufxC4km5UhGKMRySLHEIlMpwk
+ fIXJIU9xRpVhVG8hBIPmAGvlwIkSUVFeBt34pCo9nsH+2tYK+KxSG/4jXxb/8yXooxysEcgO9W8RFcSwY44ooepM9y/er+hzUwqkgJmD78SfNEApj/oZgl7d
+ ePkN68JpeMw+Z9TNM9W1fWVwKDl660Pie55ecB4uSBjyfVWZtIMLbrl5Nj54eVyNxFldIbKXN1HuRCey2RMA1A8PVMrqBb1y/H7UodqCZeFdWq/0u82xcpUo
+ w9aAP6G4iteEyafzhRhIQ63EqWvFo1361QyaRxLUton08awSazGlKMsWTC1/1lcDcJpKCg+UwmJtKOOUrRAd60RgnIAMuz5mh4XzXID01ydMym2iKTMXzWrF
+ R1CH5dYNVKDo/NMJWepMIV+fKuo4NgWI7eBbs46bWm/lrA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 1:22 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
->
-> On 26/09/2019 17:12, Adam Ford wrote:
->
-> >> And what is the hdmi5_configure there? I don't see anything in the
-> >> driver that would print hdmi5_configure. And, of course, there's no
-> >> hdmi5 on that platform. Hmm, ok... it's from component.c, using "%ps".
-> >> Somehow that goes wrong. Which is a bit alarming, but perhaps a totally
-> >> different issue.
-> >
-> > I'll try to take a look later.  For Logic PD distributions, we create
-> > a custom defconfig with all those drivers removed, so I'm not worked
-> > up about it, but it would be nice to not call drivers that don't
-> > exist.
->
-> So you have CONFIG_OMAP5_DSS_HDMI=n? Then it's even more disturbing, as
-> there's no way the string "hdmi5_configure" can be in the kernel image...
+On 9/27/19 2:13 PM, Marco Felsch wrote:
+> Hi Hans,
+> 
+> since you review contained many checkpatch issues I wanna ask if it okay
+> to keep this line as it before I will send a v11. Please check my inline
+> comment.
+> 
+> On 19-08-30 12:16, Marco Felsch wrote:
+>> Currently a local copy of sel->r is made and adapted to the hardware
+>> constraints. After the adaption the value is applied to the hardware but
+>> the driver forgot to reflect the adapted value to the user space.
+>>
+>> Drop the local copy and work directly on the requested rectangle
+>> instead to fix this.
+>>
+>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+>> ---
+>>
+>> v10:
+>> - new patch
+>>
+>>  drivers/media/i2c/tvp5150.c | 32 ++++++++++++++++----------------
+>>  1 file changed, 16 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+>> index 477a929d4f89..c1542a89e8c8 100644
+>> --- a/drivers/media/i2c/tvp5150.c
+>> +++ b/drivers/media/i2c/tvp5150.c
+>> @@ -1024,7 +1024,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+>>  				 struct v4l2_subdev_selection *sel)
+>>  {
+>>  	struct tvp5150 *decoder = to_tvp5150(sd);
+>> -	struct v4l2_rect rect = sel->r;
+>> +	struct v4l2_rect *rect = &sel->r;
+>>  	v4l2_std_id std;
+>>  	int hmax;
+>>  
+>> @@ -1033,11 +1033,11 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+>>  		return -EINVAL;
+>>  
+>>  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
+>> -		__func__, rect.left, rect.top, rect.width, rect.height);
+>> +		__func__, rect->left, rect->top, rect->width, rect->height);
+>>  
+>>  	/* tvp5150 has some special limits */
+>> -	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
+>> -	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
+>> +	rect->left = clamp(rect->left, 0, TVP5150_MAX_CROP_LEFT);
+>> +	rect->top = clamp(rect->top, 0, TVP5150_MAX_CROP_TOP);
+>>  
+>>  	/* Calculate height based on current standard */
+>>  	if (decoder->norm == V4L2_STD_ALL)
+>> @@ -1055,26 +1055,26 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+>>  	 *  - width = 2 due to UYVY colorspace
+>>  	 *  - height, image = no special alignment
+>>  	 */
+>> -	v4l_bound_align_image(&rect.width,
+>> -			      TVP5150_H_MAX - TVP5150_MAX_CROP_LEFT - rect.left,
+>> -			      TVP5150_H_MAX - rect.left, 1, &rect.height,
+>> -			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
+>> -			      hmax - rect.top, 0, 0);
+>> +	v4l_bound_align_image(&rect->width,
+>> +			      TVP5150_H_MAX - TVP5150_MAX_CROP_LEFT - rect->left,
+> 
+> Now checkpatch complains about this line because it is 81 characters
+> long. Is it okay to keep this as single line for readability?
 
-For the logs and problems I am showing in this thread, I am using a
-stock omap2plus_defconfig which has it enabled.  I was only trying to
-state that I am not worried about the omap5 hdmi stuff, because when I
-do a custom distribution for Logic PD, I remove those config options
-to make the issue go away.
->
-> Maybe it's nothing, but... It's just so odd.
+Yes, in this case splitting it up just makes it harder to read, so keep it as-is.
 
-I don't think we need to worry about it now.  Ideally, it would be
-nice to have the drivers recognize they are not needed and or setup
-the Kconfig options to make these drivers dependent on the platforms
-that support it so unselecting OMAP5 could make the omap5 options
-disappear.
+Regards,
 
-Sorry if I accidentally threw in a distraction or confusion.
+	Hans
 
-adam
->
->   Tomi
->
-> --
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> 
+> Regards,
+>   Marco
+> 
+> 
+>> +			      TVP5150_H_MAX - rect->left, 1, &rect->height,
+>> +			      hmax - TVP5150_MAX_CROP_TOP - rect->top,
+>> +			      hmax - rect->top, 0, 0);
+>>  
+>> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+>> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect->top);
+>>  	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+>> -		     rect.top + rect.height - hmax);
+>> +		     rect->top + rect->height - hmax);
+>>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+>> -		     rect.left >> TVP5150_CROP_SHIFT);
+>> +		     rect->left >> TVP5150_CROP_SHIFT);
+>>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+>> -		     rect.left | (1 << TVP5150_CROP_SHIFT));
+>> +		     rect->left | (1 << TVP5150_CROP_SHIFT));
+>>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+>> -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+>> +		     (rect->left + rect->width - TVP5150_MAX_CROP_LEFT) >>
+>>  		     TVP5150_CROP_SHIFT);
+>>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+>> -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+>> +		     rect->left + rect->width - TVP5150_MAX_CROP_LEFT);
+>>  
+>> -	decoder->rect = rect;
+>> +	decoder->rect = *rect;
+>>  
+>>  	return 0;
+>>  }
+>> -- 
+>> 2.20.1
+>>
+>>
+> 
+
