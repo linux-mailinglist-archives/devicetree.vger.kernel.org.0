@@ -2,160 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D034AC04ED
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E898C0515
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:25:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726144AbfI0MOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 08:14:48 -0400
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:45529 "EHLO
-        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725992AbfI0MOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 08:14:48 -0400
-Received: from [IPv6:2001:420:44c1:2577:2521:77be:ff76:8085] ([IPv6:2001:420:44c1:2577:2521:77be:ff76:8085])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id Dp8ziLh7W9D4hDp93iC0PW; Fri, 27 Sep 2019 14:14:45 +0200
-Subject: Re: [PATCH v10 07/14] media: tvp5150: fix set_selection rectangle
- handling
-To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-References: <20190830101646.6530-1-m.felsch@pengutronix.de>
- <20190830101646.6530-8-m.felsch@pengutronix.de>
- <20190927121334.xjt4pneuohppy44n@pengutronix.de>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <d613ad34-d6fa-44a2-3705-2f72c4ee4330@xs4all.nl>
-Date:   Fri, 27 Sep 2019 14:14:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726295AbfI0MZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 08:25:25 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41588 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726203AbfI0MZZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 08:25:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=2A637Ahb7qsdDwnyq8c53qGLerD/lC6vZKHQyGPDsL0=; b=q2Vwahk68ubauaodCKHiiqHyeQ
+        0ssEzYEvHW4NU+kyLDdS+sn4TEFHVlWLxa0Td6qFXJ8Nl41qkUw8WPjYPQOEXlEMd0X9UZS1Q1E9d
+        rcWAEVyl6Z/qiDhC4D3KyHhtARTLKsONPJ95Yuzz/A6JJB2wN2D71+PAsczB7MuRT/rs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1iDpJG-0001eM-BA; Fri, 27 Sep 2019 14:25:18 +0200
+Date:   Fri, 27 Sep 2019 14:25:18 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     vincent.cheng.xh@renesas.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, richardcochran@gmail.com,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] ptp: Add a ptp clock driver for IDT ClockMatrix.
+Message-ID: <20190927122518.GA25474@lunn.ch>
+References: <1569556128-22212-1-git-send-email-vincent.cheng.xh@renesas.com>
+ <1569556128-22212-2-git-send-email-vincent.cheng.xh@renesas.com>
 MIME-Version: 1.0
-In-Reply-To: <20190927121334.xjt4pneuohppy44n@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfB5GfU5afttLAtcKnXz+zIDnAGqcX5oBAlr2K48SWGaGMxUErHNf3BQMRA7U4A+Md02rcH0BQAFxy2faoXYKxxoRjDqvA8kdnTk96SRl4Om6hdZl0VnO
- AsvFOUIenBHGH6GPA0ti4X450hpbNyMZySR5KnAq0ePlOgX+8uB17LPYtyVZ0ZxJFnYqUz7mMsF7UJtkxmLatUO1egsPWvJufxC4km5UhGKMRySLHEIlMpwk
- fIXJIU9xRpVhVG8hBIPmAGvlwIkSUVFeBt34pCo9nsH+2tYK+KxSG/4jXxb/8yXooxysEcgO9W8RFcSwY44ooepM9y/er+hzUwqkgJmD78SfNEApj/oZgl7d
- ePkN68JpeMw+Z9TNM9W1fWVwKDl660Pie55ecB4uSBjyfVWZtIMLbrl5Nj54eVyNxFldIbKXN1HuRCey2RMA1A8PVMrqBb1y/H7UodqCZeFdWq/0u82xcpUo
- w9aAP6G4iteEyafzhRhIQ63EqWvFo1361QyaRxLUton08awSazGlKMsWTC1/1lcDcJpKCg+UwmJtKOOUrRAd60RgnIAMuz5mh4XzXID01ydMym2iKTMXzWrF
- R1CH5dYNVKDo/NMJWepMIV+fKuo4NgWI7eBbs46bWm/lrA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1569556128-22212-2-git-send-email-vincent.cheng.xh@renesas.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/27/19 2:13 PM, Marco Felsch wrote:
-> Hi Hans,
-> 
-> since you review contained many checkpatch issues I wanna ask if it okay
-> to keep this line as it before I will send a v11. Please check my inline
-> comment.
-> 
-> On 19-08-30 12:16, Marco Felsch wrote:
->> Currently a local copy of sel->r is made and adapted to the hardware
->> constraints. After the adaption the value is applied to the hardware but
->> the driver forgot to reflect the adapted value to the user space.
->>
->> Drop the local copy and work directly on the requested rectangle
->> instead to fix this.
->>
->> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->> ---
->>
->> v10:
->> - new patch
->>
->>  drivers/media/i2c/tvp5150.c | 32 ++++++++++++++++----------------
->>  1 file changed, 16 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
->> index 477a929d4f89..c1542a89e8c8 100644
->> --- a/drivers/media/i2c/tvp5150.c
->> +++ b/drivers/media/i2c/tvp5150.c
->> @@ -1024,7 +1024,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->>  				 struct v4l2_subdev_selection *sel)
->>  {
->>  	struct tvp5150 *decoder = to_tvp5150(sd);
->> -	struct v4l2_rect rect = sel->r;
->> +	struct v4l2_rect *rect = &sel->r;
->>  	v4l2_std_id std;
->>  	int hmax;
->>  
->> @@ -1033,11 +1033,11 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->>  		return -EINVAL;
->>  
->>  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
->> -		__func__, rect.left, rect.top, rect.width, rect.height);
->> +		__func__, rect->left, rect->top, rect->width, rect->height);
->>  
->>  	/* tvp5150 has some special limits */
->> -	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
->> -	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
->> +	rect->left = clamp(rect->left, 0, TVP5150_MAX_CROP_LEFT);
->> +	rect->top = clamp(rect->top, 0, TVP5150_MAX_CROP_TOP);
->>  
->>  	/* Calculate height based on current standard */
->>  	if (decoder->norm == V4L2_STD_ALL)
->> @@ -1055,26 +1055,26 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->>  	 *  - width = 2 due to UYVY colorspace
->>  	 *  - height, image = no special alignment
->>  	 */
->> -	v4l_bound_align_image(&rect.width,
->> -			      TVP5150_H_MAX - TVP5150_MAX_CROP_LEFT - rect.left,
->> -			      TVP5150_H_MAX - rect.left, 1, &rect.height,
->> -			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
->> -			      hmax - rect.top, 0, 0);
->> +	v4l_bound_align_image(&rect->width,
->> +			      TVP5150_H_MAX - TVP5150_MAX_CROP_LEFT - rect->left,
-> 
-> Now checkpatch complains about this line because it is 81 characters
-> long. Is it okay to keep this as single line for readability?
+> +static s32 idtcm_xfer(struct idtcm *idtcm,
+> +		      u8 regaddr,
+> +		      u8 *buf,
+> +		      u16 count,
+> +		      bool write)
+> +{
+> +	struct i2c_client *client = idtcm->client;
+> +	struct i2c_msg msg[2];
+> +	s32 cnt;
+> +
+> +	msg[0].addr = client->addr;
+> +	msg[0].flags = 0;
+> +	msg[0].len = 1;
+> +	msg[0].buf = &regaddr;
+> +
+> +	msg[1].addr = client->addr;
+> +	msg[1].flags = write ? 0 : I2C_M_RD;
+> +	msg[1].len = count;
+> +	msg[1].buf = buf;
+> +
+> +	cnt = i2c_transfer(client->adapter, msg, 2);
+> +
+> +	if (cnt < 0) {
+> +		dev_err(&client->dev, "i2c_transfer returned %d\n", cnt);
+> +		return cnt;
+> +	} else if (cnt != 2) {
+> +		dev_err(&client->dev,
+> +			"i2c_transfer sent only %d of %d messages\n", cnt, 2);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static s32 idtcm_page_offset(struct idtcm *idtcm, u8 val)
+> +{
+> +	u8 buf[4];
+> +	s32 err;
 
-Yes, in this case splitting it up just makes it harder to read, so keep it as-is.
+Hi Vincent
 
-Regards,
+All your functions return s32, rather than the usual int. err is an
+s32.  i2c_transfer() will return an int, which you then assign to an
+s32.  I've no idea, but maybe the static code checkers like smatch
+will complain about this, especially on 64 bit systems? I suspect on
+64 bit machines, the compiler will be generating worse code, masking
+registers? Maybe use int, not s32?
 
-	Hans
+> +static s32 set_pll_output_mask(struct idtcm *idtcm, u16 addr, u8 val)
+> +{
+> +	s32 err = 0;
+> +
+> +	switch (addr) {
+> +	case OUTPUT_MASK_PLL0_ADDR:
+> +		SET_U16_LSB(idtcm->channel[0].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL0_ADDR + 1:
+> +		SET_U16_MSB(idtcm->channel[0].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL1_ADDR:
+> +		SET_U16_LSB(idtcm->channel[1].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL1_ADDR + 1:
+> +		SET_U16_MSB(idtcm->channel[1].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL2_ADDR:
+> +		SET_U16_LSB(idtcm->channel[2].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL2_ADDR + 1:
+> +		SET_U16_MSB(idtcm->channel[2].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL3_ADDR:
+> +		SET_U16_LSB(idtcm->channel[3].output_mask, val);
+> +		break;
+> +	case OUTPUT_MASK_PLL3_ADDR + 1:
+> +		SET_U16_MSB(idtcm->channel[3].output_mask, val);
+> +		break;
+> +	default:
+> +		err = -1;
 
-> 
-> Regards,
->   Marco
-> 
-> 
->> +			      TVP5150_H_MAX - rect->left, 1, &rect->height,
->> +			      hmax - TVP5150_MAX_CROP_TOP - rect->top,
->> +			      hmax - rect->top, 0, 0);
->>  
->> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
->> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect->top);
->>  	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
->> -		     rect.top + rect.height - hmax);
->> +		     rect->top + rect->height - hmax);
->>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
->> -		     rect.left >> TVP5150_CROP_SHIFT);
->> +		     rect->left >> TVP5150_CROP_SHIFT);
->>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
->> -		     rect.left | (1 << TVP5150_CROP_SHIFT));
->> +		     rect->left | (1 << TVP5150_CROP_SHIFT));
->>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
->> -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
->> +		     (rect->left + rect->width - TVP5150_MAX_CROP_LEFT) >>
->>  		     TVP5150_CROP_SHIFT);
->>  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
->> -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
->> +		     rect->left + rect->width - TVP5150_MAX_CROP_LEFT);
->>  
->> -	decoder->rect = rect;
->> +	decoder->rect = *rect;
->>  
->>  	return 0;
->>  }
->> -- 
->> 2.20.1
->>
->>
-> 
+EINVAL?
 
+> +		break;
+> +	}
+> +
+> +	return err;
+> +}
+
+> +static void set_default_function_pointers(struct idtcm *idtcm)
+> +{
+> +	idtcm->_idtcm_gettime = _idtcm_gettime;
+> +	idtcm->_idtcm_settime = _idtcm_settime;
+> +	idtcm->_idtcm_rdwr = idtcm_rdwr;
+> +	idtcm->_sync_pll_output = sync_pll_output;
+> +}
+
+Why does this indirection? Are the SPI versions of the silicon?
+
+    Andrew
