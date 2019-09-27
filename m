@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFCDC08B3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC6CC08BE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:39:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727273AbfI0Phr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 11:37:47 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55662 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727207AbfI0Phr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:37:47 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RFbeYx051670;
-        Fri, 27 Sep 2019 10:37:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569598661;
-        bh=Lqo9bBRFGck3umPvJYDrWptfCEGsJ4lcKhD97BGvgh4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=tw1025iq5dUXluSa0qqR4U6Bp2835f/huQP/igQAdoBf7BB9A6bmoqA6aXnTtrg0O
-         Ci6gi14TCsYVDllFYOrN+WaIZG6gl6l46r44G4j7qzkkMdu8wcV2nGcTS4qr+7kJNV
-         EK90yh8PU6/aLkGC+Q3CDLZh1e5gb7RHko52UUCk=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RFbeNn015785;
-        Fri, 27 Sep 2019 10:37:40 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
- Sep 2019 10:37:32 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 27 Sep 2019 10:37:40 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RFba8k044922;
-        Fri, 27 Sep 2019 10:37:37 -0500
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
- dts
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Adam Ford <aford173@gmail.com>
-CC:     Tony Lindgren <tony@atomide.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20190510194229.20628-1-aford173@gmail.com>
- <af325707-3e42-493d-e858-77878ef06138@ti.com>
- <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
- <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
- <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
- <845055e2-8182-de74-2077-629fdf50ac6c@ti.com>
- <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
- <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com>
- <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
- <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
-Date:   Fri, 27 Sep 2019 18:37:35 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727289AbfI0PjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:39:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38444 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727942AbfI0PjZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 11:39:25 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 441C4217D9;
+        Fri, 27 Sep 2019 15:39:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569598763;
+        bh=LzfM55bRrSMw95D2OGWSVJW8CH5eq0h3hMZdZSpp5sw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DYD94IKWVgvcJnKB1OGgZj5mKntLh2MqH9fHIHMDuk7KsKrAOJN84FXMAYwGz850k
+         yQ/mM+K7dB+7VVxBUkEQOPPne5MNTN9MbTuABaopAUE3dxyHmGgnqT+v/9aq9mJq97
+         bIAtLzx4NE/p7OpWJCptk3e7WwMsq7VhsdCKCr/0=
+Received: by mail-qt1-f178.google.com with SMTP id c3so7781118qtv.10;
+        Fri, 27 Sep 2019 08:39:23 -0700 (PDT)
+X-Gm-Message-State: APjAAAUE5tk3DzY1Wbitj8snkr+5QrV5mjWUA21XCvahMgExnlki1LfS
+        SpIMxtoHKSR5aHaabLwogUZP79+kJbfKnd8bjA==
+X-Google-Smtp-Source: APXvYqwQJhhYLZUjs3kM2AfLi3HMZQqwG6kWvc/7+p6KwnHkBp8sOLKHYHYyBwFJMY2j0jMgE6CgxJ/DUCQ94FbcjQc=
+X-Received: by 2002:ac8:444f:: with SMTP id m15mr10618307qtn.110.1569598762430;
+ Fri, 27 Sep 2019 08:39:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190913211349.28245-1-robh@kernel.org> <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
+ <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com> <7672dd2f651bfdcdb1615ab739e36a381b2535b1.camel@perches.com>
+In-Reply-To: <7672dd2f651bfdcdb1615ab739e36a381b2535b1.camel@perches.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 27 Sep 2019 10:39:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKAbP6KYjiJ6dLr=dpFG-j-e4rJPCKZ0+pZrDjsSPAUPQ@mail.gmail.com>
+Message-ID: <CAL_JsqKAbP6KYjiJ6dLr=dpFG-j-e4rJPCKZ0+pZrDjsSPAUPQ@mail.gmail.com>
+Subject: Re: [PATCH] checkpatch: Warn if DT bindings are not in schema format
+To:     Joe Perches <joe@perches.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andy Whitcroft <apw@canonical.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2019 16:47, Tomi Valkeinen wrote:
-> On 27/09/2019 15:33, Adam Ford wrote:
-> 
->>> It looks like a bug in omap clock handling.
->>>
->>> DSS uses dss1_alwon_fck_3430es2 as fclk. dss1_alwon_fck_3430es2 comes
->>> from dpll4_ck, and there's a divider after the PLL, dpll4_m4_ck.
->>>
->>> When the DSS driver sets dss1_alwon_fck_3430es2 rate to 27000000 or
->>> 27870967, which can be created with m4 dividers 32 and 31, it looks like
->>> the divider goes to bypass, or to a very small value. DSS gets a very
->>> high clock rate and breaks down.
->>
->> Is there anything I can do to help troubleshoot this?  I could insert
->> a hack that checks if we're omap3 and if so make the divider equal to
->> 4, but that seems like just a hack.
->> I can run more tests or insert code somewhere if you want.
-> 
-> I think it's up to someone who's knowledgeable in omap clock framework. 
-> I'm kind of hoping that Tero or Tony would be willing to debug =). I can 
-> try to find time to debug the omap clk framework, but I'll be going on 
-> blindly there.
+On Fri, Sep 27, 2019 at 9:29 AM Joe Perches <joe@perches.com> wrote:
+>
+> On Fri, 2019-09-27 at 09:02 -0500, Rob Herring wrote:
+> > On Fri, Sep 13, 2019 at 4:48 PM Joe Perches <joe@perches.com> wrote:
+> > > On Fri, 2019-09-13 at 16:13 -0500, Rob Herring wrote:
+> > > > DT bindings are moving to using a json-schema based schema format
+> > > > instead of freeform text. Add a checkpatch.pl check to encourage using
+> > > > the schema for new bindings. It's not yet a requirement, but is
+> > > > progressively being required by some maintainers.
+> > > []
+> > > > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > > []
+> > > > @@ -2822,6 +2822,14 @@ sub process {
+> > > >                            "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
+> > > >               }
+> > > >
+> > > > +# Check for adding new DT bindings not in schema format
+> > > > +             if (!$in_commit_log &&
+> > > > +                 ($line =~ /^new file mode\s*\d+\s*$/) &&
+> > > > +                 ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
+> > > > +                     WARN("DT_SCHEMA_BINDING_PATCH",
+> > > > +                          "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
+> > > > +             }
+> > > > +
+> > >
+> > > As this already seems to be git dependent, perhaps
+> >
+> > It's quite rare to see a non git generated diff these days.
+> >
+> > > it's easier to read with a single line test like:
+> > >
+> > >                 if ($line =~ m{^\s*create mode\s*\d+\s*Documentation/devicetree/bindings/.*\.txt$}) {
+> > >                         etc...
+> > >                 }
+> >
+> > I frequently do 'git show $commit | scripts/checkpatch.pl' and this
+> > doesn't work with that. I really should have a '--pretty=email' in
+> > there, but I just ignore the commit msg warnings. In any case, that
+> > still doesn't help because there's no diffstat. There's probably some
+> > way to turn that on or just use git-format-patch, but really we want
+> > this to work with any git diff.
+>
+> I don't understand your argument against what I proposed at all.
 
-If you can provide details about what clock framework / driver does 
-wrong (sample clk_set_xyz call sequence, expected results via 
-clk_get_xyz, and what fails), I can take a look at it. Just reporting 
-arbitrary display driver issues I won't be able to debug at all (I don't 
-have access to any of the displays, nor do I want to waste time 
-debugging them without absolutely no knowledge whatsoever.)
+It is dependent on the commit message rather than the diff itself. I
+want it to work with or without a diffstat.
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> and btw:
+>
+> $ git format-patch -1 --stdout <commit> | ./scripts/checkpatch.pl
+
+Yes, I stated this was possible. My concern is there are lots of ways
+to generate a diff in git. My way works for *all* of them. Yours
+doesn't.
+
+Rob
