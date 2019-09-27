@@ -2,183 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A06E7BFF58
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 08:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9B07BFF6A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 08:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726106AbfI0GrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 02:47:23 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:47734 "EHLO uho.ysoft.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725820AbfI0GrX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 02:47:23 -0400
-Received: from [10.1.8.111] (unknown [10.1.8.111])
-        by uho.ysoft.cz (Postfix) with ESMTP id C83D3A012C;
-        Fri, 27 Sep 2019 08:47:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1569566841;
-        bh=s7OVZEVtpY2IDy9peszo58or/PEj6fBtJLgTX90H7bI=;
-        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
-        b=BB77Vm7BGIPsMdR6REjZLojErWEAwJkNSbKXnp44DwXQ4f+MRxyJr5+1icDNKpqY0
-         BkHI2EY95Stoatq6/9FReLUrQYUzMpvANyZdQ+aduaeJBuJg9aPXUcbrduZjqFtXdI
-         JYSyQ61cT1j17NXhqsgOVo6ntMxQRCUrEeXhoNHs=
-Subject: Re: [PATCH input-next 2/4] dt-bindings: input: mpr121: Add
- poll-interval property
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
- <1567424417-3914-3-git-send-email-michal.vokac@ysoft.com>
- <20190903070123.GA15981@bogus>
- <c8c909e5-1e1f-23a7-dc22-f112fcaeab4c@ysoft.com>
-Message-ID: <d5141782-3722-c241-4026-e20cc64bb936@ysoft.com>
-Date:   Fri, 27 Sep 2019 08:47:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1725861AbfI0Gwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 02:52:35 -0400
+Received: from mail-wr1-f43.google.com ([209.85.221.43]:37285 "EHLO
+        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725837AbfI0Gwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 02:52:35 -0400
+Received: by mail-wr1-f43.google.com with SMTP id i1so1377124wro.4;
+        Thu, 26 Sep 2019 23:52:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=od5B4j98TvNYBzRRG1HwoKOK/0TgQjKHWbpoGxQhWMA=;
+        b=ajcj43eQminsdWFZj1BcSC4hNR2IMMhCpFPxUMUxP1+887tOQm9PMtCmo5boupGYsM
+         Qziyr2ReK50I1cXAyQUoBteTD7/O/mB0ZBfIgmXSHSIbEPoyd4DP9PH9NSrowV2PeYvI
+         Ni6ibxFdiC7c3nkgGoe0CkpIbZ0sWID5T/uatlgVSaNxdkEprYcpGdWo7lHlteq8UCCo
+         fFSnln+5nqV/RJpXL9zJ8KnfY0fhZBe9aTq90IlxY5GNKIuGo4/I+fULL8S1ESh7e1p6
+         cGwNJs51Wk2LcDAisr1kyQoVG0M4pGIJ5xPBoPTpWcaF0+2VD9Ngz857HBdWDzV19B5X
+         bzqg==
+X-Gm-Message-State: APjAAAV+lryCbpGfvK4o6eCYoQ9//Kjxo9UM9tS5lv6eSOXpcG1m3yZQ
+        hCzEtoaBTzh2UfwoU7/PPm5MYDEP
+X-Google-Smtp-Source: APXvYqxdEtihX4Yerytw8i64RZ/298ncU9GqZWRrjMVs8x96gM2opoAvGjGhrDbKmbgWIrHpe/sbHg==
+X-Received: by 2002:adf:a350:: with SMTP id d16mr1667998wrb.326.1569567152554;
+        Thu, 26 Sep 2019 23:52:32 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id j1sm3672139wrg.24.2019.09.26.23.52.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2019 23:52:31 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 08:52:29 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kukjin Kim <kgene@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: Use defines instead of numbers in
+ Exynos MCT examples
+Message-ID: <20190927065229.GA18923@pi3>
+References: <CGME20190926183707epcas3p350fe17bc738540b37f1130d967c31a62@epcas3p3.samsung.com>
+ <20190926183643.7118-1-krzk@kernel.org>
+ <fc0809b0-1e6a-0564-75d9-0ccb14d2826c@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <c8c909e5-1e1f-23a7-dc22-f112fcaeab4c@ysoft.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <fc0809b0-1e6a-0564-75d9-0ccb14d2826c@samsung.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17. 09. 19 16:17, Michal Vokáč wrote:
-> On 03. 09. 19 9:01, Rob Herring wrote:
->> On Mon, Sep 02, 2019 at 01:40:15PM +0200, Michal Vokáč wrote:
->>> Add an option to periodicaly poll the device to get the buttons states
->>> as the interrupt line may not be used on some platforms.
->>>
->>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
->>> ---
->>> I am not sure how to propperly handle this.
->>> Either interrupt or linux,poll-interval is required, but not both.
->>
->> Add this at the top level:
->>
->> oneOf:
->>    - required: [ interrupts ]
->>    - required: [ linux,poll-interval ]
->>
+On Fri, Sep 27, 2019 at 08:36:47AM +0200, Marek Szyprowski wrote:
+> Hi Krzysztof,
+ >   
+> >       timer@10050000 {
+> >           compatible = "samsung,exynos4412-mct";
+> >           reg = <0x10050000 0x800>;
+> >   
+> > -        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> > -                     <0 42 0>;
+> > +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
 > 
-> Nice, works as expected.
+> the last one should be GIC_PPI
 > 
->>>
->>>   .../bindings/input/fsl,mpr121-touchkey.yaml          | 20 +++++++++++++++++++-
->>>   1 file changed, 19 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
->>> index c463c1c81755..2b3073a3c9f4 100644
->>> --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
->>> +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
->>> @@ -34,6 +34,10 @@ properties:
->>>       minItems: 1
->>>       maxItems: 12
->>> +  linux,poll-interval:
->>> +    description: Poll interval time in milliseconds.
->>> +    maxItems: 1
->>
->> We already have 'poll-interval' in several bindings. Use that.
+> >       };
+> >   
+> >     - |
+> >       // In this example, the IP contains four local timers, but using
+> >       // a per-processor interrupt to handle them. All the local timer
+> >       // interrupts are specified.
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >   
+> >       timer@10050000 {
+> >           compatible = "samsung,exynos4412-mct";
+> >           reg = <0x10050000 0x800>;
+> >   
+> > -        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> > -                     <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
+> > +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
 > 
-> OK, will do.
-> linux,poll-intervall was initially suggested by Dmitry but AFAICT he is OK
-> with this.
-> 
->> This should have a type definition and you don't need maxItems:
->>
->> $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> OK.
-> 
->> Really this should go in a common input schema doc.
-> 
-> I am not sure how to deal with this. Do you suggest to create
-> 
->   Documentation/devicetree/bindings/input/input.yaml
-> 
-> and put all the common input properties there? Something like:
-> 
-> diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
-> new file mode 100644
-> index 000000000000..5dc10ebdfdf0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/input.yaml
-> @@ -0,0 +1,24 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/input.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common input schema binding
-> +
-> +maintainers:
-> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> +
-> +properties:
-> +  linux,keycodes:
-> +    description:
-> +      Specifies an array of numeric keycode values to be used for reporting
-> +      button presses. The array can contain up to 12 entries.
-> +    minItems: 1
-> +    maxItems: 12
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  poll-interval:
-> +    description: Poll interval time in milliseconds.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> ---
-> 
-> Or something else?
-> And what is the impact on the fsl,mpr121-touchkey.yaml content/format?
-> I could not find any example in any subsystem of such approach.
+> again, last 4 entries should use GIC_PPI
 
-Hi Rob, maybe this went through the cracks unnoticed?
+Indeed, thanks for noticing it.
 
-> Thank you,
-> Michal
-> 
->>> +
->>>     wakeup-source: Use any event on keypad as wakeup event.
->>>       type: boolean
->>> @@ -44,12 +48,12 @@ properties:
->>>   required:
->>>     - compatible
->>>     - reg
->>> -  - interrupts
->>>     - vdd-supply
->>>     - linux,keycodes
->>>   examples:
->>>     - |
->>> +    // Example with interrupts
->>>       #include "dt-bindings/input/input.h"
->>>       touchkey: mpr121@5a {
->>>           compatible = "fsl,mpr121-touchkey";
->>> @@ -62,3 +66,17 @@ examples:
->>>                            <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
->>>                            <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
->>>       };
->>> +
->>> +  - |
->>> +    // Example with polling
->>> +    #include "dt-bindings/input/input.h"
->>> +    touchkey: mpr121@5a {
->>> +        compatible = "fsl,mpr121-touchkey";
->>> +        reg = <0x5a>;
->>> +        linux,poll-interval = <20>;
->>> +        autorepeat;
->>> +        vdd-supply = <&ldo4_reg>;
->>> +        linux,keycodes = <KEY_0>, <KEY_1>, <KEY_2>, <KEY_3>,
->>> +                         <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
->>> +                         <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
->>> +    );
->>> -- 
->>> 2.1.4
->>>
-> 
+Best regards,
+Krzysztof
 
