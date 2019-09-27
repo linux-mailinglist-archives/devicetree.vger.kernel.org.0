@@ -2,70 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B35CAC0CDD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:50:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 275BDC0CF3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728270AbfI0Ut1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 16:49:27 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42372 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727965AbfI0Ut0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 16:49:26 -0400
-Received: by mail-oi1-f194.google.com with SMTP id i185so6314810oif.9;
-        Fri, 27 Sep 2019 13:49:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Csu+S9CExmvQZxWoLiqd8cWChYw+5stkiIYgS0wE0Pk=;
-        b=UUw3Py+MeyWz8I7bbJD97TkbZBHol/I5DJxEvsctQ7IX5598hq8kQU4Wd/i7u39I8X
-         XvFJro9RjsCZ4sVIdBUumw4pQY7hukrAaSo0BbM9br1qltV+WN8EyjBzX5QmSsFyUwFq
-         YHODl/OMHTwbGBb+AuZ3mG/K3NQLQYHKx0irp9ghaEYfXKZzW5HpqjEb4woau1hZyBmi
-         CTJncFdL2lQ73YnBj0zYQLR+beDnnW00XxVEkhrrXo/mMSG9KRFlOUGwn/bmQkQWLeV1
-         4lPdiYaI1rgjaYXX99YzzdmlAFFj/GkgOYNkfiFm9ULXLR9IylppUitn9Gs0YtNArFC8
-         fTtA==
-X-Gm-Message-State: APjAAAVCsvGytnz0riqzyLXCqnOaFy/lbPzSG6ZNBXKalNX4CGI8/41o
-        EW9258YS33MwdE4t91gPMw==
-X-Google-Smtp-Source: APXvYqy4q414kOhKX1y3OP/3MN3/4jIByP73EonOYg81IknG3c7XWbbh/s4H+gYXNq3WZucKaiC1dw==
-X-Received: by 2002:aca:b142:: with SMTP id a63mr8316566oif.119.1569617365739;
-        Fri, 27 Sep 2019 13:49:25 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i13sm1367069otj.58.2019.09.27.13.49.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 13:49:25 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 15:49:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: Add Xylon vendor prefix
-Message-ID: <20190927204924.GA28620@bogus>
-References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com>
- <20190927100407.1863293-2-paul.kocialkowski@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190927100407.1863293-2-paul.kocialkowski@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1725789AbfI0U7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 16:59:13 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:54096 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725306AbfI0U7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 16:59:13 -0400
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x8RKlfCD084311;
+        Fri, 27 Sep 2019 16:58:54 -0400
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2v9srx88th-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 27 Sep 2019 16:58:53 -0400
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+        by ppma02wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x8RKjEXj016489;
+        Fri, 27 Sep 2019 20:58:52 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+        by ppma02wdc.us.ibm.com with ESMTP id 2v5bg7u7qa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 27 Sep 2019 20:58:52 +0000
+Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
+        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x8RKwp8X60621256
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 27 Sep 2019 20:58:51 GMT
+Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9985F6E058;
+        Fri, 27 Sep 2019 20:58:51 +0000 (GMT)
+Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id ED77E6E053;
+        Fri, 27 Sep 2019 20:58:50 +0000 (GMT)
+Received: from talon7.ibm.com (unknown [9.41.179.222])
+        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Fri, 27 Sep 2019 20:58:50 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        andrew@aj.id.au, joel@jms.id.au, mark.rutland@arm.com,
+        robh+dt@kernel.org, maz@kernel.org, jason@lakedaemon.net,
+        tglx@linutronix.de, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v2 0/4] irqchip: Add Aspeed SCU Interrupt Controller
+Date:   Fri, 27 Sep 2019 15:58:45 -0500
+Message-Id: <1569617929-29055-1-git-send-email-eajames@linux.ibm.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-27_08:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=677 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1908290000 definitions=main-1909270173
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Sep 2019 12:04:03 +0200, Paul Kocialkowski wrote:
-> Xylon is an electronics company that produces FPGA hardware block designs
-> optimized for Xilinx FPGAs.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+The Aspeed SOCs provide some interrupts through the System Control
+Unit registers. Add an interrupt controller that provides these
+interrupts to the system. Add the interrupt controller to the AST25XX
+and AST26XX devicetrees.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+ - add a spinlock to protect read-modify-write operation for irq masking
+ - use readl/writel relaxed versions
+ - add a comment explaining the irq status/enable register
+ - provide affinity callback that returns -EINVAL
+
+Eddie James (4):
+  dt-bindings: interrupt-controller: Add Aspeed SCU interrupt controller
+  irqchip: Add Aspeed SCU interrupt controller
+  ARM: dts: aspeed: ast2500: Add SCU interrupt controller
+  ARM: dts: aspeed: ast2600: Add SCU interrupt controllers
+
+ .../interrupt-controller/aspeed,ast2xxx-scu-ic.txt |  26 +++
+ MAINTAINERS                                        |   8 +
+ arch/arm/boot/dts/aspeed-g5.dtsi                   |  11 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi                   |  18 ++
+ drivers/irqchip/Makefile                           |   2 +-
+ drivers/irqchip/irq-aspeed-scu-ic.c                | 233 +++++++++++++++++++++
+ .../interrupt-controller/aspeed-scu-ic.h           |  23 ++
+ 7 files changed, 319 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2xxx-scu-ic.txt
+ create mode 100644 drivers/irqchip/irq-aspeed-scu-ic.c
+ create mode 100644 include/dt-bindings/interrupt-controller/aspeed-scu-ic.h
+
+-- 
+1.8.3.1
+
