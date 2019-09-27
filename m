@@ -2,97 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9126AC097B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 18:20:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA41C0991
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 18:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727273AbfI0QUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 12:20:17 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39481 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726251AbfI0QUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 12:20:17 -0400
-Received: by mail-ot1-f68.google.com with SMTP id s22so2725575otr.6;
-        Fri, 27 Sep 2019 09:20:16 -0700 (PDT)
+        id S1727366AbfI0Q3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 12:29:31 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:37204 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727079AbfI0Q3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 12:29:31 -0400
+Received: by mail-ot1-f66.google.com with SMTP id k32so2762998otc.4;
+        Fri, 27 Sep 2019 09:29:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=760YAN5d81LB7MtuI2rYTvWtV8lDfL9KiCZR922ntsw=;
-        b=hxNTH2X1AW176CVPqmdDjUL6wmuk67a9//dymK0wQYu2kSQJGS188l3lhBO532sml3
-         LdmRVdO6AJHPe87gDsQ/5txmSmO4kbi2XhQOUIs9w9x4F51JHmC8vBoJADfUVxS4hKmS
-         fffIWSbNDMnbzcUccppbE3Icj1VEZ3eaeUXCHx+d0cCmm3tAukHbnr9L/kOSNXlcwAXw
-         BBIEye9hpKsBnISvIkaSjH/6SG4hZewJuz5lHGf+bXgnkZGchbjsCGvFDhjY/spahlkZ
-         ykMgF7rinH/gYx4OOZAtqYNRJeumbIO/XCDz8bA2ns3r10X9763XbTMClh8qJfrWLvmW
-         wRfQ==
-X-Gm-Message-State: APjAAAWBEQ4fAEdyKNCzm97OnGyzHPadwRSR/IV7Ab2xZPvTMxe2uqXU
-        5VYSkTR0xW+L0Zggk5HRdQ==
-X-Google-Smtp-Source: APXvYqzAy1747QiwwLmMBZO3T0x3QXlKZhH2mf7OuESKEqpnWXsCf1ZmSpDQzzG/OhyFoJ8khOxQXw==
-X-Received: by 2002:a9d:4c8e:: with SMTP id m14mr2073130otf.170.1569601215954;
-        Fri, 27 Sep 2019 09:20:15 -0700 (PDT)
+        bh=ijPthvXY5MkzJmndJb4QPmgAxNMcU2lPzqEJVv6FKic=;
+        b=JndAQ8C/ST2/qjKS8JZGVGzHI9ae0F2lHMQ37OkbAywWC6Nh+o8RRBwzV0CtwtFhtx
+         HcYvf1D2lGBnRvPPIiLPRyr70ItQr+B9gr1oluLlLYwANz1R/vXkHs5F5M1OpFYug/yt
+         eAihmu4WzQaAbmg7WasdpWEjLwNrZxKN27+iqhveZ+z+FHmjZtipjT6xvYtBAvnY2Ah2
+         werbEFsszDxVO8Z2jfitWT1ET0G502hMPXIu2KeeSxh+AWVW5NFPUqQYgzJxJBTv+4Nj
+         xzUL5l/VarTrCncRiovCLDXu2MdfAz4hndhX2cdN+EflHjo+HsNhuF3hPdsx+FKC8VpH
+         JWOw==
+X-Gm-Message-State: APjAAAX7y4uYh4COQh3Seq6wgsBRJg6beotzYWHoMDFRqebxYiuMs84X
+        nc5DnNQPcTGASG02UnLxTw==
+X-Google-Smtp-Source: APXvYqyD1bsWUu1PkapLS2xhliXVV73CnxU+i/v9UfsVJdpaGaFnJoMTWN/WoU0EM9M/qN8nNCtBJg==
+X-Received: by 2002:a9d:3dca:: with SMTP id l68mr4106313otc.49.1569601770160;
+        Fri, 27 Sep 2019 09:29:30 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k3sm990748otn.38.2019.09.27.09.20.14
+        by smtp.gmail.com with ESMTPSA id v132sm1832174oif.34.2019.09.27.09.29.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 09:20:15 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 11:20:14 -0500
+        Fri, 27 Sep 2019 09:29:29 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 11:29:29 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Maciej Falkowski <m.falkowski@samsung.com>, krzk@kernel.org,
-        mark.rutland@arm.com, robh@kernel.org, a.hajda@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v4] dt-bindings: iommu: Convert Samsung Exynos IOMMU H/W,
-  System MMU to dt-schema
-Message-ID: <20190927162014.GA2946@bogus>
-References: <20190917192113.GA26604@bogus>
- <CGME20190919132002eucas1p19ceac65f49939be3152affb4d6a426a1@eucas1p1.samsung.com>
- <20190919131944.11007-1-m.szyprowski@samsung.com>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, edubezval@gmail.com, agross@kernel.org,
+        masneyb@onstation.org, swboyd@chromium.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 07/15] dt-bindings: thermal: tsens: Convert over to a
+ yaml schema
+Message-ID: <20190927162929.GA27130@bogus>
+References: <cover.1569015835.git.amit.kucheria@linaro.org>
+ <805a2ae9c95f41dc733ccc80346941998e1b230c.1569015835.git.amit.kucheria@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190919131944.11007-1-m.szyprowski@samsung.com>
+In-Reply-To: <805a2ae9c95f41dc733ccc80346941998e1b230c.1569015835.git.amit.kucheria@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Sep 2019 15:19:44 +0200, Marek Szyprowski wrote:
-> From: Maciej Falkowski <m.falkowski@samsung.com>
+On Fri, 20 Sep 2019 14:52:22 -0700, Amit Kucheria wrote:
+> Older IP only supports the 'uplow' interrupt, but newer IP supports
+> 'uplow' and 'critical' interrupts. Document interrupt support in the
+> tsens driver by converting over to a YAML schema.
 > 
-> Convert Samsung Exynos IOMMU H/W, System Memory Management Unit
-> to newer dt-schema format.
-> 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Andrzej Hajda <a.hajda@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Suggested-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 > ---
-> v4:
-> - Rename commit message to match common style
-> - Remove '"pclk", "aclk"' option from clock-names property.
->   Some of bindings are incompatible with that and they will be fixed with
->   another patch.
-> - Remove unneeded description of clock-names property.
-> - Remove type description from power-domains property as it is
->   already a common property.
-> - Rename node names to match generic names,
->   specifically: sysmmu -> iommu, gsc -> scaler
-> 
-> - Add include directive in examples to include
->   clock macros. This increases readability of the example
->   as clock macros do not have to be substituted with numerical values
->   which makes examples more self-explanatory and natural.
-> 
-> Best regards,
-> Maciej Falkowski
-> ---
->  .../bindings/iommu/samsung,sysmmu.txt         |  67 -----------
->  .../bindings/iommu/samsung,sysmmu.yaml        | 108 ++++++++++++++++++
->  2 files changed, 108 insertions(+), 67 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iommu/samsung,sysmmu.txt
->  create mode 100644 Documentation/devicetree/bindings/iommu/samsung,sysmmu.yaml
+>  .../bindings/thermal/qcom-tsens.txt           |  55 ------
+>  .../bindings/thermal/qcom-tsens.yaml          | 168 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 169 insertions(+), 55 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+>  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
 > 
 
-Applied, thanks.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
