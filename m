@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F12C0477
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 13:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1AFC049A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 13:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726203AbfI0LnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 07:43:02 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:49428 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725992AbfI0LnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 07:43:02 -0400
-X-UUID: 234c2035e3be4a2290a4392bc25c4442-20190927
-X-UUID: 234c2035e3be4a2290a4392bc25c4442-20190927
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 368188625; Fri, 27 Sep 2019 19:42:58 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 27 Sep 2019 19:42:54 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 27 Sep 2019 19:42:54 +0800
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>
-Subject: [PATCH v15 4/4] arm64: dts: add gce node for mt8183
-Date:   Fri, 27 Sep 2019 19:42:54 +0800
-Message-ID: <20190927114254.6258-5-bibby.hsieh@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190927114254.6258-1-bibby.hsieh@mediatek.com>
-References: <20190927114254.6258-1-bibby.hsieh@mediatek.com>
+        id S1727305AbfI0Lul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 07:50:41 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:39779 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726144AbfI0Lul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 07:50:41 -0400
+Received: by mail-lf1-f67.google.com with SMTP id 72so1688473lfh.6
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 04:50:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jtkPzUdh0BjwnTFcU6cDEv31BuC4wG3MpqjO9vOb5nc=;
+        b=dHkG+HnC9dM6qd1tsawE2B77CGjpChpBeEsSBUvLKNrVXpX+osBDmU/jLYHZPm1B/P
+         2dyDxSkFmTP8ieUdkcZKpDi2kNeo10lBoWrXT9wdZ615R12K9KGFf6J/OrMdVyWQEX/z
+         wYgpsuDlMp9FCPoF7j0EiuKNEMBtaw/LYAUt7RIkCAlVR/MANI5zfMMqmxqGDQcnXtAL
+         2OY3vl+bQvPLR8uEP6OVKQm7w0g52y6Li38Svuxw5AE7QBLcb9eP1aPHP9bXfcFj5qG3
+         0/jxw0iG4icNXkyuWt9atKmkl1Z8zGcUZmaUcKj8BAHOSFFYokiX4pBiyg/QJksov5nt
+         4GIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jtkPzUdh0BjwnTFcU6cDEv31BuC4wG3MpqjO9vOb5nc=;
+        b=aF8naiIELLb2fQsXDgJQzkyvYc3RvA3ajfDjTFcCX7vqWajQbCrIaGKN2eWUoUOcFB
+         s2CPyfqpVCqOoJ+2HCminV4sMzMFqHx2nFUfl+wm4VT7gVWLDf9kbhiJAYykOV4F94Im
+         vumAiBZ3yONLcvOJKu1YZn1j1ZvnolqZpaxyoDiuyUzdp64L+wR3/Eqzwd/5VdSPd1P1
+         +v7tLQPCh+qXA57WbXoAffTh/G7cw84j8/iHXdytRkdWccoQLRBSq3asoTziI3RM5qvw
+         awDpX7MZhFaVc3cM97AJRhLZSWpuFz2KKJC8DPcJlQW8mNlSs3NVBwP3ur4wl8wjgrID
+         Y5+w==
+X-Gm-Message-State: APjAAAXEFPKAVqeDNQgrRlGjmuiQEOX4BDpJKRHrxSvTGrzgXoryz1W9
+        Yw67TqrYqy6KHuW6rg2ctlxuJN04xbx+CTQW8bLawg==
+X-Google-Smtp-Source: APXvYqyF/AMU9HIQoJBR4mgMcIh/XR7QQxXA0oPACvNrMQJcYHLmYcQQw76chmDwmpMjtdY1kzoSIQzHJDEllWzZAzI=
+X-Received: by 2002:a19:48c3:: with SMTP id v186mr2493316lfa.141.1569585039656;
+ Fri, 27 Sep 2019 04:50:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <1569439337-10482-1-git-send-email-hongweiz@ami.com> <1569439337-10482-3-git-send-email-hongweiz@ami.com>
+In-Reply-To: <1569439337-10482-3-git-send-email-hongweiz@ami.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 27 Sep 2019 13:50:28 +0200
+Message-ID: <CACRpkdY4RsqAOykyS-9GEFvF--3bmf=UjzADx8U18z=gTHBb4g@mail.gmail.com>
+Subject: Re: [v2, 2/2] gpio: dts: aspeed: Add SGPIO driver
+To:     Hongwei Zhang <hongweiz@ami.com>
+Cc:     Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+        Doug Anderson <armlinux@m.disordat.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add gce device node for mt8183
+On Wed, Sep 25, 2019 at 9:22 PM Hongwei Zhang <hongweiz@ami.com> wrote:
 
-Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> Add SGPIO driver support for Aspeed AST2500 SoC.
+>
+> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 66aaa07f6cec..52b9af38a00a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/power/mt8183-power.h>
-+#include <dt-bindings/gce/mt8183-gce.h>
- #include "mt8183-pinfunc.h"
- 
- / {
-@@ -321,6 +322,15 @@
- 			status = "disabled";
- 		};
- 
-+		gce: mailbox@10238000 {
-+			compatible = "mediatek,mt8183-gce";
-+			reg = <0 0x10238000 0 0x4000>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			#mbox-cells = <3>;
-+			clocks = <&infracfg CLK_INFRA_GCE>;
-+			clock-names = "gce";
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt8183-uart",
- 				     "mediatek,mt6577-uart";
--- 
-2.18.0
+I sent a separate patch to fix this up the way I want it with the file
+named gpio-aspeed-sgpio.c and CONFIG_GPIO_ASPEED_SGPIO.
 
+I don't want to mix up the namespaces of something Aspeed-generic
+with the namespace of the GPIO subsystem. SGPIO is the name
+of a specific Aspeed component.
+
+Yours,
+Linus Walleij
