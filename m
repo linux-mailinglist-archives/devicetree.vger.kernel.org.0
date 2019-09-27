@@ -2,107 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B07BFF6A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 08:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C1EFBFFE8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 09:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725861AbfI0Gwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 02:52:35 -0400
-Received: from mail-wr1-f43.google.com ([209.85.221.43]:37285 "EHLO
-        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725837AbfI0Gwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 02:52:35 -0400
-Received: by mail-wr1-f43.google.com with SMTP id i1so1377124wro.4;
-        Thu, 26 Sep 2019 23:52:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=od5B4j98TvNYBzRRG1HwoKOK/0TgQjKHWbpoGxQhWMA=;
-        b=ajcj43eQminsdWFZj1BcSC4hNR2IMMhCpFPxUMUxP1+887tOQm9PMtCmo5boupGYsM
-         Qziyr2ReK50I1cXAyQUoBteTD7/O/mB0ZBfIgmXSHSIbEPoyd4DP9PH9NSrowV2PeYvI
-         Ni6ibxFdiC7c3nkgGoe0CkpIbZ0sWID5T/uatlgVSaNxdkEprYcpGdWo7lHlteq8UCCo
-         fFSnln+5nqV/RJpXL9zJ8KnfY0fhZBe9aTq90IlxY5GNKIuGo4/I+fULL8S1ESh7e1p6
-         cGwNJs51Wk2LcDAisr1kyQoVG0M4pGIJ5xPBoPTpWcaF0+2VD9Ngz857HBdWDzV19B5X
-         bzqg==
-X-Gm-Message-State: APjAAAV+lryCbpGfvK4o6eCYoQ9//Kjxo9UM9tS5lv6eSOXpcG1m3yZQ
-        hCzEtoaBTzh2UfwoU7/PPm5MYDEP
-X-Google-Smtp-Source: APXvYqxdEtihX4Yerytw8i64RZ/298ncU9GqZWRrjMVs8x96gM2opoAvGjGhrDbKmbgWIrHpe/sbHg==
-X-Received: by 2002:adf:a350:: with SMTP id d16mr1667998wrb.326.1569567152554;
-        Thu, 26 Sep 2019 23:52:32 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id j1sm3672139wrg.24.2019.09.26.23.52.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2019 23:52:31 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 08:52:29 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Use defines instead of numbers in
- Exynos MCT examples
-Message-ID: <20190927065229.GA18923@pi3>
-References: <CGME20190926183707epcas3p350fe17bc738540b37f1130d967c31a62@epcas3p3.samsung.com>
- <20190926183643.7118-1-krzk@kernel.org>
- <fc0809b0-1e6a-0564-75d9-0ccb14d2826c@samsung.com>
+        id S1726170AbfI0HSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 03:18:33 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:60099 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725804AbfI0HSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 03:18:33 -0400
+X-UUID: b5a11b71a0954674abcd460858f3a2da-20190927
+X-UUID: b5a11b71a0954674abcd460858f3a2da-20190927
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 633643062; Fri, 27 Sep 2019 15:18:29 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 27 Sep 2019 15:18:26 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 27 Sep 2019 15:18:25 +0800
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [PATCH] media: ov5695: Add suport for registering sensor-related
+Date:   Fri, 27 Sep 2019 15:18:23 +0800
+Message-ID: <20190927071824.18675-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <fc0809b0-1e6a-0564-75d9-0ccb14d2826c@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 08:36:47AM +0200, Marek Szyprowski wrote:
-> Hi Krzysztof,
- >   
-> >       timer@10050000 {
-> >           compatible = "samsung,exynos4412-mct";
-> >           reg = <0x10050000 0x800>;
-> >   
-> > -        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
-> > -                     <0 42 0>;
-> > +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> the last one should be GIC_PPI
-> 
-> >       };
-> >   
-> >     - |
-> >       // In this example, the IP contains four local timers, but using
-> >       // a per-processor interrupt to handle them. All the local timer
-> >       // interrupts are specified.
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >   
-> >       timer@10050000 {
-> >           compatible = "samsung,exynos4412-mct";
-> >           reg = <0x10050000 0x800>;
-> >   
-> > -        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
-> > -                     <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
-> > +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> again, last 4 entries should use GIC_PPI
+Hello,
 
-Indeed, thanks for noticing it.
+This series modifies the interface of async register V4L2 sub-device invoked in probe function for OV5695 CMOS sensor.
+The Omnivision OV5695 image sensor would be used in camera features on CrOS application.
+5.0 Mega Pixel MIPI Camera Mdoule also supports auto-focus control (AFC) with embedded AF VCM Driver.
 
-Best regards,
-Krzysztof
+Here we use v4l2_async_register_subdev_sensor_common() instead of v4l2_async_register_subdev()
+to register a sensor sub-device to the asynchronous sub-device framework and parse set up
+common sensor-related devices, such as actuator.
+
+This function is just like v4l2_async_register_subdev() with the exception that calling it will also parse
+firmware interfaces for remote references using v4l2_async_notifier_parse_fwnode_sensor_common()
+and registers the async sub-devices.
+
+After applying this change, we can see the VCM move when changing the scene.
+
+Dongchun Zhu (1):
+  media: i2c: ov5695: Modify the function of async register subdev
+
+ drivers/media/i2c/ov5695.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+-- 
+2.9.2
 
