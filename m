@@ -2,92 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB43C0790
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 16:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECD25C079B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 16:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727154AbfI0O3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 10:29:34 -0400
-Received: from smtprelay0032.hostedemail.com ([216.40.44.32]:32830 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727120AbfI0O3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 10:29:34 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay08.hostedemail.com (Postfix) with ESMTP id 6482B182CF668;
-        Fri, 27 Sep 2019 14:29:33 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 90,9,0,,d41d8cd98f00b204,joe@perches.com,:::::::,RULES_HIT:41:355:379:599:800:960:966:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:1801:2196:2199:2393:2553:2559:2562:2692:2828:3138:3139:3140:3141:3142:3354:3622:3653:3865:3866:3867:3868:3870:3871:3872:3874:4250:4321:4385:4605:5007:6119:7901:7903:10004:10400:10848:11026:11232:11233:11473:11658:11914:12043:12050:12297:12438:12740:12760:12895:13141:13230:13439:14181:14659:14721:21080:21433:21451:21611:21627:21740:21741:21819:30022:30054:30070:30090:30091,0,RBL:113.161.34.234:@perches.com:.lbl8.mailshell.net-62.14.241.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:25,LUA_SUMMARY:none
-X-HE-Tag: lunch41_5320358922011
-X-Filterd-Recvd-Size: 3127
-Received: from XPS-9350 (unknown [113.161.34.234])
-        (Authenticated sender: joe@perches.com)
-        by omf03.hostedemail.com (Postfix) with ESMTPA;
-        Fri, 27 Sep 2019 14:29:30 +0000 (UTC)
-Message-ID: <7672dd2f651bfdcdb1615ab739e36a381b2535b1.camel@perches.com>
-Subject: Re: [PATCH] checkpatch: Warn if DT bindings are not in schema format
-From:   Joe Perches <joe@perches.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andy Whitcroft <apw@canonical.com>
-Date:   Fri, 27 Sep 2019 07:29:28 -0700
-In-Reply-To: <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com>
-References: <20190913211349.28245-1-robh@kernel.org>
-         <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
-         <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.32.1-2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S1727140AbfI0OdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 10:33:17 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:44524 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727124AbfI0OdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 10:33:16 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190927143314euoutp025b0f98ae4d43faad63725b3afbb243b5~IUiZeb-9i2294722947euoutp02x
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 14:33:14 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190927143314euoutp025b0f98ae4d43faad63725b3afbb243b5~IUiZeb-9i2294722947euoutp02x
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1569594794;
+        bh=hiJbO/O5KGuNuMhqp/5c2SuOZIf79Yix8ZcvFieL2Mg=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=XZUDnnFnx4zTA310LILyVojU/kqhKMnp/UH5nA8VkF9CIWnpW7T5ufHsDibn06CxM
+         B7kf7S0jAC4L/N4mCLCA8HywLHmU77S9FTewi0GC72S0ff1wq2v66YvOi1f7BB9VoK
+         uw2F2+BUF2SvDs7yJtVzS0iSDVdD9UJSzZozfgUA=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190927143314eucas1p1e8e031c5d7cd0b00ff7737c27491b61f~IUiZTsZ2k1143111431eucas1p13;
+        Fri, 27 Sep 2019 14:33:14 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id F8.88.04469.AAD1E8D5; Fri, 27
+        Sep 2019 15:33:14 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190927143314eucas1p2d419866cd740207426cd37cb6fdff468~IUiY6KbjF1734917349eucas1p2-;
+        Fri, 27 Sep 2019 14:33:14 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190927143314eusmtrp162aa909198e6ed383fa3d483e74658db~IUiY5caje3086830868eusmtrp1G;
+        Fri, 27 Sep 2019 14:33:14 +0000 (GMT)
+X-AuditID: cbfec7f2-569ff70000001175-c9-5d8e1daaff9a
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 69.25.04117.AAD1E8D5; Fri, 27
+        Sep 2019 15:33:14 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190927143313eusmtip1c0bd0ccf00d3fd9df7f66398d6fa7574~IUiYWmjgP0742707427eusmtip17;
+        Fri, 27 Sep 2019 14:33:13 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH v3] dt-bindings: gpu: Convert Samsung Image Scaler to
+ dt-schema
+Date:   Fri, 27 Sep 2019 16:33:06 +0200
+Message-Id: <20190927143306.12133-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrHIsWRmVeSWpSXmKPExsWy7djPc7qrZPtiDb7c1rCYf+Qcq8WVr+/Z
+        LCbdn8Bicf78BnaLy7vmsFnMOL+PyeJB8zo2i7VH7rJbLL1+kcmide8RdgcujzXz1jB6bFrV
+        yeZxv/s4k0ffllWMHp83yQWwRnHZpKTmZJalFunbJXBlXDmylalggXzFqt1rmRsYz0l0MXJy
+        SAiYSKw/vYAFxBYSWMEoseSPbhcjF5D9hVFixutPbBDOZ0aJP1P3McF0tCxoZoRILGeUuPjx
+        HlQ7UMv1WfIgNpuAoUTX2y6wbhGBJkaJKztfsYM4zAIfGCUObp7HBlIlLBAo0fnnLZjNIqAq
+        MfHLEzCbV8BW4tHm6VDr5CVWbzjADNIsIfCeTaJlSi8rRMJF4v2+T2wQtrDEq+Nb2CFsGYnT
+        k3tYIBqaGSUenlvLDuH0MEpcbprBCFFlLXH4+EWgSRxAN2lKrN+lD2JKCDhKzF0SCWHySdx4
+        KwhSzAxkTto2nRkizCvR0SYEMUNNYtbxdXBbD164xAxhe0gsa53EBgmUWIn/Lw8yTmCUm4Ww
+        agEj4ypG8dTS4tz01GLDvNRyveLE3OLSvHS95PzcTYzAVHH63/FPOxi/Xko6xCjAwajEw3uB
+        vS9WiDWxrLgy9xCjBAezkgivb2RPrBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeaoYH0UIC6Ykl
+        qdmpqQWpRTBZJg5OqQZGu/n/mV8cjdfmW+u2QEZVcNKeXtfYSZpilb1pfbGtJaX90sccsrgD
+        m5emhCXP5bHS2Hqu5dOZ447l5acv7T2j+YuzaaHTLPOTBamT//NmLz0me9Lz25TLRvlz16/T
+        lIx3Uvzxne1GNJuYauHZKU06O5jzdF+d/q2dNy25/MDZMinpL9OcNLmUWIozEg21mIuKEwFJ
+        7kkCEQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGLMWRmVeSWpSXmKPExsVy+t/xu7qrZPtiDRY847aYf+Qcq8WVr+/Z
+        LCbdn8Bicf78BnaLy7vmsFnMOL+PyeJB8zo2i7VH7rJbLL1+kcmide8RdgcujzXz1jB6bFrV
+        yeZxv/s4k0ffllWMHp83yQWwRunZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq
+        6dvZpKTmZJalFunbJehlXDmylalggXzFqt1rmRsYz0l0MXJySAiYSLQsaGbsYuTiEBJYyijR
+        9PYRC0RCRuLktAZWCFtY4s+1LjaIok+MEq/e3mQESbAJGEp0vYVIiAi0MUp8fnyFGcRhFvjC
+        KLH57w92kCphAX+Jezeug9ksAqoSE788YQOxeQVsJR5tns4EsUJeYvWGA8wTGHkWMDKsYhRJ
+        LS3OTc8tNtIrTswtLs1L10vOz93ECAzTbcd+btnB2PUu+BCjAAejEg9vBWtfrBBrYllxZe4h
+        RgkOZiURXt/Inlgh3pTEyqrUovz4otKc1OJDjKZAyycyS4km5wNjKK8k3tDU0NzC0tDc2NzY
+        zEJJnLdD4GCMkEB6YklqdmpqQWoRTB8TB6dUA6Po26T4f0u8272nuX/bW21q9PSaqGSJk0uI
+        zFQz86umcwoVKyViPu6tUP1UEBAy8fTMpYe4JCu2zzbaEcXhPv/44TOpT2PLwxYmhe1vDDZa
+        YfTpqkfn0nXHM3dbXZtwV6Fo5ZIl/v3nrPZsP5OldOv8qdzQsGmlR9uFTiV7f5GbVOk3LfHJ
+        79VKLMUZiYZazEXFiQCaoSdsaQIAAA==
+X-CMS-MailID: 20190927143314eucas1p2d419866cd740207426cd37cb6fdff468
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190927143314eucas1p2d419866cd740207426cd37cb6fdff468
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190927143314eucas1p2d419866cd740207426cd37cb6fdff468
+References: <CGME20190927143314eucas1p2d419866cd740207426cd37cb6fdff468@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-09-27 at 09:02 -0500, Rob Herring wrote:
-> On Fri, Sep 13, 2019 at 4:48 PM Joe Perches <joe@perches.com> wrote:
-> > On Fri, 2019-09-13 at 16:13 -0500, Rob Herring wrote:
-> > > DT bindings are moving to using a json-schema based schema format
-> > > instead of freeform text. Add a checkpatch.pl check to encourage using
-> > > the schema for new bindings. It's not yet a requirement, but is
-> > > progressively being required by some maintainers.
-> > []
-> > > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> > []
-> > > @@ -2822,6 +2822,14 @@ sub process {
-> > >                            "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
-> > >               }
-> > > 
-> > > +# Check for adding new DT bindings not in schema format
-> > > +             if (!$in_commit_log &&
-> > > +                 ($line =~ /^new file mode\s*\d+\s*$/) &&
-> > > +                 ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
-> > > +                     WARN("DT_SCHEMA_BINDING_PATCH",
-> > > +                          "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
-> > > +             }
-> > > +
-> > 
-> > As this already seems to be git dependent, perhaps
-> 
-> It's quite rare to see a non git generated diff these days.
-> 
-> > it's easier to read with a single line test like:
-> > 
-> >                 if ($line =~ m{^\s*create mode\s*\d+\s*Documentation/devicetree/bindings/.*\.txt$}) {
-> >                         etc...
-> >                 }
-> 
-> I frequently do 'git show $commit | scripts/checkpatch.pl' and this
-> doesn't work with that. I really should have a '--pretty=email' in
-> there, but I just ignore the commit msg warnings. In any case, that
-> still doesn't help because there's no diffstat. There's probably some
-> way to turn that on or just use git-format-patch, but really we want
-> this to work with any git diff.
+From: Maciej Falkowski <m.falkowski@samsung.com>
 
-I don't understand your argument against what I proposed at all.
+Convert Samsung Image Scaler to newer dt-schema format.
 
-and btw:
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+v3:
+- Fixed description of 'clocks' property:
+rather than 'mscl clock', 'pclk clock'
+- Added empty line within if-else statement
+- Added 'additionalProperties: false'
+- Listed all missing 'properties' in properties scope
 
-$ git format-patch -1 --stdout <commit> | ./scripts/checkpatch.pl
+Best regards,
+Maciej Falkowski
+---
+ .../bindings/gpu/samsung-scaler.txt           | 27 -------
+ .../bindings/gpu/samsung-scaler.yaml          | 81 +++++++++++++++++++
+ 2 files changed, 81 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.txt
+ create mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.txt b/Documentation/devicetree/bindings/gpu/samsung-scaler.txt
+deleted file mode 100644
+index 9c3d98105dfd..000000000000
+--- a/Documentation/devicetree/bindings/gpu/samsung-scaler.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-* Samsung Exynos Image Scaler
+-
+-Required properties:
+-  - compatible : value should be one of the following:
+-	(a) "samsung,exynos5420-scaler" for Scaler IP in Exynos5420
+-	(b) "samsung,exynos5433-scaler" for Scaler IP in Exynos5433
+-
+-  - reg : Physical base address of the IP registers and length of memory
+-	  mapped region.
+-
+-  - interrupts : Interrupt specifier for scaler interrupt, according to format
+-		 specific to interrupt parent.
+-
+-  - clocks : Clock specifier for scaler clock, according to generic clock
+-	     bindings. (See Documentation/devicetree/bindings/clock/exynos*.txt)
+-
+-  - clock-names : Names of clocks. For exynos scaler, it should be "mscl"
+-		  on 5420 and "pclk", "aclk" and "aclk_xiu" on 5433.
+-
+-Example:
+-	scaler@12800000 {
+-		compatible = "samsung,exynos5420-scaler";
+-		reg = <0x12800000 0x1294>;
+-		interrupts = <0 220 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&clock CLK_MSCL0>;
+-		clock-names = "mscl";
+-	};
+diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+new file mode 100644
+index 000000000000..5317ac64426a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/samsung-scaler.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung Exynos SoC Image Scaler
++
++maintainers:
++  - Inki Dae <inki.dae@samsung.com>
++
++properties:
++  compatible:
++    enum:
++      - samsung,exynos5420-scaler
++      - samsung,exynos5433-scaler
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks: {}
++  clock-names: {}
++  iommus: {}
++  power-domains: {}
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: samsung,exynos5420-scaler
++
++then:
++  properties:
++    clocks:
++      items:
++        - description: mscl clock
++
++    clock-names:
++      items:
++        - const: mscl
++
++else:
++  properties:
++    clocks:
++      items:
++        - description: pclk clock
++        - description: aclk clock
++        - description: aclk_xiu clock
++
++    clock-names:
++      items:
++        - const: pclk
++        - const: aclk
++        - const: aclk_xiu
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos5420.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    scaler@12800000 {
++        compatible = "samsung,exynos5420-scaler";
++        reg = <0x12800000 0x1294>;
++        interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clock CLK_MSCL0>;
++        clock-names = "mscl";
++    };
++
++...
+-- 
+2.17.1
+
 
 
