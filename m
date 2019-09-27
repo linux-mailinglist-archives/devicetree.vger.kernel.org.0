@@ -2,80 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21067C0B1C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F69FC0B5D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728076AbfI0ScF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:32:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37920 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726294AbfI0ScF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 14:32:05 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1C7CF217D7;
-        Fri, 27 Sep 2019 18:32:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569609124;
-        bh=l2MgxAfQqTBvJzgFFAMW7kFZV7ci+yqItew1m0ywt0A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EmDPZ5jm7V7bcMW+f64E9QxeFWXFhK6EkmtlyzDzLrNr2u64hRCH1mt1pFpvn3AOT
-         QOI/V46gq93gcwmCvvqdO/HWSAA2pjwtK0G5vh33lAB/MeUfelTUxZEYu5KP5RFSA+
-         V61UEHJZyxQIGOHfFXEKqtX12Ye/zrVWBtcItpAI=
-Date:   Fri, 27 Sep 2019 20:32:01 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 0/2] drm: LogiCVC display controller support
-Message-ID: <20190927183201.hfkhayehmloi34vo@gilmour>
-References: <20190927100738.1863563-1-paul.kocialkowski@bootlin.com>
+        id S1728036AbfI0SgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 14:36:14 -0400
+Received: from mail-ua1-f67.google.com ([209.85.222.67]:44989 "EHLO
+        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726988AbfI0SgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:36:13 -0400
+Received: by mail-ua1-f67.google.com with SMTP id n2so2249675ual.11
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 11:36:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pgw6AMmjd8FcODYhNXJ6h6EuyT3ubSZ01OmcV533FOg=;
+        b=eDTJBlEWZDWx0XFuvuALBQtlzosOa7YmfK5ZM7UwW5LFknREGRhpCEAQ0JgHlw7WRo
+         pFbve1t00ldHPq2nBuLl0fH7f6lYJEINJFuTXx7Dj+GTsCgipzq3by71xWZrruN+SeS/
+         jtBMKwHUsgLedk/Oh6pwTyONVzNMiswP6pQZ3yStgKmZtSYUAxfKDblmz+vRj9Tst6wQ
+         yCAP1nM39po/IKL4VDCr7ID//pyvPQv+AtUfr+Iy5Aoid/ybRmZMVdGn3FCNGpPi0rE6
+         gtqzUGv2NOFQsD4VSbzWWQkcvrTs4CM2NUuH/aUNfjvGIPAz6P8+3bca8dMwM+V6UY3W
+         7xLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pgw6AMmjd8FcODYhNXJ6h6EuyT3ubSZ01OmcV533FOg=;
+        b=L9pEl/tdkmywdk3G/JIy3y2j/Rc/CmDqoxX4sd78mCOF+p3tau3Q/XfGTpeys/zi26
+         U85NMTYXkLUk7SXduSiQ3whmwQTqAk4RN9hEGTWQ5RXs1VrDrKPqd3eghhV63LaGxUJI
+         T/WwtFGW2FnM9gAUd5reiv0hxWm1uwSBBFFgbqGFsTcZxUJnLcJdsax4EBIL464LgLRO
+         iD30CFQtE3YswELVx1jvs3wBgSqoYWS81ZGL3JgwOy8/5SRRDaPyt37alWt+fVulXbmR
+         1AsaKnmwApRpXI5+abwt2HcPzFCMv3YKLkAifYwed+BYsdrv3HpHuVSMbpZ7mJ+fOWt1
+         GaUA==
+X-Gm-Message-State: APjAAAWOmnnUFtNQBN3aqYqrsTW1yjiWznmCCBoeqdrVcbobsc9XAVx2
+        XCI8iToDlPsvEoJm9oOeKdhB2ZzBxxU9on0qHvONMg==
+X-Google-Smtp-Source: APXvYqzJk+RufAS38mOg2G7I5XaU61Uo/xNb1WDdry5ntpEov4c8yXd8xlDSiZU6gXC/Me/a9M+9jPX0x3jzP1+S8O0=
+X-Received: by 2002:ab0:3098:: with SMTP id h24mr5559466ual.100.1569609372593;
+ Fri, 27 Sep 2019 11:36:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tukillri5nr7fxtt"
-Content-Disposition: inline
-In-Reply-To: <20190927100738.1863563-1-paul.kocialkowski@bootlin.com>
-User-Agent: NeoMutt/20180716
+References: <20190922102341.GO25745@shell.armlinux.org.uk> <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
+ <CAPDyKFpQn+O-M60q-Tc4QOBM+WhFhmnkU6_-t5hnQcndLo==YA@mail.gmail.com>
+ <AM0PR04MB66766AC0807A85B3E5428E028F840@AM0PR04MB6676.eurprd04.prod.outlook.com>
+ <4cb91a30-ed1b-1fef-58df-fbc46757bd5d@arm.com>
+In-Reply-To: <4cb91a30-ed1b-1fef-58df-fbc46757bd5d@arm.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 27 Sep 2019 20:35:35 +0200
+Message-ID: <CAPDyKFpm-73euWRWDHhMz=aRt38VLWp5-OaTVhVeFwuc+y46mQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma coherent
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Leo Li <leoyang.li@nxp.com>,
+        dann frazier <dann.frazier@canonical.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Will Deacon <will.deacon@arm.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---tukillri5nr7fxtt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, Sep 27, 2019 at 12:07:36PM +0200, Paul Kocialkowski wrote:
-> This series introduces support for the LogiCVC display controller.
-> The controller is a bit unusual since it is usually loaded as
-> programmable logic on Xilinx FPGAs or Zynq-7000 SoCs.
-> More details are presented on the main commit for the driver.
+On Tue, 24 Sep 2019 at 20:04, Robin Murphy <robin.murphy@arm.com> wrote:
 >
-> More information about the controller is available on the dedicated
-> web page: https://www.logicbricks.com/Products/logiCVC-ML.aspx
+> On 24/09/2019 04:41, Leo Li wrote:
+> >
+> >
+> >> -----Original Message-----
+> >> From: Ulf Hansson <ulf.hansson@linaro.org>
+> >> Sent: Monday, September 23, 2019 4:27 PM
+> >> To: Russell King <rmk+kernel@armlinux.org.uk>
+> >> Cc: Robin Murphy <robin.murphy@arm.com>; dann frazier
+> >> <dann.frazier@canonical.com>; Will Deacon <will.deacon@arm.com>;
+> >> Nicolin Chen <nicoleotsuka@gmail.com>; Y.b. Lu <yangbo.lu@nxp.com>;
+> >> Christoph Hellwig <hch@lst.de>; Mark Rutland <mark.rutland@arm.com>;
+> >> DTML <devicetree@vger.kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob
+> >> Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Linux
+> >> ARM <linux-arm-kernel@lists.infradead.org>
+> >> Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma
+> >> coherent
+> >>
+> >> On Sun, 22 Sep 2019 at 12:29, Russell King <rmk+kernel@armlinux.org.uk>
+> >> wrote:
+> >>>
+> >>> The LX2160A esdhc controllers are setup by the driver to be DMA
+> >>> coherent, but without marking them as such in DT, Linux thinks they
+> >>> are not.  This can lead to random sporadic DMA errors, even to the
+> >>> extent of preventing boot, such as:
+> >>>
+> >>> mmc0: ADMA error
+> >>> mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
+> >>> mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00002202
+> >>> mmc0: sdhci: Blk size:  0x00000008 | Blk cnt:  0x00000001
+> >>> mmc0: sdhci: Argument:  0x00000000 | Trn mode: 0x00000013
+> >>> mmc0: sdhci: Present:   0x01f50008 | Host ctl: 0x00000038
+> >>> mmc0: sdhci: Power:     0x00000003 | Blk gap:  0x00000000
+> >>> mmc0: sdhci: Wake-up:   0x00000000 | Clock:    0x000040d8
+> >>> mmc0: sdhci: Timeout:   0x00000003 | Int stat: 0x00000001
+> >>> mmc0: sdhci: Int enab:  0x037f108f | Sig enab: 0x037f108b
+> >>> mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00002202
+> >>> mmc0: sdhci: Caps:      0x35fa0000 | Caps_1:   0x0000af00
+> >>> mmc0: sdhci: Cmd:       0x0000333a | Max curr: 0x00000000
+> >>> mmc0: sdhci: Resp[0]:   0x00000920 | Resp[1]:  0x001d8a33
+> >>> mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x3f400e00
+> >>> mmc0: sdhci: Host ctl2: 0x00000000
+> >>> mmc0: sdhci: ADMA Err:  0x00000009 | ADMA Ptr: 0x000000236d43820c
+> >>> mmc0: sdhci: ============================================
+> >>> mmc0: error -5 whilst initialising SD card
+> >>>
+> >>> These are caused by the device's descriptor fetch hitting
+> >>> speculatively loaded CPU cache lines that the CPU does not see through
+> >>> the normal, non-cacheable DMA coherent mapping that it uses for
+> >>> non-coherent devices.
+> >>>
+> >>> DT and the device must agree wrt whether the device is DMA coherent or
+> >>> not.
+> >>>
+> >>> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+> >>
+> >> As I am picking up patch1 and patch2 from this series, I can also help out and
+> >> pick up this one, if that is okay by people?
+> >
+> > There is some concern recently from linux-next maintainer about this causing potential conflicts.  https://lkml.org/lkml/2019/9/15/225
+>
+> In principle, it should be fine for #2 and #3 to go via separate trees -
+> #3 aligns the DT with the existing behaviour of the driver, while #2
+> will make the driver behave correctly whichever state the DT is in.
+>
+> Robin.
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
+That's right, so I am leaving this patch for arm-soc people to pick up then.
 
-Thanks!
-Maxime
-
---tukillri5nr7fxtt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXY5VoQAKCRDj7w1vZxhR
-xYKdAQD7nEpueam4PSkHSKh8hVDVyPCVaXN/FdzJgTHzv4XOkQEAzBZjTbENrCBg
-0RfwWhlSmQVPQssAzVRlemjHylV2zQg=
-=95Js
------END PGP SIGNATURE-----
-
---tukillri5nr7fxtt--
+Kind regards
+Uffe
