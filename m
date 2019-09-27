@@ -2,127 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9DCFC0BCA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CE4DC0BE2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 21:02:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726004AbfI0Sv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:51:56 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:37171 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725990AbfI0Sv4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:51:56 -0400
-Received: by mail-ot1-f68.google.com with SMTP id k32so3140586otc.4;
-        Fri, 27 Sep 2019 11:51:55 -0700 (PDT)
+        id S1725990AbfI0TCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 15:02:49 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:41387 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725980AbfI0TCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 15:02:49 -0400
+Received: by mail-io1-f68.google.com with SMTP id r26so19006021ioh.8;
+        Fri, 27 Sep 2019 12:02:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LO3JdAOU095h41fjVsuAsU+4Z0wmwAMdPedC2Thw3pg=;
+        b=dr01MoRs+YBUsJR2Yajv5Gvk1Uuzl8J/B0xZ7BtPxjvHMRUFzNHi1gn2IjV0wXHCzq
+         capi/qDYXysLutGkSjtANV/oT80eN4t3epMkMyFfb1YeeWmHa9B56XasKfDrBaj/UgsO
+         MRPgpvasw/M/Lmb03EZJA/kFsbdBVMfYO7psdw+1yHdvq6WIeA5iEWS1/Q21rJENUPAU
+         i8sw3SqRACaGNwbNZyxa3PEoYHDcCnP3XqMnzL7dbQwY6dcqx6TULVQxAbxzP5//qpyH
+         xtlvQ6qOQVSLV5vls0hohFudnvizuTxuk2TL5CkaybbkRGoPMAZj8BeQzWgp1aJOcIUM
+         OX6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=d41cCTl7w3rkM7T7TH1Wjkv6CwKEi+5QRtnS63WD5ZM=;
-        b=Pc7c0jdRUhiQMJMyfJBbfl6M1L8VwnUvd5Zn1MSnnIBqdqVwqBAtO6HzVHCN36jO3I
-         QODPHIU25vl89//TY7kO9Jwt+E2FDC/KKxphI+2U/3JI/W//HsPMVZyx4VRnk2+C7lsK
-         LCJEhlZOzWzc8prg3L6q/GRThvmSArhLnljK7YHe9rs7hTjs4N0kZHmMPfY5vOqLhF1t
-         DPKDgHemyTC9poSdSEZ+Ex6BDKYmFUbU+lhHuBlZZRJJFclOI0n3r7RJUaAHB0DZwRIe
-         mbNBg1qM6H/OJ8BGlsvD/V41cXhDcEuQwKzKhqBR3ywC/S5y31uK6CNZTFT/hpYVFD+c
-         ElwQ==
-X-Gm-Message-State: APjAAAXx3q9hYjaIaDrWYiKMhe92/u6YD5uywBGlwOaZwV6MrQ5UBtqN
-        v52PHZyOoYi0pPBYwA+v3A==
-X-Google-Smtp-Source: APXvYqy7kAP35+kBMD+IB6YfX5awR9sKBq4fbOg1XNya+RBpUkbPY3uEzjMNx9j7YtN3dMZyiE8Z7Q==
-X-Received: by 2002:a05:6830:443:: with SMTP id d3mr4430310otc.93.1569610314662;
-        Fri, 27 Sep 2019 11:51:54 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v75sm1961767oia.6.2019.09.27.11.51.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 11:51:53 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 13:51:53 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, adam.ford@logicpd.com,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LO3JdAOU095h41fjVsuAsU+4Z0wmwAMdPedC2Thw3pg=;
+        b=aVcn1pNPXx0wfzpuSZsYc2XbBP7Hx/ghHhuZHe0ia1XOAhOEtNPqgajsLO6Dvu5LfE
+         XPxGfOGXPULB/R9Hz6TuYvI8eRX3zvE1GsbZHt8WOPjzWOLecalb3Dnrb7hzHPgetRfA
+         K127GcwJR9xsR/P3YlVDTamIcn5p+mXESCmM4CuXfxoPPKUwZ3phLbMwIxfJg8U7cu5r
+         XA/gwtzXq+78LD+q2jOprecBvqEwNzQVKQ1aOYZHvQNI1s0iACteFUyatZcRL/cBl/h7
+         OCzEJPd8vohlU+e9sTMmZ+T2yYFJlNLx2vmzRDV4fh9aTDuWVtqH+TbX0f4EJysuEtvr
+         zXNw==
+X-Gm-Message-State: APjAAAVOqfqqT3sdRaPXHV9IMKEFynL91Coz7wkPQS1CNdlp3OcSPmqT
+        LxdLKNivVLlBYNpNkjxj39XIagKoGJPT039rlIk=
+X-Google-Smtp-Source: APXvYqwS6ado5j8H/MS9UQpgoe/UkE+sD6PlTwv5ZTRS/6e5bGEdAPsZ4ex2TIbFU5IYmkfVt2tiTgtyAQ59xYbnLxI=
+X-Received: by 2002:a02:7810:: with SMTP id p16mr9500549jac.55.1569610967624;
+ Fri, 27 Sep 2019 12:02:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190925184239.22330-1-aford173@gmail.com> <20190925184239.22330-2-aford173@gmail.com>
+ <20190927185153.GA982@bogus>
+In-Reply-To: <20190927185153.GA982@bogus>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 27 Sep 2019 14:02:35 -0500
+Message-ID: <CAHCN7x+V_-PZjhC_1K1kU+fnQYwWM4br1PTPEBd4Kks=sR5K7g@mail.gmail.com>
+Subject: Re: [PATCH V3 2/3] dt-bindings: Add Logic PD Type 28 display panel
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Adam Ford <adam.ford@logicpd.com>,
         Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 2/3] dt-bindings: Add Logic PD Type 28 display panel
-Message-ID: <20190927185153.GA982@bogus>
-References: <20190925184239.22330-1-aford173@gmail.com>
- <20190925184239.22330-2-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190925184239.22330-2-aford173@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 01:42:37PM -0500, Adam Ford wrote:
-> This patch adds documentation of device tree bindings for the WVGA panel
-> Logic PD Type 28 display.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> V3:  Correct build errors from 'make dt_binding_check'
-> V2:  Use YAML instead of TXT for binding
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> new file mode 100644
-> index 000000000000..74ba650ea7a0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: (GPL-2.0+ OR X11)
+On Fri, Sep 27, 2019 at 1:51 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Sep 25, 2019 at 01:42:37PM -0500, Adam Ford wrote:
+> > This patch adds documentation of device tree bindings for the WVGA panel
+> > Logic PD Type 28 display.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> > V3:  Correct build errors from 'make dt_binding_check'
+> > V2:  Use YAML instead of TXT for binding
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> > new file mode 100644
+> > index 000000000000..74ba650ea7a0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> > @@ -0,0 +1,31 @@
+> > +# SPDX-License-Identifier: (GPL-2.0+ OR X11)
+>
+> (GPL-2.0-only OR BSD-2-Clause) please.
+>
+> X11 is pretty much never right unless this is copyright X Consortium.
+>
 
-(GPL-2.0-only OR BSD-2-Clause) please.
+I copied the example from
+Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
 
-X11 is pretty much never right unless this is copyright X Consortium.
+Is there a better example I can use?  If what I did is wrong, then it
+seems like that board is wrong too.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
-> +
-> +maintainers:
-> +  - Adam Ford <aford173@gmail.com>
-> +
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
+> > +
+> > +maintainers:
+> > +  - Adam Ford <aford173@gmail.com>
+> > +
+>
+> You need:
+>
+> allOf:
+>   - $ref: panel-common.yaml#
+>
+> > +properties:
+> > +  compatible:
+> > +    const: logicpd,type28
+> > +
+>
+> > +  power-supply:
+> > +    description: Regulator to provide the supply voltage
+> > +    maxItems: 1
+> > +
+> > +  enable-gpios:
+> > +    description: GPIO pin to enable or disable the panel
+> > +    maxItems: 1
+> > +
+> > +  backlight:
+> > +    description: Backlight used by the panel
+> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
+>
+> These 3 are all defined in the common schema, so you just need 'true'
+> for the value to indicate they apply to this panel and to make
+> 'additionalProperties: false' happy.
 
-You need:
+Sorry for my ignorance, but I am not familiar with the syntax here,
+nor do I understand what is required.  Since there aren't many display
+panels with yaml docs, I don't know what is expected and clearly the
+one I used as a template didn't do it right either.
 
-allOf:
-  - $ref: panel-common.yaml#
+Is there a branch  where this stuff is located? I am just using the
+latest linux-stable branch.
 
-> +properties:
-> +  compatible:
-> +    const: logicpd,type28
-> +
+>
+> > +
+> > +required:
+> > +  - compatible
+>
+> Are the rest really optional?
 
-> +  power-supply:
-> +    description: Regulator to provide the supply voltage
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    description: GPIO pin to enable or disable the panel
-> +    maxItems: 1
-> +
-> +  backlight:
-> +    description: Backlight used by the panel
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+From what I can tell, they are optional.  I am just adding some timing
+info to an already existing driver.  It's not my driver.
 
-These 3 are all defined in the common schema, so you just need 'true' 
-for the value to indicate they apply to this panel and to make 
-'additionalProperties: false' happy.
 
-> +
-> +required:
-> +  - compatible
-
-Are the rest really optional? 
-
-> +
-> +additionalProperties: false
-> -- 
-> 2.17.1
-> 
+>
+> > +
+> > +additionalProperties: false
+> > --
+> > 2.17.1
+> >
