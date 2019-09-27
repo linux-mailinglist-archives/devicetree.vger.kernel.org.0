@@ -2,80 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E81FAC0A9E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 19:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99410C0AB1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 19:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726294AbfI0RwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 13:52:07 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42107 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726033AbfI0RwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 13:52:07 -0400
-Received: by mail-oi1-f195.google.com with SMTP id i185so5898277oif.9;
-        Fri, 27 Sep 2019 10:52:05 -0700 (PDT)
+        id S1726321AbfI0R6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 13:58:40 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:39672 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726294AbfI0R6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 13:58:40 -0400
+Received: by mail-ot1-f67.google.com with SMTP id s22so2992593otr.6;
+        Fri, 27 Sep 2019 10:58:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ZbDBLpkCaFop2cTquA8oNIrLDUYKHpEiFXnkBADI8Do=;
-        b=dEz7gaHWzkn8vZ82FVftwMeQsZ2qoU6GhvbLVPTWuW2anyK3BjGjHFlMKSM6Hr/z1k
-         QZONDxcL/Noa/FmLDqTqFd3ZzHsg9RPwTfmY5qpHwxUKlz/msWj8jiWMfFB8lkpttHeT
-         PnJa4+HvpeKK+d6SMnLyguXYXZZtIusUfnXlYsNqZjAUVkeSS1Oy3BcMvnXL42f89/Vf
-         f8oVAI72RWDv8XD4I/c5d4joP5EejURszpVUlCVGYmXdHjuSSNdywWXlnCATdNfiQTv2
-         CwMUX7x6YI7DHwTigDutmVPF85zkmZm9lueEWjg/VocYt2Bca5sLZQ+LOPM72iX3i86R
-         0coA==
-X-Gm-Message-State: APjAAAWXrRj/yuPKS6/lhsebTFWgikqGroN8z4zCkAzUoZa9XzMDhBl6
-        IONW4/6TSx12KoXLnBZicA==
-X-Google-Smtp-Source: APXvYqyC0MuUIaHugqUNSHPTcxipjw4lnRgFwF3wzFjdTJ8s4AL0gIBRkZgKDEB+LgLlaZVAxuF9yw==
-X-Received: by 2002:aca:fc06:: with SMTP id a6mr8360150oii.28.1569606725111;
-        Fri, 27 Sep 2019 10:52:05 -0700 (PDT)
+        bh=5DqIrMbfbUSxw6P4Viq/PLdOhtJhDfVLbGztJVk8LJE=;
+        b=l8GuZtzLZPYMJ+oUbtHgiE5myOKGorXNqXPzXFf4T5NvMyEkHmx7YB5gyx8UnY5PVZ
+         4peUMO5ACp+C0ncj3iqSkiCAolte52Z0Tj9Mqpr+Hzq+gcmoc7KPB5jZjp5NZF2wQaOD
+         exR+5uKCu9zh6l4NwFdzgTcirdhYR62lMV0AmfunDLedlnFaRgIoFCOMy3v0p3JjYtnW
+         X39pPvSfpiEUzbeehnxJ92sVGZaNu/45XmShiMLwcbqw2HnvY6V1PGDS4di+YtvnmxIo
+         2Jduev0onRmk8qiy4A6betQaWY9KXMSO8L0n1pyuRDUALkJxfZM4ytw8RXGFR4abhRK3
+         0yWQ==
+X-Gm-Message-State: APjAAAWoKXJa2vHhG/yaatBNIO0V94MdBLMrMahgDFvebGj7n+n+VQYa
+        rNfItgjt2d+WHcjNI++TBQ==
+X-Google-Smtp-Source: APXvYqxh7UQtB4K6EwJ90sqVkNEtGKfHhSzYF7AK9XxtQJamydovnwqR9hpgIrckULvXwVW29+hxNw==
+X-Received: by 2002:a9d:625a:: with SMTP id i26mr3960317otk.43.1569607119429;
+        Fri, 27 Sep 2019 10:58:39 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q124sm1892105oia.5.2019.09.27.10.52.04
+        by smtp.gmail.com with ESMTPSA id t207sm1884662oif.11.2019.09.27.10.58.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 10:52:04 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 12:52:03 -0500
+        Fri, 27 Sep 2019 10:58:38 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 12:58:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: irqchip: renesas-irqc: convert bindings
- to json-schema
-Message-ID: <20190927175203.GA9117@bogus>
-References: <1568915311-28928-1-git-send-email-ykaneko0929@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: samsung: Convert Exynos System
+ Registers bindings to json-schema
+Message-ID: <20190927175838.GA20682@bogus>
+References: <20190920162600.7486-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1568915311-28928-1-git-send-email-ykaneko0929@gmail.com>
+In-Reply-To: <20190920162600.7486-1-krzk@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Sep 2019 02:48:31 +0900, Yoshihiro Kaneko wrote:
-> Convert Renesas Interrupt Controller bindings documentation to json-schema.
+On Fri, 20 Sep 2019 18:25:59 +0200, Krzysztof Kozlowski wrote:
+> Convert Samsung Exynos System Registers (SYSREG) bindings to DT schema
+> format using json-schema.
 > 
-> Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
-> ---
-> 
-> v3
-> - Add interrups to required.
-> - Update the example to according to the current implementation.
-> 
-> v2
-> - Add SPDX tag.
-> - Document interrupt-contoller, reg, interrupts, power-domains and resets
->   properties.
-> - Add addtionalProperties.
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
 > ---
->  .../bindings/interrupt-controller/renesas,irqc.txt | 48 ------------
->  .../interrupt-controller/renesas,irqc.yaml         | 86 ++++++++++++++++++++++
->  2 files changed, 86 insertions(+), 48 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+> 
+> Changes since v2:
+> 1. Use select to skip other syscon nodes,
+> 2. Indent example with four spaces (more readable),
+> ---
+>  .../bindings/arm/samsung/sysreg.txt           | 19 --------
+>  .../bindings/arm/samsung/sysreg.yaml          | 45 +++++++++++++++++++
+>  2 files changed, 45 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/samsung/sysreg.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/samsung/sysreg.yaml
 > 
 
 Applied, thanks.
