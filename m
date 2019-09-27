@@ -2,101 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D9DC08D4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:44:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 257D2C08E0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727991AbfI0Pom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 11:44:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42636 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727207AbfI0Pol (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 11:44:41 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E20D32146E;
-        Fri, 27 Sep 2019 15:44:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569599081;
-        bh=JvAibICL3mYnhHG6USFakLaq5pSAL+F0LFmV8Pd88Vs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qr3k3NSCnvKmuzwCoUSSAj7EJuLfUyurlmvfcyLU6OmHhYUlheh5vMc6YiV/QGg9e
-         QyTenOtE5UHvDnKAoosmj/bRnVgUXK0z43Nfp/tYoYd9KWunj5KHvzOKFvjwHJWLio
-         GOTaZHrOfzx4Fu3kH/36XrtiI60LH1DF2kAOli3o=
-Received: by mail-qk1-f174.google.com with SMTP id x134so2358905qkb.0;
-        Fri, 27 Sep 2019 08:44:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAUqnWd0uSw8Zkr0/4noE5DI0J0IJqNKysQIKT21cxVtZC+YVygp
-        w99r8SSi+rVKG49uYlUSvPxFQbHCkDtyXU3L3Q==
-X-Google-Smtp-Source: APXvYqy1MGJjHwELZ4Bw99jjQEhMXDlYRvnNqs1LnykFuiSzNrCL1BzMpOm8ays235L+R3270SmaXQZtAd7SSGPY3F4=
-X-Received: by 2002:a37:682:: with SMTP id 124mr5220879qkg.393.1569599080064;
- Fri, 27 Sep 2019 08:44:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190927134220.8734-1-robh@kernel.org> <CAMRc=MctTVh99vE+dfd25ienWEjtMNwrM200f1im--fx9ALo7Q@mail.gmail.com>
-In-Reply-To: <CAMRc=MctTVh99vE+dfd25ienWEjtMNwrM200f1im--fx9ALo7Q@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 27 Sep 2019 10:44:29 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+R9wdB521dQtwMiWXEJEB5tGEDYi_efDqZL6xzF9YduA@mail.gmail.com>
-Message-ID: <CAL_Jsq+R9wdB521dQtwMiWXEJEB5tGEDYi_efDqZL6xzF9YduA@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: at24: convert the binding document to yaml
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Peter Rosin <peda@axentia.se>,
+        id S1727741AbfI0PsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:48:04 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59552 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727585AbfI0PsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:48:04 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RFlwsx028604;
+        Fri, 27 Sep 2019 10:47:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569599278;
+        bh=U37r5TojFgcS5DwKcw0E6Hys+tinXCxumASCFgqCX8M=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=n0Dr10Fc+4D7YJlreDJ02Ho/MKselqyZ6JuPychdRGigTx8dWWa2gK6i2fqY5dVQc
+         IUPJMUBCpnPe8DrSvyAnfIiHNm4vGE9zwJvOxkba71HzXwN4KHTMU/1RfIyWs0RCMF
+         vVrX5avWBICkiZbB3QrrbQqe4DGgEkXTJSC9ZWrM=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8RFlwN2037608
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 27 Sep 2019 10:47:58 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
+ Sep 2019 10:47:49 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 27 Sep 2019 10:47:49 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RFltEh071020;
+        Fri, 27 Sep 2019 10:47:55 -0500
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
+ dts
+To:     Tero Kristo <t-kristo@ti.com>, Adam Ford <aford173@gmail.com>
+CC:     Tony Lindgren <tony@atomide.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20190510194229.20628-1-aford173@gmail.com>
+ <af325707-3e42-493d-e858-77878ef06138@ti.com>
+ <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+ <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
+ <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
+ <845055e2-8182-de74-2077-629fdf50ac6c@ti.com>
+ <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
+ <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com>
+ <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
+ <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
+ <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <eb2eb1f6-3c9b-7ecb-667e-819033af9c14@ti.com>
+Date:   Fri, 27 Sep 2019 18:47:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 10:06 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> pt., 27 wrz 2019 o 15:42 Rob Herring <robh@kernel.org> napisa=C5=82(a):
-> >
-> > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> >
-> > Convert the binding document for at24 EEPROMs from txt to yaml. The
-> > compatible property uses a regex pattern to address all the possible
-> > combinations of "vendor,model" strings.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > [robh: rework compatible schema, fix missing allOf for $ref, fix errors=
- in example]
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > v4:
-> > - Add a $nodename definition
-> >
-> > - Turns out the compatible schema is too complex for generating a 'sele=
-ct'
-> > schema and only a small subset where getting validated. So we need a
-> > custom 'select' schema. This in turn fixes the issue with the nxp,se97b
-> > binding.
->
-> Thanks again!
->
-> >
-> > Now we get a different set of errors checking Arm dts files (omitting
-> > a bunch of node name ones):
-> >
->
-> > arch/arm/boot/dts/at91-dvk_som60.dt.yaml: eeprom@57: compatible: ['gian=
-tec,gt24c32a', 'atmel,24c32'] is not valid under any of the given schemas
->
-> This is because nobody bothered adding 'giantec,gt24c32a' to previous
-> .txt bindings. I'll add this in a follow-up patch.
->
-> > arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs01@5f: compatible: ['a=
-tmel,24cs01'] is not valid under any of the given schemas
-> > arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs08@5c: compatible: ['a=
-tmel,24cs08'] is not valid under any of the given schemas
-> >
->
-> These look fine at first glance, I'm not sure what the problem here
-> is. I'll take a look at these as soon as I can.
+On 27/09/2019 18:37, Tero Kristo wrote:
 
-Ah, that's my mistake. I guess there's only no 24cs00 variant.
+> If you can provide details about what clock framework / driver does 
+> wrong (sample clk_set_xyz call sequence, expected results via 
+> clk_get_xyz, and what fails), I can take a look at it. Just reporting 
+> arbitrary display driver issues I won't be able to debug at all (I don't 
+> have access to any of the displays, nor do I want to waste time 
+> debugging them without absolutely no knowledge whatsoever.)
 
-Rob
+I used your hack patches to allow changing rates via debugfs. And set 
+dss1_alwon_fck_3430es2 to 27000000 or 27870967. The end result was that 
+DSS gets some very high clock from dss1_alwon_fck_3430es2, as the frame 
+rate jumps to many hundreds fps.
+
+So, these numbers are not real, but to give the idea what I saw. Running 
+first with 50 MHz, I can see, say, 40 fps. Then I set the clock to 30 
+MHz, and fps dropped to, say, 30fps, as expected with lower clock. Then 
+I set the clock to 27MHz (or the other one), expecting a bit lower fps, 
+but instead I saw hundreds of fps.
+
+I don't know if there's any other way to observe the wrong clock rate 
+but have the dss enabled and running kmstest or similar. I can help you 
+set that up next week, should be trivial. You don't need a display for that.
+
+  Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
