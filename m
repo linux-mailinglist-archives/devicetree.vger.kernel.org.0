@@ -2,160 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B815AC0B36
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA115C0B5F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728427AbfI0SfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:35:00 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:57808 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728407AbfI0SfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:35:00 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RIYxRA091615;
-        Fri, 27 Sep 2019 13:34:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569609299;
-        bh=krbcjClNBl5l626Tt1s8M5AXW8701NDZN1CSgPSwXmg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=oUBz4L9MJhKpZCLJf4am7VldjaFQjMiI5QYJj6WrE6SPtlsTN0xAr42X524mWi5YZ
-         brthPkrlKTrsSKxo2TzWLQvMhKG7DuMN86iPidgC6jsYRAgcxdmhOux516YhhQ2h9a
-         g0b6hbxk8ex915quk4aSHEC00DOGyqzfVsSj3Ymk=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8RIYw54122802
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Sep 2019 13:34:58 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
- Sep 2019 13:34:58 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 27 Sep 2019 13:34:50 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RIYgc5073031;
-        Fri, 27 Sep 2019 13:34:58 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch 16/16] media: ti-vpe: vpe: don't rely on colorspace member for conversion
-Date:   Fri, 27 Sep 2019 13:36:50 -0500
-Message-ID: <20190927183650.31345-17-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190927183650.31345-1-bparrot@ti.com>
-References: <20190927183650.31345-1-bparrot@ti.com>
+        id S1726294AbfI0Sit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 14:38:49 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:46576 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726033AbfI0Sit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:38:49 -0400
+Received: by mail-oi1-f194.google.com with SMTP id k25so6009381oiw.13;
+        Fri, 27 Sep 2019 11:38:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vnPkZDQJ5z1JM9F8Qj9xnFy3bzZcn4QdvmzMOum47Ak=;
+        b=AhE4MbYxKnJARVS1pfeA+kIKC1CyzbJOeMg5JT7d36b/hMscFiml8Xu8MsImtkM8Ah
+         moCrgIq+kalI9EqbxcHWJxc7CBEU4UeXK+XJE4U5Dp9039FyhN5VHaTTll4c694V6Kcp
+         eLAhNz6lMEFi93Wo9mg+JjuQJEEIvn/TxXN4N3U/Ykd13Vmp7bYV49AMdyZUIHo2ThaF
+         tBkzWCRudfmKxS6tlwPYtAkj8pgFp/kK1wWjKJ85IcaHLhAZOyUjOu40I48EONe6zt1I
+         Eopk9inxYPeJ/sYyKYbfXLJmL3LsBec/rG/Ar7edIs5zEsYZWXYz+njr60YszV8gAoRW
+         11iw==
+X-Gm-Message-State: APjAAAVFGLGhxMMFdMpTrfVWHiIIBkdEcXcCBAzZw3ysyMUI/UfxujJi
+        yNdEhssmFzNCBC+MAr65sw==
+X-Google-Smtp-Source: APXvYqzs5WI0T5Txftk3J4rvqb9LsYLejz5LJ73PXASxBUt9yRkNj6So366ajBrRyzQ3jkNiSw6xiA==
+X-Received: by 2002:aca:fdc9:: with SMTP id b192mr7931393oii.50.1569609526433;
+        Fri, 27 Sep 2019 11:38:46 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y137sm1923936oie.53.2019.09.27.11.38.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 11:38:45 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 13:38:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: bus: simple-pm-bus: convert bindings
+ to json-schema
+Message-ID: <20190927183844.GA16521@bogus>
+References: <20190924093609.22895-1-horms+renesas@verge.net.au>
+ <20190924093609.22895-2-horms+renesas@verge.net.au>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190924093609.22895-2-horms+renesas@verge.net.au>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Up to now VPE was relying on the colorspace value of struct v4l2_format
-as an indication to perform color space conversion from YUV to RGB or
-not.
+On Tue, Sep 24, 2019 at 11:36:07AM +0200, Simon Horman wrote:
+> Convert Simple Power-Managed Bus bindings documentation to json-schema.
+> 
+> As a side effect of this change only simple-pm-bus is used in example. A
+> follow-up patch will provide an example for the separately documented
+> Renesas Bus State Controller (BSC) that uses "renesas,bsc-sh73a0" and
+> "renesas,bsc" compat strings.
+> 
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> ---
+> * Based on v5.3
+> * Tested using:
+>   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+>   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> 
+> v2
+> * Add SPDX line
+> * Remove extra blank line
+> * Add $nodename
+> * Remove extra leading space in compatible
+> * Update compatible to allow override by other schemas
+> * Allow #size-cells to be 1 or 2
+> * Do not limit ranges or clocks to 1 item
+> * Add anyOf requirement on ranges or clocks
+> * Update example based on msm8996.dtsi
+> ---
+>  .../devicetree/bindings/bus/simple-pm-bus.txt      | 44 -------------
+>  .../devicetree/bindings/bus/simple-pm-bus.yaml     | 75 ++++++++++++++++++++++
+>  2 files changed, 75 insertions(+), 44 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.txt
+>  create mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.txt b/Documentation/devicetree/bindings/bus/simple-pm-bus.txt
+> deleted file mode 100644
+> index 6f15037131ed..000000000000
+> --- a/Documentation/devicetree/bindings/bus/simple-pm-bus.txt
+> +++ /dev/null
+> @@ -1,44 +0,0 @@
+> -Simple Power-Managed Bus
+> -========================
+> -
+> -A Simple Power-Managed Bus is a transparent bus that doesn't need a real
+> -driver, as it's typically initialized by the boot loader.
+> -
+> -However, its bus controller is part of a PM domain, or under the control of a
+> -functional clock.  Hence, the bus controller's PM domain and/or clock must be
+> -enabled for child devices connected to the bus (either on-SoC or externally)
+> -to function.
+> -
+> -While "simple-pm-bus" follows the "simple-bus" set of properties, as specified
+> -in the Devicetree Specification, it is not an extension of "simple-bus".
+> -
+> -
+> -Required properties:
+> -  - compatible: Must contain at least "simple-pm-bus".
+> -		Must not contain "simple-bus".
+> -		It's recommended to let this be preceded by one or more
+> -		vendor-specific compatible values.
+> -  - #address-cells, #size-cells, ranges: Must describe the mapping between
+> -		parent address and child address spaces.
+> -
+> -Optional platform-specific properties for clock or PM domain control (at least
+> -one of them is required):
+> -  - clocks: Must contain a reference to the functional clock(s),
+> -  - power-domains: Must contain a reference to the PM domain.
+> -Please refer to the binding documentation for the clock and/or PM domain
+> -providers for more details.
+> -
+> -
+> -Example:
+> -
+> -	bsc: bus@fec10000 {
+> -		compatible = "renesas,bsc-sh73a0", "renesas,bsc",
+> -			     "simple-pm-bus";
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0x20000000>;
+> -		reg = <0xfec10000 0x400>;
+> -		interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&zb_clk>;
+> -		power-domains = <&pd_a4s>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> new file mode 100644
+> index 000000000000..598b71d779b1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/simple-pm-bus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Simple Power-Managed Bus
+> +
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +description: |
+> +  A Simple Power-Managed Bus is a transparent bus that doesn't need a real
+> +  driver, as it's typically initialized by the boot loader.
+> +
+> +  However, its bus controller is part of a PM domain, or under the control
+> +  of a functional clock.  Hence, the bus controller's PM domain and/or
+> +  clock must be enabled for child devices connected to the bus (either
+> +  on-SoC or externally) to function.
+> +
+> +  While "simple-pm-bus" follows the "simple-bus" set of properties, as
+> +  specified in the Devicetree Specification, it is not an extension of
+> +  "simple-bus".
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^bus([@-][0-9a-f]+)?$"
 
-Instead we should used the source/destination fourcc codes as a more
-reliable indication to perform color space conversion or not.
+Why the '-' (bus-)? That's only for a few cases where there's no 
+addressing like i2c-gpio.
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- drivers/media/platform/ti-vpe/vpe.c | 41 ++++++++++++++++++++++-------
- 1 file changed, 32 insertions(+), 9 deletions(-)
+> +
+> +  compatible:
+> +    contains:
+> +      const: simple-pm-bus
+> +    description:
+> +      Shall contain "simple-pm-bus" in addition to a optional bus-specific
+> +      compatible strings defined in individual pm-bus bindings.
+> +
+> +  '#address-cells':
+> +    const: 1
 
-diff --git a/drivers/media/platform/ti-vpe/vpe.c b/drivers/media/platform/ti-vpe/vpe.c
-index e30981cd3e8f..d002adc6263f 100644
---- a/drivers/media/platform/ti-vpe/vpe.c
-+++ b/drivers/media/platform/ti-vpe/vpe.c
-@@ -353,6 +353,32 @@ enum {
- 	Q_DATA_DST = 1,
- };
- 
-+static bool is_fmt_rgb(u32 fourcc)
-+{
-+	if (fourcc == V4L2_PIX_FMT_RGB24 ||
-+	    fourcc == V4L2_PIX_FMT_BGR24 ||
-+	    fourcc == V4L2_PIX_FMT_RGB32 ||
-+	    fourcc == V4L2_PIX_FMT_BGR32 ||
-+	    fourcc == V4L2_PIX_FMT_RGB565 ||
-+	    fourcc == V4L2_PIX_FMT_RGB555)
-+		return true;
-+
-+	return false;
-+}
-+
-+/*
-+ * This helper is only used to setup the color space converter
-+ * the actual value returned is only to broadly differentiate between
-+ * RGB and YUV
-+ */
-+static enum  v4l2_colorspace fourcc_to_colorspace(u32 fourcc)
-+{
-+	if (is_fmt_rgb(fourcc))
-+		return V4L2_COLORSPACE_SRGB;
-+
-+	return V4L2_COLORSPACE_SMPTE170M;
-+}
-+
- /* find our format description corresponding to the passed v4l2_format */
- static struct vpe_fmt *__find_format(u32 fourcc)
- {
-@@ -764,11 +790,10 @@ static void set_src_registers(struct vpe_ctx *ctx)
- static void set_dst_registers(struct vpe_ctx *ctx)
- {
- 	struct vpe_mmr_adb *mmr_adb = ctx->mmr_adb.addr;
--	enum v4l2_colorspace clrspc = ctx->q_data[Q_DATA_DST].colorspace;
- 	struct vpe_fmt *fmt = ctx->q_data[Q_DATA_DST].fmt;
- 	u32 val = 0;
- 
--	if (clrspc == V4L2_COLORSPACE_SRGB) {
-+	if (is_fmt_rgb(fmt->fourcc)) {
- 		val |= VPE_RGB_OUT_SELECT;
- 		vpdma_set_bg_color(ctx->dev->vpdma,
- 			(struct vpdma_data_format *)fmt->vpdma_fmt[0], 0xff);
-@@ -912,7 +937,8 @@ static int set_srcdst_params(struct vpe_ctx *ctx)
- 	set_dei_regs(ctx);
- 
- 	csc_set_coeff(ctx->dev->csc, &mmr_adb->csc_regs[0],
--		s_q_data->colorspace, d_q_data->colorspace);
-+		      fourcc_to_colorspace(s_q_data->fmt->fourcc),
-+		      fourcc_to_colorspace(d_q_data->fmt->fourcc));
- 
- 	sc_set_hs_coeffs(ctx->dev->sc, ctx->sc_coeff_h.addr, src_w, dst_w);
- 	sc_set_vs_coeffs(ctx->dev->sc, ctx->sc_coeff_v.addr, src_h, dst_h);
-@@ -1285,7 +1311,7 @@ static void device_run(void *priv)
- 	if (ctx->deinterlacing)
- 		add_out_dtd(ctx, VPE_PORT_MV_OUT);
- 
--	if (d_q_data->colorspace == V4L2_COLORSPACE_SRGB) {
-+	if (is_fmt_rgb(d_q_data->fmt->fourcc)) {
- 		add_out_dtd(ctx, VPE_PORT_RGB_OUT);
- 	} else {
- 		add_out_dtd(ctx, VPE_PORT_LUMA_OUT);
-@@ -1327,7 +1353,7 @@ static void device_run(void *priv)
- 	}
- 
- 	/* sync on channel control descriptors for output ports */
--	if (d_q_data->colorspace == V4L2_COLORSPACE_SRGB) {
-+	if (is_fmt_rgb(d_q_data->fmt->fourcc)) {
- 		vpdma_add_sync_on_channel_ctd(&ctx->desc_list,
- 			VPE_CHAN_RGB_OUT);
- 	} else {
-@@ -1682,10 +1708,7 @@ static int __vpe_try_fmt(struct vpe_ctx *ctx, struct v4l2_format *f,
- 		height = pix->height;
- 
- 	if (!pix->colorspace) {
--		if (fmt->fourcc == V4L2_PIX_FMT_RGB24 ||
--				fmt->fourcc == V4L2_PIX_FMT_BGR24 ||
--				fmt->fourcc == V4L2_PIX_FMT_RGB32 ||
--				fmt->fourcc == V4L2_PIX_FMT_BGR32) {
-+		if (is_fmt_rgb(fmt->fourcc)) {
- 			pix->colorspace = V4L2_COLORSPACE_SRGB;
- 		} else {
- 			if (height > 1280)	/* HD */
--- 
-2.17.1
+This too can be 2 cells...
 
+> +
+> +  '#size-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  ranges: true
+> +
+> +  clocks: true
+> +    # Functional clocks
+> +    # Required if power-domains is absent, optional otherwise
+> +
+> +  power-domains:
+> +    # Required if clocks is absent, optional otherwise
+> +    minItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - ranges
+> +
+> +anyOf:
+> +  - required:
+> +      - clocks
+> +  - required:
+> +      - power-domains
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-msm8996.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    bus {
+> +        power-domains = <&gcc AGGRE0_NOC_GDSC>;
+> +        compatible = "simple-pm-bus";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges;
+> +    };
+> -- 
+> 2.11.0
+> 
