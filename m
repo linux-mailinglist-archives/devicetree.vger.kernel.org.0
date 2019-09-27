@@ -2,202 +2,411 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7274DC083B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76013C084E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727366AbfI0PCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 11:02:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40282 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727319AbfI0PCp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 11:02:45 -0400
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B8D5021D56;
-        Fri, 27 Sep 2019 15:02:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569596564;
-        bh=PPVrg31jFsrd7Bb7WNQSWveOn6okoAYRcvr6DKHC6Rs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=anMo7lpQvcOoM8adFgciIu8hAZzGl/ACVS8D7IYkNWDzW/WQpmyh/sQAN+MObtq5Y
-         bhaJuxSa8BgmZphQLIYj4rwRFkpZ404mO5S1dODJ1+rPfTBAmVHkpNgPgXcQaE/3ls
-         iBK+Meh8QFWennVgtbzfwz1SUKKjE9n5IKE6m5bg=
-Received: by mail-lf1-f45.google.com with SMTP id q11so2155695lfc.11;
-        Fri, 27 Sep 2019 08:02:43 -0700 (PDT)
-X-Gm-Message-State: APjAAAV0x5vO0oQMmBT7hsS4AwbDWzkJc0qYnu/Qs0E2+A+yHgeWpqZY
-        Ny8nl5N5ba7aXE/WEOPwINdhuaR/UQNgy55BUc4=
-X-Google-Smtp-Source: APXvYqy7jRhfFe+G4lbc7z7OKjLE8RFoVguNq/Nw8wsZJrdUMbNUF8U/vQWDWWcPDvaR8I5XatG0ubwRa/is+GJvxEQ=
-X-Received: by 2002:ac2:4853:: with SMTP id 19mr3073713lfy.69.1569596561915;
- Fri, 27 Sep 2019 08:02:41 -0700 (PDT)
+        id S1727791AbfI0PGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:06:24 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:41955 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727784AbfI0PGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:06:24 -0400
+Received: by mail-io1-f65.google.com with SMTP id r26so17115285ioh.8
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 08:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=XPC+nIjew0iTqiVnsUuOIA6zrMVDeRWmWqmZPK0+k80=;
+        b=QGJ7oEl7Nh7cZcOdbiAu9TJGowf/sOF4sjc62i4FSgMk8gfRVYd8NCl5ZLd9/DAlt0
+         zYknYocjlFeL++THBId6DuWZpaTK/vUPPqpzke8MkBg5RZylHBfZ8XuqdhiK1rWlNdjX
+         BBvnfhDyIH4OjXpWGxPEAuXnPLztWnR8bcbJGZmMXD1/hjxEySRiAyoJdK+zZuoPzK4l
+         Gf0LEgrxP+X1OyJGR7Z2S8R/Z71plVRV5YO30GSpKunC5c/8onPWNqnsy3UDqtS1W+mN
+         V00DwStSL3jKKr72kC11WilgZlqWV/PdvAhrC9Vb18d3NKktvhaAPWl3uFzYKA4ODDEQ
+         hS1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=XPC+nIjew0iTqiVnsUuOIA6zrMVDeRWmWqmZPK0+k80=;
+        b=ScJB59HcZJltzLn7mXvxjb7ryMgiydz7SG6S7bDk4FVzfhflla5nTqpJFLg04iW1fO
+         FNgcoyHTchsBTqBZrJ88+UlSVW/Qpx2aAfhuodh7cRVfbTouHBIoyy1GkhcFijDSL1f8
+         zqQYUK0BgTrCfsenuK0KkYasBK1iS+77dwhjx43ZtmKNae13sIiWHHTiYwFl6RwDznLw
+         eHxe1edp1GZeagpPvg/8GwTbdfMvwI3Ayi5jBnqYoT+MVrIPoL9M6MlGfb15mPMxEAz0
+         Q25ivvf5X8eCiLcLvO+jkPYW2nxiZfMlBb4t49K9G1Fzq0wtpt7cuIZ/o46lQy45VmbW
+         +8Tw==
+X-Gm-Message-State: APjAAAXiCUsc/NxBTXVGEYSr8dC3pwWjz47wEfgp4hUClbSMo7ulXe3K
+        OgaC6HF3ZFFgZX0YtkAAoQP2qAkEP6qRRuYYDhQq4A==
+X-Google-Smtp-Source: APXvYqxGwqrtKYe+togh6kJeyUF+saASbccKsCL5SAQ3NuX/QJFF2nRQZx33348xyos1e1+1jq5HvGLyi1uCTqcfyNM=
+X-Received: by 2002:a02:b156:: with SMTP id s22mr8324721jah.102.1569596781873;
+ Fri, 27 Sep 2019 08:06:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <CGME20190927143325eucas1p289cb46e8dcbb1ace0b1f80ade738c29b@eucas1p2.samsung.com>
- <20190927143319.12232-1-m.szyprowski@samsung.com>
-In-Reply-To: <20190927143319.12232-1-m.szyprowski@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 27 Sep 2019 17:02:30 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfUN5C3OXAYJ9TLp-wuuBQPZmbMkTher1nV8O5+F38ghg@mail.gmail.com>
-Message-ID: <CAJKOXPfUN5C3OXAYJ9TLp-wuuBQPZmbMkTher1nV8O5+F38ghg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: gpu: Convert Samsung 2D Graphics
- Accelerator to dt-schema
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Inki Dae <inki.dae@samsung.com>
+References: <20190927134220.8734-1-robh@kernel.org>
+In-Reply-To: <20190927134220.8734-1-robh@kernel.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 27 Sep 2019 17:06:09 +0200
+Message-ID: <CAMRc=MctTVh99vE+dfd25ienWEjtMNwrM200f1im--fx9ALo7Q@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: at24: convert the binding document to yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Peter Rosin <peda@axentia.se>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Sep 2019 at 16:33, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+pt., 27 wrz 2019 o 15:42 Rob Herring <robh@kernel.org> napisa=C5=82(a):
 >
-> From: Maciej Falkowski <m.falkowski@samsung.com>
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 >
-> Convert Samsung 2D Graphics Accelerator to newer dt-schema format
+> Convert the binding document for at24 EEPROMs from txt to yaml. The
+> compatible property uses a regex pattern to address all the possible
+> combinations of "vendor,model" strings.
 >
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> [robh: rework compatible schema, fix missing allOf for $ref, fix errors i=
+n example]
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> v3:
-> - Merged two if-statements with single if-else statement
-> - Added 'additionalProperties: false'
-> - Listed all missing 'properties' in properties scope
+> v4:
+> - Add a $nodename definition
 >
-> Best regards,
-> Maciej Falkowski
+> - Turns out the compatible schema is too complex for generating a 'select=
+'
+> schema and only a small subset where getting validated. So we need a
+> custom 'select' schema. This in turn fixes the issue with the nxp,se97b
+> binding.
+
+Thanks again!
+
+>
+> Now we get a different set of errors checking Arm dts files (omitting
+> a bunch of node name ones):
+>
+
+> arch/arm/boot/dts/at91-dvk_som60.dt.yaml: eeprom@57: compatible: ['giante=
+c,gt24c32a', 'atmel,24c32'] is not valid under any of the given schemas
+
+This is because nobody bothered adding 'giantec,gt24c32a' to previous
+.txt bindings. I'll add this in a follow-up patch.
+
+> arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs01@5f: compatible: ['atm=
+el,24cs01'] is not valid under any of the given schemas
+> arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs08@5c: compatible: ['atm=
+el,24cs08'] is not valid under any of the given schemas
+>
+
+These look fine at first glance, I'm not sure what the problem here
+is. I'll take a look at these as soon as I can.
+
+Bart
+
+> These all look to be real.
 > ---
->  .../devicetree/bindings/gpu/samsung-g2d.txt   | 27 -------
->  .../devicetree/bindings/gpu/samsung-g2d.yaml  | 75 +++++++++++++++++++
->  2 files changed, 75 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-g2d.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
+>  .../devicetree/bindings/eeprom/at24.txt       |  90 +---------
+>  .../devicetree/bindings/eeprom/at24.yaml      | 164 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 166 insertions(+), 90 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/gpu/samsung-g2d.txt b/Documentation/devicetree/bindings/gpu/samsung-g2d.txt
-> deleted file mode 100644
-> index 1e7959332dbc..000000000000
-> --- a/Documentation/devicetree/bindings/gpu/samsung-g2d.txt
-> +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -* Samsung 2D Graphics Accelerator
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Document=
+ation/devicetree/bindings/eeprom/at24.txt
+> index 22aead844d0f..c94acbb8cb0c 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.txt
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.txt
+> @@ -1,89 +1 @@
+> -EEPROMs (I2C)
 > -
 > -Required properties:
-> -  - compatible : value should be one among the following:
-> -       (a) "samsung,s5pv210-g2d" for G2D IP present in S5PV210 & Exynos4210 SoC
-> -       (b) "samsung,exynos4212-g2d" for G2D IP present in Exynos4x12 SoCs
-> -       (c) "samsung,exynos5250-g2d" for G2D IP present in Exynos5250 SoC
 > -
-> -  - reg : Physical base address of the IP registers and length of memory
-> -         mapped region.
+> -  - compatible: Must be a "<manufacturer>,<model>" pair. The following <=
+model>
+> -                values are supported (assuming "atmel" as manufacturer):
 > -
-> -  - interrupts : G2D interrupt number to the CPU.
-> -  - clocks : from common clock binding: handle to G2D clocks.
-> -  - clock-names : names of clocks listed in clocks property, in the same
-> -                 order, depending on SoC type:
-> -                 - for S5PV210 and Exynos4 based SoCs: "fimg2d" and
-> -                   "sclk_fimg2d"
-> -                 - for Exynos5250 SoC: "fimg2d".
+> -                "atmel,24c00",
+> -                "atmel,24c01",
+> -                "atmel,24cs01",
+> -                "atmel,24c02",
+> -                "atmel,24cs02",
+> -                "atmel,24mac402",
+> -                "atmel,24mac602",
+> -                "atmel,spd",
+> -                "atmel,24c04",
+> -                "atmel,24cs04",
+> -                "atmel,24c08",
+> -                "atmel,24cs08",
+> -                "atmel,24c16",
+> -                "atmel,24cs16",
+> -                "atmel,24c32",
+> -                "atmel,24cs32",
+> -                "atmel,24c64",
+> -                "atmel,24cs64",
+> -                "atmel,24c128",
+> -                "atmel,24c256",
+> -                "atmel,24c512",
+> -                "atmel,24c1024",
+> -                "atmel,24c2048",
+> -
+> -                If <manufacturer> is not "atmel", then a fallback must b=
+e used
+> -                with the same <model> and "atmel" as manufacturer.
+> -
+> -                Example:
+> -                        compatible =3D "microchip,24c128", "atmel,24c128=
+";
+> -
+> -                Supported manufacturers are:
+> -
+> -                "catalyst",
+> -                "microchip",
+> -                "nxp",
+> -                "ramtron",
+> -                "renesas",
+> -                "rohm",
+> -                "st",
+> -
+> -                Some vendors use different model names for chips which a=
+re just
+> -                variants of the above. Known such exceptions are listed =
+below:
+> -
+> -                "nxp,se97b" - the fallback is "atmel,24c02",
+> -                "renesas,r1ex24002" - the fallback is "atmel,24c02"
+> -                "renesas,r1ex24016" - the fallback is "atmel,24c16"
+> -                "renesas,r1ex24128" - the fallback is "atmel,24c128"
+> -                "rohm,br24t01" - the fallback is "atmel,24c01"
+> -
+> -  - reg: The I2C address of the EEPROM.
+> -
+> -Optional properties:
+> -
+> -  - pagesize: The length of the pagesize for writing. Please consult the
+> -              manual of your device, that value varies a lot. A wrong va=
+lue
+> -              may result in data loss! If not specified, a safety value =
+of
+> -              '1' is used which will be very slow.
+> -
+> -  - read-only: This parameterless property disables writes to the eeprom=
+.
+> -
+> -  - size: Total eeprom size in bytes.
+> -
+> -  - no-read-rollover: This parameterless property indicates that the
+> -                      multi-address eeprom does not automatically roll o=
+ver
+> -                      reads to the next slave address. Please consult th=
+e
+> -                      manual of your device.
+> -
+> -  - wp-gpios: GPIO to which the write-protect pin of the chip is connect=
+ed.
+> -
+> -  - address-width: number of address bits (one of 8, 16).
+> -
+> -  - num-addresses: total number of i2c slave addresses this device takes
 > -
 > -Example:
-> -       g2d@12800000 {
-> -               compatible = "samsung,s5pv210-g2d";
-> -               reg = <0x12800000 0x1000>;
-> -               interrupts = <0 89 0>;
-> -               clocks = <&clock 177>, <&clock 277>;
-> -               clock-names = "sclk_fimg2d", "fimg2d";
-> -       };
-> diff --git a/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml b/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
+> -
+> -eeprom@52 {
+> -       compatible =3D "atmel,24c32";
+> -       reg =3D <0x52>;
+> -       pagesize =3D <32>;
+> -       wp-gpios =3D <&gpio1 3 0>;
+> -       num-addresses =3D <8>;
+> -};
+> +This file has been moved to at24.yaml.
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documen=
+tation/devicetree/bindings/eeprom/at24.yaml
 > new file mode 100644
-> index 000000000000..e7daae862578
+> index 000000000000..036068335a4b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -0,0 +1,164 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +# Copyright 2019 BayLibre SAS
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/gpu/samsung-g2d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +title: Samsung SoC 2D Graphics Accelerator
+> +title: I2C EEPROMs compatible with Atmel's AT24
 > +
 > +maintainers:
-> +  - Inki Dae <inki.dae@samsung.com>
+> +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> +  required:
+> +    - compatible
 > +
 > +properties:
+> +  $nodename:
+> +    pattern: "^eeprom@[0-9a-f]{1,2}$"
 > +  compatible:
-> +    enum:
-> +      - samsung,s5pv210-g2d    # in S5PV210 & Exynos4210 SoC
-> +      - samsung,exynos4212-g2d # in Exynos4x12 SoCs
-> +      - samsung,exynos5250-g2d
+> +    oneOf:
+> +      - allOf:
+> +          - minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas=
+|rohm|st),(24(c|cs|mac)[0-9]+|spd)$"
+> +              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> +          - oneOf:
+> +              - items:
+> +                  pattern: c00$
+> +              - items:
+> +                  pattern: c01$
+> +              - items:
+> +                  pattern: c02$
+> +              - items:
+> +                  pattern: c04$
+> +              - items:
+> +                  pattern: c08$
+> +              - items:
+> +                  pattern: c16$
+> +              - items:
+> +                  pattern: cs16$
+> +              - items:
+> +                  pattern: c32$
+> +              - items:
+> +                  pattern: cs32$
+> +              - items:
+> +                  pattern: c64$
+> +              - items:
+> +                  pattern: cs64$
+> +              - items:
+> +                  pattern: c128$
+> +              - items:
+> +                  pattern: cs128$
+> +              - items:
+> +                  pattern: c256$
+> +              - items:
+> +                  pattern: cs256$
+> +              - items:
+> +                  pattern: c512$
+> +              - items:
+> +                  pattern: cs512$
+> +              - items:
+> +                  pattern: c1024$
+> +              - items:
+> +                  pattern: cs1024$
+> +              - items:
+> +                  pattern: c2048$
+> +              - items:
+> +                  pattern: cs2048$
+> +              - items:
+> +                  pattern: spd$
+> +      - items:
+> +          - const: rohm,br24t01
+> +          - const: atmel,24c01
+> +      - items:
+> +          - const: nxp,se97b
+> +          - const: atmel,24c02
+> +      - items:
+> +          - const: renesas,r1ex24002
+> +          - const: atmel,24c02
+> +      - items:
+> +          - const: renesas,r1ex24016
+> +          - const: atmel,24c16
+> +      - items:
+> +          - const: renesas,r1ex24128
+> +          - const: atmel,24c128
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
+> +  pagesize:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The length of the pagesize for writing. Please consult the
+> +      manual of your device, that value varies a lot. A wrong value
+> +      may result in data loss! If not specified, a safety value of
+> +      '1' is used which will be very slow.
+> +    enum: [ 1, 8, 16, 32, 64, 128, 258 ]
+> +    default: 1
+> +
+> +  read-only:
+> +    $ref: /schemas/types.yaml#definitions/flag
+> +    description:
+> +      This parameterless property disables writes to the eeprom.
+> +
+> +  size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Total eeprom size in bytes.
+> +
+> +  no-read-rollover:
+> +    $ref: /schemas/types.yaml#definitions/flag
+> +    description:
+> +      This parameterless property indicates that the multi-address
+> +      eeprom does not automatically roll over reads to the next slave
+> +      address. Please consult the manual of your device.
+> +
+> +  wp-gpios:
+> +    description:
+> +      GPIO to which the write-protect pin of the chip is connected.
 > +    maxItems: 1
 > +
-> +  clocks: {}
-> +  clock-names: {}
-> +  iommus: {}
-> +  power-domains: {}
+> +  address-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Number of address bits (one of 8, 16).
+> +    default: 8
+> +    enum: [ 8, 16 ]
 > +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: samsung,exynos5250-g2d
-> +
-> +then:
-> +  properties:
-> +    clocks:
-> +      items:
-> +        - description: fimg2d clock
-> +    clock-names:
-> +      items:
-> +        - const: fimg2d
-> +
-> +else:
-> +  properties:
-> +    clocks:
-> +      items:
-> +        - description: sclk_fimg2d clock
-> +        - description: fimg2d clock
-> +    clock-names:
-> +      items:
-> +        - const: sclk_fimg2d
-> +        - const: fimg2d
+> +  num-addresses:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Total number of i2c slave addresses this device takes.
+> +    default: 1
+> +    minimum: 1
+> +    maximum: 8
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    g2d@12800000 {
-> +        compatible = "samsung,s5pv210-g2d";
-> +        reg = <0x12800000 0x1000>;
-> +        interrupts = <0 89 0>;
-> +        clocks = <&clock 177>, <&clock 277>;
-> +        clock-names = "sclk_fimg2d", "fimg2d";
-> +    };
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
 > +
+> +      eeprom@52 {
+> +          compatible =3D "microchip,24c32", "atmel,24c32";
+> +          reg =3D <0x52>;
+> +          pagesize =3D <32>;
+> +          wp-gpios =3D <&gpio1 3 0>;
+> +          num-addresses =3D <8>;
+> +      };
+> +    };
 > +...
-
-The same trailing lines. I mentioned this already about scaler
-bindings. Please fix all your patches at once for the same commented
-issue.
-
-With this fixup:
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a50e97a63bc8..a65e6bcd957b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2687,7 +2687,7 @@ M:        Bartosz Golaszewski <bgolaszewski@baylibr=
+e.com>
+>  L:     linux-i2c@vger.kernel.org
+>  T:     git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+>  S:     Maintained
+> -F:     Documentation/devicetree/bindings/eeprom/at24.txt
+> +F:     Documentation/devicetree/bindings/eeprom/at24.yaml
+>  F:     drivers/misc/eeprom/at24.c
+>
+>  ATA OVER ETHERNET (AOE) DRIVER
+> --
+> 2.20.1
+>
