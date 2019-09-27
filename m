@@ -2,84 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B76CAC024D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C8AC0295
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727072AbfI0J1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 05:27:54 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34301 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725890AbfI0J1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 05:27:53 -0400
-Received: by mail-oi1-f194.google.com with SMTP id 83so4659938oii.1;
-        Fri, 27 Sep 2019 02:27:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZuIpLrnmCtbTcNmkaVEbY5RnzH0IidLhv5Un+nLqG40=;
-        b=mxfB3N/WFfH9s083hNl0XX8HIbZ5YYIx+4XHuwFFTNb+SrQQsNXMF20syn2hEIJZBE
-         kWBXCPTttr7vFeXERNXQ0mgQjf5cvg5Mf3fHWilO6z0d4Yil2KpCM+htMvhlXXAt581c
-         8zqhSp4HmRUschpuCvNHqbUzkNuh8bHt5KmUjPPk8t/l9QxGb7bLWqtBIZIPtBkkVsj5
-         /x5Tj4zm/kV+nIBTU7u3aQrl5ntkvqG7Ng3GlFixDcJXTIGQv3bGYV/dnfONKRZw96xD
-         JSovrFmFWkg8vr45yMQPgT2b0DgA2p21FoAtUXWCaK2B+nNaQjg4KR04Wme1lamORs/o
-         Hviw==
-X-Gm-Message-State: APjAAAX1Ar7eGHhI4IPLonp9i7mRXt2C2Iis4GY5prv84hEuw+leFbgP
-        tE9rybnFmi289MVGYaaf/HD3uB0aXmh5uQyjEtk=
-X-Google-Smtp-Source: APXvYqyyyy+Ihi6sqWQx+bGhqfv/SISJnOCsEM+Y5KRi52vFflrFO4JElgkqTh/Ae+rRbd5z58NlEhBeEk2bK1GHC4c=
-X-Received: by 2002:aca:cdc7:: with SMTP id d190mr6076791oig.148.1569576472781;
- Fri, 27 Sep 2019 02:27:52 -0700 (PDT)
+        id S1726133AbfI0Jpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 05:45:31 -0400
+Received: from mga04.intel.com ([192.55.52.120]:38969 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725882AbfI0Jpb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 05:45:31 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Sep 2019 02:45:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,555,1559545200"; 
+   d="scan'208";a="273756190"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga001.jf.intel.com with ESMTP; 27 Sep 2019 02:45:26 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1iDmoX-0004S0-1P; Fri, 27 Sep 2019 12:45:25 +0300
+Date:   Fri, 27 Sep 2019 12:45:25 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [PATCH] media: ov5695: Add suport for registering sensor-related
+Message-ID: <20190927094525.GP32742@smile.fi.intel.com>
+References: <20190927071824.18675-1-dongchun.zhu@mediatek.com>
 MIME-Version: 1.0
-References: <20190927002455.13169-1-robh@kernel.org> <20190927002455.13169-9-robh@kernel.org>
-In-Reply-To: <20190927002455.13169-9-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 27 Sep 2019 11:27:41 +0200
-Message-ID: <CAMuHMdVOJt9b4FQpKOytgA-GV3PUECZ7-GkwR=ma8w8P9RKJww@mail.gmail.com>
-Subject: Re: [PATCH 08/11] of: Factor out #{addr,size}-cells parsing
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190927071824.18675-1-dongchun.zhu@mediatek.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 2:25 AM Rob Herring <robh@kernel.org> wrote:
-> From: Robin Murphy <robin.murphy@arm.com>
->
-> In some cases such as PCI host controllers, we may have a "parent bus"
-> which is an OF leaf node, but still need to correctly parse ranges from
-> the point of view of that bus. For that, factor out variants of the
-> "#addr-cells" and "#size-cells" parsers which do not assume they have a
-> device node and thus immediately traverse upwards before reading the
-> relevant property.
->
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> [robh: don't make of_bus_n_{addr,size}_cells() public]
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Fri, Sep 27, 2019 at 03:18:23PM +0800, Dongchun Zhu wrote:
+> Hello,
+> 
+> This series modifies the interface of async register V4L2 sub-device invoked in probe function for OV5695 CMOS sensor.
+> The Omnivision OV5695 image sensor would be used in camera features on CrOS application.
+> 5.0 Mega Pixel MIPI Camera Mdoule also supports auto-focus control (AFC) with embedded AF VCM Driver.
+> 
+> Here we use v4l2_async_register_subdev_sensor_common() instead of v4l2_async_register_subdev()
+> to register a sensor sub-device to the asynchronous sub-device framework and parse set up
+> common sensor-related devices, such as actuator.
+> 
+> This function is just like v4l2_async_register_subdev() with the exception that calling it will also parse
+> firmware interfaces for remote references using v4l2_async_notifier_parse_fwnode_sensor_common()
+> and registers the async sub-devices.
+> 
+> After applying this change, we can see the VCM move when changing the scene.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+When you derive Cc list, set some threshold to the get_maintainer.pl, like
 
-Gr{oetje,eeting}s,
-
-                        Geert
+	scripts/get_maintainer.pl --git --git-min-percent=67
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With Best Regards,
+Andy Shevchenko
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
