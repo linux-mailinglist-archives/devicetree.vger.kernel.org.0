@@ -2,122 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8928AC068B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 15:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F37FC068C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 15:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727252AbfI0Nlr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 27 Sep 2019 09:41:47 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41682 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727099AbfI0Nlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 09:41:47 -0400
-Received: by mail-ot1-f66.google.com with SMTP id g13so2243633otp.8;
-        Fri, 27 Sep 2019 06:41:47 -0700 (PDT)
+        id S1727099AbfI0NmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 09:42:23 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:37931 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725992AbfI0NmX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 09:42:23 -0400
+Received: by mail-oi1-f193.google.com with SMTP id m16so5232263oic.5;
+        Fri, 27 Sep 2019 06:42:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=LNcd66l0DhA8RbJOj9WLHJH7KZerxN8Krx87SIjEovQ=;
-        b=ny+NbaWgIfSZ92p8PMUn0tNyHZ80znOcEazU3gGwWwtDHKAcy5fIAwlASO8TWTvkJD
-         GGzEG/7F2HcM1rNLsJUx75A0BJmlCRAyvWL7TH2oY6agl3dvB88uaRKbwC6C3xzzgRdX
-         WMYCvhWXiOfF1bP8qnx/G25FEz7+ixw+dFRRl3vuyIbTC1HNZ+CJX2SUqXYkJFRnTeqO
-         WsHf9E0A5mICLZV5kFTUvM9BMImATNcM+9K5rNj16rSGdkbpFCPtoh7nLtSh4j74e6aL
-         2mGLuCJnWv8MyP6wuGZ45cbp5RnjB9tHxLqG5bDQR/Gtybh2wKzVBVnXi2+941H0KXBg
-         4j1g==
-X-Gm-Message-State: APjAAAWqOvIcovu8VTlWS7qvZfiiDuhZK/3jPI7Uf8I8fAc8GmKJKzT9
-        TlbC9BdHkYBgUd6+b5MWt2cWFpMJQcHAR1zBVkc=
-X-Google-Smtp-Source: APXvYqxsbmx3j6UeKMQXnquv2p6Me+AfkxmG3TFM3eFVy/9sMzEN1KPWC0xS3XWWpAIMOgoM3OncjKF8s5uXoVg4zrA=
-X-Received: by 2002:a9d:730d:: with SMTP id e13mr2316412otk.145.1569591706762;
- Fri, 27 Sep 2019 06:41:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6A8+XK4hH5QQ+56YfWFGj8rbwtwJGUbVuhTbqELL8Ac=;
+        b=mDErom3TzVVFHGHjHsbVJYbYPffVXUHK+e63H5SsWqYeMv/Szo+725EyiP8rJD3A2m
+         Hx5S77vMsuUut02z1GObiOQA6fXrVnn4/C5fzg8tLt11UE2WHXxT03s+G5dBMC0zeZyW
+         2nSU+Dy+yRVGk9etOAjOgIcQPDuwzb0bfjTKTLEbXw8GNKBIFCnL+ir7otM5wAakbqZc
+         RlA13qTZVVb0Ti+9yU9HN1EacMCnnz+LdmrufvCugeyF7xmJqoLmUVfjUUMS5fPhup76
+         RRge/vF49Up2P576ecMGifqZf7Pv3IDyPvu2obatHvvoRW+kSpbs075COmkXfFfbjtA8
+         I03A==
+X-Gm-Message-State: APjAAAWSDMB4ROgNiqC10VIf7eSXtfldLuuKdVTRzOeGCM+k8+RWKXWV
+        RXOTvSls96heFezqcrguHOr0YAw=
+X-Google-Smtp-Source: APXvYqy/DmKJirBgPut/1N5QoQ0+HlN+0IYb/OAJrg6t1IOktijl5IneIPBHcaF+u2k6jCtYAEAEUA==
+X-Received: by 2002:a05:6808:7cd:: with SMTP id f13mr7224509oij.6.1569591741778;
+        Fri, 27 Sep 2019 06:42:21 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id 38sm970941otw.28.2019.09.27.06.42.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 06:42:21 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Peter Rosin <peda@axentia.se>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+Subject: [PATCH v4] dt-bindings: at24: convert the binding document to yaml
+Date:   Fri, 27 Sep 2019 08:42:20 -0500
+Message-Id: <20190927134220.8734-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1568725530-55241-1-git-send-email-biju.das@bp.renesas.com>
- <1568725530-55241-5-git-send-email-biju.das@bp.renesas.com>
- <CAMuHMdVNfurC1MATNePq8Veefyxgc_HPz4wYA++h_+7145UPHA@mail.gmail.com> <OSBPR01MB2103CA9A60AE9366BC593944B8810@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSBPR01MB2103CA9A60AE9366BC593944B8810@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 27 Sep 2019 15:41:35 +0200
-Message-ID: <CAMuHMdWLpNn+8rh8Fb2-tQC_g9ThdAGxv4Js6muhPMr1BXR8Zg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: Add HiHope RZ/G2N main board support
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-On Fri, Sep 27, 2019 at 2:56 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH 4/4] arm64: dts: renesas: Add HiHope RZ/G2N main
-> > board support
-> > On Tue, Sep 17, 2019 at 3:12 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > > Basic support for the HiHope RZ/G2N main board:
-> > >   - Memory,
-> > >   - Main crystal,
-> > >   - Serial console
-> > >
-> > > Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > One question below...
-> >
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
-> > > @@ -0,0 +1,26 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Device Tree Source for the HiHope RZ/G2N main board
-> > > + *
-> > > + * Copyright (C) 2019 Renesas Electronics Corp.
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +#include "r8a774b1.dtsi"
-> > > +#include "hihope-common.dtsi"
-> > > +
-> > > +/ {
-> > > +       model = "HopeRun HiHope RZ/G2N main board based on r8a774b1";
-> > > +       compatible = "hoperun,hihope-rzg2n", "renesas,r8a774b1";
-> > > +
-> > > +       memory@48000000 {
-> > > +               device_type = "memory";
-> > > +               /* first 128MB is reserved for secure area. */
-> > > +               reg = <0x0 0x48000000 0x0 0x78000000>;
-> > > +       };
-> > > +
-> > > +       memory@480000000 {
-> > > +               device_type = "memory";
-> > > +               reg = <0x4 0x80000000 0x0 0x80000000>;
-> > > +       };
-> > > +};
-> >
-> > So both the HiHope RZ/G2M and RZ/G2N boards have 4 GiB of RAM, while
-> > the latter has a narrower memory bus, so it must be wired differently?
->
-> RZ/G2M is LPDDR4-3200 with 32 bits × 2 channels,  where as RZ/G2N is LPDDR4-3200 with 32 bits × 1 channel.
-> RZ/G2M can have split mapping where as RZ/G2N can have only linear mapping.
+Convert the binding document for at24 EEPROMs from txt to yaml. The
+compatible property uses a regex pattern to address all the possible
+combinations of "vendor,model" strings.
 
-Thanks for the confirmation, will queue in renesas-devel for v5.5.
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+[robh: rework compatible schema, fix missing allOf for $ref, fix errors in example]
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v4:
+- Add a $nodename definition
 
-Gr{oetje,eeting}s,
+- Turns out the compatible schema is too complex for generating a 'select'
+schema and only a small subset where getting validated. So we need a
+custom 'select' schema. This in turn fixes the issue with the nxp,se97b
+binding.
 
-                        Geert
+Now we get a different set of errors checking Arm dts files (omitting
+a bunch of node name ones):
 
+arch/arm/boot/dts/at91-dvk_som60.dt.yaml: eeprom@57: compatible: ['giantec,gt24c32a', 'atmel,24c32'] is not valid under any of the given schemas
+arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs01@5f: compatible: ['atmel,24cs01'] is not valid under any of the given schemas
+arch/arm/boot/dts/am3874-iceboard.dt.yaml: at24cs08@5c: compatible: ['atmel,24cs08'] is not valid under any of the given schemas
+
+These all look to be real.
+---
+ .../devicetree/bindings/eeprom/at24.txt       |  90 +---------
+ .../devicetree/bindings/eeprom/at24.yaml      | 164 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 166 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
+
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Documentation/devicetree/bindings/eeprom/at24.txt
+index 22aead844d0f..c94acbb8cb0c 100644
+--- a/Documentation/devicetree/bindings/eeprom/at24.txt
++++ b/Documentation/devicetree/bindings/eeprom/at24.txt
+@@ -1,89 +1 @@
+-EEPROMs (I2C)
+-
+-Required properties:
+-
+-  - compatible: Must be a "<manufacturer>,<model>" pair. The following <model>
+-                values are supported (assuming "atmel" as manufacturer):
+-
+-                "atmel,24c00",
+-                "atmel,24c01",
+-                "atmel,24cs01",
+-                "atmel,24c02",
+-                "atmel,24cs02",
+-                "atmel,24mac402",
+-                "atmel,24mac602",
+-                "atmel,spd",
+-                "atmel,24c04",
+-                "atmel,24cs04",
+-                "atmel,24c08",
+-                "atmel,24cs08",
+-                "atmel,24c16",
+-                "atmel,24cs16",
+-                "atmel,24c32",
+-                "atmel,24cs32",
+-                "atmel,24c64",
+-                "atmel,24cs64",
+-                "atmel,24c128",
+-                "atmel,24c256",
+-                "atmel,24c512",
+-                "atmel,24c1024",
+-                "atmel,24c2048",
+-
+-                If <manufacturer> is not "atmel", then a fallback must be used
+-                with the same <model> and "atmel" as manufacturer.
+-
+-                Example:
+-                        compatible = "microchip,24c128", "atmel,24c128";
+-
+-                Supported manufacturers are:
+-
+-                "catalyst",
+-                "microchip",
+-                "nxp",
+-                "ramtron",
+-                "renesas",
+-                "rohm",
+-                "st",
+-
+-                Some vendors use different model names for chips which are just
+-                variants of the above. Known such exceptions are listed below:
+-
+-                "nxp,se97b" - the fallback is "atmel,24c02",
+-                "renesas,r1ex24002" - the fallback is "atmel,24c02"
+-                "renesas,r1ex24016" - the fallback is "atmel,24c16"
+-                "renesas,r1ex24128" - the fallback is "atmel,24c128"
+-                "rohm,br24t01" - the fallback is "atmel,24c01"
+-
+-  - reg: The I2C address of the EEPROM.
+-
+-Optional properties:
+-
+-  - pagesize: The length of the pagesize for writing. Please consult the
+-              manual of your device, that value varies a lot. A wrong value
+-              may result in data loss! If not specified, a safety value of
+-              '1' is used which will be very slow.
+-
+-  - read-only: This parameterless property disables writes to the eeprom.
+-
+-  - size: Total eeprom size in bytes.
+-
+-  - no-read-rollover: This parameterless property indicates that the
+-                      multi-address eeprom does not automatically roll over
+-                      reads to the next slave address. Please consult the
+-                      manual of your device.
+-
+-  - wp-gpios: GPIO to which the write-protect pin of the chip is connected.
+-
+-  - address-width: number of address bits (one of 8, 16).
+-
+-  - num-addresses: total number of i2c slave addresses this device takes
+-
+-Example:
+-
+-eeprom@52 {
+-	compatible = "atmel,24c32";
+-	reg = <0x52>;
+-	pagesize = <32>;
+-	wp-gpios = <&gpio1 3 0>;
+-	num-addresses = <8>;
+-};
++This file has been moved to at24.yaml.
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+new file mode 100644
+index 000000000000..036068335a4b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+@@ -0,0 +1,164 @@
++# SPDX-License-Identifier: GPL-2.0-only
++# Copyright 2019 BayLibre SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: I2C EEPROMs compatible with Atmel's AT24
++
++maintainers:
++  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
++
++select:
++  properties:
++    compatible:
++      contains:
++        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
++  required:
++    - compatible
++
++properties:
++  $nodename:
++    pattern: "^eeprom@[0-9a-f]{1,2}$"
++  compatible:
++    oneOf:
++      - allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|mac)[0-9]+|spd)$"
++              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
++          - oneOf:
++              - items:
++                  pattern: c00$
++              - items:
++                  pattern: c01$
++              - items:
++                  pattern: c02$
++              - items:
++                  pattern: c04$
++              - items:
++                  pattern: c08$
++              - items:
++                  pattern: c16$
++              - items:
++                  pattern: cs16$
++              - items:
++                  pattern: c32$
++              - items:
++                  pattern: cs32$
++              - items:
++                  pattern: c64$
++              - items:
++                  pattern: cs64$
++              - items:
++                  pattern: c128$
++              - items:
++                  pattern: cs128$
++              - items:
++                  pattern: c256$
++              - items:
++                  pattern: cs256$
++              - items:
++                  pattern: c512$
++              - items:
++                  pattern: cs512$
++              - items:
++                  pattern: c1024$
++              - items:
++                  pattern: cs1024$
++              - items:
++                  pattern: c2048$
++              - items:
++                  pattern: cs2048$
++              - items:
++                  pattern: spd$
++      - items:
++          - const: rohm,br24t01
++          - const: atmel,24c01
++      - items:
++          - const: nxp,se97b
++          - const: atmel,24c02
++      - items:
++          - const: renesas,r1ex24002
++          - const: atmel,24c02
++      - items:
++          - const: renesas,r1ex24016
++          - const: atmel,24c16
++      - items:
++          - const: renesas,r1ex24128
++          - const: atmel,24c128
++
++  reg:
++    maxItems: 1
++
++  pagesize:
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The length of the pagesize for writing. Please consult the
++      manual of your device, that value varies a lot. A wrong value
++      may result in data loss! If not specified, a safety value of
++      '1' is used which will be very slow.
++    enum: [ 1, 8, 16, 32, 64, 128, 258 ]
++    default: 1
++
++  read-only:
++    $ref: /schemas/types.yaml#definitions/flag
++    description:
++      This parameterless property disables writes to the eeprom.
++
++  size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Total eeprom size in bytes.
++
++  no-read-rollover:
++    $ref: /schemas/types.yaml#definitions/flag
++    description:
++      This parameterless property indicates that the multi-address
++      eeprom does not automatically roll over reads to the next slave
++      address. Please consult the manual of your device.
++
++  wp-gpios:
++    description:
++      GPIO to which the write-protect pin of the chip is connected.
++    maxItems: 1
++
++  address-width:
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Number of address bits (one of 8, 16).
++    default: 8
++    enum: [ 8, 16 ]
++
++  num-addresses:
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Total number of i2c slave addresses this device takes.
++    default: 1
++    minimum: 1
++    maximum: 8
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      eeprom@52 {
++          compatible = "microchip,24c32", "atmel,24c32";
++          reg = <0x52>;
++          pagesize = <32>;
++          wp-gpios = <&gpio1 3 0>;
++          num-addresses = <8>;
++      };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a50e97a63bc8..a65e6bcd957b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2687,7 +2687,7 @@ M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
+ L:	linux-i2c@vger.kernel.org
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/eeprom/at24.txt
++F:	Documentation/devicetree/bindings/eeprom/at24.yaml
+ F:	drivers/misc/eeprom/at24.c
+ 
+ ATA OVER ETHERNET (AOE) DRIVER
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.20.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
