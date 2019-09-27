@@ -2,149 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42331C0B07
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 287A0C0B14
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726294AbfI0S2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:28:48 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39442 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726033AbfI0S2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:28:48 -0400
-Received: by mail-ot1-f66.google.com with SMTP id s22so3073043otr.6;
-        Fri, 27 Sep 2019 11:28:45 -0700 (PDT)
+        id S1727289AbfI0SbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 14:31:10 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36966 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726321AbfI0SbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:31:09 -0400
+Received: by mail-oi1-f193.google.com with SMTP id i16so6030136oie.4;
+        Fri, 27 Sep 2019 11:31:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qZoUc61rWZUABqYiFdYsTRbcGhf3P6ij4WXTBM/dESA=;
-        b=YY2nitP6xI1mEj6h/5J5s1wCE+JriZJQJ+xicQric47hXHGdw15gt5bQq8+bz4nEuY
-         p4pK5X/M3uHb6jSc61NXD/svAKwBYL+IP3Tl3bzyXKov4wPqeOkAm7NxqFIjHMBFFUP0
-         vvMFzIRt1FbeTsS7fg/dOrc1gSQ+l6aZ9yAjm+/ULpt21Aez/JzRHYWlhnrJu4PGMt68
-         mnFdl6kR1cwkoIZvJn1hor5Cg6/3iln0VRj0xNfDqS9uSMOJ5+YjWiABh1euGuJhHCSn
-         k0zHFLzyLraAeQhSa3/CwfMFTINUdVp2HK80U2PYwr3MKjMsPhsAWaFgDgj6H0Hb8ILf
-         wjhQ==
-X-Gm-Message-State: APjAAAUoK21WceFmWuRV9GVTwQDQeak6p0JDi6roPAgt8hrXHbz0reT1
-        qoI5dJiVX6XWhXY+N7SpGA==
-X-Google-Smtp-Source: APXvYqyQPejECmFGd11SGP7Xcg8Htf2DDNyXC9qmFAvQC7yFda9W92oheirhgtI3bl+Vjh4c4JzYUw==
-X-Received: by 2002:a9d:6a59:: with SMTP id h25mr4511188otn.324.1569608925282;
-        Fri, 27 Sep 2019 11:28:45 -0700 (PDT)
+        bh=6Dwlt6dTGHs+BuziwsOZqU0wxeCKDgQXfVKRH/TdFRQ=;
+        b=EELc4+q1M89Og+XVareDgv88cyvFuwhgs8GyMGn5d0lse99qFqUogsdmTp8afKr8VN
+         9tl8yBh+ezHejThi9N83SLIcroDqFwsvvG0UAuxibFvdqybdQtVe+UAiGTA9V7ls0zuW
+         W7Gn55YJ6WHPitMvzg8sYiQq0sdAqygcf8nGfdSxIdZI1H9j7zwcD0M2pDWq2+OgNnOv
+         n88zDVgyxp8HDguGCVz4Wk++rs0YSOMj/sfUNNi4ZvqY/1tycJByUU8tpPhDGGt/ZU42
+         5ed+PiS7aJLWoGt9YME8GA6YgcUBIG02LsvbL/pRYKuzkagrZQjzRYb0ef2HV8b8iuij
+         P1Vg==
+X-Gm-Message-State: APjAAAWG1N/GblYndroO4CSi/G2OKX/8gaGzXAJwbof0Hzm+3Eqb3nOx
+        WSP+Vd9rIS/bG/oIlXlZsg==
+X-Google-Smtp-Source: APXvYqxfTPOjoXw0r3K9xDZ396c+xBKOc4sDJsePcujHV58jUBs+kpOM2YeJOMmqzYt+9QKgSrRfXg==
+X-Received: by 2002:a05:6808:9b6:: with SMTP id e22mr7980788oig.51.1569609068628;
+        Fri, 27 Sep 2019 11:31:08 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w20sm1127648otk.73.2019.09.27.11.28.44
+        by smtp.gmail.com with ESMTPSA id 21sm1806756oin.26.2019.09.27.11.31.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 11:28:44 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 13:28:44 -0500
+        Fri, 27 Sep 2019 11:31:08 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 13:31:07 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Leo Li <leoyang.li@nxp.com>
-Cc:     Biwen Li <biwen.li@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Ran Wang <ran.wang_1@nxp.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [v3,3/3] Documentation: dt: binding: fsl: Add
- 'fsl,ippdexpcr-alt-addr' property
-Message-ID: <20190927182844.GA5203@bogus>
-References: <20190924024548.4356-1-biwen.li@nxp.com>
- <20190924024548.4356-3-biwen.li@nxp.com>
- <AM0PR04MB667690EE76D327D0FC09F7818F840@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <DB7PR04MB449034C4BBAA89685A2130F78F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
- <AM0PR04MB66762594DDFC6E5B00BD103C8F870@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <DB7PR04MB4490FECDC76507AADC35948E8F870@DB7PR04MB4490.eurprd04.prod.outlook.com>
- <AM0PR04MB6676BD24B814C3D1D67CF9F88F870@AM0PR04MB6676.eurprd04.prod.outlook.com>
+To:     Xia Jiang <xia.jiang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tfiga@chromium.org>, srv_heupstream@mediatek.com,
+        Xia Jiang <xia.jiang@mediatek.com>
+Subject: Re: [PATCH v3 1/5] media: dt-bindings: Add jpeg enc device tree node
+ document
+Message-ID: <20190927183107.GA16235@bogus>
+References: <20190924074303.22713-1-xia.jiang@mediatek.com>
+ <20190924074303.22713-2-xia.jiang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM0PR04MB6676BD24B814C3D1D67CF9F88F870@AM0PR04MB6676.eurprd04.prod.outlook.com>
+In-Reply-To: <20190924074303.22713-2-xia.jiang@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 03:34:47AM +0000, Leo Li wrote:
+On Tue, 24 Sep 2019 15:43:00 +0800, Xia Jiang wrote:
+> Add jpeg enc device tree node document.
 > 
+> Signed-off-by: Xia Jiang <xia.jiang@mediatek.com>
+> ---
+> v3: change compatible to SoC specific compatible
 > 
-> > -----Original Message-----
-> > From: Biwen Li
-> > Sent: Tuesday, September 24, 2019 10:30 PM
-> > To: Leo Li <leoyang.li@nxp.com>; shawnguo@kernel.org;
-> > robh+dt@kernel.org; mark.rutland@arm.com; Ran Wang
-> > <ran.wang_1@nxp.com>
-> > Cc: linuxppc-dev@lists.ozlabs.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
-> > Subject: RE: [v3,3/3] Documentation: dt: binding: fsl: Add 'fsl,ippdexpcr-alt-
-> > addr' property
-> > 
-> > > > > >
-> > > > > > The 'fsl,ippdexpcr-alt-addr' property is used to handle an
-> > > > > > errata
-> > > > > > A-008646 on LS1021A
-> > > > > >
-> > > > > > Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> > > > > > ---
-> > > > > > Change in v3:
-> > > > > > 	- rename property name
-> > > > > > 	  fsl,rcpm-scfg -> fsl,ippdexpcr-alt-addr
-> > > > > >
-> > > > > > Change in v2:
-> > > > > > 	- update desc of the property 'fsl,rcpm-scfg'
-> > > > > >
-> > > > > >  Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 14
-> > > > > > ++++++++++++++
-> > > > > >  1 file changed, 14 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > index 5a33619d881d..157dcf6da17c 100644
-> > > > > > --- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > +++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > > > > @@ -34,6 +34,11 @@ Chassis Version		Example Chips
-> > > > > >  Optional properties:
-> > > > > >   - little-endian : RCPM register block is Little Endian. Without it RCPM
-> > > > > >     will be Big Endian (default case).
-> > > > > > + - fsl,ippdexpcr-alt-addr : Must add the property for SoC
-> > > > > > + LS1021A,
-> > > > >
-> > > > > You probably should mention this is related to a hardware issue on
-> > > > > LS1021a and only needed on LS1021a.
-> > > > Okay, got it, thanks, I will add this in v4.
-> > > > >
-> > > > > > +   Must include n + 1 entries (n = #fsl,rcpm-wakeup-cells, such as:
-> > > > > > +   #fsl,rcpm-wakeup-cells equal to 2, then must include 2 + 1 entries).
-> > > > >
-> > > > > #fsl,rcpm-wakeup-cells is the number of IPPDEXPCR registers on an SoC.
-> > > > > However you are defining an offset to scfg registers here.  Why
-> > > > > these two are related?  The length here should actually be related
-> > > > > to the #address-cells of the soc/.  But since this is only needed
-> > > > > for LS1021, you can
-> > > > just make it 3.
-> > > > I need set the value of IPPDEXPCR resgiters from ftm_alarm0 device
-> > > > node(fsl,rcpm-wakeup = <&rcpm 0x0 0x20000000>;
-> > > > 0x0 is a value for IPPDEXPCR0, 0x20000000 is a value for IPPDEXPCR1).
-> > > > But because of the hardware issue on LS1021A, I need store the value
-> > > > of IPPDEXPCR registers to an alt address. So I defining an offset to
-> > > > scfg registers, then RCPM driver get an abosolute address from
-> > > > offset, RCPM driver write the value of IPPDEXPCR registers to these
-> > > > abosolute addresses(backup the value of IPPDEXPCR registers).
-> > >
-> > > I understand what you are trying to do.  The problem is that the new
-> > > fsl,ippdexpcr-alt-addr property contains a phandle and an offset.  The
-> > > size of it shouldn't be related to #fsl,rcpm-wakeup-cells.
-> > You maybe like this: fsl,ippdexpcr-alt-addr = <&scfg 0x51c>;/*
-> > SCFG_SPARECR8 */
+> v2: no changes
+> ---
+>  .../bindings/media/mediatek-jpeg-encoder.txt  | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
 > 
-> No.  The #address-cell for the soc/ is 2, so the offset to scfg 
-> should be 0x0 0x51c.  The total size should be 3, but it shouldn't be 
-> coming from #fsl,rcpm-wakeup-cells like you mentioned in the binding.
 
-Um, no. #address-cells applies to reg and ranges, not some vendor 
-specific property. You can just define how many cells you need if that's 
-fixed. 
-
-However, I suggested doing this another way in the next version of this.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
