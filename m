@@ -2,157 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE4DC0BE2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 21:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E7CC0BEF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 21:08:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725990AbfI0TCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 15:02:49 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:41387 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725980AbfI0TCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 15:02:49 -0400
-Received: by mail-io1-f68.google.com with SMTP id r26so19006021ioh.8;
-        Fri, 27 Sep 2019 12:02:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LO3JdAOU095h41fjVsuAsU+4Z0wmwAMdPedC2Thw3pg=;
-        b=dr01MoRs+YBUsJR2Yajv5Gvk1Uuzl8J/B0xZ7BtPxjvHMRUFzNHi1gn2IjV0wXHCzq
-         capi/qDYXysLutGkSjtANV/oT80eN4t3epMkMyFfb1YeeWmHa9B56XasKfDrBaj/UgsO
-         MRPgpvasw/M/Lmb03EZJA/kFsbdBVMfYO7psdw+1yHdvq6WIeA5iEWS1/Q21rJENUPAU
-         i8sw3SqRACaGNwbNZyxa3PEoYHDcCnP3XqMnzL7dbQwY6dcqx6TULVQxAbxzP5//qpyH
-         xtlvQ6qOQVSLV5vls0hohFudnvizuTxuk2TL5CkaybbkRGoPMAZj8BeQzWgp1aJOcIUM
-         OX6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LO3JdAOU095h41fjVsuAsU+4Z0wmwAMdPedC2Thw3pg=;
-        b=aVcn1pNPXx0wfzpuSZsYc2XbBP7Hx/ghHhuZHe0ia1XOAhOEtNPqgajsLO6Dvu5LfE
-         XPxGfOGXPULB/R9Hz6TuYvI8eRX3zvE1GsbZHt8WOPjzWOLecalb3Dnrb7hzHPgetRfA
-         K127GcwJR9xsR/P3YlVDTamIcn5p+mXESCmM4CuXfxoPPKUwZ3phLbMwIxfJg8U7cu5r
-         XA/gwtzXq+78LD+q2jOprecBvqEwNzQVKQ1aOYZHvQNI1s0iACteFUyatZcRL/cBl/h7
-         OCzEJPd8vohlU+e9sTMmZ+T2yYFJlNLx2vmzRDV4fh9aTDuWVtqH+TbX0f4EJysuEtvr
-         zXNw==
-X-Gm-Message-State: APjAAAVOqfqqT3sdRaPXHV9IMKEFynL91Coz7wkPQS1CNdlp3OcSPmqT
-        LxdLKNivVLlBYNpNkjxj39XIagKoGJPT039rlIk=
-X-Google-Smtp-Source: APXvYqwS6ado5j8H/MS9UQpgoe/UkE+sD6PlTwv5ZTRS/6e5bGEdAPsZ4ex2TIbFU5IYmkfVt2tiTgtyAQ59xYbnLxI=
-X-Received: by 2002:a02:7810:: with SMTP id p16mr9500549jac.55.1569610967624;
- Fri, 27 Sep 2019 12:02:47 -0700 (PDT)
+        id S1725933AbfI0TIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 15:08:20 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:35320 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725790AbfI0TIU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Sep 2019 15:08:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Z3HupTrxEpV8y2g+PdzUzD5fHaCUrAd0hS4kvWJATxo=; b=Qs+eGqNEPBP4N7bSduqg3bDy4U
+        NAxNVgGqiT5NHEoEYwDech1O2TTjjl6vKUEA6u75AMq3oK7Lp6Zrfcw4xFoqAgW8oXjPW7/wSylOf
+        ztk4uYdXzSNNZ8bKkKzhDLukbwBuanb7fZWvl2+ZnLyoc9f7EkS8m0KGva5yczYPIK6E=;
+Received: from p200300ccff0e5f001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0e:5f00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iDvb6-0006GS-GH; Fri, 27 Sep 2019 21:08:09 +0200
+Date:   Fri, 27 Sep 2019 21:08:07 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Subject: Re: [PATCH 1/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20190927210807.26439a94@aktux>
+In-Reply-To: <20190927094721.w26ggnli4f5a64uv@pengutronix.de>
+References: <20190927061423.17278-1-andreas@kemnade.info>
+        <20190927061423.17278-2-andreas@kemnade.info>
+        <20190927094721.w26ggnli4f5a64uv@pengutronix.de>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20190925184239.22330-1-aford173@gmail.com> <20190925184239.22330-2-aford173@gmail.com>
- <20190927185153.GA982@bogus>
-In-Reply-To: <20190927185153.GA982@bogus>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 27 Sep 2019 14:02:35 -0500
-Message-ID: <CAHCN7x+V_-PZjhC_1K1kU+fnQYwWM4br1PTPEBd4Kks=sR5K7g@mail.gmail.com>
-Subject: Re: [PATCH V3 2/3] dt-bindings: Add Logic PD Type 28 display panel
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 1:51 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Sep 25, 2019 at 01:42:37PM -0500, Adam Ford wrote:
-> > This patch adds documentation of device tree bindings for the WVGA panel
-> > Logic PD Type 28 display.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> > V3:  Correct build errors from 'make dt_binding_check'
-> > V2:  Use YAML instead of TXT for binding
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> > new file mode 100644
-> > index 000000000000..74ba650ea7a0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> > @@ -0,0 +1,31 @@
-> > +# SPDX-License-Identifier: (GPL-2.0+ OR X11)
->
-> (GPL-2.0-only OR BSD-2-Clause) please.
->
-> X11 is pretty much never right unless this is copyright X Consortium.
->
+Hi Marco,
 
-I copied the example from
-Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
+On Fri, 27 Sep 2019 11:47:21 +0200
+Marco Felsch <m.felsch@pengutronix.de> wrote:
 
-Is there a better example I can use?  If what I did is wrong, then it
-seems like that board is wrong too.
+> Hi Andreas,
+> 
+> thanks for the patch.
+> 
+thanks for the quick review. Most of your comments are clear.
 
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+[...]
+> > +	wifi_pwrseq: wifi_pwrseq {
+> > +		compatible = "mmc-pwrseq-simple";
+> > +		post-power-on-delay-ms = <20>;
+> > +		reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;  
+> 
+> Can you add a pinctrl-entry here please? The general rule is to mux
+> things where you use it.
+> 
+yes, there are many places in my patch where they are added to some
+parent devices.
+I will fix that.
+[...]
+> > +	leds {
+> > +		compatible = "gpio-leds";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_led>;  
+> 
+> Please move all muxing you made here into this file or add phandles so
+> the dts file need to add only the muxing stuff. This applies to all
+> pinctrl you made here.
+> 
+so you disagree with this pattern:
+in .dtsi
+ some_device {
+   pinctrl-0 = <&pinctrl_some_device>;
+ };
+
+and in .dts (one I sent with this patch series and the tolino/mx6sl one
+is not ready-cooked yet, will be part of a later series)
+&iomuxc {
+   pinctrl_some_device: some_devicegrp {
+   	fsl,pins = <...>;
+   };
+};
+
+?
+
 > > +
-> > +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
+> > +		GLED {
+> > +			gpios = <&gpio5 7 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "timer";
+> > +		};
+> > +	};
 > > +
-> > +maintainers:
-> > +  - Adam Ford <aford173@gmail.com>
-> > +
->
-> You need:
->
-> allOf:
->   - $ref: panel-common.yaml#
->
-> > +properties:
-> > +  compatible:
-> > +    const: logicpd,type28
-> > +
->
-> > +  power-supply:
-> > +    description: Regulator to provide the supply voltage
-> > +    maxItems: 1
-> > +
-> > +  enable-gpios:
-> > +    description: GPIO pin to enable or disable the panel
-> > +    maxItems: 1
-> > +
-> > +  backlight:
-> > +    description: Backlight used by the panel
-> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
->
-> These 3 are all defined in the common schema, so you just need 'true'
-> for the value to indicate they apply to this panel and to make
-> 'additionalProperties: false' happy.
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> > +		power {
+> > +			label = "Power";
+> > +			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_POWER>;  
+> 
+> Add missing header: dt-bindings/input/input.h to use this.
+> 
+I am doing this in the .dts but it is probably better to do it here
+because it is used here.
 
-Sorry for my ignorance, but I am not familiar with the syntax here,
-nor do I understand what is required.  Since there aren't many display
-panels with yaml docs, I don't know what is expected and clearly the
-one I used as a template didn't do it right either.
+> > +			gpio-key,wakeup;
+> > +		};
+> > +		cover {
+> > +			label = "Cover";
+> > +			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <SW_LID>;
+> > +			linux,input-type = <0x05>;    /* EV_SW */  
+> 
+> In the header above EV_SW is also specified so please use it here.
+> 
+This pattern is in many files. I took one as an example. It seems that
+50% of devicetree files have this pattern, the other 50% do have the
+pattern you proposed (which I like more). So probably EV_SW was not
+available in former times?
 
-Is there a branch  where this stuff is located? I am just using the
-latest linux-stable branch.
-
->
+> > +			gpio-key,wakeup;
+> > +		};
+> > +	};
 > > +
-> > +required:
-> > +  - compatible
->
-> Are the rest really optional?
-
-From what I can tell, they are optional.  I am just adding some timing
-info to an already existing driver.  It's not my driver.
-
-
->
+> > +};
 > > +
-> > +additionalProperties: false
-> > --
-> > 2.17.1
-> >
+> > +
+> > +  
+> 
+> Whitespaces
+> 
+> > +&audmux {
+> > +	pinctrl-names = "default";
+> > +	status = "disabled";  
+> 
+> Why you mentioned a pinctrl-names here without the mux? Do we need the
+> status line here? The common case is that such devices are off by
+> default/the base dt.
+> 
+yes, that things can be removed.
+> > +};
+> > +
+> > +&snvs_rtc {
+> > +	status = "disabled";  
+> 
+> Same applies here.
+> 
+
+No, seems to be an exception, it does not have a status = "disabled" in
+imx6sll.dtsi.
+
+> > +};
+> > +
+> > +&i2c1 {
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-names = "default","sleep";
+> > +	pinctrl-0 = <&pinctrl_i2c1 &pinctrl_lm3630a_bl_gpio>;  
+> 
+> The &pinctrl_lm3630a_bl_gpio should be moved into the lm3630a node.
+> 
+> > +	pinctrl-1 = <&pinctrl_i2c1_sleep>;
+> > +	status = "okay";
+> > +
+> > +	lm3630a: lm3630a-i2c@36 {  
+> 
+> please name it backlight@36
+> 
+> > +		reg = <0x36>;
+> > +		status = "ok";  
+> 
+> status lines are always be the last and if it is okay you can drop it
+> because the default is okay.
+> 
+well, I added it because the driver was not loaded but later I found out
+that the real reason is that module aliases were broken and forgot to
+remove that "ok".
+
+Regards,
+Andreas
