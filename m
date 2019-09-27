@@ -2,150 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3906C01C6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97BDFC01CC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 11:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726030AbfI0JHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 05:07:32 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:44044 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725882AbfI0JHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 05:07:32 -0400
-Received: by mail-ot1-f66.google.com with SMTP id 21so1609178otj.11;
-        Fri, 27 Sep 2019 02:07:31 -0700 (PDT)
+        id S1725882AbfI0JJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 05:09:00 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:50357 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725946AbfI0JI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 05:08:59 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 5so5733586wmg.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 02:08:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=D3OzD1hf0H56gcDrQbyUaQfmUYWImUAVbM45JNOexLY=;
+        b=i1noes0UtmrZd/alh2IDqWXcEtnNh/Cq4JZFYWtHORnTgHJwiplImllKMhBLTMl+ZH
+         g5qk08JX76gy/KNeTXTXOQXpwQFrSdN9TM0N8gNEGchdsHaJj2v2FtAnnFuQ1kL2zz1o
+         YTUgfWC04rdBN5c6kqF+xnjVoIGZo6QpwN5NQ0IAtaL8dJgYSh9PZ9ywgLznVkDq8wp0
+         /ByQuIrrOak1yCZ8QPngDkWWav86XPR7+vkx1X32ZwyYiGWhd9SF1g7xKD8clPMmJtuL
+         R4bonXwOwdE/O43jSvXjXDW3FcxwQsH096WrrBjyCVSg7wxAVxzC1zetgqpTl9ZZKd95
+         Klzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MDFyyEdK+vKqU3JXiF1KcbZp6UF/IB17v+0c7RhigIY=;
-        b=ASoqVpCNanrru3NX7t8+tC7KvEu1jyBYmDQQPa/GycKVL6bLTMHlrd2kzxlr9aYGu6
-         8ZrNS+aRVPKwrg/jvOkVg7WS+IRQaxD4trFh2eV1s6rhkhTi6klQHj3PsBHIvhgDjmer
-         VF0IVXcQHmkGg0e0L/tazBidFvo+Yh3cn5UPBW2cHT9cBgba8FVZPWlhTXTPZ9pfjhNy
-         J/7MnILrO84gnjXO/P8Kwy9d0JmHk1azHwOrxpaSJ2oOKMXS9Rlcy2lnhFEN1/vnffTv
-         hRALeH+q2jKW+kwRS5LyyEhg7SPlxBY1hF4/cbam0MjinGKh49EPZu1pvwnDDmMTOY8X
-         RhQQ==
-X-Gm-Message-State: APjAAAXaW1w+UkbYKJSk4+GVeZTYe2YfL+/T8u5NSqR9kHEXy6BEBg1+
-        JPYJI9jxH7fbahO7pRDuUrVkQGBTAJJW8BibxJ8=
-X-Google-Smtp-Source: APXvYqx5dG79Zr5f0GKbd+i6d5GP5zna35OsBqzvA3CjbQgVd+2WcitMS0qBclhvTJJPtI3deczSCwAClZscI+T22fQ=
-X-Received: by 2002:a9d:193:: with SMTP id e19mr2246207ote.107.1569575251321;
- Fri, 27 Sep 2019 02:07:31 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=D3OzD1hf0H56gcDrQbyUaQfmUYWImUAVbM45JNOexLY=;
+        b=m4AbmEdwNhGmlhlWWykZogZ/8D/ciC8kQRLnUfY6+ZEZ9YRGb3WalymJToZio49K9w
+         Ge40L9a2myn0ULBifQQ/Xc2lp1W/8+P9x6315ltltrvoWTFJopays5RaHA8Sinj9tYpj
+         RkdYx4kvAPT73Bo8plXM/mHO4bZRk20YkzH49yytyxNB0Ecd30SDTAXJCRe095P6Cukg
+         6os+upa9SC6yxMncFTwWSm4ttjVJQat0DqH0bAoyuVmqDZpTLEjgJQyVLyqaPSV/hFoK
+         1NpSyPG3prFtd84TpOEHGzi3lU/tBqedLEpccYkWU1hlYAAVVvP8/tk61sFvA+1x0bkF
+         VDGA==
+X-Gm-Message-State: APjAAAWKydqlk2kLym9w2xO8yV49OpeN8iwvXV+faJHB/IYQGNprP4rV
+        nB19ANjuA2KH65wWwXdLajnJgw==
+X-Google-Smtp-Source: APXvYqyLvZvD/UjYpUX7ivAodhd31r3/tNz71w9iOXQroqd+5CfjIXg4vF7pBXTMm+o5v8TMFQsldw==
+X-Received: by 2002:a1c:29c4:: with SMTP id p187mr6773759wmp.28.1569575335838;
+        Fri, 27 Sep 2019 02:08:55 -0700 (PDT)
+Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id o19sm2072963wro.50.2019.09.27.02.08.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 27 Sep 2019 02:08:55 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: g12a: add audio devices resets
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190925093358.15476-1-jbrunet@baylibre.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <9ff3a6f8-13c2-856f-f37b-dd96cb45faad@baylibre.com>
+Date:   Fri, 27 Sep 2019 11:08:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com> <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
-In-Reply-To: <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 27 Sep 2019 11:07:20 +0200
-Message-ID: <CAMuHMdVt3yDiJzkbUGMdkKKd4+CJ0btWuO-J=YZL+pAo99_WXg@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Phil Reid <preid@electromag.com.au>,
-        Enrico Weigelt <info@metux.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190925093358.15476-1-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugeniu,
+On 25/09/2019 11:33, Jerome Brunet wrote:
+> Provide the reset lines coming from the audio clock controller to
+> the audio devices of the g12 family
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12.dtsi | 28 +++++++++++++++++-----
+>  1 file changed, 22 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+> index 0d9df29994f3..3cf74fc96434 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+> @@ -103,7 +103,9 @@
+>  			sound-name-prefix = "TODDR_A";
+>  			interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
+>  			clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
+> -			resets = <&arb AXG_ARB_TODDR_A>;
+> +			resets = <&arb AXG_ARB_TODDR_A>,
+> +				 <&clkc_audio AUD_RESET_TODDR_A>;
+> +			reset-names = "arb", "rst";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -115,7 +117,9 @@
+>  			sound-name-prefix = "TODDR_B";
+>  			interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
+>  			clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
+> -			resets = <&arb AXG_ARB_TODDR_B>;
+> +			resets = <&arb AXG_ARB_TODDR_B>,
+> +				 <&clkc_audio AUD_RESET_TODDR_B>;
+> +			reset-names = "arb", "rst";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -127,7 +131,9 @@
+>  			sound-name-prefix = "TODDR_C";
+>  			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
+>  			clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
+> -			resets = <&arb AXG_ARB_TODDR_C>;
+> +			resets = <&arb AXG_ARB_TODDR_C>,
+> +				 <&clkc_audio AUD_RESET_TODDR_C>;
+> +			reset-names = "arb", "rst";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -139,7 +145,9 @@
+>  			sound-name-prefix = "FRDDR_A";
+>  			interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
+>  			clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
+> -			resets = <&arb AXG_ARB_FRDDR_A>;
+> +			resets = <&arb AXG_ARB_FRDDR_A>,
+> +				 <&clkc_audio AUD_RESET_FRDDR_A>;
+> +			reset-names = "arb", "rst";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -151,7 +159,9 @@
+>  			sound-name-prefix = "FRDDR_B";
+>  			interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
+>  			clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
+> -			resets = <&arb AXG_ARB_FRDDR_B>;
+> +			resets = <&arb AXG_ARB_FRDDR_B>,
+> +				 <&clkc_audio AUD_RESET_FRDDR_B>;
+> +			reset-names = "arb", "rst";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -163,7 +173,9 @@
+>  			sound-name-prefix = "FRDDR_C";
+>  			interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
+>  			clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
+> -			resets = <&arb AXG_ARB_FRDDR_C>;
+> +			resets = <&arb AXG_ARB_FRDDR_C>,
+> +				 <&clkc_audio AUD_RESET_FRDDR_C>;
+> +			reset-names = "arb", "rst";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -249,6 +261,7 @@
+>  			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
+>  				 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
+>  			clock-names = "pclk", "refclk";
+> +			resets = <&clkc_audio AUD_RESET_SPDIFIN>;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -261,6 +274,7 @@
+>  			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
+>  				 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
+>  			clock-names = "pclk", "mclk";
+> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT>;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -318,6 +332,7 @@
+>  			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
+>  				 <&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
+>  			clock-names = "pclk", "mclk";
+> +			resets = <&clkc_audio AUD_RESET_SPDIFOUT_B>;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -326,6 +341,7 @@
+>  			reg = <0x0 0x744 0x0 0x4>;
+>  			#sound-dai-cells = <1>;
+>  			sound-name-prefix = "TOHDMITX";
+> +			resets = <&clkc_audio AUD_RESET_TOHDMITX>;
+>  			status = "disabled";
+>  		};
+>  	};
+> 
 
-On Wed, Sep 25, 2019 at 6:51 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
-> I've additionally Cc-ed Laurent and Stephen, since their fruitful
-> discussion in [1] back in 2014 concluded with a useful documentation
-> update [2] which is precisely related to the interpretation and usage
-> of the polarity flag in GPIO specifiers.
->
-> I've also Cc-ed those people who have participated in reviewing the
-> previous patch iterations (Geert, Phil, Enrico).
->
-> Before leaving this thread in limbo, I would like to attempt clarifying
-> what it actually tried to accomplish, one more time.
->
-> First of all, it stems from the need to implement a specific customer
-> requirement. Whether this requirement is sane or not, that's actually
-> a very important question, but I haven't found much discussion around
-> it the comments posted so far.
->
-> To paraphrase what Harish stated in [3], the customer has a list of GPIO
-> pins which need to be controlled from userspace. Of course, the customer
-> can set the polarity of those pins from userspace, as pointed out by
-> Linus in [4] (thanks!). But, keeping track of GPIO polarity in userspace
-> is seen like a burden. The customer thinks that the right place for this
-> HW-specific detail is in device trees. Do you think this preference
-> is ill-formed?
->
-> If we hog a GPIO pin in DTS (which allows specifying its polarity),
-> userspace no longer has access to that pin. There isn't a way to define
-> GPIO polarity by means of DTS without affecting userspace access
-> (can anybody contradict this statement?).
->
-> Whether it is obvious or not, the main goal of this series is actually
-> to provide the possibility of inverting the default ACTIVE_HIGH polarity
-> for GPIO pin X _via DTS_ while still allowing to operate on that pin
-> _from userspace_. My two questions are then:
->  - I hope it is something sane to desire?
->  - If it is sane, how can this be accomplished, if the functionality
->    implemented by Harish doesn't pass the community review?
->
-> [1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
-> [3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
-> [4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
-
-My standard reply would be: describe the device connected to the GPIO(s)
-in DT.  The GPIO line polarities are specified in the device's "gpios"
-properties.
-
-BTW, can you give an example of what's actually connected to those
-GPIOs?
-Is it a complex device (the GPIO is only a part of it, it's also hanging
-off e.g. an I2C bus)?
-Is it something simple (e.g. an LED ("gpio-leds"), relay, or actuator)?
-
-Next step would be to use the device from Linux.  For that to work, you
-need a dedicated driver (for the complex case), or something generic
-(for the simple case).
-The latter is not unlike e.g. spidev.  Once you have a generic driver,
-you can use "driver_override" in sysfs to bind the generic driver to
-your device.  See e.g. commit 5039563e7c25eccd ("spi: Add
-driver_override SPI device attribute").
-
-Currently we don't have a "generic" driver for GPIOs. We do have the
-GPIO chardev interface, which exports a full gpio_chip.
-It indeed looks like this "gpio-inverter" could be used as a generic
-driver.  But it is limited to GPIOs that are inverted, which rules out
-some use cases.
-
-So what about making it more generic, and dropping the "inverter" from
-its name, and the "inverted" from the "inverted-gpios" property? After
-all the inversion can be specified by the polarity of the GPIO cells in
-the "gpios" property, and the GPIO core will take care of it[*]?
-Which boils down to adding a simple DT interface to my gpio-aggregator
-("[PATCH/RFC v2 0/5] gpio: Add GPIO Aggregator Driver",
- https://lore.kernel.org/lkml/20190911143858.13024-1-geert+renesas@glider.be/).
-And now I have realized[*], we probably no longer need the GPIO
-Forwarder Helper, as there is no need to add inversion on top.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
