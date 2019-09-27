@@ -2,85 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02EA9C0C6D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B14C0C9B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726762AbfI0UKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 16:10:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37586 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725815AbfI0UKx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 16:10:53 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B693321655;
-        Fri, 27 Sep 2019 20:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569615048;
-        bh=b7udfW27kUSAKzBz/klbWlqHmts0w2AZWPzY+ISPsnU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CHnc0vRGRCkhh6nfZRCObkOauHnm908L8O4k82Ewh33NujxymLEmDc2uRZj1FOI+O
-         br/tBVj0/IipUySKwpM0V2oHoaP+UU9KGRbNaeEFxDhY+wRlQSxdmYXYxrA6vSqpt+
-         FtBQtbLt5MFvnEY6w7vnWSi0OAGQ+5DJaO3QnBtk=
-Received: by mail-qk1-f172.google.com with SMTP id p10so2997286qkg.8;
-        Fri, 27 Sep 2019 13:10:48 -0700 (PDT)
-X-Gm-Message-State: APjAAAW96wR6EZ7lMBCYQS93AXAryHqxgQ9COITAdwAeHDJA3CB+GNNG
-        HzMCKemnB62YRZN4Wwj4rYoLscaJy6fgflvbSA==
-X-Google-Smtp-Source: APXvYqxKy/HEii2/OoHYOAb41fJRQion1dSlPGS5FdM1aP8Lr6iCqSO+cRGGzikOzCqBYhvNXRHDJuLbTpEBmBQ5OGI=
-X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr6292676qkb.119.1569615047714;
- Fri, 27 Sep 2019 13:10:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com> <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
-In-Reply-To: <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
+        id S1726698AbfI0UZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 16:25:41 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:43265 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726036AbfI0UZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 16:25:41 -0400
+Received: by mail-ot1-f67.google.com with SMTP id o44so3355732ota.10;
+        Fri, 27 Sep 2019 13:25:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DBr+kyAQD3h7/fDbIxlNBsTTTrh86TRcvJ4J3ndHmVw=;
+        b=ebT2Vw/hbb+UISgzFnqIbSnJad6R0yBe6mMfCEwi5UnOEQil9QaqTTqSWeaKedx1Ss
+         yCLdAHSMeYpHRt/Nm+SR0AA3EyVvBJR/WZSsitPSoOi3WVb1GuwCrScLK5nfIy1ZX2UG
+         nEYs9KWu1SYbf/39j2x+ft5/NX+DYf0HxZrbfyYn0Uyp/gdvxVWkcs4RyK625D/4OqRf
+         U20SVo90fh926YMUXnUnsl7gFYOiJxlpy9VHm4lD7fKFDMrUzM+iCr4v4HM3KK5IhGXM
+         2m4q9DZlyNZpPTowLpzutrmUaF2C6mTcu3NHbTjUT9hDSp//KN59ZSOezsSrmfKoIaYU
+         rSXQ==
+X-Gm-Message-State: APjAAAV9PLOmdQ/mN3e0lHGplEPnucKtT9280jv34uiIZsfcT1s1Ql8Y
+        rvpxow2x+P66qHkuSllhatG9jRA=
+X-Google-Smtp-Source: APXvYqznd9NzbTUbTaK9aZBHJBB3SLh8bEoM8JN+tq6aSN8pFSjK7Qd+cpbLPIWfWclC1JcDFrlD0Q==
+X-Received: by 2002:a9d:2de4:: with SMTP id g91mr4467829otb.57.1569615940792;
+        Fri, 27 Sep 2019 13:25:40 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d95sm1379473otb.25.2019.09.27.13.25.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 13:25:40 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 15:25:39 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 27 Sep 2019 15:10:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL8r-8J_bSaQax3cJkOUL8D7P+6_PcCqaC1k8=zS18moQ@mail.gmail.com>
-Message-ID: <CAL_JsqL8r-8J_bSaQax3cJkOUL8D7P+6_PcCqaC1k8=zS18moQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: meson: add A1 clock controller bindings
-To:     Jian Hu <jian.hu@amlogic.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        devicetree@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     vkoul@kernel.org, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: dmaengine: dma-common: Change
+ dma-channel-mask to uint32-array
+Message-ID: <20190927202539.GA20669@bogus>
+References: <20190926111954.9184-1-peter.ujfalusi@ti.com>
+ <20190926111954.9184-2-peter.ujfalusi@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190926111954.9184-2-peter.ujfalusi@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 6:45 AM Jian Hu <jian.hu@amlogic.com> wrote:
->
-> Add the documentation to support Amlogic A1 clock driver,
-> and add A1 clock controller bindings.
->
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+On Thu, Sep 26, 2019 at 02:19:52PM +0300, Peter Ujfalusi wrote:
+> Make the dma-channel-mask to be usable for controllers with more than 32
+> channels.
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 > ---
->  .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |  65 +++++++++++++
->  include/dt-bindings/clock/a1-clkc.h                | 102 +++++++++++++++++++++
->  2 files changed, 167 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-clkc.h
->
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> new file mode 100644
-> index 0000000..f012eb2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> @@ -0,0 +1,65 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>  Documentation/devicetree/bindings/dma/dma-common.yaml | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml b/Documentation/devicetree/bindings/dma/dma-common.yaml
+> index ed0a49a6f020..4527f20301ff 100644
+> --- a/Documentation/devicetree/bindings/dma/dma-common.yaml
+> +++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
+> @@ -25,11 +25,18 @@ properties:
+>        Used to provide DMA controller specific information.
+>  
+>    dma-channel-mask:
+> -    $ref: /schemas/types.yaml#definitions/uint32
+>      description:
+>        Bitmask of available DMA channels in ascending order that are
+>        not reserved by firmware and are available to the
+>        kernel. i.e. first channel corresponds to LSB.
+> +      The first item in the array is for channels 0-31, the second is for
+> +      channels 32-63, etc.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        items:
+> +          minItems: 1
+> +          # Should be enough
+> +          maxItems: 255
 
-(GPL-2.0-only OR BSD-2-Clause) please.
+'items' has to be a separate sub-schema from $ref to have any effect:
+
+    allOf:
+      - $ref: /schemas/types.yaml#/definitions/uint32-array                                                        
+    items:
+      minItems: 1
+      # Should be enough
+      maxItems: 255
+
+Or (note the added '-'):
+
+    allOf:                                                                                                            
+      - $ref: /schemas/types.yaml#/definitions/uint32-array                                                           
+      - items:                                                                                                            
+          minItems: 1                                                                                                     
+          # Should be enough                                                                                              
+          maxItems: 255                                                                                                   
+
+The first way is my preference.
 
 Rob
