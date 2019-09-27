@@ -2,120 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 23136C0891
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFCDC08B3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727349AbfI0P1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 11:27:49 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:36565 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727366AbfI0P1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:27:48 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 9C71B8054F; Fri, 27 Sep 2019 17:27:31 +0200 (CEST)
-Date:   Fri, 27 Sep 2019 17:27:45 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        tfiga@google.com, Rob Herring <robh+dt@kernel.org>,
-        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
-        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 01/11] dt-bindings: video-interfaces: Document
- 'location' property
-Message-ID: <20190927152745.GA23113@amd>
-References: <20190912201055.13964-1-jacopo@jmondi.org>
- <20190912201055.13964-2-jacopo@jmondi.org>
+        id S1727273AbfI0Phr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:37:47 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55662 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727207AbfI0Phr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:37:47 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RFbeYx051670;
+        Fri, 27 Sep 2019 10:37:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569598661;
+        bh=Lqo9bBRFGck3umPvJYDrWptfCEGsJ4lcKhD97BGvgh4=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=tw1025iq5dUXluSa0qqR4U6Bp2835f/huQP/igQAdoBf7BB9A6bmoqA6aXnTtrg0O
+         Ci6gi14TCsYVDllFYOrN+WaIZG6gl6l46r44G4j7qzkkMdu8wcV2nGcTS4qr+7kJNV
+         EK90yh8PU6/aLkGC+Q3CDLZh1e5gb7RHko52UUCk=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RFbeNn015785;
+        Fri, 27 Sep 2019 10:37:40 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
+ Sep 2019 10:37:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 27 Sep 2019 10:37:40 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RFba8k044922;
+        Fri, 27 Sep 2019 10:37:37 -0500
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
+ dts
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Adam Ford <aford173@gmail.com>
+CC:     Tony Lindgren <tony@atomide.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20190510194229.20628-1-aford173@gmail.com>
+ <af325707-3e42-493d-e858-77878ef06138@ti.com>
+ <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+ <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
+ <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
+ <845055e2-8182-de74-2077-629fdf50ac6c@ti.com>
+ <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
+ <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com>
+ <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
+ <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
+Date:   Fri, 27 Sep 2019 18:37:35 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="+QahgC5+KEYLbs62"
-Content-Disposition: inline
-In-Reply-To: <20190912201055.13964-2-jacopo@jmondi.org>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/09/2019 16:47, Tomi Valkeinen wrote:
+> On 27/09/2019 15:33, Adam Ford wrote:
+> 
+>>> It looks like a bug in omap clock handling.
+>>>
+>>> DSS uses dss1_alwon_fck_3430es2 as fclk. dss1_alwon_fck_3430es2 comes
+>>> from dpll4_ck, and there's a divider after the PLL, dpll4_m4_ck.
+>>>
+>>> When the DSS driver sets dss1_alwon_fck_3430es2 rate to 27000000 or
+>>> 27870967, which can be created with m4 dividers 32 and 31, it looks like
+>>> the divider goes to bypass, or to a very small value. DSS gets a very
+>>> high clock rate and breaks down.
+>>
+>> Is there anything I can do to help troubleshoot this?  I could insert
+>> a hack that checks if we're omap3 and if so make the divider equal to
+>> 4, but that seems like just a hack.
+>> I can run more tests or insert code somewhere if you want.
+> 
+> I think it's up to someone who's knowledgeable in omap clock framework. 
+> I'm kind of hoping that Tero or Tony would be willing to debug =). I can 
+> try to find time to debug the omap clk framework, but I'll be going on 
+> blindly there.
 
---+QahgC5+KEYLbs62
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+If you can provide details about what clock framework / driver does 
+wrong (sample clk_set_xyz call sequence, expected results via 
+clk_get_xyz, and what fails), I can take a look at it. Just reporting 
+arbitrary display driver issues I won't be able to debug at all (I don't 
+have access to any of the displays, nor do I want to waste time 
+debugging them without absolutely no knowledge whatsoever.)
 
-Hi!
-
-> Add the 'location' device property, used to specify a device mounting
-> position. The property is particularly meaningful for mobile devices
-> with a well defined usage orientation.
->=20
-> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> ---
->  .../devicetree/bindings/media/video-interfaces.txt    | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt=
- b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> index f884ada0bffc..e71b90a29d7a 100644
-> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> @@ -89,6 +89,17 @@ Optional properties
->    but a number of degrees counter clockwise. Typical values are 0 and 180
->    (upside down).
->=20
-> +- location: The device, typically an image sensor or a flash LED, mounti=
-ng
-> +  location expressed as a position relative to the usage orientation of =
-the
-> +  system where the device is installed on.
-> +  Possible values are:
-> +  0 - Front. The device is mounted on the front facing side of the syste=
-m For
-> +  mobile devices such as smartphones, tablets and laptops the front side=
- is the
-> +  user facing side.
-
-I don't think this is nearly enough of description. We have phones
-with displays and cameras at both sides, where both sides can be used
-to operate the system.
-
-We have phone with display spanning both sides -- Mi Max.
-
-https://www.idnes.cz/mobil/telefony/xiaomi-mi-mix-alpha-predstaveni.A190924=
-_105858_telefony_oma
-
-We have Galaxy Fold.
-
-https://www.samsung.com/global/galaxy/galaxy-fold/
-
-What is front side when device can be used in different
-configurations?
-
-Could we instead say that it is "main" vs "selfie" camera?
-
-Notebooks usually have just "selfie" camera, tablets often have
-both... DSLRs have just "main" camera.
-
-Best regards,
-
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---+QahgC5+KEYLbs62
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAl2OKnEACgkQMOfwapXb+vKKAgCfYmjlA9n1hExHQbiCr02po1sr
-074AoIYkRdpXlF79DPVHouVBXtp4PSYj
-=c3we
------END PGP SIGNATURE-----
-
---+QahgC5+KEYLbs62--
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
