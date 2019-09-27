@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25089C058A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 124BEC0583
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727647AbfI0MsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 08:48:16 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:51662 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727800AbfI0MsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:48:00 -0400
-Received: by mail-wm1-f65.google.com with SMTP id 7so6470303wme.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 05:48:00 -0700 (PDT)
+        id S1727809AbfI0MsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 08:48:03 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:39152 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727836AbfI0MsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:48:03 -0400
+Received: by mail-wm1-f66.google.com with SMTP id v17so6026950wml.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 05:48:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
         bh=9YGH/6YIzv9K3Mh8Ek1+NGOAz5VU0/WuYChxnvTMt8w=;
-        b=2MT30AjvrRdgpYjxek0G/IQMSjSWVI1gZhCEbSL7a8z99LpxjoKz1byBdebm0V0Yx7
-         FA0cmbSiJhbtvsWoFwWjIaMvzVku1xSb7N3xo+A+QVrnjiiDIcCyFAKdAX1+HyWXuX1o
-         CSODkgR+T0E3hEQylJolYDaocIGgFEd4G1ec8XAfIeURroHViYinZ6un9+pI8amrrHEc
-         0JhP4yjrYbA5fzxHsehOiX7rC1sLN27QhukbAnGj3+I7v+7b8CxeMgMQ2VxdEpLDT+53
-         F/HvxXbZUqn5Ps5iX5XZ2ogNMXCWjGg7bnzEE4XpIeNoHGiBz8wdWa9BUJC2gPNsBh8w
-         63VQ==
+        b=hDxy/YRBspG0UsSQWGlFqgvS2mZSISRc0P+ym8WjN83WN3p6w5of5YxEmAQzevScLO
+         8IDs68ixRtxeAGWv7HYDzCm/wtJDyTOXBsWhowLWClhZTaQ31cT2Jn2WmkFDHCN58fCy
+         lgQhI/+0Jb4llEQUf8ueqYRquLjEFP9fQk9SxnEZwDTzP/xLSgq9iVy/7C4BDHz6Oetf
+         LDpbqM3FTEAMXqLLcZjaXDXUT5Y+HYx/XOnDKSUmtNrjhNkgeVHHXk9MVecBmVmDmH1Z
+         FWsyNWIPIqf3gUUUmvrtXYjaE77OQR1k5Gry9Hk9wt+LK0AdVWJVHDKdWEQQF78eVLC1
+         H5bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
         bh=9YGH/6YIzv9K3Mh8Ek1+NGOAz5VU0/WuYChxnvTMt8w=;
-        b=dfX9SV2CDHp1Sw0tuxnhyWL8jv4Pd9XN6gNOOxmUovF/FWzH5sYGXl0t6cAaxdhQSd
-         zEbgXCamd/Q2IscCBugbRiIKTQd8MVB0jhbzE/fxJx/AXlPQnWeNLz+r4BemLHFpVmju
-         GqCuEv3yCCaWGdzFWrKQYEc6WkvBCMw//KE0hF6xPfbpJabgP15L0q4tBd195QeNPtcS
-         AY3g4AkXwJL+aU8TJ7bN5ZYcYgC+cQCwcmo068kAve+sKj979qmdsP8qVznPi8vVjMvd
-         PFi/utD2p79nU1CllhJYvno3b5HqiEsXjS5aHMhzSMwfrHEVV29PY3LT9FXhDlBm5+ST
-         4V4w==
-X-Gm-Message-State: APjAAAWQnXIlxSq+e1pwgfGhOGMeJZRFb6ZgNBHNonEHEdnJ13v0CYA2
-        aad4KoiSSwP2UCDKQ1Z4/TuBHw==
-X-Google-Smtp-Source: APXvYqyB32Lo5gwVL7exlZj7Lg34x7ZC8LVkdT6keoyyxeepP79kcuKvnTMVRd4tE8GqqjprFc/yyQ==
-X-Received: by 2002:a1c:d142:: with SMTP id i63mr7282512wmg.53.1569588479333;
-        Fri, 27 Sep 2019 05:47:59 -0700 (PDT)
+        b=fT/A2vckOwCXTUTZurS00yMZCTzt+buvEQKoOYj64obCzZthpjKCVKWC6i9X8C1Pzn
+         GdsR1iBlheeWbKeEcK8gVsSBscJSniUIZAadIWeAZEYqbRqpLHvL1HulJVMvHemDOsWh
+         rkRfJ+vfHwgQpFAaLmRrC968xayEmzEB7XRHxeUayD8UVTEsZLAGhFqe/jRc8XNUteiu
+         eBhdIPbaDlVL41m6+A1l1EXzkc7vCWQwBrLokULpfqRj6L7+aym+NTAdr6hngMARquNf
+         n/fOqTMJvLUK0Ag58pCAK7ymEEsyvfVqfzWJrfXIztdEwwjRTzAx6PdNu/zi+Jl1FPin
+         P1YQ==
+X-Gm-Message-State: APjAAAWKbsuDdh4MHCSUqwcTW329MW/GqGCU1Bt8EVER3wBZ6WOW2eZw
+        QVfVVQ+KYGLHqCshqk39bjJCVA==
+X-Google-Smtp-Source: APXvYqyY3lKAG/G3yQXF4Lie9vPhJPBWwgvXUx43AW6KRlI8rPISvgVud1MhXeVCFgb48yCZHCwW8w==
+X-Received: by 2002:a05:600c:2:: with SMTP id g2mr7054051wmc.111.1569588480357;
+        Fri, 27 Sep 2019 05:48:00 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id h9sm2985564wrv.30.2019.09.27.05.47.58
+        by smtp.gmail.com with ESMTPSA id h9sm2985564wrv.30.2019.09.27.05.47.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 05:47:58 -0700 (PDT)
+        Fri, 27 Sep 2019 05:47:59 -0700 (PDT)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
         daniel.lezcano@linaro.org
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH v5 6/7] arm64: dts: amlogic: g12b: add cooling properties
-Date:   Fri, 27 Sep 2019 14:47:48 +0200
-Message-Id: <20190927124750.12467-8-glaroque@baylibre.com>
+Subject: [PATCH v5 6/7] arm64: dts: amlogic: g12b: add missing cooling info
+Date:   Fri, 27 Sep 2019 14:47:49 +0200
+Message-Id: <20190927124750.12467-9-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190927124750.12467-1-glaroque@baylibre.com>
 References: <20190927124750.12467-1-glaroque@baylibre.com>
