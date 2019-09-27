@@ -2,105 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1377BC0CB6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:38:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC2EC0CD2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727093AbfI0Uht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 16:37:49 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:34065 "EHLO
+        id S1725815AbfI0Us4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 16:48:56 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46036 "EHLO
         mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725789AbfI0Uht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 16:37:49 -0400
-Received: by mail-ot1-f68.google.com with SMTP id m19so3420895otp.1;
-        Fri, 27 Sep 2019 13:37:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5HzZ318c3cKkiQZfJLfcgZNuIY2hbgfJtqOlfqrb8Eg=;
-        b=euIPp8WcmzobZ1wRzyPahQI/sNqKCya1H0EszdAiMVqnNHWrXbWc12mwe0puRbaVB0
-         0151jIM2xe6rLQE24hGrMja4GiW7m0AGsUA7VpOYkpO3Dz1IplyVEJzXVopLTansA2kj
-         dUd5RTJXR/bg+JUmORd4LCDPnvfD/cQ8BIHmWzEvTR/Z81ZJv8Qj9giJzJ/A23GF0R/e
-         Q8AfEUSwwwRc70xNTW0JekF0+QlB//kmyTyyrl0AA4N63uiKZXn3GJ0Uj9ULwPcYAKya
-         1RWIxHwbqoNw64BSR64hZF6qHXdHfdz9uxYSKaLuZikq0gITazMFlvtJdqksDH84dhuR
-         ylmw==
+        with ESMTP id S1725789AbfI0Us4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 16:48:56 -0400
+Received: by mail-ot1-f68.google.com with SMTP id 41so3386014oti.12;
+        Fri, 27 Sep 2019 13:48:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5HzZ318c3cKkiQZfJLfcgZNuIY2hbgfJtqOlfqrb8Eg=;
-        b=AjcwDrGOpGzZ+oSi8NQw/62IZtVfKkPKb8HYdCltMJLzNXq5Gd8meMQNlfq60R38Dm
-         /IJ8KkdCnf3Wa2ettQDOwrDDKnwYHjB8b1R1w/6XSlaZbYoVO6na3W/ZwCYmh/hWxD6y
-         +RyFBpQ7Nj6HClEvqiixu2zWIA3wqOgEgp5AHRaELBsT+4FDajSSh//O26kUvhrkZUlr
-         kIxS09AwjClDhm3+7EEGYCc3XCgV1pQ1Rys9CeYaTi8hzAZNjSmI9pB218nztDBQtvsk
-         NAy2xiAAqPSQq4GwblX38OlnkMoyuLlql1Hx8l3myFPXXW8+D9Uah9eqUl2Ash+wS2pI
-         qRRw==
-X-Gm-Message-State: APjAAAWwrUDlUuwTaYBI41ewHcBJZe5bey6LuKLVslmt2QXK+CFQw+EE
-        0NeQ/cXDQyTV0poh1IraJC8p71/kPidetaL6f3g=
-X-Google-Smtp-Source: APXvYqw6PImrq0c1y1VcQ7iuF4Ug5WxhWXn21mZr4P19hYblK8Q/2ovDB7x6QYfZXUtwnN0IJdGrQmVPNubZPTdCDWw=
-X-Received: by 2002:a9d:6a56:: with SMTP id h22mr4865024otn.176.1569616668476;
- Fri, 27 Sep 2019 13:37:48 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bHbuAWRgyfdd0/7I5EKejphIr7Awr7Ufl06cGZr9UWM=;
+        b=Yb14P2FVCzrEpsFJiIKszbjwMIp+FUs8TF+SomX6vu1HZ9mTIwr9RNEg2oLNtOkSRW
+         GYudXChlGNB0VlyoM15UkEHDVmTiHB/8dwVBrccCOmtVPqkA0KtSGJkjixkLtAEjZVh3
+         rt+HvzUZoQEHm0Ed15jNLXWwZStGoCsEwy39qfoLGEtYRmEOcVkYeJbUHcrNoWKuni34
+         VE63EnxIIRtOtikgUKgZGee2SGQsMG1LTNsA9EFWPZezVhJ7aF0NyVbLJZizUfV+OuFu
+         WLQZsnIVbOjQNDWk5/HBdwT588YYygPk21TEwYiN+8w6asdaT1vzTUBtJDrUY8XTZBsm
+         LrEA==
+X-Gm-Message-State: APjAAAVNcAiLJn3ZvC84zsg8fP7Se76wLqRURRnQ0y6zDaaWhDTMrYRO
+        9szaHpGMZU+ap6MX0Ff7SA==
+X-Google-Smtp-Source: APXvYqzPZhS/oOuHCnSCXzdNvjnEYVT4GzMZW0oHF4dRC74KXAwNQ6LWjjs9BHI9deVVAemO9XYlbA==
+X-Received: by 2002:a9d:744e:: with SMTP id p14mr4942965otk.323.1569617335327;
+        Fri, 27 Sep 2019 13:48:55 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o2sm1317553ota.3.2019.09.27.13.48.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 13:48:54 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 15:48:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     vkoul@kernel.org, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: dma: ti-edma: Document
+ dma-channel-mask for EDMA
+Message-ID: <20190927204854.GA20463@bogus>
+References: <20190926111954.9184-1-peter.ujfalusi@ti.com>
+ <20190926111954.9184-3-peter.ujfalusi@ti.com>
 MIME-Version: 1.0
-References: <20190927184722.31989-1-bparrot@ti.com> <20190927184722.31989-6-bparrot@ti.com>
-In-Reply-To: <20190927184722.31989-6-bparrot@ti.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 27 Sep 2019 21:37:22 +0100
-Message-ID: <CA+V-a8ss26F4nEFRDtXytn4ZPi==fMYdoe0JpEunURAYy9J99g@mail.gmail.com>
-Subject: Re: [Patch v4 5/8] media: dt-bindings: ov2659: add
- powerdown/reset-gpios optional property
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190926111954.9184-3-peter.ujfalusi@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 7:47 PM Benoit Parrot <bparrot@ti.com> wrote:
->
-> Add powerdown-gpios and reset-gpios to the list of optional properties
-> for the OV2659 camera sensor.
->
-> Signed-off-by: Benoit Parrot <bparrot@ti.com>
+On Thu, Sep 26, 2019 at 02:19:53PM +0300, Peter Ujfalusi wrote:
+> Similarly to paRAM slots, channels can be used by other cores.
+> 
+> The common dma-channel-mask property can be used for specifying the
+> available channels.
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/ov2659.txt | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-Acked-by: Lad, Prabhakar <prabhakar.csengg@gmail.com>
-
-Cheers,
---Prabhakar Lad
-
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2659.txt b/Documentation/devicetree/bindings/media/i2c/ov2659.txt
-> index cabc7d827dfb..92989a619f29 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ov2659.txt
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov2659.txt
-> @@ -12,6 +12,12 @@ Required Properties:
->  - clock-names: should be "xvclk".
->  - link-frequencies: target pixel clock frequency.
->
-> +Optional Properties:
-> +- powerdown-gpios: reference to the GPIO connected to the pwdn pin, if any.
-> +  Active high with internal pull down resistor.
-> +- reset-gpios: reference to the GPIO connected to the resetb pin, if any.
-> +  Active low with internal pull up resistor.
+>  Documentation/devicetree/bindings/dma/ti-edma.txt | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/ti-edma.txt b/Documentation/devicetree/bindings/dma/ti-edma.txt
+> index 4bbc94d829c8..014187088020 100644
+> --- a/Documentation/devicetree/bindings/dma/ti-edma.txt
+> +++ b/Documentation/devicetree/bindings/dma/ti-edma.txt
+> @@ -42,6 +42,11 @@ Optional properties:
+>  - ti,edma-reserved-slot-ranges: PaRAM slot ranges which should not be used by
+>  		the driver, they are allocated to be used by for example the
+>  		DSP. See example.
+> +- dma-channel-mask: Mask of usable channels.
+> +		Single uint32 for EDMA with 32 channels, array of two uint32 for
+> +		EDMA with 64 channels. See example and
+> +		Documentation/devicetree/bindings/dma/dma-common.yaml
 > +
->  For further reading on port node refer to
->  Documentation/devicetree/bindings/media/video-interfaces.txt.
->
-> @@ -27,6 +33,9 @@ Example:
->                         clocks = <&clk_ov2659 0>;
->                         clock-names = "xvclk";
->
-> +                       powerdown-gpios = <&gpio6 14 GPIO_ACTIVE_HIGH>;
-> +                       reset-gpios = <&gpio6 15 GPIO_ACTIVE_LOW>;
-> +
->                         port {
->                                 ov2659_0: endpoint {
->                                         remote-endpoint = <&vpfe_ep>;
-> --
-> 2.17.1
->
+>  
+>  ------------------------------------------------------------------------------
+>  eDMA3 Transfer Controller
+> @@ -91,6 +96,9 @@ edma: edma@49000000 {
+>  	ti,edma-memcpy-channels = <20 21>;
+>  	/* The following PaRAM slots are reserved: 35-44 and 100-109 */
+>  	ti,edma-reserved-slot-ranges = <35 10>, <100 10>;
+> +	/* The following channels are reserved: 35-44 */
+> +	dma-channel-mask = <0xffffffff>, /* Channel 0-31 */
+> +			   <0xffffe007>; /* Channel 32-63 */
+
+Doesn't matter yet, but you have a mismatch here with the schema. While 
+the <> around each int or not doesn't matter for the dtb, it does for 
+the schema.
+
+dma-channel-mask = <0xffffffff>, <0xffffe007>;
+minItems: 1
+maxItems: 255
+
+dma-channel-mask = <0xffffffff 0xffffe007>;
+items:
+  minItems: 1
+  maxItems: 255
+
+I think the latter case is slightly more logical here as you have 1 
+thing (a mask). If had N of something (like interrupts), then the former 
+makes sense. 
+
+Rob
