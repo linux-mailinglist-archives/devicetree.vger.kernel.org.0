@@ -2,92 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E3E7C0B7B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:44:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6954C0B97
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:45:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728157AbfI0SoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:44:14 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:54591 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728193AbfI0SoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:44:07 -0400
-Received: by mail-wm1-f68.google.com with SMTP id p7so7053196wmp.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 11:44:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=HzQhDkqVyohi8147rI3+BgZwRO47r6m1rOvI8gEcCVQ=;
-        b=yCIRZafej34veAsB/dI9AI4AW98eG0+WviNpnhZzTwYErlctHeC4PdUDkvkDbOpjcS
-         WY0FhlZfG0FijsdvbAFU7ML9GXDyMOYkrXSt4GBu2IO3bIwCw3V4ZXnZLYoJHFWlTtzY
-         Xk5dQrZm+LA4pKZr+XNyfimVY9IVlbAEOw+T+oa8XwEBtFuvBKUvB6cjOEpQ7v57l8Kn
-         lQjKqeuWo4sfcLlN824NR249X2A+YmcYnfKRXEjMIz4x/5SP11aCddGd9LKB0axSwqiJ
-         oaTAGJ0MUxuIyfBrELTkVTQtMys/AZYWzlrh5jhamcx7k1y0Ujq3PMboLb2ZIOdPZZEm
-         RrrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=HzQhDkqVyohi8147rI3+BgZwRO47r6m1rOvI8gEcCVQ=;
-        b=p3sZ7ZohlEAMUrdpC+DumcjSKetROog4sePg6MU35keUvCyW3KNbwDcv/hs/5BCvRp
-         iejCV5Qua9Rabwj524q+O+otkGe3ZwTuPaVJw8ATAKWMPIs83lTSJWUPBZ1ITQ4FT2hy
-         V/m9AiVEXtJvXWbQFLK4PP+/Irr/WjfpHIs3f00aWaXlpAgGBbQLkM/n28PQt3TlwAVM
-         7zHNaCCdF7K2ZCoF4nBo5WN5zUcfvGNRpOAQO75uTVOwo3yZs2FZSBZdm5AZHE6c4gWf
-         +m/d13j8aYIbGAuOghkQQ2NTIEcYX+LoWWx1tYdMnYlgE/ja+XMWC1FENoBX9BTT1RDK
-         u9PA==
-X-Gm-Message-State: APjAAAVDIa2fl+C5kkmTt5Ba8GC+45U+Aqhz1VIdzxp8Y8zh7rHY31nC
-        AThaKTUx2HHG0J3de376c1WPXQ==
-X-Google-Smtp-Source: APXvYqxSi62wIlpGsvXmkF2vMjWdJJWKf6euaYF+PUGFCzIsIJHaJ4eRMDJRAoy+1xk8Rbwsy3vwnQ==
-X-Received: by 2002:a1c:d183:: with SMTP id i125mr8708860wmg.1.1569609843906;
-        Fri, 27 Sep 2019 11:44:03 -0700 (PDT)
-Received: from glaroque-ThinkPad-T480.home ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
-        by smtp.gmail.com with ESMTPSA id r13sm6246272wrn.0.2019.09.27.11.44.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 11:44:03 -0700 (PDT)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH v6 7/7] MAINTAINERS: add entry for Amlogic Thermal driver
-Date:   Fri, 27 Sep 2019 20:43:52 +0200
-Message-Id: <20190927184352.28759-8-glaroque@baylibre.com>
+        id S1728036AbfI0SpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 14:45:17 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48166 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725815AbfI0SpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:45:17 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RIjEVD068668;
+        Fri, 27 Sep 2019 13:45:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569609914;
+        bh=rA7FtL2+Qf+WIRNaxJA48Ma8rhf/5zjYgvZGEIMyaH0=;
+        h=From:To:CC:Subject:Date;
+        b=b/LdKpUHTy01PCJazGkorNpAfgS7uX1Xsnhw9QuX5jOAjMd7kSt6rbFbnJpTbzvIp
+         ab8Jq3cDAc6MaszFJt2zilddSj2bmjyKz0UvEXH1We2qgPIhDJbHghuW11mgDHhHMU
+         JOCc7rreKZpUAPDEFstzdBMhloiR0XeAct9QzWY4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8RIjEvX074913
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 27 Sep 2019 13:45:14 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
+ Sep 2019 13:45:06 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 27 Sep 2019 13:45:14 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RIjEVV122194;
+        Fri, 27 Sep 2019 13:45:14 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch v4 0/8] media: i2c: ov2659: maintenance series
+Date:   Fri, 27 Sep 2019 13:47:14 -0500
+Message-ID: <20190927184722.31989-1-bparrot@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190927184352.28759-1-glaroque@baylibre.com>
-References: <20190927184352.28759-1-glaroque@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for Amlogic Thermal driver.
+This patch series is a collection of patches we have been carrying for a
+while.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+It includes a few sensor register fixes which would cause visual
+artifacts at lower resolution and also at 720p.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 390c3194ee93..bdc30d740342 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15932,6 +15932,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
- F:	drivers/thermal/cpu_cooling.c
- F:	include/linux/cpu_cooling.h
- 
-+THERMAL DRIVER FOR AMLOGIC SOCS
-+M:	Guillaume La Roque <glaroque@baylibre.com>
-+L:	linux-pm@vger.kernel.org
-+L:	linux-amlogic@lists.infradead.org
-+W:	http://linux-meson.com/
-+S:	Supported
-+F:	drivers/thermal/amlogic_thermal.c
-+F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-+
- THINKPAD ACPI EXTRAS DRIVER
- M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
- L:	ibm-acpi-devel@lists.sourceforge.net
+Also on some board the 'powerdown' and /or 'reset' pins are not tied so
+we need to add support for optional gpios to handle these.
+
+Since these camera are removable on some board we also need the driver
+to actually fail when there is no hardware present so the driver is
+actually removed.
+
+Also added a patch to check and propagate errors on s_stream invocation.
+
+Finally, we update the licensing statement to use SPDX licensing.
+
+Changes since v3:
+- Addressed review comment from Sakari about s_ctrl i2c access whne
+  powered off
+
+Changes since v2:
+- Addressed review comment from Sakari
+- Reworked the "media: i2c: ov2659: Add powerdown/reset gpio handling"
+  to use pm_runtime if it is available but not to make it depend on it.
+- Cleaned up the gpio related calls to remove the unnecessary NULL check
+
+Changes since v1:
+- Addressed review comment from Prabhakar
+- Added support for reset-gpios
+- Rework the power setting to use pm_runtime instead of s_power
+  as based on discussion with Sakari it would be the prefered method
+- Added a patch to reduce the number explicit include files to the
+  minimum necessary instead of the previous kitchen sink approach
+
+Benoit Parrot (8):
+  media: i2c: ov2659: Fix for image wrap-around in lower resolution
+  media: i2c: ov2659: Fix sensor detection to actually fail when device
+    is not present
+  media: i2c: ov2659: Cleanup include file list
+  media: i2c: ov2659: fix s_stream return value
+  media: dt-bindings: ov2659: add powerdown/reset-gpios optional
+    property
+  media: i2c: ov2659: Add powerdown/reset gpio handling
+  media: i2c: ov2659: Fix missing 720p register config
+  media: i2c: ov2659: Switch to SPDX Licensing
+
+ .../devicetree/bindings/media/i2c/ov2659.txt  |   9 ++
+ drivers/media/i2c/Kconfig                     |   2 +-
+ drivers/media/i2c/ov2659.c                    | 138 +++++++++++++-----
+ 3 files changed, 112 insertions(+), 37 deletions(-)
+
 -- 
 2.17.1
 
