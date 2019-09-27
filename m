@@ -2,106 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19692C0D23
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 23:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B05C0DDB
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 00:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726321AbfI0VRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 17:17:50 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:33255 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726029AbfI0VRu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 17:17:50 -0400
-Received: by mail-pf1-f195.google.com with SMTP id q10so2265187pfl.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 14:17:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=fIW9bjsbsDCoAYd1MI1Avm6rTaCkSpKz7mkNvIdoEoY=;
-        b=szfWtmIrwjzdD2PBxRD+UIstHqxjUH+lKlGcUD5u7w9UIwAqdA3JEjexN15j684Jso
-         oSGq/FKn5XDtCM98EUy6YSFFH7LFdleH6+KXChQ7KGfthYAF81uR2G2fK6INd5a9skx5
-         WVNlaL8hFy71wm+zVMraWozeALfoyncDIdipIIi96ILYm7fYv46nFQMMCCZCmxzxYbLV
-         Hac9mUBdnTlL3jd5Z3oz7xAZ4yq4KKCzQEGwLrsw0X2vALxYc7vCThZoGLIHt8bXMlTf
-         yB47vUOkmx0u/c4P7bf6EwZMOytfC9pnNd3AGjHueE2XYuGoReQwYmG9xwgddx1G6igs
-         K5pQ==
+        id S1726175AbfI0WPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 18:15:54 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:42151 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725990AbfI0WPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 18:15:54 -0400
+Received: by mail-ot1-f68.google.com with SMTP id c10so3577966otd.9;
+        Fri, 27 Sep 2019 15:15:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=fIW9bjsbsDCoAYd1MI1Avm6rTaCkSpKz7mkNvIdoEoY=;
-        b=sZj8iLPDuKtEpO85wi7OzzrCTFjE2cvZY1Inx7n5S95fMTxzpmSBJ7OOGdNriWtnT1
-         jXO1rIUuox0c2An713HVLzGmgY02Su0HDIWbcj7bA3q0n92IvmkbK6cNVfremRWgTaFP
-         wl3v5yT0vvJAHaT8CIh8yt24OJFz97O2+sg/zWA2vq+n4ElFtaqpld46ZjyER5SbbhtP
-         /NsjC+wCdF7tRgJgcV6MoMCCOYk49lOrUrsDb45EbtK2hBI7eaJ6V7QbVev7JZTwdiUl
-         dlw6J1MmxSp3NGnBb9nR5hvWDrB13F4L7HPJ909NXlV8PBIJQrhKi5+f2j754cD/fFEE
-         8HMA==
-X-Gm-Message-State: APjAAAWhA1NtEshCmN3QAISALFaPAExfDqrX/LkWqyjBL1Y1u2Su+4C/
-        rErfsoWIdGWN75oAVe0v9SSJDw==
-X-Google-Smtp-Source: APXvYqyfFqhb5U9wi2Eswf16arxZHKOY7mHg37ZMOwRLqpoDP9qw2MWHAeoLE6MnWdZroGFRroiMaw==
-X-Received: by 2002:a17:90a:2e8a:: with SMTP id r10mr12786306pjd.128.1569619069365;
-        Fri, 27 Sep 2019 14:17:49 -0700 (PDT)
-Received: from dell ([12.206.46.61])
-        by smtp.gmail.com with ESMTPSA id s18sm5465515pji.30.2019.09.27.14.17.47
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 27 Sep 2019 14:17:48 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 22:17:45 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Wolfram Sang <wsa@the-dreams.de>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, alokc@codeaurora.org,
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=42kJGNhCusDQNjkVnOKLdMbZYX560Wifg8dSCAiA4cc=;
+        b=MaTHFVvSjGQewcLfEKv3lZqLFzzv1t0RBBz70gGFlKJEMIFDTtXHrPRK4VBQ3q5cAJ
+         uhf68TfNq7c6IPfVjF9JkGhkNqat8ixPOTsOcxXvgcpKuR0aMdP/9xwwoyD73yHTsvl6
+         hjv2p+aleWR3a4fMkNVgTS/jpuz97LDdQSfKuuFggcIQeZN0W4HinPYQGZ1hKFJZI/Ii
+         zVsfesp58p54llLCZKf2+Dfb+b7KccEIBl7t+vN1vHMyJAV+nIXTJXcb7M8oOWsq7ewP
+         wsR4BYZeTeK2FEysXkx6B4k7wnoJX8lf1Vwq8Unxi5pSVyDVNn2JYO4kN9AU+79t9wEJ
+         +g4A==
+X-Gm-Message-State: APjAAAXnmpwueYA/XqRZ3vmMViqb+qaYFndNNK7RtmBp6TVKkkswUW5g
+        z35SI9fI0wDXLsA4u9FX4g==
+X-Google-Smtp-Source: APXvYqxHRXceYpuvkMidUXb4bFxc1IAdjKxxMEefxLhDPOGzWSs4+1XW+3Bdbq9EdqO2Jw6obeKSuA==
+X-Received: by 2002:a9d:1425:: with SMTP id h34mr3237861oth.122.1569622552123;
+        Fri, 27 Sep 2019 15:15:52 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t207sm2087066oif.11.2019.09.27.15.15.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 15:15:51 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 17:15:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, vkoul@kernel.org,
-        linux-i2c@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
- Lenovo Yoga C630
-Message-ID: <20190927211745.GF4469@dell>
-References: <20190906061448.GJ26880@dell>
- <20190906065018.GA1019@kunai>
- <20190906075600.GL26880@dell>
- <20190906102355.GA3146@kunai>
- <20190906105445.GO26880@dell>
- <20190906183139.GB19123@kunai>
- <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
- <20190913142821.GD1022@kunai>
- <20190913161345.GB8466@tuxbook-pro>
- <20190913161748.GF1022@kunai>
+        Lee Jones <lee.jones@linaro.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Document the Xylon LogiCVC
+ multi-function device
+Message-ID: <20190927221550.GA28831@bogus>
+References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com>
+ <20190927100407.1863293-3-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190913161748.GF1022@kunai>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190927100407.1863293-3-paul.kocialkowski@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Sep 2019, Wolfram Sang wrote:
+On Fri, Sep 27, 2019 at 12:04:04PM +0200, Paul Kocialkowski wrote:
+> The LogiCVC is a display engine which also exposes GPIO functionality.
+> For this reason, it is described as a multi-function device that is expected
+> to provide register access to its children nodes for gpio and display.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  .../bindings/mfd/xylon,logicvc.yaml           | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+> new file mode 100644
+> index 000000000000..abc9937506e0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 Bootlin
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/mfd/xylon,logicvc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Xylon LogiCVC multi-function device
+> +
+> +maintainers:
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +
+> +description: |
+> +  The LogiCVC is a display controller that also contains a GPIO controller.
+> +  As a result, a multi-function device is exposed as parent of the display
+> +  and GPIO blocks.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - xylon,logicvc-3.02.a
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - xylon,logicvc-3.02.a
 
-> 
-> > It seems linux-next is now pulling from the soc.git, rather than
-> > arm-soc.git, but Arnd is still pushing patches to arm-soc.git.
-> 
-> Can you ask them to fix this?
-> 
-> > Arnd says that the patch will be in v5.4 and I merged Arnd's tree and
-> > gave it a spin here and this patch makes it boot. So please merge this
-> > patch for v5.4 as well.
-> 
-> No worries, this is clearly a bugfix. So it will easily go in with the
-> same release as the DTS file.
+I've seen a couple of these with 'syscon' today, so I fixed the schema 
+tool to just exclude 'syscon' and 'simple-mfd' from the generated 
+'select'. So you can drop select now.
 
-Still not in Mainline.  Is the plan to send this through the -rcs?
+Reviewed-by: Rob Herring <robh@kernel.org>
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> +
+> +  required:
+> +    - compatible
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    logicvc: logicvc@43c00000 {
+> +      compatible = "xylon,logicvc-3.02.a", "syscon", "simple-mfd";
+> +      reg = <0x43c00000 0x6000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +    };
+> -- 
+> 2.23.0
+> 
