@@ -2,103 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 257D2C08E0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B92C08F0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 17:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727741AbfI0PsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 11:48:04 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59552 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727585AbfI0PsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:48:04 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RFlwsx028604;
-        Fri, 27 Sep 2019 10:47:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569599278;
-        bh=U37r5TojFgcS5DwKcw0E6Hys+tinXCxumASCFgqCX8M=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=n0Dr10Fc+4D7YJlreDJ02Ho/MKselqyZ6JuPychdRGigTx8dWWa2gK6i2fqY5dVQc
-         IUPJMUBCpnPe8DrSvyAnfIiHNm4vGE9zwJvOxkba71HzXwN4KHTMU/1RfIyWs0RCMF
-         vVrX5avWBICkiZbB3QrrbQqe4DGgEkXTJSC9ZWrM=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8RFlwN2037608
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Sep 2019 10:47:58 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
- Sep 2019 10:47:49 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 27 Sep 2019 10:47:49 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RFltEh071020;
-        Fri, 27 Sep 2019 10:47:55 -0500
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
- dts
-To:     Tero Kristo <t-kristo@ti.com>, Adam Ford <aford173@gmail.com>
-CC:     Tony Lindgren <tony@atomide.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20190510194229.20628-1-aford173@gmail.com>
- <af325707-3e42-493d-e858-77878ef06138@ti.com>
- <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
- <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
- <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
- <845055e2-8182-de74-2077-629fdf50ac6c@ti.com>
- <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
- <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com>
- <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
- <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
- <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <eb2eb1f6-3c9b-7ecb-667e-819033af9c14@ti.com>
-Date:   Fri, 27 Sep 2019 18:47:54 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727649AbfI0PwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 11:52:13 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:40873 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727349AbfI0PwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 11:52:13 -0400
+Received: by mail-oi1-f196.google.com with SMTP id k9so5594746oib.7;
+        Fri, 27 Sep 2019 08:52:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=2JNqIZKp6GqxqA7xiR7ISWAW++PU7T0DhHZ/3EtL4cQ=;
+        b=s9VnHW/sZvyPiYUEub1njioKpkZ+qK5A0l6+04mXxmiLY6turXUd/ay9FPSTM4kOPt
+         tEBbbNQSO6VoifGsiKWni1gOjBFIjpD2ETEhgO/9eSbA3Rr3yjsfxXKgibps+F2rL02s
+         Lfc423tOcWdRJmBHBmyYRV49F3i1T2eNNOaTxphIzzcTdkNKpr5raz4jtZ4yDevmtN8v
+         jGEFPhnXYqiQwzoOfVKAKWsRPw+WFFZaKqiGujSVRtVVJFqvqsOa8rj1GSUyO+3RWZ2Z
+         uXgNijGc6f2qhkTgXlUd0utJfytI/deOJEdwwok51na5r7D4GgKJ5lfo1JfAb8taw06R
+         sSRQ==
+X-Gm-Message-State: APjAAAWZA2IkegYg0hlWbpobzxY4VfUh3rvtqlDNVB8/7EALNf78pUmB
+        BGEbNidAOMWhLd5BHRQ1Jg==
+X-Google-Smtp-Source: APXvYqwUkPVaNYBNV/wwzcYD7UQU3P+NQOQwaNA+XYQu/35BFJLFbNs4+K5GY50f1cp7tE2YuyBgGw==
+X-Received: by 2002:aca:6057:: with SMTP id u84mr7898632oib.29.1569599532015;
+        Fri, 27 Sep 2019 08:52:12 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r26sm1692866oij.46.2019.09.27.08.52.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 08:52:11 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 10:52:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lars Poeschel <poeschel@lemonage.de>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:NFC SUBSYSTEM" <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Simon Horman <horms@verge.net.au>
+Subject: Re: [PATCH v8 2/7] nfc: pn532: Add uart phy docs and rename it
+Message-ID: <20190927155209.GA6261@bogus>
+References: <20190919091645.16439-1-poeschel@lemonage.de>
+ <20190919091645.16439-2-poeschel@lemonage.de>
 MIME-Version: 1.0
-In-Reply-To: <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190919091645.16439-2-poeschel@lemonage.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2019 18:37, Tero Kristo wrote:
+On Thu, Sep 19, 2019 at 11:16:39AM +0200, Lars Poeschel wrote:
+> This adds documentation about the uart phy to the pn532 binding doc. As
+> the filename "pn533-i2c.txt" is not appropriate any more, rename it to
+> the more general "pn532.txt".
+> This also documents the deprecation of the compatible strings ending
+> with "...-i2c".
+> 
+> Cc: Johan Hovold <johan@kernel.org>
+> Cc: Simon Horman <horms@verge.net.au>
+> Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
+> ---
+> Changes in v8:
+> - Update existing binding doc instead of adding a new one:
+>   - Add uart phy example
+>   - Add general "pn532" compatible string
+>   - Deprecate "...-i2c" compatible strings
+>   - Rename file to a more general filename
+> - Intentionally drop Rob's Reviewed-By as I guess this rather big change
+>   requires a new review
+> 
+> Changes in v7:
+> - Accidentally lost Rob's Reviewed-By
+> 
+> Changes in v6:
+> - Rebased the patch series on v5.3-rc5
+> - Picked up Rob's Reviewed-By
+> 
+> Changes in v4:
+> - Add documentation about reg property in case of i2c
+> 
+> Changes in v3:
+> - seperate binding doc instead of entry in trivial-devices.txt
+> 
+>  .../devicetree/bindings/net/nfc/pn532.txt     | 46 +++++++++++++++++++
+>  .../devicetree/bindings/net/nfc/pn533-i2c.txt | 29 ------------
+>  2 files changed, 46 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/nfc/pn532.txt
+>  delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn533-i2c.txt
 
-> If you can provide details about what clock framework / driver does 
-> wrong (sample clk_set_xyz call sequence, expected results via 
-> clk_get_xyz, and what fails), I can take a look at it. Just reporting 
-> arbitrary display driver issues I won't be able to debug at all (I don't 
-> have access to any of the displays, nor do I want to waste time 
-> debugging them without absolutely no knowledge whatsoever.)
+In the future, use '-M' option (I recommend making this the default).
 
-I used your hack patches to allow changing rates via debugfs. And set 
-dss1_alwon_fck_3430es2 to 27000000 or 27870967. The end result was that 
-DSS gets some very high clock from dss1_alwon_fck_3430es2, as the frame 
-rate jumps to many hundreds fps.
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nfc/pn532.txt b/Documentation/devicetree/bindings/net/nfc/pn532.txt
+> new file mode 100644
+> index 000000000000..f0591f160bee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nfc/pn532.txt
+> @@ -0,0 +1,46 @@
+> +* NXP Semiconductors PN532 NFC Controller
+> +
+> +Required properties:
+> +- compatible: Should be
+> +    - "nxp,pn532" Place a node with this inside the devicetree node of the bus
+> +                  where the NFC chip is connected to.
+> +                  Currently the kernel has phy bindings for uart and i2c.
+> +    - "nxp,pn532-i2c" (DEPRECATED) only works for the i2c binding.
+> +    - "nxp,pn533-i2c" (DEPRECATED) only works for the i2c binding.
 
-So, these numbers are not real, but to give the idea what I saw. Running 
-first with 50 MHz, I can see, say, 40 fps. Then I set the clock to 30 
-MHz, and fps dropped to, say, 30fps, as expected with lower clock. Then 
-I set the clock to 27MHz (or the other one), expecting a bit lower fps, 
-but instead I saw hundreds of fps.
+No more pm533 support?
 
-I don't know if there's any other way to observe the wrong clock rate 
-but have the dss enabled and running kmstest or similar. I can help you 
-set that up next week, should be trivial. You don't need a display for that.
+> +
+> +Required properties if connected on i2c:
+> +- clock-frequency: I²C work frequency.
+> +- reg: for the I²C bus address. This is fixed at 0x24 for the PN532.
+> +- interrupts: GPIO interrupt to which the chip is connected
 
-  Tomi
+UART attached case has no irq? I guess it could just start sending 
+data...
 
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> +
+> +Optional SoC Specific Properties:
+> +- pinctrl-names: Contains only one value - "default".
+> +- pintctrl-0: Specifies the pin control groups used for this controller.
+> +
+> +Example (for ARM-based BeagleBone with PN532 on I2C2):
+> +
+> +&i2c2 {
+> +
+> +
+> +	pn532: pn532@24 {
+
+nfc@24
+
+> +
+> +		compatible = "nxp,pn532";
+> +
+> +		reg = <0x24>;
+> +		clock-frequency = <400000>;
+> +
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +	};
+> +};
+> +
+> +Example (for PN532 connected via uart):
+> +
+> +uart4: serial@49042000 {
+> +        compatible = "ti,omap3-uart";
+> +
+> +        pn532: nfc {
+> +                compatible = "nxp,pn532";
+> +        };
+> +};
