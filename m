@@ -2,92 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B3DEC0586
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55936C05CD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726251AbfI0MsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 08:48:09 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40516 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727854AbfI0MsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:48:03 -0400
-Received: by mail-wm1-f66.google.com with SMTP id b24so6023411wmj.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 05:48:02 -0700 (PDT)
+        id S1726295AbfI0M43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 08:56:29 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37336 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726926AbfI0M42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:56:28 -0400
+Received: by mail-wr1-f65.google.com with SMTP id i1so2627183wro.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 05:56:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=HzQhDkqVyohi8147rI3+BgZwRO47r6m1rOvI8gEcCVQ=;
-        b=oi7neAwW2LPL3XABbjq079ydlG5AqDgyurTggZMicVjKIV5UMxxiyLM+baxNYU7LMn
-         KX0awqzp3ut3v6fG74urUYMNC7Us0TNh9cFPafo8aX6keUN84SNN8/13CiS2mOaNYVXW
-         51GjVuPtTereISnJig7mP/IpoNpIQPIiC9dIHozWqZj8wKaFul+FMr0+2WVtMfP9Pit0
-         iwshl1qVi1DzPPokQOFhT608amsRwajCmDibnhxZ2uNGfJGVClCLRHl2oTzSMrGuU6BL
-         VMNsZeZHCwXRvn8wMc3M95Xc8gy4zBAopdQdfa29TD3KYqD7aefu+UKji02tx/K8JHiL
-         3p0Q==
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=tXfdCu+y9o1huO3oAZ1Sbx7ZMu/iHmnXt+9DDmG/YAY=;
+        b=nqRDy8aCjz8sLdPAnWGUlZOMS0O0rrLYKivpUvP0b+vARC8X6gyIzwCIJadImYFMOi
+         qH82KEeyWSIoHlgye9453TKY+dQpHrF0D1mRCx68dWUw3ecCMdOMfuXCGlqjGuOzbKMv
+         X89u2UZ/rIsZEKlzz4dDHmVk/JV6p9haeVjq2XuxOM3yjWIzTGa+iaYPNuP0HSDd1Vpk
+         Bjb8Xoio79OWCc8/ZkklhcuZMBux6DG4VW19YWR2hH1Z970c/DOmgzU3/Bgjtr2ZRACk
+         n8hcg5mkgJzl3JKwW9PYG11UJJ9dvinYfxQGx6Bji5KwS8izwJT8yMtM55OuTQCsDTJC
+         j2Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=HzQhDkqVyohi8147rI3+BgZwRO47r6m1rOvI8gEcCVQ=;
-        b=gnGgSE2neu0uQsv7kXHdBsHSxTSqPpMUvM4yCcwQm9gdi9d2bhxFr58pSGhkdLa8Gx
-         qhFI7B36zjvA6vzGAj/TicfhF8uVskp/3ke8yCCRguPeG0fRVQr27s9RG4jRs8lvb4pj
-         jy1bM4Yk/DUwYPe9o9WH6sWv7lIQ5T7xlcBwShyqA9YdNEIjBtKo4HisgGPPZp6QuB/R
-         k1+WluJVU6MjkR3mL9YPf2Bi3SiAW3J37sNsAyeIwcmvdAw2cOHYr2BrUbAbNrhSMbMe
-         8prapa+dIbTlkU8PR17jO91gcdC9cj564UseDvfl2NPTbFUrtno3K7hO6/GCDe7vcfcM
-         rrGg==
-X-Gm-Message-State: APjAAAVF8r3CVNXmNaMNlCT1+UEMiwhcuxd4bhHogyeN/V5kDjiS6TUR
-        zf5bm6cGZQNbVjt0Bu0sYM8fpQ==
-X-Google-Smtp-Source: APXvYqy/1/MJyl2yq0JNJ1lJAbS7sXpETew3r6arHgnR/Bo+YJC+IXAdeOl3m8wFVO8i1kW5vfviIg==
-X-Received: by 2002:a1c:6508:: with SMTP id z8mr7418209wmb.93.1569588481463;
-        Fri, 27 Sep 2019 05:48:01 -0700 (PDT)
-Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id h9sm2985564wrv.30.2019.09.27.05.48.00
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=tXfdCu+y9o1huO3oAZ1Sbx7ZMu/iHmnXt+9DDmG/YAY=;
+        b=Al7D27BapBF/P5/WQyUSN30R3eBXiNSe4YKnNmAlLsGOyIN4CrbzPXcgtkzswseyH2
+         55X8taw+UsKM3k3VxFf2PhDmwjN8dVdtHVs3U5bHfWimW+Ywrt4sZk3o05AF4j56FAl4
+         88NliJ1FUatBhsldU0Y74frIUWo3q+y/pTObxy8mXPv2LDdiMHH8Qh/Rz46gGldnSfLn
+         Qq9hP5p4evM6rKXDYxmYG+2Z+a26zZr3/YiZItR76lx2IBrJ8tH3YOf6dJmTomFyQ/ei
+         mGTS9zRLJzWU06F8YiKkqvPWf4Um8d6H5fnaglxLgIRRLOREyDY+hh7OgqoCGcAXir/+
+         lQjw==
+X-Gm-Message-State: APjAAAXFTfv6dUv9yn/tWLV3XaRwZdSYyNlZzZzvXH+lfKmzmGZSyY/2
+        saje31x0wIYW8X/ebcj31PeZUw==
+X-Google-Smtp-Source: APXvYqxEAMML2l1NxVnaWU8UXk7ISpBIST+iO7UeAyZMmaJg19OlU0u9d0T0jRfPnyNo1oc1SYmdWg==
+X-Received: by 2002:a5d:4d89:: with SMTP id b9mr2730758wru.395.1569588985491;
+        Fri, 27 Sep 2019 05:56:25 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id w7sm4735628wmd.22.2019.09.27.05.56.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 05:48:00 -0700 (PDT)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH v5 7/7] MAINTAINERS: add entry for Amlogic Thermal driver
-Date:   Fri, 27 Sep 2019 14:47:50 +0200
-Message-Id: <20190927124750.12467-10-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190927124750.12467-1-glaroque@baylibre.com>
-References: <20190927124750.12467-1-glaroque@baylibre.com>
+        Fri, 27 Sep 2019 05:56:24 -0700 (PDT)
+References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com> <1569411888-98116-3-git-send-email-jian.hu@amlogic.com> <20190925131232.4751020640@mail.kernel.org> <8351489a-f91e-be08-7fcc-e2a90c6e87f0@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Jian Hu <jian.hu@amlogic.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        devicetree@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] clk: meson: a1: add support for Amlogic A1 clock driver
+In-reply-to: <8351489a-f91e-be08-7fcc-e2a90c6e87f0@amlogic.com>
+Date:   Fri, 27 Sep 2019 14:56:23 +0200
+Message-ID: <1jk19t28zs.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for Amlogic Thermal driver.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Fri 27 Sep 2019 at 05:11, Jian Hu <jian.hu@amlogic.com> wrote:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 390c3194ee93..bdc30d740342 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15932,6 +15932,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
- F:	drivers/thermal/cpu_cooling.c
- F:	include/linux/cpu_cooling.h
- 
-+THERMAL DRIVER FOR AMLOGIC SOCS
-+M:	Guillaume La Roque <glaroque@baylibre.com>
-+L:	linux-pm@vger.kernel.org
-+L:	linux-amlogic@lists.infradead.org
-+W:	http://linux-meson.com/
-+S:	Supported
-+F:	drivers/thermal/amlogic_thermal.c
-+F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-+
- THINKPAD ACPI EXTRAS DRIVER
- M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
- L:	ibm-acpi-devel@lists.sourceforge.net
--- 
-2.17.1
+> Hi, Stephen
+>
+> Thank you for review
+>
+> On 2019/9/25 21:12, Stephen Boyd wrote:
+>> Quoting Jian Hu (2019-09-25 04:44:48)
+>>> The Amlogic A1 clock includes three parts:
+>>> peripheral clocks, pll clocks, CPU clocks.
+>>> sys pll and CPU clocks will be sent in next patch.
+>>>
+>>> Unlike the previous series, there is no EE/AO domain
+>>> in A1 CLK controllers.
+>>>
+>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>>
+>> This second name didn't send the patch. Please follow the signoff
+>> procedures documented in Documentation/process/submitting-patches.rst
+>>
+>>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>>> index 16d7614..a48f67d 100644
+>>> --- a/arch/arm64/Kconfig.platforms
+>>> +++ b/arch/arm64/Kconfig.platforms
+>>> @@ -138,6 +138,7 @@ config ARCH_MESON
+>>>          select COMMON_CLK_AXG
+>>>          select COMMON_CLK_G12A
+>>>          select MESON_IRQ_GPIO
+>>> +       select COMMON_CLK_A1
+>>
+>> Sort?
+> ok, I will put it behind COMMON_CLK_AXG
+>>
+>>>          help
+>>>            This enables support for the arm64 based Amlogic SoCs
+>>>            such as the s905, S905X/D, S912, A113X/D or S905X/D2
+>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>> index dabeb43..e6cb4c3 100644
+>>> --- a/drivers/clk/meson/Kconfig
+>>> +++ b/drivers/clk/meson/Kconfig
+>>> @@ -107,3 +107,13 @@ config COMMON_CLK_G12A
+>>>          help
+>>>            Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
+>>>            devices, aka g12a. Say Y if you want peripherals to work.
+>>> +
+>>> +config COMMON_CLK_A1
+>>
+>> Probably should be placed somewhere alphabetically in this file?
+> ok, I will put it behind COMMON_CLK_AXG_AUDIO
+>>
+>>> +       bool
+>>> +       depends on ARCH_MESON
+>>> +       select COMMON_CLK_MESON_REGMAP
+>>> +       select COMMON_CLK_MESON_DUALDIV
+>>> +       select COMMON_CLK_MESON_PLL
+>>> +       help
+>>> +         Support for the clock controller on Amlogic A113L device,
+>>> +         aka a1. Say Y if you want peripherals to work.
+>>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>>> index 3939f21..6be3a8f 100644
+>>> --- a/drivers/clk/meson/Makefile
+>>> +++ b/drivers/clk/meson/Makefile
+>>> @@ -19,3 +19,4 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>>>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+>>> +obj-$(CONFIG_COMMON_CLK_A1) += a1.o
+>>
+>> I would guess this should be sorted on Kconfig name in this file?
+> ok, I will put it behind COMMON_CLK_AXG_AUDIO
+>>
+>>> diff --git a/drivers/clk/meson/a1.c b/drivers/clk/meson/a1.c
+>>> new file mode 100644
+>>> index 0000000..26edae0f
+>>> --- /dev/null
+>>> +++ b/drivers/clk/meson/a1.c
+>>> @@ -0,0 +1,2617 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#include <linux/clk-provider.h>
+>>> +#include <linux/init.h>
+>>> +#include <linux/of_device.h>
+>>> +#include <linux/platform_device.h>
+>>> +#include <linux/of_address.h>
+>>> +#include "clk-mpll.h"
+>>> +#include "clk-pll.h"
+>>> +#include "clk-regmap.h"
+>>> +#include "vid-pll-div.h"
+>>> +#include "clk-dualdiv.h"
+>>> +#include "meson-eeclk.h"
+>>> +#include "a1.h"
+>>> +
+>> [...]
+>>> +
+>>> +/*
+>>> + * The Meson A1 HIFI PLL is 614.4M, it requires
+>>> + * a strict register sequence to enable the PLL.
+>>> + * set meson_clk_pcie_pll_ops as its ops
+>>
+>> Please remove this last line as it's obvious from the code what ops are
+>> used.
+>>
+> ok, I will remove it.
+>>> + */
+>>> +static struct clk_regmap a1_hifi_pll = {
+>>> +       .data = &(struct meson_clk_pll_data){
+>>> +               .en = {
+>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>>> +                       .shift   = 28,
+>>> +                       .width   = 1,
+>>> +               },
+>>> +               .m = {
+>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>>> +                       .shift   = 0,
+>>> +                       .width   = 8,
+>>> +               },
+>>> +               .n = {
+>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>>> +                       .shift   = 10,
+>>> +                       .width   = 5,
+>>> +               },
+>>> +               .frac = {
+>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL1,
+>>> +                       .shift   = 0,
+>>> +                       .width   = 19,
+>>> +               },
+>>> +               .l = {
+>>> +                       .reg_off = ANACTRL_HIFIPLL_STS,
+>>> +                       .shift   = 31,
+>>> +                       .width   = 1,
+>>> +               },
+>>> +               .table = a1_hifi_pll_params_table,
+>>> +               .init_regs = a1_hifi_init_regs,
+>>> +               .init_count = ARRAY_SIZE(a1_hifi_init_regs),
+>>> +       },
+>>> +       .hw.init = &(struct clk_init_data){
+>>> +               .name = "hifi_pll",
+>>> +               .ops = &meson_clk_pcie_pll_ops,
+>>> +               .parent_hws = (const struct clk_hw *[]) {
+>>> +                       &a1_xtal_hifipll.hw
+>>> +               },
+>>> +               .num_parents = 1,
+>>> +       },
+>>> +};
+>>> +
+>> [..]
+>>> +
+>>> +static struct clk_regmap a1_fclk_div2 = {
+>>> +       .data = &(struct clk_regmap_gate_data){
+>>> +               .offset = ANACTRL_FIXPLL_CTRL0,
+>>> +               .bit_idx = 21,
+>>> +       },
+>>> +       .hw.init = &(struct clk_init_data){
+>>> +               .name = "fclk_div2",
+>>> +               .ops = &clk_regmap_gate_ops,
+>>> +               .parent_hws = (const struct clk_hw *[]) {
+>>> +                       &a1_fclk_div2_div.hw
+>>> +               },
+>>> +               .num_parents = 1,
+>>> +               /*
+>>> +                * add CLK_IS_CRITICAL flag to avoid being disabled by clk core
+>>> +                * or its children clocks.
+>>
+>> This comment is useless. Please replace it with an actual reason for
+>> keeping the clk on instead of describing what the flag does.
+>>
+> ok, The actual reason is it should not change at runtime.
+
+Yeah, from the flag we understand that you want to keep this on. What we
+are after is why ? What device is using this clock and cannot tolerate
+this gate to turn off ?
+
+This is important and this is kind of comment we are after.
+These flag should be viewed as "mid term work around". In the end, there
+should be a driver for your device which claims the clock and properly
+manage it
+
+>>> +                */
+>>> +               .flags = CLK_IS_CRITICAL,
+>>> +       },
+>>> +};
+>>> +
+>> [..]
+>>> +static struct clk_regmap a1_dmc = {
+>>> +       .data = &(struct clk_regmap_gate_data){
+>>> +               .offset = DMC_CLK_CTRL,
+>>> +               .bit_idx = 8,
+>>> +       },
+>>> +       .hw.init = &(struct clk_init_data) {
+>>> +               .name = "dmc",
+>>> +               .ops = &clk_regmap_gate_ops,
+>>> +               .parent_hws = (const struct clk_hw *[]) {
+>>> +                       &a1_dmc_sel2.hw
+>>> +               },
+>>> +               .num_parents = 1,
+>>> +               /*
+>>> +                * add CLK_IGNORE_UNUSED to avoid hangup
+>>> +                * DDR clock should not change at runtime
+>>> +                */
+>>> +               .flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>
+>> So not CLK_IS_CRITICAL?
+> Yes, CLK_IS_CRITICAL is better, I will change it.
+
+Same comment as above.
+
+>>
+>>> +       },
+>>> +};
+>>> +
+>> [...]
+>>> +
+>>> +/*
+>>> + * cpu clock register base address is 0xfd000080
+>>> + */
+>>> +static struct clk_regmap *const a1_cpu_clk_regmaps[] = {
+>>> +       /* TODO */
+>>
+>> Can it be done?
+> I plan to compelte cpu clock with the DVFS verified. And  Some peripheral
+> devices rely on this patch to send. I prefer to do it in the next patch.
+>>
+>>> +};
+>>
+>> .
+>>
 
