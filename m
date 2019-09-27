@@ -2,110 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1C58C0778
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 16:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB43C0790
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 16:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727140AbfI0O11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 10:27:27 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:36678 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726540AbfI0O10 (ORCPT
+        id S1727154AbfI0O3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 10:29:34 -0400
+Received: from smtprelay0032.hostedemail.com ([216.40.44.32]:32830 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727120AbfI0O3e (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Sep 2019 10:27:26 -0400
-Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x8RENODN156904
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 10:27:25 -0400
-Received: from e06smtp04.uk.ibm.com (e06smtp04.uk.ibm.com [195.75.94.100])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2v8y3b4j6q-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 10:27:24 -0400
-Received: from localhost
-        by e06smtp04.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <nayna@linux.ibm.com>;
-        Fri, 27 Sep 2019 15:27:20 +0100
-Received: from b06cxnps4076.portsmouth.uk.ibm.com (9.149.109.198)
-        by e06smtp04.uk.ibm.com (192.168.101.134) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Fri, 27 Sep 2019 15:27:15 +0100
-Received: from b06wcsmtp001.portsmouth.uk.ibm.com (b06wcsmtp001.portsmouth.uk.ibm.com [9.149.105.160])
-        by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x8RERDOq33030352
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 27 Sep 2019 14:27:14 GMT
-Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D958AA405C;
-        Fri, 27 Sep 2019 14:27:13 +0000 (GMT)
-Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D10BAA405F;
-        Fri, 27 Sep 2019 14:27:09 +0000 (GMT)
-Received: from swastik.ibm.com (unknown [9.80.207.173])
-        by b06wcsmtp001.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Fri, 27 Sep 2019 14:27:09 +0000 (GMT)
-From:   Nayna Jain <nayna@linux.ibm.com>
-To:     linuxppc-dev@ozlabs.org, linux-efi@vger.kernel.org,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jeremy Kerr <jk@ozlabs.org>,
-        Matthew Garret <matthew.garret@nebula.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Claudio Carvalho <cclaudio@linux.ibm.com>,
-        George Wilson <gcwilson@linux.ibm.com>,
-        Elaine Palmer <erpalmer@us.ibm.com>,
-        Eric Ricther <erichte@linux.ibm.com>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nayna Jain <nayna@linux.ibm.com>
-Subject: [PATCH v6 9/9] powerpc/ima: update ima arch policy to check for blacklist
-Date:   Fri, 27 Sep 2019 10:26:00 -0400
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
-References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
-X-TM-AS-GCONF: 00
-x-cbid: 19092714-0016-0000-0000-000002B156CB
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19092714-0017-0000-0000-000033122998
-Message-Id: <1569594360-7141-10-git-send-email-nayna@linux.ibm.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-27_06:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1908290000 definitions=main-1909270134
+        Fri, 27 Sep 2019 10:29:34 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay08.hostedemail.com (Postfix) with ESMTP id 6482B182CF668;
+        Fri, 27 Sep 2019 14:29:33 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 90,9,0,,d41d8cd98f00b204,joe@perches.com,:::::::,RULES_HIT:41:355:379:599:800:960:966:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:1801:2196:2199:2393:2553:2559:2562:2692:2828:3138:3139:3140:3141:3142:3354:3622:3653:3865:3866:3867:3868:3870:3871:3872:3874:4250:4321:4385:4605:5007:6119:7901:7903:10004:10400:10848:11026:11232:11233:11473:11658:11914:12043:12050:12297:12438:12740:12760:12895:13141:13230:13439:14181:14659:14721:21080:21433:21451:21611:21627:21740:21741:21819:30022:30054:30070:30090:30091,0,RBL:113.161.34.234:@perches.com:.lbl8.mailshell.net-62.14.241.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:25,LUA_SUMMARY:none
+X-HE-Tag: lunch41_5320358922011
+X-Filterd-Recvd-Size: 3127
+Received: from XPS-9350 (unknown [113.161.34.234])
+        (Authenticated sender: joe@perches.com)
+        by omf03.hostedemail.com (Postfix) with ESMTPA;
+        Fri, 27 Sep 2019 14:29:30 +0000 (UTC)
+Message-ID: <7672dd2f651bfdcdb1615ab739e36a381b2535b1.camel@perches.com>
+Subject: Re: [PATCH] checkpatch: Warn if DT bindings are not in schema format
+From:   Joe Perches <joe@perches.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andy Whitcroft <apw@canonical.com>
+Date:   Fri, 27 Sep 2019 07:29:28 -0700
+In-Reply-To: <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com>
+References: <20190913211349.28245-1-robh@kernel.org>
+         <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
+         <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.32.1-2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch updates the arch specific policies for PowernV systems
-to add check against blacklisted hashes before doing the verification.
+On Fri, 2019-09-27 at 09:02 -0500, Rob Herring wrote:
+> On Fri, Sep 13, 2019 at 4:48 PM Joe Perches <joe@perches.com> wrote:
+> > On Fri, 2019-09-13 at 16:13 -0500, Rob Herring wrote:
+> > > DT bindings are moving to using a json-schema based schema format
+> > > instead of freeform text. Add a checkpatch.pl check to encourage using
+> > > the schema for new bindings. It's not yet a requirement, but is
+> > > progressively being required by some maintainers.
+> > []
+> > > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > []
+> > > @@ -2822,6 +2822,14 @@ sub process {
+> > >                            "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
+> > >               }
+> > > 
+> > > +# Check for adding new DT bindings not in schema format
+> > > +             if (!$in_commit_log &&
+> > > +                 ($line =~ /^new file mode\s*\d+\s*$/) &&
+> > > +                 ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
+> > > +                     WARN("DT_SCHEMA_BINDING_PATCH",
+> > > +                          "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
+> > > +             }
+> > > +
+> > 
+> > As this already seems to be git dependent, perhaps
+> 
+> It's quite rare to see a non git generated diff these days.
+> 
+> > it's easier to read with a single line test like:
+> > 
+> >                 if ($line =~ m{^\s*create mode\s*\d+\s*Documentation/devicetree/bindings/.*\.txt$}) {
+> >                         etc...
+> >                 }
+> 
+> I frequently do 'git show $commit | scripts/checkpatch.pl' and this
+> doesn't work with that. I really should have a '--pretty=email' in
+> there, but I just ignore the commit msg warnings. In any case, that
+> still doesn't help because there's no diffstat. There's probably some
+> way to turn that on or just use git-format-patch, but really we want
+> this to work with any git diff.
 
-Signed-off-by: Nayna Jain <nayna@linux.ibm.com>
----
- arch/powerpc/kernel/ima_arch.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I don't understand your argument against what I proposed at all.
 
-diff --git a/arch/powerpc/kernel/ima_arch.c b/arch/powerpc/kernel/ima_arch.c
-index 77c61b142042..3f57433c0824 100644
---- a/arch/powerpc/kernel/ima_arch.c
-+++ b/arch/powerpc/kernel/ima_arch.c
-@@ -24,9 +24,9 @@ bool arch_ima_get_secureboot(void)
- static const char *const arch_rules[] = {
- 	"measure func=KEXEC_KERNEL_CHECK template=ima-modsig",
- 	"measure func=MODULE_CHECK template=ima-modsig",
--	"appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig|modsig",
-+	"appraise func=KEXEC_KERNEL_CHECK appraise_flag=check_blacklist appraise_type=imasig|modsig",
- #if !IS_ENABLED(CONFIG_MODULE_SIG)
--	"appraise func=MODULE_CHECK appraise_type=imasig|modsig",
-+	"appraise func=MODULE_CHECK appraise_flag=check_blacklist appraise_type=imasig|modsig",
- #endif
- 	NULL
- };
--- 
-2.20.1
+and btw:
+
+$ git format-patch -1 --stdout <commit> | ./scripts/checkpatch.pl
+
 
