@@ -2,161 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDE40C04E6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92467C04EC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 14:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727419AbfI0MNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 08:13:41 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:57589 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725890AbfI0MNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:13:41 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iDp7u-0003vU-Ve; Fri, 27 Sep 2019 14:13:34 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iDp7u-0006T5-KX; Fri, 27 Sep 2019 14:13:34 +0200
-Date:   Fri, 27 Sep 2019 14:13:34 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v10 07/14] media: tvp5150: fix set_selection rectangle
- handling
-Message-ID: <20190927121334.xjt4pneuohppy44n@pengutronix.de>
-References: <20190830101646.6530-1-m.felsch@pengutronix.de>
- <20190830101646.6530-8-m.felsch@pengutronix.de>
+        id S1727099AbfI0MOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 08:14:11 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:46915 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726116AbfI0MOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 08:14:11 -0400
+Received: by mail-io1-f68.google.com with SMTP id c6so15561220ioo.13;
+        Fri, 27 Sep 2019 05:14:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XJJtNuqioZl6sa+W5Rtd/VG7UjoMxElWqoWFvVmwcPg=;
+        b=iROi2TOrPbDzeqog2o0irRLDYv8v0KQxALF63dP95BRHup05sWPpMyhjL8kxbpnyUl
+         9rlyIezwuakpTw24pXZQuDTN5ePY1nXjUTJw/ORTVKLPHr08x+DR2fAHWXJAXM/XapbP
+         2SRvVM6DubGI/ojN759mp2E01zstJgN+YsNaR8VbCOivsWZFBw3j7x3TBnuAmeUOc2b4
+         4yU1ltsIaulzT0xipQDIjckwMUOPeuxWhmX5T6yzKWYhIS2Kbe5xXa8UhNi24k+O6BQ1
+         6PP/D77y76Lb7Upg1jzA+KtGKbBy7q25jgPBcJx3HT+5pHqciyJYyW1A11MIjJSUeNgT
+         7Png==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XJJtNuqioZl6sa+W5Rtd/VG7UjoMxElWqoWFvVmwcPg=;
+        b=CowIxsp9KdcKzs9FVzdXQ+DWROajpK94dFP1gw4rDO4J5gatRAIFIpAz3Wd9zfF3qm
+         CAgjJTl5HnAjzioPWHCIOWKdR91CfORpD/uwqufsXyrohmbRPoETDC49UXQDqRDbYxbC
+         BTfQ27ph8cX7IW0iRPBn9jKODyj/domkQnbX4YrzBWPEorf8bObd0JE1/dMtV3ZppJwD
+         Ksq56QEp7fbFz6/naBF7lcPrwE906hLfZPDGu+yOLNLtlyClgXPAxUv82aLpMBf/iGTy
+         bsOpYBVRt5MNse270MsxxPm3ZZW0oFC1Dur4GpqHSgKfCoWW+Cmh6au4T5JEzTDEFHh7
+         SDZg==
+X-Gm-Message-State: APjAAAUSTZfsI07nHl+e1HJLuu6SrjqbvfaMUYmnYMN/49wGes6GJACm
+        ZqQaqYpyHdg7SGbSipe7ADV/QzXVdn84QMW6CXFn4Y0oFlw=
+X-Google-Smtp-Source: APXvYqwyOKCiZQF6ncWvp6oVJF/zzgcf1p5FbkC23Qgharm/Cg3vsMj4M3mHWcQhIQJk7EAyi5Ecx3hZvquvq5qC//8=
+X-Received: by 2002:a92:3f0a:: with SMTP id m10mr4235717ila.158.1569586450690;
+ Fri, 27 Sep 2019 05:14:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190830101646.6530-8-m.felsch@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:10:39 up 132 days, 18:28, 86 users,  load average: 0.08, 0.07,
- 0.04
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20190510194229.20628-1-aford173@gmail.com> <af325707-3e42-493d-e858-77878ef06138@ti.com>
+ <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+ <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com> <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
+ <845055e2-8182-de74-2077-629fdf50ac6c@ti.com> <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
+ <f6012b3a-7b96-6020-d09d-c458fa8742d8@ti.com>
+In-Reply-To: <f6012b3a-7b96-6020-d09d-c458fa8742d8@ti.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 27 Sep 2019 07:13:59 -0500
+Message-ID: <CAHCN7x+ysOEXFCE5DXvoPh6sQBdnHRE8t-KJfcijWesJRx9iXg@mail.gmail.com>
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to dts
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+On Fri, Sep 27, 2019 at 1:22 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+>
+> On 26/09/2019 17:12, Adam Ford wrote:
+>
+> >> And what is the hdmi5_configure there? I don't see anything in the
+> >> driver that would print hdmi5_configure. And, of course, there's no
+> >> hdmi5 on that platform. Hmm, ok... it's from component.c, using "%ps".
+> >> Somehow that goes wrong. Which is a bit alarming, but perhaps a totally
+> >> different issue.
+> >
+> > I'll try to take a look later.  For Logic PD distributions, we create
+> > a custom defconfig with all those drivers removed, so I'm not worked
+> > up about it, but it would be nice to not call drivers that don't
+> > exist.
+>
+> So you have CONFIG_OMAP5_DSS_HDMI=n? Then it's even more disturbing, as
+> there's no way the string "hdmi5_configure" can be in the kernel image...
 
-since you review contained many checkpatch issues I wanna ask if it okay
-to keep this line as it before I will send a v11. Please check my inline
-comment.
+For the logs and problems I am showing in this thread, I am using a
+stock omap2plus_defconfig which has it enabled.  I was only trying to
+state that I am not worried about the omap5 hdmi stuff, because when I
+do a custom distribution for Logic PD, I remove those config options
+to make the issue go away.
+>
+> Maybe it's nothing, but... It's just so odd.
 
-On 19-08-30 12:16, Marco Felsch wrote:
-> Currently a local copy of sel->r is made and adapted to the hardware
-> constraints. After the adaption the value is applied to the hardware but
-> the driver forgot to reflect the adapted value to the user space.
-> 
-> Drop the local copy and work directly on the requested rectangle
-> instead to fix this.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> 
-> v10:
-> - new patch
-> 
->  drivers/media/i2c/tvp5150.c | 32 ++++++++++++++++----------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index 477a929d4f89..c1542a89e8c8 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -1024,7 +1024,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  				 struct v4l2_subdev_selection *sel)
->  {
->  	struct tvp5150 *decoder = to_tvp5150(sd);
-> -	struct v4l2_rect rect = sel->r;
-> +	struct v4l2_rect *rect = &sel->r;
->  	v4l2_std_id std;
->  	int hmax;
->  
-> @@ -1033,11 +1033,11 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  		return -EINVAL;
->  
->  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
-> -		__func__, rect.left, rect.top, rect.width, rect.height);
-> +		__func__, rect->left, rect->top, rect->width, rect->height);
->  
->  	/* tvp5150 has some special limits */
-> -	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
-> -	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
-> +	rect->left = clamp(rect->left, 0, TVP5150_MAX_CROP_LEFT);
-> +	rect->top = clamp(rect->top, 0, TVP5150_MAX_CROP_TOP);
->  
->  	/* Calculate height based on current standard */
->  	if (decoder->norm == V4L2_STD_ALL)
-> @@ -1055,26 +1055,26 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  	 *  - width = 2 due to UYVY colorspace
->  	 *  - height, image = no special alignment
->  	 */
-> -	v4l_bound_align_image(&rect.width,
-> -			      TVP5150_H_MAX - TVP5150_MAX_CROP_LEFT - rect.left,
-> -			      TVP5150_H_MAX - rect.left, 1, &rect.height,
-> -			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
-> -			      hmax - rect.top, 0, 0);
-> +	v4l_bound_align_image(&rect->width,
-> +			      TVP5150_H_MAX - TVP5150_MAX_CROP_LEFT - rect->left,
+I don't think we need to worry about it now.  Ideally, it would be
+nice to have the drivers recognize they are not needed and or setup
+the Kconfig options to make these drivers dependent on the platforms
+that support it so unselecting OMAP5 could make the omap5 options
+disappear.
 
-Now checkpatch complains about this line because it is 81 characters
-long. Is it okay to keep this as single line for readability?
+Sorry if I accidentally threw in a distraction or confusion.
 
-Regards,
-  Marco
-
-
-> +			      TVP5150_H_MAX - rect->left, 1, &rect->height,
-> +			      hmax - TVP5150_MAX_CROP_TOP - rect->top,
-> +			      hmax - rect->top, 0, 0);
->  
-> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
-> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect->top);
->  	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> -		     rect.top + rect.height - hmax);
-> +		     rect->top + rect->height - hmax);
->  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> -		     rect.left >> TVP5150_CROP_SHIFT);
-> +		     rect->left >> TVP5150_CROP_SHIFT);
->  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> -		     rect.left | (1 << TVP5150_CROP_SHIFT));
-> +		     rect->left | (1 << TVP5150_CROP_SHIFT));
->  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
-> +		     (rect->left + rect->width - TVP5150_MAX_CROP_LEFT) >>
->  		     TVP5150_CROP_SHIFT);
->  	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
-> +		     rect->left + rect->width - TVP5150_MAX_CROP_LEFT);
->  
-> -	decoder->rect = rect;
-> +	decoder->rect = *rect;
->  
->  	return 0;
->  }
-> -- 
-> 2.20.1
-> 
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+adam
+>
+>   Tomi
+>
+> --
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
