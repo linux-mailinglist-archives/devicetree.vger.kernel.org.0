@@ -2,141 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F69FC0B5D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74B36C0B5B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 20:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728036AbfI0SgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 14:36:14 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:44989 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726988AbfI0SgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:36:13 -0400
-Received: by mail-ua1-f67.google.com with SMTP id n2so2249675ual.11
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2019 11:36:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pgw6AMmjd8FcODYhNXJ6h6EuyT3ubSZ01OmcV533FOg=;
-        b=eDTJBlEWZDWx0XFuvuALBQtlzosOa7YmfK5ZM7UwW5LFknREGRhpCEAQ0JgHlw7WRo
-         pFbve1t00ldHPq2nBuLl0fH7f6lYJEINJFuTXx7Dj+GTsCgipzq3by71xWZrruN+SeS/
-         jtBMKwHUsgLedk/Oh6pwTyONVzNMiswP6pQZ3yStgKmZtSYUAxfKDblmz+vRj9Tst6wQ
-         yCAP1nM39po/IKL4VDCr7ID//pyvPQv+AtUfr+Iy5Aoid/ybRmZMVdGn3FCNGpPi0rE6
-         gtqzUGv2NOFQsD4VSbzWWQkcvrTs4CM2NUuH/aUNfjvGIPAz6P8+3bca8dMwM+V6UY3W
-         7xLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pgw6AMmjd8FcODYhNXJ6h6EuyT3ubSZ01OmcV533FOg=;
-        b=L9pEl/tdkmywdk3G/JIy3y2j/Rc/CmDqoxX4sd78mCOF+p3tau3Q/XfGTpeys/zi26
-         U85NMTYXkLUk7SXduSiQ3whmwQTqAk4RN9hEGTWQ5RXs1VrDrKPqd3eghhV63LaGxUJI
-         T/WwtFGW2FnM9gAUd5reiv0hxWm1uwSBBFFgbqGFsTcZxUJnLcJdsax4EBIL464LgLRO
-         iD30CFQtE3YswELVx1jvs3wBgSqoYWS81ZGL3JgwOy8/5SRRDaPyt37alWt+fVulXbmR
-         1AsaKnmwApRpXI5+abwt2HcPzFCMv3YKLkAifYwed+BYsdrv3HpHuVSMbpZ7mJ+fOWt1
-         GaUA==
-X-Gm-Message-State: APjAAAWOmnnUFtNQBN3aqYqrsTW1yjiWznmCCBoeqdrVcbobsc9XAVx2
-        XCI8iToDlPsvEoJm9oOeKdhB2ZzBxxU9on0qHvONMg==
-X-Google-Smtp-Source: APXvYqzJk+RufAS38mOg2G7I5XaU61Uo/xNb1WDdry5ntpEov4c8yXd8xlDSiZU6gXC/Me/a9M+9jPX0x3jzP1+S8O0=
-X-Received: by 2002:ab0:3098:: with SMTP id h24mr5559466ual.100.1569609372593;
- Fri, 27 Sep 2019 11:36:12 -0700 (PDT)
+        id S1728179AbfI0Sf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 14:35:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45558 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726988AbfI0Seo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 14:34:44 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8RIYg0L092317;
+        Fri, 27 Sep 2019 13:34:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569609282;
+        bh=3r3HUM2oj5amxxKF28hYYXRhTAqi/qLk68lalKawoL0=;
+        h=From:To:CC:Subject:Date;
+        b=P/6ZgT7LQ07FFEa5Hj47nERCYSE9k4Ebh21ZsOvkBO7EZrCRSxUMi6G0Nv0KmXpUy
+         RCodtRocfY4L6c3l2q2O98Rr870Y1o9UN/qX55vVVs2sxCklORnmdysboVKG+Qw/n1
+         WtxD9A1OXfUQQPdWQWCJT7zKP6knHXCxPVi4x+Rw=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8RIYgh8061104
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 27 Sep 2019 13:34:42 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 27
+ Sep 2019 13:34:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 27 Sep 2019 13:34:34 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8RIYgbn073031;
+        Fri, 27 Sep 2019 13:34:42 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch 00/16] media: vpe: maintenance
+Date:   Fri, 27 Sep 2019 13:36:34 -0500
+Message-ID: <20190927183650.31345-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20190922102341.GO25745@shell.armlinux.org.uk> <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
- <CAPDyKFpQn+O-M60q-Tc4QOBM+WhFhmnkU6_-t5hnQcndLo==YA@mail.gmail.com>
- <AM0PR04MB66766AC0807A85B3E5428E028F840@AM0PR04MB6676.eurprd04.prod.outlook.com>
- <4cb91a30-ed1b-1fef-58df-fbc46757bd5d@arm.com>
-In-Reply-To: <4cb91a30-ed1b-1fef-58df-fbc46757bd5d@arm.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 27 Sep 2019 20:35:35 +0200
-Message-ID: <CAPDyKFpm-73euWRWDHhMz=aRt38VLWp5-OaTVhVeFwuc+y46mQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma coherent
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Leo Li <leoyang.li@nxp.com>,
-        dann frazier <dann.frazier@canonical.com>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Will Deacon <will.deacon@arm.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Sep 2019 at 20:04, Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 24/09/2019 04:41, Leo Li wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Ulf Hansson <ulf.hansson@linaro.org>
-> >> Sent: Monday, September 23, 2019 4:27 PM
-> >> To: Russell King <rmk+kernel@armlinux.org.uk>
-> >> Cc: Robin Murphy <robin.murphy@arm.com>; dann frazier
-> >> <dann.frazier@canonical.com>; Will Deacon <will.deacon@arm.com>;
-> >> Nicolin Chen <nicoleotsuka@gmail.com>; Y.b. Lu <yangbo.lu@nxp.com>;
-> >> Christoph Hellwig <hch@lst.de>; Mark Rutland <mark.rutland@arm.com>;
-> >> DTML <devicetree@vger.kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob
-> >> Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Linux
-> >> ARM <linux-arm-kernel@lists.infradead.org>
-> >> Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma
-> >> coherent
-> >>
-> >> On Sun, 22 Sep 2019 at 12:29, Russell King <rmk+kernel@armlinux.org.uk>
-> >> wrote:
-> >>>
-> >>> The LX2160A esdhc controllers are setup by the driver to be DMA
-> >>> coherent, but without marking them as such in DT, Linux thinks they
-> >>> are not.  This can lead to random sporadic DMA errors, even to the
-> >>> extent of preventing boot, such as:
-> >>>
-> >>> mmc0: ADMA error
-> >>> mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
-> >>> mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00002202
-> >>> mmc0: sdhci: Blk size:  0x00000008 | Blk cnt:  0x00000001
-> >>> mmc0: sdhci: Argument:  0x00000000 | Trn mode: 0x00000013
-> >>> mmc0: sdhci: Present:   0x01f50008 | Host ctl: 0x00000038
-> >>> mmc0: sdhci: Power:     0x00000003 | Blk gap:  0x00000000
-> >>> mmc0: sdhci: Wake-up:   0x00000000 | Clock:    0x000040d8
-> >>> mmc0: sdhci: Timeout:   0x00000003 | Int stat: 0x00000001
-> >>> mmc0: sdhci: Int enab:  0x037f108f | Sig enab: 0x037f108b
-> >>> mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00002202
-> >>> mmc0: sdhci: Caps:      0x35fa0000 | Caps_1:   0x0000af00
-> >>> mmc0: sdhci: Cmd:       0x0000333a | Max curr: 0x00000000
-> >>> mmc0: sdhci: Resp[0]:   0x00000920 | Resp[1]:  0x001d8a33
-> >>> mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x3f400e00
-> >>> mmc0: sdhci: Host ctl2: 0x00000000
-> >>> mmc0: sdhci: ADMA Err:  0x00000009 | ADMA Ptr: 0x000000236d43820c
-> >>> mmc0: sdhci: ============================================
-> >>> mmc0: error -5 whilst initialising SD card
-> >>>
-> >>> These are caused by the device's descriptor fetch hitting
-> >>> speculatively loaded CPU cache lines that the CPU does not see through
-> >>> the normal, non-cacheable DMA coherent mapping that it uses for
-> >>> non-coherent devices.
-> >>>
-> >>> DT and the device must agree wrt whether the device is DMA coherent or
-> >>> not.
-> >>>
-> >>> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-> >>
-> >> As I am picking up patch1 and patch2 from this series, I can also help out and
-> >> pick up this one, if that is okay by people?
-> >
-> > There is some concern recently from linux-next maintainer about this causing potential conflicts.  https://lkml.org/lkml/2019/9/15/225
->
-> In principle, it should be fine for #2 and #3 to go via separate trees -
-> #3 aligns the DT with the existing behaviour of the driver, while #2
-> will make the driver behave correctly whichever state the DT is in.
->
-> Robin.
+This a collection of backlog patches I have been carrying for the VPE
+driver.
 
-That's right, so I am leaving this patch for arm-soc people to pick up then.
+It adds supports for SEQ_BT as well as NV21.
+And fixes a number of issues both through v4l2-compliance and normal
+usage.
 
-Kind regards
-Uffe
+======================================
+v4l2-compliance SHA: 5b168dc8473911227890526bad26553d9e8ff81b, 32 bits
+
+Compliance test for vpe device /dev/video0:
+
+Driver Info:
+	Driver name      : vpe
+	Card type        : vpe
+	Bus info         : platform:vpe
+	Driver version   : 5.3.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 1 Private Controls: 1
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK
+	test Composing: OK
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+		warn: v4l2-test-buffers.cpp(683): VIDIOC_CREATE_BUFS not supported
+		warn: v4l2-test-buffers.cpp(683): VIDIOC_CREATE_BUFS not supported
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (no poll): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (epoll): OK
+	test USERPTR (no poll): OK (Not Supported)
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for vpe device /dev/video0: 51, Succeeded: 51, Failed: 0, Warnings: 2
+======================================
+
+Benoit Parrot (13):
+  media: ti-vpe: vpe: Fix Motion Vector vpdma stride
+  media: ti-vpe: vpe: Add missing null pointer checks
+  media: ti-vpe: vpe: Remove unnecessary use of container_of
+  media: ti-vpe: vpe: fix a v4l2-compliance failure causing a kernel
+    panic
+  media: ti-vpe: vpe: fix a v4l2-compliance warning about invalid pixel
+    format
+  media: ti-vpe: vpe: Make sure YUYV is set as default format
+  media: ti-vpe: vpe: fix a v4l2-compliance failure about invalid
+    sizeimage
+  media: ti-vpe: vpe: fix a v4l2-compliance failure about frame sequence
+    number
+  media: ti-vpe: vpe: ensure buffers are cleaned up properly in abort
+    cases
+  media: ti-vpe: vpdma: Use fixed type for address in descriptor
+  media: ti-vpe: Set the DMA mask and coherent mask
+  media: ti-vpe: vpe: fix v4l2_compliance issue related to xfer_func
+  media: ti-vpe: vpe: don't rely on colorspace member for conversion
+
+Nikhil Devshatwar (2):
+  media: ti-vpe: Add support for SEQ_BT
+  media: ti-vpe: Add support for NV21 format
+
+Ram Prasad (1):
+  media: ti-vpe: Set MAX height supported to 2048 pixels
+
+ drivers/media/platform/ti-vpe/vpdma.c      |  11 +-
+ drivers/media/platform/ti-vpe/vpdma.h      |   2 +
+ drivers/media/platform/ti-vpe/vpdma_priv.h |   5 +-
+ drivers/media/platform/ti-vpe/vpe.c        | 251 +++++++++++++++------
+ 4 files changed, 192 insertions(+), 77 deletions(-)
+
+-- 
+2.17.1
+
