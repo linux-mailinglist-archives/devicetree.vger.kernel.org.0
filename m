@@ -2,108 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC2EC0CD2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B35CAC0CDD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2019 22:50:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725815AbfI0Us4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Sep 2019 16:48:56 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:46036 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725789AbfI0Us4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 16:48:56 -0400
-Received: by mail-ot1-f68.google.com with SMTP id 41so3386014oti.12;
-        Fri, 27 Sep 2019 13:48:55 -0700 (PDT)
+        id S1728270AbfI0Ut1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Sep 2019 16:49:27 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42372 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727965AbfI0Ut0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Sep 2019 16:49:26 -0400
+Received: by mail-oi1-f194.google.com with SMTP id i185so6314810oif.9;
+        Fri, 27 Sep 2019 13:49:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bHbuAWRgyfdd0/7I5EKejphIr7Awr7Ufl06cGZr9UWM=;
-        b=Yb14P2FVCzrEpsFJiIKszbjwMIp+FUs8TF+SomX6vu1HZ9mTIwr9RNEg2oLNtOkSRW
-         GYudXChlGNB0VlyoM15UkEHDVmTiHB/8dwVBrccCOmtVPqkA0KtSGJkjixkLtAEjZVh3
-         rt+HvzUZoQEHm0Ed15jNLXWwZStGoCsEwy39qfoLGEtYRmEOcVkYeJbUHcrNoWKuni34
-         VE63EnxIIRtOtikgUKgZGee2SGQsMG1LTNsA9EFWPZezVhJ7aF0NyVbLJZizUfV+OuFu
-         WLQZsnIVbOjQNDWk5/HBdwT588YYygPk21TEwYiN+8w6asdaT1vzTUBtJDrUY8XTZBsm
-         LrEA==
-X-Gm-Message-State: APjAAAVNcAiLJn3ZvC84zsg8fP7Se76wLqRURRnQ0y6zDaaWhDTMrYRO
-        9szaHpGMZU+ap6MX0Ff7SA==
-X-Google-Smtp-Source: APXvYqzPZhS/oOuHCnSCXzdNvjnEYVT4GzMZW0oHF4dRC74KXAwNQ6LWjjs9BHI9deVVAemO9XYlbA==
-X-Received: by 2002:a9d:744e:: with SMTP id p14mr4942965otk.323.1569617335327;
-        Fri, 27 Sep 2019 13:48:55 -0700 (PDT)
+        bh=Csu+S9CExmvQZxWoLiqd8cWChYw+5stkiIYgS0wE0Pk=;
+        b=UUw3Py+MeyWz8I7bbJD97TkbZBHol/I5DJxEvsctQ7IX5598hq8kQU4Wd/i7u39I8X
+         XvFJro9RjsCZ4sVIdBUumw4pQY7hukrAaSo0BbM9br1qltV+WN8EyjBzX5QmSsFyUwFq
+         YHODl/OMHTwbGBb+AuZ3mG/K3NQLQYHKx0irp9ghaEYfXKZzW5HpqjEb4woau1hZyBmi
+         CTJncFdL2lQ73YnBj0zYQLR+beDnnW00XxVEkhrrXo/mMSG9KRFlOUGwn/bmQkQWLeV1
+         4lPdiYaI1rgjaYXX99YzzdmlAFFj/GkgOYNkfiFm9ULXLR9IylppUitn9Gs0YtNArFC8
+         fTtA==
+X-Gm-Message-State: APjAAAVCsvGytnz0riqzyLXCqnOaFy/lbPzSG6ZNBXKalNX4CGI8/41o
+        EW9258YS33MwdE4t91gPMw==
+X-Google-Smtp-Source: APXvYqy4q414kOhKX1y3OP/3MN3/4jIByP73EonOYg81IknG3c7XWbbh/s4H+gYXNq3WZucKaiC1dw==
+X-Received: by 2002:aca:b142:: with SMTP id a63mr8316566oif.119.1569617365739;
+        Fri, 27 Sep 2019 13:49:25 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o2sm1317553ota.3.2019.09.27.13.48.54
+        by smtp.gmail.com with ESMTPSA id i13sm1367069otj.58.2019.09.27.13.49.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2019 13:48:54 -0700 (PDT)
-Date:   Fri, 27 Sep 2019 15:48:54 -0500
+        Fri, 27 Sep 2019 13:49:25 -0700 (PDT)
+Date:   Fri, 27 Sep 2019 15:49:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     vkoul@kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: dma: ti-edma: Document
- dma-channel-mask for EDMA
-Message-ID: <20190927204854.GA20463@bogus>
-References: <20190926111954.9184-1-peter.ujfalusi@ti.com>
- <20190926111954.9184-3-peter.ujfalusi@ti.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: Add Xylon vendor prefix
+Message-ID: <20190927204924.GA28620@bogus>
+References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com>
+ <20190927100407.1863293-2-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190926111954.9184-3-peter.ujfalusi@ti.com>
+In-Reply-To: <20190927100407.1863293-2-paul.kocialkowski@bootlin.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 26, 2019 at 02:19:53PM +0300, Peter Ujfalusi wrote:
-> Similarly to paRAM slots, channels can be used by other cores.
+On Fri, 27 Sep 2019 12:04:03 +0200, Paul Kocialkowski wrote:
+> Xylon is an electronics company that produces FPGA hardware block designs
+> optimized for Xilinx FPGAs.
 > 
-> The common dma-channel-mask property can be used for specifying the
-> available channels.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/dma/ti-edma.txt | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/ti-edma.txt b/Documentation/devicetree/bindings/dma/ti-edma.txt
-> index 4bbc94d829c8..014187088020 100644
-> --- a/Documentation/devicetree/bindings/dma/ti-edma.txt
-> +++ b/Documentation/devicetree/bindings/dma/ti-edma.txt
-> @@ -42,6 +42,11 @@ Optional properties:
->  - ti,edma-reserved-slot-ranges: PaRAM slot ranges which should not be used by
->  		the driver, they are allocated to be used by for example the
->  		DSP. See example.
-> +- dma-channel-mask: Mask of usable channels.
-> +		Single uint32 for EDMA with 32 channels, array of two uint32 for
-> +		EDMA with 64 channels. See example and
-> +		Documentation/devicetree/bindings/dma/dma-common.yaml
-> +
->  
->  ------------------------------------------------------------------------------
->  eDMA3 Transfer Controller
-> @@ -91,6 +96,9 @@ edma: edma@49000000 {
->  	ti,edma-memcpy-channels = <20 21>;
->  	/* The following PaRAM slots are reserved: 35-44 and 100-109 */
->  	ti,edma-reserved-slot-ranges = <35 10>, <100 10>;
-> +	/* The following channels are reserved: 35-44 */
-> +	dma-channel-mask = <0xffffffff>, /* Channel 0-31 */
-> +			   <0xffffe007>; /* Channel 32-63 */
 
-Doesn't matter yet, but you have a mismatch here with the schema. While 
-the <> around each int or not doesn't matter for the dtb, it does for 
-the schema.
-
-dma-channel-mask = <0xffffffff>, <0xffffe007>;
-minItems: 1
-maxItems: 255
-
-dma-channel-mask = <0xffffffff 0xffffe007>;
-items:
-  minItems: 1
-  maxItems: 255
-
-I think the latter case is slightly more logical here as you have 1 
-thing (a mask). If had N of something (like interrupts), then the former 
-makes sense. 
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
