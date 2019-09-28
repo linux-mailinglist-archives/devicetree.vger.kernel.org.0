@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73DB1C120C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 21:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 247CAC120F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 22:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728601AbfI1T6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Sep 2019 15:58:24 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:45946 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728576AbfI1T6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Sep 2019 15:58:24 -0400
-Received: by mail-pl1-f196.google.com with SMTP id u12so2344155pls.12
-        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2019 12:58:23 -0700 (PDT)
+        id S1728630AbfI1UCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Sep 2019 16:02:00 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44822 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728617AbfI1UCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Sep 2019 16:02:00 -0400
+Received: by mail-pg1-f193.google.com with SMTP id i14so5170850pgt.11
+        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2019 13:01:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ogyzIFvOLHZ7NakTY/cmqL28cZzz/DzZcHGiImXfu8U=;
-        b=ay2PcEMtq9QYZWVqsQLrrtraG62kxgk8rWR43jOU4tDMZXOSokblxEX3/Kt2P4trqL
-         PCsWWFVVKY0CWx3gi9KnZ61rMoNETAifxtk4QrOLoXXSMVLyULiHVW133n4Bl/Wa6dLZ
-         leE/nL5WS04vxyMjJDCEo4aEVlVOSPOOV5cZeD9E7zCo+CzG1CcAx2KrKrazfJ494n3g
-         rjPBWL7MEDyiqYriJZJCKNXXfXC4/cY/W6eOROfnfd/2xOjNAaHQClBJiZbWm5T4BWw8
-         IO0JCPuED/nKcDyLHtkK21YmE1FTLqqzgVn2dODd4ps5+0zmZeX3UfyqsQaLf3KX7CK7
-         zoBw==
+        bh=Uoyd17HGXJnqUD3GmfDxE8jq+ajCAKVSglLjOBv6h28=;
+        b=nPpD6QciQbg2xeaDSUWcH0GESFPRMy+k9vthdYholnly97tWJvuYqeEvEiZrIQKMP+
+         ggo99PwKcTfcoYyWmi26JrxJGZr3X6Lk7nsTzJ+/2HAmbbzrfkumpYlZkGtyZP+tf7p9
+         gcKxU7gxevLV4Ux/3vW7krTtomVWYGCHZSUv1yDQecDhjmVVmfT0+b1+XEln0+vVkb1v
+         tPO91IDBLnUNyK79qmSYOyLsujwOMSFSG3G4dYOVXPtqFEbhoYZUBF3YWkg28xu3iJY3
+         EOrrkBGgeNE25LtoT6tsvhnRsIpGrEqt+lJD+RA8SUspJw1IgipSPBmmiHNV5RMeS4+/
+         gE6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=ogyzIFvOLHZ7NakTY/cmqL28cZzz/DzZcHGiImXfu8U=;
-        b=e+/YP+rMxb24JYCFFnzMuN95YLPiweUO2t2LTABXztdCV00efWMdT9fA2Hnx4nf0ZE
-         T+p0JLBDv78dkfxUa4FJnn3RySGScUWWRzb2H5AMdDGQgsLNF4S1PHMBbY7JR2T2Wt5g
-         QNKovwq5VENBjCvLTMsTauzuolhu+TEdk0aFMNB2D15OgcNJFwQgf8WaQOJixTME7HE6
-         +OqfJI8UC0pWxbWZ1xtaT4FMaum4+WGIpCqR7R/PD4/2MJgY8db9PIeiuUy34VX8Vu9P
-         alBgxX+7blJfjeEm+bNHei0/0CmUq1DfDBO66/O0m6DNuMzpEFMSqE18b4JjJgCxnHzK
-         MASw==
-X-Gm-Message-State: APjAAAVfCq7rJUuNRn3cppOcbhN3MkzC1a/+BLv9olYjxuSDl9fa7ZJS
-        g7YFp9Ft9Dssd3jxhiz6xliomsWs
-X-Google-Smtp-Source: APXvYqx6TlQTdUPWxM7re0/gbTZGPprvCs1DkfOt3EHXtwFCSDVXbJn4zqvXyLcrQdLnfgS7h8tjxg==
-X-Received: by 2002:a17:902:9f91:: with SMTP id g17mr11347046plq.298.1569700702949;
-        Sat, 28 Sep 2019 12:58:22 -0700 (PDT)
+        bh=Uoyd17HGXJnqUD3GmfDxE8jq+ajCAKVSglLjOBv6h28=;
+        b=N29oDyvv2FWQfV6fnMm4vGX/68eE/AcUXkKVSjcP9vlF7kVvtGduANyQ9rjEEYLwQf
+         O8bv79bcB3FzOFonflafVSYr2dY0/P4RWCApKnBtU4669s6vVG/U0+zByGJNLW53HQJn
+         QLtYYHbwJtrbL5KmR/LkaZ+I6zp03Vznf9APFy6jtoLsgkehWMUXI+WKqLR2QYqTTYMU
+         4I7LZkrzjXRO6G16Sce+T2S3Nv5efqgdf95MJtLDZgsbGZaVvp3XYu0vY3U016/qpsZq
+         1qNPMPu2IDQM+5IxjuBBO8CKPCAEql2EEN0qWhLrt3NkW75PHCv6qtD+pNeLuMidr80L
+         aI6Q==
+X-Gm-Message-State: APjAAAUAvjw2LNlM7BRS3W286rr6o6Nnk6Wu3AEBtn/EkpKcpO6+nvSf
+        ebLw8EQQMW/LWRztH726XQG/5n7p
+X-Google-Smtp-Source: APXvYqwkx/SuzCtG1d5T90LeCjorOGzzewIUddle4mHhUxjPMVjyGW/l+ER/GPPOvJsaSoNlIk+6hA==
+X-Received: by 2002:a17:90a:7f95:: with SMTP id m21mr18278564pjl.73.1569700917546;
+        Sat, 28 Sep 2019 13:01:57 -0700 (PDT)
 Received: from [10.230.28.130] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x10sm11282638pfr.44.2019.09.28.12.58.21
+        by smtp.gmail.com with ESMTPSA id s3sm9060710pjq.32.2019.09.28.13.01.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Sep 2019 12:58:22 -0700 (PDT)
-Subject: Re: [PATCH V3 7/8] ARM: dts: Add minimal Raspberry Pi 4 support
+        Sat, 28 Sep 2019 13:01:56 -0700 (PDT)
+Subject: Re: [PATCH V3 0/8] ARM: Add minimal Raspberry Pi 4 support
 To:     Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Eric Anholt <eric@anholt.net>,
@@ -57,17 +57,16 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         bcm-kernel-feedback-list@broadcom.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
- <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <77b0a773-912a-aa5b-6eb5-5423c2c07e58@gmail.com>
-Date:   Sat, 28 Sep 2019 12:58:20 -0700
+Message-ID: <a9368cbc-a62d-0fed-9e8e-3d65111de1dd@gmail.com>
+Date:   Sat, 28 Sep 2019 13:01:55 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.1.1
 MIME-Version: 1.0
-In-Reply-To: <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
+In-Reply-To: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -76,123 +75,110 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 9/28/2019 5:07 AM, Stefan Wahren wrote:
-> This adds minimal support for the new Raspberry Pi 4 without the
-> fancy stuff like GENET, PCIe, xHCI, 40 bit DMA and V3D. The RPi 4 is
-> available in 3 different variants (1, 2 and 4 GB RAM), so leave the memory
-> size to zero and let the bootloader take care of it. The DWC2 is still
-> usable as peripheral via the USB-C port.
+> This series adds minimal support for the new Raspberry Pi 4, so we are able
+> to login via debug UART.
+> 
+> Patch 1-2:   Fix some DT schema warnings
+> Patch 3-4:   Prepare DTS for the new SoC BMC2711
+> Patch 5-7:   Add Raspberry Pi 4 DTS support
+> Patch 8:     Update MAINTAINERS
+> 
+> Unfortunately the Raspberry Pi Foundation didn't released a
+> peripheral documentation for the new SoC yet. So we only have a preliminary
+> datasheet [1] and reduced schematics [2].
 
-That comment is useful, and probably belongs where the memory node is
-declared, see below.
+Overall this looks good to me, just a few comments in specific patches,
+if you can re-spin those patches we should try to get that in 5.5?
 
 > 
-> Other differences to the Raspberry Pi 3:
-> - additional GIC 400 Interrupt controller
-> - new thermal IP and HWRNG
-> - additional MMC interface (emmc2)
-> - additional UART, I2C, SPI and PWM interfaces
-> - clock stretching bug in I2C IP has been fixed
+> Known issues:
+> Since Linux 5.3-rc1 DMA doesn't work properly on that platform.
+> Nicolas Saenz Julienne investigates on that issue. As a temporary workaround
+> i reverted the following patch to test this series:
 > 
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> Acked-by: Eric Anholt <eric@anholt.net>
-> ---
+> 79a98672 "dma-mapping: remove dma_max_pfn"
+> 7559d612 "mmc: core: let the dma map ops handle bouncing"
+> 
+> Changes in V3:
+> - rebased series
+> - add Reviewed-by
+> - enable ARM_GIC for ARCH_BCM2835 on arm64 too
+> - configure i2c pull-up in bcm2711.dtsi
+> - move i2c2 to bcm2835-common.dtsi
+> - add missing compatibles to DT schema as suggested by Rob
+> - fix DT schema warnings in dtsi files
+> - replace brcm pintrl with generic pinctrl as suggested by Linus
+> - make dma_zone_size depend on CONFIG_ZONE_DMA as suggested by Matthias
+> 
+> Changes in V2:
+> - use separate board file for BCM2711
+> - enable ARM_GIC for ARCH_BCM2835
+> - add Acked-by and Reviewed-by
+> - fix arm-pmu and timer nodes for BCM2711 reported by Marc Zyngier
+> - enable HDMI at board level
+> - move HDMI and pixelvalve into bcm2835-common.dtsi as suggested by Eric Anholt
+> - fix DWC2 probing warning by setting USB role to peripheral
+> - fix order of node references in bcm2711.dtsi
+> - disable I2C clock stretching quirk for BCM2711
+> - mark PLLD_PER as critical clock
+> - make PLLH clock unavailable on BCM2711
+> - fix compile warning in clk-bcm2835 for arm64
+> 
+> Changes since RFC:
+> - change BCM2838 -> BCM2711 as discussed in RFC
+> - update MAINTAINERS accordingly
+> - drop "spi: bcm2835: enable shared interrupt support" from series
+> - squash all pinctrl-bcm2835 changes into one patch
+> - introduce SoC specific clock registration as suggested by Florian
+> - fix watchdog probing for Raspberry Pi 4
+> - convert brcm,bcm2835.txt to json-schema
+> - move VC4 node to bcm2835-common.dtsi
+> - fallback to legacy pull config for Raspberry Pi 4
+> - revert unintended change of mailbox in bcm283x.dtsi
+> - add reference for arm64
+> 
+> [1] - https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711/rpi_DATA_2711_1p0_preliminary.pdf
+> [2] - https://www.raspberrypi.org/documentation/hardware/raspberrypi/schematics/rpi_SCH_4b_4p0_reduced.pdf
+> 
+> Stefan Wahren (8):
+>   ARM: dts: bcm283x: Remove simple-bus from fixed clocks
+>   ARM: dts: bcm283x: Remove brcm,bcm2835-pl011 compatible
+>   ARM: dts: bcm283x: Move BCM2835/6/7 specific to bcm2835-common.dtsi
+>   dt-bindings: arm: Convert BCM2835 board/soc bindings to json-schema
+>   dt-bindings: arm: bcm2835: Add Raspberry Pi 4 to DT schema
+>   ARM: bcm: Add support for BCM2711 SoC
+>   ARM: dts: Add minimal Raspberry Pi 4 support
+>   MAINTAINERS: Add BCM2711 to BCM2835 ARCH
+> 
+>  .../devicetree/bindings/arm/bcm/bcm2835.yaml       |  54 ++
+>  .../devicetree/bindings/arm/bcm/brcm,bcm2835.txt   |  67 --
+>  MAINTAINERS                                        |   3 +-
+>  arch/arm/boot/dts/Makefile                         |   1 +
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts              | 121 +++
+>  arch/arm/boot/dts/bcm2711.dtsi                     | 838 +++++++++++++++++++++
+>  arch/arm/boot/dts/bcm2835-common.dtsi              | 194 +++++
+>  arch/arm/boot/dts/bcm2835-rpi.dtsi                 |   4 -
+>  arch/arm/boot/dts/bcm2835.dtsi                     |   1 +
+>  arch/arm/boot/dts/bcm2836.dtsi                     |   1 +
+>  arch/arm/boot/dts/bcm2837.dtsi                     |   1 +
+>  arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi  |   7 +
+>  arch/arm/boot/dts/bcm283x.dtsi                     | 190 +----
+>  arch/arm/mach-bcm/Kconfig                          |   3 +-
+>  arch/arm/mach-bcm/Makefile                         |   3 +-
+>  arch/arm/mach-bcm/bcm2711.c                        |  24 +
+>  arch/arm64/Kconfig.platforms                       |   5 +-
+>  17 files changed, 1257 insertions(+), 260 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm2835.txt
+>  create mode 100644 arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+>  create mode 100644 arch/arm/boot/dts/bcm2711.dtsi
+>  create mode 100644 arch/arm/boot/dts/bcm2835-common.dtsi
+>  create mode 100644 arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+>  create mode 100644 arch/arm/mach-bcm/bcm2711.c
+> 
+> --
+> 2.7.4
+> 
 
-[snip]
-
-> +/ {
-> +	compatible = "raspberrypi,4-model-b", "brcm,bcm2711";
-> +	model = "Raspberry Pi 4 Model B";
-> +
-> +	chosen {
-> +		/* 8250 auxiliary UART instead of pl011 */
-> +		stdout-path = "serial1:115200n8";
-> +	};
-> +
-
-Might be worth a comment that the reg property of the memory node is
-filed by the boot loader based on the populated amount of DRAM. You can
-also go with a shorter format for the size (0)?
-
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0 0 0x00000000>;
-> +	};
-> +
-
-[snip]
-
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/bcm2835-pm.h>
-> +
-> +/ {
-> +	compatible = "brcm,bcm2711";
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <1>;
-
-Trying to see if we may need a #size-cells property value of 2 here, for
-the 4GB model, I would assume that we would have to, unless we are fine
-with supporting 4GB - 1byte of DRAM?
-
-> +
-> +	interrupt-parent = <&gicv2>;
-> +
-> +	soc {
-> +		ranges = <0x7e000000  0x0 0xfe000000  0x01800000>,
-> +			 <0x7c000000  0x0 0xfc000000  0x02000000>,
-> +			 <0x40000000  0x0 0xff800000  0x00800000>;
-
-Might be nice to get some comments about
-
-> +		/* Emulate a contiguous 30-bit address range for DMA */
-> +		dma-ranges = <0xc0000000  0x0 0x00000000  0x3c000000>;
-> +
-> +		local_intc: local_intc@40000000 {
-> +			compatible = "brcm,bcm2836-l1-intc";
-> +			reg = <0x40000000 0x100>;
-> +		};
-
-This deserves a comment to indicate that this node is the provider for
-the enable-method for bringing up secondary cores. And no PSCI, still,
-what year is this?
-
-[snip]
-
-> +		rng@7e104000 {
-> +			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			/* RNG is incompatible to brcm,bcm2835-rng */
-
-Nit: s/to/with/
-
-[snip]
-
-> +		spi@7e204000 {
-> +			reg = <0x7e204000 0x0200>;
-> +			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-
-Why is this SPI node incomplete, are you just overriding a previously
-defined node here?
-
-[snip]
-
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>;
-> +		/* This only applies to the ARMv7 stub */
-> +		arm,cpu-registers-not-fw-configured;
-> +
-> +		/* The ARM cores doesn't enter deep enough states */
-
-Nit: s/doesn't/do not/
 -- 
 Florian
