@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6567C10B8
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA40DC10BD
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726642AbfI1MH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Sep 2019 08:07:59 -0400
-Received: from mout.gmx.net ([212.227.15.18]:35327 "EHLO mout.gmx.net"
+        id S1727718AbfI1MIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Sep 2019 08:08:12 -0400
+Received: from mout.gmx.net ([212.227.15.19]:38687 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726560AbfI1MH7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Sep 2019 08:07:59 -0400
+        id S1726581AbfI1MIM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Sep 2019 08:08:12 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1569672458;
-        bh=hfLTzkanvHdv0805iskYFMrxghx9/3ubOyaD3u2YZUY=;
+        s=badeba3b8450; t=1569672467;
+        bh=EpFhBA4p2FlCXDVmr2vPdA7dtjTxxcDk4dB260T1cOs=;
         h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=FtEJEaY35SSLY0AJoBw0G9Ie8oJOAWqcnInt5Ic5QKMqyKjRuwA+ONAavEgU1Rgr1
-         zy+99Ag/jSTgjoIWBiKCQQbjBBRxu5hY5KNOM3xilQ5xTWWA3x/sNvGk7rqbGGcDMk
-         CntXxdJ17OKRBtV2xzMucFyrjENsw8g/tpmYEGqQ=
+        b=GEvAk6bmXyCJRjZnB5eCU3LIEtAdz0jKpmCs7kXxhW/eRUCGlP3QpjCnh1Ra7uHey
+         Z3rUZi1tIvdSfGGXytTIIxs5P/G0A6zIolVQaikspW58ogamo7ibgzeWVoGxr2/wn2
+         kqweZ2Igo98y1YDNNT6FXvYn9lfck8vqml7WmkQA=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
 Received: from localhost.localdomain ([37.4.249.130]) by mail.gmx.com
  (mrgmx005 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MHGCo-1iRR4E0xoe-00DDJd; Sat, 28 Sep 2019 14:07:38 +0200
+ 1MmUHj-1hngOh30qX-00iRTA; Sat, 28 Sep 2019 14:07:38 +0200
 From:   Stefan Wahren <wahrenst@gmx.net>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -34,68 +34,144 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         bcm-kernel-feedback-list@broadcom.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V3 5/8] dt-bindings: arm: bcm2835: Add Raspberry Pi 4 to DT schema
-Date:   Sat, 28 Sep 2019 14:07:11 +0200
-Message-Id: <1569672435-19823-6-git-send-email-wahrenst@gmx.net>
+Subject: [PATCH V3 6/8] ARM: bcm: Add support for BCM2711 SoC
+Date:   Sat, 28 Sep 2019 14:07:12 +0200
+Message-Id: <1569672435-19823-7-git-send-email-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
 References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
-X-Provags-ID: V03:K1:oQxad6CfBtrzG7FQm3rKGx9Rbi/ZJs5SyFOtihvCF2Dk9OnwMHh
- tUmrUo8XmcrRCWKTKT62nO+g3zr5MWkifkP643JLzGoeujJq6eGOYKrsR9xcU55sQt+GwGE
- 8xLbrN1ppl1rpLhRwTWERXm6pXpryf4kLYOFEUQWnWOeFayq6kdAUnpFiitX9MPhZKVLDFr
- jaN/2aQTjxBXkLwvBl/Ww==
+X-Provags-ID: V03:K1:3v9Ol3t2CWt+FT41hI8nI5XC5PPLlJXi+X26WAoPqBLGTxKOcmy
+ 22GC6/stxKsrwz4T5TYFpsyKZL0fcMHNEdz++8DnB3MmRiEwehy8KAp1C3mGTYsx0GBpKW6
+ 0JqhvwBm7LZOyUt9pui80vaRYXZPVYVryhEeBCBw+VguwQLU/RdfbgoityzuQCa28jq4yl4
+ kf+lIzwRVxODw3ibwDu7w==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Fsu58mNrVAg=:9qi++y7V/ZSNUId2RpTSc3
- +frP7M5zoAMAVppp6iLSmNUSpc3g49oTX2qRpFgc1z220BfEiD9ASea7dxbLhh3RFu5XM8LMs
- +Abgl6+DJ7MU3sBEAR0cTauk1bnm0nJ+dflAkpr1SEBR6vtxqkAmx8+80GNw8iaDnE/R+a4Xy
- 09e1BCdk4laVvMnAIlzcQHqCBnx8unLAdjHb9yLyx8ucBNQkdbz7YIwsU6cds2Lie1I+X+Iqp
- NHqBrqy3RLTJ4mxCt4fwi8ONASZGNnP52OLOUj2UJkkKhPWiYfuPGX74dPyThvEQZM/IPTRq6
- KrVmOcmca3UT8gQRpmMZCTWHsIs3kNhclIO4S9p7aYwfuy6lXkCJboCY+R2A1f5Spdnr4xgi8
- rNU5Bb55vCDgg0chmgFn7wlbHE6lTtfQmLAyMmjJ32YUIGPrcNGOcdANepoz3ZolExKF19nkw
- NfQZcyFvW5GOKWGBHPOWMy1LyWnYuShbGMbXp2VmgSobwLpjnMuGU5fLNmMCPJVTVE9Q41w4x
- mCVB4/reD81DQswKlNjk1mSxeTf5qzQgfW2qsNGd8NxlkAFg7IjY92TfsiB1x2mvDmBi88EqN
- 8QHQZnJnst4g3us4+xbv1Ye8hsMxz32zS7kLBUNLRdFm+jBAT7dWrUYi1lQMqNSI30zZpSxIG
- TNbZ0bTYzpWTBbKlntg60yHp5ACHiSfwtL14nuNgJcduVXPDREk5rWlSno7CB7jWCQ/jnU/SX
- cq9C2NjDyIwAU6/6H32uAnoMNA2Thx9bh0uhNP1t0XTIsUMVH0iGULDDmQKriheYBLNPT8hM9
- YBXDbmxCDVl4dvYoB/BiG/OwByS6DbjDRWlRpWFKREE9aYgcb++W4QziJPgXUMdtrNStAq8KT
- IVfvsvfup9NjObbHrHGmA31ez6BgP3OEd74qZOI1Jb8svUdjWeF4JgFsG0UbYraYmWXgTQBjt
- CI34cJwp0eV7kkg4iccK5gTUr0Bi3bMNpVKPeVda/wjKeSPCW6QxYx2DbKCt/rx1Rfd/LvPvv
- 0HAv7iZ+L2rKAm56zjMohOGNa056EMIrQBy892of7oxkC+SSNgqph1tkva5vKWReuq5YzEPE2
- xx9pcLf8rC9lNmrgHzd410jo3d4QvL68tlmXHMXS1JFV6pL6e+VNK1qOCJUanQ3F9f09tabxg
- 2+z8AJ+YrtUoOcbDXgK5B/Lsz9aYD01ErkOndStLeJiLeB44myFj9iyxrHVzc+bbSOS8Dor5n
- JrP5Hfrmh5zT45ufe0eeQxKJpx+9CC3ClRKyZSw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:jlA0vyM2pA4=:kSs7ksZPicgRnY8m+D7Rsp
+ BTkhoqkV/Wk4YYfetOJIYsahy6bwc/94vIOJgatnCbspsgHok3k7bkVqmZZWh1FmK5rPjmsnk
+ fydIAAdVks/YQjo2fBegscPkoyupbJy3VNmkCP05uSiCYM/QC8nwP21+CkNJA/aC6TfhO3vcz
+ cizxHsdNM7l9lgr1O4xKGCdyvQcCskH1N+u8FxCaC/WdAWWH6JcPKgeiRhQGG2nYhhsXMb7A8
+ E2M4IJ8KQS0FKOG6h798SF+CIRrJfza4YGVPZFJuJT9DhQMbM2g1aJ7zyWh1/fppp1J4ng1l4
+ KxpxepbvBVOVRBPAtlyU6w8ZSRzwL5DQ5PMwgVmLu242e+WbtzzlNzpG5jPyMg/dPlB4H2sdK
+ k0ATLcgJ66PpmR5o6tERzEa5rOkKR8CNSMDFKXTSunSfTt3X1m0/rk2ePwF//X/6kIEJBFc4g
+ qDXJIKQ6aQ9xwB17T1d+Ph6Ai8+AOiN6b2Lf9K9X+WOAd5yFia3hfyr+nqLTMsZ+09aWQyqyI
+ 6eVP8zSqr3VsjMCGKZ+9v3wt00ptSf1hxRy/+efclmoI1TYHiA/KmasdmIozrCpwS0nsNzzXi
+ 9EFY7CPcR8f4jjFLIJAB+uf7zyk6m3CxW30o71W59kq/DqGRuhoWh6ep+8eh5jfAgOmtHzoTF
+ P7JAYJG5PQWzwL8EtefAQ6NJk2sdbRGxADMqiiFsPpwq0tGIGAwQsX0pdn9v4Vm07UaNJg7dj
+ 8JsqfGd5ktQZXIPq/qNwys/BZoWytmcudFLWscVrTMZ8Nkfm40yF7ugUTeMvQj9f4oKVBtp53
+ AD1Y2RDrXLdzJVFhhdASMgoEonDvYktaI5Uxh42M78asg1bdOLJuhWMS05H6fALDZktdLFx+/
+ ObzDTZCzIZ21Xl6zq+6nDO1tBD2l6hp23/s1+fMNZnngZThV5SDZ1KKKuWdtiGOZnxIk+ywSj
+ bYRWuMbeQhgj1Mr9rzYJpU9pu28c0ldwfJGO2hPNdgOZpaP6G6dg+40zooxamwkP1s6CwHyqc
+ Ea4QE71kkLeTZGX1URqtrJK4veLBwmTlOS+b3QaQnYFjg+ZhOoDxzXMN36pJWkFGoPn852/Gp
+ OvKdc6gyTf4jAp1Lr2I/Ld5ZnxXOszX1ktZ068HvzT+zFNv1J/7cyh0Mnc8IICFtBsaUOW2RD
+ aSQPgEYY2k01RnyP8rFWP+cxeH2yZAl/zYRiUIPQgtiuFu0zwQkmf67sHMmsRZwmv21VsEgLV
+ cqEHGyzMnk2/oU9CUSZgvkXKCW+ueS5Womt6rETE39WhoTfEI3nxVgxvdxGQN7JA1GCpf9D3C
+ 06teAKe0b5p0wGGuWEhnhLN9/ZKHsR6Ihr6dNOk9elQA4dkOOv1+6oK++8zkWs0YU4+u4JQFF
+ JIWmVZrqlVBXRBLVbkN/Oy5uO9n9v9fJrCuJt8SDKmZ46Flf/imisTkdUq8NzQWRlxjk1quAr
+ 6VYSGjLmAnh+eEIHFRQLggQX6f3oVZ0XOWWcwVFV++hL+307D6K/nX
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new Raspberry Pi 4 to DT schema.
+Add the BCM2711 to ARCH_BCM2835, but use new machine board code
+because of the differences.
 
 Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-Acked-by: Eric Anholt <eric@anholt.net>
+Reviewed-by: Eric Anholt <eric@anholt.net>
 =2D--
- Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/mach-bcm/Kconfig    |  3 ++-
+ arch/arm/mach-bcm/Makefile   |  3 ++-
+ arch/arm/mach-bcm/bcm2711.c  | 24 ++++++++++++++++++++++++
+ arch/arm64/Kconfig.platforms |  5 +++--
+ 4 files changed, 31 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm/mach-bcm/bcm2711.c
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml b/Docu=
-mentation/devicetree/bindings/arm/bcm/bcm2835.yaml
-index 67bf9e2..dd52e29 100644
-=2D-- a/Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
-@@ -15,6 +15,12 @@ properties:
-     const: '/'
-   compatible:
-     oneOf:
-+      - description: BCM2711 based Boards
-+        items:
-+          - enum:
-+              - raspberrypi,4-model-b
-+          - const: brcm,bcm2711
+diff --git a/arch/arm/mach-bcm/Kconfig b/arch/arm/mach-bcm/Kconfig
+index 5e5f1fa..39bcbea 100644
+=2D-- a/arch/arm/mach-bcm/Kconfig
++++ b/arch/arm/mach-bcm/Kconfig
+@@ -161,6 +161,7 @@ config ARCH_BCM2835
+ 	select GPIOLIB
+ 	select ARM_AMBA
+ 	select ARM_ERRATA_411920 if ARCH_MULTI_V6
++	select ARM_GIC if ARCH_MULTI_V7
+ 	select ARM_TIMER_SP804
+ 	select HAVE_ARM_ARCH_TIMER if ARCH_MULTI_V7
+ 	select TIMER_OF
+@@ -169,7 +170,7 @@ config ARCH_BCM2835
+ 	select PINCTRL_BCM2835
+ 	select MFD_CORE
+ 	help
+-	  This enables support for the Broadcom BCM2835 and BCM2836 SoCs.
++	  This enables support for the Broadcom BCM2711 and BCM283x SoCs.
+ 	  This SoC is used in the Raspberry Pi and Roku 2 devices.
+
+ config ARCH_BCM_53573
+diff --git a/arch/arm/mach-bcm/Makefile b/arch/arm/mach-bcm/Makefile
+index b59c813..7baa8c9 100644
+=2D-- a/arch/arm/mach-bcm/Makefile
++++ b/arch/arm/mach-bcm/Makefile
+@@ -42,8 +42,9 @@ obj-$(CONFIG_ARCH_BCM_MOBILE_L2_CACHE) +=3D kona_l2_cach=
+e.o
+ obj-$(CONFIG_ARCH_BCM_MOBILE_SMC) +=3D bcm_kona_smc.o
+
+ # BCM2835
+-obj-$(CONFIG_ARCH_BCM2835)	+=3D board_bcm2835.o
+ ifeq ($(CONFIG_ARCH_BCM2835),y)
++obj-y				+=3D board_bcm2835.o
++obj-y				+=3D bcm2711.o
+ ifeq ($(CONFIG_ARM),y)
+ obj-$(CONFIG_SMP)		+=3D platsmp.o
+ endif
+diff --git a/arch/arm/mach-bcm/bcm2711.c b/arch/arm/mach-bcm/bcm2711.c
+new file mode 100644
+index 0000000..dbe2967
+=2D-- /dev/null
++++ b/arch/arm/mach-bcm/bcm2711.c
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (C) 2019 Stefan Wahren
++ */
 +
-       - description: BCM2835 based Boards
-         items:
-           - enum:
++#include <linux/of_address.h>
++
++#include <asm/mach/arch.h>
++
++#include "platsmp.h"
++
++static const char * const bcm2711_compat[] =3D {
++#ifdef CONFIG_ARCH_MULTI_V7
++	"brcm,bcm2711",
++#endif
++};
++
++DT_MACHINE_START(BCM2711, "BCM2711")
++#ifdef CONFIG_ZONE_DMA
++	.dma_zone_size	=3D SZ_1G,
++#endif
++	.dt_compat =3D bcm2711_compat,
++	.smp =3D smp_ops(bcm2836_smp_ops),
++MACHINE_END
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 16d7614..b5d31dc 100644
+=2D-- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -37,11 +37,12 @@ config ARCH_BCM2835
+ 	select PINCTRL
+ 	select PINCTRL_BCM2835
+ 	select ARM_AMBA
++	select ARM_GIC
+ 	select ARM_TIMER_SP804
+ 	select HAVE_ARM_ARCH_TIMER
+ 	help
+-	  This enables support for the Broadcom BCM2837 SoC.
+-	  This SoC is used in the Raspberry Pi 3 device.
++	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
++	  This SoC is used in the Raspberry Pi 3 and 4 device.
+
+ config ARCH_BCM_IPROC
+ 	bool "Broadcom iProc SoC Family"
 =2D-
 2.7.4
 
