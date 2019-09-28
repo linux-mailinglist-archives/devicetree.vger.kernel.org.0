@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD69FC10B5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 026CAC10B6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:07:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725876AbfI1MHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Sep 2019 08:07:53 -0400
-Received: from mout.gmx.net ([212.227.15.15]:39239 "EHLO mout.gmx.net"
+        id S1725965AbfI1MH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Sep 2019 08:07:57 -0400
+Received: from mout.gmx.net ([212.227.15.18]:47857 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725857AbfI1MHw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Sep 2019 08:07:52 -0400
+        id S1725857AbfI1MH5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Sep 2019 08:07:57 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
         s=badeba3b8450; t=1569672456;
-        bh=kA9LT+J1mkFgK6OJuKagBFzmadC3HLjtk+uf794I/HY=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=CCIXmLvop6eEFi6oidzX8s8e33Af+Jo2pPUR/dZEOa85Ooy8i912lH+gqL+iMDIww
-         qHEgPC8XrqTFTed2t1WIqQwPLxvnmmYzlqgwRbVaZVmpz5RbH//O6lI3eXawjeEbB/
-         oThk9nDjS4sfm2R+VbdmCgAGRqqmFd626S15iehQ=
+        bh=Uiusfd++iO6W8WtYRF60ANQDODpBG+UQSmFz88xtJgk=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=dQQAfY4vF9eIiMhhnPGoT5NglegGATZLY2pWt5aHEKQTfHpbo5mXmBA2lOMMYtol9
+         0RYl9Xdf72oHrJejRZvgtxira0cT89r516zxoKJBQpQogQGbjbFKM/28zYVRed4eaT
+         1rCKc0ib8NpCUf/BH2aTQVuWU7ShKx1WkQMEmd9A=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
 Received: from localhost.localdomain ([37.4.249.130]) by mail.gmx.com
  (mrgmx005 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1N4zAs-1i4Nvv3ssG-010vgv; Sat, 28 Sep 2019 14:07:36 +0200
+ 1Mk0Ne-1hlkaO1gXA-00kMD7; Sat, 28 Sep 2019 14:07:36 +0200
 From:   Stefan Wahren <wahrenst@gmx.net>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -34,145 +34,89 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         bcm-kernel-feedback-list@broadcom.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V3 0/8] ARM: Add minimal Raspberry Pi 4 support
-Date:   Sat, 28 Sep 2019 14:07:06 +0200
-Message-Id: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+Subject: [PATCH V3 1/8] ARM: dts: bcm283x: Remove simple-bus from fixed clocks
+Date:   Sat, 28 Sep 2019 14:07:07 +0200
+Message-Id: <1569672435-19823-2-git-send-email-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.7.4
-X-Provags-ID: V03:K1:Sn7IIjrYMv1jLpKXguD1s2VzxnorVdX6UuwdX/R+KSbZUxqp8v2
- avfTC9WC0vqzK2UeLsUeuQ6HP2VuKtxBzEFm58n0G4E+XQeKBg7uko5hknlZfQhg36oX4l5
- 6vk2qUvk/7pQBEpoTGffCpxMugffopy35/A/zSdYnhmLJ0i/TVlxu4HRllIVPjc8uNmZ+Ls
- MXQuqtjC/LaLA8u+ojX3w==
+In-Reply-To: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+X-Provags-ID: V03:K1:Qtvp3jbppime3Xe7fPvHlPdRWaE4I5Ik5MHiGVEb5DsNMGaIWjk
+ VKQScuoHMcCmlS9y5vS4d3x+5fVvOllNTYU9pqisHOQI03U34MOGTzQCmdjyaBmm+z6pSsq
+ PfBJnqBGdYamgCBvo/LP9ZbfAE/lt9bRqM5zLAIkR0UtaSM5+7EdYMYqGgRrxKcx8X7qqZ4
+ 8bnsG4ILMaGfP4K0PFrVg==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:cR43x9UxEMM=:cn6yIG95F4WXtBgBSSAqG+
- Nb0sTe5DvnUk0a025tzp00JqtypzPgF+2nM4EVu3sDSBtSkDo4mgIG/THUZg8VIq00cjsol5X
- Y9V+PxFfTyTw91BPA/CO7PwlwnfNDYswB2YrH5YLDWgZvq+WbG8qIpxeqqyw8reKJBJnY5a4G
- dcZXuunhduFjMIuUdy+sxDzY6gU1ju8IaD/i77PPAZKc2aWDXkby+Yx7LNs7tZ8rqHeyl9/QU
- HvZgbQun4Of+jOpU+jEglVzGEKTW5gMUu679FfBXq3jRV1PRO9MdtnjmtORf0SzccUgPgNnro
- YaWlLw3IPlp3c4D/b7RJtPdb7Dm3/8ssnbNOgnu/UtuCqZhtwwVoyOXC6bGKfVDvAkiq9MhVF
- ggQWFs/j6hxRQmgCs6K3qcd24IR5IWMYSU/YkouEt4JCX7dawHNQQsrJ0b3HXeZjIIcl1CXDp
- mGo1JfBi5VMTr+g2ttwpCRmA3s1YQhcAoJmExkeY8ACyswqUslLuNFILCzQO6PqV/n+fH1q6Q
- Lb5wZDyNEbKOBA7vm3OmA7taU9s155neNf02PMQ1OPD+NXkb2aqETOEJ5fNWsnlkpsIjS7hTY
- Vbx55c2Qg9uULyPHkkOBfwPPJsyuC1LVdOhqkblqWLhqm2bOgH7dqo7bYQkQVyEIzIEIBQhVG
- HGyVHAl6mI3DkclspappiNjO4eScJDa/GapTazycuJrigaMQ3VHKhFouad+yvbzyts+W6p2fO
- GAWfqPhsKhdtl3Iei+O4SZzRRdhrLyIEtuNk4/ehzGPYTaf/JfQUxl78yx4YB5dhIkE3YRp8n
- WvfqnTjTI0S/kwidQaqt2BuRK78RSoOyGhf3sKKKT0W7QUyeBcZOK7eJipfV/ilGgs23EWTDw
- dyjwiWhNW8fFQHqvrUqJgzWfys+V6vem1uSIrNXDkipQuFUgQvK15ur/D2fpqO7URFfFpzQIH
- OhzQjgu0qJQu5Rulw9BqQtnlmlN8wnNi9u5ZcD+Gje1KzsTrjSZ3pkBFXUx07tM8AHhWrmNF0
- XowGdB3XDtMZv0UWqE4/cBm9+jgOpS9N376hS+AYaw6V+Z0I75xXdeRjKqziwwJsSpaMOh1Pg
- EeRlXBnoiZFnZqfSq4LitcUnwEERlzixKVJ3R4fjDqCOA0Am3LlHfiJIIL+9jznGy7UsdFXdJ
- lH4mI9b82w9PkoC5lGbL4ehpuDy9XR818hVPBxKtI9n6UwHbJMj/Gwr3cGEgx+YMU03J6KEbA
- Ohd8dc9qWAlbKgrD7mg9HPsvecQCj3iuwIsNd3w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:b3YvHamCSD4=:9/VGlDodTXtRD2VUougHaS
+ AJd7T1yanl95AH22mpgekYcnltdSxncVFWd7p9D4VjpOA2lWhCjhcd+tCvB7uk3uYo1PI78yl
+ dG6zYU+LwEzwtMCUMnF77XL5/kJi4Waya71RhCRo6p0UifZ183Tzn4E9zIdTArV+OrXwGj8un
+ 0LjCgyv93C3Zmtn1vBIAGzZHthTFSB3DhrUZfuUOQ3n9ET6DKvcdiw8tAFlx0O28rTf3+iix+
+ qyGHa0Tve1JBtuv6lXkJJUEYbM517UzkCU7JHnctOtYHjRMVwYhPCz8yrz4HkIGiALHVX/6dI
+ MOAHfCswJEJQkxKXRUWHY5amfYsOCxXdfPt74mjbPoN8G698NiUHjDdhKIwDURiIK1DLNzxQM
+ nAJjolUF1t25+Quqtny2SkKvhiIup2xrYZ7kOzEl54FPIRykR3gLtg4lZ+JBXQHmOGEYYtiOC
+ 7OKHnCZ3jXQDov6RMeI4xlLBw3TqDU+mUBaE0LfKI45no4XYPnEmxQtkF6qsAGKwex3rz4Dh4
+ 9c1E0peVbVSLovs0cMJcs7v9haXtCPVcVR+114tHZ3d3pD+uWxBhTNLxthADxerlZYmm5bDpE
+ Hl906ScNr+21ETKFGVQO0SfhdSe78Dfh6xeEwjqAU7PvLC0eQ+swXcwJ7uh8WeYI+UJfiYRTH
+ /AqVvfzYLJBZoqOq3p6ydsfwigpT9jzHYStB96jMIyxxw0pGPohr8yH08x/JVuc5aShJalrHv
+ nWhhUL8D/bw8nAVUwpXQXV+sWNy39+D5EtsDa+gcI9Gf7AnmdwORvB3BNZ/Udvi6f2ZU/BJYw
+ HJ3DRch/R223wqQlzT4qqZoxOeB7Wf2loDkEtJRhX9NTxfnJg0rK0nmrgnQYYHRLC+SlfRPQo
+ NwMnH/wYQ43yRvi3mC0khxKDVBoBNnVb10pAyxwPrv6ox3tCHjlfxUWg7n8XF6yx4R0+Sq/Ob
+ Bgw26uphkGX00YRMxUWzo5223DJvUiLSnD6J0wyi+sjKCLJV85Mh1aMLzi9Xp7bEq+0Wgf149
+ u4e/KRNTdJZnLxa2ayoYIJwS0vXuxydewt3ubMjKm5csistwzcexb2Q6C3aXpPr1Z+BllBrkI
+ WK1LU5u28og2R1jqHSqCxF/vcj5yKE3zYN4mjBypAK+gsCZI5wcbyCqdCUH6d8+DY3YaS+lw3
+ gTJnN1iXzwsT6Xuf2Bt5Sk9It2/XKhal2IXZ6gzDc0yc7b9qeKDssQgI3K3omc4+M8OFuyvJ7
+ gEucJ7VG3anMiF6mkHrsN4bBibSbz9tKwLNFlsg==
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds minimal support for the new Raspberry Pi 4, so we are abl=
-e
-to login via debug UART.
+The fixed clocks doesn't form some kind of bus. So let's remove it.
+This fixes the follow DT schema warnings:
 
-Patch 1-2:   Fix some DT schema warnings
-Patch 3-4:   Prepare DTS for the new SoC BMC2711
-Patch 5-7:   Add Raspberry Pi 4 DTS support
-Patch 8:     Update MAINTAINERS
+clocks: clock@3:reg:0: [3] is too short
+clocks: clock@4:reg:0: [4] is too short
+clocks: $nodename:0: 'clocks' does not match '^(bus|soc|axi|ahb|apb)(@[0-9=
+a-f]+)?$'
+clocks: #size-cells:0:0: 0 is not one of [1, 2]
+clocks: 'ranges' is a required property
+clock@3: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+clock@4: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Unfortunately the Raspberry Pi Foundation didn't released a
-peripheral documentation for the new SoC yet. So we only have a preliminar=
-y
-datasheet [1] and reduced schematics [2].
+Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+=2D--
+ arch/arm/boot/dts/bcm283x.dtsi | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-Known issues:
-Since Linux 5.3-rc1 DMA doesn't work properly on that platform.
-Nicolas Saenz Julienne investigates on that issue. As a temporary workarou=
-nd
-i reverted the following patch to test this series:
+diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dt=
+si
+index 2d191fc..f16899d 100644
+=2D-- a/arch/arm/boot/dts/bcm283x.dtsi
++++ b/arch/arm/boot/dts/bcm283x.dtsi
+@@ -650,22 +650,16 @@
+ 	};
 
-79a98672 "dma-mapping: remove dma_max_pfn"
-7559d612 "mmc: core: let the dma map ops handle bouncing"
+ 	clocks {
+-		compatible =3D "simple-bus";
+-		#address-cells =3D <1>;
+-		#size-cells =3D <0>;
+-
+ 		/* The oscillator is the root of the clock tree. */
+-		clk_osc: clock@3 {
++		clk_osc: clk-osc {
+ 			compatible =3D "fixed-clock";
+-			reg =3D <3>;
+ 			#clock-cells =3D <0>;
+ 			clock-output-names =3D "osc";
+ 			clock-frequency =3D <19200000>;
+ 		};
 
-Changes in V3:
-- rebased series
-- add Reviewed-by
-- enable ARM_GIC for ARCH_BCM2835 on arm64 too
-- configure i2c pull-up in bcm2711.dtsi
-- move i2c2 to bcm2835-common.dtsi
-- add missing compatibles to DT schema as suggested by Rob
-- fix DT schema warnings in dtsi files
-- replace brcm pintrl with generic pinctrl as suggested by Linus
-- make dma_zone_size depend on CONFIG_ZONE_DMA as suggested by Matthias
-
-Changes in V2:
-- use separate board file for BCM2711
-- enable ARM_GIC for ARCH_BCM2835
-- add Acked-by and Reviewed-by
-- fix arm-pmu and timer nodes for BCM2711 reported by Marc Zyngier
-- enable HDMI at board level
-- move HDMI and pixelvalve into bcm2835-common.dtsi as suggested by Eric A=
-nholt
-- fix DWC2 probing warning by setting USB role to peripheral
-- fix order of node references in bcm2711.dtsi
-- disable I2C clock stretching quirk for BCM2711
-- mark PLLD_PER as critical clock
-- make PLLH clock unavailable on BCM2711
-- fix compile warning in clk-bcm2835 for arm64
-
-Changes since RFC:
-- change BCM2838 -> BCM2711 as discussed in RFC
-- update MAINTAINERS accordingly
-- drop "spi: bcm2835: enable shared interrupt support" from series
-- squash all pinctrl-bcm2835 changes into one patch
-- introduce SoC specific clock registration as suggested by Florian
-- fix watchdog probing for Raspberry Pi 4
-- convert brcm,bcm2835.txt to json-schema
-- move VC4 node to bcm2835-common.dtsi
-- fallback to legacy pull config for Raspberry Pi 4
-- revert unintended change of mailbox in bcm283x.dtsi
-- add reference for arm64
-
-[1] - https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm27=
-11/rpi_DATA_2711_1p0_preliminary.pdf
-[2] - https://www.raspberrypi.org/documentation/hardware/raspberrypi/schem=
-atics/rpi_SCH_4b_4p0_reduced.pdf
-
-Stefan Wahren (8):
-  ARM: dts: bcm283x: Remove simple-bus from fixed clocks
-  ARM: dts: bcm283x: Remove brcm,bcm2835-pl011 compatible
-  ARM: dts: bcm283x: Move BCM2835/6/7 specific to bcm2835-common.dtsi
-  dt-bindings: arm: Convert BCM2835 board/soc bindings to json-schema
-  dt-bindings: arm: bcm2835: Add Raspberry Pi 4 to DT schema
-  ARM: bcm: Add support for BCM2711 SoC
-  ARM: dts: Add minimal Raspberry Pi 4 support
-  MAINTAINERS: Add BCM2711 to BCM2835 ARCH
-
- .../devicetree/bindings/arm/bcm/bcm2835.yaml       |  54 ++
- .../devicetree/bindings/arm/bcm/brcm,bcm2835.txt   |  67 --
- MAINTAINERS                                        |   3 +-
- arch/arm/boot/dts/Makefile                         |   1 +
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts              | 121 +++
- arch/arm/boot/dts/bcm2711.dtsi                     | 838 ++++++++++++++++=
-+++++
- arch/arm/boot/dts/bcm2835-common.dtsi              | 194 +++++
- arch/arm/boot/dts/bcm2835-rpi.dtsi                 |   4 -
- arch/arm/boot/dts/bcm2835.dtsi                     |   1 +
- arch/arm/boot/dts/bcm2836.dtsi                     |   1 +
- arch/arm/boot/dts/bcm2837.dtsi                     |   1 +
- arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi  |   7 +
- arch/arm/boot/dts/bcm283x.dtsi                     | 190 +----
- arch/arm/mach-bcm/Kconfig                          |   3 +-
- arch/arm/mach-bcm/Makefile                         |   3 +-
- arch/arm/mach-bcm/bcm2711.c                        |  24 +
- arch/arm64/Kconfig.platforms                       |   5 +-
- 17 files changed, 1257 insertions(+), 260 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
- delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm2835=
-.txt
- create mode 100644 arch/arm/boot/dts/bcm2711-rpi-4-b.dts
- create mode 100644 arch/arm/boot/dts/bcm2711.dtsi
- create mode 100644 arch/arm/boot/dts/bcm2835-common.dtsi
- create mode 100644 arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
- create mode 100644 arch/arm/mach-bcm/bcm2711.c
-
+-		clk_usb: clock@4 {
++		clk_usb: clk-usb {
+ 			compatible =3D "fixed-clock";
+-			reg =3D <4>;
+ 			#clock-cells =3D <0>;
+ 			clock-output-names =3D "otg";
+ 			clock-frequency =3D <480000000>;
 =2D-
 2.7.4
 
