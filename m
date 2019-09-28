@@ -2,161 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 063B5C10E5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7DDC11A1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 19:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725965AbfI1MqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Sep 2019 08:46:25 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:36243 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725857AbfI1MqY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Sep 2019 08:46:24 -0400
-X-Originating-IP: 79.19.63.71
-Received: from uno.localdomain (host71-63-dynamic.19-79-r.retail.telecomitalia.it [79.19.63.71])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 7159FE0003;
-        Sat, 28 Sep 2019 12:46:19 +0000 (UTC)
-Date:   Sat, 28 Sep 2019 14:48:01 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        tfiga@google.com, Rob Herring <robh+dt@kernel.org>,
-        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
-        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 01/11] dt-bindings: video-interfaces: Document
- 'location' property
-Message-ID: <20190928124801.q7h3jml3uqxorwze@uno.localdomain>
-References: <20190912201055.13964-1-jacopo@jmondi.org>
- <20190912201055.13964-2-jacopo@jmondi.org>
- <20190927152745.GA23113@amd>
+        id S1726026AbfI1Rsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Sep 2019 13:48:40 -0400
+Received: from sauhun.de ([88.99.104.3]:36250 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725965AbfI1Rsk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Sep 2019 13:48:40 -0400
+Received: from localhost (unknown [46.183.103.17])
+        by pokefinder.org (Postfix) with ESMTPSA id B52AB2C0489;
+        Sat, 28 Sep 2019 19:48:26 +0200 (CEST)
+Date:   Sat, 28 Sep 2019 19:48:08 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+Message-ID: <20190928174801.GA2196@kunai>
+References: <20190905192412.23116-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uqjl4oaob5an46il"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jRHKVT23PllUwdXP"
 Content-Disposition: inline
-In-Reply-To: <20190927152745.GA23113@amd>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190905192412.23116-1-lee.jones@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---uqjl4oaob5an46il
-Content-Type: text/plain; charset=utf-8
+--jRHKVT23PllUwdXP
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Pavel,
-   thanks for input
+On Thu, Sep 05, 2019 at 08:24:12PM +0100, Lee Jones wrote:
+> We have a production-level laptop (Lenovo Yoga C630) which is exhibiting
+> a rather horrific bug.  When I2C HID devices are being scanned for at
+> boot-time the QCom Geni based I2C (Serial Engine) attempts to use DMA.
+> When it does, the laptop reboots and the user never sees the OS.
+>=20
+> Attempts are being made to debug the reason for the spontaneous reboot.
+> No luck so far, hence the requirement for this hot-fix.  This workaround
+> will be removed once we have a viable fix.
+>=20
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
 
-On Fri, Sep 27, 2019 at 05:27:45PM +0200, Pavel Machek wrote:
-> Hi!
->
-> > Add the 'location' device property, used to specify a device mounting
-> > position. The property is particularly meaningful for mobile devices
-> > with a well defined usage orientation.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> > ---
-> >  .../devicetree/bindings/media/video-interfaces.txt    | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > index f884ada0bffc..e71b90a29d7a 100644
-> > --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > @@ -89,6 +89,17 @@ Optional properties
-> >    but a number of degrees counter clockwise. Typical values are 0 and 180
-> >    (upside down).
-> >
-> > +- location: The device, typically an image sensor or a flash LED, mounting
-> > +  location expressed as a position relative to the usage orientation of the
-> > +  system where the device is installed on.
-> > +  Possible values are:
-> > +  0 - Front. The device is mounted on the front facing side of the system For
-> > +  mobile devices such as smartphones, tablets and laptops the front side is the
-> > +  user facing side.
->
-> I don't think this is nearly enough of description. We have phones
-> with displays and cameras at both sides, where both sides can be used
-> to operate the system.
->
-> We have phone with display spanning both sides -- Mi Max.
->
-> https://www.idnes.cz/mobil/telefony/xiaomi-mi-mix-alpha-predstaveni.A190924_105858_telefony_oma
->
-> We have Galaxy Fold.
->
-> https://www.samsung.com/global/galaxy/galaxy-fold/
->
-> What is front side when device can be used in different
-> configurations?
->
-> Could we instead say that it is "main" vs "selfie" camera?
-
-I'm not sure the intended usage is something that belongs to DT. And
-'selfie' implies you have a device side facing you, most like the
-'front' one I have defined here.
-
-Not to mention again this devices are all but supported by mainline,
-which is just a partial justification as they might be an indication
-of a trend.
-
-There is no usable reference place, reference side, reference usage
-mode that applies to -all- devices in the world, not one I can think
-of.
-
-I still think defining a location property is not blocking any new
-extension that accommodate more advanced use cases. It's not like we're
-adding a "front-camera" property, it's a "location" and you can expand
-its accepted values with "front-when-device-folded" or whatever you
-need for future devices.
-
-In the description I mentioned the "usage orientation" to leave room
-for possible device-specific details in the definition of the values
-accepted by the property.
-
-> > +  location expressed as a position relative to the usage orientation of the
-> > +  system where the device is installed on.
-
-99% of devices in the world have a front and a back, as well as they
-have a top and a bottom. I still don't see why if a device does not
-simply has a front it cannot use something different. The property
-definition allows you to do so.
-
->
-> Notebooks usually have just "selfie" camera, tablets often have
-> both... DSLRs have just "main" camera.
->
-> Best regards,
->
-> 									Pavel
-> --
-> (english) http://www.livejournal.com/~pavelmachek
-> (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+Applied to for-current, thanks!
 
 
-
---uqjl4oaob5an46il
+--jRHKVT23PllUwdXP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl2PVoEACgkQcjQGjxah
-VjzVwg/9GtebVm4JTnsXoysCORM++4THPFOcYKouY/E4uZRVxqlnAc7x7MRIqTQt
-5De0iJJJwR6RM7iPtXbbeXuwnoShr2T8GqS3kAYVr6WmbHsrJ/eL7LEqietgsPii
-nnN0dGv3v6vbSWxrtshyxF3iwLohx7ecKiJxqtZ3ajcMvwPmkCyp185VSGtK7qyC
-S0yyP58ixWtnUo+FfKR3F5P9L2HCNjacX6WLKIAsO96j9RQyPjElNSEQQJuqpMpt
-wyZ1YGQW8OADrFsVzi69aRRtFuBOsjj7tXvB6KCLS6wdXQL0hfdB7VElWxjeCIEf
-ChSVg0fDyZFW2NAEhwd1opSSI0Xxd4/UecAuwQS9aQT0JWKfr0JQQ9tfVVpMC+8F
-LmyeFo9DmDF60Euwr4aebGSkLBZFcWPmk3MKSl8DLubiFPU45ZV+SCOc98V4stbN
-4ofhlXMTs2ERLFbGTNqW6UOa7/2xMV2Qu2kM/l9uRFOklwQvS+4g3APZ/P4khzZa
-CSPTRxUHm99Qm5wqpGvhqDX5wO3I0zra5Cr251l3alUHahuIlH4USxd0Qv6eIKHp
-2CBQ0achVkENFPPIEqOyrS0f4F1dA10jf3d9O8puKj0krTicXkAyIvrBM+gUb9A+
-XIfXOKoZ9afYJUPMwqjP++xbpWA0sMsJyiURM0CeUfjHBtkXpwI=
-=0fCI
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl2PnM0ACgkQFA3kzBSg
+KbZ89w//RAjbjnkY/ZBQx8eGD0B0WRlQ/Yu+vD3JZxj+76bqaqqvw0Y/uidr6l9T
+nGCdfBF7lGcxgO2tmfUVLNLVCmjcBi44XuVDeDbruWPqwpAoGLJ5rw+vzczavdE1
+l39g8hyiwCMZcvjAbdM03AlY/ARdt2a5noIvkKn22gtu1m/66+7BUEGc2YlpoBiO
+9SuFmlSHS2xG6SvJFeMid+CIAagC5Bz6gFo6us3oI54Wr+qZ/cOfIuVZwSzeY1RC
+Bcn0SkLYH0SmCEJzam5lDufEXW8tgvSB/Jr8FGX2AU+kNLAa2/EEfgf4WLc2adyF
+WiMzCrLX88KIEQc3XTCKTV7mHLuOzD+l7rskpIxbt2Rauk8OB1Wf9N4A0XUd5+zs
+IjLmKmJ/KfmYiZnXkaRAfybx2z+TNfdPm3/wr9eJrWDuM5KJsjc8y/V5haUnRr1q
+eg+Gt7QMz0TGgwAT8OBoSFugaQqrLw+XbMR57leVkhQGkJ4BZgQIUj4q8tI6eevt
+t0KlF/S8VEHLbhWmwUR1A8iz493/GAQnBbXqOMKRauX4IsIcLa2y3nFsBkVRbqyE
+4anx/8psj9PsyOpa6hyyJNVY2GXOIvudeWze81sHJq7scz5l8T7VkiCYCp8s1Td1
+lEa7CgP0PIg2dXpA6n+iQqBYP+B3S2WZbHqiel3sQYZ6GzkafVA=
+=0des
 -----END PGP SIGNATURE-----
 
---uqjl4oaob5an46il--
+--jRHKVT23PllUwdXP--
