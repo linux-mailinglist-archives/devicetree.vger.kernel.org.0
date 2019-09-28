@@ -2,104 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B634C10B9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6BEC10D4
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2019 14:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726560AbfI1MIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Sep 2019 08:08:00 -0400
-Received: from mout.gmx.net ([212.227.15.19]:34589 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725857AbfI1MIA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Sep 2019 08:08:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1569672460;
-        bh=ZImZAahcnUC+FQfe8Me4GQOgCgge3ZbsQMf5FxCzQ74=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=FbaHs9o3otier+ijkio2Bedmml36n9mNyP8wScF6sb8Ve2ec2JaPWCyMZYJDDaKqA
-         o6PcZD73tGM8rJXRwbgcyr4nrFJ1Cdnv54/cidm84ZmRGDcbKLMypKa7lRv/bCOtR6
-         B9WwOYY6ZwrGiORtF8TB6N73KGntlY+1/0d+IGDw=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([37.4.249.130]) by mail.gmx.com
- (mrgmx005 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1Mk0Ne-1hlkaR2tWS-00kMD7; Sat, 28 Sep 2019 14:07:39 +0200
-From:   Stefan Wahren <wahrenst@gmx.net>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1725897AbfI1MZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Sep 2019 08:25:13 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:34263 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725876AbfI1MZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Sep 2019 08:25:12 -0400
+Received: by mail-ed1-f66.google.com with SMTP id p10so4589421edq.1
+        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2019 05:25:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/hR+kqMDGuDIlBzQcMCCpOjWvuyBdLfiOy3t48A5p6Y=;
+        b=f3xx81X7mWXH4CeG5AZFssab+cToO6mGAOOHEKmFloqLfr62ldyeY0Z7oewGlBco4f
+         bhRASLKwwg+bRdpnaJKDTAlc7HNc+AJmxufJJbD2Okav13mJwFv/DiEpWuXbsM/f/Dtm
+         rZe9V+Fvu+CF0Q2I6P8nHmnbViET59+QugGsw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/hR+kqMDGuDIlBzQcMCCpOjWvuyBdLfiOy3t48A5p6Y=;
+        b=rU7BvfZNzmndjfKfL4mfgnwn9jFQXFJwiAdbqTdPYJ1+aSmmNJhg9H5eMlVkLwCUos
+         eUt1y2O3mQF6EwRf4sGBdg7J45PYtrwmFe+imW0yd8jiMaQ/p/byCdNc3rztsDqwJFjE
+         SOrU7oZCEbIV9FNFNKTmPJC+kwLeS9kkPqrJCX5GpYeBXwKEuziKVFsCEi6We5nt5n+r
+         cI3GInGInUG9+Pg34qXDSKlHFUCwarLFgeGxjWzfUcvkQuTL2SgolPHsNzqODlRFcol/
+         aXI0OKRWPN9OaGjV3krpmSEzKfMaDtLsq/uEOXb7uVdWiC+PkAMzxibAuYNaN9Y94AVS
+         73pg==
+X-Gm-Message-State: APjAAAX4eShFY/XJn4UdgTETCUzdl12/2jzEcBetCElC5kd36LEaYx21
+        Y7aIswtOnb0krut0NPCNOK2y7Lx5klwVBw==
+X-Google-Smtp-Source: APXvYqzGP24GuWiv7eMvolTqhWicFsKNTxuf6dlIYE4lP5a0e+sB75Q7FTjGX9iZUNPXtEAL1DDk2w==
+X-Received: by 2002:a17:906:1e16:: with SMTP id g22mr11887972ejj.14.1569673510878;
+        Sat, 28 Sep 2019 05:25:10 -0700 (PDT)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com. [209.85.128.52])
+        by smtp.gmail.com with ESMTPSA id c26sm1178159edb.2.2019.09.28.05.25.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 28 Sep 2019 05:25:10 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id y135so10475555wmc.1
+        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2019 05:25:10 -0700 (PDT)
+X-Received: by 2002:a1c:a516:: with SMTP id o22mr11383304wme.116.1569673044123;
+ Sat, 28 Sep 2019 05:17:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190927071824.18675-1-dongchun.zhu@mediatek.com> <20190927071824.18675-2-dongchun.zhu@mediatek.com>
+In-Reply-To: <20190927071824.18675-2-dongchun.zhu@mediatek.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Sat, 28 Sep 2019 21:17:11 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5B1htFA1R92iQQ93dMQujkSWNqHkx94GG+bdUscRA4gDQ@mail.gmail.com>
+Message-ID: <CAAFQd5B1htFA1R92iQQ93dMQujkSWNqHkx94GG+bdUscRA4gDQ@mail.gmail.com>
+Subject: Re: [PATCH] media: i2c: ov5695: Modify the function of async register
+ subdev related devices
+To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        andriy.shevchenko@linux.intel.com,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V3 8/8] MAINTAINERS: Add BCM2711 to BCM2835 ARCH
-Date:   Sat, 28 Sep 2019 14:07:14 +0200
-Message-Id: <1569672435-19823-9-git-send-email-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
-References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
-X-Provags-ID: V03:K1:UDpTJAU1MPUAlXMwedv/m4gEGTFPk9iDRiXEq9EnoWkZdvoZuAB
- TBUNbk+gDwBhHG7w35+Rsf6Xp6ykaXCGjqmAlZqCmSYPSO7kjnqF55P5uRz+ygNVMqs5Nh9
- 4Ff6ZUIkPn3FrpWBSsn8nCiaf1IqzanJRaFWsfI3xXYWsWvLZI486jLXkim1u3dlZKXc4a0
- HTpp9Q9xpmHZ0/UDsYz2g==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:CdBwK5UlnAs=:lvdrA/NfApj+bc7ICAMkEu
- JSc2MetLb+48zGJrgpIJm25h4t41M4QO+6n/vc+gc6KV71yja9VLysXs7Tr/dwHo7Tep4iZhb
- sX9vra5jP38MfpT993ZrmaJBnWu1q11SF3f5vvWWxvacJ49JxtFmyoxBChGSnxSRGic4jTZwQ
- L8hAQVSJIoEx1Nbfz94genL/S9wh2d5vc2lE2eebL84DFWjYONxQ+cinRJCyFTKgncXPGJCNY
- iBqGVlNaMJ2c5zTIeHSERspZEwtUm4S/IyAAOE6yT2IItpzlJHb2AGnuMZbk0CilI8IeSXWIq
- 7RchQOjmOJ1tm9uU0fxMX02m52Oc4XSlBd/vW0ls3iP7+OZ1sobt3M24rGwv6GN6ZWbQ5E8dX
- bl48mjXGD48J+ndoc4ev+kd2cGPbpgbEvlwFmrSQXUhwI7Z7GUsNPiZyHe+5IcW3RjPwOrYJN
- hkRk3pGV1eNKkJs3f22OJgg7avCuOwsUu/4RPVZ5kFPPU0CWzjw89uZ9sKCksIIDahtQSnKcn
- 61YeP9nZ3p456ouh8xueGeWWf6EWELggfOWj6jViGnf6Vxa0W+xhrvzi0BULcE9cxtrWOeiQf
- Lvv7N6ztnLedjz/Jz6mo03y+J+xgZZi6ITx980pzR7k5fCwI88YFirfEpDYapA4jfazPdLkCC
- nfnAGMsqaVE4iKEm3A4M+crO494k4BD54RlpKclwy7MaoylTtU2sDJneNmRb0ZkpJlQxNOomr
- vzqHFwr/t/wGwaosD7JgFvO7EmwoqWVK3lo9uZBi8lDr/AeoRVB4YJbuRkCiooFNpbron70qF
- k1ql8/ZQICBhp1aGEYkSueQfwlPIZqEZuYGS/mqtl1mdOq8aGm90kFURCrhuDtAygWS2pPb5V
- hCuqHuD6s7GoL2pOJtVdms3sgVMyYV2lgOESXe9fi4+Fr6IyBt8Pfv4OvEa0yP7K5eo3YnvD8
- XSiy/NN/3aRUdVp/2Zde2J2zO/jiszneo2tyz/n4xf6+GbAZd5BqfkkW74YD7qqLVJYs7sH8S
- 5xYUE+9KCG4IAftC5rvTOKV/fOp+OyMWdM5K5ermrHnjbcDBfn+mu78iknre1950KMkoJerOO
- ocYlHCtZdU22IS/lSJAM0bIhZ4vbpQ8McIFFz8pFIQ8n6NAG1Js4jQA6DskAFkc5Gtunyh92w
- O/qj7cBgVNPHN7V+udMhDpkwEqP60z6VXYKk3y0/OdwVVqM1r5w3SU1itmghaCs2WzBLLH6/x
- oAc2tV+OwiVqnRquSntGAZvy2P3l0nbIfuuMOVg==
-Content-Transfer-Encoding: quoted-printable
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org, Louis Kuo <louis.kuo@mediatek.com>,
+        shengnan.wang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clarify that BCM2711 belongs to the BCM2835 ARCH.
+On Fri, Sep 27, 2019 at 4:18 PM Dongchun Zhu <dongchun.zhu@mediatek.com> wrote:
+>
+> This patch adds support for registering a sensor sub-device to the async sub-device framework and parse set up common
+> sensor related devices such as actuator/VCM.
 
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-Acked-by: Eric Anholt <eric@anholt.net>
-=2D--
- MAINTAINERS | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+nit: The description should be wrapped around the 80th column.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 857611c..49420e0 100644
-=2D-- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3186,7 +3186,7 @@ N:	bcm216*
- N:	kona
- F:	arch/arm/mach-bcm/
+Sakari, do we need to resent or you could just rewrap when applying?
 
--BROADCOM BCM2835 ARM ARCHITECTURE
-+BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE
- M:	Eric Anholt <eric@anholt.net>
- M:	Stefan Wahren <wahrenst@gmx.net>
- L:	bcm-kernel-feedback-list@broadcom.com
-@@ -3194,6 +3194,7 @@ L:	linux-rpi-kernel@lists.infradead.org (moderated f=
-or non-subscribers)
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- T:	git git://github.com/anholt/linux
- S:	Maintained
-+N:	bcm2711
- N:	bcm2835
- F:	drivers/staging/vc04_services
+>
+> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> ---
+>  drivers/media/i2c/ov5695.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/media/i2c/ov5695.c b/drivers/media/i2c/ov5695.c
+> index e65a943..b6ee62c 100644
+> --- a/drivers/media/i2c/ov5695.c
+> +++ b/drivers/media/i2c/ov5695.c
+> @@ -1328,7 +1328,7 @@ static int ov5695_probe(struct i2c_client *client,
+>                 goto err_power_off;
+>  #endif
+>
+> -       ret = v4l2_async_register_subdev(sd);
+> +       ret = v4l2_async_register_subdev_sensor_common(sd);
+>         if (ret) {
+>                 dev_err(dev, "v4l2 async register subdev failed\n");
+>                 goto err_clean_entity;
+> --
+> 2.9.2
+>
 
-=2D-
-2.7.4
+Otherwise:
 
+Reviewed-by: Tomasz Figa <tfiga@chromium.org>
+
+Best regards,
+Tomasz
