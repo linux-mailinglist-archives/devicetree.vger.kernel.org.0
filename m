@@ -2,177 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A6BC12FF
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 06:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F16A9C138C
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 08:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725379AbfI2EUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Sep 2019 00:20:51 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:44246 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725958AbfI2EUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Sep 2019 00:20:51 -0400
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x8T47qWB093650
-        for <devicetree@vger.kernel.org>; Sun, 29 Sep 2019 00:20:49 -0400
-Received: from e06smtp07.uk.ibm.com (e06smtp07.uk.ibm.com [195.75.94.103])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2vamw68nxa-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Sun, 29 Sep 2019 00:20:49 -0400
-Received: from localhost
-        by e06smtp07.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <zohar@linux.ibm.com>;
-        Sun, 29 Sep 2019 05:20:47 +0100
-Received: from b06cxnps4075.portsmouth.uk.ibm.com (9.149.109.197)
-        by e06smtp07.uk.ibm.com (192.168.101.137) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Sun, 29 Sep 2019 05:20:42 +0100
-Received: from d06av23.portsmouth.uk.ibm.com (d06av23.portsmouth.uk.ibm.com [9.149.105.59])
-        by b06cxnps4075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x8T4Kf8m42926160
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Sun, 29 Sep 2019 04:20:41 GMT
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 14F41A4051;
-        Sun, 29 Sep 2019 04:20:41 +0000 (GMT)
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D89D1A404D;
-        Sun, 29 Sep 2019 04:20:38 +0000 (GMT)
-Received: from localhost.localdomain (unknown [9.85.142.195])
-        by d06av23.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Sun, 29 Sep 2019 04:20:38 +0000 (GMT)
-Subject: Re: [PATCH v6 5/9] powerpc/ima: add measurement rules to ima arch
- specific policy
-From:   Mimi Zohar <zohar@linux.ibm.com>
-To:     Nayna Jain <nayna@linux.ibm.com>, linuxppc-dev@ozlabs.org,
-        linux-efi@vger.kernel.org, linux-integrity@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jeremy Kerr <jk@ozlabs.org>,
-        Matthew Garret <matthew.garret@nebula.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Claudio Carvalho <cclaudio@linux.ibm.com>,
-        George Wilson <gcwilson@linux.ibm.com>,
-        Elaine Palmer <erpalmer@us.ibm.com>,
-        Eric Ricther <erichte@linux.ibm.com>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Date:   Sun, 29 Sep 2019 00:20:38 -0400
-In-Reply-To: <1569594360-7141-6-git-send-email-nayna@linux.ibm.com>
-References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
-         <1569594360-7141-6-git-send-email-nayna@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-x-cbid: 19092904-0028-0000-0000-000003A3A3C0
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19092904-0029-0000-0000-00002465C963
-Message-Id: <1569730838.4999.31.camel@linux.ibm.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-29_02:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1908290000 definitions=main-1909290047
+        id S1725906AbfI2GQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Sep 2019 02:16:01 -0400
+Received: from mail-sz.amlogic.com ([211.162.65.117]:9653 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725379AbfI2GQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Sep 2019 02:16:01 -0400
+Received: from [10.28.19.114] (10.28.19.114) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Sun, 29 Sep
+ 2019 14:15:56 +0800
+Subject: Re: [PATCH 2/2] clk: meson: a1: add support for Amlogic A1 clock
+ driver
+To:     Jerome Brunet <jbrunet@baylibre.com>
+CC:     Stephen Boyd <sboyd@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        <devicetree@vger.kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        <linux-kernel@vger.kernel.org>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
+ <1569411888-98116-3-git-send-email-jian.hu@amlogic.com>
+ <20190925131232.4751020640@mail.kernel.org>
+ <8351489a-f91e-be08-7fcc-e2a90c6e87f0@amlogic.com>
+ <1jk19t28zs.fsf@starbuckisacylon.baylibre.com>
+From:   Jian Hu <jian.hu@amlogic.com>
+Message-ID: <aa379450-48c6-1eb4-e351-2f5ae3736470@amlogic.com>
+Date:   Sun, 29 Sep 2019 14:15:55 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.3
+MIME-Version: 1.0
+In-Reply-To: <1jk19t28zs.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.28.19.114]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-09-27 at 10:25 -0400, Nayna Jain wrote:
-> This patch adds the measurement rules to the arch specific policies for the
-> systems with trusted boot.
+
+On 2019/9/27 20:56, Jerome Brunet wrote:
 > 
-
-on trusted boot enabled systems.
-
-
-> Signed-off-by: Nayna Jain <nayna@linux.ibm.com>
-
-Minor comment correction below.
-
-Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
-
-> ---
->  arch/powerpc/kernel/ima_arch.c | 44 +++++++++++++++++++++++++++++++---
->  1 file changed, 41 insertions(+), 3 deletions(-)
+> On Fri 27 Sep 2019 at 05:11, Jian Hu <jian.hu@amlogic.com> wrote:
 > 
-> diff --git a/arch/powerpc/kernel/ima_arch.c b/arch/powerpc/kernel/ima_arch.c
-> index 39401b67f19e..77c61b142042 100644
-> --- a/arch/powerpc/kernel/ima_arch.c
-> +++ b/arch/powerpc/kernel/ima_arch.c
-> @@ -12,8 +12,18 @@ bool arch_ima_get_secureboot(void)
->  	return is_powerpc_os_secureboot_enabled();
->  }
->  
-> -/* Defines IMA appraise rules for secureboot */
-> +/*
-> + * The "arch_rules" contains both the securebot and trustedboot rules for adding
-> + * the kexec kernel image and kernel modules file hashes to the IMA measurement
-> + * list and verifying the file signatures against known good values.
-> + *
-> + * The "appraise_type=imasig|modsig" option allows the good signature to be
-> + * stored as an xattr or as an appended signature. The "template=ima-modsig"
-> + * option includes the appended signature in the IMA measurement list.
-
-includes the appended signature, when available, in the IMA
-measurement list. 
-
-> + */
->  static const char *const arch_rules[] = {
-> +	"measure func=KEXEC_KERNEL_CHECK template=ima-modsig",
-> +	"measure func=MODULE_CHECK template=ima-modsig",
->  	"appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig|modsig",
->  #if !IS_ENABLED(CONFIG_MODULE_SIG)
->  	"appraise func=MODULE_CHECK appraise_type=imasig|modsig",
-> @@ -22,12 +32,40 @@ static const char *const arch_rules[] = {
->  };
->  
->  /*
-> - * Returns the relevant IMA arch policies based on the system secureboot state.
-> + * The "measure_rules" are enabled only on "trustedboot" enabled systems.
-> + * These rules add the kexec kernel image and kernel modules file hashes to
-> + * the IMA measurement list.
-> + */
-> +static const char *const measure_rules[] = {
-> +	"measure func=KEXEC_KERNEL_CHECK",
-> +	"measure func=MODULE_CHECK",
-> +	NULL
-> +};
-> +
-> +/*
-> + * Returns the relevant IMA arch policies based on the system secureboot
-> + * and trustedboot state.
->   */
->  const char *const *arch_get_ima_policy(void)
->  {
-> -	if (is_powerpc_os_secureboot_enabled())
-> +	const char *const *rules;
-> +	int offset = 0;
-> +
-> +	for (rules = arch_rules; *rules != NULL; rules++) {
-> +		if (strncmp(*rules, "appraise", 8) == 0)
-> +			break;
-> +		offset++;
-> +	}
-> +
-> +	if (is_powerpc_os_secureboot_enabled()
-> +	    && is_powerpc_trustedboot_enabled())
->  		return arch_rules;
->  
-> +	if (is_powerpc_os_secureboot_enabled())
-> +		return arch_rules + offset;
-> +
-> +	if (is_powerpc_trustedboot_enabled())
-> +		return measure_rules;
-> +
->  	return NULL;
->  }
-
+>> Hi, Stephen
+>>
+>> Thank you for review
+>>
+>> On 2019/9/25 21:12, Stephen Boyd wrote:
+>>> Quoting Jian Hu (2019-09-25 04:44:48)
+>>>> The Amlogic A1 clock includes three parts:
+>>>> peripheral clocks, pll clocks, CPU clocks.
+>>>> sys pll and CPU clocks will be sent in next patch.
+>>>>
+>>>> Unlike the previous series, there is no EE/AO domain
+>>>> in A1 CLK controllers.
+>>>>
+>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>>>
+>>> This second name didn't send the patch. Please follow the signoff
+>>> procedures documented in Documentation/process/submitting-patches.rst
+>>>
+>>>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>>>> index 16d7614..a48f67d 100644
+>>>> --- a/arch/arm64/Kconfig.platforms
+>>>> +++ b/arch/arm64/Kconfig.platforms
+>>>> @@ -138,6 +138,7 @@ config ARCH_MESON
+>>>>           select COMMON_CLK_AXG
+>>>>           select COMMON_CLK_G12A
+>>>>           select MESON_IRQ_GPIO
+>>>> +       select COMMON_CLK_A1
+>>>
+>>> Sort?
+>> ok, I will put it behind COMMON_CLK_AXG
+>>>
+>>>>           help
+>>>>             This enables support for the arm64 based Amlogic SoCs
+>>>>             such as the s905, S905X/D, S912, A113X/D or S905X/D2
+>>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>>> index dabeb43..e6cb4c3 100644
+>>>> --- a/drivers/clk/meson/Kconfig
+>>>> +++ b/drivers/clk/meson/Kconfig
+>>>> @@ -107,3 +107,13 @@ config COMMON_CLK_G12A
+>>>>           help
+>>>>             Support for the clock controller on Amlogic S905D2, S905X2 and S905Y2
+>>>>             devices, aka g12a. Say Y if you want peripherals to work.
+>>>> +
+>>>> +config COMMON_CLK_A1
+>>>
+>>> Probably should be placed somewhere alphabetically in this file?
+>> ok, I will put it behind COMMON_CLK_AXG_AUDIO
+>>>
+>>>> +       bool
+>>>> +       depends on ARCH_MESON
+>>>> +       select COMMON_CLK_MESON_REGMAP
+>>>> +       select COMMON_CLK_MESON_DUALDIV
+>>>> +       select COMMON_CLK_MESON_PLL
+>>>> +       help
+>>>> +         Support for the clock controller on Amlogic A113L device,
+>>>> +         aka a1. Say Y if you want peripherals to work.
+>>>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>>>> index 3939f21..6be3a8f 100644
+>>>> --- a/drivers/clk/meson/Makefile
+>>>> +++ b/drivers/clk/meson/Makefile
+>>>> @@ -19,3 +19,4 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>>>>    obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>>>>    obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>>>>    obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+>>>> +obj-$(CONFIG_COMMON_CLK_A1) += a1.o
+>>>
+>>> I would guess this should be sorted on Kconfig name in this file?
+>> ok, I will put it behind COMMON_CLK_AXG_AUDIO
+>>>
+>>>> diff --git a/drivers/clk/meson/a1.c b/drivers/clk/meson/a1.c
+>>>> new file mode 100644
+>>>> index 0000000..26edae0f
+>>>> --- /dev/null
+>>>> +++ b/drivers/clk/meson/a1.c
+>>>> @@ -0,0 +1,2617 @@
+>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>> +/*
+>>>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>>>> + */
+>>>> +
+>>>> +#include <linux/clk-provider.h>
+>>>> +#include <linux/init.h>
+>>>> +#include <linux/of_device.h>
+>>>> +#include <linux/platform_device.h>
+>>>> +#include <linux/of_address.h>
+>>>> +#include "clk-mpll.h"
+>>>> +#include "clk-pll.h"
+>>>> +#include "clk-regmap.h"
+>>>> +#include "vid-pll-div.h"
+>>>> +#include "clk-dualdiv.h"
+>>>> +#include "meson-eeclk.h"
+>>>> +#include "a1.h"
+>>>> +
+>>> [...]
+>>>> +
+>>>> +/*
+>>>> + * The Meson A1 HIFI PLL is 614.4M, it requires
+>>>> + * a strict register sequence to enable the PLL.
+>>>> + * set meson_clk_pcie_pll_ops as its ops
+>>>
+>>> Please remove this last line as it's obvious from the code what ops are
+>>> used.
+>>>
+>> ok, I will remove it.
+>>>> + */
+>>>> +static struct clk_regmap a1_hifi_pll = {
+>>>> +       .data = &(struct meson_clk_pll_data){
+>>>> +               .en = {
+>>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>>>> +                       .shift   = 28,
+>>>> +                       .width   = 1,
+>>>> +               },
+>>>> +               .m = {
+>>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>>>> +                       .shift   = 0,
+>>>> +                       .width   = 8,
+>>>> +               },
+>>>> +               .n = {
+>>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>>>> +                       .shift   = 10,
+>>>> +                       .width   = 5,
+>>>> +               },
+>>>> +               .frac = {
+>>>> +                       .reg_off = ANACTRL_HIFIPLL_CTRL1,
+>>>> +                       .shift   = 0,
+>>>> +                       .width   = 19,
+>>>> +               },
+>>>> +               .l = {
+>>>> +                       .reg_off = ANACTRL_HIFIPLL_STS,
+>>>> +                       .shift   = 31,
+>>>> +                       .width   = 1,
+>>>> +               },
+>>>> +               .table = a1_hifi_pll_params_table,
+>>>> +               .init_regs = a1_hifi_init_regs,
+>>>> +               .init_count = ARRAY_SIZE(a1_hifi_init_regs),
+>>>> +       },
+>>>> +       .hw.init = &(struct clk_init_data){
+>>>> +               .name = "hifi_pll",
+>>>> +               .ops = &meson_clk_pcie_pll_ops,
+>>>> +               .parent_hws = (const struct clk_hw *[]) {
+>>>> +                       &a1_xtal_hifipll.hw
+>>>> +               },
+>>>> +               .num_parents = 1,
+>>>> +       },
+>>>> +};
+>>>> +
+>>> [..]
+>>>> +
+>>>> +static struct clk_regmap a1_fclk_div2 = {
+>>>> +       .data = &(struct clk_regmap_gate_data){
+>>>> +               .offset = ANACTRL_FIXPLL_CTRL0,
+>>>> +               .bit_idx = 21,
+>>>> +       },
+>>>> +       .hw.init = &(struct clk_init_data){
+>>>> +               .name = "fclk_div2",
+>>>> +               .ops = &clk_regmap_gate_ops,
+>>>> +               .parent_hws = (const struct clk_hw *[]) {
+>>>> +                       &a1_fclk_div2_div.hw
+>>>> +               },
+>>>> +               .num_parents = 1,
+>>>> +               /*
+>>>> +                * add CLK_IS_CRITICAL flag to avoid being disabled by clk core
+>>>> +                * or its children clocks.
+>>>
+>>> This comment is useless. Please replace it with an actual reason for
+>>> keeping the clk on instead of describing what the flag does.
+>>>
+>> ok, The actual reason is it should not change at runtime.
+> 
+> Yeah, from the flag we understand that you want to keep this on. What we
+> are after is why ? What device is using this clock and cannot tolerate
+> this gate to turn off ?
+> 
+> This is important and this is kind of comment we are after.
+> These flag should be viewed as "mid term work around". In the end, there
+> should be a driver for your device which claims the clock and properly
+> manage it
+> 
+I have confirmed for a1_fclk_div2, ddr clock's parent is fclk_div2 which
+is initialized in the firmware. The DDR clock could not be gated. I will 
+check the other fclk_divX clocks.
+>>>> +                */
+>>>> +               .flags = CLK_IS_CRITICAL,
+>>>> +       },
+>>>> +};
+>>>> +
+>>> [..]
+>>>> +static struct clk_regmap a1_dmc = {
+>>>> +       .data = &(struct clk_regmap_gate_data){
+>>>> +               .offset = DMC_CLK_CTRL,
+>>>> +               .bit_idx = 8,
+>>>> +       },
+>>>> +       .hw.init = &(struct clk_init_data) {
+>>>> +               .name = "dmc",
+>>>> +               .ops = &clk_regmap_gate_ops,
+>>>> +               .parent_hws = (const struct clk_hw *[]) {
+>>>> +                       &a1_dmc_sel2.hw
+>>>> +               },
+>>>> +               .num_parents = 1,
+>>>> +               /*
+>>>> +                * add CLK_IGNORE_UNUSED to avoid hangup
+>>>> +                * DDR clock should not change at runtime
+>>>> +                */
+>>>> +               .flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>>
+>>> So not CLK_IS_CRITICAL?
+>> Yes, CLK_IS_CRITICAL is better, I will change it.
+> 
+> Same comment as above.
+> 
+>>>
+>>>> +       },
+>>>> +};
+>>>> +
+>>> [...]
+>>>> +
+>>>> +/*
+>>>> + * cpu clock register base address is 0xfd000080
+>>>> + */
+>>>> +static struct clk_regmap *const a1_cpu_clk_regmaps[] = {
+>>>> +       /* TODO */
+>>>
+>>> Can it be done?
+>> I plan to compelte cpu clock with the DVFS verified. And  Some peripheral
+>> devices rely on this patch to send. I prefer to do it in the next patch.
+>>>
+>>>> +};
+>>>
+>>> .
+>>>
+> 
+> .
+> 
