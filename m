@@ -2,120 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C84C1456
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 13:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D095C145A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 13:25:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727153AbfI2LWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Sep 2019 07:22:25 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:51283 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726911AbfI2LWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Sep 2019 07:22:24 -0400
-Received: by mail-wm1-f65.google.com with SMTP id 7so10275684wme.1;
-        Sun, 29 Sep 2019 04:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:mime-version:message-id:in-reply-to
-         :references:user-agent:content-transfer-encoding;
-        bh=+5mJbdKNBA+m8vppAhdI++7fky2Q3/YXSRQyiXoFCLc=;
-        b=TezKHyJE5Sh4r/up5iuLlLvtQlnGcW+cP3IjZjdyn5mNmGmckP4YUZ8u37UQI5CyR1
-         m1FoANAti7h7OpC1dgvPkyokVmeCFCBzhLGkHcypq17mEOUhfDO6m6kiacC4AkHBcS/V
-         pB4fPiz8qqNc6npdgyAYdUAobBrUunE99yOU1yTCva+DlTDmV9EBtEujS5NOcTPlL6/n
-         RXCs/THrVHusCcxQTTp54XhPw+EbTD3N2Cg01ICIIVWHrPwYb5egg6bbzc9eicSROIT5
-         5Zy74W/86zXdQ4K6YH3DvUskoFg2xs0U3sVBuP7AAUvTyAYYQ/AbzHr4zPoJHpbM2PP5
-         //Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:mime-version:message-id
-         :in-reply-to:references:user-agent:content-transfer-encoding;
-        bh=+5mJbdKNBA+m8vppAhdI++7fky2Q3/YXSRQyiXoFCLc=;
-        b=sCa5RoHtSCTjh6Nk0isQnSAEktzBUqmOc0gViRmJRJ7vQoVgZSj1fLrInlsgUqQbm9
-         KuL8Udc2yyAunH3wDXX/ALWAfsDNcYD0RQ8hXHr7KDr2hD17zdlt2edQ0a63h3I/dqcf
-         6MC42J1pi1pLkY9FtmrGs03snwq58L227f/ju8OetanMU0c7JGVoSRaITOAwTIMfL8YQ
-         z++YjDcXdRcJt3oWUU7fXy/mvdTF28DDARu6VwZ+k98uFMHrPQQTO5vn9dG+rBvGU0EV
-         haU/dQWRFLxf5rGyTe002SnOAOuj4UtueylNZ/Z5Ctcob8wWqduCM0HwufO4YxkiNuns
-         4U0Q==
-X-Gm-Message-State: APjAAAW9lOeVcHY98xyiQeMlgLnLlbQqZScbtv5O5Zr2m8Ukhi8n2+AF
-        hOd/lbUx2iZ/BSioZKeVISw=
-X-Google-Smtp-Source: APXvYqwYBuT58Y/Ro1CA1xclbEevvBfYgIFxMJg2pEEKp5Se24KdjkrFWsiKF4sAjXe2yJ4wuhzJrw==
-X-Received: by 2002:a7b:c764:: with SMTP id x4mr13222224wmk.62.1569756141017;
-        Sun, 29 Sep 2019 04:22:21 -0700 (PDT)
-Received: from localhost ([94.73.41.211])
-        by smtp.gmail.com with ESMTPSA id m62sm13230613wmm.35.2019.09.29.04.22.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Sep 2019 04:22:18 -0700 (PDT)
-From:   Vicente Bergas <vicencb@gmail.com>
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <heiko@sntech.de>,
-        <ezequiel@collabora.com>, <akash@openedev.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Roger Quadros <rogerq@ti.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
-Date:   Sun, 29 Sep 2019 13:22:17 +0200
+        id S1728853AbfI2LZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Sep 2019 07:25:26 -0400
+Received: from inca-roads.misterjones.org ([213.251.177.50]:52869 "EHLO
+        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726911AbfI2LZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Sep 2019 07:25:26 -0400
+Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
+        (envelope-from <maz@kernel.org>)
+        id 1iEXKL-0007jl-Cr; Sun, 29 Sep 2019 13:25:21 +0200
+To:     Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH V3 7/8] ARM: dts: Add minimal Raspberry Pi 4 support
+X-PHP-Originating-Script: 0:main.inc
 MIME-Version: 1.0
-Message-ID: <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
-In-Reply-To: <20190929032230.24628-1-npcomplete13@gmail.com>
-References: <20190929032230.24628-1-npcomplete13@gmail.com>
-User-Agent: Trojita
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sun, 29 Sep 2019 12:25:19 +0100
+From:   Marc Zyngier <maz@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        <devicetree@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
+References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+ <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
+Message-ID: <b75876e1b3c46297142c052e1c6ea0a2@www.loen.fr>
+X-Sender: maz@kernel.org
+User-Agent: Roundcube Webmail/0.7.2
+X-SA-Exim-Connect-IP: <locally generated>
+X-SA-Exim-Rcpt-To: wahrenst@gmx.net, robh+dt@kernel.org, mark.rutland@arm.com, eric@anholt.net, f.fainelli@gmail.com, rjui@broadcom.com, sbranden@broadcom.com, devicetree@vger.kernel.org, catalin.marinas@arm.com, bcm-kernel-feedback-list@broadcom.com, will@kernel.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sunday, September 29, 2019 5:22:30 AM CEST, Vivek Unune wrote:
-> Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
+On 2019-09-28 13:07, Stefan Wahren wrote:
+> This adds minimal support for the new Raspberry Pi 4 without the
+> fancy stuff like GENET, PCIe, xHCI, 40 bit DMA and V3D. The RPi 4 is
+> available in 3 different variants (1, 2 and 4 GB RAM), so leave the 
+> memory
+> size to zero and let the bootloader take care of it. The DWC2 is 
+> still
+> usable as peripheral via the USB-C port.
 >
-> Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Other differences to the Raspberry Pi 3:
+> - additional GIC 400 Interrupt controller
+> - new thermal IP and HWRNG
+> - additional MMC interface (emmc2)
+> - additional UART, I2C, SPI and PWM interfaces
+> - clock stretching bug in I2C IP has been fixed
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts=20
-> b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> index 0d1f5f9a0de9..c133e8d64b2a 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> @@ -644,7 +644,7 @@
->  =09status =3D "okay";
-> =20
->  =09u2phy0_host: host-port {
-> -=09=09phy-supply =3D <&vcc5v0_host>;
-> +=09=09phy-supply =3D <&vcc5v0_typec>;
->  =09=09status =3D "okay";
->  =09};
-> =20
-> @@ -712,7 +712,7 @@
-> =20
->  &usbdrd_dwc3_0 {
->  =09status =3D "okay";
-> -=09dr_mode =3D "otg";
-> +=09dr_mode =3D "host";
->  };
-> =20
->  &usbdrd3_1 {
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> Acked-by: Eric Anholt <eric@anholt.net>
 
-Hi Vivek,
+[...]
 
-which is the relationship of your patch and this commit:
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
+> +					  IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
+> +					  IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
+> +					  IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
+> +					  IRQ_TYPE_LEVEL_LOW)>;
+> +		/* This only applies to the ARMv7 stub */
+> +		arm,cpu-registers-not-fw-configured;
+> +
+> +		/* The ARM cores doesn't enter deep enough states */
+> +		always-on;
 
-e1d9149e8389f1690cdd4e4056766dd26488a0fe
-arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
+I already commented on this. The A72 not entering a deep enough sleep 
+state to
+lose its comparator seems dubious at best. The right way to do this is 
+to have
+a global timer, which you said the platform has.
 
-with respect to this other commit:
+Please drop this.
 
-c09b73cfac2a9317f1104169045c519c6021aa1d
-usb: dwc3: don't set gadget->is_otg flag
-
-?
-
-I did not test reverting e1d9149e since c09b73cf was applied.
-
-Regards,
-  Vicen=C3=A7.
-
+         M.
+-- 
+Jazz is not dead. It just smells funny...
