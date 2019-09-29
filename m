@@ -2,32 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2268C193C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 21:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52666C1992
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 23:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726198AbfI2T6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Sep 2019 15:58:43 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:45446 "EHLO gloria.sntech.de"
+        id S1729161AbfI2VVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Sep 2019 17:21:55 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:45862 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725948AbfI2T6n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Sep 2019 15:58:43 -0400
+        id S1726360AbfI2VVz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Sep 2019 17:21:55 -0400
 Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <heiko@sntech.de>)
-        id 1iEfL3-0001Hr-2j; Sun, 29 Sep 2019 21:58:37 +0200
+        id 1iEgdL-0001at-6x; Sun, 29 Sep 2019 23:21:35 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Hugh Cole-Baker <sigmaris@gmail.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Levin Du <djw@t-chip.com.cn>, Akash Gajjar <akash@openedev.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Akash Gajjar <Akash_Gajjar@mentor.com>,
+        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: fix Rockpro64 RK808 interrupt line
-Date:   Sun, 29 Sep 2019 21:58:36 +0200
-Message-ID: <2631784.KOmX0qhJ1H@phil>
-In-Reply-To: <20190921131457.36258-1-sigmaris@gmail.com>
-References: <20190921131457.36258-1-sigmaris@gmail.com>
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH 1/6] arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
+Date:   Sun, 29 Sep 2019 23:21:34 +0200
+Message-ID: <6797961.eJj5WIFbM9@phil>
+In-Reply-To: <20190919052822.10403-2-jagan@amarulasolutions.com>
+References: <20190919052822.10403-1-jagan@amarulasolutions.com> <20190919052822.10403-2-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -36,25 +38,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 21. September 2019, 15:14:57 CEST schrieb Hugh Cole-Baker:
-> Fix the pinctrl and interrupt specifier for RK808 to use GPIO3_B2. On the
-> Rockpro64 schematic [1] page 16, it shows GPIO3_B2 used for the interrupt
-> line PMIC_INT_L from the RK808, and there's a note which translates as:
-> "PMU termination GPIO1_C5 changed to this".
-> 
-> Tested by setting an RTC wakealarm and checking /proc/interrupts counters.
-> Without this patch, neither the rockchip_gpio_irq counter for the RK808,
-> nor the RTC alarm counter increment when the alarm time is reached.
-> With this patch, both interrupt counters increment by 1 as expected.
-> 
-> [1] http://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
-> 
-> Fixes: e4f3fb4 ("arm64: dts: rockchip: add initial dts support for Rockpro64")
-> Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
+Hi Jagan,
 
-applied as fix for 5.4
+Am Donnerstag, 19. September 2019, 07:28:17 CEST schrieb Jagan Teki:
+> ROC-PC is not able to boot linux console if PWM2_d is
+> unattached to any pinctrl logic.
+> 
+> To be precise the linux boot hang with last logs as,
+> ...
+> .....
+> [    0.003367] Console: colour dummy device 80x25
+> [    0.003788] printk: console [tty0] enabled
+> [    0.004178] printk: bootconsole [uart8250] disabled
+> 
+> In ROC-PC the PWM2_d pin is connected to LOG_DVS_PWM of
+> VDD_LOG. So, for normal working operations this needs to
+> active and pull-down.
+> 
+> This patch fix, by attaching pinctrl active and pull-down
+> the pwm2.
 
-Thanks
+This looks highly dubious on first glance. The pwm subsystem nor
+the Rockchip pwm driver do not do any pinctrl handling.
+
+So I don't really see where that "active" pinctrl state is supposed
+to come from.
+
+Comparing with the pwm driver in the vendor tree I see that there
+is such a state defined there. But that code there also looks strange
+as that driver never again leaves this active state after entering it.
+
+Also for example all the Gru devices run with quite a number of pwm-
+regulators without needing additional fiddling with the pwm itself, so
+I don't really see why that should be different here.
+
 Heiko
+
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> index 19f7732d728c..c53f3d571620 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> @@ -548,6 +548,8 @@
+>  };
+>  
+>  &pwm2 {
+> +	pinctrl-names = "active";
+> +	pinctrl-0 = <&pwm2_pin_pull_down>;
+>  	status = "okay";
+>  };
+>  
+> 
+
+
 
 
