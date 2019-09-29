@@ -2,51 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95285C199E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 23:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B443C19C6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 01:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726827AbfI2VkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Sep 2019 17:40:02 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:46008 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726390AbfI2VkC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Sep 2019 17:40:02 -0400
-Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iEgv8-0001fh-UF; Sun, 29 Sep 2019 23:39:58 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        christoph.muellner@theobroma-systems.com
-Subject: Re: [PATCH] dt-bindings: arm: rockchip: fix Theobroma-System board bindings
-Date:   Sun, 29 Sep 2019 23:39:58 +0200
-Message-ID: <2067842.OmCvtMiqeS@phil>
-In-Reply-To: <20190917083453.25744-1-heiko@sntech.de>
-References: <20190917083453.25744-1-heiko@sntech.de>
+        id S1729022AbfI2XqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Sep 2019 19:46:20 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:39539 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726360AbfI2XqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Sep 2019 19:46:20 -0400
+Received: by mail-qt1-f195.google.com with SMTP id n7so14704800qtb.6;
+        Sun, 29 Sep 2019 16:46:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=9IjuVXfjyC+Q3EgkfLoZRHzj7hful0PTkZcBqQey3BU=;
+        b=WgOkqUXG/IOsCK1v46IkgYuvCCXlWivbA0/c8I3P1LW9SLM09h//IDxsINvCoNLie1
+         d2uDzX0BimZmK66AyDUtq4ykya65Xw7IM43b5alZxJ6Bj4GSCxD/hznZReZ+zKZKcjnW
+         32ER5J6DTGckGj+qW2ka0ox7QFqlyfL11PLQ6onHceTt7/mxI6u6G7ArnYeq9ad3PyZG
+         fTePApuiq8DXfLot28KFYxlHH/PoJ4FZSJzGQPl5+gejE1YAeeSNrfgue6W8MbxenL3w
+         0YHyQ/tlYHv2h/6F+e+b8mDM6hZXe+sEJBwENssePuU7yxUAt54Pmic+/221kiWZY6iy
+         oUZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=9IjuVXfjyC+Q3EgkfLoZRHzj7hful0PTkZcBqQey3BU=;
+        b=QYalZ82IQlTBOHYDrnrUPjrw7d2jCG+T7F1ARTCC4KfMtd3fsQQ/V6YK1YY60L01Wj
+         eX0ZO5LV84JoE/5qhyN5+lWRlDHFc5XA9NeJOIk7kjSXzSKBFOocPThUWJi11cWTjxtr
+         asucc3jBAwqIE18RIC086HPp+7SRQI+ypJps1EMFUi8HJjNcGaZ6aa7Y9XMRe6KuThXc
+         x0LQcmdIgfjqtrcsmf/6PxmFw4wPBFZqNb9q/MlXOtix9A3VZffqciqVJhQHU8GE4XhN
+         DnXcQndICANHUxqcMDaqoSiSKoJoB45pz8hLTLsBw99dpByUBoc96uNKhRVbuKn5nLG2
+         NcJw==
+X-Gm-Message-State: APjAAAWstWj7o94+EhvGKXkgdthMT63+/MOnCHEaPP/KA3uvgEiz3/6e
+        JbpNdedSAZ24E4XXwz8ai/E=
+X-Google-Smtp-Source: APXvYqxVMoPmFYQFR1uQ9s3WqrOhj1kuaz6jaF1gAqCSFqi7agIMTQouJhYavwt4z9geiH7wAvaCbg==
+X-Received: by 2002:a0c:c48e:: with SMTP id u14mr18611626qvi.37.1569800779344;
+        Sun, 29 Sep 2019 16:46:19 -0700 (PDT)
+Received: from vivek-desktop (ool-457857f8.dyn.optonline.net. [69.120.87.248])
+        by smtp.gmail.com with ESMTPSA id m14sm4585875qki.27.2019.09.29.16.46.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 29 Sep 2019 16:46:18 -0700 (PDT)
+Date:   Sun, 29 Sep 2019 19:46:15 -0400
+From:   Vivek Unune <npcomplete13@gmail.com>
+To:     Vicente Bergas <vicencb@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
+        ezequiel@collabora.com, akash@openedev.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Roger Quadros <rogerq@ti.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
+Message-ID: <20190929234615.GA5355@vivek-desktop>
+References: <20190929032230.24628-1-npcomplete13@gmail.com>
+ <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 17. September 2019, 10:34:53 CEST schrieb Heiko Stuebner:
-> The naming convention for the existing Theobroma boards is
-> soc-q7module-baseboard, so rk3399-puma-haikou and the in-kernel
-> devicetrees also follow that scheme.
+On Sun, Sep 29, 2019 at 01:22:17PM +0200, Vicente Bergas wrote:
+> On Sunday, September 29, 2019 5:22:30 AM CEST, Vivek Unune wrote:
+> > Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
+> > 
+> > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > index 0d1f5f9a0de9..c133e8d64b2a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > @@ -644,7 +644,7 @@
+> >  	status = "okay";
+> >  	u2phy0_host: host-port {
+> > -		phy-supply = <&vcc5v0_host>;
+> > +		phy-supply = <&vcc5v0_typec>;
+> >  		status = "okay";
+> >  	};
+> > @@ -712,7 +712,7 @@
+> >  &usbdrd_dwc3_0 {
+> >  	status = "okay";
+> > -	dr_mode = "otg";
+> > +	dr_mode = "host";
+> >  };
+> >  &usbdrd3_1 {
 > 
-> For some reason in the binding a wrong or outdated naming slipped
-> in which does not match the used devicetrees and makes the dt-schema
-> complain now.
+> Hi Vivek,
 > 
-> Fix this by using the names used in the wild by actual boards.
+> which is the relationship of your patch and this commit:
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> e1d9149e8389f1690cdd4e4056766dd26488a0fe
+> arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
+> 
+> with respect to this other commit:
+> 
+> c09b73cfac2a9317f1104169045c519c6021aa1d
+> usb: dwc3: don't set gadget->is_otg flag
+> 
+> ?
+> 
+> I did not test reverting e1d9149e since c09b73cf was applied.
+> 
+> Regards,
+>  Vicenç.
+> 
 
-added a Fixes tag and applies as fix for 5.4
+Hi Vicenç,
 
+Indeed, I was motivated by e1d9149e ("arm64: dts: rockchip: Fix USB3 
+Type-C on rk3399-sapphire"). X99 TV box showed exact same symptoms
+with usb-c port. After applying the fix, it worked.
+
+I was not aware of c09b73cf ("usb: dwc3: don't set gadget->is_otg
+ flag") and it will be interesting to test it. This might render
+my fix unecessary.
+
+Thanks,
+
+Vivek
 
