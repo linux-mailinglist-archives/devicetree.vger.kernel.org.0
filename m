@@ -2,126 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E8AE4C1488
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 15:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3600CC15C2
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 16:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725974AbfI2NTE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 29 Sep 2019 09:19:04 -0400
-Received: from mailoutvs2.siol.net ([185.57.226.193]:39453 "EHLO mail.siol.net"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725937AbfI2NTD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Sep 2019 09:19:03 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id F3AD4520DE2;
-        Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id GfKKfDQhmfqB; Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 7DCB75207AE;
-        Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
-Received: from jernej-laptop.localnet (cpe-86-58-59-25.static.triera.net [86.58.59.25])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 0AE24520DE2;
-        Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 5/6] media: sun4i: Add H3 deinterlace driver
-Date:   Sun, 29 Sep 2019 15:18:58 +0200
-Message-ID: <14809830.gx5DXe3C1k@jernej-laptop>
-In-Reply-To: <20190912202647.wfcjur7yxhlelvd6@localhost.localdomain>
-References: <20190912175132.411-1-jernej.skrabec@siol.net> <20190912175132.411-6-jernej.skrabec@siol.net> <20190912202647.wfcjur7yxhlelvd6@localhost.localdomain>
+        id S1725974AbfI2OYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Sep 2019 10:24:53 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:43476 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725948AbfI2OYx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Sep 2019 10:24:53 -0400
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iEa80-0008VQ-Bc; Sun, 29 Sep 2019 16:24:48 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     mka@chromium.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: rockchip: Add cpu id to rk3288 efuse node
+Date:   Sun, 29 Sep 2019 16:24:47 +0200
+Message-ID: <9574075.6R2mNjq6rT@phil>
+In-Reply-To: <20190919142611.1.I309434f00a2a9be71e4437991fe08abc12f06e2e@changeid>
+References: <20190919142611.1.I309434f00a2a9be71e4437991fe08abc12f06e2e@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne četrtek, 12. september 2019 ob 22:26:47 CEST je Maxime Ripard napisal(a):
-> Hi,
+Am Donnerstag, 19. September 2019, 23:26:41 CEST schrieb Douglas Anderson:
+> This just adds in another field of what's stored in the e-fuse on
+> rk3288.  Though I can't personally promise that every rk3288 out there
+> has the CPU ID stored in the eFuse at this location, there is some
+> evidence that it is correct:
+> - This matches what was in the Chrome OS 3.14 branch (see
+>   EFUSE_CHIP_UID_OFFSET and EFUSE_CHIP_UID_LEN) for rk3288.
+> - The upstream rk3399 dts file has this same data at the same offset
+>   and with the same length, indiciating that this is likely common for
+>   several modern Rockchip SoCs.
 > 
-> On Thu, Sep 12, 2019 at 07:51:31PM +0200, Jernej Skrabec wrote:
-> > +	dev->regmap = devm_regmap_init_mmio(dev->dev, dev->base,
-> > +					    
-&deinterlace_regmap_config);
-> > +	if (IS_ERR(dev->regmap)) {
-> > +		dev_err(dev->dev, "Couldn't create deinterlace 
-regmap\n");
-> > +
-> > +		return PTR_ERR(dev->regmap);
-> > +	}
-> > +
-> > +	ret = clk_prepare_enable(dev->bus_clk);
-> > +	if (ret) {
-> > +		dev_err(dev->dev, "Failed to enable bus clock\n");
-> > +
-> > +		return ret;
-> > +	}
-> 
-> Do you need to keep the bus clock enabled all the time? Usually, for
-> the SoCs that have a reset line, you only need it to read / write to
-> the registers, not to have the controller actually running.
-> 
-> If you don't, then regmap_init_mmio_clk will take care of that for
-> you.
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-I just tested and using regmap_init_mmio_clk() with "bus" clock doesn't work. 
-I guess it has to be enabled whole time. I'll just leave it as-is.
+applied for 5.5
 
-Best regards,
-Jernej
-
-> 
-> > +	clk_set_rate(dev->mod_clk, 300000000);
-> > +
-> > +	ret = clk_prepare_enable(dev->mod_clk);
-> > +	if (ret) {
-> > +		dev_err(dev->dev, "Failed to enable mod clock\n");
-> > +
-> > +		goto err_bus_clk;
-> > +	}
-> > +
-> > +	ret = clk_prepare_enable(dev->ram_clk);
-> > +	if (ret) {
-> > +		dev_err(dev->dev, "Failed to enable ram clock\n");
-> > +
-> > +		goto err_mod_clk;
-> > +	}
-> > +
-> > +	ret = reset_control_reset(dev->rstc);
-> > +	if (ret) {
-> > +		dev_err(dev->dev, "Failed to apply reset\n");
-> > +
-> > +		goto err_ram_clk;
-> > +	}
-> 
-> This could be moved to a runtime_pm hook, with get_sync called in the
-> open. That way you won't leave the device powered on if it's unused.
-> 
-> > +struct deinterlace_dev {
-> > +	struct v4l2_device	v4l2_dev;
-> > +	struct video_device	vfd;
-> > +	struct device		*dev;
-> > +	struct v4l2_m2m_dev	*m2m_dev;
-> > +
-> > +	/* Device file mutex */
-> > +	struct mutex		dev_mutex;
-> > +
-> > +	void __iomem		*base;
-> > +	struct regmap		*regmap;
-> 
-> Do you need to store the base address in that structure if you're
-> using the regmap?
-> 
-> Maxime
-
-
+Thanks
+Heiko
 
 
