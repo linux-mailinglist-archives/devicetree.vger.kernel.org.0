@@ -2,99 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D095C145A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 13:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8AE4C1488
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2019 15:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728853AbfI2LZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Sep 2019 07:25:26 -0400
-Received: from inca-roads.misterjones.org ([213.251.177.50]:52869 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726911AbfI2LZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Sep 2019 07:25:26 -0400
-Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1iEXKL-0007jl-Cr; Sun, 29 Sep 2019 13:25:21 +0200
-To:     Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH V3 7/8] ARM: dts: Add minimal Raspberry Pi 4 support
-X-PHP-Originating-Script: 0:main.inc
+        id S1725974AbfI2NTE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 29 Sep 2019 09:19:04 -0400
+Received: from mailoutvs2.siol.net ([185.57.226.193]:39453 "EHLO mail.siol.net"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725937AbfI2NTD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Sep 2019 09:19:03 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id F3AD4520DE2;
+        Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id GfKKfDQhmfqB; Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 7DCB75207AE;
+        Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-86-58-59-25.static.triera.net [86.58.59.25])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 0AE24520DE2;
+        Sun, 29 Sep 2019 15:18:59 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 5/6] media: sun4i: Add H3 deinterlace driver
+Date:   Sun, 29 Sep 2019 15:18:58 +0200
+Message-ID: <14809830.gx5DXe3C1k@jernej-laptop>
+In-Reply-To: <20190912202647.wfcjur7yxhlelvd6@localhost.localdomain>
+References: <20190912175132.411-1-jernej.skrabec@siol.net> <20190912175132.411-6-jernej.skrabec@siol.net> <20190912202647.wfcjur7yxhlelvd6@localhost.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Sun, 29 Sep 2019 12:25:19 +0100
-From:   Marc Zyngier <maz@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
-References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
- <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
-Message-ID: <b75876e1b3c46297142c052e1c6ea0a2@www.loen.fr>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/0.7.2
-X-SA-Exim-Connect-IP: <locally generated>
-X-SA-Exim-Rcpt-To: wahrenst@gmx.net, robh+dt@kernel.org, mark.rutland@arm.com, eric@anholt.net, f.fainelli@gmail.com, rjui@broadcom.com, sbranden@broadcom.com, devicetree@vger.kernel.org, catalin.marinas@arm.com, bcm-kernel-feedback-list@broadcom.com, will@kernel.org, linux-arm-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-09-28 13:07, Stefan Wahren wrote:
-> This adds minimal support for the new Raspberry Pi 4 without the
-> fancy stuff like GENET, PCIe, xHCI, 40 bit DMA and V3D. The RPi 4 is
-> available in 3 different variants (1, 2 and 4 GB RAM), so leave the 
-> memory
-> size to zero and let the bootloader take care of it. The DWC2 is 
-> still
-> usable as peripheral via the USB-C port.
->
-> Other differences to the Raspberry Pi 3:
-> - additional GIC 400 Interrupt controller
-> - new thermal IP and HWRNG
-> - additional MMC interface (emmc2)
-> - additional UART, I2C, SPI and PWM interfaces
-> - clock stretching bug in I2C IP has been fixed
->
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> Acked-by: Eric Anholt <eric@anholt.net>
+Dne četrtek, 12. september 2019 ob 22:26:47 CEST je Maxime Ripard napisal(a):
+> Hi,
+> 
+> On Thu, Sep 12, 2019 at 07:51:31PM +0200, Jernej Skrabec wrote:
+> > +	dev->regmap = devm_regmap_init_mmio(dev->dev, dev->base,
+> > +					    
+&deinterlace_regmap_config);
+> > +	if (IS_ERR(dev->regmap)) {
+> > +		dev_err(dev->dev, "Couldn't create deinterlace 
+regmap\n");
+> > +
+> > +		return PTR_ERR(dev->regmap);
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(dev->bus_clk);
+> > +	if (ret) {
+> > +		dev_err(dev->dev, "Failed to enable bus clock\n");
+> > +
+> > +		return ret;
+> > +	}
+> 
+> Do you need to keep the bus clock enabled all the time? Usually, for
+> the SoCs that have a reset line, you only need it to read / write to
+> the registers, not to have the controller actually running.
+> 
+> If you don't, then regmap_init_mmio_clk will take care of that for
+> you.
 
-[...]
+I just tested and using regmap_init_mmio_clk() with "bus" clock doesn't work. 
+I guess it has to be enabled whole time. I'll just leave it as-is.
 
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
-> +					  IRQ_TYPE_LEVEL_LOW)>;
-> +		/* This only applies to the ARMv7 stub */
-> +		arm,cpu-registers-not-fw-configured;
-> +
-> +		/* The ARM cores doesn't enter deep enough states */
-> +		always-on;
+Best regards,
+Jernej
 
-I already commented on this. The A72 not entering a deep enough sleep 
-state to
-lose its comparator seems dubious at best. The right way to do this is 
-to have
-a global timer, which you said the platform has.
+> 
+> > +	clk_set_rate(dev->mod_clk, 300000000);
+> > +
+> > +	ret = clk_prepare_enable(dev->mod_clk);
+> > +	if (ret) {
+> > +		dev_err(dev->dev, "Failed to enable mod clock\n");
+> > +
+> > +		goto err_bus_clk;
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(dev->ram_clk);
+> > +	if (ret) {
+> > +		dev_err(dev->dev, "Failed to enable ram clock\n");
+> > +
+> > +		goto err_mod_clk;
+> > +	}
+> > +
+> > +	ret = reset_control_reset(dev->rstc);
+> > +	if (ret) {
+> > +		dev_err(dev->dev, "Failed to apply reset\n");
+> > +
+> > +		goto err_ram_clk;
+> > +	}
+> 
+> This could be moved to a runtime_pm hook, with get_sync called in the
+> open. That way you won't leave the device powered on if it's unused.
+> 
+> > +struct deinterlace_dev {
+> > +	struct v4l2_device	v4l2_dev;
+> > +	struct video_device	vfd;
+> > +	struct device		*dev;
+> > +	struct v4l2_m2m_dev	*m2m_dev;
+> > +
+> > +	/* Device file mutex */
+> > +	struct mutex		dev_mutex;
+> > +
+> > +	void __iomem		*base;
+> > +	struct regmap		*regmap;
+> 
+> Do you need to store the base address in that structure if you're
+> using the regmap?
+> 
+> Maxime
 
-Please drop this.
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+
+
