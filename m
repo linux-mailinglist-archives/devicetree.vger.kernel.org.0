@@ -2,167 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 605C7C1D7D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 10:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD55BC1D93
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730216AbfI3I4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 04:56:12 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45315 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730110AbfI3I4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 04:56:12 -0400
-Received: by mail-wr1-f65.google.com with SMTP id r5so10231925wrm.12;
-        Mon, 30 Sep 2019 01:56:09 -0700 (PDT)
+        id S1729913AbfI3JAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 05:00:04 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:37670 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730170AbfI3JAE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:00:04 -0400
+Received: by mail-wr1-f68.google.com with SMTP id i1so10299669wro.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 02:00:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6fftjP5bUCArKKdB+VCYiLDFrQQtx2KZIvWcOKzDCTo=;
-        b=pkVnTk26YezVaP0QB6r6YgludHu532Mk2WYVTZVUK5YERoR7Cre0MLCfdUEVXwksmh
-         E/A4G9ZmWoZh3DyCXN9U6nYx4NR37V44cagnEPtHckwjRORmK3YYs+wVNOYpZL2eMn1w
-         i5HJrQU9kaoZshin+US3ypkKy7lvUt8lO3Gv3+su4rGmlNEABHsqTVGlV4C9T/XPHSh5
-         ETyK1J5wzAaKdV+AllRthATj0+wUpz8OAV4WEeQ/DwBbg2STqCpna3dJwDaHKtn27PGV
-         NBZodjacGxxe9x27WUBsxLENR8tfy17IYHp7oVr4X4sa21WDcqyH/VFvHo6XEhdQBenD
-         5m6g==
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zZOeGM5g/Vz9YvHwPN9vC5aUhVnW5UBfYl9eXafNvf4=;
+        b=Lyn76f9vD1MZGZC0CloZWBFzuZYEgPQGHGJSrCqM8zunxYseXKWs1vbWY6X8A+vmJW
+         vS1HOMDwoPjsLB13IMwWC7DlI3jNHxuHpuAxz/MtsdnVQ34iPjbQcPwKXHhsR+wRj6D1
+         /H/zZaSDfNVJq2CUJea5tlZaaimiGB/0ag8+AyWPpW7lMwIz5FUy54sXSOxkbY1dHipL
+         Oxt5fyySLlL1axoxnkurOoDbGAygEfcXbayskuydVoi6+vTjR4rcPjQE9xsye0LjD6F2
+         /SUPKvUCM4GSeZ5BwxBJ5rITYUpEIxtNfgWScobQC2v38UlIk7AbMykuX9BdXkbh7VFt
+         ELiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6fftjP5bUCArKKdB+VCYiLDFrQQtx2KZIvWcOKzDCTo=;
-        b=lYOX3TVsvBBVjG/g3mm6WxoNZLbvGKUTN5NC/ndR9VAHQ+2Uc3fLBDHCj4/fow1IDv
-         +FOXL1CsuRK0O9uoHaUCQf16CiMBtrK4/qdUqMZf06I4Iin/jEEnuIwrJ4dCXhFWd4dC
-         0kngCseNP0QEtaXvb/j3XxId9tvrLjHNga+jDewt451v2T9lF00Fzajj2FOT5OyROFxG
-         G5EI3/8TL4vZYat1uT0a9fvoH6Hflx8TyWGQUjIgqzbg/q9Qf2gO0Y6KzMqLhAWcMfMf
-         2eJfS1TiKKv4ZcrS+/1XO48PonOMsVSHSyykew1tUFELWxoK/5Fzamb+Q1AULNcF5kB/
-         izxw==
-X-Gm-Message-State: APjAAAUH7ZrO+LLWR3sbnHFqqkl/leV7xT3XIO0lDP7ZAWCmyUsfb1ym
-        LT8Z0O1iC7AmK4YgaKBsrkA=
-X-Google-Smtp-Source: APXvYqwWawM80XtnOjhYYvAiRzsk3JHKSsZXVdwQfDHIyltCNfgUlhCDMIJC6B8fbpk/Zl4xuFyAIA==
-X-Received: by 2002:a5d:4a8a:: with SMTP id o10mr5386140wrq.201.1569833769122;
-        Mon, 30 Sep 2019 01:56:09 -0700 (PDT)
-Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
-        by smtp.gmail.com with ESMTPSA id e30sm23469234wra.48.2019.09.30.01.56.07
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zZOeGM5g/Vz9YvHwPN9vC5aUhVnW5UBfYl9eXafNvf4=;
+        b=HzjAXJzers/7UMaG/ST/EfkjSI5Kbaw5v0j0pshWfADfx5VF1aKsae+k05lxTZA5K3
+         Ibz1csjAmkprCsDSbYDHoQq9zOlUKI+bZ6KogsckchJ6JK7Z0HUqu0sfLL63gpe+0S3I
+         i7kJztdi8zR3rXPQpB27sqTyxKPOg4fl2vC7kXpqmpLMUYNvC0mvtPUHRv1pxmKacHfW
+         bj0DMJtPBjYQ2mKoqrmn/7foUFU26yNwj9lSUE6LV8sb46RHeHICzryhQFuFlu2QhtUI
+         EOB4Uo4iDXI5eMFwPZIvd9AhauSa8uPS1HJxaANx25jmPAB1PSL81LzExdhR2PJcWc1F
+         aeCA==
+X-Gm-Message-State: APjAAAVR2l+soPxDMnUOzv+xFYzhcm2GcS7Dw+k41y2M78fTtK6GlIOe
+        YzP/RZfUshqs9RycmyKGTYipAw==
+X-Google-Smtp-Source: APXvYqzgCmHxkg3EEizdZWBORXV/wp7zumSABBrw5OtQ2GXhrX25c7fTmSGeo5QBXPfJGTITe3vDhQ==
+X-Received: by 2002:adf:9029:: with SMTP id h38mr12058351wrh.155.1569834001777;
+        Mon, 30 Sep 2019 02:00:01 -0700 (PDT)
+Received: from localhost.localdomain (amontpellier-652-1-281-69.w109-210.abo.wanadoo.fr. [109.210.96.69])
+        by smtp.gmail.com with ESMTPSA id m18sm12665723wrg.97.2019.09.30.02.00.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 01:56:07 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 10:56:06 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Christoph Hellwig <hch@infradead.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Oza Pawandeep <oza.oza@broadcom.com>,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 00/11] of: dma-ranges fixes and improvements
-Message-ID: <20190930085606.GG1518582@ulmo>
-References: <20190927002455.13169-1-robh@kernel.org>
- <CAK8P3a0oct0EOMi5t4BmpgdkiBM+LjC+2pTST4hcvNCa3MGLmw@mail.gmail.com>
- <20190930082055.GA21971@infradead.org>
+        Mon, 30 Sep 2019 02:00:01 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Rosin <peda@axentia.se>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH v5 0/2] at24: convert the binding document to yaml
+Date:   Mon, 30 Sep 2019 10:59:55 +0200
+Message-Id: <20190930085957.2779-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7lMq7vMTJT4tNk0a"
-Content-Disposition: inline
-In-Reply-To: <20190930082055.GA21971@infradead.org>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
---7lMq7vMTJT4tNk0a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The first patch converts the at24 DT binding to yaml. The second adds a new
+compatible special case that's being used undocumented currently.
 
-On Mon, Sep 30, 2019 at 01:20:55AM -0700, Christoph Hellwig wrote:
-> On Sun, Sep 29, 2019 at 01:16:20PM +0200, Arnd Bergmann wrote:
-> > On a semi-related note, Thierry asked about one aspect of the dma-ranges
-> > property recently, which is the behavior of dma_set_mask() and related
-> > functions when a driver sets a mask that is larger than the memory
-> > area in the bus-ranges but smaller than the available physical RAM.
-> > As I understood Thierry's problem and the current code, the generic
-> > dma_set_mask() will either reject the new mask entirely or override
-> > the mask set by of_dma_configure, but it fails to set a correct mask
-> > within the limitations of the parent bus in this case.
->=20
-> There days dma_set_mask will only reject a mask if it is too small
-> to be supported by the hardware.  Larger than required masks are now
-> always accepted.
+v1 -> v2:
+- modified the compatible property: we now list all possible combinations and
+  non-standard types with appropriate fallbacks to be as strict as possible
+- minor changes to other properties: added constraints, converted to enums
+  where applicable and referenced the types from schema
 
-Summarizing why this came up: the memory subsystem on Tegra194 has a
-mechanism controlled by bit 39 of physical addresses. This is used to
-support two variants of sector ordering for block linear formats. The
-GPU uses a slightly different ordering than other MSS clients, so the
-drivers have to set this bit depending on who they interoperate with.
+v2 -> v3:
+(Rob Herring:)
+- Here's my reworking of compatible schema and all the other fixes I
+  found. The inner 'oneOf' is probably a little excessive given the number
+  of lines. All it does is ensure both compatible strings have the same
+  part number.
 
-I was running into this as I was adding support for IOMMU support for
-the Ethernet controller on Tegra194. The controller has a HW feature
-register that contains how many address bits it supports. This is 40
-for Tegra194, corresponding to the number of address bits to the MSS.
-Without IOMMU support that's not a problem because there are no systems
-with 40 bits of system memory. However, if we enable IOMMU support, the
-DMA/IOMMU code will allocate from the top of a 48-bit (constrained to
-40 bits via the DMA mask) input address space. This causes bit 39 to be
-set, which in turn will make the MSS reorder sectors and break network
-communications.
+v3 -> v4:
+- Add a $nodename definition
+- Turns out the compatible schema is too complex for generating a 'select'
+  schema and only a small subset where getting validated. So we need a
+  custom 'select' schema. This in turn fixes the issue with the nxp,se97b
+  binding.
 
-Since this reordering takes place at the MSS level, this applies to all
-MSS clients. Most of these clients always want bit 39 to be 0, whereas
-the clients that can and want to make use of the reordering always want
-bit 39 to be under their control, so they can control in a fine-grained
-way when to set it.
+v4 -> v5:
+- added a new patch extending the list of special cases of the compatible
+  property
+- added comments explaining the schema for the compatible property
+- dropped redundant information from property descriptions (for instance:
+  there's no need to say "This parameterless property" where it's obvious
+  from the type that the property is a flag)
 
-This means that effectively all MSS clients can only address 39 bits, so
-instead of hard-coding that for each driver I thought it'd make sense to
-have a central place to configure this, so that all devices by default
-are restricted to 39-bit addressing. However, with the current DMA API
-implementation this causes a problem because the default 39-bit DMA mask
-would get overwritten by the driver (as in the example of the Ethernet
-controller setting a 40-bit DMA mask because that's what the hardware
-supports).
+Bartosz Golaszewski (2):
+  dt-bindings: at24: convert the binding document to yaml
+  dt-bindings: at24: add new compatible
 
-I realize that this is somewhat exotic. On one hand it is correct for a
-driver to say that the hardware supports 40-bit addressing (i.e. the
-Ethernet controller can address bit 39), but from a system integration
-point of view, using bit 39 is wrong, except in a very restricted set of
-cases.
+ .../devicetree/bindings/eeprom/at24.txt       |  90 +--------
+ .../devicetree/bindings/eeprom/at24.yaml      | 182 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 184 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
 
-If I understand correctly, describing this with a dma-ranges property is
-the right thing to do, but it wouldn't work with the current
-implementation because drivers can still override a lower DMA mask with
-a higher one.
+-- 
+2.23.0
 
-Thierry
-
---7lMq7vMTJT4tNk0a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2RwyMACgkQ3SOs138+
-s6HYvBAAiJWcvv5xcJncOs7e0ol6y9Mk77w/r0hKJYeifVE572SDCmbwK8orp3zk
-P0DcZYqws8pYA0kK38w8FJO6ptv754PoJ7Gp8Io9SIsbrvY9YFUFZAK7OQ3SExGx
-LKwNoEeKNM5ceP0HFonHM2YTTuKL7soYqLm/4fTiOTACT2c42pRTLqonIXL73vxE
-gV3/ssj+hfwNkORM3vSqgiC14re/1fi7uzG5YLjhe1maobqJ8hVUD8rfZfKIcE17
-XFPHbBo8wILS6P6vYrrw8LJLsUNJMKrmqlxCYaAhuEQaosUatdHp9/KdDXOLZDxV
-NLu2jOD4RZ46PC8P6p4E9ZgEuAJMrh5NydXMdSuGIbACndvQchObUEWbHEP8W8Xi
-Cr70CmMxfFDGoqKO99X/07jvG0D/iEmF2CwQPO0QKaIDZPYN0weoIbcEm9r1KEAm
-XCvXQl80jaMmZH2xpqeSV+i1wO0dNpPZ0MZUutXqjIyE189WvrcHsTk8HAJIcbj+
-spwwo11tAR/x2t3WIgcrAHVbSEXUuK6hNwpeC44HBcQbWPOxa1sSJvNeYq0z/kPb
-YuYY9NvQaZBX87qVunbANq05ev4cK2oeFbZjkWHKKhdBsb4rcaUvHWCQOpgTL0wQ
-Sy9ckOP6goBXLArIFmTkuDyGxoNG5mqrcPGk1duSBP8nzDQvcVw=
-=Iybe
------END PGP SIGNATURE-----
-
---7lMq7vMTJT4tNk0a--
