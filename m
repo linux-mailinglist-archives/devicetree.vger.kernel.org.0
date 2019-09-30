@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E8BC212A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA727C211F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731104AbfI3NDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 09:03:21 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:50691 "EHLO
+        id S1731116AbfI3NDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 09:03:07 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:33959 "EHLO
         mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731103AbfI3NDG (ORCPT
+        with ESMTP id S1731100AbfI3NDG (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:03:06 -0400
-Received: by mail-wm1-f67.google.com with SMTP id 5so13341775wmg.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:03:04 -0700 (PDT)
+Received: by mail-wm1-f67.google.com with SMTP id y135so14105899wmc.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=zCXYF953/vPYwz7eiQFUSs/AEguNESyV96474n4IASY=;
-        b=Nf+gaIXC0Ge/0BwRg9S/STvB6+9x02OEyJfwicPnb2ADufpdrmo1vfw+tYoQLsxxJ5
-         5J4EjdPlP0rFxxFSexrYwZzTo5oXdX5EwgyQfHg9F21ZI9v8b1j4wtWm6C0VIUNaVB7f
-         z2hYt7MBqAbNQkf+phMS5i3LywrehGo3y8a5z1RaPZ82gsF/Bx2JD+DMo6vou7CPXzQN
-         sya1shbs/pjzjbzKs/nJ488uwxA1KCYAeLAuoz6h+eKPxL+q+fvymMKKxpOJ5LcM2xQ5
-         3lSJJtz8j500+wft6PJYCtXXQ0QVa7CIuyQJOBbLKodGskE+BYV1vVN5uBLG3an/yC6E
-         C99Q==
+        bh=HrIq4ZVm8xkVZyO8f5Owi3O1Tv53HlREs0EWWL4v/q4=;
+        b=w1gNg8prgUP3BwyEHY0icT829DCXzmLYUhxFKoVjRtdaNyQitXh4veJvCPRIsJ1yAa
+         EjV8yIaLqywn2OLOjIE1Qiqqlwb35juSylLnUYlGzVFdhIGmVX6UEhYTQ2fTS2s550ug
+         +rEmahuc8qfCuv0k9jUnqAVP71g8ErK+jQyWeSZNqOb3wtPyKoNwQ4LtlLVaO2/icP9e
+         Y0flzj/3RcC8NaIT8OrfJpYtb1l/UrnuoZrpD0UUN6UBwnj5EAiAAVFjgXjhHLSzMgMA
+         nxidQ6CioHKdgup5Do1f2UZjKGdcLsijRVhzgFl1CPphyS5x76IeMjkY9mnL4zLR3avD
+         dmRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=zCXYF953/vPYwz7eiQFUSs/AEguNESyV96474n4IASY=;
-        b=e39skyARVc/haJ1wFHU9uRLDpppPet4027xoMmbclHHD9QrriSrozgzT1BjO9VY0ry
-         WrB8DYMfgYqTa81BQDlIsgXufkaCGC8nMnBrQT4OhBql4fpPTi3+epXpkZgM8VgWWiJ3
-         BfeLBIsh1Oem7/clLddTYdIQCzKglZx8GgS/A81s6JPDA+aQVIei6419nH9F4ESy6h9S
-         QBOteQBVsghIc0rvRIVQKA8zcnyFIH2XF6FEEYZoNRX/vCTHXHFglwGEq/QPUBRp+Nb7
-         Z3LCiYXse/U9acMutzMAi3nW34aWMOlbTbL6A+DKL57m3yI10jyc6rhM9zbfZTCliqef
-         2UwA==
-X-Gm-Message-State: APjAAAUdxfKUj+41nZ8T9hFRz0tUv0BkX/RsoPPEACbKmlYi8ZDk3HvY
-        +ofFLwQdGG1npdEu8TfIGqo2GQ==
-X-Google-Smtp-Source: APXvYqx2obH7hRkkN4bY0nbY+Nu/cmpaQYw5+2PMIJMC3OXw+Li14HL6JkwFIeJb93ckMDFPY5G6tA==
-X-Received: by 2002:a05:600c:238a:: with SMTP id m10mr18382086wma.51.1569848583334;
-        Mon, 30 Sep 2019 06:03:03 -0700 (PDT)
+        bh=HrIq4ZVm8xkVZyO8f5Owi3O1Tv53HlREs0EWWL4v/q4=;
+        b=LpxdkPfPF6KquFMiNXsqZEf/EjBVDr37PDHz2aW/9ViCnJhrPrYcVk492DRorLxVjJ
+         smTI7KHgNurf2TU5CzJWRKGetyB8/XuPFw+8oHT7T5dMLSM/4fqOSeMHIzLeYzd7z3x8
+         l7SczC4SO50FJPGbzx8LxarGAgioq+Gz2kS/FZW6MJH0qn+Oe6y2wJo1doqNnRycZXRe
+         wRVR14+Dg82TmLny/+AlAvf1ZYTqSwPwiFzgmSE2WWn0CEnww8p1FzKQ7XU9qYXIiiNu
+         mPxGIEJL/kFUJjx/VoaU3M9HoIBWe8oxTLS8fQwTzT64u75Fxt1OiHntaLzmJUtMRH82
+         LQZQ==
+X-Gm-Message-State: APjAAAWsM27g9ugrX0eJQohOjmZtkqfi+2C79lIwDyaLcxeDZArDdvAy
+        n7RtsjobYsnyLtwCeZ49h67Rvw==
+X-Google-Smtp-Source: APXvYqzN6+yvym0aDjApdak2rnKhCxj3WgNHI4XeHwFPAGwC+jP/VsGclRBJNsmG4KVSjtE79Djsrg==
+X-Received: by 2002:a1c:544e:: with SMTP id p14mr16383235wmi.72.1569848584419;
+        Mon, 30 Sep 2019 06:03:04 -0700 (PDT)
 Received: from localhost.localdomain (amontpellier-652-1-281-69.w109-210.abo.wanadoo.fr. [109.210.96.69])
-        by smtp.gmail.com with ESMTPSA id e6sm10654756wrp.91.2019.09.30.06.03.02
+        by smtp.gmail.com with ESMTPSA id e6sm10654756wrp.91.2019.09.30.06.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 06:03:02 -0700 (PDT)
+        Mon, 30 Sep 2019 06:03:03 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -58,9 +58,9 @@ Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
         linux-pm@vger.kernel.org,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH 5/6] dt-bindings: leds: max77650: convert the binding document to yaml
-Date:   Mon, 30 Sep 2019 15:02:45 +0200
-Message-Id: <20190930130246.4860-6-brgl@bgdev.pl>
+Subject: [PATCH 6/6] MAINTAINERS: update the list of maintained files for max77650
+Date:   Mon, 30 Sep 2019 15:02:46 +0200
+Message-Id: <20190930130246.4860-7-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20190930130246.4860-1-brgl@bgdev.pl>
 References: <20190930130246.4860-1-brgl@bgdev.pl>
@@ -73,166 +73,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Convert the binding document for max77650 LED module to yaml.
+The DT bindings for max77650 MFD have now been converted to yaml.
+Update the MAINTAINERS entry for this set of drivers.
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
- .../bindings/leds/leds-max77650.txt           | 58 +------------
- .../bindings/leds/leds-max77650.yaml          | 82 +++++++++++++++++++
- 2 files changed, 83 insertions(+), 57 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-max77650.yaml
+ MAINTAINERS | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-max77650.txt b/Documentation/devicetree/bindings/leds/leds-max77650.txt
-index 3a67115cc1da..33d6ff23f0ef 100644
---- a/Documentation/devicetree/bindings/leds/leds-max77650.txt
-+++ b/Documentation/devicetree/bindings/leds/leds-max77650.txt
-@@ -1,57 +1 @@
--LED driver for MAX77650 PMIC from Maxim Integrated.
--
--This module is part of the MAX77650 MFD device. For more details
--see Documentation/devicetree/bindings/mfd/max77650.txt.
--
--The LED controller is represented as a sub-node of the PMIC node on
--the device tree.
--
--This device has three current sinks.
--
--Required properties:
----------------------
--- compatible:		Must be "maxim,max77650-led"
--- #address-cells:	Must be <1>.
--- #size-cells:		Must be <0>.
--
--Each LED is represented as a sub-node of the LED-controller node. Up to
--three sub-nodes can be defined.
--
--Required properties of the sub-node:
--------------------------------------
--
--- reg:			Must be <0>, <1> or <2>.
--
--Optional properties of the sub-node:
--------------------------------------
--
--- label:		See Documentation/devicetree/bindings/leds/common.txt
--- linux,default-trigger: See Documentation/devicetree/bindings/leds/common.txt
--
--For more details, please refer to the generic GPIO DT binding document
--<devicetree/bindings/gpio/gpio.txt>.
--
--Example:
----------
--
--	leds {
--		compatible = "maxim,max77650-led";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		led@0 {
--			reg = <0>;
--			label = "blue:usr0";
--		};
--
--		led@1 {
--			reg = <1>;
--			label = "red:usr1";
--			linux,default-trigger = "heartbeat";
--		};
--
--		led@2 {
--			reg = <2>;
--			label = "green:usr2";
--		};
--	};
-+This file has been moved to leds-max77650.yaml.
-diff --git a/Documentation/devicetree/bindings/leds/leds-max77650.yaml b/Documentation/devicetree/bindings/leds/leds-max77650.yaml
-new file mode 100644
-index 000000000000..bb541ff67f80
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-max77650.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-max77650.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LED driver for MAX77650 PMIC from Maxim Integrated.
-+
-+maintainers:
-+  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
-+
-+description: |
-+  This module is part of the MAX77650 MFD device. For more details
-+  see Documentation/devicetree/bindings/mfd/max77650.txt.
-+
-+  The LED controller is represented as a sub-node of the PMIC node on
-+  the device tree.
-+
-+  This device has three current sinks.
-+
-+properties:
-+  compatible:
-+    const: maxim,max77650-led
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^led@[0-2]$":
-+    type: object
-+    description: |
-+      Properties for a single LED.
-+
-+    properties:
-+      reg:
-+        description:
-+          Index of the LED.
-+        maxItems: 1
-+        minimum: 0
-+        maximum: 2
-+
-+      label:
-+        $ref: "/schemas/types.yaml#/definitions/string"
-+        description:
-+          The label of this LED.
-+
-+      linux,default-trigger:
-+        $ref: "/schemas/types.yaml#/definitions/string"
-+        description:
-+          String defining the default trigger assigned to this LED.
-+
-+required:
-+  - compatible
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+examples:
-+  - |
-+    leds {
-+        compatible = "maxim,max77650-led";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led@0 {
-+            reg = <0>;
-+            label = "blue:usr0";
-+        };
-+
-+        led@1 {
-+            reg = <1>;
-+            label = "red:usr1";
-+            linux,default-trigger = "heartbeat";
-+        };
-+
-+        led@2 {
-+            reg = <2>;
-+            label = "green:usr2";
-+        };
-+    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 296de2b51c83..d60dd3729437 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9902,8 +9902,8 @@ MAXIM MAX77650 PMIC MFD DRIVER
+ M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
+ L:	linux-kernel@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/*/*max77650.txt
+-F:	Documentation/devicetree/bindings/*/max77650*.txt
++F:	Documentation/devicetree/bindings/*/*max77650.yaml
++F:	Documentation/devicetree/bindings/*/max77650*.yaml
+ F:	include/linux/mfd/max77650.h
+ F:	drivers/mfd/max77650.c
+ F:	drivers/regulator/max77650-regulator.c
 -- 
 2.23.0
 
