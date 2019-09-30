@@ -2,83 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 376BCC210B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 14:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1367CC2119
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731030AbfI3M5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 08:57:53 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:55352 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731029AbfI3M5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 08:57:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=fARuBLyTR4HXeEN5GAQcRLDiqW1FdAZoSRGfWrgXFl0=; b=Ytnu72k/V9UtQKPbqK+bXZ/rC
-        hPlBEZtRwO5KMbdq53efq3EoWOWDdzlnAEzTmTzRPWZqNqS2scAwPoBpOsC5W4lQOBNLGgrEtyDzK
-        ERPuqlt6nM23+LogLxjefgJzSg5jkTQYfNghQ4xb6+6GtOpewBVmCChuKzYFvaZBOgMfK6DeKrOmt
-        CjVTmncnXQELuEjaCVwh29wZDCy9UYncMyV2MGsQMELqzsZp15ZlivvYbqb9uiJsP4/WJvis3Wo/U
-        cI6ryWc4LilQ9scvbdS0zvXJYytusVy4xRSStne/M++GTrfPwI0h/YJdggMOkOgE8J0Imz17qiJnt
-        fz0+Z45Ig==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.92.2 #3 (Red Hat Linux))
-        id 1iEvFQ-0007vv-1U; Mon, 30 Sep 2019 12:57:52 +0000
-Date:   Mon, 30 Sep 2019 05:57:52 -0700
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Oza Pawandeep <oza.oza@broadcom.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH 05/11] of: Ratify of_dma_configure() interface
-Message-ID: <20190930125752.GD12051@infradead.org>
-References: <20190927002455.13169-1-robh@kernel.org>
- <20190927002455.13169-6-robh@kernel.org>
+        id S1731047AbfI3NDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 09:03:00 -0400
+Received: from mail-wm1-f51.google.com ([209.85.128.51]:54778 "EHLO
+        mail-wm1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730378AbfI3NC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:02:59 -0400
+Received: by mail-wm1-f51.google.com with SMTP id p7so13334522wmp.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vNX+Pqr7l6mVyA3yK7rKaQ3s0VflVZgQrJhL3g7/Ip4=;
+        b=tIxdis1cAH+RvP4PA/a2sKVUiFk+Cb8ktSu0Khl9Hhsng9haOllbEdr+iuZx3lPSYU
+         sDOw0/LmRP8ATtF8hVEim3PnfPDf7quuj2Rn4LNrfdNjQ/WNeOIEa1ZLSpdi01EojiUu
+         v2U2CqItDoxwn99A0kVco8fUslg9NmMhNjof/Zm9Hj/7fzahvz+7MW24L6ymTx9cntQ4
+         iG8x57C+wJnP1ViTabcJxmaDc9fur1vkKOQ2wJ/uwMiVtM4pZ7eeBQB7jQVZvcfHgs5b
+         0igr1XNlgRQ6W1pmNpMM5C3eRZKZW6j9mpzEV/oMcDWMbEP8KJsJw5uVhQ2QYXy4w2Ft
+         g9jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vNX+Pqr7l6mVyA3yK7rKaQ3s0VflVZgQrJhL3g7/Ip4=;
+        b=QJ5aauKfZRvY7XYbdwNtHH2irnzdIdjnQOu9clrB62IbciXGZm4b5vl8xX2dPt1HYp
+         ZfSvMj4Oo75UjChhzHonO57UZflteixzhyB3Beosmerjfn7jbENxl6F8efGIzVY/dLuY
+         Nj/BUYHEsY8fUgmSavyUiFbAFDeNSicuMp1PdqCiFz0YUyWNjshY28kMDrcDRQLHHg22
+         IKQjR7qd7MDgpj5Z2qbh/uRxK69NynTVGyVT7501kLddg0xhvAgPKbUCTFnu9AiomTQx
+         mCufxiuMdlD7K/prlE805lvUbj4n4CgRMBMlrznI/R7NluaG1gP37Xce5kHhrnVaLdBE
+         8Yuw==
+X-Gm-Message-State: APjAAAVE91+TK1zBTq1eP6+jZZ8j+1nVD27RCriPjjb9M5qTXeA3ZBIj
+        kG9l/QkBSkjrwckRqlb6Y3HRjg==
+X-Google-Smtp-Source: APXvYqxK7o4G9mpvoB48Pb3o2/pQXGinDSvX0SV4RdXXaPNltTKFMwrC3kfNsl75Q4BTOzphLXez4w==
+X-Received: by 2002:a1c:3182:: with SMTP id x124mr18351314wmx.168.1569848577745;
+        Mon, 30 Sep 2019 06:02:57 -0700 (PDT)
+Received: from localhost.localdomain (amontpellier-652-1-281-69.w109-210.abo.wanadoo.fr. [109.210.96.69])
+        by smtp.gmail.com with ESMTPSA id e6sm10654756wrp.91.2019.09.30.06.02.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2019 06:02:57 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH 0/6] dt-bindings: max77650: convert the device-tree bindings to yaml
+Date:   Mon, 30 Sep 2019 15:02:40 +0200
+Message-Id: <20190930130246.4860-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190927002455.13169-6-robh@kernel.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 26, 2019 at 07:24:49PM -0500, Rob Herring wrote:
-> -int of_dma_configure(struct device *dev, struct device_node *np, bool force_dma)
-> +int of_dma_configure(struct device *dev, struct device_node *parent, bool force_dma)
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-This creates a > 80 char line.
+This series converts all DT binding documents for max77650 PMIC to yaml.
 
->  {
->  	u64 dma_addr, paddr, size = 0;
->  	int ret;
->  	bool coherent;
->  	unsigned long offset;
->  	const struct iommu_ops *iommu;
-> +	struct device_node *np;
->  	u64 mask;
->  
-> +	np = dev->of_node;
-> +	if (!np)
-> +		np = parent;
-> +	if (!np)
-> +		return -ENODEV;
+Bartosz Golaszewski (6):
+  dt-bindings: mfd: max77650: convert the binding document to yaml
+  dt-bindings: input: max77650: convert the binding document to yaml
+  dt-bindings: regulator: max77650: convert the binding document to yaml
+  dt-bindings: power: max77650: convert the binding document to yaml
+  dt-bindings: leds: max77650: convert the binding document to yaml
+  MAINTAINERS: update the list of maintained files for max77650
 
-I have to say I find the older calling convention simpler to understand.
-If we want to enforce the invariant I'd rather do that explicitly:
+ .../bindings/input/max77650-onkey.txt         | 27 +-----
+ .../bindings/input/max77650-onkey.yaml        | 43 ++++++++++
+ .../bindings/leds/leds-max77650.txt           | 58 +------------
+ .../bindings/leds/leds-max77650.yaml          | 82 ++++++++++++++++++
+ .../devicetree/bindings/mfd/max77650.txt      | 47 +----------
+ .../devicetree/bindings/mfd/max77650.yaml     | 83 +++++++++++++++++++
+ .../power/supply/max77650-charger.txt         | 29 +------
+ .../power/supply/max77650-charger.yaml        | 42 ++++++++++
+ .../bindings/regulator/max77650-regulator.txt | 42 +---------
+ .../regulator/max77650-regulator.yaml         | 51 ++++++++++++
+ MAINTAINERS                                   |  4 +-
+ 11 files changed, 308 insertions(+), 200 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/max77650-onkey.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-max77650.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/max77650.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/max77650-charger.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/max77650-regulator.yaml
 
-	if (dev->of_node && np != dev->of_node)
-		return -EINVAL;
+-- 
+2.23.0
+
