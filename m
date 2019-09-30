@@ -2,105 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 365F6C1FB6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 13:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75074C1FF7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 13:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730907AbfI3LCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 07:02:39 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:32980 "EHLO mail.andi.de1.cc"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730759AbfI3LCj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 07:02:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=4Q2eQSaoD2aHtt1rANXm2Cc6hpmxzVEktPN68KNFqac=; b=OqIAvAlJtHFC+dzBE4XSIO2Ve+
-        +GF+kIQuQrXylq0OprfQ77TKbeo5rWyzgbD8EIYC5kpQqJeAxgHlMkqrqqWqxjKj1qgHYWMxv1OKZ
-        V+PRUS55Nlw9YUBiwvNrZq7FEJ9FCX8dsBLKX5upiljQVbxbkVaBHoGK2vmqsl1uaaCM=;
-Received: from p200300ccff0b4c001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0b:4c00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1iEtRf-0007ix-TS; Mon, 30 Sep 2019 13:02:24 +0200
-Date:   Mon, 30 Sep 2019 13:02:22 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
-        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>
-Subject: Re: [PATCH 1/3] ARM: dts: add Netronix E60K02 board common file
-Message-ID: <20190930130222.4e1cdf64@aktux>
-In-Reply-To: <20190930082715.mplf5ra35ikqmbyr@pengutronix.de>
-References: <20190927061423.17278-1-andreas@kemnade.info>
-        <20190927061423.17278-2-andreas@kemnade.info>
-        <20190927094721.w26ggnli4f5a64uv@pengutronix.de>
-        <20190927210807.26439a94@aktux>
-        <20190930082715.mplf5ra35ikqmbyr@pengutronix.de>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728573AbfI3L33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 07:29:29 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:38920 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726858AbfI3L33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 07:29:29 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id A3A7725AD50;
+        Mon, 30 Sep 2019 21:29:26 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 8A1219413D3; Mon, 30 Sep 2019 13:29:24 +0200 (CEST)
+Date:   Mon, 30 Sep 2019 13:29:24 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-msm@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: msm8996: Update simple-pm-bus
+ node name to 'bus'
+Message-ID: <20190930112924.uayeet4rogjmelfg@verge.net.au>
+References: <20190924093609.22895-1-horms+renesas@verge.net.au>
+ <20190924093609.22895-4-horms+renesas@verge.net.au>
+ <CAMuHMdU6O-pDRBRXXX1ZU1L4c25POrPcDB_TsbAqA9wzVobtAw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdU6O-pDRBRXXX1ZU1L4c25POrPcDB_TsbAqA9wzVobtAw@mail.gmail.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Sep 2019 10:27:15 +0200
-Marco Felsch <m.felsch@pengutronix.de> wrote:
-
-[..]
-> > so you disagree with this pattern:
-> > in .dtsi
-> >  some_device {
-> >    pinctrl-0 = <&pinctrl_some_device>;
-> >  };
-> > 
-> > and in .dts (one I sent with this patch series and the tolino/mx6sl one
-> > is not ready-cooked yet, will be part of a later series)
-> > &iomuxc {
-> >    pinctrl_some_device: some_devicegrp {
-> >    	fsl,pins = <...>;
-> >    };
-> > };
-> > 
-> > ?  
+On Thu, Sep 26, 2019 at 01:58:21PM +0200, Geert Uytterhoeven wrote:
+> Hi Simon,
 > 
-> Yes, because IMHO a dtsi is self contained as well as a dts. If it is
-> common for all boards you can move the muxing into the dtsi else it
-> should be done within the dts.
+> On Tue, Sep 24, 2019 at 11:37 AM Simon Horman
+> <horms+renesas@verge.net.au> wrote:
+> > Update simple-pm-bus node name from 'agnoc' to 'bus' reflecting the
+> > proposed binding description in json-schema which in turn reflects the ePAR
+> > standard - "the name of a node should be somewhat generic, reflecting the
+> > function of the device and not its precise programming model."
+> >
+> > Also drop the unit address as there is neither a reg property nor
+> > non-empty ranges.
+> >
+> > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> > ---
+> > v2
+> > * New patch
+> > ---
+> >  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> > index 96c0a481f454..99f376ebd27e 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> > @@ -1373,7 +1373,7 @@
+> >                         clock-names = "iface", "bus";
+> >                 };
+> >
+> > -               agnoc@0 {
+> > +               bus {
+> >                         power-domains = <&gcc AGGRE0_NOC_GDSC>;
+> >                         compatible = "simple-pm-bus";
+> >                         #address-cells = <1>;
 > 
-well, since imx6sll-pinfunc.h is different than imx6sl-pinfunc.h,
-we agree that this belongs to the dts.
+> This file is included by arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi,
+> which references agnoc@0, so you have to update that one as well,
+> to avoid introducing silent breakages.
 
-> > > > +&snvs_rtc {
-> > > > +	status = "disabled";    
-> > > 
-> > > Same applies here.
-> > >   
-> > 
-> > No, seems to be an exception, it does not have a status = "disabled" in
-> > imx6sll.dtsi.  
-> 
-> Did you mean 6sll or 6ull?
-> 
-> Okay, is this baseboard only used with a 6ull?
-> 
-
-MCIMX6V7DVN10AB and MCIMX6L8DVN10AB
-So it is 6sll and 6sl (6sl support will be added in a follow-up patch
-series). 
-
-I will send a v2 this evening, so we can all look at better-sorted
-things.
-
-Regards,
-Andreas
+Thanks, will do.
