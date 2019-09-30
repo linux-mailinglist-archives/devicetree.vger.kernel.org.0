@@ -2,100 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF078C28D9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92303C28D7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729600AbfI3VdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 17:33:07 -0400
-Received: from foss.arm.com ([217.140.110.172]:35050 "EHLO foss.arm.com"
+        id S1727118AbfI3Vcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 17:32:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51700 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726504AbfI3VdH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 17:33:07 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7EB491570;
-        Mon, 30 Sep 2019 10:54:25 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E2333F534;
-        Mon, 30 Sep 2019 10:54:24 -0700 (PDT)
-Subject: Re: [PATCH 2/2] drm/panfrost: Use coherent pagetable walk on Juno
-To:     Steven Price <steven.price@arm.com>, robh@kernel.org,
-        tomeu.vizoso@collabora.com, sudeep.holla@arm.com
-Cc:     devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        liviu.dudau@arm.com, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-References: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
- <1e499f85220b735849126171e64ebdd1da0302ce.1569856049.git.robin.murphy@arm.com>
- <167ec566-1936-8a05-83fc-74d20d9fb8bc@arm.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <ad744dc3-d71f-b5e9-df2d-f01332be1cbb@arm.com>
-Date:   Mon, 30 Sep 2019 18:54:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726504AbfI3Vcl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 17:32:41 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 621A621A4C;
+        Mon, 30 Sep 2019 21:32:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569879159;
+        bh=ahrG45JXVtUfkKqLUmvU7THmziQbpk9vQeSUmrjpTn4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZHq9Iid0BbcFZon6JAJa0Ns1LeLXWyA3y3CHxpLnMmZQP4jE0ySqZl79ZhI5AAMj7
+         k7GDfiQmnUIPLDhpRZZUhEp9WeAj6gnl4VG9oem/NCq4OxW5YBNSdgo3FERubtHHSt
+         hAUhe7ijMx3TQOa4lXjRRfhAnkprImxZy6Eiivw4=
+Received: by mail-qk1-f172.google.com with SMTP id 4so9212925qki.6;
+        Mon, 30 Sep 2019 14:32:39 -0700 (PDT)
+X-Gm-Message-State: APjAAAU5kSyGZQWuDbnXpqf6ooq9zBW9I3Qr9IWpzdILpDdPTZlRgEYJ
+        /BtKdKaokNBxOyUUtp6M/9Rw4z7/oNen1nmDKA==
+X-Google-Smtp-Source: APXvYqwmdAG0zihvbA/HDPLGoFaCcqTkPDudG+MUypShjhLGzz8mxUI+We5DRSX0QT0g6JWF+E3QA4gzC4d8PIMbsA0=
+X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr2286889qkb.119.1569879158412;
+ Mon, 30 Sep 2019 14:32:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <167ec566-1936-8a05-83fc-74d20d9fb8bc@arm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20190930130430.GA9080@localhost.localdomain>
+In-Reply-To: <20190930130430.GA9080@localhost.localdomain>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 30 Sep 2019 16:32:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLXJNvWOOajS4JVVek=h+v_Fxrx58ogQ0Cz+5n5Sh0+=g@mail.gmail.com>
+Message-ID: <CAL_JsqLXJNvWOOajS4JVVek=h+v_Fxrx58ogQ0Cz+5n5Sh0+=g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: serial: document LiteUART bindings
+To:     Mateusz Holenko <mholenko@antmicro.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org, Karol Gugala <kgugala@antmicro.com>,
+        Jiri Slaby <jslaby@suse.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2019 17:26, Steven Price wrote:
-> On 30/09/2019 16:24, Robin Murphy wrote:
->> Although going full "dma-coherent" ends badly due to GEM objects still
->> being forcibly mapped non-cacheable, we can at least take advantage of
->> Juno's ACE-lite integration to skip cache maintenance for pagetables.
->>
->> CC: Rob Herring <robh@kernel.org>
->> CC: Tomeu Vizoso <tomeu.vizoso@collabora.com>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>
->> This isn't really meant as a series, I'm just sending it together
->> with patch #1 for context.
->>
->>   drivers/gpu/drm/panfrost/panfrost_mmu.c | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/panfrost/panfrost_mmu.c b/drivers/gpu/drm/panfrost/panfrost_mmu.c
->> index bdd990568476..560439f63277 100644
->> --- a/drivers/gpu/drm/panfrost/panfrost_mmu.c
->> +++ b/drivers/gpu/drm/panfrost/panfrost_mmu.c
->> @@ -365,6 +365,9 @@ int panfrost_mmu_pgtable_alloc(struct panfrost_file_priv *priv)
->>   		.iommu_dev	= pfdev->dev,
->>   	};
->>   
->> +	if (of_device_is_compatible(pfdev->dev->of_node, "arm,juno-mali"))
->> +		pfdev->mmu->pgtbl_cfg.coherent_walk = true;
-> 
-> Should be:
-> 	mmu->pgtbl_cfg.coherent_walk = true;
+On Mon, Sep 30, 2019 at 8:04 AM Mateusz Holenko <mholenko@antmicro.com> wrote:
+>
+> From: Filip Kokosinski <fkokosinski@internships.antmicro.com>
+>
+> Add documentation for LiteUART devicetree bindings.
+>
+> Signed-off-by: Filip Kokosinski <fkokosinski@internships.antmicro.com>
+> Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> ---
+>  .../devicetree/bindings/serial/litex,liteuart.txt    | 12 ++++++++++++
+>  MAINTAINERS                                          |  6 ++++++
+>  2 files changed, 18 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/litex,liteuart.txt
 
-Oops, yes, rebase error.
+Please make this a schema. See
+Documentation/devicetree/writing-schema.rst (or .md before 5.4).
 
-> Also I'm not sure whether we should do this based on a compatible
-> string. kbase has a "system-coherency" device-tree flag for it. In
-> theory we could end up with a long list of compatibles here...
+>
+> diff --git a/Documentation/devicetree/bindings/serial/litex,liteuart.txt b/Documentation/devicetree/bindings/serial/litex,liteuart.txt
+> new file mode 100644
+> index 000000000..13c71a0c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/litex,liteuart.txt
+> @@ -0,0 +1,12 @@
+> +LiteUART serial controller
+> +
+> +Required properties:
+> +- compatible: should be "litex,liteuart"
 
-Right, ideally we'd just infer everything we need from "dma-coherent", 
-but to be able to set that without causing fireworks we need the GEM 
-mmap implementation to be able to play along too. Maybe this can wait 
-until I figure out how to address that at the same time...
+Only 1 version?
 
-And either way, it would probably be better to detect anything 
-SoC-specific once at probe and stash it in a feature flag - TBH this 
-patch is more of a proof-of-concept than anything.
+> +- reg: base address and length of the register set for this device
 
-Thanks,
-Robin.
+Is there really no interrupt line? That should be added if there's h/w
+support even if the driver doesn't yet support it.
 
-> 
-> Steve
-> 
->> +
->>   	mmu->pgtbl_ops = alloc_io_pgtable_ops(ARM_MALI_LPAE, &mmu->pgtbl_cfg,
->>   					      priv);
->>   	if (!mmu->pgtbl_ops)
->>
-> 
+> +
+> +Example:
+> +
+> +uart0: serial@f0001000 {
+
+Wrong unit address. Should be "@e0001800".
+
+
+> +       compatible = "litex,liteuart";
+> +       reg = <0xe0001800 0x100>;
+> +};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b2326dece..65a6cf296 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9462,6 +9462,12 @@ F:       Documentation/misc-devices/lis3lv02d.rst
+>  F:     drivers/misc/lis3lv02d/
+>  F:     drivers/platform/x86/hp_accel.c
+>
+> +LITEX PLATFORM
+> +M:     Karol Gugala <kgugala@antmicro.com>
+> +M:     Mateusz Holenko <mholenko@antmicro.com>
+> +S:     Maintained
+> +F:     Documentation/devicetree/bindings/serial/litex,liteuart.txt
+> +
+>  LIVE PATCHING
+>  M:     Josh Poimboeuf <jpoimboe@redhat.com>
+>  M:     Jiri Kosina <jikos@kernel.org>
+> --
+> 2.23.0
+>
