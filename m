@@ -2,171 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E8CFC22E6
+	by mail.lfdr.de (Postfix) with ESMTP id EA86CC22E7
 	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731465AbfI3OMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 10:12:41 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:35726 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729738AbfI3OMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 10:12:41 -0400
-Received: by mail-io1-f66.google.com with SMTP id q10so38760441iop.2;
-        Mon, 30 Sep 2019 07:12:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TwbrL/89iwEv92jYm3+TvZslhh9l3A55aKvB6WQE0Aw=;
-        b=SRxCdHIK0riL2quHsjY50cpVIhRrFISodAZa537ifi6d7h07jLLeY4wUb1BpAcwAkj
-         /PrzUswmM/rzM4rc/0QziHmYRfJRbM0sAR5PGPmCrDseIo6laabFzzPkxywUDwdr06eC
-         VYxuyeDUt+2Uj425owP+L2qYUH5v6rxPWSsNoUkFm2t2t3OPEjYfiss73xCadi1J8Bj+
-         b0oiZiG5WYANrMjalqsJfzT5IFOirXaTPfXNnIrM/u+FSbe8+Q3KUH89GrWeU235hIpn
-         kf0sWTELgjeIqEfsUZ2fGb1+Bjyk/wY03XAse6vpmGCwkWdi9xspJrKomVk/qCaNAYar
-         /ODg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TwbrL/89iwEv92jYm3+TvZslhh9l3A55aKvB6WQE0Aw=;
-        b=nxBmTNeyGNvzulYmxidDvK/Q6i522IhaX3RH3NdBourervIW34W47fN/h6lMN4BTHW
-         U/feCP/o8rjy4bxK7PkQxM1mpaZKRNRFjC09UjmrrNlyKWFwmflP6O19dg0rs7Ev4Vjl
-         sbhdGZIBwmgq9XYS+FTlOTN/Uy5CGxShkA0THSS3s8b4pTJfXX/I/o7+otdRJOwzDF9q
-         pWQnliNpPFRK9fpTXd3x2SpRev07gi1XN9/4izXhh5v9xTxqG97wYtuGrj+fPnWFtaQD
-         Mu4exud/qN9W+UOQ0rd+HXOHy9IErf71z5mUtkDP6/hJqApNt/g7vey2SP3DJs9nkxC9
-         vbAw==
-X-Gm-Message-State: APjAAAUrgqqXjQFfjvkKUtrAFwjV53Lhl4bd6X/3VYgljYfrBRYWE0tz
-        eBzdXud6WRC3d+fauWb9ZQIm+gzVgVJNhc4Glwd1aRPhAeo=
-X-Google-Smtp-Source: APXvYqzT4cmcRSDdeDHW9AaSxk6Y6BgQ1h4b2jWej/Uuk9wxv1qZFa5nMO4xL5BbZ4DoqS0rAqEMZmS6f+9SegZrRyk=
-X-Received: by 2002:a5d:9c4c:: with SMTP id 12mr2054950iof.276.1569852758297;
- Mon, 30 Sep 2019 07:12:38 -0700 (PDT)
+        id S1731551AbfI3OMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 10:12:54 -0400
+Received: from mail-eopbgr150100.outbound.protection.outlook.com ([40.107.15.100]:55622
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731549AbfI3OMx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 10:12:53 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZKsxaKq9T6fKRi5HeWAn5oG5g2JsTmE8/v6RQ9ogy0qUxU7n7G3ZyhUhMvxpehe4PSKFka1/M0Qw6hmYUcpkfYldg328G7qW7tcGCEJrqkd4NTpHZDhpifjHJswXde/OYI3n4RhjeGtBgTiXnBXuWFDgeNh1zqKRd2h31mNAAB+wO5nsCEMgs904VIMXhzn2dYcTOV4n12ZsjdmALJsoTVqcY/f+cuHSLPpZ20DeQWCLyjetMGwNyssJs+go30K4y/ul+s/0zA+gv+F9O2N9CJcuatRz48CQBM3h/AQRkpGDVAK83980si/4C6bFmdqGj/ecdbJncwt4kTVcewFxeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EdtHPGNui0akt29I+xUOdLi46oAzfIr2lMf9SvGRL4Q=;
+ b=MibakMkG+6zWq//xBal6YTAUpNwY0dnHYQwL6hpivDkp9XANuBGD9k4/mNA9xNtguky8bH+v/rQu0Ux3LqT4EUoZq7kMyIjpZcN3sRWV2/6mEcc8jFHIX1NwD4jgb6/wo9o5UhUfDXSwmDc6WzqISYJs39lknrnoyilfIFrDNzhDy/4Wvi0p41DUo+DRDcPNPgDKkrz6Pt7NLFa7NOAO9Ev78A9ptCzSFiRM60VMNRPzNmxeTKiQxrBusZLrOXAdtsJQqDnHfTXcsiZ4xNTax4vh7yRWrNRMYoHux1iwoasyqfjk53ZGR5IZF79nD6z5u4L+Ws2PLS0/7Ik3iLsMOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EdtHPGNui0akt29I+xUOdLi46oAzfIr2lMf9SvGRL4Q=;
+ b=pZocJZzkCYomniJ1KP0VkcSa/8xQqImvr+pgDCf3VJdW4LwLmsuTgoHLhPI6RIiezJC8PHPQWXP2fj8ijGdt36LLeZlWjA8JRKx2G3mmUr6M6m6+Clus3sI10QNPzCanYS6GLVReyeyfnbMv72sOKFsC2mycfrWnEYe5J3jS4WA=
+Received: from VI1PR05MB6544.eurprd05.prod.outlook.com (20.179.27.210) by
+ VI1PR05MB5487.eurprd05.prod.outlook.com (20.177.63.217) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.20; Mon, 30 Sep 2019 14:12:49 +0000
+Received: from VI1PR05MB6544.eurprd05.prod.outlook.com
+ ([fe80::dcea:1e0a:c05a:22f9]) by VI1PR05MB6544.eurprd05.prod.outlook.com
+ ([fe80::dcea:1e0a:c05a:22f9%4]) with mapi id 15.20.2305.017; Mon, 30 Sep 2019
+ 14:12:49 +0000
+From:   Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Jamie Lentin <jm@lentin.co.uk>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH v2 0/2] 'force-mode' for gpio-poweroff driver
+Thread-Topic: [PATCH v2 0/2] 'force-mode' for gpio-poweroff driver
+Thread-Index: AQHVd5kj1D/eGcvdoESk1xC4kZu/RA==
+Date:   Mon, 30 Sep 2019 14:12:49 +0000
+Message-ID: <20190930141244.12311-1-oleksandr.suvorov@toradex.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: PR0P264CA0141.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:1a::33) To VI1PR05MB6544.eurprd05.prod.outlook.com
+ (2603:10a6:803:ff::18)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=oleksandr.suvorov@toradex.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.20.1
+x-originating-ip: [194.105.145.90]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: aa3f5e94-a723-435c-aeda-08d745b0462c
+x-ms-traffictypediagnostic: VI1PR05MB5487:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR05MB54871BF507EE8497CDBB982CF9820@VI1PR05MB5487.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 01762B0D64
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(366004)(136003)(396003)(39840400004)(376002)(189003)(199004)(6506007)(186003)(316002)(386003)(26005)(66476007)(66556008)(305945005)(64756008)(2616005)(44832011)(476003)(486006)(25786009)(102836004)(5640700003)(2351001)(66066001)(66446008)(6436002)(6486002)(256004)(5660300002)(6916009)(54906003)(7736002)(71200400001)(71190400001)(36756003)(66946007)(1076003)(4326008)(86362001)(6512007)(4744005)(8936002)(50226002)(14454004)(81166006)(81156014)(3846002)(6116002)(8676002)(478600001)(99286004)(2501003)(2906002)(52116002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR05MB5487;H:VI1PR05MB6544.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Sn/yblA8fjQ5rlM4Mqr7vshrwqECj/04DsVqU0/lUiNBMXrlHzmrWyUaLOed/XO4SsTWw86jk4DqQnqqB6MfzW/+u3zFfyh5k6Ev/i08tmNWcmPbFMEA93Fulqs8adi7Zu52WdckArXcIK29JsiiKwCfwEt3a+6Cl+JEEeLQLdWBcQT0WjYL2IBZUB/vs/78AVPE8AvD+eUw2v2YP9c9e/uo308V7cMt6dNt0NLditAEaSgDB/CJozvQSKxlWS27/qE59/BXO0AApiNX98j0dWmkoZSHsn7sIa8xOuO5sCls1f3SCm4y4fswAyDP8OKu0i+70peVBNJtabnvFVmQgiBWFzmKaz/OfyVgylMM08d6x5XVBreCwmsJniXlIIq76s9aXCjSD62phEQrti2VShT0siqEJAnpqvnDiuQ3+oI=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20190510194229.20628-1-aford173@gmail.com> <af325707-3e42-493d-e858-77878ef06138@ti.com>
- <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
- <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com> <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
- <845055e2-8182-de74-2077-629fdf50ac6c@ti.com> <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
- <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com> <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
- <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com> <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
- <eb2eb1f6-3c9b-7ecb-667e-819033af9c14@ti.com> <23eba53a-9304-2ceb-d97e-01891ec0b3ed@ti.com>
- <cb028b1e-05ca-9b22-be5d-c63f5fd56cc4@ti.com> <F3335195-6EB7-4D44-B884-2F29D9238011@goldelico.com>
- <CAHCN7xL9bFxO=2i1DzmRj6A3XwUNdt=DZeJ2a0EZ0f9gcFTy6g@mail.gmail.com> <CAHCN7x+vCfPTRE+zzYUwAXdbBzRotTP2hSOgsHB0FdgBhZV5zA@mail.gmail.com>
-In-Reply-To: <CAHCN7x+vCfPTRE+zzYUwAXdbBzRotTP2hSOgsHB0FdgBhZV5zA@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 30 Sep 2019 09:12:26 -0500
-Message-ID: <CAHCN7xJDV=R9Ysjhff7=mEXdciwPP_5LQbHwaUT8KvhSkLKw8A@mail.gmail.com>
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to dts
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Tero Kristo <t-kristo@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa3f5e94-a723-435c-aeda-08d745b0462c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2019 14:12:49.1997
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pV5sruqmNZQey8VPaGKmZMXZMtaOnByiyBJFkV+OcdQIYK3olm6jYqFe6Z5q3t4L3Q8rmV63qh/z8xjMunl31Iil2Tl7jRmWaC8YOwII9og=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB5487
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 9:04 AM Adam Ford <aford173@gmail.com> wrote:
->
-> On Mon, Sep 30, 2019 at 8:54 AM Adam Ford <aford173@gmail.com> wrote:
-> >
-> > On Mon, Sep 30, 2019 at 8:39 AM H. Nikolaus Schaller <hns@goldelico.com> wrote:
-> > >
-> > >
-> > > > Am 30.09.2019 um 10:53 schrieb Tero Kristo <t-kristo@ti.com>:
-> > > >
-> > > > The best action here is probably to drop the max-div value for this clock to 16. Can someone check this with their display setup and see what happens? Attached patch should do the trick.
-> > >
-> > > I have checked on GTA04 and OpenPandora (DM3730 resp. OMAP3430) and did not notice a negative effect.
-> > >
-> > > (Well, we never see the problem that is discussed here and have built with CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK=0).
-> >
-> > I have never been able to use CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK=0, but
-> > I assume it's either a function of pck or a combination of pck with
-> > the resolution.
-> >
-> > Based on Tomi's comment, I assume he's working on the following.  Can
-> > you also try:
-> >
-> > diff --git a/drivers/gpu/drm/omapdrm/dss/dss.c
-> > b/drivers/gpu/drm/omapdrm/dss/dss.c
-> > index 5711b7a720e6..5e584f32ea6a 100644
-> > --- a/drivers/gpu/drm/omapdrm/dss/dss.c
-> > +++ b/drivers/gpu/drm/omapdrm/dss/dss.c
-> > @@ -1090,7 +1090,7 @@ static const struct dss_features omap34xx_dss_feats = {
-> >
-> >  static const struct dss_features omap3630_dss_feats = {
-> >         .model                  =       DSS_MODEL_OMAP3,
-> > -       .fck_div_max            =       32,
-> > +       .fck_div_max            =       16,
-> >         .fck_freq_max           =       173000000,
-> >         .dss_fck_multiplier     =       1,
-> >         .parent_clk_name        =       "dpll4_ck",
-> >
-> >
-> > Hopefully it doesn't break the 3630 for you, but it fixed my issue
-> > with no back trace:
-> >
-> > [    9.915588] DSS: set fck to 54000000
-> > [    9.915618] DISPC: lck = 54000000 (1)
-> > [    9.915649] DISPC: pck = 9000000 (6)
-> > [    9.917633] DISPC: channel 0 xres 480 yres 272
-> > [    9.917663] DISPC: pck 9000000
-> >
-> > I do wonder, however if there is a divider that is higher than 16, but
-> > lower than 32.
-> > I was able to run fck at 36MHz before with divide by 4 to 9MHz, so I
-> > am hoping that by running at 54MHz / 6 doesn't draw more power.  I was
-> > reading through the datasheet, but I could not find any reference to
-> > the max divider.
-> >
->
-> For run, I tested a max divider of 27, and I was able to get it
-> functional with a slower fck
->
-> [    9.939056] DSS: set fck to 36000000
-> [    9.939086] DISPC: lck = 36000000 (1)
-> [    9.939086] DISPC: pck = 9000000 (4)
-> [    9.941314] DISPC: channel 0 xres 480 yres 272
-> [    9.941314] DISPC: pck 9000000
-> [    9.941314] DISPC: hsync_len 42 hfp 3 hbp 2 vsw 11 vfp 2 vbp 3
-> [    9.941314] DISPC: vsync_level 1 hsync_level 1 data_pclk_edge 1
-> de_level 1 sync_pclk_edge -1
-> [    9.941345] DISPC: hsync 17077Hz, vsync 59Hz
->
->
-> I don't know the implications, so if the people from TI say stick with
-> 16, I'm fine with that, but at least there is some evidence that it
-> can be higher than 16, but lower than 32.
->
+This patch introduces a feature to force gpio-poweroff module
+to register its own pm_power_off handler even if someone has registered
+this handler earlier.
+Useful to change a way to power off the system using DT files.
 
-Sorry for all the spam, but I moved both of them to 31 from 32, and it
-also seems to work successfully at 31.
+Changes in v2:
+Call next pm_power_off handler if the current one
+fails to power system off.
 
-[   26.923004] DSS: set fck to 36000000
-[   26.923034] DISPC: lck = 36000000 (1)
-[   26.923034] DISPC: pck = 9000000 (4)
-[   26.925048] DISPC: channel 0 xres 480 yres 272
-[   26.925048] DISPC: pck 9000000
-[   26.925048] DISPC: hsync_len 42 hfp 3 hbp 2 vsw 11 vfp 2 vbp 3
-[   26.925079] DISPC: vsync_level 1 hsync_level 1 data_pclk_edge 1
-de_level 1 sync_pclk_edge -1
-[   26.925079] DISPC: hsync 17077Hz, vsync 59Hz
-[   27.384613] DISPC: dispc_runtime_put
+Oleksandr Suvorov (2):
+  power: reset: gpio-poweroff: add force mode
+  dt-bindings: power: reset: gpio-poweroff: Add 'force-mode' property
 
-Is it possible to use 31?
+ .../bindings/power/reset/gpio-poweroff.txt    |  3 ++
+ drivers/power/reset/gpio-poweroff.c           | 34 +++++++++++++++----
+ 2 files changed, 31 insertions(+), 6 deletions(-)
 
-adam
+--=20
+2.20.1
 
-> adam
->
-> > adam
-> > >
-> > > BR,
-> > > Nikolaus
-> > >
