@@ -2,360 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C6DBDC1B5E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 08:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34157C1B7F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 08:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729661AbfI3GUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 02:20:21 -0400
-Received: from mail-eopbgr40056.outbound.protection.outlook.com ([40.107.4.56]:10790
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725809AbfI3GUV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 02:20:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X4yThVsC4vc7MLxRQbRgwBksGbQy+yqEBtIxWCgj//VztCTORYED5ctddrUcpRLWX2QW7GaOkkO++U9qC3xgZiozHbpc+AVRboXIRnKCn0cbv2KNZWasGPaarIbecFk4Zwvb7RYKmhXwH9163BPGvbLRESuFWjHbZHmkBhY3vrXwyW1eR8gOXDUvwdMWuhkcKpZ9CoIHk6S4BzhP7c+iMzqmrI7HyoJhT8De1uXcOf8wby58TSMaq+EGbOLtocLvcQCvrcm/NA3Mgcxbn4DGnhoXbyr7/I+x4TUoOrrSc9SXpbzHHlbjkiXUp9TrjGcrc4nVzJtqxXtYhFzro9dzjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=59jwsxccYOw9PNoxm/2gsbnDkCrez8hdXM9qvQXDtXw=;
- b=LSoOm3DodtJ8941dW9rLYD0/RPd/3R5FZ/YcWWw13FzTHuZUUT9tNSR7DH9FjbIThwDHr8LTsPHj6G/7dgSUs9x4DJqpWykPKcCf02ES4Q5URiGsl1v5Y/3vHN14SYV/quh0LxXGhu/rYdkqb1mvKYbgPCZolBX/8x44jfuY1CYul4XArffjirCoVsWGl0VzHmWYb/C/O3+coSRs7zSasmHZGIng2nBlNCKbkjSdaEjKoJMoUrDBLb/n7u5eWJjwdBGPo9unkcLHlnlKelONoO1f6zVtz0pfy0wf6bOvXl6REYOZoGSUlIyDlGX7oUNjmGvjuGWK6976KOxrIKVxmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=59jwsxccYOw9PNoxm/2gsbnDkCrez8hdXM9qvQXDtXw=;
- b=LGTx8bTnT8bZgvQC05AUmnYog3uQrpN/Fhv8/Qd3f3ENIUc8L/9q568zKpeB1FWGw/0Ym3JVCWoLwLUkyd7O4I2JZ0DWkNAC6dUeN4GKITz7n+tK5JUISW9MXL7yz1xaFJvgC+o5Fbes5G4PngTnlI5SgAk7+cn5/EXf4sOFbb0=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB5348.eurprd04.prod.outlook.com (20.178.113.78) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Mon, 30 Sep 2019 06:20:14 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::843c:e722:27cb:74e1]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::843c:e722:27cb:74e1%5]) with mapi id 15.20.2305.017; Mon, 30 Sep 2019
- 06:20:14 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V10 2/2] mailbox: introduce ARM SMC based mailbox
-Thread-Topic: [PATCH V10 2/2] mailbox: introduce ARM SMC based mailbox
-Thread-Index: AQHVd1cfT8QFyxAbm0eWywLWz3Kfzw==
-Date:   Mon, 30 Sep 2019 06:20:14 +0000
-Message-ID: <1569824287-4263-3-git-send-email-peng.fan@nxp.com>
-References: <1569824287-4263-1-git-send-email-peng.fan@nxp.com>
-In-Reply-To: <1569824287-4263-1-git-send-email-peng.fan@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.7.4
-x-clientproxiedby: HK0PR03CA0034.apcprd03.prod.outlook.com
- (2603:1096:203:2f::22) To AM0PR04MB4481.eurprd04.prod.outlook.com
- (2603:10a6:208:70::15)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f356f2e-cee7-4009-01a2-08d7456e416b
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: AM0PR04MB5348:|AM0PR04MB5348:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB5348416558B888BBE660317188820@AM0PR04MB5348.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 01762B0D64
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(396003)(346002)(366004)(376002)(136003)(189003)(199004)(54906003)(64756008)(4326008)(66446008)(186003)(110136005)(5660300002)(71190400001)(2201001)(71200400001)(8936002)(26005)(478600001)(316002)(8676002)(386003)(6506007)(36756003)(81166006)(81156014)(52116002)(102836004)(66946007)(66476007)(66556008)(2906002)(305945005)(7736002)(76176011)(14454004)(66066001)(15650500001)(25786009)(2501003)(50226002)(6116002)(966005)(476003)(11346002)(6436002)(256004)(2616005)(99286004)(3846002)(6512007)(6306002)(86362001)(486006)(44832011)(6486002)(446003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5348;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EW9HsL4i/drX6m8oLbJpMbEm+PbgK+bvY1J+rBAH9FPVhfdzHOc6KWyVfWFnbYmlFwBJcZUp34LAUZKu6kxDblB/1aVl98tD55kzREIbCA2W+qPr5ZBC0xj3H4JQj9ezbCczBBLDigM9kWy5rIXzIjz10vRF0w9Y9N6xcpMs62Td9XpBNz7la+fZa0Yz9MaIkyx1jJxldKttt2tM4g8vo5ybdQLr1UiIJ6PQnmsKII/caInCIGRuF3BT45jtSFPmW5aJ09N3caIzj8pBdC2GCPmGO44sGlBmAC4gFEwhyfiqJINsvctOkcsezXqudTQHOXgndue4cz2wLlsPpC0XXB8zzgFdahiCGNYPvRI6Y7kTYQ4Bn9+NJbFPOyHX42v63xVjALxLm0ZMnobH5iFo/OGntXZERW5HdO3u2tq8sG9+C3EDECtDn3RZQBRxIh0HgfYWDMuKUtAldsyQ3HUowQ==
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f356f2e-cee7-4009-01a2-08d7456e416b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2019 06:20:14.5403
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HD9DdvImHBV+PqA0E7FKhn1q9sS7aee7GtF+1y4/lEIMYi+JXgcoc6SYlLbPlzvdpoYYgrtumAWN8Vkmaa3ecQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5348
+        id S1729674AbfI3Gjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 02:39:44 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:41624 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729592AbfI3Gjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 02:39:44 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 8465B607C6; Mon, 30 Sep 2019 06:39:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569825583;
+        bh=1qNHkkMgT5hOVnMaCbUcCEui91XvPTn+kZXRkbNHc+k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=huMiW61BVsCUMAkoP3y5OaUnFMNRWpEI4FQUK2x+wPP+bBIwNXvjLjKoUWi8Lw3ho
+         T4PaP5xtfSP8SW2nj9OA4HcxMLZj2GRyvbgvGN2toAPIdDdIPkjjin9fI1ehq4RMLU
+         PBd2sFkmqaBSm5J5LBeeMSC6Vj3nFyCOV6HjaG64=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from kgunda-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B194B607C6;
+        Mon, 30 Sep 2019 06:39:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569825582;
+        bh=1qNHkkMgT5hOVnMaCbUcCEui91XvPTn+kZXRkbNHc+k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IocXLNUscTjCpb7jNz63MVrifS6OV5AVVG/N40oq5zr9krX4zrRgajXNI9TvUiMMQ
+         uCWX1rpSJ52FpOv9H7X7suUwgk5ZgUNnQFk1nPIXNlAZwpprZEiCXcD04di5qK26pU
+         C51PD7HRZW0IA5X/lCpu9TgY/LNIdLMwO1BXDh1Q=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B194B607C6
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V6 0/8] backlight: qcom-wled: Support for QCOM wled driver
+Date:   Mon, 30 Sep 2019 12:09:05 +0530
+Message-Id: <1569825553-26039-1-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+This patch series renames the pm8941-wled.c driver to qcom-wled.c to add
+the support for multiple PMICs supported by qualcomm. This patch series
+supports both PM8941 and PMI8998 WLED. The PMI8998 WLED has the support
+to handle the OVP (over voltage protection) and the SC (short circuit
+protection)
+interrupts. It also has the auto string detection algorithm support to
+configure the right strings if the user specified string configuration
+is in-correct. These three features are added in this series for PMI8998.
 
-This mailbox driver implements a mailbox which signals transmitted data
-via an ARM smc (secure monitor call) instruction. The mailbox receiver
-is implemented in firmware and can synchronously return data when it
-returns execution to the non-secure world again.
-An asynchronous receive path is not implemented.
-This allows the usage of a mailbox to trigger firmware actions on SoCs
-which either don't have a separate management processor or on which such
-a core is not available. A user of this mailbox could be the SCP
-interface.
+changes from v1:
+   - Fixed the commit message for
+   - backlight: qcom-wled: Rename pm8941-wled.c to qcom-wled.c
 
-Modified from Andre Przywara's v2 patch
-https://lore.kernel.org/patchwork/patch/812999/
+Changes from v2:
+   - Fixed bjorn and other reviewer's comments
+   - Seperated the device tree bindings
+   - Splitted out the WLED4 changes in seperate patch
+   - Merged OVP and auto string detection patch
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/mailbox/Kconfig                |   7 ++
- drivers/mailbox/Makefile               |   2 +
- drivers/mailbox/arm-smc-mailbox.c      | 166 +++++++++++++++++++++++++++++=
-++++
- include/linux/mailbox/arm-smccc-mbox.h |  20 ++++
- 4 files changed, 195 insertions(+)
- create mode 100644 drivers/mailbox/arm-smc-mailbox.c
- create mode 100644 include/linux/mailbox/arm-smccc-mbox.h
+Changes from v3:
+  - Added Reviewed-by/Acked-by tags
+  - Fixed comments from Bjorn/Vinod/Rob
+  - Splitting the "backlight: qcom-wled: Add support for WLED4 peripheral" patch
+    to seperate the WLED3 specific restructure.
 
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index ab4eb750bbdd..7707ee26251a 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -16,6 +16,13 @@ config ARM_MHU
- 	  The controller has 3 mailbox channels, the last of which can be
- 	  used in Secure mode only.
-=20
-+config ARM_SMC_MBOX
-+	tristate "Generic ARM smc mailbox"
-+	depends on OF && HAVE_ARM_SMCCC
-+	help
-+	  Generic mailbox driver which uses ARM smc calls to call into
-+	  firmware for triggering mailboxes.
-+
- config IMX_MBOX
- 	tristate "i.MX Mailbox"
- 	depends on ARCH_MXC || COMPILE_TEST
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index c22fad6f696b..93918a84c91b 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -7,6 +7,8 @@ obj-$(CONFIG_MAILBOX_TEST)	+=3D mailbox-test.o
-=20
- obj-$(CONFIG_ARM_MHU)	+=3D arm_mhu.o
-=20
-+obj-$(CONFIG_ARM_SMC_MBOX)	+=3D arm-smc-mailbox.o
-+
- obj-$(CONFIG_IMX_MBOX)	+=3D imx-mailbox.o
-=20
- obj-$(CONFIG_ARMADA_37XX_RWTM_MBOX)	+=3D armada-37xx-rwtm-mailbox.o
-diff --git a/drivers/mailbox/arm-smc-mailbox.c b/drivers/mailbox/arm-smc-ma=
-ilbox.c
-new file mode 100644
-index 000000000000..a6ec56f41f7f
---- /dev/null
-+++ b/drivers/mailbox/arm-smc-mailbox.c
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2016,2017 ARM Ltd.
-+ * Copyright 2019 NXP
-+ */
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/device.h>
-+#include <linux/kernel.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/mailbox/arm-smccc-mbox.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+typedef unsigned long (smc_mbox_fn)(unsigned int, unsigned long,
-+				    unsigned long, unsigned long,
-+				    unsigned long, unsigned long,
-+				    unsigned long);
-+
-+struct arm_smc_chan_data {
-+	unsigned int function_id;
-+	smc_mbox_fn *invoke_smc_mbox_fn;
-+};
-+
-+static int arm_smc_send_data(struct mbox_chan *link, void *data)
-+{
-+	struct arm_smc_chan_data *chan_data =3D link->con_priv;
-+	struct arm_smccc_mbox_cmd *cmd =3D data;
-+	unsigned long ret;
-+
-+	if (ARM_SMCCC_IS_64(chan_data->function_id)) {
-+		ret =3D chan_data->invoke_smc_mbox_fn(chan_data->function_id,
-+						    cmd->args_smccc64[0],
-+						    cmd->args_smccc64[1],
-+						    cmd->args_smccc64[2],
-+						    cmd->args_smccc64[3],
-+						    cmd->args_smccc64[4],
-+						    cmd->args_smccc64[5]);
-+	} else {
-+		ret =3D chan_data->invoke_smc_mbox_fn(chan_data->function_id,
-+						    cmd->args_smccc32[0],
-+						    cmd->args_smccc32[1],
-+						    cmd->args_smccc32[2],
-+						    cmd->args_smccc32[3],
-+						    cmd->args_smccc32[4],
-+						    cmd->args_smccc32[5]);
-+	}
-+
-+	mbox_chan_received_data(link, (void *)ret);
-+
-+	return 0;
-+}
-+
-+static unsigned long __invoke_fn_hvc(unsigned int function_id,
-+				     unsigned long arg0, unsigned long arg1,
-+				     unsigned long arg2, unsigned long arg3,
-+				     unsigned long arg4, unsigned long arg5)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_hvc(function_id, arg0, arg1, arg2, arg3, arg4,
-+		      arg5, 0, &res);
-+	return res.a0;
-+}
-+
-+static unsigned long __invoke_fn_smc(unsigned int function_id,
-+				     unsigned long arg0, unsigned long arg1,
-+				     unsigned long arg2, unsigned long arg3,
-+				     unsigned long arg4, unsigned long arg5)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_smc(function_id, arg0, arg1, arg2, arg3, arg4,
-+		      arg5, 0, &res);
-+	return res.a0;
-+}
-+
-+static const struct mbox_chan_ops arm_smc_mbox_chan_ops =3D {
-+	.send_data	=3D arm_smc_send_data,
-+};
-+
-+static struct mbox_chan *
-+arm_smc_mbox_of_xlate(struct mbox_controller *mbox,
-+		      const struct of_phandle_args *sp)
-+{
-+	return mbox->chans;
-+}
-+
-+static int arm_smc_mbox_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	struct mbox_controller *mbox;
-+	struct arm_smc_chan_data *chan_data;
-+	int ret;
-+
-+	mbox =3D devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-+	if (!mbox)
-+		return -ENOMEM;
-+
-+	mbox->of_xlate =3D arm_smc_mbox_of_xlate;
-+	mbox->num_chans =3D 1;
-+	mbox->chans =3D devm_kzalloc(dev, sizeof(*mbox->chans), GFP_KERNEL);
-+	if (!mbox->chans)
-+		return -ENOMEM;
-+
-+	chan_data =3D devm_kzalloc(dev, sizeof(*chan_data), GFP_KERNEL);
-+	if (!chan_data)
-+		return -ENOMEM;
-+
-+	ret =3D of_property_read_u32(dev->of_node, "arm,func-id",
-+				   &chan_data->function_id);
-+	if (ret)
-+		return ret;
-+
-+	if (of_device_is_compatible(dev->of_node, "arm,smc-mbox"))
-+		chan_data->invoke_smc_mbox_fn =3D __invoke_fn_smc;
-+	else
-+		chan_data->invoke_smc_mbox_fn =3D __invoke_fn_hvc;
-+
-+
-+	mbox->chans->con_priv =3D chan_data;
-+
-+	mbox->txdone_poll =3D false;
-+	mbox->txdone_irq =3D false;
-+	mbox->ops =3D &arm_smc_mbox_chan_ops;
-+	mbox->dev =3D dev;
-+
-+	platform_set_drvdata(pdev, mbox);
-+
-+	ret =3D devm_mbox_controller_register(dev, mbox);
-+	if (ret)
-+		return ret;
-+
-+	dev_info(dev, "ARM SMC mailbox enabled.\n");
-+
-+	return ret;
-+}
-+
-+static int arm_smc_mbox_remove(struct platform_device *pdev)
-+{
-+	struct mbox_controller *mbox =3D platform_get_drvdata(pdev);
-+
-+	mbox_controller_unregister(mbox);
-+	return 0;
-+}
-+
-+static const struct of_device_id arm_smc_mbox_of_match[] =3D {
-+	{ .compatible =3D "arm,smc-mbox", },
-+	{ .compatible =3D "arm,hvc-mbox", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, arm_smc_mbox_of_match);
-+
-+static struct platform_driver arm_smc_mbox_driver =3D {
-+	.driver =3D {
-+		.name =3D "arm-smc-mbox",
-+		.of_match_table =3D arm_smc_mbox_of_match,
-+	},
-+	.probe		=3D arm_smc_mbox_probe,
-+	.remove		=3D arm_smc_mbox_remove,
-+};
-+module_platform_driver(arm_smc_mbox_driver);
-+
-+MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-+MODULE_DESCRIPTION("Generic ARM smc mailbox driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/include/linux/mailbox/arm-smccc-mbox.h b/include/linux/mailbox=
-/arm-smccc-mbox.h
-new file mode 100644
-index 000000000000..d35fb89a77f5
---- /dev/null
-+++ b/include/linux/mailbox/arm-smccc-mbox.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef _LINUX_ARM_SMCCC_MBOX_H_
-+#define _LINUX_ARM_SMCCC_MBOX_H_
-+
-+#include <linux/types.h>
-+
-+/**
-+ * struct arm_smccc_mbox_cmd - ARM SMCCC message structure
-+ * @args_smccc32/64:	actual usage of registers is up to the protocol
-+ *			(within the SMCCC limits)
-+ */
-+struct arm_smccc_mbox_cmd {
-+	union {
-+		u32 args_smccc32[6];
-+		u64 args_smccc64[6];
-+	};
-+};
-+
-+#endif /* _LINUX_ARM_SMCCC_MBOX_H_ */
---=20
-2.16.4
+Changes from v4:
+  - Added reviewed-by/Acked-by tags
+  - Fixed comments from Bjorn/Daniel/Pavel
+
+Changes from v5:
+  - Fixed comments from Bjorn/Pavel
+
+Kiran Gunda (8):
+  backlight: qcom-wled: Rename pm8941-wled.c to qcom-wled.c
+  backlight: qcom-wled: restructure the qcom-wled bindings
+  backlight: qcom-wled: Add new properties for PMI8998
+  backlight: qcom-wled: Rename PM8941* to WLED3
+  backlight: qcom-wled: Restructure the driver for WLED3
+  backlight: qcom-wled: Add support for WLED4 peripheral
+  backlight: qcom-wled: add support for short circuit handling.
+  backlight: qcom-wled: Add auto string detection logic
+
+ .../bindings/leds/backlight/pm8941-wled.txt        |   42 -
+ .../bindings/leds/backlight/qcom-wled.txt          |  150 +++
+ drivers/video/backlight/Kconfig                    |    8 +-
+ drivers/video/backlight/Makefile                   |    2 +-
+ drivers/video/backlight/pm8941-wled.c              |  424 -------
+ drivers/video/backlight/qcom-wled.c                | 1288 ++++++++++++++++++++
+ 6 files changed, 1443 insertions(+), 471 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+ delete mode 100644 drivers/video/backlight/pm8941-wled.c
+ create mode 100644 drivers/video/backlight/qcom-wled.c
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
 
