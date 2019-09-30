@@ -2,80 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC750C1E4A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F04C1E4B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730557AbfI3JjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 05:39:25 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:56527 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730553AbfI3JjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:39:13 -0400
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iEs96-0002Re-9C; Mon, 30 Sep 2019 11:39:08 +0200
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iEs90-0005up-No; Mon, 30 Sep 2019 11:39:02 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH v11 15/15] media: tvp5150: make debug output more readable
-Date:   Mon, 30 Sep 2019 11:39:00 +0200
-Message-Id: <20190930093900.16524-16-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190930093900.16524-1-m.felsch@pengutronix.de>
-References: <20190930093900.16524-1-m.felsch@pengutronix.de>
+        id S1730596AbfI3Jj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 05:39:27 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:46821 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730554AbfI3Jj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:39:26 -0400
+Received: by mail-vs1-f65.google.com with SMTP id z14so6264341vsz.13
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 02:39:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Cxq2bHjW+AlD4mf7jruqGrWE0fprB7ccNLUpIWh7TxQ=;
+        b=ezaO9zszxJd+4Paz2hLVlDZc0d6U3pC4lCfi0hx3DLO+w5QuhSGeHUVHnB1NsO87YU
+         /hKG68czBD7AnAolLrFBmu/xnQhcuDjd7HywSkHZaKPG4IrnGsro8QpWqisGbzZCMhK4
+         fezjraSoXEiZbu8t5OWLAa62APj89GVmbo3sB8C6T4LL5PNtgGyRmBjhloSD9y42790/
+         ZCeVZDcrRMTwJ4fQm7Jmx9rXCm7VmTJZot1YSFSD92VbD0LsQgyLKH6/JsDLHB9NgJvn
+         DsC7BP3BZj8eCYngdpQGJJpalLx5oRJo0qgn+6E13Ez66aVjncVI36aajxbrpr1AOB+/
+         2uEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Cxq2bHjW+AlD4mf7jruqGrWE0fprB7ccNLUpIWh7TxQ=;
+        b=Fi0idsI5r3bWvmFtKZSdH9VavQVzFCSjFMuH2RJ5ftGwrG6wCXgk8+Hyud/VHDnjmZ
+         l2BSXAz/H3wtO9U1GyJrPT9BBCI98ISk914/8mLTsZID0ST7V2ZVlpo7ILJE5rhC07jZ
+         bJTZriR3V3m4SFDTOyRxSmG5SkmLqWZVttoHGMPgtDZrAp3ntt9yDNvc+87tXllO6fu2
+         WUDBohbqWfK3e0HwaV2rlrBQqRkn+iyYUkMjlpbMHBZ3QCOvw213kPZ+YzXslhF9DSUc
+         Z+g0OfCFBdUfbrpP/v6yN5phfBpvFGA9e2KbHoBZpSV35Awpzw9OfOEguKm9yzIg9GlO
+         oYRA==
+X-Gm-Message-State: APjAAAXSvLxVEeriUWwZKXxWJNkaMpvYxWrEtpMANu7c7IEKUQxI2nc6
+        9TrGiuFPB6SCf2kDP0TVcFjTcPCjWKJjt69Bt9l2OA==
+X-Google-Smtp-Source: APXvYqwypOTWZbzuX6iCn3PcY5YBeeHcL68LEGV3573E+3R3Wicv0r3ZFov2Xry98RLO/sXnr4hY51+x2ckMi5V8fnk=
+X-Received: by 2002:a67:842:: with SMTP id 63mr9032821vsi.9.1569836364416;
+ Mon, 30 Sep 2019 02:39:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20190927184352.28759-1-glaroque@baylibre.com> <20190927184352.28759-4-glaroque@baylibre.com>
+In-Reply-To: <20190927184352.28759-4-glaroque@baylibre.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Mon, 30 Sep 2019 15:09:13 +0530
+Message-ID: <CAHLCerPQ4Uzoo2F-fNxZNV0_uZZnLwNenDYZTzgj7pfOiwPtGg@mail.gmail.com>
+Subject: Re: [PATCH v6 3/7] arm64: dts: amlogic: g12: add temperature sensor
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        lakml <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The debug output for tvp5150_selmux() isn't really intuitive. Register
-values are printed decimal formatted and the input/output driver states
-are printed as enum. Even more the "normal" output enum mapps to zero so
-a active output will printing output=0 and a inactive output=1.
+On Sat, Sep 28, 2019 at 12:14 AM Guillaume La Roque
+<glaroque@baylibre.com> wrote:
+>
+> Add cpu and ddr temperature sensors for G12 Socs
+>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 
-Change this by brinting the register values hex formatted and the states
-as more readable string.
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
----
- drivers/media/i2c/tvp5150.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
 
-diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-index 94eabfadf9fa..60c23f5b1ffd 100644
---- a/drivers/media/i2c/tvp5150.c
-+++ b/drivers/media/i2c/tvp5150.c
-@@ -300,9 +300,12 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
- 		break;
- 	}
- 
--	dev_dbg_lvl(sd->dev, 1, debug, "Selecting video route: route input=%i, output=%i => tvp5150 input=%i, opmode=%i\n",
--			decoder->input, decoder->output,
--			input, opmode);
-+	dev_dbg_lvl(sd->dev, 1, debug,
-+		    "Selecting video route: route input=%s, output=%s => tvp5150 input=0x%02x, opmode=0x%02x\n",
-+		    decoder->input == 0 ? "aip1a" :
-+		    decoder->input == 2 ? "aip1b" : "svideo",
-+		    decoder->output == 0 ? "normal" : "black-frame-gen",
-+		    input, opmode);
- 
- 	regmap_write(decoder->regmap, TVP5150_OP_MODE_CTL, opmode);
- 	regmap_write(decoder->regmap, TVP5150_VD_IN_SRC_SEL_1, input);
--- 
-2.20.1
-
+> ---
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 38d70ce1cfc7..0660d9ef6a86 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -1353,6 +1353,26 @@
+>                                 };
+>                         };
+>
+> +                       cpu_temp: temperature-sensor@34800 {
+> +                               compatible = "amlogic,g12a-cpu-thermal",
+> +                                            "amlogic,g12a-thermal";
+> +                               reg = <0x0 0x34800 0x0 0x50>;
+> +                               interrupts = <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>;
+> +                               clocks = <&clkc CLKID_TS>;
+> +                               #thermal-sensor-cells = <0>;
+> +                               amlogic,ao-secure = <&sec_AO>;
+> +                       };
+> +
+> +                       ddr_temp: temperature-sensor@34c00 {
+> +                               compatible = "amlogic,g12a-ddr-thermal",
+> +                                            "amlogic,g12a-thermal";
+> +                               reg = <0x0 0x34c00 0x0 0x50>;
+> +                               interrupts = <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>;
+> +                               clocks = <&clkc CLKID_TS>;
+> +                               #thermal-sensor-cells = <0>;
+> +                               amlogic,ao-secure = <&sec_AO>;
+> +                       };
+> +
+>                         usb2_phy0: phy@36000 {
+>                                 compatible = "amlogic,g12a-usb2-phy";
+>                                 reg = <0x0 0x36000 0x0 0x2000>;
+> --
+> 2.17.1
+>
