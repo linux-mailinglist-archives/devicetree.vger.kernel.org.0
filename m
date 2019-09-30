@@ -2,128 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92303C28D7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D0EC291B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:49:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727118AbfI3Vcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 17:32:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51700 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726504AbfI3Vcl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 17:32:41 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 621A621A4C;
-        Mon, 30 Sep 2019 21:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569879159;
-        bh=ahrG45JXVtUfkKqLUmvU7THmziQbpk9vQeSUmrjpTn4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZHq9Iid0BbcFZon6JAJa0Ns1LeLXWyA3y3CHxpLnMmZQP4jE0ySqZl79ZhI5AAMj7
-         k7GDfiQmnUIPLDhpRZZUhEp9WeAj6gnl4VG9oem/NCq4OxW5YBNSdgo3FERubtHHSt
-         hAUhe7ijMx3TQOa4lXjRRfhAnkprImxZy6Eiivw4=
-Received: by mail-qk1-f172.google.com with SMTP id 4so9212925qki.6;
-        Mon, 30 Sep 2019 14:32:39 -0700 (PDT)
-X-Gm-Message-State: APjAAAU5kSyGZQWuDbnXpqf6ooq9zBW9I3Qr9IWpzdILpDdPTZlRgEYJ
-        /BtKdKaokNBxOyUUtp6M/9Rw4z7/oNen1nmDKA==
-X-Google-Smtp-Source: APXvYqwmdAG0zihvbA/HDPLGoFaCcqTkPDudG+MUypShjhLGzz8mxUI+We5DRSX0QT0g6JWF+E3QA4gzC4d8PIMbsA0=
-X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr2286889qkb.119.1569879158412;
- Mon, 30 Sep 2019 14:32:38 -0700 (PDT)
+        id S1726992AbfI3VsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 17:48:16 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55210 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726590AbfI3VsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 17:48:16 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UHmPhm061772;
+        Mon, 30 Sep 2019 12:48:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569865705;
+        bh=QNVK9aqnamqVKs2ieTsZhQ72/wiNcVA3/7UIFUG5FOc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=BHbsTAOuj8sLvQOROqK2l+5nIG8Mnr45lF20es/l3dVWF5SydCoiPBI0pBY9pdgDj
+         yf9wNopJuKFRnldepyYYeWsrFHayRT5G1MDK9QLootceqmxKPZe2Gc1bKr/5D8qAjn
+         bsDSUwhkIdeCt/C4ub0GlqtIjj3FDmY5VBt2s5oc=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8UHmPJS070578
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 30 Sep 2019 12:48:25 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 30
+ Sep 2019 12:48:25 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 30 Sep 2019 12:48:15 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UHmK0R117112;
+        Mon, 30 Sep 2019 12:48:21 -0500
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
+ dts
+To:     Adam Ford <aford173@gmail.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+CC:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20190510194229.20628-1-aford173@gmail.com>
+ <845055e2-8182-de74-2077-629fdf50ac6c@ti.com>
+ <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
+ <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com>
+ <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
+ <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
+ <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
+ <eb2eb1f6-3c9b-7ecb-667e-819033af9c14@ti.com>
+ <23eba53a-9304-2ceb-d97e-01891ec0b3ed@ti.com>
+ <cb028b1e-05ca-9b22-be5d-c63f5fd56cc4@ti.com>
+ <F3335195-6EB7-4D44-B884-2F29D9238011@goldelico.com>
+ <CAHCN7xL9bFxO=2i1DzmRj6A3XwUNdt=DZeJ2a0EZ0f9gcFTy6g@mail.gmail.com>
+ <CAHCN7x+vCfPTRE+zzYUwAXdbBzRotTP2hSOgsHB0FdgBhZV5zA@mail.gmail.com>
+ <CAHCN7xJDV=R9Ysjhff7=mEXdciwPP_5LQbHwaUT8KvhSkLKw8A@mail.gmail.com>
+ <04306a5e-f9be-35a4-1aa1-5795d780e289@ti.com>
+ <3777f1b1-2d9a-334b-b9e7-99dfda2ae29b@ti.com>
+ <CAHCN7xJNJca8W_yw5nNY3AmKDSPoLzJ8voPmR1HS3bNcU8uQGg@mail.gmail.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <6cd7c9f0-cb26-588b-dfd1-faf462732549@ti.com>
+Date:   Mon, 30 Sep 2019 20:48:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190930130430.GA9080@localhost.localdomain>
-In-Reply-To: <20190930130430.GA9080@localhost.localdomain>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 30 Sep 2019 16:32:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLXJNvWOOajS4JVVek=h+v_Fxrx58ogQ0Cz+5n5Sh0+=g@mail.gmail.com>
-Message-ID: <CAL_JsqLXJNvWOOajS4JVVek=h+v_Fxrx58ogQ0Cz+5n5Sh0+=g@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: serial: document LiteUART bindings
-To:     Mateusz Holenko <mholenko@antmicro.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        devicetree@vger.kernel.org, Karol Gugala <kgugala@antmicro.com>,
-        Jiri Slaby <jslaby@suse.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAHCN7xJNJca8W_yw5nNY3AmKDSPoLzJ8voPmR1HS3bNcU8uQGg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 8:04 AM Mateusz Holenko <mholenko@antmicro.com> wrote:
->
-> From: Filip Kokosinski <fkokosinski@internships.antmicro.com>
->
-> Add documentation for LiteUART devicetree bindings.
->
-> Signed-off-by: Filip Kokosinski <fkokosinski@internships.antmicro.com>
-> Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-> ---
->  .../devicetree/bindings/serial/litex,liteuart.txt    | 12 ++++++++++++
->  MAINTAINERS                                          |  6 ++++++
->  2 files changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/litex,liteuart.txt
+On 30/09/2019 18:10, Adam Ford wrote:
+> On Mon, Sep 30, 2019 at 9:27 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+>>
+>> On 30/09/2019 17:20, Tomi Valkeinen wrote:
+>>
+>>> Let's see what Tero says, but yeah, something is odd here. I expected
+>>> the max divider to be 16 with Tero's patch, but I don't see it having
+>>> that effect. I can get the div to 31.
+>>>
+>>> You can see this from the clock register 0x48004e40 (CM_CLKSEL_DSS). The
+>>> lowest bits are the divider, 5 to 0. The TRM says max div is 32.
+>>>
+>>> Tero said for him the dividers > 16 didn't "stick" to the register. I'm
+>>> now wondering if he has an old beagleboard with OMAP34xx, which has max
+>>> div 16.
+>>
+>> So testing a bit more here, I can see the DSS working fine and fps as
+>> expected when I write values directly to CM_CLKSEL_DSS:5:0, with
+>> dividers up to 31. With 32, DSS breaks. The TRM (AM/DM37x) says value 32
+>> is valid.
+> 
+> I wonder if it's somehow being masked with bits 4:0 instead of 5:0
+> which could potentially make the divider 0 and that value doesn't
+> appear to be valid.
 
-Please make this a schema. See
-Documentation/devicetree/writing-schema.rst (or .md before 5.4).
+Hmmh, after some testing, it seems there is bad stuff happening with the 
+divider clock implementation, I am re-working it as of now. Basically 
+what is wrong is that with a divider max value of say 16, the driver 
+attempts to craft the max value into a mask, but this ends up being 
+0x1f. If the max value is 15, it ends up into 0xf which is correct.
 
->
-> diff --git a/Documentation/devicetree/bindings/serial/litex,liteuart.txt b/Documentation/devicetree/bindings/serial/litex,liteuart.txt
-> new file mode 100644
-> index 000000000..13c71a0c9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/litex,liteuart.txt
-> @@ -0,0 +1,12 @@
-> +LiteUART serial controller
-> +
-> +Required properties:
-> +- compatible: should be "litex,liteuart"
-
-Only 1 version?
-
-> +- reg: base address and length of the register set for this device
-
-Is there really no interrupt line? That should be added if there's h/w
-support even if the driver doesn't yet support it.
-
-> +
-> +Example:
-> +
-> +uart0: serial@f0001000 {
-
-Wrong unit address. Should be "@e0001800".
-
-
-> +       compatible = "litex,liteuart";
-> +       reg = <0xe0001800 0x100>;
-> +};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b2326dece..65a6cf296 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9462,6 +9462,12 @@ F:       Documentation/misc-devices/lis3lv02d.rst
->  F:     drivers/misc/lis3lv02d/
->  F:     drivers/platform/x86/hp_accel.c
->
-> +LITEX PLATFORM
-> +M:     Karol Gugala <kgugala@antmicro.com>
-> +M:     Mateusz Holenko <mholenko@antmicro.com>
-> +S:     Maintained
-> +F:     Documentation/devicetree/bindings/serial/litex,liteuart.txt
-> +
->  LIVE PATCHING
->  M:     Josh Poimboeuf <jpoimboe@redhat.com>
->  M:     Jiri Kosina <jikos@kernel.org>
-> --
-> 2.23.0
->
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
