@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A05AEC2145
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B82DC216E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731190AbfI3NET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 09:04:19 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:42963 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731178AbfI3NET (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:04:19 -0400
-Received: by mail-lj1-f195.google.com with SMTP id y23so9357359lje.9
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:04:18 -0700 (PDT)
+        id S1731177AbfI3NEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 09:04:39 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:41216 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731064AbfI3NEj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:04:39 -0400
+Received: by mail-lj1-f193.google.com with SMTP id f5so9370907ljg.8
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:04:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=antmicro-com.20150623.gappssmtp.com; s=20150623;
         h=date:from:to:cc:subject:message-id:mime-version:content-disposition
          :user-agent;
-        bh=wAmsq1ZRjAy0Dy4hMBe94TXzxJb/3I02Gi7CAmHEC18=;
-        b=GJHOt5ZJCob5AOYOFNDmBvLuTGz/01PKndvnW99jFT5LG3Mu4ZEwEvy1cY+IH2VlYn
-         1fmK9jIFvISsCbyqjM+faIdSgGrvb7pkaX0f3NWmkvy0BPTadP2fXoq5Yh+BmEUZZmHj
-         RnFNykhxCz2HcEuxOGjC/KKnM2cmU/jPE6JPbsUiiP6N3X5FnMw0bLK5ww/mSrEfR2X5
-         IildYAvxuvySKj1xNFidFzuUZ1YuZuFkUKuBxq7PBJzahHh/OMUwRkpcEfNgcnotXOKR
-         dfQkBKh5jXoS/t0Vni55ey+QO7Pvbj5lu7HI5aFX+1jRC5XuP6zn9Vmr8oX/sSRC/lsK
-         1qzw==
+        bh=VeoaIKGJb/61Ov+yB9zveHlqXZTEnNdTJ6NCEWY/+7A=;
+        b=l3Nvt/bLf/BeU5VnuKN3QrlxayW110zSMz+Omal6lVqbPWnUZ1gRvteEndYHlv2K/e
+         Kt3vk2g0TTVpySFJrFfaPyDMKae3t7mIxwR5n/squlLevrTksNW0QJc0ir09lNHPybw5
+         SXTt4gUX4NFBfK0zokhPR5vmrQifykB4nWgNQ7gxUFf7DyfUsH90kPo/mOcLeLDIEz9a
+         GbW5XtcelR6sery85SAAw3Anqvk3tl4QfkY+ZP/fP2svUAtwuo8p09zZ2M62j4LfwjSA
+         F/19QdNEJiKEqb0lF8viBvdZCw68BsKCLR76s4aSOygoEHfomgBJ0XvbbY9f/r3bQz8V
+         RziA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
          :content-disposition:user-agent;
-        bh=wAmsq1ZRjAy0Dy4hMBe94TXzxJb/3I02Gi7CAmHEC18=;
-        b=odldtet2V8Pbwx6q0h1mPgtFn7PgvHE9+p3p2Hy9YLFyeKyzlHVlb7Jysl/rN3LXgK
-         Etksekvng6ogCP3cyhtjDWqDQ3h/ZlevOFZz/+3DqY7Dn1ZdPl0Cj1Fw5/7kuBZFoqcv
-         DwJo5jESbo2deKp2T/hy183XeVEpJfcjhz1HUggLobnGMCsj87Zud5OgKxf8Xk8JRMFf
-         4guEhf5usR4HdMnvQLbp/Dnd4b9yQCMIxJgiFiafC1fM+84x1f9kpPx+0TBlz/sL8Afm
-         HlovfFtQxOMmZSCCRnbB1HfL6HXsdfGFneVBcnDKCJeWZmqopOzqsRqepwpYOnE8/54g
-         xCIw==
-X-Gm-Message-State: APjAAAXxAmu50I8xT8kKbMsHUZ+Xg6xP+M9WxL5qlfEYlqTu9GWc8N+B
-        PfjD2+XkbVUGx9xgLC7NJDJiQkhHk4XtNh6J
-X-Google-Smtp-Source: APXvYqw0uKUhs9OxqzC42P/Kf2Rn9e00fau/7D2/YvGAN+Wkv+FMrYaUf5TyMdwJRcNlVDlswQdmtg==
-X-Received: by 2002:a2e:a0cd:: with SMTP id f13mr11973026ljm.93.1569848657561;
-        Mon, 30 Sep 2019 06:04:17 -0700 (PDT)
+        bh=VeoaIKGJb/61Ov+yB9zveHlqXZTEnNdTJ6NCEWY/+7A=;
+        b=i/+wwm1QJr0CO0Ar+5iyDcXXVf37u7gscmeqJzn7g9Qi5GdthmVIeilVoFs/nFAR2+
+         mU0DA7Dhm4KOzlLYuwcpQWO/V1QZ2bQehHJHMdV2LwwPKi+eXzxveOxDHrwzcbcH0z4x
+         eL8ApJvFoifn7V2ohoSg2Ei6lVrh/ndqDEeR4CMnb8BpJnxlzR4avk0B4kmKpEmiv1Ks
+         9AGr4sBdL1s35rw2NUQBLmeYS1Cl0s6aBh++oLYnu4K0uyzkryKxd5TjCyU0lKgnmfta
+         Wx4/1QQE38Emk2SSusEOTM7iNUCrPyjzwS6BtAfPrAhhgvhVW3bMuU7yFDpyVQJ5P+US
+         BUzg==
+X-Gm-Message-State: APjAAAVhnfVry4UgzvESd/0UUo7iAatwRs6mLWO5a1iQrjq5mJwIqcGb
+        cwSKudhJX5JTdffPGo6OkVmghg==
+X-Google-Smtp-Source: APXvYqyCjXJY28l2+1mzvUJg1TYUmquAGr+sqV9Av/SyxGcE7N9rRX4Pr7ENgnIqoNmODxGr7QRqsQ==
+X-Received: by 2002:a2e:42c9:: with SMTP id h70mr11803035ljf.88.1569848676849;
+        Mon, 30 Sep 2019 06:04:36 -0700 (PDT)
 Received: from localhost.localdomain (d79-196.icpnet.pl. [77.65.79.196])
-        by smtp.gmail.com with ESMTPSA id s26sm3060394lfc.60.2019.09.30.06.04.15
+        by smtp.gmail.com with ESMTPSA id b15sm3220379lfj.84.2019.09.30.06.04.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 06:04:16 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 15:04:11 +0200
+        Mon, 30 Sep 2019 06:04:36 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 15:04:30 +0200
 From:   Mateusz Holenko <mholenko@antmicro.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -62,8 +62,8 @@ Cc:     Karol Gugala <kgugala@antmicro.com>,
         Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
         "David S. Miller" <davem@davemloft.net>,
         "Paul E. McKenney" <paulmck@linux.ibm.com>
-Subject: [PATCH 1/3] dt-bindings: vendor: add vendor prefix for LiteX
-Message-ID: <20190930130411.GA8312@localhost.localdomain>
+Subject: [PATCH 2/3] dt-bindings: serial: document LiteUART bindings
+Message-ID: <20190930130430.GA9080@localhost.localdomain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -75,27 +75,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Filip Kokosinski <fkokosinski@internships.antmicro.com>
 
-Add vendor prefix for LiteX SoC builder.
+Add documentation for LiteUART devicetree bindings.
 
 Signed-off-by: Filip Kokosinski <fkokosinski@internships.antmicro.com>
 Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/serial/litex,liteuart.txt    | 12 ++++++++++++
+ MAINTAINERS                                          |  6 ++++++
+ 2 files changed, 18 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/litex,liteuart.txt
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 329b668da..4143c52a8 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -533,6 +533,8 @@ patternProperties:
-     description: Linux-specific binding
-   "^linx,.*":
-     description: Linx Technologies
-+  "^litex,.*":
-+    description: LiteX SoC builder
-   "^lltc,.*":
-     description: Linear Technology Corporation
-   "^logicpd,.*":
+diff --git a/Documentation/devicetree/bindings/serial/litex,liteuart.txt b/Documentation/devicetree/bindings/serial/litex,liteuart.txt
+new file mode 100644
+index 000000000..13c71a0c9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/litex,liteuart.txt
+@@ -0,0 +1,12 @@
++LiteUART serial controller
++
++Required properties:
++- compatible: should be "litex,liteuart"
++- reg: base address and length of the register set for this device
++
++Example:
++
++uart0: serial@f0001000 {
++	compatible = "litex,liteuart";
++	reg = <0xe0001800 0x100>;
++};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b2326dece..65a6cf296 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9462,6 +9462,12 @@ F:	Documentation/misc-devices/lis3lv02d.rst
+ F:	drivers/misc/lis3lv02d/
+ F:	drivers/platform/x86/hp_accel.c
+ 
++LITEX PLATFORM
++M:	Karol Gugala <kgugala@antmicro.com>
++M:	Mateusz Holenko <mholenko@antmicro.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/serial/litex,liteuart.txt
++
+ LIVE PATCHING
+ M:	Josh Poimboeuf <jpoimboe@redhat.com>
+ M:	Jiri Kosina <jikos@kernel.org>
 -- 
 2.23.0
 
