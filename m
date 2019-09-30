@@ -2,83 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B136C2516
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 18:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D535C252B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 18:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732210AbfI3Q0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 12:26:31 -0400
-Received: from foss.arm.com ([217.140.110.172]:57904 "EHLO foss.arm.com"
+        id S1731976AbfI3QcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 12:32:13 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:54770 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727767AbfI3Q0b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 12:26:31 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 96E931570;
-        Mon, 30 Sep 2019 09:26:30 -0700 (PDT)
-Received: from [10.1.196.133] (e112269-lin.cambridge.arm.com [10.1.196.133])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3147C3F534;
-        Mon, 30 Sep 2019 09:26:29 -0700 (PDT)
-Subject: Re: [PATCH 2/2] drm/panfrost: Use coherent pagetable walk on Juno
-To:     Robin Murphy <robin.murphy@arm.com>, robh@kernel.org,
-        tomeu.vizoso@collabora.com, sudeep.holla@arm.com
-Cc:     devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        liviu.dudau@arm.com, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-References: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
- <1e499f85220b735849126171e64ebdd1da0302ce.1569856049.git.robin.murphy@arm.com>
-From:   Steven Price <steven.price@arm.com>
-Message-ID: <167ec566-1936-8a05-83fc-74d20d9fb8bc@arm.com>
-Date:   Mon, 30 Sep 2019 17:26:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727767AbfI3QcN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 12:32:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=qZmq/vZ1uF91H9zblUBrI03dFEWUTL8yzpnf7lGHSRA=; b=1YJGbspzHZXDVLB+IPjixtBnBF
+        78wyiJv87Tac5ug/oS1uaZGWCAAU7IUysBIBn7IfosmXCBnwwLGZv5jV/3fVNxx5pzgcktZZwmvQ8
+        Buks5BBHmGfeAQGLrYVXGcDleNsAXg2DKjDwa/X6PzEOq2cyIvXWW/y5nDWXuj2A1+nI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1iEyah-0004oW-L2; Mon, 30 Sep 2019 18:32:03 +0200
+Date:   Mon, 30 Sep 2019 18:32:03 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Jamie Lentin <jm@lentin.co.uk>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 0/2] This patch introduces a feature to force
+ gpio-poweroff module
+Message-ID: <20190930163203.GC15343@lunn.ch>
+References: <20190930103531.13764-1-oleksandr.suvorov@toradex.com>
+ <20190930121440.GC13301@lunn.ch>
+ <CAGgjyvEx_F0C2XHDGxf3F0Z8iHF1vQZkoPft3_ZbTswVFv=SJA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1e499f85220b735849126171e64ebdd1da0302ce.1569856049.git.robin.murphy@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGgjyvEx_F0C2XHDGxf3F0Z8iHF1vQZkoPft3_ZbTswVFv=SJA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2019 16:24, Robin Murphy wrote:
-> Although going full "dma-coherent" ends badly due to GEM objects still
-> being forcibly mapped non-cacheable, we can at least take advantage of
-> Juno's ACE-lite integration to skip cache maintenance for pagetables.
+On Mon, Sep 30, 2019 at 02:11:59PM +0000, Oleksandr Suvorov wrote:
+> Hi Andrew,
 > 
-> CC: Rob Herring <robh@kernel.org>
-> CC: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
+> On Mon, Sep 30, 2019 at 3:16 PM Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > On Mon, Sep 30, 2019 at 10:35:36AM +0000, Oleksandr Suvorov wrote:
+> > > to register its own pm_power_off handler even if someone has registered
+> > > this handler earlier.
+> > > Useful to change a way to power off the system using DT files.
+> >
+> > Hi Oleksandr
+> >
+> > I'm not sure this is a good idea. What happens when there are two
+> > drivers using forced mode? You then get which ever is register last.
+> > Non deterministic behaviour.
 > 
-> This isn't really meant as a series, I'm just sending it together
-> with patch #1 for context.
+> You're right, we have to handle a case when gpio-poweroff fails to
+> power the system off. Please look at the
+> 2nd version of the patchset.
 > 
->  drivers/gpu/drm/panfrost/panfrost_mmu.c | 3 +++
->  1 file changed, 3 insertions(+)
+> There are 3 only drivers that forcibly register its own pm_power_off
+> handler even if it has been registered before.
 > 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_mmu.c b/drivers/gpu/drm/panfrost/panfrost_mmu.c
-> index bdd990568476..560439f63277 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_mmu.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_mmu.c
-> @@ -365,6 +365,9 @@ int panfrost_mmu_pgtable_alloc(struct panfrost_file_priv *priv)
->  		.iommu_dev	= pfdev->dev,
->  	};
->  
-> +	if (of_device_is_compatible(pfdev->dev->of_node, "arm,juno-mali"))
-> +		pfdev->mmu->pgtbl_cfg.coherent_walk = true;
-
-Should be:
-	mmu->pgtbl_cfg.coherent_walk = true;
-
-Also I'm not sure whether we should do this based on a compatible
-string. kbase has a "system-coherency" device-tree flag for it. In
-theory we could end up with a long list of compatibles here...
-
-Steve
-
-> +
->  	mmu->pgtbl_ops = alloc_io_pgtable_ops(ARM_MALI_LPAE, &mmu->pgtbl_cfg,
->  					      priv);
->  	if (!mmu->pgtbl_ops)
+> drivers/firmware/efi/reboot.c - supports chained call of next
+> pm_power_off handler if its own handler fails.
 > 
+> arch/x86/platform/iris/iris.c, drivers/char/ipmi/ipmi_poweroff.c -
+> don't support calling of next pm_power_off handler.
+> Looks like these drivers should be fixed too.
+> 
+> All other drivers don't change already initialized pm_power_off handler.
+> 
+> > What is the other driver which is causing you problems? How is it
+> > getting probed? DT?
+> 
+> There are several PMUs, RTCs, watchdogs that register their own pm_power_off.
+> Most of them, probably not all, are probed from DT.
 
+And which specific one is causing you problems.
+
+I don't like this forced parameter. No other driver is using it.
+
+Maybe we should change this driver to support chained pm_power_off
+handlers?
+
+   Andrew
