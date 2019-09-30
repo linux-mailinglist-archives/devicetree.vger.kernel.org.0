@@ -2,85 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C0BC23C3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CADC1C23ED
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 17:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731738AbfI3O51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 10:57:27 -0400
-Received: from foss.arm.com ([217.140.110.172]:56270 "EHLO foss.arm.com"
+        id S1731629AbfI3PIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 11:08:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34914 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731225AbfI3O51 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 10:57:27 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8730E28;
-        Mon, 30 Sep 2019 07:57:26 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA1E33F706;
-        Mon, 30 Sep 2019 07:57:25 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 15:57:24 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        leoyang.li@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v4 11/11] misc: pci_endpoint_test: Add LS1088a in
- pci_device_id table
-Message-ID: <20190930145723.GC42880@e119886-lin.cambridge.arm.com>
-References: <20190924021849.3185-1-xiaowei.bao@nxp.com>
- <20190924021849.3185-12-xiaowei.bao@nxp.com>
+        id S1731225AbfI3PIc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 11:08:32 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7E052218DE;
+        Mon, 30 Sep 2019 15:08:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569856111;
+        bh=Fp+52V3gN6sLDfZnvz4YS9HFrRO4+wFt/PSe7Tf/5aw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hxPKGzCId/ZbUoZF1UIJZ/VCr/bVk+GIp8mrn4VXi0q1ssoLl3UdYpJWcC/4rU84N
+         FnXXm+Wnn1mDguj/c0OeuoaroLmvzqPQ/M2gwlqP6TAbGhFGp/XLbKwI1dfWatbjqA
+         3ANZuGUbaZ0VhcoFLNvt4libe25gZtyUyNZzoTu4=
+Received: by mail-qt1-f169.google.com with SMTP id f7so17454812qtq.7;
+        Mon, 30 Sep 2019 08:08:31 -0700 (PDT)
+X-Gm-Message-State: APjAAAXEVCNSUiQi7H2/mENsFioPK4Up1br2gECc858c4wmJf2lfNfCq
+        sxT5fk65+q3YpXv82BteZdmsnAm1e0WhDOKs1Q==
+X-Google-Smtp-Source: APXvYqwdbKZykrRJVvOGUuCRKPQsrzrj5n0WLj/vIuGy4RYdGBRfRlP4d6XFnA0ZTIbDwxJr+GXxP7zrGKoVrxGv2wU=
+X-Received: by 2002:ac8:6915:: with SMTP id e21mr25049775qtr.224.1569856110650;
+ Mon, 30 Sep 2019 08:08:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190924021849.3185-12-xiaowei.bao@nxp.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+References: <20190907161634.27378-1-marek.vasut@gmail.com> <CAL_JsqL47dQT-P78j4Ph61fsgA45Ha0AJjDajiMk52yFj++s+g@mail.gmail.com>
+ <CAL_JsqK+SwX8Lu+-4UgpLVxL05yTcs8Af9mPVHqzbf6+HF9v3A@mail.gmail.com> <0bf7c8c8-d03e-c08e-4879-3d3a2fb90ca7@gmail.com>
+In-Reply-To: <0bf7c8c8-d03e-c08e-4879-3d3a2fb90ca7@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Sep 2019 10:08:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJf-TGE-SWWj=6AVbpfuN1AsEdDTSOCOk+iUzTT3yZSgw@mail.gmail.com>
+Message-ID: <CAL_JsqJf-TGE-SWWj=6AVbpfuN1AsEdDTSOCOk+iUzTT3yZSgw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
+To:     Marek Vasut <marek.vasut@gmail.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfram Sang <wsa@the-dreams.de>, devicetree@vger.kernel.org,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 10:18:49AM +0800, Xiaowei Bao wrote:
-> Add LS1088a in pci_device_id table so that pci-epf-test can be used
-> for testing PCIe EP in LS1088a.
-> 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> ---
-> v2:
->  - No change.
-> v3:
->  - No change.
-> v4:
->  - Use a maco to define the LS1088a device ID.
->  
->  drivers/misc/pci_endpoint_test.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index 6e208a0..8c222a6 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -65,6 +65,7 @@
->  #define PCI_ENDPOINT_TEST_IRQ_NUMBER		0x28
->  
->  #define PCI_DEVICE_ID_TI_AM654			0xb00c
-> +#define PCI_DEVICE_ID_LS1088A			0x80c0
+On Mon, Sep 30, 2019 at 7:45 AM Marek Vasut <marek.vasut@gmail.com> wrote:
+>
+> On 9/24/19 12:33 AM, Rob Herring wrote:
+> > On Fri, Sep 13, 2019 at 10:14 AM Rob Herring wrote:
+> >>
+> >> On Sat, Sep 7, 2019 at 5:16 PM wrote:
+> >>>
+> >>> From: Marek Vasut
+> >>>
+> >>> Add dma-ranges property into /soc node to describe the DMA capabilities
+> >>> of the bus. This is currently needed to translate PCI DMA ranges, which
+> >>> are limited to 32bit addresses.
+> >>
+> >> FYI, I've started working on this problem and issues around
+> >> dma-ranges/dma_mask. Hopefully I'll get some patches out next week.
+> >
+> > I've pushed out a branch here:
+> >
+> > git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dma-masks
+> >
+> > Can you test it on Renesas. I don't have a real platform having the issue.
+>
+>
+> With the following patches applied:
+>       https://patchwork.ozlabs.org/patch/1144870/
 
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
+I'd rather not have yet another instance of {dma-}ranges parsing code.
+With this series[1], dma-ranges gets parsed into resource list for
+you.
 
->  
->  #define is_am654_pci_dev(pdev)		\
->  		((pdev)->device == PCI_DEVICE_ID_TI_AM654)
-> @@ -793,6 +794,7 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA74x) },
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA72x) },
->  	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, 0x81c0) },
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, PCI_DEVICE_ID_LS1088A) },
->  	{ PCI_DEVICE_DATA(SYNOPSYS, EDDA, NULL) },
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_AM654),
->  	  .driver_data = (kernel_ulong_t)&am654_data
-> -- 
-> 2.9.5
-> 
+>       https://patchwork.ozlabs.org/patch/1144871/
+
+How can this one be applied? It would conflict horribly. Plus I think
+it duplicates what's in my series.
+
+Rob
+
+> on R8A7795 Salvator-XS, works fine.
+
+[1] https://lore.kernel.org/linux-arm-kernel/20190924214630.12817-7-robh@kernel.org/T/
