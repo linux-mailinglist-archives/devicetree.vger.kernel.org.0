@@ -2,135 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B443C19C6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 01:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2AA9C1A5D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 05:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729022AbfI2XqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Sep 2019 19:46:20 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:39539 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726360AbfI2XqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Sep 2019 19:46:20 -0400
-Received: by mail-qt1-f195.google.com with SMTP id n7so14704800qtb.6;
-        Sun, 29 Sep 2019 16:46:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=9IjuVXfjyC+Q3EgkfLoZRHzj7hful0PTkZcBqQey3BU=;
-        b=WgOkqUXG/IOsCK1v46IkgYuvCCXlWivbA0/c8I3P1LW9SLM09h//IDxsINvCoNLie1
-         d2uDzX0BimZmK66AyDUtq4ykya65Xw7IM43b5alZxJ6Bj4GSCxD/hznZReZ+zKZKcjnW
-         32ER5J6DTGckGj+qW2ka0ox7QFqlyfL11PLQ6onHceTt7/mxI6u6G7ArnYeq9ad3PyZG
-         fTePApuiq8DXfLot28KFYxlHH/PoJ4FZSJzGQPl5+gejE1YAeeSNrfgue6W8MbxenL3w
-         0YHyQ/tlYHv2h/6F+e+b8mDM6hZXe+sEJBwENssePuU7yxUAt54Pmic+/221kiWZY6iy
-         oUZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=9IjuVXfjyC+Q3EgkfLoZRHzj7hful0PTkZcBqQey3BU=;
-        b=QYalZ82IQlTBOHYDrnrUPjrw7d2jCG+T7F1ARTCC4KfMtd3fsQQ/V6YK1YY60L01Wj
-         eX0ZO5LV84JoE/5qhyN5+lWRlDHFc5XA9NeJOIk7kjSXzSKBFOocPThUWJi11cWTjxtr
-         asucc3jBAwqIE18RIC086HPp+7SRQI+ypJps1EMFUi8HJjNcGaZ6aa7Y9XMRe6KuThXc
-         x0LQcmdIgfjqtrcsmf/6PxmFw4wPBFZqNb9q/MlXOtix9A3VZffqciqVJhQHU8GE4XhN
-         DnXcQndICANHUxqcMDaqoSiSKoJoB45pz8hLTLsBw99dpByUBoc96uNKhRVbuKn5nLG2
-         NcJw==
-X-Gm-Message-State: APjAAAWstWj7o94+EhvGKXkgdthMT63+/MOnCHEaPP/KA3uvgEiz3/6e
-        JbpNdedSAZ24E4XXwz8ai/E=
-X-Google-Smtp-Source: APXvYqxVMoPmFYQFR1uQ9s3WqrOhj1kuaz6jaF1gAqCSFqi7agIMTQouJhYavwt4z9geiH7wAvaCbg==
-X-Received: by 2002:a0c:c48e:: with SMTP id u14mr18611626qvi.37.1569800779344;
-        Sun, 29 Sep 2019 16:46:19 -0700 (PDT)
-Received: from vivek-desktop (ool-457857f8.dyn.optonline.net. [69.120.87.248])
-        by smtp.gmail.com with ESMTPSA id m14sm4585875qki.27.2019.09.29.16.46.18
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 29 Sep 2019 16:46:18 -0700 (PDT)
-Date:   Sun, 29 Sep 2019 19:46:15 -0400
-From:   Vivek Unune <npcomplete13@gmail.com>
-To:     Vicente Bergas <vicencb@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
-        ezequiel@collabora.com, akash@openedev.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Roger Quadros <rogerq@ti.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
-Message-ID: <20190929234615.GA5355@vivek-desktop>
-References: <20190929032230.24628-1-npcomplete13@gmail.com>
- <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1729022AbfI3Dfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Sep 2019 23:35:46 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:37870 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728853AbfI3Dfo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Sep 2019 23:35:44 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4510B1A0453;
+        Mon, 30 Sep 2019 05:35:41 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8F8D71A0C5E;
+        Mon, 30 Sep 2019 05:35:37 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A50554030D;
+        Mon, 30 Sep 2019 11:35:32 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     peda@axentia.se, leoyang.li@nxp.com, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
+Subject: [v2,1/2] i2c: pca954x: Add property to skip disabling PCA954x MUX device
+Date:   Mon, 30 Sep 2019 11:25:02 +0800
+Message-Id: <20190930032503.44425-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 29, 2019 at 01:22:17PM +0200, Vicente Bergas wrote:
-> On Sunday, September 29, 2019 5:22:30 AM CEST, Vivek Unune wrote:
-> > Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
-> > 
-> > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > index 0d1f5f9a0de9..c133e8d64b2a 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > @@ -644,7 +644,7 @@
-> >  	status = "okay";
-> >  	u2phy0_host: host-port {
-> > -		phy-supply = <&vcc5v0_host>;
-> > +		phy-supply = <&vcc5v0_typec>;
-> >  		status = "okay";
-> >  	};
-> > @@ -712,7 +712,7 @@
-> >  &usbdrd_dwc3_0 {
-> >  	status = "okay";
-> > -	dr_mode = "otg";
-> > +	dr_mode = "host";
-> >  };
-> >  &usbdrd3_1 {
-> 
-> Hi Vivek,
-> 
-> which is the relationship of your patch and this commit:
-> 
-> e1d9149e8389f1690cdd4e4056766dd26488a0fe
-> arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
-> 
-> with respect to this other commit:
-> 
-> c09b73cfac2a9317f1104169045c519c6021aa1d
-> usb: dwc3: don't set gadget->is_otg flag
-> 
-> ?
-> 
-> I did not test reverting e1d9149e since c09b73cf was applied.
-> 
-> Regards,
->  Vicenç.
-> 
+On some Layerscape boards like LS2085ARDB and LS2088ARDB,
+input pull-up resistors on PCA954x MUX device are missing on board,
+So, if MUX are disabled after powered-on, input lines will float
+leading to incorrect functionality.
 
-Hi Vicenç,
+Hence, PCA954x MUX device should never be turned-off after
+power-on.
 
-Indeed, I was motivated by e1d9149e ("arm64: dts: rockchip: Fix USB3 
-Type-C on rk3399-sapphire"). X99 TV box showed exact same symptoms
-with usb-c port. After applying the fix, it worked.
+Add property to skip disabling PCA954x MUX device
+if device tree contains "i2c-mux-never-disable"
+for PCA954x device node.
 
-I was not aware of c09b73cf ("usb: dwc3: don't set gadget->is_otg
- flag") and it will be interesting to test it. This might render
-my fix unecessary.
+Errata ID: E-00013 on board LS2085ARDB and LS2088ARDB
+(The hardware bug found on board revision
+Rev.B, Rev.C and Rev.D)
 
-Thanks,
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+---
+Change in v2:
+	- update variable name
+	  disable_mux->never_disable
 
-Vivek
+ drivers/i2c/muxes/i2c-mux-pca954x.c | 37 +++++++++++++++++++++++++----
+ 1 file changed, 33 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c b/drivers/i2c/muxes/i2c-mux-pca954x.c
+index 923aa3a5a3dc..b4647b033163 100644
+--- a/drivers/i2c/muxes/i2c-mux-pca954x.c
++++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
+@@ -93,6 +93,11 @@ struct pca954x {
+ 	struct irq_domain *irq;
+ 	unsigned int irq_mask;
+ 	raw_spinlock_t lock;
++	/*
++	 * never disable value will write to control register of mux
++	 * to always enable mux
++	 */
++	u8 never_disable;
+ };
+ 
+ /* Provide specs for the PCA954x types we know about */
+@@ -258,6 +263,11 @@ static int pca954x_deselect_mux(struct i2c_mux_core *muxc, u32 chan)
+ 	struct i2c_client *client = data->client;
+ 	s8 idle_state;
+ 
++	if (data->never_disable) {
++		data->last_chan = data->chip->nchans;
++		return pca954x_reg_write(muxc->parent, client, data->never_disable);
++	}
++
+ 	idle_state = READ_ONCE(data->idle_state);
+ 	if (idle_state >= 0)
+ 		/* Set the mux back to a predetermined channel */
+@@ -462,16 +472,32 @@ static int pca954x_probe(struct i2c_client *client,
+ 		}
+ 	}
+ 
++	/* Errata ID E-00013 on board LS2088ARDB and LS2088ARDB:
++	 * The point here is that you must not disable a mux if there
++	 * are no pullups on the input or you mess up the I2C. This
++	 * needs to be put into the DTS really as the kernel cannot
++	 * know this otherwise.
++	 */
++
++	data->never_disable = np &&
++		of_property_read_bool(np, "i2c-mux-never-disable") &&
++		data->chip->muxtype == pca954x_ismux ?
++		data->chip->enable : 0;
++
+ 	/* Write the mux register at addr to verify
+ 	 * that the mux is in fact present. This also
+ 	 * initializes the mux to disconnected state.
+ 	 */
+-	if (i2c_smbus_write_byte(client, 0) < 0) {
++	if (i2c_smbus_write_byte(client, data->never_disable) < 0) {
+ 		dev_warn(dev, "probe failed\n");
+ 		return -ENODEV;
+ 	}
+ 
+-	data->last_chan = 0;		   /* force the first selection */
++	if (data->never_disable)
++		data->last_chan = data->chip->nchans;
++	else
++		data->last_chan = 0;               /* force the first selection */
++
+ 	data->idle_state = MUX_IDLE_AS_IS;
+ 
+ 	idle_disconnect_dt = np &&
+@@ -531,8 +557,11 @@ static int pca954x_resume(struct device *dev)
+ 	struct i2c_mux_core *muxc = i2c_get_clientdata(client);
+ 	struct pca954x *data = i2c_mux_priv(muxc);
+ 
+-	data->last_chan = 0;
+-	return i2c_smbus_write_byte(client, 0);
++	if (data->never_disable)
++		data->last_chan = data->chip->nchans;
++	else
++		data->last_chan = 0;
++	return i2c_smbus_write_byte(client, data->never_disable);
+ }
+ #endif
+ 
+-- 
+2.17.1
 
