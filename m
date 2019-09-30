@@ -2,159 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBC9CC1E5E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9356BC1E75
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730306AbfI3JoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 05:44:19 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:41192 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727884AbfI3JoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:44:19 -0400
-Received: by mail-vs1-f65.google.com with SMTP id l2so6292267vsr.8
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 02:44:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M8BTozkNMjXYnGvpiivu8GTcdHCRUJPKZ/tjC3wgpT0=;
-        b=oTxh4MZgsxptPXRVclv9YCEHC8QBH9203XBeJgUhaxHwA4cDHCMXoCILDON1cads8S
-         dvNaAO+5V5Lj16symCM+6YJcYcOBOIUEcugmXfWHDIS2/0md/kR5LbbzvMHWrzHnhUIf
-         r6/AGQRoQ5n/LbNZmF2oRsY81tsnpHTCnny8jmVayNMsgdQwtj1u4BslLzLIQpbZZdFd
-         O1ZHjCgyrFhdVNFDqQ4Uxxkx0olkLxZ5nG1nHZP3DOE10es5GUKDMDmMxR1waQPduiXr
-         cy8bFjXXe9eRKdFCtZkxm9KUNC/I+I5/A/BjPGOye5juhaBgZr3HXLsh3qUCmVshdJYl
-         nJxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M8BTozkNMjXYnGvpiivu8GTcdHCRUJPKZ/tjC3wgpT0=;
-        b=FzQKqM3+sXQS4WwAzF8g8HHo9VuM0VJcNThsbJjb2tBSeb1uSfA4yitlfoK1LzZfDU
-         UJ8LuVMRRc9F+25ltQ5mE9TWcqOhsNmksLLUAtJG0HfZO9DA7b1BrSNGnoE9jCsjhgvm
-         IImvCgTjO7crwptIMCeKT9PZcvqhTI++ytDJTkboUzYhVyJ6Mb2Bk6e5rbAgI+fDO7jx
-         +Iyi8zYhEhmKexq8KnfdWwTadJVcAUaKFlvrZ0CGkD/7//fKUzYB7Ru34E3pteQfocXy
-         5j4TJl51FUj6cx8YcJeGaOTaGz8iLW3uArDGo23A3B8saBtOLCVj8pZ7yymH3wg0Mylk
-         EEZw==
-X-Gm-Message-State: APjAAAXRpfLluBlWpwukWaB3HyaHVZd7WGnshd4TETIpQV/26ljjpiZz
-        Y9dIbwwr9anQGRMhHwsiCEJf5AoW47moK58mei5M2Q==
-X-Google-Smtp-Source: APXvYqwzrnQd5kSt976vsQTkY4fUZ0N6Cbb1QL+RprZHbapHmEx/KojW4obEsKRRN3dduvxef0Xir2Er2izaiA/bEpI=
-X-Received: by 2002:a67:d789:: with SMTP id q9mr8481036vsj.159.1569836658112;
- Mon, 30 Sep 2019 02:44:18 -0700 (PDT)
+        id S1728404AbfI3Jv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 05:51:27 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59170 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726504AbfI3Jv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:51:27 -0400
+X-UUID: 6ae0d28dc9b24e3187041e13772beeaa-20190930
+X-UUID: 6ae0d28dc9b24e3187041e13772beeaa-20190930
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 231710556; Mon, 30 Sep 2019 17:51:21 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 30 Sep 2019 17:51:18 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 30 Sep 2019 17:51:17 +0800
+Message-ID: <1569837079.32131.5.camel@mtksdccf07>
+Subject: Re: [PATCH v10 08/12] pwm: mediatek: Add MT7629 compatible string
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Mon, 30 Sep 2019 17:51:19 +0800
+In-Reply-To: <20190930093629.GH1518582@ulmo>
+References: <1569421957-20765-1-git-send-email-sam.shih@mediatek.com>
+         <1569421957-20765-9-git-send-email-sam.shih@mediatek.com>
+         <20190927112831.GA1171568@ulmo> <1569833468.32131.4.camel@mtksdccf07>
+         <20190930093629.GH1518582@ulmo>
+Content-Type: text/plain; charset="ISO-8859-15"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-References: <20190927184352.28759-1-glaroque@baylibre.com> <20190927184352.28759-5-glaroque@baylibre.com>
-In-Reply-To: <20190927184352.28759-5-glaroque@baylibre.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Mon, 30 Sep 2019 15:14:07 +0530
-Message-ID: <CAHLCerOuY1cLrkN9_f1O+Uqm9fyE18+98yU6xryojcznuPMZow@mail.gmail.com>
-Subject: Re: [PATCH v6 4/7] arm64: dts: meson: g12: Add minimal thermal zone
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        lakml <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 28, 2019 at 12:14 AM Guillaume La Roque
-<glaroque@baylibre.com> wrote:
->
-> Add minimal thermal zone for two temperature sensor
-> One is located close to the DDR and the other one is
-> located close to the PLLs (between the CPU and GPU)
->
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+On Mon, 2019-09-30 at 11:36 +0200, Thierry Reding wrote:
+> On Mon, Sep 30, 2019 at 04:51:08PM +0800, Sam Shih wrote:
+> > Hi,
+> > 
+> > On Fri, 2019-09-27 at 13:28 +0200, Thierry Reding wrote:
+> > > On Wed, Sep 25, 2019 at 10:32:33PM +0800, Sam Shih wrote:
+> > > > This adds pwm support for MT7629, and separate mt7629 compatible string
+> > > > from mt7622
+> > > > 
+> > > > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> > > > ---
+> > > >  drivers/pwm/pwm-mediatek.c | 6 ++++++
+> > > >  1 file changed, 6 insertions(+)
+> > > 
+> > > I picked this patch up and made some minor adjustments to make it build
+> > > without the num_pwms patches. With that I don't think there's anything
+> > > left from this series that you need.
+> > 
+> > Yes, I think the driver should work once dtsi updated.
+> > ("[v10,12/12] arm: dts: mediatek: add mt7629 pwm support")
+> > 
+> > But, due to we use comaptible string separately for every SoC now,
+> > The comaptible string in dt-bindings should be "mediatek,mt7629-pwm".
+> > I think we should use "[v10,11/12] dt-bindings: pwm: update bindings 
+> > for MT7629" to replace commit 1c00ad6ebf36aa3b0fa598a48b8ae59782be4121,
+> > Or maybe we need a little modification like this ?
+> > diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt ...
+> > - - "mediatek,mt7629-pwm", "mediatek,mt7622-pwm": found on mt7629 SoC.
+> > + - "mediatek,mt7629-pwm": found on mt7629 SoC.
+> 
+> Good catch, I must've taken this from the wrong version of the patch.
+> 
+> How about the attached patch?
+> 
+> Thanks,
+> Thierry
+> --- >8 ---
+> From 641b0ee176b139f9edd137ba636ca0cb9c63289a Mon Sep 17 00:00:00 2001
+> From: Thierry Reding <thierry.reding@gmail.com>
+> Date: Mon, 30 Sep 2019 11:33:31 +0200
+> Subject: [PATCH] dt-bindings: pwm: mediatek: Remove gratuitous compatible
+>  string for MT7629
+> 
+> The MT7629 is, in fact, not compatible with the MT7622 because the
+> former has a single PWM channel while the former has 6. Remove the
+> gratuitous compatible string for MT7629.
+> 
+> Reported-by: Sam Shih <sam.shih@mediatek.com>
+> Signed-off-by: Thierry Reding <thierry.reding@gmail.com>
 > ---
->  .../boot/dts/amlogic/meson-g12-common.dtsi    | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 0660d9ef6a86..f98171949fcb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
->  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
-> +#include <dt-bindings/thermal/thermal.h>
->
->  / {
->         interrupt-parent = <&gic>;
-> @@ -94,6 +95,50 @@
->                 #size-cells = <2>;
->                 ranges;
->
-> +               thermal-zones {
-> +                       cpu_thermal: cpu-thermal {
-> +                               polling-delay = <1000>;
-> +                               polling-delay-passive = <100>;
-> +                               thermal-sensors = <&cpu_temp>;
-> +
-> +                               trips {
-> +                                       cpu_passive: cpu-passive {
-> +                                               temperature = <85000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "passive";
-> +                                       };
-> +
-> +                                       cpu_hot: cpu-hot {
-> +                                               temperature = <95000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "hot";
+>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> index c8501530173c..053e9b5880f1 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> @@ -6,7 +6,7 @@ Required properties:
+>     - "mediatek,mt7622-pwm": found on mt7622 SoC.
+>     - "mediatek,mt7623-pwm": found on mt7623 SoC.
+>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
+> -   - "mediatek,mt7629-pwm", "mediatek,mt7622-pwm": found on mt7629 SoC.
+> +   - "mediatek,mt7629-pwm": found on mt7629 SoC.
+>     - "mediatek,mt8516-pwm": found on mt8516 SoC.
+>   - reg: physical base address and length of the controller's registers.
+>   - #pwm-cells: must be 2. See pwm.txt in this directory for a description of
 
-critical instead of hot? What is the SoC's critical shutdown temperature?
+It seems good to me.
 
-Typically, you would use 'hot' at the beginning of at up trend e.g. at
-75000, 'passive' to start throttling and 'critical' for shutdown
-temperature.
+Thanks,
+Regards, Sam
 
-> +                                       };
-> +
-> +                               };
-> +                       };
-> +
-> +                       ddr_thermal: ddr-thermal {
-> +                               polling-delay = <1000>;
-> +                               polling-delay-passive = <100>;
-> +                               thermal-sensors = <&ddr_temp>;
-> +
-> +                               trips {
-> +                                       ddr_passive: ddr-passive {
-> +                                               temperature = <85000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "passive";
-> +                                       };
-> +                               };
-> +
-> +                               cooling-maps {
-> +                                       map {
-> +                                               trip = <&ddr_passive>;
-> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +
->                 ethmac: ethernet@ff3f0000 {
->                         compatible = "amlogic,meson-axg-dwmac",
->                                      "snps,dwmac-3.70a",
-> @@ -2412,6 +2457,7 @@
->                         assigned-clock-rates = <0>, /* Do Nothing */
->                                                <800000000>,
->                                                <0>; /* Do Nothing */
-> +                       #cooling-cells = <2>;
->                 };
->         };
->
-> --
-> 2.17.1
->
+
