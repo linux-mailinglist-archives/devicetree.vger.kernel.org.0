@@ -2,99 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F3AAC1D39
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 10:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB636C1D6B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 10:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729459AbfI3IfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 04:35:11 -0400
-Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31]:60509 "EHLO
-        lb3-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726008AbfI3IfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 04:35:11 -0400
-Received: from [192.168.2.10] ([46.9.232.237])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id Er97ickak9D4hEr9AiKwJr; Mon, 30 Sep 2019 10:35:09 +0200
-Subject: Re: [Patch 07/16] media: ti-vpe: vpe: fix a v4l2-compliance failure
- causing a kernel panic
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190927183650.31345-1-bparrot@ti.com>
- <20190927183650.31345-8-bparrot@ti.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <1a7c5929-15f1-8f04-1212-42f064654742@xs4all.nl>
-Date:   Mon, 30 Sep 2019 10:35:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190927183650.31345-8-bparrot@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+        id S1729968AbfI3IvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 04:51:17 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:63238 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726008AbfI3IvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 04:51:16 -0400
+X-UUID: 6f8aa737f23f496cbbcd03217376e47f-20190930
+X-UUID: 6f8aa737f23f496cbbcd03217376e47f-20190930
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 249343122; Mon, 30 Sep 2019 16:51:10 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 30 Sep 2019 16:51:06 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 30 Sep 2019 16:51:06 +0800
+Message-ID: <1569833468.32131.4.camel@mtksdccf07>
+Subject: Re: [PATCH v10 08/12] pwm: mediatek: Add MT7629 compatible string
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Mon, 30 Sep 2019 16:51:08 +0800
+In-Reply-To: <20190927112831.GA1171568@ulmo>
+References: <1569421957-20765-1-git-send-email-sam.shih@mediatek.com>
+         <1569421957-20765-9-git-send-email-sam.shih@mediatek.com>
+         <20190927112831.GA1171568@ulmo>
+Content-Type: text/plain; charset="ISO-8859-15"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfPpSIcYiSAgzWnPTLjqebCnZzwLOTGR29IhC1Xy1FZFqcZI+bgnIcCkzy/Xw8wyJnezhiG2+4BRHkrWkv/+Ps5qEYxzxijeoIS8WFAIHr6635UWy5mk4
- o9xUOXz5UzJa60TCCO3xrXJ+htn93ySXbL/n51im3Zo2GnoP6MAFp6lCs0+n03P1MWhPqzJrv3M1mw/tcYSfyAHYSTF0+3cAAyQ9LFcXMdZleIJAOECCUtU4
- inn62VIPhUVZGLMoZyytEXgk4SQewxyl/5UfB0ZQ704ZRHg2xxIQ35T6Rl9NnUJ9
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 117A8A6215936262384F6F70692A074F4A2330135B41FEF58EBF2008F4C56AEB2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/27/19 8:36 PM, Benoit Parrot wrote:
-> v4l2-compliance fails with this message:
-> 
->    warn: v4l2-test-formats.cpp(717): \
->    	TRY_FMT cannot handle an invalid pixelformat.
->    test VIDIOC_TRY_FMT: FAIL
-> 
-> This causes the following kernel panic:
-> 
-> Unable to handle kernel paging request at virtual address 56595561
-> pgd = ecd80e00
-> *pgd=00000000
-> Internal error: Oops: 205 [#1] PREEMPT SMP ARM
-> ...
-> CPU: 0 PID: 930 Comm: v4l2-compliance Not tainted \
-> 	4.14.62-01715-gc8cd67f49a19 #1
-> Hardware name: Generic DRA72X (Flattened Device Tree)
-> task: ece44d80 task.stack: ecc6e000
-> PC is at __vpe_try_fmt+0x18c/0x2a8 [ti_vpe]
-> LR is at 0x8
-> 
-> Because the driver fails to properly check the 'num_planes' values for
-> proper ranges it ends up accessing out of bound data causing the kernel
-> panic.
-> 
-> Since this driver only handle single or dual plane pixel format, make
-> sure the provided value does not exceed 2 planes.
-> 
-> Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> ---
->  drivers/media/platform/ti-vpe/vpe.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/ti-vpe/vpe.c b/drivers/media/platform/ti-vpe/vpe.c
-> index bbbf11174e16..1278d457f753 100644
-> --- a/drivers/media/platform/ti-vpe/vpe.c
-> +++ b/drivers/media/platform/ti-vpe/vpe.c
-> @@ -1650,7 +1650,7 @@ static int __vpe_try_fmt(struct vpe_ctx *ctx, struct v4l2_format *f,
->  			      &pix->height, MIN_H, MAX_H, H_ALIGN,
->  			      S_ALIGN);
->  
-> -	if (!pix->num_planes)
-> +	if (!pix->num_planes || pix->num_planes > 2)
->  		pix->num_planes = fmt->coplanar ? 2 : 1;
->  	else if (pix->num_planes > 1 && !fmt->coplanar)
->  		pix->num_planes = 1;
-> 
+Hi,
 
-This looks weird.
+On Fri, 2019-09-27 at 13:28 +0200, Thierry Reding wrote:
+> On Wed, Sep 25, 2019 at 10:32:33PM +0800, Sam Shih wrote:
+> > This adds pwm support for MT7629, and separate mt7629 compatible string
+> > from mt7622
+> > 
+> > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> > ---
+> >  drivers/pwm/pwm-mediatek.c | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> 
+> I picked this patch up and made some minor adjustments to make it build
+> without the num_pwms patches. With that I don't think there's anything
+> left from this series that you need.
 
-Why not just unconditionally do:
+Yes, I think the driver should work once dtsi updated.
+("[v10,12/12] arm: dts: mediatek: add mt7629 pwm support")
 
-	pix->num_planes = fmt->coplanar ? 2 : 1;
+But, due to we use comaptible string separately for every SoC now,
+The comaptible string in dt-bindings should be "mediatek,mt7629-pwm".
+I think we should use "[v10,11/12] dt-bindings: pwm: update bindings 
+for MT7629" to replace commit 1c00ad6ebf36aa3b0fa598a48b8ae59782be4121,
+Or maybe we need a little modification like this ?
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt ...
+- - "mediatek,mt7629-pwm", "mediatek,mt7622-pwm": found on mt7629 SoC.
++ - "mediatek,mt7629-pwm": found on mt7629 SoC.
 
-Regards,
+Thanks,
+Regards, Sam
 
-	Hans
