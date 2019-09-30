@@ -2,65 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC77C1DBE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 991D2C1DD4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730191AbfI3JPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 05:15:43 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:56783 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726952AbfI3JPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 05:15:42 -0400
-X-IronPort-AV: E=Sophos;i="5.64,565,1559487600"; 
-   d="scan'208";a="27682651"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 30 Sep 2019 18:15:41 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8F9174009BD2;
-        Mon, 30 Sep 2019 18:15:38 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
+        id S1730000AbfI3JVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 05:21:00 -0400
+Received: from mx2.suse.de ([195.135.220.15]:40298 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727935AbfI3JVA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 05:21:00 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id AF5F1B087;
+        Mon, 30 Sep 2019 09:20:57 +0000 (UTC)
+Message-ID: <202216c6e456bfd1a30f7cdb000aa714e3855e10.camel@suse.de>
+Subject: Re: [PATCH 00/11] of: dma-ranges fixes and improvements
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: [PATCH 4/4] drm: rcar-du: lvds: Add r8a774b1 support
-Date:   Mon, 30 Sep 2019 10:15:05 +0100
-Message-Id: <1569834905-42868-5-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569834905-42868-1-git-send-email-biju.das@bp.renesas.com>
-References: <1569834905-42868-1-git-send-email-biju.das@bp.renesas.com>
+        Simon Horman <horms+renesas@verge.net.au>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Oza Pawandeep <oza.oza@broadcom.com>
+Date:   Mon, 30 Sep 2019 11:20:55 +0200
+In-Reply-To: <20190927002455.13169-1-robh@kernel.org>
+References: <20190927002455.13169-1-robh@kernel.org>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-/7Fyj1jMsFE0z7R36gtv"
+User-Agent: Evolution 3.32.4 
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LVDS encoders on RZ/G2N SoC is similar to R-Car M3-N. Add support for
-RZ/G2N (R8A774B1) SoC to the LVDS encoder driver.
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- drivers/gpu/drm/rcar-du/rcar_lvds.c | 1 +
- 1 file changed, 1 insertion(+)
+--=-/7Fyj1jMsFE0z7R36gtv
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-index 082d02c..3c24a6d 100644
---- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-@@ -929,6 +929,7 @@ static const struct of_device_id rcar_lvds_of_table[] = {
- 	{ .compatible = "renesas,r8a7743-lvds", .data = &rcar_lvds_gen2_info },
- 	{ .compatible = "renesas,r8a7744-lvds", .data = &rcar_lvds_gen2_info },
- 	{ .compatible = "renesas,r8a774a1-lvds", .data = &rcar_lvds_gen3_info },
-+	{ .compatible = "renesas,r8a774b1-lvds", .data = &rcar_lvds_gen3_info },
- 	{ .compatible = "renesas,r8a774c0-lvds", .data = &rcar_lvds_r8a77990_info },
- 	{ .compatible = "renesas,r8a7790-lvds", .data = &rcar_lvds_r8a7790_info },
- 	{ .compatible = "renesas,r8a7791-lvds", .data = &rcar_lvds_gen2_info },
--- 
-2.7.4
+On Thu, 2019-09-26 at 19:24 -0500, Rob Herring wrote:
+> This series fixes several issues related to 'dma-ranges'. Primarily,
+> 'dma-ranges' in a PCI bridge node does correctly set dma masks for PCI
+> devices not described in the DT. A common case needing dma-ranges is a
+> 32-bit PCIe bridge on a 64-bit system. This affects several platforms
+> including Broadcom, NXP, Renesas, and Arm Juno. There's been several
+> attempts to fix these issues, most recently earlier this week[1].
+>=20
+> In the process, I found several bugs in the address translation. It
+> appears that things have happened to work as various DTs happen to use
+> 1:1 addresses.
+>=20
+> First 3 patches are just some clean-up. The 4th patch adds a unittest
+> exhibiting the issues. Patches 5-9 rework how of_dma_configure() works
+> making it work on either a struct device child node or a struct
+> device_node parent node so that it works on bus leaf nodes like PCI
+> bridges. Patches 10 and 11 fix 2 issues with address translation for
+> dma-ranges.
+>=20
+> My testing on this has been with QEMU virt machine hacked up to set PCI
+> dma-ranges and the unittest. Nicolas reports this series resolves the
+> issues on Rpi4 and NXP Layerscape platforms.
+>=20
+> Rob
+>=20
+> [1]=20
+>=20
+https://lore.kernel.org/linux-arm-kernel/20190924181244.7159-1-nsaenzjulien=
+ne@suse.de/
+>=20
+> Rob Herring (5):
+>   of: Remove unused of_find_matching_node_by_address()
+>   of: Make of_dma_get_range() private
+>   of/unittest: Add dma-ranges address translation tests
+>   of/address: Translate 'dma-ranges' for parent nodes missing
+>     'dma-ranges'
+>   of/address: Fix of_pci_range_parser_one translation of DMA addresses
+>=20
+> Robin Murphy (6):
+>   of: address: Report of_dma_get_range() errors meaningfully
+>   of: Ratify of_dma_configure() interface
+>   of/address: Introduce of_get_next_dma_parent() helper
+>   of: address: Follow DMA parent for "dma-coherent"
+>   of: Factor out #{addr,size}-cells parsing
+>   of: Make of_dma_get_range() work on bus nodes
+
+Re-tested the whole series. Verified both the unittests run fine and PCIe's
+behaviour is fixed.
+
+Tested-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+
+Also for the whole series:
+
+Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+
+Regards,
+Nicolas
+
+
+--=-/7Fyj1jMsFE0z7R36gtv
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2RyPcACgkQlfZmHno8
+x/5aaggAjeyCHdUtuhmPYMOr0eHC3qN6bd3dUsbXdN2lP82cn6S6n08OsHIfHaS/
+mKzeb3RK8lHn7v8Pv/nfe7UU93Lxx4Dyq4D4vXXTWyTFNg67C/KxtJswHvKhdQBX
+u/r/OIhCnewJLTEZV9g44OFAko61Zuf8mp8KIwSjj+vfUXORyUc/KLfFYNt6b8Fb
+YQRdgTyuF4Xhy/XYdxn8uCcDKkz0MtQ1Z9yJiao0h1c5p1Hia8Xhilq7uglx6+/3
+w6Izh+0OAiDP30yMBVW+5APyhFPUdfzlP3hdifrkv8LiwCyMsukutfWawrm0r9E6
+Ubrk8jYhhRg1qlpwQQ9V6QeapBjgsA==
+=14/S
+-----END PGP SIGNATURE-----
+
+--=-/7Fyj1jMsFE0z7R36gtv--
 
