@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 961BFC1E0E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38558C1E17
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 11:36:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729856AbfI3JfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 05:35:11 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:44462 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726008AbfI3JfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:35:10 -0400
-Received: by mail-vs1-f66.google.com with SMTP id w195so6272251vsw.11
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 02:35:10 -0700 (PDT)
+        id S1727884AbfI3Jf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 05:35:58 -0400
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:43245 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730514AbfI3Jf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 05:35:58 -0400
+Received: by mail-ua1-f65.google.com with SMTP id k24so3922251uag.10
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 02:35:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QV4x5NHTum/jLzU4cx5C+ZxMnkOgGxMeO6LpanKwV8Q=;
-        b=LZFWjyQ1EhPcpe/hpsLIH/Tabk0U7kboQRvjElnQaSeO8fb6R0xdxk4JfgVcnbizBW
-         96mxggGf0N0DiJ+UuxdB3g3NqOo301Z4YsMUOubGYkHzAmTE7elNh8gQ9zCmBRO6jMSt
-         AKb9ZSZsSWjA2n9JPaorjb42bN4lxFzjiDS6ZdT15+paoV43KMuXz7RkOmmJukcdVkQE
-         tKinjhMracv9Bb4eAZyrJ++gq/kdIqCEX2/z3DtOoK4JBogFf700W7TyS8x8H8s6xUbF
-         uX74t+Lz741V5GFZPFumLzUJJAziOq050GnQfid4NiEgY21kp4fkolg9LF92zfrhoLWX
-         9cGA==
+        bh=gzD2qGvL3VizkE9nQvu95DK0V9ar1WcYyRCEdbmgd/s=;
+        b=ENKDUxj2S/PL76NTuZ0LtDt8Xp1Qggith5LsiWQ1vVZE86Qa0ly016ttBl1QI6INFA
+         BIGRhlxIJzDpY38IboaFgI4jFzR0GGBsoPYCWeEyoCNOvhOb4OZ1VsFSEN+dsHt/LcE0
+         QFanGtNHxC8kL9yMg0gmoLHkIz6c2u4tUG4MyElYibFOJw2SlT+Z2lf7RknOjUZXAvaS
+         gCFO/YGYKX29t/zhpJATFktFYBI5MDaPbL1eN6PHRS9wNUmLzIOYopZiy/gAfqQ6E54D
+         lQT1KLjBXc7GtGAkYyUCcFHVDZCAUlF3v4WinAc9LgL0e+DwE1i4A+7hLPWE3HJLvdJn
+         gV2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QV4x5NHTum/jLzU4cx5C+ZxMnkOgGxMeO6LpanKwV8Q=;
-        b=idCWIdW1hWmts9Xt+o62XQcFwFgmhazNQA8Vr2pOjYAdMlifdZc4iVW30hCgEq1WKi
-         gsxnF93P3xEtmDIqYY0m8l7dY31znBAwvLCuM3D3w0gmx5zZbjgypI5RNd3enHIfL5Ld
-         DOxtCSllmSKj4DeIRG43zAwju9IW7puUPRUurrSjeyzygmi2QXkcVVyvU0bodGNV7w17
-         hpL24lFb68gFy/aYgNviSWIZcJw7V2T6WQv1KXx9HSGW8cuFNlclb1R1Ap/LvlMN3NBb
-         U10j7WTBdK2dQwsu3gJDHrH287Xqv38N7e2r4b/mISdzZXYapy4ybC2UihBv1cNCmVSi
-         1GJg==
-X-Gm-Message-State: APjAAAXpZrcnoLUnf6xtR1pBVKaoaVix0BqwM3NwIpmfQS9N4YJItrJr
-        giiggctU112EX4y4qTXJ6+iHFA/8s56ziFDkGBBy3w==
-X-Google-Smtp-Source: APXvYqwMBz5wNpuqunAhTIOtFioIDFII4P4C9O10Q9J5ID9h0IFfwcQ92Xm+Zo1lLTaPpokB531dd4mzAf8FzHenGEU=
-X-Received: by 2002:a67:f058:: with SMTP id q24mr9102100vsm.27.1569836109918;
- Mon, 30 Sep 2019 02:35:09 -0700 (PDT)
+        bh=gzD2qGvL3VizkE9nQvu95DK0V9ar1WcYyRCEdbmgd/s=;
+        b=JIPzsp3Zrp4FX22KAezmW4+YZJqiRtawK81acgs4+XZK20Yodwcp4qS/wJ49sGZc9K
+         635bfZdeyWFVupLq+18xCjvg/wqlcXdWywDF9G+8b1/HPJTTrZkhdMhZPLfu7ZXiuoTI
+         rx9bo8lNtqm4Cj8XAuJd73mIqLBbHfDfwO2JRPaawfDx43fep/p5rVjVLssW1aGPw1vt
+         S5bxRx3Cqept7v+G0A6bJ7RwhpKkLxO9Z6eyA56tyE56taA8DlDLMzv2V+fOjGiYIDdJ
+         Acb+1mF8msb++potioPnWkgwCcYFrGfUEUBdawF5RAYF98nLGuBWhrZ3KewEtdhv5y3A
+         wwoA==
+X-Gm-Message-State: APjAAAWDUEhpc8pppisAXKmsNCQTBOXMuQblj4OYUt/vOu0WuocsIMZv
+        EYhm1MztKMeghwsW1EqRkGTLl/EHtZByHWeGUSfklA==
+X-Google-Smtp-Source: APXvYqwOPzgEcdOwEVKUjzTC90Fkp81Mt7170e3s+ZrPHeKlCkhi0dtBcyVb9k3LPsI52iJjSoPVhKu5BeDpUuzi5Dg=
+X-Received: by 2002:ab0:ed:: with SMTP id 100mr4570681uaj.48.1569836156110;
+ Mon, 30 Sep 2019 02:35:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190927184352.28759-1-glaroque@baylibre.com> <20190927184352.28759-2-glaroque@baylibre.com>
 In-Reply-To: <20190927184352.28759-2-glaroque@baylibre.com>
 From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Mon, 30 Sep 2019 15:04:59 +0530
-Message-ID: <CAHLCerPxrGMm98nDC529pYkzEaiDk0p6VTdVzyHx8=U8_PYe_A@mail.gmail.com>
+Date:   Mon, 30 Sep 2019 15:05:44 +0530
+Message-ID: <CAHLCerMDyuLW-XJ6XxnDq5Th42g_970e_Scqtuxo0r0=pbSWdA@mail.gmail.com>
 Subject: Re: [PATCH v6 1/7] dt-bindings: thermal: Add DT bindings
  documentation for Amlogic Thermal
 To:     Guillaume La Roque <glaroque@baylibre.com>
@@ -73,6 +73,9 @@ On Sat, Sep 28, 2019 at 12:14 AM Guillaume La Roque
 > Tested-by: Christian Hewitt <christianshewitt@gmail.com>
 > Tested-by: Kevin Hilman <khilman@baylibre.com>
 > Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+
+Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
+
 > ---
 >  .../bindings/thermal/amlogic,thermal.yaml     | 54 +++++++++++++++++++
 >  1 file changed, 54 insertions(+)
