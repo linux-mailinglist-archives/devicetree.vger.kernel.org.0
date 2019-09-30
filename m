@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7651CC2709
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 22:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1BDC26DD
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 22:41:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729245AbfI3UpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 16:45:08 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:40966 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727508AbfI3UpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 16:45:07 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w17so12386357oiw.8;
-        Mon, 30 Sep 2019 13:45:06 -0700 (PDT)
+        id S1729775AbfI3Ulh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 16:41:37 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:46300 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730274AbfI3Ulh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 16:41:37 -0400
+Received: by mail-ua1-f66.google.com with SMTP id m21so4662413ual.13;
+        Mon, 30 Sep 2019 13:41:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BHeCpN2463mRdVd4Een2eG9NLKq6PLofbIreirL6ULM=;
-        b=WeNIIIj60biT8hJrNvDwy832Ruk6fDeCQTb05GLVlZMMjedjLGn/KINSo1Vje802HB
-         jO4i98jSvdqR+ukfJh19+EClMyRhtBJMhkvbwKzq4gr3sp582okXRbvcLgFO7FBY988C
-         /2PMOI3ORCav3OTa2nBqTEEp5bSVyZZ1ubdasNUCx6XOLiAbi3EhARhUhKh4UmVxZ4/A
-         lXS+nes8QYc2ix8QIPDlR4IZdP6Hi1Jw+1UDVOFfU4D/f2+mjSmj3bgjxyetQUeMeFOw
-         HJdRuP+8XXVCpbicg4/CK66st/FgpAKn+WRUwScr0r3ZnfG/9qTN30Ch/dZWPC5GuVoD
-         QDYg==
-X-Gm-Message-State: APjAAAWAYvYvgxaMOu/D4vsbR0vT14e2C8f4OrvIz1evoeEm+g1kjdlo
-        czwd0fyhWRvDn/Bdu5USp3ulriI=
-X-Google-Smtp-Source: APXvYqwwR+as++oOAeBfzG/uIVrhnm3yF5hx+JyUgYRKMiH7ZEmlrV6X71etrsLz0P1tGpDCcgNPZQ==
-X-Received: by 2002:aca:d846:: with SMTP id p67mr550811oig.144.1569869862328;
-        Mon, 30 Sep 2019 11:57:42 -0700 (PDT)
+        bh=CLVDSoxV+nCW/wNVcSm6Lk6FDWMUIFr2tLuq/8JsB9M=;
+        b=dS5ouCDGY22jEQnH1tj9bVk5Ucx6Ym9u4zB+OZ2aLucN+8kI5QaTNRPd1vl48+cGit
+         ksRZKyJMCo0yfdy3tTKzYIXixa7O04greZdkEUvi5fOe16JC9bKkhoPaYvypIas2oBLh
+         UntF2hkg8b7J7CBG7nRCpBKI6TZbRieqFYc1SUDL0FvMhDykb1GtJ9w5KRJmRROuU0JV
+         d4mVC+0Y1mriSMMZTHc244t2AY9g6N1Ln1DtXXQIctWYdcbxZ8LqD0pLGp0M3dPyD0nA
+         /NkgBSW4RF0enlCazTPCy6R3NHnsRIrC1t/VxdNqdV0TDBoK077OnEUEQeFlnRtqdzFd
+         GlZA==
+X-Gm-Message-State: APjAAAUWo2e18KnPajGdvtlB+oPP/2FR/OLGFwdNF1vrUbh9s+ipstTZ
+        w9laFhEyYpHCBs3Y2tNhhVoW6jc=
+X-Google-Smtp-Source: APXvYqxG+EbYwn9Iva1qgDgHWXpFLpzmQX/U5QFutEfVET8XKURRtpLNz1vDuLHXIB0GlUwULozv9A==
+X-Received: by 2002:a9d:620e:: with SMTP id g14mr14524629otj.168.1569870646905;
+        Mon, 30 Sep 2019 12:10:46 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b5sm4531019oia.20.2019.09.30.11.57.41
+        by smtp.gmail.com with ESMTPSA id q1sm1302786otn.8.2019.09.30.12.10.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 11:57:41 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 13:57:41 -0500
+        Mon, 30 Sep 2019 12:10:46 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 14:10:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 1/2] ASoC: fsl_mqs: add DT binding documentation
-Message-ID: <20190930185741.GA18160@bogus>
-References: <65e1f035aea2951aacda54aa3a751bc244f72f6a.1568367274.git.shengjiu.wang@nxp.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v2 4/5] dt-bindings: Document brcm,int-fwd-mask property
+ for bcm7038-l1-intc
+Message-ID: <20190930191045.GA8851@bogus>
+References: <20190913191542.9908-1-f.fainelli@gmail.com>
+ <20190913191542.9908-5-f.fainelli@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <65e1f035aea2951aacda54aa3a751bc244f72f6a.1568367274.git.shengjiu.wang@nxp.com>
+In-Reply-To: <20190913191542.9908-5-f.fainelli@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Sep 2019 17:42:13 +0800, Shengjiu Wang wrote:
-> Add the DT binding documentation for NXP MQS driver
+On Fri, 13 Sep 2019 12:15:41 -0700, Florian Fainelli wrote:
+> Indicate that the brcm,int-fwd-mask property is optional and can be
+> optionaly set on platforms which require to leave specific interrupts
+> untouched from Linux and retain the firmware configuration.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 > ---
-> Changes in v2
-> -refine the comments for properties
-> 
->  .../devicetree/bindings/sound/fsl,mqs.txt     | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,mqs.txt
+>  .../bindings/interrupt-controller/brcm,bcm7038-l1-intc.txt    | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
