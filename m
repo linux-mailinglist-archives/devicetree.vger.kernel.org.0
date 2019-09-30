@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 154A7C2A21
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F84FC2A3C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 01:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726425AbfI3W6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 18:58:43 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:40524 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731685AbfI3W6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:58:42 -0400
-Received: by mail-ot1-f67.google.com with SMTP id y39so9865602ota.7;
-        Mon, 30 Sep 2019 15:58:42 -0700 (PDT)
+        id S1731539AbfI3XGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 19:06:44 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:37980 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728073AbfI3XGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 19:06:44 -0400
+Received: by mail-ot1-f66.google.com with SMTP id e11so9891238otl.5;
+        Mon, 30 Sep 2019 16:06:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Zsh+LJZZ1bYwJ2NNK3krE03pjGa9uFNYkpSwzo6s75E=;
-        b=cF3SuEP6UVgmLoVbAww7p98JUkzMwHp1DEDMgGI3sQcZuyAldX6pp1xwW4uBwGVpzA
-         gpLjpGJrJ490EgeLAT728uHaTrjaIfZkEfdr02Dlo7Hv46RJO0rqmfQFUXQZ4ReaGWb9
-         KjIDP3fgQyZCUXjtEwbtRJ/RPSTFNBF3VXYkNeeVNksJHnhvQ6Z/TrFuuPcH7NTZmsl3
-         V6f4iEFd1lhh2Lav213Ss2/mqxT7CHQcary9ygzHhjX56g5McM5/XTkmNV7Ma2yTp//F
-         7E2tSgBTlgGI2SoYiSA4GJaJwwbGz6mHJRPjOsjt1jnhDR/peYL3s90YMyS8w6Z2uHNR
-         4LBQ==
-X-Gm-Message-State: APjAAAUB91R2jikZ49L58S4AymLios4FUn/9Bps/Q8eTdMDaaDo2RgWT
-        GiFVd6BLO6Sjr3myv420fg==
-X-Google-Smtp-Source: APXvYqwWkT9GDFmYgFBWEu1p/Bs3nmD8s9rnVMBqjB0aVwy3EoB5SB513rfznMUpF2BgtyGrnCCJBg==
-X-Received: by 2002:a9d:67c3:: with SMTP id c3mr14456067otn.254.1569884321904;
-        Mon, 30 Sep 2019 15:58:41 -0700 (PDT)
+        bh=TLweXOijwFdWK7zNbWqDh8rchrcqU7bnczWWmbnZWEc=;
+        b=THurTXQ9o7QVgCqQcOvbZq4p1SR495WtDjpQMQzWVaPA6sqYNC4Z7MmSi++XQEBGoT
+         N3AsRk5s9aXRmsJYgjJpHfl6IiUaU6A4M1OpcjKxc1Wer/UYcSxPtqhafJcUoF50CZq8
+         Flq0cB7pQ0ivw+6vQNT6JAq9HwUHe/98B1vE6x1HItm/P2NsXdwERWLfTViDjbLE0++G
+         Gg3+GT4dOiORLPV0P4KuEmN0lnWqw0B9r2UiIUjlODxvPsBw8yT45db3Sz8zPmrMPRGW
+         h4KRZ2JbuwFvnR66xa5qGy9E75N41YtWdMXoVkGeW5TqQfXdP/74PJFewX8doGCxEAo+
+         3UjA==
+X-Gm-Message-State: APjAAAXxF7IPY0h1kuXFamTdc6ot7AO/kMgjc1gm7t1F7pAImxhOF438
+        a45+O7sz046FIewe1ewkFDS0tS0=
+X-Google-Smtp-Source: APXvYqy9IdRxqr9jkjAfdLo8ZvulzWBwkEmpIj0mqCLCs+9tviGNsGq8m1QktiGsU7PZ7bH2zqbA7w==
+X-Received: by 2002:a05:6830:1e2d:: with SMTP id t13mr3153803otr.357.1569884801924;
+        Mon, 30 Sep 2019 16:06:41 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 38sm4493219otw.28.2019.09.30.15.58.41
+        by smtp.gmail.com with ESMTPSA id n27sm4030641otr.32.2019.09.30.16.06.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 15:58:41 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 17:58:40 -0500
+        Mon, 30 Sep 2019 16:06:41 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 18:06:39 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-rockchip@lists.infradead.org,
-        christoph.muellner@theobroma-systems.com,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH 11/13] dt-bindings: document PX30 usb2phy General
- Register Files
-Message-ID: <20190930225840.GA14866@bogus>
-References: <20190917082659.25549-1-heiko@sntech.de>
- <20190917082659.25549-11-heiko@sntech.de>
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: sh-sci: Document r8a774b1 bindings
+Message-ID: <20190930230639.GA28632@bogus>
+References: <1568724324-26995-1-git-send-email-biju.das@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917082659.25549-11-heiko@sntech.de>
+In-Reply-To: <1568724324-26995-1-git-send-email-biju.das@bp.renesas.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Sep 2019 10:26:57 +0200, Heiko Stuebner wrote:
-> One of the separate General Register Files contains the registers for
-> controlling the usb2phy, so add the necessary binding compatible for it.
+On Tue, 17 Sep 2019 13:45:24 +0100, Biju Das wrote:
+> RZ/G2N (R8A774B1) SoC also has the R-Car Gen3 compatible SCIF and
+> HSCIF ports, so document the SoC specific bindings.
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/soc/rockchip/grf.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/serial/renesas,sci-serial.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
