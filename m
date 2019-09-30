@@ -2,103 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1216DC2339
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1539EC235C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730902AbfI3O1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 10:27:17 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37168 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726314AbfI3O1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 10:27:17 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UER9D4010738;
-        Mon, 30 Sep 2019 09:27:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569853629;
-        bh=19UZeQW7iCMEPJGBu3CVRVx3eQA8RyzMg8BIyoBYUWY=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=mqAFLfcVc72peDTQaVTX3krGNWa4dUGqG37HuzfVHniEjLFEVSOh8YoKdxbgpNypn
-         9JTrY0Nwc+jZwsA4tAyvBkeNUyOL86+NmKHRKznpqBPY2bLbEqdihnIkEZpky/3syV
-         aD/H/j8j0s3Fyh4XLDHzYd3fjjECs/1Fh8fCCAe0=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UER9qU042622;
-        Mon, 30 Sep 2019 09:27:09 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 30
- Sep 2019 09:27:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 30 Sep 2019 09:27:09 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UER6Ak067205;
-        Mon, 30 Sep 2019 09:27:06 -0500
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
- dts
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     Adam Ford <aford173@gmail.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Tony Lindgren <tony@atomide.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20190510194229.20628-1-aford173@gmail.com>
- <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
- <CAHCN7xJexJvh71vyb31ETgo=n_y_CupHH-AZwVK9mZe3GzJfEQ@mail.gmail.com>
- <845055e2-8182-de74-2077-629fdf50ac6c@ti.com>
- <CAHCN7xJFrTLOnbqrnH2W_T2whR8Xji0EMNR_cy8GYkDV-JDodQ@mail.gmail.com>
- <854f6130-c8a8-81cb-aa76-4830f218ae54@ti.com>
- <CAHCN7xKocdiWOdmoWQV3POr84qte6WNt0QbQRAwxKSvU8COB_w@mail.gmail.com>
- <0473526e-df0a-94a5-5c22-debd0084ab16@ti.com>
- <36369388-e9c8-22cd-8c19-e2bdf2d0389b@ti.com>
- <eb2eb1f6-3c9b-7ecb-667e-819033af9c14@ti.com>
- <23eba53a-9304-2ceb-d97e-01891ec0b3ed@ti.com>
- <cb028b1e-05ca-9b22-be5d-c63f5fd56cc4@ti.com>
- <F3335195-6EB7-4D44-B884-2F29D9238011@goldelico.com>
- <CAHCN7xL9bFxO=2i1DzmRj6A3XwUNdt=DZeJ2a0EZ0f9gcFTy6g@mail.gmail.com>
- <CAHCN7x+vCfPTRE+zzYUwAXdbBzRotTP2hSOgsHB0FdgBhZV5zA@mail.gmail.com>
- <CAHCN7xJDV=R9Ysjhff7=mEXdciwPP_5LQbHwaUT8KvhSkLKw8A@mail.gmail.com>
- <04306a5e-f9be-35a4-1aa1-5795d780e289@ti.com>
-Message-ID: <3777f1b1-2d9a-334b-b9e7-99dfda2ae29b@ti.com>
-Date:   Mon, 30 Sep 2019 17:27:05 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1731439AbfI3OcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 10:32:22 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:52578 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726314AbfI3OcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 10:32:22 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 88C1C61156; Mon, 30 Sep 2019 14:32:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569853940;
+        bh=27oTolUn8I14Ygh/14k2Slwwxq1tVdhkDg1GGep9/tc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bkeGwARc9alvIMfafDKup75VaICLhVuLSRWU8zUE+Yc8T8Jz4pVbfUaAShzGrRdG6
+         VVTIbb1TzS6hMLKeh1aXnPboNz7xFtVq0dntOL9cne8PS8uE7JuiyZgsN/ahW1XUbJ
+         GvfxwgyUDc7iJZMlbBq6kuCwZau1sE4mFIn9E23o=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 643506013C;
+        Mon, 30 Sep 2019 14:32:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569853939;
+        bh=27oTolUn8I14Ygh/14k2Slwwxq1tVdhkDg1GGep9/tc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MJTnjXOrIVRsa9dWFxeFN+qv8EfRfNsmzuJVe7BTB3q4VuqWZyLUDVU1yZalqTmFO
+         c3D6DHFYggnTQA7veYp6fHPzkYYdx4TPhh7srH0v49nDGBF0CB2sOQd9p9d24QVsMy
+         YJIhQV24Mj7AcAYVcBLjRw39Sxay2frELShTH6fU=
 MIME-Version: 1.0
-In-Reply-To: <04306a5e-f9be-35a4-1aa1-5795d780e289@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Date:   Mon, 30 Sep 2019 20:02:19 +0530
+From:   ppvk@codeaurora.org
+To:     Rob Herring <robh@kernel.org>
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        asutoshd@codeaurora.org, vbadigan@codeaurora.org,
+        stummala@codeaurora.org, sayalil@codeaurora.org,
+        rampraka@codeaurora.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [RFC 2/2] dt-bindings: mmc: sdhci-msm: Add Bus BW vote supported
+ strings
+In-Reply-To: <5d7ba95c.1c69fb81.edf8e.6556@mx.google.com>
+References: <1567774037-2344-1-git-send-email-ppvk@codeaurora.org>
+ <1567774037-2344-3-git-send-email-ppvk@codeaurora.org>
+ <5d7ba95c.1c69fb81.edf8e.6556@mx.google.com>
+Message-ID: <695802ae255fe40ab9ca7750e0bbed91@codeaurora.org>
+X-Sender: ppvk@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2019 17:20, Tomi Valkeinen wrote:
-
-> Let's see what Tero says, but yeah, something is odd here. I expected 
-> the max divider to be 16 with Tero's patch, but I don't see it having 
-> that effect. I can get the div to 31.
+On 2019-09-13 20:06, Rob Herring wrote:
+> On Fri, Sep 06, 2019 at 06:17:17PM +0530, Pradeep P V K wrote:
+>> Add Bus bandwidth voting supported strings for qcom-sdhci controller.
 > 
-> You can see this from the clock register 0x48004e40 (CM_CLKSEL_DSS). The 
-> lowest bits are the divider, 5 to 0. The TRM says max div is 32.
+> What is bus bandwidth voting?
+
+Controller is connected with its master using NOC and it controls its 
+slaves using another NOC path.
+So,controller have 2 NOC paths as below.
+     a. CPU to Controller, This path is used to access the registers of 
+controllers.
+     b. Controller to DDR, This path is a data path, where data is 
+read/write from/to DDR.
+All data transfer will happen on these NOC's, which is shared between 
+other peripherals.
+In order to achieve required throughput (Data transfer Bandwidth) we put 
+vote on these NOC's to
+scale the NOC clocks to support required bandwidth.
+
+Instantaneous bandwidth (ib) and Arbitrated bandwidth (ab) values are 
+the values calculated (This involves various arch. specific parameters
+like clock plans, voltage corners, etc. which varies from vendor to 
+vendor and target to target)
+to put vote on those noc's to achieve require throughput.
+
 > 
-> Tero said for him the dividers > 16 didn't "stick" to the register. I'm 
-> now wondering if he has an old beagleboard with OMAP34xx, which has max 
-> div 16.
+>> 
+>> Signed-off-by: Pradeep P V K <ppvk@codeaurora.org>
+>> ---
+>>  .../devicetree/bindings/mmc/sdhci-msm.txt          | 32 
+>> ++++++++++++++++++++++
+>>  1 file changed, 32 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt 
+>> b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+>> index da4edb1..8255d92 100644
+>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+>> @@ -39,6 +39,25 @@ Required properties:
+>>  	"cal"	- reference clock for RCLK delay calibration (optional)
+>>  	"sleep"	- sleep clock for RCLK delay calibration (optional)
+>> 
+>> +Optional Properties:
+>> +* Following bus parameters are required for bus bw voting:
+>> +- interconnects: Pairs of phandles and interconnect provider 
+>> specifier
+>> +		 to denote the edge source and destination ports of
+>> +		 the interconnect path. Please refer to
+>> +		 Documentation/devicetree/bindings/interconnect/
+>> +		 for more details.
+>> +- interconnect-names: List of interconnect path name strings sorted 
+>> in the same
+>> +		order as the interconnects property. Consumers drivers will use
+>> +		interconnect-names to match interconnect paths with interconnect
+>> +		specifiers. Please refer to Documentation/devicetree/bindings/
+>> +		interconnect/ for more details.
+> 
+> How many? What are the strings?
 
-So testing a bit more here, I can see the DSS working fine and fps as 
-expected when I write values directly to CM_CLKSEL_DSS:5:0, with 
-dividers up to 31. With 32, DSS breaks. The TRM (AM/DM37x) says value 32 
-is valid.
+As this is implemented using interconnect framework, "interconnects" and 
+"interconnect-names" are required
+and below qcom specific properties are required to calculate the ab and 
+ib values.
+> 
+>> +- qcom,msm-bus,name: string describing the bus path
+>> +- qcom,msm-bus,num-cases: number of configurations in which sdhc can 
+>> operate in
+>> +- qcom,msm-bus,num-paths: number of paths to vote for
+>> +- qcom,msm-bus,vectors-KBps: Takes a tuple <ib ab>, <ib ab> (2 tuples 
+>> for 2
+> 
+> ib and ab are what? Didn't we just add interconnect bindings for
+> expressing bandwidth?
 
-  Tomi
+Instantaneous bandwidth (ib) is peak bandwidth and Arbitrated bandwidth 
+(ab) is the Average bandwidth.
+There is no interconnect binding node as such for expressing the 
+bandwidth. Hence the reason to use the
+above qcom nodes for parsing and storing the req. bandwidth.
 
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> 
+>> +				num-paths) The number of these entries *must*
+>> +				be same as num-cases.
+> 
+> Are all these properties SDHCI specific or can we expect to get these
+> for *all* the QCom blocks?
+> 
+As per the current implementation, these are some optional properties 
+and is required
+only when the bus bandwidth support is needed and all these are qcom 
+specific.
+
+>> +
+>>  Example:
+>> 
+>>  	sdhc_1: sdhci@f9824900 {
+>> @@ -56,6 +75,19 @@ Example:
+>> 
+>>  		clocks = <&gcc GCC_SDCC1_APPS_CLK>, <&gcc GCC_SDCC1_AHB_CLK>;
+>>  		clock-names = "core", "iface";
+>> +		interconnects = <&qnoc 50 &qnoc 512>,
+>> +				<&qnoc 1 &qnoc 544>;
+>> +		interconnect-names = "sdhc-ddr","cpu-sdhc";
+>> +		qcom,msm-bus,name = "sdhc1";
+>> +		qcom,msm-bus,num-cases = <3>;
+>> +		qcom,msm-bus,num-paths = <2>;
+>> +		qcom,msm-bus,vectors-KBps =
+>> +		/* No Vote */
+>> +		<0 0>, <0 0>,
+>> +		/* 50 MB/s */
+>> +		<130718 200000>, <133320 133320>,
+>> +		/* 200 MB/s */
+>> +		<1338562 4096000>, <1338562 4096000>;
+>>  	};
+>> 
+>>  	sdhc_2: sdhci@f98a4900 {
+>> --
+>> 1.9.1
+>> 
