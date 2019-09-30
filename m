@@ -2,152 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC25C299C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A6FC29A8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726103AbfI3WdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 18:33:04 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43592 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727118AbfI3WdD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:33:03 -0400
-Received: by mail-pg1-f196.google.com with SMTP id v27so8150030pgk.10
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 15:33:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:from:to:cc:subject:user-agent:date;
-        bh=rmkqYB8bmzjDztcgVj4PfkZkIB/7SRqcGvT+pK2NFao=;
-        b=l/gXDbiy1YenXqFl2lZbKcRYbMIurpnW+XyMpKesD+2XT8Re0PBMl4FbQU1wWzeX9K
-         cTj2dGeT/qveI8TMM+I58Bn0TRXXjen+N4MNZ1ttjkMsewSrez0oAq7W85LiaU9I8Ku3
-         quWmCD2WM4+9BrBVoqBw7ZnNyAzgZNpA66jaY=
+        id S1726789AbfI3Wgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 18:36:44 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:35910 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726103AbfI3Wgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:36:44 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 67so9844233oto.3;
+        Mon, 30 Sep 2019 15:36:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
-         :user-agent:date;
-        bh=rmkqYB8bmzjDztcgVj4PfkZkIB/7SRqcGvT+pK2NFao=;
-        b=kYuX+z0vm6mIGkbmaSNk7Tza4ILXOaXLVVBpw5nlfP2722k2u83BYbYHBg46DZc6Zz
-         ChJJzn2kBkfuHjqceQfZv/1aZ/i7Blndmqo1sjAJTAwStmpVl/D/cs+1/kp9U6kRcvXz
-         aMSI3dlXJgF1j9pYD6ODQ1Bv9/FVtNsBcf03Og6mALF8sbMrm0coPOPUJuqDfPPhwGe5
-         vMzRVrwwYLQQKbWhtudh9zvgzK89bSQhlG4ncs6aWxM0LdKKAnvN4J9lT9/3Eflf0FsI
-         ltR34d4vhjEHxyQBsxHrNYLh5WtkjHISk08B3dUQpSsfmYMfjANqcVP8HW771L6RZXzd
-         0hqA==
-X-Gm-Message-State: APjAAAUeZfZTIXjuP5fleNt8Goo6TUukF7eg4aa7SZp9GT4slpd6nSsY
-        zr0RwuxLl7x29UzmfxviIiba4w==
-X-Google-Smtp-Source: APXvYqyqekrGA/zBRXYld7eiG9Tkrnhft+G+K3lR7fTCvCFVRPIFeAsqvf/SQiIwvG8YKnVyqqkeqA==
-X-Received: by 2002:a17:90a:fb85:: with SMTP id cp5mr1796727pjb.42.1569882783243;
-        Mon, 30 Sep 2019 15:33:03 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id i1sm15310268pfg.2.2019.09.30.15.33.02
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mpInDS2oe0Ta+ZD1qVPCII+xXIk5A6Ga/flR3rWJqyU=;
+        b=osZWkurO7cz5QZfKPRLKOdz4wYZKNXU8wMmiJOYlYTJxNLGz+rFTdPQpANpSbzLD8K
+         IgA+BupyzSehMhJ796jOMbcsNLDEmSWFld1mg6A/kJJTFzbNspoj+cvGUavCrbYR2459
+         ig2GcnHlsXbGlT4xYrHTu0noUD+oOssSjK6to/mN6K9T4tTw9iYA5iBDkwo3Z+w5tcu/
+         cZjNpYGd2TNwBm1c2+mVm9GtDl8GTyjIrS0O41EgRzO/7rA8HRQ7BT3yzkTumPMyOZgV
+         j3hZEAToeZgLbpBdSZNi/4Zdd/AzJNqFIeTr8K5TzUpJTcOYh05mAj7DB6sshu9FuFZx
+         SGbg==
+X-Gm-Message-State: APjAAAWeMji/Dh/o0Uk3UPxItZr9UV76HKG2yNHv5paeobD7Nhy5BkaD
+        mMb8AnbcXLQKuDM5FnCFDbblLU4=
+X-Google-Smtp-Source: APXvYqzijfy1cYSHjSDjO5oXeKYPN9PlN7UqRR5N+7H24ZAYWjibfzSeYgmFYGi/OnM6T0RYMMEDPQ==
+X-Received: by 2002:a05:6830:156:: with SMTP id j22mr16397493otp.196.1569883001835;
+        Mon, 30 Sep 2019 15:36:41 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l30sm4127481otl.74.2019.09.30.15.36.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 15:33:02 -0700 (PDT)
-Message-ID: <5d92829e.1c69fb81.d860a.9096@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        Mon, 30 Sep 2019 15:36:41 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 17:36:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     broonie@kernel.org, mark.rutland@arm.com,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: Add support for cadence-qspi IP
+ Intel LGM SoC
+Message-ID: <20190930223640.GA18491@bogus>
+References: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190916073843.39618-2-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1568411962-1022-7-git-send-email-ilina@codeaurora.org>
-References: <1568411962-1022-1-git-send-email-ilina@codeaurora.org> <1568411962-1022-7-git-send-email-ilina@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Lina Iyer <ilina@codeaurora.org>, evgreen@chromium.org,
-        linus.walleij@linaro.org, maz@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 06/14] dt-bindings/interrupt-controller: pdc: add SPI config register
-User-Agent: alot/0.8.1
-Date:   Mon, 30 Sep 2019 15:33:01 -0700
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190916073843.39618-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lina Iyer (2019-09-13 14:59:14)
-> In addition to configuring the PDC, additional registers that interface
-> the GIC have to be configured to match the GPIO type. The registers on
-> some QCOM SoCs are access restricted, while on other SoCs are not. They
-> SoCs with access restriction to these SPI registers need to be written
-> from the firmware using the SCM interface. Add a flag to indicate if the
-> register is to be written using SCM interface.
->=20
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+On Mon, Sep 16, 2019 at 03:38:42PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> 
+> On Intel Lightening Mountain(LGM) SoCs QSPI controller support
+> to QSPI-NAND flash. This introduces to device tree binding
+> documentation for Cadence-QSPI controller and spi-nand flash.
+> 
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/qcom,pdc.txt   | 13 +++++++=
-+++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,=
-pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.t=
-xt
-> index 8e0797c..e329f8d 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> @@ -24,6 +24,9 @@ Properties:
->         Usage: required
->         Value type: <prop-encoded-array>
->         Definition: Specifies the base physical address for PDC hardware.
-> +                   Optionally, specify the PDC's GIC interface registers=
- that
-> +                   need to be configured for wakeup capable GPIOs routed=
- to
-> +                   the PDC.
-> =20
->  - interrupt-cells:
->         Usage: required
-> @@ -50,15 +53,23 @@ Properties:
->                     The second element is the GIC hwirq number for the PD=
-C port.
->                     The third element is the number of interrupts in sequ=
-ence.
-> =20
-> +- qcom,scm-spi-cfg:
-> +       Usage: optional
-> +       Value type: <bool>
-> +       Definition: Specifies if the SPI configuration registers have to =
-be
-> +                   written from the firmware. Sometimes the PDC interface
-> +                   register to the GIC can only be written from the firm=
-ware.
+>  .../devicetree/bindings/spi/cadence,qspi-nand.yaml | 84 ++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml b/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+> new file mode 100644
+> index 000000000000..9aae4c1459cc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/spi/cadence,qspi-nand.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
->  Example:
-> =20
->         pdc: interrupt-controller@b220000 {
->                 compatible =3D "qcom,sdm845-pdc";
-> -               reg =3D <0xb220000 0x30000>;
-> +               reg =3D <0 0x0b220000 0 0x30000>, <0 0x179900f0 0 0x60>;
->                 qcom,pdc-ranges =3D <0 512 94>, <94 641 15>, <115 662 7>;
->                 #interrupt-cells =3D <2>;
->                 interrupt-parent =3D <&intc>;
->                 interrupt-controller;
-> +               qcom,scm-spi-cfg;
->         };
+> +title: Cadence QSPI Flash Controller on Intel's SoC
+> +
+> +maintainers:
+> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
+> +
+> +description: |
+> +  The Cadence QSPI is a controller optimized for communication with SPI
+> +  FLASH memories, without DMA support on Intel's SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: cadence,lgm-qspi
 
-This overlaps register region with the mailbox node. That node is
-actually a pile of random "CPU" registers used to ping remote processors
-and apparently control how the PDC interacts with the GIC. Maybe this
-can be changed to a phandle and then the driver can interogate the
-phandle to determine if it's the SCM firmware or if it's the shared
-mailbox register? If it's a shared mailbox then it can write to it at
-the offset it knows about (because it's sdm845 compatible specific) and
-if it's SCM then it can use the hardcoded address as well?
+Vendor here should be 'intel'. Perhaps the binding should be shared too 
+like the driver.
 
-Basically I'm saying that it just needs a phandle.
+Plus the vendor prefix for Cadence is cdns.
 
-	qcom,spi-cfg =3D <&scm>;
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  fifo-depth:
+> +    maxItems: 1
+> +
+This is vendor specific, so needs a vendor prefix, type, and 
+description.
 
-or
+> +  fifo-width:
+> +    maxItems: 1
 
-	qcom,spi-cfg =3D <&mailbox>;
+Same
 
-and then driver knows how to use that to write into random registers.
-Maybe we can have an API in regmap that finds the regmap for a given
-device node? That way we don't have to funnel everything through syscon
-for this.
+> +
+> +  qspi-phyaddr:
+> +    maxItems: 1
 
-	of_get_regmap(struct device_node *np, const char *name);
+Same
 
-Where NULL name means "first available" and then do the devres search
-otherwise for a device that has the matching node pointer.
+> +
+> +  qspi-phymask:
+> +    maxItems: 1
 
+Same
+
+> +
+> +  clocks:
+> +    maxItems: 2
+
+Need to define what each clock is when there is more than 1.
+
+> +
+> +  clocks-names:
+> +    maxItems: 2
+
+Need to define the strings.
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - fifo-depth
+> +  - fifo-width
+> +  - qspi-phyaddr
+> +  - qspi-phymask
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +
+> +examples:
+> +  - |
+> +    qspi@ec000000 {
+
+spi@...
+
+> +          compatible = "cadence,qspi-nand";
+> +          reg = <0xec000000 0x100>;
+> +          fifo-depth = <128>;
+> +          fifo-width = <4>;
+> +          qspi-phyaddr = <0xf4000000>;
+> +          qspi-phymask = <0xffffffff>;
+> +          clocks = <&cgu0 LGM_CLK_QSPI>, <&cgu0 LGM_GCLK_QSPI>;
+> +          clock-names = "freq", "qspi";
+> +          resets = <&rcu0 0x10 1>;
+> +          reset-names = "qspi";
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          flash: flash@1 {
+> +              compatible = "spi-nand";
+> +              reg = <1>;
+> +              spi-max-frequency = <10000000>;
+> +          };
+> +    };
+> +
+> -- 
+> 2.11.0
+> 
