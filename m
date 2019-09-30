@@ -2,66 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD43C2A40
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 01:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F1AC2AA3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 01:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727884AbfI3XHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 19:07:16 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:34535 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726789AbfI3XHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 19:07:15 -0400
-Received: by mail-ot1-f68.google.com with SMTP id m19so9922598otp.1;
-        Mon, 30 Sep 2019 16:07:15 -0700 (PDT)
+        id S1730433AbfI3XLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 19:11:48 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:46617 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727497AbfI3XLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 19:11:48 -0400
+Received: by mail-oi1-f196.google.com with SMTP id k25so12679557oiw.13;
+        Mon, 30 Sep 2019 16:11:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zDj+DK0QCFIN576pryZq/Y62yXQtYLQJm8d8iZrEbOs=;
-        b=HbJldpxWnsMDFgb6VP6Z0kZWFJt00UxqiNBSNqrumszmpxQBSxaGQt9FyhSdFzdJwL
-         j1bkr+RC5YTjA63FzQ5hyZNSRn45ODrlhUGNAXgNEdfpfI5+OMmTgQAfzfUst3ZbOZia
-         TrnW7zaqIMoDGltmW3vPAG+A5IbCc93/3nbAmlJHQnSNkbD+zqr+73utuByEFUUD4I22
-         zRGuwZJSTDHzGTsUUBGZcg5miMX9mphdP0z3p+AfzGh+31KG1DwCef3Wb4qDmBP9z4zz
-         B0jYmEwSIAg1/feRt94BJMDXaSM1hY7ACImRogDcVv3spu2kTMFAiPSTvwTP4c1zWDja
-         DJqw==
-X-Gm-Message-State: APjAAAVWAk1FDcvvPSe/610EToH2MkT3arh61eo11xkLwO82959b5UTc
-        dP6NHg9O/vfW2OiYphqhsA==
-X-Google-Smtp-Source: APXvYqyQJmQ4TDFGrSERGcpSMAOM1nVOQW8uwKCO9Rm+l0q+Hb6q01p0DIVO2XgqJFm32fxqYe8POA==
-X-Received: by 2002:a05:6830:10c5:: with SMTP id z5mr16004320oto.322.1569884835109;
-        Mon, 30 Sep 2019 16:07:15 -0700 (PDT)
+        bh=06F7PUGi7KU5AKcLl29ZsDl92GOwcK15ezbne47LRD8=;
+        b=GzYwk3DJj7hUs/KNUE7FdtcflgQb9eyPsgSQNl+52EwuIKKG9P9GpkaInNI4GTJOC7
+         UkfsPlsCjFizSvOJ19qHikfZBrsuWt1kZj+Tv831gwTRd5Kz2GwYRBBmgfs8q81tH87R
+         IXfFSkZTRTkdEnuB88j6joPVGp5LNnZwDPrqEIJQbWKfb8/PdFqFuK9ISS7p+XQXhUEL
+         +5nWhKev4Ne79pW+aVYFh2R+hAhc9nyv/BZORR7o6rCZnCv7fsQjdHFZ60tur3krowSp
+         37/yZVE42p4KOuUVvHQKCkGZaPj8F/9dj2IP8kMSKuUZMnA6por+ouuHKrXGJlJTD6HM
+         070w==
+X-Gm-Message-State: APjAAAUFBrfu/LSYAWybpql7lYUbN2U9fObaE2L+L4g6iHYhCJOSfHc8
+        q7F3iqwjwUi877oE3i2/BA==
+X-Google-Smtp-Source: APXvYqzoKEn8xvPUfT6GBXrFmF4Lo3HvjKmN9mEcZJO1reEb+9MpmGeujmmTrovyF+eSEi5Vh8AK9Q==
+X-Received: by 2002:aca:fcc2:: with SMTP id a185mr1304654oii.43.1569885107360;
+        Mon, 30 Sep 2019 16:11:47 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j9sm4414823oij.15.2019.09.30.16.07.14
+        by smtp.gmail.com with ESMTPSA id s66sm4259026otb.65.2019.09.30.16.11.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 16:07:14 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 18:07:14 -0500
+        Mon, 30 Sep 2019 16:11:46 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 18:11:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     richard.leitner@skidata.com, robh+dt@kernel.org,
-        fancer.lancer@gmail.com, linux-usb@vger.kernel.org,
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        andriy.shevchenko@linux.intel.com, bparrot@ti.com,
+        andy.shevchenko@gmail.com, simon.budig@kernelconcepts.de,
+        hdegoede@redhat.com, fcooper@ti.com, linux-input@vger.kernel.org,
         devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 1/4] dt-bindings: usb: usb251xb: add documentation for
- voltage supply
-Message-ID: <20190930230714.GA29817@bogus>
-References: <20190917144449.32739-1-m.felsch@pengutronix.de>
- <20190917144449.32739-2-m.felsch@pengutronix.de>
+Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
+ wakeup-source documentation
+Message-ID: <20190930231146.GA30010@bogus>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-3-m.felsch@pengutronix.de>
+ <20190917170743.GO237523@dtor-ws>
+ <20190917171814.owcttekv56xgmsts@pengutronix.de>
+ <20190917172658.GQ237523@dtor-ws>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917144449.32739-2-m.felsch@pengutronix.de>
+In-Reply-To: <20190917172658.GQ237523@dtor-ws>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Sep 2019 16:44:46 +0200, Marco Felsch wrote:
-> Add the optional voltage supply documentation. If not specified the
-> dummy-regulator is used.
+On Tue, Sep 17, 2019 at 10:26:58AM -0700, Dmitry Torokhov wrote:
+> On Tue, Sep 17, 2019 at 07:18:14PM +0200, Marco Felsch wrote:
+> > Hi Dmitry,
+> > 
+> > On 19-09-17 10:07, Dmitry Torokhov wrote:
+> > > On Tue, Sep 17, 2019 at 05:58:04PM +0200, Marco Felsch wrote:
+> > > > The default driver behaviour is to enable the wakeup-source everytime.
+> > > > There are hardware designs which have a dedicated gpio to act as wakeup
+> > > > device. So it must be allowed to disable the wakeup-source capability.
+> > > > 
+> > > > This patch adds the binding documentation to disable the wakeup-source
+> > > > capability.
+> > > > 
+> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > ---
+> > > >  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt      | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > index 870b8c5cce9b..4d6524fe3cf4 100644
+> > > > --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > @@ -35,6 +35,10 @@ Optional properties:
+> > > >   - pinctrl-0:   a phandle pointing to the pin settings for the
+> > > >                  control gpios
+> > > >  
+> > > > + - edt,disable-wakeup-source: If left the device will act as wakeup-source
+> > > > +			      (for legacy compatibility). Add the property
+> > > > +			      so the device won't act as wakeup-source.
+> > > 
+> > > I think this is too ugly and I consider it being a bug in the driver
+> > > that it enables wakeup unconditionally.
+> > 
+> > That's right.
+> > 
+> > > Let's just update DTS in tree for devices that actually want it (I am
+> > > curious how many that do not declare "wakeup-source" have it working and
+> > > actually want it) and key the dirver behavior off the standard property.
+> > 
+> > There are a few DTS using this driver and the current driver behaviour.
+> > We need to keep the backward compatibility since the DTB is part of the
+> > firmware and firmware isn't always included during a system-update. I
+> > know its ugly but IMHO that's the right way to go to keep the backward
+> > compatibility. Let us see what the DT-folk says.
+> > 
+> > > Until we start seeing this controller in devices that actually have DTS
+> > > in hardware device tree I think it is better to use standard property.
+> > 
+> > Sorry, I didn't get you here..
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/usb/usb251xb.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> What I was trying to say is that I have not actually seen DTB that is
+> part of hardware or separately upgradable frimware (not talking about
+> ppc or sparc boxes, but ones that might be using this driver). It is
+> always built into the kernel in my experience, so backward compatibility
+> is simply a tool that is being used to prevent us from being too wild
+> with hacking on bindings, but rarely a practical concern.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Well, that's self fulfilling...
+
+> In cases like this I think it is worthwhile to simply update in-tree
+> DTS and arrive at a sane binding.
+
+Get the maintainers of the affected platforms to agree to the changes.
+
+Rob
