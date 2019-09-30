@@ -2,175 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB15C1C49
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 09:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10AE1C1C77
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 10:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726121AbfI3Hru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 03:47:50 -0400
-Received: from smtp3.goneo.de ([85.220.129.37]:57964 "EHLO smtp3.goneo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725767AbfI3Hrt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 03:47:49 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by smtp3.goneo.de (Postfix) with ESMTP id 9395A23F739;
-        Mon, 30 Sep 2019 09:47:45 +0200 (CEST)
-X-Virus-Scanned: by goneo
-X-Spam-Flag: NO
-X-Spam-Score: -3.018
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.018 tagged_above=-999 tests=[ALL_TRUSTED=-1,
-        AWL=-0.118, BAYES_00=-1.9] autolearn=ham
-Received: from smtp3.goneo.de ([127.0.0.1])
-        by localhost (smtp3.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id MD998ao4vd6d; Mon, 30 Sep 2019 09:47:44 +0200 (CEST)
-Received: from lem-wkst-02.lemonage (hq.lemonage.de [87.138.178.34])
-        by smtp3.goneo.de (Postfix) with ESMTPSA id 2041D23F63A;
-        Mon, 30 Sep 2019 09:47:43 +0200 (CEST)
-Date:   Mon, 30 Sep 2019 09:47:37 +0200
-From:   Lars Poeschel <poeschel@lemonage.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:NFC SUBSYSTEM" <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan@kernel.org>,
-        Simon Horman <horms@verge.net.au>
-Subject: Re: [PATCH v8 2/7] nfc: pn532: Add uart phy docs and rename it
-Message-ID: <20190930074737.GA24353@lem-wkst-02.lemonage>
-References: <20190919091645.16439-1-poeschel@lemonage.de>
- <20190919091645.16439-2-poeschel@lemonage.de>
- <20190927155209.GA6261@bogus>
+        id S1726008AbfI3ICZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 04:02:25 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:55240 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725767AbfI3ICZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 04:02:25 -0400
+Received: by mail-wm1-f65.google.com with SMTP id p7so12217160wmp.4;
+        Mon, 30 Sep 2019 01:02:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=fizj4yTUNCuGZAq8TVj3hQISg7yH6mFEeG99CtKC4TE=;
+        b=IKc6hRLUXxyCgDakoy1CeXXtaLXx+BvOQn6YigMioJUI51jgbAfjgottgo0xQkzhto
+         g+3xSP/2RtuwhYwKknS9IFmT+l47ZoOMsGbL98lySFH0E7iWCu7WIkhVLNCX6mRjwhEp
+         aF8t9hbqnbVgdlp5lqg3S9e+MsiHvTlr3u+kPo8Qb53f5Smnng2BpC2gC88+SePD3fWs
+         gOzELo1MimWkNbNwk1tf85bgvffkJ5OVfDo21ZeAtRkNasFsmM/vsVq5J4jekI8uzujI
+         8MJfHu537HQwIfwhGLti1bkp5aBrH2ABqbeoS6oWSk7YfzR04O2k8YC0OjnvWN87ii1T
+         oYiw==
+X-Gm-Message-State: APjAAAWOagBPsKR92SAk5K6bce8YPIIekjnJKUWGgfFk4AjNLZO6oGE5
+        en4zLMUnaGrJlSfbBJxkG9fe5I+q
+X-Google-Smtp-Source: APXvYqxndPqHVxIHe63ZUThkAaMUEXaaoIZyED6YAbYpSbBXh+m6JJ93cT5e3vlVVimUo6YvZaoW2Q==
+X-Received: by 2002:a1c:c1cc:: with SMTP id r195mr16991339wmf.50.1569830543182;
+        Mon, 30 Sep 2019 01:02:23 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id a3sm19395536wmc.3.2019.09.30.01.02.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2019 01:02:22 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 10:02:17 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Olof Johansson <olof@lixom.net>
+Cc:     Arnd Bergmann <arnd@arndb.de>, arm-soc <arm@kernel.org>,
+        SoC Team <soc@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [GIT PULL 1/2] arm64: dts: exynos: Pull for v5.4
+Message-ID: <20190930080217.GA23709@pi3>
+References: <20190911183632.4317-1-krzk@kernel.org>
+ <CAK8P3a2pBV+fh0rHitZ30Zz61QNRLfNSD-nhnzq4ZtxSh66F1Q@mail.gmail.com>
+ <CAJKOXPcOSvc2DfoN+7Tca=t5dSm3RcKqmm06AfR0PAVBeY=GvQ@mail.gmail.com>
+ <20190929175134.fsieffurfdiqhpj2@localhost>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190927155209.GA6261@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190929175134.fsieffurfdiqhpj2@localhost>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 10:52:09AM -0500, Rob Herring wrote:
-> On Thu, Sep 19, 2019 at 11:16:39AM +0200, Lars Poeschel wrote:
-> > This adds documentation about the uart phy to the pn532 binding doc. As
-> > the filename "pn533-i2c.txt" is not appropriate any more, rename it to
-> > the more general "pn532.txt".
-> > This also documents the deprecation of the compatible strings ending
-> > with "...-i2c".
-> > 
-> > Cc: Johan Hovold <johan@kernel.org>
-> > Cc: Simon Horman <horms@verge.net.au>
-> > Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
-> > ---
-> > Changes in v8:
-> > - Update existing binding doc instead of adding a new one:
-> >   - Add uart phy example
-> >   - Add general "pn532" compatible string
-> >   - Deprecate "...-i2c" compatible strings
-> >   - Rename file to a more general filename
-> > - Intentionally drop Rob's Reviewed-By as I guess this rather big change
-> >   requires a new review
-> > 
-> > Changes in v7:
-> > - Accidentally lost Rob's Reviewed-By
-> > 
-> > Changes in v6:
-> > - Rebased the patch series on v5.3-rc5
-> > - Picked up Rob's Reviewed-By
-> > 
-> > Changes in v4:
-> > - Add documentation about reg property in case of i2c
-> > 
-> > Changes in v3:
-> > - seperate binding doc instead of entry in trivial-devices.txt
-> > 
-> >  .../devicetree/bindings/net/nfc/pn532.txt     | 46 +++++++++++++++++++
-> >  .../devicetree/bindings/net/nfc/pn533-i2c.txt | 29 ------------
-> >  2 files changed, 46 insertions(+), 29 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/nfc/pn532.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn533-i2c.txt
+On Sun, Sep 29, 2019 at 10:51:34AM -0700, Olof Johansson wrote:
+> Hi,
 > 
-> In the future, use '-M' option (I recommend making this the default).
-
-As David already requested a next version of the patchset, I will do it
-in v9.
-
+> On Thu, Sep 12, 2019 at 08:32:47AM +0200, Krzysztof Kozlowski wrote:
+> > On Wed, 11 Sep 2019 at 23:07, Arnd Bergmann <arnd@arndb.de> wrote:
+> > >
+> > > On Wed, Sep 11, 2019 at 8:36 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > >
+> > > > Hi,
+> > > >
+> > > > Unfortunately the patches were applied right after closing the linux-next.
+> > >
+> > > Hi Krzysztof,
+> > >
+> > > I took a look at these and am not convinced this is right:
+> > >
+> > > > 1. Fix boot of Exynos7 due to wrong address/size of memory node,
+> > >
+> > > The current state is clearly broken and a fix is needed, but
+> > > I'm not sure this is the right fix. Why do you have 32-bit physical
+> > > addressing on a 64-bit chip? I looked at commit ef72171b3621
+> > > that introduced it, and it seems it would be better to just
+> > > revert back to 64-bit addresses.
 > > 
-> > diff --git a/Documentation/devicetree/bindings/net/nfc/pn532.txt b/Documentation/devicetree/bindings/net/nfc/pn532.txt
-> > new file mode 100644
-> > index 000000000000..f0591f160bee
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/nfc/pn532.txt
-> > @@ -0,0 +1,46 @@
-> > +* NXP Semiconductors PN532 NFC Controller
-> > +
-> > +Required properties:
-> > +- compatible: Should be
-> > +    - "nxp,pn532" Place a node with this inside the devicetree node of the bus
-> > +                  where the NFC chip is connected to.
-> > +                  Currently the kernel has phy bindings for uart and i2c.
-> > +    - "nxp,pn532-i2c" (DEPRECATED) only works for the i2c binding.
-> > +    - "nxp,pn533-i2c" (DEPRECATED) only works for the i2c binding.
+> > We discussed with Marek Szyprowski that either we can go back to
+> > 64-bit addressing or stick to 32. There are not known boards with more
+> > than 4 GB of RAM so from this point of view the choice was irrelevant.
+> > At the end of discussion I mentioned to stick with other arm64 boards
+> > (although not all), so revert to have 64 bit address... but Marek
+> > chosen differently. Since you ask, let's go back with revert.
+> > 
+> > >
+> > > > 2. Move GPU under /soc node,
+> > >
+> > > No problem
+> > >
+> > > > 3. Minor cleanup of #address-cells.
+> > >
+> > > IIRC, an interrupt-controller is required to have a #address-cells
+> > > property, even if that is normally zero. I don't remember the
+> > > details, but the gic binding lists it as mandatory, and I think
+> > > the PCI interrupt-map relies on it. I would just drop this patch.
+> > 
+> > Indeed, binding requires both address and size cells. I'll drop it.
 > 
-> No more pm533 support?
+> Looking through the history of pending material, I didn't see a new pull for
+> this material. Just checking in to see if there's something we missed?
 
-If you ask me, no. NXP sells more or less two versions of this chip:
-pn532 and pn533. The pn532 is the version with i2c and uart interface,
-the pn533 only has an usb interface. So I would say "nxp,pn533-i2c" was
-wrong and I dropped it.
+No, it's me who forgot to resend. I was sure that I rebased the branch
+and created new pull request. However it seems I did not. Let's keep it
+for next merge window... v5.4-rc should be any minute, I guess?
 
-> > +
-> > +Required properties if connected on i2c:
-> > +- clock-frequency: I²C work frequency.
-> > +- reg: for the I²C bus address. This is fixed at 0x24 for the PN532.
-> > +- interrupts: GPIO interrupt to which the chip is connected
-> 
-> UART attached case has no irq? I guess it could just start sending 
-> data...
+Best regards,
+Krzysztof
 
-Well, the chip has it (as said above, it is the same as the i2c chip)
-but it is not an use case for me. At the moment I have no hardware to
-test this with. So I did not implement it in the uart phy driver.
-Solution is: If the chip is in sleep mode, send it some special
-"wake-up" paket over uard and wait until it actually wakes up.
-
-> > +
-> > +Optional SoC Specific Properties:
-> > +- pinctrl-names: Contains only one value - "default".
-> > +- pintctrl-0: Specifies the pin control groups used for this controller.
-> > +
-> > +Example (for ARM-based BeagleBone with PN532 on I2C2):
-> > +
-> > +&i2c2 {
-> > +
-> > +
-> > +	pn532: pn532@24 {
-> 
-> nfc@24
-
-Ok.
-
-> > +
-> > +		compatible = "nxp,pn532";
-> > +
-> > +		reg = <0x24>;
-> > +		clock-frequency = <400000>;
-> > +
-> > +		interrupt-parent = <&gpio1>;
-> > +		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
-> > +
-> > +	};
-> > +};
-> > +
-> > +Example (for PN532 connected via uart):
-> > +
-> > +uart4: serial@49042000 {
-> > +        compatible = "ti,omap3-uart";
-> > +
-> > +        pn532: nfc {
-> > +                compatible = "nxp,pn532";
-> > +        };
-> > +};
