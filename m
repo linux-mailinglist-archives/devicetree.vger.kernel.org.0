@@ -2,86 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED5A8C2994
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADC25C299C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:33:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731922AbfI3W2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 18:28:38 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:60344 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731349AbfI3W2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:28:38 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 96BCC28A81A
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-rockchip@lists.infradead.org,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v3 5/5] RFC: drm/atomic-helper: Reapply color transformation after resume
-Date:   Mon, 30 Sep 2019 19:28:02 -0300
-Message-Id: <20190930222802.32088-6-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190930222802.32088-1-ezequiel@collabora.com>
-References: <20190930222802.32088-1-ezequiel@collabora.com>
+        id S1726103AbfI3WdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 18:33:04 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:43592 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727118AbfI3WdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:33:03 -0400
+Received: by mail-pg1-f196.google.com with SMTP id v27so8150030pgk.10
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 15:33:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:from:to:cc:subject:user-agent:date;
+        bh=rmkqYB8bmzjDztcgVj4PfkZkIB/7SRqcGvT+pK2NFao=;
+        b=l/gXDbiy1YenXqFl2lZbKcRYbMIurpnW+XyMpKesD+2XT8Re0PBMl4FbQU1wWzeX9K
+         cTj2dGeT/qveI8TMM+I58Bn0TRXXjen+N4MNZ1ttjkMsewSrez0oAq7W85LiaU9I8Ku3
+         quWmCD2WM4+9BrBVoqBw7ZnNyAzgZNpA66jaY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
+         :user-agent:date;
+        bh=rmkqYB8bmzjDztcgVj4PfkZkIB/7SRqcGvT+pK2NFao=;
+        b=kYuX+z0vm6mIGkbmaSNk7Tza4ILXOaXLVVBpw5nlfP2722k2u83BYbYHBg46DZc6Zz
+         ChJJzn2kBkfuHjqceQfZv/1aZ/i7Blndmqo1sjAJTAwStmpVl/D/cs+1/kp9U6kRcvXz
+         aMSI3dlXJgF1j9pYD6ODQ1Bv9/FVtNsBcf03Og6mALF8sbMrm0coPOPUJuqDfPPhwGe5
+         vMzRVrwwYLQQKbWhtudh9zvgzK89bSQhlG4ncs6aWxM0LdKKAnvN4J9lT9/3Eflf0FsI
+         ltR34d4vhjEHxyQBsxHrNYLh5WtkjHISk08B3dUQpSsfmYMfjANqcVP8HW771L6RZXzd
+         0hqA==
+X-Gm-Message-State: APjAAAUeZfZTIXjuP5fleNt8Goo6TUukF7eg4aa7SZp9GT4slpd6nSsY
+        zr0RwuxLl7x29UzmfxviIiba4w==
+X-Google-Smtp-Source: APXvYqyqekrGA/zBRXYld7eiG9Tkrnhft+G+K3lR7fTCvCFVRPIFeAsqvf/SQiIwvG8YKnVyqqkeqA==
+X-Received: by 2002:a17:90a:fb85:: with SMTP id cp5mr1796727pjb.42.1569882783243;
+        Mon, 30 Sep 2019 15:33:03 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id i1sm15310268pfg.2.2019.09.30.15.33.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2019 15:33:02 -0700 (PDT)
+Message-ID: <5d92829e.1c69fb81.d860a.9096@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1568411962-1022-7-git-send-email-ilina@codeaurora.org>
+References: <1568411962-1022-1-git-send-email-ilina@codeaurora.org> <1568411962-1022-7-git-send-email-ilina@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Lina Iyer <ilina@codeaurora.org>, evgreen@chromium.org,
+        linus.walleij@linaro.org, maz@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
+        linux-gpio@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC v2 06/14] dt-bindings/interrupt-controller: pdc: add SPI config register
+User-Agent: alot/0.8.1
+Date:   Mon, 30 Sep 2019 15:33:01 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some platforms are not able to maintain the color transformation
-state after a system suspend/resume cycle.
+Quoting Lina Iyer (2019-09-13 14:59:14)
+> In addition to configuring the PDC, additional registers that interface
+> the GIC have to be configured to match the GPIO type. The registers on
+> some QCOM SoCs are access restricted, while on other SoCs are not. They
+> SoCs with access restriction to these SPI registers need to be written
+> from the firmware using the SCM interface. Add a flag to indicate if the
+> register is to be written using SCM interface.
+>=20
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> ---
+>  .../devicetree/bindings/interrupt-controller/qcom,pdc.txt   | 13 +++++++=
++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,=
+pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.t=
+xt
+> index 8e0797c..e329f8d 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+> @@ -24,6 +24,9 @@ Properties:
+>         Usage: required
+>         Value type: <prop-encoded-array>
+>         Definition: Specifies the base physical address for PDC hardware.
+> +                   Optionally, specify the PDC's GIC interface registers=
+ that
+> +                   need to be configured for wakeup capable GPIOs routed=
+ to
+> +                   the PDC.
+> =20
+>  - interrupt-cells:
+>         Usage: required
+> @@ -50,15 +53,23 @@ Properties:
+>                     The second element is the GIC hwirq number for the PD=
+C port.
+>                     The third element is the number of interrupts in sequ=
+ence.
+> =20
+> +- qcom,scm-spi-cfg:
+> +       Usage: optional
+> +       Value type: <bool>
+> +       Definition: Specifies if the SPI configuration registers have to =
+be
+> +                   written from the firmware. Sometimes the PDC interface
+> +                   register to the GIC can only be written from the firm=
+ware.
+> +
+>  Example:
+> =20
+>         pdc: interrupt-controller@b220000 {
+>                 compatible =3D "qcom,sdm845-pdc";
+> -               reg =3D <0xb220000 0x30000>;
+> +               reg =3D <0 0x0b220000 0 0x30000>, <0 0x179900f0 0 0x60>;
+>                 qcom,pdc-ranges =3D <0 512 94>, <94 641 15>, <115 662 7>;
+>                 #interrupt-cells =3D <2>;
+>                 interrupt-parent =3D <&intc>;
+>                 interrupt-controller;
+> +               qcom,scm-spi-cfg;
+>         };
 
-Set the colog_mgmt_changed flag so that CMM on the CRTCs in
-the suspend state are reapplied after system resume.
+This overlaps register region with the mailbox node. That node is
+actually a pile of random "CPU" registers used to ping remote processors
+and apparently control how the PDC interacts with the GIC. Maybe this
+can be changed to a phandle and then the driver can interogate the
+phandle to determine if it's the SCM firmware or if it's the shared
+mailbox register? If it's a shared mailbox then it can write to it at
+the offset it knows about (because it's sdm845 compatible specific) and
+if it's SCM then it can use the hardcoded address as well?
 
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
-This is an RFC, and it's mostly based on Jacopo Mondi's work https://lkml.org/lkml/2019/9/6/498.
+Basically I'm saying that it just needs a phandle.
 
-Changes from v2:
-* New patch.
----
- drivers/gpu/drm/drm_atomic_helper.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+	qcom,spi-cfg =3D <&scm>;
 
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index e41db0f202ca..518488125575 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -3234,8 +3234,20 @@ int drm_atomic_helper_resume(struct drm_device *dev,
- 			     struct drm_atomic_state *state)
- {
- 	struct drm_modeset_acquire_ctx ctx;
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_crtc *crtc;
-+	unsigned int i;
- 	int err;
- 
-+	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
-+		/*
-+		 * Force re-enablement of CMM after system resume if any
-+		 * of the DRM color transformation properties was set in
-+		 * the state saved at system suspend time.
-+		 */
-+		if (crtc_state->gamma_lut)
-+			crtc_state->color_mgmt_changed = true;
-+	}
- 	drm_mode_config_reset(dev);
- 
- 	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
--- 
-2.22.0
+or
+
+	qcom,spi-cfg =3D <&mailbox>;
+
+and then driver knows how to use that to write into random registers.
+Maybe we can have an API in regmap that finds the regmap for a given
+device node? That way we don't have to funnel everything through syscon
+for this.
+
+	of_get_regmap(struct device_node *np, const char *name);
+
+Where NULL name means "first available" and then do the devres search
+otherwise for a device that has the matching node pointer.
 
