@@ -2,103 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB42C283B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C56D5C28C5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731717AbfI3VGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 17:06:52 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:37008 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730886AbfI3VGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 17:06:52 -0400
-Received: by mail-oi1-f194.google.com with SMTP id i16so12457760oie.4;
-        Mon, 30 Sep 2019 14:06:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=R+ScOBn956KzGEkg9VCnHI1hFy+s6fYadz+MoOpEicw=;
-        b=pjMhvLmNowUPj7raJGbALN8qwn2QitiKVSbnhv+BIlTh+Rmd/0WCVMGtPBDmoI4sPz
-         aahwHYHCakYIrFFOEND1JFsPVLyPItHuoEYhUg2HQ8RpAmpfYYZABFe+8JPQjWDI+APO
-         Q1KthcPJ7n43F9YoLZTjU52JVkOjUvcErYOxzX0CI6YUMn45XMfv9GjwdEJb4vtUpb+e
-         FJeONc84A3EtJUXFrCZFzLaZgUvmybymJbJf9zQlS/JTWnSQbHQdHHeSxmBLP4EGgHb3
-         NHfz1ki50qt/LP18hQXOSq7p5bIBCxvb6+O8AXa/Iv6RWZmBClHkfvbhzV5ReWwEZ/D4
-         kFKA==
-X-Gm-Message-State: APjAAAWqkvhoApMoy1CGuFKaNYJkkGTzgBbc11R4y74q5tntO9csSean
-        8a/YnCy1LNW52qxrJd0vlF/xeZM=
-X-Google-Smtp-Source: APXvYqxJdj7UgIetkxyOJuuB+3gPijhJfnPX8rakxTFVB90F9LrBkIwQZ2VZisQ5soTIpdHmL7I2rw==
-X-Received: by 2002:aca:50ca:: with SMTP id e193mr643865oib.110.1569870350475;
-        Mon, 30 Sep 2019 12:05:50 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e61sm4090614ote.24.2019.09.30.12.05.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 12:05:49 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 14:05:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
-        <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: Document brcm,irq-can-wake for
- brcm,bcm7038-l1-intc.txt
-Message-ID: <20190930190549.GA21236@bogus>
-References: <20190913191542.9908-1-f.fainelli@gmail.com>
- <20190913191542.9908-3-f.fainelli@gmail.com>
+        id S1727720AbfI3VZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 17:25:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49704 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727702AbfI3VZx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 17:25:53 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 00A83224A0
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 17:46:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569865605;
+        bh=OctSNomG2OJ1c5HBaNhDE3kyW877OO9pLy12klDrXiA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=q/0ji3EJU3lYpiVowGHsk4yUieDMJFIUKb5X++v9x7jMo38/M6Pa+6XYZueaEDrnX
+         qJ+xZf2rC7B8J8hIaYIRlMwR4mCDYZPIaM5ltKiBWCVddq9UD/PWq5XSdnR75VR0C+
+         /u5QBQNxvDZVIYsMJm94PIvjHs1BRzy4q/mNspMo=
+Received: by mail-qt1-f171.google.com with SMTP id u40so18102255qth.11
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 10:46:44 -0700 (PDT)
+X-Gm-Message-State: APjAAAW1qEt6xvqfTXxz/2SiAO13zt2CJjaRdiEnXprpSl8GqbSQqo3e
+        uxz3jVkP6G+D7aMqMu2MoTpclV1pTTR3A5yRBw==
+X-Google-Smtp-Source: APXvYqx0ggq9eeAU9wWza/JPeFO8jdb8kehul8w7xQz3yw7kXfvNNCLrdp04iqHcwujnu+1ANt/coLFpFImGnTT+0QU=
+X-Received: by 2002:ac8:6982:: with SMTP id o2mr26027474qtq.143.1569865604167;
+ Mon, 30 Sep 2019 10:46:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190913191542.9908-3-f.fainelli@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
+In-Reply-To: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Sep 2019 12:46:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKUP6qG6PVL47RQ5A5OcBhpdOA_0VL1YeYDuyVSVcRqCQ@mail.gmail.com>
+Message-ID: <CAL_JsqKUP6qG6PVL47RQ5A5OcBhpdOA_0VL1YeYDuyVSVcRqCQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: juno: add GPU subsystem
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Steven Price <steven.price@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 13, 2019 at 12:15:39PM -0700, Florian Fainelli wrote:
-> The BCM7038 L1 interrupt controller can be used as a wake-up interrupt
-> controller on MIPS and ARM-based systems, document the brcm,irq-can-wake
-> which has been "standardized" across Broadcom interrupt controllers.
-
-Not clear that that got much review...
-
-We have a defined way to indicate wakeup sources (which maybe didn't 
-exist in 2014), why can't that be used? If a device can wakeup the 
-system, I'd think we can just assume that the parent interrupt 
-controller(s) can support that.
-
-In any case, I'm not going to stand in the way of this:
-
-Acked-by: Rob Herring <robh@kernel.org>
-
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+On Mon, Sep 30, 2019 at 10:25 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> Since we now have bindings for Mali Midgard GPUs, let's use them to
+> describe Juno's GPU subsystem, if only because we can. Juno sports a
+> Mali-T624 integrated behind an MMU-400 (as a gesture towards
+> virtualisation), in their own dedicated power domain with DVFS
+> controlled by the SCP.
+>
+> CC: Liviu Dudau <liviu.dudau@arm.com>
+> CC: Sudeep Holla <sudeep.holla@arm.com>
+> CC: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
->  .../bindings/interrupt-controller/brcm,bcm7038-l1-intc.txt   | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7038-l1-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7038-l1-intc.txt
-> index 2117d4ac1ae5..4eb043270f5b 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7038-l1-intc.txt
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7038-l1-intc.txt
-> @@ -31,6 +31,11 @@ Required properties:
->  - interrupts: specifies the interrupt line(s) in the interrupt-parent controller
->    node; valid values depend on the type of parent interrupt controller
->  
-> +Optional properties:
-> +
-> +- brcm,irq-can-wake: If present, this means the L1 controller can be used as a
-> +  wakeup source for system suspend/resume.
-> +
->  If multiple reg ranges and interrupt-parent entries are present on an SMP
->  system, the driver will allow IRQ SMP affinity to be set up through the
->  /proc/irq/ interface.  In the simplest possible configuration, only one
-> -- 
-> 2.17.1
-> 
+>  .../bindings/gpu/arm,mali-midgard.yaml        |  5 +++-
+>  arch/arm64/boot/dts/arm/juno-base.dtsi        | 27 +++++++++++++++++++
+>  2 files changed, 31 insertions(+), 1 deletion(-)
+
+Reviewed-by: Rob Herring <robh@kernel.org>
