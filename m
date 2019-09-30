@@ -2,116 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E28C296F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53468C298A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731822AbfI3WXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 18:23:10 -0400
-Received: from mail-eopbgr770123.outbound.protection.outlook.com ([40.107.77.123]:27602
-        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726590AbfI3WXK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 18:23:10 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fLiqDNEBYq3sCo6kFtYxM/2HkxFvzkQGKALvwoEEB7pJjjPK9Us3MphcfsGrvRMbyj2t72qB7BKmisxR3I8Vqltpf2flHA6/C5AeAH5gHfxJWhhxnrvVw3q9lWUk86gUjXaaqZ52BVTeWXRiABPW4wNumYscmOX9xnUh/qWLdOE36ChOjYnwCR74uGHimvKKEYV3FZjodGo2HIrBHpduiFS87sDVdrpW8mwgejfpdTzkAMTyFiwgMVdKoUB50X1eBNB3NmrlYbYAB4qWh7wgcZB7cpGWD6ApK1C47AmOqbHbesYk9lFum7l+iIvs0WinlkbKozBkMpRHi4QtyXdf8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rjIeJqFz0YD2vBhdgldufYFAKwa+c7twIwQ+b6mcOPI=;
- b=ARnLIzzRovSXRLpCRLQfQgd/V24EqC66EF1EaVOkBI5KiC0AnoWkClBzNVaTquNskDvjuYrE2si7u26nyF6QsQ1g4rnpLQgVnjgdX1rUWuopv5cvVy5uS4JzH86G86GKAieN+AAiTDlCvwjD5naeL/XZ3xPVVT4KDGpYW76S70kn0wQIR7sYxO1jXIuUCJUp6eIY90IyUX+5Xyo2kxnlyD4o9VBIgaQz+EIGhYeFB+l0mXtmrLlgyyX9LZi3MbxGcxFxAuf0D5XK1a345emzgrFb3gRhbkRPDUJ5eQpHG8o1h16Yc+Q9YZSVC2Ov2A9YTD31ZXNMbmcyRRPn8TZRig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
- dkim=pass header.d=mips.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rjIeJqFz0YD2vBhdgldufYFAKwa+c7twIwQ+b6mcOPI=;
- b=Nyv3MjpMf1oIvj0vVGgf5VCQEB/GQeiCOEE90bBXw1CRlg2A9WuIo99tkNlhI1FD8IWxAxbTcPVVZq55FnoCx9i98ToIRMr+Amgz2tlSJXgyahg80WMn37JFzidqLxIY1xSoQHjkFctTM775y0mcmGRcijuOe1yOSq3Olz8NHiE=
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
- MWHPR2201MB1168.namprd22.prod.outlook.com (10.174.168.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.17; Mon, 30 Sep 2019 22:23:08 +0000
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::498b:c2cd:e816:1481]) by MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::498b:c2cd:e816:1481%2]) with mapi id 15.20.2305.017; Mon, 30 Sep 2019
- 22:23:08 +0000
-From:   Paul Burton <paul.burton@mips.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1726350AbfI3W2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 18:28:14 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:60246 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726858AbfI3W2O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:28:14 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 2D967283BA6
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-rockchip@lists.infradead.org,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <pburton@wavecomp.com>,
-        James Hogan <jhogan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v1] MIPS: dts: ar9331: fix interrupt-controller size
-Thread-Topic: [PATCH v1] MIPS: dts: ar9331: fix interrupt-controller size
-Thread-Index: AQHVd92icE8wAVdhU0ezG/dYASTkBg==
-Date:   Mon, 30 Sep 2019 22:23:08 +0000
-Message-ID: <MWHPR2201MB12777F4BB53AEC23CDE5B996C1820@MWHPR2201MB1277.namprd22.prod.outlook.com>
-References: <20190930093952.22418-1-o.rempel@pengutronix.de>
-In-Reply-To: <20190930093952.22418-1-o.rempel@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: BYAPR05CA0080.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::21) To MWHPR2201MB1277.namprd22.prod.outlook.com
- (2603:10b6:301:18::12)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pburton@wavecomp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [12.94.197.246]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bea83fa6-ebad-49b6-e452-08d745f4c54d
-x-ms-traffictypediagnostic: MWHPR2201MB1168:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR2201MB11681BF5591A9B5BC85591ADC1820@MWHPR2201MB1168.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2089;
-x-forefront-prvs: 01762B0D64
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(346002)(396003)(39850400004)(136003)(366004)(199004)(189003)(256004)(7736002)(76176011)(74316002)(305945005)(6506007)(386003)(52116002)(42882007)(26005)(55016002)(186003)(6306002)(9686003)(4744005)(102836004)(7696005)(54906003)(99286004)(316002)(44832011)(476003)(6436002)(446003)(486006)(11346002)(5660300002)(6916009)(229853002)(3846002)(6116002)(478600001)(25786009)(71190400001)(52536014)(71200400001)(33656002)(2906002)(66946007)(66446008)(66066001)(64756008)(66556008)(66476007)(6246003)(81156014)(81166006)(966005)(14454004)(4326008)(8676002)(8936002);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1168;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: wavecomp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dp809ggupFMy6BHOXmTv+jee4+sWcfLFHQrwLyZf8x64oei8XvL8RdRsNscYYh8guQIrN4asEGHLpB4aG4/xbywnZTholVBSdBn23ol0AArP8MDWch95xAB+rJD6My3oQMNd+pAdkldDuYlL3FNZY+/y/2DfGxV+sB2RrksX3pMfQZ/0+6r28bnb09a+7KIOshUbL/LwwZDn0THyUYhNZRm8TFTYdJcI4PAiJC8Y7AN43N6kuipVKFeZTb4wRoC8q4f+M/O8m5EHZMfP+OPweDKSQX+szXJefzEA1B5Uy6lMwpmvQrdI+xSRp4OGlKZ4/haRrjhLOf9m7psuL5gMUgtdlA70zN4Yjumfx9AejmunPthQmn+A58lfdZPuwCVmqMvsdVh0XExGIEkJzkqRFN3xPVPHshRNTQKJM6guIvs7bPHRUVljw0Odxebt8Ll2WylY295qjKpUZi8qAiLSCA==
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Subject: [PATCH v3 0/5] RK3288 Gamma LUT
+Date:   Mon, 30 Sep 2019 19:27:57 -0300
+Message-Id: <20190930222802.32088-1-ezequiel@collabora.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-OriginatorOrg: mips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bea83fa6-ebad-49b6-e452-08d745f4c54d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2019 22:23:08.2516
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eXx/qlLyw7rF6OO8l6Vwxw03jw+IQdSloGY8z/eoyhAg6eid4KnV+8psviibWMVfsLKnozOPBbdzKhBaXYW6Jg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1168
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Let's support Gamma LUT configuration on RK3288 SoCs.
 
-Oleksij Rempel wrote:
-> It is two registers each of 4 byte.
+In order to do so, this series adds a new and optional
+address resource.
+    
+A separate address resource is required because on this RK3288,
+the LUT address is after the MMU address, which is requested
+by the iommu driver. This prevents the DRM driver
+from requesting an entire register space.
 
-Applied to mips-fixes.
+The current implementation works for RGB 10-bit tables, as that
+is what seems to work on RK3288.
 
-> commit 0889d07f3e4b
-> https://git.kernel.org/mips/c/0889d07f3e4b
->=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: Paul Burton <paul.burton@mips.com>
+This has been tested on a Rock2 Square board, using
+'modetest' tool (modetest now supports GAMMA_LUT property),
+with legacy and atomic APIs.
+
+In addition, I've tested it with Jacopo's modified kmsxx [1],
+See the rcar-du color management series for more information [2].
+
+[1] https://jmondi.org/cgit/kmsxx/
+[2] https://lkml.org/lkml/2019/9/6/490
 
 Thanks,
-    Paul
+Eze
 
-[ This message was auto-generated; if you believe anything is incorrect
-  then please email paul.burton@mips.com to report it. ]
+Changes from v2:
+* revert Sean Paul's patch, in order to use
+  atomic_commit_tail hook.
+* add RFC/patch for color management on resume.
+
+Changes from v1:
+* drop explicit linear LUT after finding a proper
+  way to disable gamma correction.
+* avoid setting gamma is the CRTC is not active.
+* s/int/unsigned int as suggested by Jacopo.
+* only enable color management and set gamma size
+  if gamma LUT is supported, suggested by Doug.
+* drop the reg-names usage, and instead just use indexed reg
+  specifiers, suggested by Doug.
+
+Changes from RFC:
+* Request (an optional) address resource for the LUT.
+* Add devicetree changes.
+* Drop support for RK3399, which doesn't seem to work
+  out of the box and needs more research.
+* Support pass-thru setting when GAMMA_LUT is NULL.
+* Add a check for the gamma size, as suggested by Ilia.
+* Move gamma setting to atomic_commit_tail, as pointed
+  out by Jacopo/Laurent, is the correct way.
+
+Ezequiel Garcia (5):
+  Revert "drm/rockchip: Use drm_atomic_helper_commit_tail_rpm"
+  dt-bindings: display: rockchip: document VOP gamma LUT address
+  drm/rockchip: Add optional support for CRTC gamma LUT
+  ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
+  RFC: drm/atomic-helper: Reapply color transformation after resume
+
+ .../display/rockchip/rockchip-vop.txt         |   6 +-
+ arch/arm/boot/dts/rk3288.dtsi                 |   4 +-
+ drivers/gpu/drm/drm_atomic_helper.c           |  12 ++
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |  24 +++-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c   | 114 ++++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   7 ++
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |   2 +
+ 7 files changed, 165 insertions(+), 4 deletions(-)
+
+-- 
+2.22.0
+
