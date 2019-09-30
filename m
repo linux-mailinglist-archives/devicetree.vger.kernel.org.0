@@ -2,150 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E64C2495
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 17:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F984C24B8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 17:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732104AbfI3Poe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 11:44:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47448 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732102AbfI3Pod (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 11:44:33 -0400
-Received: from localhost.localdomain (unknown [194.230.155.145])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CBF4A216F4;
-        Mon, 30 Sep 2019 15:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569858272;
-        bh=skUSr7NVncfczKSccCPKJaTNJjIZK3sHjCWlfEUPQT4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wNyvw/lFlMpNtko3VhBO69gyJuppCLVQKHjARi4han4ZbchOHTg6dancx3TfPk62J
-         fssAmKjI5lWrYp/B7aALaXDzXT6notEIX431IyMtY3ghHthQNlzORVBLGEECCmp2DU
-         aqhw+IiDu1dhHa2PZQB+Y3NLF22O5Xx6i7QaihvI=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH v5 2/2] dt-bindings: timer: Use defines instead of numbers in Exynos MCT examples
-Date:   Mon, 30 Sep 2019 17:44:18 +0200
-Message-Id: <20190930154418.4884-2-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190930154418.4884-1-krzk@kernel.org>
-References: <20190930154418.4884-1-krzk@kernel.org>
+        id S1732073AbfI3P4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 11:56:17 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:57314 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730780AbfI3P4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 11:56:17 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UFuFtg090614;
+        Mon, 30 Sep 2019 10:56:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569858975;
+        bh=URZ9o4WF27v++mNirqh2f4vb/a8st2m2aDv9wcXGHAY=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Rs92BCtN+Tp1ynSeCB48VMtBAi2teb09ZQCqVnmqNy1aaAft2ZrRo6OGR1aJQh00l
+         KuHs9+nAYorRd7DlcDVSxRIdPz+TzFA4pnpW/MSdy0j0ds4vJpb/uVRgiDHAle66c9
+         x+RR9tnlMK7OADvvopGI7WCgds1fY0o4qknr5ctI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8UFuFOl093793
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 30 Sep 2019 10:56:15 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 30
+ Sep 2019 10:56:05 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 30 Sep 2019 10:56:05 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UFuFRt074633;
+        Mon, 30 Sep 2019 10:56:15 -0500
+Date:   Mon, 30 Sep 2019 10:58:26 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Austin Kim <austinkernel.kim@gmail.com>
+CC:     Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [Patch 02/16] media: ti-vpe: vpe: Add missing null pointer checks
+Message-ID: <20190930155826.pimkap75k67mji3e@ti.com>
+References: <20190927183650.31345-1-bparrot@ti.com>
+ <20190927183650.31345-3-bparrot@ti.com>
+ <CAOoBcBUd7reG=-WOq+Vq9SynZMJ81CWFZPN35MkmaQvquZ9xyg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOoBcBUd7reG=-WOq+Vq9SynZMJ81CWFZPN35MkmaQvquZ9xyg@mail.gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make the examples in Exynos Multi Core Timer bindings more readable and
-bring them closer to real DTS by using defines for interrupt flags.
-Fix also GIC interrupt type in example for Exynos4412 (from SPI to PPI).
+Hi Austin,
 
-Suggested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Thanks for the review,
 
----
+Austin Kim <austinkernel.kim@gmail.com> wrote on Sun [2019-Sep-29 09:08:37 +0900]:
+> 2019년 9월 28일 (토) 오전 3:37, Benoit Parrot <bparrot@ti.com>님이 작성:
+> >
+> > A few NULL pointer checks were missing.
+> > Add check with appropriate return code.
+> >
+> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> > ---
+> >  drivers/media/platform/ti-vpe/vpe.c | 13 ++++++++++++-
+> >  1 file changed, 12 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/media/platform/ti-vpe/vpe.c b/drivers/media/platform/ti-vpe/vpe.c
+> > index 5ba72445584d..56f60dbea15c 100644
+> > --- a/drivers/media/platform/ti-vpe/vpe.c
+> > +++ b/drivers/media/platform/ti-vpe/vpe.c
+> > @@ -1537,6 +1537,8 @@ static int vpe_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+> >                 return -EINVAL;
+> >
+> >         q_data = get_q_data(ctx, f->type);
+> > +       if (!q_data)
+> > +               return -EINVAL;
+> 
+> With this commit, it seems that 'Null Pointer Dereference' could be
+> avoidable even though 'get_q_data(ctx, f->type);' returns NULL.
+> 
+> * Original Code:
+>         q_data = get_q_data(ctx, f->type);
+>         // q_data = NULL;
+> 
+>         pix->width = q_data->width;
+>         // pix->width =  (NULL)->width;
+>         // In this case, data abort would be raised.
 
-Changes since v1:
-1. Use GIC_PPI where applicable.
+Yes I know this that is why the NULL check were added.
 
-Rebased on top of:
-https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=177667&state=*
----
- .../timer/samsung,exynos4210-mct.yaml         | 37 ++++++++++++++-----
- 1 file changed, 27 insertions(+), 10 deletions(-)
+You mentionned earlier that the NULL pointer dereference could be
+avoidable, but based on your comment I fail to see what you mean.
 
-diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-index 3e26fd5e235a..273e359854dd 100644
---- a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-+++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-@@ -57,51 +57,68 @@ examples:
-     // In this example, the IP contains two local timers, using separate
-     // interrupts, so two local timer interrupts have been specified,
-     // in addition to four global timer interrupts.
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     timer@10050000 {
-         compatible = "samsung,exynos4210-mct";
-         reg = <0x10050000 0x800>;
--        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
--                     <0 42 0>, <0 48 0>;
-+        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-     };
- 
-   - |
-     // In this example, the timer interrupts are connected to two separate
-     // interrupt controllers. Hence, an interrupts-extended is needed.
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     timer@101c0000 {
-         compatible = "samsung,exynos4210-mct";
-         reg = <0x101C0000 0x800>;
--        interrupts-extended = <&gic 0 57 0>,
--                              <&gic 0 69 0>,
-+        interrupts-extended = <&gic GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                              <&gic GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-                               <&combiner 12 6>,
-                               <&combiner 12 7>,
--                              <&gic 0 42 0>,
--                              <&gic 0 48 0>;
-+                              <&gic GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                              <&gic GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-     };
- 
-   - |
-     // In this example, the IP contains four local timers, but using
-     // a per-processor interrupt to handle them. Only one first local
-     // interrupt is specified.
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     timer@10050000 {
-         compatible = "samsung,exynos4412-mct";
-         reg = <0x10050000 0x800>;
- 
--        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
--                     <0 42 0>;
-+        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_PPI 42 IRQ_TYPE_LEVEL_HIGH>;
-     };
- 
-   - |
-     // In this example, the IP contains four local timers, but using
-     // a per-processor interrupt to handle them. All the local timer
-     // interrupts are specified.
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     timer@10050000 {
-         compatible = "samsung,exynos4412-mct";
-         reg = <0x10050000 0x800>;
- 
--        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
--                     <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
-+        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_PPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_PPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_PPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_PPI 42 IRQ_TYPE_LEVEL_HIGH>;
-     };
--- 
-2.17.1
+Please also note that this patch was a result of static analysis software
+(klocwork) warnings.
 
+Benoit
+
+> 
+> >
+> >         pix->width = q_data->width;
+> >         pix->height = q_data->height;
+> > @@ -2001,6 +2003,8 @@ static int vpe_queue_setup(struct vb2_queue *vq,
+> >         struct vpe_q_data *q_data;
+> >
+> >         q_data = get_q_data(ctx, vq->type);
+> > +       if (!q_data)
+> > +               return -EINVAL;
+> >
+> >         *nplanes = q_data->nplanes;
+> >
+> > @@ -2025,6 +2029,8 @@ static int vpe_buf_prepare(struct vb2_buffer *vb)
+> >         vpe_dbg(ctx->dev, "type: %d\n", vb->vb2_queue->type);
+> >
+> >         q_data = get_q_data(ctx, vb->vb2_queue->type);
+> > +       if (!q_data)
+> > +               return -EINVAL;
+> >         num_planes = q_data->nplanes;
+> >
+> >         if (vb->vb2_queue->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+> > @@ -2481,7 +2487,12 @@ static int vpe_probe(struct platform_device *pdev)
+> >         mutex_init(&dev->dev_mutex);
+> >
+> >         dev->res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > -                       "vpe_top");
+> > +                                               "vpe_top");
+> > +       if (!dev->res) {
+> > +               dev_err(&pdev->dev, "missing 'vpe_top' resources data\n");
+> > +               return -ENODEV;
+> > +       }
+> > +
+> >         /*
+> >          * HACK: we get resource info from device tree in the form of a list of
+> >          * VPE sub blocks, the driver currently uses only the base of vpe_top
+> > --
+> > 2.17.1
+> >
