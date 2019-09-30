@@ -2,144 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59C82C28C0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A66C28D2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 23:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730884AbfI3VYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 17:24:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49302 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727469AbfI3VYe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 17:24:34 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 690E721920;
-        Mon, 30 Sep 2019 21:24:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569878672;
-        bh=O0YTj2vhvn3cLJ9bXhjvMPrKFz9pub2mp+NyxMOgLgY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XbxRSBb5GzUwqvHLEh5933b2ncHabYYcy1H+PGoWAURC6L6OdvUSkMXSuI0Iao+qZ
-         0/XMhv/X8S8fJpHTkfs7dgHQrJiQtHY7DLVpLSN5KbV0sqXQhr4XPG2Cj2rZnridY7
-         w1jj9r+Rs3EGC9eEA/lZ15W3yzaU9R0022RF1Dto=
-Received: by mail-qt1-f177.google.com with SMTP id 3so18976777qta.1;
-        Mon, 30 Sep 2019 14:24:32 -0700 (PDT)
-X-Gm-Message-State: APjAAAXAshFanHEZgU5iZwlV8eAxuby5/lsuknWOk8eiTQuBJlikpRMh
-        vdfvLeuBnE+lnknRZiRQaqqByPZDb6CuLwWPoQ==
-X-Google-Smtp-Source: APXvYqwkGA20wZuKhUgCITJW9BMQhvKkz+h0oBRgQSxYR0zNJnVmKMOzb61pAR/bwav/Kg6q4m9o5OuCzIMOKst9NO8=
-X-Received: by 2002:ac8:31b3:: with SMTP id h48mr28091603qte.300.1569878671519;
- Mon, 30 Sep 2019 14:24:31 -0700 (PDT)
+        id S1729964AbfI3Vb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 17:31:28 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:34522 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729482AbfI3Vb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 17:31:28 -0400
+Received: by mail-io1-f66.google.com with SMTP id q1so42346748ion.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 14:31:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lixom-net.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i3dwIE3HGnY2ji6BL2lgrdHCeKt8hwvNYITijQeMpag=;
+        b=izfFFobeeAuaCN1MYV2cqTTC9SJ2B7X/u+g6CPl+hSPnOUnRbP1/BCohkPY00SKjOS
+         ngbgS5eggV73d5N3fvNsmyx4AdZ9BelpEyLZgIOQWjYZ0H/t1h9hwcopTh8luMLUlkAD
+         UvFLMMtPQWZq9ybp6G3XRQa3ba3kFxGlWt+PhVFEisFiy/ivTvQCpq4WDb2zRJWntAjY
+         RnpfLShbUA0uQ0c6YpBTgnszBbNpKq4tSWd29vid/pr0QWpkPNtc9dlZZOHIWHtbr1I4
+         64grZ5gAZJhw0mPO812L2fmFF+Kgqu62rcwu8tU01ioPJdvJ0r7FYafvOLbDi1a734kX
+         h+0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i3dwIE3HGnY2ji6BL2lgrdHCeKt8hwvNYITijQeMpag=;
+        b=guSPRlVzH2JgsKHjU+wLa2igHdXa7khBPoMdL4NuQos1j6dN0QU/+esEHULJmUe46r
+         mFK2oILfT4k0O6Y8Qtehcd/xOUqe2MhLbtIBk5teHJVGXms6m6H5trlaT6iBjxMcYFvi
+         iuFFrhtT9fHBDbzCT77zrxscR9gCZS8whXSf5tOK9fbNGn5a9AhHYYTXYcpbF7a8/qM7
+         vuLAyvjzi/BykZl93AVIKEKshe83I5p/N+rFIxMCnLrPiY8IMeeAY5c/21O5QZFZZKpU
+         fxu01aCYoAAJ5JBX9U8WK6WWFJTGuSBeCcXMxZWSJRGyfqv7mwcWBKHISq/TaU6lbLaT
+         rcIg==
+X-Gm-Message-State: APjAAAXeCZcWpygq921l33rUkVQ+e95vI3I9ShWWOBbKDs2mOTgb2NGb
+        nrf0BZuiN9GPKh80ir54WmbkvTL71NURyIbTZTqDQSW8ZyLAEQ==
+X-Google-Smtp-Source: APXvYqyXj8WDjHDG8Ly151dv7OzUri8sYlz4HJQ8uFbvR+QF/bAefpHZooDpQz+OMMR2j4tK+jKhsia3WuUY762LNpQ=
+X-Received: by 2002:a92:4799:: with SMTP id e25mr22126652ilk.72.1569864912988;
+ Mon, 30 Sep 2019 10:35:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190927002455.13169-1-robh@kernel.org> <20190927002455.13169-6-robh@kernel.org>
- <20190930125752.GD12051@infradead.org> <95f8dabea99f104336491281b88c04b58d462258.camel@suse.de>
-In-Reply-To: <95f8dabea99f104336491281b88c04b58d462258.camel@suse.de>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 30 Sep 2019 16:24:20 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLnKxuQRR3sGGtXF3nwwDx7DOONPPYz37ROk7u_+cxRug@mail.gmail.com>
-Message-ID: <CAL_JsqLnKxuQRR3sGGtXF3nwwDx7DOONPPYz37ROk7u_+cxRug@mail.gmail.com>
-Subject: Re: [PATCH 05/11] of: Ratify of_dma_configure() interface
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Christoph Hellwig <hch@infradead.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        PCI <linux-pci@vger.kernel.org>,
+References: <20190911183632.4317-1-krzk@kernel.org> <CAK8P3a2pBV+fh0rHitZ30Zz61QNRLfNSD-nhnzq4ZtxSh66F1Q@mail.gmail.com>
+ <CAJKOXPcOSvc2DfoN+7Tca=t5dSm3RcKqmm06AfR0PAVBeY=GvQ@mail.gmail.com>
+ <20190929175134.fsieffurfdiqhpj2@localhost> <20190930080217.GA23709@pi3>
+In-Reply-To: <20190930080217.GA23709@pi3>
+From:   Olof Johansson <olof@lixom.net>
+Date:   Mon, 30 Sep 2019 10:35:01 -0700
+Message-ID: <CAOesGMi2w9vci+kU=WFHJJBqgz9BM5RJBzqwwrR7k=275w4Tyg@mail.gmail.com>
+Subject: Re: [GIT PULL 1/2] arm64: dts: exynos: Pull for v5.4
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, arm-soc <arm@kernel.org>,
+        SoC Team <soc@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Oza Pawandeep <oza.oza@broadcom.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Robin Murphy <robin.murphy@arm.com>
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 8:32 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
+On Mon, Sep 30, 2019 at 1:02 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> On Mon, 2019-09-30 at 05:57 -0700, Christoph Hellwig wrote:
-> > On Thu, Sep 26, 2019 at 07:24:49PM -0500, Rob Herring wrote:
-> > > -int of_dma_configure(struct device *dev, struct device_node *np, bool
-> > > force_dma)
-> > > +int of_dma_configure(struct device *dev, struct device_node *parent, bool
-> > > force_dma)
+> On Sun, Sep 29, 2019 at 10:51:34AM -0700, Olof Johansson wrote:
+> > Hi,
 > >
-> > This creates a > 80 char line.
-> >
-> > >  {
-> > >     u64 dma_addr, paddr, size = 0;
-> > >     int ret;
-> > >     bool coherent;
-> > >     unsigned long offset;
-> > >     const struct iommu_ops *iommu;
-> > > +   struct device_node *np;
-> > >     u64 mask;
+> > On Thu, Sep 12, 2019 at 08:32:47AM +0200, Krzysztof Kozlowski wrote:
+> > > On Wed, 11 Sep 2019 at 23:07, Arnd Bergmann <arnd@arndb.de> wrote:
+> > > >
+> > > > On Wed, Sep 11, 2019 at 8:36 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > >
+> > > > > Hi,
+> > > > >
+> > > > > Unfortunately the patches were applied right after closing the linux-next.
+> > > >
+> > > > Hi Krzysztof,
+> > > >
+> > > > I took a look at these and am not convinced this is right:
+> > > >
+> > > > > 1. Fix boot of Exynos7 due to wrong address/size of memory node,
+> > > >
+> > > > The current state is clearly broken and a fix is needed, but
+> > > > I'm not sure this is the right fix. Why do you have 32-bit physical
+> > > > addressing on a 64-bit chip? I looked at commit ef72171b3621
+> > > > that introduced it, and it seems it would be better to just
+> > > > revert back to 64-bit addresses.
 > > >
-> > > +   np = dev->of_node;
-> > > +   if (!np)
-> > > +           np = parent;
-> > > +   if (!np)
-> > > +           return -ENODEV;
+> > > We discussed with Marek Szyprowski that either we can go back to
+> > > 64-bit addressing or stick to 32. There are not known boards with more
+> > > than 4 GB of RAM so from this point of view the choice was irrelevant.
+> > > At the end of discussion I mentioned to stick with other arm64 boards
+> > > (although not all), so revert to have 64 bit address... but Marek
+> > > chosen differently. Since you ask, let's go back with revert.
+> > >
+> > > >
+> > > > > 2. Move GPU under /soc node,
+> > > >
+> > > > No problem
+> > > >
+> > > > > 3. Minor cleanup of #address-cells.
+> > > >
+> > > > IIRC, an interrupt-controller is required to have a #address-cells
+> > > > property, even if that is normally zero. I don't remember the
+> > > > details, but the gic binding lists it as mandatory, and I think
+> > > > the PCI interrupt-map relies on it. I would just drop this patch.
+> > >
+> > > Indeed, binding requires both address and size cells. I'll drop it.
 > >
-> > I have to say I find the older calling convention simpler to understand.
-> > If we want to enforce the invariant I'd rather do that explicitly:
-> >
-> >       if (dev->of_node && np != dev->of_node)
-> >               return -EINVAL;
+> > Looking through the history of pending material, I didn't see a new pull for
+> > this material. Just checking in to see if there's something we missed?
 >
-> As is, this would break Freescale Layerscape fsl-mc bus' dma_configure():
+> No, it's me who forgot to resend. I was sure that I rebased the branch
+> and created new pull request. However it seems I did not. Let's keep it
+> for next merge window... v5.4-rc should be any minute, I guess?
 
-This may break PCI too for devices that have a DT node.
+Yeah, we're too late for this merge window but feel free to send it
+for next release.
 
-> static int fsl_mc_dma_configure(struct device *dev)
-> {
->         struct device *dma_dev = dev;
->
->         while (dev_is_fsl_mc(dma_dev))
->                 dma_dev = dma_dev->parent;
->
->         return of_dma_configure(dev, dma_dev->of_node, 0);
-> }
->
-> But I think that with this series, given the fact that we now treat the lack of
-> dma-ranges as a 1:1 mapping instead of an error, we could rewrite the function
-> like this:
 
-Now, I'm reconsidering allowing this abuse... It's better if the code
-which understands the bus structure in DT for a specific bus passes in
-the right thing. Maybe I should go back to Robin's version (below).
-OTOH, the existing assumption that 'dma-ranges' was in the immediate
-parent was an assumption on the bus structure which maybe doesn't
-always apply.
-
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index a45261e21144..6951450bb8f3 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -98,12 +98,15 @@ int of_dma_configure(struct device *dev, struct
-device_node *parent, bool force_
-        u64 mask;
-
-        np = dev->of_node;
--       if (!np)
--               np = parent;
-+       if (np)
-+               parent = of_get_dma_parent(np);
-+       else
-+               np = of_node_get(parent);
-        if (!np)
-                return -ENODEV;
-
--       ret = of_dma_get_range(np, &dma_addr, &paddr, &size);
-+       ret = of_dma_get_range(parent, &dma_addr, &paddr, &size);
-+       of_node_put(parent);
-        if (ret < 0) {
-                /*
-                 * For legacy reasons, we have to assume some devices need
+-Olof
