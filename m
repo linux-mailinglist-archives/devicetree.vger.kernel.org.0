@@ -2,73 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8C4C1CFF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 10:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA8DDC1D09
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 10:21:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729978AbfI3IU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 04:20:57 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:43008 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729923AbfI3IU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 04:20:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=If3yq1ODv3mmckOcV5bip4UCF3kVbPW2FQhUrotgaDI=; b=AN6E2r5+esnTrZkRBItKdRjse
-        DHWl6KMtx8uvrMrd6Rm3NccrVdj8sgohG5IhvUu7yiSapvzR4zG/bp79mucxPjSJszkOKVpH8j+Tx
-        2LjUq3ltPhxUC0kfPwVvE/2+q38SwH4IotQGcGmUr4Up6EtdRTQiZ0wvN21iKY4deDJKGwH+Nv2Il
-        5HZKNU7KLYBypju4ygZ+GcaHczmiCKoY912aV98rRbc4Dnuh4t7KU3uSDZtsZ0InOTzuzjs+hLISZ
-        5jXl5ucrYxXR2QxMdaSLYGmnw9DWtFeZwFoRF8dgR6/P6gEdioEZk6JQsrYYRYqhTGEevN4Kgr3OW
-        yvuEbI6JA==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.92.2 #3 (Red Hat Linux))
-        id 1iEqvP-000835-Nr; Mon, 30 Sep 2019 08:20:55 +0000
-Date:   Mon, 30 Sep 2019 01:20:55 -0700
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Robin Murphy <robin.murphy@arm.com>,
+        id S1729852AbfI3IVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 04:21:39 -0400
+Received: from mx2.suse.de ([195.135.220.15]:36254 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729844AbfI3IVj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 04:21:39 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 9329CAF7E;
+        Mon, 30 Sep 2019 08:21:37 +0000 (UTC)
+Message-ID: <84cee6b1523fc67aeb5a48666229437fa33e07d2.camel@suse.de>
+Subject: Re: [PATCH V3 6/8] ARM: bcm: Add support for BCM2711 SoC
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Stefan Wahren <wahrenst@gmx.net>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Oza Pawandeep <oza.oza@broadcom.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 00/11] of: dma-ranges fixes and improvements
-Message-ID: <20190930082055.GA21971@infradead.org>
-References: <20190927002455.13169-1-robh@kernel.org>
- <CAK8P3a0oct0EOMi5t4BmpgdkiBM+LjC+2pTST4hcvNCa3MGLmw@mail.gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eric Anholt <eric@anholt.net>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Mon, 30 Sep 2019 10:21:35 +0200
+In-Reply-To: <c420bf03-784e-073f-b0d7-471d0fb48d22@gmx.net>
+References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+         <1569672435-19823-7-git-send-email-wahrenst@gmx.net>
+         <6b251871-59ae-6040-cbbc-74207b2169f3@gmail.com>
+         <c420bf03-784e-073f-b0d7-471d0fb48d22@gmx.net>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-Myrx/pu0R5B67LIndQoy"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a0oct0EOMi5t4BmpgdkiBM+LjC+2pTST4hcvNCa3MGLmw@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 29, 2019 at 01:16:20PM +0200, Arnd Bergmann wrote:
-> On a semi-related note, Thierry asked about one aspect of the dma-ranges
-> property recently, which is the behavior of dma_set_mask() and related
-> functions when a driver sets a mask that is larger than the memory
-> area in the bus-ranges but smaller than the available physical RAM.
-> As I understood Thierry's problem and the current code, the generic
-> dma_set_mask() will either reject the new mask entirely or override
-> the mask set by of_dma_configure, but it fails to set a correct mask
-> within the limitations of the parent bus in this case.
 
-There days dma_set_mask will only reject a mask if it is too small
-to be supported by the hardware.  Larger than required masks are now
-always accepted.
+--=-Myrx/pu0R5B67LIndQoy
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, 2019-09-29 at 01:09 +0200, Stefan Wahren wrote:
+> Am 28.09.19 um 21:16 schrieb Florian Fainelli:
+> > On 9/28/2019 5:07 AM, Stefan Wahren wrote:
+> > > Add the BCM2711 to ARCH_BCM2835, but use new machine board code
+> > > because of the differences.
+> > >=20
+> > > Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> > > Reviewed-by: Eric Anholt <eric@anholt.net>
+> > > ---
+> > >  arch/arm/mach-bcm/Kconfig    |  3 ++-
+> > >  arch/arm/mach-bcm/Makefile   |  3 ++-
+> > >  arch/arm/mach-bcm/bcm2711.c  | 24 ++++++++++++++++++++++++
+> > >  arch/arm64/Kconfig.platforms |  5 +++--
+> > >  4 files changed, 31 insertions(+), 4 deletions(-)
+> > >  create mode 100644 arch/arm/mach-bcm/bcm2711.c
+> > >=20
+> > > diff --git a/arch/arm/mach-bcm/Kconfig b/arch/arm/mach-bcm/Kconfig
+> > > index 5e5f1fa..39bcbea 100644
+> > > --- a/arch/arm/mach-bcm/Kconfig
+> > > +++ b/arch/arm/mach-bcm/Kconfig
+> > > @@ -161,6 +161,7 @@ config ARCH_BCM2835
+> > >  	select GPIOLIB
+> > >  	select ARM_AMBA
+> > >  	select ARM_ERRATA_411920 if ARCH_MULTI_V6
+> > > +	select ARM_GIC if ARCH_MULTI_V7
+> > >  	select ARM_TIMER_SP804
+> > >  	select HAVE_ARM_ARCH_TIMER if ARCH_MULTI_V7
+> > >  	select TIMER_OF
+> > Are not we missing a select ZONE_DMA here?
+> Yes. I think for arm and arm64.
+
+No need in arm64, see arch/arm64/Kconfig:270.
+
+> > > @@ -169,7 +170,7 @@ config ARCH_BCM2835
+> > >  	select PINCTRL_BCM2835
+> > >  	select MFD_CORE
+> > >  	help
+> > > -	  This enables support for the Broadcom BCM2835 and BCM2836 SoCs.
+> > > +	  This enables support for the Broadcom BCM2711 and BCM283x SoCs.
+> > >  	  This SoC is used in the Raspberry Pi and Roku 2 devices.
+> > >=20
+> > >  config ARCH_BCM_53573
+> > > diff --git a/arch/arm/mach-bcm/Makefile b/arch/arm/mach-bcm/Makefile
+> > > index b59c813..7baa8c9 100644
+> > > --- a/arch/arm/mach-bcm/Makefile
+> > > +++ b/arch/arm/mach-bcm/Makefile
+> > > @@ -42,8 +42,9 @@ obj-$(CONFIG_ARCH_BCM_MOBILE_L2_CACHE) +=3D
+> > > kona_l2_cache.o
+> > >  obj-$(CONFIG_ARCH_BCM_MOBILE_SMC) +=3D bcm_kona_smc.o
+> > >=20
+> > >  # BCM2835
+> > > -obj-$(CONFIG_ARCH_BCM2835)	+=3D board_bcm2835.o
+> > >  ifeq ($(CONFIG_ARCH_BCM2835),y)
+> > > +obj-y				+=3D board_bcm2835.o
+> > > +obj-y				+=3D bcm2711.o
+> > >  ifeq ($(CONFIG_ARM),y)
+> > >  obj-$(CONFIG_SMP)		+=3D platsmp.o
+> > >  endif
+> > > diff --git a/arch/arm/mach-bcm/bcm2711.c b/arch/arm/mach-bcm/bcm2711.=
+c
+> > > new file mode 100644
+> > > index 0000000..dbe2967
+> > > --- /dev/null
+> > > +++ b/arch/arm/mach-bcm/bcm2711.c
+> > > @@ -0,0 +1,24 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright (C) 2019 Stefan Wahren
+> > > + */
+> > > +
+> > > +#include <linux/of_address.h>
+> > > +
+> > > +#include <asm/mach/arch.h>
+> > > +
+> > > +#include "platsmp.h"
+> > > +
+> > > +static const char * const bcm2711_compat[] =3D {
+> > > +#ifdef CONFIG_ARCH_MULTI_V7
+> > > +	"brcm,bcm2711",
+> > > +#endif
+> > > +};
+> > > +
+> > > +DT_MACHINE_START(BCM2711, "BCM2711")
+> > > +#ifdef CONFIG_ZONE_DMA
+> > > +	.dma_zone_size	=3D SZ_1G,
+> > > +#endif
+> > > +	.dt_compat =3D bcm2711_compat,
+> > > +	.smp =3D smp_ops(bcm2836_smp_ops),
+> > > +MACHINE_END
+> > > diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platfo=
+rms
+> > > index 16d7614..b5d31dc 100644
+> > > --- a/arch/arm64/Kconfig.platforms
+> > > +++ b/arch/arm64/Kconfig.platforms
+> > > @@ -37,11 +37,12 @@ config ARCH_BCM2835
+> > >  	select PINCTRL
+> > >  	select PINCTRL_BCM2835
+> > >  	select ARM_AMBA
+> > > +	select ARM_GIC
+> > >  	select ARM_TIMER_SP804
+> > >  	select HAVE_ARM_ARCH_TIMER
+> > >  	help
+> > > -	  This enables support for the Broadcom BCM2837 SoC.
+> > > -	  This SoC is used in the Raspberry Pi 3 device.
+> > > +	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
+> > > +	  This SoC is used in the Raspberry Pi 3 and 4 device.
+> > Nit:
+> >=20
+> > These SoCs are used in the Raspberry Pi 3 and 4 devices.
+> >=20
+> > With that:
+> >=20
+> > Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+
+
+--=-Myrx/pu0R5B67LIndQoy
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2Ruw8ACgkQlfZmHno8
+x/607gf/T7F1F9TuUbe8aIGsRlSvNgxZPSTGgLBGeDZRYw6phxrx+UNH8Nb2jsfo
+ab03yUsBptZfAuk4o6HSdQK2EPmUNo4SgKVTONXY0tNli/bQYVBz5/1VYVSQe12e
+jKq+cMrl9XfyaLw+OFEHUHwDeFRrmGBILkXbxA30bmGV3tQY2DMHGjPMeJB8NfhW
+d2W7TotzlPRW6kRpCcqaTY/0rEl8++x1hXd+O9aNK17ARwbpH7WJ1Vrk2gA4bLDD
+3PzHo5PHQfgBrEDwG8lMfT5fLDzMKJN0dBMhq+8ndFKMEA045Xv7HlWr+tRn90A3
+mfl96C1tEBdZqejT5xaSNuBKr7O75Q==
+=XPxo
+-----END PGP SIGNATURE-----
+
+--=-Myrx/pu0R5B67LIndQoy--
+
