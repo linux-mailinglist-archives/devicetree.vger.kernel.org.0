@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B82DC2A16
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 154A7C2A21
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727497AbfI3W6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 18:58:14 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39024 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726858AbfI3W6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:58:13 -0400
-Received: by mail-ot1-f66.google.com with SMTP id s22so9859372otr.6;
-        Mon, 30 Sep 2019 15:58:13 -0700 (PDT)
+        id S1726425AbfI3W6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 18:58:43 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40524 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731685AbfI3W6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:58:42 -0400
+Received: by mail-ot1-f67.google.com with SMTP id y39so9865602ota.7;
+        Mon, 30 Sep 2019 15:58:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=yMD9pmuStBSmV7/f6WmG6NS1chDF+Ciauz815CKJvxk=;
-        b=hy5Alx4wVYQh8+zwDXtQd/uAHU+rW4yWHk3FKAyDP1iz30W7eXN8HAp+iRSLXBrCEt
-         A7G6akFvoOonT1IMcGphPp5Wux9xgZzWRtECIDYwBfBLl8fz8whcCgwErwUuNZLo3hfu
-         D35PkGfmNJFC3eFRhmFW87OMUa4AVrciRqdfwkZbBpu6slgbJT7c+YwMFXerue3NqDJ4
-         +rHD71bTA/q65GIbVPp4djQjYsUPHT/Yg/q20QAjt6a16QEq7pSvX043g+Zhr2eJxzNX
-         IUUFV02ck0met1EHvJjKMK442WuViUoSrMjWOd6I342EKTKdW26J9QZikpFCFfCA0Clm
-         QQ3Q==
-X-Gm-Message-State: APjAAAWqrq+7wo6oGNSY2ReY1zFtdq87B0pQdI+WB59lueA3ePZ2g/uu
-        PtzHWlaRDQdZUX/8YjkwRg==
-X-Google-Smtp-Source: APXvYqywsx7UD2SV0vlleU8U80VUN6PE7GBO/x4hSrEd/v4xkSmgFSt6RjJIUygixJXrVFXJWQV6pQ==
-X-Received: by 2002:a9d:a06:: with SMTP id 6mr15686295otg.69.1569884292929;
-        Mon, 30 Sep 2019 15:58:12 -0700 (PDT)
+        bh=Zsh+LJZZ1bYwJ2NNK3krE03pjGa9uFNYkpSwzo6s75E=;
+        b=cF3SuEP6UVgmLoVbAww7p98JUkzMwHp1DEDMgGI3sQcZuyAldX6pp1xwW4uBwGVpzA
+         gpLjpGJrJ490EgeLAT728uHaTrjaIfZkEfdr02Dlo7Hv46RJO0rqmfQFUXQZ4ReaGWb9
+         KjIDP3fgQyZCUXjtEwbtRJ/RPSTFNBF3VXYkNeeVNksJHnhvQ6Z/TrFuuPcH7NTZmsl3
+         V6f4iEFd1lhh2Lav213Ss2/mqxT7CHQcary9ygzHhjX56g5McM5/XTkmNV7Ma2yTp//F
+         7E2tSgBTlgGI2SoYiSA4GJaJwwbGz6mHJRPjOsjt1jnhDR/peYL3s90YMyS8w6Z2uHNR
+         4LBQ==
+X-Gm-Message-State: APjAAAUB91R2jikZ49L58S4AymLios4FUn/9Bps/Q8eTdMDaaDo2RgWT
+        GiFVd6BLO6Sjr3myv420fg==
+X-Google-Smtp-Source: APXvYqwWkT9GDFmYgFBWEu1p/Bs3nmD8s9rnVMBqjB0aVwy3EoB5SB513rfznMUpF2BgtyGrnCCJBg==
+X-Received: by 2002:a9d:67c3:: with SMTP id c3mr14456067otn.254.1569884321904;
+        Mon, 30 Sep 2019 15:58:41 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a9sm4409375otc.75.2019.09.30.15.58.12
+        by smtp.gmail.com with ESMTPSA id 38sm4493219otw.28.2019.09.30.15.58.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 15:58:12 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 17:58:11 -0500
+        Mon, 30 Sep 2019 15:58:41 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 17:58:40 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Heiko Stuebner <heiko@sntech.de>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -41,39 +41,29 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         mark.rutland@arm.com, linux-rockchip@lists.infradead.org,
         christoph.muellner@theobroma-systems.com,
         Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH 09/13] arm64: dts: rockchip: document explicit px30 cru
- dependencies
-Message-ID: <20190930225811.GA14016@bogus>
+Subject: Re: [PATCH 11/13] dt-bindings: document PX30 usb2phy General
+ Register Files
+Message-ID: <20190930225840.GA14866@bogus>
 References: <20190917082659.25549-1-heiko@sntech.de>
- <20190917082659.25549-9-heiko@sntech.de>
+ <20190917082659.25549-11-heiko@sntech.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917082659.25549-9-heiko@sntech.de>
+In-Reply-To: <20190917082659.25549-11-heiko@sntech.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Sep 2019 10:26:55 +0200, Heiko Stuebner wrote:
-> The px30 contains 2 separate clock controllers the regular cru creating
-> most clocks as well as the pmucru managing the GPLL and some other clocks.
-> 
-> The gpll of course also is needed by the cru, so while we normally do rely
-> on clock names to associate clocks getting probed later on (for example
-> xin32k coming from an i2c device in most cases) it is safer to declare the
-> explicit dependency between the two crus. This makes sure that for example
-> the clock-framework probes them in the correct order from the start.
-> 
-> The assigned-clocks properties were simply working by chance in the past
-> so split them accordingly to the 2 crus to honor the loading direction.
+On Tue, 17 Sep 2019 10:26:57 +0200, Heiko Stuebner wrote:
+> One of the separate General Register Files contains the registers for
+> controlling the usb2phy, so add the necessary binding compatible for it.
 > 
 > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 > ---
->  .../bindings/clock/rockchip,px30-cru.txt      |  5 ++++
->  arch/arm64/boot/dts/rockchip/px30.dtsi        | 25 +++++++++++--------
->  2 files changed, 20 insertions(+), 10 deletions(-)
+>  Documentation/devicetree/bindings/soc/rockchip/grf.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
