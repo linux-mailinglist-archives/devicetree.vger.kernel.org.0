@@ -2,190 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A6FC29A8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE96C29DD
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 00:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726789AbfI3Wgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 18:36:44 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35910 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726103AbfI3Wgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:36:44 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 67so9844233oto.3;
-        Mon, 30 Sep 2019 15:36:42 -0700 (PDT)
+        id S1731483AbfI3Woo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 18:44:44 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:42737 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727118AbfI3Woo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 18:44:44 -0400
+Received: by mail-vs1-f68.google.com with SMTP id m22so7967670vsl.9
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 15:44:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=R/2IGqkcJxyCfdXVhyfUjNS/geJP3ljERdNj2BWoXsI=;
+        b=oUyRV9cBkkkJ238JMstI0DdwTEnHLOMmk7p0pAeK/otfxi+PYeGve1JVKhGcSbwAsR
+         CSu8CVq53LDVDBpdq68Vide0GWDTg6SxzAWmZ8HUjVmgywKhOqqFOIx/s2JQ23bHpixT
+         PVOqdQ9XsD/nhCYxAO+jahlCJV4O25PbdASrh/bdIvP350tciLMBx/vdKxRaWxYqnJOp
+         EixyppQGewnOSKTGeQ74o0JTEQCDzGb/9LioyeEW27yDOeoJHC+tFDJLIX43UNxeIT59
+         LLC4yp6CdkXMcOC2X4wnR3Tgl0HRRYyG+GJMQQAOk898MKVC2yP2OliExODnacQh08Ar
+         O6YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mpInDS2oe0Ta+ZD1qVPCII+xXIk5A6Ga/flR3rWJqyU=;
-        b=osZWkurO7cz5QZfKPRLKOdz4wYZKNXU8wMmiJOYlYTJxNLGz+rFTdPQpANpSbzLD8K
-         IgA+BupyzSehMhJ796jOMbcsNLDEmSWFld1mg6A/kJJTFzbNspoj+cvGUavCrbYR2459
-         ig2GcnHlsXbGlT4xYrHTu0noUD+oOssSjK6to/mN6K9T4tTw9iYA5iBDkwo3Z+w5tcu/
-         cZjNpYGd2TNwBm1c2+mVm9GtDl8GTyjIrS0O41EgRzO/7rA8HRQ7BT3yzkTumPMyOZgV
-         j3hZEAToeZgLbpBdSZNi/4Zdd/AzJNqFIeTr8K5TzUpJTcOYh05mAj7DB6sshu9FuFZx
-         SGbg==
-X-Gm-Message-State: APjAAAWeMji/Dh/o0Uk3UPxItZr9UV76HKG2yNHv5paeobD7Nhy5BkaD
-        mMb8AnbcXLQKuDM5FnCFDbblLU4=
-X-Google-Smtp-Source: APXvYqzijfy1cYSHjSDjO5oXeKYPN9PlN7UqRR5N+7H24ZAYWjibfzSeYgmFYGi/OnM6T0RYMMEDPQ==
-X-Received: by 2002:a05:6830:156:: with SMTP id j22mr16397493otp.196.1569883001835;
-        Mon, 30 Sep 2019 15:36:41 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l30sm4127481otl.74.2019.09.30.15.36.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 15:36:41 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 17:36:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     broonie@kernel.org, mark.rutland@arm.com,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: spi: Add support for cadence-qspi IP
- Intel LGM SoC
-Message-ID: <20190930223640.GA18491@bogus>
-References: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190916073843.39618-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=R/2IGqkcJxyCfdXVhyfUjNS/geJP3ljERdNj2BWoXsI=;
+        b=tbWJB4I+/5bONOVyK+aP7qDJlQLdYaTp/lECNpVDX6DGVR+dEfpi0CSXTj8EPuFo91
+         xzDQSUFXeJSFhIIq72jAWNAIoRariIeu2XvK0aWWhd3jDQVC+EuqVXsYpKeunbdTu88R
+         J0D4KxfXh+hgvi7SAAkL0ZNCCVMS4O3QIZxd9gZuD1P1ma06y99j1uUsacR4bAwniAba
+         RR/NjuNm8o4+dwVeM7J/2vaRYQQDkM9sv4D8zOwBnWGZE4TDPn4I7hst9FMgeurZhTkQ
+         WOL7l39x5A7hZbmoN8aNtSj9haKGDUmgHbgwAtsRh7Ya7l+IMFktrqysSU0VY4KOqkXi
+         htjw==
+X-Gm-Message-State: APjAAAUxicfvH70xYG35mEnapltpFnHCHU1XpxBFXsw4ZOH8uxQQHkKD
+        J4xiqBGbStPnux0rWHNqTCFgYSme80HSKzlEuZ1OFw==
+X-Google-Smtp-Source: APXvYqwQIYB8itddzoh5/J4SJx8QLazwMpE1zHpLumKYYuLabOa9Zhdm6JeD37Zk0WNrsiC7dZ+AhT+pYp2toNtojuQ=
+X-Received: by 2002:a67:6044:: with SMTP id u65mr10627844vsb.95.1569883482533;
+ Mon, 30 Sep 2019 15:44:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190916073843.39618-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <cover.1558430617.git.amit.kucheria@linaro.org>
+ <49cf5d94beb9af9ef4e78d4c52f3b0ad20b7c63f.1558430617.git.amit.kucheria@linaro.org>
+ <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
+In-Reply-To: <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Tue, 1 Oct 2019 04:14:31 +0530
+Message-ID: <CAHLCerOS1Hi3XdDZzTKFKnrsATj5cMKtjPEuJknWu-aPtwzP9g@mail.gmail.com>
+Subject: Re: [PATCH v2 7/9] arm64: dts: qcom: msm8998: Add PSCI cpuidle low
+ power states
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 16, 2019 at 03:38:42PM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> 
-> On Intel Lightening Mountain(LGM) SoCs QSPI controller support
-> to QSPI-NAND flash. This introduces to device tree binding
-> documentation for Cadence-QSPI controller and spi-nand flash.
-> 
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> ---
->  .../devicetree/bindings/spi/cadence,qspi-nand.yaml | 84 ++++++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml b/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
-> new file mode 100644
-> index 000000000000..9aae4c1459cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/spi/cadence,qspi-nand.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Cadence QSPI Flash Controller on Intel's SoC
-> +
-> +maintainers:
-> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-> +
-> +description: |
-> +  The Cadence QSPI is a controller optimized for communication with SPI
-> +  FLASH memories, without DMA support on Intel's SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: cadence,lgm-qspi
+Can you try removing just the *SLEEP_1 states from the cpu-idle-states
+property? I want to understand if this is triggered just by the deeper
+C-state.
 
-Vendor here should be 'intel'. Perhaps the binding should be shared too 
-like the driver.
-
-Plus the vendor prefix for Cadence is cdns.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  fifo-depth:
-> +    maxItems: 1
-> +
-This is vendor specific, so needs a vendor prefix, type, and 
-description.
-
-> +  fifo-width:
-> +    maxItems: 1
-
-Same
-
-> +
-> +  qspi-phyaddr:
-> +    maxItems: 1
-
-Same
-
-> +
-> +  qspi-phymask:
-> +    maxItems: 1
-
-Same
-
-> +
-> +  clocks:
-> +    maxItems: 2
-
-Need to define what each clock is when there is more than 1.
-
-> +
-> +  clocks-names:
-> +    maxItems: 2
-
-Need to define the strings.
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - fifo-depth
-> +  - fifo-width
-> +  - qspi-phyaddr
-> +  - qspi-phymask
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +examples:
-> +  - |
-> +    qspi@ec000000 {
-
-spi@...
-
-> +          compatible = "cadence,qspi-nand";
-> +          reg = <0xec000000 0x100>;
-> +          fifo-depth = <128>;
-> +          fifo-width = <4>;
-> +          qspi-phyaddr = <0xf4000000>;
-> +          qspi-phymask = <0xffffffff>;
-> +          clocks = <&cgu0 LGM_CLK_QSPI>, <&cgu0 LGM_GCLK_QSPI>;
-> +          clock-names = "freq", "qspi";
-> +          resets = <&rcu0 0x10 1>;
-> +          reset-names = "qspi";
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          flash: flash@1 {
-> +              compatible = "spi-nand";
-> +              reg = <1>;
-> +              spi-max-frequency = <10000000>;
-> +          };
-> +    };
-> +
-> -- 
-> 2.11.0
-> 
+On Tue, Oct 1, 2019 at 3:50 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
+>
+> Amit, the merged version of the below change causes a boot failure
+> (nasty hang, sometimes with RCU stalls) on the msm8998 laptops.  Oddly
+> enough, it seems to be resolved if I remove the cpu-idle-states
+> property from one of the cpu nodes.
+>
+> I see no issues with the msm8998 MTP.
+>
+> Do you have any suggestions on how we might debug this?
+>
+> On Tue, May 21, 2019 at 3:38 AM Amit Kucheria <amit.kucheria@linaro.org> wrote:
+> >
+> > Add device bindings for cpuidle states for cpu devices.
+> >
+> > Cc: Marc Gonzalez <marc.w.gonzalez@free.fr>
+> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> > Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/msm8998.dtsi | 50 +++++++++++++++++++++++++++
+> >  1 file changed, 50 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> > index 3fd0769fe648..54810980fcf9 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> > @@ -78,6 +78,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x0>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> >                         efficiency = <1024>;
+> >                         next-level-cache = <&L2_0>;
+> >                         L2_0: l2-cache {
+> > @@ -97,6 +98,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x1>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> >                         efficiency = <1024>;
+> >                         next-level-cache = <&L2_0>;
+> >                         L1_I_1: l1-icache {
+> > @@ -112,6 +114,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x2>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> >                         efficiency = <1024>;
+> >                         next-level-cache = <&L2_0>;
+> >                         L1_I_2: l1-icache {
+> > @@ -127,6 +130,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x3>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> >                         efficiency = <1024>;
+> >                         next-level-cache = <&L2_0>;
+> >                         L1_I_3: l1-icache {
+> > @@ -142,6 +146,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x100>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> >                         efficiency = <1536>;
+> >                         next-level-cache = <&L2_1>;
+> >                         L2_1: l2-cache {
+> > @@ -161,6 +166,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x101>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> >                         efficiency = <1536>;
+> >                         next-level-cache = <&L2_1>;
+> >                         L1_I_101: l1-icache {
+> > @@ -176,6 +182,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x102>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> >                         efficiency = <1536>;
+> >                         next-level-cache = <&L2_1>;
+> >                         L1_I_102: l1-icache {
+> > @@ -191,6 +198,7 @@
+> >                         compatible = "arm,armv8";
+> >                         reg = <0x0 0x103>;
+> >                         enable-method = "psci";
+> > +                       cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> >                         efficiency = <1536>;
+> >                         next-level-cache = <&L2_1>;
+> >                         L1_I_103: l1-icache {
+> > @@ -238,6 +246,48 @@
+> >                                 };
+> >                         };
+> >                 };
+> > +
+> > +               idle-states {
+> > +                       entry-method = "psci";
+> > +
+> > +                       LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> > +                               compatible = "arm,idle-state";
+> > +                               idle-state-name = "little-retention";
+> > +                               arm,psci-suspend-param = <0x00000002>;
+> > +                               entry-latency-us = <43>;
+> > +                               exit-latency-us = <86>;
+> > +                               min-residency-us = <200>;
+> > +                       };
+> > +
+> > +                       LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
+> > +                               compatible = "arm,idle-state";
+> > +                               idle-state-name = "little-power-collapse";
+> > +                               arm,psci-suspend-param = <0x00000003>;
+> > +                               entry-latency-us = <100>;
+> > +                               exit-latency-us = <612>;
+> > +                               min-residency-us = <1000>;
+> > +                               local-timer-stop;
+> > +                       };
+> > +
+> > +                       BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> > +                               compatible = "arm,idle-state";
+> > +                               idle-state-name = "big-retention";
+> > +                               arm,psci-suspend-param = <0x00000002>;
+> > +                               entry-latency-us = <41>;
+> > +                               exit-latency-us = <82>;
+> > +                               min-residency-us = <200>;
+> > +                       };
+> > +
+> > +                       BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
+> > +                               compatible = "arm,idle-state";
+> > +                               idle-state-name = "big-power-collapse";
+> > +                               arm,psci-suspend-param = <0x00000003>;
+> > +                               entry-latency-us = <100>;
+> > +                               exit-latency-us = <525>;
+> > +                               min-residency-us = <1000>;
+> > +                               local-timer-stop;
+> > +                       };
+> > +               };
+> >         };
+> >
+> >         firmware {
+> > --
+> > 2.17.1
+> >
