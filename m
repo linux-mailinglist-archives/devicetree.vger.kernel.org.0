@@ -2,100 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA727C211F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF037C2142
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:04:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731116AbfI3NDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 09:03:07 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33959 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731100AbfI3NDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:03:06 -0400
-Received: by mail-wm1-f67.google.com with SMTP id y135so14105899wmc.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:03:05 -0700 (PDT)
+        id S1731094AbfI3NEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 09:04:06 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:39543 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731177AbfI3NED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:04:03 -0400
+Received: by mail-lf1-f68.google.com with SMTP id 72so6952051lfh.6
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2019 06:04:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=HrIq4ZVm8xkVZyO8f5Owi3O1Tv53HlREs0EWWL4v/q4=;
-        b=w1gNg8prgUP3BwyEHY0icT829DCXzmLYUhxFKoVjRtdaNyQitXh4veJvCPRIsJ1yAa
-         EjV8yIaLqywn2OLOjIE1Qiqqlwb35juSylLnUYlGzVFdhIGmVX6UEhYTQ2fTS2s550ug
-         +rEmahuc8qfCuv0k9jUnqAVP71g8ErK+jQyWeSZNqOb3wtPyKoNwQ4LtlLVaO2/icP9e
-         Y0flzj/3RcC8NaIT8OrfJpYtb1l/UrnuoZrpD0UUN6UBwnj5EAiAAVFjgXjhHLSzMgMA
-         nxidQ6CioHKdgup5Do1f2UZjKGdcLsijRVhzgFl1CPphyS5x76IeMjkY9mnL4zLR3avD
-         dmRQ==
+        d=antmicro-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :user-agent;
+        bh=NKz061ZKrfKpmulUXMfGM39xSIQHkJ/qfJErKxufWTs=;
+        b=Et0O9/tGHYkgEKZtIGpCcrr6TOROMY5wZ7ALUslSNVg39r1XOCZMKomLMfcH3uf3B0
+         xz/WiE0S/yexoIOk0AC9NqaNvBNPiEDC/rvvm4LOhFU5fOFQJb9pSYD/h80DeicEjkLr
+         NBcHoNV03AGP8s5x3LHa2Kh80NJLv9U049I8U0H3F1K0A6torSBtsWAYizr1SGifdh6+
+         GMFWfoXAPEpIHtVoMz6JPUQOm1XlzGfql0LM/YNnyF5CZYsrYtX8vOJXKT5fa4qmxBdr
+         dBnGYVnKR4uulhidzNqkHG9o2Vt49/UssWx3sAhNimhrTLuryWGb2pMJks51PKwL1ju5
+         cJqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=HrIq4ZVm8xkVZyO8f5Owi3O1Tv53HlREs0EWWL4v/q4=;
-        b=LpxdkPfPF6KquFMiNXsqZEf/EjBVDr37PDHz2aW/9ViCnJhrPrYcVk492DRorLxVjJ
-         smTI7KHgNurf2TU5CzJWRKGetyB8/XuPFw+8oHT7T5dMLSM/4fqOSeMHIzLeYzd7z3x8
-         l7SczC4SO50FJPGbzx8LxarGAgioq+Gz2kS/FZW6MJH0qn+Oe6y2wJo1doqNnRycZXRe
-         wRVR14+Dg82TmLny/+AlAvf1ZYTqSwPwiFzgmSE2WWn0CEnww8p1FzKQ7XU9qYXIiiNu
-         mPxGIEJL/kFUJjx/VoaU3M9HoIBWe8oxTLS8fQwTzT64u75Fxt1OiHntaLzmJUtMRH82
-         LQZQ==
-X-Gm-Message-State: APjAAAWsM27g9ugrX0eJQohOjmZtkqfi+2C79lIwDyaLcxeDZArDdvAy
-        n7RtsjobYsnyLtwCeZ49h67Rvw==
-X-Google-Smtp-Source: APXvYqzN6+yvym0aDjApdak2rnKhCxj3WgNHI4XeHwFPAGwC+jP/VsGclRBJNsmG4KVSjtE79Djsrg==
-X-Received: by 2002:a1c:544e:: with SMTP id p14mr16383235wmi.72.1569848584419;
-        Mon, 30 Sep 2019 06:03:04 -0700 (PDT)
-Received: from localhost.localdomain (amontpellier-652-1-281-69.w109-210.abo.wanadoo.fr. [109.210.96.69])
-        by smtp.gmail.com with ESMTPSA id e6sm10654756wrp.91.2019.09.30.06.03.03
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=NKz061ZKrfKpmulUXMfGM39xSIQHkJ/qfJErKxufWTs=;
+        b=fxGGPpJiPm4qeIPCNF+gn9EDhAQI0a5mWPjftdHNjukVDsS/fPk6tExsteH2qEfqUx
+         wiKaoRTbzlDCTco0RMwzcvJVsjw2zRZ/J7K0FgcpQlsO6MpveDmtjWHpfmX33NoqGYiN
+         6sNJqEQhn0ufzwqniyLJkopHUmH04+DmiL1z+KQXu9L+uguA0wTcB83k85iGFAMGa6Ay
+         0ZMEqidZym8JIoZbPeKUqh0ekRJCuZBm2nJOcKKawedrfp3RsvrOYl2Y0pnsYpaEKFXJ
+         MOJwMGq8irdQ4/whcB2RoZFWDjWO9A/quQgIMet8ZPwaXPWWiJSiAZdcsieBXJsEndl6
+         +v+w==
+X-Gm-Message-State: APjAAAVzSX4kM4S0lYlYGl0no67JFRw0lE8xzMnbejl91EpGshP25Pmx
+        3mw+QekEQB85tqaCBXLpZ2R7QQ==
+X-Google-Smtp-Source: APXvYqzDz/EV5ey9sKE1NK4jYT+12yoR14i2vO/m28H9eOEdKF9EPYknV1nV56KgFRg+yVNgqwUEhQ==
+X-Received: by 2002:a19:c709:: with SMTP id x9mr11722949lff.20.1569848640277;
+        Mon, 30 Sep 2019 06:04:00 -0700 (PDT)
+Received: from localhost.localdomain (d79-196.icpnet.pl. [77.65.79.196])
+        by smtp.gmail.com with ESMTPSA id 4sm3315620ljv.87.2019.09.30.06.03.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 06:03:03 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Rob Herring <robh+dt@kernel.org>,
+        Mon, 30 Sep 2019 06:03:59 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 15:03:52 +0200
+From:   Mateusz Holenko <mholenko@antmicro.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH 6/6] MAINTAINERS: update the list of maintained files for max77650
-Date:   Mon, 30 Sep 2019 15:02:46 +0200
-Message-Id: <20190930130246.4860-7-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190930130246.4860-1-brgl@bgdev.pl>
-References: <20190930130246.4860-1-brgl@bgdev.pl>
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Jiri Slaby <jslaby@suse.com>, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>
+Subject: [PATCH 0/3] LiteUART serial driver
+Message-ID: <20190930130352.GA5898@localhost.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+This patchset introduces support for LiteUART
+- serial device from LiteX SoC builder
+(https://github.com/enjoy-digital/litex).
 
-The DT bindings for max77650 MFD have now been converted to yaml.
-Update the MAINTAINERS entry for this set of drivers.
+In the following patchset I will add
+a new mor1kx-based (OpenRISC) platform that
+uses this device.
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Later I plan to extend this platform by
+adding support for more devices from LiteX suite.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 296de2b51c83..d60dd3729437 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9902,8 +9902,8 @@ MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/*/*max77650.txt
--F:	Documentation/devicetree/bindings/*/max77650*.txt
-+F:	Documentation/devicetree/bindings/*/*max77650.yaml
-+F:	Documentation/devicetree/bindings/*/max77650*.yaml
- F:	include/linux/mfd/max77650.h
- F:	drivers/mfd/max77650.c
- F:	drivers/regulator/max77650-regulator.c
+Filip Kokosinski (3):
+  dt-bindings: vendor: add vendor prefix for LiteX
+  dt-bindings: serial: document LiteUART bindings
+  drivers/tty/serial: add LiteUART driver
+
+ .../bindings/serial/litex,liteuart.txt        |  12 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/tty/serial/Kconfig                    |  30 ++
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/liteuart.c                 | 382 ++++++++++++++++++
+ include/uapi/linux/serial_core.h              |   3 +
+ 7 files changed, 437 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/litex,liteuart.txt
+ create mode 100644 drivers/tty/serial/liteuart.c
+
 -- 
 2.23.0
 
