@@ -2,114 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED571C2392
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A1A0C239D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731030AbfI3OqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 10:46:13 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:57900 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730809AbfI3OqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 10:46:13 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8UEfUkC017751;
-        Mon, 30 Sep 2019 16:45:58 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : mime-version : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=u7ckPEielE0COPIH48zXj6aZ3G/8patmlJ6fYKZv6f8=;
- b=zdodmSE9H3b/b7Xd/OA5GtPen95vb0u77yQMhu0ifkJ0pEYPUCTJ0xEgUBfCGRzrVlQB
- lonjHgT+wu83yBAPJahKOiap0EJTyk7PQS2jffjJy49t5zbhphiLUmVeeMGo9TY1DAhf
- 0XBcso5YZg3qeCSh4cv7VIHFHQXpzhtY+uLCaRV41eHEPKJxZXTgXab4CAuj3Vl4G2+E
- Bj/6ewts6HTpreJlaHvflTbY63hWkWHE+0QfjZJ0QQZZ0qHfMOv7b8RnaHrY57IXspSJ
- iikOB5/zEo4aDJi+6c3i4VFU1uBWtNMukhduCsh6LNq1p+NQyT+n68YajRdyI+smKt5u YQ== 
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2v9w00ut72-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 30 Sep 2019 16:45:58 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C2C4D4D;
-        Mon, 30 Sep 2019 14:45:53 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 793062D0559;
-        Mon, 30 Sep 2019 16:45:53 +0200 (CEST)
-Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 30 Sep
- 2019 16:45:53 +0200
-Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 30 Sep 2019 16:45:52
- +0200
-From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Subject: [PATCH] ARM: dts: stm32: add focaltech touchscreen on stm32mp157c-dk2 board
-Date:   Mon, 30 Sep 2019 16:45:51 +0200
-Message-ID: <1569854751-22337-1-git-send-email-yannick.fertre@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1731553AbfI3Ouo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 10:50:44 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41088 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730809AbfI3Ouo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 10:50:44 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w17so11339188oiw.8;
+        Mon, 30 Sep 2019 07:50:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=nR5Jwg73RW1Z4kze1rphymQfRWGvcGxE51i7zcwab9k=;
+        b=eefR3f92iB5pXXIOnqUopWFjwIbzUBDGaZTDxOxDEOJkZz8kao1h7e5diFjU5kTRPj
+         D1sSx+kQ8oAiJXeb8VZmklflO3tb68ptNTcNbZfvjLJ6jGJEVR6hDmCEntO/2gF/Jbkf
+         02NLiJsw3JhBuBs4KPwXaQziwoZsZLyY1L9zQeDoXYlWfFQQtZ5it9MeQeQe8irVdpFS
+         HyLqoGr/tVBLrY4g68scGKRaRwAZEyikpQJEwy+DDZcOejaFWJAcTdHvgqeDpk/ePypj
+         dsWtAcR/QWKgshAf7MK/6ScuFd5iRDxngKx8G+6cE8CuuvMSNz3RUJKAX5PYQh1aTF8u
+         LBhA==
+X-Gm-Message-State: APjAAAWzmFpm8N/AZeQbs6Ua8o3Q5XNcAUkosqWRCxVbPce6KEnVdQkS
+        qu14dcCBZe515g3ONCpR2w==
+X-Google-Smtp-Source: APXvYqz8/qjSeRO3rEliVHDjsp5N6t03KTRdTo9Jh0fwwBXF5ZO110mfe4yI51XoLBLQS1liaQb6cQ==
+X-Received: by 2002:aca:d408:: with SMTP id l8mr18365364oig.113.1569855043203;
+        Mon, 30 Sep 2019 07:50:43 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id k204sm4383299oif.33.2019.09.30.07.50.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2019 07:50:42 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 09:50:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     linus.walleij@linaro.org, mark.rutland@arm.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
+        cheol.yong.kim@intel.com
+Subject: Re: [PATCH v1 2/2] dt-bindings: pinctrl: intel: Add for new SoC
+Message-ID: <20190930145042.GA29258@bogus>
+References: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
+ <c53173f380d47e9a5feaef9a35de535c6de9f6cb.1568274587.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.23.97]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-09-30_09:2019-09-25,2019-09-30 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c53173f380d47e9a5feaef9a35de535c6de9f6cb.1568274587.git.rahul.tanwar@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable focaltech ft6236 touchscreen on STM32MP157C-DK2 board.
-This device supports 2 different addresses (0x2a and 0x38)
-depending on the display  board version (MB1407).
+On Thu, Sep 12, 2019 at 03:59:11PM +0800, Rahul Tanwar wrote:
+> Add dt bindings document & include file for pinmux & GPIO controller driver of
+> Intel Lightning Mountain SoC.
+> 
+> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> ---
+>  .../bindings/pinctrl/intel,lgm-pinctrl.yaml        | 131 +++++++++++++++++++++
+>  include/dt-bindings/pinctrl/intel,equilibrium.h    |  23 ++++
+>  2 files changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/intel,equilibrium.h
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..1aee42f0057e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
+> @@ -0,0 +1,131 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bindings/pinctrl/intel,lgm-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Intel Lightning Mountain SoC pinmux & GPIO controller binding
+> +
+> +maintainers:
+> +  - Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> +
+> +description: |
+> +  Pinmux & GPIO controller controls pin multiplexing & configuration including
+> +  GPIO function selection & GPIO attributes configuration.
+> +
+> +  Please refer to [1] for details of the common pinctrl bindings used by the
+> +  client devices.
+> +
+> +  [1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> +
+> +properties:
+> +  compatible:
+> +    const: intel,lgm-pinctrl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +# Client device subnode's properties
+> +patternProperties:
+> +  "^.*@[0-9a-fA-F]+$":
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below defined properties.
+> +
+> +    properties:
+> +      intel,function:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          A string containing the name of the function to mux to the group.
+> +
+> +      intel,groups:
+> +        $ref: /schemas/types.yaml#/definitions/string-array
+> +        description:
+> +          An array of strings identifying the list of groups.
+> +
+> +      intel,pins:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description:
+> +          List of pins to select with this function.
+> +
+> +      intel,mux:
+> +        description: The applicable mux group.
+> +        allOf:
+> +          - $ref: "/schemas/types.yaml#/definitions/uint32"
+> +          - enum:
+> +              # Refer include/dt-bindings/pinctrl/intel,equilibrium.h
+> +              - PINMUX_0 # 0 PINMUX_GPIO
+> +              - PINMUX_1 # 1
+> +              - PINMUX_2 # 2
+> +              - PINMUX_3 # 3
+> +              - PINMUX_4 # 4
+> +
+> +      intel,pullup:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Specifies pull-up configuration.
+> +
+> +      intel,pulldown:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Specifies pull-down configuration.
+> +
+> +      intel,drive-current:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Enables driver-current.
+> +
+> +      intel,slew-rate:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Enables slew-rate.
+> +
+> +      intel,open-drain:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Specifies open-drain configuration.
+> +
+> +      intel,output:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Specifies if the pin is to be configured as output.
 
-Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
----
- arch/arm/boot/dts/stm32mp157c-dk2.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+We have a whole slew of standard properties for pinctrl and you aren't 
+using any of them.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-index 20ea601..527bb75 100644
---- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-@@ -61,6 +61,29 @@
- 	};
- };
- 
-+&i2c1 {
-+	touchscreen@2a {
-+		compatible = "focaltech,ft6236";
-+		reg = <0x2a>;
-+		interrupts = <2 2>;
-+		interrupt-parent = <&gpiof>;
-+		interrupt-controller;
-+		touchscreen-size-x = <480>;
-+		touchscreen-size-y = <800>;
-+		status = "okay";
-+	};
-+	touchscreen@38 {
-+		compatible = "focaltech,ft6236";
-+		reg = <0x38>;
-+		interrupts = <2 2>;
-+		interrupt-parent = <&gpiof>;
-+		interrupt-controller;
-+		touchscreen-size-x = <480>;
-+		touchscreen-size-y = <800>;
-+		status = "okay";
-+	};
-+};
-+
- &ltdc {
- 	status = "okay";
- 
--- 
-2.7.4
+Rob
 
+> +
+> +
+> +    required:
+> +      - intel,function
+> +      - intel,groups
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  # Pinmux controller node
+> +  - |
+> +    pinctrl: pinctrl@e2880000 {
+> +          compatible = "intel,lgm-pinctrl";
+> +          reg = <0xe2880000 0x100000>;
+> +    };
+> +
+> +  # Client device node
+> +  - |
+
+These are not really separate examples.
+
+> +    asc0: serial@e0a00000 {
+> +          compatible = "intel,lgm-asc";
+> +          reg = <0xe0a00000 0x1000>;
+> +          interrupt-parent = <&ioapic1>;
+> +          interrupts = <128 1>;
+> +          interrupt-names = "asc_irq";
+> +          clocks = <&cgu0 31>, <&cgu0 98>;
+> +          clock-names = "freq", "asc";
+> +          pinctrl-names = "default";
+> +          pinctrl-0 = <&uart0>;
+> +    };
+> +
+> +   # Client device subnode
+> +  - |
+> +    uart0:uart0 {
+
+This should be a child of pinctrl node.
+
+> +          intel,pins = <64>, /* UART_RX0 */
+> +                       <65>; /* UART_TX0 */
+> +          intel,function = "CONSOLE_UART0";
+> +          intel,mux = <1>,
+> +                      <1>;
+> +          intel,groups = "CONSOLE_UART0";
+> +    };
+> +
+> +
+> +...
+> diff --git a/include/dt-bindings/pinctrl/intel,equilibrium.h b/include/dt-bindings/pinctrl/intel,equilibrium.h
+> new file mode 100644
+> index 000000000000..c37bfbea8ff1
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/intel,equilibrium.h
+> @@ -0,0 +1,23 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +
+> +#ifndef __DT_BINDINGS_PINCTRL_INTEL_EQUILIBRIUM_H_
+> +#define __DT_BINDINGS_PINCTRL_INTEL_EQUILIBRIUM_H_
+> +
+> +#define PINCTRL_DRCC_2_MA	0
+> +#define PINCTRL_DRCC_4_MA	1
+> +#define PINCTRL_DRCC_8_MA	2
+> +#define PINCTRL_DRCC_12_MA	3
+
+Use the property that defines drive strength in terms of microamps and 
+convert to register values in the driver.
+
+> +
+> +#define PINMUX_0		0
+> +#define PINMUX_1		1
+> +#define PINMUX_2		2
+> +#define PINMUX_3		3
+> +#define PINMUX_4		4
+
+Not useful defines. Just use the numbers directly.
+
+> +#define PINMUX_GPIO		PINMUX_0
+> +
+> +#define PINCTRL_GROUP		"intel,groups"
+> +#define PINCTRL_FUNCTION	"intel,function"
+> +#define PINCTRL_PINS		"intel,pins"
+> +#define PINCTRL_MUX		"intel,mux"
+
+We don't create defines for property names (really for any strings).
+
+> +
+> +#endif /* __DT_BINDINGS_PINCTRL_INTEL_EQUILIBRIUM_H_ */
+> -- 
+> 2.11.0
+> 
