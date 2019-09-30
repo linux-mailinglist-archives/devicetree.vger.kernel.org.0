@@ -2,116 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 756FCC21DD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D10B8C2206
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 15:34:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731333AbfI3NXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 09:23:23 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:35849 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731281AbfI3NXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 09:23:23 -0400
-Received: by mail-ot1-f68.google.com with SMTP id 67so8274778oto.3;
-        Mon, 30 Sep 2019 06:23:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jlVOGEFQPYDeCnC7zwYGU5iysyB+/XWQh6SCYFQQJ1c=;
-        b=NMv3PLO8PecYB9KK/4iWm0o67CDG3R+4bfislK/3zbbfc4smiX0tMdWqLUcw3XomzR
-         1IVyvrrJytwUDBvVwSw8YxKWJ7GWO3ejk4ohDw/Mk9IfcC3oIzn4VmDxo4dTDsbwDpQd
-         nDnng4K7LtXxuyGTM4on++2YWLoa/o3n81IRXFv4VKPMFKUMTQadE3XnKPCa2GIj7ysd
-         PxWzPYbO/vnpvLcyHB0kDWFiiNlD7JqbKgn2ahnYl86gSCFEDvTXYBSO0HF/NtRQpoms
-         rCsOixL+EHhYfewgV1T1hfDGxLK3kQXd4HaZrA/ZexAaOwzrk7kNMp45QA4YobjDOqOv
-         LgDA==
-X-Gm-Message-State: APjAAAVwzyYThSWo6KY4M+ghUPwtQEx6sGO0pfmDGgi6laIiueAuY0xS
-        KpjoLFLdawehQhI51GkoXA==
-X-Google-Smtp-Source: APXvYqxhcn+ULmdDut2zMGEI0lHJ+Aj9hd73OKBqxsI5/hUT3TRBr4WwV85TaUSHgFLu9pXXzWdhUw==
-X-Received: by 2002:a05:6830:1403:: with SMTP id v3mr13168367otp.348.1569849801438;
-        Mon, 30 Sep 2019 06:23:21 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d194sm4376960oib.47.2019.09.30.06.23.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 06:23:20 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 08:23:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
-        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
-        maz@kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.co,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 12/19] dt-bindings: mips: Add loongson boards
-Message-ID: <20190930132320.GB3354@bogus>
-References: <20190905144316.12527-1-jiaxun.yang@flygoat.com>
- <20190905144316.12527-13-jiaxun.yang@flygoat.com>
+        id S1731190AbfI3Nc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 09:32:59 -0400
+Received: from mx2.suse.de ([195.135.220.15]:55408 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729738AbfI3Nc7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 09:32:59 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 20575ADD5;
+        Mon, 30 Sep 2019 13:32:57 +0000 (UTC)
+Message-ID: <95f8dabea99f104336491281b88c04b58d462258.camel@suse.de>
+Subject: Re: [PATCH 05/11] of: Ratify of_dma_configure() interface
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Oza Pawandeep <oza.oza@broadcom.com>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Robin Murphy <robin.murphy@arm.com>
+Date:   Mon, 30 Sep 2019 15:32:55 +0200
+In-Reply-To: <20190930125752.GD12051@infradead.org>
+References: <20190927002455.13169-1-robh@kernel.org>
+         <20190927002455.13169-6-robh@kernel.org>
+         <20190930125752.GD12051@infradead.org>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-J2uUUCx3PD1vZZDm+yYn"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190905144316.12527-13-jiaxun.yang@flygoat.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 10:43:09PM +0800, Jiaxun Yang wrote:
-> Prepare for later dts.
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
->  .../bindings/mips/loongson/devices.yaml       | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/loongson/devices.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mips/loongson/devices.yaml b/Documentation/devicetree/bindings/mips/loongson/devices.yaml
-> new file mode 100644
-> index 000000000000..0665f0f7ec45
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/loongson/devices.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/loongson/devices.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson based Platforms Device Tree Bindings
-> +
-> +maintainers:
-> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
-> +description: |
-> +  Devices with a Loongson CPU shall have the following properties.
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +
-> +      - description: Loongson 3A1000 + RS780E
-> +        items:
-> +          - const: loongson,ls3a1000-780e
 
-These should reflect the specific maker and model of board, not just 
-what's the cpu and south bridge.
+--=-J2uUUCx3PD1vZZDm+yYn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +      - description: Loongson 3A2000 + RS780E
-> +        items:
-> +          - const: loongson,ls3a2000-780e
-> +
-> +      - description: Loongson 3A3000 + RS780E
-> +        items:
-> +          - const: loongson,ls3a3000-780e
-> +
-> +      - description: Loongson 3A3000 + 7A
-> +        items:
-> +          - const: loongson,ls3a3000-7a
-> +
-> +      - description: Loongson 3B1000/1500 + RS780E 2Way
-> +        items:
-> +          - const: loongson,ls3b1x00-780e
-> +...
-> -- 
-> 2.22.0
-> 
+On Mon, 2019-09-30 at 05:57 -0700, Christoph Hellwig wrote:
+> On Thu, Sep 26, 2019 at 07:24:49PM -0500, Rob Herring wrote:
+> > -int of_dma_configure(struct device *dev, struct device_node *np, bool
+> > force_dma)
+> > +int of_dma_configure(struct device *dev, struct device_node *parent, b=
+ool
+> > force_dma)
+>=20
+> This creates a > 80 char line.
+>=20
+> >  {
+> >  	u64 dma_addr, paddr, size =3D 0;
+> >  	int ret;
+> >  	bool coherent;
+> >  	unsigned long offset;
+> >  	const struct iommu_ops *iommu;
+> > +	struct device_node *np;
+> >  	u64 mask;
+> > =20
+> > +	np =3D dev->of_node;
+> > +	if (!np)
+> > +		np =3D parent;
+> > +	if (!np)
+> > +		return -ENODEV;
+>=20
+> I have to say I find the older calling convention simpler to understand.
+> If we want to enforce the invariant I'd rather do that explicitly:
+>=20
+> 	if (dev->of_node && np !=3D dev->of_node)
+> 		return -EINVAL;
+
+As is, this would break Freescale Layerscape fsl-mc bus' dma_configure():
+
+static int fsl_mc_dma_configure(struct device *dev)
+{
+	struct device *dma_dev =3D dev;
+
+	while (dev_is_fsl_mc(dma_dev))
+		dma_dev =3D dma_dev->parent;
+
+	return of_dma_configure(dev, dma_dev->of_node, 0);
+}
+
+But I think that with this series, given the fact that we now treat the lac=
+k of
+dma-ranges as a 1:1 mapping instead of an error, we could rewrite the funct=
+ion
+like this:
+
+static int fsl_mc_dma_configure(struct device *dev)
+{
+	return of_dma_configure(dev, false, 0);
+}
+
+If needed I can test this.
+
+Regards,
+Nicolas
+
+
+--=-J2uUUCx3PD1vZZDm+yYn
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2SBAcACgkQlfZmHno8
+x/4Nzwf+LG0gvylrOQLw5x/IHv2Kgv6fhZ0lnwVON/shyUQa9M2SJ6AmcGSBXL/D
+poq3K8WHsQdr5e2yEyy2/lT92p6qSNbdIDjOeDyq3YskHZP6SBm/nC2l/dtDU9z6
+fv3/gGTWP7ckQI4v4690kUZ4Txb3ndCWgrf7GXn7JKT7uDaqmIsiefi0S+YU8Y2L
+mr1dudpZ3wAnCI0uA6Za8Db6QQ2lCtGHvchLzv0dC8n4qlMMipuWGFD8y/R6BGw7
+90iinlHnoJrL07DjWy4nVFPqvXnFUADXr5eXAijh+ZQ7kCFOKHwYvEB7Zrh0mEw8
+bdGzfMEbXgkzUdAaLb8mb48VqHBsOg==
+=Byb8
+-----END PGP SIGNATURE-----
+
+--=-J2uUUCx3PD1vZZDm+yYn--
+
