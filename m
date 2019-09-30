@@ -2,84 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9370FC1E8D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 12:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A03C1E99
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 12:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730432AbfI3KAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 06:00:06 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:37136 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727025AbfI3KAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 06:00:06 -0400
-X-UUID: 58f3b47440eb4673a4332262ebe6a910-20190930
-X-UUID: 58f3b47440eb4673a4332262ebe6a910-20190930
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1474856802; Mon, 30 Sep 2019 18:00:01 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 30 Sep 2019 17:59:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 30 Sep 2019 17:59:57 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728214AbfI3KDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 06:03:25 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:2400 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727025AbfI3KDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 06:03:25 -0400
+X-IronPort-AV: E=Sophos;i="5.64,565,1559487600"; 
+   d="scan'208";a="27905860"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 30 Sep 2019 19:03:23 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9681A4012C07;
+        Mon, 30 Sep 2019 19:03:20 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH 1/1] arm: dts: mediatek: add mt7629 pwm support
-Date:   Mon, 30 Sep 2019 17:59:45 +0800
-Message-ID: <1569837585-13247-2-git-send-email-sam.shih@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1569837585-13247-1-git-send-email-sam.shih@mediatek.com>
-References: <1569837585-13247-1-git-send-email-sam.shih@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: r8a774b1-hihope-rzg2n: Enable HS400 mode
+Date:   Mon, 30 Sep 2019 11:02:58 +0100
+Message-Id: <1569837778-55874-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds pwm support for MT7629.
-Used:
-https://patchwork.kernel.org/patch/11160851/
+This patch enables HS400 mode on HiHope RZ/G2N board.
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 ---
- arch/arm/boot/dts/mt7629.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-index 9608bc2ccb3f..24375fc5f936 100644
---- a/arch/arm/boot/dts/mt7629.dtsi
-+++ b/arch/arm/boot/dts/mt7629.dtsi
-@@ -241,6 +241,21 @@
- 			status = "disabled";
- 		};
- 
-+		pwm: pwm@11006000 {
-+			compatible = "mediatek,mt7629-pwm";
-+			reg = <0x11006000 0x1000>;
-+			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_PWM_SEL>,
-+				 <&pericfg CLK_PERI_PWM_PD>,
-+				 <&pericfg CLK_PERI_PWM1_PD>;
-+			clock-names = "top", "main", "pwm1";
-+			assigned-clocks = <&topckgen CLK_TOP_PWM_SEL>;
-+			assigned-clock-parents =
-+					<&topckgen CLK_TOP_UNIVPLL2_D4>;
-+			num-pwms = <1>;
-+			status = "disabled";
-+		};
+diff --git a/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts b/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
+index 094b5ef..c9e2119 100644
+--- a/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
++++ b/arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n.dts
+@@ -24,3 +24,7 @@
+ 		reg = <0x4 0x80000000 0x0 0x80000000>;
+ 	};
+ };
 +
- 		i2c: i2c@11007000 {
- 			compatible = "mediatek,mt7629-i2c",
- 				     "mediatek,mt2712-i2c";
++&sdhi3 {
++	mmc-hs400-1_8v;
++};
 -- 
-2.17.1
+2.7.4
 
