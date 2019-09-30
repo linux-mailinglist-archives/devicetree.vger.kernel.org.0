@@ -2,111 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76BFBC22FF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10C72C230C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 16:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731474AbfI3ORT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 10:17:19 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:50874 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730923AbfI3ORT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 10:17:19 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 5so13655252wmg.0;
-        Mon, 30 Sep 2019 07:17:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=fT3u0kO00B12KTl27/O+hzJQRozEYKlkkbEEU64XnhY=;
-        b=YSFpxI5yHDLoYYeh10IlDZt/MaBfJO2AGUzyW6NvtaBWcTdhljHrHSJ/4KOYvr7CUl
-         mzfgob7qcvwRYyzISn5K6ENc5t3CtU3eXIulQK6yGRS/8J46WGQSzTkhvdDeHk6z3Rpw
-         e/u2ebHXEP+ilaWWQOo3b4VAQdRFr/QYKdv8QeCuFnxVtzr3Jxr6/fI55YIJmllSp1Ud
-         7zmjdDZulBZgEiacObrEvaRMBDNOEOyftsQ8DNBlMv0FnJbLGCRPLJDAWz9DVlIvTXaj
-         b3Mb5o0TrZaA7W6mQws5i1DuFMus8Ie72a2HbmRYPhpc1xc1BoItqPaqcxsWUcuX7oQn
-         GOaw==
+        id S1731366AbfI3OTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 10:19:06 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:35177 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730923AbfI3OTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 10:19:06 -0400
+Received: by mail-oi1-f193.google.com with SMTP id x3so11270536oig.2;
+        Mon, 30 Sep 2019 07:19:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fT3u0kO00B12KTl27/O+hzJQRozEYKlkkbEEU64XnhY=;
-        b=Y9HUPtGI1r/7JWRmyWddbtX32s9mvdheaQA2wzOczTIv2nyLUuPEH5/2MW5VeamsAF
-         app/t5n6CMm0qK5ew+58w6xJMHKyasTLgtYrBIGSu4EUfwzwmOtvT9SVqsFp9NnH5p5Y
-         eCunmjdJz7JWRtwPE0sOpSSXMTzuZbwZGR4J/zJR3CulZJ1FJ4ZzdRmdgYOxT3w56OhL
-         amjYQID8R41mfgXLkUXClL/G7E8duPc4N9dp+vKNH43m+DzZgK9bZo6/ZqPzwgLAEQzo
-         u+ziowMTT5XJ0g6t/NRRG2YJ8QvuuKq8QpXh86AeFznWPpxwO5S8Gr0iJB03p7qmaNWG
-         Kgkg==
-X-Gm-Message-State: APjAAAWXzOuKZ0X6FyDr6rg4RFh9rpd5FBhvdjOKiXl5oBumnkckoXyG
-        q1jV7mGCCI0ex6eHvSDLhOs=
-X-Google-Smtp-Source: APXvYqyOpLv95qJQ+llcAqXMVTSBYBINojPzeN7jeK5bbXTojnJSfyJH4CM7gYJhBd4cwlv1x7DsKw==
-X-Received: by 2002:a05:600c:110a:: with SMTP id b10mr16910581wma.18.1569853036041;
-        Mon, 30 Sep 2019 07:17:16 -0700 (PDT)
-Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
-        by smtp.gmail.com with ESMTPSA id n8sm27354090wma.7.2019.09.30.07.17.14
+        bh=k0DT0LfsMEKXZJaEs2gsY0cMR9oRvTf9oXbwRd1ldsE=;
+        b=jb8680kwq2ywe+BssHq+y4jxiDEX19oKHwfuteX8pB+mqsmadUtNCPRrNSx0VUUxG7
+         +raCtiroaO/kqzliJiiB8d1nl+pN1uHKr6NYztEB8pQV0JPqYRtiutAOCcu4/gUobdT4
+         jIN7iBKD1s2yRg/O+4JfSvZCFKRZiXCXYuGeqIOUdkHOjO0CW8zLAgi6rBBFgyg+BGpD
+         +9UONOsk+p1dk/vMwLtrWvZ1CuyvgtIeygTtiJuI1lBuxKUiWcs6/uSUDBjMcr39CAf7
+         0t0EnI0C7XBZJ2Y2owiGNYG3fj1rIsyZWBYyeDtPtqGOGZZzV5Sx69ng4hzEHUfkfUi9
+         knrA==
+X-Gm-Message-State: APjAAAUxQ56CinDDVJgkaRBUSxZz5N473cKpSe/5lg69BS+pvit5Nxa0
+        HaQhbwrAtLfhOOh27Ysz5g==
+X-Google-Smtp-Source: APXvYqyX0DbYut/C7yzytLdNB/nhfcg+c7eDfYw3GZT9/xEIOAdWu3iR86HUyY4swwbj+eKMoBR/QA==
+X-Received: by 2002:aca:ba06:: with SMTP id k6mr18489328oif.136.1569853145957;
+        Mon, 30 Sep 2019 07:19:05 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w33sm3808511otb.68.2019.09.30.07.19.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 07:17:14 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 16:17:13 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [RESEND PATCH] ARM: dts: Add stmpe-adc DT node to Toradex T30
- modules
-Message-ID: <20190930141713.GA1943656@ulmo>
-References: <20190814105318.21902-1-philippe.schenker@toradex.com>
- <b40974742543a2e8450c097bf86c5c0d3baec977.camel@toradex.com>
+        Mon, 30 Sep 2019 07:19:04 -0700 (PDT)
+Date:   Mon, 30 Sep 2019 09:19:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of/fdt: don't ignore errors from of_setup_earlycon
+Message-ID: <20190930141904.GA19392@bogus>
+References: <20190910055833.28324-1-hch@lst.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uAKRQypu60I7Lcqm"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b40974742543a2e8450c097bf86c5c0d3baec977.camel@toradex.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+In-Reply-To: <20190910055833.28324-1-hch@lst.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 10 Sep 2019 07:58:33 +0200, Christoph Hellwig wrote:
+> If of_setup_earlycon we should keep on iterating earlycon options
+> instead of breaking out of the loop.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/of/fdt.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
---uAKRQypu60I7Lcqm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks.
 
-On Mon, Sep 30, 2019 at 11:54:59AM +0000, Philippe Schenker wrote:
-> On Wed, 2019-08-14 at 10:53 +0000, Philippe Schenker wrote:
-> > Add the stmpe-adc DT node as found on Toradex T30 modules
-> >=20
-> > Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
->=20
-> Hi Thierry, could you please pull this patch for 5.4? Or tell me what is
-> holding it back from being pulled?
-
-At this point I'm only waiting for the merge to close. Before that I
-can't take any new patches.
-
-Thierry
-
---uAKRQypu60I7Lcqm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2SDmYACgkQ3SOs138+
-s6EOew/9EaFyL0YfHDuqjRoWXeAmsw0mcgPyEEz2xexpsdhl8h4YlyY+qGovRd4v
-gh/Ep8/OsiI8xyD//tgXVkLHVkdtaQ3T2VxpiogcnemJ+g50z83nKZR02rQIAJGQ
-h7ERw1WBAVUZEU/5/6nF6hRoDjpiI/K4VuP3HDiGZvWzAzY3/pr/xoP9Ho6UdYeD
-hf0Y6zwKHYHsClNKGCzC6/X0itk9sDUl8GDzCpxwySRTn1pDhCxf3fMDuaytE+lS
-HDvm8hGqxja5UAGhuypdFRZP8UEGJq6zxetwIyWl3ot13cDUdwRDuLlGaNcH1SOn
-ItwsIqfhvyN5uFI1JSFxDXw+oG24MoWK3ObwytNyHXSJ8KAjAS3Ov7O4G9d79dhb
-R7hwJ8ZA08Ur9NTmz0mThSBINhCMV3ENZKuZMIoWoiR4Zm4Az6bNbNgbjGc029Iu
-45zbqQTzHpGMwcCQhvx2+SHTUzsgAzTudmZNTJltzWKzCCINEoOj+6L8+lHCAdXm
-8VvCu1zGft4LmdP6xqA1CZ+l2MAJK8suaG9xVyZOfZx1f/2jemNGOid2AG3ck2lE
-TAJuSP+gyz1Qk/N7kIl5qifmRMWNgtt28Won7fvAvz5gqRoFSPBZt3VAC0Ib/B11
-IGvFvmgOMDxT9JGIGf/k3t1/aosY9XXt+O/boFYJFybYjoIugCE=
-=JeIS
------END PGP SIGNATURE-----
-
---uAKRQypu60I7Lcqm--
+Rob
