@@ -2,134 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 169DCC20AD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 14:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AA99C20CB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 14:45:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729852AbfI3Mib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 08:38:31 -0400
-Received: from mga11.intel.com ([192.55.52.93]:6954 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729603AbfI3Mia (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 08:38:30 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Sep 2019 05:38:30 -0700
-X-IronPort-AV: E=Sophos;i="5.64,567,1559545200"; 
-   d="scan'208";a="197522724"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Sep 2019 05:38:28 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id D531220473; Mon, 30 Sep 2019 15:38:26 +0300 (EEST)
-Date:   Mon, 30 Sep 2019 15:38:26 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [Patch v4 6/8] media: i2c: ov2659: Add powerdown/reset gpio
- handling
-Message-ID: <20190930123826.GC19037@paasikivi.fi.intel.com>
-References: <20190927184722.31989-1-bparrot@ti.com>
- <20190927184722.31989-7-bparrot@ti.com>
- <20190930072857.GA19037@paasikivi.fi.intel.com>
- <20190930122946.2io4pkri4gy3pnkr@ti.com>
+        id S1730299AbfI3Mpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 08:45:49 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:46779 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726952AbfI3Mpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 08:45:49 -0400
+Received: by mail-wr1-f66.google.com with SMTP id o18so11123405wrv.13;
+        Mon, 30 Sep 2019 05:45:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=iI178b6o0qZVFBE5FgkMuuPfgQeMCHtWWim2bH0vxbY=;
+        b=jO6onDotzDWCKXEXFzt5lNj+IXe2cN21TYeChnFaKzRs7HYnmYbsPmIYHIi7enbNF4
+         mQa8u5bgxNDWXpiEFIs5ZU6+ff+9UycRj24TGk9n5RnpNPVRd43/j3BJ78zZDDMf+pRR
+         eB3SrMQ58CgKzB11kCbIOLDU5KRIEutAgyT8dgXTWRj2EJEPHS+ixySzNJTfLBNhxYgJ
+         68AGeSyl39hAgbzMKsNkX2YRRvfBbRGjNjtFunngdVEhPzQuH8b/tBZ6nu3SuLhPiP9g
+         yVX8bBsl9XObGaG++9XSz8OagizFufFlSRWqnFyFk1gq+W34kWd+Y4icip9DcFuwGZCh
+         aNfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iI178b6o0qZVFBE5FgkMuuPfgQeMCHtWWim2bH0vxbY=;
+        b=gOd8hldZfuQJR756Bl7LrlroILWsaYtF0nWAHjlW///U2de5emWh7j7RaNMRsiM/7Q
+         cACBMVUvUstX6GsVS0di346LYUGsPL3HAKLb5H12zjYX3t89hQvpHvK88ho3+D1U9g1P
+         Dd21NLsI9jfi15949abhVuFUQKzSqprjm7dL33mmuuJKa+P2UuA4BOHozVIFyyLIUxR9
+         313mhwQu2Hy61WO8AxUwGQtl1P4MBHRJ8GK24LfhOwPcfc4VIXqhalJVUGPTlpUHGLOM
+         a17Eq5U8kNKeVI6eZZxLpiHbRP4PJY1lbMX50BQFepuqSO1m8ZyV3mlNbtUZs1DIT6rl
+         SFDw==
+X-Gm-Message-State: APjAAAVptAZn2zmJsUbjAjhBBfE3cenyF5a9kaj3+k5nxAutPPO73QvH
+        KWD6SmV8qB/v25FeiSZ9ams=
+X-Google-Smtp-Source: APXvYqxXqlxnCTWpHdUcHd+CsyWUyx5za3cbr+Ty3uRN7gE1JPrkoUFKktywA+G0M4up4B1gCXbvvA==
+X-Received: by 2002:adf:e951:: with SMTP id m17mr12954736wrn.154.1569847546974;
+        Mon, 30 Sep 2019 05:45:46 -0700 (PDT)
+Received: from [192.168.1.4] (ip-86-49-35-8.net.upcbroadband.cz. [86.49.35.8])
+        by smtp.gmail.com with ESMTPSA id z1sm26014947wre.40.2019.09.30.05.45.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2019 05:45:46 -0700 (PDT)
+Subject: Re: [PATCH 00/11] of: dma-ranges fixes and improvements
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Oza Pawandeep <oza.oza@broadcom.com>
+References: <20190927002455.13169-1-robh@kernel.org>
+From:   Marek Vasut <marek.vasut@gmail.com>
+Message-ID: <106d5b37-5732-204f-4140-8d528256a59b@gmail.com>
+Date:   Mon, 30 Sep 2019 14:40:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190930122946.2io4pkri4gy3pnkr@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190927002455.13169-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 07:29:46AM -0500, Benoit Parrot wrote:
-> Sakari Ailus <sakari.ailus@linux.intel.com> wrote on Mon [2019-Sep-30 10:28:57 +0300]:
-> > Hi Benoit,
-> > 
-> > On Fri, Sep 27, 2019 at 01:47:20PM -0500, Benoit Parrot wrote:
-> > > On some board it is possible that the sensor 'powerdown' and or 'reset'
-> > > pin might be controlled by gpio instead of being tied.
-> > > 
-> > > To implement we add pm_runtime support which will handle the power
-> > > up/down sequence when it is available otherwise the sensor will be
-> > > powered on at module insertion/probe and powered off at module removal.
-> > > 
-> > > Now originally the driver assumed that the sensor would always stay
-> > > powered and keep its register setting. We cannot assume this anymore, so
-> > > every time we "power up" we need to re-program the initial registers
-> > > configuration first. This was previously done only at probe time.
-> > > 
-> > > Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> > > ---
-> > >  drivers/media/i2c/Kconfig  |  2 +-
-> > >  drivers/media/i2c/ov2659.c | 88 +++++++++++++++++++++++++++++++++++++-
-> > >  2 files changed, 87 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> > > index 7eee1812bba3..315c1d8bdb7b 100644
-> > > --- a/drivers/media/i2c/Kconfig
-> > > +++ b/drivers/media/i2c/Kconfig
-> > > @@ -634,7 +634,7 @@ config VIDEO_OV2640
-> > >  config VIDEO_OV2659
-> > >  	tristate "OmniVision OV2659 sensor support"
-> > >  	depends on VIDEO_V4L2 && I2C
-> > > -	depends on MEDIA_CAMERA_SUPPORT
-> > > +	depends on MEDIA_CAMERA_SUPPORT && GPIOLIB
-> > >  	select V4L2_FWNODE
-> > >  	help
-> > >  	  This is a Video4Linux2 sensor driver for the OmniVision
-> > > diff --git a/drivers/media/i2c/ov2659.c b/drivers/media/i2c/ov2659.c
-> > > index cd4625432264..7d0baa386644 100644
-> > > --- a/drivers/media/i2c/ov2659.c
-> > > +++ b/drivers/media/i2c/ov2659.c
-> > > @@ -22,9 +22,11 @@
-> > >  
-> > >  #include <linux/clk.h>
-> > >  #include <linux/delay.h>
-> > > +#include <linux/gpio/consumer.h>
-> > >  #include <linux/i2c.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/of_graph.h>
-> > > +#include <linux/pm_runtime.h>
-> > >  
-> > >  #include <media/i2c/ov2659.h>
-> > >  #include <media/v4l2-ctrls.h>
-> > > @@ -218,6 +220,11 @@ struct ov2659 {
-> > >  	struct sensor_register *format_ctrl_regs;
-> > >  	struct ov2659_pll_ctrl pll;
-> > >  	int streaming;
-> > > +	/* used to control the sensor PWDN pin */
-> > > +	struct gpio_desc *pwdn_gpio;
-> > > +	/* used to control the sensor RESETB pin */
-> > > +	struct gpio_desc *resetb_gpio;
-> > > +	int on;
-> > 
-> > Please use runtime PM for this instead. It's hard to get this right
-> > otherwise.
+On 9/27/19 2:24 AM, Rob Herring wrote:
+> This series fixes several issues related to 'dma-ranges'. Primarily,
+> 'dma-ranges' in a PCI bridge node does correctly set dma masks for PCI
+> devices not described in the DT. A common case needing dma-ranges is a
+> 32-bit PCIe bridge on a 64-bit system. This affects several platforms
+> including Broadcom, NXP, Renesas, and Arm Juno. There's been several
+> attempts to fix these issues, most recently earlier this week[1].
 > 
-> So you mean, I should use the "if (!pm_runtime_get_if_in_use(dev))"
-> construct?
+> In the process, I found several bugs in the address translation. It
+> appears that things have happened to work as various DTs happen to use
+> 1:1 addresses.
+> 
+> First 3 patches are just some clean-up. The 4th patch adds a unittest
+> exhibiting the issues. Patches 5-9 rework how of_dma_configure() works
+> making it work on either a struct device child node or a struct
+> device_node parent node so that it works on bus leaf nodes like PCI
+> bridges. Patches 10 and 11 fix 2 issues with address translation for
+> dma-ranges.
+> 
+> My testing on this has been with QEMU virt machine hacked up to set PCI
+> dma-ranges and the unittest. Nicolas reports this series resolves the
+> issues on Rpi4 and NXP Layerscape platforms.
 
-Yes, please.
-
-> 
-> Ok I'll switch it to that, just using "on" was a little simple but I
-> already had it :).
-> 
-> 
-> > 
-> > Access to "on" is not serialised with the power state changes. In this case
-> > e.g. drivers/media/i2c/ov5670.c is a good example. I think I'll see how I
-> > could improve smiapp as well.
-> 
-> Ok so that driver uses this pm method but does not actually power up or
-> down the sensor. 
-
-Well, not explicitly. The driver supports ACPI based systems only right
-now.
+With the following patches applied:
+      https://patchwork.ozlabs.org/patch/1144870/
+      https://patchwork.ozlabs.org/patch/1144871/
+on R8A7795 Salvator-XS
+Tested-by: Marek Vasut <marek.vasut+renesas@gmail.com>
 
 -- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+Best regards,
+Marek Vasut
