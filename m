@@ -2,153 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21DF5C2400
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 17:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B27AC2433
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2019 17:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731714AbfI3PLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 11:11:48 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35110 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731504AbfI3PLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 11:11:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=8uSfWCZgaluu7uas+vrNL5RwfSc5wU4qMNPdunevW+g=; b=p63xC20XYZ6IwhINUL0OO9wgM
-        /vpVVFPJakns3ost04TDmFPe/gnoUnxo7QBrcPYdE6lxNTLgRcno9ui7wlixQ7MGl+Ktd62P+JG6D
-        hZB3c9Gte/f8Y8Pfn5L0M9f6r4yqolks3RsYxdBz1f62QucZ5gnmCDdH+ZLOeVJsTpLUI=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iExKn-0006z4-7t; Mon, 30 Sep 2019 15:11:33 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 4E9A32742CE9; Mon, 30 Sep 2019 16:11:32 +0100 (BST)
-Date:   Mon, 30 Sep 2019 16:11:32 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>
-Subject: Re: [PATCH 1/2] ASOC: Add ADAU7118 8 Channel PDM-to-I2S/TDM
- Converter driver
-Message-ID: <20190930151132.GA4265@sirena.co.uk>
-References: <20190926071707.17557-1-nuno.sa@analog.com>
- <20190926184318.GF2036@sirena.org.uk>
- <6245f99f37c10dcec0a52344bab4b980f08e07da.camel@analog.com>
+        id S1731225AbfI3PZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 11:25:24 -0400
+Received: from foss.arm.com ([217.140.110.172]:56862 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731127AbfI3PZY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 11:25:24 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 096E01000;
+        Mon, 30 Sep 2019 08:25:24 -0700 (PDT)
+Received: from e110467-lin.cambridge.arm.com (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C561D3F706;
+        Mon, 30 Sep 2019 08:25:22 -0700 (PDT)
+From:   Robin Murphy <robin.murphy@arm.com>
+To:     robh@kernel.org, tomeu.vizoso@collabora.com, sudeep.holla@arm.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, liviu.dudau@arm.com,
+        lorenzo.pieralisi@arm.com, steven.price@arm.com
+Subject: [PATCH 1/2] arm64: dts: juno: add GPU subsystem
+Date:   Mon, 30 Sep 2019 16:24:58 +0100
+Message-Id: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.21.0.dirty
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="AqsLC8rIMeq19msA"
-Content-Disposition: inline
-In-Reply-To: <6245f99f37c10dcec0a52344bab4b980f08e07da.camel@analog.com>
-X-Cookie: Mickey Mouse wears a Spiro Agnew watch.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Since we now have bindings for Mali Midgard GPUs, let's use them to
+describe Juno's GPU subsystem, if only because we can. Juno sports a
+Mali-T624 integrated behind an MMU-400 (as a gesture towards
+virtualisation), in their own dedicated power domain with DVFS
+controlled by the SCP.
 
---AqsLC8rIMeq19msA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+CC: Liviu Dudau <liviu.dudau@arm.com>
+CC: Sudeep Holla <sudeep.holla@arm.com>
+CC: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
+ .../bindings/gpu/arm,mali-midgard.yaml        |  5 +++-
+ arch/arm64/boot/dts/arm/juno-base.dtsi        | 27 +++++++++++++++++++
+ 2 files changed, 31 insertions(+), 1 deletion(-)
 
-On Mon, Sep 30, 2019 at 09:44:00AM +0000, Sa, Nuno wrote:
-> On Thu, 2019-09-26 at 11:43 -0700, Mark Brown wrote:
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+index 47bc1ac36426..018f3ae4b43c 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+@@ -22,6 +22,10 @@ properties:
+           - enum:
+              - amlogic,meson-gxm-mali
+           - const: arm,mali-t820
++      - items:
++          - enum:
++             - arm,juno-mali
++          - const: arm,mali-t624
+       - items:
+           - enum:
+              - rockchip,rk3288-mali
+@@ -39,7 +43,6 @@ properties:
+              - samsung,exynos5433-mali
+           - const: arm,mali-t760
+ 
+-          # "arm,mali-t624"
+           # "arm,mali-t628"
+           # "arm,mali-t830"
+           # "arm,mali-t880"
+diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+index 26a039a028b8..9e3e8ce6adfe 100644
+--- a/arch/arm64/boot/dts/arm/juno-base.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+@@ -35,6 +35,18 @@
+ 		clock-names = "apb_pclk";
+ 	};
+ 
++	smmu_gpu: iommu@2b400000 {
++		compatible = "arm,mmu-400", "arm,smmu-v1";
++		reg = <0x0 0x2b400000 0x0 0x10000>;
++		interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
++		#iommu-cells = <1>;
++		#global-interrupts = <1>;
++		power-domains = <&scpi_devpd 1>;
++		dma-coherent;
++		status = "disabled";
++	};
++
+ 	smmu_pcie: iommu@2b500000 {
+ 		compatible = "arm,mmu-401", "arm,smmu-v1";
+ 		reg = <0x0 0x2b500000 0x0 0x10000>;
+@@ -487,6 +499,21 @@
+ 		};
+ 	};
+ 
++	gpu: gpu@2d000000 {
++		compatible = "arm,juno-mali", "arm,mali-t624";
++		reg = <0 0x2d000000 0 0x10000>;
++		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "gpu", "job", "mmu";
++		clocks = <&scpi_dvfs 2>;
++		power-domains = <&scpi_devpd 1>;
++		dma-coherent;
++		/* The SMMU is only really of interest to bare-metal hypervisors */
++		/* iommus = <&smmu_gpu 0>; */
++		status = "disabled";
++	};
++
+ 	sram: sram@2e000000 {
+ 		compatible = "arm,juno-sram-ns", "mmio-sram";
+ 		reg = <0x0 0x2e000000 0x0 0x8000>;
+-- 
+2.21.0.dirty
 
-> > > +	case SND_SOC_DAIFMT_RIGHT_J:
-> > > +		st->right_j = true;
-> > > +		break;
-
-> > Don't we need to set any register values here?
-
-> The register set is done in adau7118_hw_params(). For right
-> justification the device can delay bclck by 8, 12 or 16. So, We need to
-> know the data_width to check if we can apply the configuration.
-
-OK.
-
-> > > +	case SND_SOC_BIAS_STANDBY:
-> > > +		if (snd_soc_component_get_bias_level(component) ==
-> > > +							SND_SOC_BIAS_OF
-> > > F) {
-> > > +			if (!st->iovdd)
-> > > +				return 0;
-
-> > This is broken, the device will always require power so it should
-> > always control the regulators.
-
-> The reason why I made this optional was to let the user assume that, in
-> some cases, the supply can be always present (and not controlled by the
-> kernel) and, in those cases, he would not have to care about giving
-> regulators nodes in devicetree. Furthermore, the driver would not have
-
-Have you tried doing that?  Notice how the regulator API subtitutes in a
-dummy regulator for you and the driver works fine without custom code.
-
-> to care about enabling/disabling  regulators. Is this not a valid
-> scenario? Or is it that, for this kind of devices it does not really
-
-It's not a valid scenario in driver code - the driver shouldn't be
-randomly ignoring errors and hoping the errors were deliberate rather
-than indiciations of real problems.
-
-> > > +static int adau7118_resume(struct snd_soc_component *component)
-> > > +{
-> > > +	return snd_soc_component_force_bias_level(component,
-> > > +						  SND_SOC_BIAS_STANDBY)
-> > > ;
-> > > +}
-
-> > Let DAPM do this for you, there's no substantial delays on power
-> > on so you're probably best just setting idle_bias_off.
-
-> So, this means dropping resume/suspend and to not set idle_bias_on,
-> right?
-
-Right.  Like I say it looks like your power up path is fast enough for
-this.
-
-> > > +static int adau7118_regulator_setup(struct adau7118_data *st)
-> > > +{
-> > > +	int ret = 0;
-> > > +
-> > > +	st->iovdd = devm_regulator_get_optional(st->dev, "IOVDD");
-> > > +	if (!IS_ERR(st->iovdd)) {
-
-> > Unless the device can operate with supplies physically absent it
-> > should not be requesting regulators as optional, this breaks your
-> > error handling especially with probe deferral which is a fairly
-> > common case.
-
-> Just for my understanding (most likely I'm missing something obvious),
-> why would I have issues with the error handling in probe deferral?
-
-Actually it does look like you handle this correctly further down, the
-normal pattern would have been to have the error handling inside the if
-here and not indent the rest of the success path so I misread it.
-
---AqsLC8rIMeq19msA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2SGyMACgkQJNaLcl1U
-h9CkAwf9EYiV4BQm0xxoHsLhEYWWYl4f4l8dyWkSXXJg/n2cm55ZotoM4Rxa3+Ir
-L9m1vcsZPqn9T9CR2lBzOUKXfFkPnvpxao2yvwaZHrZrHELKGBtG+g+Kjgk9YT2+
-VjvdYBf7czonV8AmRHnvZpgzv69cAfLJM0H4iVfmy0sclAgCMBSesTixTUDGcRgw
-IjiCtqt9TkzZBrLUqefaCMDN3k3Jba+3jA580jZS3SUS6geaLyQCzSOnTkPQUka5
-BAlftJCTfbAH/dUVLJlvpDTbzN11ivTduZU/y5q5SMvgp17jDU/e7yF0QUVDv0wK
-zLChmYfli7ZUEHXi44LPrAeOfZY9NQ==
-=syDp
------END PGP SIGNATURE-----
-
---AqsLC8rIMeq19msA--
