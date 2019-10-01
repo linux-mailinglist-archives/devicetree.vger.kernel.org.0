@@ -2,230 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B1DC38DC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 17:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F7BC3958
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 17:43:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727204AbfJAPYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 11:24:34 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52180 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389331AbfJAPYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 11:24:33 -0400
-Received: by mail-wm1-f67.google.com with SMTP id 7so3876143wme.1;
-        Tue, 01 Oct 2019 08:24:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qIz20MyIeJ4YRS3q69VVUyLU1/qqd5R6Zf74yV/b9ww=;
-        b=tMJR1DKYuJ/HYqsTxR6if2fyU/wWMRmpHG62KZ1lIyk8JSPisThK+ZTZA0bRN3kEnu
-         iJxykDLKTqLRSjAlHGp4hAzoB6bnBZmdBteJ+qDSgQhAORi7GTtM709ySi2rfGB4vEN3
-         219q4uDcK6YA5/EWxdJU9yAkaUSaKoNT3LKOLeaA6ewjk3RUsN+1TMaiAzLk/V1MUoXW
-         4PTxHFlRMJa4jw/2xO4qPBt6sAvA7L+Bze5tfvRB9I7d4YfzL8lgjmsBDZnTvqVLXWz/
-         XGFDEAGo9bugFgonAmPeD1kBcRCxZnxB4W9aG5bA/UkMWXVtsdEcBCDmbDsbneYAfHYu
-         mP9w==
-X-Gm-Message-State: APjAAAUQXk3ONav8skZU1A/Cql1LXyee9IBgA4syfHBaHommjAKmA5ya
-        mQGyO+Vw1bmJHnRTu+tZJ84=
-X-Google-Smtp-Source: APXvYqzgA01GZd24cae9Ug02bMZVgbmEoHDdIAy+uHttgtTk16j30giNWmxHikB8fPnYof+FbNzouQ==
-X-Received: by 2002:a1c:60c1:: with SMTP id u184mr4104201wmb.32.1569943469278;
-        Tue, 01 Oct 2019 08:24:29 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id i1sm4699293wmb.19.2019.10.01.08.24.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 08:24:28 -0700 (PDT)
-Date:   Tue, 1 Oct 2019 17:24:22 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
+        id S1727269AbfJAPnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 11:43:15 -0400
+Received: from mx2.suse.de ([195.135.220.15]:55430 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727302AbfJAPnP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 11:43:15 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 972FDAD2A;
+        Tue,  1 Oct 2019 15:43:12 +0000 (UTC)
+Message-ID: <0557c83bcb781724a284811fef7fdb122039f336.camel@suse.de>
+Subject: Re: [PATCH 05/11] of: Ratify of_dma_configure() interface
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-tegra@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v2 2/8] dt-bindings: sram: Convert SRAM bindings to
- json-schema
-Message-ID: <20191001152422.GA31358@pi3>
-References: <20190918173141.4314-1-krzk@kernel.org>
- <20190918173141.4314-2-krzk@kernel.org>
- <20191001140003.GA31344@bogus>
+Cc:     devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>, PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Oza Pawandeep <oza.oza@broadcom.com>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Date:   Tue, 01 Oct 2019 17:43:09 +0200
+In-Reply-To: <CAL_JsqLnKxuQRR3sGGtXF3nwwDx7DOONPPYz37ROk7u_+cxRug@mail.gmail.com>
+References: <20190927002455.13169-1-robh@kernel.org>
+         <20190927002455.13169-6-robh@kernel.org>
+         <20190930125752.GD12051@infradead.org>
+         <95f8dabea99f104336491281b88c04b58d462258.camel@suse.de>
+         <CAL_JsqLnKxuQRR3sGGtXF3nwwDx7DOONPPYz37ROk7u_+cxRug@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-Cs3oOlvxVqdSsNFddCdM"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191001140003.GA31344@bogus>
-User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 01, 2019 at 09:00:03AM -0500, Rob Herring wrote:
-> On Wed, Sep 18, 2019 at 07:31:35PM +0200, Krzysztof Kozlowski wrote:
-> > Convert generic mmio-sram bindings to DT schema format using
-> > json-schema.
-> 
-> I've been slow getting to this because I started on the same thing...
-> 
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > ---
-> > 
-> > Changes since v1:
-> > 1. Indent example with four spaces (more readable).
-> > ---
-> >  .../devicetree/bindings/sram/sram.txt         |  80 ----------
-> >  .../devicetree/bindings/sram/sram.yaml        | 138 ++++++++++++++++++
-> >  2 files changed, 138 insertions(+), 80 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/sram/sram.txt
-> >  create mode 100644 Documentation/devicetree/bindings/sram/sram.yaml
-> 
-> > diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
-> > new file mode 100644
-> > index 000000000000..8d9d6ce494b2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sram/sram.yaml
-> > @@ -0,0 +1,138 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sram/sram.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic on-chip SRAM
-> > +
-> > +maintainers:
-> > +  - FIXME <who@should.it.be>
-> 
-> You can put me.
 
-Sure.
+--=-Cs3oOlvxVqdSsNFddCdM
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> > +
-> > +description: |+
-> > +  Simple IO memory regions to be managed by the genalloc API.
-> > +
-> > +  Each child of the sram node specifies a region of reserved memory. Each
-> > +  child node should use a 'reg' property to specify a specific range of
-> > +  reserved memory.
-> > +
-> > +  Following the generic-names recommended practice, node names should
-> > +  reflect the purpose of the node. Unit address (@<address>) should be
-> > +  appended to the name.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^sram(@.*)?"
-> > +
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - mmio-sram
-> > +          - atmel,sama5d2-securam
-> 
-> I was trying to go down the path of putting all the compatibles for 
-> various SRAM bindings here, but I ran into some issues. I need to 
-> revisit as I've forgotten the exact issue.
-> 
-> This would need to be a 'contains' if this is going to work for others.
+On Mon, 2019-09-30 at 16:24 -0500, Rob Herring wrote:
+> On Mon, Sep 30, 2019 at 8:32 AM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > On Mon, 2019-09-30 at 05:57 -0700, Christoph Hellwig wrote:
+> > > On Thu, Sep 26, 2019 at 07:24:49PM -0500, Rob Herring wrote:
+> > > > -int of_dma_configure(struct device *dev, struct device_node *np, b=
+ool
+> > > > force_dma)
+> > > > +int of_dma_configure(struct device *dev, struct device_node *paren=
+t,
+> > > > bool
+> > > > force_dma)
+> > >=20
+> > > This creates a > 80 char line.
+> > >=20
+> > > >  {
+> > > >     u64 dma_addr, paddr, size =3D 0;
+> > > >     int ret;
+> > > >     bool coherent;
+> > > >     unsigned long offset;
+> > > >     const struct iommu_ops *iommu;
+> > > > +   struct device_node *np;
+> > > >     u64 mask;
+> > > >=20
+> > > > +   np =3D dev->of_node;
+> > > > +   if (!np)
+> > > > +           np =3D parent;
+> > > > +   if (!np)
+> > > > +           return -ENODEV;
+> > >=20
+> > > I have to say I find the older calling convention simpler to understa=
+nd.
+> > > If we want to enforce the invariant I'd rather do that explicitly:
+> > >=20
+> > >       if (dev->of_node && np !=3D dev->of_node)
+> > >               return -EINVAL;
+> >=20
+> > As is, this would break Freescale Layerscape fsl-mc bus' dma_configure(=
+):
+>=20
+> This may break PCI too for devices that have a DT node.
+>=20
+> > static int fsl_mc_dma_configure(struct device *dev)
+> > {
+> >         struct device *dma_dev =3D dev;
+> >=20
+> >         while (dev_is_fsl_mc(dma_dev))
+> >                 dma_dev =3D dma_dev->parent;
+> >=20
+> >         return of_dma_configure(dev, dma_dev->of_node, 0);
+> > }
+> >=20
+> > But I think that with this series, given the fact that we now treat the=
+ lack
+> > of
+> > dma-ranges as a 1:1 mapping instead of an error, we could rewrite the
+> > function
+> > like this:
+>=20
+> Now, I'm reconsidering allowing this abuse... It's better if the code
+> which understands the bus structure in DT for a specific bus passes in
+> the right thing. Maybe I should go back to Robin's version (below).
+> OTOH, the existing assumption that 'dma-ranges' was in the immediate
+> parent was an assumption on the bus structure which maybe doesn't
+> always apply.
+>=20
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index a45261e21144..6951450bb8f3 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -98,12 +98,15 @@ int of_dma_configure(struct device *dev, struct
+> device_node *parent, bool force_
+>         u64 mask;
+>=20
+>         np =3D dev->of_node;
+> -       if (!np)
+> -               np =3D parent;
+> +       if (np)
+> +               parent =3D of_get_dma_parent(np);
+> +       else
+> +               np =3D of_node_get(parent);
+>         if (!np)
+>                 return -ENODEV;
+>=20
+> -       ret =3D of_dma_get_range(np, &dma_addr, &paddr, &size);
+> +       ret =3D of_dma_get_range(parent, &dma_addr, &paddr, &size);
+> +       of_node_put(parent);
+>         if (ret < 0) {
+>                 /*
+>                  * For legacy reasons, we have to assume some devices nee=
+d
 
-OK.
+I spent some time thinking about your comments and researching. I came to t=
+he
+realization that both these solutions break the usage in
+drivers/gpu/drm/sun4i/sun4i_backend.c:805. In that specific case both
+'dev->of_node' and 'parent' exist yet the device receiving the configuratio=
+n
+and 'parent' aren't related in any way.
 
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    description: Should use the same values as the root node.
-> > +
-> > +  "#size-cells":
-> > +    description: Should use the same values as the root node.
-> 
-> I defined both of these to be 1 as 4GB of SRAM should be enough for a 
-> while. We can debate 1 or 2 cells vs. 1, but there's no reason it has to 
-> be the same as the root (unless we're failing to do address 
-> translation).
+IOW we can't just use 'dev->of_node' as a starting point to walk upwards th=
+e
+tree. We always have to respect whatever DT node the bus provided, and star=
+t
+there. This clashes with the current solutions, as they are based on the fa=
+ct
+that we can use dev->of_node when present.
 
-That was copied from txt version. I can adjust them to 1 although this
-is will more than simple conversion.
+My guess at this point, if we're forced to honor that behaviour, is that we
+have to create a new API for the PCI use case. Something the likes of
+of_dma_configure_parent().
 
-> 
-> > +
-> > +  ranges:
-> > +    description:
-> > +      Should translate from local addresses within the sram to bus addresses.
-> > +
-> > +  no-memory-wc:
-> > +    description:
-> > +      The flag indicating, that SRAM memory region has not to be remapped
-> > +      as write combining. WC is used by default.
-> > +    type: boolean
-> > +
-> > +  # TODO: additionalProperties: false
-> > +
-> > +patternProperties:
-> > +  "^([a-z]*-)?sram@[a-f0-9]$":
-> > +    type: object
-> > +    description:
-> > +      Each child of the sram node specifies a region of reserved memory.
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          IO mem address range, relative to the SRAM range.
-> 
-> maxItems: 1
+Regards,
+Nicolas
 
-OK
 
-> 
-> > +
-> > +      compatible:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        description:
-> > +          Should contain a vendor specific string in the form
-> > +          <vendor>,[<device>-]<usage>
-> > +
-> > +      pool:
-> > +        description:
-> > +          Indicates that the particular reserved SRAM area is addressable
-> > +          and in use by another device or devices.
-> > +        type: boolean
-> > +
-> > +      export:
-> > +        description:
-> > +          Indicates that the reserved SRAM area may be accessed outside
-> > +          of the kernel, e.g. by bootloader or userspace.
-> > +        type: boolean
-> > +
-> > +      protect-exec:
-> > +        description: |
-> > +          Same as 'pool' above but with the additional constraint that code
-> > +          will be run from the region and that the memory is maintained as
-> > +          read-only, executable during code execution. NOTE: This region must
-> > +          be page aligned on start and end in order to properly allow
-> > +          manipulation of the page attributes.
-> > +        type: boolean
-> > +
-> > +      label:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> 
-> Already has a type definition.
+--=-Cs3oOlvxVqdSsNFddCdM
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-OK
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2TdA0ACgkQlfZmHno8
+x/6K4AgAjioHwGF/mb4/iuCV18ZNbc5+28Uj8QSuVjilegKoNykY14Tj+cUOZScx
+3EF7lURVACHKIEG1K4mOtTqx/gzU+CkDYq3h6j7WkGGOIVY9Uadlnj/Koe7b3WuN
+CtyjG0ZpwC0Houf+sUzULF/oh70hKCQnGJqaw4zM11eaV3GWVFusupxh6VuZ61Ez
+PFo9kjYEn9DJFCUYzlZBYmqo7KIXm17W2fiY6AqjPvYE7s4HoA3Y1IE3uofxIY0B
+0jyx5feECFqXNM6OXhaOVDV5jiDrM2aFc1/w0IYU3dcaQxjkPFlb4yI7KtzE/HBT
+DJ49VyTT04oQy0DYBsw8BXur1BGXCw==
+=Iift
+-----END PGP SIGNATURE-----
+
+--=-Cs3oOlvxVqdSsNFddCdM--
 
