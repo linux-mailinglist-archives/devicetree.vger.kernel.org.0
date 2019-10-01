@@ -2,64 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA4AC33B2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 14:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D86C33BF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 14:04:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726342AbfJAMDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 08:03:06 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:48037 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725821AbfJAMDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 08:03:06 -0400
-X-IronPort-AV: E=Sophos;i="5.64,571,1559487600"; 
-   d="scan'208";a="27795287"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 01 Oct 2019 21:03:04 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id EAED84226653;
-        Tue,  1 Oct 2019 21:03:01 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] dt-bindings: pwm: rcar: Add r8a774b1 support
-Date:   Tue,  1 Oct 2019 13:02:40 +0100
-Message-Id: <1569931360-17196-1-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1733312AbfJAMEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 08:04:30 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:39601 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732695AbfJAME3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 08:04:29 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w144so14140684oia.6;
+        Tue, 01 Oct 2019 05:04:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rc80uNQCO5V74UZEUf3E2pBqivh12e4gIj5eJ05GnNc=;
+        b=ttKi4CXEaVgBvGLJlj7E7q3Z274Xqcu/F6NsvVuIMBeJUkzSU5MF7QLgQKPOek5W+d
+         9KPeWO2t61o9CI3LqsgcIGKrQ1R7GSGt08VVhe/S3Q06+mohp+SYp62nJbltmO/MBZz7
+         nzd0ouq20ypXvUjbPpGR45HPm6Xd8r0nZxW4U65j/MvqEbmlAs/7XDhen66PT6aVIGX/
+         5B9sRs/wPWj0nh40a8h26+QnYno0PhFQZPmYqwn9MWRbYAjDzEDQP7kQQ9zpHRIA/a+u
+         p8yNmUBRzJbGaO9vjj7lKSG6Y/59j2XEFs6ymwTxxwgPAZstBs2rgor+LK697k1ZXYeh
+         1ZcA==
+X-Gm-Message-State: APjAAAXQt9fFkib4SAt5ACkrlywLeuSru3j8yXbT/TWJuiOEmUYqZ4aJ
+        rPZxkR77+QQqnp7budd4+eUzB2zVSg==
+X-Google-Smtp-Source: APXvYqwuwM7AkJVAtGa8akLZjV3Pru0RHcBtiuxx3c9KMgqDOsfLJ5O5/oMwqjvFDQHezJJYEcZysg==
+X-Received: by 2002:a05:6808:8ee:: with SMTP id d14mr3311288oic.31.1569931468906;
+        Tue, 01 Oct 2019 05:04:28 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 11sm4823374otg.62.2019.10.01.05.04.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 05:04:28 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 07:04:27 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Pragnesh Patel <pragnesh.patel@sifive.com>
+Cc:     mripard@kernel.org, Pragnesh Patel <pragnesh.patel@sifive.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: Fix building error for
+ dt_binding_check
+Message-ID: <20191001120427.GA3594@bogus>
+References: <1568808060-17516-1-git-send-email-pragnesh.patel@sifive.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1568808060-17516-1-git-send-email-pragnesh.patel@sifive.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RZ/G2N (R8A774B1) SoC bindings.
+On Wed, 18 Sep 2019 17:31:00 +0530, Pragnesh Patel wrote:
+> $id doesn't match the actual filename, so update the $id
+> 
+> Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
+> ---
+>  Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
-This patch depend on
-https://patchwork.kernel.org/patch/11154813/
----
- Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml b/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
-index 0976cfd..272a4df 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
-@@ -18,6 +18,7 @@ properties:
-           - renesas,pwm-r8a7745   # RZ/G1E
-           - renesas,pwm-r8a77470  # RZ/G1C
-           - renesas,pwm-r8a774a1  # RZ/G2M
-+          - renesas,pwm-r8a774b1  # RZ/G2N
-           - renesas,pwm-r8a774c0  # RZ/G2E
-           - renesas,pwm-r8a7778   # R-Car M1A
-           - renesas,pwm-r8a7779   # R-Car H1
--- 
-2.7.4
-
+Acked-by: Rob Herring <robh@kernel.org>
