@@ -2,47 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33B17C3328
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13966C332A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387465AbfJALmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 07:42:52 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40546 "EHLO
+        id S2387464AbfJALmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 07:42:55 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40436 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387464AbfJALk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:40:57 -0400
+        with ESMTP id S2387441AbfJALk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:40:56 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=fST/AH+GOt2GHguW9Cy53gJrYgbzWWwyPXEqzuvSsEs=; b=tCb9X5iSdz0b
-        Xn1KGOQTBvZ2Z6OVme0fjPxRVkv5AEjseEShBXVJMwGRdua+NxRxVeWRY0ZQQ+TAdA4vdPZdGo0gV
-        A4jbN5nN+OwUmDI4e0LUa5vnuad2n0YS/DDUV8xELsEVOmGdCmQ+FqEFgbyhoOzvuddfSngWrAUfG
-        NRjAE=;
+        List-Archive; bh=b0stKEdyVX3aTCnyP8Y+NZxscAvzUSD7HEvqZHp/HS4=; b=fkXHGQmKYYS0
+        2D5KiYPcPuDMEW20wVRIGLIWzUHZFbSGcxcI9q2vYBwGZh3iRjfknV+1RyWJiOo5iocN5wwGr2pIY
+        X41LhE1N+peTDYR1l5l2f+nNFcZCdyPCyBTbQWFNt1c85NuMmyXJh3HrsbL49y/CRKJruFXZLu1Ke
+        uYWP4=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1iFGWQ-0004UX-V9; Tue, 01 Oct 2019 11:40:51 +0000
+        id 1iFGWR-0004Uy-Mt; Tue, 01 Oct 2019 11:40:51 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 5D7C527429C0; Tue,  1 Oct 2019 12:40:50 +0100 (BST)
+        id 293F627429C0; Tue,  1 Oct 2019 12:40:51 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+To:     Tzung-Bi Shih <tzungbi@google.com>
 Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        b.zolnierkie@samsung.com, ckeepax@opensource.cirrus.com,
-        devicetree@vger.kernel.org, krzk@kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>, lgirdwood@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        m.szyprowski@samsung.com, patches@opensource.cirrus.com,
-        robh+dt@kernel.org, sbkim73@samsung.com
-Subject: Applied "ASoC: dt-bindings: Document "samsung, arndale-wm1811" compatible" to the asoc tree
-In-Reply-To: <20190920130218.32690-7-s.nawrocki@samsung.com>
+        cychiang@google.com, devicetree@vger.kernel.org, dgreid@google.com,
+        Mark Brown <broonie@kernel.org>, robh+dt@kernel.org,
+        tzungbi@google.com
+Subject: Applied "ASoC: dt-bindings: mt8183: add missing update" to the asoc tree
+In-Reply-To: <20190920112320.166052-1-tzungbi@google.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20191001114050.5D7C527429C0@ypsilon.sirena.org.uk>
-Date:   Tue,  1 Oct 2019 12:40:50 +0100 (BST)
+Message-Id: <20191001114051.293F627429C0@ypsilon.sirena.org.uk>
+Date:   Tue,  1 Oct 2019 12:40:51 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -50,7 +46,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: dt-bindings: Document "samsung, arndale-wm1811" compatible
+   ASoC: dt-bindings: mt8183: add missing update
 
 has been applied to the asoc tree at
 
@@ -75,38 +71,38 @@ to this mail.
 Thanks,
 Mark
 
-From f4528af69fdc112247a78599c6e8f7f618aff4e6 Mon Sep 17 00:00:00 2001
-From: Sylwester Nawrocki <s.nawrocki@samsung.com>
-Date: Fri, 20 Sep 2019 15:02:15 +0200
-Subject: [PATCH] ASoC: dt-bindings: Document "samsung, arndale-wm1811"
- compatible
+From 7cf2804775f8a388411624b3e768e55d08711e9d Mon Sep 17 00:00:00 2001
+From: Tzung-Bi Shih <tzungbi@google.com>
+Date: Fri, 20 Sep 2019 19:23:20 +0800
+Subject: [PATCH] ASoC: dt-bindings: mt8183: add missing update
 
-Add compatible string for boards with WM1811 CODEC to the list.
+Headset codec is optional.  Add missing update to DT binding document.
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-Link: https://lore.kernel.org/r/20190920130218.32690-7-s.nawrocki@samsung.com
+Fixes: a962a809e5e4 ("ASoC: mediatek: mt8183: make headset codec optional")
+Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+Link: https://lore.kernel.org/r/20190920112320.166052-1-tzungbi@google.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- Documentation/devicetree/bindings/sound/arndale.txt | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../bindings/sound/mt8183-mt6358-ts3a227-max98357.txt         | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/arndale.txt b/Documentation/devicetree/bindings/sound/arndale.txt
-index 0e76946385ae..17530120ccfc 100644
---- a/Documentation/devicetree/bindings/sound/arndale.txt
-+++ b/Documentation/devicetree/bindings/sound/arndale.txt
-@@ -1,8 +1,9 @@
- Audio Binding for Arndale boards
+diff --git a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
+index d6d5207fa996..17ff3892f439 100644
+--- a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
++++ b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
+@@ -2,9 +2,11 @@ MT8183 with MT6358, TS3A227 and MAX98357 CODECS
  
  Required properties:
--- compatible : Can be the following,
--			"samsung,arndale-rt5631"
-+- compatible : Can be one of the following:
-+		"samsung,arndale-rt5631",
-+		"samsung,arndale-wm1811"
+ - compatible : "mediatek,mt8183_mt6358_ts3a227_max98357"
+-- mediatek,headset-codec: the phandles of ts3a227 codecs
+ - mediatek,platform: the phandle of MT8183 ASoC platform
  
- - samsung,audio-cpu: The phandle of the Samsung I2S controller
- - samsung,audio-codec: The phandle of the audio codec
++Optional properties:
++- mediatek,headset-codec: the phandles of ts3a227 codecs
++
+ Example:
+ 
+ 	sound {
 -- 
 2.20.1
 
