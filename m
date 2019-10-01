@@ -2,94 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67746C377F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B19EC378B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727055AbfJAOeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 10:34:17 -0400
-Received: from foss.arm.com ([217.140.110.172]:51074 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727018AbfJAOeR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 10:34:17 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 70B7D1000;
-        Tue,  1 Oct 2019 07:34:16 -0700 (PDT)
-Received: from bogus (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1DF583F71A;
-        Tue,  1 Oct 2019 07:34:15 -0700 (PDT)
-Date:   Tue, 1 Oct 2019 15:34:07 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Steven Price <steven.price@arm.com>
-Subject: Re: [PATCH 1/2] arm64: dts: juno: add GPU subsystem
-Message-ID: <20191001143350.GA404@bogus>
-References: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
- <CAL_JsqKUP6qG6PVL47RQ5A5OcBhpdOA_0VL1YeYDuyVSVcRqCQ@mail.gmail.com>
- <20191001085954.GA10443@bogus>
- <2a3b2fe1-b08a-bc21-6f3b-4a595b51463c@arm.com>
+        id S2388958AbfJAOfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 10:35:06 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:52340 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727137AbfJAOfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 10:35:06 -0400
+Received: by mail-wm1-f67.google.com with SMTP id r19so3682280wmh.2;
+        Tue, 01 Oct 2019 07:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=k26dovb4oQGdd7w6o3TR40KUEyF5ft7G3GUL+iaF6Bo=;
+        b=Xht2cWoQheQyGHryEWbV0cak41WzdwV/ZmRMZE1qYxv6U3rsu5aHFE+QCHhbMoja46
+         r7Y3MFuOBMAd2q2lMPVAvSRbyBsIKotpshJQyJUlI7le14yErMDZwwyGYKqy90RQoBpY
+         0ymknZVXklXxg0xCAgK3pNVt+mFPKjIXmrmyVkoUsnoNxGiz/brKm3Psd2/nRa+s5tBa
+         n0hFY2822Wh2kmVwpEJP+2YeSnzSFUFq69vG2Nr0btpEhhPYAK2bL3js4PEQemRWxBJ4
+         ZsYNCJ62Zkptt0SsGjdlNOHp3ClFECcQDepibbIyjHx0Z71MUIgtSIlGJFZYrXkvhjMK
+         D/jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=k26dovb4oQGdd7w6o3TR40KUEyF5ft7G3GUL+iaF6Bo=;
+        b=qFvXcZ7WK3wh2bcFM9lAvf3kT22u4OqT2A+de0DbH4g8h+ajxpUJoCxSZMi72PhfGY
+         NUGBzmKaVuihpis00kQMeIiepKQ9h1BKdvbHM9rF+cH3OWANZ9tRSPQSK4n4a4OffTBV
+         5I/ioLnHGlmdEpB/Z8+RXJJ/puobBoS3poPcs1ckSYdylfMH00bh5L79qY+eeOM+84Qt
+         ez3NKnpfmJWo6HIXyJmZc6nYjCYvOHrpCnky8GOFwXECdRV1HZpOo5Ia2OJbIlBrfGuT
+         Wfe3NfdA9OWwGXuFGXxmjYhEltEagS8dQg5KAjCMxnas9pDxgBHoXob1smN83OFO2hyX
+         ET4A==
+X-Gm-Message-State: APjAAAXS/naZMOXFtmE3ubRH2lrze61Ej1wEMJE9fSgij8xq0dMhAyp9
+        XKY6JyvZPMdEibeZRaFgArU=
+X-Google-Smtp-Source: APXvYqz/9a3rVokHHZK1hmvWkgmQibfuWhrwgHdIFniAPzbQ3ku5JC22LcJ5ZHhm6QKuDHoTk7AYug==
+X-Received: by 2002:a05:600c:295d:: with SMTP id n29mr3873471wmd.36.1569940503859;
+        Tue, 01 Oct 2019 07:35:03 -0700 (PDT)
+Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
+        by smtp.gmail.com with ESMTPSA id c18sm18622360wrn.45.2019.10.01.07.35.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 07:35:02 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 16:35:01 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Philippe Schenker <philippe.schenker@toradex.com>
+Cc:     "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [RESEND PATCH] ARM: dts: Add stmpe-adc DT node to Toradex T30
+ modules
+Message-ID: <20191001143501.GA3566931@ulmo>
+References: <20190814105318.21902-1-philippe.schenker@toradex.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PNTmBPCT7hxwcZjr"
 Content-Disposition: inline
-In-Reply-To: <2a3b2fe1-b08a-bc21-6f3b-4a595b51463c@arm.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190814105318.21902-1-philippe.schenker@toradex.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 01, 2019 at 01:45:30PM +0100, Robin Murphy wrote:
-> On 01/10/2019 09:59, Sudeep Holla wrote:
-> > On Mon, Sep 30, 2019 at 12:46:33PM -0500, Rob Herring wrote:
-> > > On Mon, Sep 30, 2019 at 10:25 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> > > > 
-> > > > Since we now have bindings for Mali Midgard GPUs, let's use them to
-> > > > describe Juno's GPU subsystem, if only because we can. Juno sports a
-> > > > Mali-T624 integrated behind an MMU-400 (as a gesture towards
-> > > > virtualisation), in their own dedicated power domain with DVFS
-> > > > controlled by the SCP.
-> > > > 
-> > > > CC: Liviu Dudau <liviu.dudau@arm.com>
-> > > > CC: Sudeep Holla <sudeep.holla@arm.com>
-> > > > CC: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> > > > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> > > > ---
-> > > >   .../bindings/gpu/arm,mali-midgard.yaml        |  5 +++-
-> > > >   arch/arm64/boot/dts/arm/juno-base.dtsi        | 27 +++++++++++++++++++
-> > > >   2 files changed, 31 insertions(+), 1 deletion(-)
-> > > 
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> > If you plan to take it along with driver change,
-> > 
-> > Acked-by: Sudeep Holla <sudeep.holla@arm.com>
-> > 
-> > If not, please let us know. I can take it for v5.5
-> 
-> The driver change is debatable and not strictly necessary, so it probably
-> makes more sense to take this one through the VExpress tree on its own. I
-> wouldn't suggest flipping the status to "enabled" just yet, but it seems
 
-Sure, make sense.
+--PNTmBPCT7hxwcZjr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> worth putting the basic description in place as a jumping-off point for
-> folks to hack on (e.g. it's another 'interesting' case for devfreq OPP
-> stuff).
+On Wed, Aug 14, 2019 at 10:53:38AM +0000, Philippe Schenker wrote:
+> Add the stmpe-adc DT node as found on Toradex T30 modules
+>=20
+> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+>=20
+> ---
+>=20
+>  arch/arm/boot/dts/tegra30-apalis-v1.1.dtsi | 22 ++++++++++++++--------
+>  arch/arm/boot/dts/tegra30-apalis.dtsi      | 22 ++++++++++++++--------
+>  arch/arm/boot/dts/tegra30-colibri.dtsi     | 22 ++++++++++++++--------
+>  3 files changed, 42 insertions(+), 24 deletions(-)
 
-IIUC, the devfreq support in panfrost driver should work fine with SCPI
-as it has clock provider for GPU DVFS.
+Applied to for-5.5/arm/dt , thanks.
 
-With SCMI, we don't want to hook to clock framework, but I am yet to come
-up with a sane generic way to add SCMI devfreq and integrate it with the
-panfrost devfreq.
+Thierry
 
---
-Regards,
-Sudeep
+--PNTmBPCT7hxwcZjr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2TZBIACgkQ3SOs138+
+s6Hftw/9GSzpANShuy2Bl8XDU0wfm4ImQZHn+gvloV9ychIEQKAJuFYroWjvf1kc
+x/NskhwR081Ap9AfiDk9KWEg2Xe4fnfQmI+zFAPDSEee+OMmvMaTEfY0xYQOAe7l
+OrhXiNadMZKXohIKA2L7lKEGiUsbojTVOh7RSfxTzjCirS+3FWnHnozRVL0Cwwwx
+8lkBdHnUSvJMLrjB7JmE5hFJHIdxmwtkp5YmnQCp+708xMmdy1c3G3kffiyiyrAM
+//qYyzPtduSVEbrBcmQX/22+dOHi9HKPSgzmStqn40j4gioBp06TmRmLe+wdOu90
+G8ZO8tdyFU7TpWwCU8BAZXkpb5C64vZNxjyKDZeLZ4hk2pgu+dQ9hTiJQywyM/oa
+/1Hn/AX43COH++K5KBcVWhu5LvzYMRL7GZzlkiOOGuR9k3F/ig7Qx6DMrnjFPlqI
+m7t4nqqZTlDEzDa53yoVVVdXXiDsKwi8nEOfeIiuEBlU6w6nPf+nui3DBWA3Zkn2
+2XS2Lq2G1qttg5xv1naf5geG5a7Vop+3goArJKpCLNzac/2Vzrkm9kKNyVBre5pz
+dobkYxt5O3x/y7+DIqnpmCV37Gx/9juYh2EH+C3lWCsWiGqzMZxELLU0E1qX9FqR
+O0lbuoWfYfzEuoLEILEfjo1lxpziqUOw1condM59Se6u9R5A+uo=
+=/g0r
+-----END PGP SIGNATURE-----
+
+--PNTmBPCT7hxwcZjr--
