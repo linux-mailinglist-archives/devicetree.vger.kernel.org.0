@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D86AC380E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA8FBC381F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732185AbfJAOuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 10:50:46 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:57465 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727051AbfJAOuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 10:50:46 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 4BF9D40004;
-        Tue,  1 Oct 2019 14:50:39 +0000 (UTC)
-Date:   Tue, 1 Oct 2019 16:52:22 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
+        id S2389014AbfJAO4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 10:56:02 -0400
+Received: from mga17.intel.com ([192.55.52.151]:45896 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726987AbfJAO4C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 10:56:02 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Oct 2019 07:56:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,571,1559545200"; 
+   d="scan'208";a="203254365"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+  by orsmga002.jf.intel.com with SMTP; 01 Oct 2019 07:55:57 -0700
+Received: by stinkbox (sSMTP sendmail emulation); Tue, 01 Oct 2019 17:55:56 +0300
+Date:   Tue, 1 Oct 2019 17:55:56 +0300
+From:   Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To:     Ezequiel Garcia <ezequiel@collabora.com>
 Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-rockchip@lists.infradead.org,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Sean Paul <seanpaul@chromium.org>, kernel@collabora.com
 Subject: Re: [PATCH v3 5/5] RFC: drm/atomic-helper: Reapply color
  transformation after resume
-Message-ID: <20191001145222.32aapomoqlaxpvbb@uno.localdomain>
+Message-ID: <20191001145556.GP1208@intel.com>
 References: <20190930222802.32088-1-ezequiel@collabora.com>
  <20190930222802.32088-6-ezequiel@collabora.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zl62uyu5oe5zzls3"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 In-Reply-To: <20190930222802.32088-6-ezequiel@collabora.com>
-User-Agent: NeoMutt/20180716
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---zl62uyu5oe5zzls3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-
-Hi Ezequiel,
-
 On Mon, Sep 30, 2019 at 07:28:02PM -0300, Ezequiel Garcia wrote:
 > Some platforms are not able to maintain the color transformation
 > state after a system suspend/resume cycle.
->
+> 
 > Set the colog_mgmt_changed flag so that CMM on the CRTCs in
-
-CMM is the name of the Renesas unit for color enanchement. It should
-not be used here as this will apply to all platforms.
-
 > the suspend state are reapplied after system resume.
->
+> 
 > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
 > ---
 > This is an RFC, and it's mostly based on Jacopo Mondi's work https://lkml.org/lkml/2019/9/6/498.
->
+> 
 > Changes from v2:
 > * New patch.
 > ---
 >  drivers/gpu/drm/drm_atomic_helper.c | 12 ++++++++++++
 >  1 file changed, 12 insertions(+)
->
+> 
 > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
 > index e41db0f202ca..518488125575 100644
 > --- a/drivers/gpu/drm/drm_atomic_helper.c
@@ -86,7 +78,7 @@ not be used here as this will apply to all platforms.
 > +	struct drm_crtc *crtc;
 > +	unsigned int i;
 >  	int err;
->
+>  
 > +	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
 > +		/*
 > +		 * Force re-enablement of CMM after system resume if any
@@ -95,37 +87,27 @@ not be used here as this will apply to all platforms.
 > +		 */
 > +		if (crtc_state->gamma_lut)
 
-Please note that in my original patch I only took gamma_lut into
-account as that's what our CMM supports at the moment, but you should
-here consider the degamma_lut and cmt flags in the crtc_state.
+You say "any" but you check the one?
 
 > +			crtc_state->color_mgmt_changed = true;
+
+But I'm not convinced this is the best way to go about it. 
+I would generally expect that you repgrogram everything
+when doing a full modeset since the state was possibly
+lost while the crtc was disabled.
+
 > +	}
 >  	drm_mode_config_reset(dev);
->
+>  
 >  	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> --
+> -- 
 > 2.22.0
->
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
---zl62uyu5oe5zzls3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl2TaCYACgkQcjQGjxah
-VjyNJA//aSwBuTdB7lLcaiEaE+P3RsAcLZl6sS/EGaTO5tsvgJD43qhcW0FyAZdV
-8ABNJ3e+W7ZgTzkHWVBvs6Y5eQlE3AvvAhXFPEjL9ca9Y/rRLgcF6mQ8GQCqsYO7
-dvBkd1bpWG7XBOO5KzSLSDbIsjDRmDbpFVQHtTWDJZN/LzIqZHoGPZL9Tc7yoAY7
-9MW3av52glPOWqTJj9zscg/Y7BWuapCmmPPV97iLUPKVtvN/G+2fgIVxushM2e3K
-TJvYsU63CZ5pzKX1U02UBbs0KKsENRRjWCTcGs2gf5xq0WhBs+lC0uZAclNkw/lu
-wd5ehPD3CaE2NiBECnHtptxEZE+jMzzP7jmDojYHILG0NqV6pcVVHdZsYK7AE/qb
-CfqDtLn6HnbaZZcia7Smp50QpTGY5z46Qe9l15CH/wtzjywwyKyl9GvuEK18ycx5
-6iwGZW0PYHJnAQwh0U4F92akAXIOf5xfpW2358jlIr8iwmSE5UgrqA4YcDDPGDfs
-7YvBDUBn/Bs0RYUetb/+HI5rcYZsWdBkpL/cHP6y+8yItmdS9IyYlHS6pXxm3X04
-dS7tEaUs29GYJKsVshqq7ORctg0pd4ebsSsZeyqTLq7YmzXefjzpHihSvuKt0oMU
-pqCdnYKZkFUm70gLJXTHVVjSty7YOBB428DgPlWTFmgNUvVUqec=
-=hYRk
------END PGP SIGNATURE-----
-
---zl62uyu5oe5zzls3--
+-- 
+Ville Syrjälä
+Intel
