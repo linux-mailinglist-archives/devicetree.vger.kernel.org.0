@@ -2,243 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA704C37A0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07CDBC3812
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727149AbfJAOi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 10:38:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727143AbfJAOi1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 10:38:27 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CD3212054F;
-        Tue,  1 Oct 2019 14:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569940705;
-        bh=BC6OroHcKot4AxHRsLzrj3gVVxqz2wKqdFSlgTuptpw=;
-        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
-        b=BYHEm8XyvTeCxQXNCByi8u5BlrT28BYw6+dYsZfyegW+qvnaE0V30GvfVl5LKhTVR
-         TbYCnlYyFno04qwhsbnta3Rc7FW7ECti0aE8lfZe5rdZapEbFkOtfAk/Vt2o9Mr7WJ
-         a93ez7ZSk3JUOhccqgPm8UbUZZ39MSaylIylYKNw=
-Content-Type: text/plain; charset="utf-8"
+        id S2389257AbfJAOvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 10:51:14 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42766 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388925AbfJAOvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 10:51:14 -0400
+Received: by mail-oi1-f194.google.com with SMTP id i185so14615189oif.9;
+        Tue, 01 Oct 2019 07:51:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wjkwwfTfjq2moCLwkeTZGb6uXp0wkFlLr8cpTn6l27M=;
+        b=pyX7yAyfQGDwy+LAL4AlxcNrPM5m11R3UE1Duj0cP/MA1Y+LoYkWNgOgEdiXK9LVve
+         yt3dlDoA9aZPma7fb7qyTHOrcEeTECv70cA2GAph0M2HqHX4AslXvH6GCR7V0Y+MoMqf
+         NEPU0TdYqf8i0KRvX+kNI0Q/rVMBKIe/z2wQgGrnvvIit80bsJ9I1GcWBw4jLjVZvMER
+         w3lgyeN+y6tA33lW2vB2cf0peCioIbhnBYPtzQUdIMK4Tq1Wx+v3UdRB7eCBzkw8hhkl
+         tl4ZaRFmCrQQI7pD5bb9uRCHKAQIJS03jZFDHDY2mgtsEaN22ckkqTsX9v5dIgeqddAF
+         uWvQ==
+X-Gm-Message-State: APjAAAX1fqzd+VUdgm1/ApH8k8rxSEvAMmDVlM6tTdSm1ZAd7I7VEjjx
+        JIrOf5BRY7Tu+NLspdPWHs/vRJQ/PbOYi/LXwvHmHVEE
+X-Google-Smtp-Source: APXvYqwqIHUrEtXdoPbVnpLxwh2KqCzpzklP7J9yGOYytQ/1LS8BXr/JDl/k0iY/xzLs23owgZnP3oGCrG/oa+Ym31s=
+X-Received: by 2002:aca:b654:: with SMTP id g81mr3826040oif.153.1569941473256;
+ Tue, 01 Oct 2019 07:51:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org>
-References: <20190918095018.17979-1-tdas@codeaurora.org> <20190918095018.17979-4-tdas@codeaurora.org> <20190918213946.DC03521924@mail.kernel.org> <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org> <20190924231223.9012C207FD@mail.kernel.org> <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org> <20190925130346.42E0820640@mail.kernel.org> <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org>
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>, robh+dt@kernel.org
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC) driver for SC7180
-User-Agent: alot/0.8.1
-Date:   Tue, 01 Oct 2019 07:38:25 -0700
-Message-Id: <20191001143825.CD3212054F@mail.kernel.org>
+References: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
+ <1568793876-9009-3-git-send-email-gareth.williams.jx@renesas.com>
+ <20191001120203.GA28106@bogus> <TY2PR01MB292460F29AE0664CFFD70EFDDF9D0@TY2PR01MB2924.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY2PR01MB292460F29AE0664CFFD70EFDDF9D0@TY2PR01MB2924.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 1 Oct 2019 16:51:02 +0200
+Message-ID: <CAMuHMdXBfgC=x7H_mnLb_s0gMOBS7r9h8vqbiSU+168VKs9q1w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: snps,dw-apb-ssi: Add optional clock
+ domain information
+To:     Gareth Williams <gareth.williams.jx@renesas.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2019-09-27 00:37:57)
-> Hi Stephen,
->=20
-> On 9/25/2019 6:33 PM, Stephen Boyd wrote:
-> > Quoting Taniya Das (2019-09-25 04:20:07)
-> >> Hi Stephen,
-> >>
-> >> Please find my comments.
-> >>
-> >> On 9/25/2019 4:42 AM, Stephen Boyd wrote:
-> >>> Quoting Taniya Das (2019-09-23 01:01:11)
-> >>>> Hi Stephen,
-> >>>>
-> >>>> Thanks for your comments.
-> >>>>
-> >>>> On 9/19/2019 3:09 AM, Stephen Boyd wrote:
-> >>>>> Quoting Taniya Das (2019-09-18 02:50:18)
-> >>>>>> diff --git a/drivers/clk/qcom/gcc-sc7180.c b/drivers/clk/qcom/gcc-=
-sc7180.c
-> >>>>>> new file mode 100644
-> >>>>>> index 000000000000..d47865d5408f
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/drivers/clk/qcom/gcc-sc7180.c
-> >>>>>> +                       .ops =3D &clk_branch2_ops,
-> >>>>>> +               },
-> >>>>>> +       },
-> >>>>>> +};
-> >>>>>> +
-> >>> [...]
-> >>>>>> +static struct clk_branch gcc_ufs_phy_phy_aux_clk =3D {
-> >>>>>> +       .halt_reg =3D 0x77094,
-> >>>>>> +       .halt_check =3D BRANCH_HALT,
-> >>>>>> +       .hwcg_reg =3D 0x77094,
-> >>>>>> +       .hwcg_bit =3D 1,
-> >>>>>> +       .clkr =3D {
-> >>>>>> +               .enable_reg =3D 0x77094,
-> >>>>>> +               .enable_mask =3D BIT(0),
-> >>>>>> +               .hw.init =3D &(struct clk_init_data){
-> >>>>>> +                       .name =3D "gcc_ufs_phy_phy_aux_clk",
-> >>>>>> +                       .parent_data =3D &(const struct clk_parent=
-_data){
-> >>>>>> +                               .hw =3D &gcc_ufs_phy_phy_aux_clk_s=
-rc.clkr.hw,
-> >>>>>> +                       },
-> >>>>>> +                       .num_parents =3D 1,
-> >>>>>> +                       .flags =3D CLK_SET_RATE_PARENT,
-> >>>>>> +                       .ops =3D &clk_branch2_ops,
-> >>>>>> +               },
-> >>>>>> +       },
-> >>>>>> +};
-> >>>>>> +
-> >>>>>> +static struct clk_branch gcc_ufs_phy_rx_symbol_0_clk =3D {
-> >>>>>> +       .halt_reg =3D 0x7701c,
-> >>>>>> +       .halt_check =3D BRANCH_HALT_SKIP,
-> >>>>>
-> >>>>> Again, nobody has fixed the UFS driver to not need to do this halt =
-skip
-> >>>>> check for these clks? It's been over a year.
-> >>>>>
-> >>>>
-> >>>> The UFS_PHY_RX/TX clocks could be left enabled due to certain HW boot
-> >>>> configuration and thus during the late initcall of clk_disable there
-> >>>> could be warnings of "clock stuck ON" in the dmesg. That is the reas=
-on
-> >>>> also to use the BRANCH_HALT_SKIP flag.
-> >>>
-> >>> Oh that's bad. Why do the clks stay on when we try to turn them off?
-> >>>
-> >>
-> >> Those could be due to the configuration selected by HW and SW cannot
-> >> override them, so traditionally we have never polled for CLK_OFF for
-> >> these clocks.
-> >=20
-> > Is that the case or just a guess?
-> >=20
->=20
-> This is the behavior :).
+Hi Gareth,
 
-Ok. It's the same as sdm845 so I guess it's OK.
+On Tue, Oct 1, 2019 at 3:50 PM Gareth Williams
+<gareth.williams.jx@renesas.com> wrote:
+> On Tue, Oct 01, 2019 at 13:02:34AM +0100, Rob Herring wrote:
+> > On Wed, Sep 18, 2019 at 09:04:34AM +0100, Gareth Williams wrote:
+> > > Note in the bindings documentation that pclk should be renamed if a
+> > > clock domain is used to enable the optional bus clock.
+> > >
+> > > Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
+> > > ---
+> > > v2: Introduced this patch.
+> > > ---
+> > >  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt | 3 ++-
+> > >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+> > > b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+> > > index f54c8c3..3ed08ee 100644
+> > > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+> > > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+> > > @@ -16,7 +16,8 @@ Required properties:
+> > >  Optional properties:
+> > >  - clock-names : Contains the names of the clocks:
+> > >      "ssi_clk", for the core clock used to generate the external SPI clock.
+> > > -    "pclk", the interface clock, required for register access.
+> > > +    "pclk", the interface clock, required for register access. If a clock domain
+> > > +     used to enable this clock then it should be named "pclk_clkdomain".
+> >
+> > What's a clock domain?
+> >
+> > Unless this is a h/w difference in the IP block, then this change doesn't make
+> > sense.
+> This is a reference to the use of clock domains that are implemented through
+> generic power domains. The domain is implemented in
+> drivers/clk/renesas/r9a06g032-clocks.c and general details of clock domains
+> can be found at
+> https://elinux.org/images/1/14/Last_One_Out%2C_Turn_Off_The_Lights.pdf
 
->=20
-> >>
-> >>>>
-> >>>> I would also check internally for the UFS driver fix you are referri=
-ng here.
-> >>>
-> >>> Sure. I keep asking but nothing is done :(
-> >>>
-> >>>>
-> >>>>>> +       .clkr =3D {
-> >>>>>> +               .enable_reg =3D 0x7701c,
-> >>>>>> +               .enable_mask =3D BIT(0),
-> >>>>>> +               .hw.init =3D &(struct clk_init_data){
-> >>>>>> +                       .name =3D "gcc_ufs_phy_rx_symbol_0_clk",
-> >>>>>> +                       .ops =3D &clk_branch2_ops,
-> >>>>>> +               },
-> >>>>>> +       },
-> >>>>>> +};
-> >>>>>> +
-> >>> [...]
-> >>>>>> +
-> >>>>>> +static struct clk_branch gcc_usb3_prim_phy_pipe_clk =3D {
-> >>>>>> +       .halt_reg =3D 0xf058,
-> >>>>>> +       .halt_check =3D BRANCH_HALT_SKIP,
-> >>>>>
-> >>>>> Why does this need halt_skip?
-> >>>>
-> >>>> This is required as the source is external PHY, so we want to not ch=
-eck
-> >>>> for HALT.
-> >>>
-> >>> This doesn't really answer my question. If the source is an external =
-phy
-> >>> then it should be listed as a clock in the DT binding and the parent
-> >>> should be specified here. Unless something doesn't work because of th=
-at?
-> >>>
-> >>
-> >> The USB phy is managed by the USB driver and clock driver is not aware
-> >> if USB driver models the phy as a clock. Thus we do want to keep a
-> >> dependency on the parent and not poll for CLK_ENABLE.
-> >=20
-> > The clk driver should be aware of the USB driver modeling the phy as a
-> > clk. We do that for other phys so what is the difference here?
-> >=20
->=20
-> Let me check with the USB team, but could we keep them for now?
+Rob is right: the clock domain is an SoC integration detail, not specific to
+the snps,dw-apb-ssi block.
+Remember, DT describes hardware, not implementation details.
 
-Ok. It's also the same as sdm845 so I guess it's OK. Would be nice to
-properly model it though so we can be certain the clk is actually
-enabled.
+So the Linux snps,dw-apb-ssi driver should take care of it.
 
->=20
-> >>
-> >>>>
-> >>>>>
-> >>>>>> +       .clkr =3D {
-> >>>>>> +               .enable_reg =3D 0xf058,
-> >>>>>> +               .enable_mask =3D BIT(0),
-> >>>>>> +               .hw.init =3D &(struct clk_init_data){
-> >>>>>> +                       .name =3D "gcc_usb3_prim_phy_pipe_clk",
-> >>>>>> +                       .ops =3D &clk_branch2_ops,
-> >>>>>> +               },
-> >>>>>> +       },
-> >>>>>> +};
-> >>>>>> +
-> >>>>>> +static struct clk_branch gcc_usb_phy_cfg_ahb2phy_clk =3D {
-> >>>>>> +       .halt_reg =3D 0x6a004,
-> >>>>>> +       .halt_check =3D BRANCH_HALT,
-> >>>>>> +       .hwcg_reg =3D 0x6a004,
-> >>>>>> +       .hwcg_bit =3D 1,
-> >>>>>> +       .clkr =3D {
-> >>>>>> +               .enable_reg =3D 0x6a004,
-> >>>>>> +               .enable_mask =3D BIT(0),
-> >>>>>> +               .hw.init =3D &(struct clk_init_data){
-> >>>>>> +                       .name =3D "gcc_usb_phy_cfg_ahb2phy_clk",
-> >>>>>> +                       .ops =3D &clk_branch2_ops,
-> >>>>>> +               },
-> >>>>>> +       },
-> >>>>>> +};
-> >>>>>> +
-> >>>>>> +/* Leave the clock ON for parent config_noc_clk to be kept enable=
-d */
-> >>>>>
-> >>>>> There's no parent though... So I guess this means it keeps it enabl=
-ed
-> >>>>> implicitly in hardware?
-> >>>>>
-> >>>>
-> >>>> These are not left enabled, but want to leave them enabled for clien=
-ts
-> >>>> on config NOC.
-> >>>
-> >>> Sure. It just doesn't make sense to create clk structures and expose
-> >>> them in the kernel when we just want to turn the bits on and leave th=
-em
-> >>> on forever. Why not just do some register writes in probe for this
-> >>> driver? Doesn't that work just as well and use less memory?
-> >>>
-> >>
-> >> Even if I write these registers during probe, the late init check
-> >> 'clk_core_is_enabled' would return true and would be turned OFF, that =
-is
-> >> the reason for marking them CRITICAL.
-> >>
-> >=20
-> > That wouldn't happen if the clks weren't registered though, no?
-> >=20
->=20
-> I want to keep these clock CRITICAL and registered for now, but we=20
-> should be able to revisit/clean them up later.
->=20
+Which brings us back to an old discussion topic: power-domains properties
+describe integration, and thus should be documented at a higher level than
+in individual binding documents, just like e.g. interrupt-parent.
 
-Why do you want to keep them critical and registered? I'm suggesting
-that any clk that is marked critical and doesn't have a parent should
-instead become a register write in probe to turn the clk on.
+Gr{oetje,eeting}s,
 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
