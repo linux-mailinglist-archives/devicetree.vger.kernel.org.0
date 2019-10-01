@@ -2,112 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8FBC381F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 738D2C3869
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 17:03:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389014AbfJAO4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 10:56:02 -0400
-Received: from mga17.intel.com ([192.55.52.151]:45896 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726987AbfJAO4C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 10:56:02 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Oct 2019 07:56:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,571,1559545200"; 
-   d="scan'208";a="203254365"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
-  by orsmga002.jf.intel.com with SMTP; 01 Oct 2019 07:55:57 -0700
-Received: by stinkbox (sSMTP sendmail emulation); Tue, 01 Oct 2019 17:55:56 +0300
-Date:   Tue, 1 Oct 2019 17:55:56 +0300
-From:   Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-rockchip@lists.infradead.org,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Sean Paul <seanpaul@chromium.org>, kernel@collabora.com
-Subject: Re: [PATCH v3 5/5] RFC: drm/atomic-helper: Reapply color
- transformation after resume
-Message-ID: <20191001145556.GP1208@intel.com>
-References: <20190930222802.32088-1-ezequiel@collabora.com>
- <20190930222802.32088-6-ezequiel@collabora.com>
+        id S2389338AbfJAPDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 11:03:13 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:43366 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726987AbfJAPDN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 11:03:13 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x91F2tBo017997;
+        Tue, 1 Oct 2019 10:02:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569942175;
+        bh=FtGKw7kQQovEcABguQcARfmvU81jXg7GbjUfgsdw1Q4=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=f8M2abPJ5E2aPEAh8yZeVPhhazCotY06RboI3cv1WILlrmTEBfP4Mg331gud3ggIu
+         sKf/jLzbNpsnvvV1kbHR6GzbhnKOS5pX83i9/nQjXYx65/DW9J7ndM17sktKdcG5k5
+         lwn04f+tpDpmFR/k7cCrgSRN2vfToIiYb5dftpKo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x91F2tJE014138
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Oct 2019 10:02:55 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 1 Oct
+ 2019 10:02:55 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 1 Oct 2019 10:02:45 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x91F2swW029639;
+        Tue, 1 Oct 2019 10:02:55 -0500
+Subject: Re: [PATCH V6 1/8] backlight: qcom-wled: Rename pm8941-wled.c to
+ qcom-wled.c
+To:     Kiran Gunda <kgunda@codeaurora.org>, <bjorn.andersson@linaro.org>,
+        <jingoohan1@gmail.com>, <lee.jones@linaro.org>,
+        <b.zolnierkie@samsung.com>, <dri-devel@lists.freedesktop.org>,
+        <daniel.thompson@linaro.org>, <jacek.anaszewski@gmail.com>,
+        <pavel@ucw.cz>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        <linux-fbdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <1569825553-26039-1-git-send-email-kgunda@codeaurora.org>
+ <1569825553-26039-2-git-send-email-kgunda@codeaurora.org>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <3cbc14db-9d6d-f60f-eb92-4b4d80d3774d@ti.com>
+Date:   Tue, 1 Oct 2019 10:03:13 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190930222802.32088-6-ezequiel@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1569825553-26039-2-git-send-email-kgunda@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 07:28:02PM -0300, Ezequiel Garcia wrote:
-> Some platforms are not able to maintain the color transformation
-> state after a system suspend/resume cycle.
-> 
-> Set the colog_mgmt_changed flag so that CMM on the CRTCs in
-> the suspend state are reapplied after system resume.
-> 
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+Kiran
+
+On 9/30/19 1:39 AM, Kiran Gunda wrote:
+> pm8941-wled.c driver is supporting the WLED peripheral
+> on pm8941. Rename it to qcom-wled.c so that it can support
+> WLED on multiple PMICs.
+>
+> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+> Acked-by: Pavel Machek <pavel@ucw.cz>
 > ---
-> This is an RFC, and it's mostly based on Jacopo Mondi's work https://lkml.org/lkml/2019/9/6/498.
-> 
-> Changes from v2:
-> * New patch.
-> ---
->  drivers/gpu/drm/drm_atomic_helper.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index e41db0f202ca..518488125575 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -3234,8 +3234,20 @@ int drm_atomic_helper_resume(struct drm_device *dev,
->  			     struct drm_atomic_state *state)
->  {
->  	struct drm_modeset_acquire_ctx ctx;
-> +	struct drm_crtc_state *crtc_state;
-> +	struct drm_crtc *crtc;
-> +	unsigned int i;
->  	int err;
->  
-> +	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
-> +		/*
-> +		 * Force re-enablement of CMM after system resume if any
-> +		 * of the DRM color transformation properties was set in
-> +		 * the state saved at system suspend time.
-> +		 */
-> +		if (crtc_state->gamma_lut)
+>   .../bindings/leds/backlight/{pm8941-wled.txt => qcom-wled.txt}    | 2 +-
 
-You say "any" but you check the one?
+Instead of renaming this file would it be more maintainable to indicate 
+in the pm8941-wled.txt
 
-> +			crtc_state->color_mgmt_changed = true;
+to reference the qcom-wled.txt file for complete description?
 
-But I'm not convinced this is the best way to go about it. 
-I would generally expect that you repgrogram everything
-when doing a full modeset since the state was possibly
-lost while the crtc was disabled.
+I will let Rob comment on maintainability.
 
-> +	}
->  	drm_mode_config_reset(dev);
->  
->  	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> -- 
-> 2.22.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Dan
 
--- 
-Ville Syrjälä
-Intel
+>   drivers/video/backlight/Kconfig                                   | 8 ++++----
+>   drivers/video/backlight/Makefile                                  | 2 +-
+>   drivers/video/backlight/{pm8941-wled.c => qcom-wled.c}            | 0
+>   4 files changed, 6 insertions(+), 6 deletions(-)
+>   rename Documentation/devicetree/bindings/leds/backlight/{pm8941-wled.txt => qcom-wled.txt} (95%)
+>   rename drivers/video/backlight/{pm8941-wled.c => qcom-wled.c} (100%)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+> similarity index 95%
+> rename from Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt
+> rename to Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+> index e5b294d..fb39e32 100644
+> --- a/Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt
+> +++ b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+> @@ -1,4 +1,4 @@
+> -Binding for Qualcomm PM8941 WLED driver
+> +Binding for Qualcomm Technologies, Inc. WLED driver
+>   
+>   Required properties:
+>   - compatible: should be "qcom,pm8941-wled"
+> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+> index 8b081d6..6ff3176 100644
+> --- a/drivers/video/backlight/Kconfig
+> +++ b/drivers/video/backlight/Kconfig
+> @@ -284,12 +284,12 @@ config BACKLIGHT_TOSA
+>   	  If you have an Sharp SL-6000 Zaurus say Y to enable a driver
+>   	  for its backlight
+>   
+> -config BACKLIGHT_PM8941_WLED
+> -	tristate "Qualcomm PM8941 WLED Driver"
+> +config BACKLIGHT_QCOM_WLED
+> +	tristate "Qualcomm PMIC WLED Driver"
+>   	select REGMAP
+>   	help
+> -	  If you have the Qualcomm PM8941, say Y to enable a driver for the
+> -	  WLED block.
+> +	  If you have the Qualcomm PMIC, say Y to enable a driver for the
+> +	  WLED block. Currently it supports PM8941 and PMI8998.
+>   
+>   config BACKLIGHT_SAHARA
+>   	tristate "Tabletkiosk Sahara Touch-iT Backlight Driver"
+> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+> index 63c507c..6f87770 100644
+> --- a/drivers/video/backlight/Makefile
+> +++ b/drivers/video/backlight/Makefile
+> @@ -48,8 +48,8 @@ obj-$(CONFIG_BACKLIGHT_OMAP1)		+= omap1_bl.o
+>   obj-$(CONFIG_BACKLIGHT_OT200)		+= ot200_bl.o
+>   obj-$(CONFIG_BACKLIGHT_PANDORA)		+= pandora_bl.o
+>   obj-$(CONFIG_BACKLIGHT_PCF50633)	+= pcf50633-backlight.o
+> -obj-$(CONFIG_BACKLIGHT_PM8941_WLED)	+= pm8941-wled.o
+>   obj-$(CONFIG_BACKLIGHT_PWM)		+= pwm_bl.o
+> +obj-$(CONFIG_BACKLIGHT_QCOM_WLED)	+= qcom-wled.o
+>   obj-$(CONFIG_BACKLIGHT_SAHARA)		+= kb3886_bl.o
+>   obj-$(CONFIG_BACKLIGHT_SKY81452)	+= sky81452-backlight.o
+>   obj-$(CONFIG_BACKLIGHT_TOSA)		+= tosa_bl.o
+> diff --git a/drivers/video/backlight/pm8941-wled.c b/drivers/video/backlight/qcom-wled.c
+> similarity index 100%
+> rename from drivers/video/backlight/pm8941-wled.c
+> rename to drivers/video/backlight/qcom-wled.c
