@@ -2,134 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E9CBC3FF3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00D1FC401B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725905AbfJASfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 14:35:42 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:45580 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725851AbfJASfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:35:42 -0400
-Received: by mail-pf1-f196.google.com with SMTP id y72so8651122pfb.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 11:35:40 -0700 (PDT)
+        id S1726115AbfJASlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 14:41:49 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:50553 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725794AbfJASlt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:41:49 -0400
+Received: by mail-wm1-f66.google.com with SMTP id 5so4524934wmg.0;
+        Tue, 01 Oct 2019 11:41:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=6OmoG9nmfnxp1hTQSnSmg1pG2i9ciIUjtqDNmRYZw6w=;
-        b=PMFyjHJwQLR9BN/b+vKadsnTfwLbbJmf2zBAgtox4/WCysbzBXr8UFaVyYm7ToqSKi
-         r6Ats7g3lDQbweDGfkQYRnWxPKkcAFEaLonbBCGxWk/H/hDrDIpoO7n/ZQAT+ZUKDIcl
-         NCmCrRgDiNaxWHyAAkV4ByoKEOW8XuYmdTpyW95FhtBf0t4cnbtPLDHeX4q9lCutRRR4
-         JgGIhWuy/PonjWTOqUK9YdqMDaWfllC7lt1SvYnMVr9vWxEtuMC1uqAjscmjmaMgVMTE
-         25nwLkmrQwphR2/y53BHm6iCbd0QsDV1f5fjQi+HUaLbog1hbM5wBs4+lBDwWysejKqS
-         m5gw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=STXkb4MVHhVAQzYyM+4y1Q3Kk/1cjA4qQtSJlwmzAqU=;
+        b=BHyyBDtMzSMDoIq0VR0HKtZakAzC6Et0ZbNgrBJ2DhqJF/XyaG79V6/rotfG7EH1YV
+         AbQjHWydZG28xB27MA3rFKI2K78Rmt1F4QkvkgI7bgrJksiwBIf1tXJDeVIGz96LHXRx
+         smLUtt76R3MEJslNjAtnCjgIYKkE5vmdg0+KWQohRholKmOOog29mnqY2a5RsQ2LXgc4
+         4Jdm2D4VkM8DaKgpbejTPJZlTt3eztihy5aTD+m6lBsfgl+r82Nk+6++rHqQrgxg/tig
+         AghUukU9sO43QsmVvEI2uGn2sPOgNfnqdlTWsU+MrlDrf9B2ncyx/pyuRkm/vvYVeL39
+         711Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=6OmoG9nmfnxp1hTQSnSmg1pG2i9ciIUjtqDNmRYZw6w=;
-        b=FMyKkAXqGfErFagE94xef+OBnXlbDKE2b9XPWiH26IZC0x4rdVy+4IHdoO8H34hpY1
-         feI46VL2eh8jg+U1CSSw7rfrL5vK7Xu+Qc2UPqhnZ9W21e15KfYC5/VCf3UZl9OY/Kqt
-         AfHbHIAZKYIND0vbLNkC1rMZK6IeH/eoS7WB46U8DIgu+u4x9K5wA+2Hg+dFnr+RZ4yS
-         H4D30g3ESfd2KB2zLQzPX5DqcxRj7zed7FB/QRgJWsGIZmhXt/9AZwLzfIExBTnIU+qB
-         qNV7RCvGX/HKNZdapnBu11orpYzCHhvMbrE2QP7IAdczMAI1gbh/bNfLK+wsA3/2sHpp
-         YovQ==
-X-Gm-Message-State: APjAAAV3iyZfGgfonuRfG2jbly4k5bh08DPcoVvMUzoqqhUc4uZIUDZx
-        51zWAapD7o6p4O9xUARwnzkiXw==
-X-Google-Smtp-Source: APXvYqwufTWDovtqMSDCdgIffp1MdomqxuofdL0vq4XG3lfejHVLVq3PhYVe2oAkWLjpOOUbVa2DRw==
-X-Received: by 2002:a17:90a:178d:: with SMTP id q13mr7189954pja.134.1569954939726;
-        Tue, 01 Oct 2019 11:35:39 -0700 (PDT)
-Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id j10sm16803222pfn.128.2019.10.01.11.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 11:35:38 -0700 (PDT)
-From:   John Stultz <john.stultz@linaro.org>
-To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     Peter Griffin <peter.griffin@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        John Stultz <john.stultz@linaro.org>
-Subject: [PATCH] arm64: dts: hisilicon: Add Mali-450 MP4 GPU DT entry
-Date:   Tue,  1 Oct 2019 18:35:35 +0000
-Message-Id: <20191001183535.70835-1-john.stultz@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=STXkb4MVHhVAQzYyM+4y1Q3Kk/1cjA4qQtSJlwmzAqU=;
+        b=JiiPxpdDaYa99BJiDS2L50Yc7dGjtCtnH1b+uPqbLaKQeMr7prLYOcv/5Xe8g6dWtF
+         Zk+1w2+fcUIffwwZ/yl8uq+CWTaNDnauVl89Ab/2RIcqsBwuVPW3dn+rRZhOoben+ia9
+         bownUIapvYOP6TB4whCKZ1wJdoKbBP0xR5eCudOpdsMBXKq2n2h9oFiOrJVe2FG5VMDX
+         fpX26TPJ0eBf5L9EiYNrZAe0Vd6w3xntOyqXDJDFvfRK0sl2mxZFp/Xi1gUQbTzYqnZv
+         ZvuWDy32a1Z5ACmJ7JAd9OKwrxzmMyQl20WUIjrqtfzLR2PBiHA9WnHs+4m9vOYzm8vf
+         qa6Q==
+X-Gm-Message-State: APjAAAVSx/+5bxIm++2Vib1b8z7degXw0NXkkGNo5ZYvJ/Cz7cEQJ9Dn
+        Qc4JntJjTQeMLdXRs2ijDl8=
+X-Google-Smtp-Source: APXvYqwRs22/wMw3e9TyrV3739BxRtKCQKwhFfo1Fnr/hRYNZ+WieXnAhX9fucRw49/Ewm6Yd17DCA==
+X-Received: by 2002:a1c:f416:: with SMTP id z22mr4873592wma.19.1569955305894;
+        Tue, 01 Oct 2019 11:41:45 -0700 (PDT)
+Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id n8sm6788987wma.7.2019.10.01.11.41.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 01 Oct 2019 11:41:44 -0700 (PDT)
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     catalin.marinas@arm.com, davem@davemloft.net,
+        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
+        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
+        wens@csie.org, will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: [PATCH v2 00/11] crypto: add sun8i-ce driver for Allwinner crypto engine
+Date:   Tue,  1 Oct 2019 20:41:30 +0200
+Message-Id: <20191001184141.27956-1-clabbe.montjoie@gmail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Griffin <peter.griffin@linaro.org>
+Hello
 
-hi6220 has a Mali450 MP4 so lets add it into the DT.
+This patch serie adds support for the Allwinner crypto engine.
+The Crypto Engine is the third generation of Allwinner cryptogaphic offloader.
+The first generation is the Security System already handled by the
+sun4i-ss driver.
+The second is named also Security System and is present on A80 and A83T
+SoCs, originaly this driver supported it also, but supporting both IP bringing
+too much complexity and another driver (sun8i-ss) will came for it.
 
-Cc: Wei Xu <xuwei5@hisilicon.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-Signed-off-by: John Stultz <john.stultz@linaro.org>
----
- arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 38 +++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+For the moment, the driver support only DES3/AES in ECB/CBC mode.
+Patchs for CTR/CTS/XTS, RSA and RNGs will came later.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-index 108e2a4227f6..2072b637b5af 100644
---- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-@@ -260,6 +260,7 @@
- 			compatible = "hisilicon,hi6220-aoctrl", "syscon";
- 			reg = <0x0 0xf7800000 0x0 0x2000>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 		};
- 
- 		sys_ctrl: sys_ctrl@f7030000 {
-@@ -1021,6 +1022,43 @@
- 			clock-names = "apb_pclk";
- 			cpu = <&cpu7>;
- 		};
-+
-+		mali: gpu@f4080000 {
-+			compatible = "hisilicon,hi6220-mali", "arm,mali-450";
-+			reg = <0x0 0xf4080000 0x0 0x00040000>;
-+			interrupt-parent = <&gic>;
-+			interrupts =	<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interrupt-names = "gp",
-+					  "gpmmu",
-+					  "pp",
-+					  "pp0",
-+					  "ppmmu0",
-+					  "pp1",
-+					  "ppmmu1",
-+					  "pp2",
-+					  "ppmmu2",
-+					  "pp3",
-+					  "ppmmu3";
-+			clocks = <&media_ctrl HI6220_G3D_CLK>,
-+				 <&media_ctrl HI6220_G3D_PCLK>;
-+			clock-names = "core", "bus";
-+			assigned-clocks = <&media_ctrl HI6220_G3D_CLK>,
-+					  <&media_ctrl HI6220_G3D_PCLK>;
-+			assigned-clock-rates = <500000000>, <144000000>;
-+			reset-names = "ao_g3d", "media_g3d";
-+			resets = <&ao_ctrl AO_G3D>, <&media_ctrl MEDIA_G3D>;
-+		};
- 	};
- };
- 
+This serie is tested with CRYPTO_MANAGER_EXTRA_TESTS
+and tested on:
+sun50i-a64-bananapi-m64
+sun50i-a64-pine64-plus
+sun50i-h5-libretech-all-h3-cc
+sun50i-h6-pine-h64
+sun8i-h2-plus-libretech-all-h3-cc
+sun8i-h2-plus-orangepi-r1
+sun8i-h2-plus-orangepi-zero
+sun8i-h3-libretech-all-h3-cc
+sun8i-h3-orangepi-pc
+sun8i-r40-bananapi-m2-ultra
+
+Regards
+
+Changes since v1:
+- Add sun4i-ss to allwinner directory
+- Cleaned variant structure
+- Renamed clock name from ahb to bus (and mbus to ram)
+- Fixed DT bindings problem reported by mripard
+- Cleaned unneeded status = ""  in R40 DT
+- Removed old unnecessary interrupt_names in A64 DT
+- Added arm64 defconfig
+- Added support for PM functions
+- Splitted probe functions
+- Reworked clock settings
+- made reset mandatory
+
+Corentin Labbe (11):
+  crypto: Add allwinner subdirectory
+  crypto: Add Allwinner sun8i-ce Crypto Engine
+  dt-bindings: crypto: Add DT bindings documentation for sun8i-ce Crypto
+    Engine
+  ARM: dts: sun8i: R40: add crypto engine node
+  ARM: dts: sun8i: H3: Add Crypto Engine node
+  ARM64: dts: allwinner: sun50i: Add Crypto Engine node on A64
+  ARM64: dts: allwinner: sun50i: Add crypto engine node on H5
+  ARM64: dts: allwinner: sun50i: Add Crypto Engine node on H6
+  sunxi_defconfig: add new Allwinner crypto options
+  arm64: defconfig: add new Allwinner crypto options
+  crypto: sun4i-ss: Move to Allwinner directory
+
+ .../bindings/crypto/allwinner,sun8i-ce.yaml   |  92 +++
+ MAINTAINERS                                   |   4 +-
+ arch/arm/boot/dts/sun8i-h3.dtsi               |  11 +
+ arch/arm/boot/dts/sun8i-r40.dtsi              |  10 +
+ arch/arm/configs/sunxi_defconfig              |   2 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  10 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |  11 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  10 +
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/crypto/Kconfig                        |  28 +-
+ drivers/crypto/Makefile                       |   2 +-
+ drivers/crypto/allwinner/Kconfig              |  60 ++
+ drivers/crypto/allwinner/Makefile             |   2 +
+ .../{sunxi-ss => allwinner/sun4i-ss}/Makefile |   0
+ .../sun4i-ss}/sun4i-ss-cipher.c               |   0
+ .../sun4i-ss}/sun4i-ss-core.c                 |   0
+ .../sun4i-ss}/sun4i-ss-hash.c                 |   0
+ .../sun4i-ss}/sun4i-ss-prng.c                 |   0
+ .../sun4i-ss}/sun4i-ss.h                      |   0
+ drivers/crypto/allwinner/sun8i-ce/Makefile    |   2 +
+ .../allwinner/sun8i-ce/sun8i-ce-cipher.c      | 410 +++++++++++
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c | 666 ++++++++++++++++++
+ drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h  | 259 +++++++
+ 23 files changed, 1552 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
+ create mode 100644 drivers/crypto/allwinner/Kconfig
+ create mode 100644 drivers/crypto/allwinner/Makefile
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/Makefile (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-cipher.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-core.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-hash.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-prng.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss.h (100%)
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/Makefile
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
+
 -- 
-2.17.1
+2.21.0
 
