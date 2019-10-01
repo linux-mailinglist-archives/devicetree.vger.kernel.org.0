@@ -2,146 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32245C3655
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE54C366A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388461AbfJANu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 09:50:26 -0400
-Received: from mail-eopbgr1300110.outbound.protection.outlook.com ([40.107.130.110]:60489
-        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726554AbfJANu0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 09:50:26 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S2aak5mf3P0qnjxx1gSYCkTh+I4mfnYno7ecHM60sxsz1JG+pR7U+GG3kYwxeagUouNJcYKd7pte6DrOBsMj67LtwFMxry9txNzjcc+u3Cc4gjovQsppyQ43ipohnAV2SjQUqCqC5l56scvkUmmy6+CWaA5xt4e8W74qne7J+5UlAOeY6wLng9vkjF8U7lkh5LVTHLY/YjyqeeTIf2wRxqYmmQE26RmaBk2pXOVzI8q9awLXJsOmljhehUHPKUsuvLMeYpWm8CaFXfN/P9waxr/LyIS71szTKL9pMhnYuQvXCAcz9AKIVGROmzdZusEpW86lRK7Km7bkJR+x2LlflQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D/YlrwRcjyC0w3GW3Pbu5Zm6LRG5sEcVGqfZJJExpdE=;
- b=kkY1bsCy9Pdm9+PEcTFdo2P5lXrpb/2U8YMua9hE46G++OKByk7wJAAO/cT+OoQp7PqMFwkhcMiXYWqLdp51o8Xbt0ni4ZO1oB4/6vDr7rVETfN10PmZhg24X5Fcr5J+oTsyY6zI8STfHFbGXzS91S5jZK2pIteO4kosX6PFvvOmcbwjPJW9VP0c8+aWxknFyzJ6K7wbVvJIpds9Y8bkxiopAVYGg9gF5okRf7YjsmEqEm5DRpDUcg7rkM3qjlQR8UcpTBi4bmOBlY37XeatZL3ZmN8dfi97oVOcpqcYxWjQBzaJfTAS7xw7AoegBaBHdBm4K0SefmVuwA7fYYwWoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D/YlrwRcjyC0w3GW3Pbu5Zm6LRG5sEcVGqfZJJExpdE=;
- b=GYdxGg3KvuL442fmW5gxYgr8e61tWoA0/bA0OMhjvBG76qZ/gw9d7hqVP37NAcJtAfcgNmcshVXZTi6NxkwZPiyBwoxEhJZvm8BHH2UmGtXETRy3KODr8aX9BhHX2K6i7bi/qL30biuFurSb6F8Xh/anLVX8S8Guv7O/QwhXdcc=
-Received: from TY2PR01MB2924.jpnprd01.prod.outlook.com (20.177.98.81) by
- TY2PR01MB3754.jpnprd01.prod.outlook.com (20.178.132.212) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Tue, 1 Oct 2019 13:50:20 +0000
-Received: from TY2PR01MB2924.jpnprd01.prod.outlook.com
- ([fe80::50a2:2971:5d46:aa50]) by TY2PR01MB2924.jpnprd01.prod.outlook.com
- ([fe80::50a2:2971:5d46:aa50%3]) with mapi id 15.20.2305.017; Tue, 1 Oct 2019
- 13:50:20 +0000
-From:   Gareth Williams <gareth.williams.jx@renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Mark Brown <broonie@kernel.org>,
+        id S2388388AbfJAN4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 09:56:10 -0400
+Received: from mx.0dd.nl ([5.2.79.48]:60708 "EHLO mx.0dd.nl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726710AbfJAN4K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 09:56:10 -0400
+Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.0dd.nl (Postfix) with ESMTPS id 12E3B5FBC5;
+        Tue,  1 Oct 2019 15:56:09 +0200 (CEST)
+Authentication-Results: mx.0dd.nl;
+        dkim=pass (2048-bit key; secure) header.d=vdorst.com header.i=@vdorst.com header.b="MiBJ1OfY";
+        dkim-atps=neutral
+Received: from www (www.vdorst.com [192.168.2.222])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.vdorst.com (Postfix) with ESMTPSA id C2B87358FB;
+        Tue,  1 Oct 2019 15:56:08 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com C2B87358FB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
+        s=default; t=1569938168;
+        bh=VuIg/nbWnzaooWQXgf0jLELVIM9W+Vd2ZvGPUadAMPM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MiBJ1OfYk48VHA6HrblhjA6Hb3aditWR5YfLHeFqJ81AE7DkXN8+UQKKcKcjYHAnm
+         zigKND8kk+B83zm98YLtU5LWqT4toLQK/YrVYyM7o68njxwvBb46NbJMYFOIqHq2+a
+         Id6P3ktrp23DiZwgLPnly/D/Y9Pq3lkXKmZ0Kjt2ayaTiMeFG6Epdi+WPri9j+DM6l
+         cqyuF8nMF2is2g6LcHid4qI6I2nO4LCM90z5YpJKeMVOYsT7dQ/kinbeRU913TllAE
+         TLo82X/M/GHIiwM5mkxMGqC2Aa8nsH0+7scM3UL2CwVYi8VU/O1IzdFqkUia3Oiel0
+         +fn3sWWHhQbUA==
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1]) by
+ www.vdorst.com (Horde Framework) with HTTPS; Tue, 01 Oct 2019 13:56:08 +0000
+Date:   Tue, 01 Oct 2019 13:56:08 +0000
+Message-ID: <20191001135608.Horde.OSYef8s44rR0XHw22Bf55r8@www.vdorst.com>
+From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
+To:     MarkLee <Mark-MC.Lee@mediatek.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Sean Wang <sean.wang@mediatek.com>,
+        John Crispin <john@phrozen.org>,
+        Felix Fietkau <nbd@openwrt.org>,
+        Nelson Chang <nelson.chang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 2/4] dt-bindings: snps,dw-apb-ssi: Add optional clock
- domain information
-Thread-Topic: [PATCH v2 2/4] dt-bindings: snps,dw-apb-ssi: Add optional clock
- domain information
-Thread-Index: AQHVbffPFybnaZeN90q5ZOF0l55acqdFxCOAgAAdrsA=
-Date:   Tue, 1 Oct 2019 13:50:19 +0000
-Message-ID: <TY2PR01MB292460F29AE0664CFFD70EFDDF9D0@TY2PR01MB2924.jpnprd01.prod.outlook.com>
-References: <1568793876-9009-1-git-send-email-gareth.williams.jx@renesas.com>
- <1568793876-9009-3-git-send-email-gareth.williams.jx@renesas.com>
- <20191001120203.GA28106@bogus>
-In-Reply-To: <20191001120203.GA28106@bogus>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=gareth.williams.jx@renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d122c35b-8ac3-43c3-9d5e-08d746764cec
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: TY2PR01MB3754:|TY2PR01MB3754:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <TY2PR01MB3754B6CD0479A6E099F3926CDF9D0@TY2PR01MB3754.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
-x-forefront-prvs: 0177904E6B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(136003)(366004)(39860400002)(346002)(376002)(396003)(189003)(199004)(64756008)(66946007)(52536014)(66446008)(8936002)(71200400001)(71190400001)(966005)(5660300002)(478600001)(66066001)(99286004)(81166006)(486006)(81156014)(8676002)(14454004)(6506007)(76176011)(66556008)(7696005)(102836004)(476003)(66476007)(76116006)(11346002)(256004)(14444005)(26005)(446003)(186003)(316002)(6116002)(3846002)(6436002)(55016002)(54906003)(4326008)(6916009)(33656002)(86362001)(305945005)(9686003)(2906002)(6306002)(229853002)(25786009)(7736002)(74316002)(6246003)(142933001);DIR:OUT;SFP:1102;SCL:1;SRVR:TY2PR01MB3754;H:TY2PR01MB2924.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KLdWpChwDCAEIb8cp58WR8z3lr4wq9tcTeGOjD6Bgmzs9pA9hiFfd6iujEyewzxFRW8zN4Q081NQvM4wQ2i3zp6h83qCbRvEjlCKWoDStB5F9hfkg/mBSpg+y100HSZuOx8SS4VMqC/oivrnMWs/uOKvRXNTeZcseIWJzwGPnoC9Tv7U0YR3S9NGhr2fSVFXkGRV+AMm6NkcVgN3gjOjeFeSJ5X3oFg2dZNRQx4vK6kCdxK02e9OwDSYVn6l7CBrBZ+ixG3hlzyuuhgc108wJjLhAQo3W9kytIGAobMKP4LxJXuA0sjUyj8fwU1A7SM8QBVvbI8HttnlRa7hirbc6Q+47kBO43sCkd9PK7Iep/m1D62Q5aydElxmvStUA47GZ5hYQ/uSmGAdLCrQH2YdlD6l3ux0c3N0XFM3gxAQSJNdGAiAlSREPwpryCbhV3LxAexCPcePOWO6uhfhn6KkZQ==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net 2/2] arm: dts: mediatek: Fix mt7629 dts to reflect
+ the latest dt-binding
+References: <20191001123150.23135-1-Mark-MC.Lee@mediatek.com>
+ <20191001123150.23135-3-Mark-MC.Lee@mediatek.com>
+In-Reply-To: <20191001123150.23135-3-Mark-MC.Lee@mediatek.com>
+User-Agent: Horde Application Framework 5
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d122c35b-8ac3-43c3-9d5e-08d746764cec
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2019 13:50:20.5725
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QhWlF2Xm2cXyGRdn3EvAF4awnfHJi23JDIZIJYzmyw2AhQ6e3CJDM31u2fQmp3KQbyYyE6HTnFaljc6EGA/JrHpQlrnWECON3XmVYr5dLWo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3754
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi MarkLee,
 
-On Tue, Oct 01, 2019 at 13:02:34AM +0100, Rob Herring wrote:
-> On Wed, Sep 18, 2019 at 09:04:34AM +0100, Gareth Williams wrote:
-> > Note in the bindings documentation that pclk should be renamed if a
-> > clock domain is used to enable the optional bus clock.
-> >
-> > Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
-> > ---
-> > v2: Introduced this patch.
-> > ---
-> >  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-> > b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-> > index f54c8c3..3ed08ee 100644
-> > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-> > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
-> > @@ -16,7 +16,8 @@ Required properties:
-> >  Optional properties:
-> >  - clock-names : Contains the names of the clocks:
-> >      "ssi_clk", for the core clock used to generate the external SPI cl=
-ock.
-> > -    "pclk", the interface clock, required for register access.
-> > +    "pclk", the interface clock, required for register access. If a cl=
-ock domain
-> > +     used to enable this clock then it should be named "pclk_clkdomain=
-".
->=20
-> What's a clock domain?
->=20
-> Unless this is a h/w difference in the IP block, then this change doesn't=
- make
-> sense.
-This is a reference to the use of clock domains that are implemented throug=
-h
-generic power domains. The domain is implemented in=20
-drivers/clk/renesas/r9a06g032-clocks.c and general details of clock domains
-can be found at=20
-https://elinux.org/images/1/14/Last_One_Out%2C_Turn_Off_The_Lights.pdf
+Quoting MarkLee <Mark-MC.Lee@mediatek.com>:
 
->=20
-> >  - cs-gpios : Specifies the gpio pins to be used for chipselects.
-> >  - num-cs : The number of chipselects. If omitted, this will default to=
- 4.
-> >  - reg-io-width : The I/O register width (in bytes) implemented by
-> > this
-> > --
-> > 2.7.4
-> >
+> * Removes mediatek,physpeed property from dtsi that is useless in PHYLINK
+> * Set gmac0 to fixed-link sgmii 2.5Gbit mode
+> * Set gmac1 to gmii mode that connect to a internal gphy
+>
+> Signed-off-by: MarkLee <Mark-MC.Lee@mediatek.com>
+> ---
+>  arch/arm/boot/dts/mt7629-rfb.dts | 13 ++++++++++++-
+>  arch/arm/boot/dts/mt7629.dtsi    |  2 --
+>  2 files changed, 12 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/mt7629-rfb.dts  
+> b/arch/arm/boot/dts/mt7629-rfb.dts
+> index 3621b7d2b22a..6bf1f7d8ddb5 100644
+> --- a/arch/arm/boot/dts/mt7629-rfb.dts
+> +++ b/arch/arm/boot/dts/mt7629-rfb.dts
+> @@ -66,9 +66,21 @@
+>  	pinctrl-1 = <&ephy_leds_pins>;
+>  	status = "okay";
+>
+> +	gmac0: mac@0 {
+> +		compatible = "mediatek,eth-mac";
+> +		reg = <0>;
+> +		phy-mode = "sgmii";
+> +		fixed-link {
+> +			speed = <2500>;
+> +			full-duplex;
+> +			pause;
+> +		};
+> +	};
+> +
+>  	gmac1: mac@1 {
+>  		compatible = "mediatek,eth-mac";
+>  		reg = <1>;
+> +		phy-mode = "gmii";
+>  		phy-handle = <&phy0>;
+>  	};
+>
+> @@ -78,7 +90,6 @@
+>
+>  		phy0: ethernet-phy@0 {
+>  			reg = <0>;
+> -			phy-mode = "gmii";
+>  		};
+>  	};
+>  };
+> diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
+> index 9608bc2ccb3f..867b88103b9d 100644
+> --- a/arch/arm/boot/dts/mt7629.dtsi
+> +++ b/arch/arm/boot/dts/mt7629.dtsi
+> @@ -468,14 +468,12 @@
+>  			compatible = "mediatek,mt7629-sgmiisys", "syscon";
+>  			reg = <0x1b128000 0x3000>;
+>  			#clock-cells = <1>;
+> -			mediatek,physpeed = "2500";
+>  		};
+>
+>  		sgmiisys1: syscon@1b130000 {
+>  			compatible = "mediatek,mt7629-sgmiisys", "syscon";
+>  			reg = <0x1b130000 0x3000>;
+>  			#clock-cells = <1>;
+> -			mediatek,physpeed = "2500";
+>  		};
+>  	};
+>  };
+> --
+> 2.17.1
+
+Does MT7629 soc has the same SGMII IP block as on the MT7622?
+If that is the case then phy-mode should set to "2500base-x".
+See discussion about the MT7622 [1] and dts of  
+mt7622-bananapi-bpi-r64.dts[2][3]
+
+Note the code only set the phy in overclock mode if phymode =  
+2500base-x and the
+link is a fixed-link, see [4].
+Alsp the current code doesn't support sgmii so well. Sgmii at 2.5Gbit is not
+supported at all.
+
+Greats,
+
+René
+
+[1]:  
+https://lore.kernel.org/netdev/20190822144433.GT13294@shell.armlinux.org.uk/
+[2]:  
+https://lore.kernel.org/netdev/20190825174341.20750-4-opensource@vdorst.com/
+[3]:  
+https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/tree/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts#n122
+[4]:  
+https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/tree/drivers/net/ethernet/mediatek/mtk_sgmii.c#n72
+
+
+
+
+
