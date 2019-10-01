@@ -2,151 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8BA3C4438
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 01:20:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7B83C4473
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 01:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728961AbfJAXUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 19:20:36 -0400
-Received: from mail-eopbgr790133.outbound.protection.outlook.com ([40.107.79.133]:4224
-        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727078AbfJAXUg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 19:20:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XgWHq0zh/fM/R4ZBcQxlOuDTgQIpW/99SZYD5+5+ZjJY1RbUKmHFc/Zthx7Cy2WUVVcpZoEf0UOqhvIRXHsRK7g49eDfj1qKyvHhsaxI1CA7R4T4xuxl81ObcJMKhVEH9N7aif4xGdDzlP3h4a28SVIVRJFcyu19aUJR4DzOs7LMOLKGhxPG7hxiVAxIq0rD7ZVdVIQOEwaR0YFXqZio81JohimR+lyz6odm+RU3+Fk1Qh/Zw4dazt2OiIOsyIx9z6/It1SeHghhJaUC15EfMO+X4nHypRxRXAHVmZUoAlTet8wtLRdskiCZfrSf1pPLOO3bRW72l/JWKi4b2AV83w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z+SHZ+9RL3PQu9l1BZOG60bbBV4cOli8PNTI/O5vfjM=;
- b=kLou9XVFthWq0FjynLDfN5O2DTkqPTvYymHIs7GNhqm8oUbGdOMd2TZ42kioifl1DKm2bEf2sqLmVemhtMa+CwplqYkuKO73dzzzbPeaMGP8cdLy4yjtwYdJKT4YxrPWF3nrMnGKW9/ywdAtVjKjfmxcB5nj8scg++MgOHMQgQFk5Yb8ns4smJbh/GoTq47mUVv2CfXBajLnwE4xjbwHL5R/EJVyEvhCHHljeyve/iPugO8b3EIZHEWIOh2cY4gnJkWgY3chi56/kUtLvYTZR65lm/qcYsKvruf/5w3TGM5WQV+BfsrKbNNodiqAzvE0gT6A+w+Ezw/1y4h6H7jhjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
- dkim=pass header.d=mips.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z+SHZ+9RL3PQu9l1BZOG60bbBV4cOli8PNTI/O5vfjM=;
- b=ZlY5Xbf/VCBHjoc2b9h6PE9S1ykOOK2oFuibOtFKYbJACx9Kv3I+rf0mXBMGaneIJlafPa+BO+8poH8okZQHCalXQFp8b7EUdQQPBrbw/sBWQE9G6VrLmoKwVzSH5olgdGbmgoiFILKGWLoN5Lovyniqpn1eGnRbo1j48oI3V+w=
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
- MWHPR2201MB1328.namprd22.prod.outlook.com (10.172.63.11) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Tue, 1 Oct 2019 23:20:33 +0000
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::498b:c2cd:e816:1481]) by MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::498b:c2cd:e816:1481%2]) with mapi id 15.20.2305.022; Tue, 1 Oct 2019
- 23:20:33 +0000
-From:   Paul Burton <paul.burton@mips.com>
-To:     Alexandre GRIVEAUX <agriveaux@deutnet.info>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "ralf@linux-mips.org" <ralf@linux-mips.org>,
-        "jhogan@kernel.org" <jhogan@kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] MIPS: JZ4780: DTS: Add CPU nodes
-Thread-Topic: [PATCH v2 5/5] MIPS: JZ4780: DTS: Add CPU nodes
-Thread-Index: AQHVeK7SbV2C0qqRJUuqS/aXvoANpw==
-Date:   Tue, 1 Oct 2019 23:20:33 +0000
-Message-ID: <20191001232031.qaci6hk5tjo652mi@pburton-laptop>
-References: <cover.1569955865.git.agriveaux@deutnet.info>
- <0dbd1986be4ee50bdd9f45c140aded7c49fddb8a.1569955865.git.agriveaux@deutnet.info>
-In-Reply-To: <0dbd1986be4ee50bdd9f45c140aded7c49fddb8a.1569955865.git.agriveaux@deutnet.info>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: BY5PR17CA0006.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::19) To MWHPR2201MB1277.namprd22.prod.outlook.com
- (2603:10b6:301:18::12)
-user-agent: NeoMutt/20180716
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pburton@wavecomp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [73.93.153.72]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 73069e43-4224-4781-d46f-08d746c5f557
-x-ms-traffictypediagnostic: MWHPR2201MB1328:
-x-microsoft-antispam-prvs: <MWHPR2201MB1328E3607528D1C224A8A8E0C19D0@MWHPR2201MB1328.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0177904E6B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(366004)(136003)(396003)(376002)(39840400004)(346002)(199004)(189003)(81156014)(99286004)(6506007)(386003)(76176011)(52116002)(81166006)(6916009)(8676002)(42882007)(25786009)(478600001)(26005)(186003)(102836004)(446003)(66556008)(64756008)(66446008)(66476007)(66946007)(71200400001)(33716001)(14454004)(66066001)(44832011)(476003)(486006)(11346002)(71190400001)(256004)(6486002)(6246003)(6116002)(3846002)(316002)(305945005)(7736002)(5660300002)(229853002)(9686003)(4326008)(1076003)(6512007)(54906003)(58126008)(2906002)(6436002)(8936002)(6606295002);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1328;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: wavecomp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ZJtlPmOTGH1l/nazmseu2R1dAGYK9rIx89xk5x6J1WoEC9WGdOyUzPlRXEDCp8jEhZtP5BzRLnqtxytnuD1aGr6U2opmuZUFXYn0lYZppBoEvhoD7FJnpSvbsEIQ4FeDYHXusBsqqJd+L+cK0jUR+O5PhP63o+vFZCjG1wPA3ik06vMvyAs9UZ+Z2GYExotUiOS+UO6h+S7n6KMlBWANmkBblf7NfPTdgg1SSZa23gZ5zXUMxvuABNVzxiwVYE8++yCIMfz+9ULJ1U3M61/8h7AadpvPLGTa9/p2urXkZM9TDXluI+4+/3siZ1iOSWRr3LPOIXBB2lV1B23uHAfjUxoaQgUUYErPw9AFFNG631AgjUwtvrebewvGLBF0xQM574dHC7KgCpqZ45X66yc1JhnEiU+/jvQnxN1bx6HfpOM=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <9529F98D2530BE4ABE646708C200EF09@namprd22.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: mips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73069e43-4224-4781-d46f-08d746c5f557
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2019 23:20:33.6799
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: D83YB6x2kmJifw6mk9bAJR4aDXTh2mYfmsj/826goi/KPkrmXfXoV8QRCrlL3WrdhnO6UpyM6hiEoT2nEoHLNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1328
+        id S1729149AbfJAXjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 19:39:42 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:42841 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729121AbfJAXjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 19:39:42 -0400
+Received: by mail-io1-f68.google.com with SMTP id n197so52561592iod.9;
+        Tue, 01 Oct 2019 16:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=58jpN6kWHAdO3tEL+y4lY6rt76msdHq/bsZsGT7F90Q=;
+        b=SvSuvufv+gb1Em1YZE/meNqsikAT0bmsrAYxIog97pFs618p0gqm7/afZrcd9pUc33
+         5fxADY0uoB818dziQyLsbJ0PoaWJdBqXD007LX4kpdBh+rlYQpKTSkecUrFbmOuchmab
+         YJfxmzd2FdhuDAzkRHimZ9xvpg9y/bY74MIQgq5d3uXDPtXfaIbb1QL9wQCz6n6hf6IT
+         J9Ng1E8Cf8UWM2bxh8OQUP6yHpZXT9lIy1vdOts7yc52qHM8XB60aSg2jDoFvT+GfSdJ
+         X2yJZWJoGLotuCHq0W8w0fAR4ORaz67fnzyRyEKKAfCVhnD4cyJ8TzuceQXvAqNbrj66
+         xC6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=58jpN6kWHAdO3tEL+y4lY6rt76msdHq/bsZsGT7F90Q=;
+        b=MukdRL6FpIYoYypmNQtsC/n7Z7KddeLkMSnhqrBEaVbiI1gxvkH7lc1VprU+TCIMnz
+         4bSDV5OMEAHmSC2TQV1C7xjU+rNgdH6OsB9ZpOF+hd56L8T4AUWM2SzbSCht4xy011rj
+         Ho36Us2ilLptepGTlxXuE2ZG5gJLR8ax2TCefUTxyc6SKOWIBpyVqdrB6pRSsmDu27Ru
+         TQF/nUssdYQVcyDUGdk16wNd+lhaLFrIvZuGUE14S9ipVfI1rzVggDs8WoxBtY075mMl
+         OmEWpOE0Kqm8UhX0/Hcmg7vG9al6pTs7VPoQ0KU5PlBXMLn1k89awjLdN5r8FxQV0Lqi
+         2fFg==
+X-Gm-Message-State: APjAAAUnhLM4xS0UXptoGt//mwnJlQSXLQ94Odes2Ipi+T1w4ppNNtlz
+        zclVRXkeGPRUtUlGHRJUCWw=
+X-Google-Smtp-Source: APXvYqx/Io8WkCb0T45Vregl4/lp6Yar6RAnWh52hAyGEGPoMLqPDMbZySdWTSgeeIhBx7SWJOXZug==
+X-Received: by 2002:a6b:b4c7:: with SMTP id d190mr774996iof.209.1569973181556;
+        Tue, 01 Oct 2019 16:39:41 -0700 (PDT)
+Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
+        by smtp.gmail.com with ESMTPSA id r22sm8659935ilb.85.2019.10.01.16.39.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 16:39:40 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-omap@vger.kernel.org, adam.ford@logicpd.com,
+        Adam Ford <aford173@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V4 1/3] drm/panel: simple: Add Logic PD Type 28 display support
+Date:   Tue,  1 Oct 2019 18:39:18 -0500
+Message-Id: <20191001233923.16514-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
+Previously, there was an omap panel-dpi driver that would
+read generic timings from the device tree and set the display
+timing accordingly.  This driver was removed so the screen
+no longer functions.  This patch modifies the panel-simple
+file to setup the timings to the same values previously used.
 
-On Tue, Oct 01, 2019 at 09:09:48PM +0200, Alexandre GRIVEAUX wrote:
-> The JZ4780 have 2 core, adding to DT.
->=20
-> Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
-> ---
->  arch/mips/boot/dts/ingenic/jz4780.dtsi | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->=20
-> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/=
-ingenic/jz4780.dtsi
-> index f928329b034b..9c7346724f1f 100644
-> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> @@ -7,6 +7,23 @@
->  	#size-cells =3D <1>;
->  	compatible =3D "ingenic,jz4780";
-> =20
-> +	cpus {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		cpu@0 {
-> +			compatible =3D "ingenic,jz4780";
+Fixes: 8bf4b1621178 ("drm/omap: Remove panel-dpi driver")
 
-This should probably be something like ingenic,xburst2. JZ4780 is the
-SoC. It also should be a documented binding, but I think it would be
-worth holding off on the whole thing until we actually get SMP support
-merged - just in case we come up with a binding that doesn't actually
-work out.
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+---
+V4:  No Change
+V3:  No Change
+V2:  No Change
 
-So I expect I'll just apply patches 1-4 for now.
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 28fa6ba7b767..8abb31f83ffc 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -2048,6 +2048,40 @@ static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
+ 	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+ };
+ 
++static const struct drm_display_mode logicpd_type_28_mode = {
++	.clock = 9000,
++	.hdisplay = 480,
++	.hsync_start = 480 + 3,
++	.hsync_end = 480 + 3 + 42,
++	.htotal = 480 + 3 + 42 + 2,
++
++	.vdisplay = 272,
++	.vsync_start = 272 + 2,
++	.vsync_end = 272 + 2 + 11,
++	.vtotal = 272 + 2 + 11 + 3,
++	.vrefresh = 60,
++	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
++};
++
++static const struct panel_desc logicpd_type_28 = {
++	.modes = &logicpd_type_28_mode,
++	.num_modes = 1,
++	.bpc = 8,
++	.size = {
++		.width = 105,
++		.height = 67,
++	},
++	.delay = {
++		.prepare = 200,
++		.enable = 200,
++		.unprepare = 200,
++		.disable = 200,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE |
++		     DRM_BUS_FLAG_SYNC_DRIVE_NEGEDGE,
++};
++
+ static const struct panel_desc mitsubishi_aa070mc01 = {
+ 	.modes = &mitsubishi_aa070mc01_mode,
+ 	.num_modes = 1,
+@@ -3264,6 +3298,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "lg,lp129qe",
+ 		.data = &lg_lp129qe,
++	}, {
++		.compatible = "logicpd,type28",
++		.data = &logicpd_type_28,
+ 	}, {
+ 		.compatible = "mitsubishi,aa070mc01-ca1",
+ 		.data = &mitsubishi_aa070mc01,
+-- 
+2.17.1
 
-Thanks for working on it!
-
-    Paul
-
-> +			device_type =3D "cpu";
-> +			reg =3D <0>;
-> +		};
-> +
-> +		cpu@1 {
-> +			compatible =3D "ingenic,jz4780";
-> +			device_type =3D "cpu";
-> +			reg =3D <1>;
-> +		};
-> +	};
-> +
->  	cpuintc: interrupt-controller {
->  		#address-cells =3D <0>;
->  		#interrupt-cells =3D <1>;
-> --=20
-> 2.20.1
->=20
