@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D375C3321
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0F2EC32E5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733101AbfJALmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 07:42:36 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40640 "EHLO
+        id S2387527AbfJALlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 07:41:00 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40644 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387503AbfJALlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:41:00 -0400
+        with ESMTP id S2387507AbfJALk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:40:59 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=iY6ES9hP3CWF4u3OHcTrGb1l/ZeOMGCP6gxjprw6Y3c=; b=q6SqyX1CYEul
-        7ipsRGWpXBg9WW6ZuvTlIVkZyOqJJM/sdVVqPQ4ns9LN+ku3dxFiJ8t6g+eoDyeptQRHIePZLbML3
-        JPzcpjFofHJEPCa6sL8eFjLoUW9795g9ecRk3toF1sABLnjbDMN5e5IQXC4jpiBb13DGRrN3Sm6yF
-        g7g2I=;
+        List-Archive; bh=wF9PhMGH+Lj8JE4h4I6EzLCX3sM3u3HxgVYZ38hhRes=; b=uba1xh6IxCh3
+        mNCRfDNXG4p3kkva09171A1GXfohYxq+9sSRvGfn+542pH8dR2h9H0hjiJN07JU0+1aK/H5eihoAh
+        aFQ7plk/mdhJk498J3sKpffCyYW0lx1XBGMIoyJHDoSSZWj7xhdl5tQuE+Chw1kHVHSnMhh6GO9Yj
+        sXO4s=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1iFGWM-0004Sc-L8; Tue, 01 Oct 2019 11:40:46 +0000
+        id 1iFGWR-0004Ur-Ew; Tue, 01 Oct 2019 11:40:51 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 2CCFA2742A10; Tue,  1 Oct 2019 12:40:46 +0100 (BST)
+        id DE1BD2742A30; Tue,  1 Oct 2019 12:40:50 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
 Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, festevam@gmail.com, lars@metafoo.de,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, Mark Brown <broonie@kernel.org>,
-        mark.rutland@arm.com, nicoleotsuka@gmail.com,
-        Nicolin Chen <nicoleotsuka@gmail.com>, perex@perex.cz,
-        robh+dt@kernel.org, timur@kernel.org, tiwai@suse.com,
-        Xiubo.Lee@gmail.com
-Subject: Applied "ASoC: fsl_asrc: Use in(out)put_format instead of in(out)put_word_width" to the asoc tree
-In-Reply-To: <7937c1404ee327ce141cb03b3575b02ea01a740c.1569493933.git.shengjiu.wang@nxp.com>
+        b.zolnierkie@samsung.com, ckeepax@opensource.cirrus.com,
+        devicetree@vger.kernel.org, krzk@kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>, lgirdwood@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        m.szyprowski@samsung.com, patches@opensource.cirrus.com,
+        robh+dt@kernel.org, sbkim73@samsung.com
+Subject: Applied "ASoC: wm8994: Add support for setting MCLK clock rate" to the asoc tree
+In-Reply-To: <20190920130218.32690-4-s.nawrocki@samsung.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20191001114046.2CCFA2742A10@ypsilon.sirena.org.uk>
-Date:   Tue,  1 Oct 2019 12:40:46 +0100 (BST)
+Message-Id: <20191001114050.DE1BD2742A30@ypsilon.sirena.org.uk>
+Date:   Tue,  1 Oct 2019 12:40:50 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: fsl_asrc: Use in(out)put_format instead of in(out)put_word_width
+   ASoC: wm8994: Add support for setting MCLK clock rate
 
 has been applied to the asoc tree at
 
@@ -75,153 +75,165 @@ to this mail.
 Thanks,
 Mark
 
-From 4bf62571070dd1021556e275d9221f736b2ffcf3 Mon Sep 17 00:00:00 2001
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-Date: Fri, 27 Sep 2019 09:46:09 +0800
-Subject: [PATCH] ASoC: fsl_asrc: Use in(out)put_format instead of
- in(out)put_word_width
+From 419e2f50833661cec15200d5ee7385daee733667 Mon Sep 17 00:00:00 2001
+From: Sylwester Nawrocki <s.nawrocki@samsung.com>
+Date: Fri, 20 Sep 2019 15:02:12 +0200
+Subject: [PATCH] ASoC: wm8994: Add support for setting MCLK clock rate
 
-snd_pcm_format_t is more formal than enum asrc_word_width, which has
-two property, width and physical width, which is more accurate than
-enum asrc_word_width. So it is better to use in(out)put_format
-instead of in(out)put_word_width.
+Extend the set_sysclk() handler so we also set frequency of the MCLK1,
+MCLK2 clocks through clk API when those clocks are specified in DT.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
-Link: https://lore.kernel.org/r/7937c1404ee327ce141cb03b3575b02ea01a740c.1569493933.git.shengjiu.wang@nxp.com
+Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Link: https://lore.kernel.org/r/20190920130218.32690-4-s.nawrocki@samsung.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/fsl/fsl_asrc.c | 56 +++++++++++++++++++++++++++-------------
- sound/soc/fsl/fsl_asrc.h |  4 +--
- 2 files changed, 40 insertions(+), 20 deletions(-)
+ sound/soc/codecs/wm8994.c | 48 +++++++++++++++++++++++++++++++++++----
+ sound/soc/codecs/wm8994.h | 10 +++++++-
+ 2 files changed, 52 insertions(+), 6 deletions(-)
 
-diff --git a/sound/soc/fsl/fsl_asrc.c b/sound/soc/fsl/fsl_asrc.c
-index cfa40ef6b1ca..4d3804a1ea55 100644
---- a/sound/soc/fsl/fsl_asrc.c
-+++ b/sound/soc/fsl/fsl_asrc.c
-@@ -265,6 +265,8 @@ static int fsl_asrc_config_pair(struct fsl_asrc_pair *pair)
- 	struct asrc_config *config = pair->config;
- 	struct fsl_asrc *asrc_priv = pair->asrc_priv;
- 	enum asrc_pair_index index = pair->index;
-+	enum asrc_word_width input_word_width;
-+	enum asrc_word_width output_word_width;
- 	u32 inrate, outrate, indiv, outdiv;
- 	u32 clk_index[2], div[2];
- 	int in, out, channels;
-@@ -283,9 +285,32 @@ static int fsl_asrc_config_pair(struct fsl_asrc_pair *pair)
- 		return -EINVAL;
- 	}
+diff --git a/sound/soc/codecs/wm8994.c b/sound/soc/codecs/wm8994.c
+index c3d06e8bc54f..35fbaa0138bf 100644
+--- a/sound/soc/codecs/wm8994.c
++++ b/sound/soc/codecs/wm8994.c
+@@ -167,12 +167,12 @@ static int configure_aif_clock(struct snd_soc_component *component, int aif)
  
--	/* Validate output width */
--	if (config->output_word_width == ASRC_WIDTH_8_BIT) {
--		pair_err("does not support 8bit width output\n");
-+	switch (snd_pcm_format_width(config->input_format)) {
-+	case 8:
-+		input_word_width = ASRC_WIDTH_8_BIT;
-+		break;
-+	case 16:
-+		input_word_width = ASRC_WIDTH_16_BIT;
-+		break;
-+	case 24:
-+		input_word_width = ASRC_WIDTH_24_BIT;
-+		break;
-+	default:
-+		pair_err("does not support this input format, %d\n",
-+			 config->input_format);
-+		return -EINVAL;
-+	}
+ 	switch (wm8994->sysclk[aif]) {
+ 	case WM8994_SYSCLK_MCLK1:
+-		rate = wm8994->mclk[0];
++		rate = wm8994->mclk_rate[0];
+ 		break;
+ 
+ 	case WM8994_SYSCLK_MCLK2:
+ 		reg1 |= 0x8;
+-		rate = wm8994->mclk[1];
++		rate = wm8994->mclk_rate[1];
+ 		break;
+ 
+ 	case WM8994_SYSCLK_FLL1:
+@@ -2367,12 +2367,29 @@ static int wm8994_set_fll(struct snd_soc_dai *dai, int id, int src,
+ 	return _wm8994_set_fll(dai->component, id, src, freq_in, freq_out);
+ }
+ 
++static int wm8994_set_mclk_rate(struct wm8994_priv *wm8994, unsigned int id,
++				unsigned int *freq)
++{
++	int ret;
 +
-+	switch (snd_pcm_format_width(config->output_format)) {
-+	case 16:
-+		output_word_width = ASRC_WIDTH_16_BIT;
-+		break;
-+	case 24:
-+		output_word_width = ASRC_WIDTH_24_BIT;
-+		break;
-+	default:
-+		pair_err("does not support this output format, %d\n",
-+			 config->output_format);
- 		return -EINVAL;
- 	}
- 
-@@ -383,8 +408,8 @@ static int fsl_asrc_config_pair(struct fsl_asrc_pair *pair)
- 	/* Implement word_width configurations */
- 	regmap_update_bits(asrc_priv->regmap, REG_ASRMCR1(index),
- 			   ASRMCR1i_OW16_MASK | ASRMCR1i_IWD_MASK,
--			   ASRMCR1i_OW16(config->output_word_width) |
--			   ASRMCR1i_IWD(config->input_word_width));
-+			   ASRMCR1i_OW16(output_word_width) |
-+			   ASRMCR1i_IWD(input_word_width));
- 
- 	/* Enable BUFFER STALL */
- 	regmap_update_bits(asrc_priv->regmap, REG_ASRMCR(index),
-@@ -497,13 +522,13 @@ static int fsl_asrc_dai_hw_params(struct snd_pcm_substream *substream,
- 				  struct snd_soc_dai *dai)
++	if (!wm8994->mclk[id].clk || *freq == wm8994->mclk_rate[id])
++		return 0;
++
++	ret = clk_set_rate(wm8994->mclk[id].clk, *freq);
++	if (ret < 0)
++		return ret;
++
++	*freq = clk_get_rate(wm8994->mclk[id].clk);
++
++	return 0;
++}
++
+ static int wm8994_set_dai_sysclk(struct snd_soc_dai *dai,
+ 		int clk_id, unsigned int freq, int dir)
  {
- 	struct fsl_asrc *asrc_priv = snd_soc_dai_get_drvdata(dai);
--	int width = params_width(params);
- 	struct snd_pcm_runtime *runtime = substream->runtime;
- 	struct fsl_asrc_pair *pair = runtime->private_data;
- 	unsigned int channels = params_channels(params);
- 	unsigned int rate = params_rate(params);
- 	struct asrc_config config;
--	int word_width, ret;
-+	snd_pcm_format_t format;
+ 	struct snd_soc_component *component = dai->component;
+ 	struct wm8994_priv *wm8994 = snd_soc_component_get_drvdata(component);
+-	int i;
++	int ret, i;
+ 
+ 	switch (dai->id) {
+ 	case 1:
+@@ -2387,7 +2404,12 @@ static int wm8994_set_dai_sysclk(struct snd_soc_dai *dai,
+ 	switch (clk_id) {
+ 	case WM8994_SYSCLK_MCLK1:
+ 		wm8994->sysclk[dai->id - 1] = WM8994_SYSCLK_MCLK1;
+-		wm8994->mclk[0] = freq;
++
++		ret = wm8994_set_mclk_rate(wm8994, dai->id - 1, &freq);
++		if (ret < 0)
++			return ret;
++
++		wm8994->mclk_rate[0] = freq;
+ 		dev_dbg(dai->dev, "AIF%d using MCLK1 at %uHz\n",
+ 			dai->id, freq);
+ 		break;
+@@ -2395,7 +2417,12 @@ static int wm8994_set_dai_sysclk(struct snd_soc_dai *dai,
+ 	case WM8994_SYSCLK_MCLK2:
+ 		/* TODO: Set GPIO AF */
+ 		wm8994->sysclk[dai->id - 1] = WM8994_SYSCLK_MCLK2;
+-		wm8994->mclk[1] = freq;
++
++		ret = wm8994_set_mclk_rate(wm8994, dai->id - 1, &freq);
++		if (ret < 0)
++			return ret;
++
++		wm8994->mclk_rate[1] = freq;
+ 		dev_dbg(dai->dev, "AIF%d using MCLK2 at %uHz\n",
+ 			dai->id, freq);
+ 		break;
+@@ -4447,6 +4474,7 @@ static const struct snd_soc_component_driver soc_component_dev_wm8994 = {
+ static int wm8994_probe(struct platform_device *pdev)
+ {
+ 	struct wm8994_priv *wm8994;
 +	int ret;
  
- 	ret = fsl_asrc_request_pair(channels, pair);
- 	if (ret) {
-@@ -513,15 +538,10 @@ static int fsl_asrc_dai_hw_params(struct snd_pcm_substream *substream,
+ 	wm8994 = devm_kzalloc(&pdev->dev, sizeof(struct wm8994_priv),
+ 			      GFP_KERNEL);
+@@ -4458,6 +4486,16 @@ static int wm8994_probe(struct platform_device *pdev)
  
- 	pair->config = &config;
+ 	wm8994->wm8994 = dev_get_drvdata(pdev->dev.parent);
  
--	if (width == 16)
--		width = ASRC_WIDTH_16_BIT;
--	else
--		width = ASRC_WIDTH_24_BIT;
--
- 	if (asrc_priv->asrc_width == 16)
--		word_width = ASRC_WIDTH_16_BIT;
-+		format = SNDRV_PCM_FORMAT_S16_LE;
- 	else
--		word_width = ASRC_WIDTH_24_BIT;
-+		format = SNDRV_PCM_FORMAT_S24_LE;
++	wm8994->mclk[WM8994_MCLK1].id = "MCLK1";
++	wm8994->mclk[WM8994_MCLK2].id = "MCLK2";
++
++	ret = devm_clk_bulk_get_optional(pdev->dev.parent, ARRAY_SIZE(wm8994->mclk),
++					 wm8994->mclk);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "Failed to get clocks: %d\n", ret);
++		return ret;
++	}
++
+ 	pm_runtime_enable(&pdev->dev);
+ 	pm_runtime_idle(&pdev->dev);
  
- 	config.pair = pair->index;
- 	config.channel_num = channels;
-@@ -529,13 +549,13 @@ static int fsl_asrc_dai_hw_params(struct snd_pcm_substream *substream,
- 	config.outclk = OUTCLK_ASRCK1_CLK;
+diff --git a/sound/soc/codecs/wm8994.h b/sound/soc/codecs/wm8994.h
+index 1d6f2abe1c11..41c4b126114d 100644
+--- a/sound/soc/codecs/wm8994.h
++++ b/sound/soc/codecs/wm8994.h
+@@ -6,6 +6,7 @@
+ #ifndef _WM8994_H
+ #define _WM8994_H
  
- 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
--		config.input_word_width   = width;
--		config.output_word_width  = word_width;
-+		config.input_format   = params_format(params);
-+		config.output_format  = format;
- 		config.input_sample_rate  = rate;
- 		config.output_sample_rate = asrc_priv->asrc_rate;
- 	} else {
--		config.input_word_width   = word_width;
--		config.output_word_width  = width;
-+		config.input_format   = format;
-+		config.output_format  = params_format(params);
- 		config.input_sample_rate  = asrc_priv->asrc_rate;
- 		config.output_sample_rate = rate;
- 	}
-diff --git a/sound/soc/fsl/fsl_asrc.h b/sound/soc/fsl/fsl_asrc.h
-index c60075112570..38af485bdd22 100644
---- a/sound/soc/fsl/fsl_asrc.h
-+++ b/sound/soc/fsl/fsl_asrc.h
-@@ -342,8 +342,8 @@ struct asrc_config {
- 	unsigned int dma_buffer_size;
- 	unsigned int input_sample_rate;
- 	unsigned int output_sample_rate;
--	enum asrc_word_width input_word_width;
--	enum asrc_word_width output_word_width;
-+	snd_pcm_format_t input_format;
-+	snd_pcm_format_t output_format;
- 	enum asrc_inclk inclk;
- 	enum asrc_outclk outclk;
- };
++#include <linux/clk.h>
+ #include <sound/soc.h>
+ #include <linux/firmware.h>
+ #include <linux/completion.h>
+@@ -14,6 +15,12 @@
+ 
+ #include "wm_hubs.h"
+ 
++enum {
++	WM8994_MCLK1,
++	WM8994_MCLK2,
++	WM8994_NUM_MCLK
++};
++
+ /* Sources for AIF1/2 SYSCLK - use with set_dai_sysclk() */
+ #define WM8994_SYSCLK_MCLK1 1
+ #define WM8994_SYSCLK_MCLK2 2
+@@ -73,9 +80,10 @@ struct wm8994;
+ struct wm8994_priv {
+ 	struct wm_hubs_data hubs;
+ 	struct wm8994 *wm8994;
++	struct clk_bulk_data mclk[WM8994_NUM_MCLK];
+ 	int sysclk[2];
+ 	int sysclk_rate[2];
+-	int mclk[2];
++	int mclk_rate[2];
+ 	int aifclk[2];
+ 	int aifdiv[2];
+ 	int channels[2];
 -- 
 2.20.1
 
