@@ -2,85 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA9FC40BD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 21:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAF5C40C7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 21:14:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726888AbfJATJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 15:09:53 -0400
-Received: from srv1.deutnet.info ([116.203.153.70]:55206 "EHLO
-        srv1.deutnet.info" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725991AbfJATJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 15:09:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=deutnet.info; s=default; h=In-Reply-To:Message-ID:Subject:Cc:To:From:Date;
-         bh=/BP8hOWE8SJ76SRf1RmiWyLqtKvXhcXYW4oao3LZWlU=; b=ujWAewN8qvEhfRACKz/cHB94/
-        E9/AEznd+AcWQtBdLzH1qfQtwblimz2V8UIchzsBt/jfGjTWMfNlnf77/nXzSvhF2j5+1PmQptQKd
-        2RS3Xt10R4ubq714D4mkofKoYd5nfTD9RSuQYS7ACBgg1JRpg4OTkjepOfVurTxG8evOC7oGXHrwM
-        EMB/CPv3O+r+myMLLcZvUL0+7VuWKAolYu6GPK8YCE1r0SkpM4Z5W7n6gU9Jy9FpDZqe4N6se0sCg
-        pfB+ySTNIYOb/ohv8Y+y0AqtV6tdL77iMiy6zGlN/Vflh2cvP8qxSWbjjf+yS/7J9F5rYJUKIoXaS
-        IXIH8RRgQ==;
-Received: from [2001:bc8:3dc9::1] (helo=localhost)
-        by srv1.deutnet.info with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1iFNWv-0000qa-0E; Tue, 01 Oct 2019 21:09:49 +0200
-Received: from agriveaux by localhost with local (Exim 4.92)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1iFNWu-00BgOM-Kk; Tue, 01 Oct 2019 21:09:48 +0200
-Date:   Tue, 1 Oct 2019 21:09:48 +0200
-From:   Alexandre GRIVEAUX <agriveaux@deutnet.info>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, ralf@linux-mips.org,
-        paul.burton@mips.com, jhogan@kernel.org, agriveaux@deutnet.info
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 5/5] MIPS: JZ4780: DTS: Add CPU nodes
-Message-ID: <0dbd1986be4ee50bdd9f45c140aded7c49fddb8a.1569955865.git.agriveaux@deutnet.info>
-References: <cover.1569955865.git.agriveaux@deutnet.info>
+        id S1726435AbfJATO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 15:14:26 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:35841 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726411AbfJATO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 15:14:26 -0400
+Received: by mail-wr1-f65.google.com with SMTP id y19so16863411wrd.3;
+        Tue, 01 Oct 2019 12:14:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=CQLUqS12o3E7JRqYPNwzncPftf2wy1G+8WY+i5RSSMc=;
+        b=HMwtxRwK7pI/OiyiLap4r74RPWTOOFyw0x/lS0MeyNE/jJUyK01co9RGtc1d3RcCU9
+         bHfhMFco3utqIAXOWnPyOuWBhHq9XRWoUfry6MCAB5d5bKHA6q7ALXYU825Cw8l61Di5
+         aucpSoMyghClBQwzqxRzuLgWbRTGpsPZAntkSJRa+imJyG/9u+dTqvX0BXYe6Jdodpl+
+         olcp9WVJRRtyOpHzY9AG+fQLN0y45vcS7/VYgilKWaQFhWw5EIs42ZR+JTIvurw3l8hk
+         aQyi3+UIp9gddrLs+dgAHjUCHfzvxG1FqBtOWsySf4pw6l1vkDtVSsIXS/wMpKCzE2Vh
+         gCcg==
+X-Gm-Message-State: APjAAAU9PihF7fA+ZkXTPWxxWNF2LKu2oT+e534AUzzNTRsqxU7utMM5
+        plIZv0O2JWNWVRyPPEkgd7M=
+X-Google-Smtp-Source: APXvYqzVFOVq4N8sE1r+S49chs28jalopnOHn56iSfJSaDhrCdoQlTiDaEqmIDWKO7ksT+tG/sm/qg==
+X-Received: by 2002:a05:6000:11cb:: with SMTP id i11mr2368549wrx.171.1569957264390;
+        Tue, 01 Oct 2019 12:14:24 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id v6sm8289511wma.24.2019.10.01.12.14.22
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 01 Oct 2019 12:14:23 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 21:14:21 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Subject: Re: [PATCH 2/2] arm64: dts: exynos: split phandle in dmas property
+Message-ID: <20191001191421.GA30663@kozik-lap>
+References: <CAL_JsqJ=QWk07y=h7dHFiRrKuE7NGoUr50bu3kiOC+YU8qS9jg@mail.gmail.com>
+ <20190920121431.31678-1-m.szyprowski@samsung.com>
+ <CGME20190920121526eucas1p2e2165c088519094752066db49aa8ae51@eucas1p2.samsung.com>
+ <20190920121431.31678-2-m.szyprowski@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1569955865.git.agriveaux@deutnet.info>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190920121431.31678-2-m.szyprowski@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The JZ4780 have 2 core, adding to DT.
+On Fri, Sep 20, 2019 at 02:14:31PM +0200, Marek Szyprowski wrote:
+> From: Maciej Falkowski <m.falkowski@samsung.com>
+> 
+> Change representation of phandle array as then
+> dt-schema counts number of its items properly.
 
-Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
----
- arch/mips/boot/dts/ingenic/jz4780.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Thanks, applied. Please split the commit msg according to Coding Style
+(submitting patches, chapter 2 and 14).
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-index f928329b034b..9c7346724f1f 100644
---- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-@@ -7,6 +7,23 @@
- 	#size-cells = <1>;
- 	compatible = "ingenic,jz4780";
- 
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			compatible = "ingenic,jz4780";
-+			device_type = "cpu";
-+			reg = <0>;
-+		};
-+
-+		cpu@1 {
-+			compatible = "ingenic,jz4780";
-+			device_type = "cpu";
-+			reg = <1>;
-+		};
-+	};
-+
- 	cpuintc: interrupt-controller {
- 		#address-cells = <0>;
- 		#interrupt-cells = <1>;
--- 
-2.20.1
+Best regards,
+Krzysztof
 
