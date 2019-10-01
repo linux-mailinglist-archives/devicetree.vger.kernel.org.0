@@ -2,148 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 738D2C3869
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 17:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5DFC3873
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 17:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389338AbfJAPDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 11:03:13 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43366 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726987AbfJAPDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 11:03:13 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x91F2tBo017997;
-        Tue, 1 Oct 2019 10:02:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1569942175;
-        bh=FtGKw7kQQovEcABguQcARfmvU81jXg7GbjUfgsdw1Q4=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=f8M2abPJ5E2aPEAh8yZeVPhhazCotY06RboI3cv1WILlrmTEBfP4Mg331gud3ggIu
-         sKf/jLzbNpsnvvV1kbHR6GzbhnKOS5pX83i9/nQjXYx65/DW9J7ndM17sktKdcG5k5
-         lwn04f+tpDpmFR/k7cCrgSRN2vfToIiYb5dftpKo=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x91F2tJE014138
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Oct 2019 10:02:55 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 1 Oct
- 2019 10:02:55 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 1 Oct 2019 10:02:45 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x91F2swW029639;
-        Tue, 1 Oct 2019 10:02:55 -0500
-Subject: Re: [PATCH V6 1/8] backlight: qcom-wled: Rename pm8941-wled.c to
- qcom-wled.c
-To:     Kiran Gunda <kgunda@codeaurora.org>, <bjorn.andersson@linaro.org>,
-        <jingoohan1@gmail.com>, <lee.jones@linaro.org>,
-        <b.zolnierkie@samsung.com>, <dri-devel@lists.freedesktop.org>,
-        <daniel.thompson@linaro.org>, <jacek.anaszewski@gmail.com>,
-        <pavel@ucw.cz>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        <linux-fbdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <1569825553-26039-1-git-send-email-kgunda@codeaurora.org>
- <1569825553-26039-2-git-send-email-kgunda@codeaurora.org>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <3cbc14db-9d6d-f60f-eb92-4b4d80d3774d@ti.com>
-Date:   Tue, 1 Oct 2019 10:03:13 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2389362AbfJAPDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 11:03:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45932 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732232AbfJAPDa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 11:03:30 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BF39E20679;
+        Tue,  1 Oct 2019 15:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569942208;
+        bh=4kV82kjMjJZ3wcjI4ESWLuxVaA+TlzuvX1ml8xlyHAA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tYSv6ceB/nYUaAX/If8UgLhBTz1FGDDIqHLgNnnojKZASJzUgLWCmAh2GAb8tzHcP
+         RfgiG/gd1ukopKDsdhh8nNW1ulbfZDiMfdn4pMeWxKrjUDvDOxyAuxjdgE79Rqpog1
+         QWcsvuQxYHPt7ba3l+bL8FF1vSPesXPzomCQfjio=
+Received: by mail-qk1-f171.google.com with SMTP id x134so11569007qkb.0;
+        Tue, 01 Oct 2019 08:03:28 -0700 (PDT)
+X-Gm-Message-State: APjAAAV38aSqBZxiL8KopgGUHaWSqq9df3ueYBhphGBPXYkLHY0r67bL
+        uDUybMIk9W79UH+BRZVOFZo2EC18yi9NohBXvw==
+X-Google-Smtp-Source: APXvYqx0fyHnwN4L3YZkpqItcFav8rUVQJC9X+gMStopgCudPHBp5OildzjhaMeNXHsc02CUjGUKEy0fZBfNZnVtbs0=
+X-Received: by 2002:a37:be87:: with SMTP id o129mr6681750qkf.254.1569942207991;
+ Tue, 01 Oct 2019 08:03:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1569825553-26039-2-git-send-email-kgunda@codeaurora.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1569940180-11417-1-git-send-email-michal.vokac@ysoft.com> <1569940180-11417-2-git-send-email-michal.vokac@ysoft.com>
+In-Reply-To: <1569940180-11417-2-git-send-email-michal.vokac@ysoft.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 1 Oct 2019 10:03:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJHexWRNPPP-+Vv43CYOJmD0X9aqEtn2djMgfqzyBVy5w@mail.gmail.com>
+Message-ID: <CAL_JsqJHexWRNPPP-+Vv43CYOJmD0X9aqEtn2djMgfqzyBVy5w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: input: Add common input binding in json-schema
+To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kiran
-
-On 9/30/19 1:39 AM, Kiran Gunda wrote:
-> pm8941-wled.c driver is supporting the WLED peripheral
-> on pm8941. Rename it to qcom-wled.c so that it can support
-> WLED on multiple PMICs.
+On Tue, Oct 1, 2019 at 9:29 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.c=
+om> wrote:
 >
-> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-> Acked-by: Pavel Machek <pavel@ucw.cz>
+> Create schema for the common input properties.
+>
+> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
 > ---
->   .../bindings/leds/backlight/{pm8941-wled.txt => qcom-wled.txt}    | 2 +-
-
-Instead of renaming this file would it be more maintainable to indicate 
-in the pm8941-wled.txt
-
-to reference the qcom-wled.txt file for complete description?
-
-I will let Rob comment on maintainability.
-
-Dan
-
->   drivers/video/backlight/Kconfig                                   | 8 ++++----
->   drivers/video/backlight/Makefile                                  | 2 +-
->   drivers/video/backlight/{pm8941-wled.c => qcom-wled.c}            | 0
->   4 files changed, 6 insertions(+), 6 deletions(-)
->   rename Documentation/devicetree/bindings/leds/backlight/{pm8941-wled.txt => qcom-wled.txt} (95%)
->   rename drivers/video/backlight/{pm8941-wled.c => qcom-wled.c} (100%)
+> Changes since v1:
+>  - New patch in the series.
 >
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
-> similarity index 95%
-> rename from Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt
-> rename to Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
-> index e5b294d..fb39e32 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/pm8941-wled.txt
-> +++ b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
-> @@ -1,4 +1,4 @@
-> -Binding for Qualcomm PM8941 WLED driver
-> +Binding for Qualcomm Technologies, Inc. WLED driver
->   
->   Required properties:
->   - compatible: should be "qcom,pm8941-wled"
-> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-> index 8b081d6..6ff3176 100644
-> --- a/drivers/video/backlight/Kconfig
-> +++ b/drivers/video/backlight/Kconfig
-> @@ -284,12 +284,12 @@ config BACKLIGHT_TOSA
->   	  If you have an Sharp SL-6000 Zaurus say Y to enable a driver
->   	  for its backlight
->   
-> -config BACKLIGHT_PM8941_WLED
-> -	tristate "Qualcomm PM8941 WLED Driver"
-> +config BACKLIGHT_QCOM_WLED
-> +	tristate "Qualcomm PMIC WLED Driver"
->   	select REGMAP
->   	help
-> -	  If you have the Qualcomm PM8941, say Y to enable a driver for the
-> -	  WLED block.
-> +	  If you have the Qualcomm PMIC, say Y to enable a driver for the
-> +	  WLED block. Currently it supports PM8941 and PMI8998.
->   
->   config BACKLIGHT_SAHARA
->   	tristate "Tabletkiosk Sahara Touch-iT Backlight Driver"
-> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-> index 63c507c..6f87770 100644
-> --- a/drivers/video/backlight/Makefile
-> +++ b/drivers/video/backlight/Makefile
-> @@ -48,8 +48,8 @@ obj-$(CONFIG_BACKLIGHT_OMAP1)		+= omap1_bl.o
->   obj-$(CONFIG_BACKLIGHT_OT200)		+= ot200_bl.o
->   obj-$(CONFIG_BACKLIGHT_PANDORA)		+= pandora_bl.o
->   obj-$(CONFIG_BACKLIGHT_PCF50633)	+= pcf50633-backlight.o
-> -obj-$(CONFIG_BACKLIGHT_PM8941_WLED)	+= pm8941-wled.o
->   obj-$(CONFIG_BACKLIGHT_PWM)		+= pwm_bl.o
-> +obj-$(CONFIG_BACKLIGHT_QCOM_WLED)	+= qcom-wled.o
->   obj-$(CONFIG_BACKLIGHT_SAHARA)		+= kb3886_bl.o
->   obj-$(CONFIG_BACKLIGHT_SKY81452)	+= sky81452-backlight.o
->   obj-$(CONFIG_BACKLIGHT_TOSA)		+= tosa_bl.o
-> diff --git a/drivers/video/backlight/pm8941-wled.c b/drivers/video/backlight/qcom-wled.c
-> similarity index 100%
-> rename from drivers/video/backlight/pm8941-wled.c
-> rename to drivers/video/backlight/qcom-wled.c
+> Rob, you suggested to extract the common properties from
+> fsl,mpr121-touchkey.yaml into this file. In the meantime I realized that
+> the linux,keycodes property is already documented in keys.txt.
+>
+> What do you suggest to do? Some possible options:
+>  - Just remove the linux,keycodes propery from keys.txt.
+>  - Merge this input.yaml with all content of keys.txt. How to name the re=
+sult?
+
+Yes. input.yaml is fine. Looks like there's only 3 references to
+keys.txt to update.
+
+>  - Something else?
+>
+>  Documentation/devicetree/bindings/input/input.yaml | 25 ++++++++++++++++=
+++++++
+>  1 file changed, 25 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/input.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documen=
+tation/devicetree/bindings/input/input.yaml
+> new file mode 100644
+> index 000000000000..494e7d031ea3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/input.yaml
+> @@ -0,0 +1,25 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/input.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common input schema binding
+> +
+> +maintainers:
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +
+> +properties:
+> +  linux,keycodes:
+> +    description:
+> +      Specifies an array of numeric keycode values to be used for report=
+ing
+> +      button presses. The array can contain up to 12 entries.
+
+12 is specific to your device.
+
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +      - items:
+> +          minimum: 0
+> +          maximum: 0xff
+> +
+> +  autorepeat:
+> +    description: Enable autorepeat when key is pressed and held down.
+> +    type: boolean
+> --
+> 2.1.4
+>
