@@ -2,92 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 010FAC3ED0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 19:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5047C3F85
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730730AbfJARlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 13:41:12 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:53448 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726063AbfJARlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 13:41:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=6PHfJPpmmbQhxMK6M7AY9ix0LgB6D7xNSfISfBov93M=; b=SPik2K5YFCus0OmRBE4TFg6f0
-        hCSr5oyR5SNPGXhUt/7Cj/GKlOYMdykbv51DkyGouCBPFnU946I8Bw6lvmehLd3APpkkLYEb4TWrZ
-        f9oZEdtIhBSAiP0cSjnl7K4wm9A81KRkOIX1XFRBY7iTXlk6RsUBqEnv7pQjbnA7wD/TU=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iFM93-0005on-G0; Tue, 01 Oct 2019 17:41:05 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id A0C4127429C0; Tue,  1 Oct 2019 18:41:04 +0100 (BST)
-Date:   Tue, 1 Oct 2019 18:41:04 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
+        id S1731527AbfJASLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 14:11:50 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:52690 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727345AbfJASLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:11:49 -0400
+Received: from pendragon.ideasonboard.com (modemcable151.96-160-184.mc.videotron.ca [184.160.96.151])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8240C23F;
+        Tue,  1 Oct 2019 20:11:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1569953507;
+        bh=1HV+NKrply/jtpF9YUXpvlwczOCbNiRqingnW6DmXkE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BdFgBDBfQUWJNUepRw6g5fwqDpP3L/BSm3b4MoCzb9m2HQd43DtCX2HH4lPLVmizP
+         Ir39CNZt9oyD5FEfjwjxbmcdnQw8sAAIEMf60o7IGHLSa1olUSNPsDs/yTPRUPEB6q
+         R0v4+qIrUVk3FoA2SZL7AvyPFuHobcKZ94QFDHWA=
+Date:   Tue, 1 Oct 2019 21:11:34 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Biju Das <biju.das@bp.renesas.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        ckeepax@opensource.cirrus.com, zhang.chunyan@linaro.org,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH] regulator: Document "regulator-boot-on" binding more
- thoroughly
-Message-ID: <20191001174104.GD4786@sirena.co.uk>
-References: <20190926124115.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid>
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: Re: [PATCH 1/8] arm64: dts: renesas: hihope-common: Move du clk
+ properties out of common dtsi
+Message-ID: <20191001181134.GC4735@pendragon.ideasonboard.com>
+References: <1569932124-32010-1-git-send-email-biju.das@bp.renesas.com>
+ <1569932124-32010-2-git-send-email-biju.das@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="48TaNjbzBVislYPb"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190926124115.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid>
-X-Cookie: Keep refrigerated.
+In-Reply-To: <1569932124-32010-2-git-send-email-biju.das@bp.renesas.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Biju,
 
---48TaNjbzBVislYPb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thank you for the patch.
 
-On Thu, Sep 26, 2019 at 12:41:18PM -0700, Douglas Anderson wrote:
+On Tue, Oct 01, 2019 at 01:15:17PM +0100, Biju Das wrote:
+> RZ/G2N board is pin compatible with RZ/G2M board. However on the SoC
+> side RZ/G2N uses DU3 where as RZ/G2M uses DU2 for the DPAD. In order to
+> reuse the common dtsi for both the boards, it is required to move du clock
+> properties from common dtsi to board specific dts.
+> 
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-> -    description: bootloader/firmware enabled regulator
-> +    description: bootloader/firmware enabled regulator.
-> +      It's expected that this regulator was left on by the bootloader.
-> +      If the bootloader didn't leave it on then OS should turn it on
-> +      at boot but shouldn't prevent it from being turned off later.
+It would be nice if DT had a syntax that allowed extending an existing
+property. It would allow us to write
 
-This is good...
+&du {
+	clocks += <&versaclock5 1>,
+		  <&x302_clk>,
+		  <&versaclock5 2>;
+	clock-names += "dclkin.0", "dclkin.1", "dclkin.2";
+};
 
-> +      This property is intended to only be used for regulators where
-> +      Linux cannot read the state of the regulator at bootup.
+in hihope-common.dtsi and be done with it.
 
-...but we shouldn't say "Linux" here since the DT binding is for all
-OSs, not just Linux.  I'd say "software" instead.  Really the
-expectation is that things wouldn't support readback at all, though it's
-possible there's some weird hardware out there that will support
-readback some of the time I guess.
+Rob, do you think that's something worth adding ?
 
---48TaNjbzBVislYPb
-Content-Type: application/pgp-signature; name="signature.asc"
+In any case, until we have that, this patch looks good to me.
 
------BEGIN PGP SIGNATURE-----
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2Tj68ACgkQJNaLcl1U
-h9CRrgf+OhK++Wg53aKS5GOG5Scxu88CKfhRSgAezLcnGjLTBX16YijOdZNEM3yX
-+eknFRwLl189sJOTSGpO+skgW1BNVYJac8PHCk8wviVL5APiFqIMkGNNIcPQZnQc
-gJQFBLCnBO6RSqMiT98i0YK5Qes492NNap2lWKl+a7OvwXHo4onrdE9oYZcwmMVj
-DqsJAf+7VPG+BT1nIqJVL4jTuZeAWFyWMKaUMDFWmWev0RDEMF+bHXFMf2pFtkzj
-LfvVrsc7/JgU35ruEO3vCrJnDOS1Z4mplIKKFiAn/41OByNYePUx0RzdOHwinpT8
-Q9w5NkdPaasBpx6zg7XiXlwSjLScfg==
-=INGH
------END PGP SIGNATURE-----
+> ---
+>  arch/arm64/boot/dts/renesas/hihope-common.dtsi        |  8 --------
+>  arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts | 11 +++++++++++
+>  2 files changed, 11 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/hihope-common.dtsi b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> index 3e376d2..355d0a2 100644
+> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> @@ -142,14 +142,6 @@
+>  };
+>  
+>  &du {
+> -	clocks = <&cpg CPG_MOD 724>,
+> -		 <&cpg CPG_MOD 723>,
+> -		 <&cpg CPG_MOD 722>,
+> -		 <&versaclock5 1>,
+> -		 <&x302_clk>,
+> -		 <&versaclock5 2>;
+> -	clock-names = "du.0", "du.1", "du.2",
+> -		      "dclkin.0", "dclkin.1", "dclkin.2";
+>  	status = "okay";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts
+> index 93ca973..96f2fb0 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m.dts
+> @@ -24,3 +24,14 @@
+>  		reg = <0x6 0x00000000 0x0 0x80000000>;
+>  	};
+>  };
+> +
+> +&du {
+> +	clocks = <&cpg CPG_MOD 724>,
+> +		 <&cpg CPG_MOD 723>,
+> +		 <&cpg CPG_MOD 722>,
+> +		 <&versaclock5 1>,
+> +		 <&x302_clk>,
+> +		 <&versaclock5 2>;
+> +	clock-names = "du.0", "du.1", "du.2",
+> +		      "dclkin.0", "dclkin.1", "dclkin.2";
+> +};
 
---48TaNjbzBVislYPb--
+-- 
+Regards,
+
+Laurent Pinchart
