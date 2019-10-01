@@ -2,104 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B677C417A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 21:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC812C41F4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 22:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727008AbfJAT6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 15:58:41 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:58268 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725851AbfJAT6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 15:58:41 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 2041461213; Tue,  1 Oct 2019 19:58:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569959921;
-        bh=Q8hGpRCd/lEiN/IVWHT2uI3mEQRZrM84LGRa872iir4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Mb7rCdU3D7HNlFo6yStvhjdFnCRE4IrcHzZWb2r2KhOiSvGGuKsk1I2beiIYkjDnR
-         l48s1OkW2V7EtBWjR30zTpPdXux+FWXJi61GvINWsx2tifcs3SPYM4BRM62bpHTYEO
-         rqbgvlA0GpcF4KchBtfE6raPaBAAs7mCjXP4dHJk=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from jhugo-perf-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jhugo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A69716013C;
-        Tue,  1 Oct 2019 19:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1569959920;
-        bh=Q8hGpRCd/lEiN/IVWHT2uI3mEQRZrM84LGRa872iir4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mzCEuFjRFWiduoiOTTJcHo2yX4KIya4Aa4bLsSXVKvHUHoOXDLuPHhGnJdW4kPySK
-         FjqajuAvDCTykcndSimO8+1fsCuf6fXasRCvNLrC462znq4Ot5PBAedcnh5l5brcoJ
-         q5IpGlMHs9CmmrbpycceZtztj0Yf2gqGQlyr6e0g=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A69716013C
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
-From:   Jeffrey Hugo <jhugo@codeaurora.org>
-To:     bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, marc.w.gonzalez@free.fr,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jeffrey Hugo <jhugo@codeaurora.org>
-Subject: [PATCH v6 6/6] arm64: dts: qcom: msm8998: Add mmcc node
-Date:   Tue,  1 Oct 2019 13:58:29 -0600
-Message-Id: <1569959909-14282-1-git-send-email-jhugo@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1569959656-5202-1-git-send-email-jhugo@codeaurora.org>
-References: <1569959656-5202-1-git-send-email-jhugo@codeaurora.org>
+        id S1727015AbfJAUtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 16:49:15 -0400
+Received: from mail.blih.net ([212.83.177.182]:40861 "EHLO mail.blih.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726823AbfJAUtP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 16:49:15 -0400
+X-Greylist: delayed 399 seconds by postgrey-1.27 at vger.kernel.org; Tue, 01 Oct 2019 16:49:12 EDT
+Received: from mail.blih.net (mail.blih.net [212.83.177.182])
+        by mail.blih.net (OpenSMTPD) with ESMTP id e18db738;
+        Tue, 1 Oct 2019 22:42:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=bidouilliste.com; h=date
+        :from:to:cc:subject:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=mail;
+         bh=B5qeyVaQxUrFv9Bm17PyyYT1vI0=; b=d76OLVD4Zu6r6uJSwoiVHXcVXLgb
+        ZTfCJWog7Oh4+vFdP61KuRRG/qoHkpkpF3oNCEbPXMJO5gMlp5/BrjXjmc3OitOL
+        e2gKoMTZmph/YfpikK+TFwOYAfaZJGI7HGsuBbARgWkrP7gcy8kc2mpEnvcUYest
+        QzF61dql5k092Ww=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=bidouilliste.com; h=date
+        :from:to:cc:subject:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; q=dns; s=
+        mail; b=dH2OY07Z+OHB3mNkDdiFXIC+5M+QS+tF7jBSjgi8O70iaQRrttF2Ox4+
+        f40F07/RyOYdjIR00zSFZpCCodaq5zxz5PF8MVZl/cdMXBUihWzC6yi5ex4IxrZ/
+        WEcr8lE3NN1LTc7nCCij5xl7CrGiEEcEK8m6OlvqIRplg0+jFpk=
+Received: from skull.home.blih.net (ip-9.net-89-3-105.rev.numericable.fr [89.3.105.9])
+        by mail.blih.net (OpenSMTPD) with ESMTPSA id 99bef17a
+        TLS version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO;
+        Tue, 1 Oct 2019 22:42:31 +0200 (CEST)
+Date:   Tue, 1 Oct 2019 22:42:31 +0200
+From:   Emmanuel Vadot <manu@bidouilliste.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 4/6] ARM: dts: sunxi: Remove useless phy-names from EHCI
+ and OHCI
+Message-Id: <20191001224231.3241cf90203b96f42da9c7af@bidouilliste.com>
+In-Reply-To: <b7c3e6ebb9a98458b50f66323f8aa15f7af1772e.1555403233.git-series.maxime.ripard@bootlin.com>
+References: <d930537cfe3124de37b8ecf4eaa02b68ec94cb40.1555403233.git-series.maxime.ripard@bootlin.com>
+        <b7c3e6ebb9a98458b50f66323f8aa15f7af1772e.1555403233.git-series.maxime.ripard@bootlin.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; amd64-portbld-freebsd13.0)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MSM8998 Multimedia Clock Controller DT node.
 
-Signed-off-by: Jeffrey Hugo <jhugo@codeaurora.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ Hi Maxime,
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index c926122566ae..5a9efd749fa6 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -3,6 +3,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-msm8998.h>
-+#include <dt-bindings/clock/qcom,mmcc-msm8998.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/gpio/gpio.h>
-@@ -1263,6 +1264,19 @@
- 			#size-cells = <0>;
- 		};
- 
-+		mmcc: clock-controller@c8c0000 {
-+			compatible = "qcom,mmcc-msm8998";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			reg = <0x0c8c0000 0x40000>;
-+
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+				 <&gcc GPLL0_OUT_MAIN>;
-+			clock-names = "xo",
-+				      "gpll0";
-+		};
-+
- 		apcs_glb: mailbox@17911000 {
- 			compatible = "qcom,msm8998-apcs-hmss-global";
- 			reg = <0x17911000 0x1000>;
+On Tue, 16 Apr 2019 10:28:00 +0200
+Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+
+> Neither the OHCI or EHCI bindings are using the phy-names property, so we
+> can just drop it.
+> 
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> ---
+>  arch/arm/boot/dts/sun4i-a10.dtsi     | 4 ----
+>  arch/arm/boot/dts/sun5i.dtsi         | 2 --
+>  arch/arm/boot/dts/sun6i-a31.dtsi     | 4 ----
+>  arch/arm/boot/dts/sun7i-a20.dtsi     | 4 ----
+>  arch/arm/boot/dts/sun8i-a23-a33.dtsi | 2 --
+>  arch/arm/boot/dts/sun8i-a83t.dtsi    | 3 ---
+>  arch/arm/boot/dts/sun8i-r40.dtsi     | 4 ----
+>  arch/arm/boot/dts/sun9i-a80.dtsi     | 5 -----
+>  8 files changed, 28 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
+> index ef6ec526f394..e88daa4ef1af 100644
+> --- a/arch/arm/boot/dts/sun4i-a10.dtsi
+> +++ b/arch/arm/boot/dts/sun4i-a10.dtsi
+> @@ -520,7 +520,6 @@
+>  			interrupts = <39>;
+>  			clocks = <&ccu CLK_AHB_EHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -530,7 +529,6 @@
+>  			interrupts = <64>;
+>  			clocks = <&ccu CLK_USB_OHCI0>, <&ccu CLK_AHB_OHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -610,7 +608,6 @@
+>  			interrupts = <40>;
+>  			clocks = <&ccu CLK_AHB_EHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -620,7 +617,6 @@
+>  			interrupts = <65>;
+>  			clocks = <&ccu CLK_USB_OHCI1>, <&ccu CLK_AHB_OHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
+> index cb820bd7974c..0d71b01967a3 100644
+> --- a/arch/arm/boot/dts/sun5i.dtsi
+> +++ b/arch/arm/boot/dts/sun5i.dtsi
+> @@ -391,7 +391,6 @@
+>  			interrupts = <39>;
+>  			clocks = <&ccu CLK_AHB_EHCI>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -401,7 +400,6 @@
+>  			interrupts = <40>;
+>  			clocks = <&ccu CLK_USB_OHCI>, <&ccu CLK_AHB_OHCI>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi b/arch/arm/boot/dts/sun6i-a31.dtsi
+> index fa983f9ff5f5..c04efad81bbc 100644
+> --- a/arch/arm/boot/dts/sun6i-a31.dtsi
+> +++ b/arch/arm/boot/dts/sun6i-a31.dtsi
+> @@ -543,7 +543,6 @@
+>  			clocks = <&ccu CLK_AHB1_EHCI0>;
+>  			resets = <&ccu RST_AHB1_EHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -554,7 +553,6 @@
+>  			clocks = <&ccu CLK_AHB1_OHCI0>, <&ccu CLK_USB_OHCI0>;
+>  			resets = <&ccu RST_AHB1_OHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -565,7 +563,6 @@
+>  			clocks = <&ccu CLK_AHB1_EHCI1>;
+>  			resets = <&ccu RST_AHB1_EHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -576,7 +573,6 @@
+>  			clocks = <&ccu CLK_AHB1_OHCI1>, <&ccu CLK_USB_OHCI1>;
+>  			resets = <&ccu RST_AHB1_OHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a20.dtsi
+> index 794c915f504b..9ad8e445b240 100644
+> --- a/arch/arm/boot/dts/sun7i-a20.dtsi
+> +++ b/arch/arm/boot/dts/sun7i-a20.dtsi
+> @@ -612,7 +612,6 @@
+>  			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_AHB_EHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -622,7 +621,6 @@
+>  			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_USB_OHCI0>, <&ccu CLK_AHB_OHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -705,7 +703,6 @@
+>  			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_AHB_EHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -715,7 +712,6 @@
+>  			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_USB_OHCI1>, <&ccu CLK_AHB_OHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun8i-a23-a33.dtsi b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
+> index f76aad0c5d4d..af2fa694a467 100644
+> --- a/arch/arm/boot/dts/sun8i-a23-a33.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
+> @@ -307,7 +307,6 @@
+>  			clocks = <&ccu CLK_BUS_EHCI>;
+>  			resets = <&ccu RST_BUS_EHCI>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -318,7 +317,6 @@
+>  			clocks = <&ccu CLK_BUS_OHCI>, <&ccu CLK_USB_OHCI>;
+>  			resets = <&ccu RST_BUS_OHCI>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
+> index b105a85467b3..392b0cabbf0d 100644
+> --- a/arch/arm/boot/dts/sun8i-a83t.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
+> @@ -632,7 +632,6 @@
+>  			clocks = <&ccu CLK_BUS_EHCI0>;
+>  			resets = <&ccu RST_BUS_EHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -644,7 +643,6 @@
+>  			clocks = <&ccu CLK_BUS_OHCI0>, <&ccu CLK_USB_OHCI0>;
+>  			resets = <&ccu RST_BUS_OHCI0>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -656,7 +654,6 @@
+>  			clocks = <&ccu CLK_BUS_EHCI1>;
+>  			resets = <&ccu RST_BUS_EHCI1>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
+> index 56c6885b02d1..bb856e53b806 100644
+> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
+> @@ -273,7 +273,6 @@
+>  			clocks = <&ccu CLK_BUS_EHCI1>;
+>  			resets = <&ccu RST_BUS_EHCI1>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -285,7 +284,6 @@
+>  				 <&ccu CLK_USB_OHCI1>;
+>  			resets = <&ccu RST_BUS_OHCI1>;
+>  			phys = <&usbphy 1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -296,7 +294,6 @@
+>  			clocks = <&ccu CLK_BUS_EHCI2>;
+>  			resets = <&ccu RST_BUS_EHCI2>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -308,7 +305,6 @@
+>  				 <&ccu CLK_USB_OHCI2>;
+>  			resets = <&ccu RST_BUS_OHCI2>;
+>  			phys = <&usbphy 2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> diff --git a/arch/arm/boot/dts/sun9i-a80.dtsi b/arch/arm/boot/dts/sun9i-a80.dtsi
+> index c1aa26db44ae..0c1eec9000e3 100644
+> --- a/arch/arm/boot/dts/sun9i-a80.dtsi
+> +++ b/arch/arm/boot/dts/sun9i-a80.dtsi
+> @@ -342,7 +342,6 @@
+>  			clocks = <&usb_clocks CLK_BUS_HCI0>;
+>  			resets = <&usb_clocks RST_USB0_HCI>;
+>  			phys = <&usbphy1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -354,7 +353,6 @@
+>  				 <&usb_clocks CLK_USB_OHCI0>;
+>  			resets = <&usb_clocks RST_USB0_HCI>;
+>  			phys = <&usbphy1>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -376,7 +374,6 @@
+>  			clocks = <&usb_clocks CLK_BUS_HCI1>;
+>  			resets = <&usb_clocks RST_USB1_HCI>;
+>  			phys = <&usbphy2>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -406,7 +403,6 @@
+>  			clocks = <&usb_clocks CLK_BUS_HCI2>;
+>  			resets = <&usb_clocks RST_USB2_HCI>;
+>  			phys = <&usbphy3>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -418,7 +414,6 @@
+>  				 <&usb_clocks CLK_USB_OHCI2>;
+>  			resets = <&usb_clocks RST_USB2_HCI>;
+>  			phys = <&usbphy3>;
+> -			phy-names = "usb";
+>  			status = "disabled";
+>  		};
+>  
+> -- 
+> git-series 0.9.1
+
+ Sorry for the late reply on this mail but it seems that it was only
+applied for 5.2 and I've just imported those DTS for FreeBSD recently.
+
+ So, this is not correct, the phy-bindings.txt documents says that
+phy-names is a required property for any phy user node. I agree that
+the generic-{o,e}hci doesn't say what name the phy should be
+represented but almost all DTS seems to agree on the "usb" name (at
+least when they have only one phy).
+ All the BSDs requires (or used to since this change) the phy-names to
+be present since it's a required property.
+ I've badly patched FreeBSD since I though this was an Allwinner thing
+before someone directed me to the phy-bindings.txt document.
+
+ Please revert this patch or send a patch to update the documentation.
+
+ Thank you.
+
 -- 
-2.17.1
-
+Emmanuel Vadot <manu@bidouilliste.com> <manu@freebsd.org>
