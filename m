@@ -2,147 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 014F2C3403
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 14:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A43CC340C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 14:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732719AbfJAMQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 08:16:13 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:48654 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725821AbfJAMQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 08:16:13 -0400
-X-IronPort-AV: E=Sophos;i="5.64,571,1559487600"; 
-   d="scan'208";a="28015487"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 01 Oct 2019 21:16:12 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A76844243F52;
-        Tue,  1 Oct 2019 21:16:09 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Simon Horman <horms@verge.net.au>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: [PATCH 8/8] arm64: dts: renesas: hihope-rzg2-ex: Add LVDS panel support
-Date:   Tue,  1 Oct 2019 13:15:24 +0100
-Message-Id: <1569932124-32010-9-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569932124-32010-1-git-send-email-biju.das@bp.renesas.com>
-References: <1569932124-32010-1-git-send-email-biju.das@bp.renesas.com>
+        id S1726128AbfJAMSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 08:18:16 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52492 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726086AbfJAMSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 08:18:16 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x91CI1aZ106156;
+        Tue, 1 Oct 2019 07:18:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1569932281;
+        bh=xse21JTAzQ8GU1Wu6CB2o+llOAUhXp4hV5WxhhhEmJk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=bEe3phAdv8S8+ucek6mTI+4AS67Ezt72kzbjzMc1tTGTwbStGkMK4iNvdmcgALj+L
+         bX5dSWIDOwY2YDdJC46Ec6VkRxxon8xdMa53fHxywPfnYi6vgkDPLbqWdm+7ygxKtm
+         qKq7AgWx1MIxMORiDX6dUjgMgHmHxPtSUN0K/w7Y=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x91CI1Dw055642
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Oct 2019 07:18:01 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 1 Oct
+ 2019 07:18:00 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 1 Oct 2019 07:17:50 -0500
+Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x91CHuxU053240;
+        Tue, 1 Oct 2019 07:17:57 -0500
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: ti,j721e-ufs.yaml: Add binding for
+ TI UFS wrapper
+To:     Rob Herring <robh@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>, <jejb@linux.ibm.com>,
+        Martin K Petersen <martin.petersen@oracle.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        Janek Kotas <jank@cadence.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <nsekhar@ti.com>
+References: <20190918133921.25844-1-vigneshr@ti.com>
+ <20190918133921.25844-2-vigneshr@ti.com> <20191001120826.GA4214@bogus>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <c3490572-8230-3e41-0916-097091386b21@ti.com>
+Date:   Tue, 1 Oct 2019 17:48:30 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20191001120826.GA4214@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for Advantech idk-1110wr LVDS panel.
-The HiHope RZ/G2[MN] is advertised as compatible with panel idk-1110wr
-from Advantech, however the panel isn't sold alongside the board.
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi  | 30 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi | 37 ++++++++++++++++++++++++
- 2 files changed, 67 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi
 
-diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-index 70f9a2a..ae1ef2d 100644
---- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-@@ -5,6 +5,8 @@
-  * Copyright (C) 2019 Renesas Electronics Corp.
-  */
- 
-+#include "rzg2-panel-lvds.dtsi"
-+
- / {
- 	aliases {
- 		ethernet0 = &avb;
-@@ -51,6 +53,34 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	/*
-+	 * When GP1_20 is LOW LVDS0 is connected to the LVDS connector
-+	 * When GP1_20 is HIGH LVDS0 is connected to the LT8918L
-+	 */
-+	lvds-connector-en-gpio {
-+		gpio-hog;
-+		gpios = <20 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "lvds-connector-en-gpio";
-+	};
-+};
-+
-+&lvds0 {
-+	/* Uncomment  below line to enable lvds panel connected to RZ/G2N board
-+	 */
-+
-+	/* status = "okay"; */
-+
-+	ports {
-+		port@1 {
-+			lvds_connector: endpoint {
-+				remote-endpoint = <&panel_in_advantech_idk_1110wr>;
-+			};
-+		};
-+	};
-+};
-+
- &pciec0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi b/arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi
-new file mode 100644
-index 0000000..768a8ec
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the LVDS panels connected to RZ/G2 boards
-+ *
-+ * Copyright (C) 2019 Renesas Electronics Corp.
-+ */
-+
-+/ {
-+
-+	panel-lvds {
-+		compatible = "advantech,idk-1110wr", "panel-lvds";
-+
-+		width-mm = <223>;
-+		height-mm = <125>;
-+
-+		data-mapping = "jeida-24";
-+
-+		panel-timing {
-+			/* 1024x600 @60Hz */
-+			clock-frequency = <51200000>;
-+			hactive = <1024>;
-+			vactive = <600>;
-+			hsync-len = <240>;
-+			hfront-porch = <40>;
-+			hback-porch = <40>;
-+			vfront-porch = <15>;
-+			vback-porch = <10>;
-+			vsync-len = <10>;
-+		};
-+
-+		port {
-+			panel_in_advantech_idk_1110wr: endpoint {
-+				remote-endpoint = <&lvds_connector>;
-+			};
-+		};
-+	};
-+};
+On 01/10/19 5:38 PM, Rob Herring wrote:
+> On Wed, Sep 18, 2019 at 07:09:20PM +0530, Vignesh Raghavendra wrote:
+>> Add binding documentation of TI wrapper for Cadence UFS Controller.
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>  .../devicetree/bindings/ufs/ti,j721e-ufs.yaml | 45 +++++++++++++++++++
+>>  1 file changed, 45 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml b/Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml
+>> new file mode 100644
+>> index 000000000000..dabd7c795fbe
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml
+>> @@ -0,0 +1,45 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/ufs/ti,j721e-ufs.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI J721e UFS Host Controller Glue Driver
+>> +
+>> +maintainers:
+>> +  - Vignesh Raghavendra <vigneshr@ti.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: ti,j721e-ufs
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: address of TI UFS glue registers
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: phandle to the M-PHY clock
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - power-domains
+>> +
+>> +examples:
+>> +  - |
+>> +    ufs_wrapper: ufs-wrapper@4e80000 {
+>> +       compatible = "ti,j721e-ufs";
+>> +       reg = <0x0 0x4e80000 0x0 0x100>;
+>> +       power-domains = <&k3_pds 277>;
+>> +       clocks = <&k3_clks 277 1>;
+>> +       assigned-clocks = <&k3_clks 277 1>;
+>> +       assigned-clock-parents = <&k3_clks 277 4>;
+>> +       #address-cells = <2>;
+>> +       #size-cells = <2>;
+> 
+> Based on the driver you expect to have a child node here with the UFS 
+> controller? You need to show that and have a schema for it.
+> 
+
+Yes, Cadence UFS controller node will be the child node. Its bindings
+are documented at: Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
+(which in turn refers to
+Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt)
+
+But they are not in .yaml yet. How would you suggest to reference that?
+Or should I just write plain text DT binding doc given that subsystem is
+not converted to yaml?
+
+>> +    };
+>> -- 
+>> 2.23.0
+>>
+
 -- 
-2.7.4
-
+Regards
+Vignesh
