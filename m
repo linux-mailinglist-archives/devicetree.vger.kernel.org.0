@@ -2,89 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B54AC360C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C7FFC361B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388589AbfJANmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 09:42:06 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:38707 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388461AbfJANmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 09:42:06 -0400
-Received: by mail-ot1-f68.google.com with SMTP id e11so11554759otl.5;
-        Tue, 01 Oct 2019 06:42:05 -0700 (PDT)
+        id S2388170AbfJANnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 09:43:53 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:42450 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726710AbfJANnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 09:43:53 -0400
+Received: by mail-oi1-f195.google.com with SMTP id i185so14389423oif.9;
+        Tue, 01 Oct 2019 06:43:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=z5g3OMYil/Pu4EHQqTreHjtH9uByNzTm/aKtAT971Ls=;
-        b=VzaWXYJQIoS96mRHd1YnxYgvmD4k6ma0E4uawrLG19kFPiaHXp7jDtFKFdqOoXKRlF
-         MH6L6yQ8b8RN+4ruwXa/7AyU42RWorK8j/6F0oGQnKSzdcZ0dxsr1QTg7asKvbB+HmQL
-         Hjeow8rFktrN3eqLLSawVIk4GqxNvdCNYXhWRj0eqCGQy25CfxlOMdyJagusuBJwyG1y
-         7+ruOz5Q2GgHTzz8Peg7725tsbijGEIuPFcgCzm27MPCxVio7tDv0Z90QDEkJ9tNkLuT
-         zb704qTeeEwxoaGr6HeKY9t1hXrV/Sf+UHx0g4f4b811Hk3iSzMPU8X8A4LxPJCm2HGa
-         cEjQ==
-X-Gm-Message-State: APjAAAXWTVIZbC78DOqew3BpJfzy/KTHGs1HqnPeqPZGz3b76BGu19mv
-        jvdTnMhPxtuJTIluuxh5Dg==
-X-Google-Smtp-Source: APXvYqxEaJDxVi6Sxv9072uC36hiUxKK+RBrbr3oPqy8AXhHQgVt5xejY+elj9reem4AkueuoKOJzg==
-X-Received: by 2002:a9d:2902:: with SMTP id d2mr17596432otb.333.1569937325089;
-        Tue, 01 Oct 2019 06:42:05 -0700 (PDT)
+        bh=/yW/ATB8FIjR5Cn9PtmrhJch8B9sWOBgNXx/ALh7kW4=;
+        b=E18fH9sa/0gktENzebkANfCYZJZ5A3qaITl2rgtVnwwkwGFmt3/Y24ExDlVO+JOnas
+         /F89GL0RIaZTkvurgZPleIS5l317Jejxg7QcCuyMQ9T8B55VTjNR55itDgGnbf4njSBt
+         e8JsvR4SEHwXmSXd0b1MaomnjbqnZg/1kzk7vpUjwFV8Vnf2UcelcOjsZdWWVI11L9O2
+         VjuLVaIwbaqzu0aeiKFPMKNr6Jj4dRc8iG8pMtJBqUbmC+lNSVtotWG7VYdI5sYBdOgW
+         54uxCkJiwLW1iQSToUegw5pQWJ71tOZ2iP6SvWSrKw6CdXqwLLnphN1xT7I64Ar/TBnd
+         GZOg==
+X-Gm-Message-State: APjAAAUp7Z2AqAR+2XnRaaZfotsK9Y8NjMXfGQkUkDolIF6Q/ODkSW7t
+        i+LSPtRI1OO6vbko6ZrRZEwqqf7djw==
+X-Google-Smtp-Source: APXvYqxH2El57SgxyxkgxKtPK7pxEqgYVY65LB7/f68E0xMJaKaZcvMhKHFXAxY2wZestrQ0pvaG5g==
+X-Received: by 2002:aca:5186:: with SMTP id f128mr3881842oib.107.1569937432345;
+        Tue, 01 Oct 2019 06:43:52 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o23sm4852036ote.67.2019.10.01.06.42.03
+        by smtp.gmail.com with ESMTPSA id f12sm4950926oij.1.2019.10.01.06.43.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 06:42:04 -0700 (PDT)
-Date:   Tue, 1 Oct 2019 08:42:03 -0500
+        Tue, 01 Oct 2019 06:43:51 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 08:43:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: Re: [PATCH v4 2/3] dt-bindings: bus: renesas-bsc: convert bindings
- to json-schema
-Message-ID: <20191001134203.GA18401@bogus>
-References: <20190930115205.25204-1-horms+renesas@verge.net.au>
- <20190930115205.25204-3-horms+renesas@verge.net.au>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v3] dt-bindings: gpu: Convert Samsung Image Scaler to
+  dt-schema
+Message-ID: <20191001134351.GA21744@bogus>
+References: <CGME20190927143314eucas1p2d419866cd740207426cd37cb6fdff468@eucas1p2.samsung.com>
+ <20190927143306.12133-1-m.szyprowski@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190930115205.25204-3-horms+renesas@verge.net.au>
+In-Reply-To: <20190927143306.12133-1-m.szyprowski@samsung.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Sep 2019 13:52:04 +0200, Simon Horman wrote:
-> Convert Renesas Bus State Controller (BSC) bindings documentation to
-> json-schema.
+On Fri, 27 Sep 2019 16:33:06 +0200, Marek Szyprowski wrote:
+> From: Maciej Falkowski <m.falkowski@samsung.com>
 > 
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> Convert Samsung Image Scaler to newer dt-schema format.
+> 
+> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > ---
-> * Based on v5.3
-> * Tested using:
->   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
->   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+> v3:
+> - Fixed description of 'clocks' property:
+> rather than 'mscl clock', 'pclk clock'
+> - Added empty line within if-else statement
+> - Added 'additionalProperties: false'
+> - Listed all missing 'properties' in properties scope
 > 
-> v4
-> * No change
-> 
-> v3
-> * v2 was miss-posted as v3
-> 
-> v2
-> * Add required field as suggested by Ulrich Hecht
-> * Add custom 'select' in that leaves out "simple-pm-bus"
->   to avoid matching on users of the binding documented
->   in simple-pm-bus.yaml, which this binding extends
+> Best regards,
+> Maciej Falkowski
 > ---
->  .../devicetree/bindings/bus/renesas,bsc.txt        | 46 -----------------
->  .../devicetree/bindings/bus/renesas,bsc.yaml       | 60 ++++++++++++++++++++++
->  2 files changed, 60 insertions(+), 46 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/bus/renesas,bsc.txt
->  create mode 100644 Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+>  .../bindings/gpu/samsung-scaler.txt           | 27 -------
+>  .../bindings/gpu/samsung-scaler.yaml          | 81 +++++++++++++++++++
+>  2 files changed, 81 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
 > 
 
 Applied, thanks.
