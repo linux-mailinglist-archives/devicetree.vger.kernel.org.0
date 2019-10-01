@@ -2,111 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E611C3156
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 12:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B9CEC3179
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 12:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730596AbfJAK01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 06:26:27 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:37611 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729892AbfJAK01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 06:26:27 -0400
-Received: by mail-io1-f68.google.com with SMTP id b19so18416985iob.4
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 03:26:25 -0700 (PDT)
+        id S1729869AbfJAKcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 06:32:21 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:39855 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725765AbfJAKcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 06:32:20 -0400
+Received: by mail-wm1-f66.google.com with SMTP id v17so2617658wml.4
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 03:32:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7dJvQt2XADSP58gshAp3mouDAHa/fpvN+3lt4rGrgN0=;
-        b=MW/6KBStB07v5dXk4ZigslPFPugYyqpQ/ScdkbBrgCiKH3o4AbFDQ1qwAd32i3L1Ut
-         qcFaTGc/lhLrM65+N2L6mT4GH2quV73dZ3OW0f6J3hfFwX4x/zkGKr+2BK03MWo28DBy
-         KNoWV2aGvRV8NEKSqzFK7sgsmnnNqr38yDafY=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qa7ARWil+Gf9sud6ZwWxSqOjB3puoeCNU9UJi6QNvHk=;
+        b=gnCF+7PVh8ab0gVFhLAurpYA7CDb19oGezEpAWvuA7WvQitru63Q1+9a8Ntl49D0gX
+         3+vN8FlWdtx/5icsQzhuyfxSXARkdBYSWxfIf+GtCvoU7Dv0Af/JXS8lSoSjX12KGSQN
+         B7YzbgfRquvVDIg8olpnj/EzUus4vaSrGKfHDVkn11m1jSbjKHpGO0bQiwR7EALgt/Nd
+         9Vr1ROAZ1NdcNGtpr3Q8jin48dPs+sEXMLCIoAg9TXPQ98Tavl0aFY9rFOxQ/GejGZjz
+         9xYmVqsjG/QIj6i75j2hDPzFbktOc2GFOBl9UdavMRSOP/FqqdNovYolGZxmuhV3RLSM
+         5CCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7dJvQt2XADSP58gshAp3mouDAHa/fpvN+3lt4rGrgN0=;
-        b=XkrGv7bkM8GgGcmDNk4mXwjLGmvqH4gF0f1IcfbkYZDvaaZ/JrxmzZ5jBP6RkhfOqa
-         GQdoucLVEeHKcenb1+v57NR1lCiqnqRpBRTh4wHseC7wpdzHk08jbYHVSi05Zhwk0i9S
-         ZIuTvIxoOOd/i5KonSdfimbLFPSpqrm6Y8sZoW19EWyFYPOw8bBlIKBQkyvhW7K7OUpq
-         1O1YI7NQ8ervmxXQYApl5d3xxuksa2CIdL4ewBTWXfu7HbIzKDmcpnL3HvICGAoAzOm3
-         UPNpxa5PXWehqDpnHYVCbr1ied0TfPqtRk1BUPtisBQXVaROMzjxbn0meJkN0/8if19N
-         HVmA==
-X-Gm-Message-State: APjAAAVqbUnsQPwZrIaCM6Hdd6ojY9ZfkdLybYcC/KmJQ8sdkyj9mlBm
-        NvtxJaU2OcuZkpjPFhwYmk5XB2U/LocVLmX0vd/B6wkW4u0=
-X-Google-Smtp-Source: APXvYqyE36IiztYNTVOMhjmeAHCFxs73KTI2V5Ei5/NiBQ6XuIFOw+4jhZSV1acSSHmC1qFffPrmWbSyxu+uPa3yx0A=
-X-Received: by 2002:a5d:89da:: with SMTP id a26mr23534629iot.61.1569925585423;
- Tue, 01 Oct 2019 03:26:25 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qa7ARWil+Gf9sud6ZwWxSqOjB3puoeCNU9UJi6QNvHk=;
+        b=gkRd1fgIYBX7nPpD5lTCH5QaZiPgr3tfEO1RE3pJItNNzcoICpDkCLGBbUux2n2LWA
+         m9+GI9jVHbI3/bHbnAcRAiHS541XU57eGKJriHxlJ6YG+XjfP4Kirpg9Rq8t9itrqdPH
+         klk/uPf6TMaFdNgQZpYs4DlqoJL2r6AVMYthX3wCGWQrrREGTeLQ/5EwlwDnFHcSBHcA
+         rPTmq9qo+N6K8xPqFq+FuUD5/GTb+8+KbUKyoOglL1jdzMnDGqZNlFyHXzBD7X68Ct+v
+         Te8d8G22iSp07a26lc61m70BVwTRBDLY5l8bbBMVSRBQZeF+0ZM0q9tSGxfC9eDqCCgW
+         62wg==
+X-Gm-Message-State: APjAAAXixR9j17ijZGWsS7v4KMMP0HDHVIsf4iNL10lGyAX0lTqmn4OD
+        QgSZvX91mFK1+4MZI9nQFnemlw==
+X-Google-Smtp-Source: APXvYqzhgfIIJO6HBAuwZ0yhqRjbelGNUuYo1EivdFb3MbEwst9N1mnI1vyxyVUM3GOPqpF4R0y1dA==
+X-Received: by 2002:a7b:c451:: with SMTP id l17mr2745570wmi.61.1569925938927;
+        Tue, 01 Oct 2019 03:32:18 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id w125sm5293337wmg.32.2019.10.01.03.32.17
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 01 Oct 2019 03:32:17 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: Add Spreadtrum eFuse
+ controller documentation
+To:     Baolin Wang <baolin.wang@linaro.org>, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com, freeman.liu@unisoc.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20f750aab0e16e45fa2d4e32843cee08395c7350.1568094534.git.baolin.wang@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <9da5f5f9-885f-3131-d700-e1d8e2628884@linaro.org>
+Date:   Tue, 1 Oct 2019 11:32:16 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190919052822.10403-1-jagan@amarulasolutions.com>
- <20190919052822.10403-2-jagan@amarulasolutions.com> <6797961.eJj5WIFbM9@phil>
-In-Reply-To: <6797961.eJj5WIFbM9@phil>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 1 Oct 2019 15:56:14 +0530
-Message-ID: <CAMty3ZDKaywoPxCSD-5N2pLjtGmZ-dZ7ZgUOJqiB1V_9rfR26A@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Levin Du <djw@t-chip.com.cn>, Akash Gajjar <akash@openedev.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Da Xue <da@lessconfused.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20f750aab0e16e45fa2d4e32843cee08395c7350.1568094534.git.baolin.wang@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
 
-On Mon, Sep 30, 2019 at 2:51 AM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Hi Jagan,
->
-> Am Donnerstag, 19. September 2019, 07:28:17 CEST schrieb Jagan Teki:
-> > ROC-PC is not able to boot linux console if PWM2_d is
-> > unattached to any pinctrl logic.
-> >
-> > To be precise the linux boot hang with last logs as,
-> > ...
-> > .....
-> > [    0.003367] Console: colour dummy device 80x25
-> > [    0.003788] printk: console [tty0] enabled
-> > [    0.004178] printk: bootconsole [uart8250] disabled
-> >
-> > In ROC-PC the PWM2_d pin is connected to LOG_DVS_PWM of
-> > VDD_LOG. So, for normal working operations this needs to
-> > active and pull-down.
-> >
-> > This patch fix, by attaching pinctrl active and pull-down
-> > the pwm2.
->
-> This looks highly dubious on first glance. The pwm subsystem nor
-> the Rockchip pwm driver do not do any pinctrl handling.
->
-> So I don't really see where that "active" pinctrl state is supposed
-> to come from.
->
-> Comparing with the pwm driver in the vendor tree I see that there
-> is such a state defined there. But that code there also looks strange
-> as that driver never again leaves this active state after entering it.
->
-> Also for example all the Gru devices run with quite a number of pwm-
-> regulators without needing additional fiddling with the pwm itself, so
-> I don't really see why that should be different here.
 
-I deed, I was supposed to think the same. but the vendor kernel dts
-from firefly do follow the pwm2 pinctrl [1]. I wouldn't find any
-information other than this vensor information, ie one of the reason I
-have marked "Levin Du" who initially supported this board.
+On 10/09/2019 06:52, Baolin Wang wrote:
+> From: Freeman Liu <freeman.liu@unisoc.com>
+> 
+> This patch adds the binding documentation for Spreadtrum eFuse controller.
+> 
+> Signed-off-by: Freeman Liu <freeman.liu@unisoc.com>
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
 
-One, think I have seen was this pinctrl active fixed the boot hang.
-any inputs from would be very helpful.
+Applied both,
 
-Levin Du, any inputs?
-
-[1] https://github.com/FireflyTeam/kernel/blob/stable-4.4-rk3399-linux/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi#L1184
+Thanks,
+srini
+> Changes from v1:
+>   - Add reviewed tag from Rob.
+> ---
+>   .../devicetree/bindings/nvmem/sprd-efuse.txt       |   39 ++++++++++++++++++++
+>   1 file changed, 39 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/nvmem/sprd-efuse.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/sprd-efuse.txt b/Documentation/devicetree/bindings/nvmem/sprd-efuse.txt
+> new file mode 100644
+> index 0000000..96b6fee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/sprd-efuse.txt
+> @@ -0,0 +1,39 @@
+> += Spreadtrum eFuse device tree bindings =
+> +
+> +Required properties:
+> +- compatible: Should be "sprd,ums312-efuse".
+> +- reg: Specify the address offset of efuse controller.
+> +- clock-names: Should be "enable".
+> +- clocks: The phandle and specifier referencing the controller's clock.
+> +- hwlocks: Reference to a phandle of a hwlock provider node.
+> +
+> += Data cells =
+> +Are child nodes of eFuse, bindings of which as described in
+> +bindings/nvmem/nvmem.txt
+> +
+> +Example:
+> +
+> +	ap_efuse: efuse@32240000 {
+> +		compatible = "sprd,ums312-efuse";
+> +		reg = <0 0x32240000 0 0x10000>;
+> +		clock-names = "enable";
+> +		hwlocks = <&hwlock 8>;
+> +		clocks = <&aonapb_gate CLK_EFUSE_EB>;
+> +
+> +		/* Data cells */
+> +		thermal_calib: calib@10 {
+> +			reg = <0x10 0x2>;
+> +		};
+> +	};
+> +
+> += Data consumers =
+> +Are device nodes which consume nvmem data cells.
+> +
+> +Example:
+> +
+> +	thermal {
+> +		...
+> +
+> +		nvmem-cells = <&thermal_calib>;
+> +		nvmem-cell-names = "calibration";
+> +	};
+> 
