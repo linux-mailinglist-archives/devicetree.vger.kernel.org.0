@@ -2,198 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB796C2B7C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 03:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98605C2B94
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 03:13:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727669AbfJABFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 21:05:40 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:14768 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727320AbfJABFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Sep 2019 21:05:40 -0400
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x9112B0t102786;
-        Mon, 30 Sep 2019 21:05:02 -0400
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2vbsx9cd52-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Sep 2019 21:05:02 -0400
-Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.27/8.16.0.27) with SMTP id x9113SJm105324;
-        Mon, 30 Sep 2019 21:05:01 -0400
-Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2vbsx9cd4n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Sep 2019 21:05:01 -0400
-Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
-        by ppma02dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x9113370014972;
-        Tue, 1 Oct 2019 01:05:00 GMT
-Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
-        by ppma02dal.us.ibm.com with ESMTP id 2v9y57d0gq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Oct 2019 01:05:00 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x9114wdU55968128
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 1 Oct 2019 01:04:58 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 31406C6057;
-        Tue,  1 Oct 2019 01:04:58 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 1F9F3C605A;
-        Tue,  1 Oct 2019 01:04:53 +0000 (GMT)
-Received: from morokweng.localdomain (unknown [9.85.220.184])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Tue,  1 Oct 2019 01:04:52 +0000 (GMT)
-References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com> <1569594360-7141-4-git-send-email-nayna@linux.ibm.com>
-User-agent: mu4e 1.2.0; emacs 26.2
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Nayna Jain <nayna@linux.ibm.com>
-Cc:     linuxppc-dev@ozlabs.org, linux-efi@vger.kernel.org,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jeremy Kerr <jk@ozlabs.org>,
-        Matthew Garret <matthew.garret@nebula.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Claudio Carvalho <cclaudio@linux.ibm.com>,
-        George Wilson <gcwilson@linux.ibm.com>,
-        Elaine Palmer <erpalmer@us.ibm.com>,
-        Eric Ricther <erichte@linux.ibm.com>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v6 3/9] powerpc: add support to initialize ima policy rules
-In-reply-to: <1569594360-7141-4-git-send-email-nayna@linux.ibm.com>
-Date:   Mon, 30 Sep 2019 22:04:48 -0300
-Message-ID: <877e5pwa1b.fsf@morokweng.localdomain>
+        id S1726590AbfJABNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 21:13:17 -0400
+Received: from mga12.intel.com ([192.55.52.136]:64309 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726157AbfJABNR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 21:13:17 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Sep 2019 18:13:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,569,1559545200"; 
+   d="scan'208";a="191307813"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga007.fm.intel.com with ESMTP; 30 Sep 2019 18:13:16 -0700
+Received: from [10.226.38.18] (unknown [10.226.38.18])
+        by linux.intel.com (Postfix) with ESMTP id 927655803E4;
+        Mon, 30 Sep 2019 18:13:14 -0700 (PDT)
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: Add support for cadence-qspi IP
+ Intel LGM SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, mark.rutland@arm.com,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+References: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190916073843.39618-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190930223640.GA18491@bogus>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <e70c6f98-7e0f-97f2-bede-00de4389f825@linux.intel.com>
+Date:   Tue, 1 Oct 2019 09:13:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-30_14:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1908290000 definitions=main-1910010009
+In-Reply-To: <20190930223640.GA18491@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-Hello,
+    Thank you for the review comments.
 
-Nayna Jain <nayna@linux.ibm.com> writes:
-
-> PowerNV systems uses kernel based bootloader, thus its secure boot
-> implementation uses kernel IMA security subsystem to verify the kernel
-> before kexec. Since the verification policy might differ based on the
-> secure boot mode of the system, the policies are defined at runtime.
+On 1/10/2019 6:36 AM, Rob Herring wrote:
+> On Mon, Sep 16, 2019 at 03:38:42PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>
+>> On Intel Lightening Mountain(LGM) SoCs QSPI controller support
+>> to QSPI-NAND flash. This introduces to device tree binding
+>> documentation for Cadence-QSPI controller and spi-nand flash.
+>>
+>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> ---
+>>   .../devicetree/bindings/spi/cadence,qspi-nand.yaml | 84 ++++++++++++++++++++++
+>>   1 file changed, 84 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml b/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+>> new file mode 100644
+>> index 000000000000..9aae4c1459cc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+>> @@ -0,0 +1,84 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/spi/cadence,qspi-nand.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Cadence QSPI Flash Controller on Intel's SoC
+>> +
+>> +maintainers:
+>> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> +
+>> +allOf:
+>> +  - $ref: "spi-controller.yaml#"
+>> +
+>> +description: |
+>> +  The Cadence QSPI is a controller optimized for communication with SPI
+>> +  FLASH memories, without DMA support on Intel's SoC.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: cadence,lgm-qspi
+> Vendor here should be 'intel'. Perhaps the binding should be shared too
+> like the driver.
 >
-> This patch implements the arch-specific support to define the IMA policy
-> rules based on the runtime secure boot mode of the system.
+> Plus the vendor prefix for Cadence is cdns.
+Agreed!, will update.
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  fifo-depth:
+>> +    maxItems: 1
+>> +
+> This is vendor specific, so needs a vendor prefix, type, and
+> description.
+agreed!
+>> +  fifo-width:
+>> +    maxItems: 1
+> Same
 >
-> This patch provides arch-specific IMA policies if PPC_SECURE_BOOT
-> config is enabled.
+>> +
+>> +  qspi-phyaddr:
+>> +    maxItems: 1
+> Same
 >
-> Signed-off-by: Nayna Jain <nayna@linux.ibm.com>
-> ---
->  arch/powerpc/Kconfig           |  2 ++
->  arch/powerpc/kernel/Makefile   |  2 +-
->  arch/powerpc/kernel/ima_arch.c | 33 +++++++++++++++++++++++++++++++++
->  include/linux/ima.h            |  3 ++-
->  4 files changed, 38 insertions(+), 2 deletions(-)
->  create mode 100644 arch/powerpc/kernel/ima_arch.c
->
-> diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
-> index 2c54beb29f1a..54eda07c74e5 100644
-> --- a/arch/powerpc/Kconfig
-> +++ b/arch/powerpc/Kconfig
-> @@ -916,6 +916,8 @@ config PPC_SECURE_BOOT
->  	prompt "Enable secure boot support"
->  	bool
->  	depends on PPC_POWERNV
-> +	depends on IMA
-> +	depends on IMA_ARCH_POLICY
->  	help
->  	  Systems with firmware secure boot enabled needs to define security
->  	  policies to extend secure boot to the OS. This config allows user
-> diff --git a/arch/powerpc/kernel/Makefile b/arch/powerpc/kernel/Makefile
-> index 875b0785a20e..7156ac1fc956 100644
-> --- a/arch/powerpc/kernel/Makefile
-> +++ b/arch/powerpc/kernel/Makefile
-> @@ -157,7 +157,7 @@ endif
->  obj-$(CONFIG_EPAPR_PARAVIRT)	+= epapr_paravirt.o epapr_hcalls.o
->  obj-$(CONFIG_KVM_GUEST)		+= kvm.o kvm_emul.o
->
-> -obj-$(CONFIG_PPC_SECURE_BOOT)	+= secure_boot.o
-> +obj-$(CONFIG_PPC_SECURE_BOOT)	+= secure_boot.o ima_arch.o
->
->  # Disable GCOV, KCOV & sanitizers in odd or sensitive code
->  GCOV_PROFILE_prom_init.o := n
-> diff --git a/arch/powerpc/kernel/ima_arch.c b/arch/powerpc/kernel/ima_arch.c
-> new file mode 100644
-> index 000000000000..39401b67f19e
-> --- /dev/null
-> +++ b/arch/powerpc/kernel/ima_arch.c
-> @@ -0,0 +1,33 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2019 IBM Corporation
-> + * Author: Nayna Jain
-> + */
-> +
-> +#include <linux/ima.h>
-> +#include <asm/secure_boot.h>
-> +
-> +bool arch_ima_get_secureboot(void)
-> +{
-> +	return is_powerpc_os_secureboot_enabled();
-> +}
-> +
-> +/* Defines IMA appraise rules for secureboot */
-> +static const char *const arch_rules[] = {
-> +	"appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig|modsig",
-> +#if !IS_ENABLED(CONFIG_MODULE_SIG)
-> +	"appraise func=MODULE_CHECK appraise_type=imasig|modsig",
-> +#endif
-> +	NULL
-> +};
-> +
-> +/*
-> + * Returns the relevant IMA arch policies based on the system secureboot state.
-> + */
-> +const char *const *arch_get_ima_policy(void)
-> +{
-> +	if (is_powerpc_os_secureboot_enabled())
-> +		return arch_rules;
-> +
-> +	return NULL;
-> +}
+>> +
+>> +  qspi-phymask:
+>> +    maxItems: 1
+> Same
+will update all the above.
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+> Need to define what each clock is when there is more than 1.
+Sure, will update.
+>> +
+>> +  clocks-names:
+>> +    maxItems: 2
+> Need to define the strings.
+Noted, will update.
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - fifo-depth
+>> +  - fifo-width
+>> +  - qspi-phyaddr
+>> +  - qspi-phymask
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +
+>> +examples:
+>> +  - |
+>> +    qspi@ec000000 {
+> spi@...
 
-If CONFIG_MODULE_SIG is enabled but module signatures aren't enforced,
-then IMA won't enforce module signature either. x86's
-arch_get_ima_policy() calls set_module_sig_enforced(). Doesn't the
-powerpc version need to do that as well?
+Controller is qspi , so that have updated.
 
-On the flip side, if module signatures are enforced by the module
-subsystem then IMA will verify the signature a second time since there's
-no sharing of signature verification results between the module
-subsystem and IMA (this was observed by Mimi).
-
-IMHO this is a minor issue, since module loading isn't a hot path and
-the duplicate work shouldn't impact anything. But it could be avoided by
-having a NULL entry in arch_rules, which arch_get_ima_policy() would
-dynamically update with the "appraise func=MODULE_CHECK" rule if
-is_module_sig_enforced() is true.
-
---
-Thiago Jung Bauermann
-IBM Linux Technology Center
+With Best Regards
+Vadivel Murugan R
+>> +          compatible = "cadence,qspi-nand";
+>> +          reg = <0xec000000 0x100>;
+>> +          fifo-depth = <128>;
+>> +          fifo-width = <4>;
+>> +          qspi-phyaddr = <0xf4000000>;
+>> +          qspi-phymask = <0xffffffff>;
+>> +          clocks = <&cgu0 LGM_CLK_QSPI>, <&cgu0 LGM_GCLK_QSPI>;
+>> +          clock-names = "freq", "qspi";
+>> +          resets = <&rcu0 0x10 1>;
+>> +          reset-names = "qspi";
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +
+>> +          flash: flash@1 {
+>> +              compatible = "spi-nand";
+>> +              reg = <1>;
+>> +              spi-max-frequency = <10000000>;
+>> +          };
+>> +    };
+>> +
+>> -- 
+>> 2.11.0
+>>
