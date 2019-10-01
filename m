@@ -2,98 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D5FCC414A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 21:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD8C5C415B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 21:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726888AbfJATqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 15:46:50 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:36495 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726216AbfJATqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 15:46:49 -0400
-Received: by mail-io1-f66.google.com with SMTP id b136so51161658iof.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 12:46:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ezIl2rVOYhRKOvRq4MrUQe29fvd7yUyJUEWRFAhpnt0=;
-        b=e2mpUCC48bvayHuosTQRwn76fYaJRvUOiMdLE//GZ8dT7W3TjunXwZ1bpGJGcg4Nki
-         5Le+Sqq6KSofb/nxGerlQWa7OxXcinIBxu+woGTI5ta92J0n/h3BcIeJsVXb26h8VHNb
-         d6MjUtVvxfat6NPoDde1GqoEmX6dhSvd3ZArM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ezIl2rVOYhRKOvRq4MrUQe29fvd7yUyJUEWRFAhpnt0=;
-        b=X9yjQfEc725UF/FUWd4EmsIYwgKREK2kP+BqbnquK+NLcZzICQzU48Z6KuEb5GabKS
-         hvO5whSsqhysr8TUyDuSuOyPbmbciUeJft8mqKX0BHQXHj1VKmlZ0a5BgY34PUyQsSP0
-         lYJx5Y8s/ZJD6nPh6kbJDoFfHE/gqEy8qVS1TKeSAUIGFSn2/VsyC053n160BcYh5xYO
-         cV3861b7DnKeXH0eElxkB0Aj6/mPO9D/FZx4bVsgl5OJMXfrC3xto46XnZesryvSG1OR
-         qO73Y2jc7N4ZRCjsZOfhTfCT5His2WLuo1F1N8xjTbUI53Jr/TtJXXccFk2FHF2CWmG7
-         yVYA==
-X-Gm-Message-State: APjAAAWjpMpd/ulRMgP6tuboxmocp7Hy3w5SoZaLihVTM2+0wnZ6wdp5
-        b7WCaJJ0MaOLyC5/49QeSAC3u3UdTRM=
-X-Google-Smtp-Source: APXvYqxMUYfkSUuHoIPcGZ5uMRh0Z/+WdTKJ7WqgM49y0mu8/d2QZEkJf5E+x9MWZJ+pQpN1aRR4AQ==
-X-Received: by 2002:a92:b752:: with SMTP id c18mr28375635ilm.42.1569959208793;
-        Tue, 01 Oct 2019 12:46:48 -0700 (PDT)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
-        by smtp.gmail.com with ESMTPSA id t4sm6448047iln.82.2019.10.01.12.46.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Oct 2019 12:46:47 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id a1so51208823ioc.6
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 12:46:47 -0700 (PDT)
-X-Received: by 2002:a6b:b213:: with SMTP id b19mr6360479iof.58.1569959207391;
- Tue, 01 Oct 2019 12:46:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190926124115.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid>
- <20191001174104.GD4786@sirena.co.uk>
-In-Reply-To: <20191001174104.GD4786@sirena.co.uk>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 1 Oct 2019 12:46:35 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UE4K8Oj99KA5HNBxX0pXu11bkHjdwcmwwW3Z-+_nDiLA@mail.gmail.com>
-Message-ID: <CAD=FV=UE4K8Oj99KA5HNBxX0pXu11bkHjdwcmwwW3Z-+_nDiLA@mail.gmail.com>
-Subject: Re: [PATCH] regulator: Document "regulator-boot-on" binding more thoroughly
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        ckeepax@opensource.cirrus.com,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726010AbfJATys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 15:54:48 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:56796 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725991AbfJATys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 15:54:48 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 22DBC6119F; Tue,  1 Oct 2019 19:54:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569959687;
+        bh=ITDIlgvxse6MjpjysafSlSfp4MuhJO6HNe8oCAYxjUg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eToC+j3wx1Xok76D0DVTygPL+tLjCUmndmggXUGgqYCuNvR5TTiSZz2AC1PwyAr7h
+         WV2LIEpK2/aynfJDDY8eXIMIl2wdpDGTUXq7p0JpyzyJnVY+UIlBFpu9+SqOJdFbhr
+         LE/e8OCLzXtuFe8JAskCAycCq9NmtTU93wqRMH6k=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from jhugo-perf-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jhugo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 50233608CC;
+        Tue,  1 Oct 2019 19:54:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1569959686;
+        bh=ITDIlgvxse6MjpjysafSlSfp4MuhJO6HNe8oCAYxjUg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XXezaJqnq1avK95vQS5d0ZSzs/77++FRLSFSrvd+/teqqVpQ2HdkwL+G7fIPTn6th
+         MljabknS4pe2XOtFMThl6ctBkTPQg/8Mw3egX+P3aBIqMO4lekL1LTSR7sfkllpX7P
+         AuAvUT6zh3Qe2MrM7pps6QxjC4dKxhUDpt8ePGCM=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 50233608CC
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
+From:   Jeffrey Hugo <jhugo@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        marc.w.gonzalez@free.fr, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeffrey Hugo <jhugo@codeaurora.org>
+Subject: [PATCH v6 0/6] MSM8998 Multimedia Clock Controller
+Date:   Tue,  1 Oct 2019 13:54:16 -0600
+Message-Id: <1569959656-5202-1-git-send-email-jhugo@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The multimedia clock controller (mmcc) is the main clock controller for
+the multimedia subsystem and is required to enable things like display and
+camera.
 
-On Tue, Oct 1, 2019 at 10:41 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Thu, Sep 26, 2019 at 12:41:18PM -0700, Douglas Anderson wrote:
->
-> > -    description: bootloader/firmware enabled regulator
-> > +    description: bootloader/firmware enabled regulator.
-> > +      It's expected that this regulator was left on by the bootloader.
-> > +      If the bootloader didn't leave it on then OS should turn it on
-> > +      at boot but shouldn't prevent it from being turned off later.
->
-> This is good...
->
-> > +      This property is intended to only be used for regulators where
-> > +      Linux cannot read the state of the regulator at bootup.
->
-> ...but we shouldn't say "Linux" here since the DT binding is for all
-> OSs, not just Linux.  I'd say "software" instead.  Really the
-> expectation is that things wouldn't support readback at all, though it's
-> possible there's some weird hardware out there that will support
-> readback some of the time I guess.
+v6:
+-drop clk_get from mmcc clock provider
 
-Argh.  I knew not to mention "Linux" and kept it in mind to write the
-first part.  ...but then I must have just spaced.  I also removed the
-"at bootup" part since it seemed better.
+v5:
+-handle the case where gcc uses rpmcc for xo, but the link is not specified in dt
+-have gcc select rpmcc
 
--Doug
+v4:
+-fix makefile to use correct config item
+-pick up tags
+-fix ordering of clocks and clock-names in dt
+-drop MODULE_ALIAS
+-wait for xo in mmcc since that was found to be useful in some debug configs
+
+v3:
+-Rebase onto linux-next to get the final version of the clk parent rewrite
+series
+-Moved the bindings header to the bindings patch per Rob
+-Made xo manditory for GCC to work around the lack of clk orphan probe defer
+to avoid the uart console glitch
+
+v2:
+-Rebased on the "Rewrite clk parent handling" series and updated to the clk init
+mechanisms introduced there.
+-Marked XO clk as CLK_IGNORE_UNUSED to avoid the concern about the XO going away
+"incorrectly" during late init
+-Corrected the name of the XO clock to "xo"
+-Dropped the fake XO clock in GCC to prevent a namespace conflict
+-Fully enumerated the external clocks (DSI PLLs, etc) in the DT binding
+-Cleaned up the weird newlines in the added DT node
+-Added DT header file to msm8998 DT for future clients
+
+
+Jeffrey Hugo (6):
+  dt-bindings: clock: Document external clocks for MSM8998 gcc
+  arm64: dts: msm8998: Add xo clock to gcc node
+  clk: qcom: smd: Add XO clock for MSM8998
+  dt-bindings: clock: Add support for the MSM8998 mmcc
+  clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver
+  arm64: dts: qcom: msm8998: Add mmcc node
+
+ .../devicetree/bindings/clock/qcom,gcc.txt    |   10 +
+ .../devicetree/bindings/clock/qcom,mmcc.txt   |   21 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |   16 +
+ drivers/clk/qcom/Kconfig                      |   10 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-smd-rpm.c                |   24 +-
+ drivers/clk/qcom/gcc-msm8998.c                |   29 +-
+ drivers/clk/qcom/mmcc-msm8998.c               | 2914 +++++++++++++++++
+ include/dt-bindings/clock/qcom,mmcc-msm8998.h |  210 ++
+ 9 files changed, 3214 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/clk/qcom/mmcc-msm8998.c
+ create mode 100644 include/dt-bindings/clock/qcom,mmcc-msm8998.h
+
+-- 
+2.17.1
+
