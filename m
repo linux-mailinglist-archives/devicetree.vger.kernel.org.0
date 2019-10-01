@@ -2,67 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0316CC2AA5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 01:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB796C2B7C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 03:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731831AbfI3XMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Sep 2019 19:12:16 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:33074 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730474AbfI3XMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Sep 2019 19:12:16 -0400
-Received: by mail-ot1-f67.google.com with SMTP id g103so2586288otg.0;
-        Mon, 30 Sep 2019 16:12:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=29C9vy1+vRFmsiLAM5YbXIvS9J+pKIiK5hofpG5dRu4=;
-        b=WLbfshd7uHszDGWlcMtaOZMyhRm71w/lbS52hT5Y8bszac3wYv6j+URmHC9N34kq8U
-         vHmsAAxnBr8twEc6mxm8lHyXRrawn/2PVdVFIHa8q3R5rsFptcIqanir+DtAs8P0VLFo
-         UrceVAJU62Y6N8TKZe/P+Azn77piZ+oLr+33sngC8OFT4f2BV0BHNaAd+FZmJp3+vHgz
-         UtrfW5yZx8px/do6yH0PrzQcLuhUmF4raAMos8iAgjCw5kxyy8H4FB9psj2ubpEmzOnT
-         tbTizq4lqdqu37oVmf1QhnJ7/vmDgjNAr/9XX3eQNrHapkhFu1Arz/f/3n7FvfSYdVbd
-         gLgQ==
-X-Gm-Message-State: APjAAAWrgkRPVu02txCQvpI87BW34I1rTpfBLSX51AbX7DCjjBtQpYW/
-        l/UrZVIoMabvn2Qddde0bw==
-X-Google-Smtp-Source: APXvYqzRLGQ2rrHTbYhxu1DTsUYfWDyIMzhjaBhm+avNIL/JcLPbhVGSpD0a7OXYgNdu3nuGiINX/w==
-X-Received: by 2002:a9d:378a:: with SMTP id x10mr16253997otb.222.1569885135819;
-        Mon, 30 Sep 2019 16:12:15 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q124sm4626835oia.5.2019.09.30.16.12.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2019 16:12:15 -0700 (PDT)
-Date:   Mon, 30 Sep 2019 18:12:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-        dmitry.torokhov@gmail.com, bparrot@ti.com,
-        andy.shevchenko@gmail.com, simon.budig@kernelconcepts.de,
-        hdegoede@redhat.com, fcooper@ti.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 5/6] dt-bindings: Input: edt-ft5x06 - add vdd supply
- documentation
-Message-ID: <20190930231214.GA6748@bogus>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-6-m.felsch@pengutronix.de>
+        id S1727669AbfJABFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Sep 2019 21:05:40 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:14768 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727320AbfJABFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Sep 2019 21:05:40 -0400
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x9112B0t102786;
+        Mon, 30 Sep 2019 21:05:02 -0400
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2vbsx9cd52-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Sep 2019 21:05:02 -0400
+Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.27/8.16.0.27) with SMTP id x9113SJm105324;
+        Mon, 30 Sep 2019 21:05:01 -0400
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2vbsx9cd4n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Sep 2019 21:05:01 -0400
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x9113370014972;
+        Tue, 1 Oct 2019 01:05:00 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+        by ppma02dal.us.ibm.com with ESMTP id 2v9y57d0gq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Oct 2019 01:05:00 +0000
+Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
+        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x9114wdU55968128
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 1 Oct 2019 01:04:58 GMT
+Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 31406C6057;
+        Tue,  1 Oct 2019 01:04:58 +0000 (GMT)
+Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1F9F3C605A;
+        Tue,  1 Oct 2019 01:04:53 +0000 (GMT)
+Received: from morokweng.localdomain (unknown [9.85.220.184])
+        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Tue,  1 Oct 2019 01:04:52 +0000 (GMT)
+References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com> <1569594360-7141-4-git-send-email-nayna@linux.ibm.com>
+User-agent: mu4e 1.2.0; emacs 26.2
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Nayna Jain <nayna@linux.ibm.com>
+Cc:     linuxppc-dev@ozlabs.org, linux-efi@vger.kernel.org,
+        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Jeremy Kerr <jk@ozlabs.org>,
+        Matthew Garret <matthew.garret@nebula.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Claudio Carvalho <cclaudio@linux.ibm.com>,
+        George Wilson <gcwilson@linux.ibm.com>,
+        Elaine Palmer <erpalmer@us.ibm.com>,
+        Eric Ricther <erichte@linux.ibm.com>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v6 3/9] powerpc: add support to initialize ima policy rules
+In-reply-to: <1569594360-7141-4-git-send-email-nayna@linux.ibm.com>
+Date:   Mon, 30 Sep 2019 22:04:48 -0300
+Message-ID: <877e5pwa1b.fsf@morokweng.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190917155808.27818-6-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-09-30_14:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1908290000 definitions=main-1910010009
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Sep 2019 17:58:07 +0200, Marco Felsch wrote:
-> Add DT documentation for the optional regulator.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt         | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hello,
+
+Nayna Jain <nayna@linux.ibm.com> writes:
+
+> PowerNV systems uses kernel based bootloader, thus its secure boot
+> implementation uses kernel IMA security subsystem to verify the kernel
+> before kexec. Since the verification policy might differ based on the
+> secure boot mode of the system, the policies are defined at runtime.
+>
+> This patch implements the arch-specific support to define the IMA policy
+> rules based on the runtime secure boot mode of the system.
+>
+> This patch provides arch-specific IMA policies if PPC_SECURE_BOOT
+> config is enabled.
+>
+> Signed-off-by: Nayna Jain <nayna@linux.ibm.com>
+> ---
+>  arch/powerpc/Kconfig           |  2 ++
+>  arch/powerpc/kernel/Makefile   |  2 +-
+>  arch/powerpc/kernel/ima_arch.c | 33 +++++++++++++++++++++++++++++++++
+>  include/linux/ima.h            |  3 ++-
+>  4 files changed, 38 insertions(+), 2 deletions(-)
+>  create mode 100644 arch/powerpc/kernel/ima_arch.c
+>
+> diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
+> index 2c54beb29f1a..54eda07c74e5 100644
+> --- a/arch/powerpc/Kconfig
+> +++ b/arch/powerpc/Kconfig
+> @@ -916,6 +916,8 @@ config PPC_SECURE_BOOT
+>  	prompt "Enable secure boot support"
+>  	bool
+>  	depends on PPC_POWERNV
+> +	depends on IMA
+> +	depends on IMA_ARCH_POLICY
+>  	help
+>  	  Systems with firmware secure boot enabled needs to define security
+>  	  policies to extend secure boot to the OS. This config allows user
+> diff --git a/arch/powerpc/kernel/Makefile b/arch/powerpc/kernel/Makefile
+> index 875b0785a20e..7156ac1fc956 100644
+> --- a/arch/powerpc/kernel/Makefile
+> +++ b/arch/powerpc/kernel/Makefile
+> @@ -157,7 +157,7 @@ endif
+>  obj-$(CONFIG_EPAPR_PARAVIRT)	+= epapr_paravirt.o epapr_hcalls.o
+>  obj-$(CONFIG_KVM_GUEST)		+= kvm.o kvm_emul.o
+>
+> -obj-$(CONFIG_PPC_SECURE_BOOT)	+= secure_boot.o
+> +obj-$(CONFIG_PPC_SECURE_BOOT)	+= secure_boot.o ima_arch.o
+>
+>  # Disable GCOV, KCOV & sanitizers in odd or sensitive code
+>  GCOV_PROFILE_prom_init.o := n
+> diff --git a/arch/powerpc/kernel/ima_arch.c b/arch/powerpc/kernel/ima_arch.c
+> new file mode 100644
+> index 000000000000..39401b67f19e
+> --- /dev/null
+> +++ b/arch/powerpc/kernel/ima_arch.c
+> @@ -0,0 +1,33 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2019 IBM Corporation
+> + * Author: Nayna Jain
+> + */
+> +
+> +#include <linux/ima.h>
+> +#include <asm/secure_boot.h>
+> +
+> +bool arch_ima_get_secureboot(void)
+> +{
+> +	return is_powerpc_os_secureboot_enabled();
+> +}
+> +
+> +/* Defines IMA appraise rules for secureboot */
+> +static const char *const arch_rules[] = {
+> +	"appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig|modsig",
+> +#if !IS_ENABLED(CONFIG_MODULE_SIG)
+> +	"appraise func=MODULE_CHECK appraise_type=imasig|modsig",
+> +#endif
+> +	NULL
+> +};
+> +
+> +/*
+> + * Returns the relevant IMA arch policies based on the system secureboot state.
+> + */
+> +const char *const *arch_get_ima_policy(void)
+> +{
+> +	if (is_powerpc_os_secureboot_enabled())
+> +		return arch_rules;
+> +
+> +	return NULL;
+> +}
+
+If CONFIG_MODULE_SIG is enabled but module signatures aren't enforced,
+then IMA won't enforce module signature either. x86's
+arch_get_ima_policy() calls set_module_sig_enforced(). Doesn't the
+powerpc version need to do that as well?
+
+On the flip side, if module signatures are enforced by the module
+subsystem then IMA will verify the signature a second time since there's
+no sharing of signature verification results between the module
+subsystem and IMA (this was observed by Mimi).
+
+IMHO this is a minor issue, since module loading isn't a hot path and
+the duplicate work shouldn't impact anything. But it could be avoided by
+having a NULL entry in arch_rules, which arch_get_ima_policy() would
+dynamically update with the "appraise func=MODULE_CHECK" rule if
+is_module_sig_enforced() is true.
+
+--
+Thiago Jung Bauermann
+IBM Linux Technology Center
