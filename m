@@ -2,19 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C02BC2EF7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 10:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40088C2F03
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 10:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732818AbfJAIgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 04:36:06 -0400
-Received: from hermes.aosc.io ([199.195.250.187]:51942 "EHLO hermes.aosc.io"
+        id S1728688AbfJAIlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 04:41:06 -0400
+Received: from hermes.aosc.io ([199.195.250.187]:52090 "EHLO hermes.aosc.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727957AbfJAIgG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 04:36:06 -0400
-X-Greylist: delayed 345 seconds by postgrey-1.27 at vger.kernel.org; Tue, 01 Oct 2019 04:36:05 EDT
+        id S1726672AbfJAIlG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 04:41:06 -0400
 Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
-        by hermes.aosc.io (Postfix) with ESMTPSA id F21C082889;
-        Tue,  1 Oct 2019 08:30:15 +0000 (UTC)
+        by hermes.aosc.io (Postfix) with ESMTPSA id C4D1A82B04;
+        Tue,  1 Oct 2019 08:30:57 +0000 (UTC)
 From:   Icenowy Zheng <icenowy@aosc.io>
 To:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
@@ -25,10 +24,12 @@ To:     "David S . Miller" <davem@davemloft.net>,
         Heiner Kallweit <hkallweit1@gmail.com>
 Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 0/3] Pine64+ specific hacks for RTL8211E Ethernet PHY
-Date:   Tue,  1 Oct 2019 16:29:09 +0800
-Message-Id: <20191001082912.12905-1-icenowy@aosc.io>
+        linux-sunxi@googlegroups.com, Icenowy Zheng <icenowy@aosc.xyz>
+Subject: [PATCH 1/3] dt-bindings: add binding for RTL8211E Ethernet PHY
+Date:   Tue,  1 Oct 2019 16:29:10 +0800
+Message-Id: <20191001082912.12905-2-icenowy@aosc.io>
+In-Reply-To: <20191001082912.12905-1-icenowy@aosc.io>
+References: <20191001082912.12905-1-icenowy@aosc.io>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -36,26 +37,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There're some Pine64+ boards known to have broken RTL8211E chips, and
-a hack is given by Pine64+, which is said to be from Realtek.
+From: Icenowy Zheng <icenowy@aosc.xyz>
 
-This patchset adds the hack.
+Some RTL8211E Ethernet PHY have an issue that needs a workaround, and a
+way to indicate the need of the workaround should be added.
 
-The hack is taken from U-Boot, and it contains magic numbers without
-any document.
+Add the binding for a DT property that indicates this workaround.
 
-Icenowy Zheng (3):
-  dt-bindings: add binding for RTL8211E Ethernet PHY
-  net: phy: realtek: add config hack for broken RTL8211E on Pine64+
-    boards
-  arm64: allwinner: a64: dts: apply hack for RTL8211E on Pine64+
-
+Signed-off-by: Icenowy Zheng <icenowy@aosc.xyz>
+---
  .../bindings/net/realtek,rtl8211e.yaml        | 23 +++++++++++++++++++
- .../dts/allwinner/sun50i-a64-pine64-plus.dts  |  1 +
- drivers/net/phy/realtek.c                     | 14 +++++++++++
- 3 files changed, 38 insertions(+)
+ 1 file changed, 23 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/net/realtek,rtl8211e.yaml
 
+diff --git a/Documentation/devicetree/bindings/net/realtek,rtl8211e.yaml b/Documentation/devicetree/bindings/net/realtek,rtl8211e.yaml
+new file mode 100644
+index 000000000000..264e93cafbec
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/realtek,rtl8211e.yaml
+@@ -0,0 +1,23 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/realtek,rtl8211e.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Realtek RTL8211E Ethernet PHY
++
++properties:
++  realtek,config-magic-for-pine64:
++    description:
++      Enabling specific hacks for some broken RTL8211E chips known to be
++      used by Pine64+ boards.
++
++examples:
++  - |
++    &mdio {
++        ext_phy: ethernet-phy@0 {
++            compatible = "ethernet-phy-ieee802.3-c22";
++            reg = <0>;
++            realtek,config-magic-for-pine64;
++        };
++    };
 -- 
 2.21.0
 
