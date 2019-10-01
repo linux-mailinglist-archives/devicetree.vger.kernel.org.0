@@ -2,82 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B4D0C325F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B6EC32A6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:39:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731577AbfJALWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 07:22:35 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37536 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731463AbfJALWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:22:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=h0oq3hgGKfDpPykm12Ho/6mx7zx/DDd3ddTmuUJvbLg=; b=UuD2xK4+FD+o6WJLN+Z/Qktx9
-        XDiLn0jqNIDd163JcaLJ/MExArYp/HdllmlH9PFpC27RB/XLKqkfDAJwXB7At1ux1xpmBz343DEVl
-        4lbddFgH6aPU1e0YyeDXREXxUaBwBsmge0wnxWy1pqyZCWBDG8meMf2b38yWO0kuGR43k=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iFGEe-0004Ox-O5; Tue, 01 Oct 2019 11:22:28 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 2E5FD274299F; Tue,  1 Oct 2019 12:22:28 +0100 (BST)
-Date:   Tue, 1 Oct 2019 12:22:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     krzk@kernel.org, lgirdwood@gmail.com,
-        ckeepax@opensource.cirrus.com, sbkim73@samsung.com,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com
-Subject: Re: [PATCH v2 08/10] ASoC: samsung: Rename Arndale card driver
-Message-ID: <20191001112228.GC5618@sirena.co.uk>
-References: <20190920130218.32690-1-s.nawrocki@samsung.com>
- <CGME20190920130323eucas1p218c6822eca3869eb0d3b7380497bbca4@eucas1p2.samsung.com>
- <20190920130218.32690-9-s.nawrocki@samsung.com>
+        id S1732978AbfJALjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 07:39:08 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:32943 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732944AbfJALjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:39:06 -0400
+Received: by mail-oi1-f196.google.com with SMTP id e18so14100257oii.0;
+        Tue, 01 Oct 2019 04:39:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8YiTod9K8O9GPcKF5VY5ZHEme9jFCDH+v37G0Q0Kn6g=;
+        b=s4+wiThD1RF1csTp80qem7PDNAxR3S2R3hcPuqypVAPFkhgKYS1TGZghlkUENKBm8o
+         SXZhd00yGZZkNLT09Tp5nvAycEDUPap15JnFsXqS3JZyo8FioRRLe2v6xJNr70LffAtP
+         u3k3/zDXVq5HRT0JmOot//tb/VSYr49JGtFue5PkJtrJ7RQYmih7KR4w+juxo9614p+d
+         P192ey4QnfDZzQFbv6wRRxIIgFr219fMBxQmVXV9DQeOe3brDhYnNaHD5CAA240VINt4
+         2mj4eQbJDz4TTz89C5q2xJRAxvxgMNYrgIwAkrEoJykumPgVivcnsBDTVtmQ5cNFg24U
+         rLOw==
+X-Gm-Message-State: APjAAAWOA2Yja7ddzms5jmCXmU7Jh0sTCs3bj/8zipE4Bs7R76WOd9H7
+        SW1uAScSbs9/VyehA4uoRw==
+X-Google-Smtp-Source: APXvYqzvbbUawcihDPbdyBBpvF790LwcR11FDYkTD3jb8+dN+4VHSzsLR6gxdKoSgzEVn6pi8JkC+w==
+X-Received: by 2002:aca:50c2:: with SMTP id e185mr3190553oib.152.1569929945803;
+        Tue, 01 Oct 2019 04:39:05 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x140sm5238929oix.42.2019.10.01.04.39.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 04:39:05 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 06:39:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Jones <rjones@gateworks.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: add fxos8700 imu binding
+Message-ID: <20191001113904.GA1293@bogus>
+References: <20190918012856.18963-1-rjones@gateworks.com>
+ <20190918012856.18963-2-rjones@gateworks.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ghzN8eJ9Qlbqn3iT"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190920130218.32690-9-s.nawrocki@samsung.com>
-X-Cookie: Dyslexics have more fnu.
+In-Reply-To: <20190918012856.18963-2-rjones@gateworks.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 17, 2019 at 06:28:55PM -0700, Robert Jones wrote:
+> This adds documentation for the Freescale FXOS8700 Inertial Measurement Unit
+> device-tree bindings.
+> 
+> Signed-off-by: Robert Jones <rjones@gateworks.com>
+> ---
+>  Documentation/devicetree/bindings/iio/imu/fxos8700.txt | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/fxos8700.txt
 
---ghzN8eJ9Qlbqn3iT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Please convert to a DT schema. See Documentation/devicetree/writing-schema.rst.
 
-On Fri, Sep 20, 2019 at 03:02:17PM +0200, Sylwester Nawrocki wrote:
-> Rename arndale_rt5631.c to just arnddale.c as we support other CODECs
-> than RT5631.  While at it replace spaces in Kconfig with tabs.
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/fxos8700.txt b/Documentation/devicetree/bindings/iio/imu/fxos8700.txt
+> new file mode 100644
+> index 0000000..770605d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/fxos8700.txt
+> @@ -0,0 +1,15 @@
+> +Freescale FXOS8700 - Inertial Measurement Unit with Accelerometer and Magnetometer
+> +
+> +https://www.nxp.com/products/sensors/motion-sensors/6-axis/digital-motion-sensor-3d-accelerometer-2g-4g-8g-plus-3d-magnetometer:FXOS8700CQ
+> +
+> +Required properties:
+> + - compatible : must be "fsl,fxos8700"
+> + - reg : the I2C address or SPI chip select number of the device
+> + - spi-max-frequency : set maximum clock frequency (only for SPI)
 
-This doesn't apply against current code, please check and resend.
+Looks like the device has 2 interrupts, 2 supplies, and a reset line. 
+Please make the binding complete even if the driver or you board doesn't 
+support some things yet.
 
---ghzN8eJ9Qlbqn3iT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2TNvMACgkQJNaLcl1U
-h9B5/Qf/X9rpGHePKhgNMopSnhX5Qe21BJNNbNjUxWxPTwsw2b1QJJ6tvlNU1Plj
-JxKTplpI0I8fQNhgBgK1zkc8SECbUDRSwkR/UOBthGp2s7/ZeClSHvyTD6Z2j5IT
-OyFKkFi7MLpjK4eBoIlbW5NnfZYKyC7edq5RgFBn1TZsbdaGaDrx9urqoSQwJfTF
-APcyzdbqNU0Y1UzyZ8jKGGXOLljoDAHW8gpGnunvRyE3Vaw4KLG6spBkuxIuep0L
-hjlRBSmx0lR4UrG7CKYmWK6UmxDIaKIUfbp5nqKOQ8V3x0mHbw4cQxQp3hv7+WYk
-R5jy35YHbr0NyF5bGBiPWb8OZxJhxw==
-=x8KZ
------END PGP SIGNATURE-----
-
---ghzN8eJ9Qlbqn3iT--
+Rob
