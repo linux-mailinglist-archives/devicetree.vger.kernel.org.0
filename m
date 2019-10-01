@@ -2,267 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F4231C4420
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 01:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8BA3C4438
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 01:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728587AbfJAXHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 19:07:53 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:46080 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726050AbfJAXHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 19:07:53 -0400
-Received: by mail-pg1-f195.google.com with SMTP id a3so10731239pgm.13
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 16:07:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+Nf7W/69rcbuSCjp3T5cjBQS4Gd3M1DUTau7shEAvBo=;
-        b=TqlVV4aRNdNJI/F4t+UvY1imNZCNpHkFYzdwAZRWjvxazB056mnYe1qHRWC6KUYq+z
-         iSJNy6Os93x9pQOaW/lYUA3GScy2NV3Wlsk6OHQFWvbZS0F1cT0NtKV48S1jve0inqDy
-         3weCrTIfx4rISC/82sP2LHIKHMYbaJANnsEwQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+Nf7W/69rcbuSCjp3T5cjBQS4Gd3M1DUTau7shEAvBo=;
-        b=I5gYdMjhwc+DLy7K/JdXsYVkOrbE0SoIgDG7T3E/RZL8JdDIIyMgli+2E57+9jMbLT
-         AfwR1KINNJ6eYrWwaYp0P9CHzNFjtGk1ChBZRj5p01nLtwvi+Y11zI2HKGZgVU/ICt3U
-         9P/24q1fJOFspWP7cNy2d8323Nj5AOe2jF1G3+zUSzhbjhTIEXOyylObzxmLKyVX7tT6
-         HUPtAdS+YEDM2NbxbRL69iyiePGqAa/riahLQ3l/p6puSQBD8hxGosV14pswfeKVkskf
-         uiYuApMEUGUwxHR3kz7bC4NPMIwDDK500Ke7pMI8za1pcPgp42XcTur7iLIvPUKl3i+g
-         GJpA==
-X-Gm-Message-State: APjAAAUv9jegwFtbIbuBqwpkyL8t6NT7ubndvvaoKAoSyBIusGYY6sx6
-        P2NqskeX52YIKNm4mXHumhMr4aCJ9/c=
-X-Google-Smtp-Source: APXvYqwHNpEZQEilkNVmA3O5/XhCn/v8v+BBDw5V7KfhdqV5vHV6BNpopnq9XLH3i0O2OgOBpUpVkw==
-X-Received: by 2002:a17:90a:170e:: with SMTP id z14mr721514pjd.119.1569971268070;
-        Tue, 01 Oct 2019 16:07:48 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id y10sm15879881pfe.148.2019.10.01.16.07.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Oct 2019 16:07:47 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: rockchip: Use interpolated brightness tables for veyron
-Date:   Tue,  1 Oct 2019 16:07:43 -0700
-Message-Id: <20191001160735.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
-X-Mailer: git-send-email 2.23.0.444.g18eeb5a265-goog
+        id S1728961AbfJAXUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 19:20:36 -0400
+Received: from mail-eopbgr790133.outbound.protection.outlook.com ([40.107.79.133]:4224
+        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727078AbfJAXUg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 19:20:36 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XgWHq0zh/fM/R4ZBcQxlOuDTgQIpW/99SZYD5+5+ZjJY1RbUKmHFc/Zthx7Cy2WUVVcpZoEf0UOqhvIRXHsRK7g49eDfj1qKyvHhsaxI1CA7R4T4xuxl81ObcJMKhVEH9N7aif4xGdDzlP3h4a28SVIVRJFcyu19aUJR4DzOs7LMOLKGhxPG7hxiVAxIq0rD7ZVdVIQOEwaR0YFXqZio81JohimR+lyz6odm+RU3+Fk1Qh/Zw4dazt2OiIOsyIx9z6/It1SeHghhJaUC15EfMO+X4nHypRxRXAHVmZUoAlTet8wtLRdskiCZfrSf1pPLOO3bRW72l/JWKi4b2AV83w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z+SHZ+9RL3PQu9l1BZOG60bbBV4cOli8PNTI/O5vfjM=;
+ b=kLou9XVFthWq0FjynLDfN5O2DTkqPTvYymHIs7GNhqm8oUbGdOMd2TZ42kioifl1DKm2bEf2sqLmVemhtMa+CwplqYkuKO73dzzzbPeaMGP8cdLy4yjtwYdJKT4YxrPWF3nrMnGKW9/ywdAtVjKjfmxcB5nj8scg++MgOHMQgQFk5Yb8ns4smJbh/GoTq47mUVv2CfXBajLnwE4xjbwHL5R/EJVyEvhCHHljeyve/iPugO8b3EIZHEWIOh2cY4gnJkWgY3chi56/kUtLvYTZR65lm/qcYsKvruf/5w3TGM5WQV+BfsrKbNNodiqAzvE0gT6A+w+Ezw/1y4h6H7jhjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
+ dkim=pass header.d=mips.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z+SHZ+9RL3PQu9l1BZOG60bbBV4cOli8PNTI/O5vfjM=;
+ b=ZlY5Xbf/VCBHjoc2b9h6PE9S1ykOOK2oFuibOtFKYbJACx9Kv3I+rf0mXBMGaneIJlafPa+BO+8poH8okZQHCalXQFp8b7EUdQQPBrbw/sBWQE9G6VrLmoKwVzSH5olgdGbmgoiFILKGWLoN5Lovyniqpn1eGnRbo1j48oI3V+w=
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
+ MWHPR2201MB1328.namprd22.prod.outlook.com (10.172.63.11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.20; Tue, 1 Oct 2019 23:20:33 +0000
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::498b:c2cd:e816:1481]) by MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::498b:c2cd:e816:1481%2]) with mapi id 15.20.2305.022; Tue, 1 Oct 2019
+ 23:20:33 +0000
+From:   Paul Burton <paul.burton@mips.com>
+To:     Alexandre GRIVEAUX <agriveaux@deutnet.info>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "ralf@linux-mips.org" <ralf@linux-mips.org>,
+        "jhogan@kernel.org" <jhogan@kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 5/5] MIPS: JZ4780: DTS: Add CPU nodes
+Thread-Topic: [PATCH v2 5/5] MIPS: JZ4780: DTS: Add CPU nodes
+Thread-Index: AQHVeK7SbV2C0qqRJUuqS/aXvoANpw==
+Date:   Tue, 1 Oct 2019 23:20:33 +0000
+Message-ID: <20191001232031.qaci6hk5tjo652mi@pburton-laptop>
+References: <cover.1569955865.git.agriveaux@deutnet.info>
+ <0dbd1986be4ee50bdd9f45c140aded7c49fddb8a.1569955865.git.agriveaux@deutnet.info>
+In-Reply-To: <0dbd1986be4ee50bdd9f45c140aded7c49fddb8a.1569955865.git.agriveaux@deutnet.info>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BY5PR17CA0006.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::19) To MWHPR2201MB1277.namprd22.prod.outlook.com
+ (2603:10b6:301:18::12)
+user-agent: NeoMutt/20180716
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pburton@wavecomp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [73.93.153.72]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 73069e43-4224-4781-d46f-08d746c5f557
+x-ms-traffictypediagnostic: MWHPR2201MB1328:
+x-microsoft-antispam-prvs: <MWHPR2201MB1328E3607528D1C224A8A8E0C19D0@MWHPR2201MB1328.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0177904E6B
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(366004)(136003)(396003)(376002)(39840400004)(346002)(199004)(189003)(81156014)(99286004)(6506007)(386003)(76176011)(52116002)(81166006)(6916009)(8676002)(42882007)(25786009)(478600001)(26005)(186003)(102836004)(446003)(66556008)(64756008)(66446008)(66476007)(66946007)(71200400001)(33716001)(14454004)(66066001)(44832011)(476003)(486006)(11346002)(71190400001)(256004)(6486002)(6246003)(6116002)(3846002)(316002)(305945005)(7736002)(5660300002)(229853002)(9686003)(4326008)(1076003)(6512007)(54906003)(58126008)(2906002)(6436002)(8936002)(6606295002);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1328;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: wavecomp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZJtlPmOTGH1l/nazmseu2R1dAGYK9rIx89xk5x6J1WoEC9WGdOyUzPlRXEDCp8jEhZtP5BzRLnqtxytnuD1aGr6U2opmuZUFXYn0lYZppBoEvhoD7FJnpSvbsEIQ4FeDYHXusBsqqJd+L+cK0jUR+O5PhP63o+vFZCjG1wPA3ik06vMvyAs9UZ+Z2GYExotUiOS+UO6h+S7n6KMlBWANmkBblf7NfPTdgg1SSZa23gZ5zXUMxvuABNVzxiwVYE8++yCIMfz+9ULJ1U3M61/8h7AadpvPLGTa9/p2urXkZM9TDXluI+4+/3siZ1iOSWRr3LPOIXBB2lV1B23uHAfjUxoaQgUUYErPw9AFFNG631AgjUwtvrebewvGLBF0xQM574dHC7KgCpqZ45X66yc1JhnEiU+/jvQnxN1bx6HfpOM=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <9529F98D2530BE4ABE646708C200EF09@namprd22.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: mips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73069e43-4224-4781-d46f-08d746c5f557
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2019 23:20:33.6799
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: D83YB6x2kmJifw6mk9bAJR4aDXTh2mYfmsj/826goi/KPkrmXfXoV8QRCrlL3WrdhnO6UpyM6hiEoT2nEoHLNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1328
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use interpolated brightness tables (added by commit 573fe6d1c25
-("backlight: pwm_bl: Linear interpolation between
-brightness-levels") for veyron, instead of specifying every single
-step.
+Hi Alexandre,
 
-Another option would be to switch to a perceptual brightness curve
-(CIE 1931), with the caveat that it would change the behavior of
-the backlight. Also the concept of a minimum brightness level is
-currently not supported for CIE 1931 curves.
+On Tue, Oct 01, 2019 at 09:09:48PM +0200, Alexandre GRIVEAUX wrote:
+> The JZ4780 have 2 core, adding to DT.
+>=20
+> Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
+> ---
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>=20
+> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/=
+ingenic/jz4780.dtsi
+> index f928329b034b..9c7346724f1f 100644
+> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> @@ -7,6 +7,23 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,jz4780";
+> =20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu@0 {
+> +			compatible =3D "ingenic,jz4780";
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+This should probably be something like ingenic,xburst2. JZ4780 is the
+SoC. It also should be a documented binding, but I think it would be
+worth holding off on the whole thing until we actually get SMP support
+merged - just in case we come up with a binding that doesn't actually
+work out.
 
- arch/arm/boot/dts/rk3288-veyron-edp.dtsi   | 35 ++--------------------
- arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 35 ++--------------------
- arch/arm/boot/dts/rk3288-veyron-minnie.dts | 35 ++--------------------
- arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 35 ++--------------------
- 4 files changed, 8 insertions(+), 132 deletions(-)
+So I expect I'll just apply patches 1-4 for now.
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-index 773bedca872f..e95c89fe0545 100644
---- a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-@@ -41,39 +41,8 @@
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		brightness-levels = <
--			  0   1   2   3   4   5   6   7
--			  8   9  10  11  12  13  14  15
--			 16  17  18  19  20  21  22  23
--			 24  25  26  27  28  29  30  31
--			 32  33  34  35  36  37  38  39
--			 40  41  42  43  44  45  46  47
--			 48  49  50  51  52  53  54  55
--			 56  57  58  59  60  61  62  63
--			 64  65  66  67  68  69  70  71
--			 72  73  74  75  76  77  78  79
--			 80  81  82  83  84  85  86  87
--			 88  89  90  91  92  93  94  95
--			 96  97  98  99 100 101 102 103
--			104 105 106 107 108 109 110 111
--			112 113 114 115 116 117 118 119
--			120 121 122 123 124 125 126 127
--			128 129 130 131 132 133 134 135
--			136 137 138 139 140 141 142 143
--			144 145 146 147 148 149 150 151
--			152 153 154 155 156 157 158 159
--			160 161 162 163 164 165 166 167
--			168 169 170 171 172 173 174 175
--			176 177 178 179 180 181 182 183
--			184 185 186 187 188 189 190 191
--			192 193 194 195 196 197 198 199
--			200 201 202 203 204 205 206 207
--			208 209 210 211 212 213 214 215
--			216 217 218 219 220 221 222 223
--			224 225 226 227 228 229 230 231
--			232 233 234 235 236 237 238 239
--			240 241 242 243 244 245 246 247
--			248 249 250 251 252 253 254 255>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <254>;
- 		default-brightness-level = <128>;
- 		enable-gpios = <&gpio7 RK_PA2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/rk3288-veyron-jaq.dts b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-index 56ad9a43a6c2..5e10cc644875 100644
---- a/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-@@ -21,39 +21,8 @@
- 
- &backlight {
- 	/* Jaq panel PWM must be >= 3%, so start non-zero brightness at 8 */
--	brightness-levels = <
--		  0
--		  8   9  10  11  12  13  14  15
--		 16  17  18  19  20  21  22  23
--		 24  25  26  27  28  29  30  31
--		 32  33  34  35  36  37  38  39
--		 40  41  42  43  44  45  46  47
--		 48  49  50  51  52  53  54  55
--		 56  57  58  59  60  61  62  63
--		 64  65  66  67  68  69  70  71
--		 72  73  74  75  76  77  78  79
--		 80  81  82  83  84  85  86  87
--		 88  89  90  91  92  93  94  95
--		 96  97  98  99 100 101 102 103
--		104 105 106 107 108 109 110 111
--		112 113 114 115 116 117 118 119
--		120 121 122 123 124 125 126 127
--		128 129 130 131 132 133 134 135
--		136 137 138 139 140 141 142 143
--		144 145 146 147 148 149 150 151
--		152 153 154 155 156 157 158 159
--		160 161 162 163 164 165 166 167
--		168 169 170 171 172 173 174 175
--		176 177 178 179 180 181 182 183
--		184 185 186 187 188 189 190 191
--		192 193 194 195 196 197 198 199
--		200 201 202 203 204 205 206 207
--		208 209 210 211 212 213 214 215
--		216 217 218 219 220 221 222 223
--		224 225 226 227 228 229 230 231
--		232 233 234 235 236 237 238 239
--		240 241 242 243 244 245 246 247
--		248 249 250 251 252 253 254 255>;
-+	brightness-levels = <8 255>;
-+	num-interpolated-steps = <246>;
- };
- 
- &rk808 {
-diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-index 6b0e1cb1f681..503278e60d6b 100644
---- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-@@ -39,39 +39,8 @@
- 
- &backlight {
- 	/* Minnie panel PWM must be >= 1%, so start non-zero brightness at 3 */
--	brightness-levels = <
--			  0   3   4   5   6   7
--			  8   9  10  11  12  13  14  15
--			 16  17  18  19  20  21  22  23
--			 24  25  26  27  28  29  30  31
--			 32  33  34  35  36  37  38  39
--			 40  41  42  43  44  45  46  47
--			 48  49  50  51  52  53  54  55
--			 56  57  58  59  60  61  62  63
--			 64  65  66  67  68  69  70  71
--			 72  73  74  75  76  77  78  79
--			 80  81  82  83  84  85  86  87
--			 88  89  90  91  92  93  94  95
--			 96  97  98  99 100 101 102 103
--			104 105 106 107 108 109 110 111
--			112 113 114 115 116 117 118 119
--			120 121 122 123 124 125 126 127
--			128 129 130 131 132 133 134 135
--			136 137 138 139 140 141 142 143
--			144 145 146 147 148 149 150 151
--			152 153 154 155 156 157 158 159
--			160 161 162 163 164 165 166 167
--			168 169 170 171 172 173 174 175
--			176 177 178 179 180 181 182 183
--			184 185 186 187 188 189 190 191
--			192 193 194 195 196 197 198 199
--			200 201 202 203 204 205 206 207
--			208 209 210 211 212 213 214 215
--			216 217 218 219 220 221 222 223
--			224 225 226 227 228 229 230 231
--			232 233 234 235 236 237 238 239
--			240 241 242 243 244 245 246 247
--			248 249 250 251 252 253 254 255>;
-+	brightness-levels = <3 255>;
-+	num-interpolated-steps = <251>;
- };
- 
- &i2c_tunnel {
-diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-index 27557203ae33..e50367564dc6 100644
---- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-@@ -23,39 +23,8 @@
- 
- &backlight {
- 	/* Tiger panel PWM must be >= 1%, so start non-zero brightness at 3 */
--	brightness-levels = <
--		  0   3   4   5   6   7
--		  8   9  10  11  12  13  14  15
--		 16  17  18  19  20  21  22  23
--		 24  25  26  27  28  29  30  31
--		 32  33  34  35  36  37  38  39
--		 40  41  42  43  44  45  46  47
--		 48  49  50  51  52  53  54  55
--		 56  57  58  59  60  61  62  63
--		 64  65  66  67  68  69  70  71
--		 72  73  74  75  76  77  78  79
--		 80  81  82  83  84  85  86  87
--		 88  89  90  91  92  93  94  95
--		 96  97  98  99 100 101 102 103
--		104 105 106 107 108 109 110 111
--		112 113 114 115 116 117 118 119
--		120 121 122 123 124 125 126 127
--		128 129 130 131 132 133 134 135
--		136 137 138 139 140 141 142 143
--		144 145 146 147 148 149 150 151
--		152 153 154 155 156 157 158 159
--		160 161 162 163 164 165 166 167
--		168 169 170 171 172 173 174 175
--		176 177 178 179 180 181 182 183
--		184 185 186 187 188 189 190 191
--		192 193 194 195 196 197 198 199
--		200 201 202 203 204 205 206 207
--		208 209 210 211 212 213 214 215
--		216 217 218 219 220 221 222 223
--		224 225 226 227 228 229 230 231
--		232 233 234 235 236 237 238 239
--		240 241 242 243 244 245 246 247
--		248 249 250 251 252 253 254 255>;
-+	brightness-levels = <3 255>;
-+	num-interpolated-steps = <251>;
- };
- 
- &backlight_regulator {
--- 
-2.23.0.444.g18eeb5a265-goog
+Thanks for working on it!
 
+    Paul
+
+> +			device_type =3D "cpu";
+> +			reg =3D <0>;
+> +		};
+> +
+> +		cpu@1 {
+> +			compatible =3D "ingenic,jz4780";
+> +			device_type =3D "cpu";
+> +			reg =3D <1>;
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> --=20
+> 2.20.1
+>=20
