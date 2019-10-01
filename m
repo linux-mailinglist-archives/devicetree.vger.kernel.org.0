@@ -2,103 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 489F9C306F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 11:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC857C30A1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 11:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726697AbfJAJkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 05:40:24 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38334 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727473AbfJAJkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 05:40:24 -0400
-Received: by mail-wr1-f65.google.com with SMTP id w12so14622069wro.5
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 02:40:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=UzvLIkrTSi/epemgPJ8AXmPaJAGF16PPZin3f/2spag=;
-        b=TpvppLf8WLWVp9DomSHJfRS+c1F4tZNVBDGJDc6uMvD3qLIjsRJ9isqzG7ARg31F7H
-         WuCIZ0QihSFQA7WGB0e6Hmwy/vxTte+2fmlwPIpi/Bt7RBmN47RkGoUX/cEiNqE+BgzH
-         trM9KE0xmDwnDrzjlxZ6MELCU1aDjLYWc2puO1IeukTMI1wmD1xAnADamSFNmx1qILUB
-         O+zCVNDAARLMyP20ieMb5WFhecLROs+VxAlOMyrjgw43gct9EExlSRU5M2Ie9Z6IT0Ec
-         aaV6huX2lmCtKVDrBHY+oB6eMt4ustgfcvLM2QRfRdTTkgjpTAglRn6/tdTB6S2mkg88
-         +QMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=UzvLIkrTSi/epemgPJ8AXmPaJAGF16PPZin3f/2spag=;
-        b=COQj5rhnG0VOdP0pAuHgIh/UrJVHrLQNKZKUf3ACqV1K9QRPsUChcZeJIUQ2oQ6nf6
-         1vTiZNJw385LU5fX/ZUkgZh0vQnfaQIkvGhzo1so9CvsFMi96hB1WiPSm3dmIcXDR3mz
-         zVjEO98jsJ1dTxuEZKAlrHvyCUDsyyX/lG3TGDekWFe27x1vk6Squ6aeOReHvobS+mIl
-         evMzAfgu8RRZXLCP71BNpJ3NPFggGgmD4NCPVXr7WwfxGTxc9kybCOtqSxHzN/HoFEXN
-         2NXEcQNafKBcbnjTCfdusOYAzshZp6IgMdtL2zf4jCJPdUQsArQ27jlMWDcRD5XbA1eD
-         S5JA==
-X-Gm-Message-State: APjAAAVTq0N0x8QpJQd1h5/0+rbHMtnsVippgTYnVZ1DTkNlarmKRUj3
-        LDGt8eAo5HCTsRtkHjc8gFVc+A==
-X-Google-Smtp-Source: APXvYqwyIWVUUG6BoVZAuEAlFBkPxd97wknxy9fL/CaSJF8Tr2znTOAsBGffEVJ4FW38j9dZAwkJfA==
-X-Received: by 2002:adf:e64e:: with SMTP id b14mr18036441wrn.16.1569922822301;
-        Tue, 01 Oct 2019 02:40:22 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id b5sm1925895wmj.18.2019.10.01.02.40.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 02:40:21 -0700 (PDT)
-References: <20190905135040.6635-1-jbrunet@baylibre.com> <1567693618.3958.4.camel@pengutronix.de>
-User-agent: mu4e 1.3.3; emacs 26.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] reset: meson-audio-arb: add sm1 support
-In-reply-to: <1567693618.3958.4.camel@pengutronix.de>
-Date:   Tue, 01 Oct 2019 11:40:20 +0200
-Message-ID: <1jk19oregr.fsf@starbuckisacylon.baylibre.com>
+        id S1727499AbfJAJvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 05:51:25 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:35827 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725765AbfJAJvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 05:51:25 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iFEoT-0003zO-DF; Tue, 01 Oct 2019 11:51:21 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iFEoR-0003uQ-P8; Tue, 01 Oct 2019 11:51:19 +0200
+Date:   Tue, 1 Oct 2019 11:51:19 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Fabrice Gasnier <fabrice.gasnier@st.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        alexandre.torgue@st.com, mark.rutland@arm.com,
+        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, benjamin.gaignard@st.com,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/2] pwm: stm32: add power management support
+Message-ID: <20191001095119.ws36f7liwgvbokem@pengutronix.de>
+References: <1569857951-20007-1-git-send-email-fabrice.gasnier@st.com>
+ <1569857951-20007-3-git-send-email-fabrice.gasnier@st.com>
+ <20191001070450.4zogfryzo7a5ssbd@pengutronix.de>
+ <3c6e551b-98a2-a418-c4ee-002077e46f31@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3c6e551b-98a2-a418-c4ee-002077e46f31@st.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Fabrice,
 
-On Thu 05 Sep 2019 at 16:26, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+On Tue, Oct 01, 2019 at 10:18:31AM +0200, Fabrice Gasnier wrote:
+> On 10/1/19 9:04 AM, Uwe Kleine-König wrote:
+> > On Mon, Sep 30, 2019 at 05:39:11PM +0200, Fabrice Gasnier wrote:
+> >> Add suspend/resume PM sleep ops. When going to low power, enforce the PWM
+> >> channel isn't active. Let the PWM consumers disable it during their own
+> >> suspend sequence, see [1]. So, perform a check here, and handle the
+> >> pinctrl states. Also restore the break inputs upon resume, as registers
+> >> content may be lost when going to low power mode.
+> >>
+> >> [1] https://lkml.org/lkml/2019/2/5/770
+> >>
+> >> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+> >> ---
+> >>  drivers/pwm/pwm-stm32.c | 82 +++++++++++++++++++++++++++++++++++++------------
+> >>  1 file changed, 62 insertions(+), 20 deletions(-)
+> >>
+> >> diff --git a/drivers/pwm/pwm-stm32.c b/drivers/pwm/pwm-stm32.c
+> >> index 740e2de..9bcd73a 100644
+> >> --- a/drivers/pwm/pwm-stm32.c
+> >> +++ b/drivers/pwm/pwm-stm32.c
+> >> @@ -12,6 +12,7 @@
+> >>  #include <linux/mfd/stm32-timers.h>
+> >>  #include <linux/module.h>
+> >>  #include <linux/of.h>
+> >> +#include <linux/pinctrl/consumer.h>
+> >>  #include <linux/platform_device.h>
+> >>  #include <linux/pwm.h>
+> >>  
+> >> @@ -19,6 +20,12 @@
+> >>  #define CCMR_CHANNEL_MASK  0xFF
+> >>  #define MAX_BREAKINPUT 2
+> >>  
+> >> +struct stm32_breakinput {
+> >> +	u32 index;
+> >> +	u32 level;
+> >> +	u32 filter;
+> >> +};
+> >> +
+> >>  struct stm32_pwm {
+> >>  	struct pwm_chip chip;
+> >>  	struct mutex lock; /* protect pwm config/enable */
+> >> @@ -26,15 +33,11 @@ struct stm32_pwm {
+> >>  	struct regmap *regmap;
+> >>  	u32 max_arr;
+> >>  	bool have_complementary_output;
+> >> +	struct stm32_breakinput breakinput[MAX_BREAKINPUT];
+> >> +	unsigned int nbreakinput;
+> >>  	u32 capture[4] ____cacheline_aligned; /* DMA'able buffer */
+> >>  };
+> >>  
+> >> -struct stm32_breakinput {
+> >> -	u32 index;
+> >> -	u32 level;
+> >> -	u32 filter;
+> >> -};
+> >> -
+> >>  static inline struct stm32_pwm *to_stm32_pwm_dev(struct pwm_chip *chip)
+> >>  {
+> >>  	return container_of(chip, struct stm32_pwm, chip);
+> >> @@ -512,15 +515,27 @@ static int stm32_pwm_set_breakinput(struct stm32_pwm *priv,
+> >>  	return (bdtr & bke) ? 0 : -EINVAL;
+> >>  }
+> >>  
+> >> -static int stm32_pwm_apply_breakinputs(struct stm32_pwm *priv,
+> >> +static int stm32_pwm_apply_breakinputs(struct stm32_pwm *priv)
+> >> +{
+> >> +	int i, ret = 0;
+> >> +
+> >> +	for (i = 0; i < priv->nbreakinput && !ret; i++) {
+> >> +		ret = stm32_pwm_set_breakinput(priv,
+> >> +					       priv->breakinput[i].index,
+> >> +					       priv->breakinput[i].level,
+> >> +					       priv->breakinput[i].filter);
+> >> +	}
+> >> +
+> >> +	return ret;
+> >> +}
+> > 
+> > Can you explain what the effect of this function is? This is something
+> > that is lost during suspend?
+> 
+> Yes, that's what I explain in the commit message: ...registers content
+> may be lost when going to low power mode.
+> Do you think I need to rephrase ?
 
-> Hi Jerome,
->
-> On Thu, 2019-09-05 at 15:50 +0200, Jerome Brunet wrote:
->> This patchset adds the new arb reset lines for the sm1 SoC family
->> It has been tested on the sei610 platform.
->> 
->> Changes since v1 [0]:
->> * Fix the mistake on the number of reset as reported by Phililpp (thx)
->> 
->> [0]:  https://lkml.kernel.org/r/20190820094625.13455-1-jbrunet@baylibre.com
->> 
->> Jerome Brunet (2):
->>   reset: dt-bindings: meson: update arb bindings for sm1
->>   reset: meson-audio-arb: add sm1 support
->> 
->>  .../reset/amlogic,meson-axg-audio-arb.txt     |  3 +-
->>  drivers/reset/reset-meson-audio-arb.c         | 43 +++++++++++++++++--
->>  .../reset/amlogic,meson-axg-audio-arb.h       |  2 +
->>  3 files changed, 44 insertions(+), 4 deletions(-)
->
-> Thank you, both applied to reset/next.
+Ah, right I missed it in the commit log. It might be worth adding that
+to a code comment. Also having the purpose of this function described
+would be great. Does it configure some electrical characteristics? Or
+has it to do with pinmuxing? Why is an input relevant for a PWM?
 
-Hi Philipp,
+> > I wonder why the patch is so big. There are some rearrangements that
+> > should have no effect and I think it would be beneficial for
+> > reviewability to split this patch in a patch that only does the
+> > restructuring and than on top of that add the PM stuff.
+> 
+> I can split this to ease the review.
+> > 
+> >> +
+> >> +static int stm32_pwm_probe_breakinputs(struct stm32_pwm *priv,
+> >>  				       struct device_node *np)
+> >>  {
+> >> -	struct stm32_breakinput breakinput[MAX_BREAKINPUT];
+> >> -	int nb, ret, i, array_size;
+> >> +	int nb, ret, array_size;
+> >>  
+> >>  	nb = of_property_count_elems_of_size(np, "st,breakinput",
+> >>  					     sizeof(struct stm32_breakinput));
+> >> -
+> >>  	/*
+> >>  	 * Because "st,breakinput" parameter is optional do not make probe
+> >>  	 * failed if it doesn't exist.
+> >> @@ -531,20 +546,14 @@ static int stm32_pwm_apply_breakinputs(struct stm32_pwm *priv,
+> >>  	if (nb > MAX_BREAKINPUT)
+> >>  		return -EINVAL;
+> >>  
+> >> +	priv->nbreakinput = nb;
+> >>  	array_size = nb * sizeof(struct stm32_breakinput) / sizeof(u32);
+> >>  	ret = of_property_read_u32_array(np, "st,breakinput",
+> >> -					 (u32 *)breakinput, array_size);
+> >> +					 (u32 *)priv->breakinput, array_size);
+> >>  	if (ret)
+> >>  		return ret;
+> >>  
+> >> -	for (i = 0; i < nb && !ret; i++) {
+> >> -		ret = stm32_pwm_set_breakinput(priv,
+> >> -					       breakinput[i].index,
+> >> -					       breakinput[i].level,
+> >> -					       breakinput[i].filter);
+> >> -	}
+> >> -
+> >> -	return ret;
+> >> +	return stm32_pwm_apply_breakinputs(priv);
+> >>  }
+> >>  
+> >>  static void stm32_pwm_detect_complementary(struct stm32_pwm *priv)
+> >> @@ -614,7 +623,7 @@ static int stm32_pwm_probe(struct platform_device *pdev)
+> >>  	if (!priv->regmap || !priv->clk)
+> >>  		return -EINVAL;
+> >>  
+> >> -	ret = stm32_pwm_apply_breakinputs(priv, np);
+> >> +	ret = stm32_pwm_probe_breakinputs(priv, np);
+> >>  	if (ret)
+> >>  		return ret;
+> >>  
+> >> @@ -647,6 +656,38 @@ static int stm32_pwm_remove(struct platform_device *pdev)
+> >>  	return 0;
+> >>  }
+> >>  
+> >> +static int __maybe_unused stm32_pwm_suspend(struct device *dev)
+> >> +{
+> >> +	struct stm32_pwm *priv = dev_get_drvdata(dev);
+> >> +	struct pwm_state state;
+> >> +	unsigned int i;
+> >> +
+> >> +	for (i = 0; i < priv->chip.npwm; i++) {
+> >> +		pwm_get_state(&priv->chip.pwms[i], &state);
+> > 
+> > pwm_get_state is a function designed to be used by PWM consumers. I
+> > would prefer to check the hardware registers here instead.
+> 
+> It's also useful for PWM provider: This PWM driver is part of a MFD that
 
-Looks like this patchset missed v5.4-rc1.
-Could you provide a tag with the bindings to Kevin so we can use the IDs
-in DT until the next merge window ?
+I don't doubt "useful". But still you should only call it if you called
+pwm_get (or a similar function) to get a PWM handle.
 
-Thx
-Regards
+> also take care of IIO trigger (can be used simultaneously). Simply
+> reading a register doesn't tell us that the timer is used/configured as
+> a PWM here. That's the reason to use this helper to read pwm->state.
 
-Jerome
+How can the pwm driver be bound and the hardware not be used a PWM?
 
->
-> regards
-> Philipp
+> Do you wish I add a comment to clarify this here ?
 
+No, I wish you inspect the hardware to determine what you need to know :-)
+
+> > What if there is no consumer and the PWM just happens to be enabled by
+> > the bootloader? Or is this too minor an issue to be worth consideration?
+> 
+> That's the purpose of returning -EBUSY: "PWM should not stop if the PWM
+> user didn't call pwm_disable()" ... "to avoid situation where the PWM is
+> actually suspended before the user". This has been enforced in later
+> series with the device_link_add(). See our previous discussions here:
+> https://lkml.org/lkml/2019/2/5/770
+> So, I guess this would point exactly a lack for a PWM user to manage it
+> after the boot stage, in the kernel.
+> 
+> Could you please clarify, provide an example here ?
+
+This is something different than I asked for. Not having a consumer
+isn't an error. Still the pwm might be running (for a good reason or
+not). (This is more a question that affects how a driver should behave
+in general, it is not specific to the stm32 driver here.)
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
