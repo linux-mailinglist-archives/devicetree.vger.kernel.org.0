@@ -2,70 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E233AC43CD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 00:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11423C43EF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 00:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727375AbfJAWWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 18:22:11 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:39986 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725843AbfJAWWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 18:22:10 -0400
-Received: by mail-io1-f68.google.com with SMTP id h144so52163698iof.7;
-        Tue, 01 Oct 2019 15:22:09 -0700 (PDT)
+        id S1728253AbfJAWs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 18:48:56 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:40908 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727111AbfJAWs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 18:48:56 -0400
+Received: by mail-pg1-f196.google.com with SMTP id d26so5275916pgl.7;
+        Tue, 01 Oct 2019 15:48:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=oVtuzVl6ZjuJjeRxwc0/jxd04my4e+lydovEVmuMVYs=;
+        b=Bl8xAjeE3EtYICbGBQRBv+POzG3Qaf+rm2W53Xabjh7OTZrjeBiWX7hShF0T5daf9V
+         jluZ/4xeOEaHpHU4h8qK5p9pqWhdqxOWw8BnZMb5ATmvaqbk81GqC5QlSnDyeeENuxze
+         Hm8hvavGFtH472/aD81H5ZffdglIpMqSU3wU2b8m3c8OW+78UVMr4TWRNDFNbaPGXU8w
+         oWLY6Kl99uQf/p900Q/UapnSlyLClmR1pne6HwsTEz9SL9ETCKR3JUSxk8T7fROIGhsI
+         NiySa70k6m6sipKMnhBFwW/B25+vldYj4FvBhwuhuLK4ydaZ08ah0lFQQ8SbNwj3Ca4t
+         jf6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=z4ey9J+N5T2Sj8leCAjxj643ZrUTwZzAmdl1XRB6yEo=;
-        b=TcMBzWE0ixiKrb5ZVws3N5s/ez1Yla0UgOOrBElP2/TxKUAMS9OlxwQV1tUMLOB/Or
-         a0CgpCTiG1z9Ou53uxcqZfz0BH8hLOUJIdwsxY5VGMYM0mFp/X+Zomv9GFngbbSTWi92
-         UWiLyM/fe2IQdcb0nXoAoxtGwIzKTxooXbtRkwc/klqLVRgvQTz0xprZy9dNtbzZN8O9
-         ti4LB3n3yfAlvrhXWJ7uq4p4VRxfq4Zts377JtZxzKLnc7GHPwMlxgLo34ZzBAbS981m
-         /Fm7ZAcEtFMWB6IBj8gPMN8SC8VYgZO/FgdtLG1ptQkQQVxR5/hGhIhjNa9jeVH0xgSo
-         Bxww==
-X-Gm-Message-State: APjAAAX23lmPyM8B39mtBEXh65gaZ5LDb4J6PlY294MfeaFxZ3jVz3RE
-        +e33yDy1dtgyiTLz7yvl6w==
-X-Google-Smtp-Source: APXvYqyxUG/8s6/g2lSG0IfTFR6cMMFCNCQUK8kR0W3grSZKzzuaQ1Q+SzfSfS8BHDqDQxrG7BTDbg==
-X-Received: by 2002:a5e:8218:: with SMTP id l24mr518349iom.56.1569968529500;
-        Tue, 01 Oct 2019 15:22:09 -0700 (PDT)
-Received: from localhost ([2607:fb90:1780:6fbf:9c38:e932:436b:4079])
-        by smtp.gmail.com with ESMTPSA id m5sm7658195ioh.69.2019.10.01.15.22.08
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=oVtuzVl6ZjuJjeRxwc0/jxd04my4e+lydovEVmuMVYs=;
+        b=DNqVYF6zcKy+nOdS4QqZuTGjBl/goU16ID+HNqClOmrAZKwI+qonLbVREi39QFCkVO
+         1rxWf8lxCS4wwvcUZNnHqrq/p/nMocSw9si82l2ZEB5cKO7Iu0gog+tNTBwaTpa9DNq4
+         BslXfZgzE3S5nUpP/AokIXhQ0aZLpsMW9ukKWVN2twLmxQL76WGGQakrGYghV9Yn5HkK
+         qwod3tX2qNkhOCA3nheq0K0yky+17BCqRFy04Zu8NivrKF8nTUbbYLaBiK+kxQ3ONzrD
+         HNNaxBANcqSoxVzokFucJ5mncNvXe8c4A7kYAoEDoLcQn/hwLFF3ZxNaamOs2JW/5SRV
+         2veQ==
+X-Gm-Message-State: APjAAAW8UeKmp/h7wYW+KQWrNxjhnZADtXLtOkj5Q/pEJn3sw+gZCtCR
+        G2Zi7nP3suO7xEZYKimfL0IN415q
+X-Google-Smtp-Source: APXvYqzli23oNviMyvGn+Gp3uJ37fGRBFmEjnh33GzKxgmnZUVWdib9kqCkXJ2MQo2afcOBWhnK7zw==
+X-Received: by 2002:a17:90a:c8a:: with SMTP id v10mr694468pja.4.1569970135129;
+        Tue, 01 Oct 2019 15:48:55 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id c128sm20913506pfc.166.2019.10.01.15.48.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 15:22:08 -0700 (PDT)
-Date:   Tue, 1 Oct 2019 17:22:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: renesas: tpu: convert bindings to
- json-schema
-Message-ID: <20191001222206.GA29971@bogus>
-References: <1569008189-10611-1-git-send-email-ykaneko0929@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1569008189-10611-1-git-send-email-ykaneko0929@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Tue, 01 Oct 2019 15:48:53 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
+        ARM ARCHITECTURE),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
+        ARM ARCHITECTURE)
+Subject: [PATCH 0/7] irqchip/irq-bcm283x update for BCM7211
+Date:   Tue,  1 Oct 2019 15:48:35 -0700
+Message-Id: <20191001224842.9382-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 21, 2019 at 04:36:29AM +0900, Yoshihiro Kaneko wrote:
-> Convert Renesas R-Car Timer Pulse Unit PWM Controller bindings documentation
-> to json-schema.
-> 
-> Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
-> ---
->  .../devicetree/bindings/pwm/renesas,tpu-pwm.txt    | 35 -----------
->  .../devicetree/bindings/pwm/renesas,tpu-pwm.yaml   | 69 ++++++++++++++++++++++
->  2 files changed, 69 insertions(+), 35 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.txt
->  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+Hi Marc, Jason, Thomas,
 
-Applied, thanks.
+This patch series updates the BCM2835 and BCM2836 interrupt controller
+drivers to support BCM7211 which can make use of those drivers in some
+configurations where the ARM GIC is muxed out and the legacy ARM
+interrupt controller is used instead.
 
-Rob
+Thank you!
+
+Florian Fainelli (7):
+  irqchip: Introduce Kconfig symbol to build irq-bcm283x.c
+  dt-bindings: interrupt-controller: Add brcm,bcm7211-armctrl-ic binding
+  irqchip/irq-bcm2835: Add support for 7211 interrupt controller
+  dt-bindings: interrupt-controller: Add brcm,bcm7211-l1-intc binding
+  irqchip/irq-bcm2836: Add support for the 7211 interrupt controller
+  irqchip: Build BCM283X_IRQ for ARCH_BRCMSTB
+  irqchip/irq-bcm283x: Add registration prints
+
+ .../brcm,bcm2835-armctrl-ic.txt               |  6 +-
+ .../brcm,bcm2836-l1-intc.txt                  |  4 +-
+ drivers/irqchip/Kconfig                       |  5 +
+ drivers/irqchip/Makefile                      |  4 +-
+ drivers/irqchip/irq-bcm2835.c                 | 95 ++++++++++++++++---
+ drivers/irqchip/irq-bcm2836.c                 | 27 +++++-
+ 6 files changed, 119 insertions(+), 22 deletions(-)
+
+-- 
+2.17.1
+
