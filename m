@@ -2,44 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D57F5C3319
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 868AEC330E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733072AbfJALmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 07:42:14 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40812 "EHLO
+        id S1732105AbfJALlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 07:41:51 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41204 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387556AbfJALlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:41:04 -0400
+        with ESMTP id S2387633AbfJALlN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:41:13 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=63zJTbVH7lS8Trv4HBQFjRzzllGgjJHymJTri8Knfv4=; b=InsjyvrDB7a8
-        RFjRE4bIxMfpFVjx3QH+g91DtnW5nDUH5JTC67RBn6bGDf28mhkCru3Vn06T/Fx45LzlDMIamXWiB
-        rPReFf9xM32KmdgL+EwUhWBm+32q+g9eNJwdRY1AL5qqS/BzZqMED/d4zpRrK/i0TezB+E6RsfPdt
-        3twz4=;
+        List-Archive; bh=CX+gGn0ulj8a8xwxiDkqA33F/I+QW8zBsiOoBhNf9xY=; b=RuAYOK3rUhXn
+        IzkI03E9zhw4HUdJ2iRpLTMz/cGsSgFpZPpp/4vSs0VpxgIGnyWxOQYCbA9qctKpj9MihunuLRcH4
+        yfkarbQl0M6VTb864ffF6xv/sdPSpwjJ5ugpgVMYZ+KkJgbypu0hnHCEwWJxcXD42JLow2XanvIbG
+        5uOUQ=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1iFGWZ-0004Xc-UK; Tue, 01 Oct 2019 11:40:59 +0000
+        id 1iFGWi-0004ZF-8E; Tue, 01 Oct 2019 11:41:08 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 6B0572742A30; Tue,  1 Oct 2019 12:40:59 +0100 (BST)
+        id ACF3F2742A10; Tue,  1 Oct 2019 12:41:07 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Pragnesh Patel <pragnesh.patel@sifive.com>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+To:     Gareth Williams <gareth.williams.jx@renesas.com>
+Cc:     devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
         Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: Applied "fixed-regulator: dt-bindings: Fixed building error for compatible property" to the regulator tree
-In-Reply-To: <1568875145-2864-1-git-send-email-pragnesh.patel@sifive.com>
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Applied "dt-bindings: snps,dw-apb-ssi: Add optional clock domain information" to the spi tree
+In-Reply-To: <1568793876-9009-3-git-send-email-gareth.williams.jx@renesas.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20191001114059.6B0572742A30@ypsilon.sirena.org.uk>
-Date:   Tue,  1 Oct 2019 12:40:59 +0100 (BST)
+Message-Id: <20191001114107.ACF3F2742A10@ypsilon.sirena.org.uk>
+Date:   Tue,  1 Oct 2019 12:41:07 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -47,11 +49,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   fixed-regulator: dt-bindings: Fixed building error for compatible property
+   dt-bindings: snps,dw-apb-ssi: Add optional clock domain information
 
-has been applied to the regulator tree at
+has been applied to the spi tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.5
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.5
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
@@ -72,38 +74,36 @@ to this mail.
 Thanks,
 Mark
 
-From 04a99ce605a780c275e2e9d2547d43fbba3f4d24 Mon Sep 17 00:00:00 2001
-From: Pragnesh Patel <pragnesh.patel@sifive.com>
-Date: Thu, 19 Sep 2019 12:09:04 +0530
-Subject: [PATCH] fixed-regulator: dt-bindings: Fixed building error for
- compatible property
+From 47cf13bc763c891c6192184c5e5aa8c1b331b2ff Mon Sep 17 00:00:00 2001
+From: Gareth Williams <gareth.williams.jx@renesas.com>
+Date: Wed, 18 Sep 2019 09:04:34 +0100
+Subject: [PATCH] dt-bindings: snps,dw-apb-ssi: Add optional clock domain
+ information
 
-Compatible property is not of type 'string', so remove const:
-from it.
+Note in the bindings documentation that pclk should be renamed if a clock
+domain is used to enable the optional bus clock.
 
-Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/1568875145-2864-1-git-send-email-pragnesh.patel@sifive.com
+Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
+Link: https://lore.kernel.org/r/1568793876-9009-3-git-send-email-gareth.williams.jx@renesas.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../devicetree/bindings/regulator/fixed-regulator.yaml        | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-index a78150c47aa2..f32416968197 100644
---- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-@@ -30,8 +30,8 @@ if:
- properties:
-   compatible:
-     enum:
--      - const: regulator-fixed
--      - const: regulator-fixed-clock
-+      - regulator-fixed
-+      - regulator-fixed-clock
- 
-   regulator-name: true
- 
+diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+index f54c8c36395e..3ed08ee9feba 100644
+--- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
++++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.txt
+@@ -16,7 +16,8 @@ Required properties:
+ Optional properties:
+ - clock-names : Contains the names of the clocks:
+     "ssi_clk", for the core clock used to generate the external SPI clock.
+-    "pclk", the interface clock, required for register access.
++    "pclk", the interface clock, required for register access. If a clock domain
++     used to enable this clock then it should be named "pclk_clkdomain".
+ - cs-gpios : Specifies the gpio pins to be used for chipselects.
+ - num-cs : The number of chipselects. If omitted, this will default to 4.
+ - reg-io-width : The I/O register width (in bytes) implemented by this
 -- 
 2.20.1
 
