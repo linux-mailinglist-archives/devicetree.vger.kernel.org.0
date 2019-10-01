@@ -2,108 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 287F7C4048
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6155CC4074
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726302AbfJASnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 14:43:19 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43385 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726075AbfJASnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:43:19 -0400
-Received: by mail-pf1-f193.google.com with SMTP id a2so8675508pfo.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 11:43:18 -0700 (PDT)
+        id S1726182AbfJASyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 14:54:13 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:44230 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725875AbfJASyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:54:13 -0400
+Received: by mail-ot1-f66.google.com with SMTP id 21so12484282otj.11;
+        Tue, 01 Oct 2019 11:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wOlYko7NkoTZki/CziEJgME03XS7kkXPkXPHoWO1dek=;
-        b=HRefi9sbT2b8lKM1WA3enIvk00lwiNRmnkNkKSSjyabgnBjMrPgZ5KhzSXRskxRsKd
-         QPiV6aRNC/atiPa5n4nqYGou7cgzn1B+N2aCxqv4Ffq+jtGGeoZoretuydUH967g8Pj2
-         yL5S/SJ34sS0JfgIGx00jUUmcACqxYwQ8nTgE0U6LGDKhGzYfYoFqx+AfKd/seDQZENB
-         a6xEN5oxCFehW8GtdPFZwuRF+LDNLGrqfg3C8JSUhM357Kg8XNh9Vl4w2fMZmDZI+i4y
-         yQCRbVcp65ztpPn81L6u4KxYTwdenOBjLvmYHG/3tCRwGM3uT9VgEtnrQCo8+3dy0Gpn
-         6ASw==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=57yXlV8OeF+0A0WSjdRw1RAKAtRQrYraqmnbKpxC2+Y=;
+        b=IVRg4ziD4+m3AGA84oC1PB6cVSjQE841td4dJj4H4TiI3uRrXjHOY9tPNPttnsefSC
+         O/wQGnPrIVk5CYD/e2mKINg3Q9+Yy0hbKRD0kBjE/FWb0Js9aQWEhYi8cLeZE+aj7NQl
+         POude1xddiy+mipI/Z8vyxQ2Ci0pft9aGW0k8y+xS9rO7CiKlVYoHiVaVYvpjUkT1EFr
+         sjZzKdCsSP34UG2KoUoAMGSvdzPdAY8JNUJKcWxRaeW1HICJNne7GtoR0XM0XGTuBYc5
+         RXprE73Olm5ge/vMWloiBAjGfX8Yqgz/h6BiG3uuZQDIP202qRtjoFHMRgtBQPYPRMgw
+         0FRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wOlYko7NkoTZki/CziEJgME03XS7kkXPkXPHoWO1dek=;
-        b=odG9eu6SZ4TXdAhNVaSt9G4GSM1bAIWppjk58g0WyMZ22B05o+oKAasdg/kxKfak1q
-         Phclt7ys+SD6sOTRWQkSmKrc87FXVhLhGfT92AZ3Cnwz9eZ5+BYSRMvUTWKGyiHCwlWI
-         qZD55SZ/p4fv8db5A8X6/WF+RoQSU2NExcETR9JUIgLjaS9gqy1m7zW9yAViisTZoz1v
-         tXYFkar7yWi7BDkoe/4hE1dvbOideAZ2BjrpBBVHLE25CTmlCmoOaaiu9BHg9WCEQjJU
-         p4vOTFT/8qgDxEMi2XnV3rtY3sgsfOmzWzZVpY5vnVqDOnGkE3iOq8oX9dkk5r+/R1YY
-         fx3w==
-X-Gm-Message-State: APjAAAV0VLsGWe+HoJN3rXbPKFiL7BAf2wgYNBe7JoT1OjxFSOusLOn/
-        tHg/iamaYxdEFf+xxzW+/8/y
-X-Google-Smtp-Source: APXvYqwLF+mpra8npi1MtsuyWuY9HY6bRBWMk0uyodiiNMMhRMbM1EYftY19y+KeALm5cn5na/b0Qg==
-X-Received: by 2002:a17:90a:1150:: with SMTP id d16mr7411913pje.2.1569955398457;
-        Tue, 01 Oct 2019 11:43:18 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:631a:1d56:6a:8714:31a4:1f8])
-        by smtp.gmail.com with ESMTPSA id q33sm13274538pgm.50.2019.10.01.11.43.13
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 01 Oct 2019 11:43:17 -0700 (PDT)
-Date:   Wed, 2 Oct 2019 00:13:09 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH v3 3/3] MAINTAINERS: Add entry for IMX290 CMOS image
- sensor driver
-Message-ID: <20191001184309.GB7739@Mani-XPS-13-9360>
-References: <20190830091943.22646-1-manivannan.sadhasivam@linaro.org>
- <20190830091943.22646-4-manivannan.sadhasivam@linaro.org>
- <20190923090752.GK5525@valkosipuli.retiisi.org.uk>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=57yXlV8OeF+0A0WSjdRw1RAKAtRQrYraqmnbKpxC2+Y=;
+        b=py/tU6jJ+wE6pKHe9lNJaHr5fhNTv10cd+MT2wL8U1F0n9pkMRAFI027Z/Qy0+sMnG
+         XzkF9/bjV68uRaME6zxttu+tcQY9h0kAQY3TdiGvBuWQgN9NeZYOuBhLQ6JuOtTO1pIG
+         Qo7YXQQ2dsiZwF7+BDPugmT3gc5j146pLaK1x4U3icaTFkWvtqn0BN0WaFoCOzTOk2N+
+         sHXsf5Yz7yJTCTP4o2ZHZLldyuWF+jSDTP/LTdYa44MaIC0eQMKRIUQ0qMmgEIlHkwDu
+         g8HygdtyUNVPSGOVdEPtDy7bY23gJ+eA2yKiklwpl4XFa7OfhCmL4XqUNYG/yb7C5iE7
+         pRhw==
+X-Gm-Message-State: APjAAAW3QGEkIo8osOtJ4t25374dKMHN5Eur6CN7m8BS1S7rtaMneGfp
+        VZDEg34gyu8/MI7G/FHy9ryd3G9azdPAI9A+6kAujbdB
+X-Google-Smtp-Source: APXvYqxLEQLgzH4uct9tKZ1G7O2LATrGxjQXO5VcuOdLMA8/sRylhq0Z66fDA037/nvoHjZZHwt1o+5IEgjEjGZQuWM=
+X-Received: by 2002:a05:6830:150d:: with SMTP id k13mr11986095otp.98.1569956050467;
+ Tue, 01 Oct 2019 11:54:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190923090752.GK5525@valkosipuli.retiisi.org.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190921151835.770263-1-martin.blumenstingl@googlemail.com>
+ <20190921151835.770263-3-martin.blumenstingl@googlemail.com> <1jftkcr3uy.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jftkcr3uy.fsf@starbuckisacylon.baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 1 Oct 2019 20:53:59 +0200
+Message-ID: <CAFBinCCED4YWYkdtrfrC80C8WLE=fyMJdjTa3wFNMJgC1OsoOA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] clk: meson: add a driver for the Meson8/8b/8m2 DDR
+ clock controller
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 23, 2019 at 12:07:52PM +0300, Sakari Ailus wrote:
-> On Fri, Aug 30, 2019 at 02:49:43PM +0530, Manivannan Sadhasivam wrote:
-> > Add MAINTAINERS entry for Sony IMX290 CMOS image sensor driver.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  MAINTAINERS | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index f7c84004187d..0ee261fca602 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -14962,6 +14962,14 @@ S:	Maintained
-> >  F:	drivers/media/i2c/imx274.c
-> >  F:	Documentation/devicetree/bindings/media/i2c/imx274.txt
-> >  
-> > +SONY IMX290 SENSOR DRIVER
-> > +M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > +L:	linux-media@vger.kernel.org
-> > +T:	git git://linuxtv.org/media_tree.git
-> > +S:	Maintained
-> > +F:	drivers/media/i2c/imx290.c
-> > +F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
+Hi Jerome,
+
+thank you for taking the time to go through this!
+
+On Tue, Oct 1, 2019 at 3:29 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+[...]
+> > +#include <linux/platform_device.h>
+> > +#include <linux/mfd/syscon.h>
+>
+> syscon is not used in the driver
+oops, good catch - thank you
+
+[...]
+> > +static struct clk_hw_onecell_data meson8_ddr_clk_hw_onecell_data = {
+> > +     .hws = {
+> > +             [DDR_CLKID_DDR_PLL_DCO]         = &meson8_ddr_pll_dco.hw,
+> > +             [DDR_CLKID_DDR_PLL]             = &meson8_ddr_pll.hw,
+>
+> I wonder if onecell is not overkill for this driver. We won't expose the
+> DCO, so only the post divider remains
+>
+> Do you expect this provider to have more than one leaf clock ?
+> If not, maybe you could use of_clk_hw_simple_get() instead ?
+there's some more clock bits in DDR_CLK_CNTL - the public A311D
+datasheet has a description for these bits but I'm not sure they do
+the same on Meson8/Meson8b/Meson8m2
+all I know is that some magic bytes are written to DDR_CLK_CNTL in the
+old u-boot code
+
+that's why I don't want to make any assumptions and play safe here (by
+using a onecell clock provider)
+
+> > +     },
+> > +     .num = 2,
+> > +};
 > > +
-> >  SONY IMX319 SENSOR DRIVER
-> >  M:	Bingbu Cao <bingbu.cao@intel.com>
-> >  L:	linux-media@vger.kernel.org
-> 
-> Please squash this change to the first patch.
-> 
+> > +static struct clk_regmap *const meson8_ddr_clk_regmaps[] = {
+> > +     &meson8_ddr_pll_dco,
+> > +     &meson8_ddr_pll,
+> > +};
+> > +
+> > +static const struct regmap_config meson8_ddr_clkc_regmap_config = {
+> > +     .reg_bits = 8,
+> > +     .val_bits = 32,
+> > +     .reg_stride = 4,
+> > +     .fast_io = true,
+>
+> I think fast_io will default to true with memory based register.
+> Setting the max_register would be nice
+good point - I'll take care of this when sending v2
 
-Oops, looks like you already said this in previous review as well. Will
-do.
 
-Thanks,
-Mani
-
-> -- 
-> Sakari Ailus
+Martin
