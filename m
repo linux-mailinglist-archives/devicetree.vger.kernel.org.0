@@ -2,191 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F7BC3958
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 17:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E63C39EA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 18:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727269AbfJAPnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 11:43:15 -0400
-Received: from mx2.suse.de ([195.135.220.15]:55430 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727302AbfJAPnP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 11:43:15 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 972FDAD2A;
-        Tue,  1 Oct 2019 15:43:12 +0000 (UTC)
-Message-ID: <0557c83bcb781724a284811fef7fdb122039f336.camel@suse.de>
-Subject: Re: [PATCH 05/11] of: Ratify of_dma_configure() interface
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>, PCI <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Oza Pawandeep <oza.oza@broadcom.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Date:   Tue, 01 Oct 2019 17:43:09 +0200
-In-Reply-To: <CAL_JsqLnKxuQRR3sGGtXF3nwwDx7DOONPPYz37ROk7u_+cxRug@mail.gmail.com>
-References: <20190927002455.13169-1-robh@kernel.org>
-         <20190927002455.13169-6-robh@kernel.org>
-         <20190930125752.GD12051@infradead.org>
-         <95f8dabea99f104336491281b88c04b58d462258.camel@suse.de>
-         <CAL_JsqLnKxuQRR3sGGtXF3nwwDx7DOONPPYz37ROk7u_+cxRug@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-Cs3oOlvxVqdSsNFddCdM"
-User-Agent: Evolution 3.32.4 
+        id S1729716AbfJAQGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 12:06:06 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:48750 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730223AbfJAQGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 12:06:06 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20191001155854euoutp020592d94d587ad934058c1cb599fb82e7~JkSVfhY6j2948729487euoutp02a
+        for <devicetree@vger.kernel.org>; Tue,  1 Oct 2019 15:58:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20191001155854euoutp020592d94d587ad934058c1cb599fb82e7~JkSVfhY6j2948729487euoutp02a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1569945534;
+        bh=+tY23nfPIaunW9U1IaP3j6d4TuDdnM7HmOEYyOXWP3g=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=OtM9p4symgBLi1KY1N1nh1x1l4r1x8cSzzDhp+vSp1eF8P7HSbcs1Cw82ojpcv8iG
+         96D6kteudseH3ywexqzKc5WrgD4gScz4kfq91J0MsekDvNz15fnEILE7P18qSDaZL4
+         o8DpLRq1RtuxzHZOYNYBGIJlyPVd8b6Sx8zs3oHQ=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20191001155854eucas1p2944b3eee19c286b094cbf7a9fe874a90~JkSVIli4p3181931819eucas1p2G;
+        Tue,  1 Oct 2019 15:58:54 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 51.01.04374.EB7739D5; Tue,  1
+        Oct 2019 16:58:54 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20191001155853eucas1p29a83adc9604633929ff91d5952029b3b~JkSUpjbOd1650616506eucas1p2E;
+        Tue,  1 Oct 2019 15:58:53 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20191001155853eusmtrp1a2fdc05e33cc988493cab501fc305235~JkSUoxdYH2890728907eusmtrp1Y;
+        Tue,  1 Oct 2019 15:58:53 +0000 (GMT)
+X-AuditID: cbfec7f5-4ddff70000001116-0a-5d9377be4712
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id DE.36.04166.DB7739D5; Tue,  1
+        Oct 2019 16:58:53 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20191001155853eusmtip1594d61f0672ab10c31fcc0758ec14963~JkST8lJMH0311403114eusmtip1c;
+        Tue,  1 Oct 2019 15:58:53 +0000 (GMT)
+Subject: Re: [PATCH v2 1/4] dt-bindings: memory-controllers: Add Exynos5422
+ DMC interrupts description
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com,
+        kgene@kernel.org, mark.rutland@arm.com, cw00.choi@samsung.com,
+        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        robh+dt@kernel.org, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <74f31100-7503-e333-fa51-ca218b45bb98@partner.samsung.com>
+Date:   Tue, 1 Oct 2019 17:58:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20191001131807.GB30129@pi3>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SaUgUYRjHe3d2dsattXE1fdDoWApKUpOKBpJQiFiiD0VBkS266eDRuuqO
+        d5dKl6YpKmWb5lmKKeZ6i5msi2tommgq3riKpWvlUVJp5DRGfvu9z/N/jv/DS2LSPtyeDFCH
+        MRq1UiUTiYU1rT86nZoi0xUHq3/Z0hWZ5TjdvzSN0zmGTpxOMc1idFfXK4J+F28maJ2pD6d7
+        GrJE9GKyAdGZXU0CuswwQtDP+7sF9FBcsYi+89pA0C3mezj9vW0CuVPy0melSF6vHSHkupIE
+        kbyy8Jb8YVUJki/qdpwRXRK7+TKqgAhG43LcW+z/2zCKhUxtiZq6PYvFomFxIrIggToMYyn5
+        KBGJSSlVjOCrqRHnH0sIWorjCU4lpRYRjDW5JiLyb8XLQgWvKUKQEduI8Zo5BIlGB46tKX8Y
+        zKgXcmxD7Yf+1WWcY4zSYvAhx5HrI6Kcoa4klAtLqJMwMvzgr0RI7YH2O9UijrdRF2FhvAXn
+        NVbw9smkkCu1WGs5o/fkO9rB4GSOgOedUDuXhXGrARVHwmxOrYg3eQKW58cInq1hxli1ztuh
+        PT1JyDMLscl5iOfrYErJXtccgxZjN87Nxdbmlje48GEP0E6NEvxFLGFgzopfwRLSah5jfFgC
+        9+9KefU+qEp6L+DZFopKHxGpSKbd4Eu7wYx2gxnt/7m5SFiC7JhwNsiPYQ+pmUhnVhnEhqv9
+        nH2Cg3Ro7be1/zZ+q0NNK1f0iCKRbItk4Hy6QoorI9joID0CEpPZSNxW0hRSia8yOobRBHtp
+        wlUMq0cOpFBmJ7m2adxTSvkpw5irDBPCaP5lBaSFfSzKftHoPT9fDYN1u2oqKh3HZ3XL4t6O
+        szeCYwqqhhVmJ5XvUZXZ3adtUj1IFLR+cT5n0ZZm9H5KTm/tfZJ35GZCaHOP9an8Twt7o30+
+        mryH8M9eo3q3wF274yYKmrWplw+gtYvkhipPP7zvXtbj8/ONZ9kFj45pstkcuJq6We4UJROy
+        /kpXR0zDKv8AGJr7TmkDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDIsWRmVeSWpSXmKPExsVy+t/xu7p7yyfHGjzcYmCxccZ6VovrX56z
+        Wsw/co7Vov/xa2aL8+c3sFucbXrDbrHp8TVWi8u75rBZfO49wmgx4/w+Jou1R+6yWyy9fpHJ
+        4nbjCjaL1r1H2C0Ov2lntfh24hGjg4DHmnlrGD12zrrL7rFpVSebx+Yl9R59W1YxenzeJBfA
+        FqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRvl6CX8e/I
+        PeaCpzwVT1teMzcw3uHqYuTgkBAwkVi9JLaLkYtDSGApo8Tbs7tYuhg5geJiEpP2bWeHsIUl
+        /lzrYgOxhQReM0o8nhoCYgsLZEjcmrITrF5EQFPi+t/vrCCDmAVmMUusv9LMAjH1BaPEhI61
+        7CDb2AT0JHasKgRp4BVwk7h7p5sVxGYRUJE43boVbIGoQITE4R2zGCFqBCVOznzCAtLKCbTg
+        1aFokDCzgJnEvM0PmSFscYlbT+YzQdjyEtvfzmGewCg0C0n3LCQts5C0zELSsoCRZRWjSGpp
+        cW56brGhXnFibnFpXrpecn7uJkZgTG879nPzDsZLG4MPMQpwMCrx8DYETY4VYk0sK67MPcQo
+        wcGsJMJr82dSrBBvSmJlVWpRfnxRaU5q8SFGU6DfJjJLiSbnA9NNXkm8oamhuYWlobmxubGZ
+        hZI4b4fAwRghgfTEktTs1NSC1CKYPiYOTqkGxsS4ihPtt66dYdRgibx/5WXjUb+Uhz3iy2sz
+        5C/vulfQGR3WmLM51rNxpYDawcOpib8DvB4cDzHY3a2ywOTm9C8ZN9PV4iam7nya3NX28UPI
+        Ei5On9WCMeYPl6lsNmz6/X/BAnPv6VFnY/uLX3bcjp3faXsrfDXfj9Kts/7eTFc0P7bi+LFT
+        hkosxRmJhlrMRcWJAHnCvq//AgAA
+X-CMS-MailID: 20191001155853eucas1p29a83adc9604633929ff91d5952029b3b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20191001125444eucas1p2e4254acf8434e1fadf0e208dbe62b2d7
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20191001125444eucas1p2e4254acf8434e1fadf0e208dbe62b2d7
+References: <20191001125436.24086-1-l.luba@partner.samsung.com>
+        <CGME20191001125444eucas1p2e4254acf8434e1fadf0e208dbe62b2d7@eucas1p2.samsung.com>
+        <20191001125436.24086-2-l.luba@partner.samsung.com>
+        <20191001131807.GB30129@pi3>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---=-Cs3oOlvxVqdSsNFddCdM
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2019-09-30 at 16:24 -0500, Rob Herring wrote:
-> On Mon, Sep 30, 2019 at 8:32 AM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> > On Mon, 2019-09-30 at 05:57 -0700, Christoph Hellwig wrote:
-> > > On Thu, Sep 26, 2019 at 07:24:49PM -0500, Rob Herring wrote:
-> > > > -int of_dma_configure(struct device *dev, struct device_node *np, b=
-ool
-> > > > force_dma)
-> > > > +int of_dma_configure(struct device *dev, struct device_node *paren=
-t,
-> > > > bool
-> > > > force_dma)
-> > >=20
-> > > This creates a > 80 char line.
-> > >=20
-> > > >  {
-> > > >     u64 dma_addr, paddr, size =3D 0;
-> > > >     int ret;
-> > > >     bool coherent;
-> > > >     unsigned long offset;
-> > > >     const struct iommu_ops *iommu;
-> > > > +   struct device_node *np;
-> > > >     u64 mask;
-> > > >=20
-> > > > +   np =3D dev->of_node;
-> > > > +   if (!np)
-> > > > +           np =3D parent;
-> > > > +   if (!np)
-> > > > +           return -ENODEV;
-> > >=20
-> > > I have to say I find the older calling convention simpler to understa=
-nd.
-> > > If we want to enforce the invariant I'd rather do that explicitly:
-> > >=20
-> > >       if (dev->of_node && np !=3D dev->of_node)
-> > >               return -EINVAL;
-> >=20
-> > As is, this would break Freescale Layerscape fsl-mc bus' dma_configure(=
-):
->=20
-> This may break PCI too for devices that have a DT node.
->=20
-> > static int fsl_mc_dma_configure(struct device *dev)
-> > {
-> >         struct device *dma_dev =3D dev;
-> >=20
-> >         while (dev_is_fsl_mc(dma_dev))
-> >                 dma_dev =3D dma_dev->parent;
-> >=20
-> >         return of_dma_configure(dev, dma_dev->of_node, 0);
-> > }
-> >=20
-> > But I think that with this series, given the fact that we now treat the=
- lack
-> > of
-> > dma-ranges as a 1:1 mapping instead of an error, we could rewrite the
-> > function
-> > like this:
->=20
-> Now, I'm reconsidering allowing this abuse... It's better if the code
-> which understands the bus structure in DT for a specific bus passes in
-> the right thing. Maybe I should go back to Robin's version (below).
-> OTOH, the existing assumption that 'dma-ranges' was in the immediate
-> parent was an assumption on the bus structure which maybe doesn't
-> always apply.
->=20
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index a45261e21144..6951450bb8f3 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -98,12 +98,15 @@ int of_dma_configure(struct device *dev, struct
-> device_node *parent, bool force_
->         u64 mask;
->=20
->         np =3D dev->of_node;
-> -       if (!np)
-> -               np =3D parent;
-> +       if (np)
-> +               parent =3D of_get_dma_parent(np);
-> +       else
-> +               np =3D of_node_get(parent);
->         if (!np)
->                 return -ENODEV;
->=20
-> -       ret =3D of_dma_get_range(np, &dma_addr, &paddr, &size);
-> +       ret =3D of_dma_get_range(parent, &dma_addr, &paddr, &size);
-> +       of_node_put(parent);
->         if (ret < 0) {
->                 /*
->                  * For legacy reasons, we have to assume some devices nee=
-d
+On 10/1/19 3:18 PM, Krzysztof Kozlowski wrote:
+> On Tue, Oct 01, 2019 at 02:54:33PM +0200, Lukasz Luba wrote:
+>> Add description for optional interrupt lines. It provides a new operation
+>> mode, which uses internal performance counters interrupt when overflow.
+>> This is more reliable than using default polling mode implemented in
+>> devfreq.
+>>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   .../bindings/memory-controllers/exynos5422-dmc.txt     | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> index 02aeb3b5a820..afc38aea6b1c 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> @@ -31,6 +31,13 @@ Required properties for DMC device for Exynos5422:
+>>   	The register offsets are in the driver code and specyfic for this SoC
+>>   	type.
+>>   
+>> +Optional properties for DMC device for Exynos5422:
+>> +- interrupt-parent : The parent interrupt controller.
+>> +- interrupts : Contains the IRQ line numbers for the DMC internal performance
+>> +  event counters. Align with specification of the interrupt line(s) in the
+>> +  interrupt-parent controller.
+>> +- interrupt-names : List of IRQ names.
+> 
+> Since the names are important (not the order) they are part of the
+> bindings and they must be listed here.
 
-I spent some time thinking about your comments and researching. I came to t=
-he
-realization that both these solutions break the usage in
-drivers/gpu/drm/sun4i/sun4i_backend.c:805. In that specific case both
-'dev->of_node' and 'parent' exist yet the device receiving the configuratio=
-n
-and 'parent' aren't related in any way.
-
-IOW we can't just use 'dev->of_node' as a starting point to walk upwards th=
-e
-tree. We always have to respect whatever DT node the bus provided, and star=
-t
-there. This clashes with the current solutions, as they are based on the fa=
-ct
-that we can use dev->of_node when present.
-
-My guess at this point, if we're forced to honor that behaviour, is that we
-have to create a new API for the PCI use case. Something the likes of
-of_dma_configure_parent().
+Good point, thanks. I will add it to the description.
 
 Regards,
-Nicolas
-
-
---=-Cs3oOlvxVqdSsNFddCdM
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2TdA0ACgkQlfZmHno8
-x/6K4AgAjioHwGF/mb4/iuCV18ZNbc5+28Uj8QSuVjilegKoNykY14Tj+cUOZScx
-3EF7lURVACHKIEG1K4mOtTqx/gzU+CkDYq3h6j7WkGGOIVY9Uadlnj/Koe7b3WuN
-CtyjG0ZpwC0Houf+sUzULF/oh70hKCQnGJqaw4zM11eaV3GWVFusupxh6VuZ61Ez
-PFo9kjYEn9DJFCUYzlZBYmqo7KIXm17W2fiY6AqjPvYE7s4HoA3Y1IE3uofxIY0B
-0jyx5feECFqXNM6OXhaOVDV5jiDrM2aFc1/w0IYU3dcaQxjkPFlb4yI7KtzE/HBT
-DJ49VyTT04oQy0DYBsw8BXur1BGXCw==
-=Iift
------END PGP SIGNATURE-----
-
---=-Cs3oOlvxVqdSsNFddCdM--
-
+Lukasz
