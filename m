@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A71C32F2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DED2C330B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 13:44:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387641AbfJALlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 07:41:12 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41188 "EHLO
+        id S1732994AbfJALlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 07:41:45 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41274 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387631AbfJALlM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:41:12 -0400
+        with ESMTP id S2387600AbfJALlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 07:41:14 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=ZTdDCrXMNUBiChoI6oHj9PmGOmxRxT7bGSqcEkIkOhg=; b=Desj934jLs9n
-        b6NTwMYJL2lNLWqb72TTR6WgoNEXVEBMH9PhRxU9RhyTLyb1qz1Ns9tF9A3DTYGBrtymaSDq+pk8/
-        Ul5TNRWCVLcy5cxum3JmNHPd69UxntLXfbKbzUcX0XQKTPjUZ4T5iRBsux+i57HG8hj3iqj6i3oB3
-        cHDxc=;
+        List-Archive; bh=9NIlts5ITrK/8oZVl5gsv5OBvh8S90fAOctaSex1Ztk=; b=fd0dXYto4V/D
+        ehOlK0fbO4lt2yZ+DyDyqD+KFMqaqYW5f4XwtWj5YkNT+E0UuJ4IBhvvnezFE3aPPzDr7PJEKm0Ew
+        qjYPLssafBMkO+SNZ5iT7u5F6KFFSaNdC21633KR9VeEobiCA/bDeHfBj5/j1r9UozUr4zMrqN7j7
+        Oomxo=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1iFGWi-0004ZM-F9; Tue, 01 Oct 2019 11:41:08 +0000
+        id 1iFGWj-0004Zf-11; Tue, 01 Oct 2019 11:41:09 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id EA2CF2742A30; Tue,  1 Oct 2019 12:41:07 +0100 (BST)
+        id 76E6B274299F; Tue,  1 Oct 2019 12:41:08 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Phil Edworthy <phil.edworthy@renesas.com>
+To:     Simon Horman <horms+renesas@verge.net.au>
 Cc:     devicetree@vger.kernel.org,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-spi@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
         Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Applied "dt: spi: Add Renesas RZ/N1 binding documentation" to the spi tree
-In-Reply-To: <1568793876-9009-2-git-send-email-gareth.williams.jx@renesas.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>
+Subject: Applied "dt-bindings: hspi: Convert bindings to json-schema" to the spi tree
+In-Reply-To: <20190916075352.32108-1-horms+renesas@verge.net.au>
 X-Patchwork-Hint: ignore
-Message-Id: <20191001114107.EA2CF2742A30@ypsilon.sirena.org.uk>
-Date:   Tue,  1 Oct 2019 12:41:07 +0100 (BST)
+Message-Id: <20191001114108.76E6B274299F@ypsilon.sirena.org.uk>
+Date:   Tue,  1 Oct 2019 12:41:08 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -49,7 +50,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   dt: spi: Add Renesas RZ/N1 binding documentation
+   dt-bindings: hspi: Convert bindings to json-schema
 
 has been applied to the spi tree at
 
@@ -74,46 +75,126 @@ to this mail.
 Thanks,
 Mark
 
-From da182a61fce01dbd7c4a78c68a34af110f00e36f Mon Sep 17 00:00:00 2001
-From: Phil Edworthy <phil.edworthy@renesas.com>
-Date: Wed, 18 Sep 2019 09:04:33 +0100
-Subject: [PATCH] dt: spi: Add Renesas RZ/N1 binding documentation
+From 85d27be81e39323c8e3c1151e4858b26d7e1b20d Mon Sep 17 00:00:00 2001
+From: Simon Horman <horms+renesas@verge.net.au>
+Date: Mon, 16 Sep 2019 09:53:52 +0200
+Subject: [PATCH] dt-bindings: hspi: Convert bindings to json-schema
 
-The Renesas RZ/N1 SPI Controller is based on the Synopsys DW SSI, but has
-additional registers for software CS control and DMA. This patch does not
-address the changes required for DMA support, it simply adds the compatible
-string. The CS functionality is not very useful and also not needed as
-Linux can use gpios for the CS signals.
+Convert Renesas HSPI bindings documentation to json-schema.
+Also name bindings documentation file according to the compat string
+being documented.
 
-Add a compatible string to handle any unforeseen issues that may arise, and
-pave the way for DMA support.
+As a side effect of this change all currently supported/used compat
+strings are listed while no while card compat string is documented.
+This, in my opinion, is desirable as only supported hardware should
+be documented.
 
-Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Link: https://lore.kernel.org/r/1568793876-9009-2-git-send-email-gareth.williams.jx@renesas.com
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20190916075352.32108-1-horms+renesas@verge.net.au
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../devicetree/bindings/spi/renesas,rzn1-spi.txt      | 11 +++++++++++
- 1 file changed, 11 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt
+ .../devicetree/bindings/spi/renesas,hspi.yaml | 57 +++++++++++++++++++
+ .../devicetree/bindings/spi/sh-hspi.txt       | 26 ---------
+ 2 files changed, 57 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/renesas,hspi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/sh-hspi.txt
 
-diff --git a/Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt b/Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt
+diff --git a/Documentation/devicetree/bindings/spi/renesas,hspi.yaml b/Documentation/devicetree/bindings/spi/renesas,hspi.yaml
 new file mode 100644
-index 000000000000..fb1a6728638d
+index 000000000000..c429cf4bea5b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/renesas,rzn1-spi.txt
-@@ -0,0 +1,11 @@
-+Renesas RZ/N1 SPI Controller
++++ b/Documentation/devicetree/bindings/spi/renesas,hspi.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/renesas,hspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+This controller is based on the Synopsys DW Synchronous Serial Interface and
-+inherits all properties defined in snps,dw-apb-ssi.txt except for the
-+compatible property.
++title: Renesas HSPI
 +
-+Required properties:
-+- compatible : The device specific string followed by the generic RZ/N1 string.
-+   Therefore it must be one of:
-+   "renesas,r9a06g032-spi", "renesas,rzn1-spi"
-+   "renesas,r9a06g033-spi", "renesas,rzn1-spi"
++maintainers:
++  - Geert Uytterhoeven <geert+renesas@glider.be>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++        - renesas,hspi-r8a7778 # R-Car M1A
++        - renesas,hspi-r8a7779 # R-Car H1
++      - const: renesas,hspi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - '#address-cells'
++  - '#size-cells'
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a7778-clock.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    hspi0: spi@fffc7000 {
++        compatible = "renesas,hspi-r8a7778", "renesas,hspi";
++        reg = <0xfffc7000 0x18>;
++        interrupts = <0 63 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&mstp0_clks R8A7778_CLK_HSPI>;
++        power-domains = <&cpg_clocks>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
++
+diff --git a/Documentation/devicetree/bindings/spi/sh-hspi.txt b/Documentation/devicetree/bindings/spi/sh-hspi.txt
+deleted file mode 100644
+index b9d1e4d11a77..000000000000
+--- a/Documentation/devicetree/bindings/spi/sh-hspi.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Renesas HSPI.
+-
+-Required properties:
+-- compatible       : "renesas,hspi-<soctype>", "renesas,hspi" as fallback.
+-		     Examples with soctypes are:
+-		       - "renesas,hspi-r8a7778" (R-Car M1)
+-		       - "renesas,hspi-r8a7779" (R-Car H1)
+-- reg              : Offset and length of the register set for the device
+-- interrupts       : Interrupt specifier
+-- #address-cells   : Must be <1>
+-- #size-cells      : Must be <0>
+-
+-Pinctrl properties might be needed, too.  See
+-Documentation/devicetree/bindings/pinctrl/renesas,*.
+-
+-Example:
+-
+-	hspi0: spi@fffc7000 {
+-		compatible = "renesas,hspi-r8a7778", "renesas,hspi";
+-		reg = <0xfffc7000 0x18>;
+-		interrupt-parent = <&gic>;
+-		interrupts = <0 63 IRQ_TYPE_LEVEL_HIGH>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-
 -- 
 2.20.1
 
