@@ -2,80 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79BF6C361F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3E5C3635
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388629AbfJANow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 09:44:52 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34585 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726710AbfJANow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 09:44:52 -0400
-Received: by mail-oi1-f194.google.com with SMTP id 83so14460687oii.1;
-        Tue, 01 Oct 2019 06:44:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tEk9hnIUXWE3u1Rb3n2bhHYcH2Wd7u6ueEiS5QFdFr0=;
-        b=mE+5HtLXTWbP6dRQRQmAotRIbCU+lk3lH6pOBTZQrEFzLdc5UoldO+iRlWpruobPr0
-         L+BpqZIlNDP+q3iXCPDB7AsTniJREmCQVntIv8LnSOCa+9YGnnv1BKKIuTSTWPH0j4T6
-         xdV7/ex80UAbAd1mFd27qjJ6eoNA1BqelgPLH5EGYrsS2DGznbAnmuR31rR+RkffUorh
-         KeC7pzTQBBeQyKsNT5D7jJk8g8f05e8NJCI2X2JtltY8oGs0iKymTnJ1RfMMoQymujzC
-         iubrjJgirisP5GiTVFhYb5KQmTlsIMVR6gjXZa9kLre9+b+1Klr9m7Z1kc4Y5gqOXLcv
-         tmOg==
-X-Gm-Message-State: APjAAAVLOvcrbyGybFgglY3QxPy6U8m8DK2IxI2HPCOWFtfdsrnC8rve
-        mYcf6/0jJPXkLeIAF5pDmw==
-X-Google-Smtp-Source: APXvYqwOufGQSK3HWFRGN91rsiUi3BhlQyYODzFgebhOif+j+ruhjh6YpWFbeO3JiM9jfqQ60ojUuw==
-X-Received: by 2002:aca:f0d4:: with SMTP id o203mr3677322oih.15.1569937491029;
-        Tue, 01 Oct 2019 06:44:51 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v75sm5301353oia.6.2019.10.01.06.44.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 06:44:50 -0700 (PDT)
-Date:   Tue, 1 Oct 2019 08:44:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Maciej Falkowski <m.falkowski@samsung.com>
-Subject: Re: [PATCH v3] dt-bindings: gpu: Convert Samsung 2D Graphics
-  Accelerator to dt-schema
-Message-ID: <20191001134449.GA23645@bogus>
-References: <CGME20190927143325eucas1p289cb46e8dcbb1ace0b1f80ade738c29b@eucas1p2.samsung.com>
- <20190927143319.12232-1-m.szyprowski@samsung.com>
+        id S2388714AbfJANq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 09:46:29 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:32860 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726152AbfJANq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 09:46:28 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x91DibK1023820;
+        Tue, 1 Oct 2019 08:46:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type;
+ s=PODMain02222019; bh=w7BEQ9sUsn6D/1NoT2B9gBAf78ahn+6oAXHVOe5nVKY=;
+ b=Hbx/4xlvAuPhqHX67K8dl9c8dlWGYvwEQkUXQyBNtcfH07p3AdaINxN+wbCZdEcKdXbw
+ rUP8745Y6yHuYiU/03Jydn7y4ZWYnfoXajBMRBWkNKXwE8M1B4Fh5VaydDt1JqkXyWkF
+ XhjOW2b8JJxC6X14mlZBOy7Yv20vcqthFDusj8FdRBwSoVT+BCZJseZooImxpqYMP9yg
+ XxSzupddWlWFekFYRNi19ctU+UnQmwQJf7zUofCzk2bnYKLi3N5qJAz6wkFSoFK4WgDz
+ He/lf+mWw3cyEnysKhj3mk4lXk03+fWE+ig+7Ty+t6qT0x72oEkemN0E7FpGu59mLwrE Sw== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 2va4x4ncr7-3
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 01 Oct 2019 08:46:19 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 1 Oct
+ 2019 14:46:17 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Tue, 1 Oct 2019 14:46:17 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id CA6312A1;
+        Tue,  1 Oct 2019 13:46:17 +0000 (UTC)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <lee.jones@linaro.org>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH 1/3] mfd: wm8998: Remove some unused registers
+Date:   Tue, 1 Oct 2019 14:46:15 +0100
+Message-ID: <20191001134617.12093-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190927143319.12232-1-m.szyprowski@samsung.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=732
+ malwarescore=0 adultscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=1 bulkscore=0 mlxscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910010125
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Sep 2019 16:33:19 +0200, Marek Szyprowski wrote:
-> From: Maciej Falkowski <m.falkowski@samsung.com>
-> 
-> Convert Samsung 2D Graphics Accelerator to newer dt-schema format
-> 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> ---
-> v3:
-> - Merged two if-statements with single if-else statement
-> - Added 'additionalProperties: false'
-> - Listed all missing 'properties' in properties scope
-> 
-> Best regards,
-> Maciej Falkowski
-> ---
->  .../devicetree/bindings/gpu/samsung-g2d.txt   | 27 -------
->  .../devicetree/bindings/gpu/samsung-g2d.yaml  | 75 +++++++++++++++++++
->  2 files changed, 75 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-g2d.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
-> 
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+---
 
-Applied, thanks.
+Patch is new to the series.
 
-Rob
+Thanks,
+Charles
+
+ drivers/mfd/wm8998-tables.c           | 12 ------------
+ include/linux/mfd/arizona/registers.h |  7 -------
+ 2 files changed, 19 deletions(-)
+
+diff --git a/drivers/mfd/wm8998-tables.c b/drivers/mfd/wm8998-tables.c
+index ebf0eadd2075c..9b34a6d760949 100644
+--- a/drivers/mfd/wm8998-tables.c
++++ b/drivers/mfd/wm8998-tables.c
+@@ -806,12 +806,6 @@ static const struct reg_default wm8998_reg_default[] = {
+ 	{ 0x00000EF3, 0x0000 },    /* R3827  - ISRC 2 CTRL 1 */
+ 	{ 0x00000EF4, 0x0001 },    /* R3828  - ISRC 2 CTRL 2 */
+ 	{ 0x00000EF5, 0x0000 },    /* R3829  - ISRC 2 CTRL 3 */
+-	{ 0x00001700, 0x0000 },    /* R5888  - FRF_COEFF_1 */
+-	{ 0x00001701, 0x0000 },    /* R5889  - FRF_COEFF_2 */
+-	{ 0x00001702, 0x0000 },    /* R5890  - FRF_COEFF_3 */
+-	{ 0x00001703, 0x0000 },    /* R5891  - FRF_COEFF_4 */
+-	{ 0x00001704, 0x0000 },    /* R5892  - DAC_COMP_1 */
+-	{ 0x00001705, 0x0000 },    /* R5893  - DAC_COMP_2 */
+ };
+ 
+ static bool wm8998_readable_register(struct device *dev, unsigned int reg)
+@@ -1492,12 +1486,6 @@ static bool wm8998_readable_register(struct device *dev, unsigned int reg)
+ 	case ARIZONA_ISRC_2_CTRL_1:
+ 	case ARIZONA_ISRC_2_CTRL_2:
+ 	case ARIZONA_ISRC_2_CTRL_3:
+-	case ARIZONA_FRF_COEFF_1:
+-	case ARIZONA_FRF_COEFF_2:
+-	case ARIZONA_FRF_COEFF_3:
+-	case ARIZONA_FRF_COEFF_4:
+-	case ARIZONA_V2_DAC_COMP_1:
+-	case ARIZONA_V2_DAC_COMP_2:
+ 		return true;
+ 	default:
+ 		return false;
+diff --git a/include/linux/mfd/arizona/registers.h b/include/linux/mfd/arizona/registers.h
+index bb1a2530ae279..49e24d1de8d47 100644
+--- a/include/linux/mfd/arizona/registers.h
++++ b/include/linux/mfd/arizona/registers.h
+@@ -1186,13 +1186,6 @@
+ #define ARIZONA_DSP4_SCRATCH_1                   0x1441
+ #define ARIZONA_DSP4_SCRATCH_2                   0x1442
+ #define ARIZONA_DSP4_SCRATCH_3                   0x1443
+-#define ARIZONA_FRF_COEFF_1                      0x1700
+-#define ARIZONA_FRF_COEFF_2                      0x1701
+-#define ARIZONA_FRF_COEFF_3                      0x1702
+-#define ARIZONA_FRF_COEFF_4                      0x1703
+-#define ARIZONA_V2_DAC_COMP_1                    0x1704
+-#define ARIZONA_V2_DAC_COMP_2                    0x1705
+-
+ 
+ /*
+  * Field Definitions.
+-- 
+2.11.0
+
