@@ -2,167 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE54C366A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE01C368B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 16:00:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388388AbfJAN4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 09:56:10 -0400
-Received: from mx.0dd.nl ([5.2.79.48]:60708 "EHLO mx.0dd.nl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726710AbfJAN4K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 09:56:10 -0400
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.0dd.nl (Postfix) with ESMTPS id 12E3B5FBC5;
-        Tue,  1 Oct 2019 15:56:09 +0200 (CEST)
-Authentication-Results: mx.0dd.nl;
-        dkim=pass (2048-bit key; secure) header.d=vdorst.com header.i=@vdorst.com header.b="MiBJ1OfY";
-        dkim-atps=neutral
-Received: from www (www.vdorst.com [192.168.2.222])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.vdorst.com (Postfix) with ESMTPSA id C2B87358FB;
-        Tue,  1 Oct 2019 15:56:08 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com C2B87358FB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1569938168;
-        bh=VuIg/nbWnzaooWQXgf0jLELVIM9W+Vd2ZvGPUadAMPM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MiBJ1OfYk48VHA6HrblhjA6Hb3aditWR5YfLHeFqJ81AE7DkXN8+UQKKcKcjYHAnm
-         zigKND8kk+B83zm98YLtU5LWqT4toLQK/YrVYyM7o68njxwvBb46NbJMYFOIqHq2+a
-         Id6P3ktrp23DiZwgLPnly/D/Y9Pq3lkXKmZ0Kjt2ayaTiMeFG6Epdi+WPri9j+DM6l
-         cqyuF8nMF2is2g6LcHid4qI6I2nO4LCM90z5YpJKeMVOYsT7dQ/kinbeRU913TllAE
-         TLo82X/M/GHIiwM5mkxMGqC2Aa8nsH0+7scM3UL2CwVYi8VU/O1IzdFqkUia3Oiel0
-         +fn3sWWHhQbUA==
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1]) by
- www.vdorst.com (Horde Framework) with HTTPS; Tue, 01 Oct 2019 13:56:08 +0000
-Date:   Tue, 01 Oct 2019 13:56:08 +0000
-Message-ID: <20191001135608.Horde.OSYef8s44rR0XHw22Bf55r8@www.vdorst.com>
-From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-To:     MarkLee <Mark-MC.Lee@mediatek.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>,
-        Felix Fietkau <nbd@openwrt.org>,
-        Nelson Chang <nelson.chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        id S2388505AbfJAOAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 10:00:07 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:40773 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726710AbfJAOAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 10:00:07 -0400
+Received: by mail-ot1-f68.google.com with SMTP id y39so11610424ota.7;
+        Tue, 01 Oct 2019 07:00:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=JZBM1FPFDAl5uESgEP9tPsFTn7qdNx8IBtQzRJpA2CU=;
+        b=JJ6Ba9U260hPNMjV33RcZ4y4AOaBtHnjOByo9zSyjfHN3eAatyKNOkOgmyd1ru0Sm9
+         Sh0ucXuvXH5gHibOXGHWFPbLnOMTyrqAVMT+4gthL0YteSJyxpstoaO4V9iyLtOIV4mk
+         vqs8y3GDEj61emJcbuf5VrBAYuRm+ZTKiyod7zaSjSik06RgNP9A3j8T17P47IoGyOd6
+         hg7mtUlOXdAodyFCsBiBvJ1HgXnwIQ45nshjfu+Bodd+rOJRidpOPndCoCGsjgyVobpd
+         bwR8ycm8zR0dF61jo6a2FP57u6Jg3T6gS22+G+vOhySqKsyDZ1gbdxnZ8PwUalSEfshh
+         KkmA==
+X-Gm-Message-State: APjAAAVr+PRHwQCvMAYY+PNPx5D0/RCQsKzdEgbERn2PSzCOE2hbsup5
+        HznEYzRjx+2O9BlmLHiUOw==
+X-Google-Smtp-Source: APXvYqyny3jSQCJcTq07B8NFgeh+CqrPZ/jllExOJcitfcVJnCPPhlC7KQB0zTngJlFTUtwdcVIBqg==
+X-Received: by 2002:a9d:4041:: with SMTP id o1mr4924805oti.61.1569938405253;
+        Tue, 01 Oct 2019 07:00:05 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m25sm5045457oie.39.2019.10.01.07.00.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 07:00:04 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 09:00:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net 2/2] arm: dts: mediatek: Fix mt7629 dts to reflect
- the latest dt-binding
-References: <20191001123150.23135-1-Mark-MC.Lee@mediatek.com>
- <20191001123150.23135-3-Mark-MC.Lee@mediatek.com>
-In-Reply-To: <20191001123150.23135-3-Mark-MC.Lee@mediatek.com>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+        linux-samsung-soc@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-tegra@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2 2/8] dt-bindings: sram: Convert SRAM bindings to
+ json-schema
+Message-ID: <20191001140003.GA31344@bogus>
+References: <20190918173141.4314-1-krzk@kernel.org>
+ <20190918173141.4314-2-krzk@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190918173141.4314-2-krzk@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi MarkLee,
+On Wed, Sep 18, 2019 at 07:31:35PM +0200, Krzysztof Kozlowski wrote:
+> Convert generic mmio-sram bindings to DT schema format using
+> json-schema.
 
-Quoting MarkLee <Mark-MC.Lee@mediatek.com>:
+I've been slow getting to this because I started on the same thing...
 
-> * Removes mediatek,physpeed property from dtsi that is useless in PHYLINK
-> * Set gmac0 to fixed-link sgmii 2.5Gbit mode
-> * Set gmac1 to gmii mode that connect to a internal gphy
->
-> Signed-off-by: MarkLee <Mark-MC.Lee@mediatek.com>
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
 > ---
->  arch/arm/boot/dts/mt7629-rfb.dts | 13 ++++++++++++-
->  arch/arm/boot/dts/mt7629.dtsi    |  2 --
->  2 files changed, 12 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/mt7629-rfb.dts  
-> b/arch/arm/boot/dts/mt7629-rfb.dts
-> index 3621b7d2b22a..6bf1f7d8ddb5 100644
-> --- a/arch/arm/boot/dts/mt7629-rfb.dts
-> +++ b/arch/arm/boot/dts/mt7629-rfb.dts
-> @@ -66,9 +66,21 @@
->  	pinctrl-1 = <&ephy_leds_pins>;
->  	status = "okay";
->
-> +	gmac0: mac@0 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <0>;
-> +		phy-mode = "sgmii";
-> +		fixed-link {
-> +			speed = <2500>;
-> +			full-duplex;
-> +			pause;
-> +		};
-> +	};
+> 
+> Changes since v1:
+> 1. Indent example with four spaces (more readable).
+> ---
+>  .../devicetree/bindings/sram/sram.txt         |  80 ----------
+>  .../devicetree/bindings/sram/sram.yaml        | 138 ++++++++++++++++++
+>  2 files changed, 138 insertions(+), 80 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sram/sram.txt
+>  create mode 100644 Documentation/devicetree/bindings/sram/sram.yaml
+
+> diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
+> new file mode 100644
+> index 000000000000..8d9d6ce494b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sram/sram.yaml
+> @@ -0,0 +1,138 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sram/sram.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	gmac1: mac@1 {
->  		compatible = "mediatek,eth-mac";
->  		reg = <1>;
-> +		phy-mode = "gmii";
->  		phy-handle = <&phy0>;
->  	};
->
-> @@ -78,7 +90,6 @@
->
->  		phy0: ethernet-phy@0 {
->  			reg = <0>;
-> -			phy-mode = "gmii";
->  		};
->  	};
->  };
-> diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-> index 9608bc2ccb3f..867b88103b9d 100644
-> --- a/arch/arm/boot/dts/mt7629.dtsi
-> +++ b/arch/arm/boot/dts/mt7629.dtsi
-> @@ -468,14 +468,12 @@
->  			compatible = "mediatek,mt7629-sgmiisys", "syscon";
->  			reg = <0x1b128000 0x3000>;
->  			#clock-cells = <1>;
-> -			mediatek,physpeed = "2500";
->  		};
->
->  		sgmiisys1: syscon@1b130000 {
->  			compatible = "mediatek,mt7629-sgmiisys", "syscon";
->  			reg = <0x1b130000 0x3000>;
->  			#clock-cells = <1>;
-> -			mediatek,physpeed = "2500";
->  		};
->  	};
->  };
-> --
+> +title: Generic on-chip SRAM
+> +
+> +maintainers:
+> +  - FIXME <who@should.it.be>
+
+You can put me.
+
+> +
+> +description: |+
+> +  Simple IO memory regions to be managed by the genalloc API.
+> +
+> +  Each child of the sram node specifies a region of reserved memory. Each
+> +  child node should use a 'reg' property to specify a specific range of
+> +  reserved memory.
+> +
+> +  Following the generic-names recommended practice, node names should
+> +  reflect the purpose of the node. Unit address (@<address>) should be
+> +  appended to the name.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^sram(@.*)?"
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mmio-sram
+> +          - atmel,sama5d2-securam
+
+I was trying to go down the path of putting all the compatibles for 
+various SRAM bindings here, but I ran into some issues. I need to 
+revisit as I've forgotten the exact issue.
+
+This would need to be a 'contains' if this is going to work for others.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    description: Should use the same values as the root node.
+> +
+> +  "#size-cells":
+> +    description: Should use the same values as the root node.
+
+I defined both of these to be 1 as 4GB of SRAM should be enough for a 
+while. We can debate 1 or 2 cells vs. 1, but there's no reason it has to 
+be the same as the root (unless we're failing to do address 
+translation).
+
+> +
+> +  ranges:
+> +    description:
+> +      Should translate from local addresses within the sram to bus addresses.
+> +
+> +  no-memory-wc:
+> +    description:
+> +      The flag indicating, that SRAM memory region has not to be remapped
+> +      as write combining. WC is used by default.
+> +    type: boolean
+> +
+> +  # TODO: additionalProperties: false
+> +
+> +patternProperties:
+> +  "^([a-z]*-)?sram@[a-f0-9]$":
+> +    type: object
+> +    description:
+> +      Each child of the sram node specifies a region of reserved memory.
+> +    properties:
+> +      reg:
+> +        description:
+> +          IO mem address range, relative to the SRAM range.
+
+maxItems: 1
+
+> +
+> +      compatible:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          Should contain a vendor specific string in the form
+> +          <vendor>,[<device>-]<usage>
+> +
+> +      pool:
+> +        description:
+> +          Indicates that the particular reserved SRAM area is addressable
+> +          and in use by another device or devices.
+> +        type: boolean
+> +
+> +      export:
+> +        description:
+> +          Indicates that the reserved SRAM area may be accessed outside
+> +          of the kernel, e.g. by bootloader or userspace.
+> +        type: boolean
+> +
+> +      protect-exec:
+> +        description: |
+> +          Same as 'pool' above but with the additional constraint that code
+> +          will be run from the region and that the memory is maintained as
+> +          read-only, executable during code execution. NOTE: This region must
+> +          be page aligned on start and end in order to properly allow
+> +          manipulation of the page attributes.
+> +        type: boolean
+> +
+> +      label:
+> +        $ref: /schemas/types.yaml#/definitions/string
+
+Already has a type definition.
+
+> +        description:
+> +          The name for the reserved partition, if omitted, the label is taken
+> +          from the node name excluding the unit address.
+> +
+> +      clocks:
+> +        description:
+> +          A list of phandle and clock specifier pair that controls the
+> +          single SRAM clock.
+> +
+> +      # TODO: additionalProperties: false
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +examples:
+> +  - |
+> +    sram: sram@5c000000 {
+> +        compatible = "mmio-sram";
+> +        reg = <0x5c000000 0x40000>; /* 256 KiB SRAM at address 0x5c000000 */
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0x5c000000 0x40000>;
+> +
+> +        smp-sram@100 {
+> +            compatible = "socvendor,smp-sram";
+> +            reg = <0x100 0x50>;
+> +        };
+> +
+> +        device-sram@1000 {
+> +            reg = <0x1000 0x1000>;
+> +            pool;
+> +        };
+> +
+> +        exported@20000 {
+> +            reg = <0x20000 0x20000>;
+> +            export;
+> +        };
+> +    };
+> -- 
 > 2.17.1
-
-Does MT7629 soc has the same SGMII IP block as on the MT7622?
-If that is the case then phy-mode should set to "2500base-x".
-See discussion about the MT7622 [1] and dts of  
-mt7622-bananapi-bpi-r64.dts[2][3]
-
-Note the code only set the phy in overclock mode if phymode =  
-2500base-x and the
-link is a fixed-link, see [4].
-Alsp the current code doesn't support sgmii so well. Sgmii at 2.5Gbit is not
-supported at all.
-
-Greats,
-
-René
-
-[1]:  
-https://lore.kernel.org/netdev/20190822144433.GT13294@shell.armlinux.org.uk/
-[2]:  
-https://lore.kernel.org/netdev/20190825174341.20750-4-opensource@vdorst.com/
-[3]:  
-https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/tree/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts#n122
-[4]:  
-https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/tree/drivers/net/ethernet/mediatek/mtk_sgmii.c#n72
-
-
-
-
-
+> 
