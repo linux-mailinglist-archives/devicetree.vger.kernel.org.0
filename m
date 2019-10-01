@@ -2,188 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F996C2F4A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 10:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CD10C2F6B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 11:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729787AbfJAIwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 04:52:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35036 "EHLO mail.kernel.org"
+        id S1729841AbfJAJAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 05:00:04 -0400
+Received: from foss.arm.com ([217.140.110.172]:44278 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726672AbfJAIwv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 04:52:51 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 872D82133F;
-        Tue,  1 Oct 2019 08:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1569919970;
-        bh=TYXtlG+fiA+pF3jSsz1tPLK5DQwytXD+ciUdbJAWuhk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pcq6+VW4s9nKnunOdT0D2PQSwt06qFkxoutKMOh6lfzCjv0B+CUXME6uoPjRpjMRG
-         1KExkyTabs+UJgSqaLRPYZyj4KicHav4PbAdLBmqDsnfYA2BQWDSdDQP66AhfCHpH9
-         fl8DS+0XLZDHcBytry97Ks7aXl8rbOpD6/Wa2SQM=
-Date:   Tue, 1 Oct 2019 10:52:46 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings: media: Add Allwinner A10 CSI binding
-Message-ID: <20191001085246.55srb62bpfc6jhtu@gilmour>
-References: <cover.34bcd988943a26671681eaf849aacab51fab1cfe.1562847292.git-series.maxime.ripard@bootlin.com>
- <110dd9ff1784c29fa16304825a41d1603a33f166.1562847292.git-series.maxime.ripard@bootlin.com>
- <CAGb2v64nx2AuWZN+RxCneE0pqvXr_d7u6mQ+=nCHv2VJ1MNtrQ@mail.gmail.com>
- <CAGb2v66Sin9HZ+QENegLQ3d7iiy278niwdr9rEZ0HwUfeQNFRQ@mail.gmail.com>
+        id S1729031AbfJAJAE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Oct 2019 05:00:04 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 06850337;
+        Tue,  1 Oct 2019 02:00:04 -0700 (PDT)
+Received: from bogus (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A5A0B3F739;
+        Tue,  1 Oct 2019 02:00:02 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 09:59:54 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Steven Price <steven.price@arm.com>
+Subject: Re: [PATCH 1/2] arm64: dts: juno: add GPU subsystem
+Message-ID: <20191001085954.GA10443@bogus>
+References: <88dc6386929b3dcd7a65ba8063628c62b66b330c.1569856049.git.robin.murphy@arm.com>
+ <CAL_JsqKUP6qG6PVL47RQ5A5OcBhpdOA_0VL1YeYDuyVSVcRqCQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xnpqoekd4qgpls3t"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAGb2v66Sin9HZ+QENegLQ3d7iiy278niwdr9rEZ0HwUfeQNFRQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <CAL_JsqKUP6qG6PVL47RQ5A5OcBhpdOA_0VL1YeYDuyVSVcRqCQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---xnpqoekd4qgpls3t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi,
-
-Thanks for looking into this.
-
-On Sun, Sep 15, 2019 at 04:54:16PM +0800, Chen-Yu Tsai wrote:
-> On Thu, Aug 15, 2019 at 4:34 PM Chen-Yu Tsai <wens@csie.org> wrote:
+On Mon, Sep 30, 2019 at 12:46:33PM -0500, Rob Herring wrote:
+> On Mon, Sep 30, 2019 at 10:25 AM Robin Murphy <robin.murphy@arm.com> wrote:
 > >
-> > Hi,
+> > Since we now have bindings for Mali Midgard GPUs, let's use them to
+> > describe Juno's GPU subsystem, if only because we can. Juno sports a
+> > Mali-T624 integrated behind an MMU-400 (as a gesture towards
+> > virtualisation), in their own dedicated power domain with DVFS
+> > controlled by the SCP.
 > >
-> > Sorry for chiming in so late.
-> >
-> > On Thu, Jul 11, 2019 at 8:15 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > The Allwinner A10 CMOS Sensor Interface is a camera capture interface also
-> > > used in later (A10s, A13, A20, R8 and GR8) SoCs.
-> > >
-> > > On some SoCs, like the A10, there's multiple instances of that controller,
-> > > with one instance supporting more channels and having an ISP.
-> > >
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml | 94 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
-> > >  1 file changed, 94 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > > new file mode 100644
-> > > index 000000000000..97c9fc3b5050
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > > @@ -0,0 +1,94 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/arm/allwinner,sun4i-a10-csi.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Allwinner A10 CMOS Sensor Interface (CSI) Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Chen-Yu Tsai <wens@csie.org>
-> > > +  - Maxime Ripard <maxime.ripard@bootlin.com>
-> > > +
-> > > +description: |-
-> > > +  The Allwinner A10 and later has a CMOS Sensor Interface to retrieve
-> > > +  frames from a parallel or BT656 sensor.
-> > > +
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - enum:
-> > > +              - allwinner,sun7i-a20-csi0
-> > > +          - const: allwinner,sun4i-a10-csi0
-> >
-> > CSI0 on the A10 has an ISP. Do we know if the one in the A20 does
-> > as well? It certainly doesn't say so in the user manual. If not,
-> > then we can't claim that A20 CSI0 is compatible with A10 CSI0.
-> >
-> > > +
-> > > +      - items:
-> > > +          - const: allwinner,sun4i-a10-csi0
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: The CSI interface clock
-> > > +      - description: The CSI module clock
-> > > +      - description: The CSI ISP clock
-> > > +      - description: The CSI DRAM clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: bus
-> > > +      - const: mod
-> >
-> > I doubt this actually is a module clock. Based on the usage in your
-> > device tree patch, and the csi driver in the old linux-sunxi kernel,
-> > the clock rate is set to 24 MHz, or whatever the sensor requires for
-> > MCLK.
->
-> I'm working on adding support for this on the R40, and it seems with
-> this SoC the picture is much clearer. It has the same CSI interface
-> block, but the CCU has the clocks correctly named. We have:
->
->   - CSI_MCLK0
->   - CSI_MCLK1
->   - CSI_SCLK
->
-> in addition to the bus clocks.
->
-> The CSI section also explains the clock signals:
->
->     6.1.3.2. Clock Sources
->     Two Clocks need to be configured for CSI controller. CSI0/1_MCLK
->     provides the master clock for sensor and other devices. CSI_SCLK
->     is the top clock for the whole CSI module.
->
-> So it would seem the ISP clock we currently have in the DT is simply
-> the module clock shared by all CSI-related hardware blocks, and the
-> module clock is bogus.
+> > CC: Liviu Dudau <liviu.dudau@arm.com>
+> > CC: Sudeep Holla <sudeep.holla@arm.com>
+> > CC: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> > ---
+> >  .../bindings/gpu/arm,mali-midgard.yaml        |  5 +++-
+> >  arch/arm64/boot/dts/arm/juno-base.dtsi        | 27 +++++++++++++++++++
+> >  2 files changed, 31 insertions(+), 1 deletion(-)
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I don't think it is. It looks like there's no ISP in the R40 CSI
-controllers, so that would mean that we don't have an ISP clock, and
-the SCLK is the module clock.
+If you plan to take it along with driver change,
 
-Does that make sense?
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
 
-Maxime
+If not, please let us know. I can take it for v5.5
 
---xnpqoekd4qgpls3t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZMT3gAKCRDj7w1vZxhR
-xS3GAQChjJb/Uh7KohG6iZVuImDjv2jvfjSVwaddzLEzegEoVwD/RqeeW3t/PRw3
-H9mwot1F7alalXIAAbHRVcaRaKwlXQE=
-=vdGi
------END PGP SIGNATURE-----
-
---xnpqoekd4qgpls3t--
+--
+Regards,
+Sudeep
