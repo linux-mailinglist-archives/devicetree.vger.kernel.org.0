@@ -2,273 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B211C35C7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B81FC35DE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 15:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388541AbfJANdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 09:33:33 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:37468 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388539AbfJANdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 09:33:33 -0400
-Received: by mail-ot1-f68.google.com with SMTP id k32so11520938otc.4;
-        Tue, 01 Oct 2019 06:33:32 -0700 (PDT)
+        id S2388601AbfJANho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 09:37:44 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38976 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388261AbfJANho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 09:37:44 -0400
+Received: by mail-ot1-f67.google.com with SMTP id s22so11532288otr.6;
+        Tue, 01 Oct 2019 06:37:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=7bROK01xwlSENl9kjp9ya1aE8CkURZg+8d3OKCgxRA8=;
-        b=mDy+i079Ssotn3SQm/uGN3RuLfuizPXrvhT/58AbERMeJziy50Pbl/FwDM/cG2j9uF
-         ywryFtSu2mR6gpeXo/dYSFXDPxmIFd4kiZmQZlt7Pm6k1e3HxRDkBbYzTjupW4bQCOTW
-         0/D9MZCI9xdi+bQ5AVq+NlE2BcW5XtJV3uO3+VkPfnmdPJP45QtikZYussbP39Rs+IW4
-         p65boe32QTHAUVsIUiEz+J1za3J9Q+2XIyZ6UvlE6zztHMrC+FmSPGhl74N2obbcTyH/
-         aFh5AQZtt5By0dTN52hAPrzUVuw4LgYneckOwL2SmWuG9QJZ5LCcs6dPizktviAyDROP
-         KoWg==
-X-Gm-Message-State: APjAAAV+Rwl1oNBHMmFqqmWqp/TLuvmJ5YwbpUjlX23BiSn79j1YnZHD
-        u1ECkNt7FcqZr2npT9mD3KrYp7/pAg==
-X-Google-Smtp-Source: APXvYqwIiJRyPystWgh+WNFIkcDPblkPZi2wdKX63/SEIRNl5QsnwNA7OXltollpd2UZcOwwiOoXqw==
-X-Received: by 2002:a05:6830:17cd:: with SMTP id p13mr18719757ota.161.1569936812049;
-        Tue, 01 Oct 2019 06:33:32 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=FovmWZAmPghOw/PD/V9KoIrCAwZ7Z6DVYRn/oNcxwdw=;
+        b=heDbnqF7WflHRXq6CBsD3uCDggy+/6/8WQk6+DezZ70Xw+Mfz/yNrTx6ZTbBTmoKyi
+         M53WblXewGh9U4WwsQJmT0TJUTB1NlnfAcVcjH6DQ8Vg0GUqJQtqETz0Cf1pm417phgk
+         Idvxwo1il/6oR6L70h+JhR3+q5dFmhgKlDgm3cV4GdhuhcnmANFoMB+8gOWIZOeV0dK1
+         6DeORanyNlCRRttqhycGKBdPg0gmCzdWP5zKwMS5F2GVcl6yFgzNB0jm2GEXZtkP/9fQ
+         tHcIXuMArs3rj04kwWi5xeQwBlrPFH5q9bMLGWFxPSrYWGRn5hxXKqU/xIRsMUob8sbz
+         f+Pw==
+X-Gm-Message-State: APjAAAU5JT6MVe9RaYYj5ncOTMZ4LBZjvoTesX4T2kT1hlpQMX3Z7Gph
+        RHJTNqRRbLlvPPhLWwIBG236bb1ATQ==
+X-Google-Smtp-Source: APXvYqxaxRdreIle6LJbVo4aH8TbadosoBq8YKKKRx6nz6eLz30w+/TfgU3CDNPb9S+IfNOHp7GaGA==
+X-Received: by 2002:a9d:39a5:: with SMTP id y34mr19070070otb.100.1569937062789;
+        Tue, 01 Oct 2019 06:37:42 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e5sm4877949otr.81.2019.10.01.06.33.31
+        by smtp.gmail.com with ESMTPSA id w201sm5100451oie.44.2019.10.01.06.37.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 06:33:31 -0700 (PDT)
-Date:   Tue, 1 Oct 2019 08:33:30 -0500
+        Tue, 01 Oct 2019 06:37:42 -0700 (PDT)
+Date:   Tue, 1 Oct 2019 08:37:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nayna Jain <nayna@linux.ibm.com>
-Cc:     linuxppc-dev@ozlabs.org, linux-efi@vger.kernel.org,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jeremy Kerr <jk@ozlabs.org>,
-        Matthew Garret <matthew.garret@nebula.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Claudio Carvalho <cclaudio@linux.ibm.com>,
-        George Wilson <gcwilson@linux.ibm.com>,
-        Elaine Palmer <erpalmer@us.ibm.com>,
-        Eric Ricther <erichte@linux.ibm.com>,
-        Oliver O'Halloran <oohall@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v6 1/9] dt-bindings: ibm,secureboot: secure boot specific
- properties for PowerNV
-Message-ID: <20191001133330.GA29810@bogus>
-References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
- <1569594360-7141-2-git-send-email-nayna@linux.ibm.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Peter Rosin <peda@axentia.se>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: at24: convert the binding document
+ to yaml
+Message-ID: <20191001133741.GA3357@bogus>
+References: <20190930085957.2779-1-brgl@bgdev.pl>
+ <20190930085957.2779-2-brgl@bgdev.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1569594360-7141-2-git-send-email-nayna@linux.ibm.com>
+In-Reply-To: <20190930085957.2779-2-brgl@bgdev.pl>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 10:25:52AM -0400, Nayna Jain wrote:
-> PowerNV represents both the firmware and Host OS secureboot state of the
-> system via device tree. This patch adds the documentation to give
-> the definition of the nodes and the properties.
+On Mon, Sep 30, 2019 at 10:59:56AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 > 
-> Signed-off-by: Nayna Jain <nayna@linux.ibm.com>
+> Convert the binding document for at24 EEPROMs from txt to yaml. The
+> compatible property uses a regex pattern to address all the possible
+> combinations of "vendor,model" strings.
+> 
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> [robh: rework compatible schema, fix missing allOf for $ref, fix errors in example]
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> [Bartosz: added comments explaining the compatible property]
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 > ---
->  .../bindings/powerpc/ibm,secureboot.rst       | 76 ++++++++++++++++
->  .../devicetree/bindings/powerpc/secvar.rst    | 89 +++++++++++++++++++
->  2 files changed, 165 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/powerpc/ibm,secureboot.rst
->  create mode 100644 Documentation/devicetree/bindings/powerpc/secvar.rst
-> 
-> diff --git a/Documentation/devicetree/bindings/powerpc/ibm,secureboot.rst b/Documentation/devicetree/bindings/powerpc/ibm,secureboot.rst
+>  .../devicetree/bindings/eeprom/at24.txt       |  90 +--------
+>  .../devicetree/bindings/eeprom/at24.yaml      | 179 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 181 insertions(+), 90 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/eeprom/at24.yaml
+
+
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
 > new file mode 100644
-> index 000000000000..03d32099d2eb
+> index 000000000000..aee0890d3b7a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/powerpc/ibm,secureboot.rst
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -0,0 +1,179 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +# Copyright 2019 BayLibre SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/eeprom/at24.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: I2C EEPROMs compatible with Atmel's AT24
+> +
+> +maintainers:
+> +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^eeprom@[0-9a-f]{1,2}$"
+> +
+> +  # There are multiple known vendors who manufacture EEPROM chips compatible
+> +  # with Atmel's AT24. The compatible string requires either a single item
+> +  # if the memory comes from Atmel (in which case the vendor part must be
+> +  # 'atmel') or two items with the same 'model' part where the vendor part of
+> +  # the first one is the actual manufacturer and the second item is the
+> +  # corresponding 'atmel,<model>' from Atmel.
+> +  #
+> +  # While the below schema would technically allow the following:
+> +  #
+> +  #     compatible = "atmel,24c01", "atmel,24c01";
 
-Not the right form for reST files.
+This is prevented in the common 'compatible' schema that requires unique 
+items.
 
-> +*** NOTE ***
-> +This document is copied from OPAL firmware
-> +(skiboot/doc/device-tree/ibm,secureboot.rst)
+> +  #
+> +  # this obviously must not be used.
+> +  compatible:
+> +    oneOf:
+> +      - allOf:
+> +          - minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|mac)[0-9]+|spd)$"
+> +              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> +          - oneOf:
+> +              - items:
+> +                  pattern: c00$
+> +              - items:
+> +                  pattern: c01$
+> +              - items:
+> +                  pattern: c02$
+> +              - items:
+> +                  pattern: c04$
+> +              - items:
+> +                  pattern: c08$
 
-Why copy into the kernel?
+Need to add the 'cs' variants I missed.
 
-Plus, the bindings are in the process of being converted to schema. What 
-would I do with these files?
-
-> +************
-> +.. _device-tree/ibm,secureboot:
+> +              - items:
+> +                  pattern: c16$
+> +              - items:
+> +                  pattern: cs16$
+> +              - items:
+> +                  pattern: c32$
+> +              - items:
+> +                  pattern: cs32$
+> +              - items:
+> +                  pattern: c64$
+> +              - items:
+> +                  pattern: cs64$
+> +              - items:
+> +                  pattern: c128$
+> +              - items:
+> +                  pattern: cs128$
+> +              - items:
+> +                  pattern: c256$
+> +              - items:
+> +                  pattern: cs256$
+> +              - items:
+> +                  pattern: c512$
+> +              - items:
+> +                  pattern: cs512$
+> +              - items:
+> +                  pattern: c1024$
+> +              - items:
+> +                  pattern: cs1024$
+> +              - items:
+> +                  pattern: c2048$
+> +              - items:
+> +                  pattern: cs2048$
+> +              - items:
+> +                  pattern: spd$
+> +      # These are special cases that don't conform to the above pattern.
+> +      # Each requires a standard at24 model as fallback.
+> +      - items:
+> +          - const: rohm,br24t01
+> +          - const: atmel,24c01
+> +      - items:
+> +          - const: nxp,se97b
+> +          - const: atmel,24c02
+> +      - items:
+> +          - const: renesas,r1ex24002
+> +          - const: atmel,24c02
+> +      - items:
+> +          - const: renesas,r1ex24016
+> +          - const: atmel,24c16
+> +      - items:
+> +          - const: renesas,r1ex24128
+> +          - const: atmel,24c128
 > +
-> +ibm,secureboot
-> +==============
+> +  reg:
+> +    maxItems: 1
 > +
-> +The ``ìbm,secureboot`` node provides secure boot and trusted boot information
-> +up to the target OS. Further information can be found in :ref:`stb-overview`.
+> +  pagesize:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The length of the pagesize for writing. Please consult the
+> +      manual of your device, that value varies a lot. A wrong value
+> +      may result in data loss! If not specified, a safety value of
+> +      '1' is used which will be very slow.
+> +    enum: [ 1, 8, 16, 32, 64, 128, 258 ]
+> +    default: 1
 > +
-> +Required properties
-> +-------------------
+> +  read-only:
+> +    $ref: /schemas/types.yaml#definitions/flag
+> +    description:
+> +      Disables writes to the eeprom.
 > +
-> +.. code-block:: none
+> +  size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Total eeprom size in bytes.
 > +
-> +    compatible:         Either one of the following values:
+> +  no-read-rollover:
+> +    $ref: /schemas/types.yaml#definitions/flag
+> +    description:
+> +      Indicates that the multi-address eeprom does not automatically roll
+> +      over reads to the next slave address. Please consult the manual of
+> +      your device.
 > +
-> +                        ibm,secureboot-v1  :  The container-verification-code
-> +                                              is stored in a secure ROM memory.
+> +  wp-gpios:
+> +    description:
+> +      GPIO to which the write-protect pin of the chip is connected.
+> +    maxItems: 1
 > +
-> +                        ibm,secureboot-v2  :  The container-verification-code
-> +                                              is stored in a reserved memory.
-> +                                              It described by the ibm,cvc child
-> +                                              node.
+> +  address-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Number of address bits.
+> +    default: 8
+> +    enum: [ 8, 16 ]
 > +
-> +                        ibm,secureboot-v3  :  The container-verification-code
-> +                                              is stored in a reserved memory.
-> +                                              It described by the ibm,cvc child
-> +                                              node. Secure variables are
-> +                                              supported. `secvar` node should
-> +                                              be created.
+> +  num-addresses:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Total number of i2c slave addresses this device takes.
+> +    default: 1
+> +    minimum: 1
+> +    maximum: 8
 > +
-> +    secure-enabled:     this property exists when the firmware stack is booting
-> +                        in secure mode (hardware secure boot jumper asserted).
+> +required:
+> +  - compatible
+> +  - reg
 > +
-> +    trusted-enabled:    this property exists when the firmware stack is booting
-> +                        in trusted mode.
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
 > +
-> +    hw-key-hash:        hash of the three hardware public keys trusted by the
-> +                        platformw owner. This is used to verify if a firmware
-> +                        code is signed with trusted keys.
-> +
-> +    hw-key-hash-size:   hw-key-hash size
-> +
-> +    secvar:             this node is created if the platform supports secure
-> +                        variables. Contains information about the current
-> +                        secvar status, see 'secvar.rst'.
-> +
-> +Obsolete properties
-> +-------------------
-> +
-> +.. code-block:: none
-> +
-> +    hash-algo:          Superseded by the hw-key-hash-size property in
-> +                        'ibm,secureboot-v2'.
-> +
-> +Example
-> +-------
-> +
-> +.. code-block:: dts
-> +
-> +    ibm,secureboot {
-> +        compatible = "ibm,secureboot-v2";
-> +        secure-enabled;
-> +        trusted-enabled;
-> +        hw-key-hash-size = <0x40>;
-> +        hw-key-hash = <0x40d487ff 0x7380ed6a 0xd54775d5 0x795fea0d 0xe2f541fe
-> +                       0xa9db06b8 0x466a42a3 0x20e65f75 0xb4866546 0x0017d907
-> +                       0x515dc2a5 0xf9fc5095 0x4d6ee0c9 0xb67d219d 0xfb708535
-> +                       0x1d01d6d1>;
-> +        phandle = <0x100000fd>;
-> +        linux,phandle = <0x100000fd>;
+> +      eeprom@52 {
+> +          compatible = "microchip,24c32", "atmel,24c32";
+> +          reg = <0x52>;
+> +          pagesize = <32>;
+> +          wp-gpios = <&gpio1 3 0>;
+> +          num-addresses = <8>;
+> +      };
 > +    };
-> diff --git a/Documentation/devicetree/bindings/powerpc/secvar.rst b/Documentation/devicetree/bindings/powerpc/secvar.rst
-> new file mode 100644
-> index 000000000000..47793ab9c2a7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/powerpc/secvar.rst
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +*** NOTE ***
-> +This document is copied from OPAL firmware
-> +(skiboot/doc/device-tree/secvar.rst)
-> +************
-> +.. _device-tree/ibm,secureboot/secvar:
-> +
-> +secvar
-> +======
-> +
-> +The ``secvar`` node provides secure variable information for the secure
-> +boot of the target OS.
-> +
-> +Required properties
-> +-------------------
-> +
-> +.. code-block:: none
-> +
-> +    compatible:         this property is set based on the current secure
-> +                        variable scheme as set by the platform.
-> +
-> +    status:             set to "fail" if the secure variables could not
-> +                        be initialized, validated, or some other
-> +                        catastrophic failure.
-> +
-> +    update-status:      contains the return code of the update queue
-> +                        process run during initialization. Signifies if
-> +                        updates were processed or not, and if there was
-> +                        an error. See table below
-> +
-> +    secure-mode:        a u64 bitfield set by the backend to determine
-> +                        what secure mode we should be in, and if host
-> +                        secure boot should be enforced.
-> +
-> +Example
-> +-------
-> +
-> +.. code-block:: dts
-> +
-> +    secvar {
-> +        compatible = "ibm,edk2-compat-v1";
-> +        status = "okay";
-> +        secure-mode = "1";
-> +    };
-> +
-> +Update Status
-> +-------------
-> +
-> +The update status property should be set by the backend driver to a value
-> +that best fits its error condtion. The following table defines the
-> +general intent of each error code, check backend specific documentation
-> +for more detail.
-> +
-> ++-----------------+-----------------------------------------------+
-> +| update-status   | Generic Reason                                |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_SUCCESS    | Updates were found and processed successfully |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_EMPTY      | No updates were found, none processed         |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_PARAMETER  | Unable to parse data in the update section    |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_PERMISSION | Update failed to apply, possible auth failure |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_HARDWARE   | Misc. storage-related error                   |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_RESOURCE   | Out of space (somewhere)                      |
-> ++-----------------|-----------------------------------------------+
-> +| OPAL_NO_MEM     | Out of memory                                 |
-> ++-----------------+-----------------------------------------------+
-> +
-> +Secure Mode
-> +-----------
-> +
-> ++-----------------------+------------------------+
-> +| backend specific-bits |      generic mode bits |
-> ++-----------------------+------------------------+
-> +64                     32                        0
-> +
-> +The secure mode property should be set by the backend driver. The least
-> +significant 32 bits are reserved for generic modes, shared across all
-> +possible backends. The other 32 bits are open for backends to determine
-> +their own modes. Any kernel must be made aware of any custom modes.
-> +
-> +At the moment, only one general-purpose bit is defined:
-> +
-> +``#define SECVAR_SECURE_MODE_ENFORCING  0x1``
-> +
-> +which signals that a kernel should enforce host secure boot.
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 296de2b51c83..320fc8bba872 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2699,7 +2699,7 @@ M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
+>  L:	linux-i2c@vger.kernel.org
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/eeprom/at24.txt
+> +F:	Documentation/devicetree/bindings/eeprom/at24.yaml
+>  F:	drivers/misc/eeprom/at24.c
+>  
+>  ATA OVER ETHERNET (AOE) DRIVER
 > -- 
-> 2.20.1
+> 2.23.0
 > 
