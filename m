@@ -2,73 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C05C3C9F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 18:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 010FAC3ED0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 19:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389358AbfJAQw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 12:52:57 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:56510 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389331AbfJAQw4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Oct 2019 12:52:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=FX5jf20eacmB/0gFXEhbZpatqYKCnwg235wY4yTy5I8=; b=ZaDS95R+qKbRGCSKbOtuDkKVkt
-        /C/hkhascHZ5lWv9IFuRxtzt2/pOybQ0vbmd7SmvBukkhoPdpz691km29114XSaqO9j/geTyTDrqU
-        2RjCogdwSyQJEKXMJsarWOGVkqEDvUu6l3PoKFZzHIaFAzrFPMgAJmAgkQmCeG60SaJg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1iFLOJ-0001ii-4j; Tue, 01 Oct 2019 18:52:47 +0200
-Date:   Tue, 1 Oct 2019 18:52:47 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 0/3] Pine64+ specific hacks for RTL8211E Ethernet PHY
-Message-ID: <20191001165247.GE2031@lunn.ch>
-References: <20191001082912.12905-1-icenowy@aosc.io>
- <3ef60a0c-5cfd-420b-6cad-2c16eb2a6c01@gmail.com>
+        id S1730730AbfJARlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 13:41:12 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:53448 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726063AbfJARlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 13:41:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=6PHfJPpmmbQhxMK6M7AY9ix0LgB6D7xNSfISfBov93M=; b=SPik2K5YFCus0OmRBE4TFg6f0
+        hCSr5oyR5SNPGXhUt/7Cj/GKlOYMdykbv51DkyGouCBPFnU946I8Bw6lvmehLd3APpkkLYEb4TWrZ
+        f9oZEdtIhBSAiP0cSjnl7K4wm9A81KRkOIX1XFRBY7iTXlk6RsUBqEnv7pQjbnA7wD/TU=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iFM93-0005on-G0; Tue, 01 Oct 2019 17:41:05 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id A0C4127429C0; Tue,  1 Oct 2019 18:41:04 +0100 (BST)
+Date:   Tue, 1 Oct 2019 18:41:04 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        ckeepax@opensource.cirrus.com, zhang.chunyan@linaro.org,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH] regulator: Document "regulator-boot-on" binding more
+ thoroughly
+Message-ID: <20191001174104.GD4786@sirena.co.uk>
+References: <20190926124115.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="48TaNjbzBVislYPb"
 Content-Disposition: inline
-In-Reply-To: <3ef60a0c-5cfd-420b-6cad-2c16eb2a6c01@gmail.com>
+In-Reply-To: <20190926124115.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid>
+X-Cookie: Keep refrigerated.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 01, 2019 at 09:47:08AM -0700, Florian Fainelli wrote:
-> On 10/1/19 1:29 AM, Icenowy Zheng wrote:
-> > There're some Pine64+ boards known to have broken RTL8211E chips, and
-> > a hack is given by Pine64+, which is said to be from Realtek.
-> > 
-> > This patchset adds the hack.
-> > 
-> > The hack is taken from U-Boot, and it contains magic numbers without
-> > any document.
-> 
-> Such hacks are the very reason why PHY fixups exists, please investigate
-> working with Realtek first to understand how to make this hack less of a
-> hack so it is understood what it does and you can either add proper
-> infrastructure to the realtek PHY driver to perform that hack, or if
-> that is not an option, register a board specific fixup.
 
-Hi Icenowy
+--48TaNjbzBVislYPb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-It would also be nice to know if only Pine64 has these bad PHYs, or if
-they were in the general distribution chain and other boards might
-have them as well.
+On Thu, Sep 26, 2019 at 12:41:18PM -0700, Douglas Anderson wrote:
 
-     Andrew
+> -    description: bootloader/firmware enabled regulator
+> +    description: bootloader/firmware enabled regulator.
+> +      It's expected that this regulator was left on by the bootloader.
+> +      If the bootloader didn't leave it on then OS should turn it on
+> +      at boot but shouldn't prevent it from being turned off later.
+
+This is good...
+
+> +      This property is intended to only be used for regulators where
+> +      Linux cannot read the state of the regulator at bootup.
+
+...but we shouldn't say "Linux" here since the DT binding is for all
+OSs, not just Linux.  I'd say "software" instead.  Really the
+expectation is that things wouldn't support readback at all, though it's
+possible there's some weird hardware out there that will support
+readback some of the time I guess.
+
+--48TaNjbzBVislYPb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2Tj68ACgkQJNaLcl1U
+h9CRrgf+OhK++Wg53aKS5GOG5Scxu88CKfhRSgAezLcnGjLTBX16YijOdZNEM3yX
++eknFRwLl189sJOTSGpO+skgW1BNVYJac8PHCk8wviVL5APiFqIMkGNNIcPQZnQc
+gJQFBLCnBO6RSqMiT98i0YK5Qes492NNap2lWKl+a7OvwXHo4onrdE9oYZcwmMVj
+DqsJAf+7VPG+BT1nIqJVL4jTuZeAWFyWMKaUMDFWmWev0RDEMF+bHXFMf2pFtkzj
+LfvVrsc7/JgU35ruEO3vCrJnDOS1Z4mplIKKFiAn/41OByNYePUx0RzdOHwinpT8
+Q9w5NkdPaasBpx6zg7XiXlwSjLScfg==
+=INGH
+-----END PGP SIGNATURE-----
+
+--48TaNjbzBVislYPb--
