@@ -2,175 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E29C3FC4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E9CBC3FF3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2019 20:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730447AbfJASZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 14:25:26 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:52952 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728456AbfJASZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:25:26 -0400
-Received: from pendragon.ideasonboard.com (modemcable151.96-160-184.mc.videotron.ca [184.160.96.151])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9DE2A23F;
-        Tue,  1 Oct 2019 20:25:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1569954323;
-        bh=cmL18QMee8v+4UyAhs4JOoF9M4X5HAKn20PG0g2L+To=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DPnZX9pc4Co/PmVC8ixkFP+si7fDztCJKOND9F/WcYgQOt0DbdGZDyJcfwmNsjFwh
-         yr2SJu1r2rSmBzKrUV0P4BeG+ukJusfTBYeytxq3X/VLiiz1AKQiKQunlG3UZCrsri
-         X+GRN8JVipmZa6wmM7vDZGWYVT4lMafzJKd5o/IY=
-Date:   Tue, 1 Oct 2019 21:25:10 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1725905AbfJASfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 14:35:42 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:45580 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfJASfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 14:35:42 -0400
+Received: by mail-pf1-f196.google.com with SMTP id y72so8651122pfb.12
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 11:35:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=6OmoG9nmfnxp1hTQSnSmg1pG2i9ciIUjtqDNmRYZw6w=;
+        b=PMFyjHJwQLR9BN/b+vKadsnTfwLbbJmf2zBAgtox4/WCysbzBXr8UFaVyYm7ToqSKi
+         r6Ats7g3lDQbweDGfkQYRnWxPKkcAFEaLonbBCGxWk/H/hDrDIpoO7n/ZQAT+ZUKDIcl
+         NCmCrRgDiNaxWHyAAkV4ByoKEOW8XuYmdTpyW95FhtBf0t4cnbtPLDHeX4q9lCutRRR4
+         JgGIhWuy/PonjWTOqUK9YdqMDaWfllC7lt1SvYnMVr9vWxEtuMC1uqAjscmjmaMgVMTE
+         25nwLkmrQwphR2/y53BHm6iCbd0QsDV1f5fjQi+HUaLbog1hbM5wBs4+lBDwWysejKqS
+         m5gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6OmoG9nmfnxp1hTQSnSmg1pG2i9ciIUjtqDNmRYZw6w=;
+        b=FMyKkAXqGfErFagE94xef+OBnXlbDKE2b9XPWiH26IZC0x4rdVy+4IHdoO8H34hpY1
+         feI46VL2eh8jg+U1CSSw7rfrL5vK7Xu+Qc2UPqhnZ9W21e15KfYC5/VCf3UZl9OY/Kqt
+         AfHbHIAZKYIND0vbLNkC1rMZK6IeH/eoS7WB46U8DIgu+u4x9K5wA+2Hg+dFnr+RZ4yS
+         H4D30g3ESfd2KB2zLQzPX5DqcxRj7zed7FB/QRgJWsGIZmhXt/9AZwLzfIExBTnIU+qB
+         qNV7RCvGX/HKNZdapnBu11orpYzCHhvMbrE2QP7IAdczMAI1gbh/bNfLK+wsA3/2sHpp
+         YovQ==
+X-Gm-Message-State: APjAAAV3iyZfGgfonuRfG2jbly4k5bh08DPcoVvMUzoqqhUc4uZIUDZx
+        51zWAapD7o6p4O9xUARwnzkiXw==
+X-Google-Smtp-Source: APXvYqwufTWDovtqMSDCdgIffp1MdomqxuofdL0vq4XG3lfejHVLVq3PhYVe2oAkWLjpOOUbVa2DRw==
+X-Received: by 2002:a17:90a:178d:: with SMTP id q13mr7189954pja.134.1569954939726;
+        Tue, 01 Oct 2019 11:35:39 -0700 (PDT)
+Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
+        by smtp.gmail.com with ESMTPSA id j10sm16803222pfn.128.2019.10.01.11.35.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 11:35:38 -0700 (PDT)
+From:   John Stultz <john.stultz@linaro.org>
+To:     lkml <linux-kernel@vger.kernel.org>
+Cc:     Peter Griffin <peter.griffin@linaro.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: Re: [PATCH 8/8] arm64: dts: renesas: hihope-rzg2-ex: Add LVDS panel
- support
-Message-ID: <20191001182510.GJ4735@pendragon.ideasonboard.com>
-References: <1569932124-32010-1-git-send-email-biju.das@bp.renesas.com>
- <1569932124-32010-9-git-send-email-biju.das@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1569932124-32010-9-git-send-email-biju.das@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        John Stultz <john.stultz@linaro.org>
+Subject: [PATCH] arm64: dts: hisilicon: Add Mali-450 MP4 GPU DT entry
+Date:   Tue,  1 Oct 2019 18:35:35 +0000
+Message-Id: <20191001183535.70835-1-john.stultz@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+From: Peter Griffin <peter.griffin@linaro.org>
 
-Thank you for the patch.
+hi6220 has a Mali450 MP4 so lets add it into the DT.
 
-On Tue, Oct 01, 2019 at 01:15:24PM +0100, Biju Das wrote:
-> This patch adds support for Advantech idk-1110wr LVDS panel.
-> The HiHope RZ/G2[MN] is advertised as compatible with panel idk-1110wr
-> from Advantech, however the panel isn't sold alongside the board.
-> 
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> ---
->  arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi  | 30 +++++++++++++++++++
->  arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi | 37 ++++++++++++++++++++++++
->  2 files changed, 67 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-> index 70f9a2a..ae1ef2d 100644
-> --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-> @@ -5,6 +5,8 @@
->   * Copyright (C) 2019 Renesas Electronics Corp.
->   */
->  
-> +#include "rzg2-panel-lvds.dtsi"
-> +
->  / {
->  	aliases {
->  		ethernet0 = &avb;
-> @@ -51,6 +53,34 @@
->  	status = "okay";
->  };
->  
-> +&gpio1 {
-> +	/*
-> +	 * When GP1_20 is LOW LVDS0 is connected to the LVDS connector
-> +	 * When GP1_20 is HIGH LVDS0 is connected to the LT8918L
-> +	 */
-> +	lvds-connector-en-gpio {
-> +		gpio-hog;
-> +		gpios = <20 GPIO_ACTIVE_HIGH>;
-> +		output-low;
-> +		line-name = "lvds-connector-en-gpio";
-> +	};
-> +};
-> +
-> +&lvds0 {
-> +	/* Uncomment  below line to enable lvds panel connected to RZ/G2N board
-> +	 */
-> +
-> +	/* status = "okay"; */
-> +
-> +	ports {
-> +		port@1 {
-> +			lvds_connector: endpoint {
-> +				remote-endpoint = <&panel_in_advantech_idk_1110wr>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &pciec0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi b/arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi
-> new file mode 100644
-> index 0000000..768a8ec
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/rzg2-panel-lvds.dtsi
+Cc: Wei Xu <xuwei5@hisilicon.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+Signed-off-by: John Stultz <john.stultz@linaro.org>
+---
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 38 +++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-Should this be named according to the panel name istead of just
-"panel-lvds" ? It could be used by any board, and this board could also
-use a different LVDS panel.
-
-> @@ -0,0 +1,37 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the LVDS panels connected to RZ/G2 boards
-> + *
-> + * Copyright (C) 2019 Renesas Electronics Corp.
-> + */
-> +
-> +/ {
-> +
-> +	panel-lvds {
-> +		compatible = "advantech,idk-1110wr", "panel-lvds";
-> +
-> +		width-mm = <223>;
-> +		height-mm = <125>;
-> +
-> +		data-mapping = "jeida-24";
-> +
-> +		panel-timing {
-> +			/* 1024x600 @60Hz */
-> +			clock-frequency = <51200000>;
-> +			hactive = <1024>;
-> +			vactive = <600>;
-> +			hsync-len = <240>;
-> +			hfront-porch = <40>;
-> +			hback-porch = <40>;
-> +			vfront-porch = <15>;
-> +			vback-porch = <10>;
-> +			vsync-len = <10>;
-> +		};
-> +
-> +		port {
-> +			panel_in_advantech_idk_1110wr: endpoint {
-
-Could we abbreviate the label name to panel_in ? That way the board .dts
-wouldn't need to update the remote-endpoint phandle to use a different
-panel, only the #include would need to be changed.
-
-> +				remote-endpoint = <&lvds_connector>;
-> +			};
-> +		};
-> +	};
-> +};
-
-For the same reason I would set the remote-endpoint for &lvds_connector
-here. See arch/arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi for an example.
-
-
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+index 108e2a4227f6..2072b637b5af 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+@@ -260,6 +260,7 @@
+ 			compatible = "hisilicon,hi6220-aoctrl", "syscon";
+ 			reg = <0x0 0xf7800000 0x0 0x2000>;
+ 			#clock-cells = <1>;
++			#reset-cells = <1>;
+ 		};
+ 
+ 		sys_ctrl: sys_ctrl@f7030000 {
+@@ -1021,6 +1022,43 @@
+ 			clock-names = "apb_pclk";
+ 			cpu = <&cpu7>;
+ 		};
++
++		mali: gpu@f4080000 {
++			compatible = "hisilicon,hi6220-mali", "arm,mali-450";
++			reg = <0x0 0xf4080000 0x0 0x00040000>;
++			interrupt-parent = <&gic>;
++			interrupts =	<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_PPI 126 IRQ_TYPE_LEVEL_HIGH>;
++
++			interrupt-names = "gp",
++					  "gpmmu",
++					  "pp",
++					  "pp0",
++					  "ppmmu0",
++					  "pp1",
++					  "ppmmu1",
++					  "pp2",
++					  "ppmmu2",
++					  "pp3",
++					  "ppmmu3";
++			clocks = <&media_ctrl HI6220_G3D_CLK>,
++				 <&media_ctrl HI6220_G3D_PCLK>;
++			clock-names = "core", "bus";
++			assigned-clocks = <&media_ctrl HI6220_G3D_CLK>,
++					  <&media_ctrl HI6220_G3D_PCLK>;
++			assigned-clock-rates = <500000000>, <144000000>;
++			reset-names = "ao_g3d", "media_g3d";
++			resets = <&ao_ctrl AO_G3D>, <&media_ctrl MEDIA_G3D>;
++		};
+ 	};
+ };
+ 
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
