@@ -2,126 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9B5C8B3E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B528FC8B3F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726861AbfJBOaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:30:02 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:34970 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726374AbfJBOaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:30:02 -0400
-Received: from pendragon.ideasonboard.com (unknown [132.205.230.1])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AEC6B2BB;
-        Wed,  2 Oct 2019 16:29:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1570026600;
-        bh=mE1KFiVsojBxWZ5npLcuYft5j/qcVmvhvHd8US5qeqU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h9isp3WhP02jKR8d0LtisSDMoz1IK19MdU2hKSbiRlA60/GY0nf+dRNFLpaMALydp
-         jvNNf/8Cqh60Rsh/lCUmY86/Enlngt+lrCkMvyrE26eZ264GM4jNMtiZvKpd9NwXfV
-         4XNSLfc1xtaqrv6Ur8pyUEky7nPyUtg6z6mYMm3A=
-Date:   Wed, 2 Oct 2019 17:29:47 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: Re: [PATCH v2 9/9] arm64: dts: renesas: Add support for Advantech
- idk-1110wr LVDS panel
-Message-ID: <20191002142947.GE5262@pendragon.ideasonboard.com>
-References: <1570010906-47486-1-git-send-email-biju.das@bp.renesas.com>
- <1570010906-47486-10-git-send-email-biju.das@bp.renesas.com>
+        id S1727892AbfJBOaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:30:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43204 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726374AbfJBOaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 10:30:12 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1FE6921D80;
+        Wed,  2 Oct 2019 14:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570026611;
+        bh=WpPgCl+g9ZzL3G0BUaPixm3EVaJp8snYP/4w+OBoehk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Dm6RTYpnTIi0ZDVTW1+XMKlWKlmuCwHWjnYOgGZKR8gw5JbFnw5kuSx7QZpIiUOoA
+         DYWM/HcFpQ80aAQLXBS7byICx0hczfGe3du+Q6Eb/XOwo7YilaxldE3yV3xiOfr5rb
+         G4f/OKmomTo/JL0fIbcKc80/1ZMi+urdsO+DA4Ls=
+Received: by mail-qk1-f169.google.com with SMTP id q203so15212224qke.1;
+        Wed, 02 Oct 2019 07:30:11 -0700 (PDT)
+X-Gm-Message-State: APjAAAVW1mRLYXMeR7w3IBrfmN6zIrI/LEb0IWTXg7NoaGsaDXTURdvC
+        0v2GKe50URSMrIeCYZ9nOJwPsHmaGK5bsWk50g==
+X-Google-Smtp-Source: APXvYqzdn9uUBorveNlH9/zku6XeiHfTcpcd3PnD7qfkjK0RFzES53PVyzXJzDlm8TCLXVM/5BlhuUiICj6nXK85HCg=
+X-Received: by 2002:a05:620a:549:: with SMTP id o9mr4051798qko.223.1570026610271;
+ Wed, 02 Oct 2019 07:30:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1570010906-47486-10-git-send-email-biju.das@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190920162124.7036-1-krzk@kernel.org> <20191001222109.GA26050@bogus>
+ <20191002074828.GA6221@pi3>
+In-Reply-To: <20191002074828.GA6221@pi3>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 2 Oct 2019 09:29:56 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+KG-7G-VF_hjgugvAP+CrNb+fxy1yca6SC6G3M_WGYiQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+KG-7G-VF_hjgugvAP+CrNb+fxy1yca6SC6G3M_WGYiQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Convert Samsung SoC
+ watchdog bindings to json-schema
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Wed, Oct 2, 2019 at 2:48 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Tue, Oct 01, 2019 at 05:21:09PM -0500, Rob Herring wrote:
+> > On Fri, Sep 20, 2019 at 06:21:22PM +0200, Krzysztof Kozlowski wrote:
+> > > Convert Samsung S3C/S5P/Exynos watchdog bindings to DT schema format
+> > > using json-schema.
+> > >
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > >
+> > > ---
+> > >
+> > > Changes since v1:
+> > > 1. Indent example with four spaces (more readable),
+> > > 2. Remove unneeded timeout-sec description and include generic bindings.
+> > > ---
+> > >  .../bindings/watchdog/samsung-wdt.txt         | 35 ----------
+> > >  .../bindings/watchdog/samsung-wdt.yaml        | 65 +++++++++++++++++++
+> > >  2 files changed, 65 insertions(+), 35 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Hi Rob,
+>
+> The generic watchdog YAML/DT schema is already in v5.4-rc1 so this can
+> go either trough you, or through watchdog tree.
 
-Thank you for the patch.
+Okay, I've applied the series.
 
-On Wed, Oct 02, 2019 at 11:08:26AM +0100, Biju Das wrote:
-> This patch adds support for Advantech idk-1110wr LVDS panel.
-> The HiHope RZ/G2[MN] is advertised as compatible with panel
-> idk-1110wr from Advantech, however the panel isn't sold alongside
-> the board.
-> 
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> ---
->  V1-->V2
->    * Incorporated Laurent's review comments
-> ---
->  .../renesas/rzg2-advantech-idk-1110wr-panel.dtsi   | 42 ++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi b/arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi
-> new file mode 100644
-> index 0000000..4f876df
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi
-> @@ -0,0 +1,42 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the Advantech idk-1110wr LVDS panel connected
-> + * to RZ/G2 boards
-> + *
-> + * Copyright (C) 2019 Renesas Electronics Corp.
-> + */
-> +
-> +/ {
-> +
-
-No need for a blank line here. Apart from this,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +	panel-lvds {
-> +		compatible = "advantech,idk-1110wr", "panel-lvds";
-> +
-> +		width-mm = <223>;
-> +		height-mm = <125>;
-> +
-> +		data-mapping = "jeida-24";
-> +
-> +		panel-timing {
-> +			/* 1024x600 @60Hz */
-> +			clock-frequency = <51200000>;
-> +			hactive = <1024>;
-> +			vactive = <600>;
-> +			hsync-len = <240>;
-> +			hfront-porch = <40>;
-> +			hback-porch = <40>;
-> +			vfront-porch = <15>;
-> +			vback-porch = <10>;
-> +			vsync-len = <10>;
-> +		};
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lvds_connector>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&lvds_connector {
-> +	remote-endpoint = <&panel_in>;
-> +};
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
