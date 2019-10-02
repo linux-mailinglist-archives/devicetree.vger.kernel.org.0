@@ -2,84 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D01BC8A2E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 15:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF342C8A76
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728113AbfJBNtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 09:49:32 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:32894 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728102AbfJBNta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 09:49:30 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92DnTMF033263;
-        Wed, 2 Oct 2019 08:49:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570024169;
-        bh=Lsv3CynxT1kV96mwsveg3FYq/dwgSUzVOlWSLR+kDp4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Qm4K/ER6s05wyTEK7fEU8sYbKvDDg+dk7DWbGLlgjP1wKxr1mSI6DelBSWMPH7x1u
-         WkbQzn8wtzGiWFCZxJLOqOZ/TwEBipO4DLVn1qRrSX5MHNVr3LMn/fRHkTjgJ8rmJP
-         WgDS7yRbOPNnf/LyrKZA3Zdf45l9XexbcDmJFTY0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x92DnTF9120706
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Oct 2019 08:49:29 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 2 Oct
- 2019 08:49:18 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 2 Oct 2019 08:49:18 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92DnOmB035733;
-        Wed, 2 Oct 2019 08:49:28 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v2 3/3] media: ov5640: Make 2592x1944 mode only available at 15 fps
-Date:   Wed, 2 Oct 2019 08:51:34 -0500
-Message-ID: <20191002135134.12273-4-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191002135134.12273-1-bparrot@ti.com>
-References: <20191002135134.12273-1-bparrot@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1727718AbfJBOFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:05:43 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:52362 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726087AbfJBOFn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 10:05:43 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5C7E920067F;
+        Wed,  2 Oct 2019 16:05:40 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4B46E200141;
+        Wed,  2 Oct 2019 16:05:40 +0200 (CEST)
+Received: from fsr-ub1664-121.ea.freescale.net (fsr-ub1664-121.ea.freescale.net [10.171.82.171])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id C8B962060C;
+        Wed,  2 Oct 2019 16:05:39 +0200 (CEST)
+From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
+To:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     agx@sigxcpu.org, l.stach@pengutronix.de,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/5] Add support for iMX8MQ Display Controller Subsystem
+Date:   Wed,  2 Oct 2019 17:04:52 +0300
+Message-Id: <1570025100-5634-1-git-send-email-laurentiu.palcu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sensor data sheet clearly state that 2592x1944 only works at 15 fps
-make sure we don't try to miss configure the pll out of acceptable
-range.
+Hi,
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- drivers/media/i2c/ov5640.c | 5 +++++
- 1 file changed, 5 insertions(+)
+This patchset adds initial DCSS support for iMX8MQ chip. Initial support
+includes only graphics plane support (no video planes), no HDR10 capabilities,
+no graphics decompression (only linear, tiled and super-tiled buffers allowed).
 
-diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-index 103a4e8f88e1..d5b0be2c7a0a 100644
---- a/drivers/media/i2c/ov5640.c
-+++ b/drivers/media/i2c/ov5640.c
-@@ -1613,6 +1613,11 @@ ov5640_find_mode(struct ov5640_dev *sensor, enum ov5640_frame_rate fr,
- 	    !(mode->hact == 640 && mode->vact == 480))
- 		return NULL;
- 
-+	/* 2592x1944 only works at 15fps */
-+	if (fr != OV5640_15_FPS &&
-+	    (mode->hact == 2592 && mode->vact == 1944))
-+		return NULL;
-+
- 	return mode;
- }
- 
+Support for the rest of the features will be added incrementally, in subsequent
+patches.
+
+The patchset was tested with both HDP driver (not yet upstreamed) and MIPI-DSI
+(drivers already on the dri-devel ML).
+
+Thanks,
+Laurentiu
+
+Changes in v2:
+ * Removed '0x' in node's unit-address both in DT and yaml;
+ * Made the address region size lowercase, to be consistent;
+ * Removed some left-over references to P010;
+ * Added a Kconfig dependency of DRM && ARCH_MXC. This will also silence compilation
+   issues reported by kbuild for other architectures;
+
+
+Laurentiu Palcu (5):
+  clk: imx8mq: Add VIDEO2_PLL clock
+  drm/imx: compile imx directory by default
+  drm/imx: Add initial support for DCSS on iMX8MQ
+  dt-bindings: display: imx: add bindings for DCSS
+  arm64: dts: imx8mq: add DCSS node
+
+ .../bindings/display/imx/nxp,imx8mq-dcss.yaml      |  86 +++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi          |  25 +
+ drivers/clk/imx/clk-imx8mq.c                       |   4 +
+ drivers/gpu/drm/Makefile                           |   2 +-
+ drivers/gpu/drm/imx/Kconfig                        |   2 +
+ drivers/gpu/drm/imx/Makefile                       |   1 +
+ drivers/gpu/drm/imx/dcss/Kconfig                   |   8 +
+ drivers/gpu/drm/imx/dcss/Makefile                  |   6 +
+ drivers/gpu/drm/imx/dcss/dcss-blkctl.c             |  75 ++
+ drivers/gpu/drm/imx/dcss/dcss-crtc.c               | 223 ++++++
+ drivers/gpu/drm/imx/dcss/dcss-ctxld.c              | 447 +++++++++++
+ drivers/gpu/drm/imx/dcss/dcss-dev.c                | 286 +++++++
+ drivers/gpu/drm/imx/dcss/dcss-dev.h                | 195 +++++
+ drivers/gpu/drm/imx/dcss/dcss-dpr.c                | 548 ++++++++++++++
+ drivers/gpu/drm/imx/dcss/dcss-drv.c                | 182 +++++
+ drivers/gpu/drm/imx/dcss/dcss-dtg.c                | 438 +++++++++++
+ drivers/gpu/drm/imx/dcss/dcss-kms.c                | 321 ++++++++
+ drivers/gpu/drm/imx/dcss/dcss-kms.h                |  52 ++
+ drivers/gpu/drm/imx/dcss/dcss-plane.c              | 418 +++++++++++
+ drivers/gpu/drm/imx/dcss/dcss-scaler.c             | 826 +++++++++++++++++++++
+ drivers/gpu/drm/imx/dcss/dcss-ss.c                 | 179 +++++
+ include/dt-bindings/clock/imx8mq-clock.h           |   4 +-
+ 22 files changed, 4326 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+ create mode 100644 drivers/gpu/drm/imx/dcss/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/dcss/Makefile
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-blkctl.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-crtc.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ctxld.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.h
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dpr.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-drv.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dtg.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.h
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-plane.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-scaler.c
+ create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ss.c
+
 -- 
-2.17.1
+2.7.4
 
