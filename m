@@ -2,110 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3B8C93FC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 00:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF7C5C9401
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 00:05:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbfJBWE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 18:04:58 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:32422 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725789AbfJBWE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 18:04:57 -0400
-Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x92M2c8E050321
-        for <devicetree@vger.kernel.org>; Wed, 2 Oct 2019 18:04:56 -0400
-Received: from e06smtp01.uk.ibm.com (e06smtp01.uk.ibm.com [195.75.94.97])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2vd22tkgy0-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 18:04:55 -0400
-Received: from localhost
-        by e06smtp01.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <zohar@linux.ibm.com>;
-        Wed, 2 Oct 2019 23:04:54 +0100
-Received: from b06avi18878370.portsmouth.uk.ibm.com (9.149.26.194)
-        by e06smtp01.uk.ibm.com (192.168.101.131) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Wed, 2 Oct 2019 23:04:48 +0100
-Received: from d06av23.portsmouth.uk.ibm.com (d06av23.portsmouth.uk.ibm.com [9.149.105.59])
-        by b06avi18878370.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x92M4kCn46792984
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 2 Oct 2019 22:04:46 GMT
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 6805BA4053;
-        Wed,  2 Oct 2019 22:04:46 +0000 (GMT)
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 6A9A0A4055;
-        Wed,  2 Oct 2019 22:04:44 +0000 (GMT)
-Received: from dhcp-9-31-103-196.watson.ibm.com (unknown [9.31.103.196])
-        by d06av23.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Wed,  2 Oct 2019 22:04:44 +0000 (GMT)
-Subject: Re: [PATCH v6 6/9] ima: make process_buffer_measurement() non static
-From:   Mimi Zohar <zohar@linux.ibm.com>
-To:     Nayna Jain <nayna@linux.ibm.com>, linuxppc-dev@ozlabs.org,
-        linux-efi@vger.kernel.org, linux-integrity@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jeremy Kerr <jk@ozlabs.org>,
-        Matthew Garret <matthew.garret@nebula.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Claudio Carvalho <cclaudio@linux.ibm.com>,
-        George Wilson <gcwilson@linux.ibm.com>,
-        Elaine Palmer <erpalmer@us.ibm.com>,
-        Eric Ricther <erichte@linux.ibm.com>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
+        id S1726081AbfJBWFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 18:05:45 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:40069 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbfJBWFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 18:05:45 -0400
+Received: by mail-qk1-f196.google.com with SMTP id y144so311127qkb.7;
+        Wed, 02 Oct 2019 15:05:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1s738KR7peDPdk0egrEOotdFH/XvdoPuk8qM2dZV4+M=;
+        b=RsaX3chVgIapb461BDRuC0sDD0I5xgnK4SHyqIX74Teg/PoXx45jz4Bn1w1j0x915o
+         0cld1gKH27FzDLsKxsCxX2fDACDVYXV2Kl7DbbVqnNr2YV5auxIbgJ3ZClu9UATlO1cd
+         phlso1RkSrEk+wzqJ5HPqDerQZGThL/aqS8nI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1s738KR7peDPdk0egrEOotdFH/XvdoPuk8qM2dZV4+M=;
+        b=RM3NJmq2LlolUkyM8BdpHSCnag9YwrGFabtlnSWO0u1/FDJPKJ3FIIjum2e/zip0+u
+         ITqptIYPMFW5+vIVmTVDHLNzqYUTJsjb0ndYOckuw1qFJ/eAeK8MV2Xn/ZwOGkH3bmBz
+         ZNEUHehuzSxwV7IYEjFp7mBTGrWejZinRz377X63ZiSKcnFE41D/gRtzD8M9eY85ocO+
+         xsgZ5fUyGqcppZR6FNWBST3sBodyB6dwp+6X5+uOhY7A5cONNarMFOjfBWxeYrrKZHBm
+         GadBIh3fB+NaFJE3lW7fH54x0/zKb7k5ShLaMeUq5AZcn76htoMEfnw8UsD0jJAAT15V
+         6j7A==
+X-Gm-Message-State: APjAAAUCCNxyWb26SVkR7vwBvw2Ip7QB8vDN7rOOgB9xOsoFxB6HiBVY
+        fzgGzktX7hMJ+iurIzygQj7uL8Htw9UYkOWW7eA=
+X-Google-Smtp-Source: APXvYqzCQ+ctGU7OQGZqx/nxtHTMHw9WlHbGNxcjNnj4Cgg7Cq7pSYMp4k90/LRI+zGC5+lRhoD79BWDyiWYxBW8A0g=
+X-Received: by 2002:a37:4f4c:: with SMTP id d73mr1165671qkb.171.1570053944314;
+ Wed, 02 Oct 2019 15:05:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191002061200.29888-1-chiawei_wang@aspeedtech.com> <70044749-785b-6ff3-7a28-fb049dcfec54@linux.intel.com>
+In-Reply-To: <70044749-785b-6ff3-7a28-fb049dcfec54@linux.intel.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 2 Oct 2019 22:05:32 +0000
+Message-ID: <CACPK8XfBxC+4PHHCkMoXr+twjfWaovcJ5c=hfCmHRJ6LpGNeFg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] peci: aspeed: Add AST2600 compatible
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        Jason M Biils <jason.m.bills@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Prakhar Srivastava <prsriva02@gmail.com>
-Date:   Wed, 02 Oct 2019 18:04:43 -0400
-In-Reply-To: <1569594360-7141-7-git-send-email-nayna@linux.ibm.com>
-References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
-         <1569594360-7141-7-git-send-email-nayna@linux.ibm.com>
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-x-cbid: 19100222-4275-0000-0000-0000036D75ED
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19100222-4276-0000-0000-000038807A43
-Message-Id: <1570053883.4421.77.camel@linux.ibm.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-10-02_09:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=3 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=904 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1908290000 definitions=main-1910020175
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Cc'ing Prakhar]
+On Wed, 2 Oct 2019 at 18:11, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
+>
+> Hi Chia-Wei,
+>
+> On 10/1/2019 11:11 PM, Chia-Wei, Wang wrote:
+> > Update the Aspeed PECI driver with the AST2600 compatible string.
+> > A new comptabile string is needed for the extended HW feature of
+> > AST2600.
+> >
+> > Chia-Wei, Wang (2):
+> >    peci: aspeed: Add AST2600 compatible string
+> >    dt-bindings: peci: aspeed: Add AST2600 compatible
+> >
+> >   Documentation/devicetree/bindings/peci/peci-aspeed.txt | 1 +
+> >   drivers/peci/peci-aspeed.c                             | 1 +
+> >   2 files changed, 2 insertions(+)
+> >
+>
+> PECI subsystem isn't in linux upstream yet so you should submit it into
+> OpenBMC dev-5.3 tree only.
 
-On Fri, 2019-09-27 at 10:25 -0400, Nayna Jain wrote:
-> To add the support for checking against blacklist, it would be needed
-> to add an additional measurement record that identifies the record
-> as blacklisted.
-> 
-> This patch modifies the process_buffer_measurement() and makes it
-> non static to be used by blacklist functionality. It modifies the
-> function to handle more than just the KEXEC_CMDLINE.
-> 
-> Signed-off-by: Nayna Jain <nayna@linux.ibm.com>
-
-Making process_buffer_measurement() non static is the end result, not
-the reason for the change.  The reason for changing
-process_buffer_measurement() is to make it more generic.  The
-blacklist measurement record is the usecase.
-
-Please rewrite the patch description.
-
-thanks,
-
-Mimi
-
+OpenBMC has been carrying the out of tree patches for some time now. I
+haven't seen a new version posted for a while. Do you have a timeline
+for when you plan to submit it upstream?
