@@ -2,111 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F3AC446C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 01:40:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1ECDC44E6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 02:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729228AbfJAXju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Oct 2019 19:39:50 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:37682 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729219AbfJAXju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 19:39:50 -0400
-Received: by mail-io1-f66.google.com with SMTP id b19so24534959iob.4;
-        Tue, 01 Oct 2019 16:39:49 -0700 (PDT)
+        id S1729510AbfJBAUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Oct 2019 20:20:37 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:37216 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729509AbfJBAUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Oct 2019 20:20:37 -0400
+Received: by mail-io1-f67.google.com with SMTP id b19so24717891iob.4;
+        Tue, 01 Oct 2019 17:20:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=IviJQ2N622ovMvnAFQ5UMMPkhv4vjXzkXpkg1vsAmBc=;
-        b=DNOUBVmVUAypCrPEcDm3GsIKmKDVicfDkI4NfruqmYi2MbnOdkXuQs2Hz45pZdKkXP
-         tQ8LxfGcTS8aExdl0rNn7GFyd+jpdJ0HQkik2f14QyjgMJu4MWa7nZUeDWbS4HTnivc4
-         mZGOByd/VTLmvEpH9QvFam1pMSxa0F3bFvzbBfk5lYVcOJwA2lz7vl0qxcwkIkW1Y58w
-         OhmFkSTbCGXaUlfxXD5sPggnlSdIIsRuJCrbbcAVvIMb8p5RCFKEcxTpstSB54rK1NbJ
-         yPq7hRfuuMWFF8lnjYYrApUgOMCcSjRLKS4O/IDjL9cXqDM8eB+mpJTU6YkzzHQgKDMy
-         O7Xw==
+        h=from:to:cc:subject:date:message-id;
+        bh=E7akn3KWbgNnmMpTo3GpAawa2GrmFKU67ai1nYZy4h8=;
+        b=F3c6aFkkT9udTeRsQq65f8rfAAgP1ivklKvMzWsaHAEsYa4XU61XzysDKiiFs1GIce
+         y9tDnJZi07BVq3ak1k/ck57w5vdGWOdnRrY0imEpxxoMZJNvu/kIQ3IsIScOidtYiFu2
+         Zw/V8Aw36OocuVQt1ulbuDbZh8OhWPkhsNMNa3b8BBkOzLKt0wTcs1hW/LD3+CTxTtdx
+         9YDTkHPkNQs+wBc3tJo0O5T8hvFqYmxv5kpQeX/dZ1ZsT43q3hms+WCgPnB/UBVuSaHo
+         2+jnUGndHbJ22tlzhxNM373PBIY5Njg8J5Dju2OL0+iH/pyBxiHbWkPioOEULvHu6xFx
+         HIHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=IviJQ2N622ovMvnAFQ5UMMPkhv4vjXzkXpkg1vsAmBc=;
-        b=Z1HD5QUY742LX4P48C3Ze3bwTaRFnuhXZ1L0it1qxlwCNiJh/t5UflVGUKJqSzNwCR
-         Br6jdFRv+fnyNGx6/z79FrzOuJYTswKvFjd3sYBTqxjPaY7rgKg+RCl2FF/xzgsw6Pzc
-         454ziLaUNwk3VlCsCPqrIt3L+3mDTlRaiTVY5H8PHC/jiurGCiEflnXRY4c75sR6ackW
-         rmain2ze94EeYRdNqHTabdgJjDcDp5HM+3jopZ976FFsd9wmLcttLHUcXLs0UUNwUffz
-         penWqJzoCKyI9yFu8WTXHblPlwAitr7vks8SsaKJB126i30M5+OJVeZQ5GZM0+OvGQrc
-         tf4A==
-X-Gm-Message-State: APjAAAWJrUgAmfYkKwThzyTDmEMJ6m6kVPRVmqLTegfzxENjhs4vPJbH
-        +TGkwrcPXNTNVsR5y6lbMHo=
-X-Google-Smtp-Source: APXvYqy4qifIuV3uXjVmLyj/P9fmIFx/f/pEw5vONAuRa7jHVpmKT9t9pDPuxlKh2izbbpKZGI5FbQ==
-X-Received: by 2002:a92:1559:: with SMTP id v86mr820194ilk.130.1569973189265;
-        Tue, 01 Oct 2019 16:39:49 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=E7akn3KWbgNnmMpTo3GpAawa2GrmFKU67ai1nYZy4h8=;
+        b=dSWfWwjSwEtvIlmhFaDb1/oCZAKPD6PH+lnLjGLgxVyWXak/fIUivPAF2Z0dOGRyz4
+         6Xm3xrAS4CtOIqJJSW/fp3DnNDuNom7VTUBG3uqB4FL8gHmhrPxd1EbzQrkPQlQZ0wBl
+         JEHfL9vud4uSsFn02Ln7IEtoDVNO6Ulw54sehejyW0X/yDHgITx2TivdvNJor/X4qjnU
+         2wgiOxRIqYvf047gEVfpOqOgkF1QEQiy8wfcZebUCRyWm5zWGOzW82wilNVYRm0fqdra
+         8zhm7OM34eFETo4b36LHRgE697gElLvgD8EjEfXN0J2DiuMQoG4QrjmkIMf2GpFUHiNV
+         5/Sg==
+X-Gm-Message-State: APjAAAWwI5tJUa5Pjj+PRR2lhJHpmXw+2yQNceQGfGYBjM55hnSSDQD1
+        MOUBj4Rc+ooYzJefCRsfW7o=
+X-Google-Smtp-Source: APXvYqz4A/KOLM0TIzmmQxVPsPwNSr7qx9lzpyTV4UAEwH9hZCGAdGpdtb2S4AEc3Ugu8biyi6Gcbg==
+X-Received: by 2002:a6b:1646:: with SMTP id 67mr879880iow.11.1569975635262;
+        Tue, 01 Oct 2019 17:20:35 -0700 (PDT)
 Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id r22sm8659935ilb.85.2019.10.01.16.39.48
+        by smtp.gmail.com with ESMTPSA id i13sm6703646ils.16.2019.10.01.17.20.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2019 16:39:48 -0700 (PDT)
+        Tue, 01 Oct 2019 17:20:34 -0700 (PDT)
 From:   Adam Ford <aford173@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-omap@vger.kernel.org, adam.ford@logicpd.com,
-        Adam Ford <aford173@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     adam.ford@logicpd.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V4 3/3] ARM: logicpd-torpedo-37xx-devkit-28: Reference new DRM panel
-Date:   Tue,  1 Oct 2019 18:39:23 -0500
-Message-Id: <20191001233923.16514-6-aford173@gmail.com>
+Subject: [PATCH] ARM: dts: imx6q-logicpd: Re-Enable SNVS power key
+Date:   Tue,  1 Oct 2019 19:20:28 -0500
+Message-Id: <20191002002029.19189-1-aford173@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191001233923.16514-1-aford173@gmail.com>
-References: <20191001233923.16514-1-aford173@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the removal of the panel-dpi from the omap drivers, the
-LCD no longer works.  This patch points the device tree to
-a newly created panel named "logicpd,type28"
+A previous patch disabled the SNVS power key by default which
+breaks the ability for the imx6q-logicpd board to wake from sleep.
+This patch re-enables this feature for this board.
 
-Fixes: 8bf4b1621178 ("drm/omap: Remove panel-dpi driver")
+Fixes: 770856f0da5d ("ARM: dts: imx6qdl: Enable SNVS power key according to board design")
 
 Signed-off-by: Adam Ford <aford173@gmail.com>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
----
-V4:  No Change
-V3:  No change
-V2:  Remove legacy 'label' from binding
 
-diff --git a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-index 07ac99b9cda6..cdb89b3e2a9b 100644
---- a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-+++ b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit-28.dts
-@@ -11,22 +11,6 @@
- #include "logicpd-torpedo-37xx-devkit.dts"
- 
- &lcd0 {
--
--	label = "28";
--
--	panel-timing {
--		clock-frequency = <9000000>;
--		hactive = <480>;
--		vactive = <272>;
--		hfront-porch = <3>;
--		hback-porch = <2>;
--		hsync-len = <42>;
--		vback-porch = <3>;
--		vfront-porch = <2>;
--		vsync-len = <11>;
--		hsync-active = <1>;
--		vsync-active = <1>;
--		de-active = <1>;
--		pixelclk-active = <0>;
--	};
-+	/* To make it work, set CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK=4 */
-+	compatible = "logicpd,type28";
+diff --git a/arch/arm/boot/dts/imx6-logicpd-som.dtsi b/arch/arm/boot/dts/imx6-logicpd-som.dtsi
+index 7ceae3573248..547fb141ec0c 100644
+--- a/arch/arm/boot/dts/imx6-logicpd-som.dtsi
++++ b/arch/arm/boot/dts/imx6-logicpd-som.dtsi
+@@ -207,6 +207,10 @@
+ 	vin-supply = <&sw1c_reg>;
  };
+ 
++&snvs_poweroff {
++	status = "okay";
++};
++
+ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
 -- 
 2.17.1
 
