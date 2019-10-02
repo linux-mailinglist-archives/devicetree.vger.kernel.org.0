@@ -2,131 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 905EEC8BB7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 214C4C8BC8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725975AbfJBOrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:47:12 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:39765 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727427AbfJBOrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:47:12 -0400
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: kamel.bouhara@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 83FB220000C;
-        Wed,  2 Oct 2019 14:47:09 +0000 (UTC)
-From:   Kamel Bouhara <kamel.bouhara@bootlin.com>
-To:     Wolfram Sang <wsa@the-dreams.de>, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: [PATCH 4/4] ARM: at91/dt: sama5d4: add i2c gpio pinctrl
-Date:   Wed,  2 Oct 2019 16:46:58 +0200
-Message-Id: <20191002144658.7718-5-kamel.bouhara@bootlin.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191002144658.7718-1-kamel.bouhara@bootlin.com>
-References: <20191002144658.7718-1-kamel.bouhara@bootlin.com>
+        id S1727618AbfJBOs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:48:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52716 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726435AbfJBOs6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 10:48:58 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EEC4A21783;
+        Wed,  2 Oct 2019 14:48:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570027737;
+        bh=wSamQ2IHFj7SsWRiciOuzx5098YJgRPNoXydbfMJ/7E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TEfBr11YqcbzylPi+3x9EYQca1ow+0Z0cPcRcElFGXa5mzdjuBMShT8HLW7p40Imb
+         HJ1BCbnnzTulctR/+Hv2cZl4gMVVpyJ2+koKpcMB4Xb2hAfaODLhXicj/R2gllA8iM
+         kSQgqRt3WuMZHvnd2eECYvTNC/jGoIjAlyEFVGfY=
+Date:   Wed, 2 Oct 2019 16:48:54 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        andriy.shevchenko@linux.intel.com, bparrot@ti.com,
+        andy.shevchenko@gmail.com, simon.budig@kernelconcepts.de,
+        hdegoede@redhat.com, fcooper@ti.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        bcousson@baylibre.com, tony@atomide.com,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, s.hauer@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, shawnguo@kernel.org,
+        wens@csie.org
+Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
+ wakeup-source documentation
+Message-ID: <20191002144854.cdpgjzi67dz6bs5x@gilmour>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-3-m.felsch@pengutronix.de>
+ <20190917170743.GO237523@dtor-ws>
+ <20190917171814.owcttekv56xgmsts@pengutronix.de>
+ <20190917172658.GQ237523@dtor-ws>
+ <20190930231146.GA30010@bogus>
+ <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="64afkyf6eiewiqxb"
+Content-Disposition: inline
+In-Reply-To: <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the i2c gpio pinctrls so the i2c bus recovery option can be enabled
 
-Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
----
- arch/arm/boot/dts/sama5d4.dtsi | 33 ++++++++++++++++++++++++++++++---
- 1 file changed, 30 insertions(+), 3 deletions(-)
+--64afkyf6eiewiqxb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index 6ab27a7b388d..34351baab985 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -458,8 +458,11 @@
- 					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
- 					| AT91_XDMAC_DT_PERID(3))>;
- 				dma-names = "tx", "rx";
--				pinctrl-names = "default";
-+				pinctrl-names = "default", "gpio";
- 				pinctrl-0 = <&pinctrl_i2c0>;
-+				pinctrl-1 = <&pinctrl_i2c0_gpio>;
-+				sda-gpios = <&pioA 30 GPIO_ACTIVE_HIGH>;
-+				scl-gpios = <&pioA 31 GPIO_ACTIVE_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 32>;
-@@ -477,8 +480,11 @@
- 					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
- 					| AT91_XDMAC_DT_PERID(5))>;
- 				dma-names = "tx", "rx";
--				pinctrl-names = "default";
-+				pinctrl-names = "default", "gpio";
- 				pinctrl-0 = <&pinctrl_i2c1>;
-+				pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+				sda-gpios = <&pioE 29 GPIO_ACTIVE_HIGH>;
-+				scl-gpios = <&pioE 30 GPIO_ACTIVE_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 33>;
-@@ -519,8 +525,11 @@
- 					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
- 					| AT91_XDMAC_DT_PERID(7))>;
- 				dma-names = "tx", "rx";
--				pinctrl-names = "default";
-+				pinctrl-names = "default", "gpio";
- 				pinctrl-0 = <&pinctrl_i2c2>;
-+				pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+				sda-gpios = <&pioB 29 GPIO_ACTIVE_HIGH>;
-+				scl-gpios = <&pioB 30 GPIO_ACTIVE_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 34>;
-@@ -1122,6 +1131,12 @@
- 							<AT91_PIOA 30 AT91_PERIPH_A AT91_PINCTRL_NONE
- 							 AT91_PIOA 31 AT91_PERIPH_A AT91_PINCTRL_NONE>;
- 					};
-+
-+					pinctrl_i2c0_gpio: i2c0-gpio {
-+						atmel,pins =
-+							<AT91_PIOA 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
-+							 AT91_PIOA 31 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+					};
- 				};
- 
- 				i2c1 {
-@@ -1130,6 +1145,12 @@
- 							<AT91_PIOE 29 AT91_PERIPH_C AT91_PINCTRL_NONE	/* TWD1, conflicts with UART0 RX and DIBP */
- 							 AT91_PIOE 30 AT91_PERIPH_C AT91_PINCTRL_NONE>;	/* TWCK1, conflicts with UART0 TX and DIBN */
- 					};
-+
-+					pinctrl_i2c1_gpio: i2c1-gpio {
-+						atmel,pins =
-+							<AT91_PIOE 29 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
-+							 AT91_PIOE 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+					};
- 				};
- 
- 				i2c2 {
-@@ -1138,6 +1159,12 @@
- 							<AT91_PIOB 29 AT91_PERIPH_A AT91_PINCTRL_NONE	/* TWD2, conflicts with RD0 and PWML1 */
- 							 AT91_PIOB 30 AT91_PERIPH_A AT91_PINCTRL_NONE>; /* TWCK2, conflicts with RF0 */
- 					};
-+
-+					pinctrl_i2c2_gpio: i2c2-gpio {
-+						atmel,pins =
-+							<AT91_PIOB 29 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
-+							 AT91_PIOB 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+					};
- 				};
- 
- 				isi {
--- 
-2.23.0
+On Wed, Oct 02, 2019 at 03:00:18PM +0200, Marco Felsch wrote:
+> all of you using a edt,* touchscreen and currently the driver marks
+> the touchscreen as wakeup source. To keep backward compatibility I added
+> a workaround binding (see below) but Dmitry prefer to use the normal
+> "wakeup-source" binding and change the affected device-tree's
+> (discussion below). Can you give me your ack/nack for Dmitry's solution?
 
+we don't have any upstrem suspend support on the Allwinner SoCs, so
+you can safely ignore all the sunxi DTS here.
+
+Maxime
+
+--64afkyf6eiewiqxb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZS41gAKCRDj7w1vZxhR
+xeG7AQDs7bynAylR4A61FT3oxs+U9x3A7f/3K3lN3Szi6wDWiwEAqw6ZJIly1ljs
+BvUnwraDgrFvRAGT4/vKsz3fyTLxRgM=
+=usoC
+-----END PGP SIGNATURE-----
+
+--64afkyf6eiewiqxb--
