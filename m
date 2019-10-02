@@ -2,134 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C295C8748
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 13:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A75BBC87BD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 14:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728204AbfJBL1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 07:27:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42638 "EHLO mail.kernel.org"
+        id S1728257AbfJBMCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 08:02:44 -0400
+Received: from mga01.intel.com ([192.55.52.88]:33592 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728203AbfJBL1B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 07:27:01 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E15821920;
-        Wed,  2 Oct 2019 11:26:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570015620;
-        bh=DXFtBgxGGgvpKY8DJ0Xw76yv+899ap6972HaBCLpO6g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=11J36BMuspOigGLsrGnlBC+q9XqU0A3fhCLsa9iZ5LAkYZyh9JsHdOxBBRE595vEM
-         4oyu04jdRQ3IM4l0MYc1RrfTa+imy7mC7BNmnHn6GC6QVMBQXjiDCRjlovzpIWBJVK
-         Iy15N0dMHTp5tanBmY6D78ajcGe2uab0Uhegf0Hg=
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Emmanuel Vadot <manu@bidouilliste.com>
-Subject: [PATCH 2/2] dt-bindings: usb: Bring back phy-names
-Date:   Wed,  2 Oct 2019 13:26:51 +0200
-Message-Id: <20191002112651.100504-2-mripard@kernel.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191002112651.100504-1-mripard@kernel.org>
-References: <20191002112651.100504-1-mripard@kernel.org>
+        id S1725875AbfJBMCo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 08:02:44 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Oct 2019 05:02:26 -0700
+X-IronPort-AV: E=Sophos;i="5.64,574,1559545200"; 
+   d="scan'208";a="343311408"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Oct 2019 05:02:22 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 7993E20976; Wed,  2 Oct 2019 15:02:20 +0300 (EEST)
+Date:   Wed, 2 Oct 2019 15:02:20 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Petr Mladek <pmladek@suse.com>
+Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Rob Herring <robh@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Joe Perches <joe@perches.com>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v7 09/13] lib/vsprintf: Add a note on re-using %pf or %pF
+Message-ID: <20191002120220.GF972@paasikivi.fi.intel.com>
+References: <20190918133419.7969-1-sakari.ailus@linux.intel.com>
+ <20190918133419.7969-10-sakari.ailus@linux.intel.com>
+ <20190924104549.qiayzhr7zikja7sp@pathway.suse.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190924104549.qiayzhr7zikja7sp@pathway.suse.cz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While the original bindings that were superseeded by the YAML schemas
-didn't mention that phy-names was needed, it turns out that phy-names is
-required if phys is set according to phy/phy-bindings.txt.
+On Tue, Sep 24, 2019 at 12:45:49PM +0200, Petr Mladek wrote:
+> On Wed 2019-09-18 16:34:15, Sakari Ailus wrote:
+> > Add a note warning of re-use of obsolete %pf or %pF extensions.
+> > 
+> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > Cc: Steven Rostedt <rostedt@goodmis.org>
+> > ---
+> >  lib/vsprintf.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/lib/vsprintf.c b/lib/vsprintf.c
+> > index b00b57f9f911f..df59818537b52 100644
+> > --- a/lib/vsprintf.c
+> > +++ b/lib/vsprintf.c
+> > @@ -2008,6 +2008,8 @@ static char *kobject_string(char *buf, char *end, void *ptr,
+> >   * - 'S' For symbolic direct pointers (or function descriptors) with offset
+> >   * - 's' For symbolic direct pointers (or function descriptors) without offset
+> >   * - '[Ss]R' as above with __builtin_extract_return_addr() translation
+> > + * - '[Ff]' Obsolete an now unsupported extension for printing direct pointers
+> > + *	    or function descriptors. Be careful when re-using %pf or %pF!
+> 
+> I am not a native speaker but the sentence is hard to parse to me.
+> Also I miss the word 'symbolic'. IMHO, it described that the output
+> was a symbol name.
+> 
+> What about something like?
+> 
+>   * - '[Ff]' %pf and %pF were obsoleted and later removed in favor of
+>   *	    %ps and %pS. Be careful when re-using these specifiers.
 
-Let's add back those properties.
+Yes, I'll use this in v8.
 
-Fixes: 14ec072a19ad ("dt-bindings: usb: Convert USB HCD generic binding to YAML")
-Fixes: c93bcace1098 ("dt-bindings: usb: Convert the generic OHCI binding to YAML")
-Fixes: c3e2485d5f4f ("dt-bindings: usb: Convert the generic EHCI binding to YAML")
-Reported-by: Emmanuel Vadot <manu@bidouilliste.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
----
- Documentation/devicetree/bindings/usb/generic-ehci.yaml | 7 ++++++-
- Documentation/devicetree/bindings/usb/generic-ohci.yaml | 7 ++++++-
- Documentation/devicetree/bindings/usb/usb-hcd.yaml      | 5 +++++
- 3 files changed, 17 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-index 059f6ef1ad4a..1ca64c85191a 100644
---- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-@@ -63,7 +63,11 @@ properties:
-     description:
-       Set this flag to force EHCI reset after resume.
- 
--  phys: true
-+  phys:
-+    description: PHY specifier for the USB PHY
-+
-+  phy-names:
-+    const: usb
- 
- required:
-   - compatible
-@@ -89,6 +93,7 @@ examples:
-         interrupts = <39>;
-         clocks = <&ahb_gates 1>;
-         phys = <&usbphy 1>;
-+        phy-names = "usb";
-     };
- 
- ...
-diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-index da5a14becbe5..bcffec1f1341 100644
---- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-@@ -67,7 +67,11 @@ properties:
-     description:
-       Overrides the detected port count
- 
--  phys: true
-+  phys:
-+    description: PHY specifier for the USB PHY
-+
-+  phy-names:
-+    const: usb
- 
- required:
-   - compatible
-@@ -84,6 +88,7 @@ examples:
-           interrupts = <64>;
-           clocks = <&usb_clk 6>, <&ahb_gates 2>;
-           phys = <&usbphy 1>;
-+          phy-names = "usb";
-       };
- 
- ...
-diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-index 9c8c56d3a792..7263b7f2b510 100644
---- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-+++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
-@@ -18,8 +18,13 @@ properties:
-     description:
-       List of all the USB PHYs on this HCD
- 
-+  phy-names:
-+    description:
-+      Name specifier for the USB PHY
-+
- examples:
-   - |
-     usb {
-         phys = <&usb2_phy1>, <&usb3_phy1>;
-+        phy-names = "usb";
-     };
 -- 
-2.23.0
-
+Sakari Ailus
+sakari.ailus@linux.intel.com
