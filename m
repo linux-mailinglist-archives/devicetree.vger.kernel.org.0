@@ -2,154 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A123EC8CCA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5BBC8CD2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:24:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726677AbfJBPXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 11:23:14 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:6154 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726179AbfJBPXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:23:14 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x92F10kl012939;
-        Wed, 2 Oct 2019 17:23:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=rh33K3LM0pXmPNo2rwzlOrR6sHjN7N9fVAOOZpl14Dk=;
- b=Em0ZDgTYONNevVm/0Rox0Fmyi9N+EYdd6ZGbYY/M7ISSwT4mw2sGX6tauYimRyhSxBHP
- bDYqlqocbMcMqcRRg5fnyo35c9WugHKEOuco9/mlGII7ifFKuMnyBI/BYznxNImzwd05
- QV7QXJRu0a7ad/t0ZdJ/m2Svr5p0DKMhcF04PPNm74WA+qmqD6AUoBwrJNncNG3mhdt3
- 2hixPnfq2MnQqNS5SV53cQuU8jp5vA55hyFUQhQg+TDGiPua+5ULMoFLl9ZOiZSTZYpE
- aT/JNo8vpSCQnNejkazNwbSTvCEIPefkDkIrqJ70sdod9KhDW9v0zDejOMgjDkOyliXa KA== 
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2v9vnafq1u-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Wed, 02 Oct 2019 17:23:00 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A59E724;
-        Wed,  2 Oct 2019 15:22:56 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C5D3F2D377A;
-        Wed,  2 Oct 2019 17:22:55 +0200 (CEST)
-Received: from SAFEX1HUBCAS22.st.com (10.75.90.92) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 2 Oct 2019
- 17:22:55 +0200
-Received: from localhost (10.201.20.122) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 2 Oct 2019 17:22:55
- +0200
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <alexandre.torgue@st.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH] dt-bindings: timer: Convert stm32 timer bindings to json-schema
-Date:   Wed, 2 Oct 2019 17:22:53 +0200
-Message-ID: <20191002152253.16393-1-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
+        id S1728064AbfJBPY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 11:24:58 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:39053 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726710AbfJBPY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:24:58 -0400
+X-Originating-IP: 86.207.98.53
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 26AE21BF207;
+        Wed,  2 Oct 2019 15:24:53 +0000 (UTC)
+Date:   Wed, 2 Oct 2019 17:24:52 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        andriy.shevchenko@linux.intel.com, bparrot@ti.com,
+        andy.shevchenko@gmail.com, simon.budig@kernelconcepts.de,
+        hdegoede@redhat.com, fcooper@ti.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        bcousson@baylibre.com, tony@atomide.com,
+        nicolas.ferre@microchip.com, ludovic.desroches@microchip.com,
+        s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        shawnguo@kernel.org, mripard@kernel.org, wens@csie.org
+Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
+ wakeup-source documentation
+Message-ID: <20191002152452.GN4106@piout.net>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-3-m.felsch@pengutronix.de>
+ <20190917170743.GO237523@dtor-ws>
+ <20190917171814.owcttekv56xgmsts@pengutronix.de>
+ <20190917172658.GQ237523@dtor-ws>
+ <20190930231146.GA30010@bogus>
+ <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.122]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-02_07:2019-10-01,2019-10-02 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 timer binding to DT schema format using json-schema
+On 02/10/2019 15:00:18+0200, Marco Felsch wrote:
+> Hi,
+> 
+> all of you using a edt,* touchscreen and currently the driver marks
+> the touchscreen as wakeup source. To keep backward compatibility I added
+> a workaround binding (see below) but Dmitry prefer to use the normal
+> "wakeup-source" binding and change the affected device-tree's
+> (discussion below). Can you give me your ack/nack for Dmitry's solution?
+> 
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- .../devicetree/bindings/timer/st,stm32-timer.txt   | 22 -----------
- .../devicetree/bindings/timer/st,stm32-timer.yaml  | 46 ++++++++++++++++++++++
- 2 files changed, 46 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/st,stm32-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/st,stm32-timer.yaml
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-diff --git a/Documentation/devicetree/bindings/timer/st,stm32-timer.txt b/Documentation/devicetree/bindings/timer/st,stm32-timer.txt
-deleted file mode 100644
-index 8ef28e70d6e8..000000000000
---- a/Documentation/devicetree/bindings/timer/st,stm32-timer.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--. STMicroelectronics STM32 timer
--
--The STM32 MCUs family has several general-purpose 16 and 32 bits timers.
--
--Required properties:
--- compatible : Should be "st,stm32-timer"
--- reg : Address and length of the register set
--- clocks : Reference on the timer input clock
--- interrupts : Reference to the timer interrupt
--
--Optional properties:
--- resets: Reference to a reset controller asserting the timer
--
--Example:
--
--timer5: timer@40000c00 {
--	compatible = "st,stm32-timer";
--	reg = <0x40000c00 0x400>;
--	interrupts = <50>;
--	resets = <&rrc 259>;
--	clocks = <&clk_pmtr1>;
--};
-diff --git a/Documentation/devicetree/bindings/timer/st,stm32-timer.yaml b/Documentation/devicetree/bindings/timer/st,stm32-timer.yaml
-new file mode 100644
-index 000000000000..e128ac9a5391
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/st,stm32-timer.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/st,stm32-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 general-purpose 16 and 32 bits timers bindings
-+
-+maintainers:
-+  - Benjamin Gaignard <benjamin.gaignard@st.com>
-+
-+properties:
-+  compatible:
-+    const: st,stm32-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Module Clock
-+
-+  resets:
-+        maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    timer: timer@40000c00 {
-+        compatible = "st,stm32-timer";
-+        reg = <0x40000c00 0x400>;
-+        interrupts = <50>;
-+        clocks = <&clk_pmtr1>;
-+    };
-+
-+...
+> Regards,
+>   Marco
+> 
+> On 19-09-30 18:11, Rob Herring wrote:
+> > On Tue, Sep 17, 2019 at 10:26:58AM -0700, Dmitry Torokhov wrote:
+> > > On Tue, Sep 17, 2019 at 07:18:14PM +0200, Marco Felsch wrote:
+> > > > Hi Dmitry,
+> > > > 
+> > > > On 19-09-17 10:07, Dmitry Torokhov wrote:
+> > > > > On Tue, Sep 17, 2019 at 05:58:04PM +0200, Marco Felsch wrote:
+> > > > > > The default driver behaviour is to enable the wakeup-source everytime.
+> > > > > > There are hardware designs which have a dedicated gpio to act as wakeup
+> > > > > > device. So it must be allowed to disable the wakeup-source capability.
+> > > > > > 
+> > > > > > This patch adds the binding documentation to disable the wakeup-source
+> > > > > > capability.
+> > > > > > 
+> > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt      | 4 ++++
+> > > > > >  1 file changed, 4 insertions(+)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > > > index 870b8c5cce9b..4d6524fe3cf4 100644
+> > > > > > --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
+> > > > > > @@ -35,6 +35,10 @@ Optional properties:
+> > > > > >   - pinctrl-0:   a phandle pointing to the pin settings for the
+> > > > > >                  control gpios
+> > > > > >  
+> > > > > > + - edt,disable-wakeup-source: If left the device will act as wakeup-source
+> > > > > > +			      (for legacy compatibility). Add the property
+> > > > > > +			      so the device won't act as wakeup-source.
+> > > > > 
+> > > > > I think this is too ugly and I consider it being a bug in the driver
+> > > > > that it enables wakeup unconditionally.
+> > > > 
+> > > > That's right.
+> > > > 
+> > > > > Let's just update DTS in tree for devices that actually want it (I am
+> > > > > curious how many that do not declare "wakeup-source" have it working and
+> > > > > actually want it) and key the dirver behavior off the standard property.
+> > > > 
+> > > > There are a few DTS using this driver and the current driver behaviour.
+> > > > We need to keep the backward compatibility since the DTB is part of the
+> > > > firmware and firmware isn't always included during a system-update. I
+> > > > know its ugly but IMHO that's the right way to go to keep the backward
+> > > > compatibility. Let us see what the DT-folk says.
+> > > > 
+> > > > > Until we start seeing this controller in devices that actually have DTS
+> > > > > in hardware device tree I think it is better to use standard property.
+> > > > 
+> > > > Sorry, I didn't get you here..
+> > > 
+> > > What I was trying to say is that I have not actually seen DTB that is
+> > > part of hardware or separately upgradable frimware (not talking about
+> > > ppc or sparc boxes, but ones that might be using this driver). It is
+> > > always built into the kernel in my experience, so backward compatibility
+> > > is simply a tool that is being used to prevent us from being too wild
+> > > with hacking on bindings, but rarely a practical concern.
+> > 
+> > Well, that's self fulfilling...
+> > 
+> > > In cases like this I think it is worthwhile to simply update in-tree
+> > > DTS and arrive at a sane binding.
+> > 
+> > Get the maintainers of the affected platforms to agree to the changes.
+> > 
+> > Rob
+> > 
+> 
+> -- 
+> Pengutronix e.K.                           |                             |
+> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
 -- 
-2.15.0
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
