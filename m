@@ -2,72 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 598D9C47A7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 08:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 214B1C47A9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 08:18:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727473AbfJBGRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 02:17:53 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:40108 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726965AbfJBGRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 02:17:53 -0400
-Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
-        by twspam01.aspeedtech.com with ESMTP id x925uUwL005719
-        for <devicetree@vger.kernel.org>; Wed, 2 Oct 2019 13:56:30 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from mail.aspeedtech.com (twmbx02.aspeed.com [192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id x925uHxR005679;
-        Wed, 2 Oct 2019 13:56:17 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.620.29; Wed, 2 Oct
- 2019 14:12:13 +0800
-From:   "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
-To:     <jae.hyun.yoo@linux.intel.com>
-CC:     <jason.m.bills@linux.intel.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <chiawei_wang@aspeedtech.com>,
-        <ryan_chen@aspeedtech.com>
-Subject: [PATCH 2/2] dt-bindings: peci: aspeed: Add AST2600 compatible
-Date:   Wed, 2 Oct 2019 14:12:00 +0800
-Message-ID: <20191002061200.29888-3-chiawei_wang@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191002061200.29888-1-chiawei_wang@aspeedtech.com>
-References: <20191002061200.29888-1-chiawei_wang@aspeedtech.com>
+        id S1727474AbfJBGSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 02:18:00 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:39966 "EHLO uho.ysoft.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726965AbfJBGSA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 02:18:00 -0400
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id D9D20A223B;
+        Wed,  2 Oct 2019 08:17:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1569997078;
+        bh=FIMBiKZZmVBEVNXnumjyj1AH0rUHMveRkxF4bvtUU+E=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=XpcQGD81w/toVWTeJ6RCe0JzxMNXCSn8+WssrgnbRGhjO8ab6TLIrwSU9ik33sY/6
+         Ag8LLUSwY3M9GjXjsrqDoiEzZv4UXcHUlCzESSPNnQyhkVodU8bSz0NdOTzUYGLZzz
+         k4kDI5KU4hrA35MEcZQrFLHtsACBSUVadd1xzOac=
+Subject: Re: [PATCH v2 1/5] dt-bindings: input: Add common input binding in
+ json-schema
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org
+References: <1569940180-11417-1-git-send-email-michal.vokac@ysoft.com>
+ <1569940180-11417-2-git-send-email-michal.vokac@ysoft.com>
+ <CAL_JsqJHexWRNPPP-+Vv43CYOJmD0X9aqEtn2djMgfqzyBVy5w@mail.gmail.com>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Message-ID: <d4c3dd53-0b61-c647-ee57-9b3252561711@ysoft.com>
+Date:   Wed, 2 Oct 2019 08:17:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX01.aspeed.com (192.168.0.23) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com x925uHxR005679
+In-Reply-To: <CAL_JsqJHexWRNPPP-+Vv43CYOJmD0X9aqEtn2djMgfqzyBVy5w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the AST2600 PECI controller compatible string.
+On 01. 10. 19 17:03, Rob Herring wrote:
+> On Tue, Oct 1, 2019 at 9:29 AM Michal Vokáč <michal.vokac@ysoft.com> wrote:
+>>
+>> Create schema for the common input properties.
+>>
+>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+>> ---
+>> Changes since v1:
+>>   - New patch in the series.
+>>
+>> Rob, you suggested to extract the common properties from
+>> fsl,mpr121-touchkey.yaml into this file. In the meantime I realized that
+>> the linux,keycodes property is already documented in keys.txt.
+>>
+>> What do you suggest to do? Some possible options:
+>>   - Just remove the linux,keycodes propery from keys.txt.
+>>   - Merge this input.yaml with all content of keys.txt. How to name the result?
+> 
+> Yes. input.yaml is fine. Looks like there's only 3 references to
+> keys.txt to update.
 
-Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
----
- Documentation/devicetree/bindings/peci/peci-aspeed.txt | 1 +
- 1 file changed, 1 insertion(+)
+OK.
+Thanks for mentioning the references, I would surely forget to update those.
 
-diff --git a/Documentation/devicetree/bindings/peci/peci-aspeed.txt b/Documentation/devicetree/bindings/peci/peci-aspeed.txt
-index cdca73a3b7d8..cddd2d2aa58f 100644
---- a/Documentation/devicetree/bindings/peci/peci-aspeed.txt
-+++ b/Documentation/devicetree/bindings/peci/peci-aspeed.txt
-@@ -4,6 +4,7 @@ Required properties:
- - compatible        : Should be one of:
- 			"aspeed,ast2400-peci"
- 			"aspeed,ast2500-peci"
-+			"aspeed,ast2600-peci"
- - reg               : Should contain PECI controller registers location and
- 		      length.
- - #address-cells    : Should be <1> required to define a client address.
--- 
-2.17.1
+>>   - Something else?
+>>
+>>   Documentation/devicetree/bindings/input/input.yaml | 25 ++++++++++++++++++++++
+>>   1 file changed, 25 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/input/input.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
+>> new file mode 100644
+>> index 000000000000..494e7d031ea3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/input/input.yaml
+>> @@ -0,0 +1,25 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/input/input.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Common input schema binding
+>> +
+>> +maintainers:
+>> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+>> +
+>> +properties:
+>> +  linux,keycodes:
+>> +    description:
+>> +      Specifies an array of numeric keycode values to be used for reporting
+>> +      button presses. The array can contain up to 12 entries.
+> 
+> 12 is specific to your device.
+
+Sure, I will remove this.
+I also had question in patch 2/5 regarding the additional minItems and
+maxItems constrains. I tried various methods to add the constrains but
+all fail to pass the validation with the same error message.
+
+Thanks a lot,
+Michal
+
+>> +    allOf:
+>> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +      - items:
+>> +          minimum: 0
+>> +          maximum: 0xff
+>> +
+>> +  autorepeat:
+>> +    description: Enable autorepeat when key is pressed and held down.
+>> +    type: boolean
+>> --
+>> 2.1.4
+>>
 
