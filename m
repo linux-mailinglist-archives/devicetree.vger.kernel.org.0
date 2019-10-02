@@ -2,89 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 271E4C4A2D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7140CC4A67
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726043AbfJBJEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 05:04:47 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:35107 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbfJBJEr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:04:47 -0400
-Received: by mail-wm1-f68.google.com with SMTP id y21so6097590wmi.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 02:04:45 -0700 (PDT)
+        id S1726287AbfJBJTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 05:19:55 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:33617 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726227AbfJBJTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:19:55 -0400
+Received: by mail-lj1-f193.google.com with SMTP id a22so16354016ljd.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 02:19:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=NUl5H/X55FwqiGWpQnEfkahJrpZC2qJ4sf7YHZbx+Mo=;
-        b=nGMwtOVq6c+feMh+KqdhlBh7+TRijtwX5wnIuxZmPu8W540zZ1Nu8EGAU0zrua3PbJ
-         uN5mrg0k9pe+ELk0VqDhYVlgKP+ftu2SC3CkuZJgqKmeswDdzIpbz5yZYBwcgEvuwoUP
-         TJoAyKXu6IVDGKAM3Ae5ENk9zZRqM/culu8SSruFe+JvgJmwuJmilpxk/bpxABGzF+5Z
-         WmOkRac2WtJwWKiAhV/qo74PCxN5yj1Bg4SP1cl1RACQpYkfu6HDPGoBLx+MZNWfLZoh
-         1zhU5jlyLsS+xVJMg8K2RthVgC/QfavM1mv5cPB2XmoDzjtPtGLKWOuxACh8syRH/0nZ
-         v2XQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=tVSJ2jAoznxGAzqn26lJBhesiJu1w5Ef6wI0S81yyRk=;
+        b=jKs7U8eJtyt8NgsziFv8n2P7AhTSuJcFBcqGRBUvcExepU97UzP2Wvw7Cb67pKcmnd
+         KrB5pD0N3yZpRTOabIqWJ59k0YqmLz+DRox2nZCVpm1vwJAQsYmZpmLCEvGFaaJAYrKl
+         G0RtV55/jXfVn76PY68EBdfTk6WDW91nE19pDZprwiv9nFzWug679df5IYQUaHyKB7w6
+         e+PgM7Ph2Z9FaxLvcgcq1oL0eq6ZRG41y0SIqtLLgAZpq7k2IPhnGQxoEASQmXISRmWG
+         hSYjSKUUGdUXc8uTxCWeINcTOm2Qex/G0MPRc3yDg+tHudN7F/36D4PpQxeOt08vOxj7
+         SjfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=NUl5H/X55FwqiGWpQnEfkahJrpZC2qJ4sf7YHZbx+Mo=;
-        b=gP03KaGjFd4LdQmrr+ZED3ZBDH38yv93sjYUtoiJezOgTR324/8ZCdmajUrTrJ8RFQ
-         1wBaZVaXZmpICZiwISj/Cjqvn0j6LfwfB3Nfib+S7F9omLKSYgpI/FQqAKvzDF5fv12v
-         EwxaEhSzIvF3VtoNbBzvRceTDWPTJYk8yXwDsmG00qdqAkTyBmWNyJ6ja3ncTkAHbC2Z
-         NpjrZT1RVLztHnB5ncpm0CyMWQr/9QTP+04tgJ5b5AtL85EwD9s68zvANlFKvc02Yqgh
-         ZuZj1zvwdDIkKj9mhtdn3VJOeT+QWWbiqBc3/Qxl3HblnSpP1Fs40yPgNsFLrCJWLfOM
-         VxIA==
-X-Gm-Message-State: APjAAAWgze3vAiq4o0S9srtXKKVWAr5H/d+StNDKfNelyZG7kumZIMmv
-        jaQAQviqngTV57Ts4DRCjnCaqo0b/mo=
-X-Google-Smtp-Source: APXvYqxt+M7/70wLUwWopsHlywqqp7CNL3Dj65++dXEA9VyT5aKdfM9l9wqePVfd0PRNaGcjORzcnw==
-X-Received: by 2002:a1c:4d0d:: with SMTP id o13mr2017915wmh.19.1570007084692;
-        Wed, 02 Oct 2019 02:04:44 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id f186sm5961453wmg.21.2019.10.02.02.04.43
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=tVSJ2jAoznxGAzqn26lJBhesiJu1w5Ef6wI0S81yyRk=;
+        b=idRFTr/YKy9S8UnVLCx8JGc5B2il7Yxof9nWew00HgIkOcUs1doyYlHInRkCL2yESp
+         igr1VU68YYcsTRZgGV4skS2YhsXLnl8b4Ju+8ubfPcHo8o0K0hdQmyiwRKvfQu4EnhJ0
+         MhkBpatDan1CuCI5xDWEiG2d4eu30DT2lbFrMIdd2Y7ACAtH9aQWyzFZ7QhQdhjABpGD
+         9bm4DGiu5KDK5Cd4N8AzklCT9zeFlY0lvoBpmRec14fsDQIAJ+oXJ1ixD5lAgSJU+xSk
+         EOOHMiouX7tKB2PUwkxWVPUxV4M9DCOEIZv3jIM1O73cGE1DSHxmIKpSv5NkdYR7T+a5
+         Mmyg==
+X-Gm-Message-State: APjAAAWsVDQr4aCZkjRWQIoqII2uPVxxQNl6JTeGrPaeCXF4C2qMhri9
+        ZGHWkyZV0On9aOYOuetAwyG9XA==
+X-Google-Smtp-Source: APXvYqymQBg7OLC919RMbl4ByhwTyA3wxtAD9d6h05l4XMtE9CFbi0q3M5PidVl3u9R56raNCFXmdg==
+X-Received: by 2002:a2e:86c7:: with SMTP id n7mr1645273ljj.227.1570007993519;
+        Wed, 02 Oct 2019 02:19:53 -0700 (PDT)
+Received: from centauri (ua-84-219-138-247.bbcust.telenor.se. [84.219.138.247])
+        by smtp.gmail.com with ESMTPSA id n2sm4593350ljj.30.2019.10.02.02.19.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2019 02:04:43 -0700 (PDT)
-References: <20190921151835.770263-1-martin.blumenstingl@googlemail.com> <20190921151835.770263-3-martin.blumenstingl@googlemail.com> <1jftkcr3uy.fsf@starbuckisacylon.baylibre.com> <CAFBinCCED4YWYkdtrfrC80C8WLE=fyMJdjTa3wFNMJgC1OsoOA@mail.gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/6] clk: meson: add a driver for the Meson8/8b/8m2 DDR clock controller
-In-reply-to: <CAFBinCCED4YWYkdtrfrC80C8WLE=fyMJdjTa3wFNMJgC1OsoOA@mail.gmail.com>
-Date:   Wed, 02 Oct 2019 11:04:42 +0200
-Message-ID: <1jbluzr00l.fsf@starbuckisacylon.baylibre.com>
+        Wed, 02 Oct 2019 02:19:52 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 11:19:50 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     Amit Kucheria <amit.kucheria@linaro.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Sibi Sankar <sibis@codeaurora.org>, daniel.lezcano@linaro.org,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 7/9] arm64: dts: qcom: msm8998: Add PSCI cpuidle low
+ power states
+Message-ID: <20191002091950.GA9393@centauri>
+References: <cover.1558430617.git.amit.kucheria@linaro.org>
+ <49cf5d94beb9af9ef4e78d4c52f3b0ad20b7c63f.1558430617.git.amit.kucheria@linaro.org>
+ <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 30, 2019 at 04:20:15PM -0600, Jeffrey Hugo wrote:
+> Amit, the merged version of the below change causes a boot failure
+> (nasty hang, sometimes with RCU stalls) on the msm8998 laptops.  Oddly
+> enough, it seems to be resolved if I remove the cpu-idle-states
+> property from one of the cpu nodes.
+> 
+> I see no issues with the msm8998 MTP.
 
-On Tue 01 Oct 2019 at 20:53, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Hello Jeffrey, Amit,
 
->
-> [...]
->> > +static struct clk_hw_onecell_data meson8_ddr_clk_hw_onecell_data = {
->> > +     .hws = {
->> > +             [DDR_CLKID_DDR_PLL_DCO]         = &meson8_ddr_pll_dco.hw,
->> > +             [DDR_CLKID_DDR_PLL]             = &meson8_ddr_pll.hw,
->>
->> I wonder if onecell is not overkill for this driver. We won't expose the
->> DCO, so only the post divider remains
->>
->> Do you expect this provider to have more than one leaf clock ?
->> If not, maybe you could use of_clk_hw_simple_get() instead ?
-> there's some more clock bits in DDR_CLK_CNTL - the public A311D
-> datasheet has a description for these bits but I'm not sure they do
-> the same on Meson8/Meson8b/Meson8m2
-> all I know is that some magic bytes are written to DDR_CLK_CNTL in the
-> old u-boot code
->
-> that's why I don't want to make any assumptions and play safe here (by
-> using a onecell clock provider)
+If the PSCI idle states work properly on the msm8998 devboard (MTP),
+but causes crashes on msm8998 laptops, the only logical change is
+that the PSCI firmware is different between the two devices.
 
-Understood. Let's keep onecell then.
+
+Kind regards,
+Niklas
