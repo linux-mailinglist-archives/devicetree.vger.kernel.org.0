@@ -2,175 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82AAFC497C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 10:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FD81C49D9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 10:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725765AbfJBIag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 04:30:36 -0400
-Received: from mail-eopbgr1410134.outbound.protection.outlook.com ([40.107.141.134]:57440
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725848AbfJBIag (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 04:30:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ltM94u2cK1QlicstCMcGKolBRwniO7GDLjR6wPrCEOOJVxourVBBTRUhwaBDAJ+iRjLfD9yYQni2HBw0xbNlJRfzwnRyYfyHmdWAo4FeG9qEY9zX4CaIih8lYE7+1BJr+7D/3k4OsskUr322rlI5/prdNaZod/hasCYGAJ6ign7gQc+qAjj/ynGGya8oAtWNToAF3sIdDgrUSZSco6W7QTE59NRVtaYCnx1YwWOlWtZ9c0CoM/mI8GMqlxDgq6xeEY7ToZmvgUr8uPovdMAqLClkQOWeASQOcAlBCtGcFzOAGXEQynqNFExk5m/u2wyirN2qwVAfb7aYi2cGq4NQNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I7e4FK9NrBG7AjhTGbCmiFSaZVEHuLhGHZx2kQZ7hQg=;
- b=FP/isjkcjZv2xMWcFDgU//KRg3tVi5OJ2Ert+8q3lbyixXW91UJV0JvGlHCSjCKcNy7zBYpvWd6UO30iiNzgp6ADJSBjAfNSwSQTidFZ5AvCKv745ejTKFMVU7zhwGqTJEwhjqUqTtRVbZq9PlL4RpsGZXjVaZ0/kcsycUg+rAsfW4v/6/ftLX92F+pO58NX+TwQEB1gFNIQ8aBQ0VbJ+rTP7XZTglQjh5nzLpOAWShaGsUXsbsdg8Kj1wCzILZmfu29RaYfYSXdr4rpp8L88tN+ItmDF8sIv8Bb+ymC0ackMkILMQqS7jcTw3i1ey+ccd8+l60nqkUF+S/IuB946g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+        id S1725991AbfJBIoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 04:44:09 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:44995 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725988AbfJBIoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 04:44:09 -0400
+Received: by mail-wr1-f68.google.com with SMTP id z9so5477207wrl.11;
+        Wed, 02 Oct 2019 01:44:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I7e4FK9NrBG7AjhTGbCmiFSaZVEHuLhGHZx2kQZ7hQg=;
- b=jN6vvcZOAFhOdeeegLygogi+DevN5ampQCzKtNsExMlmXzxSv9BwPDbrihPQBREJWW2LJyS6OKOF68s9gXFlfhzS8kwqKYp56+jYikCefmK2PPCEVFA7f7Dq9En6IapWvPwe0texmdIDXJcAT/v8GqXym1gt4n6UfnEGrVZGsqU=
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
- OSBPR01MB4342.jpnprd01.prod.outlook.com (20.179.180.205) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Wed, 2 Oct 2019 08:30:29 +0000
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::d5a0:9756:da13:2d6f]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::d5a0:9756:da13:2d6f%7]) with mapi id 15.20.2305.022; Wed, 2 Oct 2019
- 08:30:29 +0000
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: RE: [PATCH 8/8] arm64: dts: renesas: hihope-rzg2-ex: Add LVDS panel
- support
-Thread-Topic: [PATCH 8/8] arm64: dts: renesas: hihope-rzg2-ex: Add LVDS panel
- support
-Thread-Index: AQHVeFIFwRbYXnrnM06EwmrRl9Mj1KdGGnkAgADT0TA=
-Date:   Wed, 2 Oct 2019 08:30:28 +0000
-Message-ID: <OSBPR01MB2103388A838F8FFC47358BA4B89C0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-References: <1569932124-32010-1-git-send-email-biju.das@bp.renesas.com>
- <1569932124-32010-9-git-send-email-biju.das@bp.renesas.com>
- <20191001182510.GJ4735@pendragon.ideasonboard.com>
-In-Reply-To: <20191001182510.GJ4735@pendragon.ideasonboard.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biju.das@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4e2239e0-c489-41cb-ba9d-08d74712c843
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: OSBPR01MB4342:|OSBPR01MB4342:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSBPR01MB4342FB9FBABF52BDC59BDBE8B89C0@OSBPR01MB4342.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0178184651
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(366004)(39860400002)(346002)(376002)(136003)(189003)(199004)(66946007)(5660300002)(76116006)(66066001)(55016002)(102836004)(9686003)(54906003)(66556008)(66446008)(4326008)(8676002)(305945005)(66476007)(74316002)(64756008)(7736002)(6436002)(3846002)(476003)(6116002)(26005)(99286004)(6506007)(44832011)(76176011)(7696005)(229853002)(478600001)(486006)(107886003)(33656002)(186003)(316002)(14454004)(6246003)(11346002)(446003)(81166006)(6916009)(25786009)(86362001)(52536014)(256004)(8936002)(14444005)(71200400001)(71190400001)(2906002)(81156014);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB4342;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CiFAlOTRijs1GFEOrzfVvCdzoL+Z2swQpJUMXlXSoy+N4iPN9GWL5QmvP63C7oRNSJ5ugisnuliiRy3kdNRJ5dr/rg6Bk4U8dxtoiTQrhOIA+77pWQ8tZEFImainxh7LB4lZOs5FKGn6b8EgcSr+oQf7Q6Vrmh+i/divOph+NuYxxu68R9wqJ5v/H+66tKfJ33rGDQaSuwz90SgYRRNNNitMbGp1Bv3IB8EkaIoDlQ9ZCjONxoHoCrm690PxFaaf0qjwxYiT0+sEHg2tM2/sIeTdU5QiR6jYgcs1C9UR81zT04UdhVYBmO42cudo/PVnwrQq++dtXkV+WUCxF0AjW1y7Ie/3JP0xe46CXQPgQyPD6L5UXvhy4GC7Pt748/LO8F2SppKTiMaC0mvzmmqoD1clTgfHYzF7fCBqsuw5Ybo=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=QP3i5oRbnEcOsn2Nh4j8y0vWxevdrVw2BJcYZbqFbx4=;
+        b=UsrXNzo8+90vsV5ERk4uasjuBQGbONq6vSFSId/rzHWsOKsIH5vuVz+2kTf4k+kfPJ
+         zlPjLQvVdfMDM+hpYnookmcXVT04tpSTVD3T7epCC4T3jmmCHGpGKflcOJXl7ytEwbrc
+         mIhuIwcridGT5YJgVgDGqhCgUm9st82V0u/43S2eQImyRX7+H3iZsdR0Y3fI1IvI99J+
+         CZ09owxjQzF8wkdiQi5FCTl+dQg1fRdAHHq+xjn2aE5MXMfwaXr+b5QvZSRBjxE1/w4t
+         2O20e8iVBfJ2doPgA3UMYCC22SiiotLOiGtRopEopwI0vLT9ybSgrmT/cxBo+AShmR8a
+         7u/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=QP3i5oRbnEcOsn2Nh4j8y0vWxevdrVw2BJcYZbqFbx4=;
+        b=WAS3iY4Gc1VQr3DNNBYnACR+LwLSaATz1V4UBlu2ZHnNaZqbo4wC0/TeblfUrKd+15
+         GIUlEhu1+nwLP+pgUrpzbTN1NNWv/GtcicZ1STwsA7Xe7nWMkWUrVGCvhJkpwuYaE9Rq
+         HFC2+FD2anttiAys4TyvqHPWKEdspUtlVWhc+ffvj+fAy+2r31TrbJX+zUt1nPEsCCzN
+         iISeEGWRP9WBUbTMFs1RZ2QcyrlWaKfkYo/pzKiBipp7cff/vNaZxduPLF7DdMbT5+/0
+         V6z5Vo10weRn4edqSHRbI5MvAXVS5RwPs/VVMZd5TASmwPEHjEBMvsU/bL9Vt9k+vLRo
+         b7Cw==
+X-Gm-Message-State: APjAAAXAAz58b1QgVYuSFdWFFPV3K/Xvu/EI5AjTqbfPqvvhE/0bVrNd
+        qTa/CHG6byp9F9MrFmhV1cI=
+X-Google-Smtp-Source: APXvYqzIqo97fauDu2NNtpT95i5jes5tUblWKnlFRoxJmsyAkkvAGFGwphEVnugX59rbhtZRvfWFgw==
+X-Received: by 2002:adf:ce83:: with SMTP id r3mr1869573wrn.219.1570005847043;
+        Wed, 02 Oct 2019 01:44:07 -0700 (PDT)
+Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id y5sm6524440wma.14.2019.10.02.01.44.05
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Oct 2019 01:44:06 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 10:44:04 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     catalin.marinas@arm.com, davem@davemloft.net,
+        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
+        mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        will@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v2 05/11] ARM: dts: sun8i: H3: Add Crypto Engine node
+Message-ID: <20191002084404.GA3101@Red>
+References: <20191001184141.27956-1-clabbe.montjoie@gmail.com>
+ <20191001184141.27956-6-clabbe.montjoie@gmail.com>
+ <20191002060214.bu67nkd3y6puknrb@gilmour>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e2239e0-c489-41cb-ba9d-08d74712c843
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2019 08:30:28.6612
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XCmaW8LV4vz8kNM1wjEI+G42IloIy45ZiUWDeaM6XPNQUAsjoDluoD0b8WXaI/3aFAhWw6tMrcWBmGGXwGrVOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB4342
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191002060214.bu67nkd3y6puknrb@gilmour>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTGF1cmVudCwNCg0KVGhhbmtzIGZvciB5b3VyIGZlZWRiYWNrLg0KDQo+IFN1YmplY3Q6IFJl
-OiBbUEFUQ0ggOC84XSBhcm02NDogZHRzOiByZW5lc2FzOiBoaWhvcGUtcnpnMi1leDogQWRkIExW
-RFMNCj4gcGFuZWwgc3VwcG9ydA0KPiANCj4gSGkgQmlqdSwNCj4gDQo+IFRoYW5rIHlvdSBmb3Ig
-dGhlIHBhdGNoLg0KPiANCj4gT24gVHVlLCBPY3QgMDEsIDIwMTkgYXQgMDE6MTU6MjRQTSArMDEw
-MCwgQmlqdSBEYXMgd3JvdGU6DQo+ID4gVGhpcyBwYXRjaCBhZGRzIHN1cHBvcnQgZm9yIEFkdmFu
-dGVjaCBpZGstMTExMHdyIExWRFMgcGFuZWwuDQo+ID4gVGhlIEhpSG9wZSBSWi9HMltNTl0gaXMg
-YWR2ZXJ0aXNlZCBhcyBjb21wYXRpYmxlIHdpdGggcGFuZWwgaWRrLTExMTB3cg0KPiA+IGZyb20g
-QWR2YW50ZWNoLCBob3dldmVyIHRoZSBwYW5lbCBpc24ndCBzb2xkIGFsb25nc2lkZSB0aGUgYm9h
-cmQuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBCaWp1IERhcyA8YmlqdS5kYXNAYnAucmVuZXNh
-cy5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9oaWhvcGUt
-cnpnMi1leC5kdHNpICB8IDMwDQo+ID4gKysrKysrKysrKysrKysrKysrKyAgYXJjaC9hcm02NC9i
-b290L2R0cy9yZW5lc2FzL3J6ZzItcGFuZWwtDQo+IGx2ZHMuZHRzaQ0KPiA+IHwgMzcgKysrKysr
-KysrKysrKysrKysrKysrKysrDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNjcgaW5zZXJ0aW9ucygr
-KQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2FzL3J6
-ZzItcGFuZWwtbHZkcy5kdHNpDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
-L2R0cy9yZW5lc2FzL2hpaG9wZS1yemcyLWV4LmR0c2kNCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvcmVuZXNhcy9oaWhvcGUtcnpnMi1leC5kdHNpDQo+ID4gaW5kZXggNzBmOWEyYS4uYWUxZWYy
-ZCAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvaGlob3BlLXJ6
-ZzItZXguZHRzaQ0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9oaWhvcGUt
-cnpnMi1leC5kdHNpDQo+ID4gQEAgLTUsNiArNSw4IEBADQo+ID4gICAqIENvcHlyaWdodCAoQykg
-MjAxOSBSZW5lc2FzIEVsZWN0cm9uaWNzIENvcnAuDQo+ID4gICAqLw0KPiA+DQo+ID4gKyNpbmNs
-dWRlICJyemcyLXBhbmVsLWx2ZHMuZHRzaSINCj4gPiArDQo+ID4gIC8gew0KPiA+ICAJYWxpYXNl
-cyB7DQo+ID4gIAkJZXRoZXJuZXQwID0gJmF2YjsNCj4gPiBAQCAtNTEsNiArNTMsMzQgQEANCj4g
-PiAgCXN0YXR1cyA9ICJva2F5IjsNCj4gPiAgfTsNCj4gPg0KPiA+ICsmZ3BpbzEgew0KPiA+ICsJ
-LyoNCj4gPiArCSAqIFdoZW4gR1AxXzIwIGlzIExPVyBMVkRTMCBpcyBjb25uZWN0ZWQgdG8gdGhl
-IExWRFMgY29ubmVjdG9yDQo+ID4gKwkgKiBXaGVuIEdQMV8yMCBpcyBISUdIIExWRFMwIGlzIGNv
-bm5lY3RlZCB0byB0aGUgTFQ4OTE4TA0KPiA+ICsJICovDQo+ID4gKwlsdmRzLWNvbm5lY3Rvci1l
-bi1ncGlvIHsNCj4gPiArCQlncGlvLWhvZzsNCj4gPiArCQlncGlvcyA9IDwyMCBHUElPX0FDVElW
-RV9ISUdIPjsNCj4gPiArCQlvdXRwdXQtbG93Ow0KPiA+ICsJCWxpbmUtbmFtZSA9ICJsdmRzLWNv
-bm5lY3Rvci1lbi1ncGlvIjsNCj4gPiArCX07DQo+ID4gK307DQo+ID4gKw0KPiA+ICsmbHZkczAg
-ew0KPiA+ICsJLyogVW5jb21tZW50ICBiZWxvdyBsaW5lIHRvIGVuYWJsZSBsdmRzIHBhbmVsIGNv
-bm5lY3RlZCB0bw0KPiBSWi9HMk4gYm9hcmQNCj4gPiArCSAqLw0KPiA+ICsNCj4gPiArCS8qIHN0
-YXR1cyA9ICJva2F5IjsgKi8NCj4gPiArDQo+ID4gKwlwb3J0cyB7DQo+ID4gKwkJcG9ydEAxIHsN
-Cj4gPiArCQkJbHZkc19jb25uZWN0b3I6IGVuZHBvaW50IHsNCj4gPiArCQkJCXJlbW90ZS1lbmRw
-b2ludCA9DQo+IDwmcGFuZWxfaW5fYWR2YW50ZWNoX2lka18xMTEwd3I+Ow0KPiA+ICsJCQl9Ow0K
-PiA+ICsJCX07DQo+ID4gKwl9Ow0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgJnBjaWVjMCB7DQo+ID4g
-IAlzdGF0dXMgPSAib2theSI7DQo+ID4gIH07DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvcmVuZXNhcy9yemcyLXBhbmVsLWx2ZHMuZHRzaQ0KPiA+IGIvYXJjaC9hcm02NC9i
-b290L2R0cy9yZW5lc2FzL3J6ZzItcGFuZWwtbHZkcy5kdHNpDQo+ID4gbmV3IGZpbGUgbW9kZSAx
-MDA2NDQgYWR2YW50ZWNoLGlkay0yMTIxd3INCj4gPiBpbmRleCAwMDAwMDAwLi43NjhhOGVjDQo+
-ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9y
-emcyLXBhbmVsLWx2ZHMuZHRzaQ0KPiANCj4gU2hvdWxkIHRoaXMgYmUgbmFtZWQgYWNjb3JkaW5n
-IHRvIHRoZSBwYW5lbCBuYW1lIGlzdGVhZCBvZiBqdXN0ICJwYW5lbC1sdmRzIg0KPiA/IEl0IGNv
-dWxkIGJlIHVzZWQgYnkgYW55IGJvYXJkLCBhbmQgdGhpcyBib2FyZCBjb3VsZCBhbHNvIHVzZSBh
-IGRpZmZlcmVudA0KPiBMVkRTIHBhbmVsLg0KDQpJIHRob3VnaHQgLHdlIGNhbiB1c2UgYSBjb21t
-b24gZmlsZSBmb3IgYWxsIHRoZSBMVkRTIHBhbmVscyB1c2VkIGJ5IFJaL0cyIGJvYXJkcyBhbmQg
-cmVmZXIgdGhlIHBhbmVsIGZyb20gYm9hcmQgZHRzaS4NCkZvciBlZzotIFJaL0cyW01OXSB3aWxs
-IHJlZmVyICIgcGFuZWxfaW5fYWR2YW50ZWNoX2lka18xMTEwd3IiIGFuZCBSWi9HMkUgd2lsbCBy
-ZWZlciAiIHBhbmVsX2luX2FkdmFudGVjaF9pZGtfMjEyMXdyIg0KSWYgdXNlciB3YW50cyBhIGRp
-ZmZlcmVudCBwYW5lbCwgdGhlbiAgbmVlZHMgdG8gZGVmaW5lIHBhbmVsIGRlZmluaXRpb25zIGlu
-IHRoaXMgZmlsZSBhbmQgdXNlIGl0LiAgQnV0IEkgYW0gbm90IHN1cmUgaXQgaXMgdGhlIHJpZ2h0
-IHRoaW5nIHRvIGRvLg0KDQpPSy4gQW55d2F5IEkgd2lsbCBjcmVhdGUgYSBwYW5lbCBzcGVjaWZp
-YyBkdHNpIGZpbGUgYW5kIHNlbmQgVjIuDQoNCj4gPiBAQCAtMCwwICsxLDM3IEBADQo+ID4gKy8v
-IFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+ID4gKy8qDQo+ID4gKyAqIERldmlj
-ZSBUcmVlIFNvdXJjZSBmb3IgdGhlIExWRFMgcGFuZWxzIGNvbm5lY3RlZCB0byBSWi9HMiBib2Fy
-ZHMNCj4gPiArICoNCj4gPiArICogQ29weXJpZ2h0IChDKSAyMDE5IFJlbmVzYXMgRWxlY3Ryb25p
-Y3MgQ29ycC4NCj4gPiArICovDQo+ID4gKw0KPiA+ICsvIHsNCj4gPiArDQo+ID4gKwlwYW5lbC1s
-dmRzIHsNCj4gPiArCQljb21wYXRpYmxlID0gImFkdmFudGVjaCxpZGstMTExMHdyIiwgInBhbmVs
-LWx2ZHMiOw0KPiA+ICsNCj4gPiArCQl3aWR0aC1tbSA9IDwyMjM+Ow0KPiA+ICsJCWhlaWdodC1t
-bSA9IDwxMjU+Ow0KPiA+ICsNCj4gPiArCQlkYXRhLW1hcHBpbmcgPSAiamVpZGEtMjQiOw0KPiA+
-ICsNCj4gPiArCQlwYW5lbC10aW1pbmcgew0KPiA+ICsJCQkvKiAxMDI0eDYwMCBANjBIeiAqLw0K
-PiA+ICsJCQljbG9jay1mcmVxdWVuY3kgPSA8NTEyMDAwMDA+Ow0KPiA+ICsJCQloYWN0aXZlID0g
-PDEwMjQ+Ow0KPiA+ICsJCQl2YWN0aXZlID0gPDYwMD47DQo+ID4gKwkJCWhzeW5jLWxlbiA9IDwy
-NDA+Ow0KPiA+ICsJCQloZnJvbnQtcG9yY2ggPSA8NDA+Ow0KPiA+ICsJCQloYmFjay1wb3JjaCA9
-IDw0MD47DQo+ID4gKwkJCXZmcm9udC1wb3JjaCA9IDwxNT47DQo+ID4gKwkJCXZiYWNrLXBvcmNo
-ID0gPDEwPjsNCj4gPiArCQkJdnN5bmMtbGVuID0gPDEwPjsNCj4gPiArCQl9Ow0KPiA+ICsNCj4g
-PiArCQlwb3J0IHsNCj4gPiArCQkJcGFuZWxfaW5fYWR2YW50ZWNoX2lka18xMTEwd3I6IGVuZHBv
-aW50IHsNCj4gDQo+IENvdWxkIHdlIGFiYnJldmlhdGUgdGhlIGxhYmVsIG5hbWUgdG8gcGFuZWxf
-aW4gPyBUaGF0IHdheSB0aGUgYm9hcmQgLmR0cw0KPiB3b3VsZG4ndCBuZWVkIHRvIHVwZGF0ZSB0
-aGUgcmVtb3RlLWVuZHBvaW50IHBoYW5kbGUgdG8gdXNlIGEgZGlmZmVyZW50DQo+IHBhbmVsLCBv
-bmx5IHRoZSAjaW5jbHVkZSB3b3VsZCBuZWVkIHRvIGJlIGNoYW5nZWQuDQoNCk9LLiBXaWxsIGNo
-YW5nZSB0aGlzLg0KDQo+ID4gKwkJCQlyZW1vdGUtZW5kcG9pbnQgPSA8Jmx2ZHNfY29ubmVjdG9y
-PjsNCj4gPiArCQkJfTsNCj4gPiArCQl9Ow0KPiA+ICsJfTsNCj4gPiArfTsNCj4gDQo+IEZvciB0
-aGUgc2FtZSByZWFzb24gSSB3b3VsZCBzZXQgdGhlIHJlbW90ZS1lbmRwb2ludCBmb3IgJmx2ZHNf
-Y29ubmVjdG9yDQo+IGhlcmUuIFNlZSBhcmNoL2FybS9ib290L2R0cy9yOGE3N3h4LWFhMTA0eGQx
-Mi1wYW5lbC5kdHNpIGZvciBhbiBleGFtcGxlLg0KDQpPSy4gIFdpbGwgYWRkIHRoaXMuDQoNClJl
-Z2FyZHMsDQpCaWp1DQo=
+On Wed, Oct 02, 2019 at 08:02:14AM +0200, Maxime Ripard wrote:
+> On Tue, Oct 01, 2019 at 08:41:35PM +0200, Corentin Labbe wrote:
+> > The Crypto Engine is a hardware cryptographic accelerator that supports
+> > many algorithms.
+> > It could be found on most Allwinner SoCs.
+> >
+> > This patch enables the Crypto Engine on the Allwinner H3 SoC Device-tree.
+> >
+> > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/sun8i-h3.dtsi | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
+> > index e37c30e811d3..778a23a794c9 100644
+> > --- a/arch/arm/boot/dts/sun8i-h3.dtsi
+> > +++ b/arch/arm/boot/dts/sun8i-h3.dtsi
+> > @@ -153,6 +153,17 @@
+> >  			allwinner,sram = <&ve_sram 1>;
+> >  		};
+> >
+> > +		crypto: crypto@1c15000 {
+> > +			compatible = "allwinner,sun8i-h3-crypto";
+> > +			reg = <0x01c15000 0x1000>;
+> > +			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
+> > +			interrupt-names = "ce_ns";
+> 
+> That's not documented in the binding (and I guess unnecessary)
+> 
+
+Hello
+
+Yes this should be removed.
+
+> > +			resets = <&ccu RST_BUS_CE>;
+> > +			reset-names = "bus";
+> > +			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
+> > +			clock-names = "bus", "mod";
+> 
+> Nit: we put the clocks before the resets usually
+> 
+
+Will do it.
+
+Thanks
+Regards
