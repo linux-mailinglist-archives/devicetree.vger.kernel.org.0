@@ -2,89 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A25ABC8A81
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF1CC8ADA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728023AbfJBOFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:05:50 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:52516 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726435AbfJBOFu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 10:05:50 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 83119200141;
-        Wed,  2 Oct 2019 16:05:48 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 750192000AF;
-        Wed,  2 Oct 2019 16:05:48 +0200 (CEST)
-Received: from fsr-ub1664-121.ea.freescale.net (fsr-ub1664-121.ea.freescale.net [10.171.82.171])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id F2A0B2060C;
-        Wed,  2 Oct 2019 16:05:47 +0200 (CEST)
-From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     agx@sigxcpu.org, l.stach@pengutronix.de,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: imx8mq: add DCSS node
-Date:   Wed,  2 Oct 2019 17:04:57 +0300
-Message-Id: <1570025100-5634-6-git-send-email-laurentiu.palcu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1570025100-5634-1-git-send-email-laurentiu.palcu@nxp.com>
-References: <1570025100-5634-1-git-send-email-laurentiu.palcu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727647AbfJBOTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:19:14 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:32927 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726200AbfJBOTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:19:14 -0400
+Received: by mail-qt1-f194.google.com with SMTP id r5so26586502qtd.0;
+        Wed, 02 Oct 2019 07:19:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kP7vzKS5Q2upGPJNgGMib8DMfY3IAcXtVKuvJsiJTIs=;
+        b=DFM+9xRdnR+HNmOVM+UrHsZOHOXMzBKY88h0SXBAe9f3pEArG8o4WfiJIMz3W0v5cP
+         AaDl29MyWEc1mIPPEnQS47MpilVyNtNIjLLWvAdJvSbW67mDlxkvoXkJYEmKnNhCBV17
+         d9iK6M+G56NvRs6Ix22Qo9S4TobcAObUQb8wYOONb1y93TeN/z42+ItExzoKi0MvCrgR
+         bpHH769+ecaPHxKVXOiKYuJzhGo+VisCWBwaWmumVb8kv5rpM7TXb7ZENhFlSua6H7VB
+         akReegfTC2Af6EJCWt/9aJwFfTHPIxNnt8AVdNXmiM6IwcL47aNmGFLtzH4JAcJ/tGOt
+         hhWw==
+X-Gm-Message-State: APjAAAVayxUGsL3TnNTLIAqYEcCuGeYRMaY2fuLbHk7/CeU3IVZSCaWZ
+        T0j2GYgdI+fdomdxa9uaBw==
+X-Google-Smtp-Source: APXvYqzPfzSmp7xskhCIvKOVtYhxyh8HfoSES/y1fgUMOyF0qc0thkfrFz5NQmijtp/ZM7tIotE0PQ==
+X-Received: by 2002:ac8:7b97:: with SMTP id p23mr4209487qtu.292.1570025953392;
+        Wed, 02 Oct 2019 07:19:13 -0700 (PDT)
+Received: from localhost ([132.205.230.8])
+        by smtp.gmail.com with ESMTPSA id h9sm10006638qke.12.2019.10.02.07.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2019 07:19:12 -0700 (PDT)
+Message-ID: <5d94b1e0.1c69fb81.4e2f9.3e79@mx.google.com>
+Date:   Wed, 02 Oct 2019 09:19:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     narmstrong@baylibre.com, jbrunet@baylibre.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, khilman@baylibre.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: meson8b: add the clock inputs
+References: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
+ <20190921151223.768842-2-martin.blumenstingl@googlemail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190921151223.768842-2-martin.blumenstingl@googlemail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the node for iMX8MQ Display Controller Subsystem.
+On Sat, 21 Sep 2019 17:12:19 +0200, Martin Blumenstingl wrote:
+> The clock controller on Meson8/Meson8b/Meson8m2 has three (known)
+> inputs:
+> - "xtal": the main 24MHz crystal
+> - "ddr_pll": some of the audio clocks use the output of the DDR PLL as
+>   input
+> - "clk_32k": an optional clock signal which can be connected to GPIOAO_6
+>   (which then has to be switched to the CLK_32K_IN function)
+> 
+> Add the inputs to the documentation so we can wire up these inputs in a
+> follow-up patch.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../devicetree/bindings/clock/amlogic,meson8b-clkc.txt       | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 04115ca..7f4bfb4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -938,6 +938,31 @@
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
- 			};
-+
-+			dcss: display-controller@32e00000 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "nxp,imx8mq-dcss";
-+				reg = <0x32e00000 0x2d000>, <0x32e2f000 0x1000>;
-+				interrupts = <6>, <8>, <9>;
-+				interrupt-names = "ctx_ld", "ctxld_kick", "vblank";
-+				interrupt-parent = <&irqsteer>;
-+				clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>,
-+					 <&clk IMX8MQ_CLK_DISP_AXI_ROOT>,
-+					 <&clk IMX8MQ_CLK_DISP_RTRM_ROOT>,
-+					 <&clk IMX8MQ_VIDEO2_PLL_OUT>,
-+					 <&clk IMX8MQ_CLK_DISP_DTRC>;
-+				clock-names = "apb", "axi", "rtrm", "pix", "dtrc";
-+				assigned-clocks = <&clk IMX8MQ_CLK_DISP_AXI>,
-+						  <&clk IMX8MQ_CLK_DISP_RTRM>,
-+						  <&clk IMX8MQ_VIDEO2_PLL1_REF_SEL>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_800M>,
-+							 <&clk IMX8MQ_SYS1_PLL_800M>,
-+							 <&clk IMX8MQ_CLK_27M>;
-+				assigned-clock-rates = <800000000>,
-+							   <400000000>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		gpu: gpu@38000000 {
--- 
-2.7.4
+Reviewed-by: Rob Herring <robh@kernel.org>
 
