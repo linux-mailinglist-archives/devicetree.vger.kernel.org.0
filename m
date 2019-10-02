@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77CAEC92FE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 22:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E42C932F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 23:00:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728260AbfJBUpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 16:45:31 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46002 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726208AbfJBUpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 16:45:31 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r5so465338wrm.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 13:45:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jIRr3vuyuHhrBwVmAhx40vU7nfIocHRyk3SvX/TxJC4=;
-        b=lv4yJe494FP24e+BxkKzcTuskkg8FrNyh9qdqcSg1Dcv3YTx+dhl1QGHDCgV45qcWp
-         ZNxzSzgnJql+p8K7F/qHe7DvnikBq2EAL6deWohmcmE3Dj4an0zi7HZZWN4d4KleAWHa
-         5B2L54OLRlITlgizMY4oi/giR85rWAuBn8BtcqRdE4qAwtGHlX1AB2jG9lQKvYR/v9XG
-         0/eBFQYRZtUvWtTCaV/fcGYg9WsYWSWFigtWx8zQdWoOa/r8/okmQQrR6DCQdWZFteKt
-         h4B4l8//QXMkN4rcXtV8xBx2veLPPNQ+WOSeMF2/QnBw1rAxLy7BLvMtGMSWk6C1fJmU
-         Wbmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jIRr3vuyuHhrBwVmAhx40vU7nfIocHRyk3SvX/TxJC4=;
-        b=HZIn4q9jZA8YdOKpkirDtS7ws7EaAXtKTk2sFJtbeCY7EzxVL5DzFdgr3BFz02Ay3p
-         8GPVeBXZE26pQX2jXu2hcta36drbGsspTN0RN2YVNBx4RHjHJESWzJ50mW3NgAXlmTcD
-         BMh1tK3M/M9+N8zwlUbG1xDcRmhfO0elnOCbYdgNQsE85lWDGxIRs3/2kcr4EJ247V5K
-         WdA/AlPf/voYmhL5nvwULeqp7SA5RH+k+kn2Mp23leprO2XQNUFS1v1LvggP8u1Up6Iz
-         4FHbAZvmV9EkJa8TTverUkkTKjjvrCfTiTDmW+U4uhPYbj79CS6mtyF1a/XGud1GE8oo
-         V2kQ==
-X-Gm-Message-State: APjAAAUUT6Z9f4ywlTJbjNVYDjKWlsqh6iwnL0lX6HS8Iu1E7BYjq5k8
-        X1nfC7IqwoynAKO0zQGefx/NFVbP88u+2fFmIMd34Q==
-X-Google-Smtp-Source: APXvYqy+TnevZ77P69zWyJBKS6NLgVRkGaL2594mjSL4rzRv021kXGI1tgDYK/GUZKWeJltREM0md2yRhQO0pJ/k90w=
-X-Received: by 2002:a5d:40cf:: with SMTP id b15mr3499059wrq.141.1570049128814;
- Wed, 02 Oct 2019 13:45:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190925234224.95216-1-john.stultz@linaro.org>
- <20190925234224.95216-5-john.stultz@linaro.org> <1569461658.32135.12.camel@mhfsdcap03>
- <CALAqxLX=csTtnqr2Hc9v_R8ex8zPj_P1JvSyjZXUKEqSaF=gPA@mail.gmail.com> <1569480152.32135.16.camel@mhfsdcap03>
-In-Reply-To: <1569480152.32135.16.camel@mhfsdcap03>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Wed, 2 Oct 2019 13:45:17 -0700
-Message-ID: <CALAqxLUo59DDn=XhofOTHHkpuQPPTxx_jiTTA_o8sedCsxEkiw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] dt-bindings: usb: dwc3: of-simple: add compatible for HiSi
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
+        id S1729157AbfJBVA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 17:00:26 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:30302 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728696AbfJBVA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 17:00:26 -0400
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x92KpbuF039388
+        for <devicetree@vger.kernel.org>; Wed, 2 Oct 2019 17:00:24 -0400
+Received: from e06smtp04.uk.ibm.com (e06smtp04.uk.ibm.com [195.75.94.100])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2vd1783uvj-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 17:00:24 -0400
+Received: from localhost
+        by e06smtp04.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <zohar@linux.ibm.com>;
+        Wed, 2 Oct 2019 22:00:22 +0100
+Received: from b06cxnps4076.portsmouth.uk.ibm.com (9.149.109.198)
+        by e06smtp04.uk.ibm.com (192.168.101.134) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Wed, 2 Oct 2019 22:00:17 +0100
+Received: from d06av25.portsmouth.uk.ibm.com (d06av25.portsmouth.uk.ibm.com [9.149.105.61])
+        by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x92L0FGx50855996
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 2 Oct 2019 21:00:15 GMT
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id AC16F11C050;
+        Wed,  2 Oct 2019 21:00:14 +0000 (GMT)
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A8B3E11C06C;
+        Wed,  2 Oct 2019 21:00:12 +0000 (GMT)
+Received: from dhcp-9-31-103-196.watson.ibm.com (unknown [9.31.103.196])
+        by d06av25.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Wed,  2 Oct 2019 21:00:12 +0000 (GMT)
+Subject: Re: [PATCH v6 8/9] ima: deprecate permit_directio, instead use
+ appraise_flag
+From:   Mimi Zohar <zohar@linux.ibm.com>
+To:     Nayna Jain <nayna@linux.ibm.com>, linuxppc-dev@ozlabs.org,
+        linux-efi@vger.kernel.org, linux-integrity@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Jeremy Kerr <jk@ozlabs.org>,
+        Matthew Garret <matthew.garret@nebula.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Claudio Carvalho <cclaudio@linux.ibm.com>,
+        George Wilson <gcwilson@linux.ibm.com>,
+        Elaine Palmer <erpalmer@us.ibm.com>,
+        Eric Ricther <erichte@linux.ibm.com>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        Mark Rutland <mark.rutland@arm.com>
+Date:   Wed, 02 Oct 2019 17:00:12 -0400
+In-Reply-To: <1569594360-7141-9-git-send-email-nayna@linux.ibm.com>
+References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
+         <1569594360-7141-9-git-send-email-nayna@linux.ibm.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.20.5 (3.20.5-1.fc24) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+x-cbid: 19100221-0016-0000-0000-000002B372CE
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19100221-0017-0000-0000-00003314799D
+Message-Id: <1570050012.4421.50.camel@linux.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-10-02_08:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=3 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=756 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1908290000 definitions=main-1910020165
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2019 at 11:42 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> On Wed, 2019-09-25 at 21:06 -0700, John Stultz wrote:
-> > On Wed, Sep 25, 2019 at 6:34 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> > > On Wed, 2019-09-25 at 23:42 +0000, John Stultz wrote:
-> > > > +++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> > > > @@ -0,0 +1,52 @@
-> > > > +HiSi SuperSpeed DWC3 USB SoC controller
-> > > > +
-> > > > +Required properties:
-> > > > +- compatible:                should contain "hisilicon,hi3660-dwc3" for HiSi SoC
-> > > > +- clocks:            A list of phandle + clock-specifier pairs for the
-> > > > +                     clocks listed in clock-names
-> > > > +- clock-names:               Should contain the following:
-> > > > +  "clk_usb3phy_ref"  Phy reference clk
-> > > It's not good idea to apply phy's clock in dwc3's node
-...
-> > Given the name clk_usb3phy_ref I'm assuming its a phy reference clock,
-> > but I honestly don't know if I'm getting that wrong.  It all seems to
-> > be leveraging the fact that the dwc-of-simple driver batch enables and
-> > disables all the clocks w/o really looking at the names.
-> >
-...
-> If it's phy clock, we should enable/disable it in phy driver, maybe we'd
-> better ask for help from Yu Chen
+Hi Nayna,
 
-So I've been looking around the existing code and I'm not sure how we
-got to clk_usb3phy_ref here.
+On Fri, 2019-09-27 at 10:25 -0400, Nayna Jain wrote:
+> This patch deprecates the existing permit_directio flag, instead adds
+> it as possible value to appraise_flag parameter.
+> For eg.
+> appraise_flag=permit_directio
 
-Really it is the HI3660_CLK_ABB_USB, who's name is "clk_abb_usb" and
-who's parent is "clk_gate_usb_tcxo_en"
+Defining a generic "appraise_flag=", which supports different options,
+is the right direction.  I would really like to depreciate the
+"permit_directio" flag, not just change the policy syntax.  For now,
+let's drop this change.
 
-So I'm thinking just specifying clk_abb_usb is more accurate here?
+Mimi
 
-Does that sound reasonable?
-
-thanks
--john
