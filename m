@@ -2,157 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F26C4C8C9F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 541CCC8C99
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:18:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727499AbfJBPT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 11:19:26 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:13402 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726852AbfJBPTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:19:25 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x92F0wdl000647;
-        Wed, 2 Oct 2019 17:19:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=iAANRWe20zUBL1QPhZL1l6QikMTbeLPQTx2wvpUq/GI=;
- b=qvqzLCPtQalvAgDJJrPz+6pAOz414QlfZ0H7jcx58JhOHRgte/7qv/rUnksmeGKRB71B
- ZXV+NjKT6y0n+x+6+ezGhdiw/UfMrATh2Ns3CGU5h6GNevtOu6IeUN/U0uqRvpSflQ0a
- yUsKOBEKRegX9LMgxiU7f+4+bWbOMgHdHpxtIU7ll7gSkY/+0C26OR2bZgJejB8vL4XV
- kizOZ5OPSluI5a4aE8Y8sXMZ99wfp7H90nqDX9tfejuxPTYNdeQQ1fc5J68yoFfIZ1p+
- 3ZIVEPDOs9fbgwul4m9ZT9E5xxjvMBqHrhSRYo6KzixIwsC8mOQABs1NNyBKmyJMVZYt Ug== 
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vcem34dgr-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Wed, 02 Oct 2019 17:19:14 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DDDC124;
-        Wed,  2 Oct 2019 15:19:10 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 43A8D2D3771;
-        Wed,  2 Oct 2019 17:19:10 +0200 (CEST)
-Received: from SAFEX1HUBCAS22.st.com (10.75.90.92) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 2 Oct 2019
- 17:19:10 +0200
-Received: from localhost (10.201.20.122) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 2 Oct 2019 17:19:09
- +0200
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <alexandre.torgue@st.com>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH] dt-bindings: hwlock: Convert stm32 hwspinlock bindings to json-schema
-Date:   Wed, 2 Oct 2019 17:19:07 +0200
-Message-ID: <20191002151907.15986-1-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
+        id S1727798AbfJBPSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 11:18:18 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53308 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727498AbfJBPSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:18:17 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92FHqu7121321;
+        Wed, 2 Oct 2019 10:17:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570029472;
+        bh=XdNPQjDWDIANjxFkYVhRetRjSoQQX2NhBQD1Yjc+BQw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=niLLx97YsloDYxsLEY2Ee34kmRfx0AUfa12xUKAEwRb1DBtOrM/heORSb7lERCqdS
+         jFSj/6F1INcoFPinQA20t76QJUbwd7hA406B70FpxxzHxplK8uzNGgR/oEXvAeIVtb
+         A3Q5mdbBfLz70v4XCRseSRueRqeUCkTeKkN8UHL8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92FHqmC068960;
+        Wed, 2 Oct 2019 10:17:52 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 2 Oct
+ 2019 10:17:41 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 2 Oct 2019 10:17:41 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with SMTP id x92FHpAo044680;
+        Wed, 2 Oct 2019 10:17:51 -0500
+Date:   Wed, 2 Oct 2019 10:20:03 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+CC:     Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        <andriy.shevchenko@linux.intel.com>, <andy.shevchenko@gmail.com>,
+        <simon.budig@kernelconcepts.de>, <hdegoede@redhat.com>,
+        <fcooper@ti.com>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
+        <bcousson@baylibre.com>, <tony@atomide.com>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <s.hauer@pengutronix.de>,
+        <festevam@gmail.com>, <linux-imx@nxp.com>, <shawnguo@kernel.org>,
+        <mripard@kernel.org>, <wens@csie.org>
+Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
+ wakeup-source documentation
+Message-ID: <20191002152003.ag36lrragazsdn5j@ti.com>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-3-m.felsch@pengutronix.de>
+ <20190917170743.GO237523@dtor-ws>
+ <20190917171814.owcttekv56xgmsts@pengutronix.de>
+ <20190917172658.GQ237523@dtor-ws>
+ <20190930231146.GA30010@bogus>
+ <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.122]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-02_07:2019-10-01,2019-10-02 signatures=0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 hwspinlock binding to DT schema format using json-schema
+Marco Felsch <m.felsch@pengutronix.de> wrote on Wed [2019-Oct-02 15:00:18 +0200]:
+> Hi,
+> 
+> all of you using a edt,* touchscreen and currently the driver marks
+> the touchscreen as wakeup source. To keep backward compatibility I added
+> a workaround binding (see below) but Dmitry prefer to use the normal
+> "wakeup-source" binding and change the affected device-tree's
+> (discussion below). Can you give me your ack/nack for Dmitry's solution?
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- .../bindings/hwlock/st,stm32-hwspinlock.txt        | 23 -----------
- .../bindings/hwlock/st,stm32-hwspinlock.yaml       | 48 ++++++++++++++++++++++
- 2 files changed, 48 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt
- create mode 100644 Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml
+So, if I understand this correctly, currently the driver always assume it
+is a wakeup source regardless if the "wakeup-source" DT property being
+present or not. And the proposed change now is to fix the driver so that it
+will assume a wakeup source role only if the DT property is present?
 
-diff --git a/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt b/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt
-deleted file mode 100644
-index adf4f000ea3d..000000000000
---- a/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--STM32 Hardware Spinlock Device Binding
---------------------------------------
--
--Required properties :
--- compatible : should be "st,stm32-hwspinlock".
--- reg : the register address of hwspinlock.
--- #hwlock-cells : hwlock users only use the hwlock id to represent a specific
--	hwlock, so the number of cells should be <1> here.
--- clock-names : Must contain "hsem".
--- clocks : Must contain a phandle entry for the clock in clock-names, see the
--	common clock bindings.
--
--Please look at the generic hwlock binding for usage information for consumers,
--"Documentation/devicetree/bindings/hwlock/hwlock.txt"
--
--Example of hwlock provider:
--	hwspinlock@4c000000 {
--		compatible = "st,stm32-hwspinlock";
--		#hwlock-cells = <1>;
--		reg = <0x4c000000 0x400>;
--		clocks = <&rcc HSEM>;
--		clock-names = "hsem";
--	};
-diff --git a/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml
-new file mode 100644
-index 000000000000..64e169702515
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwlock/st,stm32-hwspinlock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 Hardware Spinlock bindings
-+
-+maintainers:
-+  - Benjamin Gaignard <benjamin.gaignard@st.com>
-+  - Fabien Dessenne <fabien.dessenne@st.com>
-+
-+properties:
-+  "#hwlock-cells": true
-+
-+  compatible:
-+    const: st,stm32-hwspinlock
-+
-+  reg:
-+    maxItems: 1
-+ 
-+  clocks:
-+    items:
-+      - description: Module Clock
-+
-+  clock-names:
-+    items:
-+      - const: hsem
-+
-+required:
-+  - "#hwlock-cells"
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    hwspinlock@4c000000 {
-+        compatible = "st,stm32-hwspinlock";
-+        #hwlock-cells = <1>;
-+        reg = <0x4c000000 0x400>;
-+        clocks = <&rcc HSEM>;
-+        clock-names = "hsem";
-+    };
-+
-+...
--- 
-2.15.0
+If that is the case then ACK from my side for the AM43x devices.
 
+Regards,
+Benoit
+
+> 
+> Regards,
+>   Marco
+> 
