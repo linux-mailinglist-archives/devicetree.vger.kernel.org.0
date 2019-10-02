@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B02AC8B0D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1509C8AF8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728352AbfJBOTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:19:46 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:42898 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728100AbfJBOT3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:19:29 -0400
-Received: by mail-qk1-f196.google.com with SMTP id f16so15120294qkl.9;
-        Wed, 02 Oct 2019 07:19:29 -0700 (PDT)
+        id S1728290AbfJBOTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:19:34 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:42763 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728280AbfJBOTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:19:32 -0400
+Received: by mail-qt1-f193.google.com with SMTP id w14so26505315qto.9;
+        Wed, 02 Oct 2019 07:19:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:date:from:subject:references
-         :in-reply-to:cc:cc:to;
-        bh=VEtMxesFQRhVgaXfLOksqFQ3dcoeyOCvDlUvGQrsuFo=;
-        b=SHW5fbScGckXwg1twupaQnPhg6ZbYvr8L6ogKyqPBzBJyRy3bALl3rAJIIK+cyM+Gc
-         0AGD1Zb3SA5TRIteNu0KbeEjMgXwZYAlOKJlomqOhEHwZw6tg4Wt+DE1Va82TeT3KNrC
-         SeiSzRAissFvHtug4lfNo8FQhOZJ4RmKp6Cbk6xPNodtyfkuKrjaYE9AlvWUdagNjMNo
-         FidFEbl9icI0UAkNVM2YJg05stNtHbHhfsHIITL5per2w45XmY9OkGfQ0Fd4QOu0fpLB
-         ylhMFJntFW4qWv67XI51L47eyA3Oj0YienCqSKE3W9AH1iHoC0JmPVH5mjzgKKT9K8pd
-         v16A==
-X-Gm-Message-State: APjAAAVDB8tk866GkERGYEvTbP3SBysDE0LUrdrZbJ/PX1fXstVDib1K
-        uUjhLa0dpBcfoR7UIcizjg==
-X-Google-Smtp-Source: APXvYqzagECSnvWAK2no15kXeuDvbNMmoSFzSS5uecaa8zyX8oPHLqD3j6y4NhItqADFSQbEDvOu5Q==
-X-Received: by 2002:a37:a705:: with SMTP id q5mr3945294qke.194.1570025968939;
-        Wed, 02 Oct 2019 07:19:28 -0700 (PDT)
+         :in-reply-to:mime-version:content-transfer-encoding:cc:cc:to;
+        bh=6UEBDQmoOShiLbp87rLz2SJ6Y3CaDTIMMgDWI85bPzk=;
+        b=IsQlzVEdNey5uoVICB/pbhLoY5dHOk876batqIn2HibtmtAcZpBmNzsIZ60BNPklpH
+         ipV3tonZ6Umz+Qc5CAcldWHYGQ5gvutvz8toYbrvytkO4Gk1vzt+1hmmVZSZOXZn7ie3
+         5WfbHFf6shPGYL7VAABzt+Y9RH2baBfMSi8k9U3V9/qEJyA2A/id2eGhTun91BpDvhqa
+         ck6G91hbEu7bsuCr3e4FIWCCtCgkbdCnMcUVXdC1zlF0ATiCIgIhdWycetQifuLMTjNF
+         2VO1R6QTcqPghXMGk7H2QIhaqulKCsNHxbGHwdYrULX351l+z7reNu1qyxR0cYpfUaW+
+         55cA==
+X-Gm-Message-State: APjAAAXuDx5fjMJ0ROZQ/0JxlnykXTQhTp7SbBQAE/spREalWIZc/dA2
+        06WRjivrU5PSRa1hpvXSVA8RHa8qdQ==
+X-Google-Smtp-Source: APXvYqwA8KujX0j44nYaY0ep5VHU/Kj3c/ezUJXSNyQWpKPEUcSGF1G+CnoKgFo2MHwEE9vdfXZKVQ==
+X-Received: by 2002:ac8:4784:: with SMTP id k4mr4248127qtq.303.1570025970096;
+        Wed, 02 Oct 2019 07:19:30 -0700 (PDT)
 Received: from localhost ([132.205.230.8])
-        by smtp.gmail.com with ESMTPSA id b16sm14192592qtk.65.2019.10.02.07.19.28
+        by smtp.gmail.com with ESMTPSA id z200sm10073665qkb.5.2019.10.02.07.19.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2019 07:19:28 -0700 (PDT)
-Message-ID: <5d94b1f0.1c69fb81.bc0b5.9a58@mx.google.com>
-Date:   Wed, 02 Oct 2019 09:19:25 -0500
+        Wed, 02 Oct 2019 07:19:29 -0700 (PDT)
+Message-ID: <5d94b1f1.1c69fb81.ab470.458b@mx.google.com>
+Date:   Wed, 02 Oct 2019 09:19:26 -0500
 From:   Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: iommu: ipmmu-vmsa: Add r8a774b1 support
-References: <1569310854-37057-1-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1569310854-37057-1-git-send-email-biju.das@bp.renesas.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-To:     Biju Das <biju.das@bp.renesas.com>
+Subject: Re: [PATCH 7/7] dt-bindings: smia: Remove documentation of nokia,nvm-size
+References: <20190924112338.27180-1-sakari.ailus@linux.intel.com> <20190924112338.27180-8-sakari.ailus@linux.intel.com>
+In-Reply-To: <20190924112338.27180-8-sakari.ailus@linux.intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Cc:     linux-media@vger.kernel.org
+Cc:     devicetree@vger.kernel.org
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Sep 2019 08:40:54 +0100, Biju Das wrote:
-> Document RZ/G2N (R8A774B1) SoC bindings.
+On Tue, 24 Sep 2019 14:23:38 +0300, Sakari Ailus wrote:
+> The nokia,nvm-size property was used to tell the size of the NVM memory
+> accessible through the sensor's register interface. However, while the
+> size isn't directly readable through the sensor's register interface, it
+> can be detected reading the NVM memory until the selected page is no
+> longer available.
 > 
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+> Thus remove this property.
+> 
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > ---
->  Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/media/i2c/nokia,smia.txt | 2 --
+>  1 file changed, 2 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
