@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 541CCC8C99
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F781C8CAD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727798AbfJBPSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 11:18:18 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53308 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727498AbfJBPSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:18:17 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92FHqu7121321;
-        Wed, 2 Oct 2019 10:17:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570029472;
-        bh=XdNPQjDWDIANjxFkYVhRetRjSoQQX2NhBQD1Yjc+BQw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=niLLx97YsloDYxsLEY2Ee34kmRfx0AUfa12xUKAEwRb1DBtOrM/heORSb7lERCqdS
-         jFSj/6F1INcoFPinQA20t76QJUbwd7hA406B70FpxxzHxplK8uzNGgR/oEXvAeIVtb
-         A3Q5mdbBfLz70v4XCRseSRueRqeUCkTeKkN8UHL8=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92FHqmC068960;
-        Wed, 2 Oct 2019 10:17:52 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 2 Oct
- 2019 10:17:41 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 2 Oct 2019 10:17:41 -0500
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with SMTP id x92FHpAo044680;
-        Wed, 2 Oct 2019 10:17:51 -0500
-Date:   Wed, 2 Oct 2019 10:20:03 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-CC:     Rob Herring <robh@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        <andriy.shevchenko@linux.intel.com>, <andy.shevchenko@gmail.com>,
-        <simon.budig@kernelconcepts.de>, <hdegoede@redhat.com>,
-        <fcooper@ti.com>, <linux-input@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
-        <bcousson@baylibre.com>, <tony@atomide.com>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <s.hauer@pengutronix.de>,
-        <festevam@gmail.com>, <linux-imx@nxp.com>, <shawnguo@kernel.org>,
-        <mripard@kernel.org>, <wens@csie.org>
-Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
- wakeup-source documentation
-Message-ID: <20191002152003.ag36lrragazsdn5j@ti.com>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-3-m.felsch@pengutronix.de>
- <20190917170743.GO237523@dtor-ws>
- <20190917171814.owcttekv56xgmsts@pengutronix.de>
- <20190917172658.GQ237523@dtor-ws>
- <20190930231146.GA30010@bogus>
- <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1728523AbfJBPUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 11:20:48 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:21434 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728478AbfJBPUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:20:48 -0400
+X-IronPort-AV: E=Sophos;i="5.64,574,1559487600"; 
+   d="scan'208";a="28118084"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 03 Oct 2019 00:20:43 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E21104006A99;
+        Thu,  3 Oct 2019 00:20:40 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms@verge.net.au>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH v3 0/9] Add Display support
+Date:   Wed,  2 Oct 2019 16:20:10 +0100
+Message-Id: <1570029619-43238-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Marco Felsch <m.felsch@pengutronix.de> wrote on Wed [2019-Oct-02 15:00:18 +0200]:
-> Hi,
-> 
-> all of you using a edt,* touchscreen and currently the driver marks
-> the touchscreen as wakeup source. To keep backward compatibility I added
-> a workaround binding (see below) but Dmitry prefer to use the normal
-> "wakeup-source" binding and change the affected device-tree's
-> (discussion below). Can you give me your ack/nack for Dmitry's solution?
+This patch adds display support for hihope RZ/G2N board.
 
-So, if I understand this correctly, currently the driver always assume it
-is a wakeup source regardless if the "wakeup-source" DT property being
-present or not. And the proposed change now is to fix the driver so that it
-will assume a wakeup source role only if the DT property is present?
+This patch depend upon
+https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=177939
 
-If that is the case then ACK from my side for the AM43x devices.
+V1-->V2
+ * Incorporated Laurent's review comments for LVDS panels.
+V2-->V3
+ * Incorporated Laurent's review comments for LVDS panels.
 
-Regards,
-Benoit
+Biju Das (9):
+  arm64: dts: renesas: hihope-common: Move du clk properties out of
+    common dtsi
+  arm64: dts: renesas: r8a774b1: Add DU device to DT
+  arm64: dts: renesas: r8a774b1: Add HDMI encoder instance
+  arm64: dts: renesas: r8a774b1-hihope-rzg2n: Add display clock
+    properties
+  arm64: dts: renesas: r8a774b1: Add FDP1 device nodes
+  arm64: dts: renesas: r8a774b1: Add PWM device nodes
+  arm64: dts: renesas: hihope-rzg2-ex: Enable backlight
+  arm64: dts: renesas: hihope-rzg2-ex: Add LVDS support
+  arm64: dts: renesas: Add support for Advantech idk-1110wr LVDS panel
 
-> 
-> Regards,
->   Marco
-> 
+ arch/arm64/boot/dts/renesas/hihope-common.dtsi     |   8 --
+ arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi    |  49 ++++++++
+ .../boot/dts/renesas/r8a774a1-hihope-rzg2m.dts     |  11 ++
+ .../boot/dts/renesas/r8a774b1-hihope-rzg2n.dts     |  11 ++
+ arch/arm64/boot/dts/renesas/r8a774b1.dtsi          | 133 +++++++++++++++++++++
+ .../renesas/rzg2-advantech-idk-1110wr-panel.dtsi   |  41 +++++++
+ 6 files changed, 245 insertions(+), 8 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/rzg2-advantech-idk-1110wr-panel.dtsi
+
+-- 
+2.7.4
+
