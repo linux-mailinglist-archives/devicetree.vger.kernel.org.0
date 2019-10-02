@@ -2,149 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BDBC88E7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 14:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81CE9C890B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 14:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726492AbfJBMkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 08:40:51 -0400
-Received: from inca-roads.misterjones.org ([213.251.177.50]:51493 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726326AbfJBMkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 08:40:51 -0400
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why)
-        by cheepnis.misterjones.org with esmtpsa (TLSv1.2:AES256-GCM-SHA384:256)
-        (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1iFdvv-0007Rb-6t; Wed, 02 Oct 2019 14:40:43 +0200
-Date:   Wed, 2 Oct 2019 13:40:41 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
+        id S1725951AbfJBMwu convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Oct 2019 08:52:50 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:56113 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725765AbfJBMwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 08:52:50 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 9D9C5240018;
+        Wed,  2 Oct 2019 12:52:47 +0000 (UTC)
+Date:   Wed, 2 Oct 2019 14:52:46 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
-        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
-        Eric Anholt <eric@anholt.net>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
-        ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
-        ARM ARCHITECTURE)
-Subject: Re: [PATCH 5/7] irqchip/irq-bcm2836: Add support for the 7211
- interrupt controller
-Message-ID: <20191002134041.5a181d96@why>
-In-Reply-To: <20191001224842.9382-6-f.fainelli@gmail.com>
-References: <20191001224842.9382-1-f.fainelli@gmail.com>
-        <20191001224842.9382-6-f.fainelli@gmail.com>
-Organization: Approximate
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 4/7] iio: adc: max1027: Prepare the introduction of
+ different resolutions
+Message-ID: <20191002145246.491e2760@xps13>
+In-Reply-To: <20191002123025.21413-5-miquel.raynal@bootlin.com>
+References: <20191002123025.21413-1-miquel.raynal@bootlin.com>
+        <20191002123025.21413-5-miquel.raynal@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, linux-kernel@vger.kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, mark.rutland@arm.com, rjui@broadcom.com, sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com, eric@anholt.net, wahrenst@gmx.net, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  1 Oct 2019 15:48:40 -0700
-Florian Fainelli <f.fainelli@gmail.com> wrote:
+Hello,
 
-> The root interrupt controller on 7211 is about identical to the one
-> existing on BCM2836, except that the SMP cross call are done through the
-> standard ARM GIC-400 interrupt controller. This interrupt controller is
-> used for side band wake-up signals though.
+Miquel Raynal <miquel.raynal@bootlin.com> wrote on Wed,  2 Oct 2019
+14:30:22 +0200:
 
-I don't fully grasp how this thing works.
-
-If the 7211 interrupt controller is root and the GIC is used for SGIs,
-this means that the GIC outputs (IRQ/FIQ/VIRQ/VFIQ, times eight) are
-connected to individual inputs to the 7211 controller. Seems totally
-braindead, and unexpectedly so.
-
-If the GIC is root and the 7211 outputs into the GIC all of its
-interrupts as a secondary irqchip, it would at least match an existing
-(and pretty bad) pattern.
-
-So which one of the two is it?
-
+> Maxim's max1027/29/31 series returns the measured voltages with a
+> resolution of 10 bits. There is a very similar series, max1227/29/31
+> which works very similarly but uses a resolution of 12 bits. Prepare
+> the support for these chips by turning the 'depth' into a macro
+> parameter instead of hardcoding it everywhere. Also reorganize just a
+> bit the macros at the top to avoid repeating tens of lines when adding
+> support for a new chip.
 > 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  drivers/irqchip/irq-bcm2836.c | 25 ++++++++++++++++++++++---
->  1 file changed, 22 insertions(+), 3 deletions(-)
+>  drivers/iio/adc/max1027.c | 81 +++++++++++++++++++--------------------
+>  1 file changed, 39 insertions(+), 42 deletions(-)
 > 
-> diff --git a/drivers/irqchip/irq-bcm2836.c b/drivers/irqchip/irq-bcm2836.c
-> index 2038693f074c..77fa395c8f6b 100644
-> --- a/drivers/irqchip/irq-bcm2836.c
-> +++ b/drivers/irqchip/irq-bcm2836.c
-> @@ -112,6 +112,8 @@ static int bcm2836_map(struct irq_domain *d, unsigned int irq,
->  		return -EINVAL;
->  	}
->  
-> +	chip->flags |= IRQCHIP_MASK_ON_SUSPEND | IRQCHIP_SKIP_SET_WAKE;
-> +
->  	irq_set_percpu_devid(irq);
->  	irq_domain_set_info(d, irq, hw, chip, d->host_data,
->  			    handle_percpu_devid_irq, NULL, NULL);
-> @@ -216,8 +218,9 @@ static void bcm2835_init_local_timer_frequency(void)
->  	writel(0x80000000, intc.base + LOCAL_PRESCALER);
->  }
->  
-> -static int __init bcm2836_arm_irqchip_l1_intc_of_init(struct device_node *node,
-> -						      struct device_node *parent)
-> +static int __init arm_irqchip_l1_intc_of_init_smp(struct device_node *node,
-> +						  struct device_node *parent,
-> +						  bool smp_init)
->  {
->  	intc.base = of_iomap(node, 0);
->  	if (!intc.base) {
-> @@ -232,11 +235,27 @@ static int __init bcm2836_arm_irqchip_l1_intc_of_init(struct device_node *node,
->  	if (!intc.domain)
->  		panic("%pOF: unable to create IRQ domain\n", node);
->  
-> -	bcm2836_arm_irqchip_smp_init();
-> +	if (smp_init)
-> +		bcm2836_arm_irqchip_smp_init();
+> diff --git a/drivers/iio/adc/max1027.c b/drivers/iio/adc/max1027.c
+> index f9b473ee6711..fc75764a6fd7 100644
+> --- a/drivers/iio/adc/max1027.c
+> +++ b/drivers/iio/adc/max1027.c
+> @@ -78,12 +78,15 @@ static const struct of_device_id max1027_adc_dt_ids[] = {
+>  	{ .compatible = "maxim,max1027" },
+>  	{ .compatible = "maxim,max1029" },
+>  	{ .compatible = "maxim,max1031" },
+> +	{ .compatible = "maxim,max1227" },
+> +	{ .compatible = "maxim,max1229" },
+> +	{ .compatible = "maxim,max1231" },
 
-Instead of the additional parameter and this check, why don't you just
-move the smp_init() call to bcm2836_arm_irqchip_l1_intc_of_init()
-instead?
+Just spotted a mistake here: the addition of these three lines, while
+harmless, should have come in patch 5/7.
 
->  
->  	set_handle_irq(bcm2836_arm_irqchip_handle_irq);
-> +
->  	return 0;
->  }
->  
-> +static int __init bcm2836_arm_irqchip_l1_intc_of_init(struct device_node *node,
-> +						      struct device_node *parent)
-> +{
-> +	return arm_irqchip_l1_intc_of_init_smp(node, parent, true);
-> +}
-> +
-> +static int __init bcm7211_arm_irqchip_l1_intc_of_init(struct device_node *node,
-> +						      struct device_node *parent)
-> +{
-> +	return arm_irqchip_l1_intc_of_init_smp(node, parent, false);
-> +}
-> +
->  IRQCHIP_DECLARE(bcm2836_arm_irqchip_l1_intc, "brcm,bcm2836-l1-intc",
->  		bcm2836_arm_irqchip_l1_intc_of_init);
-> +IRQCHIP_DECLARE(bcm7211_arm_irqchip_l1_intc, "brcm,bcm7211-l1-intc",
-> +		bcm7211_arm_irqchip_l1_intc_of_init);
+Let me respin the series with this corrected.
 
-
-Thanks,
-
-	M.
--- 
-Without deviation from the norm, progress is not possible.
+Thanks and sorry for the noise,
+Miquèl
