@@ -2,107 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44131C88C7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 14:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BDBC88E7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 14:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726239AbfJBMiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 08:38:55 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:53928 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbfJBMiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 08:38:55 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92Cch5D014533;
-        Wed, 2 Oct 2019 07:38:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570019923;
-        bh=6k/1/L8qVzBnkiN3DQ8sBlvddq0xsy4C1W0U2GgT2tc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ckjObRSwAAxO4JX5G88yKRjMZ2g/hf5dGI8dK+zvxCOePp/Voa9SMYMVL3p0SMoUa
-         NTf2aN8lVDrriaLaQg2fgPtJIwNJSdY8IyPpdueORyrhttt8C8ba1MoRwkVUDpFr44
-         HhoiBQ5NeUiyVtK8SDoBqBy4etam5Lw1B8YwTBHM=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x92CchlD007388
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Oct 2019 07:38:43 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 2 Oct
- 2019 07:38:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 2 Oct 2019 07:38:43 -0500
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with SMTP id x92Cch6J093041;
-        Wed, 2 Oct 2019 07:38:43 -0500
-Date:   Wed, 2 Oct 2019 07:40:54 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-CC:     Jacopo Mondi <jacopo@jmondi.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <hugues.fruchet@st.com>
-Subject: Re: [Patch 1/3] media: ov5640: add PIXEL_RATE control
-Message-ID: <20191002124054.gqw5l6tdyxqalpod@ti.com>
-References: <20190925152301.21645-1-bparrot@ti.com>
- <20190925152301.21645-2-bparrot@ti.com>
- <20191001075704.GA5449@paasikivi.fi.intel.com>
- <20191001162341.f2o7ruar2nifl5ws@ti.com>
- <20191002075951.afp2xligspqat4ew@uno.localdomain>
- <20191002121438.g3re6v54q4hit2wv@ti.com>
- <20191002123513.GI972@paasikivi.fi.intel.com>
+        id S1726492AbfJBMkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 08:40:51 -0400
+Received: from inca-roads.misterjones.org ([213.251.177.50]:51493 "EHLO
+        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726326AbfJBMkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 08:40:51 -0400
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why)
+        by cheepnis.misterjones.org with esmtpsa (TLSv1.2:AES256-GCM-SHA384:256)
+        (Exim 4.80)
+        (envelope-from <maz@kernel.org>)
+        id 1iFdvv-0007Rb-6t; Wed, 02 Oct 2019 14:40:43 +0200
+Date:   Wed, 2 Oct 2019 13:40:41 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
+        ARM ARCHITECTURE),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
+        ARM ARCHITECTURE)
+Subject: Re: [PATCH 5/7] irqchip/irq-bcm2836: Add support for the 7211
+ interrupt controller
+Message-ID: <20191002134041.5a181d96@why>
+In-Reply-To: <20191001224842.9382-6-f.fainelli@gmail.com>
+References: <20191001224842.9382-1-f.fainelli@gmail.com>
+        <20191001224842.9382-6-f.fainelli@gmail.com>
+Organization: Approximate
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20191002123513.GI972@paasikivi.fi.intel.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, linux-kernel@vger.kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, mark.rutland@arm.com, rjui@broadcom.com, sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com, eric@anholt.net, wahrenst@gmx.net, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sakari Ailus <sakari.ailus@linux.intel.com> wrote on Wed [2019-Oct-02 15:35:13 +0300]:
-> Hi Benoit,
-> 
-> On Wed, Oct 02, 2019 at 07:14:38AM -0500, Benoit Parrot wrote:
-> > Hi Jacopo,
-> > 
-> > Maybe, I miss spoke when I mentioned a helper I did not intent a framework
-> > level generic function. Just a function to help in this case :)
-> > 
-> > That being said, I re-read the thread you mentioned. And as Hughes pointed
-> > out dynamically generating a "working" link frequency value which can be
-> > used by a CSI2 receiver to properly configure its PHY is not trivial.
-> > 
-> > When I created this patch, I also had another to add V4L2_CID_LINK_FREQ
-> > support. I am testing this against the TI CAL CSI2 receiver, which already
-> > uses the V4L2_CID_PIXEL_RATE value for that purpose, so I also had a patch
-> > to add support for V4L2_CID_LINK_FREQ to that driver as well.
-> > 
-> > Unfortunately, similar to Hughes' findings I was not able to make it "work"
-> > with all supported resolution/framerate.
-> > 
-> > Unlike my V4L2_CID_PIXEL_RATE solution which now works in all mode with the
-> > same receiver.
-> > 
-> > So long story short I dropped the V4L2_CID_LINK_FREQ patch and focused on
-> > V4L2_CID_PIXEL_RATE instead.
-> 
-> It shouldn't make a difference which one you use; if you know the bus type
-> (and if it's CSI-2 with D-PHY, number of lanes and how many bits per pixel
-> the media bus format has), you can convert fairly trivially between the
-> two.
+On Tue,  1 Oct 2019 15:48:40 -0700
+Florian Fainelli <f.fainelli@gmail.com> wrote:
 
-Sakari,
+> The root interrupt controller on 7211 is about identical to the one
+> existing on BCM2836, except that the SMP cross call are done through the
+> standard ARM GIC-400 interrupt controller. This interrupt controller is
+> used for side band wake-up signals though.
 
-Yes I get that, but at this point as they say I will leave that as an
-exercise to the reader...
+I don't fully grasp how this thing works.
 
-Benoit
+If the 7211 interrupt controller is root and the GIC is used for SGIs,
+this means that the GIC outputs (IRQ/FIQ/VIRQ/VFIQ, times eight) are
+connected to individual inputs to the 7211 controller. Seems totally
+braindead, and unexpectedly so.
+
+If the GIC is root and the 7211 outputs into the GIC all of its
+interrupts as a secondary irqchip, it would at least match an existing
+(and pretty bad) pattern.
+
+So which one of the two is it?
 
 > 
-> -- 
-> Sakari Ailus
-> sakari.ailus@linux.intel.com
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  drivers/irqchip/irq-bcm2836.c | 25 ++++++++++++++++++++++---
+>  1 file changed, 22 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-bcm2836.c b/drivers/irqchip/irq-bcm2836.c
+> index 2038693f074c..77fa395c8f6b 100644
+> --- a/drivers/irqchip/irq-bcm2836.c
+> +++ b/drivers/irqchip/irq-bcm2836.c
+> @@ -112,6 +112,8 @@ static int bcm2836_map(struct irq_domain *d, unsigned int irq,
+>  		return -EINVAL;
+>  	}
+>  
+> +	chip->flags |= IRQCHIP_MASK_ON_SUSPEND | IRQCHIP_SKIP_SET_WAKE;
+> +
+>  	irq_set_percpu_devid(irq);
+>  	irq_domain_set_info(d, irq, hw, chip, d->host_data,
+>  			    handle_percpu_devid_irq, NULL, NULL);
+> @@ -216,8 +218,9 @@ static void bcm2835_init_local_timer_frequency(void)
+>  	writel(0x80000000, intc.base + LOCAL_PRESCALER);
+>  }
+>  
+> -static int __init bcm2836_arm_irqchip_l1_intc_of_init(struct device_node *node,
+> -						      struct device_node *parent)
+> +static int __init arm_irqchip_l1_intc_of_init_smp(struct device_node *node,
+> +						  struct device_node *parent,
+> +						  bool smp_init)
+>  {
+>  	intc.base = of_iomap(node, 0);
+>  	if (!intc.base) {
+> @@ -232,11 +235,27 @@ static int __init bcm2836_arm_irqchip_l1_intc_of_init(struct device_node *node,
+>  	if (!intc.domain)
+>  		panic("%pOF: unable to create IRQ domain\n", node);
+>  
+> -	bcm2836_arm_irqchip_smp_init();
+> +	if (smp_init)
+> +		bcm2836_arm_irqchip_smp_init();
+
+Instead of the additional parameter and this check, why don't you just
+move the smp_init() call to bcm2836_arm_irqchip_l1_intc_of_init()
+instead?
+
+>  
+>  	set_handle_irq(bcm2836_arm_irqchip_handle_irq);
+> +
+>  	return 0;
+>  }
+>  
+> +static int __init bcm2836_arm_irqchip_l1_intc_of_init(struct device_node *node,
+> +						      struct device_node *parent)
+> +{
+> +	return arm_irqchip_l1_intc_of_init_smp(node, parent, true);
+> +}
+> +
+> +static int __init bcm7211_arm_irqchip_l1_intc_of_init(struct device_node *node,
+> +						      struct device_node *parent)
+> +{
+> +	return arm_irqchip_l1_intc_of_init_smp(node, parent, false);
+> +}
+> +
+>  IRQCHIP_DECLARE(bcm2836_arm_irqchip_l1_intc, "brcm,bcm2836-l1-intc",
+>  		bcm2836_arm_irqchip_l1_intc_of_init);
+> +IRQCHIP_DECLARE(bcm7211_arm_irqchip_l1_intc, "brcm,bcm7211-l1-intc",
+> +		bcm7211_arm_irqchip_l1_intc_of_init);
+
+
+Thanks,
+
+	M.
+-- 
+Without deviation from the norm, progress is not possible.
