@@ -2,40 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED03AC8BAC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08BC2C8BAE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726777AbfJBOpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:45:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51334 "EHLO mail.kernel.org"
+        id S1726128AbfJBOqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:46:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51632 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725975AbfJBOpw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 10:45:52 -0400
+        id S1725975AbfJBOqq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 10:46:46 -0400
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1AAC321848;
-        Wed,  2 Oct 2019 14:45:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 28EF721783;
+        Wed,  2 Oct 2019 14:46:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570027551;
-        bh=ExOe9Jas9T5zKQTMdccb5j//u7g6OAcK9uqWer/itLk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=O1532exv22Totpi6EDFSzBBGtbFuXg/+kWuTRavymk6/3Ex7tnxo1Qdp/dzSJF9bB
-         Gh7nK7CDIY7vyvbcYJr6MiN2p3t97wtP+w1XoeL8KTXN5EWh6ZamDiSO2QkzPgMM6p
-         07YmWb96nmUPpBeg/K7l1YJjXitrsb1bsrI9gAcQ=
+        s=default; t=1570027605;
+        bh=fTp264TX+8A5B/l+DorgipPQ5brUl2q7Ksw+q/WrC8I=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cJQrbVerlRQB5SkB2iQA3Sftw11EHj38dMPmxdvu1aQhmw2wiYCGg3+VrupX+JOZ+
+         w2dL5WB3tUNeQEGvB5xQeyZLTJU55Lvs0O/obAurDVMqy3uPkZY8jWVvTykTPPyX7k
+         ITkalV0AMBCnDhLX5OOW7+GVCgAcHEjvp5OuRwww=
 From:   Maxime Ripard <mripard@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH 2/2] dt-bindings: iio: ad7192: Fix DTC warning in the example
-Date:   Wed,  2 Oct 2019 16:45:42 +0200
-Message-Id: <20191002144542.114722-2-mripard@kernel.org>
+To:     kishon@ti.com
+Cc:     devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH] dt-bindings: phy: lantiq: Fix Property Name
+Date:   Wed,  2 Oct 2019 16:46:40 +0200
+Message-Id: <20191002144640.114851-1-mripard@kernel.org>
 X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191002144542.114722-1-mripard@kernel.org>
-References: <20191002144542.114722-1-mripard@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -43,33 +37,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The example contains an SPI bus and device, but doesn't have the
-appropriate size and address cells size.
+The binding has a typo where resets-names should read reset-names, which in
+turn leads to a warning when the example is validated, since reset-names is
+being used, and the binding prevent the usage of any property that isn't
+described.
 
-This creates a DTC warning when the example is compiled since the default
-ones will not match what the device uses. Let's add them to remove that
-warning.
-
-Fixes: f7356e47032c ("dt-bindings: iio: adc: ad7192: Add binding documentation for AD7192")
+Fixes: 088e88be5a38 ("dt-bindings: phy: add binding for the Lantiq VRX200 and ARX300 PCIe PHYs")
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
- Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ .../devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-index 9e62f54c891a..567a33a83dce 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-@@ -95,6 +95,9 @@ required:
- examples:
-   - |
-     spi0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-       adc@0 {
-         compatible = "adi,ad7192";
-         reg = <0>;
+diff --git a/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+index 8a56a8526cef..a97482179cf5 100644
+--- a/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+@@ -37,7 +37,7 @@ properties:
+       - description: exclusive PHY reset line
+       - description: shared reset line between the PCIe PHY and PCIe controller
+ 
+-  resets-names:
++  reset-names:
+     items:
+       - const: phy
+       - const: pcie
 -- 
 2.23.0
 
