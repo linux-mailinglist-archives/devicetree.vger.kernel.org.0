@@ -2,295 +2,982 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A31FC4B95
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 12:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DED1C4B9A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 12:38:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726771AbfJBKhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 06:37:47 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:59752 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726330AbfJBKhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 06:37:47 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 42D02634C89;
-        Wed,  2 Oct 2019 13:37:17 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iFc0R-0002AN-Nb; Wed, 02 Oct 2019 13:37:15 +0300
-Date:   Wed, 2 Oct 2019 13:37:15 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH v3 2/3] media: i2c: Add IMX290 CMOS image sensor driver
-Message-ID: <20191002103715.GR896@valkosipuli.retiisi.org.uk>
-References: <20190830091943.22646-1-manivannan.sadhasivam@linaro.org>
- <20190830091943.22646-3-manivannan.sadhasivam@linaro.org>
- <20190923092209.GL5525@valkosipuli.retiisi.org.uk>
- <20191001184200.GA7739@Mani-XPS-13-9360>
+        id S1725766AbfJBKiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 06:38:05 -0400
+Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:48708 "EHLO
+        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725999AbfJBKiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 06:38:04 -0400
+Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x92AWhlO026099;
+        Wed, 2 Oct 2019 06:37:16 -0400
+Received: from nam03-co1-obe.outbound.protection.outlook.com (mail-co1nam03lp2056.outbound.protection.outlook.com [104.47.40.56])
+        by mx0b-00128a01.pphosted.com with ESMTP id 2va19cw2sv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 02 Oct 2019 06:37:16 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XnaMLlYSytCdbgDFcdtaZAP6eZZI9X9pJk6nrrQv06vAovPF6NQ99bpaDu8z48LBe4xKd4g4aLy8FCl/GKyy18zLdTtEW4iVJ4WCX0g+6q3mgRdMKX2QlvNh+EzCUqG+FxXjl/ioSN3eLCWy8MFwHUoqSm027J6kZlmhkmJ2dtlE/DGqjfQDVjZ1jR1npR7udXz3weC2WWOc+F480ySYGeEljV1xYXcCIUXviBqbtMzLNXPck6D1Kha0imLPHbxsEN7kO+3Mv7RS2WVoPHYhW7AV7ELTUjcMNa3v7z50OXEzxwPtzUliRFjQpHYhwuMMBvkqluy7416r6+eyvgl9HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rWOqi/j2Rmzlj3d/VUXqE9ggGK+uh2DIzInZY6ldmrg=;
+ b=WyyVRJOgwc8npUWBLg0Hv3Wc4gGHxVQqTixnxeogMKav+/nvLQ3+tgvDOfsBWQQCLF2LsB4QgI8OVzIESEkpL32fH+Xu2CSCzMdHWtB9SMatd0Mh3dWrMVqWcdGkYkeUpqbooTvqHaif4SU53dx0Xk5mXUr0jhQV7JjZ9Q4ETMOTSIGjGZM1eO5oYO9PRzEZu/ugZFNZUN1Mo6heQ7j3c093aSVP6bWcIjJun5cDc0lxPpov+9niAKv5XJqqqGSG5pmtXRGuG87D+IrUyBjhgfDA5UbWOnyaLmFF/i61JODfRAlG1bF49fE77N7O1e76hp/jYliExxr5KMeOMD6xfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 137.71.25.57) smtp.rcpttodomain=kernel.org smtp.mailfrom=analog.com;
+ dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rWOqi/j2Rmzlj3d/VUXqE9ggGK+uh2DIzInZY6ldmrg=;
+ b=xjcCTAizVX5shqcvYpD0pj8MvdImYuJQOYmrBQci73TgVJja+PiS4DIv/yr5Ni4LLsAdz6iiNFtqPzxNVvDce+QJZW+o0a/NiCgTYcuo8osiGNKhPdQnG+2RhTJANHjCXikfeOScvTJfu1l/zJvGKM3AOVuoya50WVjMnDJc2OM=
+Received: from BN6PR03CA0065.namprd03.prod.outlook.com (2603:10b6:404:4c::27)
+ by MWHPR03MB3200.namprd03.prod.outlook.com (2603:10b6:301:42::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2305.17; Wed, 2 Oct
+ 2019 10:37:13 +0000
+Received: from BL2NAM02FT028.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::201) by BN6PR03CA0065.outlook.office365.com
+ (2603:10b6:404:4c::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2305.15 via Frontend
+ Transport; Wed, 2 Oct 2019 10:37:13 +0000
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
+Received: from nwd2mta2.analog.com (137.71.25.57) by
+ BL2NAM02FT028.mail.protection.outlook.com (10.152.77.165) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2305.20
+ via Frontend Transport; Wed, 2 Oct 2019 10:37:13 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x92AbCjM019576
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Wed, 2 Oct 2019 03:37:12 -0700
+Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
+ (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Wed, 2 Oct
+ 2019 06:37:10 -0400
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>
+CC:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 1/2] ASOC: Add ADAU7118 8 Channel PDM-to-I2S/TDM Converter driver
+Date:   Wed, 2 Oct 2019 12:37:28 +0200
+Message-ID: <20191002103729.94676-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191001184200.GA7739@Mani-XPS-13-9360>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.44.3.90]
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(376002)(396003)(39860400002)(346002)(199004)(189003)(54906003)(186003)(2906002)(16526019)(6666004)(246002)(36756003)(8676002)(356004)(316002)(110136005)(26005)(5660300002)(6116002)(14444005)(53416004)(1076003)(50226002)(23676004)(8936002)(4326008)(47776003)(5820100001)(3846002)(486006)(30864003)(478600001)(50466002)(426003)(2870700001)(7736002)(6306002)(70206006)(45776006)(7636002)(70586007)(305945005)(966005)(86362001)(106002)(336012)(126002)(2616005)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR03MB3200;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 736bb32e-7ca9-4616-8267-08d747247c94
+X-MS-TrafficTypeDiagnostic: MWHPR03MB3200:
+X-MS-Exchange-PUrlCount: 2
+X-Microsoft-Antispam-PRVS: <MWHPR03MB3200E2E28C0C78EC769BA12C999C0@MWHPR03MB3200.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1417;
+X-Forefront-PRVS: 0178184651
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q6BUtzJpeyNdbm1NP0t3T29HSeqCW2OkI8kI7a0AXzoiMyI9So7s95XXmN1w37bbJ++D3oKLvEV2PrxjqY6AMmnv7SdIRk66thYTav2X6Nj5vEVNh7McCZKnuiH7tzrp/88nQ4PAU2F8yLdSFN4RbW9Ug3XlogIauiDGbbOBFCGJZkDHnq6udKEu/2o3fQ9LYT4dIXl1gQG9hOZdANVERvFTK3rmaopsPlTTHyrE8fqdfTEwkYj1yvC2v5HGQPruTmbj6peXveTk8legwIrv1/Kchs4eZNhk18yoW6qK4l5znJHCumCnxAhoKlOeDKygckdNjkC4qFki9MPMCGPHcnGLUDELuD8jSOqeV8/MEmaVbxcpnJtglWbH68mP5BxIRYUderedxAEPYBSKlMjAim96GPtDprfYCMM6ZYDuq5s6lyD5VtMzcl0Qx82llejMOnX2rwMzotuAWYb+8BUW5A==
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2019 10:37:13.0246
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 736bb32e-7ca9-4616-8267-08d747247c94
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR03MB3200
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-02_06:2019-10-01,2019-10-02 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=999 adultscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910020099
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
+This patch adds support for the 8 channel PDM-to-I2S/TDM converter. The
+ADAU7118 converts four stereo pulse density modulation (PDM) bitstreams
+into one pulse code modulation (PCM) output stream. The source for the PDM
+data can be eight microphones or other PDM sources. The PCM audio data is
+output on a serial audio interface port in either inter-IC serial (I2S) or
+time domain multiplexed (TDM) format.
 
-On Wed, Oct 02, 2019 at 12:12:00AM +0530, Manivannan Sadhasivam wrote:
-> Hi Sakari,
-> 
-> On Mon, Sep 23, 2019 at 12:22:09PM +0300, Sakari Ailus wrote:
-> > Hi Manivannan,
-> > 
-> > On Fri, Aug 30, 2019 at 02:49:42PM +0530, Manivannan Sadhasivam wrote:
-> > > Add driver for Sony IMX290 CMOS image sensor driver. The driver only
-> > > supports I2C interface for programming and MIPI CSI-2 for sensor output.
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  drivers/media/i2c/Kconfig  |  11 +
-> > >  drivers/media/i2c/Makefile |   1 +
-> > >  drivers/media/i2c/imx290.c | 881 +++++++++++++++++++++++++++++++++++++
-> > >  3 files changed, 893 insertions(+)
-> > >  create mode 100644 drivers/media/i2c/imx290.c
-> > > 
-> > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> > > index 79ce9ec6fc1b..4ebb80b18748 100644
-> > > --- a/drivers/media/i2c/Kconfig
-> > > +++ b/drivers/media/i2c/Kconfig
-> > > @@ -595,6 +595,17 @@ config VIDEO_IMX274
-> > >  	  This is a V4L2 sensor driver for the Sony IMX274
-> > >  	  CMOS image sensor.
-> > >  
-> > > +config VIDEO_IMX290
-> > > +	tristate "Sony IMX290 sensor support"
-> > > +	depends on I2C && VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
-> > > +	depends on MEDIA_CAMERA_SUPPORT
-> > 
-> > Please drop this line. It will be redundant very soon.
-> > 
-> 
-> okay.
-> 
-> > > +	help
-> > > +	  This is a Video4Linux2 sensor driver for the Sony
-> > > +	  IMX290 camera sensor.
-> > > +
-> > > +	  To compile this driver as a module, choose M here: the
-> > > +	  module will be called imx290.
-> > > +
-> > >  config VIDEO_IMX319
-> > >  	tristate "Sony IMX319 sensor support"
-> > >  	depends on I2C && VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
-> > > diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-> > > index fd4ea86dedd5..04411ddb4922 100644
-> > > --- a/drivers/media/i2c/Makefile
-> > > +++ b/drivers/media/i2c/Makefile
-> > > @@ -111,6 +111,7 @@ obj-$(CONFIG_VIDEO_TC358743)	+= tc358743.o
-> > >  obj-$(CONFIG_VIDEO_IMX214)	+= imx214.o
-> > >  obj-$(CONFIG_VIDEO_IMX258)	+= imx258.o
-> > >  obj-$(CONFIG_VIDEO_IMX274)	+= imx274.o
-> > > +obj-$(CONFIG_VIDEO_IMX290)	+= imx290.o
-> > >  obj-$(CONFIG_VIDEO_IMX319)	+= imx319.o
-> > >  obj-$(CONFIG_VIDEO_IMX355)	+= imx355.o
-> > >  obj-$(CONFIG_VIDEO_ST_MIPID02) += st-mipid02.o
-> > > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> > > new file mode 100644
-> > > index 000000000000..db5bb0d69eb8
-> > > --- /dev/null
-> > > +++ b/drivers/media/i2c/imx290.c
-> > > @@ -0,0 +1,881 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Sony IMX290 CMOS Image Sensor Driver
-> > > + *
-> > > + * Copyright (C) 2019 FRAMOS GmbH.
-> > > + *
-> > > + * Copyright (C) 2019 Linaro Ltd.
-> > > + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/gpio/consumer.h>
-> > > +#include <linux/i2c.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/pm_runtime.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/regulator/consumer.h>
-> > > +#include <media/media-entity.h>
-> > > +#include <media/v4l2-ctrls.h>
-> > > +#include <media/v4l2-device.h>
-> > > +#include <media/v4l2-fwnode.h>
-> > > +#include <media/v4l2-subdev.h>
-> > > +
-> > > +#define IMX290_STANDBY 0x3000
-> > > +#define IMX290_REGHOLD 0x3001
-> > > +#define IMX290_XMSTA 0x3002
-> > > +#define IMX290_GAIN 0x3014
-> > > +
-> > > +#define IMX290_DEFAULT_LINK_FREQ 445500000
-> > > +
-> > > +static const char * const imx290_supply_name[] = {
-> > > +	"vdda",
-> > > +	"vddd",
-> > > +	"vdddo",
-> > > +};
-> > > +
-> > > +#define IMX290_NUM_SUPPLIES ARRAY_SIZE(imx290_supply_name)
-> > > +
-> > > +struct imx290_regval {
-> > > +	u16 reg;
-> > > +	u8 val;
-> > > +};
-> > > +
-> > > +struct imx290_mode {
-> > > +	u32 width;
-> > > +	u32 height;
-> > > +	u32 pixel_rate;
-> > > +	u32 link_freq_index;
-> > > +
-> > > +	const struct imx290_regval *data;
-> > > +	u32 data_size;
-> > > +};
-> > > +
-> > > +struct imx290 {
-> > > +	struct device *dev;
-> > > +	struct clk *xclk;
-> > > +	struct regmap *regmap;
-> > > +
-> > > +	struct v4l2_subdev sd;
-> > > +	struct v4l2_fwnode_endpoint ep;
-> > > +	struct media_pad pad;
-> > > +	struct v4l2_mbus_framefmt current_format;
-> > > +	const struct imx290_mode *current_mode;
-> > > +
-> > > +	struct regulator_bulk_data supplies[IMX290_NUM_SUPPLIES];
-> > > +	struct gpio_desc *rst_gpio;
-> > > +
-> > > +	struct v4l2_ctrl_handler ctrls;
-> > > +	struct v4l2_ctrl *link_freq;
-> > > +	struct v4l2_ctrl *pixel_rate;
-> > > +
-> > > +	struct mutex lock;
-> > > +};
-> > > +
-> > > +struct imx290_pixfmt {
-> > > +	u32 code;
-> > > +};
-> > > +
-> > > +static const struct imx290_pixfmt imx290_formats[] = {
-> > > +	{ MEDIA_BUS_FMT_SRGGB10_1X10 },
-> > 
-> > You have a single format here. You don't need the entire array, do you?
-> > 
-> > Unless you have plans to add more, that is.
-> > 
-> 
-> Yes, the sensor supports RAW12 format as well and it will be added once
-> this driver is merged.
+Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+---
+Changes in v2:
+ * Use C++ coment style on the entire comment in the .c files;
+ * Do not use ternery operator;
+ * Do not use `devm_regulator_get_optional` as the device always requires power;
+ * Let DAPM suspend/resume the device.
 
-Ok. 
+ MAINTAINERS                     |   1 +
+ sound/soc/codecs/Kconfig        |  28 ++
+ sound/soc/codecs/Makefile       |   6 +
+ sound/soc/codecs/adau7118-hw.c  |  43 +++
+ sound/soc/codecs/adau7118-i2c.c |  82 +++++
+ sound/soc/codecs/adau7118.c     | 586 ++++++++++++++++++++++++++++++++
+ sound/soc/codecs/adau7118.h     |  24 ++
+ 7 files changed, 770 insertions(+)
+ create mode 100644 sound/soc/codecs/adau7118-hw.c
+ create mode 100644 sound/soc/codecs/adau7118-i2c.c
+ create mode 100644 sound/soc/codecs/adau7118.c
+ create mode 100644 sound/soc/codecs/adau7118.h
 
-> 
-> > > +};
-> > > +
-> > > +static struct regmap_config imx290_regmap_config = {
-
-Should this be const, too?
-
-> > > +	.reg_bits = 16,
-> > > +	.val_bits = 8,
-> > > +	.cache_type = REGCACHE_RBTREE,
-> > > +};
-
-...
-
-> > > +static int imx290_write_buffered_reg(struct imx290 *imx290, u16 address_low,
-> > > +				     u8 nr_regs, u32 value)
-> > > +{
-> > > +	unsigned int i;
-> > > +	int ret;
-> > > +
-> > > +	ret = imx290_write_reg(imx290, IMX290_REGHOLD, 0x01);
-> > > +	if (ret) {
-> > > +		dev_err(imx290->dev, "Error setting hold register\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < nr_regs; i++) {
-> > > +		ret = imx290_write_reg(imx290, address_low + i,
-> > > +				       (u8)(value >> (i * 8)));
-> > > +		if (ret) {
-> > > +			dev_err(imx290->dev, "Error writing buffered registers\n");
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	ret = imx290_write_reg(imx290, IMX290_REGHOLD, 0x00);
-> > > +	if (ret) {
-> > > +		dev_err(imx290->dev, "Error setting hold register\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int imx290_set_gain(struct imx290 *imx290, u32 value)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	u32 adjusted_value = (value * 10) / 3;
-> > 
-> > What's the purpose of this? Why not to use the value directly?
-> > 
-> 
-> The gain register accepts the value 10/3 of the actual gain required. Hence,
-> we need to manually do the calculation before updating the value. I can
-> add a comment here to clarify.
-
-It's better to use the register value directly. Otherwise the granularity
-won't be available to the user space.
-
-> 
-> > > +
-> > > +	ret = imx290_write_buffered_reg(imx290, IMX290_GAIN, 1, adjusted_value);
-> > > +	if (ret)
-> > > +		dev_err(imx290->dev, "Unable to write gain\n");
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int imx290_set_power_on(struct imx290 *imx290)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	ret = clk_prepare_enable(imx290->xclk);
-> > 
-> > Please move the code from this function to the runtime PM runtime suspend
-> > callback. The same for imx290_set_power_off().
-> > 
-> 
-> May I know why? I think since this is being used only once, you're suggesting
-> to move to the callback function itself but please see the comment below. I
-> will reuse this function to power on the device during probe.
-
-Yes, you can call the same function from probe, even if it's used as a
-runtime PM callback.
-
-There's no need to have a function that acts as a wrapper for calling it
-with a different type of an argument.
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 296de2b51c83..8ba47cac8e83 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1002,6 +1002,7 @@ F:	drivers/media/i2c/adv7842*
+ 
+ ANALOG DEVICES INC ASOC CODEC DRIVERS
+ M:	Lars-Peter Clausen <lars@metafoo.de>
++M:	Nuno Sá <nuno.sa@analog.com>
+ L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
+ W:	http://wiki.analog.com/
+ W:	http://ez.analog.com/community/linux-device-drivers
+diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+index bcac95785493..ae213c6392ec 100644
+--- a/sound/soc/codecs/Kconfig
++++ b/sound/soc/codecs/Kconfig
+@@ -34,6 +34,8 @@ config SND_SOC_ALL_CODECS
+ 	select SND_SOC_ADAU1977_I2C if I2C
+ 	select SND_SOC_ADAU1701 if I2C
+ 	select SND_SOC_ADAU7002
++	select SND_SOC_ADAU7118_I2C if I2C
++	select SND_SOC_ADAU7118_HW
+ 	select SND_SOC_ADS117X
+ 	select SND_SOC_AK4104 if SPI_MASTER
+ 	select SND_SOC_AK4118 if I2C
+@@ -396,6 +398,32 @@ config SND_SOC_ADAU1977_I2C
+ config SND_SOC_ADAU7002
+ 	tristate "Analog Devices ADAU7002 Stereo PDM-to-I2S/TDM Converter"
+ 
++config SND_SOC_ADAU7118
++	tristate
++
++config SND_SOC_ADAU7118_HW
++	tristate "Analog Devices ADAU7118 8 Channel PDM-to-I2S/TDM Converter - HW Mode"
++	select SND_SOC_ADAU7118
++	help
++	  Enable support for the Analog Devices ADAU7118 8 Channel PDM-to-I2S/TDM
++	  Converter. In this mode, the device works in standalone mode which
++	  means that there is no bus to comunicate with it. Stereo mode is not
++	  supported in this mode.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called snd-soc-adau7118-hw.
++
++config SND_SOC_ADAU7118_I2C
++	tristate "Analog Devices ADAU7118 8 Channel PDM-to-I2S/TDM Converter - I2C"
++	select SND_SOC_ADAU7118
++	select REGMAP_I2C
++	help
++	  Enable support for the Analog Devices ADAU7118 8 Channel PDM-to-I2S/TDM
++	  Converter over I2C. This gives full support over the device.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called snd-soc-adau7118-i2c.
++
+ config SND_SOC_ADAV80X
+ 	tristate
+ 
+diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
+index 73b2d5982dcb..2118407a1dd5 100644
+--- a/sound/soc/codecs/Makefile
++++ b/sound/soc/codecs/Makefile
+@@ -22,6 +22,9 @@ snd-soc-adau1977-objs := adau1977.o
+ snd-soc-adau1977-spi-objs := adau1977-spi.o
+ snd-soc-adau1977-i2c-objs := adau1977-i2c.o
+ snd-soc-adau7002-objs := adau7002.o
++snd-soc-adau7118-objs := adau7118.o
++snd-soc-adau7118-i2c-objs := adau7118-i2c.o
++snd-soc-adau7118-hw-objs := adau7118-hw.o
+ snd-soc-adav80x-objs := adav80x.o
+ snd-soc-adav801-objs := adav801.o
+ snd-soc-adav803-objs := adav803.o
+@@ -305,6 +308,9 @@ obj-$(CONFIG_SND_SOC_ADAU1977)		+= snd-soc-adau1977.o
+ obj-$(CONFIG_SND_SOC_ADAU1977_SPI)	+= snd-soc-adau1977-spi.o
+ obj-$(CONFIG_SND_SOC_ADAU1977_I2C)	+= snd-soc-adau1977-i2c.o
+ obj-$(CONFIG_SND_SOC_ADAU7002)	+= snd-soc-adau7002.o
++obj-$(CONFIG_SND_SOC_ADAU7118)	+= snd-soc-adau7118.o
++obj-$(CONFIG_SND_SOC_ADAU7118_I2C)	+= snd-soc-adau7118-i2c.o
++obj-$(CONFIG_SND_SOC_ADAU7118_HW)	+= snd-soc-adau7118-hw.o
+ obj-$(CONFIG_SND_SOC_ADAV80X)  += snd-soc-adav80x.o
+ obj-$(CONFIG_SND_SOC_ADAV801)  += snd-soc-adav801.o
+ obj-$(CONFIG_SND_SOC_ADAV803)  += snd-soc-adav803.o
+diff --git a/sound/soc/codecs/adau7118-hw.c b/sound/soc/codecs/adau7118-hw.c
+new file mode 100644
+index 000000000000..45a5d2dcc0f2
+--- /dev/null
++++ b/sound/soc/codecs/adau7118-hw.c
+@@ -0,0 +1,43 @@
++// SPDX-License-Identifier: GPL-2.0
++//
++// Analog Devices ADAU7118 8 channel PDM-to-I2S/TDM Converter Standalone Hw
++// driver
++//
++// Copyright 2019 Analog Devices Inc.
++
++#include <linux/module.h>
++#include <linux/mod_devicetable.h>
++#include <linux/platform_device.h>
++
++#include "adau7118.h"
++
++static int adau7118_probe_hw(struct platform_device *pdev)
++{
++	return adau7118_probe(&pdev->dev, NULL, true);
++}
++
++static const struct of_device_id adau7118_of_match[] = {
++	{ .compatible = "adi,adau7118" },
++	{}
++};
++MODULE_DEVICE_TABLE(of, adau7118_of_match);
++
++static const struct platform_device_id adau7118_id[] = {
++	{ .name	= "adau7118" },
++	{ }
++};
++MODULE_DEVICE_TABLE(platform, adau7118_id);
++
++static struct platform_driver adau7118_driver_hw = {
++	.driver = {
++		.name = "adau7118",
++		.of_match_table = adau7118_of_match,
++	},
++	.probe = adau7118_probe_hw,
++	.id_table = adau7118_id,
++};
++module_platform_driver(adau7118_driver_hw);
++
++MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
++MODULE_DESCRIPTION("ADAU7118 8 channel PDM-to-I2S/TDM Converter driver for standalone hw mode");
++MODULE_LICENSE("GPL");
+diff --git a/sound/soc/codecs/adau7118-i2c.c b/sound/soc/codecs/adau7118-i2c.c
+new file mode 100644
+index 000000000000..a8211362fe82
+--- /dev/null
++++ b/sound/soc/codecs/adau7118-i2c.c
+@@ -0,0 +1,82 @@
++// SPDX-License-Identifier: GPL-2.0
++//
++// Analog Devices ADAU7118 8 channel PDM-to-I2S/TDM Converter driver over I2C
++//
++// Copyright 2019 Analog Devices Inc.
++
++#include <linux/i2c.h>
++#include <linux/module.h>
++#include <linux/regmap.h>
++
++#include "adau7118.h"
++
++static const struct reg_default adau7118_reg_defaults[] = {
++	{ ADAU7118_REG_VENDOR_ID, 0x41 },
++	{ ADAU7118_REG_DEVICE_ID1, 0x71 },
++	{ ADAU7118_REG_DEVICE_ID2, 0x18 },
++	{ ADAU7118_REG_REVISION_ID, 0x00 },
++	{ ADAU7118_REG_ENABLES, 0x3F },
++	{ ADAU7118_REG_DEC_RATIO_CLK_MAP, 0xC0 },
++	{ ADAU7118_REG_HPF_CONTROL, 0xD0 },
++	{ ADAU7118_REG_SPT_CTRL1, 0x41 },
++	{ ADAU7118_REG_SPT_CTRL2, 0x00 },
++	{ ADAU7118_REG_SPT_CX(0), 0x01 },
++	{ ADAU7118_REG_SPT_CX(1), 0x11 },
++	{ ADAU7118_REG_SPT_CX(2), 0x21 },
++	{ ADAU7118_REG_SPT_CX(3), 0x31 },
++	{ ADAU7118_REG_SPT_CX(4), 0x41 },
++	{ ADAU7118_REG_SPT_CX(5), 0x51 },
++	{ ADAU7118_REG_SPT_CX(6), 0x61 },
++	{ ADAU7118_REG_SPT_CX(7), 0x71 },
++	{ ADAU7118_REG_DRIVE_STRENGTH, 0x2a },
++	{ ADAU7118_REG_RESET, 0x00 },
++};
++
++static const struct regmap_config adau7118_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.reg_defaults = adau7118_reg_defaults,
++	.num_reg_defaults = ARRAY_SIZE(adau7118_reg_defaults),
++	.cache_type = REGCACHE_RBTREE,
++	.max_register = ADAU7118_REG_RESET,
++};
++
++static int adau7118_probe_i2c(struct i2c_client *i2c,
++			      const struct i2c_device_id *id)
++{
++	struct regmap *map;
++
++	map = devm_regmap_init_i2c(i2c, &adau7118_regmap_config);
++	if (IS_ERR(map)) {
++		dev_err(&i2c->dev, "Failed to init regmap %ld\n", PTR_ERR(map));
++		return PTR_ERR(map);
++	}
++
++	return adau7118_probe(&i2c->dev, map, false);
++}
++
++static const struct of_device_id adau7118_of_match[] = {
++	{ .compatible = "adi,adau7118" },
++	{}
++};
++MODULE_DEVICE_TABLE(of, adau7118_of_match);
++
++static const struct i2c_device_id adau7118_id[] = {
++	{"adau7118", 0},
++	{}
++};
++MODULE_DEVICE_TABLE(i2c, adau7118_id);
++
++static struct i2c_driver adau7118_driver = {
++	.driver = {
++		.name = "adau7118",
++		.of_match_table = adau7118_of_match,
++	},
++	.probe = adau7118_probe_i2c,
++	.id_table = adau7118_id,
++};
++module_i2c_driver(adau7118_driver);
++
++MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
++MODULE_DESCRIPTION("ADAU7118 8 channel PDM-to-I2S/TDM Converter driver over I2C");
++MODULE_LICENSE("GPL");
+diff --git a/sound/soc/codecs/adau7118.c b/sound/soc/codecs/adau7118.c
+new file mode 100644
+index 000000000000..bf5a5d75f81a
+--- /dev/null
++++ b/sound/soc/codecs/adau7118.c
+@@ -0,0 +1,586 @@
++// SPDX-License-Identifier: GPL-2.0
++//
++// Analog Devices ADAU7118 8 channel PDM-to-I2S/TDM Converter driver
++//
++// Copyright 2019 Analog Devices Inc.
++
++#include <linux/bitfield.h>
++#include <linux/module.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
++#include <sound/pcm_params.h>
++#include <sound/soc.h>
++
++#include "adau7118.h"
++
++#define ADAU7118_DEC_RATIO_MASK		GENMASK(1, 0)
++#define ADAU7118_DEC_RATIO(x)		FIELD_PREP(ADAU7118_DEC_RATIO_MASK, x)
++#define ADAU7118_CLK_MAP_MASK		GENMASK(7, 4)
++#define ADAU7118_SLOT_WIDTH_MASK	GENMASK(5, 4)
++#define ADAU7118_SLOT_WIDTH(x)		FIELD_PREP(ADAU7118_SLOT_WIDTH_MASK, x)
++#define ADAU7118_TRISTATE_MASK		BIT(6)
++#define ADAU7118_TRISTATE(x)		FIELD_PREP(ADAU7118_TRISTATE_MASK, x)
++#define ADAU7118_DATA_FMT_MASK		GENMASK(3, 1)
++#define ADAU7118_DATA_FMT(x)		FIELD_PREP(ADAU7118_DATA_FMT_MASK, x)
++#define ADAU7118_SAI_MODE_MASK		BIT(0)
++#define ADAU7118_SAI_MODE(x)		FIELD_PREP(ADAU7118_SAI_MODE_MASK, x)
++#define ADAU7118_LRCLK_BCLK_POL_MASK	GENMASK(1, 0)
++#define ADAU7118_LRCLK_BCLK_POL(x) \
++				FIELD_PREP(ADAU7118_LRCLK_BCLK_POL_MASK, x)
++#define ADAU7118_SPT_SLOT_MASK		GENMASK(7, 4)
++#define ADAU7118_SPT_SLOT(x)		FIELD_PREP(ADAU7118_SPT_SLOT_MASK, x)
++#define ADAU7118_FULL_SOFT_R_MASK	BIT(1)
++#define ADAU7118_FULL_SOFT_R(x)		FIELD_PREP(ADAU7118_FULL_SOFT_R_MASK, x)
++
++struct adau7118_data {
++	struct regmap *map;
++	struct device *dev;
++	struct regulator *iovdd;
++	struct regulator *dvdd;
++	u32 slot_width;
++	u32 slots;
++	bool hw_mode;
++	bool right_j;
++};
++
++/* Input Enable */
++static const struct snd_kcontrol_new adau7118_dapm_pdm_control[4] = {
++	SOC_DAPM_SINGLE("Capture Switch", ADAU7118_REG_ENABLES, 0, 1, 0),
++	SOC_DAPM_SINGLE("Capture Switch", ADAU7118_REG_ENABLES, 1, 1, 0),
++	SOC_DAPM_SINGLE("Capture Switch", ADAU7118_REG_ENABLES, 2, 1, 0),
++	SOC_DAPM_SINGLE("Capture Switch", ADAU7118_REG_ENABLES, 3, 1, 0),
++};
++
++static const struct snd_soc_dapm_widget adau7118_widgets_sw[] = {
++	/* Input Enable Switches */
++	SND_SOC_DAPM_SWITCH("PDM0", SND_SOC_NOPM, 0, 0,
++			    &adau7118_dapm_pdm_control[0]),
++	SND_SOC_DAPM_SWITCH("PDM1", SND_SOC_NOPM, 0, 0,
++			    &adau7118_dapm_pdm_control[1]),
++	SND_SOC_DAPM_SWITCH("PDM2", SND_SOC_NOPM, 0, 0,
++			    &adau7118_dapm_pdm_control[2]),
++	SND_SOC_DAPM_SWITCH("PDM3", SND_SOC_NOPM, 0, 0,
++			    &adau7118_dapm_pdm_control[3]),
++
++	/* PDM Clocks */
++	SND_SOC_DAPM_SUPPLY("PDM_CLK0", ADAU7118_REG_ENABLES, 4, 0, NULL, 0),
++	SND_SOC_DAPM_SUPPLY("PDM_CLK1", ADAU7118_REG_ENABLES, 5, 0, NULL, 0),
++
++	/* Output channels */
++	SND_SOC_DAPM_AIF_OUT("AIF1TX1", "Capture", 0, ADAU7118_REG_SPT_CX(0),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX2", "Capture", 0, ADAU7118_REG_SPT_CX(1),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX3", "Capture", 0, ADAU7118_REG_SPT_CX(2),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX4", "Capture", 0, ADAU7118_REG_SPT_CX(3),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX5", "Capture", 0, ADAU7118_REG_SPT_CX(4),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX6", "Capture", 0, ADAU7118_REG_SPT_CX(5),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX7", "Capture", 0, ADAU7118_REG_SPT_CX(6),
++			     0, 0),
++	SND_SOC_DAPM_AIF_OUT("AIF1TX8", "Capture", 0, ADAU7118_REG_SPT_CX(7),
++			     0, 0),
++};
++
++static const struct snd_soc_dapm_route adau7118_routes_sw[] = {
++	{ "PDM0", "Capture Switch", "PDM_DAT0" },
++	{ "PDM1", "Capture Switch", "PDM_DAT1" },
++	{ "PDM2", "Capture Switch", "PDM_DAT2" },
++	{ "PDM3", "Capture Switch", "PDM_DAT3" },
++	{ "AIF1TX1", NULL, "PDM0" },
++	{ "AIF1TX2", NULL, "PDM0" },
++	{ "AIF1TX3", NULL, "PDM1" },
++	{ "AIF1TX4", NULL, "PDM1" },
++	{ "AIF1TX5", NULL, "PDM2" },
++	{ "AIF1TX6", NULL, "PDM2" },
++	{ "AIF1TX7", NULL, "PDM3" },
++	{ "AIF1TX8", NULL, "PDM3" },
++	{ "Capture", NULL, "PDM_CLK0" },
++	{ "Capture", NULL, "PDM_CLK1" },
++};
++
++static const struct snd_soc_dapm_widget adau7118_widgets_hw[] = {
++	SND_SOC_DAPM_AIF_OUT("AIF1TX", "Capture", 0, SND_SOC_NOPM, 0, 0),
++};
++
++static const struct snd_soc_dapm_route adau7118_routes_hw[] = {
++	{ "AIF1TX", NULL, "PDM_DAT0" },
++	{ "AIF1TX", NULL, "PDM_DAT1" },
++	{ "AIF1TX", NULL, "PDM_DAT2" },
++	{ "AIF1TX", NULL, "PDM_DAT3" },
++};
++
++static const struct snd_soc_dapm_widget adau7118_widgets[] = {
++	SND_SOC_DAPM_INPUT("PDM_DAT0"),
++	SND_SOC_DAPM_INPUT("PDM_DAT1"),
++	SND_SOC_DAPM_INPUT("PDM_DAT2"),
++	SND_SOC_DAPM_INPUT("PDM_DAT3"),
++};
++
++static int adau7118_set_channel_map(struct snd_soc_dai *dai,
++				    unsigned int tx_num, unsigned int *tx_slot,
++				    unsigned int rx_num, unsigned int *rx_slot)
++{
++	struct adau7118_data *st =
++		snd_soc_component_get_drvdata(dai->component);
++	int chan, ret;
++
++	dev_dbg(st->dev, "Set channel map, %d", tx_num);
++
++	for (chan = 0; chan < tx_num; chan++) {
++		ret = snd_soc_component_update_bits(dai->component,
++					ADAU7118_REG_SPT_CX(chan),
++					ADAU7118_SPT_SLOT_MASK,
++					ADAU7118_SPT_SLOT(tx_slot[chan]));
++		if (ret < 0)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int adau7118_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
++{
++	struct adau7118_data *st =
++		snd_soc_component_get_drvdata(dai->component);
++	int ret = 0;
++	u32 regval;
++
++	dev_dbg(st->dev, "Set format, fmt:%d\n", fmt);
++
++	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
++	case SND_SOC_DAIFMT_I2S:
++		ret = snd_soc_component_update_bits(dai->component,
++						    ADAU7118_REG_SPT_CTRL1,
++						    ADAU7118_DATA_FMT_MASK,
++						    ADAU7118_DATA_FMT(0));
++		break;
++	case SND_SOC_DAIFMT_LEFT_J:
++		ret = snd_soc_component_update_bits(dai->component,
++						    ADAU7118_REG_SPT_CTRL1,
++						    ADAU7118_DATA_FMT_MASK,
++						    ADAU7118_DATA_FMT(1));
++		break;
++	case SND_SOC_DAIFMT_RIGHT_J:
++		st->right_j = true;
++		break;
++	default:
++		dev_err(st->dev, "Invalid format %d",
++			fmt & SND_SOC_DAIFMT_FORMAT_MASK);
++		return -EINVAL;
++	}
++
++	if (ret < 0)
++		return ret;
++
++	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
++	case SND_SOC_DAIFMT_NB_NF:
++		regval = ADAU7118_LRCLK_BCLK_POL(0);
++		break;
++	case SND_SOC_DAIFMT_NB_IF:
++		regval = ADAU7118_LRCLK_BCLK_POL(2);
++		break;
++	case SND_SOC_DAIFMT_IB_NF:
++		regval = ADAU7118_LRCLK_BCLK_POL(1);
++		break;
++	case SND_SOC_DAIFMT_IB_IF:
++		regval = ADAU7118_LRCLK_BCLK_POL(3);
++		break;
++	default:
++		dev_err(st->dev, "Invalid Inv mask %d",
++			fmt & SND_SOC_DAIFMT_INV_MASK);
++		return -EINVAL;
++	}
++
++	ret = snd_soc_component_update_bits(dai->component,
++					    ADAU7118_REG_SPT_CTRL2,
++					    ADAU7118_LRCLK_BCLK_POL_MASK,
++					    regval);
++	if (ret < 0)
++		return ret;
++
++	return 0;
++}
++
++static int adau7118_set_tristate(struct snd_soc_dai *dai, int tristate)
++{
++	struct adau7118_data *st =
++		snd_soc_component_get_drvdata(dai->component);
++	int ret;
++
++	dev_dbg(st->dev, "Set tristate, %d\n", tristate);
++
++	ret = snd_soc_component_update_bits(dai->component,
++					    ADAU7118_REG_SPT_CTRL1,
++					    ADAU7118_TRISTATE_MASK,
++					    ADAU7118_TRISTATE(tristate));
++	if (ret < 0)
++		return ret;
++
++	return 0;
++}
++
++static int adau7118_set_tdm_slot(struct snd_soc_dai *dai, unsigned int tx_mask,
++				 unsigned int rx_mask, int slots,
++				 int slot_width)
++{
++	struct adau7118_data *st =
++		snd_soc_component_get_drvdata(dai->component);
++	int ret = 0;
++	u32 regval;
++
++	dev_dbg(st->dev, "Set tdm, slots:%d width:%d\n", slots, slot_width);
++
++	switch (slot_width) {
++	case 32:
++		regval = ADAU7118_SLOT_WIDTH(0);
++		break;
++	case 24:
++		regval = ADAU7118_SLOT_WIDTH(2);
++		break;
++	case 16:
++		regval = ADAU7118_SLOT_WIDTH(1);
++		break;
++	default:
++		dev_err(st->dev, "Invalid slot width:%d\n", slot_width);
++		return -EINVAL;
++	}
++
++	ret = snd_soc_component_update_bits(dai->component,
++					    ADAU7118_REG_SPT_CTRL1,
++					    ADAU7118_SLOT_WIDTH_MASK, regval);
++	if (ret < 0)
++		return ret;
++
++	st->slot_width = slot_width;
++	st->slots = slots;
++
++	return 0;
++}
++
++static int adau7118_hw_params(struct snd_pcm_substream *substream,
++			      struct snd_pcm_hw_params *params,
++			      struct snd_soc_dai *dai)
++{
++	struct adau7118_data *st =
++		snd_soc_component_get_drvdata(dai->component);
++	u32 data_width = params_width(params), slots_width;
++	int ret;
++	u32 regval;
++
++	if (!st->slots) {
++		/* set stereo mode */
++		ret = snd_soc_component_update_bits(dai->component,
++						    ADAU7118_REG_SPT_CTRL1,
++						    ADAU7118_SAI_MODE_MASK,
++						    ADAU7118_SAI_MODE(0));
++		if (ret < 0)
++			return ret;
++
++		slots_width = 32;
++	} else {
++		slots_width = st->slot_width;
++	}
++
++	if (data_width > slots_width) {
++		dev_err(st->dev, "Invalid data_width:%d, slots_width:%d",
++			data_width, slots_width);
++		return -EINVAL;
++	}
++
++	if (st->right_j) {
++		switch (slots_width - data_width) {
++		case 8:
++			/* delay bclck by 8 */
++			regval = ADAU7118_DATA_FMT(2);
++			break;
++		case 12:
++			/* delay bclck by 12 */
++			regval = ADAU7118_DATA_FMT(3);
++			break;
++		case 16:
++			/* delay bclck by 16 */
++			regval = ADAU7118_DATA_FMT(4);
++			break;
++		default:
++			dev_err(st->dev,
++				"Cannot set right_j setting, slot_w:%d, data_w:%d\n",
++					slots_width, data_width);
++			return -EINVAL;
++		}
++
++		ret = snd_soc_component_update_bits(dai->component,
++						    ADAU7118_REG_SPT_CTRL1,
++						    ADAU7118_DATA_FMT_MASK,
++						    regval);
++		if (ret < 0)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int adau7118_set_bias_level(struct snd_soc_component *component,
++				   enum snd_soc_bias_level level)
++{
++	struct adau7118_data *st = snd_soc_component_get_drvdata(component);
++	int ret = 0;
++
++	dev_dbg(st->dev, "Set bias level %d\n", level);
++
++	switch (level) {
++	case SND_SOC_BIAS_ON:
++	case SND_SOC_BIAS_PREPARE:
++		break;
++
++	case SND_SOC_BIAS_STANDBY:
++		if (snd_soc_component_get_bias_level(component) ==
++							SND_SOC_BIAS_OFF) {
++			/* power on */
++			ret = regulator_enable(st->iovdd);
++			if (ret)
++				return ret;
++
++			/* there's no timing constraints before enabling dvdd */
++			ret = regulator_enable(st->dvdd);
++			if (ret) {
++				regulator_disable(st->iovdd);
++				return ret;
++			}
++
++			if (st->hw_mode)
++				return 0;
++
++			regcache_cache_only(st->map, false);
++			/* sync cache */
++			ret = snd_soc_component_cache_sync(component);
++		}
++		break;
++	case SND_SOC_BIAS_OFF:
++		/* power off */
++		ret = regulator_disable(st->dvdd);
++		if (ret)
++			return ret;
++
++		ret = regulator_disable(st->iovdd);
++		if (ret)
++			return ret;
++
++		if (st->hw_mode)
++			return 0;
++
++		/* cache only */
++		regcache_mark_dirty(st->map);
++		regcache_cache_only(st->map, true);
++
++		break;
++	}
++
++	return ret;
++}
++
++static int adau7118_component_probe(struct snd_soc_component *component)
++{
++	struct adau7118_data *st = snd_soc_component_get_drvdata(component);
++	struct snd_soc_dapm_context *dapm =
++					snd_soc_component_get_dapm(component);
++	int ret = 0;
++
++	if (st->hw_mode) {
++		ret = snd_soc_dapm_new_controls(dapm, adau7118_widgets_hw,
++					ARRAY_SIZE(adau7118_widgets_hw));
++		if (ret)
++			return ret;
++
++		ret = snd_soc_dapm_add_routes(dapm, adau7118_routes_hw,
++					      ARRAY_SIZE(adau7118_routes_hw));
++	} else {
++		snd_soc_component_init_regmap(component, st->map);
++		ret = snd_soc_dapm_new_controls(dapm, adau7118_widgets_sw,
++					ARRAY_SIZE(adau7118_widgets_sw));
++		if (ret)
++			return ret;
++
++		ret = snd_soc_dapm_add_routes(dapm, adau7118_routes_sw,
++					      ARRAY_SIZE(adau7118_routes_sw));
++	}
++
++	return ret;
++}
++
++static const struct snd_soc_dai_ops adau7118_ops = {
++	.hw_params = adau7118_hw_params,
++	.set_channel_map = adau7118_set_channel_map,
++	.set_fmt = adau7118_set_fmt,
++	.set_tdm_slot = adau7118_set_tdm_slot,
++	.set_tristate = adau7118_set_tristate,
++};
++
++static struct snd_soc_dai_driver adau7118_dai = {
++	.name = "adau7118-hifi-capture",
++	.capture = {
++		.stream_name = "Capture",
++		.channels_min = 1,
++		.channels_max = 8,
++		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |
++			SNDRV_PCM_FMTBIT_S20_LE | SNDRV_PCM_FMTBIT_S24_LE |
++			SNDRV_PCM_FMTBIT_S24_3LE,
++		.rates = SNDRV_PCM_RATE_CONTINUOUS,
++		.rate_min = 4000,
++		.rate_max = 192000,
++		.sig_bits = 24,
++	},
++};
++
++static const struct snd_soc_component_driver adau7118_component_driver = {
++	.probe			= adau7118_component_probe,
++	.set_bias_level		= adau7118_set_bias_level,
++	.dapm_widgets		= adau7118_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(adau7118_widgets),
++	.use_pmdown_time	= 1,
++	.endianness		= 1,
++	.non_legacy_dai_naming	= 1,
++};
++
++static void adau7118_regulator_disable(void *data)
++{
++	struct adau7118_data *st = data;
++	int ret;
++	/*
++	 * If we fail to disable DVDD, don't bother in trying IOVDD. We
++	 * actually don't want to be left in the situation where DVDD
++	 * is enabled and IOVDD is disabled.
++	 */
++	ret = regulator_disable(st->dvdd);
++	if (ret)
++		return;
++
++	regulator_disable(st->iovdd);
++}
++
++static int adau7118_regulator_setup(struct adau7118_data *st)
++{
++	st->iovdd = devm_regulator_get(st->dev, "IOVDD");
++	if (IS_ERR(st->iovdd)) {
++		dev_err(st->dev, "Could not get iovdd: %ld\n",
++			PTR_ERR(st->iovdd));
++		return PTR_ERR(st->iovdd);
++	}
++
++	st->dvdd = devm_regulator_get(st->dev, "DVDD");
++	if (IS_ERR(st->dvdd)) {
++		dev_err(st->dev, "Could not get dvdd: %ld\n",
++			PTR_ERR(st->dvdd));
++		return PTR_ERR(st->dvdd);
++	}
++	/* just assume the device is in reset */
++	if (!st->hw_mode) {
++		regcache_mark_dirty(st->map);
++		regcache_cache_only(st->map, true);
++	}
++
++	return devm_add_action_or_reset(st->dev, adau7118_regulator_disable,
++					st);
++}
++
++static int adau7118_parset_dt(const struct adau7118_data *st)
++{
++	int ret;
++	u32 dec_ratio = 0;
++	/* 4 inputs */
++	u32 clk_map[4], regval;
++
++	if (st->hw_mode)
++		return 0;
++
++	ret = device_property_read_u32(st->dev, "adi,decimation-ratio",
++				       &dec_ratio);
++	if (!ret) {
++		switch (dec_ratio) {
++		case 64:
++			regval = ADAU7118_DEC_RATIO(0);
++			break;
++		case 32:
++			regval = ADAU7118_DEC_RATIO(1);
++			break;
++		case 16:
++			regval = ADAU7118_DEC_RATIO(2);
++			break;
++		default:
++			dev_err(st->dev, "Invalid dec ratio: %u", dec_ratio);
++			return -EINVAL;
++		}
++
++		ret = regmap_update_bits(st->map,
++					 ADAU7118_REG_DEC_RATIO_CLK_MAP,
++					 ADAU7118_DEC_RATIO_MASK, regval);
++		if (ret)
++			return ret;
++	}
++
++	ret = device_property_read_u32_array(st->dev, "adi,pdm-clk-map",
++					     clk_map, ARRAY_SIZE(clk_map));
++	if (!ret) {
++		int pdm;
++		u32 _clk_map = 0;
++
++		for (pdm = 0; pdm < ARRAY_SIZE(clk_map); pdm++)
++			_clk_map |= (clk_map[pdm] << (pdm + 4));
++
++		ret = regmap_update_bits(st->map,
++					 ADAU7118_REG_DEC_RATIO_CLK_MAP,
++					 ADAU7118_CLK_MAP_MASK, _clk_map);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++int adau7118_probe(struct device *dev, struct regmap *map, bool hw_mode)
++{
++	struct adau7118_data *st;
++	int ret;
++
++	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
++	if (!st)
++		return -ENOMEM;
++
++	st->dev = dev;
++	st->hw_mode = hw_mode;
++	dev_set_drvdata(dev, st);
++
++	if (!hw_mode) {
++		st->map = map;
++		adau7118_dai.ops = &adau7118_ops;
++		/*
++		 * Perform a full soft reset. This will set all register's
++		 * with their reset values.
++		 */
++		ret = regmap_update_bits(map, ADAU7118_REG_RESET,
++					 ADAU7118_FULL_SOFT_R_MASK,
++					 ADAU7118_FULL_SOFT_R(1));
++		if (ret)
++			return ret;
++	}
++
++	ret = adau7118_parset_dt(st);
++	if (ret)
++		return ret;
++
++	ret = adau7118_regulator_setup(st);
++	if (ret)
++		return ret;
++
++	return devm_snd_soc_register_component(dev,
++					       &adau7118_component_driver,
++					       &adau7118_dai, 1);
++}
++EXPORT_SYMBOL_GPL(adau7118_probe);
++
++MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
++MODULE_DESCRIPTION("ADAU7118 8 channel PDM-to-I2S/TDM Converter driver");
++MODULE_LICENSE("GPL");
+diff --git a/sound/soc/codecs/adau7118.h b/sound/soc/codecs/adau7118.h
+new file mode 100644
+index 000000000000..c65679a4dff1
+--- /dev/null
++++ b/sound/soc/codecs/adau7118.h
+@@ -0,0 +1,24 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef _LINUX_ADAU7118_H
++#define _LINUX_ADAU7118_H
++
++struct regmap;
++struct device;
++
++/* register map */
++#define ADAU7118_REG_VENDOR_ID		0x00
++#define ADAU7118_REG_DEVICE_ID1		0x01
++#define ADAU7118_REG_DEVICE_ID2		0x02
++#define ADAU7118_REG_REVISION_ID	0x03
++#define ADAU7118_REG_ENABLES		0x04
++#define ADAU7118_REG_DEC_RATIO_CLK_MAP	0x05
++#define ADAU7118_REG_HPF_CONTROL	0x06
++#define ADAU7118_REG_SPT_CTRL1		0x07
++#define ADAU7118_REG_SPT_CTRL2		0x08
++#define ADAU7118_REG_SPT_CX(num)	(0x09 + (num))
++#define ADAU7118_REG_DRIVE_STRENGTH	0x11
++#define ADAU7118_REG_RESET		0x12
++
++int adau7118_probe(struct device *dev, struct regmap *map, bool hw_mode);
++
++#endif
 -- 
-Kind regards,
+2.23.0
 
-Sakari Ailus
