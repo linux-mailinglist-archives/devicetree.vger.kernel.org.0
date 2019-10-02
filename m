@@ -2,102 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66832C49DC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 10:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDC21C4A27
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726946AbfJBIoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 04:44:30 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:45592 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725988AbfJBIoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 04:44:30 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r5so18569730wrm.12;
-        Wed, 02 Oct 2019 01:44:29 -0700 (PDT)
+        id S1725848AbfJBJAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 05:00:45 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:41498 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726076AbfJBJAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:00:45 -0400
+Received: by mail-io1-f65.google.com with SMTP id n26so26615013ioj.8
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 02:00:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8K7h7HUyw90enLd8fQVTYuZsXONTGa9SFgE/KcYk7vs=;
-        b=H4ga2iLEryrxqvflHTtca2vKkCgGeokG+ejsoRMU0WVStBKbBr8fcIcjoXakIR69eT
-         Qpwddh8aBaHsjRgog6AA7cFmSDh+ctXZlDsQ8V2j84lvjACGjeZtU1gQZKMlia8aO5/t
-         7OvtGl+BWcY16ginjj4LY7nyIwNKioxsUwvg2aCCepCJk44+KJF9QVG1wwlUzE65Q0OE
-         d1jB+RKlRDnhBz5CWqBUXNhV66xm5hwyjgqvWqTg/LTCyJWvmIvu+Lb7fRX5F6wiU4zb
-         B83/tC1MXvsEz/JYD+jLfZFd0THvnIwQcJO0XWpVcngBpZ3GDNd25eqbeZBtRnKdZsiP
-         mSWQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8OMb6qYz7L39aWv7huGiD2tvBbT7Ji7GJd30UEGa+oU=;
+        b=XAemzTfZ5XTN/w/nxCS7Stgtb84tkodIy5FcsHED/wIXFB68x1T84J/iRef3lIzVa4
+         fnzEuGlZckmxDnTqZ+Mq/yOgQrL/lOSg3RiWSZjPsv+OzgBAMy2BjMLaZ9Y53O3ZFG82
+         VGgyS/ChXqJQ9XqFmU1oaDphAfsJbO4SE/cFAH1gD+Z608Rzu8hr9fKMWwwSo/MtyPlT
+         LgmT5DtzoM7getSdU5n1/TBljBlFye3lZO0BpJ6Gib74zZGiusnBPV3gGwaiU3Fcb4jx
+         CrsAZKpUl7lBQPAzDizJpVsNJaBGcMGELRQlhWwEgPYgsP7X9wUGi8v4w/Ry7G6cQPXX
+         L0Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8K7h7HUyw90enLd8fQVTYuZsXONTGa9SFgE/KcYk7vs=;
-        b=PNL9RJp+6FL3t5xXNAOHn8ar1VRLw61ptAn/0HSKR/5U2XngC3ybxuam2X+j/PGe42
-         9HY8gR2esiSnmeEkZ39kh7WzAeTY6BxFgoBD9hiiSzMA03SlpbPf4mElY8OCs6IjB+sz
-         Xy5t182WTmSbZmiaJpXnNPcVfy6Cso6GiPcAGTx8/UeEDFJGdOBxFp83mrd0WGokNIQr
-         ++LymrWFiSog0tUPZ9tZQLHa+/xLry1yxHZH5+5f1NeVjYoOk7Hj97h6N7JpYASfUaB4
-         y6O+tgXUNuixbvUw7IOaXmQY8M/J9ztUtctkohoZAAdm8APKPh4L9pxC2DHKp+ckpwUh
-         bsyA==
-X-Gm-Message-State: APjAAAVxdnbpLO6q9Ncz+z8JHLHp8RaNyBHW5DmxBNx4tZA24f1F94mX
-        WqVNWBU3lUAZZeAJ7AIZ674=
-X-Google-Smtp-Source: APXvYqwU9NBbWZxUMWnf59AxkO4xub+qdOeGyBh+vhJmkqA5LxZqkHxzsR61IjlUIUupcBWIrJEqrQ==
-X-Received: by 2002:adf:e701:: with SMTP id c1mr1759802wrm.296.1570005868747;
-        Wed, 02 Oct 2019 01:44:28 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id h10sm4269419wrq.95.2019.10.02.01.44.27
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 02 Oct 2019 01:44:28 -0700 (PDT)
-Date:   Wed, 2 Oct 2019 10:44:26 +0200
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Priit Laes <plaes@plaes.org>
-Cc:     catalin.marinas@arm.com, davem@davemloft.net,
-        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
-        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
-        wens@csie.org, will@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [linux-sunxi] [PATCH v2 04/11] ARM: dts: sun8i: R40: add crypto
- engine node
-Message-ID: <20191002084426.GB3101@Red>
-References: <20191001184141.27956-1-clabbe.montjoie@gmail.com>
- <20191001184141.27956-5-clabbe.montjoie@gmail.com>
- <20191002080827.GB6347@plaes.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8OMb6qYz7L39aWv7huGiD2tvBbT7Ji7GJd30UEGa+oU=;
+        b=fka/WrQs7j7enlou52JpDwEZz63UKdZy0p2xSPBEdR0r297tjkOKqUsMPZXZk96bmc
+         eS7sl/SFaF+5vcvx8wismGzVR2xaCxkUzGPK/Luk5xogErVM7Tjg/ZHL1t2ih2TqUksX
+         /ea0996D52T2aRbOsxG9jNW4u2OHkGliQ3axYq4wTfj/sTmBAwL0vlWhI1KYoXETG5/l
+         mNpJGEdINTf3l4UJB8d6h7ygF3Gy3Zjs7zGgMwvr3QY9EXqNVoFenRVj7JktcGkIbA6g
+         Ef1mrKU04+Zp58oYtC5GtHzXIMjlXQHYzn0iB1SXOcaJZJR/8IXH+F6K9p2pcLm1Y+QX
+         boMw==
+X-Gm-Message-State: APjAAAUyVtnjHfxBXeSQx4y0B4ZYP2W1TtTgImaLNAyKVK9cBkEEf4w1
+        NESmnplksqEOAPNbXHzqF6qNRkw3LCQcCpZ82Sd+CQ==
+X-Google-Smtp-Source: APXvYqwEzjF0lbQ2ABgEhpFVDzqJdfpxcmC8WbxgaqLG7Ibv/dVo8qc6NFmWgAb3blXoWa15bzoJ2xyQyu2JM1jS9Iw=
+X-Received: by 2002:a92:98d3:: with SMTP id a80mr2849757ill.167.1570006843856;
+ Wed, 02 Oct 2019 02:00:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191002080827.GB6347@plaes.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <cover.1568224032.git.hns@goldelico.com> <20190916162816.GF52127@atomide.com>
+ <DAF6ACB4-AD7E-4528-9F4B-C54104B5E260@goldelico.com>
+In-Reply-To: <DAF6ACB4-AD7E-4528-9F4B-C54104B5E260@goldelico.com>
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+Date:   Wed, 2 Oct 2019 11:00:32 +0200
+Message-ID: <CAKohpo=44UkJ3RBjtB8F3=1D9HzicULh303jF2uowiboa2328g@mail.gmail.com>
+Subject: Re: [PATCH v3 0/8] OMAP3: convert opp-v1 to opp-v2 and read speed
+ binned / 720MHz grade bits
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?UTF-8?Q?Andr=C3=A9_Roth?= <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, kernel@pyra-handheld.com,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 02, 2019 at 08:08:27AM +0000, Priit Laes wrote:
-> On Tue, Oct 01, 2019 at 08:41:34PM +0200, Corentin Labbe wrote:
-> > The Crypto Engine is a hardware cryptographic offloader that supports
-> > many algorithms.
-> > It could be found on most Allwinner SoCs.
-> > 
-> > This patch enables the Crypto Engine on the Allwinner R40 SoC Device-tree.
-> > 
-> > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/sun8i-r40.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-> > index bde068111b85..1fc3297a55ec 100644
-> > --- a/arch/arm/boot/dts/sun8i-r40.dtsi
-> > +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-> > @@ -266,6 +266,16 @@
-> >  			#phy-cells = <1>;
-> >  		};
-> >  
-> > +		crypto: crypto-engine@1c15000 {
-> 
-> All the other .dtsi files have `crypto: crypto@...` instead of crypto-engine.
-> 
+On Tue, 17 Sep 2019 at 16:35, H. Nikolaus Schaller <hns@goldelico.com> wrote:
+>
+> Hi Tony,
+>
+> > Am 16.09.2019 um 18:28 schrieb Tony Lindgren <tony@atomide.com>:
+> >
+> > * H. Nikolaus Schaller <hns@goldelico.com> [190911 17:48]:
+> >> CHANGES V3:
+> >> * make omap36xx control the abb-ldo and properly switch mode
+> >>  (suggested by Adam Ford <aford173@gmail.com>)
+> >> * add a note about enabling the turbo-mode OPPs
+> >
+> > Looks good to me, when applying, please provide a
+> > minimal immutable branch maybe against v5.3 or v5.4-rc1,
+> > that I can also merge in if needed for the dts changes.
+>
+> Should I resend a v4 with your Acked-By added?
 
-Hello
+I will pick them up in a few days. I was waiting for rc1 to get released and
+am on vacation right now. Tony already provided his Acks.
 
-I will fix that.
-
-Thanks
-Regards
+--
+viresh
