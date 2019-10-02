@@ -2,152 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C38C90CE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 20:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E56C9151
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 21:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728055AbfJBS2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 14:28:11 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43682 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726076AbfJBS2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 14:28:11 -0400
-Received: by mail-pg1-f196.google.com with SMTP id v27so12326847pgk.10;
-        Wed, 02 Oct 2019 11:28:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=izcdKMTlTPXdg1rZpK9PkNPTeAL5ACc5p0aT6ECn+3o=;
-        b=nr6ZKcXN/729CI5YvKkqVc0Bz2wyp7AqMiNJbnneIbJ2S8a6/RpgT+vQxveooa1g8o
-         Tzstjrebdj0ch6CBEQIhLHedt+Meqh8poQODSN2lg0OykjXXZCvv3ItaPXFO7ZImXqcW
-         RuKmutNc32nfhTfdTSE+Gn+FP0hyvVehIb12ZNHr5rdWDezRIrhU/4qCY2koq02vv9hS
-         0JYsKwzPEkKLeHC0o1yMLr4lNeC7nIidqjJQlgZ17X3hwG7uMGUGlb0FYDKstybAoxSN
-         PuzGKEISFL71Mt9LOzHTLH19Bi/ikZqtSvsTTAUBs/9/pSrhf3mQrJw/Bi+Y2mWPIur/
-         yzHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=izcdKMTlTPXdg1rZpK9PkNPTeAL5ACc5p0aT6ECn+3o=;
-        b=pmsHGoI1ePqZE8TLIu0Dey8pVqh1NIIj/A8bMidf6zGs1MH2FE1AqnpVY91B+3CLt4
-         8BheWaKNwiIe64AuVFIJOqTmRF+wchCvko/tc6ceKJuIY8xNxd18XG4w7zxqtj7bOmQM
-         23z+BEWQzE3U6Kc5/wR3Ro7gBJr/RNPvTtzVCBwWjkobkxurHdBt8LgZEXKKObj/ijfp
-         V1Z9ByZuI2uY3INWNDsKubaNPWcLw4eDL/a8pIDp789JIRi43c9zAMNUZiMvu13fc4ug
-         oD3vwMBWsm5OejBjBXsSYU+mE8l75Yv7FuI+nl6TSMi5293fIXUyqTuPChzLR1LiXXB7
-         3y7Q==
-X-Gm-Message-State: APjAAAWttjPq1lnPKLQ3CMBX0r/izgeFIFB8DCBRwvf1KTLBlY3nuQVw
-        rLq29wRs+YQEyzQLoW9cqqNMYGeN
-X-Google-Smtp-Source: APXvYqwrs3FB89RH0+kgXBF3ejwmYPZLTgHaLNuUiXE1AjcShSZR76+3xPYW28RCBcE0p63294782w==
-X-Received: by 2002:a17:90a:c214:: with SMTP id e20mr5758828pjt.81.1570040889544;
-        Wed, 02 Oct 2019 11:28:09 -0700 (PDT)
-Received: from [10.69.78.41] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id b14sm162486pfi.95.2019.10.02.11.28.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Oct 2019 11:28:08 -0700 (PDT)
-Subject: Re: [PATCH 00/11] of: Fix DMA configuration for non-DT masters
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        etnaviv@lists.freedesktop.org,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>, Stefan Wahren <wahrenst@gmx.net>,
-        james.quinlan@broadcom.com, linux-pci@vger.kernel.org,
-        linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org,
-        Dan Williams <dan.j.williams@intel.com>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>
-References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
- <CAL_Jsq+v+svTyna7UzQdRVqfNc5Z_bgWzxNRXv7-Wqv3NwDu2g@mail.gmail.com>
- <d1a31a2ec8eb2f226b1fb41f6c24ffb47c3bf7c7.camel@suse.de>
- <e404c65b-5a66-6f91-5b38-8bf89a7697b2@arm.com>
- <43fb5fe1de317d65a4edf592f88ea150c6e3b8cc.camel@suse.de>
- <CAL_JsqLhx500cx3YLoC7HL1ux3bBpV+fEA2Qnk7D5RFGgiGzSw@mail.gmail.com>
- <aa4c8d62-7990-e385-2bb1-cec55148f0a8@arm.com>
- <CAL_JsqKKYcHPnA80ZwLY=Sk3e5MqrimedUhWQ5+iuPZXQxYHdA@mail.gmail.com>
- <307b988d0c67fb1c42166eca12742bcfda09d92d.camel@suse.de>
- <c27a51e1-1adf-ae6a-dc67-ae76222a1163@arm.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <fbae48ca-fbd4-e32b-e874-92b5bba5df4d@gmail.com>
-Date:   Wed, 2 Oct 2019 11:28:06 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1728984AbfJBTGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 15:06:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34750 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728979AbfJBTGP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 15:06:15 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B83B9222C0;
+        Wed,  2 Oct 2019 19:06:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570043173;
+        bh=8sMo4FJfboakcK868/Hiy+nKIlOxxVLfCFn8JuRQTxA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=liDCze7O2YwLXEO94UIjRrUz826pXyDkWV3SVv4RO9EsY+bu3qzZ0LRWRQE8D1egP
+         f5VhggSpntyDP1ySr1PoDxz2Mq+tFpKK78y6FcctvY7B1FVkE2EsvxQtZbCWjI9zLa
+         Uz7NkLmY5Mj2MvFzE0yYLL0dAPGt1a9x/UGo14Kw=
+Received: by mail-qt1-f181.google.com with SMTP id c3so59222qtv.10;
+        Wed, 02 Oct 2019 12:06:13 -0700 (PDT)
+X-Gm-Message-State: APjAAAWLntryWmPGGnCpTWsKb+JsKiGEUzKfY1CJtmGPoji+7LGUa1VT
+        gmEmQl1SI1hXR22zTx6723UBehApL2ZMcVEqKg==
+X-Google-Smtp-Source: APXvYqyP/AkJgtrsX9gl2TGkwS1JLKrJIncGvW+nvBz1GMCbZV4b9uH9RP7xJaCQd5dNgn31KtV92hGdTzUoKoefvnA=
+X-Received: by 2002:a05:6214:30c:: with SMTP id i12mr4557087qvu.135.1570043172759;
+ Wed, 02 Oct 2019 12:06:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <c27a51e1-1adf-ae6a-dc67-ae76222a1163@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190924124945.491326-1-nuno.sa@analog.com> <20190924124945.491326-4-nuno.sa@analog.com>
+ <20191002002331.GA17502@bogus> <a85b33d3cd24b4225e4be3a25221f9c56cdcca5c.camel@analog.com>
+In-Reply-To: <a85b33d3cd24b4225e4be3a25221f9c56cdcca5c.camel@analog.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 2 Oct 2019 14:06:01 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJPFfUmOOQ-f_ibbTXdzgYxYMf2+7HCq2eBn_MkfRsdbQ@mail.gmail.com>
+Message-ID: <CAL_JsqJPFfUmOOQ-f_ibbTXdzgYxYMf2+7HCq2eBn_MkfRsdbQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: iio: Add ltc2947 documentation
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 2, 2019 at 10:09 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
+>
+> On Wed, 2019-10-02 at 09:19 -0500, Rob Herring wrote:
+> >
+> > On Tue, Sep 24, 2019 at 02:49:45PM +0200, Nuno S=C3=A1 wrote:
+> > > Document the LTC2947 device devicetree bindings.
+> > >
+> > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > ---
+> > >  .../bindings/hwmon/adi,ltc2947.yaml           | 101
+> > > ++++++++++++++++++
+> > >  MAINTAINERS                                   |   1 +
+> > >  2 files changed, 102 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > new file mode 100644
+> > > index 000000000000..2ea0187421d4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > @@ -0,0 +1,101 @@
+> >
+> > Missing license. Please make new bindings (GPL-2.0-only OR BSD-2-
+> > Clause)
+>
+> ack.
+>
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices LTC2947 high precision power and energy
+> > > monitor
+> > > +
+> > > +maintainers:
+> > > +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > +
+> > > +description: |
+> > > +  Analog Devices LTC2947 high precision power and energy monitor
+> > > over SPI or I2C.
+> > > +
+> > > +
+> > > https://www.analog.com/media/en/technical-documentation/data-sheets/L=
+TC2947.pdf
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - adi,ltc2947
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    description:
+> > > +      The LTC2947 uses either a trimmed internal oscillator or an
+> > > external clock
+> > > +      as the time base for determining the integration period to
+> > > represent time,
+> > > +      charge and energy. When an external clock is used, this
+> > > property must be
+> > > +      set accordingly.
+> > > +    maxItems: 1
+> > > +
+> > > +  adi,accumulator-ctl-pol:
+> > > +    description:
+> > > +      This property controls the polarity of current that is
+> > > accumulated to
+> > > +      calculate charge and energy so that, they can be only
+> > > accumulated for
+> > > +      positive current for example. Since there are two sets of
+> > > registers for
+> > > +      the accumulated values, this entry can also have two items
+> > > which sets
+> > > +      energy1/charge1 and energy2/charger2 respectively. Check
+> > > table 12 of the
+> > > +      datasheet for more information on the supported options.
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +      - enum: [0, 1, 2, 3]
+> > > +      - minItems: 2
+> > > +      - maxItems: 2
+> > > +    default: [0, 0]
+> >
+> > This should be:
+> >
+> > allOf:
+> >   - $ref: ...
+> > items:
+> >   enum: [0, 1, 2, 3]
+> >   default: 0
+> > minItems: 2
+> > maxItems: 2
+>
+> I was expecting this already. When upstreaming another device, I
+> realized some errors with `make dt_binding_check` when evaluating the
+> example. Just for my understanding, is this also incorrect?
 
+The allOf structure like this also works. You'll get better error
+messages if schemas are not under an allOf.
 
-On 9/26/2019 4:20 AM, Robin Murphy wrote:
-> On 2019-09-26 11:44 am, Nicolas Saenz Julienne wrote:
->>>>>> Robin, have you looked into supporting multiple dma-ranges? It's the
->>>>>> next thing
->>>>>> we need for BCM STB's PCIe. I'll have a go at it myself if nothing
->>>>>> is in
->>>>>> the
->>>>>> works already.
->>>>>
->>>>> Multiple dma-ranges as far as configuring inbound windows should work
->>>>> already other than the bug when there's any parent translation. But if
->>>>> you mean supporting multiple DMA offsets and masks per device in the
->>>>> DMA API, there's nothing in the works yet.
->>
->> Sorry, I meant supporting multiple DMA offsets[1]. I think I could
->> still make
->> it with a single DMA mask though.
-> 
-> The main problem for supporting that case in general is the disgusting
-> carving up of the physical memory map you may have to do to guarantee
-> that a single buffer allocation cannot ever span two windows with
-> different offsets. I don't think we ever reached a conclusion on whether
-> that was even achievable in practice.
+> allOf:
+>   - $ref: /schemas/types.yaml#/definitions/uint32-array
+>   - minItems: 2
+>     maxItems: 2
+>     items:
+>       enum: [0, 1, 2, 3]
+>     default: 0
 
-It is with the Broadcom STB SoCs which have between 1 and 3 memory
-controllers depending on the SoC, and multiple dma-ranges cells for PCIe
-as a consequence.
+However, 'default' needs to be indented under 'items'.
 
-Each memory controller has a different physical address aperture in the
-CPU's physical address map (e.g.: MEMC0 is 0x0 - 0x3fff_ffff, MEMC1
-0x4000_0000 - 0x7ffff_ffff and MEMC2 0x8000_0000 - 0xbfff_ffff, not
-counting the extension regions above 4GB), and while the CPU is
-scheduled and arbitrated the same way across all memory controllers
-(thus making it virtually UMA, almost) having a buffer span two memory
-controllers would be problematic because the memory controllers do not
-know how to guarantee the transaction ordering and buffer data
-consistency in both DRAM itself and for other memory controller clients,
-like PCIe.
+>
+> I used a similar pattern in another device that is also waiting for
+> review :).
+> > > +
+> > > +  adi,accumulation-deadband-microamp:
+> > > +    description:
+> > > +      This property controls the Accumulation Dead band which
+> > > allows to set the
+> > > +      level of current below which no accumulation takes place.
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > > +      - maximum: 255
+> >
+> > maximum should be at same indent as allOf. Or default should be at
+> > the
+> > same level as maximum (under a single '-' list entry).
+>
+> So it should be?
+>
+> allOf:
+>   - $ref: /schemas/types.yaml#/definitions/uint32
+>   - maximum: 255
+>     default: 0
 
-We historically had to reserve the last 4KB of each memory controller to
-avoid problematic controllers like EHCI to prefetch beyond the end of a
-memory controller's populated memory and that also incidentally takes
-care of never having a buffer cross a controller boundary. Either you
-can allocate the entire buffer on a given memory controller, or you
-cannot allocate memory at all on that zone/region and another one must
-be found (or there is no more memory and there is a genuine OOM).
-
-The way we reserve memory right now is based on the first patch
-submitted by Jim:
-
-https://lore.kernel.org/patchwork/patch/988469/
-
-whereby we read the memory node's "reg" property and we map the physical
-addresses to the memory controller configuration read from the specific
-registers in the CPU's Bus Interface Unit (where the memory controller
-apertures are architecturally defined) and then we use that to call
-memblock_reserve() (not part of that patch, it should be though).
--- 
-Florian
+Yes.
