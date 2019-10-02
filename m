@@ -2,87 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF7C5C9401
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 00:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DDF4C9419
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 00:10:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726081AbfJBWFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 18:05:45 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:40069 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725975AbfJBWFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 18:05:45 -0400
-Received: by mail-qk1-f196.google.com with SMTP id y144so311127qkb.7;
-        Wed, 02 Oct 2019 15:05:45 -0700 (PDT)
+        id S1726165AbfJBWKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 18:10:07 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:45731 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725799AbfJBWKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 18:10:07 -0400
+Received: by mail-io1-f68.google.com with SMTP id c25so860781iot.12
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 15:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1s738KR7peDPdk0egrEOotdFH/XvdoPuk8qM2dZV4+M=;
-        b=RsaX3chVgIapb461BDRuC0sDD0I5xgnK4SHyqIX74Teg/PoXx45jz4Bn1w1j0x915o
-         0cld1gKH27FzDLsKxsCxX2fDACDVYXV2Kl7DbbVqnNr2YV5auxIbgJ3ZClu9UATlO1cd
-         phlso1RkSrEk+wzqJ5HPqDerQZGThL/aqS8nI=
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=6c+UtI1uYDbyYxUQwSa9jl5b6+0JQI0MJumhi18xfQg=;
+        b=kboGfl6VR6AFG/YCMnKlVG1+DLAnMRlmrb8TUPJMLPA8HrsPJg1Wv8qBfjT/1q4Bki
+         bBHNbIFDJCUEivY6JcJ8nmU4c1/OM5zE+nbfYeEhQBMkd4DgnMpt27LQCB66JR4ey7Zc
+         LS2WLuNO7xZj1wj/3HEnrW2rj2gpzQnUmlwALGcM0Wm9pCjPbLzsr0mq1mz7Kq+YUbob
+         9ht8eU3m5L9/xHmvhA1RZaSsMCPDzEHDCd0xVDaqVHUzRaHAY/ldADDT6KFMPW0FPa54
+         yvmv+K2YV95Qr4Cy6BOpBN7bF6oZcWYlKVB7T3RlKmOz/SK53j9xC0hFrC1dwk4swq6R
+         0EfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1s738KR7peDPdk0egrEOotdFH/XvdoPuk8qM2dZV4+M=;
-        b=RM3NJmq2LlolUkyM8BdpHSCnag9YwrGFabtlnSWO0u1/FDJPKJ3FIIjum2e/zip0+u
-         ITqptIYPMFW5+vIVmTVDHLNzqYUTJsjb0ndYOckuw1qFJ/eAeK8MV2Xn/ZwOGkH3bmBz
-         ZNEUHehuzSxwV7IYEjFp7mBTGrWejZinRz377X63ZiSKcnFE41D/gRtzD8M9eY85ocO+
-         xsgZ5fUyGqcppZR6FNWBST3sBodyB6dwp+6X5+uOhY7A5cONNarMFOjfBWxeYrrKZHBm
-         GadBIh3fB+NaFJE3lW7fH54x0/zKb7k5ShLaMeUq5AZcn76htoMEfnw8UsD0jJAAT15V
-         6j7A==
-X-Gm-Message-State: APjAAAUCCNxyWb26SVkR7vwBvw2Ip7QB8vDN7rOOgB9xOsoFxB6HiBVY
-        fzgGzktX7hMJ+iurIzygQj7uL8Htw9UYkOWW7eA=
-X-Google-Smtp-Source: APXvYqzCQ+ctGU7OQGZqx/nxtHTMHw9WlHbGNxcjNnj4Cgg7Cq7pSYMp4k90/LRI+zGC5+lRhoD79BWDyiWYxBW8A0g=
-X-Received: by 2002:a37:4f4c:: with SMTP id d73mr1165671qkb.171.1570053944314;
- Wed, 02 Oct 2019 15:05:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191002061200.29888-1-chiawei_wang@aspeedtech.com> <70044749-785b-6ff3-7a28-fb049dcfec54@linux.intel.com>
-In-Reply-To: <70044749-785b-6ff3-7a28-fb049dcfec54@linux.intel.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 2 Oct 2019 22:05:32 +0000
-Message-ID: <CACPK8XfBxC+4PHHCkMoXr+twjfWaovcJ5c=hfCmHRJ6LpGNeFg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] peci: aspeed: Add AST2600 compatible
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Cc:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
-        Jason M Biils <jason.m.bills@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=6c+UtI1uYDbyYxUQwSa9jl5b6+0JQI0MJumhi18xfQg=;
+        b=CUY1U//VxGB5o7kBylHSpT0q10EThyY1FHPWFc3LLJh0VmlEmfWXEI+ThTNwZsGMSD
+         hl/1fI/RERdvRR4vnRzwPECbmcq1FKEiTQmvRPUq/89KFRqlnY/59Kjm/2byN/aG5QXm
+         C7TDlGIf3HfsqBtts/Zkp24URQ6v7T1mcSocS6xqabdnsFH4ei8xPJ8q/iG9rUcekwin
+         GW78NIA4AnIoi1v/fQR3d8v7OuSG3q/0+E440MC4XGxQrLlTR+VomMBw/CzCRTQMOnvT
+         1gHDSq20BctmsmSXHi8Eg/6DxEsgNbXTd4xoL1ADJzfmBSd/0lTRhqg+mAvERo/fQe3S
+         T/vQ==
+X-Gm-Message-State: APjAAAVEqOH/AC0mPAg/baj/TlRpWoE5lswwcIz1pSlkDJjiVXdqrOrk
+        a9PiKb+7f7SvEhkLc4z0D1uAQw==
+X-Google-Smtp-Source: APXvYqwYei1g/xOWE2U+PJHvvft5qrbaOfrE6nk3lP1n8pcWvN76f2qecpvDskoigtVrXYEOtuSqcA==
+X-Received: by 2002:a6b:8bd4:: with SMTP id n203mr5741864iod.133.1570054206751;
+        Wed, 02 Oct 2019 15:10:06 -0700 (PDT)
+Received: from localhost (67-0-10-3.albq.qwest.net. [67.0.10.3])
+        by smtp.gmail.com with ESMTPSA id l16sm350067ilm.67.2019.10.02.15.10.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2019 15:10:05 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 15:10:05 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>, corbet@lwn.net,
         Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+        James Hogan <jhogan@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Palmer Dabbelt <palmer@sifive.com>, linux-mips@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-cifs@vger.kernel.org, Leon Romanovsky <leon@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-rdma@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Saeed Mahameed <saeedm@mellanox.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pensando Drivers <drivers@pensando.io>,
+        linux-hwmon@vger.kernel.org, netdev@vger.kernel.org,
+        samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Steve French <sfrench@samba.org>,
+        Paul Burton <paul.burton@mips.com>,
+        Shannon Nelson <snelson@pensando.io>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH 1/3] docs: fix some broken references
+In-Reply-To: <b87385b2ac6ce6c75df82062fce2976149bbaa6b.1569330078.git.mchehab+samsung@kernel.org>
+Message-ID: <alpine.DEB.2.21.9999.1910021509260.3732@viisi.sifive.com>
+References: <b87385b2ac6ce6c75df82062fce2976149bbaa6b.1569330078.git.mchehab+samsung@kernel.org>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Oct 2019 at 18:11, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
->
-> Hi Chia-Wei,
->
-> On 10/1/2019 11:11 PM, Chia-Wei, Wang wrote:
-> > Update the Aspeed PECI driver with the AST2600 compatible string.
-> > A new comptabile string is needed for the extended HW feature of
-> > AST2600.
-> >
-> > Chia-Wei, Wang (2):
-> >    peci: aspeed: Add AST2600 compatible string
-> >    dt-bindings: peci: aspeed: Add AST2600 compatible
-> >
-> >   Documentation/devicetree/bindings/peci/peci-aspeed.txt | 1 +
-> >   drivers/peci/peci-aspeed.c                             | 1 +
-> >   2 files changed, 2 insertions(+)
-> >
->
-> PECI subsystem isn't in linux upstream yet so you should submit it into
-> OpenBMC dev-5.3 tree only.
+On Tue, 24 Sep 2019, Mauro Carvalho Chehab wrote:
 
-OpenBMC has been carrying the out of tree patches for some time now. I
-haven't seen a new version posted for a while. Do you have a timeline
-for when you plan to submit it upstream?
+> There are a number of documentation files that got moved or
+> renamed. update their references.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/cpu/cpu-topology.txt    | 2 +-
+>  Documentation/devicetree/bindings/timer/ingenic,tcu.txt   | 2 +-
+>  Documentation/driver-api/gpio/driver.rst                  | 2 +-
+>  Documentation/hwmon/inspur-ipsps1.rst                     | 2 +-
+>  Documentation/mips/ingenic-tcu.rst                        | 2 +-
+>  Documentation/networking/device_drivers/mellanox/mlx5.rst | 2 +-
+>  MAINTAINERS                                               | 2 +-
+>  drivers/net/ethernet/faraday/ftgmac100.c                  | 2 +-
+>  drivers/net/ethernet/pensando/ionic/ionic_if.h            | 4 ++--
+>  fs/cifs/cifsfs.c                                          | 2 +-
+>  10 files changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/cpu/cpu-topology.txt b/Documentation/devicetree/bindings/cpu/cpu-topology.txt
+> index 99918189403c..9bd530a35d14 100644
+> --- a/Documentation/devicetree/bindings/cpu/cpu-topology.txt
+> +++ b/Documentation/devicetree/bindings/cpu/cpu-topology.txt
+> @@ -549,5 +549,5 @@ Example 3: HiFive Unleashed (RISC-V 64 bit, 4 core system)
+>  [2] Devicetree NUMA binding description
+>      Documentation/devicetree/bindings/numa.txt
+>  [3] RISC-V Linux kernel documentation
+> -    Documentation/devicetree/bindings/riscv/cpus.txt
+> +    Documentation/devicetree/bindings/riscv/cpus.yaml
+>  [4] https://www.devicetree.org/specifications/
+
+For the RISC-V related change:
+
+Acked-by: Paul Walmsley <paul.walmsley@sifive.com> # RISC-V
+
+
+- Paul
