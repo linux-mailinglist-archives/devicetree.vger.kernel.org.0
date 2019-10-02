@@ -2,137 +2,519 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30223C8935
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 15:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BABFC8967
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 15:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727540AbfJBNFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 09:05:11 -0400
-Received: from mail-eopbgr80051.outbound.protection.outlook.com ([40.107.8.51]:20989
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727223AbfJBNFK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 09:05:10 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R0VO+dE5keItSvoYa8jaTAFpT6oy92bKck6GNLU6Mb56vTkE/TPIi8/ozQNrnc9XanByg0p3jy0Pb5prgux9Z2CqwKSddhQbXGxANtZdz1oZfgx7TPtarLIKyJwTOr9m829cxwjovBdzENA3JRvPeBcATNXdxG5hX+b6F2vkxHLNr/oC5N5qpMNC6aoKjgsMPUxd6ndcWg4I97KiXUTUvHtbVRkJkXn0GtTSjst+oni2as3tNYHTyRva345TDsEkO5XDI8pGqyd+HksOTxjcnarXnJsevTWxJ0YbVlurWAYYC4/L1xMh6hOvUGPf3ETX/DcuRET+M7AOFnGvrMEaEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ehS3UndgXagzpEGqEcWAELDP6S0hrQKp/xr8x06uuPw=;
- b=J3Rop2Wh+g8PauF3xtjXaP38m8YojmMzf2GdQlig7hGCux4qvodRit2ZwN7UX43lcgcYaRmEOANU6djAqLWkHHvf1WkH9AMfmW8W+9O7h08FqsOivgG/s+g5uIGUzFZT8iNhf8v65K7+FKDEDbU5M+EkCkMRa7XmQnBeTEhz8xfOeCfglILH4BK+0mIyNuqnCXLfaBGS8OuJaPg0/uRtS+YMTi6jBXajRT0CRyuhOxZ3D4rCBe4TbecpUL7UvqSzwK+BXFKNpvPdyK4MS/MQ9/+yGWbvUULyGSfCMBFCZJyvxKMuU5NNN9IhBH/afzc0Uq21Whzh7XoOGHmHzxo1UQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ehS3UndgXagzpEGqEcWAELDP6S0hrQKp/xr8x06uuPw=;
- b=JdSKrh8278foev69L1XU0WS5eE4xqVk6RYxjP+hS7fQ/2iLTZkZSKyHXbskR71TYWl/qeCtxUULbZu9ukO8Cf89V0TW/W5ZqKDxpeI90GcPd7P8h5i/oBnRC0hmqVkNqXvo1cg2LngbEhhS14dtbXk7IFCedP0CAouaTkQl6CEU=
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com (10.175.20.18) by
- VI1PR0402MB3918.eurprd04.prod.outlook.com (52.134.17.31) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.15; Wed, 2 Oct 2019 13:04:48 +0000
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::fd33:c447:3cab:c36]) by VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::fd33:c447:3cab:c36%7]) with mapi id 15.20.2305.023; Wed, 2 Oct 2019
- 13:04:48 +0000
-From:   Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-To:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>
-CC:     "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>
-Subject: [PATCH v5 5/5] arm64: defconfig: Enable configs for S32V234
-Thread-Topic: [PATCH v5 5/5] arm64: defconfig: Enable configs for S32V234
-Thread-Index: AQHVeSH29CXEj60aakehEbe1lYsBFQ==
-Date:   Wed, 2 Oct 2019 13:04:46 +0000
-Message-ID: <20191002130425.28905-6-stefan-gabriel.mirea@nxp.com>
-References: <20191002130425.28905-1-stefan-gabriel.mirea@nxp.com>
-In-Reply-To: <20191002130425.28905-1-stefan-gabriel.mirea@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.22.0
-x-clientproxiedby: PR0P264CA0194.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1f::14) To VI1PR0402MB2863.eurprd04.prod.outlook.com
- (2603:10a6:800:af::18)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=stefan-gabriel.mirea@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [86.120.240.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 58e9b192-ccec-46e1-81d3-08d747391934
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: VI1PR0402MB3918:|VI1PR0402MB3918:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0402MB3918D7C0FEC766F7D3286A62DF9C0@VI1PR0402MB3918.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
-x-forefront-prvs: 0178184651
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(39860400002)(136003)(396003)(376002)(346002)(189003)(199004)(102836004)(2201001)(5660300002)(26005)(478600001)(76176011)(486006)(386003)(14454004)(50226002)(8676002)(8936002)(81156014)(305945005)(81166006)(6506007)(7736002)(7416002)(64756008)(6436002)(66556008)(66446008)(476003)(66066001)(2906002)(11346002)(2616005)(66476007)(6486002)(66946007)(25786009)(52116002)(2501003)(186003)(256004)(446003)(6512007)(6116002)(3846002)(36756003)(71190400001)(71200400001)(4744005)(4326008)(1076003)(86362001)(54906003)(99286004)(110136005)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3918;H:VI1PR0402MB2863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MHSjtRb7FhMw7vTwUbEDpLXXl/NRHtlx60XhVmVRyBLDdWKgfpH0tSrdYvFoa9QNzpCpWWt4qX5/pUAZBr6DwEsG4HaGX/LGo479uxTZzFWMqfSHs80TsraYZGDBrXMTrtRIJdOtG0PyqA6xDPNAHBW79x+JlHe2x38uyMv8yglbbWySa9n3rFg1UhqUjqD+C2piQKdZZgLQ3811vLgiDtQ9RwKHl72F3FTPGlAXiO9AOjYWgYfhBMm6hC7tW7ildZA0upxv3A5XRz7Fce2xQyDMX9sOVszdeFOr69N91jZAGK9wW+xer3/MMeYLFzh3D973fvJLQ129iwnUmywZXyc+R2HJKVvkxhe+7BtkLRiqdGt1WnUblYHDj49h4b+OmxVlnqdpRs+kH5+SnzloX2jSlQ9bSl8d73ruA9DY2Yo=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S1726444AbfJBNQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 09:16:20 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:33653 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726295AbfJBNQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 09:16:20 -0400
+Received: by mail-pg1-f196.google.com with SMTP id q1so3795958pgb.0;
+        Wed, 02 Oct 2019 06:16:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3CUsLIsKbGdG0KHeXolj2ApfEkLfBLIL89EPwz47LBg=;
+        b=kZz/cXy3HOMYWu5uKTc8H2St6zNLehqBrr2J7z2o7Jf0/GXueP+Cr48w7j17pw+ikv
+         t9SLZ/TbP4DleqwcOu3qpGwCpz0Xh85WPAEm1+C9tz3AbCkV+1TI2Iydin7+sIjrEYRt
+         iSVPBigeU0K7wtWEJw3XaLWD4f+FenYILGlNYvV0stN+r6gz+Y9F7hLV+tCGTEtssXOP
+         OIBiboIU05fJeI2h9NgiYbCZJblkBLCJGquaL45FWSKw0OGJHGf3+LYEWZwSHmcYHuMG
+         J/i5LECnDFc+ButnHA4qN30VGi2kF+dZuhTeU9kTDPBksF9o1HVNV2Cg5i7FZ7R4nLiy
+         JsFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3CUsLIsKbGdG0KHeXolj2ApfEkLfBLIL89EPwz47LBg=;
+        b=JEnqvX62OoZ68t46OVtiCRBtSU/UfmicOZq71PpGQhKPE+tkacc/iFIUEq0WYspxab
+         B0m2Ruro/XttS/7em1Nul37oKnshVfRDHHCzvlRun1pt1MCqa6+RB1MMti/48lbfS1lC
+         ONfPFVV6LswqLEZVjEZOPOFnHlge5Sjx9e298O2ZRkNOEbUQacfnRwjI9xIwTPsPqDgg
+         7CHJMyptE+bYNJZeN5BlpNVfJ2pNS4+6bRvpHT/qiVB+PrNJ97pclTeo9v8Zl+OiN4jt
+         frFCOT614Bchz+g57f+kznNT4YlUhLEeF8JeHPCYeAuPzFn2mdfrwI7H80Ax47O1kxnx
+         Rtww==
+X-Gm-Message-State: APjAAAWGmwIH44bL6ISmDRrX2c7Kj58EBlt58z7qXqdoPQldd41C1QQZ
+        NrIWLBKspQ4t9ADxer8Jm28=
+X-Google-Smtp-Source: APXvYqzUL+39QvgmgJXtc4bYT/+VvVpNHE/ysaLJ/opIQx6c04Xd9qM/v4aUkUDSnQ/lQDWGbJxDKA==
+X-Received: by 2002:a63:c645:: with SMTP id x5mr3742780pgg.425.1570022179001;
+        Wed, 02 Oct 2019 06:16:19 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b3sm5072266pjp.13.2019.10.02.06.16.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Oct 2019 06:16:17 -0700 (PDT)
+Subject: Re: [PATCH 2/3] watchdog: sam9x60_wdt: introduce sam9x60 watchdog
+ timer driver
+To:     Eugen.Hristev@microchip.com, wim@linux-watchdog.org,
+        robh+dt@kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.or
+Cc:     Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com
+References: <1570001371-8174-1-git-send-email-eugen.hristev@microchip.com>
+ <1570001371-8174-2-git-send-email-eugen.hristev@microchip.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <e58a3ab5-69bc-cad3-5faa-ed00ff7906c7@roeck-us.net>
+Date:   Wed, 2 Oct 2019 06:16:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58e9b192-ccec-46e1-81d3-08d747391934
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2019 13:04:46.0122
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yS4gFjWeaAgDuVAHKrmSWZR8GP2UYk+QXFPUn1Cn/X1illIIxH6DtJs+Fut1RBeHld0+bVnQ8bKM1BRxYHpLSiCIoIZGEWsOlM49BSEDUhw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3918
+In-Reply-To: <1570001371-8174-2-git-send-email-eugen.hristev@microchip.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mihaela Martinas <Mihaela.Martinas@freescale.com>
+On 10/2/19 12:35 AM, Eugen.Hristev@microchip.com wrote:
+> From: Eugen Hristev <eugen.hristev@microchip.com>
+> 
+> This is the driver for SAM9X60 watchdog timer.
+> The offered functionality is the same as sama5d4_wdt.
+> The difference comes in register map, way to configure the timeout and
+> interrupts.
+> Developed starting from sama5d4_wdt.c
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+>   drivers/watchdog/Kconfig       |   9 ++
+>   drivers/watchdog/Makefile      |   1 +
+>   drivers/watchdog/sam9x60_wdt.c | 335 +++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 345 insertions(+)
+>   create mode 100644 drivers/watchdog/sam9x60_wdt.c
+> 
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index 58e7c10..3562e26 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -416,6 +416,15 @@ config SAMA5D4_WATCHDOG
+>   	  Its Watchdog Timer Mode Register can be written more than once.
+>   	  This will reboot your system when the timeout is reached.
+>   
+> +config SAM9X60_WATCHDOG
+> +	tristate "Microchip SAM9X60 Watchdog Timer"
+> +	depends on ARCH_AT91 || COMPILE_TEST
 
-Enable support for the S32V234 SoC, including the previously added UART
-driver.
+depends on HAS_IOMEM
 
-Signed-off-by: Mihaela Martinas <Mihaela.Martinas@freescale.com>
-Signed-off-by: Adrian.Nitu <adrian.nitu@freescale.com>
-Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+> +	select WATCHDOG_CORE
+> +	help
+> +	  Microchip SAM9X60 watchdog timer is embedded into SAM9X60 chips.
+> +	  Its Watchdog Timer Mode Register can be written more than once.
+> +	  This will reboot your system when the timeout is reached.
+> +
+>   config CADENCE_WATCHDOG
+>   	tristate "Cadence Watchdog Timer"
+>   	depends on HAS_IOMEM
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index 2ee352b..93ba599 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -52,6 +52,7 @@ obj-$(CONFIG_IXP4XX_WATCHDOG) += ixp4xx_wdt.o
+>   obj-$(CONFIG_S3C2410_WATCHDOG) += s3c2410_wdt.o
+>   obj-$(CONFIG_SA1100_WATCHDOG) += sa1100_wdt.o
+>   obj-$(CONFIG_SAMA5D4_WATCHDOG) += sama5d4_wdt.o
+> +obj-$(CONFIG_SAM9X60_WATCHDOG) += sam9x60_wdt.o
+>   obj-$(CONFIG_DW_WATCHDOG) += dw_wdt.o
+>   obj-$(CONFIG_EP93XX_WATCHDOG) += ep93xx_wdt.o
+>   obj-$(CONFIG_PNX4008_WATCHDOG) += pnx4008_wdt.o
+> diff --git a/drivers/watchdog/sam9x60_wdt.c b/drivers/watchdog/sam9x60_wdt.c
+> new file mode 100644
+> index 00000000..f612230
+> --- /dev/null
+> +++ b/drivers/watchdog/sam9x60_wdt.c
+> @@ -0,0 +1,335 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for Microchip SAM9X60 Watchdog Timer
+> + *
+> + * Copyright (C) 2019 Microchip Technology, Inc.
+> + * Author: Eugen Hristev <eugen.hristev@microchip.com>
+> + *
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+> +#include <linux/watchdog.h>
+> +
+> +#define AT91_WDT_CR		0x00			/* Watchdog Control Register */
+> +#define		AT91_WDT_WDRSTT		BIT(0)		/* Restart */
+> +#define		AT91_WDT_KEY		(0xa5 << 24)		/* KEY Password */
+> +
+> +#define AT91_WDT_MR		0x04			/* Watchdog Mode Register */
+> +#define		AT91_WDT_PERIODRST	BIT(4)		/* Period Reset */
+> +#define		AT91_WDT_RPTHRST	BIT(5)		/* Minimum Restart Period */
+> +#define		AT91_WDT_WDDIS		BIT(12)		/* Disable */
+> +#define		AT91_WDT_WDDBGHLT	BIT(28)		/* Debug Halt */
+> +#define		AT91_WDT_WDIDLEHLT	BIT(29)		/* Idle Halt */
+> +
+> +#define AT91_WDT_VR		0x08			/* Watchdog Timer Value Register */
+> +
+> +#define AT91_WDT_WLR		0x0c
+> +#define		AT91_WDT_COUNTER	(0xfff << 0)		/* Watchdog Period Value */
+> +#define		AT91_WDT_SET_COUNTER(x)	((x) & AT91_WDT_COUNTER)
+> +
+> +#define AT91_WDT_IER		0x14			/* Interrupt Enable Register */
+> +#define		AT91_WDT_PERINT		BIT(0)		/* Period Interrupt Enable */
+> +#define AT91_WDT_IDR		0x18			/* Interrupt Disable Register */
+> +#define AT91_WDT_ISR		0x1c			/* Interrupt Status Register */
+> +
+> +/* minimum and maximum watchdog timeout, in seconds */
+> +#define MIN_WDT_TIMEOUT		1
+> +#define MAX_WDT_TIMEOUT		16
+> +#define WDT_DEFAULT_TIMEOUT	MAX_WDT_TIMEOUT
+> +
+> +#define WDT_SEC2TICKS(s)	((s) ? (((s) << 8) - 1) : 0)
+> +
+> +struct sam9x60_wdt {
+> +	struct watchdog_device	wdd;
+> +	void __iomem		*reg_base;
+> +	u32			mr;
+> +	u32			ir;
+> +	unsigned long		last_ping;
+> +};
+> +
+> +static int wdt_timeout;
+> +static bool nowayout = WATCHDOG_NOWAYOUT;
+> +
+> +module_param(wdt_timeout, int, 0);
+> +MODULE_PARM_DESC(wdt_timeout,
+> +		 "Watchdog timeout in seconds. (default = "
+> +		 __MODULE_STRING(WDT_DEFAULT_TIMEOUT) ")");
+> +
+> +module_param(nowayout, bool, 0);
+> +MODULE_PARM_DESC(nowayout,
+> +		 "Watchdog cannot be stopped once started (default="
+> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+> +
+> +#define wdt_enabled (!(wdt->mr & AT91_WDT_WDDIS))
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8e05c39eab08..aa59450557b8 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -48,6 +48,7 @@ CONFIG_ARCH_MXC=3Dy
- CONFIG_ARCH_QCOM=3Dy
- CONFIG_ARCH_RENESAS=3Dy
- CONFIG_ARCH_ROCKCHIP=3Dy
-+CONFIG_ARCH_S32=3Dy
- CONFIG_ARCH_SEATTLE=3Dy
- CONFIG_ARCH_STRATIX10=3Dy
- CONFIG_ARCH_SYNQUACER=3Dy
-@@ -352,6 +353,8 @@ CONFIG_SERIAL_XILINX_PS_UART=3Dy
- CONFIG_SERIAL_XILINX_PS_UART_CONSOLE=3Dy
- CONFIG_SERIAL_FSL_LPUART=3Dy
- CONFIG_SERIAL_FSL_LPUART_CONSOLE=3Dy
-+CONFIG_SERIAL_FSL_LINFLEXUART=3Dy
-+CONFIG_SERIAL_FSL_LINFLEXUART_CONSOLE=3Dy
- CONFIG_SERIAL_MVEBU_UART=3Dy
- CONFIG_SERIAL_DEV_BUS=3Dy
- CONFIG_VIRTIO_CONSOLE=3Dy
---=20
-2.22.0
+Please no use in variables in macros without referencing them in the argument.
+
+> +
+> +#define wdt_read(wdt, field) \
+> +	readl_relaxed((wdt)->reg_base + (field))
+> +
+> +/* 4 slow clock periods is 4/32768 = 122.07us*/
+> +#define WDT_DELAY	usecs_to_jiffies(123)
+> +
+> +static void wdt_write(struct sam9x60_wdt *wdt, u32 field, u32 val)
+> +{
+> +	/*
+> +	 * WDT_CR and WDT_MR must not be modified within three slow clock
+> +	 * periods following a restart of the watchdog performed by a write
+> +	 * access in WDT_CR.
+> +	 */
+> +	while (time_before(jiffies, wdt->last_ping + WDT_DELAY))
+> +		usleep_range(30, 125);
+> +	writel_relaxed(val, wdt->reg_base + field);
+> +	wdt->last_ping = jiffies;
+> +}
+> +
+> +static void wdt_write_nosleep(struct sam9x60_wdt *wdt, u32 field, u32 val)
+> +{
+> +	if (time_before(jiffies, wdt->last_ping + WDT_DELAY))
+
+WDT_DELAY is most likely 1 under all circumstances. If the last access was just before
+a tick, this won't guarantee that really 123 uS expired.
+
+In situations like this, I would suggest not to rely on jiffies related functions.
+If the last access time is stored based on ktime_get(), the remaining time in
+us can be calculated using ktime_us_delta(). Then just sleep (or delay in case
+of nosleep) for that amount of microseconds.
+
+Also, I don't see why this second function would be necessary.
+A single function with an if() should be sufficient.
+
+	ktime_t delta = WDT_DELAY_US - ktime_us_delta(ktime_get(), wdt->last_ping);
+
+	if (delta > 0)
+		usleep_range(delta, delta * 2);
+	writel_relaxed(val, wdt->reg_base + field);
+	wdt->last_ping = ktime_get();
+
+> +		usleep_range(123, 250);
+> +	writel_relaxed(val, wdt->reg_base + field);
+> +	wdt->last_ping = jiffies;
+> +}
+> +
+> +static int sam9x60_wdt_start(struct watchdog_device *wdd)
+> +{
+> +	struct sam9x60_wdt *wdt = watchdog_get_drvdata(wdd);
+> +
+> +	wdt->mr &= ~AT91_WDT_WDDIS;
+> +	wdt_write(wdt, AT91_WDT_MR, wdt->mr);
+> +	wdt_write_nosleep(wdt, AT91_WDT_IER, wdt->ir);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sam9x60_wdt_stop(struct watchdog_device *wdd)
+> +{
+> +	struct sam9x60_wdt *wdt = watchdog_get_drvdata(wdd);
+> +
+> +	wdt->mr |= AT91_WDT_WDDIS;
+> +	wdt_write(wdt, AT91_WDT_MR, wdt->mr);
+> +	wdt_write_nosleep(wdt, AT91_WDT_IDR, wdt->ir);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sam9x60_wdt_ping(struct watchdog_device *wdd)
+> +{
+> +	struct sam9x60_wdt *wdt = watchdog_get_drvdata(wdd);
+> +
+> +	wdt_write(wdt, AT91_WDT_CR, AT91_WDT_KEY | AT91_WDT_WDRSTT);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sam9x60_wdt_set_timeout(struct watchdog_device *wdd,
+> +				   unsigned int timeout)
+> +{
+> +	struct sam9x60_wdt *wdt = watchdog_get_drvdata(wdd);
+> +
+> +	wdt_write(wdt, AT91_WDT_WLR,
+> +		  AT91_WDT_SET_COUNTER(WDT_SEC2TICKS(timeout)));
+> +
+> +	wdd->timeout = timeout;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_info sam9x60_wdt_info = {
+> +	.options = WDIOF_SETTIMEOUT | WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING,
+> +	.identity = "Microchip SAM9X60 Watchdog",
+> +};
+> +
+> +static const struct watchdog_ops sam9x60_wdt_ops = {
+> +	.owner = THIS_MODULE,
+> +	.start = sam9x60_wdt_start,
+> +	.stop = sam9x60_wdt_stop,
+> +	.ping = sam9x60_wdt_ping,
+> +	.set_timeout = sam9x60_wdt_set_timeout,
+> +};
+> +
+> +static irqreturn_t sam9x60_wdt_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct sam9x60_wdt *wdt = platform_get_drvdata(dev_id);
+> +
+> +	if (wdt_read(wdt, AT91_WDT_ISR)) {
+> +		pr_crit("Microchip Watchdog Software Reset\n");
+> +		emergency_restart();
+> +		pr_crit("Reboot didn't succeed\n");
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int of_sam9x60_wdt_init(struct device_node *np, struct sam9x60_wdt *wdt)
+> +{
+> +	const char *tmp;
+> +
+> +	wdt->mr = AT91_WDT_WDDIS;
+> +
+> +	if (!of_property_read_string(np, "atmel,watchdog-type", &tmp) &&
+> +	    !strcmp(tmp, "software"))
+> +		wdt->ir = AT91_WDT_PERINT;
+> +	else
+> +		wdt->mr |= AT91_WDT_PERIODRST;
+> +
+> +	if (of_property_read_bool(np, "atmel,idle-halt"))
+> +		wdt->mr |= AT91_WDT_WDIDLEHLT;
+> +
+> +	if (of_property_read_bool(np, "atmel,dbg-halt"))
+> +		wdt->mr |= AT91_WDT_WDDBGHLT;
+> +
+> +	return 0;
+> +}
+> +
+> +static int sam9x60_wdt_init(struct sam9x60_wdt *wdt)
+> +{
+> +	u32 reg;
+> +	/*
+> +	 * When booting and resuming, the bootloader may have changed the
+> +	 * watchdog configuration.
+> +	 * If the watchdog is already running, we can safely update it.
+> +	 * Else, we have to disable it properly.
+> +	 */
+> +	if (wdt_enabled) {
+> +		wdt_write_nosleep(wdt, AT91_WDT_MR, wdt->mr);
+> +		wdt_write_nosleep(wdt, AT91_WDT_IER, wdt->ir);
+> +		wdt_write(wdt, AT91_WDT_WLR,
+> +			  AT91_WDT_SET_COUNTER(WDT_SEC2TICKS(WDT_DEFAULT_TIMEOUT)));
+> +
+> +	} else {
+> +		reg = wdt_read(wdt, AT91_WDT_MR);
+> +		if (!(reg & AT91_WDT_WDDIS))
+> +			wdt_write_nosleep(wdt, AT91_WDT_MR,
+> +					  reg | AT91_WDT_WDDIS);
+> +	}
+
+If the watchdog may be running at boot time, the watchdog core
+should be informed about it.
+
+> +	return 0;
+> +}
+> +
+> +static int sam9x60_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct watchdog_device *wdd;
+> +	struct sam9x60_wdt *wdt;
+> +	struct resource *res;
+> +	void __iomem *regs;
+> +	u32 irq = 0;
+
+Unnecessary initialization.
+
+> +	int ret;
+> +
+> +	wdt = devm_kzalloc(&pdev->dev, sizeof(*wdt), GFP_KERNEL);
+> +	if (!wdt)
+> +		return -ENOMEM;
+> +
+> +	wdd = &wdt->wdd;
+> +	wdd->timeout = WDT_DEFAULT_TIMEOUT;
+> +	wdd->info = &sam9x60_wdt_info;
+> +	wdd->ops = &sam9x60_wdt_ops;
+> +	wdd->min_timeout = MIN_WDT_TIMEOUT;
+> +	wdd->max_timeout = MAX_WDT_TIMEOUT;
+> +	wdt->last_ping = jiffies;
+> +
+> +	watchdog_set_drvdata(wdd, wdt);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	regs = devm_ioremap_resource(&pdev->dev, res);
+
+devm_platform_ioremap_resource()
+
+> +	if (IS_ERR(regs))
+> +		return PTR_ERR(regs);
+> +
+> +	wdt->reg_base = regs;
+> +
+> +	irq = irq_of_parse_and_map(pdev->dev.of_node, 0);
+> +	if (!irq)
+> +		dev_warn(&pdev->dev, "failed to get IRQ from DT\n");
+> +
+
+The interrupt property is optional. Not providing it does not warrant a warning.
+
+> +	ret = of_sam9x60_wdt_init(pdev->dev.of_node, wdt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if ((wdt->ir & AT91_WDT_PERINT) && irq) {
+
+... even more so if it isn't actually used in some cases. irq_of_parse_and_map()
+should probably only be called in the first place if AT91_WDT_PERINT is set.
+
+> +		ret = devm_request_irq(&pdev->dev, irq, sam9x60_wdt_irq_handler,
+> +				       IRQF_SHARED | IRQF_IRQPOLL |
+> +				       IRQF_NO_SUSPEND, pdev->name, pdev);
+> +		if (ret) {
+> +			dev_err(&pdev->dev,
+> +				"cannot register interrupt handler\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	watchdog_init_timeout(wdd, wdt_timeout, &pdev->dev);
+> +
+> +	ret = sam9x60_wdt_init(wdt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	watchdog_set_nowayout(wdd, nowayout);
+> +
+> +	ret = watchdog_register_device(wdd);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to register watchdog device\n");
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, wdt);
+> +
+> +	dev_info(&pdev->dev, "initialized (timeout = %d sec, nowayout = %d)\n",
+> +		 wdd->timeout, nowayout);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sam9x60_wdt_remove(struct platform_device *pdev)
+> +{
+> +	struct sam9x60_wdt *wdt = platform_get_drvdata(pdev);
+> +
+> +	sam9x60_wdt_stop(&wdt->wdd);
+> +
+
+Please use watchdog_stop_on_unregister() instead.
+
+> +	watchdog_unregister_device(&wdt->wdd);
+> +
+
+Please use devm_watchdog_register_device() and drop the remove function.
+
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id sam9x60_wdt_of_match[] = {
+> +	{ .compatible = "microchip,sam9x60-wdt", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sam9x60_wdt_of_match);
+> +
+> +#ifdef CONFIG_PM_SLEEP
+
+Please use __maybe_unused
+
+> +static int sam9x60_wdt_resume(struct device *dev)
+> +{
+> +	struct sam9x60_wdt *wdt = dev_get_drvdata(dev);
+> +
+> +	/*
+> +	 * FIXME: writing MR also pings the watchdog which may not be desired.
+> +	 * This should only be done when the registers are lost on suspend but
+> +	 * there is no way to get this information right now.
+> +	 */
+
+This seems wrong. The bootloader may have stopped the watchdog in the
+suspend/resume cycle. This does not properly re-initialize it.
+
+Also, is there really no need to stop the watchdog on suspend ?
+
+> +	sam9x60_wdt_init(wdt);
+> +
+> +	return 0;
+> +}
+> +#endif
+> +
+> +static SIMPLE_DEV_PM_OPS(sam9x60_wdt_pm_ops, NULL,
+> +			 sam9x60_wdt_resume);
+> +
+> +static struct platform_driver sam9x60_wdt_driver = {
+> +	.probe		= sam9x60_wdt_probe,
+> +	.remove		= sam9x60_wdt_remove,
+> +	.driver		= {
+> +		.name	= "sam9x60_wdt",
+> +		.pm	= &sam9x60_wdt_pm_ops,
+> +		.of_match_table = sam9x60_wdt_of_match,
+> +	}
+> +};
+> +module_platform_driver(sam9x60_wdt_driver);
+> +
+> +MODULE_AUTHOR("Eugen Hristev");
+> +MODULE_DESCRIPTION("Microchip SAM9X60 Watchdog Timer driver");
+> +MODULE_LICENSE("GPL v2");
+> 
 
