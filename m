@@ -2,92 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7140CC4A67
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A21C4A71
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726287AbfJBJTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 05:19:55 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:33617 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726227AbfJBJTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:19:55 -0400
-Received: by mail-lj1-f193.google.com with SMTP id a22so16354016ljd.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 02:19:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=tVSJ2jAoznxGAzqn26lJBhesiJu1w5Ef6wI0S81yyRk=;
-        b=jKs7U8eJtyt8NgsziFv8n2P7AhTSuJcFBcqGRBUvcExepU97UzP2Wvw7Cb67pKcmnd
-         KrB5pD0N3yZpRTOabIqWJ59k0YqmLz+DRox2nZCVpm1vwJAQsYmZpmLCEvGFaaJAYrKl
-         G0RtV55/jXfVn76PY68EBdfTk6WDW91nE19pDZprwiv9nFzWug679df5IYQUaHyKB7w6
-         e+PgM7Ph2Z9FaxLvcgcq1oL0eq6ZRG41y0SIqtLLgAZpq7k2IPhnGQxoEASQmXISRmWG
-         hSYjSKUUGdUXc8uTxCWeINcTOm2Qex/G0MPRc3yDg+tHudN7F/36D4PpQxeOt08vOxj7
-         SjfQ==
+        id S1727072AbfJBJUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 05:20:25 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:42686 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725908AbfJBJUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:20:25 -0400
+Received: by mail-wr1-f66.google.com with SMTP id n14so18733900wrw.9;
+        Wed, 02 Oct 2019 02:20:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tVSJ2jAoznxGAzqn26lJBhesiJu1w5Ef6wI0S81yyRk=;
-        b=idRFTr/YKy9S8UnVLCx8JGc5B2il7Yxof9nWew00HgIkOcUs1doyYlHInRkCL2yESp
-         igr1VU68YYcsTRZgGV4skS2YhsXLnl8b4Ju+8ubfPcHo8o0K0hdQmyiwRKvfQu4EnhJ0
-         MhkBpatDan1CuCI5xDWEiG2d4eu30DT2lbFrMIdd2Y7ACAtH9aQWyzFZ7QhQdhjABpGD
-         9bm4DGiu5KDK5Cd4N8AzklCT9zeFlY0lvoBpmRec14fsDQIAJ+oXJ1ixD5lAgSJU+xSk
-         EOOHMiouX7tKB2PUwkxWVPUxV4M9DCOEIZv3jIM1O73cGE1DSHxmIKpSv5NkdYR7T+a5
-         Mmyg==
-X-Gm-Message-State: APjAAAWsVDQr4aCZkjRWQIoqII2uPVxxQNl6JTeGrPaeCXF4C2qMhri9
-        ZGHWkyZV0On9aOYOuetAwyG9XA==
-X-Google-Smtp-Source: APXvYqymQBg7OLC919RMbl4ByhwTyA3wxtAD9d6h05l4XMtE9CFbi0q3M5PidVl3u9R56raNCFXmdg==
-X-Received: by 2002:a2e:86c7:: with SMTP id n7mr1645273ljj.227.1570007993519;
-        Wed, 02 Oct 2019 02:19:53 -0700 (PDT)
-Received: from centauri (ua-84-219-138-247.bbcust.telenor.se. [84.219.138.247])
-        by smtp.gmail.com with ESMTPSA id n2sm4593350ljj.30.2019.10.02.02.19.52
+        bh=/LNwLMp43Cx4RXv6+JFT5wsgANeYSc59zzeLQnD1VHM=;
+        b=n+A1k7hvXYK2zo3ZO6Z36E3hZflMnyjRjiJNJgRMneTmtYW/ZqSdWwIVT5TOKgUnsB
+         yDD679nMHcLD9R8Galc6qtzg60xkVZequoUGj+cQyL0I5pnXvHDoI58fPbvKpUtMPqDh
+         hymSR/8AMX0MKOiOfE8sj4FUcpOEC0KgEtnAYWsmTRsziea390hvXLwE1Wyei4e14Vo7
+         L2iE1DdkmuMW1UsM9NHINOUQwb11NWJb6vmo6dFduomaQy50uX353BZnhyETc3zKfgMk
+         FCoS2GHqkF/Y0cQiLgHnyHe0GcgXy8Cq3lysg/EFArsG/+uxJXsVfHKjhiqLtmc5vlG2
+         RJMg==
+X-Gm-Message-State: APjAAAUDolAmLNbTTheTh+uhgHV6oPAaxK4KWUZ6sQ2ldcUj+DpPTTq/
+        nOrISVvW8fAIoyLlUXNiO2w=
+X-Google-Smtp-Source: APXvYqwbyAHos9+Zn4wxA2bvS9JMTWnOqnIj0D+jL+AREPyLlLj8ldJJnHV6LEFDbhGkpKgmtaXndg==
+X-Received: by 2002:adf:ce05:: with SMTP id p5mr1906030wrn.48.1570008022113;
+        Wed, 02 Oct 2019 02:20:22 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id v11sm5445038wml.30.2019.10.02.02.20.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2019 02:19:52 -0700 (PDT)
-Date:   Wed, 2 Oct 2019 11:19:50 +0200
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     Amit Kucheria <amit.kucheria@linaro.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Sibi Sankar <sibis@codeaurora.org>, daniel.lezcano@linaro.org,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 7/9] arm64: dts: qcom: msm8998: Add PSCI cpuidle low
- power states
-Message-ID: <20191002091950.GA9393@centauri>
-References: <cover.1558430617.git.amit.kucheria@linaro.org>
- <49cf5d94beb9af9ef4e78d4c52f3b0ad20b7c63f.1558430617.git.amit.kucheria@linaro.org>
- <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
+        Wed, 02 Oct 2019 02:20:21 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 11:20:19 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [RFC 2/2] dt-bindings: power: Convert Samsung Exynos Power
+ Domain bindings to json-schema
+Message-ID: <20191002092019.GA9952@pi3>
+References: <20190908152813.20646-1-krzk@kernel.org>
+ <20190908152813.20646-2-krzk@kernel.org>
+ <20190930140600.GA18975@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
+In-Reply-To: <20190930140600.GA18975@bogus>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 04:20:15PM -0600, Jeffrey Hugo wrote:
-> Amit, the merged version of the below change causes a boot failure
-> (nasty hang, sometimes with RCU stalls) on the msm8998 laptops.  Oddly
-> enough, it seems to be resolved if I remove the cpu-idle-states
-> property from one of the cpu nodes.
+On Mon, Sep 30, 2019 at 09:06:00AM -0500, Rob Herring wrote:
+> On Sun, Sep 08, 2019 at 05:28:13PM +0200, Krzysztof Kozlowski wrote:
+> > Convert Samsung Exynos Soc Power Domain bindings to DT schema format using
+> > json-schema.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  .../devicetree/bindings/power/pd-samsung.txt  | 45 ------------
+> >  .../devicetree/bindings/power/pd-samsung.yaml | 70 +++++++++++++++++++
+> >  2 files changed, 70 insertions(+), 45 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/power/pd-samsung.txt
+> >  create mode 100644 Documentation/devicetree/bindings/power/pd-samsung.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/power/pd-samsung.txt b/Documentation/devicetree/bindings/power/pd-samsung.txt
+> > deleted file mode 100644
+> > index 92ef355e8f64..000000000000
+> > --- a/Documentation/devicetree/bindings/power/pd-samsung.txt
+> > +++ /dev/null
+> > @@ -1,45 +0,0 @@
+> > -* Samsung Exynos Power Domains
+> > -
+> > -Exynos processors include support for multiple power domains which are used
+> > -to gate power to one or more peripherals on the processor.
+> > -
+> > -Required Properties:
+> > -- compatible: should be one of the following.
+> > -    * samsung,exynos4210-pd - for exynos4210 type power domain.
+> > -    * samsung,exynos5433-pd - for exynos5433 type power domain.
+> > -- reg: physical base address of the controller and length of memory mapped
+> > -    region.
+> > -- #power-domain-cells: number of cells in power domain specifier;
+> > -    must be 0.
+> > -
+> > -Optional Properties:
+> > -- label: Human readable string with domain name. Will be visible in userspace
+> > -	to let user to distinguish between multiple domains in SoC.
+> > -- power-domains: phandle pointing to the parent power domain, for more details
+> > -		 see Documentation/devicetree/bindings/power/power_domain.txt
+> > -
+> > -Deprecated Properties:
+> > -- clocks
+> > -- clock-names
+> > -
+> > -Node of a device using power domains must have a power-domains property
+> > -defined with a phandle to respective power domain.
+> > -
+> > -Example:
+> > -
+> > -	lcd0: power-domain-lcd0 {
+> > -		compatible = "samsung,exynos4210-pd";
+> > -		reg = <0x10023C00 0x10>;
+> > -		#power-domain-cells = <0>;
+> > -		label = "LCD0";
+> > -	};
+> > -
+> > -	mfc_pd: power-domain@10044060 {
+> > -		compatible = "samsung,exynos4210-pd";
+> > -		reg = <0x10044060 0x20>;
+> > -		#power-domain-cells = <0>;
+> > -		label = "MFC";
+> > -	};
+> > -
+> > -See Documentation/devicetree/bindings/power/power_domain.txt for description
+> > -of consumer-side bindings.
+> > diff --git a/Documentation/devicetree/bindings/power/pd-samsung.yaml b/Documentation/devicetree/bindings/power/pd-samsung.yaml
+> > new file mode 100644
+> > index 000000000000..0fc012734a79
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/power/pd-samsung.yaml
+> > @@ -0,0 +1,70 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/power/pd-samsung.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Samsung Exynos SoC Power Domains
+> > +
+> > +maintainers:
+> > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > +
+> > +description: |+
+> > +  Exynos processors include support for multiple power domains which are used
+> > +  to gate power to one or more peripherals on the processor.
+> > +
+> > +allOf:
+> > +  - $ref: power-domain.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - samsung,exynos4210-pd
+> > +      - samsung,exynos5433-pd
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    deprecated: true
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    deprecated: true
+> > +    maxItems: 1
+> > +
+> > +  label:
+> > +    $ref: /schemas/types.yaml#/definitions/string
 > 
-> I see no issues with the msm8998 MTP.
+> label already has a type.
+> 
+> Is there a defined set of values?
 
-Hello Jeffrey, Amit,
+No, many Exynos SoCs have similar values but newer designs are bringing
+new names.
 
-If the PSCI idle states work properly on the msm8998 devboard (MTP),
-but causes crashes on msm8998 laptops, the only logical change is
-that the PSCI firmware is different between the two devices.
+> 
+> > +    description:
+> > +      Human readable string with domain name. Will be visible in userspace
+> > +      to let user to distinguish between multiple domains in SoC.
+> > +
+> > +  "#power-domain-cells":
+> > +    const: 0
+> > +
+> > +  power-domains:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> 
+> Already has a type.
+> 
+> maxItems: 1
 
+OK
 
-Kind regards,
-Niklas
+> 
+> > +    description:
+> > +      Phandle pointing to the parent power domain, for more details
+> > +      see power-domain-consumers.yaml.
+> 
+> Unless there's something specific about this device to say, drop this.
+
+Sure.
+
+Best regards,
+Krzysztof
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#power-domain-cells"
+> > +  - reg
+> > +
+> > +examples:
+> > +  - |
+> > +    lcd0: power-domain-lcd0 {
+> > +      compatible = "samsung,exynos4210-pd";
+> > +      reg = <0x10023C00 0x10>;
+> > +      #power-domain-cells = <0>;
+> > +      label = "LCD0";
+> > +    };
+> > +
+> > +    mfc_pd: power-domain@10044060 {
+> > +      compatible = "samsung,exynos4210-pd";
+> > +      reg = <0x10044060 0x20>;
+> > +      #power-domain-cells = <0>;
+> > +      label = "MFC";
+> > +    };
+> > -- 
+> > 2.17.1
+> > 
