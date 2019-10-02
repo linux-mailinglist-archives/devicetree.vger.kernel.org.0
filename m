@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EF14C8B03
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8BDEC8AE3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:19:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728225AbfJBOTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:19:25 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:36414 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728123AbfJBOTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:19:18 -0400
-Received: by mail-qk1-f193.google.com with SMTP id y189so15163247qkc.3;
-        Wed, 02 Oct 2019 07:19:17 -0700 (PDT)
+        id S1728213AbfJBOTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:19:20 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:35393 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728198AbfJBOTT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:19:19 -0400
+Received: by mail-qk1-f196.google.com with SMTP id w2so15150023qkf.2;
+        Wed, 02 Oct 2019 07:19:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:date:from:subject:references
-         :in-reply-to:mime-version:content-transfer-encoding:cc:cc:to;
-        bh=z8Shi7iPsdT4yk/0Roav1rVtwwblOxfkO9UncLfj12Q=;
-        b=juoLBXr//RDsh5SpH+ki+XxcsqFx5ot3d4EMhdNGBsAdEPOnNl14x+mIeX3xMU8FIe
-         I7dP03ewxhvfEsDxvFpGhTnD7YdP2J/gZUYui499Z+VWEPANcDVGMEoOOSgCBx/Mj+HT
-         6JSsWTgQZnUi+SLOQRJyoec6e43OBAokZ3uVadHQf1sW/4Se3Jg6wjN6pMh/Eup7jn75
-         IgQHNgZlwaB71ID1LUGBIaJRrYLv2x2/uTv0IKhaBDAhzFl0BBuDVKityS5qcWal76Kx
-         SUCpSXWgab2cV8ZBzwvvBbdXEiVx24+ldlj+SgOYOFnFWPm9Ywc1FEb4dP9i5+aC45wy
-         tUzQ==
-X-Gm-Message-State: APjAAAXCMa+T6X8/1wG2ca8kQJZXu2Eu6kFdvJ/iH5Zdupm0mPSbxun7
-        TGj8Vst1Pofi65tlUyyCVQ==
-X-Google-Smtp-Source: APXvYqwX9sEGOCjd772Os8B5bxoO/qnVpokJm1RsuGpcikqc9bd2tVQI/70fY7iwbTBKnGQ7rUo9qg==
-X-Received: by 2002:a37:68d3:: with SMTP id d202mr4045244qkc.62.1570025957013;
-        Wed, 02 Oct 2019 07:19:17 -0700 (PDT)
+         :in-reply-to:cc:cc:to;
+        bh=gLUrmfx/jj76Kop2N5IqJrGqd6xXvr5f/fK/MvQJB5I=;
+        b=VuEm2Vv8ba/YaIAYitXJEHRyOrxeh0s/x1+En6Y7V5yJ8pXbHJIvHfoDsTXmZ9la7I
+         Ip0ZIa7OtHQF0iSrjJzjc/Xx8X3ehVI8jWogaUPtk7khQCW0syTacLWsmdmhqD2HWtYN
+         kcweY82GHXdNGphB7db9+E0aq3vTN7kPfG0zCZoRmZlLJiyt96LxgDqttXzjjT2nhQl8
+         SrAm6ou3NXWu/j8RJLwosiU7YuX0efQ5hBxCXJeQ7/4vdGDAKGZwusvxjXOcjMVZZ/Bd
+         Xp7jPjCLfqntp4Y2WjP9MNL0kTWazHB2eaDG7PeSfScDgL0eNs2m37cZ+iqEnbYeuQL3
+         mjsQ==
+X-Gm-Message-State: APjAAAWnhf8yqqIyhXbSYYJ3dzEbRW3rFX9Zy18Eluj6tjw92SivUEMk
+        HGJNM+rsv1sExRZBg4AYsg==
+X-Google-Smtp-Source: APXvYqxGYsVpZYl54CE+HZk8nSduDUYyC53TCANmYaAFwMF5Fj5/Lc2c1Gtmf2OXKhtDuLsnn2jmBw==
+X-Received: by 2002:a37:8382:: with SMTP id f124mr3895023qkd.218.1570025958532;
+        Wed, 02 Oct 2019 07:19:18 -0700 (PDT)
 Received: from localhost ([132.205.230.8])
-        by smtp.gmail.com with ESMTPSA id x33sm10486592qtd.79.2019.10.02.07.19.16
+        by smtp.gmail.com with ESMTPSA id j17sm14577297qta.0.2019.10.02.07.19.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2019 07:19:16 -0700 (PDT)
-Message-ID: <5d94b1e4.1c69fb81.63a32.683c@mx.google.com>
-Date:   Wed, 02 Oct 2019 09:19:13 -0500
+        Wed, 02 Oct 2019 07:19:17 -0700 (PDT)
+Message-ID: <5d94b1e5.1c69fb81.483f1.b3cc@mx.google.com>
+Date:   Wed, 02 Oct 2019 09:19:14 -0500
 From:   Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 4/4] dt-bindings: pwm: mxs-pwm: Increase #pwm-cells
-References: <20190923081348.6843-1-linux@rasmusvillemoes.dk> <20190923081348.6843-5-linux@rasmusvillemoes.dk>
-In-Reply-To: <20190923081348.6843-5-linux@rasmusvillemoes.dk>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [PATCH] dt-bindings: gpio: rcar: Add DT binding for r8a774b1
+References: <1569245268-61920-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1569245268-61920-1-git-send-email-biju.das@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+To:     Biju Das <biju.das@bp.renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Sep 2019 10:13:48 +0200, Rasmus Villemoes wrote:
-> We need to increase the pwm-cells for the optional flags parameter, in
-> order to implement support for polarity setting via DT.
+On Mon, 23 Sep 2019 14:27:48 +0100, Biju Das wrote:
+> Document Renesas' RZ/G2N (R8A774B1) GPIO blocks compatibility within the
+> relevant dt-bindings.
 > 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/pwm/mxs-pwm.txt | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
