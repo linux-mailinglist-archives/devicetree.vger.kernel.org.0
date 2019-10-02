@@ -2,130 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B25AC8B50
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51795C8B5F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727176AbfJBOdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:33:16 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:54611 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726444AbfJBOdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:33:16 -0400
-Received: by mail-wm1-f66.google.com with SMTP id p7so7476217wmp.4;
-        Wed, 02 Oct 2019 07:33:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=AVTETs+oGeEC2u9tBgMMkGrKf43RbFMMIseBuCEUcM8=;
-        b=MuyHgSkNJQ2AeuGS+WNbkSvVcdfYoaJlIoTr5Ces1bmPbfcp8R4EhdwJ6XMZeNLy9s
-         UCrqpTs5Z3/mj8gd3EjGhuPfeexPZg1bdysYZ59RDWmY5mjXVZZLJowskbO+SW8frfme
-         +2jg2moqgbApt1vk7nqN6EfCvrGy5M26/5VdgulnH9i7FaHz7+aQwYAmXvM/KIqkp+FM
-         fOMnC4cVqJgCyRW76IFKWisReV0AZpz8KyZVkdzXsSDzVZPlbkN9HDk4foE1KkVvkKvx
-         SHDeWdHh+8Fah/jQRL8IvWGcxBgl0QLWuLBB+I7PIceYyeCtOH0FWOOW4o8cdep8tUou
-         v+BA==
-X-Gm-Message-State: APjAAAWGB/Lzn99cFjBaPm86AhWkWuRGNVxpSuUfQ7j/V0RFCqc2StGm
-        QmrEdQjxCX64+W0OGL6syBLv3Z01
-X-Google-Smtp-Source: APXvYqwmFvHm7rFsTvQq0Zwc4A11TsV7mmn1KrgwfBt5cGv22d6M4/7ffFDvl4S5Z0mArAq50hK9rw==
-X-Received: by 2002:a1c:4d0d:: with SMTP id o13mr3249429wmh.19.1570026793907;
-        Wed, 02 Oct 2019 07:33:13 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id s12sm40423949wra.82.2019.10.02.07.33.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2019 07:33:12 -0700 (PDT)
-Date:   Wed, 2 Oct 2019 16:33:10 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     vireshk@kernel.org, robh+dt@kernel.org, kgene@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com
-Subject: Re: [PATCH v4 1/6] opp: Handle target/min/max voltage in
- dev_pm_opp_adjust_voltage()
-Message-ID: <20191002143310.GA15898@pi3>
-References: <20190910123618.27985-1-s.nawrocki@samsung.com>
- <CGME20190910123636eucas1p250ec04901f227b947cc38936563f63b2@eucas1p2.samsung.com>
- <20190910123618.27985-2-s.nawrocki@samsung.com>
+        id S1727135AbfJBOhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:37:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46668 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726951AbfJBOhB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Oct 2019 10:37:01 -0400
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 083D321D7B;
+        Wed,  2 Oct 2019 14:37:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570027020;
+        bh=l424NVEzG4ThrC9rmj9+Vglen2NQpsXN1YuwbmNYEIU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=byCCvAQuO7pG4NgtQHjzkNpqMJMc8uN9GoybJZJsfHTo2nmAl3VSY2yXF47ipcDb4
+         Nk0fQmLETDXEolz7N8SS7wNiSXiaSfcIA4FWfK2HB+CTfah85Kwqux8g+8kj/d1aJH
+         Z9ZD4LTmktO6DTYw1qEANP+Te5+tkMW/IoafqWwo=
+Received: by mail-qk1-f177.google.com with SMTP id 4so15194402qki.6;
+        Wed, 02 Oct 2019 07:36:59 -0700 (PDT)
+X-Gm-Message-State: APjAAAXomx2/D338/z2DmS6coJ0wN3JIFgq+ML8v/7DK62XXOlp1/nfU
+        4widuXSSnsApmgJKBnLd1CMKFf3TERThbwoyEA==
+X-Google-Smtp-Source: APXvYqyQu5u58Q1H/RMYMjrc+hk8IrR9Ex+cJ5BZ5rEtYCuvFPeYbkLD00dRnvDJbQP0p52zUid51CoENQZ0ZOpbAFU=
+X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr3707675qkb.119.1570027019132;
+ Wed, 02 Oct 2019 07:36:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190910123618.27985-2-s.nawrocki@samsung.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190704122319.8983-1-martin.blumenstingl@googlemail.com> <20190704122319.8983-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190704122319.8983-2-martin.blumenstingl@googlemail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 2 Oct 2019 09:36:45 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ9yUK2HNu9fLes1eEtEKdAZcXqBjGF90xKEuQh9fCU6g@mail.gmail.com>
+Message-ID: <CAL_JsqJ9yUK2HNu9fLes1eEtEKdAZcXqBjGF90xKEuQh9fCU6g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: phy: add binding for the Lantiq
+ VRX200 and ARX300 PCIe PHYs
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "open list:MIPS" <linux-mips@vger.kernel.org>,
+        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Martin Schiller <ms@dev.tdt.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 10, 2019 at 02:36:13PM +0200, Sylwester Nawrocki wrote:
-> To be squashed with patch "PM / OPP: Support adjusting OPP voltages
-> at runtime".
-> 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+On Thu, Jul 4, 2019 at 7:23 AM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Add the bindings for the PCIe PHY on Lantiq VRX200 and ARX300 SoCs.
+> The IP block contains settings for the PHY and a PLL.
+> The PLL mode is configurable through a dedicated #phy-cell in .dts.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
-> Changes since v3:
->  - new patch
-> 
->  drivers/opp/core.c     | 10 ++++++++--
->  include/linux/pm_opp.h |  3 ++-
->  2 files changed, 10 insertions(+), 3 deletions(-)
-
-I'll take the ASV driver via samsung-soc but I see it depends on this
-one.  Please provide me a stable tag with it or an Ack.
-
-Best regards,
-Krzysztof
-
-
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 407a07f29b12..4ebe5a6c280b 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -2057,14 +2057,18 @@ static int _opp_set_availability(struct device *dev, unsigned long freq,
->   * dev_pm_opp_adjust_voltage() - helper to change the voltage of an OPP
->   * @dev:		device for which we do this operation
->   * @freq:		OPP frequency to adjust voltage of
-> - * @u_volt:		new OPP voltage
-> + * @u_volt:		new OPP target voltage
-> + * @u_volt_min:		new OPP min voltage
-> + * @u_volt_max:		new OPP max voltage
->   *
->   * Return: -EINVAL for bad pointers, -ENOMEM if no memory available for the
->   * copy operation, returns 0 if no modifcation was done OR modification was
->   * successful.
->   */
->  int dev_pm_opp_adjust_voltage(struct device *dev, unsigned long freq,
-> -			      unsigned long u_volt)
-> +			      unsigned long u_volt, unsigned long u_volt_min,
-> +			      unsigned long u_volt_max)
+>  .../bindings/phy/lantiq,vrx200-pcie-phy.yaml  | 95 +++++++++++++++++++
+>  .../dt-bindings/phy/phy-lantiq-vrx200-pcie.h  | 11 +++
+>  2 files changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+>  create mode 100644 include/dt-bindings/phy/phy-lantiq-vrx200-pcie.h
+>
+> diff --git a/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+> new file mode 100644
+> index 000000000000..8a56a8526cef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/lantiq,vrx200-pcie-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  {
->  	struct opp_table *opp_table;
->  	struct dev_pm_opp *tmp_opp, *opp = ERR_PTR(-ENODEV);
-> @@ -2098,6 +2102,8 @@ int dev_pm_opp_adjust_voltage(struct device *dev, unsigned long freq,
->  		goto adjust_unlock;
-> 
->  	opp->supplies->u_volt = u_volt;
-> +	opp->supplies->u_volt_min = u_volt_min;
-> +	opp->supplies->u_volt_max = u_volt_max;
-> 
->  	dev_pm_opp_get(opp);
->  	mutex_unlock(&opp_table->lock);
-> diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
-> index 86947d53e8c4..0ee1daafe6af 100644
-> --- a/include/linux/pm_opp.h
-> +++ b/include/linux/pm_opp.h
-> @@ -113,7 +113,8 @@ void dev_pm_opp_remove(struct device *dev, unsigned long freq);
->  void dev_pm_opp_remove_all_dynamic(struct device *dev);
-> 
->  int dev_pm_opp_adjust_voltage(struct device *dev, unsigned long freq,
-> -			      unsigned long u_volt);
-> +			      unsigned long u_volt, unsigned long u_volt_min,
-> +			      unsigned long u_volt_max);
-> 
->  int dev_pm_opp_enable(struct device *dev, unsigned long freq);
-> 
-> --
-> 2.17.1
-> 
+> +title: Lantiq VRX200 and ARX300 PCIe PHY Device Tree Bindings
+> +
+> +maintainers:
+> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +
+> +properties:
+> +  "#phy-cells":
+> +    const: 1
+> +    description: selects the PHY mode as defined in <dt-bindings/phy/phy-lantiq-vrx200-pcie.h>
+> +
+> +  compatible:
+> +    enum:
+> +      - lantiq,vrx200-pcie-phy
+> +      - lantiq,arx300-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: PHY module clock
+> +      - description: PDI register clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: phy
+> +      - const: pdi
+> +
+> +  resets:
+> +    items:
+> +      - description: exclusive PHY reset line
+> +      - description: shared reset line between the PCIe PHY and PCIe controller
+> +
+> +  resets-names:
+
+This breaks 'make dt_binding_check'. It should be 'reset-names'.
+
+Rob
