@@ -2,196 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45E56C9151
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 21:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5FDC9155
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 21:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728984AbfJBTGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 15:06:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34750 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728979AbfJBTGP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 15:06:15 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B83B9222C0;
-        Wed,  2 Oct 2019 19:06:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570043173;
-        bh=8sMo4FJfboakcK868/Hiy+nKIlOxxVLfCFn8JuRQTxA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=liDCze7O2YwLXEO94UIjRrUz826pXyDkWV3SVv4RO9EsY+bu3qzZ0LRWRQE8D1egP
-         f5VhggSpntyDP1ySr1PoDxz2Mq+tFpKK78y6FcctvY7B1FVkE2EsvxQtZbCWjI9zLa
-         Uz7NkLmY5Mj2MvFzE0yYLL0dAPGt1a9x/UGo14Kw=
-Received: by mail-qt1-f181.google.com with SMTP id c3so59222qtv.10;
-        Wed, 02 Oct 2019 12:06:13 -0700 (PDT)
-X-Gm-Message-State: APjAAAWLntryWmPGGnCpTWsKb+JsKiGEUzKfY1CJtmGPoji+7LGUa1VT
-        gmEmQl1SI1hXR22zTx6723UBehApL2ZMcVEqKg==
-X-Google-Smtp-Source: APXvYqyP/AkJgtrsX9gl2TGkwS1JLKrJIncGvW+nvBz1GMCbZV4b9uH9RP7xJaCQd5dNgn31KtV92hGdTzUoKoefvnA=
-X-Received: by 2002:a05:6214:30c:: with SMTP id i12mr4557087qvu.135.1570043172759;
- Wed, 02 Oct 2019 12:06:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190924124945.491326-1-nuno.sa@analog.com> <20190924124945.491326-4-nuno.sa@analog.com>
- <20191002002331.GA17502@bogus> <a85b33d3cd24b4225e4be3a25221f9c56cdcca5c.camel@analog.com>
-In-Reply-To: <a85b33d3cd24b4225e4be3a25221f9c56cdcca5c.camel@analog.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 2 Oct 2019 14:06:01 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJPFfUmOOQ-f_ibbTXdzgYxYMf2+7HCq2eBn_MkfRsdbQ@mail.gmail.com>
-Message-ID: <CAL_JsqJPFfUmOOQ-f_ibbTXdzgYxYMf2+7HCq2eBn_MkfRsdbQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: iio: Add ltc2947 documentation
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        id S1727685AbfJBTIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 15:08:00 -0400
+Received: from srv1.deutnet.info ([116.203.153.70]:55578 "EHLO
+        srv1.deutnet.info" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726669AbfJBTIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 15:08:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=deutnet.info; s=default; h=In-Reply-To:Date:Message-ID:From:Cc:To:Subject;
+         bh=GPbfP2XqzSm9W2BgYoWtnF6GLdAaFGBJlwx9yssXOL4=; b=jAlS8eEwe0nr46Xlvl9cGGNxu
+        YOKCdVxuQQhMBuF7pRYBbVPAJFPB+V/zRDGx2a+NV3Qcak4JvDwLb4vRyR4ZnOhN2YuRNs1gYsThD
+        TpaoYyjQojZ+QXKU6wEqBSpfZp3pPYOmoPSbT6m1C9JZ1RP/6g4SKrj/k13K/cfXgDStupbFOnZkH
+        e+omvoLpE3bYxByUgy7q1PsI1f0Evl8Ia5LqzN+W0pIliJQBIT4bthAjOG8MpFi/J9He//44Re6JN
+        r0CfAjKjnZJJIkRlkgvavMf/1OKmlXF51xpvUEaGwmUlspDzBv0/TiWPAd0ajbwd0cZO0ZBcESuSA
+        w8BeCVzaw==;
+Received: from [2001:41d0:fe79:6701::b64]
+        by srv1.deutnet.info with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <agriveaux@deutnet.info>)
+        id 1iFjye-00073o-Si; Wed, 02 Oct 2019 21:07:57 +0200
+Subject: Re: [PATCH v2 5/5] MIPS: JZ4780: DTS: Add CPU nodes
+To:     Paul Burton <paul.burton@mips.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>
-Content-Type: text/plain; charset="UTF-8"
+        "ralf@linux-mips.org" <ralf@linux-mips.org>,
+        "jhogan@kernel.org" <jhogan@kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <cover.1569955865.git.agriveaux@deutnet.info>
+ <0dbd1986be4ee50bdd9f45c140aded7c49fddb8a.1569955865.git.agriveaux@deutnet.info>
+ <20191001232031.qaci6hk5tjo652mi@pburton-laptop>
+From:   Alexandre GRIVEAUX <agriveaux@deutnet.info>
+Openpgp: preference=signencrypt
+Autocrypt: addr=agriveaux@deutnet.info; prefer-encrypt=mutual; keydata=
+ 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
+ z6YGVVQX+YQhrew=
+Message-ID: <61516f78-18a9-2702-2812-312b05cd0279@deutnet.info>
+Date:   Wed, 2 Oct 2019 21:07:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <20191001232031.qaci6hk5tjo652mi@pburton-laptop>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: fr
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 2, 2019 at 10:09 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
+Hi Paul and other.
+> Hi Alexandre,
+> This should probably be something like ingenic,xburst2. JZ4780 is the
+> SoC. It also should be a documented binding, but I think it would be
+> worth holding off on the whole thing until we actually get SMP support
+> merged - just in case we come up with a binding that doesn't actually
+> work out.
 >
-> On Wed, 2019-10-02 at 09:19 -0500, Rob Herring wrote:
-> >
-> > On Tue, Sep 24, 2019 at 02:49:45PM +0200, Nuno S=C3=A1 wrote:
-> > > Document the LTC2947 device devicetree bindings.
-> > >
-> > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > ---
-> > >  .../bindings/hwmon/adi,ltc2947.yaml           | 101
-> > > ++++++++++++++++++
-> > >  MAINTAINERS                                   |   1 +
-> > >  2 files changed, 102 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > new file mode 100644
-> > > index 000000000000..2ea0187421d4
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > @@ -0,0 +1,101 @@
-> >
-> > Missing license. Please make new bindings (GPL-2.0-only OR BSD-2-
-> > Clause)
+> So I expect I'll just apply patches 1-4 for now.
 >
-> ack.
->
-> > > +%YAML 1.2
-> > > +---
-> > > +$id:
-> > > http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Analog Devices LTC2947 high precision power and energy
-> > > monitor
-> > > +
-> > > +maintainers:
-> > > +  - Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > +
-> > > +description: |
-> > > +  Analog Devices LTC2947 high precision power and energy monitor
-> > > over SPI or I2C.
-> > > +
-> > > +
-> > > https://www.analog.com/media/en/technical-documentation/data-sheets/L=
-TC2947.pdf
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - adi,ltc2947
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    description:
-> > > +      The LTC2947 uses either a trimmed internal oscillator or an
-> > > external clock
-> > > +      as the time base for determining the integration period to
-> > > represent time,
-> > > +      charge and energy. When an external clock is used, this
-> > > property must be
-> > > +      set accordingly.
-> > > +    maxItems: 1
-> > > +
-> > > +  adi,accumulator-ctl-pol:
-> > > +    description:
-> > > +      This property controls the polarity of current that is
-> > > accumulated to
-> > > +      calculate charge and energy so that, they can be only
-> > > accumulated for
-> > > +      positive current for example. Since there are two sets of
-> > > registers for
-> > > +      the accumulated values, this entry can also have two items
-> > > which sets
-> > > +      energy1/charge1 and energy2/charger2 respectively. Check
-> > > table 12 of the
-> > > +      datasheet for more information on the supported options.
-> > > +    allOf:
-> > > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +      - enum: [0, 1, 2, 3]
-> > > +      - minItems: 2
-> > > +      - maxItems: 2
-> > > +    default: [0, 0]
-> >
-> > This should be:
-> >
-> > allOf:
-> >   - $ref: ...
-> > items:
-> >   enum: [0, 1, 2, 3]
-> >   default: 0
-> > minItems: 2
-> > maxItems: 2
->
-> I was expecting this already. When upstreaming another device, I
-> realized some errors with `make dt_binding_check` when evaluating the
-> example. Just for my understanding, is this also incorrect?
+> Thanks for working on it!
 
-The allOf structure like this also works. You'll get better error
-messages if schemas are not under an allOf.
+I holding the CPU patch at this time for more work later, I would like
+to upstream some patchs from this repository:
 
-> allOf:
->   - $ref: /schemas/types.yaml#/definitions/uint32-array
->   - minItems: 2
->     maxItems: 2
->     items:
->       enum: [0, 1, 2, 3]
->     default: 0
+https://github.com/MIPS/CI20_linux.git
 
-However, 'default' needs to be indented under 'items'.
 
->
-> I used a similar pattern in another device that is also waiting for
-> review :).
-> > > +
-> > > +  adi,accumulation-deadband-microamp:
-> > > +    description:
-> > > +      This property controls the Accumulation Dead band which
-> > > allows to set the
-> > > +      level of current below which no accumulation takes place.
-> > > +    allOf:
-> > > +      - $ref: /schemas/types.yaml#/definitions/uint32
-> > > +      - maximum: 255
-> >
-> > maximum should be at same indent as allOf. Or default should be at
-> > the
-> > same level as maximum (under a single '-' list entry).
->
-> So it should be?
->
-> allOf:
->   - $ref: /schemas/types.yaml#/definitions/uint32
->   - maximum: 255
->     default: 0
+How i can do that and keep the contributors history ?
 
-Yes.
+
+Thanks for the help.
+
+Ps: I try to unban my e-mail server from office365...
+
+
