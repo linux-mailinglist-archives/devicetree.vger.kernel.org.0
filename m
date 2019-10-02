@@ -2,67 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1509C8AF8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A055C8AF5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 16:19:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728290AbfJBOTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 10:19:34 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:42763 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728280AbfJBOTc (ORCPT
+        id S1728286AbfJBOTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 10:19:33 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:42905 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728230AbfJBOTc (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 10:19:32 -0400
-Received: by mail-qt1-f193.google.com with SMTP id w14so26505315qto.9;
-        Wed, 02 Oct 2019 07:19:30 -0700 (PDT)
+Received: by mail-qk1-f196.google.com with SMTP id f16so15120463qkl.9;
+        Wed, 02 Oct 2019 07:19:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:subject:references
-         :in-reply-to:mime-version:content-transfer-encoding:cc:cc:to;
-        bh=6UEBDQmoOShiLbp87rLz2SJ6Y3CaDTIMMgDWI85bPzk=;
-        b=IsQlzVEdNey5uoVICB/pbhLoY5dHOk876batqIn2HibtmtAcZpBmNzsIZ60BNPklpH
-         ipV3tonZ6Umz+Qc5CAcldWHYGQ5gvutvz8toYbrvytkO4Gk1vzt+1hmmVZSZOXZn7ie3
-         5WfbHFf6shPGYL7VAABzt+Y9RH2baBfMSi8k9U3V9/qEJyA2A/id2eGhTun91BpDvhqa
-         ck6G91hbEu7bsuCr3e4FIWCCtCgkbdCnMcUVXdC1zlF0ATiCIgIhdWycetQifuLMTjNF
-         2VO1R6QTcqPghXMGk7H2QIhaqulKCsNHxbGHwdYrULX351l+z7reNu1qyxR0cYpfUaW+
-         55cA==
-X-Gm-Message-State: APjAAAXuDx5fjMJ0ROZQ/0JxlnykXTQhTp7SbBQAE/spREalWIZc/dA2
-        06WRjivrU5PSRa1hpvXSVA8RHa8qdQ==
-X-Google-Smtp-Source: APXvYqwA8KujX0j44nYaY0ep5VHU/Kj3c/ezUJXSNyQWpKPEUcSGF1G+CnoKgFo2MHwEE9vdfXZKVQ==
-X-Received: by 2002:ac8:4784:: with SMTP id k4mr4248127qtq.303.1570025970096;
-        Wed, 02 Oct 2019 07:19:30 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VeC18fTiDpCiD1aerTctLQt8HXgMuu1i7GcCOOIhItk=;
+        b=fxqxp3JP+8z1bqxsQrNjBgdPYMmdYCjy+lUY7YncNKsxb0gCwRkQI0hOHz5hl/B32T
+         TgPJ3u4ugmnjhTvEgt7f2HPXnP1HLAJ/h8yQ6TR+91U8eSissxysW5Xcdx9E0ue1jrXC
+         YQv5n+ZIrHDzgRSvMWJrgmjZHyNB9nsojUrnBYfRRTnhfJIuKbzgANrRko+sLgoQGvtw
+         BGxpHIt3SGVeiYf8rlS00F8fO3qDkqOXGYI8AC0bIB99HEYLYuJwITsyMa0eyZkAcL/S
+         9DTpJmlakTtvOA5XUhQj9ohDztaJMxoxOxXIDOTJLCpondsgrSMolaBnW4kSqeCYUQh4
+         whqg==
+X-Gm-Message-State: APjAAAWCJMXZbUibhdCsqy9OjmbchAdh3QLKWkl/3dVnWF7c4afnWnC/
+        CUVyH0+ELIUoNcbXA1cuqqnepBs+SA==
+X-Google-Smtp-Source: APXvYqxqx5bD5dNV83sTgSiMC7/tuoceP3pYCZ3E9rSZEdOBCkruX4sGwCdWY01UR+WhZB8WoI7dCA==
+X-Received: by 2002:a37:84c3:: with SMTP id g186mr3791944qkd.71.1570025971328;
+        Wed, 02 Oct 2019 07:19:31 -0700 (PDT)
 Received: from localhost ([132.205.230.8])
-        by smtp.gmail.com with ESMTPSA id z200sm10073665qkb.5.2019.10.02.07.19.29
+        by smtp.gmail.com with ESMTPSA id 29sm9359711qkp.86.2019.10.02.07.19.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2019 07:19:29 -0700 (PDT)
-Message-ID: <5d94b1f1.1c69fb81.ab470.458b@mx.google.com>
-Date:   Wed, 02 Oct 2019 09:19:26 -0500
+        Wed, 02 Oct 2019 07:19:30 -0700 (PDT)
+Date:   Wed, 02 Oct 2019 09:19:27 -0500
 From:   Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 7/7] dt-bindings: smia: Remove documentation of nokia,nvm-size
-References: <20190924112338.27180-1-sakari.ailus@linux.intel.com> <20190924112338.27180-8-sakari.ailus@linux.intel.com>
-In-Reply-To: <20190924112338.27180-8-sakari.ailus@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH 3/3] dt-bindings: iio: Add ltc2947 documentation
+Message-ID: <20191002002331.GA17502@bogus>
+References: <20190924124945.491326-1-nuno.sa@analog.com>
+ <20190924124945.491326-4-nuno.sa@analog.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Cc:     linux-media@vger.kernel.org
-Cc:     devicetree@vger.kernel.org
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+In-Reply-To: <20190924124945.491326-4-nuno.sa@analog.com>
+X-Mutt-References: <20190924124945.491326-4-nuno.sa@analog.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Sep 2019 14:23:38 +0300, Sakari Ailus wrote:
-> The nokia,nvm-size property was used to tell the size of the NVM memory
-> accessible through the sensor's register interface. However, while the
-> size isn't directly readable through the sensor's register interface, it
-> can be detected reading the NVM memory until the selected page is no
-> longer available.
+On Tue, Sep 24, 2019 at 02:49:45PM +0200, Nuno Sá wrote:
+> Document the LTC2947 device devicetree bindings.
 > 
-> Thus remove this property.
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/nokia,smia.txt | 2 --
->  1 file changed, 2 deletions(-)
+>  .../bindings/hwmon/adi,ltc2947.yaml           | 101 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 102 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> new file mode 100644
+> index 000000000000..2ea0187421d4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> @@ -0,0 +1,101 @@
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Missing license. Please make new bindings (GPL-2.0-only OR BSD-2-Clause)
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices LTC2947 high precision power and energy monitor
+> +
+> +maintainers:
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description: |
+> +  Analog Devices LTC2947 high precision power and energy monitor over SPI or I2C.
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/LTC2947.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ltc2947
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      The LTC2947 uses either a trimmed internal oscillator or an external clock
+> +      as the time base for determining the integration period to represent time,
+> +      charge and energy. When an external clock is used, this property must be
+> +      set accordingly.
+> +    maxItems: 1
+> +
+> +  adi,accumulator-ctl-pol:
+> +    description:
+> +      This property controls the polarity of current that is accumulated to
+> +      calculate charge and energy so that, they can be only accumulated for
+> +      positive current for example. Since there are two sets of registers for
+> +      the accumulated values, this entry can also have two items which sets
+> +      energy1/charge1 and energy2/charger2 respectively. Check table 12 of the
+> +      datasheet for more information on the supported options.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +      - enum: [0, 1, 2, 3]
+> +      - minItems: 2
+> +      - maxItems: 2
+> +    default: [0, 0]
+
+This should be:
+
+allOf:
+  - $ref: ...
+items:
+  enum: [0, 1, 2, 3]
+  default: 0
+minItems: 2
+maxItems: 2
+
+> +
+> +  adi,accumulation-deadband-microamp:
+> +    description:
+> +      This property controls the Accumulation Dead band which allows to set the
+> +      level of current below which no accumulation takes place.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - maximum: 255
+
+maximum should be at same indent as allOf. Or default should be at the 
+same level as maximum (under a single '-' list entry).
+
+> +    default: 0
+> +
+> +  adi,gpio-out-pol:
+> +    description:
+> +      This property controls the GPIO polarity. Setting it to one makes the GPIO
+> +      active high, setting it to zero makets it active low. When this property
+> +      is present, the GPIO is automatically configured as output and set to
+> +      control a fan as a function of measured temperature.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [0, 1]
+> +    default: 0
+
+Same here.
+
+> +
+> +  adi,gpio-in-accum:
+> +    description:
+> +      When set, this property sets the GPIO as input. It is then used to control
+> +      the accumulation of charge, energy and time. This function can be
+> +      enabled/configured separately for each of the two sets of accumulation
+> +      registers. Check table 13 of the datasheet for more information on the
+> +      supported options. This property cannot be used together with
+> +      adi,gpio-out-pol.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +      - enum: [0, 1, 2]
+> +      - minItems: 2
+> +      - maxItems: 2
+> +    default: [0, 0]
+
+Similar here.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +
+> +examples:
+> +  - |
+> +    spi0 {
+
+Just 'spi'
+
+> +           #address-cells = <1>;
+> +           #size-cells = <0>;
+> +
+> +           ltc2947_spi: ltc2947@0 {
+> +                   compatible = "adi,ltc2947";
+> +                   reg = <0>;
+> +                   /* accumulation takes place always for energ1/charge1. */
+> +                   /* accumulation only on positive current for energy2/charge2. */
+> +                   adi,accumulator-ctl-pol = <0 1>;
+> +           };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 889f38c1c930..820bdde2044b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9505,6 +9505,7 @@ F:	drivers/hwmon/ltc2947-core.c
+>  F:	drivers/hwmon/ltc2947-spi.c
+>  F:	drivers/hwmon/ltc2947-i2c.c
+>  F:	drivers/hwmon/ltc2947.h
+> +F:	Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+>  
+>  LTC4306 I2C MULTIPLEXER DRIVER
+>  M:	Michael Hennerich <michael.hennerich@analog.com>
+> -- 
+> 2.23.0
+> 
 
