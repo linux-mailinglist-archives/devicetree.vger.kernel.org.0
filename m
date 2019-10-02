@@ -2,77 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D64F0C8FEA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 19:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3985C8FF3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 19:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726698AbfJBR3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 13:29:39 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:54143 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726669AbfJBR3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 13:29:39 -0400
-Received: by mail-wm1-f66.google.com with SMTP id i16so8085462wmd.3;
-        Wed, 02 Oct 2019 10:29:35 -0700 (PDT)
+        id S1727883AbfJBRaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 13:30:12 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:43407 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727751AbfJBRaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 13:30:12 -0400
+Received: by mail-pg1-f195.google.com with SMTP id v27so12205725pgk.10;
+        Wed, 02 Oct 2019 10:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=dD7LlVVkjL4mW1qTKA1cs6coFqWpKMl6b+eHXZuUZxg=;
+        b=WsBKFgTkvvcvJrsRQxVCu99NRM1DedTmOwmFuelXbJmlFsE09XCjOaVhezuV18rzmu
+         p2IjKGr1mb4jfZXVADqYGX4aPnDpAKavVVCjx8RQAY1Bgo5eJf4HWJBGt58rUlAXWRzJ
+         lWwh8zo39ZZWJgvofsN23zqvbEFigM2Nrjf19pbXzudKJYT00pMIY5bziOmMjvHE/WZ8
+         ej76hSoIyEewaJLJZUOt7zzqrwQPGc56tcBeDQGzvFUlxhE3yej2tdlZiBuL1Dyq4H5A
+         tXqiJWO+BwO/FsKBJXcjNsJjcpR5tYOamRlGHWy5eZRfR89Pb5wbFVYp8tH11AEYkDc0
+         gtUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=knUYYHU2RbGFZMJdC/t7iP8HF/H6gnHVaApA8Esfhxo=;
-        b=Z1xOXOi8giWYdBPsef30cFsZDIGE91qMj6llDgJPW4MAnTRsze81s3Kt21KZmE3BSc
-         QGlspolGvKF4BNpt2F3kZ9KF/4itPArZYTl/BNoHNHP//3TfdFxYP8QozdwUA5O6mwfT
-         tm0rnM2XkGoQCEwYUHlRVeCOl2XkRt+1tznNCmAOvGn6oQ1y4LupJCA9LZ+gAE9tZvCF
-         FEDhvfCCq5lXO3BN5I1JrKc/iQfi3EWTk1Z+vpop+uwyzFznEJ2TuO5S8YXmSb0Lb4m1
-         82GSVrKRg4Z1RqNjG16aRMDX7a+k1/Fa132GGVyxOjBKuPVBMoG/s8CB8r28GVipSSCn
-         bSSA==
-X-Gm-Message-State: APjAAAUST5AX9Hs/ljqKDY8T6zIZv4/vdHHvdxSLVVCTV3i0hplH4eCg
-        SEtxQFtToUnpz44AtM5AgJM=
-X-Google-Smtp-Source: APXvYqyH9fArHRTfXWfzqVQgaYVpo3bxfKpOmbUVndDKpAsFqO6SiYYHhg1MSaFN+BTdgbZp7amG7Q==
-X-Received: by 2002:a1c:f004:: with SMTP id a4mr3750737wmb.42.1570037374987;
-        Wed, 02 Oct 2019 10:29:34 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id n8sm11547015wma.7.2019.10.02.10.29.33
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Oct 2019 10:29:34 -0700 (PDT)
-Date:   Wed, 2 Oct 2019 19:29:31 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com,
-        kgene@kernel.org, mark.rutland@arm.com, cw00.choi@samsung.com,
-        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        robh+dt@kernel.org, willy.mh.wolff.ml@gmail.com
-Subject: Re: [PATCH v3 3/4] ARM: dts: exynos: map 0x10000 SFR instead of
- 0x100 in DMC Exynos5422
-Message-ID: <20191002172931.GE21463@kozik-lap>
-References: <20191002060455.3834-1-l.luba@partner.samsung.com>
- <CGME20191002060506eucas1p28c9670128f5adfb628d7e84ce55c6e60@eucas1p2.samsung.com>
- <20191002060455.3834-4-l.luba@partner.samsung.com>
+        bh=dD7LlVVkjL4mW1qTKA1cs6coFqWpKMl6b+eHXZuUZxg=;
+        b=ezBmZ21D/8VTJ5nG2RSLnFlJUy3lMsSJ2fB2icx5IR83AxR0c/rHZhEJjWpiu4YuVG
+         Bk8afr0PGKl4+z4wCBuuc568X+dZ/XV7VLMxXokqMVHhISX/uXyDlP9iqXcCMzxFDYmF
+         Qwo3/3pynZHNd8XVamqepIpC22W4K2nL7kqm471lBisjCe4am8L6f/Ua1FBsNWKkhGV6
+         R8uAub9A7B5fCaLDn7H+aeTqHD488Fj9VgBLw2BcEiyEx52fX/ZheYyUcQIxSIm5Vesn
+         ndPm7tAl0UwsslC9i+w1B0O9cnikXehoJxP75vyP39hG7aGX1omrtztBC5BYHm+K7Kn2
+         uWrg==
+X-Gm-Message-State: APjAAAVrhZ12WWOhVsmi+EXPw2R99tIAGyJT29CzYn1Ry72Cf9gN+/0F
+        EmyMvm57x/cYGbbLcdlJ4dg=
+X-Google-Smtp-Source: APXvYqyQ0wWZY6zmIhMjDZAleQyT7tsDpDVjj443C1kRik1Feb74sY/vqLX4q/o8ROz/SKWxf78t5Q==
+X-Received: by 2002:a62:c141:: with SMTP id i62mr5951606pfg.64.1570037411093;
+        Wed, 02 Oct 2019 10:30:11 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id w2sm59056pfn.57.2019.10.02.10.30.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2019 10:30:10 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 10:30:07 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        andriy.shevchenko@linux.intel.com, andy.shevchenko@gmail.com,
+        simon.budig@kernelconcepts.de, hdegoede@redhat.com, fcooper@ti.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, bcousson@baylibre.com, tony@atomide.com,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, s.hauer@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, shawnguo@kernel.org,
+        mripard@kernel.org, wens@csie.org
+Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
+ wakeup-source documentation
+Message-ID: <20191002173007.GA20549@dtor-ws>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-3-m.felsch@pengutronix.de>
+ <20190917170743.GO237523@dtor-ws>
+ <20190917171814.owcttekv56xgmsts@pengutronix.de>
+ <20190917172658.GQ237523@dtor-ws>
+ <20190930231146.GA30010@bogus>
+ <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
+ <20191002152003.ag36lrragazsdn5j@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191002060455.3834-4-l.luba@partner.samsung.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20191002152003.ag36lrragazsdn5j@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 02, 2019 at 08:04:54AM +0200, Lukasz Luba wrote:
-> There is a need to access registers at address offset near 0x10000.
-> These registers are private DMC performance counters, which might be used
-> as interrupt trigger when overflow. Potential usage is to skip polling
-> in devfreq framework and switch to interrupt managed bandwidth control.
+On Wed, Oct 02, 2019 at 10:20:03AM -0500, Benoit Parrot wrote:
+> Marco Felsch <m.felsch@pengutronix.de> wrote on Wed [2019-Oct-02 15:00:18 +0200]:
+> > Hi,
+> > 
+> > all of you using a edt,* touchscreen and currently the driver marks
+> > the touchscreen as wakeup source. To keep backward compatibility I added
+> > a workaround binding (see below) but Dmitry prefer to use the normal
+> > "wakeup-source" binding and change the affected device-tree's
+> > (discussion below). Can you give me your ack/nack for Dmitry's solution?
 > 
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  arch/arm/boot/dts/exynos5420.dtsi | 2 +-
+> So, if I understand this correctly, currently the driver always assume it
+> is a wakeup source regardless if the "wakeup-source" DT property being
+> present or not. And the proposed change now is to fix the driver so that it
+> will assume a wakeup source role only if the DT property is present?
 
-Thanks, applied but re-ordered with previous one. Applying first
-interrupts enables the interrupt mode which does not make sense without
-extended mapping
+Yes, that is correct.
 
-Best regards,
-Krzysztof
+> 
+> If that is the case then ACK from my side for the AM43x devices.
 
+Thanks.
+
+-- 
+Dmitry
