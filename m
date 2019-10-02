@@ -2,248 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B16C1C8E9E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 18:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D05BC8EA4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 18:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726297AbfJBQlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 12:41:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47434 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726101AbfJBQlV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Oct 2019 12:41:21 -0400
-Received: from localhost.localdomain (unknown [194.230.155.145])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2495F21848;
-        Wed,  2 Oct 2019 16:41:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570034480;
-        bh=sTdcUmQnTJMo/eGaxv0uopEjwcptgep/O3PJEVo0xyI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=N5PdC8DvoCbOh3O5NRy0lVGuQbT9DgJt2yYsR8eLbXzVRfINqyFK6QQb0KTbPNKUN
-         Gx/4NhZOOnF1nCxGx8Fe7KG0NGum83wbi7+B5G/IZpaGbUBbk+o81b3JK49Dq7szBF
-         jYLh0cfAB8oH11+a9WfvFfi7Xac1pnWR9qN8DHu4=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1726208AbfJBQnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 12:43:08 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:43216 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726267AbfJBQnI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 12:43:08 -0400
+Received: by mail-pl1-f195.google.com with SMTP id f21so7276353plj.10
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 09:43:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QK5cQenUnemNJViz1kVO+QhJytyn5MMK01TencotaHM=;
+        b=Y5QQ47fO98HpZlG4XFz9lifNrd0YQu5kMkfq9RSto01NpB14U/A8vgCqNi66JRbHnx
+         k+ZIJzwejuUJoOrPvz2bLHmclgwsQA6n4xZYGR+Nn8iI7M8i+EOAAnPAsTPc9tRxrFpr
+         9/2cAwR6jB4vGLNoQC8E7P2uIgABe++bsKcNwdjUUaBtAm4gBY7YapWffdsjIuDghjTM
+         J7Gt7AVuEWkrw4+L5MblaZYE+zPQe/kW7b4UBL1YtD9a+G7Rmc+ZiwGxDjvoWLSYQbCD
+         UVgKkKFkq02ZXVsECgLjpmXAjbt+ILkXOc2mIxCvaw0+8ugrMWfWRwDG9tcPJDsNMHoU
+         GkEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=QK5cQenUnemNJViz1kVO+QhJytyn5MMK01TencotaHM=;
+        b=OAMCRAw82+xHfkA/nKs4HXZWnbuNj8ymYzAhN+uFyTQmNSIfvnKqPaEX6ph8N2YCfC
+         AlHwoOia/CkitzL8lPRnICQDrd16wksVG8pK97Zp2LXDY8HpgWZ7ui1hqGNzOn9WkIRy
+         3Yu/XkW9XcBJ4Muf1NDR8VUwKk/37rcf31BHqLK3Y6d/0dGQ425s8w8vjkVZEig9WDMh
+         Z48k73vzrLAtiKKbmUapD1xxUG8T0ulTd07FWIv/wHk2CxR3NHJGS2M9PlynzegY9TVN
+         wMlKOoqodUHBZiui5zp3dhgtUpmGffGEwBeBW00iU6oI8pu1WzpKtAfkIKbnUyuIoCW1
+         lKuA==
+X-Gm-Message-State: APjAAAW7sw9wh3IwTrgwkHqcBi5H63uQJ4yDdwYVVvcNlFan2CWlquNS
+        0KV7MnH9GkjgCp8TAoC7UMSkp3xr
+X-Google-Smtp-Source: APXvYqzO8bmhXIVnLHckbWjmCIkNnNpuCw+mANeepW0J0qhhN+OE7h4WA20hVK3TcUGw1zT54a8dOA==
+X-Received: by 2002:a17:902:5983:: with SMTP id p3mr4794279pli.156.1570034586819;
+        Wed, 02 Oct 2019 09:43:06 -0700 (PDT)
+Received: from [10.67.50.53] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id d6sm22958396pgj.22.2019.10.02.09.43.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Oct 2019 09:43:05 -0700 (PDT)
+Subject: Re: [PATCH V3 7/8] ARM: dts: Add minimal Raspberry Pi 4 support
+To:     Stefan Wahren <wahrenst@gmx.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-tegra@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 2/2] dt-bindings: pwm: Convert Samsung PWM bindings to json-schema
-Date:   Wed,  2 Oct 2019 18:40:47 +0200
-Message-Id: <20191002164047.14499-2-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191002164047.14499-1-krzk@kernel.org>
-References: <20191002164047.14499-1-krzk@kernel.org>
+        Eric Anholt <eric@anholt.net>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+ <1569672435-19823-8-git-send-email-wahrenst@gmx.net>
+ <77b0a773-912a-aa5b-6eb5-5423c2c07e58@gmail.com>
+ <7d0414bb-fea8-e3e5-8b85-c18615a56c94@gmx.net>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <e9e6491e-c53e-7255-98cc-dabdfa7ba753@gmail.com>
+Date:   Wed, 2 Oct 2019 09:43:04 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <7d0414bb-fea8-e3e5-8b85-c18615a56c94@gmx.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Samsung PWM (S3C, S5P and Exynos SoCs) bindings to DT schema
-format using json-schema.
+On 10/2/19 9:24 AM, Stefan Wahren wrote:
+> Hi Florian,
+> 
+> Am 28.09.19 um 21:58 schrieb Florian Fainelli:
+>>
+>> On 9/28/2019 5:07 AM, Stefan Wahren wrote:
+>>
+>>> +	memory@0 {
+>>> +		device_type = "memory";
+>>> +		reg = <0 0 0x00000000>;
+>>> +	};
+>>> +
+>> [snip]
+>>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/soc/bcm2835-pm.h>
+>>> +
+>>> +/ {
+>>> +	compatible = "brcm,bcm2711";
+>>> +
+>>> +	#address-cells = <2>;
+>>> +	#size-cells = <1>;
+>> Trying to see if we may need a #size-cells property value of 2 here, for
+>> the 4GB model, I would assume that we would have to, unless we are fine
+>> with supporting 4GB - 1byte of DRAM?
+> I will try unless this requires a lot of adjustments or break the
+> bootloader.
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+OK.
 
----
+>>
+>>> +
+>>> +	interrupt-parent = <&gicv2>;
+>>> +
+>>> +	soc {
+>>> +		ranges = <0x7e000000  0x0 0xfe000000  0x01800000>,
+>>> +			 <0x7c000000  0x0 0xfc000000  0x02000000>,
+>>> +			 <0x40000000  0x0 0xff800000  0x00800000>;
+>> Might be nice to get some comments about
+> ranges = <0x7e000000  0x0 0xfe000000  0x01800000>,  // Common BCM283x
+> peripherals
+>      <0x7c000000  0x0 0xfc000000  0x02000000>,  // BCM2711-specific
+> peripherals
+> 
+>      <0x40000000  0x0 0xff800000  0x00800000>;  // ARM-local peripherals
+> 
+> I will simply forward the answer from the RPi guys.
+> 
+> Is it what you had in mind? Otherwise please be more specific.
 
-Changes since v2:
-1. Add additionalProperties: false.
-
-Changes since v1:
-1. Indent example with four spaces (more readable),
-2. Fix samsung,pwm-outputs after review,
-3. Remove double-quotes from clock names.
----
- .../devicetree/bindings/pwm/pwm-samsung.txt   |  51 --------
- .../devicetree/bindings/pwm/pwm-samsung.yaml  | 109 ++++++++++++++++++
- 2 files changed, 109 insertions(+), 51 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt b/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
-deleted file mode 100644
-index 5538de9c2007..000000000000
---- a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
-+++ /dev/null
-@@ -1,51 +0,0 @@
--* Samsung PWM timers
--
--Samsung SoCs contain PWM timer blocks which can be used for system clock source
--and clock event timers, as well as to drive SoC outputs with PWM signal. Each
--PWM timer block provides 5 PWM channels (not all of them can drive physical
--outputs - see SoC and board manual).
--
--Be aware that the clocksource driver supports only uniprocessor systems.
--
--Required properties:
--- compatible : should be one of following:
--    samsung,s3c2410-pwm - for 16-bit timers present on S3C24xx SoCs
--    samsung,s3c6400-pwm - for 32-bit timers present on S3C64xx SoCs
--    samsung,s5p6440-pwm - for 32-bit timers present on S5P64x0 SoCs
--    samsung,s5pc100-pwm - for 32-bit timers present on S5PC100, S5PV210,
--			  Exynos4210 rev0 SoCs
--    samsung,exynos4210-pwm - for 32-bit timers present on Exynos4210,
--                          Exynos4x12, Exynos5250 and Exynos5420 SoCs
--- reg: base address and size of register area
--- interrupts: list of timer interrupts (one interrupt per timer, starting at
--  timer 0)
--- clock-names: should contain all following required clock names:
--    - "timers" - PWM base clock used to generate PWM signals,
--  and any subset of following optional clock names:
--    - "pwm-tclk0" - first external PWM clock source,
--    - "pwm-tclk1" - second external PWM clock source.
--  Note that not all IP variants allow using all external clock sources.
--  Refer to SoC documentation to learn which clock source configurations
--  are available.
--- clocks: should contain clock specifiers of all clocks, which input names
--  have been specified in clock-names property, in same order.
--- #pwm-cells: should be 3. See pwm.txt in this directory for a description of
--  the cells format. The only third cell flag supported by this binding is
--  PWM_POLARITY_INVERTED.
--
--Optional properties:
--- samsung,pwm-outputs: list of PWM channels used as PWM outputs on particular
--    platform - an array of up to 5 elements being indices of PWM channels
--    (from 0 to 4), the order does not matter.
--
--Example:
--	pwm@7f006000 {
--		compatible = "samsung,s3c6400-pwm";
--		reg = <0x7f006000 0x1000>;
--		interrupt-parent = <&vic0>;
--		interrupts = <23>, <24>, <25>, <27>, <28>;
--		clocks = <&clock 67>;
--		clock-names = "timers";
--		samsung,pwm-outputs = <0>, <1>;
--		#pwm-cells = <3>;
--	}
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-new file mode 100644
-index 000000000000..ea7f32905172
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/pwm-samsung.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung SoC PWM timers
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+
-+description: |+
-+  Samsung SoCs contain PWM timer blocks which can be used for system clock source
-+  and clock event timers, as well as to drive SoC outputs with PWM signal. Each
-+  PWM timer block provides 5 PWM channels (not all of them can drive physical
-+  outputs - see SoC and board manual).
-+
-+  Be aware that the clocksource driver supports only uniprocessor systems.
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - samsung,s3c2410-pwm             # 16-bit, S3C24xx
-+      - samsung,s3c6400-pwm             # 32-bit, S3C64xx
-+      - samsung,s5p6440-pwm             # 32-bit, S5P64x0
-+      - samsung,s5pc100-pwm             # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
-+      - samsung,exynos4210-pwm          # 32-bit, Exynos
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    description: |
-+      Should contain all following required clock names:
-+      - "timers" - PWM base clock used to generate PWM signals,
-+      and any subset of following optional clock names:
-+      - "pwm-tclk0" - first external PWM clock source,
-+      - "pwm-tclk1" - second external PWM clock source.
-+      Note that not all IP variants allow using all external clock sources.
-+      Refer to SoC documentation to learn which clock source configurations
-+      are available.
-+    oneOf:
-+      - items:
-+        - const: timers
-+      - items:
-+        - const: timers
-+        - const: pwm-tclk0
-+      - items:
-+        - const: timers
-+        - const: pwm-tclk1
-+      - items:
-+        - const: timers
-+        - const: pwm-tclk0
-+        - const: pwm-tclk1
-+
-+  interrupts:
-+    description:
-+      One interrupt per timer, starting at timer 0.
-+    minItems: 1
-+    maxItems: 5
-+
-+  "#pwm-cells":
-+    description:
-+      The only third cell flag supported by this binding
-+      is PWM_POLARITY_INVERTED.
-+    const: 3
-+
-+  samsung,pwm-outputs:
-+    description:
-+      A list of PWM channels used as PWM outputs on particular platform.
-+      It is an array of up to 5 elements being indices of PWM channels
-+      (from 0 to 4), the order does not matter.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32-array
-+      - uniqueItems: true
-+      - items:
-+          minimum: 0
-+          maximum: 4
-+
-+required:
-+  - clocks
-+  - clock-names
-+  - compatible
-+  - interrupts
-+  - "#pwm-cells"
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pwm@7f006000 {
-+        compatible = "samsung,s3c6400-pwm";
-+        reg = <0x7f006000 0x1000>;
-+        interrupt-parent = <&vic0>;
-+        interrupts = <23>, <24>, <25>, <27>, <28>;
-+        clocks = <&clock 67>;
-+        clock-names = "timers";
-+        samsung,pwm-outputs = <0>, <1>;
-+        #pwm-cells = <3>;
-+    };
+Yes, that is what I wanted to see being added, thanks.
 -- 
-2.17.1
-
+Florian
