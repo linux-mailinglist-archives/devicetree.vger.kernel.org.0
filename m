@@ -2,148 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B864C8D78
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E60EC8D82
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:59:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729121AbfJBP5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 11:57:32 -0400
-Received: from mail-pl1-f174.google.com ([209.85.214.174]:36514 "EHLO
-        mail-pl1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727103AbfJBP5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:57:32 -0400
-Received: by mail-pl1-f174.google.com with SMTP id j11so3917812plk.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 08:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=Wf9B4YsXk9gokF161k/iRuBPFG5mNkYGFxNwG7giJ34=;
-        b=opsLeZMJjn3H9A1cyslACeK8jfmkpkR0Uzeibi1ZF/EaqvAaj82qvW3acYFkEIKZwd
-         seC7RLPvnwl9SZ/JwKWHNuTci3hzJov8ohzTfg6EGyFtRBZ2lwcmA9343SHBtnye5q6s
-         U07xbrcGkfWAo3F+vvhZ2Wsyy/WrKQefltuMlcFXum0/JsCf+tHfsuQ+tQaEo2GGlUB1
-         3KAIVxyN1++XSr8DBQ9uGhc5ucZerwopms1xZ++zRpSuarck7ZVq3x6gatjDuVJpanXG
-         OWkkoE1mo+wlAKHFiQqV4IPpfgAJB09ADQkVlZB0zwyNsHjTnWCBT5cc1O+VWcaD4I7C
-         3ctQ==
+        id S1729056AbfJBP7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 11:59:45 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:36651 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726152AbfJBP7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:59:45 -0400
+Received: by mail-wr1-f66.google.com with SMTP id y19so20308092wrd.3;
+        Wed, 02 Oct 2019 08:59:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=Wf9B4YsXk9gokF161k/iRuBPFG5mNkYGFxNwG7giJ34=;
-        b=HRwJM8H4rEF6GKhEv9jVni19UZmSpNv6D/HTJmOD9UdWlFJZ24tqXvFE3vQAP1siUS
-         PfKwiVFVW76zU1uXb+5qiZoO/HByRkA6N8xgl6k07I/5ZHPoeMxrCcQJy8bWLRE321Ch
-         1Ar4ToXEl4umtd2tJ+/BHr0yO4he1ebOMBMOOP6yN84dSdUZiyGVr1hy5KlGvGq8mx5g
-         UavdUiMlt7oTfMRRyIFgEkK7aMd7I9FO+oqhVsVx83U7+BnScLaoLwPsf/31OxSb11Fq
-         HC1HgjgcoYOKNiLohGRmmtvOISasZVwSwq9d+kg4XInVOgfAwYyYfGLYMDn1r7dkFdDK
-         1NwA==
-X-Gm-Message-State: APjAAAXv3rJ5Kn6zUo3gxVdyZZS6ZTjLJZjvuV0LYWtL4i7PYziCEYvQ
-        vXCpajy76FmGHeF7Wx7MjHg=
-X-Google-Smtp-Source: APXvYqyoGpsRfilYh1YdEUbIB9RC7c346FhwL8gPwPkaI4wMogpnkrVavxq2XXF0YkFTosKriqepWg==
-X-Received: by 2002:a17:902:d685:: with SMTP id v5mr4320225ply.15.1570031851727;
-        Wed, 02 Oct 2019 08:57:31 -0700 (PDT)
-Received: from localhost.localdomain ([67.139.187.132])
-        by smtp.gmail.com with ESMTPSA id q71sm6600804pjb.26.2019.10.02.08.57.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 02 Oct 2019 08:57:31 -0700 (PDT)
-From:   Dan Haab <riproute@gmail.com>
-X-Google-Original-From: Dan Haab <dan.haab@luxul.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Dan Haab <dan.haab@legrand.com>
-Subject: [PATCH] ARM: dts: BCM5301X: Add DT for Luxul XWC-2000
-Date:   Wed,  2 Oct 2019 09:57:26 -0600
-Message-Id: <1570031846-8330-1-git-send-email-dan.haab@luxul.com>
-X-Mailer: git-send-email 1.9.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=HowoqpTxX+tooJzzTk62IKsKTseVshqzxoAQBtxdT6A=;
+        b=B2KqUUVaqWvRETEopI1xqsNhiFKxzx0BfjHY41oN2mKYlpkdp7kB9x2eneupEA5DV8
+         yzA44C/li893vGHTwmimJANNxsmjcYZH9oXCIH7yLZP2pYMiDBtVo+rf5RxVgJEqyjVO
+         h+yj4OVCma7MnOrmxzuREO5i4VrWvi8oGK06Upzq0hagxY2u5QNKyZpBVVPqDuzC9vJo
+         Epji/vOelX76FNjPMHDsf7mLWrxa+xCvYDnm44U1YJrBG+mdWjcv8Fd559pAIVcL2rvL
+         LZoB6zKcnVuadUDt+PMpP/JMuKYZ29toje3cdxuQg2Vxe34o4ynfZgeZZXMibiG7gQlT
+         RiLg==
+X-Gm-Message-State: APjAAAV1e47c5a+/kueFSMn8QnSf10iCGlgzpsz0mBQumrXs8abij4rY
+        ELw+lcmYG+p/Pnvc2DCUN00=
+X-Google-Smtp-Source: APXvYqw+EuT/kFsVrBo2DafLzOqNTI2lNlStE5tvXMZ2SbznqaldLFDUBG6OK3gH+1TalVUU7oR36Q==
+X-Received: by 2002:adf:afed:: with SMTP id y45mr3280619wrd.347.1570031983294;
+        Wed, 02 Oct 2019 08:59:43 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id h17sm11629617wme.6.2019.10.02.08.59.41
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 02 Oct 2019 08:59:42 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 17:59:40 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH RESEND] ARM: dts: arndale: Add audio support (WM1811
+ CODEC boards)
+Message-ID: <20191002155940.GA10341@kozik-lap>
+References: <CGME20191002152842eucas1p281f3fb4b7efffaf74fa89ffaa4108b3f@eucas1p2.samsung.com>
+ <20191002152831.18509-1-s.nawrocki@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191002152831.18509-1-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dan Haab <dan.haab@legrand.com>
+On Wed, Oct 02, 2019 at 05:28:31PM +0200, Sylwester Nawrocki wrote:
+> Add sound node and the clock configurations for the I2S controller
+> for audio support on the Exynos5250 SoC Arndale boards with
+> WM1811 based audio daughter board.
+> 
+> We need to increase drive strength of the I2S bus, otherwise
+> the audio CODEC doesn't work. Likely the CODEC's master clock
+> is the main issue here.
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> Changes since v2:
+>  - none.
+> Changes since v1:
+>  - moved &clock, &clock_audss parts to preserve alphabetical order
+> ---
+>  arch/arm/boot/dts/exynos5250-arndale.dts | 27 +++++++++++++++++++++++-
 
-It's a simple network device based on BCM47094 with just a single
-Ethernet port.
+Thanks, applied.
 
-Signed-off-by: Dan Haab <dan.haab@legrand.com>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts | 53 +++++++++++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index b21b3a6..f6b578d 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -113,6 +113,7 @@ dtb-$(CONFIG_ARCH_BCM_5301X) += \
- 	bcm47094-luxul-abr-4500.dtb \
- 	bcm47094-luxul-xap-1610.dtb \
- 	bcm47094-luxul-xbr-4500.dtb \
-+	bcm47094-luxul-xwc-2000.dtb \
- 	bcm47094-luxul-xwr-3100.dtb \
- 	bcm47094-luxul-xwr-3150-v1.dtb \
- 	bcm47094-netgear-r8500.dtb \
-diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts b/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts
-new file mode 100644
-index 0000000..3343253
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2019 Legrand AV Inc.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm47094.dtsi"
-+#include "bcm5301x-nand-cs0-bch8.dtsi"
-+
-+/ {
-+	compatible = "luxul,xwc-2000-v1", "brcm,bcm47094", "brcm,bcm4708";
-+	model = "Luxul XWC-2000 V1";
-+
-+	chosen {
-+		bootargs = "earlycon";
-+	};
-+
-+	memory {
-+		reg = <0x00000000 0x08000000
-+		       0x88000000 0x18000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		status	{
-+			label = "bcm53xx:green:status";
-+			gpios = <&chipcommon 18 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "timer";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		restart {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&chipcommon 19 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&spi_nor {
-+	status = "okay";
-+};
--- 
-1.9.1
+Best regards,
+Krzysztof
 
