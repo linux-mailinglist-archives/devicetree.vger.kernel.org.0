@@ -2,143 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A5BBC8CD2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1A74C8CE1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 17:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728064AbfJBPY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 11:24:58 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:39053 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726710AbfJBPY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:24:58 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 26AE21BF207;
-        Wed,  2 Oct 2019 15:24:53 +0000 (UTC)
-Date:   Wed, 2 Oct 2019 17:24:52 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Rob Herring <robh@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        andriy.shevchenko@linux.intel.com, bparrot@ti.com,
-        andy.shevchenko@gmail.com, simon.budig@kernelconcepts.de,
-        hdegoede@redhat.com, fcooper@ti.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        bcousson@baylibre.com, tony@atomide.com,
-        nicolas.ferre@microchip.com, ludovic.desroches@microchip.com,
-        s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        shawnguo@kernel.org, mripard@kernel.org, wens@csie.org
-Subject: Re: [PATCH 2/6] dt-bindings: Input: edt-ft5x06 - add disable
- wakeup-source documentation
-Message-ID: <20191002152452.GN4106@piout.net>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-3-m.felsch@pengutronix.de>
- <20190917170743.GO237523@dtor-ws>
- <20190917171814.owcttekv56xgmsts@pengutronix.de>
- <20190917172658.GQ237523@dtor-ws>
- <20190930231146.GA30010@bogus>
- <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191002130018.pvgipl6bkcv3dexj@pengutronix.de>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        id S1728836AbfJBP2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 11:28:45 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:46512 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728835AbfJBP2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 11:28:45 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20191002152843euoutp02e1b6193a3e0afa7edeb06b925fce6ccf~J3hQh4eqd1863918639euoutp021
+        for <devicetree@vger.kernel.org>; Wed,  2 Oct 2019 15:28:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20191002152843euoutp02e1b6193a3e0afa7edeb06b925fce6ccf~J3hQh4eqd1863918639euoutp021
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1570030123;
+        bh=KpLLVvizVFJlbuG5FNM/yxSQ5grDqz/h6He5fDPmduI=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=b3IosqaB0iUvnkmDBWtSQOiXk33YEGxWFIslovnRHq3Qt5CWiKa0v6FSd/s84p2Ez
+         iGEyWl11zlo5j7loeNNT795N+NNBaEhkh/uZm6kVA1UJLdErqg+4BH23sLOboqRcJG
+         XOU8zXNCLoAWRSgRwWL6LrxihuSfeHmbZBFOChm0=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20191002152842eucas1p17b238b5dfa827747b4c6c4a5f6f98eae~J3hQUh7891745417454eucas1p1b;
+        Wed,  2 Oct 2019 15:28:42 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 3E.CF.04309.A22C49D5; Wed,  2
+        Oct 2019 16:28:42 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20191002152842eucas1p281f3fb4b7efffaf74fa89ffaa4108b3f~J3hQF6Fgl2442424424eucas1p2Q;
+        Wed,  2 Oct 2019 15:28:42 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20191002152842eusmtrp1de6c2814300e9dbe41f97e834be4780a~J3hQFTUTb3256132561eusmtrp1g;
+        Wed,  2 Oct 2019 15:28:42 +0000 (GMT)
+X-AuditID: cbfec7f4-ae1ff700000010d5-dc-5d94c22a63d5
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id F6.E2.04166.A22C49D5; Wed,  2
+        Oct 2019 16:28:42 +0100 (BST)
+Received: from AMDC3061.DIGITAL.local (unknown [106.120.51.75]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20191002152842eusmtip17256df3fee68d94f9f00899476aa5a54~J3hPqKm6G2682526825eusmtip1c;
+        Wed,  2 Oct 2019 15:28:42 +0000 (GMT)
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+To:     krzk@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Subject: [PATCH RESEND] ARM: dts: arndale: Add audio support (WM1811 CODEC
+ boards)
+Date:   Wed,  2 Oct 2019 17:28:31 +0200
+Message-Id: <20191002152831.18509-1-s.nawrocki@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRmVeSWpSXmKPExsWy7djP87pah6bEGvRPMrfYOGM9q8X8I+dY
+        Lc6f38BusenxNVaLGef3MVmsPXKX3aJ17xF2i8Nv2lkdODw2repk89i8pN6jb8sqRo/Pm+QC
+        WKK4bFJSczLLUov07RK4Mr5vvMpecF6wYt+572wNjCv5uhg5OSQETCS+Xp7N3sXIxSEksIJR
+        4sjNi6wQzhdGie+nTjNDOJ8ZJb5O+c8C0/Ll2QswW0hgOaPE/kfOcB2/711jAkmwCRhK9B7t
+        YwSxRQSEJe4tXQ62g1ngAaPE7rsXmEESwgIhEm9/doMVsQioSnz6swHM5hWwlng2fzHUNnmJ
+        1RsOgJ0hIXCdTeJ/zxMmiISLxMejp9khbGGJV8e3QNkyEqcn97BANDQzSvTsvs0O4UxglLh/
+        fAEjRJW1xOHjIK9yAN2kKbF+lz5E2FFixZKPTCBhCQE+iRtvBUHCzEDmpG3TmSHCvBIdbUIQ
+        1SoSv1dNhzpHSqL7CSiEQEo8JKYfsYUEUKzEmWO/WScwys1CWLWAkXEVo3hqaXFuemqxUV5q
+        uV5xYm5xaV66XnJ+7iZGYCo4/e/4lx2Mu/4kHWIU4GBU4uFtCJocK8SaWFZcmXuIUYKDWUmE
+        99L6KbFCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeasZHkQLCaQnlqRmp6YWpBbBZJk4OKUaGHd+
+        CO/erVrmVl81g2N9SrFxSoJwNFPp0S8Ca35/iudP/rdgi8KaX/IzNaWcDpw6yyGybWkBy23G
+        hPl7RI8bKaRVF/LG/6j2lBLT91qZdlf+073HOt1XTn6bsuFa5pRnS/kjppU/e71KQ3XJwX7P
+        W5U79bTUg1/xP3jwes0vZXdDXVHxq4+Fi5RYijMSDbWYi4oTAcPhc8wBAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCLMWRmVeSWpSXmKPExsVy+t/xu7pah6bEGmz/pmGxccZ6Vov5R86x
+        Wpw/v4HdYtPja6wWM87vY7JYe+Quu0Xr3iPsFofftLM6cHhsWtXJ5rF5Sb1H35ZVjB6fN8kF
+        sETp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSWpRbp2yXoZXzf
+        eJW94Lxgxb5z39kaGFfydTFyckgImEh8efaCpYuRi0NIYCmjxIVTk5m7GDmAElIS81uUIGqE
+        Jf5c62KDqPnEKNE2/zQTSIJNwFCi92gfI4gtAlR0b+lydpAiZoEXjBITXs9lAUkICwRJ9O+e
+        BdbAIqAq8enPBrAGXgFriWfzF7NAbJCXWL3hAPMERp4FjAyrGEVSS4tz03OLDfWKE3OLS/PS
+        9ZLzczcxAkNw27Gfm3cwXtoYfIhRgINRiYe3IWhyrBBrYllxZe4hRgkOZiUR3kvrp8QK8aYk
+        VlalFuXHF5XmpBYfYjQFWj6RWUo0OR8YH3kl8YamhuYWlobmxubGZhZK4rwdAgdjhATSE0tS
+        s1NTC1KLYPqYODilGhindJjIb0/L2/lW5rSGzMeHDoX5Wl8iJTcFuAZ+2se1O144TJzra+v0
+        nYwvQtinZM1Oiv0+u1xuh6BOUcb3E3t97R7OeyzFLvjFrMVMautz7a7Vm75xGTX0rz8+X1Hl
+        7MLeQ3a2HKmTyhVDcvpiBN0VPL5eNuHMvvEsr+qkjJX9Dc5qn+crU5VYijMSDbWYi4oTAfww
+        VM9XAgAA
+X-CMS-MailID: 20191002152842eucas1p281f3fb4b7efffaf74fa89ffaa4108b3f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20191002152842eucas1p281f3fb4b7efffaf74fa89ffaa4108b3f
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20191002152842eucas1p281f3fb4b7efffaf74fa89ffaa4108b3f
+References: <CGME20191002152842eucas1p281f3fb4b7efffaf74fa89ffaa4108b3f@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/10/2019 15:00:18+0200, Marco Felsch wrote:
-> Hi,
-> 
-> all of you using a edt,* touchscreen and currently the driver marks
-> the touchscreen as wakeup source. To keep backward compatibility I added
-> a workaround binding (see below) but Dmitry prefer to use the normal
-> "wakeup-source" binding and change the affected device-tree's
-> (discussion below). Can you give me your ack/nack for Dmitry's solution?
-> 
+Add sound node and the clock configurations for the I2S controller
+for audio support on the Exynos5250 SoC Arndale boards with
+WM1811 based audio daughter board.
 
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+We need to increase drive strength of the I2S bus, otherwise
+the audio CODEC doesn't work. Likely the CODEC's master clock
+is the main issue here.
 
-> Regards,
->   Marco
-> 
-> On 19-09-30 18:11, Rob Herring wrote:
-> > On Tue, Sep 17, 2019 at 10:26:58AM -0700, Dmitry Torokhov wrote:
-> > > On Tue, Sep 17, 2019 at 07:18:14PM +0200, Marco Felsch wrote:
-> > > > Hi Dmitry,
-> > > > 
-> > > > On 19-09-17 10:07, Dmitry Torokhov wrote:
-> > > > > On Tue, Sep 17, 2019 at 05:58:04PM +0200, Marco Felsch wrote:
-> > > > > > The default driver behaviour is to enable the wakeup-source everytime.
-> > > > > > There are hardware designs which have a dedicated gpio to act as wakeup
-> > > > > > device. So it must be allowed to disable the wakeup-source capability.
-> > > > > > 
-> > > > > > This patch adds the binding documentation to disable the wakeup-source
-> > > > > > capability.
-> > > > > > 
-> > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt      | 4 ++++
-> > > > > >  1 file changed, 4 insertions(+)
-> > > > > > 
-> > > > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
-> > > > > > index 870b8c5cce9b..4d6524fe3cf4 100644
-> > > > > > --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
-> > > > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.txt
-> > > > > > @@ -35,6 +35,10 @@ Optional properties:
-> > > > > >   - pinctrl-0:   a phandle pointing to the pin settings for the
-> > > > > >                  control gpios
-> > > > > >  
-> > > > > > + - edt,disable-wakeup-source: If left the device will act as wakeup-source
-> > > > > > +			      (for legacy compatibility). Add the property
-> > > > > > +			      so the device won't act as wakeup-source.
-> > > > > 
-> > > > > I think this is too ugly and I consider it being a bug in the driver
-> > > > > that it enables wakeup unconditionally.
-> > > > 
-> > > > That's right.
-> > > > 
-> > > > > Let's just update DTS in tree for devices that actually want it (I am
-> > > > > curious how many that do not declare "wakeup-source" have it working and
-> > > > > actually want it) and key the dirver behavior off the standard property.
-> > > > 
-> > > > There are a few DTS using this driver and the current driver behaviour.
-> > > > We need to keep the backward compatibility since the DTB is part of the
-> > > > firmware and firmware isn't always included during a system-update. I
-> > > > know its ugly but IMHO that's the right way to go to keep the backward
-> > > > compatibility. Let us see what the DT-folk says.
-> > > > 
-> > > > > Until we start seeing this controller in devices that actually have DTS
-> > > > > in hardware device tree I think it is better to use standard property.
-> > > > 
-> > > > Sorry, I didn't get you here..
-> > > 
-> > > What I was trying to say is that I have not actually seen DTB that is
-> > > part of hardware or separately upgradable frimware (not talking about
-> > > ppc or sparc boxes, but ones that might be using this driver). It is
-> > > always built into the kernel in my experience, so backward compatibility
-> > > is simply a tool that is being used to prevent us from being too wild
-> > > with hacking on bindings, but rarely a practical concern.
-> > 
-> > Well, that's self fulfilling...
-> > 
-> > > In cases like this I think it is worthwhile to simply update in-tree
-> > > DTS and arrive at a sane binding.
-> > 
-> > Get the maintainers of the affected platforms to agree to the changes.
-> > 
-> > Rob
-> > 
-> 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+---
+Changes since v2:
+ - none.
+Changes since v1:
+ - moved &clock, &clock_audss parts to preserve alphabetical order
+---
+ arch/arm/boot/dts/exynos5250-arndale.dts | 27 +++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
+index 6fcb78a354fe..d6c85efdb465 100644
+--- a/arch/arm/boot/dts/exynos5250-arndale.dts
++++ b/arch/arm/boot/dts/exynos5250-arndale.dts
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/clock/samsung,s2mps11.h>
++#include <dt-bindings/sound/samsung-i2s.h>
+ #include "exynos5250.dtsi"
+
+ / {
+@@ -135,6 +136,12 @@
+ 		};
+ 	};
+
++	sound {
++		compatible = "samsung,arndale-wm1811";
++		samsung,audio-cpu = <&i2s0>;
++		samsung,audio-codec = <&wm1811>;
++	};
++
+ 	fixed-rate-clocks {
+ 		xxti {
+ 			compatible = "samsung,clock-xxti";
+@@ -151,6 +158,16 @@
+ 	};
+ };
+
++&clock {
++	assigned-clocks = <&clock CLK_FOUT_EPLL>;
++	assigned-clock-rates = <49152000>;
++};
++
++&clock_audss {
++	assigned-clocks = <&clock_audss EXYNOS_MOUT_AUDSS>;
++	assigned-clock-parents = <&clock CLK_FOUT_EPLL>;
++};
++
+ &cpu0 {
+ 	cpu0-supply = <&buck2_reg>;
+ };
+@@ -502,9 +519,11 @@
+ &i2c_3 {
+ 	status = "okay";
+
+-	wm1811a@1a {
++	wm1811: codec@1a {
+ 		compatible = "wlf,wm1811";
+ 		reg = <0x1a>;
++		clocks = <&i2s0 CLK_I2S_CDCLK>;
++		clock-names = "MCLK1";
+
+ 		AVDD2-supply = <&main_dc_reg>;
+ 		CPVDD-supply = <&main_dc_reg>;
+@@ -540,9 +559,15 @@
+ };
+
+ &i2s0 {
++	assigned-clocks = <&i2s0 CLK_I2S_RCLK_SRC>;
++	assigned-clock-parents = <&clock_audss EXYNOS_I2S_BUS>;
+ 	status = "okay";
+ };
+
++&i2s0_bus {
++	samsung,pin-drv = <EXYNOS4_PIN_DRV_LV2>;
++};
++
+ &mali {
+ 	mali-supply = <&buck4_reg>;
+ 	status = "okay";
+--
+2.17.1
+
