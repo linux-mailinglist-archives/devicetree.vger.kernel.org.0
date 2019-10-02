@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35222C465A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 06:17:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB080C4728
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 07:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726377AbfJBEQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 00:16:59 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:33673 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726214AbfJBEQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 00:16:59 -0400
-Received: by mail-pg1-f196.google.com with SMTP id q1so3150922pgb.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2019 21:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=yB6EANp2Gq2nUYi0fb1/BMw/e2qObJRACvpr+KuVRDo=;
-        b=H4UzvH8s1D6iyBib4zTgN4lMKIc7Ddl66kGBgRvUt2vZCz0fN3PgY5MeWjfW5WNtOv
-         XBqf2xOjig9aRUTTluZryXiJBTonzxGvntVT6u/hSOnQGbDbh4h6x8w+/eJ6ip72tROs
-         614tDITQjEweLmuhU79n/mvp75x6Xph8oSsP1HxnkBGg1CHM3tsvzx7RF7oqh+E2FkCj
-         NBpgLewGFWwp1Hb4mZerIFkZz6DvyTUDJoigib5+rscmJgC0xKCSoWwkNQhSmmvSU3tD
-         YvINPYlznif8X8fb7oxhzKpjnUeySO8ObwJSz41MU+1T1icieqSgzuebgLQRuAQSq1QB
-         el5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=yB6EANp2Gq2nUYi0fb1/BMw/e2qObJRACvpr+KuVRDo=;
-        b=m7TjdGOSSD+aethI4BbYUbrsdWySqtvc/VSTbxlSyCrA5dR+SKiyRg0ZrvUuWDfPZN
-         xnPoB4wxeXjnsULcRjaUB2aJOgghbMlx7yMsPCb8PvJ9kAAXfKSpSF9HTXstMpLpcTWN
-         jtb66yNwv5Zj+1amuBM+eNj+GlhbgHu4HcCYJvPF7ueJg4lV87Ee4Oy/kAIsW56wI9IO
-         CtoODUhh+uZgtP3BEEC1VckGHibCQz9tWqTn9+1fXvrZpY09KlhDfmflSBJbCXYKb81I
-         jn6AnMRjJioEDdiDlI+QHkDXiUhpCzKVR4wEVKjCoJ5S4n8ASay/TWWsAXKpYLCiY7W9
-         LcLA==
-X-Gm-Message-State: APjAAAVjBbgbqd4wNXsiF8uDw0wEPUpx25OmzTtWsHW6UeSzpTNfvub8
-        axC1meAp5IJn3Q5RcusRVl3u5eM3YLU=
-X-Google-Smtp-Source: APXvYqwBVvw6q508G5o3bf3yw4tBbE/PmtZBiLhL99mw7fwFWisBT9Caa+zDSh/1LGrKgk4EGRcVwg==
-X-Received: by 2002:a62:d14c:: with SMTP id t12mr2223538pfl.185.1569989818127;
-        Tue, 01 Oct 2019 21:16:58 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id 37sm18013315pgv.32.2019.10.01.21.16.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 01 Oct 2019 21:16:57 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: db845c: Enable LVS 1 and 2
-Date:   Tue,  1 Oct 2019 21:16:54 -0700
-Message-Id: <20191002041654.3620-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.18.0
+        id S1726327AbfJBFrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 01:47:40 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:12193 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726266AbfJBFrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 01:47:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1569995255;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=m4MmnejFIePSpi3WGLlVz9LTEEmUQI0FZsmc67nbE3A=;
+        b=U5L1CM3BWEaRd+2HvFX6EQkGXWY1nN6nQOOoq4bP3JIwXOBcZeArf4ZkQKkkMVIQxu
+        TvS8TBJ7qUpuAPC+DVvWysRZaXOQar4Wc0XlLv12cJ8oLlj1bmOJbHfYC2/Jzb4tRlZk
+        585I+socoe3+t0Yuo0XQlAkEVPWEnEKFMriNBzeag6h83cqz7AZl4dW6l/om7TmsQRWj
+        SNSwuPfQOxbQIfEkyIc7UeQdFw3sM1vP7UK2Q+G8Kw/BBF3EGCX+m2iY5hOv8bpgiMDB
+        Ybgk/Zep7WV+YjUJdvEhw0cS282zVeu5kObgGka2LeMfsY1ZulTUpX3moUP/JWDqTf0h
+        MoKA==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHmMgw47pPLg="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 44.28.0 DYNA|AUTH)
+        with ESMTPSA id v00409v925l7Zg4
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Wed, 2 Oct 2019 07:47:07 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [PATCH v3 0/8] OMAP3: convert opp-v1 to opp-v2 and read speed binned / 720MHz grade bits
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <DAF6ACB4-AD7E-4528-9F4B-C54104B5E260@goldelico.com>
+Date:   Wed, 2 Oct 2019 07:47:07 +0200
+Cc:     =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?Q?Andr=C3=A9_Roth?= <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Teresa Remmet <t.remmet@phytec.de>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com, linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+Message-Id: <8C3DD775-07DF-45E0-8E04-2B050CEB5800@goldelico.com>
+References: <cover.1568224032.git.hns@goldelico.com> <20190916162816.GF52127@atomide.com> <DAF6ACB4-AD7E-4528-9F4B-C54104B5E260@goldelico.com>
+To:     Tony Lindgren <tony@atomide.com>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-vreg_lvs1a_1p8 and vreg_lvs2a_1p8 are both feeding pins in the low speed
-connectors and should as such alway be on, so enable them.
+Hi Tony,
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> Am 17.09.2019 um 16:35 schrieb H. Nikolaus Schaller <hns@goldelico.com>:
+> 
+> Hi Tony,
+> 
+>> Am 16.09.2019 um 18:28 schrieb Tony Lindgren <tony@atomide.com>:
+>> 
+>> * H. Nikolaus Schaller <hns@goldelico.com> [190911 17:48]:
+>>> CHANGES V3:
+>>> * make omap36xx control the abb-ldo and properly switch mode
+>>> (suggested by Adam Ford <aford173@gmail.com>)
+>>> * add a note about enabling the turbo-mode OPPs
+>> 
+>> Looks good to me, when applying, please provide a
+>> minimal immutable branch maybe against v5.3 or v5.4-rc1,
+>> that I can also merge in if needed for the dts changes.
+> 
+> Should I resend a v4 with your Acked-By added?
+> 
+> BR and thanks,
+> Nikolaus
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index c314b5d55796..6e97ae7f7a08 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -312,6 +312,18 @@
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
-+
-+		vreg_lvs1a_1p8: lvs1 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_lvs2a_1p8: lvs2 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on;
-+		};
- 	};
- 
- 	pmi8998-rpmh-regulators {
--- 
-2.18.0
+what is the procedure to get this and Adam's thermal setup into linux-next?
+BR and thanks,
+Nikolaus
+
+
 
