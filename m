@@ -2,306 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17093C4808
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 09:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B003C4813
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 09:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726559AbfJBHDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 03:03:34 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:58098 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725851AbfJBHDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 03:03:33 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 39A4F634C87;
-        Wed,  2 Oct 2019 10:03:05 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iFYf9-00027o-KD; Wed, 02 Oct 2019 10:03:03 +0300
-Date:   Wed, 2 Oct 2019 10:03:03 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v10 03/14] media: v4l2-fwnode: add initial connector
- parsing support
-Message-ID: <20191002070303.GK896@valkosipuli.retiisi.org.uk>
-References: <20190830101646.6530-1-m.felsch@pengutronix.de>
- <20190830101646.6530-4-m.felsch@pengutronix.de>
+        id S1726642AbfJBHHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 03:07:01 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:36929 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfJBHHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 03:07:01 -0400
+Received: by mail-oi1-f194.google.com with SMTP id i16so16761058oie.4;
+        Wed, 02 Oct 2019 00:07:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Qa8I2vSeOcSHyUQ43zH04lPYaidYYvPzAzgr70EX1vM=;
+        b=aue2VvmQ4zX8qm9kZydMh3PmhASg0inELIlp1/kZKFXVuqiF5ZrkV/D0mWTfP4/Wmp
+         rGHgY1yTgQfraz+CZqB5UlgSG+hJ7XjPinlakmKu0NNYjRQxzivsG+pRBIWBp4Mq16tX
+         BmRADL21umoSa3JwlKg3ii++RAqWhrq+r0fu4tt7OjwGAklQrbKjDeKGDjGkcpb1l1zH
+         mQsw+z3xYc+24tAWXfXuqjWJu1ePNHQfVOD8ww4nWdiPK2d68s5TmkRVhNwAywanAx/N
+         FcGdvdFjggyePBssW2/1w1yFlAaTlnabM2cjemo0nTxEsDYpVjba4ltUBdf8y+MXtg0Y
+         hufw==
+X-Gm-Message-State: APjAAAXN44JLDLMIcc8rfaqxAy4Wc/JqmhTR8bodc0rSeRxhOTTYMc/+
+        /+OApU9m7KGK91LGyehKPp4guGTMv37mC8vw82W1Ro4s
+X-Google-Smtp-Source: APXvYqz4nWSfJSOe4TQLOwhjzEPpAjG/YYgHdYeOIizcYvV6doQlGAaY5cIzEAKgiSm6DQqrUeFdghQ2ticrF/Piwkk=
+X-Received: by 2002:aca:f305:: with SMTP id r5mr1567000oih.131.1570000019973;
+ Wed, 02 Oct 2019 00:06:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190830101646.6530-4-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <CAHirDJ_gtrjL_nq0T2qvn_kv9-UweL+=bc7EBLrTfNfNkVn0QA@mail.gmail.com>
+ <20190924175036.GA2036@sirena.org.uk> <CAMuHMdXbRQXarvV=86rssSiRnuKMSFWJLRbU3VH9tcCV_FeOGQ@mail.gmail.com>
+ <89dc7df9f1544417dfadea3ead72dcbbc60d5ebd.camel@gmail.com>
+In-Reply-To: <89dc7df9f1544417dfadea3ead72dcbbc60d5ebd.camel@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 2 Oct 2019 09:06:48 +0200
+Message-ID: <CAMuHMdWGXUsFa_WcMsjW6J_xODdmUvjgBBBb39G-0C3e6xfp7g@mail.gmail.com>
+Subject: Re: State of spidev from devicetree
+To:     Claus Stovgaard <claus.stovgaard@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Hi Claus,
 
-On Fri, Aug 30, 2019 at 12:16:35PM +0200, Marco Felsch wrote:
-> The patch adds the initial connector parsing code, so we can move from a
-> driver specific parsing code to a generic one. Currently only the
-> generic fields and the analog-connector specific fields are parsed. Parsing
-> the other connector specific fields can be added by a simple callbacks.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> [1] https://patchwork.kernel.org/cover/10794703/
-> 
-> v10:
-> - drop V4L2_CONN_HDMI support
-> - adapt pr_err msg to reflect new state (-> connector is unkown)
-> 
-> v9:
-> - Fix leading semicolon found by kbuild semicolon.cocci
-> 
-> v8:
-> - V4L2_CON_* -> V4L2_CONN_*
-> - tvnorms -> sdtv-standards
-> - adapt to new v4l2_fwnode_connector_analog member
-> - return error in case of V4L2_CONN_HDMI
-> 
-> v7:
-> @Jacopo: I dropped your r b tag becuase of the amount of changes I
-> made..
-> 
-> - drop unnecessary comments
-> - fix commet style
-> - s/v4l2_fwnode_connector_conv.name/v4l2_fwnode_connector_conv.compatible/
-> - make label size variable and drop V4L2_CONNECTOR_MAX_LABEL usage
-> - do not assign a default label in case of no label was specified
-> - remove useless /* fall through */ comments
-> - add support for N connector links
-> - rename local variables to be more meaningful
-> - adjust kernedoc
-> - add v4l2_fwnode_connector_free()
-> - improve error handling (use different error values)
-> - make use of pr_warn_once()
-> 
-> v6:
-> - use unsigned count var
-> - fix comment and style issues
-> - place '/* fall through */' to correct places
-> - fix error handling and cleanup by releasing fwnode
-> - drop vga and dvi parsing support as those connectors are rarely used
->   these days
-> 
-> v5:
-> - s/strlcpy/strscpy/
-> 
-> v2-v4:
-> - nothing since the patch was squashed from series [1] into this
->   series.
-> 
->  drivers/media/v4l2-core/v4l2-fwnode.c | 129 ++++++++++++++++++++++++++
->  include/media/v4l2-fwnode.h           |  38 ++++++++
->  2 files changed, 167 insertions(+)
-> 
-> diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
-> index 3bd1888787eb..0bfa7cbf78df 100644
-> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
-> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
-> @@ -595,6 +595,135 @@ void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link)
->  }
->  EXPORT_SYMBOL_GPL(v4l2_fwnode_put_link);
->  
-> +static const struct v4l2_fwnode_connector_conv {
-> +	enum v4l2_connector_type type;
-> +	const char *compatible;
-> +} connectors[] = {
-> +	{
-> +		.type = V4L2_CONN_COMPOSITE,
-> +		.compatible = "composite-video-connector",
-> +	}, {
-> +		.type = V4L2_CONN_SVIDEO,
-> +		.compatible = "svideo-connector",
-> +	},
-> +};
-> +
-> +static enum v4l2_connector_type
-> +v4l2_fwnode_string_to_connector_type(const char *con_str)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(connectors); i++)
-> +		if (!strcmp(con_str, connectors[i].compatible))
-> +			return connectors[i].type;
-> +
-> +	return V4L2_CONN_UNKNOWN;
-> +}
-> +
-> +static int
-> +v4l2_fwnode_connector_parse_analog(struct fwnode_handle *fwnode,
-> +				   struct v4l2_fwnode_connector *vc)
-> +{
-> +	u32 stds;
-> +	int ret;
-> +
-> +	ret = fwnode_property_read_u32(fwnode, "sdtv-standards", &stds);
-> +
-> +	/* The property is optional. */
-> +	vc->connector.analog.sdtv_stds = ret ? V4L2_STD_ALL : stds;
-> +
-> +	return 0;
-> +}
-> +
-> +void v4l2_fwnode_connector_free(struct v4l2_fwnode_connector *connector)
-> +{
-> +	unsigned int i;
-> +
-> +	if (IS_ERR_OR_NULL(connector))
-> +		return;
-> +
-> +	for (i = 0; i < connector->nr_of_links; i++)
-> +		v4l2_fwnode_put_link(&connector->links[i]);
-> +	kfree(connector->links);
+On Tue, Oct 1, 2019 at 11:16 PM <claus.stovgaard@gmail.com> wrote:
+> On tor, 2019-09-26 at 14:21 +0200, Geert Uytterhoeven wrote:
+> > On Thu, Sep 26, 2019 at 12:50 PM Mark Brown <broonie@kernel.org>
+> > wrote:
+> > > On Tue, Sep 24, 2019 at 02:52:59PM +0200, Claus Stovgaard wrote:
+> > >
+> > > > What is yours response to the idea of creating a custom-hardware
+> > > > binding
+> > > > for spidev, intended to be used for programmable hardware unknown
+> > > > at the
+> > > > devicetree time.
+> > >
+> > > You should use a device tree overlay to describe whatever
+> > > hardware you've instantiated on your FPGA then load the overlay
+> > > along with your FPGA image.
+> >
+> > And after that, you can bind spidev to the device in the overlay
+> > using
+> > sysfs, cfr. commit 5039563e7c25eccd ("spi: Add driver_override SPI
+> > device
+> > attribute").
+>
+> I know this is a bit old, but will still thank you for the replays.
+>
+> Regarding overlays and binding via sysfs. I understand your answer and
+> proposal for solution. Though in our situation with a very basic
+> embedded system it is just extra overhead and added complexity,
+> compared to just having a spidev from initial devicetree. Without
+> giving anything as I see it. So would still have preferred some-kind of
+> custom string in the .compatible inside spidev.
 
-Please assign connector->links NULL here, and nr_of_links to zero.
+You can have a custom compatible value in DT and in spidev, cfr.
+drivers/spi/spidev.c:spidev_dt_ids[].
+But plain "spidev" in DT is a no-go.
 
-> +}
-> +EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_free);
-> +
-> +int v4l2_fwnode_connector_alloc_parse(struct fwnode_handle *fwnode,
-> +				      struct v4l2_fwnode_connector *connector)
-> +{
-> +	struct fwnode_handle *remote_pp, *remote_ep;
-> +	const char *type_name;
-> +	unsigned int i = 0, ep_num = 0;
-> +	int err;
-> +
-> +	memset(connector, 0, sizeof(*connector));
-> +
-> +	remote_pp = fwnode_graph_get_remote_port_parent(fwnode);
+Gr{oetje,eeting}s,
 
-How do you know a remote endpoint is a connector, and not another device's
-endpoint?
-
-> +	if (!remote_pp)
-> +		return -ENOLINK;
-> +
-> +	/* Parse all common properties first. */
-> +	fwnode_graph_for_each_endpoint(remote_pp, remote_ep)
-> +		ep_num++;
-> +
-> +	connector->nr_of_links = ep_num;
-> +	connector->links = kmalloc_array(ep_num, sizeof(*connector->links),
-> +					 GFP_KERNEL);
-> +	if (!connector->links) {
-> +		err = -ENOMEM;
-> +		goto err_put_fwnode;
-> +	}
-> +
-> +	fwnode_graph_for_each_endpoint(remote_pp, remote_ep) {
-> +		err = v4l2_fwnode_parse_link(remote_ep, &connector->links[i]);
-> +		if (err) {
-> +			fwnode_handle_put(remote_ep);
-> +			goto err_free_links;
-> +		}
-> +		i++;
-> +	}
-> +
-> +	/*
-> +	 * Links reference counting guarantees access -> no duplication needed
-> +	 */
-> +	fwnode_property_read_string(remote_pp, "label", &connector->label);
-> +
-> +	/* The connector-type is stored within the compatible string. */
-> +	err = fwnode_property_read_string(remote_pp, "compatible", &type_name);
-> +	if (err) {
-> +		err = -EINVAL;
-> +		goto err_free_links;
-> +	}
-> +	connector->type = v4l2_fwnode_string_to_connector_type(type_name);
-> +
-> +	/* Now parse the connector specific properties. */
-> +	switch (connector->type) {
-> +	case V4L2_CONN_COMPOSITE:
-> +	case V4L2_CONN_SVIDEO:
-> +		err = v4l2_fwnode_connector_parse_analog(remote_pp, connector);
-> +		break;
-> +	case V4L2_CONN_UNKNOWN:
-> +	default:
-> +		pr_err("Unknown connector type\n");
-> +		err = -EINVAL;
-> +		goto err_free_links;
-> +	}
-> +
-> +	fwnode_handle_put(remote_pp);
-> +
-> +	return err;
-> +
-> +err_free_links:
-> +	for (i = 0; i < ep_num; i++)
-> +		v4l2_fwnode_put_link(&connector->links[i]);
-> +	kfree(connector->links);
-> +err_put_fwnode:
-> +	fwnode_handle_put(remote_pp);
-> +
-> +	return err;
-> +}
-> +EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_alloc_parse);
-> +
->  static int
->  v4l2_async_notifier_fwnode_parse_endpoint(struct device *dev,
->  					  struct v4l2_async_notifier *notifier,
-> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
-> index 65da646b579e..800302aa84d8 100644
-> --- a/include/media/v4l2-fwnode.h
-> +++ b/include/media/v4l2-fwnode.h
-> @@ -276,6 +276,44 @@ int v4l2_fwnode_parse_link(struct fwnode_handle *fwnode,
->   */
->  void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link);
->  
-> +/**
-> + * v4l2_fwnode_connector_free() - free the V4L2 connector acquired by
-> + * v4l2_fwnode_parse_connector()
-> + * @connector: the V4L2 connector the resources of which are to be released
-> + *
-> + * Drop references to the connection link partners and free the memory allocated
-> + * by v4l2_fwnode_parse_connector() call.
-> + *
-> + * It is safe to call this function with NULL argument or on a V4L2 connector
-> + * the parsing of which failed.
-> + */
-> +void v4l2_fwnode_connector_free(struct v4l2_fwnode_connector *connector);
-> +
-> +/**
-> + * v4l2_fwnode_parse_connector() - parse the connector on endpoint
-> + * @fwnode: pointer to the endpoint's fwnode handle where the connector is
-> + *          connected to
-> + * @connector: pointer to the V4L2 fwnode connector data structure
-> + *
-> + * Fill the connector data structure with the connector type, label, all found
-> + * links between the host and the connector as well as connector specific data.
-> + * Since the label is optional it can be %NULL if no one was found.
-> + *
-> + * A reference is taken to both the connector and the connector destination
-> + * where the connector belongs to. This must be dropped when no longer needed.
-> + * Also the memory it has allocated to store the variable size data must be
-> + * freed. Both dropping the references and freeing the memory is done by
-> + * v4l2_fwnode_connector_free().
-> + *
-> + * Return:
-> + * * %0 on success or a negative error code on failure:
-> + * * %-ENOMEM if memory allocation failed
-> + * * %-ENOLINK if the connector can't be found
-> + * * %-EINVAL on parsing failure
-> + */
-> +int v4l2_fwnode_connector_alloc_parse(struct fwnode_handle *fwnode,
-> +				      struct v4l2_fwnode_connector *connector);
-> +
->  /**
->   * typedef parse_endpoint_func - Driver's callback function to be called on
->   *	each V4L2 fwnode endpoint.
+                        Geert
 
 -- 
-Kind regards,
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
