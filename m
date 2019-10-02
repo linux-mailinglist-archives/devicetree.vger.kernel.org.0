@@ -2,72 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30105C4A8E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C97BC4AA0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 11:27:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726297AbfJBJXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 05:23:24 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:59296 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725848AbfJBJXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:23:24 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 1CA45634C87;
-        Wed,  2 Oct 2019 12:22:56 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iFaqU-000293-Iq; Wed, 02 Oct 2019 12:22:54 +0300
-Date:   Wed, 2 Oct 2019 12:22:54 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     frederic.chen@mediatek.com
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
-        yuzhao@chromium.org, zwisler@chromium.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        holmes.chiou@mediatek.com, Jerry-ch.Chen@mediatek.com,
-        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
-        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, shik@chromium.org,
-        suleiman@chromium.org, Allan.Yang@mediatek.com
-Subject: Re: [RFC PATCH V3 1/5] dt-bindings: mt8183: Added DIP dt-bindings
-Message-ID: <20191002092254.GQ896@valkosipuli.retiisi.org.uk>
-References: <20190909192244.9367-1-frederic.chen@mediatek.com>
- <20190909192244.9367-2-frederic.chen@mediatek.com>
+        id S1726287AbfJBJ1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 05:27:42 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:33446 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726307AbfJBJ1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 05:27:42 -0400
+Received: by mail-lj1-f195.google.com with SMTP id a22so16375356ljd.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 02:27:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=6SKGJtRjRwGm3Gfog0PHR1zM7cDCImdjAnhzrGYUec4=;
+        b=DCUdwY76HKpHKa3RgaCGbfADwXg4XDsYYaqbrH5c382btFUWzyCXtS8+HgmYhxu0gn
+         dHLj+Eo0zgIyN4P+mXUJJYn9KsRxDVEwzqLWB6IO2Zs+NyMoXM/bmbPtjuuxG/xgmpYN
+         OsjUiONZuNFiXpttc8HlwJ13qTG3HSsRvMdsKOVtOu5g4pXQzmtkRox3FyH7TLvesWQn
+         h1ou+E9vm3yNKaRRjkcTM1il4z5QUgaayUvUS4xK/+njUa7zDCaF4hrfrbJgbaejTbn7
+         VtQTRxwD9XXyCcTU8Qy71O2HWoUE+AX6BTEDBZ7yg0Q57vXiOeGa3ZLDsRUXKxRHCJYb
+         pqrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6SKGJtRjRwGm3Gfog0PHR1zM7cDCImdjAnhzrGYUec4=;
+        b=AWdHpyAsYTJ3w/+jEM6ssq3S7zI2fYvJXRe66CaS/+JBeHc2EnYBJb9ffgotRyXzTC
+         tgZkekyObrWEBD4RSOir+2zD9F62Mr1iXvGyJ0+QC0cpE5vYPqYXleBlweD/5TWpbWuN
+         QSt8xXnsF5LJ7z172rGtVn+ZKOxp4BU9CE/m384n05SDkmCL9U0uPoZjddj0MFeKNVAx
+         oROHFFI43GRWQOhJ+vWSboh2IXqlUtnkyrPXwFCqI9o9CeEGQq6Fi5VDmYul8P6bKOK1
+         P+K2Ja1VhNQ+OjBsw2VOqZP6EECVyko4V2NA+gjhqFWKYc3fkqbm6OBHzh0cpQSGTmh3
+         wpsA==
+X-Gm-Message-State: APjAAAVIN93Ew0mCNKzCOtigcWBQnVPbNb7td6CMepvv8DFwT8soxHXA
+        dP/J5EcHZdJnEMHpQfZytyVLUg==
+X-Google-Smtp-Source: APXvYqzlP5sk7vLuux/qAMdsdIfm+H8xV21u3k2FgL6nwDndAe7xpYuRU4xQyXuHfzD+735xMWvK8w==
+X-Received: by 2002:a05:651c:150:: with SMTP id c16mr1732245ljd.224.1570008458471;
+        Wed, 02 Oct 2019 02:27:38 -0700 (PDT)
+Received: from centauri (ua-84-219-138-247.bbcust.telenor.se. [84.219.138.247])
+        by smtp.gmail.com with ESMTPSA id r19sm4632654ljd.95.2019.10.02.02.27.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2019 02:27:36 -0700 (PDT)
+Date:   Wed, 2 Oct 2019 11:27:34 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     Amit Kucheria <amit.kucheria@linaro.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Sibi Sankar <sibis@codeaurora.org>, daniel.lezcano@linaro.org,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 7/9] arm64: dts: qcom: msm8998: Add PSCI cpuidle low
+ power states
+Message-ID: <20191002092734.GA15523@centauri>
+References: <cover.1558430617.git.amit.kucheria@linaro.org>
+ <49cf5d94beb9af9ef4e78d4c52f3b0ad20b7c63f.1558430617.git.amit.kucheria@linaro.org>
+ <CAOCk7NptTHPOdyEkCAofjTPuDQ5dsnPMQgfC0R8=7cp05xKQiA@mail.gmail.com>
+ <20191002091950.GA9393@centauri>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190909192244.9367-2-frederic.chen@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191002091950.GA9393@centauri>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frederic,
+On Wed, Oct 02, 2019 at 11:19:50AM +0200, Niklas Cassel wrote:
+> On Mon, Sep 30, 2019 at 04:20:15PM -0600, Jeffrey Hugo wrote:
+> > Amit, the merged version of the below change causes a boot failure
+> > (nasty hang, sometimes with RCU stalls) on the msm8998 laptops.  Oddly
+> > enough, it seems to be resolved if I remove the cpu-idle-states
+> > property from one of the cpu nodes.
+> > 
+> > I see no issues with the msm8998 MTP.
+> 
+> Hello Jeffrey, Amit,
+> 
+> If the PSCI idle states work properly on the msm8998 devboard (MTP),
+> but causes crashes on msm8998 laptops, the only logical change is
+> that the PSCI firmware is different between the two devices.
 
-On Tue, Sep 10, 2019 at 03:22:40AM +0800, frederic.chen@mediatek.com wrote:
-> From: Frederic Chen <frederic.chen@mediatek.com>
-> 
-> This patch adds DT binding documentation for the Digital Image
-> Processing (DIP) unit of camera ISP system on Mediatek's SoCs.
-> 
-> It depends on the SCP and MDP 3 patch as following:
-> 
-> 1. dt-bindings: Add a binding for Mediatek SCP
->    https://patchwork.kernel.org/patch/11027247/
-> 2. dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
->    https://patchwork.kernel.org/patch/10945603/
-> 
-> Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-> ---
->  .../bindings/media/mediatek,mt8183-dip.txt    | 40 +++++++++++++++++++
+Since the msm8998 laptops boot using ACPI, perhaps these laptops
+doesn't support PSCI/have any PSCI firmware at all.
 
-Could you add a MAINTAINERS entry for this, please? Same for the driver.
 
--- 
-Sakari Ailus
+Kind regards,
+Niklas
