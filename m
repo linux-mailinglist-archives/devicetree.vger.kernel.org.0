@@ -2,176 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C9BC486A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 09:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F627C4896
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2019 09:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726510AbfJBHWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 03:22:32 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:58378 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725799AbfJBHWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 03:22:31 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id CBA8E634C87;
-        Wed,  2 Oct 2019 10:22:02 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iFYxV-000281-8y; Wed, 02 Oct 2019 10:22:01 +0300
-Date:   Wed, 2 Oct 2019 10:22:01 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Vishal Sagar <vishal.sagar@xilinx.com>
-Cc:     Hyun Kwon <hyun.kwon@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Dinesh Kumar <dineshk@xilinx.com>,
-        Sandip Kothari <sandipk@xilinx.com>
-Subject: Re: [PATCH 1/2] media: dt-bindings: media: xilinx: Add Xilinx
- UHD-SDI Receiver Subsystem
-Message-ID: <20191002072201.GL896@valkosipuli.retiisi.org.uk>
-References: <1559656556-79174-1-git-send-email-vishal.sagar@xilinx.com>
- <1559656556-79174-2-git-send-email-vishal.sagar@xilinx.com>
+        id S1726546AbfJBHf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 03:35:28 -0400
+Received: from esa1.microchip.iphmx.com ([68.232.147.91]:43762 "EHLO
+        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726043AbfJBHf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 03:35:28 -0400
+Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
+  Eugen.Hristev@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
+  envelope-from="Eugen.Hristev@microchip.com";
+  x-sender="Eugen.Hristev@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa1.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
+  envelope-from="Eugen.Hristev@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa1.microchip.iphmx.com; spf=Pass smtp.mailfrom=Eugen.Hristev@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: /xg1L3Wh0k4H4PPfmi+kLIL0EM1rg1ieWWmHZdbfS9NaSOfNEz7dOjIgvVEstYK1IYfHRVWfFt
+ SxuRRMmUxzv2BYCtMo5Op/mmfLOFIK/XfKaJ8AdUWTY/3Kjs+A16SizI+ZIi9+Yj162mdQ691+
+ pPb7z21M4wgYixndZeC3GELZUeAmyh2kMX3Y3hCKpwQVXF1QWbwIgrxISj6mtHKypNt+Z2MNSQ
+ AxnFrF36zuD1KaDbprWCKDrRF0vBRmdymOxIGNHnflF7TJPWMwv9lV7w12PFNph9x/N7fKvHqD
+ uSs=
+X-IronPort-AV: E=Sophos;i="5.64,573,1559545200"; 
+   d="scan'208";a="52728840"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Oct 2019 00:35:26 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 2 Oct 2019 00:35:25 -0700
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5 via Frontend
+ Transport; Wed, 2 Oct 2019 00:35:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jr0MJK6Gu5exYzr2SY7grWohEe6Y4OxELj4uECQZjKqvl3mTcOv4GA1wNQ5v9M2A5xwDOh0NwBGY2BM1f2Cgh3HPqH2ST2aFPp3yBivwbbcTn4ctcnxlfLSn9wpsFvUAyjOUpe1hxU3UVHw+3kVvRTd6I7L+TfnHqEYIRoqndc6YopLkIVfHTDSEImjg+i6gsbeBFrEv2wKgW4LFmE6wHYV1rfdh1jy3kgwKWzmWV9URJvLnUrAhdv8Xsy3ceWjr3ML4fuv6O+608E4m2jao+mPAN4mJf8eV5VxfgZIndiwPVaRU4eFujOTI6RwUW0RZ5G2jBhDiT1zJs7WCxAXpaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B1oEQ9DkwGP3L3Tnm6ZiBTq3qAGN+yU6qYIqIjhyaqo=;
+ b=JqD33Qa6+flG99r5cVSykoBeejQwEp/FE9vufy0WTpjzYqrMkGum8cgXJlCAwgwF2HwkgqhBJBDu9tw18+40dXoavCqCCub0PkLkT8FXoExow5iQiAEtYBoIS1vR0Z6ktJv1yVs5HcoE1ZZ58Kicm80BqIsAZpmgelDnf0efoFSE59WXuTKi7ceMBFm9PTQOilU9v7LJ7kJIgqxyuggphFi7tYTfvaOR9sUxLlLd0r0nBxMuuGdHPulL/Nc9veum2ag7lT7x8tzyb7jigC/Om7ATmHpK9dU3/yQmUXzhAQqpcvHOLo/QCde+2f5egvQ06X1c7bBzI5PUzd10Ia2z+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B1oEQ9DkwGP3L3Tnm6ZiBTq3qAGN+yU6qYIqIjhyaqo=;
+ b=gYl1rjWw07oKkET8dsB8SUXMfaK02VtXtY6v0v7LE+u92Abq34KHAlDJPhaqbDRsj6i/a7/Gq5gKpVI8qRoWsjufOBnBf2CereSTcJWrqGGh6lGx7HckyEe5P9v8FH2rTlMvZ+a1lQYS7Lb+Ik0hQMtcbOt1oqOLIHc/ZRhn3d0=
+Received: from DM5PR11MB1242.namprd11.prod.outlook.com (10.168.108.8) by
+ DM5PR11MB1434.namprd11.prod.outlook.com (10.172.36.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.20; Wed, 2 Oct 2019 07:35:23 +0000
+Received: from DM5PR11MB1242.namprd11.prod.outlook.com
+ ([fe80::b125:76c1:c9b1:34f4]) by DM5PR11MB1242.namprd11.prod.outlook.com
+ ([fe80::b125:76c1:c9b1:34f4%10]) with mapi id 15.20.2305.023; Wed, 2 Oct 2019
+ 07:35:23 +0000
+From:   <Eugen.Hristev@microchip.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.or>
+CC:     <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <Eugen.Hristev@microchip.com>
+Subject: [PATCH 1/3] dt-bindings: watchdog: sam9x60_wdt: add bindings
+Thread-Topic: [PATCH 1/3] dt-bindings: watchdog: sam9x60_wdt: add bindings
+Thread-Index: AQHVePPzWPdzlzB6XEGHjkU1SLbB6g==
+Date:   Wed, 2 Oct 2019 07:35:23 +0000
+Message-ID: <1570001371-8174-1-git-send-email-eugen.hristev@microchip.com>
+Accept-Language: en-US, ro-RO
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: VI1PR0401CA0003.eurprd04.prod.outlook.com
+ (2603:10a6:800:4a::13) To DM5PR11MB1242.namprd11.prod.outlook.com
+ (2603:10b6:3:14::8)
+x-mailer: git-send-email 2.7.4
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [94.177.32.156]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 711fcff9-eab6-4d74-a8f1-08d7470b160b
+x-ms-traffictypediagnostic: DM5PR11MB1434:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR11MB1434B4576557CFEF60AC31F9E89C0@DM5PR11MB1434.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 0178184651
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(39860400002)(376002)(396003)(366004)(136003)(199004)(189003)(3846002)(66066001)(7736002)(6116002)(6486002)(256004)(2201001)(25786009)(305945005)(26005)(36756003)(2501003)(486006)(86362001)(8936002)(6436002)(186003)(2616005)(476003)(81166006)(81156014)(71190400001)(71200400001)(99286004)(110136005)(316002)(102836004)(8676002)(2906002)(5660300002)(66476007)(6512007)(64756008)(66446008)(66556008)(54906003)(66946007)(478600001)(107886003)(4326008)(14454004)(6506007)(386003)(50226002)(52116002);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR11MB1434;H:DM5PR11MB1242.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: l4YVG23j1Zq6oh1G92jLZmNRJHLPdXNJHZ/GDTs6ekW6xpm/cBr3wMGtEpJWT0/AQ+a761imRBrpmpv85aPLGWL7phRrPruyWu1FHu9xYNJeRKmKBe3myY2ayQQhCZSft+LzNuZ0LKuuF+sPFQRt25FQUT1CCKArVQeAn58pXw8v4gdXTJc/4CVghnrDakOxdZQZT0KS3nf331g4zBZLc9MLNmDRRZoVlJm+4lrEP975vZmsiX7765ZzDCnfrFuOfmLYksM8uWnpze7bbCIaRdtpSF4y8hWKU/UAxtkjp5QCS6A7lFdE6BOShKOCaG1+U3J4X0t0JJBhuQR1RtVAQGuMzqmTqVLuTfc/1MBuG5M83RszvWYjH8zqLcjg2k7iMkhyn/Byd+lvEO/UYhp65wODnj7djaJIArWfW7mTb8g=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1559656556-79174-2-git-send-email-vishal.sagar@xilinx.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 711fcff9-eab6-4d74-a8f1-08d7470b160b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2019 07:35:23.8488
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HdOF6vDe94ktP5Mcs2MEpDZni3exfyhfV+/K2x2Gyos523CRh81dMruVztjG6Jermhone4fdKdRaFU8ODwh2sT6n7F1lMc9/+iZyQDn5u4M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1434
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vishal,
+From: Eugen Hristev <eugen.hristev@microchip.com>
 
-On Tue, Jun 04, 2019 at 07:25:55PM +0530, Vishal Sagar wrote:
-> Add bindings documentation for Xilinx UHD-SDI Receiver Subsystem.
-> 
-> The Xilinx UHD-SDI Receiver Subsystem consists of SMPTE UHD-SDI (RX) IP
-> core, an SDI RX to Video Bridge IP core to convert SDI video to native
-> video and a Video In to AXI4-Stream IP core to convert native video to
-> AXI4-Stream.
-> 
-> Signed-off-by: Vishal Sagar <vishal.sagar@xilinx.com>
-> ---
->  .../bindings/media/xilinx/xlnx,sdirxss.txt         | 80 ++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt b/Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt
-> new file mode 100644
-> index 0000000..8445bee
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt
-> @@ -0,0 +1,80 @@
-> +
-> +Xilinx SMPTE UHD-SDI Receiver Subsystem Device Tree Bindings
-> +------------------------------------------------------------
-> +
-> +The SMPTE UHD-SDI Receiver (RX) Subsystem allows you to quickly create systems
-> +based on SMPTE SDI protocols. It receives unaligned native SDI streams from
-> +the SDI GT PHY and outputs an AXI4-Stream video stream, native video, or
-> +native SDI using Xilinx transceivers as the physical layer.
-> +
-> +The subsystem consists of
-> +1 - SMPTE UHD-SDI Rx
-> +2 - SDI Rx to Native Video Bridge
-> +3 - Video In to AXI4-Stream Bridge
-> +
-> +The subsystem can capture SDI streams in utpo 12G mode and output a dual pixel
-> +per clock YUV 422 or 420 10 bits per component AXI4-Stream.
-> +
-> +Required properties:
-> +--------------------
-> +- compatible: Must contain "xlnx,v-smpte-uhdsdi-rx-ss"
-> +- reg: Physical base address and length of the registers set for the device.
-> +- interrupts: Contains the interrupt line number.
-> +- clocks: List of phandles to AXI4-Lite clock, core clock to SMPTE UHD-SDI Rx
-> +  and Video clocks.
-> +- clock-names: Must contain "s_axi_aclk", "sdi_rx_clk" and "video_out_clk" in
-> +  the same order as clocks listed in clocks property.
-> +- xlnx,line-rate: The maximum mode supported by the design. Possible values are
-> +  are as below -
-> +  12G_SDI_8DS	- 12G mode
-> +  6G_SDI	-  6G mode
-> +  3G_SDI	-  3G mode
+Add bindings for Microchip SAM9X60 Watchdog Timer
 
-Is this specific to a port?
+It has the same bindings as
+Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
+except the compatible.
 
-I was wondering whether we should include this to video-interfaces.txt bus
-type list, and V4L2 MBUS types. This way it could be also parsed by the
-v4l2-fwnode framework.
+Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+---
+ .../devicetree/bindings/watchdog/sam9x60-wdt.txt   | 34 ++++++++++++++++++=
+++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/sam9x60-wdt.=
+txt
 
-Looking at the Wikipedia article, there are preceding standards, too, that
-are referred to by a pair of letters:
+diff --git a/Documentation/devicetree/bindings/watchdog/sam9x60-wdt.txt b/D=
+ocumentation/devicetree/bindings/watchdog/sam9x60-wdt.txt
+new file mode 100644
+index 00000000..74b4e2d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/sam9x60-wdt.txt
+@@ -0,0 +1,34 @@
++* Microchip SAM9X60 Watchdog Timer (WDT) Controller
++
++Required properties:
++- compatible: "microchip,sam9x60-wdt"
++- reg: base physical address and length of memory mapped region.
++
++Optional properties:
++- timeout-sec: watchdog timeout value (in seconds).
++- interrupts: interrupt number to the CPU.
++- atmel,watchdog-type: should be "hardware" or "software".
++	"hardware": enable watchdog fault reset. A watchdog fault triggers
++		    watchdog reset.
++	"software": enable watchdog fault interrupt. A watchdog fault asserts
++		    watchdog interrupt.
++- atmel,idle-halt: present if you want to stop the watchdog when the CPU i=
+s
++		   in idle state.
++	CAUTION: This property should be used with care, it actually makes the
++	watchdog not counting when the CPU is in idle state, therefore the
++	watchdog reset time depends on mean CPU usage and will not reset at all
++	if the CPU stop working while it is in idle state, which is probably
++	not what you want.
++- atmel,dbg-halt: present if you want to stop the watchdog when the CPU is
++		  in debug state.
++
++Example:
++	watchdog@ffffff80 {
++		compatible =3D "microchip,sam9x60-wdt";
++		reg =3D <0xffffff80 0x24>;
++		interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH 5>;
++		timeout-sec =3D <10>;
++		atmel,watchdog-type =3D "hardware";
++		atmel,dbg-halt;
++		atmel,idle-halt;
++	};
+--=20
+2.7.4
 
-<URL:https://en.wikipedia.org/wiki/Serial_digital_interface#Standards>
-
-What does "DS" stand for?
-
-> +
-> +Optional properties:
-> +--------------------
-> +- xlnx,include-edh: This is present when the Error Detection and Handling
-> +  processor is enabled in design.
-> +
-> +Ports
-> +-----
-> +The device node shall contain one 'port' child node as defined in
-> +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +
-> +Generally the SDI port is connected to a device like SDI Broadcast camera which
-> +is independently controlled. Hence port@0 is a source port which can be
-> +connected to downstream IP which can work with AXI4 Stream data.
-> +
-> +Required port properties:
-> +-------------------------
-> +- reg: 0 - for source port.
-> +
-> +- xlnx,video-format: This can be XVIP_VF_YUV_422 or XVIP_VF_YUV_420.
-
-Is this a property of the hardware?
-
-> +- xlnx,video-width: This is should be 10.
-
-This, too. If there's just one choice, is there a need for the property?
-
-> +
-> +Example:
-> +		v_smpte_uhdsdi_rx_ss: v_smpte_uhdsdi_rx_ss@80000000 {
-> +			compatible = "xlnx,v-smpte-uhdsdi-rx-ss";
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <0 89 4>;
-> +			reg = <0x0 0x80000000 0x0 0x10000>;
-> +			xlnx,include-edh;
-> +			xlnx,line-rate = "12G_SDI_8DS";
-> +			clocks = <&clk_1>, <&si570_1>, <&clk_2>;
-> +			clock-names = "s_axi_aclk", "sdi_rx_clk", "video_out_clk";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					xlnx,video-format = <XVIP_VF_YUV_422>;
-> +					xlnx,video-width = <10>;
-> +
-> +					sdirx_out: endpoint {
-> +						remote-endpoint = <&vcap_sdirx_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-
--- 
-Regards,
-
-Sakari Ailus
