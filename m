@@ -2,257 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 532D2C984D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA3D6C9858
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725879AbfJCGfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 02:35:08 -0400
-Received: from mga12.intel.com ([192.55.52.136]:24154 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725770AbfJCGfI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 02:35:08 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Oct 2019 23:35:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,251,1566889200"; 
-   d="scan'208";a="205546053"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga001.fm.intel.com with ESMTP; 02 Oct 2019 23:35:06 -0700
-Received: from [10.226.39.36] (unknown [10.226.39.36])
-        by linux.intel.com (Postfix) with ESMTP id 86F485803A5;
-        Wed,  2 Oct 2019 23:35:03 -0700 (PDT)
-Subject: Re: Fwd: Re: [PATCH v3 1/2] dt-bindings: PCI: intel: Add YAML schemas
- for the PCIe RC controller
-To:     Rob Herring <robh@kernel.org>
-References: <bf5c8a24-e969-87d4-c62b-4032273e0824@linux.intel.com>
- <b7e549bb-b46c-c393-50ac-9ef3b198fd49@linux.intel.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lorenzo.pieralisi@arm.com, martin.blumenstingl@googlemail.com,
-        linux-pci@vger.kernel.org, hch@infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <655892bd-6b62-ec2b-ff85-89ca1f86326e@linux.intel.com>
-Date:   Thu, 3 Oct 2019 14:35:02 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <b7e549bb-b46c-c393-50ac-9ef3b198fd49@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        id S1725892AbfJCGim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 02:38:42 -0400
+Received: from mail-eopbgr1410109.outbound.protection.outlook.com ([40.107.141.109]:55578
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725770AbfJCGil (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 02:38:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Oimy/+Enkj25EDicf63w77W15OvlKiThDFywXC280uEzCcT2gX+JPo3mhOcTSu2IMCCHb1FZc2Z/+8s1lJudvt6b/q1buEScHGXgwXD3VE+JvPNakz/byF13lb3RGm4PB7XO4TB04sDTzoOmFDIoL1KlpujAANUzZ/DD87xA4Cjk7hXV3jytvFCNi2RqT7JfdaXX5nYbdgNoRPzp3GlkgStMjUNbRyqWK1XY0xPGF8Qzq5Wf42U0mVfSihjNAxkMqi8mxr7udYjOHZEmlmle40jaaM6adPNGlbhpDjqH5bw+66UyAvdqWjWFK22Vx9fCpsE6HWsg7HLKvt06OLL4ng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PF9uE1cJHCaFQjsb3k0ETlf+OSe3+gHXlXi3JzVTpzc=;
+ b=cJ60L8lo9FmBrXNHMRDYqZGYtzisbCotyoubFpkGEelp1Jw8MmryGMLvnA2oT/7aTYFKiEI3VJ3Xb01kitNwcH/QGKQxyUO1WguDxeY3xTwDzbMBYoQsrHzQ7sQVvEcN+fyVtxvp0rlMbUzyyuqzH0P4axQo5R1kzG+8PDXsagvXml7/O2GAVwWjk4wvgw3eihAc0oOAyvaFayLM6dJzE0K8HfrXpAlAiacZBN1B4uiBr7jtSesF6Z61mcvvQCoqI8PjMsZJ3YC8m3GbxGOujjXfxAiLf7cuqEEgE3OdCpv3kStTnDelbSvRk0ckW6sAetXdItEKNwsIGFrUfA8h4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PF9uE1cJHCaFQjsb3k0ETlf+OSe3+gHXlXi3JzVTpzc=;
+ b=F6DJWv5AqpbuiffbcIeId/T6iDJjlGIB9PNJaceONmIisoJBkD5ZRmhGWxtg3r9E6Z7z+bKMUH2Lu636VsDbr6ecSEuDoVNQAPWSoBhruR40FM20YXYdbY5fOi9k2qD1rH+BTQDo7hZGsD7yV0ayYypB8CbUJ4IS9Ml4MFvVoFo=
+Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
+ OSBPR01MB4198.jpnprd01.prod.outlook.com (20.178.98.214) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.18; Thu, 3 Oct 2019 06:38:38 +0000
+Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
+ ([fe80::d5a0:9756:da13:2d6f]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
+ ([fe80::d5a0:9756:da13:2d6f%7]) with mapi id 15.20.2305.022; Thu, 3 Oct 2019
+ 06:38:38 +0000
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: timer: renesas: tmu: Document r8a774b1
+ bindings
+Thread-Topic: [PATCH] dt-bindings: timer: renesas: tmu: Document r8a774b1
+ bindings
+Thread-Index: AQHVchuIQNHun2Bo106a/51G2vHeg6dIXISAgAApRhA=
+Date:   Thu, 3 Oct 2019 06:38:37 +0000
+Message-ID: <OSBPR01MB2103998BE3B934973FFE3D4AB89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+References: <1569249052-1037-1-git-send-email-biju.das@bp.renesas.com>
+ <dd752192-8caf-39bf-5a91-27adb6a5f84b@linaro.org>
+In-Reply-To: <dd752192-8caf-39bf-5a91-27adb6a5f84b@linaro.org>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=biju.das@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7da362c0-164a-4716-0ba6-08d747cc52ae
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: OSBPR01MB4198:|OSBPR01MB4198:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSBPR01MB419886170F809E580870D7CCB89F0@OSBPR01MB4198.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 01792087B6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(376002)(39850400004)(366004)(136003)(396003)(189003)(51914003)(199004)(66066001)(9686003)(6246003)(71200400001)(6436002)(81166006)(81156014)(3846002)(8676002)(6116002)(229853002)(71190400001)(2906002)(478600001)(8936002)(76116006)(66446008)(99286004)(256004)(55016002)(66476007)(64756008)(66556008)(66946007)(14454004)(86362001)(52536014)(446003)(25786009)(33656002)(11346002)(305945005)(4326008)(110136005)(54906003)(316002)(102836004)(74316002)(486006)(476003)(76176011)(53546011)(6506007)(7736002)(186003)(7696005)(26005)(5660300002)(44832011);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB4198;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ErDdKWfsQwwEzC1gD5J6YedwDUL4KiXN9vusik5VMfjhDgPicmR9OE2MbmwhbAQg692o1dUMRhzIjzR5FWwHRzSfXexVrMcQ+ZM/Cn4iHUX36REoOHp05b/h30jyEP/FA3s27d5Ow3jZFcZjzqcwvCmaLQYPfMlM68InQnY6P4ukoiAWhvPBu7M+2pbG5UzVWvRWtvri2+MgYEEkROm5PmVwe+eUEAQHHm9LqzB5XQRfHIlsfzU3I7Zz8oDI/mstPTUeCp8Ob7N+ldi3AaOub82SlvDwGrUNVjEkFzdHCHxxlIQKzDkpN2mcu5SM+c5+ZWP6ik3E3MILQrTjvklS3b/uyuCWl9mbNHWjrxZ9JuU9DHiSNqlb7It29D21mwK/9yEf0MWQqVDIuAaadFNsnwOmmyDbNbZwT8LY53yvhBE=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7da362c0-164a-4716-0ba6-08d747cc52ae
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 06:38:38.0374
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y+IfJWx8H0jU/8dYKJIKoSeH7B5R2uZfRz4u7XUSw9FdOkamzdSLDnPUoSu/enVGqOQCh/Gx5hhj5sdGzrcI7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB4198
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-
-On 18/9/2019 2:56 PM, Dilip Kota wrote:
-> On 9/18/2019 2:40 AM, Rob Herring wrote:
->> On Wed, Sep 04, 2019 at 06:10:30PM +0800, Dilip Kota wrote:
->>> The Intel PCIe RC controller is Synopsys Designware
->>> based PCIe core. Add YAML schemas for PCIe in RC mode
->>> present in Intel Universal Gateway soc.
->>>
->>> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->>> ---
->>> changes on v3:
->>> Add the appropriate License-Identifier
->>> Rename intel,rst-interval to 'reset-assert-us'
->>> Add additionalProperties: false
->>> Rename phy-names to 'pciephy'
->>> Remove the dtsi node split of SoC and board in the example
->>> Add #interrupt-cells = <1>; or else interrupt parsing will fail
->>> Name yaml file with compatible name
->>>
->>> .../devicetree/bindings/pci/intel,lgm-pcie.yaml | 137 
->>> +++++++++++++++++++++
->>> 1 file changed, 137 insertions(+)
->>> create mode 100644 
->>> Documentation/devicetree/bindings/pci/intel,lgm-pcie.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/pci/intel,lgm-pcie.yaml 
->>> b/Documentation/devicetree/bindings/pci/intel,lgm-pcie.yaml
->>> new file mode 100644
->>> index 000000000000..5e5cc7fd66cd
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pci/intel,lgm-pcie.yaml
->>> @@ -0,0 +1,137 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pci/intel-pcie.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Intel AXI bus based PCI express root complex
->>> +
->>> +maintainers:
->>> + - Dilip Kota <eswara.kota@linux.intel.com>
->>> +
->>> +properties:
->>> + compatible:
->>> + const: intel,lgm-pcie
->>> +
->>> + device_type:
->>> + const: pci
->>> +
->>> + "#address-cells":
->>> + const: 3
->>> +
->>> + "#size-cells":
->>> + const: 2
->> These all belong in a common schema.
->>
->>> +
->>> + reg:
->>> + items:
->>> + - description: Controller control and status registers.
->>> + - description: PCIe configuration registers.
->>> + - description: Controller application registers.
->>> +
->>> + reg-names:
->>> + items:
->>> + - const: dbi
->>> + - const: config
->>> + - const: app
->>> +
->>> + ranges:
->>> + description: Ranges for the PCI memory and I/O regions.
->> And this.
->>
->>> +
->>> + resets:
->>> + maxItems: 1
->>> +
->>> + clocks:
->>> + description: PCIe registers interface clock.
->>> +
->>> + phys:
->>> + maxItems: 1
->>> +
->>> + phy-names:
->>> + const: pciephy
->>> +
->>> + reset-gpios:
->>> + maxItems: 1
->>> +
->>> + num-lanes:
->>> + description: Number of lanes to use for this port.
->>> +
->>> + linux,pci-domain:
->>> + $ref: /schemas/types.yaml#/definitions/uint32
->>> + description: PCI domain ID.
->> These 2 also should be common.
->>
->>> +
->>> + interrupts:
->>> + description: PCIe core integrated miscellaneous interrupt.
->> How many? No need for description if there's only 1.
->>
->>> +
->>> + '#interrupt-cells':
->>> + const: 1
->>> +
->>> + interrupt-map-mask:
->>> + description: Standard PCI IRQ mapping properties.
->>> +
->>> + interrupt-map:
->>> + description: Standard PCI IRQ mapping properties.
->>> +
->>> + max-link-speed:
->>> + description: Specify PCI Gen for link capability.
->>> +
->>> + bus-range:
->>> + description: Range of bus numbers associated with this controller.
->> All common.
-> You mean to remove all the common schema entries description!.
-> In most of the Documention/devicetree/binding/pci documents all the 
-> common entries are described so I followed the same.
-
-If common schemas are removed, getting below warning during the 
-dt_binding_check.
-
-Documentation/devicetree/bindings/pci/intel,lgm-pcie.example.dt.yaml: 
-pcie@d0e00000: '#address-cells', '#interrupt-cells', '#size-cells', 
-'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 
-'interrupt-parent', 'linux,pci-domain', 'ranges', 'reset-gpios' do not 
-match any of the regexes: 'pinctrl-[0-9]+'
-
-Regards,
-Dilip
-
->>
->>> +
->>> + reset-assert-ms:
->>> + description: |
->>> + Device reset interval in ms.
->>> + Some devices need an interval upto 500ms. By default it is 100ms.
->> This is a property of a device, so it belongs in a device node. How
->> would you deal with this without DT?
-> This property is for the PCIe RC to keep a delay before notifying the 
-> reset to the device.
-> If this entry is not present, PCIe driver will set a default value of 
-> 100ms.
->>
->>> +
->>> +required:
->>> + - compatible
->>> + - device_type
->>> + - reg
->>> + - reg-names
->>> + - ranges
->>> + - resets
->>> + - clocks
->>> + - phys
->>> + - phy-names
->>> + - reset-gpios
->>> + - num-lanes
->>> + - linux,pci-domain
->>> + - interrupts
->>> + - interrupt-map
->>> + - interrupt-map-mask
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> + - |
->>> + pcie10:pcie@d0e00000 {
->>> + compatible = "intel,lgm-pcie";
->>> + device_type = "pci";
->>> + #address-cells = <3>;
->>> + #size-cells = <2>;
->>> + reg = <
->>> + 0xd0e00000 0x1000
->>> + 0xd2000000 0x800000
->>> + 0xd0a41000 0x1000
->>> + >;
->>> + reg-names = "dbi", "config", "app";
->>> + linux,pci-domain = <0>;
->>> + max-link-speed = <4>;
->>> + bus-range = <0x00 0x08>;
->>> + interrupt-parent = <&ioapic1>;
->>> + interrupts = <67 1>;
->>> + #interrupt-cells = <1>;
->>> + interrupt-map-mask = <0 0 0 0x7>;
->>> + interrupt-map = <0 0 0 1 &ioapic1 27 1>,
->>> + <0 0 0 2 &ioapic1 28 1>,
->>> + <0 0 0 3 &ioapic1 29 1>,
->>> + <0 0 0 4 &ioapic1 30 1>;
->>> + ranges = <0x02000000 0 0xd4000000 0xd4000000 0 0x04000000>;
->>> + resets = <&rcu0 0x50 0>;
->>> + clocks = <&cgu0 LGM_GCLK_PCIE10>;
->>> + phys = <&cb0phy0>;
->>> + phy-names = "pciephy";
->>> + status = "okay";
->>> + reset-assert-ms = <500>;
->>> + reset-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
->>> + num-lanes = <2>;
->>> + };
->>> -- 2.11.0
->>>
+SGkgRGFuaWVsLA0KDQpUaGFua3MgZm9yIHRoZSBmZWVkYmFjay4gDQoNCj4gU3ViamVjdDogUmU6
+IFtQQVRDSF0gZHQtYmluZGluZ3M6IHRpbWVyOiByZW5lc2FzOiB0bXU6IERvY3VtZW50IHI4YTc3
+NGIxDQo+IGJpbmRpbmdzDQo+IA0KPiBPbiAyMy8wOS8yMDE5IDE2OjMwLCBCaWp1IERhcyB3cm90
+ZToNCj4gPiBEb2N1bWVudCBSWi9HMk4gKFI4QTc3NEIxKSBTb0MgaW4gdGhlIFJlbmVzYXMgVE1V
+IGJpbmRpbmdzLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogQmlqdSBEYXMgPGJpanUuZGFzQGJw
+LnJlbmVzYXMuY29tPg0KPiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvdGltZXIvcmVuZXNhcyx0bXUudHh0IHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAx
+IGluc2VydGlvbigrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy90aW1lci9yZW5lc2FzLHRtdS50eHQNCj4gPiBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy90aW1lci9yZW5lc2FzLHRtdS50eHQNCj4gPiBpbmRleCA5ZGZm
+N2U1Li4yOTE1OWY0IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy90aW1lci9yZW5lc2FzLHRtdS50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvdGltZXIvcmVuZXNhcyx0bXUudHh0DQo+ID4gQEAgLTExLDYgKzEx
+LDcgQEAgUmVxdWlyZWQgUHJvcGVydGllczoNCj4gPiAgICAtIGNvbXBhdGlibGU6IG11c3QgY29u
+dGFpbiBvbmUgb3IgbW9yZSBvZiB0aGUgZm9sbG93aW5nOg0KPiA+ICAgICAgLSAicmVuZXNhcyx0
+bXUtcjhhNzc0MCIgZm9yIHRoZSByOGE3NzQwIFRNVQ0KPiA+ICAgICAgLSAicmVuZXNhcyx0bXUt
+cjhhNzc0YTEiIGZvciB0aGUgcjhhNzc0QTEgVE1VDQo+ID4gKyAgICAtICJyZW5lc2FzLHRtdS1y
+OGE3NzRiMSIgZm9yIHRoZSByOGE3NzRCMSBUTVUNCj4gPiAgICAgIC0gInJlbmVzYXMsdG11LXI4
+YTc3NGMwIiBmb3IgdGhlIHI4YTc3NEMwIFRNVQ0KPiA+ICAgICAgLSAicmVuZXNhcyx0bXUtcjhh
+Nzc3OCIgZm9yIHRoZSByOGE3Nzc4IFRNVQ0KPiA+ICAgICAgLSAicmVuZXNhcyx0bXUtcjhhNzc3
+OSIgZm9yIHRoZSByOGE3Nzc5IFRNVQ0KPiA+DQo+IA0KPiBUaGUgcGF0Y2ggZG9lcyBub3QgYXBw
+bHkgb24gdGlwL3RpbWVycw0KDQpPSy4gSSB3aWxsIHJlYmFzZSBvbiB0b3Agb2YgdGlwL3RpbWVy
+cyBhbmQgd2lsbCBzZW5kIFYyLg0KDQpSZWdhcmRzLA0KQmlqdQ0K
