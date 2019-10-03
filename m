@@ -2,128 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11924CACE6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:47:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F1FCAB94
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731791AbfJCRbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 13:31:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59484 "EHLO mail.kernel.org"
+        id S1730624AbfJCP4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 11:56:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38458 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387597AbfJCQKR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 12:10:17 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1730614AbfJCP4c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 11:56:32 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E9F720865;
-        Thu,  3 Oct 2019 16:10:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2B18C222C8;
+        Thu,  3 Oct 2019 15:56:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570119015;
-        bh=x3CIsCXcVinP9qVLbt8vSkv0DvTQeBfbKhDw/hdnX+M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pj0+Mx8rvbRuWzF7v7S/SrhTZbafj+ipLaFYIrwjdZZX02bmf4J9vrOtZsJ9pQqrV
-         tMaqYd6A16tKUKnevmXhgtwtNmytbwUZYbXfufeZfXlD1F9NqzGQimWH67gLbhbsoa
-         d4qHJ9euIyEXMXtHt6iVD1Mx7T63w6K60wYzdlSA=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org,
-        =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        Ilya Ledvich <ilya@compulab.co.il>,
-        Igor Grinberg <grinberg@compulab.co.il>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.14 095/185] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
-Date:   Thu,  3 Oct 2019 17:52:53 +0200
-Message-Id: <20191003154459.713414437@linuxfoundation.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191003154437.541662648@linuxfoundation.org>
-References: <20191003154437.541662648@linuxfoundation.org>
-User-Agent: quilt/0.66
+        s=default; t=1570118191;
+        bh=i4Gdla/qLYCwUY8TXC0PxpCn/O4eLhZk3Oh4yJNbqjQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=y+LYdsAyYVPU+ogedopimwB/UhsnGsp2oUl5tLvk654eTHDmIeoSWG2nCGII7q6zW
+         8/Axawckxy8TxeX/6wm6AHbtuWHbXt5CjRRIqm68o9nzigMg4+pQjLefid3sH8WUKU
+         BEnk+1qMQXkvQCMtJdagzQSxknxFVWIvIJHvHP7U=
+Received: by mail-qt1-f170.google.com with SMTP id n7so4287238qtb.6;
+        Thu, 03 Oct 2019 08:56:31 -0700 (PDT)
+X-Gm-Message-State: APjAAAXmlS7+fJ+TCZeTTUwZUbiSyFC4mD20SWVSlrHlcalh1isF0IVD
+        19fiWqBYLdnmAq2IrNU5s82NfCD3LZqHh0OP7w==
+X-Google-Smtp-Source: APXvYqx6BBDgfwU9lYgWoBXJNLC1ki+lOywVLMS4eE76V10EcL1hEp0zvvi4cS5atfEMr32Ls+zx4zC9aO+o+md64fo=
+X-Received: by 2002:ac8:31b3:: with SMTP id h48mr11022378qte.300.1570118190216;
+ Thu, 03 Oct 2019 08:56:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1568837198-27211-1-git-send-email-vincent.cheng.xh@renesas.com>
+ <5d93ce84.1c69fb81.8e964.4dc1@mx.google.com> <20191003145546.GA19695@renesas.com>
+In-Reply-To: <20191003145546.GA19695@renesas.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 3 Oct 2019 10:56:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK12p48gqZdwNfYGNsBafmjMY=5U=QcHPHZy5sD-nGntA@mail.gmail.com>
+Message-ID: <CAL_JsqK12p48gqZdwNfYGNsBafmjMY=5U=QcHPHZy5sD-nGntA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: ptp: Add binding doc for IDT ClockMatrix
+ based PTP clock
+To:     Vincent Cheng <vincent.cheng.xh@renesas.com>
+Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "richardcochran@gmail.com" <richardcochran@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: André Draszik <git@andred.net>
+On Thu, Oct 3, 2019 at 10:12 AM Vincent Cheng
+<vincent.cheng.xh@renesas.com> wrote:
+>
+> On Tue, Oct 01, 2019 at 06:09:06PM EDT, Rob Herring wrote:
+> >On Wed, Sep 18, 2019 at 04:06:37PM -0400, vincent.cheng.xh@renesas.com wrote:
+> >> From: Vincent Cheng <vincent.cheng.xh@renesas.com>
+>
+> Hi Rob,
+>
+> Welcome back.  Thank-you for providing feedback.
+>
+> >>
+> >> Add device tree binding doc for the IDT ClockMatrix PTP clock driver.
+> >
+> >Bindings are for h/w, not drivers...
+>
+> Yes, will remove 'driver'.
+>
+> >>  Documentation/devicetree/bindings/ptp/ptp-idtcm.txt | 15 +++++++++++++++
+> >>  1 file changed, 15 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/ptp/ptp-idtcm.txt
+> >
+> >Please make this a DT schema.
+>
+> Sure, will give it a try.
+>
+> >> +  - compatible  Should be "idt,8a3400x-ptp" for System Synchronizer
+> >> +                Should be "idt,8a3401x-ptp" for Port Synchronizer
+> >> +                Should be "idt,8a3404x-ptp" for Universal Frequency Translator (UFT)
+> >
+> >If PTP is the only function of the chip, you don't need to append
+> >'-ptp'.
+>
+> Okay, will remove '-ptp'.  Thanks.
+>
+>
+> >What's the 'x' for? We generally don't use wildcards in compatible
+> >strings.
+>
+> We were hoping to use 'x' to represent a single driver to match the various
+> part numbers 8A34001, 8A34002, 8A34003, 8A34004, 8A34011, 8A34012, etc.
+>
+> What should be used instead of 'x'?
 
-[ Upstream commit 9846a4524ac90b63496580b7ad50674b40d92a8f ]
+Enumerate all the part numbers. Are the differences discoverable in
+some other way? If so, then 'x' is fine, but just add a note how
+models are distinguished.
 
-Recent changes to the atheros at803x driver caused
-ethernet to stop working on this board.
-In particular commit 6d4cd041f0af
-("net: phy: at803x: disable delay only for RGMII mode")
-and commit cd28d1d6e52e
-("net: phy: at803x: Disable phy delay for RGMII mode")
-fix the AR8031 driver to configure the phy's (RX/TX)
-delays as per the 'phy-mode' in the device tree.
-
-This now prevents ethernet from working on this board.
-
-It used to work before those commits, because the
-AR8031 comes out of reset with RX delay enabled, and
-the at803x driver didn't touch the delay configuration
-at all when "rgmii" mode was selected, and because
-arch/arm/mach-imx/mach-imx7d.c:ar8031_phy_fixup()
-unconditionally enables TX delay.
-
-Since above commits ar8031_phy_fixup() also has no
-effect anymore, and the end-result is that all delays
-are disabled in the phy, no ethernet.
-
-Update the device tree to restore functionality.
-
-Signed-off-by: André Draszik <git@andred.net>
-CC: Ilya Ledvich <ilya@compulab.co.il>
-CC: Igor Grinberg <grinberg@compulab.co.il>
-CC: Rob Herring <robh+dt@kernel.org>
-CC: Mark Rutland <mark.rutland@arm.com>
-CC: Shawn Guo <shawnguo@kernel.org>
-CC: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Pengutronix Kernel Team <kernel@pengutronix.de>
-CC: Fabio Estevam <festevam@gmail.com>
-CC: NXP Linux Team <linux-imx@nxp.com>
-CC: devicetree@vger.kernel.org
-CC: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index 3cc1fb9ce4418..60a28281d3d16 100644
---- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-+++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-@@ -43,7 +43,7 @@
- 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
- 	fsl,magic-packet;
- 	status = "okay";
-@@ -69,7 +69,7 @@
- 			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy1>;
- 	fsl,magic-packet;
- 	status = "okay";
--- 
-2.20.1
-
-
-
+Rob
