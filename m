@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE09CAEA6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 20:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24D9CCAEEB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 21:09:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732168AbfJCS4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 14:56:07 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:35342 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732010AbfJCS4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 14:56:07 -0400
-Received: by mail-pf1-f194.google.com with SMTP id 205so2342386pfw.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 11:56:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:from:to:cc:subject:user-agent:date;
-        bh=m3hPkICQE69+a0xauYT0Amw2XtL4GDAq+zoSEfirsuU=;
-        b=RTH7eMPNg4REcj7uJxBnWgOGXzLh25RAdH0XvU6vUYGvMXEuc4SQe9Mopl1HUy9qTV
-         NwlkefUwbR5ZusY6euOhVnCNMd9HBRlowLYcDJ+/tismHYMOUtJdHE3jmXC+xB5H1rFG
-         MUmS1wlEq19k/B0rutrOSHgMx0/zeNEFj52Eo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
-         :user-agent:date;
-        bh=m3hPkICQE69+a0xauYT0Amw2XtL4GDAq+zoSEfirsuU=;
-        b=uWv7egy1GhZTJ5i27Q019uzmbihHBwymKGZulNK8lHmRcq9zh4XdkFTn9yN7D+xz8H
-         BC5xZmUBFVlYEMO8VA3PkeuWe67G8wrS3ZlRWjERh697bTqmjHW0jlxcBQQ3yKgZQU56
-         v0Gt8Qj1bWs4a102u5xMYcNImQynKG6U3+c318P3a9DhD+Cgy9m+J9qOaxQWo5NTnzBg
-         P7yhNKGhIL+2RERR1dPHOoi1TYiIPNvXBGIkFwGlQ+Ji2R7+ebzz9ebt7PDeKCuFXlWW
-         lZnkRtT6meBRLLuiPzkOC9jeyMnWaHzEted7/lRoOIMWt8J1LAvJrG/z3DzwimOh7jw7
-         vd5Q==
-X-Gm-Message-State: APjAAAW6U17JpkNxpdVK50re3fGgmvT0WqhTi9ZSnOyF1+nQoA34NegC
-        3MBffNqra7+wUFylznMlYEMCo1PAfGs=
-X-Google-Smtp-Source: APXvYqwDCBHsPX8dh6oRQ9FHBVLRypmHbpAWhqLjb3zrDPeKQKRHPbU3F7fMBBGRfrbzqBb/RLO09A==
-X-Received: by 2002:a17:90a:fa3:: with SMTP id 32mr12426687pjz.35.1570128965072;
-        Thu, 03 Oct 2019 11:56:05 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id v68sm4379189pfv.47.2019.10.03.11.56.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2019 11:56:04 -0700 (PDT)
-Message-ID: <5d964444.1c69fb81.121ce.d43b@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1733121AbfJCTJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 15:09:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44944 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732733AbfJCTJQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 15:09:16 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EE9AE20873;
+        Thu,  3 Oct 2019 19:09:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570129756;
+        bh=QaUqOQkklGyOJt3/io5lfJhDA1HfbNMhCHw/YbePA3Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=J1EFKsPmsePSImNzI8AU554MEHkdswPSBGhhHxtzf82+hqfXLTpths/oc2+oj2Zr8
+         1MG4aaTXr1xd19DjHi5f75uGql4jEy6jzxDQa1bhI6/8vyfP7h/msWyxeRwOD4g8i4
+         0WQuqh9izXN1APhUjDS00n4bO/IpicVsm0S4QdbE=
+Received: by mail-qt1-f176.google.com with SMTP id d16so5126071qtq.8;
+        Thu, 03 Oct 2019 12:09:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAUgnd+n+Ma/Bcke2rR+gHsBg5IIZHlYErS0DRX3SDLD92MlDFN+
+        XIr0iGyJDSi6ZAthRM29K4S8apYgY9Cv0cjgFg==
+X-Google-Smtp-Source: APXvYqzYSTAlmCSpYjqlNHQs9WnfSLdExMcfSEm1Q74Hxz3ykcLryTDbaGVPIfbdwc0/ZD8W0uFvsuoKhNpA8x3Mzco=
+X-Received: by 2002:a0c:9792:: with SMTP id l18mr9903736qvd.79.1570129755092;
+ Thu, 03 Oct 2019 12:09:15 -0700 (PDT)
 MIME-Version: 1.0
+References: <1569940180-11417-1-git-send-email-michal.vokac@ysoft.com> <1569940180-11417-3-git-send-email-michal.vokac@ysoft.com>
+In-Reply-To: <1569940180-11417-3-git-send-email-michal.vokac@ysoft.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 3 Oct 2019 14:09:03 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+DTyVKn4je=_kARoo43wr_fhyxXUEZWEDhHDZ2pDiqPQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+DTyVKn4je=_kARoo43wr_fhyxXUEZWEDhHDZ2pDiqPQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: input: Convert mpr121 binding to json-schema
+To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAE=gft6YdNszcJV67CwcY2gOgPHrJ1+SnKMLr63f2bix2aZXXA@mail.gmail.com>
-References: <20190910160903.65694-1-swboyd@chromium.org> <20190910160903.65694-4-swboyd@chromium.org> <CAE=gft6YdNszcJV67CwcY2gOgPHrJ1+SnKMLr63f2bix2aZXXA@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Evan Green <evgreen@chromium.org>
-Cc:     Dan Williams <dan.j.williams@intel.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>
-Subject: Re: [PATCH v3 3/5] memremap: Add support for read-only memory mappings
-User-Agent: alot/0.8.1
-Date:   Thu, 03 Oct 2019 11:56:03 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Evan Green (2019-09-18 12:37:34)
-> On Tue, Sep 10, 2019 at 9:09 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > @@ -53,6 +60,9 @@ static void *try_ram_remap(resource_size_t offset, si=
-ze_t size,
-> >   * mapping types will be attempted in the order listed below until one=
- of
-> >   * them succeeds.
-> >   *
-> > + * MEMREMAP_RO - establish a mapping whereby writes are ignored/reject=
-ed.
-> > + * Attempts to map System RAM with this mapping type will fail.
->=20
-> Why should attempts to map RAM with this flag fail? MEMREMAP_WB will
-> allow RAM and quietly give you back the direct mapping, so it seems
-> like at least some values in this function allow RAM.
->=20
-> Oh, I see a comment below about "Enforce that this mapping is not
-> aliasing System RAM". I guess this is worried about cache coloring?
-> But is that a problem with RO mappings? I guess the RO mappings could
-> get partially stale, so if the memory were being updated out from
-> under you, you might see some updates but not others. Was that the
-> rationale?
+On Tue, Oct 1, 2019 at 9:29 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.c=
+om> wrote:
+>
+> Convert the mpr121 binding to DT schema format using json-schema.
+>
+> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
+> ---
+> Changes since v1:
+>  - Extract the common input properties into the input.yaml schema.
+>  - Fix the wakeup-source description.
+>  - Fix the example to pass validation. Put the mpr121 device sub-node
+>    into a i2c {} node.
+>
+> Rob, the linux,keycodes property is not valid as it is.
+> If I put the minItems and maxItems into the common schema, it is valid
+> and the min/max length check works fine. What could be wrong?
+>
+> The error is not very specific..
 
-Will Deacon, Dan Williams, and I talked about this RO flag at LPC and I
-believe we decided to mostly get rid of the flags argument to this
-function. The vast majority of callers pass MEMREMAP_WB, so I'll just
-make that be the implementation default and support the flags for
-encrpytion (MEMREMAP_ENC and MEMREMAP_DEC). There are a few callers that
-pass MEMREMAP_WC or MEMREMAP_WT (and one that passes all of them), but I
-believe those can be changed to MEMREMAP_WB and not care. There's also
-the efi framebuffer code that matches the memory attributes in the EFI
-memory map. I'm not sure what to do with that one to be quite honest.
-Maybe EFI shouldn't care and just use whatever is already there in the
-mapping?
+That's a side effect of an 'allOf' somewhere in the meta-schema.
 
-Either way, I'll introduce a memremap_ro() API that maps memory as read
-only if possible and return a const void pointer as well. I'm debating
-making that API fallback to memremap() if RO isn't supported for some
-reason or can't work because we're remapping system memory but that
-seems a little too nice when the caller could just as well decide to
-fail if memory can't be mapped as read only.
+> $ make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindin=
+gs/input/fsl,mpr121-touchkey.yaml
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+> /home/vokac/development/sources/linux-fslc/Documentation/devicetree/bindi=
+ngs/input/fsl,mpr121-touchkey.yaml: ignoring, error in schema 'linux,keycod=
+es'
+> warning: no schema found in file: /home/vokac/development/sources/linux-f=
+slc/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> /home/vokac/development/sources/linux-fslc/Documentation/devicetree/bindi=
+ngs/Makefile:33: recipe for target 'Documentation/devicetree/bindings/proce=
+ssed-schema.yaml' failed
+> make[3]: *** [Documentation/devicetree/bindings/processed-schema.yaml] Er=
+ror 255
+> /home/vokac/development/sources/linux-fslc/Makefile:1264: recipe for targ=
+et 'dt_binding_check' failed
 
+I'm working on a fix for this. It's a problem in the meta-schema.
+
+Rob
