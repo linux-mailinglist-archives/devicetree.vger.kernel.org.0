@@ -2,47 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02555CB10B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 23:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE33CB12E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 23:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732481AbfJCVZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 17:25:55 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:56394 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728763AbfJCVZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 17:25:54 -0400
-Received: from p57b7758c.dip0.t-ipconnect.de ([87.183.117.140] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iG8bg-0000an-7d; Thu, 03 Oct 2019 23:25:52 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-rockchip@lists.infradead.org,
-        christoph.muellner@theobroma-systems.com
-Subject: Re: [PATCH 01/13] arm64: dts: rockchip: fix iface clock-name on px30 iommus
-Date:   Thu, 03 Oct 2019 23:25:51 +0200
-Message-ID: <2015322.eFjuJPvpNX@phil>
-In-Reply-To: <20190917082659.25549-1-heiko@sntech.de>
-References: <20190917082659.25549-1-heiko@sntech.de>
+        id S1732197AbfJCVdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 17:33:53 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:52876 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730427AbfJCVdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 17:33:53 -0400
+Received: by mail-wm1-f68.google.com with SMTP id r19so3508839wmh.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 14:33:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WqLu0wakUs3wLW/I7o/nZ1HroZMOcAjOwf4CjhO+KeY=;
+        b=SU3vbsQ6OHP3PG8vkkVhBcWke1RWVX76BBLoh371ZnNseL8IPXWuUGs8Aawlr7RpB1
+         OhrN3ieOxkzztglV/yzpowrX4psibNxJXJlYePix7tD7J1IqNmVEkFQHpaImI+SJw+fL
+         Qi+eFZDQbJZsRWvepgaLrxHz5iKcyph7k+468NLpj1+Xkc2829Qd76LtjKfibN9nNXLq
+         SNFXX3G5dtcqpf/41ELgEut0HkWdZfSqF65GOSbmfjS+BlIId4xiH8HRfQclYS1FE5ay
+         F0Vu/yPgPWokiZrw2+UdoNnU6d8v867EKDBCXwHsRUn0yTCFaPoNK5g1zBK6A1siE2rm
+         3y8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WqLu0wakUs3wLW/I7o/nZ1HroZMOcAjOwf4CjhO+KeY=;
+        b=E4KuSJKMeVUBQz3UDaE/IUTV0lre6dihnpKNwixJXsAaoC6BBeXzVWEhREkU2VrhrI
+         3OTfRzJicFPlg5Ub7icD0q5d0I629kjAZIPEIRNGh1M3rPLRQDmWJGiGsg2gOMfQuzbt
+         ++xrFRYQyapllysLer19wd3B3rPCyWXDUtoHORAkjWIyAOdREwz/b1xUX+oo4IW5fKBe
+         6B6c5lgx+xt+fyn5RoC2Bw5RidqcQLYKwUIlXbGX1PYpxAtQSOz8Q1wwdG31RZ/Qv7bu
+         uMd2SnJCzwdPpmm6VOFs7mF2jcjUgglKEPyYTlLsAcOvimM2TSpf7+exdF+H3gKPc5pM
+         G3aQ==
+X-Gm-Message-State: APjAAAXG01h+y76HRMMhkaT3oLbq406GNVxU9FclOBwx6HEHlP6E3x2S
+        9HUUBiF6sA2Qv3wfQHgrBQbYpiBz5JgS9jtINvfSwA==
+X-Google-Smtp-Source: APXvYqy0aDLcBSZThcU2euPdqUC7jbpYAO1vXBYibNhLeJuIpnrowDBFsgcoWmV4/OIiW/ottBpZY0dyuBAWgcYMMGw=
+X-Received: by 2002:a05:600c:48b:: with SMTP id d11mr3500415wme.153.1570138431210;
+ Thu, 03 Oct 2019 14:33:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20191002231617.3670-1-john.stultz@linaro.org> <20191002231617.3670-3-john.stultz@linaro.org>
+ <20191003112618.GA2420393@kroah.com> <CALAqxLWm_u3KsXHn4a6PdBCOKM1vs5k0xS3G5jY+M-=HBqUJag@mail.gmail.com>
+ <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
+In-Reply-To: <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Thu, 3 Oct 2019 14:33:38 -0700
+Message-ID: <CALAqxLX3uSJKvRwzcQznaF4WK52BcM5Bh+PNXHmfDe1aTSUL8Q@mail.gmail.com>
+Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Yu Chen <chenyu56@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 17. September 2019, 10:26:47 CEST schrieb Heiko Stuebner:
-> The iommu clock names are aclk+iface not aclk+hclk as in the vendor kernel,
-> so fix that in the px30.dtsi
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+On Thu, Oct 3, 2019 at 1:56 PM Hans de Goede <hdegoede@redhat.com> wrote:
+> On 03-10-2019 22:45, John Stultz wrote:
+> > The HiKey960 has only one USB controller, but in order to support both
+> > USB-C gadget/OTG and USB-A (host only) ports. When the USB-C
+> > connection is attached, it powers down and disconnects the hub. When
+> > the USB-C connection is detached, it powers the hub on and connects
+> > the controller to the hub.
+>
+> When you say one controller, do you mean 1 host and 1 gadget controller,
+> or is this one of these lovely devices where a gadget controller gets
+> abused as / confused with a proper host controller?
 
-applied patches 1-11 for 5.5
+I'm not totally sure myself, but I believe it's the latter, as the
+host ports have to be disabled in order for the gadet/otg port to
+function.
 
-Patches 12+13 need the corresponding phy change to land first
+There was a similar situation w/ the original HiKey board (dwc2
+controller) as well, though the switching was done fully in hardware
+and we only needed some minor tweaks to the driver to keep the state
+transitions straight.
 
+> And since you are doing a usb-role-switch driver, I guess that the
+> role-switch is integrated inside the SoC, so you only get one pair
+> of USB datalines to the outside ?
 
+I believe so, but again, I don't have a ton of knowledge about the SoC
+details, Chen Yu would probably be the right person to answer, but I
+don't know if he's doing upstreaming anymore.
+
+> This does seem rather special, it might help if you can provide a diagram
+> with both the relevant bits inside the SoC as well as what lives outside
+> the Soc. even if it is in ASCII art...
+
+There is a schematic pdf here:
+https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
+
+The larger block diagram on page 3 might be helpful, but you can find
+more details on the usb hub bits on page 17 and 18.
+
+thanks
+-john
