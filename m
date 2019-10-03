@@ -2,135 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 309BBC9B81
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F1EC9B97
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729721AbfJCKB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 06:01:56 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:41539 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729727AbfJCKBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:01:55 -0400
-Received: by mail-vs1-f67.google.com with SMTP id l2so1270760vsr.8
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 03:01:55 -0700 (PDT)
+        id S1729860AbfJCKC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 06:02:29 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:41806 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725997AbfJCKC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:02:28 -0400
+Received: by mail-ua1-f66.google.com with SMTP id l13so689621uap.8
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 03:02:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bQZgMiPBlch+da9eCpuVvMh7cDd98498ZGUQ3xlwUWM=;
-        b=FuER+l0gj2hl/fxpTFxvQ3nYlHiIWdyz8MM9HC+XQxx5GTIH0AH9LvMxKjOxn40Vro
-         o+KyzVClab/FiyZjLNkL5uvla+jp3D7dYdVVtEYEy44JiAKab3nvxz4nJd6Ys5vh0SUy
-         royoVNCuLwNLyUgLj8W8Kuh10mXwzsJo9jNwQvoyIDXn2nmCgvO3lybBQKlhuooIgcTk
-         MTwDkH6MQUPFv7fjj6JIj4n7fE/l+oVA44YgZLiT1EaCIAO6iROTdyF8i9qsSVZy9x6O
-         L44zkMJjvgyat95nf/WiY2dPlBJluv73B32vxzs2rYOxLxVvrEFQWW3MjOncsHTUgB4g
-         T4+w==
+        bh=ASe6c7I7L0EhCrUF5XHzywoDopPPIgsL+/85Te/kEJI=;
+        b=E5MZYBtYnP9Kx6HGb8mldQfMGUpUqvYEMXZPN2TavJocc5j0TM23dfl51BxuITMgqR
+         FQyWg7QM2ggfrFBnC12LK062KNTRBxToUx7DpRA/n4ek00vnmfzgtf7UWU3uiBvBzNV8
+         XyannvvcqBcdj+9+6IrKyWjXdJwdYAoqw+mIzp31aF/OvxAmwFCUX1gR5NRQri0mF7L4
+         th1nAiPDA7LYoJeZuOxttB6b5GqSsUz9KLHgHXWVoly8FNN0C5q6v+j0JqE1KlajfRkP
+         hpx6JRUkOq5hBzjzksRFIogIWfHOzAZKGZkR3zwvJ2jYhYrei2/y6c4LoKBdXUgjSBbx
+         i3dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bQZgMiPBlch+da9eCpuVvMh7cDd98498ZGUQ3xlwUWM=;
-        b=e14xUrt9esuDlkfOHvoK67lU0BUddHW5LiLwtTohfwJmjhTj/Wm5LT/Jxs4JrvaKxv
-         OxSQvMFVhlErRJslYZ3vkPBnnnvJMJB3/a8HoGXWiwn3JHjuRPdnE7TEjBMaRlQbpg+9
-         w3o6GBDtQpU4QbfzAzsekzcalU7CyLxq5skzlB/KgLjtzSSDKYbiLGQaERLgcvwN1bjh
-         nROvSYs2GRFnMGQTVfRB8dKq3OCA+ocv6ECLgoyRnq1YWRicFLeC1ocDHEqhfRNi3wmQ
-         D8VTyy0kb9FvfL/weSpjIKbDffZnxUjhZlMedn4/fGPAwFPhcaVy7BrrId25NbNMof+q
-         fPMg==
-X-Gm-Message-State: APjAAAWmHJbLGPNmydBr/LoVwi6+tjyduYPYXBqdjvReO2PcFU3hbzEt
-        nhhCXJaM2YjCQArnc+OxnfWmfC6fCVfZgakhryK4HA==
-X-Google-Smtp-Source: APXvYqzuSKcUmTZ9N2NNO3rEXGfkm5tGlVKGyINBteWvalYdV0+g5zqRsur4hFkbU0QLK6GOzgBpgwJYcfHAKQXzTWE=
-X-Received: by 2002:a67:e414:: with SMTP id d20mr4534032vsf.191.1570096914812;
- Thu, 03 Oct 2019 03:01:54 -0700 (PDT)
+        bh=ASe6c7I7L0EhCrUF5XHzywoDopPPIgsL+/85Te/kEJI=;
+        b=NjLmt8NiN6xXBVmeOtG+r//Oz9Bj9F6p76l8qKIlJg+8l9yQt7/j5w3uNfZh+tj8O7
+         eD6Jl0Nq2SRJ/R5ckDEtRVA9p1R6AQrVkRuqEDheC368XNAegvo0pwSwrBDnI/W5Gd0w
+         RXthfZxvSaVjUpi1OXZJOB6JUDj+/1DvgLw0Ryv+UhPa4/JJz7aPyM5xn5/Im36dR6bs
+         WFAsp1utjmrHxpQ4DnPWPtrHnPVzphEvq2GOITd8oh9mM9WTdZNLk/TGUcsImKxsQMsZ
+         HbU7dUxwNjQVMV23pxAzYZw5D8eY0PRFT/kIB+/DtOn76Ln0kps8cALEHmaUJWxxQYib
+         6+Qg==
+X-Gm-Message-State: APjAAAVcKMwdUw1nJ0IdtBOPp26kfzdUvF0Vkom7ueYvena9WqmR5W5u
+        XCdJ3nhBdVtrpybj0OHn4KZwk7lXxZ+/hFd4E0ECgA==
+X-Google-Smtp-Source: APXvYqziS3fHRidRt4q0HiM4i8JRcmP+OWueXD44mBPQh9EhssfaJIHmpRVtUCSHgrdM1OV8IZmo2KEgQEZsmpHlGgY=
+X-Received: by 2002:ab0:6190:: with SMTP id h16mr2425291uan.129.1570096947431;
+ Thu, 03 Oct 2019 03:02:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org>
+References: <1569307615-38914-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1569307615-38914-1-git-send-email-biju.das@bp.renesas.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 3 Oct 2019 12:01:18 +0200
-Message-ID: <CAPDyKFqsZ1mZ53b9wLruATzi+ymFrUCLhxzx7NFUq48p5w0Gtw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] Add SD/MMC driver for Actions Semi S900 SoC
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Date:   Thu, 3 Oct 2019 12:01:51 +0200
+Message-ID: <CAPDyKFqu+MdSc0e+C5AcGbY7UH6KG8fcp96pd4vyUMoHayVwqg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: renesas_sdhi: Add r8a774b1 support
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, thomas.liau@actions-semi.com,
-        linux-actions@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>
+        DTML <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Sep 2019 at 17:46, Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+On Tue, 24 Sep 2019 at 08:47, Biju Das <biju.das@bp.renesas.com> wrote:
 >
-> Hello,
+> Document RZ/G2N (R8A774B1) SoC bindings.
 >
-> This patchset adds SD/MMC driver for Actions Semi S900 SoC from Owl
-> family SoCs. There are 4 SD/MMC controller present in this SoC but
-> only 2 are enabled currently for Bubblegum96 board to access uSD and
-> onboard eMMC. SDIO support for this driver is not currently implemented.
->
-> Note: Currently, driver uses 2 completion mechanisms for maintaining
-> the coherency between SDC and DMA interrupts and I know that it is not
-> efficient. Hence, I'd like to hear any suggestions for reimplementing
-> the logic if anyone has.
->
-> With this driver, this patchset also fixes one clk driver issue and enables
-> the Actions Semi platform in ARM64 defconfig.
->
-> Thanks,
-> Mani
->
-> Changes in v4:
->
-> * Incorporated review comments from Rob on dt binding
->
-> Changes in v3:
->
-> * Incorporated a review comment from Andreas on board dts patch
-> * Modified the MAINTAINERS entry for devicetree YAML binding
->
-> Changes in v2:
->
-> * Converted the devicetree bindings to YAML
-> * Misc changes to bubblegum devicetree as per the review from Andreas
-> * Dropped the read/write wrappers and renamed all functions to use owl-
->   prefix as per the review from Ulf
-> * Renamed clk_val_best to owl_clk_val_best and added Reviewed-by tag
->   from Stephen
->
-> Manivannan Sadhasivam (7):
->   clk: actions: Fix factor clk struct member access
->   dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO controller binding
->   arm64: dts: actions: Add MMC controller support for S900
->   arm64: dts: actions: Add uSD and eMMC support for Bubblegum96
->   mmc: Add Actions Semi Owl SoCs SD/MMC driver
->   MAINTAINERS: Add entry for Actions Semi SD/MMC driver and binding
->   arm64: configs: Enable Actions Semi platform in defconfig
->
->  .../devicetree/bindings/mmc/owl-mmc.yaml      |  59 ++
->  MAINTAINERS                                   |   2 +
->  .../boot/dts/actions/s900-bubblegum-96.dts    |  62 ++
->  arch/arm64/boot/dts/actions/s900.dtsi         |  45 ++
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/clk/actions/owl-factor.c              |   7 +-
->  drivers/mmc/host/Kconfig                      |   8 +
->  drivers/mmc/host/Makefile                     |   1 +
->  drivers/mmc/host/owl-mmc.c                    | 696 ++++++++++++++++++
->  9 files changed, 877 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/owl-mmc.yaml
->  create mode 100644 drivers/mmc/host/owl-mmc.c
->
-> --
-> 2.17.1
->
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-I have picked up the mmc patches for next and as Stephen picked the
-clock patch, the rest are now for arm-soc, I guess!?
+Applied for next, thanks!
 
 Kind regards
 Uffe
+
+
+> ---
+>  Documentation/devicetree/bindings/mmc/renesas,sdhi.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.txt b/Documentation/devicetree/bindings/mmc/renesas,sdhi.txt
+> index dd08d03..bc08fc4 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.txt
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.txt
+> @@ -11,6 +11,7 @@ Required properties:
+>                 "renesas,sdhi-r8a7744" - SDHI IP on R8A7744 SoC
+>                 "renesas,sdhi-r8a7745" - SDHI IP on R8A7745 SoC
+>                 "renesas,sdhi-r8a774a1" - SDHI IP on R8A774A1 SoC
+> +               "renesas,sdhi-r8a774b1" - SDHI IP on R8A774B1 SoC
+>                 "renesas,sdhi-r8a774c0" - SDHI IP on R8A774C0 SoC
+>                 "renesas,sdhi-r8a77470" - SDHI IP on R8A77470 SoC
+>                 "renesas,sdhi-mmc-r8a77470" - SDHI/MMC IP on R8A77470 SoC
+> --
+> 2.7.4
+>
