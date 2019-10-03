@@ -2,104 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E83C99E5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 10:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A5AAC99E8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 10:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727611AbfJCI3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 04:29:51 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:41663 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727357AbfJCI3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 04:29:50 -0400
-Received: by mail-oi1-f193.google.com with SMTP id w65so1810454oiw.8
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 01:29:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=VBvqwmaIJ8fEwaxA8s+S3oVp3rkPvTX+z8hSKj1PS4c=;
-        b=0oNefL6B3FVIYs1SWGq/ggLp5+uLm/aPRIW59dbBP+8+SNxf0I9cwPjuUD2b3j/rLd
-         4kWl9M/vx9AhKhNJ/2psET9bk7C9WOZ+Y19XLdDAGm8uk8WaXRB899WaEPeKwLCVsrHl
-         InuR0WFRekVFVYnx0/2XErsoorX0EvAGkY1ZCAr6WYdglIXUZats0N8OlZQy7LY89jkU
-         71LkKbqZ5QP4zeGmG1jvbhW4rc8d9dAjsBThdljtUAIw/stfzZgkIsO41MHEpyHI83e3
-         +3uTDPH0bMZiAulBDD5KRSH9bR0IuAbu0N80u8VqWmkU1Lv8TrcRCQ9ZnQeb3v+DlViV
-         PR9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=VBvqwmaIJ8fEwaxA8s+S3oVp3rkPvTX+z8hSKj1PS4c=;
-        b=om5x6+8rZJa5QzehE2ncrvuv45Sif9Z8QtCyQaHIxwhwWmRCoEM+P8MJJJgJ0Bbay6
-         FgRDvam5Br3p0TQql6gCMtHCZg59mHLYBYPcVs5kCnV/lrBoEo52hsLtSl/K6cr9lrc5
-         6P+UO2L0+lbhBz/JTF//7XWKLMvj95uGZGZjwQZJBRIIhyQqj7agbfPJe2+VoQbAjW74
-         Sz/6jPLCtUIcal0tnWRZfgg02ImLucBEueIcYxqBv5HJxZUG59Wi41AWtGlU44BDagZn
-         /nSAGbflfmaMiMaq2QTqqg2ayo7JqwnhF3TDutI4aBTWPp5CUkFpPH02/uszOrnH46UN
-         ZpFw==
-X-Gm-Message-State: APjAAAWD0N6NRUcrK8vjDS1v0xAo1REMIf2fPrtfg/SRczP+WiPh374S
-        0RkYC+hnh/aCRKk4MCUWMdJ8+1rLea87e+zMfXkTCg==
-X-Google-Smtp-Source: APXvYqwQjgl+zQPvXkvV61OuT3KyDHZ69iup+K/HVAZKO4++KAu2JrTfJ0zCjUNUNkiEOOnCO51LwdKqH+XcBvr/A7w=
-X-Received: by 2002:aca:4e85:: with SMTP id c127mr1881594oib.21.1570091389892;
- Thu, 03 Oct 2019 01:29:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <1569245268-61920-1-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1569245268-61920-1-git-send-email-biju.das@bp.renesas.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 3 Oct 2019 10:29:38 +0200
-Message-ID: <CAMpxmJUtv61rSLprBQJr0X5B0MNM=B6WYu0qu6WjeLA9-qxFkw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: rcar: Add DT binding for r8a774b1
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S1728072AbfJCIaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 04:30:00 -0400
+Received: from inca-roads.misterjones.org ([213.251.177.50]:44786 "EHLO
+        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727357AbfJCI37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 04:29:59 -0400
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why)
+        by cheepnis.misterjones.org with esmtpsa (TLSv1.2:AES256-GCM-SHA384:256)
+        (Exim 4.80)
+        (envelope-from <maz@kernel.org>)
+        id 1iFwUh-0004Iy-Pa; Thu, 03 Oct 2019 10:29:51 +0200
+Date:   Thu, 3 Oct 2019 09:29:50 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 5/7] irqchip/irq-bcm2836: Add support for the 7211
+ interrupt controller
+Message-ID: <20191003092950.04440d74@why>
+In-Reply-To: <72f07d2e-b070-301a-6a5d-8e89d32adcd7@gmail.com>
+References: <20191001224842.9382-1-f.fainelli@gmail.com>
+        <20191001224842.9382-6-f.fainelli@gmail.com>
+        <20191002134041.5a181d96@why>
+        <72f07d2e-b070-301a-6a5d-8e89d32adcd7@gmail.com>
+Organization: Approximate
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, linux-kernel@vger.kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, mark.rutland@arm.com, rjui@broadcom.com, sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com, eric@anholt.net, wahrenst@gmx.net, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pon., 23 wrz 2019 o 15:28 Biju Das <biju.das@bp.renesas.com> napisa=C5=82(a=
-):
->
-> Document Renesas' RZ/G2N (R8A774B1) GPIO blocks compatibility within the
-> relevant dt-bindings.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt=
- b/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt
-> index f3f2c46..41e5fed 100644
-> --- a/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt
-> +++ b/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt
-> @@ -8,6 +8,7 @@ Required Properties:
->      - "renesas,gpio-r8a7745": for R8A7745 (RZ/G1E) compatible GPIO contr=
-oller.
->      - "renesas,gpio-r8a77470": for R8A77470 (RZ/G1C) compatible GPIO con=
-troller.
->      - "renesas,gpio-r8a774a1": for R8A774A1 (RZ/G2M) compatible GPIO con=
-troller.
-> +    - "renesas,gpio-r8a774b1": for R8A774B1 (RZ/G2N) compatible GPIO con=
-troller.
->      - "renesas,gpio-r8a774c0": for R8A774C0 (RZ/G2E) compatible GPIO con=
-troller.
->      - "renesas,gpio-r8a7778": for R8A7778 (R-Car M1) compatible GPIO con=
-troller.
->      - "renesas,gpio-r8a7779": for R8A7779 (R-Car H1) compatible GPIO con=
-troller.
-> --
-> 2.7.4
->
+On Wed, 2 Oct 2019 10:06:31 -0700
+Florian Fainelli <f.fainelli@gmail.com> wrote:
 
-Patch applied, thanks!
+> On 10/2/19 5:40 AM, Marc Zyngier wrote:
+> > On Tue,  1 Oct 2019 15:48:40 -0700
+> > Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >   
+> >> The root interrupt controller on 7211 is about identical to the one
+> >> existing on BCM2836, except that the SMP cross call are done through the
+> >> standard ARM GIC-400 interrupt controller. This interrupt controller is
+> >> used for side band wake-up signals though.  
+> > 
+> > I don't fully grasp how this thing works.
+> > 
+> > If the 7211 interrupt controller is root and the GIC is used for SGIs,
+> > this means that the GIC outputs (IRQ/FIQ/VIRQ/VFIQ, times eight) are
+> > connected to individual inputs to the 7211 controller. Seems totally
+> > braindead, and unexpectedly so.
+> > 
+> > If the GIC is root and the 7211 outputs into the GIC all of its
+> > interrupts as a secondary irqchip, it would at least match an existing
+> > (and pretty bad) pattern.
+> > 
+> > So which one of the two is it?  
+> 
+> The nominal configuration on 7211 is to have all interrupts go through
+> the ARM GIC. It is possible however, to fallback to the legacy 2836 mode
+> whereby the root interrupt controller for peripheral interrupts is this
+> ARMCTL IC. There is a mux that the firmware can control which will
+> dictate which root interrupt controller is used for peripherals.
+> 
+> I have used this mostly for silicon verification and since those are
+> fairly harmless patches, just decided to send them out to avoid
+> maintaining them out of tree.
 
-Bart
+This doesn't really answer my question. What I understand is that your
+system is laid out like this:
+
+     DEVICES -> ARMCTL -> CPUs
+                  ^
+                 GIC
+
+How are the various GIC outputs mapped into the ARMCTL? It has 4 of
+them per CPU (IRQ/FIQ + vIRQ/vFIQ), which the ARMCTL must somehow map
+to its own interrupts, specially if you want to signal IPIs using the
+GIC's SGIs (to which you hint in the commit log).
+
+There is a link I'm missing here.
+
+> We have a plan to use those as an "alternate" interrupt domain for low
+> power modes and use the fact that peripheral interrupts could be active
+> in both domains (GIC and ARMCTRL IC) to help support configuring and
+> identifying wake-up sources fro m within Linux.
+
+That's usually done with a hierarchy, where the ARMCTL IC would be a
+child of the GIC and see all interrupt configuration calls before they
+reach the GIC driver. We have plenty of examples in the tree already.
+
+Thanks,
+
+	M.
+-- 
+Without deviation from the norm, progress is not possible.
