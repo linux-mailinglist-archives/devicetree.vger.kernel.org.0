@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF1BC9894
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E78FC989C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725892AbfJCGub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 02:50:31 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34195 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725497AbfJCGub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 02:50:31 -0400
-Received: by mail-io1-f66.google.com with SMTP id q1so3100187ion.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 23:50:29 -0700 (PDT)
+        id S1726808AbfJCGuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 02:50:51 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:33349 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725879AbfJCGuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 02:50:50 -0400
+Received: by mail-io1-f68.google.com with SMTP id z19so3121845ior.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 23:50:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=tt/S1MK2hfNRmcchY+VX0l8ftGF+jAU5aVZJF+oZt2U=;
-        b=it//+pUV0o+AfLtqgd58MPT3/eGz5NZ/3fJdCcTXH9p/mKoqt8vNSKVtRXo25SyElS
-         ubjXKxRDSeAb4aFRKo/9jZCkbm00Q4lM4bVPvOUs6Y+y+15CztcT7PA8pPFcNzG3tmlC
-         Xla/5zwL8a+0Cm7HMHu0mixFm6s4bazOxYl0E=
+        bh=ZHYvlpN03aN9XlL85X95NOUwb+VywcBIMog6JdvU8/E=;
+        b=TPFD+Yd6CfTdFITa1ngVIu7bhHHpMGlesUhtu9MDTLyuP4HMgvy5WMD6yyY9KoFNW3
+         ULlEEjL/G+DiRVPDmI16XEM5gcI+L9El120dH3U1ZMT0cm1lcBnN6D4y2tXwllLYtcPN
+         nc2TkrkJ2eYpF/SLjZO42qi/FTcx1ZBzS8t0E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tt/S1MK2hfNRmcchY+VX0l8ftGF+jAU5aVZJF+oZt2U=;
-        b=HL1xjGsEvo1+6/kKhQkhzJQ5pnTiAVJ26+koQFxySIvmwvBd4jwi6LZzYatsu24qDl
-         Ygx4bxqhvPnfEGMwSz4r8LDunAnOMSO++8a8aNchFgRz7nF9OG1yiB8oJyO5oOE27ada
-         GOImnwZkZmfDVAPrREk3ZOMDUK/KoE5HFC3to+Du+UuBJWxcldSHDt/hAByPdmNLZnVm
-         dniL21211boGFrd80/NSJ5JK+NAaw25DK3SqzKUS3sJ7cK21XEI86fm8pWJdL4euFpNP
-         9Q7d8VCVGugHYlY29UX4Oi9yWtJHc0meKmJrRwt5Cr5gP6CJHm294v1tfSghlITw01E+
-         zhww==
-X-Gm-Message-State: APjAAAUWrrYX6P0U2XWghzkgWCn7a2qyjU0vlnQ6xa+fmV9FstUiEqkV
-        9uflN+n+GaRNrFmf3gV/ctr7ubd6wW+gnyBwxgOiOQ==
-X-Google-Smtp-Source: APXvYqw9C5okno4/FEmbGgjCtziH8L0ligLd5zphx/vdqtLp/tQvohb/XmjYoGGwm1th0cj3JsX+zL0a2/erxOU/7LI=
-X-Received: by 2002:a92:c74d:: with SMTP id y13mr8565455ilp.77.1570085428660;
- Wed, 02 Oct 2019 23:50:28 -0700 (PDT)
+        bh=ZHYvlpN03aN9XlL85X95NOUwb+VywcBIMog6JdvU8/E=;
+        b=pb3AO51sK+h64CnRb6pROllK4I1aOmV2y+sYpEZ4IDbWnpMovQ8ckoMge1auV7exes
+         i8a1U7s1neL2gyBYQSnWtyG6NSMQVAToclUnhJSnsSF7i8llMpvOVKNuihnGQ5Doht4f
+         pk2OGT3xmKSxABz/qFNkJIlK+VCYnkQ/432Z50vnZQTYGZLki/ZRaYEfhW0YH/rAAhAg
+         GF2/cY3vIuw3JMZbADKnxEegZBaRTgkEKUDn6RsrgZ5tHzScQbN+gRH37vxG13TNJdTv
+         pukC618YnRGRcPWUWyW5ya5Ra1/fuAUHkCMTdeiyTJOx9GfTzBaVsMjJeb/G2MAGNF5I
+         vCoQ==
+X-Gm-Message-State: APjAAAU77VN9qlJk4eZ8I2wy7niTNfjxXELyEuFqiWMflJOwzUaEAn5i
+        kbMdmJnd5QKQQZR7K9rdbyvTR9SP6bLNIFuVtGeoBg==
+X-Google-Smtp-Source: APXvYqxidNtZbs0x8HYndi+juRNw13gBCSF4Pfuk3ENR73KLAzRF4+IeuTb4FHlPvke2H95mbMi4Mwo+TGNlA/lh/QE=
+X-Received: by 2002:a6b:2b07:: with SMTP id r7mr7235777ior.173.1570085448370;
+ Wed, 02 Oct 2019 23:50:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191003064527.15128-1-jagan@amarulasolutions.com> <20191003064527.15128-7-jagan@amarulasolutions.com>
-In-Reply-To: <20191003064527.15128-7-jagan@amarulasolutions.com>
+References: <20191003064527.15128-1-jagan@amarulasolutions.com> <20191003064527.15128-8-jagan@amarulasolutions.com>
+In-Reply-To: <20191003064527.15128-8-jagan@amarulasolutions.com>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 3 Oct 2019 12:20:17 +0530
-Message-ID: <CAMty3ZD95L83dzsBwNghfahZ2mfmmOn0iA40t534i91UN7P_uQ@mail.gmail.com>
-Subject: Re: [PATCH v11 6/7] drm/panel: Add Bananapi S070WV20-CT16 ICN6211
- MIPI-DSI to RGB bridge
+Date:   Thu, 3 Oct 2019 12:20:37 +0530
+Message-ID: <CAMty3ZAHPWOn=h04AjGLf33uGhW4MxqpU4z1izGp0BgUmyOiLQ@mail.gmail.com>
+Subject: Re: [PATCH v11 7/7] ARM: dts: sun8i: bananapi-m2m: Enable Bananapi
+ S070WV20-CT16 DSI panel
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>
@@ -63,18 +63,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Oct 3, 2019 at 12:16 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> Bananapi S070WV20-CT16 ICN6211 is 800x480, 4-lane MIPI-DSI to RGB bridge
-> panel which can be used to connect via DSI port on BPI-M64 board,
-> so add a driver for it.
+> This patch add support for Bananapi S070WV20-CT16 DSI panel to
+> BPI-M2M board.
 >
-> The same panel PCB comes with parallel RBG which is supported via
-> panel-simple driver with "bananapi,s070wv20-ct16" compatible.
+> DSI panel connected via board DSI port with,
+> - DCDC1 as VCC-DSI supply
+> - DLDO1 as VDD supply
+> - PL5 gpio for lcd reset gpio pin
+> - PB7 gpio for lcd enable gpio pin
+> - PL4 gpio for backlight enable pin
 >
 > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > ---
->  drivers/gpu/drm/panel/Kconfig                 |   9 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../panel/panel-bananapi-s070wv20-icn6211.c   | 293 ++++++++++++++++++
 
 This would be an overlay patch, which doesn't need to mege. please
 correct the same.
