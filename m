@@ -2,198 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C863BCABC1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DBCBCABE5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:45:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729069AbfJCP7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 11:59:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43034 "EHLO mail.kernel.org"
+        id S1727548AbfJCQBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 12:01:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45864 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731364AbfJCP7n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 11:59:43 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1731812AbfJCQBb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 12:01:31 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 00CCC222C2;
-        Thu,  3 Oct 2019 15:59:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5A19B222D0;
+        Thu,  3 Oct 2019 16:01:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570118382;
-        bh=UYI+i4ZdBUJfq10YbStvW3i66fBJsqe8ARvR8bHxCbY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RqbyF7VSy9NGgBFB+HIevDvHLWm+7aEURok3DWHfiN9exDTZhQ0pl2MxYRrX080ic
-         NvimPrOdtKf3nbQIlfd+/crmMgf4KzFT7yuBdmLEm+N4KARx9ff/JsYlUcKUJn+11m
-         v/Eryv8Mp0Q/GqOr9XmwF5yWFxqs8FHEcY16wT1Q=
-Received: by mail-qt1-f178.google.com with SMTP id u22so4246606qtq.13;
-        Thu, 03 Oct 2019 08:59:41 -0700 (PDT)
-X-Gm-Message-State: APjAAAUvA72ISCtY+efvzNh6dqfvQ3Lf6ux9VN7JhsN2AaaBO3tEWT7g
-        EK6o3DrXOWHKyp1GJ2XG1mlKWB7qzSa95wev2A==
-X-Google-Smtp-Source: APXvYqwcwdNJlOIpfQZz2dIR2x5UhCf43ZSWs3Ge+J8BHWO8rEIey1vwAN28tyHAn9j5UNMWeVMspf0z3kY4qPEkVYI=
-X-Received: by 2002:ad4:458d:: with SMTP id x13mr9205417qvu.85.1570118380840;
- Thu, 03 Oct 2019 08:59:40 -0700 (PDT)
+        s=default; t=1570118490;
+        bh=ttiPKL2jzgASsca2BGk27wEdRl5hmkMpvPvhdH5dU9o=;
+        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
+        b=PR8idfJjm1O7W4H7sSBvf60VNidTUzimxOuz/YuQxqeTR9ZLI8hhm1xAxkHqKYzBE
+         0G1fEJ36nFEaqWXzC3bt6NufrBH2MfEFd7DxV3tE//Vt9O6a/R0BzQzj8bgifWaiby
+         VFLCRE6KfsZchQdSn6X9Wz5mmkvAPOi7kjrRhCLE=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20190920075411.15735-1-marcel@ziswiler.com> <20190920075411.15735-2-marcel@ziswiler.com>
- <20191001220539.GA16232@bogus> <e6fdfd7f46308dbc8fd33d4a2ff0b242ec39a84c.camel@toradex.com>
-In-Reply-To: <e6fdfd7f46308dbc8fd33d4a2ff0b242ec39a84c.camel@toradex.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 3 Oct 2019 10:59:29 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKmCVP3Fc2sUY=FpM5-HLQ0-=uTf6PEwn0XzyC5BBHBOA@mail.gmail.com>
-Message-ID: <CAL_JsqKmCVP3Fc2sUY=FpM5-HLQ0-=uTf6PEwn0XzyC5BBHBOA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] drm/panel: simple: add display timings for logic
- technologies displays
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     "marcel@ziswiler.com" <marcel@ziswiler.com>,
-        "info@logictechno.com" <info@logictechno.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "j.bauer@endrich.com" <j.bauer@endrich.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org>
+References: <20190918095018.17979-1-tdas@codeaurora.org> <20190918095018.17979-4-tdas@codeaurora.org> <20190918213946.DC03521924@mail.kernel.org> <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org> <20190924231223.9012C207FD@mail.kernel.org> <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org> <20190925130346.42E0820640@mail.kernel.org> <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org> <20191001143825.CD3212054F@mail.kernel.org> <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>, robh+dt@kernel.org
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC) driver for SC7180
+User-Agent: alot/0.8.1
+Date:   Thu, 03 Oct 2019 09:01:29 -0700
+Message-Id: <20191003160130.5A19B222D0@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 2, 2019 at 5:27 AM Philippe Schenker
-<philippe.schenker@toradex.com> wrote:
->
-> On Tue, 2019-10-01 at 17:05 -0500, Rob Herring wrote:
-> > On Fri, Sep 20, 2019 at 09:54:11AM +0200, Marcel Ziswiler wrote:
-> > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > >
-> > > Add display timings for the following 3 display panels manufactured
-> > > by
-> > > Logic Technologies Limited:
-> > >
-> > > - LT161010-2NHC e.g. as found in the Toradex Capacitive Touch
-> > > Display
-> > >   7" Parallel [1]
-> > > - LT161010-2NHR e.g. as found in the Toradex Resistive Touch Display
-> > > 7"
-> > >   Parallel [2]
-> > > - LT170410-2WHC e.g. as found in the Toradex Capacitive Touch
-> > > Display
-> > >   10.1" LVDS [3]
-> > >
-> > > Those panels may also be distributed by Endrich Bauelemente
-> > > Vertriebs
-> > > GmbH [4].
-> > >
-> > > [1]
-> > > https://docs.toradex.com/104497-7-inch-parallel-capacitive-touch-display-800x480-datasheet.pdf
-> > > [2]
-> > > https://docs.toradex.com/104498-7-inch-parallel-resistive-touch-display-800x480.pdf
-> > > [3]
-> > > https://docs.toradex.com/105952-10-1-inch-lvds-capacitive-touch-display-1280x800-datasheet.pdf
-> > > [4]
-> > > https://www.endrich.com/isi50_isi30_tft-displays/lt170410-1whc_isi30
-> > >
-> > > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > >
-> > > ---
-> > >
-> > >  drivers/gpu/drm/panel/panel-simple.c | 65
-> > > ++++++++++++++++++++++++++++
-> > >  1 file changed, 65 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/panel/panel-simple.c
-> > > b/drivers/gpu/drm/panel/panel-simple.c
-> > > index 28fa6ba7b767..42bd0de25167 100644
-> > > --- a/drivers/gpu/drm/panel/panel-simple.c
-> > > +++ b/drivers/gpu/drm/panel/panel-simple.c
-> > > @@ -2034,6 +2034,62 @@ static const struct panel_desc lg_lp129qe = {
-> > >     },
-> > >  };
-> > >
-> > > +static const struct display_timing logictechno_lt161010_2nh_timing
-> > > = {
-> > > +   .pixelclock = { 26400000, 33300000, 46800000 },
-> > > +   .hactive = { 800, 800, 800 },
-> > > +   .hfront_porch = { 16, 210, 354 },
-> > > +   .hback_porch = { 46, 46, 46 },
-> > > +   .hsync_len = { 1, 20, 40 },
-> > > +   .vactive = { 480, 480, 480 },
-> > > +   .vfront_porch = { 7, 22, 147 },
-> > > +   .vback_porch = { 23, 23, 23 },
-> > > +   .vsync_len = { 1, 10, 20 },
-> > > +   .flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-> > > +            DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-> > > +            DISPLAY_FLAGS_SYNC_POSEDGE,
-> > > +};
-> > > +
-> > > +static const struct panel_desc logictechno_lt161010_2nh = {
-> > > +   .timings = &logictechno_lt161010_2nh_timing,
-> > > +   .num_timings = 1,
-> > > +   .size = {
-> > > +           .width = 154,
-> > > +           .height = 86,
-> > > +   },
-> > > +   .bus_format = MEDIA_BUS_FMT_RGB666_1X18,
-> > > +   .bus_flags = DRM_BUS_FLAG_DE_HIGH |
-> > > +                DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-> > > +                DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-> > > +};
-> > > +
-> > > +static const struct display_timing logictechno_lt170410_2whc_timing
-> > > = {
-> > > +   .pixelclock = { 68900000, 71100000, 7340000 },
-> > > +   .hactive = { 1280, 1280, 1280 },
-> > > +   .hfront_porch = { 23, 60, 71 },
-> > > +   .hback_porch = { 23, 60, 71 },
-> > > +   .hsync_len = { 15, 40, 47 },
-> > > +   .vactive = { 800, 800, 800 },
-> > > +   .vfront_porch = { 5, 7, 10 },
-> > > +   .vback_porch = { 5, 7, 10 },
-> > > +   .vsync_len = { 6, 9, 12 },
-> > > +   .flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-> > > +            DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-> > > +            DISPLAY_FLAGS_SYNC_POSEDGE,
-> > > +};
-> > > +
-> > > +static const struct panel_desc logictechno_lt170410_2whc = {
-> > > +   .timings = &logictechno_lt170410_2whc_timing,
-> > > +   .num_timings = 1,
-> > > +   .size = {
-> > > +           .width = 217,
-> > > +           .height = 136,
-> > > +   },
-> > > +   .bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-> > > +   .bus_flags = DRM_BUS_FLAG_DE_HIGH |
-> > > +                DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-> > > +                DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-> > > +};
-> > > +
-> > >  static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
-> > >     .clock = 30400,
-> > >     .hdisplay = 800,
-> > > @@ -3264,6 +3320,15 @@ static const struct of_device_id
-> > > platform_of_match[] = {
-> > >     }, {
-> > >             .compatible = "lg,lp129qe",
-> > >             .data = &lg_lp129qe,
-> > > +   }, {
-> > > +           .compatible = "logictechno,lt161010-2nhc",
-> > > +           .data = &logictechno_lt161010_2nh,
-> > > +   }, {
-> > > +           .compatible = "logictechno,lt161010-2nhr",
-> > > +           .data = &logictechno_lt161010_2nh,
-> > > +   }, {
-> > > +           .compatible = "logictechno,lt170410-2whc",
-> > > +           .data = &logictechno_lt170410_2whc,
-> >
-> > The vendor prefix wasn't documented, but the compatible string and
-> > rest
-> > already are?
->
-> Marcel added the vendor prefix in the first patch of the series [1]
+Quoting Taniya Das (2019-10-03 03:31:15)
+> Hi Stephen,
+>=20
+> On 10/1/2019 8:08 PM, Stephen Boyd wrote:
+> >=20
+> > Why do you want to keep them critical and registered? I'm suggesting
+> > that any clk that is marked critical and doesn't have a parent should
+> > instead become a register write in probe to turn the clk on.
+> >=20
+> Sure, let me do a one-time enable from probe for the clocks which=20
+> doesn't have a parent.
+> But I would now have to educate the clients of these clocks to remove=20
+> using them.
+>=20
 
-Right, but where's the panel's binding documentation with the above
-compatible strings documented?
+If anyone is using these clks we can return NULL from the provider for
+the specifier so that we indicate there isn't support for them in the
+kernel. At least I hope that code path still works given all the recent
+changes to clk_get().
 
-Rob
