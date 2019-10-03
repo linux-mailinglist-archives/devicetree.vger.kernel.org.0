@@ -2,140 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54AF7C9BA5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A018AC9BA8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727221AbfJCKEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 06:04:25 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:55126 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727024AbfJCKEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:04:25 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20191003100422euoutp01aa1b1643e6bd1a8f409262326f7d9a4f~KGvW9kIH31933219332euoutp01k
-        for <devicetree@vger.kernel.org>; Thu,  3 Oct 2019 10:04:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20191003100422euoutp01aa1b1643e6bd1a8f409262326f7d9a4f~KGvW9kIH31933219332euoutp01k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1570097062;
-        bh=9FfdxOF7vnF6vNWvFg7wwQjhh86Fz5rU4uACN+T5VYU=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=azgvbQZ8ajCNhEE0OIvLIMJ50wu9ygGQeXtOPc+aCSi7ei2ka1kuJD2KDkaAyJZEO
-         OnCo5sgGSNsK/pNJeURn7aa6LiSf0THE/6WJ6fv+lcujTssFOoQrEXJx440tvsTIii
-         svO56HjjRHw8xYlCYrrEE+SRMWL0mahXUtMGlYZQ=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20191003100422eucas1p2f825c8fea78ab0ff971999959437a932~KGvWbRRY31631516315eucas1p2a;
-        Thu,  3 Oct 2019 10:04:22 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id AD.3D.04469.6A7C59D5; Thu,  3
-        Oct 2019 11:04:22 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20191003100421eucas1p2785448de3ed8c90e93a61510403a9202~KGvWFBLEV1622016220eucas1p2k;
-        Thu,  3 Oct 2019 10:04:21 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20191003100421eusmtrp1e1539dc74c42577aa5b01c2c0fcfcda9~KGvWEKQE61454314543eusmtrp1b;
-        Thu,  3 Oct 2019 10:04:21 +0000 (GMT)
-X-AuditID: cbfec7f2-569ff70000001175-de-5d95c7a6699f
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 95.F1.04166.5A7C59D5; Thu,  3
-        Oct 2019 11:04:21 +0100 (BST)
-Received: from [106.120.51.15] (unknown [106.120.51.15]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20191003100421eusmtip1e188990cf25c7ee043a9c6827e1dde4e~KGvVT2Uzu0342403424eusmtip1b;
-        Thu,  3 Oct 2019 10:04:21 +0000 (GMT)
-Subject: Re: [RESEND PATCH v5 3/4] ARM: dts: exynos: add initial data for
- coupled regulators for Exynos5422/5800
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Kamil Konieczny <k.konieczny@partner.samsung.com>
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
+        id S1726811AbfJCKFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 06:05:25 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:21026 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726523AbfJCKFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:05:24 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x93A1PHE005807;
+        Thu, 3 Oct 2019 12:05:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
+ : from : message-id : date : mime-version : in-reply-to : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=LPPmd2u13qwBFxFZ5Y56WE+4sPe3u6X86PcYngdfDX0=;
+ b=reenwcBxoQPpkmY1pA2l5GXAWD6wX6QABVWRP6AZbzehaCOwGQWNRg3TNPyQ2HBqa4iN
+ 4lP91nRfYDdrRcKISF+27TSklO7eoNKx1F2AweOFMliNsarLcGR9avkoY3GY2FBerfLf
+ odSlvWi7BHuIr0qQinoPj7vHuUAXtR8sVTV+NUAg03e42M4eatQF4C2zjm1uQz21o8OV
+ 0xxagjVns0XSelirU5Xu1Bz60hgpforasWGSkuKNrqW4F8mJ3ZuB/JMC8Ln/xC4bkO54
+ 9ZIIpO8q/RtkAaLJQro0VC90fyce40blu31a5YH+COzk43oRp+U4avifIFEEVpCRD+t8 sA== 
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2v9w9w3x74-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Thu, 03 Oct 2019 12:05:13 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1E0434E;
+        Thu,  3 Oct 2019 10:05:09 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0EC1D2B5CAC;
+        Thu,  3 Oct 2019 12:05:09 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 3 Oct
+ 2019 12:05:08 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: move ltdc pinctrl on stm32mp157a dk1
+ board
+To:     =?UTF-8?Q?Yannick_Fertr=c3=a9?= <yannick.fertre@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <2fbc9880-3dfe-145c-e036-16276c314353@samsung.com>
-Date:   Thu, 3 Oct 2019 12:04:20 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
-        Thunderbird/60.9.0
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+References: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <05cc08f2-36c8-af75-39f3-7b7f4ac4e671@st.com>
+Date:   Thu, 3 Oct 2019 12:05:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20191002142704.GA15827@pi3>
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTQRzGme52d2ksWQqEf8Qj1iMesUKiZoxGMdGkj5roiwaxyAaItJAu
-        oOiDCqFAg0jAA2sFFERCEKQcIlGUWmmU0AIiIB6VVGJVqpFDUBRsux68fd9/fjPffJNhCNmI
-        eCGToEnhtBpVopySkM0d323rK60XosIrG6W4vrhOjAcm3otxqcUmxvltcwifc34isN1+m8Zd
-        GaM0Njn7xfhZq5HC42ctCBfb20T4xkCPCL88U0Xh0ekuEc66b6HxbH89iRvedlCRgcqakhqk
-        NFXnUsqGilPK9s/3RMr8xmqktA7eESnHTUv20Ack22K5xIQ0Trth+2FJ/NfhITo5mz7e/KGJ
-        OI1GxHrEMMBuBOOTdD2SMDK2CkFjjp0WzASCM0UPSD3y95hxBFnnjni1d0O100YK0E0Ev2pL
-        /hg3AtfMjMhLBbFaeD49TXh1MHsIvkxlEF6IYMtJqJsbRt4Fio0AvVtPebWU3Q5XM7N8mmRX
-        wKg52xcdwkbBm2krITCB8OTyO9/cn10DtpGnPp5gl8Idt5EQdCgMvSsVecOAzWXg7N0eSii6
-        C+pdMUKFIPhobaQFvQg6i/JIgc9EMGy7RQsmD8GzjGIkUFvhkbXH92KEJ7mudYMw3gk/v3aS
-        wvkBMOgOFO4QAIXNlwhhLIUcnUygV4HBWvsvtr27lyhAcsO8ZoZ5bQzz2hj+55YhshqFcqm8
-        Oo7jIzTcMQWvUvOpmjjFkSS1CXk+X+esdawFTfbGmBHLIPkCafGb81EysSqNT1ebETCEPFja
-        W+cZSWNV6Sc4bVK0NjWR480ojCHlodKTfm8Pytg4VQp3lOOSOe3fVRHjv/A0illp5CdjIyMV
-        rnWvMgoy01vmunXfol2Xy6b61FXLw3XqZSEw5vDrC/x+reP65lO79yUHS3U7ZrsDSvePXBkr
-        m3D+MkiopQN+kxVJyZu3KGo1910nFvzIaypMuPjQsZd9UbJ+04Txx6BjcPHq8D2PLdpgR8Xr
-        JgU3UzS2ppzQ7QyTk3y8KmItoeVVvwEll2pteAMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrJIsWRmVeSWpSXmKPExsVy+t/xu7pLj0+NNdj5Wt9i44z1rBbXvzxn
-        tZh/5ByrRd++/4wW/Y9fM1ucP7+B3eJs0xt2i02Pr7FaXN41h83ic+8RRosZ5/cxWSy9fpHJ
-        4nbjCjaLNz/OMlm07j3CbvHv2kYWi80PjrE5CHqsmbeG0WPTqk42j81L6j0OvtvD5NG3ZRWj
-        x/Eb25k8Pm+SC2CP0rMpyi8tSVXIyC8usVWKNrQw0jO0tNAzMrHUMzQ2j7UyMlXSt7NJSc3J
-        LEst0rdL0Mv4+PAWe0E7e8W2l1uZGxifsnYxcnJICJhIrHp8jqWLkYtDSGApo8Tf40uZIRIy
-        EienNUAVCUv8udbFBlH0mlHicddbsCJhgSKJqz9+gNkiAnES3xvXsYIUMQssZZF4uGIlK0TH
-        J0aJnps/warYBAwlut6CjOLk4BWwk5jb3ApmswioSLw51A50BweHqECsxKa9ZhAlghInZz5h
-        AbE5BTQlzj09BVbOLGAmMW/zQ2YIW15i+9s5ULa4xK0n85kmMArNQtI+C0nLLCQts5C0LGBk
-        WcUoklpanJueW2yoV5yYW1yal66XnJ+7iREY7duO/dy8g/HSxuBDjAIcjEo8vDPuTYkVYk0s
-        K67MPcQowcGsJMJ7aT1QiDclsbIqtSg/vqg0J7X4EKMp0G8TmaVEk/OBiSivJN7Q1NDcwtLQ
-        3Njc2MxCSZy3Q+BgjJBAemJJanZqakFqEUwfEwenVANj8IXDekrX984pXFmzxrG/NuJOgZ6t
-        PXtuxYn6n5OE9sZfi1q7bkKYmtBXTq3PP7jZ3Vl2Sa3aU7O72eqmk7PAspyQWaV6az4tS/G1
-        tPvErWORsTLZQWu1gvh1meBN/06ayB69+3a/YHlx7Kwv+l2qD76fbpg9M/X/s1LTC6kBC7+f
-        mulidd9DiaU4I9FQi7moOBEA0H6JoQwDAAA=
-X-CMS-MailID: 20191003100421eucas1p2785448de3ed8c90e93a61510403a9202
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190808090252eucas1p2afec3e288965bb7e7aa6f96f67686273
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190808090252eucas1p2afec3e288965bb7e7aa6f96f67686273
-References: <20190808090234.12577-1-k.konieczny@partner.samsung.com>
-        <CGME20190808090252eucas1p2afec3e288965bb7e7aa6f96f67686273@eucas1p2.samsung.com>
-        <20190808090234.12577-4-k.konieczny@partner.samsung.com>
-        <20191002142704.GA15827@pi3>
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-03_04:2019-10-01,2019-10-03 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Yannick
 
-On 02.10.2019 16:27, Krzysztof Kozlowski wrote:
-> On Thu, Aug 08, 2019 at 11:02:33AM +0200, Kamil Konieczny wrote:
->> From: Marek Szyprowski <m.szyprowski@samsung.com>
->>
->> Declare Exynos5422/5800 voltage ranges for opp points for big cpu core and
->> bus wcore and couple their voltage supllies as vdd_arm and vdd_int should
->> be in 300mV range.
->>
->> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
->> [k.konieczny: add missing patch description]
->> Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
->> Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
-> The bindings were acked. Can I pick it up?
+On 8/2/19 4:08 PM, Yannick Fertré wrote:
+> The ltdc pinctrl must be in the display controller node and
+> not in the peripheral node (hdmi bridge).
+> 
+> Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
+> ---
+>   arch/arm/boot/dts/stm32mp157a-dk1.dts | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+> index f3f0e37..1285cfc 100644
+> --- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+> @@ -99,9 +99,6 @@
+>   		reset-gpios = <&gpioa 10 GPIO_ACTIVE_LOW>;
+>   		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+>   		interrupt-parent = <&gpiog>;
+> -		pinctrl-names = "default", "sleep";
+> -		pinctrl-0 = <&ltdc_pins_a>;
+> -		pinctrl-1 = <&ltdc_pins_sleep_a>;
+>   		status = "okay";
+>   
+>   		ports {
+> @@ -276,6 +273,9 @@
+>   };
+>   
+>   &ltdc {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&ltdc_pins_a>;
+> +	pinctrl-1 = <&ltdc_pins_sleep_a>;
+>   	status = "okay";
+>   
+>   	port {
+> 
 
-All needed fixes have been merged to v5.4-rc1, so it is okay to merge 
-this patch. However I've checked and it doesn't apply now, so I will 
-send a rebased version.
+Applied on stm32-next.
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Thanks.
+Alex
