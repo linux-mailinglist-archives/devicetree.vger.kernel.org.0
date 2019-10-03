@@ -2,128 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07F00CA4E0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75246CA644
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390903AbfJCQ3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 12:29:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33896 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391568AbfJCQ3A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 12:29:00 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2E89621783;
-        Thu,  3 Oct 2019 16:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570120138;
-        bh=Obtjp4ZwBmT/y2TVxxCzMnVGIK54jgwwUKhCZT0umyM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SlTq8/8Tkb4uXMQMqs0LuhZc/GbaBcY64rA+8U7p+hotMlDBfEG0SCfDgDZVJIQt4
-         8+hYYy8MhVCVp806bqRzzOLnpZ0kR+d+j7MfxnUeZelZVa3UYM2lm4UCgAPwXoPxGr
-         a3j3wF88smBNfu3Ozi7H4giIPr3XP9IkYzWkA7ds=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org,
-        =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        Ilya Ledvich <ilya@compulab.co.il>,
-        Igor Grinberg <grinberg@compulab.co.il>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.2 110/313] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
-Date:   Thu,  3 Oct 2019 17:51:28 +0200
-Message-Id: <20191003154543.679087746@linuxfoundation.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191003154533.590915454@linuxfoundation.org>
-References: <20191003154533.590915454@linuxfoundation.org>
-User-Agent: quilt/0.66
+        id S2392535AbfJCQl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 12:41:58 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:41669 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392532AbfJCQl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 12:41:57 -0400
+Received: by mail-pf1-f195.google.com with SMTP id q7so2107513pfh.8
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 09:41:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MISJlJaBtFFImzW51FlZ2qBGeso4c1E39oXCASoBNDs=;
+        b=lr6AYQJIgnwyB7CwEqqjWDeQ9SsqVwsCdDapXVnps1l33RshyzxmKLbE797W6iLl0z
+         c88v9cK8+7ZGOqqXXM4++rUrt3XwsJJDtfu3IIe5aZHXMk3TH1y4EqZQvoiSnHfdB9Cf
+         wMzHvqN6FwpbJ+hPU/4yhFzPlPyXM3/WtDMU4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MISJlJaBtFFImzW51FlZ2qBGeso4c1E39oXCASoBNDs=;
+        b=Ux2MMWNA5XgmkvfzCfwDD5/1v8c3wG3ap1nNN/NtWJY7deP0HyHHMorg1cylJVRSWC
+         27cljfLP9mPMTFG4ZBN1U9f4/V07VC3Tbrg5v30nJ76OaAIE7vQ/+SZalPuYPcdk34GS
+         HFSjHxpJFPT0Zt1WKSWP5Z7bNB3bFrWUtzoRECh+vbRCmp7DxdmC7lyOXrCIffdHR897
+         0MzoopYeIdl4t3jynsR6ut4zsl6wDHE6rVw/zg8u6Q33sRgpbT/qqCdrS8htuLi/NfY3
+         Zeb7Ozljb0R9Q3iVMWUoj+1e1rLJExc80KflkrKBWJhC42ITWRkLwKrGZLs94/hECY/n
+         jtGg==
+X-Gm-Message-State: APjAAAViiqqBRcVQL/YSjWXxPQCr4dK8MfAPpdTE7RSaBll2J9GLyiq8
+        AEFJ5POVlPX1O5zdlPfT3/348w==
+X-Google-Smtp-Source: APXvYqxmFA99XijlyILdYbdhLdTgH03fa06ehVPjZcS3nkRSbv5LJHGq4R3QE4o0s14IFNIpKdzkwg==
+X-Received: by 2002:a17:90b:f11:: with SMTP id br17mr11589381pjb.80.1570120916856;
+        Thu, 03 Oct 2019 09:41:56 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id x18sm3280507pge.76.2019.10.03.09.41.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2019 09:41:56 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] ARM: dts: rockchip: Use interpolated brightness tables for veyron
+Date:   Thu,  3 Oct 2019 09:41:52 -0700
+Message-Id: <20191003094137.v2.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
+X-Mailer: git-send-email 2.23.0.444.g18eeb5a265-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: André Draszik <git@andred.net>
+Use interpolated brightness tables (added by commit 573fe6d1c25
+("backlight: pwm_bl: Linear interpolation between
+brightness-levels") for veyron, instead of specifying every single
+step. Some devices/panels have intervals that are smaller than
+the specified 'num-interpolated-steps', the driver interprets
+these intervals as a single step.
 
-[ Upstream commit 9846a4524ac90b63496580b7ad50674b40d92a8f ]
+Another option would be to switch to a perceptual brightness curve
+(CIE 1931), with the caveat that it would change the behavior of
+the backlight. Also the concept of a minimum brightness level is
+currently not supported for CIE 1931 curves.
 
-Recent changes to the atheros at803x driver caused
-ethernet to stop working on this board.
-In particular commit 6d4cd041f0af
-("net: phy: at803x: disable delay only for RGMII mode")
-and commit cd28d1d6e52e
-("net: phy: at803x: Disable phy delay for RGMII mode")
-fix the AR8031 driver to configure the phy's (RX/TX)
-delays as per the 'phy-mode' in the device tree.
-
-This now prevents ethernet from working on this board.
-
-It used to work before those commits, because the
-AR8031 comes out of reset with RX delay enabled, and
-the at803x driver didn't touch the delay configuration
-at all when "rgmii" mode was selected, and because
-arch/arm/mach-imx/mach-imx7d.c:ar8031_phy_fixup()
-unconditionally enables TX delay.
-
-Since above commits ar8031_phy_fixup() also has no
-effect anymore, and the end-result is that all delays
-are disabled in the phy, no ethernet.
-
-Update the device tree to restore functionality.
-
-Signed-off-by: André Draszik <git@andred.net>
-CC: Ilya Ledvich <ilya@compulab.co.il>
-CC: Igor Grinberg <grinberg@compulab.co.il>
-CC: Rob Herring <robh+dt@kernel.org>
-CC: Mark Rutland <mark.rutland@arm.com>
-CC: Shawn Guo <shawnguo@kernel.org>
-CC: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Pengutronix Kernel Team <kernel@pengutronix.de>
-CC: Fabio Estevam <festevam@gmail.com>
-CC: NXP Linux Team <linux-imx@nxp.com>
-CC: devicetree@vger.kernel.org
-CC: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
- arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index e61567437d73c..62d5e9a4a7818 100644
---- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-+++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-@@ -44,7 +44,7 @@
- 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
- 	fsl,magic-packet;
- 	status = "okay";
-@@ -70,7 +70,7 @@
- 			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy1>;
- 	fsl,magic-packet;
- 	status = "okay";
+Changes in v2:
+- added 0 as first step for devices/panels that require a minimum
+  PWM duty cycle
+- increased 'num-interpolated-steps' values by one, it's not the
+  number of steps between levels, but that number +1
+
+ arch/arm/boot/dts/rk3288-veyron-edp.dtsi   | 35 ++--------------------
+ arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 35 ++--------------------
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 35 ++--------------------
+ arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 35 ++--------------------
+ 4 files changed, 8 insertions(+), 132 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
+index b12e061c5f7f..300a7e32c978 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
+@@ -41,39 +41,8 @@
+ 
+ 	backlight: backlight {
+ 		compatible = "pwm-backlight";
+-		brightness-levels = <
+-			  0   1   2   3   4   5   6   7
+-			  8   9  10  11  12  13  14  15
+-			 16  17  18  19  20  21  22  23
+-			 24  25  26  27  28  29  30  31
+-			 32  33  34  35  36  37  38  39
+-			 40  41  42  43  44  45  46  47
+-			 48  49  50  51  52  53  54  55
+-			 56  57  58  59  60  61  62  63
+-			 64  65  66  67  68  69  70  71
+-			 72  73  74  75  76  77  78  79
+-			 80  81  82  83  84  85  86  87
+-			 88  89  90  91  92  93  94  95
+-			 96  97  98  99 100 101 102 103
+-			104 105 106 107 108 109 110 111
+-			112 113 114 115 116 117 118 119
+-			120 121 122 123 124 125 126 127
+-			128 129 130 131 132 133 134 135
+-			136 137 138 139 140 141 142 143
+-			144 145 146 147 148 149 150 151
+-			152 153 154 155 156 157 158 159
+-			160 161 162 163 164 165 166 167
+-			168 169 170 171 172 173 174 175
+-			176 177 178 179 180 181 182 183
+-			184 185 186 187 188 189 190 191
+-			192 193 194 195 196 197 198 199
+-			200 201 202 203 204 205 206 207
+-			208 209 210 211 212 213 214 215
+-			216 217 218 219 220 221 222 223
+-			224 225 226 227 228 229 230 231
+-			232 233 234 235 236 237 238 239
+-			240 241 242 243 244 245 246 247
+-			248 249 250 251 252 253 254 255>;
++		brightness-levels = <0 255>;
++		num-interpolated-steps = <255>;
+ 		default-brightness-level = <128>;
+ 		enable-gpios = <&gpio7 RK_PA2 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/rk3288-veyron-jaq.dts b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+index 80386203e85b..a4966e505a2f 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-jaq.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
+@@ -20,39 +20,8 @@
+ 
+ &backlight {
+ 	/* Jaq panel PWM must be >= 3%, so start non-zero brightness at 8 */
+-	brightness-levels = <
+-		  0
+-		  8   9  10  11  12  13  14  15
+-		 16  17  18  19  20  21  22  23
+-		 24  25  26  27  28  29  30  31
+-		 32  33  34  35  36  37  38  39
+-		 40  41  42  43  44  45  46  47
+-		 48  49  50  51  52  53  54  55
+-		 56  57  58  59  60  61  62  63
+-		 64  65  66  67  68  69  70  71
+-		 72  73  74  75  76  77  78  79
+-		 80  81  82  83  84  85  86  87
+-		 88  89  90  91  92  93  94  95
+-		 96  97  98  99 100 101 102 103
+-		104 105 106 107 108 109 110 111
+-		112 113 114 115 116 117 118 119
+-		120 121 122 123 124 125 126 127
+-		128 129 130 131 132 133 134 135
+-		136 137 138 139 140 141 142 143
+-		144 145 146 147 148 149 150 151
+-		152 153 154 155 156 157 158 159
+-		160 161 162 163 164 165 166 167
+-		168 169 170 171 172 173 174 175
+-		176 177 178 179 180 181 182 183
+-		184 185 186 187 188 189 190 191
+-		192 193 194 195 196 197 198 199
+-		200 201 202 203 204 205 206 207
+-		208 209 210 211 212 213 214 215
+-		216 217 218 219 220 221 222 223
+-		224 225 226 227 228 229 230 231
+-		232 233 234 235 236 237 238 239
+-		240 241 242 243 244 245 246 247
+-		248 249 250 251 252 253 254 255>;
++	brightness-levels = <0 8 255>;
++	num-interpolated-steps = <247>;
+ };
+ 
+ &rk808 {
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index 55955b082501..c833716dbe48 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -38,39 +38,8 @@
+ 
+ &backlight {
+ 	/* Minnie panel PWM must be >= 1%, so start non-zero brightness at 3 */
+-	brightness-levels = <
+-			  0   3   4   5   6   7
+-			  8   9  10  11  12  13  14  15
+-			 16  17  18  19  20  21  22  23
+-			 24  25  26  27  28  29  30  31
+-			 32  33  34  35  36  37  38  39
+-			 40  41  42  43  44  45  46  47
+-			 48  49  50  51  52  53  54  55
+-			 56  57  58  59  60  61  62  63
+-			 64  65  66  67  68  69  70  71
+-			 72  73  74  75  76  77  78  79
+-			 80  81  82  83  84  85  86  87
+-			 88  89  90  91  92  93  94  95
+-			 96  97  98  99 100 101 102 103
+-			104 105 106 107 108 109 110 111
+-			112 113 114 115 116 117 118 119
+-			120 121 122 123 124 125 126 127
+-			128 129 130 131 132 133 134 135
+-			136 137 138 139 140 141 142 143
+-			144 145 146 147 148 149 150 151
+-			152 153 154 155 156 157 158 159
+-			160 161 162 163 164 165 166 167
+-			168 169 170 171 172 173 174 175
+-			176 177 178 179 180 181 182 183
+-			184 185 186 187 188 189 190 191
+-			192 193 194 195 196 197 198 199
+-			200 201 202 203 204 205 206 207
+-			208 209 210 211 212 213 214 215
+-			216 217 218 219 220 221 222 223
+-			224 225 226 227 228 229 230 231
+-			232 233 234 235 236 237 238 239
+-			240 241 242 243 244 245 246 247
+-			248 249 250 251 252 253 254 255>;
++	brightness-levels = <0 3 255>;
++	num-interpolated-steps = <252>;
+ };
+ 
+ &i2c_tunnel {
+diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+index 27557203ae33..bebb230e592f 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+@@ -23,39 +23,8 @@
+ 
+ &backlight {
+ 	/* Tiger panel PWM must be >= 1%, so start non-zero brightness at 3 */
+-	brightness-levels = <
+-		  0   3   4   5   6   7
+-		  8   9  10  11  12  13  14  15
+-		 16  17  18  19  20  21  22  23
+-		 24  25  26  27  28  29  30  31
+-		 32  33  34  35  36  37  38  39
+-		 40  41  42  43  44  45  46  47
+-		 48  49  50  51  52  53  54  55
+-		 56  57  58  59  60  61  62  63
+-		 64  65  66  67  68  69  70  71
+-		 72  73  74  75  76  77  78  79
+-		 80  81  82  83  84  85  86  87
+-		 88  89  90  91  92  93  94  95
+-		 96  97  98  99 100 101 102 103
+-		104 105 106 107 108 109 110 111
+-		112 113 114 115 116 117 118 119
+-		120 121 122 123 124 125 126 127
+-		128 129 130 131 132 133 134 135
+-		136 137 138 139 140 141 142 143
+-		144 145 146 147 148 149 150 151
+-		152 153 154 155 156 157 158 159
+-		160 161 162 163 164 165 166 167
+-		168 169 170 171 172 173 174 175
+-		176 177 178 179 180 181 182 183
+-		184 185 186 187 188 189 190 191
+-		192 193 194 195 196 197 198 199
+-		200 201 202 203 204 205 206 207
+-		208 209 210 211 212 213 214 215
+-		216 217 218 219 220 221 222 223
+-		224 225 226 227 228 229 230 231
+-		232 233 234 235 236 237 238 239
+-		240 241 242 243 244 245 246 247
+-		248 249 250 251 252 253 254 255>;
++	brightness-levels = <0 3 255>;
++	num-interpolated-steps = <252>;
+ };
+ 
+ &backlight_regulator {
 -- 
-2.20.1
-
-
+2.23.0.444.g18eeb5a265-goog
 
