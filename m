@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63EC1C96BB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 04:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20F63C96ED
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 05:22:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726034AbfJCCfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Oct 2019 22:35:15 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:48422 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726038AbfJCCfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 22:35:15 -0400
-Received: from mail.aspeedtech.com (twmbx02.aspeed.com [192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id x932J6BT043282;
-        Thu, 3 Oct 2019 10:19:06 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from TWMBX02.aspeed.com (192.168.0.24) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.620.29; Thu, 3 Oct
- 2019 10:35:03 +0800
-Received: from TWMBX02.aspeed.com ([fe80::997d:c0a7:f01f:e1a7]) by
- TWMBX02.aspeed.com ([fe80::997d:c0a7:f01f:e1a7%12]) with mapi id
- 15.00.0620.020; Thu, 3 Oct 2019 10:35:02 +0800
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Joel Stanley <joel@jms.id.au>
-CC:     Jason M Biils <jason.m.bills@linux.intel.com>,
+        id S1726898AbfJCDWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Oct 2019 23:22:39 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:41877 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725999AbfJCDWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Oct 2019 23:22:39 -0400
+Received: by mail-pg1-f196.google.com with SMTP id s1so833096pgv.8
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 20:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=Qcbatkrbyyrp3eBE32fuNXC7/HcaftiTNzoulB+n+F0=;
+        b=vA9rJV6W6StGzq8ac3QtjivxEU9aoBXxLYIHjyDMcFzWXLUuKJR6aLVf8SrVkfbmGx
+         1alqxZaX/KTfcm2X/rJpq3MCA3BbDSQgyrtWgtMk2BvtyLbzuVkey5qqOIDMdbNb+5zL
+         0QSW2Umv2uJ12YiDOQ73F2ufn8fUJgbKxNCV7AvBHGVIH72OVQCoGMT8+p35apaUVLye
+         7obZ3IabS34qjjCLeP0XLoP2vUDuVIs2qejPcLp9tDZ/Jr4xk0b0lKfMylA73QHevBE8
+         OzpwUj3WJ248qonmDXzkU8aTrKDi5bxHfWdb2MQbg1BW/6Mv4yEtgtNmuVwbIgMZVY0w
+         YWbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Qcbatkrbyyrp3eBE32fuNXC7/HcaftiTNzoulB+n+F0=;
+        b=Z8O25n7rnCdwGDmfnaTSGuA+yAtwi4q9L7b4Dcm11SURAM1heYfZYsD572ftwu1X7M
+         wrz23ftYvA68N62tSWRL6mV7zvFB7UbgrWxA+JaR3v1VlvwyqkV8ylEM0UINCnoCZyjN
+         Y88jpDke/ICgnMUbjFtD5HxnHUk1jjshnV3S4DtS0z2Rj23nXnkAOqewmx0FzkL0GHun
+         W60ToKQrqjNew8vq35uTK/E7nmHdnFbmQqwrQOf+lZTXUwXEMA+GtPwMLdSqDlStvHB4
+         Xy4YzRQ0G8Gf8dF0pjxZEuMwd5+Oo2NkhJ7bPxqTRlwWSEQ7ilM5Oo+2CberAWTHf2Qf
+         T2Sw==
+X-Gm-Message-State: APjAAAWHB1MOoiCCFEtaXvA3luarh/G51YRwz8ygqQdXAAYQ0Rw9o0eO
+        4bvyO4ZdVWzFVB5lJlDC0tOJF3RNMew=
+X-Google-Smtp-Source: APXvYqx2lOV0eh+Ow8KeLKSt9Zas93Pb/ThAgFgUhO+p+JCOUsHOJLJdQpDh8zxXHDvsj/W+AjVgAw==
+X-Received: by 2002:a63:5005:: with SMTP id e5mr7521362pgb.442.1570072957845;
+        Wed, 02 Oct 2019 20:22:37 -0700 (PDT)
+Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
+        by smtp.gmail.com with ESMTPSA id d76sm801914pga.80.2019.10.02.20.22.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2019 20:22:36 -0700 (PDT)
+From:   John Stultz <john.stultz@linaro.org>
+To:     lkml <linux-kernel@vger.kernel.org>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        ShuFan Lee <shufan_lee@richtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: RE: [PATCH 0/2] peci: aspeed: Add AST2600 compatible
-Thread-Topic: [PATCH 0/2] peci: aspeed: Add AST2600 compatible
-Thread-Index: AQHVeOhVfyr8hf/PLEOlKG455HFAV6dHIbEAgABBZgCAABszgIAAsqtw
-Date:   Thu, 3 Oct 2019 02:35:02 +0000
-Message-ID: <4af9eb8fa6fd41fc87708fc8afdcc83e@TWMBX02.aspeed.com>
-References: <20191002061200.29888-1-chiawei_wang@aspeedtech.com>
- <70044749-785b-6ff3-7a28-fb049dcfec54@linux.intel.com>
- <CACPK8XfBxC+4PHHCkMoXr+twjfWaovcJ5c=hfCmHRJ6LpGNeFg@mail.gmail.com>
- <03d21443-aa9a-a126-dc77-a21f14f708c9@linux.intel.com>
-In-Reply-To: <03d21443-aa9a-a126-dc77-a21f14f708c9@linux.intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.0.133]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com x932J6BT043282
+        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [RFC][PATCH] dt-bindings: usb: rt1711h: Add connector bindings
+Date:   Thu,  3 Oct 2019 03:22:32 +0000
+Message-Id: <20191003032232.115832-1-john.stultz@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgSmFlIEh5dW4sDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KRm9yIG5vdyBzaG91bGQg
-SSB1c2UgR2l0SHViIHB1bGwtcmVxdWVzdCB0byBzdWJtaXQgdGhlIHBhdGNoZXMgb2YgUEVDSS1y
-ZWxhdGVkIGNoYW5nZSB0byBPcGVuQk1DIGRldi01LjMgdHJlZSBvbmx5Pw0KDQpSZWdhcmRzLA0K
-Q2hpYXdlaQ0KDQoqKioqKioqKioqKioqIEVtYWlsIENvbmZpZGVudGlhbGl0eSBOb3RpY2UgKioq
-KioqKioqKioqKioqKioqKioNCkRJU0NMQUlNRVI6DQpUaGlzIG1lc3NhZ2UgKGFuZCBhbnkgYXR0
-YWNobWVudHMpIG1heSBjb250YWluIGxlZ2FsbHkgcHJpdmlsZWdlZCBhbmQvb3Igb3RoZXIgY29u
-ZmlkZW50aWFsIGluZm9ybWF0aW9uLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCBpdCBpbiBlcnJvciwg
-cGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGJ5IHJlcGx5IGUtbWFpbCBhbmQgaW1tZWRpYXRlbHkg
-ZGVsZXRlIHRoZSBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50cyB3aXRob3V0IGNvcHlpbmcgb3Ig
-ZGlzY2xvc2luZyB0aGUgY29udGVudHMuIFRoYW5rIHlvdS4NCg0KDQotLS0tLU9yaWdpbmFsIE1l
-c3NhZ2UtLS0tLQ0KRnJvbTogSmFlIEh5dW4gWW9vIFttYWlsdG86amFlLmh5dW4ueW9vQGxpbnV4
-LmludGVsLmNvbV0gDQpTZW50OiBUaHVyc2RheSwgT2N0b2JlciAzLCAyMDE5IDc6NDMgQU0NClRv
-OiBKb2VsIFN0YW5sZXkgPGpvZWxAam1zLmlkLmF1Pg0KQ2M6IENoaWFXZWkgV2FuZyA8Y2hpYXdl
-aV93YW5nQGFzcGVlZHRlY2guY29tPjsgSmFzb24gTSBCaWlscyA8amFzb24ubS5iaWxsc0BsaW51
-eC5pbnRlbC5jb20+OyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPjsgTWFyayBSdXRs
-YW5kIDxtYXJrLnJ1dGxhbmRAYXJtLmNvbT47IEFuZHJldyBKZWZmZXJ5IDxhbmRyZXdAYWouaWQu
-YXU+OyBsaW51eC1hc3BlZWQgPGxpbnV4LWFzcGVlZEBsaXN0cy5vemxhYnMub3JnPjsgT3BlbkJN
-QyBNYWlsbGlzdCA8b3BlbmJtY0BsaXN0cy5vemxhYnMub3JnPjsgZGV2aWNldHJlZSA8ZGV2aWNl
-dHJlZUB2Z2VyLmtlcm5lbC5vcmc+OyBMaW51eCBBUk0gPGxpbnV4LWFybS1rZXJuZWxAbGlzdHMu
-aW5mcmFkZWFkLm9yZz47IExpbnV4IEtlcm5lbCBNYWlsaW5nIExpc3QgPGxpbnV4LWtlcm5lbEB2
-Z2VyLmtlcm5lbC5vcmc+OyBSeWFuIENoZW4gPHJ5YW5fY2hlbkBhc3BlZWR0ZWNoLmNvbT4NClN1
-YmplY3Q6IFJlOiBbUEFUQ0ggMC8yXSBwZWNpOiBhc3BlZWQ6IEFkZCBBU1QyNjAwIGNvbXBhdGli
-bGUNCg0KT24gMTAvMi8yMDE5IDM6MDUgUE0sIEpvZWwgU3RhbmxleSB3cm90ZToNCj4gT24gV2Vk
-LCAyIE9jdCAyMDE5IGF0IDE4OjExLCBKYWUgSHl1biBZb28gPGphZS5oeXVuLnlvb0BsaW51eC5p
-bnRlbC5jb20+IHdyb3RlOg0KPj4NCj4+IEhpIENoaWEtV2VpLA0KPj4NCj4+IE9uIDEwLzEvMjAx
-OSAxMToxMSBQTSwgQ2hpYS1XZWksIFdhbmcgd3JvdGU6DQo+Pj4gVXBkYXRlIHRoZSBBc3BlZWQg
-UEVDSSBkcml2ZXIgd2l0aCB0aGUgQVNUMjYwMCBjb21wYXRpYmxlIHN0cmluZy4NCj4+PiBBIG5l
-dyBjb21wdGFiaWxlIHN0cmluZyBpcyBuZWVkZWQgZm9yIHRoZSBleHRlbmRlZCBIVyBmZWF0dXJl
-IG9mIA0KPj4+IEFTVDI2MDAuDQo+Pj4NCj4+PiBDaGlhLVdlaSwgV2FuZyAoMik6DQo+Pj4gICAg
-IHBlY2k6IGFzcGVlZDogQWRkIEFTVDI2MDAgY29tcGF0aWJsZSBzdHJpbmcNCj4+PiAgICAgZHQt
-YmluZGluZ3M6IHBlY2k6IGFzcGVlZDogQWRkIEFTVDI2MDAgY29tcGF0aWJsZQ0KPj4+DQo+Pj4g
-ICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BlY2kvcGVjaS1hc3BlZWQudHh0
-IHwgMSArDQo+Pj4gICAgZHJpdmVycy9wZWNpL3BlY2ktYXNwZWVkLmMgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHwgMSArDQo+Pj4gICAgMiBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KykNCj4+Pg0KPj4NCj4+IFBFQ0kgc3Vic3lzdGVtIGlzbid0IGluIGxpbnV4IHVwc3RyZWFtIHll
-dCBzbyB5b3Ugc2hvdWxkIHN1Ym1pdCBpdCANCj4+IGludG8gT3BlbkJNQyBkZXYtNS4zIHRyZWUg
-b25seS4NCj4gDQo+IE9wZW5CTUMgaGFzIGJlZW4gY2FycnlpbmcgdGhlIG91dCBvZiB0cmVlIHBh
-dGNoZXMgZm9yIHNvbWUgdGltZSBub3cuIEkgDQo+IGhhdmVuJ3Qgc2VlbiBhIG5ldyB2ZXJzaW9u
-IHBvc3RlZCBmb3IgYSB3aGlsZS4gRG8geW91IGhhdmUgYSB0aW1lbGluZSANCj4gZm9yIHdoZW4g
-eW91IHBsYW4gdG8gc3VibWl0IGl0IHVwc3RyZWFtPw0KDQpUaGFua3MgZm9yIHlvdXIgZWZmb3J0
-IGZvciBjYXJyeWluZyB0aGUgb3V0IG9mIHRyZWUgcGF0Y2hlcyBpbiBPcGVuQk1DLg0KSSBkb24n
-dCBoYXZlIGEgZXhhY3QgdGltZWxpbmUgYnV0IEknbSBnb25uYSB1cHN0cmVhbSBpdCBhcyBzb29u
-IGFzIGl0IGdldHMgcmVhZHkuDQoNClRoYW5rcywNCg0KSmFlDQo=
+Add connector binding documentation for Richtek RT1711H Type-C
+chip driver
+
+It was noted by Rob Herring that the rt1711h binding docs
+doesn't include the connector binding.
+
+Thus this patch adds such documentation following the details
+in Documentation/devicetree/bindings/usb/typec-tcpci.txt
+
+CC: ShuFan Lee <shufan_lee@richtek.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: John Stultz <john.stultz@linaro.org>
+---
+ .../bindings/usb/richtek,rt1711h.txt          | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt b/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt
+index d4cf53c071d9..e3fc57e605ed 100644
+--- a/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt
++++ b/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt
+@@ -6,10 +6,39 @@ Required properties:
+  - interrupts : <a b> where a is the interrupt number and b represents an
+    encoding of the sense and level information for the interrupt.
+ 
++Required sub-node:
++- connector: The "usb-c-connector" attached to the tcpci chip, the bindings
++  of connector node are specified in
++  Documentation/devicetree/bindings/connector/usb-connector.txt
++
+ Example :
+ rt1711h@4e {
+ 	compatible = "richtek,rt1711h";
+ 	reg = <0x4e>;
+ 	interrupt-parent = <&gpio26>;
+ 	interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++
++	usb_con: connector {
++		compatible = "usb-c-connector";
++		label = "USB-C";
++		data-role = "dual";
++		power-role = "dual";
++		try-power-role = "sink";
++		source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
++		sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)
++			     PDO_VAR(5000, 12000, 2000)>;
++		op-sink-microwatt = <10000000>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@1 {
++				reg = <1>;
++				usb_con_ss: endpoint {
++					remote-endpoint = <&usb3_data_ss>;
++				};
++			};
++		};
++	};
+ };
+-- 
+2.17.1
+
