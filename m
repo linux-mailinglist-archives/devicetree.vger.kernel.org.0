@@ -2,200 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44821CA063
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 16:32:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8ED6CA0F3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 17:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728047AbfJCOcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 10:32:50 -0400
-Received: from mga12.intel.com ([192.55.52.136]:57319 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726393AbfJCOcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 10:32:50 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Oct 2019 07:32:49 -0700
-X-IronPort-AV: E=Sophos;i="5.67,252,1566889200"; 
-   d="scan'208";a="196362792"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Oct 2019 07:32:47 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id A83F320F75; Thu,  3 Oct 2019 17:32:44 +0300 (EEST)
-Date:   Thu, 3 Oct 2019 17:32:44 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [Patch v2 1/3] media: ov5640: add PIXEL_RATE control
-Message-ID: <20191003143244.GC14917@paasikivi.fi.intel.com>
-References: <20191002135134.12273-1-bparrot@ti.com>
- <20191002135134.12273-2-bparrot@ti.com>
- <20191003071714.zyldxfoollm26o4u@uno.localdomain>
- <20191003072251.GA14917@paasikivi.fi.intel.com>
- <20191003120741.h2k5hcqjqxnu6ts6@ti.com>
+        id S1727587AbfJCPM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 11:12:29 -0400
+Received: from mail-eopbgr1400092.outbound.protection.outlook.com ([40.107.140.92]:44032
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726364AbfJCPM3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 11:12:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SeWp63NJL4odvR3EecDLyOvCGXhYVtBtZRiwjtKiSyCCcBGHXV8KtbQtf4ti1//r/RAMtAM5GgZmlEtSWqyDYLLESlSJ2fl8drriymGfoJ3W8i2QpMYihLjRTYWY/otDqQ9Qb92Hrdv2C3aE2yahvbIu3FSeGuSpxk8MqLwxT3eKN6BbjxB84af43/JJV5i0IEfbNE5bVqlSgI2BeBfGh27i9v6tOfDbn/mCZUNeI0e0Pizt6o3EQkIlUsgVjwvTZh0evZaO1/X0/twPZzF1KfSrvUnLiLrsp4I5TJIuIFtuyfc+en+M5+fL5FOBHLSVdixrIWbyui5Mk3m/6eSxQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jMP90xpm/oH2VOa0gugfuxfjypFjWSjoxGrA3o2IXuE=;
+ b=c/V5xpPIEb7gZqWXgMxFDiySSEkIdHBdRl8g7hhlexvm1YJlT/hF8c1A+xI9s7zyGstkQt6NpoS1M2AjQ0HKD5vaZh28CokxuLbtWYp/dsJ1xKB8XvYopg/P5JOU8UB1rv4KPIDd3xasSuGVB3HYneTIK6MmMwswUp9dBSz0r9PAMhafpbLSuKCMTdL8BlTWf4SmGZN+O7j2nX3Wn9ta62SkGyjDXDySxvPq3aiOxghji9kyjJkzyLc/iY6pCFsmogwtb/ujyW5q8L3p6fqm6sKWhJqwbtQ6xZyCx9tBBuUlEBCHo9TpjBmg1mDbG8pWppb7oj8C4Gjg2QMEpYGiKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jMP90xpm/oH2VOa0gugfuxfjypFjWSjoxGrA3o2IXuE=;
+ b=TSMsih4Ad7xs9HCK5XrD2ci2wl6rkJspuD/ArGbDBQgWshySP91yma+VS80/mNngeuikSyck1pCUnvu6upp/MFLLDrFz0NN/oFhFE++02Vqb0xwdxq8+H3kH/5zybRda39lmM/ARpFV5OtSbrKfFE2PdDSmw8GvUgK6xjEGvvpQ=
+Received: from OSAPR01MB3025.jpnprd01.prod.outlook.com (52.134.248.22) by
+ OSAPR01MB5042.jpnprd01.prod.outlook.com (20.179.177.75) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.20; Thu, 3 Oct 2019 15:12:25 +0000
+Received: from OSAPR01MB3025.jpnprd01.prod.outlook.com
+ ([fe80::f193:eee6:cb3b:a3b5]) by OSAPR01MB3025.jpnprd01.prod.outlook.com
+ ([fe80::f193:eee6:cb3b:a3b5%3]) with mapi id 15.20.2305.023; Thu, 3 Oct 2019
+ 15:12:25 +0000
+From:   Vincent Cheng <vincent.cheng.xh@renesas.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "richardcochran@gmail.com" <richardcochran@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: ptp: Add binding doc for IDT ClockMatrix
+ based PTP clock
+Thread-Topic: [PATCH 1/2] dt-bindings: ptp: Add binding doc for IDT
+ ClockMatrix based PTP clock
+Thread-Index: AQHVbly6xWB76P+IOkSrUCgqrhtfFqdGbPUAgAKwMIA=
+Date:   Thu, 3 Oct 2019 15:12:24 +0000
+Message-ID: <20191003145546.GA19695@renesas.com>
+References: <1568837198-27211-1-git-send-email-vincent.cheng.xh@renesas.com>
+ <5d93ce84.1c69fb81.8e964.4dc1@mx.google.com>
+In-Reply-To: <5d93ce84.1c69fb81.8e964.4dc1@mx.google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [173.195.53.163]
+x-clientproxiedby: BYAPR11CA0087.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::28) To OSAPR01MB3025.jpnprd01.prod.outlook.com
+ (2603:1096:604:2::22)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=vincent.cheng.xh@renesas.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 87415c58-eac8-46ef-7ecb-08d7481418bd
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: OSAPR01MB5042:
+x-microsoft-antispam-prvs: <OSAPR01MB5042BA66C4EBB3DABE6F43E1D29F0@OSAPR01MB5042.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01792087B6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(189003)(199004)(1076003)(6436002)(229853002)(446003)(11346002)(6486002)(256004)(2906002)(71200400001)(71190400001)(36756003)(7736002)(5660300002)(305945005)(4326008)(99286004)(486006)(2616005)(476003)(6512007)(186003)(52116002)(76176011)(102836004)(386003)(6506007)(6246003)(26005)(54906003)(66066001)(86362001)(6916009)(33656002)(25786009)(8936002)(3846002)(6116002)(66946007)(66446008)(64756008)(66556008)(66476007)(81166006)(81156014)(8676002)(14454004)(478600001)(316002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSAPR01MB5042;H:OSAPR01MB3025.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jDFYV/+jK7bJXxGfylBCv7vZEU02Z1FGPsKgp/97H80SyPxQBgNbekPayRD1FWtKPFIN4NcgbXVZjZVuBz9TPpc/coJpLbjK4D3l1v1fU0v68zJX5YnazE212Y5dJC6ZxVACVOCosZoYHmHKw6N/nfT6wfsyAJj2UZaXzU68JW6izscBLDnj5DJXZIvEr3io4Md4moX8wnuG3GcecC7vy+/CgMfHs1TOSi2qDSw8cOegpiS0uPxFiq92wfgr+ppweBqwfyaNCJcbwbjshKtCZwfrBqZQEP/ebYEjpQlS4E9qXYgSucenmC66p9Wn2Am/rJzwMnjjr2jnAOQrJzu0sMhM1qM29CdX475wXqGFp81kLq04MVhxWWQkYjf4pJQAFtdbJRKaUz3TPoxmSDhsbS04STIw0rMcnfttAAX7ufo=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <440A9CE6CF761845BBB59B4D03E3A6CC@jpnprd01.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191003120741.h2k5hcqjqxnu6ts6@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87415c58-eac8-46ef-7ecb-08d7481418bd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 15:12:25.0030
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7z4CmbHWJpyFDWcYHElyFcKh56ffolmLFhTacZSQG5fDgUTGEHXmbkju6OdsF0aRqvbDRxMJFf7E05sG37k2OJwuSInM1CQ9JrIlZcDnNnU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB5042
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benoit,
-
-On Thu, Oct 03, 2019 at 07:07:41AM -0500, Benoit Parrot wrote:
-> Sakari Ailus <sakari.ailus@linux.intel.com> wrote on Thu [2019-Oct-03 10:22:51 +0300]:
-> > Hi Jacopo, Benoit,
-> > 
-> > On Thu, Oct 03, 2019 at 09:17:14AM +0200, Jacopo Mondi wrote:
-> > > Hi Benoit,
-> > > 
-> > > On Wed, Oct 02, 2019 at 08:51:32AM -0500, Benoit Parrot wrote:
-> > > > Add v4l2 controls to report the pixel rates of each mode. This is
-> > > > needed by some CSI2 receiver in order to perform proper DPHY
-> > > > configuration.
-> > > >
-> > > > Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> > > > ---
-> > > >  drivers/media/i2c/ov5640.c | 25 +++++++++++++++++++++++++
-> > > >  1 file changed, 25 insertions(+)
-> > > >
-> > > > diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-> > > > index 500d9bbff10b..5198dc887400 100644
-> > > > --- a/drivers/media/i2c/ov5640.c
-> > > > +++ b/drivers/media/i2c/ov5640.c
-> > > > @@ -193,6 +193,9 @@ struct ov5640_mode_info {
-> > > >
-> > > >  struct ov5640_ctrls {
-> > > >  	struct v4l2_ctrl_handler handler;
-> > > > +	struct {
-> > > > +		struct v4l2_ctrl *pixel_rate;
-> > > > +	};
-> > > 
-> > > Do you need to wrap this v4l2_ctrl in it's own unnamed struct? Other
-> > > controls here declared in this way are clustered and, if I'm not
-> > > mistaken, using unnamed struct to wrap them is just a typographically
-> > > nice way to convey that. I think your new control could be declared
-> > > without a wrapping struct { }.
-> > > 
-> > > >  	struct {
-> > > >  		struct v4l2_ctrl *auto_exp;
-> > > >  		struct v4l2_ctrl *exposure;
-> > > > @@ -2194,6 +2197,16 @@ static int ov5640_try_fmt_internal(struct v4l2_subdev *sd,
-> > > >  	return 0;
-> > > >  }
-> > > >
-> > > > +static u64 ov5640_calc_pixel_rate(struct ov5640_dev *sensor)
-> > > > +{
-> > > > +	u64 rate;
-> > > > +
-> > > > +	rate = sensor->current_mode->vtot * sensor->current_mode->htot;
-> > > > +	rate *= ov5640_framerates[sensor->current_fr];
-> > > > +
-> > > > +	return rate;
-> > > > +}
-> > > > +
-> > > 
-> > > Just to point out this is the -theoretical- pixel rate, and might be
-> > > quite different from the one calculated by the clock tree tuning
-> > > procedure (which should be updated to match Hugues' latest findings).
-> > 
-> > Hmm. Considering the xclk rate may be pretty much anything, I'd suppose
-> > the value above would only be correct for a given xclk rate.
-> 
-> I am not sure about that, different xclk rate might yield slightly
-> different byte clock, but all in all the resolution and framerate pretty
-> much dictate the end result, no?
-
-Interestingly, the driver determines the PLL configuration based on the
-pixels per line and lines per frame (including blanking) and the frames per
-seconds. I guess it's always been like that in this driver.
-
-So I agree the target frame rate can be used for this.
-
-You could change ov5640_set_mode() to use this function as well to avoid
-doing the same calculation twice in different places in the driver. Up to
-you.
-
-> 
-> > 
-> > Could this be simply calculated from the clock tree configuration, to get
-> > the right value in all cases?
-> 
-> It probably could, and as I said earlier I gave it a try and failed, since
-> the theoretical value worked for me that's what I went with. Those are the
-> same values that Maxime's patch referred to. (dfbfb7aa832cdb media: ov5640:
-> Compute the clock rate at runtime).
-> 
-> Here I am just "publishing it".
-> 
-> Benoit
-> 
-> > 
-> > > 
-> > > >  static int ov5640_set_fmt(struct v4l2_subdev *sd,
-> > > >  			  struct v4l2_subdev_pad_config *cfg,
-> > > >  			  struct v4l2_subdev_format *format)
-> > > > @@ -2233,6 +2246,8 @@ static int ov5640_set_fmt(struct v4l2_subdev *sd,
-> > > >  	if (mbus_fmt->code != sensor->fmt.code)
-> > > >  		sensor->pending_fmt_change = true;
-> > > >
-> > > > +	__v4l2_ctrl_s_ctrl_int64(sensor->ctrls.pixel_rate,
-> > > > +				 ov5640_calc_pixel_rate(sensor));
-> > > >  out:
-> > > >  	mutex_unlock(&sensor->lock);
-> > > >  	return ret;
-> > > > @@ -2657,6 +2672,13 @@ static int ov5640_init_controls(struct ov5640_dev *sensor)
-> > > >  	/* we can use our own mutex for the ctrl lock */
-> > > >  	hdl->lock = &sensor->lock;
-> > > >
-> > > > +	/* Clock related controls */
-> > > > +	ctrls->pixel_rate =
-> > > > +		v4l2_ctrl_new_std(hdl, ops,
-> > > 
-> > > If you like it better, this could fit in 1 line
-> > > 
-> > > 	ctrls->pixel_rate = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_PIXEL_RATE,
-> > > 					      0, INT_MAX, 1,
-> > > 					      ov5640_calc_pixel_rate(sensor)
-> > > 
-> > > Thanks
-> > >    j
-> > > 
-> > > > +				  V4L2_CID_PIXEL_RATE, 0, INT_MAX, 1,
-> > > > +				  ov5640_calc_pixel_rate(sensor));
-> > > 
-> > > 
-> > > > +	ctrls->pixel_rate->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > 
-> > Note that ctrls->pixel_rate is NULL if e.g. memory allocation fails when
-> > creating the control.
-> > 
-> > > > +
-> > > >  	/* Auto/manual white balance */
-> > > >  	ctrls->auto_wb = v4l2_ctrl_new_std(hdl, ops,
-> > > >  					   V4L2_CID_AUTO_WHITE_BALANCE,
-> > > > @@ -2816,6 +2838,9 @@ static int ov5640_s_frame_interval(struct v4l2_subdev *sd,
-> > > >  		sensor->frame_interval = fi->interval;
-> > > >  		sensor->current_mode = mode;
-> > > >  		sensor->pending_mode_change = true;
-> > > > +
-> > > > +		__v4l2_ctrl_s_ctrl_int64(sensor->ctrls.pixel_rate,
-> > > > +					 ov5640_calc_pixel_rate(sensor));
-> > > >  	}
-> > > >  out:
-> > > >  	mutex_unlock(&sensor->lock);
-> > 
-> > -- 
-> > Regards,
-> > 
-> > Sakari Ailus
-> > sakari.ailus@linux.intel.com
-
--- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+T24gVHVlLCBPY3QgMDEsIDIwMTkgYXQgMDY6MDk6MDZQTSBFRFQsIFJvYiBIZXJyaW5nIHdyb3Rl
+Og0KPk9uIFdlZCwgU2VwIDE4LCAyMDE5IGF0IDA0OjA2OjM3UE0gLTA0MDAsIHZpbmNlbnQuY2hl
+bmcueGhAcmVuZXNhcy5jb20gd3JvdGU6DQo+PiBGcm9tOiBWaW5jZW50IENoZW5nIDx2aW5jZW50
+LmNoZW5nLnhoQHJlbmVzYXMuY29tPg0KDQpIaSBSb2IsDQoNCldlbGNvbWUgYmFjay4gIFRoYW5r
+LXlvdSBmb3IgcHJvdmlkaW5nIGZlZWRiYWNrLg0KDQo+PiANCj4+IEFkZCBkZXZpY2UgdHJlZSBi
+aW5kaW5nIGRvYyBmb3IgdGhlIElEVCBDbG9ja01hdHJpeCBQVFAgY2xvY2sgZHJpdmVyLg0KPg0K
+PkJpbmRpbmdzIGFyZSBmb3IgaC93LCBub3QgZHJpdmVycy4uLg0KDQpZZXMsIHdpbGwgcmVtb3Zl
+ICdkcml2ZXInLg0KDQo+PiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3B0cC9w
+dHAtaWR0Y20udHh0IHwgMTUgKysrKysrKysrKysrKysrDQo+PiAgMSBmaWxlIGNoYW5nZWQsIDE1
+IGluc2VydGlvbnMoKykNCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3B0cC9wdHAtaWR0Y20udHh0DQo+DQo+UGxlYXNlIG1ha2UgdGhpcyBh
+IERUIHNjaGVtYS4NCg0KU3VyZSwgd2lsbCBnaXZlIGl0IGEgdHJ5Lg0KDQo+PiArICAtIGNvbXBh
+dGlibGUgIFNob3VsZCBiZSAiaWR0LDhhMzQwMHgtcHRwIiBmb3IgU3lzdGVtIFN5bmNocm9uaXpl
+cg0KPj4gKyAgICAgICAgICAgICAgICBTaG91bGQgYmUgImlkdCw4YTM0MDF4LXB0cCIgZm9yIFBv
+cnQgU3luY2hyb25pemVyDQo+PiArICAgICAgICAgICAgICAgIFNob3VsZCBiZSAiaWR0LDhhMzQw
+NHgtcHRwIiBmb3IgVW5pdmVyc2FsIEZyZXF1ZW5jeSBUcmFuc2xhdG9yIChVRlQpDQo+DQo+SWYg
+UFRQIGlzIHRoZSBvbmx5IGZ1bmN0aW9uIG9mIHRoZSBjaGlwLCB5b3UgZG9uJ3QgbmVlZCB0byBh
+cHBlbmQgDQo+Jy1wdHAnLg0KDQpPa2F5LCB3aWxsIHJlbW92ZSAnLXB0cCcuICBUaGFua3MuDQoN
+Cg0KPldoYXQncyB0aGUgJ3gnIGZvcj8gV2UgZ2VuZXJhbGx5IGRvbid0IHVzZSB3aWxkY2FyZHMg
+aW4gY29tcGF0aWJsZSANCj5zdHJpbmdzLg0KDQpXZSB3ZXJlIGhvcGluZyB0byB1c2UgJ3gnIHRv
+IHJlcHJlc2VudCBhIHNpbmdsZSBkcml2ZXIgdG8gbWF0Y2ggdGhlIHZhcmlvdXMNCnBhcnQgbnVt
+YmVycyA4QTM0MDAxLCA4QTM0MDAyLCA4QTM0MDAzLCA4QTM0MDA0LCA4QTM0MDExLCA4QTM0MDEy
+LCBldGMuDQoNCldoYXQgc2hvdWxkIGJlIHVzZWQgaW5zdGVhZCBvZiAneCc/DQoNClRoYW5rcywN
+ClZpbmNlbnQNCg==
