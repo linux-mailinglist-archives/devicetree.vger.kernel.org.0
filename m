@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E64C99CC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 10:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E83C99E5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 10:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbfJCI0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 04:26:31 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:32832 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727912AbfJCI0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 04:26:30 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 60so1563676otu.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 01:26:28 -0700 (PDT)
+        id S1727611AbfJCI3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 04:29:51 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41663 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727357AbfJCI3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 04:29:50 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w65so1810454oiw.8
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 01:29:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=2c98XkJu8f9CQph7lE9mYoT3U28m3fbSZG87BXYweWo=;
-        b=hyAuaiUIgUINQ2HlGxD7FJuXbHjaazCjzREZ2O6AfkdZ2gV0NBavHq0XpectMWdXfO
-         Z1gqdovS9uuubkqC+klDZYciVL74TruAeMnCpc9I2fn7bfzoi3pLDmOr+e9KeMlcEDjG
-         t2GYDllybVdBlPCbgv7MOQ7jFR7bkpnvJKyOBd6ebmLTpSbNvFc1jRLJb8kGQcIm+JMg
-         gtUlXwjlSKJEpCsr+7DefI690WQLgsBhAz3CjTwTFB8guRx0BFCKOm4VVSbj8YfejGEV
-         H3UWlZZLn/ZhAAngswiY0YVJh3+eLLdIwumnIZGk2SwWol1p4cDnHID+u/YTdLyc2HJm
-         Lq+g==
+        bh=VBvqwmaIJ8fEwaxA8s+S3oVp3rkPvTX+z8hSKj1PS4c=;
+        b=0oNefL6B3FVIYs1SWGq/ggLp5+uLm/aPRIW59dbBP+8+SNxf0I9cwPjuUD2b3j/rLd
+         4kWl9M/vx9AhKhNJ/2psET9bk7C9WOZ+Y19XLdDAGm8uk8WaXRB899WaEPeKwLCVsrHl
+         InuR0WFRekVFVYnx0/2XErsoorX0EvAGkY1ZCAr6WYdglIXUZats0N8OlZQy7LY89jkU
+         71LkKbqZ5QP4zeGmG1jvbhW4rc8d9dAjsBThdljtUAIw/stfzZgkIsO41MHEpyHI83e3
+         +3uTDPH0bMZiAulBDD5KRSH9bR0IuAbu0N80u8VqWmkU1Lv8TrcRCQ9ZnQeb3v+DlViV
+         PR9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2c98XkJu8f9CQph7lE9mYoT3U28m3fbSZG87BXYweWo=;
-        b=mCu7aS5P8C35gPphp61HOdUf00GXOjzQPWQnZEmcZ0ZNjlh9HBE3i6xFBsmtiGPWc3
-         3d30R/S8RFCuIqhtcAzIz5dh4BAXkuVTP0URE9z6vaLz5V3ioquLKCHy7ImckQcLY0Yk
-         5bCYNiYn1GR1W6nxGhWB+cgeLoCr1ZQcxATXQi3naf9UOyEuXdeWhvuB2Ko6vplDgVKQ
-         SaCZyUtcmoi8E+sCXllBxUC0QARsimB2i+HjR3KYW8hR7oDkfLCMAfwrdbPz//sQ5CQs
-         c4sOoRJC/gHuRayl6WJ5apB1PX+kF8oG1B8HbNf4Gp+cz46QQFIA/6IWd7oudMneWhdK
-         sd7Q==
-X-Gm-Message-State: APjAAAUq0znFB92ub9ITZuvOwaiZkAEckRLNvDq/RpvbgDLsTqwxd1Ls
-        /Je1I/EhCohMNqYZ6chMZCFgzyPNwWUCCIkkCwhtrQ==
-X-Google-Smtp-Source: APXvYqzaGO//p033scVor+Rm1MJUTv/9y8tZQ2JRZEl1af11sCWJOXG9hNjus15aykiTXT3AftX+WLQrFrEXQ/3Y42E=
-X-Received: by 2002:a05:6830:5a:: with SMTP id d26mr5687769otp.256.1570091188336;
- Thu, 03 Oct 2019 01:26:28 -0700 (PDT)
+        bh=VBvqwmaIJ8fEwaxA8s+S3oVp3rkPvTX+z8hSKj1PS4c=;
+        b=om5x6+8rZJa5QzehE2ncrvuv45Sif9Z8QtCyQaHIxwhwWmRCoEM+P8MJJJgJ0Bbay6
+         FgRDvam5Br3p0TQql6gCMtHCZg59mHLYBYPcVs5kCnV/lrBoEo52hsLtSl/K6cr9lrc5
+         6P+UO2L0+lbhBz/JTF//7XWKLMvj95uGZGZjwQZJBRIIhyQqj7agbfPJe2+VoQbAjW74
+         Sz/6jPLCtUIcal0tnWRZfgg02ImLucBEueIcYxqBv5HJxZUG59Wi41AWtGlU44BDagZn
+         /nSAGbflfmaMiMaq2QTqqg2ayo7JqwnhF3TDutI4aBTWPp5CUkFpPH02/uszOrnH46UN
+         ZpFw==
+X-Gm-Message-State: APjAAAWD0N6NRUcrK8vjDS1v0xAo1REMIf2fPrtfg/SRczP+WiPh374S
+        0RkYC+hnh/aCRKk4MCUWMdJ8+1rLea87e+zMfXkTCg==
+X-Google-Smtp-Source: APXvYqwQjgl+zQPvXkvV61OuT3KyDHZ69iup+K/HVAZKO4++KAu2JrTfJ0zCjUNUNkiEOOnCO51LwdKqH+XcBvr/A7w=
+X-Received: by 2002:aca:4e85:: with SMTP id c127mr1881594oib.21.1570091389892;
+ Thu, 03 Oct 2019 01:29:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com> <20190927100407.1863293-6-paul.kocialkowski@bootlin.com>
-In-Reply-To: <20190927100407.1863293-6-paul.kocialkowski@bootlin.com>
+References: <1569245268-61920-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1569245268-61920-1-git-send-email-biju.das@bp.renesas.com>
 From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 3 Oct 2019 10:26:17 +0200
-Message-ID: <CAMpxmJWQ9iuNj8Nfhf0hVzP6piNPrb8_e7ucth0rmg8KwT4HdA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] gpio: syscon: Add support for the Xylon LogiCVC GPIOs
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+Date:   Thu, 3 Oct 2019 10:29:38 +0200
+Message-ID: <CAMpxmJUtv61rSLprBQJr0X5B0MNM=B6WYu0qu6WjeLA9-qxFkw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: rcar: Add DT binding for r8a774b1
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -63,124 +65,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
-
-just two nits:
-
-pt., 27 wrz 2019 o 12:04 Paul Kocialkowski
-<paul.kocialkowski@bootlin.com> napisa=C5=82(a):
+pon., 23 wrz 2019 o 15:28 Biju Das <biju.das@bp.renesas.com> napisa=C5=82(a=
+):
 >
-> The LogiCVC display hardware block comes with GPIO capabilities
-> that must be exposed separately from the main driver (as GPIOs) for
-> use with regulators and panels. A syscon is used to share the same
-> regmap across the two drivers.
+> Document Renesas' RZ/G2N (R8A774B1) GPIO blocks compatibility within the
+> relevant dt-bindings.
 >
-> Since the GPIO capabilities are pretty simple, add them to the syscon
-> GPIO driver.
->
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > ---
->  drivers/gpio/gpio-syscon.c | 68 ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
+>  Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/gpio/gpio-syscon.c b/drivers/gpio/gpio-syscon.c
-> index 05c537ed73f1..cdcb913b8f0c 100644
-> --- a/drivers/gpio/gpio-syscon.c
-> +++ b/drivers/gpio/gpio-syscon.c
-> @@ -190,6 +190,70 @@ static const struct syscon_gpio_data keystone_dsp_gp=
-io =3D {
->         .set            =3D keystone_gpio_set,
->  };
+> diff --git a/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt=
+ b/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt
+> index f3f2c46..41e5fed 100644
+> --- a/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt
+> +++ b/Documentation/devicetree/bindings/gpio/renesas,gpio-rcar.txt
+> @@ -8,6 +8,7 @@ Required Properties:
+>      - "renesas,gpio-r8a7745": for R8A7745 (RZ/G1E) compatible GPIO contr=
+oller.
+>      - "renesas,gpio-r8a77470": for R8A77470 (RZ/G1C) compatible GPIO con=
+troller.
+>      - "renesas,gpio-r8a774a1": for R8A774A1 (RZ/G2M) compatible GPIO con=
+troller.
+> +    - "renesas,gpio-r8a774b1": for R8A774B1 (RZ/G2N) compatible GPIO con=
+troller.
+>      - "renesas,gpio-r8a774c0": for R8A774C0 (RZ/G2E) compatible GPIO con=
+troller.
+>      - "renesas,gpio-r8a7778": for R8A7778 (R-Car M1) compatible GPIO con=
+troller.
+>      - "renesas,gpio-r8a7779": for R8A7779 (R-Car H1) compatible GPIO con=
+troller.
+> --
+> 2.7.4
 >
-> +#define LOGICVC_CTRL_REG               0x40
-> +#define LOGICVC_CTRL_GPIO_SHIFT                11
-> +#define LOGICVC_CTRL_GPIO_BITS         5
-> +
-> +#define LOGICVC_POWER_CTRL_REG         0x78
-> +#define LOGICVC_POWER_CTRL_GPIO_SHIFT  0
-> +#define LOGICVC_POWER_CTRL_GPIO_BITS   4
-> +
-> +static void logicvc_gpio_offset(struct syscon_gpio_priv *priv,
-> +                               unsigned offset, unsigned int *reg,
-> +                               unsigned int *bit)
-> +{
-> +       if (offset >=3D LOGICVC_CTRL_GPIO_BITS) {
-> +               *reg =3D LOGICVC_POWER_CTRL_REG;
-> +
-> +               /* To the (virtual) power ctrl offset. */
-> +               offset -=3D LOGICVC_CTRL_GPIO_BITS;
-> +               /* To the actual bit offset in reg. */
-> +               offset +=3D LOGICVC_POWER_CTRL_GPIO_SHIFT;
-> +       } else {
-> +               *reg =3D LOGICVC_CTRL_REG;
-> +
-> +               /* To the actual bit offset in reg. */
-> +               offset +=3D LOGICVC_CTRL_GPIO_SHIFT;
-> +       }
-> +
-> +       *bit =3D BIT(offset);
-> +}
-> +
-> +static int logicvc_gpio_get(struct gpio_chip *chip, unsigned offset)
-> +{
-> +       struct syscon_gpio_priv *priv =3D gpiochip_get_data(chip);
-> +       unsigned int reg;
-> +       unsigned int bit;
-> +       unsigned int value;
 
-Can you put these on a single line?
-
-> +       int ret;
-> +
-> +       logicvc_gpio_offset(priv, offset, &reg, &bit);
-> +
-> +       ret =3D regmap_read(priv->syscon, reg, &value);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return !!(value & bit);
-> +}
-> +
-> +static void logicvc_gpio_set(struct gpio_chip *chip, unsigned offset, in=
-t val)
-> +{
-> +       struct syscon_gpio_priv *priv =3D gpiochip_get_data(chip);
-> +       unsigned int reg;
-> +       unsigned int bit;
-
-Same here.
+Patch applied, thanks!
 
 Bart
-
-> +
-> +       logicvc_gpio_offset(priv, offset, &reg, &bit);
-> +
-> +       regmap_update_bits(priv->syscon, reg, bit, val ? bit : 0);
-> +}
-> +
-> +static const struct syscon_gpio_data logicvc_gpio =3D {
-> +       .flags          =3D GPIO_SYSCON_FEAT_OUT,
-> +       .bit_count      =3D LOGICVC_CTRL_GPIO_BITS + LOGICVC_POWER_CTRL_G=
-PIO_BITS,
-> +       .get            =3D logicvc_gpio_get,
-> +       .set            =3D logicvc_gpio_set,
-> +};
-> +
->  static const struct of_device_id syscon_gpio_ids[] =3D {
->         {
->                 .compatible     =3D "cirrus,ep7209-mctrl-gpio",
-> @@ -203,6 +267,10 @@ static const struct of_device_id syscon_gpio_ids[] =
-=3D {
->                 .compatible     =3D "rockchip,rk3328-grf-gpio",
->                 .data           =3D &rockchip_rk3328_gpio_mute,
->         },
-> +       {
-> +               .compatible     =3D "xylon,logicvc-3.02.a-gpio",
-> +               .data           =3D &logicvc_gpio,
-> +       },
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, syscon_gpio_ids);
-> --
-> 2.23.0
->
