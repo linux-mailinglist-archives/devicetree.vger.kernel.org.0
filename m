@@ -2,166 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59717C97E5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 07:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C1CDC97EC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 07:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726354AbfJCFUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 01:20:11 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:40454 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726267AbfJCFUL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 01:20:11 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20191003052008euoutp013856154138a03a900cd4f5155b9045df~KC3L9LMlq3150331503euoutp01o
-        for <devicetree@vger.kernel.org>; Thu,  3 Oct 2019 05:20:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20191003052008euoutp013856154138a03a900cd4f5155b9045df~KC3L9LMlq3150331503euoutp01o
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1570080008;
-        bh=XOALDYVI2Kp1ypBfrNvPufEPotcelKDxlWNpiErrXxs=;
-        h=Subject:To:From:Date:In-Reply-To:References:From;
-        b=GmfdIOgiq/+7MG93wun6C1I4sEWveQoXVBw3mrb76H2Dud2qllvF8iELODGnxMVng
-         KFMqGMVgXh2vZotm3b9zdm5LggiO06ADBi1d6juZTEu9+oMAqJf+dsrrukERFivatb
-         pZY0mILgPdCIGmQ3ozboJ27NbY6IPzA7Jl/C6rzI=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20191003052008eucas1p17befa107e104359b339c741982f698d6~KC3LooFwv1986419864eucas1p1G;
-        Thu,  3 Oct 2019 05:20:08 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 95.D8.04469.805859D5; Thu,  3
-        Oct 2019 06:20:08 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20191003052007eucas1p2b7d112bdfa8a4b628f853035f6d4948d~KC3LTB8xH1801218012eucas1p2K;
-        Thu,  3 Oct 2019 05:20:07 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20191003052007eusmtrp1a3c2a7963b07bf12ceeec926499b3108~KC3LSXhiR0655106551eusmtrp1i;
-        Thu,  3 Oct 2019 05:20:07 +0000 (GMT)
-X-AuditID: cbfec7f2-54fff70000001175-a0-5d958508893e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 5E.EF.04166.705859D5; Thu,  3
-        Oct 2019 06:20:07 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20191003052007eusmtip1af482ce854d860399ddef78caa775958~KC3K3GtXv0301203012eusmtip1v;
-        Thu,  3 Oct 2019 05:20:07 +0000 (GMT)
-Subject: Re: [PATCH] dt-bindings: memory-controllers: exynos5422-dmc:
- Correct example syntax and memory region
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <d0955b23-2111-7dbb-92ce-0a81ac417bb8@partner.samsung.com>
-Date:   Thu, 3 Oct 2019 07:20:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.8.0
+        id S1726472AbfJCFVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 01:21:45 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:45796 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726167AbfJCFVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 01:21:45 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 46kLw7068qz1rK4B;
+        Thu,  3 Oct 2019 07:21:42 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 46kLw66CYBz1qqkK;
+        Thu,  3 Oct 2019 07:21:42 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id 80Da5VYQF329; Thu,  3 Oct 2019 07:21:41 +0200 (CEST)
+X-Auth-Info: LFxTrFuYi+4nz3f5ZE4LbrlcIC7kNleGhCNFGo/I4KE=
+Received: from [192.168.1.106] (213-197-88-96.pool.digikabel.hu [213.197.88.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Thu,  3 Oct 2019 07:21:41 +0200 (CEST)
+Reply-To: hs@denx.de
+Subject: Re: [PATCH 1/2] misc: add cc1101 devicetree binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org
+References: <20190922060356.58763-1-hs@denx.de>
+ <20190922060356.58763-2-hs@denx.de>
+ <5d94b1e3.1c69fb81.9d89.1cce@mx.google.com>
+From:   Heiko Schocher <hs@denx.de>
+Message-ID: <2329ed8f-7e34-596a-ae94-c9b5ac263908@denx.de>
+Date:   Thu, 3 Oct 2019 07:21:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.5.2
 MIME-Version: 1.0
-In-Reply-To: <20191002174401.17590-1-krzk@kernel.org>
+In-Reply-To: <5d94b1e3.1c69fb81.9d89.1cce@mx.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRj2O5ftzJwcp+WLSeXoKqhZCQe0qKjYTwmhyIYuPano5trxknZb
-        knlBMdK8jM0l5aVlXtZSMTNTS0xoqbTC8DqDSCR0BUU5cp5J/nt4Lt/3PPBSuKSBDKBSVBms
-        RqVIkwo8iY43v60hVP49+X7nmIgxDr4jmTL7As5YrW1Cxmy3kcx4t17AVFt7Mab+4yjG5L8Y
-        FB6lZM21zUhmNhUJZE8f3pA5zNuiiXOeUYlsWkoWqwk7Eu+ZXFDVTarzJJen54owLar3LkYi
-        CuhDsNL0R1CMPCkJ3YSgcMKJuQQJ/QPBq/Z4XnAgsIz3oPWEZeoWyQuNCCryytzxRQQv9bWr
-        cYrypdXwy7TDxfvR1RjYnA9IFy+gQ6HLdMn1kJg+BTa7WejCBL0TWm2fcRfeTJ+F5ZkBkvf4
-        wHDNPOHCIjoCJmum1jw47Q8T80aMx9uhc1GPu/4CukEIf7++JvimJ6CpbxbjsS98G7IIeRwI
-        I+Ulbg8H2tI697KrYC8zuD2RMDA0utYZp/dBa3cYTx+D0brhtYlAe8OnRR++gjfc7ajCeVoM
-        hbclvHsvWEreuwtsgcbmSiFvkUFl4eE7KEi3YaNuwy7dhl26/xXuI8KE/NlMTpnEcuEqNjuU
-        Uyi5TFVSaEK60oxWr2fEObTchX6OXehHNIWkXuLqqQq5hFRkcTnKfgQULvUTj7WuUuJERU4u
-        q0mP02SmsVw/2koRUn/xFY+ZWAmdpMhgU1lWzWrWVYwSBWhR/KNN8vCI66WazsKL9sCJk98N
-        g1WP8QPyOWGw8UNucHRb3JLjiyDmpuD58ciD80EODzJW2Tb6rM922jtF+1aV3bMcMrk0U9Oi
-        CggynDlv1gUar5XEyAxxXbtDre2zlVHi3jwPzHdlT6+up1E/7aVsEe56MruwxMwllBekNqiz
-        pASXrAgPxjWc4h8hx+1BOQMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrIIsWRmVeSWpSXmKPExsVy+t/xu7rsrVNjDZo/G1rMP3KO1aL/8Wtm
-        i/PnN7BbbHp8jdXi8q45bBYzzu9jslh6/SKTReveI+wOHB5r5q1h9Ni0qpPNY/OSeo/Pm+QC
-        WKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLLUov07RL0Mtqn
-        72ItaBKquP+ok6mBcSlfFyMnh4SAicSWey2sXYxcHEICSxklun6sYYVIiElM2redHcIWlvhz
-        rYsNoug1o8SKR28YQRLCAgUSjy40gyVEBGYwSXyY+YcJoqqDUWJf42ugKg4ONgE9iR2rCkEa
-        eAXcJK493gQ2lUVARWL9tdvMILaoQITE4R2zGCFqBCVOznzCAmJzCphK3J15D6yGWcBMYt7m
-        h1C2uMStJ/OZIGx5ie1v5zBPYBSchaR9FpKWWUhaZiFpWcDIsopRJLW0ODc9t9hQrzgxt7g0
-        L10vOT93EyMwurYd+7l5B+OljcGHGAU4GJV4eGfcmxIrxJpYVlyZe4hRgoNZSYT30nqgEG9K
-        YmVValF+fFFpTmrxIUZToOcmMkuJJucDIz+vJN7Q1NDcwtLQ3Njc2MxCSZy3Q+BgjJBAemJJ
-        anZqakFqEUwfEwenVAOjKM+BX9peHbsvx542P502/eymze/Trz9NvO0i18RWqp8ec2uzdYj/
-        wfaTiZzpujfmZVz6s37ezH1HxU4tWntshWiB0WLH/yKa7Ac7FGy5Twof9n0oFOUa/V3vceKq
-        eMnAlNXcvxfyd3W9umD8ffuxr8+aHB8kbO5/8yo7iH3txA1Zb3XmvGGcrsRSnJFoqMVcVJwI
-        ANL42UfEAgAA
-X-CMS-MailID: 20191003052007eucas1p2b7d112bdfa8a4b628f853035f6d4948d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20191002174416epcas4p15c507d0c8cacfafce9b538d0b08e277f
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20191002174416epcas4p15c507d0c8cacfafce9b538d0b08e277f
-References: <CGME20191002174416epcas4p15c507d0c8cacfafce9b538d0b08e277f@epcas4p1.samsung.com>
-        <20191002174401.17590-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hello Rob,
 
-On 10/2/19 7:44 PM, Krzysztof Kozlowski wrote:
-> After adding the interrupt properties to Exynos5422 DMC bindings
-> example, the mapped memory region must be big enough to access
-> performance counters registers.
+Am 02.10.2019 um 16:19 schrieb Rob Herring:
+> On Sun, Sep 22, 2019 at 08:03:55AM +0200, Heiko Schocher wrote:
+>> add devicetree binding for cc1101 misc driver.
+>>
+>> Signed-off-by: Heiko Schocher <hs@denx.de>
+>> ---
+>>
+>>   .../devicetree/bindings/misc/cc1101.txt       | 27 +++++++++++++++++++
+>>   1 file changed, 27 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/misc/cc1101.txt
 > 
-> Fix also syntax errors (semicolons) and adjust indentation.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Rebased on top of my for-next branch as exynos5422-dmc.txt bindings were
-> applied by me.
-> ---
->   .../bindings/memory-controllers/exynos5422-dmc.txt        | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> index e2434cac4858..02e4a1f862f1 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> @@ -55,7 +55,7 @@ Example:
->   
->   	dmc: memory-controller@10c20000 {
->   		compatible = "samsung,exynos5422-dmc";
-> -		reg = <0x10c20000 0x100>, <0x10c30000 0x100>,
-> +		reg = <0x10c20000 0x10000>, <0x10c30000 0x10000>;
->   		clocks = <&clock CLK_FOUT_SPLL>,
->   			 <&clock CLK_MOUT_SCLK_SPLL>,
->   			 <&clock CLK_FF_DOUT_SPLL2>,
-> @@ -63,7 +63,7 @@ Example:
->   			 <&clock CLK_MOUT_BPLL>,
->   			 <&clock CLK_SCLK_BPLL>,
->   			 <&clock CLK_MOUT_MX_MSPLL_CCORE>,
-> -			 <&clock CLK_MOUT_MCLK_CDREX>,
-> +			 <&clock CLK_MOUT_MCLK_CDREX>;
->   		clock-names = "fout_spll",
->   			      "mout_sclk_spll",
->   			      "ff_dout_spll2",
-> @@ -71,10 +71,10 @@ Example:
->   			      "mout_bpll",
->   			      "sclk_bpll",
->   			      "mout_mx_mspll_ccore",
-> -			      "mout_mclk_cdrex",
-> +			      "mout_mclk_cdrex";
->   		operating-points-v2 = <&dmc_opp_table>;
->   		devfreq-events = <&ppmu_event3_dmc0_0>,	<&ppmu_event3_dmc0_1>,
-> -				<&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
-> +				 <&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
->   		device-handle = <&samsung_K3QF2F20DB>;
->   		vdd-supply = <&buck1_reg>;
->   		samsung,syscon-clk = <&clock>;
-> 
+> Can you please convert this to DT schema.
 
-Thank you for the patch. Indeed it must also be updated.
+Of course, missed this point, sorry, reworked. Is there a HowTo
+for writting a schema?
+(beside Documentation/devicetree/bindings/example-schema.yaml)
 
-Reviewed-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> diff --git a/Documentation/devicetree/bindings/misc/cc1101.txt b/Documentation/devicetree/bindings/misc/cc1101.txt
+>> new file mode 100644
+>> index 0000000000000..afea6acf4a9c5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/misc/cc1101.txt
+> 
+> Normal naming is to use compatible string. So ti,cc1101.yaml for schema.
 
-Regards,
-Lukasz
+renamed.
+
+> 
+>> @@ -0,0 +1,27 @@
+>> +driver cc1101 Low-Power Sub-1 GHz RF Transceiver chip from Texas
+>> +Instruments.
+>> +
+>> +Requires node properties:
+>> +- compatible : should be "ti,cc1101";
+>> +- reg        : Chip select address of device, see:
+>> +               Documentation/devicetree/bindings/spi/spi-bus.txt
+>> +- gpios      : list of 2 gpios, first gpio is for GDO0 pin
+>> +               second for GDO2 pin, see more:
+> 
+> Is there a GDO1? Would be hard to add later because you can't change the
+> indices once defined.
+
+Good point. There is a GDO1, so yes, this makes sense, added.
+
+> 
+>> +               Documentation/devicetree/bindings/gpio/gpio.txt
+>> +
+>> +Recommended properties:
+>> + - spi-max-frequency: Definition as per
+>> +                Documentation/devicetree/bindings/spi/spi-bus.txt
+> 
+> Notice that this file is now just in redirection...
+
+Ok.
+
+> 
+>> + - freq       : used spi frequency for communication with cc1101 chip
+> 
+> What's this? Doesn't spi-max-frequency cover it?
+
+Of course, removed.
+
+Thanks for your time and review.
+
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
