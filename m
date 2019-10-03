@@ -2,145 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE6ACAAEA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11924CACE6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730386AbfJCRZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 13:25:28 -0400
-Received: from mout.gmx.net ([212.227.15.18]:49245 "EHLO mout.gmx.net"
+        id S1731791AbfJCRbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 13:31:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59484 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729468AbfJCRZ1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 13:25:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1570123498;
-        bh=a9oKw+G44AtlA+jaqjmu+QP/MbD7VIRvP1fzsSl1jWY=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=OyntvkDhSBd+lcSimjgQtMTdTq1liENxQsy/kKSUI7J20fZPpqx9IEMsCo0HYlxi3
-         Jn1+0W1iJ3FDoWGscBI6p0EqvRG58//rTlU59JQeF2vNIeBHc+VPJ6o9Dd2TQruj0L
-         /c58Xfou3eQAVdfp3l5SbiLvepV/ywnTF22Ae9VA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.1.162] ([37.4.249.116]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mt75H-1i19QR0Chl-00tQ3g; Thu, 03
- Oct 2019 19:24:58 +0200
-Subject: Re: [PATCH V3 0/8] ARM: Add minimal Raspberry Pi 4 support
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        id S2387597AbfJCQKR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 12:10:17 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0E9F720865;
+        Thu,  3 Oct 2019 16:10:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570119015;
+        bh=x3CIsCXcVinP9qVLbt8vSkv0DvTQeBfbKhDw/hdnX+M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=pj0+Mx8rvbRuWzF7v7S/SrhTZbafj+ipLaFYIrwjdZZX02bmf4J9vrOtZsJ9pQqrV
+         tMaqYd6A16tKUKnevmXhgtwtNmytbwUZYbXfufeZfXlD1F9NqzGQimWH67gLbhbsoa
+         d4qHJ9euIyEXMXtHt6iVD1Mx7T63w6K60wYzdlSA=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org,
+        =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
+        Ilya Ledvich <ilya@compulab.co.il>,
+        Igor Grinberg <grinberg@compulab.co.il>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Guillaume Gardet <Guillaume.Gardet@arm.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
- <3853cd8425743b4991f5d599ec1c0fbbf4232f95.camel@suse.de>
-From:   Stefan Wahren <wahrenst@gmx.net>
-Message-ID: <d4774e5a-abc2-4c43-c97d-76600f74132d@gmx.net>
-Date:   Thu, 3 Oct 2019 19:24:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 4.14 095/185] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
+Date:   Thu,  3 Oct 2019 17:52:53 +0200
+Message-Id: <20191003154459.713414437@linuxfoundation.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191003154437.541662648@linuxfoundation.org>
+References: <20191003154437.541662648@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-In-Reply-To: <3853cd8425743b4991f5d599ec1c0fbbf4232f95.camel@suse.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Provags-ID: V03:K1:EO5mxlykclguxoXaeuyqCeEMlckCcNicb6L7FgifvZX7BQ17InS
- x1sVXfhEhGV0gEY/muonIWkFUVTNi8UwkJl5T6hEBMvyUcyxEjPT55Ti1b/nJg5Vr+xUym3
- DbfYTuBWTaSfeh1d/wODuJWCpJaQBJnKkEqtgAaEAxuWN83O7Np87INnECFGrSbF0BM+5si
- FGf0QNzL6rABrSafAyO+A==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:IzfPpI9X5X0=:Ggtr4z9LmId4nfOTI8CXCn
- s63aNnxYQJGhBo5Oo0cafP0eFejPqxqUZD2hM0tO1ABEdCTOy4nQmIV5WHsrwNHIpbWE05TFI
- VRQFYllilVSfjjq+MLjc5FdwsHr1Hcf3zYNIWESzuHg95S08iMFngG6dmAWIWktRtWgEn/Y79
- NgrV3Yj8P2Q937lH+22WdXaxoSsizqt5qNNr8p/fi3kW4RDK89Xrx1cnIabqk/jhkniLTxXWK
- Zwn54jDxLmGusyxQx7B9tUrqfCrjWSU5gfg36K2l9cms7qFQT9IrA4BUMaMAIYyybxbdQ+Xgu
- xh0HIHXmJvKV6zL+5BsF07ACCECrWXg+v8L99QxhWwQpQ6dvqCdaLWKnQbfST08lKyyJmzmA3
- N8n3/vBuq2qOywRP6mIrwba8jKzO0aTCAS9ObKSBzifCZujhsa8zKn+Q//eP2G6oTF2g8+v1z
- I752h3P2IvMVGdi/wl2WRjp/pYv5sK5bXJ+lEeREsfUeecsDtd9xZokN43pmWy+mf7pAfYyXt
- i8sXZCZwCGy43e9m93u6Qz1EcAlsWyABTRejT+iZhAu68yXh61DIHMQl3lw/fbcoVgY4c2lJo
- x0KlmBoQzmwFCF2Nz5yokW1PRCfWx7naYMv7dINQdJkKLjrT/H45AGtY9W5Y7CUFkS/Js1quJ
- k/oDhn1HkD+q1mJTrAkjSVwISB8jOz7hx6T4TRrUOI1tU0JOMCy82aGU64G0ZeS/Mj4crtOf9
- 1H5WKh1K4HKeJB9sQM00Q6/T5EBgZmsOI88x4pu9PZ2vE8ZeQ3dS7Oo34Zetx9M7pVNr0lTng
- P8UIn1TDHfJ2fQ5wtliL7Y9Fdql1+rLTNm6zEqt0Up4IdUmx1G5Xaa2RG+qrbHipoUQdTUSE1
- 10W7ISrdCDMoPQAEPg5vkPc0CJm8XhNNUcdMu219cib+PtzX5IW6BcWPsmrpwNEBTH2iIe7xR
- jfH+p17On1nG6U5RM1hWCi+g69tmZ1ZKkzdfWvlpqPYDTO6ZP2tjK0AIP6tYD9zuMjpFQZdTp
- 0uhU+55jSMp2TA+NTEz6ZsH5RpVYUNN8zjuIhmysK6mfeknVxhuVN01UrHytI++wdX0XeOSCc
- 4uD3XWAx+AGQsKI1tDspQziE7yBKMK9ZNPkbrC2KiQeO+mh7wCAry5aQLVDa/rvcidnIbqe2S
- cjljKYGlBYwmZ+dLcAJ72pbaabu1e5bF46Q897+UHQUMIcHkygwpB6qGoI2jNZ9NhVdBwjp2v
- kpHacT3683RYVuUX0900/hmcyNLDMMsCbtSpaDM6OeGLadzple+6waaZZL+I=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+From: André Draszik <git@andred.net>
 
-Am 03.10.19 um 19:09 schrieb Nicolas Saenz Julienne:
-> On Sat, 2019-09-28 at 14:07 +0200, Stefan Wahren wrote:
->> This series adds minimal support for the new Raspberry Pi 4, so we are able
->> to login via debug UART.
->>
->> Patch 1-2:   Fix some DT schema warnings
->> Patch 3-4:   Prepare DTS for the new SoC BMC2711
->> Patch 5-7:   Add Raspberry Pi 4 DTS support
->> Patch 8:     Update MAINTAINERS
->>
->> Unfortunately the Raspberry Pi Foundation didn't released a
->> peripheral documentation for the new SoC yet. So we only have a preliminary
->> datasheet [1] and reduced schematics [2].
->>
->> Known issues:
->> Since Linux 5.3-rc1 DMA doesn't work properly on that platform.
->> Nicolas Saenz Julienne investigates on that issue. As a temporary workaround
->> i reverted the following patch to test this series:
->>
->> 79a98672 "dma-mapping: remove dma_max_pfn"
->> 7559d612 "mmc: core: let the dma map ops handle bouncing"
-> [ adding Matthias and Guillaume who first saw this ]
-> [ also adding Adrian Hunter just in case ]
->
-> Hi,
-> we stubled upon a bug in RPi's sdhci-iproc while testing this series.
->
-> It only shows-up on slow SD cards, the class 4 ones. On each SD operation we
-> get the following warning:
->
-> [    2.093328] mmc1: Got data interrupt 0x00000002 even though no data operation was in progress.
-> [    2.102072] mmc1: sdhci: ============ SDHCI REGISTER DUMP ===========
-> [    2.108603] mmc1: sdhci: Sys addr:  0x00000000 | Version:  0x00001002
-> [    2.115134] mmc1: sdhci: Blk size:  0x00007200 | Blk cnt:  0x00000000
-> [    2.121664] mmc1: sdhci: Argument:  0x00000000 | Trn mode: 0x00000033
-> [    2.128195] mmc1: sdhci: Present:   0x1fff0000 | Host ctl: 0x00000017
-> [    2.134725] mmc1: sdhci: Power:     0x0000000f | Blk gap:  0x00000080
-> [    2.141255] mmc1: sdhci: Wake-up:   0x00000000 | Clock:    0x00000107
-> [    2.147785] mmc1: sdhci: Timeout:   0x00000000 | Int stat: 0x00000000
-> [    2.154314] mmc1: sdhci: Int enab:  0x03ff100b | Sig enab: 0x03ff100b
-> [    2.160843] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
-> [    2.167373] mmc1: sdhci: Caps:      0x45ee6432 | Caps_1:   0x0000a525
-> [    2.173902] mmc1: sdhci: Cmd:       0x00000c1a | Max curr: 0x00080008
-> [    2.180432] mmc1: sdhci: Resp[0]:   0x00000b00 | Resp[1]:  0x00edc87f
-> [    2.186961] mmc1: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x00400e00
-> [    2.193490] mmc1: sdhci: Host ctl2: 0x00000001
-> [    2.197992] mmc1: sdhci: ADMA Err:  0x00000000 | ADMA Ptr: 0xec040208
-> [    2.204521] mmc1: sdhci: ============================================
->
-> Aside from the serial console noise the RPi still boots alright. But as it's
-> printing one of these per SD operation which is a lot...
->
-> I've been able to reproduce this both with arm and arn64 on multiple SD cards.
-> Just copying the contents of a class 4 card into a class 10 one fixes the
-> issue.
->
-> Any ideas?
-i saw this once during testing. AFAIR there has been some changes to
-sdhci in the downstream tree, maybe they was related to this issue.
->
-> Regards,
-> Nicolas
->
+[ Upstream commit 9846a4524ac90b63496580b7ad50674b40d92a8f ]
+
+Recent changes to the atheros at803x driver caused
+ethernet to stop working on this board.
+In particular commit 6d4cd041f0af
+("net: phy: at803x: disable delay only for RGMII mode")
+and commit cd28d1d6e52e
+("net: phy: at803x: Disable phy delay for RGMII mode")
+fix the AR8031 driver to configure the phy's (RX/TX)
+delays as per the 'phy-mode' in the device tree.
+
+This now prevents ethernet from working on this board.
+
+It used to work before those commits, because the
+AR8031 comes out of reset with RX delay enabled, and
+the at803x driver didn't touch the delay configuration
+at all when "rgmii" mode was selected, and because
+arch/arm/mach-imx/mach-imx7d.c:ar8031_phy_fixup()
+unconditionally enables TX delay.
+
+Since above commits ar8031_phy_fixup() also has no
+effect anymore, and the end-result is that all delays
+are disabled in the phy, no ethernet.
+
+Update the device tree to restore functionality.
+
+Signed-off-by: André Draszik <git@andred.net>
+CC: Ilya Ledvich <ilya@compulab.co.il>
+CC: Igor Grinberg <grinberg@compulab.co.il>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Mark Rutland <mark.rutland@arm.com>
+CC: Shawn Guo <shawnguo@kernel.org>
+CC: Sascha Hauer <s.hauer@pengutronix.de>
+CC: Pengutronix Kernel Team <kernel@pengutronix.de>
+CC: Fabio Estevam <festevam@gmail.com>
+CC: NXP Linux Team <linux-imx@nxp.com>
+CC: devicetree@vger.kernel.org
+CC: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+index 3cc1fb9ce4418..60a28281d3d16 100644
+--- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+@@ -43,7 +43,7 @@
+ 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
+ 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+ 	assigned-clock-rates = <0>, <100000000>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethphy0>;
+ 	fsl,magic-packet;
+ 	status = "okay";
+@@ -69,7 +69,7 @@
+ 			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
+ 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
+ 	assigned-clock-rates = <0>, <100000000>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethphy1>;
+ 	fsl,magic-packet;
+ 	status = "okay";
+-- 
+2.20.1
+
+
+
