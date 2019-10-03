@@ -2,128 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05FF9CA3B1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01BDACA3A3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:22:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387651AbfJCQSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 12:18:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44278 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388422AbfJCQSB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 12:18:01 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A5AC820865;
-        Thu,  3 Oct 2019 16:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570119480;
-        bh=aVOggpoqi/Rcx/POg1Q3q2Vvw3fw5my5raFRADNEbh4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ybJ5GxOh0HGy1N1Ug1bmOEZSV8phm0t9n+vzaWjCxmJWaqw1OeZHgcREu6371Vz6Y
-         PgnlXMgOAP2oNd/1siVwHrpoNTh9lEaKQxuXpF91QdKXlR2vBa/c1tAHRat9Qj/lZP
-         v0aIxSdslBJo4ZkN/+jlZZXj1OGlD6K2R+UT8T1I=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org,
-        =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        Ilya Ledvich <ilya@compulab.co.il>,
-        Igor Grinberg <grinberg@compulab.co.il>,
+        id S2389234AbfJCQRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 12:17:24 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:35838 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389226AbfJCQRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 12:17:23 -0400
+Received: by mail-pl1-f193.google.com with SMTP id c3so278284plo.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 09:17:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=woKsN5Nvj3edIiL1mnog+HJwItqLGqoGggibhx+prXM=;
+        b=HQAEmXF/vteXHA3wUvUvKzh5HoSg9S0QmvBoKuxVYXBOPyOwnLQNu0ojnI9ENc9Ztm
+         oAl2oYSCkpNYvvNGLiZ2CYkYN5JmMbMcg+/63PFwNIF4bZyDwf6qxUrYGJNtUBybwSNp
+         GW3/LiHFDHlufv8dYKPbMAMdI1yvxWVf3wRmh57d6KmDrIYklelTyqc/FXK8gWpNo48M
+         LAeTZUhlIXsKmJvsB5HRZNWQlHNJhDRI6YWtz4h/sAsWEoxf+qlTTJju8gMlCGXsvaE2
+         DMi6SjUq8ATeVYXTguDhgGT4uyKK5Zs4PaJxHJEEZjGGdfC31jAxrE7uSuyt41Ey7mJ5
+         PR3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=woKsN5Nvj3edIiL1mnog+HJwItqLGqoGggibhx+prXM=;
+        b=cxgN6hF2kOVWKvF/+cE8iTcN9IQDZ91CKrnvbFV1zbmXCGJaeB5107b0OvQqoK2xdk
+         CbdEYqKibK8SkIXEglzoVSrVtRn0CPEkLIlcG8wq4ZHRR/uBeOspo2i5nceDJ5uC/TOB
+         QrlSIiYzjK1BG9/5It4z+su2Ty7ApRgzKTWv3ilJ6902GIiu6xbrKFcoTqJ3fJar87yE
+         N7V1AttqHHQdy/xNVhYEbLOpoAJSuq2/kBt8eJkrEGPw5VAu/5sdutTPY6LJPkez2x7P
+         5GAdgfwDntMGr3bwMgInk+Pn3nXpwRUeJ/pTq12iVpBW7D/Uh5glMQfCpbZwdELVgJpQ
+         /16A==
+X-Gm-Message-State: APjAAAX170nTwV+ifkfmkhlRiLGA1YYROz2Tj/SPt2iZSuO+tpvOB8IM
+        pbcRXOIHFeAt2ngHqPpu4we4
+X-Google-Smtp-Source: APXvYqwcF1Q6beDBQTdeoxkdICiYiMYrEpiV3RDw2oLfKtKRdUOjZccajdXgDjR+VWUVYjV6gLKSZQ==
+X-Received: by 2002:a17:902:a986:: with SMTP id bh6mr10472391plb.197.1570119441739;
+        Thu, 03 Oct 2019 09:17:21 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2405:204:71cf:7b8f:fca3:6f38:70fb:67fc])
+        by smtp.gmail.com with ESMTPSA id f18sm3004698pgf.58.2019.10.03.09.17.16
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 03 Oct 2019 09:17:20 -0700 (PDT)
+Date:   Thu, 3 Oct 2019 21:47:14 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.19 081/211] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
-Date:   Thu,  3 Oct 2019 17:52:27 +0200
-Message-Id: <20191003154505.754669718@linuxfoundation.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191003154447.010950442@linuxfoundation.org>
-References: <20191003154447.010950442@linuxfoundation.org>
-User-Agent: quilt/0.66
+        Stephen Boyd <sboyd@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, thomas.liau@actions-semi.com,
+        linux-actions@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 0/7] Add SD/MMC driver for Actions Semi S900 SoC
+Message-ID: <20191003161714.GA14774@Mani-XPS-13-9360>
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org>
+ <CAPDyKFqsZ1mZ53b9wLruATzi+ymFrUCLhxzx7NFUq48p5w0Gtw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFqsZ1mZ53b9wLruATzi+ymFrUCLhxzx7NFUq48p5w0Gtw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: André Draszik <git@andred.net>
+Hi Ulf,
 
-[ Upstream commit 9846a4524ac90b63496580b7ad50674b40d92a8f ]
+On Thu, Oct 03, 2019 at 12:01:18PM +0200, Ulf Hansson wrote:
+> On Mon, 16 Sep 2019 at 17:46, Manivannan Sadhasivam
+> <manivannan.sadhasivam@linaro.org> wrote:
+> >
+> > Hello,
+> >
+> > This patchset adds SD/MMC driver for Actions Semi S900 SoC from Owl
+> > family SoCs. There are 4 SD/MMC controller present in this SoC but
+> > only 2 are enabled currently for Bubblegum96 board to access uSD and
+> > onboard eMMC. SDIO support for this driver is not currently implemented.
+> >
+> > Note: Currently, driver uses 2 completion mechanisms for maintaining
+> > the coherency between SDC and DMA interrupts and I know that it is not
+> > efficient. Hence, I'd like to hear any suggestions for reimplementing
+> > the logic if anyone has.
+> >
+> > With this driver, this patchset also fixes one clk driver issue and enables
+> > the Actions Semi platform in ARM64 defconfig.
+> >
+> > Thanks,
+> > Mani
+> >
+> > Changes in v4:
+> >
+> > * Incorporated review comments from Rob on dt binding
+> >
+> > Changes in v3:
+> >
+> > * Incorporated a review comment from Andreas on board dts patch
+> > * Modified the MAINTAINERS entry for devicetree YAML binding
+> >
+> > Changes in v2:
+> >
+> > * Converted the devicetree bindings to YAML
+> > * Misc changes to bubblegum devicetree as per the review from Andreas
+> > * Dropped the read/write wrappers and renamed all functions to use owl-
+> >   prefix as per the review from Ulf
+> > * Renamed clk_val_best to owl_clk_val_best and added Reviewed-by tag
+> >   from Stephen
+> >
+> > Manivannan Sadhasivam (7):
+> >   clk: actions: Fix factor clk struct member access
+> >   dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO controller binding
+> >   arm64: dts: actions: Add MMC controller support for S900
+> >   arm64: dts: actions: Add uSD and eMMC support for Bubblegum96
+> >   mmc: Add Actions Semi Owl SoCs SD/MMC driver
+> >   MAINTAINERS: Add entry for Actions Semi SD/MMC driver and binding
+> >   arm64: configs: Enable Actions Semi platform in defconfig
+> >
+> >  .../devicetree/bindings/mmc/owl-mmc.yaml      |  59 ++
+> >  MAINTAINERS                                   |   2 +
+> >  .../boot/dts/actions/s900-bubblegum-96.dts    |  62 ++
+> >  arch/arm64/boot/dts/actions/s900.dtsi         |  45 ++
+> >  arch/arm64/configs/defconfig                  |   1 +
+> >  drivers/clk/actions/owl-factor.c              |   7 +-
+> >  drivers/mmc/host/Kconfig                      |   8 +
+> >  drivers/mmc/host/Makefile                     |   1 +
+> >  drivers/mmc/host/owl-mmc.c                    | 696 ++++++++++++++++++
+> >  9 files changed, 877 insertions(+), 4 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+> >  create mode 100644 drivers/mmc/host/owl-mmc.c
+> >
+> > --
+> > 2.17.1
+> >
+> 
+> I have picked up the mmc patches for next
 
-Recent changes to the atheros at803x driver caused
-ethernet to stop working on this board.
-In particular commit 6d4cd041f0af
-("net: phy: at803x: disable delay only for RGMII mode")
-and commit cd28d1d6e52e
-("net: phy: at803x: Disable phy delay for RGMII mode")
-fix the AR8031 driver to configure the phy's (RX/TX)
-delays as per the 'phy-mode' in the device tree.
+Thanks :)
 
-This now prevents ethernet from working on this board.
+> and as Stephen picked the
+> clock patch, the rest are now for arm-soc, I guess!?
+> 
 
-It used to work before those commits, because the
-AR8031 comes out of reset with RX delay enabled, and
-the at803x driver didn't touch the delay configuration
-at all when "rgmii" mode was selected, and because
-arch/arm/mach-imx/mach-imx7d.c:ar8031_phy_fixup()
-unconditionally enables TX delay.
+Yes, I'll queue them through actions tree (unless Andreas wants to do the PR).
 
-Since above commits ar8031_phy_fixup() also has no
-effect anymore, and the end-result is that all delays
-are disabled in the phy, no ethernet.
+Regards,
+Mani
 
-Update the device tree to restore functionality.
-
-Signed-off-by: André Draszik <git@andred.net>
-CC: Ilya Ledvich <ilya@compulab.co.il>
-CC: Igor Grinberg <grinberg@compulab.co.il>
-CC: Rob Herring <robh+dt@kernel.org>
-CC: Mark Rutland <mark.rutland@arm.com>
-CC: Shawn Guo <shawnguo@kernel.org>
-CC: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Pengutronix Kernel Team <kernel@pengutronix.de>
-CC: Fabio Estevam <festevam@gmail.com>
-CC: NXP Linux Team <linux-imx@nxp.com>
-CC: devicetree@vger.kernel.org
-CC: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index 8bf365d28cacf..584418f517a88 100644
---- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-+++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-@@ -43,7 +43,7 @@
- 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
- 	fsl,magic-packet;
- 	status = "okay";
-@@ -69,7 +69,7 @@
- 			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy1>;
- 	fsl,magic-packet;
- 	status = "okay";
--- 
-2.20.1
-
-
-
+> Kind regards
+> Uffe
