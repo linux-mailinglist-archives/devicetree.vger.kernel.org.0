@@ -2,215 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0616C9F15
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 15:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9B4CC9F34
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 15:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729789AbfJCNGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 09:06:37 -0400
-Received: from mail-eopbgr1400131.outbound.protection.outlook.com ([40.107.140.131]:51500
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729486AbfJCNGh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 09:06:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kOQZIO5mqedtoje/MDaEEaXVn6RRNye6X3S5cjPO0LmiU3rskcDODF34FitrzzwsQCl4/QcCwllzyiipDWdTVQEjIhQSnpE2xRJ1SMQkMXkjMhSzeqBjNNiOVVIUQ+rcFYeLp8HW0NMUoyIzd79SDetjSs5ZBXvZxWzd3SQjxZA6JofV+iVFfpRvvmYy5MCcQmecTbugjC+6vJXg7dhFRMQOxRwwbU4NJr76lookl70rBkHisMHU6QyTSIQOYtc2Wzl5hlE8avKJTI4GslEMjLKHOrPAx51CyDjNRQryYhEReY58kXNcGtbKlEPJLn2uL0te+qvS9ylE0MCfBV1b6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xKaQHQQ0vLwwyOiOqKcezr4yrS52YKKd0dH7tNEPnOE=;
- b=JodKmeHrP9kSAEO4G9FVnWyIdLuvqhv6rlk8a6lJilOwa0AsvJxSa4QuxEqR//+Y6gAcw9TKbEXStDkQ07irlKYs6J1du9hI+1bZC5fS2ZTh6881/J9VAp80T9v2U43y2WoIIdzQtNwEzMVP7HwQwlaGCEA4ceTbn4fzTVAALi+Q7DdKFEKDc2uxwf0lbSJ0/KQH76SXy0XQYHraEw2Yk4841SPnCG7wgkUebCEnE+gRd/dQbbc3U50m+BZO8Pw4xdoIAOQBtSDrUyclhQ+0cd0fyNNaEexsSp5Dmw34SU2nofhg4pA2mL1YIAvMyil/WGXGCj9/rsXVl1j9AwqBdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xKaQHQQ0vLwwyOiOqKcezr4yrS52YKKd0dH7tNEPnOE=;
- b=JcaxGrTP2lowWkVpGfKlFUO5R3mY786nalCARXtebcDI1WkIibmklWUP290vBCMMaXdYkEjSFhLhj15Di/5DgbVOM89QlYsYdbt/5I0qKVgibVNy/1OkAwXaKUcMpoPPJ4GZag/B+CysP/zj8wb7L2zXz2PqpMJnXbQsZHTgAdA=
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
- OSBPR01MB3911.jpnprd01.prod.outlook.com (20.178.97.209) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Thu, 3 Oct 2019 13:06:32 +0000
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::d5a0:9756:da13:2d6f]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::d5a0:9756:da13:2d6f%7]) with mapi id 15.20.2305.022; Thu, 3 Oct 2019
- 13:06:32 +0000
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH RESEND v7 0/3] Add USB3.0 and TI HD3SS3220 driver support
-Thread-Topic: [PATCH RESEND v7 0/3] Add USB3.0 and TI HD3SS3220 driver support
-Thread-Index: AQHVYvnhWtcTXbWliE+hANivkm65EadJD3qg
-Date:   Thu, 3 Oct 2019 13:06:31 +0000
-Message-ID: <OSBPR01MB21033E657CB361169BE71D51B89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-References: <1567584941-13690-1-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1567584941-13690-1-git-send-email-biju.das@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biju.das@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b7769395-2de7-4bbf-719c-08d748028341
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: OSBPR01MB3911:|OSBPR01MB3911:
-x-ms-exchange-purlcount: 14
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSBPR01MB39115D4D4CE2835E50ED58FDB89F0@OSBPR01MB3911.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:546;
-x-forefront-prvs: 01792087B6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(979002)(4636009)(136003)(366004)(39860400002)(396003)(376002)(346002)(189003)(199004)(13464003)(5660300002)(7416002)(2906002)(52536014)(3846002)(6116002)(86362001)(71200400001)(486006)(44832011)(71190400001)(476003)(256004)(14444005)(66556008)(66476007)(66946007)(64756008)(66446008)(76116006)(33656002)(99286004)(446003)(11346002)(102836004)(7696005)(76176011)(6506007)(53546011)(186003)(26005)(9686003)(305945005)(6306002)(966005)(8676002)(55016002)(81166006)(6246003)(81156014)(4326008)(25786009)(14454004)(8936002)(316002)(478600001)(74316002)(110136005)(66066001)(229853002)(54906003)(6436002)(7736002)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB3911;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yp5MbmNQOOU1HBPp/0hshrtDOiC3XrKtuZDRSI0t3g/vfc2qZ9YrbXwOQVRxo6WgGqlTXsOegCYaXsTQyufu0u4F2oWOXjxPVihpIDuuxCKA6OBUCx7yG2gPpzDn0EOTNwUCCshw8iC+hIwB3/DaW/63T4hNBIs/4D3b19MFkHubBmXLF3dc2xQvCyT3Fv7iqkl85aPN1nm2F1HenmDTQ9aV8oBqwi+rULQMpdSnLm+UR1oe3BDOgFI5Ba2yqk2mINA4qXNyg/pYYc9jtJp+EOVT8B4ytnCXNQ06SOutTCesb9xb5m5SiQIy6Fn43pLlwbzbAvX1LSUod68rxtaHs8wKv0iibDz6caatpwyeaLr9YER2yBLoKxJ2Ycaz3qy1b18xulpL5fsfu8IsOg95JpFL0inkHosopVmtONJuN4D1diRzuw2U5J2rxW+h/L/siJDZuMxWKOW+jckgoEvn7w==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726508AbfJCNRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 09:17:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43538 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727409AbfJCNRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 09:17:41 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0D11E20862;
+        Thu,  3 Oct 2019 13:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570108660;
+        bh=4XdzpLb9uj0tLiXrscinkGNfd+vwMzBSlrUPK+GONLE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ojn1iPijJrAcmt7DBl6ln8cTNWbgIL4AIUpLXgdi9CqcGMxefPxGPeXOOh5G3LpQg
+         O3GJhROjQ0gwEfpWHvEVV3vt1mWiKV6h9S3mCzANSP382VGsVzb9CLa46XE4MkAkgt
+         f5mNRTrLoGeXeC5F5iXM4lNf9Kkp392SmNfAQykw=
+Date:   Thu, 3 Oct 2019 15:17:37 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, michael@amarulasolutions.com,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 1/7] drm/sun4i: dsi: Fix TCON DRQ set bits
+Message-ID: <20191003131737.bvpf5quds66qtsmy@gilmour>
+References: <20191003064527.15128-1-jagan@amarulasolutions.com>
+ <20191003064527.15128-2-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7769395-2de7-4bbf-719c-08d748028341
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 13:06:32.2514
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: i2FGGqBPY38MF7TIlYgwUBuvwWv/S/luyxIqNwfzpf/87IyAAp5FzoAcj1J8GXPBwF9jXAWf8tfa/5xAIXQ6Bw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3911
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nyn2rzxruc4qrbyu"
+Content-Disposition: inline
+In-Reply-To: <20191003064527.15128-2-jagan@amarulasolutions.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
 
-Polite reminder. =20
+--nyn2rzxruc4qrbyu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Are happy with the below patch series, since the dependency patches hit on =
-mainline 5.4-rc1?
+On Thu, Oct 03, 2019 at 12:15:21PM +0530, Jagan Teki wrote:
+> The LCD timing definitions between Linux DRM vs Allwinner are different,
+> below diagram shows this clear differences.
+>
+>            Active                 Front           Sync           Back
+>            Region                 Porch                          Porch
+> <-----------------------><----------------><--------------><-------------->
+>   //////////////////////|
+>  ////////////////////// |
+> //////////////////////  |..................                ................
+>                                            ________________
+> <----- [hv]display ----->
+> <------------- [hv]sync_start ------------>
+> <--------------------- [hv]sync_end ---------------------->
+> <-------------------------------- [hv]total ------------------------------>
+>
+> <----- lcd_[xy] -------->		  <- lcd_[hv]spw ->
+> 					  <---------- lcd_[hv]bp --------->
+> <-------------------------------- lcd_[hv]t ------------------------------>
+>
+> The DSI driver misinterpreted the hbp term from the BSP code to refer
+> only to the backporch, when in fact it was backporch + sync. Thus the
+> driver incorrectly used the horizontal front porch plus sync in its
+> calculation of the DRQ set bit value, when it should not have included
+> the sync timing.
+>
+> Including additional sync timings leads to flip_done timed out as:
+>
+> WARNING: CPU: 0 PID: 31 at drivers/gpu/drm/drm_atomic_helper.c:1429 drm_atomic_helper_wait_for_vblanks.part.1+0x298/0x2a0
+> [CRTC:46:crtc-0] vblank wait timed out
+> Modules linked in:
+> CPU: 0 PID: 31 Comm: kworker/0:1 Not tainted 5.1.0-next-20190514-00026-g01f0c75b902d-dirty #13
+> Hardware name: Allwinner sun8i Family
+> Workqueue: events deferred_probe_work_func
+> [<c010ed54>] (unwind_backtrace) from [<c010b76c>] (show_stack+0x10/0x14)
+> [<c010b76c>] (show_stack) from [<c0688c70>] (dump_stack+0x84/0x98)
+> [<c0688c70>] (dump_stack) from [<c011d9e4>] (__warn+0xfc/0x114)
+> [<c011d9e4>] (__warn) from [<c011da40>] (warn_slowpath_fmt+0x44/0x68)
+> [<c011da40>] (warn_slowpath_fmt) from [<c040cd50>] (drm_atomic_helper_wait_for_vblanks.part.1+0x298/0x2a0)
+> [<c040cd50>] (drm_atomic_helper_wait_for_vblanks.part.1) from [<c040e694>] (drm_atomic_helper_commit_tail_rpm+0x5c/0x6c)
+> [<c040e694>] (drm_atomic_helper_commit_tail_rpm) from [<c040e4dc>] (commit_tail+0x40/0x6c)
+> [<c040e4dc>] (commit_tail) from [<c040e5cc>] (drm_atomic_helper_commit+0xbc/0x128)
+> [<c040e5cc>] (drm_atomic_helper_commit) from [<c0411b64>] (restore_fbdev_mode_atomic+0x1cc/0x1dc)
+> [<c0411b64>] (restore_fbdev_mode_atomic) from [<c04156f8>] (drm_fb_helper_restore_fbdev_mode_unlocked+0x54/0xa0)
+> [<c04156f8>] (drm_fb_helper_restore_fbdev_mode_unlocked) from [<c0415774>] (drm_fb_helper_set_par+0x30/0x54)
+> [<c0415774>] (drm_fb_helper_set_par) from [<c03ad450>] (fbcon_init+0x560/0x5ac)
+> [<c03ad450>] (fbcon_init) from [<c03eb8a0>] (visual_init+0xbc/0x104)
+> [<c03eb8a0>] (visual_init) from [<c03ed1b8>] (do_bind_con_driver+0x1b0/0x390)
+> [<c03ed1b8>] (do_bind_con_driver) from [<c03ed780>] (do_take_over_console+0x13c/0x1c4)
+> [<c03ed780>] (do_take_over_console) from [<c03ad800>] (do_fbcon_takeover+0x74/0xcc)
+> [<c03ad800>] (do_fbcon_takeover) from [<c013c9c8>] (notifier_call_chain+0x44/0x84)
+> [<c013c9c8>] (notifier_call_chain) from [<c013cd20>] (__blocking_notifier_call_chain+0x48/0x60)
+> [<c013cd20>] (__blocking_notifier_call_chain) from [<c013cd50>] (blocking_notifier_call_chain+0x18/0x20)
+> [<c013cd50>] (blocking_notifier_call_chain) from [<c03a6e44>] (register_framebuffer+0x1e0/0x2f8)
+> [<c03a6e44>] (register_framebuffer) from [<c04153c0>] (__drm_fb_helper_initial_config_and_unlock+0x2fc/0x50c)
+> [<c04153c0>] (__drm_fb_helper_initial_config_and_unlock) from [<c04158c8>] (drm_fbdev_client_hotplug+0xe8/0x1b8)
+> [<c04158c8>] (drm_fbdev_client_hotplug) from [<c0415a20>] (drm_fbdev_generic_setup+0x88/0x118)
+> [<c0415a20>] (drm_fbdev_generic_setup) from [<c043f060>] (sun4i_drv_bind+0x128/0x160)
+> [<c043f060>] (sun4i_drv_bind) from [<c044b598>] (try_to_bring_up_master+0x164/0x1a0)
+> [<c044b598>] (try_to_bring_up_master) from [<c044b668>] (__component_add+0x94/0x140)
+> [<c044b668>] (__component_add) from [<c0445e1c>] (sun6i_dsi_probe+0x144/0x234)
+> [<c0445e1c>] (sun6i_dsi_probe) from [<c0452ef4>] (platform_drv_probe+0x48/0x9c)
+> [<c0452ef4>] (platform_drv_probe) from [<c04512cc>] (really_probe+0x1dc/0x2c8)
+> [<c04512cc>] (really_probe) from [<c0451518>] (driver_probe_device+0x60/0x160)
+> [<c0451518>] (driver_probe_device) from [<c044f7a4>] (bus_for_each_drv+0x74/0xb8)
+> [<c044f7a4>] (bus_for_each_drv) from [<c045107c>] (__device_attach+0xd0/0x13c)
+> [<c045107c>] (__device_attach) from [<c0450474>] (bus_probe_device+0x84/0x8c)
+> [<c0450474>] (bus_probe_device) from [<c0450900>] (deferred_probe_work_func+0x64/0x90)
+> [<c0450900>] (deferred_probe_work_func) from [<c0135970>] (process_one_work+0x204/0x420)
+> [<c0135970>] (process_one_work) from [<c013690c>] (worker_thread+0x274/0x5a0)
+> [<c013690c>] (worker_thread) from [<c013b3d8>] (kthread+0x11c/0x14c)
+> [<c013b3d8>] (kthread) from [<c01010e8>] (ret_from_fork+0x14/0x2c)
+> Exception stack(0xde539fb0 to 0xde539ff8)
+> 9fa0:                                     00000000 00000000 00000000 00000000
+> 9fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+> 9fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+> ---[ end trace b57eb1e5c64c6b8b ]---
+> random: fast init done
+> [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [CRTC:46:crtc-0] flip_done timed out
+> [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [CONNECTOR:48:DSI-1] flip_done timed out
+> [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [PLANE:30:plane-0] flip_done timed out
+>
+> With the terms(as described in above diagram) fixed, the panel
+> displays correctly without any timeouts.
+>
+> Tested-by: Merlijn Wajer <merlijn@wizzup.org>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 
-https://patchwork.kernel.org/project/linux-usb/list/?series=3D169305
+Applied, thanks
 
-regards,
-Biju
+Maxime
 
+--nyn2rzxruc4qrbyu
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> -----Original Message-----
-> From: Biju Das <biju.das@bp.renesas.com>
-> Sent: Wednesday, September 4, 2019 9:16 AM
-> To: Rob Herring <robh+dt@kernel.org>; Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org>; Heikki Krogerus
-> <heikki.krogerus@linux.intel.com>; Felipe Balbi <balbi@kernel.org>; Mark
-> Rutland <mark.rutland@arm.com>
-> Cc: Biju Das <biju.das@bp.renesas.com>; linux-usb@vger.kernel.org;
-> devicetree@vger.kernel.org; Simon Horman <horms@verge.net.au>;
-> Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>; Geert
-> Uytterhoeven <geert+renesas@glider.be>; Chris Paterson
-> <Chris.Paterson2@renesas.com>; Fabrizio Castro
-> <fabrizio.castro@bp.renesas.com>; linux-renesas-soc@vger.kernel.org
-> Subject: [PATCH RESEND v7 0/3] Add USB3.0 and TI HD3SS3220 driver support
->=20
-> This series adds USB 3.0 support for the CAT874 platform, including a new
-> driver for the TI HD3SS3220 USB Type-C DRP port controller.
->=20
-> Patch4-7 on the v7 series been accepted and is in linux-rc tree.
-> Resending patch 1-3 of v7 series, since the dependency patches [1],
-> [2],[3],[4] is accpted for usb-next.
->=20
-> This patchset is based on usb-next tree.
->=20
-> [1] commit 451d15a1731c7db9d4868 ("dt-binding: usb: add usb-role-switch
-> property") [2] commit 977607653cdd06a2c4d1d ("usb: roles: Introduce stubs
-> for the exiting functions in role.h") [3] commit 44493062abc38e5895e0c
-> ("device connection: Add fwnode_connection_find_match()") [4] commit
-> a31f01777bc54a0a9d576 ("usb: roles: Add fwnode_usb_role_switch_get()
-> function")
->=20
-> V7-->V7 RESEND
->   * No change
->     (https://patchwork.kernel.org/patch/10969911/)
-> V6-->V7
->   * Rebased on the below patch series
->     (https://patchwork.kernel.org/project/linux-usb/list/?series=3D124223=
-)
->   * Updted the hd3ss3220 binding documentation
->     -> Removed Rob's reviewed by tag, since there is a rework.
->     -> Incorporated Sergie and Shimoda-San's review comment.
->      (https://patchwork.kernel.org/patch/10944629/)
->   * Rebased hd3ss3220 driver based on the new API
->     --> Removed Heikki's review comment, since there is a rework
->     (https://patchwork.kernel.org/patch/10942499/)
->   * Incorporated shimoda-san's review comments for renesas usb3 binding
->     (https://patchwork.kernel.org/patch/10944631/)
->   * Incorporated shimoda-san's review comments for renesas usb3 driver
->     (https://patchwork.kernel.org/patch/10944643/)
-> V5-->V6
->   * Updated bindings patch by using usb-role-switch property
->   * Used graph api's to get role switch supported by the usb-c-connector
-> V4-->V5
->   * Incorporated Heikki's review comment.
->     (https://patchwork.kernel.org/patch/10902531/)
->   * Patch 1 is a dependency patch to make the compilation successful.
->     (https://patchwork.kernel.org/patch/10909971/)
->   * Patch 2 is also dependency patch to make the compilation successful.
->     Rebased on top of Patch1 and fixed Heikki's review comments
->     (https://patchwork.kernel.org/patch/10882555/)
->   * Incorporated Shimoda-San's review comment.
->     (https://patchwork.kernel.org/patch/10902535/)
-> V3-->V4
->   * Incorporated Chunfeng Yun's review comment
->     (https://patchwork.kernel.org/project/linux-usb/list/?submitter=3D133=
-171)
->   * Used fwnode API's to get roleswitch handle
->=20
-> V2-->V3
->   * Used the new API to usb_role_switch by node to find the remote
-> endpoint
->     (https://patchwork.kernel.org/patch/10882555/)
->   * Added renesas,usb-role-switch property
->   * Incorporated shimoda-san's review comment
->     (https://patchwork.kernel.org/patch/10852507/)
->=20
-> V1-->V2
->   * Use USB role class instead of extcon to receive connect and disconnec=
-t
->     events and also for the dual role switch.
->   * Dropped patch 6
->   * Squashed patch 8 and patch 9
->   * https://patchwork.kernel.org/cover/10840641/
->=20
->=20
-> Biju Das (3):
->   dt-bindings: usb: hd3ss3220 device tree binding document
->   usb: typec: driver for TI HD3SS3220 USB Type-C DRP port controller
->   dt-bindings: usb: renesas_usb3: Document usb role switch support
->=20
->  .../devicetree/bindings/usb/renesas,usb3-peri.txt  |  23 ++
->  .../devicetree/bindings/usb/ti,hd3ss3220.txt       |  38 +++
->  drivers/usb/typec/Kconfig                          |  10 +
->  drivers/usb/typec/Makefile                         |   1 +
->  drivers/usb/typec/hd3ss3220.c                      | 259 +++++++++++++++=
-++++++
->  5 files changed, 331 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
->  create mode 100644 drivers/usb/typec/hd3ss3220.c
->=20
-> --
-> 2.7.4
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZX08QAKCRDj7w1vZxhR
+xUvSAQC1+eHRqpwuII3FsX6/2/rGgktLFdlm0zpUDUebhtPfSQD8D69ULjkMCaWG
+JHIFGLff08YHZZ1WN8LzroPPbhBDjA8=
+=qst1
+-----END PGP SIGNATURE-----
 
+--nyn2rzxruc4qrbyu--
