@@ -2,99 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD3B5C9DB6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 13:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 833F6C9DC5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 13:50:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730217AbfJCLrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 07:47:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725827AbfJCLrg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 07:47:36 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 15A932070B;
-        Thu,  3 Oct 2019 11:47:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570103255;
-        bh=4nbskvtMte6G8Dn16qGwpWvD7usNNHZVowY6nzQ2Cx8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O20g3VXN3/cg4aktrTVEe1GoW8i3ThoeeCN1k/JWU6mjTRj16XPoBKKQyzKDaXwN2
-         4lZpEHI+x/6TtmfN5YS8Gy5rtabyI3lmUdMvHUjqCRr2kyrMwRtkphLHWmIzPJAv5u
-         qo1v5dHZgQ3uBbnCCPnNR81iVgTFACMX8U0wxo0I=
-Date:   Thu, 3 Oct 2019 13:47:33 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, michael@amarulasolutions.com,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 4/7] dt-bindings: sun6i-dsi: Add VCC-DSI supply
- property
-Message-ID: <20191003114733.56mlar666l76uoyb@gilmour>
-References: <20191003064527.15128-1-jagan@amarulasolutions.com>
- <20191003064527.15128-5-jagan@amarulasolutions.com>
+        id S1729999AbfJCLtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 07:49:50 -0400
+Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:44345 "EHLO
+        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726523AbfJCLtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 07:49:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1570103388; x=1601639388;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=QLZXac2aKdPQN+qy4ncbu1UgsJ89NCj4anql7kIwAq8=;
+  b=g763e/B3o3sQlymTin5Sx/W264Pr9vLiWst+PriT+sBwo2a57qxO+NSP
+   gsTEcvprUwaeksp2980ALWFDRMhEwBMsXecQELXCMd2ouzbxBqZJIavkl
+   aDL+eFht/Jgiv9Sh5h10BnxylKEd+qA00I8Xz3ZK3Ja1AHdbJAwrBQ/zE
+   4=;
+X-IronPort-AV: E=Sophos;i="5.67,251,1566864000"; 
+   d="scan'208";a="425564051"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1d-2c665b5d.us-east-1.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 03 Oct 2019 11:49:47 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
+        by email-inbound-relay-1d-2c665b5d.us-east-1.amazon.com (Postfix) with ESMTPS id 30825A218B;
+        Thu,  3 Oct 2019 11:49:43 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 3 Oct 2019 11:49:43 +0000
+Received: from udc4a3e82dbc15a031435.hfa15.amazon.com (10.43.161.223) by
+ EX13D01EUB001.ant.amazon.com (10.43.166.194) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 3 Oct 2019 11:49:34 +0000
+From:   Talel Shenhar <talel@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <bp@alien8.de>,
+        <mchehab@kernel.org>, <james.morse@arm.com>, <talel@amazon.com>,
+        <davem@davemloft.net>, <gregkh@linuxfoundation.org>,
+        <paulmck@linux.ibm.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>
+CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
+        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
+        <hanochu@amazon.com>, <amirkl@amazon.com>, <barakw@amazon.com>
+Subject: [PATCH v3 0/2] Amazon's Annapurna Labs Memory Controller EDAC
+Date:   Thu, 3 Oct 2019 14:49:21 +0300
+Message-ID: <1570103363-21486-1-git-send-email-talel@amazon.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="abhaj7rlytqkllsn"
-Content-Disposition: inline
-In-Reply-To: <20191003064527.15128-5-jagan@amarulasolutions.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-Originating-IP: [10.43.161.223]
+X-ClientProxiedBy: EX13D10UWB003.ant.amazon.com (10.43.161.106) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces support for Amazon's Annapurna Labs Memory
+Controller EDAC driver.
 
---abhaj7rlytqkllsn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes since v2:
+=================
+- added missing includes
+- aggregated variables to same line
+- removed ranks read
+- added spinlock to mc reporting
+- made irq handler clearer
+- freed irq before freeing device memory
+- changed Kconfig to tristate
+- added COMPILE_TEST to Kconfig
+- converted dt binding to new scheme
+- used devm_platform_ioremap_resource instead of get&ioremap
 
-On Thu, Oct 03, 2019 at 12:15:24PM +0530, Jagan Teki wrote:
-> Allwinner MIPI DSI controllers are supplied with SoC DSI
-> power rails via VCC-DSI pin.
->
-> Some board still work without supplying this but give more
-> faith on datasheet and hardware schematics and document this
-> supply property in required property list.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Tested-by: Merlijn Wajer <merlijn@wizzup.org>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  .../bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml         | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> index 47950fced28d..9d4c25b104f6 100644
-> --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> @@ -36,6 +36,9 @@ properties:
->    resets:
->      maxItems: 1
->
-> +  vcc-dsi-supply:
-> +    description: VCC-DSI power supply of the DSI encoder
-> +
+Changes since v1:
+=================
+- updated dt binding node name and added Rob Reviewed-By
+- removed auto selecting of this driver
 
-The driver treats it as mandatory, so I've added it to the binding, as
-suggested by the commit log.
 
-Maxime
+Talel Shenhar (2):
+  dt-bindings: edac: al-mc-edac: Amazon's Annapurna Labs Memory
+    Controller EDAC
+  EDAC: al-mc-edac: Introduce Amazon's Annapurna Labs Memory Controller
+    EDAC
 
---abhaj7rlytqkllsn
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/edac/amazon,al-mc-edac.yaml           |  40 +++
+ MAINTAINERS                                        |   7 +
+ drivers/edac/Kconfig                               |   7 +
+ drivers/edac/Makefile                              |   1 +
+ drivers/edac/al_mc_edac.c                          | 358 +++++++++++++++++++++
+ 5 files changed, 413 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
+ create mode 100644 drivers/edac/al_mc_edac.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.7.4
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZXf1QAKCRDj7w1vZxhR
-xQpxAP98mYp2+COHS85N0R4A/9rdJqX3YHaZ0XyYCj2Ihb0iVQD/QWC0ZaUcuku4
-nKva2ZQhgqqxhRK3v8jH9MrfregJmAE=
-=CYoo
------END PGP SIGNATURE-----
-
---abhaj7rlytqkllsn--
