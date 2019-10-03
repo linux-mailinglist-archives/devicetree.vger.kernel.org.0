@@ -2,112 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FA4C9B71
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0A60C9B77
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729554AbfJCKBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 06:01:35 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:35858 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729494AbfJCKBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:01:34 -0400
-Received: by mail-ua1-f67.google.com with SMTP id r25so699222uam.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 03:01:34 -0700 (PDT)
+        id S1729553AbfJCKBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 06:01:41 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:35725 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729601AbfJCKBk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:01:40 -0400
+Received: by mail-vs1-f65.google.com with SMTP id s7so1296917vsl.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 03:01:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=uHKag2bPeIrKn3P3JL++KZXHOUiSqvzC6FW+io/WAWI=;
-        b=tB61CORYFCnZCCgtX/7tBf5GZo8LBiZKhGioOaGJzzpb8cJobceohsclc9d3TSx2Ms
-         gDMya2+gozduxCQu4OBxalqIv+w/0Ly2PAjfrFzSwrVFnYPAcuhscugtdJ/+3CPJjVZS
-         WgWhAs+MOvzKeGM8YBzLUFIRBnu/OZLUWQygHQw3dPOYGTwiu36Umvm1G5wDMiFFsu52
-         eRlWq2b0JnfgifVKuJHxt5/TN1kR/9tsrtNG9LqG+y6b3XE2bkKEWs7mpDck/dV9wsto
-         c0aRIK0hJmi8qY6wvE2Hc4tjjZffUNMhUMxXynemXaqiX56CFoLfa5ImgUQkAFtrmgEz
-         7ECg==
+        bh=6B+E5RivcC5owz7oFA9AYi1iwjoiCE7P7xcMi6UgLa0=;
+        b=hq/EKDlVT66/mmZ8X58aU7DGkBtQoN38XbVyMTmedpHFhNBWSXRua2vJ8cs7mp0mXW
+         TuFkXknq5YLy2qnKHYeEUDrqQg4f9De83VAASuIknveh1oV7kMa+kUGD6Pjh5Mf+l3ai
+         0yG+gbXTjTu+xTj2AHaNQ54Ga5TBXI9v7l4CGR0xH23+KFgFwUzqN3EopiOH0ws4wrge
+         lfigp/bs/NBuqwTWgcnwhrmB2VydJvzv9MXxC7OzhNL0JEdwf241/HE7pusy+9qgoWQP
+         zOgNV8kWFOmDsqTzeSHfQkTbZ/B0NkUO/ywFMB0Lwoi3daYmW1bZGkXDEMJ3lm7jLZZ0
+         vIpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=uHKag2bPeIrKn3P3JL++KZXHOUiSqvzC6FW+io/WAWI=;
-        b=cttoBzGE0YEqzJYW54mNpjJ3lsZRJ83FV8xF+kTmRCN3J3GIr4uoxLK8aqYGnAfk7h
-         USch0bSbAqKWi5porWN8RwFtstrn7anudcMUb6zWgJzEkERuFxDH78IVZwGQJob1HGVh
-         ouD9GrvojeD8D4zbj3y0N251T6tRRckqOy0ndq8GmLEc5tEeHQqRwtZSAKUP1m3UNogR
-         /51R+PN0Vu8b00l+54r3hJYFMq5GfrpRkNCdsWxK0VYP/K0mXoIGsxiR/X8jCU3WvpeZ
-         uAkdfQ3K1zALRLFTO42zRVHN0l2g38Yp60wIRe08EKB8JDc3YwxbSfB5X52mYGNdxdih
-         Er3w==
-X-Gm-Message-State: APjAAAVaE/XIw6pzWqzAoETbe9xUQtonSxP1OV5voXZrlR+HAPq+o+V8
-        LZ881Cerq+6tARYa2ey3jGhWXDixtRWb2mTs8IZLlg==
-X-Google-Smtp-Source: APXvYqzTDm00zk91vFvREWyGzPJxPgoqb2kptShBcyIpkjlZmQw1Y15ISJjosvfcEfo8nniMu9cvOnaP5V5MtXXxzsg=
-X-Received: by 2002:ab0:6190:: with SMTP id h16mr2422735uan.129.1570096893220;
- Thu, 03 Oct 2019 03:01:33 -0700 (PDT)
+        bh=6B+E5RivcC5owz7oFA9AYi1iwjoiCE7P7xcMi6UgLa0=;
+        b=rHi7fVesdZSU554y14eaLtjLvOhlYfzhm0QJrbJtDiW/qlE7NKltW9tUJhtePCOcLj
+         ldMOHAUhMnsqGpSVpUoIa9zmimcM48mL3W9C9Ay9k0/49BFBOjUvC9uX6McFZ//GlS1F
+         gB0tpi5iTQADVjwMrW3Dz+AfbelzOoIyGHu2etSRwZMeW7YHXD1vSNf+LDtrQ2c7efpH
+         c3PY2P8132zOFtUULvS33J9YP8W/6b01pQKs0jod/pfEyFSeCxj3WldwqODSeEG84KW3
+         Q0AOihOFCuCaQrtA53wDClIcp4tc8xJAo73Bh9hXsbFe5cubes1xG27x2KHxUtxfh4a7
+         /Bzw==
+X-Gm-Message-State: APjAAAVpQOpzpYMU7jzZuQbqPBZ1+5T7cuXHVwnNNv0UIvK964Yl1RqA
+        nHozljlL4i/AvBlrCPQBelDmAqNl9biZqgsxvUfvWg==
+X-Google-Smtp-Source: APXvYqzlwi4amB7UdX5f2PKpwQatyFRQoBhnTFgxEQxEattFx/iQqKHcqAKAacBmYgLaUplhc/Bvnw0AfD5cC3bxSNI=
+X-Received: by 2002:a67:eb84:: with SMTP id e4mr4472823vso.165.1570096899417;
+ Thu, 03 Oct 2019 03:01:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <1568079631-28808-1-git-send-email-orito.takao@socionext.com>
-In-Reply-To: <1568079631-28808-1-git-send-email-orito.takao@socionext.com>
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org> <20190916154546.24982-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190916154546.24982-3-manivannan.sadhasivam@linaro.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 3 Oct 2019 12:00:57 +0200
-Message-ID: <CAPDyKFq6wbscGGq_0Q3_8eGLXk-+xBtmPbjq97jiejR7Qd_QbA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] mmc: sdhci-milbeaut: add Milbeaut SD driver
-To:     Takao Orito <orito.takao@socionext.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
+Date:   Thu, 3 Oct 2019 12:01:03 +0200
+Message-ID: <CAPDyKFo3+uAYr-j_qmBMeqO9TsY8PFv2J0kzAi56LYWe+E-o9w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO
+ controller binding
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jaswinder Singh <jaswinder.singh@linaro.org>,
-        sugaya.taichi@socionext.com, kasai.kazuhiro@socionext.com,
-        kanematsu.shinji@socionext.com
+        DTML <devicetree@vger.kernel.org>, thomas.liau@actions-semi.com,
+        linux-actions@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Sep 2019 at 03:39, Takao Orito <orito.takao@socionext.com> wrote:
+On Mon, 16 Sep 2019 at 17:46, Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
 >
-> The following patches add driver for SD Host controller on
-> Socionext's Milbeaut M10V platforms.
->
-> SD Host controller on Milbeaut consists of two controller parts.
-> One is core controller F_SDH30, this is similar to sdhci-fujitsu
+> Add devicetree YAML binding for Actions Semi Owl SoC's SD/MMC/SDIO
 > controller.
-> Another is bridge controller. This bridge controller is not compatible
-> with sdhci-fujitsu controller. This is special for Milbeaut series.
 >
-> It has the several parts,
->  - reset control
->  - clock enable / select for SDR50/25/12
->  - hold control of DATA/CMD line
->  - select characteristics for WP/CD/LED line
->  - Re-tuning control for mode3
->  - Capability setting
->    Timeout Clock / Base Clock / Timer Count for Re-Tuning /
->    Debounce period
-> These requires special procedures at reset or clock enable/change or
->  further tuning of clock.
->
-> Takao Orito (2):
->   dt-bindings: mmc: add DT bindings for Milbeaut SD controller
->   mmc: sdhci-milbeaut: add Milbeaut SD controller driver
->
->  .../devicetree/bindings/mmc/sdhci-milbeaut.txt     |  30 ++
->  drivers/mmc/host/Kconfig                           |  11 +
->  drivers/mmc/host/Makefile                          |   1 +
->  drivers/mmc/host/sdhci-milbeaut.c                  | 362 +++++++++++++++++++++
->  drivers/mmc/host/sdhci_f_sdh30.c                   |  26 +-
->  drivers/mmc/host/sdhci_f_sdh30.h                   |  32 ++
->  6 files changed, 437 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
->  create mode 100644 drivers/mmc/host/sdhci-milbeaut.c
->  create mode 100644 drivers/mmc/host/sdhci_f_sdh30.h
->
-> --
-> 1.9.1
->
->
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 Applied for next, thanks!
 
 Kind regards
 Uffe
+
+
+> ---
+>  .../devicetree/bindings/mmc/owl-mmc.yaml      | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/owl-mmc.yaml b/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+> new file mode 100644
+> index 000000000000..12b40213426d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/owl-mmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Actions Semi Owl SoCs SD/MMC/SDIO controller
+> +
+> +allOf:
+> +  - $ref: "mmc-controller.yaml"
+> +
+> +maintainers:
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: actions,owl-mmc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    const: mmc
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +  - dmas
+> +  - dma-names
+> +
+> +examples:
+> +  - |
+> +    mmc0: mmc@e0330000 {
+> +        compatible = "actions,owl-mmc";
+> +        reg = <0x0 0xe0330000 0x0 0x4000>;
+> +        interrupts = <0 42 4>;
+> +        clocks = <&cmu 56>;
+> +        resets = <&cmu 23>;
+> +        dmas = <&dma 2>;
+> +        dma-names = "mmc";
+> +        bus-width = <4>;
+> +    };
+> +
+> +...
+> --
+> 2.17.1
+>
