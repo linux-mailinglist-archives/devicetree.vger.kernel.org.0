@@ -2,120 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8ED6CA0F3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 17:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98950CA105
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 17:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727587AbfJCPM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 11:12:29 -0400
-Received: from mail-eopbgr1400092.outbound.protection.outlook.com ([40.107.140.92]:44032
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726364AbfJCPM3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 11:12:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SeWp63NJL4odvR3EecDLyOvCGXhYVtBtZRiwjtKiSyCCcBGHXV8KtbQtf4ti1//r/RAMtAM5GgZmlEtSWqyDYLLESlSJ2fl8drriymGfoJ3W8i2QpMYihLjRTYWY/otDqQ9Qb92Hrdv2C3aE2yahvbIu3FSeGuSpxk8MqLwxT3eKN6BbjxB84af43/JJV5i0IEfbNE5bVqlSgI2BeBfGh27i9v6tOfDbn/mCZUNeI0e0Pizt6o3EQkIlUsgVjwvTZh0evZaO1/X0/twPZzF1KfSrvUnLiLrsp4I5TJIuIFtuyfc+en+M5+fL5FOBHLSVdixrIWbyui5Mk3m/6eSxQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jMP90xpm/oH2VOa0gugfuxfjypFjWSjoxGrA3o2IXuE=;
- b=c/V5xpPIEb7gZqWXgMxFDiySSEkIdHBdRl8g7hhlexvm1YJlT/hF8c1A+xI9s7zyGstkQt6NpoS1M2AjQ0HKD5vaZh28CokxuLbtWYp/dsJ1xKB8XvYopg/P5JOU8UB1rv4KPIDd3xasSuGVB3HYneTIK6MmMwswUp9dBSz0r9PAMhafpbLSuKCMTdL8BlTWf4SmGZN+O7j2nX3Wn9ta62SkGyjDXDySxvPq3aiOxghji9kyjJkzyLc/iY6pCFsmogwtb/ujyW5q8L3p6fqm6sKWhJqwbtQ6xZyCx9tBBuUlEBCHo9TpjBmg1mDbG8pWppb7oj8C4Gjg2QMEpYGiKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S1729578AbfJCPQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 11:16:45 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:42328 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728061AbfJCPQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 11:16:45 -0400
+Received: by mail-io1-f67.google.com with SMTP id n197so6353253iod.9
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 08:16:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jMP90xpm/oH2VOa0gugfuxfjypFjWSjoxGrA3o2IXuE=;
- b=TSMsih4Ad7xs9HCK5XrD2ci2wl6rkJspuD/ArGbDBQgWshySP91yma+VS80/mNngeuikSyck1pCUnvu6upp/MFLLDrFz0NN/oFhFE++02Vqb0xwdxq8+H3kH/5zybRda39lmM/ARpFV5OtSbrKfFE2PdDSmw8GvUgK6xjEGvvpQ=
-Received: from OSAPR01MB3025.jpnprd01.prod.outlook.com (52.134.248.22) by
- OSAPR01MB5042.jpnprd01.prod.outlook.com (20.179.177.75) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Thu, 3 Oct 2019 15:12:25 +0000
-Received: from OSAPR01MB3025.jpnprd01.prod.outlook.com
- ([fe80::f193:eee6:cb3b:a3b5]) by OSAPR01MB3025.jpnprd01.prod.outlook.com
- ([fe80::f193:eee6:cb3b:a3b5%3]) with mapi id 15.20.2305.023; Thu, 3 Oct 2019
- 15:12:25 +0000
-From:   Vincent Cheng <vincent.cheng.xh@renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "richardcochran@gmail.com" <richardcochran@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: ptp: Add binding doc for IDT ClockMatrix
- based PTP clock
-Thread-Topic: [PATCH 1/2] dt-bindings: ptp: Add binding doc for IDT
- ClockMatrix based PTP clock
-Thread-Index: AQHVbly6xWB76P+IOkSrUCgqrhtfFqdGbPUAgAKwMIA=
-Date:   Thu, 3 Oct 2019 15:12:24 +0000
-Message-ID: <20191003145546.GA19695@renesas.com>
-References: <1568837198-27211-1-git-send-email-vincent.cheng.xh@renesas.com>
- <5d93ce84.1c69fb81.8e964.4dc1@mx.google.com>
-In-Reply-To: <5d93ce84.1c69fb81.8e964.4dc1@mx.google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [173.195.53.163]
-x-clientproxiedby: BYAPR11CA0087.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::28) To OSAPR01MB3025.jpnprd01.prod.outlook.com
- (2603:1096:604:2::22)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=vincent.cheng.xh@renesas.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 87415c58-eac8-46ef-7ecb-08d7481418bd
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: OSAPR01MB5042:
-x-microsoft-antispam-prvs: <OSAPR01MB5042BA66C4EBB3DABE6F43E1D29F0@OSAPR01MB5042.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01792087B6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(189003)(199004)(1076003)(6436002)(229853002)(446003)(11346002)(6486002)(256004)(2906002)(71200400001)(71190400001)(36756003)(7736002)(5660300002)(305945005)(4326008)(99286004)(486006)(2616005)(476003)(6512007)(186003)(52116002)(76176011)(102836004)(386003)(6506007)(6246003)(26005)(54906003)(66066001)(86362001)(6916009)(33656002)(25786009)(8936002)(3846002)(6116002)(66946007)(66446008)(64756008)(66556008)(66476007)(81166006)(81156014)(8676002)(14454004)(478600001)(316002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSAPR01MB5042;H:OSAPR01MB3025.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jDFYV/+jK7bJXxGfylBCv7vZEU02Z1FGPsKgp/97H80SyPxQBgNbekPayRD1FWtKPFIN4NcgbXVZjZVuBz9TPpc/coJpLbjK4D3l1v1fU0v68zJX5YnazE212Y5dJC6ZxVACVOCosZoYHmHKw6N/nfT6wfsyAJj2UZaXzU68JW6izscBLDnj5DJXZIvEr3io4Md4moX8wnuG3GcecC7vy+/CgMfHs1TOSi2qDSw8cOegpiS0uPxFiq92wfgr+ppweBqwfyaNCJcbwbjshKtCZwfrBqZQEP/ebYEjpQlS4E9qXYgSucenmC66p9Wn2Am/rJzwMnjjr2jnAOQrJzu0sMhM1qM29CdX475wXqGFp81kLq04MVhxWWQkYjf4pJQAFtdbJRKaUz3TPoxmSDhsbS04STIw0rMcnfttAAX7ufo=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <440A9CE6CF761845BBB59B4D03E3A6CC@jpnprd01.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hA2LtxmdLIDTNytgEaB7reCfgrHgEKb4xoiREE/0K7Q=;
+        b=ngQbGJwiby9Ke44nsAO/tlZUe9hbTCbksGis/YVtTxDj+EC1MtxBGvRkmqd0JLO845
+         p7e2ovtJjAB5LueL0Y5aQf5J1HQ/lKdMuIPvH9lVJpzJiPC2gNldIggTM1iJrlmY8m33
+         IpRwZ92PJPi/rxe1pcdqhVrJdkMQIW6Iw6Toc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hA2LtxmdLIDTNytgEaB7reCfgrHgEKb4xoiREE/0K7Q=;
+        b=tHeUOy3v/TkRmnWTQEufn2q4nw6HtPk2E95Ha3AUcTYxsDtE/DmmLgKHn5WaHMA942
+         /9b8PSKtUOzsotvEs9DGewY/NLg1PI5fKwzpxncy2rTkhURjSLofucfHnmuGOwU3sk/T
+         rH2DEi6bTQt92B9/IECsZhUJ+nbzF0ixhQ+fLLzLmaNaUipCG6MXE0JUikyM5MelVZw0
+         5XvTNtzvK6oZNJvx/7mSpf7YMrm1cAoVaPLlTd8HklrKf1FUkoh1n5sC9CZ/oQvsXRPF
+         KZlvXllbFWQ4/vAxdQvtuTx6PLJ+DLqQqAIXlU8aTDtOzv32O+5WX6NegAbBLA/AhiVB
+         4LnA==
+X-Gm-Message-State: APjAAAWPukArOXYz/dtb6OMCSnG2uFTPvPGhhuqaHYvFP/CFvynkzlAO
+        fhhzc3on4iHF6FO64iQbgLQjRCM8XI60nx1H+xmo9g==
+X-Google-Smtp-Source: APXvYqzlTS7XsY5btr8rMMngqjvVqVkZJIrk+i/7OsB/hdVMXH4Zvn/MgTgexACnaezUOhbxLyWLbSVqyy23WYGVkQQ=
+X-Received: by 2002:a92:17c4:: with SMTP id 65mr10501991ilx.28.1570115803953;
+ Thu, 03 Oct 2019 08:16:43 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87415c58-eac8-46ef-7ecb-08d7481418bd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 15:12:25.0030
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7z4CmbHWJpyFDWcYHElyFcKh56ffolmLFhTacZSQG5fDgUTGEHXmbkju6OdsF0aRqvbDRxMJFf7E05sG37k2OJwuSInM1CQ9JrIlZcDnNnU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB5042
+References: <20191003064527.15128-1-jagan@amarulasolutions.com>
+ <20191003064527.15128-2-jagan@amarulasolutions.com> <20191003131737.bvpf5quds66qtsmy@gilmour>
+In-Reply-To: <20191003131737.bvpf5quds66qtsmy@gilmour>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 3 Oct 2019 20:46:31 +0530
+Message-ID: <CAMty3ZA9tV-2nNa6qCBLUwoJpqEfQVZGk1E9-_wobfx5JDjvgw@mail.gmail.com>
+Subject: Re: [PATCH v11 1/7] drm/sun4i: dsi: Fix TCON DRQ set bits
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCBPY3QgMDEsIDIwMTkgYXQgMDY6MDk6MDZQTSBFRFQsIFJvYiBIZXJyaW5nIHdyb3Rl
-Og0KPk9uIFdlZCwgU2VwIDE4LCAyMDE5IGF0IDA0OjA2OjM3UE0gLTA0MDAsIHZpbmNlbnQuY2hl
-bmcueGhAcmVuZXNhcy5jb20gd3JvdGU6DQo+PiBGcm9tOiBWaW5jZW50IENoZW5nIDx2aW5jZW50
-LmNoZW5nLnhoQHJlbmVzYXMuY29tPg0KDQpIaSBSb2IsDQoNCldlbGNvbWUgYmFjay4gIFRoYW5r
-LXlvdSBmb3IgcHJvdmlkaW5nIGZlZWRiYWNrLg0KDQo+PiANCj4+IEFkZCBkZXZpY2UgdHJlZSBi
-aW5kaW5nIGRvYyBmb3IgdGhlIElEVCBDbG9ja01hdHJpeCBQVFAgY2xvY2sgZHJpdmVyLg0KPg0K
-PkJpbmRpbmdzIGFyZSBmb3IgaC93LCBub3QgZHJpdmVycy4uLg0KDQpZZXMsIHdpbGwgcmVtb3Zl
-ICdkcml2ZXInLg0KDQo+PiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3B0cC9w
-dHAtaWR0Y20udHh0IHwgMTUgKysrKysrKysrKysrKysrDQo+PiAgMSBmaWxlIGNoYW5nZWQsIDE1
-IGluc2VydGlvbnMoKykNCj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3B0cC9wdHAtaWR0Y20udHh0DQo+DQo+UGxlYXNlIG1ha2UgdGhpcyBh
-IERUIHNjaGVtYS4NCg0KU3VyZSwgd2lsbCBnaXZlIGl0IGEgdHJ5Lg0KDQo+PiArICAtIGNvbXBh
-dGlibGUgIFNob3VsZCBiZSAiaWR0LDhhMzQwMHgtcHRwIiBmb3IgU3lzdGVtIFN5bmNocm9uaXpl
-cg0KPj4gKyAgICAgICAgICAgICAgICBTaG91bGQgYmUgImlkdCw4YTM0MDF4LXB0cCIgZm9yIFBv
-cnQgU3luY2hyb25pemVyDQo+PiArICAgICAgICAgICAgICAgIFNob3VsZCBiZSAiaWR0LDhhMzQw
-NHgtcHRwIiBmb3IgVW5pdmVyc2FsIEZyZXF1ZW5jeSBUcmFuc2xhdG9yIChVRlQpDQo+DQo+SWYg
-UFRQIGlzIHRoZSBvbmx5IGZ1bmN0aW9uIG9mIHRoZSBjaGlwLCB5b3UgZG9uJ3QgbmVlZCB0byBh
-cHBlbmQgDQo+Jy1wdHAnLg0KDQpPa2F5LCB3aWxsIHJlbW92ZSAnLXB0cCcuICBUaGFua3MuDQoN
-Cg0KPldoYXQncyB0aGUgJ3gnIGZvcj8gV2UgZ2VuZXJhbGx5IGRvbid0IHVzZSB3aWxkY2FyZHMg
-aW4gY29tcGF0aWJsZSANCj5zdHJpbmdzLg0KDQpXZSB3ZXJlIGhvcGluZyB0byB1c2UgJ3gnIHRv
-IHJlcHJlc2VudCBhIHNpbmdsZSBkcml2ZXIgdG8gbWF0Y2ggdGhlIHZhcmlvdXMNCnBhcnQgbnVt
-YmVycyA4QTM0MDAxLCA4QTM0MDAyLCA4QTM0MDAzLCA4QTM0MDA0LCA4QTM0MDExLCA4QTM0MDEy
-LCBldGMuDQoNCldoYXQgc2hvdWxkIGJlIHVzZWQgaW5zdGVhZCBvZiAneCc/DQoNClRoYW5rcywN
-ClZpbmNlbnQNCg==
+On Thu, Oct 3, 2019 at 6:47 PM Maxime Ripard <mripard@kernel.org> wrote:
+>
+> On Thu, Oct 03, 2019 at 12:15:21PM +0530, Jagan Teki wrote:
+> > The LCD timing definitions between Linux DRM vs Allwinner are different,
+> > below diagram shows this clear differences.
+> >
+> >            Active                 Front           Sync           Back
+> >            Region                 Porch                          Porch
+> > <-----------------------><----------------><--------------><-------------->
+> >   //////////////////////|
+> >  ////////////////////// |
+> > //////////////////////  |..................                ................
+> >                                            ________________
+> > <----- [hv]display ----->
+> > <------------- [hv]sync_start ------------>
+> > <--------------------- [hv]sync_end ---------------------->
+> > <-------------------------------- [hv]total ------------------------------>
+> >
+> > <----- lcd_[xy] -------->               <- lcd_[hv]spw ->
+> >                                         <---------- lcd_[hv]bp --------->
+> > <-------------------------------- lcd_[hv]t ------------------------------>
+> >
+> > The DSI driver misinterpreted the hbp term from the BSP code to refer
+> > only to the backporch, when in fact it was backporch + sync. Thus the
+> > driver incorrectly used the horizontal front porch plus sync in its
+> > calculation of the DRQ set bit value, when it should not have included
+> > the sync timing.
+> >
+> > Including additional sync timings leads to flip_done timed out as:
+> >
+> > WARNING: CPU: 0 PID: 31 at drivers/gpu/drm/drm_atomic_helper.c:1429 drm_atomic_helper_wait_for_vblanks.part.1+0x298/0x2a0
+> > [CRTC:46:crtc-0] vblank wait timed out
+> > Modules linked in:
+> > CPU: 0 PID: 31 Comm: kworker/0:1 Not tainted 5.1.0-next-20190514-00026-g01f0c75b902d-dirty #13
+> > Hardware name: Allwinner sun8i Family
+> > Workqueue: events deferred_probe_work_func
+> > [<c010ed54>] (unwind_backtrace) from [<c010b76c>] (show_stack+0x10/0x14)
+> > [<c010b76c>] (show_stack) from [<c0688c70>] (dump_stack+0x84/0x98)
+> > [<c0688c70>] (dump_stack) from [<c011d9e4>] (__warn+0xfc/0x114)
+> > [<c011d9e4>] (__warn) from [<c011da40>] (warn_slowpath_fmt+0x44/0x68)
+> > [<c011da40>] (warn_slowpath_fmt) from [<c040cd50>] (drm_atomic_helper_wait_for_vblanks.part.1+0x298/0x2a0)
+> > [<c040cd50>] (drm_atomic_helper_wait_for_vblanks.part.1) from [<c040e694>] (drm_atomic_helper_commit_tail_rpm+0x5c/0x6c)
+> > [<c040e694>] (drm_atomic_helper_commit_tail_rpm) from [<c040e4dc>] (commit_tail+0x40/0x6c)
+> > [<c040e4dc>] (commit_tail) from [<c040e5cc>] (drm_atomic_helper_commit+0xbc/0x128)
+> > [<c040e5cc>] (drm_atomic_helper_commit) from [<c0411b64>] (restore_fbdev_mode_atomic+0x1cc/0x1dc)
+> > [<c0411b64>] (restore_fbdev_mode_atomic) from [<c04156f8>] (drm_fb_helper_restore_fbdev_mode_unlocked+0x54/0xa0)
+> > [<c04156f8>] (drm_fb_helper_restore_fbdev_mode_unlocked) from [<c0415774>] (drm_fb_helper_set_par+0x30/0x54)
+> > [<c0415774>] (drm_fb_helper_set_par) from [<c03ad450>] (fbcon_init+0x560/0x5ac)
+> > [<c03ad450>] (fbcon_init) from [<c03eb8a0>] (visual_init+0xbc/0x104)
+> > [<c03eb8a0>] (visual_init) from [<c03ed1b8>] (do_bind_con_driver+0x1b0/0x390)
+> > [<c03ed1b8>] (do_bind_con_driver) from [<c03ed780>] (do_take_over_console+0x13c/0x1c4)
+> > [<c03ed780>] (do_take_over_console) from [<c03ad800>] (do_fbcon_takeover+0x74/0xcc)
+> > [<c03ad800>] (do_fbcon_takeover) from [<c013c9c8>] (notifier_call_chain+0x44/0x84)
+> > [<c013c9c8>] (notifier_call_chain) from [<c013cd20>] (__blocking_notifier_call_chain+0x48/0x60)
+> > [<c013cd20>] (__blocking_notifier_call_chain) from [<c013cd50>] (blocking_notifier_call_chain+0x18/0x20)
+> > [<c013cd50>] (blocking_notifier_call_chain) from [<c03a6e44>] (register_framebuffer+0x1e0/0x2f8)
+> > [<c03a6e44>] (register_framebuffer) from [<c04153c0>] (__drm_fb_helper_initial_config_and_unlock+0x2fc/0x50c)
+> > [<c04153c0>] (__drm_fb_helper_initial_config_and_unlock) from [<c04158c8>] (drm_fbdev_client_hotplug+0xe8/0x1b8)
+> > [<c04158c8>] (drm_fbdev_client_hotplug) from [<c0415a20>] (drm_fbdev_generic_setup+0x88/0x118)
+> > [<c0415a20>] (drm_fbdev_generic_setup) from [<c043f060>] (sun4i_drv_bind+0x128/0x160)
+> > [<c043f060>] (sun4i_drv_bind) from [<c044b598>] (try_to_bring_up_master+0x164/0x1a0)
+> > [<c044b598>] (try_to_bring_up_master) from [<c044b668>] (__component_add+0x94/0x140)
+> > [<c044b668>] (__component_add) from [<c0445e1c>] (sun6i_dsi_probe+0x144/0x234)
+> > [<c0445e1c>] (sun6i_dsi_probe) from [<c0452ef4>] (platform_drv_probe+0x48/0x9c)
+> > [<c0452ef4>] (platform_drv_probe) from [<c04512cc>] (really_probe+0x1dc/0x2c8)
+> > [<c04512cc>] (really_probe) from [<c0451518>] (driver_probe_device+0x60/0x160)
+> > [<c0451518>] (driver_probe_device) from [<c044f7a4>] (bus_for_each_drv+0x74/0xb8)
+> > [<c044f7a4>] (bus_for_each_drv) from [<c045107c>] (__device_attach+0xd0/0x13c)
+> > [<c045107c>] (__device_attach) from [<c0450474>] (bus_probe_device+0x84/0x8c)
+> > [<c0450474>] (bus_probe_device) from [<c0450900>] (deferred_probe_work_func+0x64/0x90)
+> > [<c0450900>] (deferred_probe_work_func) from [<c0135970>] (process_one_work+0x204/0x420)
+> > [<c0135970>] (process_one_work) from [<c013690c>] (worker_thread+0x274/0x5a0)
+> > [<c013690c>] (worker_thread) from [<c013b3d8>] (kthread+0x11c/0x14c)
+> > [<c013b3d8>] (kthread) from [<c01010e8>] (ret_from_fork+0x14/0x2c)
+> > Exception stack(0xde539fb0 to 0xde539ff8)
+> > 9fa0:                                     00000000 00000000 00000000 00000000
+> > 9fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+> > 9fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+> > ---[ end trace b57eb1e5c64c6b8b ]---
+> > random: fast init done
+> > [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [CRTC:46:crtc-0] flip_done timed out
+> > [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [CONNECTOR:48:DSI-1] flip_done timed out
+> > [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [PLANE:30:plane-0] flip_done timed out
+> >
+> > With the terms(as described in above diagram) fixed, the panel
+> > displays correctly without any timeouts.
+> >
+> > Tested-by: Merlijn Wajer <merlijn@wizzup.org>
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+>
+> Applied, thanks
+
+Thanks, would you apply the similar change in 3/7?
