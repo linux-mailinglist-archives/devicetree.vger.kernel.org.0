@@ -2,100 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59C8DC989A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:50:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DF6C989F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:51:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727247AbfJCGuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 02:50:50 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:41584 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726808AbfJCGuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 02:50:50 -0400
-Received: by mail-ot1-f67.google.com with SMTP id g13so1338638otp.8;
-        Wed, 02 Oct 2019 23:50:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=auZ7HiHMDv5PPXvkfHWTWD80UebgiY2eZyTeLcEb2XE=;
-        b=ZinS2VNkmhkp61XHmoSSxHAZwbPRd5VMW+6t4A9057ty/w6yegi0TiDptzY7758dia
-         YHS9SQdjBfVHOkyvXiQjGYbOKVnKgFHheIEbXPbUdRfqInanG8AoKB5MTktme2QRzZKc
-         8pj5qaV4wFVWNfbPs+JHK1ckdOBLJQAriyMBKhlPX8oF9xC40kUijK+Y6d/9yCoRdXbb
-         1e3d7IMhzW29CoykBtw3fZvqmlA95DNfQaguZ5TJHARBolxQWaHE8KRMQLLyLIE8zeBv
-         ycLczWGkUXiZbYKWAoTqJWTQegi2gI3O14PCxAGgMZzJGIMYpuz5V3zo0UwcxXrU6ME4
-         AG6Q==
-X-Gm-Message-State: APjAAAXoUZPw9S7UoZ6SMhKSxQi8UmhmfZ1+kwrzh6a5y5i3VlHYq4xf
-        i1zgEPsCaI+xrgUru+c1zIoe4ljK7Pm/GQnf1is=
-X-Google-Smtp-Source: APXvYqyT8loLZb66HtrVN0p6WhG71GjGj/ioh6ZRGKrJEiMMOG/hVcGaY//JRTRC5CFxH1ThIhJdzdSjtisJDJn6+20=
-X-Received: by 2002:a9d:7311:: with SMTP id e17mr5232167otk.107.1570085449032;
- Wed, 02 Oct 2019 23:50:49 -0700 (PDT)
+        id S1727252AbfJCGvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 02:51:03 -0400
+Received: from mga12.intel.com ([192.55.52.136]:25149 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725879AbfJCGvD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 02:51:03 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Oct 2019 23:51:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,251,1566889200"; 
+   d="scan'208";a="195120078"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga003.jf.intel.com with ESMTP; 02 Oct 2019 23:51:02 -0700
+Received: from [10.226.39.36] (unknown [10.226.39.36])
+        by linux.intel.com (Postfix) with ESMTP id 733B35803A5;
+        Wed,  2 Oct 2019 23:51:00 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
+To:     martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        p.zabel@pengutronix.de
+References: <62697250-d2c2-87d5-6206-aac3f6fc2be7@linux.intel.com>
+ <29965a80-642b-8f11-b3d4-25c09c3d96cc@linux.intel.com>
+Cc:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
+        cheol.yong.kim@intel.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
+        robh@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+Message-ID: <6e55bedb-fc65-4ecc-6f65-11cf733b204f@linux.intel.com>
+Date:   Thu, 3 Oct 2019 14:50:59 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <1569249052-1037-1-git-send-email-biju.das@bp.renesas.com> <dd752192-8caf-39bf-5a91-27adb6a5f84b@linaro.org>
-In-Reply-To: <dd752192-8caf-39bf-5a91-27adb6a5f84b@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 3 Oct 2019 08:50:37 +0200
-Message-ID: <CAMuHMdVvgS17NW7srZ37x5QD3qtZkGQY9xE_97bvF8bwAcmLvg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas: tmu: Document r8a774b1 bindings
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <29965a80-642b-8f11-b3d4-25c09c3d96cc@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Hi Martin and Philipp,
 
-On Thu, Oct 3, 2019 at 6:09 AM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
-> On 23/09/2019 16:30, Biju Das wrote:
-> > Document RZ/G2N (R8A774B1) SoC in the Renesas TMU bindings.
-> >
-> > Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/timer/renesas,tmu.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.txt b/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-> > index 9dff7e5..29159f4 100644
-> > --- a/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-> > +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-> > @@ -11,6 +11,7 @@ Required Properties:
-> >    - compatible: must contain one or more of the following:
-> >      - "renesas,tmu-r8a7740" for the r8a7740 TMU
-> >      - "renesas,tmu-r8a774a1" for the r8a774A1 TMU
-> > +    - "renesas,tmu-r8a774b1" for the r8a774B1 TMU
-> >      - "renesas,tmu-r8a774c0" for the r8a774C0 TMU
-> >      - "renesas,tmu-r8a7778" for the r8a7778 TMU
-> >      - "renesas,tmu-r8a7779" for the r8a7779 TMU
-> >
+
+On 20/9/2019 10:47 AM, Dilip Kota wrote:
+> Hi Martin,
 >
-> The patch does not apply on tip/timers
+> On 9/20/2019 3:51 AM, Martin Blumenstingl wrote:
+>> Hi Dilip,
+>>
+>> (sorry for the late reply)
+>>
+>> On Thu, Sep 12, 2019 at 8:38 AM Dilip Kota 
+>> <eswara.kota@linux.intel.com> wrote:
+>> [...]
+>>> The major difference between the vrx200 and lgm is:
+>>> 1.) RCU in vrx200 is having multiple register regions wheres RCU in lgm
+>>> has one single register region.
+>>> 2.) Register offsets and bit offsets are different.
+>>>
+>>> So enhancing the intel-reset-syscon.c to provide compatibility/support
+>>> for vrx200.
+>>> Please check the below dtsi binding proposal and let me know your view.
+>>>
+>>> rcu0:reset-controller@00000000 {
+>>> compatible= "intel,rcu-lgm";
+>>> reg = <0x0000000 0x80000>, <reg_set2 size>, <reg_set3 size>,
+>>> <reg_set4 size>;
+>> I'm not sure that I understand what are reg_set2/3/4 for
+>> the first resource (0x80000 at 0x0) already covers the whole LGM RCU,
+>> so what is the purpose of the other register resources
+> Yes, as you said the first register resource is enough for LGM RCU as 
+> registers are at one single region. Whereas in older SoCs RCU 
+> registers are at different regions, so for that reason reg_set2/3/4 
+> are used.
+>
+> Driver will decide in reading the no. of register resources based on 
+> the "struct of_device_id".
+>
+> Regards,
+> Dilip
+>>
+>>> intel,global-reset = <0x10 30>;
+>>> #reset-cells = <3>;
+>>> };
+>>>
+>>> "#reset-cells":
+>>> const:3
+>>> description: |
+>>> The 1st cell is the reset register offset.
+>>> The 2nd cell is the reset set bit offset.
+>>> The 3rd cell is the reset status bit offset.
+>> I think this will work fine for VRX200 (and even older SoCs)
+>> as you have described in your previous emails we can determine the
+>> status offset from the reset offset using a simple if/else
+>>
+>> for LGM I like your initial suggestion with #reset-cells = <2> because
+>> it's easier to read and write.
+>>
+>>> Reset driver takes care of parsing the register address "reg" as per the
+>>> ".data" structure in struct of_device_id.
+>>> Reset driver takes care of traversing the status register offset.
+>> the differentiation between two and three #reset-cells can also happen
+>> based on the struct of_device_id:
+>> - the LGM implementation would simply also use the reset bit as status
+>> bit (only two cells are needed)
+>> - the implementation for earlier SoCs would parse the third cell and
+>> use that as status bit
+>>
+>> Philipp, can you please share your opinion on how to move forward with
+>> the reset-intel driver from this series?
+>> The reset_control_ops from the reset-intel driver are (in my opinion)
+>> a bug-fixed and improved version of what we already have in
+>> drivers/reset/reset-lantiq.c. The driver is NOT simply copy and paste
+>> because the register layout was greatly simplified for the newer SoCs
+>> (for which there is reset-intel) compared to the older ones
+>> (reset-lantiq).
+>> Dilip's suggestion (in my own words) is that you take his new
+>> reset-intel driver, then we will work on porting reset-lantiq over to
+>> that so in the end we can drop the reset-lantiq driver. This approach
+>> means more work for me (as I am probably the one who then has to do
+>> the work to port reset-lantiq over to reset-intel). I'm happy to do
+>> that work if you think that it's worth following this approach.
+>> So I want your opinion on this before I spend any effort on porting
+>> reset-lantiq over to reset-intel.
 
-That's expected, as I queued the previous change in
-renesas-dt-bindings-for-v5.5, cfr.
-https://lore.kernel.org/linux-renesas-soc/244ca7ac-54d1-d07d-762f-e832b0e2a267@linaro.org/
+I will start implementing this design in the next patch version along 
+with the other changes suggested in this patch review, please let me 
+know if you have other thoughts in this design.
 
-Do you want me to know this in renesas-dt-bindings-for-v5.5?
+Regards,
+Dilip
 
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>>
+>>
+>> Martin
