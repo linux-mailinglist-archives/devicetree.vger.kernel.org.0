@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F453C9E9D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 14:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB80EC9EA3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 14:38:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729093AbfJCMev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 08:34:51 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42893 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728955AbfJCMev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 08:34:51 -0400
-Received: by mail-oi1-f194.google.com with SMTP id i185so2385836oif.9;
-        Thu, 03 Oct 2019 05:34:50 -0700 (PDT)
+        id S1728683AbfJCMiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 08:38:05 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:36129 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727242AbfJCMiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 08:38:04 -0400
+Received: by mail-io1-f44.google.com with SMTP id b136so5109234iof.3;
+        Thu, 03 Oct 2019 05:38:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=mzsUcDM2g0UBcqHEb2Rfu7NDxj07u1Rq4/MBSlHUokY=;
+        b=g7UzHIjgle7y8OGY2qo0VPIApT742hZARLNz/+tsG3DkuomZbQtwQ4HxJMKI3T8XHo
+         dKKi8HtnHOuCqyDRZJPTf5e2bQuOoDXo5yKAOw3B/eYyZswY8e/Z7/LstUjQI7z54JeM
+         5fr+hK4Doch0MM/Hxb1glHALTuWqR+NhrCcL5UDved/tRiwlZAyj2VmktjH4K8COzmiX
+         9J7vuksDshk2fr+iY88TP1AcIEqmHkMjv4xU0JxOkAsqD3lbSXXnfwofCmny9hpxfvJ4
+         LsvtbBBzgl0dPpxjO1W9Rd5wNi5Whkj0W753DCci+tNy7kFN48xMZ04t4vOdtS0uTUTb
+         2E4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IcTd9Itun0/KbmjKh/hg+t/fsSJ+uH8uK0GHc0XKVNo=;
-        b=FMUZUMQdDqFoBg3F7z2iH+Cxjyc+lWqI5ALVQ2sYwM4+xiYwC4IZpbis5sO1y97sxJ
-         dAEFwhN+aPazMF2YqUMkP5i7hHdTVs8Vd8LNg+ulAAbXmuclIvoKTxqO9tn/MLGjDEHS
-         OGu1LXC/VMf7lPBsrmevwLmOo7DJJXsHsHWd7Zni3hn+P3w8nWe0cvWDFAx1hbuTfD2T
-         PGRjTkuCOXRZnFcVX4GIxqVMYA2y6Iv/mb7v8FBWaumSXWveVrvLFppRW03sUyTh9ArP
-         GmKJSoYl4IaA+OzLYw7b97TOS7C8k2rF+JmFCr63wASBhkjm3ZSbYKmjFCBp1f0cD17e
-         t+cQ==
-X-Gm-Message-State: APjAAAXP9jHCg43/+76PPYTGUz7iAwuJrL/p2OXoIYNN/A2PZGWQ9Ngm
-        6e1GTprA1osJMONwsEWZxVrEBEoxTMmClyjJQhI=
-X-Google-Smtp-Source: APXvYqxXgdBGyKVBW93M6H5LOzM6DCQTdl0OCF/0RLCC5POFepJqurio1hPG4ME9H1SWpjb/DvoqbRT5XNdTGbaQRlM=
-X-Received: by 2002:aca:cdc7:: with SMTP id d190mr2504167oig.148.1570106090412;
- Thu, 03 Oct 2019 05:34:50 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=mzsUcDM2g0UBcqHEb2Rfu7NDxj07u1Rq4/MBSlHUokY=;
+        b=lHLz8QbyFi9FDxqC2f0+W+E6njxA3qo+O+/ksNWAxryxwO43qa6gUK8AIRPE71+7D3
+         UTyZ1hWbi696noq7l4Fevp1uOTXF//yzyo06Ce1GOKPokX+pMoTqqCZlzoLO7FIPDo1x
+         flfwcEeCkWZwRWU/1Hr9y15Vwpciq0l4d2cBeUwYyQymeSBY8ZQ0RipC9s7Y+y+LNOFo
+         Fv5gy9GmnRAfyCykGnP+al46LUUQVAbJhdvK5uFHbX6PIEbEZ8WePfAR73wp1daREquc
+         BZrwLGWy7AwIM7tcHBNnQDcJgSCTpxPtJXT60/+o2/W1+KDMPHUb3siI9TAxwXu7NhuD
+         KnSQ==
+X-Gm-Message-State: APjAAAWBB03PU1WvxalZZYkiFDnPtwKnlyxmEywHoyKslJPxYtBV5lPB
+        QbIkBP8c7iTRobyEyPIo/wHBEw3neURZNmNExQ8=
+X-Google-Smtp-Source: APXvYqw2SmTkJ4rLwrJ7E70hGT/CJf8JbebQxH9MeQYWV9rrtC7G56aX/0FWguTOiTaVhpxyQur4pEG//R1O2qBsCVw=
+X-Received: by 2002:a5d:8ac4:: with SMTP id e4mr3159232iot.185.1570106284036;
+ Thu, 03 Oct 2019 05:38:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <1570104229-59144-1-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1570104229-59144-1-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 3 Oct 2019 14:34:38 +0200
-Message-ID: <CAMuHMdV_xMFK0uVNLbJRTzD4X7GxguwSin0TvK=aiQ-tR7xg=w@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas, cmt: Document r8a774b1
- CMT support
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20190927183650.31345-1-bparrot@ti.com> <20190927183650.31345-3-bparrot@ti.com>
+ <CAOoBcBUd7reG=-WOq+Vq9SynZMJ81CWFZPN35MkmaQvquZ9xyg@mail.gmail.com> <20190930155826.pimkap75k67mji3e@ti.com>
+In-Reply-To: <20190930155826.pimkap75k67mji3e@ti.com>
+From:   Austin Kim <austinkernel.kim@gmail.com>
+Date:   Thu, 3 Oct 2019 21:37:53 +0900
+Message-ID: <CAOoBcBV=4GYVXdhhyNcpi97RzO3qR_NG6TfYxk=niwn5=RWzbw@mail.gmail.com>
+Subject: Re: [Patch 02/16] media: ti-vpe: vpe: Add missing null pointer checks
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 3, 2019 at 2:04 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> Document SoC specific bindings for RZ/G2N (r8a774b1) SoC.
+2019=EB=85=84 10=EC=9B=94 1=EC=9D=BC (=ED=99=94) =EC=98=A4=EC=A0=84 12:56, =
+Benoit Parrot <bparrot@ti.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+> Hi Austin,
+>
+> Thanks for the review,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+It's my pleasure.
+Hope to see this patch will arrive the destination(linux-next) safely.  :)
