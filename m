@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51FAFCA23B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05FF9CA3B1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732226AbfJCQDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 12:03:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48332 "EHLO mail.kernel.org"
+        id S2387651AbfJCQSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 12:18:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44278 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732218AbfJCQDL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 12:03:11 -0400
+        id S2388422AbfJCQSB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 12:18:01 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1AED520700;
-        Thu,  3 Oct 2019 16:03:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A5AC820865;
+        Thu,  3 Oct 2019 16:17:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570118590;
-        bh=I1yTz26Uus0FX8pVRrSS7YkMuXv5RAm6lTosyJbGcuo=;
+        s=default; t=1570119480;
+        bh=aVOggpoqi/Rcx/POg1Q3q2Vvw3fw5my5raFRADNEbh4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=O2ZJ9WW2SYn/M02JOtYvz5RKg1zhN24/3wuhoz1p0tHrHTVxlpvD2Stbwxq8v8QIJ
-         I/zGjPyfl5Yq67ZDePvlntpB9em48BJAiGvaHLEgKBFY/7AosIbqwSLjfHLvvc/Eir
-         0AbtR5h9z3DZe0DK9A5SPd968ajR80Tn4xtsOp6c=
+        b=ybJ5GxOh0HGy1N1Ug1bmOEZSV8phm0t9n+vzaWjCxmJWaqw1OeZHgcREu6371Vz6Y
+         PgnlXMgOAP2oNd/1siVwHrpoNTh9lEaKQxuXpF91QdKXlR2vBa/c1tAHRat9Qj/lZP
+         v0aIxSdslBJo4ZkN/+jlZZXj1OGlD6K2R+UT8T1I=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -39,12 +39,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.9 065/129] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
-Date:   Thu,  3 Oct 2019 17:53:08 +0200
-Message-Id: <20191003154348.179363833@linuxfoundation.org>
+Subject: [PATCH 4.19 081/211] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
+Date:   Thu,  3 Oct 2019 17:52:27 +0200
+Message-Id: <20191003154505.754669718@linuxfoundation.org>
 X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191003154318.081116689@linuxfoundation.org>
-References: <20191003154318.081116689@linuxfoundation.org>
+In-Reply-To: <20191003154447.010950442@linuxfoundation.org>
+References: <20191003154447.010950442@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -101,7 +101,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index 2051306008534..72d1b8209f5e6 100644
+index 8bf365d28cacf..584418f517a88 100644
 --- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
 +++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
 @@ -43,7 +43,7 @@
