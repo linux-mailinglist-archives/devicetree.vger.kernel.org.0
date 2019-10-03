@@ -2,46 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9B4CC9F34
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 15:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ACE0C9F72
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 15:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726508AbfJCNRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 09:17:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43538 "EHLO mail.kernel.org"
+        id S1730439AbfJCNaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 09:30:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48552 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727409AbfJCNRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 09:17:41 -0400
+        id S1729655AbfJCNaf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 09:30:35 -0400
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0D11E20862;
-        Thu,  3 Oct 2019 13:17:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 87D85207FF;
+        Thu,  3 Oct 2019 13:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570108660;
-        bh=4XdzpLb9uj0tLiXrscinkGNfd+vwMzBSlrUPK+GONLE=;
+        s=default; t=1570109434;
+        bh=/PbXIGt0UaMtnHakh0maKsJfjC9hWocWlO7+FUASxAs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ojn1iPijJrAcmt7DBl6ln8cTNWbgIL4AIUpLXgdi9CqcGMxefPxGPeXOOh5G3LpQg
-         O3GJhROjQ0gwEfpWHvEVV3vt1mWiKV6h9S3mCzANSP382VGsVzb9CLa46XE4MkAkgt
-         f5mNRTrLoGeXeC5F5iXM4lNf9Kkp392SmNfAQykw=
-Date:   Thu, 3 Oct 2019 15:17:37 +0200
+        b=2QzvAZ+ZKgdOJ80qmd9SOJ5LSwKyk4G/pw5n8Gp/a2xELivFH5ULWHtb4eAgV9ans
+         E48i9e22CPdnXQuE2n7GWOtdKqOw4VSGKA0OvZ19/QyJ2q0J6pwyokSdaw/GXyAOMy
+         RBSZCDf5+Mji9yipjs10suznOE6Etm80OulAKWYY=
+Date:   Thu, 3 Oct 2019 15:30:31 +0200
 From:   Maxime Ripard <mripard@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, michael@amarulasolutions.com,
-        Icenowy Zheng <icenowy@aosc.io>,
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
         linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 1/7] drm/sun4i: dsi: Fix TCON DRQ set bits
-Message-ID: <20191003131737.bvpf5quds66qtsmy@gilmour>
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>, Daniel Vetter <daniel@ffwll.ch>,
+        michael@amarulasolutions.com
+Subject: Re: [PATCH v11 4/7] dt-bindings: sun6i-dsi: Add VCC-DSI supply
+ property
+Message-ID: <20191003133031.gowixvfbdaif4sdf@gilmour>
 References: <20191003064527.15128-1-jagan@amarulasolutions.com>
- <20191003064527.15128-2-jagan@amarulasolutions.com>
+ <20191003064527.15128-5-jagan@amarulasolutions.com>
+ <20191003114733.56mlar666l76uoyb@gilmour>
+ <0086CD40-F161-4B33-8D76-8DCA20E7DB07@aosc.io>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nyn2rzxruc4qrbyu"
+        protocol="application/pgp-signature"; boundary="xl6ox63chtxqzxbp"
 Content-Disposition: inline
-In-Reply-To: <20191003064527.15128-2-jagan@amarulasolutions.com>
+In-Reply-To: <0086CD40-F161-4B33-8D76-8DCA20E7DB07@aosc.io>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -49,111 +52,71 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---nyn2rzxruc4qrbyu
-Content-Type: text/plain; charset=us-ascii
+--xl6ox63chtxqzxbp
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 03, 2019 at 12:15:21PM +0530, Jagan Teki wrote:
-> The LCD timing definitions between Linux DRM vs Allwinner are different,
-> below diagram shows this clear differences.
+On Thu, Oct 03, 2019 at 09:04:03PM +0800, Icenowy Zheng wrote:
+> =E4=BA=8E 2019=E5=B9=B410=E6=9C=883=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
+7:47:33, Maxime Ripard <mripard@kernel.org> =E5=86=99=E5=88=B0:
+> >On Thu, Oct 03, 2019 at 12:15:24PM +0530, Jagan Teki wrote:
+> >> Allwinner MIPI DSI controllers are supplied with SoC DSI
+> >> power rails via VCC-DSI pin.
+> >>
+> >> Some board still work without supplying this but give more
+> >> faith on datasheet and hardware schematics and document this
+> >> supply property in required property list.
+> >>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> Tested-by: Merlijn Wajer <merlijn@wizzup.org>
+> >> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> >> ---
+> >>  .../bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml         | 3
+> >+++
+> >>  1 file changed, 3 insertions(+)
+> >>
+> >> diff --git
+> >a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi=
+=2Eyaml
+> >b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi=
+=2Eyaml
+> >> index 47950fced28d..9d4c25b104f6 100644
+> >> ---
+> >a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi=
+=2Eyaml
+> >> +++
+> >b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi=
+=2Eyaml
+> >> @@ -36,6 +36,9 @@ properties:
+> >>    resets:
+> >>      maxItems: 1
+> >>
+> >> +  vcc-dsi-supply:
+> >> +    description: VCC-DSI power supply of the DSI encoder
+> >> +
+> >
+> >The driver treats it as mandatory, so I've added it to the binding, as
+> >suggested by the commit log.
 >
->            Active                 Front           Sync           Back
->            Region                 Porch                          Porch
-> <-----------------------><----------------><--------------><-------------->
->   //////////////////////|
->  ////////////////////// |
-> //////////////////////  |..................                ................
->                                            ________________
-> <----- [hv]display ----->
-> <------------- [hv]sync_start ------------>
-> <--------------------- [hv]sync_end ---------------------->
-> <-------------------------------- [hv]total ------------------------------>
->
-> <----- lcd_[xy] -------->		  <- lcd_[hv]spw ->
-> 					  <---------- lcd_[hv]bp --------->
-> <-------------------------------- lcd_[hv]t ------------------------------>
->
-> The DSI driver misinterpreted the hbp term from the BSP code to refer
-> only to the backporch, when in fact it was backporch + sync. Thus the
-> driver incorrectly used the horizontal front porch plus sync in its
-> calculation of the DRQ set bit value, when it should not have included
-> the sync timing.
->
-> Including additional sync timings leads to flip_done timed out as:
->
-> WARNING: CPU: 0 PID: 31 at drivers/gpu/drm/drm_atomic_helper.c:1429 drm_atomic_helper_wait_for_vblanks.part.1+0x298/0x2a0
-> [CRTC:46:crtc-0] vblank wait timed out
-> Modules linked in:
-> CPU: 0 PID: 31 Comm: kworker/0:1 Not tainted 5.1.0-next-20190514-00026-g01f0c75b902d-dirty #13
-> Hardware name: Allwinner sun8i Family
-> Workqueue: events deferred_probe_work_func
-> [<c010ed54>] (unwind_backtrace) from [<c010b76c>] (show_stack+0x10/0x14)
-> [<c010b76c>] (show_stack) from [<c0688c70>] (dump_stack+0x84/0x98)
-> [<c0688c70>] (dump_stack) from [<c011d9e4>] (__warn+0xfc/0x114)
-> [<c011d9e4>] (__warn) from [<c011da40>] (warn_slowpath_fmt+0x44/0x68)
-> [<c011da40>] (warn_slowpath_fmt) from [<c040cd50>] (drm_atomic_helper_wait_for_vblanks.part.1+0x298/0x2a0)
-> [<c040cd50>] (drm_atomic_helper_wait_for_vblanks.part.1) from [<c040e694>] (drm_atomic_helper_commit_tail_rpm+0x5c/0x6c)
-> [<c040e694>] (drm_atomic_helper_commit_tail_rpm) from [<c040e4dc>] (commit_tail+0x40/0x6c)
-> [<c040e4dc>] (commit_tail) from [<c040e5cc>] (drm_atomic_helper_commit+0xbc/0x128)
-> [<c040e5cc>] (drm_atomic_helper_commit) from [<c0411b64>] (restore_fbdev_mode_atomic+0x1cc/0x1dc)
-> [<c0411b64>] (restore_fbdev_mode_atomic) from [<c04156f8>] (drm_fb_helper_restore_fbdev_mode_unlocked+0x54/0xa0)
-> [<c04156f8>] (drm_fb_helper_restore_fbdev_mode_unlocked) from [<c0415774>] (drm_fb_helper_set_par+0x30/0x54)
-> [<c0415774>] (drm_fb_helper_set_par) from [<c03ad450>] (fbcon_init+0x560/0x5ac)
-> [<c03ad450>] (fbcon_init) from [<c03eb8a0>] (visual_init+0xbc/0x104)
-> [<c03eb8a0>] (visual_init) from [<c03ed1b8>] (do_bind_con_driver+0x1b0/0x390)
-> [<c03ed1b8>] (do_bind_con_driver) from [<c03ed780>] (do_take_over_console+0x13c/0x1c4)
-> [<c03ed780>] (do_take_over_console) from [<c03ad800>] (do_fbcon_takeover+0x74/0xcc)
-> [<c03ad800>] (do_fbcon_takeover) from [<c013c9c8>] (notifier_call_chain+0x44/0x84)
-> [<c013c9c8>] (notifier_call_chain) from [<c013cd20>] (__blocking_notifier_call_chain+0x48/0x60)
-> [<c013cd20>] (__blocking_notifier_call_chain) from [<c013cd50>] (blocking_notifier_call_chain+0x18/0x20)
-> [<c013cd50>] (blocking_notifier_call_chain) from [<c03a6e44>] (register_framebuffer+0x1e0/0x2f8)
-> [<c03a6e44>] (register_framebuffer) from [<c04153c0>] (__drm_fb_helper_initial_config_and_unlock+0x2fc/0x50c)
-> [<c04153c0>] (__drm_fb_helper_initial_config_and_unlock) from [<c04158c8>] (drm_fbdev_client_hotplug+0xe8/0x1b8)
-> [<c04158c8>] (drm_fbdev_client_hotplug) from [<c0415a20>] (drm_fbdev_generic_setup+0x88/0x118)
-> [<c0415a20>] (drm_fbdev_generic_setup) from [<c043f060>] (sun4i_drv_bind+0x128/0x160)
-> [<c043f060>] (sun4i_drv_bind) from [<c044b598>] (try_to_bring_up_master+0x164/0x1a0)
-> [<c044b598>] (try_to_bring_up_master) from [<c044b668>] (__component_add+0x94/0x140)
-> [<c044b668>] (__component_add) from [<c0445e1c>] (sun6i_dsi_probe+0x144/0x234)
-> [<c0445e1c>] (sun6i_dsi_probe) from [<c0452ef4>] (platform_drv_probe+0x48/0x9c)
-> [<c0452ef4>] (platform_drv_probe) from [<c04512cc>] (really_probe+0x1dc/0x2c8)
-> [<c04512cc>] (really_probe) from [<c0451518>] (driver_probe_device+0x60/0x160)
-> [<c0451518>] (driver_probe_device) from [<c044f7a4>] (bus_for_each_drv+0x74/0xb8)
-> [<c044f7a4>] (bus_for_each_drv) from [<c045107c>] (__device_attach+0xd0/0x13c)
-> [<c045107c>] (__device_attach) from [<c0450474>] (bus_probe_device+0x84/0x8c)
-> [<c0450474>] (bus_probe_device) from [<c0450900>] (deferred_probe_work_func+0x64/0x90)
-> [<c0450900>] (deferred_probe_work_func) from [<c0135970>] (process_one_work+0x204/0x420)
-> [<c0135970>] (process_one_work) from [<c013690c>] (worker_thread+0x274/0x5a0)
-> [<c013690c>] (worker_thread) from [<c013b3d8>] (kthread+0x11c/0x14c)
-> [<c013b3d8>] (kthread) from [<c01010e8>] (ret_from_fork+0x14/0x2c)
-> Exception stack(0xde539fb0 to 0xde539ff8)
-> 9fa0:                                     00000000 00000000 00000000 00000000
-> 9fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> 9fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> ---[ end trace b57eb1e5c64c6b8b ]---
-> random: fast init done
-> [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [CRTC:46:crtc-0] flip_done timed out
-> [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [CONNECTOR:48:DSI-1] flip_done timed out
-> [drm:drm_atomic_helper_wait_for_dependencies] *ERROR* [PLANE:30:plane-0] flip_done timed out
->
-> With the terms(as described in above diagram) fixed, the panel
-> displays correctly without any timeouts.
->
-> Tested-by: Merlijn Wajer <merlijn@wizzup.org>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> No. The regulator_get function will return dummy regulator, rather than
+> fail, if the regulator is not specified.
 
-Applied, thanks
+Yes. And this deals nicely with the backward compatibility case. The
+regulator is there on all the SoCs, so there's no reason to leave it
+out.
 
 Maxime
 
---nyn2rzxruc4qrbyu
+--xl6ox63chtxqzxbp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZX08QAKCRDj7w1vZxhR
-xUvSAQC1+eHRqpwuII3FsX6/2/rGgktLFdlm0zpUDUebhtPfSQD8D69ULjkMCaWG
-JHIFGLff08YHZZ1WN8LzroPPbhBDjA8=
-=qst1
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZX39wAKCRDj7w1vZxhR
+xfdtAP9iY02ClBdX7PytSYTVv7u9rk5qFxNbRhfligYsza6diwEA+bXtRpDjiCDy
+YsfwN2Wm3Vvp2K/WtdvzfKezGk0WpAo=
+=iYP9
 -----END PGP SIGNATURE-----
 
---nyn2rzxruc4qrbyu--
+--xl6ox63chtxqzxbp--
