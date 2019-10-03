@@ -2,134 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5035FCB08D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 22:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02555CB10B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 23:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbfJCU4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 16:56:33 -0400
-Received: from us-smtp-2.mimecast.com ([205.139.110.61]:48286 "EHLO
-        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728954AbfJCU4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 16:56:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1570136190;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=VC/LlBcR/5mNVDb/D015rZ9V1BXd6w3MDPPfMofQMc0=;
-        b=aAvisvvPgqtx5Ol9tMIr1i47Qfso1Qij2ZmDMc/nYL0t3krGw1QpzsuZgqbBFvs8gqycUT
-        csQ6ZjgXFGcU69mNklT/KN2NCBgsEibTadI8ZhK1tp6gsN8kRnwSa3zQJI5JQlNQUJloQt
-        5yVCNricKo3Gv4BSm/XtFS0c0Y652y4=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-242-035mjTklMO68b6uJ7KUoKg-1; Thu, 03 Oct 2019 16:56:28 -0400
-Received: by mail-wr1-f69.google.com with SMTP id b6so1678019wrw.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 13:56:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=A5kOIo5QkieVFmBFAtLwxKf3nxk646ajjZrARZPXdLI=;
-        b=fmNFG/ChFYGcIRFkgoW1gVu3JMAKgnrkSXy2cMVgXx2KjD3FsLSZ28C9bLImKZFp2h
-         GFOdenTrQGzLiX4Rrrgolyh1iaEx/QnqcD/37ZgEr8EQobYddIPKfxNZBU+gsBZduyxM
-         3HtePxSs/sOVv7dspOAV9uN2bSXsD6QPrWTdF69KlfyuZhrLG43zUsUYB/G3ZxEq4o7o
-         5dJZp5ig0VrNBF/B81wEIRmopisIfZ9vv33QI1J+JuvuXQ3HFMuZOVb9035z+O6ZT1X2
-         zYjOLi/a4YkAjSBXuhFPX/jboCwtdBmrcD6UMoyS/m7WypshCvVXjv/yZUFmayXT2Q9m
-         GJlg==
-X-Gm-Message-State: APjAAAXtcDgHM623aoJgjkKHW7FregWvlxJQwoJxLLLd3PYzGWhcK8Eq
-        uLiHfo3djEyTHzz5fgB0ymjpSgrOF3rT2lQrutEMW5cXeQavT7WBsQG5icK5e2nREUzZPcCyQtN
-        53Q9xO/G2iAIt8tx7w2jnRA==
-X-Received: by 2002:a1c:1aca:: with SMTP id a193mr8470573wma.120.1570136186726;
-        Thu, 03 Oct 2019 13:56:26 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqyTDfMkHtgwnWS6hHN107FbUrB3SZTNQ+JCS+Zycf70DOxLyHXyYisZjPmgWq6URjChzPNdOQ==
-X-Received: by 2002:a1c:1aca:: with SMTP id a193mr8470560wma.120.1570136186423;
-        Thu, 03 Oct 2019 13:56:26 -0700 (PDT)
-Received: from shalem.localdomain (2001-1c00-0c14-2800-ec23-a060-24d5-2453.cable.dynamic.v6.ziggo.nl. [2001:1c00:c14:2800:ec23:a060:24d5:2453])
-        by smtp.gmail.com with ESMTPSA id l9sm4075992wme.45.2019.10.03.13.56.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2019 13:56:25 -0700 (PDT)
-Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
-To:     John Stultz <john.stultz@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20191002231617.3670-1-john.stultz@linaro.org>
- <20191002231617.3670-3-john.stultz@linaro.org>
- <20191003112618.GA2420393@kroah.com>
- <CALAqxLWm_u3KsXHn4a6PdBCOKM1vs5k0xS3G5jY+M-=HBqUJag@mail.gmail.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
-Date:   Thu, 3 Oct 2019 22:56:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1732481AbfJCVZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 17:25:55 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:56394 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728763AbfJCVZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 17:25:54 -0400
+Received: from p57b7758c.dip0.t-ipconnect.de ([87.183.117.140] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iG8bg-0000an-7d; Thu, 03 Oct 2019 23:25:52 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-rockchip@lists.infradead.org,
+        christoph.muellner@theobroma-systems.com
+Subject: Re: [PATCH 01/13] arm64: dts: rockchip: fix iface clock-name on px30 iommus
+Date:   Thu, 03 Oct 2019 23:25:51 +0200
+Message-ID: <2015322.eFjuJPvpNX@phil>
+In-Reply-To: <20190917082659.25549-1-heiko@sntech.de>
+References: <20190917082659.25549-1-heiko@sntech.de>
 MIME-Version: 1.0
-In-Reply-To: <CALAqxLWm_u3KsXHn4a6PdBCOKM1vs5k0xS3G5jY+M-=HBqUJag@mail.gmail.com>
-Content-Language: en-US
-X-MC-Unique: 035mjTklMO68b6uJ7KUoKg-1
-X-Mimecast-Spam-Score: 0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Am Dienstag, 17. September 2019, 10:26:47 CEST schrieb Heiko Stuebner:
+> The iommu clock names are aclk+iface not aclk+hclk as in the vendor kernel,
+> so fix that in the px30.dtsi
+> 
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-On 03-10-2019 22:45, John Stultz wrote:
-> On Thu, Oct 3, 2019 at 4:26 AM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
->>
->> On Wed, Oct 02, 2019 at 11:16:16PM +0000, John Stultz wrote:
->>> From: Yu Chen <chenyu56@huawei.com>
->>>
->>> This patch adds notifier for drivers want to be informed of the usb rol=
-e
->>> switch.
->>
->> Ick, I hate notifiers, they always come back to cause problems.
->>
->> What's just wrong with a "real" call to who ever needs to know this?
->> And who does need to know this anyway?  Like Hans said, if we don't have
->> a user for it, we should not add it.
->=20
-> So in this case, its used for interactions between the dwc3 driver and
-> the hikey960 integrated USB hub, which is controlled via gpio (which I
-> didn't submit here as I was trying to keep things short and
-> reviewable, but likely misjudged).
->=20
-> The HiKey960 has only one USB controller, but in order to support both
-> USB-C gadget/OTG and USB-A (host only) ports. When the USB-C
-> connection is attached, it powers down and disconnects the hub. When
-> the USB-C connection is detached, it powers the hub on and connects
-> the controller to the hub.
+applied patches 1-11 for 5.5
 
-When you say one controller, do you mean 1 host and 1 gadget controller,
-or is this one of these lovely devices where a gadget controller gets
-abused as / confused with a proper host controller?
+Patches 12+13 need the corresponding phy change to land first
 
-And since you are doing a usb-role-switch driver, I guess that the
-role-switch is integrated inside the SoC, so you only get one pair
-of USB datalines to the outside ?
-
-This does seem rather special, it might help if you can provide a diagram
-with both the relevant bits inside the SoC as well as what lives outside
-the Soc. even if it is in ASCII art...
-
-Regards,
-
-Hans
 
