@@ -2,111 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 493A8C98AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C21A1C98A8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726523AbfJCGxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 02:53:48 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41993 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726048AbfJCGxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 02:53:47 -0400
-Received: by mail-ot1-f68.google.com with SMTP id c10so1340779otd.9;
-        Wed, 02 Oct 2019 23:53:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Y0ruBFHWi9OYE4E12vzQFfkM5P7jSliMi4kt8S/GY5Y=;
-        b=hjq4waor8vUDWXGeDEjnGKFCigug1YY2LTrtVREb3ILoh2n4R7JOygVjrJwWZMIvJF
-         ArqrydEoSXwrXHDmnhiG05OB+z2LJRKkehcZBnhX5K/aw87tPEySSakusalKVbv8wcna
-         qs6j2pbHWsOVJfg13zbgRgHUwAbjQvLzFD81cP7pjOhiIHnufm0IT2/O5LAYcKb9XYK+
-         1LgJpeMWKZkV149TWI+G36YrUoR7I+UwCG6ZyQSXynNAfDPSiE6v+IImbdwYiq8Ig0Mk
-         Ex6r5zPsLIESZlyruPQQ+Bp4qVrjbMR7KzrCjz0vZZC5julR0GjOvDb+PZIs7DCBGjHw
-         Q+Gg==
-X-Gm-Message-State: APjAAAVi5mmBgBfjZuTFJSDmD66r7vawRx9eV+bKcRbPS/Q93U+8iYHA
-        bWbQH+8D2SraqvUp2MDv7tMM60It8+W4xNVQQ5IemknC
-X-Google-Smtp-Source: APXvYqwebgMr7zfRZO5B7bkHOWz2lIl2VEsCBrLGhh6oAgfNSPrhRAHZ61I5QSQAxpwd20PP8DGJPQUwCgc8bsfrvRY=
-X-Received: by 2002:a9d:6642:: with SMTP id q2mr5536389otm.250.1570085626827;
- Wed, 02 Oct 2019 23:53:46 -0700 (PDT)
+        id S1726116AbfJCGx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 02:53:27 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:44437 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726048AbfJCGx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 02:53:26 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id ABA586000C;
+        Thu,  3 Oct 2019 06:53:22 +0000 (UTC)
+Date:   Thu, 3 Oct 2019 08:55:06 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        hugues.fruchet@st.com
+Subject: Re: [Patch 1/3] media: ov5640: add PIXEL_RATE control
+Message-ID: <20191003065506.ijivptniwvzyo5oz@uno.localdomain>
+References: <20190925152301.21645-1-bparrot@ti.com>
+ <20190925152301.21645-2-bparrot@ti.com>
+ <20191001075704.GA5449@paasikivi.fi.intel.com>
+ <20191001162341.f2o7ruar2nifl5ws@ti.com>
+ <20191002075951.afp2xligspqat4ew@uno.localdomain>
+ <20191002121438.g3re6v54q4hit2wv@ti.com>
+ <20191002143226.psrcocsjs2wtiydd@uno.localdomain>
+ <20191002150615.tyxy3n6cbxttbpum@ti.com>
 MIME-Version: 1.0
-References: <1569248907-62107-1-git-send-email-biju.das@bp.renesas.com>
- <df05997f-e9c5-d226-68cd-6f1274995688@linaro.org> <OSBPR01MB21036A4E612729D5C5709E7BB89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSBPR01MB21036A4E612729D5C5709E7BB89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 3 Oct 2019 08:53:35 +0200
-Message-ID: <CAMuHMdURzHLLC+0KsuBBdRShUDnfD8fPQcfo3kUctt1AxGFkzg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas, cmt: Document r8a774b1 CMT support
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="t4za3ljubo5keeag"
+Content-Disposition: inline
+In-Reply-To: <20191002150615.tyxy3n6cbxttbpum@ti.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Thu, Oct 3, 2019 at 8:39 AM Biju Das <biju.das@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] dt-bindings: timer: renesas, cmt: Document r8a774b1
-> > CMT support
+--t4za3ljubo5keeag
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+
+Hi Benoit,
+
+On Wed, Oct 02, 2019 at 10:06:15AM -0500, Benoit Parrot wrote:
+> Jacopo Mondi <jacopo@jmondi.org> wrote on Wed [2019-Oct-02 16:32:26 +0200]:
+> > Hi Benoit,
 > >
-> > On 23/09/2019 16:28, Biju Das wrote:
-> > > Document SoC specific bindings for RZ/G2N (r8a774b1) SoC.
+> > On Wed, Oct 02, 2019 at 07:14:38AM -0500, Benoit Parrot wrote:
+> > > Hi Jacopo,
 > > >
-> > > Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/timer/renesas,cmt.txt | 2 ++
-> > >  1 file changed, 2 insertions(+)
+> > > Maybe, I miss spoke when I mentioned a helper I did not intent a framework
+> > > level generic function. Just a function to help in this case :)
+> >
+> > Yes indeed, the discussion thread I linked here was mostly interesting
+> > because Hugues tried to do the same for LINK_FREQ iirc, and there
+> > where some usefult pointers.
+> >
 > > >
-> > > diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> > > b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> > > index c5220bc..7b1f454 100644
-> > > --- a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> > > +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> > > @@ -32,6 +32,8 @@ Required Properties:
-> > >      - "renesas,r8a77470-cmt1" for the 48-bit CMT1 device included in
-> > r8a77470.
-> > >      - "renesas,r8a774a1-cmt0" for the 32-bit CMT0 device included in
-> > r8a774a1.
-> > >      - "renesas,r8a774a1-cmt1" for the 48-bit CMT1 device included in
-> > r8a774a1.
-> > > +    - "renesas,r8a774b1-cmt0" for the 32-bit CMT0 device included in
-> > r8a774b1.
-> > > +    - "renesas,r8a774b1-cmt1" for the 48-bit CMT1 device included in
-
-"CMT devices", cfr. commit 1be8c9fd2ac9ad73 ("dt-bindings: timer: renesas,
-cmt: Update R-Car Gen3 CMT1 usage").
-
-> > r8a774b1.
-> > >      - "renesas,r8a774c0-cmt0" for the 32-bit CMT0 device included in
-> > r8a774c0.
-> > >      - "renesas,r8a774c0-cmt1" for the 48-bit CMT1 device included in
-> > r8a774c0.
-> > >      - "renesas,r8a7790-cmt0" for the 32-bit CMT0 device included in r8a7790.
+> > > That being said, I re-read the thread you mentioned. And as Hughes pointed
+> > > out dynamically generating a "working" link frequency value which can be
+> > > used by a CSI2 receiver to properly configure its PHY is not trivial.
+> > >
+> > > When I created this patch, I also had another to add V4L2_CID_LINK_FREQ
+> > > support. I am testing this against the TI CAL CSI2 receiver, which already
+> > > uses the V4L2_CID_PIXEL_RATE value for that purpose, so I also had a patch
+> > > to add support for V4L2_CID_LINK_FREQ to that driver as well.
+> > >
+> > > Unfortunately, similar to Hughes' findings I was not able to make it "work"
+> > > with all supported resolution/framerate.
+> >
+> > As reported by Hugues findings, the PLL calculation procedure might be
+> > faulty, and the actuall frequencies on the bus are different from the
+> > calculated ones.
+> >
+> > I wish I had more time to re-look at that, as they worked for my and
+> > Sam's use case, but deserve some rework.
+> >
+> > >
+> > > Unlike my V4L2_CID_PIXEL_RATE solution which now works in all mode with the
+> > > same receiver.
 > > >
 > >
-> > The patch does not apply on tip/timers
+> > It seems to me you're reporting a fixed rate. It might make your
+> > receiver happy, but does not report what is acutally put on the bus.
+> > Am I missing something ?
 >
-> OK. I will rebase on top of tip/timers and will send V2.
+> No it is not fixed, the only fixed value was the initial value (which
+> representative of the initial/default resolution and framerate), I
+> fixed this in v2. The reported PIXEL_RATE is re-calculated every time there
+> is a s_fmt and/or framerate change and the V4L2_CID_PIXEL_RATE control
+> value is updated accordingly.
 
-Gr{oetje,eeting}s,
+Oh I missed v2! I only seen this one.
+I'll reply there.
 
-                        Geert
+Thanks
+  j
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> >
+> > > So long story short I dropped the V4L2_CID_LINK_FREQ patch and focused on
+> > > V4L2_CID_PIXEL_RATE instead.
+> > >
+> >
+> > As Sakari pointed out, going from one to the other is trivial and
+> > could be done on top.
+>
+> As you said it could be done on top. :)
+>
+> Benoit
+>
+> >
+> > Thanks
+> >    j
+> >
+> > > Regard,
+> > > Benoit
+> > >
+> > > Jacopo Mondi <jacopo@jmondi.org> wrote on Wed [2019-Oct-02 09:59:51 +0200]:
+> > > > Hi Benoit,
+> > > >   +Hugues
+> > > >
+> > > > If you're considering an helper, this thread might be useful to you:
+> > > > https://patchwork.kernel.org/patch/11019673/
+> > > >
+> > > > Thanks
+> > > >    j
+> > > >
+> > >
+> > >
+>
+>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--t4za3ljubo5keeag
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl2Vm0kACgkQcjQGjxah
+VjxCvA/8CIxJ1u3/4d340kMy543hq9yHlp9oKDwuamw0VLyqOdOGYKiJTrD8HN1M
+oE5TrFlcc4j5crvLg6MHre35j2e+EHsJKsFQ+lrJp9OhXaOGSzELWc4/ixzFnLox
+1hmew+DyLq/lCEThSxrRN9cWQq6mtZ4oItfB1pzGDLcaSUJ9j4sr1w+Y3gvkC3/M
+zbp+IWqT75CtP7HlNgTu8ncnOJ76g+FXmQiJq1oIazq5NXTwM7vbm2V0vl+ZCnzQ
+w+dz+dgmqfrO0KPthbp7HDb9Nh5SnAr0wr+E4v/ur69aHFtw5duRRHZlVmChh4vk
+yg6gtrykzwx2UvT+xZWuQKoJZ2Q1m+DC3hahnKYv4Sp/wQsYuXOn5NN/MsgOBrLI
+HG6SmTx0yjnygv0qXKWRbq1hwyojiED2MozPBHxGsFOUo88Gu5uZl1W7Z0K9/z18
+y77Xcfj7E7W92dazdsyklxR5f2Q9/xHKV2vkVGb33WKs0j2dpNhzvSKboUV9lZX0
+EiSv9njvXCN9ZkEN23SRHewP8l04+lAMSdPeA6WcZbFxkO64z2XzyuHAH2JIE1Lu
++ZqJPKRaoUQQEDtnHuZpkS7nDRUElS6EKnIp95HsYT55WB72nuINyUfTrQhTih94
+BKKfRRIQ6qZ49dqlcXrh03FcDc1P/wKgU5cN1a9898NwrJZ7QWA=
+=3rJs
+-----END PGP SIGNATURE-----
+
+--t4za3ljubo5keeag--
