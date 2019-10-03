@@ -2,125 +2,388 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7021C985C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C701C986D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 08:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725999AbfJCGjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 02:39:49 -0400
-Received: from mail-eopbgr1400129.outbound.protection.outlook.com ([40.107.140.129]:58332
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725860AbfJCGjt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 02:39:49 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TnVhshgd0qmAPC3W5hWvmqs1F8nXC1GkARieV9BcS70v8WDkyiJhozBwj/9lLVCC8Yru8C/wTTle8WB4hkNAxBUlaZoNL9PBiAlP4rpH3wC0hsorlhYWM2s76QuFmxHLJhs89cYSHjh/O78tJ1oXXZ6y+6wZybeN478sK2hFDYC1HjS/J2lLDpHKF8T8pTBRvAtjDukbR4rttzMeGpsehewkcx5cwF387Mz1dW3a0K/IBp37Nze3nWd/NPUqVr6/xcfiU2fwa6Rvo1iK5nrYMod6ApZaRYrgaFJWHfAJCjE5NSvKngrisZI43RsDBnt+7ooDhJ9fswa3LxDdQLnDuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0HqbmNE45MJmY2RWnGqPjlYCHIT8ybUtLH5lozwZPZg=;
- b=CfqYZ/Q6QoVF22d82eqeUmrpPPQp8xHu0v+wQEFrK2cbi2kYRMAM77GtZlHkDpBFlxg78wQliPScOcnwA48NUy1wMgBc25BBwD73lHoVJ/FKQkNc1Fj0Hjw5qBn7TjD5xU5M7dh0y8kGUjs/rOPd254Q7o3vgFgk2nCvS1FNMN1PMpNHqXXYZoYkrM5MiGXQb7grNSz9Cg0Hb6KyrFSKEAucgzZf0CK4AkKVbHBHUddvGG2gbqr56vsbkMu0kJpqNle9d9TQOCyqX4A6U2TkLsaY15DkPkwtb/Rnh1uNJ/fb7LrJZWOupf5Kku09Z7iUsmB5kP8ds/RQstR7vlYGJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0HqbmNE45MJmY2RWnGqPjlYCHIT8ybUtLH5lozwZPZg=;
- b=ZyxN26xT8vrO+a3dJts60f0VqJGLmqA0mEMLOyrwHGRYeR3uKp3WQIngIkn5hh0cz+LDyHWIjWxSfABsfQ9BOxij7+v6EvTMYU4Rv4Gx9hsSfPdZoxtAaRlWMWQj9jWML2MrgExgrVjUDa4Sejt6d6AprGqTuWekST3zxeU5CTw=
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
- OSBPR01MB1734.jpnprd01.prod.outlook.com (52.134.226.20) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Thu, 3 Oct 2019 06:39:45 +0000
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::d5a0:9756:da13:2d6f]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::d5a0:9756:da13:2d6f%7]) with mapi id 15.20.2305.022; Thu, 3 Oct 2019
- 06:39:45 +0000
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727065AbfJCGpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 02:45:16 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:47756 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725497AbfJCGpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 02:45:16 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 036B36118D; Thu,  3 Oct 2019 06:45:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570085115;
+        bh=ddn1c+BnNBD6lRBn/L5g+wqfrNnO9jM0DJsrX1V0GnU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=g2i2g5HL8MaZado17xz/mvM3+t5XrHjkW69tRgMSO74pwrrpp3q5N839/zMYmVu5H
+         Fjnt7HL7QdexEs3ur6hU0kgocVkLey2Wjc+9QIERB0ViYBZvfV0eGJIY5fO6SeT2C/
+         d4PSuZC//cXdYng/ofrXhDDibqdtEsaJIh+S/seI=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan@codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 41D646074F;
+        Thu,  3 Oct 2019 06:45:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570085113;
+        bh=ddn1c+BnNBD6lRBn/L5g+wqfrNnO9jM0DJsrX1V0GnU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XOq5jo14T6wz1Tod0HWMs3uwRvFAnfAy/rPvdEX935sKpm+IHTmeCCedo6AAm/za0
+         LYbofXHYIlOFAj84aWnlajSlHE82QPO/RnSK9clUXK6/re1YtqBP5sKRPn8roRKPcb
+         FWGaiuApxfgU/ZQXn6yMM4kFbN8bjMVauZmPWfeY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 41D646074F
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        David Brown <david.brown@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: timer: renesas, cmt: Document r8a774b1 CMT
- support
-Thread-Topic: [PATCH] dt-bindings: timer: renesas, cmt: Document r8a774b1 CMT
- support
-Thread-Index: AQHVchsy9YYAaMwKvEWMepy4B2mVP6dIXKcAgAAplGA=
-Date:   Thu, 3 Oct 2019 06:39:45 +0000
-Message-ID: <OSBPR01MB21036A4E612729D5C5709E7BB89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-References: <1569248907-62107-1-git-send-email-biju.das@bp.renesas.com>
- <df05997f-e9c5-d226-68cd-6f1274995688@linaro.org>
-In-Reply-To: <df05997f-e9c5-d226-68cd-6f1274995688@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biju.das@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 23d1cc66-f528-46bf-bd60-08d747cc7ae6
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: OSBPR01MB1734:|OSBPR01MB1734:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSBPR01MB1734A7549899DEF5B43F5289B89F0@OSBPR01MB1734.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 01792087B6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(346002)(136003)(366004)(39850400004)(376002)(51914003)(199004)(189003)(66446008)(55016002)(3846002)(14454004)(86362001)(76116006)(66556008)(9686003)(4326008)(66476007)(64756008)(33656002)(478600001)(305945005)(7736002)(66066001)(6436002)(74316002)(6246003)(8936002)(8676002)(81156014)(81166006)(2906002)(11346002)(5660300002)(476003)(102836004)(7696005)(6116002)(486006)(71190400001)(76176011)(66946007)(44832011)(26005)(71200400001)(446003)(53546011)(110136005)(54906003)(229853002)(186003)(6506007)(99286004)(316002)(25786009)(52536014)(256004);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB1734;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: x27yBehwHgXSrbtA1te2P4sfWsU2iTfJtuFV6id+G+j9ELsfqVFXllSiMJ+M8PBtBSuMSfAk2MWHMXAvd/9ndOiR4iU3S76uo9/MDtyiK2ZR/5+Z7RsbFis5x4ffy2AvEvscjhKmqInLaKH+8j+Za7X5a+Vho0XIURj9Fkc9X0fcPNa8Z+HnOD1CYgslHmVlAppqot7KoyD1EPtEThDH/JEg3ispVJyzs2rVY7qkBHLxTMCA0TAyAJKyHrVa8jG24JVZ3C72tRNOPuGBkEc5B8bww97sOSb94h4d6wteegXBYN5ZhhiJueQ82R9EjtuGwPNYw6LmQYSfFLtB4bVtDC9ZNnUXX0FcJMuVNB1KKTGTRT7n+Z+BeHHWn1rNxXjeMplYIJhHESlUUiPKIBoZmJD2aefGOEOrTlL8EGa2jdk=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: msm8998: Disable coresight by default
+Date:   Thu,  3 Oct 2019 12:14:49 +0530
+Message-Id: <20191003064449.2201-1-saiprakash.ranjan@codeaurora.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23d1cc66-f528-46bf-bd60-08d747cc7ae6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 06:39:45.5897
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6mlPakkkh8JgtCDbgv9RSGyi+yB1NM8H5WhDhGgbM/mIF+ryfAIvMONdhs/8nbI0qQ4tYALYnBqNrb66jNdzRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB1734
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRGFuaWVsLA0KDQpUaGFua3MgZm9yIHRoZSBmZWVkYmFjay4NCg0KPiBTdWJqZWN0OiBSZTog
-W1BBVENIXSBkdC1iaW5kaW5nczogdGltZXI6IHJlbmVzYXMsIGNtdDogRG9jdW1lbnQgcjhhNzc0
-YjENCj4gQ01UIHN1cHBvcnQNCj4gDQo+IE9uIDIzLzA5LzIwMTkgMTY6MjgsIEJpanUgRGFzIHdy
-b3RlOg0KPiA+IERvY3VtZW50IFNvQyBzcGVjaWZpYyBiaW5kaW5ncyBmb3IgUlovRzJOIChyOGE3
-NzRiMSkgU29DLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogQmlqdSBEYXMgPGJpanUuZGFzQGJw
-LnJlbmVzYXMuY29tPg0KPiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvdGltZXIvcmVuZXNhcyxjbXQudHh0IHwgMiArKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwg
-MiBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3RpbWVyL3JlbmVzYXMsY210LnR4dA0KPiA+IGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RpbWVyL3JlbmVzYXMsY210LnR4dA0KPiA+IGluZGV4IGM1
-MjIwYmMuLjdiMWY0NTQgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3RpbWVyL3JlbmVzYXMsY210LnR4dA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy90aW1lci9yZW5lc2FzLGNtdC50eHQNCj4gPiBAQCAtMzIsNiAr
-MzIsOCBAQCBSZXF1aXJlZCBQcm9wZXJ0aWVzOg0KPiA+ICAgICAgLSAicmVuZXNhcyxyOGE3NzQ3
-MC1jbXQxIiBmb3IgdGhlIDQ4LWJpdCBDTVQxIGRldmljZSBpbmNsdWRlZCBpbg0KPiByOGE3NzQ3
-MC4NCj4gPiAgICAgIC0gInJlbmVzYXMscjhhNzc0YTEtY210MCIgZm9yIHRoZSAzMi1iaXQgQ01U
-MCBkZXZpY2UgaW5jbHVkZWQgaW4NCj4gcjhhNzc0YTEuDQo+ID4gICAgICAtICJyZW5lc2FzLHI4
-YTc3NGExLWNtdDEiIGZvciB0aGUgNDgtYml0IENNVDEgZGV2aWNlIGluY2x1ZGVkIGluDQo+IHI4
-YTc3NGExLg0KPiA+ICsgICAgLSAicmVuZXNhcyxyOGE3NzRiMS1jbXQwIiBmb3IgdGhlIDMyLWJp
-dCBDTVQwIGRldmljZSBpbmNsdWRlZCBpbg0KPiByOGE3NzRiMS4NCj4gPiArICAgIC0gInJlbmVz
-YXMscjhhNzc0YjEtY210MSIgZm9yIHRoZSA0OC1iaXQgQ01UMSBkZXZpY2UgaW5jbHVkZWQgaW4N
-Cj4gcjhhNzc0YjEuDQo+ID4gICAgICAtICJyZW5lc2FzLHI4YTc3NGMwLWNtdDAiIGZvciB0aGUg
-MzItYml0IENNVDAgZGV2aWNlIGluY2x1ZGVkIGluDQo+IHI4YTc3NGMwLg0KPiA+ICAgICAgLSAi
-cmVuZXNhcyxyOGE3NzRjMC1jbXQxIiBmb3IgdGhlIDQ4LWJpdCBDTVQxIGRldmljZSBpbmNsdWRl
-ZCBpbg0KPiByOGE3NzRjMC4NCj4gPiAgICAgIC0gInJlbmVzYXMscjhhNzc5MC1jbXQwIiBmb3Ig
-dGhlIDMyLWJpdCBDTVQwIGRldmljZSBpbmNsdWRlZCBpbiByOGE3NzkwLg0KPiA+DQo+IA0KPiBU
-aGUgcGF0Y2ggZG9lcyBub3QgYXBwbHkgb24gdGlwL3RpbWVycw0KDQpPSy4gSSB3aWxsIHJlYmFz
-ZSBvbiB0b3Agb2YgdGlwL3RpbWVycyBhbmQgd2lsbCBzZW5kIFYyLg0KDQpSZWdhcmRzLA0KQmlq
-dQ0K
+Boot failure has been reported on MSM8998 based laptop when
+coresight is enabled. This is most likely due to lack of
+firmware support for coresight on production device when
+compared to debug device like MTP where this issue is not
+observed. So disable coresight by default for MSM8998 and
+enable it only for MSM8998 MTP.
+
+Reported-and-tested-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Fixes: 783abfa2249a ("arm64: dts: qcom: msm8998: Add Coresight support")
+Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi | 68 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi     | 51 +++++++++++------
+ 2 files changed, 102 insertions(+), 17 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+index 108667ce4f31..8d15572d18e6 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+@@ -27,6 +27,66 @@
+ 	status = "okay";
+ };
+ 
++&etf {
++	status = "okay";
++};
++
++&etm1 {
++	status = "okay";
++};
++
++&etm2 {
++	status = "okay";
++};
++
++&etm3 {
++	status = "okay";
++};
++
++&etm4 {
++	status = "okay";
++};
++
++&etm5 {
++	status = "okay";
++};
++
++&etm6 {
++	status = "okay";
++};
++
++&etm7 {
++	status = "okay";
++};
++
++&etm8 {
++	status = "okay";
++};
++
++&etr {
++	status = "okay";
++};
++
++&funnel1 {
++	status = "okay";
++};
++
++&funnel2 {
++	status = "okay";
++};
++
++&funnel3 {
++	status = "okay";
++};
++
++&funnel4 {
++	status = "okay";
++};
++
++&funnel5 {
++	status = "okay";
++};
++
+ &pm8005_lsid1 {
+ 	pm8005-regulators {
+ 		compatible = "qcom,pm8005-regulators";
+@@ -51,6 +111,10 @@
+ 	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
+ };
+ 
++&replicator1 {
++	status = "okay";
++};
++
+ &rpm_requests {
+ 	pm8998-regulators {
+ 		compatible = "qcom,rpm-pm8998-regulators";
+@@ -249,6 +313,10 @@
+ 	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+ };
+ 
++&stm {
++	status = "okay";
++};
++
+ &ufshc {
+ 	vcc-supply = <&vreg_l20a_2p95>;
+ 	vccq-supply = <&vreg_l26a_1p2>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index c6f81431983e..ffb64fc239ee 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -998,11 +998,12 @@
+ 			#interrupt-cells = <0x2>;
+ 		};
+ 
+-		stm@6002000 {
++		stm: stm@6002000 {
+ 			compatible = "arm,coresight-stm", "arm,primecell";
+ 			reg = <0x06002000 0x1000>,
+ 			      <0x16280000 0x180000>;
+ 			reg-names = "stm-base", "stm-data-base";
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1016,9 +1017,10 @@
+ 			};
+ 		};
+ 
+-		funnel@6041000 {
++		funnel1: funnel@6041000 {
+ 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0x06041000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1045,9 +1047,10 @@
+ 			};
+ 		};
+ 
+-		funnel@6042000 {
++		funnel2: funnel@6042000 {
+ 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0x06042000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1075,9 +1078,10 @@
+ 			};
+ 		};
+ 
+-		funnel@6045000 {
++		funnel3: funnel@6045000 {
+ 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0x06045000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1113,9 +1117,10 @@
+ 			};
+ 		};
+ 
+-		replicator@6046000 {
++		replicator1: replicator@6046000 {
+ 			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+ 			reg = <0x06046000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1137,9 +1142,10 @@
+ 			};
+ 		};
+ 
+-		etf@6047000 {
++		etf: etf@6047000 {
+ 			compatible = "arm,coresight-tmc", "arm,primecell";
+ 			reg = <0x06047000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1163,9 +1169,10 @@
+ 			};
+ 		};
+ 
+-		etr@6048000 {
++		etr: etr@6048000 {
+ 			compatible = "arm,coresight-tmc", "arm,primecell";
+ 			reg = <0x06048000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1181,9 +1188,10 @@
+ 			};
+ 		};
+ 
+-		etm@7840000 {
++		etm1: etm@7840000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07840000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1200,9 +1208,10 @@
+ 			};
+ 		};
+ 
+-		etm@7940000 {
++		etm2: etm@7940000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07940000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1219,9 +1228,10 @@
+ 			};
+ 		};
+ 
+-		etm@7a40000 {
++		etm3: etm@7a40000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07a40000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1238,9 +1248,10 @@
+ 			};
+ 		};
+ 
+-		etm@7b40000 {
++		etm4: etm@7b40000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07b40000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1257,9 +1268,10 @@
+ 			};
+ 		};
+ 
+-		funnel@7b60000 { /* APSS Funnel */
++		funnel4: funnel@7b60000 { /* APSS Funnel */
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07b60000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1343,9 +1355,10 @@
+ 			};
+ 		};
+ 
+-		funnel@7b70000 {
++		funnel5: funnel@7b70000 {
+ 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0x07b70000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1369,9 +1382,10 @@
+ 			};
+ 		};
+ 
+-		etm@7c40000 {
++		etm5: etm@7c40000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07c40000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1385,9 +1399,10 @@
+ 			};
+ 		};
+ 
+-		etm@7d40000 {
++		etm6: etm@7d40000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07d40000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1401,9 +1416,10 @@
+ 			};
+ 		};
+ 
+-		etm@7e40000 {
++		etm7: etm@7e40000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07e40000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+@@ -1417,9 +1433,10 @@
+ 			};
+ 		};
+ 
+-		etm@7f40000 {
++		etm8: etm@7f40000 {
+ 			compatible = "arm,coresight-etm4x", "arm,primecell";
+ 			reg = <0x07f40000 0x1000>;
++			status = "disabled";
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
