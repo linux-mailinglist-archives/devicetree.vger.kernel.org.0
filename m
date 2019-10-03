@@ -2,169 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A070CAF46
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 21:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44295CAF73
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 21:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731539AbfJCTcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 15:32:11 -0400
-Received: from mout.gmx.net ([212.227.17.22]:39939 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731401AbfJCTcL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 15:32:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1570131113;
-        bh=RsYW1tMQhVxSymVlEwGdBTZwMm3ZvLd9uaMyWMV0vz0=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=UNGyNJNeHfCx0k5lM+snCmDHFOZUU+nGO08Jh4E7eYCrsVXlTAI4bh3+NnbwWQsYQ
-         b/rxTff9qTHfmK2nI13TS78wm12BAN+kM8u7Wirb//wCPhUmBWomiSQeZXAPp9vvVe
-         i7Igv7cXyBHOy1ft6OHSJvs8k038RC8FVswqMbmM=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([89.0.25.131]) by mail.gmx.com (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MPGRp-1iUcVg0bmf-00Pf1D; Thu, 03
- Oct 2019 21:31:53 +0200
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     devicetree@vger.kernel.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: usb: Fix references to usb-hcd.yaml
-Date:   Thu,  3 Oct 2019 21:31:32 +0200
-Message-Id: <20191003193132.17758-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.20.1
+        id S1729616AbfJCTmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 15:42:07 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:49973 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731191AbfJCTmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 15:42:07 -0400
+X-Originating-IP: 86.202.229.42
+Received: from localhost (lfbn-lyo-1-146-42.w86-202.abo.wanadoo.fr [86.202.229.42])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id B8B852010D;
+        Thu,  3 Oct 2019 19:42:03 +0000 (UTC)
+Date:   Thu, 3 Oct 2019 21:42:03 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Eugen.Hristev@microchip.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        adrian.hunter@intel.com, Nicolas.Ferre@microchip.com,
+        ulf.hansson@linaro.org
+Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d27_som1_ek: add mmc
+ capabilities for SDMMC0
+Message-ID: <20191003194203.GI575@piout.net>
+References: <1565252928-28994-1-git-send-email-eugen.hristev@microchip.com>
+ <1565252928-28994-2-git-send-email-eugen.hristev@microchip.com>
+ <20190808124217.wrmcxohw5i6ju2qe@M43218.corp.atmel.com>
+ <04fd74c3-a828-1064-b77b-f3de07a26190@intel.com>
+ <20190809062322.syuieymdqjs4e7lh@M43218.corp.atmel.com>
+ <fa0debbb-b84c-1f74-f8b8-8fdd7812aaee@microchip.com>
+ <20190813065306.tqz57hqeiofofbnz@M43218.corp.atmel.com>
+ <c2c355cd-b798-02de-0606-0f6442f6fdca@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:M1Cfub0cD8k5EWKPSmYJTQTfT0r5TxH1kizM8MObV5ouKOLtROW
- Y6Ve8LeMLt58u942N7DVrT7n9xh3Ro+vHN+He3rDjffEFt9acuMdP2CaSEXMNkf57Qn9TYS
- 55iJdWnmjNPcLrCVWjQcV8Eh6ynBgXl+1OW+ZUZrq6re9aJVoe6EV36RHPoEoLO5WJPiRBb
- JtOOuApOnXnCR12OfgPLA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:K139XvLUorM=:UC2svAclllxusezgtqx7aj
- OQIMOkW9Yx52Cldj7c9AyhGNOkd4nddtd/qLQwHYhZ1CuDakZlc7LjgX1JD6CLdVuvlJRXInX
- ZT1c5ncYj4HaPvZoLZCbgO9ZCwz1qcp0/NTkjulPw0dTqfAdeT8K9tIkmQuprYGFbnW9kMEFk
- 1c4QV3D9sKYmVH2KqadNCJc1rw2ARIQRsk2e/CoiAjgwRLiyeYH04S0FlreAKn3icTc2qzV7k
- oYF8ucnwIAdhc9o81jnE5zuxIP2VMy7655mtWfh7GqxtWJ2RNRR4ZViHPzAHjdz+2my76c1Yo
- 9DTgPfvoWYIQJp6IJvzs9pn3FnwyKB0ibxEAZfUM7K+jsci2V/ckg+v9PRIz0MTaJMFNSdg1V
- flkR6Okr8vZEEHqdWD2opuVm7Jo2f1qjvPTvDY1YdBy+y6rL+giFEkx+NulDPPPqMRFNF/c+x
- S159BYfGpOxPSq/VcqzV1u91xNp4wJo/nMKHoyVF2IAyQ4O+/r3GPsABzFI15dqcw+YwCBTA1
- ZLRDQK3K/s5SfyQAfS25cmIWwhBbjnv+7gOLmtDCRo7EgS2gMOeAClMVyX9ptz/rw5s7pwtle
- 1MQlwv3qK3dqfPsDIe8Q8rtA3JwYbZQ6GsdJD6ZwQmkZ7FNTq//s6zDTwOdodKzpfQLRsVss5
- FzoYqgBNMT3LHCXWVCr2CuRQD+L5Gxrlzxt6yda4vQPP0wL3i6VIENTNInShBXhudRoLODm8I
- 4s339OIHrw6nVIKkDfOD0eYnVrgssn3li6j1b2k7JbUZKfW6tTn72g0oBKmUSR5LZs8xfeptL
- SwLZF2JfnAcmtLKj5lAtXWpSsq7PtmxN74rLbCFgDTouLmIcW4c7fJImwiwWdjwC+0Sr+7TGw
- Bh3DBLYk+c2JlwigKP3IfpAM03wAVG+ENRhDAVVkw5JV+wFnVJu+6pHNreC5ztaOah86qaEKv
- fXIQ3wlllKZhflxBHbdiarQc/Bdj4Rumiz/mN1ElqMGJHjZrtWtEH1OZDnPSiG0glJQKtg1Hk
- C9J6tgurj+KK1Dxtx110JV/c5ZZIoF9vsg7cKzEm7t4y2uA+CsN1rHsmL55L38z5UBLhw+OK5
- hbGFSGshNBGXYNPpmFAiGRftBMcPVyvWr11mrpQRmUvECKnjMSlwusjr9HTDof2DAOULLLrtV
- YGxUhG163JZkeAZ/OMJ5zk/EFA2AaWgLAzfAdrsTDly40glEiSu08S4tvb/AfypvBTh5p0q98
- 9ynbT0qOnrogEiG4xqmKRv5G58ez0e+DSlvdzJ0qkCssv4Ht6EzLoJ6QYuRM=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c2c355cd-b798-02de-0606-0f6442f6fdca@microchip.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-usb-hcd.txt has been converted to YAML. Update references accordingly.
+On 03/10/2019 10:24:52+0000, Eugen.Hristev@microchip.com wrote:
+> 
+> 
+> On 13.08.2019 09:53, Ludovic Desroches wrote:
+> > On Mon, Aug 12, 2019 at 03:38:34PM +0000, Eugen.Hristev@microchip.com wrote:
+> >> On 09.08.2019 09:23, Ludovic Desroches wrote:
+> >>> On Thu, Aug 08, 2019 at 03:57:30PM +0300, Adrian Hunter wrote:
+> >>>> On 8/08/19 3:42 PM, Ludovic Desroches wrote:
+> >>>>> On Thu, Aug 08, 2019 at 10:35:43AM +0200, Eugen Hristev - M18282 wrote:
+> >>>>>> From: Eugen Hristev <eugen.hristev@microchip.com>
+> >>>>>>
+> >>>>>> Add mmc capabilities for SDMMC0 for this board.
+> >>>>>> With this enabled, eMMC connected card is detected as:
+> >>>>>>
+> >>>>>> mmc0: new DDR MMC card at address 0001
+> >>>>>>
+> >>>>>> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> >>>>> Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+> >>>>>
+> >>>>> I am interested to have the some insights about the use of sd-uhs-*
+> >>>>> properties.
+> >>>>>
+> >>>>> Our IP can't deal with 1V8 by itself. It has a 1V8SEL signal which can
+> >>>>> be used as the logic control input of a mux. So even if the IP claims
+> >>>>> to support UHS modes, it depends on the board.
+> >>>>>
+> >>>>> Are the sd-uhs-* properties a way to deal with this? I tend to think no
+> >>>>> as sdhci_setup_host() will set the caps depending on the content of the
+> >>>>> capabilities register. Do we have to use the SDHCI_QUIRK_MISSING_CAPS
+> >>>>> quirk or sdhci-caps/sdhci-caps-mask?
+> >>>>
+> >>>> There is "no-1-8-v" which it looks like sdhci-of-at91.c already supports:
+> >>>>
+> >>>>     sdhci_at91_probe() -> sdhci_get_of_property() -> sdhci_get_property()
+> >>>>
+> >>>>       	if (device_property_present(dev, "no-1-8-v"))
+> >>>> 		host->quirks2 |= SDHCI_QUIRK2_NO_1_8_V;
+> >>>>
+> >>>
+> >>> Right, I forgot this property. Thanks.
+> >>>
+> >>> Eugen, do you see cases we can't cover with this property?
+> >>
+> >> Hi,
+> >>
+> >> For current requirements and driver support, this should be enough.
+> >>
+> >> I noticed one thing regarding SD-Cards, if I add property sd-uhs-sdr104
+> >> the class 10 uhs1 cards are detected as SDR104 . Without this property
+> >> they are detected as DDR50. Any idea why the difference ? The controller
+> >> does not claim to have SDR104 support ?  We should add it ?
+> > 
+> > With the mainline, our tree or both? In our tree, SDR104 is removed from
+> > the capabilities.
+> > 
+> > Ludovic
+> > 
+> 
+> 
+> Hello Alexandre,
+> 
+> Anything more needed regarding this patch ?
+> 
 
-Fixes: 14ec072a19ad ("dt-bindings: usb: Convert USB HCD generic binding to=
- YAML")
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
- Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt | 4 ++--
- Documentation/devicetree/bindings/usb/mediatek,mtu3.txt     | 4 ++--
- Documentation/devicetree/bindings/usb/usb-uhci.txt          | 2 +-
- Documentation/devicetree/bindings/usb/usb-xhci.txt          | 4 ++--
- 4 files changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt b=
-/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-index f3e4acecabe8..42d8814f903a 100644
-=2D-- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-@@ -33,7 +33,7 @@ Required properties:
- 	"dma_ck": dma_bus clock for data transfer by DMA,
- 	"xhci_ck": controller clock
-
-- - phys : see usb-hcd.txt in the current directory
-+ - phys : see usb-hcd.yaml in the current directory
-
- Optional properties:
-  - wakeup-source : enable USB remote wakeup;
-@@ -53,7 +53,7 @@ Optional properties:
- 	See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-  - imod-interval-ns: default interrupt moderation interval is 5000ns
-
--additionally the properties from usb-hcd.txt (in the current directory) a=
-re
-+additionally the properties from usb-hcd.yaml (in the current directory) =
-are
- supported.
-
- Example:
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt b/Doc=
-umentation/devicetree/bindings/usb/mediatek,mtu3.txt
-index b9af7f5ee91d..e0ae6096f7ac 100644
-=2D-- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-@@ -17,7 +17,7 @@ Required properties:
-  - clock-names : must contain "sys_ck" for clock of controller,
- 	the following clocks are optional:
- 	"ref_ck", "mcu_ck" and "dma_ck";
-- - phys : see usb-hcd.txt in the current directory
-+ - phys : see usb-hcd.yaml in the current directory
-  - dr_mode : should be one of "host", "peripheral" or "otg",
- 	refer to usb/generic.txt
-
-@@ -60,7 +60,7 @@ Optional properties:
-  - mediatek,u3p-dis-msk : mask to disable u3ports, bit0 for u3port0,
- 	bit1 for u3port1, ... etc;
-
--additionally the properties from usb-hcd.txt (in the current directory) a=
-re
-+additionally the properties from usb-hcd.yaml (in the current directory) =
-are
- supported.
-
- Sub-nodes:
-diff --git a/Documentation/devicetree/bindings/usb/usb-uhci.txt b/Document=
-ation/devicetree/bindings/usb/usb-uhci.txt
-index cc2e6f7d602e..d1702eb2c8bd 100644
-=2D-- a/Documentation/devicetree/bindings/usb/usb-uhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-uhci.txt
-@@ -6,7 +6,7 @@ Required properties:
- - reg : Should contain 1 register ranges(address and length)
- - interrupts : UHCI controller interrupt
-
--additionally the properties from usb-hcd.txt (in the current directory) a=
-re
-+additionally the properties from usb-hcd.yaml (in the current directory) =
-are
- supported.
-
- Example:
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Document=
-ation/devicetree/bindings/usb/usb-xhci.txt
-index 97400e8f8605..b49b819571f9 100644
-=2D-- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-@@ -41,9 +41,9 @@ Optional properties:
-   - usb3-lpm-capable: determines if platform is USB3 LPM capable
-   - quirk-broken-port-ped: set if the controller has broken port disable =
-mechanism
-   - imod-interval-ns: default interrupt moderation interval is 5000ns
--  - phys : see usb-hcd.txt in the current directory
-+  - phys : see usb-hcd.yaml in the current directory
-
--additionally the properties from usb-hcd.txt (in the current directory) a=
-re
-+additionally the properties from usb-hcd.yaml (in the current directory) =
-are
- supported.
+I was not sure it was applicable, seeing the discussion. I'll apply it
+now.
 
 
-=2D-
-2.20.1
-
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
