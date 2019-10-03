@@ -2,82 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B31B7C9A33
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 10:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7B7C9A70
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 11:10:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbfJCIpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 04:45:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39678 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725497AbfJCIpH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 04:45:07 -0400
-Received: from X250 (li937-157.members.linode.com [45.56.119.157])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9638F2133F;
-        Thu,  3 Oct 2019 08:44:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570092307;
-        bh=mCXGpj7WUx1zpUig4d9GBPTN3mh9KYKoc3jEyRS/aSQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l9ENMG7k45sF1sGBU5HHbYVGKpAuQFOR4YHFwEOBjQzSzVJvtBTv227bwvItXDLtr
-         3YVL4LG0GM4Je9MWCKBozpcn0u7LYq33q8sZq6CdvpnC8Sq4JHa0CncJHWnPxXseaU
-         CheiWmMoXsJfM3eYG+sdBWns78jV6wGGLhGPYNCo=
-Date:   Thu, 3 Oct 2019 16:44:47 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Andy Tang <andy.tang@nxp.com>
-Cc:     Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH] arm64: dts: ls1028a: fix a compatible issue
-Message-ID: <20191003084443.GA22491@X250>
-References: <20190829073439.13069-1-andy.tang@nxp.com>
- <20190914024231.GB3425@dragon>
- <VI1PR04MB4333F1CF5DF521678575D61EF3840@VI1PR04MB4333.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <VI1PR04MB4333F1CF5DF521678575D61EF3840@VI1PR04MB4333.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        id S1727382AbfJCJKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 05:10:09 -0400
+Received: from mail-pl1-f173.google.com ([209.85.214.173]:40373 "EHLO
+        mail-pl1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728786AbfJCJKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 05:10:09 -0400
+Received: by mail-pl1-f173.google.com with SMTP id d22so1197223pll.7
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 02:10:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=iMtypI6KAEMcJ9rYi5Q4bPpiz/5ORhxuJ1l1aCrdEbI=;
+        b=bByRo3SHUyhiwyJbLrcdfQjTPirjMvPtcf3RppEl/w+VbKdFA+wURYYRn+SB1WOfU/
+         rJLBKRm7f1HTY51dvB7v+Y/HISSu/LTvBi1DfHBOryRw8YQKyEYepfaWNIWhZaG5TdjV
+         mxJlgkgGDEg2gQlcg8mwuaYalNfMlpkEkMJcNENJY18VVOtaLK1H8vj46wCYyj7fecNd
+         X1N5BMAXzLLPDM1/akeRy3dfp2JQJjJa43RMVQxAblSamCTlQ0opAXWffIqBkPDHJsK5
+         bzupQuUdQu0EeZJhXIS/Ch7CiIWM1TXwVneZFQSmT5BKm72MgWVWDRAswjQ9OpLEGcf7
+         vM0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=iMtypI6KAEMcJ9rYi5Q4bPpiz/5ORhxuJ1l1aCrdEbI=;
+        b=UBchZ4de2vDW2h6R4tjRkakugFKCcS+B7lmqlLaVUMjNpAhW3tXM44skhe6FibkJDS
+         /OMQ7jtZnTPCa8uFoKzQxa/S75CHicjJoU0F9UVEIjuuC+52PBDKYNif59nQbH+E6ifc
+         VsPtVzSPLKAuZDmd5AIpH2XqbfBCtUC657s/2GpU3M9xA+Y24twhZ3w8skeru2knUcon
+         SS1mg4rPA71VUYu+m+J01gL266W7F0AyySS8IW44rTysTUBxSIWTNll5HvWl4SNhJ2qr
+         0K15b4PEzPjXxNhw/Af8GIM8AmIjLcvTzVA7949+OhENWRuRfnDQ9FYG/uXecVTn7TIG
+         WgPQ==
+X-Gm-Message-State: APjAAAUvEzaauyPHQ1z82kSOHDjBZLzY6UWkbB+X0UfT6oTxws4yWJkl
+        A0ZT0kPv85xAPr6AbDpHtPrmcA==
+X-Google-Smtp-Source: APXvYqzyE9oM4lS/SzNWMKW5+lppU+ud83w4p3tCW57BC7S0wD+m/pVotdICLfarV0z6n6L75nCJTA==
+X-Received: by 2002:a17:902:bcc4:: with SMTP id o4mr8164748pls.142.1570093808283;
+        Thu, 03 Oct 2019 02:10:08 -0700 (PDT)
+Received: from localhost.localdomain (111-241-164-136.dynamic-ip.hinet.net. [111.241.164.136])
+        by smtp.gmail.com with ESMTPSA id f128sm3445422pfg.143.2019.10.03.02.10.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Oct 2019 02:10:07 -0700 (PDT)
+From:   Green Wan <green.wan@sifive.com>
+To:     linux-hackers@sifive.com
+Cc:     Green Wan <green.wan@sifive.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] dmaengine: sf-pdma: Add platform dma driver
+Date:   Thu,  3 Oct 2019 17:09:00 +0800
+Message-Id: <20191003090945.29210-1-green.wan@sifive.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 08:00:29AM +0000, Andy Tang wrote:
-> Hi Shawn,
-> 
-> 
-> > -----Original Message-----
-> > From: Shawn Guo <shawnguo@kernel.org>
-> > Sent: 2019年9月14日 10:43
-> > To: Andy Tang <andy.tang@nxp.com>
-> > Cc: Leo Li <leoyang.li@nxp.com>; robh+dt@kernel.org;
-> > mark.rutland@arm.com; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org
-> > Subject: [EXT] Re: [PATCH] arm64: dts: ls1028a: fix a compatible issue
-> > 
-> > Caution: EXT Email
-> > 
-> > On Thu, Aug 29, 2019 at 03:34:39PM +0800, Yuantian Tang wrote:
-> > > The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
-> > > So correct it.
-> > 
-> > Can elaborate the fix a little bit, saying what's the issue exactly with using
-> > that incorrect compatible?
-> Ok.
-> 
-> > 
-> > >
-> > > Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
-> > 
-> > Do we need a fix tag?
-> What does "fix tag" mean? 
+Add PDMA driver support for SiFive HiFive Unleashed RevA00 board. Mainly follows
+DMAengine controller doc[1] to implement and take other DMA drivers as reference.
+Such as
 
-Please search 'Fixes' in Documentation/process/submitting-patches.rst.
+  - drivers/dma/fsl-edma.c
+  - drivers/dma/dw-edma/
+  - drivers/dma/pxa-dma.c
 
-Shawn
+Using DMA test client[2] to test. Detailed datasheet is doc[3]. Driver supports:
+
+ - 4 physical DMA channels, share same DONE and error interrupt handler. 
+ - Support MEM_TO_MEM
+ - Tested by DMA test client
+ - patches include DT Bindgins document and dts for fu450-c000 SoC. Separate dts
+   patch for easier review and apply to different branch or SoC platform.
+ - retry 1 time if DMA error occurs.
+
+[Reference Doc]
+ [1] ./Documentation/driver-api/dmaengine/provider.rst
+ [2] ./Documentation/driver-api/dmaengine/dmatest.rst
+ [3] https://static.dev.sifive.com/FU540-C000-v1.0.pdf 
+
+[Simple steps to test of DMA Test client]
+ $ echo 1 > /sys/module/dmatest/parameters/iterations
+ $ echo dma0chan0 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan1 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan2 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan3 > /sys/module/dmatest/parameters/channel
+ $ echo 1 > /sys/module/dmatest/parameters/run
+
+[Expected test result]
+[  267.563323] dmatest: dma0chan0-copy0: summary 45629 tests, 0 failures 38769.01 iops 309661 KB/s (0)
+[  267.572427] dmatest: dma0chan1-copy0: summary 45863 tests, 0 failures 40286.85 iops 321643 KB/s (0)
+[  267.581392] dmatest: dma0chan2-copy0: summary 45975 tests, 0 failures 41178.48 iops 328740 KB/s (0)
+[  267.590542] dmatest: dma0chan3-copy0: summary 44768 tests, 0 failures 38560.29 iops 307726 KB/s (0)
+
+Green Wan (4):
+  dt-bindings: dmaengine: sf-pdma: add bindins for SiFive PDMA
+  riscv: dts: add support for PDMA device of HiFive Unleashed Rev A00
+  dmaengine: sf-pdma: add platform DMA support for HiFive Unleashed A00
+  MAINTAINERS: Add Green as SiFive PDMA driver maintainer
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  55 ++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |   7 +
+ drivers/dma/Kconfig                           |   2 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/sf-pdma/Kconfig                   |   6 +
+ drivers/dma/sf-pdma/Makefile                  |   1 +
+ drivers/dma/sf-pdma/sf-pdma.c                 | 601 ++++++++++++++++++
+ drivers/dma/sf-pdma/sf-pdma.h                 | 124 ++++
+ 9 files changed, 803 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+ create mode 100644 drivers/dma/sf-pdma/Kconfig
+ create mode 100644 drivers/dma/sf-pdma/Makefile
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.c
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.h
+
+-- 
+2.17.1
+
