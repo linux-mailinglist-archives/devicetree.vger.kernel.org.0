@@ -2,135 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30DB2CA924
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:20:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 965D9CAA98
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392264AbfJCQh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 12:37:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47478 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392290AbfJCQh6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Oct 2019 12:37:58 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8F7E42133F;
-        Thu,  3 Oct 2019 16:37:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570120677;
-        bh=Kz986FZTTTDnNoVFmPcbG3VSLFyOjROZGgK9lBe2Pvk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RU1Pbl0ZjKw/1JN9jK3kOl8Gt37hSfFL8r4BHJyMFMaNV5TdY0RjRuXt5fyWsjfSm
-         TWLgffGocARG6lVnth2w7sDfIeAJqzmwO7O4dFuLrHXiiYoV6mAKI1MHxrU1RuskAH
-         BWvGu+5/VL24P+qlhweRM7JwbwAGYgw8TeGJvKYU=
-Date:   Thu, 3 Oct 2019 18:37:54 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: sun4i-csi: Drop the module clock
-Message-ID: <20191003163754.26ciq2ljcbuuvcrx@gilmour>
-References: <20191003154842.248763-1-mripard@kernel.org>
- <CAGb2v66az3uQnibudKai7ATfXh+w1Y+bJ=o258RVe9SCNRpGNQ@mail.gmail.com>
+        id S2392146AbfJCRJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 13:09:35 -0400
+Received: from mx2.suse.de ([195.135.220.15]:36264 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2393415AbfJCRJe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Oct 2019 13:09:34 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 52999B190;
+        Thu,  3 Oct 2019 17:09:32 +0000 (UTC)
+Message-ID: <3853cd8425743b4991f5d599ec1c0fbbf4232f95.camel@suse.de>
+Subject: Re: [PATCH V3 0/8] ARM: Add minimal Raspberry Pi 4 support
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Guillaume Gardet <Guillaume.Gardet@arm.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Thu, 03 Oct 2019 19:09:30 +0200
+In-Reply-To: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+References: <1569672435-19823-1-git-send-email-wahrenst@gmx.net>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-Ix9TQYjbsAOkefZjezfO"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="azkpqs6gqd4oy5tf"
-Content-Disposition: inline
-In-Reply-To: <CAGb2v66az3uQnibudKai7ATfXh+w1Y+bJ=o258RVe9SCNRpGNQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---azkpqs6gqd4oy5tf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--=-Ix9TQYjbsAOkefZjezfO
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, 2019-09-28 at 14:07 +0200, Stefan Wahren wrote:
+> This series adds minimal support for the new Raspberry Pi 4, so we are ab=
+le
+> to login via debug UART.
+>=20
+> Patch 1-2:   Fix some DT schema warnings
+> Patch 3-4:   Prepare DTS for the new SoC BMC2711
+> Patch 5-7:   Add Raspberry Pi 4 DTS support
+> Patch 8:     Update MAINTAINERS
+>=20
+> Unfortunately the Raspberry Pi Foundation didn't released a
+> peripheral documentation for the new SoC yet. So we only have a prelimina=
+ry
+> datasheet [1] and reduced schematics [2].
+>=20
+> Known issues:
+> Since Linux 5.3-rc1 DMA doesn't work properly on that platform.
+> Nicolas Saenz Julienne investigates on that issue. As a temporary workaro=
+und
+> i reverted the following patch to test this series:
+>=20
+> 79a98672 "dma-mapping: remove dma_max_pfn"
+> 7559d612 "mmc: core: let the dma map ops handle bouncing"
+
+[ adding Matthias and Guillaume who first saw this ]
+[ also adding Adrian Hunter just in case ]
 
 Hi,
+we stubled upon a bug in RPi's sdhci-iproc while testing this series.
 
-On Thu, Oct 03, 2019 at 11:51:05PM +0800, Chen-Yu Tsai wrote:
-> On Thu, Oct 3, 2019 at 11:48 PM Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > It turns out that what was thought to be the module clock was actually the
-> > clock meant to be used by the sensor, and isn't playing any role with the
-> > CSI controller itself. Let's drop that clock from our binding.
-> >
-> > Fixes: c5e8f4ccd775 ("media: dt-bindings: media: Add Allwinner A10 CSI binding")
-> > Reported-by: Chen-Yu Tsai <wens@csie.org>
-> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> > ---
-> >  .../devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml | 7 ++-----
-> >  1 file changed, 2 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > index 5dd1cf490cd9..d3e423fcb6c2 100644
-> > --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > @@ -27,14 +27,12 @@ properties:
-> >    clocks:
-> >      items:
-> >        - description: The CSI interface clock
-> > -      - description: The CSI module clock
-> >        - description: The CSI ISP clock
-> >        - description: The CSI DRAM clock
-> >
-> >    clock-names:
-> >      items:
-> >        - const: bus
-> > -      - const: mod
-> >        - const: isp
-> >        - const: ram
-> >
-> > @@ -89,9 +87,8 @@ examples:
-> >          compatible = "allwinner,sun7i-a20-csi0";
-> >          reg = <0x01c09000 0x1000>;
-> >          interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> > -        clocks = <&ccu CLK_AHB_CSI0>, <&ccu CLK_CSI0>,
-> > -                 <&ccu CLK_CSI_SCLK>, <&ccu CLK_DRAM_CSI0>;
-> > -        clock-names = "bus", "mod", "isp", "ram";
-> > +        clocks = <&ccu CLK_AHB_CSI0>, <&ccu CLK_CSI_SCLK>, <&ccu CLK_DRAM_CSI0>;
-> > +        clock-names = "bus", "isp", "ram";
->
-> I believe what we thought was the ISP clock is actually the module clock
-> for the whole CSI subsystem. So we should still use the module clock entry,
-> and remove the ISP entry.
+It only shows-up on slow SD cards, the class 4 ones. On each SD operation w=
+e
+get the following warning:
 
-I'm really not sure it is. CSI1 on the A20 (possibly the A10 as well,
-I haven't checked), and the one on the A13 don't have any ISP embedded
-in the CSI controller.
+[    2.093328] mmc1: Got data interrupt 0x00000002 even though no data oper=
+ation was in progress.
+[    2.102072] mmc1: sdhci: =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D SDHCI REGI=
+STER DUMP =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+[    2.108603] mmc1: sdhci: Sys addr:  0x00000000 | Version:  0x00001002
+[    2.115134] mmc1: sdhci: Blk size:  0x00007200 | Blk cnt:  0x00000000
+[    2.121664] mmc1: sdhci: Argument:  0x00000000 | Trn mode: 0x00000033
+[    2.128195] mmc1: sdhci: Present:   0x1fff0000 | Host ctl: 0x00000017
+[    2.134725] mmc1: sdhci: Power:     0x0000000f | Blk gap:  0x00000080
+[    2.141255] mmc1: sdhci: Wake-up:   0x00000000 | Clock:    0x00000107
+[    2.147785] mmc1: sdhci: Timeout:   0x00000000 | Int stat: 0x00000000
+[    2.154314] mmc1: sdhci: Int enab:  0x03ff100b | Sig enab: 0x03ff100b
+[    2.160843] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
+[    2.167373] mmc1: sdhci: Caps:      0x45ee6432 | Caps_1:   0x0000a525
+[    2.173902] mmc1: sdhci: Cmd:       0x00000c1a | Max curr: 0x00080008
+[    2.180432] mmc1: sdhci: Resp[0]:   0x00000b00 | Resp[1]:  0x00edc87f
+[    2.186961] mmc1: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x00400e00
+[    2.193490] mmc1: sdhci: Host ctl2: 0x00000001
+[    2.197992] mmc1: sdhci: ADMA Err:  0x00000000 | ADMA Ptr: 0xec040208
+[    2.204521] mmc1: sdhci: =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
 
-It makes some difference, because according to the BSP, you can see
-that the ISP clock is taken for CSI0:
-https://github.com/linux-sunxi/linux-sunxi/blob/sunxi-3.4/drivers/media/video/sun4i_csi/csi0/sun4i_drv_csi.c#L389
+Aside from the serial console noise the RPi still boots alright. But as it'=
+s
+printing one of these per SD operation which is a lot...
 
-While for CSI1, that block is commented out, and the ISP clock never
-used:
-https://github.com/linux-sunxi/linux-sunxi/blob/sunxi-3.4/drivers/media/video/sun4i_csi/csi1/sun4i_drv_csi.c#L396
+I've been able to reproduce this both with arm and arn64 on multiple SD car=
+ds.
+Just copying the contents of a class 4 card into a class 10 one fixes the
+issue.
 
-So I really believe that the ISP clock is here to feed the ISP block
-within the CSI controller if there's any. But it's far from always the
-case, as opposed to a module clock for the whole CSI controller that
-would be here in both cases.
+Any ideas?
 
-Maxime
+Regards,
+Nicolas
 
---azkpqs6gqd4oy5tf
+
+--=-Ix9TQYjbsAOkefZjezfO
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZYj4gAKCRDj7w1vZxhR
-xTlAAP9TTXfs33G7+Twffb5d00sxowv1ZbiAYMTsgJB/x9wG9AEAmLeDsEVVNJ/5
-tHNBJCNnb+iJ6/SiGoXKqrh+GwYd4wQ=
-=RhyU
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2WK0oACgkQlfZmHno8
+x/4z/gf/bgKAQ7B78/8mBvESG1i3VvI7BH3uv7umwrCL8SrGUWyrXiHLmiXVDd2+
+OAY9vm3OEdKw9qWVRKNvr029RE/csvFI7SibAwny6Rc5Y8cno2X+dXAIMr47zfQd
+RKvwlaZN9EgpJfM8dgMudUeSb73VuXMk148Fsi97DP/yjYPd3ofpTBPj2Ps/2W9I
+LOBJApYGDh6s6w2I7d7XMLb2Z5ErILbmx3Q8+DuF2MAFUY95Q5G72m0Gx5skYrbl
+pjGnYNqce7c9WtyhNzzFvQNi9qiVrzD1S/H5CUuTX2/Db9DnEbHiD4R8I7fKTpPX
+IVuRxWxwDwsfeswOBP9caCrg+50JDw==
+=FKHG
 -----END PGP SIGNATURE-----
 
---azkpqs6gqd4oy5tf--
+--=-Ix9TQYjbsAOkefZjezfO--
+
