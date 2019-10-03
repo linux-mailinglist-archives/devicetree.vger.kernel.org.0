@@ -2,195 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 151B5C972D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 06:10:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2F16C9731
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 06:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725951AbfJCEKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 00:10:11 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:34395 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726002AbfJCEKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 00:10:11 -0400
-Received: by mail-wr1-f65.google.com with SMTP id a11so1297533wrx.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 21:10:07 -0700 (PDT)
+        id S1726992AbfJCENw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 00:13:52 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:33724 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726978AbfJCENv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 00:13:51 -0400
+Received: by mail-pf1-f193.google.com with SMTP id q10so882406pfl.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2019 21:13:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hXoekmFxUp291lZsnKhr/5gF7rGsdUpmdR//qGKELrk=;
-        b=h4SWbapdQBjUdr4pxYw9MzSs6AdPL0EFZ80hWcOxwkkApBJb/9H3jIpaaCnxZQy9mP
-         ySa1wAxHHX3KmiNNI3PSzrwE9d97WbWazBEu5KHNNWuRzefwWs/Aj2bffptJgKnQS8Z+
-         GVlLEJbOG3mk8n19DwimoyM3UtGBJDDc0JET+1DTpcEQ+sX+UPzPS2IpfUxQZ0VBm12L
-         gTE0uXa7i8cBeUfjkc4Yx2FxxJbWRpOzg/X9CWdG8QQimUqjrujBdipf0kU2nBCtdGLd
-         Il1fK/7Pjx8cJMjjDUZUh+bhZEq+UoTQ6WLVglGcQ/FPWTg9Hfq36YonNADJwbKh3l8G
-         RdgQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=m8hFjA3x5J6UIifkesrHQlzvrEbWo1oOG3daGAO1Kds=;
+        b=i5esF3BhGT+PZNcHTJPM4IJ2c8B0EtVNHjz2sMfWVyDlsdjvH7aGm8Wg+mM4Qx2XOH
+         BnqQVYtNrj7kuwsnDdvUMlMYcwOAzlV2dR902apMkswWzx7YQhl8tbm29+fGzyz7hlmM
+         k3mIYDi/88ELYvEX5xGjnCdjbDlDCgSGGT7g+N4xUgQ9fosAhu+PL/pVV6DdCduEvtBz
+         kKpfrExbywrPHCTL0M007R8UWkyPISywv4P82868F0Huim8EIbofLfgyJJ4vscUMJyPm
+         juJbyKfKO5qDuYvs4yqLhoiMmfB96tKSr48W8v3NgNcKfrUazNRpRi0F9xZr42na109D
+         KPgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=hXoekmFxUp291lZsnKhr/5gF7rGsdUpmdR//qGKELrk=;
-        b=rQDbhxL5gN8YVRKnNLBJq0NN4dBrVqEeRYxDUBmaNWitJm+ndyzzU/chF2HjI/wwU5
-         oP7Zi61h0tbsRbabOi5/+lxufFihW08SqaqfBfalkrrqnxdm49EsGbXJv3O9fNUYjQmC
-         RP7CJuy7ggSQzz6f6wMp45cR9LRMi1T3jkYUzxegrOF+brv6Cw8j+vljdgopwfOEwvad
-         xqa5xFCVIQJSLzW70viIi5J1zUt70e1W6ECnwyWA3HaJtoCXJu6hhxn25KlpDZ1/8epM
-         w0v0d0B5P41q+18SqsfvU+vQFyOwYQzgF+2TgE7FYk9wm3EDSd/tHzwz+NpcrTAQQQoO
-         hFGg==
-X-Gm-Message-State: APjAAAWN5Pk8D/k1WW4jYp5T1pd9WAyyYulZ7zNAQTlWLUYK5l5nSBHA
-        yVvdLQxUfNA4dfR5n5th3fz3Hg==
-X-Google-Smtp-Source: APXvYqwuWpLs3LRjfkBxR3oghPCPxRVp2NGmpNUMuBbyFjUbkrJPTaOJvDCkjWCbU8a3+LBE4Xvxjw==
-X-Received: by 2002:adf:d848:: with SMTP id k8mr5217135wrl.254.1570075806567;
-        Wed, 02 Oct 2019 21:10:06 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:d066:17e0:dce4:cd15? ([2a01:e34:ed2f:f020:d066:17e0:dce4:cd15])
-        by smtp.googlemail.com with ESMTPSA id q19sm2829082wra.89.2019.10.02.21.10.05
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=m8hFjA3x5J6UIifkesrHQlzvrEbWo1oOG3daGAO1Kds=;
+        b=tL4DxBlqf0e8G51cuWVQMUjHRPhKLx15cs9G5VHUiwQgvfxR6RF2PLZGqK8TIRBsIV
+         QNo+fYPVctq7lklKJ/6V7sd2AY0rCvZm64wg5H6zVwtQ10+N/H/UvlMg8NxSmiYugWdq
+         4XThLFYRp9Fgulodmfk1ZnNT1ZC4jlFiVZ8/Gij8m/AdUisWrU/db96bd/YGBPG7M90p
+         YXHXL/hP9fKi/mX1caMZHEIHyxBoTw2hhJV7pWZDj0j/yABxpHwH7R7tfXAYpCjpMFhT
+         Mdm/DtVnpKlsB73qDkoxFVQcGQeYcnOVg5WZsjVObKJIloNFDMBkvBqrS8hdJaPoGWhB
+         etXA==
+X-Gm-Message-State: APjAAAXjIBkVNUsc7W4Lxhk7x6DhUMRrJ2E6XQI2sTIb09f8lqnAdodK
+        lk5TWmlTPL659ohqOpTMFgSd/Q==
+X-Google-Smtp-Source: APXvYqyqK2FTREVQtaobYQa+y7zSAJtRxO4xSW9iXnj50Z6gIChwFgdcvlIk/Z34JnR9JfHmNz8qWw==
+X-Received: by 2002:a65:5043:: with SMTP id k3mr7649733pgo.406.1570076029386;
+        Wed, 02 Oct 2019 21:13:49 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id i7sm704205pjs.1.2019.10.02.21.13.48
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 02 Oct 2019 21:10:05 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: timer: renesas, cmt: Document r8a774b1 CMT
- support
-To:     Biju Das <biju.das@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-References: <1569248907-62107-1-git-send-email-biju.das@bp.renesas.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <df05997f-e9c5-d226-68cd-6f1274995688@linaro.org>
-Date:   Thu, 3 Oct 2019 06:10:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1569248907-62107-1-git-send-email-biju.das@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        Wed, 02 Oct 2019 21:13:48 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm845: Add APSS watchdog node
+Date:   Wed,  2 Oct 2019 21:13:45 -0700
+Message-Id: <20191003041345.20912-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2019 16:28, Biju Das wrote:
-> Document SoC specific bindings for RZ/G2N (r8a774b1) SoC.
-> 
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/timer/renesas,cmt.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.txt b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> index c5220bc..7b1f454 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-> @@ -32,6 +32,8 @@ Required Properties:
->      - "renesas,r8a77470-cmt1" for the 48-bit CMT1 device included in r8a77470.
->      - "renesas,r8a774a1-cmt0" for the 32-bit CMT0 device included in r8a774a1.
->      - "renesas,r8a774a1-cmt1" for the 48-bit CMT1 device included in r8a774a1.
-> +    - "renesas,r8a774b1-cmt0" for the 32-bit CMT0 device included in r8a774b1.
-> +    - "renesas,r8a774b1-cmt1" for the 48-bit CMT1 device included in r8a774b1.
->      - "renesas,r8a774c0-cmt0" for the 32-bit CMT0 device included in r8a774c0.
->      - "renesas,r8a774c0-cmt1" for the 48-bit CMT1 device included in r8a774c0.
->      - "renesas,r8a7790-cmt0" for the 32-bit CMT0 device included in r8a7790.
-> 
+Add a node describing the watchdog found in the application subsystem.
 
-The patch does not apply on tip/timers
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index f0b2db34ec4a..23915eab4187 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -3488,6 +3488,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		watchdog@17980000 {
++			compatible = "qcom,apss-wdt-sdm845", "qcom,kpss-wdt";
++			reg = <0 0x17980000 0 0x1000>;
++			clocks = <&sleep_clk>;
++		};
++
+ 		apss_shared: mailbox@17990000 {
+ 			compatible = "qcom,sdm845-apss-shared";
+ 			reg = <0 0x17990000 0 0x1000>;
 -- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.18.0
 
