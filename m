@@ -2,275 +2,1019 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 75246CA644
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 18:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F7DECA839
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:18:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392535AbfJCQl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 12:41:58 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:41669 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392532AbfJCQl5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 12:41:57 -0400
-Received: by mail-pf1-f195.google.com with SMTP id q7so2107513pfh.8
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 09:41:57 -0700 (PDT)
+        id S2390603AbfJCQXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 12:23:37 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:37082 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390593AbfJCQXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 12:23:35 -0400
+Received: by mail-pf1-f194.google.com with SMTP id y5so2099817pfo.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 09:23:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MISJlJaBtFFImzW51FlZ2qBGeso4c1E39oXCASoBNDs=;
-        b=lr6AYQJIgnwyB7CwEqqjWDeQ9SsqVwsCdDapXVnps1l33RshyzxmKLbE797W6iLl0z
-         c88v9cK8+7ZGOqqXXM4++rUrt3XwsJJDtfu3IIe5aZHXMk3TH1y4EqZQvoiSnHfdB9Cf
-         wMzHvqN6FwpbJ+hPU/4yhFzPlPyXM3/WtDMU4=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=GsCH2sCVXvn0x/whcUT1R2ddQgsbWOEJIx5FENdlgs8=;
+        b=ubImWPxNfzTpJvMNer0GdchXdH7z9Lw0p4Tx0wu4FFKe3xqHkOwYMTeoydhpiB8v6A
+         w65tOpD+OCFR5V41lBncGE6qC4wbB8gXtzIOB+Ed0LYBDDLcCI0fplsBgGraYf0Ln6Tv
+         6F9Qf6XvxLIkXTTbJ8W2ZHpy3ZnhTCuTEwlmzL6I5Ob43K1sShTwNRmTjZmdQHc4Ve4h
+         LmI5zRxvc8xZBNKPg5a8bDBo+r87ePirh2h3OtYFlkTHX4OZrzfElUjHOLxy+4ZQ8m+N
+         c9RpEmaR2cqklxTCm23Fb/PR3i/hNephqpbBjPAIxUEwDgAlBDNVpsFoUiYc+C9NDqvh
+         zgjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MISJlJaBtFFImzW51FlZ2qBGeso4c1E39oXCASoBNDs=;
-        b=Ux2MMWNA5XgmkvfzCfwDD5/1v8c3wG3ap1nNN/NtWJY7deP0HyHHMorg1cylJVRSWC
-         27cljfLP9mPMTFG4ZBN1U9f4/V07VC3Tbrg5v30nJ76OaAIE7vQ/+SZalPuYPcdk34GS
-         HFSjHxpJFPT0Zt1WKSWP5Z7bNB3bFrWUtzoRECh+vbRCmp7DxdmC7lyOXrCIffdHR897
-         0MzoopYeIdl4t3jynsR6ut4zsl6wDHE6rVw/zg8u6Q33sRgpbT/qqCdrS8htuLi/NfY3
-         Zeb7Ozljb0R9Q3iVMWUoj+1e1rLJExc80KflkrKBWJhC42ITWRkLwKrGZLs94/hECY/n
-         jtGg==
-X-Gm-Message-State: APjAAAViiqqBRcVQL/YSjWXxPQCr4dK8MfAPpdTE7RSaBll2J9GLyiq8
-        AEFJ5POVlPX1O5zdlPfT3/348w==
-X-Google-Smtp-Source: APXvYqxmFA99XijlyILdYbdhLdTgH03fa06ehVPjZcS3nkRSbv5LJHGq4R3QE4o0s14IFNIpKdzkwg==
-X-Received: by 2002:a17:90b:f11:: with SMTP id br17mr11589381pjb.80.1570120916856;
-        Thu, 03 Oct 2019 09:41:56 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id x18sm3280507pge.76.2019.10.03.09.41.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2019 09:41:56 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] ARM: dts: rockchip: Use interpolated brightness tables for veyron
-Date:   Thu,  3 Oct 2019 09:41:52 -0700
-Message-Id: <20191003094137.v2.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
-X-Mailer: git-send-email 2.23.0.444.g18eeb5a265-goog
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=GsCH2sCVXvn0x/whcUT1R2ddQgsbWOEJIx5FENdlgs8=;
+        b=kjGe5F2yzlXHaEY1xGj8Y1FIKpvxXs3oxzkZdGhdSMS3PMD8xJy80tLj/UJaDdAcEW
+         eennXK0XCJsDqJq/zw6lY3YaECP08jWPJctq5a455wGcWQJ1ZIIEpEj6SPprkf63h/Ud
+         FsHXgScxSgtLg37qtQZ0SKwG4T78G+jiYN80+pEVPSbjMw9lplRyPDai3MWgNvQZcPTn
+         BQIowPlfS9EriyK6OgrWp5XQHtmjVanzOVHTmXPV7h9z53XO9nRspH0T8bo0WJRTe27u
+         064Oay5WGQfDgVz1ArCnaL0MPzepNjGpSr0hwNMwxBZ1qgz6PKWmshsi1TF5X/OSvQG4
+         iccA==
+X-Gm-Message-State: APjAAAViZgVBNG32Ey2aRwhRPMSIA84LEM/r4hbPIk/ghcngHz1EiAGd
+        OKIdCWU+ruxG7Geu0TVI6z7LQQ==
+X-Google-Smtp-Source: APXvYqzaNjnfD8qrCDkgVRCdAgJVcauzxVqkIePimbpwLCi2AZNfjkMQ7MzECzdQeNaKcXQsjUAS7Q==
+X-Received: by 2002:a62:5c82:: with SMTP id q124mr11923740pfb.177.1570119813926;
+        Thu, 03 Oct 2019 09:23:33 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id t14sm2785832pgb.33.2019.10.03.09.23.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Oct 2019 09:23:33 -0700 (PDT)
+Date:   Thu, 3 Oct 2019 09:23:30 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Marc Gonzalez <marc.w.gonzalez@free.fr>
+Cc:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: msm8998: Disable coresight by default
+Message-ID: <20191003162330.GD63675@minitux>
+References: <20191003064449.2201-1-saiprakash.ranjan@codeaurora.org>
+ <aecbc7a2-05fd-f30f-81c7-81947dc31c9f@free.fr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aecbc7a2-05fd-f30f-81c7-81947dc31c9f@free.fr>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use interpolated brightness tables (added by commit 573fe6d1c25
-("backlight: pwm_bl: Linear interpolation between
-brightness-levels") for veyron, instead of specifying every single
-step. Some devices/panels have intervals that are smaller than
-the specified 'num-interpolated-steps', the driver interprets
-these intervals as a single step.
+On Thu 03 Oct 05:53 PDT 2019, Marc Gonzalez wrote:
 
-Another option would be to switch to a perceptual brightness curve
-(CIE 1931), with the caveat that it would change the behavior of
-the backlight. Also the concept of a minimum brightness level is
-currently not supported for CIE 1931 curves.
+> On 03/10/2019 08:44, Sai Prakash Ranjan wrote:
+> 
+> > Boot failure has been reported on MSM8998 based laptop when
+> > coresight is enabled. This is most likely due to lack of
+> > firmware support for coresight on production device when
+> > compared to debug device like MTP where this issue is not
+> > observed. So disable coresight by default for MSM8998 and
+> > enable it only for MSM8998 MTP.
+> > 
+> > Reported-and-tested-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> > Fixes: 783abfa2249a ("arm64: dts: qcom: msm8998: Add Coresight support")
+> > Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi | 68 +++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/msm8998.dtsi     | 51 +++++++++++------
+> >  2 files changed, 102 insertions(+), 17 deletions(-)
+> 
+> Just wanted to toss an alternative, based on Suzuki's suggestion
+> (i.e. move the coresight nodes to a separate file)
+> 
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+For the particular case this seems quite reasonable; the conditional
+inclusion of this file would indeed allow us to enable all the nodes at
+once.
 
-Changes in v2:
-- added 0 as first step for devices/panels that require a minimum
-  PWM duty cycle
-- increased 'num-interpolated-steps' values by one, it's not the
-  number of steps between levels, but that number +1
+But I find it hard to navigate the dts files when the information they
+are spread out over multiple files and the current split has rather
+clear rules of what goes where.
 
- arch/arm/boot/dts/rk3288-veyron-edp.dtsi   | 35 ++--------------------
- arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 35 ++--------------------
- arch/arm/boot/dts/rk3288-veyron-minnie.dts | 35 ++--------------------
- arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 35 ++--------------------
- 4 files changed, 8 insertions(+), 132 deletions(-)
+Further more this probably not going to be the only thing that differs
+between engineering devices and production devices, but I don't think
+this split would scale to the various other cases.
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-index b12e061c5f7f..300a7e32c978 100644
---- a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-@@ -41,39 +41,8 @@
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		brightness-levels = <
--			  0   1   2   3   4   5   6   7
--			  8   9  10  11  12  13  14  15
--			 16  17  18  19  20  21  22  23
--			 24  25  26  27  28  29  30  31
--			 32  33  34  35  36  37  38  39
--			 40  41  42  43  44  45  46  47
--			 48  49  50  51  52  53  54  55
--			 56  57  58  59  60  61  62  63
--			 64  65  66  67  68  69  70  71
--			 72  73  74  75  76  77  78  79
--			 80  81  82  83  84  85  86  87
--			 88  89  90  91  92  93  94  95
--			 96  97  98  99 100 101 102 103
--			104 105 106 107 108 109 110 111
--			112 113 114 115 116 117 118 119
--			120 121 122 123 124 125 126 127
--			128 129 130 131 132 133 134 135
--			136 137 138 139 140 141 142 143
--			144 145 146 147 148 149 150 151
--			152 153 154 155 156 157 158 159
--			160 161 162 163 164 165 166 167
--			168 169 170 171 172 173 174 175
--			176 177 178 179 180 181 182 183
--			184 185 186 187 188 189 190 191
--			192 193 194 195 196 197 198 199
--			200 201 202 203 204 205 206 207
--			208 209 210 211 212 213 214 215
--			216 217 218 219 220 221 222 223
--			224 225 226 227 228 229 230 231
--			232 233 234 235 236 237 238 239
--			240 241 242 243 244 245 246 247
--			248 249 250 251 252 253 254 255>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
- 		default-brightness-level = <128>;
- 		enable-gpios = <&gpio7 RK_PA2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/rk3288-veyron-jaq.dts b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-index 80386203e85b..a4966e505a2f 100644
---- a/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-jaq.dts
-@@ -20,39 +20,8 @@
- 
- &backlight {
- 	/* Jaq panel PWM must be >= 3%, so start non-zero brightness at 8 */
--	brightness-levels = <
--		  0
--		  8   9  10  11  12  13  14  15
--		 16  17  18  19  20  21  22  23
--		 24  25  26  27  28  29  30  31
--		 32  33  34  35  36  37  38  39
--		 40  41  42  43  44  45  46  47
--		 48  49  50  51  52  53  54  55
--		 56  57  58  59  60  61  62  63
--		 64  65  66  67  68  69  70  71
--		 72  73  74  75  76  77  78  79
--		 80  81  82  83  84  85  86  87
--		 88  89  90  91  92  93  94  95
--		 96  97  98  99 100 101 102 103
--		104 105 106 107 108 109 110 111
--		112 113 114 115 116 117 118 119
--		120 121 122 123 124 125 126 127
--		128 129 130 131 132 133 134 135
--		136 137 138 139 140 141 142 143
--		144 145 146 147 148 149 150 151
--		152 153 154 155 156 157 158 159
--		160 161 162 163 164 165 166 167
--		168 169 170 171 172 173 174 175
--		176 177 178 179 180 181 182 183
--		184 185 186 187 188 189 190 191
--		192 193 194 195 196 197 198 199
--		200 201 202 203 204 205 206 207
--		208 209 210 211 212 213 214 215
--		216 217 218 219 220 221 222 223
--		224 225 226 227 228 229 230 231
--		232 233 234 235 236 237 238 239
--		240 241 242 243 244 245 246 247
--		248 249 250 251 252 253 254 255>;
-+	brightness-levels = <0 8 255>;
-+	num-interpolated-steps = <247>;
- };
- 
- &rk808 {
-diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-index 55955b082501..c833716dbe48 100644
---- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-@@ -38,39 +38,8 @@
- 
- &backlight {
- 	/* Minnie panel PWM must be >= 1%, so start non-zero brightness at 3 */
--	brightness-levels = <
--			  0   3   4   5   6   7
--			  8   9  10  11  12  13  14  15
--			 16  17  18  19  20  21  22  23
--			 24  25  26  27  28  29  30  31
--			 32  33  34  35  36  37  38  39
--			 40  41  42  43  44  45  46  47
--			 48  49  50  51  52  53  54  55
--			 56  57  58  59  60  61  62  63
--			 64  65  66  67  68  69  70  71
--			 72  73  74  75  76  77  78  79
--			 80  81  82  83  84  85  86  87
--			 88  89  90  91  92  93  94  95
--			 96  97  98  99 100 101 102 103
--			104 105 106 107 108 109 110 111
--			112 113 114 115 116 117 118 119
--			120 121 122 123 124 125 126 127
--			128 129 130 131 132 133 134 135
--			136 137 138 139 140 141 142 143
--			144 145 146 147 148 149 150 151
--			152 153 154 155 156 157 158 159
--			160 161 162 163 164 165 166 167
--			168 169 170 171 172 173 174 175
--			176 177 178 179 180 181 182 183
--			184 185 186 187 188 189 190 191
--			192 193 194 195 196 197 198 199
--			200 201 202 203 204 205 206 207
--			208 209 210 211 212 213 214 215
--			216 217 218 219 220 221 222 223
--			224 225 226 227 228 229 230 231
--			232 233 234 235 236 237 238 239
--			240 241 242 243 244 245 246 247
--			248 249 250 251 252 253 254 255>;
-+	brightness-levels = <0 3 255>;
-+	num-interpolated-steps = <252>;
- };
- 
- &i2c_tunnel {
-diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-index 27557203ae33..bebb230e592f 100644
---- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-@@ -23,39 +23,8 @@
- 
- &backlight {
- 	/* Tiger panel PWM must be >= 1%, so start non-zero brightness at 3 */
--	brightness-levels = <
--		  0   3   4   5   6   7
--		  8   9  10  11  12  13  14  15
--		 16  17  18  19  20  21  22  23
--		 24  25  26  27  28  29  30  31
--		 32  33  34  35  36  37  38  39
--		 40  41  42  43  44  45  46  47
--		 48  49  50  51  52  53  54  55
--		 56  57  58  59  60  61  62  63
--		 64  65  66  67  68  69  70  71
--		 72  73  74  75  76  77  78  79
--		 80  81  82  83  84  85  86  87
--		 88  89  90  91  92  93  94  95
--		 96  97  98  99 100 101 102 103
--		104 105 106 107 108 109 110 111
--		112 113 114 115 116 117 118 119
--		120 121 122 123 124 125 126 127
--		128 129 130 131 132 133 134 135
--		136 137 138 139 140 141 142 143
--		144 145 146 147 148 149 150 151
--		152 153 154 155 156 157 158 159
--		160 161 162 163 164 165 166 167
--		168 169 170 171 172 173 174 175
--		176 177 178 179 180 181 182 183
--		184 185 186 187 188 189 190 191
--		192 193 194 195 196 197 198 199
--		200 201 202 203 204 205 206 207
--		208 209 210 211 212 213 214 215
--		216 217 218 219 220 221 222 223
--		224 225 226 227 228 229 230 231
--		232 233 234 235 236 237 238 239
--		240 241 242 243 244 245 246 247
--		248 249 250 251 252 253 254 255>;
-+	brightness-levels = <0 3 255>;
-+	num-interpolated-steps = <252>;
- };
- 
- &backlight_regulator {
--- 
-2.23.0.444.g18eeb5a265-goog
+Regards,
+Bjorn
 
+> 
+>  arch/arm64/boot/dts/qcom/msm8998-coresight.dtsi | 439 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi       |   1 +
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi           | 435 -----------------------
+>  3 files changed, 440 insertions(+), 435 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-coresight.dtsi b/arch/arm64/boot/dts/qcom/msm8998-coresight.dtsi
+> new file mode 100644
+> index 000000000000..eabf4e4194fd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-coresight.dtsi
+> @@ -0,0 +1,439 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (c) 2019, The Linux Foundation. All rights reserved. */
+> +
+> +&soc {
+> +	stm@6002000 {
+> +		compatible = "arm,coresight-stm", "arm,primecell";
+> +		reg = <0x06002000 0x1000>,
+> +		      <0x16280000 0x180000>;
+> +		reg-names = "stm-base", "stm-data-base";
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				stm_out: endpoint {
+> +					remote-endpoint = <&funnel0_in7>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@6041000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0x06041000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				funnel0_out: endpoint {
+> +					remote-endpoint =
+> +					  <&merge_funnel_in0>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@7 {
+> +				reg = <7>;
+> +				funnel0_in7: endpoint {
+> +					remote-endpoint = <&stm_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@6042000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0x06042000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				funnel1_out: endpoint {
+> +					remote-endpoint =
+> +					  <&merge_funnel_in1>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@6 {
+> +				reg = <6>;
+> +				funnel1_in6: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_merge_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@6045000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0x06045000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				merge_funnel_out: endpoint {
+> +					remote-endpoint =
+> +					  <&etf_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				merge_funnel_in0: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				merge_funnel_in1: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel1_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	replicator@6046000 {
+> +		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+> +		reg = <0x06046000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				replicator_out: endpoint {
+> +					remote-endpoint = <&etr_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			port {
+> +				replicator_in: endpoint {
+> +					remote-endpoint = <&etf_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etf@6047000 {
+> +		compatible = "arm,coresight-tmc", "arm,primecell";
+> +		reg = <0x06047000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				etf_out: endpoint {
+> +					remote-endpoint =
+> +					  <&replicator_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			port {
+> +				etf_in: endpoint {
+> +					remote-endpoint =
+> +					  <&merge_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etr@6048000 {
+> +		compatible = "arm,coresight-tmc", "arm,primecell";
+> +		reg = <0x06048000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +		arm,scatter-gather;
+> +
+> +		in-ports {
+> +			port {
+> +				etr_in: endpoint {
+> +					remote-endpoint =
+> +					  <&replicator_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7840000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07840000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU0>;
+> +
+> +		out-ports {
+> +			port {
+> +				etm0_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in0>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7940000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07940000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU1>;
+> +
+> +		out-ports {
+> +			port {
+> +				etm1_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in1>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7a40000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07a40000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU2>;
+> +
+> +		out-ports {
+> +			port {
+> +				etm2_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in2>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7b40000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07b40000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU3>;
+> +
+> +		out-ports {
+> +			port {
+> +				etm3_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in3>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@7b60000 { /* APSS Funnel */
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07b60000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				apss_funnel_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_merge_funnel_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				apss_funnel_in0: endpoint {
+> +					remote-endpoint =
+> +					  <&etm0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				apss_funnel_in1: endpoint {
+> +					remote-endpoint =
+> +					  <&etm1_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +				apss_funnel_in2: endpoint {
+> +					remote-endpoint =
+> +					  <&etm2_out>;
+> +				};
+> +			};
+> +
+> +			port@3 {
+> +				reg = <3>;
+> +				apss_funnel_in3: endpoint {
+> +					remote-endpoint =
+> +					  <&etm3_out>;
+> +				};
+> +			};
+> +
+> +			port@4 {
+> +				reg = <4>;
+> +				apss_funnel_in4: endpoint {
+> +					remote-endpoint =
+> +					  <&etm4_out>;
+> +				};
+> +			};
+> +
+> +			port@5 {
+> +				reg = <5>;
+> +				apss_funnel_in5: endpoint {
+> +					remote-endpoint =
+> +					  <&etm5_out>;
+> +				};
+> +			};
+> +
+> +			port@6 {
+> +				reg = <6>;
+> +				apss_funnel_in6: endpoint {
+> +					remote-endpoint =
+> +					  <&etm6_out>;
+> +				};
+> +			};
+> +
+> +			port@7 {
+> +				reg = <7>;
+> +				apss_funnel_in7: endpoint {
+> +					remote-endpoint =
+> +					  <&etm7_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@7b70000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0x07b70000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		out-ports {
+> +			port {
+> +				apss_merge_funnel_out: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel1_in6>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			port {
+> +				apss_merge_funnel_in: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7c40000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07c40000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU4>;
+> +
+> +		port{
+> +			etm4_out: endpoint {
+> +				remote-endpoint = <&apss_funnel_in4>;
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7d40000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07d40000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU5>;
+> +
+> +		port{
+> +			etm5_out: endpoint {
+> +				remote-endpoint = <&apss_funnel_in5>;
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7e40000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07e40000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU6>;
+> +
+> +		port{
+> +			etm6_out: endpoint {
+> +				remote-endpoint = <&apss_funnel_in6>;
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7f40000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0x07f40000 0x1000>;
+> +
+> +		clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> +		clock-names = "apb_pclk", "atclk";
+> +
+> +		cpu = <&CPU7>;
+> +
+> +		port{
+> +			etm7_out: endpoint {
+> +				remote-endpoint = <&apss_funnel_in7>;
+> +			};
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+> index 108667ce4f31..9b586b3206fc 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+> @@ -5,6 +5,7 @@
+>  #include "pm8998.dtsi"
+>  #include "pmi8998.dtsi"
+>  #include "pm8005.dtsi"
+> +#include "msm8998-coresight.dtsi"
+>  
+>  / {
+>  	aliases {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index c6f81431983e..4b66a1c588f8 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -998,441 +998,6 @@
+>  			#interrupt-cells = <0x2>;
+>  		};
+>  
+> -		stm@6002000 {
+> -			compatible = "arm,coresight-stm", "arm,primecell";
+> -			reg = <0x06002000 0x1000>,
+> -			      <0x16280000 0x180000>;
+> -			reg-names = "stm-base", "stm-data-base";
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					stm_out: endpoint {
+> -						remote-endpoint = <&funnel0_in7>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		funnel@6041000 {
+> -			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> -			reg = <0x06041000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					funnel0_out: endpoint {
+> -						remote-endpoint =
+> -						  <&merge_funnel_in0>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				port@7 {
+> -					reg = <7>;
+> -					funnel0_in7: endpoint {
+> -						remote-endpoint = <&stm_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		funnel@6042000 {
+> -			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> -			reg = <0x06042000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					funnel1_out: endpoint {
+> -						remote-endpoint =
+> -						  <&merge_funnel_in1>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				port@6 {
+> -					reg = <6>;
+> -					funnel1_in6: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_merge_funnel_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		funnel@6045000 {
+> -			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> -			reg = <0x06045000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					merge_funnel_out: endpoint {
+> -						remote-endpoint =
+> -						  <&etf_in>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				port@0 {
+> -					reg = <0>;
+> -					merge_funnel_in0: endpoint {
+> -						remote-endpoint =
+> -						  <&funnel0_out>;
+> -					};
+> -				};
+> -
+> -				port@1 {
+> -					reg = <1>;
+> -					merge_funnel_in1: endpoint {
+> -						remote-endpoint =
+> -						  <&funnel1_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		replicator@6046000 {
+> -			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+> -			reg = <0x06046000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					replicator_out: endpoint {
+> -						remote-endpoint = <&etr_in>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				port {
+> -					replicator_in: endpoint {
+> -						remote-endpoint = <&etf_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etf@6047000 {
+> -			compatible = "arm,coresight-tmc", "arm,primecell";
+> -			reg = <0x06047000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					etf_out: endpoint {
+> -						remote-endpoint =
+> -						  <&replicator_in>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				port {
+> -					etf_in: endpoint {
+> -						remote-endpoint =
+> -						  <&merge_funnel_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etr@6048000 {
+> -			compatible = "arm,coresight-tmc", "arm,primecell";
+> -			reg = <0x06048000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -			arm,scatter-gather;
+> -
+> -			in-ports {
+> -				port {
+> -					etr_in: endpoint {
+> -						remote-endpoint =
+> -						  <&replicator_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7840000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07840000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU0>;
+> -
+> -			out-ports {
+> -				port {
+> -					etm0_out: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_funnel_in0>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7940000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07940000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU1>;
+> -
+> -			out-ports {
+> -				port {
+> -					etm1_out: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_funnel_in1>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7a40000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07a40000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU2>;
+> -
+> -			out-ports {
+> -				port {
+> -					etm2_out: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_funnel_in2>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7b40000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07b40000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU3>;
+> -
+> -			out-ports {
+> -				port {
+> -					etm3_out: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_funnel_in3>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		funnel@7b60000 { /* APSS Funnel */
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07b60000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					apss_funnel_out: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_merge_funnel_in>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				port@0 {
+> -					reg = <0>;
+> -					apss_funnel_in0: endpoint {
+> -						remote-endpoint =
+> -						  <&etm0_out>;
+> -					};
+> -				};
+> -
+> -				port@1 {
+> -					reg = <1>;
+> -					apss_funnel_in1: endpoint {
+> -						remote-endpoint =
+> -						  <&etm1_out>;
+> -					};
+> -				};
+> -
+> -				port@2 {
+> -					reg = <2>;
+> -					apss_funnel_in2: endpoint {
+> -						remote-endpoint =
+> -						  <&etm2_out>;
+> -					};
+> -				};
+> -
+> -				port@3 {
+> -					reg = <3>;
+> -					apss_funnel_in3: endpoint {
+> -						remote-endpoint =
+> -						  <&etm3_out>;
+> -					};
+> -				};
+> -
+> -				port@4 {
+> -					reg = <4>;
+> -					apss_funnel_in4: endpoint {
+> -						remote-endpoint =
+> -						  <&etm4_out>;
+> -					};
+> -				};
+> -
+> -				port@5 {
+> -					reg = <5>;
+> -					apss_funnel_in5: endpoint {
+> -						remote-endpoint =
+> -						  <&etm5_out>;
+> -					};
+> -				};
+> -
+> -				port@6 {
+> -					reg = <6>;
+> -					apss_funnel_in6: endpoint {
+> -						remote-endpoint =
+> -						  <&etm6_out>;
+> -					};
+> -				};
+> -
+> -				port@7 {
+> -					reg = <7>;
+> -					apss_funnel_in7: endpoint {
+> -						remote-endpoint =
+> -						  <&etm7_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		funnel@7b70000 {
+> -			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> -			reg = <0x07b70000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			out-ports {
+> -				port {
+> -					apss_merge_funnel_out: endpoint {
+> -						remote-endpoint =
+> -						  <&funnel1_in6>;
+> -					};
+> -				};
+> -			};
+> -
+> -			in-ports {
+> -				port {
+> -					apss_merge_funnel_in: endpoint {
+> -						remote-endpoint =
+> -						  <&apss_funnel_out>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7c40000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07c40000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU4>;
+> -
+> -			port{
+> -				etm4_out: endpoint {
+> -					remote-endpoint = <&apss_funnel_in4>;
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7d40000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07d40000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU5>;
+> -
+> -			port{
+> -				etm5_out: endpoint {
+> -					remote-endpoint = <&apss_funnel_in5>;
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7e40000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07e40000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU6>;
+> -
+> -			port{
+> -				etm6_out: endpoint {
+> -					remote-endpoint = <&apss_funnel_in6>;
+> -				};
+> -			};
+> -		};
+> -
+> -		etm@7f40000 {
+> -			compatible = "arm,coresight-etm4x", "arm,primecell";
+> -			reg = <0x07f40000 0x1000>;
+> -
+> -			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+> -			clock-names = "apb_pclk", "atclk";
+> -
+> -			cpu = <&CPU7>;
+> -
+> -			port{
+> -				etm7_out: endpoint {
+> -					remote-endpoint = <&apss_funnel_in7>;
+> -				};
+> -			};
+> -		};
+> -
+>  		spmi_bus: spmi@800f000 {
+>  			compatible = "qcom,spmi-pmic-arb";
+>  			reg =	<0x0800f000 0x1000>,
