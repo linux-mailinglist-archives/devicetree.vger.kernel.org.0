@@ -2,61 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAD31CAD86
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3CCACAD8D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 19:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731605AbfJCRoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 13:44:00 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:41995 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730508AbfJCRoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 13:44:00 -0400
-Received: by mail-pf1-f193.google.com with SMTP id q12so2200906pff.9
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 10:44:00 -0700 (PDT)
+        id S1730911AbfJCRqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 13:46:20 -0400
+Received: from mail-pf1-f172.google.com ([209.85.210.172]:46993 "EHLO
+        mail-pf1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730530AbfJCRqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 13:46:20 -0400
+Received: by mail-pf1-f172.google.com with SMTP id q5so2184036pfg.13
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 10:46:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
          :mime-version;
-        bh=wgtFkL/FFRFrlD7W9UDHQPj6n9N+/Wo8Jj+YzpO0YxI=;
-        b=XUFGIGD09TqEqmkFIqlIZjHwCq9P4g6INXCLyMVZlHNV2VUniAmRCDbm/DbO9MxJ/f
-         Zz/bwzmkRc+zW9SB0447I2PEhwobtbUQljlruZs7iTfvwGn9G0XLOJCQHq9PtHqLjzQV
-         LiYGvocI4OuJKqOmXEJRNnd1SSCB9WRHEG/+RTmytroyvvq0d1PB47xtO+mku1c6NtXs
-         6UxLj3dEpJH74J9al6AcBlchVPJl8vzA6hoLwRR1GNycQWp6rokCBTZz6l0QKpF4W2r0
-         bIQe5SvvpEP2dBxQzb1s/NlLLZ3Tpfe0WZi7YxSzIZ+9QFngdw616BopzSIICdH569jY
-         R1qQ==
+        bh=YBqTO1SR8JZ4rSW8NROiJQC8y+FlKcm5wmclx7YsqJA=;
+        b=zXh23Z7/bQMXb1njJl5nd10TBMyIcKR2f6rXFwRg7lRseFfvNdwk5hGEOeUVaFd6AE
+         T04YhoYOJAfsK9QdRuija7o1DJFJpKusBRlgy6Puv1OJRPq8hBrCTL4vhDXSQPVWZaAr
+         BEnZfDQlRVp7q4Ibb8SMcqypMkzM6YCeCGNOr0MYXvk7+IxbSwPJ7DkhPfaJ3JlMIBA+
+         dzQ5cMFBlQ6H6S2TM1HRBDgs+WnT+7nUT7ao4Gfm+pgHXG7R9hGzcZ7bT59+ywHCnSFt
+         YloS1Cr05MEyMlQnVdxLlouP7nHl9mitEblkfcbO9Ej4wJzDsMYd9yHDy0fSjWNu9ZVd
+         eBVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
          :message-id:mime-version;
-        bh=wgtFkL/FFRFrlD7W9UDHQPj6n9N+/Wo8Jj+YzpO0YxI=;
-        b=ryyqDNZwZu5Vh0YrUKeyotNJCwRRdGBPksH5ZkkmRsusw+KzoVUk0fGkD6VoqaIbae
-         BLHmzW1i70/yVZX7VU22xTEI9/UivFbuVnhISB9ZXncu9S1zqs5I4zjBLsLDBHrjruuy
-         IQ1q7kyg+8QcVS+JJHbELGn6QU4XbUXHaIxCCkmoh58vHWp5GMHC8V2/Y1dgOy1zujIJ
-         k76vwTb4tvH8gQJzQyjv59h9CFBOJlpNZIcidvd4gfyGN/G6VNMPpmTu4lmax4hQ/sVu
-         d6eW3MOpGs7FRe02sgLoBYAT7d+2XiYXlDPpLybNcI0zT7mozEDxdI2n2psO/V5wz3RN
-         ysPQ==
-X-Gm-Message-State: APjAAAUBBkFOnHjvHBJjK9WLf6W9cLaTWj5S2KInoXTXUGJi/+m48nuy
-        FbiMY6GjpP5KlDuabkBzwHkdzg==
-X-Google-Smtp-Source: APXvYqy7J6/8YHbG5klC9QquF261ah07vKhRA9+K09kh9B/5jxv89MEbsHK/KpR4cl3xiNk3tmrOEQ==
-X-Received: by 2002:a17:90a:30e8:: with SMTP id h95mr12035505pjb.44.1570124639543;
-        Thu, 03 Oct 2019 10:43:59 -0700 (PDT)
+        bh=YBqTO1SR8JZ4rSW8NROiJQC8y+FlKcm5wmclx7YsqJA=;
+        b=teFWqmo3KnHkprbka1HI03HHvMdut27NUBVZhbTI/JaII7M7j+7Fs5N7na2r9aoQLl
+         E2XxzXmOCF7ayROsHQofjIQPMTQUXgyCmi4Fd86pyPSEPsKzXFRqQeJOB/vS0QbW0qnZ
+         Tgny5o+U9V6lo4Pk9enZP3ts/so31WpDHoFv/M9aqPxMQVljTzd6NMFD+OGu+AzvZuHv
+         sljqShC42Tu8c45hj1XGiWJm2q/AdydGgkjt9EC/+FJmmrD/EO5AbtTCyHHJmIIy6Xo+
+         cNBX5iddvTb7CkRMD9y6esLglVjrrXvl2SvNc6vMDCF3n69a5caHAaFrH7LfEhrt8zX2
+         oV5Q==
+X-Gm-Message-State: APjAAAX8TVcOe3YS4aVNcPfbWPpIa43KcJHBkAKeB7v02R/yOQ6mJUlg
+        YeIAbEtzJhuVG4N43ra745XEiA==
+X-Google-Smtp-Source: APXvYqwGyyHM/joodBfrobBkDYq8xYqnEIe7owkvzFzx1uMOZNAZN9I8MRSWEPPfqOEb5FEBHtqCJA==
+X-Received: by 2002:a17:90a:ae0d:: with SMTP id t13mr12067312pjq.60.1570124778487;
+        Thu, 03 Oct 2019 10:46:18 -0700 (PDT)
 Received: from localhost ([2601:602:9200:a1a5:a084:116f:9da0:2d6c])
-        by smtp.gmail.com with ESMTPSA id j22sm5289821pgg.16.2019.10.03.10.43.58
+        by smtp.gmail.com with ESMTPSA id e9sm3138664pgs.86.2019.10.03.10.46.17
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 03 Oct 2019 10:43:58 -0700 (PDT)
+        Thu, 03 Oct 2019 10:46:17 -0700 (PDT)
 From:   Kevin Hilman <khilman@baylibre.com>
-To:     Anand Moon <linux.amoon@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCHv3 RESEND-next 0/3] Odroid c2 missing regulator linking
-In-Reply-To: <20191001073901.372-1-linux.amoon@gmail.com>
-References: <20191001073901.372-1-linux.amoon@gmail.com>
-Date:   Thu, 03 Oct 2019 10:43:58 -0700
-Message-ID: <7hv9t5vi5d.fsf@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson: g12a: add audio devices resets
+In-Reply-To: <20190925093358.15476-1-jbrunet@baylibre.com>
+References: <20190925093358.15476-1-jbrunet@baylibre.com>
+Date:   Thu, 03 Oct 2019 10:46:17 -0700
+Message-ID: <7hr23tvi1i.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
@@ -64,16 +61,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Anand Moon <linux.amoon@gmail.com> writes:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> Looks like this changes got lost so resend these changes again.
+> Provide the reset lines coming from the audio clock controller to
+> the audio devices of the g12 family
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Yeah, sorry about that.  Your cover letter subjects were quite similar,
-and several versions of this series and the previoius series arrived
-close together, so some stuff fell through the cracks.  Sorry about
-that.
-
-Queued for v5.5 now,
+Queued for v5.5 w/Neil's tag.
 
 Thanks,
 
