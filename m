@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A018AC9BA8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F1FC9BC2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2019 12:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726811AbfJCKFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Oct 2019 06:05:25 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:21026 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726523AbfJCKFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:05:24 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x93A1PHE005807;
-        Thu, 3 Oct 2019 12:05:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
- : from : message-id : date : mime-version : in-reply-to : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=LPPmd2u13qwBFxFZ5Y56WE+4sPe3u6X86PcYngdfDX0=;
- b=reenwcBxoQPpkmY1pA2l5GXAWD6wX6QABVWRP6AZbzehaCOwGQWNRg3TNPyQ2HBqa4iN
- 4lP91nRfYDdrRcKISF+27TSklO7eoNKx1F2AweOFMliNsarLcGR9avkoY3GY2FBerfLf
- odSlvWi7BHuIr0qQinoPj7vHuUAXtR8sVTV+NUAg03e42M4eatQF4C2zjm1uQz21o8OV
- 0xxagjVns0XSelirU5Xu1Bz60hgpforasWGSkuKNrqW4F8mJ3ZuB/JMC8Ln/xC4bkO54
- 9ZIIpO8q/RtkAaLJQro0VC90fyce40blu31a5YH+COzk43oRp+U4avifIFEEVpCRD+t8 sA== 
+        id S1728322AbfJCKIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Oct 2019 06:08:34 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:46642 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727410AbfJCKIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Oct 2019 06:08:34 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x93A2vsa020834;
+        Thu, 3 Oct 2019 12:08:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=aOluPCF6ESczZ7lBj75ysirYywqU6TpjFJ3pKXx14HA=;
+ b=tWLZ2rCpdbtQMBUgXGvr/BC7PDLIdTDZcXKZvrsSlLQ+QdRLZewXN7uj6MTgO+2VeCeh
+ GX4lh9VcZmScLP2p2lmbpdVH4Gxtb1yWC5IVj/0JYA0BgcKqXxnL9PRXoYHf2E3rUqzX
+ /6Le48HXrwFWbeOIsMy8NUU+TCLl/Zl8CBLtK1iQ+UoU+Fi+QjPp1cvYAe4I5UP1xzLj
+ 39bQW4u6cYieeCSTSDvHk0T7Hklv2O5jROxhLy+QZZowsAzf1zJ07Gp0BqkW6EmDUBW9
+ gs3nQ9Dfat/5SFN3quriPKhjEZHsmLL8JKmV+UAqbeVJINAh/9dn6s2GYPmJNdIl39EQ lA== 
 Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2v9w9w3x74-1
+        by mx08-00178001.pphosted.com with ESMTP id 2v9xdh3kq6-1
         (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Thu, 03 Oct 2019 12:05:13 +0200
+        Thu, 03 Oct 2019 12:08:10 +0200
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1E0434E;
-        Thu,  3 Oct 2019 10:05:09 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0EC1D2B5CAC;
-        Thu,  3 Oct 2019 12:05:09 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 3 Oct
- 2019 12:05:08 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: move ltdc pinctrl on stm32mp157a dk1
- board
-To:     =?UTF-8?Q?Yannick_Fertr=c3=a9?= <yannick.fertre@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 27E3822;
+        Thu,  3 Oct 2019 10:08:07 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CC98B2B00F7;
+        Thu,  3 Oct 2019 12:08:06 +0200 (CEST)
+Received: from SFHDAG5NODE1.st.com (10.75.127.13) by SFHDAG3NODE1.st.com
+ (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 3 Oct
+ 2019 12:08:06 +0200
+Received: from SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6]) by
+ SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6%20]) with mapi id
+ 15.00.1473.003; Thu, 3 Oct 2019 12:08:06 +0200
+From:   Gerald BAEZA <gerald.baeza@st.com>
+To:     "will@kernel.org" <will@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "olof@lixom.net" <olof@lixom.net>, "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-References: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <05cc08f2-36c8-af75-39f3-7b7f4ac4e671@st.com>
-Date:   Thu, 3 Oct 2019 12:05:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Subject: RE: [PATCH v3 0/5] stm32-ddr-pmu driver creation
+Thread-Topic: [PATCH v3 0/5] stm32-ddr-pmu driver creation
+Thread-Index: AQHVXOk+As8mb1s6+UKuO5XjiYJqiadI6qNQ
+Date:   Thu, 3 Oct 2019 10:08:06 +0000
+Message-ID: <013321ff60ae44da892d806fbd3024d4@SFHDAG5NODE1.st.com>
+References: <1566918464-23927-1-git-send-email-gerald.baeza@st.com>
+In-Reply-To: <1566918464-23927-1-git-send-email-gerald.baeza@st.com>
+Accept-Language: fr-FR, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
- (10.75.127.8)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.44]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
  definitions=2019-10-03_04:2019-10-01,2019-10-03 signatures=0
 Sender: devicetree-owner@vger.kernel.org
@@ -69,44 +78,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yannick
+Dear all
 
-On 8/2/19 4:08 PM, Yannick Fertré wrote:
-> The ltdc pinctrl must be in the display controller node and
-> not in the peripheral node (hdmi bridge).
-> 
-> Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
+Gentle reminder for this review.
+
+Thanks in advance !
+
+G=E9rald
+
+> From: Gerald BAEZA <gerald.baeza@st.com>
+>=20
+> The DDRPERFM is the DDR Performance Monitor embedded in STM32MP1
+> SOC.
+>=20
+> This series adds support for the DDRPERFM via a new stm32-ddr-pmu driver,
+> registered into the perf framework.
+>=20
+> This driver is inspired from arch/arm/mm/cache-l2x0-pmu.c
+>=20
 > ---
->   arch/arm/boot/dts/stm32mp157a-dk1.dts | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-> index f3f0e37..1285cfc 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-> @@ -99,9 +99,6 @@
->   		reset-gpios = <&gpioa 10 GPIO_ACTIVE_LOW>;
->   		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
->   		interrupt-parent = <&gpiog>;
-> -		pinctrl-names = "default", "sleep";
-> -		pinctrl-0 = <&ltdc_pins_a>;
-> -		pinctrl-1 = <&ltdc_pins_sleep_a>;
->   		status = "okay";
->   
->   		ports {
-> @@ -276,6 +273,9 @@
->   };
->   
->   &ltdc {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&ltdc_pins_a>;
-> +	pinctrl-1 = <&ltdc_pins_sleep_a>;
->   	status = "okay";
->   
->   	port {
-> 
-
-Applied on stm32-next.
-
-Thanks.
-Alex
+> Changes from v1:
+> - add 'resets' description (bindings) and using (driver). Thanks Rob.
+> - rebase on 5.2-rc1 (that includes the ddrperfm clock control patch).
+>=20
+> Changes from v2:
+> - rebase on 5.3-rc6 that has to be completed with
+>   'perf tools: fix alignment trap in perf stat': mandatory.
+>   'Documentation: add link to stm32mp157 docs': referenced from this seri=
+es.
+> - take into account all remarks from Mark Rutland: thanks for your time!
+>   https://lkml.org/lkml/2019/6/26/388
+> - fix for event type filtering in stm32_ddr_pmu_event_init()
+>=20
+> Gerald Baeza (5):
+>   Documentation: perf: stm32: ddrperfm support
+>   dt-bindings: perf: stm32: ddrperfm support
+>   perf: stm32: ddrperfm driver creation
+>   ARM: configs: enable STM32_DDR_PMU
+>   ARM: dts: stm32: add ddrperfm on stm32mp157c
+>=20
+>  .../devicetree/bindings/perf/stm32-ddr-pmu.txt     |  16 +
+>  Documentation/perf/stm32-ddr-pmu.txt               |  37 ++
+>  arch/arm/boot/dts/stm32mp157c.dtsi                 |   8 +
+>  arch/arm/configs/multi_v7_defconfig                |   1 +
+>  drivers/perf/Kconfig                               |   6 +
+>  drivers/perf/Makefile                              |   1 +
+>  drivers/perf/stm32_ddr_pmu.c                       | 426 +++++++++++++++=
+++++++
+>  7 files changed, 495 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/stm32-ddr-
+> pmu.txt
+>  create mode 100644 Documentation/perf/stm32-ddr-pmu.txt
+>  create mode 100644 drivers/perf/stm32_ddr_pmu.c
+>=20
+> --
+> 2.7.4
