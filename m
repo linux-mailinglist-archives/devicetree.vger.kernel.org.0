@@ -2,77 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF535CC673
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 01:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61C90CC691
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 01:31:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731238AbfJDXUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 19:20:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59404 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729968AbfJDXUW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 19:20:22 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 062A1215EA;
-        Fri,  4 Oct 2019 23:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570231222;
-        bh=A5i8cqapG27X5CHR55uoln6f4Z8Ed6VwY+A+u+ziJww=;
-        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
-        b=givZ0GXYjhduIcQxPjQTRzJcSnxBRYpsC/B5MkadCkE1HVWkvQxfiOIxTdzVvHC3D
-         8Bu2sVKod2Oz2nj6WjjNHVNSHUlnP5qmyCtfckh9yyb2qRWGfsBVox6FXxHw5UlDBF
-         XDVSkcKstVMokIOdRZgg9aE3ouqiDQecDJOkTMF4=
-Content-Type: text/plain; charset="utf-8"
+        id S1731387AbfJDXbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 19:31:39 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:57293 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725730AbfJDXbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 19:31:39 -0400
+Received: from callcc.thunk.org (guestnat-104-133-0-98.corp.google.com [104.133.0.98] (may be forged))
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x94NTuAQ024308
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 4 Oct 2019 19:29:57 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id CCF8D42088C; Fri,  4 Oct 2019 19:29:55 -0400 (EDT)
+Date:   Fri, 4 Oct 2019 19:29:55 -0400
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     shuah <shuah@kernel.org>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        kieran.bingham@ideasonboard.com,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>, robh@kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>, Tim.Bird@sony.com,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, jdike@addtoit.com,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20191004232955.GC12012@mit.edu>
+References: <20190923090249.127984-1-brendanhiggins@google.com>
+ <20191004213812.GA24644@mit.edu>
+ <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
+ <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org>
+ <20191004222714.GA107737@google.com>
+ <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <81a2fa46-a7e6-66a2-9649-009f22813c81@codeaurora.org>
-References: <20190918095018.17979-1-tdas@codeaurora.org> <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org> <20190924231223.9012C207FD@mail.kernel.org> <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org> <20190925130346.42E0820640@mail.kernel.org> <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org> <20191001143825.CD3212054F@mail.kernel.org> <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org> <20191003160130.5A19B222D0@mail.kernel.org> <81a2fa46-a7e6-66a2-9649-009f22813c81@codeaurora.org>
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>, robh+dt@kernel.org
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC) driver for SC7180
-User-Agent: alot/0.8.1
-Date:   Fri, 04 Oct 2019 16:20:21 -0700
-Message-Id: <20191004232022.062A1215EA@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2019-10-04 10:39:31)
-> Hi Stephen,
->=20
-> On 10/3/2019 9:31 PM, Stephen Boyd wrote:
-> > Quoting Taniya Das (2019-10-03 03:31:15)
-> >> Hi Stephen,
-> >>
-> >> On 10/1/2019 8:08 PM, Stephen Boyd wrote:
-> >>>
-> >>> Why do you want to keep them critical and registered? I'm suggesting
-> >>> that any clk that is marked critical and doesn't have a parent should
-> >>> instead become a register write in probe to turn the clk on.
-> >>>
-> >> Sure, let me do a one-time enable from probe for the clocks which
-> >> doesn't have a parent.
-> >> But I would now have to educate the clients of these clocks to remove
-> >> using them.
-> >>
-> >=20
-> > If anyone is using these clks we can return NULL from the provider for
-> > the specifier so that we indicate there isn't support for them in the
-> > kernel. At least I hope that code path still works given all the recent
-> > changes to clk_get().
-> >=20
->=20
-> Could you please confirm if you are referring to update the below?
+On Fri, Oct 04, 2019 at 04:47:09PM -0600, shuah wrote:
+> > However, if I encourage arbitrary tests/improvements into my KUnit
+> > branch, it further diverges away from torvalds/master, and is more
+> > likely that there will be a merge conflict or issue that is not related
+> > to the core KUnit changes that will cause the whole thing to be
+> > rejected again in v5.5.
+> 
+> The idea is that the new development will happen based on kunit in
+> linux-kselftest next. It will work just fine. As we accepts patches,
+> they will go on top of kunit that is in linux-next now.
 
-I wasn't suggesting that explicitly but sure. Something like this would
-be necessary to make clk_get() pass back a NULL pointer to the caller.
-Does everything keep working with this change?
+I don't see how this would work.  If I add unit tests to ext4, they
+would be in fs/ext4.  And to the extent that I need to add test mocks
+to allow the unit tests to work, they will involve changes to existing
+files in fs/ext4.  I can't put them in the ext4.git tree without
+pulling in the kunit changes into the ext4 git tree.  And if they ext4
+unit tests land in the kunit tree, it would be a receipe for large
+numbers of merge conflicts.
 
+						- Ted
