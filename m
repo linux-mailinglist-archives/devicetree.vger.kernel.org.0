@@ -2,197 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86016CC6A8
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 01:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD8FCC6B2
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 01:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725730AbfJDXr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 19:47:27 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:37591 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731570AbfJDXrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 19:47:25 -0400
-Received: by mail-oi1-f196.google.com with SMTP id i16so7213896oie.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 16:47:24 -0700 (PDT)
+        id S1729035AbfJDXui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 19:50:38 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:41597 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726669AbfJDXui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 19:50:38 -0400
+Received: by mail-pg1-f193.google.com with SMTP id s1so4608329pgv.8
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 16:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3hvzIJAwdUIDj60PRswdy4jtQ7pq65dmvuMEDrZAxmY=;
-        b=sByyKd4dF7wI4oDmjRslrGtLmmRydXZiFQq1Jujk/HqPa81MECMvjff4PRTpIrLM1T
-         FtLi6/h2ZbRbvBRXdT6WETrB/ZO8N5CI4HzDQn5YxSPO8hu0y1aCRWAmC7qi8Qm8rLvn
-         iQS80cCwjcGnf1mF69Ga/IeY8Ca+re5cJH+xiP5vf//YhD1uxWudUffkfsP2NWIKRS1T
-         k9IBszQIRfGPzU18tOeIXFNyApc6D4VwLg0pKtZdq2KYHIrG66Re9wIqbWrEjoNOrCX2
-         fJ8CXcYv+khgS7KxwG1LhMPBM7UFAJA83B+9mP+9I+lTIWgRrGjRG/Kbbpv0P/QT72fT
-         eNlw==
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:from:to:cc:subject:user-agent:date;
+        bh=+cA64aGiQh2XvxdgS1/kXznRBIkrC4uuJUojLH5zI/w=;
+        b=m07RfMZJ+dNKXdfwGwWBU4If2vcyX5tlS66q9QyzbnOIokoZkKtHkLkmTnyKSOBZgs
+         HmPb7i0B9g4zkNxuV3kkTFH0eqfDFs0hw0hKezeCZvz7tn82q9oi91RWo2FzfYpDw/v/
+         V2l+YI6HghzKZpquVUOmlIezE8tqSepIJmMb4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3hvzIJAwdUIDj60PRswdy4jtQ7pq65dmvuMEDrZAxmY=;
-        b=rWQU24kBFCH3TXsL3lQ5xs6p574Ey0c7a6h9apZfXHKCm08NFBDwfTVzNj6z43210L
-         KQfPuY6kJ+myF6DgQin58GYU2MwaP534PswHrhmDpVDwMfglaIn+WUT6MJqVpjuw5tYD
-         focxjhaxWpHGKrTRb78U7YyyknGPol+SIVqkuKqG/0iRQlf5gbbWIDhKNMu8vqkYLVwM
-         CVjigY/A0OExqQXoeLXuL9pNRHGCDSB2RaF6Epc6RESwkRKGmKAtpIOt2BHqs9ZuTFHR
-         M3WpBL8oQOnARkk4jtG3kzjT28hp31BVzL9zqgthkm61pD6JiUYhqwsNvpH+ORmhlJsv
-         6PDQ==
-X-Gm-Message-State: APjAAAXaw87Ho5TN9V9je1tDvKktXydpBnmtgUHFQgzAbxS/9E6FlgKJ
-        GrejfPC0QHWN4YogXxVQvblgW5BQPVN+DXHM5Op+3A==
-X-Google-Smtp-Source: APXvYqyQuIwtgG5lkzf5p8L7oWSkX7l/6aAhPD0T8bNKplxUKfl+D7zNAdO+WZSNpxhAwm2aZQ2M3v/hP61zb0kEqCg=
-X-Received: by 2002:aca:a88e:: with SMTP id r136mr9366466oie.30.1570232843672;
- Fri, 04 Oct 2019 16:47:23 -0700 (PDT)
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
+         :user-agent:date;
+        bh=+cA64aGiQh2XvxdgS1/kXznRBIkrC4uuJUojLH5zI/w=;
+        b=LFRIFL16wjPVb8+pSWY/jhBtBgHieT6X/MnUoSe2xgv8raKzLT7fBeCyo77aeNIvNx
+         6UKqKcdRTPXFVt+xewdcShc8WWGwms+XiUiSJxWyyz681UGDdDOhQQb06foBIVFQqAxF
+         A09ytkq8r2aSH3YfHWi9GwIkRb+e/3aj4cX3B3Y0M2VQwLb/0g9sa5hu+6KGhu6wEbHY
+         r/Cl5WFJv4v3IGEe9BNxaLu/MjAGE6BobvajbM49stLfT9y8LVVSyqTwRwimwWJT9xWI
+         MFCNE7NG8OvuolGG2MCbDbqQHgYkz/gkNtJFDxjxuvalkzk+QChREnVaSXSCkYk/iTnz
+         tMpQ==
+X-Gm-Message-State: APjAAAWb/yPGPIO6mPvlRO6TVpax3sCzMoSnHVlCZNTdyzxiOpUCDYyz
+        Hkrn+VTXPMQgCY03ccCzZuaRIg==
+X-Google-Smtp-Source: APXvYqz5LX4mNmtaQuwX3deyaws5m9/nh/cVjz6uBXRxD6/mxr9VDemqwXdjO2IZwNNgZJi9EPuCqQ==
+X-Received: by 2002:a63:2903:: with SMTP id p3mr18130458pgp.306.1570233037240;
+        Fri, 04 Oct 2019 16:50:37 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id m9sm6546309pjf.11.2019.10.04.16.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Oct 2019 16:50:36 -0700 (PDT)
+Message-ID: <5d97dacc.1c69fb81.b5612.3794@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20190904211126.47518-1-saravanak@google.com> <20190904211126.47518-4-saravanak@google.com>
- <20190911102926.A9F8D2082C@mail.kernel.org> <20191004153750.GB823823@kroah.com>
-In-Reply-To: <20191004153750.GB823823@kroah.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 4 Oct 2019 16:46:47 -0700
-Message-ID: <CAGETcx-TFL3OAtPvU9_Sjovz4zk+YU+S7yAC7T0Vo7aRuQdWAA@mail.gmail.com>
-Subject: Re: [PATCH v11 3/6] of: property: Add functional dependency link from
- DT bindings
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <256a1ad3-6a0c-b4bd-e12c-9ab35db2939a@infradead.org>
+References: <20191004212311.141538-1-swboyd@chromium.org> <256a1ad3-6a0c-b4bd-e12c-9ab35db2939a@infradead.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Andrew Morton <akpm@linux-foundation.org>,
+        Randy Dunlap <rdunlap@infradead.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-acpi@vger.kernel.org,
-        clang-built-linux <clang-built-linux@googlegroups.com>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        kbuild test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] .gitattributes: Use 'dts' diff driver for dts files
+User-Agent: alot/0.8.1
+Date:   Fri, 04 Oct 2019 16:50:35 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 8:37 AM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Wed, Sep 11, 2019 at 03:29:25AM -0700, Stephen Boyd wrote:
-> > Quoting Saravana Kannan (2019-09-04 14:11:22)
-> > > Add device links after the devices are created (but before they are
-> > > probed) by looking at common DT bindings like clocks and
-> > > interconnects.
-> > >
-> > > Automatically adding device links for functional dependencies at the
-> > > framework level provides the following benefits:
-> > >
-> > > - Optimizes device probe order and avoids the useless work of
-> > >   attempting probes of devices that will not probe successfully
-> > >   (because their suppliers aren't present or haven't probed yet).
-> > >
-> > >   For example, in a commonly available mobile SoC, registering just
-> > >   one consumer device's driver at an initcall level earlier than the
-> > >   supplier device's driver causes 11 failed probe attempts before the
-> > >   consumer device probes successfully. This was with a kernel with all
-> > >   the drivers statically compiled in. This problem gets a lot worse if
-> > >   all the drivers are loaded as modules without direct symbol
-> > >   dependencies.
-> > >
-> > > - Supplier devices like clock providers, interconnect providers, etc
-> > >   need to keep the resources they provide active and at a particular
-> > >   state(s) during boot up even if their current set of consumers don't
-> > >   request the resource to be active. This is because the rest of the
-> > >   consumers might not have probed yet and turning off the resource
-> > >   before all the consumers have probed could lead to a hang or
-> > >   undesired user experience.
-> > >
-> > >   Some frameworks (Eg: regulator) handle this today by turning off
-> > >   "unused" resources at late_initcall_sync and hoping all the devices
-> > >   have probed by then. This is not a valid assumption for systems with
-> > >   loadable modules. Other frameworks (Eg: clock) just don't handle
-> > >   this due to the lack of a clear signal for when they can turn off
-> > >   resources.
-> >
-> > The clk framework disables unused clks at late_initcall_sync. What do
-> > you mean clk framework doesn't turn them off because of a clear signal?
->
-> There's a number of minor things you pointed out in this review.
->
-> Saravana, can you send a follow-on patch for the minor code cleanups
-> like formatting and the like that was found here?
+Quoting Randy Dunlap (2019-10-04 15:08:08)
+> On 10/4/19 2:23 PM, Stephen Boyd wrote:
+> >=20
+> > diff --git a/.gitattributes b/.gitattributes
+> > index 89c411b5ce6b..4b32eaa9571e 100644
+> > --- a/.gitattributes
+> > +++ b/.gitattributes
+> > @@ -1,2 +1,4 @@
+> >  *.c   diff=3Dcpp
+> >  *.h   diff=3Dcpp
+> > +*.dtsi diff=3Ddts
+> > +*.dts  diff=3Ddts
+> >=20
+>=20
+> Hm, I have a "cpp" installed but not a "dts".
+> Where would I find this "dts" so that I can install it?
+>=20
 
-Will do next week.
+It's not released yet but it is staged to be in the next release[1]. You
+can probably build git from source and try it out if you're interested.
 
-Thanks,
-Saravana
+[1] https://git.kernel.org/pub/scm/git/git.git/commit/?id=3Dd49c2c3466d2c8c=
+b0b3d0a43e6b406b07078fdb1
 
->
-> > > +static int of_link_to_phandle(struct device *dev, struct device_node *sup_np)
-> > > +{
-> > > +       struct device *sup_dev;
-> > > +       u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
-> >
-> > Is it really a u32 instead of an unsigned int or unsigned long?
-> >
-> > > +       int ret = 0;
-> > > +       struct device_node *tmp_np = sup_np;
-> > > +
-> > > +       of_node_get(sup_np);
-> > > +       /*
-> > > +        * Find the device node that contains the supplier phandle.  It may be
-> > > +        * @sup_np or it may be an ancestor of @sup_np.
-> > > +        */
-> > > +       while (sup_np && !of_find_property(sup_np, "compatible", NULL))
-> > > +               sup_np = of_get_next_parent(sup_np);
-> >
-> > I don't get this. This is assuming that drivers are only probed for
-> > device nodes that have a compatible string? What about drivers that make
-> > sub-devices for clk support that have drivers in drivers/clk/ that then
-> > attach at runtime later? This happens sometimes for MFDs that want to
-> > split the functionality across the driver tree to the respective
-> > subsystems.
->
-> For that, the link would not be there, correct?
->
-> > > +static int of_link_property(struct device *dev, struct device_node *con_np,
-> > > +                            const char *prop_name)
-> > > +{
-> > > +       struct device_node *phandle;
-> > > +       const struct supplier_bindings *s = bindings;
-> > > +       unsigned int i = 0;
-> > > +       bool matched = false;
-> > > +       int ret = 0;
-> > > +
-> > > +       /* Do not stop at first failed link, link all available suppliers. */
-> > > +       while (!matched && s->parse_prop) {
-> > > +               while ((phandle = s->parse_prop(con_np, prop_name, i))) {
-> > > +                       matched = true;
-> > > +                       i++;
-> > > +                       if (of_link_to_phandle(dev, phandle) == -EAGAIN)
-> > > +                               ret = -EAGAIN;
-> >
-> > And don't break?
->
-> There was comments before about how this is not needed.  Frank asked
-> that the comment be removed.  And now you point it out again :)
->
-> Look at the comment a few lines up, we have to go through all of the
-> suppliers.
->
-> > > +static int __of_link_to_suppliers(struct device *dev,
-> >
-> > Why the double underscore?
-> >
-> > > +                                 struct device_node *con_np)
-> > > +{
-> > > +       struct device_node *child;
-> > > +       struct property *p;
-> > > +       int ret = 0;
-> > > +
-> > > +       for_each_property_of_node(con_np, p)
-> > > +               if (of_link_property(dev, con_np, p->name))
-> > > +                       ret = -EAGAIN;
-> >
-> > Same comment.
->
-> Same response as above :)
->
-> thanks,
->
-> greg k-h
