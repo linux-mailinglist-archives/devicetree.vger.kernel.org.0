@@ -2,208 +2,609 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF96CB5F4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 10:20:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F25CB61A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 10:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388549AbfJDIUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 04:20:09 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:9863 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388566AbfJDIUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 04:20:04 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d9700b20000>; Fri, 04 Oct 2019 01:20:02 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 04 Oct 2019 01:20:02 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 04 Oct 2019 01:20:02 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Oct
- 2019 08:20:01 +0000
-Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Fri, 4 Oct 2019 08:20:01 +0000
-Received: from jckuo-lt.nvidia.com (Not Verified[10.19.108.105]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d9700b00000>; Fri, 04 Oct 2019 01:20:01 -0700
-From:   JC Kuo <jckuo@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nkristam@nvidia.com>, <skomatineni@nvidia.com>,
-        JC Kuo <jckuo@nvidia.com>
-Subject: [PATCH v2 7/7] arm64: tegra: Enable XUSB host in P2972-0000 board
-Date:   Fri, 4 Oct 2019 16:19:41 +0800
-Message-ID: <20191004081941.4831-8-jckuo@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191004081941.4831-1-jckuo@nvidia.com>
-References: <20191004081941.4831-1-jckuo@nvidia.com>
-X-NVConfidentiality: public
+        id S1730092AbfJDIZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 04:25:45 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:43311 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729466AbfJDIZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 04:25:45 -0400
+Received: by mail-io1-f68.google.com with SMTP id v2so11675096iob.10
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 01:25:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=atDm+LCrx0hEYjOBAu2xcXS/ZP5sMWf/FCk2t+yNutM=;
+        b=iK2zCBQ1gaKzABp8jFgNs/h8fqZAEEexFPW8O5WaisRBtxBEGYZF0oPS+H2E80Ydfp
+         aycRgQAC9T5s2Q1dYvL9dD2/NWAFYwt9qVRxiliN6jQxUj0qhPGdk7TobFU3bsKnq91m
+         O8NUsgBzKnonIjcn+1hIB0aPl3LuOcwkcVp21dislONlZtK06xPfMDf6Q1DAs3NmyW6d
+         373hxaod5qLzX43BzlM4MT9q1wYnxSkMKhU07fdbGaDZVAjYyl/gzDsGwDIeAiqAZMjy
+         b5j2whhQVF/zX8/hCex8D2cSdozMcHLjaqSL5BUNJYyCeGnP9l26iuCZ4cSBd8DuLAen
+         bizg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=atDm+LCrx0hEYjOBAu2xcXS/ZP5sMWf/FCk2t+yNutM=;
+        b=OyIHBlTmANNzRotdYX7bR2YBu2qGD8Z0hJNf40lrt5phHVIwtLLDugOG55LBNr0yCP
+         ky/4pPoBlKDZCK0GUdHhuFdXIhoHxXA0oDWlbVkDtqXdHJOC4Ktc/SZgVpuSxI+qXsEN
+         MXbpK2mpvzD0A/RsUWVHoDimBWsbbuclkHszxG49xPzUJfqASUPqFI3N3J7iZbJE4fQ3
+         iTBkZzkhtIdW0nYuVEjR6VDbGKTtbhTbOh1+i2/fFsAOQrAGPujaNTpItIMBx5vI946p
+         7Q6BprxEJGszJA3hfqcmCZcVASbJEvXtNYNLKPob9EJiDKZVMk3V2qOjTnluCCJeb+Cx
+         ZZGA==
+X-Gm-Message-State: APjAAAUJGbox+YCPiPKx3ftE45px6SAX2BjO9xS48Yvri+ZEAUyJb+D2
+        //WahiBLfqe8DuXdRBAVqfXUdFiI0Ne54DLi4xO/ng==
+X-Google-Smtp-Source: APXvYqxYlh2IE8anVfb6BJ+ATuchV2MzjK0Ig8fg1yhbAjDb+oBhiMk2QXFj4gL5INlbotps15Ar26Ukt1KH2hK1GX0=
+X-Received: by 2002:a6b:fc04:: with SMTP id r4mr1174705ioh.189.1570177542977;
+ Fri, 04 Oct 2019 01:25:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1570177202; bh=Erbkds484JhNPrRLOYyEGFIbfjLX8oEulW7BxazUJQQ=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=Sj/rpfsJNnGQPGJBMWbZB6HeaZgQ9rZUdaNTFGeQkRVmTp8ew2pWUjcCxMpYf7JW9
-         jyCmQMS34CITD6fo27FjL7bJaPmIuVIiHph0c6wfczSL84aayAPrIRNOYe8f8AtSj+
-         C2nujaLiGNlOJlXx3ILBgBqwN1mgGMH/TJcbk06SKnSyrTZdjwav3oUAm0DYUSnBW3
-         8x+vOSzVRbJLYO1tdgZbjIUp8VnYT6L362kmMP9J9RloldM9ZPFQGLkcP/wQ80beKM
-         VTHXpVMqXRo8bdb87jbsspKcXtjk6Xe3+1y0euwej+IdFLmssHq5pxkjsK8G0YSMLH
-         CiydQhgp9u+tA==
+References: <20190917105902.445-1-m.felsch@pengutronix.de> <20190917105902.445-4-m.felsch@pengutronix.de>
+ <CAMpxmJUeasS3ogGVvy2jrE8ZdVtjWVjgJr1wcynfu8SzXQMmRA@mail.gmail.com>
+ <20190918120613.mnehis6ydvbsqppb@pengutronix.de> <CAMpxmJX4wwfxGSCmNXQxYT54yofqhE26MDqVx+M=v7rOorKNYg@mail.gmail.com>
+ <20190919083804.2oayi6wwwc25ztvj@pengutronix.de> <20190930184241.3qssbvmpy7z4o3it@pengutronix.de>
+ <CAMpxmJV2P4j3FTkVbm-+bReVZ7EfzWsDXYvsFttOigPy=EAAnQ@mail.gmail.com>
+In-Reply-To: <CAMpxmJV2P4j3FTkVbm-+bReVZ7EfzWsDXYvsFttOigPy=EAAnQ@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 4 Oct 2019 10:25:31 +0200
+Message-ID: <CAMRc=MeE8HzykbnfM8noYpU7g5vbFLEyGtwP=SfAK87HtasE6A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] gpio: da9062: add driver support
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Adam.Thomson.Opensource@diasemi.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit enables XUSB host and pad controller in Tegra194
-P2972-0000 board.
+czw., 3 pa=C5=BA 2019 o 10:12 Bartosz Golaszewski
+<bgolaszewski@baylibre.com> napisa=C5=82(a):
+>
+> pon., 30 wrz 2019 o 20:42 Marco Felsch <m.felsch@pengutronix.de> napisa=
+=C5=82(a):
+> >
+> > Hi Bartosz,
+> >
+> > On 19-09-19 10:38, Marco Felsch wrote:
+> > > On 19-09-19 10:24, Bartosz Golaszewski wrote:
+> > > > =C5=9Br., 18 wrz 2019 o 14:06 Marco Felsch <m.felsch@pengutronix.de=
+> napisa=C5=82(a):
+> > > > >
+> > > > > On 19-09-18 09:04, Bartosz Golaszewski wrote:
+> > > > > > wt., 17 wrz 2019 o 12:59 Marco Felsch <m.felsch@pengutronix.de>=
+ napisa=C5=82(a):
+> > > > > > >
+> > > > > > > The DA9062 is a mfd pmic device which supports 5 GPIOs. The G=
+PIOs can
+> > > > > > > be used as input, output or have a special use-case.
+> > > > > > >
+> > > > > > > The patch adds the support for the normal input/output use-ca=
+se.
+> > > > > > >
+> > > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > > > ---
+> > > > > > >  drivers/gpio/Kconfig            |  11 ++
+> > > > > > >  drivers/gpio/Makefile           |   1 +
+> > > > > > >  drivers/gpio/gpio-da9062.c      | 265 ++++++++++++++++++++++=
+++++++++++
+> > > > > > >  include/linux/mfd/da9062/gpio.h |  13 ++
+> > > > > > >  4 files changed, 290 insertions(+)
+> > > > > > >  create mode 100644 drivers/gpio/gpio-da9062.c
+> > > > > > >  create mode 100644 include/linux/mfd/da9062/gpio.h
+> > > > > > >
+> > > > > > > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> > > > > > > index bb13c266c329..b308ea549aaa 100644
+> > > > > > > --- a/drivers/gpio/Kconfig
+> > > > > > > +++ b/drivers/gpio/Kconfig
+> > > > > > > @@ -1038,6 +1038,17 @@ config GPIO_DA9055
+> > > > > > >
+> > > > > > >           If driver is built as a module it will be called gp=
+io-da9055.
+> > > > > > >
+> > > > > > > +config GPIO_DA9062
+> > > > > > > +       tristate "Dialog Semiconductor DA9062 GPIO"
+> > > > > > > +       depends on MFD_DA9062
+> > > > > > > +       help
+> > > > > > > +         Say yes here to enable the GPIO driver for the DA90=
+62 chip.
+> > > > > > > +
+> > > > > > > +         The Dialog DA9062 PMIC chip has 5 GPIO pins that ca=
+n be
+> > > > > > > +         be controller by this driver.
+> > > > > > > +
+> > > > > > > +         If driver is built as a module it will be called gp=
+io-da9062.
+> > > > > > > +
+> > > > > > >  config GPIO_DLN2
+> > > > > > >         tristate "Diolan DLN2 GPIO support"
+> > > > > > >         depends on MFD_DLN2
+> > > > > > > diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> > > > > > > index a4e91175c708..f29c8af2d096 100644
+> > > > > > > --- a/drivers/gpio/Makefile
+> > > > > > > +++ b/drivers/gpio/Makefile
+> > > > > > > @@ -45,6 +45,7 @@ obj-$(CONFIG_GPIO_CRYSTAL_COVE)            =
+   +=3D gpio-crystalcove.o
+> > > > > > >  obj-$(CONFIG_GPIO_CS5535)              +=3D gpio-cs5535.o
+> > > > > > >  obj-$(CONFIG_GPIO_DA9052)              +=3D gpio-da9052.o
+> > > > > > >  obj-$(CONFIG_GPIO_DA9055)              +=3D gpio-da9055.o
+> > > > > > > +obj-$(CONFIG_GPIO_DA9062)              +=3D gpio-da9062.o
+> > > > > > >  obj-$(CONFIG_GPIO_DAVINCI)             +=3D gpio-davinci.o
+> > > > > > >  obj-$(CONFIG_GPIO_DLN2)                        +=3D gpio-dln=
+2.o
+> > > > > > >  obj-$(CONFIG_GPIO_DWAPB)               +=3D gpio-dwapb.o
+> > > > > > > diff --git a/drivers/gpio/gpio-da9062.c b/drivers/gpio/gpio-d=
+a9062.c
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..6035963929a2
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/drivers/gpio/gpio-da9062.c
+> > > > > > > @@ -0,0 +1,265 @@
+> > > > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > > > +/*
+> > > > > > > + * GPIO Driver for Dialog DA9062 PMICs.
+> > > > > > > + * Based on DA9055 GPIO driver.
+> > > > > > > + *
+> > > > > > > + * Copyright (C) 2019 Pengutronix, Marco Felsch <kernel@peng=
+utronix.de>
+> > > > > > > + */
+> > > > > > > +#include <linux/module.h>
+> > > > > > > +#include <linux/platform_device.h>
+> > > > > > > +#include <linux/regmap.h>
+> > > > > > > +
+> > > > > > > +#include <linux/gpio/driver.h>
+> > > > > > > +#include <linux/gpio/consumer.h>
+> > > > > > > +
+> > > > > > > +#include <linux/mfd/da9062/core.h>
+> > > > > > > +#include <linux/mfd/da9062/registers.h>
+> > > > > > > +
+> > > > > > > +#include "gpiolib.h"
+> > > > > > > +
+> > > > > > > +#define DA9062_TYPE(offset)            (4 * (offset % 2))
+> > > > > > > +#define DA9062_PIN_SHIFT(offset)       (4 * (offset % 2))
+> > > > > > > +#define DA9062_PIN_ALTERNATE           0x00 /* gpio alternat=
+e mode */
+> > > > > > > +#define DA9062_PIN_GPI                 0x01 /* gpio in */
+> > > > > > > +#define DA9062_PIN_GPO_OD              0x02 /* gpio out open=
+-drain */
+> > > > > > > +#define DA9062_PIN_GPO_PP              0x03 /* gpio out push=
+-pull */
+> > > > > > > +#define DA9062_GPIO_NUM                        5
+> > > > > > > +
+> > > > > > > +struct da9062_gpio {
+> > > > > > > +       struct da9062 *da9062;
+> > > > > > > +       struct gpio_chip gp;
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +int da9062_gpio_get_hwgpio(struct gpio_desc *desc)
+> > > > > > > +{
+> > > > > > > +       return gpio_chip_hwgpio(desc);
+> > > > > > > +}
+> > > > > > > +EXPORT_SYMBOL_GPL(da9062_gpio_get_hwgpio);
+> > > > > > > +
+> > > > > >
+> > > > > > Is this going to be used anywhere? I'm not really a fan of addi=
+ng new
+> > > > > > APIs without users.
+> > > > >
+> > > > > Yes, it is used here: https://lkml.org/lkml/2019/9/17/411
+> > > > >
+> > > > > I don't know if I should add the gpio here or as seperate patch w=
+ithin
+> > > > > the above series.
+> > > > >
+> > > > > > > +static int da9062_gpio_get_pin_mode(struct regmap *regmap, u=
+nsigned int offset)
+> > > > > > > +{
+> > > > > > > +       int ret;
+> > > > > > > +       int val;
+> > > > > >
+> > > > > > Nit: maybe put these two in a single line?
+> > > > >
+> > > > > Yes.
+> > > > >
+> > > > > > > +
+> > > > > > > +       ret =3D regmap_read(regmap, DA9062AA_GPIO_0_1 + (offs=
+et >> 1), &val);
+> > > > > > > +       if (ret < 0)
+> > > > > > > +               return ret;
+> > > > > > > +
+> > > > > > > +       val >>=3D DA9062_PIN_SHIFT(offset);
+> > > > > > > +       val &=3D DA9062AA_GPIO0_PIN_MASK;
+> > > > > > > +
+> > > > > > > +       return val;
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_set_pin_mode(struct regmap *regmap, u=
+nsigned int offset,
+> > > > > > > +                                   unsigned int mode)
+> > > > > > > +{
+> > > > > > > +       unsigned int mask;
+> > > > > > > +
+> > > > > > > +       mode &=3D DA9062AA_GPIO0_PIN_MASK;
+> > > > > > > +       mode <<=3D DA9062_PIN_SHIFT(offset);
+> > > > > > > +       mask =3D DA9062AA_GPIO0_PIN_MASK << DA9062_PIN_SHIFT(=
+offset);
+> > > > > > > +
+> > > > > > > +       return regmap_update_bits(regmap, DA9062AA_GPIO_0_1 +=
+ (offset >> 1),
+> > > > > > > +                                 mask, mode);
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_get(struct gpio_chip *gc, unsigned in=
+t offset)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio =3D gpiochip_get_data(gc);
+> > > > > > > +       struct regmap *regmap =3D gpio->da9062->regmap;
+> > > > > > > +       int gpio_dir, val;
+> > > > > > > +       int ret;
+> > > > > > > +
+> > > > > > > +       gpio_dir =3D da9062_gpio_get_pin_mode(regmap, offset)=
+;
+> > > > > > > +       if (gpio_dir < 0)
+> > > > > > > +               return gpio_dir;
+> > > > > > > +
+> > > > > > > +       switch (gpio_dir) {
+> > > > > > > +       case DA9062_PIN_ALTERNATE:
+> > > > > > > +               return -ENOTSUPP;
+> > > > > > > +       case DA9062_PIN_GPI:
+> > > > > > > +               ret =3D regmap_read(regmap, DA9062AA_STATUS_B=
+, &val);
+> > > > > > > +               if (ret < 0)
+> > > > > > > +                       return ret;
+> > > > > > > +               break;
+> > > > > > > +       case DA9062_PIN_GPO_OD:
+> > > > > > > +               /* falltrough */
+> > > > > > > +       case DA9062_PIN_GPO_PP:
+> > > > > > > +               ret =3D regmap_read(regmap, DA9062AA_GPIO_MOD=
+E0_4, &val);
+> > > > > > > +               if (ret < 0)
+> > > > > > > +                       return ret;
+> > > > > > > +       }
+> > > > > > > +
+> > > > > > > +       return val & BIT(offset);
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static void da9062_gpio_set(struct gpio_chip *gc, unsigned i=
+nt offset,
+> > > > > > > +                           int value)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio =3D gpiochip_get_data(gc);
+> > > > > > > +       struct regmap *regmap =3D gpio->da9062->regmap;
+> > > > > > > +
+> > > > > > > +       regmap_update_bits(regmap, DA9062AA_GPIO_MODE0_4, BIT=
+(offset),
+> > > > > > > +                          value << offset);
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_get_direction(struct gpio_chip *gc, u=
+nsigned int offset)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio =3D gpiochip_get_data(gc);
+> > > > > > > +       struct regmap *regmap =3D gpio->da9062->regmap;
+> > > > > > > +       int gpio_dir;
+> > > > > > > +
+> > > > > > > +       gpio_dir =3D da9062_gpio_get_pin_mode(regmap, offset)=
+;
+> > > > > > > +       if (gpio_dir < 0)
+> > > > > > > +               return gpio_dir;
+> > > > > > > +
+> > > > > > > +       switch (gpio_dir) {
+> > > > > > > +       case DA9062_PIN_ALTERNATE:
+> > > > > > > +               return -ENOTSUPP;
+> > > > > > > +       case DA9062_PIN_GPI:
+> > > > > > > +               return 1;
+> > > > > > > +       case DA9062_PIN_GPO_OD:
+> > > > > > > +               /* falltrough */
+> > > > > > > +       case DA9062_PIN_GPO_PP:
+> > > > > > > +               return 0;
+> > > > > > > +       }
+> > > > > > > +
+> > > > > > > +       return -EINVAL;
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_direction_input(struct gpio_chip *gc,
+> > > > > > > +                                      unsigned int offset)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio =3D gpiochip_get_data(gc);
+> > > > > > > +       struct regmap *regmap =3D gpio->da9062->regmap;
+> > > > > > > +       struct gpio_desc *desc =3D gpiochip_get_desc(gc, offs=
+et);
+> > > > > > > +       unsigned int gpi_type;
+> > > > > > > +       int ret;
+> > > > > > > +
+> > > > > > > +       ret =3D da9062_gpio_set_pin_mode(regmap, offset, DA90=
+62_PIN_GPI);
+> > > > > > > +       if (ret)
+> > > > > > > +               return ret;
+> > > > > > > +
+> > > > > > > +       /*
+> > > > > > > +        * If the gpio is active low we should set it in hw t=
+oo. No worries
+> > > > > > > +        * about gpio_get() because we read and return the gp=
+io-level. So the
+> > > > > > > +        * gpiolob active_low handling is still correct.
+> > > > > > > +        *
+> > > > > > > +        * 0 - active low, 1 - active high
+> > > > > > > +        */
+> > > > > > > +       gpi_type =3D !gpiod_is_active_low(desc);
+> > > > > > > +       return regmap_update_bits(regmap, DA9062AA_GPIO_0_1 +=
+ (offset >> 1),
+> > > > > > > +                               DA9062AA_GPIO0_TYPE_MASK << D=
+A9062_TYPE(offset),
+> > > > > > > +                               gpi_type << DA9062_TYPE(offse=
+t));
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_direction_output(struct gpio_chip *gc=
+,
+> > > > > > > +                                       unsigned int offset, =
+int value)
+> > > > > > > +{
+> > > > > > > +       /* Push-Pull / Open-Drain options are configured duri=
+ng set_config */
+> > > > > > > +       da9062_gpio_set(gc, offset, value);
+> > > > > > > +
+> > > > > > > +       return 0;
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_set_config(struct gpio_chip *gc, unsi=
+gned int offset,
+> > > > > > > +                                 unsigned long config)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio =3D gpiochip_get_data(gc);
+> > > > > > > +       struct regmap *regmap =3D gpio->da9062->regmap;
+> > > > > > > +       int gpio_dir;
+> > > > > > > +
+> > > > > > > +       switch (pinconf_to_config_param(config)) {
+> > > > > > > +       case PIN_CONFIG_BIAS_PULL_DOWN:
+> > > > > > > +               /* PD only if pin is input */
+> > > > > > > +               gpio_dir =3D da9062_gpio_get_pin_mode(regmap,=
+ offset);
+> > > > > > > +               if (gpio_dir < 0)
+> > > > > > > +                       return -EINVAL;
+> > > > > > > +               else if (gpio_dir !=3D DA9062_PIN_GPI)
+> > > > > > > +                       return -ENOTSUPP;
+> > > > > > > +               return regmap_update_bits(regmap, DA9062AA_CO=
+NFIG_K,
+> > > > > > > +                                         BIT(offset), BIT(of=
+fset));
+> > > > > > > +       case PIN_CONFIG_BIAS_PULL_UP:
+> > > > > > > +               /* PU only if pin is output open-drain */
+> > > > > > > +               gpio_dir =3D da9062_gpio_get_pin_mode(regmap,=
+ offset);
+> > > > > > > +               if (gpio_dir < 0)
+> > > > > > > +                       return -EINVAL;
+> > > > > > > +               else if (gpio_dir !=3D DA9062_PIN_GPO_OD)
+> > > > > > > +                       return -ENOTSUPP;
+> > > > > > > +               return regmap_update_bits(regmap, DA9062AA_CO=
+NFIG_K,
+> > > > > > > +                                         BIT(offset), BIT(of=
+fset));
+> > > > > > > +       case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+> > > > > > > +               return da9062_gpio_set_pin_mode(regmap, offse=
+t,
+> > > > > > > +                                               DA9062_PIN_GP=
+O_OD);
+> > > > > > > +       case PIN_CONFIG_DRIVE_PUSH_PULL:
+> > > > > > > +               return da9062_gpio_set_pin_mode(regmap, offse=
+t,
+> > > > > > > +                                               DA9062_PIN_GP=
+O_PP);
+> > > > > > > +       default:
+> > > > > > > +               return -ENOTSUPP;
+> > > > > > > +       }
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_to_irq(struct gpio_chip *gc, unsigned=
+ int offset)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio =3D gpiochip_get_data(gc);
+> > > > > > > +       struct da9062 *da9062 =3D gpio->da9062;
+> > > > > > > +
+> > > > > > > +       return regmap_irq_get_virq(da9062->regmap_irq,
+> > > > > > > +                                  DA9062_IRQ_GPI0 + offset);
+> > > > > > > +}
+> > > > > > > +
+> > > > > >
+> > > > > > I'm afraid this won't fly anymore. We now have support for
+> > > > > > hierarchical GPIO irqchips (take a look at
+> > > > > > Documentation/driver-api/gpio/driver.rst) and Linus is quite st=
+rict on
+> > > > > > enforcing its usage. What I did with a very simple mfd device w=
+ith
+> > > > > > GPIOs (where using hierarchical irqchips was clearly overkill) =
+was to
+> > > > > > put the gpio-controller on the same DT node as the core mfd dev=
+ice -
+> > > > > > that way there's no need for a hierarchy.
+> > > > >
+> > > > > Okay, I've checked the documentation and the code. If I understoo=
+d it
+> > > > > right I should request each irq using platform_get_irq_byname() a=
+s you
+> > > > > did for the max77650?
+> > > > >
+> > > >
+> > > > No, regmap irq domain is fine, as long as you modify the DT binding=
+s
+> > > > to not use a sub-node for the gpio-controller.
+> > >
+> > > Ah okay.. thanks for clearing that.
+> >
+> > While implementing your suggestion I found a possible bug within the
+> > max77650-gpio driver:
+> >
+> > 8<-----------------------------------------------------
+> >
+> > diff --git a/drivers/gpio/gpio-max77650.c b/drivers/gpio/gpio-max77650.=
+c
+> > index 3f03f4e8956c..1c25c55e7818 100644
+> > --- a/drivers/gpio/gpio-max77650.c
+> > +++ b/drivers/gpio/gpio-max77650.c
+> > @@ -174,6 +174,10 @@ static int max77650_gpio_probe(struct platform_dev=
+ice *pdev)
+> >         chip->gc.set_config =3D max77650_gpio_set_config;
+> >         chip->gc.to_irq =3D max77650_gpio_to_irq;
+> >
+> > +#ifdef CONFIG_OF_GPIO
+> > +       chip->gc.of_node =3D parent->of_node;
+> > +#endif
+> > +
+> >         return devm_gpiochip_add_data(dev, &chip->gc, chip);
+> >  }
+>
+> This does make sense (except that you don't need the ifdef guard), but
+> the driver works, I have tested it on real HW. I'll take a look
+> tomorrow, I don't have the board with me.
+>
 
-Signed-off-by: JC Kuo <jckuo@nvidia.com>
----
-Changes in v2:
-- use capitalization of regulator names
-- fix gpio property of VDD_5V_SATA regulator
+Ok, so I checked it and if the chip has a parent assigned, the gpiolib
+core will take its of_node and assign it to gdev, so all looks fine to
+me.
 
- .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 36 ++++++++++-
- .../boot/dts/nvidia/tegra194-p2972-0000.dts   | 62 +++++++++++++++++++
- 2 files changed, 97 insertions(+), 1 deletion(-)
+Bart
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-index 4c38426a6969..e7d5e8a30f93 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-@@ -66,6 +66,29 @@
- 			vmmc-supply = <&vdd_emmc_3v3>;
- 		};
- 
-+		padctl@3520000 {
-+			avdd-usb-supply = <&vdd_usb_3v3>;
-+			vclamp-usb-supply = <&vdd_1v8ao>;
-+
-+			ports {
-+				usb2-1 {
-+					vbus-supply = <&vdd_5v0_sys>;
-+				};
-+
-+				usb2-3 {
-+					vbus-supply = <&vdd_5v_sata>;
-+				};
-+
-+				usb3-0 {
-+					vbus-supply = <&vdd_5v0_sys>;
-+				};
-+
-+				usb3-3 {
-+					vbus-supply = <&vdd_5v0_sys>;
-+				};
-+			};
-+		};
-+
- 		rtc@c2a0000 {
- 			status = "okay";
- 		};
-@@ -229,7 +252,7 @@
- 						regulator-max-microvolt = <3300000>;
- 					};
- 
--					ldo5 {
-+					vdd_usb_3v3: ldo5 {
- 						regulator-name = "VDD_USB_3V3";
- 						regulator-min-microvolt = <3300000>;
- 						regulator-max-microvolt = <3300000>;
-@@ -313,5 +336,16 @@
- 			regulator-boot-on;
- 			enable-active-low;
- 		};
-+
-+		vdd_5v_sata: regulator@4 {
-+			compatible = "regulator-fixed";
-+			reg = <4>;
-+
-+			regulator-name = "VDD_5V_SATA";
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			gpio = <&gpio TEGRA194_MAIN_GPIO(Z, 1) GPIO_ACTIVE_HIGH>;
-+			enable-active-high;
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index d47cd8c4dd24..b60eef64c487 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -62,6 +62,68 @@
- 							 GPIO_ACTIVE_LOW>;
- 			};
- 		};
-+		padctl@3520000 {
-+			status = "okay";
-+
-+			pads {
-+				usb2 {
-+					lanes {
-+						usb2-1 {
-+							status = "okay";
-+						};
-+
-+						usb2-3 {
-+							status = "okay";
-+						};
-+					};
-+				};
-+
-+				usb3 {
-+					lanes {
-+						usb3-0 {
-+							status = "okay";
-+						};
-+
-+						usb3-3 {
-+							status = "okay";
-+						};
-+					};
-+				};
-+			};
-+
-+			ports {
-+				usb2-1 {
-+					mode = "host";
-+					status = "okay";
-+				};
-+
-+				usb2-3 {
-+					mode = "host";
-+					status = "okay";
-+				};
-+
-+				usb3-0 {
-+					nvidia,usb2-companion = <1>;
-+					status = "okay";
-+				};
-+
-+				usb3-3 {
-+					nvidia,usb2-companion = <3>;
-+					nvidia,disable-gen2;
-+					status = "okay";
-+				};
-+			};
-+		};
-+
-+		usb@3610000 {
-+			status = "okay";
-+
-+			phys =	<&{/cbb/padctl@3520000/pads/usb2/lanes/usb2-1}>,
-+				<&{/cbb/padctl@3520000/pads/usb2/lanes/usb2-3}>,
-+				<&{/cbb/padctl@3520000/pads/usb3/lanes/usb3-0}>,
-+				<&{/cbb/padctl@3520000/pads/usb3/lanes/usb3-3}>;
-+			phy-names = "usb2-1", "usb2-3", "usb3-0", "usb3-3";
-+		};
- 	};
- 
- 	pcie@14100000 {
--- 
-2.17.1
-
+> Bart
+>
+> >
+> > 8<-----------------------------------------------------
+> >
+> > If I understood it right the max77650-gpio won't work without this fix.
+> >
+> > Regards,
+> >   Marco
+> >
+> > > Regards,
+> > >   Marco
+> > >
+> > > > > Regards,
+> > > > >   Marco
+> > > > >
+> > > > > > Bart
+> > > > > >
+> > > > > > > +static const struct gpio_chip reference_gp =3D {
+> > > > > > > +       .label =3D "da9062-gpio",
+> > > > > > > +       .owner =3D THIS_MODULE,
+> > > > > > > +       .get =3D da9062_gpio_get,
+> > > > > > > +       .set =3D da9062_gpio_set,
+> > > > > > > +       .get_direction =3D da9062_gpio_get_direction,
+> > > > > > > +       .direction_input =3D da9062_gpio_direction_input,
+> > > > > > > +       .direction_output =3D da9062_gpio_direction_output,
+> > > > > > > +       .set_config =3D da9062_gpio_set_config,
+> > > > > > > +       .to_irq =3D da9062_gpio_to_irq,
+> > > > > > > +       .can_sleep =3D true,
+> > > > > > > +       .ngpio =3D DA9062_GPIO_NUM,
+> > > > > > > +       .base =3D -1,
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +static int da9062_gpio_probe(struct platform_device *pdev)
+> > > > > > > +{
+> > > > > > > +       struct da9062_gpio *gpio;
+> > > > > > > +
+> > > > > > > +       gpio =3D devm_kzalloc(&pdev->dev, sizeof(*gpio), GFP_=
+KERNEL);
+> > > > > > > +       if (!gpio)
+> > > > > > > +               return -ENOMEM;
+> > > > > > > +
+> > > > > > > +       gpio->da9062 =3D dev_get_drvdata(pdev->dev.parent);
+> > > > > > > +       if (!gpio->da9062)
+> > > > > > > +               return -EINVAL;
+> > > > > > > +
+> > > > > > > +       gpio->gp =3D reference_gp;
+> > > > > > > +       gpio->gp.parent =3D &pdev->dev;
+> > > > > > > +
+> > > > > > > +       platform_set_drvdata(pdev, gpio);
+> > > > > > > +
+> > > > > > > +       return devm_gpiochip_add_data(&pdev->dev, &gpio->gp, =
+gpio);
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static const struct of_device_id da9062_compatible_id_table[=
+] =3D {
+> > > > > > > +       { .compatible =3D "dlg,da9062-gpio" },
+> > > > > > > +       { },
+> > > > > > > +};
+> > > > > > > +MODULE_DEVICE_TABLE(of, da9062_compatible_id_table);
+> > > > > > > +
+> > > > > > > +static struct platform_driver da9062_gpio_driver =3D {
+> > > > > > > +       .probe =3D da9062_gpio_probe,
+> > > > > > > +       .driver =3D {
+> > > > > > > +               .name   =3D "da9062-gpio",
+> > > > > > > +               .of_match_table =3D da9062_compatible_id_tabl=
+e,
+> > > > > > > +       },
+> > > > > > > +};
+> > > > > > > +module_platform_driver(da9062_gpio_driver);
+> > > > > > > +
+> > > > > > > +MODULE_AUTHOR("Marco Felsch <kernel@pengutronix.de>");
+> > > > > > > +MODULE_DESCRIPTION("DA9062 GPIO Device Driver");
+> > > > > > > +MODULE_LICENSE("GPL v2");
+> > > > > > > +MODULE_ALIAS("platform:da9062-gpio");
+> > > > > > > diff --git a/include/linux/mfd/da9062/gpio.h b/include/linux/=
+mfd/da9062/gpio.h
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..67627ada1ad4
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/include/linux/mfd/da9062/gpio.h
+> > > > > > > @@ -0,0 +1,13 @@
+> > > > > > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > > > > > +/*
+> > > > > > > + * Copyright (C) 2019 Pengutronix, Marco Felsch <kernel@peng=
+utronix.de>
+> > > > > > > + */
+> > > > > > > +
+> > > > > > > +#ifndef __MFD_DA9062_GPIO_H__
+> > > > > > > +#define __MFD_DA9062_GPIO_H__
+> > > > > > > +
+> > > > > > > +struct gpio_desc;
+> > > > > > > +
+> > > > > > > +int da9062_gpio_get_hwgpio(struct gpio_desc *desc);
+> > > > > > > +
+> > > > > > > +#endif /* __MFD_DA9062_GPIO_H__ */
+> > > > > > > --
+> > > > > > > 2.20.1
+> > > > > > >
+> > > > > >
+> > > > >
+> > > > > --
+> > > > > Pengutronix e.K.                           |                     =
+        |
+> > > > > Industrial Linux Solutions                 | http://www.pengutron=
+ix.de/  |
+> > > > > Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-2069=
+17-0    |
+> > > > > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-2069=
+17-5555 |
+> > > >
+> > >
+> > > --
+> > > Pengutronix e.K.                           |                         =
+    |
+> > > Industrial Linux Solutions                 | http://www.pengutronix.d=
+e/  |
+> > > Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0=
+    |
+> > > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5=
+555 |
+> > >
+> > >
+> >
+> > --
+> > Pengutronix e.K.                           |                           =
+  |
+> > Industrial Linux Solutions                 | http://www.pengutronix.de/=
+  |
+> > Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0  =
+  |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-555=
+5 |
