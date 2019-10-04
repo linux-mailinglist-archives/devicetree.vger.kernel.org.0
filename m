@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20707CBD14
+	by mail.lfdr.de (Postfix) with ESMTP id 89C8ECBD15
 	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388149AbfJDO1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:27:44 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:40995 "EHLO
+        id S2388724AbfJDO1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:27:46 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:37743 "EHLO
         relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388625AbfJDO1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:44 -0400
+        with ESMTP id S2388625AbfJDO1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:45 -0400
 X-Originating-IP: 86.250.200.211
 Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id A8111C001B;
-        Fri,  4 Oct 2019 14:27:41 +0000 (UTC)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 52DA6C0004;
+        Fri,  4 Oct 2019 14:27:43 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -31,9 +31,9 @@ Cc:     <devicetree@vger.kernel.org>,
         Stefan Chulski <stefanc@marvell.com>,
         Yan Markman <ymarkman@marvell.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 01/21] arm64: dts: marvell: Enumerate the first AP806 syscon
-Date:   Fri,  4 Oct 2019 16:27:18 +0200
-Message-Id: <20191004142738.7370-2-miquel.raynal@bootlin.com>
+Subject: [PATCH v2 02/21] arm64: dts: marvell: Add AP806-dual missing CPU clocks
+Date:   Fri,  4 Oct 2019 16:27:19 +0200
+Message-Id: <20191004142738.7370-3-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191004142738.7370-1-miquel.raynal@bootlin.com>
 References: <20191004142738.7370-1-miquel.raynal@bootlin.com>
@@ -44,27 +44,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are two system controllers in the AP80x, like for ap_syscon1,
-enumerate the first one by renaming it s/ap_syscon/ap_syscon0/.
+CPU clocks have been added to AP806-quad but not to the -dual
+variant.
 
+Fixes: e043bbd61e01 ("arm64: dts: marvell: Add cpu clock node on Armada 7K/8K")
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- arch/arm64/boot/dts/marvell/armada-ap806.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-index d06dd198f2c7..a23ddd46efc5 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-@@ -246,7 +246,7 @@
- 				status = "disabled";
- 			};
- 
--			ap_syscon: system-controller@6f4000 {
-+			ap_syscon0: system-controller@6f4000 {
- 				compatible = "syscon", "simple-mfd";
- 				reg = <0x6f4000 0x2000>;
- 
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+index 9024a2d9db07..62ae016ee6aa 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+@@ -21,6 +21,7 @@
+ 			reg = <0x000>;
+ 			enable-method = "psci";
+ 			#cooling-cells = <2>;
++			clocks = <&cpu_clk 0>;
+ 		};
+ 		cpu1: cpu@1 {
+ 			device_type = "cpu";
+@@ -28,6 +29,7 @@
+ 			reg = <0x001>;
+ 			enable-method = "psci";
+ 			#cooling-cells = <2>;
++			clocks = <&cpu_clk 0>;
+ 		};
+ 	};
+ };
 -- 
 2.20.1
 
