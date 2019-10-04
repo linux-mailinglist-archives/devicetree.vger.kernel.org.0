@@ -2,122 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D368DCC040
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA10CC054
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:13:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390233AbfJDQJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 12:09:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43284 "EHLO mail.kernel.org"
+        id S2389835AbfJDQNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 12:13:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44324 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389835AbfJDQJO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 12:09:14 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        id S2389131AbfJDQNp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Oct 2019 12:13:45 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 30A3B222BE;
-        Fri,  4 Oct 2019 16:09:13 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 49F02222BE
+        for <devicetree@vger.kernel.org>; Fri,  4 Oct 2019 16:13:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570205353;
-        bh=PIZY0X68txs0nQhBK6aK4rjR5Mh4EuLhaWuSLyBDxaQ=;
+        s=default; t=1570205624;
+        bh=RcUOAl/0bmKCUXPftGv1Cq5XeNJkArov671bGsF0D4Q=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EYEn1HnKvwmE0HqhAw+zIvGgpSpfSp6DLraWq95YaXaj1pYZ2AbLQpC7IaM0ZZvZ5
-         4YEjRr5vkxPwI5yVIk/0teNWsNxoDMkZCQPl7mNQvA0DGSaE1MD1kwCmyCvPMbWFJa
-         Icd+Myodxjg4jVcMMXBFVar2jNQK1JKThZeJjm4Y=
-Received: by mail-qk1-f170.google.com with SMTP id z67so6249484qkb.12;
-        Fri, 04 Oct 2019 09:09:13 -0700 (PDT)
-X-Gm-Message-State: APjAAAWM/L+12RpY9OEmPPe9KCiDvNfCf4aLM5gwmVAKyaex1WLi+ek+
-        VtUCqE6MnVF0YTcuYB29CaOm+i/Kab1qjL/Dsg==
-X-Google-Smtp-Source: APXvYqwKlIhUP9LhQHjfV/+UU/RoF0uAyM8gXBjsoGHUdD9ORAY0trGuu2BXFKjTXRpcy6p+Cn3wURmELX9X/OwsZvk=
-X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr9972307qkb.119.1570205352273;
- Fri, 04 Oct 2019 09:09:12 -0700 (PDT)
+        b=TkIER9/mq7QtDrLA9SVkm9Qg2CxdZl1v+WKEBDLwccGyyuOUSuuREjTQlxmroLSWm
+         jRFkkTWi+2a87F5v6IgeprVzFyHa4s/uiXLxUF/uWsRIbw3HNgTmMSd1e8bwbos3V/
+         La6s4tk94D2cCEn7S4P/ByPazvltJr+prGFifUnM=
+Received: by mail-qk1-f172.google.com with SMTP id y189so6320821qkc.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 09:13:44 -0700 (PDT)
+X-Gm-Message-State: APjAAAU8VTagX76B1cT0gGDzMpQD1D8acRwZsqRrjyZGl+BouKVuMand
+        G5iIaHW5R15v3skHOquPdK1jxctArMX6wfe93g==
+X-Google-Smtp-Source: APXvYqziBbzyphZ1ke4M8acNOI/Px+d5v/VwBWzkL8PUPgDob5UN4SJAXMiBPIMUZIJikf/IUTuIwa+FGrVKl9gAX+8=
+X-Received: by 2002:a05:620a:12d5:: with SMTP id e21mr10962435qkl.152.1570205623412;
+ Fri, 04 Oct 2019 09:13:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com>
- <20190927100407.1863293-3-paul.kocialkowski@bootlin.com> <20190927221550.GA28831@bogus>
- <20191004144551.GR18429@dell>
-In-Reply-To: <20191004144551.GR18429@dell>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 4 Oct 2019 11:09:00 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+J9z3zzENZxXwjjsVMbFr8uYpXX6jYbCqdQEKBQXOu9A@mail.gmail.com>
-Message-ID: <CAL_Jsq+J9z3zzENZxXwjjsVMbFr8uYpXX6jYbCqdQEKBQXOu9A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Document the Xylon LogiCVC
- multi-function device
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20191004142738.7370-1-miquel.raynal@bootlin.com> <20191004142738.7370-17-miquel.raynal@bootlin.com>
+In-Reply-To: <20191004142738.7370-17-miquel.raynal@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 4 Oct 2019 11:13:32 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK4cbzOfaw5XCOdmP38w2n_djnJ6PaUTR=2Hi-rfOF=sg@mail.gmail.com>
+Message-ID: <CAL_JsqK4cbzOfaw5XCOdmP38w2n_djnJ6PaUTR=2Hi-rfOF=sg@mail.gmail.com>
+Subject: Re: [PATCH v2 16/21] dt-bindings: marvell: Convert the SoC
+ compatibles description to YAML
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 9:45 AM Lee Jones <lee.jones@linaro.org> wrote:
+On Fri, Oct 4, 2019 at 9:28 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 >
-> On Fri, 27 Sep 2019, Rob Herring wrote:
+> Convert the file detailing Marvell EBU compatibles to json-schema.
 >
-> > On Fri, Sep 27, 2019 at 12:04:04PM +0200, Paul Kocialkowski wrote:
-> > > The LogiCVC is a display engine which also exposes GPIO functionality.
-> > > For this reason, it is described as a multi-function device that is expected
-> > > to provide register access to its children nodes for gpio and display.
-> > >
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > ---
-> > >  .../bindings/mfd/xylon,logicvc.yaml           | 50 +++++++++++++++++++
-> > >  1 file changed, 50 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
-> > > new file mode 100644
-> > > index 000000000000..abc9937506e0
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
-> > > @@ -0,0 +1,50 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +# Copyright 2019 Bootlin
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/mfd/xylon,logicvc.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Xylon LogiCVC multi-function device
-> > > +
-> > > +maintainers:
-> > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > +
-> > > +description: |
-> > > +  The LogiCVC is a display controller that also contains a GPIO controller.
-> > > +  As a result, a multi-function device is exposed as parent of the display
-> > > +  and GPIO blocks.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - xylon,logicvc-3.02.a
-> > > +      - const: syscon
-> > > +      - const: simple-mfd
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +select:
-> > > +  properties:
-> > > +    compatible:
-> > > +      contains:
-> > > +        enum:
-> > > +          - xylon,logicvc-3.02.a
-> >
-> > I've seen a couple of these with 'syscon' today, so I fixed the schema
-> > tool to just exclude 'syscon' and 'simple-mfd' from the generated
-> > 'select'. So you can drop select now.
->
-> Does this need to happen before this patch can be applied?
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../bindings/arm/marvell/armada-7k-8k.txt     | 24 -----------
+>  .../bindings/arm/marvell/armada-7k-8k.yaml    | 40 +++++++++++++++++++
+>  2 files changed, 40 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
 
-Drop the 'select'? Yes that should happen first.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
