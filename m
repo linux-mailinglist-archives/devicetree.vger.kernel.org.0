@@ -2,89 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B60B0CB675
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 10:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF2BCB6E7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 11:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731200AbfJDIgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 04:36:20 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:15709 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728462AbfJDIgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 04:36:20 -0400
-X-IronPort-AV: E=Sophos;i="5.67,255,1566831600"; 
-   d="scan'208";a="28287642"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 04 Oct 2019 17:36:18 +0900
-Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A14F241E73E6;
-        Fri,  4 Oct 2019 17:36:13 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>, xu_shunji@hoperun.com
-Subject: [PATCH 7/7] arm64: dts: renesas: hihope-rzg2-ex: Let the board specific DT decide about pciec1
-Date:   Fri,  4 Oct 2019 09:35:33 +0100
-Message-Id: <1570178133-21532-8-git-send-email-fabrizio.castro@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1570178133-21532-1-git-send-email-fabrizio.castro@bp.renesas.com>
-References: <1570178133-21532-1-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S2387859AbfJDJBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 05:01:18 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:42081 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387779AbfJDJBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 05:01:18 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n14so6108627wrw.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 02:01:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=EFydY0lgIP899wnAH99dy6et3EG1uYQ9KTgGCBLycYs=;
+        b=qF0GVukplt92gp1dIgMULefb5vjDSNNhk+Ho8zlhKs5lWbidTiPF3rXtAV/OMf/cWA
+         YLkSKjy8nyUM1mp1oJRyBI52MX4/1ErOfaNIxvRvwAubX3kc3rBJH3v3qLHXKvMs3UbI
+         YcI/Ok0ScCFkD8rDOZoGkYDiJwXlmBWCFD3XB2uGQSV9jjBXM70JO/9HSPqcK/BGDIEC
+         xWpCVkzTSpsysEwc2JVgLgsC4zIZNcdtrpK7cDk+k73kpVSC7zypLxAG7HiTT1tBNPJo
+         6wpcKeA3yYNu+7hfFihagaIfl0fv0Ennk/vsC72bxoG/8zycuhVhESXsBE60rKCZT7qp
+         u7MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=EFydY0lgIP899wnAH99dy6et3EG1uYQ9KTgGCBLycYs=;
+        b=UMGtOP0Z/Emhyw2fmWVz8bOpMp74tNRUfyrcVQIB2YqbqL1q4DUzJ4T/KlVePJGnJd
+         IJDxy+NWUVS7cHF6t/Cm/bMj8xJo3gsX6FYezjpuSchWAa704yT51p4+z0SAOwNs7bGP
+         0CigZ3t66cGsyRXJJ78SHs9WQyvrTaLisuM8vfb6HbtiZZZ5Nsji94ex0eNWAH7ns5F2
+         BLETyvp1QqfoU+1+fK26I6xmQdrnhccBe/+ZdLUQ34P39nkkXKdYczyNinlqelzGoeJl
+         Bt5QficbO7vnhOVVBUgJYECDEfn3aapWOHrEnxT6aGhanFIRMOjtokU6oKF/bU/g47CA
+         fuMA==
+X-Gm-Message-State: APjAAAUKXh9JJ9bOCi5pu4ekuybNDUiiFIgRgiFzL8vWMmvhl5ctOdpt
+        d7cVHHZWkfQ2HWcI3LPdkfR35Q==
+X-Google-Smtp-Source: APXvYqyRiGMXW/wfqsay/UYMA7JeRdE57EW6un20v5k0NxiOZ3sdeT1X4JHfTYukfhmSHqxi20GgMQ==
+X-Received: by 2002:a5d:630d:: with SMTP id i13mr10380588wru.230.1570179676023;
+        Fri, 04 Oct 2019 02:01:16 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id v8sm7765170wra.79.2019.10.04.02.01.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Oct 2019 02:01:15 -0700 (PDT)
+From:   Guillaume La Roque <glaroque@baylibre.com>
+To:     amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH v7 0/7] Add support of New Amlogic temperature sensor for G12 SoCs
+Date:   Fri,  4 Oct 2019 11:01:07 +0200
+Message-Id: <20191004090114.30694-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The plan for the HiHope RZ/G2N board is to enable pciec0 by default,
-and use pciec1 physical interface for SATA (as SATA and PCIE1 share
-the same physical interface), therefore move pciec1 enabling away
-from hihope-rzg2-ex.
+This patchs series add support of New Amlogic temperature sensor and minimal
+thermal zone for SEI510 and ODROID-N2 boards.
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi          | 4 ----
- arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts | 4 ++++
- 2 files changed, 4 insertions(+), 4 deletions(-)
+First implementation was doing on IIO[1] but after comments i move on thermal framework.
+Formulas and calibration values come from amlogic.
 
-diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-index ae1ef2d..63e407a 100644
---- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-@@ -85,10 +85,6 @@
- 	status = "okay";
- };
- 
--&pciec1 {
--	status = "okay";
--};
--
- &pfc {
- 	pinctrl-0 = <&scif_clk_pins>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts
-index 6e33a3b..c754fca 100644
---- a/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex.dts
-@@ -13,3 +13,7 @@
- 	compatible = "hoperun,hihope-rzg2-ex", "hoperun,hihope-rzg2m",
- 		     "renesas,r8a774a1";
- };
-+
-+&pciec1 {
-+	status = "okay";
-+};
+Changes since v6:
+ - add missing critical trip point.
+
+Changes since v5:
+  - fix patch 5 and 6 send twice
+
+Changes since v4:
+  - Move thermal-zone in soc dtsi file
+  - Remove critical trip point and add passive one
+  - fix commit message
+  - use devm_platform_ioremap_resource instead of platform_get_resource
+
+Changes since v3:
+  - Add cooling map and trip point for hot type
+  - move compatible on g12a instead of g12 to be aligned with others
+  - add all reviewer, sorry for this mistake
+
+Changes since v2:
+  - fix yaml documention
+  - remove unneeded status variable for temperature-sensor node
+  - rework driver after Martin review
+  - add some information in commit message
+
+Changes since v1:
+  - fix enum vs const in documentation
+  - fix error with thermal-sensor-cells value set to 1 instead of 0
+  - add some dependencies needed to add cooling-maps
+
+Dependencies :
+- patch 3,4 & 5: depends on Neil's patch and series :
+              - missing dwc2 phy-names[2]
+              - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
+
+[1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+[2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+[3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+[4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+[5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
+
+Guillaume La Roque (7):
+  dt-bindings: thermal: Add DT bindings documentation for Amlogic
+    Thermal
+  thermal: amlogic: Add thermal driver to support G12 SoCs
+  arm64: dts: amlogic: g12: add temperature sensor
+  arm64: dts: meson: g12: Add minimal thermal zone
+  arm64: dts: amlogic: g12a: add cooling properties
+  arm64: dts: amlogic: g12b: add cooling properties
+  MAINTAINERS: add entry for Amlogic Thermal driver
+
+ .../bindings/thermal/amlogic,thermal.yaml     |  54 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  77 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  24 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  29 ++
+ drivers/thermal/Kconfig                       |  11 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/amlogic_thermal.c             | 333 ++++++++++++++++++
+ 8 files changed, 538 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+ create mode 100644 drivers/thermal/amlogic_thermal.c
+
 -- 
-2.7.4
+2.17.1
 
