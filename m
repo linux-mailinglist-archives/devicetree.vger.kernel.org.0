@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 848EACBBB6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 827B6CBBB8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388517AbfJDNc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 09:32:59 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44333 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388405AbfJDNc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:32:59 -0400
-Received: by mail-lj1-f193.google.com with SMTP id m13so6499093ljj.11
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 06:32:58 -0700 (PDT)
+        id S2388561AbfJDNdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 09:33:02 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:42709 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388545AbfJDNdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:33:01 -0400
+Received: by mail-lf1-f68.google.com with SMTP id c195so4493211lfg.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 06:33:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6e6kNUFkOwggtKh2FtgQ72TKMBXQJNnsWv0kpOgx0sI=;
-        b=XZkKHdG2crSiyzrMy2VYonGv0szQi+UnZmCse5Bf56kipSTq4oGJhOVzSkBSoZFHR1
-         +ZF/LdhdrF5138bRvPtoMvzxccaUeOYRvhGHeLff0IJzgfXgOwBh7uHZdnco99ie3Xd7
-         t0vZOi9c0XtZONz49s5W+o1BWQlyXdSavQ1zA=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=84d/4Z+Ct38UY+63PRtlhnBYnsxa6bKE+yT9EoLxBQ8=;
+        b=K86FwHSTa8imnI9kd9BEczCcJ4FljqrcPnSq74CItPMRqe8R6vfy70DGfXffz1/7UZ
+         TODX6szyElyk+mI/cd/cryh1cWqSMz12FRwMKfpiXnWC0M4ETDbYLC7NyJj+MiXKKcls
+         niGe1in8ylcyKNdPXYsk+8eMs1lSfo8FUHpbQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6e6kNUFkOwggtKh2FtgQ72TKMBXQJNnsWv0kpOgx0sI=;
-        b=WMf8o8ikqdp61JAzy3PhtSw2ZZr+v31I8d9QVpbKvDSJJ8mgpdWUC9Roayw+fHOfnP
-         Ng73nf5XkpSDJEIz3km8R0DRnvvXUuiOWgJjwtH5fHIdGx9hrXeH8+9dx6bdnjWcQ014
-         AWao9o3EiQR9C+oC2dRq24XB4L4H/CUo5BxBgNp3FK93f8UnF35uvC1oXmVRddURmn7O
-         XXGUjtmTq/aJFomoCCrdOxeV4uq5mjmfgwtVbB4FuIcCROZpnjj6VOmahaHboWJNsvtJ
-         J4dUCQ4I9YkDseaGlmfSuC+L+JOj4VsL4eILYeEJf4Pwa9T18fcLPu69mGsJCpTv+fY4
-         qzlw==
-X-Gm-Message-State: APjAAAVoUUxCjt3J9Kl7yVWrCwA0Wb4HAmNI2xzuWwH1vxG1J+6SQ5hA
-        YrnB/kS04W+y7rja0Dfq9FJagQ==
-X-Google-Smtp-Source: APXvYqxG/5L0LFLLyQDBwiDl6JJamRel6vq19pDlrjEK0hxD7neje+Af0NtighCjwoCkw70qCO0Dag==
-X-Received: by 2002:a2e:9692:: with SMTP id q18mr9757018lji.73.1570195977546;
-        Fri, 04 Oct 2019 06:32:57 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=84d/4Z+Ct38UY+63PRtlhnBYnsxa6bKE+yT9EoLxBQ8=;
+        b=JvKaxinZeHFtWz/4XBnWW293cwWPN1ShoVk/OhixDRordryRgREsFPo8agWaoOwSbi
+         pCw00qvW1mjAGldd669IziAcvaJq6B5B0SAaZ0pHsMgSMaIWgOZuW++ciVPVB4Xxb5OL
+         kPJRefbnguQd/IXhdzZezEVxNII0P3q3jx4WXA7iXP4GIt4r9IB3fTBBG7lMWc6CsONZ
+         d1lzeTJFg0rDTG8U/KaolslF206BvTO5TZ4m9B6DoRIZhRzzyxoQfRkq69bygafIIYFe
+         ULHtPRdvMYhFNptA7X9npHumxHZAYf0jQIQzqKURaMskLnlDxZ83kSWPAYuW0eHQv3wA
+         TRxg==
+X-Gm-Message-State: APjAAAVtfCRP5ovDgLIn1VXPDwRFqe1jZoFVcJ/jruHerKCVn3rTtJHw
+        LsiyowbNuiuUnMSn2eNHhd+5Bg==
+X-Google-Smtp-Source: APXvYqzs5zFXhqdDNu2+43b758ZHk0CgecW26AuZBrDWWj+4OulMZAKBuWb/lzr0T//DOGSJ1OjAdA==
+X-Received: by 2002:a19:3805:: with SMTP id f5mr6004869lfa.173.1570195979142;
+        Fri, 04 Oct 2019 06:32:59 -0700 (PDT)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id y26sm1534991ljj.90.2019.10.04.06.32.55
+        by smtp.gmail.com with ESMTPSA id y26sm1534991ljj.90.2019.10.04.06.32.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2019 06:32:56 -0700 (PDT)
+        Fri, 04 Oct 2019 06:32:58 -0700 (PDT)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+        <u.kleine-koenig@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [PATCH v2 0/6] pwm: mxs: add support for setting polarity via DT
-Date:   Fri,  4 Oct 2019 15:32:01 +0200
-Message-Id: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/6] pwm: mxs: implement ->apply
+Date:   Fri,  4 Oct 2019 15:32:02 +0200
+Message-Id: <20191004133207.6663-2-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
+References: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -65,36 +66,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds support for setting the polarity via DT to the
-pwm-mxs driver.
+In preparation for supporting setting the polarity, switch the driver
+to support the ->apply method.
 
-The DT binding is updated, but I'm not touching the existing .dts or
-.dtsi files - it seems that the same was done for bcm2835 in commits
-46421d9d8e802e570dfa4d793a4938d2642ec7a7 and
-8a88b2a2017d1e7e80db53080baff591fd454722, while
-arch/arm/boot/dts/bcm283x.dtsi still has #pwm-cells = <2>.
+Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+---
+ drivers/pwm/pwm-mxs.c | 70 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
-v2:
-- Rebase to v5.4-rc1
-- Address comments from Uwe.
-- Add Rob's ack to patch 4.
-- New patches 5 and 6. The last one is independent of the others, but
-  I stumbled on this when rebasing and found the signature had
-  changed.
-
-Rasmus Villemoes (6):
-  pwm: mxs: implement ->apply
-  pwm: mxs: remove legacy methods
-  pwm: mxs: add support for inverse polarity
-  dt-bindings: pwm: mxs-pwm: Increase #pwm-cells
-  pwm: mxs: avoid a division in mxs_pwm_apply()
-  pwm: update comment on struct pwm_ops::apply
-
- .../devicetree/bindings/pwm/mxs-pwm.txt       |   4 +-
- drivers/pwm/pwm-mxs.c                         | 101 +++++++++---------
- include/linux/pwm.h                           |   5 +-
- 3 files changed, 53 insertions(+), 57 deletions(-)
-
+diff --git a/drivers/pwm/pwm-mxs.c b/drivers/pwm/pwm-mxs.c
+index b14376b47ac8..10efd3de0bb3 100644
+--- a/drivers/pwm/pwm-mxs.c
++++ b/drivers/pwm/pwm-mxs.c
+@@ -26,6 +26,7 @@
+ #define  PERIOD_PERIOD_MAX	0x10000
+ #define  PERIOD_ACTIVE_HIGH	(3 << 16)
+ #define  PERIOD_INACTIVE_LOW	(2 << 18)
++#define  PERIOD_POLARITY_NORMAL	(PERIOD_ACTIVE_HIGH | PERIOD_INACTIVE_LOW)
+ #define  PERIOD_CDIV(div)	(((div) & 0x7) << 20)
+ #define  PERIOD_CDIV_MAX	8
+ 
+@@ -41,6 +42,74 @@ struct mxs_pwm_chip {
+ 
+ #define to_mxs_pwm_chip(_chip) container_of(_chip, struct mxs_pwm_chip, chip)
+ 
++static int mxs_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
++			 const struct pwm_state *state)
++{
++	struct mxs_pwm_chip *mxs = to_mxs_pwm_chip(chip);
++	int ret, div = 0;
++	unsigned int period_cycles, duty_cycles;
++	unsigned long rate;
++	unsigned long long c;
++
++	if (state->polarity != PWM_POLARITY_NORMAL)
++		return -ENOTSUPP;
++
++	/*
++	 * If the PWM channel is disabled, make sure to turn on the
++	 * clock before calling clk_get_rate() and writing to the
++	 * registers. Otherwise, just keep it enabled.
++	 */
++	if (!pwm_is_enabled(pwm)) {
++		ret = clk_prepare_enable(mxs->clk);
++		if (ret)
++			return ret;
++	}
++
++	if (!state->enabled && pwm_is_enabled(pwm))
++		writel(1 << pwm->hwpwm, mxs->base + PWM_CTRL + CLR);
++
++	rate = clk_get_rate(mxs->clk);
++	while (1) {
++		c = rate / cdiv[div];
++		c = c * state->period;
++		do_div(c, 1000000000);
++		if (c < PERIOD_PERIOD_MAX)
++			break;
++		div++;
++		if (div >= PERIOD_CDIV_MAX)
++			return -EINVAL;
++	}
++
++	period_cycles = c;
++	c *= state->duty_cycle;
++	do_div(c, state->period);
++	duty_cycles = c;
++
++	/*
++	 * The data sheet the says registers must be written to in
++	 * this order (ACTIVEn, then PERIODn). Also, the new settings
++	 * only take effect at the beginning of a new period, avoiding
++	 * glitches.
++	 */
++	writel(duty_cycles << 16,
++	       mxs->base + PWM_ACTIVE0 + pwm->hwpwm * 0x20);
++	writel(PERIOD_PERIOD(period_cycles) | PERIOD_POLARITY_NORMAL | PERIOD_CDIV(div),
++	       mxs->base + PWM_PERIOD0 + pwm->hwpwm * 0x20);
++
++	if (state->enabled) {
++		if (!pwm_is_enabled(pwm)) {
++			/*
++			 * The clock was enabled above. Just enable
++			 * the channel in the control register.
++			 */
++			writel(1 << pwm->hwpwm, mxs->base + PWM_CTRL + SET);
++		}
++	} else {
++		clk_disable_unprepare(mxs->clk);
++	}
++	return 0;
++}
++
+ static int mxs_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+ 			  int duty_ns, int period_ns)
+ {
+@@ -116,6 +185,7 @@ static void mxs_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+ }
+ 
+ static const struct pwm_ops mxs_pwm_ops = {
++	.apply = mxs_pwm_apply,
+ 	.config = mxs_pwm_config,
+ 	.enable = mxs_pwm_enable,
+ 	.disable = mxs_pwm_disable,
 -- 
 2.20.1
 
