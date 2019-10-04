@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CED92CBBC4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F24BFCBBC2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:33:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388662AbfJDNdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 09:33:08 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:34189 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388661AbfJDNdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:33:07 -0400
-Received: by mail-lj1-f194.google.com with SMTP id j19so6559406lja.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 06:33:05 -0700 (PDT)
+        id S2388703AbfJDNdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 09:33:15 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:44348 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388389AbfJDNdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:33:09 -0400
+Received: by mail-lj1-f193.google.com with SMTP id m13so6499593ljj.11
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 06:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rasmusvillemoes.dk; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=KJd8sbimmy5mnSq6QgFxWdBMbJR5jACe59+ThyKK82g=;
-        b=QLFFDcVHI2EhaLtxhPso76+poBjMJHw10fNMzcHwmoy9Cx7Afn8Mk5EQT7FCzlOnBI
-         YhUhbpnEWCSXynuZYJcKXvG2a71t2R0i9EybdRZHp3LNjkXGueILouvZUvIxp9OnQl5a
-         T4QtdWuCdh0huq8+tgQQPgcDyr9ovSMCjdFsQ=
+        bh=enjD7GinjPEmXbD794v1TL8qB8AXAn8TuqNGVlImRwo=;
+        b=cVOCOZBfFV4/Q55ikZfbm3e6RfV3oQtgU+vNCBrhPnWHW0yMoE/YOhCTLpEuSkzPyt
+         p/jSR/BxvhMiDKgCkwbGaaribeHJHsoJnVzAtd0w3FmfMc8fEw6xUkR16/spC40jUK7j
+         aqmMH79uB6vD7zvJf5xhJIjmux8oZvPGm4juI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=KJd8sbimmy5mnSq6QgFxWdBMbJR5jACe59+ThyKK82g=;
-        b=LEIjgfen0+EQU6bpVHiyylhMjsncCey0RpR5PVdiYQbbCy0FC5s8NZcx7Y+aWUrHW1
-         kVslTVx+RJ1ytiYHbXeHT+9qtKNDJTMrgoxcGgKbIxpgsD5J2UEl6KuJ8IBXpJqHZCO8
-         6zW24Bp1ge4yusqD+mECmBGPQVUWxURc+CEkGLqKF47EmC82cIvE9tpNNQj9LSnZinhj
-         79+2uwyJxk3lqnu6CoWfuYSRp6rG266BwnQV2vQFVAcEdNpb5eiY4xdo27jzxCOmPM10
-         SyXqEk/zGJqwhsegft4c48NySZQqFJZECSOq5IC2GUGY4u0h/teG3MBJMTmRaaQ8sLug
-         LUDg==
-X-Gm-Message-State: APjAAAUrZeYANBczP6nDA5igjmH+Jg30i0CXcNe8+aP6Z9a9sHEIoPu8
-        TMunS85/yXp0dT4BbPBbAtOxwA==
-X-Google-Smtp-Source: APXvYqwvmj9emNdcSYaeyQ5bIj8DBfAdIXf//abqi9CfcXTehTrWUROGkbvTAyHXk/O4qK9ZmcUc3Q==
-X-Received: by 2002:a2e:9f12:: with SMTP id u18mr9775583ljk.23.1570195984389;
-        Fri, 04 Oct 2019 06:33:04 -0700 (PDT)
+        bh=enjD7GinjPEmXbD794v1TL8qB8AXAn8TuqNGVlImRwo=;
+        b=AIzn6fy9QnuvS6AEs1nBEzdrJH/n0zm546RY2SQF0xr4mSrf6+Ub11FO4pdeiHeV1S
+         8dltKQ4M0r8GNHaF+qc+MfYKN2VtorWnLLDyB54Rx1Vqxo3tzSPZ+JagaOdprrCITFYq
+         rHkK40Khu+2bmnqa5laGYfJ1fEwtlfcZyH+FnhRQOnTBG7vbfPlptNx6pTCGTlp9WpLm
+         HGcqHwGNtP1KC6sUnaHZv13GHnizmpz/mzRk+XTdbNW5/se9VeCwXCYuqyv4y/iTVEiF
+         UuRzRqcwWHQU7aQp7o3ucUc38coKrNrDEIZ/3a8YZhKE07es92NypICIJ8y8Qvt6rMVM
+         Of6A==
+X-Gm-Message-State: APjAAAUUVAS3Uus4HN/xs6TVKPZhX6ySW410gtfdt9HPh7DBT4QUct5S
+        KagozLZWvQSeVG0mv0nqUhuHew==
+X-Google-Smtp-Source: APXvYqzZiPqBZ6nH+PAoIMx4rztRtbFWWqjLzLXZv4d3HV/oeGtcTwju/gptKDUYmHusErUAOSz6bA==
+X-Received: by 2002:a2e:9585:: with SMTP id w5mr3871975ljh.220.1570195985888;
+        Fri, 04 Oct 2019 06:33:05 -0700 (PDT)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id y26sm1534991ljj.90.2019.10.04.06.33.02
+        by smtp.gmail.com with ESMTPSA id y26sm1534991ljj.90.2019.10.04.06.33.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2019 06:33:03 -0700 (PDT)
+        Fri, 04 Oct 2019 06:33:05 -0700 (PDT)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+        <u.kleine-koenig@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org,
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/6] dt-bindings: pwm: mxs-pwm: Increase #pwm-cells
-Date:   Fri,  4 Oct 2019 15:32:05 +0200
-Message-Id: <20191004133207.6663-5-linux@rasmusvillemoes.dk>
+        linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 5/6] pwm: mxs: avoid a division in mxs_pwm_apply()
+Date:   Fri,  4 Oct 2019 15:32:06 +0200
+Message-Id: <20191004133207.6663-6-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
 References: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
@@ -68,36 +66,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to increase the pwm-cells for the optional flags parameter, in
-order to implement support for polarity setting via DT.
+Since the divisor is not a compile-time constant (unless gcc somehow
+decided to unroll the loop PERIOD_CDIV_MAX times), this does a
+somewhat expensive 32/32 division. Replace that with a right shift.
 
-Acked-by: Rob Herring <robh@kernel.org>
+We still have a 64/32 division just below, but at least in that
+case the divisor is compile-time constant.
+
 Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 ---
- Documentation/devicetree/bindings/pwm/mxs-pwm.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/pwm/pwm-mxs.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pwm/mxs-pwm.txt b/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
-index 96cdde5f6208..1697dcd3b07c 100644
---- a/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
-+++ b/Documentation/devicetree/bindings/pwm/mxs-pwm.txt
-@@ -3,7 +3,7 @@ Freescale MXS PWM controller
- Required properties:
- - compatible: should be "fsl,imx23-pwm"
- - reg: physical base address and length of the controller's registers
--- #pwm-cells: should be 2. See pwm.txt in this directory for a description of
-+- #pwm-cells: should be 3. See pwm.txt in this directory for a description of
-   the cells format.
- - fsl,pwm-number: the number of PWM devices
+diff --git a/drivers/pwm/pwm-mxs.c b/drivers/pwm/pwm-mxs.c
+index 57562221c439..f2e57fcf8f8b 100644
+--- a/drivers/pwm/pwm-mxs.c
++++ b/drivers/pwm/pwm-mxs.c
+@@ -33,8 +33,8 @@
+ #define  PERIOD_CDIV(div)	(((div) & 0x7) << 20)
+ #define  PERIOD_CDIV_MAX	8
  
-@@ -12,6 +12,6 @@ Example:
- pwm: pwm@80064000 {
- 	compatible = "fsl,imx28-pwm", "fsl,imx23-pwm";
- 	reg = <0x80064000 0x2000>;
--	#pwm-cells = <2>;
-+	#pwm-cells = <3>;
- 	fsl,pwm-number = <8>;
+-static const unsigned int cdiv[PERIOD_CDIV_MAX] = {
+-	1, 2, 4, 8, 16, 64, 256, 1024
++static const u8 cdiv_shift[PERIOD_CDIV_MAX] = {
++	0, 1, 2, 3, 4, 6, 8, 10
  };
+ 
+ struct mxs_pwm_chip {
+@@ -71,7 +71,7 @@ static int mxs_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+ 
+ 	rate = clk_get_rate(mxs->clk);
+ 	while (1) {
+-		c = rate / cdiv[div];
++		c = rate >> cdiv_shift[div];
+ 		c = c * state->period;
+ 		do_div(c, 1000000000);
+ 		if (c < PERIOD_PERIOD_MAX)
 -- 
 2.20.1
 
