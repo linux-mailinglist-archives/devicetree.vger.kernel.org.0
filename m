@@ -2,119 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35981CC20F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 19:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E81DCC223
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 19:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388871AbfJDRwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 13:52:50 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:51038 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388814AbfJDRwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 13:52:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=EV6mJV9fbq+0/IGUxZm9F6zPrU/8DDn5KRx+8Yb0f8c=; b=A5o4qkr7WfjT
-        HSjlWPPegxn56c5LCBWgEfCS9G5JWLdse+J5hdcb5ld9U9dE4Q35edLC45X8HZvcrGisGpm0ucBJz
-        J1clEYjbBE8EPPHV1bCVUQcSnK4u8El2Sk2J5k1ueIySnr2HIjbXVsnSOERi1UCjMpydm3jGbMxZg
-        gBVIQ=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iGRky-0003wa-0S; Fri, 04 Oct 2019 17:52:44 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 843C82741EF2; Fri,  4 Oct 2019 18:52:43 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     ckeepax@opensource.cirrus.com, devicetree@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, zhang.chunyan@linaro.org
-Subject: Applied "regulator: Document "regulator-boot-on" binding more thoroughly" to the regulator tree
-In-Reply-To: <20191001124531.v2.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid>
-X-Patchwork-Hint: ignore
-Message-Id: <20191004175243.843C82741EF2@ypsilon.sirena.org.uk>
-Date:   Fri,  4 Oct 2019 18:52:43 +0100 (BST)
+        id S2389119AbfJDRxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 13:53:12 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:37192 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388880AbfJDRxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 13:53:12 -0400
+Received: by mail-wm1-f66.google.com with SMTP id f22so6734395wmc.2;
+        Fri, 04 Oct 2019 10:53:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=SiYnbzF7WkjqWKJjUmGyqc1k8qogotE1jvdb1MCejmk=;
+        b=rqFfmPBjt5rNehUrfCoog3sBIjQKw8DOTHfqANDdbh6jLSdp3Jt4BHH2BqNPxDJkPf
+         X9GmB0XLf5OILRwmuglpo4UHl9sJPPoTlrXu6ADQEiAZEetGw2XgIlzniuQdX8DCAHje
+         4USGkdxGIrdT0zkJ87uc27k538trG28T3Jo3c7cZE6FYXI40/vp3QY58vrjZGd7tCFBJ
+         16gdzjIHv+UtYdOz1n2+9TbrnQfQYNT/a8cPNeyboqCehSOnkRQGg67jSRVJ3pIhxflF
+         IY8/P91g35XLJfSnbnjHsfQW0c/ML1NcmgXpv6KFcWdfqjbcKsZ5yTQioEB+YWCTH+gM
+         oWUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SiYnbzF7WkjqWKJjUmGyqc1k8qogotE1jvdb1MCejmk=;
+        b=LVnDQ04qMrZ5znamXsk/HkfKI5M5yN5FmBQ2m+fsvArUTyxCt5OQnnaHZzf9Y4DRpm
+         CNui/c6GqE6JaKuxHY46KK03Cfl4EYcPjfkXgnYEv0+cmTBw7bWxyeIwoIQRz4CwB3lZ
+         CVYc1TBA8DqOTqN+QajuRPH7ZZGQJaqXLhWfJILt04snSCEej4OthidIOihD10SZMI0J
+         VbGEmxcJawtsOBZLnQ+N1HYbYdZkSj95MQyDDpcS29rHjQYiLv0X77SuMyuzYkj0ZsNU
+         vcfBUxmVOmSPf1nxDo8Voz+5R3H/iERvRfJxtF2nJuzMeT3/dkKiX4lg+0nm/rXoruY/
+         SK5A==
+X-Gm-Message-State: APjAAAUZzjhueG2+H7/E3OYxfwKGPx+al/uAhDLGXTGt5FZ08w2sjQK8
+        hHdX/wmTGdLq7EtZJ0Kb2do=
+X-Google-Smtp-Source: APXvYqyyUV/AKwxAyN9TZuMCT9wd+X8T76PBdPNUsiucJS6dHYCgcxvSYkeRlQ7nwRaHVXmuaanUnw==
+X-Received: by 2002:a05:600c:2252:: with SMTP id a18mr5967972wmm.141.1570211590660;
+        Fri, 04 Oct 2019 10:53:10 -0700 (PDT)
+Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id e9sm17598865wme.3.2019.10.04.10.53.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 04 Oct 2019 10:53:09 -0700 (PDT)
+Date:   Fri, 4 Oct 2019 19:53:07 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     catalin.marinas@arm.com, davem@davemloft.net,
+        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
+        mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        will@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v2 03/11] dt-bindings: crypto: Add DT bindings
+ documentation for sun8i-ce Crypto Engine
+Message-ID: <20191004175307.GB11208@Red>
+References: <20191001184141.27956-1-clabbe.montjoie@gmail.com>
+ <20191001184141.27956-4-clabbe.montjoie@gmail.com>
+ <20191002055458.zo2vdbxodj3ch53g@gilmour>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191002055458.zo2vdbxodj3ch53g@gilmour>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Wed, Oct 02, 2019 at 07:54:58AM +0200, Maxime Ripard wrote:
+> On Tue, Oct 01, 2019 at 08:41:33PM +0200, Corentin Labbe wrote:
+> > This patch adds documentation for Device-Tree bindings for the
+> > Crypto Engine cryptographic accelerator driver.
+> >
+> > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+> > ---
+> >  .../bindings/crypto/allwinner,sun8i-ce.yaml   | 92 +++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
+> > new file mode 100644
+> > index 000000000000..9bd26a2eff33
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
+> > @@ -0,0 +1,92 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/crypto/allwinner,sun8i-ce.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner Crypto Engine driver
+> > +
+> > +maintainers:
+> > +  - Corentin Labbe <clabbe.montjoie@gmail.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - allwinner,sun8i-h3-crypto
+> > +      - allwinner,sun8i-r40-crypto
+> > +      - allwinner,sun50i-a64-crypto
+> > +      - allwinner,sun50i-h5-crypto
+> > +      - allwinner,sun50i-h6-crypto
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Bus clock
+> > +      - description: Module clock
+> > +      - description: MBus clock
+> > +    minItems: 2
+> > +    maxItems: 3
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bus
+> > +      - const: mod
+> > +      - const: ram
+> > +    minItems: 2
+> > +    maxItems: 3
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    const: bus
+> > +
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      items:
+> > +        const: allwinner,sun50i-h6-crypto
+> > +then:
+> > +  properties:
+> > +      clocks:
+> > +        minItems: 3
+> > +      clock-names:
+> > +        minItems: 3
+> > +else:
+> > +  properties:
+> > +      clocks:
+> > +        maxItems: 2
+> > +      clock-names:
+> > +        maxItems: 2
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +
+> > +additionalProperties: true
+> 
+> I guess you meant false here?
+> 
 
-   regulator: Document "regulator-boot-on" binding more thoroughly
+Yes. i wil fix that.
 
-has been applied to the regulator tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.5
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 87fd0db6d7df1cf4cc6e9b09e2155d1f324bf836 Mon Sep 17 00:00:00 2001
-From: Douglas Anderson <dianders@chromium.org>
-Date: Tue, 1 Oct 2019 12:45:54 -0700
-Subject: [PATCH] regulator: Document "regulator-boot-on" binding more
- thoroughly
-
-The description of "regulator-boot-on" was a little unclear, at least
-to me.  Did this property mean that we should turn the regulator on at
-boot?  Or perhaps it was intended only to be used for regulators where
-we couldn't read the state at bootup to indicate what state we should
-assume?  The answer, it turns out, is both [1].
-
-Let's document this.
-
-[1] https://lore.kernel.org/r/20190923181431.GU2036@sirena.org.uk
-
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Link: https://lore.kernel.org/r/20191001124531.v2.1.Ice34ad5970a375c3c03cb15c3859b3ee501561bf@changeid
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/regulator/regulator.yaml | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml b/Documentation/devicetree/bindings/regulator/regulator.yaml
-index 02c3043ce419..92ff2e8ad572 100644
---- a/Documentation/devicetree/bindings/regulator/regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/regulator.yaml
-@@ -38,7 +38,12 @@ properties:
-     type: boolean
- 
-   regulator-boot-on:
--    description: bootloader/firmware enabled regulator
-+    description: bootloader/firmware enabled regulator.
-+      It's expected that this regulator was left on by the bootloader.
-+      If the bootloader didn't leave it on then OS should turn it on
-+      at boot but shouldn't prevent it from being turned off later.
-+      This property is intended to only be used for regulators where
-+      software cannot read the state of the regulator.
-     type: boolean
- 
-   regulator-allow-bypass:
--- 
-2.20.1
-
+Regards
