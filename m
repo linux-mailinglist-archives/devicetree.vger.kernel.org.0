@@ -2,121 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28EA8CB59D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 10:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F7EDCB5B6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 10:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730743AbfJDIBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 04:01:05 -0400
-Received: from mga09.intel.com ([134.134.136.24]:33959 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725932AbfJDIBF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 04:01:05 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Oct 2019 01:01:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,255,1566889200"; 
-   d="scan'208";a="205801934"
-Received: from kuha.fi.intel.com ([10.237.72.53])
-  by fmsmga001.fm.intel.com with SMTP; 04 Oct 2019 01:00:59 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 04 Oct 2019 11:00:58 +0300
-Date:   Fri, 4 Oct 2019 11:00:58 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yu Chen <chenyu56@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
-Message-ID: <20191004080058.GD1048@kuha.fi.intel.com>
-References: <20191002231617.3670-1-john.stultz@linaro.org>
- <20191002231617.3670-3-john.stultz@linaro.org>
- <20191003112618.GA2420393@kroah.com>
- <CALAqxLWm_u3KsXHn4a6PdBCOKM1vs5k0xS3G5jY+M-=HBqUJag@mail.gmail.com>
- <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        id S1731009AbfJDIHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 04:07:55 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:55007 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728149AbfJDIHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 04:07:55 -0400
+X-IronPort-AV: E=Sophos;i="5.67,255,1566831600"; 
+   d="scan'208";a="28065772"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 04 Oct 2019 17:07:53 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 595D240078A1;
+        Fri,  4 Oct 2019 17:07:51 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: i2c: sh_mobile: Add r8a774b1 support
+Date:   Fri,  4 Oct 2019 09:07:26 +0100
+Message-Id: <1570176446-59266-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 03, 2019 at 10:56:24PM +0200, Hans de Goede wrote:
-> Hi,
-> 
-> On 03-10-2019 22:45, John Stultz wrote:
-> > On Thu, Oct 3, 2019 at 4:26 AM Greg Kroah-Hartman
-> > <gregkh@linuxfoundation.org> wrote:
-> > > 
-> > > On Wed, Oct 02, 2019 at 11:16:16PM +0000, John Stultz wrote:
-> > > > From: Yu Chen <chenyu56@huawei.com>
-> > > > 
-> > > > This patch adds notifier for drivers want to be informed of the usb role
-> > > > switch.
-> > > 
-> > > Ick, I hate notifiers, they always come back to cause problems.
-> > > 
-> > > What's just wrong with a "real" call to who ever needs to know this?
-> > > And who does need to know this anyway?  Like Hans said, if we don't have
-> > > a user for it, we should not add it.
-> > 
-> > So in this case, its used for interactions between the dwc3 driver and
-> > the hikey960 integrated USB hub, which is controlled via gpio (which I
-> > didn't submit here as I was trying to keep things short and
-> > reviewable, but likely misjudged).
-> > 
-> > The HiKey960 has only one USB controller, but in order to support both
-> > USB-C gadget/OTG and USB-A (host only) ports. When the USB-C
-> > connection is attached, it powers down and disconnects the hub. When
-> > the USB-C connection is detached, it powers the hub on and connects
-> > the controller to the hub.
-> 
-> When you say one controller, do you mean 1 host and 1 gadget controller,
-> or is this one of these lovely devices where a gadget controller gets
-> abused as / confused with a proper host controller?
-> 
-> And since you are doing a usb-role-switch driver, I guess that the
-> role-switch is integrated inside the SoC, so you only get one pair
-> of USB datalines to the outside ?
+Document RZ/G2N (R8A774B1) SoC bindings.
 
-Unless I'm mistaken, the dwc3 driver in this case is the
-usb-role-switch. The DWC3 IP includes both USB dost and device blocks,
-i.e. it's a dual role controller. Drivers like tcpm.c that negotiate
-the actual role need to tell the outcome of the negotiation to the
-dwc3 driver. So I think this part is OK.
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+V1-->V2
+ * Rebased on top of next.
+---
+ Documentation/devicetree/bindings/i2c/renesas,iic.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-The platform has also some kind of discrete switch for routing the
-signals to either Standard-A (the hub) or Type-C connector, so it does
-not represent the usb-role-switch. It should however affect the USB role,
-as if that switch routes the data signals to the Standard-A port (to
-the hub) instead of USB Type-C, the USB role needs to be fixed to host
-mode.
-
-I guess this series does not include the driver for that discrete
-switch/mux. I don't remember/know how that switch was planned to be
-handled.
-
-> This does seem rather special, it might help if you can provide a diagram
-> with both the relevant bits inside the SoC as well as what lives outside
-> the Soc. even if it is in ASCII art...
-
-thanks,
-
+diff --git a/Documentation/devicetree/bindings/i2c/renesas,iic.txt b/Documentation/devicetree/bindings/i2c/renesas,iic.txt
+index 202602e..64d11ff 100644
+--- a/Documentation/devicetree/bindings/i2c/renesas,iic.txt
++++ b/Documentation/devicetree/bindings/i2c/renesas,iic.txt
+@@ -8,6 +8,7 @@ Required properties:
+ 			- "renesas,iic-r8a7744" (RZ/G1N)
+ 			- "renesas,iic-r8a7745" (RZ/G1E)
+ 			- "renesas,iic-r8a774a1" (RZ/G2M)
++			- "renesas,iic-r8a774b1" (RZ/G2N)
+ 			- "renesas,iic-r8a774c0" (RZ/G2E)
+ 			- "renesas,iic-r8a7790" (R-Car H2)
+ 			- "renesas,iic-r8a7791" (R-Car M2-W)
 -- 
-heikki
+2.7.4
+
