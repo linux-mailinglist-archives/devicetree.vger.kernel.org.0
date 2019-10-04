@@ -2,77 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E67A6CC585
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 23:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B04CC59D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 00:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730969AbfJDV71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 17:59:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39944 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730131AbfJDV71 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 17:59:27 -0400
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F2D2021D81;
-        Fri,  4 Oct 2019 21:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570226366;
-        bh=W73YLXhXs87A3g1korb/FdZux/uM+XbdVy58joNqtAw=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=c7fOk7RUHivPSo4Br+sR7Ulb8toFXC/ZDyjo7M4McI2vK/fU2u5yUL6sgZqCG9/0N
-         ojFH2VfZcCuNDqHBacwdU9j3hm2X7p3FAwv0T6qBCIoIakX+ukDWwwzuMnkOhquBaJ
-         BRLuBCpyg/Pa+cLfW2XKs0phXp09dZr4S7bAKusM=
-Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     Linus Torvalds <torvalds@linux-foundation.org>,
-        "Theodore Y. Ts'o" <tytso@mit.edu>
-Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        id S1728356AbfJDWIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 18:08:10 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:50690 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726002AbfJDWIJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 18:08:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=3ze0qIKriv11BMV3xbVDbSJcvL9qJM0oWbFjPddqoJ0=; b=Li9nkG+CN9k/5doQ6eku0G/hS
+        jix9emzT0bHRNfJJOq7ZXfLAYWZk1107+0c1uInweypwB1iK7E4OyNnZL1eGRRbt5P0DaUJst4uvq
+        fxwJ3vaDnaAP1PCaFTi1MfvpqShIuTZgq2l7a0SeJ4bA4w2lDcOMb9wPDB5/FC1SAGRQuJrTR24EV
+        mkIXSbfqpfli0HMvAqoBWeAm+9g+nXrl5AdRFMRnI0UsXQ72rYXs04vBWfNdsKm8x6Hz0Czs2gtm5
+        W/yy7DG0HFxiY71bqCErLoWlCChWD44LP2bJWJ+O0kLxRmAe3IiyArVUkQ4NGuvp+rTDuFHIdOwKo
+        p2HQQCVEw==;
+Received: from [2601:1c0:6280:3f0::9ef4]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iGVk9-0001fG-5Y; Fri, 04 Oct 2019 22:08:09 +0000
+Subject: Re: [PATCH] .gitattributes: Use 'dts' diff driver for dts files
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        kieran.bingham@ideasonboard.com,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>, robh@kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>, Tim.Bird@sony.com,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, jdike@addtoit.com,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        shuah <shuah@kernel.org>
-References: <20190923090249.127984-1-brendanhiggins@google.com>
- <20191004213812.GA24644@mit.edu>
- <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
-From:   shuah <shuah@kernel.org>
-Message-ID: <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org>
-Date:   Fri, 4 Oct 2019 15:59:10 -0600
+        devicetree@vger.kernel.org
+References: <20191004212311.141538-1-swboyd@chromium.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <256a1ad3-6a0c-b4bd-e12c-9ab35db2939a@infradead.org>
+Date:   Fri, 4 Oct 2019 15:08:08 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20191004212311.141538-1-swboyd@chromium.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
@@ -80,30 +48,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/4/19 3:42 PM, Linus Torvalds wrote:
-> On Fri, Oct 4, 2019 at 2:39 PM Theodore Y. Ts'o <tytso@mit.edu> wrote:
->>
->> This question is primarily directed at Shuah and Linus....
->>
->> What's the current status of the kunit series now that Brendan has
->> moved it out of the top-level kunit directory as Linus has requested?
+On 10/4/19 2:23 PM, Stephen Boyd wrote:
+> Git is gaining support to display the closest node to the diff in the
+> hunk header via the 'dts' diff driver. Use that driver for all dts and
+> dtsi files so we can gain some more context on where the diff is. Taking
+> a recent commit in the kernel dts files you can see the difference.
+> 
+> With this patch and an updated git
+> 
+>  diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+>  index 62e07e1197cc..4c38426a6969 100644
+>  --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+>  +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+>  @@ -289,5 +289,29 @@ vdd_hdmi: regulator@1 {
+>                          gpio = <&gpio TEGRA194_MAIN_GPIO(A, 3) GPIO_ACTIVE_HIGH>;
+>                          enable-active-high;
+>                  };
+>  +
+>  +               vdd_3v3_pcie: regulator@2 {
+>  +                       compatible = "regulator-fixed";
+> 
+> vs. without this patch
+> 
+>  diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+>  index 62e07e1197cc..4c38426a6969 100644
+>  --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+>  +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
+>  @@ -289,5 +289,29 @@
+>                          gpio = <&gpio TEGRA194_MAIN_GPIO(A, 3) GPIO_ACTIVE_HIGH>;
+>                          enable-active-high;
+>                  };
+>  +
+>  +               vdd_3v3_pcie: regulator@2 {
+>  +                       compatible = "regulator-fixed";
+> 
+> You can see that we don't know what the context node is because it isn't shown
+> after the '@@'.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: <devicetree@vger.kernel.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+> 
+> Sending to Andrew but I suppose it can go through dt tree too.
+> 
+>  .gitattributes | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/.gitattributes b/.gitattributes
+> index 89c411b5ce6b..4b32eaa9571e 100644
+> --- a/.gitattributes
+> +++ b/.gitattributes
+> @@ -1,2 +1,4 @@
+>  *.c   diff=cpp
+>  *.h   diff=cpp
+> +*.dtsi diff=dts
+> +*.dts  diff=dts
 > 
 
-The move happened smack in the middle of merge window and landed in
-linux-next towards the end of the merge window.
+Hm, I have a "cpp" installed but not a "dts".
+Where would I find this "dts" so that I can install it?
 
-> We seemed to decide to just wait for 5.5, but there is nothing that
-> looks to block that. And I encouraged Shuah to find more kunit cases
-> for when it _does_ get merged.
-> 
-
-Right. I communicated that to Brendan that we could work on adding more
-kunit based tests which would help get more mileage on the kunit.
-
-> So if the kunit branch is stable, and people want to start using it
-> for their unit tests, then I think that would be a good idea, and then
-> during the 5.5 merge window we'll not just get the infrastructure,
-> we'll get a few more users too and not just examples.
-> 
-thanks,
--- Shuah
+Thanks.
+-- 
+~Randy
