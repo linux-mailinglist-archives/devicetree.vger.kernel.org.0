@@ -2,253 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08AB8CBB13
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 14:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E95D8CBB38
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726702AbfJDM73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 08:59:29 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:58483 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726024AbfJDM73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 08:59:29 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x94Ctm2V004005;
-        Fri, 4 Oct 2019 14:59:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=jdYkwnHIKXfltbtMEhWAa+g48yPJwrWjJwMzruN2kFY=;
- b=r+ZnBViDiiS3beRXVQVIfZbNkup4XzntMEAd9nv8kDfTNCwK3VdudSION9cWUlUheAnR
- Qlu8gnAqpcZncN0lkCOUGgni+UD6aFuha2LjF+W1+wuEKiJpkg3JetOFOp/QjVVIG6hs
- IFpNc+8NQMBrxJpZiGt5+ybchhDr0xTa/r00mtCQ8puGtBvMopJiQwfOqCXvj5v/pFMH
- 15pWA0vfQi64+RIV7cFyE4TKFLtIShTgIFMCKM5Gvlyn9r8F+Fvifg8b9zacoc3nYIsC
- UXeUj9uctUM3W1WvbV86+SFd/9u+hOZtwWs5rlydgpQgIW7kGjXGSeKWZM+r6RwmQ0Mk HA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2v9w9wb2aw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 04 Oct 2019 14:59:18 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AEA6010002A;
-        Fri,  4 Oct 2019 14:59:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9CD8F2BFE06;
-        Fri,  4 Oct 2019 14:59:17 +0200 (CEST)
-Received: from lmecxl0923.lme.st.com (10.75.127.49) by SFHDAG6NODE1.st.com
- (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Oct
- 2019 14:59:16 +0200
-Subject: Re: [PATCH V6 1/3] mmc: mmci: add hardware busy timeout feature
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20190905122112.29672-1-ludovic.Barre@st.com>
- <20190905122112.29672-2-ludovic.Barre@st.com>
- <CAPDyKFpcb=dT0XBAGVL68t--xi5853Dzsgak-vbx5VcvxLZ4zA@mail.gmail.com>
- <CAPDyKFrRDHeVs6RpM=qTT1AogLnFWJLh2S4-wCcrYAON9XVKCA@mail.gmail.com>
-From:   Ludovic BARRE <ludovic.barre@st.com>
-Message-ID: <da9072ce-852c-a46c-ecdf-ea6bfd89ef79@st.com>
-Date:   Fri, 4 Oct 2019 14:59:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.0
+        id S2387573AbfJDNHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 09:07:02 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:37562 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387916AbfJDNHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:07:02 -0400
+Received: by mail-wm1-f66.google.com with SMTP id f22so5788146wmc.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 06:07:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:references:from:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Vm1z/uavvzcNco78li22aMT/8VH/CtOLHUXqjy3VNvw=;
+        b=qggUU/7xYmDTCv7Y+bDIRHpqkB+cqLUC3OFFqYf06cXZfsRlx1/wZQ8SJ0zh+z5b2U
+         uWzb9k7BqFVf7x4mTuCm0gUhDXnHKlbcbscX79y2Fs4BIw9ct1QABAO/2AMKnRPub1uh
+         C8N2VXEhtb9T1XSXEQfQ+gDDp8zXKzLixknHBaQoWl0rkHjWmBLpfPdLieiDLgdkRKAi
+         FZqzaijmit9MS+AxtJtDP/KykYEXKKF8OyJaz7rI6Y+bnHwfMOkthg4t+fayN/M1yI+T
+         TZFSXOtl510wUxDaHkCArbGqERUoGfOtwv+VGxLDyO9DlvoeCbNv+hoeExOCFs1zt4qZ
+         mkmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Vm1z/uavvzcNco78li22aMT/8VH/CtOLHUXqjy3VNvw=;
+        b=IF/rzN68Swcy6QyGe53UjgXtSfzv/TeVHdG5XyyCQ8zqNRnIcEt/h8XsBt3VR0Jec2
+         GI7JxOAo26U/XzGLOQvn11eUXVucY8zdEjou2qnCSPlXuhlsqV7/ftfPgVlFZgSGokAn
+         yYQ8c5wKMPCIUO82vDnu4t2BBVK173wWk2YWMrJBiI6HCN3cZLosfkjqhR/8kcgCz8+V
+         +Rzl1y5MepDCQc/AYRPdyZgfpymozcmL7jDlKBqGJjwAz+CxhPinDjSYKLW2TOW6xxTY
+         VfxyQhk9NQYRxhlna0+dqrghSrj6/eL2UmFGo6GuTGWLJ1h7u/uem7OcahE2P/jg66EV
+         1ioA==
+X-Gm-Message-State: APjAAAW6OAaGZAOwbVKzfjpszdq9zHj9JxVnDo7X5CTkGxdbv0XCgWNa
+        aodBtLyx0gkmrhsXQ0/IMyOAJg==
+X-Google-Smtp-Source: APXvYqydSCtT240YRFgQvQdRocBC3c84kZeadLtRSR5bdU9q4nIXOHFn/z4L9h8kkgZYx7fLb04t4A==
+X-Received: by 2002:a7b:cbd6:: with SMTP id n22mr11432427wmi.39.1570194419241;
+        Fri, 04 Oct 2019 06:06:59 -0700 (PDT)
+Received: from [192.168.0.136] ([37.157.136.206])
+        by smtp.googlemail.com with ESMTPSA id o4sm573201wre.91.2019.10.04.06.06.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 04 Oct 2019 06:06:58 -0700 (PDT)
+Subject: Re: [PATCH] arm64: tegra: Set dma-ranges for memory subsystem
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>
+References: <20191002154654.225690-1-thierry.reding@gmail.com>
+ <20191002154946.GA225802@ulmo>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <3eaff5c9-ee6d-faa2-4771-7eeb9f759c8b@linaro.org>
+Date:   Fri, 4 Oct 2019 16:06:57 +0300
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFrRDHeVs6RpM=qTT1AogLnFWJLh2S4-wCcrYAON9XVKCA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG6NODE3.st.com (10.75.127.18) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-04_06:2019-10-03,2019-10-04 signatures=0
+In-Reply-To: <20191002154946.GA225802@ulmo>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Ulf
-
-Le 10/4/19 à 8:20 AM, Ulf Hansson a écrit :
-> On Fri, 4 Oct 2019 at 08:12, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+On 10/2/19 18:49, Thierry Reding wrote:
+> On Wed, Oct 02, 2019 at 05:46:54PM +0200, Thierry Reding wrote:
+>> From: Thierry Reding <treding@nvidia.com>
 >>
->> On Thu, 5 Sep 2019 at 14:21, Ludovic Barre <ludovic.Barre@st.com> wrote:
->>>
->>> From: Ludovic Barre <ludovic.barre@st.com>
->>>
->>> In some variants, the data timer starts and decrements
->>> when the DPSM enters in Wait_R or Busy state
->>> (while data transfer or MMC_RSP_BUSY), and generates a
->>> data timeout error if the counter reach 0.
+>> On Tegra194, all clients of the memory subsystem can generally address
+>> 40 bits of system memory. However, bit 39 has special meaning and will
+>> cause the memory controller to reorder sectors for block-linear buffer
+>> formats. This is primarily useful for graphics-related devices.
 >>
+>> Use of bit 39 must be controlled on a case-by-case basis. Buffers that
+>> are used with bit 39 set by one device may be used with bit 39 cleared
+>> by other devices.
 >>
->>>
->>> -Define max_busy_timeout (in ms) according to clock.
->>> -Set data timer register if the command has rsp_busy flag.
->>>   If busy_timeout is not defined by framework, the busy
->>>   length after Data Burst is defined as 1 second
->>>   (refer: 4.6.2.2 Write of sd specification part1 v6-0).
+>> Care must be taken to allocate buffers at addresses that do not require
+>> bit 39 to be set. This is normally not an issue for system memory since
+>> there are no Tegra-based systems with enough RAM to exhaust the 39-bit
+>> physical address space. However, when a device is behind an IOMMU, such
+>> as the ARM SMMU on Tegra194, the IOMMUs input address space can cause
+>> IOVA allocations to happen in this region. This is for example the case
+>> when an operating system implements a top-down allocation policy for IO
+>> virtual addresses.
 >>
->> How about re-phrasing this as below:
+>> To account for this, describe the path that memory accesses take through
+>> the system. Memory clients will send requests to the memory controller,
+>> which forwards bits [38:0] of the address either to the external memory
+>> controller or the SMMU, depending on the stream ID of the access. A good
+>> way to describe this is using the interconnects bindings, see:
 >>
->> -----
->> In the stm32_sdmmc variant, the datatimer is active not only during
->> data transfers with the DPSM, but also while waiting for the busyend
->> IRQs from commands having the MMC_RSP_BUSY flag set. This leads to an
->> incorrect IRQ being raised to signal MCI_DATATIMEOUT error, which
->> simply breaks the behaviour.
+>> 	Documentation/devicetree/bindings/interconnect/interconnect.txt
 >>
->> Address this by updating the datatimer value before sending a command
->> having the MMC_RSP_BUSY flag set. To inform the mmc core about the
->> maximum supported busy timeout, which also depends on the current
->> clock rate, set ->max_busy_timeout (in ms).
-
-Thanks for the re-phrasing.
-
->> -----
+>> The standard "dma-mem" path is used to describe the path towards system
+>> memory via the memory controller. A dma-ranges property in the memory
+>> controller's device tree node limits the range of DMA addresses that the
+>> memory clients can use to bits [38:0], ensuring that bit 39 is not used.
 >>
->> Regarding the busy_timeout, the core should really assign it a value
->> for all commands having the RSP_BUSY flag set. However, I realize the
->> core needs to be improved to cover all these cases - and I am looking
->> at that, but not there yet.
+>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>> ---
+>> Arnd, Rob, Robin,
 >>
->> I would also suggest to use a greater value than 1s, as that seems a
->> bit low for the "undefined" case. Perhaps use the max_busy_timeout,
->> which would be nice a simple or 10s, which I think is used by some
->> other drivers.
-
-OK, I will set 10s, the max_busy_timeout could be very long for small 
-frequencies (example, 25Mhz => 171s).
-
+>> This is what I came up with after our discussion on this thread:
 >>
->>> -Add MCI_DATATIMEOUT error management in mmci_cmd_irq.
->>>
->>> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
->>> ---
->>>   drivers/mmc/host/mmci.c | 42 ++++++++++++++++++++++++++++++++++++-----
->>>   drivers/mmc/host/mmci.h |  3 +++
->>>   2 files changed, 40 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
->>> index c37e70dbe250..c30319255dc2 100644
->>> --- a/drivers/mmc/host/mmci.c
->>> +++ b/drivers/mmc/host/mmci.c
->>> @@ -1075,6 +1075,7 @@ static void
->>>   mmci_start_command(struct mmci_host *host, struct mmc_command *cmd, u32 c)
->>>   {
->>>          void __iomem *base = host->base;
->>> +       unsigned long long clks;
->>>
->>>          dev_dbg(mmc_dev(host->mmc), "op %02x arg %08x flags %08x\n",
->>>              cmd->opcode, cmd->arg, cmd->flags);
->>> @@ -1097,6 +1098,16 @@ mmci_start_command(struct mmci_host *host, struct mmc_command *cmd, u32 c)
->>>                  else
->>>                          c |= host->variant->cmdreg_srsp;
->>>          }
->>> +
->>> +       if (host->variant->busy_timeout && cmd->flags & MMC_RSP_BUSY) {
->>> +               if (!cmd->busy_timeout)
->>> +                       cmd->busy_timeout = 1000;
->>> +
->>> +               clks = (unsigned long long)cmd->busy_timeout * host->cclk;
->>> +               do_div(clks, MSEC_PER_SEC);
->>> +               writel_relaxed(clks, host->base + MMCIDATATIMER);
->>> +       }
->>> +
->>>          if (/*interrupt*/0)
->>>                  c |= MCI_CPSM_INTERRUPT;
->>>
->>> @@ -1201,6 +1212,7 @@ static void
->>>   mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
->>>               unsigned int status)
->>>   {
->>> +       u32 err_msk = MCI_CMDCRCFAIL | MCI_CMDTIMEOUT;
->>>          void __iomem *base = host->base;
->>>          bool sbc, busy_resp;
->>>
->>> @@ -1215,8 +1227,11 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
->>>           * handling. Note that we tag on any latent IRQs postponed
->>>           * due to waiting for busy status.
->>>           */
->>> -       if (!((status|host->busy_status) &
->>> -             (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT|MCI_CMDSENT|MCI_CMDRESPEND)))
->>> +       if (host->variant->busy_timeout && busy_resp)
->>> +               err_msk |= MCI_DATATIMEOUT;
->>> +
->>> +       if (!((status | host->busy_status) &
->>> +             (err_msk | MCI_CMDSENT | MCI_CMDRESPEND)))
->>>                  return;
->>>
->>>          /* Handle busy detection on DAT0 if the variant supports it. */
->>> @@ -1235,8 +1250,7 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
->>>                   * while, to allow it to be set, but tests indicates that it
->>>                   * isn't needed.
->>>                   */
->>> -               if (!host->busy_status &&
->>> -                   !(status & (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT)) &&
->>> +               if (!host->busy_status && !(status & err_msk) &&
->>>                      (readl(base + MMCISTATUS) & host->variant->busy_detect_flag)) {
->>>
->>>                          writel(readl(base + MMCIMASK0) |
->>> @@ -1290,6 +1304,9 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
->>>                  cmd->error = -ETIMEDOUT;
->>>          } else if (status & MCI_CMDCRCFAIL && cmd->flags & MMC_RSP_CRC) {
->>>                  cmd->error = -EILSEQ;
->>> +       } else if (host->variant->busy_timeout && busy_resp &&
->>> +                  status & MCI_DATATIMEOUT) {
->>> +               cmd->error = -ETIMEDOUT;
+>> 	[PATCH 00/11] of: dma-ranges fixes and improvements
 >>
->> It's not really clear to me what happens with the busy detection
->> status bit (variant->busy_detect_flag), in case a MCI_DATATIMEOUT IRQ
->> is raised, while also having host->busy_status set (waiting for
->> busyend).
+>> Please take a look and see if that sounds reasonable. I'm slightly
+>> unsure about the interconnects bindings as I used them here. According
+>> to the bindings there's always supposed to be a pair of interconnect
+>> paths, so this patch is not exactly compliant. It does work fine with
+>> the __of_get_dma_parent() code that Maxime introduced a couple of months
+>> ago and really very neatly describes the hardware. Interestingly this
+>> will come in handy very soon now since we're starting work on a proper
+>> interconnect provider (the memory controller driver is the natural fit
+>> for this because it has additional knobs to configure latency and
+>> priorities, etc.) to implement external memory frequency scaling based
+>> on bandwidth requests from memory clients. So this all fits together
+>> very nicely. But as I said, I'm not exactly sure what to add as a second
+>> entry in "interconnects" to make this compliant with the bindings.
 >>
->> By looking at the code a few lines above this, we may do a "return;"
->> while waiting for the busyend IRQ even if MCI_DATATIMEOUT also is
->> raised, potentially losing that from being caught. Is that really
->> correct?
-> 
-> A second thought. That "return;" is to manage the busyend IRQ being
-> raised of the first edge due to broken HW. So I guess, this isn't an
-> issue for stm32_sdmmc variant after all?
->
-> I have a look at the next patches in the series..
 
-you're referring to "return" of ?
-	if (host->busy_status &&
-	    (status & host->variant->busy_detect_flag)) {
-		writel(host->variant->busy_detect_mask,
-		       host->base + MMCICLEAR);
-		return;
-	}
+Sounds good to me. The bindings define the two endpoints, but the dma-mem is a
+special case and just a single phandle + specifier is fine. Maybe we should
+explicitly mention this in the interconnect binding docs. You can look at how
+Maxime is using it now in sun5i.dtsi.
 
-For stm32 variant (in patch 3/3): the "busy completion" is
-released immediately if there is an error or busyd0end,
-and cleans: irq, busyd0end mask, busy_status variable.
-
-I could add similar action in patch 2/3 function: "ux500_busy_complete"
-
-static bool ux500_busy_complete(struct mmci_host *host, u32 status, u32 
-err_msk)
-{
-	void __iomem *base = host->base;
-
-	if (status & err_msk)
-		goto complete;
-...
-complete:
-	/* specific action to clean busy detection, irq, mask, busy_status */
-}
-
-what do you think about it?
-
-> 
-> [...]
-> 
-> Kind regards
-> Uffe
-> 
+Thanks,
+Georgi
