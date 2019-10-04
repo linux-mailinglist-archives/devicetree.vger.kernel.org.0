@@ -2,84 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2532CC002
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 965AACC000
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390242AbfJDQEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 12:04:31 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:42710 "EHLO fornost.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390091AbfJDQEb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 12:04:31 -0400
-Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
-        by fornost.hmeau.com with smtp (Exim 4.89 #2 (Debian))
-        id 1iGPhH-0001FJ-3M; Sat, 05 Oct 2019 01:40:48 +1000
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sat, 05 Oct 2019 01:40:41 +1000
-Date:   Sat, 5 Oct 2019 01:40:41 +1000
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Matt Mackall <mpm@selenic.com>, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-crypto@vger.kernel.org,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Adam Ford <aford173@gmail.com>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali.rohar@gmail.com>,
+        id S2390132AbfJDQE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 12:04:29 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:37455 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389131AbfJDQE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:04:29 -0400
+X-Originating-IP: 93.23.105.117
+Received: from xps13.stephanxp.local (117.105.23.93.rev.sfr.net [93.23.105.117])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id E080C6000E;
+        Fri,  4 Oct 2019 16:04:21 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Piotr Sroka <piotrs@cadence.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Richard Weinberger <richard@nod.at>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Marek Vasut <marek.vasut@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCHv2 0/7] Non-urgent fixes and improvments for omap3-rom-rng
-Message-ID: <20191004154041.GL5148@gondor.apana.org.au>
-References: <20190914210300.15836-1-tony@atomide.com>
+        linux-mtd@lists.infradead.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Kazuhiro Kasai <kasai.kazuhiro@socionext.com>
+Subject: Re: [v8 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
+Date:   Fri,  4 Oct 2019 18:04:15 +0200
+Message-Id: <20191004160415.6134-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190926081358.24212-1-piotrs@cadence.com>
+References: 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190914210300.15836-1-tony@atomide.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: 5121b4219972c16e9ac92545a6743af2e99d4abc
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 14, 2019 at 02:02:53PM -0700, Tony Lindgren wrote:
-> Hi all,
+On Thu, 2019-09-26 at 08:13:21 UTC, Piotr Sroka wrote:
+> Document the bindings used by Cadence NAND controller driver
 > 
-> Here are fixes and improvments for omap3-rom-rng that's been broken for
-> a while.
-> 
-> The first four patches get it working, and then the last two patches add
-> support for runtime PM.
-> 
-> I did not add Sebastian's acks from v1 set as many of the patches
-> changed. Please review again :)
-> 
-> Regards,
-> 
-> Tony
-> 
-> Changes since v1:
-> - Use clk_prepare_enable() as pointed out by Sebastian
-> - Simplify runtime PM changes patch
-> - Add a new patch for devm changes as suggested by Sebastian
-> 
-> 
-> Tony Lindgren (7):
->   ARM: OMAP2+: Check omap3-rom-rng for GP device instead of HS device
->   hwrng: omap3-rom - Fix missing clock by probing with device tree
->   hwrng: omap3-rom - Call clk_disable_unprepare() on exit only if not
->     idled
->   hwrng: omap3-rom - Initialize default quality to get data
->   hwrng: omap3-rom - Update to use standard driver data
->   hwrng: omap3-rom - Use runtime PM instead of custom functions
->   hwrng: omap3-rom - Use devm hwrng and runtime PM
-> 
->  .../devicetree/bindings/rng/omap3_rom_rng.txt |  27 +++
->  arch/arm/boot/dts/omap3-n900.dts              |   6 +
->  arch/arm/mach-omap2/pdata-quirks.c            |  14 +-
->  drivers/char/hw_random/omap3-rom-rng.c        | 168 +++++++++++-------
->  4 files changed, 139 insertions(+), 76 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/rng/omap3_rom_rng.txt
+> Signed-off-by: Piotr Sroka <piotrs@cadence.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-All applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+
+Miquel
