@@ -2,209 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEE8BCC0BA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC25ECC074
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731539AbfJDQ3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 12:29:39 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:14657 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731526AbfJDQ3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:29:39 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d9773710000>; Fri, 04 Oct 2019 09:29:37 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Fri, 04 Oct 2019 09:29:36 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Fri, 04 Oct 2019 09:29:36 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Oct
- 2019 16:29:36 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Fri, 4 Oct 2019 16:29:36 +0000
-Received: from jckuo-lt.nvidia.com (Not Verified[10.19.101.223]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d9773680000>; Fri, 04 Oct 2019 09:29:34 -0700
-From:   JC Kuo <jckuo@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nkristam@nvidia.com>, <skomatineni@nvidia.com>,
-        JC Kuo <jckuo@nvidia.com>
-Subject: [PATCH v3 7/7] arm64: tegra: Enable XUSB host in P2972-0000 board
-Date:   Sat, 5 Oct 2019 00:29:06 +0800
-Message-ID: <20191004162906.4818-8-jckuo@nvidia.com>
+        id S1730436AbfJDQ1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 12:27:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37132 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730353AbfJDQ1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:27:47 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x94GRljo059489;
+        Fri, 4 Oct 2019 11:27:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570206467;
+        bh=OKhdMxSgs6BN/L1NKmWbLiSeixvj42ucz1234m6E0RQ=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=epPtl60kt3Jc+o0ELun9GQ5moSCygihZTxlgutS7mbW9J8R37VI/ZSXRchVnYUQd9
+         TdgHfjPnF7ifopxYk/SdBfnvwaYicgvRcO8DGEMjzc9szub8HA0S0z92VpLxsThm8O
+         yFEJCmlPu2q5HNOL2JKzLc0pOHClyb7xjkG4sOYI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x94GRlb5067322;
+        Fri, 4 Oct 2019 11:27:47 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 4 Oct
+ 2019 11:27:46 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 4 Oct 2019 11:27:46 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x94GRgA5028904;
+        Fri, 4 Oct 2019 11:27:46 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch v2 03/21] media: ti-vpe: vpe: Add missing null pointer checks
+Date:   Fri, 4 Oct 2019 11:29:34 -0500
+Message-ID: <20191004162952.4963-4-bparrot@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191004162906.4818-1-jckuo@nvidia.com>
-References: <20191004162906.4818-1-jckuo@nvidia.com>
-X-NVConfidentiality: public
+In-Reply-To: <20191004162952.4963-1-bparrot@ti.com>
+References: <20191004162952.4963-1-bparrot@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1570206577; bh=6BG4OlYKtCKIJ3gJVhnqd/SjEaS+UOhl1AFVKs7S4U0=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=JE2AsgypRfe5SMrxbXiQAzx2mRKhIUnYNeujc42syGMvr4ycD2c6mt08FVGqWmRdB
-         87TQSnyGpjV0CWeI1HUHAjoP/kyOKyzRjUmDveiOrLHgJZpv913Z+4tk4hkDv++OLF
-         h5T6Db1vVpoAmltvADOu1nhgYIyzO8x8Grn8yfZF0x9RDE+YdjiEInqNDiddnQ8bHX
-         14q1Ae1M+ASkH4wKsPe93BkJk1ngGhvxtESgaKJ5tfETEL6YHjlguoqLd6Gsq3mHCn
-         hFtN5thrlCEF4TvdlNjV2444Gj7aymzYbrWepErP5JctySx3hGXVsnWcM6hoDCdXq7
-         Zhdt0qEvtAbmA==
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit enables XUSB host and pad controller in Tegra194
-P2972-0000 board.
+A few NULL pointer checks were missing.
+Add check with appropriate return code.
 
-Signed-off-by: JC Kuo <jckuo@nvidia.com>
+Signed-off-by: Benoit Parrot <bparrot@ti.com>
 ---
-Changes in v3: none
-Changes in v2:
-- use capitalization of regulator names
-- fix gpio property of VDD_5V_SATA regulator
+ drivers/media/platform/ti-vpe/vpe.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
- .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 36 ++++++++++-
- .../boot/dts/nvidia/tegra194-p2972-0000.dts   | 62 +++++++++++++++++++
- 2 files changed, 97 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-index 4c38426a6969..e7d5e8a30f93 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-@@ -66,6 +66,29 @@
- 			vmmc-supply = <&vdd_emmc_3v3>;
- 		};
+diff --git a/drivers/media/platform/ti-vpe/vpe.c b/drivers/media/platform/ti-vpe/vpe.c
+index 5ba72445584d..56f60dbea15c 100644
+--- a/drivers/media/platform/ti-vpe/vpe.c
++++ b/drivers/media/platform/ti-vpe/vpe.c
+@@ -1537,6 +1537,8 @@ static int vpe_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ 		return -EINVAL;
  
-+		padctl@3520000 {
-+			avdd-usb-supply = <&vdd_usb_3v3>;
-+			vclamp-usb-supply = <&vdd_1v8ao>;
-+
-+			ports {
-+				usb2-1 {
-+					vbus-supply = <&vdd_5v0_sys>;
-+				};
-+
-+				usb2-3 {
-+					vbus-supply = <&vdd_5v_sata>;
-+				};
-+
-+				usb3-0 {
-+					vbus-supply = <&vdd_5v0_sys>;
-+				};
-+
-+				usb3-3 {
-+					vbus-supply = <&vdd_5v0_sys>;
-+				};
-+			};
-+		};
-+
- 		rtc@c2a0000 {
- 			status = "okay";
- 		};
-@@ -229,7 +252,7 @@
- 						regulator-max-microvolt = <3300000>;
- 					};
+ 	q_data = get_q_data(ctx, f->type);
++	if (!q_data)
++		return -EINVAL;
  
--					ldo5 {
-+					vdd_usb_3v3: ldo5 {
- 						regulator-name = "VDD_USB_3V3";
- 						regulator-min-microvolt = <3300000>;
- 						regulator-max-microvolt = <3300000>;
-@@ -313,5 +336,16 @@
- 			regulator-boot-on;
- 			enable-active-low;
- 		};
-+
-+		vdd_5v_sata: regulator@4 {
-+			compatible = "regulator-fixed";
-+			reg = <4>;
-+
-+			regulator-name = "VDD_5V_SATA";
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			gpio = <&gpio TEGRA194_MAIN_GPIO(Z, 1) GPIO_ACTIVE_HIGH>;
-+			enable-active-high;
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index d47cd8c4dd24..b60eef64c487 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -62,6 +62,68 @@
- 							 GPIO_ACTIVE_LOW>;
- 			};
- 		};
-+		padctl@3520000 {
-+			status = "okay";
-+
-+			pads {
-+				usb2 {
-+					lanes {
-+						usb2-1 {
-+							status = "okay";
-+						};
-+
-+						usb2-3 {
-+							status = "okay";
-+						};
-+					};
-+				};
-+
-+				usb3 {
-+					lanes {
-+						usb3-0 {
-+							status = "okay";
-+						};
-+
-+						usb3-3 {
-+							status = "okay";
-+						};
-+					};
-+				};
-+			};
-+
-+			ports {
-+				usb2-1 {
-+					mode = "host";
-+					status = "okay";
-+				};
-+
-+				usb2-3 {
-+					mode = "host";
-+					status = "okay";
-+				};
-+
-+				usb3-0 {
-+					nvidia,usb2-companion = <1>;
-+					status = "okay";
-+				};
-+
-+				usb3-3 {
-+					nvidia,usb2-companion = <3>;
-+					nvidia,disable-gen2;
-+					status = "okay";
-+				};
-+			};
-+		};
-+
-+		usb@3610000 {
-+			status = "okay";
-+
-+			phys =	<&{/cbb/padctl@3520000/pads/usb2/lanes/usb2-1}>,
-+				<&{/cbb/padctl@3520000/pads/usb2/lanes/usb2-3}>,
-+				<&{/cbb/padctl@3520000/pads/usb3/lanes/usb3-0}>,
-+				<&{/cbb/padctl@3520000/pads/usb3/lanes/usb3-3}>;
-+			phy-names = "usb2-1", "usb2-3", "usb3-0", "usb3-3";
-+		};
- 	};
+ 	pix->width = q_data->width;
+ 	pix->height = q_data->height;
+@@ -2001,6 +2003,8 @@ static int vpe_queue_setup(struct vb2_queue *vq,
+ 	struct vpe_q_data *q_data;
  
- 	pcie@14100000 {
+ 	q_data = get_q_data(ctx, vq->type);
++	if (!q_data)
++		return -EINVAL;
+ 
+ 	*nplanes = q_data->nplanes;
+ 
+@@ -2025,6 +2029,8 @@ static int vpe_buf_prepare(struct vb2_buffer *vb)
+ 	vpe_dbg(ctx->dev, "type: %d\n", vb->vb2_queue->type);
+ 
+ 	q_data = get_q_data(ctx, vb->vb2_queue->type);
++	if (!q_data)
++		return -EINVAL;
+ 	num_planes = q_data->nplanes;
+ 
+ 	if (vb->vb2_queue->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+@@ -2481,7 +2487,12 @@ static int vpe_probe(struct platform_device *pdev)
+ 	mutex_init(&dev->dev_mutex);
+ 
+ 	dev->res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+-			"vpe_top");
++						"vpe_top");
++	if (!dev->res) {
++		dev_err(&pdev->dev, "missing 'vpe_top' resources data\n");
++		return -ENODEV;
++	}
++
+ 	/*
+ 	 * HACK: we get resource info from device tree in the form of a list of
+ 	 * VPE sub blocks, the driver currently uses only the base of vpe_top
 -- 
 2.17.1
 
