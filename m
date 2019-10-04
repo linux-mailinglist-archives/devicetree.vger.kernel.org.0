@@ -2,84 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B5ECB8C9
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 12:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05526CB8D9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 13:04:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726696AbfJDK7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 06:59:42 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:52746 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726082AbfJDK7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 06:59:42 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        id S1726082AbfJDLEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 07:04:09 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:41564 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725788AbfJDLEI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 07:04:08 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 376C1615E3; Fri,  4 Oct 2019 11:04:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570187047;
+        bh=o9Q3oVGsIq8ddRmA0Y32IL0bB6MQt35nd+BPbREYsbQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=kDg62MuN+DPQV/vNMDi668tfLEFtl0qTVxcPy+JIa5QVck7a8rYs3+XG6EXDYKQ+m
+         D5+CT1b/Uds9lfRQLWK5oPSV3Nhe4HbHlU6CKwHXSog+r4mFg3NiMHF5n0/C7GU5NP
+         7JWH9zv2Eh03RkWiVbwVFImnRpnn+w2whZSAWbfo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from kgunda-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 59937634C87;
-        Fri,  4 Oct 2019 13:59:04 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iGLIc-0002PR-Nb; Fri, 04 Oct 2019 13:59:02 +0300
-Date:   Fri, 4 Oct 2019 13:59:02 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH v4 2/2] media: i2c: Add IMX290 CMOS image sensor driver
-Message-ID: <20191004105902.GM896@valkosipuli.retiisi.org.uk>
-References: <20191003095503.12614-1-manivannan.sadhasivam@linaro.org>
- <20191003095503.12614-3-manivannan.sadhasivam@linaro.org>
- <20191004092336.GL896@valkosipuli.retiisi.org.uk>
- <20191004101902.GA19685@mani>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191004101902.GA19685@mani>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        (Authenticated sender: kgunda@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E4FFA60A37;
+        Fri,  4 Oct 2019 11:04:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570187045;
+        bh=o9Q3oVGsIq8ddRmA0Y32IL0bB6MQt35nd+BPbREYsbQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=iFBZmGlNLIcWpDzQqOiVO8F99nPvDdQbhnF5r7PZc6wrCd6xnlfpcIyOT2Wl2sjCo
+         BlrPSSk79hz4z7M2PN7ZRrZqaYI5wKAsMqDTsKY/pALJbg7dzL8Ko+tXg1XgeonZM/
+         8WAylQJozYjxKz3mTjLRMeOtnCKAz1r404vXbHv0=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E4FFA60A37
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V2 1/2] ARM: dts: qcom: pm6150: Add PM6150/PM6150L PMIC peripherals
+Date:   Fri,  4 Oct 2019 16:33:48 +0530
+Message-Id: <1570187029-12470-2-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1570187029-12470-1-git-send-email-kgunda@codeaurora.org>
+References: <1570187029-12470-1-git-send-email-kgunda@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
+Add PM6150/PM6150L peripherals such as PON, GPIOs, ADC and other
+PMIC infra modules.
 
-On Fri, Oct 04, 2019 at 03:49:02PM +0530, Manivannan Sadhasivam wrote:
-> Hi Sakari,
-> 
-> On Fri, Oct 04, 2019 at 12:23:36PM +0300, Sakari Ailus wrote:
-> > Hi Manivannan,
-> > 
-> > On Thu, Oct 03, 2019 at 03:25:03PM +0530, Manivannan Sadhasivam wrote:
-> > > Add driver for Sony IMX290 CMOS image sensor driver. The driver only
-> > > supports I2C interface for programming and MIPI CSI-2 for sensor output.
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > 
-> > Could you remove the unneeded ret variable from imx290_power_on() and
-> > unneeded goto in the same function?
-> >
-> 
-> yep, sure.
->  
-> > The MAINTAINERS entry belongs to the first patch adding new files.
-> > 
-> 
-> You mean the bindings patch? If then, sorry no. Usually the devicetree bindings
-> belongs to a separate patch and that is what perferred by Rob. I prefer the
-> MAINTAINERS entry in a separate patch but I've seen subsystems maintainers
-> asking to squash it with the driver patch. But squashing it with bindings
-> patch seems weird to me.
+Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/pm6150.dtsi  | 85 +++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm6150l.dtsi | 47 +++++++++++++++++++
+ 2 files changed, 132 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm6150.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm6150l.dtsi
 
-This has been an established practice at least in the media tree. The
-MAINTAINERS change is small, and bindings come before the driver. And the
-MAINTAINERS change needs to come no later than files are being added, or a
-checkpatch.pl warning follows --- which is entirely reasonable. You could
-put the MAINTAINERS change to a separate patch, yes, but I personally think
-it fits fine with the DT binding patch.
-
+diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
+new file mode 100644
+index 0000000..22d2445
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
+@@ -0,0 +1,85 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (c) 2019, The Linux Foundation. All rights reserved.
++
++#include <dt-bindings/iio/qcom,spmi-vadc.h>
++#include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/spmi/spmi.h>
++#include <dt-bindings/thermal/thermal.h>
++
++&spmi_bus {
++	pm6150_lsid0: pmic@0 {
++		compatible = "qcom,pm6150", "qcom,spmi-pmic";
++		reg = <0x0 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pm6150_pon: pon@800 {
++			compatible = "qcom,pm8998-pon";
++			reg = <0x800>;
++			mode-bootloader = <0x2>;
++			mode-recovery = <0x1>;
++
++			pwrkey {
++				compatible = "qcom,pm8941-pwrkey";
++				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
++				debounce = <15625>;
++				bias-pull-up;
++				linux,code = <KEY_POWER>;
++			};
++		};
++
++		pm6150_temp: temp-alarm@2400 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0x2400>;
++			interrupts = <0x0 0x24 0x0 IRQ_TYPE_EDGE_RISING>;
++			io-channels = <&pm6150_adc ADC5_DIE_TEMP>;
++			io-channel-names = "thermal";
++			#thermal-sensor-cells = <0>;
++		};
++
++		pm6150_adc: adc@3100 {
++			compatible = "qcom,spmi-adc5";
++			reg = <0x3100>;
++			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			#io-channel-cells = <1>;
++
++			adc-chan@ADC5_DIE_TEMP {
++				reg = <ADC5_DIE_TEMP>;
++				label = "die_temp";
++			};
++		};
++
++		pm6150_gpio: gpios@c000 {
++			compatible = "qcom,pm6150-gpio", "qcom,spmi-gpio";
++			reg = <0xc000 0xa00>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupts = <0 0xc0 0 IRQ_TYPE_NONE>,
++				     <0 0xc1 0 IRQ_TYPE_NONE>,
++				     <0 0xc2 0 IRQ_TYPE_NONE>,
++				     <0 0xc3 0 IRQ_TYPE_NONE>,
++				     <0 0xc4 0 IRQ_TYPE_NONE>,
++				     <0 0xc5 0 IRQ_TYPE_NONE>,
++				     <0 0xc6 0 IRQ_TYPE_NONE>,
++				     <0 0xc7 0 IRQ_TYPE_NONE>,
++				     <0 0xc8 0 IRQ_TYPE_NONE>,
++				     <0 0xc9 0 IRQ_TYPE_NONE>;
++
++			interrupt-names = "pm6150_gpio1", "pm6150_gpio2",
++					"pm6150_gpio3", "pm6150_gpio4",
++					"pm6150_gpio5", "pm6150_gpio6",
++					"pm6150_gpio7", "pm6150_gpio8",
++					"pm6150_gpio9", "pm6150_gpio10";
++		};
++	};
++
++	pm6150_lsid1: pmic@1 {
++		compatible = "qcom,pm6150", "qcom,spmi-pmic";
++		reg = <0x1 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/pm6150l.dtsi b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
+new file mode 100644
+index 0000000..a262092
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
+@@ -0,0 +1,47 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (c) 2019, The Linux Foundation. All rights reserved.
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/spmi/spmi.h>
++
++&spmi_bus {
++	pm6150l_lsid4: pmic@4 {
++		compatible = "qcom,pm6150l", "qcom,spmi-pmic";
++		reg = <0x4 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pm6150l_gpios: gpios@c000 {
++			compatible = "qcom,pm6150l-gpio", "qcom,spmi-gpio";
++			reg = <0xc000 0xc00>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupts = <4 0xc0 0 IRQ_TYPE_NONE>,
++				     <4 0xc1 0 IRQ_TYPE_NONE>,
++				     <4 0xc2 0 IRQ_TYPE_NONE>,
++				     <4 0xc3 0 IRQ_TYPE_NONE>,
++				     <4 0xc4 0 IRQ_TYPE_NONE>,
++				     <4 0xc5 0 IRQ_TYPE_NONE>,
++				     <4 0xc6 0 IRQ_TYPE_NONE>,
++				     <4 0xc7 0 IRQ_TYPE_NONE>,
++				     <4 0xc8 0 IRQ_TYPE_NONE>,
++				     <4 0xc9 0 IRQ_TYPE_NONE>,
++				     <4 0xca 0 IRQ_TYPE_NONE>,
++				     <4 0xcb 0 IRQ_TYPE_NONE>;
++
++			interrupt-names = "pm6150l_gpio1", "pm6150l_gpio2",
++					"pm6150l_gpio3", "pm6150l_gpio4",
++					"pm6150l_gpio5", "pm6150l_gpio6",
++					"pm6150l_gpio7", "pm6150l_gpio8",
++					"pm6150l_gpio9", "pm6150l_gpio10",
++					"pm6150l_gpio11", "pm6150l_gpio12";
++		};
++	};
++
++	pm6150l_lsid5: pmic@5 {
++		compatible = "qcom,pm6150l", "qcom,spmi-pmic";
++		reg = <0x5 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++};
 -- 
-Regards,
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
 
-Sakari Ailus
