@@ -2,112 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0CCCBCF8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21006CBD13
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:27:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728988AbfJDOUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:20:42 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:39631 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729638AbfJDOUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:20:42 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1iGORh-0008UR-Aw; Fri, 04 Oct 2019 16:20:37 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1iGORg-0004n2-VN; Fri, 04 Oct 2019 16:20:36 +0200
-Date:   Fri, 4 Oct 2019 16:20:36 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] pwm: mxs: add support for inverse polarity
-Message-ID: <20191004142036.apzjf54dlzfah5xl@pengutronix.de>
-References: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
- <20191004133207.6663-4-linux@rasmusvillemoes.dk>
+        id S2388666AbfJDO1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:27:44 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:34715 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388149AbfJDO1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:44 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 24DF1C001F;
+        Fri,  4 Oct 2019 14:27:40 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 00/21] Add new Marvell CN9130 SoC support
+Date:   Fri,  4 Oct 2019 16:27:17 +0200
+Message-Id: <20191004142738.7370-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191004133207.6663-4-linux@rasmusvillemoes.dk>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 04, 2019 at 03:32:04PM +0200, Rasmus Villemoes wrote:
-> If I'm reading of_pwm_xlate_with_flags() right, existing device trees
-> that set #pwm-cells = 2 will continue to work.
+Hello,
 
-Yes, that's what I expect, too.
+This is a respin of the last remaining patchset needed to fully support
+Marvell CN9130 SoCs. The CN9130 is made of one AP807 and one internal
+CP115. There are three development boards that are made of this SoC:
+* CN9130-DB
+* CN9131-DB (with one additional modular CP115 compared to CN9130-DB)
+* CN9132-DB (with two additional modular CP115 compared to CN9130-DB)
 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-> ---
->  drivers/pwm/pwm-mxs.c | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/pwm/pwm-mxs.c b/drivers/pwm/pwm-mxs.c
-> index 5a6835e18fc6..57562221c439 100644
-> --- a/drivers/pwm/pwm-mxs.c
-> +++ b/drivers/pwm/pwm-mxs.c
-> @@ -25,8 +25,11 @@
->  #define  PERIOD_PERIOD(p)	((p) & 0xffff)
->  #define  PERIOD_PERIOD_MAX	0x10000
->  #define  PERIOD_ACTIVE_HIGH	(3 << 16)
-> +#define  PERIOD_ACTIVE_LOW	(2 << 16)
-> +#define  PERIOD_INACTIVE_HIGH	(3 << 18)
->  #define  PERIOD_INACTIVE_LOW	(2 << 18)
->  #define  PERIOD_POLARITY_NORMAL	(PERIOD_ACTIVE_HIGH | PERIOD_INACTIVE_LOW)
-> +#define  PERIOD_POLARITY_INVERSE	(PERIOD_ACTIVE_LOW | PERIOD_INACTIVE_HIGH)
->  #define  PERIOD_CDIV(div)	(((div) & 0x7) << 20)
->  #define  PERIOD_CDIV_MAX	8
->  
-> @@ -50,9 +53,7 @@ static int mxs_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->  	unsigned int period_cycles, duty_cycles;
->  	unsigned long rate;
->  	unsigned long long c;
-> -
-> -	if (state->polarity != PWM_POLARITY_NORMAL)
-> -		return -ENOTSUPP;
-> +	unsigned int pol_bits;
->  
->  	/*
->  	 * If the PWM channel is disabled, make sure to turn on the
-> @@ -91,9 +92,12 @@ static int mxs_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->  	 * only take effect at the beginning of a new period, avoiding
->  	 * glitches.
->  	 */
-> +
-> +	pol_bits = state->polarity == PWM_POLARITY_NORMAL ?
-> +		PERIOD_POLARITY_NORMAL : PERIOD_POLARITY_INVERSE;
->  	writel(duty_cycles << 16,
->  	       mxs->base + PWM_ACTIVE0 + pwm->hwpwm * 0x20);
-> -	writel(PERIOD_PERIOD(period_cycles) | PERIOD_POLARITY_NORMAL | PERIOD_CDIV(div),
-> +	writel(PERIOD_PERIOD(period_cycles) | pol_bits | PERIOD_CDIV(div),
->  	       mxs->base + PWM_PERIOD0 + pwm->hwpwm * 0x20);
+This series applies on top of v5.4-rc1 and works thanks to the
+previously merged following series:
+* CP110 COMPHY:
+https://patchwork.kernel.org/cover/11067647/
+* AP806 CPU clocks:
+https://patchwork.kernel.org/cover/11038577/
+* AP807 clocks:
+https://patchwork.kernel.org/cover/11076435/
+* CP115 pinctrl:
+http://patchwork.ozlabs.org/cover/1142107/
 
-Is the avoidance of glitches still true when period changes? I assume
-that yes, but I wonder if you tested that.
+As CP110 and CP115 (alternatively, AP806 and AP807) are very similar,
+we first reorganize DT files to create CP11x (and AP80x) generic
+files, before including them from the new specific CP110/CP115
+(AP806/AP807) ones.
 
-Best regards
-Uwe
+A few small improvements/fixes in these files are also carried.
+
+Thanks,
+MiquÃ¨l
+
+Changes since v1:
+=================
+* Rebased on top of v5.4-rc1.
+* Rob's Reviewed-by tag on the first bindings patch (03).
+* Used the AP_NAME macro instead of hardcoding ap806 in the DT which
+  turns generic (spotted by Gregory).
+* Converted Marvell SoC compatible bindings to yaml (patch 16) as
+  requested by Rob. Add Gregory as the file maintainer.
+
+
+Ben Peled (1):
+  dt-bindings: ap80x: replace AP806 with AP80x
+
+Grzegorz Jaszczyk (7):
+  arm64: dts: marvell: Add AP806-dual cache description
+  arm64: dts: marvell: Add AP806-quad cache description
+  arm64: dts: marvell: Add AP807-quad cache description
+  dt-bindings: marvell: Declare the CN913x SoC compatibles
+  arm64: dts: marvell: Add support for Marvell CN9130-DB
+  arm64: dts: marvell: Add support for Marvell CN9131-DB
+  arm64: dts: marvell: Add support for Marvell CN9132-DB
+
+Konstantin Porotchkin (1):
+  arm64: dts: marvell: Prepare the introduction of AP807 based SoCs
+
+Miquel Raynal (12):
+  arm64: dts: marvell: Enumerate the first AP806 syscon
+  arm64: dts: marvell: Add AP806-dual missing CPU clocks
+  MAINTAINERS: Add new Marvell CN9130-based files to track
+  arm64: dts: marvell: Move clocks to AP806 specific file
+  arm64: dts: marvell: Add support for AP807/AP807-quad
+  arm64: dts: marvell: Fix CP110 NAND controller node multi-line comment
+    alignment
+  arm64: dts: marvell: Prepare the introduction of CP115
+  arm64: dts: marvell: Drop PCIe I/O ranges from CP11x file
+  arm64: dts: marvell: Externalize PCIe macros from CP11x file
+  arm64: dts: marvell: Add support for CP115
+  dt-bindings: marvell: Convert the SoC compatibles description to YAML
+  arm64: dts: marvell: Add support for Marvell CN9130 SoC support
+
+ ...roller.txt => ap80x-system-controller.txt} |  14 +-
+ .../bindings/arm/marvell/armada-7k-8k.txt     |  24 -
+ .../bindings/arm/marvell/armada-7k-8k.yaml    |  61 ++
+ MAINTAINERS                                   |   3 +-
+ arch/arm64/boot/dts/marvell/Makefile          |   3 +
+ arch/arm64/boot/dts/marvell/armada-70x0.dtsi  |  28 +-
+ .../boot/dts/marvell/armada-8040-mcbin.dtsi   |   3 +-
+ arch/arm64/boot/dts/marvell/armada-80x0.dtsi  |  56 +-
+ .../boot/dts/marvell/armada-ap806-dual.dtsi   |  23 +
+ .../boot/dts/marvell/armada-ap806-quad.dtsi   |  42 ++
+ arch/arm64/boot/dts/marvell/armada-ap806.dtsi | 456 +-------------
+ .../boot/dts/marvell/armada-ap807-quad.dtsi   |  93 +++
+ arch/arm64/boot/dts/marvell/armada-ap807.dtsi |  29 +
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 444 ++++++++++++++
+ .../arm64/boot/dts/marvell/armada-common.dtsi |   4 +-
+ arch/arm64/boot/dts/marvell/armada-cp110.dtsi | 575 +-----------------
+ arch/arm64/boot/dts/marvell/armada-cp115.dtsi |  12 +
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 568 +++++++++++++++++
+ arch/arm64/boot/dts/marvell/cn9130-db.dts     | 403 ++++++++++++
+ arch/arm64/boot/dts/marvell/cn9130.dtsi       |  37 ++
+ arch/arm64/boot/dts/marvell/cn9131-db.dts     | 202 ++++++
+ arch/arm64/boot/dts/marvell/cn9132-db.dts     | 221 +++++++
+ 22 files changed, 2210 insertions(+), 1091 deletions(-)
+ rename Documentation/devicetree/bindings/arm/marvell/{ap806-system-controller.txt => ap80x-system-controller.txt} (91%)
+ delete mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-cp115.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dts
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+2.20.1
+
