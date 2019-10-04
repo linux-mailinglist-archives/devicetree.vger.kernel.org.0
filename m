@@ -2,843 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FAE1CC35C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60583CC37A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729490AbfJDTJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 15:09:31 -0400
-Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.102]:16715 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727978AbfJDTJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:09:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570216163;
-        s=strato-dkim-0002; d=fpond.eu;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=uY64EtDogp2k8dzWwkolDaSWQgodwV7a45KMolGYAdA=;
-        b=gUsMnKFS7PSAhREv/wlAtgSjghC2FJUyQZCvk4COLTBuARskgF7LHkD4Jjvqw6UC7a
-        g1xwbGFcbnxByGx5zxgxAj1wYTnffu9WTDf8dx4so5B/tssemYn3xvQCf2N9I6XlsEJ0
-        QwbC4TuQl/w4Y/K5snJWFE5tcUrRVWTIlhgLclTmL0d83/GgSktQWj/KjObBEdWzrMDC
-        iUIGgm4R3vW6IG/uzKvUxMl9ZkGIrvo6l1UuIhvryHcttmFlI9gvK0K5Yh4zlmHCOwVl
-        c/TZoxraRSinEeFcwSkMMesTaHDrgpcZ+jiiyB0D6jSiQdDsKHXSKl51YG9WScSE0R9m
-        61qQ==
-X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73dmm4I5W0/AvA67Ot4fvR82tdd3x2KJk="
-X-RZG-CLASS-ID: mo00
-Received: from groucho.site
-        by smtp.strato.de (RZmta 44.28.0 DYNA|AUTH)
-        with ESMTPSA id i07086v94J9FcdZ
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 4 Oct 2019 21:09:15 +0200 (CEST)
-From:   Ulrich Hecht <uli@fpond.eu>
-To:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com
-Cc:     robh+dt@kernel.org, p.zabel@pengutronix.de,
-        enric.balletbo@collabora.com, djkurtz@chromium.org,
-        architt@codeaurora.org, matthias.bgg@gmail.com,
-        mark.rutland@arm.com, stonea168@163.com, andy.yan@rock-chips.com,
-        ajaykumar.rs@samsung.com, vpalatin@chromium.org,
-        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
-        ck.hu@mediatek.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, pawel.moll@arm.com,
-        ijc+devicetree@hellion.org.uk, inki.dae@samsung.com,
-        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
-        rahul.sharma@samsung.com, galak@codeaurora.org,
-        seanpaul@chromium.org, Ulrich Hecht <uli@fpond.eu>
-Subject: [PATCH v19 2/2] drm/bridge: Add I2C based driver for ps8640 bridge
-Date:   Fri,  4 Oct 2019 21:09:08 +0200
-Message-Id: <1570216148-22802-3-git-send-email-uli@fpond.eu>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1570216148-22802-1-git-send-email-uli@fpond.eu>
-References: <1570216148-22802-1-git-send-email-uli@fpond.eu>
+        id S1728954AbfJDTRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 15:17:11 -0400
+Received: from avon.wwwdotorg.org ([104.237.132.123]:54188 "EHLO
+        avon.wwwdotorg.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725932AbfJDTRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:17:10 -0400
+X-Greylist: delayed 584 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Oct 2019 15:17:10 EDT
+Received: from [10.20.204.51] (unknown [216.228.112.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by avon.wwwdotorg.org (Postfix) with ESMTPSA id CDE061C0728;
+        Fri,  4 Oct 2019 13:07:24 -0600 (MDT)
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.100.3 at avon.wwwdotorg.org
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Harish Jenny K N <harish_kandiga@mentor.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Phil Reid <preid@electromag.com.au>,
+        Enrico Weigelt <info@metux.net>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, Eugeniu Rosca <roscaeugeniu@gmail.com>
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+From:   Stephen Warren <swarren@wwwdotorg.org>
+Message-ID: <06a1acab-fcc4-7b3a-697b-4d253c354513@wwwdotorg.org>
+Date:   Fri, 4 Oct 2019 13:07:23 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jitao Shi <jitao.shi@mediatek.com>
+On 9/25/19 10:51 AM, Eugeniu Rosca wrote:
+> Hi All,
+> 
+> I've additionally Cc-ed Laurent and Stephen, since their fruitful
+> discussion in [1] back in 2014 concluded with a useful documentation
+> update [2] which is precisely related to the interpretation and usage
+> of the polarity flag in GPIO specifiers.
+> 
+> I've also Cc-ed those people who have participated in reviewing the
+> previous patch iterations (Geert, Phil, Enrico).
+> 
+> Before leaving this thread in limbo, I would like to attempt clarifying
+> what it actually tried to accomplish, one more time.
+> 
+> First of all, it stems from the need to implement a specific customer
+> requirement. Whether this requirement is sane or not, that's actually
+> a very important question, but I haven't found much discussion around
+> it the comments posted so far.
+> 
+> To paraphrase what Harish stated in [3], the customer has a list of GPIO
+> pins which need to be controlled from userspace. Of course, the customer
+> can set the polarity of those pins from userspace, as pointed out by
+> Linus in [4] (thanks!). But, keeping track of GPIO polarity in userspace
+> is seen like a burden. The customer thinks that the right place for this
+> HW-specific detail is in device trees. Do you think this preference
+> is ill-formed?
 
-This patch adds drm_bridge driver for parade DSI to eDP bridge chip.
+I think the DT should represent the device that's attached to the GPIOs. 
+That way, there's already a clear way to represent the GPIO polarity, as 
+described in the document linked by Eugenui in [2] below.
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-Reviewed-by: Daniel Kurtz <djkurtz@chromium.org>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-[uli: followed API changes, removed FW update feature]
-Signed-off-by: Ulrich Hecht <uli@fpond.eu>
----
+If for some reason that's not possible, then I think keeping track of 
+the GPIO polarity in user-space is entirely reasonable, and is the 
+correct approach. To claim that tracking GPIO polarity in user-space is 
+too much burden, yet to also allow user-space to control GPIOs at all, 
+and hence to know exactly which GPIOs must be controlled, is an 
+inconsistent assertion.
 
-Changes since v18:
- - followed DRM API changes
- - use DEVICE_ATTR_RO()
- - remove firmware update code
- - add SPDX identifier
+Put another way: If a piece of user-space SW controls GPIOs, it must 
+know which GPIO number to use for each logical purpose. This information 
+presumably varies on different platforms, so the SW must have a list of 
+GPIO numbers and GPIO controller IDs per platform. Additionally storing 
+a polarity bit along with that information seems entirely trivial to me.
 
-Changes since v17:
- - remove some unused head files.
- - add macros for ps8640 pages.
- - remove ddc_i2c client
- - add mipi_dsi_device_register_full
- - remove the manufacturer from the name and i2c_device_id
- 
-Changes since v16:
- - Disable ps8640 DSI MCS Function.
- - Rename gpios name more clearly.
- - Tune the ps8640 power on sequence.
+Is there some other issue that I'm overlooking?
 
-Changes since v15:
- - Drop drm_connector_(un)register calls from parade ps8640.
-   The main DRM driver mtk_drm_drv now calls
-   drm_connector_register_all() after drm_dev_register() in the
-   mtk_drm_bind() function. That function should iterate over all
-   connectors and call drm_connector_register() for each of them.
-   So, remove drm_connector_(un)register calls from parade ps8640.
+If the list of GPIO IDs is retrieved from DT by the user-space SW, I 
+could see an argument for storing the polarity information in DT along 
+with that list of GPIO IDs. However, I don't believe there's any 
+standard way of representing "a list of GPIO IDs for user space use" in DT.
 
-Changes since v14:
- - update copyright info.
- - change bridge_to_ps8640 and connector_to_ps8640 to inline function.
- - fix some coding style.
- - use sizeof as array counter.
- - use drm_get_edid when read edid.
- - add mutex when firmware updating. 
+> If we hog a GPIO pin in DTS (which allows specifying its polarity),
+> userspace no longer has access to that pin. There isn't a way to define
+> GPIO polarity by means of DTS without affecting userspace access
+> (can anybody contradict this statement?).
 
-Changes since v13:
- - add const on data, ps8640_write_bytes(struct i2c_client *client, const u8 *data, u16 data_len)
- - fix PAGE2_SW_REST tyro.
- - move the buf[3] init to entrance of the function.
+GPIO hog doesn't seem like the right approach; its intent is to actively 
+configure the GPIO in a fixed state, which is logically incompatible 
+with user-space control of the GPIO.
 
-Changes since v12:
- - fix hw_chip_id build warning
-
-Changes since v11:
- - Remove depends on I2C, add DRM depends
- - Reuse ps8640_write_bytes() in ps8640_write_byte()
- - Use timer check for polling like the routines in <linux/iopoll.h>
- - Fix no drm_connector_unregister/drm_connector_cleanup when ps8640_bridge_attach fail
- - Check the ps8640 hardware id in ps8640_validate_firmware
- - Remove fw_version check
- - Move ps8640_validate_firmware before ps8640_enter_bl
- - Add ddc_i2c unregister when probe fail and ps8640_remove
-
-
- drivers/gpu/drm/bridge/Kconfig         |  12 +
- drivers/gpu/drm/bridge/Makefile        |   1 +
- drivers/gpu/drm/bridge/parade-ps8640.c | 672 +++++++++++++++++++++++++++++++++
- 3 files changed, 685 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/parade-ps8640.c
-
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index 1cc9f50..61c6415 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -82,6 +82,18 @@ config DRM_PARADE_PS8622
- 	---help---
- 	  Parade eDP-LVDS bridge chip driver.
- 
-+config DRM_PARADE_PS8640
-+	tristate "Parade PS8640 MIPI DSI to eDP Converter"
-+	depends on DRM
-+	depends on OF
-+	select DRM_KMS_HELPER
-+	select DRM_MIPI_DSI
-+	select DRM_PANEL
-+	help
-+	  Choose this option if you have PS8640 for display
-+	  The PS8640 is a high-performance and low-power
-+	  MIPI DSI to eDP converter
-+
- config DRM_SIL_SII8620
- 	tristate "Silicon Image SII8620 HDMI/MHL bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 4934fcf..14660ab 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -6,6 +6,7 @@ obj-$(CONFIG_DRM_LVDS_ENCODER) += lvds-encoder.o
- obj-$(CONFIG_DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW) += megachips-stdpxxxx-ge-b850v3-fw.o
- obj-$(CONFIG_DRM_NXP_PTN3460) += nxp-ptn3460.o
- obj-$(CONFIG_DRM_PARADE_PS8622) += parade-ps8622.o
-+obj-$(CONFIG_DRM_PARADE_PS8640) += parade-ps8640.o
- obj-$(CONFIG_DRM_SIL_SII8620) += sil-sii8620.o
- obj-$(CONFIG_DRM_SII902X) += sii902x.o
- obj-$(CONFIG_DRM_SII9234) += sii9234.o
-diff --git a/drivers/gpu/drm/bridge/parade-ps8640.c b/drivers/gpu/drm/bridge/parade-ps8640.c
-new file mode 100644
-index 0000000..d645dc8
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/parade-ps8640.c
-@@ -0,0 +1,672 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2016 MediaTek Inc.
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 as
-+ * published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/firmware.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of_graph.h>
-+#include <linux/regulator/consumer.h>
-+#include <asm/unaligned.h>
-+#include <drm/drm_panel.h>
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_crtc_helper.h>
-+#include <drm/drm_edid.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_print.h>
-+#include <drm/drm_probe_helper.h>
-+
-+#define PAGE1_VSTART		0x6b
-+#define PAGE2_SPI_CFG3		0x82
-+#define I2C_TO_SPI_RESET	0x20
-+#define PAGE2_ROMADD_BYTE1	0x8e
-+#define PAGE2_ROMADD_BYTE2	0x8f
-+#define PAGE2_SWSPI_WDATA	0x90
-+#define PAGE2_SWSPI_RDATA	0x91
-+#define PAGE2_SWSPI_LEN		0x92
-+#define PAGE2_SWSPI_CTL		0x93
-+#define TRIGGER_NO_READBACK	0x05
-+#define TRIGGER_READBACK	0x01
-+#define PAGE2_SPI_STATUS	0x9e
-+#define SPI_READY		0x0c
-+#define PAGE2_GPIO_L		0xa6
-+#define PAGE2_GPIO_H		0xa7
-+#define PS_GPIO9		BIT(1)
-+#define PAGE2_IROM_CTRL		0xb0
-+#define IROM_ENABLE		0xc0
-+#define IROM_DISABLE		0x80
-+#define PAGE2_SW_RESET		0xbc
-+#define SPI_SW_RESET		BIT(7)
-+#define MPU_SW_RESET		BIT(6)
-+#define PAGE2_ENCTLSPI_WR	0xda
-+#define PAGE2_I2C_BYPASS	0xea
-+#define I2C_BYPASS_EN		0xd0
-+#define PAGE2_MCS_EN		0xf3
-+#define MCS_EN			BIT(0)
-+#define PAGE3_SET_ADD		0xfe
-+#define PAGE3_SET_VAL		0xff
-+#define VDO_CTL_ADD		0x13
-+#define VDO_DIS			0x18
-+#define VDO_EN			0x1c
-+#define PAGE4_REV_L		0xf0
-+#define PAGE4_REV_H		0xf1
-+#define PAGE4_CHIP_L		0xf2
-+#define PAGE4_CHIP_H		0xf3
-+
-+#define PAGE0_DP_CNTL	0
-+#define PAGE1_VDO_BDG	1
-+#define PAGE2_TOP_CNTL	2
-+#define PAGE3_DSI_CNTL1	3
-+#define PAGE4_MIPI_PHY	4
-+#define PAGE5_VPLL	5
-+#define PAGE6_DSI_CNTL2	6
-+#define PAGE7_SPI_CNTL	7
-+#define MAX_DEVS		0x8
-+
-+struct ps8640_info {
-+	u8 family_id;
-+	u8 variant_id;
-+	u16 version;
-+};
-+
-+struct ps8640 {
-+	struct drm_connector connector;
-+	struct drm_bridge bridge;
-+	struct edid *edid;
-+	struct mipi_dsi_device *dsi;
-+	struct i2c_client *page[MAX_DEVS];
-+	struct regulator_bulk_data supplies[2];
-+	struct drm_panel *panel;
-+	struct gpio_desc *gpio_reset;
-+	struct gpio_desc *gpio_power_down;
-+	struct gpio_desc *gpio_mode_sel;
-+	bool enabled;
-+
-+	/* firmware file info */
-+	struct ps8640_info info;
-+	bool in_fw_update;
-+	/* for firmware update protect */
-+	struct mutex fw_mutex;
-+};
-+
-+static const u8 enc_ctrl_code[6] = { 0xaa, 0x55, 0x50, 0x41, 0x52, 0x44 };
-+static const u8 hw_chip_id[4] = { 0x00, 0x0a, 0x00, 0x30 };
-+
-+static inline struct ps8640 *bridge_to_ps8640(struct drm_bridge *e)
-+{
-+	return container_of(e, struct ps8640, bridge);
-+}
-+
-+static inline struct ps8640 *connector_to_ps8640(struct drm_connector *e)
-+{
-+	return container_of(e, struct ps8640, connector);
-+}
-+
-+static int ps8640_read(struct i2c_client *client, u8 reg, u8 *data,
-+		       u16 data_len)
-+{
-+	int ret;
-+	struct i2c_msg msgs[] = {
-+		{
-+		 .addr = client->addr,
-+		 .flags = 0,
-+		 .len = 1,
-+		 .buf = &reg,
-+		},
-+		{
-+		 .addr = client->addr,
-+		 .flags = I2C_M_RD,
-+		 .len = data_len,
-+		 .buf = data,
-+		}
-+	};
-+
-+	ret = i2c_transfer(client->adapter, msgs, 2);
-+
-+	if (ret == 2)
-+		return 0;
-+	if (ret < 0)
-+		return ret;
-+	else
-+		return -EIO;
-+}
-+
-+static int ps8640_write_bytes(struct i2c_client *client, const u8 *data,
-+			      u16 data_len)
-+{
-+	int ret;
-+	struct i2c_msg msg;
-+
-+	msg.addr = client->addr;
-+	msg.flags = 0;
-+	msg.len = data_len;
-+	msg.buf = (u8 *)data;
-+
-+	ret = i2c_transfer(client->adapter, &msg, 1);
-+	if (ret == 1)
-+		return 0;
-+	if (ret < 0)
-+		return ret;
-+	else
-+		return -EIO;
-+}
-+
-+static int ps8640_write_byte(struct i2c_client *client, u8 reg,  u8 data)
-+{
-+	u8 buf[] = { reg, data };
-+
-+	return ps8640_write_bytes(client, buf, sizeof(buf));
-+}
-+
-+static void ps8640_get_mcu_fw_version(struct ps8640 *ps_bridge)
-+{
-+	struct i2c_client *client = ps_bridge->page[PAGE5_VPLL];
-+	u8 fw_ver[2];
-+
-+	ps8640_read(client, 0x4, fw_ver, sizeof(fw_ver));
-+	ps_bridge->info.version = (fw_ver[0] << 8) | fw_ver[1];
-+
-+	DRM_INFO_ONCE("ps8640 rom fw version %d.%d\n", fw_ver[0], fw_ver[1]);
-+}
-+
-+static int ps8640_bridge_unmute(struct ps8640 *ps_bridge)
-+{
-+	struct i2c_client *client = ps_bridge->page[PAGE3_DSI_CNTL1];
-+	u8 vdo_ctrl_buf[3] = { PAGE3_SET_ADD, VDO_CTL_ADD, VDO_EN };
-+
-+	return ps8640_write_bytes(client, vdo_ctrl_buf, sizeof(vdo_ctrl_buf));
-+}
-+
-+static int ps8640_bridge_mute(struct ps8640 *ps_bridge)
-+{
-+	struct i2c_client *client = ps_bridge->page[PAGE3_DSI_CNTL1];
-+	u8 vdo_ctrl_buf[3] = { PAGE3_SET_ADD, VDO_CTL_ADD, VDO_DIS };
-+
-+	return ps8640_write_bytes(client, vdo_ctrl_buf, sizeof(vdo_ctrl_buf));
-+}
-+
-+static void ps8640_pre_enable(struct drm_bridge *bridge)
-+{
-+	struct ps8640 *ps_bridge = bridge_to_ps8640(bridge);
-+	struct i2c_client *client = ps_bridge->page[PAGE2_TOP_CNTL];
-+	struct i2c_client *page1 = ps_bridge->page[PAGE1_VDO_BDG];
-+	int err;
-+	u8 set_vdo_done, mcs_en, vstart;
-+	ktime_t timeout;
-+
-+	if (ps_bridge->in_fw_update)
-+		return;
-+
-+	if (ps_bridge->enabled)
-+		return;
-+
-+	err = drm_panel_prepare(ps_bridge->panel);
-+	if (err < 0) {
-+		DRM_ERROR("failed to prepare panel: %d\n", err);
-+		return;
-+	}
-+
-+	err = regulator_bulk_enable(ARRAY_SIZE(ps_bridge->supplies),
-+				    ps_bridge->supplies);
-+	if (err < 0) {
-+		DRM_ERROR("cannot enable regulators %d\n", err);
-+		goto err_panel_unprepare;
-+	}
-+
-+	gpiod_set_value(ps_bridge->gpio_power_down, 1);
-+	gpiod_set_value(ps_bridge->gpio_reset, 0);
-+	usleep_range(2000, 2500);
-+	gpiod_set_value(ps_bridge->gpio_reset, 1);
-+
-+	/*
-+	 * Wait for the ps8640 embed mcu ready
-+	 * First wait 200ms and then check the mcu ready flag every 20ms
-+	 */
-+	msleep(200);
-+
-+	timeout = ktime_add_ms(ktime_get(), 200);
-+	for (;;) {
-+		err = ps8640_read(client, PAGE2_GPIO_H, &set_vdo_done, 1);
-+		if (err < 0) {
-+			DRM_ERROR("failed read PAGE2_GPIO_H: %d\n", err);
-+			goto err_regulators_disable;
-+		}
-+		if ((set_vdo_done & PS_GPIO9) == PS_GPIO9)
-+			break;
-+		if (ktime_compare(ktime_get(), timeout) > 0)
-+			break;
-+		msleep(20);
-+	}
-+
-+	msleep(50);
-+
-+	ps8640_read(page1, PAGE1_VSTART, &vstart, 1);
-+	DRM_INFO("PS8640 PAGE1.0x6B = 0x%x\n", vstart);
-+
-+	/**
-+	 * The Manufacturer Command Set (MCS) is a device dependent interface
-+	 * intended for factory programming of the display module default
-+	 * parameters. Once the display module is configured, the MCS shall be
-+	 * disabled by the manufacturer. Once disabled, all MCS commands are
-+	 * ignored by the display interface.
-+	 */
-+	ps8640_read(client, PAGE2_MCS_EN, &mcs_en, 1);
-+	ps8640_write_byte(client, PAGE2_MCS_EN, mcs_en & ~MCS_EN);
-+
-+	if (ps_bridge->info.version == 0)
-+		ps8640_get_mcu_fw_version(ps_bridge);
-+
-+	err = ps8640_bridge_unmute(ps_bridge);
-+	if (err)
-+		DRM_ERROR("failed to enable unmutevideo: %d\n", err);
-+	/* Switch access edp panel's edid through i2c */
-+	ps8640_write_byte(client, PAGE2_I2C_BYPASS, I2C_BYPASS_EN);
-+	ps_bridge->enabled = true;
-+
-+	return;
-+
-+err_regulators_disable:
-+	regulator_bulk_disable(ARRAY_SIZE(ps_bridge->supplies),
-+			       ps_bridge->supplies);
-+err_panel_unprepare:
-+	drm_panel_unprepare(ps_bridge->panel);
-+}
-+
-+static void ps8640_enable(struct drm_bridge *bridge)
-+{
-+	struct ps8640 *ps_bridge = bridge_to_ps8640(bridge);
-+	int err;
-+
-+	err = drm_panel_enable(ps_bridge->panel);
-+	if (err < 0)
-+		DRM_ERROR("failed to enable panel: %d\n", err);
-+}
-+
-+static void ps8640_disable(struct drm_bridge *bridge)
-+{
-+	struct ps8640 *ps_bridge = bridge_to_ps8640(bridge);
-+	int err;
-+
-+	err = drm_panel_disable(ps_bridge->panel);
-+	if (err < 0)
-+		DRM_ERROR("failed to disable panel: %d\n", err);
-+}
-+
-+static void ps8640_post_disable(struct drm_bridge *bridge)
-+{
-+	struct ps8640 *ps_bridge = bridge_to_ps8640(bridge);
-+	int err;
-+
-+	if (ps_bridge->in_fw_update)
-+		return;
-+
-+	if (!ps_bridge->enabled)
-+		return;
-+
-+	ps_bridge->enabled = false;
-+
-+	err = ps8640_bridge_mute(ps_bridge);
-+	if (err < 0)
-+		DRM_ERROR("failed to unmutevideo: %d\n", err);
-+
-+	gpiod_set_value(ps_bridge->gpio_reset, 0);
-+	gpiod_set_value(ps_bridge->gpio_power_down, 0);
-+	err = regulator_bulk_disable(ARRAY_SIZE(ps_bridge->supplies),
-+				     ps_bridge->supplies);
-+	if (err < 0)
-+		DRM_ERROR("cannot disable regulators %d\n", err);
-+
-+	err = drm_panel_unprepare(ps_bridge->panel);
-+	if (err)
-+		DRM_ERROR("failed to unprepare panel: %d\n", err);
-+}
-+
-+static int ps8640_get_modes(struct drm_connector *connector)
-+{
-+	struct ps8640 *ps_bridge = connector_to_ps8640(connector);
-+	struct edid *edid;
-+	int num_modes = 0;
-+	bool power_off;
-+
-+	if (ps_bridge->edid)
-+		return drm_add_edid_modes(connector, ps_bridge->edid);
-+
-+	power_off = !ps_bridge->enabled;
-+	ps8640_pre_enable(&ps_bridge->bridge);
-+
-+	edid = drm_get_edid(connector, ps_bridge->page[0]->adapter);
-+	if (!edid)
-+		goto out;
-+
-+	ps_bridge->edid = edid;
-+	drm_connector_update_edid_property(connector, ps_bridge->edid);
-+	num_modes = drm_add_edid_modes(connector, ps_bridge->edid);
-+
-+out:
-+	if (power_off)
-+		ps8640_post_disable(&ps_bridge->bridge);
-+
-+	return num_modes;
-+}
-+
-+static const struct drm_connector_helper_funcs ps8640_connector_helper_funcs = {
-+	.get_modes = ps8640_get_modes,
-+};
-+
-+static enum drm_connector_status ps8640_detect(struct drm_connector *connector,
-+					       bool force)
-+{
-+	return connector_status_connected;
-+}
-+
-+static const struct drm_connector_funcs ps8640_connector_funcs = {
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.detect = ps8640_detect,
-+	.reset = drm_atomic_helper_connector_reset,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+};
-+
-+int ps8640_bridge_attach(struct drm_bridge *bridge)
-+{
-+	struct ps8640 *ps_bridge = bridge_to_ps8640(bridge);
-+	struct device *dev = &ps_bridge->page[0]->dev;
-+	struct device_node *in_ep, *dsi_node = NULL;
-+	struct mipi_dsi_device *dsi;
-+	struct mipi_dsi_host *host = NULL;
-+	int ret;
-+	const struct mipi_dsi_device_info info = { .type = "ps8640",
-+						   .channel = 0,
-+						   .node = NULL,
-+						 };
-+
-+	ret = drm_connector_init(bridge->dev, &ps_bridge->connector,
-+				 &ps8640_connector_funcs,
-+				 DRM_MODE_CONNECTOR_eDP);
-+
-+	if (ret) {
-+		DRM_ERROR("Failed to initialize connector with drm: %d\n", ret);
-+		return ret;
-+	}
-+
-+	drm_connector_helper_add(&ps_bridge->connector,
-+				 &ps8640_connector_helper_funcs);
-+
-+	ps_bridge->connector.dpms = DRM_MODE_DPMS_ON;
-+	drm_connector_attach_encoder(&ps_bridge->connector,
-+					  bridge->encoder);
-+
-+	if (ps_bridge->panel)
-+		drm_panel_attach(ps_bridge->panel, &ps_bridge->connector);
-+
-+	/* port@0 is ps8640 dsi input port */
-+	in_ep = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
-+	if (in_ep) {
-+		dsi_node = of_graph_get_remote_port_parent(in_ep);
-+		of_node_put(in_ep);
-+	}
-+
-+	if (dsi_node) {
-+		host = of_find_mipi_dsi_host_by_node(dsi_node);
-+		of_node_put(dsi_node);
-+		if (!host) {
-+			ret = -ENODEV;
-+			goto err;
-+		}
-+	}
-+
-+	dsi = mipi_dsi_device_register_full(host, &info);
-+	if (IS_ERR(dsi)) {
-+		dev_err(dev, "failed to create dsi device\n");
-+		ret = PTR_ERR(dsi);
-+		goto err;
-+	}
-+
-+	ps_bridge->dsi = dsi;
-+
-+	dsi->host = host;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
-+				     MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->lanes = 4;
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret)
-+		goto err_dsi_attach;
-+
-+	return 0;
-+
-+err_dsi_attach:
-+	mipi_dsi_device_unregister(dsi);
-+err:
-+	if (ps_bridge->panel)
-+		drm_panel_detach(ps_bridge->panel);
-+	drm_connector_cleanup(&ps_bridge->connector);
-+	return ret;
-+}
-+
-+static const struct drm_bridge_funcs ps8640_bridge_funcs = {
-+	.attach = ps8640_bridge_attach,
-+	.disable = ps8640_disable,
-+	.post_disable = ps8640_post_disable,
-+	.pre_enable = ps8640_pre_enable,
-+	.enable = ps8640_enable,
-+};
-+
-+/* Firmware Version is returned as Major.Minor */
-+static ssize_t fw_version_show(struct device *dev,
-+				      struct device_attribute *attr, char *buf)
-+{
-+	struct ps8640 *ps_bridge = dev_get_drvdata(dev);
-+	struct ps8640_info *info = &ps_bridge->info;
-+
-+	return scnprintf(buf, PAGE_SIZE, "%u.%u\n", info->version >> 8,
-+			 info->version & 0xff);
-+}
-+
-+/* Hardware Version is returned as FamilyID.VariantID */
-+static ssize_t hw_version_show(struct device *dev,
-+				      struct device_attribute *attr, char *buf)
-+{
-+	struct ps8640 *ps_bridge = dev_get_drvdata(dev);
-+	struct ps8640_info *info = &ps_bridge->info;
-+
-+	return scnprintf(buf, PAGE_SIZE, "ps%u.%u\n", info->family_id,
-+			 info->variant_id);
-+}
-+
-+static DEVICE_ATTR_RO(fw_version);
-+static DEVICE_ATTR_RO(hw_version);
-+
-+static struct attribute *ps8640_attrs[] = {
-+	&dev_attr_fw_version.attr,
-+	&dev_attr_hw_version.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group ps8640_attr_group = {
-+	.attrs = ps8640_attrs,
-+};
-+
-+static void ps8640_remove_sysfs_group(void *data)
-+{
-+	struct ps8640 *ps_bridge = data;
-+
-+	sysfs_remove_group(&ps_bridge->page[0]->dev.kobj, &ps8640_attr_group);
-+}
-+
-+static int ps8640_probe(struct i2c_client *client,
-+			const struct i2c_device_id *id)
-+{
-+	struct device *dev = &client->dev;
-+	struct ps8640 *ps_bridge;
-+	struct device_node *np = dev->of_node;
-+	struct device_node *port, *out_ep;
-+	struct device_node *panel_node = NULL;
-+	int ret;
-+	u32 i;
-+
-+	ps_bridge = devm_kzalloc(dev, sizeof(*ps_bridge), GFP_KERNEL);
-+	if (!ps_bridge)
-+		return -ENOMEM;
-+
-+	/* port@1 is ps8640 output port */
-+	port = of_graph_get_port_by_id(np, 1);
-+	if (port) {
-+		out_ep = of_get_child_by_name(port, "endpoint");
-+		of_node_put(port);
-+		if (out_ep) {
-+			panel_node = of_graph_get_remote_port_parent(out_ep);
-+			of_node_put(out_ep);
-+		}
-+	}
-+	if (panel_node) {
-+		ps_bridge->panel = of_drm_find_panel(panel_node);
-+		of_node_put(panel_node);
-+		if (!ps_bridge->panel)
-+			return -EPROBE_DEFER;
-+	}
-+
-+	mutex_init(&ps_bridge->fw_mutex);
-+	ps_bridge->supplies[0].supply = "vdd33";
-+	ps_bridge->supplies[1].supply = "vdd12";
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ps_bridge->supplies),
-+				      ps_bridge->supplies);
-+	if (ret) {
-+		dev_info(dev, "failed to get regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ps_bridge->gpio_mode_sel = devm_gpiod_get_optional(&client->dev,
-+							     "mode-sel",
-+							     GPIOD_OUT_HIGH);
-+	if (IS_ERR(ps_bridge->gpio_mode_sel)) {
-+		ret = PTR_ERR(ps_bridge->gpio_mode_sel);
-+		dev_err(dev, "cannot get mode-sel %d\n", ret);
-+		return ret;
-+	}
-+
-+	ps_bridge->gpio_power_down = devm_gpiod_get(&client->dev, "sleep",
-+					       GPIOD_OUT_LOW);
-+	if (IS_ERR(ps_bridge->gpio_power_down)) {
-+		ret = PTR_ERR(ps_bridge->gpio_power_down);
-+		dev_err(dev, "cannot get sleep: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/*
-+	 * Request the reset pin low to avoid the bridge being
-+	 * initialized prematurely
-+	 */
-+	ps_bridge->gpio_reset = devm_gpiod_get(&client->dev, "reset",
-+					       GPIOD_OUT_LOW);
-+	if (IS_ERR(ps_bridge->gpio_reset)) {
-+		ret = PTR_ERR(ps_bridge->gpio_reset);
-+		dev_err(dev, "cannot get reset: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ps_bridge->bridge.funcs = &ps8640_bridge_funcs;
-+	ps_bridge->bridge.of_node = dev->of_node;
-+
-+	ps_bridge->page[0] = client;
-+
-+	/*
-+	 * ps8640 uses multiple addresses, use dummy devices for them
-+	 * page[0]: for DP control
-+	 * page[1]: for VIDEO Bridge
-+	 * page[2]: for control top
-+	 * page[3]: for DSI Link Control1
-+	 * page[4]: for MIPI Phy
-+	 * page[5]: for VPLL
-+	 * page[6]: for DSI Link Control2
-+	 * page[7]: for spi rom mapping
-+	 */
-+	for (i = 1; i < MAX_DEVS; i++) {
-+		ps_bridge->page[i] = i2c_new_dummy(client->adapter,
-+						   client->addr + i);
-+		if (!ps_bridge->page[i]) {
-+			dev_err(dev, "failed i2c dummy device, address%02x\n",
-+				client->addr + i);
-+			ret = -EBUSY;
-+			goto exit_dummy;
-+		}
-+	}
-+	i2c_set_clientdata(client, ps_bridge);
-+
-+	ret = sysfs_create_group(&client->dev.kobj, &ps8640_attr_group);
-+	if (ret) {
-+		dev_err(dev, "failed to create sysfs entries: %d\n", ret);
-+		goto exit_dummy;
-+	}
-+
-+	ret = devm_add_action(dev, ps8640_remove_sysfs_group, ps_bridge);
-+	if (ret) {
-+		dev_err(dev, "failed to add sysfs cleanup action: %d\n", ret);
-+		goto exit_remove_sysfs;
-+	}
-+
-+	drm_bridge_add(&ps_bridge->bridge);
-+	return 0;
-+
-+exit_remove_sysfs:
-+	sysfs_remove_group(&ps_bridge->page[0]->dev.kobj, &ps8640_attr_group);
-+exit_dummy:
-+	while (--i)
-+		i2c_unregister_device(ps_bridge->page[i]);
-+	return ret;
-+}
-+
-+static int ps8640_remove(struct i2c_client *client)
-+{
-+	struct ps8640 *ps_bridge = i2c_get_clientdata(client);
-+	int i = MAX_DEVS;
-+
-+	drm_bridge_remove(&ps_bridge->bridge);
-+	sysfs_remove_group(&ps_bridge->page[0]->dev.kobj, &ps8640_attr_group);
-+	while (--i)
-+		i2c_unregister_device(ps_bridge->page[i]);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id ps8640_i2c_table[] = {
-+	{ "ps8640", 0 },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(i2c, ps8640_i2c_table);
-+
-+static const struct of_device_id ps8640_match[] = {
-+	{ .compatible = "parade,ps8640" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, ps8640_match);
-+
-+static struct i2c_driver ps8640_driver = {
-+	.id_table = ps8640_i2c_table,
-+	.probe = ps8640_probe,
-+	.remove = ps8640_remove,
-+	.driver = {
-+		.name = "ps8640",
-+		.of_match_table = ps8640_match,
-+	},
-+};
-+module_i2c_driver(ps8640_driver);
-+
-+MODULE_AUTHOR("Jitao Shi <jitao.shi@mediatek.com>");
-+MODULE_AUTHOR("CK Hu <ck.hu@mediatek.com>");
-+MODULE_DESCRIPTION("PARADE ps8640 DSI-eDP converter driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+> Whether it is obvious or not, the main goal of this series is actually
+> to provide the possibility of inverting the default ACTIVE_HIGH polarity
+> for GPIO pin X _via DTS_ while still allowing to operate on that pin
+> _from userspace_. My two questions are then:
+>   - I hope it is something sane to desire?
+>   - If it is sane, how can this be accomplished, if the functionality
+>     implemented by Harish doesn't pass the community review?
+> 
+> [1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
+> [3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+> [4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+> 
 
