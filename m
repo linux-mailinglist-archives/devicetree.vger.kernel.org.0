@@ -2,117 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 342B4CC0D6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:30:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C271CC0D8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729283AbfJDQaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 12:30:03 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:14612 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726978AbfJDQ3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:29:13 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d9773590000>; Fri, 04 Oct 2019 09:29:13 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 04 Oct 2019 09:29:12 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 04 Oct 2019 09:29:12 -0700
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Oct
- 2019 16:29:12 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Fri, 4 Oct 2019 16:29:12 +0000
-Received: from jckuo-lt.nvidia.com (Not Verified[10.19.101.223]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d9773560000>; Fri, 04 Oct 2019 09:29:12 -0700
-From:   JC Kuo <jckuo@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nkristam@nvidia.com>, <skomatineni@nvidia.com>,
-        JC Kuo <jckuo@nvidia.com>
-Subject: [PATCH v3 0/7] add Tegra194 XUSB host and pad controller support
-Date:   Sat, 5 Oct 2019 00:28:59 +0800
-Message-ID: <20191004162906.4818-1-jckuo@nvidia.com>
+        id S1729048AbfJDQ1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 12:27:45 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37124 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728336AbfJDQ1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:27:45 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x94GRhUo059478;
+        Fri, 4 Oct 2019 11:27:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570206463;
+        bh=z/FQT/zqiKCQuTMa4VCzOKlQBQ7jltkGNHHaNBU5bmw=;
+        h=From:To:CC:Subject:Date;
+        b=QiX5bhqK5SMp3X6ev4LfT1k6hiTktdARXqhsPuTzRf3FZfW7yV+z880Jua/BmHMiH
+         1UYmA7e7h0kCR8khJAp49R/WgfdTBb9xKFEeO71SD7V3M80kxDriPqlGeY9aDpWcP+
+         MXIgDxAs6Jp818pfp0EKrjs24rUVPNh6fDyHHXoc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x94GRhKY055837
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Oct 2019 11:27:43 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 4 Oct
+ 2019 11:27:42 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 4 Oct 2019 11:27:42 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x94GRgA2028904;
+        Fri, 4 Oct 2019 11:27:42 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch v2 00/21] media: vpe: maintenance
+Date:   Fri, 4 Oct 2019 11:29:31 -0500
+Message-ID: <20191004162952.4963-1-bparrot@ti.com>
 X-Mailer: git-send-email 2.17.1
-X-NVConfidentiality: public
 MIME-Version: 1.0
 Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1570206553; bh=prAoC2jXEEciuUkvcJ1IVyBjgWVH3m3veacPBoIaLpw=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         X-NVConfidentiality:MIME-Version:Content-Type;
-        b=F2bPtDirhoSE8dcOf6l02VgYGUGwuSW3rr8cz11GeZ7AcM2cMDtZnEVwruTDX/hvn
-         SThq9D/PwkUW5Foy/dp3C4L8ynWjEd8aqK3oRoCuUortv6ToH1Wd9HAjm1J4Hvjo3J
-         4wK6l/uF4vEG06ohCAttkbFrvJh88bvnOjD0lKh/u4Onl+jlE++PRykCKd0Sgqy4Sf
-         Q4rYX53Aln3x1hYTW+B0N5KidOvdYPSQXicrVqPoQB5zJ9IHgvbOW7YTQB5u8CIxZn
-         EhLIPS0C/aSYwpvdYlo0twBNieVVSF7M7pM2LVqksvh+0i8ViUeXpC6YxeE4uCUcP3
-         4236EZJQYDr9Q==
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This a collection of backlog patches I have been carrying for the VPE
+driver.
 
-This series introduces support for Tegra194 XUSB host and pad
-controller. Tegra194 XUSB host and pad controller are highly
-similar to the controllers found on Tegra186. Therefore, it's
-possible to resue xhci-tegra.c and xusb-tegra186.c for Tegra194.
+It adds supports for SEQ_BT as well as NV21.
+And fixes a number of issues both through v4l2-compliance and normal
+usage.
 
-Changelog:
-v3:
-  add change log to cover latter
+Changes since v1:
+- Added a missing from my first set fixing a Makefile issue
+- Added a csc table fix to match the technical specification
+- Base on Hans' comment I reworked the last two patches which
+  yielded one more patch
+- This also led me to create additional patches to the
+  v4l2_format_info table to simplify pixel encoding lookup
 
-v2:
-  xhci: tegra: Parameterize mailbox register addresses
-   - no change
+======================================
+v4l2-compliance SHA: 5b168dc8473911227890526bad26553d9e8ff81b, 32 bits
 
-  usb: host: xhci-tegra: Add Tegra194 XHCI support
-   - no change
+Compliance test for vpe device /dev/video0:
 
-  phy: tegra: xusb: Protect Tegra186 soc with config
-   - new patch to protect Tegra186 soc data with config
+Driver Info:
+	Driver name      : vpe
+	Card type        : vpe
+	Bus info         : platform:vpe
+	Driver version   : 5.3.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
 
-  phy: tegra: xusb: Add Tegra194 support
-   - removed unnecessary #if/#endif pairs
-   - introduce new soc->supports_gen2 flag which indicate whether or not
-     a soc supports USB 3.1 Gen 2 speed
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
 
-  dt-bindings: phy: tegra: Add Tegra194 support
-   - fix a typo
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
 
-  arm64: tegra: Add XUSB and pad controller on Tegra194
-   - renamed xhci@3610000 with usb@3610000
-   - moved padctl@3520000 and usb@3610000 inside /cbb
-   - cleaned up "clocks" property of usb@3610000 node
-   - added blanks lines to visually separate blocks
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
 
-  arm64: tegra: Enable XUSB host in P2972-0000 board
-   - use capitalization of regulator names
-   - fix gpio property of VDD_5V_SATA regulator
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
 
-JC Kuo (7):
-  xhci: tegra: Parameterize mailbox register addresses
-  usb: host: xhci-tegra: Add Tegra194 XHCI support
-  phy: tegra: xusb: Protect Tegra186 soc with config
-  phy: tegra: xusb: Add Tegra194 support
-  dt-bindings: phy: tegra: Add Tegra194 support
-  arm64: tegra: Add XUSB and pad controller on Tegra194
-  arm64: tegra: Enable XUSB host in P2972-0000 board
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
 
- .../phy/nvidia,tegra124-xusb-padctl.txt       |  16 ++
- .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |  36 ++++-
- .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  62 ++++++++
- arch/arm64/boot/dts/nvidia/tegra194.dtsi      | 139 +++++++++++++++++
- drivers/phy/tegra/Makefile                    |   1 +
- drivers/phy/tegra/xusb-tegra186.c             | 144 +++++++++++++-----
- drivers/phy/tegra/xusb.c                      |   7 +
- drivers/phy/tegra/xusb.h                      |   6 +
- drivers/usb/host/xhci-tegra.c                 |  88 +++++++++--
- 9 files changed, 448 insertions(+), 51 deletions(-)
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 1 Private Controls: 1
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK
+	test Composing: OK
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+		warn: v4l2-test-buffers.cpp(683): VIDIOC_CREATE_BUFS not supported
+		warn: v4l2-test-buffers.cpp(683): VIDIOC_CREATE_BUFS not supported
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (no poll): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (epoll): OK
+	test USERPTR (no poll): OK (Not Supported)
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for vpe device /dev/video0: 51, Succeeded: 51, Failed: 0, Warnings: 2
+======================================
+
+Benoit Parrot (18):
+  media: ti-vpe: Fix a parallel build issue
+  media: ti-vpe: vpe: Fix Motion Vector vpdma stride
+  media: ti-vpe: vpe: Add missing null pointer checks
+  media: ti-vpe: vpe: Remove unnecessary use of container_of
+  media: ti-vpe: vpe: fix a v4l2-compliance failure causing a kernel
+    panic
+  media: ti-vpe: vpe: fix a v4l2-compliance warning about invalid pixel
+    format
+  media: ti-vpe: vpe: Make sure YUYV is set as default format
+  media: ti-vpe: vpe: fix a v4l2-compliance failure about invalid
+    sizeimage
+  media: ti-vpe: vpe: fix a v4l2-compliance failure about frame sequence
+    number
+  media: ti-vpe: vpe: ensure buffers are cleaned up properly in abort
+    cases
+  media: ti-vpe: vpdma: Use fixed type for address in descriptor
+  media: ti-vpe: Set the DMA mask and coherent mask
+  media: ti-vpe: vpe: use standard struct instead of duplicating fields
+  media: ti-vpe: vpe: fix v4l2_compliance issue related to xfer_func
+  media: ti-vpe: csc: rgb-to-yuv HD full range coeff are wrong
+  media: v4l2-common: add pixel encoding support
+  media: v4l2-common: add RGB565 and RGB55 to v4l2_format_info
+  media: ti-vpe: vpe: don't rely on colorspace member for conversion
+
+Nikhil Devshatwar (2):
+  media: ti-vpe: Add support for SEQ_BT
+  media: ti-vpe: Add support for NV21 format
+
+Ram Prasad (1):
+  media: ti-vpe: Set MAX height supported to 2048 pixels
+
+ drivers/media/platform/Makefile            |   4 +-
+ drivers/media/platform/ti-vpe/csc.c        | 220 +++++++-----
+ drivers/media/platform/ti-vpe/csc.h        |   4 +-
+ drivers/media/platform/ti-vpe/vpdma.c      |  11 +-
+ drivers/media/platform/ti-vpe/vpdma.h      |   2 +
+ drivers/media/platform/ti-vpe/vpdma_priv.h |   5 +-
+ drivers/media/platform/ti-vpe/vpe.c        | 379 ++++++++++++---------
+ drivers/media/v4l2-core/v4l2-common.c      | 164 +++++----
+ include/media/v4l2-common.h                |  20 ++
+ 9 files changed, 496 insertions(+), 313 deletions(-)
 
 -- 
 2.17.1
