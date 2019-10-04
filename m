@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 160E8CC342
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A09DBCC34F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:06:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726985AbfJDTFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 15:05:14 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45942 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725775AbfJDTFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:05:14 -0400
-Received: by mail-io1-f68.google.com with SMTP id c25so15762652iot.12
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 12:05:13 -0700 (PDT)
+        id S1730018AbfJDTGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 15:06:54 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:43050 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730090AbfJDTGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:06:52 -0400
+Received: by mail-lj1-f196.google.com with SMTP id n14so7540368ljj.10
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 12:06:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=usuFISMqci9f735wNqIFTbIm+6Oe9vY9sfRcppqbt5s=;
-        b=VuCn1Ln1zgiL1uEMidSrRRynaEnLMUu6FSAZIYSeETz4emuHDWarDciC3wY7OUWSZa
-         eAhChwvjVsMSmRSH/aZ6UiDmlyXckwE63ccSxeNGi2ICxvhoqptOrLikZge420OxJtUb
-         VvKG3E2Nesiam8WbFT3ADlduB3qCKjiDPbj9ppM+q0Fi65LDdYyXTMSFcKcbQCStHnxG
-         J+h4aeUMSFUo5WbbUXNxwAo/LMpGnIPhHabs6WlGYtnR5yRmvT2wDymrKa5FFBCGpuXY
-         SozbBJV7yaxU76JSbIJfjtxbyuG5tEQaK0cEX8rBsuCqd3vrUKR80P3T4OJDkgUWdNVW
-         YE3w==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JYj5Vuu2wwz5/1bubcaD27zMhmuUTtHi+dTrlxCeEQo=;
+        b=WkdazjxwXwGBBU0OPmDk7Htn7m2xKTQ8eGPNzHJur5HfrO6gY6RnZ86tbKbx2SW/F5
+         BUnxhc6enI1bM/H5poFAxSYKQikJ7b17bqABQoX0xtYthyQlS1HTquO4Qnu8Ez13SNbX
+         7YkCztFJFieyUhqsJEhpRgTensIzMriCnhTpaSnccvzTPdlCZ/KnCNeooScFZ5gkT+xg
+         u1KL3MHvokRekQOYKIfy930xlNX0cT2cdRoWgTexquyGdFCzmOGjbfm0JfEMJAxYbHic
+         NkWXe0+sjVoGs2VTv3q/8N4Sua45qNVNyIma0u5499juQTId9Ov3oIiTyFVgCZ+YNnC9
+         /zeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=usuFISMqci9f735wNqIFTbIm+6Oe9vY9sfRcppqbt5s=;
-        b=R7muKoY5lPfyCZQhFcWzhhbr+3NpIPJVYL2N7dUcxsqAD4dUT1oPCgdunCDlMJn/7L
-         sI+Seux73ruR9Wjqa5itOB67pvDrBuq4FS+8S0pjiMBsy2Ol2+12sa/aGIuPW1bHOZM1
-         6oz01aSutafm2Q1WPH3ukYVjeHKushuhHErDVi5ac8NIrc8dT7pN+rkBC75QBye2IuWj
-         YG2QJd2XZp1YJneRSrLsfDC+mseEaUskNLgKXEtHkAYvVbj4SpXZdJ5JEbbYQy3++f7H
-         Q5K02IZC6gb1QEDi3hd+dZvz/S6o/VoUcqMoPtntpmpu3m10G7CRrm3E/eHwWrasOawp
-         kObg==
-X-Gm-Message-State: APjAAAWErXZHIJAy85sqJy6nKrnIBzkYuqXaYDoQQjOs+KfQUYPmctr/
-        EChuxMfkgvsyIZjEySM/0ltmfAQkcS6740aElaw=
-X-Google-Smtp-Source: APXvYqxKqrNb2w65mAuVxgl8x27OOB2DC10oBZG1QuRZoG/HtjnovNWV9Bh6LgNkSdvUC6L+OLXtvRmD3UhIUHpEO80=
-X-Received: by 2002:a5d:91d1:: with SMTP id k17mr14653236ior.237.1570215913026;
- Fri, 04 Oct 2019 12:05:13 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JYj5Vuu2wwz5/1bubcaD27zMhmuUTtHi+dTrlxCeEQo=;
+        b=LtiBoMyEZsNUStCjBN0FrDPVrCxgoHjK8ecGiPY0jz5hx3L/E5VVgggN3g+l/lrynj
+         av94g6optooifIi4YXF+UNVz+qInphOb7u2kWhJEl3xDI1HU8EaByWtQh+DlIof6W42x
+         Wh9bVTnIQGdkVhIfOSxuu9CGWlcguV8HbscfNn0sn6N+vSnKs7PiifBeFNzN9IJn6wtT
+         HJmUHhti7bSQzSBTU3Ppx4XHDdP9v/RB4c3frvC4oHGxtladzfN4nq/hS+yzNc33dOAe
+         G90gfIHxMAYx5HB3h3/gmkKdh1d8ThSvLw2scb+JJpxFkdZP6/wokF7E7yb1V/mXoA43
+         6Z2g==
+X-Gm-Message-State: APjAAAUvWbvPLjm1McymWqaaXk+Gf1X7zIjE0AqTke4hRfbGpt233xeV
+        1EBmOVyNlG3G4Lz+WZJinqS3OSyCjA9AKwP9ZZqzPQ==
+X-Google-Smtp-Source: APXvYqzV7LwLHfUN/uOof+1pMQj65BBC/djNC3BS8vZC+QuB1i0JvUK986VyoSTMIAIDmGIg0K85ux9PRsidtiGsiOI=
+X-Received: by 2002:a2e:80d3:: with SMTP id r19mr10234333ljg.41.1570216009077;
+ Fri, 04 Oct 2019 12:06:49 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a02:cc0e:0:0:0:0:0 with HTTP; Fri, 4 Oct 2019 12:05:12 -0700 (PDT)
-Reply-To: helenpatrrick@gmail.com
-From:   Angel Helen <angelelenalukad@gmail.com>
-Date:   Fri, 4 Oct 2019 19:05:12 +0000
-Message-ID: <CA+=aQOZV3+CGyTThgAPSTFhZ9xZxGGU5=_Kb=0mGSAO5Ch0xZA@mail.gmail.com>
-Subject: HELLO PLEASE CAN I SPEAK WITH YOU?
-To:     undisclosed-recipients:;
+References: <20190917105902.445-1-m.felsch@pengutronix.de> <20190917105902.445-2-m.felsch@pengutronix.de>
+ <AM5PR1001MB099472B4C90EF215134EF5AB80840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To: <AM5PR1001MB099472B4C90EF215134EF5AB80840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 4 Oct 2019 21:06:36 +0200
+Message-ID: <CACRpkda_RuK_UfAVd+m5PZwMHUv3G-vSYdu+LWL2BG2HQqim2A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: da9062: add gpio bindings
+To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Support Opensource <Support.Opensource@diasemi.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello dear,
-My name is Miss Helen i am a humble sincere single girl looking for
-true love, and a partner to assist me transfer my late father money,
-an amount of, (Four Million Two Hundred Thousand US Dollars) to your
-country for investment. I will give you 40% after the transfer, while
-the remaining amount will be invest in your country in your names,
-with 50% equal profits sharing.
+On Tue, Sep 24, 2019 at 12:53 PM Adam Thomson
+<Adam.Thomson.Opensource@diasemi.com> wrote:
 
-Send me your pictures with brief introductions about your self's, so
-that i will give you further details and procedure.
+> As mentioned for your other patch set where the regulator driver makes use of
+> GPIOs for control, I think here you should probably have pinctrl to define
+> alternate functions of each GPIO. It seems that mostly pinctrl drivers support
+> GPIO functionality rather than the other way, so maybe that's the direction
+> to go in? Maybe Linus has some input on this too.
 
-Message me to my email: helenpatrrick@gmail.com
+Usually the both functions can coexist but the simplest if often to put
+them in the same driver.
 
-I awaits your answer today.
-God bless you.
-Miss Helen.
+drivers/pinctrl/pinctrl-stmfx.c
+Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt
+
+is a recent slow bus driver doing this.
+
+Yours,
+Linus Walleij
