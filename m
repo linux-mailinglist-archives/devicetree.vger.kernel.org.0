@@ -2,114 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D19CC4F7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 23:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FCECCC520
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 23:45:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730314AbfJDVmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 17:42:38 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:37004 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730131AbfJDVmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 17:42:38 -0400
-Received: by mail-lj1-f193.google.com with SMTP id l21so7930428lje.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 14:42:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linux-foundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kSvi6bN3MgmA9q6zMgIL0cUcdQWLY9tbHblghBTgstI=;
-        b=hBuewRInP5i+6gtlRLW9UtlDY0YPe0z67E0xbXSSSKYA7biQf+uXTlrPp7zLuAUPeq
-         5uQ2rwixtXebf99m1RfUdMDyjGKPh3VgF3DuF8NvshRtQGRa2wNkvwDCWMNQ0VKjXHWB
-         ZmI6XqYkyQwmdmiffnmLI1+ZMJ0oT9STysqR8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kSvi6bN3MgmA9q6zMgIL0cUcdQWLY9tbHblghBTgstI=;
-        b=pA0M3954hwpF5EuEqjxjAilAgGH/2Oy6mMLwaYcqQHfvjBQiRT76TI3zrIZRw6+BK3
-         o4GFcPbaoNxCfq3qRbRP6C08pRdFGIc+251Y3bZXgFBMfERWu0Hd2x13n0SNCxcOFwTs
-         NRbDKBgFo8BTWUgUYhcTG1VrjhKaRhcR8OjYyGUyMue2Pmw7SL+vmQ2Rr0yPIxxMtDkQ
-         4nD5/DsWkLd9gXYMcjYbPmYiBOqsAVzXxD1AHpbyCfxwKYUMD2fBuh6nZ6S5cYMA/pTA
-         ys0Dpoe9jSdUMtYNt8Na+u40oxZATyhXdK87nz+1tzYMijdVJCfCVxPRgzZVCWp4cJEs
-         UUyA==
-X-Gm-Message-State: APjAAAUgjObbSOSsa4NWVlNvv2tcsFgppfKPzqHmwgPFTV25xTxOV79g
-        0EUnBGbPjro/nDivo47xCe76DigwSKk=
-X-Google-Smtp-Source: APXvYqzsn0c2lCtV27RmF7VQPeAZuXI/B5UmIF5pKI9DOaYvXGJeqI6QRdrlxCUHvLgfLjoXOmlq4Q==
-X-Received: by 2002:a2e:89c5:: with SMTP id c5mr7498608ljk.6.1570225355284;
-        Fri, 04 Oct 2019 14:42:35 -0700 (PDT)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
-        by smtp.gmail.com with ESMTPSA id h9sm1331959lfp.40.2019.10.04.14.42.33
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Oct 2019 14:42:34 -0700 (PDT)
-Received: by mail-lf1-f51.google.com with SMTP id r22so5477447lfm.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 14:42:33 -0700 (PDT)
-X-Received: by 2002:a19:7d55:: with SMTP id y82mr10113290lfc.106.1570225353484;
- Fri, 04 Oct 2019 14:42:33 -0700 (PDT)
+        id S1729161AbfJDVpY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Oct 2019 17:45:24 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:38072 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727548AbfJDVpX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Oct 2019 17:45:23 -0400
+Received: from 94.112.246.102.static.b2b.upcbusiness.cz ([94.112.246.102] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iGVNt-0006sD-N6; Fri, 04 Oct 2019 23:45:09 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Vivek Unune <npcomplete13@gmail.com>
+Cc:     Vicente Bergas <vicencb@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, ezequiel@collabora.com, akash@openedev.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Roger Quadros <rogerq@ti.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
+Date:   Fri, 04 Oct 2019 23:45:08 +0200
+Message-ID: <2223294.9I8gkMH88G@phil>
+In-Reply-To: <20190929234615.GA5355@vivek-desktop>
+References: <20190929032230.24628-1-npcomplete13@gmail.com> <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com> <20190929234615.GA5355@vivek-desktop>
 MIME-Version: 1.0
-References: <20190923090249.127984-1-brendanhiggins@google.com> <20191004213812.GA24644@mit.edu>
-In-Reply-To: <20191004213812.GA24644@mit.edu>
-From:   Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Fri, 4 Oct 2019 14:42:17 -0700
-X-Gmail-Original-Message-ID: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
-Message-ID: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
-Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     "Theodore Y. Ts'o" <tytso@mit.edu>
-Cc:     Brendan Higgins <brendanhiggins@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        kieran.bingham@ideasonboard.com,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>, robh@kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, Shuah Khan <shuah@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>, Tim.Bird@sony.com,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, jdike@addtoit.com,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 2:39 PM Theodore Y. Ts'o <tytso@mit.edu> wrote:
->
-> This question is primarily directed at Shuah and Linus....
->
-> What's the current status of the kunit series now that Brendan has
-> moved it out of the top-level kunit directory as Linus has requested?
+Hi Vivek,
 
-We seemed to decide to just wait for 5.5, but there is nothing that
-looks to block that. And I encouraged Shuah to find more kunit cases
-for when it _does_ get merged.
+Am Montag, 30. September 2019, 01:46:15 CEST schrieb Vivek Unune:
+> On Sun, Sep 29, 2019 at 01:22:17PM +0200, Vicente Bergas wrote:
+> > On Sunday, September 29, 2019 5:22:30 AM CEST, Vivek Unune wrote:
+> > > Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
+> > > 
+> > > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > > b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > > index 0d1f5f9a0de9..c133e8d64b2a 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
+> > > @@ -644,7 +644,7 @@
+> > >  	status = "okay";
+> > >  	u2phy0_host: host-port {
+> > > -		phy-supply = <&vcc5v0_host>;
+> > > +		phy-supply = <&vcc5v0_typec>;
+> > >  		status = "okay";
+> > >  	};
+> > > @@ -712,7 +712,7 @@
+> > >  &usbdrd_dwc3_0 {
+> > >  	status = "okay";
+> > > -	dr_mode = "otg";
+> > > +	dr_mode = "host";
+> > >  };
+> > >  &usbdrd3_1 {
+> > 
+> > Hi Vivek,
+> > 
+> > which is the relationship of your patch and this commit:
+> > 
+> > e1d9149e8389f1690cdd4e4056766dd26488a0fe
+> > arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
+> > 
+> > with respect to this other commit:
+> > 
+> > c09b73cfac2a9317f1104169045c519c6021aa1d
+> > usb: dwc3: don't set gadget->is_otg flag
+> > 
+> > ?
+> > 
+> > I did not test reverting e1d9149e since c09b73cf was applied.
+> > 
+> > Regards,
+> >  Vicenç.
+> > 
+> 
+> Hi Vicenç,
+> 
+> Indeed, I was motivated by e1d9149e ("arm64: dts: rockchip: Fix USB3 
+> Type-C on rk3399-sapphire"). X99 TV box showed exact same symptoms
+> with usb-c port. After applying the fix, it worked.
+> 
+> I was not aware of c09b73cf ("usb: dwc3: don't set gadget->is_otg
+>  flag") and it will be interesting to test it. This might render
+> my fix unecessary.
 
-So if the kunit branch is stable, and people want to start using it
-for their unit tests, then I think that would be a good idea, and then
-during the 5.5 merge window we'll not just get the infrastructure,
-we'll get a few more users too and not just examples.
+So I'll let this patch sit here for now.
+Once you've done the testing, can you please respond with the
+result (both positive and negative results please).
 
-             Linus
+Thanks
+Heiko
+
+
