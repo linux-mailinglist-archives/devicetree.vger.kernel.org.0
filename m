@@ -2,126 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60583CC37A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC8ADCC37E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:22:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728954AbfJDTRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 15:17:11 -0400
-Received: from avon.wwwdotorg.org ([104.237.132.123]:54188 "EHLO
-        avon.wwwdotorg.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725932AbfJDTRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:17:10 -0400
-X-Greylist: delayed 584 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Oct 2019 15:17:10 EDT
-Received: from [10.20.204.51] (unknown [216.228.112.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by avon.wwwdotorg.org (Postfix) with ESMTPSA id CDE061C0728;
-        Fri,  4 Oct 2019 13:07:24 -0600 (MDT)
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.100.3 at avon.wwwdotorg.org
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
+        id S1727795AbfJDTWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 15:22:17 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:56947 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725932AbfJDTWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:22:16 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iGT9a-0005j9-2W; Fri, 04 Oct 2019 21:22:14 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1iGT9W-0006gL-R1; Fri, 04 Oct 2019 21:22:10 +0200
+Date:   Fri, 4 Oct 2019 21:22:10 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Phil Reid <preid@electromag.com.au>,
-        Enrico Weigelt <info@metux.net>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, Eugeniu Rosca <roscaeugeniu@gmail.com>
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
-From:   Stephen Warren <swarren@wwwdotorg.org>
-Message-ID: <06a1acab-fcc4-7b3a-697b-4d253c354513@wwwdotorg.org>
-Date:   Fri, 4 Oct 2019 13:07:23 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: pwm: mxs-pwm: Increase #pwm-cells
+Message-ID: <20191004192210.777t6tuku3y45fn3@pengutronix.de>
+References: <20191004133207.6663-1-linux@rasmusvillemoes.dk>
+ <20191004133207.6663-5-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
-In-Reply-To: <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191004133207.6663-5-linux@rasmusvillemoes.dk>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/25/19 10:51 AM, Eugeniu Rosca wrote:
-> Hi All,
+On Fri, Oct 04, 2019 at 03:32:05PM +0200, Rasmus Villemoes wrote:
+> We need to increase the pwm-cells for the optional flags parameter, in
+> order to implement support for polarity setting via DT.
 > 
-> I've additionally Cc-ed Laurent and Stephen, since their fruitful
-> discussion in [1] back in 2014 concluded with a useful documentation
-> update [2] which is precisely related to the interpretation and usage
-> of the polarity flag in GPIO specifiers.
-> 
-> I've also Cc-ed those people who have participated in reviewing the
-> previous patch iterations (Geert, Phil, Enrico).
-> 
-> Before leaving this thread in limbo, I would like to attempt clarifying
-> what it actually tried to accomplish, one more time.
-> 
-> First of all, it stems from the need to implement a specific customer
-> requirement. Whether this requirement is sane or not, that's actually
-> a very important question, but I haven't found much discussion around
-> it the comments posted so far.
-> 
-> To paraphrase what Harish stated in [3], the customer has a list of GPIO
-> pins which need to be controlled from userspace. Of course, the customer
-> can set the polarity of those pins from userspace, as pointed out by
-> Linus in [4] (thanks!). But, keeping track of GPIO polarity in userspace
-> is seen like a burden. The customer thinks that the right place for this
-> HW-specific detail is in device trees. Do you think this preference
-> is ill-formed?
+> Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-I think the DT should represent the device that's attached to the GPIOs. 
-That way, there's already a clear way to represent the GPIO polarity, as 
-described in the document linked by Eugenui in [2] below.
+Thanks
+Uwe
 
-If for some reason that's not possible, then I think keeping track of 
-the GPIO polarity in user-space is entirely reasonable, and is the 
-correct approach. To claim that tracking GPIO polarity in user-space is 
-too much burden, yet to also allow user-space to control GPIOs at all, 
-and hence to know exactly which GPIOs must be controlled, is an 
-inconsistent assertion.
-
-Put another way: If a piece of user-space SW controls GPIOs, it must 
-know which GPIO number to use for each logical purpose. This information 
-presumably varies on different platforms, so the SW must have a list of 
-GPIO numbers and GPIO controller IDs per platform. Additionally storing 
-a polarity bit along with that information seems entirely trivial to me.
-
-Is there some other issue that I'm overlooking?
-
-If the list of GPIO IDs is retrieved from DT by the user-space SW, I 
-could see an argument for storing the polarity information in DT along 
-with that list of GPIO IDs. However, I don't believe there's any 
-standard way of representing "a list of GPIO IDs for user space use" in DT.
-
-> If we hog a GPIO pin in DTS (which allows specifying its polarity),
-> userspace no longer has access to that pin. There isn't a way to define
-> GPIO polarity by means of DTS without affecting userspace access
-> (can anybody contradict this statement?).
-
-GPIO hog doesn't seem like the right approach; its intent is to actively 
-configure the GPIO in a fixed state, which is logically incompatible 
-with user-space control of the GPIO.
-
-> Whether it is obvious or not, the main goal of this series is actually
-> to provide the possibility of inverting the default ACTIVE_HIGH polarity
-> for GPIO pin X _via DTS_ while still allowing to operate on that pin
-> _from userspace_. My two questions are then:
->   - I hope it is something sane to desire?
->   - If it is sane, how can this be accomplished, if the functionality
->     implemented by Harish doesn't pass the community review?
-> 
-> [1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
-> [3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
-> [4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
-> 
-
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
