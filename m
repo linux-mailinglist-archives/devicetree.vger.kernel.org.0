@@ -2,109 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FCECCC520
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 23:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129EDCC53D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 23:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729161AbfJDVpY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Oct 2019 17:45:24 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:38072 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727548AbfJDVpX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 17:45:23 -0400
-Received: from 94.112.246.102.static.b2b.upcbusiness.cz ([94.112.246.102] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iGVNt-0006sD-N6; Fri, 04 Oct 2019 23:45:09 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     Vicente Bergas <vicencb@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, ezequiel@collabora.com, akash@openedev.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Roger Quadros <rogerq@ti.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
-Date:   Fri, 04 Oct 2019 23:45:08 +0200
-Message-ID: <2223294.9I8gkMH88G@phil>
-In-Reply-To: <20190929234615.GA5355@vivek-desktop>
-References: <20190929032230.24628-1-npcomplete13@gmail.com> <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com> <20190929234615.GA5355@vivek-desktop>
+        id S1728841AbfJDVwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 17:52:15 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:41390 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728773AbfJDVwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 17:52:15 -0400
+Received: by mail-io1-f68.google.com with SMTP id n26so16661973ioj.8;
+        Fri, 04 Oct 2019 14:52:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2NHwB5wF7rQTeZnawydpHnEae0UNUyf0umbpqxfApS4=;
+        b=UXyWAN1netWXO8wzokqz7oMK4zAnqa67+noXFlYnXYSonxedyWNQjaX2lle7O9oaWg
+         6E+0JogNPSEJQtEwNYtIrpV3DhqBgW0XyLesAKNODdziIGBgAT0Kcz3r5nuGMJOVgybs
+         UW4NMndkYjmyyZBxWAh0LXThYbAaNZhfWipzcZh4dUvnt1XiWJvNeLxp9vH/I+d1rhLa
+         00HKW6A9C6NttJlIYVMNvccLvoiu+q15fK3IERPjagcF65Xgk63CyeUDr974f9XAs2rN
+         Ic04LIv7bZZn921L892ldiGsvnsiIPmz/dJbsWZNyODKkC7W++cS9LL/dB522pwdWjxw
+         OKsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2NHwB5wF7rQTeZnawydpHnEae0UNUyf0umbpqxfApS4=;
+        b=sZhxnoMtEUQoyE1kHeeFvJsIkOnZkG181yzDIvhe7LWBV6uYj5Ve2ZLXMtIRo22+Yc
+         3y16VfSkgLssaiL6EvG5GGwsI2OW6pHBj45OCvP0qznHPpjhJcWlXuJUqb5CItWuwZre
+         090U+CJg7ED3S5Z4uqhz5kxoPT0oC42kI7klDmHoXUgwf4FHUvG9HfxEPLtxTp1s4EJJ
+         UyEY1Nu/7GC9bUKMwG9bUN5yaZR+BfRfcehosHZUti4Wn8Qw05xJV/AurV8KZDioiy5L
+         K+O62CHMwXTyk/YnRzEkEoHITxJg27LEB2aK4rLyB8sx1LKoFV3RjQiBRGdERDeFXHlP
+         ae0Q==
+X-Gm-Message-State: APjAAAX+ki8tUMPAVWM5/Q2WOwLlhhXkZwKjX3zO8burDRwd5MMbpvfc
+        wRaqn6XTnrLHxE+1bZhL83lSftQlcx06lJ7iFwNjTw==
+X-Google-Smtp-Source: APXvYqyExmJsuNOtxdeWwb/yncB5aTD63s1eVIhDHJxOm8bm3sqKxM0SlP7iLrhf5X7HN3FkMnHeqslK6bBbYF2mSak=
+X-Received: by 2002:a92:ca84:: with SMTP id t4mr18199133ilo.171.1570225934327;
+ Fri, 04 Oct 2019 14:52:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+References: <20191004054115.26082-1-andrew.smirnov@gmail.com>
+In-Reply-To: <20191004054115.26082-1-andrew.smirnov@gmail.com>
+From:   Chris Healy <cphealy@gmail.com>
+Date:   Fri, 4 Oct 2019 14:52:03 -0700
+Message-ID: <CAFXsbZq6MQk1DyUVGjC5g6jmsOdmG=1Q=4fX=9n3amSjLW1Maw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: vf610-zii-scu4-aib: Specify 'i2c-mux-idle-disconnect'
+To:     Andrey Smirnov <andrew.smirnov@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Cory Tusar <cory.tusar@zii.aero>,
+        Jeff White <jeff.white@zii.aero>,
+        Rick Ramstetter <rick@anteaterllc.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vivek,
+On Thu, Oct 3, 2019 at 10:41 PM Andrey Smirnov <andrew.smirnov@gmail.com> wrote:
+>
+> Specify 'i2c-mux-idle-disconnect' for both I2C switches present on the
+> board, since both are connected to the same parent bus and all of
+> their children have the same I2C address.
+>
+> Fixes: ca4b4d373fcc ("ARM: dts: vf610: Add ZII SCU4 AIB board")
+> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Chris Healy <cphealy@gmail.com>
+> Cc: Cory Tusar <cory.tusar@zii.aero>
+> Cc: Jeff White <jeff.white@zii.aero>
+> Cc: Rick Ramstetter <rick@anteaterllc.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+> Shawn:
+>
+> If this is possible, I'd like this one to go into 5.4.
+>
+> Thanks,
+> Andrey Smirnov
+>
+>  arch/arm/boot/dts/vf610-zii-scu4-aib.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/vf610-zii-scu4-aib.dts b/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
+> index dc8a5f37a1ef..c8ebb23c4e02 100644
+> --- a/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
+> +++ b/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
+> @@ -602,6 +602,7 @@
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>                 reg = <0x70>;
+> +               i2c-mux-idle-disconnect;
+>
+>                 sff0_i2c: i2c@1 {
+>                         #address-cells = <1>;
+> @@ -640,6 +641,7 @@
+>                 reg = <0x71>;
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+> +               i2c-mux-idle-disconnect;
+>
+>                 sff5_i2c: i2c@1 {
+>                         #address-cells = <1>;
+> --
+> 2.21.0
+>
 
-Am Montag, 30. September 2019, 01:46:15 CEST schrieb Vivek Unune:
-> On Sun, Sep 29, 2019 at 01:22:17PM +0200, Vicente Bergas wrote:
-> > On Sunday, September 29, 2019 5:22:30 AM CEST, Vivek Unune wrote:
-> > > Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
-> > > 
-> > > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > index 0d1f5f9a0de9..c133e8d64b2a 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > @@ -644,7 +644,7 @@
-> > >  	status = "okay";
-> > >  	u2phy0_host: host-port {
-> > > -		phy-supply = <&vcc5v0_host>;
-> > > +		phy-supply = <&vcc5v0_typec>;
-> > >  		status = "okay";
-> > >  	};
-> > > @@ -712,7 +712,7 @@
-> > >  &usbdrd_dwc3_0 {
-> > >  	status = "okay";
-> > > -	dr_mode = "otg";
-> > > +	dr_mode = "host";
-> > >  };
-> > >  &usbdrd3_1 {
-> > 
-> > Hi Vivek,
-> > 
-> > which is the relationship of your patch and this commit:
-> > 
-> > e1d9149e8389f1690cdd4e4056766dd26488a0fe
-> > arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
-> > 
-> > with respect to this other commit:
-> > 
-> > c09b73cfac2a9317f1104169045c519c6021aa1d
-> > usb: dwc3: don't set gadget->is_otg flag
-> > 
-> > ?
-> > 
-> > I did not test reverting e1d9149e since c09b73cf was applied.
-> > 
-> > Regards,
-> >  Vicenç.
-> > 
-> 
-> Hi Vicenç,
-> 
-> Indeed, I was motivated by e1d9149e ("arm64: dts: rockchip: Fix USB3 
-> Type-C on rk3399-sapphire"). X99 TV box showed exact same symptoms
-> with usb-c port. After applying the fix, it worked.
-> 
-> I was not aware of c09b73cf ("usb: dwc3: don't set gadget->is_otg
->  flag") and it will be interesting to test it. This might render
-> my fix unecessary.
+On an SCU4 AIB, this series is:
 
-So I'll let this patch sit here for now.
-Once you've done the testing, can you please respond with the
-result (both positive and negative results please).
-
-Thanks
-Heiko
-
-
+Tested-by: Chris Healy <cphealy@gmail.com>
