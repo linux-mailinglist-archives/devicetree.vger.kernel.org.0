@@ -2,176 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BA1FCC25E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 20:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63723CC330
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 20:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387453AbfJDSOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 14:14:19 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:46541 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730348AbfJDSOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 14:14:19 -0400
-Received: by mail-pg1-f195.google.com with SMTP id a3so4152379pgm.13
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 11:14:18 -0700 (PDT)
+        id S1727548AbfJDS64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 14:58:56 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:42790 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725775AbfJDS64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 14:58:56 -0400
+Received: by mail-io1-f67.google.com with SMTP id n197so15738004iod.9;
+        Fri, 04 Oct 2019 11:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:from:to:cc:subject:user-agent:date;
-        bh=0IDOtQgHmElD8p5B2w+YjcptWdtlf5vVNP5fCQ18Cjw=;
-        b=jSQrChLhcmVVMxN2vgpR1Q4UdZbgBNU+3E5G58XTneDBys4wlfUOE/GPLXVR6uhnZL
-         C1ui8JAyehI+IdvfyllS9IV1T4aFagv+PAyy04d/FQwIS16exf2GNN1UZFS5Jb3XLE6c
-         mrYnztcJZlAuKjskuh33FNmaFjfevzrjGaS1s=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=kXHET19Vk3ufWjPl9i1yNVAiht7vLl0NnWpu74eHgeU=;
+        b=sO1FMEKyJTjFPQcT+L/dKuFzkgo57xekEfRmImYpxXqhSLbLZq3myaxr0l5m+/As5I
+         KVp6eO7y1xFSP0u/UB6mwbeJrItmyVT+p2yBx3+m0y0OcoC9ES0mW7gP8Iw44ntYnWdr
+         L6oFVYrSst1MzUSXjmAvQTq991IE+HccFFbYQnfZ7Nv0eikSKx+7X8if/KHnx3EO4/6l
+         F/5DoyS5mVYBhEdpbz9vzNXlBww+GY1oEcVvrgGvs/CerJlfs+4HA+Oe16tIuXeDC6DL
+         8BmX5hI/pHpxoIluGvhNRlH/t20NqfhwtYi7/IuAISlcu7WPnfBAOcz0LQlu+d0kR6bg
+         +I9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
-         :user-agent:date;
-        bh=0IDOtQgHmElD8p5B2w+YjcptWdtlf5vVNP5fCQ18Cjw=;
-        b=cupxCbVdyudyPen4i/OHIpJoidPIbV8m4+t16+R1ng6/OIc/uue/jsGHIhExR1BpcN
-         FOKhtt4GBQxoXhjWYBSr0G4EW/mUtO/GL5cGlBdDl10mmdqEMJw6tapIDD9rwm6+t5DR
-         jSb7iQHR5GNoqftHcAaZ2ROWH/Ekuh4ZKLmhU/hx6PsKNDhZ9347gfkgzKrdr7Uw8Z3V
-         WSZAFqJQxt583/sHp84cWTBsEf3y7+cyKKKvyZJ056c8H0bErLomWe/2rBAQGl0B+uVS
-         d7x/r2JuAa+GUYtdJ3RBsYfeAfiCt3vCZek+7TQHcUKReBir2OcpZDqWBWx0gki1xMMN
-         eg4Q==
-X-Gm-Message-State: APjAAAVmTMHF1v/B1r2WjAiLunvg/ksd5GvthkO/KLOYdUBMK0VXngCB
-        XSL1gA9Wj8lbie49vDlb0i1HMw==
-X-Google-Smtp-Source: APXvYqzXmG1bMyrx+EgqINn91jy469r0K12/xfrx1x9Ey0oZZUEtP/hNvIYFYGlkN+MklxIFvSurxQ==
-X-Received: by 2002:a62:62c6:: with SMTP id w189mr18679300pfb.235.1570212858215;
-        Fri, 04 Oct 2019 11:14:18 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id i6sm10089700pfq.20.2019.10.04.11.14.17
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=kXHET19Vk3ufWjPl9i1yNVAiht7vLl0NnWpu74eHgeU=;
+        b=jS7JqNUQRmvYj8LTTRhpdkgK4aMJpEIu76brlBNkrpdLkzbOjKYB9BvBnQW0vmWF22
+         wwrC6K8t1no3owW/YKCalsvrnF5j3M6iGeoqnh4DRm9IAr58JQlrQetw7VfOA8TXq6Yu
+         dvT9yJf2HEA7d1u+jEdz8drctk8VgumKv+2/7mhesoT95kLmO/AMZzOlreYQ5QsPrak5
+         KbfsjolSEEfeXVwkcVpn8krJ7W/MGWL6tvZqqdcqyEF+w+K7YxL0OFUV9L56jThjH70f
+         oX/OYHUTGwjxJLVf/PD6+tg5qxiS/fV+f9VL5IeO1gSUZORi8uhcelGWMZ5HFzzcWXnm
+         xZMQ==
+X-Gm-Message-State: APjAAAXnLHMFYubFRDEv048VVabxpbPksQ52btz6+5XduFfT85/FREho
+        O1kUfx3vZ6uRX/rV8u7SH8i7bL0uEGY=
+X-Google-Smtp-Source: APXvYqyPeetbm4o4ZccCpbFyoCJhYovBEFhTHkb31+QBJFPrTzJueRzkUOiLinOxqUk5c3x0b8V/Xg==
+X-Received: by 2002:a02:bb8f:: with SMTP id g15mr7167749jan.110.1570215535345;
+        Fri, 04 Oct 2019 11:58:55 -0700 (PDT)
+Received: from cs-dulles.cs.umn.edu (cs-dulles.cs.umn.edu. [128.101.35.54])
+        by smtp.googlemail.com with ESMTPSA id c8sm3377684ile.9.2019.10.04.11.58.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2019 11:14:17 -0700 (PDT)
-Message-ID: <5d978bf9.1c69fb81.7b927.b6ac@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <91d09847-31ad-e238-d84d-f7e0e21c6ef1@codeaurora.org>
-References: <20190925054133.206992-1-swboyd@chromium.org> <20190925055933.GA2810@tuxbook-pro> <5d8b6b8b.1c69fb81.14b36.c053@mx.google.com> <91d09847-31ad-e238-d84d-f7e0e21c6ef1@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Dai <daidavid1@codeaurora.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Evan Green <evgreen@chromium.org>
-Subject: Re: [RFC PATCH] interconnect: Replace of_icc_get() with icc_get() and reduce DT binding
-User-Agent: alot/0.8.1
-Date:   Fri, 04 Oct 2019 11:14:16 -0700
+        Fri, 04 Oct 2019 11:58:54 -0700 (PDT)
+From:   Navid Emamdoost <navid.emamdoost@gmail.com>
+Cc:     emamd001@umn.edu, kjlu@umn.edu, smccaman@umn.edu,
+        Navid Emamdoost <navid.emamdoost@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] of: unittest: fix memory leak in unittest_data_add
+Date:   Fri,  4 Oct 2019 13:58:43 -0500
+Message-Id: <20191004185847.14074-1-navid.emamdoost@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting David Dai (2019-09-27 10:16:07)
->=20
-> On 9/25/2019 6:28 AM, Stephen Boyd wrote:
-> > Quoting Bjorn Andersson (2019-09-24 22:59:33)
-> >> On Tue 24 Sep 22:41 PDT 2019, Stephen Boyd wrote:
-> >>
-> >>> The DT binding could also be simplified somewhat. Currently a path ne=
-eds
-> >>> to be specified in DT for each and every use case that is possible fo=
-r a
-> >>> device to want. Typically the path is to memory, which looks to be
-> >>> reserved for in the binding with the "dma-mem" named path, but someti=
-mes
-> >>> the path is from a device to the CPU or more generically from a device
-> >>> to another device which could be a CPU, cache, DMA master, or another
-> >>> device if some sort of DMA to DMA scenario is happening. Let's remove
-> >>> the pair part of the binding so that we just list out a device's
-> >>> possible endpoints on the bus or busses that it's connected to.
-> >>>
-> >>> If the kernel wants to figure out what the path is to memory or the C=
-PU
-> >>> or a cache or something else it should be able to do that by finding =
-the
-> >>> node for the "destination" endpoint, extracting that node's
-> >>> "interconnects" property, and deriving the path in software. For
-> >>> example, we shouldn't need to write out each use case path by path in=
- DT
-> >>> for each endpoint node that wants to set a bandwidth to memory. We
-> >>> should just be able to indicate what endpoint(s) a device sits on bas=
-ed
-> >>> on the interconnect provider in the system and then walk the various
-> >>> interconnects to find the path from that source endpoint to the
-> >>> destination endpoint.
-> >>>
-> >> But doesn't this implies that the other end of the path is always some
-> >> specific node, e.g. DDR? With a single node how would you describe
-> >> CPU->LLCC or GPU->OCIMEM?
-> > By only specifying the endpoint the device uses it describes what the
-> > hardware block interfaces with. It doesn't imply that there's only one
-> > other end of the path. It implies that the paths should be discoverable
-> > by walking the interconnect graph given some source device node and
-> > target device node. In most cases the target device node will be a DDR
-> > controller node, but sometimes it could be LLCC or OCIMEM. We may need
-> > to add some sort of "get the DDR controller device" API or work it into
-> > the interconnect API somehow to indicate what target endpoint is
-> > desired. By not listing all those paths in DT we gain flexibility to add
-> > more paths later on without having to update or tweak DT to describe
-> > more paths/routes through the interconnect.
->=20
->=20
-> I'm unsure that using the target device node or target source device is=20
-> the correct way to represent the constraints that the consumers apply on =
+In unittest_data_add, a copy buffer is created via kmemdup. This buffer
+is leaked if of_fdt_unflatten_tree fails. The release for the
+unittest_data buffer is added.
 
-> the interconnects. While it's true the traffic is intended for the=20
-> targeted devices, the constraints(QoS or BW) are for the interconnect or =
+Fixes: b951f9dc7f25 ("Enabling OF selftest to run without machine's devicetree")
+Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
+---
+ drivers/of/unittest.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-> specifically the paths that span across the ports of various=20
-> interconnects(NoC devices in this case). I think having both src and dst =
-
-> properties is still the simplest way to achieve the flexibility that we=20
-> require to set the constraints for ports(that may not have a target=20
-> device defined in DT or exists as some intermediate port across multiple =
-
-> interconnects).
->=20
-
-The need for paths described in DT may make sense for certain cases but
-that seems to be the minority. My guess is that maybe an OPP binding
-would need to describe the path to apply the bandwidth to. Otherwise I
-don't see what the need is for. Maybe you can list out more scenarios?
-
-Either way, the binding has been designed to cover all the possibilities
-by just saying that we have to describe at least two points for an
-'interconnect'. It is a path based binding. I'd rather see us have an
-endpoint based binding with the option to fallback to paths if we need
-to constrain something. Maybe this can be a new property that is used
-the majority of the time?
-
- gpu@f00 {
-   interconnect-endpoints =3D <&icc GPU_SLAVE_PORT>, <&icc GPU_MASTER_PORT0=
->, <&icc GPU_MASTER_PORT1>;
-   interconnect-endpoint-names =3D "slave", "master0", "master1";
- };
-
-(Or we can invert it and make interconnect-paths be non-standard)
-
-The property would describe what's going to this device and how it's
-integrated into the SoC. This is similar to how we describe what port is
-connected to a device with the of graph binding or how we only list the
-clk or regulator that goes to a device and not the whole path to the
-root of the respective tree.
-
-There can be a driver API that gets these port numbers out and
-constructs a path to another struct device or struct device_node. I
-imagine that 90% of the time a driver is going to request some bandwidth
-from their master port (or ports) to the DDR controller. We could either
-make the DDR controller a device that can be globally acquired or
-integrate it deeply into the API to the point that it looks for a DDR
-controller somewhere or relies on interconnect providers to tell the
-framework about the controller.
-
-TL;DR is that I don't want to have to specify paths in each and every
-node to say that some port on this device here is connected to some port
-on the DDR controller and that we want to adjust the bandwidth or QoS
-across this path. I'd like to describe a device "hermetically" by
-listing out the ports the device has. Then we can rely on the OS to
-figure out what paths to construct and change. If we need to constrain
-or tweak those paths then we can do that with the existing interconnects
-binding, but let's worry about that when we get there.
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 480a21e2ed39..92e895d86458 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1207,6 +1207,7 @@ static int __init unittest_data_add(void)
+ 	of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
+ 	if (!unittest_data_node) {
+ 		pr_warn("%s: No tree to attach; not running tests\n", __func__);
++		kfree(unittest_data);
+ 		return -ENODATA;
+ 	}
+ 
+-- 
+2.17.1
 
