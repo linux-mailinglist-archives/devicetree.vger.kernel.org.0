@@ -2,82 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A09DBCC34F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C3B7CC35A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 21:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730018AbfJDTGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 15:06:54 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:43050 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730090AbfJDTGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:06:52 -0400
-Received: by mail-lj1-f196.google.com with SMTP id n14so7540368ljj.10
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 12:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JYj5Vuu2wwz5/1bubcaD27zMhmuUTtHi+dTrlxCeEQo=;
-        b=WkdazjxwXwGBBU0OPmDk7Htn7m2xKTQ8eGPNzHJur5HfrO6gY6RnZ86tbKbx2SW/F5
-         BUnxhc6enI1bM/H5poFAxSYKQikJ7b17bqABQoX0xtYthyQlS1HTquO4Qnu8Ez13SNbX
-         7YkCztFJFieyUhqsJEhpRgTensIzMriCnhTpaSnccvzTPdlCZ/KnCNeooScFZ5gkT+xg
-         u1KL3MHvokRekQOYKIfy930xlNX0cT2cdRoWgTexquyGdFCzmOGjbfm0JfEMJAxYbHic
-         NkWXe0+sjVoGs2VTv3q/8N4Sua45qNVNyIma0u5499juQTId9Ov3oIiTyFVgCZ+YNnC9
-         /zeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JYj5Vuu2wwz5/1bubcaD27zMhmuUTtHi+dTrlxCeEQo=;
-        b=LtiBoMyEZsNUStCjBN0FrDPVrCxgoHjK8ecGiPY0jz5hx3L/E5VVgggN3g+l/lrynj
-         av94g6optooifIi4YXF+UNVz+qInphOb7u2kWhJEl3xDI1HU8EaByWtQh+DlIof6W42x
-         Wh9bVTnIQGdkVhIfOSxuu9CGWlcguV8HbscfNn0sn6N+vSnKs7PiifBeFNzN9IJn6wtT
-         HJmUHhti7bSQzSBTU3Ppx4XHDdP9v/RB4c3frvC4oHGxtladzfN4nq/hS+yzNc33dOAe
-         G90gfIHxMAYx5HB3h3/gmkKdh1d8ThSvLw2scb+JJpxFkdZP6/wokF7E7yb1V/mXoA43
-         6Z2g==
-X-Gm-Message-State: APjAAAUvWbvPLjm1McymWqaaXk+Gf1X7zIjE0AqTke4hRfbGpt233xeV
-        1EBmOVyNlG3G4Lz+WZJinqS3OSyCjA9AKwP9ZZqzPQ==
-X-Google-Smtp-Source: APXvYqzV7LwLHfUN/uOof+1pMQj65BBC/djNC3BS8vZC+QuB1i0JvUK986VyoSTMIAIDmGIg0K85ux9PRsidtiGsiOI=
-X-Received: by 2002:a2e:80d3:: with SMTP id r19mr10234333ljg.41.1570216009077;
- Fri, 04 Oct 2019 12:06:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190917105902.445-1-m.felsch@pengutronix.de> <20190917105902.445-2-m.felsch@pengutronix.de>
- <AM5PR1001MB099472B4C90EF215134EF5AB80840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
-In-Reply-To: <AM5PR1001MB099472B4C90EF215134EF5AB80840@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 4 Oct 2019 21:06:36 +0200
-Message-ID: <CACRpkda_RuK_UfAVd+m5PZwMHUv3G-vSYdu+LWL2BG2HQqim2A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: da9062: add gpio bindings
-To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Support Opensource <Support.Opensource@diasemi.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        id S1728954AbfJDTJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 15:09:23 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:14468 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728762AbfJDTJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 15:09:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570216159;
+        s=strato-dkim-0002; d=fpond.eu;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=SjiSGCIWBrQ4el6i3TeHk1y7oyyLScjPosF/2NTani8=;
+        b=Pso+RSn998N0PA0ZBDS1uvL0YJ72y49pfU59oX7ybam6YRC52cVTPJ/rEC8uWnd5Xk
+        YsUJXVTNmD5/9kkGZyWiviAyGEgrb6bUKotLeBDdBd9W5Aq+8Y8bAJ4RPAJOmEv3Sg1A
+        srLTofOceQDpXyS1dPgwJfVs38SqcuhwrxeZgNe88r/l0SMOigaVhaM7kWWb5lkD0TKV
+        TdBSiXBvZDE3A0z6RxHLoKGOMO9lwJhR4EHWgmvddN4jTqjaAS832iRpkSZH/ugBMoO4
+        la4YBLaUd93uFX/YdKAAiNevNg46lFw+E/mflk7b5LmttYV6vorprDUBNPleUXhXQsRR
+        4PEw==
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73dmm4I5W0/AvA67Ot4fvR82tdd3x2KJk="
+X-RZG-CLASS-ID: mo00
+Received: from groucho.site
+        by smtp.strato.de (RZmta 44.28.0 DYNA|AUTH)
+        with ESMTPSA id i07086v94J9CcdX
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Fri, 4 Oct 2019 21:09:12 +0200 (CEST)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com
+Cc:     robh+dt@kernel.org, p.zabel@pengutronix.de,
+        enric.balletbo@collabora.com, djkurtz@chromium.org,
+        architt@codeaurora.org, matthias.bgg@gmail.com,
+        mark.rutland@arm.com, stonea168@163.com, andy.yan@rock-chips.com,
+        ajaykumar.rs@samsung.com, vpalatin@chromium.org,
+        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
+        ck.hu@mediatek.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, pawel.moll@arm.com,
+        ijc+devicetree@hellion.org.uk, inki.dae@samsung.com,
+        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
+        rahul.sharma@samsung.com, galak@codeaurora.org,
+        seanpaul@chromium.org, Ulrich Hecht <uli@fpond.eu>
+Subject: [PATCH v19 0/2] PS8640 MIPI-to-eDP bridge
+Date:   Fri,  4 Oct 2019 21:09:06 +0200
+Message-Id: <1570216148-22802-1-git-send-email-uli@fpond.eu>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 12:53 PM Adam Thomson
-<Adam.Thomson.Opensource@diasemi.com> wrote:
+Hi!
 
-> As mentioned for your other patch set where the regulator driver makes use of
-> GPIOs for control, I think here you should probably have pinctrl to define
-> alternate functions of each GPIO. It seems that mostly pinctrl drivers support
-> GPIO functionality rather than the other way, so maybe that's the direction
-> to go in? Maybe Linus has some input on this too.
+This driver seems to have fallen by the wayside because, while otherwise
+fine, it has a firmware update feature that requires a blob that is not in
+the linux-firmware repo.[1]
 
-Usually the both functions can coexist but the simplest if often to put
-them in the same driver.
+Whatever the cause for that may be, the update code is entirely optional
+(my chip works fine with whatever firmware is currently installed), so I
+have removed it in order to get this merged after all. I have also
+followed various trivial API changes that have piled up since 2016; see
+the individual patches for details.
 
-drivers/pinctrl/pinctrl-stmfx.c
-Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt
+I'm using this driver on an Acer Chromebook R13 ("Elm"); see
+https://github.com/uli/kernel/tree/elm-working-5.4.
 
-is a recent slow bus driver doing this.
+CU
+Uli
 
-Yours,
-Linus Walleij
+[1] https://patchwork.kernel.org/patch/9427543/
+
+Jitao Shi (2):
+  Documentation: bridge: Add documentation for ps8640 DT properties
+  drm/bridge: Add I2C based driver for ps8640 bridge
+
+ .../devicetree/bindings/display/bridge/ps8640.txt  |  44 ++
+ drivers/gpu/drm/bridge/Kconfig                     |  12 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/parade-ps8640.c             | 672 +++++++++++++++++++++
+ 4 files changed, 729 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ps8640.txt
+ create mode 100644 drivers/gpu/drm/bridge/parade-ps8640.c
+
+-- 
+2.7.4
+
