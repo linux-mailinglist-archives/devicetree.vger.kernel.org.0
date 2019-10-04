@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35456CBA37
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 14:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E962ACBA4A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 14:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728625AbfJDMTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 08:19:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49908 "EHLO mail.kernel.org"
+        id S1729313AbfJDMXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 08:23:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50662 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728288AbfJDMTe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 08:19:34 -0400
+        id S1727451AbfJDMXZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Oct 2019 08:23:25 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F02F6215EA;
-        Fri,  4 Oct 2019 12:19:32 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1F5CB20867;
+        Fri,  4 Oct 2019 12:23:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570191573;
-        bh=EZhcaGWIbvQNFC3/x1R6aUD4//NbWdk3Zca6MrIdJoA=;
+        s=default; t=1570191804;
+        bh=ar2kC7rdtySGPENEprKl86d8tIFKKkGoZVS904bdgRo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=za1MnphWmlCH0KGtsCgXp7XDwes6il1aMU0DBMP5JXqabUqKHFw9ml10Nnmcf7sww
-         ty3WB7F06h4uiq1fk5mjfqNANTflqXRjIPFDIfyrbPWrh7SZbpo4Sfa/O8FnauHU/K
-         ZZoNxwcoSUA1XWtO1Oij+4yTU48HUWSTrAFFWMXU=
-Date:   Fri, 4 Oct 2019 14:19:26 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH RESEND v7 0/3] Add USB3.0 and TI HD3SS3220 driver support
-Message-ID: <20191004121926.GA409389@kroah.com>
-References: <1567584941-13690-1-git-send-email-biju.das@bp.renesas.com>
- <OSBPR01MB21033E657CB361169BE71D51B89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+        b=Hwmr8URfsWBbEZDx1sk4G2/yfJq1YWgLu5qnllnyhYQ9OpaosHy3eO6qbhE+ZQufY
+         D8mRl5pd95qUKDkhQ2B4FXq/xbcx4OFlPfeghlyuEVH/UEoUG5ULhr3xYG6ghpQbas
+         op0gwHyiPvawUvcWpIm2sXppYKXisZmw7PzEUmcU=
+Date:   Fri, 4 Oct 2019 14:23:22 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     JC Kuo <jckuo@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        nkristam@nvidia.com, skomatineni@nvidia.com
+Subject: Re: [PATCH v2 0/7] add Tegra194 XUSB host and pad controller support
+Message-ID: <20191004122322.GB422178@kroah.com>
+References: <20191004081941.4831-1-jckuo@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <OSBPR01MB21033E657CB361169BE71D51B89F0@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+In-Reply-To: <20191004081941.4831-1-jckuo@nvidia.com>
 User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 03, 2019 at 01:06:31PM +0000, Biju Das wrote:
-> Hi Greg,
+On Fri, Oct 04, 2019 at 04:19:34PM +0800, JC Kuo wrote:
+> Hi,
 > 
-> Polite reminder.  
+> This series introduces support for Tegra194 XUSB host and pad
+> controller. Tegra194 XUSB host and pad controller are highly
+> similar to the controllers found on Tegra186. Therefore, it's
+> possible to resue xhci-tegra.c and xusb-tegra186.c for Tegra194.
 > 
-> Are happy with the below patch series, since the dependency patches hit on mainline 5.4-rc1?
-> 
-> https://patchwork.kernel.org/project/linux-usb/list/?series=169305
+> JC Kuo (7):
+>   xhci: tegra: Parameterize mailbox register addresses
+>   usb: host: xhci-tegra: Add Tegra194 XHCI support
+>   phy: tegra: xusb: Protect Tegra186 soc with config
+>   phy: tegra: xusb: Add Tegra194 support
+>   dt-bindings: phy: tegra: Add Tegra194 support
+>   arm64: tegra: Add XUSB and pad controller on Tegra194
+>   arm64: tegra: Enable XUSB host in P2972-0000 board
 
-Now queued up, thanks.
+What changed from v1?  You need to put that somewhere, usually in the
+patches themselves, below the --- line.
+
+Or at the very least, in the cover letter.
+
+Given that I can't find it anywhere here, I'll expect a v3 with that
+information to be sent soon :(
+
+thanks,
 
 greg k-h
