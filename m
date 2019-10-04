@@ -2,177 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0200CBF0D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 17:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC717CBF2E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 17:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389809AbfJDPXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 11:23:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57722 "EHLO mail.kernel.org"
+        id S2389210AbfJDPai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 11:30:38 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:42392 "EHLO fornost.hmeau.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389591AbfJDPXR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 11:23:17 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1227B2133F;
-        Fri,  4 Oct 2019 15:23:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570202596;
-        bh=fpWPXT8ggD/e+pn1BYIuXjDg5w4o0wtetCOExwO2jKI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=1HC8jaPP2G0MWAWxaAFL2+tq5ciAJ4x5mOg5CSEB8t19cEmbXeVfBzU87NzEzJYzU
-         /Z91Kt7mxYJejs3+VaDuSOptlGlIevhRK1zWaCkW9zPUgRvyhZzxjiGmh7mKcoePT9
-         drAO1mvoLrPQRMzwDU31x5pbXSxRgdfEwW1SGYRw=
-Received: by mail-qt1-f176.google.com with SMTP id 3so9098238qta.1;
-        Fri, 04 Oct 2019 08:23:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAXSUdn19LnA+gvVYyJGm+dif/8LIaeRGUIF1pyZCbB5VdZYaHdB
-        S+/lz17ghZtQt6pvBApR4swTmCuGFozzIjf8gg==
-X-Google-Smtp-Source: APXvYqyMEEXcNS7O6u6Diqt8pCgl45a2tKKmM4tc+3EtuFfs+n4HBWeELngFdSwx5uOrLCiy+N5MR6jFrVyyPKoQlLc=
-X-Received: by 2002:ac8:6982:: with SMTP id o2mr16440439qtq.143.1570202595162;
- Fri, 04 Oct 2019 08:23:15 -0700 (PDT)
+        id S2389086AbfJDPai (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Oct 2019 11:30:38 -0400
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
+        by fornost.hmeau.com with smtp (Exim 4.89 #2 (Debian))
+        id 1iGPWu-0000ro-GG; Sat, 05 Oct 2019 01:30:05 +1000
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sat, 05 Oct 2019 01:29:56 +1000
+Date:   Sat, 5 Oct 2019 01:29:56 +1000
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     mpm@selenic.com, arnd@arndb.de, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, sumit.garg@linaro.org,
+        jens.wiklander@linaro.org, vkoul@kernel.org, tglx@linutronix.de,
+        joel@jms.id.au, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v3 0/2] hwrng: npcm: add NPCM RNG driver support
+Message-ID: <20191004152956.GE5148@gondor.apana.org.au>
+References: <20190912090149.7521-1-tmaimon77@gmail.com>
 MIME-Version: 1.0
-References: <20190924124945.491326-1-nuno.sa@analog.com> <20190924124945.491326-4-nuno.sa@analog.com>
- <20191002002331.GA17502@bogus> <a85b33d3cd24b4225e4be3a25221f9c56cdcca5c.camel@analog.com>
- <CAL_JsqJPFfUmOOQ-f_ibbTXdzgYxYMf2+7HCq2eBn_MkfRsdbQ@mail.gmail.com> <eec33c7156674770ca2f3033baed76c0e05a8587.camel@analog.com>
-In-Reply-To: <eec33c7156674770ca2f3033baed76c0e05a8587.camel@analog.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 4 Oct 2019 10:23:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK6oC1VFb4ni9pn9a=sfxWK9pAmBBgajpZwad5udFkPoA@mail.gmail.com>
-Message-ID: <CAL_JsqK6oC1VFb4ni9pn9a=sfxWK9pAmBBgajpZwad5udFkPoA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: iio: Add ltc2947 documentation
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190912090149.7521-1-tmaimon77@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 9:59 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
->
-> Hi Rob,
->
-> Just wanted to clarify something which I don't know if is something I'm
-> doing wrong or if it is some issue.
->
-> On Wed, 2019-10-02 at 14:06 -0500, Rob Herring wrote:
-> >
-> > On Wed, Oct 2, 2019 at 10:09 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
-> > > On Wed, 2019-10-02 at 09:19 -0500, Rob Herring wrote:
-> > > > On Tue, Sep 24, 2019 at 02:49:45PM +0200, Nuno S=C3=A1 wrote:
-> > > > > Document the LTC2947 device devicetree bindings.
-> > > > >
-> > > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > > > ---
-> > > > >  .../bindings/hwmon/adi,ltc2947.yaml           | 101
-> > > > > ++++++++++++++++++
-> > > > >  MAINTAINERS                                   |   1 +
-> > > > >  2 files changed, 102 insertions(+)
-> > > > >  create mode 100644
-> > > > > Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > > >
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > > > b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..2ea0187421d4
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-> > > > > @@ -0,0 +1,101 @@
-> > > >
-> > > > Missing license. Please make new bindings (GPL-2.0-only OR BSD-2-
-> > > > Clause)
-> > >
-> > > ack.
-> > >
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id:
-> > > > > http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Analog Devices LTC2947 high precision power and energy
-> > > > > monitor
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > > > +
-> > > > > +description: |
-> > > > > +  Analog Devices LTC2947 high precision power and energy
-> > > > > monitor
-> > > > > over SPI or I2C.
-> > > > > +
-> > > > > +
-> > > > > https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/LTC2947.pdf
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > > > +      - adi,ltc2947
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  clocks:
-> > > > > +    description:
-> > > > > +      The LTC2947 uses either a trimmed internal oscillator or
-> > > > > an
-> > > > > external clock
-> > > > > +      as the time base for determining the integration period
-> > > > > to
-> > > > > represent time,
-> > > > > +      charge and energy. When an external clock is used, this
-> > > > > property must be
-> > > > > +      set accordingly.
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  adi,accumulator-ctl-pol:
-> > > > > +    description:
-> > > > > +      This property controls the polarity of current that is
-> > > > > accumulated to
-> > > > > +      calculate charge and energy so that, they can be only
-> > > > > accumulated for
-> > > > > +      positive current for example. Since there are two sets
-> > > > > of
-> > > > > registers for
-> > > > > +      the accumulated values, this entry can also have two
-> > > > > items
-> > > > > which sets
-> > > > > +      energy1/charge1 and energy2/charger2 respectively. Check
-> > > > > table 12 of the
-> > > > > +      datasheet for more information on the supported options.
-> > > > > +    allOf:
-> > > > > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > > +      - enum: [0, 1, 2, 3]
-> > > > > +      - minItems: 2
-> > > > > +      - maxItems: 2
-> > > > > +    default: [0, 0]
-> > > >
-> > > > This should be:
-> > > >
-> > > > allOf:
-> > > >   - $ref: ...
-> > > > items:
-> > > >   enum: [0, 1, 2, 3]
-> > > >   default: 0
-> > > > minItems: 2
-> > > > maxItems: 2
->
-> When trying the above I get:
->
-> "ltc2947@0: adi,accumulator-ctl-pol:0: [0, 1] is not valid under any of
-> the given schemas"
+On Thu, Sep 12, 2019 at 12:01:47PM +0300, Tomer Maimon wrote:
+> This patch set adds Random Number Generator (RNG) support 
+> for the Nuvoton NPCM Baseboard Management Controller (BMC).
+> 
+> The RNG driver we use power consumption when the RNG 
+> is not required.
+> 
+> The NPCM RNG driver tested on NPCM750 evaluation board.
+> 
+> Addressed comments from:.
+>  - Daniel Thompson: https://lkml.org/lkml/2019/9/10/352
+>  - Milton Miller II : https://lkml.org/lkml/2019/9/10/847
+>  - Daniel Thompson: https://lkml.org/lkml/2019/9/10/294
+> 
+> Changes since version 2:
+>  - Rearrange wait parameter in npcm_rng_read function.
+>  - Calling pm_runtime_enable function before hwrng_register function 
+>    called to enable the hwrng before add_early_randomness called.
+>  - Remove quality dt-binding parameter in the driver and documentation.
+>  - Disable CONFIG_PM if devm_hwrng_register failed.
+>  - Remove owner setting in the driver struct.
+> 
+> Changes since version 1:
+>  - Define timout in real-world units.
+>  - Using readl_poll_timeout in rng_read function.
+>  - Honor wait parameter in rng_read function.
+>  - Using local variable instead of #ifndef.
+>  - Remove probe print.
+> 
+> Tomer Maimon (2):
+>   dt-binding: hwrng: add NPCM RNG documentation
+>   hwrng: npcm: add NPCM RNG driver
+> 
+>  .../bindings/rng/nuvoton,npcm-rng.txt         |  12 ++
+>  drivers/char/hw_random/Kconfig                |  13 ++
+>  drivers/char/hw_random/Makefile               |   1 +
+>  drivers/char/hw_random/npcm-rng.c             | 186 ++++++++++++++++++
+>  4 files changed, 212 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+>  create mode 100644 drivers/char/hw_random/npcm-rng.c
 
-Is dtschema up to date with the latest. I think I fixed this case
-recently, though with the wonderful json-schema errors it is hard to
-tell.
-
-Rob
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
