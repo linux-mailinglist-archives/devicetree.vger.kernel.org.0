@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56ACDCBD1E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A938CBD20
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388971AbfJDO14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:27:56 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:59373 "EHLO
+        id S2388982AbfJDO15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:27:57 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:38113 "EHLO
         relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388840AbfJDO1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:55 -0400
+        with ESMTP id S2388840AbfJDO14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:56 -0400
 X-Originating-IP: 86.250.200.211
 Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 1A69BC0023;
-        Fri,  4 Oct 2019 14:27:53 +0000 (UTC)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 57196C0002;
+        Fri,  4 Oct 2019 14:27:54 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -31,9 +31,9 @@ Cc:     <devicetree@vger.kernel.org>,
         Stefan Chulski <stefanc@marvell.com>,
         Yan Markman <ymarkman@marvell.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 09/21] arm64: dts: marvell: Add AP806-quad cache description
-Date:   Fri,  4 Oct 2019 16:27:26 +0200
-Message-Id: <20191004142738.7370-10-miquel.raynal@bootlin.com>
+Subject: [PATCH v2 10/21] arm64: dts: marvell: Add AP807-quad cache description
+Date:   Fri,  4 Oct 2019 16:27:27 +0200
+Message-Id: <20191004142738.7370-11-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191004142738.7370-1-miquel.raynal@bootlin.com>
 References: <20191004142738.7370-1-miquel.raynal@bootlin.com>
@@ -52,13 +52,13 @@ to show up in sysfs under: /sys/devices/system/cpu/cpuX/cache/.
 Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- .../boot/dts/marvell/armada-ap806-quad.dtsi   | 42 +++++++++++++++++++
+ .../boot/dts/marvell/armada-ap807-quad.dtsi   | 42 +++++++++++++++++++
  1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
-index c25bc65727b5..3db427122f9e 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
+index 65364691257d..840466e143b4 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap807-quad.dtsi
 @@ -22,6 +22,13 @@
  			enable-method = "psci";
  			#cooling-cells = <2>;
