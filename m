@@ -2,81 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E229BCC056
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F44CC0AE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389910AbfJDQOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 12:14:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44628 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389131AbfJDQOz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 12:14:55 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6BC8C222C2
-        for <devicetree@vger.kernel.org>; Fri,  4 Oct 2019 16:14:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570205694;
-        bh=R5sSirwUbEkqcu4d1r6lkTNzDq1obCEV8XM1j86dPs4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mWLE5C6mhG6IzW9QjIbm92y0poURo1jhbA2Lw5QuTrbTZbTKnH01WvE3aGhA/f7tF
-         RXMUNDRsfXW8aSHRHFS/F3jN1yxyrVBWFiM0iyrPTG0HIjHZMBUjDl5KP6YtMlCz2/
-         kMaaMTGnY4lnCKdbjKeOtAnOyE8wWa4VXouzXxcY=
-Received: by mail-qk1-f181.google.com with SMTP id u22so6272734qkk.11
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 09:14:54 -0700 (PDT)
-X-Gm-Message-State: APjAAAXNHpjSYC3oQmhkoFCoRApZpMDOEcN/Oa2yYwFP8J0DO2CK3UMZ
-        DC/6KrDAwKFBIYBqA9iepkOt56w3pSt922nfCA==
-X-Google-Smtp-Source: APXvYqz/kmnAhT2fOXDnY0OfmKw4xGmJxsKKNwku/uLv+v2VfNMmt/d91t0lQQbb2yu77oqQYoqTZiAxYEctjkRy6aE=
-X-Received: by 2002:a05:620a:549:: with SMTP id o9mr10924164qko.223.1570205693580;
- Fri, 04 Oct 2019 09:14:53 -0700 (PDT)
+        id S1728336AbfJDQ3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 12:29:18 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:14621 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728346AbfJDQ3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:29:17 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d97735b0000>; Fri, 04 Oct 2019 09:29:15 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 04 Oct 2019 09:29:15 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 04 Oct 2019 09:29:15 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Oct
+ 2019 16:29:15 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Fri, 4 Oct 2019 16:29:15 +0000
+Received: from jckuo-lt.nvidia.com (Not Verified[10.19.101.223]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d9773580000>; Fri, 04 Oct 2019 09:29:15 -0700
+From:   JC Kuo <jckuo@nvidia.com>
+To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>, <skomatineni@nvidia.com>,
+        JC Kuo <jckuo@nvidia.com>
+Subject: [PATCH v3 1/7] xhci: tegra: Parameterize mailbox register addresses
+Date:   Sat, 5 Oct 2019 00:29:00 +0800
+Message-ID: <20191004162906.4818-2-jckuo@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191004162906.4818-1-jckuo@nvidia.com>
+References: <20191004162906.4818-1-jckuo@nvidia.com>
+X-NVConfidentiality: public
 MIME-Version: 1.0
-References: <20191004142738.7370-1-miquel.raynal@bootlin.com> <20191004142738.7370-18-miquel.raynal@bootlin.com>
-In-Reply-To: <20191004142738.7370-18-miquel.raynal@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 4 Oct 2019 11:14:42 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLQ+mfdDoTMiN8T3-0+LAv+rU=G6qVOvEcKb4beWGTWmw@mail.gmail.com>
-Message-ID: <CAL_JsqLQ+mfdDoTMiN8T3-0+LAv+rU=G6qVOvEcKb4beWGTWmw@mail.gmail.com>
-Subject: Re: [PATCH v2 17/21] dt-bindings: marvell: Declare the CN913x SoC compatibles
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Yan Markman <ymarkman@marvell.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1570206556; bh=3J5CM+iShX9HnmBqSs2UYEG11DDpBrM4rxQ1znZIh+U=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
+         Content-Type;
+        b=eUmy4fi2HQpgNm1FqexzzEpBX7cSNQTYIqoHrS09MWnawU8l3FPd0maATha4pVAZp
+         OhKBlj1YCKKXj7+9EVM++3C4L/QSV+52nMnWIseVLbJZ5QqSiA/+vMc/dIo0BRCioj
+         adAUNLOHOImt+3ss6BB+6n8Gd4EkbVhzoC+TT02GcAdmB5TtFwn+jLOZu4gDA8PY3N
+         PbSKY/W5tmk8HQ4TKTyW/dxbeo5fS0NiBnNf53SdgmkWTPJzxsB7v6WwzeRnucOCMb
+         ioReypJVw8IjuTv8JWSqzCw06/6O5uggVp8gM1iQmypqP059olQzn1uoW2yf/r9fqk
+         B847JLa4+RBkg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 9:28 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
->
-> From: Grzegorz Jaszczyk <jaz@semihalf.com>
->
-> Describe the compatible properties for the new Marvell SoCs:
-> * CN9130: 1x AP807-quad + 1x CP115 (1x embedded)
-> * CN9131: 1x AP807-quad + 2x CP115 (1x embedded + 1x modular)
-> * CN9132: 1x AP807-quad + 3x CP115 (1x embedded + 2x modular)
->
-> CP115 are similar to CP110 in terms of features.
->
-> There are three development boards based on these SoCs:
-> * CN9130-DB: comes as a single mother board (with the CP115 bundled)
-> * CN9131-DB: same as CN9130-DB with one additional modular CP115
-> * CN9132-DB: same as CN9130-DB with two additional modular CP115
->
-> Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../bindings/arm/marvell/armada-7k-8k.yaml    | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
+Tegra194 XUSB host controller has rearranged mailbox registers. This
+commit makes mailbox registers address a part of "soc" data so that
+xhci-tegra driver can be used for Tegra194.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: JC Kuo <jckuo@nvidia.com>
+---
+Changes in v3: none
+Changes in v2: none
+
+ drivers/usb/host/xhci-tegra.c | 58 +++++++++++++++++++++++++----------
+ 1 file changed, 42 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci-tegra.c
+index 2ff7c911fbd0..add6b8fb40e1 100644
+--- a/drivers/usb/host/xhci-tegra.c
++++ b/drivers/usb/host/xhci-tegra.c
+@@ -42,19 +42,18 @@
+ #define XUSB_CFG_CSB_BASE_ADDR			0x800
+ 
+ /* FPCI mailbox registers */
+-#define XUSB_CFG_ARU_MBOX_CMD			0x0e4
++/* XUSB_CFG_ARU_MBOX_CMD */
+ #define  MBOX_DEST_FALC				BIT(27)
+ #define  MBOX_DEST_PME				BIT(28)
+ #define  MBOX_DEST_SMI				BIT(29)
+ #define  MBOX_DEST_XHCI				BIT(30)
+ #define  MBOX_INT_EN				BIT(31)
+-#define XUSB_CFG_ARU_MBOX_DATA_IN		0x0e8
++/* XUSB_CFG_ARU_MBOX_DATA_IN and XUSB_CFG_ARU_MBOX_DATA_OUT */
+ #define  CMD_DATA_SHIFT				0
+ #define  CMD_DATA_MASK				0xffffff
+ #define  CMD_TYPE_SHIFT				24
+ #define  CMD_TYPE_MASK				0xff
+-#define XUSB_CFG_ARU_MBOX_DATA_OUT		0x0ec
+-#define XUSB_CFG_ARU_MBOX_OWNER			0x0f0
++/* XUSB_CFG_ARU_MBOX_OWNER */
+ #define  MBOX_OWNER_NONE			0
+ #define  MBOX_OWNER_FW				1
+ #define  MBOX_OWNER_SW				2
+@@ -146,6 +145,13 @@ struct tegra_xusb_phy_type {
+ 	unsigned int num;
+ };
+ 
++struct tega_xusb_mbox_regs {
++	u16 cmd;
++	u16 data_in;
++	u16 data_out;
++	u16 owner;
++};
++
+ struct tegra_xusb_soc {
+ 	const char *firmware;
+ 	const char * const *supply_names;
+@@ -160,6 +166,8 @@ struct tegra_xusb_soc {
+ 		} usb2, ulpi, hsic, usb3;
+ 	} ports;
+ 
++	struct tega_xusb_mbox_regs mbox;
++
+ 	bool scale_ss_clock;
+ 	bool has_ipfs;
+ };
+@@ -395,15 +403,15 @@ static int tegra_xusb_mbox_send(struct tegra_xusb *tegra,
+ 	 * ACK/NAK messages.
+ 	 */
+ 	if (!(msg->cmd == MBOX_CMD_ACK || msg->cmd == MBOX_CMD_NAK)) {
+-		value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_OWNER);
++		value = fpci_readl(tegra, tegra->soc->mbox.owner);
+ 		if (value != MBOX_OWNER_NONE) {
+ 			dev_err(tegra->dev, "mailbox is busy\n");
+ 			return -EBUSY;
+ 		}
+ 
+-		fpci_writel(tegra, MBOX_OWNER_SW, XUSB_CFG_ARU_MBOX_OWNER);
++		fpci_writel(tegra, MBOX_OWNER_SW, tegra->soc->mbox.owner);
+ 
+-		value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_OWNER);
++		value = fpci_readl(tegra, tegra->soc->mbox.owner);
+ 		if (value != MBOX_OWNER_SW) {
+ 			dev_err(tegra->dev, "failed to acquire mailbox\n");
+ 			return -EBUSY;
+@@ -413,17 +421,17 @@ static int tegra_xusb_mbox_send(struct tegra_xusb *tegra,
+ 	}
+ 
+ 	value = tegra_xusb_mbox_pack(msg);
+-	fpci_writel(tegra, value, XUSB_CFG_ARU_MBOX_DATA_IN);
++	fpci_writel(tegra, value, tegra->soc->mbox.data_in);
+ 
+-	value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_CMD);
++	value = fpci_readl(tegra, tegra->soc->mbox.cmd);
+ 	value |= MBOX_INT_EN | MBOX_DEST_FALC;
+-	fpci_writel(tegra, value, XUSB_CFG_ARU_MBOX_CMD);
++	fpci_writel(tegra, value, tegra->soc->mbox.cmd);
+ 
+ 	if (wait_for_idle) {
+ 		unsigned long timeout = jiffies + msecs_to_jiffies(250);
+ 
+ 		while (time_before(jiffies, timeout)) {
+-			value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_OWNER);
++			value = fpci_readl(tegra, tegra->soc->mbox.owner);
+ 			if (value == MBOX_OWNER_NONE)
+ 				break;
+ 
+@@ -431,7 +439,7 @@ static int tegra_xusb_mbox_send(struct tegra_xusb *tegra,
+ 		}
+ 
+ 		if (time_after(jiffies, timeout))
+-			value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_OWNER);
++			value = fpci_readl(tegra, tegra->soc->mbox.owner);
+ 
+ 		if (value != MBOX_OWNER_NONE)
+ 			return -ETIMEDOUT;
+@@ -598,16 +606,16 @@ static irqreturn_t tegra_xusb_mbox_thread(int irq, void *data)
+ 
+ 	mutex_lock(&tegra->lock);
+ 
+-	value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_DATA_OUT);
++	value = fpci_readl(tegra, tegra->soc->mbox.data_out);
+ 	tegra_xusb_mbox_unpack(&msg, value);
+ 
+-	value = fpci_readl(tegra, XUSB_CFG_ARU_MBOX_CMD);
++	value = fpci_readl(tegra, tegra->soc->mbox.cmd);
+ 	value &= ~MBOX_DEST_SMI;
+-	fpci_writel(tegra, value, XUSB_CFG_ARU_MBOX_CMD);
++	fpci_writel(tegra, value, tegra->soc->mbox.cmd);
+ 
+ 	/* clear mailbox owner if no ACK/NAK is required */
+ 	if (!tegra_xusb_mbox_cmd_requires_ack(msg.cmd))
+-		fpci_writel(tegra, MBOX_OWNER_NONE, XUSB_CFG_ARU_MBOX_OWNER);
++		fpci_writel(tegra, MBOX_OWNER_NONE, tegra->soc->mbox.owner);
+ 
+ 	tegra_xusb_mbox_handle(tegra, &msg);
+ 
+@@ -1375,6 +1383,12 @@ static const struct tegra_xusb_soc tegra124_soc = {
+ 	},
+ 	.scale_ss_clock = true,
+ 	.has_ipfs = true,
++	.mbox = {
++		.cmd = 0xe4,
++		.data_in = 0xe8,
++		.data_out = 0xec,
++		.owner = 0xf0,
++	},
+ };
+ MODULE_FIRMWARE("nvidia/tegra124/xusb.bin");
+ 
+@@ -1407,6 +1421,12 @@ static const struct tegra_xusb_soc tegra210_soc = {
+ 	},
+ 	.scale_ss_clock = false,
+ 	.has_ipfs = true,
++	.mbox = {
++		.cmd = 0xe4,
++		.data_in = 0xe8,
++		.data_out = 0xec,
++		.owner = 0xf0,
++	},
+ };
+ MODULE_FIRMWARE("nvidia/tegra210/xusb.bin");
+ 
+@@ -1432,6 +1452,12 @@ static const struct tegra_xusb_soc tegra186_soc = {
+ 	},
+ 	.scale_ss_clock = false,
+ 	.has_ipfs = false,
++	.mbox = {
++		.cmd = 0xe4,
++		.data_in = 0xe8,
++		.data_out = 0xec,
++		.owner = 0xf0,
++	},
+ };
+ 
+ static const struct of_device_id tegra_xusb_of_match[] = {
+-- 
+2.17.1
+
