@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 177EBCB46B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 08:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC2ACB47A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 08:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387691AbfJDGVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 02:21:36 -0400
-Received: from mail-ua1-f65.google.com ([209.85.222.65]:36372 "EHLO
-        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729648AbfJDGVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 02:21:34 -0400
-Received: by mail-ua1-f65.google.com with SMTP id r25so1705566uam.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 23:21:32 -0700 (PDT)
+        id S1731654AbfJDG3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 02:29:39 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:34110 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730816AbfJDG3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 02:29:39 -0400
+Received: by mail-ua1-f68.google.com with SMTP id q11so1717698uao.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2019 23:29:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3VA6KMsG3nx06bNmB0dVu0SsT6kYQkCPRD3KsBbwQUM=;
-        b=eAVNcSdYZdHu2Tydt5eci09qeF80XduBLbw81dp6aYCwZtLUjglNwse6Z5WwlUx6d3
-         oR+GjfPOewBt/WGmeeV/AWjVXS3hd7dyK4dIDbq3pMAcoMPVAEa1wS4TVv7GLYQ8bumz
-         912qcbHDJCdo/mzZ9KJ+RMb8f6+dEcPqc2nkeuToFTH26lG5Oi+jNf3bIYHSQtgqEAgn
-         SPNUB+y/mE9C7Ej2c4rhQ/W+FSf0MY4vTSKFOJ5PdcLEP/MGeF5Xrbw9eMTLhIUCgtXT
-         E6ySS9Fv1Se7h68KEeFyn4BHxggAOw8v+yzm51iuKcfW0yDiGUwzZTereWGDwctgJk1C
-         4YMQ==
+        bh=cHb3TMwEz5+OXW5BLXUPEo0iVNuw/zaJSQ8nudxgUfs=;
+        b=Uwjd/yJX/zvBAyGszyOFkHGxGNHPYzrzCZYU0PmR6Q5fH1sYTLP2LrV8rUqHQdILhC
+         //17swpcqvTHMY4+a7g3Rj2z1VvmrmgbhwMqIYV6yDI6JbVCVuOkv7CQ6aSbI6NOhRlb
+         VBWjjFQ5Nmiroaiap6+rXL/94RjLkw3GBUB9VkIWLnkrhiuwaP3Brj/EfFxSYXq1nAVE
+         f6aOM0wju0q4zC7Ce3Astb9/I+2BWy4Txir0vqRryL5+kh27GVdW3u+Sa7PB20jZ6oWs
+         ctHyY+MWnyfXXvJNeX3BnvYei6rogQqQEDxluAnuZJmuGnKnhlbD8dhPRdQEuB/wgz9n
+         umlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3VA6KMsG3nx06bNmB0dVu0SsT6kYQkCPRD3KsBbwQUM=;
-        b=EYfmrYbrX1Pw9Sm3RKYJpTQybcfvsvQW5XK2TkOvb7qQWMqlgQy85sYn07AL5BAYX+
-         VhaGNaW8ZPCeFh5YDwTJKdwIJlWPEeRxW4pGa9ISY4rMfMW6ZHphfH8bVKsCtDPiF2jP
-         Hx5fFFpNoE4pJJP/yNFU5MfU6nZ5n7ziEdZceOw7L4zixMXCXHwWCiIcgErC/GyRoDsD
-         qNe+lqUT0bi2W3MDAjXV2xAKt4TB5Xw6eaXdoQnvGKQ9TX51+xWXUhEz+rZzIlqZqe+Z
-         JQME4eoQh8siGRU4r2+14PzwwrNa0yJltbGIW+Z4apbVZKpCR241WE2sGKvphy8NR8N6
-         D1kA==
-X-Gm-Message-State: APjAAAWCVfZVJvubvwSOxsfJsdZ/FEKRAbYLqQb5MiNDSLRX6MX8CF0q
-        JljXqZr3b9of3rrfNk+Z5wo9mB7xzBU/nwO9qS9ZgA==
-X-Google-Smtp-Source: APXvYqxUAWDAKSyRlKUVwmcQP5taPZrKlBCqAfpilhJXELmM3ge2ED1Kpw7lsSdHFyM2x1yd0lHq32mU/+8FdWLL6YM=
-X-Received: by 2002:ab0:6190:: with SMTP id h16mr5000205uan.129.1570170091738;
- Thu, 03 Oct 2019 23:21:31 -0700 (PDT)
+        bh=cHb3TMwEz5+OXW5BLXUPEo0iVNuw/zaJSQ8nudxgUfs=;
+        b=rv3VGMxaqVbsvnamohf7ELlPlKyw0MciYyIpyQ6kRhGlWKFpWpt1LehLWbcdl0GqLZ
+         hFVmi54MtLB6kS2zedX3ZsPY68c0ymozPTzlFB8iFkzOilodCJhRmGjZkQqSX6H80rvd
+         aAFzTehzUUv/2WmTH0NzFcCCjHVpEPAUyfPX+BbNJSd6U+Jiw82KUuHY/WVCCJb6S6R5
+         1voTxMbj+iY9GxEu/oCkz5OdWAjqjTqLwU2pmiTkG0PdW+SAw/hJa62GhOu6ChK774+U
+         uOCoqZIkSU6A5LNJFTg8qYx4+3kajkMYCIPUi5mQbMQIxCkhoPI0Mb/gOz0aRA7qiDOR
+         lvfw==
+X-Gm-Message-State: APjAAAXi0xKbGIl6MlbRHWq++7jx1uupQGTJZSU7MkWHNKZ4YrWV7CPT
+        EYQGeWtNfb0DVGoB8RR01orKSI0f/Eje4b8XOPVr8A==
+X-Google-Smtp-Source: APXvYqz6daR9aHVc9S81jmd9/IFtYSbtxQdmea7YqFH+8nFRj86tzklqTbvvwLZy2tpZ0Dhc9hS5mF/g7d507FyWhH0=
+X-Received: by 2002:ab0:6190:: with SMTP id h16mr5010959uan.129.1570170577595;
+ Thu, 03 Oct 2019 23:29:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190905122112.29672-1-ludovic.Barre@st.com> <20190905122112.29672-2-ludovic.Barre@st.com>
- <CAPDyKFpcb=dT0XBAGVL68t--xi5853Dzsgak-vbx5VcvxLZ4zA@mail.gmail.com>
-In-Reply-To: <CAPDyKFpcb=dT0XBAGVL68t--xi5853Dzsgak-vbx5VcvxLZ4zA@mail.gmail.com>
+References: <20190905122112.29672-1-ludovic.Barre@st.com> <20190905122112.29672-3-ludovic.Barre@st.com>
+In-Reply-To: <20190905122112.29672-3-ludovic.Barre@st.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 4 Oct 2019 08:20:55 +0200
-Message-ID: <CAPDyKFrRDHeVs6RpM=qTT1AogLnFWJLh2S4-wCcrYAON9XVKCA@mail.gmail.com>
-Subject: Re: [PATCH V6 1/3] mmc: mmci: add hardware busy timeout feature
+Date:   Fri, 4 Oct 2019 08:29:01 +0200
+Message-ID: <CAPDyKFpWun8kEo00gfvx3b1W18HWQkaG2nQuvq2YiTWYUP2Maw@mail.gmail.com>
+Subject: Re: [PATCH V6 2/3] mmc: mmci: add busy_complete callback
 To:     Ludovic Barre <ludovic.Barre@st.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
@@ -64,144 +63,287 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Oct 2019 at 08:12, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+On Thu, 5 Sep 2019 at 14:22, Ludovic Barre <ludovic.Barre@st.com> wrote:
 >
-> On Thu, 5 Sep 2019 at 14:21, Ludovic Barre <ludovic.Barre@st.com> wrote:
-> >
-> > From: Ludovic Barre <ludovic.barre@st.com>
-> >
-> > In some variants, the data timer starts and decrements
-> > when the DPSM enters in Wait_R or Busy state
-> > (while data transfer or MMC_RSP_BUSY), and generates a
-> > data timeout error if the counter reach 0.
+> From: Ludovic Barre <ludovic.barre@st.com>
 >
+> This patch adds busy_completion callback at mmci_host_ops
+> to allow to define a specific busy completion by variant.
 >
-> >
-> > -Define max_busy_timeout (in ms) according to clock.
-> > -Set data timer register if the command has rsp_busy flag.
-> >  If busy_timeout is not defined by framework, the busy
-> >  length after Data Burst is defined as 1 second
-> >  (refer: 4.6.2.2 Write of sd specification part1 v6-0).
+> The legacy code corresponding to busy completion used
+> by ux500 variants is moved to ux500_busy_complete function.
 >
-> How about re-phrasing this as below:
->
-> -----
-> In the stm32_sdmmc variant, the datatimer is active not only during
-> data transfers with the DPSM, but also while waiting for the busyend
-> IRQs from commands having the MMC_RSP_BUSY flag set. This leads to an
-> incorrect IRQ being raised to signal MCI_DATATIMEOUT error, which
-> simply breaks the behaviour.
->
-> Address this by updating the datatimer value before sending a command
-> having the MMC_RSP_BUSY flag set. To inform the mmc core about the
-> maximum supported busy timeout, which also depends on the current
-> clock rate, set ->max_busy_timeout (in ms).
-> -----
->
-> Regarding the busy_timeout, the core should really assign it a value
-> for all commands having the RSP_BUSY flag set. However, I realize the
-> core needs to be improved to cover all these cases - and I am looking
-> at that, but not there yet.
->
-> I would also suggest to use a greater value than 1s, as that seems a
-> bit low for the "undefined" case. Perhaps use the max_busy_timeout,
-> which would be nice a simple or 10s, which I think is used by some
-> other drivers.
->
-> > -Add MCI_DATATIMEOUT error management in mmci_cmd_irq.
-> >
-> > Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
-> > ---
-> >  drivers/mmc/host/mmci.c | 42 ++++++++++++++++++++++++++++++++++++-----
-> >  drivers/mmc/host/mmci.h |  3 +++
-> >  2 files changed, 40 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-> > index c37e70dbe250..c30319255dc2 100644
-> > --- a/drivers/mmc/host/mmci.c
-> > +++ b/drivers/mmc/host/mmci.c
-> > @@ -1075,6 +1075,7 @@ static void
-> >  mmci_start_command(struct mmci_host *host, struct mmc_command *cmd, u32 c)
-> >  {
-> >         void __iomem *base = host->base;
-> > +       unsigned long long clks;
-> >
-> >         dev_dbg(mmc_dev(host->mmc), "op %02x arg %08x flags %08x\n",
-> >             cmd->opcode, cmd->arg, cmd->flags);
-> > @@ -1097,6 +1098,16 @@ mmci_start_command(struct mmci_host *host, struct mmc_command *cmd, u32 c)
-> >                 else
-> >                         c |= host->variant->cmdreg_srsp;
-> >         }
-> > +
-> > +       if (host->variant->busy_timeout && cmd->flags & MMC_RSP_BUSY) {
-> > +               if (!cmd->busy_timeout)
-> > +                       cmd->busy_timeout = 1000;
-> > +
-> > +               clks = (unsigned long long)cmd->busy_timeout * host->cclk;
-> > +               do_div(clks, MSEC_PER_SEC);
-> > +               writel_relaxed(clks, host->base + MMCIDATATIMER);
-> > +       }
-> > +
-> >         if (/*interrupt*/0)
-> >                 c |= MCI_CPSM_INTERRUPT;
-> >
-> > @@ -1201,6 +1212,7 @@ static void
-> >  mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
-> >              unsigned int status)
-> >  {
-> > +       u32 err_msk = MCI_CMDCRCFAIL | MCI_CMDTIMEOUT;
-> >         void __iomem *base = host->base;
-> >         bool sbc, busy_resp;
-> >
-> > @@ -1215,8 +1227,11 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
-> >          * handling. Note that we tag on any latent IRQs postponed
-> >          * due to waiting for busy status.
-> >          */
-> > -       if (!((status|host->busy_status) &
-> > -             (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT|MCI_CMDSENT|MCI_CMDRESPEND)))
-> > +       if (host->variant->busy_timeout && busy_resp)
-> > +               err_msk |= MCI_DATATIMEOUT;
-> > +
-> > +       if (!((status | host->busy_status) &
-> > +             (err_msk | MCI_CMDSENT | MCI_CMDRESPEND)))
-> >                 return;
-> >
-> >         /* Handle busy detection on DAT0 if the variant supports it. */
-> > @@ -1235,8 +1250,7 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
-> >                  * while, to allow it to be set, but tests indicates that it
-> >                  * isn't needed.
-> >                  */
-> > -               if (!host->busy_status &&
-> > -                   !(status & (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT)) &&
-> > +               if (!host->busy_status && !(status & err_msk) &&
-> >                     (readl(base + MMCISTATUS) & host->variant->busy_detect_flag)) {
-> >
-> >                         writel(readl(base + MMCIMASK0) |
-> > @@ -1290,6 +1304,9 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
-> >                 cmd->error = -ETIMEDOUT;
-> >         } else if (status & MCI_CMDCRCFAIL && cmd->flags & MMC_RSP_CRC) {
-> >                 cmd->error = -EILSEQ;
-> > +       } else if (host->variant->busy_timeout && busy_resp &&
-> > +                  status & MCI_DATATIMEOUT) {
-> > +               cmd->error = -ETIMEDOUT;
->
-> It's not really clear to me what happens with the busy detection
-> status bit (variant->busy_detect_flag), in case a MCI_DATATIMEOUT IRQ
-> is raised, while also having host->busy_status set (waiting for
-> busyend).
->
-> By looking at the code a few lines above this, we may do a "return;"
-> while waiting for the busyend IRQ even if MCI_DATATIMEOUT also is
-> raised, potentially losing that from being caught. Is that really
-> correct?
+> The busy_detect boolean property is replaced by
+> busy_complete callback definition.
 
-A second thought. That "return;" is to manage the busyend IRQ being
-raised of the first edge due to broken HW. So I guess, this isn't an
-issue for stm32_sdmmc variant after all?
+At this point I prefer to keep th busy_detect boolean property. It
+makes the code a bit more consistent.
 
-I have a look at the next patches in the series..
+Although, I think in case busy_detect is set for the variant, the
+variant also needs to assign the new ->busy_completion() callback. In
+other words, we don't need to check for a valid callback in code if
+busy_detect is set.
 
-[...]
+Otherwise, this looks good to me!
 
 Kind regards
 Uffe
+
+>
+> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+> ---
+>  drivers/mmc/host/mmci.c | 142 +++++++++++++++++++++-------------------
+>  drivers/mmc/host/mmci.h |   3 +-
+>  2 files changed, 76 insertions(+), 69 deletions(-)
+>
+> diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
+> index c30319255dc2..e20164f4354d 100644
+> --- a/drivers/mmc/host/mmci.c
+> +++ b/drivers/mmc/host/mmci.c
+> @@ -44,6 +44,7 @@
+>  #define DRIVER_NAME "mmci-pl18x"
+>
+>  static void mmci_variant_init(struct mmci_host *host);
+> +static void ux500_variant_init(struct mmci_host *host);
+>  static void ux500v2_variant_init(struct mmci_host *host);
+>
+>  static unsigned int fmax = 515633;
+> @@ -175,7 +176,6 @@ static struct variant_data variant_ux500 = {
+>         .f_max                  = 100000000,
+>         .signal_direction       = true,
+>         .pwrreg_clkgate         = true,
+> -       .busy_detect            = true,
+>         .busy_dpsm_flag         = MCI_DPSM_ST_BUSYMODE,
+>         .busy_detect_flag       = MCI_ST_CARDBUSY,
+>         .busy_detect_mask       = MCI_ST_BUSYENDMASK,
+> @@ -184,7 +184,7 @@ static struct variant_data variant_ux500 = {
+>         .irq_pio_mask           = MCI_IRQ_PIO_MASK,
+>         .start_err              = MCI_STARTBITERR,
+>         .opendrain              = MCI_OD,
+> -       .init                   = mmci_variant_init,
+> +       .init                   = ux500_variant_init,
+>  };
+>
+>  static struct variant_data variant_ux500v2 = {
+> @@ -208,7 +208,6 @@ static struct variant_data variant_ux500v2 = {
+>         .f_max                  = 100000000,
+>         .signal_direction       = true,
+>         .pwrreg_clkgate         = true,
+> -       .busy_detect            = true,
+>         .busy_dpsm_flag         = MCI_DPSM_ST_BUSYMODE,
+>         .busy_detect_flag       = MCI_ST_CARDBUSY,
+>         .busy_detect_mask       = MCI_ST_BUSYENDMASK,
+> @@ -610,6 +609,67 @@ static u32 ux500v2_get_dctrl_cfg(struct mmci_host *host)
+>         return MCI_DPSM_ENABLE | (host->data->blksz << 16);
+>  }
+>
+> +static bool ux500_busy_complete(struct mmci_host *host, u32 status, u32 err_msk)
+> +{
+> +       void __iomem *base = host->base;
+> +
+> +       /*
+> +        * Before unmasking for the busy end IRQ, confirm that the
+> +        * command was sent successfully. To keep track of having a
+> +        * command in-progress, waiting for busy signaling to end,
+> +        * store the status in host->busy_status.
+> +        *
+> +        * Note that, the card may need a couple of clock cycles before
+> +        * it starts signaling busy on DAT0, hence re-read the
+> +        * MMCISTATUS register here, to allow the busy bit to be set.
+> +        * Potentially we may even need to poll the register for a
+> +        * while, to allow it to be set, but tests indicates that it
+> +        * isn't needed.
+> +        */
+> +       if (!host->busy_status && !(status & err_msk) &&
+> +           (readl(base + MMCISTATUS) & host->variant->busy_detect_flag)) {
+> +               writel(readl(base + MMCIMASK0) |
+> +                      host->variant->busy_detect_mask,
+> +                      base + MMCIMASK0);
+> +
+> +               host->busy_status = status & (MCI_CMDSENT | MCI_CMDRESPEND);
+> +               return false;
+> +       }
+> +
+> +       /*
+> +        * If there is a command in-progress that has been successfully
+> +        * sent, then bail out if busy status is set and wait for the
+> +        * busy end IRQ.
+> +        *
+> +        * Note that, the HW triggers an IRQ on both edges while
+> +        * monitoring DAT0 for busy completion, but there is only one
+> +        * status bit in MMCISTATUS for the busy state. Therefore
+> +        * both the start and the end interrupts needs to be cleared,
+> +        * one after the other. So, clear the busy start IRQ here.
+> +        */
+> +       if (host->busy_status &&
+> +           (status & host->variant->busy_detect_flag)) {
+> +               writel(host->variant->busy_detect_mask, base + MMCICLEAR);
+> +               return false;
+> +       }
+> +
+> +       /*
+> +        * If there is a command in-progress that has been successfully
+> +        * sent and the busy bit isn't set, it means we have received
+> +        * the busy end IRQ. Clear and mask the IRQ, then continue to
+> +        * process the command.
+> +        */
+> +       if (host->busy_status) {
+> +               writel(host->variant->busy_detect_mask, base + MMCICLEAR);
+> +
+> +               writel(readl(base + MMCIMASK0) &
+> +                      ~host->variant->busy_detect_mask, base + MMCIMASK0);
+> +               host->busy_status = 0;
+> +       }
+> +
+> +       return true;
+> +}
+> +
+>  /*
+>   * All the DMA operation mode stuff goes inside this ifdef.
+>   * This assumes that you have a generic DMA device interface,
+> @@ -953,9 +1013,16 @@ void mmci_variant_init(struct mmci_host *host)
+>         host->ops = &mmci_variant_ops;
+>  }
+>
+> +void ux500_variant_init(struct mmci_host *host)
+> +{
+> +       host->ops = &mmci_variant_ops;
+> +       host->ops->busy_complete = ux500_busy_complete;
+> +}
+> +
+>  void ux500v2_variant_init(struct mmci_host *host)
+>  {
+>         host->ops = &mmci_variant_ops;
+> +       host->ops->busy_complete = ux500_busy_complete;
+>         host->ops->get_datactrl_cfg = ux500v2_get_dctrl_cfg;
+>  }
+>
+> @@ -1235,68 +1302,9 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
+>                 return;
+>
+>         /* Handle busy detection on DAT0 if the variant supports it. */
+> -       if (busy_resp && host->variant->busy_detect) {
+> -
+> -               /*
+> -                * Before unmasking for the busy end IRQ, confirm that the
+> -                * command was sent successfully. To keep track of having a
+> -                * command in-progress, waiting for busy signaling to end,
+> -                * store the status in host->busy_status.
+> -                *
+> -                * Note that, the card may need a couple of clock cycles before
+> -                * it starts signaling busy on DAT0, hence re-read the
+> -                * MMCISTATUS register here, to allow the busy bit to be set.
+> -                * Potentially we may even need to poll the register for a
+> -                * while, to allow it to be set, but tests indicates that it
+> -                * isn't needed.
+> -                */
+> -               if (!host->busy_status && !(status & err_msk) &&
+> -                   (readl(base + MMCISTATUS) & host->variant->busy_detect_flag)) {
+> -
+> -                       writel(readl(base + MMCIMASK0) |
+> -                              host->variant->busy_detect_mask,
+> -                              base + MMCIMASK0);
+> -
+> -                       host->busy_status =
+> -                               status & (MCI_CMDSENT|MCI_CMDRESPEND);
+> -                       return;
+> -               }
+> -
+> -               /*
+> -                * If there is a command in-progress that has been successfully
+> -                * sent, then bail out if busy status is set and wait for the
+> -                * busy end IRQ.
+> -                *
+> -                * Note that, the HW triggers an IRQ on both edges while
+> -                * monitoring DAT0 for busy completion, but there is only one
+> -                * status bit in MMCISTATUS for the busy state. Therefore
+> -                * both the start and the end interrupts needs to be cleared,
+> -                * one after the other. So, clear the busy start IRQ here.
+> -                */
+> -               if (host->busy_status &&
+> -                   (status & host->variant->busy_detect_flag)) {
+> -                       writel(host->variant->busy_detect_mask,
+> -                              host->base + MMCICLEAR);
+> +       if (busy_resp && host->ops->busy_complete)
+> +               if (!host->ops->busy_complete(host, status, err_msk))
+>                         return;
+> -               }
+> -
+> -               /*
+> -                * If there is a command in-progress that has been successfully
+> -                * sent and the busy bit isn't set, it means we have received
+> -                * the busy end IRQ. Clear and mask the IRQ, then continue to
+> -                * process the command.
+> -                */
+> -               if (host->busy_status) {
+> -
+> -                       writel(host->variant->busy_detect_mask,
+> -                              host->base + MMCICLEAR);
+> -
+> -                       writel(readl(base + MMCIMASK0) &
+> -                              ~host->variant->busy_detect_mask,
+> -                              base + MMCIMASK0);
+> -                       host->busy_status = 0;
+> -               }
+> -       }
+>
+>         host->cmd = NULL;
+>
+> @@ -1537,7 +1545,7 @@ static irqreturn_t mmci_irq(int irq, void *dev_id)
+>                  * clear the corresponding IRQ.
+>                  */
+>                 status &= readl(host->base + MMCIMASK0);
+> -               if (host->variant->busy_detect)
+> +               if (host->ops->busy_complete)
+>                         writel(status & ~host->variant->busy_detect_mask,
+>                                host->base + MMCICLEAR);
+>                 else
+> @@ -1605,7 +1613,7 @@ static void mmci_set_max_busy_timeout(struct mmc_host *mmc)
+>         struct mmci_host *host = mmc_priv(mmc);
+>         u32 max_busy_timeout = 0;
+>
+> -       if (!host->variant->busy_detect)
+> +       if (!host->ops->busy_complete)
+>                 return;
+>
+>         if (host->variant->busy_timeout && mmc->actual_clock)
+> @@ -1980,7 +1988,7 @@ static int mmci_probe(struct amba_device *dev,
+>         /*
+>          * Enable busy detection.
+>          */
+> -       if (variant->busy_detect) {
+> +       if (host->ops->busy_complete) {
+>                 mmci_ops.card_busy = mmci_card_busy;
+>                 /*
+>                  * Not all variants have a flag to enable busy detection
+> diff --git a/drivers/mmc/host/mmci.h b/drivers/mmc/host/mmci.h
+> index d8b7f6774e8f..733f9a035b06 100644
+> --- a/drivers/mmc/host/mmci.h
+> +++ b/drivers/mmc/host/mmci.h
+> @@ -286,7 +286,6 @@ struct mmci_host;
+>   * @f_max: maximum clk frequency supported by the controller.
+>   * @signal_direction: input/out direction of bus signals can be indicated
+>   * @pwrreg_clkgate: MMCIPOWER register must be used to gate the clock
+> - * @busy_detect: true if the variant supports busy detection on DAT0.
+>   * @busy_timeout: true if the variant starts data timer when the DPSM
+>   *               enter in Wait_R or Busy state.
+>   * @busy_dpsm_flag: bitmask enabling busy detection in the DPSM
+> @@ -334,7 +333,6 @@ struct variant_data {
+>         u32                     f_max;
+>         u8                      signal_direction:1;
+>         u8                      pwrreg_clkgate:1;
+> -       u8                      busy_detect:1;
+>         u8                      busy_timeout:1;
+>         u32                     busy_dpsm_flag;
+>         u32                     busy_detect_flag;
+> @@ -369,6 +367,7 @@ struct mmci_host_ops {
+>         void (*dma_error)(struct mmci_host *host);
+>         void (*set_clkreg)(struct mmci_host *host, unsigned int desired);
+>         void (*set_pwrreg)(struct mmci_host *host, unsigned int pwr);
+> +       bool (*busy_complete)(struct mmci_host *host, u32 status, u32 err_msk);
+>  };
+>
+>  struct mmci_host {
+> --
+> 2.17.1
+>
