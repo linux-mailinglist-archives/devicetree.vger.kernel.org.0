@@ -2,72 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E962ACBA4A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 14:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FA2FCBAE8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 14:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729313AbfJDMXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 08:23:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50662 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727451AbfJDMXZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Oct 2019 08:23:25 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1F5CB20867;
-        Fri,  4 Oct 2019 12:23:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570191804;
-        bh=ar2kC7rdtySGPENEprKl86d8tIFKKkGoZVS904bdgRo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Hwmr8URfsWBbEZDx1sk4G2/yfJq1YWgLu5qnllnyhYQ9OpaosHy3eO6qbhE+ZQufY
-         D8mRl5pd95qUKDkhQ2B4FXq/xbcx4OFlPfeghlyuEVH/UEoUG5ULhr3xYG6ghpQbas
-         op0gwHyiPvawUvcWpIm2sXppYKXisZmw7PzEUmcU=
-Date:   Fri, 4 Oct 2019 14:23:22 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        nkristam@nvidia.com, skomatineni@nvidia.com
-Subject: Re: [PATCH v2 0/7] add Tegra194 XUSB host and pad controller support
-Message-ID: <20191004122322.GB422178@kroah.com>
-References: <20191004081941.4831-1-jckuo@nvidia.com>
+        id S2387874AbfJDMyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 08:54:25 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:19942 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2387573AbfJDMyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 08:54:25 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x94CpHkc007845;
+        Fri, 4 Oct 2019 14:54:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=Gq4se5jZ9JpjIAQHXXEIaPHCYbZ6Lt/x+2ijv9uVcpE=;
+ b=BBRNBdO3RHD/vo/BNcvJK5qTWDP+S3vU+f9VVi0z5PR9vnJyoMgYVjqiI+Zqihban3BU
+ 7QD+MDRKxmg52UzMB3aAp51uRel9mrQS9uvL2/OmPsbuJCCde26h7Ga7WepFxSEATEHQ
+ 0wAt/ZS4ml3mqYGBDIBLWNpcUzKjFCljkjhYRoA/DQ5RVzNbno5lyUkqw70Vzynauh6w
+ ilrzrVU1HkFXves5723o2mEkBbVJnzvsw/vzM8tk9tLCIfD5/LipBi+XVBo9PKZhhmwx
+ cfbRShTDsGsGxpbHjSWj1e/dEEf/kdcTWzf+muJ3jTNIX0vdQ+D2z9qwotFOQqLw2kAF CQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vcem3fwgc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Oct 2019 14:54:10 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 39DD6100034;
+        Fri,  4 Oct 2019 14:54:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 03C4E2BFDEF;
+        Fri,  4 Oct 2019 14:54:10 +0200 (CEST)
+Received: from SAFEX1HUBCAS22.st.com (10.75.90.92) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 4 Oct 2019
+ 14:54:09 +0200
+Received: from localhost (10.48.0.192) by Webmail-ga.st.com (10.75.90.48) with
+ Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 4 Oct 2019 14:54:09 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <u.kleine-koenig@pengutronix.de>
+CC:     <alexandre.torgue@st.com>, <mark.rutland@arm.com>,
+        <mcoquelin.stm32@gmail.com>, <fabrice.gasnier@st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <benjamin.gaignard@st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v2 0/3] Add PM support to STM32 Timer PWM
+Date:   Fri, 4 Oct 2019 14:53:50 +0200
+Message-ID: <1570193633-6600-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191004081941.4831-1-jckuo@nvidia.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.192]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-04_06:2019-10-03,2019-10-04 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 04, 2019 at 04:19:34PM +0800, JC Kuo wrote:
-> Hi,
-> 
-> This series introduces support for Tegra194 XUSB host and pad
-> controller. Tegra194 XUSB host and pad controller are highly
-> similar to the controllers found on Tegra186. Therefore, it's
-> possible to resue xhci-tegra.c and xusb-tegra186.c for Tegra194.
-> 
-> JC Kuo (7):
->   xhci: tegra: Parameterize mailbox register addresses
->   usb: host: xhci-tegra: Add Tegra194 XHCI support
->   phy: tegra: xusb: Protect Tegra186 soc with config
->   phy: tegra: xusb: Add Tegra194 support
->   dt-bindings: phy: tegra: Add Tegra194 support
->   arm64: tegra: Add XUSB and pad controller on Tegra194
->   arm64: tegra: Enable XUSB host in P2972-0000 board
+This patch series adds power management support for STM32 Timer PWM:
+- Document the pinctrl sleep state for STM32 Timer PWM
+- STM32 Timer PWM driver
 
-What changed from v1?  You need to put that somewhere, usually in the
-patches themselves, below the --- line.
+---
+Changes in v2:
+Follow Uwe suggestions/remarks:
+- Add a precursor patch to ease reviewing
+- Use registers read instead of pwm_get_state
+- Add a comment to mention registers content may be lost in low power mode
 
-Or at the very least, in the cover letter.
+Fabrice Gasnier (3):
+  dt-bindings: pwm-stm32: document pinctrl sleep state
+  pwm: stm32: split breakinput apply routine to ease PM support
+  pwm: stm32: add power management support
 
-Given that I can't find it anywhere here, I'll expect a v3 with that
-information to be sent soon :(
+ .../devicetree/bindings/pwm/pwm-stm32.txt          |  8 +-
+ drivers/pwm/pwm-stm32.c                            | 86 +++++++++++++++++-----
+ 2 files changed, 71 insertions(+), 23 deletions(-)
 
-thanks,
+-- 
+2.7.4
 
-greg k-h
