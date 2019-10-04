@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33DD9CBD1C
+	by mail.lfdr.de (Postfix) with ESMTP id 56ACDCBD1E
 	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388937AbfJDO1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:27:53 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:34177 "EHLO
+        id S2388971AbfJDO14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:27:56 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:59373 "EHLO
         relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388733AbfJDO1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:53 -0400
+        with ESMTP id S2388840AbfJDO1z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:27:55 -0400
 X-Originating-IP: 86.250.200.211
 Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 8C385C0018;
-        Fri,  4 Oct 2019 14:27:51 +0000 (UTC)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 1A69BC0023;
+        Fri,  4 Oct 2019 14:27:53 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -31,9 +31,9 @@ Cc:     <devicetree@vger.kernel.org>,
         Stefan Chulski <stefanc@marvell.com>,
         Yan Markman <ymarkman@marvell.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 08/21] arm64: dts: marvell: Add AP806-dual cache description
-Date:   Fri,  4 Oct 2019 16:27:25 +0200
-Message-Id: <20191004142738.7370-9-miquel.raynal@bootlin.com>
+Subject: [PATCH v2 09/21] arm64: dts: marvell: Add AP806-quad cache description
+Date:   Fri,  4 Oct 2019 16:27:26 +0200
+Message-Id: <20191004142738.7370-10-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191004142738.7370-1-miquel.raynal@bootlin.com>
 References: <20191004142738.7370-1-miquel.raynal@bootlin.com>
@@ -52,13 +52,13 @@ to show up in sysfs under: /sys/devices/system/cpu/cpuX/cache/.
 Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- .../boot/dts/marvell/armada-ap806-dual.dtsi   | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ .../boot/dts/marvell/armada-ap806-quad.dtsi   | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
-index 62ae016ee6aa..09849558a776 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
+index c25bc65727b5..3db427122f9e 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
 @@ -22,6 +22,13 @@
  			enable-method = "psci";
  			#cooling-cells = <2>;
@@ -69,11 +69,11 @@ index 62ae016ee6aa..09849558a776 100644
 +			d-cache-size = <0x8000>;
 +			d-cache-line-size = <64>;
 +			d-cache-sets = <256>;
-+			next-level-cache = <&l2>;
++			next-level-cache = <&l2_0>;
  		};
  		cpu1: cpu@1 {
  			device_type = "cpu";
-@@ -30,6 +37,20 @@
+@@ -30,6 +37,13 @@
  			enable-method = "psci";
  			#cooling-cells = <2>;
  			clocks = <&cpu_clk 0>;
@@ -83,10 +83,45 @@ index 62ae016ee6aa..09849558a776 100644
 +			d-cache-size = <0x8000>;
 +			d-cache-line-size = <64>;
 +			d-cache-sets = <256>;
-+			next-level-cache = <&l2>;
++			next-level-cache = <&l2_0>;
+ 		};
+ 		cpu2: cpu@100 {
+ 			device_type = "cpu";
+@@ -38,6 +52,13 @@
+ 			enable-method = "psci";
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpu_clk 1>;
++			i-cache-size = <0xc000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <256>;
++			next-level-cache = <&l2_1>;
+ 		};
+ 		cpu3: cpu@101 {
+ 			device_type = "cpu";
+@@ -46,6 +67,27 @@
+ 			enable-method = "psci";
+ 			#cooling-cells = <2>;
+ 			clocks = <&cpu_clk 1>;
++			i-cache-size = <0xc000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <256>;
++			next-level-cache = <&l2_1>;
 +		};
 +
-+		l2: l2-cache {
++		l2_0: l2-cache0 {
++			compatible = "cache";
++			cache-size = <0x80000>;
++			cache-line-size = <64>;
++			cache-sets = <512>;
++		};
++
++		l2_1: l2-cache1 {
 +			compatible = "cache";
 +			cache-size = <0x80000>;
 +			cache-line-size = <64>;
