@@ -2,191 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF2FDCBF5F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 17:38:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D807CBFCF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 17:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389980AbfJDPiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 11:38:04 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:51024 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2389586AbfJDPiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 11:38:02 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x94FY1ti009068;
-        Fri, 4 Oct 2019 10:37:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=PODMain02222019;
- bh=pcZrefS55J+8Rj8owZdjlC4OQ6N1pVZO5SnvMXb+hsY=;
- b=i2iilTaVIlpLteNfQqaP5nGFIO3arS8sDH1FnJatwcPEUYCmRctl+MOEo803u7jwv6gf
- mUTjkAHUcZ+r43aBgzz3iw1qM1egU+m/BYdV9oPgvoLE9MkevgJCFheaw3RIIhigQQHG
- uAkf3O2WfmO77RNh3QJRQItrKzn0SunAxlPsVtphac20tJksFT5pudB5kPyF/t+i0BWM
- zFTNtxkYjZwvAw4XdKHinhC5ggrPUj1j+nTR4foiiiUI8UK0wdrUYb9GqEjuNBnb1VDp
- Wg2VMiKUYUSiXvnAEdig7WtQvarZCOFZtEQ3CNIJM3ozpcnxi1DDoysRk4kniiH1N3Pu 3Q== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2va4x4t8r1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 04 Oct 2019 10:37:56 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 4 Oct
- 2019 16:37:54 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Fri, 4 Oct 2019 16:37:54 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 278462C3;
-        Fri,  4 Oct 2019 15:37:54 +0000 (UTC)
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: [PATCH v4 3/3] mfd: madera: Add support for requesting the supply clocks
-Date:   Fri, 4 Oct 2019 16:37:53 +0100
-Message-ID: <20191004153753.8369-3-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191004153753.8369-1-ckeepax@opensource.cirrus.com>
-References: <20191004153753.8369-1-ckeepax@opensource.cirrus.com>
+        id S2390045AbfJDPzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 11:55:36 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:60232 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390031AbfJDPzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 11:55:36 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x94FtW3e129925;
+        Fri, 4 Oct 2019 10:55:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570204532;
+        bh=8o3L4d0zeiEjLNY0+eUZ842h+8xCJbslZYAJnvNjuNE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=vRvPnVDWR6OHu1+/fQsmfkvAY1eTuPVgUbm0F9kw1PTTxlw4nAA5N1bSD5iv6mUks
+         uYvuiPddCPQXPKC2dlEtLI+FHpEGNzm7hoDWVl1EKKmZN4zS4NrIpX37g6Z0i26yxs
+         TYgaUkJYdfNLyH5/zRfUpS12WQyLWou0XYs8zSlo=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x94FtW35014479
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Oct 2019 10:55:32 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 4 Oct
+ 2019 10:55:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 4 Oct 2019 10:55:29 -0500
+Received: from [192.168.2.10] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x94FtRG2110014;
+        Fri, 4 Oct 2019 10:55:28 -0500
+Subject: Re: [PATCH 1/3] dt-bindings: dma: Add documentation for DMA domains
+To:     Rob Herring <robh@kernel.org>
+CC:     Vinod <vkoul@kernel.org>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        <devicetree@vger.kernel.org>
+References: <20190910115037.23539-1-peter.ujfalusi@ti.com>
+ <20190910115037.23539-2-peter.ujfalusi@ti.com>
+ <5d7ba96c.1c69fb81.ee467.32b9@mx.google.com>
+ <82254a3e-12fe-14d8-d49a-6627dd1d3559@ti.com>
+ <CAL_JsqLZ-fNvFcgTorat=TX9Fmexrw3o3iv=Z5hTb3GX6iKgxg@mail.gmail.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <ad639d6a-a9d7-7797-310f-dc314600b52a@ti.com>
+Date:   Fri, 4 Oct 2019 18:56:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=888
- malwarescore=0 adultscore=0 phishscore=0 impostorscore=0
- priorityscore=1501 suspectscore=1 bulkscore=0 mlxscore=0 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910040138
+In-Reply-To: <CAL_JsqLZ-fNvFcgTorat=TX9Fmexrw3o3iv=Z5hTb3GX6iKgxg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ability to get the clock for each clock input pin of the chip
-and enable MCLK2 since that is expected to be a permanently enabled
-32kHz clock.
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
 
-Changes since v4:
- - Change (ret != 0) to (!ret)
+On 9/24/19 5:44 PM, Rob Herring wrote:
+> On Mon, Sep 16, 2019 at 6:21 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
+>>
+>>
+>>
+>> On 13/09/2019 17.36, Rob Herring wrote:
+>>> On Tue, Sep 10, 2019 at 02:50:35PM +0300, Peter Ujfalusi wrote:
+>>>> On systems where multiple DMA controllers available, non Slave (for example
+>>>> memcpy operation) users can not be described in DT as there is no device
+>>>> involved from the DMA controller's point of view, DMA binding is not usable.
+>>>> However in these systems still a peripheral might need to be serviced by or
+>>>> it is better to serviced by specific DMA controller.
+>>>> When a memcpy is used to/from a memory mapped region for example a DMA in the
+>>>> same domain can perform better.
+>>>> For generic software modules doing mem 2 mem operations it also matter that
+>>>> they will get a channel from a controller which is faster in DDR to DDR mode
+>>>> rather then from the first controller happen to be loaded.
+>>>>
+>>>> This property is inherited, so it may be specified in a device node or in any
+>>>> of its parent nodes.
+>>>
+>>> If a device needs mem2mem dma, I think we should just use the existing
+>>> dma binding. The provider will need a way to define cell values which
+>>> mean mem2mem.
+>>
+>> But isn't it going to be an abuse of the binding? Each DMA controller
+>> would hack this in different ways, probably using out of range DMA
+>> request/trigger number or if they have direction in the binding or some
+>> other parameter would be set to something invalid...
+> 
+> What's in the cells is defined by the provider which can define
+> whatever they want. We do standardize that in some cases.
 
- drivers/mfd/madera-core.c       | 27 ++++++++++++++++++++++++++-
- include/linux/mfd/madera/core.h | 11 +++++++++++
- 2 files changed, 37 insertions(+), 1 deletion(-)
+There is a substantiation difference how HW synchronized (slave)
+channels and SW triggered (non slave) channels can be described, handled.
 
-diff --git a/drivers/mfd/madera-core.c b/drivers/mfd/madera-core.c
-index 29540cbf75934..a8cfadc1fc01e 100644
---- a/drivers/mfd/madera-core.c
-+++ b/drivers/mfd/madera-core.c
-@@ -450,6 +450,21 @@ int madera_dev_init(struct madera *madera)
- 		       sizeof(madera->pdata));
- 	}
- 
-+	madera->mclk[MADERA_MCLK1].id = "mclk1";
-+	madera->mclk[MADERA_MCLK2].id = "mclk2";
-+	madera->mclk[MADERA_MCLK3].id = "mclk3";
-+
-+	ret = devm_clk_bulk_get_optional(madera->dev, ARRAY_SIZE(madera->mclk),
-+					 madera->mclk);
-+	if (ret) {
-+		dev_err(madera->dev, "Failed to get clocks: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* Not using devm_clk_get to prevent breakage of existing DTs */
-+	if (!madera->mclk[MADERA_MCLK2].clk)
-+		dev_warn(madera->dev, "Missing MCLK2, requires 32kHz clock\n");
-+
- 	ret = madera_get_reset_gpio(madera);
- 	if (ret)
- 		return ret;
-@@ -660,13 +675,19 @@ int madera_dev_init(struct madera *madera)
- 	}
- 
- 	/* Init 32k clock sourced from MCLK2 */
-+	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2].clk);
-+	if (ret) {
-+		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
-+		goto err_reset;
-+	}
-+
- 	ret = regmap_update_bits(madera->regmap,
- 			MADERA_CLOCK_32K_1,
- 			MADERA_CLK_32K_ENA_MASK | MADERA_CLK_32K_SRC_MASK,
- 			MADERA_CLK_32K_ENA | MADERA_32KZ_MCLK2);
- 	if (ret) {
- 		dev_err(madera->dev, "Failed to init 32k clock: %d\n", ret);
--		goto err_reset;
-+		goto err_clock;
- 	}
- 
- 	pm_runtime_set_active(madera->dev);
-@@ -687,6 +708,8 @@ int madera_dev_init(struct madera *madera)
- 
- err_pm_runtime:
- 	pm_runtime_disable(madera->dev);
-+err_clock:
-+	clk_disable_unprepare(madera->mclk[MADERA_MCLK2].clk);
- err_reset:
- 	madera_enable_hard_reset(madera);
- 	regulator_disable(madera->dcvdd);
-@@ -713,6 +736,8 @@ int madera_dev_exit(struct madera *madera)
- 	 */
- 	pm_runtime_disable(madera->dev);
- 
-+	clk_disable_unprepare(madera->mclk[MADERA_MCLK2].clk);
-+
- 	regulator_disable(madera->dcvdd);
- 	regulator_put(madera->dcvdd);
- 
-diff --git a/include/linux/mfd/madera/core.h b/include/linux/mfd/madera/core.h
-index 7ffa696cce7ca..ad2c138105d4b 100644
---- a/include/linux/mfd/madera/core.h
-+++ b/include/linux/mfd/madera/core.h
-@@ -8,6 +8,7 @@
- #ifndef MADERA_CORE_H
- #define MADERA_CORE_H
- 
-+#include <linux/clk.h>
- #include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/mfd/madera/pdata.h>
-@@ -29,6 +30,13 @@ enum madera_type {
- 	CS42L92 = 9,
- };
- 
-+enum {
-+	MADERA_MCLK1,
-+	MADERA_MCLK2,
-+	MADERA_MCLK3,
-+	MADERA_NUM_MCLK
-+};
-+
- #define MADERA_MAX_CORE_SUPPLIES	2
- #define MADERA_MAX_GPIOS		40
- 
-@@ -155,6 +163,7 @@ struct snd_soc_dapm_context;
-  * @irq_dev:		the irqchip child driver device
-  * @irq_data:		pointer to irqchip data for the child irqchip driver
-  * @irq:		host irq number from SPI or I2C configuration
-+ * @mclk:		Structure holding clock supplies
-  * @out_clamp:		indicates output clamp state for each analogue output
-  * @out_shorted:	indicates short circuit state for each analogue output
-  * @hp_ena:		bitflags of enable state for the headphone outputs
-@@ -184,6 +193,8 @@ struct madera {
- 	struct regmap_irq_chip_data *irq_data;
- 	int irq;
- 
-+	struct clk_bulk_data mclk[MADERA_NUM_MCLK];
-+
- 	unsigned int num_micbias;
- 	unsigned int num_childbias[MADERA_MAX_MICBIAS];
- 
--- 
-2.11.0
+For slave channels we have bindings as we can describe the DMA request
+line to be used for the DMA channel. In some cases the requests are
+locked to DMA channels (TI's EDMA for example), while in other cases any
+channel can handle any operation (TI's sDMA, UDMAP).
+For EDMA the DMA request == EDMA channel number
+For sDMA we give the DMA request number and we pick any free lchan to
+handle it.
 
+Non slave channels on the other hand have no identification. They are
+channels which can execute SW triggered task.
+For EDMA for example we need to mark channels which is not in use and
+tell the system that they can be used for non slave mode.
+sDMA on the other hand can just pick any free lchan.
+
+Passing 0xffffffff as channel number or DMA request number surely be
+something which most likely invalid, but every driver needs to somehow
+figure out their invalid parameter and all of them needs to be modified,
+generic match helpers can not be used anymore as they will fail in
+random ways.
+
+> I think we have some cases where we set the channel priority in the
+> cells. What if someone wants to do that for mem2mem as well?
+
+That's a valid point, but even with bindings for non slave channels
+clients from modules will need to be handled in a different way as they
+don't have presence in DT..
+But I would argue that from system point of view the non slave channels
+might be better to have the same priority as a group on the given
+controller.
+
+> 
+>>> For generic s/w, it should be able to query the dma speed or get a
+>>> preferred one IMO. It's not a DT problem.
+>>>
+>>> We measure memcpy speeds at boot time to select the fastest
+>>> implementation for a chip, why not do that for mem2mem DMA?
+>>
+>> It would make an impact on boot time since the tests would need to be
+>> done with a large enough copy to be able to see clearly which one is faster.
+> 
+> Have you measured it? It could be done in parallel and may have little
+> to no impact.
+
+Depends on the DMA controller, but for UDMAP I can say it is around 1M
+buffer which clearly tells apart the two DMAs.
+
+Still, we should delay all non slave user's probe until we have all
+information on all of them and we don't know how many DMAs the HW have.
+
+How can you know that after the testing the first DMA's speed you will
+not have another one probing? Or after the second DMA controller there
+could be a third coming which can be the fastest?
+
+>> Also we should be able to handle different probing orders:
+>> client1 should have mem2mem channel from dma2.
+>>
+>> - dma1 probes
+>> - client1 probes and asks for a mem2mem channel
+>> - dma2 probes
+>>
+>> Here client1 should deffer until dma2 is probed.
+> 
+> Depending on the driver, don't make the decision in probe, but when
+> you start using the driver. For example, serial drivers decide on DMA
+> or no DMA in open().
+
+Which is causing a lot of pain as serial is really broken for deferred
+probing against DMA.
+Also note that dma channel request/release is not 'free' it might be
+something which can take time, thus making DMA use for non slave
+transfers less tempting.
+
+With adding dma-nonslave-domain (third or fourth name for this?) none of
+the DMA drivers have to be modified, the change in core is relatively
+small and backwards compatible and it describes the HW.
+
+> 
+>> Probably the property should be dma-mem2mem-domain to be more precise on
+>> it's purpose and avoid confusion?
+>>
+>>>
+>>>>
+>>>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>>>> ---
+>>>>  .../devicetree/bindings/dma/dma-domain.yaml   | 88 +++++++++++++++++++
+>>>>  1 file changed, 88 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/dma/dma-domain.yaml
+>>>
+>>> Note that you have several errors in your schema. Run 'make dt_bindings_check'.
+>>
+>> That does not do anything on my system, but git dt-doc-validate running
+>> via https://github.com/robherring/yaml-bindings.git.
+> 
+> It should do *something*... Do you have libyaml-dev installed?
+> 
+> BTW, while I still mirror to that repo, use
+> https://github.com/devicetree-org/dt-schema instead.
+
+Thanks a lot, got it working now correctly, I belive.
+
+- Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
