@@ -2,141 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 361D9CBDBC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFEADCBDC2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389398AbfJDOp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:45:56 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:38035 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389391AbfJDOp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:45:56 -0400
-Received: by mail-wr1-f67.google.com with SMTP id w12so7579764wro.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 07:45:54 -0700 (PDT)
+        id S2389113AbfJDOqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:46:50 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:33282 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388982AbfJDOqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:46:49 -0400
+Received: by mail-pf1-f193.google.com with SMTP id q10so4077280pfl.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 07:46:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=HNaskgA9CGTRjPX5e5ZK2QfhqMEnQGHXob8M639FZMU=;
-        b=cige8aeI93GPpuuoEgeWsSpy4l0fVuwBai3aDolKgCEZoMgoDPcAwoNVLYoJYCEa5Y
-         T6msSfDjto/LLQ8zYZpFpczbMJht8u586Mi/ddTTN29VtoCVE2OafbjiBDYtIHgbqO9L
-         HpMfh84b2Ecaou4bqbFvXc8PDpp7fc1oOmohsoAHd7dZTck6mBlhPSVPZc0oVtspwf2a
-         boDTgI3N67eFN1mih+5qCEjjHjaQAMAf1F2mMtMNv1rATkJiNIUWREvPkpp9Mw80jlTf
-         8oUqJ3/HuQSNA3EzgHiMeKNj67g9AVY757SSDybSX3R+fvVoO1FeHuGyqcREgO9sMFtJ
-         w3GQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=vrpAOV+426YcY2dvYTmCxBoSkb9QFrfgtxFZXoZ1T88=;
+        b=E58EWgdvs+fgVnvg68jCcK9hRiNmsBZbNXQogt2zXknBgToFwfqE6QOOuIFjqqHiax
+         S8ZOe8VERGUSJ9gIbHp5qxn/GdXNf9FhWJEpC8litDvzuoUo8e2lSNjDdPmcFbrqBjau
+         BmoWDjGYpXlEO+iu7lNKfeAu/ekV5SLtUGlrBj6KKzwFMS3l6BhQ5kILJTf5/CAZx+HR
+         EChLHgj7yy/w6tFLYDkPTk9kJihy3j/McdB1+dqHozQsYFHeMqMqfDhRNyNUE+oEZ4tL
+         qPEqEF/YZ+4o4SD+navIpoAXd2lVnDGbh03yyds24AUDBUJc10AckJtvWagyhV32YrRw
+         dyVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=HNaskgA9CGTRjPX5e5ZK2QfhqMEnQGHXob8M639FZMU=;
-        b=TUr9e8gzuSdTxko+nXtDiDm/4eec814nJbbobUEm3DR4p68j0ic+S2jnBKlOhAbqeF
-         gvHruKBVXklWtz/fZbOwpqadOdupGU1a+RdWe2VsO3FoiIV3vAhqOZ0UqVHqHKVFT+sP
-         zya+R8uz9xWz2MQzzkYG4OfltyZIf72KoPxFpbCwLT3XSsZ2sjQnhP1FZJGvrETyoNbd
-         Bc17WMUa+MsPXtQrfniGpoQMAfE6J1qifx5bqzy0VOqgA+aVBlqtWC8pgiT2RBVtbuna
-         jPvoy8qNtygxoVpMXGe63VCDg2JeL1CTdxQ29Mt0SR8VP8DNW1APrnWjV7IaTTue5C/7
-         rXNA==
-X-Gm-Message-State: APjAAAUeVuGdAjYBrhzgomLCxaNYAlbIHwsmQlV2jgVJDv/1FQvmb/0s
-        4P2TmA2mqAWTciC+G6SX4LuvzA==
-X-Google-Smtp-Source: APXvYqzeTXoEKPqTHngsFt5A7Yz0CZBxZ6TGexzTbaMsTPn1BMdEvT9oeQJeJ2hU/X9uJQuQ1NdmDw==
-X-Received: by 2002:adf:fa0e:: with SMTP id m14mr7281348wrr.11.1570200353922;
-        Fri, 04 Oct 2019 07:45:53 -0700 (PDT)
-Received: from dell ([2.27.167.122])
-        by smtp.gmail.com with ESMTPSA id v8sm9165069wra.79.2019.10.04.07.45.53
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=vrpAOV+426YcY2dvYTmCxBoSkb9QFrfgtxFZXoZ1T88=;
+        b=JG7iqg+kCkARkLeIEtCR9BbDmOLtS4IaD7lsJSph9SlbANmN6/1aH5IejgwUk5KpWo
+         BshGZRTXJuA/VMgC+2Teb57AOqGndudrmq+gHNv/7q5CI/xZZYwScynwhRpAXC0Od9Cs
+         WVZ+wef4XZ3SZBxfuKYZGFtbKXOZk/HeY0rR3TkxH/7eQKgHYos+4xdHsLSM85Zxq4WY
+         f0wVlsqfwFSqXiPOj5EJvRxWUsh0yJtpmg4wNo8Q21tkNGPPWLOYpQaLniMq/G9GMqzY
+         mQ7GwiXAL709WDsQewmqjs69i2HIkvHjuO3dhGt0peiLpWTlPj+j+bZRDL/3km9qcpUn
+         Y75g==
+X-Gm-Message-State: APjAAAUe3vXcyGPmEUEcJoUebXwvvGwmGzTWAmvyzl1j3yxCTGXkUNDd
+        cDQTf8kJSYY03ehBkgXcW52YRA==
+X-Google-Smtp-Source: APXvYqzOUPGXab6AXJASP225dZhPjVnVqdYiSvOwfHQmdwXVgOva+jxCkR0avI35E8JbEplmXeZ7fQ==
+X-Received: by 2002:a17:90a:cb07:: with SMTP id z7mr17162183pjt.67.1570200408918;
+        Fri, 04 Oct 2019 07:46:48 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:6c63:e3e5:f440:92c9])
+        by smtp.gmail.com with ESMTPSA id w10sm3834115pjq.3.2019.10.04.07.46.47
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 04 Oct 2019 07:45:53 -0700 (PDT)
-Date:   Fri, 4 Oct 2019 15:45:52 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Document the Xylon LogiCVC
- multi-function device
-Message-ID: <20191004144551.GR18429@dell>
-References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com>
- <20190927100407.1863293-3-paul.kocialkowski@bootlin.com>
- <20190927221550.GA28831@bogus>
+        Fri, 04 Oct 2019 07:46:48 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Philipp Zabel <pza@pengutronix.de>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] reset: meson-audio-arb: add sm1 support
+In-Reply-To: <20191003180311.hlv7s32twzcaxj3x@pengutronix.de>
+References: <20190905135040.6635-1-jbrunet@baylibre.com> <1567693618.3958.4.camel@pengutronix.de> <1jk19oregr.fsf@starbuckisacylon.baylibre.com> <20191003180311.hlv7s32twzcaxj3x@pengutronix.de>
+Date:   Fri, 04 Oct 2019 07:46:47 -0700
+Message-ID: <7hpnjch8ko.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190927221550.GA28831@bogus>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Sep 2019, Rob Herring wrote:
+Philipp Zabel <pza@pengutronix.de> writes:
 
-> On Fri, Sep 27, 2019 at 12:04:04PM +0200, Paul Kocialkowski wrote:
-> > The LogiCVC is a display engine which also exposes GPIO functionality.
-> > For this reason, it is described as a multi-function device that is expected
-> > to provide register access to its children nodes for gpio and display.
-> > 
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  .../bindings/mfd/xylon,logicvc.yaml           | 50 +++++++++++++++++++
-> >  1 file changed, 50 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
-> > new file mode 100644
-> > index 000000000000..abc9937506e0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2019 Bootlin
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/mfd/xylon,logicvc.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Xylon LogiCVC multi-function device
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +description: |
-> > +  The LogiCVC is a display controller that also contains a GPIO controller.
-> > +  As a result, a multi-function device is exposed as parent of the display
-> > +  and GPIO blocks.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - xylon,logicvc-3.02.a
-> > +      - const: syscon
-> > +      - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - xylon,logicvc-3.02.a
-> 
-> I've seen a couple of these with 'syscon' today, so I fixed the schema 
-> tool to just exclude 'syscon' and 'simple-mfd' from the generated 
-> 'select'. So you can drop select now.
+> Hi Jerome,
+>
+> On Tue, Oct 01, 2019 at 11:40:20AM +0200, Jerome Brunet wrote:
+> [...]
+>> Looks like this patchset missed v5.4-rc1.
+>> Could you provide a tag with the bindings to Kevin so we can use the IDs
+>> in DT until the next merge window ?
+>
+> Does
+>
+>   git://git.pengutronix.de/git/pza/linux.git reset/meson-sm1-bindings
+>
+> work for you?
 
-Does this need to happen before this patch can be applied?
+I'd prefer a tag as that's more of an indicator that it will be static,
+but if you're sure that's going to be static, and is the same branch/tag
+you'll be sending upstream, that will work.
 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Kevin
