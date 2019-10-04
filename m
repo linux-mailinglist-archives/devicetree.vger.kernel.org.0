@@ -2,96 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C75BCB7EF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 12:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 502C1CB817
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 12:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729086AbfJDKJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 06:09:20 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:37210 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728257AbfJDKJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 06:09:19 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id CF40661A1C; Fri,  4 Oct 2019 10:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570183758;
-        bh=AkeNMgIMO1pbJoRLFidcxKLZR4e3UT+NiDdo9nDWuvs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dm0FBoHabz2niyaC4jOlbA9jB59TywvZtbs46nhCC+PWRl9CFU9RISUMDOYNVsK6N
-         yXRpcRqosE0QBTOEPg1U9FYKMb7RSY1rt24CsG2zDl+wR6U7XzXmD4XpH1WXe8EkzT
-         Mlrmbqn8JeMrc0+2HxpCpGoTzxRBZvAqN8ovT6Ds=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from kgunda-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kgunda@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7411F614B5;
-        Fri,  4 Oct 2019 10:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570183757;
-        bh=AkeNMgIMO1pbJoRLFidcxKLZR4e3UT+NiDdo9nDWuvs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pJkkmi+7PTOZEah/Hg61YiWOGIH16h0IWQw2yU+CGl7o1erLWoUYFV2Hvm7rxNkFl
-         tcN0PdW/Ov4vjY0jXTV9uBsiwooalzUUvPpfuUHCWsWnJ/b6LDGgqZgdYgTt5F0dWd
-         ZldKRVQCZFD5CIRDinKace30kduMlOlkZmH5nnJI=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7411F614B5
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kgunda@codeaurora.org
-From:   Kiran Gunda <kgunda@codeaurora.org>
-To:     bjorn.andersson@linaro.org, Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Kiran Gunda <kgunda@codeaurora.org>
-Subject: [PATCH V1 1/2]  regulator: dt-bindings: Add PM6150x compatibles
-Date:   Fri,  4 Oct 2019 15:38:53 +0530
-Message-Id: <1570183734-30706-2-git-send-email-kgunda@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1570183734-30706-1-git-send-email-kgunda@codeaurora.org>
-References: <1570183734-30706-1-git-send-email-kgunda@codeaurora.org>
+        id S2388703AbfJDKTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 06:19:13 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:38074 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388657AbfJDKTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 06:19:13 -0400
+Received: by mail-pl1-f196.google.com with SMTP id w8so2927505plq.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 03:19:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=5K8ntS607db3gqcfLzLCwoL2HyIKgHaBgtSTehSfcLE=;
+        b=w2lrbEYz8OleWs+kIGG25hIQ6Mkbb0TcEeJPyG0izgHlgFzSjbTo3lRBMvA5CofCHI
+         q3AZpFPRgx1RtXYCZIFQqWYpct3HCY4TRX4xN8s4IlefdcswauhLGdt9V1SWdfPIX1LX
+         81NdCN96N0+sDL2G9st4ULRPBer3iZDtNEUHnWfiDec5toAnOqKYN5VStoqphHCu9qZb
+         o2vdNM8E022EoBFoGwXoP4gvDZY9YGoieia6uFAw/Vja/RF+EEyLsjSZxDoZpoZhiPWr
+         b272NpRYnrmweDTAO6cUyb19wWIVsv+BZC9NlDtnOck0TBuqquo7X6Yw2YCNw7wuNOZK
+         A/Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5K8ntS607db3gqcfLzLCwoL2HyIKgHaBgtSTehSfcLE=;
+        b=gaK9fs9cFps6rI1K16MZkFBXb9Ws16/3pUCD54GzbdcJ8TsVWEySmAwtGSAOcpVckM
+         kik7qZitw4XcyDRUHqCUUQcgPyf7OyfGBm7BRUv2RsUW3NfW4ZvkbykbaGmXCNFV9eTB
+         Ewz/ELlNUNz2ISzTypaSzngqhL/0mtVuKOnoXuwUG0+prmv7edZzBrIlSS4nedJthDz3
+         x913SUDwdUAPB39eguRQw04SkgA6oWkIxCn3IZbXoYH4PCYLXW91vxoHxpU6LboCGM+7
+         WWIwy3/YOYJ9hcmd/QePIxNm5JtMaXVtIUEBdpdKeE3oqYUMRblPhLgQJM+m/WUtNlP2
+         BKVg==
+X-Gm-Message-State: APjAAAU1i2At3CyLpE7RIFmf3wgs1SRPmaU7iQ1Ia4nSo4Zqs7C7Q7v7
+        eHQprzGK9vLE6Ie7jiy3aetm
+X-Google-Smtp-Source: APXvYqwiC5YkVbZSFQhsV0TuxkbaLtwXuDVpgwko2JyvMa5X+ttRFjVAIJSxRXn6S4lVePeuh42YFQ==
+X-Received: by 2002:a17:902:74c4:: with SMTP id f4mr5339677plt.296.1570184350880;
+        Fri, 04 Oct 2019 03:19:10 -0700 (PDT)
+Received: from mani ([103.59.132.163])
+        by smtp.gmail.com with ESMTPSA id o185sm9698225pfg.136.2019.10.04.03.19.07
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 04 Oct 2019 03:19:09 -0700 (PDT)
+Date:   Fri, 4 Oct 2019 15:49:02 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com
+Subject: Re: [PATCH v4 2/2] media: i2c: Add IMX290 CMOS image sensor driver
+Message-ID: <20191004101902.GA19685@mani>
+References: <20191003095503.12614-1-manivannan.sadhasivam@linaro.org>
+ <20191003095503.12614-3-manivannan.sadhasivam@linaro.org>
+ <20191004092336.GL896@valkosipuli.retiisi.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191004092336.GL896@valkosipuli.retiisi.org.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PM6150 and PM6150L compatibles for Qualcomm SC7180 platfrom.
+Hi Sakari,
 
-Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
----
- Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt | 4 ++++
- 1 file changed, 4 insertions(+)
+On Fri, Oct 04, 2019 at 12:23:36PM +0300, Sakari Ailus wrote:
+> Hi Manivannan,
+> 
+> On Thu, Oct 03, 2019 at 03:25:03PM +0530, Manivannan Sadhasivam wrote:
+> > Add driver for Sony IMX290 CMOS image sensor driver. The driver only
+> > supports I2C interface for programming and MIPI CSI-2 for sensor output.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> 
+> Could you remove the unneeded ret variable from imx290_power_on() and
+> unneeded goto in the same function?
+>
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
-index bab9f71..97c3e0b 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
-+++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
-@@ -28,6 +28,8 @@ Supported regulator node names:
- 	PM8150L:	smps1 - smps8, ldo1 - ldo11, bob, flash, rgb
- 	PM8998:		smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
- 	PMI8998:	bob
-+	PM6150:         smps1 - smps5, ldo1 - ldo19
-+	PM6150L:        smps1 - smps8, ldo1 - ldo11, bob
+yep, sure.
  
- ========================
- First Level Nodes - PMIC
-@@ -43,6 +45,8 @@ First Level Nodes - PMIC
- 		    "qcom,pm8150l-rpmh-regulators"
- 		    "qcom,pm8998-rpmh-regulators"
- 		    "qcom,pmi8998-rpmh-regulators"
-+		    "qcom,pm6150-rpmh-regulators"
-+		    "qcom,pm6150l-rpmh-regulators"
- 
- - qcom,pmic-id
- 	Usage:      required
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
- a Linux Foundation Collaborative Project
+> The MAINTAINERS entry belongs to the first patch adding new files.
+> 
 
+You mean the bindings patch? If then, sorry no. Usually the devicetree bindings
+belongs to a separate patch and that is what perferred by Rob. I prefer the
+MAINTAINERS entry in a separate patch but I've seen subsystems maintainers
+asking to squash it with the driver patch. But squashing it with bindings
+patch seems weird to me.
+
+Thanks,
+Mani
+
+> Then I think this is good.
+> 
+> -- 
+> Regards,
+> 
+> Sakari Ailus
