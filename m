@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57684CBB54
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E106CBB8B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 15:21:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388034AbfJDNMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 09:12:23 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:45464 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387917AbfJDNMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:12:23 -0400
-Received: by mail-pf1-f193.google.com with SMTP id y72so3856015pfb.12;
-        Fri, 04 Oct 2019 06:12:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZUiox1R0hROdY9yZCRzopfRKb7Hpw5iaEBfomVYH688=;
-        b=Tkv5tyzstWxtAX48sv4MmTvBh/2aoOmbHQ4GWe3DDeEUh50Mu+CVc0XZnkyvxPeyZT
-         cv6SYzd1IkCbX5mhcjecpCkMXi3KAcWXx7iNZs0iX5qWTsmcYjIJe9MZeEg8LY2bFYEq
-         bqLR286u7JXrKHuteFWWBKTXqNtVnFmGWTPtZmvOLXs2uFZSrLuiIaGjShhdvVNZGAwc
-         Qj6+nqlrOc/NCWXMAaiVnNvg9mSr+c7vzl2D7rEjigosye6r5rITcHsQvMcoIr2NJ3dK
-         x+hP2Ce6iQ9h3gZV5DGObP4VZG09W9zJXvUz5CdSLIadPaFmag5HwtSfIFs5lS/LzmYy
-         RpKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZUiox1R0hROdY9yZCRzopfRKb7Hpw5iaEBfomVYH688=;
-        b=BVjk3zNiU4gYFTNnpS/CduQS9HFQVUpVTjGgoBpwwigt+Z0DRGvTUudPDQRXMvg1Uu
-         7vb3JlzUvgRJrunSCL2l6DBYHmigp7/kf/7pKjmozY8N2UsjDFKNX8DB0ag8VxgvOWk5
-         K9nUnmb+frw26ryPmRx0h5+j6rUSFNzR5j3B1icLUFHtHCfEQmDThgdba6/KqRNHv5OA
-         61I3FPbvwDNXMHOGk1HI6dLSLfy9qcsYbUx3KZZV2c8GCxFGGH6cRZx6ksPpFr1Flu1C
-         ebOAp7neJhEMLGZsb+DACICQx80leVQArlLIbmhdUBnn74gbSw5kYsWSpL50hqtKsD6T
-         sucw==
-X-Gm-Message-State: APjAAAWgBrVMSkykea1UY2Lgbmz7eveYscpEWEbd1gKi42vXKsAXSqCX
-        A/gkMyD/+jFAtbOr3NNe0Ic=
-X-Google-Smtp-Source: APXvYqzlaXM5fjESQSK7RC4J4zjj6oZfbuc5mLrgPIL+rCnBhELyYRT4+WOBbnOQG2sxTANj+gZfnA==
-X-Received: by 2002:a17:90b:946:: with SMTP id dw6mr16904660pjb.48.1570194742398;
-        Fri, 04 Oct 2019 06:12:22 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k15sm6194435pfa.65.2019.10.04.06.12.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 04 Oct 2019 06:12:21 -0700 (PDT)
-Subject: Re: [PATCH 1/7] dt-bindings: watchdog: renesas-wdt: Document r8a774b1
- support
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S2388149AbfJDNVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 09:21:23 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:35396 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2388313AbfJDNVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 09:21:23 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x94DLFI7001754;
+        Fri, 4 Oct 2019 15:21:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=9Uex5pTCkhp4v8CMWAiUWlq97PLFUphIHvTvPnjz9jk=;
+ b=I2csExbB326H9vM0Ed1LTD8ceGt2FGDV3BkbfYTOzMVxxOPSg2F+glSGDKrK/AfV1k/L
+ yMWDbitX7LXxb8FUMpzP0Ih2CBhLHxxcUOmvnKd5SPg3vqq6hrqZv/G2anYlj/OnxT12
+ Oazv7elhxpnnWW2/hctDa2QLG004/43nO4sg+yoHhGzYHTT656Ei8v9UI5mmKF5SXlxz
+ gjGPH+xylHeN65JODXEW3gXZQz00QLg9SSeSlJ488jwPSyg3/6trsA72UDLWrzHqN7DQ
+ 9U8TihQi/9PGF5q7xjwInI6QzZL1pdaZlnaeuYJR+Hg//Wce1xB99Xiuon5u/p4FucgF zw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2v9xdhau44-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Oct 2019 15:21:15 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C993B10002A;
+        Fri,  4 Oct 2019 15:21:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas23.st.com [10.75.90.46])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B8A4C2C434C;
+        Fri,  4 Oct 2019 15:21:09 +0200 (CEST)
+Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS23.st.com
+ (10.75.90.46) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 4 Oct 2019
+ 15:21:09 +0200
+Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 4 Oct 2019 15:21:09
+ +0200
+From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>, xu_shunji@hoperun.com
-References: <1570178133-21532-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1570178133-21532-2-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <eabf732e-33ba-8011-2cbc-f1df1f6dadb3@roeck-us.net>
-Date:   Fri, 4 Oct 2019 06:12:18 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [PATCH] ARM: dts: stm32: add focaltech touchscreen on stm32mp157c-dk2 board
+Date:   Fri, 4 Oct 2019 15:17:02 +0200
+Message-ID: <1570195022-23327-1-git-send-email-yannick.fertre@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1570178133-21532-2-git-send-email-fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.23.97]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-04_06:2019-10-03,2019-10-04 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/4/19 1:35 AM, Fabrizio Castro wrote:
-> RZ/G2N (a.k.a. R8A774B1) watchdog implementation is compatible
-> with R-Car Gen3, therefore add the relevant documentation.
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Enable focaltech ft6236 touchscreen on STM32MP157C-DK2 board.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
+---
+ arch/arm/boot/dts/stm32mp157c-dk2.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-> ---
->   Documentation/devicetree/bindings/watchdog/renesas,wdt.txt | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.txt b/Documentation/devicetree/bindings/watchdog/renesas,wdt.txt
-> index 9f365c1..a5bf04d 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.txt
-> @@ -10,6 +10,7 @@ Required properties:
->   		 - "renesas,r8a7745-wdt" (RZ/G1E)
->   		 - "renesas,r8a77470-wdt" (RZ/G1C)
->   		 - "renesas,r8a774a1-wdt" (RZ/G2M)
-> +		 - "renesas,r8a774b1-wdt" (RZ/G2N)
->   		 - "renesas,r8a774c0-wdt" (RZ/G2E)
->   	         - "renesas,r8a7790-wdt" (R-Car H2)
->   	         - "renesas,r8a7791-wdt" (R-Car M2-W)
-> 
+diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+index 20ea601..d44a7c6 100644
+--- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
++++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+@@ -61,6 +61,19 @@
+ 	};
+ };
+ 
++&i2c1 {
++	touchscreen@38 {
++		compatible = "focaltech,ft6236";
++		reg = <0x38>;
++		interrupts = <2 2>;
++		interrupt-parent = <&gpiof>;
++		interrupt-controller;
++		touchscreen-size-x = <480>;
++		touchscreen-size-y = <800>;
++		status = "okay";
++	};
++};
++
+ &ltdc {
+ 	status = "okay";
+ 
+-- 
+2.7.4
 
