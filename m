@@ -2,309 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A1A9CBD2B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CE5CBD55
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:34:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389050AbfJDO2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:28:12 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:35673 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389020AbfJDO2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:28:12 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 9BEA7C0008;
-        Fri,  4 Oct 2019 14:28:08 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     <devicetree@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Yan Markman <ymarkman@marvell.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 21/21] arm64: dts: marvell: Add support for Marvell CN9132-DB
-Date:   Fri,  4 Oct 2019 16:27:38 +0200
-Message-Id: <20191004142738.7370-22-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191004142738.7370-1-miquel.raynal@bootlin.com>
-References: <20191004142738.7370-1-miquel.raynal@bootlin.com>
+        id S2389061AbfJDOeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:34:15 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:35277 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388969AbfJDOeP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:34:15 -0400
+Received: by mail-wm1-f68.google.com with SMTP id y21so6131465wmi.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 07:34:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=RQJh9hvK7qALdXSAmt00zw7fon92emAdLHkzgMEfZAU=;
+        b=A5xAhDi4VxeW70QhY5FJe+8RmSvwZMyHEsszULCP3W83MMkQu6R8WecCVtslsj6Hbl
+         8ixZAjkhHQyM7pGmRK64/u0qBgVFZNkipFoRcXJ1+7OwaI5gC9D+9WiwoKt73IaloA0E
+         E951Gimb5ld2eDmFJ0PVTd/SNHoHMrTfeiBnVMelgwzwfx1X2qJ8rRU/Hg4LPQOvoIgt
+         MyZOzb9rt02XQOgtY7ImVqI1e7S51KsrtGfAjqmQvsqU62rWaswtv3nY8Z4wR/K2B1wY
+         WFQ6tvfkOYyYAt2vpjG8KznLvXJV1fvnXjsIX/Yawkj27W3IV6QqUAqDAL03QWqe9lhB
+         TYaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=RQJh9hvK7qALdXSAmt00zw7fon92emAdLHkzgMEfZAU=;
+        b=kK0NAmyL326oQUWPrzG7i0eE8BZmUOd7lB5LVq0x5SpTqF0mnMIrFgcULAsFY0ZPba
+         nbGoZZOXYNyK9ih9+y7OGRqB0NNl4BMhiP1B01fagDXMycPBdMzfe2jary/7LR75fgwn
+         ZBg8SgzInL1WsP+kSHnGRyOJoWsl7hjS7mEtAQnpxBcneGqZCMI+RfBS834P9P+CHJ5M
+         m8j6Gz4nqX0/+M9CKUgNjzWXB1ZztEyw9RhFQxDYoGLsOnHxpsJ8vTNdbS2jDMyM1ZwZ
+         KSdKGWft5p+8D93tMiz4SuVHo3Npq3qq6uCcPE/Mp3dq9HyJ3VM3fe4RYObDsigahFYi
+         DbnQ==
+X-Gm-Message-State: APjAAAVEmur7Y3pF95kuJzU2TUCHHob3UoH3pQf0biW1CN2DYXF2oH4N
+        9E6LsFe8uZVcu0a2IwA+WZEz1w==
+X-Google-Smtp-Source: APXvYqys+RSbYX+JuRrYPwaOgyHiXn90FgRVEBpkF/Fx+THn0V1divQz33rNrvMJYu+E0K0qBI+Okw==
+X-Received: by 2002:a1c:3946:: with SMTP id g67mr11865974wma.52.1570199652841;
+        Fri, 04 Oct 2019 07:34:12 -0700 (PDT)
+Received: from dell ([2.27.167.122])
+        by smtp.gmail.com with ESMTPSA id e18sm8432541wrv.63.2019.10.04.07.34.12
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 04 Oct 2019 07:34:12 -0700 (PDT)
+Date:   Fri, 4 Oct 2019 15:34:10 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        patches@opensource.cirrus.com
+Subject: Re: [PATCH v3 3/3] mfd: madera: Add support for requesting the
+ supply clocks
+Message-ID: <20191004143410.GJ18429@dell>
+References: <20191001134617.12093-1-ckeepax@opensource.cirrus.com>
+ <20191001134617.12093-3-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191001134617.12093-3-ckeepax@opensource.cirrus.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Grzegorz Jaszczyk <jaz@semihalf.com>
+On Tue, 01 Oct 2019, Charles Keepax wrote:
 
-Extend the support of the CN9131 with yet another additional CP115.
+> Add the ability to get the clock for each clock input pin of the chip
+> and enable MCLK2 since that is expected to be a permanently enabled
+> 32kHz clock.
+> 
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> ---
+> 
+> Changes since v2:
+>  - Use new devm_clk_bulk_get_optional API
+> 
+> Thanks,
+> Charles
+> 
+>  drivers/mfd/madera-core.c       | 27 ++++++++++++++++++++++++++-
+>  include/linux/mfd/madera/core.h | 11 +++++++++++
+>  2 files changed, 37 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mfd/madera-core.c b/drivers/mfd/madera-core.c
+> index 29540cbf75934..88d904eb016ea 100644
+> --- a/drivers/mfd/madera-core.c
+> +++ b/drivers/mfd/madera-core.c
+> @@ -450,6 +450,21 @@ int madera_dev_init(struct madera *madera)
+>  		       sizeof(madera->pdata));
+>  	}
+>  
+> +	madera->mclk[MADERA_MCLK1].id = "mclk1";
+> +	madera->mclk[MADERA_MCLK2].id = "mclk2";
+> +	madera->mclk[MADERA_MCLK3].id = "mclk3";
+> +
+> +	ret = devm_clk_bulk_get_optional(madera->dev, ARRAY_SIZE(madera->mclk),
+> +					 madera->mclk);
+> +	if (ret) {
+> +		dev_err(madera->dev, "Failed to get clocks: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Not using devm_clk_get to prevent breakage of existing DTs */
+> +	if (!madera->mclk[MADERA_MCLK2].clk)
+> +		dev_warn(madera->dev, "Missing MCLK2, requires 32kHz clock\n");
+> +
+>  	ret = madera_get_reset_gpio(madera);
+>  	if (ret)
+>  		return ret;
+> @@ -660,13 +675,19 @@ int madera_dev_init(struct madera *madera)
+>  	}
+>  
+>  	/* Init 32k clock sourced from MCLK2 */
+> +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2].clk);
+> +	if (ret != 0) {
 
-The last number indicates how many external CP115 are used.
+Nit: Why is this not 'if (ret)' like in the rest of the file?
 
-New available interfaces:
-* CP2 CRYPTO-0 (disabled)
-* CP2 ETH-0 (SFI, problem with the SFP cage, disabled)
-* CP2 GPIO-1
-* CP2 GPIO-2
-* CP2 I2C-0
-* CP2 PCIe-0 x2
-* CP2 PCIe-2 x1 (disabled)
-* CP2 SDHCI-0
-* CP2 USB3-1 (High-speed)
-
-Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- arch/arm64/boot/dts/marvell/Makefile      |   1 +
- arch/arm64/boot/dts/marvell/cn9132-db.dts | 221 ++++++++++++++++++++++
- 2 files changed, 222 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dts
-
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 9fbf8f460153..f1b5127f0b89 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -12,3 +12,4 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-mcbin-singleshot.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8080-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9130-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9131-db.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
-diff --git a/arch/arm64/boot/dts/marvell/cn9132-db.dts b/arch/arm64/boot/dts/marvell/cn9132-db.dts
-new file mode 100644
-index 000000000000..4ef0df3097ca
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/cn9132-db.dts
-@@ -0,0 +1,221 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2019 Marvell International Ltd.
-+ *
-+ * Device tree for the CN9132-DB board.
-+ */
-+
-+#include "cn9131-db.dts"
-+
-+/ {
-+	model = "Marvell Armada CN9132-DB";
-+	compatible = "marvell,cn9132", "marvell,cn9131", "marvell,cn9130",
-+		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
-+
-+	aliases {
-+		gpio5 = &cp2_gpio1;
-+		gpio6 = &cp2_gpio2;
-+		ethernet5 = &cp2_eth0;
-+	};
-+
-+	cp2_reg_usb3_vbus0: cp2_usb3_vbus@0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cp2-xhci0-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&cp2_gpio1 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	cp2_usb3_0_phy0: cp2_usb3_phy0 {
-+		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&cp2_reg_usb3_vbus0>;
-+	};
-+
-+	cp2_reg_usb3_vbus1: cp2_usb3_vbus@1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cp2-xhci1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&cp2_gpio1 3 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	cp2_usb3_0_phy1: cp2_usb3_phy1 {
-+		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&cp2_reg_usb3_vbus1>;
-+	};
-+
-+	cp2_reg_sd_vccq: cp2_sd_vccq@0 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "cp2_sd_vcc";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&cp2_gpio2 17 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x1 3300000 0x0>;
-+	};
-+
-+	cp2_sfp_eth0: sfp-eth0 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&cp2_sfpp0_i2c>;
-+		los-gpio = <&cp2_module_expander1 11 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&cp2_module_expander1 10 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&cp2_module_expander1 9 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio = <&cp2_module_expander1 8 GPIO_ACTIVE_HIGH>;
-+		/*
-+		 * SFP cages are unconnected on early PCBs because of an the I2C
-+		 * lanes not being connected. Prevent the port for being
-+		 * unusable by disabling the SFP node.
-+		 */
-+		status = "disabled";
-+	};
-+};
-+
-+/*
-+ * Instantiate the second slave CP115
-+ */
-+
-+#define CP11X_NAME		cp2
-+#define CP11X_BASE		f6000000
-+#define CP11X_PCIEx_MEM_BASE(iface) (0xe5000000 + (iface * 0x1000000))
-+#define CP11X_PCIEx_MEM_SIZE(iface) 0xf00000
-+#define CP11X_PCIE0_BASE	f6600000
-+#define CP11X_PCIE1_BASE	f6620000
-+#define CP11X_PCIE2_BASE	f6640000
-+
-+#include "armada-cp115.dtsi"
-+
-+#undef CP11X_NAME
-+#undef CP11X_BASE
-+#undef CP11X_PCIEx_MEM_BASE
-+#undef CP11X_PCIEx_MEM_SIZE
-+#undef CP11X_PCIE0_BASE
-+#undef CP11X_PCIE1_BASE
-+#undef CP11X_PCIE2_BASE
-+
-+&cp2_crypto {
-+	status = "disabled";
-+};
-+
-+&cp2_ethernet {
-+	status = "okay";
-+};
-+
-+/* SLM-1521-V2, CON9 */
-+&cp2_eth0 {
-+	status = "disabled";
-+	phy-mode = "10gbase-kr";
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy4 0>;
-+	managed = "in-band-status";
-+	sfp = <&cp2_sfp_eth0>;
-+};
-+
-+&cp2_gpio1 {
-+	status = "okay";
-+};
-+
-+&cp2_gpio2 {
-+	status = "okay";
-+};
-+
-+&cp2_i2c0 {
-+	clock-frequency = <100000>;
-+
-+	/* SLM-1521-V2 - U3 */
-+	i2c-mux@72 {
-+		compatible = "nxp,pca9544";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x72>;
-+		cp2_sfpp0_i2c: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			/* U12 */
-+			cp2_module_expander1: pca9555@21 {
-+				compatible = "nxp,pca9555";
-+				pinctrl-names = "default";
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				reg = <0x21>;
-+			};
-+		};
-+	};
-+};
-+
-+/* SLM-1521-V2, CON6 */
-+&cp2_pcie0 {
-+	status = "okay";
-+	num-lanes = <2>;
-+	num-viewport = <8>;
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy0 0
-+		&cp2_comphy1 0>;
-+};
-+
-+/* SLM-1521-V2, CON8 */
-+&cp2_pcie2 {
-+	status = "okay";
-+	num-lanes = <1>;
-+	num-viewport = <8>;
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy5 2>;
-+};
-+
-+&cp2_sata0 {
-+	status = "okay";
-+
-+	/* SLM-1521-V2, CON4 */
-+	sata-port@0 {
-+		/* Generic PHY, providing serdes lanes */
-+		phys = <&cp2_comphy2 0>;
-+	};
-+};
-+
-+/* CON 2 on SLM-1683 - microSD */
-+&cp2_sdhci0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp2_sdhci_pins>;
-+	bus-width = <4>;
-+	cd-gpios = <&cp2_gpio2 23 GPIO_ACTIVE_LOW>;
-+	vqmmc-supply = <&cp2_reg_sd_vccq>;
-+};
-+
-+&cp2_syscon0 {
-+	cp2_pinctrl: pinctrl {
-+		compatible = "marvell,cp115-standalone-pinctrl";
-+
-+		cp2_i2c0_pins: cp2-i2c-pins-0 {
-+			marvell,pins = "mpp37", "mpp38";
-+			marvell,function = "i2c0";
-+		};
-+		cp2_sdhci_pins: cp2-sdhi-pins-0 {
-+			marvell,pins = "mpp56", "mpp57", "mpp58",
-+				       "mpp59", "mpp60", "mpp61";
-+			marvell,function = "sdio";
-+		};
-+	};
-+};
-+
-+&cp2_usb3_0 {
-+	status = "okay";
-+	usb-phy = <&cp2_usb3_0_phy0>;
-+	phy-names = "usb";
-+};
-+
-+/* SLM-1521-V2, CON11 */
-+&cp2_usb3_1 {
-+	status = "okay";
-+	usb-phy = <&cp2_usb3_0_phy1>;
-+	phy-names = "usb";
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy3 1>;
-+};
 -- 
-2.20.1
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
