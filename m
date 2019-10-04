@@ -2,86 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67C26CC191
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 19:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFBE1CC1DA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 19:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388195AbfJDRW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 13:22:29 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38110 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388186AbfJDRW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 13:22:28 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x94HMA9O095384;
-        Fri, 4 Oct 2019 12:22:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570209730;
-        bh=adoGa42wyTh6UCk6Hc+yZbQylsk1AFp8cCXvuR0ONyI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Viu1+a06CZHelhUb6jQubigo5UHEMOsnt9BlCBW4z8b1GvmY3MMAL+Ech8AU4Is8i
-         lvfZS/cEfWDONGkpmApmOdbmo39PhFGsrGIUJXH0SuJsOuFRQgyWh5JqCGse5yHOC3
-         e9OEarca208DGmUqai28I45sl7aclkOsTWAQsMtY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x94HMADe127778
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Oct 2019 12:22:10 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 4 Oct
- 2019 12:22:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 4 Oct 2019 12:22:09 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x94HM7Vd041112;
-        Fri, 4 Oct 2019 12:22:10 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v3 3/3] media: ov5640: Make 2592x1944 mode only available at 15 fps
-Date:   Fri, 4 Oct 2019 12:24:18 -0500
-Message-ID: <20191004172418.2339-4-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191004172418.2339-1-bparrot@ti.com>
-References: <20191004172418.2339-1-bparrot@ti.com>
+        id S2387928AbfJDRjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 13:39:42 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:60824 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387428AbfJDRjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 13:39:42 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 342A86081E; Fri,  4 Oct 2019 17:39:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570210781;
+        bh=Xy3fQzgklWWmrTL56KOs57tZvRR4HJiCwiXK2LW/+2U=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=GRiT1kNtfbftNap7rnqSoOhcBvBJvKr7cMBwB7AFi8SRsPiaB6deP5LDpezqpQB9i
+         FBenvrQ62ecA0vh5D+Axpcwh3xwiQ7+qo/VJb28dqSA0LgnPOu/rzmAIj/OZTAE8G4
+         YvUxsHs1CNNAecUcr3KalDF9oCiNImgBohfMsMCk=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.79.165.229] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DD9E6016D;
+        Fri,  4 Oct 2019 17:39:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570210780;
+        bh=Xy3fQzgklWWmrTL56KOs57tZvRR4HJiCwiXK2LW/+2U=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=GkeyLHMcqKS10Cha3XKBd3VfPjuyAA9vxaCy5r2w0HAuxTM4WOJ9VlHTQ9tiVOnG6
+         IZFf11s10EMq5BMykHNoFBXR67hSc9YFTFEzqsFFpMXXQx+dkj7a1L9xnsavUjfbZN
+         uv0IylCjnT0vfx5PHqVuu0vGzmH7VQWTL99uvbpg=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6DD9E6016D
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC)
+ driver for SC7180
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>, robh+dt@kernel.org
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20190918095018.17979-1-tdas@codeaurora.org>
+ <20190918095018.17979-4-tdas@codeaurora.org>
+ <20190918213946.DC03521924@mail.kernel.org>
+ <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org>
+ <20190924231223.9012C207FD@mail.kernel.org>
+ <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org>
+ <20190925130346.42E0820640@mail.kernel.org>
+ <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org>
+ <20191001143825.CD3212054F@mail.kernel.org>
+ <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org>
+ <20191003160130.5A19B222D0@mail.kernel.org>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <81a2fa46-a7e6-66a2-9649-009f22813c81@codeaurora.org>
+Date:   Fri, 4 Oct 2019 23:09:31 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20191003160130.5A19B222D0@mail.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sensor data sheet clearly state that 2592x1944 only works at 15 fps
-make sure we don't try to miss configure the pll out of acceptable
-range.
+Hi Stephen,
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
----
- drivers/media/i2c/ov5640.c | 5 +++++
- 1 file changed, 5 insertions(+)
+On 10/3/2019 9:31 PM, Stephen Boyd wrote:
+> Quoting Taniya Das (2019-10-03 03:31:15)
+>> Hi Stephen,
+>>
+>> On 10/1/2019 8:08 PM, Stephen Boyd wrote:
+>>>
+>>> Why do you want to keep them critical and registered? I'm suggesting
+>>> that any clk that is marked critical and doesn't have a parent should
+>>> instead become a register write in probe to turn the clk on.
+>>>
+>> Sure, let me do a one-time enable from probe for the clocks which
+>> doesn't have a parent.
+>> But I would now have to educate the clients of these clocks to remove
+>> using them.
+>>
+> 
+> If anyone is using these clks we can return NULL from the provider for
+> the specifier so that we indicate there isn't support for them in the
+> kernel. At least I hope that code path still works given all the recent
+> changes to clk_get().
+> 
 
-diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-index 5cebad151546..8ffb3a55ca27 100644
---- a/drivers/media/i2c/ov5640.c
-+++ b/drivers/media/i2c/ov5640.c
-@@ -1611,6 +1611,11 @@ ov5640_find_mode(struct ov5640_dev *sensor, enum ov5640_frame_rate fr,
- 	    !(mode->hact == 640 && mode->vact == 480))
- 		return NULL;
- 
-+	/* 2592x1944 only works at 15fps max */
-+	if ((mode->hact == 2592 && mode->vact == 1944) &&
-+	    fr > OV5640_15_FPS)
-+		return NULL;
-+
- 	return mode;
- }
- 
+Could you please confirm if you are referring to update the below?
+
+--- a/drivers/clk/qcom/common.c
++++ b/drivers/clk/qcom/common.c
+@@ -218,7 +218,7 @@ static struct clk_hw *qcom_cc_clk_hw_get(struct 
+of_phandle_args *clkspec,
+                 return ERR_PTR(-EINVAL);
+         }
+
+-       return cc->rclks[idx] ? &cc->rclks[idx]->hw : ERR_PTR(-ENOENT);
++       return cc->rclks[idx] ? &cc->rclks[idx]->hw : NULL;
+  }
+
+
 -- 
-2.17.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
+--
