@@ -2,148 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D60CC0D3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04322CC0F5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 18:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730307AbfJDQ1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 12:27:47 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:40500 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728336AbfJDQ1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:27:47 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x94GRjKE076856;
-        Fri, 4 Oct 2019 11:27:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570206465;
-        bh=PJbcQkGUyLQUkdIltaZ+oCCPly62Nq7aKQ+5h4XsBMo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QpkN+0eZQIijybcX7GWdTpBojKm04y8nYSThkQM1/hToHDoegSss8gevptfGFKyas
-         oGrPAPtO8ipXc6SvJQ3uF0tzJAbnU6m2D9G1Sr0566PISVPZMX05P1KMrtw1lzTpyl
-         0VhToPshtabEuu8DkL6A9cZxGpBYuQQrJuwPc3aI=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x94GRjva055854
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Oct 2019 11:27:45 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 4 Oct
- 2019 11:27:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 4 Oct 2019 11:27:45 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x94GRgA4028904;
-        Fri, 4 Oct 2019 11:27:45 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v2 02/21] media: ti-vpe: vpe: Fix Motion Vector vpdma stride
-Date:   Fri, 4 Oct 2019 11:29:33 -0500
-Message-ID: <20191004162952.4963-3-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191004162952.4963-1-bparrot@ti.com>
-References: <20191004162952.4963-1-bparrot@ti.com>
+        id S1729727AbfJDQkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 12:40:08 -0400
+Received: from userp2120.oracle.com ([156.151.31.85]:47658 "EHLO
+        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725775AbfJDQkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 12:40:08 -0400
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+        by userp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x94GOKIT145942;
+        Fri, 4 Oct 2019 16:37:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2019-08-05;
+ bh=51ThAHTVRLLrLX7DDUUketK1Xn5udBHC8gklOuQw7w4=;
+ b=poGgqbX6JCl/NL0NREIW4P9+l8QLaal32Xkto+/gKm9KzGXG36J3t9Y97IxbfC79abuc
+ HIhJcvwgU73VKa+HhUYWIpCN14vCfAWcuykFg8ecFCTacZSd9CNbsvDrj5/EnIrO7zZd
+ SnwCs6AysNBsPxEQu+OM86HU/KXoTrvfvgl0uFeMuiL/Urusogu37yaibi7r7bw1mRXl
+ P+U7Do6b28k22LsC3kulgYBA2XxWdLTCodBCIzLu9N6fRpGQGYkQF1JQyrUaoEKGwtaN
+ b6g/DpZETiiQ7cEIsMCUf+7h0vD9o3h4LFWUFwJWWR3f41akUitzgfesOp1b6XbHzdK6 ew== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by userp2120.oracle.com with ESMTP id 2va05sckk2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 04 Oct 2019 16:37:34 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x94GNGmV029717;
+        Fri, 4 Oct 2019 16:35:33 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+        by userp3020.oracle.com with ESMTP id 2vdk0uxdww-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 04 Oct 2019 16:35:33 +0000
+Received: from abhmp0005.oracle.com (abhmp0005.oracle.com [141.146.116.11])
+        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x94GZUL7027727;
+        Fri, 4 Oct 2019 16:35:31 GMT
+Received: from [10.209.227.25] (/10.209.227.25)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Fri, 04 Oct 2019 09:35:30 -0700
+Subject: Re: [PATCH v3 00/14] dmaengine/soc: Add Texas Instruments UDMA
+ support
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, vkoul@kernel.org,
+        robh+dt@kernel.org, nm@ti.com, ssantosh@kernel.org
+Cc:     dan.j.williams@intel.com, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
+        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
+        j-keerthy@ti.com
+References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <c567c1a2-2e74-3809-8e0f-4c2049ba4747@oracle.com>
+Date:   Fri, 4 Oct 2019 09:35:29 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20191001061704.2399-1-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9399 signatures=668684
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1908290000 definitions=main-1910040145
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9399 signatures=668684
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1908290000
+ definitions=main-1910040145
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit 52831a418fa6 ("[media] media: ti-vpe: vpe: allow use of user
-specified stride") and commit 8c1e4fa17e92 ("[media] media: ti-vpe: vpdma:
-add support for user specified stride") resulted in the Motion Vector
-stride to be the same as the image stride.
+On 9/30/19 11:16 PM, Peter Ujfalusi wrote:
+> Hi,
+> 
+> Changes since v2
+> )https://patchwork.kernel.org/project/linux-dmaengine/list/?series=152609&state=*)
+> - Based on 5.4-rc1
+> - Support for Flow only data transfer for the glue layer
+> 
 
-This caused memory corruption in the output image as mentionned in
-commit 44f98adf71a8 ("[media] media: ti-vpe: vpe: Fix line stride
-for output motion vector").
+> 
+> Grygorii Strashko (3):
+>    bindings: soc: ti: add documentation for k3 ringacc
+>    soc: ti: k3: add navss ringacc driver
+>    dmaengine: ti: k3-udma: Add glue layer for non DMAengine users
+> 
+> Peter Ujfalusi (11):
+>    dmaengine: doc: Add sections for per descriptor metadata support
+>    dmaengine: Add metadata_ops for dma_async_tx_descriptor
+>    dmaengine: Add support for reporting DMA cached data amount
+>    dmaengine: ti: Add cppi5 header for UDMA
+>    dt-bindings: dma: ti: Add document for K3 UDMA
+>    dmaengine: ti: New driver for K3 UDMA - split#1: defines, structs, io
+>      func
+>    dmaengine: ti: New driver for K3 UDMA - split#2: probe/remove, xlate
+>      and filter_fn
+>    dmaengine: ti: New driver for K3 UDMA - split#3: alloc/free
+>      chan_resources
+>    dmaengine: ti: New driver for K3 UDMA - split#4: dma_device callbacks
+>      1
+>    dmaengine: ti: New driver for K3 UDMA - split#5: dma_device callbacks
+>      2
+>    dmaengine: ti: New driver for K3 UDMA - split#6: Kconfig and Makefile
+> 
+>   .../devicetree/bindings/dma/ti/k3-udma.txt    |  185 +
+>   .../devicetree/bindings/soc/ti/k3-ringacc.txt |   59 +
+>   Documentation/driver-api/dmaengine/client.rst |   75 +
+>   .../driver-api/dmaengine/provider.rst         |   46 +
+>   drivers/dma/dmaengine.c                       |   73 +
+>   drivers/dma/dmaengine.h                       |    8 +
+>   drivers/dma/ti/Kconfig                        |   22 +
+>   drivers/dma/ti/Makefile                       |    2 +
+>   drivers/dma/ti/k3-udma-glue.c                 | 1225 ++++++
+>   drivers/dma/ti/k3-udma-private.c              |  141 +
+>   drivers/dma/ti/k3-udma.c                      | 3525 +++++++++++++++++
+>   drivers/dma/ti/k3-udma.h                      |  161 +
+>   drivers/soc/ti/Kconfig                        |   12 +
+>   drivers/soc/ti/Makefile                       |    1 +
+>   drivers/soc/ti/k3-ringacc.c                   | 1165 ++++++
+>   include/dt-bindings/dma/k3-udma.h             |   10 +
+>   include/linux/dma/k3-udma-glue.h              |  134 +
+>   include/linux/dma/ti-cppi5.h                  | 1049 +++++
+>   include/linux/dmaengine.h                     |  110 +
+>   include/linux/soc/ti/k3-ringacc.h             |  245 ++
+>   20 files changed, 8248 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-udma.txt
+>   create mode 100644 Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt
+>   create mode 100644 drivers/dma/ti/k3-udma-glue.c
+>   create mode 100644 drivers/dma/ti/k3-udma-private.c
+>   create mode 100644 drivers/dma/ti/k3-udma.c
+>   create mode 100644 drivers/dma/ti/k3-udma.h
+>   create mode 100644 drivers/soc/ti/k3-ringacc.c
+>   create mode 100644 include/dt-bindings/dma/k3-udma.h
+>   create mode 100644 include/linux/dma/k3-udma-glue.h
+>   create mode 100644 include/linux/dma/ti-cppi5.h
+>   create mode 100644 include/linux/soc/ti/k3-ringacc.h
+> 
+Can you please split this series and post drivers/soc/* bits
+separately ?  If its ready, I can apply k3-ringacc.c changes.
 
-Fixes: 52831a418fa6 ("[media] media: ti-vpe: vpe: allow use of user specified stride")
-Fixes: 8c1e4fa17e92 ("[media] media: ti-vpe: vpdma: add support for user specified stride")
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
-Acked-by: Nikhil Devshatwar <nikhil.nd@ti.com>
----
- drivers/media/platform/ti-vpe/vpe.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/media/platform/ti-vpe/vpe.c b/drivers/media/platform/ti-vpe/vpe.c
-index 60b575bb44c4..5ba72445584d 100644
---- a/drivers/media/platform/ti-vpe/vpe.c
-+++ b/drivers/media/platform/ti-vpe/vpe.c
-@@ -1013,11 +1013,14 @@ static void add_out_dtd(struct vpe_ctx *ctx, int port)
- 	dma_addr_t dma_addr;
- 	u32 flags = 0;
- 	u32 offset = 0;
-+	u32 stride;
- 
- 	if (port == VPE_PORT_MV_OUT) {
- 		vpdma_fmt = &vpdma_misc_fmts[VPDMA_DATA_FMT_MV];
- 		dma_addr = ctx->mv_buf_dma[mv_buf_selector];
- 		q_data = &ctx->q_data[Q_DATA_SRC];
-+		stride = ALIGN((q_data->width * vpdma_fmt->depth) >> 3,
-+			       VPDMA_STRIDE_ALIGN);
- 	} else {
- 		/* to incorporate interleaved formats */
- 		int plane = fmt->coplanar ? p_data->vb_part : 0;
-@@ -1044,6 +1047,7 @@ static void add_out_dtd(struct vpe_ctx *ctx, int port)
- 		}
- 		/* Apply the offset */
- 		dma_addr += offset;
-+		stride = q_data->bytesperline[VPE_LUMA];
- 	}
- 
- 	if (q_data->flags & Q_DATA_FRAME_1D)
-@@ -1055,7 +1059,7 @@ static void add_out_dtd(struct vpe_ctx *ctx, int port)
- 			   MAX_W, MAX_H);
- 
- 	vpdma_add_out_dtd(&ctx->desc_list, q_data->width,
--			  q_data->bytesperline[VPE_LUMA], &q_data->c_rect,
-+			  stride, &q_data->c_rect,
- 			  vpdma_fmt, dma_addr, MAX_OUT_WIDTH_REG1,
- 			  MAX_OUT_HEIGHT_REG1, p_data->channel, flags);
- }
-@@ -1074,10 +1078,13 @@ static void add_in_dtd(struct vpe_ctx *ctx, int port)
- 	dma_addr_t dma_addr;
- 	u32 flags = 0;
- 	u32 offset = 0;
-+	u32 stride;
- 
- 	if (port == VPE_PORT_MV_IN) {
- 		vpdma_fmt = &vpdma_misc_fmts[VPDMA_DATA_FMT_MV];
- 		dma_addr = ctx->mv_buf_dma[mv_buf_selector];
-+		stride = ALIGN((q_data->width * vpdma_fmt->depth) >> 3,
-+			       VPDMA_STRIDE_ALIGN);
- 	} else {
- 		/* to incorporate interleaved formats */
- 		int plane = fmt->coplanar ? p_data->vb_part : 0;
-@@ -1104,6 +1111,7 @@ static void add_in_dtd(struct vpe_ctx *ctx, int port)
- 		}
- 		/* Apply the offset */
- 		dma_addr += offset;
-+		stride = q_data->bytesperline[VPE_LUMA];
- 
- 		if (q_data->flags & Q_DATA_INTERLACED_SEQ_TB) {
- 			/*
-@@ -1139,10 +1147,10 @@ static void add_in_dtd(struct vpe_ctx *ctx, int port)
- 	if (p_data->vb_part && fmt->fourcc == V4L2_PIX_FMT_NV12)
- 		frame_height /= 2;
- 
--	vpdma_add_in_dtd(&ctx->desc_list, q_data->width,
--			 q_data->bytesperline[VPE_LUMA], &q_data->c_rect,
--		vpdma_fmt, dma_addr, p_data->channel, field, flags, frame_width,
--		frame_height, 0, 0);
-+	vpdma_add_in_dtd(&ctx->desc_list, q_data->width, stride,
-+			 &q_data->c_rect, vpdma_fmt, dma_addr,
-+			 p_data->channel, field, flags, frame_width,
-+			 frame_height, 0, 0);
- }
- 
- /*
--- 
-2.17.1
-
+Regards,
+Santosh
