@@ -2,90 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80050CBF04
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 17:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0200CBF0D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 17:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389320AbfJDPVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 11:21:45 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:41902 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2389165AbfJDPVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 11:21:45 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x94FEqL2023042;
-        Fri, 4 Oct 2019 10:21:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=p7+1RJbWg4qn+lD3vb5E/TJ6wjfRTkxdKjhfoIz+FUM=;
- b=X2zUH10mirbj+x/n8RnymRCWE63V6+ujHW7xyrMxoxYqbYGsTLoX60M+kOYD0ALkvOlj
- kJ87bqI1miKgzRN0fnZmJzOb/boYUtKqqWv1detwk7AC1qpBe6EyOiJbHbZ4YVft+NQ8
- 3bWibyzYdjqz8kA2+B176enacAdVeUiBiYpm8lTdtbkNHaMp0wjVQ3CcAd8JAUi+e+G4
- 9Jxv3iEGBDd6jucXt8wKQHH8Wswcx8gJQs+ZlW1mX/cIsYLOw9EYaI4zH3bLcRTTRQMF
- UAU+COcdZkqCuGK4OD7DE+4ZWoyfPORiLxq/65tgK+b5y+aCPjSMGlDI10XuMUuaa1jJ xw== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2va4x4t7rf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 04 Oct 2019 10:21:37 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 4 Oct
- 2019 16:21:35 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Fri, 4 Oct 2019 16:21:35 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E49EF2A1;
-        Fri,  4 Oct 2019 15:21:34 +0000 (UTC)
-Date:   Fri, 4 Oct 2019 15:21:34 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: Re: [PATCH v3 3/3] mfd: madera: Add support for requesting the
- supply clocks
-Message-ID: <20191004152134.GA31391@ediswmail.ad.cirrus.com>
-References: <20191001134617.12093-1-ckeepax@opensource.cirrus.com>
- <20191001134617.12093-3-ckeepax@opensource.cirrus.com>
- <20191004143410.GJ18429@dell>
+        id S2389809AbfJDPXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 11:23:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57722 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389591AbfJDPXR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Oct 2019 11:23:17 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1227B2133F;
+        Fri,  4 Oct 2019 15:23:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570202596;
+        bh=fpWPXT8ggD/e+pn1BYIuXjDg5w4o0wtetCOExwO2jKI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=1HC8jaPP2G0MWAWxaAFL2+tq5ciAJ4x5mOg5CSEB8t19cEmbXeVfBzU87NzEzJYzU
+         /Z91Kt7mxYJejs3+VaDuSOptlGlIevhRK1zWaCkW9zPUgRvyhZzxjiGmh7mKcoePT9
+         drAO1mvoLrPQRMzwDU31x5pbXSxRgdfEwW1SGYRw=
+Received: by mail-qt1-f176.google.com with SMTP id 3so9098238qta.1;
+        Fri, 04 Oct 2019 08:23:16 -0700 (PDT)
+X-Gm-Message-State: APjAAAXSUdn19LnA+gvVYyJGm+dif/8LIaeRGUIF1pyZCbB5VdZYaHdB
+        S+/lz17ghZtQt6pvBApR4swTmCuGFozzIjf8gg==
+X-Google-Smtp-Source: APXvYqyMEEXcNS7O6u6Diqt8pCgl45a2tKKmM4tc+3EtuFfs+n4HBWeELngFdSwx5uOrLCiy+N5MR6jFrVyyPKoQlLc=
+X-Received: by 2002:ac8:6982:: with SMTP id o2mr16440439qtq.143.1570202595162;
+ Fri, 04 Oct 2019 08:23:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20191004143410.GJ18429@dell>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=852
- malwarescore=0 adultscore=0 phishscore=0 impostorscore=0
- priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910040136
+References: <20190924124945.491326-1-nuno.sa@analog.com> <20190924124945.491326-4-nuno.sa@analog.com>
+ <20191002002331.GA17502@bogus> <a85b33d3cd24b4225e4be3a25221f9c56cdcca5c.camel@analog.com>
+ <CAL_JsqJPFfUmOOQ-f_ibbTXdzgYxYMf2+7HCq2eBn_MkfRsdbQ@mail.gmail.com> <eec33c7156674770ca2f3033baed76c0e05a8587.camel@analog.com>
+In-Reply-To: <eec33c7156674770ca2f3033baed76c0e05a8587.camel@analog.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 4 Oct 2019 10:23:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK6oC1VFb4ni9pn9a=sfxWK9pAmBBgajpZwad5udFkPoA@mail.gmail.com>
+Message-ID: <CAL_JsqK6oC1VFb4ni9pn9a=sfxWK9pAmBBgajpZwad5udFkPoA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: iio: Add ltc2947 documentation
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 04, 2019 at 03:34:10PM +0100, Lee Jones wrote:
-> On Tue, 01 Oct 2019, Charles Keepax wrote:
-> 
-> > Add the ability to get the clock for each clock input pin of the chip
-> > and enable MCLK2 since that is expected to be a permanently enabled
-> > 32kHz clock.
-> > 
-> > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> > ---
-> >  	/* Init 32k clock sourced from MCLK2 */
-> > +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2].clk);
-> > +	if (ret != 0) {
-> 
-> Nit: Why is this not 'if (ret)' like in the rest of the file?
-> 
+On Fri, Oct 4, 2019 at 9:59 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
+>
+> Hi Rob,
+>
+> Just wanted to clarify something which I don't know if is something I'm
+> doing wrong or if it is some issue.
+>
+> On Wed, 2019-10-02 at 14:06 -0500, Rob Herring wrote:
+> >
+> > On Wed, Oct 2, 2019 at 10:09 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
+> > > On Wed, 2019-10-02 at 09:19 -0500, Rob Herring wrote:
+> > > > On Tue, Sep 24, 2019 at 02:49:45PM +0200, Nuno S=C3=A1 wrote:
+> > > > > Document the LTC2947 device devicetree bindings.
+> > > > >
+> > > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > > > ---
+> > > > >  .../bindings/hwmon/adi,ltc2947.yaml           | 101
+> > > > > ++++++++++++++++++
+> > > > >  MAINTAINERS                                   |   1 +
+> > > > >  2 files changed, 102 insertions(+)
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > > > b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..2ea0187421d4
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+> > > > > @@ -0,0 +1,101 @@
+> > > >
+> > > > Missing license. Please make new bindings (GPL-2.0-only OR BSD-2-
+> > > > Clause)
+> > >
+> > > ack.
+> > >
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id:
+> > > > > http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Analog Devices LTC2947 high precision power and energy
+> > > > > monitor
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  Analog Devices LTC2947 high precision power and energy
+> > > > > monitor
+> > > > > over SPI or I2C.
+> > > > > +
+> > > > > +
+> > > > > https://www.analog.com/media/en/technical-documentation/data-shee=
+ts/LTC2947.pdf
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - adi,ltc2947
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    description:
+> > > > > +      The LTC2947 uses either a trimmed internal oscillator or
+> > > > > an
+> > > > > external clock
+> > > > > +      as the time base for determining the integration period
+> > > > > to
+> > > > > represent time,
+> > > > > +      charge and energy. When an external clock is used, this
+> > > > > property must be
+> > > > > +      set accordingly.
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  adi,accumulator-ctl-pol:
+> > > > > +    description:
+> > > > > +      This property controls the polarity of current that is
+> > > > > accumulated to
+> > > > > +      calculate charge and energy so that, they can be only
+> > > > > accumulated for
+> > > > > +      positive current for example. Since there are two sets
+> > > > > of
+> > > > > registers for
+> > > > > +      the accumulated values, this entry can also have two
+> > > > > items
+> > > > > which sets
+> > > > > +      energy1/charge1 and energy2/charger2 respectively. Check
+> > > > > table 12 of the
+> > > > > +      datasheet for more information on the supported options.
+> > > > > +    allOf:
+> > > > > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > > +      - enum: [0, 1, 2, 3]
+> > > > > +      - minItems: 2
+> > > > > +      - maxItems: 2
+> > > > > +    default: [0, 0]
+> > > >
+> > > > This should be:
+> > > >
+> > > > allOf:
+> > > >   - $ref: ...
+> > > > items:
+> > > >   enum: [0, 1, 2, 3]
+> > > >   default: 0
+> > > > minItems: 2
+> > > > maxItems: 2
+>
+> When trying the above I get:
+>
+> "ltc2947@0: adi,accumulator-ctl-pol:0: [0, 1] is not valid under any of
+> the given schemas"
 
-Apologies will get that fixed up.
+Is dtschema up to date with the latest. I think I fixed this case
+recently, though with the wonderful json-schema errors it is hard to
+tell.
 
-Thanks,
-Charles
+Rob
