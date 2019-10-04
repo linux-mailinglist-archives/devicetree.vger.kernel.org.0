@@ -2,121 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFBE1CC1DA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 19:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07330CC200
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 19:52:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387928AbfJDRjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 13:39:42 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:60824 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387428AbfJDRjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 13:39:42 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 342A86081E; Fri,  4 Oct 2019 17:39:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570210781;
-        bh=Xy3fQzgklWWmrTL56KOs57tZvRR4HJiCwiXK2LW/+2U=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=GRiT1kNtfbftNap7rnqSoOhcBvBJvKr7cMBwB7AFi8SRsPiaB6deP5LDpezqpQB9i
-         FBenvrQ62ecA0vh5D+Axpcwh3xwiQ7+qo/VJb28dqSA0LgnPOu/rzmAIj/OZTAE8G4
-         YvUxsHs1CNNAecUcr3KalDF9oCiNImgBohfMsMCk=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.165.229] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DD9E6016D;
-        Fri,  4 Oct 2019 17:39:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570210780;
-        bh=Xy3fQzgklWWmrTL56KOs57tZvRR4HJiCwiXK2LW/+2U=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=GkeyLHMcqKS10Cha3XKBd3VfPjuyAA9vxaCy5r2w0HAuxTM4WOJ9VlHTQ9tiVOnG6
-         IZFf11s10EMq5BMykHNoFBXR67hSc9YFTFEzqsFFpMXXQx+dkj7a1L9xnsavUjfbZN
-         uv0IylCjnT0vfx5PHqVuu0vGzmH7VQWTL99uvbpg=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6DD9E6016D
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC)
- driver for SC7180
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>, robh+dt@kernel.org
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20190918095018.17979-1-tdas@codeaurora.org>
- <20190918095018.17979-4-tdas@codeaurora.org>
- <20190918213946.DC03521924@mail.kernel.org>
- <a3cd82c9-8bfa-f4a3-ab1f-2e397fbd9d16@codeaurora.org>
- <20190924231223.9012C207FD@mail.kernel.org>
- <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org>
- <20190925130346.42E0820640@mail.kernel.org>
- <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org>
- <20191001143825.CD3212054F@mail.kernel.org>
- <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org>
- <20191003160130.5A19B222D0@mail.kernel.org>
-From:   Taniya Das <tdas@codeaurora.org>
-Message-ID: <81a2fa46-a7e6-66a2-9649-009f22813c81@codeaurora.org>
-Date:   Fri, 4 Oct 2019 23:09:31 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2388547AbfJDRw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 13:52:26 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:36657 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388513AbfJDRw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 13:52:26 -0400
+Received: by mail-wr1-f67.google.com with SMTP id y19so8254894wrd.3;
+        Fri, 04 Oct 2019 10:52:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=sFYbP+lwubqARXBpAaF4zcAm2S+7R8TyH0tAYLHpuSw=;
+        b=SmxHhPtiS4HE+frxFMiA5OGhOlwdwsxbR3iaBCD2kV6eT9DtYjlFHI8Fi5D6clbRwh
+         Nxh1rKkKxEruG3/W0r0y879a64kVB8lNpcfdt8BI6FT26/dmmvz4ufqdpX6vAqNtGGu7
+         LrOVIYHjz/dUiik26uG1DX1uvj4RtRSO0G7DljiKkIO9FmGSxNg7GjhRpWixtgVPvEB8
+         Z4gy9XNWnT83rVMNFxFplTis5Roe/e+4hn+nkfeie/7AY6W/7zlPuqRMjiVJ1/j4JHgW
+         woYqWZk+VtzsVXuB8m82bKW7R2n8T1A0dGRkIR1p13bYn7Prt5sis7E4sfx/QQdSTbHY
+         AUNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=sFYbP+lwubqARXBpAaF4zcAm2S+7R8TyH0tAYLHpuSw=;
+        b=jsSEcfFLtaX0UGWmsthp0pQfaQfbD4r/Aki/8mSLX9YDXzfM4PvDzbRCUoA/OQZa6J
+         A7Krw4599RPDOCtliVUvdZV49Y8ZaSsavrFlgbZq+OHMWw7KbeDt7DB14m5rCa4zI7H6
+         NgW4t/38flBLt/yDywchsXuCDHa/cO2IMpPAba1jtdHt/xxyogCnTfMy5V5Wil3Kvokx
+         ou4S9OxYeKlMJMEnZ/hd0gIb/hbq7az70cvPPsVhELIJ7uHaDHvT9O3Z4YPmx9vUjW7O
+         cVJtBOizMbH4WQH2f3KmIA9YnAPR0hgF0eR7PYbA+8UhLk5fQSuXaqH67d1Fzu10MPXc
+         16jQ==
+X-Gm-Message-State: APjAAAXx/A4gEgaWgJFh+6IONAV9a5pWZtFmHm5lRW1CHU8vqulnuhnE
+        nNwwcqv9KBNladTzsD2NKQs=
+X-Google-Smtp-Source: APXvYqxKktEBgCwY1UMUOGZ6XIxTAYM3I6bm5m3tonPbhiuAyeIqRpA6wiGOA/Vmhw7etSBN48lcaA==
+X-Received: by 2002:adf:c7cf:: with SMTP id y15mr12982295wrg.54.1570211543488;
+        Fri, 04 Oct 2019 10:52:23 -0700 (PDT)
+Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id 59sm9181066wrc.23.2019.10.04.10.52.21
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 04 Oct 2019 10:52:22 -0700 (PDT)
+Date:   Fri, 4 Oct 2019 19:52:18 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     catalin.marinas@arm.com, davem@davemloft.net,
+        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
+        mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        will@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v2 02/11] crypto: Add Allwinner sun8i-ce Crypto Engine
+Message-ID: <20191004175218.GA11208@Red>
+References: <20191001184141.27956-1-clabbe.montjoie@gmail.com>
+ <20191001184141.27956-3-clabbe.montjoie@gmail.com>
+ <20191002103506.zdoyhhzmroa6smwl@gilmour>
 MIME-Version: 1.0
-In-Reply-To: <20191003160130.5A19B222D0@mail.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191002103506.zdoyhhzmroa6smwl@gilmour>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
-
-On 10/3/2019 9:31 PM, Stephen Boyd wrote:
-> Quoting Taniya Das (2019-10-03 03:31:15)
->> Hi Stephen,
->>
->> On 10/1/2019 8:08 PM, Stephen Boyd wrote:
->>>
->>> Why do you want to keep them critical and registered? I'm suggesting
->>> that any clk that is marked critical and doesn't have a parent should
->>> instead become a register write in probe to turn the clk on.
->>>
->> Sure, let me do a one-time enable from probe for the clocks which
->> doesn't have a parent.
->> But I would now have to educate the clients of these clocks to remove
->> using them.
->>
+On Wed, Oct 02, 2019 at 12:35:06PM +0200, Maxime Ripard wrote:
+> Hi,
 > 
-> If anyone is using these clks we can return NULL from the provider for
-> the specifier so that we indicate there isn't support for them in the
-> kernel. At least I hope that code path still works given all the recent
-> changes to clk_get().
+> On Tue, Oct 01, 2019 at 08:41:32PM +0200, Corentin Labbe wrote:
+> > +	/* CTS and recent CE (H6) need length in bytes, in word otherwise */
+> > +	if (ce->variant->model == CE_v2)
+> > +		cet->t_dlen = areq->cryptlen;
+> 
+> It's entirely redundant withe the compatible.
+> 
+> How about using something like has_t_dlen or whatever name you find
+> best in the variant structure?
 > 
 
-Could you please confirm if you are referring to update the below?
+Hello
 
---- a/drivers/clk/qcom/common.c
-+++ b/drivers/clk/qcom/common.c
-@@ -218,7 +218,7 @@ static struct clk_hw *qcom_cc_clk_hw_get(struct 
-of_phandle_args *clkspec,
-                 return ERR_PTR(-EINVAL);
-         }
+I will fix that, I started with has_t_dlen_in_bytes
 
--       return cc->rclks[idx] ? &cc->rclks[idx]->hw : ERR_PTR(-ENOENT);
-+       return cc->rclks[idx] ? &cc->rclks[idx]->hw : NULL;
-  }
+> > +static int sun8i_ce_probe(struct platform_device *pdev)
+> > +{
+> > +	struct resource *res;
+> > +	u32 v;
+> > +	int err, i, ce_method, id, irq;
+> > +	unsigned long cr;
+> > +	struct sun8i_ce_dev *ce;
+> > +
+> > +	ce = devm_kzalloc(&pdev->dev, sizeof(*ce), GFP_KERNEL);
+> > +	if (!ce)
+> > +		return -ENOMEM;
+> > +
+> > +	ce->dev = &pdev->dev;
+> > +	platform_set_drvdata(pdev, ce);
+> > +
+> > +	ce->variant = of_device_get_match_data(&pdev->dev);
+> > +	if (!ce->variant) {
+> > +		dev_err(&pdev->dev, "Missing Crypto Engine variant\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +	ce->base = devm_ioremap_resource(&pdev->dev, res);
+> > +	if (IS_ERR(ce->base))
+> > +		return PTR_ERR(ce->base);
+> > +
+> > +	for (i = 0; i < CE_MAX_CLOCKS; i++) {
+> > +		if (!ce->variant->ce_clks[i].name)
+> > +			continue;
+> > +		ce->ceclks[i] = devm_clk_get(&pdev->dev, ce->variant->ce_clks[i].name);
+> > +		if (IS_ERR(ce->ceclks[i])) {
+> > +			err = PTR_ERR(ce->ceclks[i]);
+> > +			dev_err(&pdev->dev, "Cannot get %s CE clock err=%d\n",
+> > +				ce->variant->ce_clks[i].name, err);
+> > +			return err;
+> > +		}
+> > +		cr = clk_get_rate(ce->ceclks[i]);
+> > +		if (!cr)
+> > +			return -EINVAL;
+> > +		if (ce->variant->ce_clks[i].freq > 0 &&
+> > +		    cr != ce->variant->ce_clks[i].freq) {
+> > +			dev_info(&pdev->dev, "Set %s clock to %lu (%lu Mhz) from %lu (%lu Mhz)\n",
+> > +				 ce->variant->ce_clks[i].name,
+> > +				 ce->variant->ce_clks[i].freq,
+> > +				 ce->variant->ce_clks[i].freq / 1000000,
+> > +				 cr, cr / 1000000);
+> > +			err = clk_set_rate(ce->ceclks[i], ce->variant->ce_clks[i].freq);
+> > +			if (err)
+> > +				dev_err(&pdev->dev, "Fail to set %s clk speed to %lu hz\n",
+> > +					ce->variant->ce_clks[i].name,
+> > +					ce->variant->ce_clks[i].freq);
+> > +		}
+> > +		if (ce->variant->ce_clks[i].max_freq > 0 &&
+> > +		    cr > ce->variant->ce_clks[i].max_freq)
+> > +			dev_warn(&pdev->dev, "Frequency for %s (%lu hz) is higher than datasheet's recommandation (%lu hz)",
+> > +				 ce->variant->ce_clks[i].name, cr,
+> > +				 ce->variant->ce_clks[i].max_freq);
+> > +	}
+> > +
+> > +	/* Get Non Secure IRQ */
+> > +	irq = platform_get_irq(pdev, 0);
+> > +	if (irq < 0) {
+> > +		dev_err(ce->dev, "Cannot get CryptoEngine Non-secure IRQ\n");
+> > +		return irq;
+> > +	}
+> > +
+> > +	ce->reset = devm_reset_control_get_optional(&pdev->dev, "bus");
+> > +	if (IS_ERR(ce->reset)) {
+> > +		if (PTR_ERR(ce->reset) == -EPROBE_DEFER)
+> > +			return PTR_ERR(ce->reset);
+> > +		dev_err(&pdev->dev, "No reset control found\n");
+> > +		return PTR_ERR(ce->reset);
+> > +	}
+> > +
+> > +	mutex_init(&ce->mlock);
+> > +
+> > +	err = allocate_chanlist(ce);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	err = sun8i_ce_pm_init(ce);
+> > +	if (err)
+> > +		goto error_pm;
+> > +
+> > +	err = devm_request_irq(&pdev->dev, irq, ce_irq_handler, 0,
+> > +			       "sun8i-ce-ns", ce);
+> > +	if (err) {
+> > +		dev_err(ce->dev, "Cannot request CryptoEngine Non-secure IRQ (err=%d)\n", err);
+> > +		goto error_irq;
+> > +	}
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(ce_algs); i++) {
+> > +		ce_algs[i].ce = ce;
+> > +		switch (ce_algs[i].type) {
+> > +		case CRYPTO_ALG_TYPE_SKCIPHER:
+> > +			id = ce_algs[i].ce_algo_id;
+> > +			ce_method = ce->variant->alg_cipher[id];
+> > +			if (ce_method == CE_ID_NOTSUPP) {
+> > +				dev_info(ce->dev,
+> > +					 "DEBUG: Algo of %s not supported\n",
+> > +					 ce_algs[i].alg.skcipher.base.cra_name);
+> > +				ce_algs[i].ce = NULL;
+> > +				break;
+> > +			}
+> > +			id = ce_algs[i].ce_blockmode;
+> > +			ce_method = ce->variant->op_mode[id];
+> > +			if (ce_method == CE_ID_NOTSUPP) {
+> > +				dev_info(ce->dev, "DEBUG: Blockmode of %s not supported\n",
+> > +					 ce_algs[i].alg.skcipher.base.cra_name);
+> > +				ce_algs[i].ce = NULL;
+> > +				break;
+> > +			}
+> > +			dev_info(ce->dev, "DEBUG: Register %s\n",
+> > +				 ce_algs[i].alg.skcipher.base.cra_name);
+> > +			err = crypto_register_skcipher(&ce_algs[i].alg.skcipher);
+> > +			if (err) {
+> > +				dev_err(ce->dev, "Fail to register %s\n",
+> > +					ce_algs[i].alg.skcipher.base.cra_name);
+> > +				ce_algs[i].ce = NULL;
+> > +				goto error_alg;
+> > +			}
+> > +			break;
+> > +		default:
+> > +			ce_algs[i].ce = NULL;
+> > +			dev_err(ce->dev, "ERROR: tryed to register an unknown algo\n");
+> > +		}
+> > +	}
+> > +
+> > +	err = pm_runtime_get_sync(ce->dev);
+> > +	if (err < 0)
+> > +		goto error_alg;
+> > +
+> > +	v = readl(ce->base + CE_CTR);
+> > +	v >>= CE_DIE_ID_SHIFT;
+> > +	v &= CE_DIE_ID_MASK;
+> > +	dev_info(&pdev->dev, "CryptoEngine Die ID %x\n", v);
+> > +
+> > +	pm_runtime_put_sync(ce->dev);
+> > +
+> > +#ifdef CONFIG_CRYPTO_DEV_SUN8I_CE_DEBUG
+> > +	/* Ignore error of debugfs */
+> > +	ce->dbgfs_dir = debugfs_create_dir("sun8i-ce", NULL);
+> > +	ce->dbgfs_stats = debugfs_create_file("stats", 0444,
+> > +					      ce->dbgfs_dir, ce,
+> > +					      &sun8i_ce_debugfs_fops);
+> > +#endif
+> > +	return 0;
+> > +error_alg:
+> > +	unregister_algs(ce);
+> > +	i = MAXFLOW;
+> > +error_irq:
+> > +	sun8i_ce_pm_exit(ce);
+> > +error_pm:
+> > +	free_chanlist(ce, i);
+> > +	return err;
+> > +}
+> 
+> It's still pretty long. Can you move the clocks, algo initialisation
+> (and debugfs maybe?) to a function of their own?
+> 
 
+It is much cleaner with clock and algo init in functions, thanks!
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation.
-
---
+Regards
