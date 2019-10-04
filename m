@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E0CECB6D8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 11:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9421BCB6DB
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 11:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388211AbfJDJB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 05:01:26 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:36745 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388183AbfJDJB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 05:01:26 -0400
-Received: by mail-wm1-f65.google.com with SMTP id m18so5003980wmc.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 02:01:24 -0700 (PDT)
+        id S2387769AbfJDJB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 05:01:28 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34153 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388204AbfJDJB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 05:01:27 -0400
+Received: by mail-wr1-f66.google.com with SMTP id j11so358884wrp.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 02:01:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=d5p5TZdfu3c5JamI9H4kBW65H5B1r53e+p3e9L3D7UU=;
-        b=HXhD6/b3g46QaTJ0rfpB3K4p1enaijiJaNjpzh3iqTrbojoWc322br0ZE4fu74y4Bo
-         ew+dbCn+cRNR1RXAKjF8eA0cotL6IdqdbJ++nJBwfDLKWACSZ3F0ZBXVKSPw09uvYcdc
-         f4ZEslZx17QSDT+8H3oagrvU77HvhR/zHaLyEEvZKo6BybCOPGXao9t/ilum3zkTO+n9
-         k+mGhPRrcwz8ZbbFmCWUeKOZSbvBStSepye0eyQwOELYxOkUx4nKk79IVLuemlZx8t/6
-         WlYbJbSwJmFDlL8mbjEPoAFtALBieInYnKeRslS4xZadxcvCgVmUaAVsTS4GPsc4hdcL
-         lZAg==
+        bh=HzQhDkqVyohi8147rI3+BgZwRO47r6m1rOvI8gEcCVQ=;
+        b=Uuvu/VJSglYBjP4TqRtcqrbm88Z5R11mtl+miilq6RbbTApcuegQZtgcVbF3Z2l4xF
+         fYOcVF57nVCXu11oNaPCMWpEB1Rzmx1qNlpeiMvvJ7Cm6fPMQ7qMKOwTbMF4qovVwWd+
+         ZKdUW6DTje6WFZcUrBHlgODVyo/NIbyeABF/9oi8kzzB1DKbbNqbtzus/zj+6dZU2GAi
+         5F/A6OQ15K8yih3MHAAFv2Pynsq3zqIk1KH4njoip/9rP5By7m7OUNjWXKMAtggu78Gi
+         88rtqaVawgFfgePpOrUFfIM7psIQDOzBoVKfFg1nx93JDAEPRFboi+8lYlUDbZO/b0at
+         NfNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=d5p5TZdfu3c5JamI9H4kBW65H5B1r53e+p3e9L3D7UU=;
-        b=IqkPjAKRBT5lqs86RAh2Ax4I5u6TdZ1sx+1IisGxI0mLzEa139NZS43rlHRnW3tc74
-         kvAwuF1YCt8NsXY/QLnDjN8IbNAY7boXQ9iCVuXtVAwx9lQX2esBIMSBv8nm+z+2lt4b
-         somMl2w5z8y5Lw1z9clfhgTH4C5aCV/f3hsZpZsOfG+Gi0JvfwbV5ory0oKTQhLJGzTf
-         Y6/cNkxB8pIhsFvQMb+nQ+NoZj6owP+AQOTJy/Ax4ZCZvPF0MSvdACLJcUoByyBrvTCs
-         kDmVZaj2eVb5rlm6ITL2oCIGNvG8I+8Xtovs+o1i5OopYqqlBoJ5myI2mCdpyIofqslX
-         XdTA==
-X-Gm-Message-State: APjAAAW8XuFX3CDvzi767VItccOzreBQ6PCV676ZgPdbWuvEJ2oNUlJN
-        ErnnspMKonnAeNpYdm/52b2qHw==
-X-Google-Smtp-Source: APXvYqx6hT7Mt9IcrA0cYDoSMEivg/dkChQ3Dkjk4SFkHc0I5XcK4X1WIZJ1l19R9jm4yIxaNblaQg==
-X-Received: by 2002:a7b:c156:: with SMTP id z22mr10530902wmi.142.1570179684267;
-        Fri, 04 Oct 2019 02:01:24 -0700 (PDT)
+        bh=HzQhDkqVyohi8147rI3+BgZwRO47r6m1rOvI8gEcCVQ=;
+        b=eO51pOXUwmBkozE2mvOdqjv27znUmave6QQRyjVaEBIgBeA7JHnf08+drlxb3gdqK6
+         EQs1eMsDSx+c4azS5lcs7FXEGWXbIpcE8M0xarmJg1l0cgILzidXZggxSHkzq9n+YJdS
+         SLCfuUhv0dEalr9en4EZmsskIIcABgOLHAWoOCVipmFAZG1qffckP+U+yjSTB7BZpPyH
+         gA4Ist/+yoLn83mcQzZen1IYX7ekhy4mVkDpT0mG2EilwdQaS7rqcIs3/5RXuMBngkKP
+         yadsTrAcmgK2MYMmesRVehGA/z7gCJjcB9qDi+h/4x22y6nFI3J0oHJEQD6nhfPgokC8
+         D+RQ==
+X-Gm-Message-State: APjAAAVnlpNUQ0tFqiTIbDdZWtzKPRtVZ+SXdeVwuSoD3Tn4ez6oahNN
+        4wzUSZgtcn1xN6XrUocWwoJTQg==
+X-Google-Smtp-Source: APXvYqzeMc3UmkSHx6AOi3+gnVZS5BJKpJ4oVQO5L4qeV7tfoJzaVdQ0uB2B6KtLlKTAR1/xlZ4wKA==
+X-Received: by 2002:a5d:4f8a:: with SMTP id d10mr11319014wru.276.1570179685339;
+        Fri, 04 Oct 2019 02:01:25 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id v8sm7765170wra.79.2019.10.04.02.01.23
+        by smtp.gmail.com with ESMTPSA id v8sm7765170wra.79.2019.10.04.02.01.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2019 02:01:23 -0700 (PDT)
+        Fri, 04 Oct 2019 02:01:24 -0700 (PDT)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
         daniel.lezcano@linaro.org
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH v7 6/7] arm64: dts: amlogic: g12b: add cooling properties
-Date:   Fri,  4 Oct 2019 11:01:13 +0200
-Message-Id: <20191004090114.30694-7-glaroque@baylibre.com>
+Subject: [PATCH v7 7/7] MAINTAINERS: add entry for Amlogic Thermal driver
+Date:   Fri,  4 Oct 2019 11:01:14 +0200
+Message-Id: <20191004090114.30694-8-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191004090114.30694-1-glaroque@baylibre.com>
 References: <20191004090114.30694-1-glaroque@baylibre.com>
@@ -60,96 +60,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing #colling-cells field for G12B SoC
-Add cooling-map for passive and hot trip point
+Add myself as maintainer for Amlogic Thermal driver.
 
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 29 +++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-index 98ae8a7c8b41..4bb89bce758f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-@@ -49,6 +49,7 @@
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			#cooling-cells = <2>;
- 		};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 390c3194ee93..bdc30d740342 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15932,6 +15932,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
+ F:	drivers/thermal/cpu_cooling.c
+ F:	include/linux/cpu_cooling.h
  
- 		cpu1: cpu@1 {
-@@ -57,6 +58,7 @@
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu100: cpu@100 {
-@@ -65,6 +67,7 @@
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu101: cpu@101 {
-@@ -73,6 +76,7 @@
- 			reg = <0x0 0x101>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu102: cpu@102 {
-@@ -81,6 +85,7 @@
- 			reg = <0x0 0x102>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu103: cpu@103 {
-@@ -89,6 +94,7 @@
- 			reg = <0x0 0x103>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		l2: l2-cache0 {
-@@ -219,3 +225,26 @@
- &sd_emmc_a {
- 	amlogic,dram-access-quirk;
- };
++THERMAL DRIVER FOR AMLOGIC SOCS
++M:	Guillaume La Roque <glaroque@baylibre.com>
++L:	linux-pm@vger.kernel.org
++L:	linux-amlogic@lists.infradead.org
++W:	http://linux-meson.com/
++S:	Supported
++F:	drivers/thermal/amlogic_thermal.c
++F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
 +
-+&cpu_thermal {
-+	cooling-maps {
-+		map0 {
-+			trip = <&cpu_passive>;
-+			cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+		map1 {
-+			trip = <&cpu_hot>;
-+			cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					 <&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
+ THINKPAD ACPI EXTRAS DRIVER
+ M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
+ L:	ibm-acpi-devel@lists.sourceforge.net
 -- 
 2.17.1
 
