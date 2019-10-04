@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EFECCBDAD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 361D9CBDBC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2019 16:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389308AbfJDOpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 10:45:11 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:20988 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2389042AbfJDOpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:45:11 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x94EQRSD026290;
-        Fri, 4 Oct 2019 16:44:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=HxhsqEtkW1PE2z4wk42+db/HcFNDBDuEG576vdtW3hQ=;
- b=lz3bQE9FMHBJXTy5bdUQVmIumhJB17Ko0EuiGplii7OiPoGukqDMKJTud5FPeT4YSq1K
- DK2Eoob4x790WcB5cRq0XuBcWtE+g7pNPdtXN6spExZQligbvWskxkdZZirloHOdjoR6
- PhB1FQRb/jHmWAt9aXyv330fAyNFlkA93AObx+S4Wh/iPrqWNmrgWLfqtaIGMQcOKgOq
- HEQ4EOx7mN70pDaPcmUuZ5gANZjO7qyTHcTTZJmMB4uSU8Z07dHcsICvpst2nz0f/AUs
- 2jkHCaZKboflDJrkl30G3HQJloLd4sg0RI6RtwdqE90zyVs2DAaJFFGVSWGtwxvG4NC+ 5Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2v9vnaundv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 04 Oct 2019 16:44:54 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4351110002A;
-        Fri,  4 Oct 2019 16:44:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2A2702B8FFA;
-        Fri,  4 Oct 2019 16:44:54 +0200 (CEST)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.46) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 4 Oct 2019
- 16:44:54 +0200
-Received: from localhost (10.201.23.73) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 4 Oct 2019 16:44:53
- +0200
-From:   <patrice.chotard@st.com>
-To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <alexandre.torgue@st.com>
-CC:     <mcoquelin.stm32@gmail.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux@armlinux.org.uk>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@st.com>
-Subject: ARM: dts: stm32: relax qspi pins slew-rate for stm32mp157
-Date:   Fri, 4 Oct 2019 16:44:21 +0200
-Message-ID: <20191004144421.21069-1-patrice.chotard@st.com>
-X-Mailer: git-send-email 2.17.1
+        id S2389398AbfJDOp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 10:45:56 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:38035 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389391AbfJDOp4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 10:45:56 -0400
+Received: by mail-wr1-f67.google.com with SMTP id w12so7579764wro.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 07:45:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=HNaskgA9CGTRjPX5e5ZK2QfhqMEnQGHXob8M639FZMU=;
+        b=cige8aeI93GPpuuoEgeWsSpy4l0fVuwBai3aDolKgCEZoMgoDPcAwoNVLYoJYCEa5Y
+         T6msSfDjto/LLQ8zYZpFpczbMJht8u586Mi/ddTTN29VtoCVE2OafbjiBDYtIHgbqO9L
+         HpMfh84b2Ecaou4bqbFvXc8PDpp7fc1oOmohsoAHd7dZTck6mBlhPSVPZc0oVtspwf2a
+         boDTgI3N67eFN1mih+5qCEjjHjaQAMAf1F2mMtMNv1rATkJiNIUWREvPkpp9Mw80jlTf
+         8oUqJ3/HuQSNA3EzgHiMeKNj67g9AVY757SSDybSX3R+fvVoO1FeHuGyqcREgO9sMFtJ
+         w3GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=HNaskgA9CGTRjPX5e5ZK2QfhqMEnQGHXob8M639FZMU=;
+        b=TUr9e8gzuSdTxko+nXtDiDm/4eec814nJbbobUEm3DR4p68j0ic+S2jnBKlOhAbqeF
+         gvHruKBVXklWtz/fZbOwpqadOdupGU1a+RdWe2VsO3FoiIV3vAhqOZ0UqVHqHKVFT+sP
+         zya+R8uz9xWz2MQzzkYG4OfltyZIf72KoPxFpbCwLT3XSsZ2sjQnhP1FZJGvrETyoNbd
+         Bc17WMUa+MsPXtQrfniGpoQMAfE6J1qifx5bqzy0VOqgA+aVBlqtWC8pgiT2RBVtbuna
+         jPvoy8qNtygxoVpMXGe63VCDg2JeL1CTdxQ29Mt0SR8VP8DNW1APrnWjV7IaTTue5C/7
+         rXNA==
+X-Gm-Message-State: APjAAAUeVuGdAjYBrhzgomLCxaNYAlbIHwsmQlV2jgVJDv/1FQvmb/0s
+        4P2TmA2mqAWTciC+G6SX4LuvzA==
+X-Google-Smtp-Source: APXvYqzeTXoEKPqTHngsFt5A7Yz0CZBxZ6TGexzTbaMsTPn1BMdEvT9oeQJeJ2hU/X9uJQuQ1NdmDw==
+X-Received: by 2002:adf:fa0e:: with SMTP id m14mr7281348wrr.11.1570200353922;
+        Fri, 04 Oct 2019 07:45:53 -0700 (PDT)
+Received: from dell ([2.27.167.122])
+        by smtp.gmail.com with ESMTPSA id v8sm9165069wra.79.2019.10.04.07.45.53
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 04 Oct 2019 07:45:53 -0700 (PDT)
+Date:   Fri, 4 Oct 2019 15:45:52 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Document the Xylon LogiCVC
+ multi-function device
+Message-ID: <20191004144551.GR18429@dell>
+References: <20190927100407.1863293-1-paul.kocialkowski@bootlin.com>
+ <20190927100407.1863293-3-paul.kocialkowski@bootlin.com>
+ <20190927221550.GA28831@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.23.73]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-04_07:2019-10-03,2019-10-04 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190927221550.GA28831@bogus>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrice Chotard <patrice.chotard@st.com>
+On Fri, 27 Sep 2019, Rob Herring wrote:
 
-Relax qspi pins slew-rate to minimize peak currents.
+> On Fri, Sep 27, 2019 at 12:04:04PM +0200, Paul Kocialkowski wrote:
+> > The LogiCVC is a display engine which also exposes GPIO functionality.
+> > For this reason, it is described as a multi-function device that is expected
+> > to provide register access to its children nodes for gpio and display.
+> > 
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  .../bindings/mfd/xylon,logicvc.yaml           | 50 +++++++++++++++++++
+> >  1 file changed, 50 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+> > new file mode 100644
+> > index 000000000000..abc9937506e0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2019 Bootlin
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/mfd/xylon,logicvc.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Xylon LogiCVC multi-function device
+> > +
+> > +maintainers:
+> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > +
+> > +description: |
+> > +  The LogiCVC is a display controller that also contains a GPIO controller.
+> > +  As a result, a multi-function device is exposed as parent of the display
+> > +  and GPIO blocks.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - xylon,logicvc-3.02.a
+> > +      - const: syscon
+> > +      - const: simple-mfd
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - xylon,logicvc-3.02.a
+> 
+> I've seen a couple of these with 'syscon' today, so I fixed the schema 
+> tool to just exclude 'syscon' and 'simple-mfd' from the generated 
+> 'select'. So you can drop select now.
 
-Fixes: 844030057339 ("ARM: dts: stm32: add flash nor support on stm32mp157c eval board")
+Does this need to happen before this patch can be applied?
 
-Signed-off-by: Patrice Chotard <patrice.chotard@st.com>
----
- arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-index e4a0d51ec3a8..0a3a7d66737b 100644
---- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-@@ -609,13 +609,13 @@
- 						 <STM32_PINMUX('F', 6, AF9)>; /* QSPI_BK1_IO3 */
- 					bias-disable;
- 					drive-push-pull;
--					slew-rate = <3>;
-+					slew-rate = <1>;
- 				};
- 				pins2 {
- 					pinmux = <STM32_PINMUX('B', 6, AF10)>; /* QSPI_BK1_NCS */
- 					bias-pull-up;
- 					drive-push-pull;
--					slew-rate = <3>;
-+					slew-rate = <1>;
- 				};
- 			};
- 
-@@ -637,13 +637,13 @@
- 						 <STM32_PINMUX('G', 7, AF11)>; /* QSPI_BK2_IO3 */
- 					bias-disable;
- 					drive-push-pull;
--					slew-rate = <3>;
-+					slew-rate = <1>;
- 				};
- 				pins2 {
- 					pinmux = <STM32_PINMUX('C', 0, AF10)>; /* QSPI_BK2_NCS */
- 					bias-pull-up;
- 					drive-push-pull;
--					slew-rate = <3>;
-+					slew-rate = <1>;
- 				};
- 			};
- 
 -- 
-2.17.1
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
