@@ -2,158 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80318CC70B
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 02:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE09CC71E
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 03:18:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726827AbfJEAwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Oct 2019 20:52:06 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:46761 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726823AbfJEAwG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 20:52:06 -0400
-Received: by mail-qt1-f196.google.com with SMTP id u22so11032653qtq.13;
-        Fri, 04 Oct 2019 17:52:05 -0700 (PDT)
+        id S1726094AbfJEBSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Oct 2019 21:18:18 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:44409 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725887AbfJEBSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Oct 2019 21:18:17 -0400
+Received: by mail-pl1-f195.google.com with SMTP id q15so3899056pll.11
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 18:18:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=4kfrSx9pecxmKTopMM3H10hlWnjEzdS6486P99JMZic=;
-        b=A9r4usZDZI1XYmdWnzVDPjU28NFB618J3iWHmZTBuy82f9U3ecTW2gbZdbInrcGzjq
-         fh5weVuLHOJQh3ffu4wX0tY03UT4iIYplzkz8+AdtxDomM4W9SXNj5GVzewfAaobZHII
-         VMvttb3S/h9tbr/warC36/gJYESQvrSa9kA3qOn90t2DREceaqkikAiiGYnidiulC0TH
-         0j09D0Ta+TUUb1pwj1X9t+SiC4vMXpcgzdBSeb0MCpfoFpQ6GP83lrw3T9RWLiy6RCCZ
-         lLnGsLenLxLGq5ul+nxXGy9KWX5XuE0YaYza/7kh9NXDBVjeuawDVIXPts7DnaOHK1nH
-         ipSA==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q2oP8A+66Rac3wNrpkR8MWsLUwrIym5JWD2OWoQLn2I=;
+        b=GPhhjUv+KkS/VzHR5+UKHbUpig67OUz+p2ab8gzDSHD3qWPn5BM1Y5BuX7lxM7j2sb
+         kfHr9wmq/ZxD9CMSuGBeBnRcFNxBoNrc0jkNUB4Rgmx5E/OBumH+nRsrohMgMe+j/Rvr
+         t8LXEhaVzelX3CPRpPkB2Y5G0/ztqK3oeYNRWvHYetjEo1eOHmWOT3CD6xhMJchs6eDb
+         OxHBa5qEKGeZBHYqpxi4evGAx/VhufwkpQPNLZaEp4DWShmC9T8N6LCor4kERCu29UaE
+         O+Yo2QExYcBHz7N8yqMIajJuvzJZ49QCOIBtYIj8yxzgyIBkwnbnqn5CemWWy9ROQDur
+         OLdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=4kfrSx9pecxmKTopMM3H10hlWnjEzdS6486P99JMZic=;
-        b=OI6+EKgMo4C+5qqi33zdwKHOtOrjHvg0imDWvLQN7OLfisKyQyYoWtRa9NbwM8Kqu1
-         qkgsptMGxHqFNIF9sKOTuwEmgMu2MdnsTCEVneXpYL/BtBkweiejNg9DCrAxmtUt6a7s
-         4nEkawuff3bSr9Fv4gDhgvCLyh/cLb8us+8DBy9vB9EVW3kTn8/Up7YZYaQ2Z+byqN+b
-         0phEVc2gy3nQbBj1/s5Ig3SJSmznQ2zruL46PukqAJfaQqu4PuCFA6aFDvmgNZjtqqD5
-         WzvCgSZIWSc+R9IQULCmKVgG5QjUZB9JIbqBGwWtk1G2j5Yfgaf0Nn5rMJI5mT6KA62I
-         QahQ==
-X-Gm-Message-State: APjAAAVOKIvFJlChuy6zBkIUkttp/1S5o/rb7ozWUNh0IEkVC9sfxQqg
-        PR3/9E/cSAfcNtLP6Hyt7yg=
-X-Google-Smtp-Source: APXvYqxe2v6jRShlgbNxkPA59YDigb42WrFKwpnJxW+Hl+XUgwGuTXMhgBPuZ2LJ/loDpT2Bd3iI7g==
-X-Received: by 2002:ad4:40c8:: with SMTP id x8mr16740235qvp.227.1570236725160;
-        Fri, 04 Oct 2019 17:52:05 -0700 (PDT)
-Received: from vivek-desktop (ool-457857f8.dyn.optonline.net. [69.120.87.248])
-        by smtp.gmail.com with ESMTPSA id k2sm3492216qti.24.2019.10.04.17.52.03
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 04 Oct 2019 17:52:04 -0700 (PDT)
-Date:   Fri, 4 Oct 2019 20:52:00 -0400
-From:   Vivek Unune <npcomplete13@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Vicente Bergas <vicencb@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, ezequiel@collabora.com, akash@openedev.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Roger Quadros <rogerq@ti.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
-Message-ID: <20191005005200.GA11418@vivek-desktop>
-References: <20190929032230.24628-1-npcomplete13@gmail.com>
- <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
- <20190929234615.GA5355@vivek-desktop>
- <2223294.9I8gkMH88G@phil>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q2oP8A+66Rac3wNrpkR8MWsLUwrIym5JWD2OWoQLn2I=;
+        b=U6DD+WFPBvqKmIOi9aGJ92fbqlw/REOvx3paCsxNoGyuP+uy0IKKrU1YxmILpB3VlS
+         9WwPjwipRClVoc4K97b3tmQgISJVrmGCBLaVHW2Gzj/UazhCOq6nF18kdnqsG0LrTPtN
+         WPj26nc/DTCVzLllqeQpu6qll9TJ5lo2qNqQtJghi2CVA4iHwdWUEbSBIxc4xG84zjQz
+         zWv8pFFJjr44FUd1Zlb3p5e5LG5bx67kx5jMxJi+xdoEr0wN+nhjP5fJe0n2k5Jgg9VW
+         h0PsJ4mxz61Wihn2P8kCBlCyv3pBDWgVGvIoAIX3ddCl7t4UfmFcGs2dYYf0ONo/4lMZ
+         T1mA==
+X-Gm-Message-State: APjAAAVJhYfBFc7qDLS4KESFMef4Zwdv/d6DjVZOXk3dtw6q1WpaDAB8
+        3j5NiUN98YMq8ajCmJ4DBGJ3eteh+v4g7G+O+oiiVQ==
+X-Google-Smtp-Source: APXvYqxXIgL1V9Pz63bm5hrH1w7OGcZMj9O7xWX+0gLh6oom7FtSqHJPBvTviBg5NgEsO3lWv0/RgnZ1WUmPfaPcH/I=
+X-Received: by 2002:a17:902:8f88:: with SMTP id z8mr18539665plo.232.1570238296215;
+ Fri, 04 Oct 2019 18:18:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2223294.9I8gkMH88G@phil>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190923090249.127984-1-brendanhiggins@google.com>
+ <20191004213812.GA24644@mit.edu> <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
+ <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org> <20191004222714.GA107737@google.com>
+ <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org> <20191004232955.GC12012@mit.edu>
+ <CAFd5g456rBSp177EkYAwsF+KZ0rxJa90mzUpW2M3R7tWbMAh9Q@mail.gmail.com>
+ <63e59b0b-b51e-01f4-6359-a134a1f903fd@kernel.org> <CAFd5g47wji3T9RFmqBwt+jPY0tb83y46oj_ttOq=rTX_N1Ggyg@mail.gmail.com>
+ <544bdfcb-fb35-5008-ec94-8d404a08fd14@kernel.org>
+In-Reply-To: <544bdfcb-fb35-5008-ec94-8d404a08fd14@kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 4 Oct 2019 18:18:04 -0700
+Message-ID: <CAFd5g467PkfELixpU0JbaepEAAD_ugAA340-uORngC-eXsQQ-g@mail.gmail.com>
+Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     shuah <shuah@kernel.org>
+Cc:     "Theodore Y. Ts'o" <tytso@mit.edu>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 04, 2019 at 11:45:08PM +0200, Heiko Stuebner wrote:
-> Hi Vivek,
-> 
-> Am Montag, 30. September 2019, 01:46:15 CEST schrieb Vivek Unune:
-> > On Sun, Sep 29, 2019 at 01:22:17PM +0200, Vicente Bergas wrote:
-> > > On Sunday, September 29, 2019 5:22:30 AM CEST, Vivek Unune wrote:
-> > > > Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
-> > > > 
-> > > > Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 4 ++--
-> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > > b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > > index 0d1f5f9a0de9..c133e8d64b2a 100644
-> > > > --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-> > > > @@ -644,7 +644,7 @@
-> > > >  	status = "okay";
-> > > >  	u2phy0_host: host-port {
-> > > > -		phy-supply = <&vcc5v0_host>;
-> > > > +		phy-supply = <&vcc5v0_typec>;
-> > > >  		status = "okay";
-> > > >  	};
-> > > > @@ -712,7 +712,7 @@
-> > > >  &usbdrd_dwc3_0 {
-> > > >  	status = "okay";
-> > > > -	dr_mode = "otg";
-> > > > +	dr_mode = "host";
-> > > >  };
-> > > >  &usbdrd3_1 {
-> > > 
-> > > Hi Vivek,
-> > > 
-> > > which is the relationship of your patch and this commit:
-> > > 
-> > > e1d9149e8389f1690cdd4e4056766dd26488a0fe
-> > > arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
-> > > 
-> > > with respect to this other commit:
-> > > 
-> > > c09b73cfac2a9317f1104169045c519c6021aa1d
-> > > usb: dwc3: don't set gadget->is_otg flag
-> > > 
-> > > ?
-> > > 
-> > > I did not test reverting e1d9149e since c09b73cf was applied.
-> > > 
-> > > Regards,
-> > >  Vicenç.
-> > > 
-> > 
-> > Hi Vicenç,
-> > 
-> > Indeed, I was motivated by e1d9149e ("arm64: dts: rockchip: Fix USB3 
-> > Type-C on rk3399-sapphire"). X99 TV box showed exact same symptoms
-> > with usb-c port. After applying the fix, it worked.
-> > 
-> > I was not aware of c09b73cf ("usb: dwc3: don't set gadget->is_otg
-> >  flag") and it will be interesting to test it. This might render
-> > my fix unecessary.
-> 
-> So I'll let this patch sit here for now.
-> Once you've done the testing, can you please respond with the
-> result (both positive and negative results please).
-> 
-> Thanks
-> Heiko
-> 
-> 
+On Fri, Oct 4, 2019 at 5:49 PM shuah <shuah@kernel.org> wrote:
+>
+> On 10/4/19 6:33 PM, Brendan Higgins wrote:
+> > On Fri, Oct 4, 2019 at 4:57 PM shuah <shuah@kernel.org> wrote:
+> >>
+> >> On 10/4/19 5:52 PM, Brendan Higgins wrote:
+> >>> On Fri, Oct 4, 2019 at 4:30 PM Theodore Y. Ts'o <tytso@mit.edu> wrote:
+> >>>>
+> >>>> On Fri, Oct 04, 2019 at 04:47:09PM -0600, shuah wrote:
+> >>>>>> However, if I encourage arbitrary tests/improvements into my KUnit
+> >>>>>> branch, it further diverges away from torvalds/master, and is more
+> >>>>>> likely that there will be a merge conflict or issue that is not related
+> >>>>>> to the core KUnit changes that will cause the whole thing to be
+> >>>>>> rejected again in v5.5.
+> >>>>>
+> >>>>> The idea is that the new development will happen based on kunit in
+> >>>>> linux-kselftest next. It will work just fine. As we accepts patches,
+> >>>>> they will go on top of kunit that is in linux-next now.
+> >>>>
+> >>>> I don't see how this would work.  If I add unit tests to ext4, they
+> >>>> would be in fs/ext4.  And to the extent that I need to add test mocks
+> >>>> to allow the unit tests to work, they will involve changes to existing
+> >>>> files in fs/ext4.  I can't put them in the ext4.git tree without
+> >>>> pulling in the kunit changes into the ext4 git tree.  And if they ext4
+> >>>> unit tests land in the kunit tree, it would be a receipe for large
+> >>>> numbers of merge conflicts.
+> >>>
+> >>> That's where I was originally coming from.
+> >>>
+> >>> So here's a dumb idea: what if we merged KUnit through the ext4 tree?
+> >>> I imagine that could potentially get very confusing when we go back to
+> >>> sending changes in through the kselftest tree, but at least it means
+> >>> that ext4 can use it in the meantime, which means that it at least
+> >>> gets to be useful to one group of people. Also, since Ted seems pretty
+> >>> keen on using this, I imagine it is much more likely to produce real
+> >>> world, immediately useful tests not written by me (I'm not being lazy,
+> >>> I just think it is better to get other people's experiences other than
+> >>> my own).
+> >>>
+> >>
+> >> That doesn't make sense does it? The tests might not be limited to
+> >> fs/ext4. We might have other sub-systems that add tests.
+> >
+> > Well, I have some small isolated examples that I think would probably
+> > work no matter what, so we can get some usage outside of ext4. Also,
+> > if we want to limit the number of tests, then we don't expect to get
+> > much usage outside of ext4 before v5.5 anyway. I just figure, it's
+> > better to make it work for one person than no one, right?
+> >
+> > In any case, I admit it is not a great idea. I just thought it had
+> > some interesting advantages over going in through linux-kselftest that
+> > were worth exploring.
+> >
+> >> So, we will have to work to make linux-next as the base for new
+> >> development and limit the number of tests to where it will be
+> >> easier work in this mode for 5.5. We can stage the pull requests
+> >> so that kunit lands first followed by tests.
+> >
+> > So we are going to encourage maintainers to allow tests in their tree
+> > based on KUnit on the assumption that KUnit will get merged before
+> > there changes? That sounds like a huge burden, not just on us, but on
+> > other maintainers and users.
+> >
+> > I think if we are going to allow tests before KUnit is merged, we
+> > should have the tests come in through the same tree as KUnit.
+> >
+> >> We have a similar situation with kselftest as well. Sub-systems
+> >> send tests that depend on their tress separately.
+> >
+> > Well it is different if the maintainer wants to send the test in
+> > through their tree, right? Otherwise, it won't matter what the state
+> > of linux-next is and it won't matter when linux-kselftest gets merged.
+> > Or am I not understanding you?
+> >
+>
+> Let's talk about current state. Right now kunit is in linux-next and
+> we want to add a few more tests. We will have to coordinate the effort.
+> Once kunit get into mainline, then the need for this coordination goes
+> down.
 
-Hi Heiko,
+Sure, I was just thinking that getting other people to write the tests
+would be better. Since not only is it then useful to someone else, it
+provides the best possible exercise of KUnit.
 
-I tested the c09b73cf patch without modifying exsisting dts. I can confirm
-that that patch doesn't work for me. No usb-c devices were recognized.
+Nevertheless, it would probably just be easier to get a handful of
+example tests, and it is less likely to result in any issues for v5.5,
+so that's probably better. (I think that is what you are hinting at
+here. ;-) )
 
-Vicenç - were you able to test it?
+Hey Ted, do you know if that ext4 timestamp test can go in through
+linux-kselftest? It seemed fairly self-contained. Or is that what you
+were saying wouldn't work for you?
 
-As soon as I apply dts patch, usb-c devices are recognized.
+> Let's focus on the next few weeks first so we can get this into mainline
+> in 5.5.
 
-Thanks,
+I agree. That is the most important thing.
 
-Vivek
+> The two of us can chat next week and come up with a plan.
+
+Sure.
+
+Cheers!
