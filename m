@@ -2,142 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43005CCA48
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 16:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0431ACCA4F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 16:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726333AbfJEOON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 10:14:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59400 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726269AbfJEOOM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Oct 2019 10:14:12 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2F8D120862;
-        Sat,  5 Oct 2019 14:14:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570284851;
-        bh=TuHflHmEutPUZp7LZpISROZKG+shrx1bA5GiMj2kLHA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VciFKt0glXSsiTwp/G8D2YxJNiHTtUbK3rLe3DFTDFDxBWY8NSTbcJx5JahZ3Evn/
-         p3NzfmXg4fJHQ4Mrp5hrnv057OZ5411sWDZ/7fyQclVbepiff0yMBxdfSMSXO2ZNOp
-         Srg4VNhYrD0Au7or1nm4O1ewIAwPW+KWxFR6CBjY=
-Date:   Sat, 5 Oct 2019 15:14:04 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rishi Gupta <gupt21@gmail.com>
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        gregkh@linuxfoundation.org, tglx@linutronix.de,
-        allison@lohutok.net, alexios.zavras@intel.com, angus@akkea.ca,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hslester96@gmail.com, wsa+renesas@sang-engineering.com,
+        id S1728264AbfJEOT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 10:19:27 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:46305 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726269AbfJEOT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 10:19:26 -0400
+Received: by mail-pf1-f196.google.com with SMTP id q5so5630089pfg.13
+        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 07:19:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jdWK5vcnTFqPnDbfTqA+QzxqCP19t4414D5Iqnjivjw=;
+        b=RLuH2sZmuDvU+uZL9GR5HKUHIyvGHORFuotX786UAEAO4gjExN56qdYbwWBsyNCJB9
+         lB2cWvH+S52Iu4E0wWtFxOctbuBR6AG5xSCkDqwE5f1QZ1hxqVVtCJMIZEnl9D49ZEbm
+         U98Psud4qpBIol8tKfWnPmsQqbYwrRnDBOLeA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jdWK5vcnTFqPnDbfTqA+QzxqCP19t4414D5Iqnjivjw=;
+        b=KNkEgS2NiAdI9Qz32F/Q0tPFFIqCzSBsMK7iXXA/K5EC5ZsnyKZ1ecX5B6hOFCGdOU
+         y4qYHIwjlWx8CquofrI9pYGfsyq0wHx1y4r2As68gGCRS2qEsWT3b3CZoUOLBChd2XOe
+         0S0KbMzQl+qh1TGst9oIAAH9YwadJjrNpNG9rfDnDkYZmodDInmRf8i/fw4ZpszbkgHd
+         D+Q3xmFRC/assmOvI0L4bLkVNXNxkqvMB9zNXpMfLBLCgybuCCA9TdoEraXeo68ljB5U
+         sWt4DKrK3F1vAJC9WB4tcVX1fZW6Y2OuVmG89x10B5a2l0j+LiCup2na+geY1bzk9vTm
+         KdeQ==
+X-Gm-Message-State: APjAAAXM7wSHqehVKu82LiQ2lmG/lBo5rxk9WMBpOhnUoUBicyjSICgn
+        OyxsM3qwCcYICwy5HT5MYDMLWA==
+X-Google-Smtp-Source: APXvYqwk1UplFcpr14yl8Ol/aKp4v+RqV5P1b8raPNprUYPv/a1x8kHBAbG4SDprN6vZk6cwyggzxw==
+X-Received: by 2002:a63:d754:: with SMTP id w20mr6349432pgi.74.1570285163831;
+        Sat, 05 Oct 2019 07:19:23 -0700 (PDT)
+Received: from localhost.localdomain ([115.97.180.31])
+        by smtp.gmail.com with ESMTPSA id y138sm8977604pfb.174.2019.10.05.07.19.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Oct 2019 07:19:22 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH v2 2/3] dt-bindings: iio: light: add veml6030 ALS
- bindings
-Message-ID: <20191005151404.5fc7386f@archlinux>
-In-Reply-To: <b9d5cb134c7c2c7351025a0b556148bca23f302f.1569321085.git.gupt21@gmail.com>
-References: <cover.1569321085.git.gupt21@gmail.com>
-        <b9d5cb134c7c2c7351025a0b556148bca23f302f.1569321085.git.gupt21@gmail.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v10 0/6] drm/sun4i: Allwinner A64 MIPI-DSI support
+Date:   Sat,  5 Oct 2019 19:49:07 +0530
+Message-Id: <20191005141913.22020-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Sep 2019 16:21:57 +0530
-Rishi Gupta <gupt21@gmail.com> wrote:
+This is v10 version for Allwinner A64 MIPI-DSI support
+and here is the previous version set[1].
 
-> This commit adds device tree bindings for veml6030 ambient
-> light sensor.
-> 
-> Signed-off-by: Rishi Gupta <gupt21@gmail.com>
-looks fine to me, but...
+This series on top of drm-misc/for-linux-next along with video start
+delay fix [2]
 
-DT bindings should always be sent to the DT-bindings maintainers and mailing list
-for review.
+Changes for v10:
+- updated dt-bindings as per .yaml format
+- rebased on drm-misc/for-linux-next
+Changes for v9:
+- moved dsi fixes in separate series on top of A33 [2]
+- rebase on linux-next and on top of [2]
+Changes for v8:
+- rebased on drm-misc change along with linux-next
+- reworked video start delay patch
+- tested on 4 different dsi panels
+- reworked commit messages
+Changes for v7:
+- moved vcc-dsi binding to required filed.
+- drop quotes on fallback dphy bindings.
+- drop min_rate clock pll-mipi patches.
+- introduce dclk divider computation as like A64 BSP.
+- add A64 DSI quark patches.
+- fixed A64 DSI pipeline.
+- add proper commit messages.
+- collect Merlijn Wajer Tested-by credits.
+Changes for v6:
+- dropped unneeded changes, patches
+- fixed all burst mode patches as per previous version comments
+- rebase on master
+- update proper commit message
+- dropped unneeded comments
+- order the patches that make review easy
+Changes for v5:
+- collect Rob, Acked-by
+- droped "Fix VBP size calculation" patch
+- updated vblk timing calculation.
+- droped techstar, bananapi dsi panel drivers which may require
+  bridge or other setup. it's under discussion.
+Changes for v4:
+- droppoed untested CCU_FEATURE_FIXED_POSTDIV check code in
+  nkm min, max rate patches
+- create two patches for "Add Allwinner A64 MIPI DSI support"
+  one for has_mod_clk quirk and other one for A64 support
+- use existing driver code construct for hblk computation
+- dropped "Increase hfp packet overhead" patch [2], though BSP added
+  this but we have no issues as of now.
+  (no issues on panel side w/o this change)
+- create separate function for vblk computation 
+- enable vcc-dsi regulator in dsi_runtime_resume
+- collect Rob, Acked-by
+- update MAINTAINERS file for panel drivers
+- cleanup commit messages
+- fixed checkpatch warnings/errors
 
-+CC Rob, Mark and devicetree list.
+[1] https://patchwork.freedesktop.org/series/61310/
+[2] https://patchwork.freedesktop.org/patch/334086/
 
-Jonathan
+Any inputs?
+Jagan.
 
-> ---
-> Changes in v2:
-> * Corrected grammatical mistake from 'is' to 'are' in description of bindings
-> 
->  .../devicetree/bindings/iio/light/veml6030.yaml    | 62 ++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/veml6030.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/veml6030.yaml b/Documentation/devicetree/bindings/iio/light/veml6030.yaml
-> new file mode 100644
-> index 0000000..969b314
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/veml6030.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: GPL-2.0+
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/veml6030.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: VEML6030 Ambient Light Sensor (ALS)
-> +
-> +maintainers:
-> +  - Rishi Gupta <gupt21@gmail.com>
-> +
-> +description: |
-> +  Bindings for the ambient light sensor veml6030 from Vishay
-> +  Semiconductors over an i2c interface.
-> +
-> +  Irrespective of whether interrupt is used or not, application
-> +  can get the ALS and White channel reading from IIO raw interface.
-> +
-> +  If the interrupts are used, application will receive an IIO event
-> +  whenever configured threshold is crossed.
-> +
-> +  Specifications about the sensor can be found at:
-> +    https://www.vishay.com/docs/84366/veml6030.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - vishay,veml6030
-> +
-> +  reg:
-> +    description:
-> +      I2C address of the device. If the ADDR pin on veml6030
-> +      is pulled up, this address is 0x48. If the ADDR pin is
-> +      pulled down, this address is 0x10.
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      interrupt mapping for IRQ. Configure with IRQ_TYPE_LEVEL_LOW.
-> +      Refer to interrupt-controller/interrupts.txt for generic
-> +      interrupt client node bindings.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        light-sensor@10 {
-> +                compatible = "vishay,veml6030";
-> +                reg = <0x10>;
-> +                interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> +...
+Jagan Teki (6):
+  dt-bindings: sun6i-dsi: Add A64 MIPI-DSI compatible
+  dt-bindings: sun6i-dsi: Add A64 DPHY compatible (w/ A31 fallback)
+  drm/sun4i: dsi: Add has_mod_clk quirk
+  drm/sun4i: dsi: Add Allwinner A64 MIPI DSI support
+  arm64: dts: allwinner: a64: Add MIPI DSI pipeline
+  [DO NOT MERGE] arm64: dts: allwinner: bananapi-m64: Enable Bananapi S070WV20-CT16 DSI
+    panel
+
+ .../display/allwinner,sun6i-a31-mipi-dsi.yaml |  4 +-
+ .../phy/allwinner,sun6i-a31-mipi-dphy.yaml    |  6 ++-
+ .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 31 ++++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 +++++++++++++++++
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c        | 42 ++++++++++++++-----
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h        |  5 +++
+ 6 files changed, 114 insertions(+), 12 deletions(-)
+
+-- 
+2.18.0.321.gffc6fa0e3
 
