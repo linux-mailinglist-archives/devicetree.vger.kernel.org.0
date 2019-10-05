@@ -2,47 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCBCCC836
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 07:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A43CC837
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 07:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbfJEF6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 01:58:35 -0400
-Received: from mail-qt1-f202.google.com ([209.85.160.202]:41849 "EHLO
+        id S1726426AbfJEF6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 01:58:38 -0400
+Received: from mail-qt1-f202.google.com ([209.85.160.202]:34473 "EHLO
         mail-qt1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725927AbfJEF6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 01:58:35 -0400
-Received: by mail-qt1-f202.google.com with SMTP id n59so8979875qtd.8
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 22:58:33 -0700 (PDT)
+        with ESMTP id S1725927AbfJEF6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 01:58:38 -0400
+Received: by mail-qt1-f202.google.com with SMTP id y10so9017924qti.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 22:58:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=u/HhHshiebt7qdyy/0fT8eo/n7HLU5nGMpl4dQQloPE=;
-        b=uq4kBMRiAoFm4f6IBiCLfwNOLhnTIDboKRnPsAqYRbLdvQClbP8TdLxQm1+MjQppIq
-         hdZHLoIvxg0XxpoFN+s1dCElRZOwes4ttUoe3yjBJMQ5PCMLa4mGwpuvlYW6jRH8S3kP
-         GQi0UwVzCXcjimxErBq80X1etw4ko4G7rLshAeP9/mOHK8jWHOTwfbNmoJuA3o4DmgxH
-         v0Nzaoz10laVBwGzYVtDI7f8UcpPJmwGxh1VqYzfrVkSpv+6vUoxUzmy3e6BFmB41b/y
-         cZFYQ4ragHp6zTKAdTjoT6cHwsP46dcFP0eFx45oN3/zN5gknYKM7rikRuzoasjAdzZ/
-         AyHg==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=Z6x5CooX+KOT5/OTrrb8SPQO8MJH2PsqtriuzR88xtc=;
+        b=aIqzNjao7eGlpDOkBJUo1bOShLQ0zbuy3gRuIGgwxMwHbzVXdUm/tmnBaTcv46rIcR
+         eaw7GsfCxzAjSIADv8zxCBZSPfKF7t3HkG5uBqLZqwncZoGs6x02LW9vLTUvFILHXAN9
+         djcSKbCA/oCxL4sKnkVHlONRorVo1fku0bH8vL7hh0FaPy3vsZxxzXdaZM+b3FuEBStT
+         LAHlL9cvDbmNSOG0kJq9h3oPk0WVgAtwhjebey4QPGImeZHzRhiIbpFi03Fzpe2jCCyB
+         pKFWFQZR5eRna6U77eRNcxhioznupjEOFJXichqPmUixpCSWLC1MyFyeR4uIB4UcOsAH
+         PtLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=u/HhHshiebt7qdyy/0fT8eo/n7HLU5nGMpl4dQQloPE=;
-        b=jh4Hr3Cif827lUfpee7VcMqm1umyxwXVTf0D1VeXG4wbU4lGXwp5xBXip4yyBCr/c6
-         8hDLHw0tOD0Kr3wfwpI7J2DeI8boOnM5y+1t42c6ylcqnFOhFIAn8DtjHpVyo0lFi5BW
-         3SiR7Dv9+7ZDc5Maf44YiU85ReMDFQO/3qhtu/TCL34AvbMwtfKfd+gy4Gnfygk36W7o
-         UnKfPoSysK/m6WS9un0FrRhmJ84Iu7+xQRXR/TPdYyMQQ4sP2I5p82rrxRydLVKF/P1K
-         dDSP16EMlSTygSXiwg1ZgjOcrVmL5O6tqbp0HP7clKyhzyCqO1w9wBUf2sO8gvItfHyt
-         /Pgw==
-X-Gm-Message-State: APjAAAV5kn+ng79mHtG3tBhzOaufCprSE6bA252mimKXkuxfxSJmW6n4
-        nn6/s4sEODuiU6YL5t/0syanzlNdYJaR
-X-Google-Smtp-Source: APXvYqwB3BWb6tkEHECO3/JQ/ejewohrwxyg4ZtcONUEqpOq6AIa0rSPEjwhOuLrLwotENvn2FvaLQAwZ+5f
-X-Received: by 2002:ae9:de84:: with SMTP id s126mr13701003qkf.245.1570255112606;
- Fri, 04 Oct 2019 22:58:32 -0700 (PDT)
-Date:   Sat,  5 Oct 2019 13:57:58 +0800
-Message-Id: <20191005055808.249089-1-tzungbi@google.com>
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=Z6x5CooX+KOT5/OTrrb8SPQO8MJH2PsqtriuzR88xtc=;
+        b=dU2xOJ6tki+c9dYmJsNcGlwJQlgqa0xhJuekcwOazRruIbpyIGwwMyFuZ+49DVaPMd
+         bwufeF5fLz8YqtIEtPgfg3qsiRFxstjKdR4F9/nEipQzRaszO4Puo/NlYxMFMMVUnIq/
+         bs6iCvjIwP9g0RZp7UXlGQOX1y4NoT+sPJxH/j61rlGeZ30vitVVUqhEumYB+JcFNLvu
+         cgUouhgF1yIvbhSVTYEKKY8qCL/Nzzavb2rpmZgwW7pP5XUk6BDzWiE4SjPX13cN2UJ5
+         ih8tBliCAsmGAzeG0VKyF7yO278YzBgBW/txezNgX9h5m3CKcr9CuKp+F09EnUbdpe8D
+         63Ng==
+X-Gm-Message-State: APjAAAX1GEgrfaKscZTkQFT4qPUwpZyKA2cwzcvm9q6TUwItNRuwNSkK
+        r9qmWZmLWk1H8qWxl8nTmSod5iojyvIL
+X-Google-Smtp-Source: APXvYqx2zBUYSjjB09ua6ZMesuhjXWY6OXHFCexT3WCngq0RnSzyv3lkzrA7ht0WMZDaW3QUwAsVPn3TuIFc
+X-Received: by 2002:ac8:6985:: with SMTP id o5mr2262786qtq.151.1570255117489;
+ Fri, 04 Oct 2019 22:58:37 -0700 (PDT)
+Date:   Sat,  5 Oct 2019 13:57:59 +0800
+In-Reply-To: <20191005055808.249089-1-tzungbi@google.com>
+Message-Id: <20191005130552.1.I374c311eaca0d47944a37b07acbe48fdb74f734d@changeid>
 Mime-Version: 1.0
+References: <20191005055808.249089-1-tzungbi@google.com>
 X-Mailer: git-send-email 2.23.0.581.g78d2f28ef7-goog
-Subject: [PATCH 00/10] ASoC: mediatek: mt8183-mt6358-ts3a227-max98357: support WoV
+Subject: [PATCH 01/10] platform/chrome: cros_ec: remove unused EC feature
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     broonie@kernel.org
 Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
@@ -55,57 +59,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series makes mt6358, cros_ec_codec, and mt8183-mt6358-ts3a227-max98357
-support WoV (wake on voice).
+Remove unused EC_FEATURE_AUDIO_CODEC.
 
-The first 3 commits are some cleanups and refactors.  It looks like breaking
-the existing interface.  But please be noticed that, the cros_ec_codec has
-not used by any real device yet.  The refactor is very necessary to keep
-the style consistent and for easier to further extend and maintain.
-  platform/chrome: cros_ec: remove unused EC feature
-  ASoC: cros_ec_codec: refactor I2S RX
-  ASoC: cros_ec_codec: extract DMIC EC command from I2S RX
+Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+---
+ include/linux/platform_data/cros_ec_commands.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-The 4th commit extends the feature offered from EC codec.
-  platform/chrome: cros_ec: add common commands for EC codec
-
-The 5th commit changes the behavior of setting and getting DMIC gains.
-  ASoC: cros_ec_codec: read max DMIC gain from EC codec
-
-The 6th and 7th commit make cros_ec_codec support WoV.
-  ASoC: dt-bindings: cros_ec_codec: add SHM bindings
-  ASoC: cros_ec_codec: support WoV
-
-The 8th commit sets necessary registers on mt6358 to support WoV.
-  ASoC: mediatek: mt6358: support WoV
-
-The last 2 commit make machine driver mt8183-mt6358-ts3a227-max98357 support
-WoV if ec-codec is in DTS.
-  ASoC: dt-bindings: mt8183: add ec-codec
-  ASoC: mediatek: mt8183: support WoV
-
-Tzung-Bi Shih (10):
-  platform/chrome: cros_ec: remove unused EC feature
-  ASoC: cros_ec_codec: refactor I2S RX
-  ASoC: cros_ec_codec: extract DMIC EC command from I2S RX
-  platform/chrome: cros_ec: add common commands for EC codec
-  ASoC: cros_ec_codec: read max DMIC gain from EC codec
-  ASoC: dt-bindings: cros_ec_codec: add SHM bindings
-  ASoC: cros_ec_codec: support WoV
-  ASoC: mediatek: mt6358: support WoV
-  ASoC: dt-bindings: mt8183: add ec-codec
-  ASoC: mediatek: mt8183: support WoV
-
- .../bindings/sound/google,cros-ec-codec.txt   |   24 +-
- .../sound/mt8183-mt6358-ts3a227-max98357.txt  |    3 +
- drivers/platform/chrome/cros_ec_trace.c       |    5 +-
- .../linux/platform_data/cros_ec_commands.h    |  285 ++++-
- sound/soc/codecs/cros_ec_codec.c              | 1125 +++++++++++++----
- sound/soc/codecs/mt6358.c                     |  105 ++
- sound/soc/mediatek/Kconfig                    |    1 +
- .../mt8183/mt8183-mt6358-ts3a227-max98357.c   |   70 +-
- 8 files changed, 1292 insertions(+), 326 deletions(-)
-
+diff --git a/include/linux/platform_data/cros_ec_commands.h b/include/linux/platform_data/cros_ec_commands.h
+index 98415686cbfa..43b8f7dae4cc 100644
+--- a/include/linux/platform_data/cros_ec_commands.h
++++ b/include/linux/platform_data/cros_ec_commands.h
+@@ -1277,8 +1277,6 @@ enum ec_feature_code {
+ 	 * MOTIONSENSE_CMD_TABLET_MODE_LID_ANGLE.
+ 	 */
+ 	EC_FEATURE_REFINED_TABLET_MODE_HYSTERESIS = 37,
+-	/* EC supports audio codec. */
+-	EC_FEATURE_AUDIO_CODEC = 38,
+ 	/* The MCU is a System Companion Processor (SCP). */
+ 	EC_FEATURE_SCP = 39,
+ 	/* The MCU is an Integrated Sensor Hub */
 -- 
 2.23.0.581.g78d2f28ef7-goog
 
