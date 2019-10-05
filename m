@@ -2,121 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 735B1CC7E9
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 06:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCBCCC836
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 07:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726446AbfJEEij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 00:38:39 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:37410 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbfJEEij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 00:38:39 -0400
-Received: by mail-pf1-f196.google.com with SMTP id y5so5112040pfo.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 21:38:38 -0700 (PDT)
+        id S1726134AbfJEF6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 01:58:35 -0400
+Received: from mail-qt1-f202.google.com ([209.85.160.202]:41849 "EHLO
+        mail-qt1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725927AbfJEF6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 01:58:35 -0400
+Received: by mail-qt1-f202.google.com with SMTP id n59so8979875qtd.8
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2019 22:58:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=gojjLX+lTwGZmg+qENDnRVGuBFOraGHa2B2vpf7iVZU=;
-        b=aoJD5LqfjCMzYKl2Xwu3Wklmzvu7Hh9AhSF/aixsCOh0sn3oS4pK3FjHL/0jBgFAqU
-         UQ5M799eRDsX9N3DOgF89P6R8Pt9oHIg9YqJ+u22TNw15lvNiMYLxneCH39xxlCkookY
-         E6b9yZ9zR+j8gRX5pq7hv1c5ST9WyOm7pn/Tc8agfncncn9s/5O6d1EohcNBYMSTECtG
-         G2XqTK5nejhi/RHWpIa9Z6yjy7Q2U11yrCrnU2Y0iCOtGhQryHhfmlDctxdCueziuQE+
-         NY13ZbDKQ+Pk3RIT/g4g2KBOYVDSsQm/LHsKj+9MvSP5JCyPS66DWRYHAJMXVqKMuHzf
-         Jg8Q==
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=u/HhHshiebt7qdyy/0fT8eo/n7HLU5nGMpl4dQQloPE=;
+        b=uq4kBMRiAoFm4f6IBiCLfwNOLhnTIDboKRnPsAqYRbLdvQClbP8TdLxQm1+MjQppIq
+         hdZHLoIvxg0XxpoFN+s1dCElRZOwes4ttUoe3yjBJMQ5PCMLa4mGwpuvlYW6jRH8S3kP
+         GQi0UwVzCXcjimxErBq80X1etw4ko4G7rLshAeP9/mOHK8jWHOTwfbNmoJuA3o4DmgxH
+         v0Nzaoz10laVBwGzYVtDI7f8UcpPJmwGxh1VqYzfrVkSpv+6vUoxUzmy3e6BFmB41b/y
+         cZFYQ4ragHp6zTKAdTjoT6cHwsP46dcFP0eFx45oN3/zN5gknYKM7rikRuzoasjAdzZ/
+         AyHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=gojjLX+lTwGZmg+qENDnRVGuBFOraGHa2B2vpf7iVZU=;
-        b=DZ54CTYux6FbtatYe1sOMeAEZ86V4O3mXmM2o08JScTaQ75Ov/1Gq80WkUGJb3Bi+d
-         4qFVVqt8OKLsr23JfWcyWGpX1TPNNy/euA6ANiqm9MwiHwWYBy+QPD5M5Vpg34vc5hey
-         4VnnhK/NyuW711qZ5ny7XY1WpuZr7Nrcep+ODFpGgCfd0rBiXl1SxTtPaYUQpkfAu6Oe
-         C5WDagxed149r099PQStKFve2Sd1IDKdDQEAVC19tAWE2HrYi99f/nXHmzcS6qZHNTwF
-         mUivN+u7fIAKP0rbjBBz77BxajElUgBecq3OVRiIS+kJipov8m1d4qJi3Ax+w17e4DaM
-         EOHA==
-X-Gm-Message-State: APjAAAWPIHdsfOeBOHyHXDUN3Wsd9aXBkLEZeWTsv/QB81DLMcj7tYhI
-        LyNNF5gw7vVLtWLDrNzNckjUEQ==
-X-Google-Smtp-Source: APXvYqybrYaoAQQO0OhNSmIB0UUOdfqyJ4Qu//EasKPhAapNYmiKSK5FOIodqcUwgnxNhBbXOE/eTQ==
-X-Received: by 2002:a65:5546:: with SMTP id t6mr18868858pgr.441.1570250318244;
-        Fri, 04 Oct 2019 21:38:38 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id 1sm8310336pff.39.2019.10.04.21.38.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2019 21:38:37 -0700 (PDT)
-Date:   Fri, 4 Oct 2019 21:38:35 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kiran Gunda <kgunda@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V1] dt-bindings: pinctrl: qcom-pmic-gpio: Add support for
- pm6150/pm6150l
-Message-ID: <20191005043835.GD6390@tuxbook-pro>
-References: <1570188039-22122-1-git-send-email-kgunda@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1570188039-22122-1-git-send-email-kgunda@codeaurora.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=u/HhHshiebt7qdyy/0fT8eo/n7HLU5nGMpl4dQQloPE=;
+        b=jh4Hr3Cif827lUfpee7VcMqm1umyxwXVTf0D1VeXG4wbU4lGXwp5xBXip4yyBCr/c6
+         8hDLHw0tOD0Kr3wfwpI7J2DeI8boOnM5y+1t42c6ylcqnFOhFIAn8DtjHpVyo0lFi5BW
+         3SiR7Dv9+7ZDc5Maf44YiU85ReMDFQO/3qhtu/TCL34AvbMwtfKfd+gy4Gnfygk36W7o
+         UnKfPoSysK/m6WS9un0FrRhmJ84Iu7+xQRXR/TPdYyMQQ4sP2I5p82rrxRydLVKF/P1K
+         dDSP16EMlSTygSXiwg1ZgjOcrVmL5O6tqbp0HP7clKyhzyCqO1w9wBUf2sO8gvItfHyt
+         /Pgw==
+X-Gm-Message-State: APjAAAV5kn+ng79mHtG3tBhzOaufCprSE6bA252mimKXkuxfxSJmW6n4
+        nn6/s4sEODuiU6YL5t/0syanzlNdYJaR
+X-Google-Smtp-Source: APXvYqwB3BWb6tkEHECO3/JQ/ejewohrwxyg4ZtcONUEqpOq6AIa0rSPEjwhOuLrLwotENvn2FvaLQAwZ+5f
+X-Received: by 2002:ae9:de84:: with SMTP id s126mr13701003qkf.245.1570255112606;
+ Fri, 04 Oct 2019 22:58:32 -0700 (PDT)
+Date:   Sat,  5 Oct 2019 13:57:58 +0800
+Message-Id: <20191005055808.249089-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.581.g78d2f28ef7-goog
+Subject: [PATCH 00/10] ASoC: mediatek: mt8183-mt6358-ts3a227-max98357: support WoV
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     broonie@kernel.org
+Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, enric.balletbo@collabora.com,
+        bleung@google.com, gwendal@google.com, drinkcat@google.com,
+        cychiang@google.com, dgreid@google.com, tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 04 Oct 04:20 PDT 2019, Kiran Gunda wrote:
+This series makes mt6358, cros_ec_codec, and mt8183-mt6358-ts3a227-max98357
+support WoV (wake on voice).
 
-> Add support for the PM6150 and PM6150L GPIO support to the
-> Qualcomm PMIC GPIO binding.
-> 
-> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+The first 3 commits are some cleanups and refactors.  It looks like breaking
+the existing interface.  But please be noticed that, the cros_ec_codec has
+not used by any real device yet.  The refactor is very necessary to keep
+the style consistent and for easier to further extend and maintain.
+  platform/chrome: cros_ec: remove unused EC feature
+  ASoC: cros_ec_codec: refactor I2S RX
+  ASoC: cros_ec_codec: extract DMIC EC command from I2S RX
 
-Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+The 4th commit extends the feature offered from EC codec.
+  platform/chrome: cros_ec: add common commands for EC codec
 
-> ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 4 ++++
->  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c                     | 2 ++
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> index c32bf32..2f48cca 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> @@ -23,6 +23,8 @@ PMIC's from Qualcomm.
->  		    "qcom,pms405-gpio"
->  		    "qcom,pm8150-gpio"
->  		    "qcom,pm8150b-gpio"
-> +		    "qcom,pm6150-gpio"
-> +		    "qcom,pm6150l-gpio"
->  
->  		    And must contain either "qcom,spmi-gpio" or "qcom,ssbi-gpio"
->  		    if the device is on an spmi bus or an ssbi bus respectively
-> @@ -100,6 +102,8 @@ to specify in a pin configuration subnode:
->  					     and gpio8)
->  		    gpio1-gpio12 for pm8150b (holes on gpio3, gpio4, gpio7)
->  		    gpio1-gpio12 for pm8150l (hole on gpio7)
-> +		    gpio1-gpio10 for pm6150
-> +		    gpio1-gpio12 for pm6150l
->  
->  - function:
->  	Usage: required
-> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> index f1fece5..387917c 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> @@ -1121,6 +1121,8 @@ static int pmic_gpio_remove(struct platform_device *pdev)
->  	{ .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
->  	/* pm8150l has 12 GPIOs with holes on 7 */
->  	{ .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
-> +	{ .compatible = "qcom,pm6150-gpio", .data = (void *) 10 },
-> +	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
->  	{ },
->  };
->  
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
->  a Linux Foundation Collaborative Project
-> 
+The 5th commit changes the behavior of setting and getting DMIC gains.
+  ASoC: cros_ec_codec: read max DMIC gain from EC codec
+
+The 6th and 7th commit make cros_ec_codec support WoV.
+  ASoC: dt-bindings: cros_ec_codec: add SHM bindings
+  ASoC: cros_ec_codec: support WoV
+
+The 8th commit sets necessary registers on mt6358 to support WoV.
+  ASoC: mediatek: mt6358: support WoV
+
+The last 2 commit make machine driver mt8183-mt6358-ts3a227-max98357 support
+WoV if ec-codec is in DTS.
+  ASoC: dt-bindings: mt8183: add ec-codec
+  ASoC: mediatek: mt8183: support WoV
+
+Tzung-Bi Shih (10):
+  platform/chrome: cros_ec: remove unused EC feature
+  ASoC: cros_ec_codec: refactor I2S RX
+  ASoC: cros_ec_codec: extract DMIC EC command from I2S RX
+  platform/chrome: cros_ec: add common commands for EC codec
+  ASoC: cros_ec_codec: read max DMIC gain from EC codec
+  ASoC: dt-bindings: cros_ec_codec: add SHM bindings
+  ASoC: cros_ec_codec: support WoV
+  ASoC: mediatek: mt6358: support WoV
+  ASoC: dt-bindings: mt8183: add ec-codec
+  ASoC: mediatek: mt8183: support WoV
+
+ .../bindings/sound/google,cros-ec-codec.txt   |   24 +-
+ .../sound/mt8183-mt6358-ts3a227-max98357.txt  |    3 +
+ drivers/platform/chrome/cros_ec_trace.c       |    5 +-
+ .../linux/platform_data/cros_ec_commands.h    |  285 ++++-
+ sound/soc/codecs/cros_ec_codec.c              | 1125 +++++++++++++----
+ sound/soc/codecs/mt6358.c                     |  105 ++
+ sound/soc/mediatek/Kconfig                    |    1 +
+ .../mt8183/mt8183-mt6358-ts3a227-max98357.c   |   70 +-
+ 8 files changed, 1292 insertions(+), 326 deletions(-)
+
+-- 
+2.23.0.581.g78d2f28ef7-goog
+
