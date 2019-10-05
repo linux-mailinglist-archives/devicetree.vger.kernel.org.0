@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17FB7CCA60
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 16:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09916CCA62
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 16:19:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728778AbfJEOTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 10:19:46 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:44526 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728690AbfJEOTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 10:19:45 -0400
-Received: by mail-pf1-f193.google.com with SMTP id q21so5639629pfn.11
-        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 07:19:45 -0700 (PDT)
+        id S1727532AbfJEOTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 10:19:50 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:37936 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728773AbfJEOTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 10:19:50 -0400
+Received: by mail-pl1-f193.google.com with SMTP id w8so4532525plq.5
+        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 07:19:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=5sUB0RooONzqGELXbytY+LCL6wUVKNVeZUfz3wJVzw4=;
-        b=h43kBO4gkvkkFs9AcbIQ2JN0yVcInn0HaBvXKvfGyM9qcSJgl/vsmd1u+bgYJOE0cx
-         3qeTR/2h78QA02/D/R+EcsDBWI1dkXb4qutu8bWvyVpXe4iCghv3OV5MdTu357cqf9d3
-         1jAGQ/5oRtDxAiYN9K3zXBPrxycQVfbLe414o=
+        bh=mkXpYcbeC0bnNO0q+6BYbbUdKRmj3eZu6k2PkyZZ+20=;
+        b=JrWVESZBcJgWFEPXetGcmowjNz2MF3jNDBTKbFar5RnY+PKgHXH8eVvgNRCq9tlvfO
+         sKG5H5kI7PcBS7Gls0j4X8ssaVUr5p59L464hKLCuEhhbwBeITGMto8GYRngMviExJ/G
+         p/oUnL8vpohQ+vwmALgGFNaH661mTU6zP/cUY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=5sUB0RooONzqGELXbytY+LCL6wUVKNVeZUfz3wJVzw4=;
-        b=Xn/O0Qz9rtX1t0Au3TAaStiPUUMgRK7hkNyTexdHMVntoaJZcdmGpp/dMDw8DjmcDG
-         i4Gu2+U2oh7iEGHeVliibcqAresz7rEFTt2ca+2BtOgDwBDSqp2o/sVOmxgwhBvfxOpY
-         8TFfla+0SaLGqOWQcAQenyLz69+Y5t2mNT2UUnzqGXf7FVd84tojxC/DTiiVUCnVHgpI
-         E+sCA4yOhy5b6u/PR8jrP4/KKUOyCcgjg/5yLXo8a4z8d0tiaO2cWvjKVk4X3ouyLckz
-         ARhOJNGYi57m3aWMG1+L9AKinIvAyMBIsbNUYK+qExY7MfxfnwWiGK6QeUIQJCQ+Ts0x
-         w32Q==
-X-Gm-Message-State: APjAAAVPrDuTmQZJ1AZ4ulgrkgGlIp1uLQoel9izbyRypi/P/Gr7ms6/
-        aFLfLyhDsWO/uqh4oUz0OJBmNA==
-X-Google-Smtp-Source: APXvYqx10j7PRU3fLEOZ4azx/txsZuy2oIBSXEvFfbkS6wRKhiOEl3gRVIzJmlphFdU23Kz8OymjUg==
-X-Received: by 2002:a63:d34c:: with SMTP id u12mr1238630pgi.88.1570285184885;
-        Sat, 05 Oct 2019 07:19:44 -0700 (PDT)
+        bh=mkXpYcbeC0bnNO0q+6BYbbUdKRmj3eZu6k2PkyZZ+20=;
+        b=tewCNl2ZXjozDI+uiPOY20xEZDswcxLI84PYzA9kAolRcRxn6jbsiY7lk3CF04YJcz
+         +8Tle1O+ippaHY0khb2332wBp19h6vnHnKctMLSqSBIi16aMnL1FRWUV7kiVdyyjXn/T
+         hhlUVfwwhnTefLibh7GiZmzUeuPVkT1yiD4W156abadH9sPlnxWM+8+bsVfnIhs4XEko
+         9n9ROkineSyWWxosMFfgLS6JXQdA8gDpLi3wPBsnxQ9nAPkNFgpWVW6HHHIUFPO31dGd
+         n8g5Pn0TdSyM6AtYZ0JbQt1x0g8W8WMcfhTfqyUZJz7L5SfumGR5EJ3arlMPKsBDKwpa
+         XgTA==
+X-Gm-Message-State: APjAAAV320sfu177+LgFGKyh0zQTTxKBG7/aQJ8BJyTXTEgco7MTUEz3
+        NfwRf5VFIfGo71Jf5UIV52jLiA==
+X-Google-Smtp-Source: APXvYqzPnYTsblSf60TZovxlUVlvSuc+XFLl1zKjvdo1Yvwqtsr2H7uR3x61W/FY7WkWYe/J6M0wOQ==
+X-Received: by 2002:a17:902:684a:: with SMTP id f10mr9295764pln.91.1570285189302;
+        Sat, 05 Oct 2019 07:19:49 -0700 (PDT)
 Received: from localhost.localdomain ([115.97.180.31])
-        by smtp.gmail.com with ESMTPSA id y138sm8977604pfb.174.2019.10.05.07.19.40
+        by smtp.gmail.com with ESMTPSA id y138sm8977604pfb.174.2019.10.05.07.19.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Oct 2019 07:19:44 -0700 (PDT)
+        Sat, 05 Oct 2019 07:19:48 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         David Airlie <airlied@linux.ie>,
@@ -52,9 +52,9 @@ Cc:     michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
         dri-devel@lists.freedesktop.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v10 5/6] arm64: dts: allwinner: a64: Add MIPI DSI pipeline
-Date:   Sat,  5 Oct 2019 19:49:12 +0530
-Message-Id: <20191005141913.22020-6-jagan@amarulasolutions.com>
+Subject: [DO NOT MERGE] [PATCH v10 6/6] arm64: dts: allwinner: bananapi-m64: Enable Bananapi S070WV20-CT16 DSI panel
+Date:   Sat,  5 Oct 2019 19:49:13 +0530
+Message-Id: <20191005141913.22020-7-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20191005141913.22020-1-jagan@amarulasolutions.com>
 References: <20191005141913.22020-1-jagan@amarulasolutions.com>
@@ -65,76 +65,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MIPI DSI pipeline for Allwinner A64.
+This patch add support for Bananapi S070WV20-CT16 DSI panel to
+BPI-M64 board.
 
-- dsi node, with A64 compatible since it doesn't support
-  DSI_SCLK gating unlike A33
-- dphy node, with A64 compatible with A33 fallback since
-  DPHY on A64 and A33 is similar
-- finally, attach the dsi_in to tcon0 for complete MIPI DSI
+DSI panel connected via board DSI port with,
+- DLDO1 as VCC-DSI supply
+- DCDC1 as VDD supply
+- PD7 gpio for lcd enable pin
+- PD6 gpio for lcd reset pin
+- PD5 gpio for backlight enable pin
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-Tested-by: Merlijn Wajer <merlijn@wizzup.org>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 69128a6dfc46..ad4170b8aee0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -382,6 +382,12 @@
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 					reg = <1>;
-+
-+					tcon0_out_dsi: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&dsi_in_tcon0>;
-+						allwinner,tcon-channel = <1>;
-+					};
- 				};
- 			};
- 		};
-@@ -1003,6 +1009,38 @@
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+index 208373efee49..6beaecdd802a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+@@ -45,6 +45,7 @@
+ #include "sun50i-a64.dtsi"
  
-+		dsi: dsi@1ca0000 {
-+			compatible = "allwinner,sun50i-a64-mipi-dsi";
-+			reg = <0x01ca0000 0x1000>;
-+			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_MIPI_DSI>;
-+			clock-names = "bus";
-+			resets = <&ccu RST_BUS_MIPI_DSI>;
-+			phys = <&dphy>;
-+			phy-names = "dphy";
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pwm/pwm.h>
+ 
+ / {
+ 	model = "BananaPi-M64";
+@@ -56,6 +57,14 @@
+ 		serial1 = &uart1;
+ 	};
+ 
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pwms = <&r_pwm 0 50000 PWM_POLARITY_INVERTED>;
++		brightness-levels = <1 2 4 8 16 32 64 128 255>;
++		default-brightness-level = <2>;
++		enable-gpios = <&pio 3 5 GPIO_ACTIVE_HIGH>; /* LCD-BL-EN: PD5 */
++	};
 +
-+			port {
-+				dsi_in_tcon0: endpoint {
-+					remote-endpoint = <&tcon0_out_dsi>;
-+				};
-+			};
-+		};
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -116,6 +125,24 @@
+ 	status = "okay";
+ };
+ 
++&dphy {
++	status = "okay";
++};
 +
-+		dphy: d-phy@1ca1000 {
-+			compatible = "allwinner,sun50i-a64-mipi-dphy",
-+				     "allwinner,sun6i-a31-mipi-dphy";
-+			reg = <0x01ca1000 0x1000>;
-+			clocks = <&ccu CLK_BUS_MIPI_DSI>,
-+				 <&ccu CLK_DSI_DPHY>;
-+			clock-names = "bus", "mod";
-+			resets = <&ccu RST_BUS_MIPI_DSI>;
-+			status = "disabled";
-+			#phy-cells = <0>;
-+		};
++&dsi {
++	vcc-dsi-supply = <&reg_dldo1>;		/* VCC3V3-DSI */
++	status = "okay";
 +
- 		hdmi: hdmi@1ee0000 {
- 			compatible = "allwinner,sun50i-a64-dw-hdmi",
- 				     "allwinner,sun8i-a83t-dw-hdmi";
++	panel@0 {
++		compatible = "bananapi,s070wv20-ct16-icn6211";
++		reg = <0>;
++		enable-gpios = <&pio 3 7 GPIO_ACTIVE_HIGH>; /* LCD-PWR-EN: PD7 */
++		reset-gpios = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* LCD-RST: PD6 */
++		vdd-supply = <&reg_dcdc1>;
++		backlight = <&backlight>;
++	};
++};
++
+ &ehci0 {
+ 	status = "okay";
+ };
+@@ -206,6 +233,10 @@
+ 	status = "okay";
+ };
+ 
++&r_pwm {
++	status = "okay";
++};
++
+ &r_rsb {
+ 	status = "okay";
+ 
 -- 
 2.18.0.321.gffc6fa0e3
 
