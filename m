@@ -2,171 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 576C4CCAA7
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 16:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E8DCCAA6
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 16:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727980AbfJEO7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 10:59:06 -0400
-Received: from bsmtp8.bon.at ([213.33.87.20]:18637 "EHLO bsmtp8.bon.at"
+        id S1727036AbfJEO6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 10:58:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48248 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725963AbfJEO7G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Oct 2019 10:59:06 -0400
-X-Greylist: delayed 2991 seconds by postgrey-1.27 at vger.kernel.org; Sat, 05 Oct 2019 10:59:05 EDT
-Received: from bsmtp.bon.at (unknown [192.168.181.104])
-        by bsmtp8.bon.at (Postfix) with ESMTPS id 46lpWv6wHDz5txK
-        for <devicetree@vger.kernel.org>; Sat,  5 Oct 2019 16:09:15 +0200 (CEST)
-Received: from dx.site (unknown [93.83.142.38])
-        by bsmtp.bon.at (Postfix) with ESMTPSA id 46lpWr4FfXz5tlD;
-        Sat,  5 Oct 2019 16:09:12 +0200 (CEST)
-Received: from [IPv6:::1] (localhost [IPv6:::1])
-        by dx.site (Postfix) with ESMTP id 8A97C1C9E;
-        Sat,  5 Oct 2019 16:09:11 +0200 (CEST)
-Subject: Re: [PATCH] userdiff: Fix some corner cases in dts regex
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     git@vger.kernel.org, Adrian Johnson <ajohnson@redneon.com>,
-        William Duclot <william.duclot@ensimag.grenoble-inp.fr>,
-        Matthieu Moy <matthieu.moy@grenoble-inp.fr>,
-        Junio C Hamano <gitster@pobox.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20191004213029.145027-1-sboyd@kernel.org>
-From:   Johannes Sixt <j6t@kdbg.org>
-Message-ID: <c3a054d9-2646-e440-40c5-b0aecf21e690@kdbg.org>
-Date:   Sat, 5 Oct 2019 16:09:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1725963AbfJEO6R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Oct 2019 10:58:17 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DC5F620862;
+        Sat,  5 Oct 2019 14:58:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570287496;
+        bh=Vc+YQJEsAFsoGb4fPTsygyli898B0N7NiXZC2OZEjzM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=zsvd19lGqWpNHr8KAqqUD/QnFuH7f9r/jBkQtBTZc2xKSoaCGUnNyke3I1VbhWOLb
+         5entkZmLjlaNOeL4LBJub5nylrHXaVPhFB1BMvv273d/5hvQ8MLcEmj8H2RfxeKVbr
+         Fl6QPDUlZ90fV5o7ZNAqWYiipWb0R/iEPutzE5nc=
+Date:   Sat, 5 Oct 2019 15:58:11 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Phil Reid <preid@electromag.com.au>, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        michal.simek@xilinx.com
+Subject: Re: [PATCH v2 1/2] dt-binding: iio: Add optional label property
+Message-ID: <20191005155811.29374f19@archlinux>
+In-Reply-To: <20190927144419.GA26041@bogus>
+References: <1568903768-65998-1-git-send-email-preid@electromag.com.au>
+        <1568903768-65998-2-git-send-email-preid@electromag.com.au>
+        <20190927144419.GA26041@bogus>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20191004213029.145027-1-sboyd@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 04.10.19 um 23:30 schrieb Stephen Boyd:
-> While reviewing some dts diffs recently I noticed that the hunk header
-> logic was failing to find the containing node. This is because the regex
-> doesn't consider properties that may span multiple lines, i.e.
+On Fri, 27 Sep 2019 09:44:19 -0500
+Rob Herring <robh@kernel.org> wrote:
+
+> On Thu, Sep 19, 2019 at 10:36:07PM +0800, Phil Reid wrote:
+> > This optional property defines a symbolic name for the device.
+> > This helps to distinguish between more than one iio device
+> > of the same type.
+> > 
+> > Suggested-by: Michal Simek <michal.simek@xilinx.com>
+> > Signed-off-by: Phil Reid <preid@electromag.com.au>
+> > ---
+> >  Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)  
 > 
-> 	property = <something>,
-> 		   <something_else>;
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-What if the property spans more than two lines?
+Applied to the togreg branch of iio.git and pushed out as testing
+for nothing much to happen to it.
 
-	property = <something>,
-		   more,
-		   <something_else>;
+Thanks,
 
-Can the second line "more," begin with a word, or are the angle brackets
-mandatory?
-
-I understand that the continuation lines can begin with a word when the
-property is an expression that is distributed over a number of lines.
-Such continuation lines could be picked up as hunk headers.
-
-But I don't want to complicate things: The hunk header patterns do not
-have to be perfect; it is sufficient when they are helpful in a good
-majority of cases that occur in practice.
-
-> and it got hung up on comments inside nodes that look like the root node
-> because they start with '/*'. Add tests for these cases and update the
-> regex to find them. Maybe detecting the root node is too complicated but
-> forcing it to be a backslash with any amount of whitespace up to an open
-> bracket seemed OK. I tried to detect that a comment is in-between the
-> two parts but I wasn't happy so I just dropped it.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> ---
->  t/t4018/dts-nodes-multiline-prop | 12 ++++++++++++
->  t/t4018/dts-root                 |  2 +-
->  t/t4018/dts-root-comment         |  8 ++++++++
->  userdiff.c                       |  3 ++-
->  4 files changed, 23 insertions(+), 2 deletions(-)
->  create mode 100644 t/t4018/dts-nodes-multiline-prop
->  create mode 100644 t/t4018/dts-root-comment
-> 
-> diff --git a/t/t4018/dts-nodes-multiline-prop b/t/t4018/dts-nodes-multiline-prop
-> new file mode 100644
-> index 000000000000..f7b655935429
-> --- /dev/null
-> +++ b/t/t4018/dts-nodes-multiline-prop
-> @@ -0,0 +1,12 @@
-> +/ {
-> +	label_1: node1@ff00 {
-> +		RIGHT@deadf00,4000 {
-> +			multilineprop = <3>,
-> +					<4>;
-
-You could insert more lines to demonstrate that "<x>," on a line by
-itself is not picked up.
-
-> +
-> +
-> +> +			ChangeMe = <0xffeedd00>;
-
-Sufficient distance to the incorrect candidates above. Good.
-
-> +		};
-> +	};
-> +};
-> diff --git a/t/t4018/dts-root b/t/t4018/dts-root
-> index 2ef9e6ffaa2c..4353b8220c91 100644
-> --- a/t/t4018/dts-root
-> +++ b/t/t4018/dts-root
-> @@ -1,4 +1,4 @@
-> -/RIGHT { /* Technically just supposed to be a slash */
-> +/ { RIGHT /* Technically just supposed to be a slash and brace */
-
-Do I understand correctly that the updated form, "/ {", is the common
-way to spell a root node, but "/" or "/word" are not?
-
->  	#size-cells = <1>;
->  
->  	ChangeMe = <0xffeedd00>;
-> diff --git a/t/t4018/dts-root-comment b/t/t4018/dts-root-comment
-> new file mode 100644
-> index 000000000000..333a625c7007
-> --- /dev/null
-> +++ b/t/t4018/dts-root-comment
-> @@ -0,0 +1,8 @@
-> +/ { RIGHT /* Technically just supposed to be a slash and brace */
-
-Devil's advocate here: insert ';' or '=' in the comment, and the line
-would not be picked up. Does that hurt in practice?
-
-> +	#size-cells = <1>;
-> +
-> +	/* This comment should be ignored */
-> +
-> +	some-property = <40+2>;
-> +	ChangeMe = <0xffeedd00>;
-> +};
-> diff --git a/userdiff.c b/userdiff.c
-> index 86e3244e15dd..651b56caec56 100644
-> --- a/userdiff.c
-> +++ b/userdiff.c
-> @@ -25,8 +25,9 @@ IPATTERN("ada",
->  	 "|=>|\\.\\.|\\*\\*|:=|/=|>=|<=|<<|>>|<>"),
->  PATTERNS("dts",
->  	 "!;\n"
-> +	 "!.*=.*\n"
-
-This behaves the same way as just
-
-	"!=\n"
-
-no?
-
->  	 /* lines beginning with a word optionally preceded by '&' or the root */
-> -	 "^[ \t]*((/|&?[a-zA-Z_]).*)",
-> +	 "^[ \t]*((/[ \t]*\\{|&?[a-zA-Z_]).*)",
->  	 /* -- */
->  	 /* Property names and math operators */
->  	 "[a-zA-Z0-9,._+?#-]+"
-> 
-
--- Hannes
+Jonathan
