@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DADA7CC8D9
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 10:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4224ECC8DA
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 10:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727457AbfJEIzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 04:55:40 -0400
-Received: from mail-qk1-f202.google.com ([209.85.222.202]:44581 "EHLO
-        mail-qk1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725976AbfJEIzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 04:55:39 -0400
-Received: by mail-qk1-f202.google.com with SMTP id x77so9076756qka.11
-        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 01:55:39 -0700 (PDT)
+        id S1727458AbfJEIzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 04:55:44 -0400
+Received: from mail-qt1-f201.google.com ([209.85.160.201]:47369 "EHLO
+        mail-qt1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbfJEIzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 04:55:44 -0400
+Received: by mail-qt1-f201.google.com with SMTP id p56so9302395qtj.14
+        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 01:55:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=9/Lb2n2Dl1IjlTZEVCLmP5Zb0tuzyhiYP+9l5REQgPI=;
-        b=LDecR0isx2OUdL56z0A0BGq1jSQ1Kz0TZ4UwR4x1WT/HTXysPkZzZyl5EWwMZE4tFh
-         VpUSHYh8eSjWXhTFTzTBprM+PJR3rcbCnQsjwASheI750wVrggFxaZ3zjl/GniDSSGaP
-         YyDNXY+a+ityElvZkE5KZPwHxmq4Ixj8tuz6Xxpss0JmA8kNBnzi/5fbNa+SJNkJKwlm
-         j1wXi76Aii//e2c9C3ay2BeMtXU0iBtX7UI7mAxEKE1lmUqK5oN6M8cjV2+EmxdSM5AR
-         C5Xo0jW6T188bFxKSJUWrwh1EMZKLnK3WOp9wibOKf49PgNMNwizvbo2Nt7FoOWqa9Tb
-         ffGQ==
+        bh=NeC00R2HDPjugyY089WdATWGGggY9LDPrJpjGM7g9N0=;
+        b=HA63YnvTlCHwLR7RikE43au83U2kH0GFPU4sNivHnLgJxQnb2MWeb8nQH/z8XKV2x1
+         pE6ee9AJOeyngJL+haLKq6I/pEGCFuZfkQ1cN+9IpzvGyrtZPVEmN4NASKq/WXalx2rk
+         UBjXWrbKCiTu0KQbGCWKP125wZMe+4ubitSrAaLPOd21HriUZchbIB6blzmfpE7GTcKu
+         yxVZRHdsj/07u9S5So4z15n4L3miJgt8tbfALGimEvVB8OYwzomQCtgLwYqGR8lA3y54
+         g9fmKNSqrQXULvxcyDkyKXEwjVEWKpvYixiBgnNaz+/BJU4pY3l0LInVbWc7SiGBPTHr
+         qYcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=9/Lb2n2Dl1IjlTZEVCLmP5Zb0tuzyhiYP+9l5REQgPI=;
-        b=ANz7SVs/mRsTsVim5Im7lbT775Y/5WZnUvOWU8lEgp5c9+VjxCSBPdbwyz8vz52aoi
-         mx0bigyWma1XbqJqMypKub86MYP5qf4F7GEhcl3s0PIL0f9y6/Z2mXYHHfcnnVy0DyMt
-         aR98tW2/kf5PotzormfFV4k3MjhTNw8JZeSMP0X9XlV1VGBiJNfHwL+6DQEwnlhGZ1+t
-         4ZR1Gl7/QfL9jLzUZqXUtf8dMdHuvlbgb0M0IQEBhPSqlC5uwUFVEouIbQb7ktwlNmLF
-         M4jf1fNbI7DJWshlkp2vqH+TaKfiLw2HMXivfnlud1N0Rke2bmnGF+jeTdDG1OKvqcI6
-         xaxw==
-X-Gm-Message-State: APjAAAXO6Ul0vpMtZPMVHNYeAASs8wnDuBV2M9BEZ+drMN0/AjApypds
-        +tE9O1ZjTpIsbVVVQxfbzmWTbwaRY4Sp
-X-Google-Smtp-Source: APXvYqwSBLsvA0gjon8I2MTNdl5n+i37RaW1Wp4F9yWGR8SrlJUbQquTzecv5aUDpcVFqhl9WmR5YwhLxLWy
-X-Received: by 2002:ac8:7604:: with SMTP id t4mr20431817qtq.34.1570265738719;
- Sat, 05 Oct 2019 01:55:38 -0700 (PDT)
-Date:   Sat,  5 Oct 2019 16:55:02 +0800
+        bh=NeC00R2HDPjugyY089WdATWGGggY9LDPrJpjGM7g9N0=;
+        b=PtgylxWS85bcEpZa/bzhrQPeaoqNxpEeKZovnU6We6inif9BcCZEU7BwQZrRJwZ7CT
+         KKWf65KmIQ/eeHHlO+JTc05/RdLLOygIsncjHHXobW94vVFMbdjsg8Pr5DG414RpyaAw
+         YmQHGMVjf1XRksBdwN+dtgkFnr1pPXGWGLEbsVRGdOPw/dFnUkiN3v6YT+MXYzG3Lzpv
+         Lerh5XM44RRpnp6i/adhrdJVKetZXXj/aDs3+rs3oM+LfNJjD15jYyY5snSzM/Au44/U
+         Ubi/dh+DKHy3KPFpQhNqU3E5vKpUQldgg/p8JGaIjvpvs0KW7frCuXmoafMVn97TkBaA
+         ihAg==
+X-Gm-Message-State: APjAAAU7U43Bw+e21QEWqtpSgqT0/+7gxmIqkRFpLqVLbexp8EwNXHJD
+        NXjJkqpLWKTu4cdFtQpy6EPPrwFQQywe
+X-Google-Smtp-Source: APXvYqxK5HKboiDDViqVqXfWdAQ059eKlyh5b/7riTV8ad0+Uw1jm7/PXCVkjf0fhmm1z3ev3SakuBcq9EHG
+X-Received: by 2002:a05:6214:1226:: with SMTP id p6mr18236893qvv.167.1570265743620;
+ Sat, 05 Oct 2019 01:55:43 -0700 (PDT)
+Date:   Sat,  5 Oct 2019 16:55:03 +0800
 In-Reply-To: <20191005085509.187179-1-tzungbi@google.com>
-Message-Id: <20191005164320.03.I93d9c65964f3c30f85a36d228e31150ff1917706@changeid>
+Message-Id: <20191005164320.04.Idc3c6e1cd94b70bf010249928d4a93c6c90495b7@changeid>
 Mime-Version: 1.0
 References: <20191005085509.187179-1-tzungbi@google.com>
 X-Mailer: git-send-email 2.23.0.581.g78d2f28ef7-goog
-Subject: [PATCH v2 03/10] ASoC: cros_ec_codec: extract DMIC EC command from
- I2S RX
+Subject: [PATCH v2 04/10] platform/chrome: cros_ec: add common commands for EC codec
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     broonie@kernel.org
 Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
@@ -60,207 +59,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extract DMIC EC command from I2S RX.  Setting and getting
-microphone gains is common features.
+Add the following common commands:
+- GET_CAPABILITIES
+- GET_SHM_ADDR
+- SET_SHM_ADDR
 
 Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 ---
  drivers/platform/chrome/cros_ec_trace.c       |  1 +
- .../linux/platform_data/cros_ec_commands.h    | 49 +++++++++++-----
- sound/soc/codecs/cros_ec_codec.c              | 57 ++++++++++---------
- 3 files changed, 68 insertions(+), 39 deletions(-)
+ .../linux/platform_data/cros_ec_commands.h    | 64 ++++++++++++++++++-
+ 2 files changed, 63 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/platform/chrome/cros_ec_trace.c b/drivers/platform/chrome/cros_ec_trace.c
-index 901850004b2b..e73bb6a8b00e 100644
+index e73bb6a8b00e..2ea0d4e0d54d 100644
 --- a/drivers/platform/chrome/cros_ec_trace.c
 +++ b/drivers/platform/chrome/cros_ec_trace.c
 @@ -98,6 +98,7 @@
  	TRACE_SYMBOL(EC_CMD_SB_READ_BLOCK), \
  	TRACE_SYMBOL(EC_CMD_SB_WRITE_BLOCK), \
  	TRACE_SYMBOL(EC_CMD_BATTERY_VENDOR_PARAM), \
-+	TRACE_SYMBOL(EC_CMD_EC_CODEC_DMIC), \
++	TRACE_SYMBOL(EC_CMD_EC_CODEC), \
+ 	TRACE_SYMBOL(EC_CMD_EC_CODEC_DMIC), \
  	TRACE_SYMBOL(EC_CMD_EC_CODEC_I2S_RX), \
  	TRACE_SYMBOL(EC_CMD_REBOOT_EC), \
- 	TRACE_SYMBOL(EC_CMD_GET_PANIC_INFO), \
 diff --git a/include/linux/platform_data/cros_ec_commands.h b/include/linux/platform_data/cros_ec_commands.h
-index 261ac83bd007..58e460c015ef 100644
+index 58e460c015ef..3ca0fa9e92a7 100644
 --- a/include/linux/platform_data/cros_ec_commands.h
 +++ b/include/linux/platform_data/cros_ec_commands.h
-@@ -4466,18 +4466,48 @@ enum mkbp_cec_event {
+@@ -4466,8 +4466,68 @@ enum mkbp_cec_event {
  
  /*****************************************************************************/
  
-+/* Commands for DMIC on audio codec. */
-+#define EC_CMD_EC_CODEC_DMIC 0x00BC
++/* Commands for audio codec. */
++#define EC_CMD_EC_CODEC 0x00BC
 +
-+enum ec_codec_dmic_subcmd {
-+	EC_CODEC_DMIC_SET_GAIN = 0x0,
-+	EC_CODEC_DMIC_GET_GAIN = 0x1,
-+	EC_CODEC_DMIC_SUBCMD_COUNT,
++enum ec_codec_subcmd {
++	EC_CODEC_GET_CAPABILITIES = 0x0,
++	EC_CODEC_GET_SHM_ADDR = 0x1,
++	EC_CODEC_SET_SHM_ADDR = 0x2,
++	EC_CODEC_SUBCMD_COUNT,
 +};
 +
-+struct __ec_align1 ec_param_ec_codec_dmic_set_gain {
-+	uint8_t left;
-+	uint8_t right;
-+	uint8_t reserved[2];
++enum ec_codec_cap {
++	EC_CODEC_CAP_LAST = 32,
 +};
 +
-+struct __ec_align4 ec_param_ec_codec_dmic {
-+	uint8_t cmd; /* enum ec_codec_dmic_subcmd */
++enum ec_codec_shm_id {
++	EC_CODEC_SHM_ID_LAST,
++};
++
++enum ec_codec_shm_type {
++	EC_CODEC_SHM_TYPE_EC_RAM = 0x0,
++	EC_CODEC_SHM_TYPE_SYSTEM_RAM = 0x1,
++};
++
++struct __ec_align1 ec_param_ec_codec_get_shm_addr {
++	uint8_t shm_id;
++	uint8_t reserved[3];
++};
++
++struct __ec_align4 ec_param_ec_codec_set_shm_addr {
++	uint64_t phys_addr;
++	uint32_t len;
++	uint8_t shm_id;
++	uint8_t reserved[3];
++};
++
++struct __ec_align4 ec_param_ec_codec {
++	uint8_t cmd; /* enum ec_codec_subcmd */
 +	uint8_t reserved[3];
 +
 +	union {
-+		struct ec_param_ec_codec_dmic_set_gain
-+				set_gain_param;
++		struct ec_param_ec_codec_get_shm_addr
++				get_shm_addr_param;
++		struct ec_param_ec_codec_set_shm_addr
++				set_shm_addr_param;
 +	};
 +};
 +
-+struct __ec_align1 ec_response_ec_codec_dmic_get_gain {
-+	uint8_t left;
-+	uint8_t right;
++struct __ec_align4 ec_response_ec_codec_get_capabilities {
++	uint32_t capabilities;
++};
++
++struct __ec_align4 ec_response_ec_codec_get_shm_addr {
++	uint64_t phys_addr;
++	uint32_t len;
++	uint8_t type;
++	uint8_t reserved[3];
 +};
 +
 +/*****************************************************************************/
 +
+ /* Commands for DMIC on audio codec. */
+-#define EC_CMD_EC_CODEC_DMIC 0x00BC
++#define EC_CMD_EC_CODEC_DMIC 0x00BD
+ 
+ enum ec_codec_dmic_subcmd {
+ 	EC_CODEC_DMIC_SET_GAIN = 0x0,
+@@ -4500,7 +4560,7 @@ struct __ec_align1 ec_response_ec_codec_dmic_get_gain {
+ 
  /* Commands for I2S RX on audio codec. */
  
--#define EC_CMD_EC_CODEC_I2S_RX 0x00BC
-+#define EC_CMD_EC_CODEC_I2S_RX 0x00BD
+-#define EC_CMD_EC_CODEC_I2S_RX 0x00BD
++#define EC_CMD_EC_CODEC_I2S_RX 0x00BE
  
  enum ec_codec_i2s_rx_subcmd {
  	EC_CODEC_I2S_RX_ENABLE = 0x0,
- 	EC_CODEC_I2S_RX_DISABLE = 0x1,
--	EC_CODEC_I2S_RX_SET_GAIN = 0x2,
--	EC_CODEC_I2S_RX_GET_GAIN = 0x3,
--	EC_CODEC_I2S_RX_SET_SAMPLE_DEPTH = 0x4,
--	EC_CODEC_I2S_RX_SET_DAIFMT = 0x5,
--	EC_CODEC_I2S_RX_SET_BCLK = 0x6,
-+	EC_CODEC_I2S_RX_SET_SAMPLE_DEPTH = 0x2,
-+	EC_CODEC_I2S_RX_SET_DAIFMT = 0x3,
-+	EC_CODEC_I2S_RX_SET_BCLK = 0x4,
- 	EC_CODEC_I2S_RX_SUBCMD_COUNT,
- };
- 
-@@ -4521,8 +4551,6 @@ struct __ec_align4 ec_param_ec_codec_i2s_rx {
- 	union {
- 		struct ec_param_ec_codec_i2s_rx_set_sample_depth
- 				set_sample_depth_param;
--		struct ec_param_ec_codec_i2s_rx_set_gain
--				set_gain_param;
- 		struct ec_param_ec_codec_i2s_rx_set_daifmt
- 				set_daifmt_param;
- 		struct ec_param_ec_codec_i2s_rx_set_bclk
-@@ -4530,11 +4558,6 @@ struct __ec_align4 ec_param_ec_codec_i2s_rx {
- 	};
- };
- 
--struct __ec_align1 ec_response_ec_codec_i2s_rx_get_gain {
--	uint8_t left;
--	uint8_t right;
--};
--
- /*****************************************************************************/
- /* System commands */
- 
-diff --git a/sound/soc/codecs/cros_ec_codec.c b/sound/soc/codecs/cros_ec_codec.c
-index 179fa77291cd..c19c7fe42e2e 100644
---- a/sound/soc/codecs/cros_ec_codec.c
-+++ b/sound/soc/codecs/cros_ec_codec.c
-@@ -64,12 +64,12 @@ static int dmic_get_gain(struct snd_kcontrol *kcontrol,
- 		snd_soc_kcontrol_component(kcontrol);
- 	struct cros_ec_codec_priv *priv =
- 		snd_soc_component_get_drvdata(component);
--	struct ec_param_ec_codec_i2s_rx p;
--	struct ec_response_ec_codec_i2s_rx_get_gain r;
-+	struct ec_param_ec_codec_dmic p;
-+	struct ec_response_ec_codec_dmic_get_gain r;
- 	int ret;
- 
--	p.cmd = EC_CODEC_I2S_RX_GET_GAIN;
--	ret = send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_I2S_RX,
-+	p.cmd = EC_CODEC_DMIC_GET_GAIN;
-+	ret = send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
- 				   (uint8_t *)&p, sizeof(p),
- 				   (uint8_t *)&r, sizeof(r));
- 	if (ret < 0)
-@@ -93,17 +93,17 @@ static int dmic_put_gain(struct snd_kcontrol *kcontrol,
- 	int max_dmic_gain = control->max;
- 	int left = ucontrol->value.integer.value[0];
- 	int right = ucontrol->value.integer.value[1];
--	struct ec_param_ec_codec_i2s_rx p;
-+	struct ec_param_ec_codec_dmic p;
- 
- 	if (left > max_dmic_gain || right > max_dmic_gain)
- 		return -EINVAL;
- 
- 	dev_dbg(component->dev, "set mic gain to %u, %u\n", left, right);
- 
--	p.cmd = EC_CODEC_I2S_RX_SET_GAIN;
-+	p.cmd = EC_CODEC_DMIC_SET_GAIN;
- 	p.set_gain_param.left = left;
- 	p.set_gain_param.right = right;
--	return send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_I2S_RX,
-+	return send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
- 				    (uint8_t *)&p, sizeof(p), NULL, 0);
- }
- 
-@@ -120,6 +120,29 @@ static struct snd_kcontrol_new dmic_controls[] = {
- 				   dmic_gain_tlv),
- };
- 
-+static int dmic_probe(struct snd_soc_component *component)
-+{
-+	struct cros_ec_codec_priv *priv =
-+		snd_soc_component_get_drvdata(component);
-+	struct device *dev = priv->dev;
-+	int ret, val;
-+	struct soc_mixer_control *control;
-+
-+	ret = device_property_read_u32(dev, "max-dmic-gain", &val);
-+	if (ret) {
-+		dev_err(dev, "Failed to read 'max-dmic-gain'\n");
-+		return ret;
-+	}
-+
-+	control = (struct soc_mixer_control *)
-+		dmic_controls[DMIC_CTL_GAIN].private_value;
-+	control->max = val;
-+	control->platform_max = val;
-+
-+	return snd_soc_add_component_controls(component,
-+			&dmic_controls[DMIC_CTL_GAIN], 1);
-+}
-+
- static int i2s_rx_hw_params(struct snd_pcm_substream *substream,
- 			    struct snd_pcm_hw_params *params,
- 			    struct snd_soc_dai *dai)
-@@ -265,25 +288,7 @@ static struct snd_soc_dai_driver i2s_rx_dai_driver = {
- 
- static int i2s_rx_probe(struct snd_soc_component *component)
- {
--	struct cros_ec_codec_priv *priv =
--		snd_soc_component_get_drvdata(component);
--	struct device *dev = priv->dev;
--	int ret, val;
--	struct soc_mixer_control *control;
--
--	ret = device_property_read_u32(dev, "max-dmic-gain", &val);
--	if (ret) {
--		dev_err(dev, "Failed to read 'max-dmic-gain'\n");
--		return ret;
--	}
--
--	control = (struct soc_mixer_control *)
--			dmic_controls[DMIC_CTL_GAIN].private_value;
--	control->max = val;
--	control->platform_max = val;
--
--	return snd_soc_add_component_controls(component,
--			&dmic_controls[DMIC_CTL_GAIN], 1);
-+	return dmic_probe(component);
- }
- 
- static const struct snd_soc_component_driver i2s_rx_component_driver = {
 -- 
 2.23.0.581.g78d2f28ef7-goog
 
