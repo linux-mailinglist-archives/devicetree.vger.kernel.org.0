@@ -2,150 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB109CC98C
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 13:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF7ADCC991
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 13:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727033AbfJELIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 07:08:06 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33401 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbfJELIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 07:08:06 -0400
-Received: by mail-wr1-f68.google.com with SMTP id b9so10024514wrs.0;
-        Sat, 05 Oct 2019 04:08:04 -0700 (PDT)
+        id S1727597AbfJELRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 07:17:05 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:35741 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725985AbfJELRE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 07:17:04 -0400
+Received: by mail-wr1-f65.google.com with SMTP id v8so10038188wrt.2
+        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 04:17:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=LdEZIkfvgiE6hyhM8+v/nzD4FH1/JdATBLKD/f4PmxY=;
-        b=ZDJY+eU0QTDJUpF1kQdCOGy225/9ceHpm4HqPkL6Dvpj7wjRb5fZNsGXub9gXBHV8g
-         BIgL1LaRpsvdz/sMYMtn8iRIU3Y/WGXfQMMrlaS40wJ8jEIu0z/PMV5iHaISLU81w2EF
-         PosJLx+feXev/jm1W5etLxhBZ7NXZtZpDsR9Sb3ZtEOzijNJQugMqlKRG5D9bsWpJppz
-         lNPdhwgWjkL7b7gc6fSG8XhwZM0fHQqMGrEqhadPku9qjLDYLPDBa9OPHGXQqfu7zPDf
-         xYPh+tUqgHbWt8aVGeCkqrOxdnb2Y0wJ7gqinBzM672rNsz9YS9difKsH28BJdQe3YsC
-         X0PA==
+        bh=xqkxhDjllV6JJYsYV/GBUca8pgArG2Ixs62rP81L6y0=;
+        b=sBnn6/gz+c4ehKiVm0AxGhOvSh7fEqsqRONWyfcrsB0ZoXiLVAxs8f045pshEmITbP
+         TAW4aP5wDodsmaiSjYNkc3dqoOe4RHXeipwg88DfPHHsNGILOHZ/3FiXRXHPLcoej0/2
+         6CgCWp3N/zIkUf9MNl9p+Yfn9M30xP6dPbbOWjFlG9p9CSWuaDsQf8h6T54CkhuNnjX7
+         rd4BgJmpwbAIb1Sg2J5t/OGVOMuA2A4XP+0QbEcMn7CeRDvR/Pr2wP72ZKfnj6+QX5ti
+         V3SeQjFmUZDk0C9PqaepIIkBIqw98jNn04DaG6viFQuHwmh0qHv84gQ0OwP7GnhiHHVW
+         UZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LdEZIkfvgiE6hyhM8+v/nzD4FH1/JdATBLKD/f4PmxY=;
-        b=K0Br07tXnf29F6Tcfvx9VmPWDLpJDhZRt0MPno6eJPE5LEEen9rkeHstbGgTFW64Mc
-         mJkvg/kw19elbZOGxntnhzhKjg2R1exGtJzmawyxIb1UaFmu7qv6SPlLVRntw26kxtWP
-         05Eh14vxWX+o6X30QRyLaVCsFH/ATKV6X819ATQ/NmFaxfkKGiwdASAY0860efxdBB2I
-         PpDuMItH9RdWguD5lLJXnpwKs6rIh2ozJNRxELeU6FtTLO6re0cXcSYxkIVexU5sLN6O
-         7M8ssaGF4/bV2j++F8fxQZltRxad9du0xCgJJ66GNAE+3mllrLY4xzfAzFXPBjNB87eE
-         x37w==
-X-Gm-Message-State: APjAAAXryauyrQVH21zgEkx9/J6R6mKCxEDfZdf9q2jiSnKzrP0R06TC
-        283o6OX4DaoureMyRYVPSsv3Ka0sx6shIw==
-X-Google-Smtp-Source: APXvYqyV15Y9cFaTG6FzD+3zkEFQKAOKBb9uLmRFZ5i3q3JBEarIpu7E97cqRq+6SZTYAhMHctWESw==
-X-Received: by 2002:a5d:4083:: with SMTP id o3mr15972259wrp.216.1570273683792;
-        Sat, 05 Oct 2019 04:08:03 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([93.51.16.173])
-        by smtp.gmail.com with ESMTPSA id c6sm9712270wrm.71.2019.10.05.04.08.02
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 05 Oct 2019 04:08:03 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     linux-arm-msm@vger.kernel.org
-Cc:     marijns95@gmail.com, agross@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, bjorn.andersson@linaro.org,
-        "AngeloGioacchino Del Regno" <kholk11@gmail.com>
-Subject: [PATCH] soc: qcom: rpmpd: Add rpm power domains for msm8976
-Date:   Sat,  5 Oct 2019 13:07:58 +0200
-Message-Id: <20191005110758.31548-1-kholk11@gmail.com>
-X-Mailer: git-send-email 2.21.0
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=xqkxhDjllV6JJYsYV/GBUca8pgArG2Ixs62rP81L6y0=;
+        b=uioJvI0l6xBqNknsA2j7r0VmiEX/GiveKB3TRxmCvmTvro+Q2Ezz/eFSGqGCNEFZ/R
+         uatCb/jhXUSoQNkXIY9UEWKKumsPTfWcnrlmIsf8MYLZA38uJeP8EtDUNTll+GQvf15/
+         Gciw0r2iKzCxasTvuFFR7Oi8QyC7ZdM+1CRmYwIeMk4z3Yt5eESa1Hw5HWgK24GTwUtc
+         x6n6b5f6+ETa1eDD7++lwEbDntIv7yOl4YUgvr2eg1Xu9R9VQem4Qi413/+2yqL/0WhH
+         hhfUuS1ydjHEmL5VJyoooskSqUIOjt1VNISP3Y1f/WlhlE+40OUCw0XPM/oNOgxz9631
+         Et6A==
+X-Gm-Message-State: APjAAAWPEJppTvv162IZ9ehIEK7uBKVq8XGX9ZoH5C+k8no5DdxkQhta
+        hPifXg89u75MjhYf15QAPZA=
+X-Google-Smtp-Source: APXvYqwITvfNBOvh57P5ILuo0as6pDiC3QO1jJsOaeslq7TnNBIqpc0/wi+acNzJAsEdu5PnJLgYxQ==
+X-Received: by 2002:adf:904f:: with SMTP id h73mr15241060wrh.128.1570274220845;
+        Sat, 05 Oct 2019 04:17:00 -0700 (PDT)
+Received: from ziggy.stardust ([95.169.226.6])
+        by smtp.gmail.com with ESMTPSA id z13sm6192617wrq.51.2019.10.05.04.16.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Oct 2019 04:16:59 -0700 (PDT)
+Subject: Re: [PATCH v19 0/2] PS8640 MIPI-to-eDP bridge
+To:     Ulrich Hecht <uli@fpond.eu>, linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com
+Cc:     robh+dt@kernel.org, p.zabel@pengutronix.de,
+        enric.balletbo@collabora.com, djkurtz@chromium.org,
+        architt@codeaurora.org, mark.rutland@arm.com, stonea168@163.com,
+        andy.yan@rock-chips.com, ajaykumar.rs@samsung.com,
+        vpalatin@chromium.org, cawa.cheng@mediatek.com,
+        bibby.hsieh@mediatek.com, ck.hu@mediatek.com,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        pawel.moll@arm.com, ijc+devicetree@hellion.org.uk,
+        inki.dae@samsung.com, yingjoe.chen@mediatek.com,
+        eddie.huang@mediatek.com, rahul.sharma@samsung.com,
+        galak@codeaurora.org, seanpaul@chromium.org
+References: <1570216148-22802-1-git-send-email-uli@fpond.eu>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
+ mQINBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
+ fL3eT7ZsYV5nur7zctmJ+vbszoOASXUpfq8M+S5hU2w7sBaVk5rpH9yW8CUWz2+ZpQXPJcFa
+ OhLZuSKB1F5JcvLbETRjNzNU7B3TdS2+zkgQQdEyt7Ij2HXGLJ2w+yG2GuR9/iyCJRf10Okq
+ gTh//XESJZ8S6KlOWbLXRE+yfkKDXQx2Jr1XuVvM3zPqH5FMg8reRVFsQ+vI0b+OlyekT/Xe
+ 0Hwvqkev95GG6x7yseJwI+2ydDH6M5O7fPKFW5mzAdDE2g/K9B4e2tYK6/rA7Fq4cqiAw1+u
+ EgO44+eFgv082xtBez5WNkGn18vtw0LW3ESmKh19u6kEGoi0WZwslCNaGFrS4M7OH+aOJeqK
+ fx5dIv2CEbxc6xnHY7dwkcHikTA4QdbdFeUSuj4YhIZ+0QlDVtS1QEXyvZbZky7ur9rHkZvP
+ ZqlUsLJ2nOqsmahMTIQ8Mgx9SLEShWqD4kOF4zNfPJsgEMB49KbS2o9jxbGB+JKupjNddfxZ
+ HlH1KF8QwCMZEYaTNogrVazuEJzx6JdRpR3sFda/0x5qjTadwIW6Cl9tkqe2h391dOGX1eOA
+ 1ntn9O/39KqSrWNGvm+1raHK+Ev1yPtn0Wxn+0oy1tl67TxUjQARAQABtClNYXR0aGlhcyBC
+ cnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPokCUgQTAQIAPAIbAwYLCQgHAwIGFQgC
+ CQoLBBYCAwECHgECF4AWIQTmuZIYwPLDJRwsOhfZFAuyVhMC8QUCWt3scQIZAQAKCRDZFAuy
+ VhMC8WzRD/4onkC+gCxG+dvui5SXCJ7bGLCu0xVtiGC673Kz5Aq3heITsERHBV0BqqctOEBy
+ ZozQQe2Hindu9lasOmwfH8+vfTK+2teCgWesoE3g3XKbrOCB4RSrQmXGC3JYx6rcvMlLV/Ch
+ YMRR3qv04BOchnjkGtvm9aZWH52/6XfChyh7XYndTe5F2bqeTjt+kF/ql+xMc4E6pniqIfkv
+ c0wsH4CkBHqoZl9w5e/b9MspTqsU9NszTEOFhy7p2CYw6JEa/vmzR6YDzGs8AihieIXDOfpT
+ DUr0YUlDrwDSrlm/2MjNIPTmSGHH94ScOqu/XmGW/0q1iar/Yr0leomUOeeEzCqQtunqShtE
+ 4Mn2uEixFL+9jiVtMjujr6mphznwpEqObPCZ3IcWqOFEz77rSL+oqFiEA03A2WBDlMm++Sve
+ 9jpkJBLosJRhAYmQ6ey6MFO6Krylw1LXcq5z1XQQavtFRgZoruHZ3XlhT5wcfLJtAqrtfCe0
+ aQ0kJW+4zj9/So0uxJDAtGuOpDYnmK26dgFN0tAhVuNInEVhtErtLJHeJzFKJzNyQ4GlCaLw
+ jKcwWcqDJcrx9R7LsCu4l2XpKiyxY6fO4O8DnSleVll9NPfAZFZvf8AIy3EQ8BokUsiuUYHz
+ wUo6pclk55PZRaAsHDX/fNr24uC6Eh5oNQ+v4Pax/gtyybkCDQRT9c4FARAAqdGWpdzcSM8q
+ 6I2oTPS5J4KXXIJS8O2jbUcxoNuaSBnUkhwp2eML/i30oLbEC+akmagcOLD0kOY46yRFeSEC
+ SPM9SWLxKvKUTQYGLX2sphPVZ3hEdFYKen3+cbvo6GyYTnm8ropHM9uqmXPZFFfLJDL76Nau
+ kFsRfPMQUuwMe3hFVLmF7ntvdX3Z3jKImoMWrgA/SnsT6K40n/GCl1HNz2T8PSnqAUQjvSoI
+ FAenxb23NtW6kg50xIxlb7DKbncnQGGTwoYn8u9Lgxkh8gJ03IMiSDHZ9o+wl21U8B3OXr1K
+ L08vXmdR70d6MJSmt6pKs7yTjxraF0ZS6gz+F2BTy080jxceZwEWIIbK7zU3tm1hnr7QIbj/
+ H6W2Pv9p5CXzQCIw17FXFXjpGPa9knzd4WMzJv2Rgx/m8/ZG91aKq+4Cbz9TLQ7OyRdXqhPJ
+ CopfKgZ2l/Fc5+AGhogJLxOopBoELIdHgB50Durx4YJLmQ1z/oimD0O/mUb5fJu0FUQ5Boc1
+ kHHJ8J8bZTuFrGAomfvnsek+dyenegqBpZCDniCSfdgeAx9oWNoXG4cgo8OVG7J/1YIWBHRa
+ Wnk+WyXGBfbY/8247Gy8oaXtQs1OnehbMKBHRIY0tgoyUlag3wXuUzeK+0PKtWC7ZYelKNC0
+ Fn+zL9XpnK3HLE5ckhBLgK8AEQEAAYkCHwQYAQIACQUCU/XOBQIbDAAKCRDZFAuyVhMC8Yyu
+ D/9g6+JZZ+oEy7HoGZ0Bawnlxu/xQrzaK/ltQhA2vtiMaxCN46gOvEF/x+IvFscAucm3q4Dy
+ bJJkW2qY30ISK9MDELnudPmHRqCxTj8koabvcI1cP8Z0Fw1reMNZVgWgVZJkwHuPYnkhY15u
+ 3vHDzcWnfnvmguKgYoJxkqqdp/acb0x/qpQgufrWGeYv2yb1YNidXBHTJSuelFcGp/oBXeJz
+ rQ2IP1JBbQmQfPSePZzWdSLlrR+3jcBJEP/A/73lSObOQpiYJomXPcla6dH+iyV0IiiZdYgU
+ Htwru4Stv/cFVFsUJk1fIOP1qjSa+L6Y0dWX6JMniqUXHhaXo6OPf7ArpVbBygMuzvy99LtS
+ FSkMcYXn359sXOYsRy4V+Yr7Bs0lzdnHnKdpVqHiDvNgrrLoPNrKTiYwTmzTVbb9u/BjUGhC
+ YUS705vcjBgXhdXS44kgO22kaB5c6Obg7WP7cucFomITovtZs5Rm1iaZZc31lzobfFPUwDSc
+ YXOj6ckS9bF9lDG26z3C/muyiifZeiQvvG1ygexrHtnKYTNxqisOGjjcXzDzpS8egIOtIEI/
+ arzlqK5RprMLVOl6n/npxEWmInjBetsBsaX/9kJNZFM4Yais5scOnP+tuTnFTW2K9xKySyuD
+ q/iLORJYRYMloJPaDAftiYfjFa8zuw1XnQyG17kCDQRT9gX3ARAAsL2UwyvSLQuMxOW2GRLv
+ CiZuxtIEoUuhaBWdC/Yq3c6rWpTu692lhLd4bRpKJkE4nE3saaTVxIHFF3tt3IHSa3Qf831S
+ lW39EkcFxr7DbO17kRThOyU1k7KDhUQqhRaUoT1NznrykvpTlNszhYNjA0CMYWH249MJXgck
+ iKOezSHbQ2bZWtFG3uTloWSKloFsjsmRsb7Vn2FlyeP+00PVC6j7CRqczxpkyYoHuqIS0w1z
+ Aq8HP5DDSH7+arijtPuJhVv9uaiD6YFLgSIQy4ZCZuMcdzKJz2j6KCw2kUXLehk4BU326O0G
+ r9+AojZT8J3qvZYBpvCmIhGliKhZ7pYDKZWVseRw7rJS5UFnst5OBukBIjOaSVdp6JMpe99o
+ caLjyow2By6DCEYgLCrquzuUxMQ8plEMfPD1yXBo00bLPatkuxIibM0G4IstKL5hSAKiaFCc
+ 2f73ppp7eby3ZceyF4uCIxN3ABjW9ZCEAcEwC40S3rnh2wZhscBFZ+7sO7+Fgsd0w67zjpt+
+ YHFNv/chRJiPnDGGRt0jPWryaasDnQtAAf59LY3qd4GVHu8RA1G0Rz4hVw27yssHGycc4+/Z
+ ZX7sPpgNKlpsToMaB5NWgc389HdqOG80Ia+sGkNj9ylp74MPbd0t3fzQnKXzBSHOCNuS67sc
+ lUAw7HB+wa3BqgsAEQEAAYkEPgQYAQIACQUCU/YF9wIbAgIpCRDZFAuyVhMC8cFdIAQZAQIA
+ BgUCU/YF9wAKCRC0OWJbLPHTQ14xD/9crEKZOwhIWX32UXvB/nWbhEx6+PQG2uWsnah7oc5D
+ 7V+aY7M1jy5af8yhlhVdaxL5xUoepfOP08lkCEuSdrYbS5wBcQj4NE1QUoeAjJKbq4JwxUkX
+ Baq2Lu91UZpdKxEVFfSkEzmeMaVvClGjGOtNCUKl8lwLuthU7dGTW74mJaW5jjlXldgzfzFd
+ BkS3fsXfcmeDhHh5TpA4e3MYVBIJrq6Repv151g/zxdA02gjJgGvJlXTb6OgEZGNFr8LGJDh
+ LP7MSksBw6IxCAJSicMESu5kXsJfcODlm4zFaV8QDBevI/s/TgOQ9KQ/EJQsG+XBAuh0dqpu
+ ImmCdhlHx+YaGmwKO1/yhfWvg1h1xbVn98izeotmq1+0J1jt9tgM17MGvgHjmvqlaY+oUXfj
+ OkHkcCGOvao5uAsddQhZcSLmLhrSot8WJI0z3NIM30yiNx/r6OMu47lzTobdYCU8/8m7Rhsq
+ fyW68D+XR098NIlU2oYy1zUetw59WJLf2j5u6D6a9p10doY5lYUEeTjy9Ejs/cL+tQbGwgWh
+ WwKVal1lAtZVaru0GMbSQQ2BycZsZ+H+sbVwpDNEOxQaQPMmEzwgv2Sk2hvR3dTnhUoUaVoR
+ hQE3/+fVRbWHEEroh/+vXV6n4Ps5bDd+75NCQ/lfPZNzGxgxqbd/rd2wStVZpQXkhofMD/4k
+ Z8IivHZYaTA+udUk3iRm0l0qnuX2M5eUbyHW0sZVPnL7Oa4OKXoOir1EWwzzq0GNZjHCh6Cz
+ vLOb1+pllnMkBky0G/+txtgvj5T/366ErUF+lQfgNtENKY6In8tw06hPJbu1sUTQIs50Jg9h
+ RNkDSIQ544ack0fzOusSPM+vo6OkvIHt8tV0fTO1muclwCX/5jb7zQIDgGiUIgS8y0M4hIkP
+ KvdmgurPywi74nEoQQrKF6LpPYYHsDteWR/k2m2BOj0ciZDIIxVR09Y9moQIjBLJKN0J21XJ
+ eAgam4uLV2p1kRDdw/ST5uMCqD4Qi5zrZyWilCci6jF1TR2VEt906E2+AZ3BEheRyn8yb2KO
+ +cJD3kB4RzOyBC/Cq/CGAujfDkRiy1ypFF3TkZdya0NnMgka9LXwBV29sAw9vvrxHxGa+tO+
+ RpgKRywr4Al7QGiw7tRPbxkcatkxg67OcRyntfT0lbKlSTEQUxM06qvwFN7nobc9YiJJTeLu
+ gfa4fCqhQCyquWVVoVP+MnLqkzu1F6lSB6dGIpiW0s3LwyE/WbCAVBraPoENlt69jI0WTXvH
+ 4v71zEffYaGWqtrSize20x9xZf5c/Aukpx0UmsqheKeoSprKyRD/Wj/LgsuTE2Uod85U36Xk
+ eFYetwQY1h3lok2Zb/3uFhWr0NqmT14EL7kCDQRT9gkSARAApxtQ4zUMC512kZ+gCiySFcIF
+ /mAf7+l45689Tn7LI1xmPQrAYJDoqQVXcyh3utgtvBvDLmpQ+1BfEONDWc8KRP6Abo35YqBx
+ 3udAkLZgr/RmEg3+Tiof+e1PJ2zRh5zmdei5MT8biE2zVd9DYSJHZ8ltEWIALC9lAsv9oa+2
+ L6naC+KFF3i0m5mxklgFoSthswUnonqvclsjYaiVPoSldDrreCPzmRCUd8znf//Z4BxtlTw3
+ SulF8weKLJ+Hlpw8lwb3sUl6yPS6pL6UV45gyWMe677bVUtxLYOu+kiv2B/+nrNRDs7B35y/
+ J4t8dtK0S3M/7xtinPiYRmsnJdk+sdAe8TgGkEaooF57k1aczcJlUTBQvlYAEg2NJnqaKg3S
+ CJ4fEuT8rLjzuZmLkoHNumhH/mEbyKca82HvANu5C9clyQusJdU+MNRQLRmOAd/wxGLJ0xmA
+ ye7Ozja86AIzbEmuNhNH9xNjwbwSJNZefV2SoZUv0+V9EfEVxTzraBNUZifqv6hernMQXGxs
+ +lBjnyl624U8nnQWnA8PwJ2hI3DeQou1HypLFPeY9DfWv4xYdkyeOtGpueeBlqhtMoZ0kDw2
+ C3vzj77nWwBgpgn1Vpf4hG/sW/CRR6tuIQWWTvUM3ACa1pgEsBvIEBiVvPxyAtL+L+Lh1Sni
+ 7w3HBk1EJvUAEQEAAYkCHwQYAQIACQUCU/YJEgIbDAAKCRDZFAuyVhMC8QndEACuN16mvivn
+ WwLDdypvco5PF8w9yrfZDKW4ggf9TFVB9skzMNCuQc+tc+QM+ni2c4kKIdz2jmcg6QytgqVu
+ m6V1OsNmpjADaQkVp5jL0tmg6/KA9Tvr07Kuv+Uo4tSrS/4djDjJnXHEp/tB+Fw7CArNtUtL
+ lc8SuADCmMD+kBOVWktZyzkBkDfBXlTWl46T/8291lEspDWe5YW1ZAH/HdCR1rQNZWjNCpB2
+ Cic58CYMD1rSonCnbfUeyZYNNhNHZosl4dl7f+am87Q2x3pK0DLSoJRxWb7vZB0uo9CzCSm3
+ I++aYozF25xQoT+7zCx2cQi33jwvnJAK1o4VlNx36RfrxzBqc1uZGzJBCQu48UjmUSsTwWC3
+ HpE/D9sM+xACs803lFUIZC5H62G059cCPAXKgsFpNMKmBAWweBkVJAisoQeX50OP+/11ArV0
+ cv+fOTfJj0/KwFXJaaYh3LUQNILLBNxkSrhCLl8dUg53IbHx4NfIAgqxLWGfXM8DY1aFdU79
+ pac005PuhxCWkKTJz3gCmznnoat4GCnL5gy/m0Qk45l4PFqwWXVLo9AQg2Kp3mlIFZ6fsEKI
+ AN5hxlbNvNb9V2Zo5bFZjPWPFTxOteM0omUAS+QopwU0yPLLGJVf2iCmItHcUXI+r2JwH1CJ
+ jrHWeQEI2ucSKsNa8FllDmG/fQ==
+Message-ID: <4df984a5-a917-753e-5870-7453f3d5438e@gmail.com>
+Date:   Sat, 5 Oct 2019 13:16:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1570216148-22802-1-git-send-email-uli@fpond.eu>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "AngeloGioacchino Del Regno" <kholk11@gmail.com>
+Hi Uli,
 
-The MSM8956/76 SoCs have two main voltage-level power domains, VDD_CX
-and VDD_MX, which also have their own voltage-floor-level (VFL)
-corner.
+On 04/10/2019 21:09, Ulrich Hecht wrote:
+> Hi!
+> 
+> This driver seems to have fallen by the wayside because, while otherwise
+> fine, it has a firmware update feature that requires a blob that is not in
+> the linux-firmware repo.[1]
+> 
+> Whatever the cause for that may be, the update code is entirely optional
+> (my chip works fine with whatever firmware is currently installed), so I
+> have removed it in order to get this merged after all. I have also
+> followed various trivial API changes that have piled up since 2016; see
+> the individual patches for details.
+> 
+> I'm using this driver on an Acer Chromebook R13 ("Elm"); see
+> https://github.com/uli/kernel/tree/elm-working-5.4.
+> 
 
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
----
- .../devicetree/bindings/power/qcom,rpmpd.txt  |  1 +
- drivers/soc/qcom/rpmpd.c                      | 23 +++++++++++++++++++
- include/dt-bindings/power/qcom-rpmpd.h        |  8 +++++++
- 3 files changed, 32 insertions(+)
+Thanks for your effort to get things upstream.
+I just tried your branch on my R13. I had to do a trivial config change I had to
+do, as I don't have and care about the bluetooth FW right now.
+But after that my screen keeps black. I was able to build and boot
+elm-working-5.3 and elm-working-5.2.
 
-diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
-index eb35b22f9e23..bc75bf49cdae 100644
---- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
-+++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
-@@ -5,6 +5,7 @@ which then translates it into a corresponding voltage on a rail
- 
- Required Properties:
-  - compatible: Should be one of the following
-+	* qcom,msm8976-rpmpd: RPM Power domain for the msm8976 family of SoC
- 	* qcom,msm8996-rpmpd: RPM Power domain for the msm8996 family of SoC
- 	* qcom,msm8998-rpmpd: RPM Power domain for the msm8998 family of SoC
- 	* qcom,qcs404-rpmpd: RPM Power domain for the qcs404 family of SoC
-diff --git a/drivers/soc/qcom/rpmpd.c b/drivers/soc/qcom/rpmpd.c
-index 3c1a55cf25d6..2b1834c5609a 100644
---- a/drivers/soc/qcom/rpmpd.c
-+++ b/drivers/soc/qcom/rpmpd.c
-@@ -115,6 +115,28 @@ struct rpmpd_desc {
- 
- static DEFINE_MUTEX(rpmpd_lock);
- 
-+/* msm8976 RPM Power Domains */
-+DEFINE_RPMPD_PAIR(msm8976, vddcx, vddcx_ao, SMPA, LEVEL, 2);
-+DEFINE_RPMPD_PAIR(msm8976, vddmx, vddmx_ao, SMPA, LEVEL, 6);
-+
-+DEFINE_RPMPD_VFL(msm8976, vddcx_vfl, RWSC, 2);
-+DEFINE_RPMPD_VFL(msm8976, vddmx_vfl, RWSM, 6);
-+
-+static struct rpmpd *msm8976_rpmpds[] = {
-+	[MSM8976_VDDCX] =	&msm8976_vddcx,
-+	[MSM8976_VDDCX_AO] =	&msm8976_vddcx_ao,
-+	[MSM8976_VDDCX_VFL] =	&msm8976_vddcx_vfl,
-+	[MSM8976_VDDMX] =	&msm8976_vddmx,
-+	[MSM8976_VDDMX_AO] =	&msm8976_vddmx_ao,
-+	[MSM8976_VDDMX_VFL] =	&msm8976_vddmx_vfl,
-+};
-+
-+static const struct rpmpd_desc msm8976_desc = {
-+	.rpmpds = msm8976_rpmpds,
-+	.num_pds = ARRAY_SIZE(msm8976_rpmpds),
-+	.max_state = RPM_SMD_LEVEL_TURBO_HIGH,
-+};
-+
- /* msm8996 RPM Power domains */
- DEFINE_RPMPD_PAIR(msm8996, vddcx, vddcx_ao, SMPA, CORNER, 1);
- DEFINE_RPMPD_PAIR(msm8996, vddmx, vddmx_ao, SMPA, CORNER, 2);
-@@ -198,6 +220,7 @@ static const struct rpmpd_desc qcs404_desc = {
- };
- 
- static const struct of_device_id rpmpd_match_table[] = {
-+	{ .compatible = "qcom,msm8976-rpmpd", .data = &msm8976_desc },
- 	{ .compatible = "qcom,msm8996-rpmpd", .data = &msm8996_desc },
- 	{ .compatible = "qcom,msm8998-rpmpd", .data = &msm8998_desc },
- 	{ .compatible = "qcom,qcs404-rpmpd", .data = &qcs404_desc },
-diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
-index 93e36d011527..83f8f5a8773b 100644
---- a/include/dt-bindings/power/qcom-rpmpd.h
-+++ b/include/dt-bindings/power/qcom-rpmpd.h
-@@ -27,6 +27,14 @@
- #define RPMH_REGULATOR_LEVEL_TURBO	384
- #define RPMH_REGULATOR_LEVEL_TURBO_L1	416
- 
-+/* MSM8976 Power Domain Indexes */
-+#define MSM8976_VDDCX		0
-+#define MSM8976_VDDCX_AO	1
-+#define MSM8976_VDDCX_VFL	2
-+#define MSM8976_VDDMX		3
-+#define MSM8976_VDDMX_AO	4
-+#define MSM8976_VDDMX_VFL	5
-+
- /* MSM8996 Power Domain Indexes */
- #define MSM8996_VDDCX		0
- #define MSM8996_VDDCX_AO	1
--- 
-2.21.0
+Unfortunatley I don't have a serial console on the Chromebook, so it's difficult
+to find out where it hangs. Can you please double check if your new
+elm-working-5.4 actually really works?
 
+Thanks,
+Matthias
+
+> CU
+> Uli
+> 
+> [1] https://patchwork.kernel.org/patch/9427543/
+> 
+> Jitao Shi (2):
+>   Documentation: bridge: Add documentation for ps8640 DT properties
+>   drm/bridge: Add I2C based driver for ps8640 bridge
+> 
+>  .../devicetree/bindings/display/bridge/ps8640.txt  |  44 ++
+>  drivers/gpu/drm/bridge/Kconfig                     |  12 +
+>  drivers/gpu/drm/bridge/Makefile                    |   1 +
+>  drivers/gpu/drm/bridge/parade-ps8640.c             | 672 +++++++++++++++++++++
+>  4 files changed, 729 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ps8640.txt
+>  create mode 100644 drivers/gpu/drm/bridge/parade-ps8640.c
+> 
