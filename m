@@ -2,93 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E5BDCCBB6
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 19:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B06CCCBD2
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 19:50:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729114AbfJERic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 13:38:32 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:45736 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729035AbfJERic (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 13:38:32 -0400
-Received: by mail-io1-f66.google.com with SMTP id c25so20216216iot.12
-        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 10:38:31 -0700 (PDT)
+        id S1729601AbfJERuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 13:50:37 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:33226 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729608AbfJERuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 13:50:37 -0400
+Received: by mail-wr1-f67.google.com with SMTP id b9so10703886wrs.0;
+        Sat, 05 Oct 2019 10:50:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=JdxTjZHOYunTMtiHW4RMA9FUy7l6bYMn8x9aB5OphDw=;
-        b=tq/RZ4haJJGk2RcsmH8o068rKZh6Ym6iJfqJQm8ixICT4FJ8PQYj51yFptTVo/pOLS
-         iggn8chGb9wiNMRVV6oWvWY60DppRBjjJjWVRqZd2IINeQAeViGyu/YZGKzhb/N9NxF5
-         ivzdbcosSaET0WfOA7Byw8ZdGPbsglGcebIohfFvnJ/8rfVOxk0dmRUdqy+TIMdANlZu
-         cle4J7Z8DaQ9bgUiKa5/YcpzLqAjPKBD/qErXA92olrJD339f8OWZDngrMtjcrEdTHfd
-         0OfRnMBfTIUwtd8EoxtOtIL1GVS4EVIcQEYJ8JSZEzpSUhfj4k5Oeqg9MRfyIjH6qeV5
-         5dfg==
+        h=from:date:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=woGdLkObfzRFeLoqI5/c5x/iMFT/HmZsLV4Tr4PA8q8=;
+        b=YvJJ/RH+r+ZNGn9DmsmptGvTw/7fkvvLkknt1pqKNRNe5BXRwLtSX8S/5z/xoR3qDo
+         oq/6xk/dbnLworgzGxomjTtks8z+QS940l0iPOh6bhLv9Y/fISBam6Z04vamu+7w7VaF
+         /q7/UP96FQrjCgSScsAOtqpdWk+RMBKlEnTCnRsPgCfA6IftthJgyMpQQZk7975d6aFn
+         aSK0WGRYJ3M/Xh+HFiZ2miQxFtmgXwHhS1YmJKaGWCVOR4hKenqO+DDUpxseZg5XI8Cr
+         03+ShYJzWNErice6Ykt9nYRSKqH4iOle+XuxyPFMwDHbTaVSH4bAVc4Du1jFNu1NGg5L
+         NI0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=JdxTjZHOYunTMtiHW4RMA9FUy7l6bYMn8x9aB5OphDw=;
-        b=KoJDDbExlT13SL0IFDQqJJtgpwDxeWgOPf5vQ4Eld5/rj08+CpD0aNl5lMClM1s7iS
-         lrs7R/OP6zWlf1RPfmqUkU7+cz8oBzM3wQ7FT8EGsZLdnfiFKowJEjkm4b9vzhQEylOM
-         Jm3VJ5vhTfSy8df+rIisvJOkNm0Y7CfUZ3NllWsMZFCh+4r9RDT7vxhhstN6N0O2quUC
-         KE8Y0NNKs5KYk+lSBVrjevBliv88Bl9SkV9pcjvkkQ9DoZbhmX7a0vlMa6Nas7neIHta
-         gfF16/zr9z9PhIUUXpZ6DuHBLWWc+29NceFwo4+SzftuTvuMa6Gw1l6Rp08dq6qKHLzT
-         T0yw==
-X-Gm-Message-State: APjAAAX8BEXc9wjURerW7eNzlKoBxCrZ0cZklDMbpcbb/Pb+qMLW8SfG
-        aFUKUOkJYY4rbLamxMvDcRG7LCHky2+IZ1i48g==
-X-Google-Smtp-Source: APXvYqxnP+95IANajqjOGebCm5WUv/cbd83HQTNMTIZjRdMEUmMQO4/jS6pBPIoCqkYXSAuZlSo8SQBcqJ/1pUFsI9A=
-X-Received: by 2002:a5d:8247:: with SMTP id n7mr9562032ioo.35.1570297111470;
- Sat, 05 Oct 2019 10:38:31 -0700 (PDT)
+        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=woGdLkObfzRFeLoqI5/c5x/iMFT/HmZsLV4Tr4PA8q8=;
+        b=QupYWYWcXuAunkzOivtrdu/xbadazEBHIMUg24c7ilr0yl4OOwD7zWvWZeSL1yJoB/
+         bs7p6V0zUK6qXZBljwmMluf7XLwMxuAMGCyp20phlwGkgP8miHxFJuYQ6UOUMnBlir43
+         Da/tZ13WZjKdwZn4uVIIHKxkB0NkiBI93DclLRXxk1i2pIF3UsBdQMa4YvYw23YWs9J0
+         hVbBn3wRoJ2Ow+DP374T3NqX097Q2s/RX+gUv1lx4l/pzHvZvU88kGFYg4gRgdDbWwhf
+         Gg5WM26+WGOB1zPsGXEg2aBK0QzrHYWUvxjo93+NEJqeIbUUFcBHES6/bTwKFp8vHTTT
+         Mleg==
+X-Gm-Message-State: APjAAAUplk4IG+LrtJigp6mlYySAtVrXSsnQQ+HTtagySY9CcjqG2Mgt
+        /oF32eHhZO6KY0SFpkn3bx8=
+X-Google-Smtp-Source: APXvYqx3PzUHgdYRUSlZN9M0EPBeF+W+0e93Y2j5mVMXv8fWHuZVnS+5zd4oHSYnQYPi9EGQzPE2Yw==
+X-Received: by 2002:a5d:6885:: with SMTP id h5mr16449681wru.92.1570297834128;
+        Sat, 05 Oct 2019 10:50:34 -0700 (PDT)
+Received: from x230 (ipb218f546.dynamic.kabel-deutschland.de. [178.24.245.70])
+        by smtp.gmail.com with ESMTPSA id o19sm17222631wmh.27.2019.10.05.10.50.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Oct 2019 10:50:33 -0700 (PDT)
+From:   Eugeniu Rosca <roscaeugeniu@gmail.com>
+X-Google-Original-From: Eugeniu Rosca <erosca@de.adit-jv.com>
+Date:   Sat, 5 Oct 2019 19:50:24 +0200
+To:     Stephen Warren <swarren@wwwdotorg.org>
+Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Harish Jenny K N <harish_kandiga@mentor.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Phil Reid <preid@electromag.com.au>,
+        Enrico Weigelt <info@metux.net>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+Message-ID: <20191005175024.GA25394@x230>
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+ <06a1acab-fcc4-7b3a-697b-4d253c354513@wwwdotorg.org>
 MIME-Version: 1.0
-Received: by 2002:a02:242f:0:0:0:0:0 with HTTP; Sat, 5 Oct 2019 10:38:31 -0700 (PDT)
-Reply-To: walmart.b100263@gmail.com
-From:   "DR.Mike Benz" <info.zennitbankplcnigerian@gmail.com>
-Date:   Sat, 5 Oct 2019 18:38:31 +0100
-Message-ID: <CABHzvrm1FRqaCkGUKEDwjR_5hGvmpSe6WB1UFKuZ4U5b=3O3Bw@mail.gmail.com>
-Subject: Happy to inform you, CONTACT WALMART TRANSFER To pick up $8000.00
- sent to you this morning.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <06a1acab-fcc4-7b3a-697b-4d253c354513@wwwdotorg.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Attn Dear Beneficiary.
-Happy to inform you, CONTACT WALMART TRANSFER To pick up $8000.00 sent
-to you this morning.
+Hi Stephen,
 
-I have deposited your payment funds $2.500,000MillionUS Dollars
-With Walmart international money transfers.
-Receive the Money with Walmart | MoneyGram service.
-Walmart partners with MoneyGram to allow customers
-easily receive money transfers abroad,
-Contact Walmart international money transfers office -Benin
-Receive your approval payment funds $10.500,000MillionUS Dollars
-HERE IS WALMART CONTACT INFORMATIONS.
-Contact person. Mrs. Mary Anderson,Dir. Walmart transfers-Benin
-Email: walmart.b100263@gmail.com
-Telephone. +229 68823234
-Text Her on this international phone line. (256) 284-4886
+On Fri, Oct 04, 2019 at 01:07:23PM -0600, Stephen Warren wrote:
 
-Ask Mrs. Mary Anderson,Dir. Walmart transfers-Benin to send the transfer
-as i instructed.
-we agreed to keep sending the transfer to you $8000.00 daily.
-Until you received your total payment $10.500,000 from the office
-Once again,
-make sure you contact Mrs. Mary Anderson,Dir. Walmart transfers-Benin
-today including your infos.
-(1) Your  Full Name==============
-(2) house address=============
-(3) Your Phone Numbers=============
-Urgent to receive your transfer now without any further delay.
-Finally, Send your first payment transfer fees to Walmart office on
-below address
-Receiver's Name====== ALAN UDE
-Country=====BENIN
-City=======COTONOU
-AMOUNT =====$58.00 only. Your first payment $8000.00 transfer fee.
-Question======God
-Answer=========Creator
-Thanks
-DR.Mike Benz
+[..]
+
+> I think the DT should represent the device that's attached to the GPIOs.
+> That way, there's already a clear way to represent the GPIO polarity, as
+> described in the document linked by Eugenui in [2] below.
+> 
+> If for some reason that's not possible, then I think keeping track of the
+> GPIO polarity in user-space is entirely reasonable, and is the correct
+> approach. To claim that tracking GPIO polarity in user-space is too much
+> burden, yet to also allow user-space to control GPIOs at all, and hence to
+> know exactly which GPIOs must be controlled, is an inconsistent assertion.
+> 
+> Put another way: If a piece of user-space SW controls GPIOs, it must know
+> which GPIO number to use for each logical purpose. This information
+> presumably varies on different platforms, so the SW must have a list of GPIO
+> numbers and GPIO controller IDs per platform. Additionally storing a
+> polarity bit along with that information seems entirely trivial to me.
+> 
+> Is there some other issue that I'm overlooking?
+
+Based on the discussions so far, the user who requested this feature
+intends to (in fact already does) "mark" the userspace-relevant gpio
+lines via the "gpio-line-names" [5] DT property, implemented by Linus
+in v4.7 commit [6]. By keeping track of "gpio line name" both in DT and
+in user-space, apparently the user is able to accurately map the
+"line name" (visible in userspace) to the corresponding gpio chip/name
+and gpio line offset in a "platform/board-independent" way.
+
+Do you think this is unorthodox?
+
+> If the list of GPIO IDs is retrieved from DT by the user-space SW, I could
+> see an argument for storing the polarity information in DT along with that
+> list of GPIO IDs. However, I don't believe there's any standard way of
+> representing "a list of GPIO IDs for user space use" in DT.
+> 
+> > If we hog a GPIO pin in DTS (which allows specifying its polarity),
+> > userspace no longer has access to that pin. There isn't a way to define
+> > GPIO polarity by means of DTS without affecting userspace access
+> > (can anybody contradict this statement?).
+> 
+> GPIO hog doesn't seem like the right approach; its intent is to actively
+> configure the GPIO in a fixed state, which is logically incompatible with
+> user-space control of the GPIO.
+
+Agreed. Thanks for strengthening the idea behind hogging the gpios.
+
+[..]
+
+> > [1] https://marc.info/?l=linux-gpio&m=139204273132477&w=4 ("Correct meaning of the GPIO active low flag")
+> > [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51e8afc1c43c75 ("gpio: document polarity flag best practices")
+> > [3] https://marc.info/?l=linux-gpio&m=155721267517644&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+> > [4] https://marc.info/?l=linux-gpio&m=155713157122847&w=2 ("[PATCH V1 1/2] gpio: make it possible to set active-state on GPIO lines")
+[5] https://marc.info/?l=linux-gpio&m=155712945922102&w=2
+[6] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=fd9c55315db9
+    ("gpio: of: make it possible to name GPIO lines")
+
+-- 
+Best Regards,
+Eugeniu
