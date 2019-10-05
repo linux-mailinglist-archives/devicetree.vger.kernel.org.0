@@ -2,87 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A3E0CC96B
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 12:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76315CC980
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2019 12:59:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727597AbfJEKqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 06:46:09 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:36912 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727461AbfJEKqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 06:46:09 -0400
-Received: by mail-ua1-f66.google.com with SMTP id w7so2787140uag.4
-        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2019 03:46:09 -0700 (PDT)
+        id S1726654AbfJEK7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 06:59:44 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:36520 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725985AbfJEK7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Oct 2019 06:59:44 -0400
+Received: by mail-wr1-f66.google.com with SMTP id y19so10002310wrd.3;
+        Sat, 05 Oct 2019 03:59:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8NBau6UJ6WL2ddYtAYMdA80zmZN/G42WesJCt0Zydss=;
-        b=rgjWKlxW9tafdD4yyJKlyJ3fDSeUYo3JZw3SUJ0LHcNajjFT4Wa47p58hsp3+NL64T
-         6KBk/fGyySiX5MNzTu6tWQSHsKgdN5WgcaRrbJYdrv24bE1eWk2I8xdAXDbk96a4tosK
-         RmtzUENrWXv/rqlDhVEwKMJeogEs5cW+gyDBGsJs35G+95cS4+7qYrqCMpjL0Xjz5xOz
-         bME61cVek/zFyDevyHVLeXU6RbY5hjFdbbqKNuRWFzsFcD8TA3iCmkr3nGAYlVns2D7l
-         Dyet9QXEy/VF+wDG6WVXCsZYucQag63sGLRjhnkK3PHtGWeca/je8frl4HErW1Z+8dty
-         zWlQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=12I5o/x19Yzhg4jgf+Zus4YvgDpld4Qzx29ov6d7ymA=;
+        b=Z5yhES4aj7grSgFLPrcuxqpLFlwuX5BcUlZOmgtBUJWE8Tnosi7VgWaDRdReI+nU4R
+         MKqog+bI2ddY2KYWr/XpwuApWXpHx7MN7AS3QYEe4oswojByTr+tdbvVjJlPQA6jMo13
+         O4bSMHQ2uXPINhyTOZAjU+AMSk+ZbaUm10fs0uq+rg+JCj7A4rezdLIRHQBjLhXxDn5v
+         JTuJv/iuBknjw1Jzr3A/MITLxf00flE5D53LfeehHov5EpS3CDwAjG6byrFkoO2cVIph
+         dv4FAZzjeaaIc7CPmGUFLMNsw7aSPDxG/ulpItRuftverAf5WTh1oWVah9qsHBY7NdQ2
+         10gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8NBau6UJ6WL2ddYtAYMdA80zmZN/G42WesJCt0Zydss=;
-        b=A+7O42PvFTvemoT4jbWTmnw0CRVcBpwqfodaMc8F8FsBgEpL9pDuelCm9fTYhpvdlC
-         dz2wuIEHjPhSuqsmkQyimS/9Kaq+PLoS9eOQTF+vyp68st/0wkV9664HVX9RaYrp3VXT
-         pSIWI8lpCudjUXe2Jr0k1GgVdujS+698FXFgnPa/xAU2QOcxHPwC1rBvQslqtWhYod/d
-         zX/fHbg+D7ZMVb8cXFhQATlvpUqpXyo1Ik+IHNpkfLD5PecyX4PX06J7KVc3Nc/NcmLr
-         H7GOpUshlKd6WXMR1hVBahniOhIIoFO+aie8gg1dnsbQYbfxmhw55u5vWgrJ1UI82JTk
-         1Bnw==
-X-Gm-Message-State: APjAAAU5gRRi7UhhPXoHCuOn/e/kb8jHZKZny8dlpj6nkhtR3ptmd9Pf
-        Nz/AV0N9UFfk7INxniqZ5k58429RPo8Sy/mBMwXKxA==
-X-Google-Smtp-Source: APXvYqxEOr3RSt51beUrP7OY3vmj41VQD6z59rmXEAfyCOygVKLMa/biB9kSbotTKpovb5quSuYbWvEfv8AdENWlImg=
-X-Received: by 2002:ab0:7415:: with SMTP id r21mr1893206uap.77.1570272368324;
- Sat, 05 Oct 2019 03:46:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=12I5o/x19Yzhg4jgf+Zus4YvgDpld4Qzx29ov6d7ymA=;
+        b=clkRvOYRowD62AoSAHmv3WM01fjyMekXNf7c2tKv4xa803gbUoBt+qON9GHVirQhSj
+         /07qDkoVsqo/1YviT3ARxFMnSePQIu40S9rsK1V5jXBfYkJSXwoYL7goVSDQ6ytooPns
+         7fDna8Gu3Yqi8pHVOGn9tB7OSXTsBrarxxkCE0uSxHIORjh+sdY0H9kfXQpWaHmxHaVB
+         bkbBxmcsesZQ+xs3LWwcVzDlij8MaXI/SXqCcHuX7khhL4F1+ZP7iEUve4xKWQpNPW/h
+         0EBM78MLew4MMtCjBp6IEvx4BhR26f0tY0Jcewj4sOiirQ+PL0bzSnvq1+28/x6sBlTd
+         zldQ==
+X-Gm-Message-State: APjAAAXJbXumLc1Yl9Qiqj3Q/mCSIvkX8rQNQut6v7TdnCT2ME0qV7o8
+        JwuaxuHw74X7802/KEH+NHyLjkNd5cvpaQ==
+X-Google-Smtp-Source: APXvYqxuhYvnFGGxvad24ATWxMUplKUx8ffrUs123MlpzDfK1JJCfDwNjCQyQytf3Yx5+xX2Os8s0A==
+X-Received: by 2002:adf:e88f:: with SMTP id d15mr298929wrm.324.1570273181253;
+        Sat, 05 Oct 2019 03:59:41 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu ([93.51.16.173])
+        by smtp.gmail.com with ESMTPSA id u7sm9227678wrp.19.2019.10.05.03.59.40
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 05 Oct 2019 03:59:40 -0700 (PDT)
+From:   kholk11@gmail.com
+To:     linux-arm-msm@vger.kernel.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        marijns95@gmail.com, kholk11@gmail.com
+Subject: [PATCH 0/2] Pinctrl driver for MSM8976 and MSM8956
+Date:   Sat,  5 Oct 2019 12:59:34 +0200
+Message-Id: <20191005105936.31216-1-kholk11@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <b47ec7088aa4b07458519ab151de92df552a9302.1570101510.git.amit.kucheria@linaro.org>
- <20191003115154.6f2jgj3dnqsved2y@gilmour>
-In-Reply-To: <20191003115154.6f2jgj3dnqsved2y@gilmour>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Sat, 5 Oct 2019 16:15:57 +0530
-Message-ID: <CAHLCerNoLyQ-e70=1VMPO_J_amA+-2vtHwfoUabo4dhUWj-H0A@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: media: Fixup Allwinner A10 CSI binding
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-media@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        lakml <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 3, 2019 at 5:22 PM Maxime Ripard <mripard@kernel.org> wrote:
->
-> Hi,
->
-> On Thu, Oct 03, 2019 at 04:52:24PM +0530, Amit Kucheria wrote:
-> > This new binding fails dt_binding_check due to a typo. Fix it up.
-> >
-> > linux.git/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml: $id: path/filename 'arm/allwinner,sun4i-a10-csi.yaml' doesn't match actual filename
-> > linux.git/Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts' failed
-> > make[2]: *** [Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts] Error 1
-> > make[2]: *** Waiting for unfinished jobs....
-> > linux.git/Makefile:1284: recipe for target 'dt_binding_check' failed
-> > make[1]: *** [dt_binding_check] Error 2
-> >
-> > Fixes: c5e8f4ccd7750 ("media: dt-bindings: media: Add Allwinner A10 CSI binding")
-> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
->
-> Thanks for your patch.
->
-> It has already been submitted though:
-> https://lore.kernel.org/linux-arm-kernel/1568808060-17516-1-git-send-email-pragnesh.patel@sifive.com/
->
-> I'm not sure why it hasn't been applied yet though :/
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 
-Perhaps a Fixes tag will allow more attention to it?
+As requested, I'm resending the pinctrl driver for this SoC
+in a separate patch series, with the changes suggested by
+Bjorn.
+
+AngeloGioacchino Del Regno (2):
+  pinctrl: qcom: Add a pinctrl driver for MSM8976 and 8956
+  dt-bindings: pinctrl: Add MSM8976 driver bindings and documentation
+
+ .../bindings/pinctrl/qcom,msm8976-pinctrl.txt |  183 +++
+ drivers/pinctrl/qcom/Kconfig                  |   10 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-msm8976.c        | 1127 +++++++++++++++++
+ 4 files changed, 1321 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8976-pinctrl.txt
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-msm8976.c
+
+-- 
+2.21.0
+
