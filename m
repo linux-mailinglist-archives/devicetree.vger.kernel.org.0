@@ -2,90 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B37A1CD31D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 17:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66986CD3BD
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 18:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbfJFPtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 11:49:06 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:44148 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726916AbfJFPtE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 11:49:04 -0400
-Received: by mail-wr1-f65.google.com with SMTP id z9so12326229wrl.11;
-        Sun, 06 Oct 2019 08:49:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Gjm1dCZFYN9Q0YRQn+rV7fKQn2zR/3c5cBtHPYJQJTI=;
-        b=dTtt+iMGk2SPxBtvEBGNfc5VgROZ5ol2Od/MfXC5VkQWe2ykGK4lvyCpuzLb3T0hvk
-         NZEpvtnj/kBjmoQ1dORMw4MZ+JiFyCfPuLwq3tql4UbeU4CY7gGN12ggj8howTYQaBRp
-         KRSndC1z/ForZrHfi/QgAVHISzlpYdGuZAWlUi3hUQnwRxPr621T1oknXlVbBT/2UjxM
-         hR/uo6b4WNI/46noNQDAQM5xxqaDc9kAE8O1c0bCDUNCMa0BaU642yE5gABNv9FQg5PW
-         80o/WfFWzoMgKWRXFy9l5uV8j87lE4m2WBZsJKe6M5iCQwphT8MfzcgC3laqX7qz4r/q
-         K/fA==
-X-Gm-Message-State: APjAAAXM6OvQ+ULEDltw6gI8o2fYVKK7NSdZ2tdfulsj+v/N2lpHM2ST
-        CWIoQR8HVr8gn1/ZbnpqIAQ=
-X-Google-Smtp-Source: APXvYqzy7hw7qBX+7YQlQBBRw9ZUpQoHKBW0OQ2DhXkAPv3j2tRRGjKiNpfzHfsJ4XmI2fnvsuRIaQ==
-X-Received: by 2002:adf:e84c:: with SMTP id d12mr18308509wrn.373.1570376941723;
-        Sun, 06 Oct 2019 08:49:01 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id y18sm31455093wro.36.2019.10.06.08.48.59
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 06 Oct 2019 08:49:01 -0700 (PDT)
-Date:   Sun, 6 Oct 2019 17:48:57 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] ARM: dts: exynos: Rename SysRAM node to "sram"
-Message-ID: <20191006154857.GB29365@kozik-lap>
-References: <20191002164316.14905-1-krzk@kernel.org>
- <20191002164316.14905-3-krzk@kernel.org>
+        id S1726532AbfJFQ4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 12:56:49 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:48794 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726443AbfJFQ4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 12:56:49 -0400
+Received: from callcc.thunk.org (pool-72-93-95-157.bstnma.fios.verizon.net [72.93.95.157])
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x96GsaNE023214
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 6 Oct 2019 12:54:38 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id A922942088C; Sun,  6 Oct 2019 12:54:36 -0400 (EDT)
+Date:   Sun, 6 Oct 2019 12:54:36 -0400
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     shuah <shuah@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20191006165436.GA29585@mit.edu>
+References: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
+ <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org>
+ <20191004222714.GA107737@google.com>
+ <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org>
+ <20191004232955.GC12012@mit.edu>
+ <CAFd5g456rBSp177EkYAwsF+KZ0rxJa90mzUpW2M3R7tWbMAh9Q@mail.gmail.com>
+ <63e59b0b-b51e-01f4-6359-a134a1f903fd@kernel.org>
+ <CAFd5g47wji3T9RFmqBwt+jPY0tb83y46oj_ttOq=rTX_N1Ggyg@mail.gmail.com>
+ <544bdfcb-fb35-5008-ec94-8d404a08fd14@kernel.org>
+ <CAFd5g467PkfELixpU0JbaepEAAD_ugAA340-uORngC-eXsQQ-g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191002164316.14905-3-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <CAFd5g467PkfELixpU0JbaepEAAD_ugAA340-uORngC-eXsQQ-g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 02, 2019 at 06:43:09PM +0200, Krzysztof Kozlowski wrote:
-> The device node name should reflect generic class of a device so rename
-> the SysRAM node from "sysram" to "sram".  The child nodes stay as before
-> as "smp-sysram" to match their real purpose.  This will be also in sync
-> with upcoming DT schema.  No functional change.
+On Fri, Oct 04, 2019 at 06:18:04PM -0700, Brendan Higgins wrote:
+> > Let's talk about current state. Right now kunit is in linux-next and
+> > we want to add a few more tests. We will have to coordinate the effort.
+> > Once kunit get into mainline, then the need for this coordination goes
+> > down.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm/boot/dts/exynos3250.dtsi | 2 +-
->  arch/arm/boot/dts/exynos4210.dtsi | 2 +-
->  arch/arm/boot/dts/exynos4412.dtsi | 2 +-
->  arch/arm/boot/dts/exynos5250.dtsi | 2 +-
->  arch/arm/boot/dts/exynos54xx.dtsi | 2 +-
+> Sure, I was just thinking that getting other people to write the tests
+> would be better. Since not only is it then useful to someone else, it
+> provides the best possible exercise of KUnit.
 
-Applied this one to samsung-soc.
+Well, one thing we *can* do is if (a) if we can create a kselftest
+branch which we know is stable and won't change, and (b) we can get
+assurances that Linus *will* accept that branch during the next merge
+window, those subsystems which want to use kself test can simply pull
+it into their tree.
 
-Best regards,
-Krzysztof
+We've done this before in the file system world, when there has been
+some common set of changes needed to improve, say, Direct I/O, where
+the changes are put into a standalone branch, say, in the xfs tree,
+and those file systems which need it as a building block can pull it
+into their tree, and then add the changes needed to use those changes
+into their file system git tree.  These changes are generally not
+terribly controversial, and we've not had to worry about people want
+to bikeshed the changes.
 
+There is a risk with doing this of course, which is that if the branch
+*is* controversial, or gets bike-shedded for some reason, then Linus
+gets upset and any branches which depended on said branch will get
+rejected at the next merge window.  Which is the requirement for (a)
+and (b) above.  Presumably, the fact that people were unwilling to let
+Kunit land during this merge window might will *because* we think more
+changes might be pending?
+
+The other thing I suppose I can do is to let the ext4 kunit tests land
+in ext4 tree, but with the necessary #ifdef's around things like
+"#include <kunit/test.h>" so that the build won't blow up w/o kunit
+changes being in the tree that I'm building.  It means I won't be able
+to run the tests without creating a test integration branch and
+merging in kunit by hand, which will super-annoying, of course.  And
+if some of the bike-shedding is in Kunit's interfaces, then that
+becomes problematic as well, since any tests that are in ext4.git tree
+might change if people want to rename Kunit's publically exported
+functions (for example).
+
+> Hey Ted, do you know if that ext4 timestamp test can go in through
+> linux-kselftest? It seemed fairly self-contained. Or is that what you
+> were saying wouldn't work for you?
+
+Well, I was hoping that we might start creating more tests beyond just
+the ext4 timestamp tests....
+
+						- Ted
