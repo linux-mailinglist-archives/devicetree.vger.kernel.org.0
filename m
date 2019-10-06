@@ -2,166 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCFCCD23C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 16:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E450CD2BA
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 17:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbfJFO1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 10:27:48 -0400
-Received: from mout.kundenserver.de ([212.227.126.187]:35569 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725976AbfJFO1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 10:27:48 -0400
-Received: from localhost ([89.204.130.45]) by mrelayeu.kundenserver.de
- (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MGQWr-1iK5WR21YD-00Gt1q; Sun, 06 Oct 2019 16:27:30 +0200
-Date:   Sun, 6 Oct 2019 16:27:25 +0200
-From:   Andreas Klinger <ak@it-klinger.de>
-To:     robh+dt@kernel.org, jic23@kernel.org
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        mark.rutland@arm.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: iio: maxbotix,mb1232.yaml: transform to yaml
-Message-ID: <20191006142715.45k64cgw7mzlekm5@arbad>
+        id S1726245AbfJFPWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 11:22:36 -0400
+Received: from us-smtp-1.mimecast.com ([205.139.110.61]:42651 "EHLO
+        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726439AbfJFPWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 11:22:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1570375354;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/kOnrpYd9eSud0Ixupa7J9ljvVudCP2XNDO8TzpsHNE=;
+        b=UgnJVUbIQYyPkZEIEPdBviR4ZMZVdZk8P+iJf4ehQqs0dK0TAIfXEzZyz0kCeIB9u8hd01
+        rXr+9yXrz/Tc+TTZrDJecvc3D7wTa+piLpqvacdJM8lHOJCAWe6hmzbLTNpQdN98ZoxFtU
+        EI0eWR0qJqM36hz5gV5H79UTH5Kq4LY=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-154-P-oXfmEyOq2P-WUH8S9TOg-1; Sun, 06 Oct 2019 11:22:33 -0400
+Received: by mail-ed1-f69.google.com with SMTP id y25so7344120edv.20
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 08:22:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eu8O/YhqU7zJEjRc7W99Fi77CUDu2zTF0Sf1rRqLcS8=;
+        b=VeHJlZp/TFXYEaKa8FHn95ys39ymbMvhYAYRFd953OeIxgVyagW2DSsSfgTVaz/0Ix
+         cWNF1Mku3/piWIWgEdQjuHIR2Haj3YMZ609N0/Xr0IglkDRMUD2sZR4kHaxR0lKdbpR3
+         7BGzpyIY0/gREr7Dal4QTu7seg0HciarDpdbSUfPQSAKmy1wtNrd1G3sh22y28/Eg0rJ
+         2t8rIcBk4JpTGo4IFnJnyGWvxqdMSqLnZ7l4dtoKPhx9rd33iLrKgiw0Kg5HZWD1PRIw
+         D/EW0tZhVMwlxZWfl19EUcRgyqTybBmjtrsJAC3RPVuAJxMXfp+hIKZggphdL4I+7WB/
+         hRZA==
+X-Gm-Message-State: APjAAAWcbx41zTpz1d9Gyf1IsrWl25S4BfxzxULmC92lcHTyka2zbWab
+        YoaPpTUHQOEwl6EXNlGVhKeObFevlUqZFf8pNBhpk0FQTKwXSJ9WsEP3nTYlxaZ9Ht7Xp7nhdmD
+        a2xc3unp7HrZbVagxcLz40Q==
+X-Received: by 2002:a50:fb16:: with SMTP id d22mr25119899edq.30.1570375351537;
+        Sun, 06 Oct 2019 08:22:31 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxtY8LnU1MoovTCbhwbtJH9YruP7SXFbEh5OkwIhzOI6haHNozTxOEiKJdPxcrBFmzfbNEyQg==
+X-Received: by 2002:a50:fb16:: with SMTP id d22mr25119877edq.30.1570375351305;
+        Sun, 06 Oct 2019 08:22:31 -0700 (PDT)
+Received: from localhost.localdomain ([109.38.129.160])
+        by smtp.gmail.com with ESMTPSA id dv15sm1447787ejb.49.2019.10.06.08.22.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Oct 2019 08:22:30 -0700 (PDT)
+Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Yu Chen <chenyu56@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20191002231617.3670-1-john.stultz@linaro.org>
+ <20191002231617.3670-3-john.stultz@linaro.org>
+ <20191003112618.GA2420393@kroah.com>
+ <CALAqxLWm_u3KsXHn4a6PdBCOKM1vs5k0xS3G5jY+M-=HBqUJag@mail.gmail.com>
+ <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
+ <CALAqxLX3uSJKvRwzcQznaF4WK52BcM5Bh+PNXHmfDe1aTSUL8Q@mail.gmail.com>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <fa44a7ab-14bc-24ec-a19b-7bf15e100ce1@redhat.com>
+Date:   Sun, 6 Oct 2019 17:22:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Provags-ID: V03:K1:hsUfaTgosEV7amE7feQIBikFio7g0T5/tjrcIq3gpeVamcNr4Tu
- YRhnnNXWe6jGB1FAC0Sk+Fpc74D3FDCvCPdZ+BvqhewFnGA3rlx3lZpBLYbr/A38oI0PSpd
- AESLUzO2xKznEQbw2gXEk4WHB8momlJrfMSFYsuIhA95KMDkMu4M+SLFaElzsDv5OzXeAY2
- v3CPwCmdT909QkEG8UmnA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8VIWqkWXIzI=:5iwjz5UfkPzhoutpLsQOr1
- ZXHhCm0/2l2eYbu7nO4KiTZ5+L+WchMcmHKDy/QhVs6ErFdFSCR9QdTK8c9FBj7onbVrAshfr
- Cu1/vKrpazuuqkxec1+sJyYwafpRTHrl6gXU/Y9uSj+8jypjGP69ErU0Iy0VOyW3k8SLQVsd3
- gz8mJHNei4sE83wT0C66N+LzE2ueIC81YUzAYePymYVZvfhLgx3hY9998lYKeXCQ+AXyKNAJ5
- G8OnsBdgUM9TsyRcUZmmKEk2f/xib5maQPbfKGBGLk6J/bclzL21zLffRjSMwr8RbFr/a8t6x
- AWoSOrt9tOKb1JWEc+6LHAQPEX4AxlIqyL6oUN77ICu+O4DkXBQafV07zsZbYxiOl+YZgsqNa
- 797TZHSRyNdzrhLoNgDWiwRPIbcc/MgVwyZRK4phVGAlZ5TCo8HbSOn2o1tsf/VhegmIxhIrD
- gfT2JImGsO9Na5zZC+SvcSA/onB9WLfI9URDOwzYvkbwe+cpZrLcJoKJ5agt9tQuykGsLeAot
- rzqpqHcSv7QKNXXYB2Ub3Ye+vDcvAsdZ1V4Vkw4+Y2plmR0PxLioY8uALQB890qGoVw+pUOFB
- P9OzWSViKAlUiDdUDwlGT9PenKP8QW+UBxvKNq0UMVLGYGEnB8B4VTU5fhEgUgLhoTisW8ND3
- gUk+50vkGW2JUc7Mu2pepGPbmotYQov122J5IwAR0Q0iZn8m+vd9+vXYFCttPGvuxSTdiiV5G
- 8KGBjyn1v9+EZKEGgsMimKpEfwRd0CIuH3N8cP5okLauszvb/U3mU0KtNSqDc3m9qnIEJzP5S
- 8KC+0+GngRayMY7LCC1c5L/0lgNCQlQiu+MdTd3hBwp235C/cCApMVsOl9suiR/PIDUVktA8j
- NLB02+r1VrHmmuLnvnnw==
+In-Reply-To: <CALAqxLX3uSJKvRwzcQznaF4WK52BcM5Bh+PNXHmfDe1aTSUL8Q@mail.gmail.com>
+Content-Language: en-US
+X-MC-Unique: P-oXfmEyOq2P-WUH8S9TOg-1
+X-Mimecast-Spam-Score: 0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-transform existing documentation of maxbotix,mb1232 ultrasonic ranger
-from text documentation format into yaml.
+Hi,
 
-Changes in v2:
-- removed description of reg property
-- added a line:
-  additionalProperties: false
+On 10/3/19 11:33 PM, John Stultz wrote:
+> On Thu, Oct 3, 2019 at 1:56 PM Hans de Goede <hdegoede@redhat.com> wrote:
+>> On 03-10-2019 22:45, John Stultz wrote:
+>>> The HiKey960 has only one USB controller, but in order to support both
+>>> USB-C gadget/OTG and USB-A (host only) ports. When the USB-C
+>>> connection is attached, it powers down and disconnects the hub. When
+>>> the USB-C connection is detached, it powers the hub on and connects
+>>> the controller to the hub.
+>>
+>> When you say one controller, do you mean 1 host and 1 gadget controller,
+>> or is this one of these lovely devices where a gadget controller gets
+>> abused as / confused with a proper host controller?
+>=20
+> I'm not totally sure myself, but I believe it's the latter, as the
+> host ports have to be disabled in order for the gadet/otg port to
+> function.
+>=20
+> There was a similar situation w/ the original HiKey board (dwc2
+> controller) as well, though the switching was done fully in hardware
+> and we only needed some minor tweaks to the driver to keep the state
+> transitions straight.
+>=20
+>> And since you are doing a usb-role-switch driver, I guess that the
+>> role-switch is integrated inside the SoC, so you only get one pair
+>> of USB datalines to the outside ?
+>=20
+> I believe so, but again, I don't have a ton of knowledge about the SoC
+> details, Chen Yu would probably be the right person to answer, but I
+> don't know if he's doing upstreaming anymore.
+>=20
+>> This does seem rather special, it might help if you can provide a diagra=
+m
+>> with both the relevant bits inside the SoC as well as what lives outside
+>> the Soc. even if it is in ASCII art...
+>=20
+> There is a schematic pdf here:
+> https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey=
+960/hardware-docs/HiKey960_Schematics.pdf
+>=20
+> The larger block diagram on page 3 might be helpful, but you can find
+> more details on the usb hub bits on page 17 and 18.
 
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- .../bindings/iio/proximity/maxbotix,mb1232.txt     | 29 -----------
- .../bindings/iio/proximity/maxbotix,mb1232.yaml    | 56 ++++++++++++++++++++++
- 2 files changed, 56 insertions(+), 29 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
- create mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+Ok, so I took a quick look at the schematic and it is really funky.
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt b/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
-deleted file mode 100644
-index dd1058fbe9c3..000000000000
---- a/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--* MaxBotix I2CXL-MaxSonar ultrasonic distance sensor of type  mb1202,
--  mb1212, mb1222, mb1232, mb1242, mb7040 or mb7137 using the i2c interface
--  for ranging
--
--Required properties:
-- - compatible:		"maxbotix,mb1202",
--			"maxbotix,mb1212",
--			"maxbotix,mb1222",
--			"maxbotix,mb1232",
--			"maxbotix,mb1242",
--			"maxbotix,mb7040" or
--			"maxbotix,mb7137"
--
-- - reg:			i2c address of the device, see also i2c/i2c.txt
--
--Optional properties:
-- - interrupts:		Interrupt used to announce the preceding reading
--			request has finished and that data is available.
--			If no interrupt is specified the device driver
--			falls back to wait a fixed amount of time until
--			data can be retrieved.
--
--Example:
--proximity@70 {
--	compatible = "maxbotix,mb1232";
--	reg = <0x70>;
--	interrupt-parent = <&gpio2>;
--	interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
--};
-diff --git a/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml b/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
-new file mode 100644
-index 000000000000..e2fb1f6d4dbe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/proximity/maxbotix,mb1232.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MaxBotix I2CXL-MaxSonar ultrasonic distance sensor
-+
-+maintainers:
-+  - Andreas Klinger <ak@it-klinger.de>
-+
-+description: |
-+  MaxBotix I2CXL-MaxSonar ultrasonic distance sensor of type  mb1202,
-+  mb1212, mb1222, mb1232, mb1242, mb7040 or mb7137 using the i2c interface
-+  for ranging
-+
-+  Specifications about the devices can be found at:
-+  https://www.maxbotix.com/documents/I2CXL-MaxSonar-EZ_Datasheet.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxbotix,mb1202
-+      - maxbotix,mb1212
-+      - maxbotix,mb1222
-+      - maxbotix,mb1232
-+      - maxbotix,mb1242
-+      - maxbotix,mb7040
-+      - maxbotix,mb7137
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description:
-+      Interrupt used to announce the preceding reading request has finished
-+      and that data is available.  If no interrupt is specified the device
-+      driver falls back to wait a fixed amount of time until data can be
-+      retrieved.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    proximity@70 {
-+      compatible = "maxbotix,mb1232";
-+      reg = <0x70>;
-+      interrupt-parent = <&gpio2>;
-+      interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+    };
--- 
-2.11.0
+The USB3 superspeed data pairs are only going to the USB-3 hub and
+only the USB-2 lines are muxed between the TypeC and the HUB, so
+in theory superspeed devices could keep working while the TypeC is
+in device mode, since their data lines will still be connected,
+but I guess the controller in the SoC is switched to device mode
+then so this does not work. Likewise Vbus is an all or
+nothing thing, either both the TypeC connector + the 2 Type-A
+reeptacles get Vusb or none of them get Vusb. Also it is seems to use
+the TypeC connector in host-mode together with the A receptacles.
+I must say this is a weird design...
+
+Anyways back the code to add a usb role switch notifier. I do
+not think that this is a good idea, this is making "core" changes
+to deal with a special case. If you are going to use a notfier for
+this then IMHO the notifier should be part of the hikey960 usb role
+swtich driver and not be in the usb-role-switch class code, since
+this is very much a device specific hack.
+
+Regards,
+
+Hans
+
