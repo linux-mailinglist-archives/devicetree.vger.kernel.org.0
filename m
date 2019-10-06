@@ -2,225 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87FFDCD17C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 12:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE367CD1E4
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 14:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726317AbfJFK5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 06:57:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39134 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726224AbfJFK5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Oct 2019 06:57:34 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7840A2084D;
-        Sun,  6 Oct 2019 10:57:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570359453;
-        bh=n7QM4sLo7An8JpEGyrQcWqrBu9VaS4JLDAsXZTgQJ/w=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iu+qFbXsokAeEEV5w4Ke2guehbG+TBKw+L9J7JZTXYtocOoS4KJwzPy5PBGjQArIB
-         Ia6tyjE+9csNVeShyQXaLuQZcTbcsELWRAty27UrdViK45g6bg80xixlaMMIAhMtrV
-         Lbc722PQ/IMkEg4Y4jSUr9S4TZfkymp3FujOufPU=
-Date:   Sun, 6 Oct 2019 11:57:27 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Mboumba Cedric Madianga <cedric.madianga@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH 5/7 v3] mfd: ab8500: augment DT bindings
-Message-ID: <20191006115727.7a4175d3@archlinux>
-In-Reply-To: <20191001221356.19317-6-linus.walleij@linaro.org>
-References: <20191001221356.19317-1-linus.walleij@linaro.org>
-        <20191001221356.19317-6-linus.walleij@linaro.org>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726330AbfJFMdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 08:33:23 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:23171 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726291AbfJFMdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 08:33:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570365198;
+        s=strato-dkim-0002; d=fpond.eu;
+        h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=+jNs+aIhzCrlui+txGTHIfOIsQHf0wQLk5jIMpzux4g=;
+        b=ChOWgW7HGUo71MDAgWy+8Qf+arI/5qglTHL6L3VsX9HBCG53eZBNoLSavkOg18XMN/
+        9x5D6EdGf+tKfP7rg1WprH8EMeMM7ju1ahqvvasCF7WxRRFXiUbxSwrxAcD/eBDs0lNa
+        L+GS7AkK41s5TgYCipqCanFGHlzxdmppxpSoLn5bFI1OavJzNY1x3zbnFkHOdt6VHEag
+        hRwicwwFCvaCCQohUi3dQJcdN5VpHzvHm88CBMIrp+0Bbl5da0rGt6Ce5rA3u1K+trxT
+        0UL+lpp6anAyEaex2c9LnMSIKvvdS1dVGMjMMwE6wtYLjYt5o67KCzsy3HajSfFVUtxf
+        gXdQ==
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73amq+g13rqGzmt2bYDnKIKaws6YXTsc4="
+X-RZG-CLASS-ID: mo00
+Received: from oxapp01-01.back.ox.d0m.de
+        by smtp-ox.front (RZmta 44.28.0 AUTH)
+        with ESMTPSA id i07086v96CWqeEb
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Sun, 6 Oct 2019 14:32:52 +0200 (CEST)
+Date:   Sun, 6 Oct 2019 14:32:52 +0200 (CEST)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com
+Cc:     mark.rutland@arm.com, stonea168@163.com, ajaykumar.rs@samsung.com,
+        architt@codeaurora.org, vpalatin@chromium.org,
+        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
+        ck.hu@mediatek.com, yingjoe.chen@mediatek.com,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        pawel.moll@arm.com, ijc+devicetree@hellion.org.uk,
+        inki.dae@samsung.com, robh+dt@kernel.org, seanpaul@chromium.org,
+        eddie.huang@mediatek.com, rahul.sharma@samsung.com,
+        kernel@pengutronix.de, galak@codeaurora.org,
+        enric.balletbo@collabora.com, andy.yan@rock-chips.com
+Message-ID: <218822936.516770.1570365172065@webmail.strato.com>
+In-Reply-To: <4df984a5-a917-753e-5870-7453f3d5438e@gmail.com>
+References: <1570216148-22802-1-git-send-email-uli@fpond.eu>
+ <4df984a5-a917-753e-5870-7453f3d5438e@gmail.com>
+Subject: Re: [PATCH v19 0/2] PS8640 MIPI-to-eDP bridge
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.1-Rev20
+X-Originating-IP: 85.212.38.149
+X-Originating-Client: open-xchange-appsuite
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  2 Oct 2019 00:13:54 +0200
-Linus Walleij <linus.walleij@linaro.org> wrote:
 
-> As we migrate the AB8500 GPADC driver to use IIO, we need to augment
-> the bindings to account for defining the ADC channels in the device
-> tree.
+> On October 5, 2019 at 1:16 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
 > 
-> Cc: devicetree@vger.kernel.org
-> Acked-by: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-
-This looks good now as far as our generic channel bindings go.
-I'd like to leave it a little longer for Rob or Mark to have the chance
-to comment before taking it though.
-
-Good to have these in yaml at some point as well :)
-I know we haven't done many of the older IIO bindings yet though
-so I can't really talk.
-
-Thanks,
-
-Jonathan
-
-> ---
-> ChangeLog v2->v3:
-> - Change "adc-channel@" to "channel@" as per preferred notation.
-> - Add some full stops to the end of sentences.
-> - Reference the new ADC-specific documentation for channel specifier
->   etc.
-> - Collect Lee's ACK.
-> - Rebased on v5.4-rc1
-> ChangeLog v1->v2:
-> - Rebased on v5.3-rc5
-> ---
->  .../devicetree/bindings/mfd/ab8500.txt        | 119 ++++++++++++++++++
->  1 file changed, 119 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/ab8500.txt b/Documentation/devicetree/bindings/mfd/ab8500.txt
-> index cd9e90c5d171..ff517e5d7ee0 100644
-> --- a/Documentation/devicetree/bindings/mfd/ab8500.txt
-> +++ b/Documentation/devicetree/bindings/mfd/ab8500.txt
-> @@ -69,6 +69,18 @@ Required child device properties:
->  - compatible             : "stericsson,ab8500-[bm|btemp|charger|fg|gpadc|gpio|ponkey|
->                                                 pwm|regulator|rtc|sysctrl|usb]";
->  
-> +  A few child devices require ADC channels from the GPADC node. Those follow the
-> +  standard bindings from iio/iio-bindings.txt and iio/adc/adc.txt
-> +
-> +  abx500-temp		 : io-channels "aux1" and "aux2" for measuring external
-> +			   temperatures.
-> +  ab8500_fg		 : io-channel "main_bat_v" for measuring main battery voltage,
-> +  ab8500_btemp		 : io-channels "btemp_ball" and "bat_ctrl" for measuring the
-> +			   battery voltage.
-> +  ab8500_charger	 : io-channels "main_charger_v", "main_charger_c", "vbus_v",
-> +			   "usb_charger_c" for measuring voltage and current of the
-> +			   different charging supplies.
-> +
->  Optional child device properties:
->  - interrupts             : contains the device IRQ(s) using the 2-cell format (see above)
->  - interrupt-names        : contains names of IRQ resource in the order in which they were
-> @@ -102,8 +114,115 @@ ab8500 {
->                                39 0x4>;
->                  interrupt-names = "HW_CONV_END", "SW_CONV_END";
->                  vddadc-supply = <&ab8500_ldo_tvout_reg>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#io-channel-cells = <1>;
-> +
-> +		/* GPADC channels */
-> +		bat_ctrl: channel@01 {
-> +			reg = <0x01>;
-> +		};
-> +		btemp_ball: channel@02 {
-> +			reg = <0x02>;
-> +		};
-> +		main_charger_v: channel@03 {
-> +			reg = <0x03>;
-> +		};
-> +		acc_detect1: channel@04 {
-> +			reg = <0x04>;
-> +		};
-> +		acc_detect2: channel@05 {
-> +			reg = <0x05>;
-> +		};
-> +		adc_aux1: channel@06 {
-> +			reg = <0x06>;
-> +		};
-> +		adc_aux2: channel@07 {
-> +			reg = <0x07>;
-> +		};
-> +		main_batt_v: channel@08 {
-> +			reg = <0x08>;
-> +		};
-> +		vbus_v: channel@09 {
-> +			reg = <0x09>;
-> +		};
-> +		main_charger_c: channel@0a {
-> +			reg = <0x0a>;
-> +		};
-> +		usb_charger_c: channel@0b {
-> +			reg = <0x0b>;
-> +		};
-> +		bk_bat_v: channel@0c {
-> +			reg = <0x0c>;
-> +		};
-> +		die_temp: channel@0d {
-> +			reg = <0x0d>;
-> +		};
-> +		usb_id: channel@0e {
-> +			reg = <0x0e>;
-> +		};
-> +		xtal_temp: channel@12 {
-> +			reg = <0x12>;
-> +		};
-> +		vbat_true_meas: channel@13 {
-> +			reg = <0x13>;
-> +		};
-> +		bat_ctrl_and_ibat: channel@1c {
-> +			reg = <0x1c>;
-> +		};
-> +		vbat_meas_and_ibat: channel@1d {
-> +			reg = <0x1d>;
-> +		};
-> +		vbat_true_meas_and_ibat: channel@1e {
-> +			reg = <0x1e>;
-> +		};
-> +		bat_temp_and_ibat: channel@1f {
-> +			reg = <0x1f>;
-> +		};
->          };
->  
-> +	ab8500_temp {
-> +		compatible = "stericsson,abx500-temp";
-> +		io-channels = <&gpadc 0x06>,
-> +			      <&gpadc 0x07>;
-> +		io-channel-name = "aux1", "aux2";
-> +	};
-> +
-> +	ab8500_battery: ab8500_battery {
-> +		stericsson,battery-type = "LIPO";
-> +		thermistor-on-batctrl;
-> +	};
-> +
-> +	ab8500_fg {
-> +		compatible = "stericsson,ab8500-fg";
-> +		battery	   = <&ab8500_battery>;
-> +		io-channels = <&gpadc 0x08>;
-> +		io-channel-name = "main_bat_v";
-> +	};
-> +
-> +	ab8500_btemp {
-> +		compatible = "stericsson,ab8500-btemp";
-> +		battery	   = <&ab8500_battery>;
-> +		io-channels = <&gpadc 0x02>,
-> +			      <&gpadc 0x01>;
-> +		io-channel-name = "btemp_ball",
-> +				"bat_ctrl";
-> +	};
-> +
-> +	ab8500_charger {
-> +		compatible	= "stericsson,ab8500-charger";
-> +		battery		= <&ab8500_battery>;
-> +		vddadc-supply	= <&ab8500_ldo_tvout_reg>;
-> +		io-channels = <&gpadc 0x03>,
-> +			      <&gpadc 0x0a>,
-> +			      <&gpadc 0x09>,
-> +			      <&gpadc 0x0b>;
-> +		io-channel-name = "main_charger_v",
-> +				"main_charger_c",
-> +				"vbus_v",
-> +				"usb_charger_c";
-> +	};
-> +
->          ab8500-usb {
->                  compatible = "stericsson,ab8500-usb";
->                  interrupts = < 90 0x4
+> Hi Uli,
+> 
+> On 04/10/2019 21:09, Ulrich Hecht wrote:
+> > Hi!
+> > 
+> > This driver seems to have fallen by the wayside because, while otherwise
+> > fine, it has a firmware update feature that requires a blob that is not in
+> > the linux-firmware repo.[1]
+> > 
+> > Whatever the cause for that may be, the update code is entirely optional
+> > (my chip works fine with whatever firmware is currently installed), so I
+> > have removed it in order to get this merged after all. I have also
+> > followed various trivial API changes that have piled up since 2016; see
+> > the individual patches for details.
+> > 
+> > I'm using this driver on an Acer Chromebook R13 ("Elm"); see
+> > https://github.com/uli/kernel/tree/elm-working-5.4.
+> > 
+> 
+> Thanks for your effort to get things upstream.
+> I just tried your branch on my R13. I had to do a trivial config change I had to
+> do, as I don't have and care about the bluetooth FW right now.
 
+Thank you for testing!
+
+> But after that my screen keeps black. I was able to build and boot
+> elm-working-5.3 and elm-working-5.2.
+> 
+> Unfortunatley I don't have a serial console on the Chromebook, so it's difficult
+> to find out where it hangs. Can you please double check if your new
+> elm-working-5.4 actually really works?
+
+No, it doesn't. :( It seems I forgot to run mkimage/vbutil_kernel when testing...
+I have pushed a fix to the elm-working-5.4 tree, and I will send a v20 tomorrow. Sorry for the inconvenience.
+
+CU
+Uli
