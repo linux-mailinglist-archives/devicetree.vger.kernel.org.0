@@ -2,126 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CCB7CD83F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 20:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D26CD8FA
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 21:50:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727186AbfJFSCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 14:02:01 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:43479 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728238AbfJFR0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 13:26:17 -0400
-Received: by mail-lj1-f196.google.com with SMTP id n14so11195952ljj.10
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 10:26:16 -0700 (PDT)
+        id S1725905AbfJFTuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 15:50:21 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:35426 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725865AbfJFTuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 15:50:21 -0400
+Received: by mail-wr1-f66.google.com with SMTP id v8so12779675wrt.2;
+        Sun, 06 Oct 2019 12:50:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linux-foundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nqhtcbRfDvEQJJkAJFzv4RBTuiXKftvmCXLEi1f3srQ=;
-        b=RFX9iEr5oOWgtzp3IBXT04OndQR1DU0EDSHmP2z8P81qc5WnlH3q3z+H6Fn+Q2bRDQ
-         H0mj8t0g+mmdm8jwf4l9ysW9y9jx14fPTmNboT3xsSFw9Hg+XXFMXj7P26RjheVyaX4i
-         ysqZhaJqY2V93IZXO8nKnxagXIV7guXuOEkKQ=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:mime-version:message-id:in-reply-to
+         :references:user-agent:content-transfer-encoding;
+        bh=SF3ve2/BTUkIULmgsBwIXtaoivMNXD9/DFfQmDFlSVM=;
+        b=WCb+t9jwEYGZQSJkSVHLE8EFck+4SgZCH15o1AjWwGVAVttdTdlgxF+XKZYy991Efi
+         2l62TnJxPwv5rVodwo1DxxTQq8u4Ha/igbJxxJkqp/FTvZSJIzJa15SlpF0jtT+ihlrI
+         uxlujJ28cUf4Yk33siXsvvLBdSWz3kB2EVfeqyio4GxAVNllD38S2PSKwBNWfRzU82yP
+         nEJSKnl2roA1Kf5gYoLkvzIDo09z2ufMc6CUCUfYaXoiYDqJXAuXAc8+S9EMfDx++xLi
+         BYPNjy80Igjw7V2WjmPeRSxmGb7CeaTe25IXDwaC5kvEqCqMdNT7h5ywWBUw05jZtWHH
+         WF6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nqhtcbRfDvEQJJkAJFzv4RBTuiXKftvmCXLEi1f3srQ=;
-        b=dwi9fwL55jAuElSp5Nsa/+M8/oQfwGd7lsBbL8NyghEsxemNQTLtQZoklRmm/O8aZn
-         F5mrlfWOC9cYdoWocy+J6UrgZ1Uhegh+K5VmC4YNBkMw8zgAzGffYe/CpbWbsZN+NspN
-         y92m4M069JBHmCKgjYTrVncdCUaZmLQpOsrCVPwSSB6S7RVoraOP6YALCCsnw7fRC7oQ
-         PRoCwOjwcNihWJo0tzoUMjUmnQf/9H/ec/v4QoaU4LgXK+AiEQzlDYdZmBZdMQNuVJl/
-         inJTOAXFYs/QSvHA7C93AZMfk0qjNOnxrUN8hPDePJ6CMFb6AT8Z7TZWg4LK2NbR5KOB
-         gOtg==
-X-Gm-Message-State: APjAAAV/wJJ6bSdoyimJLZAIcA+il5c68DCB+eaN2naQdshILBCe50hs
-        suKnm6rWuLkcHbTY3GkgIpRkDazrLcw=
-X-Google-Smtp-Source: APXvYqzRUAV9e24aOliceFzNZKFxNw34dn2HcsFZ30uOZXE6d6q8cKhCzLGjuLZB+kZxECBzOQDl2A==
-X-Received: by 2002:a2e:91cf:: with SMTP id u15mr4888308ljg.184.1570382775130;
-        Sun, 06 Oct 2019 10:26:15 -0700 (PDT)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
-        by smtp.gmail.com with ESMTPSA id h3sm2644238ljf.12.2019.10.06.10.26.14
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Oct 2019 10:26:14 -0700 (PDT)
-Received: by mail-lf1-f49.google.com with SMTP id u3so7614600lfl.10
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 10:26:14 -0700 (PDT)
-X-Received: by 2002:a19:741a:: with SMTP id v26mr14509292lfe.79.1570382307072;
- Sun, 06 Oct 2019 10:18:27 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:mime-version:message-id
+         :in-reply-to:references:user-agent:content-transfer-encoding;
+        bh=SF3ve2/BTUkIULmgsBwIXtaoivMNXD9/DFfQmDFlSVM=;
+        b=bkbB2HyTCbZoigD2INvkRgwGgzKXZQofLYDpWeE5DI2ZrNrJOAZuzuVJHB6UvUpcoB
+         8ikpFZybdSCN1FmL5yJKi661s150jjoVezYnt+2sBpBkmXkEJWtIvaWf/83LhiMRifZC
+         h2ukTR41qtN35hIhhDXow6cj2f01uLjtPnZWUxfTh6kVXv0/ZNv+JXBC+wTe/nIdu/hB
+         cJI88MAnBNkZPSmNHUqgJ7YIoPexxX+Wm4jGpcm4nD+m6wGNsy5YX3+cO05raAbOwmcs
+         3nNeOgwYYnPwwLvJq2i/YaMZ2Z57eli/Se734sfKyJhaOMqaRXo4DUO3tBi82kqRaFVi
+         r5PA==
+X-Gm-Message-State: APjAAAW+7fl458MXPmnBDiO5yrxobD9mp2Jpqu1pSKnFJD+yFoRPUmIh
+        7S1NqUD1d7YGNNMEiBZmXz8=
+X-Google-Smtp-Source: APXvYqxATYtyWsBwj3st87+ddDby4qJ5JPK9YSeU7U9c5UyOyXXi8fOFenqo8kZijK2LBkrzcVLj0A==
+X-Received: by 2002:a5d:63cb:: with SMTP id c11mr17998797wrw.281.1570391419078;
+        Sun, 06 Oct 2019 12:50:19 -0700 (PDT)
+Received: from localhost ([94.73.41.211])
+        by smtp.gmail.com with ESMTPSA id u10sm13213035wmm.0.2019.10.06.12.50.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2019 12:50:18 -0700 (PDT)
+From:   Vicente Bergas <vicencb@gmail.com>
+To:     Vivek Unune <npcomplete13@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <ezequiel@collabora.com>,
+        <akash@openedev.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Roger Quadros <rogerq@ti.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
+Date:   Sun, 06 Oct 2019 21:50:16 +0200
 MIME-Version: 1.0
-References: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
- <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org> <20191004222714.GA107737@google.com>
- <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org> <20191004232955.GC12012@mit.edu>
- <CAFd5g456rBSp177EkYAwsF+KZ0rxJa90mzUpW2M3R7tWbMAh9Q@mail.gmail.com>
- <63e59b0b-b51e-01f4-6359-a134a1f903fd@kernel.org> <CAFd5g47wji3T9RFmqBwt+jPY0tb83y46oj_ttOq=rTX_N1Ggyg@mail.gmail.com>
- <544bdfcb-fb35-5008-ec94-8d404a08fd14@kernel.org> <CAFd5g467PkfELixpU0JbaepEAAD_ugAA340-uORngC-eXsQQ-g@mail.gmail.com>
- <20191006165436.GA29585@mit.edu>
-In-Reply-To: <20191006165436.GA29585@mit.edu>
-From:   Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Sun, 6 Oct 2019 10:18:11 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjcJxypxUOSF-jc=SQKT1CrOoTMyT7soYzbvK3965JmCA@mail.gmail.com>
-Message-ID: <CAHk-=wjcJxypxUOSF-jc=SQKT1CrOoTMyT7soYzbvK3965JmCA@mail.gmail.com>
-Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     "Theodore Y. Ts'o" <tytso@mit.edu>
-Cc:     Brendan Higgins <brendanhiggins@google.com>,
-        shuah <shuah@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <4cb2b781-e177-4008-86ae-a9108bd303e4@gmail.com>
+In-Reply-To: <20191005005200.GA11418@vivek-desktop>
+References: <20190929032230.24628-1-npcomplete13@gmail.com>
+ <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
+ <20190929234615.GA5355@vivek-desktop> <2223294.9I8gkMH88G@phil>
+ <20191005005200.GA11418@vivek-desktop>
+User-Agent: Trojita
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 6, 2019 at 9:55 AM Theodore Y. Ts'o <tytso@mit.edu> wrote:
+On Saturday, October 5, 2019 2:52:00 AM CEST, Vivek Unune wrote:
+> On Fri, Oct 04, 2019 at 11:45:08PM +0200, Heiko Stuebner wrote:
+>> Hi Vivek,
+>>=20
+>> Am Montag, 30. September 2019, 01:46:15 CEST schrieb Vivek Unune: ...
 >
-> Well, one thing we *can* do is if (a) if we can create a kselftest
-> branch which we know is stable and won't change, and (b) we can get
-> assurances that Linus *will* accept that branch during the next merge
-> window, those subsystems which want to use kself test can simply pull
-> it into their tree.
+> Hi Heiko,
+>
+> I tested the c09b73cf patch without modifying exsisting dts. I can confirm
+> that that patch doesn't work for me. No usb-c devices were recognized.
+>
+> Vicen=C3=A7 - were you able to test it?
 
-Yes.
+I can also confirm that
 
-At the same time, I don't think it needs to be even that fancy. Even
-if it's not a stable branch that gets shared between different
-developers, it would be good to just have people do a "let's try this"
-throw-away branch to use the kunit functionality and verify that
-"yeah, this is fairly convenient for ext4".
+c09b73cfac2a9317f1104169045c519c6021aa1d
+usb: dwc3: don't set gadget->is_otg flag
 
-It doesn't have to be merged in that form, but just confirmation that
-the infrastructure is helpful before it gets merged would be good.
+alone does not fix the issue.
 
-               Linus
+e1d9149e8389f1690cdd4e4056766dd26488a0fe
+arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
+
+is still required for the USB-C to work on the Sapphire board.
+
+Regards,
+  Vicen=C3=A7.
+
+> As soon as I apply dts patch, usb-c devices are recognized.
+>
+> Thanks,
+>
+> Vivek
+
