@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C88CCF1E
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 09:18:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FAB8CCF34
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 09:45:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726207AbfJFHSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 03:18:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34240 "EHLO mail.kernel.org"
+        id S1726336AbfJFHpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 03:45:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38596 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726198AbfJFHSY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Oct 2019 03:18:24 -0400
+        id S1726207AbfJFHpQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Oct 2019 03:45:16 -0400
 Received: from dragon (li937-157.members.linode.com [45.56.119.157])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5E6D520835;
-        Sun,  6 Oct 2019 07:18:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 946302077B;
+        Sun,  6 Oct 2019 07:45:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570346303;
-        bh=Dx2ngyCt4BCp8rcZLEP0l/DTMAqBneUTAAXlZNm0TwU=;
+        s=default; t=1570347916;
+        bh=Tng415NhQvNaM4Ym/Dta7q28F+Uvbgxq6uSaRNJOmr0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RSgvJNTzYFqurlcEcPNpcX2m/FODAiB2HL+3jqObfh94KqVd5bFa3Je2nZshTRB1n
-         9HSzOSQ65Np+nhNLI9xORa7PNZcoPhsbGExbj0ycJOjDAEdv0keyVOO/CsWSPsN5Pu
-         cWU/zlYUJfBqAd840NnmedHqJ8upLnh/6MyHIo48=
-Date:   Sun, 6 Oct 2019 15:17:47 +0800
+        b=wCSI8hr7kYJV8bIkuUUvMC6P/0VKbMwo05IXNOhPKCtvvn7kdoDaxvsEuMafn+s8m
+         wrq3FcwtD24Uz7jWWxlCbuQwByTrG9/g7oUI612QfkUQC2tJHYVPIKAxHciwHe/RZK
+         pNziiAj1Mu1WO3BL/M3Jovvy1251vfw4CuwGF5pA=
+Date:   Sun, 6 Oct 2019 15:44:49 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Anson Huang <Anson.Huang@nxp.com>
 Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
         kernel@pengutronix.de, festevam@gmail.com, leonard.crestez@nxp.com,
-        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
+        daniel.lezcano@linaro.org, ping.bai@nxp.com, daniel.baluta@nxp.com,
+        jun.li@nxp.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Linux-imx@nxp.com
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mn: Add system counter node
-Message-ID: <20191006071743.GR7150@dragon>
-References: <1568129118-31114-1-git-send-email-Anson.Huang@nxp.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm: Remove incorrect fallback
+ compatible for ocotp
+Message-ID: <20191006074447.GU7150@dragon>
+References: <1568211887-19318-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1568129118-31114-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1568211887-19318-1-git-send-email-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 10, 2019 at 11:25:17AM -0400, Anson Huang wrote:
-> Add i.MX8MN system counter node to enable timer-imx-sysctr
-> broadcast timer driver.
+On Wed, Sep 11, 2019 at 10:24:46AM -0400, Anson Huang wrote:
+> Compared to i.MX7D, i.MX8MM has different ocotp layout, so it should
+> NOT use "fsl,imx7d-ocotp" as ocotp's fallback compatible, remove it.
 > 
 > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
