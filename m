@@ -2,106 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D26CD8FA
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 21:50:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C4ACD982
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 00:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725905AbfJFTuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 15:50:21 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:35426 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725865AbfJFTuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 15:50:21 -0400
-Received: by mail-wr1-f66.google.com with SMTP id v8so12779675wrt.2;
-        Sun, 06 Oct 2019 12:50:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:mime-version:message-id:in-reply-to
-         :references:user-agent:content-transfer-encoding;
-        bh=SF3ve2/BTUkIULmgsBwIXtaoivMNXD9/DFfQmDFlSVM=;
-        b=WCb+t9jwEYGZQSJkSVHLE8EFck+4SgZCH15o1AjWwGVAVttdTdlgxF+XKZYy991Efi
-         2l62TnJxPwv5rVodwo1DxxTQq8u4Ha/igbJxxJkqp/FTvZSJIzJa15SlpF0jtT+ihlrI
-         uxlujJ28cUf4Yk33siXsvvLBdSWz3kB2EVfeqyio4GxAVNllD38S2PSKwBNWfRzU82yP
-         nEJSKnl2roA1Kf5gYoLkvzIDo09z2ufMc6CUCUfYaXoiYDqJXAuXAc8+S9EMfDx++xLi
-         BYPNjy80Igjw7V2WjmPeRSxmGb7CeaTe25IXDwaC5kvEqCqMdNT7h5ywWBUw05jZtWHH
-         WF6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:mime-version:message-id
-         :in-reply-to:references:user-agent:content-transfer-encoding;
-        bh=SF3ve2/BTUkIULmgsBwIXtaoivMNXD9/DFfQmDFlSVM=;
-        b=bkbB2HyTCbZoigD2INvkRgwGgzKXZQofLYDpWeE5DI2ZrNrJOAZuzuVJHB6UvUpcoB
-         8ikpFZybdSCN1FmL5yJKi661s150jjoVezYnt+2sBpBkmXkEJWtIvaWf/83LhiMRifZC
-         h2ukTR41qtN35hIhhDXow6cj2f01uLjtPnZWUxfTh6kVXv0/ZNv+JXBC+wTe/nIdu/hB
-         cJI88MAnBNkZPSmNHUqgJ7YIoPexxX+Wm4jGpcm4nD+m6wGNsy5YX3+cO05raAbOwmcs
-         3nNeOgwYYnPwwLvJq2i/YaMZ2Z57eli/Se734sfKyJhaOMqaRXo4DUO3tBi82kqRaFVi
-         r5PA==
-X-Gm-Message-State: APjAAAW+7fl458MXPmnBDiO5yrxobD9mp2Jpqu1pSKnFJD+yFoRPUmIh
-        7S1NqUD1d7YGNNMEiBZmXz8=
-X-Google-Smtp-Source: APXvYqxATYtyWsBwj3st87+ddDby4qJ5JPK9YSeU7U9c5UyOyXXi8fOFenqo8kZijK2LBkrzcVLj0A==
-X-Received: by 2002:a5d:63cb:: with SMTP id c11mr17998797wrw.281.1570391419078;
-        Sun, 06 Oct 2019 12:50:19 -0700 (PDT)
-Received: from localhost ([94.73.41.211])
-        by smtp.gmail.com with ESMTPSA id u10sm13213035wmm.0.2019.10.06.12.50.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2019 12:50:18 -0700 (PDT)
-From:   Vicente Bergas <vicencb@gmail.com>
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <ezequiel@collabora.com>,
-        <akash@openedev.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Roger Quadros <rogerq@ti.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
-Date:   Sun, 06 Oct 2019 21:50:16 +0200
+        id S1726167AbfJFWjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 18:39:44 -0400
+Received: from mout.gmx.net ([212.227.17.20]:59337 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726150AbfJFWjo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Oct 2019 18:39:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1570401534;
+        bh=HQioVg0fLiB703pC94Q5CJrHeDjz8YSULyFi62pu9m0=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=Duz0PvB2qX4L8giiwuDvx5SsbWVQkb8MNecGicQqT5uyuTsSprcb4szvkk+FyF308
+         T8DlnhoKCH/OKa212mngd7IOBBUBNriW+dQD/sJLRXWBvhuZc1HMtk5iSxIdv46jut
+         AsHL66iTBj3HOm50gcjLz6rKv8wQRSbpJ9aIRN2E=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([109.90.233.87]) by mail.gmx.com (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MTAFb-1ig9bd1brD-00Uabf; Mon, 07
+ Oct 2019 00:38:54 +0200
+Date:   Mon, 7 Oct 2019 00:38:48 +0200
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191006223848.GE19803@latitude>
+References: <20190930194332.12246-1-andreas@kemnade.info>
+ <20190930194332.12246-3-andreas@kemnade.info>
 MIME-Version: 1.0
-Message-ID: <4cb2b781-e177-4008-86ae-a9108bd303e4@gmail.com>
-In-Reply-To: <20191005005200.GA11418@vivek-desktop>
-References: <20190929032230.24628-1-npcomplete13@gmail.com>
- <54c67ca8-8428-48ee-9a96-e1216ba02839@gmail.com>
- <20190929234615.GA5355@vivek-desktop> <2223294.9I8gkMH88G@phil>
- <20191005005200.GA11418@vivek-desktop>
-User-Agent: Trojita
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BZaMRJmqxGScZ8Mx"
+Content-Disposition: inline
+In-Reply-To: <20190930194332.12246-3-andreas@kemnade.info>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:J4irto3tAosr7xHmcWxuJ3ndP76ZbpNdsbSVgPvdRBbyvC87GJw
+ aihi+iczLukRIoJQMVNUx900ERyIMFo4pEOlHqGD9/GlFKFWHdmSMQMKFuEFr7ab1pSvKaB
+ PCTNYdwLfqAYjoUal33EWnA8HpQaRIF9NQk/HqOjZ9Bg8I6iw5rRkIGWpJ0NN0XKfsgS5bT
+ jH6ius3PpesaQmI65q7yQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:pNfCcJIi9Yg=:jVzGatRezPDUqXoRMuTiCK
+ WikGS7YNtIWvBa/qyr/BVMfmnZjb9pRnm60iEVgst2Q0b5BzmrnXuyUb1FvlAF/uWqZYmg1+q
+ CFSzTGbf2pYkYlT1qlrqNx7DD9mouXUZ8pzket/2gn2UDWtBNqBvOi7kVvhxFeJRhjGCZzahu
+ M5qs7+I2OBeCuhhzkNNVLlJ5TNzhgmGjylo6WKoNC1UaRUTOOxm/+o6lkw5GoaYP6/irlMnqe
+ bQK4OzU56aIAiSsIhkQPYSbJEjIupxPhldWu0LS8OKw2TfrXfzJsh6tL2+Tp/gKEfgk+KBvdr
+ AsvXWv2AvUioCIfVMqjIzTUJpVoOf47CbJzwomtd6uieXgJIzPM2QXNaSb9vAh/UYpPvX+iHU
+ ZBVIE6t1LFOpY/10M8Rl5ImuKyacdAAiXXbArWFyTxkRxndcoXo80p2tCai3HhXcPnIozoTSC
+ UzRfgdcAPlVB9B+V4OQFRcXk4/2VVNifgvfYAaq+8u7+C71lxEUnODJ65Bu1p1ZXMdf5/beA3
+ iY+MYzm9yM4xBlVpPdpz4Vp3q0ZPfk2ju73GIoKyewH0lH2W60sfAokDffg/UkSabsSnOq64j
+ Kg8NLayxxqQAYNMOcyye0jaXw+GoeDkU7lxxxm7TDkKToZviztmG2gDbiL5iLreSroXfH0cZZ
+ 4vZrHoJZJ8Sj61SpRYdDZJ4MknKH28XRQW5ISijP5O9ZeiOspgabrgEqkML1E9ARcZXo159JY
+ G5TlSvYgb33saya+tVqZ9UoRiwsAaIy9q+sZMpGNPLXfgkKYbApfDsGSCO6tz8n72KyXdr+ed
+ ozjFUkYXZL6Bk6v03PFNVpYsxf4d5ZBiujCtJJ2MGqibQB3u5s624pxfQQNA1fiA5NKHBUswC
+ 0JwbFANOUgZhYZdg1w4hKdKtjN1A6KSEiFXKotRwJddHOiiiR/rm4wHqy9Xv8CoRyv7IQWOzw
+ LD62IibRULWlTF2hOIjgHabvUAeaCbMAd3d08Fq0q/5fKkP0idx9oEflKmK6QMybjh7k0tF4E
+ NNS4FpuHZBTPeZu6amVeiEOxnR5Ww3gsFKkllSVxRMRLTD2MaBHoBH7JIvT/QMKw+1JZAQ73O
+ Z7nj7OK8dRans0lONpWYYru7/zGHG58Ws8NFy81e0OAzIOnpI8/izMHzjilLtlB5erIv/W07e
+ rvSp08//+XL4Qq8XtRAtSipEneG03z4fF3cMc0DoT+x0Jrq/rwUb45LPXRoWTJXaaWeW0+CgV
+ g54ivdND9+lGWgCLeBLfsp/MlwQFrI5mn+yICXlXuWqfDdUlpr3jkeJH/EnI=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Saturday, October 5, 2019 2:52:00 AM CEST, Vivek Unune wrote:
-> On Fri, Oct 04, 2019 at 11:45:08PM +0200, Heiko Stuebner wrote:
->> Hi Vivek,
->>=20
->> Am Montag, 30. September 2019, 01:46:15 CEST schrieb Vivek Unune: ...
->
-> Hi Heiko,
->
-> I tested the c09b73cf patch without modifying exsisting dts. I can confirm
-> that that patch doesn't work for me. No usb-c devices were recognized.
->
-> Vicen=C3=A7 - were you able to test it?
 
-I can also confirm that
+--BZaMRJmqxGScZ8Mx
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-c09b73cfac2a9317f1104169045c519c6021aa1d
-usb: dwc3: don't set gadget->is_otg flag
+Thanks for CCing me on this patchset. Nice to see more e-book reader
+related work!
 
-alone does not fix the issue.
+A few comments and questions below.
 
-e1d9149e8389f1690cdd4e4056766dd26488a0fe
-arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
+On Mon, Sep 30, 2019 at 09:43:31PM +0200, Andreas Kemnade wrote:
+> The Netronix board E60K02 can be found some several Ebook-Readers,
+> at least the Kobo Clara HD and the Tolino Shine 3. The board
+> is equipped with different SoCs requiring different pinmuxes.
 
-is still required for the USB-C to work on the Sapphire board.
+Do I understand it correctly that i.MX6SL and i.MX6SLL are pin-
+compatible so we can use the same pin numbers and GPIO handles in the
+DT?
 
-Regards,
-  Vicen=C3=A7.
+> +	leds {
+> +		compatible =3D "gpio-leds";
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&pinctrl_led>;
+> +
+> +		GLED {
 
-> As soon as I apply dts patch, usb-c devices are recognized.
->
-> Thanks,
->
-> Vivek
+What does "GLED" mean? It's not obvious to me.
+What user-visible purpose does this LED have, or where is it on the
+board?
 
+> +			gpios =3D <&gpio5 7 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger =3D "timer";
+> +		};
+> +	};
+> +
+> +	memory {
+> +		reg =3D <0x80000000 0x80000000>;
+
+2 GiB of memory?
+
+> +			/* Core3_3V3 */
+
+What are these labels (Core3_3V3, Core4_1V2, etc.)?
+
+> +			dcdc2_reg: DCDC2 {
+> +				regulator-name =3D "DCDC2";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt =3D <3300000>;
+> +					regulator-suspend-min-microvolt =3D <3300000>;
+> +				};
+> +			};
+
+
+Thanks,
+Jonathan Neusch=C3=A4fer
+
+--BZaMRJmqxGScZ8Mx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl2abPEACgkQCDBEmo7z
+X9uKtxAAzzgCu+n9jH9hNCttJ3lG5alFog0lO+dd69DN/EG3wH4NCQNnkfL0eTUQ
+ePZWqAlCuXMrFgJUrL0RDEw926fYD558I9RBtJGI1yPlKq4Qhs0ENpkNI9bOSZyG
+s4UI1iLsalte+sGFZwPcTfWv5mgD5FSoLPIQleDaaHvCoRh9+PP7Nn3svxyToGcY
+OE7WtpBAwA+gawwKGWZJUxXLMGQKwyg3f8TcFkugLh5VefyiNgTpRcWnilUbZ3mI
+uU1hZc4cC/dcoCs0blZZwO24MAIDN/686fwViySRjzKE411dp1XZDz9LqQdr9OLW
+NKMyFCSsjhn5TFMPoo6rux88KLBujHPRiu7e+EXSVgYZH4nRsxUqPTxnGzimotrx
+1IoN+Dkg+hx5hxVntHrKktH5kvwuN7mKcgGqHNtkQgyhS4dWa+83R0C0E+uEi/ZM
+mH+ht5CK/J6BbCXyUans1T+tIs1xL5xYHsw/ZKZtiYIwGrVVMiIbLf/OW+9llrc4
+wt0KQkqUudaQj8i6PCihRudCi371QWQbcGholaDqkn4HFEGYRC8pzsCHr7sU6Gdf
+J/5fw3n4lQv5H2RBLgzQBqNWB9CkRdJOTTR3Zj95Gaz1HizSWwyk22aoVKdD/f9R
+jQ8CI9hIEMXx1iGEmBAltMHzwtfAzlwp9esITOahR7Sd3ZK0Hyc=
+=YsCq
+-----END PGP SIGNATURE-----
+
+--BZaMRJmqxGScZ8Mx--
