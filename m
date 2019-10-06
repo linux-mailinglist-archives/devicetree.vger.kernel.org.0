@@ -2,159 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E450CD2BA
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 17:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8EFCCD2DA
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 17:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726245AbfJFPWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 11:22:36 -0400
-Received: from us-smtp-1.mimecast.com ([205.139.110.61]:42651 "EHLO
-        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726439AbfJFPWg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 11:22:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1570375354;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=/kOnrpYd9eSud0Ixupa7J9ljvVudCP2XNDO8TzpsHNE=;
-        b=UgnJVUbIQYyPkZEIEPdBviR4ZMZVdZk8P+iJf4ehQqs0dK0TAIfXEzZyz0kCeIB9u8hd01
-        rXr+9yXrz/Tc+TTZrDJecvc3D7wTa+piLpqvacdJM8lHOJCAWe6hmzbLTNpQdN98ZoxFtU
-        EI0eWR0qJqM36hz5gV5H79UTH5Kq4LY=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-154-P-oXfmEyOq2P-WUH8S9TOg-1; Sun, 06 Oct 2019 11:22:33 -0400
-Received: by mail-ed1-f69.google.com with SMTP id y25so7344120edv.20
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 08:22:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eu8O/YhqU7zJEjRc7W99Fi77CUDu2zTF0Sf1rRqLcS8=;
-        b=VeHJlZp/TFXYEaKa8FHn95ys39ymbMvhYAYRFd953OeIxgVyagW2DSsSfgTVaz/0Ix
-         cWNF1Mku3/piWIWgEdQjuHIR2Haj3YMZ609N0/Xr0IglkDRMUD2sZR4kHaxR0lKdbpR3
-         7BGzpyIY0/gREr7Dal4QTu7seg0HciarDpdbSUfPQSAKmy1wtNrd1G3sh22y28/Eg0rJ
-         2t8rIcBk4JpTGo4IFnJnyGWvxqdMSqLnZ7l4dtoKPhx9rd33iLrKgiw0Kg5HZWD1PRIw
-         D/EW0tZhVMwlxZWfl19EUcRgyqTybBmjtrsJAC3RPVuAJxMXfp+hIKZggphdL4I+7WB/
-         hRZA==
-X-Gm-Message-State: APjAAAWcbx41zTpz1d9Gyf1IsrWl25S4BfxzxULmC92lcHTyka2zbWab
-        YoaPpTUHQOEwl6EXNlGVhKeObFevlUqZFf8pNBhpk0FQTKwXSJ9WsEP3nTYlxaZ9Ht7Xp7nhdmD
-        a2xc3unp7HrZbVagxcLz40Q==
-X-Received: by 2002:a50:fb16:: with SMTP id d22mr25119899edq.30.1570375351537;
-        Sun, 06 Oct 2019 08:22:31 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqxtY8LnU1MoovTCbhwbtJH9YruP7SXFbEh5OkwIhzOI6haHNozTxOEiKJdPxcrBFmzfbNEyQg==
-X-Received: by 2002:a50:fb16:: with SMTP id d22mr25119877edq.30.1570375351305;
-        Sun, 06 Oct 2019 08:22:31 -0700 (PDT)
-Received: from localhost.localdomain ([109.38.129.160])
-        by smtp.gmail.com with ESMTPSA id dv15sm1447787ejb.49.2019.10.06.08.22.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Oct 2019 08:22:30 -0700 (PDT)
-Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yu Chen <chenyu56@huawei.com>,
+        id S1726697AbfJFP3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 11:29:23 -0400
+Received: from mout.gmx.net ([212.227.17.21]:38857 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726333AbfJFP3Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Oct 2019 11:29:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1570375736;
+        bh=D9EXbZWdNzUEMKJgC9st3p2SqLaVHrzEQ2VeUp/pJgc=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=Dy2wdAZcfCOjc9DKMO4G6S4p4rKkFX/zkBUy45mXLjW6ZS0yLM5X/YdGuXVaMclyW
+         RBmCk53r7AE6AVKEk600rS7Uf60NUZUixgWcopLQZpPcBIa+8I567INoZIWo1TqJXK
+         LPa+A12hI/SJmYfNI/K0ijcetmTn0no0OLFj9EFA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([37.4.249.116]) by mail.gmx.com
+ (mrgmx104 [212.227.17.168]) with ESMTPSA (Nemesis) id
+ 1M72sJ-1iBNQt0eQp-008bhB; Sun, 06 Oct 2019 17:28:56 +0200
+From:   Stefan Wahren <wahrenst@gmx.net>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20191002231617.3670-1-john.stultz@linaro.org>
- <20191002231617.3670-3-john.stultz@linaro.org>
- <20191003112618.GA2420393@kroah.com>
- <CALAqxLWm_u3KsXHn4a6PdBCOKM1vs5k0xS3G5jY+M-=HBqUJag@mail.gmail.com>
- <9cfccb6a-fba1-61a3-3eb6-3009c2f5e747@redhat.com>
- <CALAqxLX3uSJKvRwzcQznaF4WK52BcM5Bh+PNXHmfDe1aTSUL8Q@mail.gmail.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <fa44a7ab-14bc-24ec-a19b-7bf15e100ce1@redhat.com>
-Date:   Sun, 6 Oct 2019 17:22:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CALAqxLX3uSJKvRwzcQznaF4WK52BcM5Bh+PNXHmfDe1aTSUL8Q@mail.gmail.com>
-Content-Language: en-US
-X-MC-Unique: P-oXfmEyOq2P-WUH8S9TOg-1
-X-Mimecast-Spam-Score: 0
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH V4 00/10] ARM: Add minimal Raspberry Pi 4 support
+Date:   Sun,  6 Oct 2019 17:28:18 +0200
+Message-Id: <1570375708-26965-1-git-send-email-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:oaevrIPGssMFFjgefH6bCBqGETYjbu6kvokh66JCjc8pzkbzgCn
+ DduSlK/gv0//R/+upcRK6CZgVQqBmFkw9pmMBi2uIyuJ4imOQqV2WvfkVH173bLaQJbG8No
+ 9K0JvL5w4KwixDtDju0KS4b5plDqf2Z+lRf0xCOueFWmpmDxAQvUfUxr8GKIORHmaNH9JMO
+ Fc2JPAe8NHraHgjucEynQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:3lhL9fo9LXc=:aAW2l6Zdjh2q+QoFDgPCVI
+ zqnMD5T8oL0CRty6U22ldNDK993Z2iM/oHnP8AThn3AiAwJU1V11o3gEBl1gN8bomN8p+sSY8
+ XZVc2qM7DiYJaniqQOun6C4daDlszk6g3+HrKdgOG2ftzhBA1s5cXUw0dTUVZjGkSnjawtA/C
+ rGFIy1OdxwfvcvcH6+wQGd4Xw+Gt+FKI9UVYpgD231O3C59GsMUbuXH8/nORZy7jmCkcvSc5l
+ s08VbWPfxkPVBwOMyhaN+z+Jzp0J+YVDdnNlkAYl/ARV5XOzYQcbZuOzAUqxw77ChRI91geEQ
+ aOtP9RtvDSTPybo450zyhOohsggqlTS1qYd4c+NS61yWuRAzNwzIXZRsc/I9Telt8YLp0j4RB
+ a77vq7i7QMszjEZXQ3HoEjO+4LzQ7/0v4leFWZ15GZU5Rytm+v1NxHKOwKVZjvNGRfRIvj7qU
+ rSY2qcKex2ZdTjNJd9nqPfbpsdUpnTx0L5O6C1EWeVVpeho/U2ialyswX/yMjHO9iCSP5esYh
+ t+IyXIDTb7ykz6ILDdOBijMf76zaUPFgWKRGlemwRm/1zLKkPA5fAs9HjmrhVIwvsuxdnf9ct
+ 0rWVwnLNzMJzsBIpTIixd0u1R/HQBxzqci8eetzd7uFPIk9LCoPOUtAwpKvTBjye3UNpdGqr2
+ SZNwwozAl5yaXkh35242bTY0My86jN4zK4M0loLDjujLNhnqHqWyamkg54GLNYMKSNkhuPYWK
+ JdqNNbuBBAX1uvzQcS4QOMgHJhL+XInCCPcOKBu4NVspmxADm/A8RhfHfhnZiXZLsv96FgEmQ
+ Y+wYWtg75d3mzLrKqjFb3Jh81pgugFwsG9lCWqRTqe5ea9NQJ6kav6rEyztWfScmW8d4bRCBM
+ m6Ae39MtREFhm/mk4RkpXBIzfXEonkriPRVg6CL5W9DbnEbUUWr1ne70oq0MiYdxo2s6HeX4p
+ hDyIaawD7sMGwS2DW1Nc6b/Fx+AlYQTg6TfRKhN9d1S0TncS08kivghH1rdQDX+EmOJvFjN63
+ Sj3fynHJ2HGa53yT6TB13nORnxk10maexznek/NykFclnHZAhMgZwtwtj9aNyW8ibp3aWPU04
+ 1/tDWZHmlU34sK15s7yJgLuvXofOMW+UMXVEuDXktTC/8OEPtTNj8I1jBI5gbzqegz/0pqs2b
+ QP7xJnpCgCRD5jjzi9qktVGN2rzQCoTkS0tEN7SmbnwzTvNJLJ4WEz1FvoykQlMmGoxeh4DGK
+ YQGt7Douc7BJjTJm9WFO5LPiPo3UGvYbx3ccp4Q==
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series adds minimal support for the new Raspberry Pi 4, so we are abl=
+e
+to login via debug UART.
 
-On 10/3/19 11:33 PM, John Stultz wrote:
-> On Thu, Oct 3, 2019 at 1:56 PM Hans de Goede <hdegoede@redhat.com> wrote:
->> On 03-10-2019 22:45, John Stultz wrote:
->>> The HiKey960 has only one USB controller, but in order to support both
->>> USB-C gadget/OTG and USB-A (host only) ports. When the USB-C
->>> connection is attached, it powers down and disconnects the hub. When
->>> the USB-C connection is detached, it powers the hub on and connects
->>> the controller to the hub.
->>
->> When you say one controller, do you mean 1 host and 1 gadget controller,
->> or is this one of these lovely devices where a gadget controller gets
->> abused as / confused with a proper host controller?
->=20
-> I'm not totally sure myself, but I believe it's the latter, as the
-> host ports have to be disabled in order for the gadet/otg port to
-> function.
->=20
-> There was a similar situation w/ the original HiKey board (dwc2
-> controller) as well, though the switching was done fully in hardware
-> and we only needed some minor tweaks to the driver to keep the state
-> transitions straight.
->=20
->> And since you are doing a usb-role-switch driver, I guess that the
->> role-switch is integrated inside the SoC, so you only get one pair
->> of USB datalines to the outside ?
->=20
-> I believe so, but again, I don't have a ton of knowledge about the SoC
-> details, Chen Yu would probably be the right person to answer, but I
-> don't know if he's doing upstreaming anymore.
->=20
->> This does seem rather special, it might help if you can provide a diagra=
-m
->> with both the relevant bits inside the SoC as well as what lives outside
->> the Soc. even if it is in ASCII art...
->=20
-> There is a schematic pdf here:
-> https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey=
-960/hardware-docs/HiKey960_Schematics.pdf
->=20
-> The larger block diagram on page 3 might be helpful, but you can find
-> more details on the usb hub bits on page 17 and 18.
+Patch 1:     Bluetooth driver fix
+Patch 2-3:   Fix some DT schema warnings
+Patch 4-5:   Prepare DTS for the new SoC BMC2711
+Patch 6-9:   Add Raspberry Pi 4 DTS support
+Patch 10:    Update MAINTAINERS
 
-Ok, so I took a quick look at the schematic and it is really funky.
+Unfortunately the Raspberry Pi Foundation didn't released a
+peripheral documentation for the new SoC yet. So we only have a preliminar=
+y
+datasheet [1] and reduced schematics [2].
 
-The USB3 superspeed data pairs are only going to the USB-3 hub and
-only the USB-2 lines are muxed between the TypeC and the HUB, so
-in theory superspeed devices could keep working while the TypeC is
-in device mode, since their data lines will still be connected,
-but I guess the controller in the SoC is switched to device mode
-then so this does not work. Likewise Vbus is an all or
-nothing thing, either both the TypeC connector + the 2 Type-A
-reeptacles get Vusb or none of them get Vusb. Also it is seems to use
-the TypeC connector in host-mode together with the A receptacles.
-I must say this is a weird design...
+Known issues:
+Since Linux 5.3-rc1 DMA doesn't work properly on that platform.
+Nicolas Saenz Julienne investigates on that issue. As a temporary workarou=
+nd
+i reverted the following patch to test this series:
 
-Anyways back the code to add a usb role switch notifier. I do
-not think that this is a good idea, this is making "core" changes
-to deal with a special case. If you are going to use a notfier for
-this then IMHO the notifier should be part of the hikey960 usb role
-swtich driver and not be in the usb-role-switch class code, since
-this is very much a device specific hack.
+79a98672 "dma-mapping: remove dma_max_pfn"
+7559d612 "mmc: core: let the dma map ops handle bouncing"
 
-Regards,
+Changes in V4:
+- add Rob's Reviewed-by
+- enable ZONE_DMA for ARCH_BCM2835
+- fix spi reference in bcm2711.dtsi
+- fix bluetooth section in RPi 4 dts
+- drop "always-on" for armv8-timer
+- add necessary Bluetooth driver fix
+- add arm64 dts link
+- additional comments to the dts files as requested by Florian
 
-Hans
+Changes in V3:
+- rebased series
+- add Reviewed-by
+- enable ARM_GIC for ARCH_BCM2835 on arm64 too
+- configure i2c pull-up in bcm2711.dtsi
+- move i2c2 to bcm2835-common.dtsi
+- add missing compatibles to DT schema as suggested by Rob
+- fix DT schema warnings in dtsi files
+- replace brcm pintrl with generic pinctrl as suggested by Linus
+- make dma_zone_size depend on CONFIG_ZONE_DMA as suggested by Matthias
+
+Changes in V2:
+- use separate board file for BCM2711
+- enable ARM_GIC for ARCH_BCM2835
+- add Acked-by and Reviewed-by
+- fix arm-pmu and timer nodes for BCM2711 reported by Marc Zyngier
+- enable HDMI at board level
+- move HDMI and pixelvalve into bcm2835-common.dtsi as suggested by Eric A=
+nholt
+- fix DWC2 probing warning by setting USB role to peripheral
+- fix order of node references in bcm2711.dtsi
+- disable I2C clock stretching quirk for BCM2711
+- mark PLLD_PER as critical clock
+- make PLLH clock unavailable on BCM2711
+- fix compile warning in clk-bcm2835 for arm64
+
+Changes since RFC:
+- change BCM2838 -> BCM2711 as discussed in RFC
+- update MAINTAINERS accordingly
+- drop "spi: bcm2835: enable shared interrupt support" from series
+- squash all pinctrl-bcm2835 changes into one patch
+- introduce SoC specific clock registration as suggested by Florian
+- fix watchdog probing for Raspberry Pi 4
+- convert brcm,bcm2835.txt to json-schema
+- move VC4 node to bcm2835-common.dtsi
+- fallback to legacy pull config for Raspberry Pi 4
+- revert unintended change of mailbox in bcm283x.dtsi
+- add reference for arm64
+
+[1] - https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm27=
+11/rpi_DATA_2711_1p0_preliminary.pdf
+[2] - https://www.raspberrypi.org/documentation/hardware/raspberrypi/schem=
+atics/rpi_SCH_4b_4p0_reduced.pdf
+
+Stefan Wahren (10):
+  bluetooth: hci_bcm: Fix RTS handling during startup
+  ARM: dts: bcm283x: Remove simple-bus from fixed clocks
+  ARM: dts: bcm283x: Remove brcm,bcm2835-pl011 compatible
+  ARM: dts: bcm283x: Move BCM2835/6/7 specific to bcm2835-common.dtsi
+  dt-bindings: arm: Convert BCM2835 board/soc bindings to json-schema
+  dt-bindings: arm: bcm2835: Add Raspberry Pi 4 to DT schema
+  ARM: bcm: Add support for BCM2711 SoC
+  ARM: dts: Add minimal Raspberry Pi 4 support
+  arm64: dts: broadcom: Add reference to RPi 4 B
+  MAINTAINERS: Add BCM2711 to BCM2835 ARCH
+
+ .../devicetree/bindings/arm/bcm/bcm2835.yaml       |  54 ++
+ .../devicetree/bindings/arm/bcm/brcm,bcm2835.txt   |  67 --
+ MAINTAINERS                                        |   3 +-
+ arch/arm/boot/dts/Makefile                         |   1 +
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts              | 123 +++
+ arch/arm/boot/dts/bcm2711.dtsi                     | 844 ++++++++++++++++=
++++++
+ arch/arm/boot/dts/bcm2835-common.dtsi              | 194 +++++
+ arch/arm/boot/dts/bcm2835-rpi.dtsi                 |   4 -
+ arch/arm/boot/dts/bcm2835.dtsi                     |   1 +
+ arch/arm/boot/dts/bcm2836.dtsi                     |   1 +
+ arch/arm/boot/dts/bcm2837.dtsi                     |   1 +
+ arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi  |   7 +
+ arch/arm/boot/dts/bcm283x.dtsi                     | 190 +----
+ arch/arm/mach-bcm/Kconfig                          |   4 +-
+ arch/arm/mach-bcm/Makefile                         |   3 +-
+ arch/arm/mach-bcm/bcm2711.c                        |  24 +
+ arch/arm64/Kconfig.platforms                       |   5 +-
+ arch/arm64/boot/dts/broadcom/Makefile              |   3 +-
+ arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dts   |   2 +
+ drivers/bluetooth/hci_bcm.c                        |   2 +
+ 20 files changed, 1272 insertions(+), 261 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm2835=
+.txt
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+ create mode 100644 arch/arm/boot/dts/bcm2711.dtsi
+ create mode 100644 arch/arm/boot/dts/bcm2835-common.dtsi
+ create mode 100644 arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+ create mode 100644 arch/arm/mach-bcm/bcm2711.c
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+
+=2D-
+2.7.4
 
