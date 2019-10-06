@@ -2,224 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8F3CCD59
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 02:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E85CCD64
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 02:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726856AbfJFACh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 20:02:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33058 "EHLO mail.kernel.org"
+        id S1726867AbfJFANE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 20:13:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39538 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726706AbfJFACh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Oct 2019 20:02:37 -0400
+        id S1725947AbfJFANE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Oct 2019 20:13:04 -0400
 Received: from dragon (li937-157.members.linode.com [45.56.119.157])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 22DCD222C0;
-        Sun,  6 Oct 2019 00:02:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 637D7222C0;
+        Sun,  6 Oct 2019 00:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570320156;
-        bh=yTgE0dy7KLCeaBRYRl+sD/TC/pXpal0eWwziIsdi5ts=;
+        s=default; t=1570320782;
+        bh=kJuxi48nJa4CAAPVH65osutY5LAiDplP0tGesjL18yw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2Lz95ynBhd0IJAF3MtvyftF0MuZEFQMWnUREeMZ5Vhm9dMcO8Jmw1dbbFLWCK7AiO
-         /CL8mcrWhNupitnItw5Wp984jJhVDReDOu/bDzVDDqX2nXpjPnq53n1/yPXksm5tp8
-         T+CYwcfFVa47MXyT7ukGcSQUpv874+lZXIuFRUT4=
-Date:   Sun, 6 Oct 2019 08:02:23 +0800
+        b=ilE0BypVLJ2q8odw3kR2vc7TI+bjYK2WhITkMzQ94qAIDanYG5dcddvg3wvzdwn98
+         /bs9pqB2H5GNzH0FbsMXSqyYLx4qspBuZY/bp8k0OwuN0kqbhx09CCnBT4FPLBIubZ
+         tAa6xlsRUNz+RTlpyER2T52fXpOva1Vr7WYzZuSQ=
+Date:   Sun, 6 Oct 2019 08:12:50 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-input@vger.kernel.org, Denis Carikli <denis@eukrea.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] Input: tsc2007 - use GPIO descriptor
-Message-ID: <20191006000222.GA7150@dragon>
-References: <20190823071021.5598-1-linus.walleij@linaro.org>
- <20190902155144.GK187474@dtor-ws>
+To:     Yuantian Tang <andy.tang@nxp.com>
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: lx2160a: add tmu device node
+Message-ID: <20191006001249.GB7150@dragon>
+References: <20190903033132.17661-1-andy.tang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190902155144.GK187474@dtor-ws>
+In-Reply-To: <20190903033132.17661-1-andy.tang@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 08:51:44AM -0700, Dmitry Torokhov wrote:
-> On Fri, Aug 23, 2019 at 09:10:21AM +0200, Linus Walleij wrote:
-> > This switches the TSC2007 to use a GPIO descriptor to read
-> > the pendown GPIO line.
-> > 
-> > As this will make the gpiolib start to respect polarity
-> > inversion flags on the GPIO lines, drop the inversion when
-> > reading the line with gpio_get_value(), fix two offenders
-> > in the i.MX device trees, and also emphasize the importance
-> > of marking the polarity right in the device tree bindings.
-> > 
-> > Cc: Denis Carikli <denis@eukrea.com>
-> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > Cc: H. Nikolaus Schaller <hns@goldelico.com>
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> > ChangeLog v1->v2:
-> > - Drop inversion on the GPIO descriptor value, rely on the
-> >   gpiolib to handle polarity inversion.
-> > - Comb through device trees, identify two offenders, fix
-> >   them as part of the patch for a clean cut.
-> > - Also fix the device tree bindings.
-> > ---
-> >  .../bindings/input/touchscreen/tsc2007.txt         |  5 +++--
-> >  arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi       |  3 ++-
-> >  arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi       |  3 ++-
+On Tue, Sep 03, 2019 at 11:31:32AM +0800, Yuantian Tang wrote:
+> Add the TMU (Thermal Monitoring Unit) device node to enable
+> TMU feature.
 > 
-> Shawn, Sascha, any objections to these DTS changes?
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+> ---
+>  .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 108 +++++++++++++++---
+>  1 file changed, 92 insertions(+), 16 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> index 39d497df769e..e70ddd01cd84 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> @@ -6,6 +6,7 @@
+>  
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  /memreserve/ 0x80000000 0x00010000;
+>  
+> @@ -24,7 +25,7 @@
+>  		#size-cells = <0>;
+>  
+>  		// 8 clusters having 2 Cortex-A72 cores each
+> -		cpu@0 {
+> +		cpu0: cpu@0 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -38,9 +39,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster0_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@1 {
+> +		cpu1: cpu@1 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -54,9 +56,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster0_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@100 {
+> +		cpu100: cpu@100 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -70,9 +73,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster1_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@101 {
+> +		cpu101: cpu@101 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -86,9 +90,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster1_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@200 {
+> +		cpu200: cpu@200 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -102,9 +107,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster2_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@201 {
+> +		cpu201: cpu@201 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -118,9 +124,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster2_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@300 {
+> +		cpu300: cpu@300 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -134,9 +141,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster3_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@301 {
+> +		cpu301: cpu@301 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -150,9 +158,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster3_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@400 {
+> +		cpu400: cpu@400 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -166,9 +175,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster4_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@401 {
+> +		cpu401: cpu@401 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -182,9 +192,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster4_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@500 {
+> +		cpu500: cpu@500 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -198,9 +209,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster5_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@501 {
+> +		cpu501: cpu@501 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -214,9 +226,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster5_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@600 {
+> +		cpu600: cpu@600 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -230,9 +243,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster6_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@601 {
+> +		cpu601: cpu@601 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -246,9 +260,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster6_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@700 {
+> +		cpu700: cpu@700 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -262,9 +277,10 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster7_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+> -		cpu@701 {
+> +		cpu701: cpu@701 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a72";
+>  			enable-method = "psci";
+> @@ -278,6 +294,7 @@
+>  			i-cache-sets = <192>;
+>  			next-level-cache = <&cluster7_l2>;
+>  			cpu-idle-states = <&cpu_pw20>;
+> +			#cooling-cells = <2>;
+>  		};
+>  
+>  		cluster0_l2: l2-cache0 {
+> @@ -422,6 +439,51 @@
+>  		clock-output-names = "sysclk";
+>  	};
+>  
+> +	thermal-zones {
+> +		core_thermal1: core-thermal1 {
+> +			polling-delay-passive = <1000>;
+> +			polling-delay = <5000>;
+> +			thermal-sensors = <&tmu 0>;
+> +
+> +			trips {
+> +				core_cluster_alert: core-cluster-alert {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				core_cluster_crit: core-cluster-crit {
+> +					temperature = <95000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&core_cluster_alert>;
+> +					cooling-device =
+> +						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu200 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu201 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu300 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu301 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu400 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu401 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu500 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu501 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu600 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu601 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu700 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu701 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		#address-cells = <2>;
+> @@ -689,6 +751,20 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		tmu: tmu@1f80000 {
 
-No objections from me.  But in generally, we prefer to have DTS changes
-in separate patch going through arm-soc tree.
+Keep the nodes sorted in unit-address.
+
+> +			compatible = "fsl,qoriq-tmu";
+> +			reg = <0x0 0x1f80000 0x0 0x10000>;
+> +			interrupts = <0 23 0x4>;
+
+IRQ_TYPE_LEVEL_HIGH
+
+> +			fsl,tmu-range = <0x800000E6 0x8001017D>;
+
+Use lowercase for hex values.
 
 Shawn
 
-> 
-> >  drivers/input/touchscreen/tsc2007.h                |  4 +++-
-> >  drivers/input/touchscreen/tsc2007_core.c           | 14 +++++++-------
-> >  5 files changed, 17 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> > index ed00f61b8c08..b08b54d49699 100644
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> > @@ -7,7 +7,8 @@ Required properties:
-> >  
-> >  Optional properties:
-> >  - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
-> > -  The penirq pin goes to low when the panel is touched.
-> > +  The penirq pin goes to low when the panel is touched, so make sure to tag
-> > +  the GPIO line with GPIO_ACTIVE_LOW.
-> >    (see GPIO binding[1] for more details).
-> >  - interrupts: (gpio) interrupt to which the chip is connected
-> >    (see interrupt binding[0]).
-> > @@ -31,7 +32,7 @@ Example:
-> >  			reg = <0x49>;
-> >  			interrupt-parent = <&gpio4>;
-> >  			interrupts = <0x0 0x8>;
-> > -			gpios = <&gpio4 0 0>;
-> > +			gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
-> >  			ti,x-plate-ohms = <180>;
-> >  		};
-> >  
-> > diff --git a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
-> > index 17bd2a97609a..b8ac60622936 100644
-> > --- a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
-> > +++ b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
-> > @@ -3,6 +3,7 @@
-> >   * Copyright 2013 Eukréa Electromatique <denis@eukrea.com>
-> >   */
-> >  
-> > +#include <dt-bindings/gpio/gpio.h>
-> >  #include "imx35.dtsi"
-> >  
-> >  / {
-> > @@ -33,7 +34,7 @@
-> >  
-> >  	tsc2007: tsc2007@48 {
-> >  		compatible = "ti,tsc2007";
-> > -		gpios = <&gpio3 2 0>;
-> > +		gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
-> >  		interrupt-parent = <&gpio3>;
-> >  		interrupts = <0x2 0x8>;
-> >  		pinctrl-names = "default";
-> > diff --git a/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi b/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
-> > index c2a929ba8ceb..016d0bc64bdb 100644
-> > --- a/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
-> > +++ b/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
-> > @@ -3,6 +3,7 @@
-> >   * Copyright 2013 Eukréa Electromatique <denis@eukrea.com>
-> >   */
-> >  
-> > +#include <dt-bindings/gpio/gpio.h>
-> >  #include "imx51.dtsi"
-> >  
-> >  / {
-> > @@ -33,7 +34,7 @@
-> >  
-> >  	tsc2007: tsc2007@49 {
-> >  		compatible = "ti,tsc2007";
-> > -		gpios = <&gpio4 0 1>;
-> > +		gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
-> >  		interrupt-parent = <&gpio4>;
-> >  		interrupts = <0x0 0x8>;
-> >  		pinctrl-names = "default";
-> > diff --git a/drivers/input/touchscreen/tsc2007.h b/drivers/input/touchscreen/tsc2007.h
-> > index 91c60bf6dcaf..0306c38b56c7 100644
-> > --- a/drivers/input/touchscreen/tsc2007.h
-> > +++ b/drivers/input/touchscreen/tsc2007.h
-> > @@ -49,6 +49,8 @@
-> >  #define READ_X		(ADC_ON_12BIT | TSC2007_MEASURE_X)
-> >  #define PWRDOWN		(TSC2007_12BIT | TSC2007_POWER_OFF_IRQ_EN)
-> >  
-> > +struct gpio_desc;
-> > +
-> >  struct ts_event {
-> >  	u16	x;
-> >  	u16	y;
-> > @@ -69,7 +71,7 @@ struct tsc2007 {
-> >  	int			fuzzy;
-> >  	int			fuzzz;
-> >  
-> > -	unsigned int		gpio;
-> > +	struct gpio_desc	*gpiod;
-> >  	int			irq;
-> >  
-> >  	wait_queue_head_t	wait;
-> > diff --git a/drivers/input/touchscreen/tsc2007_core.c b/drivers/input/touchscreen/tsc2007_core.c
-> > index 3b80abfc1eca..0eadd6d86fa0 100644
-> > --- a/drivers/input/touchscreen/tsc2007_core.c
-> > +++ b/drivers/input/touchscreen/tsc2007_core.c
-> > @@ -23,7 +23,7 @@
-> >  #include <linux/interrupt.h>
-> >  #include <linux/i2c.h>
-> >  #include <linux/of_device.h>
-> > -#include <linux/of_gpio.h>
-> > +#include <linux/gpio/consumer.h>
-> >  #include <linux/platform_data/tsc2007.h>
-> >  #include "tsc2007.h"
-> >  
-> > @@ -226,7 +226,7 @@ static int tsc2007_get_pendown_state_gpio(struct device *dev)
-> >  	struct i2c_client *client = to_i2c_client(dev);
-> >  	struct tsc2007 *ts = i2c_get_clientdata(client);
-> >  
-> > -	return !gpio_get_value(ts->gpio);
-> > +	return gpiod_get_value(ts->gpiod);
-> >  }
-> >  
-> >  static int tsc2007_probe_dt(struct i2c_client *client, struct tsc2007 *ts)
-> > @@ -266,13 +266,13 @@ static int tsc2007_probe_dt(struct i2c_client *client, struct tsc2007 *ts)
-> >  		return -EINVAL;
-> >  	}
-> >  
-> > -	ts->gpio = of_get_gpio(np, 0);
-> > -	if (gpio_is_valid(ts->gpio))
-> > +	ts->gpiod = devm_gpiod_get_optional(&client->dev, NULL, GPIOD_IN);
-> > +	if (IS_ERR(ts->gpiod))
-> > +		return PTR_ERR(ts->gpiod);
-> > +	if (ts->gpiod)
-> >  		ts->get_pendown_state = tsc2007_get_pendown_state_gpio;
-> >  	else
-> > -		dev_warn(&client->dev,
-> > -			 "GPIO not specified in DT (of_get_gpio returned %d)\n",
-> > -			 ts->gpio);
-> > +		dev_warn(&client->dev, "GPIO not specified in DT\n");
-> >  
-> >  	return 0;
-> >  }
-> > -- 
-> > 2.21.0
-> > 
-> 
+> +			fsl,tmu-calibration =
+> +				/* Calibration data group 1 */
+> +				<0x00000000 0x00000035
+> +				/* Calibration data group 2 */
+> +				0x00010001 0x00000154>;
+> +			little-endian;
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+>  		uart0: serial@21c0000 {
+>  			compatible = "arm,sbsa-uart","arm,pl011";
+>  			reg = <0x0 0x21c0000 0x0 0x1000>;
 > -- 
-> Dmitry
+> 2.17.1
+> 
