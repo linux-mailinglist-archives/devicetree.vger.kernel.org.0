@@ -2,94 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A0BCCDCF
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 04:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACFC1CCDF9
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2019 04:55:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725935AbfJFCAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Oct 2019 22:00:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35662 "EHLO mail.kernel.org"
+        id S1725917AbfJFCzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Oct 2019 22:55:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50008 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725801AbfJFCAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Oct 2019 22:00:30 -0400
+        id S1725801AbfJFCzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Oct 2019 22:55:16 -0400
 Received: from dragon (li937-157.members.linode.com [45.56.119.157])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4E53A218AC;
-        Sun,  6 Oct 2019 01:59:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4D539218AC;
+        Sun,  6 Oct 2019 02:55:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570327229;
-        bh=c+PDK9PdBWeKgicXAkks/m/JE6AGhT/LowZoiedqZro=;
+        s=default; t=1570330515;
+        bh=ieq18tBRGO65LoXREEvWqq2qiGQbPennPGhSD9vJ4AM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fR5wuOg5eKsMSOc4WOitA6WL61fR4NMKj+yAPKAo51oRtS1FuQwft2UTm46fefZWI
-         fq74W2Ux64Wiil1DSbB3MljCikBphpo5Af9hVuVpn5o0eE6SaeOcfx70RYWhq38n3+
-         m0pejNP7trXxFEtmLaMpzsYoPY/iN+/KFLlC68m4=
-Date:   Sun, 6 Oct 2019 09:59:44 +0800
+        b=CD9w2Sr+yn51n+HDlK6lfj/NCATJMKBOJPO3TOvHsen/CPup5K1msxudmTCDNdxbm
+         UcMmcAN3eompehkCvRvn1INLn0czUQwGmi/FrRruD6GrFL8nm0gQ2HQTItwsSiflAt
+         odf3cv3YudRWWjZDj6zUJmJOm+NFPVLPzpIgD2QI=
+Date:   Sun, 6 Oct 2019 10:54:52 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Eddy Petrisor <eddy.petrisor@nxp.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: arm: fsl: Add the S32V234-EVB board
-Message-ID: <20191006015942.GK7150@dragon>
-References: <20190905115803.19565-1-stefan-gabriel.mirea@nxp.com>
- <20190905115803.19565-2-stefan-gabriel.mirea@nxp.com>
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>, Li Yang <leoyang.li@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, xiaobo.xie@nxp.com,
+        jiafei.pan@nxp.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: Re: [PATCH v1] usb: dwc3: enable otg mode for dwc3 usb ip on
+ layerscape
+Message-ID: <20191006025450.GO7150@dragon>
+References: <20190909090244.42543-1-yinbo.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190905115803.19565-2-stefan-gabriel.mirea@nxp.com>
+In-Reply-To: <20190909090244.42543-1-yinbo.zhu@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 11:58:32AM +0000, Stefan-gabriel Mirea wrote:
-> From: Eddy Petrișor <eddy.petrisor@nxp.com>
+On Mon, Sep 09, 2019 at 05:02:44PM +0800, Yinbo Zhu wrote:
+> layerscape otg function should be supported HNP SRP and ADP protocol
+> accroing to rm doc, but dwc3 code not realize it and use id pin to
+> detect who is host or device(0 is host 1 is device) this patch is to
+> enable OTG mode on ls1028ardb ls1088ardb and ls1046ardb in dts
 > 
-> Add entry for the NXP S32V234 Customer Evaluation Board to the board/SoC
-> bindings.
-> 
-> Signed-off-by: Eddy Petrișor <eddy.petrisor@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
 
-I'm about to apply the patches, but found the messages are using base64
-Content-Transfer-Encoding, which is difficult for me to apply patch
-from.  Please fix it and resend.
+The patch prefix should be something like: 'arm64: dts: ...'
+
+@Leo, do you agree with the changes?
 
 Shawn
 
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 2 +-
+>  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 7294ac36f4c0..597c563bdec9 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -309,4 +309,10 @@ properties:
->                - fsl,ls2088a-rdb
->            - const: fsl,ls2088a
->  
-> +      - description: S32V234 based Boards
-> +        items:
-> +          - enum:
-> +              - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
-> +          - const: fsl,s32v234
-> +
->  ...
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 7975519b4f56..5810d0400dbc 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -320,7 +320,7 @@
+>  			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
+>  			reg = <0x0 0x3110000 0x0 0x10000>;
+>  			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "host";
+> +			dr_mode = "otg";
+>  			snps,dis_rxdet_inp3_quirk;
+>  			snps,quirk-frame-length-adjustment = <0x20>;
+>  			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> index b0ef08b090dd..ecce6151b9b0 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> @@ -582,7 +582,7 @@
+>  			compatible = "snps,dwc3";
+>  			reg = <0x0 0x3000000 0x0 0x10000>;
+>  			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "host";
+> +			dr_mode = "otg";
+>  			snps,quirk-frame-length-adjustment = <0x20>;
+>  			snps,dis_rxdet_inp3_quirk;
+>  			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> index dacd8cf03a7f..4b5413f7c90c 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> @@ -385,7 +385,7 @@
+>  			compatible = "snps,dwc3";
+>  			reg = <0x0 0x3110000 0x0 0x10000>;
+>  			interrupts = <0 81 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "host";
+> +			dr_mode = "otg";
+>  			snps,quirk-frame-length-adjustment = <0x20>;
+>  			snps,dis_rxdet_inp3_quirk;
+>  			status = "disabled";
 > -- 
-> 2.22.0
+> 2.17.1
 > 
