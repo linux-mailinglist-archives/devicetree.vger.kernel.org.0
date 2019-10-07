@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A76CEE6A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 23:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FC14CEE78
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 23:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728702AbfJGV3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 17:29:48 -0400
-Received: from mail-eopbgr140080.outbound.protection.outlook.com ([40.107.14.80]:18646
+        id S1728980AbfJGVga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 17:36:30 -0400
+Received: from mail-eopbgr140087.outbound.protection.outlook.com ([40.107.14.87]:23304
         "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728330AbfJGV3s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 17:29:48 -0400
+        id S1728654AbfJGVga (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 17:36:30 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RX0Sw6q2tINHkblb9D4zuW0NgUo6Aj5R07ovF+CdrpyDGb2qBNyiKlPNdOOJfzPXLVLg61EL+iqtsCGFLBwLoiK9YSbv0wWxiLCrgooueRZfGKHuy79MO/gtgPxG6BNVWwqM7t330y9/oJrJHCxI54crx13aEnOIDCF/BcW3IRxCXK20saHYEqdc9WsO/1FszxnAuv8Q3eHoZH/BLsujq1wkY7orST6tFyyx4a0B7TGt0B7c6NWbltlQn530otVQ1h/oTjULIUNzhS4F0F8s16J1t9II02PJtQ/KL2iwq1MzP6iYJrUKkYabys2cXhl+rHiGl0f0Y3d9tRthYvWpMQ==
+ b=nKR/PS2geALwHm/hD3c4gqKaZWTcmrnCCYx9nallOPhwWMFvRqIEVwixumTsKuvN/3/NmxV5kBpM92InTzLp9ml3+B8RrSKeLRiANbO5Hd4Rkbin+KwIOIDMu4io8SUgZCBZlQwYhyae124EvdOGVgVDRoqEgxcFWkM6KmicW/hQNJMpfJFP94VX4Zt+UuRlhPPlvrU+4Akl7sxDQRRv7Hd1NIczK8sJZC4cswK8A48OaN9iNyhaHc+/IxI3kQvqPHWFemEU0PKgdCE4etArq2vCBeu+HWJ/jAEqybSebtoyW3mQWLx+4NvmfmV9/uZ7eCSi9LVkgmgazwvp/c5IRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dQZOqUsbFsCWC1X2Q71QaN6e07yIhpF2OaCSFCSoEbo=;
- b=nBxCClpMs1VI5rWYXEtOsunNUTFESHV+WsYL5nqaelWu78mpDHEgf3GW7O4XyR2bgi5JB73LJWZulaodd6DxHmF0U0UZhvjNm5jvixNJOp1OqP6QdrlHWcWepY80XVnilmRZSBTYvW4pCjudDspfUQWLL/GX7fF2sTIeN1zoiUy4dWXiLyMcIWmdiKYzSaEZ626IAvxQ05L+dvc078bTybJIy6WuYEb4Vpz+zDuF/QYxTGEsCYq/yiXIgvK4+sDtkZApWrp3o6kLrs/h5ZleLnNImeyqcMWdgxiY9ijVcoUyu8gFWZPAVk9ULielgSKvcR7CnBahdwmBXYYujFb5PQ==
+ bh=ei25beopCtm1f87mBuCBJIwvy5p0S1xRGw56QyoxYRI=;
+ b=D0r8FgC2cTeNZBB7SqANVIFUgX6Ckjqx/IEMErzt83Ryz4JDZLn3Xf8agIqxl6NU7PQKX2k+1vhk2YAk3m+3nwL4JqVpqB929yoojwiKRwdm+SdCr74cMMvWrJQB01qqub58ZDMFU4QWM7IK99qRQVRYubEbl0DitdPkdt1Nr5xYNRCC1jx0nTJM4qvtlo5kaeOlNDiHtPPBfg+36R4BxrP3BCspkuH2G59FCcpYgrxrVOTuhf1BgJDtE1dVMVR2zWhgGJX8zcB1shAKx41nYqIRw77LNEQdG1Be5DJGgIaxAuuLIOO+dUrSmYCczwH+p9uiE+WitaXexh4PVxpU0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dQZOqUsbFsCWC1X2Q71QaN6e07yIhpF2OaCSFCSoEbo=;
- b=HW3DLpkiOg0G4uimEcRRm3FOFhvDwTc+AZ+dkLNkPb1FpTA44t8N8pNGLTPR2NngpDK4an4i+dFrHyRQ3NXSh7qb2ehPrYBDHevq8SDqGI2eqTWWt07VjfA/pwPef+RSCwBt2Zf0KXPbreguwKP0PCcE+f7pQU+Tq1FXX66tX0w=
+ bh=ei25beopCtm1f87mBuCBJIwvy5p0S1xRGw56QyoxYRI=;
+ b=aLdYhfC9mozXwUWUi5QKcJVD0aZYjNt9ao4+IqqKrwWdFhSjmKeO1PSZLe6f+3aZlFEvyf8DwEkflSfch1juvRZnrWqOOBfVW8I4iOxbdliwBNne/XYTY01WTpzUN2dp2W3eplaUZwrI3QxvSqWrrngYAgkfvoDdoVJtTDWv1jo=
 Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (20.179.234.30) by
- VE1PR04MB6624.eurprd04.prod.outlook.com (20.179.234.138) with Microsoft SMTP
+ VE1PR04MB6749.eurprd04.prod.outlook.com (10.255.118.22) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2327.24; Mon, 7 Oct 2019 21:29:05 +0000
+ 15.20.2327.24; Mon, 7 Oct 2019 21:36:24 +0000
 Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
  ([fe80::c93:c279:545b:b6b6]) by VE1PR04MB6687.eurprd04.prod.outlook.com
  ([fe80::c93:c279:545b:b6b6%3]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
- 21:29:04 +0000
+ 21:36:24 +0000
 From:   Leo Li <leoyang.li@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>
-CC:     "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Shawn Guo <shawnguo@kernel.org>, Ran Wang <ran.wang_1@nxp.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [v2 1/2] arm64: dts: ls1028a: Update the clock providers for the
- Mali DP500
-Thread-Topic: [v2 1/2] arm64: dts: ls1028a: Update the clock providers for the
- Mali DP500
-Thread-Index: AQHVb4/BB/czJT1iOU+K17Me+HjXaKdPN1eAgACV0dA=
-Date:   Mon, 7 Oct 2019 21:29:04 +0000
-Message-ID: <VE1PR04MB66870A436BB8DC00979693D98F9B0@VE1PR04MB6687.eurprd04.prod.outlook.com>
-References: <20190920083419.5092-1-wen.he_1@nxp.com>
- <20191007123203.GL7150@dragon>
-In-Reply-To: <20191007123203.GL7150@dragon>
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH] arm64: dts: lx2160a: Correct CPU core idle state name
+Thread-Topic: [PATCH] arm64: dts: lx2160a: Correct CPU core idle state name
+Thread-Index: AQHVbSoQgKuB1YvE4E++c/2kBBS2fqdPMKwAgACjaGA=
+Date:   Mon, 7 Oct 2019 21:36:24 +0000
+Message-ID: <VE1PR04MB66874D4C179BA0AD091AC3DB8F9B0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20190917073357.5895-1-ran.wang_1@nxp.com>
+ <20191007115104.GF7150@dragon>
+In-Reply-To: <20191007115104.GF7150@dragon>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -61,32 +58,31 @@ authentication-results: spf=none (sender IP is )
  smtp.mailfrom=leoyang.li@nxp.com; 
 x-originating-ip: [64.157.242.222]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7a59e3c4-9c32-4021-48de-08d74b6d6122
+x-ms-office365-filtering-correlation-id: 2696280a-3eed-48a3-a3f3-08d74b6e670c
 x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: VE1PR04MB6624:|VE1PR04MB6624:
-x-ms-exchange-purlcount: 1
+x-ms-traffictypediagnostic: VE1PR04MB6749:|VE1PR04MB6749:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB66248614C34F076BC26BA80F8F9B0@VE1PR04MB6624.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:561;
+x-microsoft-antispam-prvs: <VE1PR04MB6749E86F6E03C13BB4279AEA8F9B0@VE1PR04MB6749.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:462;
 x-forefront-prvs: 01834E39B7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(136003)(366004)(39860400002)(376002)(346002)(13464003)(199004)(189003)(102836004)(256004)(55016002)(6246003)(52536014)(14444005)(71190400001)(66066001)(76176011)(74316002)(305945005)(9686003)(7736002)(66446008)(66556008)(66946007)(66476007)(64756008)(33656002)(6436002)(110136005)(99286004)(6306002)(478600001)(229853002)(5660300002)(26005)(71200400001)(8936002)(53546011)(6506007)(316002)(81166006)(81156014)(54906003)(8676002)(4326008)(14454004)(11346002)(966005)(6636002)(446003)(2906002)(86362001)(15650500001)(45080400002)(25786009)(486006)(476003)(7696005)(3846002)(76116006)(6116002)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6624;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(396003)(376002)(136003)(39860400002)(346002)(13464003)(199004)(189003)(186003)(4326008)(2906002)(6116002)(26005)(55016002)(6436002)(33656002)(64756008)(66946007)(102836004)(66556008)(66476007)(6636002)(76116006)(25786009)(6246003)(66446008)(71200400001)(9686003)(229853002)(7696005)(71190400001)(99286004)(76176011)(305945005)(3846002)(74316002)(53546011)(66066001)(7736002)(256004)(14444005)(6506007)(110136005)(11346002)(446003)(54906003)(476003)(14454004)(486006)(316002)(5660300002)(8936002)(8676002)(81156014)(81166006)(478600001)(52536014)(86362001);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6749;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
 received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wzdBB9LJ/d95tfCw69xJ73v0fnLhse9CVZkPx7y27/2bpW2Fw0VOAH0KIUseTIO/K2qtOhQSDqea47e2s2WI7TqFiFWEBTn9cFif5BJ2M2mcGMkB20U+I9BxnXklmWh358r9He3Q7Tae6KCr5502+dn58hA/NQCzc8tDqy5PnPNBmc9aQRo6g4PWEgzTMnwZhNySzefO63rgIxTjoMTcsN/MYe8JyckaHYMaJZAaQ5T3pd8odl704kV/PvYIk4BO9aZv2RD3sbQpsTzBXUjwkyvxjCrKbM6nrOGPCNh1iDv4bw05RcojO9ws6cVsSO8cCNZZ+ApeP4IdEs6hZvFeNPiELVYnl5zWsJu/9WHaTLqMNoZ9kg2xezdk8jWPox3MbKiqrDXPpV+nshf8cuUo0L+ikbRcXlUThcrQHUDz/As=
+x-microsoft-antispam-message-info: vfToijxhyQ7YVdx+vuxNSbRq5mLgIbI7WlUPrSNFiCvTe8lC7gnCi00Gy0XgvdlQqQoyIy/1gnyDiOnx1kPcn38JpqVmjUmw9YnkIrQe9QPH6+At+1F6qIfLrwEys/4I+Imj9y46qGveRRSkSOwVAK3m9NeSVwTku2qbcDL9tRYd1ZVleEkjAJ89MGHHXMeqY3ZgW6kV3T0iO8tuKPrlkhWoh9Xe7W2P3vAXNAhJfAgH7V+1oLDCtcP9gkq6r4UwWMsb8B3+Qt1+qx0HPPdS5VUhlmt42fhut93qfrKiZPT2nq/EULS3pR12vTPEuzgOizOGowBKW3y2yBh3ycrxWUNJs3eRNknUSUHxgaEcj4G6mBA1qUZsGuEEpJOCQqcxAfEN5JE0jB2PdJlx2BTaX2XmICv/QSl68hme329+1Oc=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a59e3c4-9c32-4021-48de-08d74b6d6122
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 21:29:04.8430
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2696280a-3eed-48a3-a3f3-08d74b6e670c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 21:36:24.2332
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3FlobGwHACM4pohE1ApgmbIZN0h1Hd8Kjfs7OlVD7LYF/VqEDjYdZa7ww1f00lAduMX8JBXZIZRhhO4RGul0lg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6624
+X-MS-Exchange-CrossTenant-userprincipalname: cKe6iu2w3Vt4s2rekkmEKMey0TeksJLfy1WtXEEYWZCJ2QsKbHqo/o9xTLhGQN+VSpklnZWnhq4XUu4FndeS2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6749
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -96,31 +92,22 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 > -----Original Message-----
 > From: Shawn Guo <shawnguo@kernel.org>
-> Sent: Monday, October 7, 2019 7:32 AM
-> To: Wen He <wen.he_1@nxp.com>
-> Cc: linux-devel@linux.nxdi.nxp.com; Leo Li <leoyang.li@nxp.com>; Rob
-> Herring <robh+dt@kernel.org>; Mark Rutland <mark.rutland@arm.com>;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org
-> Subject: Re: [v2 1/2] arm64: dts: ls1028a: Update the clock providers for=
- the
-> Mali DP500
+> Sent: Monday, October 7, 2019 6:51 AM
+> To: Ran Wang <ran.wang_1@nxp.com>; Leo Li <leoyang.li@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>; Mark Rutland
+> <mark.rutland@arm.com>; linux-arm-kernel@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> Subject: Re: [PATCH] arm64: dts: lx2160a: Correct CPU core idle state nam=
+e
 >=20
-> On Fri, Sep 20, 2019 at 04:34:18PM +0800, Wen He wrote:
-> > In order to maximise performance of the LCD Controller's 64-bit AXI
-> > bus, for any give speed bin of the device, the AXI master interface
-> > clock(ACLK) clock can be up to CPU_frequency/2, which is already
-> > capable of optimal performance. In general, ACLK is always expected to
-> > be equal to CPU_frequency/2. APB slave interface clock(PCLK) and Main
-> > processing clock(PCLK) both are tied to the same clock as ACLK.
+> On Tue, Sep 17, 2019 at 03:33:56PM +0800, Ran Wang wrote:
+> > lx2160a support PW15 but not PW20, correct name to avoid confusing.
 > >
-> > This change followed the LS1028A Architecture Specification Manual.
-> >
-> > Signed-off-by: Wen He <wen.he_1@nxp.com>
+> > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 >=20
-> @Leo, agree?
+> Leo, agree?
 
-Yes.
+Ya.  The statement is correct.
 
 Acked-by: Li Yang <leoyang.li@nxp.com>
 
@@ -128,60 +115,172 @@ Acked-by: Li Yang <leoyang.li@nxp.com>
 > Shawn
 >=20
 > > ---
-> > change in v2:
-> >         - add details commit description for this change.
-> >         - v1: Link:
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flor=
-e
-> > .kernel.org%2Fpatchwork%2Fpatch%2F1119145%2F&amp;data=3D02%7C01%
-> 7Cleoyan
+> >  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 36 +++++++++++++-----=
+-
+> -------
+> >  1 file changed, 18 insertions(+), 18 deletions(-)
 > >
-> g.li%40nxp.com%7C628134d8d86548af60ab08d74b227a54%7C686ea1d3bc2b4
-> c6fa9
+> > diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> > index 408e0ec..b032f38 100644
+> > --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> > @@ -33,7 +33,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster0_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
 > >
-> 2cd99c5c301635%7C0%7C0%7C637060483779667257&amp;sdata=3DvX2DqsXlKE
-> SqesXy
-> > LwTqnBFt0GftY0XNphkmx5dR7vA%3D&amp;reserved=3D0
+> >  		cpu@1 {
+> > @@ -49,7 +49,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster0_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
 > >
-> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 17 ++---------------
-> >  1 file changed, 2 insertions(+), 15 deletions(-)
+> >  		cpu@100 {
+> > @@ -65,7 +65,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster1_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
 > >
-> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > index 72b9a75976a1..51fa8f57fdac 100644
-> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > @@ -86,20 +86,6 @@
-> >  		clocks =3D <&osc_27m>;
-> >  	};
+> >  		cpu@101 {
+> > @@ -81,7 +81,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster1_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
 > >
-> > -	aclk: clock-axi {
-> > -		compatible =3D "fixed-clock";
-> > -		#clock-cells =3D <0>;
-> > -		clock-frequency =3D <650000000>;
-> > -		clock-output-names=3D "aclk";
-> > -	};
-> > -
-> > -	pclk: clock-apb {
-> > -		compatible =3D "fixed-clock";
-> > -		#clock-cells =3D <0>;
-> > -		clock-frequency =3D <650000000>;
-> > -		clock-output-names=3D "pclk";
-> > -	};
-> > -
-> >  	reboot {
-> >  		compatible =3D"syscon-reboot";
-> >  		regmap =3D <&dcfg>;
-> > @@ -679,7 +665,8 @@
-> >  		interrupts =3D <0 222 IRQ_TYPE_LEVEL_HIGH>,
-> >  			     <0 223 IRQ_TYPE_LEVEL_HIGH>;
-> >  		interrupt-names =3D "DE", "SE";
-> > -		clocks =3D <&dpclk 0>, <&aclk>, <&aclk>, <&pclk>;
-> > +		clocks =3D <&dpclk 0>, <&clockgen 2 2>, <&clockgen 2 2>,
-> > +			 <&clockgen 2 2>;
-> >  		clock-names =3D "pxlclk", "mclk", "aclk", "pclk";
-> >  		arm,malidp-output-port-lines =3D /bits/ 8 <8 8 8>;
-> >  		arm,malidp-arqos-value =3D <0xd000d000>;
+> >  		cpu@200 {
+> > @@ -97,7 +97,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster2_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@201 {
+> > @@ -113,7 +113,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster2_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@300 {
+> > @@ -129,7 +129,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster3_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@301 {
+> > @@ -145,7 +145,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster3_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@400 {
+> > @@ -161,7 +161,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster4_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@401 {
+> > @@ -177,7 +177,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster4_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@500 {
+> > @@ -193,7 +193,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster5_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@501 {
+> > @@ -209,7 +209,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster5_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@600 {
+> > @@ -225,7 +225,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster6_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@601 {
+> > @@ -241,7 +241,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster6_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@700 {
+> > @@ -257,7 +257,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster7_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cpu@701 {
+> > @@ -273,7 +273,7 @@
+> >  			i-cache-line-size =3D <64>;
+> >  			i-cache-sets =3D <192>;
+> >  			next-level-cache =3D <&cluster7_l2>;
+> > -			cpu-idle-states =3D <&cpu_pw20>;
+> > +			cpu-idle-states =3D <&cpu_pw15>;
+> >  		};
+> >
+> >  		cluster0_l2: l2-cache0 {
+> > @@ -340,9 +340,9 @@
+> >  			cache-level =3D <2>;
+> >  		};
+> >
+> > -		cpu_pw20: cpu-pw20 {
+> > +		cpu_pw15: cpu-pw15 {
+> >  			compatible =3D "arm,idle-state";
+> > -			idle-state-name =3D "PW20";
+> > +			idle-state-name =3D "PW15";
+> >  			arm,psci-suspend-param =3D <0x0>;
+> >  			entry-latency-us =3D <2000>;
+> >  			exit-latency-us =3D <2000>;
 > > --
-> > 2.17.1
+> > 2.7.4
 > >
