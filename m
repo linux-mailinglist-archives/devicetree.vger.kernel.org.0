@@ -2,113 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D39F7CDF41
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 12:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D293ACDF88
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 12:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727252AbfJGK0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 06:26:18 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:41413 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727262AbfJGK0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 06:26:17 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x97AKml6026153;
-        Mon, 7 Oct 2019 12:25:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=cIh/B+QlT5Ufq0muAI8MFIZVmvtKiiVeIQjxYFeHv4U=;
- b=LqwFvsFeAgqwBt7UYWHD+Wuf+stCjxWldXnL+ZqqyTjv9PukoK6gjeJKuhHN9HtbFVk/
- qINdmJ8SJp4VZEqHmX8HX/OR77VCCUuep5iwlHbpCQWiz6LmXWlQaz8SRLbONPSU5q7f
- u5QLwVf799PJGBZoVV6fPP6+SEP+pv9mUyv98wqICqgKGn2A94yONlyyI7KdQFyNqdG8
- 9zLr5o5ct1m4k2jtoSx/F0kDFB2tW9EcrQESlnfGgWY3iqekCks4uvtZvOsjgzpa0Zb9
- cyZF3E7mbm2nk9Ev6T7CqfrdURgjwdJhs5igOpnTtDmBAgj0UPQO5hiatsex1g1i1Gjl /g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vegxvhrn6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 07 Oct 2019 12:25:57 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EB15210002A;
-        Mon,  7 Oct 2019 12:25:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DC7722BFE0A;
-        Mon,  7 Oct 2019 12:25:56 +0200 (CEST)
-Received: from localhost (10.75.127.50) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 7 Oct 2019 12:25:56
- +0200
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-To:     Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Alexandru Ardelean <alexaundru.ardelean@analog.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-media@vger.kernel.org>, <netdev@vger.kernel.org>
-Subject: [PATCH 3/3] dt-bindings: regulator: Fix yaml verification for fixed-regulator schema
-Date:   Mon, 7 Oct 2019 12:25:52 +0200
-Message-ID: <20191007102552.19808-4-alexandre.torgue@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191007102552.19808-1-alexandre.torgue@st.com>
-References: <20191007102552.19808-1-alexandre.torgue@st.com>
+        id S1727633AbfJGKmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 06:42:51 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:46720 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727252AbfJGKmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 06:42:51 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 46mxrl2qpYz1rpwC;
+        Mon,  7 Oct 2019 12:42:47 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 46mxrl1c40z1qqkC;
+        Mon,  7 Oct 2019 12:42:47 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id 1rb2Z0aqgA5u; Mon,  7 Oct 2019 12:42:45 +0200 (CEST)
+X-Auth-Info: I9YYeUNrKjVrdUUDAQTC/Y0aiMCFlFUVIzRUFRXKK/0=
+Received: from antares.denx.de (unknown [62.91.23.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Mon,  7 Oct 2019 12:42:45 +0200 (CEST)
+Cc:     pn@denx.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6: Extend support for Phytec phycore
+ i.MX6ULL SoM
+To:     Shawn Guo <shawnguo@kernel.org>
+References: <20190912202928.946200-1-pn@denx.de>
+ <20191006082349.GA7150@dragon>
+From:   Parthiban Nallathambi <pn@denx.de>
+Message-ID: <3c92e681-3b7b-fedf-48bc-cfb2080c3f12@denx.de>
+Date:   Mon, 7 Oct 2019 12:42:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG6NODE1.st.com (10.75.127.16) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-07_02:2019-10-07,2019-10-07 signatures=0
+In-Reply-To: <20191006082349.GA7150@dragon>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit fixes an issue seen during yaml check ("make dt_binding_check").
-Compatible didn't seem to be seen as a string.
 
-Reported issue:
-"properties:compatible:enum:0: {'const': 'regulator-fixed'}
-is not of type 'string'"
-And
-"properties:compatible:enum:1: {'const': 'regulator-fixed-clock'}
-is not of type 'string'"
 
-Fixes: 9c86d003d620 ("dt-bindings: regulator: add regulator-fixed-clock binding")
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+On 10/6/19 10:23 AM, Shawn Guo wrote:
+> On Thu, Sep 12, 2019 at 10:29:28PM +0200, Parthiban Nallathambi wrote:
+>> Extend Phycore i.MX6UL SoM for i.MX6ULL with on board eMMC. Phycore
+>> i.MX6ULL is deployed with same carrier board Segin as the pins are
+>> compatible with UL version.
+>>
+>> Signed-off-by: Parthiban Nallathambi <pn@denx.de>
+> 
+> What is the base that the patch was generated from?  It doesn't apply to
+> my tree.
 
-diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-index a78150c47aa2..7725cedf1538 100644
---- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-@@ -22,16 +22,20 @@ allOf:
- if:
-   properties:
-     compatible:
-+      allOf:
-+        - $ref: "/schemas/types.yaml#/definitions/string"
-       contains:
--        const: regulator-fixed-clock
-+        const: "regulator-fixed-clock"
-   required:
-     - clocks
- 
- properties:
-   compatible:
-+    allOf:
-+      - $ref: "/schemas/types.yaml#/definitions/string"
-     enum:
--      - const: regulator-fixed
--      - const: regulator-fixed-clock
-+      - "regulator-fixed"
-+      - "regulator-fixed-clock"
- 
-   regulator-name: true
- 
+It was based on prior to 5.4 merge window. But there are series of patch
+which renamed the filename and the changes are already part of mainline
+from Phytec.
+
+Please ignore this patch.
+
+Thanks,
+Parthiban N
+
+> 
+> Shawn
+> 
+>> ---
+>>   arch/arm/boot/dts/imx6ul-phytec-pcl063.dtsi   | 26 +++++++++++++++++--
+>>   .../dts/imx6ul-phytec-phyboard-segin-full.dts |  5 ++++
+>>   arch/arm/boot/dts/imx6ull-phytec-pcl063.dtsi  | 24 +++++++++++++++++
+>>   3 files changed, 53 insertions(+), 2 deletions(-)
+>>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-pcl063.dtsi
+>>
+>> diff --git a/arch/arm/boot/dts/imx6ul-phytec-pcl063.dtsi b/arch/arm/boot/dts/imx6ul-phytec-pcl063.dtsi
+>> index fc2997449b49..822a178ce438 100644
+>> --- a/arch/arm/boot/dts/imx6ul-phytec-pcl063.dtsi
+>> +++ b/arch/arm/boot/dts/imx6ul-phytec-pcl063.dtsi
+>> @@ -7,7 +7,6 @@
+>>   #include <dt-bindings/gpio/gpio.h>
+>>   #include <dt-bindings/interrupt-controller/irq.h>
+>>   #include <dt-bindings/pwm/pwm.h>
+>> -#include "imx6ul.dtsi"
+>>   
+>>   / {
+>>   	model = "Phytec phyCORE i.MX6 UltraLite";
+>> @@ -65,7 +64,7 @@
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&pinctrl_gpmi_nand>;
+>>   	nand-on-flash-bbt;
+>> -	status = "okay";
+>> +	status = "disabled";
+>>   };
+>>   
+>>   &i2c1 {
+>> @@ -90,6 +89,15 @@
+>>   	status = "okay";
+>>   };
+>>   
+>> +&usdhc2 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_usdhc2>;
+>> +	bus-width = <8>;
+>> +	no-1-8-v;
+>> +	non-removable;
+>> +	status = "disabled";
+>> +};
+>> +
+>>   &iomuxc {
+>>   	pinctrl_enet1: enet1grp {
+>>   		fsl,pins = <
+>> @@ -145,4 +153,18 @@
+>>   		>;
+>>   	};
+>>   
+>> +	pinctrl_usdhc2: usdhc2grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x170f9
+>> +			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x100f9
+>> +			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x170f9
+>> +			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x170f9
+>> +			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x170f9
+>> +			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x170f9
+>> +			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x170f9
+>> +			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x170f9
+>> +			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x170f9
+>> +			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x170f9
+>> +		>;
+>> +	};
+>>   };
+>> diff --git a/arch/arm/boot/dts/imx6ul-phytec-phyboard-segin-full.dts b/arch/arm/boot/dts/imx6ul-phytec-phyboard-segin-full.dts
+>> index b6a1407a9d44..76f2447f2657 100644
+>> --- a/arch/arm/boot/dts/imx6ul-phytec-phyboard-segin-full.dts
+>> +++ b/arch/arm/boot/dts/imx6ul-phytec-phyboard-segin-full.dts
+>> @@ -5,6 +5,7 @@
+>>    */
+>>   
+>>   /dts-v1/;
+>> +#include "imx6ul.dtsi"
+>>   #include "imx6ul-phytec-pcl063.dtsi"
+>>   #include "imx6ul-phytec-phyboard-segin.dtsi"
+>>   #include "imx6ul-phytec-peb-eval-01.dtsi"
+>> @@ -37,6 +38,10 @@
+>>   	status = "okay";
+>>   };
+>>   
+>> +&gpmi {
+>> +	status = "okay";
+>> +};
+>> +
+>>   &i2c_rtc {
+>>   	status = "okay";
+>>   };
+>> diff --git a/arch/arm/boot/dts/imx6ull-phytec-pcl063.dtsi b/arch/arm/boot/dts/imx6ull-phytec-pcl063.dtsi
+>> new file mode 100644
+>> index 000000000000..3f749d9f09a5
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/imx6ull-phytec-pcl063.dtsi
+>> @@ -0,0 +1,24 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (C) 2018 PHYTEC Messtechnik GmbH
+>> + * Author: Stefan Riedmueller <s.riedmueller@phytec.de>
+>> + */
+>> +
+>> +#include "imx6ul-phytec-pcl063.dtsi"
+>> +
+>> +/ {
+>> +	model = "PHYTEC phyCORE-i.MX 6ULL";
+>> +	compatible = "phytec,imx6ull-pcl063", "fsl,imx6ull";
+>> +};
+>> +
+>> +&iomuxc {
+>> +	/delete-node/ gpioledssomgrp;
+>> +};
+>> +
+>> +&iomuxc_snvs {
+>> +	pinctrl_gpioleds_som: gpioledssomgrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER4__GPIO5_IO04	0x0b0b0
+>> +		>;
+>> +	};
+>> +};
+>> -- 
+>> 2.21.0
+>>
+> 
+
 -- 
-2.17.1
+Thanks,
+Parthiban N
 
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-22 Fax: (+49)-8142-66989-80 Email: pn@denx.de
