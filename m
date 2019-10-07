@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F165ECEB3F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 19:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 397B6CEB3B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 19:56:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729032AbfJGR4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 13:56:24 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:44594 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729449AbfJGR4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 13:56:07 -0400
-Received: by mail-pl1-f196.google.com with SMTP id q15so7199890pll.11
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 10:56:07 -0700 (PDT)
+        id S1729265AbfJGR4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 13:56:10 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:44968 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729462AbfJGR4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 13:56:09 -0400
+Received: by mail-pf1-f196.google.com with SMTP id q21so9099930pfn.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 10:56:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=7/b3yUeZa8CC2Us86GgYloZCqUlnEcjewTRh+R9Lbvk=;
-        b=SlY3eXwvCRPmzMOhMJJSBUGa/3rX3D4MUbmP0Ohh4buo2qrQ3DCJIvh8hRcWXRpawv
-         QB80v4EAGe5Dvtan+jOEazC5pe64LQb01TslpzL+J7t1hzRTuRhYCdxhfYXQBbAcI/Zq
-         bFxGsoLTeC4mNqGdjuOKXVihqfjxr5ufHsZZa3pYGj05xoNRFOuWY4wLGePQIJcoC8ry
-         GMomuuVRq9oKJMX/OvfgT19utBjL+NR1tT6xgcPkd9EQbEpXfqCeNm1eY8PSUaRHYgO2
-         PtJ+Dk4z1VlTkcHKjqtWtn47m3uJ2kJuZ2V8bSDM59Id/tThwdsiUSNhuXTu2pNkEHZM
-         iIRg==
+        bh=1oH7lj03wYz79i/zPzaUWTT6QxHftIiKZMYorEdLMBo=;
+        b=iD2o9He3U69q6RpgqdzxaCMFlm/KSulpW5frmlBOgF4pZ0uYO5c4gejji2HqtrMSQt
+         8JhD9FTrk7VwS9GB2wrv8Hba0ZUIEQWc9WuQjOP7YxIOKTfoneOS2w/L0Yeb+Ppfbn79
+         SWF99J20b4fqvta/nclqz+QzVDbV4tZIOQhTbnETRWBCpLXosYrqEgWPHgV0nEEVG5IE
+         T9jbitj49uv/eck9gVcH09akU4ZrdFhTPVaX7LcuokFH39wF81h2s3f+Kx5TVU38lUwk
+         +Sz21hlnZ3RyMbV0oqLJKa6oZqZICMTUv8vFFP0PxLuGOnFixbMAk5Z4XfOwdpENVbIe
+         XJww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=7/b3yUeZa8CC2Us86GgYloZCqUlnEcjewTRh+R9Lbvk=;
-        b=sIOjtvB3KfzQri5DiKpqs1AbEM7RIMaiizoK+P+3mPuHt8eniHDM/F1y7tk9yvjzfh
-         3AhvVcFWU3roTik+QyKOV+k+yy/biDqhoX9GWsSZExQ0rohAh79+cNNIog3Nq3svd4hR
-         TGYnfvMMOiuHga+mUF0yK3TCVhGI6G1P7S+A1pCm7O0rFYnH3Eaj3TrgVYVnwW0fPuSa
-         I0SawzP9wXcos+7NKDpbdNTMC9vdHbrgeYMisE4xKvlnbu6FXfYlCwoAE6pKttHy0yqT
-         aR/kKWvJiyemG6sB4pWoeedsHTRyTI7dWfcEDiRn3r7C4LtIbonOlJk/UQNa7c3Fc65U
-         ZvpQ==
-X-Gm-Message-State: APjAAAXKDnnf3toULSLk43ItG1Lwd1FPx5t1NX8hphOECbkw/XjKA1fK
-        rYIHyibenBcHT8wTidYQ1/9Opg==
-X-Google-Smtp-Source: APXvYqxzIFObkEZ3b71NwneTkjqqzC3Nj0N3NNcomwCN9GSXlPRZnaHZIfK+yVDlQ0vpXSE4EK6AaQ==
-X-Received: by 2002:a17:902:820f:: with SMTP id x15mr29187700pln.230.1570470966697;
-        Mon, 07 Oct 2019 10:56:06 -0700 (PDT)
+        bh=1oH7lj03wYz79i/zPzaUWTT6QxHftIiKZMYorEdLMBo=;
+        b=PJtaDvY04TVGN4YNg94hfdM0v/XojQVaZPTJQBAv3CfNj02uOmbiTWF8kG3JjrJgZx
+         8NYbMZ65jK7netQ5ZOFXvC5pips9NPObLdcBd6rLBYSb0E44faY/cVlkgMlUTJi2I/vT
+         2XBs/3K7TwE3qm3F+TsrPqlYuWXApsC2TtMReGwB6SdskSUAhkm5PrnszTxINfR8bseS
+         kIvRfxu1gnk1RGmTbRrNy0yj0//+FfuV5rQCsymTkT2cQ9SuW/qaUkWCf6zYynKvqKN7
+         BTc79+88NNYwCyFHavxIPKf1netpoa5FFdPQc/f3hkHM6QipO9Xcc2LA9rW9ouRmrH+r
+         bnog==
+X-Gm-Message-State: APjAAAX2Sb8EuWvwc6tHBZZm1PA3bfTCHXQxVEsJ9UkUVz1atcT5OZ1W
+        elzHEgU1KPH3mmodng2InWnl/g==
+X-Google-Smtp-Source: APXvYqz1K67CyWo0e/emHrkBQnZS3p/dyk4OrQ9OdF6w4uS+MO8fNgdny3guoMksP8tvRCj3SarDBw==
+X-Received: by 2002:a17:90a:fa0d:: with SMTP id cm13mr610912pjb.70.1570470968394;
+        Mon, 07 Oct 2019 10:56:08 -0700 (PDT)
 Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id k15sm3820096pgt.25.2019.10.07.10.56.05
+        by smtp.gmail.com with ESMTPSA id k15sm3820096pgt.25.2019.10.07.10.56.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2019 10:56:06 -0700 (PDT)
+        Mon, 07 Oct 2019 10:56:07 -0700 (PDT)
 From:   John Stultz <john.stultz@linaro.org>
 To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     John Stultz <john.stultz@linaro.org>,
+Cc:     Yu Chen <chenyu56@huawei.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Felipe Balbi <balbi@kernel.org>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Yu Chen <chenyu56@huawei.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC][PATCH v2 4/5] dt-bindings: usb: dwc3: of-simple: add compatible for HiSi
-Date:   Mon,  7 Oct 2019 17:55:52 +0000
-Message-Id: <20191007175553.66940-5-john.stultz@linaro.org>
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        John Stultz <john.stultz@linaro.org>
+Subject: [RFC][PATCH v2 5/5] usb: dwc3: dwc3-of-simple: Add support for dwc3 of Hisilicon Soc Platform
+Date:   Mon,  7 Oct 2019 17:55:53 +0000
+Message-Id: <20191007175553.66940-6-john.stultz@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191007175553.66940-1-john.stultz@linaro.org>
 References: <20191007175553.66940-1-john.stultz@linaro.org>
@@ -66,8 +66,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add necessary compatible flag for HiSi's DWC3 so
-dwc3-of-simple will probe.
+From: Yu Chen <chenyu56@huawei.com>
+
+This patch adds support for the poweron and shutdown of dwc3 core
+on Hisilicon Soc Platform.
 
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Felipe Balbi <balbi@kernel.org>
@@ -79,72 +81,34 @@ Cc: Matthias Brugger <matthias.bgg@gmail.com>
 Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
 Cc: linux-usb@vger.kernel.org
 Cc: devicetree@vger.kernel.org
+Signed-off-by: Yu Chen <chenyu56@huawei.com>
 Signed-off-by: John Stultz <john.stultz@linaro.org>
 ---
-v2: Tweaked clock names as clk_usb3phy_ref didn't seem right.
----
- .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+ drivers/usb/dwc3/dwc3-of-simple.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/hisi,dwc3.txt b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-new file mode 100644
-index 000000000000..3a3e5c320f2a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-@@ -0,0 +1,52 @@
-+HiSi SuperSpeed DWC3 USB SoC controller
-+
-+Required properties:
-+- compatible:		should contain "hisilicon,hi3660-dwc3" for HiSi SoC
-+- clocks:		A list of phandle + clock-specifier pairs for the
-+			clocks listed in clock-names
-+- clock-names:		Should contain the following:
-+  "clk_abb_usb"		USB reference clk
-+  "aclk_usb3otg"	USB3 OTG aclk
-+
-+- assigned-clocks:	Should be:
-+				HI3660_ACLK_GATE_USB3OTG
-+- assigned-clock-rates: Should be:
-+				229Mhz (229000000) for HI3660_ACLK_GATE_USB3OTG
-+
-+Optional properties:
-+- resets:		Phandle to reset control that resets core and wrapper.
-+
-+Required child node:
-+A child node must exist to represent the core DWC3 IP block. The name of
-+the node is not important. The content of the node is defined in dwc3.txt.
-+
-+Example device nodes:
-+
-+	usb3: hisi_dwc3 {
-+		compatible = "hisilicon,hi3660-dwc3";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		clocks = <&crg_ctrl HI3660_CLK_ABB_USB>,
-+			 <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
-+		clock-names = "clk_abb_usb", "aclk_usb3otg";
-+
-+		assigned-clocks = <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
-+		assigned-clock-rates = <229 000 000>;
-+		resets = <&crg_rst 0x90 8>,
-+			 <&crg_rst 0x90 7>,
-+			 <&crg_rst 0x90 6>,
-+			 <&crg_rst 0x90 5>;
-+
-+		dwc3: dwc3@ff100000 {
-+			compatible = "snps,dwc3";
-+			reg = <0x0 0xff100000 0x0 0x100000>;
-+			interrupts = <0 159 4>, <0 161 4>;
-+			phys = <&usb_phy>;
-+			phy-names = "usb3-phy";
-+			dr_mode = "otg";
-+
-+			...
-+		};
-+	};
+diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
+index bdac3e7d7b18..78617500edee 100644
+--- a/drivers/usb/dwc3/dwc3-of-simple.c
++++ b/drivers/usb/dwc3/dwc3-of-simple.c
+@@ -51,7 +51,8 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
+ 	 * Some controllers need to toggle the usb3-otg reset before trying to
+ 	 * initialize the PHY, otherwise the PHY times out.
+ 	 */
+-	if (of_device_is_compatible(np, "rockchip,rk3399-dwc3"))
++	if (of_device_is_compatible(np, "rockchip,rk3399-dwc3") ||
++	    of_device_is_compatible(np, "hisilicon,hi3660-dwc3"))
+ 		simple->need_reset = true;
+ 
+ 	if (of_device_is_compatible(np, "amlogic,meson-axg-dwc3") ||
+@@ -183,6 +184,7 @@ static const struct of_device_id of_dwc3_simple_match[] = {
+ 	{ .compatible = "amlogic,meson-axg-dwc3" },
+ 	{ .compatible = "amlogic,meson-gxl-dwc3" },
+ 	{ .compatible = "allwinner,sun50i-h6-dwc3" },
++	{ .compatible = "hisilicon,hi3660-dwc3" },
+ 	{ /* Sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, of_dwc3_simple_match);
 -- 
 2.17.1
 
