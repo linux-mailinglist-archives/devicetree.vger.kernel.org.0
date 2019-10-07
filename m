@@ -2,80 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B46F0CDB47
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0DD8CDB70
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726969AbfJGFQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 01:16:01 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36775 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726960AbfJGFQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 01:16:00 -0400
-Received: by mail-wr1-f65.google.com with SMTP id y19so13529844wrd.3;
-        Sun, 06 Oct 2019 22:15:58 -0700 (PDT)
+        id S1726889AbfJGF27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 01:28:59 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:33861 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727032AbfJGF27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 01:28:59 -0400
+Received: by mail-pg1-f194.google.com with SMTP id y35so7504566pgl.1
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 22:28:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=wc8zArjUNgVy/s50wiyO1NvyueOi4Jj56svA15IfJrM=;
-        b=JShsrn52XpdHu4hzqho33vlm/BLTIB0ivbt2uiZYxukY3K1yVykXHD0hQV2AtMlVrx
-         x4/ZJz+IX+gDOClpbBgREe5FW11lbD2bbYNh08gfeCdYssDP7b9P+VomVnt0sOQoXXSK
-         4lYhsb8kc/DrS2+j92/giE0aFuTkP79hFCrIoVk/sSpv5+YpsLmiunm6L3SEae8+y+aR
-         UPLxTLhFfhF67xPlW+kFrYaX6HzPyl9zWAKc1ogJtTZ1JRm+qOGaEs1TKP01dTZHdgpg
-         WOLyWa23VwUJZZisFOoh0eQ13smEMog1px57lMXij29uhjpxAjj/R+d2ipurGHDpXcoE
-         jPMA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8CXK/TfIsFpbZLDTPIgvREp06YCnBiMnqmaYjisViyY=;
+        b=LAR6H5ZasQ8iPevuWF+vXdOwHJGt5uk3xJbaFv6C3Wd9u8HmgtJ7Qg1L9LdY53wOkb
+         VlAWraIS3WJAoWfzYnoOTrCajo64NTbKw29mvKtcijueTi461E0NhHneWYXchgRAwGPo
+         OMLFjD8p8ob0dUXytONE0BJpczSF3nlVSXdXrh3BvIgv9AY1c+ZtfF4K81uinVuGJm9i
+         mQEgpVY2dy5APQJBUNydRXtQtV7aEMZRBSm4hbPfzEv8nh+cXOUbiOHDsZXfpH+oefTi
+         0P5coqYfZJRXraFDBNiwdwdnLyo4W/A77yzEzLD85hCoSy5o8VgzOEZabEEgo/QzXanB
+         qnEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=wc8zArjUNgVy/s50wiyO1NvyueOi4Jj56svA15IfJrM=;
-        b=e4pwR0505lEANUEYcUW9IcvNkAsV783+UV5FckdrgAT5jVRken4YeevUyf5rLzDcGz
-         5c11tFONDGo2kzfdDeAzZB1u6o84qn1ddz2PrQ1tdY9EuEQH31CbS6fEyZZyT2QA5700
-         TF1NigCxHjpzWSSAfuVZpmp4oqX89rxi7lZGSfSziSJ84srPseRNsWfV+t0/RsO1w97M
-         2dz93TlLLlXIST0Lcx7vKmpmCgCRgWpDfwMmq4xdB3xMqdDlP3/irgXO956kJlMoP1SN
-         1QgUN+uIzkBXD+vFzTTeX2K1a6Xg4n4EGqczr4ODjuEz2a0C70bErERMuaZNiG+E+czI
-         Sd0w==
-X-Gm-Message-State: APjAAAV4puwXG6XababbB+/LksGCs877Q0YZ32WPF0d0Wwds1mJsN/xU
-        j6BRdFfo+j0Lbr7kYRALDKFUlu6Z
-X-Google-Smtp-Source: APXvYqwzo0yTz3gSyrODu8GSaSVC/7ZRDoAU4U46fMeNIkG2Z/7Iqe/R78CRVGTLZSok+sa49AnwLQ==
-X-Received: by 2002:a5d:6a09:: with SMTP id m9mr19624526wru.12.1570425358185;
-        Sun, 06 Oct 2019 22:15:58 -0700 (PDT)
-Received: from localhost.localdomain ([94.204.252.234])
-        by smtp.gmail.com with ESMTPSA id s12sm26655859wra.82.2019.10.06.22.15.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sun, 06 Oct 2019 22:15:57 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Add S905X3 ID for VIM3L
-Date:   Mon,  7 Oct 2019 09:15:07 +0400
-Message-Id: <1570425307-3231-1-git-send-email-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.7.4
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8CXK/TfIsFpbZLDTPIgvREp06YCnBiMnqmaYjisViyY=;
+        b=P1cCtDrggw/AzFuf/86W9IecUqaaEUQs6/csZ3GqUiC1s2+SdG9fZj3bf3w9mrJnU5
+         OK/rbn+9ZE0jMDsPE8w+G4FfijlOQLfekgWyJLKDWz7ie08z4BQ7nOqBEdQB04QxKC5I
+         cJ3+OwV8NdgrV/io4MMXgDB1NZIT9k/Bly/BSdqvVsYMuVEWQU3UkTZUIM7WKZ09ANCF
+         aozhM6IugQdVq4TAXaMknJXkrWPipN8L5kDe7lLpNsNg2stPwH6B3JgSTPHSPeo7nAsA
+         xalIaaiBJb0/ufC6MBN8mASJc2OKGBW5Nzj15ksbd7ePQM5hK7VYzaHJNQy8nK31tQsW
+         JKWg==
+X-Gm-Message-State: APjAAAVAkOihesN+D7IsTvSxg02fS5AHF9Pc77BXDmQrwVDVTuJFWsuJ
+        A9UQcYm+BYCl6bO0PjSgs7CmQQ==
+X-Google-Smtp-Source: APXvYqwARGPm8j9a3QW8CuObVYB93bhWW7qnb5wALsOagBKs4r23n5w4xw65KVbYM5DnmJnWEkGMBA==
+X-Received: by 2002:a62:8683:: with SMTP id x125mr30083504pfd.108.1570426138723;
+        Sun, 06 Oct 2019 22:28:58 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id d20sm18058167pfq.88.2019.10.06.22.28.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2019 22:28:57 -0700 (PDT)
+Date:   Sun, 6 Oct 2019 22:28:55 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>, robh+dt@kernel.org,
+        agross@kernel.org, vkoul@kernel.org, evgreen@chromium.org,
+        daidavid1@codeaurora.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] soc: qcom: smd-rpm: Create RPM interconnect proxy
+ child device
+Message-ID: <20191007052855.GE2999@tuxbook-pro>
+References: <20190613151323.10850-1-georgi.djakov@linaro.org>
+ <20190613151323.10850-3-georgi.djakov@linaro.org>
+ <20191007020152.GA16902@onstation.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191007020152.GA16902@onstation.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[    0.086470] soc soc0: Amlogic Meson SM1 (S905X3) Revision 2b:c (b0:2) Detected
+On Sun 06 Oct 19:01 PDT 2019, Brian Masney wrote:
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
- 1 file changed, 2 insertions(+)
+> On Thu, Jun 13, 2019 at 06:13:20PM +0300, Georgi Djakov wrote:
+> > Register a platform device to handle the communication of bus bandwidth
+> > requests with the remote processor. The interconnect proxy device is part
+> > of this remote processor (RPM) hardware. Let's create a icc-smd-rpm proxy
+> > child device to represent the bus throughput functionality that is provided
+> > by the RPM.
+> > 
+> > Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> 
+> Reviewed-by: Brian Masney <masneyb@onstation.org>
+> Tested-by: Brian Masney <masneyb@onstation.org> # msm8974
+> 
+> I think this patch may have fell through the cracks since I don't see
+> it in linux-next. The qcs404 patches in this series were merged.
+> 
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 6d0d04f..dc744f1 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -68,6 +68,8 @@ static const struct meson_gx_package_id {
- 	{ "S922X", 0x29, 0x40, 0xf0 },
- 	{ "A311D", 0x29, 0x10, 0xf0 },
- 	{ "S905X3", 0x2b, 0x5, 0xf },
-+	{ "S905X3", 0x2b, 0xb0, 0xf2 },
-+	{ "A113L", 0x2c, 0x0, 0xf8 },
- };
- 
- static inline unsigned int socinfo_to_major(u32 socinfo)
--- 
-2.7.4
+Yes, I was expecting Georgi to pick the entire series through his tree,
+but see now that I didn't actually ask Georgi to do so. Sorry about
+that.
 
+I picked the this and the dts patch last week, so if it's not in
+linux-next yet it should show up in the next one.
+
+Thanks,
+Bjorn
+
+> Brian
+> 
+> > ---
+> > 
+> > v4:
+> > - Return error if platform_device_register_data() fails
+> > - Remove platform_set_drvdata() on the child device.
+> > 
+> > v3:
+> > - New patch.
+> > 
+> >  drivers/soc/qcom/smd-rpm.c | 17 ++++++++++++++++-
+> >  1 file changed, 16 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
+> > index fa9dd12b5e39..34cdd638a6c1 100644
+> > --- a/drivers/soc/qcom/smd-rpm.c
+> > +++ b/drivers/soc/qcom/smd-rpm.c
+> > @@ -19,12 +19,14 @@
+> >  /**
+> >   * struct qcom_smd_rpm - state of the rpm device driver
+> >   * @rpm_channel:	reference to the smd channel
+> > + * @icc:		interconnect proxy device
+> >   * @ack:		completion for acks
+> >   * @lock:		mutual exclusion around the send/complete pair
+> >   * @ack_status:		result of the rpm request
+> >   */
+> >  struct qcom_smd_rpm {
+> >  	struct rpmsg_endpoint *rpm_channel;
+> > +	struct platform_device *icc;
+> >  	struct device *dev;
+> >  
+> >  	struct completion ack;
+> > @@ -193,6 +195,7 @@ static int qcom_smd_rpm_callback(struct rpmsg_device *rpdev,
+> >  static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+> >  {
+> >  	struct qcom_smd_rpm *rpm;
+> > +	int ret;
+> >  
+> >  	rpm = devm_kzalloc(&rpdev->dev, sizeof(*rpm), GFP_KERNEL);
+> >  	if (!rpm)
+> > @@ -205,11 +208,23 @@ static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+> >  	rpm->rpm_channel = rpdev->ept;
+> >  	dev_set_drvdata(&rpdev->dev, rpm);
+> >  
+> > -	return of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
+> > +	rpm->icc = platform_device_register_data(&rpdev->dev, "icc_smd_rpm", -1,
+> > +						 NULL, 0);
+> > +	if (IS_ERR(rpm->icc))
+> > +		return PTR_ERR(rpm->icc);
+> > +
+> > +	ret = of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
+> > +	if (ret)
+> > +		platform_device_unregister(rpm->icc);
+> > +
+> > +	return ret;
+> >  }
+> >  
+> >  static void qcom_smd_rpm_remove(struct rpmsg_device *rpdev)
+> >  {
+> > +	struct qcom_smd_rpm *rpm = dev_get_drvdata(&rpdev->dev);
+> > +
+> > +	platform_device_unregister(rpm->icc);
+> >  	of_platform_depopulate(&rpdev->dev);
+> >  }
+> >  
