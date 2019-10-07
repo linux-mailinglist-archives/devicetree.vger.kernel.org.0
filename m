@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1154ECD9F7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 02:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CBC4CDA04
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 02:57:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbfJGApz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 20:45:55 -0400
-Received: from mail-eopbgr20077.outbound.protection.outlook.com ([40.107.2.77]:41128
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726661AbfJGApy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Oct 2019 20:45:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z2ApjYd/c5z0TxyBOocS2eRCJP56ZLGOHHksdmvHGh+11Xm2F2CuTIqokmtKXe0X5OJpe6XDG9egqxvjkpYOITqBnaQzrCZL8hP/vPJKZw6PI7Ufj8zzTsv6C/vdIUVvGJfC5ETAseYmQOiwXko7gzTe2IrvIuVsL8M5nhtsva/YCk9FTFqRiBrC5LVdYdT/4ADM9AY/GxqnsUnvVHX7IYkGMz1a01tWFAsj9H5v+iOAnHACMZnoVA7/ZWWAR36Iut+zq03m/057RRyzqoXFRGPD36jHwkLQ/8iYYX/J03UkcRi/3qxq8JcTRhhzPd1pHwe9NswdjJtA3M5TVn53/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vhhHQH6uVALXlP+dDGAM+lgnZ6issBrGnrxW7CsOvAM=;
- b=ZVhXNh6B88JMOlEQd4Pa+qp3EYqLHEMYctf/yrNRtu6ZplOQW4X00OFtJqaO5bhsePb+sU1AU5IwZi8p8Hu3Xyn6d2RY7wBrY3Rgz4vZpq1Z8Y48YuB4PRq4tF5R1IANGR85+gmJpNaGsBcmQXkOU6fUC0kieKLS2POfVmqhuREpQbG/zUorA+HlPNhHQ+UPDebmwXTtOE7ZkCNcB/a22c2S21SeZN/Dr1U11r2yZZGINm/fM8RXjC1ekFDQIsWyxGZr8/P9z84bxKGHMrECc16+4mGnkyVwi/zpJb0Zuu4nyzvRJ2T2bBc/G8ekJRA1mkKNem3ZeKrekcMY/4vIVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vhhHQH6uVALXlP+dDGAM+lgnZ6issBrGnrxW7CsOvAM=;
- b=k3Jq/RGSjtmLogpSmHsYNuDMklIlWGsXXZ5xP1QvJw6PEF4Yt0Wa2cptT0l+mcwx4nf9RioRn5PAFKMzB35jny2z09URa1F9+hyMy0aB2Ypy3Rn2tQYIJYaL3RcJK7AI37tdzvnkbN/DHmNhUXDWwLOPncNGWOj1wxgyYsJoENk=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3931.eurprd04.prod.outlook.com (52.134.65.153) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Mon, 7 Oct 2019 00:45:51 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d469:ad51:2bec:19f0]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d469:ad51:2bec:19f0%6]) with mapi id 15.20.2305.023; Mon, 7 Oct 2019
- 00:45:50 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH] ARM: dts: imx7s: Correct GPT's ipg clock source
-Thread-Topic: [PATCH] ARM: dts: imx7s: Correct GPT's ipg clock source
-Thread-Index: AQHVbGj9OePM1LgLKkuaNPfAjuopxKdNaGOAgAENZYA=
-Date:   Mon, 7 Oct 2019 00:45:50 +0000
-Message-ID: <DB3PR0402MB3916B8450581E6D3F9F8D566F59B0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1568622549-15819-1-git-send-email-Anson.Huang@nxp.com>
- <20191006083233.GB7150@dragon>
-In-Reply-To: <20191006083233.GB7150@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 92a33d0f-ec11-499e-01c3-08d74abfb3a5
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: DB3PR0402MB3931:|DB3PR0402MB3931:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB39318FB968382E4C8C4B5802F59B0@DB3PR0402MB3931.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2887;
-x-forefront-prvs: 01834E39B7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(346002)(136003)(366004)(39860400002)(376002)(189003)(199004)(3846002)(54906003)(99286004)(229853002)(5660300002)(76176011)(2906002)(7696005)(14454004)(52536014)(6916009)(102836004)(4744005)(86362001)(6116002)(6436002)(25786009)(71190400001)(44832011)(55016002)(9686003)(71200400001)(11346002)(33656002)(486006)(446003)(26005)(186003)(7736002)(6506007)(476003)(66946007)(66476007)(8676002)(81166006)(81156014)(478600001)(4326008)(66066001)(66446008)(64756008)(66556008)(8936002)(76116006)(74316002)(256004)(6246003)(316002)(305945005);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3931;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ObNtBWuE6qnZTTP7UXMHKQWBSEDm5Lx2Jh4zmdQgire5vaVEYb1hiaT5fHfiXlnNiKdpGcVhmGPeFCpl/1Psy0mNLr4nqRznkgnPqLXICTqTcSUnVGRfR/U/9XoTk9KQVheiyObXXtuf3Qklhmtaejvaau22hmtNSb8T1mRCUVldg6Wcb8Y5KnjjBZIyqTGZsobpf0lTGvF0NBDcm0s5P7k6rJTN/rUJlz1uWiymoRx9CG+g16G45609wUuMXA7f0MRuzQAfs4tapIT+4occE3cBvSb///kDVBGm4oM8cgjeF4V5yPwPLWvMJlHomLnn1VAqLLO5FwA5vjHb9FzIf1eBDED67dfddPvYtk+lkSjF9CTkoGOpH+Rx0laPf1dvAn9No7Ct0uQWPOC0VnVJ/ohEk5GlBGWSRUYO1qxwzlQ=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726661AbfJGA5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 20:57:08 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52726 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726266AbfJGA5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 20:57:08 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x970v1Th104895;
+        Sun, 6 Oct 2019 19:57:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570409821;
+        bh=y1PP9ltrxnowjAkMcLF1tzTezdMwJrZBzBpXFZIAsDU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=s1j6LSdxWXh1k2aIaVOCPbuvP0zSKvG35A7Gk8QtC90iWgvTx7iCE3RpIuK8jSIsL
+         S0oQf6WlAEPrxzGDUKfQKbMCYpK4CTiQ0HT6bkT5YdDXtSswOOWXjVrMq3QhSVICFs
+         xKyVHhgdg9K8KkxGR5ixDPNrsi01n5UGFTRFOYTQ=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x970v1Ij088111
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 6 Oct 2019 19:57:01 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Sun, 6 Oct
+ 2019 19:56:59 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Sun, 6 Oct 2019 19:56:59 -0500
+Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x970uwtd085060;
+        Sun, 6 Oct 2019 19:56:59 -0500
+Subject: Re: [PATCH] clk: ti: clkctrl: Fix failed to enable error with double
+ udelay timeout
+To:     Tony Lindgren <tony@atomide.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>
+References: <20190930154001.46581-1-tony@atomide.com>
+From:   Keerthy <j-keerthy@ti.com>
+Message-ID: <93a6448d-cece-a903-5c7e-ade793d62063@ti.com>
+Date:   Mon, 7 Oct 2019 06:27:32 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92a33d0f-ec11-499e-01c3-08d74abfb3a5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 00:45:50.8669
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rtsIV4961zoFrYhELmo1rpFsExkIhjCmwc0DJYmWdSv9eyxvxNjiBdbcnPe5RHjjOFMN8v1UNQ4GbaGMBOUq9g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3931
+In-Reply-To: <20190930154001.46581-1-tony@atomide.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFNoYXduDQoNCj4gT24gTW9uLCBTZXAgMTYsIDIwMTkgYXQgMDQ6Mjk6MDlQTSArMDgwMCwg
-QW5zb24gSHVhbmcgd3JvdGU6DQo+ID4gaS5NWDdTL0QncyBHUFQgaXBnIGNsb2NrIHNob3VsZCBi
-ZSBmcm9tIEdQVCBjbG9jayByb290IGFuZCBjb250cm9sbGVkDQo+ID4gYnkgQ0NNJ3MgR1BUIEND
-R1IsIHVzaW5nIGNvcnJlY3QgY2xvY2sgc291cmNlIGZvciBHUFQgaXBnIGNsb2NrDQo+ID4gaW5z
-dGVhZCBvZiBJTVg3RF9DTEtfRFVNTVkuDQo+IA0KPiBTbyBib3RoICdpcGcnIGFuZCAncGVyJyBj
-bG9jayBhcmUgY29taW5nIGZyb20gR1BUIHJvb3QgY2xvY2s/DQoNClllcy4NCg0KPiANCj4gPiBT
-aWduZWQtb2ZmLWJ5OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gDQo+IEl0
-IGxvb2tzIGxpa2UgYSBmaXgsIHNvIGRvIHdlIG5lZWQgYSBGaXhlcyB0YWcgaGVyZT8NCg0KU3Vy
-ZSwgd2lsbCBhZGQgYSBmaXhlcyB0YWcgaW4gVjIuDQoNClRoYW5rcywNCkFuc29uLg0K
+
+
+On 30/09/19 9:10 PM, Tony Lindgren wrote:
+> Commit 3d8598fb9c5a ("clk: ti: clkctrl: use fallback udelay approach if
+> timekeeping is suspended") added handling for cases when timekeeping is
+> suspended. But looks like we can still get occasional "failed to enable"
+> errors on the PM runtime resume path with udelay() returning faster than
+> expected.
+> 
+> With ti-sysc interconnect target module driver this leads into device
+> failure with PM runtime failing with "failed to enable" clkctrl error.
+> 
+> Let's fix the issue with a delay of two times the desired delay as in
+> often done for udelay() to account for the inaccuracy.
+
+Tested for DS0 and rtc+ddr modes on am43 and ds0 on am33.
+
+Tested-by: Keerthy <j-keerthy@ti.com>
+
+> 
+> Fixes: 3d8598fb9c5a ("clk: ti: clkctrl: use fallback udelay approach if timekeeping is suspended")
+> Cc: Keerthy <j-keerthy@ti.com>
+> Cc: Tero Kristo <t-kristo@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>   drivers/clk/ti/clkctrl.c | 5 +++--
+>   1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/ti/clkctrl.c b/drivers/clk/ti/clkctrl.c
+> --- a/drivers/clk/ti/clkctrl.c
+> +++ b/drivers/clk/ti/clkctrl.c
+> @@ -100,11 +100,12 @@ static bool _omap4_is_timeout(union omap4_timeout *time, u32 timeout)
+>   	 * can be from a timer that requires pm_runtime access, which
+>   	 * will eventually bring us here with timekeeping_suspended,
+>   	 * during both suspend entry and resume paths. This happens
+> -	 * at least on am43xx platform.
+> +	 * at least on am43xx platform. Account for flakeyness
+> +	 * with udelay() by multiplying the timeout value by 2.
+>   	 */
+>   	if (unlikely(_early_timeout || timekeeping_suspended)) {
+>   		if (time->cycles++ < timeout) {
+> -			udelay(1);
+> +			udelay(1 * 2);
+>   			return false;
+>   		}
+>   	} else {
+> 
