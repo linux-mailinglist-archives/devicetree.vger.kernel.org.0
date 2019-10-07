@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3813CCDE65
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 11:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BA38CDE88
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 11:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727390AbfJGJn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 05:43:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58992 "EHLO mail.kernel.org"
+        id S1727334AbfJGJ52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 05:57:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60750 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727278AbfJGJnz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 05:43:55 -0400
-Received: from localhost.localdomain.com (nat-pool-mxp-t.redhat.com [149.6.153.186])
+        id S1727347AbfJGJ52 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 05:57:28 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1CE3021655;
-        Mon,  7 Oct 2019 09:43:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 09D44206C2;
+        Mon,  7 Oct 2019 09:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570441435;
-        bh=/1BlHJidn6YTk/N3hfexX/eOvjbULORrJ1LWvj8xVis=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2ZJrG4oeTqH5X3IbmKRZr1cNT2yIHgyeMd7R2Rfi46EFUHzavSR3M6nmbGzxa30uO
-         kfaXLBgeS7m/ixKjZD1YVImKyNtb1UpMiCC557XQroXOXPXwDa7JQf6qMjF8F/wFgW
-         jTiG16Zrobo+5vigQOmmtfliYYnHgQkobI/tGFIQ=
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, martin@geanix.com,
-        lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add lsm6ds0 device bindings
-Date:   Mon,  7 Oct 2019 11:43:38 +0200
-Message-Id: <86786d8de65eb1c2b16e8433aa673d217cc27dcd.1570441034.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1570441034.git.lorenzo@kernel.org>
-References: <cover.1570441034.git.lorenzo@kernel.org>
+        s=default; t=1570442247;
+        bh=N7TilIZJRyBGNXrbLXhsC9CeGmoiTg58DVlKiVeC7Us=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GpeZmRy0IvGEHQa8Rioc5vEKWtHKllHQNCioRJvpXVIEtSi8J6eUPik8We8iboQ7H
+         VB4nlpmjftttHBoX1U9AZEDGgp7HGVpH5ok+DYNi3smmnkQaBx5oOPyIFb7y05P+zz
+         NaG8ElXfEzrVRrKJxtK47Tq/gaxUtZpx06HkrF10=
+Date:   Mon, 7 Oct 2019 11:57:14 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: orangepi-win: Enable audio
+ codec
+Message-ID: <20191007095714.zzgl33jecjtt4fxv@gilmour>
+References: <20191003222130.2015617-1-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tozf5qau77iuy2yh"
+Content-Disposition: inline
+In-Reply-To: <20191003222130.2015617-1-jernej.skrabec@siol.net>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-index 1a07d38c813f..fc018ecba086 100644
---- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-+++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-@@ -14,6 +14,7 @@ Required properties:
-   "st,lsm6ds3tr-c"
-   "st,ism330dhcx"
-   "st,lsm9ds1-imu"
-+  "st,lsm6ds0"
- - reg: i2c address of the sensor / spi cs line
- 
- Optional properties:
--- 
-2.21.0
+--tozf5qau77iuy2yh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Fri, Oct 04, 2019 at 12:21:30AM +0200, Jernej Skrabec wrote:
+> This patch enables internal audio codec on OrangePi Win board by
+> enabling all relevant nodes and adding appropriate routing. Board has
+> on-board microphone (MIC1) and 3.5 mm jack with stereo audio and
+> microphone (MIC2).
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+
+Applied, thanks!
+Maxime
+
+--tozf5qau77iuy2yh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZsL+gAKCRDj7w1vZxhR
+xRFoAQDZj50jh00cXZhTNvZIc5yBehvsimL9KoSEBtoolyIcKgD9E4sIC0dDrmMM
+0VTV65p1tY7e+MdoKuy/z1F20RbaTgY=
+=YcBb
+-----END PGP SIGNATURE-----
+
+--tozf5qau77iuy2yh--
