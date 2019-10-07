@@ -2,98 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8760ACDE34
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 11:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB02CDE61
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 11:43:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727345AbfJGJb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 05:31:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57120 "EHLO mail.kernel.org"
+        id S1727442AbfJGJnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 05:43:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58922 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726010AbfJGJb0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 05:31:26 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        id S1727262AbfJGJnv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 05:43:51 -0400
+Received: from localhost.localdomain.com (nat-pool-mxp-t.redhat.com [149.6.153.186])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0FDE32084B;
-        Mon,  7 Oct 2019 09:31:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA84D21655;
+        Mon,  7 Oct 2019 09:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570440685;
-        bh=JaINcyQNLKJhhWm6YuBkApUi5w0bmV2v7c3hLArmMVY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kd7fdRTlUPPtMG3X4zZBeEJWzSxB41hcUU2JEQL7IbNvkBcpHYYrBAJtWsAKa6WGp
-         o3/OJOQ15zc6Czm/5Vy/8FTFe8OoYnnnOUrFHqkTTuuKS9WvKbDptV2MTvy98cIESh
-         J2C9xVNo0kNqTdyOo6jlggUMaFXk7uTFHzPV8/vI=
-Date:   Mon, 7 Oct 2019 11:31:22 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 1/6] dt-bindings: sun6i-dsi: Add A64 MIPI-DSI
- compatible
-Message-ID: <20191007093122.ixrpzvy6ynh6vuir@gilmour>
-References: <20191005141913.22020-1-jagan@amarulasolutions.com>
- <20191005141913.22020-2-jagan@amarulasolutions.com>
+        s=default; t=1570441431;
+        bh=oFehRgqGofN7D9ygPJMdszHyUO5u13aff7SK6VhEUbI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RevdhcZh1grjHfQwVlXSWlbahn+726IXeNLMOwo2IbMYSh+dZ8uIVdhl83d0x0soe
+         28qcpwctYLpurxDa8Ys6vlrYQlzfgVwsGSyoiVfllUx1HTPHfYQK2J9+KD74cAH3I1
+         Eh+TkmFqLUhL4+2YeIq6HLvXF3PN7TrELyWJXXwE=
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org, martin@geanix.com,
+        lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] add support to STM LSM6DS0 6-axis Mems sensor
+Date:   Mon,  7 Oct 2019 11:43:36 +0200
+Message-Id: <cover.1570441034.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hcbxlzriavurqgww"
-Content-Disposition: inline
-In-Reply-To: <20191005141913.22020-2-jagan@amarulasolutions.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support to STM LSM6DS0 6-axis sensor. Just compiled, but LSM6DS0 relies on
+the same register map used by LSM9DS1
 
---hcbxlzriavurqgww
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add support to LSM6DS0
+  dt-bindings: iio: imu: st_lsm6dsx: add lsm6ds0 device bindings
 
-On Sat, Oct 05, 2019 at 07:49:08PM +0530, Jagan Teki wrote:
-> The MIPI DSI controller in Allwinner A64 is similar to A33.
->
-> But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
-> to with separate compatible for A64 on the same driver.
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  .../bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml        | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> index dafc0980c4fa..cfcc84d38084 100644
-> --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> @@ -15,7 +15,9 @@ properties:
->    "#size-cells": true
->
->    compatible:
-> -    const: allwinner,sun6i-a31-mipi-dsi
-> +    enum:
-> +      - const: allwinner,sun6i-a31-mipi-dsi
-> +      - const: allwinner,sun50i-a64-mipi-dsi
+ Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
+ drivers/iio/imu/st_lsm6dsx/Kconfig                       | 2 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                  | 2 ++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c             | 5 ++++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c              | 5 +++++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c              | 5 +++++
+ 6 files changed, 18 insertions(+), 2 deletions(-)
 
-How did you test this? It will report an error when running the
-validation
+-- 
+2.21.0
 
-Maxime
-
---hcbxlzriavurqgww
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZsF6gAKCRDj7w1vZxhR
-xecaAP9RqOVF2LeEc8hVaJ7qENbVYYasarhmNzXWXQ/tp03R3gEAt6lJLwS2PUdi
-ULmqU8z92Ol9GjvEOXSZB3G08d0G9wg=
-=VSAg
------END PGP SIGNATURE-----
-
---hcbxlzriavurqgww--
