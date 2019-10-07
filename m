@@ -2,71 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A70ACE2DA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:14:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26576CE2E6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727635AbfJGNOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 09:14:11 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:42189 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727010AbfJGNOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:14:10 -0400
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id D0926200010;
-        Mon,  7 Oct 2019 13:14:05 +0000 (UTC)
-Date:   Mon, 7 Oct 2019 15:14:05 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Eugen.Hristev@microchip.com, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, wim@linux-watchdog.org,
-        robh+dt@kernel.org, Nicolas.Ferre@microchip.com
-Subject: Re: [PATCH 2/3] watchdog: sam9x60_wdt: introduce sam9x60 watchdog
- timer driver
-Message-ID: <20191007131348.GH4254@piout.net>
-References: <1570001371-8174-1-git-send-email-eugen.hristev@microchip.com>
- <1570001371-8174-2-git-send-email-eugen.hristev@microchip.com>
- <e58a3ab5-69bc-cad3-5faa-ed00ff7906c7@roeck-us.net>
- <ab7b6b45-5e6f-100d-51af-a82ac325d948@microchip.com>
- <a9adf20c-f730-a7e9-a826-59216c17f03d@roeck-us.net>
+        id S1727572AbfJGNQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 09:16:59 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:35068 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727010AbfJGNQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:16:59 -0400
+Received: by mail-pf1-f193.google.com with SMTP id 205so8670851pfw.2;
+        Mon, 07 Oct 2019 06:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PwiaLPNEero/RDkqXHKNpda6jyXODSLqhlH8GfScxo4=;
+        b=U93WlJGywOW4GYdmFpjLSbINCeD5e5GpJ2UlnKRkpeLbKA45F/xZjIQjq0CqmxWaRc
+         rYF0hBu+qMVKCBEvYbVAEykbc/A21OMZHembtBRw3nR29KuAVu8WLk1p3euuN3vDw0H9
+         h9tzVebTCZgobqlu8/sjCsg9Pq9stdW/1AYzLxTmNBLHnRJ6srFQrpw44A3TgwUHnbwt
+         W7YQJpxSa4WvSTanPX6pG+mVVKLdr9OdP5PqhKoVXp8VbPAg2FRoSFb5qRayfQisyMf7
+         iEnYEWz46FCUjnTIM1/pUI9OHquzBjIVoNtejSSZckTud93bBGD7/TqoMDuFTzu3QbWI
+         ThEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PwiaLPNEero/RDkqXHKNpda6jyXODSLqhlH8GfScxo4=;
+        b=KMXQK9+B9oc/ffZjEJiiY73Y5/hhxdum83mbnwCPjfzqBCzgE0gIARs+vqBJIrYtN/
+         GYRXq8e/a4MtYaEGCHTp4RwN3owcZx82vKUOfO1KNV8V9nVAHQQVAt/p/HRynGI8V85D
+         yNnz8v0SZqfPbco0MvaNLroIXuEZI+mO85jEc5KmXFJcImjUNKClVZF4SFQJQ31NgQeF
+         8pWdANYCpSek3HjhD9LJTGCYU0s5NXHgvs6BbwwsJwr6l52A1LuzZvsZjShp+MNBKgqO
+         J+xmozQ+CZ9jJVvhVWzqQ+mU4pYsOjbyoq0gRQCjRkoLm34UAcRi99mIwattrPGw8YqK
+         k7HA==
+X-Gm-Message-State: APjAAAXzznkImC31cFEcji3D1B8TGyl81JwOdPMK3dP0GOIkkRX2bu/f
+        P398uFx131ST+IV5UYfd/AE=
+X-Google-Smtp-Source: APXvYqyvHEaEyr+JjSbY/h5Ukr9XMbNo6ALxq6sKOkJD/pII8Vb1ifPUfHXL2MqvRnu0ESu3/zKdCA==
+X-Received: by 2002:a62:82c8:: with SMTP id w191mr31574553pfd.99.1570454218199;
+        Mon, 07 Oct 2019 06:16:58 -0700 (PDT)
+Received: from localhost.localdomain ([103.51.74.138])
+        by smtp.gmail.com with ESMTPSA id r186sm16938650pfr.40.2019.10.07.06.16.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2019 06:16:57 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [RFCv1 0/5] Odroid N2 failes to boot using upstream kernel & u-boot
+Date:   Mon,  7 Oct 2019 13:16:44 +0000
+Message-Id: <20191007131649.1768-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a9adf20c-f730-a7e9-a826-59216c17f03d@roeck-us.net>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2019 05:36:38-0700, Guenter Roeck wrote:
-> On 10/7/19 12:58 AM, Eugen.Hristev@microchip.com wrote:
-> [ ... ]
-> > Hello Guenter,
-> > 
-> > Thank you for the feedback.
-> > After reviewing this, can you please guide me towards one of the
-> > possible two directions: merge this driver with sama5d4_wdt , and have a
-> > single driver with support for both hardware blocks; or, have this
-> > driver separately , as in this patch series?
-> > 
-> 
-> I noticed the similarities. I don't know if it makes sense to reconcile
-> the two drivers; it seems to me the new chip uses the same basic core with
-> enhancements. In general, I prefer a single driver, but only if the result
-> doesn't end up being an if/else mess. Ultimately, it is really your call
-> to make.
-> 
+We am trying to build the upstream u-boot and upstream kernel,
+but it fails to pass the initialization of PWM_MESON driver.
+So these patches help boot the kernel on microSD card.
 
-Most if not all your comments were already addressed in the other
-driver. The main difference in the register interface is the location of
-the counter that only really affects sama5d4_wdt_set_timeout and that
-could be abstracted away by using a different struct watchdog_ops.
-Interrupt enabling is also done differently, I don't think it has a huge
-impact.
+Patchs based on Linux 5.4-rc2
+
+Boot log failed are shown below.
+[0] https://pastebin.com/cEtWq2iX
+
+[    1.569240] meson-gx-mmc ffe05000.sd: Got CD GPIO
+[    1.599227] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+[    1.600605] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+[    1.607166] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+[    1.613273] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+[    1.619931] hctosys: unable to open rtc device (rtc0)
+
+My guess their is not much issue with eMMC module, if their is
+other approach to resolve this issue, I will give this a try.
+
+Best Regards
+-Anand
+
+Anand Moon (5):
+  arm64: dts: meson: Add missing 5V_EN gpio signal for VCC5V regulator
+  arm64: dts: meson: Add missing pwm control gpio signal for
+    pwm-regulator
+  arm64: dts: meson: Add missing regulator linked to VDDAO_3V3 regulator
+    to FLASH_VDD
+  arm64: dts: meson: Add missing regulator linked to VCCV5 regulator to
+    VDDIO_C/TF_IO
+  arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
+
+ .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 13 +++++++++++++
+ arch/arm64/configs/defconfig                        |  2 +-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.23.0
+
