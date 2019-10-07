@@ -2,144 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E67CEED1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 00:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2461CCEF4E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 00:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729525AbfJGWGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 18:06:08 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34165 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728422AbfJGWGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 18:06:07 -0400
-Received: by mail-io1-f66.google.com with SMTP id q1so32282798ion.1;
-        Mon, 07 Oct 2019 15:06:07 -0700 (PDT)
+        id S1729585AbfJGW6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 18:58:02 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:39972 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729145AbfJGW6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 18:58:02 -0400
+Received: by mail-pl1-f196.google.com with SMTP id d22so7572528pll.7
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 15:58:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=xderkNAd5iCp8HxtFYkNSskrWASJhHRHCkZ3LCYjMzg=;
-        b=uAl/TZp7ZkdqN0kHsH6si4mz/kt6foUvrxpy/Hs1hwwYeDdgEuTY2/NX8gN7Z6xarw
-         1hIqz1zlPv0f61x76A9KuZPX3ND6xtw+uJwpD9J2GmtwH5MMTXf4rikuKip1Zd6oOfeU
-         KCFrY8uiRgAbhFxe9eH46tdvsh+yGE2QR037uytPar3/FjgdxxWuGmruBJFa1/lZ4DFi
-         VUFpwudGnJyx287MeZ6YFJ0Kx8R/nsFFuL3x6PkufOhzgMZ05iJ6t+Qwcw1jThz4NCEc
-         yijnv5TXxYEgWHpjcY+hnLWFuQe4uUe7e8JNlUeN53aU33oXKOKy+TjaqQIC7E3sUfl1
-         smEg==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=HcljqBtqZ0n7Ky2kGCyvmwQmBy2Uww4x9f71GEl4Z8U=;
+        b=A94WXkxSy/iySlIL7pQDbk5PyEHAV56d2+iR4LFGlii5+pbrJhkGI9GamLLoNTp12V
+         g3e9CFHLq2AC728cDVClIDG2UxNJ5N3fH1AfNYALNjvbTpOSGmomeBb3eXQ08eJYoZk6
+         LU41rYaKI7Zmb1wKEoQWeSRAZ3gyy7X2TzCqPh41wNYsvmoupQFVQLsv8o0uOBqnW001
+         TNxb1jdGtt62cUx/R+dWLujDN5vi+hdJ/P/yrqpBibd5wr3zkNV+jGHXKk8g1j0fjxcL
+         ShHB6G/+3rJf1OdL2Syq7gxBYqmuuArpeguVvRhkfckQBq3io5FGAOPIrLkybmRobMO9
+         hkIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=xderkNAd5iCp8HxtFYkNSskrWASJhHRHCkZ3LCYjMzg=;
-        b=TWFlofanP3rGcVdD29pD0JI+vriahiTYd2UtrBpViBkmMa9OJDbI+RIS+FRisQ5+l/
-         jYqQ9AM7roKeX4kXbynZoPGY6dCVX8+WEt5uCFszvIgWE8LTXOz6dvnfYZOsfZF0/Er7
-         MvhO8tCTzM+K109l4mqNEA7WLNEmq9fHieWKmaXWfnNGc5jcyfFg/3uD4g7PDjn7cvcM
-         g/ejY7s3XVGYEmheWTxyeYtTbm6KYOrcVMzJPnGrNAC4+cbhEU73RG4cdQYyz/JKyqat
-         mWM4nqFbtBf/dS2Isp9UXqIdeVgvoIKc2QvOjc/SXZ+ABFMrNdOpoz4CHMZ1tY70tXdx
-         3y8w==
-X-Gm-Message-State: APjAAAUXQROFZDhwrXFBhw+mCkRpPaFFYBkzbaAqScCpLQKzSQgfus3n
-        6n4jOamlm1CYCq8v14P4HH5WDQRs
-X-Google-Smtp-Source: APXvYqyjBEBE28A9G2yZBMzh9WFCpy/KQsZ4WTfLgjutm/b0s70ky7JLyIM5zHztc9JPwoU/XJytDQ==
-X-Received: by 2002:a5e:c747:: with SMTP id g7mr269134iop.70.1570485966577;
-        Mon, 07 Oct 2019 15:06:06 -0700 (PDT)
-Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id m14sm6479874ild.3.2019.10.07.15.06.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2019 15:06:05 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-omap@vger.kernel.org
-Cc:     adam.ford@logicpd.com, hns@goldelico.com,
-        Adam Ford <aford173@gmail.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=HcljqBtqZ0n7Ky2kGCyvmwQmBy2Uww4x9f71GEl4Z8U=;
+        b=Mug977yvxiQIWsAH3g8oYo4h1hoQASg4gVt43j6BhfZaSQ2fJgPn6OnAy0KMGDkP7d
+         FcyNzQsxOLbAJkcrepl/D9ydkzTGal+HrUUZYxC3rs7CnMNPgJZmDy60w2SxU8QCL1uR
+         HPMOFFYOCVAoF2gPbO5xyy0b/qTDqBu//99r/5unxM28Yz2URyFDFUBWxJlPnjzgpYrE
+         st5ZzdqEoj/XxMDknFgCGwRMS8xQdxSeMJdVhXBSpwkdmvmuoQCFa4GIXzZS1nvqv6P2
+         f8wAV4dKzfFyqFrhak36pNyAZ1lUvZQROCSifxL8f6HFObOBWLFrVKk8afoJfcurB80/
+         CCRg==
+X-Gm-Message-State: APjAAAUUhmzkD+m7536k2qa452nvbol6F0B5Q0PzbqacKgQA3sOWEsQY
+        ALJXKjTFxjEUbfRDGv1WTrJyPA==
+X-Google-Smtp-Source: APXvYqzkOuhDdUWLlgA6SbWta6SkUoWU+Z0M/BpBE4YDjY9UHet/ggDjHI1KlYIoeSDu6bnRUGp2SA==
+X-Received: by 2002:a17:902:9a06:: with SMTP id v6mr25829128plp.221.1570489081140;
+        Mon, 07 Oct 2019 15:58:01 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:ad34:3a95:9a31:e6bb])
+        by smtp.gmail.com with ESMTPSA id f62sm16453675pfg.74.2019.10.07.15.57.59
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 07 Oct 2019 15:58:00 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Anand Moon <linux.amoon@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] ARM: dts: omap3: Add cpu trips and cooling map for omap34/36 families
-Date:   Mon,  7 Oct 2019 17:05:40 -0500
-Message-Id: <20191007220540.30690-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191007220540.30690-1-aford173@gmail.com>
-References: <20191007220540.30690-1-aford173@gmail.com>
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
+In-Reply-To: <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-6-linux.amoon@gmail.com> <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+Date:   Mon, 07 Oct 2019 15:57:59 -0700
+Message-ID: <7hsgo4cgeg.fsf@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OMAP3530, OMAP3630, and DM3730 all show thresholds of 90C and 105C
-depending on commercial or industrial temperature ratings.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-This patch expands the thermal information to include the limits of 90
-and 105C for alert and critical.  It sets the coolings-cells for the
-34xx and 36xx CPU's which both point to omap3-cpu-thermal.dtsi.
+> On Mon, Oct 7, 2019 at 3:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+>> index c9a867ac32d4..72f6a7dca0d6 100644
+>> --- a/arch/arm64/configs/defconfig
+>> +++ b/arch/arm64/configs/defconfig
+>> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+>>  CONFIG_PWM=y
+>>  CONFIG_PWM_BCM2835=m
+>>  CONFIG_PWM_CROS_EC=m
+>> -CONFIG_PWM_MESON=m
+>> +CONFIG_PWM_MESON=y
+>
+> some time ago I submitted a similar patch for the 32-bit SoCs
+> it turned that that pwm-meson can be built as module because the
+> kernel will run without CPU DVFS as long as the clock and regulator
+> drivers are returning -EPROBE_DEFER (-517)
 
-For boards who never use industrial temperatures, these can be
-changed on their respective device trees with something like:
+On 64-bit SoCs, the kernel boots with PWM as a module also, but DVFS
+only works sometimes, and making it built-in fixes the problem.
+Actually, it doesn't fix, it just hides the problem, which is likely a
+race or timeout happening during deferred probing.
 
-&cpu_alert0 {
-	temperature = <85000>; /* millicelsius */
-};
+> did you check whether there's some other problem like some unused
+> clock which is being disabled at that moment?
+> I've been hunting weird problems in the past where it turned out that
+> changing kernel config bits changed the boot timing - that masked the
+> original problem
 
-&cpu_crit {
-	temperature = <90000>; /* millicelsius */
-};
+Right, I would definitely prefer to not make this built-in without a lot
+more information to *why* this is needed.  In figuring that out, we'll
+probably find the race/timeout that's the root cause.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Tested-by: H. Nikolaus Schaller <hns@goldelico.com> # on GTA04A5 with dm3730cbp100
+Kevin
 
-diff --git a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-index 235ecfd61e2d..dfbd0cb0b00b 100644
---- a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-+++ b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-@@ -17,4 +17,25 @@ cpu_thermal: cpu_thermal {
- 
- 			/* sensor       ID */
- 	thermal-sensors = <&bandgap     0>;
-+
-+	cpu_trips: trips {
-+		cpu_alert0: cpu_alert {
-+			temperature = <90000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "passive";
-+		};
-+		cpu_crit: cpu_crit {
-+			temperature = <105000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "critical";
-+		};
-+	};
-+
-+	cpu_cooling_maps: cooling-maps {
-+		map0 {
-+			trip = <&cpu_alert0>;
-+			cooling-device =
-+				<&cpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+	};
- };
-diff --git a/arch/arm/boot/dts/omap34xx.dtsi b/arch/arm/boot/dts/omap34xx.dtsi
-index 7b09cbee8bb8..99a7161bebb2 100644
---- a/arch/arm/boot/dts/omap34xx.dtsi
-+++ b/arch/arm/boot/dts/omap34xx.dtsi
-@@ -26,6 +26,7 @@
- 				600000  1350000
- 			>;
- 			clock-latency = <300000>; /* From legacy driver */
-+			#cooling-cells = <2>;
- 		};
- 	};
- 
-diff --git a/arch/arm/boot/dts/omap36xx.dtsi b/arch/arm/boot/dts/omap36xx.dtsi
-index 1e552f08f120..8096b6ef0ae1 100644
---- a/arch/arm/boot/dts/omap36xx.dtsi
-+++ b/arch/arm/boot/dts/omap36xx.dtsi
-@@ -28,6 +28,7 @@
- 				800000  1325000
- 			>;
- 			clock-latency = <300000>; /* From legacy driver */
-+			#cooling-cells = <2>;
- 		};
- 	};
- 
--- 
-2.17.1
 
