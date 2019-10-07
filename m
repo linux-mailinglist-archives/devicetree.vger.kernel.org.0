@@ -2,87 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C33CE1F9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DA8BCE1F5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727769AbfJGMmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 08:42:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41992 "EHLO mail.kernel.org"
+        id S1727533AbfJGMmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 08:42:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41900 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727490AbfJGMms (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 08:42:48 -0400
-Received: from dragon (li937-157.members.linode.com [45.56.119.157])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        id S1727490AbfJGMmn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 08:42:43 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2BEA821655;
-        Mon,  7 Oct 2019 12:42:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D454921871;
+        Mon,  7 Oct 2019 12:42:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570452168;
-        bh=w78f9Lnk1EFKA+FEWJPCNUtHOr3FJa1nez4JtQoAwSk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pJqZWVQqsTSFiruu7XttrAjOdzr8DDC0Z9lLHooGyrtHeSPdM/GAmun6rC98Tvw0G
-         sQVgkzUf16IsDiP4WBNipLCb0N9TrbPwCiszAmgBSrqVn5VFvBbJstR8JLTV93YBqa
-         Wv1hrZpyigC2vH50Bx5kmNw6H2r2v+dpl6FUVqRo=
-Date:   Mon, 7 Oct 2019 20:42:19 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        dann frazier <dann.frazier@canonical.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma
- coherent
-Message-ID: <20191007124217.GO7150@dragon>
-References: <20190922102341.GO25745@shell.armlinux.org.uk>
- <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
+        s=default; t=1570452162;
+        bh=QlmGxXN75S6KDpXUeIecyQv5YkpxdOrHAZ4tfkFVv1Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sFjDkU5fwAgfAsB2uKtjmiCRkx+xiCc8h2anG7iOYFA/BQP0MtQC85fQvcF9HjkYN
+         kouywKrhqR1d1WeS49TEmwtVwUCsw1OmlED96oFaX2Dg4YpPGvXkqDTVLtgVoubvh7
+         RkYmxCQvN1nmt4vMNgtCt3SsHmtj7ZSOzdTKgMWc=
+Received: by mail-qt1-f179.google.com with SMTP id u22so18821813qtq.13;
+        Mon, 07 Oct 2019 05:42:41 -0700 (PDT)
+X-Gm-Message-State: APjAAAXtIv3ClJtQ53LeDkY9fnJ/jP6Jn9lVtEDs1qqIRCi93dbpyF0Y
+        zy+D3o1cRwuJn90hRM6TL++GC2NF9MLtt1W27w==
+X-Google-Smtp-Source: APXvYqzgZykjYM+K47WAdfZO6hL3Row4Olz5ZnINVgiZV8PaGcqQNLFCJ5CkCvyGRTvgjU8HbholqiAulEP7V4qx9kw=
+X-Received: by 2002:ac8:2fe5:: with SMTP id m34mr29115750qta.224.1570452160952;
+ Mon, 07 Oct 2019 05:42:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <20191006142715.45k64cgw7mzlekm5@arbad>
+In-Reply-To: <20191006142715.45k64cgw7mzlekm5@arbad>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 7 Oct 2019 07:42:29 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+0SpRVmGJSm5Hw8bQ_zdeJy5wfTb9RM1r=crkiT2uM-Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+0SpRVmGJSm5Hw8bQ_zdeJy5wfTb9RM1r=crkiT2uM-Q@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: iio: maxbotix,mb1232.yaml: transform to yaml
+To:     Andreas Klinger <ak@it-klinger.de>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 22, 2019 at 11:27:03AM +0100, Russell King wrote:
-> The LX2160A esdhc controllers are setup by the driver to be DMA
-> coherent, but without marking them as such in DT, Linux thinks they
-> are not.  This can lead to random sporadic DMA errors, even to the
-> extent of preventing boot, such as:
-> 
-> mmc0: ADMA error
-> mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
-> mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00002202
-> mmc0: sdhci: Blk size:  0x00000008 | Blk cnt:  0x00000001
-> mmc0: sdhci: Argument:  0x00000000 | Trn mode: 0x00000013
-> mmc0: sdhci: Present:   0x01f50008 | Host ctl: 0x00000038
-> mmc0: sdhci: Power:     0x00000003 | Blk gap:  0x00000000
-> mmc0: sdhci: Wake-up:   0x00000000 | Clock:    0x000040d8
-> mmc0: sdhci: Timeout:   0x00000003 | Int stat: 0x00000001
-> mmc0: sdhci: Int enab:  0x037f108f | Sig enab: 0x037f108b
-> mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00002202
-> mmc0: sdhci: Caps:      0x35fa0000 | Caps_1:   0x0000af00
-> mmc0: sdhci: Cmd:       0x0000333a | Max curr: 0x00000000
-> mmc0: sdhci: Resp[0]:   0x00000920 | Resp[1]:  0x001d8a33
-> mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x3f400e00
-> mmc0: sdhci: Host ctl2: 0x00000000
-> mmc0: sdhci: ADMA Err:  0x00000009 | ADMA Ptr: 0x000000236d43820c
-> mmc0: sdhci: ============================================
-> mmc0: error -5 whilst initialising SD card
-> 
-> These are caused by the device's descriptor fetch hitting speculatively
-> loaded CPU cache lines that the CPU does not see through the normal,
-> non-cacheable DMA coherent mapping that it uses for non-coherent
-> devices.
-> 
-> DT and the device must agree wrt whether the device is DMA coherent or
-> not.
-> 
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+On Sun, Oct 6, 2019 at 9:27 AM Andreas Klinger <ak@it-klinger.de> wrote:
+>
+> transform existing documentation of maxbotix,mb1232 ultrasonic ranger
+> from text documentation format into yaml.
+>
+> Changes in v2:
+> - removed description of reg property
+> - added a line:
+>   additionalProperties: false
+>
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> ---
+>  .../bindings/iio/proximity/maxbotix,mb1232.txt     | 29 -----------
+>  .../bindings/iio/proximity/maxbotix,mb1232.yaml    | 56 ++++++++++++++++++++++
+>  2 files changed, 56 insertions(+), 29 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt b/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
+> deleted file mode 100644
+> index dd1058fbe9c3..000000000000
+> --- a/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -* MaxBotix I2CXL-MaxSonar ultrasonic distance sensor of type  mb1202,
+> -  mb1212, mb1222, mb1232, mb1242, mb7040 or mb7137 using the i2c interface
+> -  for ranging
+> -
+> -Required properties:
+> - - compatible:         "maxbotix,mb1202",
+> -                       "maxbotix,mb1212",
+> -                       "maxbotix,mb1222",
+> -                       "maxbotix,mb1232",
+> -                       "maxbotix,mb1242",
+> -                       "maxbotix,mb7040" or
+> -                       "maxbotix,mb7137"
+> -
+> - - reg:                        i2c address of the device, see also i2c/i2c.txt
+> -
+> -Optional properties:
+> - - interrupts:         Interrupt used to announce the preceding reading
+> -                       request has finished and that data is available.
+> -                       If no interrupt is specified the device driver
+> -                       falls back to wait a fixed amount of time until
+> -                       data can be retrieved.
+> -
+> -Example:
+> -proximity@70 {
+> -       compatible = "maxbotix,mb1232";
+> -       reg = <0x70>;
+> -       interrupt-parent = <&gpio2>;
+> -       interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml b/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+> new file mode 100644
+> index 000000000000..e2fb1f6d4dbe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/proximity/maxbotix,mb1232.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MaxBotix I2CXL-MaxSonar ultrasonic distance sensor
+> +
+> +maintainers:
+> +  - Andreas Klinger <ak@it-klinger.de>
+> +
+> +description: |
+> +  MaxBotix I2CXL-MaxSonar ultrasonic distance sensor of type  mb1202,
+> +  mb1212, mb1222, mb1232, mb1242, mb7040 or mb7137 using the i2c interface
+> +  for ranging
+> +
+> +  Specifications about the devices can be found at:
+> +  https://www.maxbotix.com/documents/I2CXL-MaxSonar-EZ_Datasheet.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxbotix,mb1202
+> +      - maxbotix,mb1212
+> +      - maxbotix,mb1222
+> +      - maxbotix,mb1232
+> +      - maxbotix,mb1242
+> +      - maxbotix,mb7040
+> +      - maxbotix,mb7137
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt used to announce the preceding reading request has finished
+> +      and that data is available.  If no interrupt is specified the device
+> +      driver falls back to wait a fixed amount of time until data can be
+> +      retrieved.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    proximity@70 {
 
-Applied, thanks.
+Fails to build with 'make dt_binding_check':
+
+Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.example.dts:20.11-24:
+Warning (reg_format): /example-0/proximity@70:reg: property has
+invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.example.dt.yaml:
+Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.example.dt.yaml:
+Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.example.dt.yaml:
+Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+
+You have to put this under an i2c bus node.
+
+i2c {
+  #address-cells = <1>;
+  #size-cells = <0>;
+  ...
+};
+
+> +      compatible = "maxbotix,mb1232";
+> +      reg = <0x70>;
+> +      interrupt-parent = <&gpio2>;
+> +      interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> +    };
+> --
+> 2.11.0
