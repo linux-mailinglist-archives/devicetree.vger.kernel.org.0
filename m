@@ -2,177 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F35BCDE4C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 11:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8760ACDE34
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 11:31:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727201AbfJGJgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 05:36:19 -0400
-Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.217]:33894 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727103AbfJGJgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 05:36:18 -0400
-X-Greylist: delayed 357 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Oct 2019 05:36:16 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570440976;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=Bj1O5xYRymHpK6nNk3268j2rAofXHl9iamXyOZB5rRw=;
-        b=DTrhg9wMtEBntmxqnDYmUHckUfyo8Y+RGWoxSaiqqoiTBx1DbDpX/vgb+zxHLnrG+F
-        JaLtUmrIW8XSqD64PnU3HfpQTY/7tFXkKHwziGlIyn3sWyVUV6MhpijCPMMucKVx8qlo
-        AuMK3EaYTv/P3MLZP+vE8dbJ31BL/gQLMbrvvcxFoHY82NGVllp1+/LXFiZv3vKdErcf
-        64CWanvZWu46laVyAMb0DIRSLBb6VR5FmmInCfTBVp84RSRqq4qqicXJ4L4DH7eiJMab
-        MSbmZWzDQ0bf+urjXJJUHBHT1mmko370alYoDHIOpvp1fdSPGcFTRNelX7bBuMub1Jeb
-        v8UA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u266EZF6ORJEoj602eCm"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 44.28.0 AUTH)
-        with ESMTPSA id L0811cv979UFzFL
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Mon, 7 Oct 2019 11:30:15 +0200 (CEST)
-Date:   Mon, 7 Oct 2019 11:30:08 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     michael.srba@seznam.cz
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: msm8916-samsung-a2015: add tactile buttons
- and hall sensor
-Message-ID: <20191007093008.GA15831@gerhold.net>
-References: <20191007064528.6543-1-michael.srba@seznam.cz>
+        id S1727345AbfJGJb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 05:31:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57120 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726010AbfJGJb0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 05:31:26 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0FDE32084B;
+        Mon,  7 Oct 2019 09:31:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570440685;
+        bh=JaINcyQNLKJhhWm6YuBkApUi5w0bmV2v7c3hLArmMVY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kd7fdRTlUPPtMG3X4zZBeEJWzSxB41hcUU2JEQL7IbNvkBcpHYYrBAJtWsAKa6WGp
+         o3/OJOQ15zc6Czm/5Vy/8FTFe8OoYnnnOUrFHqkTTuuKS9WvKbDptV2MTvy98cIESh
+         J2C9xVNo0kNqTdyOo6jlggUMaFXk7uTFHzPV8/vI=
+Date:   Mon, 7 Oct 2019 11:31:22 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 1/6] dt-bindings: sun6i-dsi: Add A64 MIPI-DSI
+ compatible
+Message-ID: <20191007093122.ixrpzvy6ynh6vuir@gilmour>
+References: <20191005141913.22020-1-jagan@amarulasolutions.com>
+ <20191005141913.22020-2-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hcbxlzriavurqgww"
 Content-Disposition: inline
-In-Reply-To: <20191007064528.6543-1-michael.srba@seznam.cz>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+In-Reply-To: <20191005141913.22020-2-jagan@amarulasolutions.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 07, 2019 at 08:45:28AM +0200, michael.srba@seznam.cz wrote:
-> From: Michael Srba <Michael.Srba@seznam.cz>
-> 
-> Add nodes for basic GPIO connected hardware to the Samsung A3/A5 common dtsi. 
-> This includes the Volume UP button, the Home button, and the hall sensor used 
-> to sense "smart cover" open state. Related to that, add a node for the Volume 
-> DOWN button, which is handled by the pm8916 as is common with msm8916 devices.
-> 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-Tested-by: Stephan Gerhold <stephan@gerhold.net> # a5u
+--hcbxlzriavurqgww
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Sat, Oct 05, 2019 at 07:49:08PM +0530, Jagan Teki wrote:
+> The MIPI DSI controller in Allwinner A64 is similar to A33.
+>
+> But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
+> to with separate compatible for A64 on the same driver.
+>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > ---
->  .../qcom/msm8916-samsung-a2015-common.dtsi    | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> index 6fc0b80d1f90..bd1eb3eeca53 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> @@ -3,6 +3,7 @@
->  #include "msm8916.dtsi"
->  #include "pm8916.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  
->  / {
-> @@ -91,6 +92,44 @@
->  		etm@85f000 { status = "disabled"; };
->  	};
->  
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_keys_default>;
-> +
-> +		label = "GPIO Buttons";
-> +
-> +		volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +
-> +		home {
-> +			label = "Home";
-> +			gpios = <&msmgpio 109 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_HOMEPAGE>;
-> +		};
-> +	};
-> +
-> +	gpio-hall-sensor {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_hall_sensor_default>;
-> +
-> +		label = "GPIO Hall Effect Sensor";
-> +
-> +		hall-sensor {
-> +			label = "Hall Effect Sensor";
-> +			gpios = <&msmgpio 52 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
->  	i2c-muic {
->  		compatible = "i2c-gpio";
->  		sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> @@ -113,6 +152,30 @@
->  };
->  
->  &msmgpio {
-> +	gpio_keys_default: gpio_keys_default {
-> +		pinmux {
-> +			function = "gpio";
-> +			pins = "gpio107", "gpio109";
-> +		};
-> +		pinconf {
-> +			pins = "gpio107", "gpio109";
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	gpio_hall_sensor_default: gpio_hall_sensor_default {
-> +		pinmux {
-> +			function = "gpio";
-> +			pins = "gpio52";
-> +		};
-> +		pinconf {
-> +			pins = "gpio52";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
->  	muic_int_default: muic_int_default {
->  		pinmux {
->  			function = "gpio";
-> @@ -238,3 +301,16 @@
->  		regulator-max-microvolt = <2700000>;
->  	};
->  };
-> +
-> +&spmi_bus {
-> +	pm8916@0 {
-> +		pon@800 {
-> +			volume-down {
-> +				compatible = "qcom,pm8941-resin";
-> +				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +				bias-pull-up;
-> +				linux,code = <KEY_VOLUMEDOWN>;
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> 2.23.0
-> 
+>  .../bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml        | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
+> index dafc0980c4fa..cfcc84d38084 100644
+> --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
+> +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
+> @@ -15,7 +15,9 @@ properties:
+>    "#size-cells": true
+>
+>    compatible:
+> -    const: allwinner,sun6i-a31-mipi-dsi
+> +    enum:
+> +      - const: allwinner,sun6i-a31-mipi-dsi
+> +      - const: allwinner,sun50i-a64-mipi-dsi
+
+How did you test this? It will report an error when running the
+validation
+
+Maxime
+
+--hcbxlzriavurqgww
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZsF6gAKCRDj7w1vZxhR
+xecaAP9RqOVF2LeEc8hVaJ7qENbVYYasarhmNzXWXQ/tp03R3gEAt6lJLwS2PUdi
+ULmqU8z92Ol9GjvEOXSZB3G08d0G9wg=
+=VSAg
+-----END PGP SIGNATURE-----
+
+--hcbxlzriavurqgww--
