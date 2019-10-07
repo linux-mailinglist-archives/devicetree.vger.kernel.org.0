@@ -2,82 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3204CE341
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D50AECE34A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728492AbfJGNVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 09:21:25 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:40465 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728463AbfJGNVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:21:22 -0400
-Received: by mail-lf1-f68.google.com with SMTP id d17so9258388lfa.7;
-        Mon, 07 Oct 2019 06:21:20 -0700 (PDT)
+        id S1728258AbfJGNVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 09:21:41 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:44099 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728164AbfJGNVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:21:40 -0400
+Received: by mail-lf1-f65.google.com with SMTP id q12so4304200lfc.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 06:21:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=8lFKpywdPpAsicgn0/2wcRw41YVk58KkpKaw3FhsBFg=;
+        b=kzlZ1z4pnQ9ElMcAAvOAiALRNqpqyMMoDDh6kl2IFt1Qp45uDKh6abSvD0oEiGal+H
+         MBnfKpBtjz50DsDYc3uh3L02w5MD77BD5eFT4gdVpfd+EZxBXRrsu1S1LvzkXl81Kr2y
+         KukRAsEvizvL8jjIz9pWP5hthlbKDXXKauZE8JBU1Haz9GXujFr+Ngc1jXoHW42W8B0U
+         szNRAvXXQ5BDUZpOIJBcvCdwyWIdAE4Ykfye3tfRzVbkk29N0OAqnXNWgI7XJsCxLwN4
+         UOfRTbN2IZAuq7VWS5/64GvKfCfdvQC3cNTBDixQgKGMGjK0hOMxCRkD0PIRfMJ92Fcu
+         2EXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=85dVJxc5Go/ZeDNecXfIZl1Or+Zhk6XQDSwO01sY1ps=;
-        b=bOEgEkYrl3e33BL4fx711tKjOG+0B6XMHsnIZX0KGXjWN+UMGAF3Mlk/EujtqZTBL7
-         OkjS37cWG1M5cZoFyDsrXyZUOdfU4lhe2N/HaS8aGtPOkEH9pghH9ulrvcUEbXNMNV1j
-         tMwvSkTNePn9dUWJtnBSUIByb6f9eZaKBgrNp9KxpPbkOah8xb82GdvUEodzvOEXDUTJ
-         877OBi0qs6WTsMnb9jbtTnvqinimv17g/pX/Sm16cbAyq388IxP56zX1wATBjm0GKoin
-         nJcJc7tL6wq5Z/qYy49RAaI6Paa9RrMS9vqoeqmuy2rD2tCOP0euHhxmJdw8dl50CB4y
-         u0Wg==
-X-Gm-Message-State: APjAAAV8Km0fvhKypaQhoxWORt05vMq6gNjELUtdi+IBJmnDLTMLWPqp
-        06ezL4xHnEFvHZCUr1Mrjk8mkdfyjIq8LA==
-X-Google-Smtp-Source: APXvYqzwfVmA2n/9U6jKmKyrIDlwdZ3QqHt0oLnPp98Dew2HCDTkMUXX5gZMf8Ci3KfU31PLFFoasw==
-X-Received: by 2002:ac2:4289:: with SMTP id m9mr13069519lfh.139.1570454480038;
-        Mon, 07 Oct 2019 06:21:20 -0700 (PDT)
-Received: from neopili.qtec.com (cpe.xe-3-0-1-778.vbrnqe10.dk.customer.tdc.net. [80.197.57.18])
-        by smtp.gmail.com with ESMTPSA id z14sm2687360lfh.30.2019.10.07.06.21.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2019 06:21:19 -0700 (PDT)
-From:   Ricardo Ribalda Delgado <ribalda@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>, Sakari Ailus <sakari.ailus@iki.fi>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ricardo Ribalda Delgado <ribalda@kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 5/6] media: ad5820: DT new compatible devices
-Date:   Mon,  7 Oct 2019 15:20:48 +0200
-Message-Id: <20191007132050.27298-11-ribalda@kernel.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191007132050.27298-1-ribalda@kernel.org>
-References: <20191007132050.27298-1-ribalda@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8lFKpywdPpAsicgn0/2wcRw41YVk58KkpKaw3FhsBFg=;
+        b=s/4mkKDoUx2ox9YAc9iyt3/aMVzELkyMdpeC2saZ+Mn9Vl02ZIa0hUb96EKHwi2KrI
+         6i6UaMvSsRHevjh0Ke1Bkwh6s8y+1VjUILI0vm/8rRKKn4qo8gA8M9ZD1jINIAm02CVL
+         CPzRas+eds0YzYYskrBpDPQEB8jC+1exw7tuwmd8k+ZD6FNQP0Yw+AcEZCqBCMUhXvl/
+         RMscqUla4P9W01rwZ+ua26au014CcBSCt63sKcGAiHFBKpf1wVNRIhR/v1yRSNI7Zfru
+         FJW+DX9wTc2JMs+Vi7IqO3Q6ooD9NRY/eOeRJQM8jxTZaheXTQSR7pNJ/+Px+dMRqy3D
+         Trww==
+X-Gm-Message-State: APjAAAVk+ee40kQhcpsX3I52V3NzdBu1LpNDuBYrsIalR4iTstBqd4zS
+        V2vcFgnqLnVVyW8vCkgMRfQkg4qgCoJUDw==
+X-Google-Smtp-Source: APXvYqzkmVDDzi+6y2wMEn6caUhn1m4J52DjMbKL7et0q2OMyTb5IcTV1Br0sOtRl74VRsS0ZZqJaA==
+X-Received: by 2002:a19:f512:: with SMTP id j18mr17055451lfb.169.1570454498586;
+        Mon, 07 Oct 2019 06:21:38 -0700 (PDT)
+Received: from marek-VirtualBox.ccr.corp.intel.com ([78.133.233.210])
+        by smtp.gmail.com with ESMTPSA id y3sm2894932lfh.97.2019.10.07.06.21.37
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 07 Oct 2019 06:21:38 -0700 (PDT)
+From:   marek.bykowski@gmail.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, will@kernel.org,
+        pawel.moll@arm.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marek Bykowski <marek.bykowski@gmail.com>
+Subject: [PATCH 1/2] bus: arm-ccn: Enable stats for CCN-512 interconnect
+Date:   Mon,  7 Oct 2019 15:21:14 +0200
+Message-Id: <1570454475-2848-1-git-send-email-marek.bykowski@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document new compatible devices.
+From: Marek Bykowski <marek.bykowski@gmail.com>
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Ricardo Ribalda Delgado <ribalda@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Pavel Machek <pavel@ucw.cz>
+Add compatible string for the ARM CCN-512 interconnect
+
+Signed-off-by: Marek Bykowski <marek.bykowski@gmail.com>
 ---
- Documentation/devicetree/bindings/media/i2c/ad5820.txt | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/perf/arm-ccn.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ad5820.txt b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
-index db596e8eb0ba..5764cbedf9b7 100644
---- a/Documentation/devicetree/bindings/media/i2c/ad5820.txt
-+++ b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
-@@ -2,7 +2,10 @@
- 
- Required Properties:
- 
--  - compatible: Must contain "adi,ad5820"
-+  - compatible: Must contain one of:
-+		- "adi,ad5820"
-+		- "adi,ad5821"
-+		- "adi,ad5823"
- 
-   - reg: I2C slave address
- 
+diff --git a/drivers/perf/arm-ccn.c b/drivers/perf/arm-ccn.c
+index 7dd850e02f19..b6e00f35a448 100644
+--- a/drivers/perf/arm-ccn.c
++++ b/drivers/perf/arm-ccn.c
+@@ -1545,6 +1545,7 @@ static int arm_ccn_remove(struct platform_device *pdev)
+ static const struct of_device_id arm_ccn_match[] = {
+ 	{ .compatible = "arm,ccn-502", },
+ 	{ .compatible = "arm,ccn-504", },
++	{ .compatible = "arm,ccn-512", },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, arm_ccn_match);
 -- 
-2.23.0
+2.21.0.896.g6a6c0f1
 
