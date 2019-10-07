@@ -2,163 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DD8CDB70
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E231CDB9B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:48:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbfJGF27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 01:28:59 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:33861 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727032AbfJGF27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 01:28:59 -0400
-Received: by mail-pg1-f194.google.com with SMTP id y35so7504566pgl.1
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 22:28:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8CXK/TfIsFpbZLDTPIgvREp06YCnBiMnqmaYjisViyY=;
-        b=LAR6H5ZasQ8iPevuWF+vXdOwHJGt5uk3xJbaFv6C3Wd9u8HmgtJ7Qg1L9LdY53wOkb
-         VlAWraIS3WJAoWfzYnoOTrCajo64NTbKw29mvKtcijueTi461E0NhHneWYXchgRAwGPo
-         OMLFjD8p8ob0dUXytONE0BJpczSF3nlVSXdXrh3BvIgv9AY1c+ZtfF4K81uinVuGJm9i
-         mQEgpVY2dy5APQJBUNydRXtQtV7aEMZRBSm4hbPfzEv8nh+cXOUbiOHDsZXfpH+oefTi
-         0P5coqYfZJRXraFDBNiwdwdnLyo4W/A77yzEzLD85hCoSy5o8VgzOEZabEEgo/QzXanB
-         qnEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8CXK/TfIsFpbZLDTPIgvREp06YCnBiMnqmaYjisViyY=;
-        b=P1cCtDrggw/AzFuf/86W9IecUqaaEUQs6/csZ3GqUiC1s2+SdG9fZj3bf3w9mrJnU5
-         OK/rbn+9ZE0jMDsPE8w+G4FfijlOQLfekgWyJLKDWz7ie08z4BQ7nOqBEdQB04QxKC5I
-         cJ3+OwV8NdgrV/io4MMXgDB1NZIT9k/Bly/BSdqvVsYMuVEWQU3UkTZUIM7WKZ09ANCF
-         aozhM6IugQdVq4TAXaMknJXkrWPipN8L5kDe7lLpNsNg2stPwH6B3JgSTPHSPeo7nAsA
-         xalIaaiBJb0/ufC6MBN8mASJc2OKGBW5Nzj15ksbd7ePQM5hK7VYzaHJNQy8nK31tQsW
-         JKWg==
-X-Gm-Message-State: APjAAAVAkOihesN+D7IsTvSxg02fS5AHF9Pc77BXDmQrwVDVTuJFWsuJ
-        A9UQcYm+BYCl6bO0PjSgs7CmQQ==
-X-Google-Smtp-Source: APXvYqwARGPm8j9a3QW8CuObVYB93bhWW7qnb5wALsOagBKs4r23n5w4xw65KVbYM5DnmJnWEkGMBA==
-X-Received: by 2002:a62:8683:: with SMTP id x125mr30083504pfd.108.1570426138723;
-        Sun, 06 Oct 2019 22:28:58 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id d20sm18058167pfq.88.2019.10.06.22.28.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2019 22:28:57 -0700 (PDT)
-Date:   Sun, 6 Oct 2019 22:28:55 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>, robh+dt@kernel.org,
-        agross@kernel.org, vkoul@kernel.org, evgreen@chromium.org,
-        daidavid1@codeaurora.org, linux-pm@vger.kernel.org,
+        id S1726960AbfJGFsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 01:48:33 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:37016 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726889AbfJGFsd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 01:48:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Type:MIME-Version:References:
+        In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=bdmc7qlre0F9bijOKxKuJpK+kMSATS4KheYRbfPzDyc=; b=DmdfFs6LU4Zux5OdUIPjlANlw
+        PdSaaPJa2dkoZ3b2e8hLK7opFIxhWMWGYOjvAz3UGZSzbDHFElFQBhjjmEDg03gOiJ366O6vRYmnc
+        R1PeIa2DIz1lbvCILj43pBonyNX3ArRmkC11QBVR0UZIA3UDkiyQIClnN+kHTupI6dicE=;
+Received: from [77.247.85.102] (helo=localhost)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iHLsc-0000Jc-T5; Mon, 07 Oct 2019 07:48:23 +0200
+Received: from localhost ([::1])
+        by localhost with esmtp (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iHLsa-0008CK-P4; Mon, 07 Oct 2019 07:48:20 +0200
+Date:   Mon, 7 Oct 2019 07:48:13 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] soc: qcom: smd-rpm: Create RPM interconnect proxy
- child device
-Message-ID: <20191007052855.GE2999@tuxbook-pro>
-References: <20190613151323.10850-1-georgi.djakov@linaro.org>
- <20190613151323.10850-3-georgi.djakov@linaro.org>
- <20191007020152.GA16902@onstation.org>
+        linux-arm-kernel@lists.infradead.org,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191007074813.235869db@kemnade.info>
+In-Reply-To: <20191006223848.GE19803@latitude>
+References: <20190930194332.12246-1-andreas@kemnade.info>
+        <20190930194332.12246-3-andreas@kemnade.info>
+        <20191006223848.GE19803@latitude>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191007020152.GA16902@onstation.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/aB.pTc2IuOjACzyPfRof4hD"; protocol="application/pgp-signature"
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 06 Oct 19:01 PDT 2019, Brian Masney wrote:
+--Sig_/aB.pTc2IuOjACzyPfRof4hD
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-> On Thu, Jun 13, 2019 at 06:13:20PM +0300, Georgi Djakov wrote:
-> > Register a platform device to handle the communication of bus bandwidth
-> > requests with the remote processor. The interconnect proxy device is part
-> > of this remote processor (RPM) hardware. Let's create a icc-smd-rpm proxy
-> > child device to represent the bus throughput functionality that is provided
-> > by the RPM.
-> > 
-> > Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> 
-> Reviewed-by: Brian Masney <masneyb@onstation.org>
-> Tested-by: Brian Masney <masneyb@onstation.org> # msm8974
-> 
-> I think this patch may have fell through the cracks since I don't see
-> it in linux-next. The qcs404 patches in this series were merged.
-> 
+Hi Jonathan,
 
-Yes, I was expecting Georgi to pick the entire series through his tree,
-but see now that I didn't actually ask Georgi to do so. Sorry about
-that.
+On Mon, 7 Oct 2019 00:38:48 +0200
+Jonathan Neusch=E4fer <j.neuschaefer@gmx.net> wrote:
 
-I picked the this and the dts patch last week, so if it's not in
-linux-next yet it should show up in the next one.
+> Thanks for CCing me on this patchset. Nice to see more e-book reader
+> related work!
+>=20
+> A few comments and questions below.
+>=20
+> On Mon, Sep 30, 2019 at 09:43:31PM +0200, Andreas Kemnade wrote:
+> > The Netronix board E60K02 can be found some several Ebook-Readers,
+> > at least the Kobo Clara HD and the Tolino Shine 3. The board
+> > is equipped with different SoCs requiring different pinmuxes. =20
+>=20
+> Do I understand it correctly that i.MX6SL and i.MX6SLL are pin-
+> compatible so we can use the same pin numbers and GPIO handles in the
+> DT?
+>=20
+Yes, for that purpose yes, The i.MX6SL has more functions than the i.MX6SLL,
+which you will of course not find on the SLL pins.
 
-Thanks,
-Bjorn
-
-> Brian
-> 
-> > ---
-> > 
-> > v4:
-> > - Return error if platform_device_register_data() fails
-> > - Remove platform_set_drvdata() on the child device.
-> > 
-> > v3:
-> > - New patch.
-> > 
-> >  drivers/soc/qcom/smd-rpm.c | 17 ++++++++++++++++-
-> >  1 file changed, 16 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
-> > index fa9dd12b5e39..34cdd638a6c1 100644
-> > --- a/drivers/soc/qcom/smd-rpm.c
-> > +++ b/drivers/soc/qcom/smd-rpm.c
-> > @@ -19,12 +19,14 @@
-> >  /**
-> >   * struct qcom_smd_rpm - state of the rpm device driver
-> >   * @rpm_channel:	reference to the smd channel
-> > + * @icc:		interconnect proxy device
-> >   * @ack:		completion for acks
-> >   * @lock:		mutual exclusion around the send/complete pair
-> >   * @ack_status:		result of the rpm request
-> >   */
-> >  struct qcom_smd_rpm {
-> >  	struct rpmsg_endpoint *rpm_channel;
-> > +	struct platform_device *icc;
-> >  	struct device *dev;
-> >  
-> >  	struct completion ack;
-> > @@ -193,6 +195,7 @@ static int qcom_smd_rpm_callback(struct rpmsg_device *rpdev,
-> >  static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
-> >  {
-> >  	struct qcom_smd_rpm *rpm;
-> > +	int ret;
-> >  
-> >  	rpm = devm_kzalloc(&rpdev->dev, sizeof(*rpm), GFP_KERNEL);
-> >  	if (!rpm)
-> > @@ -205,11 +208,23 @@ static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
-> >  	rpm->rpm_channel = rpdev->ept;
-> >  	dev_set_drvdata(&rpdev->dev, rpm);
-> >  
-> > -	return of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
-> > +	rpm->icc = platform_device_register_data(&rpdev->dev, "icc_smd_rpm", -1,
-> > +						 NULL, 0);
-> > +	if (IS_ERR(rpm->icc))
-> > +		return PTR_ERR(rpm->icc);
+> > +	leds {
+> > +		compatible =3D "gpio-leds";
+> > +		pinctrl-names =3D "default";
+> > +		pinctrl-0 =3D <&pinctrl_led>;
 > > +
-> > +	ret = of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
-> > +	if (ret)
-> > +		platform_device_unregister(rpm->icc);
+> > +		GLED { =20
+>=20
+> What does "GLED" mean? It's not obvious to me.
+> What user-visible purpose does this LED have, or where is it on the
+> board?
+>=20
+It is on the power key. So probably we could have "power" in its name.
+GLED is just the name in vendors uboot and kernel.
+
+I use that led also as an output in uboot to have multiboot between
+vendor system, vendor kernel +debian system and patched mainline + debian s=
+ystem.
+
+> > +			gpios =3D <&gpio5 7 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger =3D "timer";
+> > +		};
+> > +	};
 > > +
-> > +	return ret;
-> >  }
-> >  
-> >  static void qcom_smd_rpm_remove(struct rpmsg_device *rpdev)
-> >  {
-> > +	struct qcom_smd_rpm *rpm = dev_get_drvdata(&rpdev->dev);
-> > +
-> > +	platform_device_unregister(rpm->icc);
-> >  	of_platform_depopulate(&rpdev->dev);
-> >  }
-> >  
+> > +	memory {
+> > +		reg =3D <0x80000000 0x80000000>; =20
+>=20
+> 2 GiB of memory?
+>=20
+Well, 512MByte. Seems that uboot overwrites that. But we should use the cor=
+rect
+value here.
+
+> > +			/* Core3_3V3 */ =20
+>=20
+> What are these labels (Core3_3V3, Core4_1V2, etc.)?
+>
+I have taken then from the tolino board file. Probably they are netnames
+of the pcb but not the names of the regulators in the pmic.
+=20
+> > +			dcdc2_reg: DCDC2 {
+> > +				regulator-name =3D "DCDC2";
+> > +				regulator-always-on;
+> > +				regulator-boot-on;
+> > +				regulator-state-mem {
+> > +					regulator-on-in-suspend;
+> > +					regulator-suspend-max-microvolt =3D <3300000>;
+> > +					regulator-suspend-min-microvolt =3D <3300000>;
+> > +				};
+> > +			}; =20
+>=20
+Regards,
+Andreas
+
+--Sig_/aB.pTc2IuOjACzyPfRof4hD
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEPIWxmAFyOaBcwCpFl4jFM1s/ye8FAl2a0Z0ACgkQl4jFM1s/
+ye9dKA//aQgaIGzJry4yT7el+FH8/B/V78b24pRmCx3wnBuRsc9CBxYsAEpYGJTo
+iBXpJUHUpy3J28ZQxSjk6docvx918lE0R1l9VQlqzP3mw1uFGQmtIYG7W6kbZkom
+dXSb9g/Tql+r7zTuEKodK99mz4xPupf3Ay36sLecNKddfGTgXQy96blU3x+Degrb
+MMIKEKZFi+E5e3Q+FLkwNhRMVbAbpVVtqQrmZqN5ImbhD72pFKgbQt+CIPAQZYp7
+b+0CdDnnvHOMvh6QT+Ij4Od3NGfGhqa/+qHqSmztx6X3XZFK57z5RKe83EIw2vBg
+aBYwzfQL5kTE8FKAWXURk2a/NbJk4WWT3BBQZt8HzTmkdgfHsgCimjzQNKgBw7AN
+2d1FrGgNk9EuwZjbrtJmLoSTQ9tieUk67jLhsgj1S8gRrrV4YPoYE8RrXKmYGEGe
+FUJPpcrd7fPDUpPvchZI1jVlPzL+S2W0L3U/KSwhWGey119FgktRVX4ljjquX+iP
+3zxaFIGO9K5vIG/pzxFCDZ9R6gCWBdryPU3q/+a0wZWNLclZROAQd939ekFBY4lD
+ZEta6trdhOkVRkgHU27BdikvJRgzFrZBnm6YUomelezQM3XjT0yeK9OT60EOWNx5
+upg8mHnodGcUdxzUtnzzV3tVvtunAYFGpw/zuwff5B0p16nJKqU=
+=8lWk
+-----END PGP SIGNATURE-----
+
+--Sig_/aB.pTc2IuOjACzyPfRof4hD--
