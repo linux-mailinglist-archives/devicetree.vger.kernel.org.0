@@ -2,83 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8312DCE6D6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3DCBCE6DF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728207AbfJGPHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 11:07:39 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35846 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727753AbfJGPHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:07:39 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97F7c34046997;
-        Mon, 7 Oct 2019 10:07:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570460858;
-        bh=bkx2umkIIdy9uxIZ1foXzqBI6HyplepwuHHRo5GE/h4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=BcdYVdoX37JvgxTAk3ETNJhg8ggdbheP6iyNw+w1e4NsotXSdyyvXAV6xe2ezJ8l+
-         RqKCY4fAXn2n4hlgF8OEWkgq+hjuIzDaWP682VwWoNojk9/7HiBc/c0LSI9NrvMvaD
-         bUyWaPFaCVavbQGsjBDUzrbKNQX5BWI5jBXczkLc=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97F7cDm060566;
-        Mon, 7 Oct 2019 10:07:38 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 7 Oct
- 2019 10:07:35 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 7 Oct 2019 10:07:35 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97F7aF7055156;
-        Mon, 7 Oct 2019 10:07:37 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>,
-        Jyri Sarha <jsarha@ti.com>
-Subject: [Patch v3 01/21] media: ti-vpe: Fix a parallel build issue
-Date:   Mon, 7 Oct 2019 10:09:49 -0500
-Message-ID: <20191007151009.22095-2-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191007151009.22095-1-bparrot@ti.com>
-References: <20191007151009.22095-1-bparrot@ti.com>
+        id S1728059AbfJGPKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 11:10:19 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:42583 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727711AbfJGPKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:10:18 -0400
+X-Originating-IP: 86.207.98.53
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 4F082E000E;
+        Mon,  7 Oct 2019 15:10:14 +0000 (UTC)
+Date:   Mon, 7 Oct 2019 17:10:14 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: rtc: rtc-sh: convert bindings to
+ json-schema
+Message-ID: <20191007151014.GP4254@piout.net>
+References: <20190923121404.32585-1-horms+renesas@verge.net.au>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190923121404.32585-1-horms+renesas@verge.net.au>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When TI CAL was introduce as another driver under platform/ti-vpe
-adding a second entry into the ti-vpe directory in the platform
-Makefile caused issues during parallel build.
+On 23/09/2019 14:14:04+0200, Simon Horman wrote:
+> Convert Real Time Clock for Renesas SH and ARM SoCs bindings documentation
+> to json-schema.  Also name bindings documentation file according to the
+> compat string being documented.
+> 
+> Also correct syntax error in interrupts field in example.
+> 
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
----
- drivers/media/platform/Makefile | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
-index 6ee7eb0d36f4..d13db96e3015 100644
---- a/drivers/media/platform/Makefile
-+++ b/drivers/media/platform/Makefile
-@@ -19,9 +19,7 @@ obj-$(CONFIG_VIDEO_VIVID)		+= vivid/
- obj-$(CONFIG_VIDEO_VIM2M)		+= vim2m.o
- obj-$(CONFIG_VIDEO_VICODEC)		+= vicodec/
- 
--obj-$(CONFIG_VIDEO_TI_VPE)		+= ti-vpe/
--
--obj-$(CONFIG_VIDEO_TI_CAL)		+= ti-vpe/
-+obj-y	+= ti-vpe/
- 
- obj-$(CONFIG_VIDEO_MX2_EMMAPRP)		+= mx2_emmaprp.o
- obj-$(CONFIG_VIDEO_CODA)		+= coda/
 -- 
-2.17.1
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
