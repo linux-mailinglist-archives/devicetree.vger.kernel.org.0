@@ -2,108 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED557CE08D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 13:34:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 595CCCE0B5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 13:41:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727690AbfJGLeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 07:34:25 -0400
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:13994 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727376AbfJGLeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 07:34:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1570448063; x=1601984063;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=1YbtA/WEl6PxCyNf7o7k7KSePi3o5gW3urK3q2YrmNg=;
-  b=aG4VfqZUCGr5E15Vka+p/o9cv+SBuoN+AumejQtaq5Bx0Tn6bJcDh9BU
-   ePMro4KkQDB3uDukc7hwjyhqWTxqxfJAKX1lt/XgPpWspG5rxasLNSQys
-   cnySjOoUk5fqKBA00vIQOpTfvrTzGpHWZ53M+uQrusVvWvaU1ne750xrg
-   c=;
-X-IronPort-AV: E=Sophos;i="5.67,268,1566864000"; 
-   d="scan'208";a="426527686"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-55156cd4.us-west-2.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 07 Oct 2019 11:34:19 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan2.pdx.amazon.com [10.170.41.162])
-        by email-inbound-relay-2b-55156cd4.us-west-2.amazon.com (Postfix) with ESMTPS id AFDCDA1F08;
-        Mon,  7 Oct 2019 11:34:18 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 7 Oct 2019 11:34:18 +0000
-Received: from [10.125.238.52] (10.43.162.245) by EX13D01EUB001.ant.amazon.com
- (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Mon, 7 Oct
- 2019 11:34:09 +0000
-Subject: Re: [UNVERIFIED SENDER] Re: [PATCH v4 2/2] soc: amazon: al-pos-edac:
- Introduce Amazon's Annapurna Labs POS EDAC driver
-To:     Marc Zyngier <maz@kernel.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <arnd@arndb.de>,
-        <bp@alien8.de>, <mchehab@kernel.org>, <james.morse@arm.com>,
-        <davem@davemloft.net>, <gregkh@linuxfoundation.org>,
-        <paulmck@linux.ibm.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
-        <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
-        <hanochu@amazon.com>, <amirkl@amazon.com>, <barakw@amazon.com>
-References: <1570102361-11696-1-git-send-email-talel@amazon.com>
- <1570102361-11696-3-git-send-email-talel@amazon.com>
- <86k19gztil.wl-maz@kernel.org>
-From:   "Shenhar, Talel" <talel@amazon.com>
-Message-ID: <6815f9e9-f250-bd62-33b3-e3ab30aa47e2@amazon.com>
-Date:   Mon, 7 Oct 2019 14:34:03 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1727589AbfJGLlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 07:41:55 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:40262 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727395AbfJGLlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 07:41:55 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97Bfm08013343;
+        Mon, 7 Oct 2019 06:41:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570448508;
+        bh=PN3pQoxV5ig78XkDXaqCq87dAf1gxVYRw5Xe2hzSChM=;
+        h=From:To:CC:Subject:Date;
+        b=UjYWphDnk/dTF8ZvzKP4dDRj7bOWAbjBnmkUUbrqhTBrgL8deV+xj1ZiDgBUKETN9
+         m8r9WmC3YC1Kw0K2RoMslG9dfPt9o/kWpFn+jCfnJ2rik3WEmKo+0EDS0ZEpwSbBm6
+         gXkOJX7nK5wLgcRP8LApl56sSPmFmRZDH5ZYvQvY=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x97BfmUH009482
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Oct 2019 06:41:48 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 7 Oct
+ 2019 06:41:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 7 Oct 2019 06:41:47 -0500
+Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97BfjMK024908;
+        Mon, 7 Oct 2019 06:41:45 -0500
+From:   Roger Quadros <rogerq@ti.com>
+To:     <felipe.balbi@linux.intel.com>
+CC:     <gregkh@linuxfoundation.org>, <pawell@cadence.com>,
+        <nsekhar@ti.com>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Roger Quadros <rogerq@ti.com>
+Subject: [PATCH 0/2] usb: cdns3: Add TI wrapper
+Date:   Mon, 7 Oct 2019 14:41:40 +0300
+Message-ID: <20191007114142.5182-1-rogerq@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <86k19gztil.wl-maz@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.43.162.245]
-X-ClientProxiedBy: EX13D03UWA001.ant.amazon.com (10.43.160.141) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-thanks for the review
+Hi,
 
-On 10/7/2019 2:26 PM, Marc Zyngier wrote:
-> On Thu, 03 Oct 2019 12:32:41 +0100,
-> Talel Shenhar <talel@amazon.com> wrote:
->> +	log1 = readl(al_pos->mmio_base + AL_POS_ERROR_LOG_1);
-> I already commented on the misuse of strict accesses. Unless you can
-> explain and document *why* you need the extra ordering, please use
-> relaxed accesses.
-agreeing on relaxed, shall be part of v5
->
->> +
->> +	if (al_pos->irq > 0) {
->> +		ret = devm_request_irq(&pdev->dev,
->> +				       al_pos->irq,
->> +				       al_pos_irq_handler,
->> +				       0,
->> +				       pdev->name,
->> +				       pdev);
->> +		if (ret != 0) {
->> +			dev_err(&pdev->dev,
->> +				"failed to register to irq %d (%d)\n",
->> +				al_pos->irq, ret);
->> +			goto err_remove_edac;
-> Would it be worth continuing without interrupts? After all, the
-> interrupt seems to be an optional part of the device...
+Texas Instruments SoCs have a wrapper module around the Cadence
+USB3 core. It takes care of clocking and powering the core and providing
+initial configuration to the core.
 
-indeed interrupts are optional, however, this is optional for some of 
-the systems.
+This series adds the driver for the TI wrapper and associated DT binding
+document. This is for -next kernel. Thanks.
 
-in some cases (and some systems), this error event is critical and 
-should cause fast handling. for those, we define the interrupts.
+cheers,
+-roger
 
-so bottom line, i would like to keep this error in case of error in 
-interrupt.
+Roger Quadros (2):
+  dt-bindings: usb: Add binding for the TI wrapper for Cadence USB3
+    controller
+  usb: cdns3: Add TI specific wrapper driver
 
->
-> Thanks,
->
-> 	M.
->
+ .../devicetree/bindings/usb/cdns-usb3-ti.txt  |  59 +++++
+ drivers/usb/cdns3/Kconfig                     |  10 +
+ drivers/usb/cdns3/Makefile                    |   1 +
+ drivers/usb/cdns3/cdns3-ti.c                  | 244 ++++++++++++++++++
+ 4 files changed, 314 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/cdns-usb3-ti.txt
+ create mode 100644 drivers/usb/cdns3/cdns3-ti.c
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
