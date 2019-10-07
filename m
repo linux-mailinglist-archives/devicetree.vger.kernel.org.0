@@ -2,107 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82951CE532
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98578CE565
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727958AbfJGOZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 10:25:46 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:43631 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727324AbfJGOZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:25:46 -0400
-Received: by mail-pg1-f194.google.com with SMTP id i32so1015921pgl.10;
-        Mon, 07 Oct 2019 07:25:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=J6cKf9Yx3TmejeHBa/hPwjDOmZeRHg3GuMqxre+x+ds=;
-        b=H+HdPDbpaytRhFAVSUU7E+FdpTwhsL5uSEHLs6QxP6d8sGLuwAZUOKHUGtzJBBKOVg
-         qgwhh6OS2BYnCpl1V/kJI/uyWaa/wJDmzwArI3Nxvn2wmwGGwJpzZUcGPCNchze353vz
-         Q89Uk1RbaC2h9S0tu47Gd8FuD+7B8tKJxuK59E9EWCrpqShuGKdu+h0CBEEuGKaec3Qr
-         I0p8zCaG5J0ZDXMrjLgMIaVPD7jnap5zx3DpJcWPuZ4tClFW7+ag7TP63NKnYWItD3sA
-         KGFxDR9cIaoNIoNYGw0Fca98bt05mxCORtxbtQJ8sxEmuRtubHMCQeNKM/2pA5gPDq2b
-         hzug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=J6cKf9Yx3TmejeHBa/hPwjDOmZeRHg3GuMqxre+x+ds=;
-        b=SJWVmNKp0AiLp1nRU5UD9T4DeJLfzYHZGCqAAa2tsbnpJEGcYsL6Thbgg4a5bqB2Rd
-         XPMeKJ+Pn3gFfx5NKrb9uOWBBAVbsquPCLvWAheq4T9BeMeP2xBrMUGONfXwM4WlLCjp
-         w+ByZxq6TkfZg7ngagT6nHDbsqfBwj4N+CK8qF9wnM1N7I5c2UUGU9nNvDrbuQ91Ij8A
-         U2ugDf1Wexyl4nSX3eVjPZPF+dled+qBWDmTAd7agQIh6geOuljW/wXOazq3FfZCKxiG
-         HmFrzoHoVwVKLPOTan5P8Cy0MC43kFQCUPqcCUecoWBFxLvxb+gLnLUB04e9bEVyM3nL
-         yf4A==
-X-Gm-Message-State: APjAAAVIXNXH0Yd8y6VOptPvELAHLKPW1DowsJR3FwAckLDMshvcijun
-        lB79QGlhCsznonKLph3zenk=
-X-Google-Smtp-Source: APXvYqzyz7HiRItRcW9JAUlaeLL57XHqULxgUPPwavT9gRM/HJ61Y9I2Rjou38t2Eac9ZO4/O/EpiQ==
-X-Received: by 2002:a63:1a4e:: with SMTP id a14mr10316608pgm.376.1570458345657;
-        Mon, 07 Oct 2019 07:25:45 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n8sm15883715pgt.40.2019.10.07.07.25.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Oct 2019 07:25:45 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] regulator: fixed: add possibility to enable by
- clock
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Luka Pivk <luka.pivk@toradex.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-References: <20190910062103.39641-1-philippe.schenker@toradex.com>
- <20190910062103.39641-2-philippe.schenker@toradex.com>
- <20191007132918.GA580@roeck-us.net>
- <3072f9de201a9d06cb0b71018be25f316c3d4435.camel@toradex.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <50190291-7146-5a2d-e4ae-c08c3de553d3@roeck-us.net>
-Date:   Mon, 7 Oct 2019 07:25:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728511AbfJGOeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 10:34:18 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:15408 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728417AbfJGOeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:34:18 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x97EVeYl021701;
+        Mon, 7 Oct 2019 16:34:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=Z6JwJ7BA4jHWAT0HHOYTMuKD4KHqxvNFYvDntJKt8Cs=;
+ b=ztBt+TDuhXSbnwSv2ZtYNw8umrUsXzzT28B7eT7txWClmlqFX8U9d13MZfm3mADgPVI0
+ pyIWyQfGi3xA/E9bQamRyIpj+MhZ6ogzVFyq7eIe4RyYPwNGy4NiuxiZsTCWBeapien2
+ /R8CE2yAekiUaTD1zBX/NRoSC+APC3aZ1wes83NZ3fVUAwN1tH19PMqWWMriO07gbD+P
+ 0y15Myl2QNpR0Lk70a7kvnJe6Xa5aJ//eSlcsV28P2RDUl6UnJ3qx/47b9H7Re15t0Hr
+ 4WZ8Xq7UZI1TdYPoDf/x5KmSmc/Kv55It80+dWBVtlvp5OSQNlPwhkpfIAJoL0MJWeMx 9Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vegn0jw3s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 07 Oct 2019 16:34:05 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 20FAB10002A;
+        Mon,  7 Oct 2019 16:34:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E51362B4929;
+        Mon,  7 Oct 2019 16:34:04 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 7 Oct 2019 16:34:04
+ +0200
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>, <arnd@arndb.de>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/4] ARM: dts: stm32: Add fixes to be compliant with DT validation tool
+Date:   Mon, 7 Oct 2019 16:33:58 +0200
+Message-ID: <20191007143402.13266-1-alexandre.torgue@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <3072f9de201a9d06cb0b71018be25f316c3d4435.camel@toradex.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-07_02:2019-10-07,2019-10-07 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/19 6:57 AM, Philippe Schenker wrote:
-> On Mon, 2019-10-07 at 06:29 -0700, Guenter Roeck wrote:
->> On Tue, Sep 10, 2019 at 06:21:15AM +0000, Philippe Schenker wrote:
->>> This commit adds the possibility to choose the compatible
->>> "regulator-fixed-clock" in devicetree.
->>>
->>> This is a special regulator-fixed that has to have a clock, from
->>> which
->>> the regulator gets switched on and off.
->>>
->>> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
->>
->> This patch causes a crash in one of my qemu tests (kzm machine with
->> imx_v6_v7_defconfig). Reverting this patch fixes the problem.
->> Crash backtrace and bisect log attached below.
->>
->> Guenter
-> 
-> Axel Lin sent a patch to fix this NULL pointer issue with my patch
-> (Thanks by the way :)). I guess it will help for your issue. Could you
-> please test if this patch solves your issue?
-> 
+This series updates STM32 DT files in order to clean some issues seen during
+STM32 device trees validation ("make dtbs_check"). 
 
-Yes, it does. I replied with Tested-by: on the fixup patch.
+Regards
+Alex
 
-Thanks,
-Guenter
+
+Alexandre Torgue (4):
+  ARM: dts: stm32: fix memory nodes to match with DT validation tool
+  ARM: dts: stm32: fix joystick node on stm32f746 and stm32mp157c eval
+    boards
+  ARM: dts: stm32: remove usb phy-names entries on stm32mp157c-ev1
+  ARM: dts: stm32: fix regulator-sd_switch node on stm32mp157c-ed1 board
+
+ arch/arm/boot/dts/stm32429i-eval.dts   | 2 +-
+ arch/arm/boot/dts/stm32746g-eval.dts   | 3 +--
+ arch/arm/boot/dts/stm32f429-disco.dts  | 2 +-
+ arch/arm/boot/dts/stm32f469-disco.dts  | 2 +-
+ arch/arm/boot/dts/stm32f746-disco.dts  | 2 +-
+ arch/arm/boot/dts/stm32f769-disco.dts  | 2 +-
+ arch/arm/boot/dts/stm32h743i-disco.dts | 2 +-
+ arch/arm/boot/dts/stm32h743i-eval.dts  | 2 +-
+ arch/arm/boot/dts/stm32mp157a-dk1.dts  | 1 +
+ arch/arm/boot/dts/stm32mp157c-ed1.dts  | 3 ++-
+ arch/arm/boot/dts/stm32mp157c-ev1.dts  | 3 ---
+ 11 files changed, 11 insertions(+), 13 deletions(-)
+
+-- 
+2.17.1
+
