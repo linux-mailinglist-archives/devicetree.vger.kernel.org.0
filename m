@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1EFDCE2BC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A70ACE2DA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:14:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727958AbfJGNIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 09:08:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51290 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727847AbfJGNIc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 09:08:32 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2E61B21655;
-        Mon,  7 Oct 2019 13:08:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570453711;
-        bh=vxO/s54dTSEzl5R7GT884moYyXRk4GkYf/RtZPNdPqM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=E24C54eS5QstHHB+h3eQVSYk65KL+h5v4BqBRUMw7SxYY+pIuIpbwYFaEImNXipDy
-         SA+nl++VUFDCuNX/xtbtrfM6UohU5jGE32dgwZ4bQ/Vvi/aYvVNnDKzBWR20jCFiLj
-         BEJh7BCjEdlmWmsOF8XS1LALokCjjlxmb3RQXVV0=
-Received: by mail-qt1-f178.google.com with SMTP id u22so18942524qtq.13;
-        Mon, 07 Oct 2019 06:08:31 -0700 (PDT)
-X-Gm-Message-State: APjAAAWNos+PVt72+dHMdk9l+n+ANUjFYkKAQ9eckzFXMz9QRovl2PEa
-        GzaYC3XTeYD/SN6CZWWPljZU7Vji5XbaaD6dvg==
-X-Google-Smtp-Source: APXvYqyB1UEckrXSNhW8ewZ0xc0k0Qus+VSf2iK+Ax2D9HPzusjNm4QHm8QWK0UP3BYJ4kDT5C8PYG3hvZjHRXzJiL8=
-X-Received: by 2002:a05:6214:1590:: with SMTP id m16mr26758627qvw.20.1570453710240;
- Mon, 07 Oct 2019 06:08:30 -0700 (PDT)
+        id S1727635AbfJGNOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 09:14:11 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:42189 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727010AbfJGNOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:14:10 -0400
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id D0926200010;
+        Mon,  7 Oct 2019 13:14:05 +0000 (UTC)
+Date:   Mon, 7 Oct 2019 15:14:05 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Eugen.Hristev@microchip.com, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, wim@linux-watchdog.org,
+        robh+dt@kernel.org, Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH 2/3] watchdog: sam9x60_wdt: introduce sam9x60 watchdog
+ timer driver
+Message-ID: <20191007131348.GH4254@piout.net>
+References: <1570001371-8174-1-git-send-email-eugen.hristev@microchip.com>
+ <1570001371-8174-2-git-send-email-eugen.hristev@microchip.com>
+ <e58a3ab5-69bc-cad3-5faa-ed00ff7906c7@roeck-us.net>
+ <ab7b6b45-5e6f-100d-51af-a82ac325d948@microchip.com>
+ <a9adf20c-f730-a7e9-a826-59216c17f03d@roeck-us.net>
 MIME-Version: 1.0
-References: <20191007102552.19808-1-alexandre.torgue@st.com> <20191007102552.19808-4-alexandre.torgue@st.com>
-In-Reply-To: <20191007102552.19808-4-alexandre.torgue@st.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 7 Oct 2019 08:08:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL3sAwjKAJPZbbqg8k_R80kE9d9nbBaxWGt76RCMVMZFQ@mail.gmail.com>
-Message-ID: <CAL_JsqL3sAwjKAJPZbbqg8k_R80kE9d9nbBaxWGt76RCMVMZFQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: regulator: Fix yaml verification for
- fixed-regulator schema
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Alexandru Ardelean <alexaundru.ardelean@analog.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a9adf20c-f730-a7e9-a826-59216c17f03d@roeck-us.net>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 7, 2019 at 5:26 AM Alexandre Torgue <alexandre.torgue@st.com> wrote:
->
-> This commit fixes an issue seen during yaml check ("make dt_binding_check").
-> Compatible didn't seem to be seen as a string.
->
-> Reported issue:
-> "properties:compatible:enum:0: {'const': 'regulator-fixed'}
-> is not of type 'string'"
-> And
-> "properties:compatible:enum:1: {'const': 'regulator-fixed-clock'}
-> is not of type 'string'"
->
-> Fixes: 9c86d003d620 ("dt-bindings: regulator: add regulator-fixed-clock binding")
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+On 07/10/2019 05:36:38-0700, Guenter Roeck wrote:
+> On 10/7/19 12:58 AM, Eugen.Hristev@microchip.com wrote:
+> [ ... ]
+> > Hello Guenter,
+> > 
+> > Thank you for the feedback.
+> > After reviewing this, can you please guide me towards one of the
+> > possible two directions: merge this driver with sama5d4_wdt , and have a
+> > single driver with support for both hardware blocks; or, have this
+> > driver separately , as in this patch series?
+> > 
+> 
+> I noticed the similarities. I don't know if it makes sense to reconcile
+> the two drivers; it seems to me the new chip uses the same basic core with
+> enhancements. In general, I prefer a single driver, but only if the result
+> doesn't end up being an if/else mess. Ultimately, it is really your call
+> to make.
+> 
 
-There's already a fix queued up.
+Most if not all your comments were already addressed in the other
+driver. The main difference in the register interface is the location of
+the counter that only really affects sama5d4_wdt_set_timeout and that
+could be abstracted away by using a different struct watchdog_ops.
+Interrupt enabling is also done differently, I don't think it has a huge
+impact.
 
-Rob
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
