@@ -2,121 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7309ACE783
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 025DACE7B3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728588AbfJGPa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 11:30:58 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:39727 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726334AbfJGPa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:30:58 -0400
-Received: by mail-io1-f67.google.com with SMTP id a1so29509911ioc.6;
-        Mon, 07 Oct 2019 08:30:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d4hcT7mBp35uXHSVwUqNeV4V+B+eaf0dc/DbaSlAph0=;
-        b=XNQKHVR2uoPGMAtS9PckZVazA5sBYNsa9mhHeQTYCZd507obrqq6yzVn3muywbCC9w
-         wo+ndKBZ9UNVa4cy8iVCLIBtWXPPg0w5lcKPxdlUDRIEVruo44+BLb4j4hyD5q6DpGm4
-         Gji7iCC918Xgnv4XLUVr4MJsooi9nkyLDUvIvAgddW+2TXByJq7yy6eH4o2vf5TFnGg+
-         w2jCz3XCjqXKhv4jNCb3v1C1u7OHGuhC+cQk3ZZNQpZx1VkfMCXduNdJhB+H3drb0Xky
-         xFD31ivqnGuNn2XnILy/HvPnx0CYesxQCm9vRSiSssFm6ruTBbiOrKq1nZCpecYt49gN
-         ZD9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d4hcT7mBp35uXHSVwUqNeV4V+B+eaf0dc/DbaSlAph0=;
-        b=E4qXocB3ta3j7p+eWoj8gd24Z++GtheZkPqp3CuVnoPgGqN+tRulYsecqSX7utB4xw
-         gqjlcxLwRs0UHjfy+PCRrI9rb5MtNXm4712e9c1ZHx7kw7Axtq0o8R8SfMEG2LReWaeh
-         DvwFAv6vlK1rIzWDmfy4XQHQQpz8hPSl4bhb1iQl60JsZlS+dpvRLka5IIRBzsN4wMuJ
-         3uBQ/e8jUp6c1NY/ctgaoz3FFUO0FE/6pUgMSUF2jvXnWBe2Xul5gsK9rNUszsV0ypfy
-         vBtKoz07uRJKeYLjVw37Yn5a7raVVUp51XKdihhgse7fYiDg4fG7BwdGdK5LE2Lp2Gni
-         OfNw==
-X-Gm-Message-State: APjAAAXGp5PoE+KzE8lvhiV+quo+/hXx9VRBDTB4BS2CeG82WAsw+LQK
-        leosASSRWS2OfB1hSFECindZlybH8hpTH+RZjY4=
-X-Google-Smtp-Source: APXvYqxpe2durmFMtM3vpWDBRud3gbR8qLIzCHYB0na4/zQaLD4Xtara1qgDIzbl+85++yeu5iQDy5tir7B4sAyQU60=
-X-Received: by 2002:a92:3ac3:: with SMTP id i64mr29073302ilf.221.1570462256975;
- Mon, 07 Oct 2019 08:30:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-3-linux.amoon@gmail.com>
- <8a74834e-5cfa-3f3b-9ba6-e88e265b67a0@baylibre.com>
-In-Reply-To: <8a74834e-5cfa-3f3b-9ba6-e88e265b67a0@baylibre.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 7 Oct 2019 21:00:44 +0530
-Message-ID: <CANAwSgS=r_Rz0fc6GDsD7Rk6udq3LcYtB-Ag_=kjVa-EApchJQ@mail.gmail.com>
-Subject: Re: [RFCv1 2/5] arm64: dts: meson: Add missing pwm control gpio
- signal for pwm-regulator
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1728689AbfJGPgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 11:36:13 -0400
+Received: from avon.wwwdotorg.org ([104.237.132.123]:35114 "EHLO
+        avon.wwwdotorg.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727876AbfJGPgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:36:13 -0400
+Received: from [10.20.204.51] (unknown [216.228.112.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by avon.wwwdotorg.org (Postfix) with ESMTPSA id 9BECB1C00F3;
+        Mon,  7 Oct 2019 09:36:11 -0600 (MDT)
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.100.3 at avon.wwwdotorg.org
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+To:     Eugeniu Rosca <roscaeugeniu@gmail.com>
+Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Harish Jenny K N <harish_kandiga@mentor.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Phil Reid <preid@electromag.com.au>,
+        Enrico Weigelt <info@metux.net>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
+ <06a1acab-fcc4-7b3a-697b-4d253c354513@wwwdotorg.org>
+ <20191005175024.GA25394@x230>
+From:   Stephen Warren <swarren@wwwdotorg.org>
+Message-ID: <f4359c04-bb1d-6c4c-6725-90e661c1aab3@wwwdotorg.org>
+Date:   Mon, 7 Oct 2019 09:36:10 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20191005175024.GA25394@x230>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+On 10/5/19 11:50 AM, Eugeniu Rosca wrote:
+> Hi Stephen,
+> 
+> On Fri, Oct 04, 2019 at 01:07:23PM -0600, Stephen Warren wrote:
+> 
+> [..]
+> 
+>> I think the DT should represent the device that's attached to the GPIOs.
+>> That way, there's already a clear way to represent the GPIO polarity, as
+>> described in the document linked by Eugenui in [2] below.
+>>
+>> If for some reason that's not possible, then I think keeping track of the
+>> GPIO polarity in user-space is entirely reasonable, and is the correct
+>> approach. To claim that tracking GPIO polarity in user-space is too much
+>> burden, yet to also allow user-space to control GPIOs at all, and hence to
+>> know exactly which GPIOs must be controlled, is an inconsistent assertion.
+>>
+>> Put another way: If a piece of user-space SW controls GPIOs, it must know
+>> which GPIO number to use for each logical purpose. This information
+>> presumably varies on different platforms, so the SW must have a list of GPIO
+>> numbers and GPIO controller IDs per platform. Additionally storing a
+>> polarity bit along with that information seems entirely trivial to me.
+>>
+>> Is there some other issue that I'm overlooking?
+> 
+> Based on the discussions so far, the user who requested this feature
+> intends to (in fact already does) "mark" the userspace-relevant gpio
+> lines via the "gpio-line-names" [5] DT property, implemented by Linus
+> in v4.7 commit [6]. By keeping track of "gpio line name" both in DT and
+> in user-space, apparently the user is able to accurately map the
+> "line name" (visible in userspace) to the corresponding gpio chip/name
+> and gpio line offset in a "platform/board-independent" way.
+> 
+> Do you think this is unorthodox?
 
-On Mon, 7 Oct 2019 at 19:50, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> On 07/10/2019 15:16, Anand Moon wrote:
-> > As per schematics add missing VDDCPUA_PWM and VDDCPUB_PWM
-> > gpio signal use to enable/disable the pwm regulator for DVFS.
-> >
-> > Fixes: d14734a04a8a (arm64: dts: meson-g12b-odroid-n2: enable DVFS)
-> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > Cc: Jerome Brunet <jbrunet@baylibre.com>
-> > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > index a9a661258886..66262a6ab3fe 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > @@ -135,6 +135,8 @@
-> >
-> >               regulator-boot-on;
-> >               regulator-always-on;
-> > +             /* VDDCPUA_PWM */
-> > +             enable-gpios = <&gpio GPIOE_1 GPIO_ACTIVE_HIGH>;
-> >       };
-> >
-> >       vddcpu_b: regulator-vddcpu-b {
-> > @@ -154,6 +156,8 @@
-> >
-> >               regulator-boot-on;
-> >               regulator-always-on;
-> > +             /* VDDCPUB_PWM */
-> > +             enable-gpios = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-> >       };
-> >
-> >       hub_5v: regulator-hub_5v {
-> >
->
-> Same as 5V_EN, This GPIO is handled by the BL301 SCP firmware, I'm personally against
-> adding this to the DT since it's out of control of Linux or any OS.
->
-> This GPIO id controlles by the PSCI call to SCP to enable/disable
-> the CPU clusters.
->
-> Neil
+No, that sounds reasonable.
 
-Thanks for your input's.
+Given that, it might be plausible to extend that DT scheme to represent 
+more information, but it's still better to represent the actual end 
+device (that's connected to the GPIO) in DT, since that also represents 
+the semantics.
 
-Best Regards
--Anand
+> [6] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=fd9c55315db9
