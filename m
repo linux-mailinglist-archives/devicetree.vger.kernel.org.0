@@ -2,70 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3061ACE4F9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FF5CE506
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:19:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728188AbfJGOSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 10:18:43 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:37430 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726334AbfJGOSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:18:42 -0400
-Received: by mail-pf1-f196.google.com with SMTP id y5so8767549pfo.4;
-        Mon, 07 Oct 2019 07:18:41 -0700 (PDT)
+        id S1728130AbfJGOTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 10:19:36 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:41258 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726334AbfJGOTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:19:36 -0400
+Received: by mail-wr1-f65.google.com with SMTP id q9so15543479wrm.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 07:19:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=t1mrLZXO/jxwuKLpUxmNHwQxyP6fiweNueFwmQYCfLk=;
-        b=ofoS2PZtCYLW9R2/Uu1yFc6+T2w95dJ77T8QunqWPADdWe/BSoIczCt0YKEAPj2i2D
-         jgJcu9CGzPInjX/ZfDMl6su4u627zqkkjbkUSldRLNcb6ZcvoYatQ2PFB/FvZK9dajYs
-         1GgMAd9cdS2Wj5x9mqneg5/Uz2OHeSou4sAvz2RxhWzUWO+0aONPtdtaW38k2gGR7Jtq
-         mZfFZ7dtMBBxakOcdFHTuy07t5PexYpbqSH845wulICBMBPCY4ZVo6kBba20G7g88hk+
-         7gLhG+TUlp7XjtfrsZyaQw2LmhmJ26H7aFGjk0b4YhovX2Mwv8TuGRTZv0smMuzwFcTC
-         RTow==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=0i3jhpHh4ub3oIHu6X3wrigGH0j1ZIOt2cA9ogRBEXA=;
+        b=ZuOeJqvVikHzr0ygmoqd1UJcPYYIsWJCL/CVHbiiR5DZgIPZgP/AewZuidzv89ahez
+         V0hctYc4GsJ9dqW/NiP9jgUHyRDZ92km1eDBNoDXSMr559cJn8A+eri4hSYvmCHl4mZr
+         soP18VvvPoViHnxWh4+VM7k/5XcmtEZ5NHHrkM3eJttxnZNc+KUsBRYoYl49EAp/ZDbI
+         P3vSV/ir6aBdEhAlE/0N8KB2s7ncx7VuvrPkZ8V/r+DkJdXQEKmGGYLSjceNvGyoqQq+
+         WjcWWSaeB1Xzd6iUKXFn15TgxyfrmDd1U4yYaB1DxyW0nb3H3qTd6xF5yTysdlQVmAmS
+         smjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=t1mrLZXO/jxwuKLpUxmNHwQxyP6fiweNueFwmQYCfLk=;
-        b=t7hAO5qHjHeSuN5N0e/0ZIPP5uoJl5rOc2849QSbhg60IXXH9k4PZNOpCiA4ObkEtu
-         8mPeUYZs/q5jnBZke8gsr4ZNB7XEEBk55h0qP3DAMDzdprIaQ8PUolCC/NM7//9Ff46z
-         U2MDai8TXyV1EaD0ac/Sd5VlffICcw2UW+3Y2bv1C0QY/vlSY4d/2Qv5T3WbZKvegbKZ
-         qF7IRAVamqiBpJ/Ujgw7C9kLwCB5Qj7yG2iP6sPLnpm1XD6yeHpXV0qjHUq8uZmVz6Jb
-         ethEHPh0wrNZY6mIII6OfpCwCTXGaGiMMwohCTSJGFSTGCY4YBRuL4/EZq43XbwjkGAP
-         tifg==
-X-Gm-Message-State: APjAAAXuBAZFGuEIOU3/cmD2PJACg9WTydRq2u9305a0V2QJSaSGVEGS
-        eKvvYU+VxWyjeOcfPICSu4o=
-X-Google-Smtp-Source: APXvYqwzwetxIrLFm6Goh4cn7kHOBzCs2yV2qBisWPHnXeRV9P/rl78Yrb/lUSynwb1qs0ctyMUVHw==
-X-Received: by 2002:a17:90a:7105:: with SMTP id h5mr34080814pjk.107.1570457920487;
-        Mon, 07 Oct 2019 07:18:40 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b69sm17251767pfb.132.2019.10.07.07.18.38
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=0i3jhpHh4ub3oIHu6X3wrigGH0j1ZIOt2cA9ogRBEXA=;
+        b=h5fE0QICtE3zObq58KWxOzr7x+TrZP/cNMezpqYwGjOAgVEGEACrTUA5aHOfVzuKkn
+         J/2uFtGVbTPGiJJGXtsvkebw4ponGW0H8BFCmt2tbUzHsPgTNfbNP7DB/a5me+6iMqG6
+         jz5EOuQWC2WPac0hA1J2lygztwg/CKSxa6ZKsEdUcQ12/P+3oWd/+EKUTyufYIK4x+1e
+         BOBdjaBNLlMaSweT9+LrK8GIm+rKFCuJE0PRTvS1cfilwcA174DTvCzyiQ2EKa9p5joq
+         CeRWaFFm+S0+tZuyVm0TPq/EXcatRFs657EK133bgXf6rH8zFi2iJnY8vWwuCHoyGHMX
+         mv0A==
+X-Gm-Message-State: APjAAAXq7ayTqlcZwuTdJNy5qQXzPl/W18zuM5yFY07fh5QZLqkfdOZ4
+        jSsz0chMIAobA3LAuiP+y0GCLw==
+X-Google-Smtp-Source: APXvYqzW1ltms7IyyXCquFmmEmlWMVvwYMA3WlYcSN9peoI1YS5SP8VSJ2lqjTHJ/xtSsVkpwGgMYg==
+X-Received: by 2002:adf:9b81:: with SMTP id d1mr21198287wrc.157.1570457973383;
+        Mon, 07 Oct 2019 07:19:33 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id c9sm15188270wrt.7.2019.10.07.07.19.32
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Oct 2019 07:18:39 -0700 (PDT)
-Subject: Re: [PATCH 2/3] hwmon: Support ADI Fan Control IP
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "mdf@kernel.org" <mdf@kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20190926103925.194973-1-nuno.sa@analog.com>
- <20190926103925.194973-3-nuno.sa@analog.com>
- <20191006153209.GA30372@roeck-us.net>
- <9a3bec277caaabffb75248ddc6fbb89b5d95da5b.camel@analog.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <8f6e8513-eba1-39ad-cb7c-d92afa9e0b92@roeck-us.net>
-Date:   Mon, 7 Oct 2019 07:18:37 -0700
+        Mon, 07 Oct 2019 07:19:32 -0700 (PDT)
+Subject: Re: [RFCv1 1/5] arm64: dts: meson: Add missing 5V_EN gpio signal for
+ VCC5V regulator
+To:     Anand Moon <linux.amoon@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20191007131649.1768-1-linux.amoon@gmail.com>
+ <20191007131649.1768-2-linux.amoon@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <c99adf31-42df-c88e-40d4-1dc383c990b1@baylibre.com>
+Date:   Mon, 7 Oct 2019 16:19:31 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <9a3bec277caaabffb75248ddc6fbb89b5d95da5b.camel@analog.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20191007131649.1768-2-linux.amoon@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
@@ -73,113 +126,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/19 6:52 AM, Sa, Nuno wrote:
-[ ... ]
->>> +static long axi_fan_control_get_pwm_duty(const struct
->>> axi_fan_control_data *ctl)
->>> +{
->>> +	u32 pwm_width = axi_fan_control_ioread(ADI_REG_PWM_WIDTH, ctl);
->>> +	u32 pwm_period = axi_fan_control_ioread(ADI_REG_PWM_PERIOD,
->>> ctl);
->>> +
->>> +	return DIV_ROUND_CLOSEST(pwm_width * SYSFS_PWM_MAX,
->>> pwm_period);
->>
->> Is pwm_period guaranteed to be != 0 ?
+Hi Anand,
+
+On 07/10/2019 15:16, Anand Moon wrote:
+> As per schematics add missing 5V_EN gpio signal to enable
+> VCC5V regulator node.
 > 
-> Yes, It is a RO register and it is set by the core with the default of
-> 0x4e20.
-
-Trusting the hardware doesn't make me too comfortable. Are we sure at all
-times that the HW isn't messed up ? If so, please at least add a comment
-stating that the HW will never return 0. We can then fix it after we get
-the first crash report from the field ;-).
-
-[ ... ]
-
->>> +	if (irq_pending & ADI_IRQ_SRC_TEMP_INCREASE)
->>> +		/* hardware requested a new pwm */
->>> +		ctl->hw_pwm_req = true;
->>> +
->> I don't really understand the logic here. If
->> ADI_IRQ_SRC_TEMP_INCREASE means
->> that hardware wants a new pwm, how is userspace informed about that
->> request ?
+> Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> It isn't. Userspace would have to read the pwm attribute and figure
-> that changed. Should I use something like sysfs_notify() on the pwm
-> attribute?
-> 
-That might make sense.
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> index 42f15405750c..a9a661258886 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> @@ -94,6 +94,9 @@
+>  		regulator-max-microvolt = <5000000>;
+>  		regulator-always-on;
+>  		vin-supply = <&main_12v>;
+> +		/* U12 NB679GD 5V_EN */
+> +		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+> +		enable-active-high;
 
->> And why are the tacho paramaters _not_ updated in this case later on
->> (unless
->> ADI_IRQ_SRC_PWM_CHANGED and ADI_IRQ_SRC_TEMP_INCREASE are both set) ?
->> It might be useful to describe the expected sequence of events.
-> 
-> The core can change the PWM by itself (which is when we receive
-> ADI_IRQ_SRC_TEMP_INCREASE) and in that case it will use predefined
-> values to evaluate the tacho signal (so it won't use the values on
-> TACH_PERIOD and TACH_TOLERANCE). Alternatively, the user can request a
-> new PWM by writing the pwm attribute. In this case the CORE is
-> expecting that TACH_PERIOD and TACH_TOLERANCE are given otherwise it
-> won't evaluate the tacho signal. Note that when is the user which
-> requests a new pwm we only get ADI_IRQ_SRC_PWM_CHANGED (and not +	
-> if (irq_pending & ADI_IRQ_SRC_TEMP_INCREASE), so I use that to know
-> when do I have to update the tacho parameters.
->   
-Wondering ... if setting the pwm requires an update of period and tolerance,
-why not set update_tacho_params to true when the pwm value is written, or
-update the registers directly instead of waiting for an interrupt ?
+This GPIO is handled by the BL301 SCP firmware, I'm personally against
+adding this to the DT since it's out of control of Linux or any OS.
 
-Either case, I think the above sequence of events should be explained
-in the driver for future developers to understand why the code is written
-the way it is.
+Neil
 
->>>
-> )
+>  	};
+>  
+>  	vcc_1v8: regulator-vcc_1v8 {
 > 
->>> +	if (irq_pending & ADI_IRQ_SRC_TACH_ERR)
->>> +		ctl->fan_fault = 1;
->>
->> Is it on purpose that this bit is never reset ?
-> 
-> Yes, and it is wrong. I though that the core would never clear this
-> alarm but it does clear it in the next temperature reading cycle (and
-> set it again if needed). Then, would a clear on read be a correct
-> approach?
 
-Not sure if there is a "correct", but I think it would make sense.
-
->>
->>> +
->>> +	/* clear all interrupts */
->>> +	clear_mask = irq_pending & ADI_IRQ_SRC_MASK;
->>> +	axi_fan_control_iowrite(clear_mask, ADI_REG_IRQ_PENDING, ctl);
->>> +
->>> +	return IRQ_HANDLED;
->>> +}
->>> +
->>> +static int axi_fan_control_init(struct axi_fan_control_data *ctl,
->>> +				const struct device_node *np)
->>> +{
->>> +	int ret;
->>> +
->>> +	/* get fan pulses per revolution */
->>> +	ret = of_property_read_u32(np, "adi,pulses-per-revolution",
->>> &ctl->ppr);
->>> +	if (ret)
->>> +		return ret;
->>
->> So all random values are acceptable, including 0 and 0xffffffff ?
-> 
-> Yes, I'm aware that 1 and 2 are typical values but I'm not sure what is
-> the maximum that typically exists so I didn't want to put limits here
-> without knowing. Though at least 0 must not be accepted since then we
-> are always dividing by 0 when reading the FAN rpm.
-> 
-The only values I am aware of are 2 and 4. I don't recall seeing any fans
-with 1 pulse per revolution. Overall, I don't think values other than 1, 2,
-and 4 make sense.
-
-Guenter
