@@ -2,492 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE63CE69B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A68CE6DA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728137AbfJGPIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 11:08:15 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35886 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728989AbfJGPH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:07:56 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97F7tQ4047060;
-        Mon, 7 Oct 2019 10:07:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570460875;
-        bh=Na031nRtTpHgNLRhoS3VHTXJIvSFYmmw4PDQkJk43X8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=TlWDpIIAue3+sDf+aMw++I1+JaUVlwKox2+RCIoXEi/egdbsPCSb7qHAx0IHcUYny
-         pkqAlE1xV2qU64pg/26G7Pc2kyMFjHgHDum1VpfabCzrmO9ONv5e03H+m+I4f8694V
-         tjaOdqFgux71hYFuhWEw8shjdkaF6YSoFpAGmZJA=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x97F7tXY025704
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Oct 2019 10:07:55 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 7 Oct
- 2019 10:07:53 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 7 Oct 2019 10:07:55 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97F7aFR055156;
-        Mon, 7 Oct 2019 10:07:55 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v3 21/21] media: ti-vpe: vpe: don't rely on colorspace member for conversion
-Date:   Mon, 7 Oct 2019 10:10:09 -0500
-Message-ID: <20191007151009.22095-22-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191007151009.22095-1-bparrot@ti.com>
-References: <20191007151009.22095-1-bparrot@ti.com>
+        id S1728691AbfJGPJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 11:09:44 -0400
+Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:65128 "EHLO
+        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728059AbfJGPJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:09:42 -0400
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x97F8voT031243;
+        Mon, 7 Oct 2019 11:08:59 -0400
+Received: from nam05-co1-obe.outbound.protection.outlook.com (mail-co1nam05lp2059.outbound.protection.outlook.com [104.47.48.59])
+        by mx0b-00128a01.pphosted.com with ESMTP id 2veqt58a5j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 07 Oct 2019 11:08:58 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bVYKeJ0upOWhC9zpzC8XB0LRrlZih6VOeEKnLBkYCCgYKlPJ4MxfpqzsnCLTNR3z0U+mAJMimOzdkfzmTfNNI/T7mnU1iErcfKe+RocrgFrxIf6S2f+U+lZv5SEsdDeQ7Xte9Ae019elJmMSKOamHQ28ixbwCDAVQnsPXvxp+v594urvJunk221I9+SY1QMwqF4CnAk6xQSHXRaw69Lhv7UViUQhoHAEOjLH7jxTzDRtK/4vgRnk6sN/4XyLVRwpdr29z/LVo15RlOZ7ySIfgXYrXGqlBlTiR1U9GJz/rznwj/TkEOQsIVi6SNmBxfo8OleMMV6/8MORsHJyk5Sidw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rLsNGdP+ORZKCykRR64suDQXCtVWKW3NUZJfcGcftbs=;
+ b=OU0FOut5bCMLTkCDHwdnkhBaTfr2hBmFj4Cdf01AChP6RKZXLo84yeiec4qw0nLdb/5ElzL5FtGHyT5lA4O71LGIgEa4xyhaa0xfTuG/YV0+Y88rpfLG/2yRq/3BeADpU7V22hta62aVbtPI2kRHQfYPyThf+pQw1khAOBCk/COhjwjkjC/SVjHzCKhUEei9Ssp/+4mtjxVA70QZ+Ii0+XoKeDowEl34jw2OmnZhjTRvyxT8lIEGZAuq7bDfiBqSxsnZ0j2tdEkmwFjskwrAqzrDH11Cr5v5eDo4qTJ6Y8HHmo5l4RdClsw7Fa2ClGQcTssmJiu/Jgg0BapRfCEsgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rLsNGdP+ORZKCykRR64suDQXCtVWKW3NUZJfcGcftbs=;
+ b=h9VN9Q8AtKaDPG/QmYIWyg0UzvAdjTUDtk7fPIgFIkcXFslPD9H/OTigkaP2LJCYhgXpvWcVVlTqMPezidHg4eR7WJfNgD6kKoi3sndA9Z11Kkjg3NgX4SwTQNfM9wpH/qrzf9gMTx59ik8+F0jxMwSwqdAsQD1QIHfXLDVwzbk=
+Received: from MN2PR03MB5117.namprd03.prod.outlook.com (52.132.171.137) by
+ MN2PR03MB4975.namprd03.prod.outlook.com (52.132.168.84) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.23; Mon, 7 Oct 2019 15:08:55 +0000
+Received: from MN2PR03MB5117.namprd03.prod.outlook.com
+ ([fe80::8c20:8f3b:b536:dca5]) by MN2PR03MB5117.namprd03.prod.outlook.com
+ ([fe80::8c20:8f3b:b536:dca5%7]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
+ 15:08:55 +0000
+From:   "Sa, Nuno" <Nuno.Sa@analog.com>
+To:     "linux@roeck-us.net" <linux@roeck-us.net>
+CC:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/3] hwmon: Support ADI Fan Control IP
+Thread-Topic: [PATCH 2/3] hwmon: Support ADI Fan Control IP
+Thread-Index: AQHVdFa03kFb3oEkSUeluAbSCPFerqdNzcGAgAF2kACAAAc5gIAADi2A
+Date:   Mon, 7 Oct 2019 15:08:55 +0000
+Message-ID: <014f3cd33766dbe32d24eebe74724df596685109.camel@analog.com>
+References: <20190926103925.194973-1-nuno.sa@analog.com>
+         <20190926103925.194973-3-nuno.sa@analog.com>
+         <20191006153209.GA30372@roeck-us.net>
+         <9a3bec277caaabffb75248ddc6fbb89b5d95da5b.camel@analog.com>
+         <8f6e8513-eba1-39ad-cb7c-d92afa9e0b92@roeck-us.net>
+In-Reply-To: <8f6e8513-eba1-39ad-cb7c-d92afa9e0b92@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.71.226.54]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 14486973-53eb-4832-043c-08d74b38458a
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: MN2PR03MB4975:
+x-microsoft-antispam-prvs: <MN2PR03MB49751C4E23535AD5EB746443999B0@MN2PR03MB4975.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01834E39B7
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(346002)(376002)(366004)(136003)(396003)(199004)(189003)(446003)(11346002)(476003)(6116002)(186003)(2501003)(2616005)(25786009)(26005)(3846002)(6916009)(54906003)(5660300002)(316002)(66066001)(66446008)(1730700003)(118296001)(91956017)(66476007)(81156014)(66556008)(64756008)(8936002)(81166006)(76116006)(8676002)(66946007)(2906002)(486006)(86362001)(36756003)(2351001)(6246003)(76176011)(6512007)(6436002)(14454004)(6486002)(305945005)(5640700003)(478600001)(71200400001)(71190400001)(256004)(99286004)(14444005)(229853002)(4326008)(6506007)(53546011)(102836004)(7736002);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR03MB4975;H:MN2PR03MB5117.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: analog.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: tWboWkM6hDFsxx4guulmWo/b3nC9HzJCEzzRNQKW1MwhRkizka02fhVuZejuKDsrbBRapqw7jFP/QJ7zQzYOABnxvhRNdq7LsPYplp2zbNHNEQX01M+ANv06nZIbETYp26H385lLA+e2f4ep3ZC8aAvpdPrw5zhsT/bK9OzN5CMLySghc0Z/8hQDFe3rXX0WcRFJjtrq3g1ybnkBszHmonhYNsmFqYkF/nLIXYk7AHayZSLxYq0zXjAs0Z9ToaLiDCC3S/DN/p83iGhve0O7kQtuIX1P6PrEYxtkGrBJIKvRRxTrgMmluczOtxM4K7p6aikVxsuLepvhbbRTIkCcJoAKb1ax6lo0YM5I9EzPyyQdbsKgBUOOZyk6rlkbn+nG59LoYDj5eDnzeqK7uY5/IWF9sh7wWW2gui9Dygxnzps=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <453E811B2965144A94193E2ABAB96382@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14486973-53eb-4832-043c-08d74b38458a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 15:08:55.2292
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h6PppRB/H9gf5IprHuWtM0Yc565HzMcBklxFGlB7kqsvDAAlvhUvpUFfgqIMXpIvnUW1VRFcFX0e2itfrW3Sug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR03MB4975
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-07_03:2019-10-07,2019-10-07 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ mlxlogscore=999 malwarescore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910070151
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Up to now VPE was relying on the colorspace value of struct v4l2_format
-as an indication to perform color space conversion from YUV to RGB or
-not.
-
-Instead we should used the source/destination fourcc codes as a more
-reliable indication to perform color space conversion or not.
-
-To do so, we rework the csc module to use "struct v4l2_format *" as
-parameters, and reorganize the coefficients tables in a more logical
-way.
-
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- drivers/media/platform/ti-vpe/csc.c | 254 +++++++++++++++++++---------
- drivers/media/platform/ti-vpe/csc.h |   4 +-
- drivers/media/platform/ti-vpe/vpe.c |  25 ++-
- 3 files changed, 184 insertions(+), 99 deletions(-)
-
-diff --git a/drivers/media/platform/ti-vpe/csc.c b/drivers/media/platform/ti-vpe/csc.c
-index f0c45d187b5f..bd923bee4a31 100644
---- a/drivers/media/platform/ti-vpe/csc.c
-+++ b/drivers/media/platform/ti-vpe/csc.c
-@@ -15,76 +15,96 @@
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- #include <linux/videodev2.h>
-+#include <media/v4l2-common.h>
- 
- #include "csc.h"
- 
- /*
-- * 16 coefficients in the order:
-+ * 12 coefficients in the order:
-  * a0, b0, c0, a1, b1, c1, a2, b2, c2, d0, d1, d2
-- * (we may need to pass non-default values from user space later on, we might
-- * need to make the coefficient struct more easy to populate)
-  */
--struct colorspace_coeffs {
--	u16	sd[12];
--	u16	hd[12];
-+struct quantization {
-+	u16	coeff[12];
- };
- 
--/* VIDEO_RANGE: limited range, GRAPHICS_RANGE: full range */
--#define	CSC_COEFFS_VIDEO_RANGE_Y2R	0
--#define	CSC_COEFFS_GRAPHICS_RANGE_Y2R	1
--#define	CSC_COEFFS_VIDEO_RANGE_R2Y	2
--#define	CSC_COEFFS_GRAPHICS_RANGE_R2Y	3
-+struct colorspace {
-+	struct quantization limited;
-+	struct quantization full;
-+};
-+
-+struct encoding_direction {
-+	struct colorspace r601;
-+	struct colorspace r709;
-+};
-+
-+struct csc_coeffs {
-+	struct encoding_direction y2r;
-+	struct encoding_direction r2y;
-+};
- 
- /* default colorspace coefficients */
--static struct colorspace_coeffs colorspace_coeffs[4] = {
--	[CSC_COEFFS_VIDEO_RANGE_Y2R] = {
--		{
--			/* SDTV */
--			0x0400, 0x0000, 0x057D, 0x0400, 0x1EA7, 0x1D35,
--			0x0400, 0x06EF, 0x1FFE, 0x0D40, 0x0210, 0x0C88,
-+static struct csc_coeffs csc_coeffs = {
-+	.y2r = {
-+		.r601 = {
-+			.limited = {
-+				{	/* SDTV */
-+				0x0400, 0x0000, 0x057D, 0x0400, 0x1EA7, 0x1D35,
-+				0x0400, 0x06EF, 0x1FFE, 0x0D40, 0x0210, 0x0C88,
-+				}
-+			},
-+			.full = {
-+				{	/* SDTV */
-+				0x04A8, 0x1FFE, 0x0662, 0x04A8, 0x1E6F, 0x1CBF,
-+				0x04A8, 0x0812, 0x1FFF, 0x0C84, 0x0220, 0x0BAC,
-+				}
-+			},
- 		},
--		{
--			/* HDTV */
--			0x0400, 0x0000, 0x0629, 0x0400, 0x1F45, 0x1E2B,
--			0x0400, 0x0742, 0x0000, 0x0CEC, 0x0148, 0x0C60,
-+		.r709 = {
-+			.limited = {
-+				{	/* HDTV */
-+				0x0400, 0x0000, 0x0629, 0x0400, 0x1F45, 0x1E2B,
-+				0x0400, 0x0742, 0x0000, 0x0CEC, 0x0148, 0x0C60,
-+				}
-+			},
-+			.full = {
-+				{	/* HDTV */
-+				0x04A8, 0x0000, 0x072C, 0x04A8, 0x1F26, 0x1DDE,
-+				0x04A8, 0x0873, 0x0000, 0x0C20, 0x0134, 0x0B7C,
-+				}
-+			},
- 		},
- 	},
--	[CSC_COEFFS_GRAPHICS_RANGE_Y2R] = {
--		{
--			/* SDTV */
--			0x04A8, 0x1FFE, 0x0662, 0x04A8, 0x1E6F, 0x1CBF,
--			0x04A8, 0x0812, 0x1FFF, 0x0C84, 0x0220, 0x0BAC,
-+	.r2y = {
-+		.r601 = {
-+			.limited = {
-+				{	/* SDTV */
-+				0x0132, 0x0259, 0x0075, 0x1F50, 0x1EA5, 0x020B,
-+				0x020B, 0x1E4A, 0x1FAB, 0x0000, 0x0200, 0x0200,
-+				}
-+			},
-+			.full = {
-+				{	/* SDTV */
-+				0x0107, 0x0204, 0x0064, 0x1F68, 0x1ED6, 0x01C2,
-+				0x01C2, 0x1E87, 0x1FB7, 0x0040, 0x0200, 0x0200,
-+				}
-+			},
- 		},
--		{
--			/* HDTV */
--			0x04A8, 0x0000, 0x072C, 0x04A8, 0x1F26, 0x1DDE,
--			0x04A8, 0x0873, 0x0000, 0x0C20, 0x0134, 0x0B7C,
--		},
--	},
--	[CSC_COEFFS_VIDEO_RANGE_R2Y] = {
--		{
--			/* SDTV */
--			0x0132, 0x0259, 0x0075, 0x1F50, 0x1EA5, 0x020B,
--			0x020B, 0x1E4A, 0x1FAB, 0x0000, 0x0200, 0x0200,
--		},
--		{
--			/* HDTV */
--			0x00DA, 0x02DC, 0x004A, 0x1F88, 0x1E6C, 0x020C,
--			0x020C, 0x1E24, 0x1FD0, 0x0000, 0x0200, 0x0200,
--		},
--	},
--	[CSC_COEFFS_GRAPHICS_RANGE_R2Y] = {
--		{
--			/* SDTV */
--			0x0107, 0x0204, 0x0064, 0x1F68, 0x1ED6, 0x01C2,
--			0x01C2, 0x1E87, 0x1FB7, 0x0040, 0x0200, 0x0200,
--		},
--		{
--			/* HDTV */
--			0x00bb, 0x0275, 0x003f, 0x1f99, 0x1ea5, 0x01c2,
--			0x01c2, 0x1e67, 0x1fd7, 0x0040, 0x0200, 0x0200,
-+		.r709 = {
-+			.limited = {
-+				{	/* HDTV */
-+				0x00DA, 0x02DC, 0x004A, 0x1F88, 0x1E6C, 0x020C,
-+				0x020C, 0x1E24, 0x1FD0, 0x0000, 0x0200, 0x0200,
-+				}
-+			},
-+			.full = {
-+				{	/* HDTV */
-+				0x00bb, 0x0275, 0x003f, 0x1f99, 0x1ea5, 0x01c2,
-+				0x01c2, 0x1e67, 0x1fd7, 0x0040, 0x0200, 0x0200,
-+				}
-+			},
- 		},
- 	},
-+
- };
- 
- void csc_dump_regs(struct csc_data *csc)
-@@ -117,46 +137,114 @@ EXPORT_SYMBOL(csc_set_coeff_bypass);
-  * set the color space converter coefficient shadow register values
-  */
- void csc_set_coeff(struct csc_data *csc, u32 *csc_reg0,
--		enum v4l2_colorspace src_colorspace,
--		enum v4l2_colorspace dst_colorspace)
-+		   struct v4l2_format *src_fmt, struct v4l2_format *dst_fmt)
- {
- 	u32 *csc_reg5 = csc_reg0 + 5;
- 	u32 *shadow_csc = csc_reg0;
--	struct colorspace_coeffs *sd_hd_coeffs;
- 	u16 *coeff, *end_coeff;
--	enum v4l2_colorspace yuv_colorspace;
--	int sel = 0;
--
--	/*
--	 * support only graphics data range(full range) for now, a control ioctl
--	 * would be nice here
--	 */
--	/* Y2R */
--	if (dst_colorspace == V4L2_COLORSPACE_SRGB &&
--			(src_colorspace == V4L2_COLORSPACE_SMPTE170M ||
--			src_colorspace == V4L2_COLORSPACE_REC709)) {
-+	const struct v4l2_pix_format *pix;
-+	const struct v4l2_pix_format_mplane *mp;
-+	const struct v4l2_format_info *src_finfo, *dst_finfo;
-+	enum v4l2_ycbcr_encoding src_ycbcr_enc, dst_ycbcr_enc;
-+	enum v4l2_quantization src_quantization, dst_quantization;
-+	u32 src_pixelformat, dst_pixelformat;
-+
-+	switch (src_fmt->type) {
-+	case V4L2_BUF_TYPE_VIDEO_OUTPUT:
-+		pix = &src_fmt->fmt.pix;
-+		src_pixelformat = pix->pixelformat;
-+		src_ycbcr_enc = pix->ycbcr_enc;
-+		src_quantization = pix->quantization;
-+		break;
-+	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
-+	default:
-+		mp = &src_fmt->fmt.pix_mp;
-+		src_pixelformat = mp->pixelformat;
-+		src_ycbcr_enc = mp->ycbcr_enc;
-+		src_quantization = mp->quantization;
-+		break;
-+	}
-+
-+	switch (dst_fmt->type) {
-+	case V4L2_BUF_TYPE_VIDEO_OUTPUT:
-+		pix = &dst_fmt->fmt.pix;
-+		dst_pixelformat = pix->pixelformat;
-+		dst_ycbcr_enc = pix->ycbcr_enc;
-+		dst_quantization = pix->quantization;
-+		break;
-+	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
-+	default:
-+		mp = &dst_fmt->fmt.pix_mp;
-+		dst_pixelformat = mp->pixelformat;
-+		dst_ycbcr_enc = mp->ycbcr_enc;
-+		dst_quantization = mp->quantization;
-+		break;
-+	}
-+
-+	src_finfo = v4l2_format_info(src_pixelformat);
-+	dst_finfo = v4l2_format_info(dst_pixelformat);
-+
-+	if (v4l2_is_format_yuv(src_finfo) &&
-+	    v4l2_is_format_rgb(dst_finfo)) {
- 		/* Y2R */
--		sel = 1;
--		yuv_colorspace = src_colorspace;
--	} else if ((dst_colorspace == V4L2_COLORSPACE_SMPTE170M ||
--			dst_colorspace == V4L2_COLORSPACE_REC709) &&
--			src_colorspace == V4L2_COLORSPACE_SRGB) {
-+
-+		/*
-+		 * These are not the standard default values but are
-+		 * set this way for historical compatibility
-+		 */
-+		if (src_ycbcr_enc == V4L2_YCBCR_ENC_DEFAULT)
-+			src_ycbcr_enc = V4L2_YCBCR_ENC_601;
-+
-+		if (src_quantization == V4L2_QUANTIZATION_DEFAULT)
-+			src_quantization = V4L2_QUANTIZATION_FULL_RANGE;
-+
-+		if (src_ycbcr_enc == V4L2_YCBCR_ENC_601) {
-+			if (src_quantization == V4L2_QUANTIZATION_FULL_RANGE)
-+				coeff = csc_coeffs.y2r.r601.full.coeff;
-+			else
-+				coeff = csc_coeffs.y2r.r601.limited.coeff;
-+		} else if (src_ycbcr_enc == V4L2_YCBCR_ENC_709) {
-+			if (src_quantization == V4L2_QUANTIZATION_FULL_RANGE)
-+				coeff = csc_coeffs.y2r.r709.full.coeff;
-+			else
-+				coeff = csc_coeffs.y2r.r709.limited.coeff;
-+		} else {
-+			/* Should never reach this, but it keeps gcc happy */
-+			coeff = csc_coeffs.y2r.r601.full.coeff;
-+		}
-+	} else if (v4l2_is_format_rgb(src_finfo) &&
-+		   v4l2_is_format_yuv(dst_finfo)) {
- 		/* R2Y */
--		sel = 3;
--		yuv_colorspace = dst_colorspace;
-+
-+		/*
-+		 * These are not the standard default values but are
-+		 * set this way for historical compatibility
-+		 */
-+		if (dst_ycbcr_enc == V4L2_YCBCR_ENC_DEFAULT)
-+			dst_ycbcr_enc = V4L2_YCBCR_ENC_601;
-+
-+		if (dst_quantization == V4L2_QUANTIZATION_DEFAULT)
-+			dst_quantization = V4L2_QUANTIZATION_FULL_RANGE;
-+
-+		if (dst_ycbcr_enc == V4L2_YCBCR_ENC_601) {
-+			if (dst_quantization == V4L2_QUANTIZATION_FULL_RANGE)
-+				coeff = csc_coeffs.r2y.r601.full.coeff;
-+			else
-+				coeff = csc_coeffs.r2y.r601.limited.coeff;
-+		} else if (dst_ycbcr_enc == V4L2_YCBCR_ENC_709) {
-+			if (dst_quantization == V4L2_QUANTIZATION_FULL_RANGE)
-+				coeff = csc_coeffs.r2y.r709.full.coeff;
-+			else
-+				coeff = csc_coeffs.r2y.r709.limited.coeff;
-+		} else {
-+			/* Should never reach this, but it keeps gcc happy */
-+			coeff = csc_coeffs.y2r.r601.full.coeff;
-+		}
- 	} else {
- 		*csc_reg5 |= CSC_BYPASS;
- 		return;
- 	}
- 
--	sd_hd_coeffs = &colorspace_coeffs[sel];
--
--	/* select between SD or HD coefficients */
--	if (yuv_colorspace == V4L2_COLORSPACE_SMPTE170M)
--		coeff = sd_hd_coeffs->sd;
--	else
--		coeff = sd_hd_coeffs->hd;
--
- 	end_coeff = coeff + 12;
- 
- 	for (; coeff < end_coeff; coeff += 2)
-diff --git a/drivers/media/platform/ti-vpe/csc.h b/drivers/media/platform/ti-vpe/csc.h
-index de9a58af2ca8..af2e86bccf57 100644
---- a/drivers/media/platform/ti-vpe/csc.h
-+++ b/drivers/media/platform/ti-vpe/csc.h
-@@ -58,8 +58,8 @@ struct csc_data {
- void csc_dump_regs(struct csc_data *csc);
- void csc_set_coeff_bypass(struct csc_data *csc, u32 *csc_reg5);
- void csc_set_coeff(struct csc_data *csc, u32 *csc_reg0,
--		enum v4l2_colorspace src_colorspace,
--		enum v4l2_colorspace dst_colorspace);
-+		   struct v4l2_format *src_fmt, struct v4l2_format *dst_fmt);
-+
- struct csc_data *csc_create(struct platform_device *pdev, const char *res_name);
- 
- #endif
-diff --git a/drivers/media/platform/ti-vpe/vpe.c b/drivers/media/platform/ti-vpe/vpe.c
-index 7c74b21e0164..1bd0d15ed8e0 100644
---- a/drivers/media/platform/ti-vpe/vpe.c
-+++ b/drivers/media/platform/ti-vpe/vpe.c
-@@ -756,12 +756,12 @@ static void set_src_registers(struct vpe_ctx *ctx)
- static void set_dst_registers(struct vpe_ctx *ctx)
- {
- 	struct vpe_mmr_adb *mmr_adb = ctx->mmr_adb.addr;
--	struct v4l2_pix_format_mplane *pix;
- 	struct vpe_fmt *fmt = ctx->q_data[Q_DATA_DST].fmt;
-+	const struct v4l2_format_info *finfo;
- 	u32 val = 0;
- 
--	pix = &ctx->q_data[Q_DATA_DST].format.fmt.pix_mp;
--	if (pix->colorspace == V4L2_COLORSPACE_SRGB) {
-+	finfo = v4l2_format_info(fmt->fourcc);
-+	if (v4l2_is_format_rgb(finfo)) {
- 		val |= VPE_RGB_OUT_SELECT;
- 		vpdma_set_bg_color(ctx->dev->vpdma,
- 			(struct vpdma_data_format *)fmt->vpdma_fmt[0], 0xff);
-@@ -865,14 +865,12 @@ static int set_srcdst_params(struct vpe_ctx *ctx)
- 	unsigned int dst_w = d_q_data->c_rect.width;
- 	unsigned int dst_h = d_q_data->c_rect.height;
- 	struct v4l2_pix_format_mplane *spix;
--	struct v4l2_pix_format_mplane *dpix;
- 	size_t mv_buf_size;
- 	int ret;
- 
- 	ctx->sequence = 0;
- 	ctx->field = V4L2_FIELD_TOP;
- 	spix = &s_q_data->format.fmt.pix_mp;
--	dpix = &d_q_data->format.fmt.pix_mp;
- 
- 	if ((s_q_data->flags & Q_IS_INTERLACED) &&
- 			!(d_q_data->flags & Q_IS_INTERLACED)) {
-@@ -909,7 +907,7 @@ static int set_srcdst_params(struct vpe_ctx *ctx)
- 	set_dei_regs(ctx);
- 
- 	csc_set_coeff(ctx->dev->csc, &mmr_adb->csc_regs[0],
--		      spix->colorspace, dpix->colorspace);
-+		      &s_q_data->format, &d_q_data->format);
- 
- 	sc_set_hs_coeffs(ctx->dev->sc, ctx->sc_coeff_h.addr, src_w, dst_w);
- 	sc_set_vs_coeffs(ctx->dev->sc, ctx->sc_coeff_v.addr, src_h, dst_h);
-@@ -1215,9 +1213,9 @@ static void device_run(void *priv)
- 	struct sc_data *sc = ctx->dev->sc;
- 	struct vpe_q_data *d_q_data = &ctx->q_data[Q_DATA_DST];
- 	struct vpe_q_data *s_q_data = &ctx->q_data[Q_DATA_SRC];
--	struct v4l2_pix_format_mplane *dpix;
-+	const struct v4l2_format_info *d_finfo;
- 
--	dpix = &d_q_data->format.fmt.pix_mp;
-+	d_finfo = v4l2_format_info(d_q_data->fmt->fourcc);
- 
- 	if (ctx->deinterlacing && s_q_data->flags & Q_IS_SEQ_XX &&
- 	    ctx->sequence % 2 == 0) {
-@@ -1290,7 +1288,7 @@ static void device_run(void *priv)
- 	if (ctx->deinterlacing)
- 		add_out_dtd(ctx, VPE_PORT_MV_OUT);
- 
--	if (dpix->colorspace == V4L2_COLORSPACE_SRGB) {
-+	if (v4l2_is_format_rgb(d_finfo)) {
- 		add_out_dtd(ctx, VPE_PORT_RGB_OUT);
- 	} else {
- 		add_out_dtd(ctx, VPE_PORT_LUMA_OUT);
-@@ -1332,7 +1330,7 @@ static void device_run(void *priv)
- 	}
- 
- 	/* sync on channel control descriptors for output ports */
--	if (dpix->colorspace == V4L2_COLORSPACE_SRGB) {
-+	if (v4l2_is_format_rgb(d_finfo)) {
- 		vpdma_add_sync_on_channel_ctd(&ctx->desc_list,
- 			VPE_CHAN_RGB_OUT);
- 	} else {
-@@ -1603,6 +1601,7 @@ static int __vpe_try_fmt(struct vpe_ctx *ctx, struct v4l2_format *f,
- 	unsigned int w_align;
- 	int i, depth, depth_bytes, height;
- 	unsigned int stride = 0;
-+	const struct v4l2_format_info *finfo;
- 
- 	if (!fmt || !(fmt->types & type)) {
- 		vpe_dbg(ctx->dev, "Fourcc format (0x%08x) invalid.\n",
-@@ -1662,6 +1661,7 @@ static int __vpe_try_fmt(struct vpe_ctx *ctx, struct v4l2_format *f,
- 		pix->num_planes = 1;
- 
- 	pix->pixelformat = fmt->fourcc;
-+	finfo = v4l2_format_info(fmt->fourcc);
- 
- 	/*
- 	 * For the actual image parameters, we need to consider the field
-@@ -1673,10 +1673,7 @@ static int __vpe_try_fmt(struct vpe_ctx *ctx, struct v4l2_format *f,
- 		height = pix->height;
- 
- 	if (!pix->colorspace) {
--		if (fmt->fourcc == V4L2_PIX_FMT_RGB24 ||
--				fmt->fourcc == V4L2_PIX_FMT_BGR24 ||
--				fmt->fourcc == V4L2_PIX_FMT_RGB32 ||
--				fmt->fourcc == V4L2_PIX_FMT_BGR32) {
-+		if (v4l2_is_format_rgb(finfo)) {
- 			pix->colorspace = V4L2_COLORSPACE_SRGB;
- 		} else {
- 			if (height > 1280)	/* HD */
--- 
-2.17.1
-
+T24gTW9uLCAyMDE5LTEwLTA3IGF0IDA3OjE4IC0wNzAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0K
+DQo+IA0KPiBPbiAxMC83LzE5IDY6NTIgQU0sIFNhLCBOdW5vIHdyb3RlOg0KPiBbIC4uLiBdDQo+
+ID4gPiA+ICtzdGF0aWMgbG9uZyBheGlfZmFuX2NvbnRyb2xfZ2V0X3B3bV9kdXR5KGNvbnN0IHN0
+cnVjdA0KPiA+ID4gPiBheGlfZmFuX2NvbnRyb2xfZGF0YSAqY3RsKQ0KPiA+ID4gPiArew0KPiA+
+ID4gPiArCXUzMiBwd21fd2lkdGggPQ0KPiA+ID4gPiBheGlfZmFuX2NvbnRyb2xfaW9yZWFkKEFE
+SV9SRUdfUFdNX1dJRFRILCBjdGwpOw0KPiA+ID4gPiArCXUzMiBwd21fcGVyaW9kID0NCj4gPiA+
+ID4gYXhpX2Zhbl9jb250cm9sX2lvcmVhZChBRElfUkVHX1BXTV9QRVJJT0QsDQo+ID4gPiA+IGN0
+bCk7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlyZXR1cm4gRElWX1JPVU5EX0NMT1NFU1QocHdtX3dp
+ZHRoICogU1lTRlNfUFdNX01BWCwNCj4gPiA+ID4gcHdtX3BlcmlvZCk7DQo+ID4gPiANCj4gPiA+
+IElzIHB3bV9wZXJpb2QgZ3VhcmFudGVlZCB0byBiZSAhPSAwID8NCj4gPiANCj4gPiBZZXMsIEl0
+IGlzIGEgUk8gcmVnaXN0ZXIgYW5kIGl0IGlzIHNldCBieSB0aGUgY29yZSB3aXRoIHRoZSBkZWZh
+dWx0DQo+ID4gb2YNCj4gPiAweDRlMjAuDQo+IA0KPiBUcnVzdGluZyB0aGUgaGFyZHdhcmUgZG9l
+c24ndCBtYWtlIG1lIHRvbyBjb21mb3J0YWJsZS4gQXJlIHdlIHN1cmUgYXQNCj4gYWxsDQo+IHRp
+bWVzIHRoYXQgdGhlIEhXIGlzbid0IG1lc3NlZCB1cCA/IElmIHNvLCBwbGVhc2UgYXQgbGVhc3Qg
+YWRkIGENCj4gY29tbWVudA0KPiBzdGF0aW5nIHRoYXQgdGhlIEhXIHdpbGwgbmV2ZXIgcmV0dXJu
+IDAuIFdlIGNhbiB0aGVuIGZpeCBpdCBhZnRlciB3ZQ0KPiBnZXQNCj4gdGhlIGZpcnN0IGNyYXNo
+IHJlcG9ydCBmcm9tIHRoZSBmaWVsZCA7LSkuDQoNCldpbGwgZG8gdGhhdC4NCg0KPiBbIC4uLiBd
+DQo+IA0KPiA+ID4gPiArCWlmIChpcnFfcGVuZGluZyAmIEFESV9JUlFfU1JDX1RFTVBfSU5DUkVB
+U0UpDQo+ID4gPiA+ICsJCS8qIGhhcmR3YXJlIHJlcXVlc3RlZCBhIG5ldyBwd20gKi8NCj4gPiA+
+ID4gKwkJY3RsLT5od19wd21fcmVxID0gdHJ1ZTsNCj4gPiA+ID4gKw0KPiA+ID4gSSBkb24ndCBy
+ZWFsbHkgdW5kZXJzdGFuZCB0aGUgbG9naWMgaGVyZS4gSWYNCj4gPiA+IEFESV9JUlFfU1JDX1RF
+TVBfSU5DUkVBU0UgbWVhbnMNCj4gPiA+IHRoYXQgaGFyZHdhcmUgd2FudHMgYSBuZXcgcHdtLCBo
+b3cgaXMgdXNlcnNwYWNlIGluZm9ybWVkIGFib3V0DQo+ID4gPiB0aGF0DQo+ID4gPiByZXF1ZXN0
+ID8NCj4gPiANCj4gPiBJdCBpc24ndC4gVXNlcnNwYWNlIHdvdWxkIGhhdmUgdG8gcmVhZCB0aGUg
+cHdtIGF0dHJpYnV0ZSBhbmQgZmlndXJlDQo+ID4gdGhhdCBjaGFuZ2VkLiBTaG91bGQgSSB1c2Ug
+c29tZXRoaW5nIGxpa2Ugc3lzZnNfbm90aWZ5KCkgb24gdGhlIHB3bQ0KPiA+IGF0dHJpYnV0ZT8N
+Cj4gPiANCj4gVGhhdCBtaWdodCBtYWtlIHNlbnNlLg0KPiANCj4gPiA+IEFuZCB3aHkgYXJlIHRo
+ZSB0YWNobyBwYXJhbWF0ZXJzIF9ub3RfIHVwZGF0ZWQgaW4gdGhpcyBjYXNlIGxhdGVyDQo+ID4g
+PiBvbg0KPiA+ID4gKHVubGVzcw0KPiA+ID4gQURJX0lSUV9TUkNfUFdNX0NIQU5HRUQgYW5kIEFE
+SV9JUlFfU1JDX1RFTVBfSU5DUkVBU0UgYXJlIGJvdGgNCj4gPiA+IHNldCkgPw0KPiA+ID4gSXQg
+bWlnaHQgYmUgdXNlZnVsIHRvIGRlc2NyaWJlIHRoZSBleHBlY3RlZCBzZXF1ZW5jZSBvZiBldmVu
+dHMuDQo+ID4gDQo+ID4gVGhlIGNvcmUgY2FuIGNoYW5nZSB0aGUgUFdNIGJ5IGl0c2VsZiAod2hp
+Y2ggaXMgd2hlbiB3ZSByZWNlaXZlDQo+ID4gQURJX0lSUV9TUkNfVEVNUF9JTkNSRUFTRSkgYW5k
+IGluIHRoYXQgY2FzZSBpdCB3aWxsIHVzZSBwcmVkZWZpbmVkDQo+ID4gdmFsdWVzIHRvIGV2YWx1
+YXRlIHRoZSB0YWNobyBzaWduYWwgKHNvIGl0IHdvbid0IHVzZSB0aGUgdmFsdWVzIG9uDQo+ID4g
+VEFDSF9QRVJJT0QgYW5kIFRBQ0hfVE9MRVJBTkNFKS4gQWx0ZXJuYXRpdmVseSwgdGhlIHVzZXIg
+Y2FuDQo+ID4gcmVxdWVzdCBhDQo+ID4gbmV3IFBXTSBieSB3cml0aW5nIHRoZSBwd20gYXR0cmli
+dXRlLiBJbiB0aGlzIGNhc2UgdGhlIENPUkUgaXMNCj4gPiBleHBlY3RpbmcgdGhhdCBUQUNIX1BF
+UklPRCBhbmQgVEFDSF9UT0xFUkFOQ0UgYXJlIGdpdmVuIG90aGVyd2lzZQ0KPiA+IGl0DQo+ID4g
+d29uJ3QgZXZhbHVhdGUgdGhlIHRhY2hvIHNpZ25hbC4gTm90ZSB0aGF0IHdoZW4gaXMgdGhlIHVz
+ZXIgd2hpY2gNCj4gPiByZXF1ZXN0cyBhIG5ldyBwd20gd2Ugb25seSBnZXQgQURJX0lSUV9TUkNf
+UFdNX0NIQU5HRUQgKGFuZCBub3QgKwkNCj4gPiBpZiAoaXJxX3BlbmRpbmcgJiBBRElfSVJRX1NS
+Q19URU1QX0lOQ1JFQVNFKSwgc28gSSB1c2UgdGhhdCB0byBrbm93DQo+ID4gd2hlbiBkbyBJIGhh
+dmUgdG8gdXBkYXRlIHRoZSB0YWNobyBwYXJhbWV0ZXJzLg0KPiA+ICAgDQo+IFdvbmRlcmluZyAu
+Li4gaWYgc2V0dGluZyB0aGUgcHdtIHJlcXVpcmVzIGFuIHVwZGF0ZSBvZiBwZXJpb2QgYW5kDQo+
+IHRvbGVyYW5jZSwNCj4gd2h5IG5vdCBzZXQgdXBkYXRlX3RhY2hvX3BhcmFtcyB0byB0cnVlIHdo
+ZW4gdGhlIHB3bSB2YWx1ZSBpcw0KPiB3cml0dGVuLCBvcg0KPiB1cGRhdGUgdGhlIHJlZ2lzdGVy
+cyBkaXJlY3RseSBpbnN0ZWFkIG9mIHdhaXRpbmcgZm9yIGFuIGludGVycnVwdCA/DQoNCkFmdGVy
+IHJlcXVlc3RpbmcgYSBuZXcgZHV0eS1jeWNsZSB0aGVyZSBpcyA1cyBkZWxheSBvbiB3aGljaCB0
+aGUgY29yZQ0Kd2FpdHMgZm9yIHRoZSBmYW4gcm90YXRpb24gc3BlZWQgdG8gc3RhYmlsaXplLiBP
+bmx5IGFmdGVyIHRoYXQsIHdlIGhhdmUNCnRvIHByb3ZpZGUgdGhlIHRhY2ggcGFyYW1ldGVycy4g
+QWxzbyBub3RlIHRoYXQgd2UgZG8gbmVlZCB0byB1c2UgdGhlDQp1cGRhdGVkIHRhY2ggbWVhc3Vy
+ZW1lbnQgdmFsdWUgdG8gZGVyaXZlIHRoaXMgcGFyYW1ldGVycy4gU28sIHdlIG5lZWQNCnRvIHdh
+aXQgZm9yIHRoZSBBRElfSVJRX1NSQ19ORVdfTUVBU1VSIGludGVycnVwdC4NCg0KPiBFaXRoZXIg
+Y2FzZSwgSSB0aGluayB0aGUgYWJvdmUgc2VxdWVuY2Ugb2YgZXZlbnRzIHNob3VsZCBiZSBleHBs
+YWluZWQNCj4gaW4gdGhlIGRyaXZlciBmb3IgZnV0dXJlIGRldmVsb3BlcnMgdG8gdW5kZXJzdGFu
+ZCB3aHkgdGhlIGNvZGUgaXMNCj4gd3JpdHRlbg0KPiB0aGUgd2F5IGl0IGlzLg0KDQp3aWxsIGRv
+IHRoYXQuDQoNCj4gPiApDQo+ID4gDQo+ID4gPiA+ICsJaWYgKGlycV9wZW5kaW5nICYgQURJX0lS
+UV9TUkNfVEFDSF9FUlIpDQo+ID4gPiA+ICsJCWN0bC0+ZmFuX2ZhdWx0ID0gMTsNCj4gPiA+IA0K
+PiA+ID4gSXMgaXQgb24gcHVycG9zZSB0aGF0IHRoaXMgYml0IGlzIG5ldmVyIHJlc2V0ID8NCj4g
+PiANCj4gPiBZZXMsIGFuZCBpdCBpcyB3cm9uZy4gSSB0aG91Z2ggdGhhdCB0aGUgY29yZSB3b3Vs
+ZCBuZXZlciBjbGVhciB0aGlzDQo+ID4gYWxhcm0gYnV0IGl0IGRvZXMgY2xlYXIgaXQgaW4gdGhl
+IG5leHQgdGVtcGVyYXR1cmUgcmVhZGluZyBjeWNsZQ0KPiA+IChhbmQNCj4gPiBzZXQgaXQgYWdh
+aW4gaWYgbmVlZGVkKS4gVGhlbiwgd291bGQgYSBjbGVhciBvbiByZWFkIGJlIGEgY29ycmVjdA0K
+PiA+IGFwcHJvYWNoPw0KPiANCj4gTm90IHN1cmUgaWYgdGhlcmUgaXMgYSAiY29ycmVjdCIsIGJ1
+dCBJIHRoaW5rIGl0IHdvdWxkIG1ha2Ugc2Vuc2UuDQo+IA0KPiA+ID4gPiArDQo+ID4gPiA+ICsJ
+LyogY2xlYXIgYWxsIGludGVycnVwdHMgKi8NCj4gPiA+ID4gKwljbGVhcl9tYXNrID0gaXJxX3Bl
+bmRpbmcgJiBBRElfSVJRX1NSQ19NQVNLOw0KPiA+ID4gPiArCWF4aV9mYW5fY29udHJvbF9pb3dy
+aXRlKGNsZWFyX21hc2ssDQo+ID4gPiA+IEFESV9SRUdfSVJRX1BFTkRJTkcsIGN0bCk7DQo+ID4g
+PiA+ICsNCj4gPiA+ID4gKwlyZXR1cm4gSVJRX0hBTkRMRUQ7DQo+ID4gPiA+ICt9DQo+ID4gPiA+
+ICsNCj4gPiA+ID4gK3N0YXRpYyBpbnQgYXhpX2Zhbl9jb250cm9sX2luaXQoc3RydWN0IGF4aV9m
+YW5fY29udHJvbF9kYXRhDQo+ID4gPiA+ICpjdGwsDQo+ID4gPiA+ICsJCQkJY29uc3Qgc3RydWN0
+IGRldmljZV9ub2RlICpucCkNCj4gPiA+ID4gK3sNCj4gPiA+ID4gKwlpbnQgcmV0Ow0KPiA+ID4g
+PiArDQo+ID4gPiA+ICsJLyogZ2V0IGZhbiBwdWxzZXMgcGVyIHJldm9sdXRpb24gKi8NCj4gPiA+
+ID4gKwlyZXQgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMihucCwgImFkaSxwdWxzZXMtcGVyLQ0KPiA+
+ID4gPiByZXZvbHV0aW9uIiwNCj4gPiA+ID4gJmN0bC0+cHByKTsNCj4gPiA+ID4gKwlpZiAocmV0
+KQ0KPiA+ID4gPiArCQlyZXR1cm4gcmV0Ow0KPiA+ID4gDQo+ID4gPiBTbyBhbGwgcmFuZG9tIHZh
+bHVlcyBhcmUgYWNjZXB0YWJsZSwgaW5jbHVkaW5nIDAgYW5kIDB4ZmZmZmZmZmYgPw0KPiA+IA0K
+PiA+IFllcywgSSdtIGF3YXJlIHRoYXQgMSBhbmQgMiBhcmUgdHlwaWNhbCB2YWx1ZXMgYnV0IEkn
+bSBub3Qgc3VyZQ0KPiA+IHdoYXQgaXMNCj4gPiB0aGUgbWF4aW11bSB0aGF0IHR5cGljYWxseSBl
+eGlzdHMgc28gSSBkaWRuJ3Qgd2FudCB0byBwdXQgbGltaXRzDQo+ID4gaGVyZQ0KPiA+IHdpdGhv
+dXQga25vd2luZy4gVGhvdWdoIGF0IGxlYXN0IDAgbXVzdCBub3QgYmUgYWNjZXB0ZWQgc2luY2Ug
+dGhlbg0KPiA+IHdlDQo+ID4gYXJlIGFsd2F5cyBkaXZpZGluZyBieSAwIHdoZW4gcmVhZGluZyB0
+aGUgRkFOIHJwbS4NCj4gPiANCj4gVGhlIG9ubHkgdmFsdWVzIEkgYW0gYXdhcmUgb2YgYXJlIDIg
+YW5kIDQuIEkgZG9uJ3QgcmVjYWxsIHNlZWluZyBhbnkNCj4gZmFucw0KPiB3aXRoIDEgcHVsc2Ug
+cGVyIHJldm9sdXRpb24uIE92ZXJhbGwsIEkgZG9uJ3QgdGhpbmsgdmFsdWVzIG90aGVyIHRoYW4N
+Cj4gMSwgMiwNCj4gYW5kIDQgbWFrZSBzZW5zZS4NCg0KIFdpbGwgdXNlIDEsMiBhbmQgNCBhbmQg
+dXBkYXRlIGR0IGJpbmRpbmdzIGFjY29yZGluZ2x5Lg0KDQo+IEd1ZW50ZXINCg0K
