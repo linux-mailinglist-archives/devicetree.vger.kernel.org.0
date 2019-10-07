@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE7ACE51C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9476CE52E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727884AbfJGOVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 10:21:11 -0400
-Received: from mail-wm1-f41.google.com ([209.85.128.41]:55024 "EHLO
-        mail-wm1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728222AbfJGOVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:21:10 -0400
-Received: by mail-wm1-f41.google.com with SMTP id p7so12901389wmp.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 07:21:09 -0700 (PDT)
+        id S1726334AbfJGOZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 10:25:18 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36662 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727324AbfJGOZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:25:17 -0400
+Received: by mail-wr1-f68.google.com with SMTP id y19so15579817wrd.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 07:25:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=iEeU8q9Ahnt7r8NKzqzD34t4+E1vKmRH7RDHSVHwQp0=;
-        b=bnz/aAt5cOFIhG74a5eXZmNcNS33345zgr8jzrq97SQOm8JEV4TAki6SNofAxfp7Pg
-         UjIy/iNQm+eE8UVx+HJUGuXMhHj7YQLluLbZyCx39bCKOsHLapRq4Z4YLXP3e9esLlOX
-         1k3K5fCoyeulElNe1SUyuNJwkdHWjadimt5pW0xhJGwCu2LqxZlm0m+6EiKL0OlC9yjx
-         CnhFesg2kp/RUncn5MWUKA5pOFo3TC38F+pQszU1UAxkLvHJeOKoavXiIvRbruVywxKg
-         OG/zifyKdRvZDFpi4FOVJpgezroEVunRaagsjB1cgd0G9ojD3O3Ge3eIFAndAg8KQxEn
-         nGIA==
+        bh=cGgqU5FZ9hPrtGJRd2I+1Ap7rhf7EjIt9QYpwcuLk/Y=;
+        b=efZgUZF5cLVYHSOO60cnyBk+FsMfnraD46TWyPXiy5hzShPHbYd5eEY73xm4gjuavp
+         Qwz1SuRsmwK+o9kdO5Sunh5ezOnCJi7oTHA69CB4QzFrYv1LYgNgiQLRyXY7TC7zrd59
+         7RCk6C3ELKNRztGQMkd/gAREldSDx7NztVAa8djpakoTTo7C4+wlLdhr4sWiW1qw5zrd
+         /Uo9dSd68WFjED2zOavuztcGuvAb22S9l9nxXWMju+XsKZAs6G0C93+rsye3UlnvrwfE
+         W7W5xJNE9QPWr1ghlfoiEZ8PsBKLmvaLbp8qlHYeV9VYL0lNQB17lUngj90rWS+2Lwgs
+         g/BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=iEeU8q9Ahnt7r8NKzqzD34t4+E1vKmRH7RDHSVHwQp0=;
-        b=nAoK1Z+g3Plr8jE+P+vSbZQq9Z8Gc10Zts3l5SsvE3EFdkw1xcYwL/GvnL2w3mFv5S
-         1X88Hvk7QG+3tgT0xB6Bx6/6vI/NwDfa2jFL2iext3HJ0iP3/ELxdHHpQ2nQUS7hg8Si
-         mWuaa6L1h7FBVuyD7EnXgg0czlz+1Q4jjMIL1j0AS9AuXhxi8/9vPVVAk3GlqyqhrUld
-         +UegWlITSShZ1qerZ/lruv/4Y4O9vYjaJ0amrKaVHpwP8aJZkP4WCrg129HtIG1yIrMU
-         oJkS3XQbYSDmWD5Sakmg8xNfeOPAl+8zFgLkB96wYsRCn9JQ316gv/7szEzbLtk8zJcs
-         w9cg==
-X-Gm-Message-State: APjAAAXBK2DGI/Lgs/ZhSknfTpnqP9gzaJy177Mp40qQQ8aAS4Rm7Qgf
-        UEgZJXmE0bh7OgqC/7KH5i1zPw==
-X-Google-Smtp-Source: APXvYqxmaX3UmXJxvo6c0XK64HIMMHWXSeDTCJy0Q43C6A1JK3g0BjmDGXNq/qQrsYucE9S6vVhSSg==
-X-Received: by 2002:a1c:968b:: with SMTP id y133mr20215452wmd.56.1570458068193;
-        Mon, 07 Oct 2019 07:21:08 -0700 (PDT)
+        bh=cGgqU5FZ9hPrtGJRd2I+1Ap7rhf7EjIt9QYpwcuLk/Y=;
+        b=UZecZqsZTNIDcCV8l1yAPie3GheoBgZ+LmjPuiixcHeUGqFTIIcH9thMMA/YsiOdHQ
+         Jr0QwsW3fobaq5xvFZhwZzMjTGW4RzDqv/EttbaNBkLsE+pVfGT/XVNfVUwofNfbgoEW
+         uJGJ+lNTxteQ5EKAPuUiKTDHJ6NMGoSiFo2vMJAP8NER1DdGSKZP+hT/P8rTHuwRTmjf
+         BhUkpy4oy9V0RawaYISSF5j6CXfGdW2Em+sAZEnsINv+jaD6iwhpFhm0pVb0F0hwhd3i
+         SUDFlrF7hCFr/SBMEWLWjl+YPmRoz/rr6Y3+Dyc7L3rNTEH7wR19JxqA8GOSsX2j/LJa
+         tACQ==
+X-Gm-Message-State: APjAAAWKsm2fS/Jj4CN/p5xm+9g57PrKNjJkbkwM/7xMd7J1QY3jD5S1
+        I2jWIzoyam2+/DJt/k+f3SnZuw==
+X-Google-Smtp-Source: APXvYqzXBzT3O/f52LaKNS6iSa3cUa6jFPkUtfY+WCetJdRXbm+/0KX2QdCilrvAlzl1U4iFEIYTdQ==
+X-Received: by 2002:adf:f684:: with SMTP id v4mr20196261wrp.155.1570458312748;
+        Mon, 07 Oct 2019 07:25:12 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id y13sm21141436wrg.8.2019.10.07.07.21.07
+        by smtp.gmail.com with ESMTPSA id m18sm31554792wrg.97.2019.10.07.07.25.11
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Oct 2019 07:21:07 -0700 (PDT)
-Subject: Re: [RFCv1 4/5] arm64: dts: meson: Add missing regulator linked to
- VCCV5 regulator to VDDIO_C/TF_IO
+        Mon, 07 Oct 2019 07:25:11 -0700 (PDT)
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
+ y
 To:     Anand Moon <linux.amoon@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -59,7 +59,7 @@ To:     Anand Moon <linux.amoon@gmail.com>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-5-linux.amoon@gmail.com>
+ <20191007131649.1768-6-linux.amoon@gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -112,12 +112,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <a6daf5e5-fadf-ca72-fc7b-1789abaab605@baylibre.com>
-Date:   Mon, 7 Oct 2019 16:21:07 +0200
+Message-ID: <74ab98c7-0071-60e9-7613-56d15ad8c0ab@baylibre.com>
+Date:   Mon, 7 Oct 2019 16:25:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20191007131649.1768-5-linux.amoon@gmail.com>
+In-Reply-To: <20191007131649.1768-6-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -127,37 +127,59 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/10/2019 15:16, Anand Moon wrote:
-> As per schematics add missing VCCV5 power supply to VDDIO_C/TF_IO
-> regulator. Also add TF_3V3N_1V8_EN signal name to gpio pin.
+> Using microSD card we cannot get the mainline kernel to boot
+
+What's the link with microSD card here ?
+
+> using mainline u-boot it fails with below logs.
+> Build PWM_MESSON as build-in solve the issue.
 > 
-> Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+> [    1.569240] meson-gx-mmc ffe05000.sd: Got CD GPIO
+> [    1.599227] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+> [    1.600605] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+> [    1.607166] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+> [    1.613273] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+> [    1.619931] hctosys: unable to open rtc device (rtc0)
+> 
 > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
->  1 file changed, 3 insertions(+)
+> Odroid N2 Schematics says "GPIOC_6 should not pulled low if GPIOC is not
+> work as SDCARD"
+
+Sorry, what's the link with the PWM build-in, and your case ?
+
+This comment is linked to the comment in the datasheet:
+""
+If GPIOC is not work as SDIO port, please do not pull CARD_DET(GPIOC_6) low when system booting
+up, to avoid romcode trying to boot from SD CARD.
+""
+Seems pretty explicit for me.
+
+> Is their any other approch to help resolve this issue.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> index 6bd23a1e7e1d..5daf176452f7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> @@ -66,11 +66,14 @@
->  		regulator-min-microvolt = <1800000>;
->  		regulator-max-microvolt = <3300000>;
->  
-> +		/* TF_3V3N_1V8_EN */
->  		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
->  		gpios-states = <0>;
->  
->  		states = <3300000 0>,
->  			 <1800000 1>;
-> +		/* U16 RT9179GB */
-> +		vin-supply = <&vcc_5v>;
->  	};
->  
->  	flash_1v8: regulator-flash_1v8 {
+> Boot log failed with cold boot:
+> [0] https://pastebin.com/cEtWq2iX
+> ---
+>  arch/arm64/configs/defconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index c9a867ac32d4..72f6a7dca0d6 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+>  CONFIG_PWM=y
+>  CONFIG_PWM_BCM2835=m
+>  CONFIG_PWM_CROS_EC=m
+> -CONFIG_PWM_MESON=m
+> +CONFIG_PWM_MESON=y
+>  CONFIG_PWM_RCAR=m
+>  CONFIG_PWM_ROCKCHIP=y
+>  CONFIG_PWM_SAMSUNG=y
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+For these changes without the microSD fail description in the commit log :
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
