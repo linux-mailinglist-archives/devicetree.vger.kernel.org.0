@@ -2,141 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5900CE635
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6203FCE6AB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:09:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728031AbfJGO5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 10:57:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59560 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727490AbfJGO5l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 10:57:41 -0400
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1E805206C2;
-        Mon,  7 Oct 2019 14:57:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570460259;
-        bh=M/mh7ZDKuNzaoClSYB7rLWBjChHoOPyPKzoupCtmj/s=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=OknCZl7G7XB2x/+wPMOTWsiPriTJeKEbR+zS47+ClfRbCU63jUlK1d+xBxWuJuzCB
-         c521NSoNfrmZ7l21+c+4hgme2giarn46R0KzyXhix6klLtQym1/TJUpxv1eArw06l2
-         ryeCnoXId3pvz7NjvXBDnl/VEqPPEm1JHVs1Iizw=
-Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     Steven Rostedt <rostedt@goodmis.org>,
-        Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     "Theodore Y. Ts'o" <tytso@mit.edu>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>, wfg@linux.intel.com,
-        shuah <shuah@kernel.org>
-References: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
- <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org>
- <20191004222714.GA107737@google.com>
- <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org>
- <20191004232955.GC12012@mit.edu>
- <CAFd5g456rBSp177EkYAwsF+KZ0rxJa90mzUpW2M3R7tWbMAh9Q@mail.gmail.com>
- <63e59b0b-b51e-01f4-6359-a134a1f903fd@kernel.org>
- <CAFd5g47wji3T9RFmqBwt+jPY0tb83y46oj_ttOq=rTX_N1Ggyg@mail.gmail.com>
- <544bdfcb-fb35-5008-ec94-8d404a08fd14@kernel.org>
- <CAFd5g467PkfELixpU0JbaepEAAD_ugAA340-uORngC-eXsQQ-g@mail.gmail.com>
- <20191006165436.GA29585@mit.edu>
- <CAHk-=wjcJxypxUOSF-jc=SQKT1CrOoTMyT7soYzbvK3965JmCA@mail.gmail.com>
- <20191007104048.66ae7e59@gandalf.local.home>
-From:   shuah <shuah@kernel.org>
-Message-ID: <176fa69d-1767-ea9b-476d-c685c2a68d46@kernel.org>
-Date:   Mon, 7 Oct 2019 08:57:36 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728762AbfJGPIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 11:08:51 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40518 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727753AbfJGPHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:07:47 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97F7bXo004145;
+        Mon, 7 Oct 2019 10:07:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570460857;
+        bh=AANL6dhtcM/ZhXE+HydbDtW2kXOWUAgsERUnaK7AKrk=;
+        h=From:To:CC:Subject:Date;
+        b=gUPIw9Nlh5/08D5VbW2vb+AP4MU/5k4iLrA4p/KfRVdg/IcNaF6IL/gZI3J5IpFwd
+         nimd1a4C5GxRgbnwKlV40zqUSONyb6Ap2bc3xZtcm/JGSGIWlBnJLsv6WFoUI1shdw
+         PUyW+JUu3n54dLHeagwl6mDkgyghs1y81thfh4zU=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x97F7btv023625
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Oct 2019 10:07:37 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 7 Oct
+ 2019 10:07:34 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 7 Oct 2019 10:07:36 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97F7aF6055156;
+        Mon, 7 Oct 2019 10:07:36 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch v3 00/21] media: vpe: maintenance
+Date:   Mon, 7 Oct 2019 10:09:48 -0500
+Message-ID: <20191007151009.22095-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20191007104048.66ae7e59@gandalf.local.home>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/19 8:40 AM, Steven Rostedt wrote:
-> On Sun, 6 Oct 2019 10:18:11 -0700
-> Linus Torvalds <torvalds@linux-foundation.org> wrote:
-> 
->> On Sun, Oct 6, 2019 at 9:55 AM Theodore Y. Ts'o <tytso@mit.edu> wrote:
->>>
->>> Well, one thing we *can* do is if (a) if we can create a kselftest
->>> branch which we know is stable and won't change, and (b) we can get
->>> assurances that Linus *will* accept that branch during the next merge
->>> window, those subsystems which want to use kself test can simply pull
->>> it into their tree.
->>
->> Yes.
->>
->> At the same time, I don't think it needs to be even that fancy. Even
->> if it's not a stable branch that gets shared between different
->> developers, it would be good to just have people do a "let's try this"
->> throw-away branch to use the kunit functionality and verify that
->> "yeah, this is fairly convenient for ext4".
->>
->> It doesn't have to be merged in that form, but just confirmation that
->> the infrastructure is helpful before it gets merged would be good.
-> 
-> Can't you just create an ext4 branch that has the kselftest-next branch
-> in it, that you build upon. And push that after the kunit test is
-> merged?
-> 
-> In the past I've had to rely on other branches in next, and would just
-> hold two branches myself. One with everything not dependent on the other
-> developer's branch, and one with the work that was. At the merge
-> window, I would either merge the two or just send two pull requests
-> with the two branches.
-> 
+This a collection of backlog patches I have been carrying for the VPE
+driver.
 
-I do something similar when I am working on top of a branch that isn't
-already in the mainline. In any case, repeating myself
+It adds supports for SEQ_BT as well as NV21.
+And fixes a number of issues both through v4l2-compliance and normal
+usage.
 
-Let's work on top of - it is rebased to 5.4-rc1 and ready for use.
+Changes since v2:
+- Fix a type causing a compile error
+- Address Hans' comment on the v4l2_common patches
+- Rework patch 16 a bit to limit the expanded use of fmt.pix_mp and use
+  a local pointer whenever possible.
+- Reworked csc_set_coeff() to use the updated format_info helper and
+  also to properly handle the v4l2_format type passed as arguments
 
-https://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git/log/?h=test
+Changes since v1:
+- Added a missing from my first set fixing a Makefile issue
+- Added a csc table fix to match the technical specification
+- Base on Hans' comment I reworked the last two patches which
+  yielded one more patch
+- This also led me to create additional patches to the
+  v4l2_format_info table to simplify pixel encoding lookup
 
-Let's use that for kunit work for 5.5. I won't add any kselftest patches
-to it and keep it dedicated for kunit work. When tests are ready for
-upstream, I can keep adding them to this branch.
+======================================
+v4l2-compliance SHA: 5b168dc8473911227890526bad26553d9e8ff81b, 32 bits
 
-thanks,
--- Shuah
+Compliance test for vpe device /dev/video0:
+
+Driver Info:
+	Driver name      : vpe
+	Card type        : vpe
+	Bus info         : platform:vpe
+	Driver version   : 5.4.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 1 Private Controls: 1
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK
+	test Composing: OK
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+		warn: v4l2-test-buffers.cpp(683): VIDIOC_CREATE_BUFS not supported
+		warn: v4l2-test-buffers.cpp(683): VIDIOC_CREATE_BUFS not supported
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (no poll): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 58 buffers    
+	test MMAP (epoll): OK
+	test USERPTR (no poll): OK (Not Supported)
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for vpe device /dev/video0: 51, Succeeded: 51, Failed: 0, Warnings: 2
+======================================
+
+Benoit Parrot (18):
+  media: ti-vpe: Fix a parallel build issue
+  media: ti-vpe: vpe: Fix Motion Vector vpdma stride
+  media: ti-vpe: vpe: Add missing null pointer checks
+  media: ti-vpe: vpe: Remove unnecessary use of container_of
+  media: ti-vpe: vpe: fix a v4l2-compliance failure causing a kernel
+    panic
+  media: ti-vpe: vpe: fix a v4l2-compliance warning about invalid pixel
+    format
+  media: ti-vpe: vpe: Make sure YUYV is set as default format
+  media: ti-vpe: vpe: fix a v4l2-compliance failure about invalid
+    sizeimage
+  media: ti-vpe: vpe: fix a v4l2-compliance failure about frame sequence
+    number
+  media: ti-vpe: vpe: ensure buffers are cleaned up properly in abort
+    cases
+  media: ti-vpe: vpdma: Use fixed type for address in descriptor
+  media: ti-vpe: Set the DMA mask and coherent mask
+  media: ti-vpe: vpe: use standard struct instead of duplicating fields
+  media: ti-vpe: vpe: fix v4l2_compliance issue related to xfer_func
+  media: ti-vpe: csc: rgb-to-yuv HD full range coeff are wrong
+  media: v4l2-common: add pixel encoding support
+  media: v4l2-common: add RGB565 and RGB55 to v4l2_format_info
+  media: ti-vpe: vpe: don't rely on colorspace member for conversion
+
+Nikhil Devshatwar (2):
+  media: ti-vpe: Add support for SEQ_BT
+  media: ti-vpe: Add support for NV21 format
+
+Ram Prasad (1):
+  media: ti-vpe: Set MAX height supported to 2048 pixels
+
+ drivers/media/platform/Makefile            |   4 +-
+ drivers/media/platform/ti-vpe/csc.c        | 254 ++++++++-----
+ drivers/media/platform/ti-vpe/csc.h        |   4 +-
+ drivers/media/platform/ti-vpe/vpdma.c      |  11 +-
+ drivers/media/platform/ti-vpe/vpdma.h      |   2 +
+ drivers/media/platform/ti-vpe/vpdma_priv.h |   5 +-
+ drivers/media/platform/ti-vpe/vpe.c        | 394 ++++++++++++---------
+ drivers/media/v4l2-core/v4l2-common.c      | 128 +++----
+ include/media/v4l2-common.h                |  33 +-
+ 9 files changed, 520 insertions(+), 315 deletions(-)
+
+-- 
+2.17.1
+
