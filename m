@@ -2,285 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FC14CEE78
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 23:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C60ECEECE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 00:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728980AbfJGVga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 17:36:30 -0400
-Received: from mail-eopbgr140087.outbound.protection.outlook.com ([40.107.14.87]:23304
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728654AbfJGVga (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 17:36:30 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nKR/PS2geALwHm/hD3c4gqKaZWTcmrnCCYx9nallOPhwWMFvRqIEVwixumTsKuvN/3/NmxV5kBpM92InTzLp9ml3+B8RrSKeLRiANbO5Hd4Rkbin+KwIOIDMu4io8SUgZCBZlQwYhyae124EvdOGVgVDRoqEgxcFWkM6KmicW/hQNJMpfJFP94VX4Zt+UuRlhPPlvrU+4Akl7sxDQRRv7Hd1NIczK8sJZC4cswK8A48OaN9iNyhaHc+/IxI3kQvqPHWFemEU0PKgdCE4etArq2vCBeu+HWJ/jAEqybSebtoyW3mQWLx+4NvmfmV9/uZ7eCSi9LVkgmgazwvp/c5IRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ei25beopCtm1f87mBuCBJIwvy5p0S1xRGw56QyoxYRI=;
- b=D0r8FgC2cTeNZBB7SqANVIFUgX6Ckjqx/IEMErzt83Ryz4JDZLn3Xf8agIqxl6NU7PQKX2k+1vhk2YAk3m+3nwL4JqVpqB929yoojwiKRwdm+SdCr74cMMvWrJQB01qqub58ZDMFU4QWM7IK99qRQVRYubEbl0DitdPkdt1Nr5xYNRCC1jx0nTJM4qvtlo5kaeOlNDiHtPPBfg+36R4BxrP3BCspkuH2G59FCcpYgrxrVOTuhf1BgJDtE1dVMVR2zWhgGJX8zcB1shAKx41nYqIRw77LNEQdG1Be5DJGgIaxAuuLIOO+dUrSmYCczwH+p9uiE+WitaXexh4PVxpU0Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ei25beopCtm1f87mBuCBJIwvy5p0S1xRGw56QyoxYRI=;
- b=aLdYhfC9mozXwUWUi5QKcJVD0aZYjNt9ao4+IqqKrwWdFhSjmKeO1PSZLe6f+3aZlFEvyf8DwEkflSfch1juvRZnrWqOOBfVW8I4iOxbdliwBNne/XYTY01WTpzUN2dp2W3eplaUZwrI3QxvSqWrrngYAgkfvoDdoVJtTDWv1jo=
-Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (20.179.234.30) by
- VE1PR04MB6749.eurprd04.prod.outlook.com (10.255.118.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2327.24; Mon, 7 Oct 2019 21:36:24 +0000
-Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
- ([fe80::c93:c279:545b:b6b6]) by VE1PR04MB6687.eurprd04.prod.outlook.com
- ([fe80::c93:c279:545b:b6b6%3]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
- 21:36:24 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Ran Wang <ran.wang_1@nxp.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1729211AbfJGWGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 18:06:06 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:34161 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728422AbfJGWGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 18:06:06 -0400
+Received: by mail-io1-f68.google.com with SMTP id q1so32282663ion.1;
+        Mon, 07 Oct 2019 15:06:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Twc3gHw5x4Wog7YioRFdt2DRj3Idc7+bXpqT/1hf/GA=;
+        b=BwM8IGAfFvBfdef2Lcn9ilsr9qhBSudW05V5D/5vmlL2JjGCQk2t+E007puOLkLE7G
+         Pp5/W7p0ju/W6fAg03miaqEwbkUBKCqgFwjXyPzq4zju0sBDr2wXJez9kBrUGQM1RmGO
+         NbWuGpgxjri/wex9sXDdFblIWVIBCNxKkHulrPOLKfArSDCJFkGIDVo11FwKfJsq25x/
+         PvYE1waz2dwmul3X+yfxXxEr5oLSwcJc38hW6ZWMBawSqyVyp7iFw9UJmWmrbYoRQwci
+         T9wcYEUFER4gcVvkpiPLjqYHScwZHwzgKihWISU8TPKiSrUCQAdZMmvg4MmBgudqVvSK
+         e/yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Twc3gHw5x4Wog7YioRFdt2DRj3Idc7+bXpqT/1hf/GA=;
+        b=i39/Yw4In3CFwzkAGgzxHGzB87l8PzHv8ACgybwFU7GU26+veb7V8lwH6p711j8kgT
+         QcykM7bHo2U1P9fD0D9XazZreQusnJ54Q6KU6vRg+RohnSkqgLKHkam61dguEWtAsZ30
+         RqSHN6wCliHXYIKNBKULjop0tcmq3Xo/lurivckmfnPD6W+u8ITIMxDsVs72+MP7ld17
+         UukZ8DW78Hac5a4j3r9/rSuq9e2QiOvbifJWXhyO6pPz03DNea7K5rLojI0QoyvkdOjE
+         Nh9lURhDV90Anbm5zUmrDFERZCSJChnzV4rUpmY7aWW4tey6dH/53tMYi7zEVjG0XqjX
+         V7bQ==
+X-Gm-Message-State: APjAAAUfJ+knYa+BVy1cJswrLX5OGlhMrcXZYm4d9YqRftLVqfqFuHmZ
+        qFfihRwjr958IK77L0qnVsL7o8TY
+X-Google-Smtp-Source: APXvYqyVAqPt1YZkaEVl6jWaSrNlk0N+4BwSkrrhVDjCjtrmc7NlXfQbwe77w3FKpa5DV52V1cNtMg==
+X-Received: by 2002:a6b:8e0f:: with SMTP id q15mr25463674iod.186.1570485964958;
+        Mon, 07 Oct 2019 15:06:04 -0700 (PDT)
+Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
+        by smtp.gmail.com with ESMTPSA id m14sm6479874ild.3.2019.10.07.15.06.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2019 15:06:03 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-omap@vger.kernel.org
+Cc:     adam.ford@logicpd.com, hns@goldelico.com,
+        Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH] arm64: dts: lx2160a: Correct CPU core idle state name
-Thread-Topic: [PATCH] arm64: dts: lx2160a: Correct CPU core idle state name
-Thread-Index: AQHVbSoQgKuB1YvE4E++c/2kBBS2fqdPMKwAgACjaGA=
-Date:   Mon, 7 Oct 2019 21:36:24 +0000
-Message-ID: <VE1PR04MB66874D4C179BA0AD091AC3DB8F9B0@VE1PR04MB6687.eurprd04.prod.outlook.com>
-References: <20190917073357.5895-1-ran.wang_1@nxp.com>
- <20191007115104.GF7150@dragon>
-In-Reply-To: <20191007115104.GF7150@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leoyang.li@nxp.com; 
-x-originating-ip: [64.157.242.222]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2696280a-3eed-48a3-a3f3-08d74b6e670c
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: VE1PR04MB6749:|VE1PR04MB6749:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB6749E86F6E03C13BB4279AEA8F9B0@VE1PR04MB6749.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:462;
-x-forefront-prvs: 01834E39B7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(396003)(376002)(136003)(39860400002)(346002)(13464003)(199004)(189003)(186003)(4326008)(2906002)(6116002)(26005)(55016002)(6436002)(33656002)(64756008)(66946007)(102836004)(66556008)(66476007)(6636002)(76116006)(25786009)(6246003)(66446008)(71200400001)(9686003)(229853002)(7696005)(71190400001)(99286004)(76176011)(305945005)(3846002)(74316002)(53546011)(66066001)(7736002)(256004)(14444005)(6506007)(110136005)(11346002)(446003)(54906003)(476003)(14454004)(486006)(316002)(5660300002)(8936002)(8676002)(81156014)(81166006)(478600001)(52536014)(86362001);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6749;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vfToijxhyQ7YVdx+vuxNSbRq5mLgIbI7WlUPrSNFiCvTe8lC7gnCi00Gy0XgvdlQqQoyIy/1gnyDiOnx1kPcn38JpqVmjUmw9YnkIrQe9QPH6+At+1F6qIfLrwEys/4I+Imj9y46qGveRRSkSOwVAK3m9NeSVwTku2qbcDL9tRYd1ZVleEkjAJ89MGHHXMeqY3ZgW6kV3T0iO8tuKPrlkhWoh9Xe7W2P3vAXNAhJfAgH7V+1oLDCtcP9gkq6r4UwWMsb8B3+Qt1+qx0HPPdS5VUhlmt42fhut93qfrKiZPT2nq/EULS3pR12vTPEuzgOizOGowBKW3y2yBh3ycrxWUNJs3eRNknUSUHxgaEcj4G6mBA1qUZsGuEEpJOCQqcxAfEN5JE0jB2PdJlx2BTaX2XmICv/QSl68hme329+1Oc=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2696280a-3eed-48a3-a3f3-08d74b6e670c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 21:36:24.2332
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cKe6iu2w3Vt4s2rekkmEKMey0TeksJLfy1WtXEEYWZCJ2QsKbHqo/o9xTLhGQN+VSpklnZWnhq4XUu4FndeS2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6749
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] configs: ARM: omap2plus: Enable OMAP3_THERMAL
+Date:   Mon,  7 Oct 2019 17:05:39 -0500
+Message-Id: <20191007220540.30690-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The some in the OMAP3 family have a bandgap thermal sensor, but
+omap2plus has it disabled.
 
+This patch enables the OMAP3_THERMAL by default like the rest of
+the OMAP family.
 
-> -----Original Message-----
-> From: Shawn Guo <shawnguo@kernel.org>
-> Sent: Monday, October 7, 2019 6:51 AM
-> To: Ran Wang <ran.wang_1@nxp.com>; Leo Li <leoyang.li@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>; Mark Rutland
-> <mark.rutland@arm.com>; linux-arm-kernel@lists.infradead.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH] arm64: dts: lx2160a: Correct CPU core idle state nam=
-e
->=20
-> On Tue, Sep 17, 2019 at 03:33:56PM +0800, Ran Wang wrote:
-> > lx2160a support PW15 but not PW20, correct name to avoid confusing.
-> >
-> > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
->=20
-> Leo, agree?
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Ya.  The statement is correct.
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index 8f1c2b6f9e56..7e14a8c8bb29 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -292,6 +292,7 @@ CONFIG_THERMAL_GOV_FAIR_SHARE=y
+ CONFIG_THERMAL_GOV_USER_SPACE=y
+ CONFIG_CPU_THERMAL=y
+ CONFIG_TI_THERMAL=y
++CONFIG_OMAP3_THERMAL=y
+ CONFIG_OMAP4_THERMAL=y
+ CONFIG_OMAP5_THERMAL=y
+ CONFIG_DRA752_THERMAL=y
+-- 
+2.17.1
 
-Acked-by: Li Yang <leoyang.li@nxp.com>
-
->=20
-> Shawn
->=20
-> > ---
-> >  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 36 +++++++++++++-----=
--
-> -------
-> >  1 file changed, 18 insertions(+), 18 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > index 408e0ec..b032f38 100644
-> > --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > @@ -33,7 +33,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster0_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@1 {
-> > @@ -49,7 +49,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster0_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@100 {
-> > @@ -65,7 +65,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster1_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@101 {
-> > @@ -81,7 +81,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster1_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@200 {
-> > @@ -97,7 +97,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster2_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@201 {
-> > @@ -113,7 +113,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster2_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@300 {
-> > @@ -129,7 +129,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster3_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@301 {
-> > @@ -145,7 +145,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster3_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@400 {
-> > @@ -161,7 +161,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster4_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@401 {
-> > @@ -177,7 +177,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster4_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@500 {
-> > @@ -193,7 +193,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster5_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@501 {
-> > @@ -209,7 +209,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster5_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@600 {
-> > @@ -225,7 +225,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster6_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@601 {
-> > @@ -241,7 +241,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster6_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@700 {
-> > @@ -257,7 +257,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster7_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cpu@701 {
-> > @@ -273,7 +273,7 @@
-> >  			i-cache-line-size =3D <64>;
-> >  			i-cache-sets =3D <192>;
-> >  			next-level-cache =3D <&cluster7_l2>;
-> > -			cpu-idle-states =3D <&cpu_pw20>;
-> > +			cpu-idle-states =3D <&cpu_pw15>;
-> >  		};
-> >
-> >  		cluster0_l2: l2-cache0 {
-> > @@ -340,9 +340,9 @@
-> >  			cache-level =3D <2>;
-> >  		};
-> >
-> > -		cpu_pw20: cpu-pw20 {
-> > +		cpu_pw15: cpu-pw15 {
-> >  			compatible =3D "arm,idle-state";
-> > -			idle-state-name =3D "PW20";
-> > +			idle-state-name =3D "PW15";
-> >  			arm,psci-suspend-param =3D <0x0>;
-> >  			entry-latency-us =3D <2000>;
-> >  			exit-latency-us =3D <2000>;
-> > --
-> > 2.7.4
-> >
