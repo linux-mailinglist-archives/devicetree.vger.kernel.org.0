@@ -2,97 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 025DACE7B3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E938CCE7EC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:40:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728689AbfJGPgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 11:36:13 -0400
-Received: from avon.wwwdotorg.org ([104.237.132.123]:35114 "EHLO
-        avon.wwwdotorg.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727876AbfJGPgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:36:13 -0400
-Received: from [10.20.204.51] (unknown [216.228.112.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by avon.wwwdotorg.org (Postfix) with ESMTPSA id 9BECB1C00F3;
-        Mon,  7 Oct 2019 09:36:11 -0600 (MDT)
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.100.3 at avon.wwwdotorg.org
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Eugeniu Rosca <roscaeugeniu@gmail.com>
-Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Phil Reid <preid@electromag.com.au>,
-        Enrico Weigelt <info@metux.net>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
- <06a1acab-fcc4-7b3a-697b-4d253c354513@wwwdotorg.org>
- <20191005175024.GA25394@x230>
-From:   Stephen Warren <swarren@wwwdotorg.org>
-Message-ID: <f4359c04-bb1d-6c4c-6725-90e661c1aab3@wwwdotorg.org>
-Date:   Mon, 7 Oct 2019 09:36:10 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20191005175024.GA25394@x230>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1727711AbfJGPkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 11:40:03 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:38581 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729203AbfJGPjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:39:35 -0400
+Received: by mail-pg1-f194.google.com with SMTP id x10so8448720pgi.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 08:39:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=aqxBeTv+Uaor0p8Sdaehy27crOZap/vMuOdocajh3K8=;
+        b=Eo44T3ue9PTyK90zuRJpURaKwjZEippo0XCcpL1sQTu3b1SYC11r0oG760/AMone7/
+         oxxU5fvuJmJkaGMzctM59CMsVLzNd4+bj0Mzrbk2Od7v8bD70h+Oh+6hiipr411VftEC
+         otDSZD7sKX3dtf9n1t2MFjO5mgkWp6Sy5roRv0+oJkJ3eYFZFqeCQYRpCW1ik6E60ERo
+         3If7rHRQ9V6/H4YVOofEu5Tm/4LA1NSZ3SbzL3XeS8RBAkVf5y1fejGv52F2Z9Dkvf3C
+         mNGExhBVcDTxPQxsS+49oK+vxFenxEAOGJX476kAHo6Gu1PoesP+rukD6pXkstRuzzy2
+         u3Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=aqxBeTv+Uaor0p8Sdaehy27crOZap/vMuOdocajh3K8=;
+        b=Z38T45IQCv7HNiefxZmG48/fiiOos05RsQ8O1Q134zgmmhXSp96Dyp1H/XAydhdhOZ
+         d025WEDkkJrYSXBp+MXua8pOSgcRuBUFAXeyzgOkUUgE9/ufmDQxcbKWG4zQXrDlSm/o
+         XXYpQ2tD2NbtiZ/BJfLarcyWjbBBDMrpOJdiz+qMi9ZhhwN9L/lNn3tqTdzDNQp30/Mx
+         nSx4z37nPltlKFI+DX2e+rl7lh8uEP8SKzHZ68gQh6fPPjYhlpkiz323nu2Kf7bSSliJ
+         H8FFUfGeOLovy5s8qj846sTEGqQM1TR50qD91oW8sBBSgHsg2SdX/Eua24Z8ZfyB8nnn
+         Jj3w==
+X-Gm-Message-State: APjAAAXm2688ePUIahOffQxaWTt19QN0byPmu0zxG5jMDhPhJKrH4qnU
+        azcmrjCl6KFVYipQRhkz7vZe
+X-Google-Smtp-Source: APXvYqxp9EVNuIxWAF4JhI63OtaIYOBD0UTnkXJOxhywvLLiF23kdWSzZs3AK8N9xrT/wgs6bfQNFw==
+X-Received: by 2002:a63:350f:: with SMTP id c15mr31560380pga.225.1570462773734;
+        Mon, 07 Oct 2019 08:39:33 -0700 (PDT)
+Received: from localhost.localdomain ([2405:204:7088:cb7f:1889:38a3:2d:5880])
+        by smtp.gmail.com with ESMTPSA id d69sm15945077pfd.175.2019.10.07.08.39.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2019 08:39:32 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     ars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org
+Cc:     alexandru.Ardelean@analog.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 0/2] Add support for ADUX1020 sensor
+Date:   Mon,  7 Oct 2019 21:09:15 +0530
+Message-Id: <20191007153917.13611-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/5/19 11:50 AM, Eugeniu Rosca wrote:
-> Hi Stephen,
-> 
-> On Fri, Oct 04, 2019 at 01:07:23PM -0600, Stephen Warren wrote:
-> 
-> [..]
-> 
->> I think the DT should represent the device that's attached to the GPIOs.
->> That way, there's already a clear way to represent the GPIO polarity, as
->> described in the document linked by Eugenui in [2] below.
->>
->> If for some reason that's not possible, then I think keeping track of the
->> GPIO polarity in user-space is entirely reasonable, and is the correct
->> approach. To claim that tracking GPIO polarity in user-space is too much
->> burden, yet to also allow user-space to control GPIOs at all, and hence to
->> know exactly which GPIOs must be controlled, is an inconsistent assertion.
->>
->> Put another way: If a piece of user-space SW controls GPIOs, it must know
->> which GPIO number to use for each logical purpose. This information
->> presumably varies on different platforms, so the SW must have a list of GPIO
->> numbers and GPIO controller IDs per platform. Additionally storing a
->> polarity bit along with that information seems entirely trivial to me.
->>
->> Is there some other issue that I'm overlooking?
-> 
-> Based on the discussions so far, the user who requested this feature
-> intends to (in fact already does) "mark" the userspace-relevant gpio
-> lines via the "gpio-line-names" [5] DT property, implemented by Linus
-> in v4.7 commit [6]. By keeping track of "gpio line name" both in DT and
-> in user-space, apparently the user is able to accurately map the
-> "line name" (visible in userspace) to the corresponding gpio chip/name
-> and gpio line offset in a "platform/board-independent" way.
-> 
-> Do you think this is unorthodox?
+Hello,
 
-No, that sounds reasonable.
+This patchset adds initial IIO driver support for ADUX1020 Photometric
+sensor from Analog Devices. This sensor is usable for multiple optical
+measurement applications, including gesture control and proximity sensing.
 
-Given that, it might be plausible to extend that DT scheme to represent 
-more information, but it's still better to represent the actual end 
-device (that's connected to the GPIO) in DT, since that also represents 
-the semantics.
+This initial driver includes support for only proximity mode with event
+based interrupt. The driver validation has been performed using Shiratech
+LTE mezzanine [1] connected to 96Boards Dragonboard410c [2].
 
-> [6] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=fd9c55315db9
+Thanks,
+Mani
+
+[1] https://www.96boards.org/product/shiratech-lte/
+[2] https://www.96boards.org/product/dragonboard410c/
+
+Changes in v2:
+
+* Converted the devicetree binding to YAML
+
+Manivannan Sadhasivam (2):
+  dt-bindings: iio: light: Add binding for ADUX1020
+  iio: light: Add support for ADUX1020 sensor
+
+ .../bindings/iio/light/adux1020.yaml          |  47 ++
+ drivers/iio/light/Kconfig                     |  11 +
+ drivers/iio/light/Makefile                    |   1 +
+ drivers/iio/light/adux1020.c                  | 783 ++++++++++++++++++
+ 4 files changed, 842 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/adux1020.yaml
+ create mode 100644 drivers/iio/light/adux1020.c
+
+-- 
+2.17.1
+
