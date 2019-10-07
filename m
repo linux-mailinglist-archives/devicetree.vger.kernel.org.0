@@ -2,155 +2,411 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C4ACD982
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 00:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F30B1CD9F3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 02:43:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726167AbfJFWjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 18:39:44 -0400
-Received: from mout.gmx.net ([212.227.17.20]:59337 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726150AbfJFWjo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Oct 2019 18:39:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1570401534;
-        bh=HQioVg0fLiB703pC94Q5CJrHeDjz8YSULyFi62pu9m0=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=Duz0PvB2qX4L8giiwuDvx5SsbWVQkb8MNecGicQqT5uyuTsSprcb4szvkk+FyF308
-         T8DlnhoKCH/OKa212mngd7IOBBUBNriW+dQD/sJLRXWBvhuZc1HMtk5iSxIdv46jut
-         AsHL66iTBj3HOm50gcjLz6rKv8wQRSbpJ9aIRN2E=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([109.90.233.87]) by mail.gmx.com (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MTAFb-1ig9bd1brD-00Uabf; Mon, 07
- Oct 2019 00:38:54 +0200
-Date:   Mon, 7 Oct 2019 00:38:48 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
-        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
-Message-ID: <20191006223848.GE19803@latitude>
-References: <20190930194332.12246-1-andreas@kemnade.info>
- <20190930194332.12246-3-andreas@kemnade.info>
+        id S1726741AbfJGAno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 20:43:44 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:40442 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726785AbfJGAno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 20:43:44 -0400
+Received: by mail-wm1-f66.google.com with SMTP id b24so10571490wmj.5
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 17:43:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
+        h=message-id:date:mime-version:content-transfer-encoding:subject:to
+         :from:cc;
+        bh=fQOEfRQoy/pcyTLI4fTFGvUUjpgVNx4G+Kw/9xbGrIE=;
+        b=StpyWWghbg5+qigi+PXQ79YlBBRdvEcdNHMUOepdgoOrdJLYVmozYC25BcmEW0igXc
+         h6zpZcAF3c6+hICYE6URHtb8CRMSE7Wk9EzgU/rm2nXWUMs+97+X5tSulIEshUKxaM6T
+         b3o5zhQAVAUTSXS5EjLNggrmtgABxtkrzJHfMK7QXq/+zwv3zfHU6UmZO5eOug00avaW
+         Bjx0xrIFYy/B3PM4QfJApeqvy2Hs0VHeRe+nF7+FuJZYec0iSocdwBJ9ztIc/GgUDnR0
+         RVY1qWaQsxEgcdcmYm4AAcXJ162bdG3O8iw1CvUOjdbCKfWw4Ti4O1kQpLQZ+iCTsfZ3
+         bauw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:mime-version
+         :content-transfer-encoding:subject:to:from:cc;
+        bh=fQOEfRQoy/pcyTLI4fTFGvUUjpgVNx4G+Kw/9xbGrIE=;
+        b=VPL2CI5bYAUaHLn6mi3hIT0JPI7RmifwhwepGHBEFicJFvoZ0nRdaF7BO4qtKvBxVa
+         NDJJmSfZ3fhET3h9tsnqX/8c3zeTA4I3qh5fF5pYw+D8CUmvW8Rrc4iZrkP2/i32JGr1
+         /tvbp5GhkIbq76Xf0duRzaojCaF5lgWiGAVAHy7kHj3XwDoAp/a7ThM8OqwAOa1sxEX8
+         jEcl7sA19Ydrajw3QDnDrDndMp7hlNMSseYFdhq/G1/4PiqPu7NRBRSUdlKcwSPRyl6t
+         s8QzPQJqwY+kxQ2C9YIlbMl5zYtGQwTIk8wMNLY628UJCzSVbXmnRrmLMGDrueaXsoP2
+         MqeQ==
+X-Gm-Message-State: APjAAAWcaK1luvNYZMTYJtV8BRBb2Pxdbi0LM8SZcM9smD9uwihij/ZG
+        9eS+/2KSj98z0KOx/ckT7ypT6A==
+X-Google-Smtp-Source: APXvYqy1RUExx0LprFcaXh1JMN2lSMQwUqt5qKkBkFusoMa1FCqZI/PiueBG5fDfQiYrIF2OCp7RLg==
+X-Received: by 2002:a1c:9c85:: with SMTP id f127mr13526617wme.28.1570409021143;
+        Sun, 06 Oct 2019 17:43:41 -0700 (PDT)
+Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
+        by smtp.gmail.com with ESMTPSA id z9sm14474627wrp.26.2019.10.06.17.43.40
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 06 Oct 2019 17:43:40 -0700 (PDT)
+Message-ID: <5d9a8a3c.1c69fb81.14b6f.10d1@mx.google.com>
+Date:   Sun, 06 Oct 2019 17:43:40 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="BZaMRJmqxGScZ8Mx"
-Content-Disposition: inline
-In-Reply-To: <20190930194332.12246-3-andreas@kemnade.info>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Provags-ID: V03:K1:J4irto3tAosr7xHmcWxuJ3ndP76ZbpNdsbSVgPvdRBbyvC87GJw
- aihi+iczLukRIoJQMVNUx900ERyIMFo4pEOlHqGD9/GlFKFWHdmSMQMKFuEFr7ab1pSvKaB
- PCTNYdwLfqAYjoUal33EWnA8HpQaRIF9NQk/HqOjZ9Bg8I6iw5rRkIGWpJ0NN0XKfsgS5bT
- jH6ius3PpesaQmI65q7yQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:pNfCcJIi9Yg=:jVzGatRezPDUqXoRMuTiCK
- WikGS7YNtIWvBa/qyr/BVMfmnZjb9pRnm60iEVgst2Q0b5BzmrnXuyUb1FvlAF/uWqZYmg1+q
- CFSzTGbf2pYkYlT1qlrqNx7DD9mouXUZ8pzket/2gn2UDWtBNqBvOi7kVvhxFeJRhjGCZzahu
- M5qs7+I2OBeCuhhzkNNVLlJ5TNzhgmGjylo6WKoNC1UaRUTOOxm/+o6lkw5GoaYP6/irlMnqe
- bQK4OzU56aIAiSsIhkQPYSbJEjIupxPhldWu0LS8OKw2TfrXfzJsh6tL2+Tp/gKEfgk+KBvdr
- AsvXWv2AvUioCIfVMqjIzTUJpVoOf47CbJzwomtd6uieXgJIzPM2QXNaSb9vAh/UYpPvX+iHU
- ZBVIE6t1LFOpY/10M8Rl5ImuKyacdAAiXXbArWFyTxkRxndcoXo80p2tCai3HhXcPnIozoTSC
- UzRfgdcAPlVB9B+V4OQFRcXk4/2VVNifgvfYAaq+8u7+C71lxEUnODJ65Bu1p1ZXMdf5/beA3
- iY+MYzm9yM4xBlVpPdpz4Vp3q0ZPfk2ju73GIoKyewH0lH2W60sfAokDffg/UkSabsSnOq64j
- Kg8NLayxxqQAYNMOcyye0jaXw+GoeDkU7lxxxm7TDkKToZviztmG2gDbiL5iLreSroXfH0cZZ
- 4vZrHoJZJ8Sj61SpRYdDZJ4MknKH28XRQW5ISijP5O9ZeiOspgabrgEqkML1E9ARcZXo159JY
- G5TlSvYgb33saya+tVqZ9UoRiwsAaIy9q+sZMpGNPLXfgkKYbApfDsGSCO6tz8n72KyXdr+ed
- ozjFUkYXZL6Bk6v03PFNVpYsxf4d5ZBiujCtJJ2MGqibQB3u5s624pxfQQNA1fiA5NKHBUswC
- 0JwbFANOUgZhYZdg1w4hKdKtjN1A6KSEiFXKotRwJddHOiiiR/rm4wHqy9Xv8CoRyv7IQWOzw
- LD62IibRULWlTF2hOIjgHabvUAeaCbMAd3d08Fq0q/5fKkP0idx9oEflKmK6QMybjh7k0tF4E
- NNS4FpuHZBTPeZu6amVeiEOxnR5Ww3gsFKkllSVxRMRLTD2MaBHoBH7JIvT/QMKw+1JZAQ73O
- Z7nj7OK8dRans0lONpWYYru7/zGHG58Ws8NFy81e0OAzIOnpI8/izMHzjilLtlB5erIv/W07e
- rvSp08//+XL4Qq8XtRAtSipEneG03z4fF3cMc0DoT+x0Jrq/rwUb45LPXRoWTJXaaWeW0+CgV
- g54ivdND9+lGWgCLeBLfsp/MlwQFrI5mn+yICXlXuWqfDdUlpr3jkeJH/EnI=
+Content-Transfer-Encoding: quoted-printable
+X-Kernelci-Report-Type: bisect
+X-Kernelci-Kernel: v5.4-rc1-48-g0bc9c79979ea
+X-Kernelci-Tree: krzysztof
+X-Kernelci-Branch: for-next
+X-Kernelci-Lab-Name: lab-collabora
+Subject: krzysztof/for-next boot bisection: v5.4-rc1-48-g0bc9c79979ea on
+ peach-pi
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
+        mgalka@collabora.com, Chanwoo Choi <cw00.choi@samsung.com>,
+        broonie@kernel.org, matthew.hart@linaro.org, khilman@baylibre.com,
+        enric.balletbo@collabora.com,
+        Kamil Konieczny <k.konieczny@partner.samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+From:   "kernelci.org bot" <bot@kernelci.org>
+Cc:     devicetree@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+*                                                               *
+* If you do send a fix, please include this trailer:            *
+*   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
+*                                                               *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
---BZaMRJmqxGScZ8Mx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+krzysztof/for-next boot bisection: v5.4-rc1-48-g0bc9c79979ea on peach-pi
 
-Thanks for CCing me on this patchset. Nice to see more e-book reader
-related work!
+Summary:
+  Start:      0bc9c79979ea Merge branch 'for-v5.5/memory-samsung-dmc-dt' in=
+to for-next
+  Details:    https://kernelci.org/boot/id/5d9a50af59b5141ce5857c07
+  Plain log:  https://storage.kernelci.org//krzysztof/for-next/v5.4-rc1-48-=
+g0bc9c79979ea/arm/multi_v7_defconfig/gcc-8/lab-collabora/boot-exynos5800-pe=
+ach-pi.txt
+  HTML log:   https://storage.kernelci.org//krzysztof/for-next/v5.4-rc1-48-=
+g0bc9c79979ea/arm/multi_v7_defconfig/gcc-8/lab-collabora/boot-exynos5800-pe=
+ach-pi.html
+  Result:     0899a480ac65 ARM: dts: exynos: Add initial data for coupled r=
+egulators for Exynos5422/5800
 
-A few comments and questions below.
+Checks:
+  revert:     PASS
+  verify:     PASS
 
-On Mon, Sep 30, 2019 at 09:43:31PM +0200, Andreas Kemnade wrote:
-> The Netronix board E60K02 can be found some several Ebook-Readers,
-> at least the Kobo Clara HD and the Tolino Shine 3. The board
-> is equipped with different SoCs requiring different pinmuxes.
+Parameters:
+  Tree:       krzysztof
+  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git
+  Branch:     for-next
+  Target:     peach-pi
+  CPU arch:   arm
+  Lab:        lab-collabora
+  Compiler:   gcc-8
+  Config:     multi_v7_defconfig
+  Test suite: boot
 
-Do I understand it correctly that i.MX6SL and i.MX6SLL are pin-
-compatible so we can use the same pin numbers and GPIO handles in the
-DT?
+Breaking commit found:
 
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_led>;
-> +
-> +		GLED {
+---------------------------------------------------------------------------=
+----
+commit 0899a480ac658144b1fa351bb880c2858d43f824
+Author: Marek Szyprowski <m.szyprowski@samsung.com>
+Date:   Thu Oct 3 12:08:14 2019 +0200
 
-What does "GLED" mean? It's not obvious to me.
-What user-visible purpose does this LED have, or where is it on the
-board?
+    ARM: dts: exynos: Add initial data for coupled regulators for Exynos542=
+2/5800
+    =
 
-> +			gpios =3D <&gpio5 7 GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger =3D "timer";
-> +		};
-> +	};
-> +
-> +	memory {
-> +		reg =3D <0x80000000 0x80000000>;
+    Declare Exynos5422/5800 voltage ranges for opp points for big cpu core =
+and
+    bus wcore and couple their voltage supllies as vdd_arm and vdd_int shou=
+ld
+    be in 300mV range.
+    =
 
-2 GiB of memory?
+    Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+    [k.konieczny: add missing patch description]
+    Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
+    Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
+    Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> +			/* Core3_3V3 */
+diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos54=
+20.dtsi
+index 2c131ad78c09..d08101b1018c 100644
+--- a/arch/arm/boot/dts/exynos5420.dtsi
++++ b/arch/arm/boot/dts/exynos5420.dtsi
+@@ -48,62 +48,62 @@
+ =
 
-What are these labels (Core3_3V3, Core4_1V2, etc.)?
+ 		opp-1800000000 {
+ 			opp-hz =3D /bits/ 64 <1800000000>;
+-			opp-microvolt =3D <1250000>;
++			opp-microvolt =3D <1250000 1250000 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1700000000 {
+ 			opp-hz =3D /bits/ 64 <1700000000>;
+-			opp-microvolt =3D <1212500>;
++			opp-microvolt =3D <1212500 1212500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1600000000 {
+ 			opp-hz =3D /bits/ 64 <1600000000>;
+-			opp-microvolt =3D <1175000>;
++			opp-microvolt =3D <1175000 1175000 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1500000000 {
+ 			opp-hz =3D /bits/ 64 <1500000000>;
+-			opp-microvolt =3D <1137500>;
++			opp-microvolt =3D <1137500 1137500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1400000000 {
+ 			opp-hz =3D /bits/ 64 <1400000000>;
+-			opp-microvolt =3D <1112500>;
++			opp-microvolt =3D <1112500 1112500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1300000000 {
+ 			opp-hz =3D /bits/ 64 <1300000000>;
+-			opp-microvolt =3D <1062500>;
++			opp-microvolt =3D <1062500 1062500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1200000000 {
+ 			opp-hz =3D /bits/ 64 <1200000000>;
+-			opp-microvolt =3D <1037500>;
++			opp-microvolt =3D <1037500 1037500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1100000000 {
+ 			opp-hz =3D /bits/ 64 <1100000000>;
+-			opp-microvolt =3D <1012500>;
++			opp-microvolt =3D <1012500 1012500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-1000000000 {
+ 			opp-hz =3D /bits/ 64 <1000000000>;
+-			opp-microvolt =3D < 987500>;
++			opp-microvolt =3D < 987500 987500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-900000000 {
+ 			opp-hz =3D /bits/ 64 <900000000>;
+-			opp-microvolt =3D < 962500>;
++			opp-microvolt =3D < 962500 962500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-800000000 {
+ 			opp-hz =3D /bits/ 64 <800000000>;
+-			opp-microvolt =3D < 937500>;
++			opp-microvolt =3D < 937500 937500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 		opp-700000000 {
+ 			opp-hz =3D /bits/ 64 <700000000>;
+-			opp-microvolt =3D < 912500>;
++			opp-microvolt =3D < 912500 912500 1500000>;
+ 			clock-latency-ns =3D <140000>;
+ 		};
+ 	};
+@@ -1097,23 +1097,23 @@
+ =
 
-> +			dcdc2_reg: DCDC2 {
-> +				regulator-name =3D "DCDC2";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-max-microvolt =3D <3300000>;
-> +					regulator-suspend-min-microvolt =3D <3300000>;
-> +				};
-> +			};
+ 			opp00 {
+ 				opp-hz =3D /bits/ 64 <84000000>;
+-				opp-microvolt =3D <925000>;
++				opp-microvolt =3D <925000 925000 1400000>;
+ 			};
+ 			opp01 {
+ 				opp-hz =3D /bits/ 64 <111000000>;
+-				opp-microvolt =3D <950000>;
++				opp-microvolt =3D <950000 950000 1400000>;
+ 			};
+ 			opp02 {
+ 				opp-hz =3D /bits/ 64 <222000000>;
+-				opp-microvolt =3D <950000>;
++				opp-microvolt =3D <950000 950000 1400000>;
+ 			};
+ 			opp03 {
+ 				opp-hz =3D /bits/ 64 <333000000>;
+-				opp-microvolt =3D <950000>;
++				opp-microvolt =3D <950000 950000 1400000>;
+ 			};
+ 			opp04 {
+ 				opp-hz =3D /bits/ 64 <400000000>;
+-				opp-microvolt =3D <987500>;
++				opp-microvolt =3D <987500 987500 1400000>;
+ 			};
+ 		};
+ =
+
+diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/=
+dts/exynos5422-odroid-core.dtsi
+index 829147e320e0..9b8de61b0385 100644
+--- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
++++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+@@ -524,6 +524,8 @@
+ 				regulator-max-microvolt =3D <1400000>;
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-coupled-with =3D <&buck2_reg>;
++				regulator-coupled-max-spread =3D <300000>;
+ =
+
+ 				regulator-state-mem {
+ 					regulator-off-in-suspend;
+@@ -544,6 +546,8 @@
+ 				regulator-max-microvolt =3D <1500000>;
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-coupled-with =3D <&buck3_reg>;
++				regulator-coupled-max-spread =3D <300000>;
+ =
+
+ 				regulator-state-mem {
+ 					regulator-off-in-suspend;
+diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/=
+exynos5800-peach-pi.dts
+index 60ca3d685247..c1e38139ce4f 100644
+--- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
++++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
+@@ -257,6 +257,8 @@
+ 				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-ramp-delay =3D <12500>;
++				regulator-coupled-with =3D <&buck3_reg>;
++				regulator-coupled-max-spread =3D <300000>;
+ 				regulator-state-mem {
+ 					regulator-off-in-suspend;
+ 				};
+@@ -269,6 +271,8 @@
+ 				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-ramp-delay =3D <12500>;
++				regulator-coupled-with =3D <&buck2_reg>;
++				regulator-coupled-max-spread =3D <300000>;
+ 				regulator-state-mem {
+ 					regulator-off-in-suspend;
+ 				};
+diff --git a/arch/arm/boot/dts/exynos5800.dtsi b/arch/arm/boot/dts/exynos58=
+00.dtsi
+index de639eecc5c9..27789f5f9798 100644
+--- a/arch/arm/boot/dts/exynos5800.dtsi
++++ b/arch/arm/boot/dts/exynos5800.dtsi
+@@ -22,61 +22,61 @@
+ =
+
+ &cluster_a15_opp_table {
+ 	opp-1700000000 {
+-		opp-microvolt =3D <1250000>;
++		opp-microvolt =3D <1250000 1250000 1500000>;
+ 	};
+ 	opp-1600000000 {
+-		opp-microvolt =3D <1250000>;
++		opp-microvolt =3D <1250000 1250000 1500000>;
+ 	};
+ 	opp-1500000000 {
+-		opp-microvolt =3D <1100000>;
++		opp-microvolt =3D <1100000 1100000 1500000>;
+ 	};
+ 	opp-1400000000 {
+-		opp-microvolt =3D <1100000>;
++		opp-microvolt =3D <1100000 1100000 1500000>;
+ 	};
+ 	opp-1300000000 {
+-		opp-microvolt =3D <1100000>;
++		opp-microvolt =3D <1100000 1100000 1500000>;
+ 	};
+ 	opp-1200000000 {
+-		opp-microvolt =3D <1000000>;
++		opp-microvolt =3D <1000000 1000000 1500000>;
+ 	};
+ 	opp-1100000000 {
+-		opp-microvolt =3D <1000000>;
++		opp-microvolt =3D <1000000 1000000 1500000>;
+ 	};
+ 	opp-1000000000 {
+-		opp-microvolt =3D <1000000>;
++		opp-microvolt =3D <1000000 1000000 1500000>;
+ 	};
+ 	opp-900000000 {
+-		opp-microvolt =3D <1000000>;
++		opp-microvolt =3D <1000000 1000000 1500000>;
+ 	};
+ 	opp-800000000 {
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 	};
+ 	opp-700000000 {
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 	};
+ 	opp-600000000 {
+ 		opp-hz =3D /bits/ 64 <600000000>;
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 		clock-latency-ns =3D <140000>;
+ 	};
+ 	opp-500000000 {
+ 		opp-hz =3D /bits/ 64 <500000000>;
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 		clock-latency-ns =3D <140000>;
+ 	};
+ 	opp-400000000 {
+ 		opp-hz =3D /bits/ 64 <400000000>;
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 		clock-latency-ns =3D <140000>;
+ 	};
+ 	opp-300000000 {
+ 		opp-hz =3D /bits/ 64 <300000000>;
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 		clock-latency-ns =3D <140000>;
+ 	};
+ 	opp-200000000 {
+ 		opp-hz =3D /bits/ 64 <200000000>;
+-		opp-microvolt =3D <900000>;
++		opp-microvolt =3D <900000 900000 1500000>;
+ 		clock-latency-ns =3D <140000>;
+ 	};
+ };
+---------------------------------------------------------------------------=
+----
 
 
-Thanks,
-Jonathan Neusch=C3=A4fer
+Git bisection log:
 
---BZaMRJmqxGScZ8Mx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl2abPEACgkQCDBEmo7z
-X9uKtxAAzzgCu+n9jH9hNCttJ3lG5alFog0lO+dd69DN/EG3wH4NCQNnkfL0eTUQ
-ePZWqAlCuXMrFgJUrL0RDEw926fYD558I9RBtJGI1yPlKq4Qhs0ENpkNI9bOSZyG
-s4UI1iLsalte+sGFZwPcTfWv5mgD5FSoLPIQleDaaHvCoRh9+PP7Nn3svxyToGcY
-OE7WtpBAwA+gawwKGWZJUxXLMGQKwyg3f8TcFkugLh5VefyiNgTpRcWnilUbZ3mI
-uU1hZc4cC/dcoCs0blZZwO24MAIDN/686fwViySRjzKE411dp1XZDz9LqQdr9OLW
-NKMyFCSsjhn5TFMPoo6rux88KLBujHPRiu7e+EXSVgYZH4nRsxUqPTxnGzimotrx
-1IoN+Dkg+hx5hxVntHrKktH5kvwuN7mKcgGqHNtkQgyhS4dWa+83R0C0E+uEi/ZM
-mH+ht5CK/J6BbCXyUans1T+tIs1xL5xYHsw/ZKZtiYIwGrVVMiIbLf/OW+9llrc4
-wt0KQkqUudaQj8i6PCihRudCi371QWQbcGholaDqkn4HFEGYRC8pzsCHr7sU6Gdf
-J/5fw3n4lQv5H2RBLgzQBqNWB9CkRdJOTTR3Zj95Gaz1HizSWwyk22aoVKdD/f9R
-jQ8CI9hIEMXx1iGEmBAltMHzwtfAzlwp9esITOahR7Sd3ZK0Hyc=
-=YsCq
------END PGP SIGNATURE-----
-
---BZaMRJmqxGScZ8Mx--
+---------------------------------------------------------------------------=
+----
+git bisect start
+# good: [2924a93b4c2b1934c0ec59d28f46814a83259f11] Merge branch 'for-v5.5/m=
+emory-samsung-dmc-dt' into for-next
+git bisect good 2924a93b4c2b1934c0ec59d28f46814a83259f11
+# bad: [0bc9c79979ea0b607a0751968840483fd296f6ef] Merge branch 'for-v5.5/me=
+mory-samsung-dmc-dt' into for-next
+git bisect bad 0bc9c79979ea0b607a0751968840483fd296f6ef
+# bad: [0899a480ac658144b1fa351bb880c2858d43f824] ARM: dts: exynos: Add ini=
+tial data for coupled regulators for Exynos5422/5800
+git bisect bad 0899a480ac658144b1fa351bb880c2858d43f824
+# good: [56c126e87e2980d5e2ca5d77b28899f8521af9d7] ARM: dts: exynos: Rename=
+ SysRAM node to "sram"
+git bisect good 56c126e87e2980d5e2ca5d77b28899f8521af9d7
+# first bad commit: [0899a480ac658144b1fa351bb880c2858d43f824] ARM: dts: ex=
+ynos: Add initial data for coupled regulators for Exynos5422/5800
+---------------------------------------------------------------------------=
+----
