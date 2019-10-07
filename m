@@ -2,268 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E306BCDBF2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 08:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B34BECDC00
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 09:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727295AbfJGGtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 02:49:16 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:34206 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727032AbfJGGtP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 02:49:15 -0400
-Received: by mail-vs1-f65.google.com with SMTP id d3so8196372vsr.1
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 23:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=L4l7r81RJwm9C7hr+S0v5tSYxoGtALeVwL6UoE3dEWs=;
-        b=fpxlm6n8YbFqzao86Z/I3k1+keYrLEefk1LMTtUpV/fUlYMBXdJPkAE57hy7X5dIQI
-         oT6n5Rb9HRzC9mtgu1QI00/BlV2zxTGFP/Rrk/dvZBqwAROL+NTJhdjyM7wUTdkzgsnq
-         oBjozVWsJNKaUPNfPLo/5jafaMJP1pSI57xcwZ/rN1TFvjub+hD67cJ4e0Ly3AxhH3Sj
-         iMEowL9Hq0kGDaWt4Y2IlVYTO7Wa0/WBtHDHio/lNpPqzETIv7x6nhUz2FRoC3TWdNZ1
-         zYCrppCTwKNYSbHVDH7c/HpZTHDb0PP3r+H7F8Gl9ug91FJMlQAlGLlEQGRgwMRTk+2D
-         TtxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=L4l7r81RJwm9C7hr+S0v5tSYxoGtALeVwL6UoE3dEWs=;
-        b=gyOMVUwov7BigJKE9rGhp6LnMj6CKkw4K7YLLLI/RmhtIUzrGxS7+ndgZnF+MTgZa9
-         GbXIIDknpzqmjM+kNjjAIG1Re15c1LsT1Pt53tbRhsWvXjWt4/UubXGCf214CDDlHSTj
-         TFZTqXRw3RsU9/P/l9P88V5uh5e/t+kgQHffUx2HbNRBh8iHldSCDc/aaM4TZ2uaV1Pk
-         eVdbsmGSXPvj5Usbk56aDRI7JZAyiRsji/6cTKePAeb0eqSvcukt7a5JFR6w2ASK/1QC
-         vL/5ttNwT3s7Yxdnj7IoN4uoeTmEsQyFjenXrk13j9yvm5B6onmklRe/Q5PDVgU+j7Q+
-         YnxQ==
-X-Gm-Message-State: APjAAAUjoCo4T/xHkJyLgtArajrH6umWl4T4EGB6CHpBZ2rkDWaBi1Jy
-        j2VQWBfsIpmghoYbjNYhHNZ1uhtsHtTf2U0bUC+2kw==
-X-Google-Smtp-Source: APXvYqwf7WgLbxsPlihSI5TEH2gar51Fyk/IOzjyQkIiit4sL/kvIpGq5UTfp/frSl9QNp+DljlOl4kCawa38pTQmHA=
-X-Received: by 2002:a67:fc5a:: with SMTP id p26mr14091177vsq.200.1570430952994;
- Sun, 06 Oct 2019 23:49:12 -0700 (PDT)
+        id S1726960AbfJGHAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 03:00:08 -0400
+Received: from mxb1.seznam.cz ([77.75.78.89]:65006 "EHLO mxb1.seznam.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726202AbfJGHAI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 03:00:08 -0400
+X-Greylist: delayed 723 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Oct 2019 03:00:06 EDT
+Received: from email.seznam.cz
+        by email-smtpc4b.ko.seznam.cz (email-smtpc4b.ko.seznam.cz [10.53.13.105])
+        id 75faa5602ef4f1097453693e;
+        Mon, 07 Oct 2019 09:00:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1570431605; bh=vwYOv2Ab5iPREmlGDGUfR+GIbmWVAczCK4ebkGzf5N0=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding;
+        b=dx7ZwOoLO8PxAAdeLODgSSXZhXEoaY5TvmAqhsw6sGDg0oDVduWq6UZvPgS/qPAFO
+         RJXZo40iooS1Vq9ojiyFqmoxnbxXNg6W+DCrRcHIbQmF6IucwVNTwkCVyQgm706em0
+         2DTP1vqe1R3IdwBVGV3HIvMnlcgYAfTsQpFFb2vY=
+Received: from localhost.localdomain (mail.gymso.cz [77.104.210.103])
+        by email-relay4.ko.seznam.cz (Seznam SMTPD 1.3.108) with ESMTP;
+        Mon, 07 Oct 2019 08:47:56 +0200 (CEST)  
+From:   michael.srba@seznam.cz
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Michael Srba <Michael.Srba@seznam.cz>
+Subject: [PATCH] arm64: dts: msm8916-samsung-a2015: add tactile buttons and hall sensor
+Date:   Mon,  7 Oct 2019 08:45:28 +0200
+Message-Id: <20191007064528.6543-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <20190905122112.29672-1-ludovic.Barre@st.com> <20190905122112.29672-2-ludovic.Barre@st.com>
- <CAPDyKFpcb=dT0XBAGVL68t--xi5853Dzsgak-vbx5VcvxLZ4zA@mail.gmail.com>
- <CAPDyKFrRDHeVs6RpM=qTT1AogLnFWJLh2S4-wCcrYAON9XVKCA@mail.gmail.com> <da9072ce-852c-a46c-ecdf-ea6bfd89ef79@st.com>
-In-Reply-To: <da9072ce-852c-a46c-ecdf-ea6bfd89ef79@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 7 Oct 2019 08:48:35 +0200
-Message-ID: <CAPDyKFp0sia9RC1kX0nmfB2g4Wvk+Y_o1wM8yatrzTeHpRd_vg@mail.gmail.com>
-Subject: Re: [PATCH V6 1/3] mmc: mmci: add hardware busy timeout feature
-To:     Ludovic BARRE <ludovic.barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Oct 2019 at 14:59, Ludovic BARRE <ludovic.barre@st.com> wrote:
->
-> hi Ulf
->
-> Le 10/4/19 =C3=A0 8:20 AM, Ulf Hansson a =C3=A9crit :
-> > On Fri, 4 Oct 2019 at 08:12, Ulf Hansson <ulf.hansson@linaro.org> wrote=
-:
-> >>
-> >> On Thu, 5 Sep 2019 at 14:21, Ludovic Barre <ludovic.Barre@st.com> wrot=
-e:
-> >>>
-> >>> From: Ludovic Barre <ludovic.barre@st.com>
-> >>>
-> >>> In some variants, the data timer starts and decrements
-> >>> when the DPSM enters in Wait_R or Busy state
-> >>> (while data transfer or MMC_RSP_BUSY), and generates a
-> >>> data timeout error if the counter reach 0.
-> >>
-> >>
-> >>>
-> >>> -Define max_busy_timeout (in ms) according to clock.
-> >>> -Set data timer register if the command has rsp_busy flag.
-> >>>   If busy_timeout is not defined by framework, the busy
-> >>>   length after Data Burst is defined as 1 second
-> >>>   (refer: 4.6.2.2 Write of sd specification part1 v6-0).
-> >>
-> >> How about re-phrasing this as below:
-> >>
-> >> -----
-> >> In the stm32_sdmmc variant, the datatimer is active not only during
-> >> data transfers with the DPSM, but also while waiting for the busyend
-> >> IRQs from commands having the MMC_RSP_BUSY flag set. This leads to an
-> >> incorrect IRQ being raised to signal MCI_DATATIMEOUT error, which
-> >> simply breaks the behaviour.
-> >>
-> >> Address this by updating the datatimer value before sending a command
-> >> having the MMC_RSP_BUSY flag set. To inform the mmc core about the
-> >> maximum supported busy timeout, which also depends on the current
-> >> clock rate, set ->max_busy_timeout (in ms).
->
-> Thanks for the re-phrasing.
->
-> >> -----
-> >>
-> >> Regarding the busy_timeout, the core should really assign it a value
-> >> for all commands having the RSP_BUSY flag set. However, I realize the
-> >> core needs to be improved to cover all these cases - and I am looking
-> >> at that, but not there yet.
-> >>
-> >> I would also suggest to use a greater value than 1s, as that seems a
-> >> bit low for the "undefined" case. Perhaps use the max_busy_timeout,
-> >> which would be nice a simple or 10s, which I think is used by some
-> >> other drivers.
->
-> OK, I will set 10s, the max_busy_timeout could be very long for small
-> frequencies (example, 25Mhz =3D> 171s).
->
-> >>
-> >>> -Add MCI_DATATIMEOUT error management in mmci_cmd_irq.
-> >>>
-> >>> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
-> >>> ---
-> >>>   drivers/mmc/host/mmci.c | 42 ++++++++++++++++++++++++++++++++++++--=
+From: Michael Srba <Michael.Srba@seznam.cz>
+
+Add nodes for basic GPIO connected hardware to the Samsung A3/A5 common dtsi. 
+This includes the Volume UP button, the Home button, and the hall sensor used 
+to sense "smart cover" open state. Related to that, add a node for the Volume 
+DOWN button, which is handled by the pm8916 as is common with msm8916 devices.
+
+Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 ---
-> >>>   drivers/mmc/host/mmci.h |  3 +++
-> >>>   2 files changed, 40 insertions(+), 5 deletions(-)
-> >>>
-> >>> diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-> >>> index c37e70dbe250..c30319255dc2 100644
-> >>> --- a/drivers/mmc/host/mmci.c
-> >>> +++ b/drivers/mmc/host/mmci.c
-> >>> @@ -1075,6 +1075,7 @@ static void
-> >>>   mmci_start_command(struct mmci_host *host, struct mmc_command *cmd,=
- u32 c)
-> >>>   {
-> >>>          void __iomem *base =3D host->base;
-> >>> +       unsigned long long clks;
-> >>>
-> >>>          dev_dbg(mmc_dev(host->mmc), "op %02x arg %08x flags %08x\n",
-> >>>              cmd->opcode, cmd->arg, cmd->flags);
-> >>> @@ -1097,6 +1098,16 @@ mmci_start_command(struct mmci_host *host, str=
-uct mmc_command *cmd, u32 c)
-> >>>                  else
-> >>>                          c |=3D host->variant->cmdreg_srsp;
-> >>>          }
-> >>> +
-> >>> +       if (host->variant->busy_timeout && cmd->flags & MMC_RSP_BUSY)=
- {
-> >>> +               if (!cmd->busy_timeout)
-> >>> +                       cmd->busy_timeout =3D 1000;
-> >>> +
-> >>> +               clks =3D (unsigned long long)cmd->busy_timeout * host=
-->cclk;
-> >>> +               do_div(clks, MSEC_PER_SEC);
-> >>> +               writel_relaxed(clks, host->base + MMCIDATATIMER);
-> >>> +       }
-> >>> +
-> >>>          if (/*interrupt*/0)
-> >>>                  c |=3D MCI_CPSM_INTERRUPT;
-> >>>
-> >>> @@ -1201,6 +1212,7 @@ static void
-> >>>   mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
-> >>>               unsigned int status)
-> >>>   {
-> >>> +       u32 err_msk =3D MCI_CMDCRCFAIL | MCI_CMDTIMEOUT;
-> >>>          void __iomem *base =3D host->base;
-> >>>          bool sbc, busy_resp;
-> >>>
-> >>> @@ -1215,8 +1227,11 @@ mmci_cmd_irq(struct mmci_host *host, struct mm=
-c_command *cmd,
-> >>>           * handling. Note that we tag on any latent IRQs postponed
-> >>>           * due to waiting for busy status.
-> >>>           */
-> >>> -       if (!((status|host->busy_status) &
-> >>> -             (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT|MCI_CMDSENT|MCI_CMDRESPE=
-ND)))
-> >>> +       if (host->variant->busy_timeout && busy_resp)
-> >>> +               err_msk |=3D MCI_DATATIMEOUT;
-> >>> +
-> >>> +       if (!((status | host->busy_status) &
-> >>> +             (err_msk | MCI_CMDSENT | MCI_CMDRESPEND)))
-> >>>                  return;
-> >>>
-> >>>          /* Handle busy detection on DAT0 if the variant supports it.=
- */
-> >>> @@ -1235,8 +1250,7 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc=
-_command *cmd,
-> >>>                   * while, to allow it to be set, but tests indicates=
- that it
-> >>>                   * isn't needed.
-> >>>                   */
-> >>> -               if (!host->busy_status &&
-> >>> -                   !(status & (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT)) &&
-> >>> +               if (!host->busy_status && !(status & err_msk) &&
-> >>>                      (readl(base + MMCISTATUS) & host->variant->busy_=
-detect_flag)) {
-> >>>
-> >>>                          writel(readl(base + MMCIMASK0) |
-> >>> @@ -1290,6 +1304,9 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc=
-_command *cmd,
-> >>>                  cmd->error =3D -ETIMEDOUT;
-> >>>          } else if (status & MCI_CMDCRCFAIL && cmd->flags & MMC_RSP_C=
-RC) {
-> >>>                  cmd->error =3D -EILSEQ;
-> >>> +       } else if (host->variant->busy_timeout && busy_resp &&
-> >>> +                  status & MCI_DATATIMEOUT) {
-> >>> +               cmd->error =3D -ETIMEDOUT;
-> >>
-> >> It's not really clear to me what happens with the busy detection
-> >> status bit (variant->busy_detect_flag), in case a MCI_DATATIMEOUT IRQ
-> >> is raised, while also having host->busy_status set (waiting for
-> >> busyend).
-> >>
-> >> By looking at the code a few lines above this, we may do a "return;"
-> >> while waiting for the busyend IRQ even if MCI_DATATIMEOUT also is
-> >> raised, potentially losing that from being caught. Is that really
-> >> correct?
-> >
-> > A second thought. That "return;" is to manage the busyend IRQ being
-> > raised of the first edge due to broken HW. So I guess, this isn't an
-> > issue for stm32_sdmmc variant after all?
-> >
-> > I have a look at the next patches in the series..
->
-> you're referring to "return" of ?
->         if (host->busy_status &&
->             (status & host->variant->busy_detect_flag)) {
->                 writel(host->variant->busy_detect_mask,
->                        host->base + MMCICLEAR);
->                 return;
->         }
->
-> For stm32 variant (in patch 3/3): the "busy completion" is
-> released immediately if there is an error or busyd0end,
-> and cleans: irq, busyd0end mask, busy_status variable.
+ .../qcom/msm8916-samsung-a2015-common.dtsi    | 76 +++++++++++++++++++
+ 1 file changed, 76 insertions(+)
 
-Right, thanks for clarifying!
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+index 6fc0b80d1f90..bd1eb3eeca53 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+@@ -3,6 +3,7 @@
+ #include "msm8916.dtsi"
+ #include "pm8916.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ 
+ / {
+@@ -91,6 +92,44 @@
+ 		etm@85f000 { status = "disabled"; };
+ 	};
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&gpio_keys_default>;
++
++		label = "GPIO Buttons";
++
++		volume-up {
++			label = "Volume Up";
++			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++		};
++
++		home {
++			label = "Home";
++			gpios = <&msmgpio 109 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_HOMEPAGE>;
++		};
++	};
++
++	gpio-hall-sensor {
++		compatible = "gpio-keys";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&gpio_hall_sensor_default>;
++
++		label = "GPIO Hall Effect Sensor";
++
++		hall-sensor {
++			label = "Hall Effect Sensor";
++			gpios = <&msmgpio 52 GPIO_ACTIVE_LOW>;
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_LID>;
++			linux,can-disable;
++		};
++	};
++
+ 	i2c-muic {
+ 		compatible = "i2c-gpio";
+ 		sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+@@ -113,6 +152,30 @@
+ };
+ 
+ &msmgpio {
++	gpio_keys_default: gpio_keys_default {
++		pinmux {
++			function = "gpio";
++			pins = "gpio107", "gpio109";
++		};
++		pinconf {
++			pins = "gpio107", "gpio109";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++	};
++
++	gpio_hall_sensor_default: gpio_hall_sensor_default {
++		pinmux {
++			function = "gpio";
++			pins = "gpio52";
++		};
++		pinconf {
++			pins = "gpio52";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
+ 	muic_int_default: muic_int_default {
+ 		pinmux {
+ 			function = "gpio";
+@@ -238,3 +301,16 @@
+ 		regulator-max-microvolt = <2700000>;
+ 	};
+ };
++
++&spmi_bus {
++	pm8916@0 {
++		pon@800 {
++			volume-down {
++				compatible = "qcom,pm8941-resin";
++				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
++				bias-pull-up;
++				linux,code = <KEY_VOLUMEDOWN>;
++			};
++		};
++	};
++};
+-- 
+2.23.0
 
->
-> I could add similar action in patch 2/3 function: "ux500_busy_complete"
->
-> static bool ux500_busy_complete(struct mmci_host *host, u32 status, u32
-> err_msk)
-> {
->         void __iomem *base =3D host->base;
->
->         if (status & err_msk)
->                 goto complete;
-> ...
-> complete:
->         /* specific action to clean busy detection, irq, mask, busy_statu=
-s */
-> }
->
-> what do you think about it?
-
-For the legacy variant, the MCI_DATATIMEOUT isn't an issue as it can't
-be raised while waiting for busyend. So, I think this is fine as is.
-
-Kind regards
-Uffe
