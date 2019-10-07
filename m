@@ -2,203 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2AB6CDC80
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 09:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74B8BCDC91
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 09:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727028AbfJGHmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 03:42:21 -0400
-Received: from mga03.intel.com ([134.134.136.65]:38280 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726202AbfJGHmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 03:42:21 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Oct 2019 00:42:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,265,1566889200"; 
-   d="scan'208";a="183358550"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga007.jf.intel.com with ESMTP; 07 Oct 2019 00:42:20 -0700
-Received: from [10.226.38.27] (unknown [10.226.38.27])
-        by linux.intel.com (Postfix) with ESMTP id 7791A5803E4;
-        Mon,  7 Oct 2019 00:42:18 -0700 (PDT)
-Subject: Re: [PATCH v5 1/2] dt-bindings: phy: intel-emmc-phy: Add YAML schema
- for LGM eMMC PHY
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     kishon@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        peter.harliman.liem@intel.com
-References: <20190904055344.25512-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190917142337.GA27151@bogus>
- <9cdc49bc-61af-5b36-6ef1-67d1f1977730@linux.intel.com>
-Message-ID: <3e06d22c-cd9a-d05f-b524-846bde6393b6@linux.intel.com>
-Date:   Mon, 7 Oct 2019 15:42:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727032AbfJGHvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 03:51:39 -0400
+Received: from sonic301-30.consmr.mail.ne1.yahoo.com ([66.163.184.199]:39869
+        "EHLO sonic301-30.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727028AbfJGHvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 03:51:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1570434697; bh=tPdyM4f7Tq8kspt5syr9wxbiHLUxanV8lkCr2Pkkkas=; h=Date:From:Reply-To:Subject:From:Subject; b=DbL/UFCbRIjNXJw/p2NlV4jPdKCkjMvJTZWNwF/a+a9YDRskmhi3PWLCJamdoPsgJffz+rRTmnnB5AxL7EhXvxzZRoy2w1SZgk6h/z/O8mknXNxOB3nenG+6KUdYoiU6BozrAdQrJkFbcG+1A5fgUnjnEV9ArbjRsFZgraN+75TE+vcDiWmysyg7BL3zevkINsMOMwjlvygsmzjyZjD/ClljMSRZ2QYW/nEXAj5FacAYuuhe30fVH6JFYQMOBrYt2NjD+N07S9dVFPNHv5eaZ9z0Cat2Ri3SRk3x8+VNn+dJzcuY7VCeYjGiznUxemsesHzO6SMdafCRI+5GAm9uEw==
+X-YMail-OSG: 8XIwmMUVM1kpfVfaCkLZkNqybGItW44t2nfcqd.7RL1Cg_v2sM958Q2OWE7tNVJ
+ AO96q4s95KDrNFQ9_pw4LN2J2WFRMEv73IM4Ked63tXBH4ByFVvOqe5pQlRkPYO8jFaOLKEsVAKT
+ 5kyGb6aIskwRpeyI.0AHi0OHlMwvsvxvnt94UrFrktzhSjs2hsSWgvcsrUc1lqqokoa_D94lfFjz
+ 1r9vZ3JKEoJ8bMLSnoZnmbn_ul0sw9DCvWfPMU.U6sRGKkxy1D6p6yixc.QnWzcQ8HEEdCsR27vu
+ GgsjAVd._SZdG0zAcyes1eWJV.vDaTMRQtc1reNZAMApu73Ohx.1FoQNVf9bSM2q3uo0CM52CnmW
+ aE0S9yK0Ej4KUge3iYO_Sqn5PRjTOFeVd5zPRXMWNkbWgSicfeUe1718CosPnCfkGsA9CPlLJZ2v
+ uHLpg3L5fbdLpiwpPaG7TUePGXbfSFrTHeF5D3pXzAQYNFdTmN2lt1PlakEZRZSGiAlmj4DoGn.S
+ 9aFqES2g8mqH2TJcsxCB_FqnyycCljqfB2zTeQJS5yFadJoDj9AW28FJhPGCG7p06PoJt1nNO4_K
+ Tfe5gvQKfdm.PTu6wTJLqOq4DmBaV0PjHa4OAmCOvcgyzGiol.Ya9dgQDYwJ5.USEQM1g30Gq5Yb
+ JGS2XUATTjUqsrc4QnRKTMa0xi96Qle2baMG.AU8wVG7W.Qqh8fTKdH49n7Cqlo09.6depD8KRKU
+ LXRfM2pmQKA__48lnj6X8JGdZ.BEXTy2zN79zivwijjyXv8dL6J_BVeH3btHP_mMux4aTXCVzT84
+ qn1hmjnbYrQvWHMwjWc22K.g5iBvhBxMKS0jzWcai2sTRTt_rjQXYEtaGnyufL0yp19V.tEh7z9Z
+ AJBChfkDDrb85icIC2cbjO9WapWRV2OPCpmIvwBVjqM18FQgKOmlMgPbGBDIPL61YS5mXFkfzC.5
+ nVUeswUPm.W6DSUTwCaUefHwNeZKmOmmYAYH2ijCD4mKA9QkvIiqYa2DJeuIOrdCmj9dRhHT6ORc
+ 91IFKztO2sCbLAkPEYN0p704iQFNgXfWWKCqotK0Y0u_wxd7CJIkmllwXCs1PEfIl1PEmwrKZrgm
+ l3wIhV.cqntqMhu7CPm_wFSi4_hbD.aRINZ1PrhkkNZejLpmLzMsaN.MPvPoD7wxOQg8.zioNJ1y
+ .P1r6aXxYYV1mv6ePlsvP4QtTInS93iq4DbtGtNgjAOkNFPMQAZq92TTeLOLQ1JppwndMryQTHj5
+ N0g6yPsZQXxH5QgwXiQWMSLnEU3CXBrEqA7lw3CNOPPNDFUddxhR46RCBOPZSq0I-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ne1.yahoo.com with HTTP; Mon, 7 Oct 2019 07:51:37 +0000
+Date:   Mon, 7 Oct 2019 07:51:36 +0000 (UTC)
+From:   Aisha Gaddafi <aishag044444@gmail.com>
+Reply-To: gaisha983@gmail.com
+Message-ID: <565038438.4576837.1570434696678@mail.yahoo.com>
+Subject: Dear Friend,
 MIME-Version: 1.0
-In-Reply-To: <9cdc49bc-61af-5b36-6ef1-67d1f1977730@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Dear Friend,
 
-On 18/9/2019 10:23 AM, Ramuthevar, Vadivel MuruganX wrote:
-> Hi Rob,
->
-> Thank you for the review comments.
->
-> On 17/9/2019 10:23 PM, Rob Herring wrote:
->> On Wed, Sep 04, 2019 at 01:53:43PM +0800, Ramuthevar,Vadivel MuruganX 
->> wrote:
->>> From: Ramuthevar Vadivel Murugan 
->>> <vadivel.muruganx.ramuthevar@linux.intel.com>
->>>
->>> Add a YAML schema to use the host controller driver with the
->>> eMMC PHY on Intel's Lightning Mountain SoC.
->>>
->>> Signed-off-by: Ramuthevar Vadivel Murugan 
->>> <vadivel.muruganx.ramuthevar@linux.intel.com>
->>> ---
->>> changes in v5:
->>>    - earlier Review-by tag given by Rob
->>>    - rework done with syscon parent node.
->>>
->>> changes in v4:
->>>    - As per Rob's review: validate 5.2 and 5.3
->>>    - drop unrelated items.
->>>
->>> changes in v3:
->>>    - resolve 'make dt_binding_check' warnings
->>>
->>> changes in v2:
->>>    As per Rob Herring review comments, the following updates
->>>   - change GPL-2.0 -> (GPL-2.0-only OR BSD-2-Clause)
->>>   - filename is the compatible string plus .yaml
->>>   - LGM: Lightning Mountain
->>>   - update maintainer
->>>   - add intel,syscon under property list
->>>   - keep one example instead of two
->>> ---
->>>   .../bindings/phy/intel,lgm-emmc-phy.yaml           | 69 
->>> ++++++++++++++++++++++
->>>   1 file changed, 69 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml 
->>> b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->>> new file mode 100644
->>> index 000000000000..8f6ac8b3da42
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->>> @@ -0,0 +1,69 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/phy/intel,lgm-emmc-phy.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Intel Lightning Mountain(LGM) eMMC PHY Device Tree Bindings
->>> +
->>> +maintainers:
->>> +  - Ramuthevar Vadivel Murugan 
->>> <vadivel.muruganx.ramuthevar@linux.intel.com>
->>> +
->>> +description: Bindings for eMMC PHY on Intel's Lightning Mountain 
->>> SoC, syscon
->>> +  node is used to reference the base address of eMMC phy registers.
->>> +
->>> +select:
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        const: intel,lgm-syscon
->> This, plus...
->
-> you mean, need to add two compatible here-itself look like below
->
-> const: intel,lgm-syscon
-> const: intel,lgm-emmc-phy
->
-> Is it right?
->
-Shall I proceed with above compatibles if you agree upon. Thanks!
+I came across your e-mail contact prior a private search while in need of 
+your assistance. My name is Aisha  Gaddafi a single Mother and a Widow with 
+three Children. I am the only biological Daughter of late Libyan President 
+(Late Colonel Muammar Gaddafi).
 
-With Best Regards
-Vadivel Murugan
->>> +
->>> +    reg:
->>> +      maxItems: 1
->>> +
->>> +  required:
->>> +    - compatible
->>> +    - reg
->>> +
->>> +properties:
->>> +  "#phy-cells":
->>> +    const: 0
->>> +
->>> +  compatible:
->>> +    contains:
->>> +      const: intel,lgm-emmc-phy
->> ...this should not pass validation as they contradict each other.
-> when  I do "make dt_binding_check" didn't throw an error,  let me 
-> double confirm once clarified first comment.
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - "#phy-cells"
->>> +  - compatible
->>> +  - reg
->>> +  - clocks
->>> +  - clock-names
->>> +
->>> +examples:
->>> +  - |
->>> +    sysconf: chiptop@e0200000 {
->>> +      compatible = "intel,lgm-syscon";
->>> +      reg = <0xe0200000 0x100>;
->> I'm still waiting for a complete description of what all is in this
->> block.
-> Agree!, I will  add it.
->>> +
->>> +      emmc-phy: emmc-phy {
->>> +        compatible = "intel,lgm-emmc-phy";
->>> +        reg = <0x00a8 0x4>,
->>> +              <0x00ac 0x4>,
->>> +              <0x00b0 0x4>,
->>> +              <0x00b4 0x4>;
->> Looks contiguous and can be a single entry:
->>
->> <0xa8 0x10>
-> Agreed, will fix it.
->
-> Best Regards
-> Vadivel
->>> +        clocks = <&emmc>;
->>> +        clock-names = "emmcclk";
->>> +        #phy-cells = <0>;
->>> +      };
->>> +    };
->>> +...
->>> -- 
->>> 2.11.0
->>>
+I have investment funds worth Twenty Seven Million Five Hundred Thousand 
+United State Dollar ($27.500.000.00 ) and i need a trusted investment 
+Manager/Partner because of my current refugee status, however, I am 
+interested in you for investment project assistance in your country, may be 
+from there, we can build business relationship in the nearest future.
+
+I am willing to negotiate investment/business profit sharing ratio with you 
+base on the future investment earning profits.
+
+If you are willing to handle this project on my behalf kindly reply urgent 
+to enable me provide you more information about the investment funds.
+
+Your Urgent Reply Will Be Appreciated.
+
+Best Regards
+Mrs Aisha Gaddafi
+(gaisha983@gmail.com)
