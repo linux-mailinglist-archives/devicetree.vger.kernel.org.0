@@ -2,80 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED81CE30B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1AECE337
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:22:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727994AbfJGNSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 09:18:03 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:58533 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727490AbfJGNSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:18:03 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id D4830E0003;
-        Mon,  7 Oct 2019 13:17:58 +0000 (UTC)
-Date:   Mon, 7 Oct 2019 15:17:56 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Sebastian Reichel <sre@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: rtc: s3c: Include generic dt-schema
- bindings
-Message-ID: <20191007131756.GK4254@piout.net>
-References: <20191002160744.11307-1-krzk@kernel.org>
- <20191002160744.11307-3-krzk@kernel.org>
+        id S1728088AbfJGNVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 09:21:06 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:37925 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727324AbfJGNVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:21:06 -0400
+Received: by mail-lj1-f196.google.com with SMTP id b20so13631729ljj.5;
+        Mon, 07 Oct 2019 06:21:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=pqYD4jTL26Lkbsq1KtcLnT62csNab9jmgl1QSZGOUz0=;
+        b=h9XAge8jlyIGu1caaQLjorMgjmYP0S3VCLWBz94CIewBBZzprA7dYoVI0N7aZ2X53x
+         NuHUyUa7wW2rf4Ue3NnGrxfeSmG/PU8Y1xjtpzDh84vt3LcbC3Zpkv6Q3O5ODoFloNkT
+         kzIJq/AihzjP2dCkP5dqMLMNvm5WltARL737mbpB2dZ3OA5BnfpaeBqCgCV47iNgGAol
+         pmIW5j6RsGiq1SkHpohZ+9ClNteDJVVcyF7bUmpNW1203f5ogVYQiU8s1nKqXpHzpCzl
+         jNLvmc0l9/PFDtSMC3UhuW5bBzZeu+OSajirFDOYupfas1qwXTlc4cJtlWH3skDcs2VG
+         ASCw==
+X-Gm-Message-State: APjAAAU7+JGyGjefnY77SQCtzuintCGfUPl4ewNvk8EEQHHZXB+lbHt3
+        qSYEq471M8ZL4Kgvu7MKLcMcShxrDAOXCQ==
+X-Google-Smtp-Source: APXvYqwDfIe/mUugzv8kxQDjhZLESln0lMjXZDCO2ggmeNmsqhWgcYP0/h8lg4VykblEfTyDhUmIkw==
+X-Received: by 2002:a05:651c:1102:: with SMTP id d2mr18864276ljo.74.1570454463705;
+        Mon, 07 Oct 2019 06:21:03 -0700 (PDT)
+Received: from neopili.qtec.com (cpe.xe-3-0-1-778.vbrnqe10.dk.customer.tdc.net. [80.197.57.18])
+        by smtp.gmail.com with ESMTPSA id z14sm2687360lfh.30.2019.10.07.06.21.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2019 06:21:02 -0700 (PDT)
+From:   Ricardo Ribalda Delgado <ribalda@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>, Sakari Ailus <sakari.ailus@iki.fi>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Ricardo Ribalda Delgado <ribalda@kernel.org>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v7 2/6] ad5820: DT new optional field enable-gpios
+Date:   Mon,  7 Oct 2019 15:20:41 +0200
+Message-Id: <20191007132050.27298-4-ribalda@kernel.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191007132050.27298-1-ribalda@kernel.org>
+References: <20191007132050.27298-1-ribalda@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191002160744.11307-3-krzk@kernel.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/10/2019 18:07:43+0200, Krzysztof Kozlowski wrote:
-> Include the generic rtc.yaml bindings in Samsung S3C RTC bindings.  This
-> brings the requirement of proper node names and adds parsing of
-> additional properties.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Document new enable-gpio field. It can be used to disable the part
+without turning down its regulator.
 
-> ---
->  Documentation/devicetree/bindings/rtc/s3c-rtc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> index 4d91cdc9b998..76bbf8b7555b 100644
-> --- a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> @@ -48,6 +48,7 @@ properties:
->      maxItems: 2
->  
->  allOf:
-> +  - $ref: rtc.yaml#
->    - if:
->        properties:
->          compatible:
-> -- 
-> 2.17.1
-> 
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Ricardo Ribalda Delgado <ribalda@kernel.org>
+Acked-by: Pavel Machek <pavel@ucw.cz>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/media/i2c/ad5820.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/media/i2c/ad5820.txt b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
+index 5940ca11c021..db596e8eb0ba 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ad5820.txt
++++ b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
+@@ -8,6 +8,11 @@ Required Properties:
+ 
+   - VANA-supply: supply of voltage for VANA pin
+ 
++Optional properties:
++
++   - enable-gpios : GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is
++active low, a high level on the pin enables the device.
++
+ Example:
+ 
+        ad5820: coil@c {
+@@ -15,5 +20,6 @@ Example:
+                reg = <0x0c>;
+ 
+                VANA-supply = <&vaux4>;
++               enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
+        };
+ 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.23.0
+
