@@ -2,74 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 15CB2CDA33
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 03:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0361ACDA5E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 04:01:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727058AbfJGBoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 21:44:39 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:40684 "EHLO inva020.nxp.com"
+        id S1726789AbfJGCBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 22:01:54 -0400
+Received: from onstation.org ([52.200.56.107]:33194 "EHLO onstation.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726779AbfJGBoi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Oct 2019 21:44:38 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4E2941A05EF;
-        Mon,  7 Oct 2019 03:44:37 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6CC671A0939;
-        Mon,  7 Oct 2019 03:44:18 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A5C504032B;
-        Mon,  7 Oct 2019 09:44:04 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org,
-        dmitry.torokhov@gmail.com, aisheng.dong@nxp.com,
-        ulf.hansson@linaro.org, peng.fan@nxp.com, fugang.duan@nxp.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com, olof@lixom.net,
-        mripard@kernel.org, bjorn.andersson@linaro.org,
-        jagan@amarulasolutions.com, dinguyen@kernel.org,
-        marcin.juszkiewicz@linaro.org, arnd@arndb.de,
-        andriy.shevchenko@linux.intel.com, stefan@agner.ch,
-        enric.balletbo@collabora.com, yuehaibing@huawei.com,
-        ping.bai@nxp.com, m.felsch@pengutronix.de, ronald@innovation.ch,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V6 5/5] arm64: defconfig: Enable CONFIG_KEYBOARD_IMX_SC_KEY as module
-Date:   Mon,  7 Oct 2019 09:41:49 +0800
-Message-Id: <1570412509-7893-5-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1570412509-7893-1-git-send-email-Anson.Huang@nxp.com>
-References: <1570412509-7893-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726772AbfJGCBx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Oct 2019 22:01:53 -0400
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 78E843E993;
+        Mon,  7 Oct 2019 02:01:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1570413712;
+        bh=siGWMgbrgb+20s6v5IDlxItW2optKHnyECSIZMUdXig=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pvTNK9Yz7kQHuKGejnj4blW9gNA47X4z3/NOu47ocWrvNGYUaCQH1S1ESdEsIcIts
+         QbXVe2EqqsJK+wvDoZ12k9X7ba9rHuE7p0gTW3dsidijC02JprpFBiKoM1KiVTeDGv
+         QqWzc8pdlgKIkhaRFmj5fjWSZObYleCU7m9vnyfk=
+Date:   Sun, 6 Oct 2019 22:01:52 -0400
+From:   Brian Masney <masneyb@onstation.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
+        vkoul@kernel.org, evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] soc: qcom: smd-rpm: Create RPM interconnect proxy
+ child device
+Message-ID: <20191007020152.GA16902@onstation.org>
+References: <20190613151323.10850-1-georgi.djakov@linaro.org>
+ <20190613151323.10850-3-georgi.djakov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190613151323.10850-3-georgi.djakov@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Select CONFIG_KEYBOARD_IMX_SC_KEY as module by default to
-support i.MX8QXP scu key driver.
+On Thu, Jun 13, 2019 at 06:13:20PM +0300, Georgi Djakov wrote:
+> Register a platform device to handle the communication of bus bandwidth
+> requests with the remote processor. The interconnect proxy device is part
+> of this remote processor (RPM) hardware. Let's create a icc-smd-rpm proxy
+> child device to represent the bus throughput functionality that is provided
+> by the RPM.
+> 
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No changes.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Brian Masney <masneyb@onstation.org>
+Tested-by: Brian Masney <masneyb@onstation.org> # msm8974
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c9adae4..9062d57 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -314,6 +314,7 @@ CONFIG_INPUT_EVDEV=y
- CONFIG_KEYBOARD_ADC=m
- CONFIG_KEYBOARD_GPIO=y
- CONFIG_KEYBOARD_SNVS_PWRKEY=m
-+CONFIG_KEYBOARD_IMX_SC_KEY=m
- CONFIG_KEYBOARD_CROS_EC=y
- CONFIG_INPUT_TOUCHSCREEN=y
- CONFIG_TOUCHSCREEN_ATMEL_MXT=m
--- 
-2.7.4
+I think this patch may have fell through the cracks since I don't see
+it in linux-next. The qcs404 patches in this series were merged.
 
+Brian
+
+> ---
+> 
+> v4:
+> - Return error if platform_device_register_data() fails
+> - Remove platform_set_drvdata() on the child device.
+> 
+> v3:
+> - New patch.
+> 
+>  drivers/soc/qcom/smd-rpm.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
+> index fa9dd12b5e39..34cdd638a6c1 100644
+> --- a/drivers/soc/qcom/smd-rpm.c
+> +++ b/drivers/soc/qcom/smd-rpm.c
+> @@ -19,12 +19,14 @@
+>  /**
+>   * struct qcom_smd_rpm - state of the rpm device driver
+>   * @rpm_channel:	reference to the smd channel
+> + * @icc:		interconnect proxy device
+>   * @ack:		completion for acks
+>   * @lock:		mutual exclusion around the send/complete pair
+>   * @ack_status:		result of the rpm request
+>   */
+>  struct qcom_smd_rpm {
+>  	struct rpmsg_endpoint *rpm_channel;
+> +	struct platform_device *icc;
+>  	struct device *dev;
+>  
+>  	struct completion ack;
+> @@ -193,6 +195,7 @@ static int qcom_smd_rpm_callback(struct rpmsg_device *rpdev,
+>  static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+>  {
+>  	struct qcom_smd_rpm *rpm;
+> +	int ret;
+>  
+>  	rpm = devm_kzalloc(&rpdev->dev, sizeof(*rpm), GFP_KERNEL);
+>  	if (!rpm)
+> @@ -205,11 +208,23 @@ static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
+>  	rpm->rpm_channel = rpdev->ept;
+>  	dev_set_drvdata(&rpdev->dev, rpm);
+>  
+> -	return of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
+> +	rpm->icc = platform_device_register_data(&rpdev->dev, "icc_smd_rpm", -1,
+> +						 NULL, 0);
+> +	if (IS_ERR(rpm->icc))
+> +		return PTR_ERR(rpm->icc);
+> +
+> +	ret = of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
+> +	if (ret)
+> +		platform_device_unregister(rpm->icc);
+> +
+> +	return ret;
+>  }
+>  
+>  static void qcom_smd_rpm_remove(struct rpmsg_device *rpdev)
+>  {
+> +	struct qcom_smd_rpm *rpm = dev_get_drvdata(&rpdev->dev);
+> +
+> +	platform_device_unregister(rpm->icc);
+>  	of_platform_depopulate(&rpdev->dev);
+>  }
+>  
