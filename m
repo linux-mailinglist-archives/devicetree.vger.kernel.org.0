@@ -2,95 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B79FCDB35
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46F0CDB47
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727030AbfJGFAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 01:00:32 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:43348 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726969AbfJGFAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 01:00:32 -0400
-Received: by mail-ed1-f65.google.com with SMTP id r9so11140471edl.10
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 22:00:31 -0700 (PDT)
+        id S1726969AbfJGFQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 01:16:01 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:36775 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726960AbfJGFQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 01:16:00 -0400
+Received: by mail-wr1-f65.google.com with SMTP id y19so13529844wrd.3;
+        Sun, 06 Oct 2019 22:15:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kTKd9BxTt/PAleEHYrjbGfQDxHC83timSY4p9uhdwxY=;
-        b=jpp/wAaeud60o+Kl7w9WlxT8iTwbj6sHztRpaSL75wX9NPyzkBBrCkH/6sPyflDarl
-         vxUtZbmPjoPH5/m3TQ9hmxXwpzzKdlsqzwtO/TY+jSVi80hfcp4dkC2b04oHL+fchDbx
-         uvNFIxIWDgTqvMqC0DR5jLGEsLOipA46UEJmYEPciuuKdjvN9FLXhiQX/dog7ReUYs1n
-         CY7RVtN/yQbS1jy8jkmKICkUWFe/ReaIV17hnqUAwSXytHuUayYDfMuJHl2YOvSxEBSI
-         IGmv45HX59a3KyVfBunrXGeq7noibUuPEH0T76jZAwkpKRikGQgncqHxmouWDIRheR8M
-         vy/w==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=wc8zArjUNgVy/s50wiyO1NvyueOi4Jj56svA15IfJrM=;
+        b=JShsrn52XpdHu4hzqho33vlm/BLTIB0ivbt2uiZYxukY3K1yVykXHD0hQV2AtMlVrx
+         x4/ZJz+IX+gDOClpbBgREe5FW11lbD2bbYNh08gfeCdYssDP7b9P+VomVnt0sOQoXXSK
+         4lYhsb8kc/DrS2+j92/giE0aFuTkP79hFCrIoVk/sSpv5+YpsLmiunm6L3SEae8+y+aR
+         UPLxTLhFfhF67xPlW+kFrYaX6HzPyl9zWAKc1ogJtTZ1JRm+qOGaEs1TKP01dTZHdgpg
+         WOLyWa23VwUJZZisFOoh0eQ13smEMog1px57lMXij29uhjpxAjj/R+d2ipurGHDpXcoE
+         jPMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kTKd9BxTt/PAleEHYrjbGfQDxHC83timSY4p9uhdwxY=;
-        b=VDBdnwSZ9ntVR156srpDq/A7iXtnjE7g/pUR0oEHFIsa1J6cvoD/6lsG4rOZuP7Xxv
-         /fhMVqHRcuKIv6yunu8T9SrYllD76BMg1UqFfD5O8/FD5iz/LFNfc4vA5TOqjXECdvJS
-         JUQOuet1ZJj7/zzXh/ckFEM437uhhGZqEjZhHPAox4dQLfKRFy0ZDDgh3IGK6okzK8F3
-         QdBPZIiMLnPJsP5h+CFO4i14TwNxlHGDcxbDbIebj9F46f/3kKmqUSl5zu89qRGiz1DR
-         THEJFjBKlW4bcJcIWkDXkFspYKn4qafBi0jN6QHfNibj79uFZ80ykKMeLFr9W69pDxSE
-         MyPQ==
-X-Gm-Message-State: APjAAAVjOpbEKNJ1QKGjgd7mmDt6sbrDXNca3qv8oxWWz+FdoPlcZGRD
-        afaSI3DX6THyLwf/HI4EBh1fLhQnW6y05cvmFwAuDQ==
-X-Google-Smtp-Source: APXvYqwCVgUVK4pofULcj6U6CcXacuCiAQAAUYp38BKbJHzMKdZXN0wRWYmmhSAPZ6sV0SFKGw/arB24iK2NwnfUvtU=
-X-Received: by 2002:a17:906:57ce:: with SMTP id u14mr22483243ejr.184.1570424430064;
- Sun, 06 Oct 2019 22:00:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191004133207.6663-1-linux@rasmusvillemoes.dk> <20191004133207.6663-7-linux@rasmusvillemoes.dk>
-In-Reply-To: <20191004133207.6663-7-linux@rasmusvillemoes.dk>
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-Date:   Sun, 6 Oct 2019 22:00:19 -0700
-Message-ID: <CAOCOHw7TXj2zr7qoown0rM=W0dns4n1o+9gOHr_8=vebzH=bMw@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] pwm: update comment on struct pwm_ops::apply
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=wc8zArjUNgVy/s50wiyO1NvyueOi4Jj56svA15IfJrM=;
+        b=e4pwR0505lEANUEYcUW9IcvNkAsV783+UV5FckdrgAT5jVRken4YeevUyf5rLzDcGz
+         5c11tFONDGo2kzfdDeAzZB1u6o84qn1ddz2PrQ1tdY9EuEQH31CbS6fEyZZyT2QA5700
+         TF1NigCxHjpzWSSAfuVZpmp4oqX89rxi7lZGSfSziSJ84srPseRNsWfV+t0/RsO1w97M
+         2dz93TlLLlXIST0Lcx7vKmpmCgCRgWpDfwMmq4xdB3xMqdDlP3/irgXO956kJlMoP1SN
+         1QgUN+uIzkBXD+vFzTTeX2K1a6Xg4n4EGqczr4ODjuEz2a0C70bErERMuaZNiG+E+czI
+         Sd0w==
+X-Gm-Message-State: APjAAAV4puwXG6XababbB+/LksGCs877Q0YZ32WPF0d0Wwds1mJsN/xU
+        j6BRdFfo+j0Lbr7kYRALDKFUlu6Z
+X-Google-Smtp-Source: APXvYqwzo0yTz3gSyrODu8GSaSVC/7ZRDoAU4U46fMeNIkG2Z/7Iqe/R78CRVGTLZSok+sa49AnwLQ==
+X-Received: by 2002:a5d:6a09:: with SMTP id m9mr19624526wru.12.1570425358185;
+        Sun, 06 Oct 2019 22:15:58 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+        by smtp.gmail.com with ESMTPSA id s12sm26655859wra.82.2019.10.06.22.15.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 06 Oct 2019 22:15:57 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Add S905X3 ID for VIM3L
+Date:   Mon,  7 Oct 2019 09:15:07 +0400
+Message-Id: <1570425307-3231-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 6:33 AM Rasmus Villemoes
-<linux@rasmusvillemoes.dk> wrote:
->
-> Commit 71523d1812ac (pwm: Ensure pwm_apply_state() doesn't modify the
-> state argument) updated the kernel-doc for pwm_apply_state(), but not
-> for the ->apply callback in the pwm_ops struct.
->
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+[    0.086470] soc soc0: Amlogic Meson SM1 (S905X3) Revision 2b:c (b0:2) Detected
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> ---
->  include/linux/pwm.h | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
->
-> diff --git a/include/linux/pwm.h b/include/linux/pwm.h
-> index b2c9c460947d..0ef808d925bb 100644
-> --- a/include/linux/pwm.h
-> +++ b/include/linux/pwm.h
-> @@ -243,10 +243,7 @@ pwm_set_relative_duty_cycle(struct pwm_state *state, unsigned int duty_cycle,
->   * @request: optional hook for requesting a PWM
->   * @free: optional hook for freeing a PWM
->   * @capture: capture and report PWM signal
-> - * @apply: atomically apply a new PWM config. The state argument
-> - *        should be adjusted with the real hardware config (if the
-> - *        approximate the period or duty_cycle value, state should
-> - *        reflect it)
-> + * @apply: atomically apply a new PWM config
->   * @get_state: get the current PWM state. This function is only
->   *            called once per PWM device when the PWM chip is
->   *            registered.
-> --
-> 2.20.1
->
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index 6d0d04f..dc744f1 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -68,6 +68,8 @@ static const struct meson_gx_package_id {
+ 	{ "S922X", 0x29, 0x40, 0xf0 },
+ 	{ "A311D", 0x29, 0x10, 0xf0 },
+ 	{ "S905X3", 0x2b, 0x5, 0xf },
++	{ "S905X3", 0x2b, 0xb0, 0xf2 },
++	{ "A113L", 0x2c, 0x0, 0xf8 },
+ };
+ 
+ static inline unsigned int socinfo_to_major(u32 socinfo)
+-- 
+2.7.4
+
