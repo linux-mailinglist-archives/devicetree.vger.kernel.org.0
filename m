@@ -2,90 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E24CE1DB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3885CE1EF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727675AbfJGMgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 08:36:42 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:40808 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727467AbfJGMgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 08:36:41 -0400
-Received: by mail-pg1-f195.google.com with SMTP id d26so8135900pgl.7;
-        Mon, 07 Oct 2019 05:36:41 -0700 (PDT)
+        id S1727554AbfJGMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 08:40:59 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:41073 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727793AbfJGMk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 08:40:59 -0400
+Received: by mail-pg1-f196.google.com with SMTP id t3so2310332pga.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 05:40:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HqwQr0izSdX/SrDz5Xc8kECyxj0ZoycAuN4//WzOtYY=;
-        b=ELijHLqwYVBcZ5a4pvTvoiOZnNdiS812VSeLgoKLexclFzzKWbdmD/sqXgJXE1fjgD
-         jNTF2NHmVmZVy92KNpNVm+7QyNq5COD2fmfoJmVswy9YWgF3Hr339NWveBlovP+L29xw
-         9tvp+7lFmllGAaI1D/5o1sRY0gl6+ySaUqgfqvE5EcDZwBtBHgxCpZrZ7c/y9V+QbvKH
-         L7PIXI4qk+cgmMwKGIG9hJ9t+7qCG9ZJOjfdFkoefQi65vnJub5N2zxCfO6vSMUfZhof
-         t6hD38lnd1ne6M4elbw2LdAkaXBGm588D8tsdVzjqYTJN26ZdMMtjJUTPupbM2P7LsO6
-         Jdsw==
+        d=linaro.org; s=google;
+        h=date:user-agent:in-reply-to:references:mime-version
+         :content-transfer-encoding:subject:to:cc:from:message-id;
+        bh=o1MuM4w6nZQj3YYsyjZt1J3u5QROZgoxO/xrK/RzJMI=;
+        b=JjC4fdxPZPkA3Nw9t4f3P3/2H9g7ocjoojpPZh4AkYfyXrUyCA85UZa+JP0DplXe7g
+         TPmC2zCfeNdDi7Vicm85y/RP2pcwkqoREGvKrbVQvyYNmWzVgIxX/m2k7rSAFrA0ucan
+         5iLwhGD+V27YNQd/gZwtUJg19Q/uDX2f4z46G8yM5aPQvT45yIzNYIxtYK9azpIua/hd
+         KvLBZZwqjOzNYuygWFhDlvGwcEqdtjQ0up4WirOONG+HXircyNT4wDpc0JnsB5lJe8C5
+         jm7jHSVm7RWi2RdknNrKjK0q5XJ0fF1XT3J5uMZwmePYz/Y8O1Ghkhc2Z/j5LziZBHaS
+         V7gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HqwQr0izSdX/SrDz5Xc8kECyxj0ZoycAuN4//WzOtYY=;
-        b=gNzuz4VAfRJW4bHgdZFVwHVH/ZM4aOsutAp3eF912x9r1ArL/MqPEy6edqYUEadBgu
-         aiofB5spJzTRnIADX1g0C4AlMTOg/zj+lUFuhmgWI43gRE38hnRb7MXlSoHm02NDTMiZ
-         PjE0fWd4CxNeekN1Z9jjXboGM27bCreSqreP0qGDojQ1uU1EngG50Az6T+/iMiYdh3Hz
-         55z+SrtHzG5DPmLFn6smysv9l9W/9dEKTmyX7nY7IYpLpi+4WCePZ8eUm0Ucb7xOIJv7
-         xzB700H0R4RWPhL5o55D3Kqfo6TVTzg+9MuTVf6kUwJQhB0CNTOuS3RTTjmVj0ESW//2
-         K9OQ==
-X-Gm-Message-State: APjAAAVhHJG5FtlbyhgpE3SDzVvk2h1yhSwoAsp9ezOkMRmjP8msjQEW
-        85AVgtV9kBJ7XXjOjIixVVM=
-X-Google-Smtp-Source: APXvYqzxDmr1SNxHY7hEO0gLriawaqCkKEHy1diUazv80cn7Rlpu7NS07uF3jOMW5Cvpe3h50gMNGA==
-X-Received: by 2002:a17:90a:e28a:: with SMTP id d10mr33668362pjz.102.1570451800916;
-        Mon, 07 Oct 2019 05:36:40 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 26sm14949155pjg.21.2019.10.07.05.36.39
+        h=x-gm-message-state:date:user-agent:in-reply-to:references
+         :mime-version:content-transfer-encoding:subject:to:cc:from
+         :message-id;
+        bh=o1MuM4w6nZQj3YYsyjZt1J3u5QROZgoxO/xrK/RzJMI=;
+        b=rh45W00eH/DJp16mZD8ZMZXIoViOfgBIQzfbniVaIDm1AA+bA5HzBuibh8SGnldei0
+         Xw/ocWuPjtX3OviO0qeNXnhCnYgwV7oMK4FTdFn5Bmz9yr2XFcINhQCQGGVWqtw01DIt
+         hG4oou0veloAiNxHfafz2RGTbMCowLHjQCbssmGgzhn52aICycYsgHS6OsFmR3aYz7+E
+         c92z33EbYl4uN+hsxz8eK7MpjCiCklrh0cnfoVAq+yNcquiLOvXEfz1AElJ4uzN1Y0zm
+         QSEIsY2CusMHbgj6xkGm668JMT2Xe8JiGy7cfQNQDcIQwT/VRYmy3DBejY6M8Ir50pYs
+         bAlw==
+X-Gm-Message-State: APjAAAVykIq52x9X2oSZgCc1Fog9F/caHYWWRviJE/07jP0rrdqAKC+W
+        eBUjKJxIggrmWoIBJ51FqZ5e
+X-Google-Smtp-Source: APXvYqx29oMFzb0lUaEgpdkVH0kexcEoZJP3ixdNTaxpS0rvl/830cXYdtaNMO2S1ZCsPHNbN7J2FQ==
+X-Received: by 2002:a63:1f1a:: with SMTP id f26mr9115015pgf.2.1570452058127;
+        Mon, 07 Oct 2019 05:40:58 -0700 (PDT)
+Received: from ?IPv6:2409:4072:638b:f55:fd38:63ef:5172:157e? ([2409:4072:638b:f55:fd38:63ef:5172:157e])
+        by smtp.gmail.com with ESMTPSA id m22sm14177583pgj.29.2019.10.07.05.40.56
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Oct 2019 05:36:40 -0700 (PDT)
-Subject: Re: [PATCH 2/3] watchdog: sam9x60_wdt: introduce sam9x60 watchdog
- timer driver
-To:     Eugen.Hristev@microchip.com, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.or
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com
-References: <1570001371-8174-1-git-send-email-eugen.hristev@microchip.com>
- <1570001371-8174-2-git-send-email-eugen.hristev@microchip.com>
- <e58a3ab5-69bc-cad3-5faa-ed00ff7906c7@roeck-us.net>
- <ab7b6b45-5e6f-100d-51af-a82ac325d948@microchip.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <a9adf20c-f730-a7e9-a826-59216c17f03d@roeck-us.net>
-Date:   Mon, 7 Oct 2019 05:36:38 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Mon, 07 Oct 2019 05:40:57 -0700 (PDT)
+Date:   Mon, 07 Oct 2019 18:10:50 +0530
+User-Agent: K-9 Mail for Android
+In-Reply-To: <a60fb9ea8922c1eb532e0b7ef0a69abcc9306255.camel@analog.com>
+References: <20191007101027.8383-1-manivannan.sadhasivam@linaro.org> <20191007101027.8383-2-manivannan.sadhasivam@linaro.org> <a60fb9ea8922c1eb532e0b7ef0a69abcc9306255.camel@analog.com>
 MIME-Version: 1.0
-In-Reply-To: <ab7b6b45-5e6f-100d-51af-a82ac325d948@microchip.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Add binding for ADUX1020
+To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "knaack.h@gmx.de" <knaack.h@gmx.de>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Message-ID: <4EC23AB5-B8BE-4E45-8E5B-FCCD5B1508BA@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/19 12:58 AM, Eugen.Hristev@microchip.com wrote:
-[ ... ]
-> Hello Guenter,
-> 
-> Thank you for the feedback.
-> After reviewing this, can you please guide me towards one of the
-> possible two directions: merge this driver with sama5d4_wdt , and have a
-> single driver with support for both hardware blocks; or, have this
-> driver separately , as in this patch series?
-> 
+Hi Ardelean,=20
 
-I noticed the similarities. I don't know if it makes sense to reconcile
-the two drivers; it seems to me the new chip uses the same basic core with
-enhancements. In general, I prefer a single driver, but only if the result
-doesn't end up being an if/else mess. Ultimately, it is really your call
-to make.
+On 7 October 2019 3:51:16 PM IST, "Ardelean, Alexandru" <alexandru=2EArdel=
+ean@analog=2Ecom> wrote:
+>On Mon, 2019-10-07 at 15:40 +0530, Manivannan Sadhasivam wrote:
+>> [External]
+>>=20
+>> Add devicetree binding for Analog Devices ADUX1020 Photometric
+>> sensor=2E
+>>=20
+>
+>Hey,
+>
+>Thanks for the patches=2E
+>
+>This dt-binding docs is in text format=2E
+>dt-binding docs now need to be in YAML format=2E
+>
 
-Guenter
+Sure=2E I can convert to YAML binding=2E=20
+
+>Also, patches for dt-bindings docs usually come after the driver is
+>added=2E
+>So, this patch should be the second in the series, not the first=2E
+>
+
+I don't think so=2E The convention is to put dt-bindings patch upfront for=
+ all subsystems=2E Not sure if IIO differs here=2E=20
+
+Thanks,=20
+Mani
+>Alex
+>
+>> Signed-off-by: Manivannan Sadhasivam
+><manivannan=2Esadhasivam@linaro=2Eorg>
+>> ---
+>>  =2E=2E=2E/bindings/iio/light/adux1020=2Etxt           | 22
+>+++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>>  create mode 100644
+>> Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
+>> b/Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
+>> new file mode 100644
+>> index 000000000000=2E=2Ee896dda30e36
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
+>> @@ -0,0 +1,22 @@
+>> +Analog Devices ADUX1020 Photometric sensor
+>> +
+>> +Link to datasheet:=20
+>>
+>https://www=2Eanalog=2Ecom/media/en/technical-documentation/data-sheets/A=
+DUX1020=2Epdf
+>> +
+>> +Required properties:
+>> +
+>> + - compatible: should be "adi,adux1020"
+>> + - reg: the I2C address of the sensor
+>> +
+>> +Optional properties:
+>> +
+>> + - interrupts: interrupt mapping for IRQ as documented in
+>> + =20
+>Documentation/devicetree/bindings/interrupt-controller/interrupts=2Etxt
+>> +
+>> +Example:
+>> +
+>> +adux1020@64 {
+>> +	compatible =3D "adi,adux1020";
+>> +	reg =3D <0x64>;
+>> +	interrupt-parent =3D <&msmgpio>;
+>> +	interrupts =3D <24 IRQ_TYPE_LEVEL_HIGH>;
+>> +};
+
+--=20
+Sent from my Android device with K-9 Mail=2E Please excuse my brevity=2E
