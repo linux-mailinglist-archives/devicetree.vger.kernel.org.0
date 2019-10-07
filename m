@@ -2,37 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D1BCE381
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE588CE3AC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:29:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728620AbfJGN1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 09:27:11 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:59037 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728603AbfJGN1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:27:11 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 3D9B51C0012;
-        Mon,  7 Oct 2019 13:27:08 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 8/8] dt-bindings: Add max12xx SPI ADC series as trivial devices
-Date:   Mon,  7 Oct 2019 15:26:57 +0200
-Message-Id: <20191007132657.4190-9-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191007132657.4190-1-miquel.raynal@bootlin.com>
-References: <20191007132657.4190-1-miquel.raynal@bootlin.com>
+        id S1728360AbfJGN3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 09:29:07 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:45942 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727324AbfJGN3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:29:06 -0400
+Received: by mail-lf1-f67.google.com with SMTP id r134so9243943lff.12;
+        Mon, 07 Oct 2019 06:29:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=pqYD4jTL26Lkbsq1KtcLnT62csNab9jmgl1QSZGOUz0=;
+        b=HwpPyQy5MQQ/Wi7GTUG/tRb/7MfSNtVgjW7FTxduVp5StaSEnX3kkChL4bCxkOFUOd
+         6v4UcsmKAbmgwMzEkkdhYcDqIN0fNG4jyKgIv/quGZtZrCGbL1fz+sQMdT0n+2wwwHTh
+         1T9QsweUSpn+SbSkxkhjn25hez4OfMQkZKtzn47Bk3TrEsmRcGEu8rY4q8QyqxN9PShY
+         3Il2P1f6jARXhN/gVLf9dOGRJOhAbrR+O50NUAd7rJ5ZcfNtdfbnHT5pYR8SYjCAfbxU
+         QX7R2gouNpp7YGmO4JDHyTDsPB3jPRvgz9IFK0uxbs8ntIbIruHHeqIHE64wPzSIjSw6
+         XZGg==
+X-Gm-Message-State: APjAAAX9/uQgxe+za2aahXwcpQnKFQnROwYsmTJaTrBy6tSmTicw0y+E
+        LrCEmh3XH3sQmTww7ccBWU3R+UsEVRsYag==
+X-Google-Smtp-Source: APXvYqyNQpxEHd5z1D3Qz5m5IShyRZbwN+ND3vrGJDazyPxUYYpX8ZIHxfsV/SZf1y1JaBb9QFF/bA==
+X-Received: by 2002:ac2:4a8f:: with SMTP id l15mr17121965lfp.21.1570454944104;
+        Mon, 07 Oct 2019 06:29:04 -0700 (PDT)
+Received: from neopili.qtec.com (cpe.xe-3-0-1-778.vbrnqe10.dk.customer.tdc.net. [80.197.57.18])
+        by smtp.gmail.com with ESMTPSA id f22sm2702245lfk.56.2019.10.07.06.29.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2019 06:29:02 -0700 (PDT)
+From:   Ricardo Ribalda Delgado <ribalda@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>, Sakari Ailus <sakari.ailus@iki.fi>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Ricardo Ribalda Delgado <ribalda@kernel.org>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v8 2/6] media: ad5820: DT new optional field enable-gpios
+Date:   Mon,  7 Oct 2019 15:28:52 +0200
+Message-Id: <20191007132856.27948-3-ribalda@kernel.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191007132856.27948-1-ribalda@kernel.org>
+References: <20191007132856.27948-1-ribalda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -40,66 +54,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the compatible list with three Maxim ADCs compatibles.
+Document new enable-gpio field. It can be used to disable the part
+without turning down its regulator.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Ricardo Ribalda Delgado <ribalda@kernel.org>
+Acked-by: Pavel Machek <pavel@ucw.cz>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/iio/adc/max1027-adc.txt          | 28 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  6 ++++
- 2 files changed, 34 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/max1027-adc.txt
+ Documentation/devicetree/bindings/media/i2c/ad5820.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/max1027-adc.txt b/Documentation/devicetree/bindings/iio/adc/max1027-adc.txt
-new file mode 100644
-index 000000000000..1b703a01d882
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/max1027-adc.txt
-@@ -0,0 +1,28 @@
-+* Maxim 1027/1029/1031/1227/1229/1231 Analog to Digital Converter (ADC)
-+
-+Required properties:
-+  - compatible: Should be one of:
-+    * "maxim,max1027"
-+    * "maxim,max1029"
-+    * "maxim,max1031"
-+    * "maxim,max1227"
-+    * "maxim,max1229"
-+    * "maxim,max1231"
-+  - reg: SPI chip select number for the device
-+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ad5820.txt b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
+index 5940ca11c021..db596e8eb0ba 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ad5820.txt
++++ b/Documentation/devicetree/bindings/media/i2c/ad5820.txt
+@@ -8,6 +8,11 @@ Required Properties:
+ 
+   - VANA-supply: supply of voltage for VANA pin
+ 
 +Optional properties:
-+  - interrupts: IRQ line for the ADC
-+  see: Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
 +
-+Recommended properties:
-+- spi-max-frequency: Definition as per
-+                     Documentation/devicetree/bindings/spi/spi-bus.txt
++   - enable-gpios : GPIO spec for the XSHUTDOWN pin. The XSHUTDOWN signal is
++active low, a high level on the pin enables the device.
 +
-+Example:
-+adc@0 {
-+	compatible = "maxim,max1027";
-+	reg = <0>;
-+	interrupt-parent = <&gpio5>;
-+	interrupts = <15 IRQ_TYPE_EDGE_RISING>;
-+	spi-max-frequency = <1000000>;
-+};
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index e0095ecb472f..765fd1c170df 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -120,6 +120,12 @@ properties:
-           - maxim,max1029
-             # 10-bit 16 channels 300ks/s SPI ADC with temperature sensor
-           - maxim,max1031
-+            # 12-bit 8 channels 300ks/s SPI ADC with temperature sensor
-+          - maxim,max1227
-+            # 12-bit 12 channels 300ks/s SPI ADC with temperature sensor
-+          - maxim,max1229
-+            # 12-bit 16 channels 300ks/s SPI ADC with temperature sensor
-+          - maxim,max1231
-             # Low-Power, 4-/12-Channel, 2-Wire Serial, 12-Bit ADCs
-           - maxim,max1237
-             # PECI-to-I2C translator for PECI-to-SMBus/I2C protocol conversion
+ Example:
+ 
+        ad5820: coil@c {
+@@ -15,5 +20,6 @@ Example:
+                reg = <0x0c>;
+ 
+                VANA-supply = <&vaux4>;
++               enable-gpios = <&msmgpio 26 GPIO_ACTIVE_HIGH>;
+        };
+ 
 -- 
-2.20.1
+2.23.0
 
