@@ -2,713 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94A3DCE59B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1751ACE616
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728037AbfJGOp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 10:45:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55684 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726334AbfJGOp6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 10:45:58 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4636B21721;
-        Mon,  7 Oct 2019 14:45:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570459556;
-        bh=cftbjFD/FjfRMe5P5V0DZpjpj9pgDTxuYWgBNyz+KqE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=2vzbDakubrofQRauUeP1zBdIso0+rPl/KSwC1xbk1TkmMMNkz4gdSiF0f2YkxxYKY
-         fbWgLlwRdZML3nxXZ2s2g4EUwcHbEVXk2JFXi4wi2goKuZyvBboOL+uWwJCiySLPUD
-         kZ2DPiOEWXz8IgpEyHvyX1D7LLy4Uf5t9IjEpg1I=
-Received: by mail-qt1-f174.google.com with SMTP id m61so8411615qte.7;
-        Mon, 07 Oct 2019 07:45:56 -0700 (PDT)
-X-Gm-Message-State: APjAAAVgEWnBbfMQL2XuOAUly7IStb3V83XdyrsMp+5Qb4lPY2G/XU74
-        uB64bSzMf1eUyWA11lVwKcU4KmUx+gfFuWVPCA==
-X-Google-Smtp-Source: APXvYqzPTwK059ixE6lNwvU1ZdnlHH3WEB9pe2jmn1Axua28S3bOuTf1zJKPoWsgwXVCa7OIhNjPgMDgBx8wNbCD0Zo=
-X-Received: by 2002:a0c:9792:: with SMTP id l18mr27004723qvd.79.1570459554938;
- Mon, 07 Oct 2019 07:45:54 -0700 (PDT)
+        id S1728702AbfJGOwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 10:52:22 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:50528 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728048AbfJGOwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:52:21 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x97EmcAW018503;
+        Mon, 7 Oct 2019 10:51:44 -0400
+Received: from nam05-co1-obe.outbound.protection.outlook.com (mail-co1nam05lp2053.outbound.protection.outlook.com [104.47.48.53])
+        by mx0a-00128a01.pphosted.com with ESMTP id 2ver39g0k5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 07 Oct 2019 10:51:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=d84C7TxoBbKGK3k3jM/CFXdcsetRap/hfYhfzj2fckatSj62jjGQKeEV8pnviqvhzKuRjDjT0lmIu1sMYi81Gm4a+8MUsQRUqentW8ho+MCiXPQ1z3DP9gOxN2hSur3aYg+76cSRMWCGZkSJopoHZvToFI5tayshGDrH9IvJciIETEtJ4vkWiqEOXaOguQg8NZmpZTCMPTVXbanq4TbKPGEWNuRDsl9jeDNXrOV0+s3jrKUXWAl9c083cBgCkPZ8CmfLW1xG2swRdg2WkONnW7Z0jTEegjvyYdbj0eZl6+GMiUZ7YQCxh9TjSKX2+q1eXkaT/8m/7st92HSqeQSEbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K77tTBSVoUK4IdltcfrmqG1uT99nJXTL6Nup1joNEZ8=;
+ b=K3YDIWxBnMVBVt9UdJdWuQwoxp/EOuqQiVLt0ayJx3rpUwIR9S8klUITDzxkrtFl0Mfa7XfolaUJ5b3B41LpsgkDAC8GliX26SxXdoHezCX/sRFTyU6KNKhSRyc7QAtXKDmcfaB8MHTaGKbaHuBQRoLSkZxDRZoGKLxDyKp3Zr2pfS3mVUNCT4dIXqKQE9qAWUlT+9uCyDGBZuxNNrEsMC1IJMasFtYymGrIu6zsQpQVouREoQyUejzf9pWVfc2y6sswoeMrwbOPlz/duuOz4svb+D4wyZB75OvHURNuu0nmr+7k0qyWvpG7irdbqQUCvJcxoajoI3iP81gD+Zi9rA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K77tTBSVoUK4IdltcfrmqG1uT99nJXTL6Nup1joNEZ8=;
+ b=Ky2dTO9kZk95OtU9f7ratPeBS309otjt5oBwbEfYGhXsuMHvAzW+e1h7ibiea+FwVK74myo5Lm1DgMBQuOZmbXZL7n40UIfRFeJD4pZMsbv/5c63PLsSgVpyjSttkTZYbU/nodkqZ1SnxJoTeulC9+n6rL/DwKdE5uYjiqgDNjY=
+Received: from MN2PR03MB5117.namprd03.prod.outlook.com (52.132.171.137) by
+ MN2PR03MB5373.namprd03.prod.outlook.com (10.186.144.77) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.24; Mon, 7 Oct 2019 14:51:42 +0000
+Received: from MN2PR03MB5117.namprd03.prod.outlook.com
+ ([fe80::8c20:8f3b:b536:dca5]) by MN2PR03MB5117.namprd03.prod.outlook.com
+ ([fe80::8c20:8f3b:b536:dca5%7]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
+ 14:51:42 +0000
+From:   "Sa, Nuno" <Nuno.Sa@analog.com>
+To:     "linux@roeck-us.net" <linux@roeck-us.net>
+CC:     "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/3] hwmon: Add support for ltc2947
+Thread-Topic: [PATCH 2/3] hwmon: Add support for ltc2947
+Thread-Index: AQHVfQ0JfzZtaDJjC0uzTOP32sZwk6dPQ3sA
+Date:   Mon, 7 Oct 2019 14:51:41 +0000
+Message-ID: <5f280daff806cb73a160d10f5ec97be18d42aebb.camel@analog.com>
+References: <20190924124945.491326-1-nuno.sa@analog.com>
+         <20190924124945.491326-3-nuno.sa@analog.com>
+         <20191003041446.GA2332@roeck-us.net>
+         <d0a992bebbc3c388b6be100d1821fa5813fcc1b4.camel@analog.com>
+         <20191004150623.GA28287@roeck-us.net>
+         <7d4ca133201f8c75855de6777f6018567701e16a.camel@analog.com>
+         <94cf417f-90fa-50b8-9d4a-d7e4c9dd3d8d@roeck-us.net>
+In-Reply-To: <94cf417f-90fa-50b8-9d4a-d7e4c9dd3d8d@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.71.226.54]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0ee2bc3b-f8d6-480e-0cc2-08d74b35dda3
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: MN2PR03MB5373:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <MN2PR03MB53738703B6DA1BF7DEE951EA999B0@MN2PR03MB5373.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01834E39B7
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(39860400002)(366004)(346002)(376002)(136003)(189003)(199004)(3846002)(6116002)(76176011)(305945005)(7736002)(25786009)(71190400001)(71200400001)(316002)(6916009)(54906003)(86362001)(256004)(14444005)(2906002)(99286004)(2501003)(2616005)(476003)(6436002)(6512007)(486006)(5640700003)(6306002)(11346002)(91956017)(446003)(118296001)(6486002)(66446008)(64756008)(66556008)(66476007)(6246003)(4326008)(76116006)(478600001)(8936002)(26005)(81166006)(5660300002)(1730700003)(8676002)(81156014)(966005)(186003)(36756003)(6506007)(53546011)(2351001)(102836004)(229853002)(66946007)(66066001)(14454004)(6606295002);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR03MB5373;H:MN2PR03MB5117.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: analog.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: VbmdEvuWqUgVXhic/sggqlXHI3e5PpE2dA1OMBYa9iKed3J39BZ1h49jusdRBzLYELM1yLfR/ePYJa9c4rA/iAFXu/70Z9T2Pjjswn1WlAIJGHQ2NopaB6SIMpktbpwc9jyuIOjly76TTgTDh3P701xEOtCidnaRmp9Ss99FhutJom9VEu5xVBJO4ObNCLmxBpKssPezGh0OpjmW1ONZrtOyd0vB0crEmlXpuiMlrgtIQRuNd59h/70MUatj8gpWr0qDEmhCn8M8b5mKkWnSnCH2/9hfglrK/GX41WJlmitan5hsABqpOQaULOLQun/SJSn53BQ5V2hVmlsRNZAyQHuXH9EnQZPiecUPMCntpO+IX48Hr8dfLc3gVfLfScGcub6WKSuiS9Uyh1jonV3Jd/x/pJ1h8Sscpvjitj95U1vl9mbGO2W6lG7zkjGXEyb9SMJhhBjDAgDYnRvDBgddTg==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1F2184B5BF7CD445BA89C14583829E4D@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20191004135519.191657-1-nuno.sa@analog.com> <20191004135519.191657-2-nuno.sa@analog.com>
-In-Reply-To: <20191004135519.191657-2-nuno.sa@analog.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 7 Oct 2019 09:45:42 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+a7t5ZGf+7=LD2BnGRexJb6wpbBvvSFncgBKV-h3-7MA@mail.gmail.com>
-Message-ID: <CAL_Jsq+a7t5ZGf+7=LD2BnGRexJb6wpbBvvSFncgBKV-h3-7MA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: Add ltc2983 documentation
-To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ee2bc3b-f8d6-480e-0cc2-08d74b35dda3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 14:51:41.9427
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WSDDNTn+MbztvHDYenjgPgpEGZTiZEh9BqzM7xSB49k9oHNH4Mn8gSf7b0rr1w788OiCaWwfwym9RkXpXHZElg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR03MB5373
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-07_02:2019-10-07,2019-10-07 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 malwarescore=0 impostorscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910070148
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 8:55 AM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
->
-> Document the LTC2983 temperature sensor devicetree bindings.
->
-> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> ---
-> Changes in v2:
->  * Drop maxItems in non-array elements;
->  * Set adi,mux-delay-config-us instead of adi,mux-delay-config;
->  * Wrapped lines at 80 char;
->  * Added comas to enum elements;
->  * Use real units in adi,excitation-current;
->  * Moved some enums to minimum and maximum;
->  * Grouped patternProperties and moved reg property as a generic property=
-.
->
-> Changes in v3:
->  * Add meaning to adi,sensor-type values which are not const;
->  * Add meaning to adi,filter-notch-freq values;
->  * Break up adi,sensor-config into human readable elements;
->  * Set maxItems/minItems at the same identation as allOf in adi,custom-se=
-nsor;
->  * Fixed the maximum value for adi,sensor-type for sensors with custom su=
-pport;
->  * Changed license to GPL-2.0-only as it should be for new bindings;
->  * Changed spi0 to spi in the dts example;
->  * Updated the dts example to the new properties.
->
->  .../bindings/iio/temperature/adi,ltc2983.yaml | 479 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 480 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/adi=
-,ltc2983.yaml
->
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc298=
-3.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> new file mode 100644
-> index 000000000000..b7101a0e84db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> @@ -0,0 +1,479 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-(GPL-2.0-only OR BSD-2-Clause) for new bindings please.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/adi,ltc2983.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices LTC2983 Multi-sensor Temperature system
-> +
-> +maintainers:
-> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
-> +
-> +description: |
-> +  Analog Devices LTC2983 Multi-Sensor Digital Temperature Measurement Sy=
-stem
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/29=
-83fc.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ltc2983
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  adi,temperature-celcius:
-
--celsius. However, that suffix is reserved for properties whose value
-is in Celsius, so you'll have to come up with something else.
-
-How does one decide how to set this? Seems like the driver should just
-decide based on what it needs to present to the user.
-
-> +    description:
-> +      If this property is present, the temperature is reported in Celsiu=
-s.
-> +    type: boolean
-> +
-> +  adi,mux-delay-config-us:
-> +    description:
-> +      The LTC2983 performs 2 or 3 internal conversion cycles per tempera=
-ture
-> +      result. Each conversion cycle is performed with different excitati=
-on and
-> +      input multiplexer configurations. Prior to each conversion, these
-> +      excitation circuits and input switch configurations are changed an=
-d an
-> +      internal 1ms delay ensures settling prior to the conversion cycle =
-in most
-> +      cases. An extra delay can be configured using this property. The v=
-alue is
-> +      rounded to nearest 100us.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - maximum: 255
-
-Standard unit suffixes already have a type, so just:
-
-maximum: 255
-
-> +
-> +  adi,filter-notch-freq:
-> +    description:
-> +      Set's the default setting of the digital filter. The default is
-> +      simultaneous 50/60Hz rejection.
-> +      0 - 50/60Hz rejection
-> +      1 - 60Hz rejection
-> +      2 - 50Hz rejection
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - minimum: 0
-> +      - maximum: 2
-
-Drop the '-' on the last entry (making the min/max a single schema).
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  ".*@([1-9]|1[0-9]|20)$":
-
-'.*' can be dropped.
-
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can be connected to one of the 20 chann=
-els of
-> +          the device.
-> +        minimum: 1
-> +        maximum: 20
-> +
-> +    required:
-> +      - reg
-> +
-> +    patternProperties:
-> +      "^thermocouple@.*":
-
-You've made this node a child of '.*@([1-9]|1[0-9]|20)$'. This needs
-to be at the same level.
-
-> +        type: object
-> +        description: |
-
-You can drop the '|' where you don't need any formatting.
-
-> +          Represents a thermocouple sensor which is connected to one of =
-the device
-> +          channels.
-> +
-> +        properties:
-> +          adi,sensor-type:
-> +            description: |
-> +              Identifies the type of thermocouple connected to the devic=
-e.
-> +              1 - Type J Thermocouple
-> +              2 - Type K Thermocouple
-> +              3 - Type E Thermocouple
-> +              4 - Type N Thermocouple
-> +              5 - Type R Thermocouple
-> +              6 - Type S Thermocouple
-> +              7 - Type T Thermocouple
-> +              8 - Type B Thermocouple
-> +              9 - Custom Thermocouple
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-
-You can move the type definition under ".*@([1-9]|1[0-9]|20)$" and
-then just have the min/max here.
-
-> +              - minimum: 1
-> +              - maximum: 9
-> +
-> +          adi,single-ended:
-> +            description: |
-> +              Boolean property which set's the thermocouple as single-en=
-ded.
-> +            type: boolean
-> +
-> +          adi,sensor-oc-current-microamp:
-> +            description: |
-> +              This property set's the pulsed current value applied durin=
-g
-> +              open-circuit detect.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - enum: [10, 100, 500, 1000]
-> +
-> +          adi,cold-junction-handle:
-> +            description: |
-> +              Phandle which points to a sensor object responsible for me=
-asuring
-> +              the thermocouple cold junction temperature.
-> +            $ref: "/schemas/types.yaml#/definitions/phandle"
-> +
-> +          adi,custom-sensor:
-> +            description: |
-> +              This is a table, where each entry should be a pair of
-> +              voltage(mv)-temperature(K). The entries must be given in n=
-v and uK
-> +              so that, the original values must be multiplied by 1000000=
-. For
-
-We normally do things in microVolts. It seems strange to need 64-bits
-of range for voltage and temperature.
-
-> +              more details look at table 69 and 70.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/int64-array
-
-Fails on 'make dt_binding_check':
-
-Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml:
-Unresolvable JSON pointer: 'definitions/int64-array'
-
-If this is pairs of values, it should really be defined as a matrix:
-
-minItems: 3
-maxItems: 64
-items:
-  minItems: 2
-  maxItems: 2
-
-Though I'll need to add uint64-matrix as a type (assuming this really
-needs to be 64-bit).
-
-
-> +            minItems: 6
-> +            maxItems: 128
-> +
-> +        required:
-> +          - adi,sensor-type
-> +
-> +      "^diode@.*":
-> +        type: object
-> +        description: |
-> +          Represents a diode sensor which is connected to one of the dev=
-ice
-> +          channels.
-> +
-> +        properties:
-> +          adi,sensor-type:
-> +            description: Identifies the sensor as a diode.
-> +            const: 28
-> +
-> +          adi,single-ended:
-> +            description: Boolean property which set's the diode as singl=
-e-ended.
-> +            type: boolean
-> +
-> +          adi,three-conversion-cycles:
-> +            description: |
-> +              Boolean property which set's three conversion cycles remov=
-ing
-> +              parasitic resistance effects between the LTC2983 and the d=
-iode.
-> +            type: boolean
-> +
-> +          adi,average-on:
-> +            description: |
-> +              Boolean property which enables a running average of the di=
-ode
-> +              temperature reading. This reduces the noise when the diode=
- is used
-> +              as a cold junction temperature element on an isothermal bl=
-ock
-> +              where temperatures change slowly.
-> +            type: boolean
-> +
-> +          adi,excitation-current-microamp:
-> +            description: |
-> +              This property controls the magnitude of the excitation cur=
-rent
-> +              applied to the diode. Depending on the number of conversio=
-ns
-> +              cycles, this property will assume different predefined val=
-ues on
-> +              each cycle. Just set the value of the first cycle (1l).
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - enum: [10, 20, 40, 80]
-> +
-> +          adi,ideal-factor-value:
-> +            description: |
-> +              This property sets the diode ideality factor. The real val=
-ue must
-> +              be multiplied by 1000000 to remove the fractional part. Fo=
-r more
-> +              information look at table 20 of the datasheet.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +        required:
-> +          - adi,sensor-type
-> +
-> +      "^rtd@.*":
-> +        type: object
-> +        description: |
-> +          Represents a rtd sensor which is connected to one of the devic=
-e channels.
-> +
-> +        properties:
-> +          reg:
-> +            minimum: 2
-> +
-> +          adi,sensor-type:
-> +            description: |
-> +              Identifies the type of RTD connected to the device.
-> +              10 - RTD PT-10
-> +              11 - RTD PT-50
-> +              12 - RTD PT-100
-> +              13 - RTD PT-200
-> +              14 - RTD PT-500
-> +              15 - RTD PT-1000
-> +              16 - RTD PT-1000 (0.00375)
-> +              17 - RTD NI-120
-> +              18 - RTD Custom
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - minimum: 10
-> +              - maximum: 18
-> +
-> +          adi,rsense-handle:
-> +            description: |
-> +              Phandle pointing to a rsense object associated with this R=
-TD.
-> +            $ref: "/schemas/types.yaml#/definitions/phandle"
-> +
-> +          adi,number-of-wires:
-> +            description: |
-> +              Identifies the number of wires used by the RTD. Setting th=
-is
-> +              property to 5 means 4 wires with Kelvin Rsense.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - enum: [2, 3, 4, 5]
-> +
-> +          adi,rsense-share:
-> +            description: |
-> +              Boolean property which enables Rsense sharing, where one s=
-ense
-> +              resistor is used for multiple 2-, 3-, and/or 4-wire RTDs.
-> +            type: boolean
-> +
-> +          adi,current-rotate:
-> +            description: |
-> +              Boolean property which enables excitation current rotation=
- to
-> +              automatically remove parasitic thermocouple effects. Note =
-that
-> +              this property is not allowed for 2- and 3-wire RTDs.
-> +            type: boolean
-> +
-> +          adi,excitation-current-microamp:
-> +            description: |
-> +              This property controls the magnitude of the excitation cur=
-rent
-> +              applied to the RTD.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-
-You can drop the type here too.
-
-> +              - enum: [5, 10, 25, 50, 100, 250, 500, 1000]
-> +
-> +          adi,rtd-curve:
-> +            description: |
-> +              This property set the RTD curve used and the corresponding
-> +              Callendar-VanDusen constants. Look at table 30 of the data=
-sheet.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - minimum: 0
-> +              - maximum: 3
-> +
-> +          adi,custom-sensor:
-> +            description: |
-> +              This is a table, where each entry should be a pair of
-> +              resistance(ohm)-temperature(K). The entries added here are=
- in uohm
-> +              and uK. For more details values look at table 74 and 75.
-
-It's not great to make one property name have different meanings.
-
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint64-array
-> +            minItems: 6
-> +            maxItems: 128
-> +
-> +        required:
-> +          - adi,sensor-type
-> +          - adi,rsense-handle
-> +
-> +        dependencies:
-> +          adi,current-rotate: [ adi,rsense-share ]
-> +
-> +      "^thermistor@.*":
-> +        type: object
-> +        description: |
-> +          Represents a thermistor sensor which is connected to one of th=
-e device
-> +          channels.
-> +
-> +        properties:
-> +          adi,sensor-type:
-> +            description: |
-> +              Identifies the type of thermistor connected to the
-> +              device.
-> +              19 - Thermistor 44004/44033 2.252kohm at 25=C2=B0C
-> +              20 - Thermistor 44005/44030 3kohm at 25=C2=B0C
-> +              21 - Thermistor 44007/44034 5kohm at 25=C2=B0C
-> +              22 - Thermistor 44006/44031 10kohm at 25=C2=B0C
-> +              23 - Thermistor 44008/44032 30kohm at 25=C2=B0C
-> +              24 - Thermistor YSI 400 2.252kohm at 25=C2=B0C
-> +              25 - Thermistor Spectrum 1003k 1kohm
-> +              26 - Thermistor Custom Steinhart-Hart
-> +              27 - Custom Thermistor
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - minimum: 19
-> +              - maximum: 27
-> +
-> +          adi,rsense-handle:
-> +            description: |
-> +              Phandle pointing to a rsense object associated with this
-> +              thermistor.
-> +            $ref: "/schemas/types.yaml#/definitions/phandle"
-> +
-> +          adi,single-ended:
-> +            description: |
-> +              Boolean property which set's the thermistor as single-ende=
-d.
-> +            type: boolean
-> +
-> +          adi,rsense-share:
-> +            description: |
-> +              Boolean property which enables Rsense sharing, where one s=
-ense
-> +              resistor is used for multiple thermistors. Note that this =
-property
-> +              is ignored if adi,single-ended is set.
-> +            type: boolean
-> +
-> +          adi,current-rotate:
-> +            description: |
-> +              Boolean property which enables excitation current rotation=
- to
-> +              automatically remove parasitic thermocouple effects.
-> +            type: boolean
-> +
-> +          adi,excitation-current-nanoamp:
-> +            description: |
-> +              This property controls the magnitude of the excitation cur=
-rent
-> +              applied to the thermistor. Value 0 set's the sensor in aut=
-o-range
-> +              mode.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint32
-> +              - enum: [0, 250, 500, 1000, 5000, 10000, 25000, 50000, 100=
-000,
-> +                       250000, 500000, 1000000]
-> +
-> +          adi,custom-sensor:
-> +            description: |
-> +              This is a table, where each entry should be a pair of
-> +              resistance(ohm)-temperature(K). The entries added here are=
- in uohm
-> +              and uK only for custom thermistors. For more details look =
-at table
-> +              78 and 79. Steinhart-Hart coefficients are also supported =
-and can
-> +              be programmed into the device memory using this property. =
-For
-> +              Steinhart sensors, this table has a constant size of 6 ent=
-ries
-> +              (defining the coefficients) and the values are given in th=
-e raw
-> +              format. Look at table 82 for more information.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint64-array
-> +            minItems: 6
-> +            maxItems: 128
-> +
-> +        required:
-> +          - adi,sensor-type
-> +          - adi,rsense-handle
-> +
-> +        dependencies:
-> +          adi,current-rotate: [ adi,rsense-share ]
-> +
-> +      "^adc@.*":
-> +        type: object
-> +        description: Represents a channel which is being used as a direc=
-t adc.
-> +
-> +        properties:
-> +          adi,sensor-type:
-> +            description: Identifies the sensor as a direct adc.
-> +            const: 30
-> +
-> +          adi,single-ended:
-> +            description: Boolean property which set's the adc as single-=
-ended.
-> +            type: boolean
-> +
-> +        required:
-> +          - adi,sensor-type
-> +
-> +      "^rsense@.*":
-> +        type: object
-> +        description: |
-> +          Represents a rsense which is connected to one of the device ch=
-annels.
-> +          Rsense are used by thermistors and RTD's.
-> +
-> +        properties:
-> +          reg:
-> +            minimum: 2
-> +
-> +          adi,sensor-type:
-> +            description: Identifies the sensor as a rsense.
-> +            const: 29
-> +
-> +          adi,rsense-val-micro-ohms:
-> +            description: |
-> +              Sets the value of the sense resistor. Look at table 20 of =
-the
-> +              datasheet for information.
-> +            allOf:
-> +              - $ref: /schemas/types.yaml#/definitions/uint64
-
--micro-ohms is already defined to be 32-bit.
-
-> +
-> +        required:
-> +          - adi,sensor-type
-> +          - adi, rsense-val
-
-spurious space.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        sensor_ltc2983: ltc2983@0 {
-> +                compatible =3D "adi,ltc2983";
-> +                reg =3D <0>;
-> +
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +
-> +                adi,temperature-celcius;
-> +                interrupts =3D <20 IRQ_TYPE_EDGE_RISING>;
-> +                interrupt-parent =3D <&gpio>;
-> +
-> +                thermocouple@18 {
-> +                        reg =3D <18>;
-> +                        adi,sensor-type =3D <8>; //Type B
-> +                        adi,sensor-oc-current-microamp =3D <10>;
-> +                        adi,cold-junction-handle =3D <&diode5>;
-> +                };
-> +
-> +                diode5: diode@5 {
-> +                        reg =3D <5>;
-> +                        adi,sensor-type =3D <28>;
-> +                };
-> +
-> +                rsense2: rsense@2 {
-> +                        reg =3D <2>;
-> +                        adi,sensor-type =3D <29>;
-> +                        adi,rsense-val-micro-ohms =3D /bits/ 64 <1200000=
-000>; //1.2Kohms
-> +                };
-> +
-> +                rtd@14 {
-> +                        reg =3D <14>;
-> +                        adi,sensor-type =3D <15>; //PT1000
-> +                        /*2-wire, internal gnd, no current rotation*/
-> +                        adi,number-of-wires =3D <2>;
-> +                        adi,rsense-share;
-> +                        adi,excitation-current-microamp =3D <500>;
-> +                        adi,rsense-handle =3D <&rsense2>;
-> +                };
-> +
-> +                adc@10 {
-> +                        reg =3D <10>;
-> +                        adi,sensor-type =3D <30>;
-> +                        adi,single-ended;
-> +                };
-> +
-> +                thermistor@12 {
-> +                        reg =3D <12>;
-> +                        adi,sensor-type =3D <26>; //Steinhart
-> +                        adi,rsense-handle =3D <&rsense2>;
-> +                        adi,custom-sensor =3D /bits/ 64 <0x00F371EC 0x12=
-345678
-> +                                        0x2C0F8733 0x10018C66 0xA0FEACCD
-> +                                        0x90021D99>; //6 entries
-> +                };
-> +
-> +                thermocouple@20 {
-> +                        reg =3D <20>;
-> +                        adi,sensor-type =3D <9>; //custom thermocouple
-> +                        adi,single-ended;
-> +                        adi,custom-sensor =3D /bits/ 64
-> +                                 <(-50220000) 0
-> +                                  (-30200000) 99100000
-> +                                  (-5300000) 135400000
-> +                                  0 273150000
-> +                                  40200000 361200000
-> +                                  55300000 522100000
-> +                                  88300000 720300000
-> +                                  132200000 811200000
-> +                                  188700000 922500000
-> +                                  460400000 1000000000>; //10 pairs
-> +               };
-> +
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 14a256e785ca..f747a9dc27f5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9497,6 +9497,7 @@ W:        http://ez.analog.com/community/linux-devi=
-ce-drivers
->  L:     linux-iio@vger.kernel.org
->  S:     Supported
->  F:     drivers/iio/temperature/ltc2983.c
-> +F:     Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
-l
->
->  LTC4261 HARDWARE MONITOR DRIVER
->  M:     Guenter Roeck <linux@roeck-us.net>
-> --
-> 2.23.0
->
+T24gTW9uLCAyMDE5LTEwLTA3IGF0IDA1OjQ0IC0wNzAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0K
+PiANCj4gT24gMTAvNy8xOSA1OjI1IEFNLCBTYSwgTnVubyB3cm90ZToNCj4gPiBPbiBGcmksIDIw
+MTktMTAtMDQgYXQgMDg6MDYgLTA3MDAsIEd1ZW50ZXIgUm9lY2sgd3JvdGU6DQo+ID4gPiBPbiBG
+cmksIE9jdCAwNCwgMjAxOSBhdCAwNzo0NTowN0FNICswMDAwLCBTYSwgTnVubyB3cm90ZToNCj4g
+PiA+IFsgLi4uIF0NCj4gPiA+ID4gPiA+ICtzdGF0aWMgaW50IGx0YzI5NDdfdmFsX3JlYWQoc3Ry
+dWN0IGx0YzI5NDdfZGF0YSAqc3QsIGNvbnN0DQo+ID4gPiA+ID4gPiB1OA0KPiA+ID4gPiA+ID4g
+cmVnLA0KPiA+ID4gPiA+ID4gKwkJCSAgICBjb25zdCB1OCBwYWdlLCBjb25zdCBzaXplX3Qgc2l6
+ZSwNCj4gPiA+ID4gPiA+IHM2NCAqdmFsKQ0KPiA+ID4gPiA+ID4gK3sNCj4gPiA+ID4gPiA+ICsJ
+aW50IHJldDsNCj4gPiA+ID4gPiA+ICsJdTY0IF9fdmFsID0gMDsNCj4gPiA+ID4gPiA+ICsNCj4g
+PiA+ID4gPiA+ICsJbXV0ZXhfbG9jaygmc3QtPmxvY2spOw0KPiA+ID4gPiA+ID4gKw0KPiA+ID4g
+DQo+ID4gPiBPbiBhIHNpZGUgbm90ZSwgc3VzcGVuZCBjb2RlIGlzIHN1cHBvc2VkIHRvIGJlIGF0
+b21pYywNCj4gPiA+IElmIHRoaXMgbG9jayBpcyBoZWxkLCB0aGUgcHJvY2VzcyBvciB0aHJlYWQg
+aG9sZGluZyBpdA0KPiA+ID4gd2lsbCBsaWtlbHkgc3RhbGwgc3VzcGVuZCBzaW5jZSBpdCB3b24n
+dCBydW4uDQo+ID4gPiBBdCB0aGUgdmVyeSBsZWFzdCwgdGhpcyB3b3VsZCBoYXZlIHRvIGJlIGEg
+dHJ5bG9jaywNCj4gPiA+IHdpdGggc3VzcGVuZCBmYWlsaW5nIGlmIHRoZSBsb2NrIGNhbiBub3Qg
+YmUgYWNxdWlyZWQuDQo+ID4gDQo+ID4gR290IGl0LiBFdmVuIG1vcmUsIE5vdyBJIGRvbid0IHNl
+ZSB0aGUgcG9pbnQgb2YgaGF2aW5nIHRoZSBtdXRleCBpbg0KPiA+IHRoZQ0KPiA+IFBNIGNhbGxi
+YWNrcyAodGhvdWdoIEkgc2F3IG90aGVyIGRyaXZlcnMgZG9pbmcgdGhpcykuIEFzIHlvdSBzYWlk
+LA0KPiA+IGF0DQo+ID4gdGhlIHZlcnkgbGVhc3QgdGhlIHRyeWxvY2sgc2hvdWxkIGJlIHVzZWQg
+c2luY2UgYSBmcm96ZW4gdGFzayBtaWdodA0KPiA+IGhhdmUgdGhlIG11dGV4IGxvY2tlZC4gRWl0
+aGVyIHdheSwgSSB3aWxsIGRyb3AgYm90aCB0aGUgZmxhZyBhbmQNCj4gPiB0aGUNCj4gPiBjYWxs
+IHRvIG11dGV4XyogZnVuY3Rpb25zIGlzIHN1c3BlbmQoKS9yZXN1bWUoKS4NCj4gPiANCj4gPiA+
+ID4gPiA+ICsJaWYgKHN0LT5yZXNldCkgew0KPiA+ID4gPiA+ID4gKwkJbXV0ZXhfdW5sb2NrKCZz
+dC0+bG9jayk7DQo+ID4gPiA+ID4gPiArCQlyZXR1cm4gLUVQRVJNOw0KPiA+ID4gPiA+IA0KPiA+
+ID4gPiA+IE5vdCBzdXJlIHdoYXQgdGhlIGVycm9yIGhlcmUgc2hvdWxkIGJlLCBidXQgRVBFUk0g
+aXMgbm90DQo+ID4gPiA+ID4gY29ycmVjdC4NCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBVbmRlciB3
+aGljaCBjb25kaXRpb25zIHdvdWxkIHRoaXMgZnVuY3Rpb24gYmUgY2FsbGVkIHdoaWxlIGluDQo+
+ID4gPiA+ID4gc3VzcGVuZCA/DQo+ID4gPiA+IA0KPiA+ID4gPiBIb25lc3RseSwgdGhpcyBpcyBt
+b3JlIGxpa2UgYSBzYW5pdHkgY2hlY2suIEknbSBub3Qgc3VyZSBpZiB3ZQ0KPiA+ID4gPiBjYW4N
+Cj4gPiA+ID4gZ2V0DQo+ID4gPiA+IGhlcmUgaW4gc3VzcGVuZCBtb2RlLiBEb24ndCB1c2VybGFu
+ZCBhcHBzIGNhbiBzdGlsbCBydW4gaW4NCj4gPiA+ID4gc3VzcGVuZD8NCj4gPiA+ID4gSQ0KPiA+
+ID4gPiBndWVzcyBzbyBidXQgSSdtIG5vdCAxMDAlIHN1cmUgb24gdGhpcy4gRG8geW91IGhhdmUg
+YW55DQo+ID4gPiA+IHJlY29tbWVuZGF0aW9uDQo+ID4gPiA+IGZvciB0aGUgZXJyb3IgaGVyZT8N
+Cj4gPiA+ID4gDQo+ID4gPiBTb3JyeSwgSSB3b24ndCBhY2NlcHQgImp1c3QgaW4gY2FzZSIgY29k
+ZS4NCj4gPiA+IA0KPiA+ID4gSGF2aW5nIHNhaWQgdGhhdCwgcGxlYXNlIGluZm9ybSB5b3Vyc2Vs
+ZiBob3cgc3VzcGVuZCB3b3Jrcy4NCj4gPiA+IFVzZXJsYW5kDQo+ID4gPiBjb2RlDQo+ID4gPiBo
+YXMgdG8gYmUgc3RvcHBlZCBiZWZvcmUgYW55IGhhcmR3YXJlIGNhbiBiZSBkaXNhYmxlZC4gU2lt
+aWxhciwNCj4gPiA+IGhhcmR3YXJlDQo+ID4gPiBoYXMgdG8gYmUgcmUtZW5hYmxlZCBiZWZvcmUg
+dXNlcmxhbmQgY29kZSBjYW4gcmVzdW1lLg0KPiA+ID4gT3RoZXJ3aXNlIHRoZSBrZXJuZWwgd291
+bGQgY3Jhc2ggYWxsIG92ZXIgdGhlIHBsYWNlLiBJbiBtYW55DQo+ID4gPiBjYXNlcywNCj4gPiA+
+IGRpc2FibGluZyB0aGUgaGFyZHdhcmUgbWVhbnMgdGhhdCB0cnlpbmcgdG8gYWNjZXNzIGhhcmR3
+YXJlDQo+ID4gPiByZWdpc3RlcnMNCj4gPiA+IHdpbGwgY2F1c2UgYW4gYWNlc3MgZmF1bHQuDQo+
+ID4gDQo+ID4gWWVzLCB5b3UgYXJlIHJpZ2h0LiBJIGRpZCBjaGVja2VkIHRoZSBzdXNwZW5kIGNv
+ZGUgYW5kIGFsbCB1c2VybGFuZA0KPiA+IHRhc2tzIGFuZCBrdGhyZWFkcyBhcmUgc3RvcHBlZCBi
+ZWZvcmUgdGhlIHN1c3BlbmQoKSBjYWxsYmFjayBpcw0KPiA+IGNhbGxlZA0KPiA+IGZvciB0aGUg
+SFcgZGV2aWNlcy4NCj4gPiANCj4gPiA+IFsuLi5dDQo+ID4gPiANCj4gPiA+ID4gPiA+ICsNCj4g
+PiA+ID4gPiA+ICtzdGF0aWMgc3RydWN0IGF0dHJpYnV0ZSAqbHRjMjk0N19hdHRyc1tdID0gew0K
+PiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2luMF9mYXVsdC5kZXZfYXR0ci5hdHRyLA0K
+PiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2luMV9mYXVsdC5kZXZfYXR0ci5hdHRyLA0K
+PiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2N1cnIxX2ZhdWx0LmRldl9hdHRyLmF0dHIs
+DQo+ID4gPiA+ID4gPiArCSZzZW5zb3JfZGV2X2F0dHJfdGVtcDFfZmF1bHQuZGV2X2F0dHIuYXR0
+ciwNCj4gPiA+ID4gPiA+ICsJJnNlbnNvcl9kZXZfYXR0cl9wb3dlcjFfaW5wdXQuZGV2X2F0dHIu
+YXR0ciwNCj4gPiA+ID4gPiA+ICsJJnNlbnNvcl9kZXZfYXR0cl9wb3dlcjFfbWF4LmRldl9hdHRy
+LmF0dHIsDQo+ID4gPiA+ID4gPiArCSZzZW5zb3JfZGV2X2F0dHJfcG93ZXIxX21pbi5kZXZfYXR0
+ci5hdHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX3Bvd2VyMV9pbnB1dF9oaWdo
+ZXN0LmRldl9hdHRyLmF0dHIsDQo+ID4gPiA+ID4gPiArCSZzZW5zb3JfZGV2X2F0dHJfcG93ZXIx
+X2lucHV0X2xvd2VzdC5kZXZfYXR0ci5hdHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9h
+dHRyX3Bvd2VyMV9mYXVsdC5kZXZfYXR0ci5hdHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rl
+dl9hdHRyX2VuZXJneTFfaW5wdXQuZGV2X2F0dHIuYXR0ciwNCj4gPiA+ID4gPiA+ICsJJnNlbnNv
+cl9kZXZfYXR0cl9lbmVyZ3kxX21heC5kZXZfYXR0ci5hdHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vu
+c29yX2Rldl9hdHRyX2VuZXJneTFfbWluLmRldl9hdHRyLmF0dHIsDQo+ID4gPiA+ID4gPiArCSZz
+ZW5zb3JfZGV2X2F0dHJfZW5lcmd5MV9tYXhfYWxhcm0uZGV2X2F0dHIuYXR0ciwNCj4gPiA+ID4g
+PiA+ICsJJnNlbnNvcl9kZXZfYXR0cl9lbmVyZ3kxX21pbl9hbGFybS5kZXZfYXR0ci5hdHRyLA0K
+PiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2VuZXJneTJfaW5wdXQuZGV2X2F0dHIuYXR0
+ciwNCj4gPiA+ID4gPiA+ICsJJnNlbnNvcl9kZXZfYXR0cl9lbmVyZ3kyX21heC5kZXZfYXR0ci5h
+dHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2VuZXJneTJfbWluLmRldl9hdHRy
+LmF0dHIsDQo+ID4gPiA+ID4gPiArCSZzZW5zb3JfZGV2X2F0dHJfZW5lcmd5Ml9tYXhfYWxhcm0u
+ZGV2X2F0dHIuYXR0ciwNCj4gPiA+ID4gPiA+ICsJJnNlbnNvcl9kZXZfYXR0cl9lbmVyZ3kyX21p
+bl9hbGFybS5kZXZfYXR0ci5hdHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2Vu
+ZXJneTFfb3ZlcmZsb3dfYWxhcm0uZGV2X2F0dHIuYXR0ciwNCj4gPiA+ID4gPiA+ICsJJnNlbnNv
+cl9kZXZfYXR0cl9lbmVyZ3kyX292ZXJmbG93X2FsYXJtLmRldl9hdHRyLmF0dHIsDQo+ID4gPiA+
+IA0KPiA+ID4gPiBUaGVzZSBvdmVyZmxvdyBhdHRyaWJ1dGVzIGFyZSBraW5kIG9mIGFuIGFsYXJt
+IGZvciB0aGUgZW5lcmd5DQo+ID4gPiA+IG9uZXMuDQo+ID4gPiA+IEl0DQo+ID4gPiA+IHRlbGxz
+IHRoYXQgdGhlIGVuZXJneSByZWdpc3RlcnMgYXJlIGFib3V0IHRvIG92ZXJmbG93LiBJIGd1ZXNz
+DQo+ID4gPiA+IHRoYXQNCj4gPiA+ID4gc29tZSBhcHBsaWNhdGlvbiBjYW4gZWFzaWx5IGZpbmQg
+b3V0IHRoZSBtYXhpbXVtIHZhbHVlcw0KPiA+ID4gPiBzdXBwb3J0ZWQNCj4gPiA+ID4gb24NCj4g
+PiA+ID4gdGhlc2UgcmVnaXN0ZXJzIGFuZCBpbXBsZW1lbnQgd2hhdGV2ZXIgbG9naWMgdGhleSB3
+YW50IGluIHRoZQ0KPiA+ID4gPiBhcHANCj4gPiA+ID4gaXRzZWxmLiBTbywgaWYgeW91IHByZWZl
+ciBJIGNhbiBqdXN0IGRyb3AgdGhpcyBvbmVzPw0KPiA+ID4gPiANCj4gPiA+IEkgdW5kZXJzdGFu
+ZCB0aGUgb3ZlcmZsb3cgdXNlIGNhc2UuIEhvd2V2ZXIsIHRoZSBtZXJlIHByZXNlbmNlDQo+ID4g
+PiBvZiBtaW4vbWF4IGF0dHJpYnV0ZXMgZm9yIGVuZXJneSBhdHRyaWJ1dGVzIHN1Z2dlc3RzIHRo
+YXQgdGhpcw0KPiA+ID4gaXMgbm90IHRoZSBtaW4vbWF4IHVzZSBjYXNlIGZvciBod21vbiBhdHRy
+aWJ1dGVzLiBUaGVyZSBpcyBubw0KPiA+ID4gIm1pbmltdW0iDQo+ID4gPiBvciAibWF4aW11bSIg
+ZW5lcmd5IGZvciBhbiBhY2N1bXVsYXRpbmcgdmFsdWUuIFN1Y2ggYXR0cmlidXRlcw0KPiA+ID4g
+b25seSBtYWtlIHNlbnNlIGluIGFuIGFwcGxpY2F0aW9uIGFibGVyIHRvIG1lYXN1cmUgYXZhaWxh
+YmxlDQo+ID4gPiBlbmVyZ3kgKGVnIGEgYmF0dGVyeSBjb250cm9sbGVyKS4gSSdsbCBoYXZlIHRv
+IHJlYWQgdGhlIGNoaXANCj4gPiA+IHNwZWNpZmljYXRpb24gdG8gdW5kZXJzdGFuZCB0aGUgaW50
+ZW5kZWQgdXNlIGNhc2UuDQo+ID4gDQo+ID4gU2hvdWxkIEkganVzdCBkcm9wIHRoZSBvdmVyZmxv
+dyBhdHRyaWJ1dGVzPyBJIHRoaW5rIHRoZSBwYXJ0IGNhbiBiZQ0KPiA+IHVzZWQgdG8gY2hlY2sg
+YmF0dGVyeSBjaGFyZ2luZyBlZmZpY2llbmN5IGZvciBleGFtcGxlICh0aG91Z2ggSQ0KPiA+IGd1
+ZXNzDQo+ID4gd2Ugd291bGQgbmVlZCB0byBhbHNvIHN1cHBvcnQgdGhlIENoYXJnZSByZWdpc3Rl
+cidzKS4NCj4gPiANCj4gDQo+IElmIGNoaXAgaXMgKG9yIGNhbiBiZSkgdXNlZCBhcyBjaGFyZ2Vy
+LCBpdCBzaG91bGQgcmVnaXN0ZXIgYXMgc3VjaC4NCj4gTm90ZSBteSBxdWVzdGlvbiB3YXMgdGhl
+IGVuZXJneSBsaW1pdCBhdHRyaWJ1dGVzLCBub3QgdGhlIG92ZXJmbG93DQo+IGF0dHJpYnV0ZXMu
+DQoNCkkgZG9uJ3QgdGhpbmsgaXQgY2FuIGJlIHVzZWQgYXMgYSBjaGFyZ2VyIGJ1dCBpdCBjYW4g
+YWxzbyBtZWFzdXJlDQpjaGFyZ2UgKGludGVncmF0aW5nIHRoZSBtZWFzdXJlZCBjdXJyZW50IG92
+ZXIgdGltZSkuIEFzIHRoZXkgYXJlIG5vdA0Kc3RhbmRhcmQgYXR0cmlidXRlcyBJIGRpZCBub3Qg
+aW5jbHVkZWQgdGhpcyBvbiB0aGUgZHJpdmVyIChJIHNlbnQgYQ0KcXVlcnkgb24gdGhpcyBiZWZv
+cmUgc3RhcnRpbmcgdGhlIGRyaXZlciAtIA0KaHR0cHM6Ly9tYXJjLmluZm8vP2w9bGludXgtaHdt
+b24mbT0xNTY1MDc3MTE2MTI4Nzcmdz0yKS4NCg0KSSBzZWUgeW91ciBwb2ludCBhYm91dCBlbmVy
+Z3kgYW5kIGhhdmluZyBtYXhpbXVtIGFuZCBtaW5pbXVtIGZvciBhbg0KYWNjdW11bGF0ZWQgdmFs
+dWUuIEhvbmVzdGx5LCBsb29raW5nIGF0IHRoZSBjaGlwIHNwZWNpZmljYXRpb24gSSBjYW5ub3QN
+CnNlZSB0aGUgaW50ZW5kZWQgdXNlIGNhc2UgZm9yIHRoaXMuIE1heWJlIGZvciBtb25pdG9yaW5n
+L2NoYXJhY3Rlcml6aW5nDQpiYXR0ZXJpZXMgc2luY2UgdGhlcmUgYXJlIHNvbWUgY29udHJvbHMg
+b24gdGhlc2UgYWNjdW11bGF0ZWQgdmFsdWVzICh3ZQ0KY2FuIHNldCB0aGUgcGFydCB0byBhY2N1
+bXVsYXRlIG9ubHkgd2hlbiBjdXJyZW50IGlzIHBvc2l0aXZlIGZvcg0KZXhhbXBsZSkuDQpJIHdp
+bGwgZG8gc29tZSBpbnRlcm5hbCBxdWVyeWluZyB0byBzZWUgaWYgSSBjYW4gZmluZCBvdXQgbW9y
+ZSBvbiB0aGlzLg0KDQo+ID4gPiA+ID4gPiArCSZzZW5zb3JfZGV2X2F0dHJfZW5lcmd5MV9mYXVs
+dC5kZXZfYXR0ci5hdHRyLA0KPiA+ID4gPiA+ID4gKwkmc2Vuc29yX2Rldl9hdHRyX2VuZXJneTJf
+ZmF1bHQuZGV2X2F0dHIuYXR0ciwNCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBTb21lIG9mIHRob3Nl
+IGFyZSBub24tc3RhbmRhcmQgYXR0cmlidXRlcy4gWW91J2xsIGhhdmUNCj4gPiA+ID4gPiB0byBl
+eHBsYWluIGVhY2ggaW4gZGV0YWlsLCBlc3BlY2lhbGx5IHdoeSBpdCBtYWtlcyBzZW5zZQ0KPiA+
+ID4gPiA+IHRvIHByb3ZpZGUgc3VjaCBhdHRyaWJ1dGVzIHRvIHRoZSB1c2VyIGFuZCB3aHkgeW91
+IGNhbid0DQo+ID4gPiA+ID4gdXNlIHN0YW5kYXJkIGF0dHJpYnV0ZXMgaW5zdGVhZC4gQWxzbywg
+Zm9yIHRoZSBfZmF1bHQNCj4gPiA+ID4gPiBhdHRyaWJ1dGVzLCBJIGRvbid0IGVudGlyZWx5IHNl
+ZSB0aGUgcG9pbnQuIElmIHRoZSBmYXVsdCBiaXQNCj4gPiA+ID4gPiBpcyBzZXQsIEFEQyByZWFk
+aW5ncyBhcmUgbm90IHZhbGlkIGJlY2F1c2Ugc3VwcGx5IHZvbHRhZ2UNCj4gPiA+ID4gPiBpcyBs
+b3cuIFRoaXMgbWVhbnMgdGhhdCBBREMgcmVnaXN0ZXIgcmVhZHMgd2lsbCBiZSBpbnZhbGlkLg0K
+PiA+ID4gPiA+IFdoYXQgaXMgdGhlIHBvaW50IG9mIGhhdmluZyBhIG5vbi1zdGFuZGFyZCBhdHRy
+aWJ1dGUgLSB3aGljaA0KPiA+ID4gPiA+IGxpa2VseSB3aWxsIGJlIGlnbm9yZWQgLSBpbnN0ZWFk
+IG9mIHJldHVybmluZyBhbiBlcnJvciB3aGVuDQo+ID4gPiA+ID4gYW4gYXR0ZW1wdCBpcyBtYWRl
+IHRvIHJlYWQgYW4gQURDIHZhbHVlID8NCj4gPiA+ID4gDQo+ID4gPiA+IEkgd2FzIGFsc28gbm90
+IHN1cmUgb24gdGhpcyAqX2ZhdWx0IGF0dHJpYnV0ZXMuIFRoZXkgYXJlIHRoZXJlDQo+ID4gPiA+
+IHRvDQo+ID4gPiA+IHRlbGwNCj4gPiA+ID4gdGhhdCB0aGUgcmVhZGluZ3MgYXJlIGludmFsaWQu
+IE5vdyB0aGF0IEkgdGhpbmsgYWJvdXQgaXQsIEknbQ0KPiA+ID4gPiBub3QNCj4gPiA+ID4gc3Vy
+ZQ0KPiA+ID4gPiBpZiBpdCBldmVuIG1ha2VzIHNlbnNlIHRvIHJldHVybiBlcnJvciBpZiB0aGlz
+IGJpdCBpcyBzZXQuIFRoZQ0KPiA+ID4gPiBwYXJ0DQo+ID4gPiA+IGlzDQo+ID4gPiA+IGluIGNv
+bnRpbnVvdXMgbW9kZSBzbywgaXQgbWlnaHQgaGFwcGVuIHRoYXQgd2UgaGF2ZSB0aGUgZmF1bHQN
+Cj4gPiA+ID4gYml0DQo+ID4gPiA+IHNldA0KPiA+ID4gPiBmb3IgYSBzaG9ydCB0aW1lIGJ1dCBh
+ZnRlcndhcmRzIHRoaW5ncyBnbyBub3JtYWwgYW5kIHRoZSBiaXQNCj4gPiA+ID4gd2lsbA0KPiA+
+ID4gPiBzdGlsbA0KPiA+ID4gPiBiZSBzZXQgdW50aWwgd2UgcmVhZCBpdC4gU28gbXkgcG9pbnQg
+aXMsIHdlIG1pZ2h0IGJlIHJldHVybmluZw0KPiA+ID4gPiBlcnJvcg0KPiA+ID4gPiBmb3IgYSBj
+b252ZXJzaW9uIHRoYXQgaGFwcGVuZWQgd2F5IGJlZm9yZSBvdXIgY3VycmVudCByZWFkaW5nLg0K
+PiA+ID4gPiBBbnkNCj4gPiA+ID4gc3VnZ2VzdGlvbiBoZXJlPyBXb3VsZCB5b3UgYmUgZmluZSBp
+ZiBJIGp1c3QgZHJvcCB0aGlzDQo+ID4gPiA+IGF0dHJpYnV0ZXM/DQo+ID4gPiA+ICAgIA0KPiA+
+ID4gDQo+ID4gPiBJdCBzb3VuZHMgbGlrZSAiZmF1bHQiIG1lYW5zIHNvbWV0aGluZyBsaWtlICJv
+bmUgb2YgdGhlIHBhc3QNCj4gPiA+IHJlYWRpbmdzDQo+ID4gPiB3YXMgd3JvbmcsIGJ1dCBJIGRv
+bid0IGtub3cgd2hpY2ggb25lIGFuZCBJIGRvbid0IGtub3cgaWYgdGhlDQo+ID4gPiB3cm9uZw0K
+PiA+ID4gdmFsdWUgd2FzIGV2ZXIgcmVhZCBieSB1c2VyIHNwYWNlIi4gU29ycnksIEkgZmFpbCB0
+byBzZWUgd2hhdA0KPiA+ID4gdmFsdWUNCj4gPiA+IHRob3NlIGF0dHJpYnV0ZXMgYXJlIHN1cHBv
+c2VkIHRvIGhhdmUgZm9yIHRoZSB1c2VyLiBBdCBiZXN0IGl0DQo+ID4gPiBjb3VsZA0KPiA+ID4g
+bWVhbiAicGxlYXNlIHJlLXJlYWQgdGhlIGFzc29jaWF0ZWQgYXR0cnJpYnV0ZSIsIGJ1dCB0aGF0
+IGNvdWxkDQo+ID4gPiBhcw0KPiA+ID4gd2VsbA0KPiA+ID4gYmUgYWNjb21wbGlzaGVkIHdpdGhv
+dXQgdXNlcnNwYWNlIGFjdGlvbiBpZiBpdCBpcyByZWFsbHkgbmVlZGVkLg0KPiA+ID4gQWxzbywg
+cGVyIGRhdGFzaGVldCwgaXQgbG9va3MgbGlrZSB0aGUgZmF1bHQgYml0IGlzIHNldCBvZiB0aGUN
+Cj4gPiA+IGNoaXANCj4gPiA+IHZvbHRhZ2UgaXMgdG9vIGxvdy4gSWYgdGhhdCBoYXBwZW5zLCB0
+aGUgc3lzdGVtIGhhcyBhIHNldmVyZQ0KPiA+ID4gcHJvYmxlbQ0KPiA+ID4gd2hpY2ggY2FuIG5v
+dCBiZSByZXNvbHZlZCB3aXRoIGFuIGF0dHJpYnV0ZSB2aXNpYmxlIHRvIHVzZXJzcGFjZS4NCj4g
+PiANCj4gPiBJIHdpbGwgZHJvcCB0aGUgZmF1bHQgYXR0cmlidXRlcy4NCj4gPiANCj4gPiA+ID4g
+PiBPdGhlcnMsIGxpa2UgZW5lcmd5MV9pbnB1dCwgb3IgbW9zdCBvZiB0aGUgcG93ZXIgYXR0cmli
+dXRlcywNCj4gPiA+ID4gPiBhcmUgc3RhbmRhcmQgYXR0cmlidXRlcy4gUGxlYXNlIGV4cGxhaW4g
+dGhlIHJlYXNvbmluZyBmb3INCj4gPiA+ID4gPiBub3QgdXNpbmcgdGhlIHN0YW5kYXJkIEFQSSBm
+b3IgdGhvc2UuDQo+ID4gPiA+IA0KPiA+ID4gPiBUaGlzIG9uZXMgd2VyZSBiZWNhdXNlIHdlIG5l
+ZWQgNjRiaXQgdmFyaWFibGVzLiBGb3IgZW5lcmd5LCB0aGUNCj4gPiA+ID4gcGFydA0KPiA+ID4g
+PiBhbHNvIHN1cHBvcnRzIHRoZSBhbGFybXMsIG1heCBhbmQgbWluIGF0dHJpYnV0ZXMgc28gSSBp
+bmNsdWRlZA0KPiA+ID4gPiB0aGVtLg0KPiA+ID4gPiAgIA0KPiA+ID4gSSBjYW4gdG8gc29tZSBk
+ZWdyZWUgdGhlIGxvZ2ljIGZvciBlbmVyZ3kgYXR0cmlidXRlcywgYnV0IGRvIHlvdQ0KPiA+ID4g
+cmVhbGx5DQo+ID4gPiBoYXZlIGFuIGFwcGxpY2F0aW9uIHdoZXJlIHRoZSBjaGlwIGlzIHVzZWQg
+b24gYSAzMi1iaXQgc3lzdGVtIGFuZA0KPiA+ID4gbW9uaXRvcnMgcG93ZXIgbGFyZ2VyIHRoYW4g
+MmtXID8NCj4gPiANCj4gPiBIbW0sIEkgbG9va2VkIGFnYWluIGF0IHRoZSBjaGlwIHNwZWNpZmlj
+YXRpb24gYW5kIHVubGVzcyBJJ20NCj4gPiBtaXNzaW5nDQo+ID4gc29tZXRoaW5nIG9idmlvdXMg
+dGhlIHBhcnQgY2FuIG9ubHkgbWVhc3VyZSArLy0gMzBBIGFuZCAwLTE1Vg0KPiA+IGdpdmluZyB1
+cw0KPiA+ICsvLSA0NTBXIHdoaWNoIGRlZmluaXRlbHkgZml0cyBpbiBhIGxvbmcgdmFyaWFibGUu
+IFRoZSBvbmx5IHRoaW5nDQo+ID4gdGhhdA0KPiA+IHdpbGwgYmUgdHJ1bmNhdGVkIGlzIHRoZSBt
+aW4vbWF4IHZhbHVlcy4gVGhlIHBhcnQsIGJ5IGRlZmF1bHQsIGhhcw0KPiA+IHRoaXMNCj4gPiB2
+YWx1ZSB0byAweDdmZmYgYW5kIDB4ODAwMCB3aGljaCB0aW1lcyAyMDAwMDB1VyAocGFydCBzY2Fs
+ZSkgd2lsbA0KPiA+IGJlDQo+ID4gdHJ1bmNhdGVkLiBOb3csIHdlIGNhbiBhcmd1ZSB0aGF0IHRo
+aXMgbWF4L21pbiB2YWx1ZXMgYXJlIG5vdCByZWFsDQo+ID4gYW5kDQo+ID4gdGhlIHVzZXIgaXMg
+ZXhwZWN0ZWQgdG8gd3JpdGUgdGhpcyBhdHRyaWJ1dGVzIHdpdGggc29tZSBtZWFuaW5nZnVsDQo+
+ID4gdmFsdWVzPyBIb3cgZG8geW91IHN1Z2dlc3QgdG8gcHJvY2VlZD8gU2hvdWxkIEkganVzdCB1
+c2Ugc3RhbmRhcmQNCj4gPiBhdHRyaWJ1dGVzIGZvciBwb3dlcj8NCj4gPiAgIA0KPiBIb3cgYWJv
+dXQgZGV0ZWN0aW5nIHRoZSBvdmVyZmxvdyBvbiByZWFkIGFuZCBqdXN0IHJlcG9ydCB0aGUgbWF4
+aW11bQ0KPiBzdXBwb3J0ZWQgdmFsdWUgPyBPciwgYWx0ZXJuYXRpdmVseSwgaW5pdGlhbGl6ZSB0
+aGUgcmVnaXN0ZXIgd2l0aCB0aGUNCj4gbWF4aW11bSBzdXBwb3J0ZWQgdmFsdWUuDQoNClNvdW5k
+cyBnb29kLiBJIHdpbGwgaW5pdGlhbGl6ZSB0aGUgcmVnaXN0ZXIncyBvbiB0aGUgc2V0dXAoKSBw
+aGFzZS4NCg0KPiBHdWVudGVyDQoNCg==
