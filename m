@@ -2,159 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E231CDB9B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:48:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F5ECDBA6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 07:53:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726960AbfJGFsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 01:48:33 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:37016 "EHLO mail.andi.de1.cc"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726889AbfJGFsd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 01:48:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Type:MIME-Version:References:
-        In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=bdmc7qlre0F9bijOKxKuJpK+kMSATS4KheYRbfPzDyc=; b=DmdfFs6LU4Zux5OdUIPjlANlw
-        PdSaaPJa2dkoZ3b2e8hLK7opFIxhWMWGYOjvAz3UGZSzbDHFElFQBhjjmEDg03gOiJ366O6vRYmnc
-        R1PeIa2DIz1lbvCILj43pBonyNX3ArRmkC11QBVR0UZIA3UDkiyQIClnN+kHTupI6dicE=;
-Received: from [77.247.85.102] (helo=localhost)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1iHLsc-0000Jc-T5; Mon, 07 Oct 2019 07:48:23 +0200
-Received: from localhost ([::1])
-        by localhost with esmtp (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1iHLsa-0008CK-P4; Mon, 07 Oct 2019 07:48:20 +0200
-Date:   Mon, 7 Oct 2019 07:48:13 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
-        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
-Message-ID: <20191007074813.235869db@kemnade.info>
-In-Reply-To: <20191006223848.GE19803@latitude>
-References: <20190930194332.12246-1-andreas@kemnade.info>
-        <20190930194332.12246-3-andreas@kemnade.info>
-        <20191006223848.GE19803@latitude>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
+        id S1726984AbfJGFx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 01:53:29 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:42578 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726960AbfJGFx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 01:53:28 -0400
+Received: by mail-pf1-f195.google.com with SMTP id q12so7904363pff.9
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2019 22:53:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=bsTD3Si+lRJlyfjAbCj2dgEKgrlx47n6A/2JYKP1JW8=;
+        b=q/Pt5uy2YBhfTqk5L+zeLL9XLvdR7iyRA4GK3oW28lGfnLmTiF6iKdQ0x/SVQuyOq7
+         CdKuDvtzAlgg1phy/mjAazwrrxu0QOgoF2IRyDp/KrZjQbGjiqBWHKRNZdcAK2SjQ9vB
+         spjGtkHtE1nKZqM9Jw14tlJkZdGLJiYCBVYQ2/GHmx199XOhcriPL8DWy1LkUvpKfSsw
+         ZArrlZFXsFp1BIPLKgYlYE45OXutnhxqptUtcuoiMpeeWfZxYHwHCVdS+SfZqgDJa3t6
+         Ds4FRpM3GoSX8/H0so7xbLTIeFASCX9NBiZxkA269J8EsyP27V54HnohBSa1h4Ut2ViG
+         5pDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bsTD3Si+lRJlyfjAbCj2dgEKgrlx47n6A/2JYKP1JW8=;
+        b=ihAWAkvXJHYntK+h+ru3Em+pbkIPbKp6zBKYYJFtgPAxzi6LD7OSfyFHQByVu0ADVv
+         c/mmF5OJvleH7/lW9dxBhwo8rsHA3wyoXAih1CIA9ZvLix7RLdwb3ry/HUU/9R4jFQyN
+         Qi1fEIzDv/6Zi3BOP/h1YUf1XPdZ95eFGovu17Mi/CBXHWP6zJqTXeRz32j/hZNlKX7i
+         eOvV9xWRJTWbokFZiy7P2juKQHMldN7dqkSWSqDU5vm8R+W1Rusue0kd9hPStM4Ug+uz
+         cCseByAXc4ky9yBIXXPNyrYxysGnWaj1mZEmPou+1jvtxmd1Nifu0wyBpf1nSnSzi5Tx
+         UYzw==
+X-Gm-Message-State: APjAAAWlyT3ZKK+zxKxYL9jQhMzw8oBuQYzfh6EjgK6V3EI35b3Y78gm
+        Ew082hQR3VEc8VJ3Uv1vco+LIg==
+X-Google-Smtp-Source: APXvYqzvkTJi+RBgercTr6zzyZQdj6vtvtH1ZUWqYyXy0HJEq02D1FlR2EILBRyzRVhc9cdQRBhB5w==
+X-Received: by 2002:a17:90a:22b0:: with SMTP id s45mr31448581pjc.22.1570427606519;
+        Sun, 06 Oct 2019 22:53:26 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id x23sm11892213pfq.140.2019.10.06.22.53.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2019 22:53:25 -0700 (PDT)
+Date:   Sun, 6 Oct 2019 22:53:23 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     kholk11@gmail.com
+Cc:     linux-arm-msm@vger.kernel.org, marijns95@gmail.com,
+        agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org
+Subject: Re: [PATCH] soc: qcom: rpmpd: Add rpm power domains for msm8976
+Message-ID: <20191007055323.GI6390@tuxbook-pro>
+References: <20191005110758.31548-1-kholk11@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/aB.pTc2IuOjACzyPfRof4hD"; protocol="application/pgp-signature"
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191005110758.31548-1-kholk11@gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/aB.pTc2IuOjACzyPfRof4hD
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+On Sat 05 Oct 04:07 PDT 2019, kholk11@gmail.com wrote:
 
-Hi Jonathan,
+> From: "AngeloGioacchino Del Regno" <kholk11@gmail.com>
+> 
+> The MSM8956/76 SoCs have two main voltage-level power domains, VDD_CX
+> and VDD_MX, which also have their own voltage-floor-level (VFL)
+> corner.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> ---
 
-On Mon, 7 Oct 2019 00:38:48 +0200
-Jonathan Neusch=E4fer <j.neuschaefer@gmx.net> wrote:
+Thanks for respinning the patch. Please don't forget the "v2" in the
+subject and list your changes here.
 
-> Thanks for CCing me on this patchset. Nice to see more e-book reader
-> related work!
->=20
-> A few comments and questions below.
->=20
-> On Mon, Sep 30, 2019 at 09:43:31PM +0200, Andreas Kemnade wrote:
-> > The Netronix board E60K02 can be found some several Ebook-Readers,
-> > at least the Kobo Clara HD and the Tolino Shine 3. The board
-> > is equipped with different SoCs requiring different pinmuxes. =20
->=20
-> Do I understand it correctly that i.MX6SL and i.MX6SLL are pin-
-> compatible so we can use the same pin numbers and GPIO handles in the
-> DT?
->=20
-Yes, for that purpose yes, The i.MX6SL has more functions than the i.MX6SLL,
-which you will of course not find on the SLL pins.
+Applied.
 
-> > +	leds {
-> > +		compatible =3D "gpio-leds";
-> > +		pinctrl-names =3D "default";
-> > +		pinctrl-0 =3D <&pinctrl_led>;
-> > +
-> > +		GLED { =20
->=20
-> What does "GLED" mean? It's not obvious to me.
-> What user-visible purpose does this LED have, or where is it on the
-> board?
->=20
-It is on the power key. So probably we could have "power" in its name.
-GLED is just the name in vendors uboot and kernel.
+Thanks,
+Bjorn
 
-I use that led also as an output in uboot to have multiboot between
-vendor system, vendor kernel +debian system and patched mainline + debian s=
-ystem.
-
-> > +			gpios =3D <&gpio5 7 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger =3D "timer";
-> > +		};
-> > +	};
-> > +
-> > +	memory {
-> > +		reg =3D <0x80000000 0x80000000>; =20
->=20
-> 2 GiB of memory?
->=20
-Well, 512MByte. Seems that uboot overwrites that. But we should use the cor=
-rect
-value here.
-
-> > +			/* Core3_3V3 */ =20
->=20
-> What are these labels (Core3_3V3, Core4_1V2, etc.)?
->
-I have taken then from the tolino board file. Probably they are netnames
-of the pcb but not the names of the regulators in the pmic.
-=20
-> > +			dcdc2_reg: DCDC2 {
-> > +				regulator-name =3D "DCDC2";
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-state-mem {
-> > +					regulator-on-in-suspend;
-> > +					regulator-suspend-max-microvolt =3D <3300000>;
-> > +					regulator-suspend-min-microvolt =3D <3300000>;
-> > +				};
-> > +			}; =20
->=20
-Regards,
-Andreas
-
---Sig_/aB.pTc2IuOjACzyPfRof4hD
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEPIWxmAFyOaBcwCpFl4jFM1s/ye8FAl2a0Z0ACgkQl4jFM1s/
-ye9dKA//aQgaIGzJry4yT7el+FH8/B/V78b24pRmCx3wnBuRsc9CBxYsAEpYGJTo
-iBXpJUHUpy3J28ZQxSjk6docvx918lE0R1l9VQlqzP3mw1uFGQmtIYG7W6kbZkom
-dXSb9g/Tql+r7zTuEKodK99mz4xPupf3Ay36sLecNKddfGTgXQy96blU3x+Degrb
-MMIKEKZFi+E5e3Q+FLkwNhRMVbAbpVVtqQrmZqN5ImbhD72pFKgbQt+CIPAQZYp7
-b+0CdDnnvHOMvh6QT+Ij4Od3NGfGhqa/+qHqSmztx6X3XZFK57z5RKe83EIw2vBg
-aBYwzfQL5kTE8FKAWXURk2a/NbJk4WWT3BBQZt8HzTmkdgfHsgCimjzQNKgBw7AN
-2d1FrGgNk9EuwZjbrtJmLoSTQ9tieUk67jLhsgj1S8gRrrV4YPoYE8RrXKmYGEGe
-FUJPpcrd7fPDUpPvchZI1jVlPzL+S2W0L3U/KSwhWGey119FgktRVX4ljjquX+iP
-3zxaFIGO9K5vIG/pzxFCDZ9R6gCWBdryPU3q/+a0wZWNLclZROAQd939ekFBY4lD
-ZEta6trdhOkVRkgHU27BdikvJRgzFrZBnm6YUomelezQM3XjT0yeK9OT60EOWNx5
-upg8mHnodGcUdxzUtnzzV3tVvtunAYFGpw/zuwff5B0p16nJKqU=
-=8lWk
------END PGP SIGNATURE-----
-
---Sig_/aB.pTc2IuOjACzyPfRof4hD--
+>  .../devicetree/bindings/power/qcom,rpmpd.txt  |  1 +
+>  drivers/soc/qcom/rpmpd.c                      | 23 +++++++++++++++++++
+>  include/dt-bindings/power/qcom-rpmpd.h        |  8 +++++++
+>  3 files changed, 32 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+> index eb35b22f9e23..bc75bf49cdae 100644
+> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+> @@ -5,6 +5,7 @@ which then translates it into a corresponding voltage on a rail
+>  
+>  Required Properties:
+>   - compatible: Should be one of the following
+> +	* qcom,msm8976-rpmpd: RPM Power domain for the msm8976 family of SoC
+>  	* qcom,msm8996-rpmpd: RPM Power domain for the msm8996 family of SoC
+>  	* qcom,msm8998-rpmpd: RPM Power domain for the msm8998 family of SoC
+>  	* qcom,qcs404-rpmpd: RPM Power domain for the qcs404 family of SoC
+> diff --git a/drivers/soc/qcom/rpmpd.c b/drivers/soc/qcom/rpmpd.c
+> index 3c1a55cf25d6..2b1834c5609a 100644
+> --- a/drivers/soc/qcom/rpmpd.c
+> +++ b/drivers/soc/qcom/rpmpd.c
+> @@ -115,6 +115,28 @@ struct rpmpd_desc {
+>  
+>  static DEFINE_MUTEX(rpmpd_lock);
+>  
+> +/* msm8976 RPM Power Domains */
+> +DEFINE_RPMPD_PAIR(msm8976, vddcx, vddcx_ao, SMPA, LEVEL, 2);
+> +DEFINE_RPMPD_PAIR(msm8976, vddmx, vddmx_ao, SMPA, LEVEL, 6);
+> +
+> +DEFINE_RPMPD_VFL(msm8976, vddcx_vfl, RWSC, 2);
+> +DEFINE_RPMPD_VFL(msm8976, vddmx_vfl, RWSM, 6);
+> +
+> +static struct rpmpd *msm8976_rpmpds[] = {
+> +	[MSM8976_VDDCX] =	&msm8976_vddcx,
+> +	[MSM8976_VDDCX_AO] =	&msm8976_vddcx_ao,
+> +	[MSM8976_VDDCX_VFL] =	&msm8976_vddcx_vfl,
+> +	[MSM8976_VDDMX] =	&msm8976_vddmx,
+> +	[MSM8976_VDDMX_AO] =	&msm8976_vddmx_ao,
+> +	[MSM8976_VDDMX_VFL] =	&msm8976_vddmx_vfl,
+> +};
+> +
+> +static const struct rpmpd_desc msm8976_desc = {
+> +	.rpmpds = msm8976_rpmpds,
+> +	.num_pds = ARRAY_SIZE(msm8976_rpmpds),
+> +	.max_state = RPM_SMD_LEVEL_TURBO_HIGH,
+> +};
+> +
+>  /* msm8996 RPM Power domains */
+>  DEFINE_RPMPD_PAIR(msm8996, vddcx, vddcx_ao, SMPA, CORNER, 1);
+>  DEFINE_RPMPD_PAIR(msm8996, vddmx, vddmx_ao, SMPA, CORNER, 2);
+> @@ -198,6 +220,7 @@ static const struct rpmpd_desc qcs404_desc = {
+>  };
+>  
+>  static const struct of_device_id rpmpd_match_table[] = {
+> +	{ .compatible = "qcom,msm8976-rpmpd", .data = &msm8976_desc },
+>  	{ .compatible = "qcom,msm8996-rpmpd", .data = &msm8996_desc },
+>  	{ .compatible = "qcom,msm8998-rpmpd", .data = &msm8998_desc },
+>  	{ .compatible = "qcom,qcs404-rpmpd", .data = &qcs404_desc },
+> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> index 93e36d011527..83f8f5a8773b 100644
+> --- a/include/dt-bindings/power/qcom-rpmpd.h
+> +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> @@ -27,6 +27,14 @@
+>  #define RPMH_REGULATOR_LEVEL_TURBO	384
+>  #define RPMH_REGULATOR_LEVEL_TURBO_L1	416
+>  
+> +/* MSM8976 Power Domain Indexes */
+> +#define MSM8976_VDDCX		0
+> +#define MSM8976_VDDCX_AO	1
+> +#define MSM8976_VDDCX_VFL	2
+> +#define MSM8976_VDDMX		3
+> +#define MSM8976_VDDMX_AO	4
+> +#define MSM8976_VDDMX_VFL	5
+> +
+>  /* MSM8996 Power Domain Indexes */
+>  #define MSM8996_VDDCX		0
+>  #define MSM8996_VDDCX_AO	1
+> -- 
+> 2.21.0
+> 
