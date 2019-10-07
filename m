@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9EBFCEB2D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 19:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC50CEB30
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 19:56:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728995AbfJGR4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 13:56:00 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:41150 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728364AbfJGRz7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 13:55:59 -0400
-Received: by mail-pg1-f194.google.com with SMTP id t3so2825212pga.8
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 10:55:59 -0700 (PDT)
+        id S1729425AbfJGR4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 13:56:02 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:38683 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728545AbfJGR4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 13:56:02 -0400
+Received: by mail-pf1-f195.google.com with SMTP id h195so9130577pfe.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 10:56:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=egboN5LspnsxlOmbUEUbW8zbZDOgKxSBdf9tJPyXXRs=;
-        b=h1As562vjET1VzrndYwZlyOz+8bP+Z6B7xHScJN8GN0dXK88R+2cHCxeADlO92XjUQ
-         bp+k3fsyOVMKU2H8C5DhtAir11Pp95AfQwX9dBU1Q00hP05/wNahVY35KhVta3r9FF9X
-         pEmUBcyVKz579Ru6T16W/hzUbOal04Ygcxw/JOPYxnD/YP7g1rbcHTkXsNIRNCbBO3jX
-         lll53Au/bZ9ilssKtkuGjChBP9xXL9Lz0ShEdID0ZabgSrB1y7mVM4oY1C0qAnGK2RIv
-         1dnwOO0g0TbkftARF6KvWBcBTVuvOFhXHqsZw6+8qfho08c1qfxOW3+ggttMw5KH1YGT
-         Mclg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=BqAPbs/wZUWEhGivyo3NLB3Z3ocJiJHq8gLjsQrSOVI=;
+        b=zkLe1lXI/kTfrysTVpJMwuaXco3MElI5JuoKHwGdd9huySPjwcnc3rUpITt2/11Zm5
+         tiXNO9v9vnVvIIZd94wdw/YiU4qkXUd98CG1rM8X+hL7q76fc91jo2CiIuKtM0jtJ9rL
+         v/kOPD4SUR/VvcEUI+ziPVYPSPfQsN3CGSoWEWAGNtH2cGERQn01eSXsazGSuW5VlQBc
+         XCg5L0bLn/3dNIkIPJ/E/0FVK8XV2n51gVKvv+dTLBeaGJMwc+fIFiXuQ8Yn0/Sq28RE
+         2z+dVzuJX2OsLboR4aXc7T1Ei8Y1KCFzodNnELOhDZ0euq7lSepkr59SyAKucel2Bn9c
+         bjmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=egboN5LspnsxlOmbUEUbW8zbZDOgKxSBdf9tJPyXXRs=;
-        b=swJDuvCrr+k65rtXThCeyAcw5/4l3T29MIz5qgyXZu7buJu/vxJu89X9JuMoLqyoH5
-         95/xHe0JwsqnoiX6mzc/Fsa5bvQqApCOvr7GjiLv4x/y3Vr4js7nwuflQdtsWY3Dc6ID
-         GJvDcjK+b7h2XxnhhQB2DRDyAN0wTh3v+EhGGRunFxJ39Mx41J9OTVfyKjD+Wwc/E0q3
-         1RVtAuGAqJMHzMP25ReKq+ZhNvqM8sHv45wyZEn0O7SiDcbke0LSRdQ6n5pRlatNByEV
-         smklEe9m/vLujF9ciqHghln9UuJCLC+kE77mtxG7Ko7dDeP5yeVBou3aMxp+CRNCv1R3
-         un6A==
-X-Gm-Message-State: APjAAAURi2xwr4Dovq4IchgR97E+OTRwfI6Etnscp+rrKfhthBG8m+U1
-        wyT/mc0jE+ul9oPFEzWuYlxqvQ==
-X-Google-Smtp-Source: APXvYqxlGxe94guiFCzVkK5f+pR1M2fVMTgZtKZPLcP1Jxldh/nvUB2WLt7G/TlrrY7TC5wnTetyzQ==
-X-Received: by 2002:a63:d250:: with SMTP id t16mr3884089pgi.278.1570470958745;
-        Mon, 07 Oct 2019 10:55:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=BqAPbs/wZUWEhGivyo3NLB3Z3ocJiJHq8gLjsQrSOVI=;
+        b=gvee1uFAMHIWYEqov+D78v7OHv+aR3n/Lu0oz/Kh7pPgkuLKp70FD4XhWAqglcy1fL
+         xdLo93O9vcpwbAREnvdXlzblocXzY1W0oeamftjChBFOrZJzuaTrh+NQUDjfa2X57Dd+
+         3vE66cXW361cGovWywM00sj+uRbIAU6GVug7M7BEBlTSCCLXbgngA6b0+9FvzPjLzT7V
+         eKq2IiqzBtWlDvSv5tdWJr8mQA3y/aFabJ/E0/5g4EnI7u4gLIOhYYqFEblSGH35tv5H
+         Gcbi4OYEeQ33/c+fflvvSt+eURLWV+g/NUCyKGdo50GpN7L6fzR/gIEUdvpOU14hDRU/
+         6AkA==
+X-Gm-Message-State: APjAAAXQAJV58Uybbtph7aloOEEUKoT0Z8SMbv9l8xB1bzMjRHC/ziUr
+        OnzAtbAfRRsrUcprqi2B7J49Kg==
+X-Google-Smtp-Source: APXvYqzR09qKYZDkL9zavOHzE5V/dTeZBEetwtzxc9ol5SRT48VvfuWeKP1zcPB5Go2sfBi0OZM/lA==
+X-Received: by 2002:a62:1516:: with SMTP id 22mr33771701pfv.87.1570470961345;
+        Mon, 07 Oct 2019 10:56:01 -0700 (PDT)
 Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id k15sm3820096pgt.25.2019.10.07.10.55.56
+        by smtp.gmail.com with ESMTPSA id k15sm3820096pgt.25.2019.10.07.10.55.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2019 10:55:57 -0700 (PDT)
+        Mon, 07 Oct 2019 10:56:00 -0700 (PDT)
 From:   John Stultz <john.stultz@linaro.org>
 To:     lkml <linux-kernel@vger.kernel.org>
 Cc:     John Stultz <john.stultz@linaro.org>,
@@ -54,38 +55,19 @@ Cc:     John Stultz <john.stultz@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Chunfeng Yun <chunfeng.yun@mediatek.com>,
         linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC][PATCH v2 0/5] dwc3: Changes for HiKey960 support
-Date:   Mon,  7 Oct 2019 17:55:48 +0000
-Message-Id: <20191007175553.66940-1-john.stultz@linaro.org>
+Subject: [RFC][PATCH v2 1/5] dt-bindings: usb: dwc3: Add a property to do a CGTL soft reset on mode switching
+Date:   Mon,  7 Oct 2019 17:55:49 +0000
+Message-Id: <20191007175553.66940-2-john.stultz@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191007175553.66940-1-john.stultz@linaro.org>
+References: <20191007175553.66940-1-john.stultz@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I've been carrying for awhile some patches that Yu Chen was
-previously pushing upstream to enable USB on the HiKey960 board
-and I wanted to try to nudge them forward as I'm not sure as to
-what his plans are.
-
-This series is just the simpler parts of the patch set that I
-wanted to send out to see if we could make some progress on
-while I continue to work on the more complex bits.
-
-You can find the full set of changes to get USB working on the
-board here:
-  https://git.linaro.org/people/john.stultz/android-dev.git/log/?id=ef858be80f202b7bffb7d03c168ee72457a0ef3e
-
-This series is just the more trivial changes, along with some
-missing binding documentation that I've added.
-
-I'd greatly appreciate any review or feedback on this series!
-
-thanks
--john
-
-New in v2:
-* Tweaked binding clock name as clk_usb3phy_ref didn't seem right.
+Provide a dt-binding for quirk needed to do a GCTL soft reset on mode
+switching
 
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Felipe Balbi <balbi@kernel.org>
@@ -97,28 +79,24 @@ Cc: Matthias Brugger <matthias.bgg@gmail.com>
 Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
 Cc: linux-usb@vger.kernel.org
 Cc: devicetree@vger.kernel.org
+Signed-off-by: John Stultz <john.stultz@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/dwc3.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-John Stultz (2):
-  dt-bindings: usb: dwc3: Add a property to do a CGTL soft reset on mode
-    switching
-  dt-bindings: usb: dwc3: of-simple: add compatible for HiSi
-
-Yu Chen (3):
-  usb: dwc3: Execute GCTL Core Soft Reset while switch mdoe for
-    Hisilicon Kirin Soc
-  usb: dwc3: Increase timeout for CmdAct cleared by device controller
-  usb: dwc3: dwc3-of-simple: Add support for dwc3 of Hisilicon Soc
-    Platform
-
- .../devicetree/bindings/usb/dwc3.txt          |  2 +
- .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
- drivers/usb/dwc3/core.c                       | 20 +++++++
- drivers/usb/dwc3/core.h                       |  3 ++
- drivers/usb/dwc3/dwc3-of-simple.c             |  4 +-
- drivers/usb/dwc3/gadget.c                     |  2 +-
- 6 files changed, 81 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 66780a47ad85..cf4ef6c22fb3 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -77,6 +77,8 @@ Optional properties:
+ 			during HS transmit.
+  - snps,dis_metastability_quirk: when set, disable metastability workaround.
+ 			CAUTION: use only if you are absolutely sure of it.
++ - snps,gctl-reset-quirk: when set, GCTL soft reset will be executed on mode
++			switch.
+  - snps,is-utmi-l1-suspend: true when DWC3 asserts output signal
+ 			utmi_l1_suspend_n, false when asserts utmi_sleep_n
+  - snps,hird-threshold: HIRD threshold
 -- 
 2.17.1
 
