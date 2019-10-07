@@ -2,176 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2422ACDD18
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 10:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE5ECDD26
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 10:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727305AbfJGIUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 04:20:47 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:36321 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727028AbfJGIUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 04:20:47 -0400
-Received: by mail-pl1-f196.google.com with SMTP id j11so6514237plk.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 01:20:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ote0/C1JReGNWp+FkearLP+n5iZPIKVYgqsUmtRTjFs=;
-        b=ucHtKJn0UJ/TfFDX+4FXj4mOFaUq1DsFLZGjyuBNxfgLXveZezTTcBAH3AoBOIOBEU
-         9Q68fJQlIZMn6KrlKTDzJpjNG8TqWULiaH2rlCAcf0lZ+nNuMEV+zgZrBiY1Dw9yJ+u+
-         CnikzZLmoBcE6hsbUbbZy61X/2MSIy8UU9KMfv7H8WYsp7Inq5RegXOks3+X+J8jqMPm
-         hKQmH60pRG9T9rirx2yP0hvm85sKqjotn7r05OGpiU9g/AO8TGbcjQmonzZgKOXmk0sp
-         Q/OF6iGuie1Fhf7sgCtf3kcTPs1M9fwLUXXUhWuFlWamP+XzN2k7qw0YD2qXx5TZ+Lra
-         z5Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ote0/C1JReGNWp+FkearLP+n5iZPIKVYgqsUmtRTjFs=;
-        b=S2UH5IAWdjS7blEhdWLXLX/54RU+22YN9Enw8ittsXyz66Fb5dyV+rjTiRJQTrIGLB
-         KyedxetgBi7TSwwJai0iaOo38sAQQ1gtWmdLuBTaql9BW4zzQZjSs/nNVfWbHfZVbg1x
-         WEI8aP8u3wFupC5ki/lsfozleb7PKrEo6UkxK7DuZwYf8gkabDTphsufR/xwUXGCGvhh
-         q9OO5rtcJ3xR23WjuS2WkQSUKPkvsNWD+4kMvZcJnq8oB1Te7EMKidmVwSrghdfaOMhm
-         TmFCeVFj1PUe/CuovCUl+LgvRgrrOa7d1T+FHJTBIHsK6S9NHGxgd9JGJ/5G/ODcgBZh
-         +/bA==
-X-Gm-Message-State: APjAAAUX918cwbaWbBvpKZ+dcsOmQLsOObGZShZ3KokJb+6Cp4ehezrO
-        H09DWMuf56KJCKre2Phj2kUP4NgU0MpQHRfGKz0J9Q==
-X-Google-Smtp-Source: APXvYqx8Yk5sgQkWXnFQm4/CGRSWyRMpxzmUgLAHY9vWCZW1JOEviLWEyRGwfm5yzonhZdNlXfXkmD5OjjAPHS+whBM=
-X-Received: by 2002:a17:902:8f88:: with SMTP id z8mr28990175plo.232.1570436445413;
- Mon, 07 Oct 2019 01:20:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAHk-=whX-JbpM2Sc85epng_GAgGGzxRAJ2SSKkMf9N1Lsqe+OA@mail.gmail.com>
- <56e2e1a7-f8fe-765b-8452-1710b41895bf@kernel.org> <20191004222714.GA107737@google.com>
- <ad800337-1ae2-49d2-e715-aa1974e28a10@kernel.org> <20191004232955.GC12012@mit.edu>
- <CAFd5g456rBSp177EkYAwsF+KZ0rxJa90mzUpW2M3R7tWbMAh9Q@mail.gmail.com>
- <63e59b0b-b51e-01f4-6359-a134a1f903fd@kernel.org> <CAFd5g47wji3T9RFmqBwt+jPY0tb83y46oj_ttOq=rTX_N1Ggyg@mail.gmail.com>
- <544bdfcb-fb35-5008-ec94-8d404a08fd14@kernel.org> <CAFd5g467PkfELixpU0JbaepEAAD_ugAA340-uORngC-eXsQQ-g@mail.gmail.com>
- <20191006165436.GA29585@mit.edu>
-In-Reply-To: <20191006165436.GA29585@mit.edu>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Mon, 7 Oct 2019 01:20:34 -0700
-Message-ID: <CAFd5g47XogYaO24fHnRR9wyki_r4oQg0qSWo9kOgnXpyTuJAWw@mail.gmail.com>
-Subject: Re: [PATCH v18 00/19] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     "Theodore Y. Ts'o" <tytso@mit.edu>
-Cc:     shuah <shuah@kernel.org>,
-        Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1727028AbfJGIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 04:22:45 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:24341 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727317AbfJGIWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 04:22:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570436564;
+        s=strato-dkim-0002; d=fpond.eu;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=K4lPRF6A8fnUsH8X93B6bF22TBUJNSeza1MuRKIljOM=;
+        b=S+eAtVBo+Si9LoWTFLdRsrncX4mdu1r+aVHxms9JJ1UztwZ9IQcb+aN7niUI9Ri0fq
+        SE22c36RtnlJcuX/DcsLm9+B/8Iy8iYA5Yfx5r8mgq8pgieS9bt1gp34sIeaBzOJzok4
+        6xzUL/Waq2J53fV5Vlxh6K+7jIVaBtTP+TYS2sgqURsl4fbdp70edLgU+GCRyaD5YUc4
+        TThvkBdqZjiBRYGyyC1g4ezg+XoHbegQvfQLh1YpRLjCiTFRMaMXbKKKwDEEBSCiWXeC
+        xkgHhwfWuZnTWWaRN5f45lIgWAvTAkiiwOgYI6v0NI+TeNY1r/h9/KIRL3ty6LDJdzJ7
+        gEVQ==
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73dmm4I5W0/AvA67Ot4fvR82Ncd3IXOg=="
+X-RZG-CLASS-ID: mo00
+Received: from groucho.site
+        by smtp.strato.de (RZmta 44.28.0 DYNA|AUTH)
+        with ESMTPSA id i07086v978MWftY
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Mon, 7 Oct 2019 10:22:32 +0200 (CEST)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com
+Cc:     robh+dt@kernel.org, p.zabel@pengutronix.de,
+        enric.balletbo@collabora.com, djkurtz@chromium.org,
+        architt@codeaurora.org, matthias.bgg@gmail.com,
+        mark.rutland@arm.com, stonea168@163.com, andy.yan@rock-chips.com,
+        ajaykumar.rs@samsung.com, vpalatin@chromium.org,
+        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
+        ck.hu@mediatek.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, pawel.moll@arm.com,
+        ijc+devicetree@hellion.org.uk, inki.dae@samsung.com,
+        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
+        rahul.sharma@samsung.com, galak@codeaurora.org,
+        seanpaul@chromium.org, Ulrich Hecht <uli@fpond.eu>
+Subject: [PATCH v20 0/2] PS8640 MIPI-to-eDP bridge
+Date:   Mon,  7 Oct 2019 10:22:27 +0200
+Message-Id: <1570436549-8694-1-git-send-email-uli@fpond.eu>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 6, 2019 at 9:55 AM Theodore Y. Ts'o <tytso@mit.edu> wrote:
->
-> On Fri, Oct 04, 2019 at 06:18:04PM -0700, Brendan Higgins wrote:
-> > > Let's talk about current state. Right now kunit is in linux-next and
-> > > we want to add a few more tests. We will have to coordinate the effort.
-> > > Once kunit get into mainline, then the need for this coordination goes
-> > > down.
-> >
-> > Sure, I was just thinking that getting other people to write the tests
-> > would be better. Since not only is it then useful to someone else, it
-> > provides the best possible exercise of KUnit.
->
-> Well, one thing we *can* do is if (a) if we can create a kselftest
-> branch which we know is stable and won't change, and (b) we can get
-> assurances that Linus *will* accept that branch during the next merge
-> window, those subsystems which want to use kself test can simply pull
-> it into their tree.
+Hi!
 
-Yeah, I can't think of any reason that you haven't outlined already
-why that might not work, but that seems kind of like circumventing
-Linus.
+This revision fixes a minor issue that keeps the driver from probing on
+the Elm platform. Thanks to Matthias Brugger for testing.
 
-> We've done this before in the file system world, when there has been
-> some common set of changes needed to improve, say, Direct I/O, where
-> the changes are put into a standalone branch, say, in the xfs tree,
-> and those file systems which need it as a building block can pull it
-> into their tree, and then add the changes needed to use those changes
-> into their file system git tree.  These changes are generally not
-> terribly controversial, and we've not had to worry about people want
-> to bikeshed the changes.
->
-> There is a risk with doing this of course, which is that if the branch
-> *is* controversial, or gets bike-shedded for some reason, then Linus
-> gets upset and any branches which depended on said branch will get
-> rejected at the next merge window.  Which is the requirement for (a)
-> and (b) above.  Presumably, the fact that people were unwilling to let
-> Kunit land during this merge window might will *because* we think more
-> changes might be pending?
+This driver seems to have fallen by the wayside because, while otherwise
+fine, it has a firmware update feature that requires a blob that is not in
+the linux-firmware repo.[1]
 
-My understanding, based on what I have been told, is that we were
-simply unlucky with the timing when Linus pulled the branch in the
-first week of the 5.4 merge window (Friday), such that once I fixed
-the directory naming issue, the updated changes didn't spend enough
-time in linux-next. And now with this issue fixed and KUnit back in
-linux-next, if nothing interesting happens between now and 5.5, it
-will be accepted in the 5.5 merge window. I do not think that anyone
-is expecting anymore changes before merging.
+Whatever the cause for that may be, the update code is entirely optional
+(my chip works fine with whatever firmware is currently installed), so I
+have removed it in order to get this merged after all. I have also
+followed various trivial API changes that have piled up since 2016; see
+the individual patches for details.
 
-Shuah, Linus, is my understanding correct?
+I'm using this driver on an Acer Chromebook R13 ("Elm"); see
+https://github.com/uli/kernel/tree/elm-working-5.4.
 
-> The other thing I suppose I can do is to let the ext4 kunit tests land
-> in ext4 tree, but with the necessary #ifdef's around things like
-> "#include <kunit/test.h>" so that the build won't blow up w/o kunit
-> changes being in the tree that I'm building.  It means I won't be able
-> to run the tests without creating a test integration branch and
-> merging in kunit by hand, which will super-annoying, of course.  And
-> if some of the bike-shedding is in Kunit's interfaces, then that
-> becomes problematic as well, since any tests that are in ext4.git tree
-> might change if people want to rename Kunit's publically exported
-> functions (for example).
+CU
+Uli
 
-Yeah, that seems even worse. I'm sorry to have caused this frustration.
+[1] https://patchwork.kernel.org/patch/9427543/
 
-> > Hey Ted, do you know if that ext4 timestamp test can go in through
-> > linux-kselftest? It seemed fairly self-contained. Or is that what you
-> > were saying wouldn't work for you?
->
-> Well, I was hoping that we might start creating more tests beyond just
-> the ext4 timestamp tests....
 
-Okay, that's what I thought (and what I hoped) you were saying :-)
+Jitao Shi (2):
+  Documentation: bridge: Add documentation for ps8640 DT properties
+  drm/bridge: Add I2C based driver for ps8640 bridge
 
-I hope we can figure out something that will work for you. Or
-otherwise that you won't mind waiting until 5.5.
+ .../devicetree/bindings/display/bridge/ps8640.txt  |  44 ++
+ drivers/gpu/drm/bridge/Kconfig                     |  12 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/parade-ps8640.c             | 672 +++++++++++++++++++++
+ 4 files changed, 729 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ps8640.txt
+ create mode 100644 drivers/gpu/drm/bridge/parade-ps8640.c
 
-Sorry
+-- 
+2.7.4
+
