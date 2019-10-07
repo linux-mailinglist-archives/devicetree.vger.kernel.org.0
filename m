@@ -2,91 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76576CE368
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA981CE38D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 15:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728338AbfJGN0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 09:26:14 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:57050 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727923AbfJGN0N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 09:26:13 -0400
-Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iHT1c-0003CU-B8; Mon, 07 Oct 2019 15:26:08 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        christoph.muellner@theobroma-systems.com
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding for Rockchip OTP controller
-Date:   Mon, 07 Oct 2019 15:26:07 +0200
-Message-ID: <2431603.e1tpym8sWD@diego>
-In-Reply-To: <20190925184957.14338-1-heiko@sntech.de>
-References: <20190925184957.14338-1-heiko@sntech.de>
+        id S1728420AbfJGN1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 09:27:01 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:35771 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727635AbfJGN1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 09:27:00 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id B24261C000C;
+        Mon,  7 Oct 2019 13:26:58 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v3 0/8] Introduce max12xx ADC support
+Date:   Mon,  7 Oct 2019 15:26:49 +0200
+Message-Id: <20191007132657.4190-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hello, here is a patchset updating the existing max1027.c driver (for
+10-bit max1027/29/31 ADCs) with a few corrections/improvements and
+then introducing their 12-bit cousins named max1227/29/31.
 
-Am Mittwoch, 25. September 2019, 20:49:56 CEST schrieb Heiko Stuebner:
-> Newer Rockchip SoCs use a different IP for accessing special one-
-> time-programmable memory, so add a binding for these controllers.
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+As on my hardware setup the "start conversion" and "end of conversion"
+pin are not wired (which is absolutely fine for this chip), I also
+updated the driver and the bindings to support optional interrupts. In
+this case, triggered buffers are not available and the user must poll
+the value from sysfs.
 
-Srinivas seems to wait for an Ack on the DT-Patch - see comment on patch2.
-As this all looks pretty standard, any objections to the binding?
-
-Thanks
-Heiko
-
-> ---
->  .../bindings/nvmem/rockchip-otp.txt           | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/rockchip-otp.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/rockchip-otp.txt b/Documentation/devicetree/bindings/nvmem/rockchip-otp.txt
-> new file mode 100644
-> index 000000000000..40f649f7c2e5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/rockchip-otp.txt
-> @@ -0,0 +1,25 @@
-> +Rockchip internal OTP (One Time Programmable) memory device tree bindings
-> +
-> +Required properties:
-> +- compatible: Should be one of the following.
-> +  - "rockchip,px30-otp" - for PX30 SoCs.
-> +  - "rockchip,rk3308-otp" - for RK3308 SoCs.
-> +- reg: Should contain the registers location and size
-> +- clocks: Must contain an entry for each entry in clock-names.
-> +- clock-names: Should be "otp", "apb_pclk" and "phy".
-> +- resets: Must contain an entry for each entry in reset-names.
-> +  See ../../reset/reset.txt for details.
-> +- reset-names: Should be "phy".
-> +
-> +See nvmem.txt for more information.
-> +
-> +Example:
-> +	otp: otp@ff290000 {
-> +		compatible = "rockchip,px30-otp";
-> +		reg = <0x0 0xff290000 0x0 0x4000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		clocks = <&cru SCLK_OTP_USR>, <&cru PCLK_OTP_NS>,
-> +			 <&cru PCLK_OTP_PHY>;
-> +		clock-names = "otp", "apb_pclk", "phy";
-> +	};
-> 
+Thanks,
+Miquèl
 
 
+Changes in v3:
+==============
+* Updated the commit message of the patch adding debugfs read access
+  to better explain why I decided to limit the number of bytes read to
+  two.
+* Updated the macros to define the number of channels per device as
+  proposed by Jonathan.
+* Re-used the realbits entry instead of adding my own (called .depth).
+* Started doing DT-bindings yaml conversion, but realized that after
+  the first patch offering the interrupt as optional, the
+  documentation was fitting pretty well the trivial devices
+  representation. Dropped the specific bindings files and updated the
+  trivial devices list instead.
 
+Changes in v2:
+==============
+* Removed the addition of three compatibles from patch 4 (the
+  preparation patch) to add these lines back in patch 5 (the actual
+  introduction).
+
+
+Miquel Raynal (8):
+  iio: adc: max1027: Add debugfs register read support
+  iio: adc: max1027: Make it optional to use interrupts
+  iio: adc: max1027: Reset the device at probe time
+  iio: adc: max1027: Prepare the introduction of different resolutions
+  iio: adc: max1027: Introduce 12-bit devices support
+  dt-bindings: iio: adc: max1027: Mark interrupts as optional
+  dt-bindings: Add 1027/1029/1031 SPI ADCs as trivial devices
+  dt-bindings: Add max12xx SPI ADC series as trivial devices
+
+ .../bindings/iio/adc/max1027-adc.txt          |  12 +-
+ .../devicetree/bindings/trivial-devices.yaml  |  12 ++
+ drivers/iio/adc/Kconfig                       |   4 +-
+ drivers/iio/adc/max1027.c                     | 180 +++++++++++-------
+ 4 files changed, 135 insertions(+), 73 deletions(-)
+
+-- 
+2.20.1
 
