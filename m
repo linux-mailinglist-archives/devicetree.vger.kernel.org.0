@@ -2,379 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93542CE230
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:50:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 442E2CE23B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:53:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727566AbfJGMuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 08:50:14 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46908 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727554AbfJGMuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 08:50:14 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97CoC97010645;
-        Mon, 7 Oct 2019 07:50:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570452612;
-        bh=9IjfOP8gCGca/mlTC1I3oFYCzdJI7fhG+NZeTD0pUIs=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=mw1ZWcT08BC/AorG2DrXvwracfMbF27+AiLozRone9amKI19s72jm05huAB3nEnyF
-         2k07kHAVfptBoYWQDHQRoMBcQ3dv+8i63JdmK/Gjs4PcrziRoz8gqEyrndM08o+C15
-         cjBwthGUppsSdnFnm3GHlTcqprzXbnvgugaZmz+s=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x97CoCGd097628
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Oct 2019 07:50:12 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 7 Oct
- 2019 07:50:11 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 7 Oct 2019 07:50:11 -0500
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with SMTP id x97CoBik101734;
-        Mon, 7 Oct 2019 07:50:11 -0500
-Date:   Mon, 7 Oct 2019 07:52:45 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [Patch v2 19/21] media: v4l2-common: add pixel encoding support
-Message-ID: <20191007125245.zfysnop5xelitacf@ti.com>
-References: <20191004162952.4963-1-bparrot@ti.com>
- <20191004162952.4963-20-bparrot@ti.com>
- <0118836c-f6d9-dccf-4e90-ede802c8be33@xs4all.nl>
+        id S1727554AbfJGMxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 08:53:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45410 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727467AbfJGMxU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 08:53:20 -0400
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A122E2173B
+        for <devicetree@vger.kernel.org>; Mon,  7 Oct 2019 12:53:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570452798;
+        bh=OcHeLP/qq1aPvsGSRiYbAIE/VJP24hQJgPul4zHU15w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JX33LU9cJQALFkkcYviaIM3iBwEAe/CidRD1RIZiJ4l4hgydMuVM+hRcJj4FSWTpN
+         E7of9qQYmDsRsBy6+LfexyztiOnt27J7Zc+8NR1W02G1KOry0lpzH6Q0AVfJEyNEhe
+         A8DpVEamD2GeSKLceSJlijpdcJ96X0FpBVMSbeJk=
+Received: by mail-qk1-f177.google.com with SMTP id u186so12416439qkc.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 05:53:18 -0700 (PDT)
+X-Gm-Message-State: APjAAAWwcARUZtK4iSA03H/Y3kfSXudpRR2yLzQQxkuoFvxpkL0kItEh
+        cfw+JeeYJHFtofxDR+qZRh9XtDYgHmCep9cYUQ==
+X-Google-Smtp-Source: APXvYqwlKfXgpwy3ehPZWxTgG9eiCTZ6s5SoFYAM/1PDHBgNGMa6ZXPufLcYTCelh6Tj9O1lBlYZxD004Ih/FW/sVjg=
+X-Received: by 2002:a37:be87:: with SMTP id o129mr23745015qkf.254.1570452797681;
+ Mon, 07 Oct 2019 05:53:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0118836c-f6d9-dccf-4e90-ede802c8be33@xs4all.nl>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <9037b7edbbb41cbbf699ebe3a511daf22d886e7d.1570444695.git.robin.murphy@arm.com>
+In-Reply-To: <9037b7edbbb41cbbf699ebe3a511daf22d886e7d.1570444695.git.robin.murphy@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 7 Oct 2019 07:53:06 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKBy+i+=gGyYhBgcMUYsWd_CL_GnEoQqALBb+Gy7Ogb6A@mail.gmail.com>
+Message-ID: <CAL_JsqKBy+i+=gGyYhBgcMUYsWd_CL_GnEoQqALBb+Gy7Ogb6A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add Beelink A1
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     "heiko@sntech.de" <heiko@sntech.de>, devicetree@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hans Verkuil <hverkuil@xs4all.nl> wrote on Mon [2019-Oct-07 10:06:39 +0200]:
-> On 10/4/19 6:29 PM, Benoit Parrot wrote:
-> > It is often useful to figure out if a pixel_format is either YUV or RGB
-> > especially for driver who can perform the pixel encoding conversion.
-> > 
-> > Instead of having each driver implement its own "is_this_yuv/rgb"
-> > function based on a restricted set of pixel value, it is better to do
-> > this in centralized manner.
-> > 
-> > We therefore add a pix_enc member to the v4l2_format_info structure to
-> > quickly identify the related pixel encoding.
-> > And add helper function to find/check pixel encoding.
-> > 
-> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> > ---
-> >  drivers/media/v4l2-core/v4l2-common.c | 162 ++++++++++++++++----------
-> >  include/media/v4l2-common.h           |  20 ++++
-> >  2 files changed, 119 insertions(+), 63 deletions(-)
-> > 
-> > diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-core/v4l2-common.c
-> > index 62f7aa92ac29..474cdb5863f4 100644
-> > --- a/drivers/media/v4l2-core/v4l2-common.c
-> > +++ b/drivers/media/v4l2-core/v4l2-common.c
-> > @@ -236,77 +236,77 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
-> >  {
-> >  	static const struct v4l2_format_info formats[] = {
-> >  		/* RGB formats */
-> > -		{ .format = V4L2_PIX_FMT_BGR24,   .mem_planes = 1, .comp_planes = 1, .bpp = { 3, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_RGB24,   .mem_planes = 1, .comp_planes = 1, .bpp = { 3, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_HSV24,   .mem_planes = 1, .comp_planes = 1, .bpp = { 3, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_BGR32,   .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_XBGR32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_BGRX32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_RGB32,   .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_XRGB32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_RGBX32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_HSV32,   .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_ARGB32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_RGBA32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_ABGR32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_BGRA32,  .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_GREY,    .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_BGR24,   .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 3, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_RGB24,   .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 3, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_HSV24,   .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 3, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_BGR32,   .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_XBGR32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_BGRX32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_RGB32,   .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_XRGB32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_RGBX32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_HSV32,   .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_ARGB32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_RGBA32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_ABGR32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_BGRA32,  .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_GREY,    .pix_enc = V4L2_ENC_RGB, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> >  
-> >  		/* YUV packed formats */
-> > -		{ .format = V4L2_PIX_FMT_YUYV,    .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_YVYU,    .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_UYVY,    .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_VYUY,    .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YUYV,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YVYU,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_UYVY,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_VYUY,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> >  
-> >  		/* YUV planar formats */
-> > -		{ .format = V4L2_PIX_FMT_NV12,    .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_NV21,    .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_NV16,    .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_NV61,    .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_NV24,    .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_NV42,    .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -
-> > -		{ .format = V4L2_PIX_FMT_YUV410,  .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 4 },
-> > -		{ .format = V4L2_PIX_FMT_YVU410,  .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 4 },
-> > -		{ .format = V4L2_PIX_FMT_YUV411P, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_YUV420,  .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_YVU420,  .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_YUV422P, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_NV12,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_NV21,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_NV16,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_NV61,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_NV24,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_NV42,    .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +
-> > +		{ .format = V4L2_PIX_FMT_YUV410,  .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 4 },
-> > +		{ .format = V4L2_PIX_FMT_YVU410,  .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 4 },
-> > +		{ .format = V4L2_PIX_FMT_YUV411P, .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YUV420,  .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_YVU420,  .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_YUV422P, .pix_enc = V4L2_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 1 },
-> >  
-> >  		/* YUV planar formats, non contiguous variant */
-> > -		{ .format = V4L2_PIX_FMT_YUV420M, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_YVU420M, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_YUV422M, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_YVU422M, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_YUV444M, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_YVU444M, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -
-> > -		{ .format = V4L2_PIX_FMT_NV12M,   .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_NV21M,   .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > -		{ .format = V4L2_PIX_FMT_NV16M,   .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_NV61M,   .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YUV420M, .pix_enc = V4L2_ENC_YUV, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_YVU420M, .pix_enc = V4L2_ENC_YUV, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_YUV422M, .pix_enc = V4L2_ENC_YUV, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YVU422M, .pix_enc = V4L2_ENC_YUV, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YUV444M, .pix_enc = V4L2_ENC_YUV, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_YVU444M, .pix_enc = V4L2_ENC_YUV, .mem_planes = 3, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +
-> > +		{ .format = V4L2_PIX_FMT_NV12M,   .pix_enc = V4L2_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_NV21M,   .pix_enc = V4L2_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
-> > +		{ .format = V4L2_PIX_FMT_NV16M,   .pix_enc = V4L2_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_NV61M,   .pix_enc = V4L2_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
-> >  
-> >  		/* Bayer RGB formats */
-> > -		{ .format = V4L2_PIX_FMT_SBGGR8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGBRG8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGRBG8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SRGGB8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SBGGR10,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGBRG10,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGRBG10,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SRGGB10,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SBGGR10ALAW8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGBRG10ALAW8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGRBG10ALAW8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SRGGB10ALAW8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SBGGR10DPCM8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGBRG10DPCM8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGRBG10DPCM8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SRGGB10DPCM8,	.mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SBGGR12,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGBRG12,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SGRBG12,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > -		{ .format = V4L2_PIX_FMT_SRGGB12,	.mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SBGGR8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGBRG8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGRBG8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SRGGB8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SBGGR10,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGBRG10,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGRBG10,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SRGGB10,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SBGGR10ALAW8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGBRG10ALAW8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGRBG10ALAW8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SRGGB10ALAW8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SBGGR10DPCM8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGBRG10DPCM8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGRBG10DPCM8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SRGGB10DPCM8,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SBGGR12,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGBRG12,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SGRBG12,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> > +		{ .format = V4L2_PIX_FMT_SRGGB12,	.pix_enc = V4L2_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
-> >  	};
-> >  	unsigned int i;
-> >  
-> > @@ -317,6 +317,42 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
-> >  }
-> >  EXPORT_SYMBOL(v4l2_format_info);
-> >  
-> > +bool v4l2_is_format_rgb(u32 format)
-> > +{
-> > +	const struct v4l2_format_info *f;
-> > +
-> > +	f = v4l2_format_info(format);
-> > +	if (f && f->pix_enc == V4L2_ENC_RGB)
-> > +		return true;
-> > +
-> > +	return false;
-> 
-> This can be simplified to:
-> 
-> 	return f && f->pix_enc == V4L2_ENC_RGB;
-> 
-> Same for the other two functions below.
+On Mon, Oct 7, 2019 at 6:33 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> Beelink A1 is a TV box implementing the higher-end options of the
+> RK3328 reference design - the DTB from the stock Android firmware is
+> clearly the "rk3328-box-plus" variant from the Rockchip 3.10 BSP with
+> minor modifications to accommodate the USB WiFi module and additional
+> VFD-style LED driver. It features:
+>
+> - 4GB of 32-bit LPDDR3
+> - 16GB of HS200 eMMC (newer models with 32GB also exist)
+> - Realtek RTL8211F phy for gigabit ethernet
+> - Fn-Link 6221E-UUC module (RealTek RTL8821CU) for 11ac WiFi and Bluetooth 4.2
+> - HDMI and analog A/V
+> - 1x USB 3.0 type A host, 1x USB 2.0 type A OTG, 1x micro SD
+> - IR receiver and a neat little LED clock display.
+>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>
+> One question I'm wondering about is whether it's worth pushing the HDMI
+> and analog codec audio cards down into rk3328.dtsi (as with HDMI audio
+> on RK3399), since those audio pipelines are internal to the SoC and the
+> board only really governs whether the outputs are wired up or not.
 
-Ok I'll change that.
+Seems reasonable. One other candidate below.
 
-> 
-> > +}
-> > +EXPORT_SYMBOL(v4l2_is_format_rgb);
-> > +
-> > +bool v4l2_is_format_yuv(u32 format)
-> > +{
-> > +	const struct v4l2_format_info *f;
-> > +
-> > +	f = v4l2_format_info(format);
-> > +	if (f && f->pix_enc == V4L2_ENC_YUV)
-> > +		return true;
-> > +
-> > +	return false;
-> > +}
-> > +EXPORT_SYMBOL(v4l2_is_format_yuv);
-> > +
-> > +bool v4l2_is_format_bayer(u32 format)
-> > +{
-> > +	const struct v4l2_format_info *f;
-> > +
-> > +	f = v4l2_format_info(format);
-> > +	if (f && f->pix_enc == V4L2_ENC_BAYER)
-> > +		return true;
-> > +
-> > +	return false;
-> > +}
-> > +EXPORT_SYMBOL(v4l2_is_format_bayer);
-> 
-> That said, I am not sure I like these three functions. It leads to
-> usage like this (from patch 21/21):
-> 
-> 	if (v4l2_is_format_yuv(src_fmt->fmt.pix_mp.pixelformat) &&
-> 	    v4l2_is_format_rgb(dst_fmt->fmt.pix_mp.pixelformat)) {
+>
+>  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
 
-Well it is called twice here because we are checking two different format,
-so the loop are ineveitable, I am afraid.
+In the future, please split bindings to a separate patch.
 
-But I guess it is also called in the "else" part in case this fails so it
-might get called twice.
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  arch/arm64/boot/dts/rockchip/rk3328-a1.dts    | 399 ++++++++++++++++++
+>  3 files changed, 405 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index c82c5e57d44c..f27f7805f57e 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -40,6 +40,11 @@ properties:
+>            - const: asus,rk3288-tinker-s
+>            - const: rockchip,rk3288
+>
+> +      - description: Beelink A1
+> +        items:
+> +          - const: azw,beelink-a1
+> +          - const: rockchip,rk3328
+> +
+>        - description: bq Curie 2 tablet
+>          items:
+>            - const: mundoreader,bq-curie2
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 1f18a9392d15..a6f250e7cde2 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> new file mode 100644
+> index 000000000000..03ad663ff821
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> @@ -0,0 +1,399 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +// Copyright (c) 2017-2019 Arm Ltd.
+> +
+> +/dts-v1/;
+> +#include "rk3328.dtsi"
+> +
+> +/ {
+> +       model = "Beelink A1";
+> +       compatible = "azw,beelink-a1", "rockchip,rk3328";
+> +
+> +       /*
+> +        * UART pins, as viewed with bottom of case removed:
+> +        *
+> +        *           Front
+> +        *        /-------
+> +        *  L    / o <- Gnd
+> +        *  e   / o <-- Rx
+> +        *  f  / o <--- Tx
+> +        *  t / o <---- +3.3v
+> +        *    |
+> +        */
+> +       chosen {
+> +               stdout-path = "serial2:1500000n8";
+> +       };
+> +
+> +       gmac_clkin: external-gmac-clock {
+> +               compatible = "fixed-clock";
+> +               clock-frequency = <125000000>;
+> +               clock-output-names = "gmac_clkin";
+> +               #clock-cells = <0>;
+> +       };
+> +
+> +       vcc_host_5v: usb3-current-switch {
+> +               compatible = "regulator-fixed";
+> +               enable-active-high;
+> +               gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&usb30_host_drv>;
+> +               regulator-name = "vcc_host_5v";
+> +               vin-supply = <&vcc_sys>;
+> +       };
+> +
+> +       vcc_sys: vcc-sys {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "vcc_sys";
+> +               regulator-min-microvolt = <5000000>;
+> +               regulator-max-microvolt = <5000000>;
+> +       };
+> +
+> +       cpus {
+> +               idle-states {
+> +                       entry-method = "arm,psci";
+> +
+> +                       cpu_sleep: cpu-sleep {
+> +                               compatible = "arm,idle-state";
+> +                               arm,psci-suspend-param = <0x0010000>;
+> +                               local-timer-stop;
+> +                               entry-latency-us = <120>;
+> +                               exit-latency-us = <250>;
+> +                               min-residency-us = <900>;
 
-> 
-> which is quite inefficient since v4l2_format_info() is called twice, so
-> the same for-loop there is also done twice.
-> 
-> I think the caller should just call v4l2_format_info(), then test f->pix_enc.
-> 
-> You can also add something like this to v4l2-common.h:
-> 
-> static inline bool v4l2_is_format_yuv(const struct v4l2_format_info *f)
-> {
-> 	return f && f->pix_enc == V4L2_ENC_YUV;
-> }
-> 
-> I'm fine with that.
+This doesn't seem like something that's board specific, but I guess
+the regulator could have some influence on these times. If so, the
+board file could always override a default.
 
-I can store the format_info result I guess and use that.
-
-> 
-> > +
-> >  static inline unsigned int v4l2_format_block_width(const struct v4l2_format_info *info, int plane)
-> >  {
-> >  	if (!info->block_w[plane])
-> > diff --git a/include/media/v4l2-common.h b/include/media/v4l2-common.h
-> > index c070d8ae11e5..27041cf2b818 100644
-> > --- a/include/media/v4l2-common.h
-> > +++ b/include/media/v4l2-common.h
-> > @@ -456,9 +456,25 @@ int v4l2_s_parm_cap(struct video_device *vdev,
-> >  
-> >  /* Pixel format and FourCC helpers */
-> >  
-> > +/**
-> > + * enum v4l2_pixel_encoding - specifies the pixel encoding value
-> > + *
-> > + * @V4L2_ENC_UNKNOWN:	Pixel encoding is unknown/un-initialized
-> > + * @V4L2_ENC_YUV:	Pixel encoding is YUV
-> > + * @V4L2_ENC_RGB:	Pixel encoding is RGB
-> > + * @V4L2_ENC_BAYER:	Pixel encoding is Bayer
-> > + */
-> > +enum v4l2_pixel_encoding {
-> > +	@V4L2_ENC_UNKNOWN = 0,
-> > +	V4L2_ENC_YUV = 1,
-> > +	V4L2_ENC_RGB = 2,
-> > +	V4L2_ENC_BAYER = 3,
-> > +};
-> 
-> Just plain _ENC_ is a bit too generic. I'd change this to _PIXEL_ENC_.
-
-No problem.
-
-> 
-> > +
-> >  /**
-> >   * struct v4l2_format_info - information about a V4L2 format
-> >   * @format: 4CC format identifier (V4L2_PIX_FMT_*)
-> > + * @pix_enc: Pixel format encoding (see enum v4l2_pixel_encoding above)
-> 
-> Drop the 'format' word.
-
-Agreed.
-
-> 
-> >   * @mem_planes: Number of memory planes, which includes the alpha plane (1 to 4).
-> >   * @comp_planes: Number of component planes, which includes the alpha plane (1 to 4).
-> >   * @bpp: Array of per-plane bytes per pixel
-> > @@ -469,6 +485,7 @@ int v4l2_s_parm_cap(struct video_device *vdev,
-> >   */
-> >  struct v4l2_format_info {
-> >  	u32 format;
-> > +	u8 pix_enc;
-> 
-> I would prefer pixel_enc instead of pix_enc.
-
-I'll fix that.
-
-Benoit
-
-> 
-> >  	u8 mem_planes;
-> >  	u8 comp_planes;
-> >  	u8 bpp[4];
-> > @@ -479,6 +496,9 @@ struct v4l2_format_info {
-> >  };
-> >  
-> >  const struct v4l2_format_info *v4l2_format_info(u32 format);
-> > +bool v4l2_is_format_rgb(u32 format);
-> > +bool v4l2_is_format_yuv(u32 format);
-> > +bool v4l2_is_format_bayer(u32 format);
-> >  
-> >  void v4l2_apply_frmsize_constraints(u32 *width, u32 *height,
-> >  				    const struct v4l2_frmsize_stepwise *frmsize);
-> > 
-> 
-> Regards,
-> 
-> 	Hans
+Rob
