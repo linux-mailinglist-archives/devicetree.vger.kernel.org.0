@@ -2,188 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB9B4CEE33
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 23:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A76CEE6A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 23:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728654AbfJGVLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 17:11:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728273AbfJGVLR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 17:11:17 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3A95321871;
-        Mon,  7 Oct 2019 21:11:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570482675;
-        bh=2++8T5z+QfZLxrx0+JY4Ig6nJlGMQTg7pMrbsTi8s/A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MqnJMCvIdq80J7Il5BK3z4Hl/Rjz0FvDiuBTyPxi1L/hJdXCjTadbkoZzujx+rP5i
-         lboI8E810fgzQpg7RhEyqt7H/YOS+BHlBnKfYDSLNZdwRL5Tmr7JjhO1Lf2A7Y9Dy6
-         8qi++nUKNtWLv6HGtIhG6oqo+fgIj3YKezVgUrB0=
-Received: by mail-qt1-f172.google.com with SMTP id o12so21414190qtf.3;
-        Mon, 07 Oct 2019 14:11:15 -0700 (PDT)
-X-Gm-Message-State: APjAAAW/6LPeMArZ4m7LwDFARoaovbjtDFJEx0j2kDu4pdeMkZa8SNZn
-        gXMSLVCX3+qRvbjB3/uZ+9nrDUrY134UDsZ1RQ==
-X-Google-Smtp-Source: APXvYqxgC4Y+IoQKs1SvKtAXtb35EwkBoHIwCUxxsWKBsFy/kXYqrEVfDUkyri9NnRTPi/5JhBKP08QwsTyWEYngVpk=
-X-Received: by 2002:a05:6214:1590:: with SMTP id m16mr29194689qvw.20.1570482674220;
- Mon, 07 Oct 2019 14:11:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191007175553.66940-1-john.stultz@linaro.org>
- <20191007175553.66940-5-john.stultz@linaro.org> <CAL_JsqJLY2n7hfneNptAGswVZtGm3vJbSR6W2wUG+ZTzMN8wZA@mail.gmail.com>
- <CALAqxLWB7Vd-H70LLLSW0Fv=_4-saQ9CE2k3-L_43E+F8mLj2w@mail.gmail.com>
-In-Reply-To: <CALAqxLWB7Vd-H70LLLSW0Fv=_4-saQ9CE2k3-L_43E+F8mLj2w@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 7 Oct 2019 16:11:02 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ9uUtqTDEkLi86-BCvW+wM6Pgz_K+JuTsuOqHfFOHStA@mail.gmail.com>
-Message-ID: <CAL_JsqJ9uUtqTDEkLi86-BCvW+wM6Pgz_K+JuTsuOqHfFOHStA@mail.gmail.com>
-Subject: Re: [RFC][PATCH v2 4/5] dt-bindings: usb: dwc3: of-simple: add
- compatible for HiSi
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        id S1728702AbfJGV3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 17:29:48 -0400
+Received: from mail-eopbgr140080.outbound.protection.outlook.com ([40.107.14.80]:18646
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728330AbfJGV3s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 17:29:48 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RX0Sw6q2tINHkblb9D4zuW0NgUo6Aj5R07ovF+CdrpyDGb2qBNyiKlPNdOOJfzPXLVLg61EL+iqtsCGFLBwLoiK9YSbv0wWxiLCrgooueRZfGKHuy79MO/gtgPxG6BNVWwqM7t330y9/oJrJHCxI54crx13aEnOIDCF/BcW3IRxCXK20saHYEqdc9WsO/1FszxnAuv8Q3eHoZH/BLsujq1wkY7orST6tFyyx4a0B7TGt0B7c6NWbltlQn530otVQ1h/oTjULIUNzhS4F0F8s16J1t9II02PJtQ/KL2iwq1MzP6iYJrUKkYabys2cXhl+rHiGl0f0Y3d9tRthYvWpMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dQZOqUsbFsCWC1X2Q71QaN6e07yIhpF2OaCSFCSoEbo=;
+ b=nBxCClpMs1VI5rWYXEtOsunNUTFESHV+WsYL5nqaelWu78mpDHEgf3GW7O4XyR2bgi5JB73LJWZulaodd6DxHmF0U0UZhvjNm5jvixNJOp1OqP6QdrlHWcWepY80XVnilmRZSBTYvW4pCjudDspfUQWLL/GX7fF2sTIeN1zoiUy4dWXiLyMcIWmdiKYzSaEZ626IAvxQ05L+dvc078bTybJIy6WuYEb4Vpz+zDuF/QYxTGEsCYq/yiXIgvK4+sDtkZApWrp3o6kLrs/h5ZleLnNImeyqcMWdgxiY9ijVcoUyu8gFWZPAVk9ULielgSKvcR7CnBahdwmBXYYujFb5PQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dQZOqUsbFsCWC1X2Q71QaN6e07yIhpF2OaCSFCSoEbo=;
+ b=HW3DLpkiOg0G4uimEcRRm3FOFhvDwTc+AZ+dkLNkPb1FpTA44t8N8pNGLTPR2NngpDK4an4i+dFrHyRQ3NXSh7qb2ehPrYBDHevq8SDqGI2eqTWWt07VjfA/pwPef+RSCwBt2Zf0KXPbreguwKP0PCcE+f7pQU+Tq1FXX66tX0w=
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (20.179.234.30) by
+ VE1PR04MB6624.eurprd04.prod.outlook.com (20.179.234.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.24; Mon, 7 Oct 2019 21:29:05 +0000
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::c93:c279:545b:b6b6]) by VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::c93:c279:545b:b6b6%3]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
+ 21:29:04 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>
+CC:     "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [v2 1/2] arm64: dts: ls1028a: Update the clock providers for the
+ Mali DP500
+Thread-Topic: [v2 1/2] arm64: dts: ls1028a: Update the clock providers for the
+ Mali DP500
+Thread-Index: AQHVb4/BB/czJT1iOU+K17Me+HjXaKdPN1eAgACV0dA=
+Date:   Mon, 7 Oct 2019 21:29:04 +0000
+Message-ID: <VE1PR04MB66870A436BB8DC00979693D98F9B0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20190920083419.5092-1-wen.he_1@nxp.com>
+ <20191007123203.GL7150@dragon>
+In-Reply-To: <20191007123203.GL7150@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leoyang.li@nxp.com; 
+x-originating-ip: [64.157.242.222]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7a59e3c4-9c32-4021-48de-08d74b6d6122
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: VE1PR04MB6624:|VE1PR04MB6624:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VE1PR04MB66248614C34F076BC26BA80F8F9B0@VE1PR04MB6624.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:561;
+x-forefront-prvs: 01834E39B7
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(136003)(366004)(39860400002)(376002)(346002)(13464003)(199004)(189003)(102836004)(256004)(55016002)(6246003)(52536014)(14444005)(71190400001)(66066001)(76176011)(74316002)(305945005)(9686003)(7736002)(66446008)(66556008)(66946007)(66476007)(64756008)(33656002)(6436002)(110136005)(99286004)(6306002)(478600001)(229853002)(5660300002)(26005)(71200400001)(8936002)(53546011)(6506007)(316002)(81166006)(81156014)(54906003)(8676002)(4326008)(14454004)(11346002)(966005)(6636002)(446003)(2906002)(86362001)(15650500001)(45080400002)(25786009)(486006)(476003)(7696005)(3846002)(76116006)(6116002)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6624;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wzdBB9LJ/d95tfCw69xJ73v0fnLhse9CVZkPx7y27/2bpW2Fw0VOAH0KIUseTIO/K2qtOhQSDqea47e2s2WI7TqFiFWEBTn9cFif5BJ2M2mcGMkB20U+I9BxnXklmWh358r9He3Q7Tae6KCr5502+dn58hA/NQCzc8tDqy5PnPNBmc9aQRo6g4PWEgzTMnwZhNySzefO63rgIxTjoMTcsN/MYe8JyckaHYMaJZAaQ5T3pd8odl704kV/PvYIk4BO9aZv2RD3sbQpsTzBXUjwkyvxjCrKbM6nrOGPCNh1iDv4bw05RcojO9ws6cVsSO8cCNZZ+ApeP4IdEs6hZvFeNPiELVYnl5zWsJu/9WHaTLqMNoZ9kg2xezdk8jWPox3MbKiqrDXPpV+nshf8cuUo0L+ikbRcXlUThcrQHUDz/As=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a59e3c4-9c32-4021-48de-08d74b6d6122
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 21:29:04.8430
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3FlobGwHACM4pohE1ApgmbIZN0h1Hd8Kjfs7OlVD7LYF/VqEDjYdZa7ww1f00lAduMX8JBXZIZRhhO4RGul0lg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6624
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 7, 2019 at 2:07 PM John Stultz <john.stultz@linaro.org> wrote:
->
-> On Mon, Oct 7, 2019 at 11:38 AM Rob Herring <robh+dt@kernel.org> wrote:
+
+
+> -----Original Message-----
+> From: Shawn Guo <shawnguo@kernel.org>
+> Sent: Monday, October 7, 2019 7:32 AM
+> To: Wen He <wen.he_1@nxp.com>
+> Cc: linux-devel@linux.nxdi.nxp.com; Leo Li <leoyang.li@nxp.com>; Rob
+> Herring <robh+dt@kernel.org>; Mark Rutland <mark.rutland@arm.com>;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org
+> Subject: Re: [v2 1/2] arm64: dts: ls1028a: Update the clock providers for=
+ the
+> Mali DP500
+>=20
+> On Fri, Sep 20, 2019 at 04:34:18PM +0800, Wen He wrote:
+> > In order to maximise performance of the LCD Controller's 64-bit AXI
+> > bus, for any give speed bin of the device, the AXI master interface
+> > clock(ACLK) clock can be up to CPU_frequency/2, which is already
+> > capable of optimal performance. In general, ACLK is always expected to
+> > be equal to CPU_frequency/2. APB slave interface clock(PCLK) and Main
+> > processing clock(PCLK) both are tied to the same clock as ACLK.
 > >
-> > On Mon, Oct 7, 2019 at 12:56 PM John Stultz <john.stultz@linaro.org> wrote:
-> > >
-> > > Add necessary compatible flag for HiSi's DWC3 so
-> > > dwc3-of-simple will probe.
-> > >
-> > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > Cc: Felipe Balbi <balbi@kernel.org>
-> > > Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Mark Rutland <mark.rutland@arm.com>
-> > > Cc: Yu Chen <chenyu56@huawei.com>
-> > > Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> > > Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > Cc: linux-usb@vger.kernel.org
-> > > Cc: devicetree@vger.kernel.org
-> > > Signed-off-by: John Stultz <john.stultz@linaro.org>
-> > > ---
-> > > v2: Tweaked clock names as clk_usb3phy_ref didn't seem right.
-> > > ---
-> > >  .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
-> > >  1 file changed, 52 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+> > This change followed the LS1028A Architecture Specification Manual.
 > >
-> > Can you make this a schema.
->
-> Sorry, I'm not sure exactly what you're asking. I'm guessing from
-> grepping around you want the bindings in yaml instead (I see a few
-> examples)?
+> > Signed-off-by: Wen He <wen.he_1@nxp.com>
+>=20
+> @Leo, agree?
 
 Yes.
 
-> Is there some pointer to documentation? The
-> Documentation/devicetree/bindings/writing-bindings.txt file doesn't
-> seem to say much on it.
+Acked-by: Li Yang <leoyang.li@nxp.com>
 
-You mean Documentation/devicetree/writing-schemas.rst? There's that
-and Documentation/devicetree/bindings/example-schema.yaml which has a
-bunch of annotations on what each part means.
-
-> > > diff --git a/Documentation/devicetree/bindings/usb/hisi,dwc3.txt b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> > > new file mode 100644
-> > > index 000000000000..3a3e5c320f2a
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> > > @@ -0,0 +1,52 @@
-> > > +HiSi SuperSpeed DWC3 USB SoC controller
-> > > +
-> > > +Required properties:
-> > > +- compatible:          should contain "hisilicon,hi3660-dwc3" for HiSi SoC
-> > > +- clocks:              A list of phandle + clock-specifier pairs for the
-> > > +                       clocks listed in clock-names
-> > > +- clock-names:         Should contain the following:
-> > > +  "clk_abb_usb"                USB reference clk
-
-Probably 'ref' from dwc3.txt.
-
-> > > +  "aclk_usb3otg"       USB3 OTG aclk
-
-'bus_early'? IIRC, 'aclk' is the clock name for AXI bus clock.
-
-> > > +
-> > > +- assigned-clocks:     Should be:
-> > > +                               HI3660_ACLK_GATE_USB3OTG
-> > > +- assigned-clock-rates: Should be:
-> > > +                               229Mhz (229000000) for HI3660_ACLK_GATE_USB3OTG
-> > > +
-> > > +Optional properties:
-> > > +- resets:              Phandle to reset control that resets core and wrapper.
+>=20
+> Shawn
+>=20
+> > ---
+> > change in v2:
+> >         - add details commit description for this change.
+> >         - v1: Link:
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flor=
+e
+> > .kernel.org%2Fpatchwork%2Fpatch%2F1119145%2F&amp;data=3D02%7C01%
+> 7Cleoyan
 > >
-> > Looks like 4 resets though.
->
-> Good point. I'll fix that up.
->
-> > > +
-> > > +Required child node:
-> > > +A child node must exist to represent the core DWC3 IP block. The name of
-> > > +the node is not important. The content of the node is defined in dwc3.txt.
-> > > +
-> > > +Example device nodes:
-> > > +
-> > > +       usb3: hisi_dwc3 {
-> > > +               compatible = "hisilicon,hi3660-dwc3";
-> > > +               #address-cells = <2>;
-> > > +               #size-cells = <2>;
-> > > +               ranges;
-> > > +
-> > > +               clocks = <&crg_ctrl HI3660_CLK_ABB_USB>,
-> > > +                        <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
-> > > +               clock-names = "clk_abb_usb", "aclk_usb3otg";
-> > > +
-> > > +               assigned-clocks = <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
-> > > +               assigned-clock-rates = <229 000 000>;
-> > > +               resets = <&crg_rst 0x90 8>,
-> > > +                        <&crg_rst 0x90 7>,
-> > > +                        <&crg_rst 0x90 6>,
-> > > +                        <&crg_rst 0x90 5>;
-> > > +
-> > > +               dwc3: dwc3@ff100000 {
+> g.li%40nxp.com%7C628134d8d86548af60ab08d74b227a54%7C686ea1d3bc2b4
+> c6fa9
 > >
-> > If it's only clocks and resets for the wrapper node, just make this
-> > all one node.
->
-> Just to make sure I'm following, you're suggesting I put all the
-> clocks/resets in the dwc3 node (renamed to usb for the node name) and
-> not add the wrapper?
-
-Yes.
-
-> I'll have to see if that's possible. The generic dwc3 binding wants 3
-> clocks, but I only have two in the code I've worked with (similarly it
-> seems to only want two resets, not 4) so I'll have to see if I can
-> figure out how to adapt that.
-
-Possible since commit fe8abf332b8f ("usb: dwc3: support clocks and
-resets for DWC3 core").
-
->
-> If that approach is preferred, do I also no longer need a separate
-> binding document/schema?
-
-Correct. And then no need to convert to schema yet (though feel free
-to convert dwc3.txt :)).
-
-Rob
+> 2cd99c5c301635%7C0%7C0%7C637060483779667257&amp;sdata=3DvX2DqsXlKE
+> SqesXy
+> > LwTqnBFt0GftY0XNphkmx5dR7vA%3D&amp;reserved=3D0
+> >
+> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 17 ++---------------
+> >  1 file changed, 2 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > index 72b9a75976a1..51fa8f57fdac 100644
+> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > @@ -86,20 +86,6 @@
+> >  		clocks =3D <&osc_27m>;
+> >  	};
+> >
+> > -	aclk: clock-axi {
+> > -		compatible =3D "fixed-clock";
+> > -		#clock-cells =3D <0>;
+> > -		clock-frequency =3D <650000000>;
+> > -		clock-output-names=3D "aclk";
+> > -	};
+> > -
+> > -	pclk: clock-apb {
+> > -		compatible =3D "fixed-clock";
+> > -		#clock-cells =3D <0>;
+> > -		clock-frequency =3D <650000000>;
+> > -		clock-output-names=3D "pclk";
+> > -	};
+> > -
+> >  	reboot {
+> >  		compatible =3D"syscon-reboot";
+> >  		regmap =3D <&dcfg>;
+> > @@ -679,7 +665,8 @@
+> >  		interrupts =3D <0 222 IRQ_TYPE_LEVEL_HIGH>,
+> >  			     <0 223 IRQ_TYPE_LEVEL_HIGH>;
+> >  		interrupt-names =3D "DE", "SE";
+> > -		clocks =3D <&dpclk 0>, <&aclk>, <&aclk>, <&pclk>;
+> > +		clocks =3D <&dpclk 0>, <&clockgen 2 2>, <&clockgen 2 2>,
+> > +			 <&clockgen 2 2>;
+> >  		clock-names =3D "pxlclk", "mclk", "aclk", "pclk";
+> >  		arm,malidp-output-port-lines =3D /bits/ 8 <8 8 8>;
+> >  		arm,malidp-arqos-value =3D <0xd000d000>;
+> > --
+> > 2.17.1
+> >
