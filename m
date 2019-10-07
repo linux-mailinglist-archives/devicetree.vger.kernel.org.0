@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADE5ECDD26
+	by mail.lfdr.de (Postfix) with ESMTP id 3F6CCCDD25
 	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 10:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727028AbfJGIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727345AbfJGIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 7 Oct 2019 04:22:45 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:24341 "EHLO
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:20069 "EHLO
         mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727317AbfJGIWp (ORCPT
+        with ESMTP id S1727028AbfJGIWp (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 04:22:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570436564;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1570436563;
         s=strato-dkim-0002; d=fpond.eu;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=K4lPRF6A8fnUsH8X93B6bF22TBUJNSeza1MuRKIljOM=;
-        b=S+eAtVBo+Si9LoWTFLdRsrncX4mdu1r+aVHxms9JJ1UztwZ9IQcb+aN7niUI9Ri0fq
-        SE22c36RtnlJcuX/DcsLm9+B/8Iy8iYA5Yfx5r8mgq8pgieS9bt1gp34sIeaBzOJzok4
-        6xzUL/Waq2J53fV5Vlxh6K+7jIVaBtTP+TYS2sgqURsl4fbdp70edLgU+GCRyaD5YUc4
-        TThvkBdqZjiBRYGyyC1g4ezg+XoHbegQvfQLh1YpRLjCiTFRMaMXbKKKwDEEBSCiWXeC
-        xkgHhwfWuZnTWWaRN5f45lIgWAvTAkiiwOgYI6v0NI+TeNY1r/h9/KIRL3ty6LDJdzJ7
-        gEVQ==
+        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=YexszvWfT0YfoC5A4JusxCJ6TgneeRSUsJyagrjGFfw=;
+        b=ZQpfr6k6K13B1vkuow6aVzWgAU9UjdriQVZ5HucDBUn2HHWgYPSobyLKPabxjPl3BZ
+        iRS+aLBGngjuDl/Us9PcHOCSmrHLMUZR2YQ2TO6BcS2lRiRj8pVXIlvf039DMohHKFAU
+        4oHMadW7SsoL4jyb8pjSNG9Qh+++xu+TZvaiI3l7nmEEALLeJ8Acx0jXtLaGpiL7oDfH
+        AMwbl7HI78nCMSfHbk6FkdC84ib4UP9eNDG3Mg8VLHSyP4q1vFCNp1JP+oL9iK8xVkSO
+        JMoG4kqVFHslMzdG64fmYNX/Bhe7NYUWkDWhyONdFnpJdoPHk5P4XeghuxYIhtcNkCfL
+        4I5Q==
 X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73dmm4I5W0/AvA67Ot4fvR82Ncd3IXOg=="
 X-RZG-CLASS-ID: mo00
 Received: from groucho.site
         by smtp.strato.de (RZmta 44.28.0 DYNA|AUTH)
-        with ESMTPSA id i07086v978MWftY
+        with ESMTPSA id i07086v978MZfth
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
         (Client did not present a certificate);
-        Mon, 7 Oct 2019 10:22:32 +0200 (CEST)
+        Mon, 7 Oct 2019 10:22:35 +0200 (CEST)
 From:   Ulrich Hecht <uli@fpond.eu>
 To:     linux-mediatek@lists.infradead.org,
         dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com
@@ -45,51 +45,88 @@ Cc:     robh+dt@kernel.org, p.zabel@pengutronix.de,
         yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
         rahul.sharma@samsung.com, galak@codeaurora.org,
         seanpaul@chromium.org, Ulrich Hecht <uli@fpond.eu>
-Subject: [PATCH v20 0/2] PS8640 MIPI-to-eDP bridge
-Date:   Mon,  7 Oct 2019 10:22:27 +0200
-Message-Id: <1570436549-8694-1-git-send-email-uli@fpond.eu>
+Subject: [PATCH v20 1/2] Documentation: bridge: Add documentation for ps8640 DT properties
+Date:   Mon,  7 Oct 2019 10:22:28 +0200
+Message-Id: <1570436549-8694-2-git-send-email-uli@fpond.eu>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1570436549-8694-1-git-send-email-uli@fpond.eu>
+References: <1570436549-8694-1-git-send-email-uli@fpond.eu>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+From: Jitao Shi <jitao.shi@mediatek.com>
 
-This revision fixes a minor issue that keeps the driver from probing on
-the Elm platform. Thanks to Matthias Brugger for testing.
+Add documentation for DT properties supported by
+ps8640 DSI-eDP converter.
 
-This driver seems to have fallen by the wayside because, while otherwise
-fine, it has a firmware update feature that requires a blob that is not in
-the linux-firmware repo.[1]
+Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Signed-off-by: Ulrich Hecht <uli@fpond.eu>
+---
 
-Whatever the cause for that may be, the update code is entirely optional
-(my chip works fine with whatever firmware is currently installed), so I
-have removed it in order to get this merged after all. I have also
-followed various trivial API changes that have piled up since 2016; see
-the individual patches for details.
+Changes since v15:
+ - No change.
 
-I'm using this driver on an Acer Chromebook R13 ("Elm"); see
-https://github.com/uli/kernel/tree/elm-working-5.4.
+Changes since v14:
+ - change mode-sel-gpios as optional.
 
-CU
-Uli
-
-[1] https://patchwork.kernel.org/patch/9427543/
-
-
-Jitao Shi (2):
-  Documentation: bridge: Add documentation for ps8640 DT properties
-  drm/bridge: Add I2C based driver for ps8640 bridge
-
- .../devicetree/bindings/display/bridge/ps8640.txt  |  44 ++
- drivers/gpu/drm/bridge/Kconfig                     |  12 +
- drivers/gpu/drm/bridge/Makefile                    |   1 +
- drivers/gpu/drm/bridge/parade-ps8640.c             | 672 +++++++++++++++++++++
- 4 files changed, 729 insertions(+)
+ .../devicetree/bindings/display/bridge/ps8640.txt  | 44 ++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/bridge/ps8640.txt
- create mode 100644 drivers/gpu/drm/bridge/parade-ps8640.c
 
+diff --git a/Documentation/devicetree/bindings/display/bridge/ps8640.txt b/Documentation/devicetree/bindings/display/bridge/ps8640.txt
+new file mode 100644
+index 0000000..7b13f92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/ps8640.txt
+@@ -0,0 +1,44 @@
++ps8640-bridge bindings
++
++Required properties:
++	- compatible: "parade,ps8640"
++	- reg: first page address of the bridge.
++	- sleep-gpios: OF device-tree gpio specification for PD pin.
++	- reset-gpios: OF device-tree gpio specification for reset pin.
++	- vdd12-supply: OF device-tree regulator specification for 1.2V power.
++	- vdd33-supply: OF device-tree regulator specification for 3.3V power.
++	- ports: The device node can contain video interface port nodes per
++		 the video-interfaces bind[1]. For port@0,set the reg = <0> as
++		 ps8640 dsi in and port@1,set the reg = <1> as ps8640 eDP out.
++
++Optional properties:
++	- mode-sel-gpios: OF device-tree gpio specification for mode-sel pin.
++[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
++
++Example:
++	edp-bridge@18 {
++		compatible = "parade,ps8640";
++		reg = <0x18>;
++		sleep-gpios = <&pio 116 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&pio 115 GPIO_ACTIVE_LOW>;
++		mode-sel-gpios = <&pio 92 GPIO_ACTIVE_HIGH>;
++		vdd12-supply = <&ps8640_fixed_1v2>;
++		vdd33-supply = <&mt6397_vgp2_reg>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			port@0 {
++				reg = <0>;
++				ps8640_in: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++			port@1 {
++				reg = <1>;
++				ps8640_out: endpoint {
++					remote-endpoint = <&panel_in>;
++				};
++			};
++		};
++	};
 -- 
 2.7.4
 
