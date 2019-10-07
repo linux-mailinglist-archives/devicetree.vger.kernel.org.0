@@ -2,83 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4CBCE766
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B1FCE775
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 17:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727711AbfJGP0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 11:26:37 -0400
-Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:22121 "EHLO
-        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727589AbfJGP0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:26:36 -0400
+        id S1727830AbfJGP3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 11:29:00 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:33657 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726334AbfJGP3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 11:29:00 -0400
+Received: by mail-io1-f68.google.com with SMTP id z19so29597828ior.0;
+        Mon, 07 Oct 2019 08:29:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1570461996; x=1601997996;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=xGLkeCy55JZslCZd5P+Gri+DOIbpI9xCoQlPZNd+zRA=;
-  b=A9tDf8x4QswhcvJ0h+UHn6zW3VjthQhyvecxGbCz6A45p/8fFpmPAzy5
-   vh1iHT+IbdoleALoOOhP+33siXxK27+qbtGxLAzSKGmg4oO9VpB5jkyAB
-   mTHyIfIv/awPgWrnvY6vcLbqZw8xwT5I5bygsIsEHQLEKDLwWzNuP8YKL
-   0=;
-X-IronPort-AV: E=Sophos;i="5.67,268,1566864000"; 
-   d="scan'208";a="707257350"
-Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1a-807d4a99.us-east-1.amazon.com) ([10.47.22.38])
-  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 07 Oct 2019 15:18:49 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1a-807d4a99.us-east-1.amazon.com (Postfix) with ESMTPS id BF3D6A1D9F;
-        Mon,  7 Oct 2019 15:18:13 +0000 (UTC)
-Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 7 Oct 2019 15:18:12 +0000
-Received: from ua9e4f3715fbc5f.ant.amazon.com (10.43.162.116) by
- EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 7 Oct 2019 15:18:02 +0000
-From:   Hanna Hawa <hhhawa@amazon.com>
-To:     <bp@alien8.de>, <mchehab@kernel.org>, <mark.rutland@arm.com>,
-        <james.morse@arm.com>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>, <davem@davemloft.net>,
-        <gregkh@linuxfoundation.org>, <linus.walleij@linaro.org>,
-        <daniel@iogearbox.net>, <paulmck@linux.ibm.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dwmw@amazon.co.uk>,
-        <benh@amazon.com>, <ronenk@amazon.com>, <talel@amazon.com>,
-        <jonnyc@amazon.com>, <hanochu@amazon.com>, <hhhawa@amazon.com>
-Subject: [PATCH v6 2/3] of: EXPORT_SYMBOL_GPL of_find_next_cache_node
-Date:   Mon, 7 Oct 2019 16:17:29 +0100
-Message-ID: <20191007151730.7705-3-hhhawa@amazon.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191007151730.7705-1-hhhawa@amazon.com>
-References: <20191007151730.7705-1-hhhawa@amazon.com>
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wtVsLO1ntFCrS5daswTpm686yy3QS5pSIH9g4p/6SHY=;
+        b=Rq91mJU4qTssd1QORjJKdkSCMC5RTaFQhaQZilPoU8yf2BUuUM+yTlZnTRoi+85Fri
+         evPqABRZll0UgF32Srs86O6CyUHAb6Y4hgM+r2xZMDa9x1ClU/dfLgn/JjwfI+GnTJYt
+         9iIAlIcMRWHCoi/b6W1HBDgQEPLleBYKQNNBZYfF2AaD9gKAv7u7kE+NUbQxlehRltWh
+         /HhI+/V/rk0/jcP6/YcVqlVkTrnJ+NVRkzGPUCXxk6uYohYaPCw/QKpAdMpxk2K95PGH
+         ULYlMqwJWHMBZLNfWNWB8HRuYt3akVcDn6GgQ1145Fz43jqbF5bFZIWmdtjcBS+EkH5f
+         j+yQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wtVsLO1ntFCrS5daswTpm686yy3QS5pSIH9g4p/6SHY=;
+        b=Ef70Hncbaa5KT9MTJTqoriQPM5idksBjaR/JG/hYVlyD1cbMP0wX14D9CzKukrEssX
+         LpjmKLCz9hr8RlCaHtZcy5wSggOGWIYmTpYDc8Re7OT9WvsqY6bnTQR5SyGzXT3CJE+i
+         Z62Y0zm6dadyXcVO0ejucNtCPCZgKgerVZUCWjXtlo/L10WqYC9o5tQvHS8RfUtuiq9M
+         J4593kJE9vVfzN4AjgF6HrYSgTOpgMS86YmWw2uhkMdnlSj3o+HN1fS3OREvL2mp5x9e
+         4QNeoKt330onA8+eXL1I19ntpAhI0ren5zgG/CCTvfJtl4f+vx8BjgEAZLE5iByo14Mz
+         M8SA==
+X-Gm-Message-State: APjAAAXOMcpci28Y4JQhSgvoTv45wRhZHMuPKDPyRlf2/o4Nzw5xNBKh
+        uNtwq3xsNhMVhxn51OITj63VsG5wIrh7tW6t4dc=
+X-Google-Smtp-Source: APXvYqx45IwIf/HAU8nElk9tCCd1rWFbJeMPlSSBQCc0bur5Oz+a9TlsSmo4fwChJbmJLYKpfCOoDn08G87lnL/TrVc=
+X-Received: by 2002:a02:69cd:: with SMTP id e196mr28656654jac.84.1570462139862;
+ Mon, 07 Oct 2019 08:28:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.162.116]
-X-ClientProxiedBy: EX13D03UWC002.ant.amazon.com (10.43.162.160) To
- EX13D19EUB003.ant.amazon.com (10.43.166.69)
+References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-2-linux.amoon@gmail.com>
+ <c99adf31-42df-c88e-40d4-1dc383c990b1@baylibre.com>
+In-Reply-To: <c99adf31-42df-c88e-40d4-1dc383c990b1@baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 7 Oct 2019 20:58:47 +0530
+Message-ID: <CANAwSgQi=56RPQK-a7CM2W9dOt3mzDzdtfNABKmpdsYRN8vLwQ@mail.gmail.com>
+Subject: Re: [RFCv1 1/5] arm64: dts: meson: Add missing 5V_EN gpio signal for
+ VCC5V regulator
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make of_find_next_cache_node() available for modules.
+Hi Neil,
 
-Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
----
- drivers/of/base.c | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, 7 Oct 2019 at 19:49, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi Anand,
+>
+> On 07/10/2019 15:16, Anand Moon wrote:
+> > As per schematics add missing 5V_EN gpio signal to enable
+> > VCC5V regulator node.
+> >
+> > Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> > index 42f15405750c..a9a661258886 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+> > @@ -94,6 +94,9 @@
+> >               regulator-max-microvolt = <5000000>;
+> >               regulator-always-on;
+> >               vin-supply = <&main_12v>;
+> > +             /* U12 NB679GD 5V_EN */
+> > +             gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+> > +             enable-active-high;
+>
+> This GPIO is handled by the BL301 SCP firmware, I'm personally against
+> adding this to the DT since it's out of control of Linux or any OS.
+>
+> Neil
+>
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 20e0e7ee4edf..fe22c7428958 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -2172,6 +2172,7 @@ struct device_node *of_find_next_cache_node(const struct device_node *np)
- 
- 	return NULL;
- }
-+EXPORT_SYMBOL_GPL(of_find_next_cache_node);
- 
- /**
-  * of_find_last_cache_level - Find the level at which the last cache is
--- 
-2.17.1
+Thanks for your input.
 
+> >       };
+> >
+> >       vcc_1v8: regulator-vcc_1v8 {
+> >
+>
+
+Best Regards
+-Anand
