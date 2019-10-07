@@ -2,142 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A61E9CEBE1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 20:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A81CEC08
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 20:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729461AbfJGSaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 14:30:30 -0400
-Received: from mx.0dd.nl ([5.2.79.48]:58346 "EHLO mx.0dd.nl"
+        id S1728187AbfJGSif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 14:38:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34282 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729433AbfJGSaa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 14:30:30 -0400
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.0dd.nl (Postfix) with ESMTPS id 9DE365FBBE;
-        Mon,  7 Oct 2019 20:30:28 +0200 (CEST)
-Authentication-Results: mx.0dd.nl;
-        dkim=pass (2048-bit key) header.d=vdorst.com header.i=@vdorst.com header.b="mm8Yuqtx";
-        dkim-atps=neutral
-Received: from www (www.vdorst.com [192.168.2.222])
+        id S1728081AbfJGSif (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 14:38:35 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.vdorst.com (Postfix) with ESMTPSA id 6BE083BE06;
-        Mon,  7 Oct 2019 20:30:28 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 6BE083BE06
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1570473028;
-        bh=oeUXtc8+vJUoOsszOZiNMTAuDgvF7gVaUUppHe+ivDs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mm8YuqtxOrunMTWQvqae1DMbOjOq5dOxsJMqYnJJKWaI5MWLaBA9W95gRc+IzvxAB
-         VPV0/5ViKt+5mrvD/UmWsWZRXWG02J1D/1T8YrUl2pjpH8G07AMOkaYEKrk63/hnKn
-         kG69zGZnI79LTFLHhWOT07W+eBytmiWFvPcCa+8WYf7/KCrYlvLvSkPKxvZNP4C5nq
-         6vsPF++aHxIk888XzyvcVXFVKNJfe7XfarD+0WG8SC9SoA4tc0ZouCV8XAHhsFJajG
-         AQR4d4AievSJPr03oIQHeajuYJMG1b+vuVXjAdeHWWnRH69aVDQmeYueLGZglbL9RG
-         kDwRLx6+4SdLQ==
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1]) by
- www.vdorst.com (Horde Framework) with HTTPS; Mon, 07 Oct 2019 18:30:28 +0000
-Date:   Mon, 07 Oct 2019 18:30:28 +0000
-Message-ID: <20191007183028.Horde.dCYJA3Xp9mBh_Bs9Ixa7Sh0@www.vdorst.com>
-From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-To:     MarkLee <Mark-MC.Lee@mediatek.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>,
-        Nelson Chang <nelson.chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net,v2 2/2] arm: dts: mediatek: Fix mt7629 dts to
- reflect the latest dt-binding
-References: <20191007070844.14212-1-Mark-MC.Lee@mediatek.com>
- <20191007070844.14212-3-Mark-MC.Lee@mediatek.com>
-In-Reply-To: <20191007070844.14212-3-Mark-MC.Lee@mediatek.com>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+        by mail.kernel.org (Postfix) with ESMTPSA id 810AF21655;
+        Mon,  7 Oct 2019 18:38:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570473513;
+        bh=NAn+q6yf4CHs6Mu3N4wO/Uqn6OEuK70VfBhue/aQrmw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=h6OBPyL/UW1tVbfEOBO4SpOwNmrWpZKcca/DqzkkWBlQW89u7QwvHRvL5eWfgt5b9
+         jk0hyfEQaCOvfSHuhYr+gsoSZdrtb8IDXXbMTudalWPQ7BHV89kvap97lRstRxPXO+
+         wCNY3dXkEBaNBT0LxAFO25hBZMbmMzNixvTlekuY=
+Received: by mail-qk1-f182.google.com with SMTP id f16so13598023qkl.9;
+        Mon, 07 Oct 2019 11:38:33 -0700 (PDT)
+X-Gm-Message-State: APjAAAWMktNLSAOM7GZb2N3v9iNLLYr3i98UObOKZ/LzUjsKOW8L99qk
+        aDWb6mDLhTilcpk3TpPjAyRTi1CzltF/xiw4xg==
+X-Google-Smtp-Source: APXvYqw1uMDNOBK4id6x2x90eI0DouFlvWMcqOx1OkyvNHbflg90LosKjYFToraQFwlrtde7/0IP7Djz+EDPbZVrG/U=
+X-Received: by 2002:a05:620a:549:: with SMTP id o9mr25361081qko.223.1570473512597;
+ Mon, 07 Oct 2019 11:38:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+References: <20191007175553.66940-1-john.stultz@linaro.org> <20191007175553.66940-5-john.stultz@linaro.org>
+In-Reply-To: <20191007175553.66940-5-john.stultz@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 7 Oct 2019 13:38:20 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJLY2n7hfneNptAGswVZtGm3vJbSR6W2wUG+ZTzMN8wZA@mail.gmail.com>
+Message-ID: <CAL_JsqJLY2n7hfneNptAGswVZtGm3vJbSR6W2wUG+ZTzMN8wZA@mail.gmail.com>
+Subject: Re: [RFC][PATCH v2 4/5] dt-bindings: usb: dwc3: of-simple: add
+ compatible for HiSi
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting MarkLee <Mark-MC.Lee@mediatek.com>:
-
-> * Removes mediatek,physpeed property from dtsi that is useless in PHYLINK
-> * Use the fixed-link property speed = <2500> to set the phy in 2.5Gbit.
-> * Set gmac1 to gmii mode that connect to a internal gphy
+On Mon, Oct 7, 2019 at 12:56 PM John Stultz <john.stultz@linaro.org> wrote:
 >
-> Signed-off-by: MarkLee <Mark-MC.Lee@mediatek.com>
-> --
-> v1->v2:
-> * SGMII port only support BASE-X at 2.5Gbit.
+> Add necessary compatible flag for HiSi's DWC3 so
+> dwc3-of-simple will probe.
+>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Felipe Balbi <balbi@kernel.org>
+> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Yu Chen <chenyu56@huawei.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Cc: linux-usb@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
 > ---
->  arch/arm/boot/dts/mt7629-rfb.dts | 13 ++++++++++++-
->  arch/arm/boot/dts/mt7629.dtsi    |  2 --
->  2 files changed, 12 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/mt7629-rfb.dts  
-> b/arch/arm/boot/dts/mt7629-rfb.dts
-> index 3621b7d2b22a..9980c10c6e29 100644
-> --- a/arch/arm/boot/dts/mt7629-rfb.dts
-> +++ b/arch/arm/boot/dts/mt7629-rfb.dts
-> @@ -66,9 +66,21 @@
->  	pinctrl-1 = <&ephy_leds_pins>;
->  	status = "okay";
->
-> +	gmac0: mac@0 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <0>;
-> +		phy-mode = "2500base-x";
-> +		fixed-link {
-> +			speed = <2500>;
-> +			full-duplex;
-> +			pause;
-> +		};
-> +	};
+> v2: Tweaked clock names as clk_usb3phy_ref didn't seem right.
+> ---
+>  .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+
+Can you make this a schema.
+
+> diff --git a/Documentation/devicetree/bindings/usb/hisi,dwc3.txt b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+> new file mode 100644
+> index 000000000000..3a3e5c320f2a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+> @@ -0,0 +1,52 @@
+> +HiSi SuperSpeed DWC3 USB SoC controller
 > +
->  	gmac1: mac@1 {
->  		compatible = "mediatek,eth-mac";
->  		reg = <1>;
-> +		phy-mode = "gmii";
->  		phy-handle = <&phy0>;
->  	};
->
-> @@ -78,7 +90,6 @@
->
->  		phy0: ethernet-phy@0 {
->  			reg = <0>;
-> -			phy-mode = "gmii";
->  		};
->  	};
->  };
-> diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-> index 9608bc2ccb3f..867b88103b9d 100644
-> --- a/arch/arm/boot/dts/mt7629.dtsi
-> +++ b/arch/arm/boot/dts/mt7629.dtsi
-> @@ -468,14 +468,12 @@
->  			compatible = "mediatek,mt7629-sgmiisys", "syscon";
->  			reg = <0x1b128000 0x3000>;
->  			#clock-cells = <1>;
-> -			mediatek,physpeed = "2500";
->  		};
->
->  		sgmiisys1: syscon@1b130000 {
->  			compatible = "mediatek,mt7629-sgmiisys", "syscon";
->  			reg = <0x1b130000 0x3000>;
->  			#clock-cells = <1>;
-> -			mediatek,physpeed = "2500";
->  		};
->  	};
->  };
+> +Required properties:
+> +- compatible:          should contain "hisilicon,hi3660-dwc3" for HiSi SoC
+> +- clocks:              A list of phandle + clock-specifier pairs for the
+> +                       clocks listed in clock-names
+> +- clock-names:         Should contain the following:
+> +  "clk_abb_usb"                USB reference clk
+> +  "aclk_usb3otg"       USB3 OTG aclk
+> +
+> +- assigned-clocks:     Should be:
+> +                               HI3660_ACLK_GATE_USB3OTG
+> +- assigned-clock-rates: Should be:
+> +                               229Mhz (229000000) for HI3660_ACLK_GATE_USB3OTG
+> +
+> +Optional properties:
+> +- resets:              Phandle to reset control that resets core and wrapper.
+
+Looks like 4 resets though.
+
+> +
+> +Required child node:
+> +A child node must exist to represent the core DWC3 IP block. The name of
+> +the node is not important. The content of the node is defined in dwc3.txt.
+> +
+> +Example device nodes:
+> +
+> +       usb3: hisi_dwc3 {
+> +               compatible = "hisilicon,hi3660-dwc3";
+> +               #address-cells = <2>;
+> +               #size-cells = <2>;
+> +               ranges;
+> +
+> +               clocks = <&crg_ctrl HI3660_CLK_ABB_USB>,
+> +                        <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
+> +               clock-names = "clk_abb_usb", "aclk_usb3otg";
+> +
+> +               assigned-clocks = <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
+> +               assigned-clock-rates = <229 000 000>;
+> +               resets = <&crg_rst 0x90 8>,
+> +                        <&crg_rst 0x90 7>,
+> +                        <&crg_rst 0x90 6>,
+> +                        <&crg_rst 0x90 5>;
+> +
+> +               dwc3: dwc3@ff100000 {
+
+If it's only clocks and resets for the wrapper node, just make this
+all one node.
+
+And 'usb3' for the node name.
+
+> +                       compatible = "snps,dwc3";
+> +                       reg = <0x0 0xff100000 0x0 0x100000>;
+> +                       interrupts = <0 159 4>, <0 161 4>;
+> +                       phys = <&usb_phy>;
+> +                       phy-names = "usb3-phy";
+> +                       dr_mode = "otg";
+> +
+> +                       ...
+> +               };
+> +       };
 > --
 > 2.17.1
-
-Reviewed-by: René van Dorst <opensource@vdorst.com>
-
-
+>
