@@ -2,115 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA9BCEB17
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 19:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9EBFCEB2D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 19:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729005AbfJGRyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 13:54:00 -0400
-Received: from mail-eopbgr820092.outbound.protection.outlook.com ([40.107.82.92]:38992
-        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728031AbfJGRx7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 13:53:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d25tJDxTZNmg2N0/1jxj7vX/zmeH9Dr/Up6GF1uI4tiyams4dgd1RZOMPj38Ulw1BNDX36iFNlDo57nuUPrFWy9kq4X8lVIDFaZDIotpc34A+gSgDZ1lhHFZA7rEpFCKTlinzjwc6LbY9PV+jDD9N/iZy8EJZMCcZQ2ugVDfJTRxmbwVY8Evq+TcLmtoKw5MOLPNlEWIlbRS7ocNLP71WU+Nxv2ukP5qNRpsPjSMiGlaDExL5OhHzO28rfwHvePxx2fzhEBiO1jwSBda10rwf63cSAjzCTcsUDxvSB+j1i5ZgY53CldIsBCj+gWW6Exa42S1bJ6X2if2a0xjhqZnuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3XpvgLKNhpQokMnAT8SAtQ2ibZVNU2dDeXyKesDNAOw=;
- b=ZQlpEY7gl39yJGeMPMMO35uMGJYN1lo9Ox4vt8j6yiSSqPGlNDu1u5+ItCBX0q3sH8l+oFxdu7l46vJ6cPltVvrNdk1zL2mbb+bNmWxuVWMz7L4vPKxuWJ4yGbRE+RfxnHOGOSNVqd9cyzVH5VihLlghWgBIQWllpY7XiwWbLT2/lE8YldY9B9pr1BioZ2TE77AHnZ5sR1THChdrbb9zk17B7g4jSS+OXkiHbizUQbzG2OCFDUZQj6k1DYsSS12r5lEwmKKkFmP6U573hpQcmbGigpupY90K4bcX2TDTnX1Gk/nwWfMY/+7LVFrnvcNToEWSdKmTgoSKKNw1GjIf4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
- dkim=pass header.d=mips.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3XpvgLKNhpQokMnAT8SAtQ2ibZVNU2dDeXyKesDNAOw=;
- b=Y/kbmBeB0uc0tsxvr3djRGQa7cA3EhueaAxI9kzMsn4gxcfeSnE40JXyn4C8J0SowlA0Cp1dwhx3f4M3Hl8fM/cSby1vEO7W704SAhdoHqaHWnc8eCfsbe2kvTe23byF7VPjj89v5rZcwtnv094sCajQMVkRSUB/TknfN7qeSss=
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
- MWHPR2201MB1549.namprd22.prod.outlook.com (10.174.170.162) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2327.24; Mon, 7 Oct 2019 17:53:58 +0000
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::3050:9a38:9d8e:8033]) by MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::3050:9a38:9d8e:8033%5]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
- 17:53:58 +0000
-From:   Paul Burton <paul.burton@mips.com>
-To:     Alexandre GRIVEAUX <agriveaux@deutnet.info>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "ralf@linux-mips.org" <ralf@linux-mips.org>,
-        Paul Burton <pburton@wavecomp.com>,
-        "jhogan@kernel.org" <jhogan@kernel.org>,
-        "agriveaux@deutnet.info" <agriveaux@deutnet.info>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v2 4/5] MIPS: CI20: DTS: Add Leds
-Thread-Topic: [PATCH v2 4/5] MIPS: CI20: DTS: Add Leds
-Thread-Index: AQHVfTgx2izd6/5rC02LTfub6mRJAg==
-Date:   Mon, 7 Oct 2019 17:53:57 +0000
-Message-ID: <MWHPR2201MB12775CA989C9C00AD5E92D32C19B0@MWHPR2201MB1277.namprd22.prod.outlook.com>
-References: <fa61d681bad1d551876ce879643226dd59611316.1569955865.git.agriveaux@deutnet.info>
-In-Reply-To: <fa61d681bad1d551876ce879643226dd59611316.1569955865.git.agriveaux@deutnet.info>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: BY5PR16CA0002.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::15) To MWHPR2201MB1277.namprd22.prod.outlook.com
- (2603:10b6:301:18::12)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pburton@wavecomp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [12.94.197.246]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3c8fc9d1-cfe9-4502-8351-08d74b4f53ac
-x-ms-traffictypediagnostic: MWHPR2201MB1549:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR2201MB1549028EE674B5664CE815B1C19B0@MWHPR2201MB1549.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1850;
-x-forefront-prvs: 01834E39B7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(136003)(346002)(396003)(366004)(39840400004)(189003)(199004)(52116002)(99286004)(476003)(7736002)(305945005)(54906003)(76176011)(25786009)(486006)(33656002)(42882007)(478600001)(2906002)(11346002)(446003)(52536014)(5660300002)(6246003)(7696005)(4744005)(71200400001)(71190400001)(66066001)(316002)(14454004)(229853002)(102836004)(9686003)(81156014)(6436002)(81166006)(6116002)(55016002)(74316002)(3846002)(44832011)(4326008)(8676002)(186003)(6916009)(26005)(966005)(386003)(8936002)(6506007)(6306002)(66946007)(66556008)(64756008)(66446008)(66476007)(256004)(6606295002);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1549;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: wavecomp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cMfkGTTD6BtKQYTgQUsSskk0VcjeWcWPKB+2/GDBzt0QnmPItl3myAD8J9Ljz3KDnC49OtXhkBfpNfxIFaoFJPrlNqAh9tdQ/5g9rwYPh5omlKxPGMR8Yiz8wQMH3R9hDDlKnzXSDXLG3l7r8MzThoTYn2Q1OrUm2naUc/hli0JVpkVJuxw7sMHJs6t6WewSfan4EQMZqjpTiFMOFD+gP+w2hZ//kr1+urpErt3qLWEso7WhU2U8Tv7OkKfru+yOyNBE27V2IO63XVdLqsbJTeu/PO3L2iCqE3/kkmlC3aGBEpBl20JDaWor+fabqFu9EGG81X6Zwvr+KFHFQv7iBEMBaViKe6ocwO2ihfNxTB1vpubrjyIpxMC4z5ZvWXUb2jJE0Y7iSCuh1maai+9xipMEj4mEtCgHmZdyioAJBIKuyY3fScrffuuXd1qOAjNTgeG9FtFwWf2R5DrYK+qDGA==
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: mips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c8fc9d1-cfe9-4502-8351-08d74b4f53ac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 17:53:57.9526
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XAuPcg7L0k169I8Zn/9avuuN4qYyvY9UwpFkvdE/2dnJZfwDc9D1XMfwrXqWOP2WhNnTSarESDJFneGZ4lEoMQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1549
+        id S1728995AbfJGR4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 13:56:00 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:41150 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728364AbfJGRz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 13:55:59 -0400
+Received: by mail-pg1-f194.google.com with SMTP id t3so2825212pga.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 10:55:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=egboN5LspnsxlOmbUEUbW8zbZDOgKxSBdf9tJPyXXRs=;
+        b=h1As562vjET1VzrndYwZlyOz+8bP+Z6B7xHScJN8GN0dXK88R+2cHCxeADlO92XjUQ
+         bp+k3fsyOVMKU2H8C5DhtAir11Pp95AfQwX9dBU1Q00hP05/wNahVY35KhVta3r9FF9X
+         pEmUBcyVKz579Ru6T16W/hzUbOal04Ygcxw/JOPYxnD/YP7g1rbcHTkXsNIRNCbBO3jX
+         lll53Au/bZ9ilssKtkuGjChBP9xXL9Lz0ShEdID0ZabgSrB1y7mVM4oY1C0qAnGK2RIv
+         1dnwOO0g0TbkftARF6KvWBcBTVuvOFhXHqsZw6+8qfho08c1qfxOW3+ggttMw5KH1YGT
+         Mclg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=egboN5LspnsxlOmbUEUbW8zbZDOgKxSBdf9tJPyXXRs=;
+        b=swJDuvCrr+k65rtXThCeyAcw5/4l3T29MIz5qgyXZu7buJu/vxJu89X9JuMoLqyoH5
+         95/xHe0JwsqnoiX6mzc/Fsa5bvQqApCOvr7GjiLv4x/y3Vr4js7nwuflQdtsWY3Dc6ID
+         GJvDcjK+b7h2XxnhhQB2DRDyAN0wTh3v+EhGGRunFxJ39Mx41J9OTVfyKjD+Wwc/E0q3
+         1RVtAuGAqJMHzMP25ReKq+ZhNvqM8sHv45wyZEn0O7SiDcbke0LSRdQ6n5pRlatNByEV
+         smklEe9m/vLujF9ciqHghln9UuJCLC+kE77mtxG7Ko7dDeP5yeVBou3aMxp+CRNCv1R3
+         un6A==
+X-Gm-Message-State: APjAAAURi2xwr4Dovq4IchgR97E+OTRwfI6Etnscp+rrKfhthBG8m+U1
+        wyT/mc0jE+ul9oPFEzWuYlxqvQ==
+X-Google-Smtp-Source: APXvYqxlGxe94guiFCzVkK5f+pR1M2fVMTgZtKZPLcP1Jxldh/nvUB2WLt7G/TlrrY7TC5wnTetyzQ==
+X-Received: by 2002:a63:d250:: with SMTP id t16mr3884089pgi.278.1570470958745;
+        Mon, 07 Oct 2019 10:55:58 -0700 (PDT)
+Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
+        by smtp.gmail.com with ESMTPSA id k15sm3820096pgt.25.2019.10.07.10.55.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2019 10:55:57 -0700 (PDT)
+From:   John Stultz <john.stultz@linaro.org>
+To:     lkml <linux-kernel@vger.kernel.org>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [RFC][PATCH v2 0/5] dwc3: Changes for HiKey960 support
+Date:   Mon,  7 Oct 2019 17:55:48 +0000
+Message-Id: <20191007175553.66940-1-john.stultz@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+I've been carrying for awhile some patches that Yu Chen was
+previously pushing upstream to enable USB on the HiKey960 board
+and I wanted to try to nudge them forward as I'm not sure as to
+what his plans are.
 
-Alexandre GRIVEAUX wrote:
-> Adding leds and related triggers.
+This series is just the simpler parts of the patch set that I
+wanted to send out to see if we could make some progress on
+while I continue to work on the more complex bits.
 
-Applied to mips-next.
+You can find the full set of changes to get USB working on the
+board here:
+  https://git.linaro.org/people/john.stultz/android-dev.git/log/?id=ef858be80f202b7bffb7d03c168ee72457a0ef3e
 
-> commit 24b0cb4f883a
-> https://git.kernel.org/mips/c/24b0cb4f883a
->=20
-> Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
-> Signed-off-by: Paul Burton <paul.burton@mips.com>
+This series is just the more trivial changes, along with some
+missing binding documentation that I've added.
 
-Thanks,
-    Paul
+I'd greatly appreciate any review or feedback on this series!
 
-[ This message was auto-generated; if you believe anything is incorrect
-  then please email paul.burton@mips.com to report it. ]
+thanks
+-john
+
+New in v2:
+* Tweaked binding clock name as clk_usb3phy_ref didn't seem right.
+
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Felipe Balbi <balbi@kernel.org>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Yu Chen <chenyu56@huawei.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+
+John Stultz (2):
+  dt-bindings: usb: dwc3: Add a property to do a CGTL soft reset on mode
+    switching
+  dt-bindings: usb: dwc3: of-simple: add compatible for HiSi
+
+Yu Chen (3):
+  usb: dwc3: Execute GCTL Core Soft Reset while switch mdoe for
+    Hisilicon Kirin Soc
+  usb: dwc3: Increase timeout for CmdAct cleared by device controller
+  usb: dwc3: dwc3-of-simple: Add support for dwc3 of Hisilicon Soc
+    Platform
+
+ .../devicetree/bindings/usb/dwc3.txt          |  2 +
+ .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
+ drivers/usb/dwc3/core.c                       | 20 +++++++
+ drivers/usb/dwc3/core.h                       |  3 ++
+ drivers/usb/dwc3/dwc3-of-simple.c             |  4 +-
+ drivers/usb/dwc3/gadget.c                     |  2 +-
+ 6 files changed, 81 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+
+-- 
+2.17.1
+
