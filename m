@@ -2,91 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F7923C3DE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 05:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4F023C42D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Aug 2020 05:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725950AbgHEDIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Aug 2020 23:08:38 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:41094 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725904AbgHEDIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Aug 2020 23:08:38 -0400
-X-UUID: 310caa36ea58438fa2ce3caa603d3b01-20200805
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Y0nPay/vVeRwMMhJxIGsmWx8SurAeCIZx8d8IAlzBDs=;
-        b=gmiGWcmvj/7dkNQmbY+fk+bw/DaM4gZcIUyKfuNPIzzwktDwOlFhCwILpkxYHY8taNvnb3yNbarNjBVVHJivOiAfmYsJlRO8DeAS/GWHLynC3NjURBoFV0pZPutxkxrwd/begOHZ9OfyzqhkMSi4pEEfDjSYlLEk3W3zyywj0cs=;
-X-UUID: 310caa36ea58438fa2ce3caa603d3b01-20200805
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <yingjoe.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 612147722; Wed, 05 Aug 2020 11:08:35 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 5 Aug 2020 11:08:31 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 5 Aug 2020 11:08:31 +0800
-Message-ID: <1596596913.31794.5.camel@mtksdaap41>
-Subject: Re: [v2,3/6] dt-binding: reset-controller: ti: add generic-reset to
- compatible
-From:   Yingjoe Chen <yingjoe.chen@mediatek.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Crystal Guo <crystal.guo@mediatek.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <seiya.wang@mediatek.com>,
-        <stanley.chu@mediatek.com>, <fan.chen@mediatek.com>,
-        <yong.liang@mediatek.com>, <devicetree@vger.kernel.org>
-Date:   Wed, 5 Aug 2020 11:08:33 +0800
-In-Reply-To: <053da16ed682cc016b0a66a834fb58d4d9410dc2.camel@pengutronix.de>
-References: <20200803061511.29555-1-crystal.guo@mediatek.com>
-         <20200803061511.29555-4-crystal.guo@mediatek.com>
-         <053da16ed682cc016b0a66a834fb58d4d9410dc2.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726056AbgHEDxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Aug 2020 23:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39558 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725904AbgHEDxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Aug 2020 23:53:06 -0400
+X-Greylist: delayed 94411 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 04 Aug 2020 20:53:05 PDT
+Received: from dockerbox (unknown [IPv6:2001:4800:7817:101:be76:4eff:fe04:a215])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1645DC06174A
+        for <devicetree@vger.kernel.org>; Tue,  4 Aug 2020 20:53:05 -0700 (PDT)
+Received: from 127.0.0.1 (localhost [127.0.0.1])
+        by dockerbox (Postfix) with SMTP id 767C55EB3F;
+        Mon,  7 Oct 2019 19:29:26 -0500 (CDT)
+Received: from (HELO 5c8e) [180.26.151.111] by 127.0.0.1 id 1E1j50f9pl79; Mon, 07 Oct 2019 19:29:29 -0500
+Message-ID: <550-$3r-$$4z$-6@6zqr.3n8t>
+From:   "Mr Barrister Hans Erich" <dave@dbsoundfactory.com>
+Reply-To: "Mr Barrister Hans Erich" <dave@dbsoundfactory.com>
+To:     desane20@yahoo.com
+Subject: RE:PERSONAL LETTER FROM MRS RASHIA AMIRA
+Date:   Mon, 07 Oct 19 19:29:29 GMT
+X-Mailer: Microsoft Outlook, Build 10.0.2616
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 2A6D8B52AF94AFBD67EFCEA916BD1A5F6C364466DC6EC0F8CE75C27692907B962000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+        boundary="_.A4476ECDD73A3"
+X-Priority: 3
+X-MSMail-Priority: Normal
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTA4LTA0IGF0IDEwOjE1ICswMjAwLCBQaGlsaXBwIFphYmVsIHdyb3RlOg0K
-PiBPbiBNb24sIDIwMjAtMDgtMDMgYXQgMTQ6MTUgKzA4MDAsIENyeXN0YWwgR3VvIHdyb3RlOg0K
-PiA+IFRoZSBUSSBzeXNjb24gcmVzZXQgY29udHJvbGxlciBwcm92aWRlcyBhIGNvbW1vbiByZXNl
-dCBtYW5hZ2VtZW50LA0KPiA+IGFuZCBzaG91bGQgYmUgc3VpdGFibGUgZm9yIG90aGVyIFNPQ3Mu
-IEFkZCBjb21wYXRpYmxlICJnZW5lcmljLXJlc2V0IiwNCj4gPiB3aGljaCBkZW5vdGVzIHRvIHVz
-ZSBhIGNvbW1vbiByZXNldC1jb250cm9sbGVyIGRyaXZlci4NCj4gPiANCj4gPiBTaWduZWQtb2Zm
-LWJ5OiBDcnlzdGFsIEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+
-ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVzZXQvdGktc3lzY29uLXJlc2V0
-LnR4dCB8IDEgKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4gPiANCj4g
-PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Jlc2V0L3Rp
-LXN5c2Nvbi1yZXNldC50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVz
-ZXQvdGktc3lzY29uLXJlc2V0LnR4dA0KPiA+IGluZGV4IGQ1NTExNjFhZTc4NS4uZTM2ZDM2MzFl
-YWIyIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9y
-ZXNldC90aS1zeXNjb24tcmVzZXQudHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL3Jlc2V0L3RpLXN5c2Nvbi1yZXNldC50eHQNCj4gPiBAQCAtMjUsNiArMjUs
-NyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+ICAJCQkgICAgInRpLGsybC1wc2Nyc3QiDQo+
-ID4gIAkJCSAgICAidGksazJoay1wc2Nyc3QiDQo+ID4gIAkJCSAgICAidGksc3lzY29uLXJlc2V0
-Ig0KPiA+ICsJCQkgICAgImdlbmVyaWMtcmVzZXQiLCAidGksc3lzY29uLXJlc2V0Ig0KPiA+ICAg
-LSAjcmVzZXQtY2VsbHMJCTogU2hvdWxkIGJlIDEuIFBsZWFzZSBzZWUgdGhlIHJlc2V0IGNvbnN1
-bWVyIG5vZGUgYmVsb3cNCj4gPiAgCQkJICBmb3IgdXNhZ2UgZGV0YWlscw0KPiA+ICAgLSB0aSxy
-ZXNldC1iaXRzCTogQ29udGFpbnMgdGhlIHJlc2V0IGNvbnRyb2wgcmVnaXN0ZXIgaW5mb3JtYXRp
-b24NCj4gPiAtLSANCj4gPiAyLjE4LjANCj4gDQo+IE15IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCBp
-dCB3b3VsZCBiZSBiZXR0ZXIgdG8gYWRkIGEgbXRrIHNwZWNpZmljDQo+IGNvbXBhdGlibGUgaW5z
-dGVhZCBvZiBhZGRpbmcgdGhpcyAiZ2VuZXJpYy1yZXNldCIsIGVzcGVjaWFsbHkgc2luY2Ugd2UN
-Cj4gY2FuJ3QgZ3VhcmFudGVlIHRoaXMgYmluZGluZyB3aWxsIGJlIGNvbnNpZGVyZWQgZ2VuZXJp
-YyBpbiB0aGUgZnV0dXJlLg0KPiBJIHRoaW5rIHRoZXJlIGlzIG5vdGhpbmcgd3Jvbmcgd2l0aCBz
-cGVjaWZ5aW5nDQo+IAljb21wYXRpYmxlID0gIm10ayx5b3VyLWNvbXBhdGlibGUiLCAidGksc3lz
-Y29uLXJlc2V0IjsNCj4gaW4geW91ciBkZXZpY2UgdHJlZSBpZiB5b3VyIGhhcmR3YXJlIGlzIGlu
-ZGVlZCBjb21wYXRpYmxlIHdpdGggdGhlDQo+IHNwZWNpZmllZCAidGksc3lzY29uLXJlc2V0IiBi
-aW5kaW5nLCBidXQgSSBtYXkgYmUgd3Jvbmc6IFRoZXJlZm9yZSwNCj4gcGxlYXNlIGFkZCBkZXZp
-Y2V0cmVlQHZnZXIua2VybmVsLm9yZyB0byBDYzogZm9yIGJpbmRpbmcgY2hhbmdlcy4NCj4gDQoN
-CkhpIFBoaWxpcHAsDQoNClRoaXMgd291bGQgd29yay4NCkJ1dCBoYXZpbmcgInRpIiBpbiBtdGsg
-ZHRzIHJhaXNlIGFsYXJtIGZvciBzb21lIHBlb3BsZSBpbnNpZGUgYW5kDQpvdXRzaWRlIG9mIE1U
-Sy4gSXQgd291bGQgc2F2ZSB1cyBzb21lIGV4cGxhbmF0aW9uIGlmIHdlIGNvdWxkIHVzZSBhIG1v
-cmUNCmdlbmVyaWMgbmFtZS4NCg0KSm9lLkMNCg0K
+
+--_.A4476ECDD73A3
+Content-Type: text/plain;
+Content-Transfer-Encoding: quoted-printable
+
+Greetings
+
+My name is Barrister Hans Erich.
+
+I have a client who is interested to invest in your country, she is a well=
+ known politician in her country and deserve a lucrative investment partne=
+rship with you outside her country without any delay   Please can you mana=
+ge such investment please Kindly reply for further details.
+
+Your full names --------
+
+
+Your urgent response will be appreciated
+
+Thank you and God bless you.
+
+Barrister Hans Erich
+
+Yours sincerely,
+Barrister Hans Erich
+CONTACT: hanserich9helmut@gmail.com
+
+--_.A4476ECDD73A3--
 
