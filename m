@@ -2,150 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3885CE1EF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C33CE1F9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 14:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727554AbfJGMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 08:40:59 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:41073 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727793AbfJGMk7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 08:40:59 -0400
-Received: by mail-pg1-f196.google.com with SMTP id t3so2310332pga.8
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 05:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:user-agent:in-reply-to:references:mime-version
-         :content-transfer-encoding:subject:to:cc:from:message-id;
-        bh=o1MuM4w6nZQj3YYsyjZt1J3u5QROZgoxO/xrK/RzJMI=;
-        b=JjC4fdxPZPkA3Nw9t4f3P3/2H9g7ocjoojpPZh4AkYfyXrUyCA85UZa+JP0DplXe7g
-         TPmC2zCfeNdDi7Vicm85y/RP2pcwkqoREGvKrbVQvyYNmWzVgIxX/m2k7rSAFrA0ucan
-         5iLwhGD+V27YNQd/gZwtUJg19Q/uDX2f4z46G8yM5aPQvT45yIzNYIxtYK9azpIua/hd
-         KvLBZZwqjOzNYuygWFhDlvGwcEqdtjQ0up4WirOONG+HXircyNT4wDpc0JnsB5lJe8C5
-         jm7jHSVm7RWi2RdknNrKjK0q5XJ0fF1XT3J5uMZwmePYz/Y8O1Ghkhc2Z/j5LziZBHaS
-         V7gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:user-agent:in-reply-to:references
-         :mime-version:content-transfer-encoding:subject:to:cc:from
-         :message-id;
-        bh=o1MuM4w6nZQj3YYsyjZt1J3u5QROZgoxO/xrK/RzJMI=;
-        b=rh45W00eH/DJp16mZD8ZMZXIoViOfgBIQzfbniVaIDm1AA+bA5HzBuibh8SGnldei0
-         Xw/ocWuPjtX3OviO0qeNXnhCnYgwV7oMK4FTdFn5Bmz9yr2XFcINhQCQGGVWqtw01DIt
-         hG4oou0veloAiNxHfafz2RGTbMCowLHjQCbssmGgzhn52aICycYsgHS6OsFmR3aYz7+E
-         c92z33EbYl4uN+hsxz8eK7MpjCiCklrh0cnfoVAq+yNcquiLOvXEfz1AElJ4uzN1Y0zm
-         QSEIsY2CusMHbgj6xkGm668JMT2Xe8JiGy7cfQNQDcIQwT/VRYmy3DBejY6M8Ir50pYs
-         bAlw==
-X-Gm-Message-State: APjAAAVykIq52x9X2oSZgCc1Fog9F/caHYWWRviJE/07jP0rrdqAKC+W
-        eBUjKJxIggrmWoIBJ51FqZ5e
-X-Google-Smtp-Source: APXvYqx29oMFzb0lUaEgpdkVH0kexcEoZJP3ixdNTaxpS0rvl/830cXYdtaNMO2S1ZCsPHNbN7J2FQ==
-X-Received: by 2002:a63:1f1a:: with SMTP id f26mr9115015pgf.2.1570452058127;
-        Mon, 07 Oct 2019 05:40:58 -0700 (PDT)
-Received: from ?IPv6:2409:4072:638b:f55:fd38:63ef:5172:157e? ([2409:4072:638b:f55:fd38:63ef:5172:157e])
-        by smtp.gmail.com with ESMTPSA id m22sm14177583pgj.29.2019.10.07.05.40.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Oct 2019 05:40:57 -0700 (PDT)
-Date:   Mon, 07 Oct 2019 18:10:50 +0530
-User-Agent: K-9 Mail for Android
-In-Reply-To: <a60fb9ea8922c1eb532e0b7ef0a69abcc9306255.camel@analog.com>
-References: <20191007101027.8383-1-manivannan.sadhasivam@linaro.org> <20191007101027.8383-2-manivannan.sadhasivam@linaro.org> <a60fb9ea8922c1eb532e0b7ef0a69abcc9306255.camel@analog.com>
+        id S1727769AbfJGMmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 08:42:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41992 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727490AbfJGMms (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Oct 2019 08:42:48 -0400
+Received: from dragon (li937-157.members.linode.com [45.56.119.157])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2BEA821655;
+        Mon,  7 Oct 2019 12:42:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570452168;
+        bh=w78f9Lnk1EFKA+FEWJPCNUtHOr3FJa1nez4JtQoAwSk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pJqZWVQqsTSFiruu7XttrAjOdzr8DDC0Z9lLHooGyrtHeSPdM/GAmun6rC98Tvw0G
+         sQVgkzUf16IsDiP4WBNipLCb0N9TrbPwCiszAmgBSrqVn5VFvBbJstR8JLTV93YBqa
+         Wv1hrZpyigC2vH50Bx5kmNw6H2r2v+dpl6FUVqRo=
+Date:   Mon, 7 Oct 2019 20:42:19 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        dann frazier <dann.frazier@canonical.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Christoph Hellwig <hch@lst.de>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: mark lx2160a esdhc controllers dma
+ coherent
+Message-ID: <20191007124217.GO7150@dragon>
+References: <20190922102341.GO25745@shell.armlinux.org.uk>
+ <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Add binding for ADUX1020
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Message-ID: <4EC23AB5-B8BE-4E45-8E5B-FCCD5B1508BA@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1iBz55-0008Mj-CX@rmk-PC.armlinux.org.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ardelean,=20
+On Sun, Sep 22, 2019 at 11:27:03AM +0100, Russell King wrote:
+> The LX2160A esdhc controllers are setup by the driver to be DMA
+> coherent, but without marking them as such in DT, Linux thinks they
+> are not.  This can lead to random sporadic DMA errors, even to the
+> extent of preventing boot, such as:
+> 
+> mmc0: ADMA error
+> mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
+> mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00002202
+> mmc0: sdhci: Blk size:  0x00000008 | Blk cnt:  0x00000001
+> mmc0: sdhci: Argument:  0x00000000 | Trn mode: 0x00000013
+> mmc0: sdhci: Present:   0x01f50008 | Host ctl: 0x00000038
+> mmc0: sdhci: Power:     0x00000003 | Blk gap:  0x00000000
+> mmc0: sdhci: Wake-up:   0x00000000 | Clock:    0x000040d8
+> mmc0: sdhci: Timeout:   0x00000003 | Int stat: 0x00000001
+> mmc0: sdhci: Int enab:  0x037f108f | Sig enab: 0x037f108b
+> mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00002202
+> mmc0: sdhci: Caps:      0x35fa0000 | Caps_1:   0x0000af00
+> mmc0: sdhci: Cmd:       0x0000333a | Max curr: 0x00000000
+> mmc0: sdhci: Resp[0]:   0x00000920 | Resp[1]:  0x001d8a33
+> mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x3f400e00
+> mmc0: sdhci: Host ctl2: 0x00000000
+> mmc0: sdhci: ADMA Err:  0x00000009 | ADMA Ptr: 0x000000236d43820c
+> mmc0: sdhci: ============================================
+> mmc0: error -5 whilst initialising SD card
+> 
+> These are caused by the device's descriptor fetch hitting speculatively
+> loaded CPU cache lines that the CPU does not see through the normal,
+> non-cacheable DMA coherent mapping that it uses for non-coherent
+> devices.
+> 
+> DT and the device must agree wrt whether the device is DMA coherent or
+> not.
+> 
+> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
 
-On 7 October 2019 3:51:16 PM IST, "Ardelean, Alexandru" <alexandru=2EArdel=
-ean@analog=2Ecom> wrote:
->On Mon, 2019-10-07 at 15:40 +0530, Manivannan Sadhasivam wrote:
->> [External]
->>=20
->> Add devicetree binding for Analog Devices ADUX1020 Photometric
->> sensor=2E
->>=20
->
->Hey,
->
->Thanks for the patches=2E
->
->This dt-binding docs is in text format=2E
->dt-binding docs now need to be in YAML format=2E
->
-
-Sure=2E I can convert to YAML binding=2E=20
-
->Also, patches for dt-bindings docs usually come after the driver is
->added=2E
->So, this patch should be the second in the series, not the first=2E
->
-
-I don't think so=2E The convention is to put dt-bindings patch upfront for=
- all subsystems=2E Not sure if IIO differs here=2E=20
-
-Thanks,=20
-Mani
->Alex
->
->> Signed-off-by: Manivannan Sadhasivam
-><manivannan=2Esadhasivam@linaro=2Eorg>
->> ---
->>  =2E=2E=2E/bindings/iio/light/adux1020=2Etxt           | 22
->+++++++++++++++++++
->>  1 file changed, 22 insertions(+)
->>  create mode 100644
->> Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
->>=20
->> diff --git a/Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
->> b/Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
->> new file mode 100644
->> index 000000000000=2E=2Ee896dda30e36
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/light/adux1020=2Etxt
->> @@ -0,0 +1,22 @@
->> +Analog Devices ADUX1020 Photometric sensor
->> +
->> +Link to datasheet:=20
->>
->https://www=2Eanalog=2Ecom/media/en/technical-documentation/data-sheets/A=
-DUX1020=2Epdf
->> +
->> +Required properties:
->> +
->> + - compatible: should be "adi,adux1020"
->> + - reg: the I2C address of the sensor
->> +
->> +Optional properties:
->> +
->> + - interrupts: interrupt mapping for IRQ as documented in
->> + =20
->Documentation/devicetree/bindings/interrupt-controller/interrupts=2Etxt
->> +
->> +Example:
->> +
->> +adux1020@64 {
->> +	compatible =3D "adi,adux1020";
->> +	reg =3D <0x64>;
->> +	interrupt-parent =3D <&msmgpio>;
->> +	interrupts =3D <24 IRQ_TYPE_LEVEL_HIGH>;
->> +};
-
---=20
-Sent from my Android device with K-9 Mail=2E Please excuse my brevity=2E
+Applied, thanks.
