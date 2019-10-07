@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97FF5CE506
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A509CE513
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 16:20:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728130AbfJGOTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 10:19:36 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:41258 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726334AbfJGOTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:19:36 -0400
-Received: by mail-wr1-f65.google.com with SMTP id q9so15543479wrm.8
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 07:19:34 -0700 (PDT)
+        id S1727753AbfJGOUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 10:20:34 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35331 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727715AbfJGOUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 10:20:31 -0400
+Received: by mail-wr1-f68.google.com with SMTP id v8so15563076wrt.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2019 07:20:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=0i3jhpHh4ub3oIHu6X3wrigGH0j1ZIOt2cA9ogRBEXA=;
-        b=ZuOeJqvVikHzr0ygmoqd1UJcPYYIsWJCL/CVHbiiR5DZgIPZgP/AewZuidzv89ahez
-         V0hctYc4GsJ9dqW/NiP9jgUHyRDZ92km1eDBNoDXSMr559cJn8A+eri4hSYvmCHl4mZr
-         soP18VvvPoViHnxWh4+VM7k/5XcmtEZ5NHHrkM3eJttxnZNc+KUsBRYoYl49EAp/ZDbI
-         P3vSV/ir6aBdEhAlE/0N8KB2s7ncx7VuvrPkZ8V/r+DkJdXQEKmGGYLSjceNvGyoqQq+
-         WjcWWSaeB1Xzd6iUKXFn15TgxyfrmDd1U4yYaB1DxyW0nb3H3qTd6xF5yTysdlQVmAmS
-         smjA==
+        bh=SnNApNI2Th8BmNSSBmx3A8j3h+xtt+6KF7oasPsCk6U=;
+        b=xFMLP3KnKfj+ITqG0jtkks5Gz68h5cFKi+FipLS8713Y6xMFLbjk6n0aMzJ4KFHutL
+         j5ouNTRzSuVU6Cl4TONf55t5/9h27G1evP0DPx3necKQ1brlzSkC6zLSAv9K2WiJMH7w
+         i7LNksozy3OVyZ+Ai+wUWcy9zR4gBwcGta0w70anGxUooUqseUlzywO1BJYya27GDUMn
+         5JlSJm0RpDqhGnniPTOfp4oW9K+UrPO3FkBpS/A/Pv6LeG1XSpM7a8KCKRpF97YOfPm6
+         nlCheYpcjSaN/hjdEVPvxAzjUU0PEbjGcmWOp+hSEOKwxcEcW++exEiIgiBOvqTFMpoi
+         MQDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=0i3jhpHh4ub3oIHu6X3wrigGH0j1ZIOt2cA9ogRBEXA=;
-        b=h5fE0QICtE3zObq58KWxOzr7x+TrZP/cNMezpqYwGjOAgVEGEACrTUA5aHOfVzuKkn
-         J/2uFtGVbTPGiJJGXtsvkebw4ponGW0H8BFCmt2tbUzHsPgTNfbNP7DB/a5me+6iMqG6
-         jz5EOuQWC2WPac0hA1J2lygztwg/CKSxa6ZKsEdUcQ12/P+3oWd/+EKUTyufYIK4x+1e
-         BOBdjaBNLlMaSweT9+LrK8GIm+rKFCuJE0PRTvS1cfilwcA174DTvCzyiQ2EKa9p5joq
-         CeRWaFFm+S0+tZuyVm0TPq/EXcatRFs657EK133bgXf6rH8zFi2iJnY8vWwuCHoyGHMX
-         mv0A==
-X-Gm-Message-State: APjAAAXq7ayTqlcZwuTdJNy5qQXzPl/W18zuM5yFY07fh5QZLqkfdOZ4
-        jSsz0chMIAobA3LAuiP+y0GCLw==
-X-Google-Smtp-Source: APXvYqzW1ltms7IyyXCquFmmEmlWMVvwYMA3WlYcSN9peoI1YS5SP8VSJ2lqjTHJ/xtSsVkpwGgMYg==
-X-Received: by 2002:adf:9b81:: with SMTP id d1mr21198287wrc.157.1570457973383;
-        Mon, 07 Oct 2019 07:19:33 -0700 (PDT)
+        bh=SnNApNI2Th8BmNSSBmx3A8j3h+xtt+6KF7oasPsCk6U=;
+        b=R7W29iDH0a6QI9cSdq9ETEwUVHtfwb5oc9YiSB3AFBzU9whf8XE6wDP0yNcq2DFYPx
+         B8NGCuFqoFviU8EqZ836wanskXULVGfvYA1SJia3ozAuusAgmvyTB/C2Mp+zeAsvvSRa
+         URkwrA5GOthnSoqFj7BywHFwUqrviLTTZrxLvH7xeGfrKQTrxidtU/RTdXOramufjPP4
+         Vzz8HaHVKImj6vrhKlasuphkW7C28zUII329uzvBER1sqDoPCn31qVywL1WWOEtNKpX1
+         3WXdjp3sZyBaM24n2Bvm6S9kxpgmk9tQvmNLKh9NsQoOMQpU7TXCOsP1Wiyz+PiwU/t1
+         gEzA==
+X-Gm-Message-State: APjAAAX0nl+eR8UnNspa7S9r7T88YgB9XiSEK6EBbPQfuJLDFGdRCO/a
+        h0as2D9wCoAa0AqFfpdNzd+I1w==
+X-Google-Smtp-Source: APXvYqxOlDUINVRLqPA0TekXTu0ZMnv4MKp1/grvwkTk19BD4nnSOn5X0LHdAR5c4Sju4Pva87gL1A==
+X-Received: by 2002:adf:ea0d:: with SMTP id q13mr11965473wrm.111.1570458028573;
+        Mon, 07 Oct 2019 07:20:28 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id c9sm15188270wrt.7.2019.10.07.07.19.32
+        by smtp.gmail.com with ESMTPSA id a10sm16489334wrm.52.2019.10.07.07.20.27
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Oct 2019 07:19:32 -0700 (PDT)
-Subject: Re: [RFCv1 1/5] arm64: dts: meson: Add missing 5V_EN gpio signal for
- VCC5V regulator
+        Mon, 07 Oct 2019 07:20:28 -0700 (PDT)
+Subject: Re: [RFCv1 2/5] arm64: dts: meson: Add missing pwm control gpio
+ signal for pwm-regulator
 To:     Anand Moon <linux.amoon@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -59,7 +59,7 @@ To:     Anand Moon <linux.amoon@gmail.com>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-2-linux.amoon@gmail.com>
+ <20191007131649.1768-3-linux.amoon@gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -112,12 +112,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <c99adf31-42df-c88e-40d4-1dc383c990b1@baylibre.com>
-Date:   Mon, 7 Oct 2019 16:19:31 +0200
+Message-ID: <8a74834e-5cfa-3f3b-9ba6-e88e265b67a0@baylibre.com>
+Date:   Mon, 7 Oct 2019 16:20:27 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20191007131649.1768-2-linux.amoon@gmail.com>
+In-Reply-To: <20191007131649.1768-3-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -126,40 +126,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
-
 On 07/10/2019 15:16, Anand Moon wrote:
-> As per schematics add missing 5V_EN gpio signal to enable
-> VCC5V regulator node.
+> As per schematics add missing VDDCPUA_PWM and VDDCPUB_PWM
+> gpio signal use to enable/disable the pwm regulator for DVFS.
 > 
-> Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+> Fixes: d14734a04a8a (arm64: dts: meson-g12b-odroid-n2: enable DVFS)
 > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> index 42f15405750c..a9a661258886 100644
+> index a9a661258886..66262a6ab3fe 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
 > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> @@ -94,6 +94,9 @@
->  		regulator-max-microvolt = <5000000>;
+> @@ -135,6 +135,8 @@
+>  
+>  		regulator-boot-on;
 >  		regulator-always-on;
->  		vin-supply = <&main_12v>;
-> +		/* U12 NB679GD 5V_EN */
-> +		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-> +		enable-active-high;
-
-This GPIO is handled by the BL301 SCP firmware, I'm personally against
-adding this to the DT since it's out of control of Linux or any OS.
-
-Neil
-
+> +		/* VDDCPUA_PWM */
+> +		enable-gpios = <&gpio GPIOE_1 GPIO_ACTIVE_HIGH>;
 >  	};
 >  
->  	vcc_1v8: regulator-vcc_1v8 {
+>  	vddcpu_b: regulator-vddcpu-b {
+> @@ -154,6 +156,8 @@
+>  
+>  		regulator-boot-on;
+>  		regulator-always-on;
+> +		/* VDDCPUB_PWM */
+> +		enable-gpios = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
+>  	};
+>  
+>  	hub_5v: regulator-hub_5v {
 > 
 
+Same as 5V_EN, This GPIO is handled by the BL301 SCP firmware, I'm personally against
+adding this to the DT since it's out of control of Linux or any OS.
+
+This GPIO id controlles by the PSCI call to SCP to enable/disable
+the CPU clusters.
+
+Neil
