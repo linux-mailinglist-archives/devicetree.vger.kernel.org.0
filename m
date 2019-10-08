@@ -2,144 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0511BCF12F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 05:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 021EACF17A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 06:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729832AbfJHDUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 23:20:04 -0400
-Received: from regular1.263xmail.com ([211.150.70.197]:57864 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729823AbfJHDUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 23:20:03 -0400
-X-Greylist: delayed 453 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Oct 2019 23:20:02 EDT
-Received: from localhost (unknown [192.168.165.252])
-        by regular1.263xmail.com (Postfix) with ESMTP id 8722E5EB;
-        Tue,  8 Oct 2019 11:12:21 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from localhost (unknown [183.57.25.242])
-        by smtp.263.net (postfix) whith ESMTP id P628T140409852389120S1570504336050683_;
-        Tue, 08 Oct 2019 11:12:20 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <05ed1e03424721773edf294b718993ad>
-X-RL-SENDER: djw@t-chip.com.cn
-X-SENDER: djw@t-chip.com.cn
-X-LOGIN-NAME: djw@t-chip.com.cn
-X-FST-TO: jagan@amarulasolutions.com
-X-SENDER-IP: 183.57.25.242
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-From:   djw@t-chip.com.cn
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
+        id S1729939AbfJHEJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 00:09:03 -0400
+Received: from mail-eopbgr140074.outbound.protection.outlook.com ([40.107.14.74]:42886
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725781AbfJHEJD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 00:09:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gPb3w/jfBwMNolNwHyhHLKLfeHqApYPnLosOw0vKaDO7pCA/iMf+seiCZ96l31p0808tvRgKaXZp0xRgj49jVv9F0tQfThg4yPQ8GmzQvJ5Gut/wQz5jtX9+FNG+DyMXZwU18gUEixloAg7dAvWw+aeU138EokXlnOZeN9yYwDPpn/X9u8VjrTFeGKG3XwkfN73/p+inhM7TWUE7zDxvpPzRUH41dOK8AP1uFxcfRHwjMc3fuG/EEDsX5oLEJn+T3BwRTkpW78scdXNnzR8q8cwXL4/UMhNALscBjZfvEyrcJjx0aszpU0WhoX+hKYsx80s9X7U0pknETMW4sFqbIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tRlO/MpKpETKRhfPJhYvFYba7VeCYZXtBFD9c+KNwX8=;
+ b=hxx8fe9cknItwDQgcI+NiOwjulNM19Z1tqK+juyjdzXndxwXNzS9kc02oryBFGGQdekg0nkKodg4etf3UqzwgN0dRToIePp9fPQpCIugrJ8uiYnvNZKxYca4BIil4AH4OJk296tGcChnIE5r+B8/AOB/Wi1GtwtZTE8zKDrHs5Hr9c7t5E4bEo+JZ5mmvfwfvZw1EsBC0NJ/ZeVjy2FaZ+2aKTISY385jTlktUTyNiJGuJkZYBLGX42pJVZ7W/VfAxXJudHLLKfn6PsSh9EcNuyIL+pjmuFnGFoqpbZXxuDNwXWIBCij5ZqEnZ6ZRqE2lKKyfiInuxCcCjKW8+ARMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tRlO/MpKpETKRhfPJhYvFYba7VeCYZXtBFD9c+KNwX8=;
+ b=lzXbprYVUw1tKdOmRsT0sqPviPaah0UJecPtCxxozlUtBMCztk6AqprhXhLA9BHcTBOTdHIJFA1F9rXSE0G9rEuQkewxDCn9QT4t3i5xI185KEmm9E/NzxKjRy9Y537FSDNXfjKymgecmZ+L1mMI7TtTo0eu45EAGsiPa5FfbGI=
+Received: from DB7PR04MB5195.eurprd04.prod.outlook.com (20.176.236.27) by
+ DB7PR04MB5948.eurprd04.prod.outlook.com (20.178.106.213) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.24; Tue, 8 Oct 2019 04:08:57 +0000
+Received: from DB7PR04MB5195.eurprd04.prod.outlook.com
+ ([fe80::8815:267e:b311:ca91]) by DB7PR04MB5195.eurprd04.prod.outlook.com
+ ([fe80::8815:267e:b311:ca91%7]) with mapi id 15.20.2327.025; Tue, 8 Oct 2019
+ 04:08:57 +0000
+From:   Wen He <wen.he_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
+        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Da Xue <da@lessconfused.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list\:ARM\/Rockchip SoC..." 
-        <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Akash Gajjar <akash@openedev.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/6] arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
-Organization: Firefly Team
-References: <20190919052822.10403-1-jagan@amarulasolutions.com>
-        <20190919052822.10403-2-jagan@amarulasolutions.com>
-        <6797961.eJj5WIFbM9@phil>
-        <CAMty3ZDKaywoPxCSD-5N2pLjtGmZ-dZ7ZgUOJqiB1V_9rfR26A@mail.gmail.com>
-Date:   Tue, 08 Oct 2019 11:11:10 +0800
-In-Reply-To: <CAMty3ZDKaywoPxCSD-5N2pLjtGmZ-dZ7ZgUOJqiB1V_9rfR26A@mail.gmail.com>
-        (Jagan Teki's message of "Tue, 1 Oct 2019 15:56:14 +0530")
-Message-ID: <87eezolynl.fsf@archiso.i-did-not-set--mail-host-address--so-tickle-me>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [v2 2/2] arm64: dts: ls1028a: Update the DT node
+ definition for dpclk
+Thread-Topic: [EXT] Re: [v2 2/2] arm64: dts: ls1028a: Update the DT node
+ definition for dpclk
+Thread-Index: AQHVb4/DBY2rISwX9U+w/S8iZglPI6dPODUAgADjkBA=
+Date:   Tue, 8 Oct 2019 04:08:57 +0000
+Message-ID: <DB7PR04MB5195760127B83B88B68CC602E29A0@DB7PR04MB5195.eurprd04.prod.outlook.com>
+References: <20190920083419.5092-1-wen.he_1@nxp.com>
+ <20190920083419.5092-2-wen.he_1@nxp.com> <20191007123512.GM7150@dragon>
+In-Reply-To: <20191007123512.GM7150@dragon>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=wen.he_1@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: daf1f545-5dc0-48e7-fc79-08d74ba53dc6
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: DB7PR04MB5948:|DB7PR04MB5948:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB7PR04MB59488258AAED9E17D218A575E29A0@DB7PR04MB5948.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 01842C458A
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(136003)(39860400002)(366004)(376002)(396003)(189003)(13464003)(199004)(66556008)(66446008)(7696005)(66946007)(76116006)(966005)(66476007)(76176011)(446003)(478600001)(99286004)(52536014)(486006)(33656002)(11346002)(476003)(6916009)(7736002)(64756008)(305945005)(74316002)(5660300002)(53546011)(86362001)(66066001)(6506007)(45080400002)(102836004)(14454004)(26005)(229853002)(81166006)(81156014)(8936002)(6246003)(71200400001)(256004)(9686003)(4326008)(71190400001)(25786009)(186003)(8676002)(54906003)(15650500001)(3846002)(6116002)(2906002)(14444005)(316002)(6436002)(6306002)(55016002)(17423001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB5948;H:DB7PR04MB5195.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Fy3nCvMvaZExPA7dkuuFG/sBe89CgX4Qa0dsxTBazr1J+sbDMUxE5zZggN/J1FXCIq1BqoIfebhLSHx93ua+TosVzvPGoruJUEauyVO2zajcqlVBqVoxa4yDTxpc/e9VF5GpFpIdwzlNkhGR7PHejnzV31zCIAvm2a0q4Aean59tWccqcZfjWizCM8tMQwa9WZNSrT0yCrPxBeUOoQWtRicmJ4MF/fu4tvSDK1t7YDQsalHX0t7PSL2QVRh7C6+C9ToD51eUxpAfHz1axJ7zU39j+Zpam6SD/MdJ5weB5ZEgldXY2dHwQ7BOpbxfB+IZE+f/RQS+/QU3YZQIvGCYrMYHTOEU1dFtvHGgAAlnkQqzBuhP22CklKPt9yBJ7T58bG3YbFR47NpRK8VfvJduGiBkN45g7RSpb0u0SI394Yc=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: daf1f545-5dc0-48e7-fc79-08d74ba53dc6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2019 04:08:57.2943
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: G0LhLGB4CwSyFbQHMWn3AmS4gG/Etnb912FQhdW2DD8s3TejH2yKZzJfZALpgiVgjflCTBOsLq6ozhA6lcfYzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5948
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jagan Teki <jagan@amarulasolutions.com> writes:
-
-> Hi Heiko,
->
-> On Mon, Sep 30, 2019 at 2:51 AM Heiko Stuebner <heiko@sntech.de> wrote:
->>
->> Hi Jagan,
->>
->> Am Donnerstag, 19. September 2019, 07:28:17 CEST schrieb Jagan Teki:
->> > ROC-PC is not able to boot linux console if PWM2_d is
->> > unattached to any pinctrl logic.
->> >
->> > To be precise the linux boot hang with last logs as,
->> > ...
->> > .....
->> > [    0.003367] Console: colour dummy device 80x25
->> > [    0.003788] printk: console [tty0] enabled
->> > [    0.004178] printk: bootconsole [uart8250] disabled
->> >
->> > In ROC-PC the PWM2_d pin is connected to LOG_DVS_PWM of
->> > VDD_LOG. So, for normal working operations this needs to
->> > active and pull-down.
->> >
->> > This patch fix, by attaching pinctrl active and pull-down
->> > the pwm2.
->>
->> This looks highly dubious on first glance. The pwm subsystem nor
->> the Rockchip pwm driver do not do any pinctrl handling.
->>
->> So I don't really see where that "active" pinctrl state is supposed
->> to come from.
->>
->> Comparing with the pwm driver in the vendor tree I see that there
->> is such a state defined there. But that code there also looks strange
->> as that driver never again leaves this active state after entering it.
->>
->> Also for example all the Gru devices run with quite a number of pwm-
->> regulators without needing additional fiddling with the pwm itself, so
->> I don't really see why that should be different here.
->
-> I deed, I was supposed to think the same. but the vendor kernel dts
-> from firefly do follow the pwm2 pinctrl [1]. I wouldn't find any
-> information other than this vensor information, ie one of the reason I
-> have marked "Levin Du" who initially supported this board.
->
-> One, think I have seen was this pinctrl active fixed the boot hang.
-> any inputs from would be very helpful.
->
-> Levin Du, any inputs?
->
-> [1] https://github.com/FireflyTeam/kernel/blob/stable-4.4-rk3399-linux/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi#L1184
->
-
-A grep of the `pwm2` shows that there's such block in rk3399-nanopi4.dtsi:
-
-    &pwm2 {
-            pinctrl-names = "active";
-            pinctrl-0 = <&pwm2_pin_pull_down>;
-            status = "okay";
-    };
-
-But last time I checked, using the mainline U-Boot (the roc-rk3399-pc is
-in mainline now) with mainline linux v5.2-rc7, no such setting is
-necessary, and the board boots happily.
-
-I cannot find the use of "active" pinctrl state in the
-`drivers/pwm/pwm-rockchip.c`. If the pinctrl state needs to be setup as
-default, the `pinctrl-names` needs to be "default" or "init" (see
-`drivers/base/pinctrl.c`) .
-
-Jagan, what version of board do you use? I checked with
-"ROC-RK3399-PC-V1.0-A 2018-07-12". 
-
-Thanks
-
---
-Levin Du
-
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU2hhd24gR3VvIDxzaGF3
+bmd1b0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDE5xOoxMNTCN8jVIDIwOjM1DQo+IFRvOiBXZW4g
+SGUgPHdlbi5oZV8xQG54cC5jb20+DQo+IENjOiBsaW51eC1kZXZlbEBsaW51eC5ueGRpLm54cC5j
+b207IExlbyBMaSA8bGVveWFuZy5saUBueHAuY29tPjsgUm9iIEhlcnJpbmcNCj4gPHJvYmgrZHRA
+a2VybmVsLm9yZz47IE1hcmsgUnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+Ow0KPiBkZXZp
+Y2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4g
+bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+IFN1YmplY3Q6IFtFWFRdIFJl
+OiBbdjIgMi8yXSBhcm02NDogZHRzOiBsczEwMjhhOiBVcGRhdGUgdGhlIERUIG5vZGUgZGVmaW5p
+dGlvbg0KPiBmb3IgZHBjbGsNCj4gDQo+IA0KPiBPbiBGcmksIFNlcCAyMCwgMjAxOSBhdCAwNDoz
+NDoxOVBNICswODAwLCBXZW4gSGUgd3JvdGU6DQo+ID4gVXBkYXRlIERUIG5vZGUgbmFtZSBjbG9j
+ay1jb250cm9sbGVyIHRvIGNsb2NrLWRpc3BsYXksDQo+IA0KPiBUaGUgbm9kZSBuYW1lIGNsb2Nr
+LWNvbnRyb2xsZXIgaXMgc28gZ29vZCwgYW5kIEkgZG8gbm90IHVuZGVyc3RhbmQgd2h5IHlvdQ0K
+PiBuZWVkIHRvIGNoYW5nZSBpdC4NCj4gDQoNClRoZSBub2RlIG5hbWUgY2xvY2stY29udHJvbGxl
+ciB1c2VkIGZvciB0aGUgc3lzdGVtIGNsb2NrZ2VuIGFuZCB0aGlzIGNsb2NrIG9ubHkgdXNlZCBm
+b3INCnRoZSBEaXNwbGF5IGNvcmUuIA0KVG8gY2xlYXJseSB0aGUgbm9kZSwgdGhhdCB3aHkgSSBo
+YXZlIHRvIHVzZSBjbG9jay1kaXNwbGF5IHRvIGluc3RlYWQgb2YgdGhlIGNsb2NrLWNvbnRyb2xs
+ZXINCg0KQmVzdCBSZWdhcmRzLA0KV2VuDQoNCj4gU2hhd24NCj4gDQo+ID4gYWxzbyBjaGFuZ2UN
+Cj4gPiB0aGUgcHJvcGVydHkgI2Nsb2NrLWNlbGxzIHZhbHVlIHRvIHplcm8uDQo+ID4NCj4gPiBU
+aGlzIHVwZGF0ZSBhY2NvcmRpbmcgdGhlIGZlZWRiYWNrIG9mIHRoZSBEaXNwbGF5IG91dHB1dCBp
+bnRlcmZhY2UNCj4gPiBjbG9jayBkcml2ZXIgdXBzdHJlYW0uDQo+ID4NCj4gPiBMaW5rOg0KPiA+
+IGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRw
+cyUzQSUyRiUyRmxvcmUNCj4gPiAua2VybmVsLm9yZyUyRnBhdGNod29yayUyRnBhdGNoJTJGMTEx
+MzgzMiUyRiZhbXA7ZGF0YT0wMiU3QzAxJQ0KPiA3Q3dlbi5oZQ0KPiA+DQo+IF8xJTQwbnhwLmNv
+bSU3QzYxOTM0MzQ2ZmE2NjQ2ZDI4YmFjMDhkNzRiMjJlMDhjJTdDNjg2ZWExZDNiYzJiDQo+IDRj
+NmZhOTJjDQo+ID4NCj4gZDk5YzVjMzAxNjM1JTdDMCU3QzAlN0M2MzcwNjA0ODU0NzgyMTgzOTAm
+YW1wO3NkYXRhPSUyRkxHMkt2QQ0KPiBMZE9HcDZUMDYNCj4gPiAyZnVLR1FYWWVnc3dzRU9XUEF2
+elduTGtmdE0lM0QmYW1wO3Jlc2VydmVkPTANCj4gPiBTaWduZWQtb2ZmLWJ5OiBXZW4gSGUgPHdl
+bi5oZV8xQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2ZzbC1sczEwMjhhLmR0c2kgfCA2ICsrKy0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBp
+bnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kNCj4gPiBiL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kNCj4gPiBpbmRleCA1MWZhOGY1
+N2ZkYWMuLmRiMWUxODYzNTJkOCAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRz
+L2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0
+cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRzaQ0KPiA+IEBAIC03OSwxMCArNzksMTAgQEANCj4g
+PiAgICAgICAgICAgICAgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJwaHlfMjdtIjsNCj4gPiAgICAg
+ICB9Ow0KPiA+DQo+ID4gLSAgICAgZHBjbGs6IGNsb2NrLWNvbnRyb2xsZXJAZjFmMDAwMCB7DQo+
+ID4gKyAgICAgZHBjbGs6IGNsb2NrLWRpc3BsYXlAZjFmMDAwMCB7DQo+ID4gICAgICAgICAgICAg
+ICBjb21wYXRpYmxlID0gImZzbCxsczEwMjhhLXBsbGRpZyI7DQo+ID4gICAgICAgICAgICAgICBy
+ZWcgPSA8MHgwIDB4ZjFmMDAwMCAweDAgMHhmZmZmPjsNCj4gPiAtICAgICAgICAgICAgICNjbG9j
+ay1jZWxscyA9IDwxPjsNCj4gPiArICAgICAgICAgICAgICNjbG9jay1jZWxscyA9IDwwPjsNCj4g
+PiAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmb3NjXzI3bT47DQo+ID4gICAgICAgfTsNCj4gPg0K
+PiA+IEBAIC02NjUsNyArNjY1LDcgQEANCj4gPiAgICAgICAgICAgICAgIGludGVycnVwdHMgPSA8
+MCAyMjIgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgPDAgMjIzIElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ICAgICAgICAgICAgICAgaW50ZXJy
+dXB0LW5hbWVzID0gIkRFIiwgIlNFIjsNCj4gPiAtICAgICAgICAgICAgIGNsb2NrcyA9IDwmZHBj
+bGsgMD4sIDwmY2xvY2tnZW4gMiAyPiwgPCZjbG9ja2dlbiAyIDI+LA0KPiA+ICsgICAgICAgICAg
+ICAgY2xvY2tzID0gPCZkcGNsaz4sIDwmY2xvY2tnZW4gMiAyPiwgPCZjbG9ja2dlbiAyIDI+LA0K
+PiA+ICAgICAgICAgICAgICAgICAgICAgICAgPCZjbG9ja2dlbiAyIDI+Ow0KPiA+ICAgICAgICAg
+ICAgICAgY2xvY2stbmFtZXMgPSAicHhsY2xrIiwgIm1jbGsiLCAiYWNsayIsICJwY2xrIjsNCj4g
+PiAgICAgICAgICAgICAgIGFybSxtYWxpZHAtb3V0cHV0LXBvcnQtbGluZXMgPSAvYml0cy8gOCA8
+OCA4IDg+Ow0KPiA+IC0tDQo+ID4gMi4xNy4xDQo+ID4NCg==
