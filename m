@@ -2,146 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B12CF9E5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD94DCF9F7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730923AbfJHMet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:34:49 -0400
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:10186 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730605AbfJHMet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:34:49 -0400
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
-  Nicolas.Ferre@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Nicolas.Ferre@microchip.com";
-  x-sender="Nicolas.Ferre@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Nicolas.Ferre@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Nicolas.Ferre@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: FxSCSadRfyOhjmGJ0lq7LzW+WbK63wzhjmw9cb8R/74ZHo7MW1K73CZIBHrOxnJajFj0BaPoKB
- uv53CT0mlylEXBhYUY2oOoE53N3JtzGeVaqveo6n6pNhLxCjQFO2SBDHzZfAK91pH+ScGp/ZKY
- B6Qq/xYJA1i9jU6BWGX5qzgSh4Px3p2td819sVi/ji7ngj4iyPmZWFdD8e/RSUU+pQJBtBuzm9
- Wl2kJO2vZtn+1BXrBGSp7C9bDbhIx7RAj+3mO9OEDDDk4dfuQyZ+Yg6lgQRJdboFRs7csD7gme
- Qf4=
-X-IronPort-AV: E=Sophos;i="5.67,270,1566889200"; 
-   d="scan'208";a="49212619"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2019 05:34:48 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 8 Oct 2019 05:34:48 -0700
-Received: from tenerife.corp.atmel.com (10.10.85.251) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Tue, 8 Oct 2019 05:34:46 -0700
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-To:     Ludovic Desroches <ludovic.desroches@microchip.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>
-CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        <linux-kernel@vger.kernel.org>, <ulf.hansson@linaro.org>,
-        <adrian.hunter@intel.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Subject: [PATCH 2/2] mmc: sdhci-of-at91: add DT property to enable calibration on full reset
-Date:   Tue, 8 Oct 2019 14:34:32 +0200
-Message-ID: <d25c8f909d039938a5696e8de32396cf2aaf54b7.1570537903.git.nicolas.ferre@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <4d269f30b1122487a2b5c8b48e24f78f2b75a509.1570537903.git.nicolas.ferre@microchip.com>
-References: <4d269f30b1122487a2b5c8b48e24f78f2b75a509.1570537903.git.nicolas.ferre@microchip.com>
+        id S1730683AbfJHMhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:37:14 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:33272 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730605AbfJHMhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:37:13 -0400
+Received: by mail-qk1-f193.google.com with SMTP id x134so16562807qkb.0;
+        Tue, 08 Oct 2019 05:37:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4v0d+1p/aArXJ2yOJRd5yNu1aMPL1BHOkAquOKCrLz0=;
+        b=hdoPfz7i2ZAKAojYg3MCdn1h3u+bC0JsI4n7zh6dL6bVxNYeSc793Pmj5qltJe44fQ
+         to9MLzW0F9Q2qJMBxS063xbPKegLPpoWtkY13KtO91GW7ABSL8Ijg3sD3+wEzdn3gUKl
+         KdAuBnJ7Q4VRAthQ+JYQcg1M4uXtSRp5ZpLUY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4v0d+1p/aArXJ2yOJRd5yNu1aMPL1BHOkAquOKCrLz0=;
+        b=LHvGCio9hc5uATawH+wK9itXGHh4btLNhjYg5hYAye4Ny6xvMxr3oWsA9hKdZMmroq
+         JD9wuiEjxqBludOOwfllGhB/Lc/RxIjLcwPekD5+AvAJdPhDOI3Pa21gUsNjKHmj9IhH
+         OZNjFXIgiIT6xRTs5pwYBZpXorypRKcC7usPo22n06KkgAZa1wJD4kjJhE+atBoPIMKQ
+         2MEY/U5DOKLU2rrZEkEeTLZjhKASgx38OseceCoemMMfyQq0FSDnZMq1Vxkq9syXsJ9O
+         8vY/eEZ/L28x4Xjc2mp2PJoQWvsRgqx45cyu8EWPlfm+EgKGkBNQIBQAE4z2PXNxXbck
+         89EA==
+X-Gm-Message-State: APjAAAXXPiUxAYN9T6pmG0Fh8NfIvMYQBoAS2DvkZyZebhe8WXEuHFlL
+        NuQwDixU5/BbclgGag58FHVjcWCBcdaLqyCirTI=
+X-Google-Smtp-Source: APXvYqwWnZfc72JvmcJyYRX4c70u9XGRpY6zMM0qiDyLh1kU7xYPHgtRMVXxvCmA/MGSrjXZ3fNWualilBMYFbbhMQE=
+X-Received: by 2002:a37:4a54:: with SMTP id x81mr28628198qka.292.1570538232484;
+ Tue, 08 Oct 2019 05:37:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20191008113523.13601-1-andrew@aj.id.au> <20191008113523.13601-2-andrew@aj.id.au>
+In-Reply-To: <20191008113523.13601-2-andrew@aj.id.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 8 Oct 2019 12:37:00 +0000
+Message-ID: <CACPK8Xf-f-r4S02GoxYdBYOJi5NGYMCOr6XGVza4vEGAsqzR9w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add AST2500 RMII RCLK definitions
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a property to keep the analog calibration cell powered.
-This feature is specific to the Microchip SDHCI IP and outside
-of the standard SDHCI register map.
+On Tue, 8 Oct 2019 at 11:34, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The AST2500 has an explicit gate for the RMII RCLK for each of the two
+> MACs.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> ---
+>  include/dt-bindings/clock/aspeed-clock.h | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/include/dt-bindings/clock/aspeed-clock.h b/include/dt-bindings/clock/aspeed-clock.h
+> index f43738607d77..64e245fb113f 100644
+> --- a/include/dt-bindings/clock/aspeed-clock.h
+> +++ b/include/dt-bindings/clock/aspeed-clock.h
+> @@ -39,6 +39,8 @@
+>  #define ASPEED_CLK_BCLK                        33
+>  #define ASPEED_CLK_MPLL                        34
+>  #define ASPEED_CLK_24M                 35
+> +#define ASPEED_CLK_GATE_MAC1RCLK       36
+> +#define ASPEED_CLK_GATE_MAC2RCLK       37
 
-By always keeping it on, after a full reset sequence, we make sure
-that this feature is activated and not disabled.
+Calling these ASPEED_CLK_GATE breaks the pattern the rest of the
+driver has in using that name for the clocks that are registered as
+struct aspeed_clk_gate clocks.
 
-We expose a hardware property to the DT as this feature can be used
-to adapt SDHCI behavior vs. how the SDCAL SoC pin is connected
-on the board.
+Do you think we should drop the GATE_ to match the existing clocks?
 
-Note that managing properly this property would reduce
-power consumption on some SAMA5D2 SiP revisions.
 
-Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
----
- drivers/mmc/host/sdhci-of-at91.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/drivers/mmc/host/sdhci-of-at91.c b/drivers/mmc/host/sdhci-of-at91.c
-index e7d1920729fb..9571c4a882a9 100644
---- a/drivers/mmc/host/sdhci-of-at91.c
-+++ b/drivers/mmc/host/sdhci-of-at91.c
-@@ -27,6 +27,9 @@
- #define SDMMC_CACR	0x230
- #define		SDMMC_CACR_CAPWREN	BIT(0)
- #define		SDMMC_CACR_KEY		(0x46 << 8)
-+#define SDMMC_CALCR	0x240
-+#define		SDMMC_CALCR_EN		BIT(0)
-+#define		SDMMC_CALCR_ALWYSON	BIT(4)
- 
- #define SDHCI_AT91_PRESET_COMMON_CONF	0x400 /* drv type B, programmable clock mode */
- 
-@@ -35,6 +38,7 @@ struct sdhci_at91_priv {
- 	struct clk *gck;
- 	struct clk *mainck;
- 	bool restore_needed;
-+	bool cal_always_on;
- };
- 
- static void sdhci_at91_set_force_card_detect(struct sdhci_host *host)
-@@ -116,10 +120,17 @@ static void sdhci_at91_set_uhs_signaling(struct sdhci_host *host,
- 
- static void sdhci_at91_reset(struct sdhci_host *host, u8 mask)
- {
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_at91_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+
- 	sdhci_reset(host, mask);
- 
- 	if (host->mmc->caps & MMC_CAP_NONREMOVABLE)
- 		sdhci_at91_set_force_card_detect(host);
-+
-+	if (priv->cal_always_on && (mask & SDHCI_RESET_ALL))
-+		sdhci_writel(host, SDMMC_CALCR_ALWYSON | SDMMC_CALCR_EN,
-+			     SDMMC_CALCR);
- }
- 
- static const struct sdhci_ops sdhci_at91_sama5d2_ops = {
-@@ -345,6 +356,14 @@ static int sdhci_at91_probe(struct platform_device *pdev)
- 
- 	priv->restore_needed = false;
- 
-+	/*
-+	 * if SDCAL pin is wrongly connected, we must enable
-+	 * the analog calibration cell permanently.
-+	 */
-+	priv->cal_always_on =
-+		device_property_read_bool(&pdev->dev,
-+					  "microchip,sdcal-inverted");
-+
- 	ret = mmc_of_parse(host->mmc);
- 	if (ret)
- 		goto clocks_disable_unprepare;
--- 
-2.17.1
-
+>
+>  #define ASPEED_RESET_XDMA              0
+>  #define ASPEED_RESET_MCTP              1
+> --
+> 2.20.1
+>
