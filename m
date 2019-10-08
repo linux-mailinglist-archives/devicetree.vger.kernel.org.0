@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22867CF927
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C5CACF9B1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730797AbfJHMEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:04:36 -0400
-Received: from 12.mo1.mail-out.ovh.net ([87.98.162.229]:41824 "EHLO
-        12.mo1.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730793AbfJHMEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:04:36 -0400
-X-Greylist: delayed 600 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Oct 2019 08:04:35 EDT
-Received: from player711.ha.ovh.net (unknown [10.108.57.44])
-        by mo1.mail-out.ovh.net (Postfix) with ESMTP id 0DB5C192BAF
-        for <devicetree@vger.kernel.org>; Tue,  8 Oct 2019 13:45:31 +0200 (CEST)
-Received: from etezian.org (85-76-98-218-nat.elisa-mobile.fi [85.76.98.218])
-        (Authenticated sender: andi@etezian.org)
-        by player711.ha.ovh.net (Postfix) with ESMTPSA id B934DA9C95CC;
-        Tue,  8 Oct 2019 11:45:20 +0000 (UTC)
-Date:   Tue, 8 Oct 2019 14:45:20 +0300
-From:   Andi Shyti <andi@etezian.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi@etezian.org>,
-        Andi Shyti <andi.shyti@samsung.com>,
-        Simon Shields <simon@lineageos.org>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: mms114: document melfas,mms345l binding
-Message-ID: <20191008114520.GD4015@jack.zhora.eu>
-References: <20191007203343.101466-1-stephan@gerhold.net>
- <20191007203343.101466-3-stephan@gerhold.net>
+        id S1730439AbfJHMZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:25:02 -0400
+Received: from mx2.suse.de ([195.135.220.15]:53418 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730249AbfJHMZC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 08:25:02 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 232E5B186;
+        Tue,  8 Oct 2019 12:25:00 +0000 (UTC)
+Date:   Tue, 8 Oct 2019 14:24:59 +0200
+From:   Petr Mladek <pmladek@suse.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Joe Perches <joe@perches.com>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v9 00/12] Device property improvements, add %pfw format
+ specifier
+Message-ID: <20191008122459.z62tk5xqpqhfifxl@pathway.suse.cz>
+References: <20191003123219.11237-1-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191007203343.101466-3-stephan@gerhold.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Ovh-Tracer-Id: 8564439116743557869
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrheelgdegiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+In-Reply-To: <20191003123219.11237-1-sakari.ailus@linux.intel.com>
+User-Agent: NeoMutt/20170912 (1.9.0)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
-
-On Mon, Oct 07, 2019 at 10:33:42PM +0200, Stephan Gerhold wrote:
-> The mms114 driver now supports MMS345L; document the
-> melfas,mms345l binding that is used for it.
+On Thu 2019-10-03 15:32:07, Sakari Ailus wrote:
+> Hi all,
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> This set adds functionality into the device property API (counting a
+> node's parents as well as obtaining its name) in order to support printing
+> fwnode names using a new conversion specifier "%pfw". The names that are
+> produced are equivalent to its OF counterpart "%pOF" on OF systems for the
+> two supported modifiers ("f" and "P").
+> 
+> Printing a node's name is something that's been available on OF for a long
+> time and if something is converted to device property API (such as the
+> V4L2 fwnode framework) it always got removed of a nice feature that was
+> sometimes essential in debugging. With this set, that no longer is the
+> case.
 
-Reviewed-by: Andi Shyti <andi@etezian.org>
+The patchset is ready to go upstream from my POV.
 
-Thanks,
-Andi
+Should it go via a tree that maintains the device property API
+or via printk.git? Both possibilities work for me.
+
+Best Regards,
+Petr
