@@ -2,89 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE156CFA0C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F371DCFA1E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730719AbfJHMi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:38:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37230 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730705AbfJHMi2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 08:38:28 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 27E3F20815;
-        Tue,  8 Oct 2019 12:38:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570538307;
-        bh=0172FbZMwE+uHkpHQaDTjmrpy7r6UVMZViKRxp2jAkE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Fj0cjOYfJqhfG7IwXrmsg43ZvERQ73aD0HiD62uK8K0QAnuFy4VbETrnvYSymrBqN
-         xM7+aR53XRnXLF/IMVEBQZral9XGk3sgp1dp0oYVgvM71fmByrgK0ow2kcUo6seEJK
-         WtzTvf6j2ztu57+zCR9T41ITyxFFnOHtYtMF77Dg=
-Received: by mail-qt1-f178.google.com with SMTP id 3so25036855qta.1;
-        Tue, 08 Oct 2019 05:38:27 -0700 (PDT)
-X-Gm-Message-State: APjAAAWy7yPA/NtOvpSA6JR3NprGx8Az19d2KJ7yNuGjuPzyDXqjvnis
-        K4kBX5jtWvt8+jEEf+4j0OI9GPFAKm8BTMhU1w==
-X-Google-Smtp-Source: APXvYqzxC6rl6FMV1ScqL2fgXOVZv3hYhSzySpUPq3nsKaUzT0TVTrLa+50ZC/gUauiPJFRY9Nd2MNSIBGFt1IYYeV8=
-X-Received: by 2002:ac8:6982:: with SMTP id o2mr35571093qtq.143.1570538306332;
- Tue, 08 Oct 2019 05:38:26 -0700 (PDT)
+        id S1730889AbfJHMkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:40:02 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:37535 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730317AbfJHMkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:40:02 -0400
+Received: by mail-qt1-f195.google.com with SMTP id e15so10144476qtr.4;
+        Tue, 08 Oct 2019 05:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0jJTLY2axsts6GZT3PA6D788BPaMX3GUaWV0Vzd1RXM=;
+        b=fydorapLglYueHDm9H8p4AT688wrHVmN/5BLYTckwzJV/hAERlr6H3K4qoiKBtFGyo
+         Qqsz931IkrwgOJzNNIHLJ4B3AVscmOsqqQrfmBYgtSP2tKBChMznGpsmEugFmEbcT5KX
+         SkpxY/1+OmNS7lpVyQHn1fjYhxCoKBBR8JLvo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0jJTLY2axsts6GZT3PA6D788BPaMX3GUaWV0Vzd1RXM=;
+        b=KPMBd+qnb284ewzbUtuHS8Dhf5l2uVNcA7//wAaXNETb2nxO+RpcBMvv/NqRapgrJf
+         YUWJRB1zJ1IfH6/4xN9UVCLEUwbYIxyn/PJQk+4Cv26GUCBjFd5KKN50nGR7R/VnJZKp
+         emgwTGAP7XNES/4O8jgiBxnOn5+GeLXkUee3YOn4gB8+sh/AdrCZ/AJHtpiafa0VAJuC
+         HNPlsyETYXWS96SmzVVLagznaAocD43rUlA114J4R2B1bKW8ZH0oyVwjaIUlc4lfWMG5
+         vXe2Ca6fFHmON93YV4aqy4TgMhm3jQ4V4PKjorgFV9myvO0s/+AFm/L9E0wP30ZbinVs
+         A+eQ==
+X-Gm-Message-State: APjAAAUxHebDwhPhcm2Uk+f5LAtjdGjhVko0B2pphs6qm5HGO2dos7XO
+        cVgMQYddFkIVBXrqG+PdH6KtXoBeDb+U3QXPRTU=
+X-Google-Smtp-Source: APXvYqyIRMp1F0ik7vkJep0KVirm5HNPl0oLZUOXJNQc+afvhAryjXpJ1n7wrnxW5Q1z+DRlElhn/MKulVSC3i9vSX0=
+X-Received: by 2002:ac8:2e94:: with SMTP id h20mr36037220qta.234.1570538400593;
+ Tue, 08 Oct 2019 05:40:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191004151414.8458-1-krzk@kernel.org>
-In-Reply-To: <20191004151414.8458-1-krzk@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 8 Oct 2019 07:38:14 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJDTcHu5oXG6zszGHCBhTE6EW94AANUjyMV78SkKcn5yA@mail.gmail.com>
-Message-ID: <CAL_JsqJDTcHu5oXG6zszGHCBhTE6EW94AANUjyMV78SkKcn5yA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: samsung: Force clkoutN names to be
- unique in PMU
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Kukjin Kim <kgene@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maciej Falkowski <m.falkowski@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20191008113553.13662-1-andrew@aj.id.au> <20191008113553.13662-3-andrew@aj.id.au>
+In-Reply-To: <20191008113553.13662-3-andrew@aj.id.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 8 Oct 2019 12:39:49 +0000
+Message-ID: <CACPK8XfSrKym55eQ91Lhf3wXtzCD5AH7P8t19jow2K-5JRb0ZA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] clk: ast2600: Add RMII RCLK gates for all four MACs
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 10:14 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, 8 Oct 2019 at 11:35, Andrew Jeffery <andrew@aj.id.au> wrote:
 >
-> The clkoutN names of clocks must be unique because they represent
-> unique inputs of clock multiplexer.
+> RCLK is a fixed 50MHz clock derived from HPLL/HCLK that is described by a
+> single gate for each MAC.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+
+We could have mac12rclk and mac34rclk described in the device tree, as
+was mentioned in previous reviews of the aspeed driver, but I think we
+can defer that
+rework until we rework the rest of the driver. Importantly, that won't
+change the MAC bindings or the code that the drivers need to use.
+
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+
+
 > ---
->  Documentation/devicetree/bindings/arm/samsung/pmu.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+>  drivers/clk/clk-ast2600.c | 47 ++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 46 insertions(+), 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
-> index 73b56fc5bf58..d8e03716f5d2 100644
-> --- a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
-> +++ b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
-> @@ -53,8 +53,10 @@ properties:
->        List of clock names for particular CLKOUT mux inputs
->      minItems: 1
->      maxItems: 32
-> -    items:
-> -      pattern: '^clkout([0-9]|[12][0-9]|3[0-1])$'
-> +    allOf:
-> +      - items:
-> +          pattern: '^clkout([0-9]|[12][0-9]|3[0-1])$'
-> +      - uniqueItems: true
-
-You shouldn't need the 'allOf', just add uniqueItems at the same level as items.
-
-Rob
+> diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
+> index 1c1bb39bb04e..3d6fc781fee0 100644
+> --- a/drivers/clk/clk-ast2600.c
+> +++ b/drivers/clk/clk-ast2600.c
+> @@ -15,7 +15,7 @@
+>
+>  #include "clk-aspeed.h"
+>
+> -#define ASPEED_G6_NUM_CLKS             67
+> +#define ASPEED_G6_NUM_CLKS             71
+>
+>  #define ASPEED_G6_SILICON_REV          0x004
+>
+> @@ -40,6 +40,9 @@
+>
+>  #define ASPEED_G6_STRAP1               0x500
+>
+> +#define ASPEED_MAC12_CLK_DLY           0x340
+> +#define ASPEED_MAC34_CLK_DLY           0x350
+> +
+>  /* Globally visible clocks */
+>  static DEFINE_SPINLOCK(aspeed_g6_clk_lock);
+>
+> @@ -485,6 +488,11 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
+>                 return PTR_ERR(hw);
+>         aspeed_g6_clk_data->hws[ASPEED_CLK_SDIO] = hw;
+>
+> +       /* MAC1/2 RMII 50MHz RCLK */
+> +       hw = clk_hw_register_fixed_rate(dev, "mac12rclk", "hpll", 0, 50000000);
+> +       if (IS_ERR(hw))
+> +               return PTR_ERR(hw);
+> +
+>         /* MAC1/2 AHB bus clock divider */
+>         hw = clk_hw_register_divider_table(dev, "mac12", "hpll", 0,
+>                         scu_g6_base + ASPEED_G6_CLK_SELECTION1, 16, 3, 0,
+> @@ -494,6 +502,27 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
+>                 return PTR_ERR(hw);
+>         aspeed_g6_clk_data->hws[ASPEED_CLK_MAC12] = hw;
+>
+> +       /* RMII1 50MHz (RCLK) output enable */
+> +       hw = clk_hw_register_gate(dev, "mac1rclk-gate", "mac12rclk", 0,
+> +                       scu_g6_base + ASPEED_MAC12_CLK_DLY, 29, 0,
+> +                       &aspeed_g6_clk_lock);
+> +       if (IS_ERR(hw))
+> +               return PTR_ERR(hw);
+> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC1RCLK] = hw;
+> +
+> +       /* RMII2 50MHz (RCLK) output enable */
+> +       hw = clk_hw_register_gate(dev, "mac2rclk-gate", "mac12rclk", 0,
+> +                       scu_g6_base + ASPEED_MAC12_CLK_DLY, 30, 0,
+> +                       &aspeed_g6_clk_lock);
+> +       if (IS_ERR(hw))
+> +               return PTR_ERR(hw);
+> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC2RCLK] = hw;
+> +
+> +       /* MAC1/2 RMII 50MHz RCLK */
+> +       hw = clk_hw_register_fixed_rate(dev, "mac34rclk", "hclk", 0, 50000000);
+> +       if (IS_ERR(hw))
+> +               return PTR_ERR(hw);
+> +
+>         /* MAC3/4 AHB bus clock divider */
+>         hw = clk_hw_register_divider_table(dev, "mac34", "hpll", 0,
+>                         scu_g6_base + 0x310, 24, 3, 0,
+> @@ -503,6 +532,22 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
+>                 return PTR_ERR(hw);
+>         aspeed_g6_clk_data->hws[ASPEED_CLK_MAC34] = hw;
+>
+> +       /* RMII3 50MHz (RCLK) output enable */
+> +       hw = clk_hw_register_gate(dev, "mac3rclk-gate", "mac34rclk", 0,
+> +                       scu_g6_base + ASPEED_MAC34_CLK_DLY, 29, 0,
+> +                       &aspeed_g6_clk_lock);
+> +       if (IS_ERR(hw))
+> +               return PTR_ERR(hw);
+> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC3RCLK] = hw;
+> +
+> +       /* RMII4 50MHz (RCLK) output enable */
+> +       hw = clk_hw_register_gate(dev, "mac4rclk-gate", "mac34rclk", 0,
+> +                       scu_g6_base + ASPEED_MAC34_CLK_DLY, 30, 0,
+> +                       &aspeed_g6_clk_lock);
+> +       if (IS_ERR(hw))
+> +               return PTR_ERR(hw);
+> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC4RCLK] = hw;
+> +
+>         /* LPC Host (LHCLK) clock divider */
+>         hw = clk_hw_register_divider_table(dev, "lhclk", "hpll", 0,
+>                         scu_g6_base + ASPEED_G6_CLK_SELECTION1, 20, 3, 0,
+> --
+> 2.20.1
+>
