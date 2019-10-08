@@ -2,50 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA0DCF8F3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C5BCF91C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730823AbfJHLyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 07:54:10 -0400
-Received: from mx2.suse.de ([195.135.220.15]:33346 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730618AbfJHLyJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 07:54:09 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 1BD1EACC6;
-        Tue,  8 Oct 2019 11:54:08 +0000 (UTC)
-Date:   Tue, 8 Oct 2019 13:54:07 +0200
-From:   Petr Mladek <pmladek@suse.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Joe Perches <joe@perches.com>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v9 08/12] lib/vsprintf: Add a note on re-using %pf or %pF
-Message-ID: <20191008115407.6qiv66cc6b566bys@pathway.suse.cz>
-References: <20191003123219.11237-1-sakari.ailus@linux.intel.com>
- <20191003123219.11237-9-sakari.ailus@linux.intel.com>
+        id S1730657AbfJHMDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:03:41 -0400
+Received: from 5.mo6.mail-out.ovh.net ([46.105.54.31]:34807 "EHLO
+        5.mo6.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730717AbfJHMDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:03:41 -0400
+X-Greylist: delayed 599 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Oct 2019 08:03:40 EDT
+Received: from player688.ha.ovh.net (unknown [10.108.54.36])
+        by mo6.mail-out.ovh.net (Postfix) with ESMTP id 4848F1E33E8
+        for <devicetree@vger.kernel.org>; Tue,  8 Oct 2019 13:44:15 +0200 (CEST)
+Received: from etezian.org (85-76-98-218-nat.elisa-mobile.fi [85.76.98.218])
+        (Authenticated sender: andi@etezian.org)
+        by player688.ha.ovh.net (Postfix) with ESMTPSA id CF780AA08234;
+        Tue,  8 Oct 2019 11:44:04 +0000 (UTC)
+Date:   Tue, 8 Oct 2019 14:44:03 +0300
+From:   Andi Shyti <andi@etezian.org>
+To:     Andi Shyti <andi@etezian.org>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Simon Shields <simon@lineageos.org>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] Input: mms114 - add support for mms345l
+Message-ID: <20191008114403.GB4015@jack.zhora.eu>
+References: <20191007203343.101466-1-stephan@gerhold.net>
+ <20191007205021.104402-1-stephan@gerhold.net>
+ <20191008113511.GA4015@jack.zhora.eu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191003123219.11237-9-sakari.ailus@linux.intel.com>
-User-Agent: NeoMutt/20170912 (1.9.0)
+In-Reply-To: <20191008113511.GA4015@jack.zhora.eu>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Ovh-Tracer-Id: 8543047019269243586
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -85
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrheelgdeghecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenogetfedtuddqtdduucdludehmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 2019-10-03 15:32:15, Sakari Ailus wrote:
-> Add a note warning of re-use of obsolete %pf or %pF extensions.
+> > -	if (!i2c_check_functionality(client->adapter,
+> > -				I2C_FUNC_PROTOCOL_MANGLING)) {
+> > +	type = (enum mms_type)device_get_match_data(&client->dev);
 > 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
-> Suggested-by: Steven Rostedt (VMware) <rostedt@goodmis.org>
+> you don't need any cast here.
 
-Reviewed-by: Petr Mladek <pmladek@suse.com>
+sorry, please ignore :)
 
-Best Regards,
-Petr
+Andi
