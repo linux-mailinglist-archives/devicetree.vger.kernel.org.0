@@ -2,126 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B70CACFFE7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 19:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3525D000C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 19:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728187AbfJHRbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 13:31:00 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:55476 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726811AbfJHRbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 13:31:00 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20191008173058euoutp017d659e004d1ecc81e8a2517dbe783797~LvDt8KDfl2284822848euoutp016
-        for <devicetree@vger.kernel.org>; Tue,  8 Oct 2019 17:30:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20191008173058euoutp017d659e004d1ecc81e8a2517dbe783797~LvDt8KDfl2284822848euoutp016
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1570555858;
-        bh=1andqKfOFGQItmqD6T1v34f5NE14TvB9mAiT5Q9ZwA0=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=dUwJpYxOQw1YeUo8xuc9Sf7ZalaUXCcfMj3ZEeyNTB5RMdFE08MZo6vyztCjcVl28
-         5EguX3+oV9SZ0QfmL60AdYYImnPcOfe146NweD8z5djRT9WyNNYjlRNgC4k+j6mi6X
-         wrxhiRGI6fG8ftnnBG/4/V2L4BPJ/BSCJyJ28IC0=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20191008173058eucas1p10315dfbb5e10619d614d477de5a1f1c1~LvDtxeo6e0487004870eucas1p1d;
-        Tue,  8 Oct 2019 17:30:58 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 68.87.04309.2D7CC9D5; Tue,  8
-        Oct 2019 18:30:58 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20191008173058eucas1p2545297c2f5920c4e935334cc29d54244~LvDtWJByp2973029730eucas1p2M;
-        Tue,  8 Oct 2019 17:30:58 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20191008173058eusmtrp258149df40795bab03dc3a0f10d6bf8df~LvDtVgUe41415214152eusmtrp2M;
-        Tue,  8 Oct 2019 17:30:58 +0000 (GMT)
-X-AuditID: cbfec7f4-ae1ff700000010d5-20-5d9cc7d2d877
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 91.9F.04166.1D7CC9D5; Tue,  8
-        Oct 2019 18:30:58 +0100 (BST)
-Received: from [106.120.51.75] (unknown [106.120.51.75]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20191008173057eusmtip2f0e04e97fc013b33574c6f65da7db2dc~LvDs0YsbP2048920489eusmtip2P;
-        Tue,  8 Oct 2019 17:30:57 +0000 (GMT)
-Subject: Re: [PATCH] ARM: dts: s3c64xx: Fix init order of clock providers
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Lihua Yao <ylhuajnu@outlook.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <ceede424-e4a2-03f1-3ce0-04f405688721@samsung.com>
-Date:   Tue, 8 Oct 2019 19:30:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.8.0
+        id S1728462AbfJHRlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 13:41:03 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34209 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727514AbfJHRlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 13:41:02 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m19so14803870otp.1;
+        Tue, 08 Oct 2019 10:41:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xOC0mpKmGEmRikgCRd9gsgQ9erZ8EhH2ac4zF2SOvfc=;
+        b=A48ymLIK2rb7BiQ9QuBri46T6nbKFuIQJxa7IZOrx9u7UZZjm57jzAFIIYzYvWLrix
+         m+nDdkRVAO2+gOSlB5xS91WBrGwrPIYdmbS1o615tpr57WuZBLJC3B6ckf/LOptWZ1Ub
+         gJYtq5XNt82fMCqHor/KL47/Zfi03r9Lcu7ah4JpxQzHWRQAXsmiufKaM507CHWwWDzX
+         wuksd3+2wJ5/sXreoS2epnF9sTqEmrgFgSyR/Z9C3JNv6wJ+IrfIXn6AFIFTduTFLAjS
+         itBaUhBVZ9Qzu3Pkd74h4T4/qeYmEeqsrAAtBlj6UkpmRgDydVnCnFwNreL37zzt2K7l
+         PqYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xOC0mpKmGEmRikgCRd9gsgQ9erZ8EhH2ac4zF2SOvfc=;
+        b=ApdQQTY6UuTzBffvbbCYPAzhp7mg3GgmfKqVHnUegkmK6S7CkG7ybYkcY7KOcQlxDd
+         Lhdj9c7BFwryidgcQvOyPWvtyEEaHYV8AKDCdWNSo7NMt4P2DZp9uR7rVOeI2o93xqsv
+         psaHiYOKmHh2bWuKX06wI2+RIOh1J1HIv/pgJTNV8nxYhGW2j3nI34GRnk0gz6OEZClZ
+         wOwz1HwBnjXXtEsjOYh/ktkM3hp8k3Y4LlF8sbfNSKT+45ILHYI/q9tsYBG0NwB00SR/
+         vb7KhTVXKqIS8nYUWgbQ1YZixsocJBWb81yuqTgLGkqy9gSiU6d7r/Yi35WxGiOSh4lC
+         YUNw==
+X-Gm-Message-State: APjAAAV0tGLqLncGPz65pSEjCwhZ4tnkH1sgoM+eznqsrPt0U449J0oN
+        pQYJNNJnP3ERw0A3QTcviKQ27DgfBgeykwFf+X4=
+X-Google-Smtp-Source: APXvYqxqhXwAynybsN9Gz27KPhjj5btFKvK2S66P8tFQ842KPj4fHqw45egk61mlamGvOAvK6sbk0VhqSQzJff+YD4E=
+X-Received: by 2002:a05:6830:150d:: with SMTP id k13mr25847326otp.98.1570556460961;
+ Tue, 08 Oct 2019 10:41:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20191008165917.23908-1-krzk@kernel.org>
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SbUhTYRjt3f3Y3WpynYoPVmZLCINcmtWgUAupiQX2IyrD7JY3FZ3Krloz
-        KEkz50wkidWcaGa1VprOWKZRodYQI0vTWUmuNBiG/lDDlqbprpL/znnOeZ/zHHgpTHqb8KNS
-        0rNYdTqTJiPFuPWNq3trj80Yv63eHqCo6nhHKLq7G4QKy3A/oehtMZKKm90vBIpvJRVkJKm0
-        mLWksqn2krLppxNTTlr8Y/E48Z5ENi0lh1XLw0+Jk12mPiLTSZ43OS1EHuojipGIAjoMRg1a
-        rBiJKSltQvC3YA7xZArBHaeL4MkkgorhcXz5ySO7bUm4j6ChpmuJjCForXS4XV50NBQUlGOL
-        2JuOgZbpfHcIRl9F8La3zi2QdAhce12KFrGEDgdtnoNcxDgdCOUDg26PD30MJhztBO/xhM5b
-        I+4AEb0DLAWfhYsYo33h8tQDgscb4OmY0R0GdI0QrGbLgkAtkCiof3WUr+AFo7YnQh6vg/ln
-        VQLen4+gpPWLkCdlCIZs1Yh37YZ22wf3IowOgsctcn68F34M2Ul+vwcMjHnyN3jAdase48cS
-        KCqU8u5AmDHrBTz2A93IPF6GZIYVzQwr2hhWtDH8z61GuBn5stmcKonlQtPZc8Eco+Ky05OC
-        z2SoLGjh43TN2aaaUcvs6TZEU0i2RhKZa4yXEkwOp1G1IaAwmbekxrAwkiQymlxWnZGgzk5j
-        uTa0lsJlvpILqxwnpHQSk8Wmsmwmq15WBZTILw+FRhUebhT1DMRoM983HpJsl8s1/kE+mw58
-        f3nwky424itZWy14OF0OHKszRF+8sbp1dJdu576IP6keyE7MbvwY0MxM373XP2gaLtWvj4oV
-        dRZWFj0PS7hycnLkyPH9Ln/9L6c0bsSpCTs7btsc7aqHeXP+TH1n3W+fiTmrRNkhw7lkJmQL
-        puaYf9HRWJ40AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMIsWRmVeSWpSXmKPExsVy+t/xe7qXjs+JNVi4nNFi/pFzrBbnz29g
-        t9j0+BqrxeVdc9gsZpzfx2TxsGc2mwObx6ZVnWwem5fUe2x+/YLZ4/MmuQCWKD2bovzSklSF
-        jPziElulaEMLIz1DSws9IxNLPUNj81grI1MlfTublNSczLLUIn27BL2Mnyuusha8YKtY8WIT
-        awPjVdYuRk4OCQETiTXXjwPZXBxCAksZJQ6fnsHUxcgBlJCSmN+iBFEjLPHnWhcbRM1rRon5
-        cxuZQRLCAp4SLS2TwWwRAW+JXd+bmUGKmAXaGSX63/1hhujoYJS4vuoBG0gVm4ChRO/RPkYQ
-        m1fATqKzASLOIqAiMfnGHbBJogIREod3zIKqEZQ4OfMJC4jNKWAqsanlFjuIzSygLvFn3iVm
-        CFtcounLSlYIW15i+9s5zBMYhWYhaZ+FpGUWkpZZSFoWMLKsYhRJLS3OTc8tNtQrTswtLs1L
-        10vOz93ECIywbcd+bt7BeGlj8CFGAQ5GJR5eh6o5sUKsiWXFlbmHGCU4mJVEeBfNAgrxpiRW
-        VqUW5ccXleakFh9iNAV6biKzlGhyPjD680riDU0NzS0sDc2NzY3NLJTEeTsEDsYICaQnlqRm
-        p6YWpBbB9DFxcEo1MEZ4HRNauuDQWXPzt5f3T2gwSNV45xRwU/L3U02nOPXQ7K5XT7PU9U2N
-        dywUCxdTlNMWz71/+7eH/irXuOuL0tcFTWiUFfi+4zHnUyXOi4U+XaqfWy/O/BboEeVnnvdF
-        jr3CdR7Hyt1JadkvH2Zw7FdVLjNZmRhnzLXZ9wDXedFZXW6/dkg9U2Ipzkg01GIuKk4EAIfK
-        gxDGAgAA
-X-CMS-MailID: 20191008173058eucas1p2545297c2f5920c4e935334cc29d54244
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20191008165931epcas3p2dd2937d851ed06948dd7746e5a2674b4
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20191008165931epcas3p2dd2937d851ed06948dd7746e5a2674b4
-References: <CGME20191008165931epcas3p2dd2937d851ed06948dd7746e5a2674b4@epcas3p2.samsung.com>
-        <20191008165917.23908-1-krzk@kernel.org>
+References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+ <7hsgo4cgeg.fsf@baylibre.com> <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+In-Reply-To: <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 8 Oct 2019 19:40:50 +0200
+Message-ID: <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/8/19 18:59, Krzysztof Kozlowski wrote:
-> From: Lihua Yao <ylhuajnu@outlook.com>
-> 
-> fin_pll is the parent of clock-controller@7e00f000, specify
-> the dependency to ensure proper initialization order of clock
-> providers.
+Hi Anand,
 
-> Fixes: 3f6d439f2022 ("clk: reverse default clk provider initialization order in of_clk_init()")
+On Tue, Oct 8, 2019 at 4:39 PM Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Hi Kevin / Martin,
+>
+> On Tue, 8 Oct 2019 at 04:28, Kevin Hilman <khilman@baylibre.com> wrote:
+> >
+> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> >
+> > > On Mon, Oct 7, 2019 at 3:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> > > [...]
+> > >> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > >> index c9a867ac32d4..72f6a7dca0d6 100644
+> > >> --- a/arch/arm64/configs/defconfig
+> > >> +++ b/arch/arm64/configs/defconfig
+> > >> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+> > >>  CONFIG_PWM=y
+> > >>  CONFIG_PWM_BCM2835=m
+> > >>  CONFIG_PWM_CROS_EC=m
+> > >> -CONFIG_PWM_MESON=m
+> > >> +CONFIG_PWM_MESON=y
+> > >
+> > > some time ago I submitted a similar patch for the 32-bit SoCs
+> > > it turned that that pwm-meson can be built as module because the
+> > > kernel will run without CPU DVFS as long as the clock and regulator
+> > > drivers are returning -EPROBE_DEFER (-517)
+> >
+> > On 64-bit SoCs, the kernel boots with PWM as a module also, but DVFS
+> > only works sometimes, and making it built-in fixes the problem.
+> > Actually, it doesn't fix, it just hides the problem, which is likely a
+> > race or timeout happening during deferred probing.
+> >
+> > > did you check whether there's some other problem like some unused
+> > > clock which is being disabled at that moment?
+> > > I've been hunting weird problems in the past where it turned out that
+> > > changing kernel config bits changed the boot timing - that masked the
+> > > original problem
+> >
+> > Right, I would definitely prefer to not make this built-in without a lot
+> > more information to *why* this is needed.  In figuring that out, we'll
+> > probably find the race/timeout that's the root cause.
+> >
+> > Kevin
+> >
+> >
+>
+> Kevin,
+>
+> As per my understanding from the kernelci.org logs it seen that
+> pwm-meson driver is requested more than once before it finally load the module.
+>
+> [0] https://storage.kernelci.org/next/master/next-20191008/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12b-odroid-n2.txt
+my understanding is that:
+- the PWM regulator driver is built in (=y)
+- the Meson PWM controller driver is built as module (=m)
+- during boot the PWM regulator node is found and it has a matching
+driver (built-in)
+- the PWM regulator driver tries to find the PWM controller but cannot
+find it yet (and reports "Failed to get PWM: -517")
+- (this repeats a few times)
+- then the filesystem / initramfs is loaded where the modules are located
+- now the Meson PWM controller driver is loaded
+- the PWM regulator driver tries to find the PWM controller -> now it found it
 
-The patch looks good but I'm not sure above tag points to the right commit.
-That commit is just a regression fix for
-1771b10d605d26cc "clk: respect the clock dependencies in of_clk_init"
- 
-How about picking some commit touching the dts files itself, e.g.
-a43736deb47d21bd "ARM: dts: Add dts file for S3C6410-based Mini6410 board" ?
+> Hi Martin,
+>
+> I have tired your Martin's patch [1] and still the boot fails to move
+> ahead with below logs.
+> [1] https://lore.kernel.org/patchwork/patch/1034186/
+this patch only silences the "Failed to get PWM: -517" message
+Mark didn't apply it back then because without that message it would
+be harder to debug these issues
 
-> Signed-off-by: Lihua Yao <ylhuajnu@outlook.com>
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> [    1.543928] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+> [    1.550422] usb usb2: We don't know the algorithms for LPM for this
+> host, disabling LPM.
+> [    1.558702] hub 2-0:1.0: USB hub found
+> [    1.562131] hub 2-0:1.0: 1 port detected
+> [    1.566206] dwc3-meson-g12a ffe09000.usb: switching to Device Mode
+> [    1.573252] meson-gx-mmc ffe05000.sd: Got CD GPIO
+> [    1.607405] hctosys: unable to open rtc device (rtc0)
+>
+> I have put some more prints in pwm-meson.c it fails to load the module
+> as microsSD card is not completely initialized.
+what makes you think that there's a problem with pwm-meson?
 
-Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+can you please share a boot log with the command line parameter
+"initcall_debug" [0]?
+from Documentation/admin-guide/kernel-parameters.txt:
+ initcall_debug [KNL] Trace initcalls as they are executed.  Useful
+ for working out where the kernel is dying during
+ startup.
 
--- 
-Regards,
-Sylwester
+you can also try the command line parameter "clk_ignore_unused" (it's
+just a gut feeling: maybe a "critical" clock is being disabled because
+it's not wired up correctly).
+
+back when I was working out the CPU clock tree for the 32-bit SoCs I
+had a bad parent clock in one of the muxes which resulted in sporadic
+lockups if CPU DVFS was enabled.
+you can try to disable CPU DVFS by dropping the OPP table and it's
+references from the .dtsi
+
+
+Martin
+
+
+[0] https://elinux.org/Initcall_Debug
