@@ -2,62 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6084FCF621
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 11:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED3EBCF65A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 11:45:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730117AbfJHJfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 05:35:43 -0400
-Received: from slot0.favourzone.xyz ([165.22.195.74]:59375 "EHLO
-        slot0.favourzone.xyz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730026AbfJHJfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 05:35:42 -0400
-X-Greylist: delayed 601 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Oct 2019 05:35:42 EDT
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=dkim; d=favourzone.xyz;
- h=Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To:Message-ID; i=list@favourzone.xyz;
- bh=DOAOozeaF4pQ7h/Ukw+r3FT9Z+Y=;
- b=NFUzpK0E/377RGrbQbVVSKAeSrlWnVaZnnSeuejPvVlRN81zs6Opld+9F0R1/U6J938ezwzhVKF8
-   97GPVJCT9hLq1VuQg4/XZ3adYsHakq3icdZX6Y2uI7AUREgNb2QTVlGfz9yq3FLjk4unPqprwIL2
-   Ol6FBqW8WgtQigGTWnHcdmumgq9FLU7vj9ttbKz0A6cWZe4KgM+tnr8U3u471gwZupzyHFrOG114
-   uPDUiQunkpeTAWmNncMUfjDe0OmBR253LCJ4DXvqLD0GtUaR8UpuVZdkvMZuVgLq/m404IW3LiCp
-   JJa0+ve601vcekx9t4uKuoXEgMqQRzayjinC7A==
-DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=dkim; d=favourzone.xyz;
- b=GhsI4kft6kEOf4b1UVVBOiwgHCpqnro29Sj+jiUvljG3Aplgn560Dye03yaiARAasVuysyn6BBus
-   IbLytPw3v3k2q6UYfkjkq30zO/TRn5b9ierJyxduCDtTBBgGZfgB1JGsZHVg2IpURySr5ny6ZZ6E
-   A9fB9InpvyetXqdJJZHKTmGxoxQAZ3D/9Pn/y9ZOKOnuS3oZQN8LdUmPGMDwlnqzIC87N1iJzUB6
-   QSRplv30Eqv505khKkfbTqzpYLrX5M6T7b5F+m6dSE9AUmPYsnY13daw5cdbmYs5UBUwQ6r1FVAf
-   Ct7Patppdjn6Seie3c9+6xUFhD9BebLz4LCJIA==;
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1729893AbfJHJpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 05:45:06 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51653 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728866AbfJHJpF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 05:45:05 -0400
+X-Originating-IP: 2.139.156.91
+Received: from localhost (91.red-2-139-156.staticip.rima-tde.net [2.139.156.91])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 0001520011;
+        Tue,  8 Oct 2019 09:44:59 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3 05/10] ARM: dts: dove: Rename "sa-sram" node to "sram"
+In-Reply-To: <20191002164316.14905-5-krzk@kernel.org>
+References: <20191002164316.14905-1-krzk@kernel.org> <20191002164316.14905-5-krzk@kernel.org>
+Date:   Tue, 08 Oct 2019 11:44:58 +0200
+Message-ID: <87imoztvtx.fsf@FE-laptop>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: EQUIRY
-To:     devicetree@vger.kernel.org
-From:   "Mr. Wisachon" <list@favourzone.xyz>
-Date:   Tue, 08 Oct 2019 02:25:39 -0700
-Reply-To: sales.wisachon.b.averasia@hotmail.com
-Message-ID: <0.0.2.B94.1D57DBA5AEC4E7E.0@slot0.favourzone.xyz>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good day,
- =
+Hi Krzysztof Kozlowski,
 
-My Name is Mr  Wisachon Boonpan, the Sales Manager of Aver Asia thailand Lt=
-d,Import& Export Company.
- =
+> The device node name should reflect generic class of a device so rename
+> the "sa-sram" node to "sram".  This will be also in sync with upcoming DT
+> schema.  No functional change.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-I am Interested in some of your product could you kindly send me your full =
-catalog of products with clear photos and list of FOB prices in USD with co=
-mpetitive prices for serious starting, Wholesale  Prices will be accepted a=
-s well. =
+Applied on mvebu/dt
 
-Expecting your response. Await soonest reply,Thanks
- =
+Thanks,
 
-Best regards,
+Gregory
 
-Wisachon Boonpan (Noon)
-sales.wisachon.b.averasia@hotmail.com
-Aver Asia (Thailand) Limited
+> ---
+>  arch/arm/boot/dts/dove.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/dove.dtsi b/arch/arm/boot/dts/dove.dtsi
+> index 2e8a3977219f..3081b04e8c08 100644
+> --- a/arch/arm/boot/dts/dove.dtsi
+> +++ b/arch/arm/boot/dts/dove.dtsi
+> @@ -784,7 +784,7 @@
+>  				status = "disabled";
+>  			};
+>  
+> -			crypto_sram: sa-sram@ffffe000 {
+> +			crypto_sram: sram@ffffe000 {
+>  				compatible = "mmio-sram";
+>  				reg = <0xffffe000 0x800>;
+>  				clocks = <&gate_clk 15>;
+> -- 
+> 2.17.1
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
