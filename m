@@ -2,78 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63EC6CF096
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 03:43:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 441BCCF09C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 03:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729212AbfJHBng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 21:43:36 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:37150 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726917AbfJHBng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 21:43:36 -0400
-Received: by mail-lf1-f66.google.com with SMTP id w67so10672106lff.4;
-        Mon, 07 Oct 2019 18:43:34 -0700 (PDT)
+        id S1729472AbfJHBoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 21:44:37 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39634 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726917AbfJHBoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 21:44:37 -0400
+Received: by mail-io1-f67.google.com with SMTP id a1so33112304ioc.6;
+        Mon, 07 Oct 2019 18:44:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vAyTNFHXf10lpyOvysT1VF7d3x/O+fWSY3A10NGv1+g=;
-        b=fhaQXeUXSNiSeZY5bpAmAFT0Z0rSkXSbIdGcJ3hGOrqWKRonP2jvNanO8N9gdQfsFT
-         us5TFT4PUoNgxNGjSST0bRyPNEWOap1Dnnq9XiNI807181jfrE6dx1RtDZW2Drwlvv31
-         GfQAmS/P2wFcd3ve4uWGSr8zvitnNwkD4ueN6WLtLt0bfB2Jsi2wuAkmFiRlltGmjsts
-         qK88JQYLhbqw0RRh66/b4q3cReqprBMckimSmgv9RckZbTOeAiJweOKzNd+p1FXVstUh
-         w3iyYnX1w0H8g9l6z5H1HL7BmyquUMOvxC3um1ZOQoH9DAGVfVZNSwdMzH48nUB7XW1J
-         rs2g==
+        bh=Fw209Whs539FleYIAnU1s0PqSxWW0KiTK1H4R+hwlPI=;
+        b=OVM9BcVLoy6BaRIpxY8+rAgvJ00VTOBWAiySLb/FwcAzbDZIwDGGgb/C/oZ7axKGns
+         mIk7bwGQo78Ahi0c0ZEyjVw2ZvYCuNod3xX2tppd7mTUr7GEUqfJvaLVfBIj+3O1/Z4X
+         iQqBoxjeQlZiHtcbpZbqYpkG7VdOJxx3lPTQ/m8/BaA/Pw6E14XOXVPunznX76FNaTd5
+         EixN7GlsZxlvh6v0Z9rsJ6+A1rvHUowLrR8u7QB4QVRISIJNcUqTz0m1MAEzn60FFs0G
+         F1jUK+zocZQwlIkQ5HUFJ5CaVRupKdrjW98xH/W49nKbhQZA4NNEC8yuz7XOv250B1m+
+         92gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vAyTNFHXf10lpyOvysT1VF7d3x/O+fWSY3A10NGv1+g=;
-        b=DHWOrJCpfPjHEmPdm2ZwhxQQB8t0L7rBuAEgmhB6nEnkdSr13Q/gW0nTWaU+xKSapm
-         T+A3D6q2sZNF05RlZ/ltWStKGRugUwqC6DpOq1oDRkl+eTbxXZ/baHHSufK7MhuZX8Kj
-         QzLcRPogwQf/2GZpvziOCTaf0gdiOLSyIpmMcqRgUua1HfnYOyt1Uv4Ij2DZ23bSO9aV
-         lpzDPgAXpi3GTuALkpOUb6MxPEi0ZWqTyXkQN0499COH8LTD4jK6WpNZNfoQORknknET
-         ErQH776ts8uS2Fc3310FAx/WNWLWMQmbLg0zfD/wAUYDe6xAYALMakCCGlGg2DGm4pcM
-         y6bA==
-X-Gm-Message-State: APjAAAV5fh0pcVnbWrTwdnSPa9ouGn2Pd0i5LXOLyzE3Hw0zg4dwKX+V
-        zfS2ot9c06W6DzlZKgruBva+1L8kS9w8ED1z46E=
-X-Google-Smtp-Source: APXvYqz9e9tCBlWunRh4SZKyuWL1gJxlFab/Iiq3JIRTRQVjWEaz3naMs0mijLfOl4pC0rTPCzaNKOtaOnS4jrq002s=
-X-Received: by 2002:a19:f11c:: with SMTP id p28mr18140862lfh.44.1570499013898;
- Mon, 07 Oct 2019 18:43:33 -0700 (PDT)
+        bh=Fw209Whs539FleYIAnU1s0PqSxWW0KiTK1H4R+hwlPI=;
+        b=lqHTyF7vUCZdR/KQXJQpq/ksfBekVMzXHf/8yZ+iAangoxxQSG8RhcibSXIM32tshp
+         X56eyMcoFn7TuNmuOV3PobgNrQQAa4IYjs0RZf3AOwY4ppPmxEdmvS9cMYq5uCUSf3Lo
+         bdTclTzVVlU4+JEbs4gHzADztIhGPlP/62Ve30XcKERMmATYls6FnsaBriBusofa08FQ
+         b3wYsB8o1xSo6Nheqe5i1FqsVNuYA0fSrxLLljhVzPB1N1FwvqefaipPR7YErrKJFFFE
+         g9BDJxAmF2CGPHtiVvTJIG038vpbnBAX0WoUM9PfSLS1roYuMuS9tgNj1oHfoVDrozfp
+         AbVw==
+X-Gm-Message-State: APjAAAViqBJY9e/esU9B4uU9HTVGQNDekAZvaMYG6X8OqP5IIlzplNE+
+        uUgvC/Ed4slLgd0v6Bc4CeUhONSZ2FvCH6HKjBw=
+X-Google-Smtp-Source: APXvYqxt6/0xninW5CnKNuJYQqbikrgLXATP2QD131RmcPQ9Z/5vmjUUYkrZ6xXfXBxL3RpKBYFfL7OfUy6i9llje9k=
+X-Received: by 2002:a5e:8c15:: with SMTP id n21mr11990598ioj.246.1570499076276;
+ Mon, 07 Oct 2019 18:44:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <1570497955-19481-1-git-send-email-Anson.Huang@nxp.com> <1570497955-19481-2-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1570497955-19481-2-git-send-email-Anson.Huang@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 7 Oct 2019 22:43:22 -0300
-Message-ID: <CAOMZO5Ax+FTfWzkzqY6CH-1_5W8Gk6auEjKtCMEPq+=Ui6643Q@mail.gmail.com>
-Subject: Re: [PATCH V2 2/3] arm64: dts: imx8mm-evk: Add i2c3 support
-To:     Anson Huang <Anson.Huang@nxp.com>
+References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+In-Reply-To: <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Tue, 8 Oct 2019 12:49:46 +0530
+Message-ID: <CANAwSgQScXdKewfBtu-o_sjRb-pk+CvJrv4RunGJOzz=DWjBnQ@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>, Li Jun <jun.li@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Ping Bai <ping.bai@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anson,
+Hi Martin.
 
-On Mon, Oct 7, 2019 at 10:28 PM Anson Huang <Anson.Huang@nxp.com> wrote:
+On Tue, 8 Oct 2019 at 01:40, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> Enable i2c3 for i.MX8MM EVK board.
+> On Mon, Oct 7, 2019 at 3:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index c9a867ac32d4..72f6a7dca0d6 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+> >  CONFIG_PWM=y
+> >  CONFIG_PWM_BCM2835=m
+> >  CONFIG_PWM_CROS_EC=m
+> > -CONFIG_PWM_MESON=m
+> > +CONFIG_PWM_MESON=y
+> some time ago I submitted a similar patch for the 32-bit SoCs
+> it turned that that pwm-meson can be built as module because the
+> kernel will run without CPU DVFS as long as the clock and regulator
+> drivers are returning -EPROBE_DEFER (-517)
 >
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> did you check whether there's some other problem like some unused
+> clock which is being disabled at that moment?
+> I've been hunting weird problems in the past where it turned out that
+> changing kernel config bits changed the boot timing - that masked the
+> original problem
 
-You could combine this patch with 3/3.
+OK.
+
+>
+>
+> Martin
+
+Sorry for linking this two separate issue PWM failed and microSD detect failed.
+Thanks for the input, I will check if you patch help, I will try to
+investigate more why it fails at my end.
+
+Best Regards
+-Anand
