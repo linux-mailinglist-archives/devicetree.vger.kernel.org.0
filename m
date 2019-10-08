@@ -2,92 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB39CF7D7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E0FCF826
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:29:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730643AbfJHLKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 07:10:44 -0400
-Received: from mail-sz.amlogic.com ([211.162.65.117]:48486 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730516AbfJHLKo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:10:44 -0400
-Received: from localhost.localdomain (10.28.8.19) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Tue, 8 Oct 2019
- 19:10:38 +0800
-From:   Qianggui Song <qianggui.song@amlogic.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Qianggui Song <qianggui.song@amlogic.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Carlo Caione <carlo@caione.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: meson: a1: add pinctrl controller support
-Date:   Tue, 8 Oct 2019 19:09:59 +0800
-Message-ID: <1570532999-23302-4-git-send-email-qianggui.song@amlogic.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1570532999-23302-1-git-send-email-qianggui.song@amlogic.com>
-References: <1570532999-23302-1-git-send-email-qianggui.song@amlogic.com>
+        id S1730317AbfJHL3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 07:29:12 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:45641 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730249AbfJHL3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:29:12 -0400
+Received: by mail-wr1-f65.google.com with SMTP id r5so18902167wrm.12;
+        Tue, 08 Oct 2019 04:29:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=FYmSEb4UkFBwKb8YV3FOeq6yilH8AXXad/DLPAhG4DI=;
+        b=tEeiaX7Me1T5znQaAg+ubwUI0vyc8Zhm1RjV5QaasUhzCH7mpsLT9TdXrRLlndmrBy
+         9RHa82qNm8Z4BChHyMO4a1xGthdxMHsOyhGGzZ7pTvwqU+7Ym1YoivrurbPIQa6OgqII
+         KGwRa/dbvofp/UQ7IwH9WC+wq4VhIaGzl8ez39hfi1WDhYyms/dh8HbWcuccGmzK/cFx
+         fy7IcIVsurt7yk0XrmiR9v1WtfNAL7w58nKFHfsWUCPjmRPrgd0RD98wjUYEbwc+EBxf
+         GBGTyeaI2ExDYMGQ0tzbCGYyyLFe5sKirM45R6aBwUpFWLVALeunS9JMqEIaSaoAlwc8
+         tD3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=FYmSEb4UkFBwKb8YV3FOeq6yilH8AXXad/DLPAhG4DI=;
+        b=qoZ4sEne627nlcUxRg67VoqcM/8Mcz6gc1CSLwRGzh02lp8cTa1OSTiIE9pvN5WHDR
+         i5XaKt9fgt084I+Artw2FhKJjSgOX4qDp06JHOIKl/OivEjyk/7O6MHj+BfGi8NdyxJ8
+         xcmuRoOFPH1XUek4ZrXTJoLQUQ4OBkW4NAgqECMICR1WurWdP8aKHHmW7ZenrCfquiF+
+         yVQLpDYw42xO7d5g7aFWGto1FHYaG/rngOiLm7Ym+MGzHoBfPzI5jMauwaUx1On21bWQ
+         gcF+UY4yds8HbV50c+3kAp7SADZWev6idptVLq3OPYpeRCZNNxFEJVM9galCQAvJbghb
+         2glg==
+X-Gm-Message-State: APjAAAWw5Sao+5VGbgpOWleiw5kz6+OYYvN7T2p6NyKWz/+cJBnsJI0l
+        /f47kE1uibKMkDcbOdAKvmQ=
+X-Google-Smtp-Source: APXvYqwDi0ge0lsN7GXz3MGF8+juCAMiP5g/2tiWKI2mruB19jSzvAi1nOuWd7Kf7c7AMppkHec4Kw==
+X-Received: by 2002:adf:cc8a:: with SMTP id p10mr26060310wrj.321.1570534149735;
+        Tue, 08 Oct 2019 04:29:09 -0700 (PDT)
+Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
+        by smtp.gmail.com with ESMTPSA id y186sm6213868wmd.26.2019.10.08.04.29.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2019 04:29:08 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 13:29:07 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     JC Kuo <jckuo@nvidia.com>, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        nkristam@nvidia.com, skomatineni@nvidia.com
+Subject: Re: [PATCH v3 0/7] add Tegra194 XUSB host and pad controller support
+Message-ID: <20191008112907.GC228118@ulmo>
+References: <20191004162906.4818-1-jckuo@nvidia.com>
+ <20191007110311.GA614644@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.28.8.19]
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GPJrCs/72TxItFYR"
+Content-Disposition: inline
+In-Reply-To: <20191007110311.GA614644@kroah.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add peripheral pinctrl controller to a1 soc
 
-Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+--GPJrCs/72TxItFYR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 7210ad049d1d..0965259af869 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/meson-a1-gpio.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -74,6 +75,23 @@
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
- 
-+			periphs_pinctrl: pinctrl@0400 {
-+				compatible = "amlogic,meson-a1-periphs-pinctrl";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				gpio: bank@0400 {
-+					reg = <0x0 0x0400 0x0 0x003c>,
-+					      <0x0 0x0480 0x0 0x0118>;
-+					reg-names = "mux", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 0 62>;
-+				};
-+
-+			};
-+
- 			uart_AO: serial@1c00 {
- 				compatible = "amlogic,meson-gx-uart",
- 					     "amlogic,meson-ao-uart";
--- 
-1.9.1
+On Mon, Oct 07, 2019 at 01:03:11PM +0200, Greg KH wrote:
+> On Sat, Oct 05, 2019 at 12:28:59AM +0800, JC Kuo wrote:
+> > Hi,
+> >=20
+> > This series introduces support for Tegra194 XUSB host and pad
+> > controller. Tegra194 XUSB host and pad controller are highly
+> > similar to the controllers found on Tegra186. Therefore, it's
+> > possible to resue xhci-tegra.c and xusb-tegra186.c for Tegra194.
+>=20
+> I've taken patches 1 and 2 through my USB tree.  If you want/need me to
+> take the others, please get acks from those maintainers on them so I can
+> do so.
 
+I can pick up patches 6 and 7 into the Tegra tree. There are a few
+patches in there already that conflict with the DT changes in this
+series and those will be easier to resolve in the Tegra tree.
+
+JC, I noticed that you didn't Cc Kishon as the PHY subsystem maintainer.
+Please resend the series with Kishon added in the To: line to make sure
+he sees them and can apply or ack them.
+
+Given that Greg's already applied patches 1 and 2, maybe leave them out
+of the series.
+
+Thierry
+
+--GPJrCs/72TxItFYR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2ccwIACgkQ3SOs138+
+s6EHqhAAtp/qnbVEMpUPdQ4QZrf6zUalRDl5LzyC8TQdSl+FMfbcFe9thXOQNkKN
+w69TNE00wHz9llCeHLB7cXYKnXZkRjxjJg+0JRt5ULV6ijZH+vRG1ICs/FG5KPxZ
+RFODotu9nCMcbFmszhYTHP5TtvVObWylAhjQ8lBBWFRutILCsaYwY2qA5cd+JAAW
+itNCCKSIAhqksYpL0hmfFr28bUoMZ4fh51Lnie/RP0lHV6HHa1LPYXJQ10lx9x2u
+E+BanUgNYaNTpgnoZgQUsc0kjnrU8+watMHZGNAT2qOOtm71Xs1iOxkLR28z35Jm
+L8oTrS9DZAoob0ewxpWPH8dJMwrF8yxp+8Pp+C8NG0KpHpdiOM7woEq6VXEHaY+d
+6sfngywiY6YvY/dH18hH6Ds0tPWCaEwzDBdEenZAm2+H35cz4mFKBR/mxy2EkZJq
+cgRBJVLrKgG84Bnujfq8hNXkrGp3I3KCk+ENeq4tC+EpgDc3i1He7mS1G9ppSdxD
+lEMfnZqBD9Rj4zAQPoAVtkMdXGi93LL2YPIMZhEGbyl07ZejfsC+jomAXhmWpk+8
+r+3zZj10fXH7xGsdRAHIzra36DYVe8hsYJrMtyIr4yiDgebpDr5Ofvc0jdWq/eRU
+kxbyY8RANaFfs+vH7hIoB1ta6y0X+0SXeixsk+PuzqYfvDq6fV8=
+=mEdr
+-----END PGP SIGNATURE-----
+
+--GPJrCs/72TxItFYR--
