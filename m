@@ -2,59 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE036CFADC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 15:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 295C9CFB06
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 15:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730683AbfJHNDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 09:03:15 -0400
-Received: from 5.mo68.mail-out.ovh.net ([46.105.62.179]:38119 "EHLO
-        5.mo68.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730872AbfJHNDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 09:03:14 -0400
-X-Greylist: delayed 4199 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Oct 2019 09:03:13 EDT
-Received: from player779.ha.ovh.net (unknown [10.109.160.76])
-        by mo68.mail-out.ovh.net (Postfix) with ESMTP id 0A5A3142FDD
-        for <devicetree@vger.kernel.org>; Tue,  8 Oct 2019 13:44:38 +0200 (CEST)
-Received: from etezian.org (85-76-98-218-nat.elisa-mobile.fi [85.76.98.218])
-        (Authenticated sender: andi@etezian.org)
-        by player779.ha.ovh.net (Postfix) with ESMTPSA id 46727A99DC68;
-        Tue,  8 Oct 2019 11:44:27 +0000 (UTC)
-Date:   Tue, 8 Oct 2019 14:44:26 +0300
-From:   Andi Shyti <andi@etezian.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi@etezian.org>,
-        Andi Shyti <andi.shyti@samsung.com>,
-        Simon Shields <simon@lineageos.org>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] Input: mms114 - use device_get_match_data
-Message-ID: <20191008114426.GC4015@jack.zhora.eu>
-References: <20191007203343.101466-1-stephan@gerhold.net>
- <20191007203343.101466-2-stephan@gerhold.net>
+        id S1730371AbfJHNMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 09:12:36 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:2600 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730249AbfJHNMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 09:12:36 -0400
+Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x98DC8GZ068584;
+        Tue, 8 Oct 2019 09:12:14 -0400
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2vgqvrys19-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Oct 2019 09:12:14 -0400
+Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.27/8.16.0.27) with SMTP id x98DCDZE069161;
+        Tue, 8 Oct 2019 09:12:13 -0400
+Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2vgqvryryy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Oct 2019 09:12:13 -0400
+Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
+        by ppma01wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x98DAAHg014302;
+        Tue, 8 Oct 2019 13:12:14 GMT
+Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
+        by ppma01wdc.us.ibm.com with ESMTP id 2vejt6seb9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Oct 2019 13:12:14 +0000
+Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
+        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x98DCBrY52166922
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 8 Oct 2019 13:12:11 GMT
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 42B3FAC065;
+        Tue,  8 Oct 2019 13:12:11 +0000 (GMT)
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id BD24DAC062;
+        Tue,  8 Oct 2019 13:12:09 +0000 (GMT)
+Received: from swastik.ibm.com (unknown [9.85.189.174])
+        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTP;
+        Tue,  8 Oct 2019 13:12:09 +0000 (GMT)
+Subject: Re: [PATCH v6 3/9] powerpc: add support to initialize ima policy
+ rules
+To:     Mimi Zohar <zohar@linux.ibm.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Nayna Jain <nayna@linux.ibm.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        linux-efi@vger.kernel.org,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Eric Ricther <erichte@linux.ibm.com>,
+        linux-kernel@vger.kernel.org,
+        Claudio Carvalho <cclaudio@linux.ibm.com>,
+        Matthew Garret <matthew.garret@nebula.com>,
+        linuxppc-dev@ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Mackerras <paulus@samba.org>, Jeremy Kerr <jk@ozlabs.org>,
+        Elaine Palmer <erpalmer@us.ibm.com>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        linux-integrity@vger.kernel.org,
+        George Wilson <gcwilson@linux.ibm.com>
+References: <1569594360-7141-1-git-send-email-nayna@linux.ibm.com>
+ <1569594360-7141-4-git-send-email-nayna@linux.ibm.com>
+ <877e5pwa1b.fsf@morokweng.localdomain>
+ <84f057d0-6a0b-d486-0eb6-f1590f32e377@linux.vnet.ibm.com>
+ <1570052950.4421.70.camel@linux.ibm.com>
+From:   Nayna <nayna@linux.vnet.ibm.com>
+Message-ID: <2d4a1890-5fb0-3bef-cd78-8cb75ca73076@linux.vnet.ibm.com>
+Date:   Tue, 8 Oct 2019 09:12:09 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191007203343.101466-2-stephan@gerhold.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Ovh-Tracer-Id: 8549520944366338797
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrheelgdeghecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+In-Reply-To: <1570052950.4421.70.camel@linux.ibm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-10-08_05:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1908290000 definitions=main-1910080127
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
 
-> device_get_match_data is available now, so we can replace the call
-> to of_device_get_match_data and remove the FIXME comment.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-Reviewed-by: Andi Shyti <andi@etezian.org>
+On 10/02/2019 05:49 PM, Mimi Zohar wrote:
+> On Tue, 2019-10-01 at 12:07 -0400, Nayna wrote:
+>> On 09/30/2019 09:04 PM, Thiago Jung Bauermann wrote:
+>>> Hello,
+>> Hi,
+>>
+>>>> diff --git a/arch/powerpc/kernel/ima_arch.c b/arch/powerpc/kernel/ima_arch.c
+>>>> new file mode 100644
+>>>> index 000000000000..39401b67f19e
+>>>> --- /dev/null
+>>>> +++ b/arch/powerpc/kernel/ima_arch.c
+>>>> @@ -0,0 +1,33 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>> +/*
+>>>> + * Copyright (C) 2019 IBM Corporation
+>>>> + * Author: Nayna Jain
+>>>> + */
+>>>> +
+>>>> +#include <linux/ima.h>
+>>>> +#include <asm/secure_boot.h>
+>>>> +
+>>>> +bool arch_ima_get_secureboot(void)
+>>>> +{
+>>>> +	return is_powerpc_os_secureboot_enabled();
+>>>> +}
+>>>> +
+>>>> +/* Defines IMA appraise rules for secureboot */
+>>>> +static const char *const arch_rules[] = {
+>>>> +	"appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig|modsig",
+>>>> +#if !IS_ENABLED(CONFIG_MODULE_SIG)
+>>>> +	"appraise func=MODULE_CHECK appraise_type=imasig|modsig",
+>>>> +#endif
+>>>> +	NULL
+>>>> +};
+>>>> +
+>>>> +/*
+>>>> + * Returns the relevant IMA arch policies based on the system secureboot state.
+>>>> + */
+>>>> +const char *const *arch_get_ima_policy(void)
+>>>> +{
+>>>> +	if (is_powerpc_os_secureboot_enabled())
+>>>> +		return arch_rules;
+>>>> +
+>>>> +	return NULL;
+>>>> +}
+>>> If CONFIG_MODULE_SIG is enabled but module signatures aren't enforced,
+>>> then IMA won't enforce module signature either. x86's
+>>> arch_get_ima_policy() calls set_module_sig_enforced(). Doesn't the
+>>> powerpc version need to do that as well?
+>>>
+>>> On the flip side, if module signatures are enforced by the module
+>>> subsystem then IMA will verify the signature a second time since there's
+>>> no sharing of signature verification results between the module
+>>> subsystem and IMA (this was observed by Mimi).
+>>>
+>>> IMHO this is a minor issue, since module loading isn't a hot path and
+>>> the duplicate work shouldn't impact anything. But it could be avoided by
+>>> having a NULL entry in arch_rules, which arch_get_ima_policy() would
+>>> dynamically update with the "appraise func=MODULE_CHECK" rule if
+>>> is_module_sig_enforced() is true.
+>> Thanks Thiago for reviewing.  I am wondering that this will give two
+>> meanings for NULL. Can we do something like below, there are possibly
+>> two options ?
+>>
+>> 1. Set IMA_APPRAISED in the iint->flags if is_module_sig_enforced().
+>>
+>> OR
+>>
+>> 2. Let ima_get_action() check for is_module_sig_enforced() when policy
+>> is appraise and func is MODULE_CHECK.
+> I'm a bit hesitant about mixing the module subsystem signature
+> verification method with the IMA measure "template=ima-modsig" rules.
+>   Does it actually work?
+>
+> We can at least limit verifying the same appended signature twice to
+> when "module.sig_enforce" is specified on the boot command line, by
+> changing "!IS_ENABLED(CONFIG_MODULE_SIG)" to test
+> "CONFIG_MODULE_SIG_FORCE".
 
-Thanks,
-Andi
+Yes this seems to be a better idea. I have implemented this in the v7 
+version of the ima_arch version.
+
+Thanks & Regards,
+      - Nayna
