@@ -2,169 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C37CF87D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67B42CF891
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:36:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730561AbfJHLfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 07:35:03 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:52337 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730922AbfJHLfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:35:02 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8035720C8D;
-        Tue,  8 Oct 2019 07:35:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Tue, 08 Oct 2019 07:35:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=gThk5N8GNyMLN
-        R2fmeMG7nM9OnHnu8uWwPrQnFsAqSc=; b=nq9AxuNJYi7vUjMx8pJFjdstQH0FS
-        k14wmh0U4nZ6z1PdSgbvbVFn252piJiQB99nRK0v8EZi5l5KpyRz767bpMwGQhSn
-        3WgjNxfMFyU4rBhNHkZokF6ffEVsUkvETisW0nH6oC3CCH4easg5+zOQi0hbVoMH
-        7CCF2RijCxaWDikVrC7fQkJrAM/Y6Wf3Az9o+pgaXXMfqC2x2pyACoEdTwvtEnAr
-        fave4VG2rQ+qiT9MPmaif/uv1vZTwTH7JurEhxuANR3LTyKRcHAMpW4qL+Ri9DfY
-        7QMXtey9BhQxOujWg7bUaVZbmTCCrQXCaNHIEdu2tobnOuokdvwpTm4rA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=gThk5N8GNyMLNR2fmeMG7nM9OnHnu8uWwPrQnFsAqSc=; b=azhTnAVe
-        MePmCXEgb4KUZk7OZIaKrvELRnhvR8bQG5mxdQbqJ41TZOrdZM2Xu83ffQTuxUch
-        M1CG/oUqZ8s2B6W+CCt1Z4UP08pw1x+120cFYDjWDGJOHrWyu/o4Qn2SGmyqc5Uo
-        0Z5u7QQMzh3BLAIpZmuwnKIgsc8ALaKvzSoXY35Wp4zqWfdF3bl0iIh/FAsnKEka
-        XwWPD0Hl/Td978+McC+F0sT7K8lYoxkfKyZJPUwPKx1uMgsL25yhleYv7RlK+A9b
-        dTcgTJvvvVkhYkwb6Cf7dnCpg8uIchBjMcT/jwoJj8Et6V5Yg5cBmdemo2ZCpIRN
-        0sQ9/i0GZpna1w==
-X-ME-Sender: <xms:ZXScXWBYtgtRhEhqEorFaUiLBm3pBx4-VPUIANtZL2dHpjrnPn6Z4A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrheelgdegfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghj
-    rdhiugdrrghuqeenucfkphepvddtfedrheejrddvudehrddujeeknecurfgrrhgrmhepmh
-    grihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihii
-    vgepfe
-X-ME-Proxy: <xmx:ZXScXWZkkAqowKzUWR7_a09mwSi10l6hx8LZVhIF1anB2c_KZclwIA>
-    <xmx:ZXScXUz6PlTBdeTzqnAjWU-X0pJ7l-tgCPLYv06YOIxcObtgRZjSow>
-    <xmx:ZXScXe1e1nGXJkH146PrWtthVgwhcZD5mwsu8eMdRz-zEp_Pw12Y3Q>
-    <xmx:ZXScXURWNOkvsO_i8Zwz65_YBs-GIm0qv8VznaISEkP6saqKyrUKjA>
-Received: from mistburn.lan (203-57-215-178.dyn.iinet.net.au [203.57.215.178])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 97DE180059;
-        Tue,  8 Oct 2019 07:34:57 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-clk@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, joel@jms.id.au,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] clk: ast2600: Add RMII RCLK gates for all four MACs
-Date:   Tue,  8 Oct 2019 22:05:53 +1030
-Message-Id: <20191008113553.13662-3-andrew@aj.id.au>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191008113553.13662-1-andrew@aj.id.au>
-References: <20191008113553.13662-1-andrew@aj.id.au>
+        id S1730683AbfJHLgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 07:36:41 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:39718 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730631AbfJHLgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:36:41 -0400
+Received: by mail-ot1-f65.google.com with SMTP id s22so13702920otr.6;
+        Tue, 08 Oct 2019 04:36:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rWU50A1ftSfnXS5t6he0dr7vBuFC5vEUJUAdKOgY8bw=;
+        b=gP9IM6l6V6qKOfuktxpG0VRlaXArt61lORsvVGnbVT++lkPctXP0dWCpDERiMFUUmc
+         cjFyCNXrGB0vVSfF++qlezXiacav5QqZuKW6KdUdGxm3mQTzNdfxGf1FmBsdpG7+iI4M
+         zFs/IcQ6vfl3LaQG/+d/qjBIpKpUq7O9SN/SCjKB+bKhSm1t+u3jKuBBHDfsHTxRg4vl
+         lfcSTuAONvBaQGTNvQa/IlE2TbN+CQlllr0nGRAebOUP+AXdFtN1G+vL+ERPIgXUFRtp
+         u9r0LeA6LJ79/lhYxsk5EOsyMr88Kmi7+98K1tYxa5bg3ROiP0C7o9blWgylrJ6q/mr9
+         za2Q==
+X-Gm-Message-State: APjAAAWPxEKQEZGFMKrNNr5qneKJkNiDTuExMPOg+k1oiwTlrBrnESql
+        rF/waHFfc8PFDEHFPQx5Q7frMwsc5hUqRwKrw6k=
+X-Google-Smtp-Source: APXvYqwOO5BS1K03L9uNR/miBqU63vEKiq23BoSUvbF63agtYSvu+oyojKsPD8km90+OaPp+oi4YlXVQvWCX4HWrRxM=
+X-Received: by 2002:a9d:404d:: with SMTP id o13mr15570285oti.39.1570534599950;
+ Tue, 08 Oct 2019 04:36:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1570531132-21856-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570531132-21856-5-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1570531132-21856-5-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Oct 2019 13:36:26 +0200
+Message-ID: <CAMuHMdVUV2=RE4BmF94_bZfg_JoiU_JFPAguVqQWjAzwydRUbA@mail.gmail.com>
+Subject: Re: [PATCH 04/10] dt-bindings: rcar-gen3-phy-usb3: Add r8a774b1 support
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RCLK is a fixed 50MHz clock derived from HPLL/HCLK that is described by a
-single gate for each MAC.
+On Tue, Oct 8, 2019 at 12:39 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Document RZ/G2N (R8A774B1) SoC bindings.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- drivers/clk/clk-ast2600.c | 47 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 46 insertions(+), 1 deletion(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
-index 1c1bb39bb04e..3d6fc781fee0 100644
---- a/drivers/clk/clk-ast2600.c
-+++ b/drivers/clk/clk-ast2600.c
-@@ -15,7 +15,7 @@
- 
- #include "clk-aspeed.h"
- 
--#define ASPEED_G6_NUM_CLKS		67
-+#define ASPEED_G6_NUM_CLKS		71
- 
- #define ASPEED_G6_SILICON_REV		0x004
- 
-@@ -40,6 +40,9 @@
- 
- #define ASPEED_G6_STRAP1		0x500
- 
-+#define ASPEED_MAC12_CLK_DLY		0x340
-+#define ASPEED_MAC34_CLK_DLY		0x350
-+
- /* Globally visible clocks */
- static DEFINE_SPINLOCK(aspeed_g6_clk_lock);
- 
-@@ -485,6 +488,11 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
- 		return PTR_ERR(hw);
- 	aspeed_g6_clk_data->hws[ASPEED_CLK_SDIO] = hw;
- 
-+	/* MAC1/2 RMII 50MHz RCLK */
-+	hw = clk_hw_register_fixed_rate(dev, "mac12rclk", "hpll", 0, 50000000);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
- 	/* MAC1/2 AHB bus clock divider */
- 	hw = clk_hw_register_divider_table(dev, "mac12", "hpll", 0,
- 			scu_g6_base + ASPEED_G6_CLK_SELECTION1, 16, 3, 0,
-@@ -494,6 +502,27 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
- 		return PTR_ERR(hw);
- 	aspeed_g6_clk_data->hws[ASPEED_CLK_MAC12] = hw;
- 
-+	/* RMII1 50MHz (RCLK) output enable */
-+	hw = clk_hw_register_gate(dev, "mac1rclk-gate", "mac12rclk", 0,
-+			scu_g6_base + ASPEED_MAC12_CLK_DLY, 29, 0,
-+			&aspeed_g6_clk_lock);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+	aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC1RCLK] = hw;
-+
-+	/* RMII2 50MHz (RCLK) output enable */
-+	hw = clk_hw_register_gate(dev, "mac2rclk-gate", "mac12rclk", 0,
-+			scu_g6_base + ASPEED_MAC12_CLK_DLY, 30, 0,
-+			&aspeed_g6_clk_lock);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+	aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC2RCLK] = hw;
-+
-+	/* MAC1/2 RMII 50MHz RCLK */
-+	hw = clk_hw_register_fixed_rate(dev, "mac34rclk", "hclk", 0, 50000000);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
- 	/* MAC3/4 AHB bus clock divider */
- 	hw = clk_hw_register_divider_table(dev, "mac34", "hpll", 0,
- 			scu_g6_base + 0x310, 24, 3, 0,
-@@ -503,6 +532,22 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
- 		return PTR_ERR(hw);
- 	aspeed_g6_clk_data->hws[ASPEED_CLK_MAC34] = hw;
- 
-+	/* RMII3 50MHz (RCLK) output enable */
-+	hw = clk_hw_register_gate(dev, "mac3rclk-gate", "mac34rclk", 0,
-+			scu_g6_base + ASPEED_MAC34_CLK_DLY, 29, 0,
-+			&aspeed_g6_clk_lock);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+	aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC3RCLK] = hw;
-+
-+	/* RMII4 50MHz (RCLK) output enable */
-+	hw = clk_hw_register_gate(dev, "mac4rclk-gate", "mac34rclk", 0,
-+			scu_g6_base + ASPEED_MAC34_CLK_DLY, 30, 0,
-+			&aspeed_g6_clk_lock);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+	aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC4RCLK] = hw;
-+
- 	/* LPC Host (LHCLK) clock divider */
- 	hw = clk_hw_register_divider_table(dev, "lhclk", "hpll", 0,
- 			scu_g6_base + ASPEED_G6_CLK_SELECTION1, 20, 3, 0,
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.20.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
