@@ -2,78 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 733ADCF8B9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95C9ECF8D9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730674AbfJHLmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 07:42:54 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42836 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730118AbfJHLmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:42:53 -0400
-Received: by mail-oi1-f194.google.com with SMTP id i185so14447664oif.9;
-        Tue, 08 Oct 2019 04:42:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rWU50A1ftSfnXS5t6he0dr7vBuFC5vEUJUAdKOgY8bw=;
-        b=CN9t7YfAc0vWJIDXMZTaDRZQTh76TPp4qTdZD4q6reYI5nrtM2KkzO3bkJX9EGgdnN
-         gvHwRVL/CCevZiKCAzhu8V6gXArCwrJycQnANMX7JiVdMtgQrKMb3Mhc+38uxEImGhYz
-         iqiUFb8nIWlvmDI2bexaxD1nP4Q9pbhYeNNtpCzvFpBhO6yQd5LaXXbhb/C5teesnPaW
-         mLfIRCY9BThKjnbEkGOvqGGnaC2p7ZK5AbjyUpIu1FTNOUaM+r99yE8Bi4GoO9450Har
-         cpvTD8ev8bAO/AGpUHQSrJSv8oA7xZno95O3zT2H7bxjyoMa/hhbvX9V8N7oR6UnycVt
-         YoqQ==
-X-Gm-Message-State: APjAAAU7MAeL8yAD8LVEIOCzku3sG88fOI1ivYkE1QPFT23J8dUu7jHw
-        bR0+F71zeYWYbVnY0eMEitovInlB81HAtE/DjYU=
-X-Google-Smtp-Source: APXvYqyCiews/tKA57sXvPG5XvGEr37Qd8csRkV55q3J6cezMVTk15zb8MhXvmopRDNPJSrIQDtYqNfHP9ZJEaZ2Qus=
-X-Received: by 2002:aca:4bd2:: with SMTP id y201mr3663250oia.102.1570534973087;
- Tue, 08 Oct 2019 04:42:53 -0700 (PDT)
+        id S1730756AbfJHLum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 07:50:42 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:53749 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730503AbfJHLum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:50:42 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 756D521E3E;
+        Tue,  8 Oct 2019 07:50:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 08 Oct 2019 07:50:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=umrX+JUQqbY3FSsNbyshpYr96O
+        AybZxQrPbWF4qGYPk=; b=FnxLoC7ArxtL3Donfyk9DyhnEcnCy4f3DHUDENkyBF
+        R0iHi7DxJ1sBcEcfxLT7KKv3sOPM6b3XGy77ILTf1UsjTP8Mef4ne9JYsrlkd6Ex
+        4Yz8LNs6mNtVmb/A+1CNifLLF0YrTRQgbE8ANRd2GNuckP3jLB2enf8jyjtO2+gS
+        f6SsuomM/Zo7cno71tR6/FAaDOZVofbD2teT2RzRPXacVeEOFK9+WOmsjKJ/S62x
+        30g7b7RjgXu6yRX2EOTg9zm1Zdi+t4DCsMZ35WGkr2n5RDLAg9AXC/4BKaRywF9F
+        EZSvP+kIFjA+vMiJSSI8w1rNFw4U2pO7N7KhN0u4NY8w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=umrX+JUQqbY3FSsNb
+        yshpYr96OAybZxQrPbWF4qGYPk=; b=RUjjnziVaMEWUEupHB139IudGeHAL0Cem
+        q3KPjI73IAVWg2jvCUfs1abtQMYibDRqIVtlMgFe5yXUWrWDLXnxSipUns+kRB4o
+        nHOuTlrrNYQcaFYQm78sFeo0IF0J6lc7oI52b22ze8jFapy2LDWUQOfnmmYoTmr/
+        Wbew3maW399k5qpzeuXM1U0rP3Sje1q/YVJnqatT5JzBh4DRbWOOYjXQl+iVGSys
+        z6aLXcH1557/T9CH+zZRtIaGnWiBTqt0vNPVEKy2/yE5EyHQbaX96Ck+YfhWcT3z
+        L1sO+i9A3gkDObd4ZhZV1aOGSgsDDCEjFZb4DYrEv2/7xRRwslmUg==
+X-ME-Sender: <xms:D3icXfIP6zDjWQAehaozBBeGxNJwHy4t9OvmcoNfMAFirxxK373MkQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrheelgdegjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghjrdhi
+    ugdrrghuqeenucfkphepvddtfedrheejrddvudehrddujeeknecurfgrrhgrmhepmhgrih
+    hlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihiivgep
+    td
+X-ME-Proxy: <xmx:D3icXdFWTX2LSPxYLecgdzwmC8Y6ie71dIaTYYV4PooUsJ42OYVQIQ>
+    <xmx:D3icXeDmxPrV9bTn7d7TVSQm02yYzFMABpGn8T-4i78aqdoFA63jkA>
+    <xmx:D3icXe4j5oGFNEkaE2rzqLEHSOxGC52cCfGO2d817I4dsiVfa4TbAQ>
+    <xmx:EXicXR8ojn4PCVXzrojQcpAecFcp6SJcmaJnU5icZsgFg5X_0vMT1A>
+Received: from mistburn.lan (203-57-215-178.dyn.iinet.net.au [203.57.215.178])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 5312680063;
+        Tue,  8 Oct 2019 07:50:36 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     netdev@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        joel@jms.id.au, benh@kernel.crashing.org
+Subject: [PATCH 0/3] net: ftgmac100: Ungate RCLK for RMII on ASPEED MACs
+Date:   Tue,  8 Oct 2019 22:21:40 +1030
+Message-Id: <20191008115143.14149-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1570531132-21856-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570531132-21856-7-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1570531132-21856-7-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Oct 2019 13:42:41 +0200
-Message-ID: <CAMuHMdX5hkZ7kLRiA_NRrBziFsrZNgZX-cEiE+bAaubkMdX=1A@mail.gmail.com>
-Subject: Re: [PATCH 06/10] dt-bindings: usb: renesas_usb3: Document r8a774b1 support
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Simon Horman <horms@verge.net.au>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 8, 2019 at 12:39 PM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
-> Document RZ/G2N (R8A774B1) SoC bindings.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Hello,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This series slightly extends the devicetree binding and driver for the
+FTGMAC100 to describe an optional RMII RCLK gate in the clocks property.
+Currently it's necessary for the kernel to ungate RCLK on the AST2600 in NCSI
+configurations as u-boot does not yet support NCSI (which uses the RMII).
 
-Gr{oetje,eeting}s,
+Please review!
 
-                        Geert
+Andrew
+
+Andrew Jeffery (3):
+  dt-bindings: net: ftgmac100: Document AST2600 compatible
+  dt-bindings: net: ftgmac100: Describe clock properties
+  net: ftgmac100: Ungate RCLK for RMII on ASPEED MACs
+
+ .../devicetree/bindings/net/ftgmac100.txt     |  7 ++++
+ drivers/net/ethernet/faraday/ftgmac100.c      | 35 +++++++++++++++----
+ 2 files changed, 35 insertions(+), 7 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.20.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
