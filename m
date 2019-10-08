@@ -2,175 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C6F3D00E5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 20:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8EFD0123
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 21:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727336AbfJHS61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 14:58:27 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45369 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726098AbfJHS61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 14:58:27 -0400
-Received: by mail-oi1-f195.google.com with SMTP id o205so15723998oib.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 11:58:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Sdd8UeD7EiCxoJwTM/QPh2OA+sefTqXvnnv/jjwK0zw=;
-        b=TNle+G1KuN9oDQGu0BmjNjXGR3vYWVs8gfP06Jlm0BNgSbzKEiTm+ScwOg3eb5N05g
-         d0FtnU7jftmt2eaPZKNtyujH6j5+xrAG5Ld5bMxmYUDg1a9G80SJW3inMQ6nRlY7PGm/
-         B1eska/0Qjo0X247Phr/Xc5UR12hoA5fKfApxJNc7uuZxtqI8fkZqFL8SWAH2OgD2lrC
-         g6PwrscsW9wragzZtyeRaG8VgB89XvpLwR8iFAdL5WwR+o4GemyF244B3nj9vNJkzTgO
-         GPz2aUUsYK4uF6ouD+wyE6gK1Nedu8JXpK2CMLGcZYEahhZdhASkxQBLG9V9FzNbZ9up
-         uibg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sdd8UeD7EiCxoJwTM/QPh2OA+sefTqXvnnv/jjwK0zw=;
-        b=eujPXTMttqlc7DEM3PS/npmdxJMnWZp6WzimfPaWfXVxSrQfm0p37k28QfEwQrL1Tq
-         Zai6FsvsSMUy7spY7PtpX5KufsKRH9YM2B7cQYPiqIZzEyWzaMjUFnklRHsqsmA6wkyw
-         0ABL6ZMI7kU1luJsGO0US4Dr/GPFawOCLrCyZlTPHpKyEbrW0Bztb2cNIbt4BBbSwVM/
-         HEcaeuuxNhyYxIdQCi7PtCAR82EphP2ZQvai455sJ/fgpqjRpgBKX4xaWupKcifphT4i
-         2q0Qz0D0IfDigEHb9u+Wqu6b1GM9/UfBQFXot9wSCEjHM756mDPZ8+hjF0/oDR897zkV
-         OgvA==
-X-Gm-Message-State: APjAAAW93WzY5BCuipoJG+3wzYG5L74g6wDiVWw8slmGI0fms2r22Xbq
-        8cab4FOC3EMix4PRdDgs61uSKUx5qGLztp9kUFqb6Q==
-X-Google-Smtp-Source: APXvYqyN+bveVuoKdS9k3wA83EzzIQByd8qFhP+O/Mr9ZtquQ9jL3+B0Vu9Hl6o8alfzt39akAUhisSQnxeiKV2UD/E=
-X-Received: by 2002:aca:51c7:: with SMTP id f190mr5258340oib.69.1570561105608;
- Tue, 08 Oct 2019 11:58:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190904211126.47518-1-saravanak@google.com> <20190904211126.47518-4-saravanak@google.com>
- <20190911102926.A9F8D2082C@mail.kernel.org> <20191004153750.GB823823@kroah.com>
- <20191008145304.2BD54205F4@mail.kernel.org>
-In-Reply-To: <20191008145304.2BD54205F4@mail.kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 8 Oct 2019 11:57:49 -0700
-Message-ID: <CAGETcx-FjF+bktBgL6h0ORH3MU4vMM9JNC2oB8Myn8KqvnmhDg@mail.gmail.com>
-Subject: Re: [PATCH v11 3/6] of: property: Add functional dependency link from
- DT bindings
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1728465AbfJHTXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 15:23:49 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:50154 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726439AbfJHTXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 15:23:49 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 1223428ECE6
+Message-ID: <dad6ee9aa3699af0f794f467224a8a01798d86b2.camel@collabora.com>
+Subject: Re: [PATCH v3 3/5] drm/rockchip: Add optional support for CRTC
+ gamma LUT
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Sean Paul <sean@poorly.run>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-acpi@vger.kernel.org,
-        clang-built-linux <clang-built-linux@googlegroups.com>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        kbuild test robot <lkp@intel.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Date:   Tue, 08 Oct 2019 16:23:36 -0300
+In-Reply-To: <20191007185432.GG126146@art_vandelay>
+References: <20190930222802.32088-1-ezequiel@collabora.com>
+         <20190930222802.32088-4-ezequiel@collabora.com>
+         <20191007185432.GG126146@art_vandelay>
+Organization: Collabora
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 8, 2019 at 7:53 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Greg Kroah-Hartman (2019-10-04 08:37:50)
-> > On Wed, Sep 11, 2019 at 03:29:25AM -0700, Stephen Boyd wrote:
-> > > Quoting Saravana Kannan (2019-09-04 14:11:22)
-> > > > +       int ret = 0;
-> > > > +       struct device_node *tmp_np = sup_np;
-> > > > +
-> > > > +       of_node_get(sup_np);
-> > > > +       /*
-> > > > +        * Find the device node that contains the supplier phandle.  It may be
-> > > > +        * @sup_np or it may be an ancestor of @sup_np.
-> > > > +        */
-> > > > +       while (sup_np && !of_find_property(sup_np, "compatible", NULL))
-> > > > +               sup_np = of_get_next_parent(sup_np);
-> > >
-> > > I don't get this. This is assuming that drivers are only probed for
-> > > device nodes that have a compatible string? What about drivers that make
-> > > sub-devices for clk support that have drivers in drivers/clk/ that then
-> > > attach at runtime later? This happens sometimes for MFDs that want to
-> > > split the functionality across the driver tree to the respective
-> > > subsystems.
-> >
-> > For that, the link would not be there, correct?
->
-> The parent device (MFD) would have the links because that is the device
-> node with the provider property like '#clock-cells'. The child clk
-> device that's populated by the MFD would be the one actually providing
-> the clk via a driver that may probe any time later, or never, depending
-> on if the clk driver is configured as a module or not. I fail to see how
-> this will work for these cases.
->
-> Is this logic there to find the parent of a regulator phandle and match
-> that to some driver? It looks like it.
+Hello Sean,
 
-In the case of an MFD creating "fake" children devices, the parent MFD
-device's driver is responsible for handling the sync state callback.
-It'll get the sync_state callback after all the child devices'
-consumers have probed. The MFD driver will need to do the sync state
-clean up for the children devices or pass it on to the child devices'
-drivers (whatever makes sense for that specific MFD) by whatever means
-those specific drivers talk to each other (direct calls, registering
-callbacks, etc).
+On Mon, 2019-10-07 at 14:54 -0400, Sean Paul wrote:
+> On Mon, Sep 30, 2019 at 07:28:00PM -0300, Ezequiel Garcia wrote:
+> > Add an optional CRTC gamma LUT support, and enable it on RK3288.
+> > This is currently enabled via a separate address resource,
+> > which needs to be specified in the devicetree.
+> > 
+> > The address resource is required because on some SoCs, such as
+> > RK3288, the LUT address is after the MMU address, and the latter
+> > is supported by a different driver. This prevents the DRM driver
+> > from requesting an entire register space.
+> > 
+> > The current implementation works for RGB 10-bit tables, as that
+> > is what seems to work on RK3288.
+> > 
+> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > ---
+> > Changes from v2:
+> > * None.
+> > 
+> > Changes from v1:
+> > * drop explicit linear LUT after finding a proper
+> >   way to disable gamma correction.
+> > * avoid setting gamma is the CRTC is not active.
+> > * s/int/unsigned int as suggested by Jacopo.
+> > * only enable color management and set gamma size
+> >   if gamma LUT is supported, suggested by Doug.
+> > * drop the reg-names usage, and instead just use indexed reg
+> >   specifiers, suggested by Doug.
+> > 
+> > Changes from RFC:
+> > * Request (an optional) address resource for the LUT.
+> > * Drop support for RK3399, which doesn't seem to work
+> >   out of the box and needs more research.
+> > * Support pass-thru setting when GAMMA_LUT is NULL.
+> > * Add a check for the gamma size, as suggested by Ilia.
+> > * Move gamma setting to atomic_commit_tail, as pointed
+> >   out by Jacopo/Laurent, is the correct way.
+> > ---
+> >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c  |   3 +
+> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c | 114 ++++++++++++++++++++
+> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.h |   7 ++
+> >  drivers/gpu/drm/rockchip/rockchip_vop_reg.c |   2 +
+> >  4 files changed, 126 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > index dba352ec0ee3..fd1d987698ab 100644
+> > --- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > @@ -17,6 +17,7 @@
+> >  #include "rockchip_drm_drv.h"
+> >  #include "rockchip_drm_fb.h"
+> >  #include "rockchip_drm_gem.h"
+> > +#include "rockchip_drm_vop.h"
+> >  
+> >  static const struct drm_framebuffer_funcs rockchip_drm_fb_funcs = {
+> >  	.destroy       = drm_gem_fb_destroy,
+> > @@ -112,6 +113,8 @@ rockchip_atomic_helper_commit_tail_rpm(struct drm_atomic_state *old_state)
+> >  
+> >  	drm_atomic_helper_commit_modeset_disables(dev, old_state);
+> >  
+> > +	rockchip_drm_vop_gamma_set(old_state);
+> > +
+> 
+> Instead of duplicating the commit_tail helper, could you just implement
+> .atomic_begin() and call this from there? I think the only hitch is if you
+> need this to be completed before crtc->atomic_enable(), at which point you
+> might need to call it from vop_crtc_atomic_enable() and then detect that in
+> atomic_begin()
+> 
 
-If they are real sub-devices, then they should really be captured in
-DT as child devices and then the child device's drivers will get the
-sync state callback directly.
+I think moving this to .atomic_begin might be enough. Let me send a new
+series and we can see how that goes.
 
-> >
-> > > > +static int of_link_property(struct device *dev, struct device_node *con_np,
-> > > > +                            const char *prop_name)
-> > > > +{
-> > > > +       struct device_node *phandle;
-> > > > +       const struct supplier_bindings *s = bindings;
-> > > > +       unsigned int i = 0;
-> > > > +       bool matched = false;
-> > > > +       int ret = 0;
-> > > > +
-> > > > +       /* Do not stop at first failed link, link all available suppliers. */
-> > > > +       while (!matched && s->parse_prop) {
-> > > > +               while ((phandle = s->parse_prop(con_np, prop_name, i))) {
-> > > > +                       matched = true;
-> > > > +                       i++;
-> > > > +                       if (of_link_to_phandle(dev, phandle) == -EAGAIN)
-> > > > +                               ret = -EAGAIN;
-> > >
-> > > And don't break?
-> >
-> > There was comments before about how this is not needed.  Frank asked
-> > that the comment be removed.  And now you point it out again :)
-> >
-> > Look at the comment a few lines up, we have to go through all of the
-> > suppliers.
-> >
->
-> Ok. The comment tells me what is happening but it misses the essential
-> part which is _why_ we must make links to each supplier and return
-> -EAGAIN.
+Thanks for reviewing,
+Ezequiel
 
-To be clear the -EAGAIN is only if any of the linking fails.
-
-The reason was already discussion in the email thread [1] but I agree
-it needs to be documented.
-
-I thought I had documented the _why_ in the documentation for
-fwnode.add_links(), but it's not there. I'll check to make sure I
-didn't capture it elsewhere and if not, I'll update fwnode.add_links
-documentation.
-
-To copy-paste the discussion from the earlier thread:
-
-"Actually, there is a point for this. Say Device-C depends on suppliers
-Device-S1 and Device-S2 and they are listed in DT in that order.
-
-Say, S1 gets populated after late_initcall_sync but S2 is probes way
-before that. If I don't continue past a "failed linking" to S1 and
-also link up to S2, then S2 will get a sync_state() callback before C
-is probed. So I have to go through all possible suppliers and [link] as many
-as possible."
-
--Saravana
-
-[1] - https://lore.kernel.org/lkml/CAGETcx-hCrUvY5whZBihueqqCxmF3oDjFybjmoo3JUu87iiiEw@mail.gmail.com/
