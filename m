@@ -2,183 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B40D017C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 21:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27972D01DE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 22:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729616AbfJHTwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 15:52:43 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38824 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729436AbfJHTwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 15:52:43 -0400
-Received: by mail-oi1-f195.google.com with SMTP id m16so15911073oic.5;
-        Tue, 08 Oct 2019 12:52:42 -0700 (PDT)
+        id S1730413AbfJHUDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 16:03:41 -0400
+Received: from mail-yw1-f65.google.com ([209.85.161.65]:43578 "EHLO
+        mail-yw1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729935AbfJHUDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 16:03:41 -0400
+Received: by mail-yw1-f65.google.com with SMTP id q7so6889378ywe.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 13:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=poorly.run; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=4CE1BxrYmt8bIJQ4ee/mv7sHVSkIz9neBXcllQM3bao=;
+        b=UBp5dI6/eg+7xME26slfmNl99bWpkkf6SBDDeSqgT2/f7har5/CI1SF6tqgtOrxW/t
+         IfvCN+hBCTQpIZF9DJh97Rlw5ZdpCQYiK+XnRcq8i1tn1sU0XyS+FlUlIdNMdN59t0Ky
+         ZOCA7LcugGMWfPlYJ0INKOVVaRHSYD9+FCnzHxJP3NYVDQU8TR4qGjPeNp8prA1VN1Lf
+         9cMpkppFnDHSlEo6kJE1tox3bRFQ+SG3GhAzOXZTgqr+7zO4TrIftJc1wYsqcCFER43Z
+         z6nvtZlJUwgYuFtC1Y6PDxHHJIPgb8qVdFLmjISYRBvmHX67DlZv7S01ESzvXnkAccEo
+         Qoxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2DpOnxNX3I7+J8dRMWaO+FigaTKEbqHibu1OQL1peJY=;
-        b=j3dlhm6KW0cOiXV+bPkyVeSoivS7X9TmeginrfWtccgidsF4kfE+sZDGiILG0t/zWQ
-         6sqxqCIj7X0EWpf8lNVfCCnI9eeY/zndFwdu4GlBEDlVjOtfWJbtAT4AFT2iahixJ9eh
-         MgmXw6S/MLvAgx0pOR5FffpPBk0n7k+xJDZyp/nUlCvajN3rnJ2w3J+ofn1S51pDSqmd
-         n8ThYvaEhQRV4OXkx5KSPG7CircFMr+FCYUO5hZtHGQrweIgPUgn+NDidL5BseEde/xh
-         tNRdQMPKhkol4vu+aZVFjZXck2++a2fiVDyA+EXz+WVFxppGInvjHIwvTyVOK1fStWs4
-         rDKA==
-X-Gm-Message-State: APjAAAWDIqRAlUq2jgfwlEbUl131YN/ucDas7xCe7PJzIIc0+j/0eneY
-        hVOP8ublQLwggNRUeBBm6sdYmbI=
-X-Google-Smtp-Source: APXvYqx3UCdVEhyicSwZJeq8Uk0rPo4W8xc+pe7UghGarV6P5NA3FcZJ4CC9ipmykIi72BrvPCmPhg==
-X-Received: by 2002:aca:b342:: with SMTP id c63mr5424396oif.91.1570564361631;
-        Tue, 08 Oct 2019 12:52:41 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id z10sm6151032ote.54.2019.10.08.12.52.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=4CE1BxrYmt8bIJQ4ee/mv7sHVSkIz9neBXcllQM3bao=;
+        b=EV/3Uxuh3kZ0dOF5qS/4ZGGryFROyieTLnefSzT462Nm26xDt6SilRDCzidgkb7PB4
+         reQDT2dqWuD1IzRWVyo9ErLubn4fk2GQCexlfou6TBHGgrdD74LttzIvE6TCMxDJnfRn
+         js5V6zJn26GyeK+KGrhYmczEl5yg9yuVk3X9/PpAYr7woRYtrAuQ1dU+3BXjOxSetUDP
+         RPTOdK0LFFeCOQEZ12B5DKlcGlZHofJNBTL+TjajRWi4HC4ywwv1jN+ank1tqlTmSb+O
+         YaMYqs8chM7Xt+ZidV7tiEH+8UEHolwUz8WLu5SkZ2N/Pyh1YQ76SLGy7I+uAbZE+Cne
+         B5pw==
+X-Gm-Message-State: APjAAAV58pZ3c4PMWPmw1hs25MM+bvgQObLd5AHavv8TaZ9Vve1PzV2z
+        9x25AYnDIqpJBGYtfWSYTkl2PA==
+X-Google-Smtp-Source: APXvYqx7YYibEGvaoohfIoxEc2sHRClCB8jQgphg6W4QPuB8xNYmRba4UMcQGm26BNKAAtz04sl2sA==
+X-Received: by 2002:a81:4f0b:: with SMTP id d11mr71977ywb.109.1570565020219;
+        Tue, 08 Oct 2019 13:03:40 -0700 (PDT)
+Received: from localhost ([2620:0:1013:11:89c6:2139:5435:371d])
+        by smtp.gmail.com with ESMTPSA id u67sm7785ywf.44.2019.10.08.13.03.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2019 12:52:40 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Christoph Hellwig <hch@infradead.org>
-Subject: [PATCH v2] of: Make of_dma_get_range() work on bus nodes
-Date:   Tue,  8 Oct 2019 14:52:39 -0500
-Message-Id: <20191008195239.12852-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        Tue, 08 Oct 2019 13:03:39 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 16:03:39 -0400
+From:   Sean Paul <sean@poorly.run>
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH v3 3/5] drm/rockchip: Add optional support for CRTC gamma
+ LUT
+Message-ID: <20191008200339.GD85762@art_vandelay>
+References: <20190930222802.32088-1-ezequiel@collabora.com>
+ <20190930222802.32088-4-ezequiel@collabora.com>
+ <20191007185432.GG126146@art_vandelay>
+ <dad6ee9aa3699af0f794f467224a8a01798d86b2.camel@collabora.com>
+ <9cdd23c20ed91d4c4654aaae27d8c3addfd9af3f.camel@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9cdd23c20ed91d4c4654aaae27d8c3addfd9af3f.camel@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robin Murphy <robin.murphy@arm.com>
+On Tue, Oct 08, 2019 at 04:33:35PM -0300, Ezequiel Garcia wrote:
+> On Tue, 2019-10-08 at 16:23 -0300, Ezequiel Garcia wrote:
+> > Hello Sean,
+> > 
+> > On Mon, 2019-10-07 at 14:54 -0400, Sean Paul wrote:
+> > > On Mon, Sep 30, 2019 at 07:28:00PM -0300, Ezequiel Garcia wrote:
+> > > > Add an optional CRTC gamma LUT support, and enable it on RK3288.
+> > > > This is currently enabled via a separate address resource,
+> > > > which needs to be specified in the devicetree.
+> > > > 
+> > > > The address resource is required because on some SoCs, such as
+> > > > RK3288, the LUT address is after the MMU address, and the latter
+> > > > is supported by a different driver. This prevents the DRM driver
+> > > > from requesting an entire register space.
+> > > > 
+> > > > The current implementation works for RGB 10-bit tables, as that
+> > > > is what seems to work on RK3288.
+> > > > 
+> > > > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > > > Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > > ---
+> > > > Changes from v2:
+> > > > * None.
+> > > > 
+> > > > Changes from v1:
+> > > > * drop explicit linear LUT after finding a proper
+> > > >   way to disable gamma correction.
+> > > > * avoid setting gamma is the CRTC is not active.
+> > > > * s/int/unsigned int as suggested by Jacopo.
+> > > > * only enable color management and set gamma size
+> > > >   if gamma LUT is supported, suggested by Doug.
+> > > > * drop the reg-names usage, and instead just use indexed reg
+> > > >   specifiers, suggested by Doug.
+> > > > 
+> > > > Changes from RFC:
+> > > > * Request (an optional) address resource for the LUT.
+> > > > * Drop support for RK3399, which doesn't seem to work
+> > > >   out of the box and needs more research.
+> > > > * Support pass-thru setting when GAMMA_LUT is NULL.
+> > > > * Add a check for the gamma size, as suggested by Ilia.
+> > > > * Move gamma setting to atomic_commit_tail, as pointed
+> > > >   out by Jacopo/Laurent, is the correct way.
+> > > > ---
+> > > >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c  |   3 +
+> > > >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c | 114 ++++++++++++++++++++
+> > > >  drivers/gpu/drm/rockchip/rockchip_drm_vop.h |   7 ++
+> > > >  drivers/gpu/drm/rockchip/rockchip_vop_reg.c |   2 +
+> > > >  4 files changed, 126 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > > > index dba352ec0ee3..fd1d987698ab 100644
+> > > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > > > @@ -17,6 +17,7 @@
+> > > >  #include "rockchip_drm_drv.h"
+> > > >  #include "rockchip_drm_fb.h"
+> > > >  #include "rockchip_drm_gem.h"
+> > > > +#include "rockchip_drm_vop.h"
+> > > >  
+> > > >  static const struct drm_framebuffer_funcs rockchip_drm_fb_funcs = {
+> > > >  	.destroy       = drm_gem_fb_destroy,
+> > > > @@ -112,6 +113,8 @@ rockchip_atomic_helper_commit_tail_rpm(struct drm_atomic_state *old_state)
+> > > >  
+> > > >  	drm_atomic_helper_commit_modeset_disables(dev, old_state);
+> > > >  
+> > > > +	rockchip_drm_vop_gamma_set(old_state);
+> > > > +
+> > > 
+> > > Instead of duplicating the commit_tail helper, could you just implement
+> > > .atomic_begin() and call this from there? I think the only hitch is if you
+> > > need this to be completed before crtc->atomic_enable(), at which point you
+> > > might need to call it from vop_crtc_atomic_enable() and then detect that in
+> > > atomic_begin()
+> > > 
+> > 
+> > I think moving this to .atomic_begin might be enough. Let me send a new
+> > series and we can see how that goes.
+> > 
+> 
+> Oh, before going forward, pleaste note that the first iteration
+> of this patch (as noted in the changelog) was applying the gamma lut
+> on .atomic_flush. However, Laurent and Jacopo pointed out that
+> it might add some tearing to do so, and that's why it was moved
+> to commit_tail.
+> 
+> I have to admit I'm not too sure about the difference between
+> applying this gamma LUT on atomic_begin or atomic_flush,
+> perhaps you can clarify that?
 
-Since the "dma-ranges" property is only valid for a node representing a
-bus, of_dma_get_range() currently assumes the node passed in is a leaf
-representing a device, and starts the walk from its parent. In cases
-like PCI host controllers on typical FDT systems, however, where the PCI
-endpoints are probed dynamically the initial leaf node represents the
-'bus' itself, and this logic means we fail to consider any "dma-ranges"
-describing the host bridge itself. Rework the logic such that
-of_dma_get_range() also works correctly starting from a bus node
-containing "dma-ranges".
+The only difference between what you have now and calling it in atomic_begin
+is that as you have it now, it's set before crtc->atomic_enable() is called.
+I think in order to address Ville's concerns on the other patch, you'll need
+to set it the lut in .atomic_enable() anyways, so here's what I would suggest:
 
-While this does mean "dma-ranges" could incorrectly be in a device leaf
-node, there isn't really any way in this function to ensure that a leaf
-node is or isn't a bus node.
+- Set the LUT in .atomic_enable() wherever it makes sense (you have it at the
+  start now)
+- Add an .atomic_begin() implementation and check state->color_mgmt_changed and
+  state->active_changed. color_mgmt_changed && !active_changed, set the lut
+- Remove patches 1 & 5
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-[robh: Allow for the bus child node to still be passed in]
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Resending, hit send too quickly.
+...I think :-)
 
-v2:
- - Ensure once we find dma-ranges, every parent has it.
- - Only get the #{size,address}-cells after we find non-empty dma-ranges
- - Add a check on the 'dma-ranges' length
+Sean
 
-This is all that remains of the dma-ranges series. I've applied the rest 
-of the series prep and fixes. I dropped "of: Ratify of_dma_configure() 
-interface" as the assertions that the node pointer being the parent only 
-when struct device doesn't have a DT node pointer is not always 
-true.
+> 
+> Thanks!
+> Ezequiel 
+> 
+> 
 
-I didn't include any tested-bys as this has changed a bit. A git branch 
-is here[1].
-
-Rob
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dma-masks-v2
-
- drivers/of/address.c | 44 ++++++++++++++++++--------------------------
- 1 file changed, 18 insertions(+), 26 deletions(-)
-
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 5ce69d026584..99c1b8058559 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -930,47 +930,39 @@ int of_dma_get_range(struct device_node *np, u64 *dma_addr, u64 *paddr, u64 *siz
- 	const __be32 *ranges = NULL;
- 	int len, naddr, nsize, pna;
- 	int ret = 0;
-+	bool found_dma_ranges = false;
- 	u64 dmaaddr;
- 
--	if (!node)
--		return -EINVAL;
--
--	while (1) {
--		struct device_node *parent;
--
--		naddr = of_n_addr_cells(node);
--		nsize = of_n_size_cells(node);
--
--		parent = __of_get_dma_parent(node);
--		of_node_put(node);
--
--		node = parent;
--		if (!node)
--			break;
--
-+	while (node) {
- 		ranges = of_get_property(node, "dma-ranges", &len);
- 
- 		/* Ignore empty ranges, they imply no translation required */
- 		if (ranges && len > 0)
- 			break;
- 
--		/*
--		 * At least empty ranges has to be defined for parent node if
--		 * DMA is supported
--		 */
--		if (!ranges)
--			break;
-+		/* Once we find 'dma-ranges', then a missing one is an error */
-+		if (found_dma_ranges && !ranges) {
-+			ret = -ENODEV;
-+			goto out;
-+		}
-+		found_dma_ranges = true;
-+
-+		node = of_get_next_dma_parent(node);
- 	}
- 
--	if (!ranges) {
-+	if (!node || !ranges) {
- 		pr_debug("no dma-ranges found for node(%pOF)\n", np);
- 		ret = -ENODEV;
- 		goto out;
- 	}
- 
--	len /= sizeof(u32);
--
-+	naddr = of_bus_n_addr_cells(node);
-+	nsize = of_bus_n_size_cells(node);
- 	pna = of_n_addr_cells(node);
-+	if ((len / sizeof(__be32)) % (pna + naddr + nsize)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
- 
- 	/* dma-ranges format:
- 	 * DMA addr	: naddr cells
-@@ -978,7 +970,7 @@ int of_dma_get_range(struct device_node *np, u64 *dma_addr, u64 *paddr, u64 *siz
- 	 * size		: nsize cells
- 	 */
- 	dmaaddr = of_read_number(ranges, naddr);
--	*paddr = of_translate_dma_address(np, ranges);
-+	*paddr = of_translate_dma_address(node, ranges + naddr);
- 	if (*paddr == OF_BAD_ADDR) {
- 		pr_err("translation of DMA address(%llx) to CPU address failed node(%pOF)\n",
- 		       dmaaddr, np);
 -- 
-2.20.1
-
+Sean Paul, Software Engineer, Google / Chromium OS
