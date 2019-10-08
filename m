@@ -2,110 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C97C4CF20A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 06:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35BBDCF24E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 07:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726193AbfJHEzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 00:55:03 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:46762 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbfJHEzC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 00:55:02 -0400
-Received: by mail-qt1-f195.google.com with SMTP id u22so23129707qtq.13;
-        Mon, 07 Oct 2019 21:55:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NuipLPrWDOHTna4R81Ns0ysok+dpoazuekwN/UYksCI=;
-        b=b1UAUxoBcI9azVyX+4fyfcr8QslbKfW+ZNjl72tAkSBp/Jy1YWJ+tFCP3v/iE6uGZo
-         uFsmfF5NevYXiJYD5i7adKbaXEvLAmRipJapvNOvu3mvQmzrlB3fmOhmdHk3VfVgkcIQ
-         vSxJM5Stk3ECN5ymfkv9mvlbQe33hpkkFLtxQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NuipLPrWDOHTna4R81Ns0ysok+dpoazuekwN/UYksCI=;
-        b=h/akzlMw0lRhs0sKaW5PeOeA6Oc9a0Jio5dkiXHDFAeBluxaQnv0Z+p1ealFSWjYv5
-         jb7lokXgrqQ5G0BILF7QoKB3U/Lx98dArUseRXbJi3aIU3JaJJuf5Tr4rGCsycU7/Yii
-         O9hN3vcXINH0DaUydqY3ybUUN4HjUwJkzNnlaufYvsggsHML6nxBAMifHJeVGdvvHXV8
-         VbQmsbVwB9yhx0Oc+LItUqduNTPKQfVR5ZlpZk8DZS1nRQlKCv0/J67iltooi7VSqAaH
-         Zvi5TeNg3vmVm+j7Beg0dW2EkHVslBhUsQCdd4vdg04MYy+LWaeJDOP16+gXQL0WOm7G
-         scQw==
-X-Gm-Message-State: APjAAAW9O6R95rV8ofTwvNi2YVxkr9+8QUS8xk0Z9LZy2AC3h+5bHi5L
-        drOnAKmhtq+9dYCOOn0GfdMM54JfdscQSC4n1jY7Gfix
-X-Google-Smtp-Source: APXvYqz5wHXB1nmfXhmlr/qLAPDW3G+ziIzScyrrHSPrhN9j+O+3LkVT/JnM12/t9lcaqiMe59v/oRgpIA9UeoUtEwI=
-X-Received: by 2002:ac8:670c:: with SMTP id e12mr33620565qtp.169.1570510499983;
- Mon, 07 Oct 2019 21:54:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191008044153.12734-1-andrew@aj.id.au>
-In-Reply-To: <20191008044153.12734-1-andrew@aj.id.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 8 Oct 2019 04:54:47 +0000
-Message-ID: <CACPK8XeKx_W0_b6ZLJzVdtQQOL8eZ3FcscB5TZT5NXMwRi4r6g@mail.gmail.com>
-Subject: Re: [PATCH 0/7] pinctrl: Fixes for AST2600 support
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1729954AbfJHF6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 01:58:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50984 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728297AbfJHF6N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 01:58:13 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 057DA206BB;
+        Tue,  8 Oct 2019 05:58:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570514292;
+        bh=OKUgYROz7lxc7E9/7Ur7efZbYs8IQ81R9gApIpjwp9M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C7J5cK1mBB5fvQZ0ThE4YCz7Qur4Fw909mYvNTRLpboW6BubXmXiGCIDVT0T+7y+g
+         qpfWg9TOv0RucK+/Wve187tlBEXxO4YONvuJdDEAFmh8lbNhSrcoBHyHWPyArcc5v2
+         4/axwyD+PUb+vlHhzw5ryeI4HqtheN6u1Z+gorl8=
+Date:   Tue, 8 Oct 2019 07:58:10 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     megous@megous.com
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        johnny_huang@aspeedtech.com, Ryan Chen <ryanchen.aspeed@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [RESEND PATCH 0/2] Add bluetooth support for Orange Pi 3
+Message-ID: <20191008055810.wqkmoy63ujiagbfe@gilmour>
+References: <20191007203152.3889947-1-megous@megous.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ert3szapvjumxzbc"
+Content-Disposition: inline
+In-Reply-To: <20191007203152.3889947-1-megous@megous.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Oct 2019 at 04:41, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> Hello,
->
-> This series resolves several issues found in testing by Johnny Huang from
-> ASPEED, who also contributed the patches to fix them. We'll have more patches
-> from him in the near future (which I'm pretty happy about).
 
-For the series:
+--ert3szapvjumxzbc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+On Mon, Oct 07, 2019 at 10:31:50PM +0200, megous@megous.com wrote:
+> From: Ondrej Jirman <megous@megous.com>
+>
+> (Re-send for Maxime, with already applied patches dropped. Nothing new.)
+>
+> This series implements bluetooth support for Xunlong Orange Pi 3 board.
+>
+> The board uses AP6256 WiFi/BT 5.0 chip.
+>
+> Summary of changes:
+>
+> - add more delay to let initialize the chip
+> - let the kernel detect firmware file path
+> - add new compatible and update dt-bindings
+> - update Orange Pi 3 / H6 DTS
+>
+> Please take a look.
 
-These patches have been in the OpenBMC tree for a while and look good.
+Applied both, thanks!
+Maxime
 
-Cheers,
+--ert3szapvjumxzbc
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Joel
+-----BEGIN PGP SIGNATURE-----
 
->
-> The major issue resolved is the way I grouped the eMMC pins. What I had was
-> ugly and I want to get rid of it before the binding is solidified with the 5.4
-> release.
->
-> The remaining fixes are minor issues that stem from lack of documentation or
-> understanding on my part, and at least one brain-fart.
->
-> Please review!
->
-> Andrew
->
-> Andrew Jeffery (4):
->   dt-bindings: pinctrl: aspeed-g6: Rework SD3 function and groups
->   pinctrl: aspeed-g6: Sort pins for sanity
->   pinctrl: aspeed-g6: Fix I2C14 SDA description
->   pinctrl: aspeed-g6: Make SIG_DESC_CLEAR() behave intuitively
->
-> Johnny Huang (3):
->   pinctrl: aspeed-g6: Fix I3C3/I3C4 pinmux configuration
->   pinctrl: aspeed-g6: Fix UART13 group pinmux
->   pinctrl: aspeed-g6: Rename SD3 to EMMC and rework pin groups
->
->  .../pinctrl/aspeed,ast2600-pinctrl.yaml       |  86 ++++++------
->  drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c    | 124 ++++++++----------
->  drivers/pinctrl/aspeed/pinmux-aspeed.h        |   3 +-
->  3 files changed, 98 insertions(+), 115 deletions(-)
->
-> --
-> 2.20.1
->
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZwlcQAKCRDj7w1vZxhR
+xfZYAP9SMxqaZn19ntY7023We3X+5/xContSlxTodlVbXkTQCQEAghM2VObtw49u
+Q9P7kQeTJcnIsIbJNFymmtSCVdx+sA0=
+=ZikW
+-----END PGP SIGNATURE-----
+
+--ert3szapvjumxzbc--
