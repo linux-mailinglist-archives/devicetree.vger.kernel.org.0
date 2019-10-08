@@ -2,85 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 986F2D0224
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 22:32:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB94BD0235
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 22:36:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730781AbfJHUcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 16:32:06 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:45320 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727835AbfJHUcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 16:32:05 -0400
-Received: by mail-pg1-f196.google.com with SMTP id q7so10890440pgi.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 13:32:04 -0700 (PDT)
+        id S1727835AbfJHUgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 16:36:24 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:34149 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730781AbfJHUgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 16:36:24 -0400
+Received: by mail-io1-f68.google.com with SMTP id q1so18253ion.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 13:36:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=eG3/KTcN+l0J8/6h6CFjDe7V6XOLu3qvlhIP2AFfrys=;
-        b=to94oEFRu7pxgY2G1Xez6EtBwR0f3yzChiGgys5tcUAprpjiFizEtLFTEfBhUswbwS
-         +b6TW6lVGXl4mLAI4N3auzBq0yZMZCqptNh/Hrja7n2IfTO9vb/N15/IR8y0cnVkil3G
-         XHH3y7a5zxQHC3wZYFFvm7Pqh5HXET1swlIRVWpE9Sywk5HGoA2nEoT+d/8bSrhOPgkA
-         icePHEWyx6ekqLhZHjFp3fBjzhyj7hLulxxnd8XhpqLUycijtMwDhnxpgAq67FKnWR2y
-         vdW6JNefJLtAVnRwzX/hGl9q6hjmdYUGPNbc/S+XjVI42xIfKYKlpbh7fzA40E8l+ekx
-         UnTA==
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=8OWcoGS3BEEoyWgrBo7bn7YYjPQqdrXR3vAw8gPm390=;
+        b=EuCNcLZVNf49hDvCPEgJMlmxJKp6smESQklkNVCOknnb3tENPXH9DS2w2K6gUPaD9p
+         mxOpyyAZ5mCYKmDxd6VdYLB4IFs962l+pZaSzoDSReYOXxT4vGkjjYvR5d/dfOdCrbcA
+         PISeEiH+FfU7yJSOO9NgNqCV3rdSNXCW9aBXyGLAwfb/gHS+LfHDwOxxA4Dvw7ELV58L
+         PIBBH+NOOSwq0FQ6LVfO+QdFvli5+QaXowwSSBNxCwrUJ3ssW7u9Tx++WWogJ0noAeeG
+         d6E5GsIWbfSA/ALTqgEOdvj+RG0a/5q5RQdR0mn3/l6sLMYPIyWoYoBjVGsierSY4FYs
+         jibw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=eG3/KTcN+l0J8/6h6CFjDe7V6XOLu3qvlhIP2AFfrys=;
-        b=poiFbfhnwBN4859zuVZHFs1gr1oN+C+0GCsAYCK7rgb2dSMO7o6A+1cmOpb3B7xMqj
-         VsPtV5QfA1KDbiW+ITqEE6xp7s+q1CQQ+vIS4y3yqRai1l9EPv1iwtOchj7F4Jn0iz5E
-         t4fHVB+0iN/IAmSsRjmoj8lf1d/I3INcNn0nwhChMiG6psjhIZZsKsJWlELOgZsVjyRf
-         QaMd5wHtr3JEjy2TxS0HF2nQPRQvk9ooNbWbtjs8+LPC8UnKOq9yUhLoRPYsUQ5FVnIV
-         7SJOHAMwO8oOd3PO4Co5NGMFfp0G+Cgme9Bb7nHy0LAGawdJco5XZryMk9EPQm/lQ3In
-         OTZQ==
-X-Gm-Message-State: APjAAAUDEDb72/ovCy2aIGPtEa2zuZG4NBBVcXW/k9w8ty5CC2/hKWS7
-        cO0iD3dKRnUJOnMxO3PdIjIq3g==
-X-Google-Smtp-Source: APXvYqzuXMuOJlcRChpjsyL5D5qPR+4R8/wPvf3J5IUiMHTYlcl02d8LMjqeowAKe6J+zFd5NRArUw==
-X-Received: by 2002:a62:e21a:: with SMTP id a26mr6636688pfi.80.1570566723059;
-        Tue, 08 Oct 2019 13:32:03 -0700 (PDT)
-Received: from google.com ([2620:15c:2cb:1:e90c:8e54:c2b4:29e7])
-        by smtp.gmail.com with ESMTPSA id r18sm16766pfc.3.2019.10.08.13.32.01
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=8OWcoGS3BEEoyWgrBo7bn7YYjPQqdrXR3vAw8gPm390=;
+        b=Jo0YLV4cHWZqUWC6ZudYi7Hvf0PMjKibdFHAimt3qqRVLd+FkWS1kPxihJbj1pcEsq
+         QrqD9hRjvj8Rd5xxre5xruPsDdTXjGhNlQyAGL68YeRilsUsh1Zlk/ZM0yO7yZ/oIP2H
+         lPzh+m/2CYdJHpcex9+MMMFqAs3psWjQdZePn2tahurJ6JMxRDAU+0YcrtLBBhkuI4nq
+         uTB7QwohaImQlQnURC4pLjflHT3jliKccgn2x2VMgrJFg9KH8fG+IsP5U5eexlUpQk8x
+         IS/pffnpAxZuXOxkBQnSP3712oYLn/tENcqJB0L10yqdy+STtCqiOBVD2VC6cCEspTPM
+         /D3A==
+X-Gm-Message-State: APjAAAVLub5vo2nwyVkPYIS6GD+QdqMIZx7ifSkOjwxSiMj913txtpEE
+        VBdymq2akXGjliVv5JswXDJcJg==
+X-Google-Smtp-Source: APXvYqwBqjyeU3Cg2keKhMlMOaj+hMyVHG3lx22lajI0kyUD1bGOC51pzjYdIC3h69pazyBEnAbR2Q==
+X-Received: by 2002:a92:d7ce:: with SMTP id g14mr23019363ilq.269.1570566982399;
+        Tue, 08 Oct 2019 13:36:22 -0700 (PDT)
+Received: from localhost ([64.62.168.194])
+        by smtp.gmail.com with ESMTPSA id m9sm39438ion.65.2019.10.08.13.36.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2019 13:32:02 -0700 (PDT)
-Date:   Tue, 8 Oct 2019 13:31:57 -0700
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 3/5] i2c: aspeed: fix master pending state handling
-Message-ID: <20191008203157.GA184092@google.com>
-References: <20191007231313.4700-1-jae.hyun.yoo@linux.intel.com>
- <20191007231313.4700-4-jae.hyun.yoo@linux.intel.com>
+        Tue, 08 Oct 2019 13:36:21 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 13:36:20 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Rob Herring <robh@kernel.org>
+cc:     Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: riscv: Fix CPU schema errors
+In-Reply-To: <CAL_JsqJH59Hh6SkQyyAGkK21dR5DJxzja8GPYd3mg+kEVQ-0EQ@mail.gmail.com>
+Message-ID: <alpine.DEB.2.21.9999.1910081329160.11044@viisi.sifive.com>
+References: <20190925131252.19359-1-robh@kernel.org> <mhng-c69fa4ff-9752-4ded-8a4f-ae86113bd9ae@palmer-si-x1e> <CAL_JsqJH59Hh6SkQyyAGkK21dR5DJxzja8GPYd3mg+kEVQ-0EQ@mail.gmail.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191007231313.4700-4-jae.hyun.yoo@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 07, 2019 at 04:13:11PM -0700, Jae Hyun Yoo wrote:
-> In case of master pending state, it should not trigger the master
-> command because this H/W is sharing the same data buffer for slave
-> and master operations, so this commit fixes the issue with making
-> the master command triggering happen when the state goes to active
-> state.
+On Wed, 25 Sep 2019, Rob Herring wrote:
 
-nit: Makes sense, but can you explain what might happen without your
-change?
+> On Wed, Sep 25, 2019 at 4:24 PM Palmer Dabbelt <palmer@sifive.com> wrote:
+> >
+> > On Wed, 25 Sep 2019 06:12:52 PDT (-0700), robh@kernel.org wrote:
+> > > Fix the errors in the RiscV CPU DT schema:
+> > >
+> > > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+> > > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
+> > > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
+> > > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
+> > > Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+> > >
+> > > Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
+> > > Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> > > Cc: Palmer Dabbelt <palmer@sifive.com>
+> > > Cc: Albert Ou <aou@eecs.berkeley.edu>
+> > > Cc: linux-riscv@lists.infradead.org
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > v2:
+> > >  - Add timebase-frequency to simulator example.
+> > >
+> > >  .../devicetree/bindings/riscv/cpus.yaml       | 26 ++++++++++---------
+> > >  1 file changed, 14 insertions(+), 12 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > index b261a3015f84..eb0ef19829b6 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > @@ -24,15 +24,17 @@ description: |
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    items:
+> > > -      - enum:
+> > > -          - sifive,rocket0
+> > > -          - sifive,e5
+> > > -          - sifive,e51
+> > > -          - sifive,u54-mc
+> > > -          - sifive,u54
+> > > -          - sifive,u5
+> > > -      - const: riscv
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - sifive,rocket0
+> > > +              - sifive,e5
+> > > +              - sifive,e51
+> > > +              - sifive,u54-mc
+> > > +              - sifive,u54
+> > > +              - sifive,u5
+> > > +          - const: riscv
+> > > +      - const: riscv    # Simulator only
+> > >      description:
+> > >        Identifies that the hart uses the RISC-V instruction set
+> > >        and identifies the type of the hart.
 
-> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+The above part of this patch looks fine to me, and please consider that 
+portion of this patch acked.
 
-Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
+> > > @@ -67,8 +69,6 @@ properties:
+> > >        lowercase to simplify parsing.
+> > >
+> > >    timebase-frequency:
+> > > -    type: integer
+> > > -    minimum: 1
+> > >      description:
+> > >        Specifies the clock frequency of the system timer in Hz.
+> > >        This value is common to all harts on a single system image.
+> > > @@ -102,9 +102,9 @@ examples:
+> > >      cpus {
+> > >          #address-cells = <1>;
+> > >          #size-cells = <0>;
+> > > -        timebase-frequency = <1000000>;
+> > >          cpu@0 {
+> > >                  clock-frequency = <0>;
+> > > +                timebase-frequency = <1000000>;
+> > >                  compatible = "sifive,rocket0", "riscv";
+> > >                  device_type = "cpu";
+> > >                  i-cache-block-size = <64>;
+> > > @@ -120,6 +120,7 @@ examples:
+> > >          };
+> > >          cpu@1 {
+> > >                  clock-frequency = <0>;
+> > > +                timebase-frequency = <1000000>;
+> > >                  compatible = "sifive,rocket0", "riscv";
+> > >                  d-cache-block-size = <64>;
+> > >                  d-cache-sets = <64>;
+> > > @@ -153,6 +154,7 @@ examples:
+> > >                  device_type = "cpu";
+> > >                  reg = <0>;
+> > >                  compatible = "riscv";
+> > > +                timebase-frequency = <1000000>;
+> > >                  riscv,isa = "rv64imafdc";
+> > >                  mmu-type = "riscv,sv48";
+> > >                  interrupt-controller {
+> >
+> > Looking at this spec
+> >
+> >     https://github.com/devicetree-org/devicetree-specification/releases/download/v0.2/devicetree-specification-v0.2.pdf
+> >
+> > section 3.7 says
+> >
+> >     Properties that have identical values across cpu nodes may be placed in the
+> >     /cpus node instead. A client program must
+> >     first examine a specific cpu node, but if an expected property is not found
+> >     then it should look at the parent /cpus node.
+> >     This results in a less verbose representation of properties which are
+> >     identical across all CPUs.
+> 
+> The cpu sections of the spec are certainly not perfect. They are
+> largely from PPC with only the most obviously things wrong fixed...
 
-Thanks!
+[ ... ]
+
+> > I just bring this up because we've got an outstanding
+> > bug in our port where we're not respecting what section 3.7 says and are only
+> > looking at /cpus/timebase-frequency instead of /cpus/cpu@*/timebase-frequency,
+> > and I'm wondering if the fix should allow for looking at
+> > /cpus/timebase-frequency or just not bother.
+> 
+> It's perfectly fine for some deviation for each arch or being more
+> restrictive. For Arm, we've generally gone the direction of everything
+> goes into the cpu nodes. So tell me what you want, I just need the
+> warnings gone.
+
+We probably should keep the timebase-frequency at the /cpus level, since 
+that's how the current public silicon behaves, and that's how our kernel 
+code currently works.  Do you want to patch the schemas for that, or would 
+you like us to?
+
+
+- Paul
