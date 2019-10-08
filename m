@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D14EDCF8AF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 733ADCF8B9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 13:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730317AbfJHLkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 07:40:15 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:55277 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730316AbfJHLkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:40:15 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1iHnqa-0005id-GD; Tue, 08 Oct 2019 13:40:08 +0200
-Message-ID: <1570534808.18914.2.camel@pengutronix.de>
-Subject: Re: [PATCHv7 3/9] soc: ti: omap-prm: poll for reset complete during
- de-assert
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Tero Kristo <t-kristo@ti.com>, linux-omap@vger.kernel.org,
-        ssantosh@kernel.org
-Cc:     tony@atomide.com, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Date:   Tue, 08 Oct 2019 13:40:08 +0200
-In-Reply-To: <20191008071913.28740-4-t-kristo@ti.com>
-References: <20191008071913.28740-1-t-kristo@ti.com>
-         <20191008071913.28740-4-t-kristo@ti.com>
+        id S1730674AbfJHLmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 07:42:54 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42836 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730118AbfJHLmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 07:42:53 -0400
+Received: by mail-oi1-f194.google.com with SMTP id i185so14447664oif.9;
+        Tue, 08 Oct 2019 04:42:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rWU50A1ftSfnXS5t6he0dr7vBuFC5vEUJUAdKOgY8bw=;
+        b=CN9t7YfAc0vWJIDXMZTaDRZQTh76TPp4qTdZD4q6reYI5nrtM2KkzO3bkJX9EGgdnN
+         gvHwRVL/CCevZiKCAzhu8V6gXArCwrJycQnANMX7JiVdMtgQrKMb3Mhc+38uxEImGhYz
+         iqiUFb8nIWlvmDI2bexaxD1nP4Q9pbhYeNNtpCzvFpBhO6yQd5LaXXbhb/C5teesnPaW
+         mLfIRCY9BThKjnbEkGOvqGGnaC2p7ZK5AbjyUpIu1FTNOUaM+r99yE8Bi4GoO9450Har
+         cpvTD8ev8bAO/AGpUHQSrJSv8oA7xZno95O3zT2H7bxjyoMa/hhbvX9V8N7oR6UnycVt
+         YoqQ==
+X-Gm-Message-State: APjAAAU7MAeL8yAD8LVEIOCzku3sG88fOI1ivYkE1QPFT23J8dUu7jHw
+        bR0+F71zeYWYbVnY0eMEitovInlB81HAtE/DjYU=
+X-Google-Smtp-Source: APXvYqyCiews/tKA57sXvPG5XvGEr37Qd8csRkV55q3J6cezMVTk15zb8MhXvmopRDNPJSrIQDtYqNfHP9ZJEaZ2Qus=
+X-Received: by 2002:aca:4bd2:: with SMTP id y201mr3663250oia.102.1570534973087;
+ Tue, 08 Oct 2019 04:42:53 -0700 (PDT)
+MIME-Version: 1.0
+References: <1570531132-21856-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570531132-21856-7-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1570531132-21856-7-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Oct 2019 13:42:41 +0200
+Message-ID: <CAMuHMdX5hkZ7kLRiA_NRrBziFsrZNgZX-cEiE+bAaubkMdX=1A@mail.gmail.com>
+Subject: Re: [PATCH 06/10] dt-bindings: usb: renesas_usb3: Document r8a774b1 support
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-10-08 at 10:19 +0300, Tero Kristo wrote:
-> Poll for reset completion status during de-assertion of reset, otherwise
-> the IP in question might be accessed before it has left reset properly.
-> 
-> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> ---
->  drivers/soc/ti/omap_prm.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
-> index ab0b66ad715d..96fa2aad9b93 100644
-> --- a/drivers/soc/ti/omap_prm.c
-> +++ b/drivers/soc/ti/omap_prm.c
-> @@ -153,6 +153,18 @@ static int omap_reset_deassert(struct reset_controller_dev *rcdev,
->  	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
->  	spin_unlock_irqrestore(&reset->lock, flags);
->  
-> +	if (!has_rstst)
-> +		return 0;
-> +
-> +	/* wait for the status to be set */
-> +	ret = readl_relaxed_poll_timeout(reset->prm->base +
-> +					 reset->prm->data->rstst,
-> +					 v, v & BIT(st_bit), 1,
-> +					 OMAP_RESET_MAX_WAIT);
-> +	if (ret)
-> +		pr_err("%s: timedout waiting for %s:%lu\n", __func__,
-> +		       reset->prm->data->name, id);
-> +
->  	return 0;
->  }
->  
+On Tue, Oct 8, 2019 at 12:39 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Document RZ/G2N (R8A774B1) SoC bindings.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-regards
-Philipp
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
