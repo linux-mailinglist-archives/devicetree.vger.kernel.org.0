@@ -2,82 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27078CFC53
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 16:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A868ACFC64
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 16:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726917AbfJHOXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 10:23:24 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:56641 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725839AbfJHOXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 10:23:23 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1iHqOJ-0007ME-4O; Tue, 08 Oct 2019 16:23:07 +0200
-Message-ID: <1570544586.18914.9.camel@pengutronix.de>
-Subject: Re: [PATCH v3 0/3] reset: meson: add Meson-A1 SoC support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Xingyu Chen <xingyu.chen@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Tue, 08 Oct 2019 16:23:06 +0200
-In-Reply-To: <1569738255-3941-1-git-send-email-xingyu.chen@amlogic.com>
-References: <1569738255-3941-1-git-send-email-xingyu.chen@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726007AbfJHO3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 10:29:06 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:52029 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725795AbfJHO3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 10:29:06 -0400
+Received: by mail-wm1-f66.google.com with SMTP id 7so3414306wme.1;
+        Tue, 08 Oct 2019 07:29:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YE0D8Jghzw7CVdBybcskFRzbxtu5Ddla3G2nKPd70nY=;
+        b=Sc8Om7IguzBfLUV8d0Qb3/RSTq6q2+HX3E3E88BENJ2zail1KFY8MdtpSMcANhmSH9
+         hBYWxFhwEIVGjyzS1a5S09LFWFClss+NFEb3UGqcH6VnUAKW3waCdlAC2cqwFoVBZ0wk
+         5YZsCI9dC03b9yyLEm5otuFb68kEyhVxpZKLtoWrAwiJY7YJeoz7/iAJYOuCQsr1HE7p
+         MsxAF3hEVS8gyUbMNOl8UFD9L5rRE2JIN4G/O7ByydEKqXc4H7Ri+FS7/VmsT334zMJx
+         129RCo1MHf+edtdRCzdCI6pauGWSS9bgxWslmc2Btes7xZV8yjLIxi6oi8MiEv3KGTbt
+         F7og==
+X-Gm-Message-State: APjAAAVn5OEmWl6hXEIVU9qCQesSBTQpVYKjf9VSScFf3MVanW5feC/b
+        DMxbteYzs220Bg0urwK96qgD64P3
+X-Google-Smtp-Source: APXvYqw13buOvMKCLr9dJbc+42LtMA0u9H09vXHDWUs/lreMeW+bzq3Dl290U336az+CLfiT3ep52A==
+X-Received: by 2002:a1c:a6ca:: with SMTP id p193mr3960835wme.103.1570544942984;
+        Tue, 08 Oct 2019 07:29:02 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id 143sm4202466wmb.33.2019.10.08.07.29.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2019 07:29:02 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 16:29:00 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Kukjin Kim <kgene@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: samsung: Force clkoutN names to be
+ unique in PMU
+Message-ID: <20191008142900.GA2635@pi3>
+References: <20191004151414.8458-1-krzk@kernel.org>
+ <CAL_JsqJDTcHu5oXG6zszGHCBhTE6EW94AANUjyMV78SkKcn5yA@mail.gmail.com>
+ <20191008125038.GA2550@pi3>
+ <CAL_Jsq+GcsUWN6kjBLkyr1rHGh6_4=w6JL6+k7DBXkBcvHcSBw@mail.gmail.com>
+ <CAL_JsqKBzZCShxx99aB4z15XYNbUionVicmfNNXEfq=iohWLCA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKBzZCShxx99aB4z15XYNbUionVicmfNNXEfq=iohWLCA@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xingyu,
-
-On Sun, 2019-09-29 at 14:24 +0800, Xingyu Chen wrote:
-> This patchset adds support for Meson-A1 SoC Reset Controller. A new struct
-> meson_reset_param is introduced to describe the register differences between
-> Meson-A1 and previous SoCs.
->
-> Changes since v2 at [1]:
-> - add comments in header file to indicate holes
-> - reorder the Signed-off-by and Reviewed-by
-> - remove Jianxin's Signed-off-by
-> - add Kevin's Reviewed-by
-
-Thank you, I have applied patches 2 and 3 to reset/next.
-
-regards
-Philipp
-
-> Changes since v1 at [0]:
-> - rebase on linux-next
-> - add Neil's Reviewed-by
+On Tue, Oct 08, 2019 at 09:17:16AM -0500, Rob Herring wrote:
+> On Tue, Oct 8, 2019 at 9:05 AM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Tue, Oct 8, 2019 at 7:50 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Tue, Oct 08, 2019 at 07:38:14AM -0500, Rob Herring wrote:
+> > > > On Fri, Oct 4, 2019 at 10:14 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > >
+> > > > > The clkoutN names of clocks must be unique because they represent
+> > > > > unique inputs of clock multiplexer.
+> > > > >
+> > > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/arm/samsung/pmu.yaml | 6 ++++--
+> > > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> > > > > index 73b56fc5bf58..d8e03716f5d2 100644
+> > > > > --- a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> > > > > @@ -53,8 +53,10 @@ properties:
+> > > > >        List of clock names for particular CLKOUT mux inputs
+> > > > >      minItems: 1
+> > > > >      maxItems: 32
+> > > > > -    items:
+> > > > > -      pattern: '^clkout([0-9]|[12][0-9]|3[0-1])$'
+> > > > > +    allOf:
+> > > > > +      - items:
+> > > > > +          pattern: '^clkout([0-9]|[12][0-9]|3[0-1])$'
+> > > > > +      - uniqueItems: true
+> > > >
+> > > > You shouldn't need the 'allOf', just add uniqueItems at the same level as items.
+> > >
+> > > If you mean something like:
+> > >   56     uniqueItems: true
+> > >   57     items:
+> > >   58       pattern: '^clkout([0-9]|[12][0-9]|3[0-1])$'
+> > >
+> > > Then the dt_binding_check fails:
+> > >
+> > > dev/linux/Documentation/devicetree/bindings/arm/samsung/pmu.yaml: properties:clock-names:
+> > > 'uniqueItems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties']
+> >
+> > I can add it.
+> >
+> > The other option is to fix this in the clock schema. I'm not sure if
+> > there's a need for duplicate clock-names. Seems unlikely. I'll test
+> > that.
 > 
-> [0] https://lore.kernel.org/linux-amlogic/1568808746-1153-1-git-send-email-xingyu.chen@amlogic.com
-> [1] https://lore.kernel.org/linux-amlogic/1569227661-4261-1-git-send-email-xingyu.chen@amlogic.com
-> 
-> Xingyu Chen (3):
->   arm64: dts: meson: add reset controller for Meson-A1 SoC
->   dt-bindings: reset: add bindings for the Meson-A1 SoC Reset Controller
->   reset: add support for the Meson-A1 SoC Reset Controller
-> 
->  .../bindings/reset/amlogic,meson-reset.yaml        |  1 +
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  6 ++
->  drivers/reset/reset-meson.c                        | 35 ++++++++--
->  include/dt-bindings/reset/amlogic,meson-a1-reset.h | 74 ++++++++++++++++++++++
->  4 files changed, 109 insertions(+), 7 deletions(-)
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-reset.h
-> 
+> Actually, clock-names is already set to be unique. Did you see otherwise?
+
+Yeah, I duplicated on purpose "clkout1" and it was not reported as an
+error. That's why I added "uniqueItems".
+
+Best regards,
+Krzysztof
+
