@@ -2,87 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8631CFE08
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 17:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D218CFE31
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 17:56:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727228AbfJHPq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 11:46:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48860 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726057AbfJHPq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 11:46:58 -0400
-Received: from earth.universe (dyndsl-091-096-052-071.ewe-ip-backbone.de [91.96.52.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C6C80206BB;
-        Tue,  8 Oct 2019 15:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570549617;
-        bh=CCKM5NxU0D+08pBgavIwoxggvzm+mkLRmmZcCw9gThg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mMK31W8PTX1H5WWrL8jWlMLAGVFyA6oVsMfyu735fk7Obj0Fh87LFpiCzGG/By9gV
-         /xnMpA9iJhSpllQ13Kz5FkqzfKHHeN74qsLmFyfvYm+mZbXE4KGV4pGqTc/9zCYzqn
-         99YgAKlITzq7/2Wcsk1F6faw6j2nDHvg2RnO/W3M=
-Received: by earth.universe (Postfix, from userid 1000)
-        id 4E1413C0CA1; Tue,  8 Oct 2019 17:46:55 +0200 (CEST)
-Date:   Tue, 8 Oct 2019 17:46:55 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Tero Kristo <t-kristo@ti.com>
-Cc:     linux-omap@vger.kernel.org, ssantosh@kernel.org, tony@atomide.com,
-        s-anna@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, p.zabel@pengutronix.de
-Subject: Re: [PATCHv8 1/9] dt-bindings: omap: add new binding for PRM
- instances
-Message-ID: <20191008154655.u34wkbqgmelv3aea@earth.universe>
-References: <20191008125544.20679-1-t-kristo@ti.com>
- <20191008125544.20679-2-t-kristo@ti.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ctyqydaobcxcfjee"
-Content-Disposition: inline
-In-Reply-To: <20191008125544.20679-2-t-kristo@ti.com>
-User-Agent: NeoMutt/20180716
+        id S1725966AbfJHP4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 11:56:16 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:58901 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725939AbfJHP4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 11:56:16 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1iHrqK-0001K2-Nn; Tue, 08 Oct 2019 17:56:08 +0200
+Message-ID: <1570550166.18914.12.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Philipp Zabel <pza@pengutronix.de>
+Cc:     Dilip Kota <eswara.kota@linux.intel.com>,
+        "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
+        cheol.yong.kim@intel.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
+        robh@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>
+Date:   Tue, 08 Oct 2019 17:56:06 +0200
+In-Reply-To: <CAFBinCAEzBk7tT5M-F3H4kLnKURRkK2oSSAmKkrjAn7_wdAROA@mail.gmail.com>
+References: <34336c9a-8e87-8f84-2ae8-032b7967928f@linux.intel.com>
+         <CAFBinCDfM3ssHisMBKXZUFkfoAFw51TaUuKt_aBgtD-mN+9fhg@mail.gmail.com>
+         <657d796d-cb1b-472d-fe67-f7b9bf12fd79@linux.intel.com>
+         <CAFBinCA5sRp1-siqZqJzFL2nuD3BtjrbD65QtpWbnTgtPNXY1A@mail.gmail.com>
+         <cebd8f1d-90ab-87e7-9a34-f5c760688ce5@linux.intel.com>
+         <CAFBinCCXo50OX6=8Fz-=nRKuELU_fMOCX=z6iwAcw0_Tfgn1ug@mail.gmail.com>
+         <da347f1c-864c-7d68-33c8-045e46651f45@linux.intel.com>
+         <CAFBinCDhLYmiORvHdZJAN5cuUjc6eWJK5n9Qg26B0dEhhqUqVQ@mail.gmail.com>
+         <389f360a-a993-b9a8-4b50-ad87bcfec767@linux.intel.com>
+         <CAFBinCBwrTajCrSf-UqZY5gHqUSn0UTmbc_TLPNVZrPyY5jpOA@mail.gmail.com>
+         <20191003141955.zi5wqjqf4wa7lhv7@pengutronix.de>
+         <CAFBinCAEzBk7tT5M-F3H4kLnKURRkK2oSSAmKkrjAn7_wdAROA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Martin,
 
---ctyqydaobcxcfjee
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 2019-10-07 at 21:53 +0200, Martin Blumenstingl wrote:
+> Hi Philipp,
+> 
+> On Thu, Oct 3, 2019 at 4:19 PM Philipp Zabel <pza@pengutronix.de> wrote:
+> [...]
+> > > because the register layout was greatly simplified for the newer SoCs
+> > > (for which there is reset-intel) compared to the older ones
+> > > (reset-lantiq).
+> > > Dilip's suggestion (in my own words) is that you take his new
+> > > reset-intel driver, then we will work on porting reset-lantiq over to
+> > > that so in the end we can drop the reset-lantiq driver.
+> > 
+> > Just to be sure, you are suggesting to add support for the current
+> > lantiq,reset binding to the reset-intel driver at a later point? I
+> > see no reason not to do that, but I'm also not quite sure what the
+> > benefit will be over just keeping reset-lantiq as is?
+> 
+> according to Chuan and Dilip the current reset-lantiq implementation
+> is wrong [0].
 
-Hi,
+The only issue seems to be the .reset callback, which doesn't have any
+users anway.
 
-On Tue, Oct 08, 2019 at 03:55:36PM +0300, Tero Kristo wrote:
-> +Example:
-> +
-> +prm_dsp2: prm@1b00 {
-> +	compatible = "ti,omap-prm-inst", "ti,dra7-prm-inst";
+> my understanding is that the Lantiq and Intel LGM reset controllers
+> are identical except:
+> - the Lantiq variant uses a weird register layout (reset and status
+> registers not at consecutive offsets)
+> - the bits of the reset and status registers sometimes don't match on
+> the Lantiq variant
 
-Nit: compatible values are sorted the other way around (most
-specific first).
+Thank you, so these are a good explanation for why the DT bindings
+should be different.
 
--- Sebastian
+> - the Intel variant has a dedicated registers area for the reset
+> controller registers, while the Lantiq variant mixes them with various
+> other functionality (for example: USB2 PHYs)
 
---ctyqydaobcxcfjee
-Content-Type: application/pgp-signature; name="signature.asc"
+I'm not quite sure I understand why the intel driver is using syscon,
+then. Either way, it shouldn't make a big difference if regmap is used
+anyway. 
 
------BEGIN PGP SIGNATURE-----
+> > > This approach means more work for me (as I am probably the one who
+> > > then has to do the work to port reset-lantiq over to reset-intel).
+> > 
+> > More work than what alternative?
+> 
+> compared to "fixing" the existing reset-lantiq driver (reset callback)
 
-iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl2cr2gACgkQ2O7X88g7
-+pqWmxAAnbs6GjNR1+b2puQnzOpb3nsF6NWlckoiR/wBE5/utyC4v95yoB2Jm+sS
-c7GlleJA5DmF8E40TuOq3HL/z+dt5P/vWX9egt0um6TtHZ3Z7rMWuwvv5TK+3St8
-DF7ktlGqs2KG/E96LMf762P69CK2IccE7GUpY7N+MiFOZFuMJ7e+vUMyetuuSqeT
-1r/RxLgyNAbeM5X0l4mN95Tv6A+aeuBr0jpX+N97vsEXUtdJ+5aLrlFX+8zsc/rn
-LpexzXPaUDR5RgotC/+l9TxCAXwmHKJtPo0lLSsOWtctaD5MHYH/VkWAMCO3EGx8
-YhOTT2ZNnfsR51Nc0mee/LzhrHGVYrnh+V15riJilNypnY+2wIw+B91xbJoMBFx2
-PWLdwU+z67Cnc/+R/qaAYFNOQAfji1e+dAR5uAybReYzJGGRx+IOX/CInPuNZEdh
-YMbngcINMVVEd3PzdCHUsIUOoXTpoAl0PlLVvLcf9JMxkn+5+SD23Sk+oNEjreVD
-39Sb8bmrUG5C8DWBgddKpRE9dSbooLJhdkNApMUDdZwoluEDYeYlH2UDE+j7OkN6
-kTZXans1Iq0fkkq/w/V3AQO5Z8aP+FHIIg6j6Jy6zD3C9L7Lw4EdhWFBBPDFpWp/
-UGPs6TkWr0rre1fR657a3oKgv3OYwThEf3+bnTvbK7RiVQukc0Q=
-=qzjC
------END PGP SIGNATURE-----
+That is still something you could do, or just drop the .reset callback
+because there are no reset consumers using it anyway.
 
---ctyqydaobcxcfjee--
+One correct thing to do would be to identify those self-clearing reset
+bits and to disallow calling assert/deassert on them.
+
+> and then (instead of adding a new driver) integrating Intel LGM
+> support into reset-lantiq
+
+Since at this point I'm not even sure whether merging the two at all is
+better than keeping them separate, I have no opinion on whether merging
+intel support into the lantiq driver or the other way around is
+preferable.
+
+> > > I'm happy to do that work if you think that it's worth following this
+> > > approach.  So I want your opinion on this before I spend any effort on
+> > > porting reset-lantiq over to reset-intel.
+> > 
+> > Reset drivers are typically so simple, I'm not quite sure whether it is
+> > worth to integrate multiple drivers if it complicates matters too much.
+> > In this case though I expect it would just be adding support for a
+> > custom .of_xlate and lantiq specific register property parsing?
+> 
+> yes, that's how I understand the Lantiq and Intel reset controllers:
+> - reset/status/assert/deassert callbacks would be shared across all variants
+> - register parsing and of_xlate are SoC specific
+
+Ok. If that turns out to be less rather than more boilerplate than two
+separate drivers, that should be fine.
+
+regards
+Philipp
