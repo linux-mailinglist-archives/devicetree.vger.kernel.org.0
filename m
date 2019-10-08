@@ -2,86 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC56CFD33
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 17:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8631CFE08
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 17:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726138AbfJHPKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 11:10:34 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36468 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725989AbfJHPKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 11:10:33 -0400
-Received: by mail-wr1-f65.google.com with SMTP id y19so19868009wrd.3;
-        Tue, 08 Oct 2019 08:10:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jDr1BzlICCTlwhp3uNGJEPl314YzfcfD31Fib2fRNSo=;
-        b=fxrRLXHiFr9wcrSrK69zhEYSFeedRkodUXLrs8Mdsd9rpVEY2kgpk2ejmAw/e7rmgt
-         xptxfzSJ3cnZ+qQRsGc16l/NOy8dx2N5/tLvFAGCOqEUZ3ApVRgxixCZlTJ4//jj/UPf
-         LsKWfifF/8HrsB9OYukj+kJWFLNO27319nuP1QtlmAFs4C1/UFWKsKNShl4AFgtjHfc6
-         +kIK9YxqwjqsCHihiUKi+KL88Goqkljx/Urh0UbFQvoRisHpnqj+uDys63LST1/ah9F4
-         XUZVEdBXDAuytgkq14CvU9nikhppnqLv1oodvsk9oFMJTZyxGWBcSa3s+5UU7xI5EKcY
-         W2LA==
-X-Gm-Message-State: APjAAAWKgsBa4WPakrimhevEwSuh0IMCRgT+U7XUNeu6Qec40HqWm6aK
-        UPS1jVyDrRw2Ckbqec+Xa8QfimiI
-X-Google-Smtp-Source: APXvYqzX4ka2psn6HEE8SlAx19V028jaUxy26b9V7r9ws/He1WJtNpQAY+Uuwiz4uo5g6s4xsd7i9w==
-X-Received: by 2002:adf:ecc1:: with SMTP id s1mr19736353wro.223.1570547431457;
-        Tue, 08 Oct 2019 08:10:31 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id 90sm26487496wrr.1.2019.10.08.08.10.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2019 08:10:30 -0700 (PDT)
-Date:   Tue, 8 Oct 2019 17:10:28 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Kukjin Kim <kgene@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maciej Falkowski <m.falkowski@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: samsung: Force clkoutN names to be
- unique in PMU
-Message-ID: <20191008151028.GA2720@pi3>
-References: <20191004151414.8458-1-krzk@kernel.org>
- <CAL_JsqJDTcHu5oXG6zszGHCBhTE6EW94AANUjyMV78SkKcn5yA@mail.gmail.com>
- <20191008125038.GA2550@pi3>
- <CAL_Jsq+GcsUWN6kjBLkyr1rHGh6_4=w6JL6+k7DBXkBcvHcSBw@mail.gmail.com>
- <CAL_JsqKBzZCShxx99aB4z15XYNbUionVicmfNNXEfq=iohWLCA@mail.gmail.com>
- <20191008142900.GA2635@pi3>
- <CAL_Jsq+ObMD=inkMFqkZbKFoKZUxw53gUMnjsC1pU5GwumK8LQ@mail.gmail.com>
- <20191008150456.GA2683@pi3>
+        id S1727228AbfJHPq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 11:46:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48860 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726057AbfJHPq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 11:46:58 -0400
+Received: from earth.universe (dyndsl-091-096-052-071.ewe-ip-backbone.de [91.96.52.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C6C80206BB;
+        Tue,  8 Oct 2019 15:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570549617;
+        bh=CCKM5NxU0D+08pBgavIwoxggvzm+mkLRmmZcCw9gThg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mMK31W8PTX1H5WWrL8jWlMLAGVFyA6oVsMfyu735fk7Obj0Fh87LFpiCzGG/By9gV
+         /xnMpA9iJhSpllQ13Kz5FkqzfKHHeN74qsLmFyfvYm+mZbXE4KGV4pGqTc/9zCYzqn
+         99YgAKlITzq7/2Wcsk1F6faw6j2nDHvg2RnO/W3M=
+Received: by earth.universe (Postfix, from userid 1000)
+        id 4E1413C0CA1; Tue,  8 Oct 2019 17:46:55 +0200 (CEST)
+Date:   Tue, 8 Oct 2019 17:46:55 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     linux-omap@vger.kernel.org, ssantosh@kernel.org, tony@atomide.com,
+        s-anna@ti.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de
+Subject: Re: [PATCHv8 1/9] dt-bindings: omap: add new binding for PRM
+ instances
+Message-ID: <20191008154655.u34wkbqgmelv3aea@earth.universe>
+References: <20191008125544.20679-1-t-kristo@ti.com>
+ <20191008125544.20679-2-t-kristo@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ctyqydaobcxcfjee"
 Content-Disposition: inline
-In-Reply-To: <20191008150456.GA2683@pi3>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20191008125544.20679-2-t-kristo@ti.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 08, 2019 at 05:04:56PM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Oct 08, 2019 at 09:38:15AM -0500, Rob Herring wrote:
-> > Are you running using DT_SCHEMA_FILES? If so, you won't get the core schema.
-> 
-> Ah, yes, now I see proper errors. Thanks for pointing this.
-> 
-> I'll send next version of this patch only (if others are ok).
-> 
 
-Of course, there will be no v2, this patch can be just skipped.
+--ctyqydaobcxcfjee
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+Hi,
 
+On Tue, Oct 08, 2019 at 03:55:36PM +0300, Tero Kristo wrote:
+> +Example:
+> +
+> +prm_dsp2: prm@1b00 {
+> +	compatible = "ti,omap-prm-inst", "ti,dra7-prm-inst";
+
+Nit: compatible values are sorted the other way around (most
+specific first).
+
+-- Sebastian
+
+--ctyqydaobcxcfjee
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl2cr2gACgkQ2O7X88g7
++pqWmxAAnbs6GjNR1+b2puQnzOpb3nsF6NWlckoiR/wBE5/utyC4v95yoB2Jm+sS
+c7GlleJA5DmF8E40TuOq3HL/z+dt5P/vWX9egt0um6TtHZ3Z7rMWuwvv5TK+3St8
+DF7ktlGqs2KG/E96LMf762P69CK2IccE7GUpY7N+MiFOZFuMJ7e+vUMyetuuSqeT
+1r/RxLgyNAbeM5X0l4mN95Tv6A+aeuBr0jpX+N97vsEXUtdJ+5aLrlFX+8zsc/rn
+LpexzXPaUDR5RgotC/+l9TxCAXwmHKJtPo0lLSsOWtctaD5MHYH/VkWAMCO3EGx8
+YhOTT2ZNnfsR51Nc0mee/LzhrHGVYrnh+V15riJilNypnY+2wIw+B91xbJoMBFx2
+PWLdwU+z67Cnc/+R/qaAYFNOQAfji1e+dAR5uAybReYzJGGRx+IOX/CInPuNZEdh
+YMbngcINMVVEd3PzdCHUsIUOoXTpoAl0PlLVvLcf9JMxkn+5+SD23Sk+oNEjreVD
+39Sb8bmrUG5C8DWBgddKpRE9dSbooLJhdkNApMUDdZwoluEDYeYlH2UDE+j7OkN6
+kTZXans1Iq0fkkq/w/V3AQO5Z8aP+FHIIg6j6Jy6zD3C9L7Lw4EdhWFBBPDFpWp/
+UGPs6TkWr0rre1fR657a3oKgv3OYwThEf3+bnTvbK7RiVQukc0Q=
+=qzjC
+-----END PGP SIGNATURE-----
+
+--ctyqydaobcxcfjee--
