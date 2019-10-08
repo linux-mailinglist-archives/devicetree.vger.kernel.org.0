@@ -2,170 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F371DCFA1E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FCD0CFA21
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:40:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730889AbfJHMkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:40:02 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:37535 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730317AbfJHMkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:40:02 -0400
-Received: by mail-qt1-f195.google.com with SMTP id e15so10144476qtr.4;
-        Tue, 08 Oct 2019 05:40:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0jJTLY2axsts6GZT3PA6D788BPaMX3GUaWV0Vzd1RXM=;
-        b=fydorapLglYueHDm9H8p4AT688wrHVmN/5BLYTckwzJV/hAERlr6H3K4qoiKBtFGyo
-         Qqsz931IkrwgOJzNNIHLJ4B3AVscmOsqqQrfmBYgtSP2tKBChMznGpsmEugFmEbcT5KX
-         SkpxY/1+OmNS7lpVyQHn1fjYhxCoKBBR8JLvo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0jJTLY2axsts6GZT3PA6D788BPaMX3GUaWV0Vzd1RXM=;
-        b=KPMBd+qnb284ewzbUtuHS8Dhf5l2uVNcA7//wAaXNETb2nxO+RpcBMvv/NqRapgrJf
-         YUWJRB1zJ1IfH6/4xN9UVCLEUwbYIxyn/PJQk+4Cv26GUCBjFd5KKN50nGR7R/VnJZKp
-         emgwTGAP7XNES/4O8jgiBxnOn5+GeLXkUee3YOn4gB8+sh/AdrCZ/AJHtpiafa0VAJuC
-         HNPlsyETYXWS96SmzVVLagznaAocD43rUlA114J4R2B1bKW8ZH0oyVwjaIUlc4lfWMG5
-         vXe2Ca6fFHmON93YV4aqy4TgMhm3jQ4V4PKjorgFV9myvO0s/+AFm/L9E0wP30ZbinVs
-         A+eQ==
-X-Gm-Message-State: APjAAAUxHebDwhPhcm2Uk+f5LAtjdGjhVko0B2pphs6qm5HGO2dos7XO
-        cVgMQYddFkIVBXrqG+PdH6KtXoBeDb+U3QXPRTU=
-X-Google-Smtp-Source: APXvYqyIRMp1F0ik7vkJep0KVirm5HNPl0oLZUOXJNQc+afvhAryjXpJ1n7wrnxW5Q1z+DRlElhn/MKulVSC3i9vSX0=
-X-Received: by 2002:ac8:2e94:: with SMTP id h20mr36037220qta.234.1570538400593;
- Tue, 08 Oct 2019 05:40:00 -0700 (PDT)
+        id S1730674AbfJHMkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:40:25 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:35144 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730648AbfJHMkY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 08:40:24 -0400
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 081E977FDFF399703373;
+        Tue,  8 Oct 2019 20:40:23 +0800 (CST)
+Received: from localhost (10.202.226.61) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Tue, 8 Oct 2019
+ 20:40:18 +0800
+Date:   Tue, 8 Oct 2019 13:40:01 +0100
+From:   Jonathan Cameron <jonathan.cameron@huawei.com>
+To:     Phil Reid <preid@electromag.com.au>
+CC:     Jonathan Cameron <jic23@kernel.org>, <knaack.h@gmx.de>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <michal.simek@xilinx.com>
+Subject: Re: [PATCH v2 2/2] iio: core: Add optional symbolic label to device
+ attributes
+Message-ID: <20191008134001.00005f40@huawei.com>
+In-Reply-To: <34a7ab42-1e07-8c20-11ab-8e2a9dd2e74b@electromag.com.au>
+References: <1568903768-65998-1-git-send-email-preid@electromag.com.au>
+        <1568903768-65998-3-git-send-email-preid@electromag.com.au>
+        <20191005155905.7fe1681e@archlinux>
+        <20191007213244.2ed85c99@archlinux>
+        <34a7ab42-1e07-8c20-11ab-8e2a9dd2e74b@electromag.com.au>
+Organization: Huawei
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <20191008113553.13662-1-andrew@aj.id.au> <20191008113553.13662-3-andrew@aj.id.au>
-In-Reply-To: <20191008113553.13662-3-andrew@aj.id.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 8 Oct 2019 12:39:49 +0000
-Message-ID: <CACPK8XfSrKym55eQ91Lhf3wXtzCD5AH7P8t19jow2K-5JRb0ZA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] clk: ast2600: Add RMII RCLK gates for all four MACs
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.61]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Oct 2019 at 11:35, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> RCLK is a fixed 50MHz clock derived from HPLL/HCLK that is described by a
-> single gate for each MAC.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+On Tue, 8 Oct 2019 15:06:44 +0800
+Phil Reid <preid@electromag.com.au> wrote:
 
-We could have mac12rclk and mac34rclk described in the device tree, as
-was mentioned in previous reviews of the aspeed driver, but I think we
-can defer that
-rework until we rework the rest of the driver. Importantly, that won't
-change the MAC bindings or the code that the drivers need to use.
+> On 8/10/2019 04:32, Jonathan Cameron wrote:
+> > On Sat, 5 Oct 2019 15:59:05 +0100
+> > Jonathan Cameron <jic23@kernel.org> wrote:
+> >   
+> >> On Thu, 19 Sep 2019 22:36:08 +0800
+> >> Phil Reid <preid@electromag.com.au> wrote:
+> >>  
+> >>> If a label is defined in the device tree for this device add that
+> >>> to the device specific attributes. This is useful for userspace to
+> >>> be able to identify an individual device when multiple identical
+> >>> chips are present in the system.
+> >>>
+> >>> Tested-by: Michal Simek <michal.simek@xilinx.com>
+> >>> Signed-off-by: Phil Reid <preid@electromag.com.au>  
+> >>
+> >> Glad to see this going in given I thought I'd already applied it
+> >> and told someone they should be using it early today (oops ;)
+> >>
+> >> Applied to the togreg branch of iio.git and pushed out as testing
+> >> for the autobuilders to play with it.  
+> > 
+> > 0-day picked up that there were no docs for this new field.
+> > I've added some and re pushed out.  
+> 
+> Thanks.
+> Just for my info what should I be doing to check for that.
+> Don't remember getting any warnings for that.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+./scripts/kernel-doc htmldocs
+
+or similar
+
+https://www.kernel.org/doc/Documentation/kernel-doc-nano-HOWTO.txt
+includes how to test individual files.
+
+Thanks,
+
+Jonathan
+
+> 
+> 
+> > 
+> > Thanks,
+> > 
+> > Jonathan
+> >   
+> >>
+> >> Thanks for doing this.
+> >>
+> >> Jonathan
+> >>  
+> >>> ---
+> >>>   drivers/iio/industrialio-core.c | 17 +++++++++++++++++
+> >>>   include/linux/iio/iio.h         |  1 +
+> >>>   2 files changed, 18 insertions(+)
+> >>>
+> >>> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+> >>> index 524a686077ca..f72c2dc5f703 100644
+> >>> --- a/drivers/iio/industrialio-core.c
+> >>> +++ b/drivers/iio/industrialio-core.c
+> >>> @@ -1238,6 +1238,16 @@ static ssize_t iio_show_dev_name(struct device *dev,
+> >>>   
+> >>>   static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
+> >>>   
+> >>> +static ssize_t iio_show_dev_label(struct device *dev,
+> >>> +				 struct device_attribute *attr,
+> >>> +				 char *buf)
+> >>> +{
+> >>> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> >>> +	return snprintf(buf, PAGE_SIZE, "%s\n", indio_dev->label);
+> >>> +}
+> >>> +
+> >>> +static DEVICE_ATTR(label, S_IRUGO, iio_show_dev_label, NULL);
+> >>> +
+> >>>   static ssize_t iio_show_timestamp_clock(struct device *dev,
+> >>>   					struct device_attribute *attr,
+> >>>   					char *buf)
+> >>> @@ -1354,6 +1364,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
+> >>>   
+> >>>   	if (indio_dev->name)
+> >>>   		attrcount++;
+> >>> +	if (indio_dev->label)
+> >>> +		attrcount++;
+> >>>   	if (clk)
+> >>>   		attrcount++;
+> >>>   
+> >>> @@ -1376,6 +1388,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
+> >>>   		indio_dev->chan_attr_group.attrs[attrn++] = &p->dev_attr.attr;
+> >>>   	if (indio_dev->name)
+> >>>   		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_name.attr;
+> >>> +	if (indio_dev->label)
+> >>> +		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_label.attr;
+> >>>   	if (clk)
+> >>>   		indio_dev->chan_attr_group.attrs[attrn++] = clk;
+> >>>   
+> >>> @@ -1647,6 +1661,9 @@ int __iio_device_register(struct iio_dev *indio_dev, struct module *this_mod)
+> >>>   	if (!indio_dev->dev.of_node && indio_dev->dev.parent)
+> >>>   		indio_dev->dev.of_node = indio_dev->dev.parent->of_node;
+> >>>   
+> >>> +	indio_dev->label = of_get_property(indio_dev->dev.of_node, "label",
+> >>> +					   NULL);
+> >>> +
+> >>>   	ret = iio_check_unique_scan_index(indio_dev);
+> >>>   	if (ret < 0)
+> >>>   		return ret;
+> >>> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
+> >>> index 8e132cf819e4..a2527c7ab934 100644
+> >>> --- a/include/linux/iio/iio.h
+> >>> +++ b/include/linux/iio/iio.h
+> >>> @@ -553,6 +553,7 @@ struct iio_dev {
+> >>>   	struct list_head		channel_attr_list;
+> >>>   	struct attribute_group		chan_attr_group;
+> >>>   	const char			*name;
+> >>> +	const char			*label;
+> >>>   	const struct iio_info		*info;
+> >>>   	clockid_t			clock_id;
+> >>>   	struct mutex			info_exist_lock;  
+> >>  
+> > 
+> > 
+> >   
+> 
+> 
 
 
-> ---
->  drivers/clk/clk-ast2600.c | 47 ++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 46 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
-> index 1c1bb39bb04e..3d6fc781fee0 100644
-> --- a/drivers/clk/clk-ast2600.c
-> +++ b/drivers/clk/clk-ast2600.c
-> @@ -15,7 +15,7 @@
->
->  #include "clk-aspeed.h"
->
-> -#define ASPEED_G6_NUM_CLKS             67
-> +#define ASPEED_G6_NUM_CLKS             71
->
->  #define ASPEED_G6_SILICON_REV          0x004
->
-> @@ -40,6 +40,9 @@
->
->  #define ASPEED_G6_STRAP1               0x500
->
-> +#define ASPEED_MAC12_CLK_DLY           0x340
-> +#define ASPEED_MAC34_CLK_DLY           0x350
-> +
->  /* Globally visible clocks */
->  static DEFINE_SPINLOCK(aspeed_g6_clk_lock);
->
-> @@ -485,6 +488,11 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
->                 return PTR_ERR(hw);
->         aspeed_g6_clk_data->hws[ASPEED_CLK_SDIO] = hw;
->
-> +       /* MAC1/2 RMII 50MHz RCLK */
-> +       hw = clk_hw_register_fixed_rate(dev, "mac12rclk", "hpll", 0, 50000000);
-> +       if (IS_ERR(hw))
-> +               return PTR_ERR(hw);
-> +
->         /* MAC1/2 AHB bus clock divider */
->         hw = clk_hw_register_divider_table(dev, "mac12", "hpll", 0,
->                         scu_g6_base + ASPEED_G6_CLK_SELECTION1, 16, 3, 0,
-> @@ -494,6 +502,27 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
->                 return PTR_ERR(hw);
->         aspeed_g6_clk_data->hws[ASPEED_CLK_MAC12] = hw;
->
-> +       /* RMII1 50MHz (RCLK) output enable */
-> +       hw = clk_hw_register_gate(dev, "mac1rclk-gate", "mac12rclk", 0,
-> +                       scu_g6_base + ASPEED_MAC12_CLK_DLY, 29, 0,
-> +                       &aspeed_g6_clk_lock);
-> +       if (IS_ERR(hw))
-> +               return PTR_ERR(hw);
-> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC1RCLK] = hw;
-> +
-> +       /* RMII2 50MHz (RCLK) output enable */
-> +       hw = clk_hw_register_gate(dev, "mac2rclk-gate", "mac12rclk", 0,
-> +                       scu_g6_base + ASPEED_MAC12_CLK_DLY, 30, 0,
-> +                       &aspeed_g6_clk_lock);
-> +       if (IS_ERR(hw))
-> +               return PTR_ERR(hw);
-> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC2RCLK] = hw;
-> +
-> +       /* MAC1/2 RMII 50MHz RCLK */
-> +       hw = clk_hw_register_fixed_rate(dev, "mac34rclk", "hclk", 0, 50000000);
-> +       if (IS_ERR(hw))
-> +               return PTR_ERR(hw);
-> +
->         /* MAC3/4 AHB bus clock divider */
->         hw = clk_hw_register_divider_table(dev, "mac34", "hpll", 0,
->                         scu_g6_base + 0x310, 24, 3, 0,
-> @@ -503,6 +532,22 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
->                 return PTR_ERR(hw);
->         aspeed_g6_clk_data->hws[ASPEED_CLK_MAC34] = hw;
->
-> +       /* RMII3 50MHz (RCLK) output enable */
-> +       hw = clk_hw_register_gate(dev, "mac3rclk-gate", "mac34rclk", 0,
-> +                       scu_g6_base + ASPEED_MAC34_CLK_DLY, 29, 0,
-> +                       &aspeed_g6_clk_lock);
-> +       if (IS_ERR(hw))
-> +               return PTR_ERR(hw);
-> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC3RCLK] = hw;
-> +
-> +       /* RMII4 50MHz (RCLK) output enable */
-> +       hw = clk_hw_register_gate(dev, "mac4rclk-gate", "mac34rclk", 0,
-> +                       scu_g6_base + ASPEED_MAC34_CLK_DLY, 30, 0,
-> +                       &aspeed_g6_clk_lock);
-> +       if (IS_ERR(hw))
-> +               return PTR_ERR(hw);
-> +       aspeed_g6_clk_data->hws[ASPEED_CLK_GATE_MAC4RCLK] = hw;
-> +
->         /* LPC Host (LHCLK) clock divider */
->         hw = clk_hw_register_divider_table(dev, "lhclk", "hpll", 0,
->                         scu_g6_base + ASPEED_G6_CLK_SELECTION1, 20, 3, 0,
-> --
-> 2.20.1
->
