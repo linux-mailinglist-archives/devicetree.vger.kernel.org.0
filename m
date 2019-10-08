@@ -2,169 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C9B2CF427
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 09:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CB2DCF470
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 10:03:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730384AbfJHHq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 03:46:27 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:38926 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730317AbfJHHq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 03:46:27 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 27B0F60DB4; Tue,  8 Oct 2019 07:46:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570520786;
-        bh=A9BCbGOjmqwtj2L/5i06hDZ7sKrRR5cdNSR1GYqDj+A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bfF5cj/844sFOGVt8M1OvDqMwJ6mH5Br0BmI/rCqcKx27811YscFHMP1tIkSQjZV+
-         U9CQV4r2GuQRxsNtcQGg9Vvr3LPprrQhysD5nPE0khDwf7g5Gy8Eijr0ad8mECGVyQ
-         tnJeLm5kO6VGXE/FGzST/lm92y8r1oMdz/SGOxYk=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jackp@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8119A60ACA;
-        Tue,  8 Oct 2019 07:46:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570520784;
-        bh=A9BCbGOjmqwtj2L/5i06hDZ7sKrRR5cdNSR1GYqDj+A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jaRU91A6W5PBtoTpOxLpLhSr/jD2aG1HwXJeG6yawVLR7KbU8CpKE3nw8ml8aXbvy
-         ObU/LNST9pgiymszgaUUuuNXS8iPTkJukM9WuNzfsTvI7LkZLfoOxfe0olwYHC/1Hf
-         5dklUZwKpimwZNzl6/xsFfm8HfyNTmi0e8PgdUs0=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8119A60ACA
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jackp@codeaurora.org
-Date:   Tue, 8 Oct 2019 00:46:20 -0700
-From:   Jack Pham <jackp@codeaurora.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v2 3/3] phy: qcom-qmp: Add SM8150 QMP UFS PHY support
-Message-ID: <20191008074619.GA20801@jackp-linux.qualcomm.com>
-References: <20190906051017.26846-1-vkoul@kernel.org>
- <20190906051017.26846-4-vkoul@kernel.org>
+        id S1730177AbfJHIDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 04:03:08 -0400
+Received: from mail-eopbgr10041.outbound.protection.outlook.com ([40.107.1.41]:57822
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730292AbfJHIDI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 04:03:08 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DfU3TYqOQerT96HzMNqHhjwx8uaLbL9AZCdB+rS3tsOxxzSIukfQV6l5axWId4c8GozRX7Xn+YtlqXQJHkdOEs04vYq4GUlmm8ljLSONrm9bKLHvkyvOqPH5NUGRMzZTiqFRQB2n98edR8SCXI+z80llnUqz8pQEwyj86ZGo78Era5qKYQLUZVyX3NUyptMtUsaqQjvmWg5HufUo10im2kw0i24dkPP1Ix/YSqbJ5TFjFxuLwyEJNfRK8MI75Ep1I0H43H9XL7CQ4x1Hb25Td8Qfewl23MnwXM1H3I7s6dxcn2oMcgSRFXy2DFpPNzdnsC3rW+7vdW9tLOeRsO2ojA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RRo3weKAFtLSQt+P42bIgdQNb3VBZviNHuq0Z0Sm7qc=;
+ b=h8G/yruB6NvRG8kD9NJiYblC80DVi7iaY1JWfefgJjhhe0TJ4u1ccncamuPgD0lOg6gwL6AafXZ0hcC0vr1Fw8JpYJ30mrOkoQoQhtm9EqVjEPZIrT7ni9oWReChHgeC45UCRl8JyqeeM5Ihe2Nc+SuO8+sMeFMEDzRYK1D73XngzNgJ53WZfRKlrN2ldFgiLgxYxT47o7/ThTcaKwa1Q1XeJT+URDK96osycXNWxWCyuk0OQeIksPjp76MPblU6LxfAS/69PPUCZPE56/sINnR8ICHghXexqEZDUNi8ItqfqVXYhVNrYavj04/wQWXtfAt+a0N9E+3UeOCwk7WkVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RRo3weKAFtLSQt+P42bIgdQNb3VBZviNHuq0Z0Sm7qc=;
+ b=fen4Ef6sLW5/SdEbe0x254dR+kXLIVtQm0O6kD5bZhk9Ey4leNYQM6kBfAPAltoCaiw8ecoEfPGjp7dDEZf68/jjTZLrPqZ6eCcE0vAOgL8HNAQ8h7XCxV5LVkWVYVcffREgHu3Syv2ztD/iFq4OtTwB8S+zFawQLC8YQyuge38=
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
+ AM5PR04MB3172.eurprd04.prod.outlook.com (10.173.255.29) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.24; Tue, 8 Oct 2019 08:03:03 +0000
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::5dd3:ddc9:411a:db41]) by AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::5dd3:ddc9:411a:db41%3]) with mapi id 15.20.2305.023; Tue, 8 Oct 2019
+ 08:03:03 +0000
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH] arm64: dts: ls1028a: Add FlexSPI support for NXP LS1028
+Thread-Topic: [PATCH] arm64: dts: ls1028a: Add FlexSPI support for NXP LS1028
+Thread-Index: AQHVZ9I6hwN2dwKzuUSu4vhTVq3sTqdNGlOAgANzb1A=
+Date:   Tue, 8 Oct 2019 08:03:03 +0000
+Message-ID: <AM5PR04MB32996FD54858CCF141CBC218F59A0@AM5PR04MB3299.eurprd04.prod.outlook.com>
+References: <1568118055-9740-1-git-send-email-Ashish.Kumar@nxp.com>
+ <20191006032019.GP7150@dragon>
+In-Reply-To: <20191006032019.GP7150@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=xiaowei.bao@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fce96dfa-4c94-4265-3102-08d74bc5f1cd
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: AM5PR04MB3172:|AM5PR04MB3172:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM5PR04MB3172D397F69BBB5516FB39A0F59A0@AM5PR04MB3172.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2399;
+x-forefront-prvs: 01842C458A
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(366004)(136003)(39860400002)(376002)(346002)(199004)(189003)(13464003)(229853002)(476003)(26005)(110136005)(6246003)(5660300002)(11346002)(446003)(9686003)(54906003)(86362001)(8936002)(44832011)(316002)(33656002)(52536014)(6436002)(486006)(186003)(14444005)(55016002)(256004)(4326008)(6636002)(14454004)(478600001)(3846002)(66946007)(2906002)(66066001)(25786009)(6116002)(7696005)(6506007)(8676002)(7736002)(53546011)(71190400001)(102836004)(71200400001)(305945005)(76176011)(66446008)(64756008)(66556008)(66476007)(81156014)(99286004)(81166006)(74316002)(76116006);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3172;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jArEVe9jLW1czsWRYR2JU9BaCcxAyOvFYKUhE8IvpqzwMVg9LBiCbideo9r/m9yUtkjAOTbF2ydUjMjMrBV9wVXIe3riuJx5xYjHI5oATNdXuTQjtbWrwL1lv0h4G5zm2zMgIIB/fYViDaBahkPTeVDQc2qu8e2J3dveaXG4OE/0crMCe6ebEZ/8NXKMH0vaWw/odJpS09tz4H5VCd8ra0jenFw4YzdrZg5gYVxCL0t79kRlwvdzZk5gIz+qZljM7BlotfG2Sdze4V73UPzWYvq2GjtXbHMKZm9ol9tmvyoTWYf8cTACmTk+XMcHa21QIY41egYIzFFKrMCayMBGAJSO4CuvCVdganjPhkekPbcS22EupODwi3daHq85WovK/bIfA7HKgnbE6cR3Bv9U8nDUAAt0jyWqIyzG09tgHlc=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190906051017.26846-4-vkoul@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fce96dfa-4c94-4265-3102-08d74bc5f1cd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2019 08:03:03.2162
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DZzGeLU0UshcbPstQ1TrRsk9fK2OvOcaE/f5MagoqeOv1W6TEP74jjgCvdtCmuZzlOqLDPJ90abL6uKOQ71eiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3172
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
-
-On Fri, Sep 06, 2019 at 10:40:17AM +0530, Vinod Koul wrote:
-> SM8150 UFS PHY is v4 of QMP phy. Add support for V4 QMP phy register
-> defines and support for SM8150 QMP UFS PHY.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp.c | 125 ++++++++++++++++++++++++++++
->  drivers/phy/qualcomm/phy-qcom-qmp.h |  96 +++++++++++++++++++++
->  2 files changed, 221 insertions(+)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> index 34ff6434da8f..92d3048f2b36 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> @@ -164,6 +164,11 @@ static const unsigned int sdm845_ufsphy_regs_layout[] = {
->  	[QPHY_PCS_READY_STATUS]		= 0x160,
->  };
->  
-> +static const unsigned int sm8150_ufsphy_regs_layout[] = {
-> +	[QPHY_START_CTRL]		= 0x00,
-> +	[QPHY_PCS_READY_STATUS]		= 0x180,
-> +};
-> +
->  static const struct qmp_phy_init_tbl msm8996_pcie_serdes_tbl[] = {
->  	QMP_PHY_INIT_CFG(QSERDES_COM_BIAS_EN_CLKBUFLR_EN, 0x1c),
->  	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_ENABLE1, 0x10),
-> @@ -878,6 +883,93 @@ static const struct qmp_phy_init_tbl msm8998_usb3_pcs_tbl[] = {
->  	QMP_PHY_INIT_CFG(QPHY_V3_PCS_RXEQTRAINING_RUN_TIME, 0x13),
->  };
->  
-> +static const struct qmp_phy_init_tbl sm8150_ufsphy_serdes_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QPHY_POWER_DOWN_CONTROL, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_V4_SYSCLK_EN_SEL, 0xd9),
-
-QSERDES_V4_COM? See below.
-
-<snip>
-
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-> index 335ea5d7ef40..0eefd8621669 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-> @@ -313,4 +313,100 @@
->  #define QPHY_V3_PCS_MISC_OSC_DTCT_MODE2_CONFIG4		0x5c
->  #define QPHY_V3_PCS_MISC_OSC_DTCT_MODE2_CONFIG5		0x60
->  
-> +/* Only for QMP V4 PHY - QSERDES COM registers */
-> +#define QSERDES_COM_V4_SYSCLK_EN_SEL			0x094
-
-Should these rather be prefixed as QSERDES_V4_COM? There are already
-QSERDES_V3_COM_* in this header so the convention appears to be
-Q{SERDES,PHY}_VX_{COM,TX,RX,PCS}.
-
-> +#define QSERDES_COM_V4_HSCLK_SEL			0x158
-> +#define QSERDES_COM_V4_HSCLK_HS_SWITCH_SEL		0x15C
-> +#define QSERDES_COM_V4_LOCK_CMP_EN			0x0A4
-> +#define QSERDES_COM_V4_VCO_TUNE_MAP			0x10C
-
-Nit: sort in ascending offset order, and make the hex values lowercase?
-
-<snip>
-
-> +/* Only for QMP V4 PHY - PCS registers */
-> +#define QPHY_V4_PHY_START				0x000
-> +#define QPHY_V4_POWER_DOWN_CONTROL			0x004
-> +#define QPHY_V4_SW_RESET				0x008
-> +#define QPHY_V4_PCS_READY_STATUS			0x180
-> +#define QPHY_V4_LINECFG_DISABLE				0x148
-> +#define QPHY_V4_MULTI_LANE_CTRL1			0x1E0
-> +#define QPHY_V4_RX_SIGDET_CTRL2				0x158
-> +#define QPHY_V4_TX_LARGE_AMP_DRV_LVL			0x030
-> +#define QPHY_V4_TX_SMALL_AMP_DRV_LVL			0x038
-> +#define QPHY_V4_TX_MID_TERM_CTRL1			0x1D8
-> +#define QPHY_V4_DEBUG_BUS_CLKSEL			0x124
-> +#define QPHY_V4_PLL_CNTL				0x02C
-> +#define QPHY_V4_TIMER_20US_CORECLK_STEPS_MSB		0x00C
-> +#define QPHY_V4_TIMER_20US_CORECLK_STEPS_LSB		0x010
-> +#define QPHY_V4_TX_PWM_GEAR_BAND			0x160
-> +#define QPHY_V4_TX_HS_GEAR_BAND				0x168
-> +#define QPHY_V4_TX_HSGEAR_CAPABILITY			0x074
-> +#define QPHY_V4_RX_HSGEAR_CAPABILITY			0x0B4
-> +#define QPHY_V4_RX_MIN_HIBERN8_TIME			0x150
-> +#define QPHY_V4_BIST_FIXED_PAT_CTRL			0x060
-
-Interesting. These offsets appear to be valid only for the UFS instance
-of the QMP PHY. For PCIe and USB the PCS layout is completely different.
-Wonder if we need to add _UFS_ to  the prefix to differentiate them? Or
-can this be deferred to when PCIe/USB PHY driver support for SM8150 gets
-added?
-
-I was thinking of taking a stab at USB if I get time, not sure if that's
-already on your or somebody's (Bjorn?) radar.
-
-Thanks
-Jack
--- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU2hhd24gR3VvIDxzaGF3
+bmd1b0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDE5xOoxMNTCNsjVIDExOjIwDQo+IFRvOiBBc2hp
+c2ggS3VtYXIgPGFzaGlzaC5rdW1hckBueHAuY29tPg0KPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtl
+cm5lbC5vcmc7IHJvYmhAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207DQo+IGxpbnV4
+LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVs
+Lm9yZzsgWGlhb3dlaQ0KPiBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQo+IFN1YmplY3Q6IFJl
+OiBbUEFUQ0hdIGFybTY0OiBkdHM6IGxzMTAyOGE6IEFkZCBGbGV4U1BJIHN1cHBvcnQgZm9yIE5Y
+UCBMUzEwMjgNCj4gDQo+IE9uIFR1ZSwgU2VwIDEwLCAyMDE5IGF0IDA1OjUwOjUxUE0gKzA1MzAs
+IEFzaGlzaCBLdW1hciB3cm90ZToNCj4gPiBBZGQgZnNwaSBub2RlIHByb3BlcnR5IGZvciBMUzEw
+MjhBIFNvQyBmb3IgRmxleFNQSSBkcml2ZXIuDQo+ID4gUHJvcGVydHkgYWRkZWQgZm9yIEZsZXhT
+UEkgY29udHJvbGxlciBhbmQgZm9yIHRoZSBjb25uZWN0ZWQgc2xhdmUNCj4gPiBkZXZpY2UgZm9y
+IHRoZSBMUzEwMjhBUkRCIGFuZCBMUzEwMjhBUURTIHRhcmdldC4NCj4gPiBSREIgYW5kIFFEUyBp
+cyBoYXZpbmcgb25lIFNQSS1OT1IgZmxhc2ggZGV2aWNlLCBtdDM1eHUwMmcgY29ubmVjdGVkIGF0
+DQo+ID4gQ1MwLg0KPiA+IFRoaXMgZmxhc2ggZGV2aWNlICJtdDM1eHUwMmciIGlzIHRlc3RlZCBm
+b3Igb2N0YWwgcmVhZA0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWGlhb3dlaSBCYW8gPHhpYW93
+ZWkuYmFvQG54cC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogQXNoaXNoIEt1bWFyIDxBc2hpc2gu
+S3VtYXJAbnhwLmNvbT4NCj4gDQo+IFdoZW4geW91IHNlbmQgYSBwYXRjaCBzZXJpZXMsIHRoZSBw
+YXRjaGVzIHNob3VsZCBiZSBudW1iZXJlZCBwcm9wZXJseSBhbmQNCj4gcHJlZmVyYWJseSB3aXRo
+IGEgY292ZXItbGV0dGVyLg0KDQpHb3QgaXQsIHRoYW5rcy4NCg0KVGhhbmtzDQpYaWFvd2VpDQoN
+Cj4gDQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEw
+MjhhLXFkcy5kdHMgfCAxNQ0KPiA+ICsrKysrKysrKysrKysrKyAgYXJjaC9hcm02NC9ib290L2R0
+cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cyB8DQo+IDE1ICsrKysrKysrKysrKysrKw0K
+PiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpICAgIHwg
+MTMgKysrKysrKysrKysrKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDQzIGluc2VydGlvbnMoKykN
+Cj4gPg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wt
+bHMxMDI4YS1xZHMuZHRzDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wt
+bHMxMDI4YS1xZHMuZHRzDQo+ID4gaW5kZXggNWUxNGU1YS4uNWQ0Njk5MyAxMDA2NDQNCj4gPiAt
+LS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQo+
+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcWRzLmR0
+cw0KPiA+IEBAIC0xMDMsNiArMTAzLDIxIEBADQo+ID4gIAlzdGF0dXMgPSAib2theSI7DQo+ID4g
+IH07DQo+ID4NCj4gPiArJmZzcGkgew0KPiA+ICsJc3RhdHVzID0gIm9rYXkiOw0KPiANCj4gSGF2
+ZSBhIG5ld2xpbmUgYmV0d2VlbiBwcm9wZXJ0aWVzIGFuZCBjaGlsZCBub2RlLi4NCj4gDQo+ID4g
+KwlmbGFzaDA6IG10MzV4dTAyZ0AwIHsNCj4gDQo+IFVzZSBhIGdlbmVyaWMgbm9kZSBuYW1lIGFu
+ZCBzcGVjaWZpYyBsYWJlbCBuYW1lLg0KPiANCj4gPiArCQljb21wYXRpYmxlID0gIm1pY3Jvbixt
+dDM1eHUwMmciLCAiamVkZWMsc3BpLW5vciI7DQo+IA0KPiAibWljcm9uLG10MzV4dTAyZyIgaXMg
+dW5kb2N1bWVudGVkLg0KPiANCj4gU2hhd24NCj4gDQo+ID4gKwkJI2FkZHJlc3MtY2VsbHMgPSA8
+MT47DQo+ID4gKwkJI3NpemUtY2VsbHMgPSA8MT47DQo+ID4gKwkJbTI1cCxmYXN0LXJlYWQ7DQo+
+ID4gKwkJc3BpLW1heC1mcmVxdWVuY3kgPSA8NTAwMDAwMDA+Ow0KPiA+ICsJCXJlZyA9IDwwPjsN
+Cj4gPiArCQkvKiBUaGUgZm9sbG93aW5nIHNldHRpbmcgZW5hYmxlcyAxLTEtOCAoQ01ELUFERFIt
+REFUQSkgbW9kZSAqLw0KPiA+ICsJCXNwaS1yeC1idXMtd2lkdGggPSA8OD47IC8qIDggU1BJIFJ4
+IGxpbmVzICovDQo+ID4gKwkJc3BpLXR4LWJ1cy13aWR0aCA9IDwxPjsgLyogMSBTUEkgVHggbGlu
+ZSAqLw0KPiA+ICsJfTsNCj4gPiArfTsNCj4gPiArDQo+ID4gICZpMmMwIHsNCj4gPiAgCXN0YXR1
+cyA9ICJva2F5IjsNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQo+ID4gaW5kZXggMWE2OTIyMS4uZjMzY2IyZSAx
+MDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4
+YS1yZGIuZHRzDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxz
+MTAyOGEtcmRiLmR0cw0KPiA+IEBAIC05Niw2ICs5NiwyMSBAQA0KPiA+ICAJc3RhdHVzID0gIm9r
+YXkiOw0KPiA+ICB9Ow0KPiA+DQo+ID4gKyZmc3BpIHsNCj4gPiArCXN0YXR1cyA9ICJva2F5IjsN
+Cj4gPiArCWZsYXNoMDogbXQzNXh1MDJnQDAgew0KPiA+ICsJCWNvbXBhdGlibGUgPSAibWljcm9u
+LG10MzV4dTAyZyIsICJqZWRlYyxzcGktbm9yIjsNCj4gPiArCQkjYWRkcmVzcy1jZWxscyA9IDwx
+PjsNCj4gPiArCQkjc2l6ZS1jZWxscyA9IDwxPjsNCj4gPiArCQltMjVwLGZhc3QtcmVhZDsNCj4g
+PiArCQlzcGktbWF4LWZyZXF1ZW5jeSA9IDw1MDAwMDAwMD47DQo+ID4gKwkJcmVnID0gPDA+Ow0K
+PiA+ICsJCS8qIFRoZSBmb2xsb3dpbmcgc2V0dGluZyBlbmFibGVzIDEtMS04IChDTUQtQUREUi1E
+QVRBKSBtb2RlICovDQo+ID4gKwkJc3BpLXJ4LWJ1cy13aWR0aCA9IDw4PjsgLyogOCBTUEkgUngg
+bGluZXMgKi8NCj4gPiArCQlzcGktdHgtYnVzLXdpZHRoID0gPDE+OyAvKiAxIFNQSSBUeCBsaW5l
+ICovDQo+ID4gKwl9Ow0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgJmkyYzAgew0KPiA+ICAJc3RhdHVz
+ID0gIm9rYXkiOw0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJl
+ZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kNCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2ZzbC1sczEwMjhhLmR0c2kNCj4gPiBpbmRleCBiMTM5YjI5Li40YWExODI1IDEwMDY0NA0K
+PiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kN
+Cj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNp
+DQo+ID4gQEAgLTE3NCw2ICsxNzQsMTkgQEANCj4gPiAgCQkJY2xvY2tzID0gPCZzeXNjbGs+Ow0K
+PiA+ICAJCX07DQo+ID4NCj4gPiArCQlmc3BpOiBzcGlAMjBjMDAwMCB7DQo+ID4gKwkJCWNvbXBh
+dGlibGUgPSAibnhwLGx4MjE2MGEtZnNwaSI7DQo+ID4gKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+
+Ow0KPiA+ICsJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiArCQkJcmVnID0gPDB4MCAweDIwYzAw
+MDAgMHgwIDB4MTAwMDA+LA0KPiA+ICsJCQkgICAgICA8MHgwIDB4MjAwMDAwMDAgMHgwIDB4MTAw
+MDAwMDA+Ow0KPiA+ICsJCQlyZWctbmFtZXMgPSAiZnNwaV9iYXNlIiwgImZzcGlfbW1hcCI7DQo+
+ID4gKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyNSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4g
+PiArCQkJY2xvY2tzID0gPCZjbG9ja2dlbiA0IDM+LCA8JmNsb2NrZ2VuIDQgMz47DQo+ID4gKwkJ
+CWNsb2NrLW5hbWVzID0gImZzcGlfZW4iLCAiZnNwaSI7DQo+ID4gKwkJCXN0YXR1cyA9ICJkaXNh
+YmxlZCI7DQo+ID4gKwkJfTsNCj4gPiArDQo+ID4gIAkJaTJjMDogaTJjQDIwMDAwMDAgew0KPiA+
+ICAJCQljb21wYXRpYmxlID0gImZzbCx2ZjYxMC1pMmMiOw0KPiA+ICAJCQkjYWRkcmVzcy1jZWxs
+cyA9IDwxPjsNCj4gPiAtLQ0KPiA+IDIuNy40DQo+ID4NCg==
