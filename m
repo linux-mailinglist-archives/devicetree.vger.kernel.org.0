@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E038D03C1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 01:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB35D03CA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 01:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726068AbfJHXCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 19:02:36 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:38313 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726336AbfJHXCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 19:02:36 -0400
-Received: by mail-qk1-f196.google.com with SMTP id u186so462697qkc.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 16:02:35 -0700 (PDT)
+        id S1727966AbfJHXG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 19:06:58 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:44484 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725848AbfJHXG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 19:06:57 -0400
+Received: by mail-qt1-f195.google.com with SMTP id u40so611664qth.11
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 16:06:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=netronome-com.20150623.gappssmtp.com; s=20150623;
         h=date:from:to:cc:subject:message-id:in-reply-to:references
          :organization:mime-version:content-transfer-encoding;
-        bh=FMMLRXtAe40zCMcCtxvdP8i9kT/PLF62chlFdNDSpa8=;
-        b=ZFzM3Avgh1nIZ9kRcYhwKQbctGHGKBEN6jhP8dxhduJ+4EPcJfdb2kEs36EGwPKTgY
-         GDu8aQ/hL/5/0pTwv3fuQIb7NEH80mv1qvtHUPcsc7IUlxs5BVnnMg1tTykwNYvNgV8e
-         U6cvjWUrJCi32I4kQ9et1ar15nltNXj7yQLsGBAHP5fONJlcWrRWecoAIR0PCwqx/fah
-         AohsRSAmEUBkgvOT6hpYM+z0EAqfUnvZowytJBkjh18ZY1GnBTSZJ5Jm4uRphbNrAzgv
-         0249cyY1Six4SoTA371Mti6zSmwExvlG7oCD2Xv9qNzjaPKZVK7C7/2o2RoBWuVuYZO7
-         CgOg==
+        bh=atsmqMocA5CyL6gwgsiLT5GHB2fp+M6rgJRLl0QguUI=;
+        b=Yf1PnrqJhvtoylbafl92Bfw8ux3dLraYowqxbyDrdbEwmrb/Foqz5TlOsshmV0Dmtg
+         eWdp9Ap/S27I1mPrqK6kCp3hFGr9kR/inLVgnQFRqJzjSdQKagRKhz9TqP5rjUyZKts4
+         YvbQaD/6PuXN9wVWjluEGRnxy3nEbI9/RROkQ7hkF+J4IKdS7Txg3eNz2CBKTvLvb6im
+         0NPb7qDBIn1959sX1s1XGAYXkgxH4CcDaEj19c54dw84PbhgslpexIDawjhjDwwXaIkU
+         Xrhc0g55tOtHLW3GeWPrOzB1IQwv3bHit1hVr/EeyLrLwXYc/9xd63ti23ss0gRZQTQb
+         iAig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
          :references:organization:mime-version:content-transfer-encoding;
-        bh=FMMLRXtAe40zCMcCtxvdP8i9kT/PLF62chlFdNDSpa8=;
-        b=f9a4pFAotI2Ki2tVYuiZ1gE8l0pzpaNuifWngqOUgJpzjr5MaiKKKAKhwbtG8sAXve
-         ayRZU4Lv77mUmp7rXa0b3KhZeOWKacClbXdW9GKqIa93t89T8/kZNMSEvDj/gBu9tK76
-         OF2LBozql5X70+L4nNnWPKRSgmgHyM1RGd+9Ezpb09hO0iBvk3vBMC6xEX/uo/JpXl7s
-         fQfIt6mZxMMgOeBKCqbYpIq3Rymz8+8+LgaNkHYaSPFD5R2rrfSSLCVyeLlq/mgyM5aF
-         yD2urDlETzdpeNuEAGES0gN8x4tUAj+WE3O+UJiar/snZM+xVqBzZlZMYVX9Z7+TdPBM
-         oKlg==
-X-Gm-Message-State: APjAAAXSwJLFpvMi9rdAmoDIVoNTpjSSNNFer/wUyqit8dybR3avq3Ns
-        b23vdBh198AcqTAF0Pvm6p1YPA==
-X-Google-Smtp-Source: APXvYqxvRqb+z5HpoQj48byKYFHJWFucwPuLS22/dDgDrpAZfGfXzGsk3d6nAPeBA6lls6A278C1Zg==
-X-Received: by 2002:a37:a646:: with SMTP id p67mr569346qke.489.1570575754654;
-        Tue, 08 Oct 2019 16:02:34 -0700 (PDT)
+        bh=atsmqMocA5CyL6gwgsiLT5GHB2fp+M6rgJRLl0QguUI=;
+        b=iADTH5KjXTh/lOfmCZO4XUechoBVoFe8X7kVo1/oVJiq0bxFQFfNLE9+uMbTK294+4
+         TwD52vNoOxMrj6Sk0as4/nr0uS9UlhGNw6nKTHBRqny18FzrqPTwvrN7jkPJ9Yw/o4/s
+         wNRomEAswxKGQG/JqgQmI/yhTH8H26b2tDi7LH3MgkN6PsGkAUYTAnAms4uJE8sJYZcY
+         YoW8UhC+v25MHJvi2ITEvqt3itMm5J57XXt4o0czUP4f67JGZ30wzygTkFO5XQaE3YO3
+         MF0nBcIEGatTpz2tXyQoS4KW9K6Jbh3IwtoxkAka2l4E8/iECqK6bdGnSX4m57g8Pgc9
+         t1Yw==
+X-Gm-Message-State: APjAAAUUrzmy07CeDikLWsbFl5DCSdaipuVS8s9eWtL6k7SeL1qcjFNP
+        kJOZ/cXaLu8omquNgmK/J1joKQ==
+X-Google-Smtp-Source: APXvYqx/64qjNyPamHObAX+fZWZqmEP0Vy13opmS7WjDT+nYyQ/NnL33mmrlR73uH81IkMFcAKV8/g==
+X-Received: by 2002:ac8:4a84:: with SMTP id l4mr463525qtq.118.1570576015229;
+        Tue, 08 Oct 2019 16:06:55 -0700 (PDT)
 Received: from cakuba.netronome.com ([66.60.152.14])
-        by smtp.gmail.com with ESMTPSA id a19sm204875qtc.58.2019.10.08.16.02.33
+        by smtp.gmail.com with ESMTPSA id t73sm93418qke.113.2019.10.08.16.06.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2019 16:02:34 -0700 (PDT)
-Date:   Tue, 8 Oct 2019 16:02:22 -0700
+        Tue, 08 Oct 2019 16:06:55 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 16:06:43 -0700
 From:   Jakub Kicinski <jakub.kicinski@netronome.com>
 To:     MarkLee <Mark-MC.Lee@mediatek.com>
 Cc:     "David S. Miller" <davem@davemloft.net>,
@@ -59,10 +59,12 @@ Cc:     "David S. Miller" <davem@davemloft.net>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net,v2 0/2] Update MT7629 to support PHYLINK API
-Message-ID: <20191008160222.0bdb7f47@cakuba.netronome.com>
-In-Reply-To: <20191007070844.14212-1-Mark-MC.Lee@mediatek.com>
+Subject: Re: [PATCH net,v2 1/2] net: ethernet: mediatek: Fix MT7629 missing
+ GMII mode support
+Message-ID: <20191008160643.1c1d31ff@cakuba.netronome.com>
+In-Reply-To: <20191007070844.14212-2-Mark-MC.Lee@mediatek.com>
 References: <20191007070844.14212-1-Mark-MC.Lee@mediatek.com>
+        <20191007070844.14212-2-Mark-MC.Lee@mediatek.com>
 Organization: Netronome Systems, Ltd.
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -72,11 +74,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Oct 2019 15:08:42 +0800, MarkLee wrote:
-> This patch target to update mt7629 eth driver and dts to support PHYLINK
+On Mon, 7 Oct 2019 15:08:43 +0800, MarkLee wrote:
+> Add missing configuration for mt7629 gmii mode support
+> 
+> Fixes: 7e538372694b ("net: ethernet: mediatek: Re-add support SGMII")
 
-Thanks for the patches Mark. The description of the set should probably
-say that it _fixes_ some issues. Right now it sounds a little bit like
-you were adding a new feature. Could you rewrite the cover letter to
-give us a better idea what issues this patch set is fixing and why
-those issues occur?
+Thank you for adding the Fixes tag. It seem, however, that the patch in
+question did not change the ge_mode setting. Is it because GMII now
+makes a call to mtk_gmac_gephy_path_setup() that the different setting
+is required? The Fixes tag should point to the commit which introduced
+the wrong behaviour, it may be the initial commit of the driver if the
+behaviour was always there.
+
+Could you add more information to the patch description and perhaps
+update Fixes tag if 7e538372694b didn't introduce the problem?
