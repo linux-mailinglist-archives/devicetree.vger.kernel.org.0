@@ -2,93 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C59B7CFA46
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D2E2CFA58
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:49:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730683AbfJHMpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:45:30 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:39381 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730249AbfJHMpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:45:30 -0400
-Received: by mail-qk1-f195.google.com with SMTP id 4so16557992qki.6;
-        Tue, 08 Oct 2019 05:45:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v98zF1OGy1a9xdf1tcg4rO9aTmICS20KeVZPXiAVZ6g=;
-        b=QXFzeHuf81gSpH57PDwEHoXnUMf8/WnURr1eH6LbCgjtzvlECfhgrOaugs8bUyVTa5
-         IN2earqrMs23m6T89TNg+NgWHJq+QvdQoc0ufRkTf0lkD8UnzdxXKWXEoHutopPYOV24
-         JDbyyAq7Mfk3JRcyLzr7IuC1s9MNUFNiLWH94=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v98zF1OGy1a9xdf1tcg4rO9aTmICS20KeVZPXiAVZ6g=;
-        b=KDqfgIiXzeizQR2yni5h2PkAkZEEjYT/XaBCkvUklRD5+vXmIjHBORZJ0NfyLZfu4E
-         J4jDyF1XgzOZz0E25NyB72IMD7ucUmAZnAj6XWQjYvlviUBTcUzfUCgJhfp38+QlM/Eq
-         VnP9K08e61ZEPI22Vq2OAUM9FvmyWljadB9w7MSvMvEPenssISti23/3M+N5SqlEDjTe
-         btVgQlvVk98M7d1TlTZ/MN6UdxoECz4AsKm8D9h1t/gZwf5307a1oAtaGN7+OkNEVTyU
-         M44YjAvifU1ZU28fHuq8XC5GySTgUMZRk7fkb5MHg2Vy3RmcRgOGWExa+wgYvyb1hwhi
-         2uBg==
-X-Gm-Message-State: APjAAAVo80a6MJ4QrGlcQopcx+WAK/bvwGDRUDtrkoF53SEpMIxO+Iz+
-        2+IWlUGXl1wd/RbRL/zONKdxGYi5pTWqVibryUU=
-X-Google-Smtp-Source: APXvYqwbDrpR/sws3f6gujWo90eWmFtcR1qTkid+2DQ9qP9pCJc95MfjkQRPPxEaORjJBbxZSD9h/vhA8oS6KXrRLvY=
-X-Received: by 2002:a37:4a54:: with SMTP id x81mr28662696qka.292.1570538729054;
- Tue, 08 Oct 2019 05:45:29 -0700 (PDT)
+        id S1730646AbfJHMtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:49:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41080 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730605AbfJHMtM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 08:49:12 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D3EF120815;
+        Tue,  8 Oct 2019 12:49:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570538951;
+        bh=l4QjoOoC1FPsBF/H8+vyqEeZBRWcMj5euRW3XBxAE98=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OEdAywYO6BHIh3JUKUWueff1vUkd8txFYMvRvT1WS5dhPMIw1bgC7i+gyvfKi8bk7
+         NiNHdWJdyhegNol3yg8TiMAsc3UIYhZF8C3n13Z7YZAFUroIzk1NWttcAjTQrrFhj8
+         mqKNKguQx+/phncGm9QOOr4PJ3Pd6arxycSm4mRw=
+Received: by mail-qt1-f171.google.com with SMTP id e15so10190979qtr.4;
+        Tue, 08 Oct 2019 05:49:10 -0700 (PDT)
+X-Gm-Message-State: APjAAAXlq/6IqG73Vxfo8VDbkZuUwvTfWCEwPt6gGCegLV43IM7StNzn
+        RaqGWX3VM8uOi5/zADdYe1Equ7WXvABrQuJl5g==
+X-Google-Smtp-Source: APXvYqxSaRgUqqni7RWikQ+zN1xMpYCgoo0IuuKMMlW4a/sVKwGL8eRTo+RXkXFsUSbAZ9vRNEtMOquOyCQzYMzABM4=
+X-Received: by 2002:ac8:444f:: with SMTP id m15mr35881979qtn.110.1570538949942;
+ Tue, 08 Oct 2019 05:49:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191008113553.13662-1-andrew@aj.id.au> <20191008113553.13662-2-andrew@aj.id.au>
-In-Reply-To: <20191008113553.13662-2-andrew@aj.id.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 8 Oct 2019 12:45:17 +0000
-Message-ID: <CACPK8XcGAN6AF_GqUpCjFL3CEDeY42n0Zsgt5DX1ssOu+GhbDg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add AST2600 RMII RCLK gate definitions
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20191002151714.15813-1-benjamin.gaignard@st.com>
+In-Reply-To: <20191002151714.15813-1-benjamin.gaignard@st.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 8 Oct 2019 07:48:58 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJtHgAZvFbWOEwu7WsG2OHHugfB1RKSrxsaP3Exa5odGg@mail.gmail.com>
+Message-ID: <CAL_JsqJtHgAZvFbWOEwu7WsG2OHHugfB1RKSrxsaP3Exa5odGg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: Convert stm32 display bindings to json-schema
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Oct 2019 at 11:34, Andrew Jeffery <andrew@aj.id.au> wrote:
+On Wed, Oct 2, 2019 at 10:17 AM Benjamin Gaignard
+<benjamin.gaignard@st.com> wrote:
 >
-> The AST2600 has an explicit gate for the RMII RCLK for each of the four
-> MACs.
+> Convert the STM32 display binding to DT schema format using json-schema.
+> Split the original bindings in two yaml files:
+> - one for display controller (ltdc)
+> - one for DSI controller
 >
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
 > ---
->  include/dt-bindings/clock/ast2600-clock.h | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/display/st,stm32-dsi.yaml  | 130 +++++++++++++++++++
+>  .../devicetree/bindings/display/st,stm32-ltdc.txt  | 144 ---------------------
+>  .../devicetree/bindings/display/st,stm32-ltdc.yaml |  82 ++++++++++++
+>  3 files changed, 212 insertions(+), 144 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
 >
-> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
-> index 38074a5f7296..ac567fc84a87 100644
-> --- a/include/dt-bindings/clock/ast2600-clock.h
-> +++ b/include/dt-bindings/clock/ast2600-clock.h
-> @@ -84,6 +84,11 @@
->  #define ASPEED_CLK_MAC34               65
->  #define ASPEED_CLK_USBPHY_40M          66
->
-> +#define ASPEED_CLK_GATE_MAC1RCLK       67
-> +#define ASPEED_CLK_GATE_MAC2RCLK       68
-> +#define ASPEED_CLK_GATE_MAC3RCLK       69
-> +#define ASPEED_CLK_GATE_MAC4RCLK       70
+> diff --git a/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
+> new file mode 100644
+> index 000000000000..8143cf6f0ce7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-My comments on the other patch about GATEs should have been on this patch.
+If all the authors are ST, can you relicense to (GPL-2.0-only OR BSD-2-Clause).
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/st,stm32-dsi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32 DSI host controller
+> +
+> +maintainers:
+> +  - Philippe Cornu <philippe.cornu@st.com>
+> +  - Yannick Fertre <yannick.fertre@st.com>
+> +
+> +properties:
+> +  "#address-cells": true
+> +  "#size-cells": true
+> +
+> +  compatible:
+> +    const: st,stm32-dsi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Module Clock
+> +      - description: DSI bus clock
+> +      - description: Pixel clock
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: ref
+> +      - const: px_clk
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: apb
+> +
+> +  phy-dsi-supply:
+> +    maxItems: 1
+> +    description:
+> +        Phandle of the regulator that provides the supply voltage.
+> +
+> +  ports:
+> +    type: object
+> +    description:
+> +        A node containing DSI input & output port nodes with endpoint
+> +        definitions as documented in
+> +        Documentation/devicetree/bindings/media/video-interfaces.txt
+> +        Documentation/devicetree/bindings/graph.txt
+> +
+> +  port:
+
+This needs to be under 'properties' under 'ports'. And you need to
+have 'port@0' and 'port@1' instead.
+
+> +    type: object
+> +    description:
+> +      "A port node with endpoint definitions as defined in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +      port@0: DSI input port node, connected to the ltdc rgb output port.
+> +      port@1: DSI output port node, connected to a panel or a bridge input port"
+> +
+> +required:
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - ports
+
+Add an 'additionalProperties: false' here.
 
 > +
->  /* Only list resets here that are not part of a gate */
->  #define ASPEED_RESET_ADC               55
->  #define ASPEED_RESET_JTAG_MASTER2      54
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    dsi: dsi@5a000000 {
+> +        compatible = "st,stm32-dsi";
+> +        reg = <0x5a000000 0x800>;
+> +        clocks = <&rcc DSI_K>, <&clk_hse>, <&rcc DSI_PX>;
+> +        clock-names = "pclk", "ref", "px_clk";
+> +        resets = <&rcc DSI_R>;
+> +        reset-names = "apb";
+> +        phy-dsi-supply = <&reg18>;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ports {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              port@0 {
+> +                    reg = <0>;
+> +                    dsi_in: endpoint {
+> +                        remote-endpoint = <&ltdc_ep1_out>;
+> +                    };
+> +              };
+> +
+> +              port@1 {
+> +                    reg = <1>;
+> +                    dsi_out: endpoint {
+> +                        remote-endpoint = <&panel_in>;
+> +                    };
+> +              };
+> +        };
+> +
+> +        panel {
+
+Not documented.
+
+> +              compatible = "orisetech,otm8009a";
+> +              reg = <0>;
+> +              reset-gpios = <&gpioe 4 GPIO_ACTIVE_LOW>;
+> +              power-supply = <&v3v3>;
+> +
+> +              port {
+> +                    panel_in: endpoint {
+> +                        remote-endpoint = <&dsi_out>;
+> +                    };
+> +              };
+> +        };
+> +    };
+> +
+> +...
+> +
+> +
+
+[...]
+
+> diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> new file mode 100644
+> index 000000000000..5d01c83234a3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/st,stm32-ltdc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32 lcd-tft display controller
+> +
+> +maintainers:
+> +  - Philippe Cornu <philippe.cornu@st.com>
+> +  - Yannick Fertre <yannick.fertre@st.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stm32-ltdc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    items:
+> +      - description: Module Clock
+
+Just 'maxItems: 1' is sufficient with a single entry.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lcd
+> +
+> +  pinctrl-names: true
+> +
+> +  resets:
+> +        maxItems: 1
+
+Inconsistent indenting.
+
+> +
+> +  port:
+> +    type: object
+> +    description:
+> +      "Video port for DPI RGB output.
+> +      ltdc has one video port with up to 2 endpoints:
+> +      - for external dpi rgb panel or bridge, using gpios.
+> +      - for internal dpi input of the MIPI DSI host controller.
+> +      Note: These 2 endpoints cannot be activated simultaneously.
+> +      Please refer to the bindings defined in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt."
+> +
+> +patternProperties:
+> +  "^pinctrl-[0-9]+$": true
+
+No need for this, it gets added automatically.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - port
+
+Add an 'additionalProperties: false' here.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    ltdc: display-controller@40016800 {
+> +        compatible = "st,stm32-ltdc";
+> +        reg = <0x5a001000 0x400>;
+> +        interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&rcc LTDC_PX>;
+> +        clock-names = "lcd";
+> +        resets = <&rcc LTDC_R>;
+> +
+> +        port {
+> +             ltdc_out_dsi: endpoint {
+> +                     remote-endpoint = <&dsi_in>;
+> +             };
+> +        };
+> +    };
+> +
+> +...
+> +
 > --
-> 2.20.1
+> 2.15.0
 >
