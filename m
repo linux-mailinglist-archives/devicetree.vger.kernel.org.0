@@ -2,92 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81380D002F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 19:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F25EAD0072
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 20:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726353AbfJHRxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 13:53:36 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:38915 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726320AbfJHRxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 13:53:36 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r3so20477897wrj.6;
-        Tue, 08 Oct 2019 10:53:35 -0700 (PDT)
+        id S1726336AbfJHSFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 14:05:40 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:43480 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726138AbfJHSFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 14:05:39 -0400
+Received: by mail-io1-f65.google.com with SMTP id v2so38466294iob.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 11:05:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7HI75GouwRxYN8A61a1OmNG/T9ubH5sh09rpMiJz5bs=;
+        b=JG+hpqwrxAKEEYcv+zMT9gPASAVNdwQPfuQybjrMkqX/JlIEn7BlrTVVWK3rnK72rp
+         IrP1u4TMxOUbhXCRKUMtovSns1sZr0NWLjFJ1Sha5/epWnT4NpUp0kHnroYgRKJ2I5AG
+         /kVf66tqMQ5oGVfF2ibcRgZyOpKNYmuoC9kTg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=biGUlUHt7gI+lvxrPWTuGpTY989m3mtLcUoswoyT+ig=;
-        b=davgj+5BKG+8er/B+LZTJLQTVZ1G4T86SFHNpAuNQDneyi4R3nn9X5z2U7pkOvBuTD
-         muikQ7XuoNiKJ7r1cjE6DRydDg3bg2aL/YZZhdZZ1I9hfua3emindWt5uvAxcCAQkG4H
-         VyWRb42xKpfRLg/rM6pRzavU/FXcC/RvLj9cJUYlc6wXHkw6sObu1AXqVIANULvfQP3b
-         5u4Hfhu+mWaZWFsUOP70rYFrqL1vWo0CSZ+ONgMOsEWPGQOKtPRl5Jqrtv18qKbf5wsk
-         IhQ0aj7LTnQL6MkJXeLYVGhYBv1ABBJ207x27fzgSHbVvZ3auf1mdwqRytLyEtluCY56
-         Yn4Q==
-X-Gm-Message-State: APjAAAVj22rl21sOkhzHAxeYjEUVgh76we8guM4IU8/Eca+BkQ8bZ9aW
-        BzCyz7V1usaqVvPp5VIHPIvmtzWd
-X-Google-Smtp-Source: APXvYqxcSOUZjtZkaOPACSxR3aFYAuWRL9aDUd0khkLJhPdhJQE9JK92kwvKDqqNrk+Nxg2TFrTmZg==
-X-Received: by 2002:adf:eec1:: with SMTP id a1mr25802083wrp.151.1570557214261;
-        Tue, 08 Oct 2019 10:53:34 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.145])
-        by smtp.googlemail.com with ESMTPSA id r6sm4336796wmh.38.2019.10.08.10.53.32
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 08 Oct 2019 10:53:33 -0700 (PDT)
-Date:   Tue, 8 Oct 2019 19:53:30 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     Lihua Yao <ylhuajnu@outlook.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: s3c64xx: Fix init order of clock providers
-Message-ID: <20191008175330.GA28160@kozik-lap>
-References: <CGME20191008165931epcas3p2dd2937d851ed06948dd7746e5a2674b4@epcas3p2.samsung.com>
- <20191008165917.23908-1-krzk@kernel.org>
- <ceede424-e4a2-03f1-3ce0-04f405688721@samsung.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7HI75GouwRxYN8A61a1OmNG/T9ubH5sh09rpMiJz5bs=;
+        b=qDZbgve3ZmaA2/Ze9iBHHf0NhG/9oJSJZT13DOphzjFbjcdhLIVJ8LjxlQQIGeUvCB
+         bYno5p+bDp9UQm1qHXS5/pAMC2Y/WdAzzg7XKiPXnBmXiLwf7HBwOSDOQWebeicEPKzJ
+         bh9VVlh0NapjfhcFWOAy4Y0rpaWmgnSMgPkujXAgRmTqphde+vkGDy/VeVRlM6KN421K
+         JiX1WULVWmLaWpUwRHmZPX0W8/rj7i6sU8xdHqgdTRsM8aaPVSXA+eanzNRhUNYPCrOw
+         X0k5TfnZN4vHpO+rzwfeKQUVyuDDaKOx9ROzi2JtSIS3ofYBboOHSYqsdlXNl0cLD6kE
+         kXjw==
+X-Gm-Message-State: APjAAAUjMGl/nd0e2pJiEZ4lCHceppYlnyrNxcGN7DahN+2hMMOVIamB
+        fdVZHT5YD9mcFgyfT8Tmt4EaJEGvrrM=
+X-Google-Smtp-Source: APXvYqxDdDpU4+5zbxSW22k6paQvmU96rowwGQjK6rFC5gSLUWx+o82BbTwRNqtzoZtymuOw96xgVQ==
+X-Received: by 2002:a6b:fe09:: with SMTP id x9mr25054377ioh.144.1570557938555;
+        Tue, 08 Oct 2019 11:05:38 -0700 (PDT)
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
+        by smtp.gmail.com with ESMTPSA id l3sm6617538ioj.7.2019.10.08.11.05.36
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2019 11:05:38 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id c25so38440900iot.12
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 11:05:36 -0700 (PDT)
+X-Received: by 2002:a5d:9812:: with SMTP id a18mr13195587iol.168.1570557936383;
+ Tue, 08 Oct 2019 11:05:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ceede424-e4a2-03f1-3ce0-04f405688721@samsung.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20191003094137.v2.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
+In-Reply-To: <20191003094137.v2.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 8 Oct 2019 11:05:24 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xi-M=Kk0axj=ukGMDr4p0a86LRdiL-6WyPZnL2vuDZGA@mail.gmail.com>
+Message-ID: <CAD=FV=Xi-M=Kk0axj=ukGMDr4p0a86LRdiL-6WyPZnL2vuDZGA@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: rockchip: Use interpolated brightness tables
+ for veyron
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 08, 2019 at 07:30:50PM +0200, Sylwester Nawrocki wrote:
-> On 10/8/19 18:59, Krzysztof Kozlowski wrote:
-> > From: Lihua Yao <ylhuajnu@outlook.com>
-> > 
-> > fin_pll is the parent of clock-controller@7e00f000, specify
-> > the dependency to ensure proper initialization order of clock
-> > providers.
-> 
-> > Fixes: 3f6d439f2022 ("clk: reverse default clk provider initialization order in of_clk_init()")
-> 
-> The patch looks good but I'm not sure above tag points to the right commit.
-> That commit is just a regression fix for
-> 1771b10d605d26cc "clk: respect the clock dependencies in of_clk_init"
->  
-> How about picking some commit touching the dts files itself, e.g.
-> a43736deb47d21bd "ARM: dts: Add dts file for S3C6410-based Mini6410 board" ?
+Hi,
 
-As I understood, the mentioned commit "reverse default clk provider"
-caused issue to appear, because of reversed order (first version of this
-patch played with the order).  Even though that commit was not strictly
-the cause, but should come proably with proper DTS change.  Therefore
-the fixes points to right moment of backports.
+On Thu, Oct 3, 2019 at 9:42 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Use interpolated brightness tables (added by commit 573fe6d1c25
+> ("backlight: pwm_bl: Linear interpolation between
+> brightness-levels") for veyron, instead of specifying every single
+> step. Some devices/panels have intervals that are smaller than
+> the specified 'num-interpolated-steps', the driver interprets
+> these intervals as a single step.
+>
+> Another option would be to switch to a perceptual brightness curve
+> (CIE 1931), with the caveat that it would change the behavior of
+> the backlight. Also the concept of a minimum brightness level is
+> currently not supported for CIE 1931 curves.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>
+> Changes in v2:
+> - added 0 as first step for devices/panels that require a minimum
+>   PWM duty cycle
+> - increased 'num-interpolated-steps' values by one, it's not the
+>   number of steps between levels, but that number +1
+>
+>  arch/arm/boot/dts/rk3288-veyron-edp.dtsi   | 35 ++--------------------
+>  arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 35 ++--------------------
+>  arch/arm/boot/dts/rk3288-veyron-minnie.dts | 35 ++--------------------
+>  arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 35 ++--------------------
+>  4 files changed, 8 insertions(+), 132 deletions(-)
 
-The DTS commit, at that time, was correct with bindings and with driver.
+I guess if someone wanted to they could try to increase the number of
+steps and see if they got prettier backlight transition, but what's
+there now doesn't bother me and has the advantage of matching what has
+been in use forever.  Thus:
 
-> 
-> > Signed-off-by: Lihua Yao <ylhuajnu@outlook.com>
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-
-Thanks!
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
