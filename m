@@ -2,99 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB277CFF6A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 18:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C78A9CFFA3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 19:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728753AbfJHQ73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 12:59:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34930 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726822AbfJHQ73 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 12:59:29 -0400
-Received: from localhost.localdomain (unknown [194.230.155.145])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 634C52070B;
-        Tue,  8 Oct 2019 16:59:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570553968;
-        bh=dF2A6bAxUEMaFmUvUj+ll27edvmItLZmDILm3HS9nUU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=V4ydDdEHj1By7ZtTlpkr4meoeVJ4FOr6t7JqgJ1lyGLu/DQS6rrRwpS43Nw2hXpST
-         AJ9gGuDKkQ8oi5rE/w/uiyjwLpSO06r5OmwB8XiZ+yJExHgJdhRTP7EioFtGRYqwbE
-         2tZ+B8De839x222LyU2u8aj7JQ5R5C/Z5E5+71hU=
+        id S1726253AbfJHRSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 13:18:15 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35920 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726138AbfJHRSO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 13:18:14 -0400
+Received: by mail-wr1-f68.google.com with SMTP id y19so20350321wrd.3;
+        Tue, 08 Oct 2019 10:18:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+KCXyzpU3dgR07Gdbce6LfLYUIptdiLzSDu/Iqt21TQ=;
+        b=bmgrElu2VlCS5UslRJXA+iibBbwS2jsxFsYeN7y+Ue9vmI21omWyNFYFzme7i68uFe
+         i+wJAyyk5wJgyKl80DMofzp4jizT6WGtdancUzaVemuadEl6l9br3nMRDeD6nYvO+SWI
+         GjuooVG3pD+nMmIC+yjTK0ZkoXBHc08MrZbNIh4NT5NLVpHiw1852DrTAsfsKXd+/qTW
+         kp1wiCr7v+nOqRzvoD4ZcYLz/euKXzOw4oSyahDTRkiERYBqZWfWlbL14WBnEWxlBOXW
+         21NC0fS66ejUa05WIwEdTEc8jYAiOVQ3BmV98rghqGzEWA0VTEHYjfQMwwYAGM0p64in
+         Bavw==
+X-Gm-Message-State: APjAAAWhkagxhWzrvuqDpHaEiz5NrDVdx6QeiMApFYjqpb1FfjSk4TGh
+        p5A5oRrnUN7Ce4OxT07neF3AoRUq
+X-Google-Smtp-Source: APXvYqySEnlrvHQ0j8san+qAcBH4oeN9WXugf40WlyqhbiYA+KvafyW9c7JtN+PLERblpK393GQ4/A==
+X-Received: by 2002:a5d:4689:: with SMTP id u9mr28038407wrq.78.1570555092266;
+        Tue, 08 Oct 2019 10:18:12 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id z9sm19137134wrl.35.2019.10.08.10.18.11
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 08 Oct 2019 10:18:11 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 19:18:09 +0200
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Lihua Yao <ylhuajnu@outlook.com>
-Subject: [PATCH] ARM: dts: s3c64xx: Fix init order of clock providers
-Date:   Tue,  8 Oct 2019 18:59:17 +0200
-Message-Id: <20191008165917.23908-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+Subject: Re: [PATCH] ARM: dts: s3c64xx: Fix init order of clock providers
+Message-ID: <20191008171809.GA25661@kozik-lap>
+References: <20191008165917.23908-1-krzk@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191008165917.23908-1-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lihua Yao <ylhuajnu@outlook.com>
+On Tue, Oct 08, 2019 at 06:59:17PM +0200, Krzysztof Kozlowski wrote:
+> From: Lihua Yao <ylhuajnu@outlook.com>
+> 
+> fin_pll is the parent of clock-controller@7e00f000, specify
+> the dependency to ensure proper initialization order of clock
+> providers.
+> 
+> without this patch:
+> [    0.000000] S3C6410 clocks: apll = 0, mpll = 0
+> [    0.000000]  epll = 0, arm_clk = 0
+> 
+> with this patch:
+> [    0.000000] S3C6410 clocks: apll = 532000000, mpll = 532000000
+> [    0.000000]  epll = 24000000, arm_clk = 532000000
+> 
+> Fixes: 3f6d439f2022 ("clk: reverse default clk provider initialization order in of_clk_init()")
+> Signed-off-by: Lihua Yao <ylhuajnu@outlook.com>
 
-fin_pll is the parent of clock-controller@7e00f000, specify
-the dependency to ensure proper initialization order of clock
-providers.
+Thanks, applied.
 
-without this patch:
-[    0.000000] S3C6410 clocks: apll = 0, mpll = 0
-[    0.000000]  epll = 0, arm_clk = 0
-
-with this patch:
-[    0.000000] S3C6410 clocks: apll = 532000000, mpll = 532000000
-[    0.000000]  epll = 24000000, arm_clk = 532000000
-
-Fixes: 3f6d439f2022 ("clk: reverse default clk provider initialization order in of_clk_init()")
-Signed-off-by: Lihua Yao <ylhuajnu@outlook.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
----
-
-Sending in author's name because outlook bounces from the lists.
----
- arch/arm/boot/dts/s3c6410-mini6410.dts | 4 ++++
- arch/arm/boot/dts/s3c6410-smdk6410.dts | 4 ++++
- 2 files changed, 8 insertions(+)
-
-diff --git a/arch/arm/boot/dts/s3c6410-mini6410.dts b/arch/arm/boot/dts/s3c6410-mini6410.dts
-index 0e159c884f97..1aeac33b0d34 100644
---- a/arch/arm/boot/dts/s3c6410-mini6410.dts
-+++ b/arch/arm/boot/dts/s3c6410-mini6410.dts
-@@ -165,6 +165,10 @@
- 	};
- };
- 
-+&clocks {
-+	clocks = <&fin_pll>;
-+};
-+
- &sdhci0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sd0_clk>, <&sd0_cmd>, <&sd0_cd>, <&sd0_bus4>;
-diff --git a/arch/arm/boot/dts/s3c6410-smdk6410.dts b/arch/arm/boot/dts/s3c6410-smdk6410.dts
-index a9a5689dc462..3bf6c450a26e 100644
---- a/arch/arm/boot/dts/s3c6410-smdk6410.dts
-+++ b/arch/arm/boot/dts/s3c6410-smdk6410.dts
-@@ -69,6 +69,10 @@
- 	};
- };
- 
-+&clocks {
-+	clocks = <&fin_pll>;
-+};
-+
- &sdhci0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sd0_clk>, <&sd0_cmd>, <&sd0_cd>, <&sd0_bus4>;
--- 
-2.17.1
+Best regards,
+Krzysztof
 
