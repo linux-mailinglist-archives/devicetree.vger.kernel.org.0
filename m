@@ -2,144 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ECCCCF602
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 11:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6084FCF621
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 11:35:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729624AbfJHJ2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 05:28:19 -0400
-Received: from esa2.microchip.iphmx.com ([68.232.149.84]:52992 "EHLO
-        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729440AbfJHJ2T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 05:28:19 -0400
-Received-SPF: Pass (esa2.microchip.iphmx.com: domain of
-  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa2.microchip.iphmx.com;
-  envelope-from="Ludovic.Desroches@microchip.com";
-  x-sender="Ludovic.Desroches@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa2.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa2.microchip.iphmx.com;
-  envelope-from="Ludovic.Desroches@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa2.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: pDzxr0OUpql/p028ANa/qShsuGwVQJ+VlFqqMdoAYI3NgErKPw/kU2uB+3PGIK3tUS8gy6VRkD
- Weq23HT8B2olfafGZccCnOLgf69Q93nz5ojgpkiH50uFyUjnC5HGlvKic/xSR2O+wHsSPk/fDC
- 9+le4PgmTTiJkCI8WO+YNI9TG2IGlRX0UhNfKjHdE2acXwLlEDUF6eP1GTxS5DTvOfvGSGGbWk
- svbwmDuVNGlkJ8xw2NcOUxDu3jHDRPLlO7W3v/Kt+rP7NXSWmmBbs1KpFkj8fpT7gP8VYQGZpl
- a5g=
-X-IronPort-AV: E=Sophos;i="5.67,270,1566889200"; 
-   d="scan'208";a="51904800"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2019 02:28:18 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 8 Oct 2019 02:28:18 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Tue, 8 Oct 2019 02:28:17 -0700
-Date:   Tue, 8 Oct 2019 11:28:27 +0200
-From:   Ludovic Desroches <ludovic.desroches@microchip.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <ulf.hansson@linaro.org>, <nicolas.ferre@microchip.com>,
-        <adrian.hunter@intel.com>, <linux-kernel@vger.kernel.org>,
-        <mark.rutland@arm.com>, <claudiu.beznea@microchip.com>
-Subject: Re: [PATCH 1/3] dt-bindings: sdhci-of-at91: new compatible string
- and update properties
-Message-ID: <20191008092826.63kbia2wkggeab74@M43218.corp.atmel.com>
-Mail-Followup-To: Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
-        nicolas.ferre@microchip.com, adrian.hunter@intel.com,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        claudiu.beznea@microchip.com
-References: <20190912200908.31318-1-ludovic.desroches@microchip.com>
- <20190930145613.GA11254@bogus>
+        id S1730117AbfJHJfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 05:35:43 -0400
+Received: from slot0.favourzone.xyz ([165.22.195.74]:59375 "EHLO
+        slot0.favourzone.xyz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730026AbfJHJfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 05:35:42 -0400
+X-Greylist: delayed 601 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Oct 2019 05:35:42 EDT
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=dkim; d=favourzone.xyz;
+ h=Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To:Message-ID; i=list@favourzone.xyz;
+ bh=DOAOozeaF4pQ7h/Ukw+r3FT9Z+Y=;
+ b=NFUzpK0E/377RGrbQbVVSKAeSrlWnVaZnnSeuejPvVlRN81zs6Opld+9F0R1/U6J938ezwzhVKF8
+   97GPVJCT9hLq1VuQg4/XZ3adYsHakq3icdZX6Y2uI7AUREgNb2QTVlGfz9yq3FLjk4unPqprwIL2
+   Ol6FBqW8WgtQigGTWnHcdmumgq9FLU7vj9ttbKz0A6cWZe4KgM+tnr8U3u471gwZupzyHFrOG114
+   uPDUiQunkpeTAWmNncMUfjDe0OmBR253LCJ4DXvqLD0GtUaR8UpuVZdkvMZuVgLq/m404IW3LiCp
+   JJa0+ve601vcekx9t4uKuoXEgMqQRzayjinC7A==
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=dkim; d=favourzone.xyz;
+ b=GhsI4kft6kEOf4b1UVVBOiwgHCpqnro29Sj+jiUvljG3Aplgn560Dye03yaiARAasVuysyn6BBus
+   IbLytPw3v3k2q6UYfkjkq30zO/TRn5b9ierJyxduCDtTBBgGZfgB1JGsZHVg2IpURySr5ny6ZZ6E
+   A9fB9InpvyetXqdJJZHKTmGxoxQAZ3D/9Pn/y9ZOKOnuS3oZQN8LdUmPGMDwlnqzIC87N1iJzUB6
+   QSRplv30Eqv505khKkfbTqzpYLrX5M6T7b5F+m6dSE9AUmPYsnY13daw5cdbmYs5UBUwQ6r1FVAf
+   Ct7Patppdjn6Seie3c9+6xUFhD9BebLz4LCJIA==;
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190930145613.GA11254@bogus>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: EQUIRY
+To:     devicetree@vger.kernel.org
+From:   "Mr. Wisachon" <list@favourzone.xyz>
+Date:   Tue, 08 Oct 2019 02:25:39 -0700
+Reply-To: sales.wisachon.b.averasia@hotmail.com
+Message-ID: <0.0.2.B94.1D57DBA5AEC4E7E.0@slot0.favourzone.xyz>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 09:56:13AM -0500, Rob Herring wrote:
-> On Thu, Sep 12, 2019 at 10:09:06PM +0200, Ludovic Desroches wrote:
-> > There is a new compatible string for the SAM9X60 sdhci device. It involves
-> > an update of the properties about the clocks stuff.
-> > 
-> > Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
-> > ---
-> >  .../devicetree/bindings/mmc/sdhci-atmel.txt   | 25 ++++++++++++++++---
-> >  1 file changed, 22 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-> > index 1b662d7171a0..364ceea330b6 100644
-> > --- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-> > +++ b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-> > @@ -5,12 +5,19 @@ Documentation/devicetree/bindings/mmc/mmc.txt and the properties used by the
-> >  sdhci-of-at91 driver.
-> >  
-> >  Required properties:
-> > -- compatible:		Must be "atmel,sama5d2-sdhci".
-> > +- compatible:		Must be "atmel,sama5d2-sdhci" or "microchip,sam9x60-sdhci".
-> >  - clocks:		Phandlers to the clocks.
-> > -- clock-names:		Must be "hclock", "multclk", "baseclk";
-> > +- clock-names:		Must be "hclock", "multclk", "baseclk" for
-> > +			"atmel,sama5d2-sdhci".
-> > +			Must be "hclock", "multclk" for "microchip,sam9x60-sdhci".
-> >  
-> > +Optional properties:
-> > +- assigned-clocks:	The same with "multclk".
-> > +- assigned-clock-rates	The rate of "multclk" in order to not rely on the
-> > +			gck configuration set by previous components.
-> >  
-> > -Example:
-> > +
-> > +Examples:
-> >  
-> >  sdmmc0: sdio-host@a0000000 {
-> >  	compatible = "atmel,sama5d2-sdhci";
-> > @@ -18,4 +25,16 @@ sdmmc0: sdio-host@a0000000 {
-> >  	interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
-> >  	clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
-> >  	clock-names = "hclock", "multclk", "baseclk";
-> > +	assigned-clocks = <&sdmmc0_gclk>;
-> > +	assigned-clock-rates = <480000000>;
-> > +};
-> > +
-> > +sdmmc0: sdio-host@80000000 {
-> 
-> mmc@...
-> 
-> Though I don't see much value in a second example. Examples are not a 
-> complete enumeration of all possible dts entries.
-> 
+Good day,
+ =
 
-Ok, I'll skip this example.
+My Name is Mr  Wisachon Boonpan, the Sales Manager of Aver Asia thailand Lt=
+d,Import& Export Company.
+ =
 
-Ludovic
+I am Interested in some of your product could you kindly send me your full =
+catalog of products with clear photos and list of FOB prices in USD with co=
+mpetitive prices for serious starting, Wholesale  Prices will be accepted a=
+s well. =
 
-> > +	compatible = "microchip,sam9x60-sdhci";
-> > +	reg = <0x80000000 0x300>;
-> > +	interrupts = <12 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +	clocks = <&pmc PMC_TYPE_PERIPHERAL 12>, <&pmc PMC_TYPE_GCK 12>;
-> > +	clock-names = "hclock", "multclk";
-> > +	assigned-clocks = <&pmc PMC_TYPE_GCK 12>;
-> > +	assigned-clock-rates = <100000000>;
-> >  };
-> > -- 
-> > 2.23.0
-> > 
+Expecting your response. Await soonest reply,Thanks
+ =
+
+Best regards,
+
+Wisachon Boonpan (Noon)
+sales.wisachon.b.averasia@hotmail.com
+Aver Asia (Thailand) Limited
