@@ -2,69 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1897ACFAB0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE036CFADC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 15:03:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730371AbfJHM5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:57:32 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:57969 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730944AbfJHM5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:57:32 -0400
-Received: from localhost (91.red-2-139-156.staticip.rima-tde.net [2.139.156.91])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id A0E1D240004;
-        Tue,  8 Oct 2019 12:57:28 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Konstantin Porotchkin <kostap@marvell.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: marvell: add ESPRESSObin variants
-In-Reply-To: <87a7abtn0y.fsf@FE-laptop>
-References: <20190603155354.3902-1-tmn505@gmail.com> <87a7abtn0y.fsf@FE-laptop>
-Date:   Tue, 08 Oct 2019 14:57:27 +0200
-Message-ID: <877e5ftmx4.fsf@FE-laptop>
+        id S1730683AbfJHNDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 09:03:15 -0400
+Received: from 5.mo68.mail-out.ovh.net ([46.105.62.179]:38119 "EHLO
+        5.mo68.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730872AbfJHNDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 09:03:14 -0400
+X-Greylist: delayed 4199 seconds by postgrey-1.27 at vger.kernel.org; Tue, 08 Oct 2019 09:03:13 EDT
+Received: from player779.ha.ovh.net (unknown [10.109.160.76])
+        by mo68.mail-out.ovh.net (Postfix) with ESMTP id 0A5A3142FDD
+        for <devicetree@vger.kernel.org>; Tue,  8 Oct 2019 13:44:38 +0200 (CEST)
+Received: from etezian.org (85-76-98-218-nat.elisa-mobile.fi [85.76.98.218])
+        (Authenticated sender: andi@etezian.org)
+        by player779.ha.ovh.net (Postfix) with ESMTPSA id 46727A99DC68;
+        Tue,  8 Oct 2019 11:44:27 +0000 (UTC)
+Date:   Tue, 8 Oct 2019 14:44:26 +0300
+From:   Andi Shyti <andi@etezian.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andi Shyti <andi@etezian.org>,
+        Andi Shyti <andi.shyti@samsung.com>,
+        Simon Shields <simon@lineageos.org>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] Input: mms114 - use device_get_match_data
+Message-ID: <20191008114426.GC4015@jack.zhora.eu>
+References: <20191007203343.101466-1-stephan@gerhold.net>
+ <20191007203343.101466-2-stephan@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191007203343.101466-2-stephan@gerhold.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Ovh-Tracer-Id: 8549520944366338797
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrheelgdeghecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hi Tomasz Maciej Nowak,
->
->> This commit adds dts for different variants of ESPRESSObin board:
->>
->> ESPRESSObin with soldered eMMC,
->>
->> ESPRESSObin V7, compared to prior versions some passive elements changed
->> and ethernet ports labels positions have been reversed,
->>
->> ESPRESSObin V7 with soldered eMMC.
->>
->> Since most of elements are the same, one common dtsi is created and
->> referenced in each dts of particular variant.
->>
->> Signed-off-by: Tomasz Maciej Nowak <tmn505@gmail.com>
->
->
-> Applied on mvebu/dt
+Hi Stephan,
 
-I meant mvebu/dt64
+> device_get_match_data is available now, so we can replace the call
+> to of_device_get_match_data and remove the FIXME comment.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
->
-> Sorry for the delay.
->
-> Thanks,
->
-> Gregory
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Reviewed-by: Andi Shyti <andi@etezian.org>
+
+Thanks,
+Andi
