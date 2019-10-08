@@ -2,174 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FCD0CFA21
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D18F9CFA25
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730674AbfJHMkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:40:25 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:35144 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730648AbfJHMkY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 08:40:24 -0400
-Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 081E977FDFF399703373;
-        Tue,  8 Oct 2019 20:40:23 +0800 (CST)
-Received: from localhost (10.202.226.61) by DGGEMS414-HUB.china.huawei.com
- (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Tue, 8 Oct 2019
- 20:40:18 +0800
-Date:   Tue, 8 Oct 2019 13:40:01 +0100
-From:   Jonathan Cameron <jonathan.cameron@huawei.com>
-To:     Phil Reid <preid@electromag.com.au>
-CC:     Jonathan Cameron <jic23@kernel.org>, <knaack.h@gmx.de>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <michal.simek@xilinx.com>
-Subject: Re: [PATCH v2 2/2] iio: core: Add optional symbolic label to device
- attributes
-Message-ID: <20191008134001.00005f40@huawei.com>
-In-Reply-To: <34a7ab42-1e07-8c20-11ab-8e2a9dd2e74b@electromag.com.au>
-References: <1568903768-65998-1-git-send-email-preid@electromag.com.au>
-        <1568903768-65998-3-git-send-email-preid@electromag.com.au>
-        <20191005155905.7fe1681e@archlinux>
-        <20191007213244.2ed85c99@archlinux>
-        <34a7ab42-1e07-8c20-11ab-8e2a9dd2e74b@electromag.com.au>
-Organization: Huawei
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1730911AbfJHMke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:40:34 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:46337 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730608AbfJHMke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:40:34 -0400
+Received: by mail-qk1-f194.google.com with SMTP id 201so16510739qkd.13;
+        Tue, 08 Oct 2019 05:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QcaaD2Kkp9q1dKv4LCmVZwmcx3ne0cSQScXyx4+4l/0=;
+        b=LNvQQGLFdee2VJ1Y8N1LhQq2QMKUXTBwBZ3jHB9RKlLXGeS8tFB2htIFHPVSE5hC0O
+         ZfF4QMtgO0b1IFeftV5/OOyooHK6DXs35+xcIKJXJrFJaudh2JduSyo5RvsAUj+845uX
+         TH1PbE6C1uZXfJK1Tuegsc5acEEE287hO5Vyc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QcaaD2Kkp9q1dKv4LCmVZwmcx3ne0cSQScXyx4+4l/0=;
+        b=JVSjNfskoh5F//n1UqY6fKU9axSmS6WfPhMhOxWtehcbYQIjvBNiboVMxnZl0iYMi7
+         2vb+t6re+OPvR7uz91G2q12rseQ+6fnTdmDkf5sOLL/z5/DnlFvw8iaXviMdX4KvTgcs
+         xFZO22obOcHJ825z4kdjMX4YBeWBB9gz2grsDHZ9XB5nWl11AxXgJP6Sz7XamURsOxsq
+         S4SZ6JUr5P+xclDHGnfdDGtlCv96U+xKlgrlDGJyhzSo5CyTssQF9RUs5fw5aUbhltYL
+         ApK5BK4q4kDm8p14FVh2xjuRUL0UomNuy/+PU1R0CyVc8Njkz1273yJS70Geo5uwyYM6
+         +Zjw==
+X-Gm-Message-State: APjAAAVERcQ16JVtKjaV0xBERsCzb4upytSRNflwDGofO7MukRUage3V
+        rPd25VZgK7BF7eDEBPciRXKYaygitSPNj3gBWOMyZcjj
+X-Google-Smtp-Source: APXvYqwkF6lq+t3CBdhUlmPrseGRIVSYeVvqMPJ6fXPG/nPcYV3BhIqU06DGPVBFxB6scD/DUZvx8Fb0j+IrJWbXzdQ=
+X-Received: by 2002:a37:4f4c:: with SMTP id d73mr28718632qkb.171.1570538433471;
+ Tue, 08 Oct 2019 05:40:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.61]
-X-CFilter-Loop: Reflected
+References: <20191008115143.14149-1-andrew@aj.id.au> <20191008115143.14149-2-andrew@aj.id.au>
+In-Reply-To: <20191008115143.14149-2-andrew@aj.id.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 8 Oct 2019 12:40:21 +0000
+Message-ID: <CACPK8Xeqpx3f_rMOGOqE8cXENREHH3MBjm0Eco9Dr4-ocs+DLg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: net: ftgmac100: Document AST2600 compatible
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Oct 2019 15:06:44 +0800
-Phil Reid <preid@electromag.com.au> wrote:
+On Tue, 8 Oct 2019 at 11:50, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The AST2600 contains an FTGMAC100-compatible MAC, although it no-longer
+> contains an MDIO controller.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 
-> On 8/10/2019 04:32, Jonathan Cameron wrote:
-> > On Sat, 5 Oct 2019 15:59:05 +0100
-> > Jonathan Cameron <jic23@kernel.org> wrote:
-> >   
-> >> On Thu, 19 Sep 2019 22:36:08 +0800
-> >> Phil Reid <preid@electromag.com.au> wrote:
-> >>  
-> >>> If a label is defined in the device tree for this device add that
-> >>> to the device specific attributes. This is useful for userspace to
-> >>> be able to identify an individual device when multiple identical
-> >>> chips are present in the system.
-> >>>
-> >>> Tested-by: Michal Simek <michal.simek@xilinx.com>
-> >>> Signed-off-by: Phil Reid <preid@electromag.com.au>  
-> >>
-> >> Glad to see this going in given I thought I'd already applied it
-> >> and told someone they should be using it early today (oops ;)
-> >>
-> >> Applied to the togreg branch of iio.git and pushed out as testing
-> >> for the autobuilders to play with it.  
-> > 
-> > 0-day picked up that there were no docs for this new field.
-> > I've added some and re pushed out.  
-> 
-> Thanks.
-> Just for my info what should I be doing to check for that.
-> Don't remember getting any warnings for that.
+Acked-by: Joel Stanley <joel@jms.id.au>
 
-./scripts/kernel-doc htmldocs
-
-or similar
-
-https://www.kernel.org/doc/Documentation/kernel-doc-nano-HOWTO.txt
-includes how to test individual files.
-
-Thanks,
-
-Jonathan
-
-> 
-> 
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> >>
-> >> Thanks for doing this.
-> >>
-> >> Jonathan
-> >>  
-> >>> ---
-> >>>   drivers/iio/industrialio-core.c | 17 +++++++++++++++++
-> >>>   include/linux/iio/iio.h         |  1 +
-> >>>   2 files changed, 18 insertions(+)
-> >>>
-> >>> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> >>> index 524a686077ca..f72c2dc5f703 100644
-> >>> --- a/drivers/iio/industrialio-core.c
-> >>> +++ b/drivers/iio/industrialio-core.c
-> >>> @@ -1238,6 +1238,16 @@ static ssize_t iio_show_dev_name(struct device *dev,
-> >>>   
-> >>>   static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
-> >>>   
-> >>> +static ssize_t iio_show_dev_label(struct device *dev,
-> >>> +				 struct device_attribute *attr,
-> >>> +				 char *buf)
-> >>> +{
-> >>> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> >>> +	return snprintf(buf, PAGE_SIZE, "%s\n", indio_dev->label);
-> >>> +}
-> >>> +
-> >>> +static DEVICE_ATTR(label, S_IRUGO, iio_show_dev_label, NULL);
-> >>> +
-> >>>   static ssize_t iio_show_timestamp_clock(struct device *dev,
-> >>>   					struct device_attribute *attr,
-> >>>   					char *buf)
-> >>> @@ -1354,6 +1364,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
-> >>>   
-> >>>   	if (indio_dev->name)
-> >>>   		attrcount++;
-> >>> +	if (indio_dev->label)
-> >>> +		attrcount++;
-> >>>   	if (clk)
-> >>>   		attrcount++;
-> >>>   
-> >>> @@ -1376,6 +1388,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
-> >>>   		indio_dev->chan_attr_group.attrs[attrn++] = &p->dev_attr.attr;
-> >>>   	if (indio_dev->name)
-> >>>   		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_name.attr;
-> >>> +	if (indio_dev->label)
-> >>> +		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_label.attr;
-> >>>   	if (clk)
-> >>>   		indio_dev->chan_attr_group.attrs[attrn++] = clk;
-> >>>   
-> >>> @@ -1647,6 +1661,9 @@ int __iio_device_register(struct iio_dev *indio_dev, struct module *this_mod)
-> >>>   	if (!indio_dev->dev.of_node && indio_dev->dev.parent)
-> >>>   		indio_dev->dev.of_node = indio_dev->dev.parent->of_node;
-> >>>   
-> >>> +	indio_dev->label = of_get_property(indio_dev->dev.of_node, "label",
-> >>> +					   NULL);
-> >>> +
-> >>>   	ret = iio_check_unique_scan_index(indio_dev);
-> >>>   	if (ret < 0)
-> >>>   		return ret;
-> >>> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> >>> index 8e132cf819e4..a2527c7ab934 100644
-> >>> --- a/include/linux/iio/iio.h
-> >>> +++ b/include/linux/iio/iio.h
-> >>> @@ -553,6 +553,7 @@ struct iio_dev {
-> >>>   	struct list_head		channel_attr_list;
-> >>>   	struct attribute_group		chan_attr_group;
-> >>>   	const char			*name;
-> >>> +	const char			*label;
-> >>>   	const struct iio_info		*info;
-> >>>   	clockid_t			clock_id;
-> >>>   	struct mutex			info_exist_lock;  
-> >>  
-> > 
-> > 
-> >   
-> 
-> 
-
-
+> ---
+>  Documentation/devicetree/bindings/net/ftgmac100.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/net/ftgmac100.txt b/Documentation/devicetree/bindings/net/ftgmac100.txt
+> index 72e7aaf7242e..04cc0191b7dd 100644
+> --- a/Documentation/devicetree/bindings/net/ftgmac100.txt
+> +++ b/Documentation/devicetree/bindings/net/ftgmac100.txt
+> @@ -9,6 +9,7 @@ Required properties:
+>
+>       - "aspeed,ast2400-mac"
+>       - "aspeed,ast2500-mac"
+> +     - "aspeed,ast2600-mac"
+>
+>  - reg: Address and length of the register set for the device
+>  - interrupts: Should contain ethernet controller interrupt
+> --
+> 2.20.1
+>
