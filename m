@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD984CF0F6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 04:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0511BCF12F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 05:20:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729707AbfJHCzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Oct 2019 22:55:53 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:58872 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729682AbfJHCzw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Oct 2019 22:55:52 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8B4E420009D;
-        Tue,  8 Oct 2019 04:55:50 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 473E7200070;
-        Tue,  8 Oct 2019 04:55:45 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8B495402DF;
-        Tue,  8 Oct 2019 10:55:38 +0800 (SGT)
-From:   Yinbo Zhu <yinbo.zhu@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        id S1729832AbfJHDUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Oct 2019 23:20:04 -0400
+Received: from regular1.263xmail.com ([211.150.70.197]:57864 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729823AbfJHDUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Oct 2019 23:20:03 -0400
+X-Greylist: delayed 453 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Oct 2019 23:20:02 EDT
+Received: from localhost (unknown [192.168.165.252])
+        by regular1.263xmail.com (Postfix) with ESMTP id 8722E5EB;
+        Tue,  8 Oct 2019 11:12:21 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from localhost (unknown [183.57.25.242])
+        by smtp.263.net (postfix) whith ESMTP id P628T140409852389120S1570504336050683_;
+        Tue, 08 Oct 2019 11:12:20 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <05ed1e03424721773edf294b718993ad>
+X-RL-SENDER: djw@t-chip.com.cn
+X-SENDER: djw@t-chip.com.cn
+X-LOGIN-NAME: djw@t-chip.com.cn
+X-FST-TO: jagan@amarulasolutions.com
+X-SENDER-IP: 183.57.25.242
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+From:   djw@t-chip.com.cn
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Da Xue <da@lessconfused.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list\:ARM\/Rockchip SoC..." 
+        <linux-rockchip@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     yinbo.zhu@nxp.com, xiaobo.xie@nxp.com, jiafei.pan@nxp.com,
-        Ran Wang <ran.wang_1@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: enable otg mode for dwc3 usb ip on layerscape
-Date:   Tue,  8 Oct 2019 10:56:42 +0800
-Message-Id: <20191008025642.19519-1-yinbo.zhu@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        Akash Gajjar <akash@openedev.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/6] arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
+Organization: Firefly Team
+References: <20190919052822.10403-1-jagan@amarulasolutions.com>
+        <20190919052822.10403-2-jagan@amarulasolutions.com>
+        <6797961.eJj5WIFbM9@phil>
+        <CAMty3ZDKaywoPxCSD-5N2pLjtGmZ-dZ7ZgUOJqiB1V_9rfR26A@mail.gmail.com>
+Date:   Tue, 08 Oct 2019 11:11:10 +0800
+In-Reply-To: <CAMty3ZDKaywoPxCSD-5N2pLjtGmZ-dZ7ZgUOJqiB1V_9rfR26A@mail.gmail.com>
+        (Jagan Teki's message of "Tue, 1 Oct 2019 15:56:14 +0530")
+Message-ID: <87eezolynl.fsf@archiso.i-did-not-set--mail-host-address--so-tickle-me>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-layerscape otg function should be supported HNP SRP and ADP protocol
-accroing to rm doc, but dwc3 code not realize it and use id pin to
-detect who is host or device(0 is host 1 is device) this patch is to
-enable OTG mode on ls1028ardb ls1088ardb and ls1046ardb in dts
+Jagan Teki <jagan@amarulasolutions.com> writes:
 
-Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
----
-Changed in v3:
-		updated the patch title with "arm64: dts"
+> Hi Heiko,
+>
+> On Mon, Sep 30, 2019 at 2:51 AM Heiko Stuebner <heiko@sntech.de> wrote:
+>>
+>> Hi Jagan,
+>>
+>> Am Donnerstag, 19. September 2019, 07:28:17 CEST schrieb Jagan Teki:
+>> > ROC-PC is not able to boot linux console if PWM2_d is
+>> > unattached to any pinctrl logic.
+>> >
+>> > To be precise the linux boot hang with last logs as,
+>> > ...
+>> > .....
+>> > [    0.003367] Console: colour dummy device 80x25
+>> > [    0.003788] printk: console [tty0] enabled
+>> > [    0.004178] printk: bootconsole [uart8250] disabled
+>> >
+>> > In ROC-PC the PWM2_d pin is connected to LOG_DVS_PWM of
+>> > VDD_LOG. So, for normal working operations this needs to
+>> > active and pull-down.
+>> >
+>> > This patch fix, by attaching pinctrl active and pull-down
+>> > the pwm2.
+>>
+>> This looks highly dubious on first glance. The pwm subsystem nor
+>> the Rockchip pwm driver do not do any pinctrl handling.
+>>
+>> So I don't really see where that "active" pinctrl state is supposed
+>> to come from.
+>>
+>> Comparing with the pwm driver in the vendor tree I see that there
+>> is such a state defined there. But that code there also looks strange
+>> as that driver never again leaves this active state after entering it.
+>>
+>> Also for example all the Gru devices run with quite a number of pwm-
+>> regulators without needing additional fiddling with the pwm itself, so
+>> I don't really see why that should be different here.
+>
+> I deed, I was supposed to think the same. but the vendor kernel dts
+> from firefly do follow the pwm2 pinctrl [1]. I wouldn't find any
+> information other than this vensor information, ie one of the reason I
+> have marked "Levin Du" who initially supported this board.
+>
+> One, think I have seen was this pinctrl active fixed the boot hang.
+> any inputs from would be very helpful.
+>
+> Levin Du, any inputs?
+>
+> [1] https://github.com/FireflyTeam/kernel/blob/stable-4.4-rk3399-linux/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi#L1184
+>
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 4 ++++
- arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts | 4 ++++
- arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts | 1 +
- 3 files changed, 9 insertions(+)
+A grep of the `pwm2` shows that there's such block in rk3399-nanopi4.dtsi:
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index 9fb9113..076cac6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -171,3 +171,7 @@
- &sata {
- 	status = "okay";
- };
-+
-+&usb1 {
-+	dr_mode = "otg";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-index 6a6514d..0c742be 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-@@ -122,6 +122,10 @@
- 	};
- };
- 
-+&usb1 {
-+	dr_mode = "otg";
-+};
-+
- #include "fsl-ls1046-post.dtsi"
- 
- &fman0 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-index 8e925df..90b1989 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-@@ -95,5 +95,6 @@
- };
- 
- &usb1 {
-+	dr_mode = "otg";
- 	status = "okay";
- };
--- 
-2.9.5
+    &pwm2 {
+            pinctrl-names = "active";
+            pinctrl-0 = <&pwm2_pin_pull_down>;
+            status = "okay";
+    };
+
+But last time I checked, using the mainline U-Boot (the roc-rk3399-pc is
+in mainline now) with mainline linux v5.2-rc7, no such setting is
+necessary, and the board boots happily.
+
+I cannot find the use of "active" pinctrl state in the
+`drivers/pwm/pwm-rockchip.c`. If the pinctrl state needs to be setup as
+default, the `pinctrl-names` needs to be "default" or "init" (see
+`drivers/base/pinctrl.c`) .
+
+Jagan, what version of board do you use? I checked with
+"ROC-RK3399-PC-V1.0-A 2018-07-12". 
+
+Thanks
+
+--
+Levin Du
+
 
