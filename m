@@ -2,121 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66458CFCD5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 16:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9189CFD1D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 17:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726007AbfJHOxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 10:53:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34792 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725839AbfJHOxF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 10:53:05 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2BD54205F4;
-        Tue,  8 Oct 2019 14:53:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570546384;
-        bh=HOwqEJnzYDjyfyw62/mg9zQ47IpabGqcr9GPShPewjw=;
-        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
-        b=mP2igvVtEnU1PgLtbmQACDyWbD4aoBpJBBrrLBjxggACvfraDKHi4zZDk79r5IIN1
-         Zm+YM6bz23bgxX4MH4LMGQ73emCqM/L3TQI0QOgO5qIfGflaeDpamPjMRNbfbYUWQB
-         bGsUAMhvMc+Yny1vE6Oo9fWzD78hxwR50oplwcvk=
-Content-Type: text/plain; charset="utf-8"
+        id S1725939AbfJHPFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 11:05:02 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:45827 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727589AbfJHPFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 11:05:02 -0400
+Received: by mail-wr1-f67.google.com with SMTP id r5so19754894wrm.12;
+        Tue, 08 Oct 2019 08:05:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rX0PXXQKYXyZRDbrBWfRRnZ6rIagZRqMiLAQaZV8zbs=;
+        b=iwpd6ZXMGD2NSbpFwq/VzQkESAz09B5XgNlWI6GeIVgsB1lDUjqyG0ipvKqxdoSwzl
+         qvZvQfCZmOzxT6+qCKUF8x11CUODSbhZdBx9aMJZUEZGpNbJ3NVU1emSIMgqAV5VCBko
+         JQgcAbb8W14RVLAAh9aCPRPDMDhAYEOd8U7GH8q/IFtRbTyZmmm0CtapCAXTXp2WFrep
+         2l6516wwWW+gcI6iLiga0iwoptjCA91UIIqKE0NW6ZBGugqfLLat8ffwqoyQvZugqmXl
+         +58x0NqcpFmv2xkKfcTCEZmT/PQv5sHRyRLNXauvsn2T1/Ch6BdKLB9LuwUh3B5IfO0G
+         CQfQ==
+X-Gm-Message-State: APjAAAUQfnGwGxsZG9VPL7H1IBSYs01n9jBxs0ZE0QKRCnY+TFC5iR3H
+        lLw5f2LafGdKtAUmfxdQ8Vw=
+X-Google-Smtp-Source: APXvYqxbH6kNC2No7U6c2Eckjb4BC3VaoHcgnIuNUSw/LgzIdnnn5qz0WdDmVXiEjMQbUVy1l+M2yg==
+X-Received: by 2002:adf:f311:: with SMTP id i17mr17611648wro.394.1570547099949;
+        Tue, 08 Oct 2019 08:04:59 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id l9sm3273799wme.45.2019.10.08.08.04.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2019 08:04:59 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 17:04:56 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Kukjin Kim <kgene@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maciej Falkowski <m.falkowski@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: samsung: Force clkoutN names to be
+ unique in PMU
+Message-ID: <20191008150456.GA2683@pi3>
+References: <20191004151414.8458-1-krzk@kernel.org>
+ <CAL_JsqJDTcHu5oXG6zszGHCBhTE6EW94AANUjyMV78SkKcn5yA@mail.gmail.com>
+ <20191008125038.GA2550@pi3>
+ <CAL_Jsq+GcsUWN6kjBLkyr1rHGh6_4=w6JL6+k7DBXkBcvHcSBw@mail.gmail.com>
+ <CAL_JsqKBzZCShxx99aB4z15XYNbUionVicmfNNXEfq=iohWLCA@mail.gmail.com>
+ <20191008142900.GA2635@pi3>
+ <CAL_Jsq+ObMD=inkMFqkZbKFoKZUxw53gUMnjsC1pU5GwumK8LQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20191004153750.GB823823@kroah.com>
-References: <20190904211126.47518-1-saravanak@google.com> <20190904211126.47518-4-saravanak@google.com> <20190911102926.A9F8D2082C@mail.kernel.org> <20191004153750.GB823823@kroah.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-acpi@vger.kernel.org,
-        clang-built-linux@googlegroups.com,
-        David Collins <collinsd@codeaurora.org>,
-        kernel-team@android.com, kbuild test robot <lkp@intel.com>
-Subject: Re: [PATCH v11 3/6] of: property: Add functional dependency link from DT bindings
-User-Agent: alot/0.8.1
-Date:   Tue, 08 Oct 2019 07:53:02 -0700
-Message-Id: <20191008145304.2BD54205F4@mail.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+ObMD=inkMFqkZbKFoKZUxw53gUMnjsC1pU5GwumK8LQ@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Greg Kroah-Hartman (2019-10-04 08:37:50)
-> On Wed, Sep 11, 2019 at 03:29:25AM -0700, Stephen Boyd wrote:
-> > Quoting Saravana Kannan (2019-09-04 14:11:22)
-> > > +       int ret =3D 0;
-> > > +       struct device_node *tmp_np =3D sup_np;
-> > > +
-> > > +       of_node_get(sup_np);
-> > > +       /*
-> > > +        * Find the device node that contains the supplier phandle.  =
-It may be
-> > > +        * @sup_np or it may be an ancestor of @sup_np.
-> > > +        */
-> > > +       while (sup_np && !of_find_property(sup_np, "compatible", NULL=
-))
-> > > +               sup_np =3D of_get_next_parent(sup_np);
-> >=20
-> > I don't get this. This is assuming that drivers are only probed for
-> > device nodes that have a compatible string? What about drivers that make
-> > sub-devices for clk support that have drivers in drivers/clk/ that then
-> > attach at runtime later? This happens sometimes for MFDs that want to
-> > split the functionality across the driver tree to the respective
-> > subsystems.
->=20
-> For that, the link would not be there, correct?
+On Tue, Oct 08, 2019 at 09:38:15AM -0500, Rob Herring wrote:
+> Are you running using DT_SCHEMA_FILES? If so, you won't get the core schema.
 
-The parent device (MFD) would have the links because that is the device
-node with the provider property like '#clock-cells'. The child clk
-device that's populated by the MFD would be the one actually providing
-the clk via a driver that may probe any time later, or never, depending
-on if the clk driver is configured as a module or not. I fail to see how
-this will work for these cases.
+Ah, yes, now I see proper errors. Thanks for pointing this.
 
-Is this logic there to find the parent of a regulator phandle and match
-that to some driver? It looks like it.
+I'll send next version of this patch only (if others are ok).
 
->=20
-> > > +static int of_link_property(struct device *dev, struct device_node *=
-con_np,
-> > > +                            const char *prop_name)
-> > > +{
-> > > +       struct device_node *phandle;
-> > > +       const struct supplier_bindings *s =3D bindings;
-> > > +       unsigned int i =3D 0;
-> > > +       bool matched =3D false;
-> > > +       int ret =3D 0;
-> > > +
-> > > +       /* Do not stop at first failed link, link all available suppl=
-iers. */
-> > > +       while (!matched && s->parse_prop) {
-> > > +               while ((phandle =3D s->parse_prop(con_np, prop_name, =
-i))) {
-> > > +                       matched =3D true;
-> > > +                       i++;
-> > > +                       if (of_link_to_phandle(dev, phandle) =3D=3D -=
-EAGAIN)
-> > > +                               ret =3D -EAGAIN;
-> >=20
-> > And don't break?
->=20
-> There was comments before about how this is not needed.  Frank asked
-> that the comment be removed.  And now you point it out again :)
->=20
-> Look at the comment a few lines up, we have to go through all of the
-> suppliers.
->=20
-
-Ok. The comment tells me what is happening but it misses the essential
-part which is _why_ we must make links to each supplier and return
--EAGAIN.
+Best regards,
+Krzysztof
 
