@@ -2,105 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F25EAD0072
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 20:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2039D0085
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 20:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726336AbfJHSFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 14:05:40 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:43480 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726138AbfJHSFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 14:05:39 -0400
-Received: by mail-io1-f65.google.com with SMTP id v2so38466294iob.10
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 11:05:39 -0700 (PDT)
+        id S1727220AbfJHSMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 14:12:20 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:40744 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726439AbfJHSMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 14:12:20 -0400
+Received: by mail-pg1-f195.google.com with SMTP id d26so10694892pgl.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 11:12:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7HI75GouwRxYN8A61a1OmNG/T9ubH5sh09rpMiJz5bs=;
-        b=JG+hpqwrxAKEEYcv+zMT9gPASAVNdwQPfuQybjrMkqX/JlIEn7BlrTVVWK3rnK72rp
-         IrP1u4TMxOUbhXCRKUMtovSns1sZr0NWLjFJ1Sha5/epWnT4NpUp0kHnroYgRKJ2I5AG
-         /kVf66tqMQ5oGVfF2ibcRgZyOpKNYmuoC9kTg=
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ft4+jYN1dS8NqqiVNLlnlvcOgcl6TC5Rdjhw+oDRjeM=;
+        b=fp/xUBWNRr3td/lzO69obrsv/blllnTc7YTOhUQOOc5uE3nOL+Da2ubPZCPl6MzSD8
+         7bG8U48fBbMujprEET895v8OHtvgm+bQwX2ZYk1Dec/P1Zax53qJ8EQmKDmgAvG71A2t
+         iolwRxV1MILEXICk6/fCgoJN4iZpMq94nxfhMbaxG2iugWflegBTW58ScZ/WZQi4MW2O
+         AUmqpRWZ1Cf1QGYM495TsSmpBKT3r7HrLnaNyVAmb6pZBTFFqXHFe5PCrnpeBdzPJ5gM
+         Q90Apo4k0GxuwlNEh6WVkJ2zksEhwoTfekOIgsIEMvGpEzRBQj7WujLqdBy5sSXNuKnH
+         GKPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7HI75GouwRxYN8A61a1OmNG/T9ubH5sh09rpMiJz5bs=;
-        b=qDZbgve3ZmaA2/Ze9iBHHf0NhG/9oJSJZT13DOphzjFbjcdhLIVJ8LjxlQQIGeUvCB
-         bYno5p+bDp9UQm1qHXS5/pAMC2Y/WdAzzg7XKiPXnBmXiLwf7HBwOSDOQWebeicEPKzJ
-         bh9VVlh0NapjfhcFWOAy4Y0rpaWmgnSMgPkujXAgRmTqphde+vkGDy/VeVRlM6KN421K
-         JiX1WULVWmLaWpUwRHmZPX0W8/rj7i6sU8xdHqgdTRsM8aaPVSXA+eanzNRhUNYPCrOw
-         X0k5TfnZN4vHpO+rzwfeKQUVyuDDaKOx9ROzi2JtSIS3ofYBboOHSYqsdlXNl0cLD6kE
-         kXjw==
-X-Gm-Message-State: APjAAAUjMGl/nd0e2pJiEZ4lCHceppYlnyrNxcGN7DahN+2hMMOVIamB
-        fdVZHT5YD9mcFgyfT8Tmt4EaJEGvrrM=
-X-Google-Smtp-Source: APXvYqxDdDpU4+5zbxSW22k6paQvmU96rowwGQjK6rFC5gSLUWx+o82BbTwRNqtzoZtymuOw96xgVQ==
-X-Received: by 2002:a6b:fe09:: with SMTP id x9mr25054377ioh.144.1570557938555;
-        Tue, 08 Oct 2019 11:05:38 -0700 (PDT)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
-        by smtp.gmail.com with ESMTPSA id l3sm6617538ioj.7.2019.10.08.11.05.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2019 11:05:38 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id c25so38440900iot.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2019 11:05:36 -0700 (PDT)
-X-Received: by 2002:a5d:9812:: with SMTP id a18mr13195587iol.168.1570557936383;
- Tue, 08 Oct 2019 11:05:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191003094137.v2.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
-In-Reply-To: <20191003094137.v2.1.Ic9fd698810ea569c465350154da40b85d24f805b@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 8 Oct 2019 11:05:24 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xi-M=Kk0axj=ukGMDr4p0a86LRdiL-6WyPZnL2vuDZGA@mail.gmail.com>
-Message-ID: <CAD=FV=Xi-M=Kk0axj=ukGMDr4p0a86LRdiL-6WyPZnL2vuDZGA@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: rockchip: Use interpolated brightness tables
- for veyron
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ft4+jYN1dS8NqqiVNLlnlvcOgcl6TC5Rdjhw+oDRjeM=;
+        b=stmtnd/pjcROrsnQrYjahUhFfempv+MRMzYxfUeAqiwsSO4GM+QMfd+hWwXWQRf22w
+         pTxaSP6ZoMNcreInTENbOjYEtZYO5isTcg3/RPOA5n5uZXX/yZC7kQ2SVvA7vDAsRQBI
+         oqLIan4JknntiZle8mPjaXyTVTLhBu9SB5o2XnhryCrGBBLJeoLhsf0lIAC00dMuPnUh
+         tNWlNfyw72YoN4vkjNO/PKmEH5qwnGQwpbumgJqKgSJ9zpE/XsesOo+2GHvWuGA09zlz
+         rgsiFj2G1xMhp+MIH8tZAeWUGiwiDlpohNPHt5B83Wnc8uPQX0QG07wb0IbkcgQaUwje
+         WRGA==
+X-Gm-Message-State: APjAAAU3z3FLex7TY9crtbAfrXHk81twOo2GAUQh2C1k4snGPCs41aKI
+        mF8PQpX7T3WxBgilO85XaW851w==
+X-Google-Smtp-Source: APXvYqwQY/d/4qF6Xf3ltUHZZdZHWBbFSe61lTeC1Lgsde2Fj5T5bc4/HzHq/Mq162NvzHwX2BH7bw==
+X-Received: by 2002:a63:d30f:: with SMTP id b15mr37524174pgg.341.1570558339176;
+        Tue, 08 Oct 2019 11:12:19 -0700 (PDT)
+Received: from google.com ([2620:15c:2cb:1:e90c:8e54:c2b4:29e7])
+        by smtp.gmail.com with ESMTPSA id s5sm2343109pjn.24.2019.10.08.11.12.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2019 11:12:18 -0700 (PDT)
+Date:   Tue, 8 Oct 2019 11:12:13 -0700
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 1/5] dt-bindings: i2c: aspeed: add buffer and DMA mode
+ transfer support
+Message-ID: <20191008181213.GB155928@google.com>
+References: <20191007231313.4700-1-jae.hyun.yoo@linux.intel.com>
+ <20191007231313.4700-2-jae.hyun.yoo@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191007231313.4700-2-jae.hyun.yoo@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Oct 3, 2019 at 9:42 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Use interpolated brightness tables (added by commit 573fe6d1c25
-> ("backlight: pwm_bl: Linear interpolation between
-> brightness-levels") for veyron, instead of specifying every single
-> step. Some devices/panels have intervals that are smaller than
-> the specified 'num-interpolated-steps', the driver interprets
-> these intervals as a single step.
->
-> Another option would be to switch to a perceptual brightness curve
-> (CIE 1931), with the caveat that it would change the behavior of
-> the backlight. Also the concept of a minimum brightness level is
-> currently not supported for CIE 1931 curves.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+On Mon, Oct 07, 2019 at 04:13:09PM -0700, Jae Hyun Yoo wrote:
+> Append bindings to support buffer mode and DMA mode transfer.
+> 
+> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
 > ---
->
-> Changes in v2:
-> - added 0 as first step for devices/panels that require a minimum
->   PWM duty cycle
-> - increased 'num-interpolated-steps' values by one, it's not the
->   number of steps between levels, but that number +1
->
->  arch/arm/boot/dts/rk3288-veyron-edp.dtsi   | 35 ++--------------------
->  arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 35 ++--------------------
->  arch/arm/boot/dts/rk3288-veyron-minnie.dts | 35 ++--------------------
->  arch/arm/boot/dts/rk3288-veyron-tiger.dts  | 35 ++--------------------
->  4 files changed, 8 insertions(+), 132 deletions(-)
+>  .../devicetree/bindings/i2c/i2c-aspeed.txt    | 67 +++++++++++++++++--
+>  1 file changed, 60 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> index 8fbd8633a387..e40dcc108307 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> @@ -3,7 +3,10 @@ Device tree configuration for the I2C busses on the AST24XX and AST25XX SoCs.
+>  Required Properties:
+>  - #address-cells	: should be 1
+>  - #size-cells		: should be 0
+> -- reg			: address offset and range of bus
+> +- reg			: Address offset and range of bus registers.
+> +			  An additional SRAM buffer address offset and range is
+> +			  optional in case of enabling I2C dedicated SRAM for
+> +			  buffer mode transfer support.
 
-I guess if someone wanted to they could try to increase the number of
-steps and see if they got prettier backlight transition, but what's
-there now doesn't bother me and has the advantage of matching what has
-been in use forever.  Thus:
+Sorry, I am having trouble parsing this. This seems like the SRAM buffer
+is global to all busses. Can you clarify? I expect I will probably have
+some more questions elsewhere.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>  - compatible		: should be "aspeed,ast2400-i2c-bus"
+>  			  or "aspeed,ast2500-i2c-bus"
+>  - clocks		: root clock of bus, should reference the APB
+> @@ -16,6 +19,18 @@ Optional Properties:
+>  - bus-frequency	: frequency of the bus clock in Hz defaults to 100 kHz when not
+>  		  specified
+>  - multi-master	: states that there is another master active on this bus.
+> +- aspeed,dma-buf-size	: size of DMA buffer (from 2 to 4095 in case of AST2500
+> +			  or later versions).
+> +			  Only AST2500 and later versions support DMA mode
+> +			  under some limitations:
+> +			  I2C is sharing the DMA H/W with UHCI host controller
+> +			  and MCTP controller. Since those controllers operate
+> +			  with DMA mode only, I2C has to use buffer mode or byte
+> +			  mode instead if one of those controllers is enabled.
+> +			  Also make sure that if SD/eMMC or Port80 snoop uses
+> +			  DMA mode instead of PIO or FIFO respectively, I2C
+> +			  can't use DMA mode. If both DMA and buffer modes are
+> +			  enabled, DMA mode will be selected.
+
+nit: I think it makes sense to break down the exceptions into a
+bulleted list.
+
+Cheers
