@@ -2,165 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 083EBCF335
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 09:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41DBCF341
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 09:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730275AbfJHHGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 03:06:51 -0400
-Received: from anchovy2.45ru.net.au ([203.30.46.146]:53858 "EHLO
-        anchovy2.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730273AbfJHHGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 03:06:51 -0400
-Received: (qmail 12789 invoked by uid 5089); 8 Oct 2019 07:06:48 -0000
-Received: by simscan 1.2.0 ppid: 12709, pid: 12710, t: 0.0737s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?192.168.0.128?) (preid@electromag.com.au@203.59.235.95)
-  by anchovy3.45ru.net.au with ESMTPA; 8 Oct 2019 07:06:48 -0000
-Subject: Re: [PATCH v2 2/2] iio: core: Add optional symbolic label to device
- attributes
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        michal.simek@xilinx.com
-References: <1568903768-65998-1-git-send-email-preid@electromag.com.au>
- <1568903768-65998-3-git-send-email-preid@electromag.com.au>
- <20191005155905.7fe1681e@archlinux> <20191007213244.2ed85c99@archlinux>
-From:   Phil Reid <preid@electromag.com.au>
-Message-ID: <34a7ab42-1e07-8c20-11ab-8e2a9dd2e74b@electromag.com.au>
-Date:   Tue, 8 Oct 2019 15:06:44 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1730115AbfJHHMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 03:12:33 -0400
+Received: from mail-eopbgr70087.outbound.protection.outlook.com ([40.107.7.87]:1734
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730134AbfJHHMc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 03:12:32 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XsBuRVDSrN05pbTEalH5q3N9GUaJ8CySmJvAfAx9FnUq8nPjguNUwsz9L4vhOTtMEmxysW3aBse4ioRC7gPrfgg6Yt/gYLYmJ/WHgQe1HKi/lc1+aBzcUD1XJSA6ZqxPYCo9DX30VtOVdvVR+S+MPK8PSWdeEi0LWbyAy3W0eC9Rpz1g4NDsRtf7Fxgg00hw3FcYv5+95kHi5HlHjYlZ8orD8ZlMAsKt+iNXVOIQe5RBgMF3C60CH11rRumwtvaIXr7ca6l8SEiUYn2HyPnHoTmgrNHXWmmaAFifmeQHB4ib8GjezzR80HykIqb98U/uyGgi561k2QCYZk1ZSPzEEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gURbfuERhGYbv3O/PPdIz5N4hzCIG4zc36fhB9WI024=;
+ b=kluyPPeCIONtJGsqvyveevWrR2RE9p3CwMEZjfcF14DB4ldl4VIBmZz3sgQphLPr9b1dnmtMcR8cI+RiaeBP2tYbrzqYdN9fvJbZy5ZPK2/9XiUuhupSYYC7PcueK7lxqNmTb2HT/zPIQLVDDikRqoHnqU6ZF00wJIZoloiytH6eOI6SpsvCCB2pOUwjW7s5sdAKuNRfkAH9d3BSuBhjpW7DXT/AKVnwZ2gXrUukLkVBCroWGat6lwEB2NsMpx6Q+T1JQ4Q8O1USlLQYvWHwUoTlJMpMX0QcRZObplkGjU3I9b0xVa0fDgJdVnuE8E/1NMO3STwz4D/m5pD9tO8kmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gURbfuERhGYbv3O/PPdIz5N4hzCIG4zc36fhB9WI024=;
+ b=bQ5OPb603qMWUdZg8NDuR3sWModNvuyXFToEN4lDUI3yD6i3Jq8NY5lGdS7DLP/krNsgYoYqH7tI44LxoQUmQo+Tyku7JLuFXv5Zw5MNGgtv78HOTszokOFHsGS00RKonnbLu8ct9NuTvAjtBNzWDsAk7RZnxNv3SiF04zQfAW0=
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
+ AM5PR04MB3138.eurprd04.prod.outlook.com (10.167.170.151) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.24; Tue, 8 Oct 2019 07:11:47 +0000
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::5dd3:ddc9:411a:db41]) by AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::5dd3:ddc9:411a:db41%3]) with mapi id 15.20.2305.023; Tue, 8 Oct 2019
+ 07:11:47 +0000
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Leo Li <leoyang.li@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Subject: RE: [PATCH v6 3/3] PCI: layerscape: Add LS1028a support
+Thread-Topic: [PATCH v6 3/3] PCI: layerscape: Add LS1028a support
+Thread-Index: AQHVYUIADtGnPn3wtky/OvhdSoTT96dI0k6AgAddc3A=
+Date:   Tue, 8 Oct 2019 07:11:47 +0000
+Message-ID: <AM5PR04MB329984A4B6BAD35510310CF5F59A0@AM5PR04MB3299.eurprd04.prod.outlook.com>
+References: <20190902034319.14026-1-xiaowei.bao@nxp.com>
+ <20190902034319.14026-3-xiaowei.bao@nxp.com> <20191003091019.GB22491@X250>
+In-Reply-To: <20191003091019.GB22491@X250>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=xiaowei.bao@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 72e852ca-9bcd-4f95-2ab7-08d74bbec844
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: AM5PR04MB3138:|AM5PR04MB3138:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM5PR04MB3138BBE32B8DD10783119293F59A0@AM5PR04MB3138.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 01842C458A
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(136003)(346002)(39860400002)(376002)(396003)(13464003)(199004)(189003)(71200400001)(7696005)(53546011)(316002)(6506007)(229853002)(4326008)(6436002)(86362001)(66946007)(76116006)(76176011)(6246003)(55016002)(66556008)(66476007)(9686003)(66446008)(99286004)(64756008)(8676002)(81156014)(71190400001)(81166006)(8936002)(256004)(74316002)(6116002)(3846002)(7736002)(305945005)(14454004)(478600001)(66066001)(6916009)(7416002)(25786009)(2906002)(33656002)(102836004)(476003)(186003)(44832011)(486006)(54906003)(52536014)(11346002)(5660300002)(26005)(446003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3138;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ThdypMZF2AkJ5xqrG/jMnMhvp2XiyGK2lupTEkkHkhilOdBvdg3jHzxSuV4sKvobIUlATVwfq0JjEr4zRCOV+PRBNCNVpXolXI5R4aSrpmYTLrF8LbwqUH3dOq9ybLDhWlCg5IYVSBN0Kns7D017a1MxfWREmy+9QmWqozv/nH0Tu1sr72/CeYoBfXBC0l3C1485Iy0BqT1h3NDPw4eZmTYPIuOhrXK/IGyUy18Vpx7CZKhX3rovbYbSwi/AROMSc/ntYO4QgOsBIizDlwWtV6x3jrOj5gpistQU6FKcXYLk4qAiCxfTRu1xBFgWID+QKm3bRajj9LiTQRzxs8Fc6iVBbKmizDsSNIGgCd5djQNDzy+3WF05PKEQBaRRsR21QTVPatTx+TzyScQNTS70/j/cFu6mLjI7hnguFmid5O8=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-In-Reply-To: <20191007213244.2ed85c99@archlinux>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72e852ca-9bcd-4f95-2ab7-08d74bbec844
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2019 07:11:47.0865
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CoLvnPo5jxgw8E2NltI1QC/Xq0qEGApgNTaqHhff06W0ecCm2dzBkEs7MO5HV3Evr6dpux8IWoGBi5X48Fd8cA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3138
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/10/2019 04:32, Jonathan Cameron wrote:
-> On Sat, 5 Oct 2019 15:59:05 +0100
-> Jonathan Cameron <jic23@kernel.org> wrote:
-> 
->> On Thu, 19 Sep 2019 22:36:08 +0800
->> Phil Reid <preid@electromag.com.au> wrote:
->>
->>> If a label is defined in the device tree for this device add that
->>> to the device specific attributes. This is useful for userspace to
->>> be able to identify an individual device when multiple identical
->>> chips are present in the system.
->>>
->>> Tested-by: Michal Simek <michal.simek@xilinx.com>
->>> Signed-off-by: Phil Reid <preid@electromag.com.au>
->>
->> Glad to see this going in given I thought I'd already applied it
->> and told someone they should be using it early today (oops ;)
->>
->> Applied to the togreg branch of iio.git and pushed out as testing
->> for the autobuilders to play with it.
-> 
-> 0-day picked up that there were no docs for this new field.
-> I've added some and re pushed out.
-
-Thanks.
-Just for my info what should I be doing to check for that.
-Don't remember getting any warnings for that.
-
-
-> 
-> Thanks,
-> 
-> Jonathan
-> 
->>
->> Thanks for doing this.
->>
->> Jonathan
->>
->>> ---
->>>   drivers/iio/industrialio-core.c | 17 +++++++++++++++++
->>>   include/linux/iio/iio.h         |  1 +
->>>   2 files changed, 18 insertions(+)
->>>
->>> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
->>> index 524a686077ca..f72c2dc5f703 100644
->>> --- a/drivers/iio/industrialio-core.c
->>> +++ b/drivers/iio/industrialio-core.c
->>> @@ -1238,6 +1238,16 @@ static ssize_t iio_show_dev_name(struct device *dev,
->>>   
->>>   static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
->>>   
->>> +static ssize_t iio_show_dev_label(struct device *dev,
->>> +				 struct device_attribute *attr,
->>> +				 char *buf)
->>> +{
->>> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
->>> +	return snprintf(buf, PAGE_SIZE, "%s\n", indio_dev->label);
->>> +}
->>> +
->>> +static DEVICE_ATTR(label, S_IRUGO, iio_show_dev_label, NULL);
->>> +
->>>   static ssize_t iio_show_timestamp_clock(struct device *dev,
->>>   					struct device_attribute *attr,
->>>   					char *buf)
->>> @@ -1354,6 +1364,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
->>>   
->>>   	if (indio_dev->name)
->>>   		attrcount++;
->>> +	if (indio_dev->label)
->>> +		attrcount++;
->>>   	if (clk)
->>>   		attrcount++;
->>>   
->>> @@ -1376,6 +1388,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
->>>   		indio_dev->chan_attr_group.attrs[attrn++] = &p->dev_attr.attr;
->>>   	if (indio_dev->name)
->>>   		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_name.attr;
->>> +	if (indio_dev->label)
->>> +		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_label.attr;
->>>   	if (clk)
->>>   		indio_dev->chan_attr_group.attrs[attrn++] = clk;
->>>   
->>> @@ -1647,6 +1661,9 @@ int __iio_device_register(struct iio_dev *indio_dev, struct module *this_mod)
->>>   	if (!indio_dev->dev.of_node && indio_dev->dev.parent)
->>>   		indio_dev->dev.of_node = indio_dev->dev.parent->of_node;
->>>   
->>> +	indio_dev->label = of_get_property(indio_dev->dev.of_node, "label",
->>> +					   NULL);
->>> +
->>>   	ret = iio_check_unique_scan_index(indio_dev);
->>>   	if (ret < 0)
->>>   		return ret;
->>> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
->>> index 8e132cf819e4..a2527c7ab934 100644
->>> --- a/include/linux/iio/iio.h
->>> +++ b/include/linux/iio/iio.h
->>> @@ -553,6 +553,7 @@ struct iio_dev {
->>>   	struct list_head		channel_attr_list;
->>>   	struct attribute_group		chan_attr_group;
->>>   	const char			*name;
->>> +	const char			*label;
->>>   	const struct iio_info		*info;
->>>   	clockid_t			clock_id;
->>>   	struct mutex			info_exist_lock;
->>
-> 
-> 
-> 
-
-
--- 
-Regards
-Phil Reid
-
-ElectroMagnetic Imaging Technology Pty Ltd
-Development of Geophysical Instrumentation & Software
-www.electromag.com.au
-
-3 The Avenue, Midland WA 6056, AUSTRALIA
-Ph: +61 8 9250 8100
-Fax: +61 8 9250 7100
-Email: preid@electromag.com.au
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU2hhd24gR3VvIDxzaGF3
+bmd1b0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDE5xOoxMNTCM8jVIDE3OjExDQo+IFRvOiBYaWFv
+d2VpIEJhbyA8eGlhb3dlaS5iYW9AbnhwLmNvbT4NCj4gQ2M6IHJvYmgrZHRAa2VybmVsLm9yZzsg
+bWFyay5ydXRsYW5kQGFybS5jb207IExlbyBMaQ0KPiA8bGVveWFuZy5saUBueHAuY29tPjsgTS5o
+LiBMaWFuIDxtaW5naHVhbi5saWFuQG54cC5jb20+OyBNaW5na2FpIEh1DQo+IDxtaW5na2FpLmh1
+QG54cC5jb20+OyBSb3kgWmFuZyA8cm95LnphbmdAbnhwLmNvbT47DQo+IGxvcmVuem8ucGllcmFs
+aXNpQGFybS5jb207IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGRldmljZXRyZWVAdmdl
+ci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1hcm0t
+a2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4cHBjLWRldkBsaXN0cy5vemxhYnMub3Jn
+Ow0KPiBiaGVsZ2Fhc0Bnb29nbGUuY29tOyBaLnEuIEhvdSA8emhpcWlhbmcuaG91QG54cC5jb20+
+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjYgMy8zXSBQQ0k6IGxheWVyc2NhcGU6IEFkZCBMUzEw
+MjhhIHN1cHBvcnQNCj4gDQo+IE9uIE1vbiwgU2VwIDAyLCAyMDE5IGF0IDExOjQzOjE5QU0gKzA4
+MDAsIFhpYW93ZWkgQmFvIHdyb3RlOg0KPiA+IEFkZCBzdXBwb3J0IGZvciB0aGUgTFMxMDI4YSBQ
+Q0llIGNvbnRyb2xsZXIuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBYaWFvd2VpIEJhbyA8eGlh
+b3dlaS5iYW9AbnhwLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBIb3UgWmhpcWlhbmcgPFpoaXFp
+YW5nLkhvdUBueHAuY29tPg0KPiA+IC0tLQ0KPiA+IHYyOg0KPiA+ICAtIE5vIGNoYW5nZS4NCj4g
+PiB2MzoNCj4gPiAgLSBSZXVzZSB0aGUgbHMyMDg4IGRyaXZlciBkYXRhIHN0cnVjdHVydC4NCj4g
+PiB2NDoNCj4gPiAgLSBObyBjaGFuZ2UuDQo+ID4gdjU6DQo+ID4gIC0gTm8gY2hhbmdlLg0KPiA+
+IHY2Og0KPiA+ICAtIE5vIGNoYW5nZS4NCj4gPg0KPiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVy
+L2R3Yy9wY2ktbGF5ZXJzY2FwZS5jIHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
+dGlvbigrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdj
+L3BjaS1sYXllcnNjYXBlLmMNCj4gPiBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1s
+YXllcnNjYXBlLmMNCj4gPiBpbmRleCAzYTVmYTI2Li5mMjRmNzlhIDEwMDY0NA0KPiA+IC0tLSBh
+L2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1sYXllcnNjYXBlLmMNCj4gPiArKysgYi9k
+cml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbGF5ZXJzY2FwZS5jDQo+ID4gQEAgLTI2Myw2
+ICsyNjMsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGxzX3BjaWVfZHJ2ZGF0YSBsczIwODhfZHJ2
+ZGF0YQ0KPiA+ID0geyAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbHNfcGNpZV9v
+Zl9tYXRjaFtdID0gew0KPiA+ICAJeyAuY29tcGF0aWJsZSA9ICJmc2wsbHMxMDEyYS1wY2llIiwg
+LmRhdGEgPSAmbHMxMDQ2X2RydmRhdGEgfSwNCj4gPiAgCXsgLmNvbXBhdGlibGUgPSAiZnNsLGxz
+MTAyMWEtcGNpZSIsIC5kYXRhID0gJmxzMTAyMV9kcnZkYXRhIH0sDQo+ID4gKwl7IC5jb21wYXRp
+YmxlID0gImZzbCxsczEwMjhhLXBjaWUiLCAuZGF0YSA9ICZsczIwODhfZHJ2ZGF0YSB9LA0KPiAN
+Cj4gSSB0aGluayB5b3UgY2FuIHNhdmUgdGhpcyBkcml2ZXIgY2hhbmdlIGJ5IHVzaW5nICJmc2ws
+bHMyMDg4YS1wY2llIiBhcw0KPiBjb21wYXRpYmxlIGZhbGxiYWNrIGxpa2UgYmVsb3cuDQo+IA0K
+PiAgIGNvbXBhdGlibGUgPSAiZnNsLGxzMTAyOGEtcGNpZSIsICJmc2wsbHMyMDg4YS1wY2llIjsN
+Cg0KWWVzLCBpdCBpcyBvayB0byBkbyBzbywgYnV0IGFjY29yZGluZyB0byB0aGUgcHJldmlvdXMg
+Y29kZSwgSSB0aGluayBhZGQgYSBuZXcgY29tcGF0aWJsZSAiIGZzbCxsczEwMjhhLXBjaWUgIiB0
+byBkcml2ZXIgaXMgYmV0dGVyLg0KDQpUaGFua3MgDQpYaWFvd2VpDQoNCj4gDQo+IFNoYXduDQo+
+IA0KPiA+ICAJeyAuY29tcGF0aWJsZSA9ICJmc2wsbHMxMDQzYS1wY2llIiwgLmRhdGEgPSAmbHMx
+MDQzX2RydmRhdGEgfSwNCj4gPiAgCXsgLmNvbXBhdGlibGUgPSAiZnNsLGxzMTA0NmEtcGNpZSIs
+IC5kYXRhID0gJmxzMTA0Nl9kcnZkYXRhIH0sDQo+ID4gIAl7IC5jb21wYXRpYmxlID0gImZzbCxs
+czIwODBhLXBjaWUiLCAuZGF0YSA9ICZsczIwODBfZHJ2ZGF0YSB9LA0KPiA+IC0tDQo+ID4gMi45
+LjUNCj4gPg0K
