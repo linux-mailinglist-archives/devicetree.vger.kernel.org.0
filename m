@@ -2,78 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E318FCF699
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 11:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F5FCF6C0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 12:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729944AbfJHJ5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 05:57:35 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:46001 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729935AbfJHJ5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 05:57:35 -0400
-X-Originating-IP: 2.139.156.91
-Received: from localhost (91.red-2-139-156.staticip.rima-tde.net [2.139.156.91])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id B0FC8E0005;
-        Tue,  8 Oct 2019 09:57:29 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        jason@lakedaemon.net, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/3] ARM: dts: SDRAM and L2 cache EDAC for Armada SoCs
-In-Reply-To: <20190926232820.27676-1-chris.packham@alliedtelesis.co.nz>
-References: <20190926232820.27676-1-chris.packham@alliedtelesis.co.nz>
-Date:   Tue, 08 Oct 2019 11:57:27 +0200
-Message-ID: <87ftk3tv94.fsf@FE-laptop>
+        id S1729944AbfJHKJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 06:09:20 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55194 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728866AbfJHKJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 06:09:19 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x98A937D068103;
+        Tue, 8 Oct 2019 05:09:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570529344;
+        bh=FkNiIod96/3T2zF68YAgCCg2oYEqg3sIPlPb6RVQtJU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=rqMjNPvD+0W8D0F/WVHwVLj73f3VdnSnzzhobu03+GT+LpwtlmnElkM6+UnCNa2sw
+         8ybL4vocG5xUba642POMwE/IomSzf/qjbYfgZPXOQW3CKZ5Ig6SJZ4QNZP+PbL4K/R
+         8RJvjvO1x23sLcJ8v/RAtTk5F+ZLBrlCfGxQOyDE=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x98A9373015293;
+        Tue, 8 Oct 2019 05:09:03 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 8 Oct
+ 2019 05:09:00 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 8 Oct 2019 05:09:02 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x98A8xv6073491;
+        Tue, 8 Oct 2019 05:08:59 -0500
+Subject: Re: [PATCH v3 00/14] dmaengine/soc: Add Texas Instruments UDMA
+ support
+To:     <santosh.shilimkar@oracle.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
+        <t-kristo@ti.com>, <tony@atomide.com>, <j-keerthy@ti.com>
+References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
+ <c567c1a2-2e74-3809-8e0f-4c2049ba4747@oracle.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <7dd18208-1ca5-c902-dc11-edbd4ded51ed@ti.com>
+Date:   Tue, 8 Oct 2019 13:09:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <c567c1a2-2e74-3809-8e0f-4c2049ba4747@oracle.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+Hi Santosh,
 
-> This series was waiting for the armada_xp edac driver to be accepted.
-> Now that it has the relevant nodes can be added to the Armada SoCs. So
-> that boards can use the EDAC driver if they have the hardware support.
->
-> The db-xc3-24g4xg.dts board doesn't have an ECC chip for it's DDR but it
-> can use the L2 cache parity and ecc support.
->
-> Chris Packham (3):
->   ARM: dts: armada-xp: enable L2 cache parity and ecc on db-xc3-24g4xg
->   ARM: dts: mvebu: add sdram controller node to Armada-38x
->   ARM: dts: armada-xp: add label to sdram-controller node
+On 04/10/2019 19.35, santosh.shilimkar@oracle.com wrote:
+> On 9/30/19 11:16 PM, Peter Ujfalusi wrote:
+>> Hi,
+>>
+>> Changes since v2
+>> )https://patchwork.kernel.org/project/linux-dmaengine/list/?series=152609&state=*)
+>>
+>> - Based on 5.4-rc1
+>> - Support for Flow only data transfer for the glue layer
+>>
+> 
+>>
+>> Grygorii Strashko (3):
+>>    bindings: soc: ti: add documentation for k3 ringacc
+>>    soc: ti: k3: add navss ringacc driver
+>>    dmaengine: ti: k3-udma: Add glue layer for non DMAengine users
+>>
+>> Peter Ujfalusi (11):
+>>    dmaengine: doc: Add sections for per descriptor metadata support
+>>    dmaengine: Add metadata_ops for dma_async_tx_descriptor
+>>    dmaengine: Add support for reporting DMA cached data amount
+>>    dmaengine: ti: Add cppi5 header for UDMA
+>>    dt-bindings: dma: ti: Add document for K3 UDMA
+>>    dmaengine: ti: New driver for K3 UDMA - split#1: defines, structs, io
+>>      func
+>>    dmaengine: ti: New driver for K3 UDMA - split#2: probe/remove, xlate
+>>      and filter_fn
+>>    dmaengine: ti: New driver for K3 UDMA - split#3: alloc/free
+>>      chan_resources
+>>    dmaengine: ti: New driver for K3 UDMA - split#4: dma_device callbacks
+>>      1
+>>    dmaengine: ti: New driver for K3 UDMA - split#5: dma_device callbacks
+>>      2
+>>    dmaengine: ti: New driver for K3 UDMA - split#6: Kconfig and Makefile
+>>
+>>   .../devicetree/bindings/dma/ti/k3-udma.txt    |  185 +
+>>   .../devicetree/bindings/soc/ti/k3-ringacc.txt |   59 +
+>>   Documentation/driver-api/dmaengine/client.rst |   75 +
+>>   .../driver-api/dmaengine/provider.rst         |   46 +
+>>   drivers/dma/dmaengine.c                       |   73 +
+>>   drivers/dma/dmaengine.h                       |    8 +
+>>   drivers/dma/ti/Kconfig                        |   22 +
+>>   drivers/dma/ti/Makefile                       |    2 +
+>>   drivers/dma/ti/k3-udma-glue.c                 | 1225 ++++++
+>>   drivers/dma/ti/k3-udma-private.c              |  141 +
+>>   drivers/dma/ti/k3-udma.c                      | 3525 +++++++++++++++++
+>>   drivers/dma/ti/k3-udma.h                      |  161 +
+>>   drivers/soc/ti/Kconfig                        |   12 +
+>>   drivers/soc/ti/Makefile                       |    1 +
+>>   drivers/soc/ti/k3-ringacc.c                   | 1165 ++++++
+>>   include/dt-bindings/dma/k3-udma.h             |   10 +
+>>   include/linux/dma/k3-udma-glue.h              |  134 +
+>>   include/linux/dma/ti-cppi5.h                  | 1049 +++++
+>>   include/linux/dmaengine.h                     |  110 +
+>>   include/linux/soc/ti/k3-ringacc.h             |  245 ++
+>>   20 files changed, 8248 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-udma.txt
+>>   create mode 100644
+>> Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt
+>>   create mode 100644 drivers/dma/ti/k3-udma-glue.c
+>>   create mode 100644 drivers/dma/ti/k3-udma-private.c
+>>   create mode 100644 drivers/dma/ti/k3-udma.c
+>>   create mode 100644 drivers/dma/ti/k3-udma.h
+>>   create mode 100644 drivers/soc/ti/k3-ringacc.c
+>>   create mode 100644 include/dt-bindings/dma/k3-udma.h
+>>   create mode 100644 include/linux/dma/k3-udma-glue.h
+>>   create mode 100644 include/linux/dma/ti-cppi5.h
+>>   create mode 100644 include/linux/soc/ti/k3-ringacc.h
+>>
+> Can you please split this series and post drivers/soc/* bits
+> separately ?  If its ready, I can apply k3-ringacc.c changes.
 
-Series applied on mvebu/dt
+I'll wait couple of days for guys to check the series, then I can send
+the split out ringacc patches separately.
 
-Thanks,
+- Péter
 
-Gregory
-
-
->
->  arch/arm/boot/dts/armada-38x.dtsi             | 5 +++++
->  arch/arm/boot/dts/armada-xp-98dx3236.dtsi     | 2 +-
->  arch/arm/boot/dts/armada-xp-db-xc3-24g4xg.dts | 5 +++++
->  arch/arm/boot/dts/armada-xp.dtsi              | 2 +-
->  4 files changed, 12 insertions(+), 2 deletions(-)
->
-> -- 
-> 2.23.0
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
