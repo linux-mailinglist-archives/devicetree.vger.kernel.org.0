@@ -2,143 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DEC9CF9C6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8917CF9E1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2019 14:34:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730249AbfJHMaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 08:30:05 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:3223 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730301AbfJHMaF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 08:30:05 -0400
-Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 625A471954B1507DF561;
-        Tue,  8 Oct 2019 20:30:01 +0800 (CST)
-Received: from localhost (10.202.226.61) by DGGEMS402-HUB.china.huawei.com
- (10.3.19.202) with Microsoft SMTP Server id 14.3.439.0; Tue, 8 Oct 2019
- 20:29:57 +0800
-Date:   Tue, 8 Oct 2019 13:29:40 +0100
-From:   Jonathan Cameron <jonathan.cameron@huawei.com>
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-CC:     "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Add binding for ADUX1020
-Message-ID: <20191008132940.00000eca@huawei.com>
-In-Reply-To: <b03c8de71e6d568d54ddfd07758c07c03c0eb89d.camel@analog.com>
-References: <20191007101027.8383-1-manivannan.sadhasivam@linaro.org>
-        <20191007101027.8383-2-manivannan.sadhasivam@linaro.org>
-        <a60fb9ea8922c1eb532e0b7ef0a69abcc9306255.camel@analog.com>
-        <4EC23AB5-B8BE-4E45-8E5B-FCCD5B1508BA@linaro.org>
-        <b03c8de71e6d568d54ddfd07758c07c03c0eb89d.camel@analog.com>
-Organization: Huawei
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1730719AbfJHMer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 08:34:47 -0400
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:10186 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730605AbfJHMer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 08:34:47 -0400
+Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+  Nicolas.Ferre@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Nicolas.Ferre@microchip.com";
+  x-sender="Nicolas.Ferre@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa6.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Nicolas.Ferre@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Nicolas.Ferre@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: WhkBNvq3jsOp2cyfmV0+lPJQ1VKmrmpaIiaKSptI7W1Ff6RnMsBmfbNQpUBAPc+ovIn+vQnxBS
+ 41+4SHKSC6OZwlXR+uw3XZsEMODm3QfSQLtApT7ReFe290q99kHpMn0NhuIFtEI8bBNYVTA9J1
+ HEXvSo6HnQinu8CGN5E1jZ006EdJmtpdfoxIk4bPoBhW1Ce+wVZ9UtX6QjHcRPJUH7eyMPRe0l
+ 1nPJgLo72x6qtYQMDV+D/CAYpHOJYwlo82+ziBVupWT+hFBW5J1KzoN4XaFSjoivSuYlB3zAEh
+ 4uc=
+X-IronPort-AV: E=Sophos;i="5.67,270,1566889200"; 
+   d="scan'208";a="49212609"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2019 05:34:46 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 8 Oct 2019 05:34:46 -0700
+Received: from tenerife.corp.atmel.com (10.10.85.251) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Tue, 8 Oct 2019 05:34:44 -0700
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+To:     Ludovic Desroches <ludovic.desroches@microchip.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>
+CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-kernel@vger.kernel.org>, <ulf.hansson@linaro.org>,
+        <adrian.hunter@intel.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Subject: [PATCH 1/2] dt-bindings: sdhci-of-at91: add the microchip,sdcal-inverted property
+Date:   Tue, 8 Oct 2019 14:34:31 +0200
+Message-ID: <4d269f30b1122487a2b5c8b48e24f78f2b75a509.1570537903.git.nicolas.ferre@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.61]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Oct 2019 13:21:50 +0000
-"Ardelean, Alexandru" <alexandru.Ardelean@analog.com> wrote:
+Add the specific microchip,sdcal-inverted property to at91 sdhci
+device binding.
+This optional property describes how the SoC SDCAL pin is connected.
+It could be handled at SiP, SoM or board level.
 
-> On Mon, 2019-10-07 at 18:10 +0530, Manivannan Sadhasivam wrote:
-> > [External]
-> > 
-> > Hi Ardelean, 
-> > 
-> > On 7 October 2019 3:51:16 PM IST, "Ardelean, Alexandru" <  
-> > alexandru.Ardelean@analog.com> wrote:
-> > > On Mon, 2019-10-07 at 15:40 +0530, Manivannan Sadhasivam wrote:  
-> > > > [External]
-> > > > 
-> > > > Add devicetree binding for Analog Devices ADUX1020 Photometric
-> > > > sensor.
-> > > >   
-> > > 
-> > > Hey,
-> > > 
-> > > Thanks for the patches.
-> > > 
-> > > This dt-binding docs is in text format.
-> > > dt-binding docs now need to be in YAML format.
-> > >   
-> > 
-> > Sure. I can convert to YAML binding. 
-> >   
-> > > Also, patches for dt-bindings docs usually come after the driver is
-> > > added.
-> > > So, this patch should be the second in the series, not the first.
-> > >   
-> > 
-> > I don't think so. The convention is to put dt-bindings patch upfront for
-> > all subsystems. Not sure if IIO differs here.   
-> 
-> Now that you mention, I'm not sure either.
-> We typically sent the dt-bindings one last, so I assumed it was the
-> default.
+This property read by at91 sdhci driver will allow to put in place a
+software workaround that would reduce power consumption.
 
-I don't care either way so never comment on it :)
+Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+---
+ Documentation/devicetree/bindings/mmc/sdhci-atmel.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Jonathan
-
-> 
-> > 
-> > Thanks, 
-> > Mani  
-> > > Alex
-> > >   
-> > > > Signed-off-by: Manivannan Sadhasivam  
-> > > <manivannan.sadhasivam@linaro.org>  
-> > > > ---
-> > > >  .../bindings/iio/light/adux1020.txt           | 22  
-> > > +++++++++++++++++++  
-> > > >  1 file changed, 22 insertions(+)
-> > > >  create mode 100644
-> > > > Documentation/devicetree/bindings/iio/light/adux1020.txt
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/iio/light/adux1020.txt
-> > > > b/Documentation/devicetree/bindings/iio/light/adux1020.txt
-> > > > new file mode 100644
-> > > > index 000000000000..e896dda30e36
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/iio/light/adux1020.txt
-> > > > @@ -0,0 +1,22 @@
-> > > > +Analog Devices ADUX1020 Photometric sensor
-> > > > +
-> > > > +Link to datasheet: 
-> > > >   
-> > > https://www.analog.com/media/en/technical-documentation/data-sheets/ADUX1020.pdf  
-> > > > +
-> > > > +Required properties:
-> > > > +
-> > > > + - compatible: should be "adi,adux1020"
-> > > > + - reg: the I2C address of the sensor
-> > > > +
-> > > > +Optional properties:
-> > > > +
-> > > > + - interrupts: interrupt mapping for IRQ as documented in
-> > > > +    
-> > > Documentation/devicetree/bindings/interrupt-controller/interrupts.txt  
-> > > > +
-> > > > +Example:
-> > > > +
-> > > > +adux1020@64 {
-> > > > +	compatible = "adi,adux1020";
-> > > > +	reg = <0x64>;
-> > > > +	interrupt-parent = <&msmgpio>;
-> > > > +	interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +};  
-
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+index 1b662d7171a0..503c6dbac1b2 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+@@ -9,6 +9,11 @@ Required properties:
+ - clocks:		Phandlers to the clocks.
+ - clock-names:		Must be "hclock", "multclk", "baseclk";
+ 
++Optional properties:
++- microchip,sdcal-inverted: when present, polarity on the SDCAL SoC pin is
++  inverted. The default polarity for this signal is described in the datasheet.
++  For instance on SAMA5D2, the pin is usually tied to the GND with a resistor
++  and a capacitor (see "SDMMC I/O Calibration" chapter).
+ 
+ Example:
+ 
+-- 
+2.17.1
 
