@@ -2,78 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AA61D11D6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D1BD123C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 17:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729491AbfJIO5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 10:57:34 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38203 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728019AbfJIO5e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:57:34 -0400
-Received: by mail-oi1-f195.google.com with SMTP id m16so2003042oic.5;
-        Wed, 09 Oct 2019 07:57:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S0mjj61pjl8Z2+bI/poAjgaDtWPBdBYv++ThqivtWyc=;
-        b=gWCc6x6y4fr/GC2e2lpDk6rXRe1onAHukOvR8brX5XIC61uJaYYDDFMLIRtpNwHvdy
-         A09MQWDStrsxGpEfG6NLXlRmDccBRPG6EJOVo4FQI6sfqI1M66m3UWjnOSNV9KpUkcBo
-         ZsnlAxB2ZXq3U071gXg1vrYR5+fON64IfrUdgMYfpw8j2kWjNJB1DPKuN8CMG77STr5/
-         RA9GFsTxI8Ij5ML8pPFrMgSzDQsjOHpnRE1uemIKX8NkGZckzqzb3tCgdYFe1uxFuqkl
-         xnGPiJJscl5QHuiSZc7fBSinGUaDmarV/sNyKrJQ4C87YM2KlgeRvxHPFtVLzpTAYmOB
-         HvnQ==
-X-Gm-Message-State: APjAAAWS19Y59+FMLAdZcIdUMEhCtYy85ALRcTxFHl3R9+wANilacZ+v
-        ZyTP/Aq7cqsHFgcr+de6z/JCZP1lJZ8Da0h1qrM=
-X-Google-Smtp-Source: APXvYqyIp0VHiNv1dXN+PP2N+gXpRos5ibqoqHaM0fwo1bh3iRyX9Unqv7AoNvfdGTmxvK/AVSnQDrFbJaISqCSdC7Q=
-X-Received: by 2002:a54:4e89:: with SMTP id c9mr2586543oiy.148.1570633053102;
- Wed, 09 Oct 2019 07:57:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <1570029619-43238-1-git-send-email-biju.das@bp.renesas.com> <1570029619-43238-2-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1570029619-43238-2-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 9 Oct 2019 16:57:22 +0200
-Message-ID: <CAMuHMdVwEuBoeBu7B9MJo-P+jApuYpS=pfZCMKyiWYML-8PuzA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] arm64: dts: renesas: hihope-common: Move du clk
- properties out of common dtsi
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1729883AbfJIPPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 11:15:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:36452 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727920AbfJIPPm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 11:15:42 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C68C2337;
+        Wed,  9 Oct 2019 08:15:41 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 870A63F68E;
+        Wed,  9 Oct 2019 08:15:40 -0700 (PDT)
+Subject: Re: [PATCH] dts: Disable DMA support on the BK4 vf610 device's
+ fsl_lpuart driver
+To:     Lukasz Majewski <lukma@denx.de>
+Cc:     linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+References: <20191009143032.9261-1-lukma@denx.de>
+ <b39b6860-9e9b-5cee-a07e-7b430c2e5119@arm.com> <20191009164442.51f27b9d@jawa>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <34d5f652-57e5-168e-0025-38b897e88fff@arm.com>
+Date:   Wed, 9 Oct 2019 16:15:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20191009164442.51f27b9d@jawa>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 2, 2019 at 5:20 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> RZ/G2N board is pin compatible with RZ/G2M board. However on the SoC
-> side RZ/G2N uses DU3 where as RZ/G2M uses DU2 for the DPAD. In order to
-> reuse the common dtsi for both the boards, it is required to move du clock
-> properties from common dtsi to board specific dts.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+On 09/10/2019 15:44, Lukasz Majewski wrote:
+> Hi Robin,
+> 
+>> On 09/10/2019 15:30, Lukasz Majewski wrote:
+>>> This change disables the DMA support (RX/TX) on the NXP's fsl_lpuart
+>>> driver - the PIO mode is used instead. This change is necessary for
+>>> better robustness of BK4's device use cases with many potentially
+>>> interrupted short serial transfers.
+>>>
+>>> Without it the driver hangs when some distortion happens on UART
+>>> lines.
+>>>
+>>> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+>>> ---
+>>>    arch/arm/boot/dts/vf610-bk4.dts | 4 ++++
+>>>    1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/vf610-bk4.dts
+>>> b/arch/arm/boot/dts/vf610-bk4.dts index 0f3870d3b099..ad20f3442d40
+>>> 100644 --- a/arch/arm/boot/dts/vf610-bk4.dts
+>>> +++ b/arch/arm/boot/dts/vf610-bk4.dts
+>>> @@ -259,24 +259,28 @@
+>>>    &uart0 {
+>>>    	pinctrl-names = "default";
+>>>    	pinctrl-0 = <&pinctrl_uart0>;
+>>> +	dma-names = "","";
+>>
+>> This looks like a horrible hack - is there any reason not to just
+>> strip things at compile-time, i.e. "/delete-property/ dmas;"?
+> 
+> I don't want to strip the dma-names property globally. I just want to
+> adjust this particular driver mode from DMA to PIO.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.5.
+What do you mean by "globally"? The /delete-property/ operator just 
+removes a previously-defined property from the node in which it appears.
+> For my use cases - as written in the commit message - the PIO mode is
+> more suitable (and reliable).
 
-Gr{oetje,eeting}s,
+Right, and having invalid "dma-names" properties for this board is what 
+happens to trick Linux into not using DMA mode via 
+of_dma_request_slave_channel() failing, yes? What I'm saying is that if 
+the underlying justification is that it's not worth using DMA mode at 
+all on this board, then suppressing the actual "dmas" property it its 
+DTS such that there's no dependency on a particular driver behaviour is 
+a lot more robust.
 
-                        Geert
+Robin.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>>>    	status = "okay";
+>>>    };
+>>>    
+>>>    &uart1 {
+>>>    	pinctrl-names = "default";
+>>>    	pinctrl-0 = <&pinctrl_uart1>;
+>>> +	dma-names = "","";
+>>>    	status = "okay";
+>>>    };
+>>>    
+>>>    &uart2 {
+>>>    	pinctrl-names = "default";
+>>>    	pinctrl-0 = <&pinctrl_uart2>;
+>>> +	dma-names = "","";
+>>>    	status = "okay";
+>>>    };
+>>>    
+>>>    &uart3 {
+>>>    	pinctrl-names = "default";
+>>>    	pinctrl-0 = <&pinctrl_uart3>;
+>>> +	dma-names = "","";
+>>>    	status = "okay";
+>>>    };
+>>>    
+>>>    
+> 
+> 
+> 
+> 
+> Best regards,
+> 
+> Lukasz Majewski
+> 
+> --
+> 
+> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+> 
