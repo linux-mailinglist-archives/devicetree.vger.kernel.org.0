@@ -2,129 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CA90D14DA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 19:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 281ABD1622
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 19:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731759AbfJIRF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 13:05:59 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:41538 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731173AbfJIRF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 13:05:58 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w65so2382015oiw.8;
-        Wed, 09 Oct 2019 10:05:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D2mWDjNiFA8ZmwOSzNfxAaNscOF3X+a/Kjb9sBM4nYM=;
-        b=SmKMpQLMdu9zF+nZETtyRyzRFHvqJQM931spdY+ZgtQexKRYWMGEJ/SEMSjPLRwgyX
-         sGCfwlBzFBSSOoOzZLbNiPuenj186i0Q7O7o4hyzoB/N1b6hXnlm4oQPBxy0cSQ98bGH
-         +x4VPv8LVWtflqbB9+1yalCGMt+xywez2ywORN8R2ErdI0GVP9PpkcGn8eZZ8O2JUM0a
-         eD/ZrXd47/tKoNo4ITdNZBi9cgx0HQu6Az30CNCGEEg6kXWwqoRIrbg0h5iH+fCF1bLF
-         M1G353WsH6zE4VwfLPFeaGBAVKlGrbU1LWazFwx1S2wB5DtSH+hZg90j0MwtKUYG5/lu
-         g2Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D2mWDjNiFA8ZmwOSzNfxAaNscOF3X+a/Kjb9sBM4nYM=;
-        b=R4NMN9HGVxQvfLvgm0Oip4YBwfSAjoAW1qDb1vebtvlZ+2Yojcel5FGdrqjAzhoGWQ
-         g8401l2l0vIreZgy1LRsAT7pVU4joodhZUWgFi6809gND6XPhz+x0/aPP6QCwsGCE2h3
-         trxLns+Jxt1tqLKgMGdpJGW+zySjW8Zmd6Fsoeh9snymilynFrnPuSRdYnIZGiH0JRa8
-         p/ViB7hSViN1mgWkminODlAnG9Y8PZ4e/RB9opEYanFm8PaEF1xPJOKRKXQWVc9PBQfX
-         N3826/L3IrvFtjfKEujIUs1xpWueEB09xb1chgGM7DT2xUFEbka/iGlvqsmQOnE/cvKA
-         WkwQ==
-X-Gm-Message-State: APjAAAWGtAvUFNgVug8wLi+PL6rl1sQiUwGN8iqqD6yBJ95o517vuN7W
-        Qggi65bglMLUI6SpZV4gC6YVrKobxTe4FI+uJDE=
-X-Google-Smtp-Source: APXvYqzRkSN7OkK/hbG3KqKLVZ1gB3egs7zTwNvk2ZAefW8rYVwzudrNvLiAtRk9tvfW75gia/FxyzlIvLMQYI7QLR0=
-X-Received: by 2002:aca:d90a:: with SMTP id q10mr3536020oig.129.1570640757567;
- Wed, 09 Oct 2019 10:05:57 -0700 (PDT)
+        id S1732322AbfJIRY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 13:24:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49058 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732314AbfJIRY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 13:24:26 -0400
+Received: from sasha-vm.mshome.net (unknown [167.220.2.234])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4C90A21D82;
+        Wed,  9 Oct 2019 17:24:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570641866;
+        bh=5GkXiogEjh0gXaUB168ghFLY0SN5YJns/jSqnDuxvFc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=w+/NUk9dAzBUB3U6Y/fkWjfZdXIL+VsOxz/AbC5Wiz3/227vW2LgYx9KmRu8AXCaw
+         YhFl94GkW4vAwH3YeepqYRmFHWKxJZREE6ckX9kz1e1jS6sOpMob7HGmCRaMAzJFcX
+         zogRjCvwhgpBfwYkytT0Xv2Q0vunDBLmplF9nDvA=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 09/21] ARM: dts: am4372: Set memory bandwidth limit for DISPC
+Date:   Wed,  9 Oct 2019 13:06:02 -0400
+Message-Id: <20191009170615.32750-9-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191009170615.32750-1-sashal@kernel.org>
+References: <20191009170615.32750-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-6-linux.amoon@gmail.com>
- <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
- <7hsgo4cgeg.fsf@baylibre.com> <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
- <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com> <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
-In-Reply-To: <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 9 Oct 2019 19:05:46 +0200
-Message-ID: <CAFBinCCHrvjNTruVk7qr+7Y_m7mP2BJ-0HxftJpiPXpvoD=-QQ@mail.gmail.com>
-Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-On Wed, Oct 9, 2019 at 10:49 AM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> > can you please share a boot log with the command line parameter
-> > "initcall_debug" [0]?
-> > from Documentation/admin-guide/kernel-parameters.txt:
-> >  initcall_debug [KNL] Trace initcalls as they are executed.  Useful
-> >  for working out where the kernel is dying during
-> >  startup.
-> >
->
-> Well I have tied to add this command  *initcall_debug* to kernel command prompt.
-> Here is the console log,  but I did not see any init kernel timer logs
-I don't remember from the top of my head if any additional Kconfig
-setting is needed
+[ Upstream commit f90ec6cdf674248dcad85bf9af6e064bf472b841 ]
 
-> Kernel command line: console=ttyAML0,115200n8
-> root=PARTUUID=45d7d61e-01 rw rootwait
-> earlyprintk=serial,ttyAML0,115200 initcall_debug printk.time=y
->
-> [0] https://pastebin.com/eBgJrSKe
->
-> > you can also try the command line parameter "clk_ignore_unused" (it's
-> > just a gut feeling: maybe a "critical" clock is being disabled because
-> > it's not wired up correctly).
-> >
->
-> It look like some clk issue after I added the *clk_ignore_unused* to
-> kernel command line
-> it booted further to login prompt and cpufreq DVFS seem to be loaded.
-> So I could conclude this is clk issue.below is the boot log
-interesting - as Jerome suggested: the next step is to find out which
-clock is causing problems
-last time I checked there was no debug print in the code which
-disables unused clocks so I had to add that myself
+Set memory bandwidth limit to filter out resolutions above 720p@60Hz to
+avoid underflow errors due to the bandwidth needs of higher resolutions.
 
-> Kernel command line: console=ttyAML0,115200n8
-> root=PARTUUID=45d7d61e-01 rw rootwait
-> earlyprintk=serial,ttyAML0,115200 initcall_debug printk.time=y
-> clk_ignore_unused
->
-> [1] https://pastebin.com/Nsk0wZQJ
->
-> > back when I was working out the CPU clock tree for the 32-bit SoCs I
-> > had a bad parent clock in one of the muxes which resulted in sporadic
-> > lockups if CPU DVFS was enabled.
-> > you can try to disable CPU DVFS by dropping the OPP table and it's
-> > references from the .dtsi
-> >
->
-> Yep yesterday my focus was to disable PWM feature and get boot up-to
-> login prompt
-> But not I have to look into clk feature.
->
-> *Many thanks for your valuable inputs, I learned a lot of things.*
-you're welcome :-)
+am43xx can not provide enough bandwidth to DISPC to correctly handle
+'high' resolutions.
 
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/am4372.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Martin
+diff --git a/arch/arm/boot/dts/am4372.dtsi b/arch/arm/boot/dts/am4372.dtsi
+index 4714a59fd86df..345c117bd5ef5 100644
+--- a/arch/arm/boot/dts/am4372.dtsi
++++ b/arch/arm/boot/dts/am4372.dtsi
+@@ -1118,6 +1118,8 @@
+ 				ti,hwmods = "dss_dispc";
+ 				clocks = <&disp_clk>;
+ 				clock-names = "fck";
++
++				max-memory-bandwidth = <230000000>;
+ 			};
+ 
+ 			rfbi: rfbi@4832a800 {
+-- 
+2.20.1
+
