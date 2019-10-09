@@ -2,96 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D29D04D0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 02:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C487DD04F8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 03:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729601AbfJIAiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 20:38:10 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42664 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727051AbfJIAiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 20:38:10 -0400
-Received: by mail-io1-f66.google.com with SMTP id n197so1048608iod.9;
-        Tue, 08 Oct 2019 17:38:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3Xf/GFIKYoOdVh68AnbPaEIIVn/hMGh9iJb/+ai1QK8=;
-        b=jtgB8a9RWkm5zmaO9y/tbFwrFnudl5vEGLeA3UiVbRJ8Rr5LGjZyu/6+Yie0ONXUHm
-         Iu/FnR/vVPrcLITJiB9f2kvKmZ3+3wXmp2zY+uLdqZ3eDOKAQmX567UaM9ap+nZAkkSk
-         tdj/FVoQDFQe8oiTJFBy6F40OkqUAnCqDwe0VijzFdzBOJzFgMC9TpEodDT7FiNBMIXQ
-         Yn6LFR7gEvvhgn9um4IWhDxNffuyHQdZz2gbq+aTUoTrKGA4Ux271Ql50QaPdDQF8dFl
-         SROrMt8cv1ZnD9Ng3CgHyKdXR3zK9up5O7DOEsppjXPZ5RJ8o4IewAD+Ngll1EB1uJzS
-         LLdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3Xf/GFIKYoOdVh68AnbPaEIIVn/hMGh9iJb/+ai1QK8=;
-        b=HolluDwZYZ4kFcVpBuWTvDghEzwO8OTiEdmbrza8KQfPIW9xsVbOnVgJE7jYvN40EP
-         PgI2Ey4sre1aLCZRynS8lT6XcPir6tqrtASz+9g7wudnIzNdP0yuX2GgpwSX1pswhpgg
-         b3bEHrcnU/87BM9e84lHaMMoSfv/jpL0xgv9vL05LArwr1LbiDCPorEwPJe3EHgc8HOw
-         qhgkZzG3YgBtDvQ2YD8jXf+YFPmEOOy1zUF85cjnbeHryfFioLZoy+znjBtAxQiQFnXb
-         ZOfsY8exB5l0orAUlc/PeC6cP3THU5ePjbJ7F2fh5WCqmn+Fb8/5g5kPyq/TN9SRAP8S
-         VzXw==
-X-Gm-Message-State: APjAAAWDJGTCSMzkAPIP7gKvtn+263wBb1kEWIFx4vcQp0Q2UPxiid6f
-        1XoT1wvKeeYkdBJL4bO60v2O/S2e
-X-Google-Smtp-Source: APXvYqxmypy4pEKgt/DUa4XJDz0ybkdFALxv3Xsd7qwVBXMyeM7mUctV2Vhhia+OSnAtqNlhMLpk+Q==
-X-Received: by 2002:a05:6638:68b:: with SMTP id i11mr843994jab.63.1570581488905;
-        Tue, 08 Oct 2019 17:38:08 -0700 (PDT)
-Received: from [10.230.24.186] ([192.19.224.250])
-        by smtp.gmail.com with ESMTPSA id q17sm322619ile.5.2019.10.08.17.38.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2019 17:38:08 -0700 (PDT)
-Subject: Re: [PATCH 0/3] net: ftgmac100: Ungate RCLK for RMII on ASPEED MACs
-To:     Andrew Jeffery <andrew@aj.id.au>, netdev@vger.kernel.org
-Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        joel@jms.id.au, benh@kernel.crashing.org
-References: <20191008115143.14149-1-andrew@aj.id.au>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <938706da-d329-c4aa-fcce-2d390a4e98f7@gmail.com>
-Date:   Tue, 8 Oct 2019 17:38:05 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1729737AbfJIBDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 21:03:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35874 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729700AbfJIBDQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 21:03:16 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8FDEA2190F;
+        Wed,  9 Oct 2019 01:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570582995;
+        bh=VLCuRsT/MfVMhiZm4dpxA6L+PvxonwyYTic44/Y8bTk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=VVdn5FnpZ2LW7gOeC0iXD/4eMjkljyV0uaiMQuEzBESoDaT45DoQVIEfx+T3qvbgZ
+         Nx/M4hs0e17oXxWj4zabjE0GgFI2QwABFO8uYmkjbk4FAY/UMRubyrKsZoCf4YrPsH
+         sU4OR5NoROArKqTPJQE3e8b9NyiiP/Y0G54k6/7k=
+Received: by mail-qt1-f172.google.com with SMTP id c4so963766qtn.10;
+        Tue, 08 Oct 2019 18:03:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAVOCT0k8WNC6nlyzkrIpkZ8A8ZL0XpR9oDudEH9s2P362RyxSX3
+        wPxwdsOvtdSNPTsvdR0vznR3cR40MoQA0k3N+Q==
+X-Google-Smtp-Source: APXvYqwRe4KvCR0oZcnhRteOV94HuZo93EGdhT82sy+BCEmzxu67B5XFk6sBiEIoEiq0xHLNZS9g8EJr+Zb0qOVzX0k=
+X-Received: by 2002:ac8:19f4:: with SMTP id s49mr986458qtk.136.1570582994663;
+ Tue, 08 Oct 2019 18:03:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20191008115143.14149-1-andrew@aj.id.au>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20191008195239.12852-1-robh@kernel.org> <4f6b26f8779a4fd98712b966bff3491dc31e26c2.camel@suse.de>
+In-Reply-To: <4f6b26f8779a4fd98712b966bff3491dc31e26c2.camel@suse.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 8 Oct 2019 20:03:02 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+RjC0b1ZXzgmMdn5Gd1=3zkN62Jdq_QKeZ8-X4pCiDPw@mail.gmail.com>
+Message-ID: <CAL_Jsq+RjC0b1ZXzgmMdn5Gd1=3zkN62Jdq_QKeZ8-X4pCiDPw@mail.gmail.com>
+Subject: Re: [PATCH v2] of: Make of_dma_get_range() work on bus nodes
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Stefan Wahren <wahrenst@gmx.net>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Oct 8, 2019 at 3:52 PM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+>
+> Hi Rob/Robin,
+>
+> On Tue, 2019-10-08 at 14:52 -0500, Rob Herring wrote:
+> > From: Robin Murphy <robin.murphy@arm.com>
+> >
+> > Since the "dma-ranges" property is only valid for a node representing a
+> > bus, of_dma_get_range() currently assumes the node passed in is a leaf
+> > representing a device, and starts the walk from its parent. In cases
+> > like PCI host controllers on typical FDT systems, however, where the PCI
+> > endpoints are probed dynamically the initial leaf node represents the
+> > 'bus' itself, and this logic means we fail to consider any "dma-ranges"
+> > describing the host bridge itself. Rework the logic such that
+> > of_dma_get_range() also works correctly starting from a bus node
+> > containing "dma-ranges".
+> >
+> > While this does mean "dma-ranges" could incorrectly be in a device leaf
+> > node, there isn't really any way in this function to ensure that a leaf
+> > node is or isn't a bus node.
+>
+> Sorry, I'm not totally sure if this is what you're pointing out with the last
+> sentence. But, what about the case of a bus configuring a device which also
+> happens to be a memory mapped bus (say a PCI platform device). It'll get it's
+> dma config based on its own dma-ranges which is not what we want.
 
+What I was trying to say is we just can't tell if we should be looking
+in the current node or the parent. 'dma-ranges' in a leaf node can be
+correct or incorrect.
 
-On 10/8/2019 4:51 AM, Andrew Jeffery wrote:
-> Hello,
-> 
-> This series slightly extends the devicetree binding and driver for the
-> FTGMAC100 to describe an optional RMII RCLK gate in the clocks property.
-> Currently it's necessary for the kernel to ungate RCLK on the AST2600 in NCSI
-> configurations as u-boot does not yet support NCSI (which uses the RMII).
+Your example is a bit different. I'm not sure that case is valid or
+can ever work if it is. It's certainly valid that a PCI bridge's
+parent has dma-ranges and now we'll actually handle any translation.
+The bridge itself is not a DMA-capable device, but just passing thru
+DMA. Do we ever need to know the parent's dma-ranges in that case? Or
+to put it another way, is looking at anything other than leaf
+dma-ranges useful?
 
-RMII as in Reduced MII or Reverse MII in that context?
-
-> 
-> Please review!
-> 
-> Andrew
-> 
-> Andrew Jeffery (3):
->   dt-bindings: net: ftgmac100: Document AST2600 compatible
->   dt-bindings: net: ftgmac100: Describe clock properties
->   net: ftgmac100: Ungate RCLK for RMII on ASPEED MACs
-> 
->  .../devicetree/bindings/net/ftgmac100.txt     |  7 ++++
->  drivers/net/ethernet/faraday/ftgmac100.c      | 35 +++++++++++++++----
->  2 files changed, 35 insertions(+), 7 deletions(-)
-> 
-
--- 
-Florian
+Rob
