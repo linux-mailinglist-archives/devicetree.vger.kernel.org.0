@@ -2,118 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC26FD0E87
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B6ED0E8B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729699AbfJIMST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 08:18:19 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:41477 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729831AbfJIMST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:18:19 -0400
-Received: by mail-qk1-f194.google.com with SMTP id p10so1947436qkg.8
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 05:18:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:cc:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding;
-        bh=W0eFvkxC6/6v6MGd/x6emnhmXUqGXpfFvPc0fr695gI=;
-        b=nAz6Fdi2dhW3cQpy72UZ2Ed+BztZuCu7D3ldtxo3tDn3TZK6+A3HPBEFye8+Ynfrw8
-         nLuvsgdeP/rP+wVGHGDMjFHZzzTMvP8l7R0Hvk6eUf/N9HJUmZSgz7Gpq+iI9dvKNemg
-         Fo8ctp5jSdqrM2XQoFcgNwtO0ps05sOSYIfTC6Bbe1uSDjthSyRVK5KTS9cWkVKD6fCG
-         sKwHMW7qhSb0YKVcrGx19xZbJin+sRGCQTZcb3A65qEh35/fTHTQLpHWzFiApofiJZCw
-         E4f0KTOMvh+ScMmaX3UkAZc7AOUpTRx5oXHfzpfcfX1LR6O1KiXeL5MfQg9wFstEKWil
-         m2+Q==
+        id S1730871AbfJIMSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 08:18:38 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38683 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729854AbfJIMSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:18:38 -0400
+Received: by mail-ot1-f66.google.com with SMTP id e11so1516385otl.5;
+        Wed, 09 Oct 2019 05:18:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
-        bh=W0eFvkxC6/6v6MGd/x6emnhmXUqGXpfFvPc0fr695gI=;
-        b=XBCPCq9A15z6nJmFvXziY6kcwrnI+1S/FW1eBP/pdpBgcBzUaNm6UWbmJJz+E8gFW0
-         wo9xkl3vQ/ax5I/CfJ411oOY1bPrpxQc21hfE6c38/guGEEpt/wBGnNT4oP5Z4MjmNxV
-         C3CBAvL+kn8u21cxWT2zoE5DL29cyTWn1Hl6WhMQV+brCOcNuvUmL28pxhhAl4C/jaHs
-         qyl3m59OfAflcXs0CFAoqHQCPzuJ1DBsXdhOLMWVsGgOtHdlsX7q72EubESms1VzOD66
-         36JcSCIvwVWJstgYdYe/61TSsrPxACxehrm48WXp0YOy5D99T/HCEdi3kcrqRgrBNGeY
-         SQlg==
-X-Gm-Message-State: APjAAAXXscQrcLYU8zI9dPqePgCHIX+z0nrI+0KFcTDT1YaTvZa91xBu
-        liITR201DNWE74K8w+EI1MSCqA==
-X-Google-Smtp-Source: APXvYqxn+UAHbLMmArJm7Hi4R0DfzBReb9YubzEEu+CatL2CUv1Gkd7cFDXyBbEHSJS6UT+4dHkKpg==
-X-Received: by 2002:a37:f61d:: with SMTP id y29mr3184876qkj.338.1570623498260;
-        Wed, 09 Oct 2019 05:18:18 -0700 (PDT)
-Received: from [192.168.1.169] (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
-        by smtp.gmail.com with ESMTPSA id c8sm806133qko.102.2019.10.09.05.18.15
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Oct 2019 05:18:17 -0700 (PDT)
-Subject: Re: [PATCH 3/5] dt-bindings: thermal: Add generic power domain
- warming device binding
-To:     Rob Herring <robh@kernel.org>
-References: <1568135676-9328-1-git-send-email-thara.gopinath@linaro.org>
- <1568135676-9328-4-git-send-email-thara.gopinath@linaro.org>
- <20190930144205.GA11539@bogus>
-Cc:     edubezval@gmail.com, rui.zhang@intel.com, ulf.hansson@linaro.org,
-        daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, amit.kucheria@verdurent.com,
-        mark.rutland@arm.com, rjw@rjwysocki.net, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <5D9DD006.8010809@linaro.org>
-Date:   Wed, 9 Oct 2019 08:18:14 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
- Thunderbird/38.5.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jsLXxSfix0HP/dyaAQqX7AkgMT1apSzRVzx3EGzJq7I=;
+        b=ePXabYzpEqLQUuRn/QZhYkdHMrO3qHIsD4Z+cCAQewbsJTJVqOLEKER8Q4J38gW93g
+         L5OibxZYdzRtGXW+3XhSg9OyCIwCZfuSODKk7wtdw4inyASlFBsThOf124iFHV/gNWwA
+         yDIadV2jyTRB6rw1E2BCGog/CXagOkAUPfe+kOOU7ODXt+rBHmswzViQjtxPar/ZxVyC
+         5B92+Ir2aNqMB3BlSs7oOrcqskmU4Nhp3NqGGmRpw9cYNZdmVXeJlSXAPUO4ciyBZmWE
+         Zf6IcHGqJDKKA+pBf5jr/g55JRRHFfNxIX0o4FQebDmmBOZUw+LSHJzTB4Z9+Ir0ckyM
+         Mwmw==
+X-Gm-Message-State: APjAAAWgSD8mBtnlFWwF3Kx97r8bsw3C8+90EYngCyxypa1ObaG6o5ZU
+        h98sbD4Zgthq87RdhiQRh5nBbITrYPAXNTVUViKbWfX0
+X-Google-Smtp-Source: APXvYqyBB7eiYxs0dS+AtKqxJyC1EqqgkxEV/vpQdngDiuiEzb5CNPrJIPaKF5iRM/YWDlXKs2ku0k/4V2elp5iKdnk=
+X-Received: by 2002:a05:6830:1b75:: with SMTP id d21mr2598896ote.145.1570623517394;
+ Wed, 09 Oct 2019 05:18:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190930144205.GA11539@bogus>
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+References: <1569313375-53428-1-git-send-email-biju.das@bp.renesas.com> <1569313375-53428-5-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1569313375-53428-5-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 14:18:26 +0200
+Message-ID: <CAMuHMdU7NUvUs-vieBBrZqMUYsGtrtP28XachiR6X2N-B_s5HQ@mail.gmail.com>
+Subject: Re: [PATCH 4/7] arm64: dts: renesas: r8a774b1: Add FCPF and FCPV instances
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-Thanks for the review
-
-On 09/30/2019 10:42 AM, Rob Herring wrote:
-> On Tue, Sep 10, 2019 at 01:14:34PM -0400, Thara Gopinath wrote:
->> Add binding to define power domains as thermal warming
->> devices.
->>
->> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
->> ---
->>  .../bindings/thermal/pwr-domain-warming.txt        | 32 ++++++++++++++++++++++
->>  1 file changed, 32 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/thermal/pwr-domain-warming.txt
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/pwr-domain-warming.txt b/Documentation/devicetree/bindings/thermal/pwr-domain-warming.txt
->> new file mode 100644
->> index 0000000..25fc568
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/thermal/pwr-domain-warming.txt
->> @@ -0,0 +1,32 @@
->> +* Generic power domain based thermal warming device.
->> +
->> +This binding describes the power domains that can be used as a
->> +thermal warming device.
-> 
-> This looks like just a gathering of properties and way to instantiate 
-> some driver.
-> 
-> I think this all belongs in the power domain provider. Make it a cooling 
-> device and you should know which domains are relevant based on the 
-> compatible (though perhaps we could consider a list in DT). If you want 
-> to instantiate a separate driver to handle this, then make the power 
-> domain driver do that.
-
-This sounds fine. A list in DT might be needed though. I have a separate
-driver. I should be able to get the genpd provider driver call
-into it. I had asked this to Ulf and he seemed to be fine with it as well
-
-
-> 
-> Rob
-> 
+On Tue, Sep 24, 2019 at 10:23 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add FCPF and FCPV instances to the r8a774b1 dtsi.
 >
+> Based on the work done for r8a77965 SoC.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Regards
-Thara
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
