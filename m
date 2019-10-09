@@ -2,98 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB50D0539
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 03:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18ECBD057B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 04:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730212AbfJIB2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 21:28:31 -0400
-Received: from mga07.intel.com ([134.134.136.100]:41440 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729700AbfJIB2b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Oct 2019 21:28:31 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Oct 2019 18:28:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,273,1566889200"; 
-   d="scan'208";a="345212608"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by orsmga004.jf.intel.com with ESMTP; 08 Oct 2019 18:28:27 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        michal.simek@xilinx.com, robh+dt@kernel.org,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        Ramuthevar Vadivel Murugan 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Subject: [PATCH v2 2/2] mmc: sdhci-of-arasan: Add Support for Intel LGM SDXC
-Date:   Wed,  9 Oct 2019 09:28:18 +0800
-Message-Id: <20191009012818.32763-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191009012818.32763-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20191009012818.32763-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1728920AbfJICXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 22:23:18 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:9155 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726257AbfJICXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 22:23:18 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d9d44990000>; Tue, 08 Oct 2019 19:23:21 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 08 Oct 2019 19:23:17 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 08 Oct 2019 19:23:17 -0700
+Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 9 Oct
+ 2019 02:23:16 +0000
+Received: from [10.19.101.249] (10.124.1.5) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 9 Oct 2019
+ 02:23:13 +0000
+Subject: Re: [PATCH v3 0/7] add Tegra194 XUSB host and pad controller support
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>
+CC:     <jonathanh@nvidia.com>, <linux-tegra@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>,
+        <skomatineni@nvidia.com>
+References: <20191004162906.4818-1-jckuo@nvidia.com>
+ <20191007110311.GA614644@kroah.com> <20191008112907.GC228118@ulmo>
+From:   JC Kuo <jckuo@nvidia.com>
+Message-ID: <454e29a6-bf31-c75c-0f29-abd18a4ae071@nvidia.com>
+Date:   Wed, 9 Oct 2019 10:23:11 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20191008112907.GC228118@ulmo>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ DRHQMAIL107.nvidia.com (10.27.9.16)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1570587801; bh=vnyW6vcYjvIgUWxen6TD2VOhh0h48/42kmnZQsDavJA=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=ez12gg+le8K5PmWmR8YWC3VmIeWSmk35/9k5fY9ASesDIKMbncNvPGPoJEGRfdthe
+         1/H2cq2Mngi83sb65hai4L+ksuGs2YwIpJa4Pq4dfIA5cx9/Zw85jEPP+eXCZt/E/v
+         jAPV8AmzoBggSvN8Ub9LcHQ29KqawE9sv02x8gRR4MvgOl/1En7C/q/fk+v9tTby3/
+         8oFnp6Qh7Yqs9yLtExGoulqFTTqOaBuf7OP2rqPhOZjgE5ZbYVm1oLN9Tn07NuLM24
+         fwKF2yVodh4R4fDfeYZQpIAU825y7+UXL2bHyHl62k2mHWmOlzYEXO81EdZLPrf9Bs
+         /4bzHxzCp+8HA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-
-The current arasan sdhci PHY configuration isn't compatible
-with the PHY on Intel's LGM(Lightning Mountain) SoC devices.
-
-Therefore, add a new compatible, to adapt the Intel's LGM
-SDXC PHY with arasan-sdhc controller to configure the PHY.
-
-Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
----
- drivers/mmc/host/sdhci-of-arasan.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-index 7023cbec4017..55de839a8a5e 100644
---- a/drivers/mmc/host/sdhci-of-arasan.c
-+++ b/drivers/mmc/host/sdhci-of-arasan.c
-@@ -120,6 +120,12 @@ static const struct sdhci_arasan_soc_ctl_map intel_lgm_emmc_soc_ctl_map = {
- 	.hiword_update = false,
- };
- 
-+static const struct sdhci_arasan_soc_ctl_map intel_lgm_sdxc_soc_ctl_map = {
-+	.baseclkfreq = { .reg = 0x80, .width = 8, .shift = 2 },
-+	.clockmultiplier = { .reg = 0, .width = -1, .shift = -1 },
-+	.hiword_update = false,
-+};
-+
- /**
-  * sdhci_arasan_syscon_write - Write to a field in soc_ctl registers
-  *
-@@ -384,6 +390,11 @@ static struct sdhci_arasan_of_data intel_lgm_emmc_data = {
- 	.pdata = &sdhci_arasan_cqe_pdata,
- };
- 
-+static struct sdhci_arasan_of_data intel_lgm_sdxc_data = {
-+	.soc_ctl_map = &intel_lgm_sdxc_soc_ctl_map,
-+	.pdata = &sdhci_arasan_cqe_pdata,
-+};
-+
- #ifdef CONFIG_PM_SLEEP
- /**
-  * sdhci_arasan_suspend - Suspend method for the driver
-@@ -489,6 +500,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
- 		.compatible = "intel,lgm-sdhci-5.1-emmc",
- 		.data = &intel_lgm_emmc_data,
- 	},
-+	{
-+		.compatible = "intel,lgm-sdhci-5.1-sdxc",
-+		.data = &intel_lgm_sdxc_data,
-+	},
- 	/* Generic compatible below here */
- 	{
- 		.compatible = "arasan,sdhci-8.9a",
--- 
-2.11.0
-
+On 10/8/19 7:29 PM, Thierry Reding wrote:
+> On Mon, Oct 07, 2019 at 01:03:11PM +0200, Greg KH wrote:
+>> On Sat, Oct 05, 2019 at 12:28:59AM +0800, JC Kuo wrote:
+>>> Hi,
+>>>
+>>> This series introduces support for Tegra194 XUSB host and pad
+>>> controller. Tegra194 XUSB host and pad controller are highly
+>>> similar to the controllers found on Tegra186. Therefore, it's
+>>> possible to resue xhci-tegra.c and xusb-tegra186.c for Tegra194.
+>>
+>> I've taken patches 1 and 2 through my USB tree.  If you want/need me to
+>> take the others, please get acks from those maintainers on them so I can
+>> do so.
+> 
+> I can pick up patches 6 and 7 into the Tegra tree. There are a few
+> patches in there already that conflict with the DT changes in this
+> series and those will be easier to resolve in the Tegra tree.
+> 
+> JC, I noticed that you didn't Cc Kishon as the PHY subsystem maintainer.
+> Please resend the series with Kishon added in the To: line to make sure
+> he sees them and can apply or ack them.
+> 
+> Given that Greg's already applied patches 1 and 2, maybe leave them out
+> of the series.
+Thanks Thierry. I will send v4 accordingly.
+> 
+> Thierry
+> 
