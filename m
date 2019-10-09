@@ -2,146 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF280D1422
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 18:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F2D0D142E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 18:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730674AbfJIQfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 12:35:46 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:50796 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730546AbfJIQfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 12:35:45 -0400
+        id S1731173AbfJIQgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 12:36:44 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:58680 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731168AbfJIQgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 12:36:43 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=owdfGfpxxrkSa3bEZCcNRIXecf20ZOjPIlOoM7dfj2Q=; b=xxg1yPso5ztQ/T7iDk98vnYtJ
-        yNHDZeAYSyQgIshsARNOL1FqCQHj1VaXP/dJo3gUYOY4qNXNjz8JpcxJEkFrKPBIfNIu4MnUjB0X/
-        mrL0zJGtyr4YRB57vqtiNy9kEoc+5kEgCnwLvlhTUdhlab7uBtEBflGAKjCp4spvsCDHE=;
-Received: from 188.31.199.195.threembb.co.uk ([188.31.199.195] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1iIEw5-0005Em-A6; Wed, 09 Oct 2019 16:35:37 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 19E0BD03ED3; Wed,  9 Oct 2019 17:35:35 +0100 (BST)
-Date:   Wed, 9 Oct 2019 17:35:35 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     spapothi@codeaurora.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, vkoul@kernel.org,
-        pierre-louis.bossart@linux.intel.com
-Subject: Re: [PATCH v7 2/2] ASoC: codecs: add wsa881x amplifier support
-Message-ID: <20191009163535.GK2036@sirena.org.uk>
-References: <20191009085108.4950-1-srinivas.kandagatla@linaro.org>
- <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
+         bh=t8pk91iuVFBfJ3Gpf//UypPqu/LoAK/DHg6zouxOibA=; b=JMBRXpTFV81Mmtkp3nQIFDAUk
+        NqoiHpuFkKN5pjra+p0IK2OYNeFMYeWQXI+qN1o+8u+L/PViYCKx67+OwCR7KotV0dy96dE7km+iN
+        ckJwHVkbfuQSNSzgvGlSURPq5/iBzCqlj1sJkv8UgLbKi1oDc+cZ7mhViUIK09z0Wl6GKhe6E4owu
+        OqkceGQnbgpjK7aGA9itGUgmsvirMTmOkH4IN6oPIWR2fGKogkx+f6GMzg3npmo3kNt7FDgwsHWY2
+        s/TgTqQ7VTVdQ0dWBZzjP7iXiWj75hfuc4NdNqS/Jk6r03ocRQp2PRKa6pTvdFQ3l1Rwj9isgZ3cN
+        3TBrkLxdA==;
+Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:49542)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iIEwy-0002bz-OJ; Wed, 09 Oct 2019 17:36:32 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iIEwv-0007qf-3J; Wed, 09 Oct 2019 17:36:29 +0100
+Date:   Wed, 9 Oct 2019 17:36:29 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Hui Song <hui.song_1@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6] gpio/mpc8xxx: change irq handler from chained to
+ normal
+Message-ID: <20191009163628.GH25745@shell.armlinux.org.uk>
+References: <20191009083021.33529-1-hui.song_1@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4+GP5VtpSFAXb8tV"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
-X-Cookie: Be careful!  UGLY strikes 9 out of 10!
+In-Reply-To: <20191009083021.33529-1-hui.song_1@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 09, 2019 at 04:30:21PM +0800, Hui Song wrote:
+> From: Song Hui <hui.song_1@nxp.com>
+> 
+> More than one gpio controllers can share one interrupt, change the
+> driver to request shared irq.
+> 
+> While this will work, it will mess up userspace accounting of the number
+> of interrupts per second in tools such as vmstat.  The reason is that
+> for every GPIO interrupt, /proc/interrupts records the count against GIC
+> interrupt 68 or 69, as well as the GPIO itself.  So, for every GPIO
+> interrupt, the total number of interrupts that the system has seen
+> increments by two
+> 
+> Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
+> Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
+> Signed-off-by: Song Hui <hui.song_1@nxp.com>
+> ---
+>  Changes in v6:
+> 	- change request_irq to devm_request_irq and add commit message.
+>  Changes in v5:
+> 	- add traverse every bit function.
+>  Changes in v4:
+> 	- convert 'pr_err' to 'dev_err'.
+>  Changes in v3:
+> 	- update the patch description.
+>  Changes in v2:
+> 	- delete the compatible of ls1088a.
+> 
+>  drivers/gpio/gpio-mpc8xxx.c | 31 ++++++++++++++++++++-----------
+>  1 file changed, 20 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+> index 16a47de..f0be284 100644
+> --- a/drivers/gpio/gpio-mpc8xxx.c
+> +++ b/drivers/gpio/gpio-mpc8xxx.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/irq.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/bitops.h>
+> +#include <linux/interrupt.h>
+>  
+>  #define MPC8XXX_GPIO_PINS	32
+>  
+> @@ -127,20 +128,20 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc, unsigned offset)
+>  		return -ENXIO;
+>  }
+>  
+> -static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
+> +static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
+>  {
+> -	struct mpc8xxx_gpio_chip *mpc8xxx_gc = irq_desc_get_handler_data(desc);
+> -	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct mpc8xxx_gpio_chip *mpc8xxx_gc = data;
+>  	struct gpio_chip *gc = &mpc8xxx_gc->gc;
+>  	unsigned int mask;
 
---4+GP5VtpSFAXb8tV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This needs to be "unsigned long mask;" for for_each_set_bit() not to
+complain.
 
-On Wed, Oct 09, 2019 at 09:51:08AM +0100, Srinivas Kandagatla wrote:
-
-> +static const u8 wsa881x_reg_readable[WSA881X_CACHE_SIZE] = {
-
-> +static bool wsa881x_readable_register(struct device *dev, unsigned int reg)
-> +{
-> +	return wsa881x_reg_readable[reg];
-u
-There's no bounds check and that array size is not...
-
-> +static struct regmap_config wsa881x_regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 8,
-> +	.cache_type = REGCACHE_RBTREE,
-> +	.reg_defaults = wsa881x_defaults,
-> +	.num_reg_defaults = ARRAY_SIZE(wsa881x_defaults),
-> +	.max_register = WSA881X_MAX_REGISTER,
-
-...what regmap has as max_register.  Uusually you'd render as a
-switch statement (as you did for volatile) and let the compiler
-figure out a sensible way to do the lookup.
-
-> +static void wsa881x_init(struct wsa881x_priv *wsa881x)
-> +{
-> +	struct regmap *rm = wsa881x->regmap;
-> +	unsigned int val = 0;
+> +	int i;
+>  
+>  	mask = gc->read_reg(mpc8xxx_gc->regs + GPIO_IER)
+>  		& gc->read_reg(mpc8xxx_gc->regs + GPIO_IMR);
+> -	if (mask)
+> +	for_each_set_bit(i, &mask, 32)
+>  		generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
+> -						     32 - ffs(mask)));
+> -	if (chip->irq_eoi)
+> -		chip->irq_eoi(&desc->irq_data);
+> +						     31 - i));
 > +
-> +	regmap_read(rm, WSA881X_CHIP_ID1, &wsa881x->version);
-> +	regcache_cache_only(rm, true);
-> +	regmap_multi_reg_write(rm, wsa881x_rev_2_0,
-> +			       ARRAY_SIZE(wsa881x_rev_2_0));
-> +	regcache_cache_only(rm, false);
-
-This looks broken, what is it supposed to be doing?  It looks
-like it should be a register patch but it's not documented.
-
-> +static const struct snd_kcontrol_new wsa881x_snd_controls[] = {
-> +	SOC_ENUM("Smart Boost Level", smart_boost_lvl_enum),
-> +	WSA881X_PA_GAIN_TLV("PA Gain", WSA881X_SPKR_DRV_GAIN,
-> +			    4, 0xC, 1, pa_gain),
-
-As covered in control-names.rst all volume controls should end in
-Volume.
-
-> +static void wsa881x_clk_ctrl(struct snd_soc_component *comp, bool enable)
-> +{
-> +	struct wsa881x_priv *wsa881x = snd_soc_component_get_drvdata(comp);
+> +	return IRQ_HANDLED;
+>  }
+>  
+>  static void mpc8xxx_irq_unmask(struct irq_data *d)
+> @@ -388,8 +389,8 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+>  
+>  	ret = gpiochip_add_data(gc, mpc8xxx_gc);
+>  	if (ret) {
+> -		pr_err("%pOF: GPIO chip registration failed with status %d\n",
+> -		       np, ret);
+> +		dev_err(&pdev->dev, "%pOF: GPIO chip registration failed with status %d\n",
+> +			np, ret);
+>  		goto err;
+>  	}
+>  
+> @@ -409,8 +410,16 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+>  	if (devtype->gpio_dir_in_init)
+>  		devtype->gpio_dir_in_init(gc);
+>  
+> -	irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
+> -					 mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
+> +	ret = devm_request_irq(&pdev->dev, mpc8xxx_gc->irqn,
+> +			       mpc8xxx_gpio_irq_cascade,
+> +			       IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade",
+> +			       mpc8xxx_gc);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "%s: failed to devm_request_irq(%d), ret = %d\n",
+> +			np->full_name, mpc8xxx_gc->irqn, ret);
+> +		goto err;
+> +	}
 > +
-> +	mutex_lock(&wsa881x->res_lock);
+>  	return 0;
+>  err:
+>  	iounmap(mpc8xxx_gc->regs);
+> -- 
+> 2.9.5
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
-What is this lock supposed to be protecting?  As far as I can
-tell this function is the only place it is used and this function
-has exactly one caller which itself has only one caller which is
-a DAPM widget and hence needs no locking.  It looks awfully like
-it should just be a widget itself, or inlined into the single
-caller.
-
-> +static void wsa881x_bandgap_ctrl(struct snd_soc_component *comp, bool enable)
-> +{
-> +	struct wsa881x_priv *wsa881x = snd_soc_component_get_drvdata(comp);
-
-Similarly here.
-
-> +static int32_t wsa881x_resource_acquire(struct snd_soc_component *comp,
-> +					bool enable)
-> +{
-> +	wsa881x_clk_ctrl(comp, enable);
-> +	wsa881x_bandgap_ctrl(comp, enable);
-> +
-> +	return 0;
-> +}
-
-There's no corresponding disables.
-
---4+GP5VtpSFAXb8tV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2eDFYACgkQJNaLcl1U
-h9CtLgf8CePH7+ZsY0W4cRF5zvZs+qrkT8EShEl1pRNhR80s4tivFZnFYccKkM1a
-NSlUywoTsagGw1dijsM7tCzj82aQ5pxABSezmv0erVwZv9cFqnbfNG/yh3epnLbH
-/T/MBashmZA7sR02wH7y3PFvxlWkH3buk6jlwKeCJtZNnX6pGpv5mfwy5p9nkygB
-iIgIG6WEd8pB0/pGk4MVArDRhLIGkH2C+cyxEC46zIG6FVrfi1DlNffgYjmbne6N
-UO6g0GtmdlI6HyuLCQ4DO56BrExtnjieHzCJgyyFN6vn86S6OFLwFGfj8P8lduk7
-GAvcrZSHg8UKdrOLheSE57TbN6KqGQ==
-=ijUj
------END PGP SIGNATURE-----
-
---4+GP5VtpSFAXb8tV--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
