@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2347D07A8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 08:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26F8AD07D0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 09:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725879AbfJIGwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 02:52:51 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59624 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725440AbfJIGwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 02:52:51 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x996qf77116209;
-        Wed, 9 Oct 2019 01:52:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570603961;
-        bh=ELz4phqV0IVr4qbxwKXEXSVLL2qzr2qRxeZLJHyS5tA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=hmka772CcFmuERw+ck/csUD1tnEodi65nhVIt9Wk1MybE6PthkIYuwCHfh97PPDpP
-         eLotFfTk19YypWiZSL9v4uZ/Mk1X8A81eBz3QDXOP5fpNstHKJtMmTN6EIJ6mataUP
-         BlBfMMF0iinPdYcK+2pQmo1paQNTXDMKog0l5o20=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x996qfLC034608;
-        Wed, 9 Oct 2019 01:52:41 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 9 Oct
- 2019 01:52:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 9 Oct 2019 01:52:40 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x996qbmb028779;
-        Wed, 9 Oct 2019 01:52:38 -0500
-Subject: Re: [PATCHv8 1/9] dt-bindings: omap: add new binding for PRM
- instances
-To:     Sebastian Reichel <sre@kernel.org>
-CC:     <linux-omap@vger.kernel.org>, <ssantosh@kernel.org>,
-        <tony@atomide.com>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <p.zabel@pengutronix.de>
-References: <20191008125544.20679-1-t-kristo@ti.com>
- <20191008125544.20679-2-t-kristo@ti.com>
- <20191008154655.u34wkbqgmelv3aea@earth.universe>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <115ab938-e025-98fa-3b9e-0b3ced39307d@ti.com>
-Date:   Wed, 9 Oct 2019 09:52:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1725440AbfJIHHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 03:07:25 -0400
+Received: from hera.iit.uni-miskolc.hu ([193.6.5.4]:34756 "EHLO
+        hera.iit.uni-miskolc.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725776AbfJIHHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 03:07:24 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by hera.iit.uni-miskolc.hu (Postfix) with ESMTP id D7BDE1F83;
+        Wed,  9 Oct 2019 08:19:30 +0200 (CEST)
+X-Virus-Scanned: Kamavis at iit.uni-miskolc.hu
+Received: from hera.iit.uni-miskolc.hu ([127.0.0.1])
+        by localhost (hera.iit.uni-miskolc.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id NUBQPBRn3Pgm; Wed,  9 Oct 2019 08:19:22 +0200 (CEST)
+Received: from titan.hitronhub.home (unknown [IPv6:2a02:8109:a180:54c:226:9eff:fe30:2af8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: szucst@iit.uni-miskolc.hu)
+        by hera.iit.uni-miskolc.hu (Postfix) with ESMTPSA id C03BA1F84;
+        Wed,  9 Oct 2019 08:19:16 +0200 (CEST)
+From:   =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>
+Subject: [PATCH] arm64: tegra: enable PWM fan on Jetson Nano
+Date:   Wed,  9 Oct 2019 08:18:55 +0200
+Message-Id: <20191009061855.4415-1-tszucs@protonmail.ch>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20191008154655.u34wkbqgmelv3aea@earth.universe>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/10/2019 18:46, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Tue, Oct 08, 2019 at 03:55:36PM +0300, Tero Kristo wrote:
->> +Example:
->> +
->> +prm_dsp2: prm@1b00 {
->> +	compatible = "ti,omap-prm-inst", "ti,dra7-prm-inst";
-> 
-> Nit: compatible values are sorted the other way around (most
-> specific first).
+Enable PWM fan and extend CPU thermal zones for monitoring and fan control.
+This will trigger the PWM fan on J15 and cool down the system if necessary.
 
-Hmm right, I would not like to re-post the whole series just for this 
-seeing all the acks are in place already.
+Signed-off-by: Tamás Szűcs <tszucs@protonmail.ch>
+---
+ .../boot/dts/nvidia/tegra210-p3450-0000.dts   | 64 +++++++++++++++++++
+ 1 file changed, 64 insertions(+)
 
-Santosh, do you want to fix this locally or shall we post a separate 
-patch later on to fix this?
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+index 9d17ec707bce..43c3613e7217 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+@@ -552,6 +552,70 @@
+ 		};
+ 	};
+ 
++	fan: fan {
++		compatible = "pwm-fan";
++		pwms = <&pwm 3 45334>;
++
++		cooling-levels = <0 64 128 255>;
++		#cooling-cells = <2>;
++	};
++
++	thermal-zones {
++		cpu {
++			polling-delay = <0>;
++			polling-delay-passive = <500>;
++			status = "okay";
++
++			trips {
++				cpu_trip_critical: critical {
++					temperature = <96500>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++
++				cpu_trip_hot: hot {
++					temperature = <70000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++
++				cpu_trip_active: active {
++					temperature = <50000>;
++					hysteresis = <2000>;
++					type = "active";
++				};
++
++				cpu_trip_passive: passive {
++					temperature = <30000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++			};
++
++			cooling-maps {
++				cpu-critical {
++					cooling-device = <&fan 3 3>;
++					trip = <&cpu_trip_critical>;
++				};
++
++				cpu-hot {
++					cooling-device = <&fan 2 2>;
++					trip = <&cpu_trip_hot>;
++				};
++
++				cpu-active {
++					cooling-device = <&fan 1 1>;
++					trip = <&cpu_trip_active>;
++				};
++
++				cpu-passive {
++					cooling-device = <&fan 0 0>;
++					trip = <&cpu_trip_passive>;
++				};
++			};
++		};
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 
+-- 
+2.20.1
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
