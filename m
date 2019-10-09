@@ -2,92 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 18ECBD057B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 04:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C698DD0588
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 04:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728920AbfJICXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 22:23:18 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:9155 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726257AbfJICXS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 22:23:18 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d9d44990000>; Tue, 08 Oct 2019 19:23:21 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 08 Oct 2019 19:23:17 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 08 Oct 2019 19:23:17 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 9 Oct
- 2019 02:23:16 +0000
-Received: from [10.19.101.249] (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 9 Oct 2019
- 02:23:13 +0000
-Subject: Re: [PATCH v3 0/7] add Tegra194 XUSB host and pad controller support
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>
-CC:     <jonathanh@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>,
-        <skomatineni@nvidia.com>
-References: <20191004162906.4818-1-jckuo@nvidia.com>
- <20191007110311.GA614644@kroah.com> <20191008112907.GC228118@ulmo>
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <454e29a6-bf31-c75c-0f29-abd18a4ae071@nvidia.com>
-Date:   Wed, 9 Oct 2019 10:23:11 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20191008112907.GC228118@ulmo>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1570587801; bh=vnyW6vcYjvIgUWxen6TD2VOhh0h48/42kmnZQsDavJA=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=ez12gg+le8K5PmWmR8YWC3VmIeWSmk35/9k5fY9ASesDIKMbncNvPGPoJEGRfdthe
-         1/H2cq2Mngi83sb65hai4L+ksuGs2YwIpJa4Pq4dfIA5cx9/Zw85jEPP+eXCZt/E/v
-         jAPV8AmzoBggSvN8Ub9LcHQ29KqawE9sv02x8gRR4MvgOl/1En7C/q/fk+v9tTby3/
-         8oFnp6Qh7Yqs9yLtExGoulqFTTqOaBuf7OP2rqPhOZjgE5ZbYVm1oLN9Tn07NuLM24
-         fwKF2yVodh4R4fDfeYZQpIAU825y7+UXL2bHyHl62k2mHWmOlzYEXO81EdZLPrf9Bs
-         /4bzHxzCp+8HA==
+        id S1729596AbfJIChH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 22:37:07 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:57626 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726109AbfJIChH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Oct 2019 22:37:07 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7AA8E200361;
+        Wed,  9 Oct 2019 04:37:05 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 843FD20002E;
+        Wed,  9 Oct 2019 04:36:58 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DC22740299;
+        Wed,  9 Oct 2019 10:36:49 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
+        daniel.baluta@nxp.com, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/2] arm64: dts: imx8mq-evk: Adjust nodes following alphabetical sort
+Date:   Wed,  9 Oct 2019 10:34:38 +0800
+Message-Id: <1570588479-28009-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/8/19 7:29 PM, Thierry Reding wrote:
-> On Mon, Oct 07, 2019 at 01:03:11PM +0200, Greg KH wrote:
->> On Sat, Oct 05, 2019 at 12:28:59AM +0800, JC Kuo wrote:
->>> Hi,
->>>
->>> This series introduces support for Tegra194 XUSB host and pad
->>> controller. Tegra194 XUSB host and pad controller are highly
->>> similar to the controllers found on Tegra186. Therefore, it's
->>> possible to resue xhci-tegra.c and xusb-tegra186.c for Tegra194.
->>
->> I've taken patches 1 and 2 through my USB tree.  If you want/need me to
->> take the others, please get acks from those maintainers on them so I can
->> do so.
-> 
-> I can pick up patches 6 and 7 into the Tegra tree. There are a few
-> patches in there already that conflict with the DT changes in this
-> series and those will be easier to resolve in the Tegra tree.
-> 
-> JC, I noticed that you didn't Cc Kishon as the PHY subsystem maintainer.
-> Please resend the series with Kishon added in the To: line to make sure
-> he sees them and can apply or ack them.
-> 
-> Given that Greg's already applied patches 1 and 2, maybe leave them out
-> of the series.
-Thanks Thierry. I will send v4 accordingly.
-> 
-> Thierry
-> 
+Adjust some nodes to make them follow alphabetical sort except
+iomuxc node which is put at the end of file because of its huge
+pinctrl data.
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 46 ++++++++++++++--------------
+ 1 file changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+index 0595812..6ede46f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+@@ -115,15 +115,6 @@
+ 	};
+ };
+ 
+-&sai2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_sai2>;
+-	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1_BYPASS>, <&clk IMX8MQ_CLK_SAI2>;
+-	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL1_OUT>;
+-	assigned-clock-rates = <0>, <24576000>;
+-	status = "okay";
+-};
+-
+ &gpio5 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_wifi_reset>;
+@@ -242,6 +233,29 @@
+ 	power-supply = <&sw1a_reg>;
+ };
+ 
++&qspi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_qspi>;
++	status = "okay";
++
++	n25q256a: flash@0 {
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "micron,n25q256a", "jedec,spi-nor";
++		spi-max-frequency = <29000000>;
++	};
++};
++
++&sai2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai2>;
++	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1_BYPASS>, <&clk IMX8MQ_CLK_SAI2>;
++	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <0>, <24576000>;
++	status = "okay";
++};
++
+ &snvs_pwrkey {
+ 	status = "okay";
+ };
+@@ -261,20 +275,6 @@
+ 	status = "okay";
+ };
+ 
+-&qspi0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_qspi>;
+-	status = "okay";
+-
+-	n25q256a: flash@0 {
+-		reg = <0>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "micron,n25q256a", "jedec,spi-nor";
+-		spi-max-frequency = <29000000>;
+-	};
+-};
+-
+ &usdhc1 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+ 	pinctrl-0 = <&pinctrl_usdhc1>;
+-- 
+2.7.4
+
