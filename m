@@ -2,104 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C76ED1380
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 18:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39770D141A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 18:34:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731465AbfJIQDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 12:03:06 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:33332 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731452AbfJIQDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 12:03:06 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x99Fj0MG178749;
-        Wed, 9 Oct 2019 16:02:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2019-08-05;
- bh=5eyqqcNyRkIYJ/KfstQRnTPLVlNRh+PVIx0mtGqGQzI=;
- b=WycN9nMEm1Z1hwXQ6EnSR9nzH8nWxZAiSQQX0AJ/m1db544ssaE+cNclh6kS79KwtPqW
- qkyCY4KWmDxR2QHbMeRKRSas2ynmKu4pCpSiDEIs4uh9i3sE3jUTsO8MJhyolRtylsx9
- 1n9MnIKyyis6+RkLF18ox55DJgLzUNhl2YWcmiClaqUJoiXpm2VIx5GhE3QsHpcZAuiW
- vSgqjdjeAMa+IZ+p3ceeyOs22az2yH9LqV0e1PUAzPercLk57ONTVESeFfv7Hos5PNMv
- aJRGAHWYW/0KKLFwHHg3a3tYJsncOnlDBsFxVPuKg3Z3jsfNd1hIYe5lQJdL6NHRo90k OQ== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by userp2130.oracle.com with ESMTP id 2vejkunqy3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 09 Oct 2019 16:02:56 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x99FhBiM184467;
-        Wed, 9 Oct 2019 16:02:56 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by aserp3020.oracle.com with ESMTP id 2vhhsmudke-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 09 Oct 2019 16:02:55 +0000
-Received: from abhmp0020.oracle.com (abhmp0020.oracle.com [141.146.116.26])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x99G2qL5007340;
-        Wed, 9 Oct 2019 16:02:53 GMT
-Received: from dhcp-10-159-237-174.vpn.oracle.com (/10.159.237.174)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Wed, 09 Oct 2019 16:02:52 +0000
-Subject: Re: [PATCH v3 00/14] dmaengine/soc: Add Texas Instruments UDMA
- support
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, vkoul@kernel.org,
-        robh+dt@kernel.org, nm@ti.com, ssantosh@kernel.org
-Cc:     dan.j.williams@intel.com, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
-        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
-        j-keerthy@ti.com
-References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
- <c567c1a2-2e74-3809-8e0f-4c2049ba4747@oracle.com>
- <7dd18208-1ca5-c902-dc11-edbd4ded51ed@ti.com>
-From:   "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>
-Organization: Oracle Corporation
-Message-ID: <5b2d27ca-1a1a-6d17-f5d8-62e7eb76c39b@oracle.com>
-Date:   Wed, 9 Oct 2019 09:02:48 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
- Gecko/20100101 Thunderbird/60.9.0
+        id S1731695AbfJIQeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 12:34:08 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40679 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731612AbfJIQeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 12:34:08 -0400
+Received: by mail-ot1-f67.google.com with SMTP id y39so2259987ota.7
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 09:34:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Xpa5x5FtEx57kIrxbIEmX+YdyK/X1i/zUyZcWd2Z1Po=;
+        b=udHthLOLaFCuZr0AbyIkG5rTFL5xRUgC84odB2PUtgTFgyqOFvGidHi/ETcIqSGKd4
+         /DYr7kF4p/u7LGePJbWwY2Iu/qTyoO7Ow5Iw00c3ZC3s44Zn1J6ItQ82p25nac4CxXjG
+         k5G410ZoY40DFUXUqs3GgQY6lhbaYSxX9h6rRhwh5KUmi1ZIfuw1Ne12SkQ8nfIbdDPc
+         hvj8gsAQuKZsiPr/iHOvHzwIjAx/PSutIdLn0z0NwCOuuWeRupaqejxdyL8af7nsyI3R
+         oBzpCbGXSHhqD0PKUsPj8tE0tPSty3MKR9/byzG3ABLnP8uJt1FfN/73G8IC8yI4K7SN
+         f9ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Xpa5x5FtEx57kIrxbIEmX+YdyK/X1i/zUyZcWd2Z1Po=;
+        b=GDi08TVxdznQa2DiQhkR45KqXYvQHU3okDvJvFGwFfbovFmVG9Cq96aM3YMQAPwJ8K
+         OlkLj6ufowZE4O00yw9AFnrY8WlGyqBt2RPhDjnqkZWyixrtOGR79l5LG7+H1kUznckD
+         VrmhXqC/N1V/hJ7VVLeh6Eqt1JhZiBljSw5ji0//oXRteLxBmp3H3WCj5/M79aAmHN4F
+         nN2ixSjXf9/kHXR1yJ3QyhRCOk/fsfyZ6EkpA4qGouejcT6lru1tgVopQzHlbhwfacmQ
+         Xl68RzdlxeNuZx7Ua21d45thAvuw9wiWfAWbfqJa5SJ/HKQkTJLBg7aW1kLnWsLzxYJW
+         rxgg==
+X-Gm-Message-State: APjAAAUoyKYbce/LpfbE4vwF46TB78p/oXuDVq5EcmOUG7nA8I3upNuM
+        IKBGP14JYU53lBNb+ctVX8XoTgpOaWm4VGv9qiTewA==
+X-Google-Smtp-Source: APXvYqxJohNE21WQBvPtj9t/5XJFgzN0/WlpuYOnA7Glsjddm3+nHq0LW7VLoKtNkRwKXJR896xW9Wj4qLAAYuvxuh4=
+X-Received: by 2002:a9d:7dd6:: with SMTP id k22mr3693082otn.256.1570638845498;
+ Wed, 09 Oct 2019 09:34:05 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7dd18208-1ca5-c902-dc11-edbd4ded51ed@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9405 signatures=668684
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1908290000 definitions=main-1910090144
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9405 signatures=668684
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1908290000
- definitions=main-1910090144
+References: <20191009083021.33529-1-hui.song_1@nxp.com>
+In-Reply-To: <20191009083021.33529-1-hui.song_1@nxp.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 9 Oct 2019 18:33:54 +0200
+Message-ID: <CAMpxmJVUkkiywMOQ6i_izu+8LQD0S_fpd_iuBz4yGceSrs5beg@mail.gmail.com>
+Subject: Re: [PATCH v6] gpio/mpc8xxx: change irq handler from chained to normal
+To:     Hui Song <hui.song_1@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+=C5=9Br., 9 pa=C5=BA 2019 o 10:41 Hui Song <hui.song_1@nxp.com> napisa=C5=
+=82(a):
+>
+> From: Song Hui <hui.song_1@nxp.com>
+>
+> More than one gpio controllers can share one interrupt, change the
+> driver to request shared irq.
+>
+> While this will work, it will mess up userspace accounting of the number
+> of interrupts per second in tools such as vmstat.  The reason is that
+> for every GPIO interrupt, /proc/interrupts records the count against GIC
+> interrupt 68 or 69, as well as the GPIO itself.  So, for every GPIO
+> interrupt, the total number of interrupts that the system has seen
+> increments by two
+>
+> Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
+> Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
+> Signed-off-by: Song Hui <hui.song_1@nxp.com>
+> ---
+>  Changes in v6:
+>         - change request_irq to devm_request_irq and add commit message.
+>  Changes in v5:
+>         - add traverse every bit function.
+>  Changes in v4:
+>         - convert 'pr_err' to 'dev_err'.
+>  Changes in v3:
+>         - update the patch description.
+>  Changes in v2:
+>         - delete the compatible of ls1088a.
+>
+>  drivers/gpio/gpio-mpc8xxx.c | 31 ++++++++++++++++++++-----------
+>  1 file changed, 20 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+> index 16a47de..f0be284 100644
+> --- a/drivers/gpio/gpio-mpc8xxx.c
+> +++ b/drivers/gpio/gpio-mpc8xxx.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/irq.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/bitops.h>
+> +#include <linux/interrupt.h>
+>
+>  #define MPC8XXX_GPIO_PINS      32
+>
+> @@ -127,20 +128,20 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc=
+, unsigned offset)
+>                 return -ENXIO;
+>  }
+>
+> -static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
+> +static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
+>  {
+> -       struct mpc8xxx_gpio_chip *mpc8xxx_gc =3D irq_desc_get_handler_dat=
+a(desc);
+> -       struct irq_chip *chip =3D irq_desc_get_chip(desc);
+> +       struct mpc8xxx_gpio_chip *mpc8xxx_gc =3D data;
+>         struct gpio_chip *gc =3D &mpc8xxx_gc->gc;
+>         unsigned int mask;
+> +       int i;
+>
+>         mask =3D gc->read_reg(mpc8xxx_gc->regs + GPIO_IER)
+>                 & gc->read_reg(mpc8xxx_gc->regs + GPIO_IMR);
+> -       if (mask)
+> +       for_each_set_bit(i, &mask, 32)
+>                 generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
+> -                                                    32 - ffs(mask)));
+> -       if (chip->irq_eoi)
+> -               chip->irq_eoi(&desc->irq_data);
+> +                                                    31 - i));
+> +
+> +       return IRQ_HANDLED;
+>  }
+>
+>  static void mpc8xxx_irq_unmask(struct irq_data *d)
+> @@ -388,8 +389,8 @@ static int mpc8xxx_probe(struct platform_device *pdev=
+)
+>
+>         ret =3D gpiochip_add_data(gc, mpc8xxx_gc);
+>         if (ret) {
+> -               pr_err("%pOF: GPIO chip registration failed with status %=
+d\n",
+> -                      np, ret);
+> +               dev_err(&pdev->dev, "%pOF: GPIO chip registration failed =
+with status %d\n",
+> +                       np, ret);
 
+This is unrelated to the patch. Please put it in a separate patch.
 
-On 10/8/19 3:09 AM, Peter Ujfalusi wrote:
-> Hi Santosh,
-> 
-> On 04/10/2019 19.35, santosh.shilimkar@oracle.com wrote:
->> On 9/30/19 11:16 PM, Peter Ujfalusi wrote:
->>> Hi,
->>>
->>> Changes since v2
->>> )https://patchwork.kernel.org/project/linux-dmaengine/list/?series=152609&state=*)
->>>
->>> - Based on 5.4-rc1
->>> - Support for Flow only data transfer for the glue layer
->>>
-[...]
+Bart
 
->> Can you please split this series and post drivers/soc/* bits
->> separately ?  If its ready, I can apply k3-ringacc.c changes.
-> 
-> I'll wait couple of days for guys to check the series, then I can send
-> the split out ringacc patches separately.
-> 
-Sounds good !!
+>                 goto err;
+>         }
+>
+> @@ -409,8 +410,16 @@ static int mpc8xxx_probe(struct platform_device *pde=
+v)
+>         if (devtype->gpio_dir_in_init)
+>                 devtype->gpio_dir_in_init(gc);
+>
+> -       irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
+> -                                        mpc8xxx_gpio_irq_cascade, mpc8xx=
+x_gc);
+> +       ret =3D devm_request_irq(&pdev->dev, mpc8xxx_gc->irqn,
+> +                              mpc8xxx_gpio_irq_cascade,
+> +                              IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascad=
+e",
+> +                              mpc8xxx_gc);
+> +       if (ret) {
+> +               dev_err(&pdev->dev, "%s: failed to devm_request_irq(%d), =
+ret =3D %d\n",
+> +                       np->full_name, mpc8xxx_gc->irqn, ret);
+> +               goto err;
+> +       }
+> +
+>         return 0;
+>  err:
+>         iounmap(mpc8xxx_gc->regs);
+> --
+> 2.9.5
+>
