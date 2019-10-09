@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00487D08A1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 09:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAFBAD087C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 09:41:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725848AbfJIHnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 03:43:18 -0400
-Received: from 7.mo68.mail-out.ovh.net ([46.105.63.230]:54057 "EHLO
-        7.mo68.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725776AbfJIHnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 03:43:18 -0400
-X-Greylist: delayed 599 seconds by postgrey-1.27 at vger.kernel.org; Wed, 09 Oct 2019 03:43:17 EDT
-Received: from player755.ha.ovh.net (unknown [10.108.42.239])
-        by mo68.mail-out.ovh.net (Postfix) with ESMTP id 3DDB7141A46
-        for <devicetree@vger.kernel.org>; Wed,  9 Oct 2019 09:26:25 +0200 (CEST)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
-        (Authenticated sender: andi@etezian.org)
-        by player755.ha.ovh.net (Postfix) with ESMTPSA id 845A2AD418DA;
-        Wed,  9 Oct 2019 07:26:14 +0000 (UTC)
-Date:   Wed, 9 Oct 2019 10:26:12 +0300
-From:   Andi Shyti <andi@etezian.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Andi Shyti <andi@etezian.org>,
-        Simon Shields <simon@lineageos.org>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] Input: mms114 - add support for mms345l
-Message-ID: <20191009072612.GA2814@jack.zhora.eu>
-References: <20191007203343.101466-1-stephan@gerhold.net>
- <20191007205021.104402-1-stephan@gerhold.net>
- <20191008220014.GI22365@dtor-ws>
+        id S1729589AbfJIHlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 03:41:10 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:28011 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726336AbfJIHlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 03:41:09 -0400
+X-UUID: 1c0ef69487f141ad80e3b5c84a2adce7-20191009
+X-UUID: 1c0ef69487f141ad80e3b5c84a2adce7-20191009
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 397385473; Wed, 09 Oct 2019 15:41:03 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 9 Oct 2019 15:41:00 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 9 Oct 2019 15:40:58 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [RESEND PATCH v3 01/11] dt-bindings: phy-mtk-tphy: add two optional properties for u2phy
+Date:   Wed, 9 Oct 2019 15:40:24 +0800
+Message-ID: <1570606834-5644-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191008220014.GI22365@dtor-ws>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Ovh-Tracer-Id: 10061041571171844762
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedriedtgdduvddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Content-Type: text/plain
+X-TM-SNTS-SMTP: D92F16B9EE319C5ADF5B71546DF82E0BFA49E37F44BEABF32811ABA90F90DB2B2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+Add two optional properties, one for tuning J-K voltage by INTR,
+another for disconnect threshold, both of them are related with
+connect detection
 
-> > There was a related patch [2] that removes I2C_M_NOSTART for all models,
-> > but it seems abandoned and I do not have any other model for testing.
-> > Therefore, this patch implements the least instrusive solution
-> > and only removes I2C_M_NOSTART for MMS345L.
-> 
-> Hmm,  at this point I am inclined to pick up Andi's patch since it seems
-> to work for you and him and it looks like Android drivers are not using
-> I2C_M_NOSTART. I wonder if this was some quirk/big on the platform where
-> it was originally developed.
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v3: change commit log
 
-I completely forgot about that patch :)
+v2: change description
+---
+ Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I should refresh some old work on that device which was left
-undone.
+diff --git a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+index a5f7a4f0dbc1..ce6abfbdfbe1 100644
+--- a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
++++ b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+@@ -52,6 +52,8 @@ Optional properties (PHY_TYPE_USB2 port (child) node):
+ - mediatek,eye-vrt	: u32, the selection of VRT reference voltage
+ - mediatek,eye-term	: u32, the selection of HS_TX TERM reference voltage
+ - mediatek,bc12	: bool, enable BC12 of u2phy if support it
++- mediatek,discth	: u32, the selection of disconnect threshold
++- mediatek,intr	: u32, the selection of internal R (resistance)
+ 
+ Example:
+ 
+-- 
+2.23.0
 
-> Any objections?
-
-It's OK for me. If you can just update my e-mail, please, when
-applying the patch to "andi@etezian.org". Thanks!
-
-Thank you,
-Andi
