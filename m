@@ -2,152 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B62D11A3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:44:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 750CDD11AE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730490AbfJIOoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 10:44:54 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:32881 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730674AbfJIOoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:44:54 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 46pH766N2kz1rlwx;
-        Wed,  9 Oct 2019 16:44:50 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 46pH7658gNz1qqkL;
-        Wed,  9 Oct 2019 16:44:50 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id njJVUYx2-9tB; Wed,  9 Oct 2019 16:44:49 +0200 (CEST)
-X-Auth-Info: z1TweS5tguld1s5i/vfefCuk4NRnGzI/S+uxnMWYpT0=
-Received: from jawa (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed,  9 Oct 2019 16:44:49 +0200 (CEST)
-Date:   Wed, 9 Oct 2019 16:44:42 +0200
-From:   Lukasz Majewski <lukma@denx.de>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dts: Disable DMA support on the BK4 vf610 device's
- fsl_lpuart driver
-Message-ID: <20191009164442.51f27b9d@jawa>
-In-Reply-To: <b39b6860-9e9b-5cee-a07e-7b430c2e5119@arm.com>
-References: <20191009143032.9261-1-lukma@denx.de>
-        <b39b6860-9e9b-5cee-a07e-7b430c2e5119@arm.com>
-Organization: denx.de
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730674AbfJIOqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 10:46:45 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:37711 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730546AbfJIOqp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:46:45 -0400
+Received: by mail-oi1-f196.google.com with SMTP id i16so1977136oie.4;
+        Wed, 09 Oct 2019 07:46:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jQ8//cgF/MdGwkLH3S81V64s0B/McThxx1cJtyBuGXs=;
+        b=BB2ePX6VHOjDs5jDdjaIqV/d20YrijMEHDK/xMyhUSW1Ejx7X3uBg6/JgXzSX6JFb1
+         H68duKiO9aJAu1a6VlqbNVLXbMA/2PUzVTNKLLnHz1rfc08T1hJmqzd/uQTJlteeFmn2
+         W0O85KeHLAnatETn8026eaCOcJNKc58C052HufFAGSwhy8EsmvosLVhJaNb9St7z/sIK
+         L/eKDqnyAnGpLXSw1uX+MmvgJjlWG/6y0Rz1/1hzG7X4FrxIh4YQhtZV7LA8F31kYH+6
+         Ed0N6O8XFofRH98hAvfwOKkxnA53G7VU+HdjSs9YeN4RBbXEXp9zujKBWEnQqQtMZH4W
+         /C5g==
+X-Gm-Message-State: APjAAAWLjSIJLsG/tou2+HVfEidj0Hb9wbi0Nij8SvdIUdtR8crX2wMK
+        6seLhb9hWlvCKW+YwcO6c6si8ObM3oJQvaYl2Bc=
+X-Google-Smtp-Source: APXvYqwbJngcF2ptkcG56glKoADjMSOQr9Zg5lgecq4L3Khi2aUy+ZLPK2S4KsBNllxCPlIcgLmGn862vtdZaRdjwac=
+X-Received: by 2002:aca:882:: with SMTP id 124mr2733201oii.54.1570632404559;
+ Wed, 09 Oct 2019 07:46:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- boundary="Sig_/Di/jFXAOICs3QlZsnoXzE2z"; protocol="application/pgp-signature"
+References: <1570200761-884-1-git-send-email-biju.das@bp.renesas.com> <1570200761-884-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1570200761-884-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 16:46:33 +0200
+Message-ID: <CAMuHMdVphPX63DvdCsj1AtsnMz53THdf92LpMeKQhZPOubX5cw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: renesas: r8a774b1: Add Sound and Audio
+ DMAC device nodes
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/Di/jFXAOICs3QlZsnoXzE2z
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Fri, Oct 4, 2019 at 4:53 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> Based on a similar patch of the R8A7796 device tree
+> by Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-Hi Robin,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-> On 09/10/2019 15:30, Lukasz Majewski wrote:
-> > This change disables the DMA support (RX/TX) on the NXP's fsl_lpuart
-> > driver - the PIO mode is used instead. This change is necessary for
-> > better robustness of BK4's device use cases with many potentially
-> > interrupted short serial transfers.
-> >=20
-> > Without it the driver hangs when some distortion happens on UART
-> > lines.
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> >   arch/arm/boot/dts/vf610-bk4.dts | 4 ++++
-> >   1 file changed, 4 insertions(+)
-> >=20
-> > diff --git a/arch/arm/boot/dts/vf610-bk4.dts
-> > b/arch/arm/boot/dts/vf610-bk4.dts index 0f3870d3b099..ad20f3442d40
-> > 100644 --- a/arch/arm/boot/dts/vf610-bk4.dts
-> > +++ b/arch/arm/boot/dts/vf610-bk4.dts
-> > @@ -259,24 +259,28 @@
-> >   &uart0 {
-> >   	pinctrl-names =3D "default";
-> >   	pinctrl-0 =3D <&pinctrl_uart0>;
-> > +	dma-names =3D "",""; =20
->=20
-> This looks like a horrible hack - is there any reason not to just
-> strip things at compile-time, i.e. "/delete-property/ dmas;"?
+Gr{oetje,eeting}s,
 
-I don't want to strip the dma-names property globally. I just want to
-adjust this particular driver mode from DMA to PIO.
+                        Geert
 
-For my use cases - as written in the commit message - the PIO mode is
-more suitable (and reliable).=20
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->=20
-> Robin.
->=20
-> >   	status =3D "okay";
-> >   };
-> >  =20
-> >   &uart1 {
-> >   	pinctrl-names =3D "default";
-> >   	pinctrl-0 =3D <&pinctrl_uart1>;
-> > +	dma-names =3D "","";
-> >   	status =3D "okay";
-> >   };
-> >  =20
-> >   &uart2 {
-> >   	pinctrl-names =3D "default";
-> >   	pinctrl-0 =3D <&pinctrl_uart2>;
-> > +	dma-names =3D "","";
-> >   	status =3D "okay";
-> >   };
-> >  =20
-> >   &uart3 {
-> >   	pinctrl-names =3D "default";
-> >   	pinctrl-0 =3D <&pinctrl_uart3>;
-> > +	dma-names =3D "","";
-> >   	status =3D "okay";
-> >   };
-> >  =20
-> >  =20
-
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/Di/jFXAOICs3QlZsnoXzE2z
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAl2d8loACgkQAR8vZIA0
-zr2WHggAttPRl8kp+yb/oZQOEp8vg1iZdn55DoxHq2LWuWy8RIoAUnOUy9TapDZ5
-ZBQKgfDBYcD0Yawqlk9uOev6Uhe9roJRyVSdWjdPMcGdK0viwBagw8sYWxWD2TrY
-MljhCRJfoStaA/ZKClfGb2w5KddgXTgz2jqRs8CNps7aFBbjhKFtwJoKkdCjI/kl
-ADmw46QWkNmN6axoy3NKIDeP31lOfWpMcfcYw0MrLCn0+s/tfRpKqH9eRGC5vjJt
-SblR8SeFNB4oUOO1rFN9rKANzgxfqF4n06rCPORZBOK8mV5YIAA5vx7L6VOUxioj
-U57i4+VhXSCzlyh3HBGKN3//lb0xIA==
-=PTiE
------END PGP SIGNATURE-----
-
---Sig_/Di/jFXAOICs3QlZsnoXzE2z--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
