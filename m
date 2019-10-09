@@ -2,96 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F6DD1144
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7456D1169
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730490AbfJIOar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 10:30:47 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:58313 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729865AbfJIOar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:30:47 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 46pGps0HzDz1rlTd;
-        Wed,  9 Oct 2019 16:30:45 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 46pGpr6VZNz1qqkM;
-        Wed,  9 Oct 2019 16:30:44 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id fEcgMaq_WGfq; Wed,  9 Oct 2019 16:30:43 +0200 (CEST)
-X-Auth-Info: 8jCoUJU72/vk/KsFCOcDAPeNz8S2Ssm9kKp9j/ctXwc=
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed,  9 Oct 2019 16:30:43 +0200 (CEST)
-From:   Lukasz Majewski <lukma@denx.de>
-To:     linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH] dts: Disable DMA support on the BK4 vf610 device's fsl_lpuart driver
-Date:   Wed,  9 Oct 2019 16:30:32 +0200
-Message-Id: <20191009143032.9261-1-lukma@denx.de>
-X-Mailer: git-send-email 2.20.1
+        id S1731463AbfJIOjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 10:39:07 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34157 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729491AbfJIOjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:39:06 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m19so1939414otp.1;
+        Wed, 09 Oct 2019 07:39:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QQjFKWDZqjWTXiNcV4iPO7ss0OhEBXdi6eaFigDkSL8=;
+        b=s8Q0tbBUjItgU47j4vdz/Bflu+R9EVRao5+iv9n9SNojg5rOgxsOxxxvG5UpjKUQfP
+         UulexUwL7xh3bDav2cDoGxNb+aQXsUjhPs+GgL08Q4unvlbpIVpH/zPq1FhwOBlLbMEd
+         lt3WV0lJAODWVP3jGqzM3cg1kbi1QR2fPAGx9fM6J4hrSXk1iG40t1hfgRDcA7TECgb5
+         Uf35lV+ZFn3pH5t5W2RHABj/6bb+vWoLR6+UPgKaivFLCnIR59Opp+v3g6mKA1R+4QE5
+         xBfNRDyFIRsH1ATJ/NmcpuvlzYPU+PNOAX0+jAG6J81xiI4j3ccaJ05POfB5DEHAQXcI
+         Yh0g==
+X-Gm-Message-State: APjAAAWqA8oa0lEXLl9jE23dRhrKHdvh5ftf+SlXAKHZuBuzBlsbRbgV
+        bvBjW/8OcAzLLjFRLoQT6O0FQbaPYeNCeU+WNkY=
+X-Google-Smtp-Source: APXvYqzcZGhyFNk19zn0xftebfgdykxxeNAxrvj/mhGsyAHMUJvYnkJTNBVY8+tX4zWV+yLYeDJlRBGjP36kaKogSpg=
+X-Received: by 2002:a9d:7345:: with SMTP id l5mr3197408otk.39.1570631945630;
+ Wed, 09 Oct 2019 07:39:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1570531132-21856-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570531132-21856-9-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1570531132-21856-9-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 16:38:54 +0200
+Message-ID: <CAMuHMdV5x4h-DJ04Mipf_nyvv6zytX9tJgdZ9wNv4w71=nDfLQ@mail.gmail.com>
+Subject: Re: [PATCH 08/10] arm64: dts: renesas: r8a774b1: Add USB-DMAC and
+ HSUSB device nodes
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change disables the DMA support (RX/TX) on the NXP's fsl_lpuart
-driver - the PIO mode is used instead. This change is necessary for better
-robustness of BK4's device use cases with many potentially interrupted
-short serial transfers.
+On Tue, Oct 8, 2019 at 12:39 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Add usb dmac and hsusb device nodes to the RZ/G2N SoC dtsi.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Without it the driver hangs when some distortion happens on UART lines.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
----
- arch/arm/boot/dts/vf610-bk4.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm/boot/dts/vf610-bk4.dts b/arch/arm/boot/dts/vf610-bk4.dts
-index 0f3870d3b099..ad20f3442d40 100644
---- a/arch/arm/boot/dts/vf610-bk4.dts
-+++ b/arch/arm/boot/dts/vf610-bk4.dts
-@@ -259,24 +259,28 @@
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart0>;
-+	dma-names = "","";
- 	status = "okay";
- };
- 
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
-+	dma-names = "","";
- 	status = "okay";
- };
- 
- &uart2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart2>;
-+	dma-names = "","";
- 	status = "okay";
- };
- 
- &uart3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart3>;
-+	dma-names = "","";
- 	status = "okay";
- };
- 
+                        Geert
+
 -- 
-2.20.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
