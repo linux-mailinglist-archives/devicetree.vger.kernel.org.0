@@ -2,86 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B057AD167A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 19:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B26D171C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 19:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731950AbfJIRa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 13:30:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48634 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732133AbfJIRYI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 13:24:08 -0400
-Received: from sasha-vm.mshome.net (unknown [167.220.2.234])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CFF56218DE;
-        Wed,  9 Oct 2019 17:24:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570641848;
-        bh=qhJM50bxO+MG7WrkXdo6i8sZ/JZEPykOMKFr88gZ6t8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qJb0INn/yS5Ss50TxHZ3DSaKmDK1TVBqYiLgCq4RPmlvgW4XVS5oLoQ/KJpqxK9xF
-         eB9rYDHmb7/gVAj+rVG0jFAt/9yuxe6kyM28VYnL81SarZD+u6yOcdTAH5+5dHesRr
-         hCRKM8YKB13+vEPrU5L6PoQPIcefJXu/7LItezJc=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Paul Burton <paul.burton@mips.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.19 13/26] MIPS: dts: ar9331: fix interrupt-controller size
-Date:   Wed,  9 Oct 2019 13:05:45 -0400
-Message-Id: <20191009170558.32517-13-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191009170558.32517-1-sashal@kernel.org>
-References: <20191009170558.32517-1-sashal@kernel.org>
+        id S1729883AbfJIRx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 13:53:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49128 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729865AbfJIRx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 13:53:59 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x99Hrttj032259;
+        Wed, 9 Oct 2019 12:53:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570643635;
+        bh=FcFxGHNZSeZ2QDi/0mIGHWN9xxGBNaup5w8sjlaEJEs=;
+        h=From:To:CC:Subject:Date;
+        b=UykJLdorJQLt8kkFH7UDLvWEjXzLz7Nsb3+yYK7Yxwe0kpG2U0IZ52W7j+Cw+t2Rq
+         xsMQYw42HZd7v/NVfs/vo+rEemZbFTJ4vGIVjZetLtVD0b8gj4GKkm9eibSeeByt30
+         4KahrnRUsZuPoc7oKB8TFICuLIlX0h0el41RzZIo=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x99HrtxP047240;
+        Wed, 9 Oct 2019 12:53:55 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 9 Oct
+ 2019 12:53:54 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 9 Oct 2019 12:53:54 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x99Hrsh8069742;
+        Wed, 9 Oct 2019 12:53:54 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
+Subject: [Patch 0/3] ARM: dts: dra7: add vpe nodes 
+Date:   Wed, 9 Oct 2019 12:56:25 -0500
+Message-ID: <20191009175628.20570-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Oleksij Rempel <o.rempel@pengutronix.de>
+This patch series adds the needed clkctrl and ty-sysc nodes for VPE module.
+We also document the VPE DT bindings.
 
-[ Upstream commit 0889d07f3e4b171c453b2aaf2b257f9074cdf624 ]
+Benoit Parrot (3):
+  dt-bindings: media: ti-vpe: Document VPE driver
+  ARM: dts: dra7: add vpe clkctrl node
+  ARM: dts: dra7: Add ti-sysc node for VPE
 
-It is two registers each of 4 byte.
+ .../devicetree/bindings/media/ti-vpe.txt      | 48 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ arch/arm/boot/dts/dra7-l4.dtsi                | 30 ++++++++++--
+ arch/arm/boot/dts/dra7xx-clocks.dtsi          | 18 ++++++-
+ drivers/clk/ti/clk-7xx.c                      |  6 +++
+ include/dt-bindings/clock/dra7.h              | 10 ++++
+ 6 files changed, 108 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/ti-vpe.txt
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Signed-off-by: Paul Burton <paul.burton@mips.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: James Hogan <jhogan@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-mips@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/mips/boot/dts/qca/ar9331.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/mips/boot/dts/qca/ar9331.dtsi b/arch/mips/boot/dts/qca/ar9331.dtsi
-index 2bae201aa3651..1c7bf11f8450b 100644
---- a/arch/mips/boot/dts/qca/ar9331.dtsi
-+++ b/arch/mips/boot/dts/qca/ar9331.dtsi
-@@ -99,7 +99,7 @@
- 
- 			miscintc: interrupt-controller@18060010 {
- 				compatible = "qca,ar7240-misc-intc";
--				reg = <0x18060010 0x4>;
-+				reg = <0x18060010 0x8>;
- 
- 				interrupt-parent = <&cpuintc>;
- 				interrupts = <6>;
 -- 
-2.20.1
+2.17.1
 
