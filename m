@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EECED04B3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 02:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D29D04D0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 02:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729737AbfJIASy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Oct 2019 20:18:54 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:46701 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727051AbfJIASy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 20:18:54 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8CC6921AD0;
-        Tue,  8 Oct 2019 20:18:53 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Tue, 08 Oct 2019 20:18:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=XnTGS6EOP6i6blqf35sCohVJUtOChfq
-        97RDyhHyjVP8=; b=k334bLsmf3nZcFTvoGADphWQLRg4YnOvWJcbv5/ViJdoR5k
-        c1vZk4WDtE3au4qSQ0bOQ7e2Oty3Gf12e9bFL798kweYwz3j00GawU37okQus2A4
-        FX0Fd5/ma+LEOYhFUkqkepZJdo3U8l2Fmn3pEyzFuJ34CpuI9s1kiQAqgqdoLGa7
-        Y3dU3RCBzuD7xmpE6Llh4E5BWDdQ3MhdOBuFnm0HdNY1q5RyXWqdNeGS3eu75mOR
-        XZZcLH723N3nYyapxZrUSLmlWXuPNLibwbJts7dstq84UKq8G4bm73TrMgFmbNKV
-        FRmaOA4YWSehIrE3liubKN7BLbJeswolf1747vA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=XnTGS6
-        EOP6i6blqf35sCohVJUtOChfq97RDyhHyjVP8=; b=fe9QewgoY1CdSMOVn9Iy9b
-        LxP6J5zHQVSHDbreULfK3aPNsgZukHLiryHHzePS46MvJm5F7HguOYgUXsqoVtgx
-        pQiIn0FUjv2zdpGOSjtZHDsXbDReH5Ju4RYWZh4WynM2E71SVo1+FheCULQHmF0h
-        /83qARjQIWSojk4KS/eilFouppv6PcOky+PFbvFeggp10Y9ZEzm145v6cs50f2SF
-        r3w4XIujwU4WziApbkNsyGnTSvE6xJ1BDLMR2pPCu33XolvEGDX9QT8/I/OrBVha
-        uLFVX+1Bg9GEOHNDB8LOlGgpuCztDq2lQQ840AYt2neh/Qs2jT86a1WINZon2YUg
-        ==
-X-ME-Sender: <xms:bCedXdsdrnUsQjR1kKY8PimpNyMZ-l0OZRlXHuS8hKOBk7_9GkgfNw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedriedtgdefudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderreejnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
-    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
-    ufhiiigvpedt
-X-ME-Proxy: <xmx:bCedXZy8sk7W2oCcCyBGnJ3neOvOzOEhSK1JjyFMbK42f1-qL_HStQ>
-    <xmx:bCedXclk8DW4tIKPTG08rp41zNiKoWePrZVjxhUUBC_lwxT0Kx7WTw>
-    <xmx:bCedXXYpazfgIPIC5F0VUy_2SQEanfFaMkOMb5PsYR2ukBQwzhrzxA>
-    <xmx:bSedXVLjDUOgh3UnCeQ3W-e1L40xAuN2IAN7SWk4ATyOiR3E-szLKQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 3EF58E00A5; Tue,  8 Oct 2019 20:18:52 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.7-360-g7dda896-fmstable-20191004v2
-Mime-Version: 1.0
-Message-Id: <01c7cafe-8b41-4099-af29-3593e27a1d20@www.fastmail.com>
-In-Reply-To: <CACPK8XcWLCGupAF1EX1LB6A=mQY0s9kjgagr3EKEKJhnbt+j0g@mail.gmail.com>
+        id S1729601AbfJIAiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Oct 2019 20:38:10 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:42664 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727051AbfJIAiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Oct 2019 20:38:10 -0400
+Received: by mail-io1-f66.google.com with SMTP id n197so1048608iod.9;
+        Tue, 08 Oct 2019 17:38:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3Xf/GFIKYoOdVh68AnbPaEIIVn/hMGh9iJb/+ai1QK8=;
+        b=jtgB8a9RWkm5zmaO9y/tbFwrFnudl5vEGLeA3UiVbRJ8Rr5LGjZyu/6+Yie0ONXUHm
+         Iu/FnR/vVPrcLITJiB9f2kvKmZ3+3wXmp2zY+uLdqZ3eDOKAQmX567UaM9ap+nZAkkSk
+         tdj/FVoQDFQe8oiTJFBy6F40OkqUAnCqDwe0VijzFdzBOJzFgMC9TpEodDT7FiNBMIXQ
+         Yn6LFR7gEvvhgn9um4IWhDxNffuyHQdZz2gbq+aTUoTrKGA4Ux271Ql50QaPdDQF8dFl
+         SROrMt8cv1ZnD9Ng3CgHyKdXR3zK9up5O7DOEsppjXPZ5RJ8o4IewAD+Ngll1EB1uJzS
+         LLdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3Xf/GFIKYoOdVh68AnbPaEIIVn/hMGh9iJb/+ai1QK8=;
+        b=HolluDwZYZ4kFcVpBuWTvDghEzwO8OTiEdmbrza8KQfPIW9xsVbOnVgJE7jYvN40EP
+         PgI2Ey4sre1aLCZRynS8lT6XcPir6tqrtASz+9g7wudnIzNdP0yuX2GgpwSX1pswhpgg
+         b3bEHrcnU/87BM9e84lHaMMoSfv/jpL0xgv9vL05LArwr1LbiDCPorEwPJe3EHgc8HOw
+         qhgkZzG3YgBtDvQ2YD8jXf+YFPmEOOy1zUF85cjnbeHryfFioLZoy+znjBtAxQiQFnXb
+         ZOfsY8exB5l0orAUlc/PeC6cP3THU5ePjbJ7F2fh5WCqmn+Fb8/5g5kPyq/TN9SRAP8S
+         VzXw==
+X-Gm-Message-State: APjAAAWDJGTCSMzkAPIP7gKvtn+263wBb1kEWIFx4vcQp0Q2UPxiid6f
+        1XoT1wvKeeYkdBJL4bO60v2O/S2e
+X-Google-Smtp-Source: APXvYqxmypy4pEKgt/DUa4XJDz0ybkdFALxv3Xsd7qwVBXMyeM7mUctV2Vhhia+OSnAtqNlhMLpk+Q==
+X-Received: by 2002:a05:6638:68b:: with SMTP id i11mr843994jab.63.1570581488905;
+        Tue, 08 Oct 2019 17:38:08 -0700 (PDT)
+Received: from [10.230.24.186] ([192.19.224.250])
+        by smtp.gmail.com with ESMTPSA id q17sm322619ile.5.2019.10.08.17.38.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2019 17:38:08 -0700 (PDT)
+Subject: Re: [PATCH 0/3] net: ftgmac100: Ungate RCLK for RMII on ASPEED MACs
+To:     Andrew Jeffery <andrew@aj.id.au>, netdev@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        joel@jms.id.au, benh@kernel.crashing.org
 References: <20191008115143.14149-1-andrew@aj.id.au>
- <20191008115143.14149-3-andrew@aj.id.au>
- <CACPK8XcWLCGupAF1EX1LB6A=mQY0s9kjgagr3EKEKJhnbt+j0g@mail.gmail.com>
-Date:   Wed, 09 Oct 2019 10:49:45 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>
-Cc:     netdev <netdev@vger.kernel.org>,
-        "David Miller" <davem@davemloft.net>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Benjamin Herrenschmidt" <benh@kernel.crashing.org>
-Subject: =?UTF-8?Q?Re:_[PATCH_2/3]_dt-bindings:_net:_ftgmac100:_Describe_clock_pr?=
- =?UTF-8?Q?operties?=
-Content-Type: text/plain
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <938706da-d329-c4aa-fcce-2d390a4e98f7@gmail.com>
+Date:   Tue, 8 Oct 2019 17:38:05 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
+MIME-Version: 1.0
+In-Reply-To: <20191008115143.14149-1-andrew@aj.id.au>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -78,34 +68,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On Tue, 8 Oct 2019, at 23:12, Joel Stanley wrote:
-> On Tue, 8 Oct 2019 at 11:50, Andrew Jeffery <andrew@aj.id.au> wrote:
-> >
-> > Critically, the AST2600 requires ungating the RMII RCLK if e.g. NCSI is
-> > in use.
-> >
-> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> > ---
-> >  Documentation/devicetree/bindings/net/ftgmac100.txt | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/ftgmac100.txt b/Documentation/devicetree/bindings/net/ftgmac100.txt
-> > index 04cc0191b7dd..c443b0b84be5 100644
-> > --- a/Documentation/devicetree/bindings/net/ftgmac100.txt
-> > +++ b/Documentation/devicetree/bindings/net/ftgmac100.txt
-> > @@ -24,6 +24,12 @@ Optional properties:
-> >  - no-hw-checksum: Used to disable HW checksum support. Here for backward
-> >    compatibility as the driver now should have correct defaults based on
-> >    the SoC.
-> > +- clocks: In accordance with the generic clock bindings. Must describe the MAC
-> > +  IP clock, and optionally an RMII RCLK gate for the AST2600.
+On 10/8/2019 4:51 AM, Andrew Jeffery wrote:
+> Hello,
 > 
->  or AST2500.
+> This series slightly extends the devicetree binding and driver for the
+> FTGMAC100 to describe an optional RMII RCLK gate in the clocks property.
+> Currently it's necessary for the kernel to ungate RCLK on the AST2600 in NCSI
+> configurations as u-boot does not yet support NCSI (which uses the RMII).
+
+RMII as in Reduced MII or Reverse MII in that context?
+
 > 
-> With that fixed you can add my ack.
+> Please review!
+> 
+> Andrew
+> 
+> Andrew Jeffery (3):
+>   dt-bindings: net: ftgmac100: Document AST2600 compatible
+>   dt-bindings: net: ftgmac100: Describe clock properties
+>   net: ftgmac100: Ungate RCLK for RMII on ASPEED MACs
+> 
+>  .../devicetree/bindings/net/ftgmac100.txt     |  7 ++++
+>  drivers/net/ethernet/faraday/ftgmac100.c      | 35 +++++++++++++++----
+>  2 files changed, 35 insertions(+), 7 deletions(-)
+> 
 
-I'll do a v2 and fix the comments in the driver patch as well.
-
-Cheers,
-
-Andrew
+-- 
+Florian
