@@ -2,83 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3105D0BF4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 11:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A54D0C73
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 12:17:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729457AbfJIJ4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 05:56:43 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:51150 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726765AbfJIJ4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 05:56:43 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x999uYfE051750;
-        Wed, 9 Oct 2019 04:56:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570614994;
-        bh=hJk1QqWDxBHr549Ey1KHH9as6OvUiWG5ahTGSI2IUBw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=VYcWVANDFQ1nxQtSs3/YpAlV00C0bShS2xPdsfd7yp6ECQ/wnvpe5FNh9bUDrETmd
-         rUd9zmGgOcmJNanqN51f5jsmpsS8a3krb9+1jYezhRRtC6LpTyP8P6r+jlNNBKo0wU
-         SCvf5ks1k/oWOB609ML8KI66VMxw0avoRwil8S1k=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x999uY4T038772;
-        Wed, 9 Oct 2019 04:56:34 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 9 Oct
- 2019 04:56:34 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 9 Oct 2019 04:56:31 -0500
-Received: from [172.24.190.215] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x999uVjm033887;
-        Wed, 9 Oct 2019 04:56:32 -0500
-Subject: Re: [PATCH 0/2] Add Support for MMC/SD for J721e-base-board
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <mark.rutland@arm.com>, <nm@ti.com>, <robh+dt@kernel.org>,
-        <t-kristo@ti.com>
-References: <20190919153242.29399-1-faiz_abbas@ti.com>
-From:   Faiz Abbas <faiz_abbas@ti.com>
-Message-ID: <f176e389-d181-8848-2bce-6680232b8fa8@ti.com>
-Date:   Wed, 9 Oct 2019 15:27:14 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1730646AbfJIKRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 06:17:42 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:56961 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730990AbfJIKRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 06:17:39 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iI92I-0000zf-8w; Wed, 09 Oct 2019 12:17:38 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iI92H-0001wK-R5; Wed, 09 Oct 2019 12:17:37 +0200
+Date:   Wed, 9 Oct 2019 12:17:37 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Subject: Re: [PATCH 3/3] gpio: da9062: add driver support
+Message-ID: <20191009101737.dpsdyyla7nmn6xdi@pengutronix.de>
+References: <20190917105902.445-1-m.felsch@pengutronix.de>
+ <20190917105902.445-4-m.felsch@pengutronix.de>
+ <CACRpkdbbmVo3hem1xFqtmq9-htg9+QUXQpZoSyffdTZQ5kUo5Q@mail.gmail.com>
+ <20191007085159.uo366hmos6zk2ops@pengutronix.de>
+ <20191009095612.einxiswkmhvipjht@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20190919153242.29399-1-faiz_abbas@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191009095612.einxiswkmhvipjht@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:14:58 up 144 days, 16:33, 97 users,  load average: 0.00, 0.05,
+ 0.20
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Linus,
 
-On 19/09/19 9:02 PM, Faiz Abbas wrote:
-> The following are dts patches to add MMC/SD Support on TI's J721e base
-> board.
+sorry for the noise..
+
+On 19-10-09 11:56, Marco Felsch wrote:
+> Hi Linus,
 > 
-> Patches depend on Lokesh's gpio patches[1] and device exclusivity patches[2].
+> On 19-10-07 10:51, Marco Felsch wrote:
+> > Hi Linus,
+> > 
+> > thanks for you feedback.
+> > 
+> > On 19-10-04 21:27, Linus Walleij wrote:
+> > > On Tue, Sep 17, 2019 at 12:59 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > > 
+> > > > +static int da9062_gpio_direction_input(struct gpio_chip *gc,
+> > > > +                                      unsigned int offset)
+> > > > +{
+> > > > +       struct da9062_gpio *gpio = gpiochip_get_data(gc);
+> > > > +       struct regmap *regmap = gpio->da9062->regmap;
+> > > > +       struct gpio_desc *desc = gpiochip_get_desc(gc, offset);
 > 
-> [1] https://patchwork.kernel.org/cover/11085643/
-> [2] https://patchwork.kernel.org/cover/11051559/
+> This won't work anymore since I moved the driver to pinctrl and can't
+> include the drivers/gpio/gpiolib.h anymore. What is the right way to
+> get the same result within the pinctrl space? There are three possible
+> ways:
+> 1) Revert commit 1bd6b601fe196b6fbce2c93536ce0f3f53577cec which isn't
+>    the best due to safeness.
+> 2) Set the gpio as active low hard as the other da90*-gpio drivers did
+> 3) Introduce a dt-binding (seems wrong because the information is
+>    already there).
+> 4) "Re-implement" the gpiochip_get_desc() functionality driver
+>    internally.
+
+4) won't work didn't recognize that 'struct gpio_device' is an internal
+struct.
+
+Regards,
+  Marco
+
+> Thanks for your advice.
 > 
-> Faiz Abbas (2):
->   arm64: dts: ti: j721e-main: Add SDHCI nodes
->   arm64: dts: ti: j721e-common-proc-board: Add Support for eMMC and SD
->     card
+> Regards,
+>   Marco
 > 
->  .../dts/ti/k3-j721e-common-proc-board.dts     | 34 +++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 50 +++++++++++++++++++
->  2 files changed, 84 insertions(+)
+> > > > +       unsigned int gpi_type;
+> > > > +       int ret;
+> > > > +
+> > > > +       ret = da9062_gpio_set_pin_mode(regmap, offset, DA9062_PIN_GPI);
+> > > > +       if (ret)
+> > > > +               return ret;
+> > > 
+> > > Fair enough.
+> > > 
+> > > > +       /*
+> > > > +        * If the gpio is active low we should set it in hw too. No worries
+> > > > +        * about gpio_get() because we read and return the gpio-level. So the
+> > > > +        * gpiolob active_low handling is still correct.
+> > > 
+> > > gpiolib?
+> > 
+> > Thanks for covering that.
+> > 
+> > > > +        *
+> > > > +        * 0 - active low, 1 - active high
+> > > > +        */
+> > > > +       gpi_type = !gpiod_is_active_low(desc);
+> > > > +       return regmap_update_bits(regmap, DA9062AA_GPIO_0_1 + (offset >> 1),
+> > > > +                               DA9062AA_GPIO0_TYPE_MASK << DA9062_TYPE(offset),
+> > > > +                               gpi_type << DA9062_TYPE(offset));
+> > > > +}
+> > > 
+> > > So this does not affect the value out set by da9062_gpio_set()?
+> > 
+> > Please check [1] table 54, the datasheet says it is only gpi
+> > (gpio-input). So I assume it doesn't affect out values.
+> > 
+> > [1] https://www.dialog-semiconductor.com/sites/default/files/da9062-a_datasheet_2v3.pdf
+> > 
+> > Unfortunately the other gpio-da90* drivers sets this as active low hard
+> > within the driver. I wanted to avoid this here since it isn't always
+> > true.
+> > 
+> > > What is the electrical effect of this then, really? To me that seems like
+> > > something that is mostly going to be related to how interrupts
+> > > trigger (like whether to trig on rising or falling edge) and then it
+> > > should really be in the .set_type() callback, should it not?
+> > 
+> > Not only interrupts.. The dialog pmics has a lot of options to use this
+> > pins e.g. you can set it as voltage-selection input. You saw the patches
+> > I made for the regulator :)
+> 
 > 
 
-Gentle ping.
-
-Thanks,
-Faiz
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
