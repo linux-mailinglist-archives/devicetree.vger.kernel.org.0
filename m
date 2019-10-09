@@ -2,256 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C97FDD10D9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31471D10F3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730708AbfJIOHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 10:07:31 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:51961 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731291AbfJIOHb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:07:31 -0400
-Received: by mail-wm1-f65.google.com with SMTP id 7so2791508wme.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 07:07:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id;
-        bh=qYQ0aamJUDpjyNn4W7oIfsE1QuvOq48dHFv4SQEnUqo=;
-        b=qcy2EGDE20dEBGzjflbkOM/+xFeG34FhQ1qYWlJG7PYVZ9C26hOz1qA9bJvGurlYbY
-         YeWlVsQss9LVqwBVg0Rfraq5ANlzrz8/gXo7kTuNZmlsSQo3iUa25zUOzzy5FERs2a0c
-         DNrBssPk3qiMh3jCXjZAvXoQ2kl7dlzTQ7eQBOLEe0h4MTI82Or08FOuok8vqgfhBGpM
-         Jd8eSrOQ/ft2gDunaAQsgt6S5Wy4v2ln4Lo9eLvuUrSclsYZmSYtpfgvH4UPLTNjkbfT
-         lbw1mrEan64Ioaj0kJniVgJCdM0LSACc6O8TbvBPYgkfvWY0U8A/ydTpVwp1eB571v3u
-         O7Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-        bh=qYQ0aamJUDpjyNn4W7oIfsE1QuvOq48dHFv4SQEnUqo=;
-        b=bDIm0DqHDGS5Y0zctK2QSBAmYPX7AWFRD+pfnx65d8Hv+L/n90iksJpxIgNEiwO8DN
-         NIy4LoZZhxCVILMqdpJlSpJSEVumJ0xzamQZiG+uMYeqazRSMALBvDGdy7vubaNO3Jwz
-         eei6s0KXD4TGyICOaKNB55LxC2s1spy4G3gqvjs0w6c8L0Tjq88ysXvRQO7MxixMFWc2
-         MAIwSpMtimIX5D8ikOYlrWEhyTrYH/1OSsfAht/1STY0OnOQI38JlpFdovrJHeW5WVe2
-         +r5xDFo1gIY9J8VNSINKN564vw23QNg4QZIDDhCJvo9IRCct0KwCBQCiQmtcR38iXTGh
-         UPxQ==
-X-Gm-Message-State: APjAAAVHKutgvWRS+UZi+gbbbnm95SPBoHrXy03mssufISW7uOcrY5MU
-        cy44KZ5XJ7hJhchlRbJe6R2OPg==
-X-Google-Smtp-Source: APXvYqxwJvflzApriBt9xCl9Wj4OZv07aiO4YpeggA6M/sAkIqyqUI4JFR/XxMM0BUrXYPwBcITjBw==
-X-Received: by 2002:a05:600c:2214:: with SMTP id z20mr2930679wml.10.1570630048024;
-        Wed, 09 Oct 2019 07:07:28 -0700 (PDT)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id y14sm3341799wrd.84.2019.10.09.07.07.27
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 09 Oct 2019 07:07:27 -0700 (PDT)
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Zumeng Chen <zumeng.chen@windriver.com>,
-        Quanyang Wang <quanyang.wang@windriver.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter Crosthwaite <peter.crosthwaite@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robherring2@gmail.com>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        u-boot@lists.denx.de
-Subject: [PATCH] ARM: dts: zynq: enablement of coresight topology
-Date:   Wed,  9 Oct 2019 16:07:22 +0200
-Message-Id: <a38ab93d870a3b1b341a5c0da14fc7f3d4056684.1570630040.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.17.1
+        id S1731338AbfJIONJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 10:13:09 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:57253 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727769AbfJIONI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:13:08 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x99EBPcN006631;
+        Wed, 9 Oct 2019 16:12:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=OB/Kw3Xu+9/OMKoLR8YLudGPfymGdZ3on5onGlH4suA=;
+ b=Ci1oD7hg9ivEp3gFRKu+kueOUBRk7BoYYImtpFFbFuLFvf+XWnyyEdQAUuDPF01n62fQ
+ B4yLE0cv+fYP1jxkNCylwPLNLbCQYmsjVIB6b+WtG8OEDdIRQcKQhOjv7XKb+G6YUW1+
+ +QPG9Zng7ccsjGcQ6Q/kdROCLawG8JxOjahLScfiIQ9CHxMz80oTjJwA9IfYs7jnxtJ0
+ lAXc4wZr5IYtCOKNmdCeFAnGCREn4qImagsNAiMg+4UyXpx3kBJEpgS3TVE3PJ/MkC3c
+ Aj9vKDJCez/OpBywgkxMHgKX8WnO+Gena6loTC0GBfCKc2n0GWjmvLBQ4O3SnXNaUKl/ zw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vegxvxcx6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Oct 2019 16:12:57 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9518A100038;
+        Wed,  9 Oct 2019 16:12:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7FB3E21E6AF;
+        Wed,  9 Oct 2019 16:12:56 +0200 (CEST)
+Received: from SAFEX1HUBCAS23.st.com (10.75.90.46) by SAFEX1HUBCAS21.st.com
+ (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 9 Oct 2019
+ 16:12:56 +0200
+Received: from localhost (10.48.0.192) by webmail-ga.st.com (10.75.90.48) with
+ Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 9 Oct 2019 16:12:55 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <alexandre.torgue@st.com>
+CC:     <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@st.com>
+Subject: [PATCH 0/2] Add support for DAC on stm32mp157c-ed1
+Date:   Wed, 9 Oct 2019 16:12:50 +0200
+Message-ID: <1570630372-24579-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.192]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-09_06:2019-10-08,2019-10-09 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zumeng Chen <zumeng.chen@windriver.com>
+This series adds support for digital-to-analog converter on
+stm32mp157c-ed1 board:
+- define pins that can be used for DAC
+- configure DAC channels to use these
 
-This patch is to build the coresight topology structure of zynq-7000
-series according to the docs of coresight and userguide of zynq-7000.
+Fabrice Gasnier (2):
+  ARM: dts: stm32: Add DAC pins used on stm32mp157c-ed1
+  ARM: dts: stm32: Add DAC support to stm32mp157c-ed1
 
-Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
-Signed-off-by: Quanyang Wang <quanyang.wang@windriver.com>
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 12 ++++++++++++
+ arch/arm/boot/dts/stm32mp157c-ed1.dts     | 13 +++++++++++++
+ 2 files changed, 25 insertions(+)
 
- arch/arm/boot/dts/zynq-7000.dtsi | 158 +++++++++++++++++++++++++++++++
- 1 file changed, 158 insertions(+)
-
-diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
-index ca6425ad794c..86430ad76fee 100644
---- a/arch/arm/boot/dts/zynq-7000.dtsi
-+++ b/arch/arm/boot/dts/zynq-7000.dtsi
-@@ -59,6 +59,40 @@
- 		regulator-always-on;
- 	};
- 
-+	replicator {
-+		compatible = "arm,coresight-static-replicator";
-+		clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+		clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+
-+		out-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/* replicator output ports */
-+			port@0 {
-+				reg = <0>;
-+				replicator_out_port0: endpoint {
-+					remote-endpoint = <&tpiu_in_port>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				replicator_out_port1: endpoint {
-+					remote-endpoint = <&etb_in_port>;
-+				};
-+			};
-+		};
-+		in-ports {
-+			/* replicator input port */
-+			port {
-+				replicator_in_port0: endpoint {
-+					slave-mode;
-+					remote-endpoint = <&funnel_out_port>;
-+				};
-+			};
-+		};
-+	};
-+
- 	amba: amba {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
-@@ -365,5 +399,129 @@
- 			reg = <0xf8005000 0x1000>;
- 			timeout-sec = <10>;
- 		};
-+
-+		etb@f8801000 {
-+			compatible = "arm,coresight-etb10", "arm,primecell";
-+			reg = <0xf8801000 0x1000>;
-+			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+			in-ports {
-+				port {
-+					etb_in_port: endpoint {
-+						remote-endpoint = <&replicator_out_port1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tpiu@f8803000 {
-+			compatible = "arm,coresight-tpiu", "arm,primecell";
-+			reg = <0xf8803000 0x1000>;
-+			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+			in-ports {
-+				port {
-+					tpiu_in_port: endpoint {
-+						remote-endpoint = <&replicator_out_port0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@f8804000 {
-+			compatible = "arm,coresight-static-funnel", "arm,primecell";
-+			reg = <0xf8804000 0x1000>;
-+			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+
-+			/* funnel output ports */
-+			out-ports {
-+				port {
-+					funnel_out_port: endpoint {
-+						remote-endpoint =
-+							<&replicator_in_port0>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				/* funnel input ports */
-+				port@0 {
-+					reg = <0>;
-+					funnel0_in_port0: endpoint {
-+						remote-endpoint = <&ptm0_out_port>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					funnel0_in_port1: endpoint {
-+						remote-endpoint = <&ptm1_out_port>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					funnel0_in_port2: endpoint {
-+					};
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					funnel0_in_port3: endpoint {
-+						remote-endpoint = <&itm_out_port>;
-+					};
-+				};
-+				/* The other input ports are not connect to anything */
-+			};
-+		};
-+
-+		/* ITM is not supported by kernel, only leave device node here */
-+		itm@f8805000 {
-+			compatible = "arm,coresight-etm3x", "arm,primecell";
-+			reg = <0xf8805000 0x1000>;
-+			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+			out-ports {
-+				port {
-+					itm_out_port: endpoint {
-+						remote-endpoint = <&funnel0_in_port3>;
-+					};
-+				};
-+			};
-+		};
-+
-+		ptm@f889c000 {
-+			compatible = "arm,coresight-etm3x", "arm,primecell";
-+			reg = <0xf889c000 0x1000>;
-+			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+			cpu = <&cpu0>;
-+			out-ports {
-+				port {
-+					ptm0_out_port: endpoint {
-+						remote-endpoint = <&funnel0_in_port0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		ptm@f889d000 {
-+			compatible = "arm,coresight-etm3x", "arm,primecell";
-+			reg = <0xf889d000 0x1000>;
-+			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
-+			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
-+			cpu = <&cpu1>;
-+			out-ports {
-+				port {
-+					ptm1_out_port: endpoint {
-+						remote-endpoint = <&funnel0_in_port1>;
-+					};
-+				};
-+			};
-+		};
- 	};
- };
 -- 
-2.17.1
+2.7.4
 
