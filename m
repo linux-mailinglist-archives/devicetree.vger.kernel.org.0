@@ -2,1026 +2,668 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CDB5D0CC2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 12:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0381CD0CCB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 12:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfJIKZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 06:25:55 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:34918 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729742AbfJIKZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 06:25:54 -0400
-Received: by mail-pf1-f195.google.com with SMTP id 205so1352416pfw.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 03:25:51 -0700 (PDT)
+        id S1727228AbfJIK22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 06:28:28 -0400
+Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:53336 "EHLO
+        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726734AbfJIK21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 06:28:27 -0400
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x99AMxg3018755;
+        Wed, 9 Oct 2019 06:27:48 -0400
+Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1nam02lp2055.outbound.protection.outlook.com [104.47.36.55])
+        by mx0b-00128a01.pphosted.com with ESMTP id 2veqt5dw1j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Oct 2019 06:27:47 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ve2OnYCzU4Hsk+mOdyOEmzHDkUQNWMaZi1PIpbRFdWkXbm47K3PSUz+xLNX/ghBDLbCTvZNzA2z90jLZbsDV6iou6jc3R//qp/7zhml3pa9TjyIkAP78Y+zGd1UXm5rjgFIQuDzbSfMM+fComS7TvtCo5OqaUrlukaVoUzmlLTKzEBgp7oNRcd4ZszmiujE5QC8OMBbSbcF/UW/sFRO9Jq9GkDaHRoS4qUC8d4pvE60fFPvJHB9dtX49HY7+56Pa8YBUzANP2C45IWmRgGjmzx57TzUqo0UcOf71uAQqqtnkuwuztzAc1Vb71s7XNd76uhZbVij2ijcF4I7Ov9i+Wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZJ1uKIJtjFSb1HxqPHvAozsWBtSVPdVZst4hySeBs1E=;
+ b=Y3aRq/S2eVdNCKV4WER8mPCJ+mq6K2DdQ3Of7aUXEueqYLbntfxmSx7Ofy4VxWc9oTny5w7h9sIbYMoygvG9z4JkKOE6ser9OA1kbs5aGrTVD9E0XWTNc5dCOCjPOQvL1bBDEAuI8h1kpRiJSMAJEaB4CXAxXO/KIJG0gNJezd6K9cGGHvKjGrBA/xKbHPcZ1DrUH+dR2TervkXuGj3nMOpL5cu+DOw8VTTggq1xixu16Rxb/TEQpxTw4ytrZLjV64mvcX6D8Kx1jDoHNI8uyzIydJiBOE1Mn0b5E9Q5/35vJXwPpxjaaBN0xqTJ4PZzwTWMGs86HWxzGAXmGDJrRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 137.71.25.55) smtp.rcpttodomain=roeck-us.net smtp.mailfrom=analog.com;
+ dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+7M+41q41/40yUKCsuRLWefaRCtYYSSqHcLObyMwLZQ=;
-        b=OvrtUu/xKz3SU1TzTUP6jdwAXuiFzQRlYdwnqzJ/xXUWgZat4y8eUtztGT6fDFi2Y8
-         PlT94MPwbpCPie9TdVmBxelbwXa/fsH8/mYcKcv/HEUmB9GTYEZJOQdJULSN9cVeHSg8
-         Bx1fKvIh+uAyAYiUSETLXlbY4wzojWQnUCxgZvgVvRHrSLt5zka3e/Z/+XutuI/o0kWg
-         eoUP9wMzp3XPuqUjueDKzHnvjlNqyBbn4CFGfsW/+cokEgcCs6yy6+UqJCPbChhY2MHW
-         BRX1XPFWEMFhsrx38SNX06/rGPQ83ZE6CioR1EU9gTbjqvlLpvoUr3qst7AmIMhlmJFF
-         2jHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+7M+41q41/40yUKCsuRLWefaRCtYYSSqHcLObyMwLZQ=;
-        b=gwp7Q8KWgAsBIrUa352w6Zvtkt9l/jLkdMyoIJHkVtHDOmrdNTAhezre7omiwq5VxX
-         y61BvnQJDEZeBke49ojELqSQIDPp8e6oXzcteQWK2hfjJeK544p6qbb1cf3saN7QYPR3
-         Eyk2CoUCdK2mEvYtZYicSCyV65Fmg+1W3Wa08DZNuDlJVR7B5GZFxwzY9PKmiztRGp1g
-         PtxLrMPsdOOx67rf1aiy1I31EgcHMASoCf4Yjx7MHeOAeWtaBuLutPZ+CiB/j0eqYc1m
-         mT0cpHmFvBws2C8yCGBZbSdu3iMN90lMr0i6ULL6hIS7BmCGhWPUGtCPGZZjDl4ihiei
-         x2eQ==
-X-Gm-Message-State: APjAAAVZzK4YjVYVAz83BpiyX6lEAaMAhofU45NMIXCaYE8GupZCGQRp
-        bFTtCtc9b5rTxXGXUO7oT4lS
-X-Google-Smtp-Source: APXvYqwnACG1JzUsGdeW+91FBgTCvs1tijh7ZgEqF+H6bxX3Vs5rLQk1ubudIWXnb7NxIk5KcBYNEA==
-X-Received: by 2002:a17:90a:2ec1:: with SMTP id h1mr3171334pjs.96.1570616750443;
-        Wed, 09 Oct 2019 03:25:50 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([103.59.132.163])
-        by smtp.gmail.com with ESMTPSA id l21sm2718978pgm.55.2019.10.09.03.25.45
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 09 Oct 2019 03:25:49 -0700 (PDT)
-Date:   Wed, 9 Oct 2019 15:55:41 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc:     ars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
-        alexandru.Ardelean@analog.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for ADUX1020 sensor
-Message-ID: <20191009102541.GB17962@Mani-XPS-13-9360>
-References: <20191007153917.13611-1-manivannan.sadhasivam@linaro.org>
- <20191007153917.13611-3-manivannan.sadhasivam@linaro.org>
- <20191008132744.000047cb@huawei.com>
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZJ1uKIJtjFSb1HxqPHvAozsWBtSVPdVZst4hySeBs1E=;
+ b=Nh7bCLjhcprbhEp3i44fAMKHm7SnjOok5OmdwUrsGjGoBrWmR0uN7X2lJOCcsNRGz1vy5RbuIV41XX9ttSDkN8NqifsM+0baqhfZUt1d5QIYSYLtVGCBrzxY7RxfS2AL5y46Yt63hlXl0OdASOSWclKouq4fXOgezlr3DaqPn8Y=
+Received: from CY1PR03CA0025.namprd03.prod.outlook.com (2603:10b6:600::35) by
+ BN8PR03MB4833.namprd03.prod.outlook.com (2603:10b6:408:6a::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.16; Wed, 9 Oct 2019 10:27:46 +0000
+Received: from BL2NAM02FT011.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::201) by CY1PR03CA0025.outlook.office365.com
+ (2603:10b6:600::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.16 via Frontend
+ Transport; Wed, 9 Oct 2019 10:27:45 +0000
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
+Received: from nwd2mta1.analog.com (137.71.25.55) by
+ BL2NAM02FT011.mail.protection.outlook.com (10.152.77.5) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2347.16
+ via Frontend Transport; Wed, 9 Oct 2019 10:27:45 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x99ARcEw003248
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Wed, 9 Oct 2019 03:27:38 -0700
+Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
+ (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Wed, 9 Oct
+ 2019 06:27:43 -0400
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH v2 1/2] hwmon: Support ADI Fan Control IP
+Date:   Wed, 9 Oct 2019 12:28:05 +0200
+Message-ID: <20191009102806.262241-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191008132744.000047cb@huawei.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.44.3.90]
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(39860400002)(346002)(376002)(396003)(199004)(189003)(478600001)(45776006)(47776003)(2870700001)(246002)(70586007)(8676002)(106002)(30864003)(70206006)(54906003)(2906002)(110136005)(316002)(26005)(5660300002)(8936002)(14444005)(1076003)(6306002)(23676004)(186003)(50226002)(5820100001)(16526019)(356004)(6666004)(86362001)(6116002)(966005)(2616005)(4326008)(53416004)(3846002)(50466002)(486006)(305945005)(126002)(7736002)(7636002)(36756003)(426003)(476003)(336012);DIR:OUT;SFP:1101;SCL:1;SRVR:BN8PR03MB4833;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cc7aff66-f81b-4bfb-fcf7-08d74ca3532a
+X-MS-TrafficTypeDiagnostic: BN8PR03MB4833:
+X-MS-Exchange-PUrlCount: 1
+X-Microsoft-Antispam-PRVS: <BN8PR03MB4833E597B36607BDB423A5D699950@BN8PR03MB4833.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 018577E36E
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: L3oLievNRwkNfDdGUgp7B1gd0FYLrxAdLVuWGS8u+vyLUWXRyYFF+JKmTy8cbrFCaR98z29u7ca5MwDKjYEkhqQqnlnoMA4O/fiyTS1N7EqoyGS5b7P6a+FDrgSWbwnUbxYmoJmJMpf+JmtO0o8hEwmJk1Mi+Az+vJx0Euz+H+uobPQyya4hXIwJnsE6e47vfXKF7gbzK/IE9DKWCNd13bEv+ujahDl2KVI5E5r1DsFzdHyHYzt0WIJTc1O2n4jyAmgZHYn83gC2DDAIaaiLuYaqvQgzlZ0fiXwe982VB/Z2wDK+LjPQvrq20API99hIFoV7H1kiqspHCFOY1EBLFtrjHZK4QHfjZldj3BL687isQ1nky8bpO9kW8S4gwKoWDyWxAE1LS6H5fA83aLFMYXP+/qw5Oh8h1YeXM0l9g2kvrG0PZJFgyDDEvz0fOsFYiywUF8WDi4X/YHpu31ElOg==
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2019 10:27:45.4470
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc7aff66-f81b-4bfb-fcf7-08d74ca3532a
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR03MB4833
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-09_05:2019-10-08,2019-10-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ mlxlogscore=999 malwarescore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910090098
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+The purpose of this IP Core is to control the fan used for the cooling of a
+Xilinx Zynq Ultrascale+ MPSoC without the need of any external temperature
+sensors. To achieve this, the IP core uses the PL SYSMONE4 primitive to
+obtain the PL temperature and, based on those readings, it then outputs
+a PWM signal to control the fan rotation accordingly.
 
-Thanks for the review!
+Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+---
+Changes in v2:
+ * define AXI_PCORE macros in the driver source for now;
+ * include linux/bits.h;
+ * axi_fan_control_io{read/write} renamed with shorter names;
+ * Make sure tach is != 0 when getting the fan rpm;
+ * Read only once the clk rate;
+ * Remove unneeded struct clk;
+ * Fixed typo in millidegrees;
+ * Use devm_platform_ioremap_resource();
+ * Remove unneeded error logs;
+ * Check valid values for pulses per revolution;
+ * Clear the fault attribute after reading it;
+ * Notify userspace if HW changed the PWM;
+ * Add comments on how the core works in other to better understand the IRQ handling.
 
-On Tue, Oct 08, 2019 at 01:27:44PM +0100, Jonathan Cameron wrote:
-> On Mon, 7 Oct 2019 21:09:17 +0530
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
-> 
-> > Add initial support for Analog Devices ADUX1020 Photometric sensor.
-> > Only proximity mode has been enabled for now.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> Hi Manivannan,
-> 
-> Various minor comments inline.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> > ---
-> >  drivers/iio/light/Kconfig    |  11 +
-> >  drivers/iio/light/Makefile   |   1 +
-> >  drivers/iio/light/adux1020.c | 783 +++++++++++++++++++++++++++++++++++
-> >  3 files changed, 795 insertions(+)
-> >  create mode 100644 drivers/iio/light/adux1020.c
-> > 
-> > diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-> > index 08d7e1ef2186..3f8c8689cd89 100644
-> > --- a/drivers/iio/light/Kconfig
-> > +++ b/drivers/iio/light/Kconfig
-> > @@ -32,6 +32,17 @@ config ADJD_S311
-> >  	  This driver can also be built as a module.  If so, the module
-> >  	  will be called adjd_s311.
-> >  
-> > +config ADUX1020
-> > +	tristate "ADUX1020 photometric sensor"
-> > +	select REGMAP_I2C
-> > +	depends on I2C
-> > +	help
-> > +	 Say Y here if you want to build a driver for the Analog Devices
-> > +	 ADUX1020 photometric sensor.
-> > +
-> > +	 To compile this driver as a module, choose M here: the
-> > +	 module will be called adux1020.
-> > +
-> >  config AL3320A
-> >  	tristate "AL3320A ambient light sensor"
-> >  	depends on I2C
-> > diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-> > index 00d1f9b98f39..5d650ce46a40 100644
-> > --- a/drivers/iio/light/Makefile
-> > +++ b/drivers/iio/light/Makefile
-> > @@ -6,6 +6,7 @@
-> >  # When adding new entries keep the list in alphabetical order
-> >  obj-$(CONFIG_ACPI_ALS)		+= acpi-als.o
-> >  obj-$(CONFIG_ADJD_S311)		+= adjd_s311.o
-> > +obj-$(CONFIG_ADUX1020)		+= adux1020.o
-> >  obj-$(CONFIG_AL3320A)		+= al3320a.o
-> >  obj-$(CONFIG_APDS9300)		+= apds9300.o
-> >  obj-$(CONFIG_APDS9960)		+= apds9960.o
-> > diff --git a/drivers/iio/light/adux1020.c b/drivers/iio/light/adux1020.c
-> > new file mode 100644
-> > index 000000000000..d0b76e5b44f1
-> > --- /dev/null
-> > +++ b/drivers/iio/light/adux1020.c
-> > @@ -0,0 +1,783 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * adux1020.c - Support for Analog Devices ADUX1020 photometric sensor
-> > + *
-> > + * Copyright (C) 2019 Linaro Ltd.
-> > + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > + *
-> > + * TODO: Triggered buffer support
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/err.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/init.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/iio/sysfs.h>
-> > +#include <linux/iio/events.h>
-> > +
-> > +#define ADUX1020_REGMAP_NAME		"adux1020_regmap"
-> > +#define ADUX1020_DRV_NAME		"adux1020"
-> > +
-> > +/* System registers */
-> > +#define ADUX1020_REG_CHIP_ID		0x08
-> > +#define ADUX1020_REG_SLAVE_ADDRESS	0x09
-> > +
-> > +#define ADUX1020_REG_SW_RESET		0x0f
-> > +#define ADUX1020_REG_INT_ENABLE		0x1c
-> > +#define ADUX1020_REG_INT_POLARITY	0x1d
-> > +#define ADUX1020_REG_PROX_TH_ON1	0x2a
-> > +#define ADUX1020_REG_PROX_TH_OFF1	0x2b
-> > +#define	ADUX1020_REG_PROX_TYPE		0x2f
-> > +#define	ADUX1020_REG_TEST_MODES_3	0x32
-> > +#define	ADUX1020_REG_FORCE_MODE		0x33
-> > +#define	ADUX1020_REG_FREQUENCY		0x40
-> > +#define ADUX1020_REG_LED_CURRENT	0x41
-> > +#define	ADUX1020_REG_OP_MODE		0x45
-> > +#define	ADUX1020_REG_INT_MASK		0x48
-> > +#define	ADUX1020_REG_INT_STATUS		0x49
-> > +#define	ADUX1020_REG_DATA_BUFFER	0x60
-> > +
-> > +/* Chip ID bits */
-> > +#define ADUX1020_CHIP_ID_MASK		GENMASK(11, 0)
-> > +#define ADUX1020_CHIP_ID		0x03fc
-> > +
-> > +#define ADUX1020_MODE_OUT_SHIFT		4
-> > +#define ADUX1020_MODE_OUT_PROX_I	1
-> > +#define ADUX1020_MODE_OUT_PROX_XY	3
-> > +
-> > +#define ADUX1020_SW_RESET		BIT(1)
-> > +#define ADUX1020_FIFO_FLUSH		BIT(15)
-> > +#define ADUX1020_OP_MODE_MASK		GENMASK(3, 0)
-> > +#define ADUX1020_DATA_OUT_MODE_MASK	GENMASK(7, 4)
-> > +
-> > +#define ADUX1020_MODE_INT_MASK		GENMASK(7, 0)
-> > +#define ADUX1020_INT_ENABLE		0x2096
-> > +#define ADUX1020_INT_DISABLE		0x2090
-> > +#define ADUX1020_PROX_INT_ENABLE	0x00f0
-> > +#define ADUX1020_PROX_ON1_INT		BIT(0)
-> > +#define ADUX1020_PROX_OFF1_INT		BIT(1)
-> > +#define ADUX1020_FIFO_INT_ENABLE	0x7f
-> > +#define ADUX1020_MODE_INT_DISABLE	0xff
-> > +#define ADUX1020_MODE_INT_STATUS_MASK	GENMASK(7, 0)
-> > +#define ADUX1020_FIFO_STATUS_MASK	GENMASK(15, 8)
-> > +#define ADUX1020_PROX_TYPE		BIT(15)
-> > +
-> > +#define ADUX1020_INT_PROX_ON1		BIT(0)
-> > +#define ADUX1020_INT_PROX_OFF1		BIT(1)
-> > +
-> > +#define	ADUX1020_FORCE_CLOCK_ON		0x0f4f
-> > +#define	ADUX1020_FORCE_CLOCK_RESET	0x0040
-> > +#define ADUX1020_ACTIVE_4_STATE		0x0008
-> > +
-> > +#define ADUX1020_PROX_FREQ_MASK		GENMASK(7, 4)
-> > +#define ADUX1020_PROX_FREQ_SHIFT	4
-> > +
-> > +#define ADUX1020_LED_CURRENT_MASK	GENMASK(3, 0)
-> > +#define ADUX1020_LED_PIREF_EN		BIT(12)
-> > +
-> > +/* Operating modes */
-> > +enum adux1020_op_modes {
-> > +	ADUX1020_MODE_STANDBY,
-> > +	ADUX1020_MODE_PROX_I,
-> > +	ADUX1020_MODE_PROX_XY,
-> > +	ADUX1020_MODE_GEST,
-> > +	ADUX1020_MODE_SAMPLE,
-> > +	ADUX1020_MODE_FORCE = 0x0e,
-> > +	ADUX1020_MODE_IDLE = 0x0f,
-> > +};
-> > +
-> > +struct adux1020_data {
-> > +	struct i2c_client *client;
-> > +	struct iio_dev *indio_dev;
-> > +	struct mutex lock;
-> > +	struct regmap *regmap;
-> > +};
-> > +
-> > +struct adux1020_mode_data {
-> > +	u8 bytes;
-> > +	u8 buf_len;
-> > +	u16 int_en;
-> > +};
-> > +
-> > +static const struct adux1020_mode_data adux1020_modes[] = {
-> > +	[ADUX1020_MODE_PROX_I] = {
-> > +		.bytes = 2,
-> > +		.buf_len = 1,
-> > +		.int_en = ADUX1020_PROX_INT_ENABLE,
-> > +	},
-> > +};
-> > +
-> > +static const struct regmap_config adux1020_regmap_config = {
-> > +	.name = ADUX1020_REGMAP_NAME,
-> > +	.reg_bits = 8,
-> > +	.val_bits = 16,
-> > +	.max_register = 0x6F,
-> > +	.cache_type = REGCACHE_NONE,
-> > +};
-> > +
-> > +static const int adux1020_def_conf[][2] = {
-> > +	{ 0x000c, 0x000f },
-> > +	{ 0x0010, 0x1010 },
-> > +	{ 0x0011, 0x004c },
-> > +	{ 0x0012, 0x5f0c },
-> > +	{ 0x0013, 0xada5 },
-> > +	{ 0x0014, 0x0080 },
-> > +	{ 0x0015, 0x0000 },
-> > +	{ 0x0016, 0x0600 },
-> > +	{ 0x0017, 0x0000 },
-> > +	{ 0x0018, 0x2693 },
-> > +	{ 0x0019, 0x0004 },
-> > +	{ 0x001a, 0x4280 },
-> > +	{ 0x001b, 0x0060 },
-> > +	{ 0x001c, 0x2094 },
-> > +	{ 0x001d, 0x0020 },
-> > +	{ 0x001e, 0x0001 },
-> > +	{ 0x001f, 0x0100 },
-> > +	{ 0x0020, 0x0320 },
-> > +	{ 0x0021, 0x0A13 },
-> > +	{ 0x0022, 0x0320 },
-> > +	{ 0x0023, 0x0113 },
-> > +	{ 0x0024, 0x0000 },
-> > +	{ 0x0025, 0x2412 },
-> > +	{ 0x0026, 0x2412 },
-> > +	{ 0x0027, 0x0022 },
-> > +	{ 0x0028, 0x0000 },
-> > +	{ 0x0029, 0x0300 },
-> > +	{ 0x002a, 0x0700 },
-> > +	{ 0x002b, 0x0600 },
-> > +	{ 0x002c, 0x6000 },
-> > +	{ 0x002d, 0x4000 },
-> > +	{ 0x002e, 0x0000 },
-> > +	{ 0x002f, 0x0000 },
-> > +	{ 0x0030, 0x0000 },
-> > +	{ 0x0031, 0x0000 },
-> > +	{ 0x0032, 0x0040 },
-> > +	{ 0x0033, 0x0008 },
-> > +	{ 0x0034, 0xE400 },
-> > +	{ 0x0038, 0x8080 },
-> > +	{ 0x0039, 0x8080 },
-> > +	{ 0x003a, 0x2000 },
-> > +	{ 0x003b, 0x1f00 },
-> > +	{ 0x003c, 0x2000 },
-> > +	{ 0x003d, 0x2000 },
-> > +	{ 0x003e, 0x0000 },
-> > +	{ 0x0040, 0x8069 },
-> > +	{ 0x0041, 0x1f2f },
-> > +	{ 0x0042, 0x4000 },
-> > +	{ 0x0043, 0x0000 },
-> > +	{ 0x0044, 0x0008 },
-> > +	{ 0x0046, 0x0000 },
-> > +	{ 0x0048, 0x00ef },
-> > +	{ 0x0049, 0x0000 },
-> > +	{ 0x0045, 0x0000 },
-> > +};
-> > +
-> > +static const int adux1020_rate[][2] = {
-> > +	{ 0, 100000 },
-> > +	{ 0, 200000 },
-> > +	{ 0, 500000 },
-> > +	{ 1, 0 },
-> > +	{ 2, 0 },
-> > +	{ 5, 0 },
-> > +	{ 10, 0 },
-> > +	{ 20, 0 },
-> > +	{ 50, 0 },
-> > +	{ 100, 0 },
-> > +	{ 190, 0 },
-> > +	{ 450, 0 },
-> > +	{ 820, 0 },
-> > +	{ 1400, 0 },
-> > +};
-> > +
-> > +static const int adux1020_led_current[][2] = {
-> > +	{ 0, 25000 },
-> > +	{ 0, 40000 },
-> > +	{ 0, 55000 },
-> > +	{ 0, 70000 },
-> > +	{ 0, 85000 },
-> > +	{ 0, 100000 },
-> > +	{ 0, 115000 },
-> > +	{ 0, 130000 },
-> > +	{ 0, 145000 },
-> > +	{ 0, 160000 },
-> > +	{ 0, 175000 },
-> > +	{ 0, 190000 },
-> > +	{ 0, 205000 },
-> > +	{ 0, 220000 },
-> > +	{ 0, 235000 },
-> > +	{ 0, 250000 },
-> > +};
-> > +
-> > +static void adux1020_flush_fifo(struct adux1020_data *data)
-> > +{
-> > +	/* Force Idle mode */
-> > +	regmap_write(data->regmap, ADUX1020_REG_FORCE_MODE,
-> > +		     ADUX1020_ACTIVE_4_STATE);
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_OP_MODE,
-> > +			   ADUX1020_OP_MODE_MASK, ADUX1020_MODE_FORCE);
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_OP_MODE,
-> > +			   ADUX1020_OP_MODE_MASK, ADUX1020_MODE_IDLE);
-> > +
-> > +	/* Flush FIFO */
-> > +	regmap_write(data->regmap, ADUX1020_REG_TEST_MODES_3,
-> > +		     ADUX1020_FORCE_CLOCK_ON);
-> > +	regmap_write(data->regmap, ADUX1020_REG_INT_STATUS,
-> > +		     ADUX1020_FIFO_FLUSH);
-> > +	regmap_write(data->regmap, ADUX1020_REG_TEST_MODES_3,
-> > +		     ADUX1020_FORCE_CLOCK_RESET);
-> > +}
-> > +
-> > +static int adux1020_read_fifo(struct adux1020_data *data, u16 *buf, u8 buf_len)
-> > +{
-> > +	int i, ret = -EINVAL;
-> > +	unsigned int regval;
-> > +
-> > +	/* Enable 32MHz clock */
-> > +	regmap_write(data->regmap, ADUX1020_REG_TEST_MODES_3,
-> > +		     ADUX1020_FORCE_CLOCK_ON);
-> > +
-> > +	for (i = 0; i < buf_len; i++) {
-> > +		ret = regmap_read(data->regmap, ADUX1020_REG_DATA_BUFFER,
-> > +				      &regval);
-> > +		if (ret < 0)
-> > +			goto err_out;
-> > +
-> > +		buf[i] = regval;
-> > +	}
-> > +
-> > +	/* Set 32MHz clock to be controlled by internal state machine */
-> > +	regmap_write(data->regmap, ADUX1020_REG_TEST_MODES_3,
-> > +		     ADUX1020_FORCE_CLOCK_RESET);
-> > +
-> > +err_out:
-> > +	return ret;
-> > +}
-> > +
-> > +static void adux1020_set_mode(struct adux1020_data *data,
-> > +			      enum adux1020_op_modes mode)
-> > +{
-> > +	/* Switch to standby mode before changing the mode */
-> > +	regmap_write(data->regmap, ADUX1020_REG_OP_MODE, ADUX1020_MODE_STANDBY);
-> > +
-> > +	/* Set data out and switch to the desired mode */
-> > +	if (mode == ADUX1020_MODE_PROX_I) {
-> > +		regmap_update_bits(data->regmap, ADUX1020_REG_OP_MODE,
-> > +			ADUX1020_DATA_OUT_MODE_MASK,
-> > +			ADUX1020_MODE_OUT_PROX_I << ADUX1020_MODE_OUT_SHIFT);
-> > +		regmap_update_bits(data->regmap, ADUX1020_REG_OP_MODE,
-> > +			ADUX1020_OP_MODE_MASK, ADUX1020_MODE_PROX_I);
-> > +	}
-> > +}
-> > +
-> > +static int adux1020_measure(struct adux1020_data *data,
-> > +			    enum adux1020_op_modes mode,
-> > +			    u16 *val)
-> > +{
-> > +	int ret, tries = 50;
-> > +	unsigned int status;
-> > +
-> > +	mutex_lock(&data->lock);
-> > +
-> > +	/* Disable INT pin as polling is going to be used */
-> > +	regmap_write(data->regmap, ADUX1020_REG_INT_ENABLE,
-> > +		     ADUX1020_INT_DISABLE);
-> Error checking.
+ MAINTAINERS                     |   7 +
+ drivers/hwmon/Kconfig           |   9 +
+ drivers/hwmon/Makefile          |   1 +
+ drivers/hwmon/axi-fan-control.c | 473 ++++++++++++++++++++++++++++++++
+ 4 files changed, 490 insertions(+)
+ create mode 100644 drivers/hwmon/axi-fan-control.c
 
-Yes, will add error check to regmap_ APIs wherever required.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 296de2b51c83..caa80ae1925e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2873,6 +2873,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/sound/axentia,*
+ F:	sound/soc/atmel/tse850-pcm5142.c
+ 
++AXI-FAN-CONTROL HARDWARE MONITOR DRIVER
++M:	Nuno Sá <nuno.sa@analog.com>
++W:	http://ez.analog.com/community/linux-device-drivers
++L:	linux-hwmon@vger.kernel.org
++S:	Supported
++F:	drivers/hwmon/axi-fan-control.c
++
+ AXXIA I2C CONTROLLER
+ M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
+ L:	linux-i2c@vger.kernel.org
+diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+index 7b6c4025b827..ca53bb33b965 100644
+--- a/drivers/hwmon/Kconfig
++++ b/drivers/hwmon/Kconfig
+@@ -269,6 +269,15 @@ config SENSORS_ASC7621
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called asc7621.
+ 
++config SENSORS_AXI_FAN_CONTROL
++	tristate "Analog Devices FAN Control HDL Core driver"
++	help
++	  If you say yes here you get support for the Analog Devices
++	  AXI HDL FAN monitoring core.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called axi-fan-control
++
+ config SENSORS_K8TEMP
+ 	tristate "AMD Athlon64/FX or Opteron temperature sensor"
+ 	depends on X86 && PCI
+diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+index 40c036ea45e6..dcb4b64e1f4d 100644
+--- a/drivers/hwmon/Makefile
++++ b/drivers/hwmon/Makefile
+@@ -51,6 +51,7 @@ obj-$(CONFIG_SENSORS_AS370)	+= as370-hwmon.o
+ obj-$(CONFIG_SENSORS_ASC7621)	+= asc7621.o
+ obj-$(CONFIG_SENSORS_ASPEED)	+= aspeed-pwm-tacho.o
+ obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
++obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
+ obj-$(CONFIG_SENSORS_CORETEMP)	+= coretemp.o
+ obj-$(CONFIG_SENSORS_DA9052_ADC)+= da9052-hwmon.o
+ obj-$(CONFIG_SENSORS_DA9055)+= da9055-hwmon.o
+diff --git a/drivers/hwmon/axi-fan-control.c b/drivers/hwmon/axi-fan-control.c
+new file mode 100644
+index 000000000000..6c1bd3269c8c
+--- /dev/null
++++ b/drivers/hwmon/axi-fan-control.c
+@@ -0,0 +1,473 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Fan Control HDL CORE driver
++ *
++ * Copyright 2019 Analog Devices Inc.
++ */
++#include <linux/bits.h>
++#include <linux/clk.h>
++#include <linux/fpga/adi-axi-common.h>
++#include <linux/hwmon.h>
++#include <linux/interrupt.h>
++#include <linux/io.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++
++#define ADI_AXI_PCORE_VER_MAJOR(version)	(((version) >> 16) & 0xff)
++#define ADI_AXI_PCORE_VER_MINOR(version)	(((version) >> 8) & 0xff)
++#define ADI_AXI_PCORE_VER_PATCH(version)	((version) & 0xff)
++
++/* register map */
++#define ADI_REG_RSTN		0x0080
++#define ADI_REG_PWM_WIDTH	0x0084
++#define ADI_REG_TACH_PERIOD	0x0088
++#define ADI_REG_TACH_TOLERANCE	0x008c
++#define ADI_REG_PWM_PERIOD	0x00c0
++#define ADI_REG_TACH_MEASUR	0x00c4
++#define ADI_REG_TEMPERATURE	0x00c8
++
++#define ADI_REG_IRQ_MASK	0x0040
++#define ADI_REG_IRQ_PENDING	0x0044
++#define ADI_REG_IRQ_SRC		0x0048
++
++/* IRQ sources */
++#define ADI_IRQ_SRC_PWM_CHANGED		BIT(0)
++#define ADI_IRQ_SRC_TACH_ERR		BIT(1)
++#define ADI_IRQ_SRC_TEMP_INCREASE	BIT(2)
++#define ADI_IRQ_SRC_NEW_MEASUR		BIT(3)
++#define ADI_IRQ_SRC_MASK		GENMASK(3, 0)
++#define ADI_IRQ_MASK_OUT_ALL		0xFFFFFFFFU
++
++#define SYSFS_PWM_MAX			255
++
++struct axi_fan_control_data {
++	void __iomem *base;
++	struct device *hdev;
++	unsigned long clk_rate;
++	int irq;
++	/* pulses per revolution */
++	u32 ppr;
++	bool hw_pwm_req;
++	bool update_tacho_params;
++	u8 fan_fault;
++};
++
++static inline void axi_iowrite(const u32 val, const u32 reg,
++			       const struct axi_fan_control_data *ctl)
++{
++	iowrite32(val, ctl->base + reg);
++}
++
++static inline u32 axi_ioread(const u32 reg,
++			     const struct axi_fan_control_data *ctl)
++{
++	return ioread32(ctl->base + reg);
++}
++
++static long axi_fan_control_get_pwm_duty(const struct axi_fan_control_data *ctl)
++{
++	u32 pwm_width = axi_ioread(ADI_REG_PWM_WIDTH, ctl);
++	u32 pwm_period = axi_ioread(ADI_REG_PWM_PERIOD, ctl);
++	/*
++	 * PWM_PERIOD is a RO register set by the core. It should never be 0.
++	 * For now we are trusting the HW...
++	 */
++	return DIV_ROUND_CLOSEST(pwm_width * SYSFS_PWM_MAX, pwm_period);
++}
++
++static int axi_fan_control_set_pwm_duty(const long val,
++					struct axi_fan_control_data *ctl)
++{
++	u32 pwm_period = axi_ioread(ADI_REG_PWM_PERIOD, ctl);
++	u32 new_width;
++	long __val = clamp_val(val, 0, SYSFS_PWM_MAX);
++
++	new_width = DIV_ROUND_CLOSEST(__val * pwm_period, SYSFS_PWM_MAX);
++
++	axi_iowrite(new_width, ADI_REG_PWM_WIDTH, ctl);
++
++	return 0;
++}
++
++static long axi_fan_control_get_fan_rpm(const struct axi_fan_control_data *ctl)
++{
++	const u32 tach = axi_ioread(ADI_REG_TACH_MEASUR, ctl);
++
++	if (tach == 0)
++		/* should we return error, EAGAIN maybe? */
++		return 0;
++	/*
++	 * The tacho period should be:
++	 *      TACH = 60/(ppr * rpm), where rpm is revolutions per second
++	 *      and ppr is pulses per revolution.
++	 * Given the tacho period, we can multiply it by the input clock
++	 * so that we know how many clocks we need to have this period.
++	 * From this, we can derive the RPM value.
++	 */
++	return DIV_ROUND_CLOSEST(60 * ctl->clk_rate, ctl->ppr * tach);
++}
++
++static int axi_fan_control_read_temp(struct device *dev, u32 attr, long *val)
++{
++	struct axi_fan_control_data *ctl = dev_get_drvdata(dev);
++	long raw_temp;
++
++	switch (attr) {
++	case hwmon_temp_input:
++		raw_temp = axi_ioread(ADI_REG_TEMPERATURE, ctl);
++		/*
++		 * The formula for the temperature is:
++		 *      T = (ADC * 501.3743 / 2^bits) - 273.6777
++		 * It's multiplied by 1000 to have millidegrees as
++		 * specified by the hwmon sysfs interface.
++		 */
++		*val = ((raw_temp * 501374) >> 16) - 273677;
++		return 0;
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static int axi_fan_control_read_fan(struct device *dev, u32 attr, long *val)
++{
++	struct axi_fan_control_data *ctl = dev_get_drvdata(dev);
++
++	switch (attr) {
++	case hwmon_fan_fault:
++		*val = ctl->fan_fault;
++		/* clear it now */
++		ctl->fan_fault = 0;
++		return 0;
++	case hwmon_fan_input:
++		*val = axi_fan_control_get_fan_rpm(ctl);
++		return 0;
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static int axi_fan_control_read_pwm(struct device *dev, u32 attr, long *val)
++{
++	struct axi_fan_control_data *ctl = dev_get_drvdata(dev);
++
++	switch (attr) {
++	case hwmon_pwm_input:
++		*val = axi_fan_control_get_pwm_duty(ctl);
++		return 0;
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static int axi_fan_control_write_pwm(struct device *dev, u32 attr, long val)
++{
++	struct axi_fan_control_data *ctl = dev_get_drvdata(dev);
++
++	switch (attr) {
++	case hwmon_pwm_input:
++		return axi_fan_control_set_pwm_duty(val, ctl);
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static int axi_fan_control_read_labels(struct device *dev,
++				       enum hwmon_sensor_types type,
++				       u32 attr, int channel, const char **str)
++{
++	switch (type) {
++	case hwmon_fan:
++		*str = "FAN";
++		return 0;
++	case hwmon_temp:
++		*str = "SYSMON4";
++		return 0;
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static int axi_fan_control_read(struct device *dev,
++				enum hwmon_sensor_types type,
++				u32 attr, int channel, long *val)
++{
++	switch (type) {
++	case hwmon_fan:
++		return axi_fan_control_read_fan(dev, attr, val);
++	case hwmon_pwm:
++		return axi_fan_control_read_pwm(dev, attr, val);
++	case hwmon_temp:
++		return axi_fan_control_read_temp(dev, attr, val);
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static int axi_fan_control_write(struct device *dev,
++				 enum hwmon_sensor_types type,
++				 u32 attr, int channel, long val)
++{
++	switch (type) {
++	case hwmon_pwm:
++		return axi_fan_control_write_pwm(dev, attr, val);
++	default:
++		return -ENOTSUPP;
++	}
++}
++
++static umode_t axi_fan_control_fan_is_visible(const u32 attr)
++{
++	switch (attr) {
++	case hwmon_fan_input:
++	case hwmon_fan_fault:
++	case hwmon_fan_label:
++		return 0444;
++	default:
++		return 0;
++	}
++}
++
++static umode_t axi_fan_control_pwm_is_visible(const u32 attr)
++{
++	switch (attr) {
++	case hwmon_pwm_input:
++		return 0644;
++	default:
++		return 0;
++	}
++}
++
++static umode_t axi_fan_control_temp_is_visible(const u32 attr)
++{
++	switch (attr) {
++	case hwmon_temp_input:
++	case hwmon_temp_label:
++		return 0444;
++	default:
++		return 0;
++	}
++}
++
++static umode_t axi_fan_control_is_visible(const void *data,
++					  enum hwmon_sensor_types type,
++					  u32 attr, int channel)
++{
++	switch (type) {
++	case hwmon_fan:
++		return axi_fan_control_fan_is_visible(attr);
++	case hwmon_pwm:
++		return axi_fan_control_pwm_is_visible(attr);
++	case hwmon_temp:
++		return axi_fan_control_temp_is_visible(attr);
++	default:
++		return 0;
++	}
++}
++
++/*
++ * This core has two main ways of changing the PWM duty cycle. It is done,
++ * either by a request from userspace (writing on pwm1_input) or by the
++ * core itself. When the change is done by the core, it will use predefined
++ * parameters to evaluate the tach signal and, on that case we cannot set them.
++ * On the other hand, when the request is done by the user, with some arbitrary
++ * value that the core does not now about, we have to provide the tach
++ * parameters so that, the core can evaluate the signal. On the IRQ handler we
++ * distinguish this by using the ADI_IRQ_SRC_TEMP_INCREASE interrupt. This tell
++ * us that the CORE requested a new duty cycle. After this, there is 5s delay
++ * on which the core waits for the fan rotation speed to stabilize. After this
++ * we get ADI_IRQ_SRC_PWM_CHANGED irq where we will decide if we need to set
++ * the tach parameters or not on the next tach measurement cycle (corresponding
++ * already to the ney duty cycle) based on the %ctl->hw_pwm_req flag.
++ */
++static irqreturn_t axi_fan_control_irq_handler(int irq, void *data)
++{
++	struct axi_fan_control_data *ctl = (struct axi_fan_control_data *)data;
++	u32 irq_pending = axi_ioread(ADI_REG_IRQ_PENDING, ctl);
++	u32 clear_mask;
++
++	if (irq_pending & ADI_IRQ_SRC_NEW_MEASUR) {
++		if (ctl->update_tacho_params) {
++			u32 new_tach = axi_ioread(ADI_REG_TACH_MEASUR, ctl);
++
++			/* get 25% tolerance */
++			u32 tach_tol = DIV_ROUND_CLOSEST(new_tach * 25, 100);
++			/* set new tacho parameters */
++			axi_iowrite(new_tach, ADI_REG_TACH_PERIOD, ctl);
++			axi_iowrite(tach_tol, ADI_REG_TACH_TOLERANCE, ctl);
++			ctl->update_tacho_params = false;
++		}
++	}
++
++	if (irq_pending & ADI_IRQ_SRC_PWM_CHANGED) {
++		/*
++		 * if the pwm changes on behalf of software,
++		 * we need to provide new tacho parameters to the core.
++		 * Wait for the next measurement for that...
++		 */
++		if (!ctl->hw_pwm_req) {
++			ctl->update_tacho_params = true;
++		} else {
++			ctl->hw_pwm_req = false;
++			sysfs_notify(&ctl->hdev->kobj, NULL, "pwm1");
++		}
++	}
++
++	if (irq_pending & ADI_IRQ_SRC_TEMP_INCREASE)
++		/* hardware requested a new pwm */
++		ctl->hw_pwm_req = true;
++
++	if (irq_pending & ADI_IRQ_SRC_TACH_ERR)
++		ctl->fan_fault = 1;
++
++	/* clear all interrupts */
++	clear_mask = irq_pending & ADI_IRQ_SRC_MASK;
++	axi_iowrite(clear_mask, ADI_REG_IRQ_PENDING, ctl);
++
++	return IRQ_HANDLED;
++}
++
++static int axi_fan_control_init(struct axi_fan_control_data *ctl,
++				const struct device_node *np)
++{
++	int ret;
++
++	/* get fan pulses per revolution */
++	ret = of_property_read_u32(np, "adi,pulses-per-revolution", &ctl->ppr);
++	if (ret)
++		return ret;
++
++	/* 1, 2 and 4 are the typical and accepted values */
++	if (ctl->ppr != 1 && ctl->ppr != 2 && ctl->ppr != 4)
++		return -EINVAL;
++	/*
++	 * Enable all IRQs
++	 */
++	axi_iowrite(ADI_IRQ_MASK_OUT_ALL &
++		    ~(ADI_IRQ_SRC_NEW_MEASUR | ADI_IRQ_SRC_TACH_ERR |
++		      ADI_IRQ_SRC_PWM_CHANGED | ADI_IRQ_SRC_TEMP_INCREASE),
++		    ADI_REG_IRQ_MASK, ctl);
++
++	/* bring the device out of reset */
++	axi_iowrite(0x01, ADI_REG_RSTN, ctl);
++
++	return ret;
++}
++
++static const struct hwmon_channel_info *axi_fan_control_info[] = {
++	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT),
++	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_FAULT | HWMON_F_LABEL),
++	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT | HWMON_T_LABEL),
++	NULL
++};
++
++static const struct hwmon_ops axi_fan_control_hwmon_ops = {
++	.is_visible = axi_fan_control_is_visible,
++	.read = axi_fan_control_read,
++	.write = axi_fan_control_write,
++	.read_string = axi_fan_control_read_labels,
++};
++
++static const struct hwmon_chip_info axi_chip_info = {
++	.ops = &axi_fan_control_hwmon_ops,
++	.info = axi_fan_control_info,
++};
++
++static const u32 version_1_0_0 = ADI_AXI_PCORE_VER(1, 0, 'a');
++
++static const struct of_device_id axi_fan_control_of_match[] = {
++	{ .compatible = "adi,axi-fan-control-1.00.a",
++		.data = (void *)&version_1_0_0},
++	{},
++};
++MODULE_DEVICE_TABLE(of, axi_fan_control_of_match);
++
++static int axi_fan_control_probe(struct platform_device *pdev)
++{
++	struct axi_fan_control_data *ctl;
++	struct clk *clk;
++	const struct of_device_id *id;
++	const char *name = "axi_fan_control";
++	struct resource *res;
++	u32 version;
++	int ret;
++
++	id = of_match_node(axi_fan_control_of_match, pdev->dev.of_node);
++	if (!id)
++		return -EINVAL;
++
++	ctl = devm_kzalloc(&pdev->dev, sizeof(*ctl), GFP_KERNEL);
++	if (!ctl)
++		return -ENOMEM;
++
++	ctl->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(ctl->base))
++		return PTR_ERR(ctl->base);
++
++	clk = devm_clk_get(&pdev->dev, NULL);
++	if (IS_ERR(clk)) {
++		dev_err(&pdev->dev, "clk_get failed with %ld\n", PTR_ERR(clk));
++		return PTR_ERR(clk);
++	}
++
++	ctl->clk_rate = clk_get_rate(clk);
++	if (!ctl->clk_rate)
++		return -EINVAL;
++
++	dev_dbg(&pdev->dev, "Re-mapped from 0x%08llX to %p\n",
++		(unsigned long long)res->start, ctl->base);
++
++	version = axi_ioread(ADI_AXI_REG_VERSION, ctl);
++	if (ADI_AXI_PCORE_VER_MAJOR(version) !=
++	    ADI_AXI_PCORE_VER_MAJOR((*(u32 *)id->data))) {
++		dev_err(&pdev->dev, "Major version mismatch. Expected %d.%.2d.%c, Reported %d.%.2d.%c\n",
++			ADI_AXI_PCORE_VER_MAJOR((*(u32 *)id->data)),
++			ADI_AXI_PCORE_VER_MINOR((*(u32 *)id->data)),
++			ADI_AXI_PCORE_VER_PATCH((*(u32 *)id->data)),
++			ADI_AXI_PCORE_VER_MAJOR(version),
++			ADI_AXI_PCORE_VER_MINOR(version),
++			ADI_AXI_PCORE_VER_PATCH(version));
++		return -ENODEV;
++	}
++
++	ctl->irq = platform_get_irq(pdev, 0);
++	if (ctl->irq < 0)
++		return ctl->irq;
++
++	ret = devm_request_threaded_irq(&pdev->dev, ctl->irq, NULL,
++					axi_fan_control_irq_handler,
++					IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
++					pdev->driver_override, ctl);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to request an irq, %d", ret);
++		return ret;
++	}
++
++	ret = axi_fan_control_init(ctl, pdev->dev.of_node);
++	if (ret) {
++		dev_err(&pdev->dev, "Failed to initialize device\n");
++		return ret;
++	}
++
++	ctl->hdev = devm_hwmon_device_register_with_info(&pdev->dev,
++							 name,
++							 ctl,
++							 &axi_chip_info,
++							 NULL);
++
++	return PTR_ERR_OR_ZERO(ctl->hdev);
++}
++
++static struct platform_driver axi_fan_control_driver = {
++	.driver = {
++		.name = "axi_fan_control_driver",
++		.of_match_table = axi_fan_control_of_match,
++	},
++	.probe = axi_fan_control_probe,
++};
++module_platform_driver(axi_fan_control_driver);
++
++MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
++MODULE_DESCRIPTION("Analog Devices Fan Control HDL CORE driver");
++MODULE_LICENSE("GPL");
+-- 
+2.23.0
 
-> > +
-> > +	/* Enable mode interrupt */
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_INT_MASK,
-> > +			   ADUX1020_MODE_INT_MASK,
-> > +			   adux1020_modes[mode].int_en);
-> > +
-> > +	while (tries--) {
-> > +		ret = regmap_read(data->regmap, ADUX1020_REG_INT_STATUS,
-> > +				  &status);
-> > +		if (ret < 0)
-> > +			goto fail;
-> > +
-> > +		status &= ADUX1020_FIFO_STATUS_MASK;
-> > +		if (status >= adux1020_modes[mode].bytes)
-> > +			break;
-> > +		msleep(20);
-> > +	}
-> > +
-> > +	if (tries < 0) {
-> > +		ret = -EIO;
-> > +		goto fail;
-> > +	}
-> > +
-> > +	ret = adux1020_read_fifo(data, val, adux1020_modes[mode].buf_len);
-> > +	if (ret < 0)
-> > +		goto fail;
-> > +
-> > +	/* Clear mode interrupt */
-> > +	regmap_write(data->regmap, ADUX1020_REG_INT_STATUS,
-> > +			   (~adux1020_modes[mode].int_en));
-> > +	/* Disable mode interrupts */
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_INT_MASK,
-> > +			   ADUX1020_MODE_INT_MASK, ADUX1020_MODE_INT_DISABLE);
-> > +
-> > +fail:
-> > +	mutex_unlock(&data->lock);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int adux1020_read_raw(struct iio_dev *indio_dev,
-> > +			     struct iio_chan_spec const *chan,
-> > +			     int *val, int *val2, long mask)
-> > +{
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +	u16 buf[3];
-> > +	int ret = -EINVAL;
-> > +	unsigned int regval;
-> > +
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_RAW:
-> > +		switch (chan->type) {
-> > +		case IIO_PROXIMITY:
-> > +			adux1020_set_mode(data, ADUX1020_MODE_PROX_I);
-> > +			ret = adux1020_measure(data, ADUX1020_MODE_PROX_I, buf);
-> > +			if (ret < 0)
-> > +				return ret;
-> > +
-> > +			*val = buf[0];
-> > +			ret = IIO_VAL_INT;
-> 			return IIO_VAL_INT;
-> > +			break;
-> > +		default:
-> 			return -EINVAL;
-> > +			break;
-> > +		}
-> > +		break;
-> > +	case IIO_CHAN_INFO_PROCESSED:
-> > +		switch (chan->type) {
-> > +		case IIO_CURRENT:
-> > +			ret = regmap_read(data->regmap,
-> > +					  ADUX1020_REG_LED_CURRENT, &regval);
-> > +			if (ret < 0)
-> > +				return ret;
-> > +
-> > +			regval = regval & ADUX1020_LED_CURRENT_MASK;
-> > +
-> > +			*val = adux1020_led_current[regval][0];
-> > +			*val2 = adux1020_led_current[regval][1];
-> > +
-> > +			ret = IIO_VAL_INT_PLUS_MICRO;
-> > +			break;
-> > +		default:
-> > +			break;
-> > +		}
-> > +		break;
-> > +	case IIO_CHAN_INFO_SAMP_FREQ:
-> > +		switch (chan->type) {
-> > +		case IIO_PROXIMITY:
-> > +			ret = regmap_read(data->regmap, ADUX1020_REG_FREQUENCY,
-> > +					  &regval);
-> > +			if (ret < 0)
-> > +				return ret;
-> > +
-> > +			regval = (regval & ADUX1020_PROX_FREQ_MASK) >>
-> > +				  ADUX1020_PROX_FREQ_SHIFT;
-> > +
-> > +			*val = adux1020_rate[regval][0];
-> > +			*val2 = adux1020_rate[regval][1];
-> > +
-> > +			ret = IIO_VAL_INT_PLUS_MICRO;
-> > +			break;
-> > +		default:
-> > +			break;
-> > +		}
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	return ret;
-> > +};
-> > +
-> > +static int adux1020_write_raw(struct iio_dev *indio_dev,
-> > +			     struct iio_chan_spec const *chan,
-> > +			     int val, int val2, long mask)
-> > +{
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +	int i, ret = -EINVAL;
-> > +
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_SAMP_FREQ:
-> > +		if (chan->type == IIO_PROXIMITY) {
-> Indent is very deep. I would suggest flipping conditions a bit.
-> 
-> 		if (chan->type != IIO_PROXIMITY)
-> 			return -EINVAL;
-> 
-> 		for (i = 0; i < ARRAY_SIZE(adux1020_rate); i++) {
-> 			if ((val != adux1020_rate[i][0]) ||
-> 		            (val2 != adux1020_rate[i][1]))
-> 				continue;
-> 			return regmap_update_bits(data->regmap,
-> 						  ADUX1020_REG_FREQUENCY,
-> 						  ADUX1020_PROX_FREQ_MASK,
-> 						  i << ADUX1020_PROX_FREQ_SHIFT);
-> 
-> 		}
-> 		return -EINVAL;	
-
-This code will be modified to use a helper for finding the index. Then
-it will look more cleaner.
-
-> 
-> > +			for (i = 0; i < ARRAY_SIZE(adux1020_rate); i++) {
-> > +				if ((val == adux1020_rate[i][0]) &&
-> > +				     (val2 == adux1020_rate[i][1])) {
-> > +					ret = regmap_update_bits(data->regmap,
-> > +						ADUX1020_REG_FREQUENCY,
-> > +						ADUX1020_PROX_FREQ_MASK,
-> > +						i << ADUX1020_PROX_FREQ_SHIFT);
-> > +				}
-> > +			}
-> > +		}
-> > +		break;
-> 
-> direct return preferred if there is no cleanup to be done (like here).
-> 
-> > +	case IIO_CHAN_INFO_PROCESSED:
-> > +		if (chan->type == IIO_CURRENT) {
-> > +			for (i = 0; i < ARRAY_SIZE(adux1020_led_current); i++) {
-> > +				if ((val == adux1020_led_current[i][0]) &&
-> > +				     (val2 == adux1020_led_current[i][1])) {
-> > +					ret = regmap_update_bits(data->regmap,
-> > +						ADUX1020_REG_LED_CURRENT,
-> > +						ADUX1020_LED_CURRENT_MASK, i);
-> > +				}
-> > +			}
-> > +		}
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int adux1020_write_event_config(struct iio_dev *indio_dev,
-> > +		const struct iio_chan_spec *chan, enum iio_event_type type,
-> > +		enum iio_event_direction dir, int state)
-> > +{
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +
-> > +	regmap_write(data->regmap, ADUX1020_REG_INT_ENABLE,
-> > +		     ADUX1020_INT_ENABLE);
-> 
-> Check returns from regmap everywhere.  I've had far too many dodgy
-> i2c buses in the past to assume they will always work!
-> 
-> > +
-> > +	regmap_write(data->regmap, ADUX1020_REG_INT_POLARITY, 0);
-> > +
-> > +	switch (chan->type) {
-> > +	case IIO_PROXIMITY:
-> > +		if (dir == IIO_EV_DIR_RISING) {
-> > +			regmap_update_bits(data->regmap, ADUX1020_REG_INT_MASK,
-> > +					   ADUX1020_PROX_ON1_INT,
-> > +					   state ? 0 : ADUX1020_PROX_ON1_INT);
-> > +		} else {
-> > +			regmap_update_bits(data->regmap, ADUX1020_REG_INT_MASK,
-> > +					   ADUX1020_PROX_OFF1_INT,
-> > +					   state ? 0 : ADUX1020_PROX_OFF1_INT);
-> > +		}
-> > +
-> > +		/*
-> > +		 * Trigger proximity interrupt when the intensity is above
-> > +		 * or below threshold
-> > +		 */
-> > +		regmap_update_bits(data->regmap, ADUX1020_REG_PROX_TYPE,
-> > +				   ADUX1020_PROX_TYPE, ADUX1020_PROX_TYPE);
-> > +
-> > +		/* Set proximity mode */
-> > +		adux1020_set_mode(data, ADUX1020_MODE_PROX_I);
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int adux1020_read_event_config(struct iio_dev *indio_dev,
-> > +		const struct iio_chan_spec *chan, enum iio_event_type type,
-> > +		enum iio_event_direction dir)
-> > +{
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +	int ret, mask;
-> > +	unsigned int regval;
-> > +
-> > +	switch (chan->type) {
-> > +	case IIO_PROXIMITY:
-> > +		if (dir == IIO_EV_DIR_RISING)
-> > +			mask = ADUX1020_PROX_ON1_INT;
-> > +		else
-> > +			mask = ADUX1020_PROX_OFF1_INT;
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	ret = regmap_read(data->regmap, ADUX1020_REG_INT_MASK, &regval);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	return !(regval & mask);
-> > +}
-> > +
-> > +static int adux1020_read_thresh(struct iio_dev *indio_dev,
-> > +		const struct iio_chan_spec *chan, enum iio_event_type type,
-> > +		enum iio_event_direction dir, enum iio_event_info info,
-> > +		int *val, int *val2)
-> > +{
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +	u8 reg;
-> > +	int ret;
-> > +	unsigned int regval;
-> > +
-> > +	switch (chan->type) {
-> > +	case IIO_PROXIMITY:
-> > +		if (dir == IIO_EV_DIR_RISING)
-> > +			reg = ADUX1020_REG_PROX_TH_ON1;
-> > +		else
-> > +			reg = ADUX1020_REG_PROX_TH_OFF1;
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	ret = regmap_read(data->regmap, reg, &regval);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	*val = regval;
-> > +
-> > +	return IIO_VAL_INT;
-> > +}
-> > +
-> > +static int adux1020_write_thresh(struct iio_dev *indio_dev,
-> > +		const struct iio_chan_spec *chan, enum iio_event_type type,
-> > +		enum iio_event_direction dir, enum iio_event_info info,
-> > +		int val, int val2)
-> > +{
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +	u8 reg;
-> > +
-> > +	switch (chan->type) {
-> > +	case IIO_PROXIMITY:
-> > +		if (dir == IIO_EV_DIR_RISING)
-> > +			reg = ADUX1020_REG_PROX_TH_ON1;
-> > +		else
-> > +			reg = ADUX1020_REG_PROX_TH_OFF1;
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/* Full scale threshold value is 0-65535  */
-> > +	if (val < 0 || val > 65535)
-> > +		return -EINVAL;
-> > +
-> > +	return regmap_write(data->regmap, reg, val);
-> > +}
-> > +
-> > +static const struct iio_event_spec adux1020_proximity_event[] = {
-> > +	{
-> > +		.type = IIO_EV_TYPE_THRESH,
-> > +		.dir = IIO_EV_DIR_RISING,
-> > +		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-> > +			BIT(IIO_EV_INFO_ENABLE),
-> > +	},
-> > +	{
-> > +		.type = IIO_EV_TYPE_THRESH,
-> > +		.dir = IIO_EV_DIR_FALLING,
-> > +		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-> > +			BIT(IIO_EV_INFO_ENABLE),
-> > +	},
-> > +};
-> > +
-> > +static const struct iio_chan_spec adux1020_channels[] = {
-> > +	{
-> > +		.type = IIO_PROXIMITY,
-> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> > +				      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> > +		.event_spec = adux1020_proximity_event,
-> > +		.num_event_specs = ARRAY_SIZE(adux1020_proximity_event),
-> > +	},
-> > +	{
-> > +		.type = IIO_CURRENT,
-> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-> > +		.extend_name = "led",
-> 
-> out channel?
-> 
-
-If I add `out channel`, the sysfs naming gets wierd (out_current_led_input).
-Do you have a suggestion on how to represent it properly? This channel
-is used for getting the LED driver current and the value is in mA.
-
-> > +	},
-> > +};
-> > +
-> > +static IIO_CONST_ATTR(sampling_frequency_available,
-> > +		      "0.1 0.2 0.5 1 2 5 10 20 50 100 190 450 820 1400");
-> > +
-> > +static struct attribute *adux1020_attributes[] = {
-> > +	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
-> > +	NULL
-> > +};
-> > +
-> > +static const struct attribute_group adux1020_attribute_group = {
-> > +	.attrs = adux1020_attributes,
-> > +};
-> > +
-> > +static const struct iio_info adux1020_info = {
-> > +	.attrs = &adux1020_attribute_group,
-> > +	.read_raw = adux1020_read_raw,
-> > +	.write_raw = adux1020_write_raw,
-> > +	.read_event_config = adux1020_read_event_config,
-> > +	.write_event_config = adux1020_write_event_config,
-> > +	.read_event_value = adux1020_read_thresh,
-> > +	.write_event_value = adux1020_write_thresh,
-> > +};
-> > +
-> > +static irqreturn_t adux1020_interrupt_handler(int irq, void *private)
-> > +{
-> > +	struct iio_dev *indio_dev = private;
-> > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > +	int ret, status;
-> > +
-> > +	ret = regmap_read(data->regmap, ADUX1020_REG_INT_STATUS, &status);
-> > +	if (ret < 0)
-> 
-> interrupt handlers have to return an irqreturn_t, so you can't just
-> return random error codes.
-> 
-
-ah, yes.
-
-> > +		return ret;
-> > +
-> > +	status &= ADUX1020_MODE_INT_STATUS_MASK;
-> > +
-> > +	if (status & ADUX1020_INT_PROX_ON1) {
-> > +		iio_push_event(indio_dev,
-> > +				IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, 0,
-> > +					IIO_EV_TYPE_THRESH,
-> > +					IIO_EV_DIR_RISING),
-> > +				iio_get_time_ns(indio_dev));
-> > +	}
-> > +
-> > +	if (status & ADUX1020_INT_PROX_OFF1) {
-> > +		iio_push_event(indio_dev,
-> > +				IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, 0,
-> > +					IIO_EV_TYPE_THRESH,
-> > +					IIO_EV_DIR_FALLING),
-> > +				iio_get_time_ns(indio_dev));
-> > +	}
-> > +
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_INT_STATUS,
-> > +			   ADUX1020_MODE_INT_MASK, status);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> > +static int adux1020_chip_init(struct adux1020_data *data)
-> > +{
-> > +	struct i2c_client *client = data->client;
-> > +	int ret, i;
-> > +	unsigned int val;
-> > +
-> > +	ret = regmap_read(data->regmap, ADUX1020_REG_CHIP_ID, &val);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	val &= ADUX1020_CHIP_ID_MASK;
-> > +
-> > +	if (val != ADUX1020_CHIP_ID) {
-> as val is only used here,
-> 
-> 	if (val & ADUX1020_CHIP_ID_MASK != ADUX1020_CHIP_ID) {
-> 
-> Saves a bit of code and isn't significantly harder to read.
-> 
-
-okay.
-
-> > +		dev_err(&client->dev, "invalid chip id 0x%04x\n", val);
-> > +		return -ENODEV;
-> > +	};
-> > +
-> > +	dev_dbg(&client->dev, "Detected ADUX1020 with chip id: 0x%04x\n", val);
-> > +
-> > +	/* Perform software reset */
-> 
-> Try to avoid comments where the code is fairly self explanatory.
-> They are just potential places to diverge from reality in the future ;)
-> 
-
-okay.
-
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_SW_RESET,
-> > +			   ADUX1020_SW_RESET, ADUX1020_SW_RESET);
-> 
-> This is i2c so not exactly 100% reliable (depends on good board
-> design etc).  Hence I'd add error checking for all these reads and
-> writes.
-> 
-> > +
-> > +	/* Load default configuration */
-> > +	for (i = 0; i < ARRAY_SIZE(adux1020_def_conf); i++)
-> > +		regmap_write(data->regmap, adux1020_def_conf[i][0],
-> > +			     adux1020_def_conf[i][1]);
-> > +
-> > +	adux1020_flush_fifo(data);
-> > +
-> > +	/* Use LED_IREF for proximity mode */
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_LED_CURRENT,
-> > +			   ADUX1020_LED_PIREF_EN, 0);
-> > +
-> > +	/* Mask all interrupts */
-> > +	regmap_update_bits(data->regmap, ADUX1020_REG_INT_MASK,
-> > +			   ADUX1020_MODE_INT_MASK, ADUX1020_MODE_INT_DISABLE);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int adux1020_probe(struct i2c_client *client,
-> > +			  const struct i2c_device_id *id)
-> > +{
-> > +	struct adux1020_data *data;
-> > +	struct iio_dev *indio_dev;
-> > +	int ret;
-> > +
-> > +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> > +	if (!indio_dev)
-> > +		return -ENOMEM;
-> > +
-> > +	indio_dev->dev.parent = &client->dev;
-> > +	indio_dev->info = &adux1020_info;
-> > +	indio_dev->name = ADUX1020_DRV_NAME;
-> > +	indio_dev->channels = adux1020_channels;
-> > +	indio_dev->num_channels = ARRAY_SIZE(adux1020_channels);
-> > +	indio_dev->modes = INDIO_DIRECT_MODE;
-> > +
-> > +	data = iio_priv(indio_dev);
-> > +	i2c_set_clientdata(client, indio_dev);
-> > +
-> > +	data->regmap = devm_regmap_init_i2c(client, &adux1020_regmap_config);
-> > +	if (IS_ERR(data->regmap)) {
-> > +		dev_err(&client->dev, "regmap initialization failed.\n");
-> > +		return PTR_ERR(data->regmap);
-> > +	}
-> > +
-> > +	data->client = client;
-> > +	data->indio_dev = indio_dev;
-> > +	mutex_init(&data->lock);
-> > +
-> > +	ret = adux1020_chip_init(data);
-> > +	if (ret)
-> 
-> 		return ret;
-> 
-> > +		goto err_out;
-> > +
-> > +	if (client->irq) {
-> > +		ret = devm_request_threaded_irq(&client->dev, client->irq,
-> > +				NULL, adux1020_interrupt_handler,
-> > +				IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> > +				ADUX1020_DRV_NAME, indio_dev);
-> > +		if (ret) {
-> > +			dev_err(&client->dev, "irq request error %d\n", -ret);
-> > +			goto err_out;
-> 
-> Direct returns are preferred in kernel code as they are generally easier
-> to review.  No need to check the error handling if we immediately know
-> there isn't any to be done!
-> 
-> 			return ret;
-
-ack.
-
-> > +		}
-> > +	}
-> > +
-> > +	ret = iio_device_register(indio_dev);
-> > +	if (ret) {
-> > +		dev_err(&client->dev, "Failed to register IIO device\n");
-> > +		goto err_out;
-> 
-> This error path does no error handling so you can return directly here.
-> 		return ret;
-> 
-> But... Then there is no point in having the return here as you might
-> as well drop it out of the brackets and replace the return 0 below with
-> return ret;
-
-ack.
-
-> 
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +err_out:
-> > +	return ret;
-> > +}
-> > +
-> > +static int adux1020_remove(struct i2c_client *client)
-> > +{
-> > +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-> > +
-> > +	iio_device_unregister(indio_dev);
-> If we have a remove with only iio_device_unregister it normally
-> implies we could have used devm_iio_device_register and allowed
-> the automatic unwinding to do it for us.
-> 
-> Make that change and you shouldn't need a remove function at all.
-> In turn, there is no reason to then call i2c_set_clientdata()
-
-Sure, will use devm_ API.
-
-Thanks,
-Mani
-
-> 
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct i2c_device_id adux1020_id[] = {
-> > +	{ "adux1020", 0 },
-> > +	{}
-> > +};
-> > +MODULE_DEVICE_TABLE(i2c, adux1020_id);
-> > +
-> > +static const struct of_device_id adux1020_of_match[] = {
-> > +	{ .compatible = "adi,adux1020" },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, adux1020_of_match);
-> > +
-> > +static struct i2c_driver adux1020_driver = {
-> > +	.driver = {
-> > +		.name	= ADUX1020_DRV_NAME,
-> > +		.of_match_table = adux1020_of_match,
-> > +	},
-> > +	.probe		= adux1020_probe,
-> > +	.remove		= adux1020_remove,
-> > +	.id_table	= adux1020_id,
-> > +};
-> > +module_i2c_driver(adux1020_driver);
-> > +
-> > +MODULE_AUTHOR("Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>");
-> > +MODULE_DESCRIPTION("ADUX1020 photometric sensor");
-> > +MODULE_LICENSE("GPL");
-> 
-> 
