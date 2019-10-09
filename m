@@ -2,143 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2746DD1259
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 17:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D6CD12B8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 17:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729865AbfJIPZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 11:25:14 -0400
-Received: from mx2.suse.de ([195.135.220.15]:60140 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729471AbfJIPZO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 11:25:14 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 52561AD07;
-        Wed,  9 Oct 2019 15:25:12 +0000 (UTC)
-Message-ID: <930cb2d2d47e2785711bab59d80e8ad188bd882d.camel@suse.de>
-Subject: Re: [PATCH v2] of: Make of_dma_get_range() work on bus nodes
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 09 Oct 2019 17:24:33 +0200
-In-Reply-To: <CAL_Jsq+RjC0b1ZXzgmMdn5Gd1=3zkN62Jdq_QKeZ8-X4pCiDPw@mail.gmail.com>
-References: <20191008195239.12852-1-robh@kernel.org>
-         <4f6b26f8779a4fd98712b966bff3491dc31e26c2.camel@suse.de>
-         <CAL_Jsq+RjC0b1ZXzgmMdn5Gd1=3zkN62Jdq_QKeZ8-X4pCiDPw@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-gkzPvU3MSN8O+PY+3B0Z"
-User-Agent: Evolution 3.32.4 
+        id S1731417AbfJIP1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 11:27:36 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33673 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731375AbfJIP1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 11:27:35 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 60so2082910otu.0;
+        Wed, 09 Oct 2019 08:27:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=07anXH9cvkkFqpNI/4PYzzEY8tSMrjDGE6s78JlBZiQ=;
+        b=F0WyIg+7IUGhqunFvgCSu/8IUzlhLp+JuLg2b7Ak9ubtAcUp4M8RhDZpU0IyDq1V9C
+         oDF7hB5Qjs03NKN5WWzCb02utkfkzTPq4zxf7bMa5tec6YRiwu+dIiD5OvcywRYntEWX
+         QNB4qnspG7Vnh9pyEGyTeu1/rY0UBfjKPYqf69BwW1OOsT/7ZWzaCwnbowKzn9V8e1Wz
+         lp8ZlaEN6RpDptYjiTIMq95LvGEuwdLMvOSKfFNTYbP4XVzDBIeKEE//StJnmEYx61q3
+         gLEH/VQ1uKAsZxitw7AFc0exebxhLVvr+GqpxIqT/QZavRXE8WLY9TlmPNSBFn0d7dT1
+         /Elw==
+X-Gm-Message-State: APjAAAVsCZBi29MfmsHLVCWMb7LxiZlKrLCGE+wQZJyvqmoqnY05fV2O
+        xEFBx1NqXZjkHPNXcoTpg/nBqK1pCX01/IJvaodDq7Vc
+X-Google-Smtp-Source: APXvYqxqd/nFpJlshpLb6J12+2UwudlTeP5E2v6m7qvRfJN8iMWcBqLv5hgtpQHr55VK5ecVh2cdiQJoeYrvb+j+w8M=
+X-Received: by 2002:a05:6830:1b75:: with SMTP id d21mr3468821ote.145.1570634854972;
+ Wed, 09 Oct 2019 08:27:34 -0700 (PDT)
 MIME-Version: 1.0
+References: <1570029619-43238-1-git-send-email-biju.das@bp.renesas.com> <1570029619-43238-8-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1570029619-43238-8-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 17:27:24 +0200
+Message-ID: <CAMuHMdWU9pkELFnGD7QuowZMy2hfpXkcVScresXUpt9y1SKe_w@mail.gmail.com>
+Subject: Re: [PATCH v3 7/9] arm64: dts: renesas: hihope-rzg2-ex: Enable backlight
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 2, 2019 at 5:21 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> This patch enables backlight support.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
---=-gkzPvU3MSN8O+PY+3B0Z
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-On Tue, 2019-10-08 at 20:03 -0500, Rob Herring wrote:
-> On Tue, Oct 8, 2019 at 3:52 PM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> > Hi Rob/Robin,
-> >=20
-> > On Tue, 2019-10-08 at 14:52 -0500, Rob Herring wrote:
-> > > From: Robin Murphy <robin.murphy@arm.com>
-> > >=20
-> > > Since the "dma-ranges" property is only valid for a node representing=
- a
-> > > bus, of_dma_get_range() currently assumes the node passed in is a lea=
-f
-> > > representing a device, and starts the walk from its parent. In cases
-> > > like PCI host controllers on typical FDT systems, however, where the =
-PCI
-> > > endpoints are probed dynamically the initial leaf node represents the
-> > > 'bus' itself, and this logic means we fail to consider any "dma-range=
-s"
-> > > describing the host bridge itself. Rework the logic such that
-> > > of_dma_get_range() also works correctly starting from a bus node
-> > > containing "dma-ranges".
-> > >=20
-> > > While this does mean "dma-ranges" could incorrectly be in a device le=
-af
-> > > node, there isn't really any way in this function to ensure that a le=
-af
-> > > node is or isn't a bus node.
-> >=20
-> > Sorry, I'm not totally sure if this is what you're pointing out with th=
-e
-> > last
-> > sentence. But, what about the case of a bus configuring a device which =
-also
-> > happens to be a memory mapped bus (say a PCI platform device). It'll ge=
-t
-> > it's
-> > dma config based on its own dma-ranges which is not what we want.
->=20
-> What I was trying to say is we just can't tell if we should be looking
-> in the current node or the parent. 'dma-ranges' in a leaf node can be
-> correct or incorrect.
->=20
-> Your example is a bit different. I'm not sure that case is valid or
-> can ever work if it is. It's certainly valid that a PCI bridge's
-> parent has dma-ranges and now we'll actually handle any translation.
-> The bridge itself is not a DMA-capable device, but just passing thru
-> DMA.
+Gr{oetje,eeting}s,
 
-Yes, you're right, I hadn't thought of it from that perspective. Thanks!
+                        Geert
 
-> Do we ever need to know the parent's dma-ranges in that case? Or
-> to put it another way, is looking at anything other than leaf
-> dma-ranges useful?
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-There is no need at all indeed.
-
-With that,
-
-Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-
-and
-
-Tested-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-
-On a Raspberry Pi 4 with pcie-brcmstb.c which is still work in progress but
-depends on this.
-
-Regards,
-Nicolas
-
-
---=-gkzPvU3MSN8O+PY+3B0Z
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl2d+7EACgkQlfZmHno8
-x/6Ougf/Vf8gS9pV6sHacKH3tBVDLky7gMGKrkyw4QWRDU3aKrGLrWgJg+5xuKcC
-fzVafJIYqaU3FkYrBVWO7NRS8juguj17xOcSplJal0y1yHuu8hbTt3E8GUh5ut26
-GZsicybI8VcxF0JEhyHAV6foKA2ZsYkPxG93XsnR7FobzIgTI84KxTlNnrZs5Ejt
-zjgjxaR1yrcT5YamAIRKy/DpmfHx3Hpf7jMsHZFKqTmSbNlyUBevpH2ok9B45+ec
-rtSa6TmEQyRrklJuXEJV4Yg1NccFffrQm3sD8AxSw+1P1nfNzVLm0NVcJjchKp11
-RawTR+PF/Z4eXnNVywKxieHo/Js+yg==
-=KQ2V
------END PGP SIGNATURE-----
-
---=-gkzPvU3MSN8O+PY+3B0Z--
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
