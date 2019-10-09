@@ -2,119 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F2ED07E5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 09:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B25EFD0819
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 09:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727814AbfJIHK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 03:10:58 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:20862 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725440AbfJIHK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 03:10:58 -0400
-Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9973ERv004851;
-        Wed, 9 Oct 2019 03:10:32 -0400
-Received: from nam03-co1-obe.outbound.protection.outlook.com (mail-co1nam03lp2059.outbound.protection.outlook.com [104.47.40.59])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2vemxax0rr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Oct 2019 03:10:31 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GAyWHRIW88njW8c3WDSQ2b1XPJ1s5sGo/MA0e3NEjW2BdDylYo7EqopOkWCYSNRN6FE1kQKk/w1YjcbLOMjrVuojvkVJE/pjKpePR/pVm1wn3JfQ6s9r7OLx/IEw3fPTRR1JY0Qf0q/eNM+WcsBNKiITYFrYOcH8gvO+15n1Wczf5z5bssXAmaEzbag158bJe+kqTMl03saPOBeomNopjWAa+y3FdLOiFYXfR3u2SgHUhVxSZc8R0rTGS+dZRQDsvmQ9or565BbB4/ivNm6sE71hfLQ+sEw7hiDKRbF737fXmvt7zZbgxQCg720gpMl3fjolJUOT3QtyK6zea1cvCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F+EfPina4Xr5RSW96rtp0KDZTHf2uR88dhjiCp3+SLM=;
- b=kK0JD95M6KysPBSdjMswhc3WYlAxACEdyVkR0HPp4ZzbbA0kO345eawELpLjg/eBeFzHT2S/ij+zChh5XuJeOEr//ZVEGHg9YFVeg7ohblvWZBXyBaRM4qvZ2aOjYOLp7rkU23LjiDxevjpQdcBwsBAPChKSqRtpWV+Gr3JyhDffvyJb/fWSsxteW1GtrL6hzzxi05b5joBDgyczGNpG0Y+zZzFMtlPU8E0OjXBELwV2DVkHSHOZP+Co0E+iTui6OWeN1wLe0Z8WQld1Gz6AKZnpRzCYVn+PCOk4VIzBq8t2MyVBWB4983LwGfJMcCBo27zWa5v3ZDgeW2M3uo9Ycg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F+EfPina4Xr5RSW96rtp0KDZTHf2uR88dhjiCp3+SLM=;
- b=U0DCSFENgO3agBeOWxMxecolWNU20kKedqhJ/N0jAgVmczLpRCWPhM7LZMxSNC7dHfLmUk/l5CeWHWs36Lch2+m2fKi3A7nDfKYyWgqz7ggWMjbz8XyDZGcrUCmk4HgmGYksXf1JV4hud/oPDJlK+sMMq5r1nghPJWwgK+Hkhc8=
-Received: from MN2PR03MB5117.namprd03.prod.outlook.com (52.132.171.137) by
- MN2PR03MB5295.namprd03.prod.outlook.com (10.186.146.81) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.16; Wed, 9 Oct 2019 07:10:30 +0000
-Received: from MN2PR03MB5117.namprd03.prod.outlook.com
- ([fe80::8c20:8f3b:b536:dca5]) by MN2PR03MB5117.namprd03.prod.outlook.com
- ([fe80::8c20:8f3b:b536:dca5%7]) with mapi id 15.20.2327.025; Wed, 9 Oct 2019
- 07:10:30 +0000
-From:   "Sa, Nuno" <Nuno.Sa@analog.com>
-To:     "linux@roeck-us.net" <linux@roeck-us.net>
-CC:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/3] hwmon: Support ADI Fan Control IP
-Thread-Topic: [PATCH 2/3] hwmon: Support ADI Fan Control IP
-Thread-Index: AQHVdFa03kFb3oEkSUeluAbSCPFerqdNzcGAgAMshQCAAEYwgIAAuD8A
-Date:   Wed, 9 Oct 2019 07:10:29 +0000
-Message-ID: <1d064ffa4eb0698121eca4862ee4d25e2140e333.camel@analog.com>
-References: <20190926103925.194973-1-nuno.sa@analog.com>
-         <20190926103925.194973-3-nuno.sa@analog.com>
-         <20191006153209.GA30372@roeck-us.net>
-         <1125a1f831a76b27ccc050a0db4499e5c4abd76c.camel@analog.com>
-         <20191008201129.GA14652@roeck-us.net>
-In-Reply-To: <20191008201129.GA14652@roeck-us.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.71.226.54]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8a691197-5f9c-42f0-9b94-08d74c87c4b9
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: MN2PR03MB5295:
-x-microsoft-antispam-prvs: <MN2PR03MB52955E5CAE30DE2B35DF30DD99950@MN2PR03MB5295.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3383;
-x-forefront-prvs: 018577E36E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(396003)(376002)(346002)(39860400002)(136003)(199004)(189003)(478600001)(66066001)(99286004)(71200400001)(8676002)(71190400001)(66946007)(66446008)(64756008)(5640700003)(54906003)(2906002)(81166006)(1730700003)(81156014)(316002)(26005)(6486002)(6506007)(6436002)(5660300002)(8936002)(256004)(91956017)(76116006)(2501003)(6512007)(66476007)(66556008)(186003)(102836004)(76176011)(4744005)(25786009)(86362001)(6916009)(118296001)(4326008)(229853002)(2616005)(6116002)(6246003)(3846002)(14454004)(486006)(446003)(305945005)(7736002)(11346002)(2351001)(36756003)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR03MB5295;H:MN2PR03MB5117.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: analog.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: u/6M4XdrZWTm0vbqqBflwPkirpYaIu0f84ruZlQNuTWOiVBTbF0bCjqL8fv4taR86Zu2ALTHPNN7pod4KWVI4rXaIXD4aamYvCveWTnkaKHFjCoXt3EvHWy1SUNbwS2rTflgt6VlU0pxHPDDlkjvOcvLktGHYYxQO2koicwGl8LhGJ1rtZlw2Z9IKjN7eNpP3wB3H4UmDVs+2rrAiM7PciTXbGsD/NfeUApsOlRsT1OGr+1naNoh/V7QKTog5lLhn1SRM8jxgqEDZl/QuyatxFzVjThn802zOCOrmnhBwVs20rUq51D3Jo3FYMr8K5jV+X6/eWIU/C5cRb0xRgEbyb6ZsZu1hDJ1TCSn6DLBl4vVmDhQJVFo7cnFMjPXgmTQQrKV0TcF8GvghfYleFnKJuYo1OIa6FHz44o2YEt/pN8=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <638A2623C2F57C429791D8E55E70280B@namprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1726698AbfJIHOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 03:14:41 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:59340 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725440AbfJIHOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 03:14:41 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x997EWLO009452;
+        Wed, 9 Oct 2019 02:14:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570605272;
+        bh=zf5X2BOp2+egdE7AI2QsP0CKdt0YNu7iahL8fNjOr/E=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=lOwZrDqhMyVBOcbkKs8knDjA7xQ1ijp3+TkwBRtJyqT97aocD4xDzWiUfRLoejDDI
+         zwPuFkOXfo70N2tvODrW4AoDCsmmj6iTTfhoh9ksH1M5VCcVu7HQA3Ss0j1fTHjPTC
+         O2kTMlxo00bgsMHVhOcBSmXPEJSUREQbZ7E1K3cM=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x997EWKu029687
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Oct 2019 02:14:32 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 9 Oct
+ 2019 02:14:26 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 9 Oct 2019 02:14:26 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x997EPXS021356;
+        Wed, 9 Oct 2019 02:14:26 -0500
+Subject: Re: [PATCH v3 02/14] soc: ti: k3: add navss ringacc driver
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
+        <tony@atomide.com>, <j-keerthy@ti.com>
+References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
+ <20191001061704.2399-3-peter.ujfalusi@ti.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <cadf50c0-1bb9-1fa5-98e0-12bf8e2b5644@ti.com>
+Date:   Wed, 9 Oct 2019 10:14:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a691197-5f9c-42f0-9b94-08d74c87c4b9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2019 07:10:29.9266
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tkkqd90mkG63bq08tXwJNOWFw5sQe2t7otdYoLHaQajupNQtxdz+jhwIVBzzxXQyyBcwryF50bMh3biY+cEuCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR03MB5295
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-09_03:2019-10-08,2019-10-09 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- bulkscore=0 phishscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0
- priorityscore=1501 impostorscore=0 mlxscore=0 malwarescore=0
- mlxlogscore=916 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910090066
+In-Reply-To: <20191001061704.2399-3-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDE5LTEwLTA4IGF0IDEzOjExIC0wNzAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0K
-PiANCj4gT24gVHVlLCBPY3QgMDgsIDIwMTkgYXQgMDM6NTk6NDlQTSArMDAwMCwgU2EsIE51bm8g
-d3JvdGU6DQo+IFsgLi4uIF0NCj4gPiA+ID4gKw0KPiA+ID4gPiArCWN0bC0+aXJxID0gcGxhdGZv
-cm1fZ2V0X2lycShwZGV2LCAwKTsNCj4gPiA+ID4gKwlpZiAoY3RsLT5pcnEgPCAwKSB7DQo+ID4g
-PiANCj4gPiA+IFRoaXMgY2FuIHJldHVybiAtRVBST0JFX0RFRkVSLiBPbiB0b3Agb2YgdGhhdCwg
-aXQgYWxyZWFkeQ0KPiA+ID4gZ2VuZXJhdGVzDQo+ID4gPiBhbiBlcnJvcg0KPiA+ID4gbWVzc2Fn
-ZSwgbWVhbmluZyBhbm90aGVyIG9uZSBoZXJlIGlzIHVubmVjZXNzYXJ5Lg0KPiA+IA0KPiA+IFdo
-eSByZXR1cm5pbmcgLUVQUk9CRV9ERUZFUj8gcGxhdGZvcm1fZ2V0X2lycSgpIGFscmVhZHkgc2Vl
-bXMgdG8NCj4gPiBoYW5kbGUNCj4gPiBFUFJPQkVfREVGRVIuLi4NCj4gPiANCj4gLi4uIHdoaWNo
-IGlzIGV4YWN0bHkgd2h5IEkgYW0gc2F5aW5nIHRoYXQgeW91IGRvbid0IG5lZWQgYW5vdGhlcg0K
-PiBlcnJvcg0KPiBtZXNzYWdlLCBhbmQgdGhhdCBhbiB1bmNvbmRpdGlvbmFsIGVycm9yIG1lc3Nh
-Z2UgaXMgYSBiYWQgaWRlYS4NCj4gDQoNCkFoaGgsIHNvcnJ5LiBJIGNvbXBsZXRlbHkgbWlzdW5k
-ZXJzdG9vZCB5b3UgOigNCg0KTnVubyBTw6ENCg0KPiBHdWVudGVyDQoNCg==
+On 01/10/2019 09:16, Peter Ujfalusi wrote:
+> From: Grygorii Strashko <grygorii.strashko@ti.com>
+> 
+> The Ring Accelerator (RINGACC or RA) provides hardware acceleration to
+> enable straightforward passing of work between a producer and a consumer.
+> There is one RINGACC module per NAVSS on TI AM65x SoCs.
+> 
+> The RINGACC converts constant-address read and write accesses to equivalent
+> read or write accesses to a circular data structure in memory. The RINGACC
+> eliminates the need for each DMA controller which needs to access ring
+> elements from having to know the current state of the ring (base address,
+> current offset). The DMA controller performs a read or write access to a
+> specific address range (which maps to the source interface on the RINGACC)
+> and the RINGACC replaces the address for the transaction with a new address
+> which corresponds to the head or tail element of the ring (head for reads,
+> tail for writes). Since the RINGACC maintains the state, multiple DMA
+> controllers or channels are allowed to coherently share the same rings as
+> applicable. The RINGACC is able to place data which is destined towards
+> software into cached memory directly.
+> 
+> Supported ring modes:
+> - Ring Mode
+> - Messaging Mode
+> - Credentials Mode
+> - Queue Manager Mode
+> 
+> TI-SCI integration:
+> 
+> Texas Instrument's System Control Interface (TI-SCI) Message Protocol now
+> has control over Ringacc module resources management (RM) and Rings
+> configuration.
+> 
+> The corresponding support of TI-SCI Ringacc module RM protocol
+> introduced as option through DT parameters:
+> - ti,sci: phandle on TI-SCI firmware controller DT node
+> - ti,sci-dev-id: TI-SCI device identifier as per TI-SCI firmware spec
+> 
+> if both parameters present - Ringacc driver will configure/free/reset Rings
+> using TI-SCI Message Ringacc RM Protocol.
+> 
+> The Ringacc driver manages Rings allocation by itself now and requests
+> TI-SCI firmware to allocate and configure specific Rings only. It's done
+> this way because, Linux driver implements two stage Rings allocation and
+> configuration (allocate ring and configure ring) while I-SCI Message
+
+You missed fixing the typo above: I-SCI to TI-SCI. However, it is just 
+cosmetic so I don't mind.
+
+Reviewed-by: Tero Kristo <t-kristo@ti.com>
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
