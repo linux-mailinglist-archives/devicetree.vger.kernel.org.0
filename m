@@ -2,40 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DBCD15AD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 19:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE47D16CE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 19:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732501AbfJIRYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 13:24:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49914 "EHLO mail.kernel.org"
+        id S1731935AbfJIRcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 13:32:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47978 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732494AbfJIRYy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 13:24:54 -0400
+        id S1731977AbfJIRXz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 13:23:55 -0400
 Received: from sasha-vm.mshome.net (unknown [167.220.2.234])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ABFDE21A4A;
-        Wed,  9 Oct 2019 17:24:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C477B21929;
+        Wed,  9 Oct 2019 17:23:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570641893;
-        bh=ODeQV7D452RsJPvO/GCdLNCAnLcW+rLVjTUnNcBeBLY=;
+        s=default; t=1570641834;
+        bh=QSwVlSXf04HQkDaO/JdeqF0RcKB3LgXn1tgaXirBcI8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=e3wViPD4Gg6PR4sEqtyPCp76hWBYhvcxp7M/mfchjj1dtutbqybI2oP+35Ni0LLh+
-         eiEOATpTBjpohpu1/RF6iAMp9lvt2FM+FkF8SgrPKTAoQpsFjtFBhd3DjfQZSTBLnA
-         /qk/BaWtwmn7gML2GlxuGZD9ROZpgFNrZc8QnArE=
+        b=j5X/i6n80Nk2A8PebYqGQcXUtmBYshjg/zYPNjt7hj7pruWCB4teGaUCDicVEfROp
+         HIvUiXFkLfSsphCAMQFxYKYngAZMU7MpAd310964ojGt8KiTALU1lW3IsIt+/tA3Aw
+         qNoabuBQJiItNXMs+4pOSHqavTQ1BBOkzpv68NdM=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 05/11] ARM: dts: am4372: Set memory bandwidth limit for DISPC
-Date:   Wed,  9 Oct 2019 13:06:39 -0400
-Message-Id: <20191009170646.696-5-sashal@kernel.org>
+Cc:     Tony Lindgren <tony@atomide.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, Sasha Levin <sashal@kernel.org>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.3 05/68] ARM: dts: Fix wrong clocks for dra7 mcasp
+Date:   Wed,  9 Oct 2019 13:04:44 -0400
+Message-Id: <20191009170547.32204-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191009170646.696-1-sashal@kernel.org>
-References: <20191009170646.696-1-sashal@kernel.org>
+In-Reply-To: <20191009170547.32204-1-sashal@kernel.org>
+References: <20191009170547.32204-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -45,37 +43,192 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+From: Tony Lindgren <tony@atomide.com>
 
-[ Upstream commit f90ec6cdf674248dcad85bf9af6e064bf472b841 ]
+[ Upstream commit 2d3c8ba3cffa00f76bedb713c8c2126c82d8cd13 ]
 
-Set memory bandwidth limit to filter out resolutions above 720p@60Hz to
-avoid underflow errors due to the bandwidth needs of higher resolutions.
+The ahclkr clkctrl clock bit 28 only exists for mcasp 1 and 2 on dra7.
+This causes the following warning on beagle-x15:
 
-am43xx can not provide enough bandwidth to DISPC to correctly handle
-'high' resolutions.
+ti-sysc 48468000.target-module: could not add child clock ahclkr: -19
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Also the mcasp clkctrl clock bits are wrong:
+
+For mcasp1 and 2 we have four clocks at bits 28, 24, 22 and 0:
+
+bit 28 is ahclkr
+bit 24 is ahclkx
+bit 22 is auxclk
+bit 0 is fck
+
+For mcasp3 to 8 we have three clocks at bits 24, 22 and 0.
+
+bit 24 is ahclkx
+bit 22 is auxclk
+bit 0 is fck
+
+We do not have currently mapped auxclk at bit 22 for the drivers, that can
+be added if needed.
+
+Fixes: 5241ccbf2819 ("ARM: dts: Add missing ranges for dra7 mcasp l3 ports")
+Cc: Suman Anna <s-anna@ti.com>
+Cc: Tero Kristo <t-kristo@ti.com>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/am4372.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/dra7-l4.dtsi | 48 +++++++++++++++-------------------
+ 1 file changed, 21 insertions(+), 27 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am4372.dtsi b/arch/arm/boot/dts/am4372.dtsi
-index 3ef1d5a26389c..3bb5254a227a3 100644
---- a/arch/arm/boot/dts/am4372.dtsi
-+++ b/arch/arm/boot/dts/am4372.dtsi
-@@ -1002,6 +1002,8 @@
- 				ti,hwmods = "dss_dispc";
- 				clocks = <&disp_clk>;
- 				clock-names = "fck";
-+
-+				max-memory-bandwidth = <230000000>;
- 			};
- 
- 			rfbi: rfbi@4832a800 {
+diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
+index 21e5914fdd620..099d6fe2a57ad 100644
+--- a/arch/arm/boot/dts/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/dra7-l4.dtsi
+@@ -2762,7 +2762,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 129 1>, <&edma_xbar 128 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&ipu_clkctrl DRA7_IPU_MCASP1_CLKCTRL 22>,
++				clocks = <&ipu_clkctrl DRA7_IPU_MCASP1_CLKCTRL 0>,
+ 					 <&ipu_clkctrl DRA7_IPU_MCASP1_CLKCTRL 24>,
+ 					 <&ipu_clkctrl DRA7_IPU_MCASP1_CLKCTRL 28>;
+ 				clock-names = "fck", "ahclkx", "ahclkr";
+@@ -2799,8 +2799,8 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 131 1>, <&edma_xbar 130 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP2_CLKCTRL 22>,
+-					 <&l4per2_clkctrl DRA7_L4PER2_MCASP2_CLKCTRL 24>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP2_CLKCTRL 0>,
++					 <&ipu_clkctrl DRA7_IPU_MCASP1_CLKCTRL 24>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP2_CLKCTRL 28>;
+ 				clock-names = "fck", "ahclkx", "ahclkr";
+ 				status = "disabled";
+@@ -2818,9 +2818,8 @@
+ 					<SYSC_IDLE_SMART>;
+ 			/* Domains (P, C): l4per_pwrdm, l4per2_clkdm */
+ 			clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 0>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 24>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 28>;
+-			clock-names = "fck", "ahclkx", "ahclkr";
++				 <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 24>;
++			clock-names = "fck", "ahclkx";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x68000 0x2000>,
+@@ -2836,7 +2835,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 133 1>, <&edma_xbar 132 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 22>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 0>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP3_CLKCTRL 24>;
+ 				clock-names = "fck", "ahclkx";
+ 				status = "disabled";
+@@ -2854,9 +2853,8 @@
+ 					<SYSC_IDLE_SMART>;
+ 			/* Domains (P, C): l4per_pwrdm, l4per2_clkdm */
+ 			clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 0>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 24>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 28>;
+-			clock-names = "fck", "ahclkx", "ahclkr";
++				 <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 24>;
++			clock-names = "fck", "ahclkx";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x6c000 0x2000>,
+@@ -2872,7 +2870,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 135 1>, <&edma_xbar 134 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 22>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 0>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP4_CLKCTRL 24>;
+ 				clock-names = "fck", "ahclkx";
+ 				status = "disabled";
+@@ -2890,9 +2888,8 @@
+ 					<SYSC_IDLE_SMART>;
+ 			/* Domains (P, C): l4per_pwrdm, l4per2_clkdm */
+ 			clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 0>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 24>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 28>;
+-			clock-names = "fck", "ahclkx", "ahclkr";
++				 <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 24>;
++			clock-names = "fck", "ahclkx";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x70000 0x2000>,
+@@ -2908,7 +2905,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 137 1>, <&edma_xbar 136 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 22>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 0>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP5_CLKCTRL 24>;
+ 				clock-names = "fck", "ahclkx";
+ 				status = "disabled";
+@@ -2926,9 +2923,8 @@
+ 					<SYSC_IDLE_SMART>;
+ 			/* Domains (P, C): l4per_pwrdm, l4per2_clkdm */
+ 			clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 0>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 24>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 28>;
+-			clock-names = "fck", "ahclkx", "ahclkr";
++				 <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 24>;
++			clock-names = "fck", "ahclkx";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x74000 0x2000>,
+@@ -2944,7 +2940,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 139 1>, <&edma_xbar 138 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 22>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 0>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP6_CLKCTRL 24>;
+ 				clock-names = "fck", "ahclkx";
+ 				status = "disabled";
+@@ -2962,9 +2958,8 @@
+ 					<SYSC_IDLE_SMART>;
+ 			/* Domains (P, C): l4per_pwrdm, l4per2_clkdm */
+ 			clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 0>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 24>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 28>;
+-			clock-names = "fck", "ahclkx", "ahclkr";
++				 <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 24>;
++			clock-names = "fck", "ahclkx";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x78000 0x2000>,
+@@ -2980,7 +2975,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 141 1>, <&edma_xbar 140 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 22>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 0>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP7_CLKCTRL 24>;
+ 				clock-names = "fck", "ahclkx";
+ 				status = "disabled";
+@@ -2998,9 +2993,8 @@
+ 					<SYSC_IDLE_SMART>;
+ 			/* Domains (P, C): l4per_pwrdm, l4per2_clkdm */
+ 			clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 0>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 24>,
+-				 <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 28>;
+-			clock-names = "fck", "ahclkx", "ahclkr";
++				 <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 24>;
++			clock-names = "fck", "ahclkx";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0x7c000 0x2000>,
+@@ -3016,7 +3010,7 @@
+ 				interrupt-names = "tx", "rx";
+ 				dmas = <&edma_xbar 143 1>, <&edma_xbar 142 1>;
+ 				dma-names = "tx", "rx";
+-				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 22>,
++				clocks = <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 0>,
+ 					 <&l4per2_clkctrl DRA7_L4PER2_MCASP8_CLKCTRL 24>;
+ 				clock-names = "fck", "ahclkx";
+ 				status = "disabled";
 -- 
 2.20.1
 
