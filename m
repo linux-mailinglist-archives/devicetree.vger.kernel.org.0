@@ -2,100 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E8EED10F4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6F6DD1144
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731376AbfJIONM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 10:13:12 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:51384 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729644AbfJIONJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:13:09 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x99EB8k1002204;
-        Wed, 9 Oct 2019 16:12:58 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=W0FeZpUSt+/rnOmNlmsayVnYWoa4oyrKoH7/onjOr/s=;
- b=jjpy1ZRuUJ6bzczj22wl6sK6lCIC9wYbFzlXt3k/s/80ShBlDIjeAJ5Gez9I+7zDMzFa
- 39XQGxSvaJvauS7HwwOkEIY2/zSoPAracx8R0Ei3iilAbu9nbA0pH+0vBSQmUHBQOIaK
- Bz7X3rCC0HpemqZCJkQlRW37y1LdJeCHMxDjylCvNQiLHjnji9P89lQ48KwqZ8+uupDL
- 2mNIuwOrfTd2Tlyea2RSIPCuJqioQhHQadGIamNrKT3LbZcnL36WCj04ujTgsOgnWgG3
- IAVI3vQIlBrYQV5kJKZcgjSlw6IDqyZjqO6mqQuK5B01JxXC54uFGCqTPQwpM8wdOQy8 DA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vegn0xeud-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Oct 2019 16:12:58 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 86455100034;
-        Wed,  9 Oct 2019 16:12:58 +0200 (CEST)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7C0F921E6AF;
-        Wed,  9 Oct 2019 16:12:58 +0200 (CEST)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.46) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 9 Oct 2019
- 16:12:58 +0200
-Received: from localhost (10.48.0.192) by webmail-ga.st.com (10.75.90.48) with
- Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 9 Oct 2019 16:12:58 +0200
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-To:     <alexandre.torgue@st.com>
-CC:     <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
-        <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <fabrice.gasnier@st.com>
-Subject: [PATCH 2/2] ARM: dts: stm32: Add DAC support to stm32mp157c-ed1
-Date:   Wed, 9 Oct 2019 16:12:52 +0200
-Message-ID: <1570630372-24579-3-git-send-email-fabrice.gasnier@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1570630372-24579-1-git-send-email-fabrice.gasnier@st.com>
-References: <1570630372-24579-1-git-send-email-fabrice.gasnier@st.com>
+        id S1730490AbfJIOar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 10:30:47 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:58313 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729865AbfJIOar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:30:47 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 46pGps0HzDz1rlTd;
+        Wed,  9 Oct 2019 16:30:45 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 46pGpr6VZNz1qqkM;
+        Wed,  9 Oct 2019 16:30:44 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id fEcgMaq_WGfq; Wed,  9 Oct 2019 16:30:43 +0200 (CEST)
+X-Auth-Info: 8jCoUJU72/vk/KsFCOcDAPeNz8S2Ssm9kKp9j/ctXwc=
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed,  9 Oct 2019 16:30:43 +0200 (CEST)
+From:   Lukasz Majewski <lukma@denx.de>
+To:     linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH] dts: Disable DMA support on the BK4 vf610 device's fsl_lpuart driver
+Date:   Wed,  9 Oct 2019 16:30:32 +0200
+Message-Id: <20191009143032.9261-1-lukma@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.192]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-09_06:2019-10-08,2019-10-09 signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-stm32mp157c-ed1 board has digital-to-analog converter signals routed
-to JP11 and JP10 jumpers (e.g. PA4/PA5).
-It's easier then to configure them both. But keep them disabled by default,
-so the pins are kept in their initial state to lower power consumption.
-This way they can also be used as GPIO.
+This change disables the DMA support (RX/TX) on the NXP's fsl_lpuart
+driver - the PIO mode is used instead. This change is necessary for better
+robustness of BK4's device use cases with many potentially interrupted
+short serial transfers.
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+Without it the driver hangs when some distortion happens on UART lines.
+
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
 ---
- arch/arm/boot/dts/stm32mp157c-ed1.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/arm/boot/dts/vf610-bk4.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ed1.dts b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-index 1d426ea..2b40ad9 100644
---- a/arch/arm/boot/dts/stm32mp157c-ed1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-@@ -104,6 +104,19 @@
- 	};
- };
- 
-+&dac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dac_ch1_pins_a &dac_ch2_pins_a>;
-+	vref-supply = <&vdda>;
-+	status = "disabled";
-+	dac1: dac@1 {
-+		status = "okay";
-+	};
-+	dac2: dac@2 {
-+		status = "okay";
-+	};
-+};
-+
- &dts {
+diff --git a/arch/arm/boot/dts/vf610-bk4.dts b/arch/arm/boot/dts/vf610-bk4.dts
+index 0f3870d3b099..ad20f3442d40 100644
+--- a/arch/arm/boot/dts/vf610-bk4.dts
++++ b/arch/arm/boot/dts/vf610-bk4.dts
+@@ -259,24 +259,28 @@
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart0>;
++	dma-names = "","";
  	status = "okay";
  };
+ 
+ &uart1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart1>;
++	dma-names = "","";
+ 	status = "okay";
+ };
+ 
+ &uart2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart2>;
++	dma-names = "","";
+ 	status = "okay";
+ };
+ 
+ &uart3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart3>;
++	dma-names = "","";
+ 	status = "okay";
+ };
+ 
 -- 
-2.7.4
+2.20.1
 
