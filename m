@@ -2,97 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1EE8D1176
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC33D1191
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 16:42:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730546AbfJIOkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 10:40:03 -0400
-Received: from foss.arm.com ([217.140.110.172]:35802 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729491AbfJIOkD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 10:40:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ACEA1337;
-        Wed,  9 Oct 2019 07:40:02 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 725A43F71A;
-        Wed,  9 Oct 2019 07:40:01 -0700 (PDT)
-Subject: Re: [PATCH] dts: Disable DMA support on the BK4 vf610 device's
- fsl_lpuart driver
-To:     Lukasz Majewski <lukma@denx.de>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-References: <20191009143032.9261-1-lukma@denx.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <b39b6860-9e9b-5cee-a07e-7b430c2e5119@arm.com>
-Date:   Wed, 9 Oct 2019 15:40:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1731463AbfJIOmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 10:42:04 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33413 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731155AbfJIOmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 10:42:04 -0400
+Received: by mail-oi1-f193.google.com with SMTP id a15so1977717oic.0;
+        Wed, 09 Oct 2019 07:42:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oYxICKoSLEOlVM2G1DTLDI58Zl5VZZN+hm3z/KE4F50=;
+        b=CqHywPZQ9NiS7VYZ2le0ENoM/T7ZGBTn5W3QJVXV17TEr9k3PFrlyuaq9LQHHKvKnR
+         VEmWaiks34Qtp2aPX+gmWM6hvSVOIWIg/W2wB2ApOUBA50yu1tSFgmmd7C0JepeNdtLJ
+         E6jvvW+zCTNGimbJygeFUu9qdYBxKG8c+u5Q/I1W3QANDmAuAsKdo4uU/o3dzia8HwCC
+         mLFD4NMsMmmy7/1rFwfwj6HizSt9OEpOvcwD+iLAXMOW96tEGnBg2bWYQ8V0t8zLhcHS
+         Qr8IzBxMzlQT5+4X6obbylwgVg2V2/X/P7DcgLojd30m3ob65vLXEFsRF5xIo+MTnC+x
+         qVMA==
+X-Gm-Message-State: APjAAAWYcnyZrBQ+FqOGfwEGR8c1Ma9ZX2HLErA5tMLG3wh+gpgwpv15
+        nBvkTo/E9k9D2jHoaEoFZpKZp/xFG3rzMkQ+xB4=
+X-Google-Smtp-Source: APXvYqynYzkCNt/wi6NEo/s2UWx/NZZFg6Was2FQZhzdPqRiGIrPZ3EPJCu6XJUT6hG+zgiGcSD3/NbDL/nuU3Culjc=
+X-Received: by 2002:aca:882:: with SMTP id 124mr2706202oii.54.1570632123470;
+ Wed, 09 Oct 2019 07:42:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20191009143032.9261-1-lukma@denx.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <1570531132-21856-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570531132-21856-10-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1570531132-21856-10-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 16:41:52 +0200
+Message-ID: <CAMuHMdV4moTd0PSkRv=bZK9GZCQ5cWVrCV5iXoBX6e+zJ-012w@mail.gmail.com>
+Subject: Re: [PATCH 09/10] arm64: dts: renesas: r8a774b1: Add USB3.0 device nodes
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/10/2019 15:30, Lukasz Majewski wrote:
-> This change disables the DMA support (RX/TX) on the NXP's fsl_lpuart
-> driver - the PIO mode is used instead. This change is necessary for better
-> robustness of BK4's device use cases with many potentially interrupted
-> short serial transfers.
-> 
-> Without it the driver hangs when some distortion happens on UART lines.
-> 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> ---
->   arch/arm/boot/dts/vf610-bk4.dts | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/vf610-bk4.dts b/arch/arm/boot/dts/vf610-bk4.dts
-> index 0f3870d3b099..ad20f3442d40 100644
-> --- a/arch/arm/boot/dts/vf610-bk4.dts
-> +++ b/arch/arm/boot/dts/vf610-bk4.dts
-> @@ -259,24 +259,28 @@
->   &uart0 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_uart0>;
-> +	dma-names = "","";
+On Tue, Oct 8, 2019 at 12:39 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Add usb3.0 phy, host and function device nodes on RZ/G2N SoC dtsi.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-This looks like a horrible hack - is there any reason not to just strip 
-things at compile-time, i.e. "/delete-property/ dmas;"?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-Robin.
+Gr{oetje,eeting}s,
 
->   	status = "okay";
->   };
->   
->   &uart1 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_uart1>;
-> +	dma-names = "","";
->   	status = "okay";
->   };
->   
->   &uart2 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_uart2>;
-> +	dma-names = "","";
->   	status = "okay";
->   };
->   
->   &uart3 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_uart3>;
-> +	dma-names = "","";
->   	status = "okay";
->   };
->   
-> 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
