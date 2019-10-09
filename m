@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C942D0B83
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 11:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E92D8D0B9C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 11:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729566AbfJIJlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 05:41:13 -0400
-Received: from mail-yb1-f196.google.com ([209.85.219.196]:39571 "EHLO
-        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726734AbfJIJlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 05:41:13 -0400
-Received: by mail-yb1-f196.google.com with SMTP id v37so514589ybi.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 02:41:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ub-ac-id.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=GO77O9NugfDMF3sM0pFxjAVwqVXEKORDEOteZl6SPpM=;
-        b=NxNc43p8MMrB2pZ2C5fy2y18rNJvteaOMVijhWs8CXsEpKeFLRh3eiBxYmNrYnBWGW
-         iirSFk2zRxB/Z3mtmBkizQPiqf0baX/TyNLTt0NABs4JPcWLP3q1H1G0nPo+xsJMdgsU
-         qMIb+KazU9oJfb0szl30g9bxSFQqQAoGwBbh4GBaOjXUgGamnnJyO0y2IR+1ALRguDWJ
-         0c6zA+bQNjGUwTfuFhlbgxZv43jGepDMjrPJPR3TeKx42mCKvlNWRscL+dt8Z9AGgfQ4
-         BZD/EiObCee8ZW1X9JU7sBaLaO+ftMZXtscntPi1+XAJoq5XOG2Kwu34e8A+ZM9NQvSe
-         seeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=GO77O9NugfDMF3sM0pFxjAVwqVXEKORDEOteZl6SPpM=;
-        b=MKPod+LA4HgRxmASlQfTExmxNoYdQthkLceCikcfTXidAOClOMfKXWy20gwvdCotX8
-         iUWXEm3Bz4alwG/qOGcrtHe3ZcBOdClyQHPTEMVYOg1Lri+Y2iYGev1azVH+8WlZ92ob
-         YP7N/MkAx3gVp6M5Xte+zgBahN4V+jKNZ3TioSj7ivXepZspglsgWDI1BRsuUjoaewII
-         t4ej9keWhbTG/JlZHgwZBMTyGZtvBevDBR9xpIXGeO2QOXrB/cobV3nVR6+JeAoRO/Uz
-         hMhWWXu5crX7UixStKzj2jE6cyb3TbTHEuomn7jt+9+bsF9Z8ygXOHXGZgz35p7w1ro3
-         z/6A==
-X-Gm-Message-State: APjAAAW5OmM8BZM7NB084mUXnYFeOpH+nWMI5m2mSBP+ZHqh+ctZNZQL
-        AcQjvXZrujCqHB6TzskZBc0wT57t9fu6R8xnCrf7
-X-Google-Smtp-Source: APXvYqwaeyhWc3a2ahK7ExCTY+Nkai+zh6TtMNxVZIVOdELz5FhbFB5/hZf7tJpuCqg7TpJZstb/tV5Evga72v7XHWI=
-X-Received: by 2002:a25:cc56:: with SMTP id l83mr1393249ybf.69.1570614070810;
- Wed, 09 Oct 2019 02:41:10 -0700 (PDT)
+        id S1730506AbfJIJoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 05:44:20 -0400
+Received: from foss.arm.com ([217.140.110.172]:58252 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728200AbfJIJoU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 05:44:20 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B74C628;
+        Wed,  9 Oct 2019 02:44:19 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B0F13F68E;
+        Wed,  9 Oct 2019 02:44:19 -0700 (PDT)
+Date:   Wed, 9 Oct 2019 10:44:17 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     Zhiqiang.Hou@nxp.com, bhelgaas@google.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, leoyang.li@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, Minghuan.Lian@nxp.com,
+        mingkai.hu@nxp.com, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] Add the Mobiveil EP and Layerscape Gen4 EP driver
+ support
+Message-ID: <20191009094416.GO42880@e119886-lin.cambridge.arm.com>
+References: <20190916021742.22844-1-xiaowei.bao@nxp.com>
 MIME-Version: 1.0
-Received: by 2002:a25:abe1:0:0:0:0:0 with HTTP; Wed, 9 Oct 2019 02:41:10 -0700 (PDT)
-Reply-To: sunrisefundingltd50@gmail.com
-From:   Nadia Artha Dewi <nadia_dewi@ub.ac.id>
-Date:   Wed, 9 Oct 2019 10:41:10 +0100
-Message-ID: <CAPkHNVwYoC5g-AOX73mbHdXg05jh6DALjgYaeUyjRahxohKXqA@mail.gmail.com>
-Subject: Apply For Financial investment at a lower rate 2%
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190916021742.22844-1-xiaowei.bao@nxp.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello,
+On Mon, Sep 16, 2019 at 10:17:36AM +0800, Xiaowei Bao wrote:
+> This patch set are for adding Mobiveil EP driver and adding PCIe Gen4
+> EP driver of NXP Layerscape platform.
+> 
+> This patch set depends on:
+> https://patchwork.kernel.org/project/linux-pci/list/?series=159139
+> 
 
-We are private lenders based in UK.
-Do you need a loan (credit) as soon as possible. Are you in search of
-money to solve your personal needs or finance your business venture,
-then get Your desired loan today! Consult us at Sunrise Funding Ltd.
+I've not had any feedback on this earlier series (in your link), I was
+planning to review *this* patchset after that.
 
-* We offer personal loan & huge capital loan at 2% interest rate to
-the general public both locally and internationally.
-* Credit amount range from $5,000.00 -- $500,000.00 and above.
-* Special $10,000,000.00 Loan offer for huge project also available.
-* Loan period of 6 months -- 10 years.
-* Loan is granted 24 hours after approval and accredited, directly in
-hand or bank account.
+Thanks,
 
-Please note that you are advised to contact us for more details via
-the following e-mail address below;
+Andrew Murray
 
-EMAIL : sunrisefundingltd50@gmail.com
-FIRM : Sunrise Funding Ltd UK.
+> Xiaowei Bao (6):
+>   PCI: mobiveil: Add the EP driver support
+>   dt-bindings: Add DT binding for PCIE GEN4 EP of the layerscape
+>   PCI: mobiveil: Add PCIe Gen4 EP driver for NXP Layerscape SoCs
+>   PCI: mobiveil: Add workaround for unsupported request error
+>   arm64: dts: lx2160a: Add PCIe EP node
+>   misc: pci_endpoint_test: Add the layerscape PCIe GEN4 EP device
+>     support
+> 
+>  .../bindings/pci/layerscape-pcie-gen4.txt          |  28 +-
+>  MAINTAINERS                                        |   3 +
+>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |  56 ++
+>  drivers/misc/pci_endpoint_test.c                   |   2 +
+>  drivers/pci/controller/mobiveil/Kconfig            |  22 +-
+>  drivers/pci/controller/mobiveil/Makefile           |   2 +
+>  .../controller/mobiveil/pcie-layerscape-gen4-ep.c  | 169 ++++++
+>  drivers/pci/controller/mobiveil/pcie-mobiveil-ep.c | 568 +++++++++++++++++++++
+>  drivers/pci/controller/mobiveil/pcie-mobiveil.c    |  99 +++-
+>  drivers/pci/controller/mobiveil/pcie-mobiveil.h    |  72 +++
+>  10 files changed, 1009 insertions(+), 12 deletions(-)
+>  create mode 100644 drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
+>  create mode 100644 drivers/pci/controller/mobiveil/pcie-mobiveil-ep.c
+> 
+> -- 
+> 2.9.5
+> 
