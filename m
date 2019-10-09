@@ -2,180 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F2D5D0D46
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 12:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C22D3D0DFD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 13:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfJIK4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 06:56:52 -0400
-Received: from foss.arm.com ([217.140.110.172]:59804 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725953AbfJIK4w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 06:56:52 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4999C28;
-        Wed,  9 Oct 2019 03:56:51 -0700 (PDT)
-Received: from [10.37.12.37] (unknown [10.37.12.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E2B713F703;
-        Wed,  9 Oct 2019 03:56:48 -0700 (PDT)
-Subject: Re: [PATCH v2] of: Make of_dma_get_range() work on bus nodes
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Christoph Hellwig <hch@infradead.org>
-References: <20191008195239.12852-1-robh@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <597158a7-ce42-c4d0-62b0-5aab1ead8313@arm.com>
-Date:   Wed, 9 Oct 2019 11:56:47 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1727920AbfJILwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 07:52:35 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:42328 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfJILwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 07:52:34 -0400
+Received: by mail-ot1-f66.google.com with SMTP id c10so1436207otd.9;
+        Wed, 09 Oct 2019 04:52:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KVHLQjNWxvYRmshyMYw/gi35m7+OrE3WV8vC99l1C2c=;
+        b=cGcCwHKtMRmXM7Tx6mT+rH8G8/Km5M6/fDNUZ/KlYTTfIkb510KmxPtp2wx352lF4G
+         UbycKeAURIGsxQjuulV9cfwiAWu/PGRWaQZcn011n29uSJ4vZ6vAgVdWKvqs9PmrfC0w
+         GA3fG4unVKheQLQOScsdv1LPy2Hf048+yuxI1NUFtD4KXyePHH8jLc8cJtCEAASHuwf9
+         eLIVZxecEwMxA/JdXlUnyiurpYaOuapkqtbdNkPZT2eBGa8l2PxanmvMhvZtaC+r6AOD
+         34ChMVo1ymObwWKsVs4N1TAXb98oh9EcULk3kfvLahbpIzVX2ZIhuBlQWhaVfdDscnYC
+         BxOw==
+X-Gm-Message-State: APjAAAU+htJhHvhTqQYkOH9dvgN54B9vGJanDeKumrSASFOV1JuhzeRE
+        AggJISRJqaXlQNkHmgxXVKJt+lLWv8XkSEQcs64=
+X-Google-Smtp-Source: APXvYqzSRG/aEwWP0KGLYwQOucI5+t8MBsJMuF+o5Z+rWLJKg8KQ8QT3VeBdK9cgWHIqwtZ8kDr0xZ6XIL9ExGdm6jo=
+X-Received: by 2002:a9d:70d0:: with SMTP id w16mr2328731otj.107.1570621953600;
+ Wed, 09 Oct 2019 04:52:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20191008195239.12852-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <1569831527-1250-1-git-send-email-biju.das@bp.renesas.com> <1569831527-1250-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1569831527-1250-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 13:52:22 +0200
+Message-ID: <CAMuHMdWU_YOpMWOrm9ENox8a40RG5JgkWuWqKWahuwVoXGWdfQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] arm64: dts: renesas: r8a774b1: Add SYS-DMAC device nodes
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-10-08 8:52 pm, Rob Herring wrote:
-> From: Robin Murphy <robin.murphy@arm.com>
-> 
-> Since the "dma-ranges" property is only valid for a node representing a
-> bus, of_dma_get_range() currently assumes the node passed in is a leaf
-> representing a device, and starts the walk from its parent. In cases
-> like PCI host controllers on typical FDT systems, however, where the PCI
-> endpoints are probed dynamically the initial leaf node represents the
-> 'bus' itself, and this logic means we fail to consider any "dma-ranges"
-> describing the host bridge itself. Rework the logic such that
-> of_dma_get_range() also works correctly starting from a bus node
-> containing "dma-ranges".
-> 
-> While this does mean "dma-ranges" could incorrectly be in a device leaf
-> node, there isn't really any way in this function to ensure that a leaf
-> node is or isn't a bus node.
-> 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> [robh: Allow for the bus child node to still be passed in]
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Resending, hit send too quickly.
-> 
-> v2:
->   - Ensure once we find dma-ranges, every parent has it.
->   - Only get the #{size,address}-cells after we find non-empty dma-ranges
->   - Add a check on the 'dma-ranges' length
-> 
-> This is all that remains of the dma-ranges series. I've applied the rest
-> of the series prep and fixes. I dropped "of: Ratify of_dma_configure()
-> interface" as the assertions that the node pointer being the parent only
-> when struct device doesn't have a DT node pointer is not always
-> true.
+On Mon, Sep 30, 2019 at 10:19 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add sys-dmac[0-2] device nodes for RZ/G2N (R8A774B1) SoC.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-I'd still like to rework of_dma_configure() so that callers don't have 
-to pass a redundant node in the common case, but that can wait. For now, 
-this looks good enough to un-block the various 32-bit-PCI folks at 
-least, and we can consider further improvements on top. For the changes:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Gr{oetje,eeting}s,
 
-Cheers,
-Robin.
+                        Geert
 
-> I didn't include any tested-bys as this has changed a bit. A git branch
-> is here[1].
-> 
-> Rob
-> 
-> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dma-masks-v2
-> 
->   drivers/of/address.c | 44 ++++++++++++++++++--------------------------
->   1 file changed, 18 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index 5ce69d026584..99c1b8058559 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -930,47 +930,39 @@ int of_dma_get_range(struct device_node *np, u64 *dma_addr, u64 *paddr, u64 *siz
->   	const __be32 *ranges = NULL;
->   	int len, naddr, nsize, pna;
->   	int ret = 0;
-> +	bool found_dma_ranges = false;
->   	u64 dmaaddr;
->   
-> -	if (!node)
-> -		return -EINVAL;
-> -
-> -	while (1) {
-> -		struct device_node *parent;
-> -
-> -		naddr = of_n_addr_cells(node);
-> -		nsize = of_n_size_cells(node);
-> -
-> -		parent = __of_get_dma_parent(node);
-> -		of_node_put(node);
-> -
-> -		node = parent;
-> -		if (!node)
-> -			break;
-> -
-> +	while (node) {
->   		ranges = of_get_property(node, "dma-ranges", &len);
->   
->   		/* Ignore empty ranges, they imply no translation required */
->   		if (ranges && len > 0)
->   			break;
->   
-> -		/*
-> -		 * At least empty ranges has to be defined for parent node if
-> -		 * DMA is supported
-> -		 */
-> -		if (!ranges)
-> -			break;
-> +		/* Once we find 'dma-ranges', then a missing one is an error */
-> +		if (found_dma_ranges && !ranges) {
-> +			ret = -ENODEV;
-> +			goto out;
-> +		}
-> +		found_dma_ranges = true;
-> +
-> +		node = of_get_next_dma_parent(node);
->   	}
->   
-> -	if (!ranges) {
-> +	if (!node || !ranges) {
->   		pr_debug("no dma-ranges found for node(%pOF)\n", np);
->   		ret = -ENODEV;
->   		goto out;
->   	}
->   
-> -	len /= sizeof(u32);
-> -
-> +	naddr = of_bus_n_addr_cells(node);
-> +	nsize = of_bus_n_size_cells(node);
->   	pna = of_n_addr_cells(node);
-> +	if ((len / sizeof(__be32)) % (pna + naddr + nsize)) {
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
->   
->   	/* dma-ranges format:
->   	 * DMA addr	: naddr cells
-> @@ -978,7 +970,7 @@ int of_dma_get_range(struct device_node *np, u64 *dma_addr, u64 *paddr, u64 *siz
->   	 * size		: nsize cells
->   	 */
->   	dmaaddr = of_read_number(ranges, naddr);
-> -	*paddr = of_translate_dma_address(np, ranges);
-> +	*paddr = of_translate_dma_address(node, ranges + naddr);
->   	if (*paddr == OF_BAD_ADDR) {
->   		pr_err("translation of DMA address(%llx) to CPU address failed node(%pOF)\n",
->   		       dmaaddr, np);
-> 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
