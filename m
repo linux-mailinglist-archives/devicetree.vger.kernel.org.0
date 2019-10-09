@@ -2,75 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1558CD0E9A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532FED0ED0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:32:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729686AbfJIMWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 08:22:33 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:37329 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727286AbfJIMWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:22:33 -0400
-Received: by mail-ot1-f68.google.com with SMTP id k32so1531461otc.4;
-        Wed, 09 Oct 2019 05:22:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xC1UlE1u0JStb57nVPQ7CBGmDgiAu3OcmWsjU39D7TQ=;
-        b=C5YfhMNwOn5rCl+jPAOyaQvqW+Lpk9u1Svhl1Ngyyznlv7Pp8zEIHR7bgdZ7vVDIsj
-         4/cvbDdOI+LLgisn1l5EBrC27dyTmAbjtRKtbasLxWQu4dD7zgrL9abseGbueuX/LJLE
-         Qx5NtAf5qNtxKSdoEYpOlQ0QWNIn5TSIt20+1/UkNj9/fL8L0JNUq6u0wqIusilfmav1
-         foDaEgxCjbCjNMxYYyRiG4JMCXSQ5NqHKcpT8r2jrlQ2tF9LvTkazEt5d5HvGcvFoT1A
-         DzrjayeSY8G+wdYiuSCYjTc3C6ekrPBuyUcZ9LCjgqxCLtwuqz5MSou1sAXhrHZXRD3O
-         N5lw==
-X-Gm-Message-State: APjAAAVlDEo3+TQitj1lTyaI3xLcxzXYbM73ZHwtkydxjwzuaCW5wpT6
-        KK4TiWG8GS+hPxwW4MjvMok5D2xXEFk7HzttsGE=
-X-Google-Smtp-Source: APXvYqyQGwipLgN1wicN2waQYaBVy7rTHWOXkeVYsQO7NAbqbXJmdsjjCVYhbuprpQIHEJDyquuYbEMDxYX5J1tTV6c=
-X-Received: by 2002:a9d:70d0:: with SMTP id w16mr2433733otj.107.1570623750637;
- Wed, 09 Oct 2019 05:22:30 -0700 (PDT)
+        id S1730629AbfJIMcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 08:32:43 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:43798 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727029AbfJIMcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:32:43 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x99CWbmh083932;
+        Wed, 9 Oct 2019 07:32:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570624357;
+        bh=XaZjzqsxGyot7zxeFeRURYCsWaQ2BuhASHwvEDXgv8Y=;
+        h=From:To:CC:Subject:Date;
+        b=k015dyKKFvbVmTk0K9d0NrbKsx1WVw34tsUrBKEKtljCmqHB2zsH9fmN/nCqngx1M
+         OTCOg2JJls88z0JpUms3R6866jQ72687VyHe+bUfWkxJr+jNtUohj4skBgJhv+hrAf
+         UJjFV85+74V2aQigAux/nf/N9koyWFCPyeAie2bU=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x99CWb6v090457
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Oct 2019 07:32:37 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 9 Oct
+ 2019 07:32:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 9 Oct 2019 07:32:37 -0500
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x99CWbNP081004;
+        Wed, 9 Oct 2019 07:32:37 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>
+CC:     Jacopo Mondi <jacopo@jmondi.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benoit Parrot <bparrot@ti.com>
+Subject: [Patch v4 0/3] media: ov5640: updates
+Date:   Wed, 9 Oct 2019 07:35:07 -0500
+Message-ID: <20191009123510.19106-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <1569313375-53428-1-git-send-email-biju.das@bp.renesas.com> <1569313375-53428-8-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1569313375-53428-8-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 9 Oct 2019 14:22:19 +0200
-Message-ID: <CAMuHMdWsncjG8CtfSZt4iC9ZvWWyM8sM9gmwRCaY_H=jhSn+9A@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: renesas: r8a774b1: Connect Ethernet-AVB
- to IPMMU-DS0
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 10:23 AM Biju Das <biju.das@bp.renesas.com> wrote:
-> Add IPMMU-DS0 to the Ethernet-AVB device node.
->
-> Based on work by Magnus Damm for the r8a7795.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+This patch series is a collection of patches we have been carrying for a
+while.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.5.
+First, it adds support for PIXEL_RATE control which is used by some
+CSI2 receiver driver to properly set-up their DPHY.
 
-Gr{oetje,eeting}s,
+Then we fix an issue related to having extra sensor enable/disable in
+the register array for the 1920x1080 mode.
 
-                        Geert
+Finally we restrict the largest resolution which should only be
+available at the lowest FPS.
+
+Changes since v3:
+- Fix a potential early pointer dereference in init_controls.
+  Reported by Sakari.
+
+Changes since v2:
+- Addressed comment from Sakari and Jacopo.
+- Make use of the calc_pixel_rate in set_mode also
+- Cleaned up the pixel_rate ctrl struct
+- Fix the fps condition checking for the max resolution case
+
+Changes since v1:
+- Addressed comment from Sakari.
+  added a function to calculate the pixel rate and remove the need to
+  cache its value
+
+
+Benoit Parrot (3):
+  media: ov5640: add PIXEL_RATE control
+  media: ov5640: Fix 1920x1080 mode to remove extra enable/disable
+  media: ov5640: Make 2592x1944 mode only available at 15 fps
+
+ drivers/media/i2c/ov5640.c | 33 +++++++++++++++++++++++++++++----
+ 1 file changed, 29 insertions(+), 4 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
