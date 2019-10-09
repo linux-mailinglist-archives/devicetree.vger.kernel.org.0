@@ -2,63 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6A8D179E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 20:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2285D17D2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 20:54:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731144AbfJISjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 14:39:15 -0400
-Received: from muru.com ([72.249.23.125]:36316 "EHLO muru.com"
+        id S1730490AbfJISxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 14:53:53 -0400
+Received: from mga05.intel.com ([192.55.52.43]:61728 "EHLO mga05.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730490AbfJISjP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 14:39:15 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 7CAEC8140;
-        Wed,  9 Oct 2019 18:39:48 +0000 (UTC)
-Date:   Wed, 9 Oct 2019 11:39:11 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>
-Cc:     Tero Kristo <t-kristo@ti.com>, linux-omap@vger.kernel.org,
-        ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        p.zabel@pengutronix.de
-Subject: Re: [PATCHv8 0/9] soc: ti: add OMAP PRM driver (for reset)
-Message-ID: <20191009183911.GN5610@atomide.com>
-References: <20191008125544.20679-1-t-kristo@ti.com>
- <20191008140002.GY5610@atomide.com>
- <5e10f95c-7ec9-d3a7-6862-f6f07a9c1495@oracle.com>
+        id S1731661AbfJISxx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 14:53:53 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Oct 2019 11:53:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,277,1566889200"; 
+   d="scan'208";a="223684054"
+Received: from gteodore-mobl2.amr.corp.intel.com (HELO [10.251.153.168]) ([10.251.153.168])
+  by fmsmga002.fm.intel.com with ESMTP; 09 Oct 2019 11:53:51 -0700
+Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
+ snd_soc_dai_get_sdw_stream()
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, plai@codeaurora.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, spapothi@codeaurora.org
+References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
+ <20190813083550.5877-4-srinivas.kandagatla@linaro.org>
+ <ba88e0f9-ae7d-c26e-d2dc-83bf910c2c01@linux.intel.com>
+ <c2eecd44-f06a-7287-2862-0382bf697f8d@linaro.org>
+ <d2b7773b-d52a-7769-aa5b-ef8c8845d447@linux.intel.com>
+ <d7c1fdb2-602f-ecb1-9b32-91b893e7f408@linaro.org>
+ <f0228cb4-0a6f-17f3-fe03-9be7f5f2e59d@linux.intel.com>
+ <20190813191827.GI5093@sirena.co.uk>
+ <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
+ <20190813195804.GL5093@sirena.co.uk>
+ <20190814041142.GU12733@vkoul-mobl.Dlink>
+ <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
+ <5e08f822-3507-6c69-5d83-4ce2a9f5c04f@linaro.org>
+ <53bb3105-8e85-a972-fce8-a7911ae4d461@linux.intel.com>
+ <95870089-25da-11ea-19fd-0504daa98994@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <2326a155-332e-fda0-b7a2-b48f348e1911@linux.intel.com>
+Date:   Wed, 9 Oct 2019 13:53:51 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5e10f95c-7ec9-d3a7-6862-f6f07a9c1495@oracle.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <95870089-25da-11ea-19fd-0504daa98994@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* santosh.shilimkar@oracle.com <santosh.shilimkar@oracle.com> [191009 09:02]:
-> On 10/8/19 7:00 AM, Tony Lindgren wrote:
-> > * Tero Kristo <t-kristo@ti.com> [191008 05:56]:
-> > > Hi,
-> > > 
-> > > Hopefully this is the final revision of the series. Just a repost of v7
-> > > with the single comment from Philipp fixed, and added reviewed by tags
-> > > from him for couple of the patches.
-> > 
-> > Santosh, when applying these, can you please provide me an immutable
-> > branch maybe against v5.4-rc1 that I can use as the base for the related
-> > dts changes?
-> > 
-> > For the whole series where not already done, please feel free to add:
-> > 
-> > Reviewed-by: Tony Lindgren <tony@atomide.com>
-> > 
-> Pushed a branch out with series and your reviewed-by tag. I have tagged
-> it yet in case Peter's soc patches get ready.
+
+
+On 10/9/19 11:01 AM, Srinivas Kandagatla wrote:
 > 
-> git://git.kernel.org/pub/scm/linux/kernel/git/ssantosh/linux-keystone.git
-> for_5.5/driver-soc
+> 
+> On 09/10/2019 15:29, Pierre-Louis Bossart wrote:
+>>
+>>
+>> On 10/9/19 3:32 AM, Srinivas Kandagatla wrote:
+>>> Hi Pierre,
+>>>
+>>> On 14/08/2019 15:09, Pierre-Louis Bossart wrote:
+>>>>
+>>>>
+>>>> On 8/13/19 11:11 PM, Vinod Koul wrote:
+>>>>> On 13-08-19, 20:58, Mark Brown wrote:
+>>>>>> On Tue, Aug 13, 2019 at 02:38:53PM -0500, Pierre-Louis Bossart wrote:
+>>>>>>
+>>>>>>> Indeed. I don't have a full understanding of that part to be 
+>>>>>>> honest, nor why
+>>>>>>> we need something SoundWire-specific. We already abused the 
+>>>>>>> set_tdm_slot API
+>>>>>>> to store an HDaudio stream, now we have a rather confusing stream
+>>>>>>> information for SoundWire and I have about 3 other 'stream' 
+>>>>>>> contexts in
+>>>>>>> SOF... I am still doing basic cleanups but this has been on my 
+>>>>>>> radar for a
+>>>>>>> while.
+>>>>>>
+>>>>>> There is something to be said for not abusing the TDM slot API if 
+>>>>>> it can
+>>>>>> make things clearer by using bus-idiomatic mechanisms, but it does 
+>>>>>> mean
+>>>>>> everything needs to know about each individual bus :/ .
+>>>>>
+>>>>> Here ASoC doesn't need to know about sdw bus. As Srini explained, this
+>>>>> helps in the case for him to get the stream context and set the stream
+>>>>> context from the machine driver.
+>>>>>
+>>>>> Nothing else is expected to be done from this API. We already do a set
+>>>>> using snd_soc_dai_set_sdw_stream(). Here we add the 
+>>>>> snd_soc_dai_get_sdw_stream() to query
+>>>>
+>>>> I didn't see a call to snd_soc_dai_set_sdw_stream() in Srini's code?
+>>>
+>>>
+>>> There is a snd_soc_dai_get_sdw_stream() to get stream context and we 
+>>> add slave streams(amplifier in this case) to that context using 
+>>> sdw_stream_add_slave() in machine driver[1].
+>>>
+>>> Without this helper there is no way to link slave streams to stream 
+>>> context in non dai based setup like smart speaker amplifiers.
+>>>
+>>> Currently this driver is blocked on this patch, If you think there 
+>>> are other ways to do this, am happy to try them out.
+>>
+>> So to be clear, you are *not* using snd_soc_dai_set_sdw_stream?
+> Yes, am not using snd_soc_dai_set_sdw_stream().
 
-Great, thanks!
+It's been a while since this thread started, and I still don't quite get 
+the concepts or logic.
 
-Tony
+First, I don't understand what the problem with "aux" devices is. All 
+the SoundWire stuff is based on the concept of DAI, so I guess I am 
+missing why introducing the "aux" device changes anything.
+
+Next, a 'stream' connects multiple DAIs to transmit information from 
+sources to sinks. A DAI in itself is created without having any notion 
+of which stream it will be associated with. This can only be done with 
+machine level information.
+
+If you query a DAI to get a stream context, then how is this stream 
+context allocated in the first place? It looks like a horse and cart 
+problem. Or you are assuming that a specific DAI provides the context, 
+and that all other DAIs do not expose this .get_sdw_stream()? What if 
+more that 1 DAI provide a stream context?
+
+And last, I am even more lost since w/ the existing codec drivers we 
+have, sdw_stream_add_slave() is called from the dai .hw_params callback, 
+once you have information on formats/rates, etc. using 
+sdw_stream_add_slave() from a machine driver looks like an even bigger 
+stretch. I really thought the machine driver would only propagate the 
+notion of stream to all DAIs that are part of the same dailink.
+
+I am not trying to block the Qualcomm implementation, just would like to 
+make sure the assumptions are clear and that we are not using the same 
+API in completely different ways.
+
+
+
+
