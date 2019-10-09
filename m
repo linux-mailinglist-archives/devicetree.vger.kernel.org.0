@@ -2,99 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B0AD19AB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 22:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DDFD1AC2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 23:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731145AbfJIUkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 16:40:23 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:34908 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729535AbfJIUkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 16:40:23 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 205so2394985pfw.2;
-        Wed, 09 Oct 2019 13:40:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=9W4ef/pCmtdvoDU/yX8mr232gTK68/JIL9N8zvhY2fc=;
-        b=Qwte4a1Fx6qid/fUYd2t1IzJbRM7TiSu4J5FVCL4syW+oCGUMAlmvoUdz/LKjnek9b
-         YFfSnelwKxg0f+HQiFB0YZSEbV2OZfZlH/BnRE4LuWwCdzsEjklflwV86wYutM1Cng+E
-         SyBa3PcX3CDqfJ++qzOMwzSyLK4ONKKnJQ/jo9V0sZrcayQUS53btqLekGo2YkCXeym3
-         PWvsdg6jN099tFBXlU0/vllWQm/nZ+z7ZqjKuqbd8vjZ9C2Cg0AZTmkWkm0/O4gtFNra
-         Ut6BU1/P+s/QbzH/iE4euiKHevwgap4h++55MvXXigN6svH+hjZVgQ4t6XX8lv9stbue
-         6OdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9W4ef/pCmtdvoDU/yX8mr232gTK68/JIL9N8zvhY2fc=;
-        b=Lo/ndencqm9aHx+s3DfKZhfdClzBrDtiLWo74H9m1qXXItYA+vc3ia9ojniZxADoOP
-         t6SAtbG8EMFQnzXiqRXrDx2/MpkltL6Ot9slOgsCfLFurbsJHN3BAKNRK8isSRMhKeLS
-         rzTG9UNYqMEPTfcwRcYMFUyiT6qHn9jY5AM54RRrhhH76pYgDo7FYFCXDCJjhNPYI/uW
-         m3t0DO1UrZYy4DauQcwLOut1FtUqn95MTyRadvwoKgmzGBAHQP38hd9HVmaGLXIm47Op
-         aAAM6NBXUlWtYi2GyoiIiWoNY9TQT7TPrqCHl4/kO3Zo1rBFukHf4BmpYzJiODMT1kgn
-         KZuQ==
-X-Gm-Message-State: APjAAAUunpQIR2bhByGxic3KPXOiDsVSJQshmKkINMWMCFYn53FsOtpS
-        M5AcMsoyVWEDDuopSMiQxtyR0xCb
-X-Google-Smtp-Source: APXvYqzEkJ7C5JxGBoJREZqUOY/AhJd3x2DaNpH+exyH2v0JMoXam7S1Nu5go85sZIQF+P6HWIPc3Q==
-X-Received: by 2002:a63:364b:: with SMTP id d72mr4222678pga.432.1570653620471;
-        Wed, 09 Oct 2019 13:40:20 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
-        by smtp.gmail.com with ESMTPSA id v133sm6775807pgb.74.2019.10.09.13.40.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2019 13:40:19 -0700 (PDT)
-Date:   Wed, 9 Oct 2019 13:40:17 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Andi Shyti <andi@etezian.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Simon Shields <simon@lineageos.org>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        id S1731158AbfJIVUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 17:20:36 -0400
+Received: from mga11.intel.com ([192.55.52.93]:9237 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730490AbfJIVUg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 17:20:36 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Oct 2019 14:20:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,277,1566889200"; 
+   d="scan'208";a="368866255"
+Received: from maru.jf.intel.com ([10.54.51.77])
+  by orsmga005.jf.intel.com with ESMTP; 09 Oct 2019 14:20:35 -0700
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] Input: mms114 - add support for mms345l
-Message-ID: <20191009204017.GK22365@dtor-ws>
-References: <20191007203343.101466-1-stephan@gerhold.net>
- <20191007205021.104402-1-stephan@gerhold.net>
- <20191008220014.GI22365@dtor-ws>
- <20191009072612.GA2814@jack.zhora.eu>
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Subject: [PATCH] i2c: aspeed: fix master pending state handling
+Date:   Wed,  9 Oct 2019 14:20:34 -0700
+Message-Id: <20191009212034.20325-1-jae.hyun.yoo@linux.intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191009072612.GA2814@jack.zhora.eu>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 09, 2019 at 10:26:12AM +0300, Andi Shyti wrote:
-> Hi Dmitry,
-> 
-> > > There was a related patch [2] that removes I2C_M_NOSTART for all models,
-> > > but it seems abandoned and I do not have any other model for testing.
-> > > Therefore, this patch implements the least instrusive solution
-> > > and only removes I2C_M_NOSTART for MMS345L.
-> > 
-> > Hmm,  at this point I am inclined to pick up Andi's patch since it seems
-> > to work for you and him and it looks like Android drivers are not using
-> > I2C_M_NOSTART. I wonder if this was some quirk/big on the platform where
-> > it was originally developed.
-> 
-> I completely forgot about that patch :)
-> 
-> I should refresh some old work on that device which was left
-> undone.
-> 
-> > Any objections?
-> 
-> It's OK for me. If you can just update my e-mail, please, when
-> applying the patch to "andi@etezian.org". Thanks!
+In case of master pending state, it should not trigger a master
+command, otherwise data could be corrupted because this H/W shares
+the same data buffer for slave and master operations. It also means
+that H/W command queue handling is unreliable because of the buffer
+sharing issue. To fix this issue, it clears command queue if a
+master command is queued in pending state to use S/W solution
+instead of H/W command queue handling. Also, it refines restarting
+mechanism of the pending master command.
 
-Andi, any chance you could resend it with the new email? One thing that
-I try to avoid modifying whenever I can is S-O-B strings...
+Fixes: 2e57b7cebb98 ("i2c: aspeed: Add multi-master use case support")
+Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+---
+ drivers/i2c/busses/i2c-aspeed.c | 54 +++++++++++++++++++++------------
+ 1 file changed, 34 insertions(+), 20 deletions(-)
 
-Thanks.
-
+diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
+index fa66951b05d0..7b098ff5f5dd 100644
+--- a/drivers/i2c/busses/i2c-aspeed.c
++++ b/drivers/i2c/busses/i2c-aspeed.c
+@@ -108,6 +108,12 @@
+ #define ASPEED_I2CD_S_TX_CMD				BIT(2)
+ #define ASPEED_I2CD_M_TX_CMD				BIT(1)
+ #define ASPEED_I2CD_M_START_CMD				BIT(0)
++#define ASPEED_I2CD_MASTER_CMDS_MASK					       \
++		(ASPEED_I2CD_M_STOP_CMD |				       \
++		 ASPEED_I2CD_M_S_RX_CMD_LAST |				       \
++		 ASPEED_I2CD_M_RX_CMD |					       \
++		 ASPEED_I2CD_M_TX_CMD |					       \
++		 ASPEED_I2CD_M_START_CMD)
+ 
+ /* 0x18 : I2CD Slave Device Address Register   */
+ #define ASPEED_I2CD_DEV_ADDR_MASK			GENMASK(6, 0)
+@@ -336,18 +342,19 @@ static void aspeed_i2c_do_start(struct aspeed_i2c_bus *bus)
+ 	struct i2c_msg *msg = &bus->msgs[bus->msgs_index];
+ 	u8 slave_addr = i2c_8bit_addr_from_msg(msg);
+ 
+-	bus->master_state = ASPEED_I2C_MASTER_START;
+-
+ #if IS_ENABLED(CONFIG_I2C_SLAVE)
+ 	/*
+ 	 * If it's requested in the middle of a slave session, set the master
+ 	 * state to 'pending' then H/W will continue handling this master
+ 	 * command when the bus comes back to the idle state.
+ 	 */
+-	if (bus->slave_state != ASPEED_I2C_SLAVE_INACTIVE)
++	if (bus->slave_state != ASPEED_I2C_SLAVE_INACTIVE) {
+ 		bus->master_state = ASPEED_I2C_MASTER_PENDING;
++		return;
++	}
+ #endif /* CONFIG_I2C_SLAVE */
+ 
++	bus->master_state = ASPEED_I2C_MASTER_START;
+ 	bus->buf_index = 0;
+ 
+ 	if (msg->flags & I2C_M_RD) {
+@@ -422,20 +429,6 @@ static u32 aspeed_i2c_master_irq(struct aspeed_i2c_bus *bus, u32 irq_status)
+ 		}
+ 	}
+ 
+-#if IS_ENABLED(CONFIG_I2C_SLAVE)
+-	/*
+-	 * A pending master command will be started by H/W when the bus comes
+-	 * back to idle state after completing a slave operation so change the
+-	 * master state from 'pending' to 'start' at here if slave is inactive.
+-	 */
+-	if (bus->master_state == ASPEED_I2C_MASTER_PENDING) {
+-		if (bus->slave_state != ASPEED_I2C_SLAVE_INACTIVE)
+-			goto out_no_complete;
+-
+-		bus->master_state = ASPEED_I2C_MASTER_START;
+-	}
+-#endif /* CONFIG_I2C_SLAVE */
+-
+ 	/* Master is not currently active, irq was for someone else. */
+ 	if (bus->master_state == ASPEED_I2C_MASTER_INACTIVE ||
+ 	    bus->master_state == ASPEED_I2C_MASTER_PENDING)
+@@ -462,11 +455,15 @@ static u32 aspeed_i2c_master_irq(struct aspeed_i2c_bus *bus, u32 irq_status)
+ #if IS_ENABLED(CONFIG_I2C_SLAVE)
+ 		/*
+ 		 * If a peer master starts a xfer immediately after it queues a
+-		 * master command, change its state to 'pending' then H/W will
+-		 * continue the queued master xfer just after completing the
+-		 * slave mode session.
++		 * master command, clear the queued master command and change
++		 * its state to 'pending'. To simplify handling of pending
++		 * cases, it uses S/W solution instead of H/W command queue
++		 * handling.
+ 		 */
+ 		if (unlikely(irq_status & ASPEED_I2CD_INTR_SLAVE_MATCH)) {
++			writel(readl(bus->base + ASPEED_I2C_CMD_REG) &
++				~ASPEED_I2CD_MASTER_CMDS_MASK,
++			       bus->base + ASPEED_I2C_CMD_REG);
+ 			bus->master_state = ASPEED_I2C_MASTER_PENDING;
+ 			dev_dbg(bus->dev,
+ 				"master goes pending due to a slave start\n");
+@@ -629,6 +626,14 @@ static irqreturn_t aspeed_i2c_bus_irq(int irq, void *dev_id)
+ 			irq_handled |= aspeed_i2c_master_irq(bus,
+ 							     irq_remaining);
+ 	}
++
++	/*
++	 * Start a pending master command at here if a slave operation is
++	 * completed.
++	 */
++	if (bus->master_state == ASPEED_I2C_MASTER_PENDING &&
++	    bus->slave_state == ASPEED_I2C_SLAVE_INACTIVE)
++		aspeed_i2c_do_start(bus);
+ #else
+ 	irq_handled = aspeed_i2c_master_irq(bus, irq_remaining);
+ #endif /* CONFIG_I2C_SLAVE */
+@@ -691,6 +696,15 @@ static int aspeed_i2c_master_xfer(struct i2c_adapter *adap,
+ 		     ASPEED_I2CD_BUS_BUSY_STS))
+ 			aspeed_i2c_recover_bus(bus);
+ 
++		/*
++		 * If timed out and the state is still pending, drop the pending
++		 * master command.
++		 */
++		spin_lock_irqsave(&bus->lock, flags);
++		if (bus->master_state == ASPEED_I2C_MASTER_PENDING)
++			bus->master_state = ASPEED_I2C_MASTER_INACTIVE;
++		spin_unlock_irqrestore(&bus->lock, flags);
++
+ 		return -ETIMEDOUT;
+ 	}
+ 
 -- 
-Dmitry
+2.23.0
+
