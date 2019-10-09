@@ -2,130 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA518D09F0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 10:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF1DD0A05
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 10:41:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727228AbfJIIc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 04:32:56 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39182 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726734AbfJIIcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 04:32:55 -0400
-Received: by mail-wm1-f65.google.com with SMTP id v17so1482683wml.4
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 01:32:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JxJNRe0Hszsg2U+Mp+z1v4R0II23QRMT5ghWEEi5RWE=;
-        b=NhZ3NqWVqaig7QVQN06AhJ9BzVpRIStl4PO90WhabZkYR4TZahH1FZFVa8AuhAbYOQ
-         mr+y43IuW+Gz2TUSN3DRidWkigXShaqiFNEe5CZ6+KRlHt3+1ZwCmVc3UF1NBIJ5RYgd
-         QcYM/Mk3PAJmjItLNhySrm+th3lCHLvsMBYAZgw0JlFyEfKyatS7ULxI8HuZzirdcHgQ
-         m1hYLIHicmZKXs26cm/Zj0ixcud7v4a9MU7G7cH7QMoulEEmtNoQaAbApLxrLKuy5xHV
-         tb/8Skr5Hm4WCRtpABjq1M3h1U53H+OEJDU3ALp15Ck91Zqv7iiwohtLzjX1PVGLLSQc
-         PoyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JxJNRe0Hszsg2U+Mp+z1v4R0II23QRMT5ghWEEi5RWE=;
-        b=d7y++hpqRvv9AzlB2R9cYw0IsCUgIZsUX1fjrPXaKPACVgkF4uCK74HACKXJTYURV9
-         a9H4pIP1AdayO5aHKAm+rxS1fWtu+oon9nVf8aotNiIKNsqk+OIyKjLG76ylI8bACMOs
-         1mrhO4mQFOZOqNQBlVvRwjYMGQY9+6hIXVgT21WqTZL9Ace3WN7n1NVZEpjmehAt85MI
-         FprKWilaKzfuV8B0DY9O5GYGLVs7wfA409GtIU7VJrHW3uer4jRJqQlN6ZKOQxMyt8HN
-         yam+F3YTK/nzorTXwceKpQW1FGIUm5kKipMDAT6BgCWeoQlYu/yJFzdkIHj4b6FZfmKC
-         VYxA==
-X-Gm-Message-State: APjAAAU/Kt/VwXKIYjh7CLlsKyDj0VN3u2UZwhbj7U9WkpntZBKplbUP
-        xAbmQczOFnMqJ9Q/3ExuTPKUZQ==
-X-Google-Smtp-Source: APXvYqywaXIHFEarJCg72s40634GXF/8q5QIy4svArSx2M3KgbShup6P+88T7XbSi5C97I9i5mw2Kw==
-X-Received: by 2002:a7b:c74a:: with SMTP id w10mr1647617wmk.30.1570609973203;
-        Wed, 09 Oct 2019 01:32:53 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id x5sm1478910wrt.75.2019.10.09.01.32.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Oct 2019 01:32:52 -0700 (PDT)
-Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
- snd_soc_dai_get_sdw_stream()
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
-        plai@codeaurora.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        spapothi@codeaurora.org
-References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
- <20190813083550.5877-4-srinivas.kandagatla@linaro.org>
- <ba88e0f9-ae7d-c26e-d2dc-83bf910c2c01@linux.intel.com>
- <c2eecd44-f06a-7287-2862-0382bf697f8d@linaro.org>
- <d2b7773b-d52a-7769-aa5b-ef8c8845d447@linux.intel.com>
- <d7c1fdb2-602f-ecb1-9b32-91b893e7f408@linaro.org>
- <f0228cb4-0a6f-17f3-fe03-9be7f5f2e59d@linux.intel.com>
- <20190813191827.GI5093@sirena.co.uk>
- <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
- <20190813195804.GL5093@sirena.co.uk>
- <20190814041142.GU12733@vkoul-mobl.Dlink>
- <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <5e08f822-3507-6c69-5d83-4ce2a9f5c04f@linaro.org>
-Date:   Wed, 9 Oct 2019 09:32:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1725848AbfJIIlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 04:41:17 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:57892 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725440AbfJIIlR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 04:41:17 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D2C1520039E;
+        Wed,  9 Oct 2019 10:41:14 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 50E90200044;
+        Wed,  9 Oct 2019 10:41:09 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 95725402DA;
+        Wed,  9 Oct 2019 16:41:02 +0800 (SGT)
+From:   Hui Song <hui.song_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Song Hui <hui.song_1@nxp.com>
+Subject: [PATCH v6] gpio/mpc8xxx: change irq handler from chained to normal
+Date:   Wed,  9 Oct 2019 16:30:21 +0800
+Message-Id: <20191009083021.33529-1-hui.song_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
+From: Song Hui <hui.song_1@nxp.com>
 
-On 14/08/2019 15:09, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 8/13/19 11:11 PM, Vinod Koul wrote:
->> On 13-08-19, 20:58, Mark Brown wrote:
->>> On Tue, Aug 13, 2019 at 02:38:53PM -0500, Pierre-Louis Bossart wrote:
->>>
->>>> Indeed. I don't have a full understanding of that part to be honest, 
->>>> nor why
->>>> we need something SoundWire-specific. We already abused the 
->>>> set_tdm_slot API
->>>> to store an HDaudio stream, now we have a rather confusing stream
->>>> information for SoundWire and I have about 3 other 'stream' contexts in
->>>> SOF... I am still doing basic cleanups but this has been on my radar 
->>>> for a
->>>> while.
->>>
->>> There is something to be said for not abusing the TDM slot API if it can
->>> make things clearer by using bus-idiomatic mechanisms, but it does mean
->>> everything needs to know about each individual bus :/ .
->>
->> Here ASoC doesn't need to know about sdw bus. As Srini explained, this
->> helps in the case for him to get the stream context and set the stream
->> context from the machine driver.
->>
->> Nothing else is expected to be done from this API. We already do a set
->> using snd_soc_dai_set_sdw_stream(). Here we add the 
->> snd_soc_dai_get_sdw_stream() to query
-> 
-> I didn't see a call to snd_soc_dai_set_sdw_stream() in Srini's code?
+More than one gpio controllers can share one interrupt, change the
+driver to request shared irq.
 
+While this will work, it will mess up userspace accounting of the number
+of interrupts per second in tools such as vmstat.  The reason is that
+for every GPIO interrupt, /proc/interrupts records the count against GIC
+interrupt 68 or 69, as well as the GPIO itself.  So, for every GPIO
+interrupt, the total number of interrupts that the system has seen
+increments by two
 
-There is a snd_soc_dai_get_sdw_stream() to get stream context and we add 
-slave streams(amplifier in this case) to that context using 
-sdw_stream_add_slave() in machine driver[1].
+Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
+Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
+Signed-off-by: Song Hui <hui.song_1@nxp.com>
+---
+ Changes in v6:
+	- change request_irq to devm_request_irq and add commit message.
+ Changes in v5:
+	- add traverse every bit function.
+ Changes in v4:
+	- convert 'pr_err' to 'dev_err'.
+ Changes in v3:
+	- update the patch description.
+ Changes in v2:
+	- delete the compatible of ls1088a.
 
-Without this helper there is no way to link slave streams to stream 
-context in non dai based setup like smart speaker amplifiers.
+ drivers/gpio/gpio-mpc8xxx.c | 31 ++++++++++++++++++++-----------
+ 1 file changed, 20 insertions(+), 11 deletions(-)
 
-Currently this driver is blocked on this patch, If you think there are 
-other ways to do this, am happy to try them out.
+diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+index 16a47de..f0be284 100644
+--- a/drivers/gpio/gpio-mpc8xxx.c
++++ b/drivers/gpio/gpio-mpc8xxx.c
+@@ -22,6 +22,7 @@
+ #include <linux/irq.h>
+ #include <linux/gpio/driver.h>
+ #include <linux/bitops.h>
++#include <linux/interrupt.h>
+ 
+ #define MPC8XXX_GPIO_PINS	32
+ 
+@@ -127,20 +128,20 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc, unsigned offset)
+ 		return -ENXIO;
+ }
+ 
+-static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
++static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
+ {
+-	struct mpc8xxx_gpio_chip *mpc8xxx_gc = irq_desc_get_handler_data(desc);
+-	struct irq_chip *chip = irq_desc_get_chip(desc);
++	struct mpc8xxx_gpio_chip *mpc8xxx_gc = data;
+ 	struct gpio_chip *gc = &mpc8xxx_gc->gc;
+ 	unsigned int mask;
++	int i;
+ 
+ 	mask = gc->read_reg(mpc8xxx_gc->regs + GPIO_IER)
+ 		& gc->read_reg(mpc8xxx_gc->regs + GPIO_IMR);
+-	if (mask)
++	for_each_set_bit(i, &mask, 32)
+ 		generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
+-						     32 - ffs(mask)));
+-	if (chip->irq_eoi)
+-		chip->irq_eoi(&desc->irq_data);
++						     31 - i));
++
++	return IRQ_HANDLED;
+ }
+ 
+ static void mpc8xxx_irq_unmask(struct irq_data *d)
+@@ -388,8 +389,8 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+ 
+ 	ret = gpiochip_add_data(gc, mpc8xxx_gc);
+ 	if (ret) {
+-		pr_err("%pOF: GPIO chip registration failed with status %d\n",
+-		       np, ret);
++		dev_err(&pdev->dev, "%pOF: GPIO chip registration failed with status %d\n",
++			np, ret);
+ 		goto err;
+ 	}
+ 
+@@ -409,8 +410,16 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+ 	if (devtype->gpio_dir_in_init)
+ 		devtype->gpio_dir_in_init(gc);
+ 
+-	irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
+-					 mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
++	ret = devm_request_irq(&pdev->dev, mpc8xxx_gc->irqn,
++			       mpc8xxx_gpio_irq_cascade,
++			       IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade",
++			       mpc8xxx_gc);
++	if (ret) {
++		dev_err(&pdev->dev, "%s: failed to devm_request_irq(%d), ret = %d\n",
++			np->full_name, mpc8xxx_gc->irqn, ret);
++		goto err;
++	}
++
+ 	return 0;
+ err:
+ 	iounmap(mpc8xxx_gc->regs);
+-- 
+2.9.5
 
-Thanks,
-srini
-
-[1] 
-https://git.linaro.org/people/srinivas.kandagatla/linux.git/tree/sound/soc/qcom/db845c.c?h=release/db845c/qcomlt-5.2
