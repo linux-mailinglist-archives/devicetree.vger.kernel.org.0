@@ -2,127 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EED4D1899
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 21:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 730CBD18E8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 21:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731696AbfJITQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 15:16:28 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:33198 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731144AbfJITQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 15:16:27 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 60so2724147otu.0;
-        Wed, 09 Oct 2019 12:16:27 -0700 (PDT)
+        id S1731937AbfJIT0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 15:26:31 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41960 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731254AbfJIT0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 15:26:31 -0400
+Received: by mail-oi1-f196.google.com with SMTP id w65so2760752oiw.8;
+        Wed, 09 Oct 2019 12:26:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NsEhGh1kFaBNKGsSiEy6NKNPiYELx9hdX+GfRAKSPVg=;
-        b=YjVfrtKrMEzOZ+WLkmgXY7tbQUdOTvzkr6Wg1olFXtPslH3gjHM9zaCvp6R6zCu1lR
-         YnoftlxFNuiGADq+KxcUEgb5KV6JCmUHI8rEK2TzoQUXuxQXHtCcCTqvs9tEkQjNLy9J
-         eZxox+A8adI6PrpDOqnxOHcDaT3QucAcb8ScSMLgkRQrbAv7wt23NlvPMC36pgUo1A5u
-         /nb42/E2Iy5RBhcitd7iTPV6/X5CV5hKJz0qgOwOKNUNLkJ6iYW+mTp4k5KLaSNWy7SF
-         UUagTwm63asMsysFN24/2Y0Zb0Wk+Zmuj9mUO0MKc9K6MdLElKOLcl68HqRkwgt/k56C
-         CtoQ==
-X-Gm-Message-State: APjAAAXXja3OtUZugE+1G7iNBxkdKyCyQed33wlEBaD5gL/uKdZv6eFb
-        JzsOuPvbY6z3kk1ULdUwFw==
-X-Google-Smtp-Source: APXvYqxM9n9jUehaPoDUkjLcg71MT46PUEqivMh5AfPwwaW1yPIijflLW5J8dPQdilMcg/UbuPNGhg==
-X-Received: by 2002:a9d:4501:: with SMTP id w1mr4457932ote.239.1570648586846;
-        Wed, 09 Oct 2019 12:16:26 -0700 (PDT)
+        bh=E+1Cf+QVyq8bhGJdgpmwKD8ewKz92Myu7dCI2HheZcs=;
+        b=OEvacDBD1nNTxzNXydm1Fi/JV52WJKzGU5Lk2an5FP4A6V65B/rQDrrQfU1QGRCQ0S
+         Zrs0Jgbh0qEaujYFk8He/cvzhz3gg7tG4KgA8UcNbYihwcIz5jbD8yHf5bQPPpyEz/2I
+         sZhdpflWkZGUBiCBkGjpHXoc8O3Ev9CghEAWVKhJ9uIIle7Zy1j5Hv1yo9WWdL6jUF8V
+         6qoEGX8nNPZt7j1wkFD+5TW6D0qVBlqeTDKABi1msx1C7VrPVhpsKsmm+PTJ41/hX0FW
+         ioIZIj8++W3GX9EVE3RKWmPmC9WNF4/m2BBdcPD9gH50uCiY/bYDOZDC67/CProCkQQr
+         Ij7Q==
+X-Gm-Message-State: APjAAAU740lGtAvsv8SOXnNeze78ee3GyLWQmXR8a4sDx0w1GpiMmprC
+        urK6ESwFkhW/hcktHE1blg==
+X-Google-Smtp-Source: APXvYqxhf2oe+tg+UPt4mEDyJD79ww7yyIO3EkWvJYkdvSRE+pnt3LOVSbpBMfctWccSlLhsJ7SMZQ==
+X-Received: by 2002:aca:d402:: with SMTP id l2mr4027557oig.127.1570649190033;
+        Wed, 09 Oct 2019 12:26:30 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y6sm959195oiy.45.2019.10.09.12.16.25
+        by smtp.gmail.com with ESMTPSA id 11sm991096otg.62.2019.10.09.12.26.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2019 12:16:26 -0700 (PDT)
-Date:   Wed, 9 Oct 2019 14:16:25 -0500
+        Wed, 09 Oct 2019 12:26:29 -0700 (PDT)
+Date:   Wed, 9 Oct 2019 14:26:28 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Talel Shenhar <talel@amazon.com>
-Cc:     mark.rutland@arm.com, bp@alien8.de, mchehab@kernel.org,
-        james.morse@arm.com, davem@davemloft.net,
-        gregkh@linuxfoundation.org, paulmck@linux.ibm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-edac@vger.kernel.org, dwmw@amazon.co.uk,
-        benh@kernel.crashing.org, hhhawa@amazon.com, ronenk@amazon.com,
-        jonnyc@amazon.com, hanochu@amazon.com, amirkl@amazon.com,
-        barakw@amazon.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: edac: al-mc-edac: Amazon's Annapurna
- Labs Memory Controller EDAC
-Message-ID: <20191009191625.GA8179@bogus>
-References: <1570103363-21486-1-git-send-email-talel@amazon.com>
- <1570103363-21486-2-git-send-email-talel@amazon.com>
+To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
+Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, sre@kernel.org,
+        mark.rutland@arm.com, lee.jones@linaro.org,
+        daniel.thompson@linaro.org, dmurphy@ti.com,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, tomi.valkeinen@ti.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 4/6] dts-bindings: leds: Document the naming
+ requirement for LED properties
+Message-ID: <20191009192628.GA24087@bogus>
+References: <20191009085127.22843-1-jjhiblot@ti.com>
+ <20191009085127.22843-5-jjhiblot@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1570103363-21486-2-git-send-email-talel@amazon.com>
+In-Reply-To: <20191009085127.22843-5-jjhiblot@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 03, 2019 at 02:49:22PM +0300, Talel Shenhar wrote:
-> Document Amazon's Annapurna Labs Memory Controller EDAC SoC binding.
+On Wed, Oct 09, 2019 at 10:51:25AM +0200, Jean-Jacques Hiblot wrote:
+> LED properties must be named "leds" in the same way that PWM, clocks or
+> PHY properties are names respectively "pwms", "clocks" and "phys".
 > 
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
 > ---
->  .../bindings/edac/amazon,al-mc-edac.yaml           | 40 ++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
+>  .../devicetree/bindings/leds/common.txt       | 20 ++++++++++++++++---
+>  1 file changed, 17 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
-> new file mode 100644
-> index 0000000..33da051
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/edac/amazon,al-mc-edac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/leds/common.txt b/Documentation/devicetree/bindings/leds/common.txt
+> index 9fa6f9795d50..31b8c1f68d27 100644
+> --- a/Documentation/devicetree/bindings/leds/common.txt
+> +++ b/Documentation/devicetree/bindings/leds/common.txt
+> @@ -10,6 +10,9 @@ can influence the way of the LED device initialization, the LED components
+>  have to be tightly coupled with the LED device binding. They are represented
+>  by child nodes of the parent LED device binding.
+>  
+> +LED properties should be named "leds". The exact meaning of each leds
+> +property must be documented in the device tree binding for each device.
 > +
-> +title: Amazon's Annapurna Labs Memory Controller EDAC
-> +
-> +maintainers:
-> +  - Talel Shenhar <talel@amazon.com>
-> +  - Talel Shenhar <talelshenhar@gmail.com>
-> +
-> +description: |
-> +  EDAC node is defined to describe on-chip error detection and correction for
-> +  Amazon's Annapurna Labs Memory Controller.
-> +
-> +properties:
-> +
-> +  compatible:
-> +    - const: "amazon,al-mc-edac"
 
-Fails 'make dt_binding_check'. Drop the '-' as a property is not a list.
+This is worded oddly. The property is 'leds' and it is always a list of 
+phandles to LED device nodes. It is present in an LED consumer device.
 
-The "" are also unnecessary.
+>  
+>  Optional properties for child nodes:
+>  - led-sources : List of device current outputs the LED is connected to. The
+> @@ -165,9 +168,20 @@ led-controller@30 {
+>  		function-enumerator = <2>;
+>          };
+>  
+> -        led@3 {
+> +        bkl_led0: led@3 {
+>  		reg = <3>;
+> -		function = LED_FUNCTION_INDICATOR;
+> -		function-enumerator = <3>;
+> +		function = LED_FUNCTION_BACKLIGHT;
+> +		function-enumerator = <1>;
+>          };
+> +
+> +        bkl_led1: led@4 {
+> +		reg = <4>;
+> +		function = LED_FUNCTION_BACKLIGHT;
+> +		function-enumerator = <2>;
+> +        };
+> +};
+> +
+> +
+> +backlight@40 {
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    edac@f0080000 {
-> +      compatible = "amazon,al-mc-edac";
-> +      reg = <0x0 0xf0080000 0x0 0x00010000>;
-> +      interrupt-parent = <&amazon_al_system_fabric>;
-> +      interrupt-names = "ue";
+Either needs 'reg' or the unit-address dropped.
 
-Need to document the name or drop as -names on a single entry is 
-pointless.
+> +	leds = <&bkl_led0> , <&bkl_led1>;
 
-> +      interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
+drop the space            ^
+
+>  };
 > -- 
-> 2.7.4
+> 2.17.1
 > 
