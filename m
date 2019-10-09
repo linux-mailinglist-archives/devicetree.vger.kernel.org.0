@@ -2,82 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41338D0F1F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D18D0F36
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728200AbfJIMsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 08:48:13 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43391 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727219AbfJIMsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:48:13 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t84so1593131oih.10;
-        Wed, 09 Oct 2019 05:48:12 -0700 (PDT)
+        id S1731217AbfJIMyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 08:54:39 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:38150 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731213AbfJIMyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:54:39 -0400
+Received: by mail-qt1-f193.google.com with SMTP id j31so3228170qta.5
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 05:54:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:references:cc:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding;
+        bh=TgY7kPmBZqnecD8fmdALLpGAi+Y1sBS44TN0W3OZTbI=;
+        b=Ieth1LzWB3tqDdxRYS6TrTDImdY44X93i3yUuyswKh9NjwTJ9MG4I2p3ASCGRBbhIi
+         EN685xkM080/OSbNL3HVipQhMTiUC3wCskwGs71Fi0G583KGpAhgDjb9VZTSwNOizajq
+         KjMDn74QgrW5rjxwCxpxgHrztK5XKLYGw7Ptb6Dzw2Um68uQEEtb9QD58DgmCL+djw5x
+         hvj6SPb+jQ8H91BafRWYx9bXKeCGoUZ3pYmo9zaWEqj9Hbxyx5PkknrLQpIrt+b6pPv2
+         UWqyEnjMQk6gtxIgsg+zv6Xm7CfObViLTHWCh+F8QEAs8uzXv+iWzUnHp4NYkK8A+eno
+         2GbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F9sihoD8xtf+xJJ/YN8Ttpi/IAoGkmrDo73SAP7wiuU=;
-        b=lEq7dDjBTWi1L0HDF0T6p3dbSb+HAbjN6m5Mf+PcNG0MsuYTZ7Xjr/aD21nEj9AC2P
-         4L3FCi2qaCH2IpFNdSd1PYxZ1OPns9imP12ZC5R908G4P8oBtFFR4GUkWmcyB9GQkwFA
-         +d9R26M2C/4VNN03pDfCHiefVwTxj6qmqGxDCfWoOeHkSBb1Oy5Ht24l24amHFXNLmgr
-         uj/2RUxy/HP4WRizxKIf8weBwSp9LV0kX9zQpIDoLz8pGmLkkrXo6XWwAAN3D+xrX15V
-         A8RD4f1yf8aWLwOTyJgTA7J5ONzQ9MhLOwzMyBgDaz6YckvA3HovRpkXI+UgcgVKnf+0
-         tlIA==
-X-Gm-Message-State: APjAAAUgbxOSP4IiYOtbUHEVvFRwqjggYVy6zwk6JAYi1yWTCan3MQJ+
-        i0TEhVwBK8gy6tS42cY7k405n2/SmZ9wGVvEcuE=
-X-Google-Smtp-Source: APXvYqz8RkrMAo1aVETLuTwYrdB2hkzhyiOgT81nepAIJT5UFEWrRqAdCBYAgc1IF85bemnI+YynzlBidICme1Cn/Nc=
-X-Received: by 2002:aca:4bd2:: with SMTP id y201mr2187936oia.102.1570625292202;
- Wed, 09 Oct 2019 05:48:12 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
+        bh=TgY7kPmBZqnecD8fmdALLpGAi+Y1sBS44TN0W3OZTbI=;
+        b=emvKPuo93IIpKupYRQguz4tOw3fWOG51mwj3pMLVCUIgioZUleEDAK3nIevfhbRb7j
+         BCpFn2exBjjX89GfdypSEI0EjC8tq2SuXwgnvz8uFtnzlbsUOiKirCcjrDIrAisaW/OU
+         1cppFq8md5AMa3nMav0jShbqyl2mJsbkuOaHwVErpmm4zxlSV2XQiItTFYLyCIFOaSeT
+         nKT173LjekAdcx481n8vTaDr7fd9l9zAtP7bjA9XjV/nh3GvvFx2tPchvIv8HRYsqV/1
+         HueRw2BZrPDHKhs35ZPRhNXsBwTH1sXjdMQP39AcNoo7rTuJOEaK0UUerMq0MJ1CHW/h
+         NrUA==
+X-Gm-Message-State: APjAAAVuqcSwf8momZCeMqVs/Mm4AfKxwh4kDdNKznLwrgZ/pCAbV1fg
+        xIoE+3qQEhpZg6XXWf6wsTnV9Q==
+X-Google-Smtp-Source: APXvYqxDRTRnNCFB3xzy90ZREa6zqiTGq9G4A+t6sp3p4WDaJF1dHGjJKNb5yoJjpKhBQP6sEqhRHA==
+X-Received: by 2002:a0c:ef85:: with SMTP id w5mr3460733qvr.159.1570625678531;
+        Wed, 09 Oct 2019 05:54:38 -0700 (PDT)
+Received: from [192.168.1.169] (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
+        by smtp.gmail.com with ESMTPSA id c201sm890854qke.128.2019.10.09.05.54.37
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Oct 2019 05:54:37 -0700 (PDT)
+Subject: Re: [PATCH 1/4] dt-bindings: thermal: Introduce monitor-falling
+ parameter to thermal trip point binding
+To:     Rob Herring <robh@kernel.org>
+References: <1568859503-19725-1-git-send-email-thara.gopinath@linaro.org>
+ <1568859503-19725-2-git-send-email-thara.gopinath@linaro.org>
+ <5d93ce86.1c69fb81.70b0d.ba56@mx.google.com>
+Cc:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, vincent.guittot@linaro.org,
+        bjorn.andersson@linaro.org, amit.kucheria@verdurent.com,
+        mark.rutland@arm.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <5D9DD88C.7090804@linaro.org>
+Date:   Wed, 9 Oct 2019 08:54:36 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.1
 MIME-Version: 1.0
-References: <1570178133-21532-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570178133-21532-7-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1570178133-21532-7-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 9 Oct 2019 14:48:01 +0200
-Message-ID: <CAMuHMdWNmzWyUkHsJbY9A8of1B61SCcy3J8Friw0JDCctJa2=Q@mail.gmail.com>
-Subject: Re: [PATCH 6/7] arm64: dts: renesas: r8a774b1: Add PCIe device nodes
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>, xu_shunji@hoperun.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <5d93ce86.1c69fb81.70b0d.ba56@mx.google.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 10:36 AM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
-> This patch adds PCIe{0,1} device nodes for R8A774B1 SoC.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Hi Rob,
+Thanks for the review.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.5.
+On 10/01/2019 06:09 PM, Rob Herring wrote:
+> On Wed, Sep 18, 2019 at 10:18:20PM -0400, Thara Gopinath wrote:
+>> Introduce a new binding parameter to thermal trip point description
+>> to indicate whether the temperature level specified by the trip point
+>> is monitored for a rise or fall in temperature.
+> 
+> What if it is both?
+> 
+> When do you need this? Seems like you'd always want to monitor both 
+> directions to undo any action done on rising temp. Unless you want a 
+> hysteresis, but this doesn't seem like the best way to implement that.
+> 
 
-Gr{oetje,eeting}s,
+The thermal framework is designed in such a manner that I cannot think
+of a use case for both.
+The framework takes care of removing the warming/cooling action when the
+trip point is crossed in the opposite direction. It only needs an
+indication on when to start implementing the
+action.
+For eg. When the temperature crosses/increases above 90 degree, the
+framework will start the cooling action and will continue monitoring
+till the temperature falls below 90 and the cooling action is removed.
+Vice versa when the temperature decreases below say 5 degree, the
+framework should  initiate the warming action and monitor till the
+temperature rises above and remove the warming action.
 
-                        Geert
+So the trip point is really an indication of the temperature crossing a
+threshold in the specified direction.
+
+Now this parameter is needed to indicate whether the thermal framework
+has to start implementing the warming/cooling action when the
+temperature  rises above the trip point or falls below the trip point.
+
+Till now the framework was always assuming that the cooling action had
+to be implemented when temperature rises above the trip point.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Warm Regards
+Thara
