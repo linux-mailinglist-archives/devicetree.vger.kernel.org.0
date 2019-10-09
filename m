@@ -2,75 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8607D1CE6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 01:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F99BD1CFD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 01:46:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731166AbfJIXjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 19:39:04 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39090 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730955AbfJIXjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 19:39:03 -0400
-Received: by mail-ot1-f65.google.com with SMTP id s22so3264356otr.6;
-        Wed, 09 Oct 2019 16:39:01 -0700 (PDT)
+        id S1731134AbfJIXqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 19:46:51 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:41473 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731155AbfJIXqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 19:46:51 -0400
+Received: by mail-ot1-f67.google.com with SMTP id g13so3272306otp.8;
+        Wed, 09 Oct 2019 16:46:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xfaJ6Ijz25Td45/swhL0HWSOcUtcHLc6emBFBS8WyOw=;
-        b=OEY6TANIdUuhE+RSC6Pbsxp3LQyjYHeMha53H6E33t5DbUx7+wFgwi3COa7rK7J5lq
-         I5UIVXy1HuNywPM3YFBTLJ2FfGEHlyXex3ac2Vs5bVS4/aXaBN9My6mdQSRogcOPJIIV
-         vohOSnGmS/xnoAb/aFp8WmzPKjAMSGy0QXMnkOP9KkWd8EPM0nbZoQsb2ck/Q59aQRIm
-         ch2uUBAUd3Zrq5lfWvXH4KEOy/cwwlErzi4AsJsWf96BPoF4O/aBZm1q05ahHlQsQWon
-         dFpIrOwDGb7kqVk1Y+Hm0/GwfiobtgJsco3tj8ICNG2pLEcHBVusq2YTgSFNXSdpZbjd
-         2pHQ==
-X-Gm-Message-State: APjAAAU0TX5zJY4YM8OS6uQlS50oz8BU8IMSqP0k2blqw1mMmNDFDSja
-        t5waIJ7RvcMMuGoPoy/KhapJ6mQ=
-X-Google-Smtp-Source: APXvYqzIQcdECP7sHtBSpJHI+jFCabS62ZfygcOXBQjYhZ9NsnTSnmOMd1i74eKBtoiTh3FE9+h9lA==
-X-Received: by 2002:a9d:620a:: with SMTP id g10mr5343743otj.318.1570664341395;
-        Wed, 09 Oct 2019 16:39:01 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b5sm1149915oia.20.2019.10.09.16.39.00
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M+uVx1qcCdR79o4ofc5CjZQotxG1TWVUh9rieCuJiEc=;
+        b=MyTdxP8T69PGLNcz4kuZlHzZrSfGeRAPLH9SMKDdwXaIiFuMVEPbdxtqnVrq5Ahonl
+         r3ebusLU/X+5S1U5Zz74SaiXtMSHy3vnlqPQcofc5eLAZuap4Z8v2QUqiIfhl0LCgaZ2
+         o1UOVpfniJc3F+zLAxcfQH8087daeb8IRmCMZazrFRRPYdwAEpA4Da8Xw5FmTCLsFcgT
+         QREN6r1BFqHDFMnOjaDXb+JIyvvbOa3jE7IBlKB88xBsF6qaHJpVqKWdSw1gg+jSK20L
+         XtJjavI5/pIHL88uCx6s/yshKG/vcFXhoXL7340l84W1aMSPNpJZS9UPTl7vs+q6m3ho
+         7kzQ==
+X-Gm-Message-State: APjAAAU2jze7LGAiI9BBq1+6Xee+E4MTbC5Mpx9ewsnkq6Yct+J2AAy/
+        JEY8DxrUqipbFJSnJuIXIg==
+X-Google-Smtp-Source: APXvYqz/n9SkOtrSQgnGTu0lp4Ci0m5qmetwpMSOC3+wUQp2ustrBx5tiex0ZXLUntj3+cQeHQ4Fqg==
+X-Received: by 2002:a9d:4902:: with SMTP id e2mr5132554otf.263.1570664810148;
+        Wed, 09 Oct 2019 16:46:50 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id t22sm1205672otc.9.2019.10.09.16.46.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2019 16:39:00 -0700 (PDT)
-Date:   Wed, 9 Oct 2019 18:39:00 -0500
+        Wed, 09 Oct 2019 16:46:49 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, kishon@ti.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com
-Subject: Re: [PATCH v4 3/5] dt-bindings: phy: tegra: Add Tegra194 support
-Message-ID: <20191009233900.GA9109@bogus>
-References: <20191009024343.30218-1-jckuo@nvidia.com>
- <20191009024343.30218-4-jckuo@nvidia.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: riscv: Fix CPU schema errors
+Date:   Wed,  9 Oct 2019 18:46:48 -0500
+Message-Id: <20191009234648.2271-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191009024343.30218-4-jckuo@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 09, 2019 at 10:43:41AM +0800, JC Kuo wrote:
-> Extend the bindings to cover the set of features found in Tegra194.
-> Note that, technically, there are four more supplies connected to the
-> XUSB pad controller (DVDD_PEX, DVDD_PEX_PLL, HVDD_PEX and HVDD_PEX_PLL)
-> , but the power sequencing requirements of Tegra194 require these to be
-> under the control of the PMIC.
-> 
-> Tegra194 XUSB PADCTL supports up to USB 3.1 Gen 2 speed, however, it is
-> possible for some platforms have long signal trace that could not
-> provide sufficient electrical environment for Gen 2 speed. To deal with
-> this, a new device node property "nvidia,disable-gen2" was added to
-> Tegra194 that be used to specifically disable Gen 2 speed for a
-> particular USB 3.0 port so that the port can be limited to Gen 1 speed
-> and avoid the instability.
+Fix the errors in the RiscV CPU DT schema:
 
-I suspect this may be a common issue and we should have a common 
-property. Typically, this kind of property is in the controller though 
-and supports multiple speed limits. See PCI bindings for inspiration.
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
+Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
 
-Rob
+The DT spec allows for 'timebase-frequency' to be in 'cpu' or 'cpus' node
+and RiscV is doing nothing special with it, so just drop the definition
+here and don't make it required.
+
+Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
+Cc: Paul Walmsley <paul.walmsley@sifive.com>
+Cc: Palmer Dabbelt <palmer@sifive.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-riscv@lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/riscv/cpus.yaml       | 28 ++++++++-----------
+ 1 file changed, 11 insertions(+), 17 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index b261a3015f84..925b531767bf 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -24,15 +24,17 @@ description: |
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - sifive,rocket0
+-          - sifive,e5
+-          - sifive,e51
+-          - sifive,u54-mc
+-          - sifive,u54
+-          - sifive,u5
+-      - const: riscv
++    oneOf:
++      - items:
++          - enum:
++              - sifive,rocket0
++              - sifive,e5
++              - sifive,e51
++              - sifive,u54-mc
++              - sifive,u54
++              - sifive,u5
++          - const: riscv
++      - const: riscv    # Simulator only
+     description:
+       Identifies that the hart uses the RISC-V instruction set
+       and identifies the type of the hart.
+@@ -66,13 +68,6 @@ properties:
+       insensitive, letters in the riscv,isa string must be all
+       lowercase to simplify parsing.
+ 
+-  timebase-frequency:
+-    type: integer
+-    minimum: 1
+-    description:
+-      Specifies the clock frequency of the system timer in Hz.
+-      This value is common to all harts on a single system image.
+-
+   interrupt-controller:
+     type: object
+     description: Describes the CPU's local interrupt controller
+@@ -93,7 +88,6 @@ properties:
+ 
+ required:
+   - riscv,isa
+-  - timebase-frequency
+   - interrupt-controller
+ 
+ examples:
+-- 
+2.20.1
+
