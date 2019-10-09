@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A14CAD0ED8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A37A3D0EF6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 14:37:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729854AbfJIMc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 08:32:59 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:43818 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727029AbfJIMc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:32:59 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x99CWfZZ083947;
-        Wed, 9 Oct 2019 07:32:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570624361;
-        bh=wy74BV+gADxjYq84q/3icEqfPmppjgnaKhtU7G9oYJM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yuh5FDLTaWIkFnM/ECeh1Gucupgc11l0TsYvbWxZxIrVMv/ua5k3ONVZoGs4CTwRS
-         3Mq04p2jAnku+Djw/x8Y6NjxtbwjwlN+fgHc6TTBVTQklkEeaTMQH8ShUL5vmrFPg4
-         gaONubkEn9so8UAclt9I6Rtuymp0Hg9Kh4DNI1Fw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x99CWf4p090522
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Oct 2019 07:32:41 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 9 Oct
- 2019 07:32:37 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 9 Oct 2019 07:32:37 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x99CWbNS081004;
-        Wed, 9 Oct 2019 07:32:40 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>
-CC:     Jacopo Mondi <jacopo@jmondi.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v4 3/3] media: ov5640: Make 2592x1944 mode only available at 15 fps
-Date:   Wed, 9 Oct 2019 07:35:10 -0500
-Message-ID: <20191009123510.19106-4-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191009123510.19106-1-bparrot@ti.com>
-References: <20191009123510.19106-1-bparrot@ti.com>
+        id S1729784AbfJIMhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 08:37:54 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33468 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729686AbfJIMhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 08:37:54 -0400
+Received: by mail-ot1-f68.google.com with SMTP id 60so1576800otu.0;
+        Wed, 09 Oct 2019 05:37:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6CwE+WleS72Cglq2ryyesM0awR2kSRD2Yxkluzn7APk=;
+        b=V4XcxGZU4ITqNFPbWuvxOXqilCVHxGQH0w4Rq71e2fEfwWjG/s+NaImRqttwTVoNqH
+         rsgR431PydtjTAijA/r8qPYkoQ8cdIbluTObU81wIB2I+D6J8GDFpJW6H7cVWvNE1mvA
+         jmMI7OlQjNusphSfO2wUaDzgAXIl91y3W251HTkRGlWUN+pxaP6ESipeNAIVJHbxFhb2
+         +J6AWXGTJKDNJC+DTSKPeQISXKSLDWqRXUAFnCVVzaQ8r2sV+XY1KmTUvXQzSlrGGuup
+         F4Y3OIeDtAEsiQpl/L01KPBGsG9S+J5ibR2ZOSCff9w6RsNK9x4EOEBRZtqVjH6raPQm
+         NGzg==
+X-Gm-Message-State: APjAAAWjqZGooCE26DIZ2TdvwJTdPwzaP/NxCtMRuWFXJWLkE6B1O1k/
+        Fkqg7m+64VCjruYMc11ExyQBi04gl53WRqwuHJjTJLJT
+X-Google-Smtp-Source: APXvYqz5zw2Tt6D2rLTW+lX5UbJnIgsJKXgKxwXFD6DeSpxd/t7NC5YdV+EwbiruZ6Z37KEukRCmkal9wV8IPrLkV+g=
+X-Received: by 2002:a05:6830:1b75:: with SMTP id d21mr2669103ote.145.1570624673208;
+ Wed, 09 Oct 2019 05:37:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1570029619-43238-1-git-send-email-biju.das@bp.renesas.com> <1570029619-43238-3-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1570029619-43238-3-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Oct 2019 14:37:42 +0200
+Message-ID: <CAMuHMdV82CtQkQeYyvNbhr43Mb_=xGtBk3CgxgySh8dLjVQ+Ng@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] arm64: dts: renesas: r8a774b1: Add DU device to DT
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sensor data sheet clearly state that 2592x1944 only works at 15 fps
-make sure we don't try to miss configure the pll out of acceptable
-range.
+On Wed, Oct 2, 2019 at 5:20 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add the DU device to r8a774b1 SoC DT.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
----
- drivers/media/i2c/ov5640.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-index 065c9b61ecbd..5e495c833d32 100644
---- a/drivers/media/i2c/ov5640.c
-+++ b/drivers/media/i2c/ov5640.c
-@@ -1611,6 +1611,11 @@ ov5640_find_mode(struct ov5640_dev *sensor, enum ov5640_frame_rate fr,
- 	    !(mode->hact == 640 && mode->vact == 480))
- 		return NULL;
- 
-+	/* 2592x1944 only works at 15fps max */
-+	if ((mode->hact == 2592 && mode->vact == 1944) &&
-+	    fr > OV5640_15_FPS)
-+		return NULL;
-+
- 	return mode;
- }
- 
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
