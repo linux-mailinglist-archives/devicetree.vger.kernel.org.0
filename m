@@ -2,68 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C64BD0BB5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 11:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36A86D0BED
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2019 11:56:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727657AbfJIJr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 05:47:56 -0400
-Received: from mga04.intel.com ([192.55.52.120]:57234 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726734AbfJIJrz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 05:47:55 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Oct 2019 02:47:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,273,1566889200"; 
-   d="scan'208";a="200083428"
-Received: from linux.intel.com ([10.54.29.200])
-  by FMSMGA003.fm.intel.com with ESMTP; 09 Oct 2019 02:47:55 -0700
-Received: from [10.226.38.27] (unknown [10.226.38.27])
-        by linux.intel.com (Postfix) with ESMTP id 4E0855803E4;
-        Wed,  9 Oct 2019 02:47:52 -0700 (PDT)
-Subject: Re: [PATCH v1 2/2] mmc: sdhci-of-arasan: Add Support for Intel LGM
- SDXC
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>, ulf.hansson@linaro.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        michal.simek@xilinx.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-References: <20191003040032.37696-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20191003040032.37696-3-vadivel.muruganx.ramuthevar@linux.intel.com>
- <2cbda555-42d2-392c-0887-09cae4a35dce@intel.com>
- <38228535-8d4c-76e9-f568-c0dfdc3994b3@linux.intel.com>
- <20191009094005.GB32742@smile.fi.intel.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <00bb038f-f959-74bf-e598-45891e65d73e@linux.intel.com>
-Date:   Wed, 9 Oct 2019 17:47:51 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1730069AbfJIJ4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 05:56:15 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37907 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729817AbfJIJ4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 05:56:15 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iI8hZ-0006eU-Fy; Wed, 09 Oct 2019 11:56:13 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iI8hY-0000y2-Nh; Wed, 09 Oct 2019 11:56:12 +0200
+Date:   Wed, 9 Oct 2019 11:56:12 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Subject: Re: [PATCH 3/3] gpio: da9062: add driver support
+Message-ID: <20191009095612.einxiswkmhvipjht@pengutronix.de>
+References: <20190917105902.445-1-m.felsch@pengutronix.de>
+ <20190917105902.445-4-m.felsch@pengutronix.de>
+ <CACRpkdbbmVo3hem1xFqtmq9-htg9+QUXQpZoSyffdTZQ5kUo5Q@mail.gmail.com>
+ <20191007085159.uo366hmos6zk2ops@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20191009094005.GB32742@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191007085159.uo366hmos6zk2ops@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 11:49:11 up 144 days, 16:07, 97 users,  load average: 0.43, 0.48,
+ 0.39
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi Linus,
 
-On 9/10/2019 5:40 PM, Andy Shevchenko wrote:
-> On Wed, Oct 09, 2019 at 09:06:16AM +0800, Ramuthevar, Vadivel MuruganX wrote:
->> Hi Adrian,
->>
->>      Thank you for the Acked-by, will add *Acked-by* in the next-patch.
-> Please, stop top-posting.
->
-> Besides that, there is no need for next version if the only comments you got
-> are ACKs. Rb:s, etc.
-Sure, Thanks!
----
-Regards
-Vadivel
+On 19-10-07 10:51, Marco Felsch wrote:
+> Hi Linus,
+> 
+> thanks for you feedback.
+> 
+> On 19-10-04 21:27, Linus Walleij wrote:
+> > On Tue, Sep 17, 2019 at 12:59 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > 
+> > > +static int da9062_gpio_direction_input(struct gpio_chip *gc,
+> > > +                                      unsigned int offset)
+> > > +{
+> > > +       struct da9062_gpio *gpio = gpiochip_get_data(gc);
+> > > +       struct regmap *regmap = gpio->da9062->regmap;
+> > > +       struct gpio_desc *desc = gpiochip_get_desc(gc, offset);
+
+This won't work anymore since I moved the driver to pinctrl and can't
+include the drivers/gpio/gpiolib.h anymore. What is the right way to
+get the same result within the pinctrl space? There are three possible
+ways:
+1) Revert commit 1bd6b601fe196b6fbce2c93536ce0f3f53577cec which isn't
+   the best due to safeness.
+2) Set the gpio as active low hard as the other da90*-gpio drivers did
+3) Introduce a dt-binding (seems wrong because the information is
+   already there).
+4) "Re-implement" the gpiochip_get_desc() functionality driver
+   internally.
+
+Thanks for your advice.
+
+Regards,
+  Marco
+
+> > > +       unsigned int gpi_type;
+> > > +       int ret;
+> > > +
+> > > +       ret = da9062_gpio_set_pin_mode(regmap, offset, DA9062_PIN_GPI);
+> > > +       if (ret)
+> > > +               return ret;
+> > 
+> > Fair enough.
+> > 
+> > > +       /*
+> > > +        * If the gpio is active low we should set it in hw too. No worries
+> > > +        * about gpio_get() because we read and return the gpio-level. So the
+> > > +        * gpiolob active_low handling is still correct.
+> > 
+> > gpiolib?
+> 
+> Thanks for covering that.
+> 
+> > > +        *
+> > > +        * 0 - active low, 1 - active high
+> > > +        */
+> > > +       gpi_type = !gpiod_is_active_low(desc);
+> > > +       return regmap_update_bits(regmap, DA9062AA_GPIO_0_1 + (offset >> 1),
+> > > +                               DA9062AA_GPIO0_TYPE_MASK << DA9062_TYPE(offset),
+> > > +                               gpi_type << DA9062_TYPE(offset));
+> > > +}
+> > 
+> > So this does not affect the value out set by da9062_gpio_set()?
+> 
+> Please check [1] table 54, the datasheet says it is only gpi
+> (gpio-input). So I assume it doesn't affect out values.
+> 
+> [1] https://www.dialog-semiconductor.com/sites/default/files/da9062-a_datasheet_2v3.pdf
+> 
+> Unfortunately the other gpio-da90* drivers sets this as active low hard
+> within the driver. I wanted to avoid this here since it isn't always
+> true.
+> 
+> > What is the electrical effect of this then, really? To me that seems like
+> > something that is mostly going to be related to how interrupts
+> > trigger (like whether to trig on rising or falling edge) and then it
+> > should really be in the .set_type() callback, should it not?
+> 
+> Not only interrupts.. The dialog pmics has a lot of options to use this
+> pins e.g. you can set it as voltage-selection input. You saw the patches
+> I made for the regulator :)
