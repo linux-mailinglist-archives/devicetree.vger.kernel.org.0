@@ -2,141 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C7AD2705
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 12:18:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE63ED2728
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 12:28:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726304AbfJJKSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 06:18:24 -0400
-Received: from smtp-fw-6001.amazon.com ([52.95.48.154]:2443 "EHLO
-        smtp-fw-6001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbfJJKSY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 06:18:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1570702703; x=1602238703;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=gzt3BjERRKwc4CaUYcTEPU+kmi2VWRj9rm7SI3fPcl0=;
-  b=XDWKo5u6/miMwRab6aFZ6FGzvh7T3HN5XcjBrtpFQ0kiryTUkENJ6qRQ
-   WZ6lWHn4o8Ht0GEwZh+ef69RggH39k3epeS26wpAmxyre6gw/4ftKtL/T
-   Tb/X6PkGR4fafEMM4DXY1UL3PN099mcCX4e+T8U8f7+1KAd8lMB/A/Iiw
-   M=;
-X-IronPort-AV: E=Sophos;i="5.67,279,1566864000"; 
-   d="scan'208";a="421467619"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-a7fdc47a.us-west-2.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6001.iad6.amazon.com with ESMTP; 10 Oct 2019 10:18:18 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan2.pdx.amazon.com [10.170.41.162])
-        by email-inbound-relay-2b-a7fdc47a.us-west-2.amazon.com (Postfix) with ESMTPS id 9360FC5A7D;
-        Thu, 10 Oct 2019 10:18:17 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 10 Oct 2019 10:18:17 +0000
-Received: from [10.125.238.52] (10.43.160.180) by EX13D01EUB001.ant.amazon.com
- (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Thu, 10 Oct
- 2019 10:18:08 +0000
-Subject: Re: [PATCH v3 1/2] dt-bindings: edac: al-mc-edac: Amazon's Annapurna
- Labs Memory Controller EDAC
-To:     Rob Herring <robh@kernel.org>
-CC:     <mark.rutland@arm.com>, <bp@alien8.de>, <mchehab@kernel.org>,
-        <james.morse@arm.com>, <davem@davemloft.net>,
-        <gregkh@linuxfoundation.org>, <paulmck@linux.ibm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-edac@vger.kernel.org>, <dwmw@amazon.co.uk>,
-        <benh@kernel.crashing.org>, <hhhawa@amazon.com>,
-        <ronenk@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <amirkl@amazon.com>, <barakw@amazon.com>
-References: <1570103363-21486-1-git-send-email-talel@amazon.com>
- <1570103363-21486-2-git-send-email-talel@amazon.com>
- <20191009191625.GA8179@bogus>
-From:   "Shenhar, Talel" <talel@amazon.com>
-Message-ID: <645f7af1-cefc-0af2-9fbd-e73e5305a268@amazon.com>
-Date:   Thu, 10 Oct 2019 13:18:03 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1727041AbfJJK2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 06:28:05 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:56694 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725601AbfJJK2E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 06:28:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Type:MIME-Version:References:
+        In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=sOQUv+9i40QZHWyHeG0HLDmykEtAPA1EbXs7LAn8Tis=; b=fBYaHSwyyx5YEbrmp3azRgZ7L
+        fuRMzw41YEUaaY1ZvwlRHiAGZgPmMlo5UEvN7LVSAGgZIVTilOrgeHCIYTelEXOgOu3uWsg4aKhyz
+        IFBX67ZIl0KFSANsLaKtO2//+0WKtcPyRZSaL2ThbWdQPEHEzk7T9kShVGGo7xDBNqoAM=;
+Received: from leintor.e.ffh.zone ([81.3.6.94] helo=localhost)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iIVfm-0001Mc-Ht; Thu, 10 Oct 2019 12:27:57 +0200
+Received: from [::1] (helo=localhost)
+        by localhost with esmtp (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iIVfh-0006GK-E4; Thu, 10 Oct 2019 12:27:49 +0200
+Date:   Thu, 10 Oct 2019 12:25:01 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        =?ISO-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        Eyal Reizer <eyalr@ti.com>, Guy Mishol <guym@ti.com>,
+        John Stultz <john.stultz@linaro.org>
+Subject: Re: [PATCH] ARM: dts: Use level interrupt for omap4 & 5 wlcore
+Message-ID: <20191010122501.750d0485@kemnade.info>
+In-Reply-To: <CAPDyKFqUL1Cso1H-sNcWFngWiLHLD76Uk9PtN2TkKS_Kd6TKJw@mail.gmail.com>
+References: <20191009164344.41093-1-tony@atomide.com>
+        <CAPDyKFqUL1Cso1H-sNcWFngWiLHLD76Uk9PtN2TkKS_Kd6TKJw@mail.gmail.com>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20191009191625.GA8179@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.43.160.180]
-X-ClientProxiedBy: EX13D08UWC002.ant.amazon.com (10.43.162.168) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/vB1u7WO2oI=w1jDvqt9C2Fh"; protocol="application/pgp-signature"
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--Sig_/vB1u7WO2oI=w1jDvqt9C2Fh
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On 10/9/2019 10:16 PM, Rob Herring wrote:
-> On Thu, Oct 03, 2019 at 02:49:22PM +0300, Talel Shenhar wrote:
->> Document Amazon's Annapurna Labs Memory Controller EDAC SoC binding.
->>
->> Signed-off-by: Talel Shenhar <talel@amazon.com>
->> ---
->>   .../bindings/edac/amazon,al-mc-edac.yaml           | 40 ++++++++++++++++++++++
->>   1 file changed, 40 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
->> new file mode 100644
->> index 0000000..33da051
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
->> @@ -0,0 +1,40 @@
->> +# SPDX-License-Identifier: GPL-2.0
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/edac/amazon,al-mc-edac.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amazon's Annapurna Labs Memory Controller EDAC
->> +
->> +maintainers:
->> +  - Talel Shenhar <talel@amazon.com>
->> +  - Talel Shenhar <talelshenhar@gmail.com>
->> +
->> +description: |
->> +  EDAC node is defined to describe on-chip error detection and correction for
->> +  Amazon's Annapurna Labs Memory Controller.
->> +
->> +properties:
->> +
->> +  compatible:
->> +    - const: "amazon,al-mc-edac"
-> Fails 'make dt_binding_check'. Drop the '-' as a property is not a list.
->
-> The "" are also unnecessary.
-ack, shall be part of v4
->
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +examples:
->> +  - |
->> +    edac@f0080000 {
->> +      compatible = "amazon,al-mc-edac";
->> +      reg = <0x0 0xf0080000 0x0 0x00010000>;
->> +      interrupt-parent = <&amazon_al_system_fabric>;
->> +      interrupt-names = "ue";
-> Need to document the name or drop as -names on a single entry is
-> pointless.
+On Thu, 10 Oct 2019 09:29:45 +0200
+Ulf Hansson <ulf.hansson@linaro.org> wrote:
 
-actually, there are 2 interrupts possible here. so will also fix the 
-maxItems of interrupts. will also add the documentation.
+> On Wed, 9 Oct 2019 at 18:43, Tony Lindgren <tony@atomide.com> wrote:
+> >
+> > Commit 572cf7d7b07d ("ARM: dts: Improve omap l4per idling with wlcore e=
+dge
+> > sensitive interrupt") changed wlcore interrupts to use edge interrupt b=
+ased
+> > on what's specified in the wl1835mod.pdf data sheet.
+> >
+> > However, there are still cases where we can have lost interrupts as
+> > described in omap_gpio_unidle(). And using a level interrupt instead of=
+ edge
+> > interrupt helps as we avoid the check for untriggered GPIO interrupts in
+> > omap_gpio_unidle().
+> >
+> > And with commit e6818d29ea15 ("gpio: gpio-omap: configure edge detection
+> > for level IRQs for idle wakeup") GPIOs idle just fine with level interr=
+upts.
+> >
+> > Let's change omap4 and 5 wlcore users back to using level interrupt
+> > instead of edge interrupt. Let's not change the others as I've only seen
+> > this on omap4 and 5, probably because the other SoCs don't have l4per i=
+dle
+> > independent of the CPUs. =20
+>=20
+> I assume this relates to the implementation for support of SDIO IRQs
+> (and wakeups) in the omap_hsmmc driver?
+>=20
+> In any case, just wanted to share some experience in the field, feel
+> free to do whatever you want with the below information. :-)
+>=20
+> So, while I was working for ST-Ericsson on ux500, we had a very
+> similar approach to re-route the SDIO bus DAT1 line to a GPIO IRQ as a
+> remote/system wakeup (vendor hack in the mmci driver). In other words,
+> while runtime suspending the mmc host controller, we configured a GPIO
+> IRQ, via an always on logic, to capture the IRQ instead. The point is,
+> I believe we may have ended up looking at similar problems as you have
+> been facing on OMAP.
+>=20
+> In hindsight, I realized that we actually violated the SDIO spec by
+> using this approach. More precisely, during runtime suspend we do
+> clock gating and then re-routes the IRQ. However, clock gating isn't
+> allowed before the SDIO bus width have been changed back from 4-bit
+> into 1-bit. This last piece of action, would be an interesting change
+> to see if it could affect the behaviour, but unfortunately I have
+> never been able to check this.
+>=20
+> The tricky part, is that we can't issue a command to change the bus to
+> 1-bit in omap_hsmmc ->runtime_suspend() callback (this needs to be
+> managed by the core in some way). However, we can make a simple test,
+> by simply always limit the bus width to 1-bit, as that should mean we
+> should conform to the SDIO spec.
+>=20
 
-shall be part of v4.
+somehow matches that with my experiences with libertas + omap3.
+SDIO irq seems to work only with runtime force-enabled in omap_hsmmc
+or using 1bit mode.
+And yes, I tried switching mode to 1bit in runtime_suspend() but as
+you said, that cannot easily done.
 
->
->> +      interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
->> +    };
->> -- 
->> 2.7.4
->>
+Regards,
+Andreas
+
+--Sig_/vB1u7WO2oI=w1jDvqt9C2Fh
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEPIWxmAFyOaBcwCpFl4jFM1s/ye8FAl2fBv0ACgkQl4jFM1s/
+ye9O6A//VlTPsnB/dywzw2PxbTL+qdPHRvN6KVpZQl02DumTowmz745M1jl8KkkW
+Z+6BdzNwQONwc+IuO/aTuImt9/+E3b2fLaOnbIcIDc8X0AHZvyWFU5dSCPcHzeLI
+WZUgAR3VTetf1YOAUaUinBFHXY9r9MMcJ9YUC9IkUvkTf5eoeHJ+My33SKWbJRTM
+U0227vam43JppT6xGIKmEK8R78r3qC8q12MZ4PXLdC93hpSrdGm5QhTz4gYFSkpu
+1lFubFJVeoV/vnCR1vlIKCY7J2bmFSFVqt734hZrJSIakYwjdjjek4FtCjWfmxux
+9aOR91CbOYw8am+YOWz/4txN/Bu9IC3BY6J0TkHbbf/kSrOrRGbNE81Ai2WFO40d
+kKR9rFL+PNPEhQNxotrYd8WTCgONvMI0I1sndfA8Q5byO+dIi/j1eNGglRRjXEaw
+t3GpmYDhHd4PapF2rEiAXTNsgKamwgUG2K7KnBVzDMxjqBPMv5FXgP8dv1uh3hJ9
+rZXih6LHZNT74nJiFPD1tlsA0R5rZOyIfRzop3H/AfEbUlWvzfJUL+lcjyKe/euy
+Lw76b2S1NS16KDoG22/XKFuRsMIqstO4+GBkbycSseHxP6CLQ4tD3aIwT7A1wVvv
+Doet2Uxewz4al/93OVO+/+5Z1oqX0ZRRwM7MQILJZKvFtiMsqLc=
+=SurR
+-----END PGP SIGNATURE-----
+
+--Sig_/vB1u7WO2oI=w1jDvqt9C2Fh--
