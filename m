@@ -2,70 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF623D3393
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 395AED339E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726977AbfJJVm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 17:42:26 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:34002 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726986AbfJJVm0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 17:42:26 -0400
-Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iIgCU-0007G3-KC; Thu, 10 Oct 2019 23:42:22 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Sean Paul <seanpaul@chromium.org>, devicetree@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix override mode for rk3399-kevin panel
-Date:   Thu, 10 Oct 2019 23:42:21 +0200
-Message-ID: <29647267.xx61tplHq2@phil>
-In-Reply-To: <20191008124949.1.I674acd441997dd0690c86c9003743aacda1cf5dd@changeid>
-References: <20191008124949.1.I674acd441997dd0690c86c9003743aacda1cf5dd@changeid>
+        id S1726983AbfJJVsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 17:48:39 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34703 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725867AbfJJVsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 17:48:39 -0400
+Received: by mail-ot1-f66.google.com with SMTP id m19so6268940otp.1;
+        Thu, 10 Oct 2019 14:48:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TYfTmULpptQFnm79PdIINv8ysFiQ3dFmgzNIv1T7qTk=;
+        b=GpYBHSkyDqs+WUwqL2ULVAWjEHztVMp/iIXlvL5mB8OS5U/cOEjANjsY/lWsTqzaxZ
+         QPhXuyK4s7MAmxf+qfG1cmpsGE9hjOjq43LInV8f5w0cmFdFB85Dn2L3+CWyb9V0rJ+9
+         bxUVTqr2LsT21dy8Q2s12q9P8ZW52L2YQiZq2JMT8xBHIvryIVTYKVsDJje1d5jJilDZ
+         2njDBamYIivOsb2iGeYfxNXdoVuM6xBI2hTyQ+7EsBmBAYTbScdIpLS/xyigH76rkPLK
+         sKYbAwNM30wCVxjBo3PkgcgaVQ+wY1RK5YDYfnqPuPyc8+0OhAUIx2Rv5Bt8B4Dr9189
+         KYoA==
+X-Gm-Message-State: APjAAAWZhIWAzWAcgCCHKfQsBizk0DfeG6bTn6haZBBi6DdsD4lp0gWz
+        rNttzXHAgtwltBKA0hw3UQ==
+X-Google-Smtp-Source: APXvYqxECu31goFts3ashMmwgeYTiD3iatbSbg6PFYYV5QA+CSiUobjI4SjbAkfq5ICCGt0uV6Nyfg==
+X-Received: by 2002:a9d:61cd:: with SMTP id h13mr176279otk.264.1570744117843;
+        Thu, 10 Oct 2019 14:48:37 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 67sm2107233otq.34.2019.10.10.14.48.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2019 14:48:36 -0700 (PDT)
+Date:   Thu, 10 Oct 2019 16:48:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        arnd@arndb.de, gregkh@linuxfoundation.org, michal.simek@xilinx.com
+Subject: Re: [RFC PATCHv2 1/3] dt-bindings: misc: Add dt bindings for flex
+ noc Performance Monitor
+Message-ID: <20191010214835.GA4523@bogus>
+References: <2de75a74ef4086090c532d3b80b7d6dcd115e45e.1569474867.git.shubhrajyoti.datta@xilinx.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2de75a74ef4086090c532d3b80b7d6dcd115e45e.1569474867.git.shubhrajyoti.datta@xilinx.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 8. Oktober 2019, 21:49:54 CEST schrieb Douglas Anderson:
-> When I re-posted Sean's original commit to add the override mode for
-> the kevin panel, for some reason I didn't notice that the pixel clock
-> wasn't quite right.  Looking at /sys/kernel/debug/clk/clk_summary on
-> downstream kernels it can be seen that the VOP clock is supposed to be
-> 266,666,667 Hz achieved by dividing the 800 MHz PLL by 3.
+On Thu, Sep 26, 2019 at 10:46:24AM +0530, Shubhrajyoti Datta wrote:
+> Add dt bindings for flexnoc Performance Monitor.
+> The flexnoc counters for read and write response and requests are
+> supported.
 > 
-> Looking at history, it seems that even Sean's first patch [1] had this
-> funny clock rate.  I'm not sure where it came from since the commit
-> message specifically mentioned 26666 kHz and the Chrome OS tree [2]
-> can be seen to request 266667 kHz.
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> ---
+>  .../devicetree/bindings/misc/xlnx,flexnoc.txt      | 24 ++++++++++++++++++++++
+
+bindings/perf/
+
+Please convert this to a schema. See 
+Documentation/devicetree/writing-schema.rst.
+
+>  1 file changed, 24 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt
 > 
-> In any case, let's fix it up.  This together with my patch [3] to do
-> the proper rounding when setting the clock rate makes the VOP clock
-> more proper as seen in /sys/kernel/debug/clk/clk_summary.
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt b/Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt
+> new file mode 100644
+> index 0000000..6b533bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/xlnx,flexnoc.txt
+> @@ -0,0 +1,24 @@
+> +* Xilinx Flexnoc Performance Monitor driver
+
+Bindings are for h/w blocks, not drivers.
+
+> +
+> +The FlexNoc Performance Monitor has counters for monitoring
+> +the read and the write transaction counter.
+> +
+> +Required properties:
+> +- compatible: "xlnx,flexnoc-pm-2.7"
+> +- reg : Address and length of register sets for each device in
+> +       "reg-names"
+> +- reg-names : The names of the register addresses corresponding to the
+> +               registers filled in "reg"
+> +               - funnel: base address of the funnel registers
+> +               - baselpd: base address of the LPD PM registers
+> +               - basefpd: base address FPD PM registers
+
+Is this really all one h/w block.
+
+FlexNoC is an interconnect, right? Is there more to it than just 
+perfmon?
+
+> +
+> +Example:
+> +++++++++
+> +performance-monitor@f0920000 {
+> +               compatible = "xlnx,flexnoc-pm-2.7";
+> +               reg-names = "funnel", "baselpd", "basefpd";
+> +               reg = <0x0 0xf0920000 0x0 0x1000>,
+> +                       <0x0 0xf0980000 0x0 0x9000>,
+> +                       <0x0 0xf0b80000 0x0 0x9000>;
+> +};
+> --
+> 2.1.1
 > 
-> [1] https://lore.kernel.org/r/20180206165626.37692-4-seanpaul@chromium.org
-> [2] https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.4/drivers/gpu/drm/panel/panel-simple.c#1172
-> [3] https://lkml.kernel.org/r/20191003114726.v2.1.Ib233b3e706cf6317858384264d5b0ed35657456e@changeid
-> 
-> Fixes: 84ebd2da6d04 ("arm64: dts: rockchip: Specify override mode for kevin panel")
-> Cc: Sean Paul <seanpaul@chromium.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> This email and any attachments are intended for the sole use of the named recipient(s) and contain(s) confidential information that may be proprietary, privileged or copyrighted under applicable law. If you are not the intended recipient, do not read, copy, or forward this email message or any attachments. Delete this email message and any attachments immediately.
 
-applied as fix for 5.4
+We can't accept confidential emails.
 
-Thanks
-Heiko
-
-
+Rob
