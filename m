@@ -2,177 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D8DD2C0C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E91D2C15
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726078AbfJJOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 10:04:12 -0400
-Received: from smtp-fw-2101.amazon.com ([72.21.196.25]:26652 "EHLO
-        smtp-fw-2101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725923AbfJJOEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 10:04:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1570716251; x=1602252251;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=XwGL70t454LegYE7GCchMbvmQ2PqMa2pltoRa32OItM=;
-  b=jQwIJqA8CLbo8oDTraE9puZssgxYdMofluM3CwwH6KH+kGm2PVUXQxje
-   zsDijHcXwGxnSDNguaGrvkTgLJxczywUThrnxWBjsTQknkK41yFoJUYeK
-   fg+/kaUoWj7SPD+pgV193zETmTHneCNQ2bVECBWHOj9YAP1gCJ+Lbpqkw
-   0=;
-X-IronPort-AV: E=Sophos;i="5.67,280,1566864000"; 
-   d="scan'208";a="757243402"
-Received: from iad6-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-1a-7d76a15f.us-east-1.amazon.com) ([10.124.125.2])
-  by smtp-border-fw-out-2101.iad2.amazon.com with ESMTP; 10 Oct 2019 14:04:08 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1a-7d76a15f.us-east-1.amazon.com (Postfix) with ESMTPS id B86BAA213E;
-        Thu, 10 Oct 2019 14:04:03 +0000 (UTC)
-Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
- EX13MTAUEB001.ant.amazon.com (10.43.60.96) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 10 Oct 2019 14:04:03 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (10.43.60.96) by
- EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 10 Oct 2019 14:04:02 +0000
-Received: from [10.107.3.25] (10.107.3.25) by mail-relay.amazon.com
- (10.43.60.129) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
- Transport; Thu, 10 Oct 2019 14:03:59 +0000
-Subject: Re: [PATCH v6 3/3] edac: Add support for Amazon's Annapurna Labs L2
- EDAC
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1726244AbfJJOF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 10:05:27 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:43736 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726227AbfJJOF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 10:05:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=YKb2E0bqtC+1TS6bbf5/9WOYFCNWex11PfY1IyHGgs0=; b=AVWXSHoeV5dXwKMHtFgapdpHe
+        luf83G9y5Cvk+3H6TVEWgYuBPnHWJKjh7dQq0Ubl6R+3OjeeZq/SnQGXaeQBwow27JLd3OinXxuhW
+        NaHgIzrRmwUdGbGojf/VkSpa/I0rbQPcSHLi3Kb7DDobrloTpriQK1++chVZZl7oT4+qY=;
+Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1iIZ45-0001Vb-9c; Thu, 10 Oct 2019 14:05:13 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id DC38CD0003A; Thu, 10 Oct 2019 15:05:12 +0100 (BST)
+Date:   Thu, 10 Oct 2019 15:05:12 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
         Mark Rutland <mark.rutland@arm.com>,
-        James Morse <james.morse@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        David Miller <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>, <daniel@iogearbox.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>, <benh@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        Talel Shenhar <talel@amazon.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        "Hanoch, Uri" <hanochu@amazon.com>
-References: <20191007151730.7705-1-hhhawa@amazon.com>
- <20191007151730.7705-4-hhhawa@amazon.com>
- <CAL_JsqLZOHx=3d9jPy+7y0a92wA-VKEDQ4PVNvo6L8fRe7xJCQ@mail.gmail.com>
-From:   "Hawa, Hanna" <hhhawa@amazon.com>
-Message-ID: <872efced-ec4d-5f24-fca5-c501ed96e570@amazon.com>
-Date:   Thu, 10 Oct 2019 17:03:57 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH v3 1/2] ASOC: Add ADAU7118 8 Channel PDM-to-I2S/TDM
+ Converter driver
+Message-ID: <20191010140512.GT2036@sirena.org.uk>
+References: <20191010074234.7344-1-nuno.sa@analog.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLZOHx=3d9jPy+7y0a92wA-VKEDQ4PVNvo6L8fRe7xJCQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZYwTRRUThkGj9JQ7"
+Content-Disposition: inline
+In-Reply-To: <20191010074234.7344-1-nuno.sa@analog.com>
+X-Cookie: Be careful!  UGLY strikes 9 out of 10!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
+--ZYwTRRUThkGj9JQ7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/10/2019 2:19 AM, Rob Herring wrote:
-> On Mon, Oct 7, 2019 at 10:18 AM Hanna Hawa <hhhawa@amazon.com> wrote:
->>
->> Adds support for Amazon's Annapurna Labs L2 EDAC driver to detect and
->> report L2 errors.
->>
->> Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
->> ---
->>   MAINTAINERS               |   5 +
->>   drivers/edac/Kconfig      |   8 ++
->>   drivers/edac/Makefile     |   1 +
->>   drivers/edac/al_l2_edac.c | 251 ++++++++++++++++++++++++++++++++++++++
->>   4 files changed, 265 insertions(+)
->>   create mode 100644 drivers/edac/al_l2_edac.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 7887a62dc843..0eabcfcf91a9 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -748,6 +748,11 @@ M: Hanna Hawa <hhhawa@amazon.com>
->>   S:     Maintained
->>   F:     drivers/edac/al_l1_edac.c
->>
->> +AMAZON ANNAPURNA LABS L2 EDAC
->> +M:     Hanna Hawa <hhhawa@amazon.com>
->> +S:     Maintained
->> +F:     drivers/edac/al_l2_edac.c
->> +
->>   AMAZON ANNAPURNA LABS THERMAL MMIO DRIVER
->>   M:     Talel Shenhar <talel@amazon.com>
->>   S:     Maintained
->> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
->> index e8161d7c7469..cb394aff1cab 100644
->> --- a/drivers/edac/Kconfig
->> +++ b/drivers/edac/Kconfig
->> @@ -82,6 +82,14 @@ config EDAC_AL_L1
->>            for Amazon's Annapurna Labs SoCs.
->>            This driver detects errors of L1 caches.
->>
->> +config EDAC_AL_L2
->> +       tristate "Amazon's Annapurna Labs L2 EDAC"
-> 
-> I still think this should be an "A57 L2 ECC" driver, but if no one
-> cares I'll shut up and the 2nd person can rename everything.
+On Thu, Oct 10, 2019 at 09:42:33AM +0200, Nuno S=E1 wrote:
 
-> 
->> +       depends on ARCH_ALPINE
-> 
-> || COMPILE_TEST
+> +			/* power on */
+> +			ret =3D regulator_enable(st->iovdd);
+> +			if (ret)
+> +				return ret;
+> +
+> +			/* there's no timing constraints before enabling dvdd */
+> +			ret =3D regulator_enable(st->dvdd);
+> +			if (ret) {
+> +				regulator_disable(st->iovdd);
+> +				return ret;
+> +			}
 
-Will be add in next patchset.
+You could use regulator_bulk_enable() here (and similarly on
+disable) but it doesn't fundamentally matter - they do guarantee
+that they'll do things in sequence, though they don't wait for
+the ramp to complete before kicking off the next enable in the
+sequence which can be an issue for some hardware.
 
-> 
-> Maybe it needs an ARM64 dependency too in this case?
+--ZYwTRRUThkGj9JQ7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Yes, it need ARM64 dependency, I'll add.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Hanna
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2fOpUACgkQJNaLcl1U
+h9BEPwf/VxMhiR0z6PYlab1hBh6JMo2K1WIXb2S3zahILtM5SXxYMmwRh16GuG0o
+pIrwnxc5hMD4+bqp6vYu9QaISbKB8UoBsAr+SU5b/eHsba3r0Jbl/wNdTdbgCVus
+ZCYLHYtnWZrx9okSggQ9viUDkqls7dLCPMfu/+qV5NiDAasZJZUIEjkaUdfAhYwS
+z0yrot94R5p3QdNEI5ds7y5ZuKWGDEcWJNU3PekJ+putlZyUF8qa9/nV+/uZigQ/
+hH+oMbQGEg9pgx/neQN2VxC4hIXtXcaDMT4WuEVt2HjWCK2xcFrauNzAg7HkdV0z
+EkVGgsiWwDQG59xutrTflWxmmQCOtw==
+=S+PA
+-----END PGP SIGNATURE-----
 
-> 
->> +       help
->> +         Support for L2 error detection and correction
->> +         for Amazon's Annapurna Labs SoCs.
->> +         This driver detects errors of L2 caches.
->> +
-> 
->> +
->> +       ret = platform_driver_register(&al_l2_edac_driver);
->> +       if (ret) {
->> +               pr_err("Failed to register %s (%d)\n", DRV_NAME, ret);
->> +               return ret;
->> +       }
->> +
->> +       edac_l2_device = platform_device_register_simple(DRV_NAME, -1, NULL, 0);
->> +       if (IS_ERR(edac_l2_device)) {
->> +               pr_err("Failed to register EDAC AL L2 platform device\n");
->> +               return PTR_ERR(edac_l2_device);
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +static void __exit al_l2_exit(void)
->> +{
->> +       platform_device_unregister(edac_l2_device);
->> +       platform_driver_unregister(&al_l2_edac_driver);
->> +}
->> +
->> +late_initcall(al_l2_init);
->> +module_exit(al_l2_exit);
->> +
->> +MODULE_LICENSE("GPL v2");
->> +MODULE_AUTHOR("Hanna Hawa <hhhawa@amazon.com>");
->> +MODULE_DESCRIPTION("Amazon's Annapurna Lab's L2 EDAC Driver");
->> --
->> 2.17.1
->>
+--ZYwTRRUThkGj9JQ7--
