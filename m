@@ -2,152 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71392D1DFC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 03:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3851DD1E0D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 03:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732219AbfJJB2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 21:28:35 -0400
-Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:57600 "EHLO
-        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731751AbfJJB2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 21:28:35 -0400
-Received: from pps.filterd (m0109334.ppops.net [127.0.0.1])
-        by mx0a-00082601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9A1IJE4011219;
-        Wed, 9 Oct 2019 18:26:54 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=facebook;
- bh=zd3aZvwzJYk15BUYctpAmmc/25qqoMu0W19HM5Xbm3g=;
- b=flC9cBshTcwUJs9/sFTcv78BMG1ZJ4XMUTZFyahcGgckoN3100+jyEjD5vqZhTT7XTJ5
- onsqWd2Lg7F9U20/Z4AmsMWIbFeDnF3/7A1ZHtQp8QYRQGIJUjuFuLcgLAELVemM/4Fz
- Sg9Z4mBXHekmMuC/df/xHTGt3C0cdYH18sA= 
-Received: from maileast.thefacebook.com ([163.114.130.16])
-        by mx0a-00082601.pphosted.com with ESMTP id 2vgpq9tgm8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 09 Oct 2019 18:26:53 -0700
-Received: from ash-exhub202.TheFacebook.com (2620:10d:c0a8:83::6) by
- ash-exhub102.TheFacebook.com (2620:10d:c0a8:82::f) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 9 Oct 2019 18:26:52 -0700
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com (100.104.31.183)
- by o365-in.thefacebook.com (100.104.36.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 9 Oct 2019 18:26:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NfEld6QuwLdkFO1edUxMMvEAFjCFAoKjvoUeGlljLclr7jCatlZUOiQ66dqTcv8YCaJNu7RkMcS/UrTsxooiUDzr6vdsJuOtjyouZsFvSjDO9AZO9SDjTDky9eFJbwx1i6ROmBFq6I2eEij0gahbQFVfyUzG7BYfPymHpQMWy0wbs8U7Nl01vdBjZdj6GswXt7ojWF9GiepkHqLtHEZGfkSnhduRr2Sf3ho9Ejsm60vd/SP8NeoLK7YzXZlspeuaHkpUaeMcj9Y0S/Qfxrn8d2sB/KHfFpoWNZfCz4AhGCdFfotv70CGG/aU6wW8fsbA2CvlQtzQrp95/qf1QD7u9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zd3aZvwzJYk15BUYctpAmmc/25qqoMu0W19HM5Xbm3g=;
- b=OVw1XNduZGdfy13c8lzT/IQEZSXgpfnHcf9RbxWst/zFicHp8uzEHf8xSPtvLjFui9J34w2up76zozSdb2wPvIReXAXUS8SZw6/TnCuNjemnVGNGQ9zuc0SsuC/ifCLRd6T6FOZxtgvh0/wkBaQNm+4PdGu+Jet2qBT4abAQMI7BdigAUCxWaKoyFZfSBwylOzYYOB/adbzkJdGmLNp6GGzNbSyCFlhMihcXwAPy+LTbU1zTilzXY6yhydiamMFH70iR9eEfwRywKVWalB6qSwTIBVdGlH3zIZ88jNCZoc3GobXPkbh3oKTnHR+R0V7lWFqkXho6oWzoTM2AD2vuxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fb.com; dmarc=pass action=none header.from=fb.com; dkim=pass
- header.d=fb.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
- s=selector2-fb-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zd3aZvwzJYk15BUYctpAmmc/25qqoMu0W19HM5Xbm3g=;
- b=al6ceIMGbwpGZetnkvf7EEro3QSPqoEZ/bV08/F6ktBYRayg1KnBhaIWI7U1OTNGjt1tAXkeobkPCNNn+eQECuoZY/SJbkrvw/ymrgrLFUdrrqk03U/EUpg6RY+WPfUddp7Q1e4e93euXlv1RtLtZVVJVckluk2rDaRfxX6qKKU=
-Received: from MWHPR15MB1216.namprd15.prod.outlook.com (10.175.2.17) by
- MWHPR15MB1375.namprd15.prod.outlook.com (10.173.233.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.16; Thu, 10 Oct 2019 01:26:50 +0000
-Received: from MWHPR15MB1216.namprd15.prod.outlook.com
- ([fe80::24c9:a1ce:eeeb:9246]) by MWHPR15MB1216.namprd15.prod.outlook.com
- ([fe80::24c9:a1ce:eeeb:9246%10]) with mapi id 15.20.2347.016; Thu, 10 Oct
- 2019 01:26:49 +0000
-From:   Tao Ren <taoren@fb.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-CC:     Wolfram Sang <wsa@the-dreams.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cedric Le Goater <clg@kaod.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-Subject: Re: [PATCH] i2c: aspeed: fix master pending state handling
-Thread-Topic: [PATCH] i2c: aspeed: fix master pending state handling
-Thread-Index: AQHVfud35WuTlVbA0UqacW6NAtrttKdTBpsAgAAPJoA=
-Date:   Thu, 10 Oct 2019 01:26:49 +0000
-Message-ID: <43ab0316-78dd-b7b0-c04e-e039d38c3d45@fb.com>
-References: <20191009212034.20325-1-jae.hyun.yoo@linux.intel.com>
- <20191010003234.GA12710@google.com>
-In-Reply-To: <20191010003234.GA12710@google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: CO1PR15CA0045.namprd15.prod.outlook.com
- (2603:10b6:101:1f::13) To MWHPR15MB1216.namprd15.prod.outlook.com
- (2603:10b6:320:22::17)
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        id S1732317AbfJJBeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 21:34:50 -0400
+Received: from mga06.intel.com ([134.134.136.31]:50444 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731134AbfJJBeu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 21:34:50 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Oct 2019 18:34:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,278,1566889200"; 
+   d="scan'208";a="393873539"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga005.fm.intel.com with ESMTP; 09 Oct 2019 18:34:48 -0700
+Received: from [10.226.38.27] (unknown [10.226.38.27])
+        by linux.intel.com (Postfix) with ESMTP id 9DAFF5803E4;
+        Wed,  9 Oct 2019 18:34:45 -0700 (PDT)
+Subject: Re: [PATCH v1 0/2] spi: cadence-qspi: Add cadence-qspi support for
+ Intel LGM SoC
+To:     Vignesh Raghavendra <vigneshr@ti.com>, broonie@kernel.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+References: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <c4555df5-89d5-e8a6-bed4-887c23ac4f0f@ti.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <89e49834-8697-2917-d666-769969f074a4@linux.intel.com>
+Date:   Thu, 10 Oct 2019 09:34:44 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [2620:10d:c090:200::2:8309]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b2305e0f-9df1-4636-1ec6-08d74d20ec26
-x-ms-traffictypediagnostic: MWHPR15MB1375:
-x-microsoft-antispam-prvs: <MWHPR15MB1375A85B19041D02320E947DB2940@MWHPR15MB1375.namprd15.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 018632C080
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(376002)(39860400002)(396003)(136003)(346002)(189003)(199004)(229853002)(54906003)(81166006)(65806001)(65956001)(81156014)(7736002)(7416002)(6486002)(102836004)(110136005)(36756003)(58126008)(14444005)(256004)(8936002)(305945005)(71200400001)(71190400001)(8676002)(5660300002)(316002)(11346002)(46003)(14454004)(478600001)(52116002)(99286004)(66946007)(486006)(76176011)(446003)(476003)(86362001)(6246003)(2906002)(6512007)(186003)(386003)(6436002)(6506007)(2616005)(31686004)(53546011)(31696002)(25786009)(6116002)(66556008)(64756008)(66446008)(66476007)(4326008);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR15MB1375;H:MWHPR15MB1216.namprd15.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: fb.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rT2XYrovIIpFfK/FOI3M/V27xRgRs1mXhiR5PctkgC3y3VmsvQ6K/qGIRUY2D94uesFvIRwPJGS8UMc5Z40+45E9P8Gev+XJf65U1sDZ1MzlrFLvxKu1X/4hdyIhldxzh+6y533KZprDVw+Mq5+bQ96ALYCMQePQlVdNGPZsZ6+GPWNYaANTDH4t3RmLZhOgLWy3f87QdQVByw3yuQRAtAtedgx/KWByBufF24cyGFwv6N+Wi+DmKPGS7f/ue0/SXvL3KZQwFhcFUlz6n5d7T1iUWicSTz3dkn+lqta2qkD5WMTfxRlX2R6TKw0a/g/cHXfJ650sI2yltAe1Jf1SkGjh3gM6aTZpgtL/VFkPinj4/5eCCsrvjwMw8ifAeMUJNRTKEbeDc2NSjMTL7yfyEeoYYw8DSH99UjLPEp0hoIQ=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3DC2428602E08C4F8C65A1DA359F1D88@namprd15.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2305e0f-9df1-4636-1ec6-08d74d20ec26
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 01:26:49.7065
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yu1Cy0BajlyJG7nG6o1JHgDSvsESl++VzcYTjSofT5W9+T3u7uvFx9C/B7ogeHTA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR15MB1375
-X-OriginatorOrg: fb.com
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-09_11:2019-10-08,2019-10-09 signatures=0
-X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 mlxlogscore=999
- bulkscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 clxscore=1011 adultscore=0
- mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910100010
-X-FB-Internal: deliver
+In-Reply-To: <c4555df5-89d5-e8a6-bed4-887c23ac4f0f@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTAvOS8xOSA1OjMyIFBNLCBCcmVuZGFuIEhpZ2dpbnMgd3JvdGU6DQo+IE9uIFdlZCwgT2N0
-IDA5LCAyMDE5IGF0IDAyOjIwOjM0UE0gLTA3MDAsIEphZSBIeXVuIFlvbyB3cm90ZToNCj4+IElu
-IGNhc2Ugb2YgbWFzdGVyIHBlbmRpbmcgc3RhdGUsIGl0IHNob3VsZCBub3QgdHJpZ2dlciBhIG1h
-c3Rlcg0KPj4gY29tbWFuZCwgb3RoZXJ3aXNlIGRhdGEgY291bGQgYmUgY29ycnVwdGVkIGJlY2F1
-c2UgdGhpcyBIL1cgc2hhcmVzDQo+PiB0aGUgc2FtZSBkYXRhIGJ1ZmZlciBmb3Igc2xhdmUgYW5k
-IG1hc3RlciBvcGVyYXRpb25zLiBJdCBhbHNvIG1lYW5zDQo+PiB0aGF0IEgvVyBjb21tYW5kIHF1
-ZXVlIGhhbmRsaW5nIGlzIHVucmVsaWFibGUgYmVjYXVzZSBvZiB0aGUgYnVmZmVyDQo+PiBzaGFy
-aW5nIGlzc3VlLiBUbyBmaXggdGhpcyBpc3N1ZSwgaXQgY2xlYXJzIGNvbW1hbmQgcXVldWUgaWYg
-YQ0KPj4gbWFzdGVyIGNvbW1hbmQgaXMgcXVldWVkIGluIHBlbmRpbmcgc3RhdGUgdG8gdXNlIFMv
-VyBzb2x1dGlvbg0KPj4gaW5zdGVhZCBvZiBIL1cgY29tbWFuZCBxdWV1ZSBoYW5kbGluZy4gQWxz
-bywgaXQgcmVmaW5lcyByZXN0YXJ0aW5nDQo+PiBtZWNoYW5pc20gb2YgdGhlIHBlbmRpbmcgbWFz
-dGVyIGNvbW1hbmQuDQo+Pg0KPj4gRml4ZXM6IDJlNTdiN2NlYmI5OCAoImkyYzogYXNwZWVkOiBB
-ZGQgbXVsdGktbWFzdGVyIHVzZSBjYXNlIHN1cHBvcnQiKQ0KPj4gU2lnbmVkLW9mZi1ieTogSmFl
-IEh5dW4gWW9vIDxqYWUuaHl1bi55b29AbGludXguaW50ZWwuY29tPg0KPiANCj4gUmV2aWV3ZWQt
-Ynk6IEJyZW5kYW4gSGlnZ2lucyA8YnJlbmRhbmhpZ2dpbnNAZ29vZ2xlLmNvbT4NCj4gDQo+IFdl
-IGRvbid0IGhhdmUgYW55IG11bHRpLW1hc3RlciBzZXR1cHMsIGNhbiB3ZSBnZXQgYSBUZXN0ZWQt
-Ynk/DQoNCkkndmUgYXBwbGllZCB0aGUgcGF0Y2ggdG8gbXkgdHJlZSBhbmQgSSdtIGxvb2tpbmcg
-Zm9yIGEgbWluaXBhY2sgQk1DDQoobWlsdGktbWFzdGVyKSB0byB0ZXN0IHRoZSBwYXRjaC4gV2ls
-bCBjb21lIGJhY2sgd2l0aCByZXN1bHRzIHRvbW9ycm93Lg0KDQoNCkNoZWVycywNCg0KVGFvDQoN
-Cj4gV29sZnJhbSwgc2luY2UgdGhpcyBpcyBhIGJ1Z2ZpeCwgY2FuIHdlIGdldCB0aGlzIGluIDUu
-ND8NCj4gDQo+IFRoYW5rcyENCj4gDQo=
+HI Vignesh,
+
+On 17/9/2019 12:50 AM, Vignesh Raghavendra wrote:
+> Hi,
+>
+> On 16/09/19 1:08 PM, Ramuthevar,Vadivel MuruganX wrote:
+>> patch 1: Add YAML for cadence-qspi devicetree cdocumentation.
+>> patch 2: cadence-qspi controller driver to support QSPI-NAND flash
+>> using existing spi-nand framework with legacy spi protocol.
+> Nope, you cannot have two drivers for the same IP (i.e Cadence QSPI)
+> just to support to different types of SPI memories. This is the reason
+> why spi_mem_ops was introduced.
+>
+> Please rewrite this driver over to use spi_mem_ops (instead of using
+> generic SPI xfers) so that same driver supports both SPI-NOR and
+> SPI-NAND flashes. Once that's done drivers/mtd/spi-nor/cadence-quadspi.c
+> can be deleted.
+>
+> There are few existing examples of spi_mem_ops users in drivers/spi/
+> (git grep spi_mem_ops) and materials here on how to write such a driver:
+>
+> [1]
+> https://bootlin.com/blog/spi-mem-bringing-some-consistency-to-the-spi-memory-ecosystem/
+> [2] https://www.youtube.com/watch?v=PkWbuLM_gmU
+As per Mark Brown and your suggestion,  I have started adapting 
+cadence-qaudspi driver with spi_mem_ops framework to work
+QSPI-NAND/NOR as a generic driver(completely removed the legacy 
+SPI-XFERS),  is in progress on Intel LGM SoC.
+QSPI-IP on Intel LGM  do not have DMA  support and also not part of QSPI 
+IP, so couldn't able to validate DMA related.
+will adapt the DMA things which are existing in cadence-quadspi.c as it is.
+
+currently TI and Altera SoC's use this Cadence-qspi IP , both are not 
+using DMA as per my understanding (correct me if it is wrong).
+confirmed through device tree entry.
+
+what is your opinion on DMA related stuff? also using macronix(QSPI-NOR) 
+flash/Micron(QSPI-NAND).
+---
+With Regards
+Vadivel
+>> Ramuthevar Vadivel Murugan (2):
+>>    dt-bindings: spi: Add support for cadence-qspi IP Intel LGM SoC
+>>    spi: cadence-qspi: Add QSPI support for Intel LGM SoC
+>>
+>>   .../devicetree/bindings/spi/cadence,qspi-nand.yaml |  84 +++
+>>   drivers/spi/Kconfig                                |   9 +
+>>   drivers/spi/Makefile                               |   1 +
+>>   drivers/spi/spi-cadence-qspi-apb.c                 | 644 +++++++++++++++++++++
+>>   drivers/spi/spi-cadence-qspi-apb.h                 | 174 ++++++
+>>   drivers/spi/spi-cadence-qspi.c                     | 461 +++++++++++++++
+>>   drivers/spi/spi-cadence-qspi.h                     |  73 +++
+>>   7 files changed, 1446 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
+>>   create mode 100644 drivers/spi/spi-cadence-qspi-apb.c
+>>   create mode 100644 drivers/spi/spi-cadence-qspi-apb.h
+>>   create mode 100644 drivers/spi/spi-cadence-qspi.c
+>>   create mode 100644 drivers/spi/spi-cadence-qspi.h
+>>
