@@ -2,190 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1D3D21DB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 09:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B204D21EF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 09:39:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733119AbfJJHiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 03:38:09 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:36938 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733055AbfJJHaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 03:30:25 -0400
-Received: by mail-vs1-f66.google.com with SMTP id p13so3268142vsr.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 00:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CQ1YByZ73Mbufo1qkTLIH1uGUYbhoHyBhaHdYebd6Hw=;
-        b=DH+qyimaVqlUfKk7gc27ahaRVHkRJi/YXNWXXTTYQjqyk+LetAr3uxetUTuEwDxGIt
-         VxRuuS4+I5Xs44tOarvdC8haQ0H9P1CWNjEGaIFVojc2uTE8ATXJWnB31i2jvdiag5Si
-         ikjkomBgvJLJoM7QFJWSr4HHnUunE4yUR5vT/T+YyGrmt6yiPjNH+yNkyUSmnLzQR7+o
-         2r98wCVHVm8xNTYRmkbjzGFnbCo0TJcUU3zI6tnV8YV8NtSN3quZxldO2gjyIRC83DH5
-         gIXbw0mOMgHZ4rnpZkTUQVw/E6Qf/xX9zs+sWgNPDCUR2Ju9ipAmWQLB7WVVM0GwKYAP
-         UjcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CQ1YByZ73Mbufo1qkTLIH1uGUYbhoHyBhaHdYebd6Hw=;
-        b=R54kXCMiBTMvXIEKUtUVmGqgbtNAYtu4HAfxA4G7PejlKUp45fPznvg63tUek8Kcp7
-         qcEAt0Ny/1vmvCyceuMVHA0G/eW9ejxD1PKi3VlBMVdlh35tgCMgLTjZ2zh3wV+bezLR
-         c/QzeQEOUNqD045Pqj4WxkH2W9/PRl7+NigQqnBsmom/xeiNNatOjeVilHv3g4d9CIkS
-         BByKrLctjLxkw+NyNlAwMZnwnuSL+loXoiTfIKy/o1/g5zmUl6Hq2TutR4MeeZKWM3A8
-         XBJzjulvzvdXnW3j1vdpBl/QgtcfJN8RLF8sTxCjWQKMFykXkkTf8lhXy1KwpFmEM5a5
-         mGiQ==
-X-Gm-Message-State: APjAAAV+zl25lhvvGkqWsFHsUx1ztaJfADvxigOLiG/IHSba7+tZ+HDE
-        93ur/LAd7iSaGwkbMei1mVA3aiQPPqx4vb4R79G3iA==
-X-Google-Smtp-Source: APXvYqwSdjcOR1qCmgjqkV47CZ5gOBzPcecYVg4c70Ujb9JuqZJZHw6bODYsY9iH/ccgCGeaJI/aY06PoJw5QS+1aMI=
-X-Received: by 2002:a05:6102:5e1:: with SMTP id w1mr4671201vsf.191.1570692622302;
- Thu, 10 Oct 2019 00:30:22 -0700 (PDT)
+        id S1732792AbfJJHjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 03:39:44 -0400
+Received: from mail1.windriver.com ([147.11.146.13]:44333 "EHLO
+        mail1.windriver.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733084AbfJJHgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 03:36:16 -0400
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+        by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id x9A7ZqPj005366
+        (version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+        Thu, 10 Oct 2019 00:35:52 -0700 (PDT)
+Received: from [128.224.158.243] (128.224.158.243) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.468.0; Thu, 10 Oct 2019
+ 00:35:52 -0700
+Subject: Re: [PATCH] ARM: dts: zynq: enablement of coresight topology
+To:     Michal Simek <michal.simek@xilinx.com>,
+        <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <git@xilinx.com>
+CC:     Zumeng Chen <zumeng.chen@windriver.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Crosthwaite <peter.crosthwaite@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robherring2@gmail.com>,
+        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-boot@lists.denx.de>
+References: <a38ab93d870a3b1b341a5c0da14fc7f3d4056684.1570630040.git.michal.simek@xilinx.com>
+From:   qwang2 <quanyang.wang@windriver.com>
+Message-ID: <eb198b89-3b4a-4090-acc5-db036dd0be69@windriver.com>
+Date:   Thu, 10 Oct 2019 15:35:48 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20191009164344.41093-1-tony@atomide.com>
-In-Reply-To: <20191009164344.41093-1-tony@atomide.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 10 Oct 2019 09:29:45 +0200
-Message-ID: <CAPDyKFqUL1Cso1H-sNcWFngWiLHLD76Uk9PtN2TkKS_Kd6TKJw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: Use level interrupt for omap4 & 5 wlcore
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-omap <linux-omap@vger.kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        Eyal Reizer <eyalr@ti.com>, Guy Mishol <guym@ti.com>,
-        John Stultz <john.stultz@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <a38ab93d870a3b1b341a5c0da14fc7f3d4056684.1570630040.git.michal.simek@xilinx.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Oct 2019 at 18:43, Tony Lindgren <tony@atomide.com> wrote:
+
+On 10/9/19 10:07 PM, Michal Simek wrote:
+> From: Zumeng Chen <zumeng.chen@windriver.com>
 >
-> Commit 572cf7d7b07d ("ARM: dts: Improve omap l4per idling with wlcore edge
-> sensitive interrupt") changed wlcore interrupts to use edge interrupt based
-> on what's specified in the wl1835mod.pdf data sheet.
+> This patch is to build the coresight topology structure of zynq-7000
+> series according to the docs of coresight and userguide of zynq-7000.
 >
-> However, there are still cases where we can have lost interrupts as
-> described in omap_gpio_unidle(). And using a level interrupt instead of edge
-> interrupt helps as we avoid the check for untriggered GPIO interrupts in
-> omap_gpio_unidle().
->
-> And with commit e6818d29ea15 ("gpio: gpio-omap: configure edge detection
-> for level IRQs for idle wakeup") GPIOs idle just fine with level interrupts.
->
-> Let's change omap4 and 5 wlcore users back to using level interrupt
-> instead of edge interrupt. Let's not change the others as I've only seen
-> this on omap4 and 5, probably because the other SoCs don't have l4per idle
-> independent of the CPUs.
-
-I assume this relates to the implementation for support of SDIO IRQs
-(and wakeups) in the omap_hsmmc driver?
-
-In any case, just wanted to share some experience in the field, feel
-free to do whatever you want with the below information. :-)
-
-So, while I was working for ST-Ericsson on ux500, we had a very
-similar approach to re-route the SDIO bus DAT1 line to a GPIO IRQ as a
-remote/system wakeup (vendor hack in the mmci driver). In other words,
-while runtime suspending the mmc host controller, we configured a GPIO
-IRQ, via an always on logic, to capture the IRQ instead. The point is,
-I believe we may have ended up looking at similar problems as you have
-been facing on OMAP.
-
-In hindsight, I realized that we actually violated the SDIO spec by
-using this approach. More precisely, during runtime suspend we do
-clock gating and then re-routes the IRQ. However, clock gating isn't
-allowed before the SDIO bus width have been changed back from 4-bit
-into 1-bit. This last piece of action, would be an interesting change
-to see if it could affect the behaviour, but unfortunately I have
-never been able to check this.
-
-The tricky part, is that we can't issue a command to change the bus to
-1-bit in omap_hsmmc ->runtime_suspend() callback (this needs to be
-managed by the core in some way). However, we can make a simple test,
-by simply always limit the bus width to 1-bit, as that should mean we
-should conform to the SDIO spec.
-
-Kind regards
-Uffe
-
->
-> Fixes: 572cf7d7b07d ("ARM: dts: Improve omap l4per idling with wlcore edge sensitive interrupt")
-> Depends-on: e6818d29ea15 ("gpio: gpio-omap: configure edge detection for level IRQs for idle wakeup")
-> Cc: Anders Roxell <anders.roxell@linaro.org>
-> Cc: Eyal Reizer <eyalr@ti.com>
-> Cc: Guy Mishol <guym@ti.com>
-> Cc: John Stultz <john.stultz@linaro.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
+> Signed-off-by: Quanyang Wang <quanyang.wang@windriver.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
->  arch/arm/boot/dts/omap4-droid4-xt894.dts       | 2 +-
->  arch/arm/boot/dts/omap4-panda-common.dtsi      | 2 +-
->  arch/arm/boot/dts/omap4-sdp.dts                | 2 +-
->  arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi | 2 +-
->  arch/arm/boot/dts/omap5-board-common.dtsi      | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
 >
-> diff --git a/arch/arm/boot/dts/omap4-droid4-xt894.dts b/arch/arm/boot/dts/omap4-droid4-xt894.dts
-> --- a/arch/arm/boot/dts/omap4-droid4-xt894.dts
-> +++ b/arch/arm/boot/dts/omap4-droid4-xt894.dts
-> @@ -369,7 +369,7 @@
->                 compatible = "ti,wl1285", "ti,wl1283";
->                 reg = <2>;
->                 /* gpio_100 with gpmc_wait2 pad as wakeirq */
-> -               interrupts-extended = <&gpio4 4 IRQ_TYPE_EDGE_RISING>,
-> +               interrupts-extended = <&gpio4 4 IRQ_TYPE_LEVEL_HIGH>,
->                                       <&omap4_pmx_core 0x4e>;
->                 interrupt-names = "irq", "wakeup";
->                 ref-clock-frequency = <26000000>;
-> diff --git a/arch/arm/boot/dts/omap4-panda-common.dtsi b/arch/arm/boot/dts/omap4-panda-common.dtsi
-> --- a/arch/arm/boot/dts/omap4-panda-common.dtsi
-> +++ b/arch/arm/boot/dts/omap4-panda-common.dtsi
-> @@ -474,7 +474,7 @@
->                 compatible = "ti,wl1271";
->                 reg = <2>;
->                 /* gpio_53 with gpmc_ncs3 pad as wakeup */
-> -               interrupts-extended = <&gpio2 21 IRQ_TYPE_EDGE_RISING>,
-> +               interrupts-extended = <&gpio2 21 IRQ_TYPE_LEVEL_HIGH>,
->                                       <&omap4_pmx_core 0x3a>;
->                 interrupt-names = "irq", "wakeup";
->                 ref-clock-frequency = <38400000>;
-> diff --git a/arch/arm/boot/dts/omap4-sdp.dts b/arch/arm/boot/dts/omap4-sdp.dts
-> --- a/arch/arm/boot/dts/omap4-sdp.dts
-> +++ b/arch/arm/boot/dts/omap4-sdp.dts
-> @@ -512,7 +512,7 @@
->                 compatible = "ti,wl1281";
->                 reg = <2>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <21 IRQ_TYPE_EDGE_RISING>; /* gpio 53 */
-> +               interrupts = <21 IRQ_TYPE_LEVEL_HIGH>; /* gpio 53 */
->                 ref-clock-frequency = <26000000>;
->                 tcxo-clock-frequency = <26000000>;
->         };
-> diff --git a/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi b/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi
-> --- a/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi
-> +++ b/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi
-> @@ -69,7 +69,7 @@
->                 compatible = "ti,wl1271";
->                 reg = <2>;
->                 interrupt-parent = <&gpio2>;
-> -               interrupts = <9 IRQ_TYPE_EDGE_RISING>; /* gpio 41 */
-> +               interrupts = <9 IRQ_TYPE_LEVEL_HIGH>; /* gpio 41 */
->                 ref-clock-frequency = <38400000>;
->         };
->  };
-> diff --git a/arch/arm/boot/dts/omap5-board-common.dtsi b/arch/arm/boot/dts/omap5-board-common.dtsi
-> --- a/arch/arm/boot/dts/omap5-board-common.dtsi
-> +++ b/arch/arm/boot/dts/omap5-board-common.dtsi
-> @@ -362,7 +362,7 @@
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&wlcore_irq_pin>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <14 IRQ_TYPE_EDGE_RISING>; /* gpio 14 */
-> +               interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;  /* gpio 14 */
->                 ref-clock-frequency = <26000000>;
->         };
->  };
-> --
-> 2.23.0
+>   arch/arm/boot/dts/zynq-7000.dtsi | 158 +++++++++++++++++++++++++++++++
+>   1 file changed, 158 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+> index ca6425ad794c..86430ad76fee 100644
+> --- a/arch/arm/boot/dts/zynq-7000.dtsi
+> +++ b/arch/arm/boot/dts/zynq-7000.dtsi
+> @@ -59,6 +59,40 @@
+>   		regulator-always-on;
+>   	};
+>   
+> +	replicator {
+> +		compatible = "arm,coresight-static-replicator";
+> +		clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +		clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +
+> +		out-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			/* replicator output ports */
+> +			port@0 {
+> +				reg = <0>;
+> +				replicator_out_port0: endpoint {
+> +					remote-endpoint = <&tpiu_in_port>;
+> +				};
+> +			};
+> +			port@1 {
+> +				reg = <1>;
+> +				replicator_out_port1: endpoint {
+> +					remote-endpoint = <&etb_in_port>;
+> +				};
+> +			};
+> +		};
+> +		in-ports {
+> +			/* replicator input port */
+> +			port {
+> +				replicator_in_port0: endpoint {
+> +					slave-mode;
+> +					remote-endpoint = <&funnel_out_port>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>   	amba: amba {
+>   		compatible = "simple-bus";
+>   		#address-cells = <1>;
+> @@ -365,5 +399,129 @@
+>   			reg = <0xf8005000 0x1000>;
+>   			timeout-sec = <10>;
+>   		};
+> +
+> +		etb@f8801000 {
+> +			compatible = "arm,coresight-etb10", "arm,primecell";
+> +			reg = <0xf8801000 0x1000>;
+> +			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +			in-ports {
+> +				port {
+> +					etb_in_port: endpoint {
+> +						remote-endpoint = <&replicator_out_port1>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		tpiu@f8803000 {
+> +			compatible = "arm,coresight-tpiu", "arm,primecell";
+> +			reg = <0xf8803000 0x1000>;
+> +			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +			in-ports {
+> +				port {
+> +					tpiu_in_port: endpoint {
+> +						remote-endpoint = <&replicator_out_port0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		funnel@f8804000 {
+> +			compatible = "arm,coresight-static-funnel", "arm,primecell";
+> +			reg = <0xf8804000 0x1000>;
+> +			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +
+> +			/* funnel output ports */
+> +			out-ports {
+> +				port {
+> +					funnel_out_port: endpoint {
+> +						remote-endpoint =
+> +							<&replicator_in_port0>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				/* funnel input ports */
+> +				port@0 {
+> +					reg = <0>;
+> +					funnel0_in_port0: endpoint {
+> +						remote-endpoint = <&ptm0_out_port>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					funnel0_in_port1: endpoint {
+> +						remote-endpoint = <&ptm1_out_port>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +					funnel0_in_port2: endpoint {
+> +					};
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +					funnel0_in_port3: endpoint {
+> +						remote-endpoint = <&itm_out_port>;
+> +					};
+> +				};
+> +				/* The other input ports are not connect to anything */
+> +			};
+> +		};
+> +
+> +		/* ITM is not supported by kernel, only leave device node here */
+> +		itm@f8805000 {
+> +			compatible = "arm,coresight-etm3x", "arm,primecell";
+
+The "arm,coresight-etm3x" shouldn't be the compatible property for ITM. 
+Had better remove it.
+
+Thanks,
+
+Quanyang
+
+> +			reg = <0xf8805000 0x1000>;
+> +			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +			out-ports {
+> +				port {
+> +					itm_out_port: endpoint {
+> +						remote-endpoint = <&funnel0_in_port3>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		ptm@f889c000 {
+> +			compatible = "arm,coresight-etm3x", "arm,primecell";
+> +			reg = <0xf889c000 0x1000>;
+> +			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +			cpu = <&cpu0>;
+> +			out-ports {
+> +				port {
+> +					ptm0_out_port: endpoint {
+> +						remote-endpoint = <&funnel0_in_port0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		ptm@f889d000 {
+> +			compatible = "arm,coresight-etm3x", "arm,primecell";
+> +			reg = <0xf889d000 0x1000>;
+> +			clocks = <&clkc 27>, <&clkc 46>, <&clkc 47>;
+> +			clock-names = "apb_pclk", "dbg_trc", "dbg_apb";
+> +			cpu = <&cpu1>;
+> +			out-ports {
+> +				port {
+> +					ptm1_out_port: endpoint {
+> +						remote-endpoint = <&funnel0_in_port1>;
+> +					};
+> +				};
+> +			};
+> +		};
+>   	};
+>   };
