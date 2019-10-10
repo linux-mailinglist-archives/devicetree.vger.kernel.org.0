@@ -2,129 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88BE7D2C70
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EEFCD2C88
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726363AbfJJO0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 10:26:21 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:43208 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726359AbfJJO0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 10:26:21 -0400
-X-IronPort-AV: E=Sophos;i="5.67,280,1566831600"; 
-   d="scan'208";a="28794139"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 10 Oct 2019 23:26:19 +0900
-Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 80BF94288734;
-        Thu, 10 Oct 2019 23:26:15 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: [PATCH v2 3/3] arm64: dts: renesas: r8a774b1: Add CAN and CAN FD support
-Date:   Thu, 10 Oct 2019 15:26:00 +0100
-Message-Id: <1570717560-7431-4-git-send-email-fabrizio.castro@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1570717560-7431-1-git-send-email-fabrizio.castro@bp.renesas.com>
-References: <1570717560-7431-1-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S1726379AbfJJO2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 10:28:36 -0400
+Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:57655 "EHLO
+        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726007AbfJJO2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 10:28:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1570717714; x=1602253714;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=MbNhUYiQT/iwMjwdlqMi5LP2NhQ+5+8OhcRLlxcsKBY=;
+  b=SmGbXwl4vtV5RCIgRvc9Z3NPriaB4WIPaH43pM0Ddhw9TkX7JWQ+Eb5R
+   vUU2lJuozjMW+JD7F/Huq0PWJqE0LoqF7qapu9N4BWZRN3vhxso+C8Fet
+   bCg5pBpDPiVGcWLS540UVacrCoLiVkBWcgbqmRCnton3BDKb7GSCWPFsQ
+   Q=;
+X-IronPort-AV: E=Sophos;i="5.67,280,1566864000"; 
+   d="scan'208";a="791395129"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2a-d0be17ee.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 10 Oct 2019 14:28:31 +0000
+Received: from EX13MTAUEB001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
+        by email-inbound-relay-2a-d0be17ee.us-west-2.amazon.com (Postfix) with ESMTPS id 62D8DA29A8;
+        Thu, 10 Oct 2019 14:28:30 +0000 (UTC)
+Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
+ EX13MTAUEB001.ant.amazon.com (10.43.60.129) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 10 Oct 2019 14:28:30 +0000
+Received: from EX13MTAUEB001.ant.amazon.com (10.43.60.96) by
+ EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 10 Oct 2019 14:28:29 +0000
+Received: from [10.107.3.25] (10.107.3.25) by mail-relay.amazon.com
+ (10.43.60.129) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
+ Transport; Thu, 10 Oct 2019 14:28:25 +0000
+Subject: Re: [PATCH v6 3/3] edac: Add support for Amazon's Annapurna Labs L2
+ EDAC
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        James Morse <james.morse@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        David Miller <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>, <daniel@iogearbox.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>, <benh@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        Talel Shenhar <talel@amazon.com>,
+        Jonathan Chocron <jonnyc@amazon.com>,
+        "Hanoch, Uri" <hanochu@amazon.com>,
+        Sudeep Holla <Sudeep.Holla@arm.com>
+References: <20191007151730.7705-1-hhhawa@amazon.com>
+ <20191007151730.7705-4-hhhawa@amazon.com>
+ <CAL_JsqKk1SeUTPdVOC_5ewC+xqdPMZbBxiqZHYO3Zdme06P57w@mail.gmail.com>
+From:   "Hawa, Hanna" <hhhawa@amazon.com>
+Message-ID: <9b62e2aa-4503-02d7-2448-cc0697464046@amazon.com>
+Date:   Thu, 10 Oct 2019 17:28:24 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqKk1SeUTPdVOC_5ewC+xqdPMZbBxiqZHYO3Zdme06P57w@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CAN and CAN FD support to the RZ/G2N SoC specific dtsi.
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
----
-v1->v2:
-* No change
 
- arch/arm64/boot/dts/renesas/r8a774b1.dtsi | 48 +++++++++++++++++++++++++++++--
- 1 file changed, 45 insertions(+), 3 deletions(-)
+On 10/10/2019 2:09 AM, Rob Herring wrote:
+> +Sudeep
+> 
+> On Mon, Oct 7, 2019 at 10:18 AM Hanna Hawa <hhhawa@amazon.com> wrote:
+>>
+>> Adds support for Amazon's Annapurna Labs L2 EDAC driver to detect and
+>> report L2 errors.
+> 
+> I was curious why you needed a DT cache parsing function...
+> 
+> [...]
+> 
+>> +static int al_l2_edac_probe(struct platform_device *pdev)
+>> +{
+>> +       struct edac_device_ctl_info *edac_dev;
+>> +       struct al_l2_edac *al_l2;
+>> +       struct device *dev = &pdev->dev;
+>> +       int ret, i;
+>> +
+>> +       edac_dev = edac_device_alloc_ctl_info(sizeof(*al_l2), DRV_NAME, 1, "L",
+>> +                                             1, 2, NULL, 0,
+>> +                                             edac_device_alloc_index());
+>> +       if (!edac_dev)
+>> +               return -ENOMEM;
+>> +
+>> +       al_l2 = edac_dev->pvt_info;
+>> +       edac_dev->edac_check = al_l2_edac_check;
+>> +       edac_dev->dev = dev;
+>> +       edac_dev->mod_name = DRV_NAME;
+>> +       edac_dev->dev_name = dev_name(dev);
+>> +       edac_dev->ctl_name = "L2_cache";
+>> +       platform_set_drvdata(pdev, edac_dev);
+>> +
+>> +       INIT_LIST_HEAD(&al_l2->l2_caches);
+>> +
+>> +       for_each_possible_cpu(i) {
+>> +               struct device_node *cpu;
+>> +               struct device_node *cpu_cache;
+>> +               struct al_l2_cache *l2_cache;
+>> +               bool found = false;
+>> +
+>> +               cpu = of_get_cpu_node(i, NULL);
+>> +               if (!cpu)
+>> +                       continue;
+>> +
+>> +               cpu_cache = of_find_next_cache_node(cpu);
+>> +               list_for_each_entry(l2_cache, &al_l2->l2_caches, list_node) {
+>> +                       if (l2_cache->of_node == cpu_cache) {
+>> +                               found = true;
+>> +                               break;
+>> +                       }
+>> +               }
+>> +
+>> +               if (found) {
+>> +                       cpumask_set_cpu(i, &l2_cache->cluster_cpus);
+>> +               } else {
+>> +                       l2_cache = devm_kzalloc(dev, sizeof(*l2_cache),
+>> +                                               GFP_KERNEL);
+>> +                       l2_cache->of_node = cpu_cache;
+>> +                       list_add(&l2_cache->list_node, &al_l2->l2_caches);
+>> +                       cpumask_set_cpu(i, &l2_cache->cluster_cpus);
+>> +               }
+>> +
+>> +               of_node_put(cpu);
+>> +       }
+> 
+> We already have what's probably similar code to parse DT and populate
+> cacheinfo data. Does that not work for you? If not, why not and can we
+> extend it?
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-index 80b8b2e..bfea6df 100644
---- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-@@ -994,18 +994,60 @@
- 		};
- 
- 		can0: can@e6c30000 {
-+			compatible = "renesas,can-r8a774b1",
-+				     "renesas,rcar-gen3-can";
- 			reg = <0 0xe6c30000 0 0x1000>;
--			/* placeholder */
-+			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 916>,
-+				 <&cpg CPG_CORE R8A774B1_CLK_CANFD>,
-+				 <&can_clk>;
-+			clock-names = "clkp1", "clkp2", "can_clk";
-+			assigned-clocks = <&cpg CPG_CORE R8A774B1_CLK_CANFD>;
-+			assigned-clock-rates = <40000000>;
-+			power-domains = <&sysc R8A774B1_PD_ALWAYS_ON>;
-+			resets = <&cpg 916>;
-+			status = "disabled";
- 		};
- 
- 		can1: can@e6c38000 {
-+			compatible = "renesas,can-r8a774b1",
-+				     "renesas,rcar-gen3-can";
- 			reg = <0 0xe6c38000 0 0x1000>;
--			/* placeholder */
-+			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 915>,
-+				 <&cpg CPG_CORE R8A774B1_CLK_CANFD>,
-+				 <&can_clk>;
-+			clock-names = "clkp1", "clkp2", "can_clk";
-+			assigned-clocks = <&cpg CPG_CORE R8A774B1_CLK_CANFD>;
-+			assigned-clock-rates = <40000000>;
-+			power-domains = <&sysc R8A774B1_PD_ALWAYS_ON>;
-+			resets = <&cpg 915>;
-+			status = "disabled";
- 		};
- 
- 		canfd: can@e66c0000 {
-+			compatible = "renesas,r8a774b1-canfd",
-+				     "renesas,rcar-gen3-canfd";
- 			reg = <0 0xe66c0000 0 0x8000>;
--			/* placeholder */
-+			interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-+				   <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 914>,
-+				 <&cpg CPG_CORE R8A774B1_CLK_CANFD>,
-+				 <&can_clk>;
-+			clock-names = "fck", "canfd", "can_clk";
-+			assigned-clocks = <&cpg CPG_CORE R8A774B1_CLK_CANFD>;
-+			assigned-clock-rates = <40000000>;
-+			power-domains = <&sysc R8A774B1_PD_ALWAYS_ON>;
-+			resets = <&cpg 914>;
-+			status = "disabled";
-+
-+			channel0 {
-+				status = "disabled";
-+			};
-+
-+			channel1 {
-+				status = "disabled";
-+			};
- 		};
- 
- 		pwm0: pwm@e6e30000 {
--- 
-2.7.4
+As I saw in cacheinfo it will return the cacheinfo for the online CPUs 
+only, correct me if I'm wrong..
 
+Here I'm parsing all the L2 info for all CPUs depends on DT to get 
+"cluster_cpus", and using smp_call_function_any() will call the online 
+cpu to read the L2MERRSR status register.
+
+> 
+> Then your driver might work if the data comes from ACPI instead (or
+> maybe that's all different, I don't know).
+
+No plan to get it work on ACPI, at least in the near future.
+
+> 
+> Rob
+> 
