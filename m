@@ -2,258 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9393D312B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 21:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17C94D313F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 21:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727071AbfJJTMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 15:12:45 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:33712 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726007AbfJJTMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 15:12:45 -0400
-Received: by mail-oi1-f196.google.com with SMTP id a15so5927730oic.0;
-        Thu, 10 Oct 2019 12:12:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TB0eH3ae3vSi2BTINdu4YWUfxkdAB53RghmO04INfwE=;
-        b=ArSe95mAfCRXqkMIytaj6fYFOTlqU0iiet4ZBsvBJKCLbX5pFyegLfOk9Zw2XyKJt9
-         Y37Izxrxg/OWZ4ju2R5WE+jmSIgLrm4VNKDsJGgcKTHlGELiPfsM3XjsE5OP4B2eESDv
-         bt7nfZRXhFDGrY5t3SYUQ5RVp1UHlGsV7rBitwNGZgBvAQ3+oyfFIj3JgKY57MvsEHn3
-         hyXisd3PjfV9QZE1OIT291GcqmLABdEFBrtmnQKVrYKaA1RkO4EX+RkbNAJwyXVH+1Ly
-         +LLJtkkreadhM0twrcQuCNd5y/3cSTMCQWwlGIVZuF/x0nj0uIrqcIzDSLgTv2ap4KyA
-         mlxg==
-X-Gm-Message-State: APjAAAVbEGi6Dbyf/xPTaxNN2llK5495iT+JNKzN8whta/u34h3z7Jgm
-        08hpgSg2MvVHf3Sku3WNKw==
-X-Google-Smtp-Source: APXvYqzTNwu0JxpmueZM2zdBUYD25a/vLovCXlgQYNf1BmMTJANPQvgzTPJMPVKxRBQ9IHDbu1EaRw==
-X-Received: by 2002:a54:4419:: with SMTP id k25mr8594181oiw.0.1570734762353;
-        Thu, 10 Oct 2019 12:12:42 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s194sm1910974oie.19.2019.10.10.12.12.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2019 12:12:41 -0700 (PDT)
-Date:   Thu, 10 Oct 2019 14:12:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 01/10] dt-bindings: sram: Convert SRAM bindings to
- json-schema
-Message-ID: <20191010191240.GA15006@bogus>
-References: <20191002164316.14905-1-krzk@kernel.org>
+        id S1726526AbfJJTVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 15:21:41 -0400
+Received: from mga14.intel.com ([192.55.52.115]:35377 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726481AbfJJTVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 15:21:41 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Oct 2019 12:21:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,281,1566889200"; 
+   d="scan'208";a="206203510"
+Received: from pchamber-mobl1.amr.corp.intel.com (HELO [10.252.139.48]) ([10.252.139.48])
+  by orsmga002.jf.intel.com with ESMTP; 10 Oct 2019 12:21:37 -0700
+Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
+ snd_soc_dai_get_sdw_stream()
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
+        plai@codeaurora.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        spapothi@codeaurora.org
+References: <20190813191827.GI5093@sirena.co.uk>
+ <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
+ <20190813195804.GL5093@sirena.co.uk>
+ <20190814041142.GU12733@vkoul-mobl.Dlink>
+ <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
+ <5e08f822-3507-6c69-5d83-4ce2a9f5c04f@linaro.org>
+ <53bb3105-8e85-a972-fce8-a7911ae4d461@linux.intel.com>
+ <95870089-25da-11ea-19fd-0504daa98994@linaro.org>
+ <2326a155-332e-fda0-b7a2-b48f348e1911@linux.intel.com>
+ <34e4cde8-f2e5-0943-115a-651d86f87c1a@linaro.org>
+ <20191010120337.GB31391@ediswmail.ad.cirrus.com>
+ <22eff3aa-dfd6-1ee5-8f22-2af492286053@linux.intel.com>
+ <e671930b-645a-7ee3-6926-eea39626c0a3@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <c9203f7f-f360-0ede-d351-cfdbec03299c@linux.intel.com>
+Date:   Thu, 10 Oct 2019 10:49:52 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191002164316.14905-1-krzk@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <e671930b-645a-7ee3-6926-eea39626c0a3@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 02, 2019 at 06:43:07PM +0200, Krzysztof Kozlowski wrote:
-> Convert generic mmio-sram bindings to DT schema format using
-> json-schema.  Require the address/size cells to be 1, not equal to root
-> node.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Add Rob as maintainer,
-> 2. Use "contains" for compatible,
-> 3. Fix address and size cells to 1,
-> 4. Add maxitems to reg under children,
-> 5. Remove unneeded string type from label.
-> 
-> Changes since v1:
-> 1. Indent example with four spaces (more readable).
-> ---
->  .../devicetree/bindings/sram/sram.txt         |  80 -----------
->  .../devicetree/bindings/sram/sram.yaml        | 134 ++++++++++++++++++
->  2 files changed, 134 insertions(+), 80 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sram/sram.txt
->  create mode 100644 Documentation/devicetree/bindings/sram/sram.yaml
 
 
-> diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
-> new file mode 100644
-> index 000000000000..a1c1ec2183f2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sram/sram.yaml
-> @@ -0,0 +1,134 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sram/sram.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic on-chip SRAM
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-> +
-> +description: |+
-> +  Simple IO memory regions to be managed by the genalloc API.
-> +
-> +  Each child of the sram node specifies a region of reserved memory. Each
-> +  child node should use a 'reg' property to specify a specific range of
-> +  reserved memory.
-> +
-> +  Following the generic-names recommended practice, node names should
-> +  reflect the purpose of the node. Unit address (@<address>) should be
-> +  appended to the name.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^sram(@.*)?"
-> +
-> +  compatible:
-> +    contains:
-> +      enum:
-> +        - mmio-sram
-> +        - atmel,sama5d2-securam
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges:
-> +    description:
-> +      Should translate from local addresses within the sram to bus addresses.
-> +
-> +  no-memory-wc:
-> +    description:
-> +      The flag indicating, that SRAM memory region has not to be remapped
-> +      as write combining. WC is used by default.
-> +    type: boolean
-> +
-> +patternProperties:
-> +  "^([a-z]*-)?sram@[a-f0-9]$":
-> +    type: object
-> +    description:
-> +      Each child of the sram node specifies a region of reserved memory.
-> +    properties:
-> +      reg:
-> +        description:
-> +          IO mem address range, relative to the SRAM range.
-> +        maxItems: 1
-> +
-> +      compatible:
-> +        $ref: /schemas/types.yaml#/definitions/string
+> I still need to figure out prefixing multiple instances of this 
+> Amplifier controls with "Left" and "Right"
 
-No need to define the type again. We can say 'maxItems: 1' if we really 
-want to force it to 1 entry.
+FWIW we use the "snd_codec_conf" stuff to add a prefix for each 
+amplifier, so that the controls are not mixed up between instances of 
+the same amp, see e.g.
 
-> +        description:
-> +          Should contain a vendor specific string in the form
-> +          <vendor>,[<device>-]<usage>
-> +
-> +      pool:
-> +        description:
-> +          Indicates that the particular reserved SRAM area is addressable
-> +          and in use by another device or devices.
-> +        type: boolean
-> +
-> +      export:
-> +        description:
-> +          Indicates that the reserved SRAM area may be accessed outside
-> +          of the kernel, e.g. by bootloader or userspace.
-> +        type: boolean
-> +
-> +      protect-exec:
-> +        description: |
-> +          Same as 'pool' above but with the additional constraint that code
-> +          will be run from the region and that the memory is maintained as
-> +          read-only, executable during code execution. NOTE: This region must
-> +          be page aligned on start and end in order to properly allow
-> +          manipulation of the page attributes.
-> +        type: boolean
-> +
-> +      label:
-> +        description:
-> +          The name for the reserved partition, if omitted, the label is taken
-> +          from the node name excluding the unit address.
-> +
-> +      clocks:
+	
+static struct snd_soc_codec_conf codec_conf[] = {
+	{
+		.dev_name = "sdw:0:25d:711:0:1",
+		.name_prefix = "rt711",
+	},
+	{
+		.dev_name = "sdw:1:25d:1308:0:0",
+		.name_prefix = "rt1308-1",
+	},
+	{
+		.dev_name = "sdw:2:25d:1308:0:2",
+		.name_prefix = "rt1308-2",
+	},
+	{
+		.dev_name = "sdw:3:25d:715:0:1",
+		.name_prefix = "rt715",
+	},
+};
 
-Shouldn't this be up one level? Looks like this is the only case 
-(Marvell and i.MX are the only ones I see with clocks).
 
-> +        description:
-> +          A list of phandle and clock specifier pair that controls the
-> +          single SRAM clock.
-
-maxItems: 1
-
-> +
-> +    required:
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-
-Does 'additionalProperties' work here and/or in the child node? I guess 
-not if we keep some node names.
-
-> +
-> +examples:
-> +  - |
-> +    sram: sram@5c000000 {
-> +        compatible = "mmio-sram";
-> +        reg = <0x5c000000 0x40000>; /* 256 KiB SRAM at address 0x5c000000 */
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0 0x5c000000 0x40000>;
-> +
-> +        smp-sram@100 {
-> +            compatible = "socvendor,smp-sram";
-> +            reg = <0x100 0x50>;
-> +        };
-> +
-> +        device-sram@1000 {
-> +            reg = <0x1000 0x1000>;
-> +            pool;
-> +        };
-> +
-> +        exported@20000 {
-
-This one doesn't match the pattern. That's fine I guess for dts files, 
-but examples should be good examples.
-
-> +            reg = <0x20000 0x20000>;
-> +            export;
-> +        };
-> +    };
-> -- 
-> 2.17.1
-> 
+https://github.com/thesofproject/linux/pull/1142/commits/9ff9cf9d8994333df2250641c95431261bc66d69#diff-892560f80d603420baec7395e0b45d81R212
