@@ -2,192 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D427DD1F2A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 06:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F02BFD1F6F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 06:16:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725829AbfJJEEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 00:04:21 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:39924 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725822AbfJJEEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 00:04:20 -0400
-Received: by mail-pg1-f193.google.com with SMTP id e1so2784671pgj.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 21:04:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4dRHx9kwDfqi2jIB+R6UC0q1jwHtPdnI7NHOJR7dfK8=;
-        b=FtBYUXleYCHEXZ9azY/xl6NBSebYrKPfooEQhlD6WDgZ8PUkrpFQHJUarrmQZLizGL
-         ZvJJcwWVRCCZRlUHZSCmczQR3Qf3f2o5znu09xGPIIoEqVppj4w5D4WqFTrbvjDPQmba
-         gng7FCA904Lf3Y86eZ8HDOZB78TrKi4tGbBIB5yr5j6f6a7X9U0XAEC1Dy4FHNV3+SEp
-         PAt4SUyFW89HcT4ajEADap9/GNlPVmqFkOykS+LxW8BMS0/bznIJTR9yuU47IZmBiWdN
-         wYatfO43YNp2kXO68XHcpRlYE+NF/XobCKmx9S+R4rPl8+UslbD8PMwd3WYPUiMxYewI
-         NoWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4dRHx9kwDfqi2jIB+R6UC0q1jwHtPdnI7NHOJR7dfK8=;
-        b=Ly15ITUWqXRtB80KS0vnq0dOWw9ZnSlHuVtfFZs8yFAljveimjQ4rEY/dp68S8kof0
-         E4jsK4jKm/sQq+A0ChdwnKtL9OCUWAHiSWy2ruYaxlGUMrH8zRpJuZOPA6lR+lSw5Kud
-         iYtsryA9ZF/RnBf5WWSaiJYZwJ+XRVLlX0ktxMkHKoCeuw01f/SyPB7knBfuztR2QOXs
-         Q5rYidL2fxl5R9OyytfWRKJqBbKqHfADefo2+DPTwfH/s0HkREDFFEzebYM6Nsy2Y+9N
-         THR3HZCX0NoeYLPRG7zLXL5HJENTFQ54sW0UNPdrmFPV0CRUqhJqn/BmEyVlzdW/3hVg
-         zFQQ==
-X-Gm-Message-State: APjAAAWMgrJw6/EvynIEXKRglkoMkWQaeK/2jZPiIkywxs3oKpkHu2xY
-        vku2KxujZGTHtqU/mdoAfXLDyw==
-X-Google-Smtp-Source: APXvYqzQQnnxSmjkc2277Defb/ijEkp0j77+dg5mqy0z8nHzKEVssomusTv1lFXCOoM236Lh2M6s0Q==
-X-Received: by 2002:a17:90a:35d1:: with SMTP id r75mr8684449pjb.46.1570680259911;
-        Wed, 09 Oct 2019 21:04:19 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id q132sm4309052pfq.16.2019.10.09.21.04.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2019 21:04:19 -0700 (PDT)
-Date:   Wed, 9 Oct 2019 21:04:16 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     michael.srba@seznam.cz
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH] arm64: dts: msm8916-samsung-a2015: add tactile buttons
- and hall sensor
-Message-ID: <20191010040416.GQ6390@tuxbook-pro>
-References: <20191007064528.6543-1-michael.srba@seznam.cz>
+        id S1725971AbfJJEQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 00:16:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48770 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725601AbfJJEQa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 00:16:30 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6E771208C3;
+        Thu, 10 Oct 2019 04:16:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570680989;
+        bh=jkym8ovsgPYWmAnsP8E+JrX02gbHvAT96T30iEAJB0g=;
+        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
+        b=Sc+3ONYgfB0a8MfoDZHiWBzooO3m/K9COsajQpUHl+4a0KGi9ZLHoHdl6qoDFqgs7
+         VSM4BWFq7mFiPsS9N6HoW2RZx6DIK6HEnMhw0V6dxhjFKc64uldBQhBfNnP7UOS2um
+         QrOF+nNN4sUtSu9KET7tW9SFClzeiEgL34frJMak=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191007064528.6543-1-michael.srba@seznam.cz>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <d17dad3d-d32c-b71c-0e56-d15cb246f742@codeaurora.org>
+References: <20190918095018.17979-1-tdas@codeaurora.org> <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org> <20190925130346.42E0820640@mail.kernel.org> <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org> <20191001143825.CD3212054F@mail.kernel.org> <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org> <20191003160130.5A19B222D0@mail.kernel.org> <81a2fa46-a7e6-66a2-9649-009f22813c81@codeaurora.org> <20191004232022.062A1215EA@mail.kernel.org> <d17dad3d-d32c-b71c-0e56-d15cb246f742@codeaurora.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>, robh+dt@kernel.org
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC) driver for SC7180
+User-Agent: alot/0.8.1
+Date:   Wed, 09 Oct 2019 21:16:28 -0700
+Message-Id: <20191010041629.6E771208C3@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 06 Oct 23:45 PDT 2019, michael.srba@seznam.cz wrote:
+Quoting Taniya Das (2019-10-09 02:19:39)
+> Hi Stephen,
+>=20
+> On 10/5/2019 4:50 AM, Stephen Boyd wrote:
+> > Quoting Taniya Das (2019-10-04 10:39:31)
+> >>
+> >> Could you please confirm if you are referring to update the below?
+> >=20
+> > I wasn't suggesting that explicitly but sure. Something like this would
+> > be necessary to make clk_get() pass back a NULL pointer to the caller.
+> > Does everything keep working with this change?
+> >=20
+>=20
+> Even if I pass back NULL, I don't see it working. Please suggest how to=20
+> take it forward.
+>=20
 
-> From: Michael Srba <Michael.Srba@seznam.cz>
-> 
-> Add nodes for basic GPIO connected hardware to the Samsung A3/A5 common dtsi. 
-> This includes the Volume UP button, the Home button, and the hall sensor used 
-> to sense "smart cover" open state. Related to that, add a node for the Volume 
-> DOWN button, which is handled by the pm8916 as is common with msm8916 devices.
-> 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+Why doesn't it work?
 
-Applied with Stephan's acks
-
-Thanks,
-Bjorn
-
-> ---
->  .../qcom/msm8916-samsung-a2015-common.dtsi    | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> index 6fc0b80d1f90..bd1eb3eeca53 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-> @@ -3,6 +3,7 @@
->  #include "msm8916.dtsi"
->  #include "pm8916.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  
->  / {
-> @@ -91,6 +92,44 @@
->  		etm@85f000 { status = "disabled"; };
->  	};
->  
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_keys_default>;
-> +
-> +		label = "GPIO Buttons";
-> +
-> +		volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +
-> +		home {
-> +			label = "Home";
-> +			gpios = <&msmgpio 109 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_HOMEPAGE>;
-> +		};
-> +	};
-> +
-> +	gpio-hall-sensor {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_hall_sensor_default>;
-> +
-> +		label = "GPIO Hall Effect Sensor";
-> +
-> +		hall-sensor {
-> +			label = "Hall Effect Sensor";
-> +			gpios = <&msmgpio 52 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
->  	i2c-muic {
->  		compatible = "i2c-gpio";
->  		sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> @@ -113,6 +152,30 @@
->  };
->  
->  &msmgpio {
-> +	gpio_keys_default: gpio_keys_default {
-> +		pinmux {
-> +			function = "gpio";
-> +			pins = "gpio107", "gpio109";
-> +		};
-> +		pinconf {
-> +			pins = "gpio107", "gpio109";
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	gpio_hall_sensor_default: gpio_hall_sensor_default {
-> +		pinmux {
-> +			function = "gpio";
-> +			pins = "gpio52";
-> +		};
-> +		pinconf {
-> +			pins = "gpio52";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
->  	muic_int_default: muic_int_default {
->  		pinmux {
->  			function = "gpio";
-> @@ -238,3 +301,16 @@
->  		regulator-max-microvolt = <2700000>;
->  	};
->  };
-> +
-> +&spmi_bus {
-> +	pm8916@0 {
-> +		pon@800 {
-> +			volume-down {
-> +				compatible = "qcom,pm8941-resin";
-> +				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +				bias-pull-up;
-> +				linux,code = <KEY_VOLUMEDOWN>;
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> 2.23.0
-> 
