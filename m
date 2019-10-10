@@ -2,88 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E99D6D276B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 12:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E49D2788
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 12:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731553AbfJJKpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 06:45:24 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:42574 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726359AbfJJKpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 06:45:24 -0400
-Received: by mail-pf1-f196.google.com with SMTP id q12so3631981pff.9
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 03:45:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YeFYhKm4PJo5d1ZlY/G1oQFiqY2ifkLQAS5VyiJD2kA=;
-        b=cG3q9551YC42aPOxOY7I1S4iCUNQ+FiNULJWSzr2B6bjMy036gzBA007+gLvAx5def
-         X2UCn8VpNQkf5PrY1dSf/jLn9ogdqFQ05qumhkMbpH0aXYl/3zaFCkbBWWsx/m9EcTJN
-         EGPWiespyxve8xlsh9sSSV0IC3TnlyP2SHIz++ugv6fir6w4NoPrYuJN5eiHRl9Pq0jU
-         6q1jsNvySYH+umo3d7rqbZPwL4Z7qbGyQiZ2va1gssLuCcIlCVWy/qRkR1M7XkimuCKF
-         H155NqnphhFljtBZEkZGQ2DM7KWh+8rYmfRFXVzFCmdy+vLllLmQEdfJc/kvo1u+9+0P
-         ZVwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YeFYhKm4PJo5d1ZlY/G1oQFiqY2ifkLQAS5VyiJD2kA=;
-        b=mhJHOG2g+b8SGVPjhIWpahQxrJ6BohWk6UY96AxnFenzXmG8uMu36+smziUnrabxgN
-         Nrc5Mg6oucECnlJyMadJO/8YaOnXGrAogIXDoxGc1bx8C1rLKU4JH4zOzMggfp91HlE1
-         T4UG3Pp8EasolFX9bQVeSuceL1WpsFhIhZoVTxrV/jeS5+Dm+sFBGmVI2A0oIPoV3dVR
-         q5FktaEUbuZ7v6gGNDPKgeR5j3x6nvS8GiqhH75XwDJ8ze0vpfcMOIz+2PcfLYLIqTst
-         Kwu9fY6r80P/01D2389DJXqS0iYByNIGC7z7vB25klUfzOIJjrg/vT86dPTRVBJlr9Xy
-         3rxQ==
-X-Gm-Message-State: APjAAAVgjUzC/Gs2UEH5631aStX1T3KPx6+ZJpDa96vOpuM+JbKILWt9
-        sdDowDJzkvq1eMH+jv5l7taENg==
-X-Google-Smtp-Source: APXvYqwYM9M/m3MClMu4Z8S007xBWdkHJrU/NyiZs+nhmdbjrvkkM8AQQUaF3lEebzVejNsXRxT5JA==
-X-Received: by 2002:a17:90a:c383:: with SMTP id h3mr10552761pjt.122.1570704323312;
-        Thu, 10 Oct 2019 03:45:23 -0700 (PDT)
-Received: from localhost ([122.172.151.112])
-        by smtp.gmail.com with ESMTPSA id z13sm6824122pfq.121.2019.10.10.03.45.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 10 Oct 2019 03:45:22 -0700 (PDT)
-Date:   Thu, 10 Oct 2019 16:15:20 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        =?utf-8?B?QW5kcsOp?= Roth <neolynx@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Teresa Remmet <t.remmet@phytec.de>, linux-omap@vger.kernel.org,
+        id S1733082AbfJJKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 06:51:39 -0400
+Received: from mout.gmx.net ([212.227.17.22]:36077 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726478AbfJJKvj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 06:51:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1570704654;
+        bh=isSp2yjj8tgFc9B8HE7ygr6I8j0nOi1nB76gSDYoQH4=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=KhqOxyobTJUF5YwUyLQs6T2Fsjamje5XTom+I9Y1dCWYByBjAATUvLUnM+J17W3p3
+         4JH0qgR2T0RE8sCc74FGqnqZyYqv8IXsEK5bMh3suT9BQzZSSitMd7QiZ4xI5ECc/c
+         Vw4J+r5LLCmj/n+Ekegl/F14pbzLXU/nfI+gTLys=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([109.90.233.87]) by mail.gmx.com (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MUXtY-1ij1942giW-00QVyQ; Thu, 10
+ Oct 2019 12:50:54 +0200
+Date:   Thu, 10 Oct 2019 12:50:51 +0200
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/8] OMAP3: convert opp-v1 to opp-v2 and read speed
- binned / 720MHz grade bits
-Message-ID: <20191010104520.n77wxxyxvyeo2i4u@vireshk-i7>
-References: <cover.1568224032.git.hns@goldelico.com>
+        linux-arm-kernel@lists.infradead.org,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191010105051.GG19803@latitude>
+References: <20190930194332.12246-1-andreas@kemnade.info>
+ <20190930194332.12246-3-andreas@kemnade.info>
+ <20191006223848.GE19803@latitude>
+ <20191010073129.607f7b6f@kemnade.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="E69HUUNAyIJqGpVn"
 Content-Disposition: inline
-In-Reply-To: <cover.1568224032.git.hns@goldelico.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20191010073129.607f7b6f@kemnade.info>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:PVhL9x4eQyuah6Ugn428WrQuTewZmlP2MiGwnrCCZgNMNLCBAXC
+ BdnYvEikPTdghD6qWiHpNavC8QkEtV4VTv/NNW9iUcRKoMcnrGnD17Ry2aKfN7QJFBSAuBM
+ pTo3NNNgvn8k3AGuDs+WkiV8QCK+Box0zrzwLk1UuuR4wznVwMUZ2Uy2jjS8J9hCusYIpwN
+ W6X4KwtdP1ORaEc1bgJZw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:3XygdKJjTVg=:GekyFO4A45gWRBuEKhH9jo
+ Epz+BCj1uPC2yxszIpKjmL2wJA+a/ighkFkpYUSEJMphjqQeieJuvimC1GpdCUxOsHCrDvPXC
+ vkoSTK6DT+bsH13VVtALqhmkUj1Mh9qeg7S6AL4KMIB0OQDDq7TreT129iL3iAsc4jfLyAORd
+ dp44uIsDuT+DDlrReQfXzkoM+HbIAC8dKKabWoCAdt7fI7UIwv0EktI8PJdBnKGZqELTzrsLc
+ sncpnXf7SU2gbJzaBJYEJic6vc+YojWkWjWDVU96EaPRk7efhJMpPiff5HL+VQpfodbCDvF6e
+ ITq3adxTU89CF5G56HgA3FdsdG5T9KPDCvGTB6KIK7oJ1isv6cbZPSHwOgCSDV9EfTGlXj95/
+ pBiAp4tOKH4lWOAImMd3Mfr6avDb9rTGR+Zjhoh6tX8jUUKG0XLYbxfs4wYcU7WzBRUHYs3TC
+ LE/StNwz9M6QZ/sc2276fRgFyiWEh4l8x0cMNI/O63jbg0dFdtKSk0rW39HHXyCG/lZA7xw62
+ o7YQBj5vxjQmQNdTy/eJ2B8qjcYE7jsnsr99tMpAWzuraPEvX9ArGscRhjvT2vikma74Q5OVg
+ 9hKSUG51LIHROej2kQ2kNUuNBtQuDwxigd/B9W1dnRofwXE1xlyCC2MDo7iczWB2E0n+z61pf
+ 4c5qeeyfdKM0Umj/pKe8VszJpv5ml1h/QC3tL7Dtyah9s3W/Hw7JiEdoejJz2E/r+RuYdwhva
+ On8CKKjN2tzrFXciwT0SsMSBOQVJzBVdcuiqnoMsjQsQq8DmmHSGDXEpI2j46S/e7t5mK5o5A
+ OiE+04S9Q1j6FRT8H9drOkhmdynrARMR4J28lgyXpzqLavh/o1cK6UrfsV68SYP20hbcmqNvW
+ /fNDY4PxWEsTS1H/hdlxbaWGkTd3CTGuCuXcf871n+MLvoFRfYZLNz9yw6YUIT/OKriGOkbvt
+ t8GswK/UbSVJQhlLUwFdPOqKtWZTaxTKnnvxyXWLwGAVo2K/siaUzOuyFsyBGltFc1z8yeC0o
+ LfYD2fTcq6WdLekRpPG9h4duc3LTavzMNIlRNqnzEZLB8/3BDFEuYY3b0zt5zB6/cQdW/Y9QP
+ ordY4qBGZYpL2FUaQKBW+aXctTgz/hKixE99aYcQk0UjgUCAu1D4Ya3lUapnyvT/XTs+vVlos
+ 1NHMiBcj3Gye3/jUywyQSj/5qsgwSNSKg4EtuiEgc11VW6nwJJBjlo+YzfGkXg33ABAvoQq4z
+ E7d9hhyJn2U7bBxg4fR2517Y18ik86j+HAN0lstkhT3eqplBCSXkxwc4+xqw=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-09-19, 19:47, H. Nikolaus Schaller wrote:
-> CHANGES V3:
-> * make omap36xx control the abb-ldo and properly switch mode
->   (suggested by Adam Ford <aford173@gmail.com>)
-> * add a note about enabling the turbo-mode OPPs
 
-Applied the series to cpufreq/arm tree.
+--E69HUUNAyIJqGpVn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also shared a branch for you Tony: cpufreq/ti/oppv2.
+On Thu, Oct 10, 2019 at 07:31:29AM +0200, Andreas Kemnade wrote:
+> Hi Jonathan,
+>=20
+> On Mon, 7 Oct 2019 00:38:48 +0200
+> Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
+>=20
+> > Thanks for CCing me on this patchset. Nice to see more e-book reader
+> > related work!
+> >=20
+> btw. seems that we have a common target, since our ebook readers both
+> have a tps65185. It seems to be a good idea to comment things on the
+> i2c busses without proper bindings. That might help to find allies.
 
--- 
-viresh
+Yep. I did this in imx50-kobo-aura.dts:
+
+	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
+
+
+If you want to take on the task of writing/upstreaming a TPS65185
+driver, feel free. I'm currently not working on one.
+(I have an MFD driver and a hwmon driver on a branch somewhere, but no
+regulator driver.)
+
+> I will send a v3 with correct memory, better name for GLED
+> and the above-mentioned comments.
+
+Thanks!
+
+--E69HUUNAyIJqGpVn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl2fDPkACgkQCDBEmo7z
+X9tnWA//emtOhSRw1zxZK6fZP0uHAJvsQEaElaqk/KIEwrlBbRp9z4jyqyqWQkSJ
+lw1P4ukj3fRqtdYf0L0fzO6sssSZcVLztO0BVO0PeP9R0DXxjcJ4HeD+PMvu0962
+8kZxzYcA0j5qCPacCDCLnpQbbDqFN5OrW8jyjipjui9fp0EAikqObtLNn0OTM2gs
+9zttSZu9gWCKXQxivfEp1W07v3sHrQuIKRvOGY8pDz0aXy5ahJ9Qv6wIS+SnovOM
+GRPX6ZJE4BVUS9YonFITt9+h1VMJZw0YtxwDncjaDVqHE7DliwqowGcAPjRviceE
+CK3/bikNO5hGZhlXIi5/KIJgbZ+Bp5laTFMKfNvYHFt8MjKIzLBsn+iXO3eZ+Rd5
+0+H/WQNBAPaBhocrVkGm8Xkv72AkP7+M+zCJb1MbAvCwcTiTA4mMQ1MZ4GS2aE7W
+z+SU/fu6CFRIjsSHsQ86qtx1bmSI1w18VFFGCYnPNMmu4KHSVhah+yjnZE4gzfDO
+oOHuZO5tZ/7Ac8FHRjr6sWBZrf5B37FJbs+WmTzZcrY8CmM1BZvGAFvzkgOQAqlS
+Jf7nNiJ00+hED3taMwzTQPdRprnwuFFHzKD+YfiMIEU9ugUUbuYqw1ai9ALbWXLm
+2OTYEpI9Pthh6OFe4ADt3iZgSgFJtmYtkEGLGc3x2GPJ9+eiquU=
+=MOg3
+-----END PGP SIGNATURE-----
+
+--E69HUUNAyIJqGpVn--
