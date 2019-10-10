@@ -2,157 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66BC6D28AB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 14:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE952D299A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 14:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728135AbfJJMEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 08:04:05 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:32748 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727917AbfJJMEF (ORCPT
+        id S1728316AbfJJMhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 08:37:41 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:7227 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726923AbfJJMhl (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 08:04:05 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9ABwU2S025432;
-        Thu, 10 Oct 2019 07:03:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=4byw5jSm2/714LOkmlocLaf87NTPpDf7GI4f/qV1tN4=;
- b=nDTMNqax1/FPcs2phz9QMiPEquLRhE9ioBRLAhPZzVUxjqO1ZrODSTPWYOY7h4TSsg1N
- QNKCQ8Ou6V+WW89SobRqYf9biUFNrP2jm5T6FOLOD3uOr4tqAnYqzDYwcSVWcfgJoUBm
- Ns+aazMoP5FzafQ8B5OtPVeCvqYHYnz2O8I3uRa9P2NGvqwr9Wx3GyS0yiFkbTfxVScr
- TmwKgYTp259FSbOOVfsSxDkI/dSvv1DfH18eevGE33f5v2LFW9GGaS3Fg7SH1FZinVME
- Ka/9eNWzxyqgi/tDKYvTLQXCYUTK6jFJdnYaF90B5R1yojFetvSWEuN+EzvWuLvNTXx1 uQ== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 2veqkp7h7x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Thu, 10 Oct 2019 07:03:39 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 10 Oct
- 2019 13:03:37 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Thu, 10 Oct 2019 13:03:37 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 903A82A1;
-        Thu, 10 Oct 2019 12:03:37 +0000 (UTC)
-Date:   Thu, 10 Oct 2019 12:03:37 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-CC:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <bgoswami@codeaurora.org>, <plai@codeaurora.org>,
-        <lgirdwood@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <spapothi@codeaurora.org>
-Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
- snd_soc_dai_get_sdw_stream()
-Message-ID: <20191010120337.GB31391@ediswmail.ad.cirrus.com>
-References: <20190813191827.GI5093@sirena.co.uk>
- <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
- <20190813195804.GL5093@sirena.co.uk>
- <20190814041142.GU12733@vkoul-mobl.Dlink>
- <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
- <5e08f822-3507-6c69-5d83-4ce2a9f5c04f@linaro.org>
- <53bb3105-8e85-a972-fce8-a7911ae4d461@linux.intel.com>
- <95870089-25da-11ea-19fd-0504daa98994@linaro.org>
- <2326a155-332e-fda0-b7a2-b48f348e1911@linux.intel.com>
- <34e4cde8-f2e5-0943-115a-651d86f87c1a@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <34e4cde8-f2e5-0943-115a-651d86f87c1a@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0 mlxscore=0
- clxscore=1011 lowpriorityscore=0 suspectscore=0 malwarescore=0
- mlxlogscore=999 phishscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910100111
+        Thu, 10 Oct 2019 08:37:41 -0400
+X-IronPort-AV: E=Sophos;i="5.67,280,1566831600"; 
+   d="scan'208";a="28789735"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 10 Oct 2019 21:37:39 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9227B4000901;
+        Thu, 10 Oct 2019 21:37:35 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: [PATCH 0/3] Add CAN and CAN-FD support to RZ/G2N SoC
+Date:   Thu, 10 Oct 2019 13:37:26 +0100
+Message-Id: <1570711049-5691-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 10, 2019 at 09:50:22AM +0100, Srinivas Kandagatla wrote:
-> On 09/10/2019 19:53, Pierre-Louis Bossart wrote:
-> >On 10/9/19 11:01 AM, Srinivas Kandagatla wrote:
-> >>On 09/10/2019 15:29, Pierre-Louis Bossart wrote:
-> >>>On 10/9/19 3:32 AM, Srinivas Kandagatla wrote:
-> >>>>On 14/08/2019 15:09, Pierre-Louis Bossart wrote:
-> >>>>>On 8/13/19 11:11 PM, Vinod Koul wrote:
-> >>>>>>On 13-08-19, 20:58, Mark Brown wrote:
-> >>>>>>>On Tue, Aug 13, 2019 at 02:38:53PM -0500, Pierre-Louis
-> >>>>>>>>Indeed. I don't have a full understanding of that
-> >>>>>>>>part to be honest, nor why
-> >>>>>>>>we need something SoundWire-specific. We already
-> >>>>>>>>abused the set_tdm_slot API
-> >>>>>>>>to store an HDaudio stream, now we have a rather confusing stream
-> >>>>>>>>information for SoundWire and I have about 3 other
-> >>>>>>>>'stream' contexts in
-> >>>>>>>>SOF... I am still doing basic cleanups but this has
-> >>>>>>>>been on my radar for a
-> >>>>>>>>while.
-> >>>>>>>
-> >>>>>>>There is something to be said for not abusing the TDM
-> >>>>>>>slot API if it can
-> >>>>>>>make things clearer by using bus-idiomatic mechanisms,
-> >>>>>>>but it does mean
-> >>>>>>>everything needs to know about each individual bus :/ .
-> >>>>>>
-> >>>>>>Here ASoC doesn't need to know about sdw bus. As Srini
-> >>>>>>explained, this
-> >>>>>>helps in the case for him to get the stream context and
-> >>>>>>set the stream
-> >>>>>>context from the machine driver.
-> >>>>>>
-> >>>>>>Nothing else is expected to be done from this API. We
-> >>>>>>already do a set
-> >>>>>>using snd_soc_dai_set_sdw_stream(). Here we add the
-> >>>>>>snd_soc_dai_get_sdw_stream() to query
-> >>>>>
-> >>>>>I didn't see a call to snd_soc_dai_set_sdw_stream() in Srini's code?
-> >>>>
-> >>>>
-> >>>>There is a snd_soc_dai_get_sdw_stream() to get stream
-> >>>>context and we add slave streams(amplifier in this case) to
-> >>>>that context using sdw_stream_add_slave() in machine
-> >>>>driver[1].
-> >>>>
-> >>>>Without this helper there is no way to link slave streams to
-> >>>>stream context in non dai based setup like smart speaker
-> >>>>amplifiers.
-> >>>>
-> >>>>Currently this driver is blocked on this patch, If you think
-> >>>>there are other ways to do this, am happy to try them out.
-> >>>
-> >>>So to be clear, you are *not* using snd_soc_dai_set_sdw_stream?
-> >>Yes, am not using snd_soc_dai_set_sdw_stream().
-> >
-> >It's been a while since this thread started, and I still don't
-> >quite get the concepts or logic.
-> >
-> >First, I don't understand what the problem with "aux" devices is.
-> >All the SoundWire stuff is based on the concept of DAI, so I guess
-> >I am
-> 
-> That is the actual problem! Some aux devices does not have dais.
-> 
+Dear All,
 
-Usually aux devices are used for things like analog amplifiers that
-clearly don't have a digital interface, thus it really makes no sense
-to have a DAI link connecting them. So I guess my question here
-would be what is the thinking on making the "smart amplifier" dailess?
-It feels like having a CODEC to CODEC DAI between the CODEC and
-the AMP would be a more obvious way to connect the two devices
-and would presumably avoid the issues being discussed around the
-patch.
+this series adds CAN and CAN FD support to the RZ/G2N SoC specific dtsi.
 
 Thanks,
-Charles
+Fab
+
+Fabrizio Castro (3):
+  dt-bindings: can: rcar_can: Add r8a774b1 support
+  dt-bindings: can: rcar_canfd: document r8a774b1 support
+  arm64: dts: renesas: r8a774b1: Add CAN and CAN FD support
+
+ .../devicetree/bindings/net/can/rcar_can.txt       |  5 ++-
+ .../devicetree/bindings/net/can/rcar_canfd.txt     |  1 +
+ arch/arm64/boot/dts/renesas/r8a774b1.dtsi          | 48 ++++++++++++++++++++--
+ 3 files changed, 49 insertions(+), 5 deletions(-)
+
+-- 
+2.7.4
+
