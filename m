@@ -2,29 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0506D3368
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:29:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73716D336F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:31:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726804AbfJJV3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 17:29:16 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33780 "EHLO gloria.sntech.de"
+        id S1726944AbfJJVbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 17:31:07 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:33860 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725867AbfJJV3Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 17:29:16 -0400
+        id S1725867AbfJJVbH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 17:31:07 -0400
 Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <heiko@sntech.de>)
-        id 1iIfzl-0007B2-J1; Thu, 10 Oct 2019 23:29:13 +0200
+        id 1iIg1S-0007Bv-HL; Thu, 10 Oct 2019 23:30:58 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Update nanopi4 phy reset properties
-Date:   Thu, 10 Oct 2019 23:29:12 +0200
-Message-ID: <2606862.TP9lFruHDT@phil>
-In-Reply-To: <4d16c24ae3651a2119cf5bb1213f46a9fce4b39a.1570444773.git.robin.murphy@arm.com>
-References: <4d16c24ae3651a2119cf5bb1213f46a9fce4b39a.1570444773.git.robin.murphy@arm.com>
+To:     Vivek Unune <npcomplete13@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, ezequiel@collabora.com,
+        vicencb@gmail.com, akash@openedev.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix usb-c on Hugsun X99 TV Box
+Date:   Thu, 10 Oct 2019 23:30:57 +0200
+Message-ID: <1594003.l3tWjkc0Ga@phil>
+In-Reply-To: <20190929032230.24628-1-npcomplete13@gmail.com>
+References: <20190929032230.24628-1-npcomplete13@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -33,13 +35,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 7. Oktober 2019, 13:33:26 CEST schrieb Robin Murphy:
-> Use the now-preferred generic phy reset properties instead of the
-> dwmac-specific ones.
+Am Sonntag, 29. September 2019, 05:22:30 CEST schrieb Vivek Unune:
+> Fix usb-c on X99 TV Box. Tested with armbian w/ kernel 5.3
 > 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Vivek Unune <npcomplete13@gmail.com>
 
-applied for 5.5
+applied as fix for 5.4
 
 Thanks
 Heiko
