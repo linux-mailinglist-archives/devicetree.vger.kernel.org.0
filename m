@@ -2,170 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1AD0D264C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 11:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C7AD2705
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 12:18:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387660AbfJJJ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 05:28:13 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:55084 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733134AbfJJJ2N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 05:28:13 -0400
-Received: by mail-wm1-f67.google.com with SMTP id p7so6133179wmp.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 02:28:12 -0700 (PDT)
+        id S1726304AbfJJKSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 06:18:24 -0400
+Received: from smtp-fw-6001.amazon.com ([52.95.48.154]:2443 "EHLO
+        smtp-fw-6001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725840AbfJJKSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 06:18:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=D/ELkajn5nIeWjt+au+JukJPjjOmYN8ul5L5G8g9Cbw=;
-        b=vBgud5FUoF0BluzVgOr5mc+3sO+QeVDiiFna1seL30oxei6d/G1Gcn6OURjpSV5FJp
-         tyIDD8hgqfT6TqZ0m8A+Y570QFqu7S18n75up5d6x6MwFgpV2at9SaLbbeQMiQbgHkK1
-         HFkubXUAXl0UuYvhGw8Hu6IcWiMWHPa3r20trLP/WXhWAHUJQg3ZNz8NkhNi/DKeFb97
-         FTEXsltHQ9xnTUKo9aJL817yRA6Kjg8QH9Af0vGts/ubMQ8yskDLIBA44ZPI4WOVeS+G
-         FTra92WmfZuYkQdI53afAlAcjNMt5rfa5bQr5fIQIGChlBjL3p7uv9RQPwGWYYdlPOsj
-         tXeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=D/ELkajn5nIeWjt+au+JukJPjjOmYN8ul5L5G8g9Cbw=;
-        b=lbwyLp89WRJLjixdyYN8F3qdlW9UnSYloXbXA8wrmqQLino+MGdDjAcm7kaPV4p7Db
-         i2iFwDwaNzt8MUxMnS2ssewQjXQv0Qf/AqQgSZnzDeK9fBdGv4hhWjPHGI9dt/AfYPiY
-         mNzQQyRXtcHr5F9oyou43i0oA9mK2peQ/QkLUquTN2YsvEczbFZeC+ISyEJ2nuyQ5FuU
-         mmK5Tm62kC376qu6Y8KqzzJjYnDZGA6H8EDTJyiGo0Y/HH5Ocs9+NEhMvNYmOGv63lEF
-         Q9WQ2Pbu6zJzZLlS9YIc0P35f4+TCrPZInHI+sssN9Zqk/0AdfAt7ratDA8oLbv+uidf
-         nryg==
-X-Gm-Message-State: APjAAAWBYajDJLvYz8eYlqVPM6d6JGj3aIBEb7iKPmVeDHsDsEDyMGD8
-        ndLFn3AKzt9jZSsAJob1D2vo9Q==
-X-Google-Smtp-Source: APXvYqzh6cSKpRv0QPcGFghP+vIiOOMTWhRv7tSw50MdW0LwB1cnhPJCjyLv5lQ6J6Vs3RTkKyuYyg==
-X-Received: by 2002:a7b:caea:: with SMTP id t10mr6538733wml.118.1570699691297;
-        Thu, 10 Oct 2019 02:28:11 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id l11sm6282042wmh.34.2019.10.10.02.28.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 10 Oct 2019 02:28:10 -0700 (PDT)
-Subject: Re: [PATCH v7 2/2] ASoC: codecs: add wsa881x amplifier support
-To:     Mark Brown <broonie@kernel.org>
-Cc:     spapothi@codeaurora.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, vkoul@kernel.org,
-        pierre-louis.bossart@linux.intel.com
-References: <20191009085108.4950-1-srinivas.kandagatla@linaro.org>
- <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
- <20191009163535.GK2036@sirena.org.uk>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
-Date:   Thu, 10 Oct 2019 10:28:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1570702703; x=1602238703;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=gzt3BjERRKwc4CaUYcTEPU+kmi2VWRj9rm7SI3fPcl0=;
+  b=XDWKo5u6/miMwRab6aFZ6FGzvh7T3HN5XcjBrtpFQ0kiryTUkENJ6qRQ
+   WZ6lWHn4o8Ht0GEwZh+ef69RggH39k3epeS26wpAmxyre6gw/4ftKtL/T
+   Tb/X6PkGR4fafEMM4DXY1UL3PN099mcCX4e+T8U8f7+1KAd8lMB/A/Iiw
+   M=;
+X-IronPort-AV: E=Sophos;i="5.67,279,1566864000"; 
+   d="scan'208";a="421467619"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-a7fdc47a.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-6001.iad6.amazon.com with ESMTP; 10 Oct 2019 10:18:18 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan2.pdx.amazon.com [10.170.41.162])
+        by email-inbound-relay-2b-a7fdc47a.us-west-2.amazon.com (Postfix) with ESMTPS id 9360FC5A7D;
+        Thu, 10 Oct 2019 10:18:17 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 10 Oct 2019 10:18:17 +0000
+Received: from [10.125.238.52] (10.43.160.180) by EX13D01EUB001.ant.amazon.com
+ (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Thu, 10 Oct
+ 2019 10:18:08 +0000
+Subject: Re: [PATCH v3 1/2] dt-bindings: edac: al-mc-edac: Amazon's Annapurna
+ Labs Memory Controller EDAC
+To:     Rob Herring <robh@kernel.org>
+CC:     <mark.rutland@arm.com>, <bp@alien8.de>, <mchehab@kernel.org>,
+        <james.morse@arm.com>, <davem@davemloft.net>,
+        <gregkh@linuxfoundation.org>, <paulmck@linux.ibm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-edac@vger.kernel.org>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <hhhawa@amazon.com>,
+        <ronenk@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <amirkl@amazon.com>, <barakw@amazon.com>
+References: <1570103363-21486-1-git-send-email-talel@amazon.com>
+ <1570103363-21486-2-git-send-email-talel@amazon.com>
+ <20191009191625.GA8179@bogus>
+From:   "Shenhar, Talel" <talel@amazon.com>
+Message-ID: <645f7af1-cefc-0af2-9fbd-e73e5305a268@amazon.com>
+Date:   Thu, 10 Oct 2019 13:18:03 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
 MIME-Version: 1.0
-In-Reply-To: <20191009163535.GK2036@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
+In-Reply-To: <20191009191625.GA8179@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.43.160.180]
+X-ClientProxiedBy: EX13D08UWC002.ant.amazon.com (10.43.162.168) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Mark for taking time to review this patch.
 
-On 09/10/2019 17:35, Mark Brown wrote:
-> On Wed, Oct 09, 2019 at 09:51:08AM +0100, Srinivas Kandagatla wrote:
-> 
->> +static const u8 wsa881x_reg_readable[WSA881X_CACHE_SIZE] = {
-> 
->> +static bool wsa881x_readable_register(struct device *dev, unsigned int reg)
->> +{
->> +	return wsa881x_reg_readable[reg];
-> u
-> There's no bounds check and that array size is not...
-> 
-I converted this now to a proper switch statement as other drivers do.
-
->> +static struct regmap_config wsa881x_regmap_config = {
->> +	.reg_bits = 32,
->> +	.val_bits = 8,
->> +	.cache_type = REGCACHE_RBTREE,
->> +	.reg_defaults = wsa881x_defaults,
->> +	.num_reg_defaults = ARRAY_SIZE(wsa881x_defaults),
->> +	.max_register = WSA881X_MAX_REGISTER,
-> 
-> ...what regmap has as max_register.  Uusually you'd render as a
-> switch statement (as you did for volatile) and let the compiler
-> figure out a sensible way to do the lookup.
-
-Sorry, I did not get your point here.
-
-Are you saying that we can skip max_register in this regmap config ?
-Then how would max_register in regmap be set?
-
-> 
->> +static void wsa881x_init(struct wsa881x_priv *wsa881x)
->> +{
->> +	struct regmap *rm = wsa881x->regmap;
->> +	unsigned int val = 0;
+On 10/9/2019 10:16 PM, Rob Herring wrote:
+> On Thu, Oct 03, 2019 at 02:49:22PM +0300, Talel Shenhar wrote:
+>> Document Amazon's Annapurna Labs Memory Controller EDAC SoC binding.
+>>
+>> Signed-off-by: Talel Shenhar <talel@amazon.com>
+>> ---
+>>   .../bindings/edac/amazon,al-mc-edac.yaml           | 40 ++++++++++++++++++++++
+>>   1 file changed, 40 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
+>> new file mode 100644
+>> index 0000000..33da051
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
+>> @@ -0,0 +1,40 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/edac/amazon,al-mc-edac.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +	regmap_read(rm, WSA881X_CHIP_ID1, &wsa881x->version);
->> +	regcache_cache_only(rm, true);
->> +	regmap_multi_reg_write(rm, wsa881x_rev_2_0,
->> +			       ARRAY_SIZE(wsa881x_rev_2_0));
->> +	regcache_cache_only(rm, false);
-> 
-> This looks broken, what is it supposed to be doing?  It looks
-> like it should be a register patch but it's not documented.
-> 
-Yep, it makes sense to move this to patch, its done in new version.
-
->> +static const struct snd_kcontrol_new wsa881x_snd_controls[] = {
->> +	SOC_ENUM("Smart Boost Level", smart_boost_lvl_enum),
->> +	WSA881X_PA_GAIN_TLV("PA Gain", WSA881X_SPKR_DRV_GAIN,
->> +			    4, 0xC, 1, pa_gain),
-> 
-> As covered in control-names.rst all volume controls should end in
-> Volume.
-> 
-Fixed this in next version.
-
->> +static void wsa881x_clk_ctrl(struct snd_soc_component *comp, bool enable)
->> +{
->> +	struct wsa881x_priv *wsa881x = snd_soc_component_get_drvdata(comp);
+>> +title: Amazon's Annapurna Labs Memory Controller EDAC
 >> +
->> +	mutex_lock(&wsa881x->res_lock);
-> 
-> What is this lock supposed to be protecting?  As far as I can
-> tell this function is the only place it is used and this function
-> has exactly one caller which itself has only one caller which is
-> a DAPM widget and hence needs no locking.  It looks awfully like
-> it should just be a widget itself, or inlined into the single
-> caller.
-> 
-This was done for temperature sensor reads which can happen in parallel.
-But for now I will remove it and add back once we add tsens support.
-
->> +static void wsa881x_bandgap_ctrl(struct snd_soc_component *comp, bool enable)
->> +{
->> +	struct wsa881x_priv *wsa881x = snd_soc_component_get_drvdata(comp);
-> 
-> Similarly here.
-> 
-This one was over done! its now removed in next version.
-
->> +static int32_t wsa881x_resource_acquire(struct snd_soc_component *comp,
->> +					bool enable)
->> +{
->> +	wsa881x_clk_ctrl(comp, enable);
->> +	wsa881x_bandgap_ctrl(comp, enable);
+>> +maintainers:
+>> +  - Talel Shenhar <talel@amazon.com>
+>> +  - Talel Shenhar <talelshenhar@gmail.com>
 >> +
->> +	return 0;
->> +}
-> 
-> There's no corresponding disables.
+>> +description: |
+>> +  EDAC node is defined to describe on-chip error detection and correction for
+>> +  Amazon's Annapurna Labs Memory Controller.
+>> +
+>> +properties:
+>> +
+>> +  compatible:
+>> +    - const: "amazon,al-mc-edac"
+> Fails 'make dt_binding_check'. Drop the '-' as a property is not a list.
+>
+> The "" are also unnecessary.
+ack, shall be part of v4
+>
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +examples:
+>> +  - |
+>> +    edac@f0080000 {
+>> +      compatible = "amazon,al-mc-edac";
+>> +      reg = <0x0 0xf0080000 0x0 0x00010000>;
+>> +      interrupt-parent = <&amazon_al_system_fabric>;
+>> +      interrupt-names = "ue";
+> Need to document the name or drop as -names on a single entry is
+> pointless.
 
-both wsa881x_clk_ctrl() and wsa881x_bandgap_ctrl() have corresponding 
-disables in that functions.
+actually, there are 2 interrupts possible here. so will also fix the 
+maxItems of interrupts. will also add the documentation.
 
-thanks,
-srini
-> 
+shall be part of v4.
+
+>
+>> +      interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+>> +    };
+>> -- 
+>> 2.7.4
+>>
