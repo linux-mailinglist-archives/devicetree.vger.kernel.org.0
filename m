@@ -2,1032 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D46D1DF8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 03:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71392D1DFC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 03:28:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732448AbfJJBZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 21:25:46 -0400
-Received: from 68-189-91-139.static.snlo.ca.charter.com ([68.189.91.139]:46952
-        "EHLO rjones.pdc.gateworks.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1732252AbfJJBZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 21:25:45 -0400
-Received: by rjones.pdc.gateworks.com (Postfix, from userid 1002)
-        id 41F981A4411E; Wed,  9 Oct 2019 18:25:44 -0700 (PDT)
-From:   Robert Jones <rjones@gateworks.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        id S1732219AbfJJB2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 21:28:35 -0400
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:57600 "EHLO
+        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731751AbfJJB2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 21:28:35 -0400
+Received: from pps.filterd (m0109334.ppops.net [127.0.0.1])
+        by mx0a-00082601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9A1IJE4011219;
+        Wed, 9 Oct 2019 18:26:54 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=facebook;
+ bh=zd3aZvwzJYk15BUYctpAmmc/25qqoMu0W19HM5Xbm3g=;
+ b=flC9cBshTcwUJs9/sFTcv78BMG1ZJ4XMUTZFyahcGgckoN3100+jyEjD5vqZhTT7XTJ5
+ onsqWd2Lg7F9U20/Z4AmsMWIbFeDnF3/7A1ZHtQp8QYRQGIJUjuFuLcgLAELVemM/4Fz
+ Sg9Z4mBXHekmMuC/df/xHTGt3C0cdYH18sA= 
+Received: from maileast.thefacebook.com ([163.114.130.16])
+        by mx0a-00082601.pphosted.com with ESMTP id 2vgpq9tgm8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 09 Oct 2019 18:26:53 -0700
+Received: from ash-exhub202.TheFacebook.com (2620:10d:c0a8:83::6) by
+ ash-exhub102.TheFacebook.com (2620:10d:c0a8:82::f) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 9 Oct 2019 18:26:52 -0700
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com (100.104.31.183)
+ by o365-in.thefacebook.com (100.104.36.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 9 Oct 2019 18:26:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NfEld6QuwLdkFO1edUxMMvEAFjCFAoKjvoUeGlljLclr7jCatlZUOiQ66dqTcv8YCaJNu7RkMcS/UrTsxooiUDzr6vdsJuOtjyouZsFvSjDO9AZO9SDjTDky9eFJbwx1i6ROmBFq6I2eEij0gahbQFVfyUzG7BYfPymHpQMWy0wbs8U7Nl01vdBjZdj6GswXt7ojWF9GiepkHqLtHEZGfkSnhduRr2Sf3ho9Ejsm60vd/SP8NeoLK7YzXZlspeuaHkpUaeMcj9Y0S/Qfxrn8d2sB/KHfFpoWNZfCz4AhGCdFfotv70CGG/aU6wW8fsbA2CvlQtzQrp95/qf1QD7u9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zd3aZvwzJYk15BUYctpAmmc/25qqoMu0W19HM5Xbm3g=;
+ b=OVw1XNduZGdfy13c8lzT/IQEZSXgpfnHcf9RbxWst/zFicHp8uzEHf8xSPtvLjFui9J34w2up76zozSdb2wPvIReXAXUS8SZw6/TnCuNjemnVGNGQ9zuc0SsuC/ifCLRd6T6FOZxtgvh0/wkBaQNm+4PdGu+Jet2qBT4abAQMI7BdigAUCxWaKoyFZfSBwylOzYYOB/adbzkJdGmLNp6GGzNbSyCFlhMihcXwAPy+LTbU1zTilzXY6yhydiamMFH70iR9eEfwRywKVWalB6qSwTIBVdGlH3zIZ88jNCZoc3GobXPkbh3oKTnHR+R0V7lWFqkXho6oWzoTM2AD2vuxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fb.com; dmarc=pass action=none header.from=fb.com; dkim=pass
+ header.d=fb.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
+ s=selector2-fb-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zd3aZvwzJYk15BUYctpAmmc/25qqoMu0W19HM5Xbm3g=;
+ b=al6ceIMGbwpGZetnkvf7EEro3QSPqoEZ/bV08/F6ktBYRayg1KnBhaIWI7U1OTNGjt1tAXkeobkPCNNn+eQECuoZY/SJbkrvw/ymrgrLFUdrrqk03U/EUpg6RY+WPfUddp7Q1e4e93euXlv1RtLtZVVJVckluk2rDaRfxX6qKKU=
+Received: from MWHPR15MB1216.namprd15.prod.outlook.com (10.175.2.17) by
+ MWHPR15MB1375.namprd15.prod.outlook.com (10.173.233.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.16; Thu, 10 Oct 2019 01:26:50 +0000
+Received: from MWHPR15MB1216.namprd15.prod.outlook.com
+ ([fe80::24c9:a1ce:eeeb:9246]) by MWHPR15MB1216.namprd15.prod.outlook.com
+ ([fe80::24c9:a1ce:eeeb:9246%10]) with mapi id 15.20.2347.016; Thu, 10 Oct
+ 2019 01:26:49 +0000
+From:   Tao Ren <taoren@fb.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+CC:     Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Robert Jones <rjones@gateworks.com>
-Subject: [PATCH v2 2/2] iio: imu: Add support for the FXOS8700 IMU
-Date:   Wed,  9 Oct 2019 18:25:23 -0700
-Message-Id: <20191010012523.14426-3-rjones@gateworks.com>
-X-Mailer: git-send-email 2.9.2
-In-Reply-To: <20191010012523.14426-1-rjones@gateworks.com>
-References: <20190918012856.18963-1-rjones@gateworks.com>
- <20191010012523.14426-1-rjones@gateworks.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cedric Le Goater <clg@kaod.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+Subject: Re: [PATCH] i2c: aspeed: fix master pending state handling
+Thread-Topic: [PATCH] i2c: aspeed: fix master pending state handling
+Thread-Index: AQHVfud35WuTlVbA0UqacW6NAtrttKdTBpsAgAAPJoA=
+Date:   Thu, 10 Oct 2019 01:26:49 +0000
+Message-ID: <43ab0316-78dd-b7b0-c04e-e039d38c3d45@fb.com>
+References: <20191009212034.20325-1-jae.hyun.yoo@linux.intel.com>
+ <20191010003234.GA12710@google.com>
+In-Reply-To: <20191010003234.GA12710@google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: CO1PR15CA0045.namprd15.prod.outlook.com
+ (2603:10b6:101:1f::13) To MWHPR15MB1216.namprd15.prod.outlook.com
+ (2603:10b6:320:22::17)
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [2620:10d:c090:200::2:8309]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b2305e0f-9df1-4636-1ec6-08d74d20ec26
+x-ms-traffictypediagnostic: MWHPR15MB1375:
+x-microsoft-antispam-prvs: <MWHPR15MB1375A85B19041D02320E947DB2940@MWHPR15MB1375.namprd15.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 018632C080
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(376002)(39860400002)(396003)(136003)(346002)(189003)(199004)(229853002)(54906003)(81166006)(65806001)(65956001)(81156014)(7736002)(7416002)(6486002)(102836004)(110136005)(36756003)(58126008)(14444005)(256004)(8936002)(305945005)(71200400001)(71190400001)(8676002)(5660300002)(316002)(11346002)(46003)(14454004)(478600001)(52116002)(99286004)(66946007)(486006)(76176011)(446003)(476003)(86362001)(6246003)(2906002)(6512007)(186003)(386003)(6436002)(6506007)(2616005)(31686004)(53546011)(31696002)(25786009)(6116002)(66556008)(64756008)(66446008)(66476007)(4326008);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR15MB1375;H:MWHPR15MB1216.namprd15.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: fb.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rT2XYrovIIpFfK/FOI3M/V27xRgRs1mXhiR5PctkgC3y3VmsvQ6K/qGIRUY2D94uesFvIRwPJGS8UMc5Z40+45E9P8Gev+XJf65U1sDZ1MzlrFLvxKu1X/4hdyIhldxzh+6y533KZprDVw+Mq5+bQ96ALYCMQePQlVdNGPZsZ6+GPWNYaANTDH4t3RmLZhOgLWy3f87QdQVByw3yuQRAtAtedgx/KWByBufF24cyGFwv6N+Wi+DmKPGS7f/ue0/SXvL3KZQwFhcFUlz6n5d7T1iUWicSTz3dkn+lqta2qkD5WMTfxRlX2R6TKw0a/g/cHXfJ650sI2yltAe1Jf1SkGjh3gM6aTZpgtL/VFkPinj4/5eCCsrvjwMw8ifAeMUJNRTKEbeDc2NSjMTL7yfyEeoYYw8DSH99UjLPEp0hoIQ=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3DC2428602E08C4F8C65A1DA359F1D88@namprd15.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2305e0f-9df1-4636-1ec6-08d74d20ec26
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 01:26:49.7065
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yu1Cy0BajlyJG7nG6o1JHgDSvsESl++VzcYTjSofT5W9+T3u7uvFx9C/B7ogeHTA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR15MB1375
+X-OriginatorOrg: fb.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-09_11:2019-10-08,2019-10-09 signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 mlxlogscore=999
+ bulkscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 phishscore=0 clxscore=1011 adultscore=0
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910100010
+X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-FXOS8700CQ is a small, low-power, 3-axis linear accelerometer and 3-axis
-magnetometer combined into a single package. The device features a
-selectable I2C or point-to-point SPI serial interface with 14-bit
-accelerometer and 16-bit magnetometer ADC resolution along with
-smart-embedded functions.
-
-FXOS8700CQ has dynamically selectable accelerationfull-scale ranges of
-±2 g/±4 g/±8 g and a fixed magnetic measurement range of ±1200 μT.
-Output data rates (ODR) from 1.563 Hz to 800 Hz are selectable by the user
-for each sensor. Interleaved magnetic and acceleration data is available
-at ODR rates of up to 400 Hz. FXOS8700CQ is available in a plastic QFN
-package and it is guaranteed to operate over the extended temperature
-range of –40 °C to +85 °C.
-
-TODO: Trigger and IRQ configuration support
-
-Datasheet:
-  http://cache.freescale.com/files/sensors/doc/data_sheet/FXOS8700CQ.pdf
-
-Signed-off-by: Robert Jones <rjones@gateworks.com>
----
- drivers/iio/imu/Kconfig           |  28 +++
- drivers/iio/imu/Makefile          |   5 +
- drivers/iio/imu/fxos8700.h        | 185 ++++++++++++++
- drivers/iio/imu/fxos8700/Kconfig  |  30 +++
- drivers/iio/imu/fxos8700/Makefile |   6 +
- drivers/iio/imu/fxos8700_core.c   | 501 ++++++++++++++++++++++++++++++++++++++
- drivers/iio/imu/fxos8700_i2c.c    |  73 ++++++
- drivers/iio/imu/fxos8700_spi.c    |  61 +++++
- 8 files changed, 889 insertions(+)
- create mode 100644 drivers/iio/imu/fxos8700.h
- create mode 100644 drivers/iio/imu/fxos8700/Kconfig
- create mode 100644 drivers/iio/imu/fxos8700/Makefile
- create mode 100644 drivers/iio/imu/fxos8700_core.c
- create mode 100644 drivers/iio/imu/fxos8700_i2c.c
- create mode 100644 drivers/iio/imu/fxos8700_spi.c
-
-diff --git a/drivers/iio/imu/Kconfig b/drivers/iio/imu/Kconfig
-index f3c7282..adadfa0 100644
---- a/drivers/iio/imu/Kconfig
-+++ b/drivers/iio/imu/Kconfig
-@@ -40,6 +40,33 @@ config ADIS16480
- 
- source "drivers/iio/imu/bmi160/Kconfig"
- 
-+config FXOS8700
-+	tristate
-+
-+config FXOS8700_I2C
-+	tristate "Freescale FXOS8700 I2C driver"
-+	depends on I2C
-+	select FXOS8700
-+	select REGMAP_I2C
-+	help
-+	  Say yes here to build support for the Freescale FXOS8700 m+g combo
-+	  sensor on I2C.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called fxos8700_i2c.
-+
-+config FXOS8700_SPI
-+	tristate "Freescale FXOS8700 SPI driver"
-+	depends on SPI
-+	select FXOS8700
-+	select REGMAP_SPI
-+	help
-+	  Say yes here to build support for the Freescale FXOS8700 m+g combo
-+	  sensor on SPI.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called fxos8700_spi.
-+
- config KMX61
- 	tristate "Kionix KMX61 6-axis accelerometer and magnetometer"
- 	depends on I2C
-@@ -53,6 +80,7 @@ config KMX61
- 
- source "drivers/iio/imu/inv_mpu6050/Kconfig"
- source "drivers/iio/imu/st_lsm6dsx/Kconfig"
-+source "drivers/iio/imu/fxos8700/Kconfig"
- 
- endmenu
- 
-diff --git a/drivers/iio/imu/Makefile b/drivers/iio/imu/Makefile
-index 4a69588..5237fd4 100644
---- a/drivers/iio/imu/Makefile
-+++ b/drivers/iio/imu/Makefile
-@@ -14,6 +14,11 @@ adis_lib-$(CONFIG_IIO_ADIS_LIB_BUFFER) += adis_buffer.o
- obj-$(CONFIG_IIO_ADIS_LIB) += adis_lib.o
- 
- obj-y += bmi160/
-+
-+obj-$(CONFIG_FXOS8700) += fxos8700_core.o
-+obj-$(CONFIG_FXOS8700_I2C) += fxos8700_i2c.o
-+obj-$(CONFIG_FXOS8700_SPI) += fxos8700_spi.o
-+
- obj-y += inv_mpu6050/
- 
- obj-$(CONFIG_KMX61) += kmx61.o
-diff --git a/drivers/iio/imu/fxos8700.h b/drivers/iio/imu/fxos8700.h
-new file mode 100644
-index 0000000..92499a2
---- /dev/null
-+++ b/drivers/iio/imu/fxos8700.h
-@@ -0,0 +1,185 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef FXOS8700_H_
-+#define FXOS8700_H_
-+
-+extern const struct regmap_config fxos8700_regmap_config;
-+
-+int fxos8700_core_probe(struct device *dev, struct regmap *regmap,
-+			const char *name, bool use_spi);
-+
-+/* Register Definitions */
-+#define FXOS8700_STATUS             0x00
-+#define FXOS8700_OUT_X_MSB          0x01
-+#define FXOS8700_OUT_X_LSB          0x02
-+#define FXOS8700_OUT_Y_MSB          0x03
-+#define FXOS8700_OUT_Y_LSB          0x04
-+#define FXOS8700_OUT_Z_MSB          0x05
-+#define FXOS8700_OUT_Z_LSB          0x06
-+#define FXOS8700_F_SETUP            0x09
-+#define FXOS8700_TRIG_CFG           0x0a
-+#define FXOS8700_SYSMOD             0x0b
-+#define FXOS8700_INT_SOURCE         0x0c
-+#define FXOS8700_WHO_AM_I           0x0d
-+#define FXOS8700_XYZ_DATA_CFG       0x0e
-+#define FXOS8700_HP_FILTER_CUTOFF   0x0f
-+#define FXOS8700_PL_STATUS          0x10
-+#define FXOS8700_PL_CFG             0x11
-+#define FXOS8700_PL_COUNT           0x12
-+#define FXOS8700_PL_BF_ZCOMP        0x13
-+#define FXOS8700_PL_THS_REG         0x14
-+#define FXOS8700_A_FFMT_CFG         0x15
-+#define FXOS8700_A_FFMT_SRC         0x16
-+#define FXOS8700_A_FFMT_THS         0x17
-+#define FXOS8700_A_FFMT_COUNT       0x18
-+#define FXOS8700_TRANSIENT_CFG      0x1d
-+#define FXOS8700_TRANSIENT_SRC      0x1e
-+#define FXOS8700_TRANSIENT_THS      0x1f
-+#define FXOS8700_TRANSIENT_COUNT    0x20
-+#define FXOS8700_PULSE_CFG          0x21
-+#define FXOS8700_PULSE_SRC          0x22
-+#define FXOS8700_PULSE_THSX         0x23
-+#define FXOS8700_PULSE_THSY         0x24
-+#define FXOS8700_PULSE_THSZ         0x25
-+#define FXOS8700_PULSE_TMLT         0x26
-+#define FXOS8700_PULSE_LTCY         0x27
-+#define FXOS8700_PULSE_WIND         0x28
-+#define FXOS8700_ASLP_COUNT         0x29
-+#define FXOS8700_CTRL_REG1          0x2a
-+#define FXOS8700_CTRL_REG2          0x2b
-+#define FXOS8700_CTRL_REG3          0x2c
-+#define FXOS8700_CTRL_REG4          0x2d
-+#define FXOS8700_CTRL_REG5          0x2e
-+#define FXOS8700_OFF_X              0x2f
-+#define FXOS8700_OFF_Y              0x30
-+#define FXOS8700_OFF_Z              0x31
-+#define FXOS8700_M_DR_STATUS        0x32
-+#define FXOS8700_M_OUT_X_MSB        0x33
-+#define FXOS8700_M_OUT_X_LSB        0x34
-+#define FXOS8700_M_OUT_Y_MSB        0x35
-+#define FXOS8700_M_OUT_Y_LSB        0x36
-+#define FXOS8700_M_OUT_Z_MSB        0x37
-+#define FXOS8700_M_OUT_Z_LSB        0x38
-+#define FXOS8700_CMP_X_MSB          0x39
-+#define FXOS8700_CMP_X_LSB          0x3a
-+#define FXOS8700_CMP_Y_MSB          0x3b
-+#define FXOS8700_CMP_Y_LSB          0x3c
-+#define FXOS8700_CMP_Z_MSB          0x3d
-+#define FXOS8700_CMP_Z_LSB          0x3e
-+#define FXOS8700_M_OFF_X_MSB        0x3f
-+#define FXOS8700_M_OFF_X_LSB        0x40
-+#define FXOS8700_M_OFF_Y_MSB        0x41
-+#define FXOS8700_M_OFF_Y_LSB        0x42
-+#define FXOS8700_M_OFF_Z_MSB        0x43
-+#define FXOS8700_M_OFF_Z_LSB        0x44
-+#define FXOS8700_MAX_X_MSB          0x45
-+#define FXOS8700_MAX_X_LSB          0x46
-+#define FXOS8700_MAX_Y_MSB          0x47
-+#define FXOS8700_MAX_Y_LSB          0x48
-+#define FXOS8700_MAX_Z_MSB          0x49
-+#define FXOS8700_MAX_Z_LSB          0x4a
-+#define FXOS8700_MIN_X_MSB          0x4b
-+#define FXOS8700_MIN_X_LSB          0x4c
-+#define FXOS8700_MIN_Y_MSB          0x4d
-+#define FXOS8700_MIN_Y_LSB          0x4e
-+#define FXOS8700_MIN_Z_MSB          0x4f
-+#define FXOS8700_MIN_Z_LSB          0x50
-+#define FXOS8700_TEMP               0x51
-+#define FXOS8700_M_THS_CFG          0x52
-+#define FXOS8700_M_THS_SRC          0x53
-+#define FXOS8700_M_THS_X_MSB        0x54
-+#define FXOS8700_M_THS_X_LSB        0x55
-+#define FXOS8700_M_THS_Y_MSB        0x56
-+#define FXOS8700_M_THS_Y_LSB        0x57
-+#define FXOS8700_M_THS_Z_MSB        0x58
-+#define FXOS8700_M_THS_Z_LSB        0x59
-+#define FXOS8700_M_THS_COUNT        0x5a
-+#define FXOS8700_M_CTRL_REG1        0x5b
-+#define FXOS8700_M_CTRL_REG2        0x5c
-+#define FXOS8700_M_CTRL_REG3        0x5d
-+#define FXOS8700_M_INT_SRC          0x5e
-+#define FXOS8700_A_VECM_CFG         0x5f
-+#define FXOS8700_A_VECM_THS_MSB     0x60
-+#define FXOS8700_A_VECM_THS_LSB     0x61
-+#define FXOS8700_A_VECM_CNT         0x62
-+#define FXOS8700_A_VECM_INITX_MSB   0x63
-+#define FXOS8700_A_VECM_INITX_LSB   0x64
-+#define FXOS8700_A_VECM_INITY_MSB   0x65
-+#define FXOS8700_A_VECM_INITY_LSB   0x66
-+#define FXOS8700_A_VECM_INITZ_MSB   0x67
-+#define FXOS8700_A_VECM_INITZ_LSB   0x68
-+#define FXOS8700_M_VECM_CFG         0x69
-+#define FXOS8700_M_VECM_THS_MSB     0x6a
-+#define FXOS8700_M_VECM_THS_LSB     0x6b
-+#define FXOS8700_M_VECM_CNT         0x6c
-+#define FXOS8700_M_VECM_INITX_MSB   0x6d
-+#define FXOS8700_M_VECM_INITX_LSB   0x6e
-+#define FXOS8700_M_VECM_INITY_MSB   0x6f
-+#define FXOS8700_M_VECM_INITY_LSB   0x70
-+#define FXOS8700_M_VECM_INITZ_MSB   0x71
-+#define FXOS8700_M_VECM_INITZ_LSB   0x72
-+#define FXOS8700_A_FFMT_THS_X_MSB   0x73
-+#define FXOS8700_A_FFMT_THS_X_LSB   0x74
-+#define FXOS8700_A_FFMT_THS_Y_MSB   0x75
-+#define FXOS8700_A_FFMT_THS_Y_LSB   0x76
-+#define FXOS8700_A_FFMT_THS_Z_MSB   0x77
-+#define FXOS8700_A_FFMT_THS_Z_LSB   0x78
-+#define FXOS8700_A_TRAN_INIT_MSB    0x79
-+#define FXOS8700_A_TRAN_INIT_LSB_X  0x7a
-+#define FXOS8700_A_TRAN_INIT_LSB_Y  0x7b
-+#define FXOS8700_A_TRAN_INIT_LSB_Z  0x7d
-+#define FXOS8700_TM_NVM_LOCK        0x7e
-+#define FXOS8700_NVM_DATA0_35       0x80
-+#define FXOS8700_NVM_DATA_BNK3      0xa4
-+#define FXOS8700_NVM_DATA_BNK2      0xa5
-+#define FXOS8700_NVM_DATA_BNK1      0xa6
-+#define FXOS8700_NVM_DATA_BNK0      0xa7
-+
-+/* Bit definitions for FXOS8700_M_CTRL_REG1 */
-+#define FXOS8700_HMS_MASK           GENMASK(1, 0)
-+#define FXOS8700_OS_MASK            GENMASK(4, 2)
-+
-+/* Bit definitions for FXOS8700_M_CTRL_REG2 */
-+#define FXOS8700_MAXMIN_RST         BIT(2)
-+#define FXOS8700_MAXMIN_DIS_THS     BIT(3)
-+#define FXOS8700_MAXMIN_DIS         BIT(4)
-+
-+#define SENSOR_IOCTL_BASE           'S'
-+#define SENSOR_GET_MODEL_NAME       _IOR(SENSOR_IOCTL_BASE, 0, char *)
-+#define SENSOR_GET_POWER_STATUS     _IOR(SENSOR_IOCTL_BASE, 2, int)
-+#define SENSOR_SET_POWER_STATUS     _IOR(SENSOR_IOCTL_BASE, 3, int)
-+#define SENSOR_GET_DELAY_TIME       _IOR(SENSOR_IOCTL_BASE, 4, int)
-+#define SENSOR_SET_DELAY_TIME       _IOR(SENSOR_IOCTL_BASE, 5, int)
-+#define SENSOR_GET_RAW_DATA         _IOR(SENSOR_IOCTL_BASE, 6, short[3])
-+
-+#define FXOS8700_I2C_ADDR           0x1E
-+#define FXOS8700_DEVICE_ID          0xC7
-+#define FXOS8700_PRE_DEVICE_ID      0xC4
-+#define FXOS8700_DATA_BUF_SIZE      6
-+#define FXOS8700_DELAY_DEFAULT      200 /* msecs */
-+#define FXOS8700_POSITION_DEFAULT   1   /* msecs */
-+
-+#define FXOS8700_TYPE_ACC           0x00
-+#define FXOS8700_TYPE_MAG           0x01
-+#define FXOS8700_STANDBY            0x00
-+#define FXOS8700_ACTIVE             0x01
-+#define FXOS8700_ACTIVE_MIN_USLEEP  4000 /* from table 6 in datasheet */
-+
-+#define ABS_STATUS                  ABS_WHEEL
-+#define FXOS8700_DRIVER             "fxos8700"
-+
-+#define ABSMAX_ACC_VAL              0x01FF
-+#define ABSMIN_ACC_VAL              -(ABSMAX_ACC_VAL)
-+#define FXOS8700_POLL_INTERVAL      400
-+#define FXOS8700_POLL_MAX           800
-+#define FXOS8700_POLL_MIN           100
-+#define FXOS8700_CTRL_ODR_MSK       0x38
-+#define FXOS8700_CTRL_ODR_MAX       0x00
-+#define FXOS8700_CTRL_ODR_MIN       (0x03 << 3)
-+
-+enum {
-+	MODE_2G = 0,
-+	MODE_4G,
-+	MODE_8G,
-+};
-+
-+#endif  /* FXOS8700_H_ */
-diff --git a/drivers/iio/imu/fxos8700/Kconfig b/drivers/iio/imu/fxos8700/Kconfig
-new file mode 100644
-index 0000000..1c7dbfd
---- /dev/null
-+++ b/drivers/iio/imu/fxos8700/Kconfig
-@@ -0,0 +1,30 @@
-+#
-+# FXOS8700 IMU driver
-+#
-+
-+config FXOS8700
-+	tristate
-+
-+config FXOS8700_I2C
-+	tristate "Freescale FXOS8700 I2C driver"
-+	depends on I2C
-+	select FXOS8700
-+	select REGMAP_I2C
-+	help
-+	  Say yes here to build support for the Freescale FXOS8700 m+g combo
-+	  sensor on I2C.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called fxos8700_i2c.
-+
-+config FXOS8700_SPI
-+	tristate "Freescale FXOS8700 SPI driver"
-+	depends on SPI
-+	select FXOS8700
-+	select REGMAP_SPI
-+	help
-+	  Say yes here to build support for the Freescale FXOS8700 m+g combo
-+	  sensor on SPI.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called fxos8700_spi.
-diff --git a/drivers/iio/imu/fxos8700/Makefile b/drivers/iio/imu/fxos8700/Makefile
-new file mode 100644
-index 0000000..43ae69e
---- /dev/null
-+++ b/drivers/iio/imu/fxos8700/Makefile
-@@ -0,0 +1,6 @@
-+#
-+# Makefile for Freescale FXOS8700 IMU
-+#
-+obj-$(CONFIG_FXOS8700) += fxos8700_core.o
-+obj-$(CONFIG_FXOS8700_I2C) += fxos8700_i2c.o
-+obj-$(CONFIG_FXOS8700_SPI) += fxos8700_spi.o
-\ No newline at end of file
-diff --git a/drivers/iio/imu/fxos8700_core.c b/drivers/iio/imu/fxos8700_core.c
-new file mode 100644
-index 0000000..147e486
---- /dev/null
-+++ b/drivers/iio/imu/fxos8700_core.c
-@@ -0,0 +1,501 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * FXOS8700 - Freescale IMU (accelerometer plus magnetometer)
-+ *
-+ * Copyright (c) 2019, Freescale Corporation.
-+ *
-+ * IIO core driver for FXOS8700, with support for I2C/SPI busses
-+ *
-+ * TODO: Buffer, trigger, and IRQ support
-+ */
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/acpi.h>
-+#include <linux/bitops.h>
-+
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+
-+#include "fxos8700.h"
-+
-+struct fxos8700_data {
-+	struct regmap *regmap;
-+	struct iio_trigger *trig;
-+	u8 buf[FXOS8700_DATA_BUF_SIZE] ____cacheline_aligned;
-+};
-+
-+/* Regmap info */
-+static const struct regmap_range read_range[] = {
-+	{
-+		.range_min = FXOS8700_STATUS,
-+		.range_max = FXOS8700_A_FFMT_COUNT,
-+	}, {
-+		.range_min = FXOS8700_TRANSIENT_CFG,
-+		.range_max = FXOS8700_A_FFMT_THS_Z_LSB,
-+	},
-+};
-+
-+static const struct regmap_range write_range[] = {
-+	{
-+		.range_min = FXOS8700_F_SETUP,
-+		.range_max = FXOS8700_TRIG_CFG,
-+	}, {
-+		.range_min = FXOS8700_XYZ_DATA_CFG,
-+		.range_max = FXOS8700_HP_FILTER_CUTOFF,
-+	}, {
-+		.range_min = FXOS8700_PL_CFG,
-+		.range_max = FXOS8700_A_FFMT_CFG,
-+	}, {
-+		.range_min = FXOS8700_A_FFMT_THS,
-+		.range_max = FXOS8700_TRANSIENT_CFG,
-+	}, {
-+		.range_min = FXOS8700_TRANSIENT_THS,
-+		.range_max = FXOS8700_PULSE_CFG,
-+	}, {
-+		.range_min = FXOS8700_PULSE_THSX,
-+		.range_max = FXOS8700_OFF_Z,
-+	}, {
-+		.range_min = FXOS8700_M_OFF_X_MSB,
-+		.range_max = FXOS8700_M_OFF_Z_LSB,
-+	}, {
-+		.range_min = FXOS8700_M_THS_CFG,
-+		.range_max = FXOS8700_M_THS_CFG,
-+	}, {
-+		.range_min = FXOS8700_M_THS_X_MSB,
-+		.range_max = FXOS8700_M_CTRL_REG3,
-+	}, {
-+		.range_min = FXOS8700_A_VECM_CFG,
-+		.range_max = FXOS8700_A_FFMT_THS_Z_LSB,
-+	},
-+};
-+
-+static const struct regmap_access_table driver_read_table = {
-+	.yes_ranges =   read_range,
-+	.n_yes_ranges = ARRAY_SIZE(read_range),
-+};
-+
-+static const struct regmap_access_table driver_write_table = {
-+	.yes_ranges =   write_range,
-+	.n_yes_ranges = ARRAY_SIZE(write_range),
-+};
-+
-+const struct regmap_config fxos8700_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = FXOS8700_NVM_DATA_BNK0,
-+	.rd_table = &driver_read_table,
-+	.wr_table = &driver_write_table,
-+};
-+EXPORT_SYMBOL(fxos8700_regmap_config);
-+
-+#define FXOS8700_CHANNEL(_type, _axis) {			\
-+	.type = _type,						\
-+	.modified = 1,						\
-+	.channel2 = IIO_MOD_##_axis,				\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |  \
-+		BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+}
-+
-+/* scan indexes follow DATA register order */
-+enum fxos8700_scan_axis {
-+	FXOS8700_SCAN_ACCEL_X = 0,
-+	FXOS8700_SCAN_ACCEL_Y,
-+	FXOS8700_SCAN_ACCEL_Z,
-+	FXOS8700_SCAN_MAGN_X,
-+	FXOS8700_SCAN_MAGN_Y,
-+	FXOS8700_SCAN_MAGN_Z,
-+	FXOS8700_SCAN_RHALL,
-+	FXOS8700_SCAN_TIMESTAMP,
-+};
-+
-+enum fxos8700_sensor {
-+	FXOS8700_ACCEL	= 0,
-+	FXOS8700_MAGN,
-+	FXOS8700_NUM_SENSORS /* must be last */
-+};
-+
-+enum fxos8700_int_pin {
-+	FXOS8700_PIN_INT1,
-+	FXOS8700_PIN_INT2
-+};
-+
-+struct fxos8700_scale {
-+	u8 bits;
-+	int uscale;
-+};
-+
-+struct fxos8700_odr {
-+	u8 bits;
-+	int odr;
-+	int uodr;
-+};
-+
-+static const struct fxos8700_scale fxos8700_accel_scale[] = {
-+	{ MODE_2G, 244},
-+	{ MODE_4G, 488},
-+	{ MODE_8G, 976},
-+};
-+
-+/*
-+ * Accellerometer and magnetometer have the same ODR options, set in the
-+ * CTRL_REG1 register. ODR is halved when using both sensors at once in
-+ * hybrid mode.
-+ */
-+static const struct fxos8700_odr fxos8700_odr[] = {
-+	{0x00, 800, 0},
-+	{0x01, 400, 0},
-+	{0x02, 200, 0},
-+	{0x03, 100, 0},
-+	{0x04, 50, 0},
-+	{0x05, 12, 500000},
-+	{0x06, 6, 250000},
-+	{0x07, 1, 562500},
-+};
-+
-+static const struct iio_chan_spec fxos8700_channels[] = {
-+	FXOS8700_CHANNEL(IIO_ACCEL, X),
-+	FXOS8700_CHANNEL(IIO_ACCEL, Y),
-+	FXOS8700_CHANNEL(IIO_ACCEL, Z),
-+	FXOS8700_CHANNEL(IIO_MAGN, X),
-+	FXOS8700_CHANNEL(IIO_MAGN, Y),
-+	FXOS8700_CHANNEL(IIO_MAGN, Z),
-+	IIO_CHAN_SOFT_TIMESTAMP(FXOS8700_SCAN_TIMESTAMP),
-+};
-+
-+static enum fxos8700_sensor fxos8700_to_sensor(enum iio_chan_type iio_type)
-+{
-+	switch (iio_type) {
-+	case IIO_ACCEL:
-+		return FXOS8700_ACCEL;
-+	case IIO_ANGL_VEL:
-+		return FXOS8700_MAGN;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int fxos8700_set_active_mode(struct fxos8700_data *data,
-+				    enum fxos8700_sensor t, bool mode)
-+{
-+	int ret;
-+
-+	ret = regmap_write(data->regmap, FXOS8700_CTRL_REG1, mode);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(FXOS8700_ACTIVE_MIN_USLEEP,
-+		     FXOS8700_ACTIVE_MIN_USLEEP + 1000);
-+
-+	return 0;
-+}
-+
-+static int fxos8700_set_scale(struct fxos8700_data *data,
-+			      enum fxos8700_sensor t, int uscale)
-+{
-+	int i;
-+	static const int scale_num = ARRAY_SIZE(fxos8700_accel_scale);
-+	struct device *dev = regmap_get_device(data->regmap);
-+
-+	if (t == FXOS8700_MAGN) {
-+		dev_err(dev, "Magnetometer scale is locked at 1200uT\n");
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < scale_num; i++)
-+		if (fxos8700_accel_scale[i].uscale == uscale)
-+			break;
-+
-+	if (i == scale_num)
-+		return -EINVAL;
-+
-+	return regmap_write(data->regmap, FXOS8700_XYZ_DATA_CFG,
-+			    fxos8700_accel_scale[i].bits);
-+}
-+
-+static int fxos8700_get_scale(struct fxos8700_data *data,
-+			      enum fxos8700_sensor t, int *uscale)
-+{
-+	int i, ret, val;
-+	static const int scale_num = ARRAY_SIZE(fxos8700_accel_scale);
-+
-+	if (t == FXOS8700_MAGN) {
-+		*uscale = 1200; /* Magnetometer is locked at 1200uT */
-+		return 0;
-+	}
-+
-+	ret = regmap_read(data->regmap, FXOS8700_XYZ_DATA_CFG, &val);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < scale_num; i++)
-+		if (fxos8700_accel_scale[i].bits == (val & 0x3)) {
-+			*uscale = fxos8700_accel_scale[i].uscale;
-+			return 0;
-+		}
-+
-+	return -EINVAL;
-+}
-+
-+static int fxos8700_get_data(struct fxos8700_data *data, int chan_type,
-+			     int axis, int *val)
-+{
-+	u8 base, reg;
-+	int ret;
-+	__le16 sample = 0;
-+	enum fxos8700_sensor type = fxos8700_to_sensor(chan_type);
-+
-+	base = type ? FXOS8700_OUT_X_MSB : FXOS8700_M_OUT_X_MSB;
-+
-+	/* Block read 6 bytes of device output registers to avoid data loss */
-+	ret = regmap_bulk_read(data->regmap, base, data->buf,
-+			       FXOS8700_DATA_BUF_SIZE);
-+	if (ret)
-+		return ret;
-+
-+	/* Convert axis to buffer index */
-+	reg = axis - IIO_MOD_X;
-+
-+	/* Composite individual axis MSB/LSB registers */
-+	sample = ((u16 *)data->buf)[reg];
-+
-+	/* Convert to native endianness */
-+	*val = sign_extend32(be16_to_cpu(sample), 15);
-+
-+	return 0;
-+}
-+
-+static int fxos8700_set_odr(struct fxos8700_data *data, enum fxos8700_sensor t,
-+			    int odr, int uodr)
-+{
-+	int i, ret, val;
-+	bool active_mode;
-+	static const int odr_num = ARRAY_SIZE(fxos8700_odr);
-+
-+	ret = regmap_read(data->regmap, FXOS8700_CTRL_REG1, &val);
-+	if (ret)
-+		return ret;
-+
-+	active_mode = val & FXOS8700_ACTIVE;
-+
-+	if (active_mode) {
-+		/*
-+		 * The device must be in standby mode to change any of the
-+		 * other fields within CTRL_REG1
-+		 */
-+		ret = regmap_write(data->regmap, FXOS8700_CTRL_REG1,
-+				   val & ~FXOS8700_ACTIVE);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	for (i = 0; i < odr_num; i++)
-+		if (fxos8700_odr[i].odr == odr && fxos8700_odr[i].uodr == uodr)
-+			break;
-+
-+	if (i >= odr_num)
-+		return -EINVAL;
-+
-+	return regmap_update_bits(data->regmap,
-+				  FXOS8700_CTRL_REG1,
-+				  FXOS8700_CTRL_ODR_MSK + FXOS8700_ACTIVE,
-+				  fxos8700_odr[i].bits << 3 | active_mode);
-+}
-+
-+static int fxos8700_get_odr(struct fxos8700_data *data, enum fxos8700_sensor t,
-+			    int *odr, int *uodr)
-+{
-+	int i, val, ret;
-+	static const int odr_num = ARRAY_SIZE(fxos8700_odr);
-+
-+	ret = regmap_read(data->regmap, FXOS8700_CTRL_REG1, &val);
-+	if (ret)
-+		return ret;
-+
-+	val &= FXOS8700_CTRL_ODR_MSK;
-+
-+	for (i = 0; i < odr_num; i++)
-+		if (val == fxos8700_odr[i].bits)
-+			break;
-+
-+	if (i >= odr_num)
-+		return -EINVAL;
-+
-+	*odr = fxos8700_odr[i].odr;
-+	*uodr = fxos8700_odr[i].uodr;
-+
-+	return 0;
-+}
-+
-+static int fxos8700_read_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int *val, int *val2, long mask)
-+{
-+	int ret;
-+	struct fxos8700_data *data = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = fxos8700_get_data(data, chan->type, chan->channel2, val);
-+		if (ret)
-+			return ret;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = 0;
-+		ret = fxos8700_get_scale(data, fxos8700_to_sensor(chan->type),
-+					 val2);
-+		return ret ? ret : IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		ret = fxos8700_get_odr(data, fxos8700_to_sensor(chan->type),
-+				       val, val2);
-+		return ret ? ret : IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int fxos8700_write_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      int val, int val2, long mask)
-+{
-+	struct fxos8700_data *data = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		return fxos8700_set_scale(data, fxos8700_to_sensor(chan->type),
-+					  val2);
-+		break;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		return fxos8700_set_odr(data, fxos8700_to_sensor(chan->type),
-+					val, val2);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static IIO_CONST_ATTR(in_accel_sampling_frequency_available,
-+		      "1.5625 6.25 12.5 50 100 200 400 800");
-+static IIO_CONST_ATTR(in_magn_sampling_frequency_available,
-+		      "1.5625 6.25 12.5 50 100 200 400 800");
-+static IIO_CONST_ATTR(in_accel_scale_available, "0.000244 0.000488 0.000976");
-+static IIO_CONST_ATTR(in_magn_scale_available, "0.000001200");
-+
-+static struct attribute *fxos8700_attrs[] = {
-+	&iio_const_attr_in_accel_sampling_frequency_available.dev_attr.attr,
-+	&iio_const_attr_in_magn_sampling_frequency_available.dev_attr.attr,
-+	&iio_const_attr_in_accel_scale_available.dev_attr.attr,
-+	&iio_const_attr_in_magn_scale_available.dev_attr.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group fxos8700_attrs_group = {
-+	.attrs = fxos8700_attrs,
-+};
-+
-+static const struct iio_info fxos8700_info = {
-+	.read_raw = fxos8700_read_raw,
-+	.write_raw = fxos8700_write_raw,
-+	.attrs = &fxos8700_attrs_group,
-+};
-+
-+static int fxos8700_chip_init(struct fxos8700_data *data, bool use_spi)
-+{
-+	int ret;
-+	unsigned int val;
-+	struct device *dev = regmap_get_device(data->regmap);
-+
-+	ret = regmap_read(data->regmap, FXOS8700_WHO_AM_I, &val);
-+	if (ret) {
-+		dev_err(dev, "Error reading chip id\n");
-+		return ret;
-+	}
-+	if (val != FXOS8700_DEVICE_ID && val != FXOS8700_PRE_DEVICE_ID) {
-+		dev_err(dev, "Wrong chip id, got %x expected %x or %x\n",
-+			val, FXOS8700_DEVICE_ID, FXOS8700_PRE_DEVICE_ID);
-+		return -ENODEV;
-+	}
-+
-+	ret = fxos8700_set_active_mode(data, FXOS8700_ACCEL, true);
-+	if (ret)
-+		return ret;
-+
-+	ret = fxos8700_set_active_mode(data, FXOS8700_MAGN, true);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The device must be in standby mode to change any of the other fields
-+	 * within CTRL_REG1
-+	 */
-+	ret = regmap_write(data->regmap, FXOS8700_CTRL_REG1, 0x00);
-+	if (ret)
-+		return ret;
-+	/* Set max oversample ratio (OSR) and both devices active */
-+	ret = regmap_write(data->regmap, FXOS8700_M_CTRL_REG1,
-+			   FXOS8700_HMS_MASK | FXOS8700_OS_MASK);
-+	if (ret)
-+		return ret;
-+	/* Disable and rst min/max measurements & threshold */
-+	ret = regmap_write(data->regmap, FXOS8700_M_CTRL_REG2,
-+			   FXOS8700_MAXMIN_RST | FXOS8700_MAXMIN_DIS_THS |
-+			   FXOS8700_MAXMIN_DIS);
-+	if (ret)
-+		return ret;
-+	/* Max ODR (800Hz individual or 400Hz hybrid), active mode */
-+	ret = regmap_write(data->regmap, FXOS8700_CTRL_REG1,
-+			   FXOS8700_CTRL_ODR_MAX | FXOS8700_ACTIVE);
-+	if (ret)
-+		return ret;
-+	/* Set for max full-scale range (+/-8G) */
-+	ret = regmap_write(data->regmap, FXOS8700_XYZ_DATA_CFG, MODE_8G);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void fxos8700_chip_uninit(void *data)
-+{
-+	struct fxos8700_data *fxos8700_data = data;
-+
-+	fxos8700_set_active_mode(fxos8700_data, FXOS8700_ACCEL, false);
-+	fxos8700_set_active_mode(fxos8700_data, FXOS8700_MAGN, false);
-+}
-+
-+int fxos8700_core_probe(struct device *dev, struct regmap *regmap,
-+			const char *name, bool use_spi)
-+{
-+	struct iio_dev *indio_dev;
-+	struct fxos8700_data *data;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	dev_set_drvdata(dev, indio_dev);
-+	data->regmap = regmap;
-+
-+	ret = fxos8700_chip_init(data, use_spi);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, fxos8700_chip_uninit, data);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->dev.parent = dev;
-+	indio_dev->channels = fxos8700_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(fxos8700_channels);
-+	indio_dev->name = name ? name : "fxos8700";
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->info = &fxos8700_info;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+EXPORT_SYMBOL_GPL(fxos8700_core_probe);
-+
-+MODULE_AUTHOR("Robert Jones <rjones@gateworks.com>");
-+MODULE_DESCRIPTION("FXOS8700 6-Axis Acc and Mag Combo Sensor driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/iio/imu/fxos8700_i2c.c b/drivers/iio/imu/fxos8700_i2c.c
-new file mode 100644
-index 0000000..78ce2f9
---- /dev/null
-+++ b/drivers/iio/imu/fxos8700_i2c.c
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * FXOS8700 - Freescale IMU, I2C bits
-+ *
-+ * Copyright (c) 2016, Freescale Corporation. TODO
-+ *
-+ * 7-bit I2C slave address determined by SA1 and SA0 logic level
-+ * inputs represented in the following table:
-+ *      SA1  |  SA0  |  Slave Address
-+ *      0    |  0    |  0x1E
-+ *      0    |  1    |  0x1D
-+ *      1    |  0    |  0x1C
-+ *      1    |  1    |  0x1F
-+ */
-+#include <linux/acpi.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+#include "fxos8700.h"
-+
-+static int fxos8700_i2c_probe(struct i2c_client *client,
-+			      const struct i2c_device_id *id)
-+{
-+	struct regmap *regmap;
-+	const char *name = NULL;
-+
-+	regmap = devm_regmap_init_i2c(client, &fxos8700_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&client->dev, "Failed to register i2c regmap %d\n",
-+			(int)PTR_ERR(regmap));
-+		return PTR_ERR(regmap);
-+	}
-+
-+	if (id)
-+		name = id->name;
-+
-+	return fxos8700_core_probe(&client->dev, regmap, name, false);
-+}
-+
-+static const struct i2c_device_id fxos8700_i2c_id[] = {
-+	{"fxos8700", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, fxos8700_i2c_id);
-+
-+static const struct acpi_device_id fxos8700_acpi_match[] = {
-+	{"FXOS8700", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(acpi, fxos8700_acpi_match);
-+
-+static const struct of_device_id fxos8700_of_match[] = {
-+	{ .compatible = "fsl,fxos8700" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, fxos8700_of_match);
-+
-+static struct i2c_driver fxos8700_i2c_driver = {
-+	.driver = {
-+		.name                   = "fxos8700_i2c",
-+		.acpi_match_table       = ACPI_PTR(fxos8700_acpi_match),
-+		.of_match_table         = of_match_ptr(fxos8700_of_match),
-+	},
-+	.probe          = fxos8700_i2c_probe,
-+	.id_table       = fxos8700_i2c_id,
-+};
-+module_i2c_driver(fxos8700_i2c_driver);
-+
-+MODULE_AUTHOR("Robert Jones <rjones@gateworks.com>");
-+MODULE_DESCRIPTION("FXOS8700 I2C driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/iio/imu/fxos8700_spi.c b/drivers/iio/imu/fxos8700_spi.c
-new file mode 100644
-index 0000000..a35587a
---- /dev/null
-+++ b/drivers/iio/imu/fxos8700_spi.c
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * FXOS8700 - Freescale IMU, I2C bits
-+ *
-+ * Copyright (c) 2016, Freescale Corporation. TODO.
-+ *
-+ */
-+#include <linux/acpi.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+#include <linux/spi/spi.h>
-+
-+#include "fxos8700.h"
-+
-+static int fxos8700_spi_probe(struct spi_device *spi)
-+{
-+	struct regmap *regmap;
-+	const struct spi_device_id *id = spi_get_device_id(spi);
-+
-+	regmap = devm_regmap_init_spi(spi, &fxos8700_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&spi->dev, "Failed to register spi regmap %d\n",
-+			(int)PTR_ERR(regmap));
-+		return PTR_ERR(regmap);
-+	}
-+	return fxos8700_core_probe(&spi->dev, regmap, id->name, true);
-+}
-+
-+static const struct spi_device_id fxos8700_spi_id[] = {
-+	{"fxos8700", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(spi, fxos8700_spi_id);
-+
-+static const struct acpi_device_id fxos8700_acpi_match[] = {
-+	{"FXOS8700", 0},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(acpi, fxos8700_acpi_match);
-+
-+static const struct of_device_id fxos8700_of_match[] = {
-+	{ .compatible = "fsl,fxos8700" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, fxos8700_of_match);
-+
-+static struct spi_driver fxos8700_spi_driver = {
-+	.probe          = fxos8700_spi_probe,
-+	.id_table       = fxos8700_spi_id,
-+	.driver = {
-+		.acpi_match_table       = ACPI_PTR(fxos8700_acpi_match),
-+		.of_match_table         = fxos8700_of_match,
-+		.name                   = "fxos8700_spi",
-+	},
-+};
-+module_spi_driver(fxos8700_spi_driver);
-+
-+MODULE_AUTHOR("Robert Jones <rjones@gateworks.com>");
-+MODULE_DESCRIPTION("FXOS8700 SPI driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.9.2
-
+T24gMTAvOS8xOSA1OjMyIFBNLCBCcmVuZGFuIEhpZ2dpbnMgd3JvdGU6DQo+IE9uIFdlZCwgT2N0
+IDA5LCAyMDE5IGF0IDAyOjIwOjM0UE0gLTA3MDAsIEphZSBIeXVuIFlvbyB3cm90ZToNCj4+IElu
+IGNhc2Ugb2YgbWFzdGVyIHBlbmRpbmcgc3RhdGUsIGl0IHNob3VsZCBub3QgdHJpZ2dlciBhIG1h
+c3Rlcg0KPj4gY29tbWFuZCwgb3RoZXJ3aXNlIGRhdGEgY291bGQgYmUgY29ycnVwdGVkIGJlY2F1
+c2UgdGhpcyBIL1cgc2hhcmVzDQo+PiB0aGUgc2FtZSBkYXRhIGJ1ZmZlciBmb3Igc2xhdmUgYW5k
+IG1hc3RlciBvcGVyYXRpb25zLiBJdCBhbHNvIG1lYW5zDQo+PiB0aGF0IEgvVyBjb21tYW5kIHF1
+ZXVlIGhhbmRsaW5nIGlzIHVucmVsaWFibGUgYmVjYXVzZSBvZiB0aGUgYnVmZmVyDQo+PiBzaGFy
+aW5nIGlzc3VlLiBUbyBmaXggdGhpcyBpc3N1ZSwgaXQgY2xlYXJzIGNvbW1hbmQgcXVldWUgaWYg
+YQ0KPj4gbWFzdGVyIGNvbW1hbmQgaXMgcXVldWVkIGluIHBlbmRpbmcgc3RhdGUgdG8gdXNlIFMv
+VyBzb2x1dGlvbg0KPj4gaW5zdGVhZCBvZiBIL1cgY29tbWFuZCBxdWV1ZSBoYW5kbGluZy4gQWxz
+bywgaXQgcmVmaW5lcyByZXN0YXJ0aW5nDQo+PiBtZWNoYW5pc20gb2YgdGhlIHBlbmRpbmcgbWFz
+dGVyIGNvbW1hbmQuDQo+Pg0KPj4gRml4ZXM6IDJlNTdiN2NlYmI5OCAoImkyYzogYXNwZWVkOiBB
+ZGQgbXVsdGktbWFzdGVyIHVzZSBjYXNlIHN1cHBvcnQiKQ0KPj4gU2lnbmVkLW9mZi1ieTogSmFl
+IEh5dW4gWW9vIDxqYWUuaHl1bi55b29AbGludXguaW50ZWwuY29tPg0KPiANCj4gUmV2aWV3ZWQt
+Ynk6IEJyZW5kYW4gSGlnZ2lucyA8YnJlbmRhbmhpZ2dpbnNAZ29vZ2xlLmNvbT4NCj4gDQo+IFdl
+IGRvbid0IGhhdmUgYW55IG11bHRpLW1hc3RlciBzZXR1cHMsIGNhbiB3ZSBnZXQgYSBUZXN0ZWQt
+Ynk/DQoNCkkndmUgYXBwbGllZCB0aGUgcGF0Y2ggdG8gbXkgdHJlZSBhbmQgSSdtIGxvb2tpbmcg
+Zm9yIGEgbWluaXBhY2sgQk1DDQoobWlsdGktbWFzdGVyKSB0byB0ZXN0IHRoZSBwYXRjaC4gV2ls
+bCBjb21lIGJhY2sgd2l0aCByZXN1bHRzIHRvbW9ycm93Lg0KDQoNCkNoZWVycywNCg0KVGFvDQoN
+Cj4gV29sZnJhbSwgc2luY2UgdGhpcyBpcyBhIGJ1Z2ZpeCwgY2FuIHdlIGdldCB0aGlzIGluIDUu
+ND8NCj4gDQo+IFRoYW5rcyENCj4gDQo=
