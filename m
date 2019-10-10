@@ -2,102 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CAA4D2A24
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 14:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CECCDD2A41
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387651AbfJJM5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 08:57:11 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45562 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387512AbfJJM5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 08:57:10 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 41so4739108oti.12;
-        Thu, 10 Oct 2019 05:57:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iskpQZpdK+MEZ5LUiXK4OHRXKfudboVrt3/aMUlkeMs=;
-        b=h4vqDNcPa5+MtujzOFU2WsOUNZf+ELImMnnRrKW8nqhICuYHlqb7teyiF2qoml+/Ir
-         67HHEzZiakdCkuNq1YgkdZOODfK/I+V4w204kYJftSz5Jnh2T5mmyQeNRN8I2puQ+Dur
-         U7sJeGFNKQ2oadGebQw4vRLvPhvM+6UAixujrJcwygbB+WjMvcHMtmUSx4Aao8hDF6f8
-         54hqhuXIk2h8m9VdSe40sD0OWv6IF5jS2dUTwmZGnMm2qCxkk41+QdvUH8bdr8TkSGR5
-         Y4qBpMgpKBB6Rd2/uCOWMa1oUyZ+RMnQpbqB4g73Ip0tsDDUU5BwbqMJLgSFjLeyGX72
-         9Fgg==
-X-Gm-Message-State: APjAAAV42FcOtaEFMJKfW9Rbd/Htx8FsrqZfPCUvsMuNL+PJwiXaJTaV
-        yDKA7oYUWhUcVU75CrYot63aZTh5ltYPU0EGFGv3iiM4
-X-Google-Smtp-Source: APXvYqx2KOkRkrpy8nk9RzyhbDs7oSPc969vD3dreaz7jZVAFoPZZ0qd+cYeM2rEnd9WTVpolVxOZ7LCx/1Wt2XKSqE=
-X-Received: by 2002:a05:6830:1685:: with SMTP id k5mr7717190otr.250.1570712227470;
- Thu, 10 Oct 2019 05:57:07 -0700 (PDT)
+        id S2387469AbfJJNDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 09:03:13 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1592 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1733300AbfJJNDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 09:03:12 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9AD1h73005680;
+        Thu, 10 Oct 2019 15:02:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=Lrgg/JupVUGfx1EGZYXupcFmvCwMUXEFDk4NGGs/DEM=;
+ b=Ea4HNDZ8L1C/e6Lzy8QRdZUdC+Hk25JWFCYZUnWqGyjQQIG4woiazEpBlpEu7LnCt1LK
+ zvTBvXtqnFYR1FHlFhK7h3ZM82I661+9R1M+GrEIJ8WLkK7EOtUAvoq19pDTBLmBQ9NJ
+ X+NhV7iPKEeSTbnTwcdn95yClLC5T1T8ojfob2c+EB0hfEjERbOZMTdfhbvwgwRxhWK1
+ zPfGF0cexHrIYmC0SAojbvDZHWOpEdXBLPSRJJc0sjqfh/yeNXDfKTZIK5awaiXtuD+a
+ ANDOANFlDAbodjbG9ZnRhJGfmSEGmFhrjueGr+ESl8T8z0kLeo4/0z2ymq1hlEbRySBn OA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vegn13t3j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Oct 2019 15:02:53 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AB81810002A;
+        Thu, 10 Oct 2019 15:02:51 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas23.st.com [10.75.90.46])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 96E2F2AA31D;
+        Thu, 10 Oct 2019 15:02:51 +0200 (CEST)
+Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS23.st.com
+ (10.75.90.46) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 10 Oct
+ 2019 15:02:51 +0200
+Received: from localhost (10.201.21.218) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 10 Oct 2019 15:02:51
+ +0200
+From:   Olivier Moysan <olivier.moysan@st.com>
+To:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <alexandre.torgue@st.com>, <robh@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <olivier.moysan@st.com>
+Subject: [PATCH] ARM: dts: stm32: add hdmi audio support to stm32mp157a-dk1 board
+Date:   Thu, 10 Oct 2019 15:02:47 +0200
+Message-ID: <20191010130247.32027-1-olivier.moysan@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <1570200761-884-1-git-send-email-biju.das@bp.renesas.com>
- <CAMuHMdWCu14DOci-EUuSZ_JTeZaoq90qr035WFsLY2c3UqgkeA@mail.gmail.com> <TYAPR01MB21111CD187E5EF5CB6FB01BAB89A0@TYAPR01MB2111.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYAPR01MB21111CD187E5EF5CB6FB01BAB89A0@TYAPR01MB2111.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Oct 2019 14:56:56 +0200
-Message-ID: <CAMuHMdXYSK3U3wr7by0wBd+yQ7HkjDf5s5XMV7BmXyh7j5B9vQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r8a774a1: Remove audio port node
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.218]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-10_04:2019-10-10,2019-10-10 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Add HDMI audio support through Sil9022 HDMI transceiver
+on stm32mp157a-dk1 board.
 
-On Tue, Oct 8, 2019 at 3:43 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r8a774a1: Remove audio
-> > port node
-> > On Fri, Oct 4, 2019 at 4:53 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > > This patch removes audio port node from SoC device tree.
-> >
-> > Standard review comment: "Why?"
+Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
+---
+ arch/arm/boot/dts/stm32mp157a-dk1.dts | 27 ++++++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
-Bcause it fixes a dtb warning?
-
-   Warning (unit_address_vs_reg): /soc/sound@ec500000/ports/port@0: node has
-   a unit name, but no reg property
-
-> >
-> > > Fixes: e2f04248fcd4 ("arm64: dts: renesas: r8a774a1: Add audio
-> > > support")
-> > > Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> > > ---
-> > > V1-->V2
-> > >  * New patch.
-> > > V2-->V3
-> > >  * Fixed the commit message. Thanks to Fabrizio.
-> > >
-> > > This patch depend upon
-> > > https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=18
-> > > 2581
-> >
-> > Why the dependency?
-> > This looks like a fix for r8a774a1, too?
->
-> Sorry, the above dependency is for the second patch.
-> "[v3,2/2] arm64: dts: renesas: r8a774b1: Add Sound and Audio DMAC device nodes"
-
-OK.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+index 5ad4cef9e971..7a20640c00a9 100644
+--- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
++++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+@@ -92,7 +92,7 @@
+ 			"Playback" , "MCLK",
+ 			"Capture" , "MCLK",
+ 			"MICL" , "Mic Bias";
+-		dais = <&sai2a_port &sai2b_port>;
++		dais = <&sai2a_port &sai2b_port &i2s2_port>;
+ 		status = "okay";
+ 	};
+ };
+@@ -173,6 +173,7 @@
+ 		reset-gpios = <&gpioa 10 GPIO_ACTIVE_LOW>;
+ 		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+ 		interrupt-parent = <&gpiog>;
++		#sound-dai-cells = <0>;
+ 		status = "okay";
+ 
+ 		ports {
+@@ -185,6 +186,13 @@
+ 					remote-endpoint = <&ltdc_ep0_out>;
+ 				};
+ 			};
++
++			port@3 {
++				reg = <3>;
++				sii9022_tx_endpoint: endpoint {
++					remote-endpoint = <&i2s2_endpoint>;
++				};
++			};
+ 		};
+ 	};
+ 
+@@ -370,6 +378,23 @@
+ 	};
+ };
+ 
++&i2s2 {
++	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc PLL3_Q>, <&rcc PLL3_R>;
++	clock-names = "pclk", "i2sclk", "x8k", "x11k";
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&i2s2_pins_a>;
++	pinctrl-1 = <&i2s2_pins_sleep_a>;
++	status = "okay";
++
++	i2s2_port: port {
++		i2s2_endpoint: endpoint {
++			remote-endpoint = <&sii9022_tx_endpoint>;
++			format = "i2s";
++			mclk-fs = <256>;
++		};
++	};
++};
++
+ &ipcc {
+ 	status = "okay";
+ };
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
