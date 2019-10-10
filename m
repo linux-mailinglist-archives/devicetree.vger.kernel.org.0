@@ -2,143 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91395D2C5B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1EAD2C66
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:26:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726177AbfJJOYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 10:24:31 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35575 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726088AbfJJOYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 10:24:31 -0400
-Received: by mail-wr1-f67.google.com with SMTP id v8so8161826wrt.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 07:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=o4qf/PYpPuvWlngglfD/8X1UFMC1O9J7iKZhY9prYg4=;
-        b=FPcLbe4AdWKRiJr6Q7mtsm5QS2vA7XVjEggWIA7Me84I4HXwCV7AJ46hHu7tmCTQE3
-         tU+suEgww8Sg8UU2zLb75yLleCiRWrP+ieYHAPQE4p0DHGPBxDleHiI8V/ZD+FDh0PiK
-         IlTz5bkImP11tn0CKaZRpvyOhHzWoP4asppEiG24jAncSNbrGjiWizjje3FqNult1nsO
-         ByUwPCIEGRWyfqqTRH/1k8+88vUFkp49A7ouuCgF9q/7nyY9P+6lU6LcM7yGw3Syn8pO
-         eKEdn/KNwgYz+ihFfo3AL8ImuMPw/VzCIBrF1v3M/2LoznFm7vVC5P0HKGr78MP6ypFL
-         kCpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=o4qf/PYpPuvWlngglfD/8X1UFMC1O9J7iKZhY9prYg4=;
-        b=QdJbVWZ8pM+r1BE91785nR+t0tyxnT9MHTrMSKaB8/o88K7nv0byy+zcTRBR5FxNUr
-         Zei1OLD0Fm0BgG2cKLhuMOVt/8Fr093Guu3S4TD3NJACYqbz8FdsOc/Cjngr6th8IeJg
-         xWeYCxEOWiSaMtDmaHmfOaCb9dUZO7qXhSW9F6EN6Kzm1/NU8PgAtK8iUWUYLm1rOtS0
-         jz0kmkOwzHB8Rd94BNls0hE5TnInRlPp8sr7JFUjLQ0Z7aABrvyQobH50JGez7BGUo6v
-         y1lLKrHur8OH5tWMNsLoH+n4J+DiJRni4UNIp+Cwvq8H6dPnkn51DoXCt8dTqXzWIWT6
-         bgng==
-X-Gm-Message-State: APjAAAWsdNQDzBLAmkh7SZ0QjJ+OA8Nd5IWnYKuCc74HU1a7jXaqijpt
-        /j/ltR5biUP6G/+fbZrXjfUEoQfm1W0=
-X-Google-Smtp-Source: APXvYqxhwHySsiHy6ZqNSNJ3JDm1rpco/wXWY28bmBUGhrutNZwf9raK5CUOtKYqwFKB3rjdozb90g==
-X-Received: by 2002:a5d:6250:: with SMTP id m16mr8735063wrv.322.1570717468321;
-        Thu, 10 Oct 2019 07:24:28 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id g3sm7683012wro.14.2019.10.10.07.24.27
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 10 Oct 2019 07:24:27 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] arm64: dts: sdm845: Add interconnect properties
- for Venus
-To:     Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vikash Garodia <vgarodia@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        David Dai <daidavid1@codeaurora.org>
-References: <20190912082948.22836-1-stanimir.varbanov@linaro.org>
- <20190912082948.22836-3-stanimir.varbanov@linaro.org>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <3c222f45-2db7-42a7-c79a-492bb587c331@linaro.org>
-Date:   Thu, 10 Oct 2019 17:24:26 +0300
-MIME-Version: 1.0
-In-Reply-To: <20190912082948.22836-3-stanimir.varbanov@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1726157AbfJJO0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 10:26:09 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:57697 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725923AbfJJO0I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 10:26:08 -0400
+X-IronPort-AV: E=Sophos;i="5.67,280,1566831600"; 
+   d="scan'208";a="28794119"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 10 Oct 2019 23:26:06 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id BE7E24288736;
+        Thu, 10 Oct 2019 23:26:02 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: [PATCH v2 0/3] Add CAN and CAN-FD support to the RZ/G2N SoC
+Date:   Thu, 10 Oct 2019 15:25:57 +0100
+Message-Id: <1570717560-7431-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/12/19 11:29, Stanimir Varbanov wrote:
-> Populate Venus DT node with interconnect properties.
-> 
-> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 0323e3da190a..567bfc89bd77 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2039,6 +2039,9 @@
->  			iommus = <&apps_smmu 0x10a0 0x8>,
->  				 <&apps_smmu 0x10b0 0x0>;
->  			memory-region = <&venus_mem>;
-> +			interconnects = <&rsc_hlos MASTER_VIDEO_P0 &rsc_hlos SLAVE_EBI1>,
-> +					<&rsc_hlos MASTER_APPSS_PROC &rsc_hlos SLAVE_VENUS_CFG>;
-> +			interconnect-names = "video-mem", "cpu-cfg";
->  
->  			video-core0 {
->  				compatible = "venus-decoder";
-> 
+Dear All,
 
-The patch look fine to me, but David is currently working on some patches that
-split the rsc_hlos node into multiple DT nodes (for each NoC). So maybe wait
-until we conclude on that first and then add Venus as user in DT.
+this series adds CAN and CAN FD support to the RZ/G2N SoC specific dtsi.
 
 Thanks,
-Georgi
+Fab
+
+v1->v2:
+* Fixed patch 2/3 according to Geert's comment
+
+Fabrizio Castro (3):
+  dt-bindings: can: rcar_can: Add r8a774b1 support
+  dt-bindings: can: rcar_canfd: document r8a774b1 support
+  arm64: dts: renesas: r8a774b1: Add CAN and CAN FD support
+
+ .../devicetree/bindings/net/can/rcar_can.txt       |  5 ++-
+ .../devicetree/bindings/net/can/rcar_canfd.txt     |  5 ++-
+ arch/arm64/boot/dts/renesas/r8a774b1.dtsi          | 48 ++++++++++++++++++++--
+ 3 files changed, 51 insertions(+), 7 deletions(-)
+
+-- 
+2.7.4
+
