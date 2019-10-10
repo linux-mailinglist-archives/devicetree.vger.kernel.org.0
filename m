@@ -2,337 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71560D1D99
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 02:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 426BED1DB2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 02:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731134AbfJJAqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 20:46:07 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:38404 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731916AbfJJAqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 20:46:07 -0400
-Received: by mail-vs1-f65.google.com with SMTP id b123so2769722vsb.5
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 17:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jd6zv/jgUFv6Uo+8CynzJPGldhXHqgBv+Ky1v1k+Nuk=;
-        b=iscNzzWLWcx0oCVq1jhdfQtsoDvqWFROyVb3ddID00ajMaSJM0Zy1lVPyfOO2TRGhU
-         KLMncCT2yWC8FBys7/HgUv++l0GbRIAaSK0/gpNiFDWrcEyIz2N20E4LETCqJxFmjPn9
-         g3ToYb+fEXGn1OUznhDaoTDSDZPmasSagoHCYHJoit7KuaiEYCwaYT/GYYVQZOFboT7U
-         t95ukRhgcbt9VKjrrzQIAdIb92yS7W1Wlmq+4UIYcBc27Z4biow8ODlLc1BMw5rRWwka
-         ahAt9hZoSKvavOjpNaYlfE5orR49QfNrLA9aQK7oLCrKK2rd/xB6H4HJ42U8pSifyIzT
-         4wcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jd6zv/jgUFv6Uo+8CynzJPGldhXHqgBv+Ky1v1k+Nuk=;
-        b=E/bWgFTDV9iLoQtbT9zPkEcR32yCVZ1VodsEOGKKdXDqFGhdZPR01NRA5qlwOXTkx3
-         r7v8cymk2sk0Vc1sEIUXNNNBnjeKLLASkHGF3VEpANCzwydUoTfW4TfGUL5nQrmDVDpr
-         oGEMnjz4k/1E7hSQ2v7akC3pkb/S43mKKxCQnfnp+pRTGg9Do0JDEe3NjuIXyGlTWVNR
-         d0AXqaQ8f7mwzw8IVkULM6qY3FEyBbkjJvciQv0N5akxkfDhrAf7aV28pdAYaqOR/S6o
-         LvtmscksrV71RyVZflKmyiLIs2Ot7nkQpKgRmqNr40HLwK6e9avYCxWcNPcOW72EKpCS
-         6AsQ==
-X-Gm-Message-State: APjAAAU2Q7z84//Hoo1Q4ld+gh0Ka5++2bzHpOvm1IdJu93bbe7P+HIc
-        P6iNy3jrk66HUPxc1ooQV27/55ujTn/x34E5rXGxtQ==
-X-Google-Smtp-Source: APXvYqy0hr+gzGjZPMkosJiHcRGhgxWhmhs8dGdGo9Ng0LSLTb9Rzsa72w7qjVcDpCLRLk6Q2CTmValXnPQLm0zjvv4=
-X-Received: by 2002:a05:6102:115c:: with SMTP id j28mr3730813vsg.105.1570668365198;
- Wed, 09 Oct 2019 17:46:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191008230038.24037-1-ezequiel@collabora.com>
- <20191008230038.24037-3-ezequiel@collabora.com> <20191009180136.GE85762@art_vandelay>
-In-Reply-To: <20191009180136.GE85762@art_vandelay>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Wed, 9 Oct 2019 21:45:54 -0300
-Message-ID: <CAAEAJfDP0PsGAoRfGyDyWj7DxgP6nwwwA1_gwLQuVy-fRDa-UA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] drm/rockchip: Add optional support for CRTC gamma LUT
-To:     Sean Paul <sean@poorly.run>
-Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1732008AbfJJAv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 20:51:28 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:43253 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731166AbfJJAv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 20:51:28 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 2CAB221FAD;
+        Wed,  9 Oct 2019 20:51:27 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 09 Oct 2019 20:51:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=UBrk70WdLG+JMj8YlDV4YajtdEG1xvL
+        hcNqIGJ2cU8M=; b=MYi2/m18XdE1IFiJ483sVOzoqKIuhhhEDG0ZJjF8vk8hT1K
+        b3eMQqpoJeEGSOvYsq8ndGbjaTeZmJwJ6S5rolWplxp/l7IXjyOQbpeyBHGD17kn
+        ps9cs7ABl+sz+pqgMNR10cl4w2eGuVaCD2Wi+AUxGlyfblfAFOizIlwrJtqwLHru
+        r/h54Mjd4AfYQ2luKjUPMfE7GljihTw9opQnvgRXWck5nW7bD3U51zjRVur/SIMt
+        Dcl9Ggd1PGb20DE201wgncIjv1VlDeKaKbzI4PU67ltqQf+nedcHp56r/QWzXFW3
+        uJIzsrfJL4VtFokPiyTLBpwOIhW7gB1zbT3Vy3g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=UBrk70
+        WdLG+JMj8YlDV4YajtdEG1xvLhcNqIGJ2cU8M=; b=bM3KysDsqBtVG/t5opV5qx
+        Tku4sVJM6oQMimYpCGEZtegj+ccBY0/bqS3UAKZB5cI7cc9ygRfvuf2a7jPKdtF7
+        eKDbutSMjDuPIXT/Mjt0IVcaoj2fnoo86YyZWPEFMdzZx3KCRJIiWf6bivKFFN0I
+        wgQc9fz0tkv+fjOkkSNo5kq+LeTztKM4WHR4UeF7Ni9CxeMH/5O5RdLxhHt8Msik
+        /CU1IM6Y0rdVlswupIp+DtlzCEyVqj/L3VAeVqaFIsEj0H0AREvV1hfi/1UiRlp4
+        7HiWrhEBwzHDtGVG0DUtc+jP5yBOTzIMwqCKP2e667mXkAKSc0ZmGr24j0r45vuw
+        ==
+X-ME-Sender: <xms:ioCeXTfMK69pJcqR31UQBEg9o0azGJNd_7TiiDeOybGWAhpF7oeyhQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedriedvgdegudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
+    ufhiiigvpedt
+X-ME-Proxy: <xmx:ioCeXQR9hntBcHDqRh5_K13d9TkiKroTP8DF9AFq4pX9oU9xNOrOng>
+    <xmx:ioCeXU-y__TtOOsuh1-wa24vDLnyi3z2FdA0P90dx8ATi_VzWgnHpg>
+    <xmx:ioCeXQHpF9k3An-OzTrTTg-0k1iTmoCX6-CMkOU9uMdDfALE2DFjQQ>
+    <xmx:j4CeXTzSNEw__hM1x0fDSms-_4K20lFN8xyD0Dix1UptTfTj_5YhdA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 9F2D1E00A5; Wed,  9 Oct 2019 20:51:22 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.7-360-g7dda896-fmstable-20191004v2
+Mime-Version: 1.0
+Message-Id: <18ac98e1-82b6-4782-bdfb-56765653e6df@www.fastmail.com>
+In-Reply-To: <CACPK8Xf-f-r4S02GoxYdBYOJi5NGYMCOr6XGVza4vEGAsqzR9w@mail.gmail.com>
+References: <20191008113523.13601-1-andrew@aj.id.au>
+ <20191008113523.13601-2-andrew@aj.id.au>
+ <CACPK8Xf-f-r4S02GoxYdBYOJi5NGYMCOr6XGVza4vEGAsqzR9w@mail.gmail.com>
+Date:   Thu, 10 Oct 2019 11:22:17 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Joel Stanley" <joel@jms.id.au>
+Cc:     linux-clk@vger.kernel.org,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add AST2500 RMII RCLK definitions
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sean,
 
-Thanks for the thourough review.
 
-On Wed, 9 Oct 2019 at 15:01, Sean Paul <sean@poorly.run> wrote:
->
-> On Tue, Oct 08, 2019 at 08:00:37PM -0300, Ezequiel Garcia wrote:
-> > Add an optional CRTC gamma LUT support, and enable it on RK3288.
-> > This is currently enabled via a separate address resource,
-> > which needs to be specified in the devicetree.
+On Tue, 8 Oct 2019, at 23:07, Joel Stanley wrote:
+> On Tue, 8 Oct 2019 at 11:34, Andrew Jeffery <andrew@aj.id.au> wrote:
 > >
-> > The address resource is required because on some SoCs, such as
-> > RK3288, the LUT address is after the MMU address, and the latter
-> > is supported by a different driver. This prevents the DRM driver
-> > from requesting an entire register space.
+> > The AST2500 has an explicit gate for the RMII RCLK for each of the two
+> > MACs.
 > >
-> > The current implementation works for RGB 10-bit tables, as that
-> > is what seems to work on RK3288.
-> >
-> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
->
-> Hey Ezequiel,
-> Just a few comments on the actual content of the patch as opposed to my higher
-> level comments yesterday. I think we're almost there, thanks for sticking this
-> out!
->
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 > > ---
-> > Changes from v3:
-> > * Move to atomic_enable and atomic_begin,
-> >   as discussed with Sean Paul.
-> > * Dropped the Reviewed-bys.
-> > Changes from v2:
-> > * None.
-> > Changes from v1:
-> > * drop explicit linear LUT after finding a proper
-> >   way to disable gamma correction.
-> > * avoid setting gamma is the CRTC is not active.
-> > * s/int/unsigned int as suggested by Jacopo.
-> > * only enable color management and set gamma size
-> >   if gamma LUT is supported, suggested by Doug.
-> > * drop the reg-names usage, and instead just use indexed reg
-> >   specifiers, suggested by Doug.
-> > Changes from RFC:
-> > * Request (an optional) address resource for the LUT.
-> > * Drop support for RK3399, which doesn't seem to work
-> >   out of the box and needs more research.
-> > * Support pass-thru setting when GAMMA_LUT is NULL.
-> > * Add a check for the gamma size, as suggested by Ilia.
-> > * Move gamma setting to atomic_commit_tail, as pointed
-> >   out by Jacopo/Laurent, is the correct way.
-> > ---
-> >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c  |   1 +
-> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c | 125 ++++++++++++++++++++
-> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.h |   5 +
-> >  drivers/gpu/drm/rockchip/rockchip_vop_reg.c |   2 +
-> >  4 files changed, 133 insertions(+)
+> >  include/dt-bindings/clock/aspeed-clock.h | 2 ++
+> >  1 file changed, 2 insertions(+)
 > >
-> > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-> > index ca01234c037c..697ee04b85cf 100644
-> > --- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-> > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-> > @@ -17,6 +17,7 @@
-> >  #include "rockchip_drm_drv.h"
-> >  #include "rockchip_drm_fb.h"
-> >  #include "rockchip_drm_gem.h"
-> > +#include "rockchip_drm_vop.h"
->
-> Leftover from the previous version?
->
+> > diff --git a/include/dt-bindings/clock/aspeed-clock.h b/include/dt-bindings/clock/aspeed-clock.h
+> > index f43738607d77..64e245fb113f 100644
+> > --- a/include/dt-bindings/clock/aspeed-clock.h
+> > +++ b/include/dt-bindings/clock/aspeed-clock.h
+> > @@ -39,6 +39,8 @@
+> >  #define ASPEED_CLK_BCLK                        33
+> >  #define ASPEED_CLK_MPLL                        34
+> >  #define ASPEED_CLK_24M                 35
+> > +#define ASPEED_CLK_GATE_MAC1RCLK       36
+> > +#define ASPEED_CLK_GATE_MAC2RCLK       37
+> 
+> Calling these ASPEED_CLK_GATE breaks the pattern the rest of the
+> driver has in using that name for the clocks that are registered as
+> struct aspeed_clk_gate clocks.
+> 
+> Do you think we should drop the GATE_ to match the existing clocks?
 
-Yup.
+I named them that way because the bits in question do just gate the
+clocks, but I've renamed them to keep the pattern. Will send a v2.
 
-> >
-> >  static const struct drm_framebuffer_funcs rockchip_drm_fb_funcs = {
-> >       .destroy       = drm_gem_fb_destroy,
-> > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
-> > index 613404f86668..85c1269a1218 100644
-> > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
-> > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
-> > @@ -139,6 +139,7 @@ struct vop {
-> >
-> >       uint32_t *regsbak;
-> >       void __iomem *regs;
-> > +     void __iomem *lut_regs;
-> >
-> >       /* physical map length of vop register */
-> >       uint32_t len;
-> > @@ -1048,6 +1049,84 @@ static bool vop_crtc_mode_fixup(struct drm_crtc *crtc,
-> >       return true;
-> >  }
-> >
-> > +static bool vop_dsp_lut_is_enable(struct vop *vop)
->
-> *enabled
->
-
-Good catch.
-
-> > +{
-> > +     return vop_read_reg(vop, 0, &vop->data->common->dsp_lut_en);
-> > +}
-> > +
-> > +static void vop_crtc_write_gamma_lut(struct vop *vop, struct drm_crtc *crtc)
-> > +{
-> > +     struct drm_color_lut *lut = crtc->state->gamma_lut->data;
-> > +     unsigned int i;
-> > +
-> > +     for (i = 0; i < crtc->gamma_size; i++) {
-> > +             u32 word;
-> > +
-> > +             word = (drm_color_lut_extract(lut[i].red, 10) << 20) |
-> > +                    (drm_color_lut_extract(lut[i].green, 10) << 10) |
-> > +                     drm_color_lut_extract(lut[i].blue, 10);
-> > +             writel(word, vop->lut_regs + i * 4);
-> > +     }
-> > +}
-> > +
-> > +static void vop_crtc_gamma_set(struct vop *vop, struct drm_crtc *crtc,
-> > +                            struct drm_crtc_state *old_crtc_state)
-> > +{
-> > +     unsigned int idle;
-> > +     int ret;
-> > +
->
-> How about:
->
->         if (!vop->lut_regs)
->                 return;
->
-> here and then you can remove that condition above the 2 callsites
->
-
-Yes, sounds good.
-
-> > +     /*
-> > +      * In order to write the LUT to the internal memory,
-> > +      * we need to first make sure the dsp_lut_en bit is cleared.
-> > +      */
-> > +     spin_lock(&vop->reg_lock);
-> > +     VOP_REG_SET(vop, common, dsp_lut_en, 0);
-> > +     vop_cfg_done(vop);
-> > +     spin_unlock(&vop->reg_lock);
-> > +
-> > +     /*
-> > +      * If the CRTC is not active, dsp_lut_en will not get cleared.
-> > +      * Apparently we still need to do the above step to for
-> > +      * gamma correction to be disabled.
-> > +      */
-> > +     if (!crtc->state->active)
-> > +             return;
-> > +
-
-I have realized that the above might no longer be needed,
-given we are now using atomic_enable and atomic_begin.
-
-Not sure if the CRTC is supposed to clear its GAMMA
-when disabled.
-
-> > +     ret = readx_poll_timeout(vop_dsp_lut_is_enable, vop,
-> > +                              idle, !idle, 5, 30 * 1000);
-> > +     if (ret) {
-> > +             DRM_DEV_ERROR(vop->dev, "display LUT RAM enable timeout!\n");
-> > +             return;
-> > +     }
-> > +
-> > +     if (crtc->state->gamma_lut &&
-> > +        (!old_crtc_state->gamma_lut || (crtc->state->gamma_lut->base.id !=
-> > +                                     old_crtc_state->gamma_lut->base.id))) {
->
-> Silly question, but isn't the second part of this check redundant since you need
-> color_mgmt_changed || active_changed to get into this function?
->
-> So maybe invert the conditional here and exit early (to save a level of
-> indentation in the block below):
->
-
-I took this from malidp_atomic_commit_update_gamma. I _believe_
-the rational for this is that color_mgmt_changed can be set by re-setting
-the gamma property, to the same property. But I admit I haven't
-tested it's the case.
-
-OTOH, it won't really affect much to re-write the table, if the user
-requested a change.
-
->         if (!crtc->state->gamma_lut)
->                 return;
->
-
-In any case, inverting the condition makes sense.
-
->         spin_lock(&vop->reg_lock);
->
->         vop_crtc_write_gamma_lut(vop, crtc);
->         VOP_REG_SET(vop, common, dsp_lut_en, 1);
->         vop_cfg_done(vop);
->
->         spin_unlock(&vop->reg_lock);
->
-> > +
-> > +             spin_lock(&vop->reg_lock);
-> > +
-> > +             vop_crtc_write_gamma_lut(vop, crtc);
-> > +             VOP_REG_SET(vop, common, dsp_lut_en, 1);
-> > +             vop_cfg_done(vop);
-> > +
-> > +             spin_unlock(&vop->reg_lock);
-> > +     }
-> > +}
-> > +
-> > +static void vop_crtc_atomic_begin(struct drm_crtc *crtc,
-> > +                                struct drm_crtc_state *old_crtc_state)
-> > +{
-> > +     struct vop *vop = to_vop(crtc);
-> > +
-> > +     /*
-> > +      * Only update GAMMA if the 'active' flag is not changed,
-> > +      * otherwise it's updated by .atomic_enable.
-> > +      */
-> > +     if (vop->lut_regs && crtc->state->color_mgmt_changed &&
-> > +         !crtc->state->active_changed)
-> > +             vop_crtc_gamma_set(vop, crtc, old_crtc_state);
-> > +}
-> > +
-> >  static void vop_crtc_atomic_enable(struct drm_crtc *crtc,
-> >                                  struct drm_crtc_state *old_state)
-> >  {
-> > @@ -1075,6 +1154,14 @@ static void vop_crtc_atomic_enable(struct drm_crtc *crtc,
-> >               return;
-> >       }
-> >
-> > +     /*
-> > +      * If we have a GAMMA LUT in the state, then let's make sure
-> > +      * it's updated. We might be coming out of suspend,
-> > +      * which means the LUT internal memory needs to be re-written.
-> > +      */
-> > +     if (vop->lut_regs && crtc->state->gamma_lut)
-> > +             vop_crtc_gamma_set(vop, crtc, old_state);
-> > +
-> >       mutex_lock(&vop->vop_lock);
-> >
-> >       WARN_ON(vop->event);
-> > @@ -1191,6 +1278,26 @@ static void vop_wait_for_irq_handler(struct vop *vop)
-> >       synchronize_irq(vop->irq);
-> >  }
-> >
-> > +static int vop_crtc_atomic_check(struct drm_crtc *crtc,
-> > +                              struct drm_crtc_state *crtc_state)
-> > +{
-> > +     struct vop *vop = to_vop(crtc);
-> > +
-> > +     if (vop->lut_regs && crtc_state->color_mgmt_changed &&
-> > +         crtc_state->gamma_lut) {
-> > +             unsigned int len;
-> > +
-> > +             len = drm_color_lut_size(crtc_state->gamma_lut);
-> > +             if (len != crtc->gamma_size) {
-> > +                     DRM_DEBUG_KMS("Invalid LUT size; got %d, expected %d\n",
-> > +                                   len, crtc->gamma_size);
-> > +                     return -EINVAL;
-> > +             }
->
-> Overflow is avoided in drm_mode_gamma_set_ioctl(), so I don't think you need
-> this function.
->
-
-But that only applies to the legacy path. Isn't this needed to ensure
-a gamma blob
-has the right size?
-
-Thanks,
-Ezequiel
+Andrew
