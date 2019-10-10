@@ -2,45 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B9AD2BC1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF9DD2BFD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726104AbfJJNvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 09:51:42 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:48866 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726055AbfJJNvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 09:51:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=V/JXwCim9xHgJaWTIMmCuENQjrQuhOHBfhhfchcy6xI=; b=OLb5MxWlClMtaennmKs5dNMzk
-        WKm8AfEJOMKoj2CQzV8gr+lnf5tOUXnAYmJ4c/gSwuc7iwu+YYKwIaGyUXrZT2x0srTY5W0rEcju2
-        30C4X1niDQHVoFx8GdCfS/c7yRrOcBwAJ4bUh762OIwcaq1dEcH1t3Y3sbhZzwvuehp+0=;
-Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1iIYqs-0001Sb-Os; Thu, 10 Oct 2019 13:51:34 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 6041DD0003A; Thu, 10 Oct 2019 14:51:34 +0100 (BST)
-Date:   Thu, 10 Oct 2019 14:51:34 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
-        plai@codeaurora.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        spapothi@codeaurora.org
+        id S1726267AbfJJOBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 10:01:45 -0400
+Received: from mga01.intel.com ([192.55.52.88]:46873 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726108AbfJJOBp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 10:01:45 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Oct 2019 07:01:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,280,1566889200"; 
+   d="scan'208";a="197257569"
+Received: from unknown (HELO [10.254.187.20]) ([10.254.187.20])
+  by orsmga003.jf.intel.com with ESMTP; 10 Oct 2019 07:01:43 -0700
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
  snd_soc_dai_get_sdw_stream()
-Message-ID: <20191010135134.GR2036@sirena.org.uk>
-References: <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
+        plai@codeaurora.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        spapothi@codeaurora.org
+References: <20190813191827.GI5093@sirena.co.uk>
+ <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
  <20190813195804.GL5093@sirena.co.uk>
  <20190814041142.GU12733@vkoul-mobl.Dlink>
  <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
@@ -50,25 +41,31 @@ References: <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
  <2326a155-332e-fda0-b7a2-b48f348e1911@linux.intel.com>
  <34e4cde8-f2e5-0943-115a-651d86f87c1a@linaro.org>
  <20191010120337.GB31391@ediswmail.ad.cirrus.com>
+Message-ID: <22eff3aa-dfd6-1ee5-8f22-2af492286053@linux.intel.com>
+Date:   Thu, 10 Oct 2019 09:01:42 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/o1eWYFqMAfOorY1"
-Content-Disposition: inline
 In-Reply-To: <20191010120337.GB31391@ediswmail.ad.cirrus.com>
-X-Cookie: Be careful!  UGLY strikes 9 out of 10!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/o1eWYFqMAfOorY1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Oct 10, 2019 at 12:03:37PM +0000, Charles Keepax wrote:
-
+>>> It's been a while since this thread started, and I still don't
+>>> quite get the concepts or logic.
+>>>
+>>> First, I don't understand what the problem with "aux" devices is.
+>>> All the SoundWire stuff is based on the concept of DAI, so I guess
+>>> I am
+>>
+>> That is the actual problem! Some aux devices does not have dais.
+>>
+> 
 > Usually aux devices are used for things like analog amplifiers that
 > clearly don't have a digital interface, thus it really makes no sense
 > to have a DAI link connecting them. So I guess my question here
@@ -78,23 +75,31 @@ On Thu, Oct 10, 2019 at 12:03:37PM +0000, Charles Keepax wrote:
 > and would presumably avoid the issues being discussed around the
 > patch.
 
-Or is this a device where for some reason (consistency?) there
-really is no DAI and someone has decided to make an analogue
-amplifier with a soundwire control interface?
+Ah, now I get it, I missed the point about not having DAIs for the 
+amplifier.
 
---/o1eWYFqMAfOorY1
-Content-Type: application/pgp-signature; name="signature.asc"
+I will second Charles' point, the code you have in the machine driver at 
+[1] gets a SoundWire stream context from the SLIMbus codec dai. It's a 
+bit odd to mix layers this way.
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2fN2MACgkQJNaLcl1U
-h9BJVQf/VmhKdvjGO+iSItUddcgbReAtHb/ahdMnhBgNm54DlfDRuvW2kr32nZDa
-6nV6JI0UShGgIrN50nZeXoOTJqJudBkKPeN3bA4qdH09K/3KoUUccKcWFF9XGUNi
-C/Ej7gQs/QrIvb2Cs4khYDg3TTzBRQYZgS59UYO0cr/5wQml5uMYCRjwbPTQGkGE
-Z12uk1POwiqB7/+PtYf7Il4yn+ijyQlVF51ZUGIRGMDGWQMHqXwGg/pc9VX6bAM1
-SJ2IDQ6L+pMpu7Jwyq9ymbTRf94gt+yfjLbLR5lUzX1mAC8CSy9CeSb+d7c3jx61
-m3I30E3ocl8sxR6JHqmUUqrsbEB9hg==
-=QvNW
------END PGP SIGNATURE-----
+And if I look at the code below, taken from [1], if you have more than 
+one codec, then your code looks problematic: data->sruntime would be 
+overriden and you'd use the info from the last codec dai on the dailink...
 
---/o1eWYFqMAfOorY1--
+case SLIMBUS_0_RX...SLIMBUS_6_TX:
+   for (i = 0 ; i < dai_link->num_codecs; i++) {
+     [snip]
+     data->sruntime[cpu_dai->id] =
+	snd_soc_dai_get_sdw_stream(rtd->codec_dais[i], 0); << same destination 
+for multiple codec_dais...
+
+If you keep the amp dai-less, then the stream concept should be somehow 
+allocated on the master (or machine) side and passed to the codec dais 
+that are associated to the same 'stream'.
+	
+
+[1] 
+https://git.linaro.org/people/srinivas.kandagatla/linux.git/tree/sound/soc/qcom/db845c.c?h=release/db845c/qcomlt-5.2 
+
+
