@@ -2,101 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C514D2B1B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:19:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ED79D2B30
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388170AbfJJNTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 09:19:13 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:39101 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388172AbfJJNTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 09:19:13 -0400
-Received: by mail-oi1-f193.google.com with SMTP id w144so4846030oia.6;
-        Thu, 10 Oct 2019 06:19:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I7NZJhJN6HdWwCEUMeQlJdoAhMdqTEF44sskKDjfanc=;
-        b=dzn4Jbz5u35/F+VgX4lzB6CSa/Wh8gdstMAYYcX4HlpIl2D8bKbKZwU5Pdoge2I2Vz
-         QLF9TtTUpHNlBm8m3ZevEZ+Nr6g76/3Qcqs/bmVlfiMDAaVSxNXGRxSFoKBTk+ntkhF9
-         mdEw+QyKOIZBJcN3ZPq896KOai/hzLyY33+dwm0rrUP68yDibH65vQ1VM4AeK7BMOihM
-         O9EIrzu7NfZLWozZf975+2Tq3yMCihnOLeg2VFaT4z+W4YCnJElk4NRq6RIlGi+cqjDz
-         H7o9bv2hF1Ce3OKO7xcR4GVr/RGhRVB6TZ/xe2L3binl7sdrQaKfLxtsHxTwUgFLcllT
-         cjdA==
-X-Gm-Message-State: APjAAAVF+vQkvl414B9RHPar7eYznRKO/iymmkZXU6c2q/TXyBZfC/IZ
-        9FFrb+uwL1cMo3xHUqOLkbXbDdgdFNbFNmEy33o=
-X-Google-Smtp-Source: APXvYqzerbZNQDCGPcEhinDBYeswI2sWM62cykcHA35Eo9fX7xr7u1GxkK/D4cFmP9Ufqwl78lt9RO1LhowQ0ugUzsY=
-X-Received: by 2002:a54:4e89:: with SMTP id c9mr6999208oiy.148.1570713551912;
- Thu, 10 Oct 2019 06:19:11 -0700 (PDT)
+        id S2387758AbfJJNXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 09:23:23 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57656 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388013AbfJJNXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 09:23:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=WociR5V+PwUtDGUiulMlt+az7TEdfqJQTJBOofSQeIw=; b=B88lpczAXQldWnyO8Im9vdCEv
+        daXUQXh+wZyng11oMF3dtD8+xtR1wQDi92EbTcjf757S/kd/3vMN3xUUt1KFVma+wUSvOf9Q5kZrS
+        zZgZmChOHr9R05ehraysEp+s3TpmcKHZiG+YZIG+UMp3R3zkGr37++IozSVUV9WUGhGrY=;
+Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1iIYPU-0001Mi-99; Thu, 10 Oct 2019 13:23:16 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id EC10BD0003A; Thu, 10 Oct 2019 14:23:14 +0100 (BST)
+Date:   Thu, 10 Oct 2019 14:23:14 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     spapothi@codeaurora.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        pierre-louis.bossart@linux.intel.com
+Subject: Re: [PATCH v7 2/2] ASoC: codecs: add wsa881x amplifier support
+Message-ID: <20191010132314.GQ2036@sirena.org.uk>
+References: <20191009085108.4950-1-srinivas.kandagatla@linaro.org>
+ <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
+ <20191009163535.GK2036@sirena.org.uk>
+ <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
 MIME-Version: 1.0
-References: <1570200761-884-1-git-send-email-biju.das@bp.renesas.com>
- <CAMuHMdWCu14DOci-EUuSZ_JTeZaoq90qr035WFsLY2c3UqgkeA@mail.gmail.com>
- <TYAPR01MB21111CD187E5EF5CB6FB01BAB89A0@TYAPR01MB2111.jpnprd01.prod.outlook.com>
- <CAMuHMdXYSK3U3wr7by0wBd+yQ7HkjDf5s5XMV7BmXyh7j5B9vQ@mail.gmail.com> <OSBPR01MB2103921B22CD1A794B8FCB4FB8940@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSBPR01MB2103921B22CD1A794B8FCB4FB8940@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Oct 2019 15:19:00 +0200
-Message-ID: <CAMuHMdVx6XNaBZ4itZeu5P23bq0VMGsfYssNJGfAdMyf6KKphA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r8a774a1: Remove audio port node
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8Km4OLyaxUtVIPha"
+Content-Disposition: inline
+In-Reply-To: <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
+X-Cookie: Be careful!  UGLY strikes 9 out of 10!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Thu, Oct 10, 2019 at 3:04 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r8a774a1: Remove audio
-> > port node
+--8Km4OLyaxUtVIPha
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > On Tue, Oct 8, 2019 at 3:43 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> > > > Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r8a774a1: Remove
-> > > > audio port node On Fri, Oct 4, 2019 at 4:53 PM Biju Das
-> > > > <biju.das@bp.renesas.com> wrote:
-> > > > > This patch removes audio port node from SoC device tree.
-> > > >
-> > > > Standard review comment: "Why?"
-> >
-> > Bcause it fixes a dtb warning?
-> >
-> >    Warning (unit_address_vs_reg): /soc/sound@ec500000/ports/port@0:
-> > node has
-> >    a unit name, but no reg property
->
-> I also noticed this warning.
->
-> We will get this warning, if we  apply the patch  "[v3,2/2] arm64: dts: renesas: r8a774b1: Add Sound and Audio DMAC
->  device nodes" first and then this one.
->
-> If it is other way around, then there won't be any warning. That is the reason I didn't mention it in the commit message.
+On Thu, Oct 10, 2019 at 10:28:04AM +0100, Srinivas Kandagatla wrote:
+> On 09/10/2019 17:35, Mark Brown wrote:
+> > On Wed, Oct 09, 2019 at 09:51:08AM +0100, Srinivas Kandagatla wrote:
+> > > +static const u8 wsa881x_reg_readable[WSA881X_CACHE_SIZE] = {
 
-I even see the warning with current renesas-devel ("make dtbs W=1"),
-which does not have "[v3,2/2] arm64: dts: renesas: r8a774b1: Add Sound
-and Audio DMAC device nodes" yet.
+> > > +static bool wsa881x_readable_register(struct device *dev, unsigned int reg)
+> > > +{
+> > > +	return wsa881x_reg_readable[reg];
 
-So I'll apply this patch with the warning message in the commit log, unless
-I'm missing something?
+> > There's no bounds check and that array size is not...
 
-Gr{oetje,eeting}s,
+> I converted this now to a proper switch statement as other drivers do.
 
-                        Geert
+> > > +static struct regmap_config wsa881x_regmap_config = {
+> > > +	.reg_bits = 32,
+> > > +	.val_bits = 8,
+> > > +	.cache_type = REGCACHE_RBTREE,
+> > > +	.reg_defaults = wsa881x_defaults,
+> > > +	.num_reg_defaults = ARRAY_SIZE(wsa881x_defaults),
+> > > +	.max_register = WSA881X_MAX_REGISTER,
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> > ...what regmap has as max_register.  Uusually you'd render as a
+> > switch statement (as you did for volatile) and let the compiler
+> > figure out a sensible way to do the lookup.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Sorry, I did not get your point here.
+
+> Are you saying that we can skip max_register in this regmap config ?
+> Then how would max_register in regmap be set?
+
+I'm saying that you appear to be relying on max_register to
+verify that you're not overflowing the array bounds but you
+max_register is not set to the same thing as the array size.
+
+--8Km4OLyaxUtVIPha
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2fMMIACgkQJNaLcl1U
+h9A3/Qf6Ar7ffTTO6fQ9eEU2xlK6kaCO7YSeWXTP1fKzuKvQy6Fd/XOsax1HiBF/
+8/H4lV/CNqnW88GwSAgBm7acHnRQwDrq1UkVlImEMNkslEr9q5ANt5CHrUb0DNcW
+TI6RkEi4gJj0nfkBozu9aRww71xEYNR+DPcmb/1rugVUdh1WYmFop9sAImmdn+5d
+zGGIdGTWdDu71UTPmx272j1zd6226SeJw7ONW4lmacud+HlEnAFRV3OBBc+ftGFD
+G6kIhnTS0mnSuzhmGEkyzCTHHuG6Sjv1Co/qRKrV+PdqRPhxPln10rw8N9/Wv55n
+5CXKfA5YtlVQjpfqaSr2fmE3YCtiew==
+=ZHzM
+-----END PGP SIGNATURE-----
+
+--8Km4OLyaxUtVIPha--
