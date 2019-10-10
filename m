@@ -2,162 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A6D3D1D1F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 02:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0CFD1D28
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 02:11:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731166AbfJJAIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 20:08:47 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:39895 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731145AbfJJAIr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 20:08:47 -0400
-Received: by mail-io1-f65.google.com with SMTP id a1so9658373ioc.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2019 17:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=27bPZ5AjHbkAvma41N9WmP13swNHgshH29767ZOGwvE=;
-        b=ZxD4EoEu6a0XX57fQ9vuCr2Qdbqb486Yy+eIELlgZpMWd2I1HaiX7iC7Jq5ct1DnzT
-         i6A1uNstnxnfaoLOabt8dbFoPCAUoEmXI0aSSZduZw5ByiVNKjG9ayG/ksg0vYYuGcPG
-         JC79MRCqUSPJM/BY2C/Vsfya1TawIGSSndPMZgAvaxG/M9J4OkJM5LYCwwtbp8tlLzyA
-         O3l39mNFN6sRktrkV1/gU8eAIFxT0MELDrPLBjI6eB9+cHbJANLr4tQSnreXsnNpbMfO
-         1/VFr2dIiqCzhh3YWpSQhne6zKR0hlqfH03njxQcCAvNPPAe7wMKVLHAPh8ePGOw5lSr
-         IFuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=27bPZ5AjHbkAvma41N9WmP13swNHgshH29767ZOGwvE=;
-        b=sp1hFsCYT1grQGy6+2qZn04ZjYsFLihLtAzuBIcfUg/gwM7AVX259iwxsX3tYiHPXb
-         f4m5U8qOAG3ZRDRg4p2KRPgzCwI7xfMq+8L3B82NYi5JLQIwmu74D7KS5UXUTse/i5Eu
-         5Pog9CKcmdIQEHi/vYF/+F+71nMlNTseua5LdeDQ2vG3wQTsA+OU6Fxq7s2dufCFbnNB
-         gTW2ZRD4vyHdFyu2QiofDONQWRCLYyb19ELgCTJ0Oq00hMGdh8lGnIsW+9Kb1cOrDBBc
-         f12Wn2Iz2kmNor+7rQwd5AGAZXfiNXe2KyNIKcGQ2NU6611M5hfc4Gehf5FwIL7CPL9H
-         CYug==
-X-Gm-Message-State: APjAAAVbKv6MlzdVtLQb51dTPpVEu3JCAt5ZpUyN97KD+t/qtIm0E20M
-        YuvsP45iBw4/s3n0U4+76yKGmA==
-X-Google-Smtp-Source: APXvYqx8WLA6LKnMW9EfBeEKRznNEk0nJV0oAheX1NZ38rElDZ1PT+oHrJ0dYK7NlOJowD+Wsbrqlw==
-X-Received: by 2002:a02:6d08:: with SMTP id m8mr6621388jac.34.1570666126079;
-        Wed, 09 Oct 2019 17:08:46 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id z20sm1627289iof.38.2019.10.09.17.08.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2019 17:08:44 -0700 (PDT)
-Date:   Wed, 9 Oct 2019 17:08:43 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Rob Herring <robh@kernel.org>
-cc:     Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: riscv: Fix CPU schema errors
-In-Reply-To: <20191009234648.2271-1-robh@kernel.org>
-Message-ID: <alpine.DEB.2.21.9999.1910091657240.11044@viisi.sifive.com>
-References: <20191009234648.2271-1-robh@kernel.org>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        id S1731155AbfJJAK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 20:10:59 -0400
+Received: from gate.crashing.org ([63.228.1.57]:56020 "EHLO gate.crashing.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731145AbfJJAK7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Oct 2019 20:10:59 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x9A0AioC023487;
+        Wed, 9 Oct 2019 19:10:45 -0500
+Message-ID: <991382b92be6b78e596b089d2c3677358afa52fc.camel@kernel.crashing.org>
+Subject: Re: [PATCH 1/3] dt-bindings: net: ftgmac100: Document AST2600
+ compatible
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     Andrew Jeffery <andrew@aj.id.au>, netdev <netdev@vger.kernel.org>
+Cc:     David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Joel Stanley <joel@jms.id.au>
+Date:   Thu, 10 Oct 2019 11:10:44 +1100
+In-Reply-To: <4998960d-6125-4402-9905-869653a84e52@www.fastmail.com>
+References: <20191008115143.14149-1-andrew@aj.id.au>
+         <20191008115143.14149-2-andrew@aj.id.au>
+         <75d915aec936be64ea5ebd63402efd90bb1c29d9.camel@kernel.crashing.org>
+         <6f70580a-4b4b-45e0-8899-8a74f9587002@www.fastmail.com>
+         <4998960d-6125-4402-9905-869653a84e52@www.fastmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Oct 2019, Rob Herring wrote:
-
-> Fix the errors in the RiscV CPU DT schema:
+On Wed, 2019-10-09 at 15:25 +1030, Andrew Jeffery wrote:
 > 
-> Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
-> Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@1: 'timebase-frequency' is a required property
-> Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible:0: 'riscv' is not one of ['sifive,rocket0', 'sifive,e5', 'sifive,e51', 'sifive,u54-mc', 'sifive,u54', 'sifive,u5']
-> Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: compatible: ['riscv'] is too short
-> Documentation/devicetree/bindings/riscv/cpus.example.dt.yaml: cpu@0: 'timebase-frequency' is a required property
+> On Wed, 9 Oct 2019, at 15:19, Andrew Jeffery wrote:
+> > 
+> > 
+> > On Wed, 9 Oct 2019, at 15:08, Benjamin Herrenschmidt wrote:
+> > > On Tue, 2019-10-08 at 22:21 +1030, Andrew Jeffery wrote:
+> > > > The AST2600 contains an FTGMAC100-compatible MAC, although it
+> > > > no-
+> > > > longer
+> > > > contains an MDIO controller.
+> > > 
+> > > How do you talk to the PHY then ?
+> > 
+> > There are still MDIO controllers, they're just not in the MAC IP on
+> > the 2600.
 > 
-> The DT spec allows for 'timebase-frequency' to be in 'cpu' or 'cpus' node
-> and RiscV is doing nothing special with it, so just drop the definition
-> here and don't make it required.
-
-The RISC-V kernel code does in fact parse it and use it, and we currently 
-rely on it being under /cpus:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/riscv/kernel/time.c#n19
-
-The RISC-V user ISA specification also constrains the timebase-frequency 
-to be the same across all CPUs, in section 10.1:
-
-  https://github.com/riscv/riscv-isa-manual/releases/download/draft-20190608-f467e5d/riscv-spec.pdf
-
-So the right thing is to require 'timebase-frequency' at /cpus, and forbid 
-it in the individual CPU nodes. 
-
+> Sorry, on reflection that description is a little ambiguous in its
+> use of 'it'. I'll
+> fix that in v2 as well. Does this read better?
 > 
-> Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
-> Cc: Paul Walmsley <paul.walmsley@sifive.com>
-> Cc: Palmer Dabbelt <palmer@sifive.com>
-> Cc: Albert Ou <aou@eecs.berkeley.edu>
-> Cc: linux-riscv@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/riscv/cpus.yaml       | 28 ++++++++-----------
->  1 file changed, 11 insertions(+), 17 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index b261a3015f84..925b531767bf 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -24,15 +24,17 @@ description: |
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - sifive,rocket0
-> -          - sifive,e5
-> -          - sifive,e51
-> -          - sifive,u54-mc
-> -          - sifive,u54
-> -          - sifive,u5
-> -      - const: riscv
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - sifive,rocket0
-> +              - sifive,e5
-> +              - sifive,e51
-> +              - sifive,u54-mc
-> +              - sifive,u54
-> +              - sifive,u5
-> +          - const: riscv
-> +      - const: riscv    # Simulator only
->      description:
->        Identifies that the hart uses the RISC-V instruction set
->        and identifies the type of the hart.
-> @@ -66,13 +68,6 @@ properties:
->        insensitive, letters in the riscv,isa string must be all
->        lowercase to simplify parsing.
->  
-> -  timebase-frequency:
-> -    type: integer
-> -    minimum: 1
-> -    description:
-> -      Specifies the clock frequency of the system timer in Hz.
-> -      This value is common to all harts on a single system image.
-> -
->    interrupt-controller:
->      type: object
->      description: Describes the CPU's local interrupt controller
-> @@ -93,7 +88,6 @@ properties:
->  
->  required:
->    - riscv,isa
-> -  - timebase-frequency
->    - interrupt-controller
->  
->  examples:
-> -- 
-> 2.20.1
-> 
-> 
+> "The AST2600 contains an FTGMAC100-compatible MAC, although the MAC
+> no-longer contains an MDIO controller."
+
+That's fine. Or to be pendantic, say the MDIO controller has been moved
+of the MAC unit into its own separate block or something along those
+lines so people like me don't get anxious :)
+
+Cheers,
+Ben.
 
 
-- Paul
