@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3851DD1E0D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 03:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75920D1E35
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 04:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732317AbfJJBeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Oct 2019 21:34:50 -0400
-Received: from mga06.intel.com ([134.134.136.31]:50444 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731134AbfJJBeu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Oct 2019 21:34:50 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Oct 2019 18:34:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,278,1566889200"; 
-   d="scan'208";a="393873539"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga005.fm.intel.com with ESMTP; 09 Oct 2019 18:34:48 -0700
-Received: from [10.226.38.27] (unknown [10.226.38.27])
-        by linux.intel.com (Postfix) with ESMTP id 9DAFF5803E4;
-        Wed,  9 Oct 2019 18:34:45 -0700 (PDT)
-Subject: Re: [PATCH v1 0/2] spi: cadence-qspi: Add cadence-qspi support for
- Intel LGM SoC
-To:     Vignesh Raghavendra <vigneshr@ti.com>, broonie@kernel.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-References: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <c4555df5-89d5-e8a6-bed4-887c23ac4f0f@ti.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <89e49834-8697-2917-d666-769969f074a4@linux.intel.com>
-Date:   Thu, 10 Oct 2019 09:34:44 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1731134AbfJJCHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Oct 2019 22:07:55 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:60611 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726197AbfJJCFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Oct 2019 22:05:54 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 7C66B21E29;
+        Wed,  9 Oct 2019 22:05:53 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 09 Oct 2019 22:05:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=j0nJ6T39mBn7jdktZT6Zi6X9sd
+        fIshRqVoX28oscb1o=; b=Grg3rMCD3oBEZNUMpdLMPocNMItAkpBFGgUsksSuhr
+        ur9gtvrXrNA5jSZrwrqaZOdUnenU8g6XcXo2YPeeH2FWM7uhkf7BTK+EAbLo+DbF
+        RNIBDr7kZJl58FEd5i6gl9wLDBztZY+mwP/MHZgZ53S30kalDB6HKKvkDljeoGu0
+        ESzuUX0F8Ihxg3L/NnwfCshobLMTVw0CnQWmtBIFsBWCtKPhlYxSBCk4N7Kj7/42
+        Zjqsa41Tzsk6McYk5pCOo5Dbl17LmHGpXAirYM5WpfYorShOcwtQgrw7Jk7gBcza
+        pqHwWLx0lxGzbgaF7+RHPFonEsv8bjCrGs3GRYkpm0Bw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=j0nJ6T39mBn7jdktZ
+        T6Zi6X9sdfIshRqVoX28oscb1o=; b=GvX3d3NO4LpcMPH3fnKpwpu3sSnikOWpy
+        BSzMdsbTXEu33S9MIV0RGsTRxod01XuiuhQeUq0BsfbDJLLfs2bjKRnFc+tro2zP
+        sLelAZj6Yx+UdwZ53vLrqAhatmrs96aRJk+AfJ36dAmujrQtHvFJoUIRrM9v7Y+W
+        O/bS0EQOgcyXBT9ut+RPX+aIkyyFm4hOao+NXmNJF64mS8+hUT1gJ13q09VwY24w
+        Yzo/Q4N7VA6e7Q4g3HcPJZTb+3oi07Cc5KOqJWpuAXLd6ouk0uMJajtc4n66pr/0
+        12hJs9kJ4hzPrGDe03TTe/P0ME16pQ25MKRHslaWImKWtySuFMlIw==
+X-ME-Sender: <xms:AJKeXcSdWl408cda4MuK2rbaRDqUfONrCFbRzETcpJeSj_ugEoDBxg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedriedvgdehjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghjrdhi
+    ugdrrghuqeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvtddvrdekud
+    drudekrdeftdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgu
+    rdgruhenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:AJKeXVTPykFqBY-AgGPxHXqScOD15duqhBzxy9PXbKuiJuzXMqd7pg>
+    <xmx:AJKeXe4NMpZ-dEwnkcFg2ywhVq3IHJX9IHQZYKF3hkTkg7crb-6WNg>
+    <xmx:AJKeXe-OzahKpL4FaXG1Bcerml1DFJIDGn2jgwpQNwIMZvME9VeVpQ>
+    <xmx:AZKeXf3y_VHgP-2UDPJ4b6BjJT2PW7Y2KcYOOKZS3ydLJS83kuDiKw>
+Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 07A12D6005E;
+        Wed,  9 Oct 2019 22:05:48 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-clk@vger.kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, joel@jms.id.au,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] clk: aspeed: Expose RMII RCLK gate for MACs 1-2 on AST2500
+Date:   Thu, 10 Oct 2019 12:36:53 +1030
+Message-Id: <20191010020655.3776-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <c4555df5-89d5-e8a6-bed4-887c23ac4f0f@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Vignesh,
+Hello,
 
-On 17/9/2019 12:50 AM, Vignesh Raghavendra wrote:
-> Hi,
->
-> On 16/09/19 1:08 PM, Ramuthevar,Vadivel MuruganX wrote:
->> patch 1: Add YAML for cadence-qspi devicetree cdocumentation.
->> patch 2: cadence-qspi controller driver to support QSPI-NAND flash
->> using existing spi-nand framework with legacy spi protocol.
-> Nope, you cannot have two drivers for the same IP (i.e Cadence QSPI)
-> just to support to different types of SPI memories. This is the reason
-> why spi_mem_ops was introduced.
->
-> Please rewrite this driver over to use spi_mem_ops (instead of using
-> generic SPI xfers) so that same driver supports both SPI-NOR and
-> SPI-NAND flashes. Once that's done drivers/mtd/spi-nor/cadence-quadspi.c
-> can be deleted.
->
-> There are few existing examples of spi_mem_ops users in drivers/spi/
-> (git grep spi_mem_ops) and materials here on how to write such a driver:
->
-> [1]
-> https://bootlin.com/blog/spi-mem-bringing-some-consistency-to-the-spi-memory-ecosystem/
-> [2] https://www.youtube.com/watch?v=PkWbuLM_gmU
-As per Mark Brown and your suggestion,  I have started adapting 
-cadence-qaudspi driver with spi_mem_ops framework to work
-QSPI-NAND/NOR as a generic driver(completely removed the legacy 
-SPI-XFERS),  is in progress on Intel LGM SoC.
-QSPI-IP on Intel LGM  do not have DMA  support and also not part of QSPI 
-IP, so couldn't able to validate DMA related.
-will adapt the DMA things which are existing in cadence-quadspi.c as it is.
+This series is two small changes enable kernel support for controlling the RMII
+RCLK gate on AST2500-based systems. Previously the kernel has assumed u-boot
+has ungated RCLK for networking to function.
 
-currently TI and Altera SoC's use this Cadence-qspi IP , both are not 
-using DMA as per my understanding (correct me if it is wrong).
-confirmed through device tree entry.
+RMII is commonly used for NCSI, which itself is commonly used for BMC-based
+designs to reduce cabling requirements for the platform.
 
-what is your opinion on DMA related stuff? also using macronix(QSPI-NOR) 
-flash/Micron(QSPI-NAND).
----
-With Regards
-Vadivel
->> Ramuthevar Vadivel Murugan (2):
->>    dt-bindings: spi: Add support for cadence-qspi IP Intel LGM SoC
->>    spi: cadence-qspi: Add QSPI support for Intel LGM SoC
->>
->>   .../devicetree/bindings/spi/cadence,qspi-nand.yaml |  84 +++
->>   drivers/spi/Kconfig                                |   9 +
->>   drivers/spi/Makefile                               |   1 +
->>   drivers/spi/spi-cadence-qspi-apb.c                 | 644 +++++++++++++++++++++
->>   drivers/spi/spi-cadence-qspi-apb.h                 | 174 ++++++
->>   drivers/spi/spi-cadence-qspi.c                     | 461 +++++++++++++++
->>   drivers/spi/spi-cadence-qspi.h                     |  73 +++
->>   7 files changed, 1446 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
->>   create mode 100644 drivers/spi/spi-cadence-qspi-apb.c
->>   create mode 100644 drivers/spi/spi-cadence-qspi-apb.h
->>   create mode 100644 drivers/spi/spi-cadence-qspi.c
->>   create mode 100644 drivers/spi/spi-cadence-qspi.h
->>
+v2:
+* Rename macros and clock names based on Joel's feedback.
+
+v1 can be found here: https://lore.kernel.org/linux-clk/20191008113523.13601-1-andrew@aj.id.au/
+
+Please review!
+
+Andrew
+
+Andrew Jeffery (2):
+  dt-bindings: clock: Add AST2500 RMII RCLK definitions
+  clk: aspeed: Add RMII RCLK gates for both AST2500 MACs
+
+ drivers/clk/clk-aspeed.c                 | 27 +++++++++++++++++++++++-
+ include/dt-bindings/clock/aspeed-clock.h |  2 ++
+ 2 files changed, 28 insertions(+), 1 deletion(-)
+
+-- 
+2.20.1
+
