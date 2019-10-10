@@ -2,49 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB9BBD22B5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 10:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFD3D22D9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 10:36:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733121AbfJJI1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 04:27:09 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:56144 "EHLO
-        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733202AbfJJI1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 04:27:07 -0400
-Received: from bigeasy by Galois.linutronix.de with local (Exim 4.80)
-        (envelope-from <bigeasy@linutronix.de>)
-        id 1iITm9-0002M8-BR; Thu, 10 Oct 2019 10:26:21 +0200
-Date:   Thu, 10 Oct 2019 10:26:21 +0200
-From:   Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/8] clocksource/drivers/timer-atmel-tcb: add sama5d2
- support
-Message-ID: <20191010082602.ytfc2tilizruwrts@linutronix.de>
-References: <20191009224006.5021-1-alexandre.belloni@bootlin.com>
+        id S1732034AbfJJIdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 04:33:53 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:36716 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731959AbfJJIdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 04:33:53 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9A8Xf31125164;
+        Thu, 10 Oct 2019 03:33:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1570696421;
+        bh=tW8o9gxC95fgEDnTV9WdqRE00YYAAn4u4FGFLXvP/Ss=;
+        h=From:To:CC:Subject:Date;
+        b=ygWd8wTj4BOfn9mmSo6TD3b1PFBgiC0x67zavLb/yckCeyEIXACNi01rKz1WoXvF6
+         rptPDKqy5M/a2YXytXAmcl3ZkcSz2Nbkz2+sox65jUta5sBgPpjnxBhZXiKMlnmSrA
+         6xPhdCQBEnrCbdGWahd1oiczW+Nx39erMMepQ2+o=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9A8XfCe043929
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Oct 2019 03:33:41 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 10
+ Oct 2019 03:33:37 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 10 Oct 2019 03:33:40 -0500
+Received: from a0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9A8XaSZ019061;
+        Thu, 10 Oct 2019 03:33:37 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, <jejb@linux.ibm.com>,
+        Martin K Petersen <martin.petersen@oracle.com>
+CC:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        Janek Kotas <jank@cadence.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <nsekhar@ti.com>
+Subject: [PATCH v2 0/2] scsi: ufs: Add driver for TI wrapper for Cadence UFS IP
+Date:   Thu, 10 Oct 2019 14:03:55 +0530
+Message-ID: <20191010083357.28982-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191009224006.5021-1-alexandre.belloni@bootlin.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-10-10 00:39:58 [+0200], Alexandre Belloni wrote:
-> This series mainly adds sama5d2 support where we need to avoid using
-> clock index 0 because that clock is never enabled by the driver.
-> 
-> There is also a rework of the 32khz clock handling so it is not used for
-> clockevents on 32 bit counter because the increased rate improves the
-> resolution and doesn't have any drawback with that counter width. This
-> replaces a patch that has been carried in the linux-rt tree for a while.
+This series add DT bindings and driver for TI wrapper for Cadence UFS
+IP that is present on TI's J721e SoC
 
-Thank you for doing this!
+Vignesh Raghavendra (2):
+  dt-bindings: ufs: ti,j721e-ufs.yaml: Add binding for TI UFS wrapper
+  scsi: ufs: Add driver for TI wrapper for Cadence UFS IP
 
-Sebastian
+ .../devicetree/bindings/ufs/ti,j721e-ufs.yaml | 68 ++++++++++++++
+ drivers/scsi/ufs/Kconfig                      | 10 +++
+ drivers/scsi/ufs/Makefile                     |  1 +
+ drivers/scsi/ufs/ti-j721e-ufs.c               | 90 +++++++++++++++++++
+ 4 files changed, 169 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml
+ create mode 100644 drivers/scsi/ufs/ti-j721e-ufs.c
+
+-- 
+2.23.0
+
