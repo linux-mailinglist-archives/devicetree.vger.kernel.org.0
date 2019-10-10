@@ -2,86 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 375FFD3363
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15F8ED3365
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:28:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727277AbfJJVZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 17:25:28 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:43000 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725867AbfJJVZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 17:25:28 -0400
-Received: by mail-oi1-f196.google.com with SMTP id i185so6212997oif.9;
-        Thu, 10 Oct 2019 14:25:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Lv3rk3pHLhZvybEif/qwYDFpnKkl8bdDZ4HIHyWSdq0=;
-        b=BRwmreNFexqhyMy+SdjFDgWjzor89ZVwlZnMzAo/Hcf4mS0SrzclPTusxsZ8M2g+bJ
-         X7mG1xkLZRcfA6gKto5SGrPzKwD3Z/N7i/2eHYjGn+hC/PVJFj06Ls6kk7kZ7rYqbqiJ
-         +uxzDEQU2rYxtz0zzSc0qaOMM8+E/NN0IjVIFNAO9SgJRqPfsZMlAwWKav+A0+a+Hlps
-         nXu3Ud9+OxiuDhD+8uSNfnxy5OgezwbYjyqKoN0BE2nu+nI+BXqGropulfvTu8r0Cj7f
-         gHhRxgElT6rPU2WzeregO9vGVvp/1BhmjljVeE87QQ4wJbo9+w5C7ni2rHHFXVi7kR8N
-         TuKg==
-X-Gm-Message-State: APjAAAWcPmweYS5ko9mWBL85wXXXdXrHF45+cDlaNaOt16GSzUQUOVR9
-        11GlPAPLJ2R9YUvQcIaRIw==
-X-Google-Smtp-Source: APXvYqyeZEQ766dBfpM3fs7aXjEXnwsmy6jN3B5Ks2+eoXLgvPE6nnx4qQhk7S2cWYyWurIXrAHtMA==
-X-Received: by 2002:aca:2b08:: with SMTP id i8mr8915743oik.146.1570742727053;
-        Thu, 10 Oct 2019 14:25:27 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i13sm2119432otj.58.2019.10.10.14.25.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2019 14:25:26 -0700 (PDT)
-Date:   Thu, 10 Oct 2019 16:25:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Kamil Konieczny <k.konieczny@partner.samsung.com>,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: crypto: samsung: Convert SSS and SlimSSS
- bindings to json-schema
-Message-ID: <20191010212525.GA10949@bogus>
-References: <20190920163635.9186-1-krzk@kernel.org>
+        id S1726913AbfJJV2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 17:28:01 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:33752 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725867AbfJJV2B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 17:28:01 -0400
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iIfyZ-0007AU-TP; Thu, 10 Oct 2019 23:27:59 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable nanopi4 HDMI audio
+Date:   Thu, 10 Oct 2019 23:27:59 +0200
+Message-ID: <16038581.NyrPi82bol@phil>
+In-Reply-To: <7fe6e94e4b9f5986f19f2637b7b716f0cb54de1b.1570444701.git.robin.murphy@arm.com>
+References: <7fe6e94e4b9f5986f19f2637b7b716f0cb54de1b.1570444701.git.robin.murphy@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190920163635.9186-1-krzk@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Sep 2019 18:36:35 +0200, Krzysztof Kozlowski wrote:
-> Convert Samsung Exynos Security SubSystem (SSS) and SlimSSS hardware
-> crypto accelerator bindings to DT schema format using json-schema.
+Am Montag, 7. Oktober 2019, 13:33:25 CEST schrieb Robin Murphy:
+> All the nanopi4 boards have HDMI, so let them make noise on it.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Rebased on linux-next due to conflicting change in MAINTAINERS file
-> coming through arm-soc tree.
-> 
-> Changes since v1:
-> 1. Add additionalProperties:false
-> ---
->  .../bindings/crypto/samsung-slimsss.txt       | 19 ------
->  .../bindings/crypto/samsung-slimsss.yaml      | 47 +++++++++++++++
->  .../bindings/crypto/samsung-sss.txt           | 32 ----------
->  .../bindings/crypto/samsung-sss.yaml          | 58 +++++++++++++++++++
->  MAINTAINERS                                   |  4 +-
->  5 files changed, 107 insertions(+), 53 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/crypto/samsung-slimsss.txt
->  create mode 100644 Documentation/devicetree/bindings/crypto/samsung-slimsss.yaml
->  delete mode 100644 Documentation/devicetree/bindings/crypto/samsung-sss.txt
->  create mode 100644 Documentation/devicetree/bindings/crypto/samsung-sss.yaml
-> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 
-Applied, thanks.
+applied for 5.5
 
-Rob
+Thanks
+Heiko
+
+
