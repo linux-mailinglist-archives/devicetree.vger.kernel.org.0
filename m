@@ -2,259 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A4AD2ED7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 18:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CE40D2EF0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 18:53:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbfJJQsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 12:48:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60504 "EHLO mail.kernel.org"
+        id S1726676AbfJJQwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 12:52:32 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55008 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726038AbfJJQsx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 12:48:53 -0400
-Received: from earth.universe (tmo-080-106.customers.d1-online.com [80.187.80.106])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 92BF6218AC;
-        Thu, 10 Oct 2019 16:48:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570726131;
-        bh=CIYAHbrsHehDhmC0lEz5QCXbhpUiDbqLb2gCs6WSC9s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WPr9a1pE8sZmfRWug8YooAsGNOcCWMRytUoxhQwNsZE29Jef4wv1zF90wnJ7kuIQx
-         iWMsPt3LLGLLjt/K4MV65uLw4ajdEuIHa5S6wKZbThMUII5ERwnhrMLnbBzgw2bT2b
-         pDfQXm/V146Zqxin4fVe3wjvoVzW+bqg8q8LXHwc=
-Received: by earth.universe (Postfix, from userid 1000)
-        id 57D1D3C0CA2; Thu, 10 Oct 2019 18:48:47 +0200 (CEST)
-Date:   Thu, 10 Oct 2019 18:48:47 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: samsung: Indent examples with four
- spaces
-Message-ID: <20191010164847.ntbhecap6pbesvk7@earth.universe>
-References: <20191002160744.11307-1-krzk@kernel.org>
+        id S1726038AbfJJQwc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 12:52:32 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0C2831A04B2;
+        Thu, 10 Oct 2019 18:52:29 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id F2FF41A0492;
+        Thu, 10 Oct 2019 18:52:28 +0200 (CEST)
+Received: from fsr-ub1664-026.ea.freescale.net (fsr-ub1664-026.ea.freescale.net [10.171.81.59])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 56A922060B;
+        Thu, 10 Oct 2019 18:52:28 +0200 (CEST)
+From:   Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+To:     corbet@lwn.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com
+Cc:     jslaby@suse.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 0/5] Add initial support for S32V234-EVB
+Date:   Thu, 10 Oct 2019 19:52:23 +0300
+Message-Id: <1570726348-6420-1-git-send-email-stefan-gabriel.mirea@nxp.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="us5fnkoji2afabie"
-Content-Disposition: inline
-In-Reply-To: <20191002160744.11307-1-krzk@kernel.org>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---us5fnkoji2afabie
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+NXP's S32V234[1] ("Treerunner") vision microprocessors are targeted for
+high-performance, computationally intensive vision and sensor fusion
+applications that require automotive safety levels. They include leading
+edge Camera Vision modules like APEX-2, ISP and GPU. The S32V234-EVB and
+S32V234-SBC boards are available for customer evaluation.
 
-Hi,
+The following patch series introduces minimal enablement support for the
+NXP S32V234-EVB2[2] board, which leverages most of the SoC capabilities.
+Up to v2, this series also included the fsl_linflexuart driver, which has
+been included in Linux 5.4-rc1[3].
 
-On Wed, Oct 02, 2019 at 06:07:41PM +0200, Krzysztof Kozlowski wrote:
-> Change the indentation of examples used in json-schema bindings from two
-> to four spaces as this makes the code easier to read and seems to be
-> preferred in other files.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+In the future, we aim to submit multiple drivers upstream, which can be
+found in the kernel of our Auto Linux BSP[4] ("ALB"), starting with basic
+pinmuxing, clock and uSDHC drivers.
 
-Acked-by: Sebastian Reichel <sre@kernel.org> # for power/reset
+For validation, you can use the U-Boot bootloader in the ALB[5], which we
+build and test with our patched version of the Linaro GCC 6.3.1 2017.05
+toolchain for ARM 64-bit, with sources available on [6].
 
--- Sebastian
+Changes in v6:
+* In the patch 'serial: fsl_linflexuart: Be consistent with the name',
+  avoid updating the definition PORT_LINFLEXUART; that was an independent
+  fix which has been submitted and accepted[9] separately;
+* Avoid using 'base64' as 'Content-Transfer-Encoding'.
 
-> ---
->  .../bindings/arm/samsung/exynos-chipid.yaml   |  4 +-
->  .../bindings/iio/adc/samsung,exynos-adc.yaml  | 64 +++++++++----------
->  .../bindings/power/reset/syscon-poweroff.yaml |  8 +--
->  .../bindings/power/reset/syscon-reboot.yaml   |  8 +--
->  .../devicetree/bindings/rtc/s3c-rtc.yaml      | 12 ++--
->  5 files changed, 48 insertions(+), 48 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.=
-yaml b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
-> index 9c573ad7dc7d..ce40adabb4e8 100644
-> --- a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
-> +++ b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
-> @@ -20,6 +20,6 @@ properties:
->  examples:
->    - |
->      chipid@10000000 {
-> -      compatible =3D "samsung,exynos4210-chipid";
-> -      reg =3D <0x10000000 0x100>;
-> +        compatible =3D "samsung,exynos4210-chipid";
-> +        reg =3D <0x10000000 0x100>;
->      };
-> diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc=
-=2Eyaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> index b4c6c26681d9..a0a9b909ac40 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> @@ -112,40 +112,40 @@ allOf:
->  examples:
->    - |
->      adc: adc@12d10000 {
-> -      compatible =3D "samsung,exynos-adc-v1";
-> -      reg =3D <0x12d10000 0x100>;
-> -      interrupts =3D <0 106 0>;
-> -      #io-channel-cells =3D <1>;
-> -      io-channel-ranges;
-> -
-> -      clocks =3D <&clock 303>;
-> -      clock-names =3D "adc";
-> -
-> -      vdd-supply =3D <&buck5_reg>;
-> -      samsung,syscon-phandle =3D <&pmu_system_controller>;
-> -
-> -      /* NTC thermistor is a hwmon device */
-> -      ncp15wb473@0 {
-> -        compatible =3D "murata,ncp15wb473";
-> -        pullup-uv =3D <1800000>;
-> -        pullup-ohm =3D <47000>;
-> -        pulldown-ohm =3D <0>;
-> -        io-channels =3D <&adc 4>;
-> -      };
-> +        compatible =3D "samsung,exynos-adc-v1";
-> +        reg =3D <0x12d10000 0x100>;
-> +        interrupts =3D <0 106 0>;
-> +        #io-channel-cells =3D <1>;
-> +        io-channel-ranges;
-> +
-> +        clocks =3D <&clock 303>;
-> +        clock-names =3D "adc";
-> +
-> +        vdd-supply =3D <&buck5_reg>;
-> +        samsung,syscon-phandle =3D <&pmu_system_controller>;
-> +
-> +        /* NTC thermistor is a hwmon device */
-> +        ncp15wb473@0 {
-> +            compatible =3D "murata,ncp15wb473";
-> +            pullup-uv =3D <1800000>;
-> +            pullup-ohm =3D <47000>;
-> +            pulldown-ohm =3D <0>;
-> +            io-channels =3D <&adc 4>;
-> +          };
->      };
-> =20
->    - |
->      adc@126c0000 {
-> -      compatible =3D "samsung,exynos3250-adc";
-> -      reg =3D <0x126C0000 0x100>;
-> -      interrupts =3D <0 137 0>;
-> -      #io-channel-cells =3D <1>;
-> -      io-channel-ranges;
-> -
-> -      clocks =3D <&cmu 0>, // CLK_TSADC
-> -               <&cmu 1>; // CLK_SCLK_TSADC
-> -      clock-names =3D "adc", "sclk";
-> -
-> -      vdd-supply =3D <&buck5_reg>;
-> -      samsung,syscon-phandle =3D <&pmu_system_controller>;
-> +        compatible =3D "samsung,exynos3250-adc";
-> +        reg =3D <0x126C0000 0x100>;
-> +        interrupts =3D <0 137 0>;
-> +        #io-channel-cells =3D <1>;
-> +        io-channel-ranges;
-> +
-> +        clocks =3D <&cmu 0>, // CLK_TSADC
-> +                 <&cmu 1>; // CLK_SCLK_TSADC
-> +        clock-names =3D "adc", "sclk";
-> +
-> +        vdd-supply =3D <&buck5_reg>;
-> +        samsung,syscon-phandle =3D <&pmu_system_controller>;
->      };
-> diff --git a/Documentation/devicetree/bindings/power/reset/syscon-powerof=
-f.yaml b/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
-> index fb812937b534..520e07e6f21b 100644
-> --- a/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
-> @@ -53,8 +53,8 @@ allOf:
->  examples:
->    - |
->      poweroff {
-> -      compatible =3D "syscon-poweroff";
-> -      regmap =3D <&regmapnode>;
-> -      offset =3D <0x0>;
-> -      mask =3D <0x7a>;
-> +        compatible =3D "syscon-poweroff";
-> +        regmap =3D <&regmapnode>;
-> +        offset =3D <0x0>;
-> +        mask =3D <0x7a>;
->      };
-> diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot.=
-yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> index a7920f5eef79..d38006b1f1f4 100644
-> --- a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> @@ -53,8 +53,8 @@ allOf:
->  examples:
->    - |
->      reboot {
-> -      compatible =3D "syscon-reboot";
-> -      regmap =3D <&regmapnode>;
-> -      offset =3D <0x0>;
-> -      mask =3D <0x1>;
-> +        compatible =3D "syscon-reboot";
-> +        regmap =3D <&regmapnode>;
-> +        offset =3D <0x0>;
-> +        mask =3D <0x1>;
->      };
-> diff --git a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml b/Documen=
-tation/devicetree/bindings/rtc/s3c-rtc.yaml
-> index 951a6a485709..95570d7e19eb 100644
-> --- a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> @@ -76,10 +76,10 @@ allOf:
->  examples:
->    - |
->      rtc@10070000 {
-> -      compatible =3D "samsung,s3c6410-rtc";
-> -      reg =3D <0x10070000 0x100>;
-> -      interrupts =3D <0 44 4>, <0 45 4>;
-> -      clocks =3D <&clock 0>, // CLK_RTC
-> -               <&s2mps11_osc 0>; // S2MPS11_CLK_AP
-> -      clock-names =3D "rtc", "rtc_src";
-> +        compatible =3D "samsung,s3c6410-rtc";
-> +        reg =3D <0x10070000 0x100>;
-> +        interrupts =3D <0 44 4>, <0 45 4>;
-> +        clocks =3D <&clock 0>, // CLK_RTC
-> +                 <&s2mps11_osc 0>; // S2MPS11_CLK_AP
-> +        clock-names =3D "rtc", "rtc_src";
->      };
-> --=20
-> 2.17.1
->=20
+Changes in v5:
+* Remove the patch 'dt-bindings: serial: Document Freescale LINFlexD UART'
+  following its acceptance in Linux 5.4-rc1[8];
+* Rebase the other patches on v5.4-rc1.
 
---us5fnkoji2afabie
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v4:
+* Remove the patch 'serial: fsl_linflexuart: Update compatible string'
+  following its acceptance[7];
+* Rebase the patch 'serial: fsl_linflexuart: Be consistent with the name'
+  on the tty-next branch in Greg's tty git tree.
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+* Remove the patch 'tty: serial: Add linflexuart driver for S32V234'
+  following its acceptance[3];
+* Replace 'Freescale' with 'NXP' in the ARCH_S32 config definition and the
+  'model' property from the device tree;
+* Remove the 'fsl-' prefixes from the dtsi and dts file names;
+* Move the 'model' property from (fsl-)s32v234.dtsi to s32v234-evb.dts;
+* Add newlines between the cpu nodes in s32v234.dtsi;
+* Make use of GIC_SPI, GIC_PPI, GIC_CPU_MASK_SIMPLE and IRQ_TYPE_* in the
+  'interrupts' tuples;
+* Move the 'timer' and 'interrupt-controller' nodes before 'soc' in
+  s32v234.dtsi;
+* Be consistent with the 'LINFlexD' spelling in documentation, strings and
+  comments; add new patch 'serial: fsl_linflexuart: Be consistent with the
+  name' to update the LINFlexD driver as well;
+* Remove from fsl,s32-linflexuart.txt a statement regarding the limitation
+  to UART mode;
+* Make the compatible string SoC specific ("fsl,s32v234-linflexuart"); add
+  new patch 'serial: fsl_linflexuart: Update compatible string' to update
+  the LINFlexD driver as well;
+* In the LINFlexD binding documentation, insert a space between label and
+  node name and remove the 'status' property.
 
-iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl2fYOwACgkQ2O7X88g7
-+ppSrg//bVatCCeRxdy3A8zBUf1L3vjwbU/1yfhQsQDeUnYJ+HvG3pebohHnDXXj
-VGg/bTCDnD8PT9wRFI78GC2GDhYhi3XQpntuKVvtCuwGWoI4FqFZDyJ8X1A6kRSi
-PtQHqaYLaBaq4glfLaXmmJfbYq+lnMAZzJzJfPYSBfe3dAvj7YwMM7C+i6VLD68c
-hyDKiCqqHb2JqH9C6j3i8eiLfmmodhYapdfCace5V1xCO3Usd52gxta+XxDf+YBm
-dc3DVL8qg+8GRlGinNWXhpv5GrKV4CTJuJYpHydE2P85PY5/Q3gnLGn/I1lHaxH5
-/pd9HAoRnIF26bX5hwrH4kI0wt3QAr83sttQo5GRljN09BkGyCgmJOdoq/d/ar8H
-2UKKGFPeERuBkii6jQoCx12oKHjnOw9PMEPa9o7Yvs1Y7qjDVujLPojonG7k9+JU
-cU1LfJP482TWwtWBOjy2RlslEWKWzwswuPpk2y05ufwxXE32CCjyXYudOLcBOQPU
-Ucio2laTAkwAIkKRav9HILRm1ihrAp6SHQMpcALQWf/a8aZYe8MLWo/axy4gLna2
-jh/COFBA+feof+MBzlAqoVVtzriiuK6ehlX8PcuIzMYFfbxCaGX1oO3zDXecLezb
-5Oahbja8sKKws7/GufvZtbhr/aOkK34qZErnLyGas/Mm/CpChmI=
-=xmZh
------END PGP SIGNATURE-----
+Changes in v2:
+* Update the entry in fsl.yaml to apply to all S32V234 based boards;
+* Add chosen node to dts, with a 'stdout-path' property for earlycon;
+* Remove linflex_verify_port(), because it was only called from
+  uart_set_info(), which was going to always fail at the "baud_base < 9600"
+  check, as we are not using uartclk from uart_port yet;
+* Fix compatible string used in OF_EARLYCON_DECLARE.
 
---us5fnkoji2afabie--
+[1] https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/s32-automotive-platform/vision-processor-for-front-and-surround-view-camera-machine-learning-and-sensor-fusion:S32V234
+[2] https://www.nxp.com/support/developer-resources/evaluation-and-development-boards/ultra-reliable-dev-platforms/s32v-mpus-platforms/s32v-vision-and-sensor-fusion-evaluation-system:S32V234EVB
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=09864c1cdf5c537bd01bff45181406e422ea988c
+[4] https://source.codeaurora.org/external/autobsps32/linux/
+[5] https://source.codeaurora.org/external/autobsps32/u-boot/
+[6] https://source.codeaurora.org/external/s32ds/compiler/gcc/
+[7] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2bd3661ea0eb2056852cbc58c5d96bb4df2f164f
+[8] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0e16feab6cce2b91d2996d4bc4eff01ece577c4a
+[9] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/commit/?h=tty-linus&id=47934ef7f1883209120781b59d78eaf8b83e2fb7
+
+Eddy Petrișor (1):
+  dt-bindings: arm: fsl: Add the S32V234-EVB board
+
+Mihaela Martinas (2):
+  arm64: Introduce config for S32
+  arm64: defconfig: Enable configs for S32V234
+
+Stefan-Gabriel Mirea (1):
+  serial: fsl_linflexuart: Be consistent with the name
+
+Stoica Cosmin-Stefan (1):
+  arm64: dts: fsl: Add device tree for S32V234-EVB
+
+ .../admin-guide/kernel-parameters.txt         |   2 +-
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/Kconfig.platforms                  |   5 +
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +
+ arch/arm64/boot/dts/freescale/s32v234-evb.dts |  25 ++++
+ arch/arm64/boot/dts/freescale/s32v234.dtsi    | 139 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/tty/serial/Kconfig                    |   8 +-
+ drivers/tty/serial/fsl_linflexuart.c          |   4 +-
+ include/uapi/linux/serial_core.h              |   2 +-
+ 10 files changed, 188 insertions(+), 8 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/s32v234-evb.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/s32v234.dtsi
+
+-- 
+2.22.0
+
