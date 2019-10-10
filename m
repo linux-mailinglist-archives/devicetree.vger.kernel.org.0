@@ -2,123 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F07BAD2D7F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 17:17:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 587DDD2D8C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 17:21:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726446AbfJJPQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 11:16:44 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:52808 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725959AbfJJPQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 11:16:44 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9AFBKhQ025036;
-        Thu, 10 Oct 2019 17:16:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=WdF442jlxXHtW99D7VXviowbwCBFKKqETJKUfQQ750w=;
- b=mm2aIehas26Nib8HsLOMFdpsO23R7o8VnUJ+GWdEZjSLZR9ZOFAHky36iI4Br1lxJ3Sk
- avwn9mmM/xIpqctgJhEm9dhtDoAAVur2AUA24mzmir1bc7GfdSSENlTsoxZSjM1Hwdhc
- Y9/ElLzy6dDdBMiJdyB5L0mLKFzGbnEPa5jMvbKMsKX5r6+Bfg/UXc6AmbV6JqTQO4AY
- 8Jklj38blZDBAAgFPOruDqxcjSdUcSJEi4/Uo81ZOOIsbQpsCxarYtqW4GV0lYAl2b/e
- mDwA9H2Ajdi8ApxoA9I0ppL9aM69bXJCPv2By43adSY7PAYuJiqsDgbVSOi3MgUE7bl7 3g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2vej2pmt2t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Oct 2019 17:16:20 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 40B5A10002A;
-        Thu, 10 Oct 2019 17:16:19 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag7node2.st.com [10.75.127.20])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9391E2B433F;
-        Thu, 10 Oct 2019 17:16:19 +0200 (CEST)
-Received: from SFHDAG5NODE3.st.com (10.75.127.15) by SFHDAG7NODE2.st.com
- (10.75.127.20) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 10 Oct
- 2019 17:16:19 +0200
-Received: from SFHDAG5NODE3.st.com ([fe80::7c09:5d6b:d2c7:5f47]) by
- SFHDAG5NODE3.st.com ([fe80::7c09:5d6b:d2c7:5f47%20]) with mapi id
- 15.00.1473.003; Thu, 10 Oct 2019 17:16:19 +0200
-From:   Fabien DESSENNE <fabien.dessenne@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1726076AbfJJPVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 11:21:21 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:44182 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725862AbfJJPVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 11:21:20 -0400
+Received: by mail-pg1-f194.google.com with SMTP id u12so3868785pgb.11;
+        Thu, 10 Oct 2019 08:21:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=TXq1wsSyAjR7SKmr3MEgBpGVe1sTeDuk4dlEQ4iK1rY=;
+        b=QeTFcotk8I7KOptIMA6EnaXXcGvvhDxkhyGIVs8EwpQtiJDZbMzCJOLYtHfcW+Et9N
+         8VRe9C6qM7CU3MKDsBOGIGIt0a2MTiqyfL/uwpN0TcW2VCRrNkmBKmQYrAjaHfMbLNwI
+         CWNW1RMzdvyrK4nWPfdfODJAoEm2IuGqW79lzCjtR5+/mVhlNUp+Tqpffwcif+NNWhwM
+         MbAyxVHQ+XvUUpGTAqKZfZTfeFeqWcmj3lffAI/XwKTaBYfuC6D6wHLo5dhQ4LdtJEAp
+         vt1v9xy9vGwQ6bC3PJ27NWJ7nG9oxi6R2r+/Czk9Ey/maOnkRVUDjGU0lAh02e1cInXZ
+         QNEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TXq1wsSyAjR7SKmr3MEgBpGVe1sTeDuk4dlEQ4iK1rY=;
+        b=LPg4lUUR8MTSnbfqnWO8hLCqgSNJmiC8Frd7BYqOe0/fSmJSFfYBNZv6XEpbos6RNG
+         79Ynt6ZFNoFNfzu3bPAqKqCH1Q3+r2OaEOQVkESKeuO1wccz3I3FP2baUegrA7POCntF
+         /JAQgva1RX4/hOAq4o2f1Otl92/MLKHCVEDc/X73RGdFf4Gj4rXh0xXI+bbpRRDq4jVU
+         tkJEgASP7b1jh1gpUkYIHFa+DesdVxNoooPVgM9G6jrcg030oQholkJcVRq61v6yCLQ8
+         x8R3AtqdtUiIKlpKPMiU9b30TFRfpIlmJdw3XsVcWTdcxI4CZs88iCeQb3GxPgAbwa1h
+         tkew==
+X-Gm-Message-State: APjAAAVFtbYzQ2QHwTkbpgdGHE9tgUufcQ7IDRxiaxd4OF91pk981K1e
+        watuZGvgqIO//ooKlEr1Id4=
+X-Google-Smtp-Source: APXvYqxXHGEdyagpzK7pH65OP1SVCEx0efKX85+sMXi60/88SvIF+vp9zHbIpf2o0mbY7GB1iHaMpQ==
+X-Received: by 2002:a63:364b:: with SMTP id d72mr9296602pga.432.1570720879888;
+        Thu, 10 Oct 2019 08:21:19 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b5sm6902685pfp.38.2019.10.10.08.21.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 10 Oct 2019 08:21:19 -0700 (PDT)
+Date:   Thu, 10 Oct 2019 08:21:18 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>
-CC:     Loic PALLARDY <loic.pallardy@st.com>,
-        Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Subject: RE: [PATCH 0/2] remoteproc: stm32: allow wdg irq to be a wakeup
- source
-Thread-Topic: [PATCH 0/2] remoteproc: stm32: allow wdg irq to be a wakeup
- source
-Thread-Index: AQHVXCRbzfqre7GQVUu6MRQERXnqfqdUQtwQ
-Date:   Thu, 10 Oct 2019 15:16:19 +0000
-Message-ID: <1bef12295e864dfa90edfa495803167f@SFHDAG5NODE3.st.com>
-References: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
-In-Reply-To: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.51]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+Subject: Re: [PATCH 2/3] hwmon: Add support for ltc2947
+Message-ID: <20191010152118.GB4320@roeck-us.net>
+References: <20190924124945.491326-1-nuno.sa@analog.com>
+ <20190924124945.491326-3-nuno.sa@analog.com>
+ <20191003041446.GA2332@roeck-us.net>
+ <d0a992bebbc3c388b6be100d1821fa5813fcc1b4.camel@analog.com>
+ <20191004150623.GA28287@roeck-us.net>
+ <7d4ca133201f8c75855de6777f6018567701e16a.camel@analog.com>
+ <94cf417f-90fa-50b8-9d4a-d7e4c9dd3d8d@roeck-us.net>
+ <5f280daff806cb73a160d10f5ec97be18d42aebb.camel@analog.com>
+ <ea52f348c9fab8c9a3c3417909053f4abb12cbcb.camel@analog.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-10_05:2019-10-10,2019-10-10 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ea52f348c9fab8c9a3c3417909053f4abb12cbcb.camel@analog.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Thu, Oct 10, 2019 at 07:13:06AM +0000, Sa, Nuno wrote:
+> 
+> Quoting the reply I had:
+> 
+> "As the LTC2947 is bi-directional, the most likely use for the Min/Max
+> Energy thresholds are for monitoring a battery being charged or
+> discharged. 
+> A limit could be set based around the battery's storage capacity so
+> that the battery is protected from being overcharging or fully
+> drained."
+> 
+> So, I'm not sure if this is a valid use case for hwmon subsystem. I'm
+> aware there's also the power subsystem. So let me know what do you
+> prefer here. Should I just report energyX_input attributes? Or can we
+> keep the min/max?
+> 
+This isn't really a hwmon use case. Having such min/max attributes would
+just be confusing.
 
-I Got Rob's Reviewed-by for the bindings. Any further comments for the driv=
-er part?
-
-Fabien
-
-> -----Original Message-----
-> From: Fabien DESSENNE <fabien.dessenne@st.com>
-> Sent: lundi 26 ao=FBt 2019 17:39
-> To: Rob Herring <robh+dt@kernel.org>; Mark Rutland <mark.rutland@arm.com>=
-;
-> Maxime Coquelin <mcoquelin.stm32@gmail.com>; Alexandre TORGUE
-> <alexandre.torgue@st.com>; Ohad Ben-Cohen <ohad@wizery.com>; Bjorn
-> Andersson <bjorn.andersson@linaro.org>; devicetree@vger.kernel.org; linux=
--
-> stm32@st-md-mailman.stormreply.com; linux-arm-kernel@lists.infradead.org;
-> linux-kernel@vger.kernel.org; linux-remoteproc@vger.kernel.org
-> Cc: Fabien DESSENNE <fabien.dessenne@st.com>; Loic PALLARDY
-> <loic.pallardy@st.com>; Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-> Subject: [PATCH 0/2] remoteproc: stm32: allow wdg irq to be a wakeup sour=
-ce
->=20
-> The watchdog IRQ which notifies the remote processor crash is used by the
-> remoteproc framework to perform a recovery procedure.
-> Since this IRQ may be fired when the Linux system is suspended, this IRQ =
-may
-> be configured to wake up the system.
->=20
-> Fabien Dessenne (2):
->   dt-bindings: remoteproc: stm32: add wakeup-source
->   remoteproc: stm32: wakeup the system by wdg irq
->=20
->  .../devicetree/bindings/remoteproc/stm32-rproc.txt |  3 ++
->  drivers/remoteproc/stm32_rproc.c                   | 47 ++++++++++++++++=
-++++++
->  2 files changed, 50 insertions(+)
->=20
-> --
-> 2.7.4
-
+Guenter
