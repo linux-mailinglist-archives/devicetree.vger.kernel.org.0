@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98979D1FFE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 07:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F39ED2007
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 07:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726612AbfJJF2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 01:28:41 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:45364 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726308AbfJJF2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 01:28:41 -0400
-Received: by mail-qk1-f196.google.com with SMTP id z67so4451166qkb.12;
-        Wed, 09 Oct 2019 22:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=r6Hep4iY8u0yDM4dyep+02jvirG1WxfZPi0UCSgzEPA=;
-        b=mgx7nbirD+B+qWsSDYrOWzbCFx0K9ERikuPVhs/EhHAJrKz+tDqgfmUgXGWGRSBrbo
-         UryoiU6AXZ6g1zlqeWA+/eHChgkS7xn/ksIRDyTXhZHZZI91skLOoYs5Y6Z3ls60l2+j
-         NN8svFecFJkunpLR7aajvO1GIMk04+rGWimLs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r6Hep4iY8u0yDM4dyep+02jvirG1WxfZPi0UCSgzEPA=;
-        b=qk9iPZux4FNk3AdJl0PZ2LVs+JOhqxuYIiooqrgCs2cavkXN8/4FpDQ7iYA0H0d5ZP
-         xKB8fCfZ1Miy3BEJzVTS2O3VQyEjAOyfJUfZpk3zXS7OaCQYzo74KRSqDOfmEO4sNxzD
-         2V8IVojL601r6q8gpQEQBf6S3/ch0350NWvkFH9hHRgLguXBZZ8DJyoXvJfq6aC0vZEy
-         oKtG6lWTFrA3pR7LfFJjBy9kilkIt3brg0OlyDFCw1XbGUqc3nVdyqdougbOy74H1gyU
-         1ibBwimvOnCqbVV3rW0sNuaoggijE7mcLlwthEbsa/SnOwm33DUuVASp7l+Nam83bg5H
-         ckaQ==
-X-Gm-Message-State: APjAAAUImP7jouoyQefI3nhcPSGuhBlOglgLJKh1Ajwp+hbovZRqTR18
-        B1iaJ0KgOVBJ/R/31l0YnRZHJRMlLTDRA+e6gGQ=
-X-Google-Smtp-Source: APXvYqwH0HMFFELFCxD2oINqI+YV0TL764wqxPt4fBPtvmrISd7LnBC85T0wCOC+E1zA48qshusCVPt0cVV1W/T+8QY=
-X-Received: by 2002:a37:4dca:: with SMTP id a193mr7795691qkb.292.1570685318745;
- Wed, 09 Oct 2019 22:28:38 -0700 (PDT)
+        id S1729349AbfJJFbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 01:31:50 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:43678 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726065AbfJJFbu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 01:31:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=XeuI5MFAYgl9UB+btYOjqdBCVNCwwywBGKPVGC8hSLM=; b=Iirjc6UetbEOoDwIi/1ND3/1pc
+        f2Unf42Nl35GLD7oTlmfwvvci1/NxbR6QxE6kSz6nNXsVxE6c/tS1PZe+wwPwYTbxKAZqcoOiJitP
+        kWTPW23fWQmeiG1xoozjRkOxJnB0o8VQOHwe+qIdZ6YrTvi6RmeQZ7TfETPokmaZP568=;
+Received: from ip-109-41-65-123.web.vodafone.de ([109.41.65.123] helo=localhost)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iIR33-0002Aa-Vm; Thu, 10 Oct 2019 07:31:38 +0200
+Received: from localhost ([::1])
+        by localhost with esmtp (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iIR31-0004zE-5i; Thu, 10 Oct 2019 07:31:35 +0200
+Date:   Thu, 10 Oct 2019 07:31:29 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191010073129.607f7b6f@kemnade.info>
+In-Reply-To: <20191006223848.GE19803@latitude>
+References: <20190930194332.12246-1-andreas@kemnade.info>
+        <20190930194332.12246-3-andreas@kemnade.info>
+        <20191006223848.GE19803@latitude>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20191007231313.4700-1-jae.hyun.yoo@linux.intel.com>
- <20191007231313.4700-4-jae.hyun.yoo@linux.intel.com> <20191008203157.GA184092@google.com>
- <ac256b3f-2a06-6fa5-72ab-d8f8014d253e@linux.intel.com> <CAFd5g47vLN6NyZR73+EqOqfOPnM7CkGGsCwEn3udnJt99d8KCg@mail.gmail.com>
-In-Reply-To: <CAFd5g47vLN6NyZR73+EqOqfOPnM7CkGGsCwEn3udnJt99d8KCg@mail.gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 10 Oct 2019 05:28:26 +0000
-Message-ID: <CACPK8Xc4JCNDwVfJ4zzsaZvoSmtqgMZwhYO8sv76aRnPiQwK_A@mail.gmail.com>
-Subject: Re: [PATCH 3/5] i2c: aspeed: fix master pending state handling
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        linux-i2c@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Oct 2019 at 21:54, Brendan Higgins <brendanhiggins@google.com> wrote:
->
-> On Tue, Oct 8, 2019 at 2:13 PM Jae Hyun Yoo
-> <jae.hyun.yoo@linux.intel.com> wrote:
-> >
-> > On 10/8/2019 1:31 PM, Brendan Higgins wrote:
-> > > On Mon, Oct 07, 2019 at 04:13:11PM -0700, Jae Hyun Yoo wrote:
-> > >> In case of master pending state, it should not trigger the master
-> > >> command because this H/W is sharing the same data buffer for slave
-> > >> and master operations, so this commit fixes the issue with making
-> > >> the master command triggering happen when the state goes to active
-> > >> state.
-> > >
-> > > nit: Makes sense, but can you explain what might happen without your
-> > > change?
-> >
-> > If we don't use this fix, a master command could corrupt data in the
-> > shared buffer if H/W is still on processing slave operation at the
-> > timing.
->
-> Right, can you add that to the commit message?
->
-> Is this trivially reproducible? We might want to submit this
-> separately as a bugfix.
->
-> Actually yeah, can you send this separately as a bugfix? I think we
-> might want to include this in 5.4.
->
-> Wolfram and Joel, what do you think?
+Hi Jonathan,
 
-Yes, good suggestion. A corruption fix should be merged I think.
+On Mon, 7 Oct 2019 00:38:48 +0200
+Jonathan Neusch=E4fer <j.neuschaefer@gmx.net> wrote:
 
-Always send bug fixes upstream with Fixes tags so they land in the
-stable tree. This is preferable to sending them separately to the
-openbmc for inclusion in that tree, and potentially reaches a wider
-audience.
+> Thanks for CCing me on this patchset. Nice to see more e-book reader
+> related work!
+>=20
+btw. seems that we have a common target, since our ebook readers both
+have a tps65185. It seems to be a good idea to comment things on the
+i2c busses without proper bindings. That might help to find allies.
 
-Cheers,
+I will send a v3 with correct memory, better name for GLED
+and the above-mentioned comments.
 
-Joel
+Regards,
+Andreas
+
+> A few comments and questions below.
+>=20
+> On Mon, Sep 30, 2019 at 09:43:31PM +0200, Andreas Kemnade wrote:
+> > The Netronix board E60K02 can be found some several Ebook-Readers,
+> > at least the Kobo Clara HD and the Tolino Shine 3. The board
+> > is equipped with different SoCs requiring different pinmuxes. =20
+>=20
+> Do I understand it correctly that i.MX6SL and i.MX6SLL are pin-
+> compatible so we can use the same pin numbers and GPIO handles in the
+> DT?
+>=20
+> > +	leds {
+> > +		compatible =3D "gpio-leds";
+> > +		pinctrl-names =3D "default";
+> > +		pinctrl-0 =3D <&pinctrl_led>;
+> > +
+> > +		GLED { =20
+>=20
+> What does "GLED" mean? It's not obvious to me.
+> What user-visible purpose does this LED have, or where is it on the
+> board?
+>=20
+> > +			gpios =3D <&gpio5 7 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger =3D "timer";
+> > +		};
+> > +	};
+> > +
+> > +	memory {
+> > +		reg =3D <0x80000000 0x80000000>; =20
+>=20
+> 2 GiB of memory?
+>=20
+> > +			/* Core3_3V3 */ =20
+>=20
+> What are these labels (Core3_3V3, Core4_1V2, etc.)?
+>=20
+> > +			dcdc2_reg: DCDC2 {
+> > +				regulator-name =3D "DCDC2";
+> > +				regulator-always-on;
+> > +				regulator-boot-on;
+> > +				regulator-state-mem {
+> > +					regulator-on-in-suspend;
+> > +					regulator-suspend-max-microvolt =3D <3300000>;
+> > +					regulator-suspend-min-microvolt =3D <3300000>;
+> > +				};
+> > +			}; =20
+>=20
+>=20
+> Thanks,
+> Jonathan Neusch=E4fer
