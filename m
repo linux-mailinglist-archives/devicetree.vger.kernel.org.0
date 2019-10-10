@@ -2,224 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA9AAD33C2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 00:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5484D33F6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 00:31:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726065AbfJJWHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 18:07:12 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33767 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725978AbfJJWHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 18:07:12 -0400
-Received: by mail-ot1-f68.google.com with SMTP id 60so6292022otu.0;
-        Thu, 10 Oct 2019 15:07:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9c7KcoQ4FFzx8zGV1J16SVuEnUpzAJpoJWvdzrpXbwo=;
-        b=lvQLK1nLnCThrjlZ/aYh585ELfXY8azMU5R5tZqqIu4BPxD02pUQ0n5SsKVKdeKA7x
-         yuCsHaGwEPrgza5FuXX0gHcbrnqsBF2T9Khd3cmJbJbkJzAWj0nARhypHyey+4mkND/s
-         h0zc4qpWUNUORh69kahUnXydPoXqliWFy93d51cVNkxMp5l0oPmsYY2cy7I6aUHqVPk1
-         oxi94ZYIe7Tqkdv+YjCphWKixm0oMZVZ3lmfXWYIP6Ixo5m48K1qMtYw8GOl5I8xHsLc
-         hPneCd4w8hscFjHzoxkuGNykaQnLv+5DgAxQEXoa72InkoyNVmfF2y9b4zgtKisovWk0
-         LTww==
-X-Gm-Message-State: APjAAAX9iBILCDfC9g8Rpdt/RJAXNQm7tAp4ZW2DWLfRJRBd+8GuEIYh
-        96MlBtZs9oqvnR3wcYEkRA==
-X-Google-Smtp-Source: APXvYqzav8nq1GSmd+E2q96LHc0iyMyNorMHRnqfQQ2/eJZUQqFPtRnU3rA6Y9a3AQ+J/Ukw73cpkQ==
-X-Received: by 2002:a05:6830:1619:: with SMTP id g25mr9942770otr.195.1570745230722;
-        Thu, 10 Oct 2019 15:07:10 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y18sm1985725oto.2.2019.10.10.15.07.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2019 15:07:10 -0700 (PDT)
-Date:   Thu, 10 Oct 2019 17:07:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas: intc-irqpin: convert
- bindings to json-schema
-Message-ID: <20191010220709.GA1314@bogus>
-References: <1569527977-21213-1-git-send-email-ykaneko0929@gmail.com>
+        id S1726071AbfJJWbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 18:31:21 -0400
+Received: from mail-eopbgr70053.outbound.protection.outlook.com ([40.107.7.53]:7045
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726065AbfJJWbV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 18:31:21 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AewdmOUQ0tSDNLZYYFm4STu1CbIVIAHhlfQH+R8V5S4UxK7FbhweS3LOZqdlRA30bA6kOUvzmXfTr2nw88CjmiiXzVEGJpoH4X2Bxn1krhg5fLotshaEfnqsFMJvqPeRRCGEl1ob2PiQRejdf+bbMTZ3Rd4zhRhPZkoTAFqtECd9/Xctrm+nXN05GI7lEOc38efGmicgp8e/xujfb+ZJ5lYCK6189SfetijJd6XdAcPSbu+mA2rXjADezCafdQuqw8/YkKjWLoAXCxaLGNIgjEzshYh9ffdWMPZds0gCexBk7xC4sEtkJJ3p2MYQYcpgHlTGjDR4PtXqcc1hTAdztA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JnN/7CJrC76VnTCk66pmfUbRG8pLOyVhaJQYFwMrhNE=;
+ b=KrtkhNoLP0NJBDtKDwKy7XfNtq2nOVkd/wEgJPw65x0lPx0CVwwLWWVhqmV70Im17lYnaDec9GIZ+FA37tbiHPuxtchlZ1Lic62jxkRYvstK5FKm5c7PC9hgU7cxZfaSTr5sLmuB+KMb+9Sq9OjQfdyF4h479LfudlrRbSGoTX2PLgO8L/iyUeM5Sdmo58uwDptWvTlOMWzXikpFwmtR0lyooF80WBeu6Zv5Zb98SnvuGO/DrvHQPm0aosAB94ehuB9OLmjH9AuW0p5ZKFAAmRUbm6Zf9guWL+o+sUTl6XtImRz+isGdsBR/pYpsqhxITl+zU5YnSYIrAZuV2CK6YQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JnN/7CJrC76VnTCk66pmfUbRG8pLOyVhaJQYFwMrhNE=;
+ b=MRUNDfqm1vDpKcpAj8DLJo77YCEDGFkn8OkIphgg9Q9JqP7yIFGpMDvT4r/jDmYvS3tSUbNSyBM0FOD1ubPNmJ1p3qmf+N90G3om1keQi9p4nuzrEvxrWz3X50h27JLH90fxjpO6MQQTxyT47X3O06ZKtfrRCCmchPIDAIly8uY=
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (20.179.234.30) by
+ VE1PR04MB6639.eurprd04.prod.outlook.com (10.255.118.11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.21; Thu, 10 Oct 2019 22:31:16 +0000
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::c93:c279:545b:b6b6]) by VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::c93:c279:545b:b6b6%3]) with mapi id 15.20.2347.016; Thu, 10 Oct 2019
+ 22:31:16 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Andy Tang <andy.tang@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andy Tang <andy.tang@nxp.com>
+Subject: RE: [PATCH v2] arm64: dts: ls1028a: fix a compatible issue
+Thread-Topic: [PATCH v2] arm64: dts: ls1028a: fix a compatible issue
+Thread-Index: AQHVf0brHYC8TgXW1EGDttx7++luRKdUdjcw
+Date:   Thu, 10 Oct 2019 22:31:16 +0000
+Message-ID: <VE1PR04MB6687C0E8739C82D1DAFC71D58F940@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20191010083334.7037-1-andy.tang@nxp.com>
+In-Reply-To: <20191010083334.7037-1-andy.tang@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leoyang.li@nxp.com; 
+x-originating-ip: [64.157.242.222]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b802e09c-64b9-48ed-a286-08d74dd190c3
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: VE1PR04MB6639:|VE1PR04MB6639:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VE1PR04MB6639E67272C69A7001D208DC8F940@VE1PR04MB6639.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1284;
+x-forefront-prvs: 018632C080
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(366004)(396003)(346002)(376002)(39860400002)(13464003)(189003)(199004)(55016002)(8936002)(8676002)(9686003)(6436002)(7736002)(6116002)(11346002)(25786009)(446003)(486006)(476003)(66066001)(6246003)(81156014)(4326008)(86362001)(26005)(14444005)(66446008)(3846002)(71190400001)(71200400001)(81166006)(256004)(14454004)(66946007)(186003)(76116006)(5660300002)(102836004)(64756008)(66556008)(66476007)(2906002)(6506007)(53546011)(2501003)(110136005)(54906003)(74316002)(52536014)(99286004)(229853002)(305945005)(478600001)(33656002)(316002)(76176011)(7696005);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6639;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 4ZqcARqLaMF5Hte8a3gstWR7f33ki+MMV+X4Gn4zqP7u1bZOXYRYgxHV8I4Cam9yozZFK8ADs8rZHPYQFY8cw4suQpLb3kuIfwBDvv5089U7MdO6MN7gGM7bqXYcYHyIAr2ANrlN6dmj3xBF7kby6MizVI3MR+Rlf+Q+vtD4d/h+Rq/gBkZ6VmAP5EVK62svka01nTL8utftZGMEg0hNCg6EW/+oGA/iMleG9ORIaDstR9kwEEHPrifPLWK1DMGIGK6ciWXkyp/TWRZ0ZxqSHt/xg88O6p59YtO+xjln5oNHm28zdlQ3SPcMTpdMUYeK9vvFJ+I3BpJWY/zDUAQ9W3n+gt434zBOGcwe8Be28nW8fQ883a6kr0isZS0A4dReUShyJkLYb4X84nLqiKzdujcf5J/cevvDKozo26mGvtQ=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1569527977-21213-1-git-send-email-ykaneko0929@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b802e09c-64b9-48ed-a286-08d74dd190c3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 22:31:16.6489
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bu858TigHGrFGhBTyL6okp9rIxeQQxBVTnapFT0u1TV5A72uWD1b0HpDS82BLHIy0is2Y6c5nsafkgRk7Q/hew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6639
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 27, 2019 at 04:59:37AM +0900, Yoshihiro Kaneko wrote:
-> Convert R-/SH-Mobile IRQPin Controller bindings documentation to json-schema.
-> 
-> Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
+
+
+> -----Original Message-----
+> From: Yuantian Tang <andy.tang@nxp.com>
+> Sent: Thursday, October 10, 2019 3:34 AM
+> To: shawnguo@kernel.org
+> Cc: Leo Li <leoyang.li@nxp.com>; robh+dt@kernel.org;
+> mark.rutland@arm.com; linux-arm-kernel@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Andy Tang
+> <andy.tang@nxp.com>
+> Subject: [PATCH v2] arm64: dts: ls1028a: fix a compatible issue
+>=20
+> The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
+> If the wrong compatible was used, this chip will not be able to be probed
+> correctly and hence fail to work.
+>=20
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+
+Acked-by: Li Yang <leoyang.li@nxp.com>
+
 > ---
-> 
-> v2
-> - correct Geert-san's E-mail address.
-> - delete Guennadi-san from the maintainer of this binding.
-> - give 'sense-bitfield-width' the uint32 type.
-> - describe 'control-parent' property as a boolean.
-> 
->  .../interrupt-controller/renesas,intc-irqpin.txt   |  62 -------------
->  .../interrupt-controller/renesas,intc-irqpin.yaml  | 102 +++++++++++++++++++++
->  2 files changed, 102 insertions(+), 62 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
+> v2:
+> 	- refine the description
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> index 5e14e5a19744..f5da9e8b0d9d 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> @@ -107,7 +107,7 @@
+>  	status =3D "okay";
+>=20
+>  	i2c-mux@77 {
+> -		compatible =3D "nxp,pca9847";
+> +		compatible =3D "nxp,pca9547";
+>  		reg =3D <0x77>;
+>  		#address-cells =3D <1>;
+>  		#size-cells =3D <0>;
+> --
+> 2.17.1
 
-
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
-> new file mode 100644
-> index 0000000..5925890
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,intc-irqpin.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DT bindings for the R-/SH-Mobile irqpin controller
-> +
-> +maintainers:
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,intc-irqpin-r8a7740  # R-Mobile A1
-> +          - renesas,intc-irqpin-r8a7778  # R-Car M1A
-> +          - renesas,intc-irqpin-r8a7779  # R-Car H1
-> +          - renesas,intc-irqpin-sh73a0   # SH-Mobile AG5
-> +      - const: renesas,intc-irqpin
-> +
-> +  reg:
-> +    # Base address and length of each register bank used by the external
-> +    # IRQ pins driven by the interrupt controller hardware module. The base
-> +    # addresses, length and number of required register banks varies with
-> +    # soctype.
-> +    minItems: 1
-> +    maxItems: 6
-
-Every entry is the same thing?
-
-> +
-> +  interrupt-controller: true
-> +    # Identifies the node as an interrupt controller.
-
-No need to define standard properties.
-> +
-> +  '#interrupt-cells':
-> +    # an interrupt index and flags, as defined in interrupts.txt in this
-> +    # directory.
-
-Same here.
-
-> +    const: 2
-> +
-> +  interrupts:
-> +    # Must contain a list of interrupt specifiers. For each interrupt
-> +    # provided by this irqpin controller instance, there must be one entry,
-> +    # referring to the corresponding parent interrupt.
-
-And here.
-
-> +    maxItems: 1
-> +
-> +  sense-bitfield-width:
-> +    # width of a single sense bitfield in the SENSE register, if different
-> +    # from the default 4 bits
-
-Use 'description'
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-
-Update dtschema and run 'make dt_binding_check' and I think you'll find 
-this fails now. The problem is $ref needs to be under an 'allOf' if 
-there's additional schema.
-
-maxItems is also wrong here. 'uint32' type implies that. What you should 
-have is a definition of possible values using enum or minimum/maximum.
-
-> +
-> +  control-parent:
-> +    # disable and enable interrupts on the parent interrupt controller,
-> +    # needed for some broken implementations
-
-Use 'description'
-
-> +    type: boolean
-> +
-> +  clocks:
-> +    # Must contain a reference to the functional clock.  This property is
-> +    # mandatory if the hardware implements a controllable functional clock for
-> +    # the irqpin controller instance.
-
-Drop this. A single entry doesn't need more description.
-
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    # Must contain a reference to the power domain. This property is
-> +    # mandatory if the irqpin controller instance is part of a controllable
-> +    # power domain.
-
-Same here.
-
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7740-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    irqpin1: interrupt-controller@e6900004 {
-> +        compatible = "renesas,intc-irqpin-r8a7740",
-> +                     "renesas,intc-irqpin";
-> +        #interrupt-cells = <2>;
-> +        interrupt-controller;
-> +        reg = <0xe6900004 4>,
-> +              <0xe6900014 4>,
-> +              <0xe6900024 1>,
-> +              <0xe6900044 1>,
-> +              <0xe6900064 1>;
-
-Really only 1 byte?
-
-> +        interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-> +                      GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-
-<> each interrupt specifier.
-
-Above you said there is only 1 interrupt...
-
-> +        clocks = <&mstp2_clks R8A7740_CLK_INTCA>;
-> +        power-domains = <&pd_a4s>;
-> +    };
-> -- 
-> 1.9.1
-> 
