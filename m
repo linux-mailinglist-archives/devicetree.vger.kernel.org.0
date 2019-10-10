@@ -2,108 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ED79D2B30
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F542D2B36
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:23:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387758AbfJJNXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 09:23:23 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57656 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388013AbfJJNXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 09:23:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=WociR5V+PwUtDGUiulMlt+az7TEdfqJQTJBOofSQeIw=; b=B88lpczAXQldWnyO8Im9vdCEv
-        daXUQXh+wZyng11oMF3dtD8+xtR1wQDi92EbTcjf757S/kd/3vMN3xUUt1KFVma+wUSvOf9Q5kZrS
-        zZgZmChOHr9R05ehraysEp+s3TpmcKHZiG+YZIG+UMp3R3zkGr37++IozSVUV9WUGhGrY=;
-Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1iIYPU-0001Mi-99; Thu, 10 Oct 2019 13:23:16 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id EC10BD0003A; Thu, 10 Oct 2019 14:23:14 +0100 (BST)
-Date:   Thu, 10 Oct 2019 14:23:14 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     spapothi@codeaurora.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, vkoul@kernel.org,
-        pierre-louis.bossart@linux.intel.com
-Subject: Re: [PATCH v7 2/2] ASoC: codecs: add wsa881x amplifier support
-Message-ID: <20191010132314.GQ2036@sirena.org.uk>
-References: <20191009085108.4950-1-srinivas.kandagatla@linaro.org>
- <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
- <20191009163535.GK2036@sirena.org.uk>
- <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
+        id S2387898AbfJJNXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 09:23:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60270 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387828AbfJJNXz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 09:23:55 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D88B420650;
+        Thu, 10 Oct 2019 13:23:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570713834;
+        bh=YLrnV8zZisr0XydXNPW9X6NeAxPAWOsdbyS2yRBi/UY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=xJznIvCT1sLkg8Y6BZ2uO6PgIuEgYNWeo1ONKPp9wMRkn9N8ZzERykXgB9/catV38
+         ja2o57c3K/CDyziofLNz5IR6Aj0msf16qOQkKWyVJzSTpxLve1S3B1mCVoqePs/LG5
+         O8Utg+Zsg7DU4gpnEl/XAayKKIJMGtCKey2Ymj0s=
+Received: by mail-qt1-f175.google.com with SMTP id j31so8664596qta.5;
+        Thu, 10 Oct 2019 06:23:53 -0700 (PDT)
+X-Gm-Message-State: APjAAAXuyb9gBvwtsiV/yGaFdltDCeqetHhgoUE6nnoXctYRO1Wzogii
+        HgCwm+Edd0VgKdqOzbbbXg3mxQ3H1yAyJswgFw==
+X-Google-Smtp-Source: APXvYqz2PhZiSPi7UGKHnDHJKGkm9997P6Ft0wR/2lKwzfkipGeeDrItJgltFybrUjKdVzL9R9XcBym/c95uuZWFz+s=
+X-Received: by 2002:ad4:5044:: with SMTP id m4mr10089713qvq.85.1570713832995;
+ Thu, 10 Oct 2019 06:23:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8Km4OLyaxUtVIPha"
-Content-Disposition: inline
-In-Reply-To: <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
-X-Cookie: Be careful!  UGLY strikes 9 out of 10!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190918012856.18963-1-rjones@gateworks.com> <20191010012523.14426-1-rjones@gateworks.com>
+ <20191010012523.14426-2-rjones@gateworks.com>
+In-Reply-To: <20191010012523.14426-2-rjones@gateworks.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 10 Oct 2019 08:23:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKtRvpXH6JOcmcMivgnZu2e_ocL7Vd91_yX9VGd+W+dRw@mail.gmail.com>
+Message-ID: <CAL_JsqKtRvpXH6JOcmcMivgnZu2e_ocL7Vd91_yX9VGd+W+dRw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: add fxos8700 imu binding
+To:     Robert Jones <rjones@gateworks.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 9, 2019 at 8:25 PM Robert Jones <rjones@gateworks.com> wrote:
+>
+> This adds documentation for the Freescale FXOS8700 Inertial Measurement Unit
+> device-tree bindings.
+>
+> Signed-off-by: Robert Jones <rjones@gateworks.com>
+> ---
+>  .../devicetree/bindings/iio/imu/fxos8700.yaml      | 54 ++++++++++++++++++++++
 
---8Km4OLyaxUtVIPha
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Follow the compatible string name, so fsl,fxos8700.yaml.
 
-On Thu, Oct 10, 2019 at 10:28:04AM +0100, Srinivas Kandagatla wrote:
-> On 09/10/2019 17:35, Mark Brown wrote:
-> > On Wed, Oct 09, 2019 at 09:51:08AM +0100, Srinivas Kandagatla wrote:
-> > > +static const u8 wsa881x_reg_readable[WSA881X_CACHE_SIZE] = {
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/fxos8700.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/imu/fxos8700.yaml b/Documentation/devicetree/bindings/iio/imu/fxos8700.yaml
+> new file mode 100644
+> index 0000000..f0dbf4b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/fxos8700.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/imu/fxos8700.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale FXOS8700 Inertial Measurement Unit
+> +
+> +maintainers:
+> +  - Robert Jones <rjones@gateworks.com>
+> +
+> +description: |
+> +  Accelerometer and magnetometer combo device with an i2c interface.
 
-> > > +static bool wsa881x_readable_register(struct device *dev, unsigned int reg)
-> > > +{
-> > > +	return wsa881x_reg_readable[reg];
+Also has a SPI interface.
 
-> > There's no bounds check and that array size is not...
+> +  https://www.nxp.com/products/sensors/motion-sensors/6-axis/digital-motion-sensor-3d-accelerometer-2g-4g-8g-plus-3d-magnetometer:FXOS8700CQ
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,fxos8700
 
-> I converted this now to a proper switch statement as other drivers do.
+For a new binding, shouldn't this be nxp instead of fsl?
 
-> > > +static struct regmap_config wsa881x_regmap_config = {
-> > > +	.reg_bits = 32,
-> > > +	.val_bits = 8,
-> > > +	.cache_type = REGCACHE_RBTREE,
-> > > +	.reg_defaults = wsa881x_defaults,
-> > > +	.num_reg_defaults = ARRAY_SIZE(wsa881x_defaults),
-> > > +	.max_register = WSA881X_MAX_REGISTER,
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    maxItems: 1
 
-> > ...what regmap has as max_register.  Uusually you'd render as a
-> > switch statement (as you did for volatile) and let the compiler
-> > figure out a sensible way to do the lookup.
+'const: INT1' instead. However, having '-names' doesn't really buy
+much when there is only 1 entry, so I'd just drop it.
 
-> Sorry, I did not get your point here.
+But then I read the datasheet and there are 2 interrupts, so you need
+to describe 2 interrupts.
 
-> Are you saying that we can skip max_register in this regmap config ?
-> Then how would max_register in regmap be set?
+> +
+> +  drive-open-drain:
+> +    maxItems: 1
 
-I'm saying that you appear to be relying on max_register to
-verify that you're not overflowing the array bounds but you
-max_register is not set to the same thing as the array size.
+Should be boolean.
 
---8Km4OLyaxUtVIPha
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  spi-max-frequency:
+> +    maxItems: 1
 
------BEGIN PGP SIGNATURE-----
+spi-max-frequency is not an array. You should define the maximum for it.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2fMMIACgkQJNaLcl1U
-h9A3/Qf6Ar7ffTTO6fQ9eEU2xlK6kaCO7YSeWXTP1fKzuKvQy6Fd/XOsax1HiBF/
-8/H4lV/CNqnW88GwSAgBm7acHnRQwDrq1UkVlImEMNkslEr9q5ANt5CHrUb0DNcW
-TI6RkEi4gJj0nfkBozu9aRww71xEYNR+DPcmb/1rugVUdh1WYmFop9sAImmdn+5d
-zGGIdGTWdDu71UTPmx272j1zd6226SeJw7ONW4lmacud+HlEnAFRV3OBBc+ftGFD
-G6kIhnTS0mnSuzhmGEkyzCTHHuG6Sjv1Co/qRKrV+PdqRPhxPln10rw8N9/Wv55n
-5CXKfA5YtlVQjpfqaSr2fmE3YCtiew==
-=ZHzM
------END PGP SIGNATURE-----
-
---8Km4OLyaxUtVIPha--
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        fxos8700@1e {
+> +          compatible = "fsl,fxos8700";
+> +          reg = <0x1e>;
+> +
+> +          interrupt-parent = <&gpio2>;
+> +          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
+> +          interrupt-names = "INT1";
+> +        };
+> +    };
+> --
+> 2.9.2
+>
