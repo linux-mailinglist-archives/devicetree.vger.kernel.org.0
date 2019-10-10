@@ -2,98 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E381D2185
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 09:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E1D3D21DB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 09:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733025AbfJJHQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 03:16:08 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:58666 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732792AbfJJHOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 03:14:08 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9A7DqTR083661;
-        Thu, 10 Oct 2019 02:13:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570691632;
-        bh=Igz9/V9k1PMM6aDmmF606+31uSx46fazy4qUkrGadDA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=wehcdvPRmkEeSFaZQAOXAzuNNCNGADesihvUrY429jDGaQKSqzy6+eDrTYS8562gv
-         o8AT3QBPnot9VFZvKZRvtUATgiIibBjCvlMUVPbaChFxqaI6H5qstEd9O1ebr8y2aK
-         ZaNknGroLRMOYoGHQi1Wm+Uffr+kfn9agrBagBo8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9A7DpZk001188
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Oct 2019 02:13:51 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 10
- Oct 2019 02:13:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 10 Oct 2019 02:13:50 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9A7Dmtv113245;
-        Thu, 10 Oct 2019 02:13:49 -0500
-Subject: Re: [PATCHv8 1/9] dt-bindings: omap: add new binding for PRM
- instances
-To:     "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>,
-        Sebastian Reichel <sre@kernel.org>
-CC:     <linux-omap@vger.kernel.org>, <ssantosh@kernel.org>,
-        <tony@atomide.com>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <p.zabel@pengutronix.de>
-References: <20191008125544.20679-1-t-kristo@ti.com>
- <20191008125544.20679-2-t-kristo@ti.com>
- <20191008154655.u34wkbqgmelv3aea@earth.universe>
- <115ab938-e025-98fa-3b9e-0b3ced39307d@ti.com>
- <dc2a9659-8593-e5d0-54b2-44d827e76759@oracle.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <95642d2d-af8e-061c-ef6a-7b615222f360@ti.com>
-Date:   Thu, 10 Oct 2019 10:13:47 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1733119AbfJJHiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 03:38:09 -0400
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:36938 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733055AbfJJHaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 03:30:25 -0400
+Received: by mail-vs1-f66.google.com with SMTP id p13so3268142vsr.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 00:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CQ1YByZ73Mbufo1qkTLIH1uGUYbhoHyBhaHdYebd6Hw=;
+        b=DH+qyimaVqlUfKk7gc27ahaRVHkRJi/YXNWXXTTYQjqyk+LetAr3uxetUTuEwDxGIt
+         VxRuuS4+I5Xs44tOarvdC8haQ0H9P1CWNjEGaIFVojc2uTE8ATXJWnB31i2jvdiag5Si
+         ikjkomBgvJLJoM7QFJWSr4HHnUunE4yUR5vT/T+YyGrmt6yiPjNH+yNkyUSmnLzQR7+o
+         2r98wCVHVm8xNTYRmkbjzGFnbCo0TJcUU3zI6tnV8YV8NtSN3quZxldO2gjyIRC83DH5
+         gIXbw0mOMgHZ4rnpZkTUQVw/E6Qf/xX9zs+sWgNPDCUR2Ju9ipAmWQLB7WVVM0GwKYAP
+         UjcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CQ1YByZ73Mbufo1qkTLIH1uGUYbhoHyBhaHdYebd6Hw=;
+        b=R54kXCMiBTMvXIEKUtUVmGqgbtNAYtu4HAfxA4G7PejlKUp45fPznvg63tUek8Kcp7
+         qcEAt0Ny/1vmvCyceuMVHA0G/eW9ejxD1PKi3VlBMVdlh35tgCMgLTjZ2zh3wV+bezLR
+         c/QzeQEOUNqD045Pqj4WxkH2W9/PRl7+NigQqnBsmom/xeiNNatOjeVilHv3g4d9CIkS
+         BByKrLctjLxkw+NyNlAwMZnwnuSL+loXoiTfIKy/o1/g5zmUl6Hq2TutR4MeeZKWM3A8
+         XBJzjulvzvdXnW3j1vdpBl/QgtcfJN8RLF8sTxCjWQKMFykXkkTf8lhXy1KwpFmEM5a5
+         mGiQ==
+X-Gm-Message-State: APjAAAV+zl25lhvvGkqWsFHsUx1ztaJfADvxigOLiG/IHSba7+tZ+HDE
+        93ur/LAd7iSaGwkbMei1mVA3aiQPPqx4vb4R79G3iA==
+X-Google-Smtp-Source: APXvYqwSdjcOR1qCmgjqkV47CZ5gOBzPcecYVg4c70Ujb9JuqZJZHw6bODYsY9iH/ccgCGeaJI/aY06PoJw5QS+1aMI=
+X-Received: by 2002:a05:6102:5e1:: with SMTP id w1mr4671201vsf.191.1570692622302;
+ Thu, 10 Oct 2019 00:30:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <dc2a9659-8593-e5d0-54b2-44d827e76759@oracle.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20191009164344.41093-1-tony@atomide.com>
+In-Reply-To: <20191009164344.41093-1-tony@atomide.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 10 Oct 2019 09:29:45 +0200
+Message-ID: <CAPDyKFqUL1Cso1H-sNcWFngWiLHLD76Uk9PtN2TkKS_Kd6TKJw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: Use level interrupt for omap4 & 5 wlcore
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     linux-omap <linux-omap@vger.kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        Eyal Reizer <eyalr@ti.com>, Guy Mishol <guym@ti.com>,
+        John Stultz <john.stultz@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/10/2019 18:59, santosh.shilimkar@oracle.com wrote:
-> 
-> 
-> On 10/8/19 11:52 PM, Tero Kristo wrote:
->> On 08/10/2019 18:46, Sebastian Reichel wrote:
->>> Hi,
->>>
->>> On Tue, Oct 08, 2019 at 03:55:36PM +0300, Tero Kristo wrote:
->>>> +Example:
->>>> +
->>>> +prm_dsp2: prm@1b00 {
->>>> +    compatible = "ti,omap-prm-inst", "ti,dra7-prm-inst";
->>>
->>> Nit: compatible values are sorted the other way around (most
->>> specific first).
->>
->> Hmm right, I would not like to re-post the whole series just for this 
->> seeing all the acks are in place already.
->>
->> Santosh, do you want to fix this locally or shall we post a separate 
->> patch later on to fix this?
->>
-> No need. I fixed it up. Pls check.
-> 
-> git://git.kernel.org/pub/scm/linux/kernel/git/ssantosh/linux-keystone.git for_5.5/driver-soc 
+On Wed, 9 Oct 2019 at 18:43, Tony Lindgren <tony@atomide.com> wrote:
+>
+> Commit 572cf7d7b07d ("ARM: dts: Improve omap l4per idling with wlcore edge
+> sensitive interrupt") changed wlcore interrupts to use edge interrupt based
+> on what's specified in the wl1835mod.pdf data sheet.
+>
+> However, there are still cases where we can have lost interrupts as
+> described in omap_gpio_unidle(). And using a level interrupt instead of edge
+> interrupt helps as we avoid the check for untriggered GPIO interrupts in
+> omap_gpio_unidle().
+>
+> And with commit e6818d29ea15 ("gpio: gpio-omap: configure edge detection
+> for level IRQs for idle wakeup") GPIOs idle just fine with level interrupts.
+>
+> Let's change omap4 and 5 wlcore users back to using level interrupt
+> instead of edge interrupt. Let's not change the others as I've only seen
+> this on omap4 and 5, probably because the other SoCs don't have l4per idle
+> independent of the CPUs.
 
-Yeah, looks fine to me.
+I assume this relates to the implementation for support of SDIO IRQs
+(and wakeups) in the omap_hsmmc driver?
 
-Thanks,
-Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+In any case, just wanted to share some experience in the field, feel
+free to do whatever you want with the below information. :-)
+
+So, while I was working for ST-Ericsson on ux500, we had a very
+similar approach to re-route the SDIO bus DAT1 line to a GPIO IRQ as a
+remote/system wakeup (vendor hack in the mmci driver). In other words,
+while runtime suspending the mmc host controller, we configured a GPIO
+IRQ, via an always on logic, to capture the IRQ instead. The point is,
+I believe we may have ended up looking at similar problems as you have
+been facing on OMAP.
+
+In hindsight, I realized that we actually violated the SDIO spec by
+using this approach. More precisely, during runtime suspend we do
+clock gating and then re-routes the IRQ. However, clock gating isn't
+allowed before the SDIO bus width have been changed back from 4-bit
+into 1-bit. This last piece of action, would be an interesting change
+to see if it could affect the behaviour, but unfortunately I have
+never been able to check this.
+
+The tricky part, is that we can't issue a command to change the bus to
+1-bit in omap_hsmmc ->runtime_suspend() callback (this needs to be
+managed by the core in some way). However, we can make a simple test,
+by simply always limit the bus width to 1-bit, as that should mean we
+should conform to the SDIO spec.
+
+Kind regards
+Uffe
+
+>
+> Fixes: 572cf7d7b07d ("ARM: dts: Improve omap l4per idling with wlcore edge sensitive interrupt")
+> Depends-on: e6818d29ea15 ("gpio: gpio-omap: configure edge detection for level IRQs for idle wakeup")
+> Cc: Anders Roxell <anders.roxell@linaro.org>
+> Cc: Eyal Reizer <eyalr@ti.com>
+> Cc: Guy Mishol <guym@ti.com>
+> Cc: John Stultz <john.stultz@linaro.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  arch/arm/boot/dts/omap4-droid4-xt894.dts       | 2 +-
+>  arch/arm/boot/dts/omap4-panda-common.dtsi      | 2 +-
+>  arch/arm/boot/dts/omap4-sdp.dts                | 2 +-
+>  arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi | 2 +-
+>  arch/arm/boot/dts/omap5-board-common.dtsi      | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/omap4-droid4-xt894.dts b/arch/arm/boot/dts/omap4-droid4-xt894.dts
+> --- a/arch/arm/boot/dts/omap4-droid4-xt894.dts
+> +++ b/arch/arm/boot/dts/omap4-droid4-xt894.dts
+> @@ -369,7 +369,7 @@
+>                 compatible = "ti,wl1285", "ti,wl1283";
+>                 reg = <2>;
+>                 /* gpio_100 with gpmc_wait2 pad as wakeirq */
+> -               interrupts-extended = <&gpio4 4 IRQ_TYPE_EDGE_RISING>,
+> +               interrupts-extended = <&gpio4 4 IRQ_TYPE_LEVEL_HIGH>,
+>                                       <&omap4_pmx_core 0x4e>;
+>                 interrupt-names = "irq", "wakeup";
+>                 ref-clock-frequency = <26000000>;
+> diff --git a/arch/arm/boot/dts/omap4-panda-common.dtsi b/arch/arm/boot/dts/omap4-panda-common.dtsi
+> --- a/arch/arm/boot/dts/omap4-panda-common.dtsi
+> +++ b/arch/arm/boot/dts/omap4-panda-common.dtsi
+> @@ -474,7 +474,7 @@
+>                 compatible = "ti,wl1271";
+>                 reg = <2>;
+>                 /* gpio_53 with gpmc_ncs3 pad as wakeup */
+> -               interrupts-extended = <&gpio2 21 IRQ_TYPE_EDGE_RISING>,
+> +               interrupts-extended = <&gpio2 21 IRQ_TYPE_LEVEL_HIGH>,
+>                                       <&omap4_pmx_core 0x3a>;
+>                 interrupt-names = "irq", "wakeup";
+>                 ref-clock-frequency = <38400000>;
+> diff --git a/arch/arm/boot/dts/omap4-sdp.dts b/arch/arm/boot/dts/omap4-sdp.dts
+> --- a/arch/arm/boot/dts/omap4-sdp.dts
+> +++ b/arch/arm/boot/dts/omap4-sdp.dts
+> @@ -512,7 +512,7 @@
+>                 compatible = "ti,wl1281";
+>                 reg = <2>;
+>                 interrupt-parent = <&gpio1>;
+> -               interrupts = <21 IRQ_TYPE_EDGE_RISING>; /* gpio 53 */
+> +               interrupts = <21 IRQ_TYPE_LEVEL_HIGH>; /* gpio 53 */
+>                 ref-clock-frequency = <26000000>;
+>                 tcxo-clock-frequency = <26000000>;
+>         };
+> diff --git a/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi b/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi
+> --- a/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi
+> +++ b/arch/arm/boot/dts/omap4-var-som-om44-wlan.dtsi
+> @@ -69,7 +69,7 @@
+>                 compatible = "ti,wl1271";
+>                 reg = <2>;
+>                 interrupt-parent = <&gpio2>;
+> -               interrupts = <9 IRQ_TYPE_EDGE_RISING>; /* gpio 41 */
+> +               interrupts = <9 IRQ_TYPE_LEVEL_HIGH>; /* gpio 41 */
+>                 ref-clock-frequency = <38400000>;
+>         };
+>  };
+> diff --git a/arch/arm/boot/dts/omap5-board-common.dtsi b/arch/arm/boot/dts/omap5-board-common.dtsi
+> --- a/arch/arm/boot/dts/omap5-board-common.dtsi
+> +++ b/arch/arm/boot/dts/omap5-board-common.dtsi
+> @@ -362,7 +362,7 @@
+>                 pinctrl-names = "default";
+>                 pinctrl-0 = <&wlcore_irq_pin>;
+>                 interrupt-parent = <&gpio1>;
+> -               interrupts = <14 IRQ_TYPE_EDGE_RISING>; /* gpio 14 */
+> +               interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;  /* gpio 14 */
+>                 ref-clock-frequency = <26000000>;
+>         };
+>  };
+> --
+> 2.23.0
