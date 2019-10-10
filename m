@@ -2,126 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F39ED2007
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 07:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B12C3D20D6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 08:37:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729349AbfJJFbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 01:31:50 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:43678 "EHLO mail.andi.de1.cc"
+        id S1732898AbfJJGhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 02:37:38 -0400
+Received: from sauhun.de ([88.99.104.3]:44328 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726065AbfJJFbu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 01:31:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=XeuI5MFAYgl9UB+btYOjqdBCVNCwwywBGKPVGC8hSLM=; b=Iirjc6UetbEOoDwIi/1ND3/1pc
-        f2Unf42Nl35GLD7oTlmfwvvci1/NxbR6QxE6kSz6nNXsVxE6c/tS1PZe+wwPwYTbxKAZqcoOiJitP
-        kWTPW23fWQmeiG1xoozjRkOxJnB0o8VQOHwe+qIdZ6YrTvi6RmeQZ7TfETPokmaZP568=;
-Received: from ip-109-41-65-123.web.vodafone.de ([109.41.65.123] helo=localhost)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1iIR33-0002Aa-Vm; Thu, 10 Oct 2019 07:31:38 +0200
-Received: from localhost ([::1])
-        by localhost with esmtp (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1iIR31-0004zE-5i; Thu, 10 Oct 2019 07:31:35 +0200
-Date:   Thu, 10 Oct 2019 07:31:29 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
-        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v2 2/3] ARM: dts: add Netronix E60K02 board common file
-Message-ID: <20191010073129.607f7b6f@kemnade.info>
-In-Reply-To: <20191006223848.GE19803@latitude>
-References: <20190930194332.12246-1-andreas@kemnade.info>
-        <20190930194332.12246-3-andreas@kemnade.info>
-        <20191006223848.GE19803@latitude>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
+        id S1729045AbfJJGhi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 02:37:38 -0400
+Received: from localhost (p54B33257.dip0.t-ipconnect.de [84.179.50.87])
+        by pokefinder.org (Postfix) with ESMTPSA id E00F42C01E8;
+        Thu, 10 Oct 2019 08:37:35 +0200 (CEST)
+Date:   Thu, 10 Oct 2019 08:37:35 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH] i2c: aspeed: fix master pending state handling
+Message-ID: <20191010063735.GA893@kunai>
+References: <20191009212034.20325-1-jae.hyun.yoo@linux.intel.com>
+ <20191010003234.GA12710@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Score: -1.0 (-)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="UugvWAfsgieZRqgk"
+Content-Disposition: inline
+In-Reply-To: <20191010003234.GA12710@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
 
-On Mon, 7 Oct 2019 00:38:48 +0200
-Jonathan Neusch=E4fer <j.neuschaefer@gmx.net> wrote:
+--UugvWAfsgieZRqgk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Thanks for CCing me on this patchset. Nice to see more e-book reader
-> related work!
->=20
-btw. seems that we have a common target, since our ebook readers both
-have a tps65185. It seems to be a good idea to comment things on the
-i2c busses without proper bindings. That might help to find allies.
 
-I will send a v3 with correct memory, better name for GLED
-and the above-mentioned comments.
+> Wolfram, since this is a bugfix, can we get this in 5.4?
 
-Regards,
-Andreas
+Of course! Just giving Tao Ren some time for the Tested-by.
 
-> A few comments and questions below.
->=20
-> On Mon, Sep 30, 2019 at 09:43:31PM +0200, Andreas Kemnade wrote:
-> > The Netronix board E60K02 can be found some several Ebook-Readers,
-> > at least the Kobo Clara HD and the Tolino Shine 3. The board
-> > is equipped with different SoCs requiring different pinmuxes. =20
->=20
-> Do I understand it correctly that i.MX6SL and i.MX6SLL are pin-
-> compatible so we can use the same pin numbers and GPIO handles in the
-> DT?
->=20
-> > +	leds {
-> > +		compatible =3D "gpio-leds";
-> > +		pinctrl-names =3D "default";
-> > +		pinctrl-0 =3D <&pinctrl_led>;
-> > +
-> > +		GLED { =20
->=20
-> What does "GLED" mean? It's not obvious to me.
-> What user-visible purpose does this LED have, or where is it on the
-> board?
->=20
-> > +			gpios =3D <&gpio5 7 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger =3D "timer";
-> > +		};
-> > +	};
-> > +
-> > +	memory {
-> > +		reg =3D <0x80000000 0x80000000>; =20
->=20
-> 2 GiB of memory?
->=20
-> > +			/* Core3_3V3 */ =20
->=20
-> What are these labels (Core3_3V3, Core4_1V2, etc.)?
->=20
-> > +			dcdc2_reg: DCDC2 {
-> > +				regulator-name =3D "DCDC2";
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-state-mem {
-> > +					regulator-on-in-suspend;
-> > +					regulator-suspend-max-microvolt =3D <3300000>;
-> > +					regulator-suspend-min-microvolt =3D <3300000>;
-> > +				};
-> > +			}; =20
->=20
->=20
-> Thanks,
-> Jonathan Neusch=E4fer
+
+--UugvWAfsgieZRqgk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl2e0asACgkQFA3kzBSg
+KbZEfA//eG2wIit8ZvHICrI4HHDAD/xgrOjZcCQHKy+PB5uNFMnEVdGy0ifN2Oml
+NIZvvWUp0hjhw7ZkPI0uJQ/MLGO47R02T9s9IXx5s0OaxYjB3MINRr1r/8SHvY2h
+4CeHFuMbAOdGx6h0vCACwXVpAvjewebvO45bX80AOXq88b8bRtS4Dx9sWIWRS8Fy
+5wpSWP0fFbPCimwIkW8SZE6KZcKy4AenP95Jjxyv7YXGFXDRHgV9xAp5eXDw0ZZR
+lhfsSkIWsQkNqOCDzwXO6IKX+GMu2UMzX8ipsXi0S2u03/HUGnhlxMg04AwH28x5
+iQv7tO0Boj1/OMJ2jfz/QAk0A+C04lo20/z+heHJoBz6BbhFnbXX+tMUzdn070EB
+AHN1pcLMlpPufqEcCBPj0Ky0RP2WH48vFqY+uJnTwAWAFx5quO1/DOYBRyzc4kPW
+FnDv6cgFtQKIbO6UWyGs4dHOttBFs2KSpNWcFaRxUHqUDpR7BBw0Bt8V7f6irsql
+lVPjyAQj5kDm3eA621uZR3/hFP4Ud1hLF1HzF+j9LX/1lA2+PMB/L7E2Yt6Dv+Ba
+1vX55ITdwFTyQ1MKpVileOYL1IY62EcFvUdhi5ahyjQNQtHaslKwa/l4Q/WDpMNu
+7AjPGDDcjnmNTW2DAcdxbHMeN3so766ZPr08ujZezcXZX7BBT14=
+=ApV2
+-----END PGP SIGNATURE-----
+
+--UugvWAfsgieZRqgk--
