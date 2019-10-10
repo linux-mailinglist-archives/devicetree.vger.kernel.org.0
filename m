@@ -2,155 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C24CDD2B7D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ACC4D2B83
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 15:39:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387720AbfJJNhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 09:37:42 -0400
-Received: from mail-eopbgr1400092.outbound.protection.outlook.com ([40.107.140.92]:51904
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728393AbfJJNhm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 09:37:42 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bg5+WQ1SSS+7tMmETgTXVIzjb2/8b0i7m5RKjUXswrmxEGbv/esN0ZV+6aesGJGaaNjxtPIAFe+huSjJviYDGSNSWZ1EugQwge8mTrzFaXC6/XCEj/RgCM91z1PFADHKPU8GtF/CFb0nj6UQmYxWIUTIxWBUnPYCPK5vzOw7oH4lDfk4I5H35HsqlDFoW7hefDc5N/vyoQmJdR7k1ZSMNydBvIyFSgj4IpJ39XaRWE7Nz03Hz72p8gvtKjVKEyDC2xXAC6ySSsoJT1os0HAKiDsCZiI+6ICoWE6po4qqzCg4NbOXBwpE8sQYPUOXI15yw6eXd4Ewxk8WERkOgTkv/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZT8oEWdY3BF97DHylgR8GkgHd4MXorQEq6q+Nnu7hkc=;
- b=CEcNxjgokL8BtfX2hojGuRNE9cUs5yr0laaKKJG/LdU6v6XgVnBiSVOcscMyk/CxHuXMqfeh8zOd+sT3giObGhfjBv8e0UmAm9FTwkKzGvsRemb8Yq3ekZbE3Kf/6yy6gE3iHajZ8d8gKVUmeql1/0GWUOwSe6zdEcqW2a+IdUdwlue9cTH2kOTqyRxDjZbFTJF3ye0ws54CLVB/KgG4sX/JHlTxVHIG1MeROhEY/O05pxVz3aJ/7a2Olg8fwXL5tZwGjLTFlhN39uXCTbY2Rw9ofP1Ru/GpGa1kKpBRhz5OcABhdyYh2goLZxQoAmN+2iXpRXYRv7ptEUk4cgX0Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+        id S2388143AbfJJNix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 09:38:53 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39737 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388135AbfJJNix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 09:38:53 -0400
+Received: by mail-wr1-f68.google.com with SMTP id r3so7963584wrj.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 06:38:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZT8oEWdY3BF97DHylgR8GkgHd4MXorQEq6q+Nnu7hkc=;
- b=APtFsSq4zOJx2qQrkJDLeE+bJHYenp22HlqUUwz6mTFgXx6CBf9SjG2naUxGIo+xeboderqpbfuK9qcJ7BPubrKdtX2g8+WsHrbo09ro07tPpPbJbjK1ZxEw+JcZfNgTpDNhEsPMelKtU9K+MNAvUFMJEcn5YIWnx3SOCnqMwF8=
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
- TY1PR01MB1833.jpnprd01.prod.outlook.com (52.133.163.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.17; Thu, 10 Oct 2019 13:37:38 +0000
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::55fe:d020:cc51:95c4]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::55fe:d020:cc51:95c4%7]) with mapi id 15.20.2347.016; Thu, 10 Oct 2019
- 13:37:37 +0000
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: RE: [PATCH net-next 2/3] dt-bindings: can: rcar_canfd: document
- r8a774b1 support
-Thread-Topic: [PATCH net-next 2/3] dt-bindings: can: rcar_canfd: document
- r8a774b1 support
-Thread-Index: AQHVf2eHe5M8eoW8NUej/XOaiYSJ3qdT0q0AgAAMOHA=
-Date:   Thu, 10 Oct 2019 13:37:36 +0000
-Message-ID: <TY1PR01MB177051B4DCAD29E5D4954F11C0940@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-References: <1570711049-5691-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1570711049-5691-3-git-send-email-fabrizio.castro@bp.renesas.com>
- <CAMuHMdV5XUPSrgoDm62p0f_B1TtvhMyOX3NVho=QVqdesq31jg@mail.gmail.com>
-In-Reply-To: <CAMuHMdV5XUPSrgoDm62p0f_B1TtvhMyOX3NVho=QVqdesq31jg@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 22aa36b8-a6b7-4967-371b-08d74d87039d
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: TY1PR01MB1833:|TY1PR01MB1833:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <TY1PR01MB18331B48A04AE7D7696A1FEBC0940@TY1PR01MB1833.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 018632C080
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(136003)(39860400002)(396003)(366004)(376002)(346002)(189003)(199004)(6506007)(53546011)(7736002)(66476007)(305945005)(7696005)(26005)(102836004)(256004)(52536014)(99286004)(74316002)(81156014)(66556008)(8936002)(81166006)(186003)(76176011)(66446008)(66946007)(8676002)(64756008)(76116006)(4326008)(7416002)(229853002)(14454004)(316002)(33656002)(6246003)(44832011)(71190400001)(5660300002)(71200400001)(86362001)(6436002)(54906003)(6916009)(3846002)(6116002)(9686003)(476003)(486006)(2906002)(25786009)(66066001)(446003)(11346002)(55016002)(478600001);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1833;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1LlDR4IE+9u3nirLZ9e2pPYTCnHysbhFglIJew7yiK5KCRsHlQrT7d9DRaAXiybYICTT30IjIcva3wS48m7Hatt3a/SeoHM3cOP7otGMFtY1ynxsxtuiZHh/AmKHiH9PnNSfo9AlZvRTO0fx+09QUkMu5Q1dDiRhnVHECmExpfGFoYkxNer+4GBB4cBQ+11GbimTGxP95xV25qQ9yYBy9XHOz0uSAwCcbm4qm3FAZ9Ggo5FXLjvkwp5WQ22UErJIqgT0VF4wq8l2YpKiYXBczrSIcsrgE+vC5huXQW2b63HtD6MWKJl15C53hSU0wSv8c8bBfJpn/rxBcYINlHY+ji1ML07qharzqheXRkq4LffTAd/HvWlhLpkx1vDeJuzH0PPJnKbJ9fDWy/xFs+nMXoD89tHrmOZ4meOx8jRAMJI=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dNKHo7wC/215Tc8q4IYUbrHibFKH//hrOf2lUQhIP+k=;
+        b=c4rXOv/U6+AGwyzEaBsCCLbaPQ5PuswG1a6LIjyTlEvCwnrKbXZnR6+HreuUwAWKCh
+         x1F92c0aWJ7Lesa1HUS/neB+6UavBIP9tDmaDAWfVQLY6ATDftbfn+eE8qUA9lSiiwb0
+         gbmHF+AjOTVGA+9uhTCzakVpyAGqzygdFxKJtBqLiwwyaB8uucpBFsrG40IC5MpekjvZ
+         6FJsrXQxcT0U/zEHaiJNH/f62LGjOeH4L9NzahroreQZe3JPH7nD4UqJlS6TyDZvjijF
+         H76aq0v43xsWi50NHm7CBZ8HdwL+3389nJ0QzbZBKWH9vbf5cIGJcguEpIKcuvvoLz49
+         x1dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dNKHo7wC/215Tc8q4IYUbrHibFKH//hrOf2lUQhIP+k=;
+        b=T5S7RqI2EO6aDMSZWjKke/APnN+zGAWVYnj3/Loy6SMrLR2zUokDgN6+C62H8cCkAb
+         9FLiP7kygkK/1st45xz274eQnt9adDeojpzp0wKLBjCUqJXW3gVvZNQLxxr6sIkR8EKY
+         95kHraV6X+eXkiVUlvAMvD4bzSOL5BhGqKcC1SvyNAiomBIvy2fyghKXgIsfZNt0MQ9z
+         OCCwIBjNP61ZybuY674kE2unWzwacULp2e93MSBkPTVbcTmnFGNwCNXl5qwwb8B2+YUP
+         X1Poj2wyuftY5iRz1wsIuYYH/tybnD5KsN5rSO2nymMHVUacvbigP0LRXREzQ2ei2hJG
+         oYqA==
+X-Gm-Message-State: APjAAAU/SR0v5bCwpfdgC56EuPtxk2euHUHF+MiDaXq/KpJg/tBmNZce
+        VoXS76gcTuTnUbXhA8wH/ParfA==
+X-Google-Smtp-Source: APXvYqztlBMqNL6y+jP0zl/tFHe7klxsBxWvq4OmxyJphjZ92KRbEFrRmvrcRFKdis6Ee/b8FEfGxw==
+X-Received: by 2002:adf:ea45:: with SMTP id j5mr3800979wrn.392.1570714730051;
+        Thu, 10 Oct 2019 06:38:50 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id q10sm11593228wrd.39.2019.10.10.06.38.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 10 Oct 2019 06:38:49 -0700 (PDT)
+Subject: Re: [PATCH v7 2/2] ASoC: codecs: add wsa881x amplifier support
+To:     Mark Brown <broonie@kernel.org>
+Cc:     spapothi@codeaurora.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        pierre-louis.bossart@linux.intel.com
+References: <20191009085108.4950-1-srinivas.kandagatla@linaro.org>
+ <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
+ <20191009163535.GK2036@sirena.org.uk>
+ <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
+ <20191010132314.GQ2036@sirena.org.uk>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <32280055-dd4a-9573-58fa-0076955e9c92@linaro.org>
+Date:   Thu, 10 Oct 2019 14:38:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22aa36b8-a6b7-4967-371b-08d74d87039d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 13:37:36.7965
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QvwizLohb1Q7NX/7I5UNGNKdhD2ifRT01XeQrbGVznu5nmQ80b9uynhNyQQU4sFxvdrjC1NQbCbgQsvmTArjoUxrC8fmktvDUGxusFFqYHU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1833
+In-Reply-To: <20191010132314.GQ2036@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNClRoYW5rIHlvdSBmb3IgeW91ciBmZWVkYmFjayENCg0KPiBGcm9tOiBHZWVy
-dCBVeXR0ZXJob2V2ZW4gPGdlZXJ0QGxpbnV4LW02OGsub3JnPg0KPiBTZW50OiAxMCBPY3RvYmVy
-IDIwMTkgMTM6NDcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCBuZXQtbmV4dCAyLzNdIGR0LWJpbmRp
-bmdzOiBjYW46IHJjYXJfY2FuZmQ6IGRvY3VtZW50IHI4YTc3NGIxIHN1cHBvcnQNCj4gDQo+IEhp
-IEZhYnJpemlvLA0KPiANCj4gT24gVGh1LCBPY3QgMTAsIDIwMTkgYXQgMjozNyBQTSBGYWJyaXpp
-byBDYXN0cm8NCj4gPGZhYnJpemlvLmNhc3Ryb0BicC5yZW5lc2FzLmNvbT4gd3JvdGU6DQo+ID4g
-RG9jdW1lbnQgdGhlIHN1cHBvcnQgZm9yIHJjYXJfY2FuZmQgb24gUjhBNzc0QjEgU29DIGRldmlj
-ZXMuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBGYWJyaXppbyBDYXN0cm8gPGZhYnJpemlvLmNh
-c3Ryb0BicC5yZW5lc2FzLmNvbT4NCj4gDQo+IFRoYW5rcyBmb3IgeW91ciBwYXRjaCENCj4gDQo+
-ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9jYW4vcmNhcl9j
-YW5mZC50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0
-L2Nhbi9yY2FyX2NhbmZkLnR4dA0KPiA+IEBAIC01LDYgKzUsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0
-aWVzOg0KPiA+ICAtIGNvbXBhdGlibGU6IE11c3QgY29udGFpbiBvbmUgb3IgbW9yZSBvZiB0aGUg
-Zm9sbG93aW5nOg0KPiA+ICAgIC0gInJlbmVzYXMscmNhci1nZW4zLWNhbmZkIiBmb3IgUi1DYXIg
-R2VuMyBhbmQgUlovRzIgY29tcGF0aWJsZSBjb250cm9sbGVycy4NCj4gPiAgICAtICJyZW5lc2Fz
-LHI4YTc3NGExLWNhbmZkIiBmb3IgUjhBNzc0QTEgKFJaL0cyTSkgY29tcGF0aWJsZSBjb250cm9s
-bGVyLg0KPiA+ICsgIC0gInJlbmVzYXMscjhhNzc0YjEtY2FuZmQiIGZvciBSOEE3NzRCMSAoUlov
-RzJOKSBjb21wYXRpYmxlIGNvbnRyb2xsZXIuDQo+ID4gICAgLSAicmVuZXNhcyxyOGE3NzRjMC1j
-YW5mZCIgZm9yIFI4QTc3NEMwIChSWi9HMkUpIGNvbXBhdGlibGUgY29udHJvbGxlci4NCj4gPiAg
-ICAtICJyZW5lc2FzLHI4YTc3OTUtY2FuZmQiIGZvciBSOEE3Nzk1IChSLUNhciBIMykgY29tcGF0
-aWJsZSBjb250cm9sbGVyLg0KPiA+ICAgIC0gInJlbmVzYXMscjhhNzc5Ni1jYW5mZCIgZm9yIFI4
-QTc3OTYgKFItQ2FyIE0zLVcpIGNvbXBhdGlibGUgY29udHJvbGxlci4NCj4gDQo+IFRoZSBhYm92
-ZSBsb29rcyBnb29kLCBidXQgSSB0aGluayB5b3UgZm9yZ290IHRvIGFkZCBSOEE3NzRCMSB0byB0
-aGUNCj4gcGFyYWdyYXBoIHRhbGtpbmcgYWJvdXQgdGhlIENBTiBGRCBjbG9jayBiZWxvdy4NCg0K
-SSBtb3N0IGNlcnRhaW5seSBkaWQgZm9yZ2V0IHRvIGFkZCB0aGUgUjhBNzc0QjEgdG8gdGhlIENB
-TiBGRCBjbG9jayBwYXJhZ3JhcGguDQpUaGFuayB5b3UgZm9yIHBvaW50aW5nIHRoaXMgb3V0LCB3
-aWxsIHNlbmQgYSB2Mi4NCg0KPiBXaXRoIHRoYXQgZml4ZWQ6DQo+IFJldmlld2VkLWJ5OiBHZWVy
-dCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPg0KPiANCj4gV2hpbGUgYXQg
-aXQsIHRoZSBleGFtcGxlIGluIHRoZSBiaW5kaW5ncyBzYXlzIHRoZSBDQU5GRCBjbG9jayBzaG91
-bGQgYmUNCj4gY29uZmlndXJlZCB0byA0MCBNSHosIHdoaWNoIG1hdGNoZXMgd2hhdCBpcyB1c2Vk
-IGluIHRoZSB2YXJpb3VzIERUUyBmaWxlcy4NCj4gSG93ZXZlciwgdGhlIEhhcmR3YXJlIFVzZXIn
-cyBNYW51YWwgc3RhdGVzIGl0IHNob3VsZCBiZSA4MCBNSHosIGV4Y2VwdA0KPiBmb3IgUi1DYXIg
-RDMuDQo+IElzIHRoYXQgY29ycmVjdD8NCg0KVGhlIG1hbnVhbCBzdGF0ZXMgODAgTUh6LCBhbmQg
-SSBkaWQgdGVzdCB0aGUgSVAgaW4gQ0FOIGFuZCBDQU4gRkQgbW9kZSBhdCA4MCBNSHoNCmEgd2hp
-bGUgYmFjaywgYnV0IFJhbWVzaCByZXBvcnRlZCBzb21lIGluc3RhYmlsaXR5IGF0IDgwIE1IeiB3
-aGVuIGhlIGZpcnN0IGJyb3VnaHQNCkNBTiBGRCB1cC4gV2UgZG9uJ3Qga25vdyBpZiB0aGUgaW5z
-dGFiaWxpdHkgd2FzIGR1ZSB0byB0aGUgSVAgb3IgdG8gdGhlIGJvYXJkIGhlIHdhcw0KdXNpbmcs
-IGF0IHNvbWUgcG9pbnQgaXQgd291bGQgYmUgbmljZSB0byByZXRlc3QgdGhlIHNhbWUgdGhpbmcg
-b24gYSBkaWZmZXJlbnQgU29DL2JvYXJkDQpjb25uZWN0ZWQgdG8gdGhlIHNhbWUgcGVyaXBoZXJh
-bCBoZSB3YXMgdXNpbmcgZm9yIHRlc3RpbmcsIGFuZCBzZWUgaWYgd2UgZ2V0IHRoZSBzYW1lDQpp
-c3N1ZXMuIEZvciB0aGUgdGltZSBiZWluZywgdG8gYmUgb24gdGhlIHNhZmUgc2lkZSBvZiB0aGlu
-Z3MsIHdlIHdvdWxkIGxpa2UgdG8ga2VlcCB0aGUNCmNsb2NrIGNvbmZpZ3VyZWQgYXQgNDBNSHou
-DQoNClRoYW5rcywNCkZhYg0KDQo+IA0KPiBUaGFua3MhDQo+IA0KPiBHcntvZXRqZSxlZXRpbmd9
-cywNCj4gDQo+ICAgICAgICAgICAgICAgICAgICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVy
-dCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdl
-ZXJ0QGxpbnV4LW02OGsub3JnDQo+IA0KPiBJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGgg
-dGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0DQo+IHdoZW4gSSdt
-IHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRo
-aW5nIGxpa2UgdGhhdC4NCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtLSBMaW51
-cyBUb3J2YWxkcw0K
+
+
+On 10/10/2019 14:23, Mark Brown wrote:
+> On Thu, Oct 10, 2019 at 10:28:04AM +0100, Srinivas Kandagatla wrote:
+>> On 09/10/2019 17:35, Mark Brown wrote:
+>>> On Wed, Oct 09, 2019 at 09:51:08AM +0100, Srinivas Kandagatla wrote:
+>>>> +static const u8 wsa881x_reg_readable[WSA881X_CACHE_SIZE] = {
+> 
+>>>> +static bool wsa881x_readable_register(struct device *dev, unsigned int reg)
+>>>> +{
+>>>> +	return wsa881x_reg_readable[reg];
+> 
+>>> There's no bounds check and that array size is not...
+> 
+>> I converted this now to a proper switch statement as other drivers do.
+> 
+>>>> +static struct regmap_config wsa881x_regmap_config = {
+>>>> +	.reg_bits = 32,
+>>>> +	.val_bits = 8,
+>>>> +	.cache_type = REGCACHE_RBTREE,
+>>>> +	.reg_defaults = wsa881x_defaults,
+>>>> +	.num_reg_defaults = ARRAY_SIZE(wsa881x_defaults),
+>>>> +	.max_register = WSA881X_MAX_REGISTER,
+> 
+>>> ...what regmap has as max_register.  Uusually you'd render as a
+>>> switch statement (as you did for volatile) and let the compiler
+>>> figure out a sensible way to do the lookup.
+> 
+>> Sorry, I did not get your point here.
+> 
+>> Are you saying that we can skip max_register in this regmap config ?
+>> Then how would max_register in regmap be set?
+> 
+> I'm saying that you appear to be relying on max_register to
+> verify that you're not overflowing the array bounds but you
+> max_register is not set to the same thing as the array size.
+
+Thanks for clarification, I have removed the readable array in new 
+version, removed multiple macros for max register and fixed max_register 
+to point to last register.
+
+--srini
+> 
