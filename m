@@ -2,78 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3DFD32F5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 22:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18908D3331
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 23:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbfJJUxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 16:53:32 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37091 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726533AbfJJUxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 16:53:32 -0400
-Received: by mail-ot1-f66.google.com with SMTP id k32so6129189otc.4;
-        Thu, 10 Oct 2019 13:53:30 -0700 (PDT)
+        id S1726890AbfJJVHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 17:07:03 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:43120 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725867AbfJJVHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 17:07:03 -0400
+Received: by mail-pf1-f194.google.com with SMTP id a2so4673638pfo.10;
+        Thu, 10 Oct 2019 14:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=qC40adZXU/tV5QzYgkBZx24z9et5UNUWBE0VYT7PPKM=;
+        b=I9lwiD04t1jKp5V8AgRfsBgUtqOqxbP2i2vMH/gvkQdGrPNFU8oba65acyXERV2WxY
+         v22XAjePeSNoSnuHvvSA3n0sZueH/ek4qoDsV1mF5gUidtlh0f9FoQfVDAR/jhkOcGhB
+         rnykdBOTlPwXGv1tJqfm+muTrjPsvtCHqZ6NIxprQmcBoo3Q1X3BOiJAKexs+98gGLXI
+         gy3kJH4Zzmx8dl5/AWZaZXQWidW/uMELQ+Df4m0RopDxA1X73CcmKuvV8DuDVa+IPveD
+         5JW71HSCGxBV95p5y9yuhCfuGDL78Qh7kwGviirnVfRQLpsrBLlk1ua2yXpUwA+5aM6b
+         ks0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=e/t0HF/wqJSfNrnwPhBS9XOByD4MLCYu+o03s9uJ830=;
-        b=GFwDQAPTrh/GqeLSUNm8F8lmG/fju0FWQPkCkSh5BL+yThASJMolLaAmYB82YHDsB3
-         pBrwV1mM3VzVlW/5MEDDWDai5CNFCIzvxdMfPdtfdq5wGWcvqz4t5HJq9TvMnci44Udj
-         Pmgke18S1fv7qjznHTzNZWv7EheklQzxh2bdzo0FM68Qm1ZRf4kJZHOUOMvGmh7Mm7sX
-         7eH0ETYfoDb7mNHnX45QOH8/aPoMNh/K/P//8OZaTauL3umBPOW3iEX3iumzCwVy46HC
-         BEpC9oxzTvyj72CaHZYsc0qRY8RSnYBdngPfCfJ+5oFU1NkF8f1q2gkfncZ3xOyd2ZaK
-         x3BA==
-X-Gm-Message-State: APjAAAVa+O+nq86qNc16OkSrGF5pCY06IlDs06eaMMnwnBqVGIPXqT4L
-        TZz/+ydkuERRdeF17deZww==
-X-Google-Smtp-Source: APXvYqws/sj2QT0mQsX1yIjAarwMmwwPfrIx/IFWvphM/0AsdleqskzJS1FEccZSdmd6jvq0Sm7mbw==
-X-Received: by 2002:a9d:6e1a:: with SMTP id e26mr9651172otr.307.1570740809810;
-        Thu, 10 Oct 2019 13:53:29 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k204sm2029360oif.33.2019.10.10.13.53.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=qC40adZXU/tV5QzYgkBZx24z9et5UNUWBE0VYT7PPKM=;
+        b=bw55MY9Jn/eIZI2SJwlgas2/5GdWLFFbDwN4o5fzJxvsmRlxyk/wsAz3PqaN9Fu0Tp
+         8J3DCWvhdOLFm2MDogWGzqpv662ROZXN8juCcLz+Knin2ZejoETzo5GE7LItFNuh+X3j
+         jMVHKJKp9Ta+wrRjH9SFis+HNCUfOkfsHbz1mS/eoBT/aVek6pOOXVSvrNYe4tMqlG9+
+         mZaC5IbAngmwK5Qhwys+eP/wNxurcn817N/y1qcEdpjxt5t7FwUPvPJIUPCmCYMYZIxD
+         reX/AlFicatSmth9u8WG9KRMAgL0YRLsqssdQRvKC52ephAPsDx0HYxCw7+/UYZvpbeL
+         cazA==
+X-Gm-Message-State: APjAAAUQmSB9eBqoM7cVEOmeC1ilvh0Yf49BLn1rIaErBb3mCGuMLjm7
+        lARtDftMXIyqvzS8i9KirQs=
+X-Google-Smtp-Source: APXvYqxHvLlCmq0oZPemzFhc9sfBvjJdNcYUNGHxi4jnZ2DaNVAPm7JpzEYskIcPh0DGt6hKAW5iCg==
+X-Received: by 2002:aa7:8ece:: with SMTP id b14mr12791904pfr.113.1570741622461;
+        Thu, 10 Oct 2019 14:07:02 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id v68sm7898208pfv.47.2019.10.10.14.07.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2019 13:53:29 -0700 (PDT)
-Date:   Thu, 10 Oct 2019 15:53:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andreas Klinger <ak@it-klinger.de>
-Cc:     robh+dt@kernel.org, jic23@kernel.org, mark.rutland@arm.com,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: iio: maxbotix,mb1232.yaml: transform to
- yaml
-Message-ID: <20191010205328.GA19956@bogus>
-References: <20191007170219.xfipsry5nk4raiem@arbad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191007170219.xfipsry5nk4raiem@arbad>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Thu, 10 Oct 2019 14:07:02 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH] dt-bindings: display: Convert sharp,ld-d5116z01b panel to DT schema
+Date:   Thu, 10 Oct 2019 14:06:54 -0700
+Message-Id: <20191010210654.37426-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Oct 2019 19:02:20 +0200, Andreas Klinger wrote:
-> transform existing documentation of maxbotix,mb1232 ultrasonic ranger
-> from text documentation format into yaml.
-> 
-> Changes in v3:
-> - add a i2c node around device node to set up #address-cells and
->   #size-cells for omitting error during make dt_binding_check
-> 
-> Changes in v2:
-> - removed description of reg property
-> - added a line:
->   additionalProperties: false
-> 
-> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
-> ---
->  .../bindings/iio/proximity/maxbotix,mb1232.txt     | 29 -----------
->  .../bindings/iio/proximity/maxbotix,mb1232.yaml    | 60 ++++++++++++++++++++++
->  2 files changed, 60 insertions(+), 29 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
-> 
+Convert the sharp,ld-d5116z01b panel binding to DT schema.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+---
+ .../display/panel/sharp,ld-d5116z01b.txt      | 26 ----------------
+ .../display/panel/sharp,ld-d5116z01b.yaml     | 30 +++++++++++++++++++
+ 2 files changed, 30 insertions(+), 26 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.txt b/Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.txt
+deleted file mode 100644
+index fd9cf39bde77..000000000000
+--- a/Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Sharp LD-D5116Z01B 12.3" WUXGA+ eDP panel
+-
+-Required properties:
+-- compatible: should be "sharp,ld-d5116z01b"
+-- power-supply: regulator to provide the VCC supply voltage (3.3 volts)
+-
+-This binding is compatible with the simple-panel binding.
+-
+-The device node can contain one 'port' child node with one child
+-'endpoint' node, according to the bindings defined in [1]. This
+-node should describe panel's video bus.
+-
+-[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-Example:
+-
+-	panel: panel {
+-		compatible = "sharp,ld-d5116z01b";
+-		power-supply = <&vlcd_3v3>;
+-
+-		port {
+-			panel_ep: endpoint {
+-				remote-endpoint = <&bridge_out_ep>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.yaml b/Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.yaml
+new file mode 100644
+index 000000000000..fbb647eb33c9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sharp,ld-d5116z01b.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sharp LD-D5116Z01B 12.3" WUXGA+ eDP panel
++
++maintainers:
++  - Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: sharp,ld-d5116z01b
++
++  power-supply: true
++  backlight: true
++  port: true
++  no-hpd: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - power-supply
++
++...
+-- 
+2.17.1
+
