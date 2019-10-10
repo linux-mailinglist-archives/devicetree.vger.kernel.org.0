@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45E91D2C15
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D2CED2C13
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 16:05:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbfJJOF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 10:05:27 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:43736 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726227AbfJJOF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 10:05:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=YKb2E0bqtC+1TS6bbf5/9WOYFCNWex11PfY1IyHGgs0=; b=AVWXSHoeV5dXwKMHtFgapdpHe
-        luf83G9y5Cvk+3H6TVEWgYuBPnHWJKjh7dQq0Ubl6R+3OjeeZq/SnQGXaeQBwow27JLd3OinXxuhW
-        NaHgIzrRmwUdGbGojf/VkSpa/I0rbQPcSHLi3Kb7DDobrloTpriQK1++chVZZl7oT4+qY=;
-Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1iIZ45-0001Vb-9c; Thu, 10 Oct 2019 14:05:13 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id DC38CD0003A; Thu, 10 Oct 2019 15:05:12 +0100 (BST)
-Date:   Thu, 10 Oct 2019 15:05:12 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v3 1/2] ASOC: Add ADAU7118 8 Channel PDM-to-I2S/TDM
- Converter driver
-Message-ID: <20191010140512.GT2036@sirena.org.uk>
-References: <20191010074234.7344-1-nuno.sa@analog.com>
+        id S1726225AbfJJOFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 10:05:24 -0400
+Received: from muru.com ([72.249.23.125]:36920 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725923AbfJJOFY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Oct 2019 10:05:24 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id A751B80BB;
+        Thu, 10 Oct 2019 14:05:56 +0000 (UTC)
+Date:   Thu, 10 Oct 2019 07:05:19 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH] clk: ti: clkctrl: Fix failed to enable error with double
+ udelay timeout
+Message-ID: <20191010140519.GV5610@atomide.com>
+References: <20190930154001.46581-1-tony@atomide.com>
+ <93a6448d-cece-a903-5c7e-ade793d62063@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZYwTRRUThkGj9JQ7"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191010074234.7344-1-nuno.sa@analog.com>
-X-Cookie: Be careful!  UGLY strikes 9 out of 10!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <93a6448d-cece-a903-5c7e-ade793d62063@ti.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Keerthy <j-keerthy@ti.com> [191007 00:57]:
+> 
+> 
+> On 30/09/19 9:10 PM, Tony Lindgren wrote:
+> > Commit 3d8598fb9c5a ("clk: ti: clkctrl: use fallback udelay approach if
+> > timekeeping is suspended") added handling for cases when timekeeping is
+> > suspended. But looks like we can still get occasional "failed to enable"
+> > errors on the PM runtime resume path with udelay() returning faster than
+> > expected.
+> > 
+> > With ti-sysc interconnect target module driver this leads into device
+> > failure with PM runtime failing with "failed to enable" clkctrl error.
+> > 
+> > Let's fix the issue with a delay of two times the desired delay as in
+> > often done for udelay() to account for the inaccuracy.
+> 
+> Tested for DS0 and rtc+ddr modes on am43 and ds0 on am33.
+> 
+> Tested-by: Keerthy <j-keerthy@ti.com>
 
---ZYwTRRUThkGj9JQ7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for testing. This one should be applied into v5.4-rc series
+please if no more comments.
 
-On Thu, Oct 10, 2019 at 09:42:33AM +0200, Nuno S=E1 wrote:
+Regards,
 
-> +			/* power on */
-> +			ret =3D regulator_enable(st->iovdd);
-> +			if (ret)
-> +				return ret;
-> +
-> +			/* there's no timing constraints before enabling dvdd */
-> +			ret =3D regulator_enable(st->dvdd);
-> +			if (ret) {
-> +				regulator_disable(st->iovdd);
-> +				return ret;
-> +			}
+Tony
 
-You could use regulator_bulk_enable() here (and similarly on
-disable) but it doesn't fundamentally matter - they do guarantee
-that they'll do things in sequence, though they don't wait for
-the ramp to complete before kicking off the next enable in the
-sequence which can be an issue for some hardware.
-
---ZYwTRRUThkGj9JQ7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2fOpUACgkQJNaLcl1U
-h9BEPwf/VxMhiR0z6PYlab1hBh6JMo2K1WIXb2S3zahILtM5SXxYMmwRh16GuG0o
-pIrwnxc5hMD4+bqp6vYu9QaISbKB8UoBsAr+SU5b/eHsba3r0Jbl/wNdTdbgCVus
-ZCYLHYtnWZrx9okSggQ9viUDkqls7dLCPMfu/+qV5NiDAasZJZUIEjkaUdfAhYwS
-z0yrot94R5p3QdNEI5ds7y5ZuKWGDEcWJNU3PekJ+putlZyUF8qa9/nV+/uZigQ/
-hH+oMbQGEg9pgx/neQN2VxC4hIXtXcaDMT4WuEVt2HjWCK2xcFrauNzAg7HkdV0z
-EkVGgsiWwDQG59xutrTflWxmmQCOtw==
-=S+PA
------END PGP SIGNATURE-----
-
---ZYwTRRUThkGj9JQ7--
+> > Fixes: 3d8598fb9c5a ("clk: ti: clkctrl: use fallback udelay approach if timekeeping is suspended")
+> > Cc: Keerthy <j-keerthy@ti.com>
+> > Cc: Tero Kristo <t-kristo@ti.com>
+> > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > ---
+> >   drivers/clk/ti/clkctrl.c | 5 +++--
+> >   1 file changed, 3 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/clk/ti/clkctrl.c b/drivers/clk/ti/clkctrl.c
+> > --- a/drivers/clk/ti/clkctrl.c
+> > +++ b/drivers/clk/ti/clkctrl.c
+> > @@ -100,11 +100,12 @@ static bool _omap4_is_timeout(union omap4_timeout *time, u32 timeout)
+> >   	 * can be from a timer that requires pm_runtime access, which
+> >   	 * will eventually bring us here with timekeeping_suspended,
+> >   	 * during both suspend entry and resume paths. This happens
+> > -	 * at least on am43xx platform.
+> > +	 * at least on am43xx platform. Account for flakeyness
+> > +	 * with udelay() by multiplying the timeout value by 2.
+> >   	 */
+> >   	if (unlikely(_early_timeout || timekeeping_suspended)) {
+> >   		if (time->cycles++ < timeout) {
+> > -			udelay(1);
+> > +			udelay(1 * 2);
+> >   			return false;
+> >   		}
+> >   	} else {
+> > 
