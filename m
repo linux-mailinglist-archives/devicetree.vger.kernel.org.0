@@ -2,102 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E667D25EE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 11:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1AD0D264C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2019 11:28:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387450AbfJJJI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 05:08:26 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:39835 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733144AbfJJJI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 05:08:26 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 46plcR3d7hz1rQCD;
-        Thu, 10 Oct 2019 11:08:23 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 46plcR0bYQz1qqkQ;
-        Thu, 10 Oct 2019 11:08:23 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id GACLg3BAFslI; Thu, 10 Oct 2019 11:08:20 +0200 (CEST)
-X-Auth-Info: 3yv9RJi5v/uCUl5RBM3UxIXknte+Kate4wyyjunP9RI=
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu, 10 Oct 2019 11:08:20 +0200 (CEST)
-From:   Lukasz Majewski <lukma@denx.de>
-To:     linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lukasz Majewski <lukma@denx.de>,
-        Robin Murphy <robin.murphy@arm.com>
-Subject: [PATCH v2] dts: Disable DMA support on the BK4 vf610 device's fsl_lpuart driver
-Date:   Thu, 10 Oct 2019 11:08:02 +0200
-Message-Id: <20191010090802.16383-1-lukma@denx.de>
-X-Mailer: git-send-email 2.20.1
+        id S2387660AbfJJJ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 05:28:13 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:55084 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733134AbfJJJ2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 05:28:13 -0400
+Received: by mail-wm1-f67.google.com with SMTP id p7so6133179wmp.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2019 02:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=D/ELkajn5nIeWjt+au+JukJPjjOmYN8ul5L5G8g9Cbw=;
+        b=vBgud5FUoF0BluzVgOr5mc+3sO+QeVDiiFna1seL30oxei6d/G1Gcn6OURjpSV5FJp
+         tyIDD8hgqfT6TqZ0m8A+Y570QFqu7S18n75up5d6x6MwFgpV2at9SaLbbeQMiQbgHkK1
+         HFkubXUAXl0UuYvhGw8Hu6IcWiMWHPa3r20trLP/WXhWAHUJQg3ZNz8NkhNi/DKeFb97
+         FTEXsltHQ9xnTUKo9aJL817yRA6Kjg8QH9Af0vGts/ubMQ8yskDLIBA44ZPI4WOVeS+G
+         FTra92WmfZuYkQdI53afAlAcjNMt5rfa5bQr5fIQIGChlBjL3p7uv9RQPwGWYYdlPOsj
+         tXeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=D/ELkajn5nIeWjt+au+JukJPjjOmYN8ul5L5G8g9Cbw=;
+        b=lbwyLp89WRJLjixdyYN8F3qdlW9UnSYloXbXA8wrmqQLino+MGdDjAcm7kaPV4p7Db
+         i2iFwDwaNzt8MUxMnS2ssewQjXQv0Qf/AqQgSZnzDeK9fBdGv4hhWjPHGI9dt/AfYPiY
+         mNzQQyRXtcHr5F9oyou43i0oA9mK2peQ/QkLUquTN2YsvEczbFZeC+ISyEJ2nuyQ5FuU
+         mmK5Tm62kC376qu6Y8KqzzJjYnDZGA6H8EDTJyiGo0Y/HH5Ocs9+NEhMvNYmOGv63lEF
+         Q9WQ2Pbu6zJzZLlS9YIc0P35f4+TCrPZInHI+sssN9Zqk/0AdfAt7ratDA8oLbv+uidf
+         nryg==
+X-Gm-Message-State: APjAAAWBYajDJLvYz8eYlqVPM6d6JGj3aIBEb7iKPmVeDHsDsEDyMGD8
+        ndLFn3AKzt9jZSsAJob1D2vo9Q==
+X-Google-Smtp-Source: APXvYqzh6cSKpRv0QPcGFghP+vIiOOMTWhRv7tSw50MdW0LwB1cnhPJCjyLv5lQ6J6Vs3RTkKyuYyg==
+X-Received: by 2002:a7b:caea:: with SMTP id t10mr6538733wml.118.1570699691297;
+        Thu, 10 Oct 2019 02:28:11 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id l11sm6282042wmh.34.2019.10.10.02.28.06
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 10 Oct 2019 02:28:10 -0700 (PDT)
+Subject: Re: [PATCH v7 2/2] ASoC: codecs: add wsa881x amplifier support
+To:     Mark Brown <broonie@kernel.org>
+Cc:     spapothi@codeaurora.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        pierre-louis.bossart@linux.intel.com
+References: <20191009085108.4950-1-srinivas.kandagatla@linaro.org>
+ <20191009085108.4950-3-srinivas.kandagatla@linaro.org>
+ <20191009163535.GK2036@sirena.org.uk>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <95637c0a-8373-0eda-47e5-ac6e529019e5@linaro.org>
+Date:   Thu, 10 Oct 2019 10:28:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191009163535.GK2036@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change disables the DMA support (RX/TX) on the NXP's fsl_lpuart
-driver - the PIO mode is used instead. This change is necessary for better
-robustness of BK4's device use cases with many potentially interrupted
-short serial transfers.
+Thanks Mark for taking time to review this patch.
 
-Without it the driver hangs when some distortion happens on UART lines.
+On 09/10/2019 17:35, Mark Brown wrote:
+> On Wed, Oct 09, 2019 at 09:51:08AM +0100, Srinivas Kandagatla wrote:
+> 
+>> +static const u8 wsa881x_reg_readable[WSA881X_CACHE_SIZE] = {
+> 
+>> +static bool wsa881x_readable_register(struct device *dev, unsigned int reg)
+>> +{
+>> +	return wsa881x_reg_readable[reg];
+> u
+> There's no bounds check and that array size is not...
+> 
+I converted this now to a proper switch statement as other drivers do.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Suggested-by: Robin Murphy <robin.murphy@arm.com>
+>> +static struct regmap_config wsa881x_regmap_config = {
+>> +	.reg_bits = 32,
+>> +	.val_bits = 8,
+>> +	.cache_type = REGCACHE_RBTREE,
+>> +	.reg_defaults = wsa881x_defaults,
+>> +	.num_reg_defaults = ARRAY_SIZE(wsa881x_defaults),
+>> +	.max_register = WSA881X_MAX_REGISTER,
+> 
+> ...what regmap has as max_register.  Uusually you'd render as a
+> switch statement (as you did for volatile) and let the compiler
+> figure out a sensible way to do the lookup.
 
----
-Changes for v2:
-- Use /delete-property/dma-names; instead of dma-names = "","";
----
- arch/arm/boot/dts/vf610-bk4.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Sorry, I did not get your point here.
 
-diff --git a/arch/arm/boot/dts/vf610-bk4.dts b/arch/arm/boot/dts/vf610-bk4.dts
-index 0f3870d3b099..830c85476b3d 100644
---- a/arch/arm/boot/dts/vf610-bk4.dts
-+++ b/arch/arm/boot/dts/vf610-bk4.dts
-@@ -259,24 +259,28 @@
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart0>;
-+	/delete-property/dma-names;
- 	status = "okay";
- };
- 
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
-+	/delete-property/dma-names;
- 	status = "okay";
- };
- 
- &uart2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart2>;
-+	/delete-property/dma-names;
- 	status = "okay";
- };
- 
- &uart3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart3>;
-+	/delete-property/dma-names;
- 	status = "okay";
- };
- 
--- 
-2.20.1
+Are you saying that we can skip max_register in this regmap config ?
+Then how would max_register in regmap be set?
 
+> 
+>> +static void wsa881x_init(struct wsa881x_priv *wsa881x)
+>> +{
+>> +	struct regmap *rm = wsa881x->regmap;
+>> +	unsigned int val = 0;
+>> +
+>> +	regmap_read(rm, WSA881X_CHIP_ID1, &wsa881x->version);
+>> +	regcache_cache_only(rm, true);
+>> +	regmap_multi_reg_write(rm, wsa881x_rev_2_0,
+>> +			       ARRAY_SIZE(wsa881x_rev_2_0));
+>> +	regcache_cache_only(rm, false);
+> 
+> This looks broken, what is it supposed to be doing?  It looks
+> like it should be a register patch but it's not documented.
+> 
+Yep, it makes sense to move this to patch, its done in new version.
+
+>> +static const struct snd_kcontrol_new wsa881x_snd_controls[] = {
+>> +	SOC_ENUM("Smart Boost Level", smart_boost_lvl_enum),
+>> +	WSA881X_PA_GAIN_TLV("PA Gain", WSA881X_SPKR_DRV_GAIN,
+>> +			    4, 0xC, 1, pa_gain),
+> 
+> As covered in control-names.rst all volume controls should end in
+> Volume.
+> 
+Fixed this in next version.
+
+>> +static void wsa881x_clk_ctrl(struct snd_soc_component *comp, bool enable)
+>> +{
+>> +	struct wsa881x_priv *wsa881x = snd_soc_component_get_drvdata(comp);
+>> +
+>> +	mutex_lock(&wsa881x->res_lock);
+> 
+> What is this lock supposed to be protecting?  As far as I can
+> tell this function is the only place it is used and this function
+> has exactly one caller which itself has only one caller which is
+> a DAPM widget and hence needs no locking.  It looks awfully like
+> it should just be a widget itself, or inlined into the single
+> caller.
+> 
+This was done for temperature sensor reads which can happen in parallel.
+But for now I will remove it and add back once we add tsens support.
+
+>> +static void wsa881x_bandgap_ctrl(struct snd_soc_component *comp, bool enable)
+>> +{
+>> +	struct wsa881x_priv *wsa881x = snd_soc_component_get_drvdata(comp);
+> 
+> Similarly here.
+> 
+This one was over done! its now removed in next version.
+
+>> +static int32_t wsa881x_resource_acquire(struct snd_soc_component *comp,
+>> +					bool enable)
+>> +{
+>> +	wsa881x_clk_ctrl(comp, enable);
+>> +	wsa881x_bandgap_ctrl(comp, enable);
+>> +
+>> +	return 0;
+>> +}
+> 
+> There's no corresponding disables.
+
+both wsa881x_clk_ctrl() and wsa881x_bandgap_ctrl() have corresponding 
+disables in that functions.
+
+thanks,
+srini
+> 
