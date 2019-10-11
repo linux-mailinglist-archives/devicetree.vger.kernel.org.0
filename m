@@ -2,155 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB8FBD3FFB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 750D7D4003
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728034AbfJKMy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 08:54:27 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:36526 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728033AbfJKMy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 08:54:26 -0400
-Received: by mail-ed1-f67.google.com with SMTP id h2so8594298edn.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 05:54:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VB5PXtky0g8ZyMip1yIij1zZJANnrDg5gXGmPu6B4XQ=;
-        b=muRCUkwo1/2MrQzLrtRl0Hlf8VJCnDG9vA6jfcTiMNpv+71sO66/XfcS9rCvk0RxJN
-         GaIL3Avc5HkSH/g0qJEUHGZGyCrkmfLfXb4XefICdXsdqrfZ0Hci5S6IQ01Nm9UzOyMk
-         WQuPZfPVENWSun0GXjvbUuyPdF+yRyA2rJu2LcquXpThyPfS49gSYJoeMo7XrptQZ5om
-         yIbEHS+d43zfauaZXzxNtu+ZiH2Vyn5fmHoVwZjqNxzl3lyyQLpIHjkKxl8qDg26qG6S
-         31hpoR2Ukyuts+0cFj2yAmoieYqDvzvoMQvrfimSYhY0E4bqDAJnsJ5B0i6tcXE9DfCF
-         ks5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VB5PXtky0g8ZyMip1yIij1zZJANnrDg5gXGmPu6B4XQ=;
-        b=oL/9inx8wwntHRZor+tllvnj6LqxRGS3GHVUj73rnR5Xs/f2wo58zpXh6yXvmlnLrO
-         RIk/28txcPo7SkvlycgBav6kfUnGVAjOdyzmSqYTlrWvZooxd8nQAFebeYS/4P9930j3
-         nJxtwmYmL/gGBseS1clqjiBSL61SslXbU7+FBNtkPB1Ltmi0KCWz6Tg1//n0tQUQGhb5
-         QJxE1XCTsJ5qiKHHe8k3WlutMyDHgqzWfTWNRUUlT2irXlU7OMJz/h5bLSBjU21pjFeZ
-         GOBN+E/+c0I2DK3uFezVChsLEqtbdDLeKzyYlUP1DVLQbHaSeCokGrMCXyLJ3AZoT66y
-         cvIA==
-X-Gm-Message-State: APjAAAU9LPMGuuREEvwvwtFN5MH/JJM6BfjGTlQ8Ivde9dn2/xyV6nTq
-        Fwq15GTR3H7OK2gWDPIIDQHlgeknHkZZqJh5j1AKBg==
-X-Google-Smtp-Source: APXvYqx/nJBk+Zxun6XQLRloac4RpzOQd//wxFc7fKDaL8kDgZn+RMal2maskvxPhw+k9dU6QT3ByfvsqfYuAKpCDlg=
-X-Received: by 2002:a17:906:519:: with SMTP id j25mr13561662eja.65.1570798464353;
- Fri, 11 Oct 2019 05:54:24 -0700 (PDT)
+        id S1727909AbfJKM4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 08:56:31 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:35518 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727589AbfJKM4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 08:56:31 -0400
+Received: from dhcp-172-31-174-146.wireless.concordia.ca (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B259C290FCB;
+        Fri, 11 Oct 2019 13:56:28 +0100 (BST)
+Date:   Fri, 11 Oct 2019 14:56:25 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [RESEND PATCH v2 2/4] media: dt-bindings: rockchip: Document
+ RK3399 Video Decoder bindings
+Message-ID: <20191011145625.694238b1@dhcp-172-31-174-146.wireless.concordia.ca>
+In-Reply-To: <CAL_JsqL_6xPyb4kTDR3dbLc4Uptwox=1F4zaGjHVmahNyk25=w@mail.gmail.com>
+References: <20191011093342.3471-1-boris.brezillon@collabora.com>
+        <20191011093342.3471-3-boris.brezillon@collabora.com>
+        <CAL_JsqL_6xPyb4kTDR3dbLc4Uptwox=1F4zaGjHVmahNyk25=w@mail.gmail.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <1544634806-1037-1-git-send-email-loic.poulain@linaro.org>
- <8c92dc30-cfbe-00e2-ae70-243455549ecd@codeaurora.org> <CAMZdPi8-9d11FXKJinpJkJyhi8fcysbYVDjG8aDwbY3s=mLarw@mail.gmail.com>
- <aea60b4c-f651-5e5a-c363-f7da9a8ed838@codeaurora.org> <CAD=FV=WeS5h6SEe01ey8zEOs=1DqO5-31iZWazARtrp4xM3wkA@mail.gmail.com>
-In-Reply-To: <CAD=FV=WeS5h6SEe01ey8zEOs=1DqO5-31iZWazARtrp4xM3wkA@mail.gmail.com>
-From:   Loic Poulain <loic.poulain@linaro.org>
-Date:   Fri, 11 Oct 2019 14:55:48 +0200
-Message-ID: <CAMZdPi8VpY82JWT1pstsgPV=P3ZuXnX7P=oTdTVJGdYr+DzBKA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: apq8096-db820c: Increase load on l21 for SDCARD
-To:     Doug Anderson <dianders@chromium.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     jhugo@codeaurora.org, David Brown <david.brown@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Paolo Pisati <p.pisati@gmail.com>,
-        Brian Masney <masneyb@onstation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy, Rob,
+On Fri, 11 Oct 2019 07:50:16 -0500
+Rob Herring <robh+dt@kernel.org> wrote:
 
-Could any of you take this patch?
+> On Fri, Oct 11, 2019 at 4:33 AM Boris Brezillon
+> <boris.brezillon@collabora.com> wrote:
+> >
+> > Document the Rockchip RK3399 Video Decoder bindings.  
+> 
+> You need some more headers for the example (or drop defines):
+> 
+> Error: Documentation/devicetree/bindings/media/rockchip,vdec.example.dts:23.28-29
+> syntax error
+> FATAL ERROR: Unable to parse input tree
+> scripts/Makefile.lib:321: recipe for target
+> 'Documentation/devicetree/bindings/media/rockchip,vdec.example.dt.yaml'
+> failed
+> make[1]: *** [Documentation/devicetree/bindings/media/rockchip,vdec.example.dt.yaml]
+> Error 1
+> Makefile:1282: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
 
-On Thu, 13 Dec 2018 at 20:14, Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Thu, Dec 13, 2018 at 6:46 AM Jeffrey Hugo <jhugo@codeaurora.org> wrote:
+Will fix that. BTW, I tried running make dtbs_check and faced a few
+errors on other yaml files (which is why I ended up sending the patch
+without fully validating the schema). Maybe those have been fixed (I'm
+based on the media tree which is based on 5.4-rc1).
+
+Oh, and I also noticed that the generated example has
+#address-cells = <1>, #size-cells = <1> in the parent node, while my
+example expects <2>. Is there any way I can specify that somewhere, or
+should I just tweak the example to use 1 cell instead?
+
+> 
 > >
-> > On 12/13/2018 12:55 AM, Loic Poulain wrote:
-> > > Hi Jeffrey,
-> > >
-> > >
-> > > On Wed, 12 Dec 2018 at 18:23, Jeffrey Hugo <jhugo@codeaurora.org
-> > > <mailto:jhugo@codeaurora.org>> wrote:
-> > >
-> > >     On 12/12/2018 10:13 AM, Loic Poulain wrote:
-> > >      > In the same way as for msm8974-hammerhead, l21 load, used for SDCARD
-> > >      > VMMC, needs to be increased in order to prevent any voltage drop
-> > >     issues
-> > >      > (due to limited current) happening with some SDCARDS or during
-> > >     specific
-> > >      > operations (e.g. write).
-> > >      >
-> > >      > Fixes: 660a9763c6a9 (arm64: dts: qcom: db820c: Add pm8994
-> > >     regulator node)
-> > >      > Signed-off-by: Loic Poulain <loic.poulain@linaro.org
-> > >     <mailto:loic.poulain@linaro.org>>
-> > >      > ---
-> > >      >   arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 2 ++
-> > >      >   1 file changed, 2 insertions(+)
-> > >      >
-> > >      > diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-> > >     b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-> > >      > index 104cad9..c15e2c0 100644
-> > >      > --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-> > >      > +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-> > >      > @@ -634,6 +634,8 @@
-> > >      >                               l21 {
-> > >      >                                       regulator-min-microvolt =
-> > >     <2950000>;
-> > >      >                                       regulator-max-microvolt =
-> > >     <2950000>;
-> > >      > +                                     regulator-allow-set-load;
-> > >      > +                                     regulator-system-load =
-> > >     <200000>;
-> > >      >                               };
-> > >      >                               l22 {
-> > >      >                                       regulator-min-microvolt =
-> > >     <3300000>;
-> > >      >
-> > >
-> > >     I'm curious, why not update sdhci-msm to set the load on the regulator?
-> > >
-> > >
-> > > Yes you're right, and I saw that there is ongoing work:
-> > > https://patchwork.kernel.org/patch/10630731/
-> > >
-> > > Howerver I thought this change would be a quicker fix and easier to
-> > > backport in stable trees.
-> > > I assume all the device-tree vmmc loads will be removed at some point
-> > > when driven from sdhci.
-> > >
+> > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> > ---
+> >  .../bindings/media/rockchip,vdec.yaml         | 71 +++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/rockchip,vdec.yaml
 > >
-> > I hadn't seen that.  Ok, seems good to me.
->
-> NOTE: I'm personally not convinced that adding the "set_load" calls
-> into the SDHCI driver actually makes any sense.  I believe it adds
-> complexity for no benefit.  The only time you ever need to should ever
-> be fiddling with "set_load" calls is if the rail you're controlling
-> has some hope of being able to run at a lower power mode.  If there's
-> no hope of it being at a lower power mode then the constraints on the
-> rail should just force it to high power mode and be done with it.  The
-> patch here (using regulator-system-load) is one way to force it to a
-> high power mode and seems fine, but there are other ways.  See a
-> previous discussion [1].
->
-> NOTE: IIRC the "ongoing work" patch you pointed at always sets the
-> load to a fixed level to turn it to "high power mode" when the
-> regulator is turned on and undoes that set_load when the regulator is
-> turned off.  That's no longer needed as of commit 5451781dadf8
-> ("regulator: core: Only count load for enabled consumers").  If
-> someone comes up with a case where it's useful to keep the SD card
-> rail turned on but in "low power mode" _then_ we should actually
-> consider adding set_load to the SD card driver.
->
-> [1] https://lkml.kernel.org/r/CAD=FV=V4WFYoKLQ72pico4HCGgLDTae7xougivv6VWOSoPhLpg@mail.gmail.com
->
-> -Doug
+> > diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> > new file mode 100644
+> > index 000000000000..7167c3d6a389
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> > @@ -0,0 +1,71 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/rockchip,vdec.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip Video Decoder (VDec) Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +description: |-
+> > +  The Rockchip rk3399 has a stateless Video Decoder that can decodes H.264,
+> > +  HEVC an VP9 streams.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: rockchip,rk3399-vdec
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: The Video Decoder AXI interface clock
+> > +      - description: The Video Decoder AHB interface clock
+> > +      - description: The Video Decoded CABAC clock
+> > +      - description: The Video Decoder core clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: aclk
+> > +      - const: iface
+> > +      - const: cabac
+> > +      - const: core
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - power-domains
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    vdec: video-codec@ff660000 {
+> > +        compatible = "rockchip,rk3399-vdec";
+> > +        reg = <0x0 0xff660000 0x0 0x400>;
+> > +        interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        clocks = <&cru ACLK_VDU>, <&cru HCLK_VDU>,
+> > +                 <&cru SCLK_VDU_CA>, <&cru SCLK_VDU_CORE>;
+> > +        clock-names = "aclk", "iface", "cabac", "core";
+> > +        power-domains = <&power RK3399_PD_VDU>;
+> > +        iommus = <&vdec_mmu>;
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.21.0
+> >  
+
