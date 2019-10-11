@@ -2,164 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1AEED45F8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C04D4609
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 19:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728167AbfJKQ7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 12:59:06 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:36602 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728612AbfJKQ7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 12:59:06 -0400
-Received: by mail-oi1-f196.google.com with SMTP id k20so8589164oih.3;
-        Fri, 11 Oct 2019 09:59:05 -0700 (PDT)
+        id S1728513AbfJKRBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 13:01:06 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40000 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726331AbfJKRBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 13:01:05 -0400
+Received: by mail-ot1-f67.google.com with SMTP id y39so8551661ota.7;
+        Fri, 11 Oct 2019 10:01:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=JhGLrgWEkIZakc7z6mle4kNOTxNYBaoXX/BZslqttWk=;
-        b=aojDdPASNz95kegtJHyvmfEcCgEPv27qrFEl++bZAmxG9SG3Y+aj5SwVKj7t8bnKCo
-         w96oFPK7h94bH5qSQy9YWbXvhGH671jpGH7BB+ZfCspcLkOoO7Rh/rcAYHy0b3EWXczj
-         0G6xWEKVY51lrwDZTkrEvgoB7qzI/Fj1hLrSLHP41xBj6hng4dDellswOylD1IQzTg4r
-         cw6t/a6T3TtuyPPbjxBp5GizMz79da1n0NjNGR1ayshPy0Sb7YnUKMgk8gygnRPILEn1
-         2cQUXBDS8KwjHQljZFp7GLmQ1fiHLZANYXCA3DlbAW8oT2WeYAQQyUm3vWHXC5nlOXeW
-         +Nzg==
-X-Gm-Message-State: APjAAAXXaqL+P7C0cLoDcP5UiPiwWNGpf23k3vScmJRAIQ1GD1we3ehx
-        FIlElzwMIchhndCPVK+C6nDC4Es=
-X-Google-Smtp-Source: APXvYqwxcjSJi9AwqWEM2jNGmHb3KGiPT1EzGP91cj4AzMBS/YxflJoHUJTZKCDBYH/6CNQLXRdk4A==
-X-Received: by 2002:aca:1b10:: with SMTP id b16mr13608317oib.110.1570813144498;
-        Fri, 11 Oct 2019 09:59:04 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=39fE6RD4L7ek9/ZP7eb4uAgC4lVSQDHBffdSIup/Xc0=;
+        b=uWrvKw8ik0tMq2wuXoBiCXwaRTFuvKz7eyfZRSQU52Rn/PDHoB3SjXjDs1LtJgtgFt
+         YZeKmf4Of+0f7k3mbIquBX1iHujiLQ7D4cVj0R8ItLreSUUZY6iCfMVctHckp9+NGUss
+         diNzwv3CEuQ+W0/o8XOPWuvPBPFz/3xjnAd69YYjL2XFF02HuOyb9sZssKgQEhwyU4nI
+         vZ+xlcvwCMv5UpSJLFNqGIuARobg5mjysvNVPNkYP5LOv6My7cRrYi0/7HlkYtJTrFPc
+         wK4Yn9dJ29YgsTN2lL7xUZLs+mfn8HvasWjSXtmAH6RxEQVJXmkcqqjJLRn1qq44NyAS
+         oYKA==
+X-Gm-Message-State: APjAAAVeMWPvMBXPZNWRxEaRwlo8WoG6D4k8k5V/NvKT09sJjlHlAaZ9
+        fTX7uEda4/1HROuVIGqylQ==
+X-Google-Smtp-Source: APXvYqwqGqT7uiHwhdBc7sqpGqwD6vjshKpmaDTSjaMTHJz7K2u/gcWBWDVEgXQTXZ2+vioVbwWrOg==
+X-Received: by 2002:a05:6830:119a:: with SMTP id u26mr13662087otq.166.1570813265021;
+        Fri, 11 Oct 2019 10:01:05 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 100sm2809407otl.48.2019.10.11.09.59.03
+        by smtp.gmail.com with ESMTPSA id 91sm2915769otn.36.2019.10.11.10.01.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 09:59:03 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 11:59:03 -0500
+        Fri, 11 Oct 2019 10:01:04 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 12:01:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: Add AXI FAN Control
- documentation
-Message-ID: <20191011165903.GA4337@bogus>
-References: <20191009102806.262241-1-nuno.sa@analog.com>
- <20191009102806.262241-2-nuno.sa@analog.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-clk@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, joel@jms.id.au, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add AST2500 RMII RCLK
+ definitions
+Message-ID: <20191011170103.GA14903@bogus>
+References: <20191010020655.3776-1-andrew@aj.id.au>
+ <20191010020655.3776-2-andrew@aj.id.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191009102806.262241-2-nuno.sa@analog.com>
+In-Reply-To: <20191010020655.3776-2-andrew@aj.id.au>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 09, 2019 at 12:28:06PM +0200, Nuno Sá wrote:
-> Document the AXI FAN Control IP core devicetree bindings.
+On Thu, 10 Oct 2019 12:36:54 +1030, Andrew Jeffery wrote:
+> The AST2500 has an explicit gate for the RMII RCLK for each of the two
+> MACs.
 > 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 > ---
-> Changes in v2:
->  * Set the correct license for new bindings;
->  * Fix wrong compatible in the example;
->  * Wrap long line;
->  * Update adi,pulses-per-revolution with accepted values.
+> v2: Drop "_GATE" from symbol names
 > 
->  .../bindings/hwmon/adi,axi-fan-control.yaml   | 62 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
+>  include/dt-bindings/clock/aspeed-clock.h | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml b/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
-> new file mode 100644
-> index 000000000000..dc82b9748c9d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2019 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bindings/hwmon/adi,axi-fan-control.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AXI FAN Control Device Tree Bindings
-> +
-> +maintainers:
-> +  - Nuno Sá <nuno.sa@analog.com>
-> +
-> +description: |+
-> +  Bindings for the Analog Devices AXI FAN Control driver. Spefications of the
-> +  core can be found in:
-> +
-> +  https://wiki.analog.com/resources/fpga/docs/axi_fan_control
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +        - adi,axi-fan-control-1.00.a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  adi,pulses-per-revolution:
 
-We already have 'pulses-per-revolution' in pwm-fan binding, so use that.
-
-With that changed,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +    description:
-> +      Value specifying the number of pulses per revolution of the controlled
-> +      FAN.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - interrupts
-> +  - adi,pulses-per-revolution
-> +
-> +examples:
-> +  - |
-> +    fpga_axi: fpga-axi@0 {
-> +            #address-cells = <0x2>;
-> +            #size-cells = <0x1>;
-> +
-> +            axi_fan_control: axi-fan-control@80000000 {
-> +                    compatible = "adi,axi-fan-control-1.00.a";
-> +                    reg = <0x0 0x80000000 0x10000>;
-> +                    clocks = <&clk 71>;
-> +                    interrupts = <0 110 0>;
-> +                    adi,pulses-per-revolution = <2>;
-> +            };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index caa80ae1925e..74ddcb3e1fd9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2879,6 +2879,7 @@ W:	http://ez.analog.com/community/linux-device-drivers
->  L:	linux-hwmon@vger.kernel.org
->  S:	Supported
->  F:	drivers/hwmon/axi-fan-control.c
-> +F:	Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
->  
->  AXXIA I2C CONTROLLER
->  M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> -- 
-> 2.23.0
-> 
+Acked-by: Rob Herring <robh@kernel.org>
