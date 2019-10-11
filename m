@@ -2,71 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5892FD42CA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7FF3D42D5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728195AbfJKO0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 10:26:23 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:42080 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728068AbfJKO0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:26:23 -0400
-Received: by mail-ot1-f66.google.com with SMTP id c10so8106237otd.9;
-        Fri, 11 Oct 2019 07:26:22 -0700 (PDT)
+        id S1728149AbfJKO3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 10:29:30 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:33032 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728123AbfJKO3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:29:30 -0400
+Received: by mail-oi1-f196.google.com with SMTP id a15so8175133oic.0;
+        Fri, 11 Oct 2019 07:29:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0sXP7aU6qKZTyZKXCQXYeDcKFa2nychpYgtG2BtNMcE=;
-        b=f5FFESqzYTK8dFMwevcKKjdoiHYy2OuFCRSnXA/HIdv9XUtk179xuUeFxhQ/M6ikhr
-         VY/39XvZmibQAoXzmfrholvuKG4t95MRbISaDo+BxPGqj2mlF8RVrPM0TMUiQ/g5sB8t
-         TwnCR9hlUEI3PS0/6/sGEUGuRkUy5y/cbJmJlr3XnnRJQcJ4oTHFrufIauDFuxbikBsp
-         iYrRtlaJfCoD5RLuz7TqM2h6JeJr3LgxeHTZBxHwjwjoxQWXmWuy9UaPIWh03ohLTOWj
-         BtF46gDr65k5vBO+fb8zaMUIpMGg4/nG8w4nrtSZSdNxvrO3nVYHi3r0l/ea26rjmSEf
-         WTCQ==
-X-Gm-Message-State: APjAAAV0G4rbYtb7njsvFmStfEkK6PFDuePvATjfvT1VKqW8yDIFWfK6
-        9J8iLlUQYDh1L4WSy75G8Q==
-X-Google-Smtp-Source: APXvYqzgN/fv6O0f3DUaNGIVyCz4N6l22G8C1+jX2gKw2dQJ11I1w+uXFqvbkbZLVrJUjhEeDCwV5w==
-X-Received: by 2002:a05:6830:1619:: with SMTP id g25mr12671280otr.195.1570803982282;
-        Fri, 11 Oct 2019 07:26:22 -0700 (PDT)
+        bh=0X1hghAJ29XYm0tUmf8FNz9k1l80AJy3GjZpN1F0pmk=;
+        b=OEMbkFELfvtuRGgRxO6eeL96TWbwmNCgZbCJdwCSc0kjIfiodGia26Oc+mE7TSih+o
+         nLqPcsnfsDhOY15z210OPQ4Za3l4SUcC6w5hTWCkfPz1WhFiYNG1ce1/o8FDD0fDH5VR
+         9YjUMDoMLTyqAA9vYV9b9WvqhAZxjO7fsEkkxfemDRWBNb34Ayn/ozqYd977L4fkl3/5
+         ufM2hcSn0JkdErS1YYrS0HSfAfY282nhVKKKSMhXHYNW0rInG/qg3+prQyaosBNt5r5a
+         5dLzVs5/DyEgy77Qo3FlKQBd9s+rQgnWLOs3SK2CQ4rXLeIgN7GBbnBR06Eyl25Zy3Ff
+         WJSA==
+X-Gm-Message-State: APjAAAVu3u0bDvIe/imacLndzHf6Pbh8+xptNAoiVFelu4CKKx/JRSR4
+        gXkkIF+tsuhTsUqfaz010IB2O/U=
+X-Google-Smtp-Source: APXvYqwui5azj5/LBQ8YN/5iqD8CTtMpoje9cQuqiYX5Z73OvIq4kjOYrUchjSr9TmslZtEYKMScBw==
+X-Received: by 2002:aca:36d5:: with SMTP id d204mr11992336oia.51.1570804168556;
+        Fri, 11 Oct 2019 07:29:28 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y18sm2621979oto.2.2019.10.11.07.26.21
+        by smtp.gmail.com with ESMTPSA id m14sm2629238otl.26.2019.10.11.07.29.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 07:26:21 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 09:26:20 -0500
+        Fri, 11 Oct 2019 07:29:27 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 09:29:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc:     catalin.marinas@arm.com, davem@davemloft.net,
-        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
-        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
-        wens@csie.org, will@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: Re: [PATCH v3 03/11] dt-bindings: crypto: Add DT bindings
- documentation for sun8i-ce Crypto Engine
-Message-ID: <20191011142620.GA11285@bogus>
-References: <20191010182328.15826-1-clabbe.montjoie@gmail.com>
- <20191010182328.15826-4-clabbe.montjoie@gmail.com>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
+        marex@denx.de, angus@akkea.ca, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        j.neuschaefer@gmx.net,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Subject: Re: [PATCH v3 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191011142927.GA11490@bogus>
+References: <20191010192357.27884-1-andreas@kemnade.info>
+ <20191010192357.27884-3-andreas@kemnade.info>
+ <20191011065609.6irap7elicatmsgg@pengutronix.de>
+ <20191011094148.1376430e@aktux>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191010182328.15826-4-clabbe.montjoie@gmail.com>
+In-Reply-To: <20191011094148.1376430e@aktux>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Oct 2019 20:23:20 +0200, Corentin Labbe wrote:
-> This patch adds documentation for Device-Tree bindings for the
-> Crypto Engine cryptographic accelerator driver.
+On Fri, Oct 11, 2019 at 09:41:48AM +0200, Andreas Kemnade wrote:
+> On Fri, 11 Oct 2019 08:56:09 +0200
+> Marco Felsch <m.felsch@pengutronix.de> wrote:
 > 
-> Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> ---
->  .../bindings/crypto/allwinner,sun8i-ce.yaml   | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
-> 
+> > Hi Andreas,
+> > 
+> > On 19-10-10 21:23, Andreas Kemnade wrote:
+> > > The Netronix board E60K02 can be found some several Ebook-Readers,
+> > > at least the Kobo Clara HD and the Tolino Shine 3. The board
+> > > is equipped with different SoCs requiring different pinmuxes.
+> > > 
+> > > For now the following peripherals are included:
+> > > - LED
+> > > - Power Key
+> > > - Cover (gpio via hall sensor)
+> > > - RC5T619 PMIC (the kernel misses support for rtc and charger
+> > >   subdevices).
+> > > - Backlight via lm3630a
+> > > - Wifi sdio chip detection (mmc-powerseq and stuff)
+> > > 
+> > > It is based on vendor kernel but heavily reworked due to many
+> > > changed bindings.
+> > > 
+> > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > > ---
+> > > Changes in v3:
+> > > - better led name
+> > > - correct memory size
+> > > - comments about missing devices
+> > > 
+> > > Changes in v2:
+> > > - reordered, was 1/3
+> > > - moved pinmuxes to their actual users, not the parents
+> > >   of them
+> > > - removed some already-disabled stuff
+> > > - minor cleanups  
+> > 
+> > You won't change the muxing, so a this dtsi can be self contained?
+> > 
+> So you want me to put a big 
+> #if defined(MX6SLL) 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Not sure what the comment meant, but no, don't do this. C defines in dts 
+files are for symbolic names for numbers and assembling bitfields and 
+that's it.
+
+> [...]
+>              pinctrl_i2c1: i2c1grp {
+>                         fsl,pins = <
+>                                 MX6SLL_PAD_I2C1_SCL__I2C1_SCL    0x4001f8b1
+>                                 MX6SLL_PAD_I2C1_SDA__I2C1_SDA    0x4001f8b1
+>                         >;
+>                 };
+> 
+> #elif (MX6SL)
+> [...]
+>                pinctrl_i2c1: i2c1grp {
+>                         fsl,pins = <
+>                                 MX6SL_PAD_I2C1_SCL__I2C1_SCL     0x4001f8b1
+>                                 MX6SL_PAD_I2C1_SDA__I2C1_SDA     0x4001f8b1
+>                         >;
+>                 };
+> 
+> #endif
+> in the dtsi?
+> 
+> Regards,
+> Andreas
