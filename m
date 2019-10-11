@@ -2,91 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5345BD435B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39689D4366
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbfJKOsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 10:48:15 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37773 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726174AbfJKOsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:48:15 -0400
-Received: by mail-ot1-f66.google.com with SMTP id k32so8181656otc.4;
-        Fri, 11 Oct 2019 07:48:13 -0700 (PDT)
+        id S1726328AbfJKOuo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Oct 2019 10:50:44 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:44204 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726174AbfJKOuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:50:44 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w6so8172950oie.11;
+        Fri, 11 Oct 2019 07:50:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9kELu6s8Xez72s7yjDEZd7hwsCCJDY4gV2VlEWP54QM=;
-        b=A1Omp0uwnI0AOwdEtOWKSx2b/m3irUctzOB+KNmI+BpLLDwsjBsXAAoO10lEF3RoeI
-         K1fWe0+CR7cCbhU+W9B38osApHFaPxAn2QM0PgbYmCB9Nz+Yxm4Scot09XlhC07B1esF
-         yxa6HcvvjJQNNhAjpYok7vnhHs0f4MqlEe/HS9MlC/bb/gj8qos40j80z5Wrd2zg2brz
-         ZlNbynBuZWvCHQ2ngWqTp3XLeLwSPLFin3MyLbuN8uaBKJ5iqbW1N9c2z9gFb+Dwd9Gh
-         1toC+3VGRw3PDpCV1QfPKDWyV0UZfLvdfFAO8rSR1A1oP5OSJZqu/hG9OuvnZ1HlAHvm
-         Xgig==
-X-Gm-Message-State: APjAAAVtup4jNyNKXEPgpTB8/EwfD3+xmianbBDKblgs0I/zAJ6S3dAs
-        YhOWzZ53pd12YJG6xmnwQw==
-X-Google-Smtp-Source: APXvYqxWiF9mlWpmhF4F7i28hJLZ1dDoTA6YcBMy+P+DctntpvAmW5FA4W9ZKMX5tPkbxHvi4IwDcw==
-X-Received: by 2002:a9d:6084:: with SMTP id m4mr11834429otj.18.1570805293419;
-        Fri, 11 Oct 2019 07:48:13 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=gryLhIXL4l6QqVF4jY3/Zduxk2LABaCpupxRbGKjliY=;
+        b=d30V+8FIO1t3w+baoSS+aweEqKKAmyJe75JDm0mJ2aXXlezDSHdW86uquvP77GpQXa
+         OPWPIrXiwOPfEWiHRf/2jHoi0jOB28bEHsvrslb4O95NquJap7+NzFTKACXx0C1tk7TT
+         ecRhLCn6jRzPIdBxpgwSyjtGM22E0HSrgCFyXmZdO2Qkaq2Wfz0TpfOAXm+TrqiHAvit
+         sPB4f0BE5pKULbBrNSVADwYGjR98gPgyCakcLdnORCuYh+StRMZ3ADIJAgV2t07hfkE2
+         YpHTT81Amy/sfXmDfgSNCadAi0MCJE2KYwVH8lWhWdyVp7QpHtXeneilE9gCPeM+4ANB
+         zveg==
+X-Gm-Message-State: APjAAAVvVuNppd4iASDcBNymVfFb3h0CS6nNhcb+x3UiqagPaHiufC2L
+        HTbzfLq5AZz9oMIiIRwdzXdmrks=
+X-Google-Smtp-Source: APXvYqw4tg27DOTO+ilupZjHUfUpz2Sf7rFACQOxDJK44IZFRl4/ElfBF+Wwbk3Nyc8kNUvRcmX/Yg==
+X-Received: by 2002:aca:abd2:: with SMTP id u201mr12259123oie.105.1570805443172;
+        Fri, 11 Oct 2019 07:50:43 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o184sm2694641oia.28.2019.10.11.07.48.12
+        by smtp.gmail.com with ESMTPSA id v7sm1182819oic.9.2019.10.11.07.50.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 07:48:12 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 09:48:12 -0500
+        Fri, 11 Oct 2019 07:50:42 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 09:50:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Jamie Lentin <jm@lentin.co.uk>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Igor Opaniuk <igor.opaniuk@toradex.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: power: reset: gpio-poweroff: Add
- 'force-mode' property
-Message-ID: <20191011144812.GA7239@bogus>
-References: <20190930141244.12311-1-oleksandr.suvorov@toradex.com>
- <20190930141244.12311-3-oleksandr.suvorov@toradex.com>
+To:     Laurentiu Palcu <laurentiu.palcu@nxp.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, agx@sigxcpu.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/5] dt-bindings: display: imx: add bindings for DCSS
+Message-ID: <20191011145042.GA15680@bogus>
+References: <1570025100-5634-1-git-send-email-laurentiu.palcu@nxp.com>
+ <1570025100-5634-5-git-send-email-laurentiu.palcu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190930141244.12311-3-oleksandr.suvorov@toradex.com>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <1570025100-5634-5-git-send-email-laurentiu.palcu@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 30, 2019 at 02:12:53PM +0000, Oleksandr Suvorov wrote:
-> Add 'force-mode' property to allow the driver to load even if
-> someone has registered the pm_power_off hook earlier.
-> 
-> Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-> 
-> ---
-> 
-> Changes in v2: None
-> 
->  .../devicetree/bindings/power/reset/gpio-poweroff.txt          | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-> index 3e56c1b34a4c..2056e299a472 100644
-> --- a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-> +++ b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-> @@ -31,6 +31,9 @@ Optional properties:
->  - inactive-delay-ms: Delay (default 100) to wait after driving gpio inactive
->  - timeout-ms: Time to wait before asserting a WARN_ON(1). If nothing is
->                specified, 3000 ms is used.
-> +- force-mode: Force replacing pm_power_off kernel hook.
-> +  If this optional property is not specified, the driver will fail to
-> +  load if someone has registered the pm_power_off hook earlier.
-
-What if the init order changes?
-
-This is too tied to a specific OS implementation to go in DT.
-
-Rob
+:u?wc??m5?^?㞾?}4-??z{b???r?+?׀u???ا????#????ek ?????W?J????^?(???h}??-??z{b???r?Z????+?jW.?\?oۊwb??v+)????l?b?&??,?&??ξ????????????????W???!jxw΢?ǫ?*'??+y?^??^?M:???r鞞֭???u??q?ky?ۊwb??v+)????l?b?&??,?&?????u????ޮ?????G???h
