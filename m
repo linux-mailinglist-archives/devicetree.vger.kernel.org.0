@@ -2,161 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1EB8D4ABD
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 01:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0200CD4AFF
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 01:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726391AbfJKXLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 19:11:52 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:52765 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726205AbfJKXLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 19:11:51 -0400
-Received: by mail-wm1-f66.google.com with SMTP id r19so11874327wmh.2;
-        Fri, 11 Oct 2019 16:11:49 -0700 (PDT)
+        id S1727402AbfJKXdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 19:33:43 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:35821 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726354AbfJKXdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 19:33:42 -0400
+Received: by mail-io1-f67.google.com with SMTP id q10so25060547iop.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 16:33:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=efzChAjcMaur2djFBEkzDqpom0P+h83judE3v1QU4iE=;
-        b=lrIhgvC+pK3qA2WuAMziOUN1IkKa3wseK8E/+LSHYj8E/9F1VYPZLrAIZWmO5q7IT8
-         JdEsa52gLUW3AJh2jupXhfitY21Sfc8lvLiM6pAdiz1BcasMewlLJL9sUy6BmKyGj2nL
-         +yN9YlTCVAzhGA6JyCq5pJtgsfc27kB/Pe+vc8RaYOWdb9Ao4Oy6brN6EWnVbg8wuxD+
-         KnnthSjC6EhicNSpOo3ijU5HtIOXmGor1f8FzGcqmnAW1KkA8eU/SRwRWtbxM7/oU2wK
-         ANs9JOEiIEGTfUIs9E3k1iXVKL5YEbyupmOE//lnVbDWBaBR0EN0NQF4mW4rctIPxv8I
-         0qLw==
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DhU8DoXtvT6nY6FZrwH3JiEC75JYN6COLoYwLtTluLM=;
+        b=aaqNIwa2wGY1EAmYaZGEK5+bBWU+p7RokpN7Vx7xVDmPhXie4/4Wp0GqYHK02GcUZ/
+         92v7PnnbqvMPyf2dFQ3IF8fuFP/CpjGgzlo3D3hZSlnFGxmSpcy7h73yLbnJ13kHfQTO
+         +Z1MCeEcsFcM8uGtlvpASDW3YnBJosUZyZWV2vuzKgu2cmNt5tn1/ERApMgD+lc/kleL
+         UwwXPK3DxtVKlmzSFFqWZ8BmglvOaqaOHuRt5zGmyYwOIVlYPmQTlqXsMCpmbsTDW13E
+         f6UN0eAn2e4PANpEzA4KshefB99HU6KF8ZqO6SIPJPV34Ibhg4WiRHGNJsQlBdDkkL26
+         ZvLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=efzChAjcMaur2djFBEkzDqpom0P+h83judE3v1QU4iE=;
-        b=NEBbrzA3hS/31+D4REWhNMzSEpmPxuzVrxKeBLI815QCCJ01GrTYS7LqMdPQVAW/AZ
-         unlcO3/iyCNNFBPE22G310Lqytf1oz1E69O8wRjP7mpFM0ThPje5Ifm6hLl7wMqksrRr
-         ZTUTF3DxIusXXR964LBON03ewlipU2vpglDGs/18aqdGTxB8nUJFQXbw15I6kN0G5mwb
-         LyYBOV7RTeb8BwRVQ8BMJCQGWtEHSFkP3X8DnIUeJfZ7Y+/I577BK203DXeLmgZPQ+xt
-         lMAXCGHi1VFpsHhxRyXJtEbh8xWnBHWEbusunHaVpPKAhFoenI6DFSJXd7UGrE931I8a
-         857Q==
-X-Gm-Message-State: APjAAAU1BfrBShE1yMt/JEveQU+jEaBx4zSDtpNUyvANQ6PqSxyuLSoN
-        JevdkNNpeM7TBag4s2RLW5fwDg/1
-X-Google-Smtp-Source: APXvYqwAWs6X8rDrgVPqyTjuyuiXiGYXu199wVSHYh9nHhjDLkdvVbEfciz8EBLe8DkZjRTCtXscSw==
-X-Received: by 2002:a05:600c:2214:: with SMTP id z20mr5177277wml.10.1570835508326;
-        Fri, 11 Oct 2019 16:11:48 -0700 (PDT)
-Received: from [10.67.50.53] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h17sm8297602wmb.33.2019.10.11.16.11.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 11 Oct 2019 16:11:47 -0700 (PDT)
-Subject: Re: [PATCH v1 3/3] ARM: dts: bcm2711: Enable GENET support for the
- RPi4
-To:     Stefan Wahren <wahrenst@gmx.net>, matthias.bgg@kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Eric Anholt <eric@anholt.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20191011184822.866-1-matthias.bgg@kernel.org>
- <20191011184822.866-4-matthias.bgg@kernel.org>
- <dfe9062b-1960-f67b-2a9e-864c0680f5d3@gmx.net>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <40970bd1-f461-ddde-aa51-346ad04240c9@gmail.com>
-Date:   Fri, 11 Oct 2019 16:11:36 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DhU8DoXtvT6nY6FZrwH3JiEC75JYN6COLoYwLtTluLM=;
+        b=UNBPghGj5Rj/9RWDPzvgOs+vmNUtbCSzWsHPXQP8OlHSyYnpejsntm4GyjsICQ/ZbD
+         Y6/DKN2lax8F7iWz+FnmPoSMdjdPYjLx1mnT8KBithr2hxOTVgzwrL1BEdVcsiVwWjcH
+         R2wNA3SP5IGS6xY8hOvR9qsU+Se8msc+hFiVtcOeEYVF9QPlVhRxFOaJrmANzvpSARx9
+         Ot4VB5dwJTRfxTJIdTXw2edFs/3lV+8lkXg9kszgIXtQ7Ey5a8Sqcdo1FhFyt+pupLyn
+         BFxiPhwcy5JKEUsHppKgXl7R7DfDwP/bBOsMhSZzcd1T9r1nEmmnVp6n5vD/2+dL8H7v
+         oQwg==
+X-Gm-Message-State: APjAAAWT8sLGuZn92sPCFLeTXorQIS7Uc/DDSNEiRIdLkqqdK+f+zLOa
+        /yc/CZmYhDY0D7eHEjDqiPFxIZnRw9XQ4eO9cC+26w==
+X-Google-Smtp-Source: APXvYqzW44dX95eCnEg2VO7DD/v5I6ZMqvXUqkxHcehC3uRrsssurGlQ19W/1llqjn1erhUcV0lTP4iDdXET9SSTeHE=
+X-Received: by 2002:a02:52c4:: with SMTP id d187mr21531168jab.127.1570836820066;
+ Fri, 11 Oct 2019 16:33:40 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <dfe9062b-1960-f67b-2a9e-864c0680f5d3@gmx.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20191010012523.14426-1-rjones@gateworks.com> <20191010175648.10830-1-rjones@gateworks.com>
+ <20191010175648.10830-2-rjones@gateworks.com> <20191011135811.GA23962@bogus>
+In-Reply-To: <20191011135811.GA23962@bogus>
+From:   Bobby Jones <rjones@gateworks.com>
+Date:   Fri, 11 Oct 2019 16:33:29 -0700
+Message-ID: <CALAE=UCcEd_pyjG+80EDBgGKsJfaCM0fvHAwEdnhf5G9-Ns+ig@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: add fxos8700 imu binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/19 4:09 PM, Stefan Wahren wrote:
-> Am 11.10.19 um 20:48 schrieb matthias.bgg@kernel.org:
->> From: Matthias Brugger <mbrugger@suse.com>
->>
->> Enable Gigabit Ethernet support on the Raspberry Pi 4
->> Model B.
-> 
-> I asked some questions about genet to the RPi guys [1] which are
-> relevant to this patch (missing clocks and interrupt, MAC address
-> assignment) but i didn't get an answer yet.
-> 
-> During my tests with a similiar patch series i noticed that the driver
-> won't probe without a MAC address.
+On Fri, Oct 11, 2019 at 6:58 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Oct 10, 2019 at 10:56:47AM -0700, Robert Jones wrote:
+> > This adds documentation for the Freescale FXOS8700 Inertial Measurement Unit
+> > device-tree bindings.
+> >
+> > Signed-off-by: Robert Jones <rjones@gateworks.com>
+> > ---
+> >  .../devicetree/bindings/iio/imu/nxp,fxos8700.yaml  | 69 ++++++++++++++++++++++
+> >  1 file changed, 69 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
+> > new file mode 100644
+> > index 0000000..d33a1cc
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/imu/fxos8700.yaml#
+>
+> Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml: $id:
+> path/filename 'iio/imu/fxos8700.yaml' doesn't match actual filename
+>
+> Test your binding with 'make dt_binding_check'.
 
-Yes, that is true, we have an internal patch for that that we just
-recently did, let me submit it so this does not block you.
+Sorry about that, I had tried running that check previously but was
+struggling through some python environment/set-up problems.
+Additionally I did not realize that my path was incomplete until I
+read your github's readme line "Ensure ~/.local/bin is in the PATH". I
+don't utilize the python install on my machine frequently so I'm not
+sure if that should be obvious. It might be helpful to have that line
+in the Documentation/devicetree/writing-schema.md as well.
+Anyways I've got it running now.
 
-> 
-> How does it get into DT (via U-Boot)?
-> 
-> [1] -
-> https://github.com/raspberrypi/linux/issues/3101#issuecomment-534665860
-> 
+>
+>
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale FXOS8700 Inertial Measurement Unit
+> > +
+> > +maintainers:
+> > +  - Robert Jones <rjones@gateworks.com>
+> > +
+> > +description: |
+> > +  Accelerometer and magnetometer combo device with an i2c and SPI interface.
+> > +  https://www.nxp.com/products/sensors/motion-sensors/6-axis/digital-motion-sensor-3d-accelerometer-2g-4g-8g-plus-3d-magnetometer:FXOS8700CQ
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nxp,fxos8700
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 2
+> > +
+> > +  interrupt-names:
+> > +    maxItems: 2
+> > +    items:
+> > +      - const: INT1
+> > +      - const: INT2
+>
+> This doesn't match the example now. You need 'minItems: 1' if you need
+> to support 1 or 2 interrupts. If it can be either one, then you need:
+>
+> items:
+>   enum: [ INT1, INT2 ]
+I'm trying to compare against other .yaml examples in the tree but
+without scouring datasheets to find a device with similar interrupt
+capabilities I'm just guessing at how this should be defined.
+The device has 2 interrupt pins as you've read (INT1 and INT2), and
+0-2 of them can be used depending on what's been configured. Given
+what you've explained so far would this be the proper definition?:
+
+  interrupts:
+    minItems: 1
+    maxItems: 2
+
+  interrupt-names:
+    minItems: 1
+    maxItems: 2
+    items:
+      enum:
+        - INT1
+        - INT2
+
+Thanks
+
+>
+> > +
+> > +  drive-open-drain:
+> > +    type: boolean
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        fxos8700@1e {
+> > +          compatible = "nxp,fxos8700";
+> > +          reg = <0x1e>;
+> > +
+> > +          interrupt-parent = <&gpio2>;
+> > +          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
+> > +          interrupt-names = "INT1";
+> > +        };
+> > +    };
+> > +  - |
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        fxos8700@1e {
+> > +          compatible = "nxp,fxos8700";
+> > +          reg = <0x1e>;
+>
+> I guess you could have SPI chip select # 30...
+
+Absolutely, and definitely not a hasty copy and paste error :)
 
 
--- 
-Florian
+
+>
+> > +
+> > +          interrupt-parent = <&gpio2>;
+> > +          spi-max-frequency = <1000000>
+> > +          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
+> > +          interrupt-names = "INT1";
+> > +        };
+> > +    };
+> > --
+> > 2.9.2
+> >
