@@ -2,201 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 607CFD4812
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 21:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F6BED4818
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 21:02:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728748AbfJKTBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 15:01:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49930 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728738AbfJKTBa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 15:01:30 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D143621D71
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 19:01:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570820489;
-        bh=OXJpfC4PrKGIB0TVKIum4+UlgdgsdznVD/1erJWU1xY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Z2rNKddnpKvkbfZ6y3xl5CYbvxvVd8FMIAWU1m5ZgDfNeZyF3MdGUelY3cxAexea4
-         G7jM07raB4p1LS1DsaT8+1MbJOQXXAOQbTLg5+Lixm+sLnhNffS96OOLdo0TvCNrHF
-         fKOM4cHfyqVDc3jIJXCG1Sv/tCIeZtM7V7Gcs93g=
-Received: by mail-qk1-f180.google.com with SMTP id 201so9818771qkd.13
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 12:01:28 -0700 (PDT)
-X-Gm-Message-State: APjAAAUVdiYz/C/DxI3JO+RpGQP1P2WwuyMnzTxb4WzhvO8c+Lo7JkPv
-        noavzWzVvoXRyfgh7SyN4Ij1ZjDe9QH7dE3SQQ==
-X-Google-Smtp-Source: APXvYqw+m3BdPtQ5veiI0zXWmiSbx0T/kyJQQfEG9X2O2adiRL4KqiawWEpCpbUQXOUcM2fbKWxSpRszEnrF7v2Dmi0=
-X-Received: by 2002:a37:98c1:: with SMTP id a184mr16091935qke.119.1570820487882;
- Fri, 11 Oct 2019 12:01:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191010074234.7344-1-nuno.sa@analog.com> <20191010074234.7344-2-nuno.sa@analog.com>
- <20191010210850.GA20184@bogus>
-In-Reply-To: <20191010210850.GA20184@bogus>
+        id S1728845AbfJKTCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 15:02:36 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44903 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728794AbfJKTCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 15:02:35 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 21so8847237otj.11;
+        Fri, 11 Oct 2019 12:02:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P2ueQBERXk5fr1wrrlOV8NBXePtiEybTTsV17mCiemc=;
+        b=ped+7DktUS/9L7VGmiBfbYKDFuUwVmQNkJyYAPAB66WelZ54aJKPbFJnc492Zu55Hw
+         y00yvzH2OYn51P6e7A3DJ25HZqZT34TxQw5TH9z1tBn91gKACJAdXKanBkAeww5oBabi
+         y/+IRY9BOTpgre3OnOWPzATMvlX0OUJaKCyvoIYV9fj6Bmpep/k2dW+jnJWUOSwkwBx/
+         n3IWf/8T+lf8sQoZ+h7C67ElstHVZthp4oRByFkIXBmZYSQtezPntmmnkQgaHx3qhP2v
+         a91Eiswg06P+bTW3FPW1PkRMxy1ubf8JO+smo8iNuo0p0SlX5E+Yi0h5aq8P6pwKwa1h
+         Q+Dg==
+X-Gm-Message-State: APjAAAXYIByvxgBO+ru45RcPSntqUFOupq1aYq+WBRM4jYF9uJIDxKd9
+        LJ/0/JNxEnghUnq1mpr9tddlaSM=
+X-Google-Smtp-Source: APXvYqwquNB6ObuO6+tGfeRySv+8XLaUtmCr0BB4WEPkjBSqU+FHkYMoXG1mblknz/fetzKhXOdZAg==
+X-Received: by 2002:a05:6830:22e2:: with SMTP id t2mr13335511otc.164.1570820554135;
+        Fri, 11 Oct 2019 12:02:34 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id v7sm1403617oic.9.2019.10.11.12.02.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2019 12:02:32 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 11 Oct 2019 14:01:16 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJu06hW-VRGZ4nFx6TYtf3yVJezUVhCSyTjP+qPmG7+Gw@mail.gmail.com>
-Message-ID: <CAL_JsqJu06hW-VRGZ4nFx6TYtf3yVJezUVhCSyTjP+qPmG7+Gw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: asoc: Add ADAU7118 documentation
-To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Cc:     devicetree@vger.kernel.org,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Takashi Iwai <tiwai@suse.com>,
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org
+Subject: [PATCH] dt-bindings: Clean-up regulator '-supply' schemas
+Date:   Fri, 11 Oct 2019 14:02:31 -0500
+Message-Id: <20191011190231.9779-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 10, 2019 at 4:08 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Oct 10, 2019 at 09:42:34AM +0200, Nuno S=C3=A1 wrote:
-> > Document the ADAU7118 8 channel PDM to I2S/TDM converter devicetree
-> > bindings.
-> >
-> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > ---
-> > Changes in v2:
-> >  * List regulators as required;
-> >
-> > Changes in v3:
-> >  * Set the correct license for new bindings.
-> >
-> >  .../bindings/sound/adi,adau7118.yaml          | 90 +++++++++++++++++++
-> >  1 file changed, 90 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/adi,adau711=
-8.yaml
+Regulator '*-supply' properties are always a single phandle, so
+'maxItems: 1' or a $ref is not necessary. All that's needed is either
+'true' or an optional 'description'. Following this clean-up, the
+meta-schema will enforce this pattern.
 
-Looks like Mark already applied this. Please send a follow-up patch
-addressing my comments.
+There's one case in tree with 'innolux,n156bge-l21' having 2 phandles.
+This appears to be a mistake or abuse of simple-panel as it's 2 different
+voltage rails connected to 'power-supply'.
 
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml =
-b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
-> > new file mode 100644
-> > index 000000000000..cfcef602b3d9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
-> > @@ -0,0 +1,90 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/adi,adau7118.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +
-> > +title: Analog Devices ADAU7118 8 Channel PDM to I2S/TDM Converter
-> > +
-> > +maintainers:
-> > +  - Nuno S=C3=A1 <nuno.sa@analog.com>
-> > +
-> > +description: |
-> > +  Analog Devices ADAU7118 8 Channel PDM to I2S/TDM Converter over I2C =
-or HW
-> > +  standalone mode.
-> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/=
-ADAU7118.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,adau7118
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +
-> > +  IOVDD-supply:
->
-> Use lowercase please.
->
-> > +    description: Digital Input/Output Power Supply.
-> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
->
-> *-supply already has a type, so just a description is enough.
->
-> > +
-> > +  DVDD-supply:
-> > +    description: Internal Core Digital Power Supply.
-> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
->
-> Same here.
->
-> > +
-> > +  adi,decimation-ratio:
-> > +    description: |
-> > +      This property set's the decimation ratio of PDM to PCM audio dat=
-a.
-> > +    allOf:
-> > +      - $ref: /schemas/types.yaml#/definitions/uint32
-> > +      - enum: [64, 32, 16]
-> > +        default: 64
-> > +
-> > +  adi,pdm-clk-map:
-> > +    description: |
-> > +      The ADAU7118 has two PDM clocks for the four Inputs. Each input =
-must be
-> > +      assigned to one of these two clocks. This property set's the map=
-ping
-> > +      between the clocks and the inputs.
-> > +    allOf:
-> > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +      - minItems: 4
-> > +        maxItems: 4
-> > +        items:
-> > +          maximum: 1
-> > +        default: [0, 0, 1, 1]
-> > +
-> > +required:
-> > +  - "#sound-dai-cells"
-> > +  - compatible
-> > +  - IOVDD-supply
-> > +  - DVDD-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c0 {
->
-> i2c {
->
-> > +        /* example with i2c support */
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +        status =3D "okay";
->
-> Don't show status in examples.
->
-> > +        adau7118_codec: adau7118-codec@14 {
->
-> audio-codec@14
->
-> > +                compatible =3D "adi,adau7118";
-> > +                reg =3D <14>;
-> > +                #sound-dai-cells =3D <0>;
-> > +                status =3D "okay";
-> > +                IOVDD-supply =3D <&supply>;
-> > +                DVDD-supply =3D <&supply>;
-> > +                adi,pdm-clk-map =3D <1 1 0 0>;
-> > +                adi,decimation-ratio =3D <16>;
-> > +        };
-> > +    };
-> > +
-> > +    /* example with hw standalone mode */
-> > +    adau7118_codec_hw: adau7118-codec-hw {
-> > +            compatible =3D "adi,adau7118";
-> > +            #sound-dai-cells =3D <0>;
-> > +            status =3D "okay";
-> > +            IOVDD-supply =3D <&supply>;
-> > +            DVDD-supply =3D <&supply>;
-> > +    };
-> > --
-> > 2.23.0
-> >
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kishon Vijay Abraham I <kishon@ti.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: linux-iio@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml   | 2 --
+ Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml  | 3 +--
+ Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml  | 3 +--
+ Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml   | 3 +--
+ Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml    | 3 ---
+ Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml    | 5 +----
+ Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml    | 1 -
+ Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml    | 1 -
+ .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml      | 4 +---
+ .../devicetree/bindings/iio/chemical/plantower,pms7003.yaml  | 1 -
+ Documentation/devicetree/bindings/iio/pressure/bmp085.yaml   | 2 --
+ .../devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml | 1 -
+ .../devicetree/bindings/regulator/fixed-regulator.yaml       | 1 -
+ 13 files changed, 5 insertions(+), 25 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+index fb747682006d..0da42ab8fd3a 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+@@ -79,8 +79,6 @@ properties:
+ 
+   hdmi-supply:
+     description: phandle to an external 5V regulator to power the HDMI logic
+-    allOf:
+-      - $ref: /schemas/types.yaml#/definitions/phandle
+ 
+   port@0:
+     type: object
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+index 5f1fd6d7ee0f..e50a0cc78fff 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+@@ -37,8 +37,7 @@ properties:
+   clocks:
+     maxItems: 1
+ 
+-  mali-supply:
+-    maxItems: 1
++  mali-supply: true
+ 
+   operating-points-v2: true
+ 
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+index 47bc1ac36426..5c576e5019c6 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+@@ -69,8 +69,7 @@ properties:
+       - const: core
+       - const: bus
+ 
+-  mali-supply:
+-    maxItems: 1
++  mali-supply: true
+ 
+   resets:
+     minItems: 1
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
+index c5d93c5839d3..afde81be3c29 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
+@@ -97,8 +97,7 @@ properties:
+ 
+   memory-region: true
+ 
+-  mali-supply:
+-    maxItems: 1
++  mali-supply: true
+ 
+   power-domains:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+index 9692b7f719f5..e932d5aed02f 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+@@ -45,15 +45,12 @@ properties:
+ 
+   refin1-supply:
+     description: refin1 supply can be used as reference for conversion.
+-    maxItems: 1
+ 
+   refin2-supply:
+     description: refin2 supply can be used as reference for conversion.
+-    maxItems: 1
+ 
+   avdd-supply:
+     description: avdd supply can be used as reference for conversion.
+-    maxItems: 1
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+index cc544fdc38be..6eb33207a167 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+@@ -31,10 +31,7 @@ properties:
+ 
+   spi-cpha: true
+ 
+-  avcc-supply:
+-    description:
+-      Phandle to the Avcc power supply
+-    maxItems: 1
++  avcc-supply: true
+ 
+   interrupts:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
+index d1109416963c..9acde6d2e2d9 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
+@@ -39,7 +39,6 @@ properties:
+   avdd-supply:
+     description:
+       The regulator supply for the ADC reference voltage.
+-    maxItems: 1
+ 
+   powerdown-gpios:
+     description:
+diff --git a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+index d76ece97c76c..91ab9c842273 100644
+--- a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+@@ -41,7 +41,6 @@ properties:
+   avdd-supply:
+     description:
+       Definition of the regulator used as analog supply
+-    maxItems: 1
+ 
+   clock-frequency:
+     minimum: 20000
+diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+index b4c6c26681d9..9218b2efa62f 100644
+--- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+@@ -46,9 +46,7 @@ properties:
+   "#io-channel-cells":
+     const: 1
+ 
+-  vdd-supply:
+-    description: VDD input supply
+-    maxItems: 1
++  vdd-supply: true
+ 
+   samsung,syscon-phandle:
+     $ref: '/schemas/types.yaml#/definitions/phandle'
+diff --git a/Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml b/Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml
+index a551d3101f93..19e53930ebf6 100644
+--- a/Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml
++++ b/Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml
+@@ -25,7 +25,6 @@ properties:
+ 
+   vcc-supply:
+     description: regulator that provides power to the sensor
+-    maxItems: 1
+ 
+   plantower,set-gpios:
+     description: GPIO connected to the SET line
+diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+index c6721a7e8938..519137e5c170 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+@@ -28,12 +28,10 @@ properties:
+   vddd-supply:
+     description:
+       digital voltage regulator (see regulator/regulator.txt)
+-    maxItems: 1
+ 
+   vdda-supply:
+     description:
+       analog voltage regulator (see regulator/regulator.txt)
+-    maxItems: 1
+ 
+   reset-gpios:
+     description:
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+index 51254b4e65dd..57d8603076bd 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+@@ -36,7 +36,6 @@ properties:
+     const: 0
+ 
+   phy-supply:
+-     maxItems: 1
+      description:
+        Phandle to a regulator that provides power to the PHY. This
+        regulator will be managed during the PHY power on/off sequence.
+diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+index a78150c47aa2..e56d97b233f4 100644
+--- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+@@ -64,7 +64,6 @@ properties:
+ 
+   vin-supply:
+     description: Input supply phandle.
+-    $ref: /schemas/types.yaml#/definitions/phandle
+ 
+ required:
+   - compatible
+-- 
+2.20.1
+
