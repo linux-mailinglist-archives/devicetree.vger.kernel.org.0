@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F70AD47B7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 20:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DD6AD47E6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 20:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728829AbfJKSgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 14:36:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45598 "EHLO mail.kernel.org"
+        id S1728836AbfJKSsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 14:48:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47338 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728689AbfJKSgM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 14:36:12 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        id S1728835AbfJKSs3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 14:48:29 -0400
+Received: from ziggy.de (unknown [37.223.145.112])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2618B21D71;
-        Fri, 11 Oct 2019 18:36:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 337552089F;
+        Fri, 11 Oct 2019 18:48:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570818971;
-        bh=F0i5LImbPdwjKpMcjmA3DQC81Y38eji4C5T7CPPrp9o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mCZbRKIe425xYovveqmcmKyiTIqN18mCSZTPJZETib/w2adHOPdoPbKs5P29wVewb
-         LeJ3JbCNgIhirIlP4hEOBpsaW7PX2+oypz0kNsqV4OpqVQd6sagxBlRcBQWmjrlyl/
-         uuOqYFNbUnXMxfrxp6mFtNSGU0Mxj7hystNB2hTE=
-Received: by mail-qk1-f182.google.com with SMTP id p10so9774108qkg.8;
-        Fri, 11 Oct 2019 11:36:11 -0700 (PDT)
-X-Gm-Message-State: APjAAAU28GGG+xqiJA31uVhHGIz+eFP0jdipaM3kb9KjCXV0YvTDhGhY
-        J5VSI+MxlCLyxHZXynNOXW1s13sBPTiXPaeoBQ==
-X-Google-Smtp-Source: APXvYqxMfo6sVYSlq8G32z26ni82A0D4JhoieTjEs0ZK/Y/KBIZd4wZ4PlAcMe6QhlpPLn6YsXah1p9yBvfHROhUg0k=
-X-Received: by 2002:a37:98c1:: with SMTP id a184mr15988314qke.119.1570818970225;
- Fri, 11 Oct 2019 11:36:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191002152125.16227-1-benjamin.gaignard@st.com>
-In-Reply-To: <20191002152125.16227-1-benjamin.gaignard@st.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 11 Oct 2019 13:35:59 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKWrJjaoHWBrEJuA0qQ2tOzNuzGO6OCtH_Ccmfw89K8QQ@mail.gmail.com>
-Message-ID: <CAL_JsqKWrJjaoHWBrEJuA0qQ2tOzNuzGO6OCtH_Ccmfw89K8QQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: thermal: Convert stm32 thermal bindings to json-schema
-To:     Benjamin Gaignard <benjamin.gaignard@st.com>
-Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        s=default; t=1570819709;
+        bh=8swxHPxXwsk63xATldrkBomTBYaZuw+x6D4lr+gw3V8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ISrrQafdLjqEAPF+R8koM/uakJvBlSuc24HmfYHMFOWl9AsNwJ5CB0u0jUyKxkUCO
+         ZNj8pxOddSj1gEOC8yASbtNrCLYTTicLccjtmnVNYzSHmAqk7gDJ97bIuqSv+jL6bL
+         24s7VtQk34AY+hD+h/PqnXNRQ8fLTgF3yxtmicnw=
+From:   matthias.bgg@kernel.org
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Matthias Brugger <matthias.bgg@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Doug Berger <opendmb@gmail.com>, Eric Anholt <eric@anholt.net>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH v1 0/3] This series adds ethernet support for RPi4.
+Date:   Fri, 11 Oct 2019 20:48:18 +0200
+Message-Id: <20191011184822.866-1-matthias.bgg@kernel.org>
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 2, 2019 at 10:21 AM Benjamin Gaignard
-<benjamin.gaignard@st.com> wrote:
->
-> Convert the STM32 thermal binding to DT schema format using json-schema
->
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> ---
->  .../bindings/thermal/st,stm32-thermal.yaml         | 74 ++++++++++++++++++++++
->  .../devicetree/bindings/thermal/stm32-thermal.txt  | 61 ------------------
->  2 files changed, 74 insertions(+), 61 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/thermal/st,stm32-thermal.yaml
->  delete mode 100644 Documentation/devicetree/bindings/thermal/stm32-thermal.txt
+From: Matthias Brugger <mbrugger@suse.com>
 
-Same comments on other conversions apply here.
+Raspberry Pi 4 uses the broadcom genet chip in version five.
+This chip has a dma controller integrated. Up to now the maximal
+burst size was hard-coded to 0x10. But it turns out that Raspberry Pi 4
+does only work with the smaller maximal burst size of 0x8.
+
+This series adds a new optional property to the driver, dma-burst-sz.
+The very same property is already used by another drivers in the kernel.
+
+
+Matthias Brugger (3):
+  dt-bindings: net: bcmgenet add property for max DMA burst size
+  net: bcmgenet: use optional max DMA burst size property
+  ARM: dts: bcm2711: Enable GENET support for the RPi4
+
+ .../devicetree/bindings/net/brcm,bcmgenet.txt |  2 ++
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         | 22 +++++++++++++++++++
+ arch/arm/boot/dts/bcm2711.dtsi                | 18 +++++++++++++++
+ .../net/ethernet/broadcom/genet/bcmgenet.c    | 13 +++++++++--
+ .../net/ethernet/broadcom/genet/bcmgenet.h    |  1 +
+ 5 files changed, 54 insertions(+), 2 deletions(-)
+
+-- 
+2.23.0
+
