@@ -2,163 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD44FD45E5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1AEED45F8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726728AbfJKQ4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 12:56:48 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:49749 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727149AbfJKQ4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 12:56:48 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iIyDW-00056W-7D; Fri, 11 Oct 2019 18:56:38 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iIyDR-0007Kv-OH; Fri, 11 Oct 2019 18:56:33 +0200
-Date:   Fri, 11 Oct 2019 18:56:33 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Rob Herring <robh@kernel.org>, mark.rutland@arm.com, marex@denx.de,
-        devicetree@vger.kernel.org, andrew.smirnov@gmail.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, angus@akkea.ca,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, manivannan.sadhasivam@linaro.org,
-        j.neuschaefer@gmx.net,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] ARM: dts: add Netronix E60K02 board common file
-Message-ID: <20191011165633.5ty3yux4ljrcycux@pengutronix.de>
-References: <20191010192357.27884-1-andreas@kemnade.info>
- <20191010192357.27884-3-andreas@kemnade.info>
- <20191011065609.6irap7elicatmsgg@pengutronix.de>
- <20191011094148.1376430e@aktux>
- <20191011142927.GA11490@bogus>
- <20191011170147.1b3c4b25@kemnade.info>
- <20191011152214.v6lq6itwf5lp6j7q@pengutronix.de>
- <20191011181938.185f2a00@kemnade.info>
+        id S1728167AbfJKQ7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 12:59:06 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36602 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728612AbfJKQ7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 12:59:06 -0400
+Received: by mail-oi1-f196.google.com with SMTP id k20so8589164oih.3;
+        Fri, 11 Oct 2019 09:59:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=JhGLrgWEkIZakc7z6mle4kNOTxNYBaoXX/BZslqttWk=;
+        b=aojDdPASNz95kegtJHyvmfEcCgEPv27qrFEl++bZAmxG9SG3Y+aj5SwVKj7t8bnKCo
+         w96oFPK7h94bH5qSQy9YWbXvhGH671jpGH7BB+ZfCspcLkOoO7Rh/rcAYHy0b3EWXczj
+         0G6xWEKVY51lrwDZTkrEvgoB7qzI/Fj1hLrSLHP41xBj6hng4dDellswOylD1IQzTg4r
+         cw6t/a6T3TtuyPPbjxBp5GizMz79da1n0NjNGR1ayshPy0Sb7YnUKMgk8gygnRPILEn1
+         2cQUXBDS8KwjHQljZFp7GLmQ1fiHLZANYXCA3DlbAW8oT2WeYAQQyUm3vWHXC5nlOXeW
+         +Nzg==
+X-Gm-Message-State: APjAAAXXaqL+P7C0cLoDcP5UiPiwWNGpf23k3vScmJRAIQ1GD1we3ehx
+        FIlElzwMIchhndCPVK+C6nDC4Es=
+X-Google-Smtp-Source: APXvYqwxcjSJi9AwqWEM2jNGmHb3KGiPT1EzGP91cj4AzMBS/YxflJoHUJTZKCDBYH/6CNQLXRdk4A==
+X-Received: by 2002:aca:1b10:: with SMTP id b16mr13608317oib.110.1570813144498;
+        Fri, 11 Oct 2019 09:59:04 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 100sm2809407otl.48.2019.10.11.09.59.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2019 09:59:03 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 11:59:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: Add AXI FAN Control
+ documentation
+Message-ID: <20191011165903.GA4337@bogus>
+References: <20191009102806.262241-1-nuno.sa@analog.com>
+ <20191009102806.262241-2-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20191011181938.185f2a00@kemnade.info>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 18:54:48 up 146 days, 23:12, 97 users,  load average: 0.08, 0.10,
- 0.02
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191009102806.262241-2-nuno.sa@analog.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-10-11 18:19, Andreas Kemnade wrote:
-> On Fri, 11 Oct 2019 17:22:14 +0200
-> Marco Felsch <m.felsch@pengutronix.de> wrote:
+On Wed, Oct 09, 2019 at 12:28:06PM +0200, Nuno Sá wrote:
+> Document the AXI FAN Control IP core devicetree bindings.
 > 
-> > On 19-10-11 17:05, Andreas Kemnade wrote:
-> > > On Fri, 11 Oct 2019 09:29:27 -0500
-> > > Rob Herring <robh@kernel.org> wrote:
-> > >   
-> > > > On Fri, Oct 11, 2019 at 09:41:48AM +0200, Andreas Kemnade wrote:  
-> > > > > On Fri, 11 Oct 2019 08:56:09 +0200
-> > > > > Marco Felsch <m.felsch@pengutronix.de> wrote:
-> > > > >     
-> > > > > > Hi Andreas,
-> > > > > > 
-> > > > > > On 19-10-10 21:23, Andreas Kemnade wrote:    
-> > > > > > > The Netronix board E60K02 can be found some several Ebook-Readers,
-> > > > > > > at least the Kobo Clara HD and the Tolino Shine 3. The board
-> > > > > > > is equipped with different SoCs requiring different pinmuxes.
-> > > > > > > 
-> > > > > > > For now the following peripherals are included:
-> > > > > > > - LED
-> > > > > > > - Power Key
-> > > > > > > - Cover (gpio via hall sensor)
-> > > > > > > - RC5T619 PMIC (the kernel misses support for rtc and charger
-> > > > > > >   subdevices).
-> > > > > > > - Backlight via lm3630a
-> > > > > > > - Wifi sdio chip detection (mmc-powerseq and stuff)
-> > > > > > > 
-> > > > > > > It is based on vendor kernel but heavily reworked due to many
-> > > > > > > changed bindings.
-> > > > > > > 
-> > > > > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > > > > > > ---
-> > > > > > > Changes in v3:
-> > > > > > > - better led name
-> > > > > > > - correct memory size
-> > > > > > > - comments about missing devices
-> > > > > > > 
-> > > > > > > Changes in v2:
-> > > > > > > - reordered, was 1/3
-> > > > > > > - moved pinmuxes to their actual users, not the parents
-> > > > > > >   of them
-> > > > > > > - removed some already-disabled stuff
-> > > > > > > - minor cleanups      
-> > > > > > 
-> > > > > > You won't change the muxing, so a this dtsi can be self contained?
-> > > > > >     
-> > > > > So you want me to put a big 
-> > > > > #if defined(MX6SLL)     
-> > > > 
-> > > > Not sure what the comment meant, but no, don't do this. C defines in dts 
-> > > > files are for symbolic names for numbers and assembling bitfields and 
-> > > > that's it.  
-> > > 
-> > > yes, that is also my opinion. For now, there is only one user
-> > > of this .dtsi, but I have another one in preparation. That is the
-> > > reason for splitting things between .dts and .dtsi to avoid such ugly
-> > > ifdefs  
-> > 
-> > Then IMHO the pnictrl-* entries shouldn't appear in the dsti.
-> > 
-> hmm, maybe now I understand your idea:
-> You do not want only to have
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+> Changes in v2:
+>  * Set the correct license for new bindings;
+>  * Fix wrong compatible in the example;
+>  * Wrap long line;
+>  * Update adi,pulses-per-revolution with accepted values.
 > 
->   pinctrl_lm3630a_bl_gpio: lm3630a_bl_gpio_grp {
->                         fsl,pins = <
->                                 MX6SLL_PAD_EPDC_PWR_CTRL3__GPIO2_IO10   0x10059 /* HWEN */
->                         >;
->                 };
-> in dts, but also  do not have these in .dtsi:
+>  .../bindings/hwmon/adi,axi-fan-control.yaml   | 62 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
 > 
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&pinctrl_lm3630a_bl_gpio>;
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml b/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
+> new file mode 100644
+> index 000000000000..dc82b9748c9d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2019 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bindings/hwmon/adi,axi-fan-control.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AXI FAN Control Device Tree Bindings
+> +
+> +maintainers:
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description: |+
+> +  Bindings for the Analog Devices AXI FAN Control driver. Spefications of the
+> +  core can be found in:
+> +
+> +  https://wiki.analog.com/resources/fpga/docs/axi_fan_control
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +        - adi,axi-fan-control-1.00.a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  adi,pulses-per-revolution:
+
+We already have 'pulses-per-revolution' in pwm-fan binding, so use that.
+
+With that changed,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +    description:
+> +      Value specifying the number of pulses per revolution of the controlled
+> +      FAN.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +  - adi,pulses-per-revolution
+> +
+> +examples:
+> +  - |
+> +    fpga_axi: fpga-axi@0 {
+> +            #address-cells = <0x2>;
+> +            #size-cells = <0x1>;
+> +
+> +            axi_fan_control: axi-fan-control@80000000 {
+> +                    compatible = "adi,axi-fan-control-1.00.a";
+> +                    reg = <0x0 0x80000000 0x10000>;
+> +                    clocks = <&clk 71>;
+> +                    interrupts = <0 110 0>;
+> +                    adi,pulses-per-revolution = <2>;
+> +            };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index caa80ae1925e..74ddcb3e1fd9 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2879,6 +2879,7 @@ W:	http://ez.analog.com/community/linux-device-drivers
+>  L:	linux-hwmon@vger.kernel.org
+>  S:	Supported
+>  F:	drivers/hwmon/axi-fan-control.c
+> +F:	Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
+>  
+>  AXXIA I2C CONTROLLER
+>  M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> -- 
+> 2.23.0
 > 
-> and instead have in dts:
-> &lm3630a {
->  	pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_lm3630a_bl_gpio>;
-> 	
-> };
-> 
-> 
-> just to make sure I get it right before doing the restructuring work. That way of structuring things did not come to my mind, but then the .dtsi is self-contained.
-
-That is what I mean but wait for Shawn's comments. It's just my opinion
-that .dtsi and .dts files should be self-contained.
-
-Regards,
-  Marco
-
-> Regards,
-> Andreas
-
-
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
