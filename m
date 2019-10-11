@@ -2,218 +2,462 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E305BD3884
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 06:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93C89D39B4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 08:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726331AbfJKEgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 00:36:05 -0400
-Received: from esa3.mentor.iphmx.com ([68.232.137.180]:38575 "EHLO
-        esa3.mentor.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726287AbfJKEgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 00:36:04 -0400
-IronPort-SDR: iVlrzN+VKJUeqhSSQd6h+wxxxhYuPypkSI5XzaHqboGMkylZV687lfiPEE+6Lv7aqarwyzE9Hj
- tx8/HuEpYskguIZDiwqPcc6Ys14I1ZntMXeM58Ff488RSK+Po+N3pOG5gFgT3XiDZB+R+9UyfG
- KPqqbK1hzvxyVrt9zbDf2uDdqSXeIvBVV45xDWQ0cNyJsdRB0S7cp+0+GC0WWuoiTIXaQ/4ytV
- oIFN0+DELo+l0hYFA5KC7icnE4d1A+IcPeqGkdn4z9tKYYhM8xZQeAwIKlQjXcgs+Kz1e8JcT6
- SEM=
-X-IronPort-AV: E=Sophos;i="5.67,282,1566892800"; 
-   d="scan'208";a="42159865"
-Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
-  by esa3.mentor.iphmx.com with ESMTP; 10 Oct 2019 20:36:03 -0800
-IronPort-SDR: LbjOkJh9wMIr7Xcr8xwLUnbbXl/W6ZlH/mmRqEsKHDj8z7+BkErU9DCCASaY4VLw5fUVw05wcP
- 6LUEfA6N/W7AnsBAxCUUqB5xsPc9wnZ9ZI5Fh4VKVsH9Fwow9sPIlmcyZbc+ANAVjJcAd6JAzY
- 57k+Jk00OsDR4XM7bN740ZmQWZ24oz33iz1Rd8f1A5cepwqHtYRjWKSr61UT+0AksaEyjCno+f
- aHU7e1044WXmUTlGtOGq5lC6NiVo5419Orv4jlDYrhcxeg49t/Rs3x/2V9vYpfdtEECcYCg7+D
- KU4=
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-CC:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Phil Reid <preid@electromag.com.au>,
-        Enrico Weigelt <info@metux.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <20190925165133.GA4164@vmlxhi-102.adit-jv.com>
- <CAMuHMdVt3yDiJzkbUGMdkKKd4+CJ0btWuO-J=YZL+pAo99_WXg@mail.gmail.com>
- <20191005130740.GA22620@x230>
- <CAMuHMdViwrqg48t2Pc2JtZKLGzLPy0cVfzcnqctGo9oaDpC9Wg@mail.gmail.com>
-From:   Harish Jenny K N <harish_kandiga@mentor.com>
-Message-ID: <89ddaab4-fb5f-8df2-c691-87cc0b1503d0@mentor.com>
-Date:   Fri, 11 Oct 2019 10:05:40 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726679AbfJKG4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 02:56:22 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:59235 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726481AbfJKG4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 02:56:22 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iIoqS-0005wk-Fx; Fri, 11 Oct 2019 08:56:12 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iIoqP-0003n4-4k; Fri, 11 Oct 2019 08:56:09 +0200
+Date:   Fri, 11 Oct 2019 08:56:09 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Subject: Re: [PATCH v3 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191011065609.6irap7elicatmsgg@pengutronix.de>
+References: <20191010192357.27884-1-andreas@kemnade.info>
+ <20191010192357.27884-3-andreas@kemnade.info>
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdViwrqg48t2Pc2JtZKLGzLPy0cVfzcnqctGo9oaDpC9Wg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: SVR-IES-MBX-08.mgc.mentorg.com (139.181.222.8) To
- svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191010192357.27884-3-andreas@kemnade.info>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:54:01 up 146 days, 13:12, 99 users,  load average: 0.06, 0.04,
+ 0.03
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Andreas,
 
+On 19-10-10 21:23, Andreas Kemnade wrote:
+> The Netronix board E60K02 can be found some several Ebook-Readers,
+> at least the Kobo Clara HD and the Tolino Shine 3. The board
+> is equipped with different SoCs requiring different pinmuxes.
+> 
+> For now the following peripherals are included:
+> - LED
+> - Power Key
+> - Cover (gpio via hall sensor)
+> - RC5T619 PMIC (the kernel misses support for rtc and charger
+>   subdevices).
+> - Backlight via lm3630a
+> - Wifi sdio chip detection (mmc-powerseq and stuff)
+> 
+> It is based on vendor kernel but heavily reworked due to many
+> changed bindings.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+> Changes in v3:
+> - better led name
+> - correct memory size
+> - comments about missing devices
+> 
+> Changes in v2:
+> - reordered, was 1/3
+> - moved pinmuxes to their actual users, not the parents
+>   of them
+> - removed some already-disabled stuff
+> - minor cleanups
 
-On 07/10/19 1:48 PM, Geert Uytterhoeven wrote:
-> Hi Eugeniu,
->
-> On Sat, Oct 5, 2019 at 3:08 PM Eugeniu Rosca <roscaeugeniu@gmail.com> wrote:
->> On Fri, Sep 27, 2019 at 11:07:20AM +0200, Geert Uytterhoeven wrote:
->>> My standard reply would be: describe the device connected to the GPIO(s)
->>> in DT.  The GPIO line polarities are specified in the device's "gpios"
->>> properties.
->>> Next step would be to use the device from Linux.  For that to work, you
->>> need a dedicated driver (for the complex case), or something generic
->>> (for the simple case).
->>> The latter is not unlike e.g. spidev.  Once you have a generic driver,
->>> you can use "driver_override" in sysfs to bind the generic driver to
->>> your device.  See e.g. commit 5039563e7c25eccd ("spi: Add
->>> driver_override SPI device attribute").
->> We have passed your suggestions along. Many thanks.
->>
->>> Currently we don't have a "generic" driver for GPIOs. We do have the
->>> GPIO chardev interface, which exports a full gpio_chip.
->>> It indeed looks like this "gpio-inverter" could be used as a generic
->>> driver.  But it is limited to GPIOs that are inverted, which rules out
->>> some use cases.
->>>
->>> So what about making it more generic, and dropping the "inverter" from
->>> its name, and the "inverted" from the "inverted-gpios" property? After
->>> all the inversion can be specified by the polarity of the GPIO cells in
->>> the "gpios" property, and the GPIO core will take care of it[*]?
->>> Which boils down to adding a simple DT interface to my gpio-aggregator
->>> ("[PATCH/RFC v2 0/5] gpio: Add GPIO Aggregator Driver",
->>>  https://lore.kernel.org/lkml/20190911143858.13024-1-geert+renesas@glider.be/).
->>> And now I have realized[*], we probably no longer need the GPIO
->>> Forwarder Helper, as there is no need to add inversion on top.
->> After having a look at the gpio aggregator (and giving it a try on
->> R-Car3 H3ULCB), here is how I interpret the above comment:
->>
->> If there is still a compelling reason for having gpio-inverter, then it
->> probably makes sense to strip it from its "inverter" function (hence,
->> transforming it into some kind of "repeater") on the basis that the
->> inverting function is more of a collateral/secondary feature, rather
->> than its primary one. Just like in the case of gpio aggregator, the
->> primary function of gpio inverter is to accept a bunch of GPIO lines and
->> to expose those via a dedicated gpiochip. I hope this is a proper
->> summary of the first point in your comment. In any case, this is the
->> understanding I get based on my experiments with both drivers.
-> Yes, the inverter is basically a "repeater" (or "aggregator", when it has
-> multiple GPIOs connected), hardcoded to invert.
->
->> What I also infer is that, assuming gpio-inverter will stay (potentially
->> renamed and stripped of its non-essential inverting function), the gpio
->> aggregator will need to keep its Forwarder Helper (supposed to act as a
->> common foundation for both drivers).
-> What I meant is that if the inverter and aggregator would be combinoed
-> into a single driver, there would no longer be a need[*] for a separate
-> helper, and it could be incorporated into the single driver.
->
-> [*] The individual helper functions may still be useful for some other
->      driver, though.
+You won't change the muxing, so a this dtsi can be self contained?
 
+Regards,
+  Marco
 
-Agree.
+> backligt dependencies:
+> module autoloading:
+> https://patchwork.kernel.org/patch/11139987/ 
+> enable-gpios property (accepted and acked):
+> https://patchwork.kernel.org/patch/11143795/
+> 
+>  arch/arm/boot/dts/e60k02.dtsi | 337 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 337 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/e60k02.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/e60k02.dtsi b/arch/arm/boot/dts/e60k02.dtsi
+> new file mode 100644
+> index 0000000000000..84c0447b9a1bd
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/e60k02.dtsi
+> @@ -0,0 +1,337 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2019 Andreas Kemnade
+> + * based on works
+> + * Copyright 2016 Freescale Semiconductor, Inc.
+> + * and
+> + * Copyright (C) 2014 Ricoh Electronic Devices Co., Ltd
+> + *
+> + * Netronix E60K02 board common.
+> + * This board is equipped with different SoCs and
+> + * found in ebook-readers like the Kobo Clara HD (with i.MX6SLL) and
+> + * the Tolino Shine 3 (with i.MX6SL)
+> + */
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +
+> +	chosen {
+> +		stdout-path = &uart1;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> +		power {
+> +			label = "Power";
+> +			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_POWER>;
+> +			gpio-key,wakeup;
+> +		};
+> +		cover {
+> +			label = "Cover";
+> +			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
+> +			linux,code = <SW_LID>;
+> +			linux,input-type = <EV_SW>;
+> +			gpio-key,wakeup;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_led>;
+> +
+> +		on {
+> +			label = "e60k02:white:on";
+> +			gpios = <&gpio5 7 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "timer";
+> +		};
+> +	};
+> +
+> +	memory {
+> +		reg = <0x80000000 0x20000000>;
+> +	};
+> +
+> +	reg_wifi: regulator-wifi {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_wifi_power>;
+> +		regulator-name = "SD3_SPWR";
+> +		regulator-min-microvolt = <3000000>;
+> +		regulator-max-microvolt = <3000000>;
+> +
+> +		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +	};
+> +
+> +	wifi_pwrseq: wifi_pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_wifi_reset>;
+> +		post-power-on-delay-ms = <20>;
+> +		reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +};
+> +
+> +
+> +&i2c1 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default","sleep";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	pinctrl-1 = <&pinctrl_i2c1_sleep>;
+> +	status = "okay";
+> +
+> +	lm3630a: backlight@36 {
+> +		reg = <0x36>;
+> +
+> +		compatible = "ti,lm3630a";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_lm3630a_bl_gpio>;
+> +		enable-gpios = <&gpio2 10 GPIO_ACTIVE_HIGH>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		led@0 {
+> +			reg = <0>;
+> +			led-sources = <0>;
+> +			label = "backlight_warm";
+> +			default-brightness = <0>;
+> +			max-brightness = <255>;
+> +		};
+> +
+> +		led@1 {
+> +			reg = <1>;
+> +			led-sources = <1>;
+> +			label = "backlight_cold";
+> +			default-brightness = <0>;
+> +			max-brightness = <255>;
+> +		};
+> +
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default","sleep";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	pinctrl-1 = <&pinctrl_i2c2_sleep>;
+> +	status = "okay";
+> +
+> +	/* TODO: CYTTSP5 touch controller at 0x24 */
+> +
+> +	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
+> +
+> +};
+> +
+> +&i2c3 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	ricoh619: pmic@32 {
+> +		compatible = "ricoh,rc5t619";
+> +		reg = <0x32>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_ricoh_gpio>;
+> +		system-power-controller;
+> +
+> +		regulators {
+> +			dcdc1_reg: DCDC1 {
+> +				regulator-name = "DCDC1";
+> +				regulator-min-microvolt = <300000>;
+> +				regulator-max-microvolt = <1875000>;
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt = <900000>;
+> +					regulator-suspend-min-microvolt = <900000>;
+> +				};
+> +			};
+> +
+> +			/* Core3_3V3 */
+> +			dcdc2_reg: DCDC2 {
+> +				regulator-name = "DCDC2";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt = <3300000>;
+> +					regulator-suspend-min-microvolt = <3300000>;
+> +				};
+> +			};
+> +
+> +			dcdc3_reg: DCDC3 {
+> +				regulator-name = "DCDC3";
+> +				regulator-min-microvolt = <300000>;
+> +				regulator-max-microvolt = <1875000>;
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt = <1140000>;
+> +					regulator-suspend-min-microvolt = <1140000>;
+> +				};
+> +			};
+> +
+> +			/* Core4_1V2 */
+> +			dcdc4_reg: DCDC4 {
+> +				regulator-name = "DCDC4";
+> +				regulator-min-microvolt = <1200000>;
+> +				regulator-max-microvolt = <1200000>;
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt = <1140000>;
+> +					regulator-suspend-min-microvolt = <1140000>;
+> +				};
+> +			};
+> +
+> +			/* Core4_1V8 */
+> +			dcdc5_reg: DCDC5 {
+> +				regulator-name = "DCDC5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt = <1700000>;
+> +					regulator-suspend-min-microvolt = <1700000>;
+> +				};
+> +			};
+> +
+> +			/* IR_3V3 */
+> +			ldo1_reg: LDO1  {
+> +				regulator-name = "LDO1";
+> +				regulator-boot-on;
+> +			};
+> +
+> +			/* Core1_3V3 */
+> +			ldo2_reg: LDO2  {
+> +				regulator-name = "LDO2";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-max-microvolt = <3000000>;
+> +					regulator-suspend-min-microvolt = <3000000>;
+> +				};
+> +			};
+> +
+> +			/* Core5_1V2 */
+> +			ldo3_reg: LDO3  {
+> +				regulator-name = "LDO3";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-boot-on;
+> +			};
+> +
+> +			/* SPD_3V3 */
+> +			ldo5_reg: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +			};
+> +
+> +			/* DDR_0V6 */
+> +			ldo6_reg: LDO6 {
+> +				regulator-name = "LDO6";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +			};
+> +
+> +			/* VDD_PWM */
+> +			ldo7_reg: LDO7 {
+> +				regulator-name = "LDO7";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +			};
+> +
+> +			/* ldo_1v8 */
+> +			ldo8_reg: LDO8 {
+> +				regulator-name = "LDO8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +			};
+> +
+> +			ldo9_reg: LDO9 {
+> +				regulator-name = "LDO9";
+> +				regulator-boot-on;
+> +			};
+> +
+> +			ldo10_reg: LDO10 {
+> +				regulator-name = "LDO10";
+> +				regulator-boot-on;
+> +			};
+> +
+> +			ldortc1_reg: LDORTC1  {
+> +				regulator-name = "LDORTC1";
+> +				regulator-boot-on;
+> +			};
+> +
+> +			ldortc2_reg: LDORTC2 {
+> +				regulator-name = "LDORTC2";
+> +				regulator-boot-on;
+> +			};
+> +		};
+> +
+> +	};
+> +
+> +};
+> +
+> +&snvs_rtc {
+> +	/* we are using the rtc in the pmic, not disabled imx6sll.dtsi */
+> +	status = "disabled";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc2 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz","sleep";
+> +	pinctrl-0 = <&pinctrl_usdhc2>;
+> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
+> +	pinctrl-3 = <&pinctrl_usdhc2_sleep>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc3 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz","sleep";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	pinctrl-3 = <&pinctrl_usdhc3_sleep>;
+> +	vmmc-supply = <&reg_wifi>;
+> +	mmc-pwrseq = <&wifi_pwrseq>;
+> +	cap-power-off-card;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg1 {
+> +	pinctrl-names = "default";
+> +	disable-over-current;
+> +	srp-disable;
+> +	hnp-disable;
+> +	adp-disable;
+> +	status = "okay";
+> +};
+> -- 
+> 2.20.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
-
->> The second point which I extract from your comment is that the "gpio
->> aggregator" could alternatively acquire the role of "gpio-inverter"
->> (hence superseding it) by adding a "simple DT interface". I actually
->> tend to like this proposal, since (as said above) both drivers are
->> essentially doing the same thing, i.e. they cluster a number of gpio
->> lines and expose this cluster as a new gpiochip (keeping the
->> reserved/used gpio lines on hold). That looks like a huge overlap in
->> the functionalities of the two drivers.
-> Yes, both drivers are very similar.  The difference lies in how they
-> acquire the list of GPIO descriptors.
-
-Yes. In fact my V2 version of the patch tried to implement the same role as repeater/forwarder albeit with a different naming/intention.
-
-Linus Walleij mentioned that using GPIO_ACTIVE_LOW just to get free inversion inside GPIOLIB was not OK really and this is a hardware description problem and totally different from the implementation problem inside the driver.
-
-Hence we changed the logic to inverter consumer driver doing inversion inside get and set functions.
-
->
->> The only difference which I see is that "gpio-inverter" is getting its
->> input from DT and generates the gpiochips at probe time, while
->> "gpio aggregator" is getting its input from sysfs and generates the
->> gpiochips at runtime, post-probe.
-> Exactly.
->
-> For my virtualization use case, I need to create the list of GPIO
-> descriptors at run-time, hence the sysfs interface. This is
-> polarity-agnostic (i.e. the end user needs to care about polarity).
->
-> For Harish use case, he needs to describe the list from DT, with
-> polarity inverted, which can be done by specifying the GPIO_ACTIVE_LOW
-> flag in the node's"gpios" property.
->
-> For your use case, you want to describe the list in DT, with line-names,
-> and polarity specified.
->
->> So, assuming no objections from Harish and other reviewers, I would be
->> very happy to review and test the DT-based gpio inversion functionality
->> as part of gpio aggregator. Thanks!
-
-
-I tested your aggregator driver with the below minor changes in gpio-aggregator (combined with some minor changes in GPIO forwarder) to get devicetree support.
-
-
-195,196d194
-<     int index = 0;
-<     int count;
-278,295d275
-<     count = gpiod_count(dev, NULL);
-<     if (count > 0) {
-<         while (index < count) {
-<             desc = devm_gpiod_get_index(dev, NULL, index, GPIOD_ASIS);
-<
-<             if (desc == ERR_PTR(-ENOENT))
-<                 return -EPROBE_DEFER;
-<
-<             if (IS_ERR(desc))
-<                 return PTR_ERR(desc);
-<
-<             error = add_gpio(dev, &descs, &n, desc);
-<             if (error)
-<                 return error;
-<             index++;
-<         }
-<     }
-<
-316,319d295
-< static const struct of_device_id gpio_aggregator_match[] = {
-<     { .compatible =    "gpio-aggregator", }, { },
-< };
-<
-326d301
-<         .of_match_table = of_match_ptr(gpio_aggregator_match),
-
-
-This does work and achieve our aim of inverter driver.
-
-Hence no objection from my side to merge the drivers. Please let me know if I need to send you a patch on top of your aggregator patch.
-
-Hoping to get some credits for my work of 5 months effort ! ;)
-
-
-Best Regards,
-
-Harish Jenny K N
-
-
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
