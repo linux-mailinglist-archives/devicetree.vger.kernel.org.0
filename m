@@ -2,141 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9B65D4125
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 15:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7552AD412C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 15:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727855AbfJKN3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 09:29:07 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:46716 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727589AbfJKN3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 09:29:07 -0400
-Received: by mail-oi1-f193.google.com with SMTP id k25so7944334oiw.13;
-        Fri, 11 Oct 2019 06:29:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=noJDdn0TxhdYjyfk41LUPauSPjsaXFCx0lOssfNVaEg=;
-        b=kqGLcntihVrD6oILZAgntsL4MBjDQKH85VEOIpzs32ot6wxpmcdsf/Ukk/Pc6T4HvL
-         iPn9cIsqyHvqE9sbdMZfPTDJKRxb3n5LvlBItRYeYyMwm/9ahbottk8gFwdiJXE9MwyJ
-         UuU3o9jkJNGOTEsMYrRbmpOaP+w3KPOrhLfkmYoj//rVGpWZPm4mt7BcN0+SHEv6rewW
-         0G4DxGtib0ba/SDHEgxB2qHnL7+7Md1xI4vQFbIgKoC5C7wsWEI7IkcdLuKjJa6Yn71G
-         CQcyPRssjXffJMNZdCsaUAsGpO2HHsC3QuxhZgTWu90WntFNTB3Jy2Zmt9KHbluHhlFE
-         1kMQ==
-X-Gm-Message-State: APjAAAV66l49wPeojBojrrTjU13pRelswTuyQ2Be0T8aSvFeiQOEJywm
-        nzBW7uQC+QxDqrNa/kvWzG7bxQ8=
-X-Google-Smtp-Source: APXvYqwKOk7arASTVemLrM2FAbjAq/ATjlhLgHDbKr9NhgryydYK8tSNhsrhwGk9cf1KW+MhSvvP8A==
-X-Received: by 2002:aca:4794:: with SMTP id u142mr12433837oia.159.1570800546341;
-        Fri, 11 Oct 2019 06:29:06 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 11sm2868239otg.62.2019.10.11.06.29.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 06:29:05 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 08:29:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Talel Shenhar <talel@amazon.com>
-Cc:     maz@kernel.org, mark.rutland@arm.com, arnd@arndb.de, bp@alien8.de,
-        mchehab@kernel.org, james.morse@arm.com, davem@davemloft.net,
-        gregkh@linuxfoundation.org, paulmck@linux.ibm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-edac@vger.kernel.org, dwmw@amazon.co.uk,
-        benh@kernel.crashing.org, hhhawa@amazon.com, ronenk@amazon.com,
-        jonnyc@amazon.com, hanochu@amazon.com, amirkl@amazon.com,
-        barakw@amazon.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: edac: al-mc-edac: Amazon's Annapurna
- Labs Memory Controller EDAC
-Message-ID: <20191011132904.GA15595@bogus>
-References: <1570708454-10784-1-git-send-email-talel@amazon.com>
- <1570708454-10784-2-git-send-email-talel@amazon.com>
+        id S1728462AbfJKN3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 09:29:46 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:39826 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728084AbfJKN3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 09:29:46 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 0C7CC60CEC; Fri, 11 Oct 2019 13:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570800585;
+        bh=EiKwHSUKsiWiPgzLbx9dlHgg4p/n/0K08eF4zyOdz3Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=On8aAXdMUAmGLZN9xDkKDWMVurA8De4UyAnP88mQCUhJrwg/s3dRzXWpo3PtOHgDj
+         rVY8jWpnDCha6xiYZC614Mwikegk5sO8C0p5yWJTbsyR3Vx4NLjgPdx9GWtwA+8ozu
+         Ryh6749jW3cmExUdLA3Xm/cowhQIdXIBsN6Xf7bg=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from govinds-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: govinds@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1EF1F60CEC;
+        Fri, 11 Oct 2019 13:29:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1570800584;
+        bh=EiKwHSUKsiWiPgzLbx9dlHgg4p/n/0K08eF4zyOdz3Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cqyi5D2vOYDfBeI8RdS7x/Xuw02YQqL8uq6QceJO48/rVPB2ZNsACm8Ba0FMMPdZG
+         KSSJulDzoNVz4mqYC3W4lhxdw19yglJ/6KFzCPI6erRCKFm93lb3J0uCktqoaNO9v7
+         GKLR0unUkZ2v1Avtd3whOcnxrAOFDt3KXI5z6rss=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1EF1F60CEC
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=govinds@codeaurora.org
+From:   Govind Singh <govinds@codeaurora.org>
+To:     robh@kernel.org, sboyd@kernel.org
+Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-soc@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        Govind Singh <govinds@codeaurora.org>
+Subject: [PATCH v4 0/2] Add Q6SSTOP clock controller for QCS404
+Date:   Fri, 11 Oct 2019 18:59:26 +0530
+Message-Id: <20191011132928.9388-1-govinds@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1570708454-10784-2-git-send-email-talel@amazon.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 10, 2019 at 02:54:13PM +0300, Talel Shenhar wrote:
-> Document Amazon's Annapurna Labs Memory Controller EDAC SoC binding.
-> 
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
-> ---
->  .../bindings/edac/amazon,al-mc-edac.yaml           | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
-> new file mode 100644
-> index 00000000..f66b094
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: GPL-2.0
+Add support for the Q6SSTOP clock control used on qcs404
+based devices. This would allow wcss remoteproc driver to
+control the required WCSS Q6SSTOP clock/reset controls to
+bring the subsystem out of reset and shutdown the WCSS Q6DSP.
 
-Forgot to mention, please make new bindings (GPL-2.0-only OR BSD-2-Clause).
+Changes in v4:
+    - changed binding doc license to (GPL-2.0-only OR BSD-2-Clause).
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/edac/amazon,al-mc-edac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amazon's Annapurna Labs Memory Controller EDAC
-> +
-> +maintainers:
-> +  - Talel Shenhar <talel@amazon.com>
-> +  - Talel Shenhar <talelshenhar@gmail.com>
-> +
-> +description: |
-> +  EDAC node is defined to describe on-chip error detection and correction for
-> +  Amazon's Annapurna Labs Memory Controller.
-> +
-> +properties:
-> +
-> +  compatible:
-> +    const: amazon,al-mc-edac
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +    items:
-> +      - description: uncorrectable error interrupt
-> +      - description: correctable error interrupt
-> +
-> +  interrupt-names:
-> +    maxItems: 2
-> +    items:
-> +      - const: ue
-> +      - const: ce
+Changes in v3:
+    - Fixed dt binding errors.
 
-Now the example fails to build:
+Changes in v2:
+    - changed binding doc to yaml format.
+    - Fixed alignment in q6sstop cc driver.
 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.example.dt.yaml: 
-edac@f0080000: interrupt-names: ['ue'] is too short
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/edac/amazon,al-mc-edac.example.dt.yaml: 
-edac@f0080000: interrupts: [[20, 4]] is too short
+Govind Singh (2):
+  dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock controller bindings
+  clk: qcom: Add Q6SSTOP clock controller for QCS404
 
-You either need to always have the CE irq or add 'minItems: 1' to both. 
+ .../bindings/clock/qcom,q6sstopcc.yaml        |  43 ++++
+ drivers/clk/qcom/Kconfig                      |   8 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/q6sstop-qcs404.c             | 223 ++++++++++++++++++
+ .../dt-bindings/clock/qcom,q6sstopcc-qcs404.h |  18 ++
+ 5 files changed, 293 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+ create mode 100644 drivers/clk/qcom/q6sstop-qcs404.c
+ create mode 100644 include/dt-bindings/clock/qcom,q6sstopcc-qcs404.h
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    edac@f0080000 {
-> +      compatible = "amazon,al-mc-edac";
-> +      reg = <0x0 0xf0080000 0x0 0x00010000>;
-> +      interrupt-parent = <&amazon_al_system_fabric>;
-> +      interrupt-names = "ue";
-> +      interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> -- 
-> 2.7.4
-> 
+-- 
+2.22.0
+
