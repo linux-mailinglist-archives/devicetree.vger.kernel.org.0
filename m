@@ -2,111 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1083ED3D56
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 12:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 742AAD3D6C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 12:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727236AbfJKK2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 06:28:24 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:49134 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726869AbfJKK2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 06:28:23 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 0487060F37; Fri, 11 Oct 2019 10:28:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570789702;
-        bh=o7sRI5k365dR5XmrQKMQ1PnIHDR0knJ4nKOksc1JaTA=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ffak985Fp7BSbad9dg/e+6GlJrzkNiqq+q8avsY5/jkZ/u5jAc0ZExRui/hJHON8P
-         RmDFnTRHq5RPMVhBjp7Zn5FKUJxQ0YhokXNBfXuQRIIMLbDY+hHfKmNbYD8+JD4VFn
-         ctiZkdGvgr+vHdD6pKnVjWXeFwi5AigcYrCz24LE=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.206.28.9] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BC27760F37;
-        Fri, 11 Oct 2019 10:28:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1570789700;
-        bh=o7sRI5k365dR5XmrQKMQ1PnIHDR0knJ4nKOksc1JaTA=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=WElkEaJmeNpCsqzDOa4da/turGp2HNilPBu5PM8bJGNaFlNb0KmC6pAvYRK2HDzUl
-         X64O6IR8InOWhqhB7xTFzAiejDHuK0nSi1KSCQ8mHsLvT+2+BP9ZkdUuuGy/XUTz64
-         GkQAcvTM9osdVIR1Thz6J4Jru6mT18n8gizg2vGs=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BC27760F37
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-Subject: Re: [PATCH v3 3/3] clk: qcom: Add Global Clock controller (GCC)
- driver for SC7180
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>, robh+dt@kernel.org
-Cc:     David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20190918095018.17979-1-tdas@codeaurora.org>
- <347780b9-c66b-01c4-b547-b03de2cf3078@codeaurora.org>
- <20190925130346.42E0820640@mail.kernel.org>
- <35f8b699-6ff7-9104-5e3d-ef4ee8635832@codeaurora.org>
- <20191001143825.CD3212054F@mail.kernel.org>
- <7ac5f6bf-33c5-580e-bd40-e82f3052d460@codeaurora.org>
- <20191003160130.5A19B222D0@mail.kernel.org>
- <81a2fa46-a7e6-66a2-9649-009f22813c81@codeaurora.org>
- <20191004232022.062A1215EA@mail.kernel.org>
- <d17dad3d-d32c-b71c-0e56-d15cb246f742@codeaurora.org>
- <20191010041629.6E771208C3@mail.kernel.org>
-From:   Taniya Das <tdas@codeaurora.org>
-Message-ID: <9fef7f3d-984e-9011-b207-c7f287691000@codeaurora.org>
-Date:   Fri, 11 Oct 2019 15:58:13 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726710AbfJKKds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 06:33:48 -0400
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:64783 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726290AbfJKKds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 06:33:48 -0400
+Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="Ludovic.Desroches@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa6.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: rO2BQxBFHlO5VQRODrcZb9MialbYrIkdh+cQcZ9ts4k2/UkIjEJ5xeOrjSSVld0FnlmjCGny2V
+ 68Vty2OUqEb8YZeciLiHO3qiqujcdIz9QThE+y74XX51aIwsRlHzNmFl0rHwo4omkJylnyfZN/
+ A7rtBuC8CjYD0QawsBDo+E0/5GJVx8HQiFh2R3EeXuzGj+cVoydXUt2Jt8kHf9GkZvn81PV0eP
+ zjvcqCUUpzzrcxGMgoz9nQtsRL6pib41pRtYB1uJBPMXxDKUBvK/wnEBOYAzzcRzo+l13QTXQH
+ CJQ=
+X-IronPort-AV: E=Sophos;i="5.67,283,1566889200"; 
+   d="scan'208";a="49684539"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Oct 2019 03:33:47 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 11 Oct 2019 03:33:47 -0700
+Received: from M43218.corp.atmel.com (10.10.85.251) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Fri, 11 Oct 2019 03:33:45 -0700
+From:   Ludovic Desroches <ludovic.desroches@microchip.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <ulf.hansson@linaro.org>, <nicolas.ferre@microchip.com>,
+        <adrian.hunter@intel.com>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <claudiu.beznea@microchip.com>, <Eugen.Hristev@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>
+Subject: [PATCH v2 1/3] dt-bindings: sdhci-of-at91: new compatible string and update properties
+Date:   Fri, 11 Oct 2019 12:33:37 +0200
+Message-ID: <20191011103340.26749-1-ludovic.desroches@microchip.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-In-Reply-To: <20191010041629.6E771208C3@mail.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+There is a new compatible string for the SAM9X60 sdhci device. It involves
+an update of the properties about the clocks stuff.
 
-On 10/10/2019 9:46 AM, Stephen Boyd wrote:
-> Quoting Taniya Das (2019-10-09 02:19:39)
->> Hi Stephen,
->>
->> On 10/5/2019 4:50 AM, Stephen Boyd wrote:
->>> Quoting Taniya Das (2019-10-04 10:39:31)
->>>>
->>>> Could you please confirm if you are referring to update the below?
->>>
->>> I wasn't suggesting that explicitly but sure. Something like this would
->>> be necessary to make clk_get() pass back a NULL pointer to the caller.
->>> Does everything keep working with this change?
->>>
->>
->> Even if I pass back NULL, I don't see it working. Please suggest how to
->> take it forward.
->>
-> 
-> Why doesn't it work?
-> 
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
 
-My bad, I messed up with the kernel and my testing was showing failures. 
-Have tested it on SC7180 & Cheza and it works as expected.
+Changes:
+- v2: remove the extra example and fix node label
 
-I will submit the changes in common.c to return NULL.
+This patch conflicts with Nicolas' one: "dt-bindings: sdhci-of-at91: add
+the microchip,sdcal-inverted property". Let me know which one has to be
+rebased or you can handle it.
 
+Ludovic
+
+
+ .../devicetree/bindings/mmc/sdhci-atmel.txt       | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+index 1b662d7171a0..5d541ad4d4eb 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+@@ -5,17 +5,26 @@ Documentation/devicetree/bindings/mmc/mmc.txt and the properties used by the
+ sdhci-of-at91 driver.
+ 
+ Required properties:
+-- compatible:		Must be "atmel,sama5d2-sdhci".
++- compatible:		Must be "atmel,sama5d2-sdhci" or "microchip,sam9x60-sdhci".
+ - clocks:		Phandlers to the clocks.
+-- clock-names:		Must be "hclock", "multclk", "baseclk";
++- clock-names:		Must be "hclock", "multclk", "baseclk" for
++			"atmel,sama5d2-sdhci".
++			Must be "hclock", "multclk" for "microchip,sam9x60-sdhci".
++
++Optional properties:
++- assigned-clocks:	The same with "multclk".
++- assigned-clock-rates	The rate of "multclk" in order to not rely on the
++			gck configuration set by previous components.
+ 
+ 
+ Example:
+ 
+-sdmmc0: sdio-host@a0000000 {
++mmc0: sdio-host@a0000000 {
+ 	compatible = "atmel,sama5d2-sdhci";
+ 	reg = <0xa0000000 0x300>;
+ 	interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
+ 	clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
+ 	clock-names = "hclock", "multclk", "baseclk";
++	assigned-clocks = <&sdmmc0_gclk>;
++	assigned-clock-rates = <480000000>;
+ };
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation.
+2.23.0
 
---
