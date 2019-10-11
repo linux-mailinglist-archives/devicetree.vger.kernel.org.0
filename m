@@ -2,71 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 996DDD45D6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD44FD45E5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727149AbfJKQxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 12:53:50 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:47096 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726728AbfJKQxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 12:53:50 -0400
-Received: by mail-oi1-f196.google.com with SMTP id k25so8536111oiw.13;
-        Fri, 11 Oct 2019 09:53:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+XKxoI9VpM0Y86gFJFH44QIdHz4jpQag2jQU1HryGoI=;
-        b=sUn3J1hOuQ0AWg5lmMzh36kRz5NcsgxmKuPFTKs+f9ssaU+2EuvtoR9oZx02OGXd8F
-         YRM8bP3ZIr5q9hYRDJw4jwcL+i2eobhe8otbyHiZ0VBQvTuo1Ou7vS7L4S2ZutTSPJK1
-         /a9lquIf7jnra+eev1yRB59Oi+IL9HMeqCjJexnWScnnECXJUmnwIgR6eRR8GogD1WIJ
-         2F5kCth+YKoDKVgCvB4lWUNspL6xPqQWKIqYPo/dhjtTIgT/k/n4BwzlTV9BFpaEBfba
-         aAcI13ghbZ5TCX8wGbck2nRSsKgOXgJtNpzh8vhXQF/YlVVpuqgJt3OwbHxcRxeGuM++
-         KlxA==
-X-Gm-Message-State: APjAAAVp0pzf/pjT1NERKwc1eAMk8fV7orJf1cPJTJttNEpCcT2wDi00
-        P7s5RRP+CtkAHkdoQs+/sw==
-X-Google-Smtp-Source: APXvYqyYET1+fTjJYIyVH/pXbQ1FdDUKmjrg95oxGL5k6oWwgKL6dHqyCHb3/OZD4qwDDFHOQLnKwg==
-X-Received: by 2002:aca:490f:: with SMTP id w15mr13254293oia.159.1570812829223;
-        Fri, 11 Oct 2019 09:53:49 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 17sm2673691oiz.3.2019.10.11.09.53.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 09:53:48 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 11:53:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jolly Shah <jolly.shah@xilinx.com>
-Cc:     ard.biesheuvel@linaro.org, mingo@kernel.org,
-        gregkh@linuxfoundation.org, matt@codeblueprint.co.uk,
-        sudeep.holla@arm.com, hkallweit1@gmail.com, keescook@chromium.org,
-        dmitry.torokhov@gmail.com, michal.simek@xilinx.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, rajanv@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jolly Shah <jolly.shah@xilinx.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: firmware: Add bindings for Versal
- firmware
-Message-ID: <20191011165347.GA4114@bogus>
-References: <1570474343-21524-1-git-send-email-jolly.shah@xilinx.com>
- <1570474343-21524-2-git-send-email-jolly.shah@xilinx.com>
+        id S1726728AbfJKQ4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 12:56:48 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:49749 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727149AbfJKQ4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 12:56:48 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iIyDW-00056W-7D; Fri, 11 Oct 2019 18:56:38 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iIyDR-0007Kv-OH; Fri, 11 Oct 2019 18:56:33 +0200
+Date:   Fri, 11 Oct 2019 18:56:33 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Rob Herring <robh@kernel.org>, mark.rutland@arm.com, marex@denx.de,
+        devicetree@vger.kernel.org, andrew.smirnov@gmail.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, angus@akkea.ca,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, manivannan.sadhasivam@linaro.org,
+        j.neuschaefer@gmx.net,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191011165633.5ty3yux4ljrcycux@pengutronix.de>
+References: <20191010192357.27884-1-andreas@kemnade.info>
+ <20191010192357.27884-3-andreas@kemnade.info>
+ <20191011065609.6irap7elicatmsgg@pengutronix.de>
+ <20191011094148.1376430e@aktux>
+ <20191011142927.GA11490@bogus>
+ <20191011170147.1b3c4b25@kemnade.info>
+ <20191011152214.v6lq6itwf5lp6j7q@pengutronix.de>
+ <20191011181938.185f2a00@kemnade.info>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1570474343-21524-2-git-send-email-jolly.shah@xilinx.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191011181938.185f2a00@kemnade.info>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 18:54:48 up 146 days, 23:12, 97 users,  load average: 0.08, 0.10,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  7 Oct 2019 11:52:22 -0700, Jolly Shah wrote:
-> ZynqMP firmware driver can be used for versal also.
-> Add versal compatible string to zynqmp firmware driver
-> doc.
+On 19-10-11 18:19, Andreas Kemnade wrote:
+> On Fri, 11 Oct 2019 17:22:14 +0200
+> Marco Felsch <m.felsch@pengutronix.de> wrote:
 > 
-> Signed-off-by: Jolly Shah <jolly.shah@xilinx.com>
-> ---
->  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.txt    | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
+> > On 19-10-11 17:05, Andreas Kemnade wrote:
+> > > On Fri, 11 Oct 2019 09:29:27 -0500
+> > > Rob Herring <robh@kernel.org> wrote:
+> > >   
+> > > > On Fri, Oct 11, 2019 at 09:41:48AM +0200, Andreas Kemnade wrote:  
+> > > > > On Fri, 11 Oct 2019 08:56:09 +0200
+> > > > > Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > > > >     
+> > > > > > Hi Andreas,
+> > > > > > 
+> > > > > > On 19-10-10 21:23, Andreas Kemnade wrote:    
+> > > > > > > The Netronix board E60K02 can be found some several Ebook-Readers,
+> > > > > > > at least the Kobo Clara HD and the Tolino Shine 3. The board
+> > > > > > > is equipped with different SoCs requiring different pinmuxes.
+> > > > > > > 
+> > > > > > > For now the following peripherals are included:
+> > > > > > > - LED
+> > > > > > > - Power Key
+> > > > > > > - Cover (gpio via hall sensor)
+> > > > > > > - RC5T619 PMIC (the kernel misses support for rtc and charger
+> > > > > > >   subdevices).
+> > > > > > > - Backlight via lm3630a
+> > > > > > > - Wifi sdio chip detection (mmc-powerseq and stuff)
+> > > > > > > 
+> > > > > > > It is based on vendor kernel but heavily reworked due to many
+> > > > > > > changed bindings.
+> > > > > > > 
+> > > > > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > > > > > > ---
+> > > > > > > Changes in v3:
+> > > > > > > - better led name
+> > > > > > > - correct memory size
+> > > > > > > - comments about missing devices
+> > > > > > > 
+> > > > > > > Changes in v2:
+> > > > > > > - reordered, was 1/3
+> > > > > > > - moved pinmuxes to their actual users, not the parents
+> > > > > > >   of them
+> > > > > > > - removed some already-disabled stuff
+> > > > > > > - minor cleanups      
+> > > > > > 
+> > > > > > You won't change the muxing, so a this dtsi can be self contained?
+> > > > > >     
+> > > > > So you want me to put a big 
+> > > > > #if defined(MX6SLL)     
+> > > > 
+> > > > Not sure what the comment meant, but no, don't do this. C defines in dts 
+> > > > files are for symbolic names for numbers and assembling bitfields and 
+> > > > that's it.  
+> > > 
+> > > yes, that is also my opinion. For now, there is only one user
+> > > of this .dtsi, but I have another one in preparation. That is the
+> > > reason for splitting things between .dts and .dtsi to avoid such ugly
+> > > ifdefs  
+> > 
+> > Then IMHO the pnictrl-* entries shouldn't appear in the dsti.
+> > 
+> hmm, maybe now I understand your idea:
+> You do not want only to have
 > 
+>   pinctrl_lm3630a_bl_gpio: lm3630a_bl_gpio_grp {
+>                         fsl,pins = <
+>                                 MX6SLL_PAD_EPDC_PWR_CTRL3__GPIO2_IO10   0x10059 /* HWEN */
+>                         >;
+>                 };
+> in dts, but also  do not have these in .dtsi:
+> 
+>                 pinctrl-names = "default";
+>                 pinctrl-0 = <&pinctrl_lm3630a_bl_gpio>;
+> 
+> and instead have in dts:
+> &lm3630a {
+>  	pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_lm3630a_bl_gpio>;
+> 	
+> };
+> 
+> 
+> just to make sure I get it right before doing the restructuring work. That way of structuring things did not come to my mind, but then the .dtsi is self-contained.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+That is what I mean but wait for Shawn's comments. It's just my opinion
+that .dtsi and .dts files should be self-contained.
+
+Regards,
+  Marco
+
+> Regards,
+> Andreas
+
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
