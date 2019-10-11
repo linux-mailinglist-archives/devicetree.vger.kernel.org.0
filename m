@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74E85D42D9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAA4D42E1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728195AbfJKO35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 10:29:57 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:43575 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728123AbfJKO35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:29:57 -0400
-Received: by mail-oi1-f195.google.com with SMTP id t84so8144560oih.10;
-        Fri, 11 Oct 2019 07:29:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=h5fJtEFtuFWUvHJqhVRZ1UlcM18fQiX2JNGn59cu8yU=;
-        b=WgyCOGznGOolF+pni2oprgBdcGgoNrB1OxHHFBqgamF28AbGU6cWzm7s3/7kqBsK7l
-         NJlCYz3kAaeYoWEIQZGEy8tyquCK9HPVAwOd1hgA7zI+fMQdGppnoCeSgWCflCYeqAyk
-         SaiM70Iahc9pMVndl8UZ3DL/1eZMMQOggibMQebrf7D78dqKWL/fPzB2N54BZ98hBJ1i
-         9ovNbtoSHVmBsvH1A0AolVw98l4C1Q02UgUJBpTZth+2kpYyGIdsBGmfwMvWmOrORT16
-         eZynVy8emloICgiYmBkCLJpgduIpr1Nn0od2tOzoswtfoH+Ky8tRF+DEEGKXr8wWFMNO
-         praA==
-X-Gm-Message-State: APjAAAVZKzqf3i6N1pfmCqhgfwpbhtG7uUFGWxS5eXy3cxMU20q/9KC+
-        y0T8gm+rqpA4o/pxr0TA6ufynRQ=
-X-Google-Smtp-Source: APXvYqz05OapU2prguSEcOrqwZWAQU1X1DxbQzFT40Q80aueTFtb/bR//kdv9SfBZWyms41o+zLBXw==
-X-Received: by 2002:aca:490f:: with SMTP id w15mr12557573oia.159.1570804196350;
-        Fri, 11 Oct 2019 07:29:56 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e18sm2707532oib.57.2019.10.11.07.29.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 07:29:55 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 09:29:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, manivannan.sadhasivam@linaro.org,
-        andrew.smirnov@gmail.com, marex@denx.de, angus@akkea.ca,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: fsl: add compatible string for
- Kobo Clara HD
-Message-ID: <20191011142955.GA16526@bogus>
-References: <20191010192357.27884-1-andreas@kemnade.info>
- <20191010192357.27884-2-andreas@kemnade.info>
+        id S1728278AbfJKOau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 10:30:50 -0400
+Received: from ms.lwn.net ([45.79.88.28]:38840 "EHLO ms.lwn.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728232AbfJKOau (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 10:30:50 -0400
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 426DA740;
+        Fri, 11 Oct 2019 14:30:49 +0000 (UTC)
+Date:   Fri, 11 Oct 2019 08:30:48 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Cc:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Subject: Re: [PATCH v2 1/2] hwmon: Add support for ltc2947
+Message-ID: <20191011083048.4fa39734@lwn.net>
+In-Reply-To: <20191011114853.159327-1-nuno.sa@analog.com>
+References: <20191011114853.159327-1-nuno.sa@analog.com>
+Organization: LWN.net
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191010192357.27884-2-andreas@kemnade.info>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Oct 2019 21:23:55 +0200, Andreas Kemnade wrote:
-> This adds a compatible string for the Kobo Clara HD eBook reader.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
-> Changes in v2: reordered, was 2/3
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Fri, 11 Oct 2019 13:48:52 +0200
+Nuno Sá <nuno.sa@analog.com> wrote:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> The ltc2947 is a high precision power and energy monitor with an
+> internal sense resistor supporting up to +/- 30A. Three internal no
+> Latency ADCs ensure accurate measurement of voltage and current, while
+> high-bandwidth analog multiplication of voltage and current provides
+> accurate power measurement in a wide range of applications. Internal or
+> external clocking options enable precise charge and energy measurements.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+
+[...]
+
+> diff --git a/Documentation/hwmon/ltc2947.rst b/Documentation/hwmon/ltc2947.rst
+> new file mode 100644
+> index 000000000000..05df19775fb3
+> --- /dev/null
+> +++ b/Documentation/hwmon/ltc2947.rst
+
+So this file has a .rst extension, but it's not actually a restructured
+text file.  It will add a bunch of warnings during the docs build.  The
+good news is that fixing it up will not be hard; see Documention/doc-guide
+if need be.
+
+Thanks,
+
+jon
