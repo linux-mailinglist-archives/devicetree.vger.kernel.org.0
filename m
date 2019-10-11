@@ -2,253 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AAEDD3EC0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 13:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F9CBD3F5B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:20:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727709AbfJKLtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 07:49:25 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:10896 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727226AbfJKLtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 07:49:25 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9BBiN85028521;
-        Fri, 11 Oct 2019 07:48:35 -0400
-Received: from nam03-dm3-obe.outbound.protection.outlook.com (mail-dm3nam03lp2057.outbound.protection.outlook.com [104.47.41.57])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2ver39tu05-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Fri, 11 Oct 2019 07:48:34 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OaFi85JfL2MOsWSGLp3w8MxNtiI9/nDjy64mgPZtLp7AnMtXftoG6I8F8ciM6ogpNuxGYEnxQ7Ch0m5gBgdpI2t37r6Y9L//B2MkgHK2IqgRAKMqh6VJ5Xig5/diiIIch278Smu2ir46Iu10a+WQAH7OifLUEX8O2PrwVsiSKGYqDCveBKnm5hEYapSKLU3+4uJXVcSxYfLVXVgDNSgBxhrKxUrAvrZhF+8Q9yHk3wnXU2nugHzV/5mOJ4Yf4svq3on9qDOZjG9lrh91rBNZ7q1qCKzdWqlY82JELyfE7TmkjWni8abaSBrV91s+5pTmKjxygn1eyXLygf2Mu4RUAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ptwhh1fdB9ltjmKoF0JwEnEGrKsQPEmzFRwtQghpgIk=;
- b=Ls5XJr7Vt0zW6Mure88vM/9NBED+jzxe9u4Xdph8YfUYPIsC76FkU4uXwX0Cvgf2oBXEESnGZC/n76gI/50wmmclhBpM71ZUk4MqVrirIgXtPsddmTZKZ8+vWFU/GZlzrFWaL7FwS/ZyLP/KVJtxVCxzd8zsvc20U11TRJy9zNAinm29V97udgVxDJp2ZUD9ixx8HUc9uCF/X06I9KyA3Bvt09bTs8EBWGPmKnn/OYrhesoIinRA60hMq7rjZbW+GM8M/R+qlqPkrJzM5DaJsuOfcgLnPBqIpBn9wFXXV0fCCHsAnwVmamtrluogo84cuaHgu5m9RoQITPVVLEbTTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 137.71.25.55) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=analog.com;
- dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ptwhh1fdB9ltjmKoF0JwEnEGrKsQPEmzFRwtQghpgIk=;
- b=LUmic2IkeR0njldM2ljwg/zoIp1G47Ql4e2CKRbxf0nT20GMRx1k1P/ORr1dz5ijgNuhVaDjjOrMF8Gz3sbJLG9Y1zIm2cKFdT0ii+RQvajO7CALVuTEXg3XDSQF2KsHabuXr2NH9wTYQ0L53j2+cj51GNDT2Qx3x8Py9MQMQMc=
-Received: from BN8PR03CA0036.namprd03.prod.outlook.com (2603:10b6:408:94::49)
- by DM6PR03MB3417.namprd03.prod.outlook.com (2603:10b6:5:b0::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.16; Fri, 11 Oct
- 2019 11:48:32 +0000
-Received: from SN1NAM02FT057.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::203) by BN8PR03CA0036.outlook.office365.com
- (2603:10b6:408:94::49) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2220.19 via Frontend
- Transport; Fri, 11 Oct 2019 11:48:32 +0000
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
-Received: from nwd2mta1.analog.com (137.71.25.55) by
- SN1NAM02FT057.mail.protection.outlook.com (10.152.73.105) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2347.16
- via Frontend Transport; Fri, 11 Oct 2019 11:48:31 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x9BBmPMN011930
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Fri, 11 Oct 2019 04:48:25 -0700
-Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
- (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Fri, 11 Oct
- 2019 07:48:30 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v2 2/2] dt-bindings: hwmon: Add ltc2947 documentation
-Date:   Fri, 11 Oct 2019 13:48:53 +0200
-Message-ID: <20191011114853.159327-2-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191011114853.159327-1-nuno.sa@analog.com>
-References: <20191011114853.159327-1-nuno.sa@analog.com>
+        id S1727907AbfJKMUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 08:20:41 -0400
+Received: from foss.arm.com ([217.140.110.172]:58430 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727243AbfJKMUl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 08:20:41 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4E98A28;
+        Fri, 11 Oct 2019 05:20:40 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 922D83F6C4;
+        Fri, 11 Oct 2019 05:20:39 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: Add Beelink A1
+To:     Rob Herring <robh@kernel.org>, "heiko@sntech.de" <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <9037b7edbbb41cbbf699ebe3a511daf22d886e7d.1570444695.git.robin.murphy@arm.com>
+ <CAL_JsqKBy+i+=gGyYhBgcMUYsWd_CL_GnEoQqALBb+Gy7Ogb6A@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <4c490e48-7a85-4ef9-771c-165defde39cc@arm.com>
+Date:   Fri, 11 Oct 2019 13:20:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.44.3.90]
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(136003)(346002)(396003)(376002)(189003)(199004)(476003)(47776003)(8936002)(426003)(246002)(50226002)(7636002)(7736002)(305945005)(126002)(8676002)(2616005)(486006)(86362001)(36756003)(966005)(2201001)(6306002)(50466002)(11346002)(446003)(70206006)(70586007)(45776006)(5660300002)(53416004)(186003)(316002)(478600001)(16526019)(26005)(2870700001)(3846002)(6116002)(1076003)(336012)(5820100001)(4326008)(23676004)(76176011)(356004)(106002)(110136005)(6666004)(54906003)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR03MB3417;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 473d8a6c-636c-4a4a-5110-08d74e40f0cb
-X-MS-TrafficTypeDiagnostic: DM6PR03MB3417:
-X-MS-Exchange-PUrlCount: 3
-X-Microsoft-Antispam-PRVS: <DM6PR03MB34174B1B5BF42BA65A18346599970@DM6PR03MB3417.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-Forefront-PRVS: 0187F3EA14
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WzF+9AVi1sUGTeUyhYrmQ01Qv1PTuaLrJmNP36ILb/9D+iUJYeYf+sIMLWTK/arKlAQt+0HiAOwfhhT2f8Z5zX+3PoHhTYfmPWJHdkKMtHLpGGauFfp4uDyNAWVCAgja1h0XjzPB2vSy2VVZssG+ufCeizdkZ9lFQblHdjc/towNeGUEC9s+sqaX+FKtGOYTG3cvCEmpxcnDMknSOvATI9JHyqMJxijO3g/AmDsJ9VLTFrIwg0mgotc/lE+jJVXR8xcr7BMklXOPwF1FS7OIwIQSY3TuBjhSFU4XNyK7uhU3Ec5YfVD8xbaiUSh55xbLrkJjmWC7VfMJV5eCZHAk8qHJ+5ou3LuaI/aUE01NSLewfQVr4TkwXs2XzZyqS2UKzpvqDbRyF0IlBemMdYi2FzKUEYKlcqJ1FY9UojZhnyUXJyHsmWvG39CajukjpDiypUJ1Ae4Nn0hq8ta4uc/90Q==
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2019 11:48:31.9783
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 473d8a6c-636c-4a4a-5110-08d74e40f0cb
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB3417
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-11_08:2019-10-10,2019-10-11 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 impostorscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910110112
+In-Reply-To: <CAL_JsqKBy+i+=gGyYhBgcMUYsWd_CL_GnEoQqALBb+Gy7Ogb6A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the LTC2947 device devicetree bindings.
+On 07/10/2019 13:53, Rob Herring wrote:
+> On Mon, Oct 7, 2019 at 6:33 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>>
+>> Beelink A1 is a TV box implementing the higher-end options of the
+>> RK3328 reference design - the DTB from the stock Android firmware is
+>> clearly the "rk3328-box-plus" variant from the Rockchip 3.10 BSP with
+>> minor modifications to accommodate the USB WiFi module and additional
+>> VFD-style LED driver. It features:
+>>
+>> - 4GB of 32-bit LPDDR3
+>> - 16GB of HS200 eMMC (newer models with 32GB also exist)
+>> - Realtek RTL8211F phy for gigabit ethernet
+>> - Fn-Link 6221E-UUC module (RealTek RTL8821CU) for 11ac WiFi and Bluetooth 4.2
+>> - HDMI and analog A/V
+>> - 1x USB 3.0 type A host, 1x USB 2.0 type A OTG, 1x micro SD
+>> - IR receiver and a neat little LED clock display.
+>>
+>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+>> ---
+>>
+>> One question I'm wondering about is whether it's worth pushing the HDMI
+>> and analog codec audio cards down into rk3328.dtsi (as with HDMI audio
+>> on RK3399), since those audio pipelines are internal to the SoC and the
+>> board only really governs whether the outputs are wired up or not.
+> 
+> Seems reasonable. One other candidate below.
+> 
+>>
+>>   .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> 
+> In the future, please split bindings to a separate patch.
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
-Changes in v2:
- * Add license identifier;
- * Fix the uint32-array properties;
- * Set maximum at the same indent as allOf in adi,accumulation-deadband-microamp;
- * Set enum at the same indent as allOf in adi,gpio-out-pol;
- * Use spi instead of spi0 on the example;
+Ha, busted! I thought this might be trivial enough to slip through, but 
+I'll split it out if you prefer.
 
- .../bindings/hwmon/adi,ltc2947.yaml           | 104 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
+>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>   arch/arm64/boot/dts/rockchip/rk3328-a1.dts    | 399 ++++++++++++++++++
+>>   3 files changed, 405 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> index c82c5e57d44c..f27f7805f57e 100644
+>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> @@ -40,6 +40,11 @@ properties:
+>>             - const: asus,rk3288-tinker-s
+>>             - const: rockchip,rk3288
+>>
+>> +      - description: Beelink A1
+>> +        items:
+>> +          - const: azw,beelink-a1
+>> +          - const: rockchip,rk3328
+>> +
+>>         - description: bq Curie 2 tablet
+>>           items:
+>>             - const: mundoreader,bq-curie2
+>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>> index 1f18a9392d15..a6f250e7cde2 100644
+>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>> @@ -1,5 +1,6 @@
+>>   # SPDX-License-Identifier: GPL-2.0
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>> new file mode 100644
+>> index 000000000000..03ad663ff821
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>> @@ -0,0 +1,399 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>> +// Copyright (c) 2017-2019 Arm Ltd.
+>> +
+>> +/dts-v1/;
+>> +#include "rk3328.dtsi"
+>> +
+>> +/ {
+>> +       model = "Beelink A1";
+>> +       compatible = "azw,beelink-a1", "rockchip,rk3328";
+>> +
+>> +       /*
+>> +        * UART pins, as viewed with bottom of case removed:
+>> +        *
+>> +        *           Front
+>> +        *        /-------
+>> +        *  L    / o <- Gnd
+>> +        *  e   / o <-- Rx
+>> +        *  f  / o <--- Tx
+>> +        *  t / o <---- +3.3v
+>> +        *    |
+>> +        */
+>> +       chosen {
+>> +               stdout-path = "serial2:1500000n8";
+>> +       };
+>> +
+>> +       gmac_clkin: external-gmac-clock {
+>> +               compatible = "fixed-clock";
+>> +               clock-frequency = <125000000>;
+>> +               clock-output-names = "gmac_clkin";
+>> +               #clock-cells = <0>;
+>> +       };
+>> +
+>> +       vcc_host_5v: usb3-current-switch {
+>> +               compatible = "regulator-fixed";
+>> +               enable-active-high;
+>> +               gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+>> +               pinctrl-names = "default";
+>> +               pinctrl-0 = <&usb30_host_drv>;
+>> +               regulator-name = "vcc_host_5v";
+>> +               vin-supply = <&vcc_sys>;
+>> +       };
+>> +
+>> +       vcc_sys: vcc-sys {
+>> +               compatible = "regulator-fixed";
+>> +               regulator-name = "vcc_sys";
+>> +               regulator-min-microvolt = <5000000>;
+>> +               regulator-max-microvolt = <5000000>;
+>> +       };
+>> +
+>> +       cpus {
+>> +               idle-states {
+>> +                       entry-method = "arm,psci";
+>> +
+>> +                       cpu_sleep: cpu-sleep {
+>> +                               compatible = "arm,idle-state";
+>> +                               arm,psci-suspend-param = <0x0010000>;
+>> +                               local-timer-stop;
+>> +                               entry-latency-us = <120>;
+>> +                               exit-latency-us = <250>;
+>> +                               min-residency-us = <900>;
+> 
+> This doesn't seem like something that's board specific, but I guess
+> the regulator could have some influence on these times. If so, the
+> board file could always override a default.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-new file mode 100644
-index 000000000000..ae04903f34bf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices LTC2947 high precision power and energy monitor
-+
-+maintainers:
-+  - Nuno Sá <nuno.sa@analog.com>
-+
-+description: |
-+  Analog Devices LTC2947 high precision power and energy monitor over SPI or I2C.
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/LTC2947.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ltc2947
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      The LTC2947 uses either a trimmed internal oscillator or an external clock
-+      as the time base for determining the integration period to represent time,
-+      charge and energy. When an external clock is used, this property must be
-+      set accordingly.
-+    maxItems: 1
-+
-+  adi,accumulator-ctl-pol:
-+    description:
-+      This property controls the polarity of current that is accumulated to
-+      calculate charge and energy so that, they can be only accumulated for
-+      positive current for example. Since there are two sets of registers for
-+      the accumulated values, this entry can also have two items which sets
-+      energy1/charge1 and energy2/charger2 respectively. Check table 12 of the
-+      datasheet for more information on the supported options.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32-array
-+      - minItems: 2
-+        maxItems: 2
-+        items:
-+          enum: [0, 1, 2, 3]
-+          default: 0
-+
-+  adi,accumulation-deadband-microamp:
-+    description:
-+      This property controls the Accumulation Dead band which allows to set the
-+      level of current below which no accumulation takes place.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 255
-+    default: 0
-+
-+  adi,gpio-out-pol:
-+    description:
-+      This property controls the GPIO polarity. Setting it to one makes the GPIO
-+      active high, setting it to zero makets it active low. When this property
-+      is present, the GPIO is automatically configured as output and set to
-+      control a fan as a function of measured temperature.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    default: 0
-+
-+  adi,gpio-in-accum:
-+    description:
-+      When set, this property sets the GPIO as input. It is then used to control
-+      the accumulation of charge, energy and time. This function can be
-+      enabled/configured separately for each of the two sets of accumulation
-+      registers. Check table 13 of the datasheet for more information on the
-+      supported options. This property cannot be used together with
-+      adi,gpio-out-pol.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32-array
-+      - minItems: 2
-+        maxItems: 2
-+        items:
-+          enum: [0, 1, 2]
-+          default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+
-+examples:
-+  - |
-+    spi {
-+           #address-cells = <1>;
-+           #size-cells = <0>;
-+
-+           ltc2947_spi: ltc2947@0 {
-+                   compatible = "adi,ltc2947";
-+                   reg = <0>;
-+                   /* accumulation takes place always for energ1/charge1. */
-+                   /* accumulation only on positive current for energy2/charge2. */
-+                   adi,accumulator-ctl-pol = <0 1>;
-+           };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aed3d0de26cf..d6030fd9f887 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9637,6 +9637,7 @@ F:	drivers/hwmon/ltc2947-core.c
- F:	drivers/hwmon/ltc2947-spi.c
- F:	drivers/hwmon/ltc2947-i2c.c
- F:	drivers/hwmon/ltc2947.h
-+F:	Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
- 
- LTC4306 I2C MULTIPLEXER DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
--- 
-2.23.0
+True, this is traceable back to the Rockchip Android BSP where it's 
+actually applied to the entire SoC family[1]. I don't know if there's 
+likely to be any difference between the downstream "RKTRUST" firmware 
+binaries (which this nominally represents) and upstream ATF in terms of 
+their PSCI implementation/performance.
 
+I've not got round to properly tinkering with suspend/resume and power 
+management stuff yet, so I guess another option would be to just forget 
+about this part for now - Heiko, any opinions?
+
+Cheers,
+Robin.
+
+[1] 
+https://github.com/rockchip-linux/kernel/blob/release-3.10/arch/arm64/boot/dts/rk322xh.dtsi#L107-L118
