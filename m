@@ -2,72 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA95DD3FA8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AE88D3FCB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728018AbfJKMjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 08:39:20 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:40314 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727772AbfJKMjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 08:39:20 -0400
-Received: by mail-oi1-f194.google.com with SMTP id k9so7849800oib.7;
-        Fri, 11 Oct 2019 05:39:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=D3dmZ8LIotWz+dGLUdBZg727TLIV2DEHoYLVl9tR/Xc=;
-        b=JmKqor4Xd0b8h/AeUhwiBmSD8tR4UtsqL9aZaqHYH4GbDuKYUDCe83/yStjKUeyYTe
-         D9xBnTR2K3ZnTf6RYKxLLn/MzJAACJbu622cPQenohyBiVctkTG1SdyDB2Y2JBrZWMZq
-         BwOlTgN0Zm/2VZW2XetnTdNrTcf2JwgKxijn8GQwG7/j2A1PG2nVCekWsLUNvwad9TOp
-         WtjbBd0hL3NYs6+dMnIXI3MJOAKBYxWZasQgbH0/Fm7kLMLlAmOisbuOq68f/GSSLtJn
-         yOorrA08RKS4b968Y1PQUMjpmy+CtCmdGGeQD04EQmEaOpKiT0mZagvSlI06XDDF2m9x
-         3rRA==
-X-Gm-Message-State: APjAAAXCfU6ItFAxFRotI01xpFx8kLUlYCZKq36adVMjaz0yTf7Ukcvx
-        WxF6RTYJEuhIhhyg/ozJiuvYthw=
-X-Google-Smtp-Source: APXvYqxbIoAAzJTedywiREhc6OCrL5oSoJyNJ7T6bsscApSUKuiMhbtrPK471t8BTbwiv8Yk8+ze0g==
-X-Received: by 2002:aca:b154:: with SMTP id a81mr10653817oif.142.1570797558018;
-        Fri, 11 Oct 2019 05:39:18 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w20sm2661651otk.73.2019.10.11.05.39.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 05:39:17 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 07:39:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas, cmt: Document r8a774b1
- CMT support
-Message-ID: <20191011123916.GA13450@bogus>
-References: <1570104229-59144-1-git-send-email-biju.das@bp.renesas.com>
+        id S1728176AbfJKMlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 08:41:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36250 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728002AbfJKMlX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 08:41:23 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D471E21D82;
+        Fri, 11 Oct 2019 12:41:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570797683;
+        bh=0ntoZW7nIQaS0RptBTqn8yRQKbcwYPW6mrTC+nExxQQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dR100AmRHlPwX27kUrp1Lauf3ohIZVPT1aokTFmN/cMb52PIZCHr7cnR8lnpbjLqj
+         dicgfF0TpW4nEd2mwFBiZJjqOSCarxIGU+A6CE1Bvzn5Lxu1fFt6mtmei+4dyZVSSl
+         CSrZCRsYHokj3EuztdAzqWaGGTOBWJxfSIjVmNCk=
+Received: by mail-qk1-f178.google.com with SMTP id u184so8729069qkd.4;
+        Fri, 11 Oct 2019 05:41:22 -0700 (PDT)
+X-Gm-Message-State: APjAAAUd2UBXEtHJcOxwdG1FbIT5dJXmJhSM6AqXDoXVp/OTrGmmbf3x
+        oH9VcV9ON0woIWvIcZL5SFVNK3kgafadNTw6IQ==
+X-Google-Smtp-Source: APXvYqxSOLHC3OhXJjaOJaRAYwJ7GF4/t7229zQiP9PqqmGtuF/Yddz3rOt3p/MLumF2OTaUmi8AujpP8UblZE39o8w=
+X-Received: by 2002:a05:620a:12f1:: with SMTP id f17mr15407013qkl.152.1570797681944;
+ Fri, 11 Oct 2019 05:41:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1570104229-59144-1-git-send-email-biju.das@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20191002151907.15986-1-benjamin.gaignard@st.com>
+In-Reply-To: <20191002151907.15986-1-benjamin.gaignard@st.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 11 Oct 2019 07:41:10 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+p6rYun-zOwK49=QSfuJGMpiXj5UfASdXhjmOX1cudWQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+p6rYun-zOwK49=QSfuJGMpiXj5UfASdXhjmOX1cudWQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: hwlock: Convert stm32 hwspinlock bindings to json-schema
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 03, 2019 at 01:03:49PM +0100, Biju Das wrote:
-> Document SoC specific bindings for RZ/G2N (r8a774b1) SoC.
-> 
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+On Wed, Oct 2, 2019 at 10:19 AM Benjamin Gaignard
+<benjamin.gaignard@st.com> wrote:
+>
+> Convert the STM32 hwspinlock binding to DT schema format using json-schema
+>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
 > ---
-> V1-->V2
->  * Rebased to tip/timers 
-> ---
->  Documentation/devicetree/bindings/timer/renesas,cmt.txt | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/hwlock/st,stm32-hwspinlock.txt        | 23 -----------
+>  .../bindings/hwlock/st,stm32-hwspinlock.yaml       | 48 ++++++++++++++++++++++
+>  2 files changed, 48 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt b/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt
+> deleted file mode 100644
+> index adf4f000ea3d..000000000000
+> --- a/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -STM32 Hardware Spinlock Device Binding
+> --------------------------------------
+> -
+> -Required properties :
+> -- compatible : should be "st,stm32-hwspinlock".
+> -- reg : the register address of hwspinlock.
+> -- #hwlock-cells : hwlock users only use the hwlock id to represent a specific
+> -       hwlock, so the number of cells should be <1> here.
+> -- clock-names : Must contain "hsem".
+> -- clocks : Must contain a phandle entry for the clock in clock-names, see the
+> -       common clock bindings.
+> -
+> -Please look at the generic hwlock binding for usage information for consumers,
+> -"Documentation/devicetree/bindings/hwlock/hwlock.txt"
+> -
+> -Example of hwlock provider:
+> -       hwspinlock@4c000000 {
+> -               compatible = "st,stm32-hwspinlock";
+> -               #hwlock-cells = <1>;
+> -               reg = <0x4c000000 0x400>;
+> -               clocks = <&rcc HSEM>;
+> -               clock-names = "hsem";
+> -       };
+> diff --git a/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml
+> new file mode 100644
+> index 000000000000..64e169702515
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwlock/st,stm32-hwspinlock.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwlock/st,stm32-hwspinlock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32 Hardware Spinlock bindings
+> +
+> +maintainers:
+> +  - Benjamin Gaignard <benjamin.gaignard@st.com>
+> +  - Fabien Dessenne <fabien.dessenne@st.com>
+> +
+> +properties:
+> +  "#hwlock-cells": true
 
-Acked-by: Rob Herring <robh@kernel.org>
+const: 1
+
+> +
+> +  compatible:
+> +    const: st,stm32-hwspinlock
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Module Clock
+
+Don't need a description for a single item.
+
+maxItems: 1
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: hsem
+> +
+> +required:
+> +  - "#hwlock-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+
+Add a:
+
+additionalProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    hwspinlock@4c000000 {
+> +        compatible = "st,stm32-hwspinlock";
+> +        #hwlock-cells = <1>;
+> +        reg = <0x4c000000 0x400>;
+> +        clocks = <&rcc HSEM>;
+> +        clock-names = "hsem";
+> +    };
+> +
+> +...
+> --
+> 2.15.0
+>
