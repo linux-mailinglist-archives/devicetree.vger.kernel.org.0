@@ -2,161 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD74D431B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F77AD432E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:43:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726354AbfJKOlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 10:41:31 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36364 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726174AbfJKOlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:41:31 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 67so8154508oto.3;
-        Fri, 11 Oct 2019 07:41:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TKLBwidlY8Z3JTq5wxCnvHpvRsZmPGpUIR8JC3vLZ08=;
-        b=ies2Yx2W/892O54NitJ4+cR2BxIN68x+85zj/qhFdFRj+Suz0iydCR63zrhtJf8g9R
-         KUQO3b9HmK4O0FWBUrBT/BkJ4E71cs0sbmVchQTv9fTWS3kZyAT39mUtP9pKRPbfBYdN
-         PnTEm94PdNA3FEDfI9UFKJkMedmLXgfcsHRAqU/TEOdeMpz20G5pDkmherJvfGblTBxR
-         CQYt3h/e74X1fBhotLVUY+Ch0+6vLfm4EN/igXSnsbq2rcMsv3lk5fTT8e8BkO9tZ25C
-         L9i0ESS95PntkR1DJfpGCvYL0p3DcWGfiPA2HK402/KJ+n0ID6w2Lt+dyIY/+axnlgzc
-         RMTQ==
-X-Gm-Message-State: APjAAAUSNfYtGc0jE4jOoTsiR66J/+j1Nzwg2KCCRrgSRbZLk4UiIpZ8
-        Vef/1mk7drWeacmi7yPv6Q==
-X-Google-Smtp-Source: APXvYqzPDmMOHoPxKw0K4wdBgFxJQJ0ExuW4XED8tlQ8I9P4txCzqKFc3qva5tX8kT2AJFqdUPh2mQ==
-X-Received: by 2002:a9d:6d11:: with SMTP id o17mr9430840otp.333.1570804889780;
-        Fri, 11 Oct 2019 07:41:29 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r3sm2642930otk.31.2019.10.11.07.41.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 07:41:29 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 09:41:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     mripard@kernel.org, wens@csie.org, mark.rutland@arm.com,
-        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 4/6] dt-bindings: media: Add Allwinner H3 Deinterlace
- binding
-Message-ID: <20191011144128.GA24245@bogus>
-References: <20190929161653.160158-1-jernej.skrabec@siol.net>
- <20190929161653.160158-5-jernej.skrabec@siol.net>
+        id S1726391AbfJKOnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 10:43:52 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:44439 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726551AbfJKOnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 10:43:52 -0400
+Received: from xps13.stephanxp.local (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 167AE240008;
+        Fri, 11 Oct 2019 14:43:48 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v4 0/8] Introduce max12xx ADC support
+Date:   Fri, 11 Oct 2019 16:43:39 +0200
+Message-Id: <20191011144347.19146-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190929161653.160158-5-jernej.skrabec@siol.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 29, 2019 at 06:16:51PM +0200, Jernej Skrabec wrote:
-> Allwinner H3 Deinterlace core is used for deinterlacing interlaced video
-> content. Core can also be found on some later SoCs, like H5 and R40.
-> 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> ---
->  .../media/allwinner,sun8i-h3-deinterlace.yaml | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.yaml b/Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.yaml
-> new file mode 100644
-> index 000000000000..55a5d4e4f0f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/allwinner,sun8i-h3-deinterlace.yaml#
+Hello, here is a patchset updating the existing max1027.c driver (for
+10-bit max1027/29/31 ADCs) with a few corrections/improvements and
+then introducing their 12-bit cousins named max1227/29/31.
 
-Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.yaml: $id: path/filename 'arm/allwinner,sun8i-h3-deinterlace.yaml' doesn't match actual filename
-Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.example.dts] Error 1
-Makefile:1282: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+As on my hardware setup the "start conversion" and "end of conversion"
+pin are not wired (which is absolutely fine for this chip), I also
+updated the driver and the bindings to support optional interrupts. In
+this case, triggered buffers are not available and the user must poll
+the value from sysfs.
 
-With that fixed,
+Thanks,
+Miquèl
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner H3 Deinterlace Device Tree Bindings
-> +
-> +maintainers:
-> +  - Chen-Yu Tsai <wens@csie.org>
-> +  - Maxime Ripard <mripard@kernel.org>
-> +
-> +description: |-
-> +  The Allwinner H3 and later has a deinterlace core used for
-> +  deinterlacing interlaced video content.
-> +
-> +properties:
-> +  compatible:
-> +    const: allwinner,sun8i-h3-deinterlace
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Deinterlace interface clock
-> +      - description: Deinterlace module clock
-> +      - description: Deinterlace DRAM clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: mod
-> +      - const: ram
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  interconnects:
-> +    maxItems: 1
-> +
-> +  interconnect-names:
-> +    const: dma-mem
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/sun8i-h3-ccu.h>
-> +    #include <dt-bindings/reset/sun8i-h3-ccu.h>
-> +
-> +    deinterlace: deinterlace@1400000 {
-> +        compatible = "allwinner,sun8i-h3-deinterlace";
-> +        reg = <0x01400000 0x20000>;
-> +        clocks = <&ccu CLK_BUS_DEINTERLACE>,
-> +                 <&ccu CLK_DEINTERLACE>,
-> +                 <&ccu CLK_DRAM_DEINTERLACE>;
-> +        clock-names = "bus", "mod", "ram";
-> +        resets = <&ccu RST_BUS_DEINTERLACE>;
-> +        interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-> +        interconnects = <&mbus 9>;
-> +        interconnect-names = "dma-mem";
-> +    };
-> +
-> +...
-> -- 
-> 2.23.0
-> 
+Changes in v4:
+==============
+* In the v3, I removed the bindings documentation for the max10xx
+  devices, in favor of the trivial devices bindings. Unfortunately, I
+  didn't spot that in the following patch adding support for the
+  max12xx series, I was adding the compatibles to the trivial devices
+  list but also re-introducing the bindings documentation with the
+  three new compatibles. Just drop this part of the last patch to only
+  have the trivial devices file, not the specific bindings. All the
+  rest is the same.
+
+Changes in v3:
+==============
+* Updated the commit message of the patch adding debugfs read access
+  to better explain why I decided to limit the number of bytes read to
+  two.
+* Updated the macros to define the number of channels per device as
+  proposed by Jonathan.
+* Re-used the realbits entry instead of adding my own (called .depth).
+* Started doing DT-bindings yaml conversion, but realized that after
+  the first patch offering the interrupt as optional, the
+  documentation was fitting pretty well the trivial devices
+  representation. Dropped the specific bindings files and updated the
+  trivial devices list instead.
+
+Changes in v2:
+==============
+* Removed the addition of three compatibles from patch 4 (the
+  preparation patch) to add these lines back in patch 5 (the actual
+  introduction).
+
+
+Miquel Raynal (8):
+  iio: adc: max1027: Add debugfs register read support
+  iio: adc: max1027: Make it optional to use interrupts
+  iio: adc: max1027: Reset the device at probe time
+  iio: adc: max1027: Prepare the introduction of different resolutions
+  iio: adc: max1027: Introduce 12-bit devices support
+  dt-bindings: iio: adc: max1027: Mark interrupts as optional
+  dt-bindings: Add 1027/1029/1031 SPI ADCs as trivial devices
+  dt-bindings: Add max12xx SPI ADC series as trivial devices
+
+ .../bindings/iio/adc/max1027-adc.txt          |  20 --
+ .../devicetree/bindings/trivial-devices.yaml  |  12 ++
+ drivers/iio/adc/Kconfig                       |   4 +-
+ drivers/iio/adc/max1027.c                     | 180 +++++++++++-------
+ 4 files changed, 125 insertions(+), 91 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/max1027-adc.txt
+
+-- 
+2.20.1
+
