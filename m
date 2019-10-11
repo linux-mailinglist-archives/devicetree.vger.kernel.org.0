@@ -2,303 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B83FD3A33
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 09:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFD66D3A62
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 09:53:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727485AbfJKHnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 03:43:42 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:41243 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726853AbfJKHnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 03:43:42 -0400
-Received: by mail-lj1-f193.google.com with SMTP id f5so8826919ljg.8
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 00:43:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=75drn0EC3pVb7nMu4OqJSjfSZVRc5lsrjDDKVXKY+D0=;
-        b=OBn9GSt506Ru+vELjcSjxQOpMzJfkCdPlvbD0WJ1HTwia637wVf8cVY+QtfZfMjsAy
-         MKsl7AwGeBNWTrJSBp/xxSeRew0knY1BkeJqeyn6U21EJdTZ54ayyEz1lE3QpdD/DXOI
-         UL1kh6U0kgRGA5bI4Ud8OnNkJPUUbeUcU0+4eMOQF8/kDGEMZZ7bJincQ7XO+t/C/xzQ
-         5YxjfhNGiO+IN1wc5PSbPWtJiCdQEZoMl+yr/Zvgx2qnWFL2xj+YYWWl0qk01fhIiXSQ
-         X3oNGXs8ZWja1aOVQkJsQz8kzrvCgd4aDtAKtbdmYcSLnhdfZoHy0NTvSTdpzfNo6gUK
-         gffQ==
+        id S1727235AbfJKHxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 03:53:00 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:34314 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726461AbfJKHxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 03:53:00 -0400
+Received: by mail-wr1-f65.google.com with SMTP id j11so10751250wrp.1;
+        Fri, 11 Oct 2019 00:52:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=75drn0EC3pVb7nMu4OqJSjfSZVRc5lsrjDDKVXKY+D0=;
-        b=PNV3PYPVvA5u8j5gjv3bB8WNDNCXtWCV3vwyyxczteb+/Src1exbBsPktasAwaM6CT
-         3D58a+bJp1S/YYXBHjPiFryxFml6hMwX6ch4wN52KrJ777hRl7Vfm/zYkXO4JPF278LS
-         wxVDxfPI/XbYdtEMybxq6WsMlPXphdlS/ll06qNSV8ySjpJckZ80YYCDht4VPjVSrR3d
-         SKVXKI9vGHu6WPmJ4YV6vlbUsGQOz2DyI4QlKPR34T+k6DKJsw2U4uPK/tOFR/LLahQi
-         PUZnPUWgro289Yko81XanrGK+1A5o0EvkPAkYX9+ssThb1+wpz6c2aFvrKjSmZBCGGXi
-         wJqw==
-X-Gm-Message-State: APjAAAUfZ6G3QgQDkL1K7AkeMPdQK0Umg0wZJJqyW9sBNtNfJLnt91zJ
-        82ut/oOJINVZVVrHO2lHdoB1Z9eiuVLix2FAggDOGg==
-X-Google-Smtp-Source: APXvYqwsrIaguR6gc+cn7lI3kvBjYYwMw83TKOjdKm1xRk5zZloQNbY9/z0V77KhG/9cVgtk4Qsd8iMAjnc/LwmtG4E=
-X-Received: by 2002:a2e:81cf:: with SMTP id s15mr7434961ljg.99.1570779819412;
- Fri, 11 Oct 2019 00:43:39 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=EwPBmMRYQqmwwMpYc8okL9s1LKq8P2O4QBbeYixrVK4=;
+        b=qmkuo+/I5tcKNbqICKPzw0l/7zJCIDaKZaulAYOf9ZEbUzrdks5JkVy6rmiQn2cWLY
+         /ocsncebfHiZx50AXFtfNs5VCCSoSC5cZvJJ4uMMwPHVziip0zHPmD4d6AgmlsUV3R3z
+         Im3wAue2hHzmrR+j9TlSCppd32ip8lYCtQqnueca3untVi5kw72qgDjPdo5U/XGYV+jK
+         8Utxp0KN23BbGWjscMsY/bsE62pDXRpZtiWYir9RBIhEB4NllcL5xWc7ek9HOgtzrX5W
+         PlGQ1KcXxa+8/wyOAQYDtSSyOKaogPm7lHFxIkmLPoBNxb8KS4FLZgHE01hz16cA7km5
+         aRDA==
+X-Gm-Message-State: APjAAAXRi957Q64y22Rz6xuhwY4gOgixODOLlZxHCZrHOinhQztQ02Mt
+        dEMeoIMGXtq6XGXvGzfE8sU=
+X-Google-Smtp-Source: APXvYqxUy16ah5vufdoPXO9FppUIVRbpWBWt1wAegLgSI9eN5KbSUDFilIoDI6Bb75H+vXTIy2Z4Rg==
+X-Received: by 2002:a5d:6949:: with SMTP id r9mr8819898wrw.106.1570780376664;
+        Fri, 11 Oct 2019 00:52:56 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+        by smtp.googlemail.com with ESMTPSA id b22sm7040031wmj.36.2019.10.11.00.52.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2019 00:52:55 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 09:52:53 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Kukjin Kim <kgene@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3 02/10] dt-bindings: sram: Convert Samsung Exynos
+ SYSRAM bindings to json-schema
+Message-ID: <20191011075253.GA7998@pi3>
+References: <20191002164316.14905-1-krzk@kernel.org>
+ <20191002164316.14905-2-krzk@kernel.org>
+ <20191010193356.GA9975@bogus>
 MIME-Version: 1.0
-References: <20191004012525.26647-1-chris.packham@alliedtelesis.co.nz> <20191004012525.26647-3-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20191004012525.26647-3-chris.packham@alliedtelesis.co.nz>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 11 Oct 2019 09:43:28 +0200
-Message-ID: <CACRpkdYWLTjiSQo_VTeReL1CfEO3h_8ONbdCk=PD1x+oc2ggCg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] gpio: Add xgs-iproc driver
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        richard.laing@alliedtelesis.co.nz,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191010193356.GA9975@bogus>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris!
+On Thu, Oct 10, 2019 at 02:33:56PM -0500, Rob Herring wrote:
+> On Wed, Oct 02, 2019 at 06:43:08PM +0200, Krzysztof Kozlowski wrote:
+> > Convert Samsung Exynos SYSRAM bindings to DT schema format using
+> > json-schema.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > 
+> > ---
+> > 
+> > Changes since v2:
+> > 1. Use sram as name of node in example.
+> > 
+> > Changes since v1:
+> > 1. Indent example with four spaces (more readable).
+> > ---
+> >  .../devicetree/bindings/sram/samsung-sram.txt | 38 ------------
+> >  .../bindings/sram/samsung-sram.yaml           | 58 +++++++++++++++++++
+> >  MAINTAINERS                                   |  2 +-
+> >  3 files changed, 59 insertions(+), 39 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/sram/samsung-sram.txt
+> >  create mode 100644 Documentation/devicetree/bindings/sram/samsung-sram.yaml
+> 
+> 
+> > diff --git a/Documentation/devicetree/bindings/sram/samsung-sram.yaml b/Documentation/devicetree/bindings/sram/samsung-sram.yaml
+> > new file mode 100644
+> > index 000000000000..3e77c434ecca
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sram/samsung-sram.yaml
+> > @@ -0,0 +1,58 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sram/samsung-sram.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Samsung Exynos SoC SYSRAM for SMP bringup
+> > +
+> > +maintainers:
+> > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > +
+> > +description: |+
+> > +  Samsung SMP-capable Exynos SoCs use part of the SYSRAM for the bringup
+> > +  of the secondary cores. Once the core gets powered up it executes the
+> > +  code that is residing at some specific location of the SYSRAM.
+> > +
+> > +  Therefore reserved section sub-nodes have to be added to the mmio-sram
+> > +  declaration. These nodes are of two types depending upon secure or
+> > +  non-secure execution environment.
+> > +
+> > +allOf:
+> > +  - $ref: "sram.yaml#"
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^sysram(@.*)?"
+> 
+> As you are renaming all the node names, this will no longer work. If you 
+> change it to 'sram', that's going to match others, but would still work 
+> as long as the child node names are unique to Samsung. If you change 
+> them to '*-sram' then, you'd have to come up with something else. That 
+> probably means using 'compatible' strings. At that point, it's kind of 
+> silly to just be validating what your are using to select the schema. It 
+> may be better to just add the compatible strings into sram.yaml if 
+> that's the only difference.
 
-Thanks for your patch!
+You're right. I'll move them to sram.yaml and maybe add also example.
 
-On Fri, Oct 4, 2019 at 3:25 AM Chris Packham
-<chris.packham@alliedtelesis.co.nz> wrote:
 
-> This driver supports the Chip Common A GPIO controller present on a
-> number of Broadcom switch ASICs with integrated SoCs. The controller is
-> similar to the pinctrl-nsp-gpio and pinctrl-iproc-gpio blocks but
-> different enough that a separate driver is required.
->
-> This has been ported from Broadcom's XLDK 5.0.3 retaining only the CCA
-> support (pinctrl-iproc-gpio covers CCB).
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Best regards,
+Krzysztof
 
-(...)
-
-> +config GPIO_XGS_IPROC
-> +       tristate "BRCM XGS iProc GPIO support"
-> +       depends on OF_GPIO && (ARCH_BCM_IPROC || COMPILE_TEST)
-> +       select GPIO_GENERIC
-> +       select GPIOLIB_IRQCHIP
-
-Nice reuse of abstractions.
-
-> +static u32 iproc_gpio_readl(struct iproc_gpio_chip *chip, int reg)
-> +{
-> +       return readl(chip->base + reg);
-> +}
-> +
-> +static void iproc_gpio_writel(struct iproc_gpio_chip *chip, u32 val, int reg)
-> +{
-> +       writel(val, chip->base + reg);
-> +}
-
-These wrappers don't really add anything do they? Just inline the
-direct readl()/writel() to base + reg everywhere instead.
-
-> +/* returns the corresponding gpio register bit */
-> +static int iproc_irq_to_gpio(struct iproc_gpio_chip *chip, u32 irq)
-> +{
-> +       struct irq_data *data = irq_domain_get_irq_data(chip->irq_domain, irq);
-> +
-> +       return data->hwirq;
-> +}
-
-I would name it something clearer since "gpio" is pretty ambigous.
-
-Like iproc_irq_to_gpio_offset()
-
-Maybe this is also a bit of unnecessary wrapper?
-
-> +static irqreturn_t iproc_gpio_irq_handler(int irq, void *data)
-> +{
-> +       struct iproc_gpio_chip *chip = (struct iproc_gpio_chip *)data;
-> +       struct gpio_chip gc = chip->gc;
-> +       int bit;
-> +       unsigned long int_bits = 0;
-> +       u32 int_status;
-> +
-> +       /* go through the entire GPIOs and handle all interrupts */
-> +       int_status = readl(chip->intr + CCA_INT_STS);
-> +       if (int_status & CCA_INT_F_GPIOINT) {
-> +               u32 event, level;
-> +
-> +               /* Get level and edge interrupts */
-> +               event = readl(chip->base + GPIO_CCA_INT_EVENT_MASK);
-> +               event &= readl(chip->base + GPIO_CCA_INT_EVENT);
-> +               level = readl(chip->base + GPIO_CCA_DIN);
-> +               level ^= readl(chip->base + GPIO_CCA_INT_LEVEL);
-> +               level &= readl(chip->base + GPIO_CCA_INT_LEVEL_MASK);
-> +               int_bits = level | event;
-> +
-> +               for_each_set_bit(bit, &int_bits, gc.ngpio)
-> +                       generic_handle_irq(
-> +                               irq_linear_revmap(chip->irq_domain, bit));
-> +       }
-> +
-> +       return  int_bits ? IRQ_HANDLED : IRQ_NONE;
-> +}
-
-I think this should be a chained interrupt handler (see below how to
-register it).
-
-See e.g. drivers/gpio/gpio-ftgpio010.c for an example:
-change function prototype, no return value, use
-chained_irq_enter/exit(irqchip, desc); etc.
-
-> +static int iproc_gpiolib_input(struct gpio_chip *gc, u32 gpio)
-> +static int iproc_gpiolib_output(struct gpio_chip *gc, u32 gpio, int value)
-> +static void iproc_gpiolib_set(struct gpio_chip *gc, u32 gpio, int value)
-> +static int iproc_gpiolib_get(struct gpio_chip *gc, u32 gpio)
-
-These callbacks seems to reimplement parts of GPIO_GENERIC
-that you should already be using.
-
-Again look at drivers/gpio/gpio-ftgpio010.c() use bgpio_init()
-to set up the library callbacks, look in
-drivers/gpio/gpio-mmio.c for kerneldoc on the function.
-
-> +static int iproc_gpiolib_to_irq(struct gpio_chip *gc, u32 offset)
-> +{
-> +       struct iproc_gpio_chip *chip = gpiochip_get_data(gc);
-> +
-> +       return irq_linear_revmap(chip->irq_domain, offset);
-> +}
-
-GPIOLIB_IRQCHIP provides a .to_irq() implementation
-so drop this and let the library handle this.
-
-> +static int iproc_gpio_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct device_node *dn = pdev->dev.of_node;
-> +       struct iproc_gpio_chip *chip;
-> +       u32 num_gpios;
-> +       int irq, ret;
-> +
-> +       chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
-> +       if (!chip)
-> +               return -ENOMEM;
-> +
-> +       chip->dev = dev;
-> +       platform_set_drvdata(pdev, chip);
-> +
-> +       chip->gc.label = dev_name(dev);
-> +
-> +       chip->base = devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(chip->base))
-> +               return PTR_ERR(chip->base);
-> +
-> +       /* Get number of GPIO pin */
-> +       if (of_property_read_u32(dn, "ngpios", &num_gpios)) {
-> +               dev_err(dev, "missing ngpios DT property\n");
-> +               return -EINVAL;
-> +       }
-
-Maybe provide a sensible default?
-
-> +       chip->gc.ngpio = num_gpios;
-> +       chip->gc.parent = dev;
-> +       chip->gc.of_node = dn;
-> +       chip->gc.direction_input = iproc_gpiolib_input;
-> +       chip->gc.direction_output = iproc_gpiolib_output;
-> +       chip->gc.set = iproc_gpiolib_set;
-> +       chip->gc.get = iproc_gpiolib_get;
-
-Drop this and call bgpio_init() to set up the callbacks
-instead. However, set up .ngpio *after* calling
-bgpio_init() so users can't access the nonexisting
-gpios.
-
-> +       chip->gc.to_irq = iproc_gpiolib_to_irq;
-
-Drop this and use the GPIOLIB_IRQCHIP.
-
-> +       ret = gpiochip_add_data(&chip->gc, chip);
-> +       if (ret) {
-> +               dev_err(dev, "unable to add GPIO chip\n");
-> +               return ret;
-> +       }
-
-Why not use devm_gpiochip_add_data()?
-
-> +       irq = platform_get_irq(pdev, 0);
-> +       if (irq > 0) {
-> +               u32 val, count;
-> +               struct irq_chip *irqc;
-> +
-> +               irqc = &chip->irqchip;
-> +               irqc->name = dev_name(dev);
-> +               irqc->irq_ack = iproc_gpio_irq_ack;
-> +               irqc->irq_mask = iproc_gpio_irq_mask;
-> +               irqc->irq_unmask = iproc_gpio_irq_unmask;
-> +               irqc->irq_set_type = iproc_gpio_irq_set_type;
-> +               irqc->irq_enable = iproc_gpio_irq_unmask;
-> +               irqc->irq_disable = iproc_gpio_irq_mask;
-> +               chip->intr = devm_platform_ioremap_resource(pdev, 1);
-> +               if (IS_ERR(chip->intr))
-> +                       return PTR_ERR(chip->intr);
-
-Move all this above the [devm_]gpiochip_add_data()
-call and add:
-
-struct gpio_irq_chip *girq;
-
-girq = &chip->gc.irq;
-girq->chip = irqc;
-
-etc follow the pattern from other drivers like the
-mentioned ftgpio010.c.
-
-> +               /* Create irq domain */
-> +               chip->irq_domain = irq_domain_add_linear(dn, num_gpios,
-> +                               &irq_domain_simple_ops, chip);
-> +
-> +               if (!chip->irq_domain) {
-> +                       dev_err(dev, "Couldn't allocate IRQ domain\n");
-> +                       ret = -ENODEV;
-> +                       goto err_irq_domain;
-> +               }
-> +
-> +               /* Map each gpio pin to an IRQ and set the handler */
-> +               for (count = 0; count < num_gpios; count++) {
-> +                       int irq;
-> +
-> +                       irq = irq_create_mapping(chip->irq_domain, count);
-> +                       irq_set_chip_and_handler(irq, irqc, handle_simple_irq);
-> +                       irq_set_chip_data(irq, chip);
-> +               }
-
-Drop this and let the generic GPIO irqchip handle
-the domain.
-
-> +               /* Enable GPIO interrupts for CCA GPIO */
-> +               val = readl(chip->intr + CCA_INT_MASK);
-> +               val |= CCA_INT_F_GPIOINT;
-> +               writel(val, chip->intr + CCA_INT_MASK);
-
-Move this before registering the chip.
-
-> +               /* Install ISR for this GPIO controller */
-> +               ret = devm_request_irq(dev, irq, iproc_gpio_irq_handler,
-> +                                      IRQF_SHARED, chip->gc.label, chip);
-> +               if (ret) {
-> +                       dev_err(dev, "Fail to request IRQ%d: %d\n", irq, ret);
-> +                       goto err_irq_request;
-> +               }
-
-Drop this and use the gpiolib irqchip library.
-
-Yours,
-Linus Walleij
