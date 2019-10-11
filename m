@@ -2,136 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 089E0D36B3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 03:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE2FD37F7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 05:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727590AbfJKBHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Oct 2019 21:07:40 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:34280 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727518AbfJKBHk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Oct 2019 21:07:40 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 830A51A04A8;
-        Fri, 11 Oct 2019 03:07:37 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 690811A01F0;
-        Fri, 11 Oct 2019 03:07:32 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DCE9340299;
-        Fri, 11 Oct 2019 09:07:25 +0800 (SGT)
-From:   Hui Song <hui.song_1@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Song Hui <hui.song_1@nxp.com>
-Subject: [PATCH v8] gpio/mpc8xxx: change irq handler from chained to normal
-Date:   Fri, 11 Oct 2019 08:56:43 +0800
-Message-Id: <20191011005643.41007-1-hui.song_1@nxp.com>
-X-Mailer: git-send-email 2.9.5
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726025AbfJKDrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Oct 2019 23:47:15 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:43106 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbfJKDrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Oct 2019 23:47:15 -0400
+Received: by mail-pl1-f195.google.com with SMTP id f21so3802332plj.10;
+        Thu, 10 Oct 2019 20:47:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=lwaGexEIk4Tlv5FRwTaoLvYkPu+sAPH7np80Oye+n20=;
+        b=Tv2D/j9IhiVwpOomkMei9mX/yftFh3M+jMXDqPObnbTzNhkl3Vbwz8nfJt804LsPWh
+         IciDobUmz3EIfjwukLWZxWxft7TKG+lQlr1HIcNDIM95T5GmFnxBh0PykfqcZUF7nGuJ
+         st/oFLIiOnlYOIsi/QPu+nMU9JawJsEhsXlo7oBSWtOMGGgZplUJRBzKreEHEFhxtKnF
+         kIENpylMwCncC7haXNujmrB+OKFJ0oMJFyyhOZW+jCRvJpupe0S8Wr3g0q9X106g2d15
+         vGR81cJiKSNy/G4YPrbEaW/YduaOG9S5kuIaOYGcKC5oHBox9NzEtg9IAVveiZnhtEAT
+         HDKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=lwaGexEIk4Tlv5FRwTaoLvYkPu+sAPH7np80Oye+n20=;
+        b=aBCiQn1M4zMNaGgN/LPKwfkTTKpa4+l6uJcZopQiRv1kCRJzQEXSwtfbcv2+BCcL8T
+         8WSLPP1QNs41v0HU+IaG9bAuRjNn6WUuVN2RgIQP9/blgGXWQRqZnCwdwdHxX9IAJ7Uj
+         jcbltYxZSfZiV3IPKihdEzCZd6eqDCXGUbP8quqzuoeR0o7Ca5uKen6y2bfTUst9U5wX
+         lymhx1CIl33nh38s2vg8B3xUM88eDFcZb6C1iu4SXtOjHrbklsgCvOqs4auZzqBIx5xY
+         TVTblmwgzWy/3hRu7Q5JwD/pTOEABMhQ7L41VR8Xlt5rPd7lnxsqIePb81pKirCt39zu
+         mLnw==
+X-Gm-Message-State: APjAAAUwa6h1aV78WIzihlO/o9GMKvFsLlL1vkDmwE2Xk0iaotKwJYM2
+        K3Km4lgj2sjL1UuyCMMyrjc=
+X-Google-Smtp-Source: APXvYqyR1rmTzHQKhSUn3T3BkL6TnScR8FJqXArtRUVHc2yY16j/jZMdOqQe/IiJJA8w+1/i2ZTwMg==
+X-Received: by 2002:a17:902:ba95:: with SMTP id k21mr4891378pls.49.1570765634586;
+        Thu, 10 Oct 2019 20:47:14 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id u3sm7493267pfn.134.2019.10.10.20.47.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2019 20:47:13 -0700 (PDT)
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        will@kernel.org, robin.murphy@arm.com
+Cc:     vdumpa@nvidia.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/2] iommu/arm-smmu: Add an optional "input-address-size" property
+Date:   Thu, 10 Oct 2019 20:46:07 -0700
+Message-Id: <20191011034609.13319-1-nicoleotsuka@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Song Hui <hui.song_1@nxp.com>
+This series of patches add an optional DT property to allow an SoC to
+specify how many bits being physically connected to its SMMU instance,
+depending on the SoC design.
 
-More than one gpio controllers can share one interrupt, change the
-driver to request shared irq.
+Nicolin Chen (2):
+  dt-bindings: arm-smmu: Add an optional "input-address-size" property
+  iommu/arm-smmu: Read optional "input-address-size" property
 
-While this will work, it will mess up userspace accounting of the number
-of interrupts per second in tools such as vmstat.  The reason is that
-for every GPIO interrupt, /proc/interrupts records the count against GIC
-interrupt 68 or 69, as well as the GPIO itself.  So, for every GPIO
-interrupt, the total number of interrupts that the system has seen
-increments by two.
+ Documentation/devicetree/bindings/iommu/arm,smmu.txt |  7 +++++++
+ drivers/iommu/arm-smmu.c                             | 10 ++++++++--
+ 2 files changed, 15 insertions(+), 2 deletions(-)
 
-Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
-Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-Signed-off-by: Song Hui <hui.song_1@nxp.com>
----
-Changes in v8:
-        - merge two lines as one line to fit 80 characters.
-Changes in v7:
-	- make unsigned int convert to unsigned long.
-Changes in v6:
-        - change request_irq to devm_request_irq and add commit message.
-Changes in v5:
-        - add traverse every bit function.
-Changes in v4:
-        - convert 'pr_err' to 'dev_err'.
-Changes in v3:
-        - update the patch description.
-Changes in v2:
-        - delete the compatible of ls1088a.
- drivers/gpio/gpio-mpc8xxx.c | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
-index 16a47de..58ff372 100644
---- a/drivers/gpio/gpio-mpc8xxx.c
-+++ b/drivers/gpio/gpio-mpc8xxx.c
-@@ -22,6 +22,7 @@
- #include <linux/irq.h>
- #include <linux/gpio/driver.h>
- #include <linux/bitops.h>
-+#include <linux/interrupt.h>
- 
- #define MPC8XXX_GPIO_PINS	32
- 
-@@ -127,20 +128,19 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc, unsigned offset)
- 		return -ENXIO;
- }
- 
--static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
-+static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
- {
--	struct mpc8xxx_gpio_chip *mpc8xxx_gc = irq_desc_get_handler_data(desc);
--	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	struct mpc8xxx_gpio_chip *mpc8xxx_gc = data;
- 	struct gpio_chip *gc = &mpc8xxx_gc->gc;
--	unsigned int mask;
-+	unsigned long mask;
-+	int i;
- 
- 	mask = gc->read_reg(mpc8xxx_gc->regs + GPIO_IER)
- 		& gc->read_reg(mpc8xxx_gc->regs + GPIO_IMR);
--	if (mask)
--		generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
--						     32 - ffs(mask)));
--	if (chip->irq_eoi)
--		chip->irq_eoi(&desc->irq_data);
-+	for_each_set_bit(i, &mask, 32)
-+		generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq, 31 - i));
-+
-+	return IRQ_HANDLED;
- }
- 
- static void mpc8xxx_irq_unmask(struct irq_data *d)
-@@ -409,8 +409,16 @@ static int mpc8xxx_probe(struct platform_device *pdev)
- 	if (devtype->gpio_dir_in_init)
- 		devtype->gpio_dir_in_init(gc);
- 
--	irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
--					 mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
-+	ret = devm_request_irq(&pdev->dev, mpc8xxx_gc->irqn,
-+			       mpc8xxx_gpio_irq_cascade,
-+			       IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade",
-+			       mpc8xxx_gc);
-+	if (ret) {
-+		dev_err(&pdev->dev, "%s: failed to devm_request_irq(%d), ret = %d\n",
-+			np->full_name, mpc8xxx_gc->irqn, ret);
-+		goto err;
-+	}
-+
- 	return 0;
- err:
- 	iounmap(mpc8xxx_gc->regs);
 -- 
-2.9.5
+2.17.1
 
