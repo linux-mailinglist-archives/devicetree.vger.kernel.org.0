@@ -2,102 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08721D46BD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 19:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D991D46DE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 19:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728461AbfJKRiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 13:38:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35818 "EHLO mail.kernel.org"
+        id S1728474AbfJKRqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 13:46:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36744 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728400AbfJKRiL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 13:38:11 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        id S1728470AbfJKRqY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 13:46:24 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A2B3F21D56;
-        Fri, 11 Oct 2019 17:38:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CC72221835;
+        Fri, 11 Oct 2019 17:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570815490;
-        bh=l+5ry87cxUtxYXHePyh81P8HafboxiTuOzmN9VqhiJk=;
+        s=default; t=1570815982;
+        bh=cCan5WfHyvTySsprLa8MG8Pk1yN1pL0Z22pVSVDHh+Q=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LlRKD5M91iiGyBEiY0WgbIp+afnfa2s28rl6m3oq5svRoCoM77KNkx+KrFBm3Ouq5
-         bdOY6SCQO9x5JELKmu8F/X9Ea7kkjN8cLWRcL1t5EEABgYFVY9z3AOISoJAt5a9gCG
-         dNO3ih5J2s/JITd9OHnonOLX8bqXb1CI2muS/pSo=
-Received: by mail-qt1-f169.google.com with SMTP id m61so14996171qte.7;
-        Fri, 11 Oct 2019 10:38:10 -0700 (PDT)
-X-Gm-Message-State: APjAAAW/6PqKplKwnsciA1JzDba1qlKw+SCuWEdXQ8+k5t84IhhRKa3N
-        tf+7SnKCSbEpgIN8DBicahYZ7RI/0PlM5KjIjw==
-X-Google-Smtp-Source: APXvYqwefuFruP6xMHJnlcnKESPKmjjJZuruOEWzYmtK0vmrBCSga7oWWWnX/81OUdxUtsLgTzs6BSUeax/tyfAD1kQ=
-X-Received: by 2002:a05:6214:407:: with SMTP id z7mr17009701qvx.79.1570815489727;
- Fri, 11 Oct 2019 10:38:09 -0700 (PDT)
+        b=kcGnYOdV0Afs5sCaIDGthExPA/LdjfuVpPz8r6/CNgjKpA1ovDmjO7x3Hqnbn0YFZ
+         3+GAwzd8KrSWa8Q7Qhx1pOhdgOlXyfNkZSp32SKCAAMlBojSTo64A+kVaoI44xDRDI
+         OgSm5uOMzRQNbEkT5JiXmYrSsneal+N5vUmp7BPw=
+Received: by mail-qk1-f170.google.com with SMTP id x4so5719325qkx.5;
+        Fri, 11 Oct 2019 10:46:22 -0700 (PDT)
+X-Gm-Message-State: APjAAAWIaAbUueCaNEvXda/fZdl6OHQpOWlhWNiRSljXu8lj2fuQTQ31
+        /vsX7u4thkxsyWJgElhR51lUCMTMWrw3/7h2Yg==
+X-Google-Smtp-Source: APXvYqx8NWxIkgR2gwBZKvDxeeXE3vkunAfy2ZjWqHue5z6OeFFUywQNqB23lykYwT24W4jiQ/KDjMZvYec9Euj/cdE=
+X-Received: by 2002:a37:98c1:: with SMTP id a184mr15759520qke.119.1570815981911;
+ Fri, 11 Oct 2019 10:46:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191011093342.3471-1-boris.brezillon@collabora.com>
- <20191011093342.3471-3-boris.brezillon@collabora.com> <CAL_JsqL_6xPyb4kTDR3dbLc4Uptwox=1F4zaGjHVmahNyk25=w@mail.gmail.com>
- <20191011145625.694238b1@dhcp-172-31-174-146.wireless.concordia.ca>
-In-Reply-To: <20191011145625.694238b1@dhcp-172-31-174-146.wireless.concordia.ca>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 11 Oct 2019 12:37:57 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJYs3RaVqeFFuMbCSJMrWY7t=S=wWWpo5syL2ONag_woA@mail.gmail.com>
-Message-ID: <CAL_JsqJYs3RaVqeFFuMbCSJMrWY7t=S=wWWpo5syL2ONag_woA@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2 2/4] media: dt-bindings: rockchip: Document
- RK3399 Video Decoder bindings
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>
+References: <1569527977-21213-1-git-send-email-ykaneko0929@gmail.com>
+ <20191010220709.GA1314@bogus> <CAMuHMdWR3HnT1-yp+i0OXAr2xF-6MANJDuXz1hj9WC1eUJjRAQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWR3HnT1-yp+i0OXAr2xF-6MANJDuXz1hj9WC1eUJjRAQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 11 Oct 2019 12:46:10 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+9Am1KPE_=TX7_c+sdMt09hPzxXfz0kk53+pF13WtVxw@mail.gmail.com>
+Message-ID: <CAL_Jsq+9Am1KPE_=TX7_c+sdMt09hPzxXfz0kk53+pF13WtVxw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas: intc-irqpin: convert
+ bindings to json-schema
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 11, 2019 at 7:56 AM Boris Brezillon
-<boris.brezillon@collabora.com> wrote:
+On Fri, Oct 11, 2019 at 1:57 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> On Fri, 11 Oct 2019 07:50:16 -0500
-> Rob Herring <robh+dt@kernel.org> wrote:
+> Hi Rob, Kaneko-san,
 >
-> > On Fri, Oct 11, 2019 at 4:33 AM Boris Brezillon
-> > <boris.brezillon@collabora.com> wrote:
+> On Fri, Oct 11, 2019 at 12:07 AM Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Sep 27, 2019 at 04:59:37AM +0900, Yoshihiro Kaneko wrote:
+> > > Convert R-/SH-Mobile IRQPin Controller bindings documentation to json-schema.
 > > >
-> > > Document the Rockchip RK3399 Video Decoder bindings.
-> >
-> > You need some more headers for the example (or drop defines):
-> >
-> > Error: Documentation/devicetree/bindings/media/rockchip,vdec.example.dts:23.28-29
-> > syntax error
-> > FATAL ERROR: Unable to parse input tree
-> > scripts/Makefile.lib:321: recipe for target
-> > 'Documentation/devicetree/bindings/media/rockchip,vdec.example.dt.yaml'
-> > failed
-> > make[1]: *** [Documentation/devicetree/bindings/media/rockchip,vdec.example.dt.yaml]
-> > Error 1
-> > Makefile:1282: recipe for target 'dt_binding_check' failed
-> > make: *** [dt_binding_check] Error 2
+> > > Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
 >
-> Will fix that. BTW, I tried running make dtbs_check and faced a few
-> errors on other yaml files (which is why I ended up sending the patch
-> without fully validating the schema). Maybe those have been fixed (I'm
-> based on the media tree which is based on 5.4-rc1).
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
+> > > @@ -0,0 +1,102 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,intc-irqpin.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: DT bindings for the R-/SH-Mobile irqpin controller
+> > > +
+> > > +maintainers:
+> > > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Looks like I received many maintainerships recently ;-)
 
-Several fixes went into -rc2, but there's 2 fixes not in -rc2 (but are in next).
+Maybe I should have called it something else, but I view this as who's
+the owner not who applies it. There are lots of binding files with no
+maintainer, so it's me by default. I wanted to avoid that and not by
+having 4K MAINTAINERS entries.
 
-> Oh, and I also noticed that the generated example has
-> #address-cells = <1>, #size-cells = <1> in the parent node, while my
-> example expects <2>. Is there any way I can specify that somewhere, or
-> should I just tweak the example to use 1 cell instead?
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - renesas,intc-irqpin-r8a7740  # R-Mobile A1
+> > > +          - renesas,intc-irqpin-r8a7778  # R-Car M1A
+> > > +          - renesas,intc-irqpin-r8a7779  # R-Car H1
+> > > +          - renesas,intc-irqpin-sh73a0   # SH-Mobile AG5
+> > > +      - const: renesas,intc-irqpin
+> > > +
+> > > +  reg:
+> > > +    # Base address and length of each register bank used by the external
+> > > +    # IRQ pins driven by the interrupt controller hardware module. The base
+> > > +    # addresses, length and number of required register banks varies with
+> > > +    # soctype.
+> > > +    minItems: 1
+>
+> minItems: 5
+>
+> > > +    maxItems: 6
+> >
+> > Every entry is the same thing?
+>
+> No they're not.
+>
+> First entry is the Interrupt control register.
+> Second entry is the Interrupt priority register.
+> Third entry is the Interrupt source register.
+> Fourth entry is the Interrupt mask register.
+> Fifth entry is the Interrupt mask clear register.
+> Sixth entry is the optional Interrupt control register for ICR0 with IRLM bit.
 
-I think you can override it just adding '#address-cells = <2>;' or
-tweak the example.
+So this should be an 'items' list with these descriptions.
 
 Rob
