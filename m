@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B09CCD4441
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1793D444D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727382AbfJKPaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 11:30:23 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:40873 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726827AbfJKPaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:30:23 -0400
-Received: by mail-oi1-f195.google.com with SMTP id k9so8331679oib.7;
-        Fri, 11 Oct 2019 08:30:22 -0700 (PDT)
+        id S1727399AbfJKPbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 11:31:17 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36653 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726728AbfJKPbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:31:17 -0400
+Received: by mail-oi1-f196.google.com with SMTP id k20so8341927oih.3;
+        Fri, 11 Oct 2019 08:31:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IlY2+yeW416JGr4DtEVYz+C96Dhs+gm3/zcCLQ8sBOQ=;
-        b=N4ghlBebqu13t+4BxB9hZxdakTRywht11hIlFhHQWdE66rUpdZ4jToRicFzCWIJoNu
-         0oDyXQqG2m7wDc6JLSo2mlQRrqzQDTgWLD3W3W/ImwjuXUqxctrdG2qEs0RN7I5Nd8zB
-         XTZ198RK0+X2mdMd/Qs/WB+Bq9Z4v4eL9R7fJESzblEP0Ha14dAn2LprTPorbWcoh8OO
-         wzaVPAzwyJS+YHNRQRY8eUB/tTnWRCRJNcWKnHxCgOSZRXdNBAO4/YU5oX95lS9hWD3Z
-         8F8rN5r+RoCzcbpGdoUYxcvnnJGbo0sSogGq3BCiwJyOujTEpBmtOCVQ8Wf3U0OihIHC
-         qSlA==
-X-Gm-Message-State: APjAAAWKHtVBmRcg37h8sfeOl4uYgdaMFMPmZWUb8WGRP9qaacl/yAdF
-        IiNrFLcRanJTbh3JS2Eijw==
-X-Google-Smtp-Source: APXvYqwZweugxncUG7CPGNcm/LK2vvZBo2mMRKKh78w/KX0EXUj40FYs6ODtK25SX3OUSCKzB3WjEg==
-X-Received: by 2002:aca:f5c1:: with SMTP id t184mr9829490oih.88.1570807822538;
-        Fri, 11 Oct 2019 08:30:22 -0700 (PDT)
+        bh=lZBxUgx9Vl2v4FPUyNZy1vxnwneedhV9vcSMUHf/Uks=;
+        b=I3UWvZAgzFnKeXSccG/lMgWLz6PFCy4nk2tmY7PL6Pbk6/fReg2A5jGa0MfAlB0qWN
+         Z/zSjV3/2n3SY5O7U6GrAHJAuAz0VwoxcAX3Xq4wgQepqnT++FO5wKsuI7e4G5W2dhhh
+         ExjRtrJt2DP80OL9C5L64xPRP2hWQ37eJIT1h+R2nGCsyTKH0l7U+mc/TGU0Xzudvm6m
+         o5OEH5vaUecOrxr3DeuCfxzmY8z2LaN4LzYUvgFxshJ3nHkcWdA6Vf3qHu+UEGrgnIsk
+         W24k/cj2892jneIHHggU+vMy/XMRo/KVOFsg726lZpvtozO65E8FePCIaT5BM1rErIym
+         F0tg==
+X-Gm-Message-State: APjAAAWvYO8ObGFEx3+kQjMbZoj7Et0TJos1ejae1uehsuuv3SDOxGIz
+        ZheFdTuPy718QJeY8Kp2aQ==
+X-Google-Smtp-Source: APXvYqzMBwoebZPW21tZSXxF+eFrIe/IalA9934WUv0jd+BqnLTSpIqETXg/pzIyOuxUT6FoQ8E53g==
+X-Received: by 2002:aca:1a0b:: with SMTP id a11mr13082342oia.138.1570807875938;
+        Fri, 11 Oct 2019 08:31:15 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z16sm2668403otq.78.2019.10.11.08.30.21
+        by smtp.gmail.com with ESMTPSA id 34sm2773765otf.55.2019.10.11.08.31.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 08:30:21 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 10:30:21 -0500
+        Fri, 11 Oct 2019 08:31:15 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 10:31:14 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Kaiser <martin@kaiser.cx>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Alexander Shiyan <shc_work@mail.ru>,
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     ars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
+        alexandru.Ardelean@analog.com, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Martin Kaiser <martin@kaiser.cx>
-Subject: Re: [PATCH v2 2/2] dt-bindings: display: clps711x-fb: fix
- native-mode setting
-Message-ID: <20191011153021.GA10765@bogus>
-References: <20190918193853.25689-1-martin@kaiser.cx>
- <20191005130921.12874-1-martin@kaiser.cx>
- <20191005130921.12874-3-martin@kaiser.cx>
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: light: Add binding for ADUX1020
+Message-ID: <20191011153114.GA12208@bogus>
+References: <20191007153917.13611-1-manivannan.sadhasivam@linaro.org>
+ <20191007153917.13611-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191005130921.12874-3-martin@kaiser.cx>
+In-Reply-To: <20191007153917.13611-2-manivannan.sadhasivam@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  5 Oct 2019 15:09:21 +0200, Martin Kaiser wrote:
-> Move the native-mode setting inside the display-timing node. Outside of
-> display-timing, it is ignored.
+On Mon,  7 Oct 2019 21:09:16 +0530, Manivannan Sadhasivam wrote:
+> Add devicetree binding for Analog Devices ADUX1020 Photometric
+> sensor.
 > 
-> Signed-off-by: Martin Kaiser <martin@kaiser.cx>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
-> changes in v2
->  fix the example in this binding as well
-> 
->  Documentation/devicetree/bindings/display/cirrus,clps711x-fb.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/iio/light/adux1020.yaml          | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/adux1020.yaml
 > 
 
-Applied, thanks.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
