@@ -2,72 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABEE7D4192
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 15:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91047D41A0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 15:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728033AbfJKNmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 09:42:25 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:47060 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728034AbfJKNmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 09:42:25 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 89so7954758oth.13;
-        Fri, 11 Oct 2019 06:42:25 -0700 (PDT)
+        id S1727589AbfJKNow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 09:44:52 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45063 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728123AbfJKNow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 09:44:52 -0400
+Received: by mail-oi1-f196.google.com with SMTP id o205so7993247oib.12;
+        Fri, 11 Oct 2019 06:44:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=A2jWyPbfNSsGzEcZc8pDfV2hbWN91PiBfqFemzkg21w=;
-        b=bhDhD3/bXt0ZBj7a5kWF7tTcwJOEDHzZQk6EQpf6cicP0ypFJifmUU6was6H95Cpd2
-         40ZwEux0vPxsM2hLBMsbj23l1VVpXwzTtebbiE1/SBYxm59/AVJIfE4XhG4XtVunPKXa
-         JbblMhnJU+UTbSJSDMeDlKF7rBHpsXjCQIpzgASBt+LoOiVo7jSBn5yGIZ5LeBgXXGri
-         HUhEsyEj4UEaq+5dd/HLIM6L3xchIW2YvYABfLowOvY5egd4x0AP2tePc4FmlQRHNruu
-         XyzfEm1x+OrQ6DTqaM7g+sWQPUBJyM41s6GaufXy1pH83ulKCLvRzrc+5qMARjcsmxqz
-         vjIg==
-X-Gm-Message-State: APjAAAXtot3rglWD8dqZfssXQ6WdmOd9MxK+L/xfBrIqM/GBlV3/xDc2
-        GQq4ynHPZtgikwsipJ9xVA==
-X-Google-Smtp-Source: APXvYqzFpuY6SYxxReU6IXWAObu4ooMdRgFt7J2dhKY9oNlNtPKZsvvflWNH0VtVB33wqyYVsXBjsA==
-X-Received: by 2002:a05:6830:1f09:: with SMTP id u9mr13002364otg.310.1570801344612;
-        Fri, 11 Oct 2019 06:42:24 -0700 (PDT)
+        bh=GZeJBsZghT7e6LCjUz+sVvchYWE7PmUmwwhmIaUBEwE=;
+        b=bitqoVMUDif8GKdgwxbKgrIZXMRJHGg7lszjkCQnrMjigJFusto1gU2uhIjWMXa0hG
+         /qSkONqWXdf6cPgc84w6EGH9zTkDZU8uQhzZQ57p21r0U80N2UK+sruxnwVadR8FRLzH
+         GQjfAHugKRkqSoVMySdwu7mckSy3H6prIShljo3lzXCuVO1ou6pjGTd5PxQOSR/vkPDs
+         ekNBFw22iH391kvC7bwWPEy36/KYWXX7afp+S6C7FBl2z8ncbLo/7T0kd/EspxQGp4pz
+         jgxwYmUZf8tOIS1k89FKl9HKpWu9gh7SGPJxqf+f9sivDVlobrKpPfhvIVCupEFL1DDb
+         K6Aw==
+X-Gm-Message-State: APjAAAUavHx2QWXQMI0hZEgDV35joWnSRoauQ2fnVmMg3hMmJ85DXkQG
+        q4TW5eqXBvhYa8+j1lauJg==
+X-Google-Smtp-Source: APXvYqygQnNsKFE3tAs7X9nvUFdWunpcSkwQgK464MYYpP62MRP1sSRUZgDZUeiBY+VI7zwUodJkww==
+X-Received: by 2002:a54:4d02:: with SMTP id v2mr4744823oix.8.1570801490268;
+        Fri, 11 Oct 2019 06:44:50 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t10sm2608427oib.49.2019.10.11.06.42.23
+        by smtp.gmail.com with ESMTPSA id 100sm2661759otl.48.2019.10.11.06.44.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 06:42:23 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 08:42:23 -0500
+        Fri, 11 Oct 2019 06:44:49 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 08:44:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Talel Shenhar <talel@amazon.com>
-Cc:     robh+dt@kernel.org, maz@kernel.org, mark.rutland@arm.com,
-        arnd@arndb.de, bp@alien8.de, mchehab@kernel.org,
-        james.morse@arm.com, davem@davemloft.net,
-        gregkh@linuxfoundation.org, paulmck@linux.ibm.com,
-        talel@amazon.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-        dwmw@amazon.co.uk, benh@kernel.crashing.org, hhhawa@amazon.com,
-        ronenk@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
-        amirkl@amazon.com, barakw@amazon.com
-Subject: Re: [PATCH v6 1/2] dt-bindings: soc: al-pos: Amazon's Annapurna Labs
- POS
-Message-ID: <20191011134223.GA11275@bogus>
-References: <1570707681-865-1-git-send-email-talel@amazon.com>
- <1570707681-865-2-git-send-email-talel@amazon.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mboumba Cedric Madianga <cedric.madianga@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/7 v4] mfd: ab8500: augment DT bindings
+Message-ID: <20191011134449.GA12969@bogus>
+References: <20191011071805.5554-1-linus.walleij@linaro.org>
+ <20191011071805.5554-6-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1570707681-865-2-git-send-email-talel@amazon.com>
+In-Reply-To: <20191011071805.5554-6-linus.walleij@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Oct 2019 14:41:20 +0300, Talel Shenhar wrote:
-> Document Amazon's Annapurna Labs POS SoC binding.
+On Fri, Oct 11, 2019 at 09:18:03AM +0200, Linus Walleij wrote:
+> As we migrate the AB8500 GPADC driver to use IIO, we need to augment
+> the bindings to account for defining the ADC channels in the device
+> tree.
 > 
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
+> Cc: devicetree@vger.kernel.org
+> Acked-by: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/edac/amazon,al-pos-edac.yaml          | 41 ++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-pos-edac.yaml
-> 
+> ChangeLog v3->v4:
+> - Fix the nodenames from "foo_node" to "foo-node"
+
+You forgot to update the example. With that fixed,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+
+> - Remove 0 prefix from @0n to @n
+> ChangeLog v2->v3:
+> - Change "adc-channel@" to "channel@" as per preferred notation.
+> - Add some full stops to the end of sentences.
+> - Reference the new ADC-specific documentation for channel specifier
+>   etc.
+> - Collect Lee's ACK.
+> - Rebased on v5.4-rc1
+> ChangeLog v1->v2:
+> - Rebased on v5.3-rc5
+> ---
+>  .../devicetree/bindings/mfd/ab8500.txt        | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
