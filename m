@@ -2,440 +2,678 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61485D3A08
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 09:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8C2D3A20
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 09:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727236AbfJKHaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 03:30:23 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:57852 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726679AbfJKHaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 03:30:23 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9B7U6El078191;
-        Fri, 11 Oct 2019 02:30:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570779006;
-        bh=znP/gGaBX/Jb6dmBMtFvZoxZ7cFvHE83wvW8fbuudow=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=o7tSAAui6UC0pkVc4uInf8vM9gVTu+vb8QWiVmMYMpYylB6cISO5aPObEtEsl9Sll
-         PbxMmd9NmQ+TrAzzefTRd3JJSBnewoW9WitjzSQ6rJcQdtDJuOHGQWeaEgvi9wYA3D
-         oZx05cWwgF6vdaSPTuJa0HOyIQrZ2UGgGshIiqEQ=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9B7U6Q3112318
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Oct 2019 02:30:06 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 11
- Oct 2019 02:30:01 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 11 Oct 2019 02:30:01 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9B7U1qI053518;
-        Fri, 11 Oct 2019 02:30:02 -0500
-Subject: Re: [PATCH v3 07/14] dt-bindings: dma: ti: Add document for K3 UDMA
-To:     Rob Herring <robh@kernel.org>
-CC:     <vkoul@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
-        <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <t-kristo@ti.com>, <tony@atomide.com>, <j-keerthy@ti.com>
-References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
- <20191001061704.2399-8-peter.ujfalusi@ti.com> <20191010175232.GA24556@bogus>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <ef07299b-eb43-d582-adb8-46f46681f9a5@ti.com>
-Date:   Fri, 11 Oct 2019 10:30:55 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727485AbfJKHjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 03:39:45 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34614 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727556AbfJKHjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 03:39:44 -0400
+Received: by mail-wr1-f66.google.com with SMTP id j11so10707147wrp.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 00:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version:content-transfer-encoding;
+        bh=s8kB1H/RCiKP/8rYX+uBSdKgCLAKul3EqkpfP4fa+2Q=;
+        b=qoSwh1Gb94xeJS8NWXd4a6ynqBsZ+rc06ehTl8GTCWOJcB9DveC++GpODROfrYECR+
+         nfsTuzGlWX82vuxfgWaY//plZsYyudzejaXA4bwASnKFE3e4El1hR95t/Krmvar/n8Aq
+         XOvF1A2biTY7T9POZYAke7iwVZ9YBRkaEVwQW58rE/gRcQ1vzc52QgicwFxH+rUBhEMJ
+         +fPAFmWFJR+TVKor65JEPN0ID8pW609N5LOGlNJ6anQH3dGsgoqh3YP0dTsg/uyYz1vc
+         KbP8v3oKVFT61op/cmycrVarXGaGKbQT6aOKa9QSB6ri6/zHdL1hdNJQ6GgZphL6gIDf
+         otcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version:content-transfer-encoding;
+        bh=s8kB1H/RCiKP/8rYX+uBSdKgCLAKul3EqkpfP4fa+2Q=;
+        b=OsrnFQZ07eAVdXvQOKzcwh9kSWpTxVbcJO8SQQRAOyRVLwMjbCZgBPjEr5rV2U4Dnl
+         2T4xv2ohakXz8IO7VHsUo+mGNpeUAFFYsyblv9O8Qki1i9tgGaWh4Kq7dGWRPY+6Dy+X
+         F16yddTkwAQrrekaL7PyggQDOKM9x+ZsGB/WB0EtzWOQnus2nqnfItKt6MkrmVKnCIzc
+         sptTbaeyl3f5BScQ+ZcuLFYnqLlnf9a+0kN8xJeXIVnLLlXxdOU4/x5RIgBbyMBvzroS
+         jADErsPPwICe44QAdrYY26TieZH0GdbPEhh/fUp7SkbmSpemZQbeHW69aNww2SgCzXj3
+         jngQ==
+X-Gm-Message-State: APjAAAVa3hJZ8to6SderfWz3Uwta7TbLGgkYfRJSoaIiYeMmCNe3M5qH
+        aZHXgaN1DPKVvjooik0CWn+LEQ==
+X-Google-Smtp-Source: APXvYqyc3E4HGVspguxU9+Vjw8mVZFHaBRZ19yygA1Wa+WQTjVJzfULQ9qfUc4cXw49ZwQC/XdwH6w==
+X-Received: by 2002:adf:f9ca:: with SMTP id w10mr1158346wrr.259.1570779579567;
+        Fri, 11 Oct 2019 00:39:39 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id j11sm9452449wrw.86.2019.10.11.00.39.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2019 00:39:38 -0700 (PDT)
+References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com> <1569411888-98116-3-git-send-email-jian.hu@amlogic.com> <1j1rw4mmzw.fsf@starbuckisacylon.baylibre.com> <a830a0d1-680c-86ec-e858-4470c67865e2@amlogic.com> <1jimpd27cb.fsf@starbuckisacylon.baylibre.com> <5fd57563-0c34-be14-132a-74fd2c5a5275@amlogic.com> <052b0a5c-c913-a9ff-65b9-5b7eb0aecd6e@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Jian Hu <jian.hu@amlogic.com>, Stephen Boyd <sboyd@kernel.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] clk: meson: a1: add support for Amlogic A1 clock driver
+In-reply-to: <052b0a5c-c913-a9ff-65b9-5b7eb0aecd6e@amlogic.com>
+Date:   Fri, 11 Oct 2019 09:39:37 +0200
+Message-ID: <1jsgnz20jq.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20191010175232.GA24556@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
 
-On 10/10/2019 20.52, Rob Herring wrote:
-> On Tue, Oct 01, 2019 at 09:16:57AM +0300, Peter Ujfalusi wrote:
->> New binding document for
->> Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P).
+On Tue 08 Oct 2019 at 10:03, Jian Hu <jian.hu@amlogic.com> wrote:
+
+> Hi, Jerome
+>
+> PLL clocks and peripheral clocks rely on each other.
+>
+> for fixed_pll, we can describe its parent like this:
+>
+> xtal-->xtal_fixpll-->fixed_dco-->fixed_pll
+>
+> xtal fixpll is belong to peripheral region.
+> fixed_pll/fclk_div2/fclk_div3 is belong to PLL region.
+>
+> if PLL clocks probe first, it will fail to get xtal_fixpll.
+> we can not get fixed_dco's parent clock.
+>
+> if peripheral clocks probe first, it will fail to get
+> fixed_pll clocks. A lot of peripheral clocks parent are fclk_div2/3/5/7.
+> and we can not get fclk_div2/3/5/7 clocks.
+
+What does "fail" mean ?
+
+>
+> I can think of two solutions:
+> 1) Do not describe xtal_fixpll, xtal_hifipll.
+>    that is to say, do not decribe the SYS_OSCIN_CTRL register.
+>
+> 2) Put peripheral and pll clock driver in one driver.
+
+Those are work arounds. Actually fixing the problem is usually
+preferable.
+
+ So if rephrase your problem:
+
+ * We have 2 clock controllers (A and B)
+ * Clock are passed between the controllers using DT
+ * We have a PLL in controller B which is used by clocks in
+   controller A.
+ * the PLL parent clock is in controller A.
+
+=3D> So if I understand correctly you are saying that it will "fail"
+because there is a circular dependency between controller A and B, right
+?
+
+Do you have evidence that your problem comes from this circular
+dependency ?
+
+AFAIK, CCF will orphan the clock and continue if the parent is not
+available. Later, when the parent comes up, the orphan will be
+reparented.
+
+IOW, the problem you are reporting should already be covered by CCF.
+
+>
+> And  which sulution is better above two?
+
+Neither, I'm afraid
+
+>
+> Or maybe other good ideas for it?
+
+My bet would be that an important clocks (maybe more than 1) is being
+gated during the init process.
+
+Maybe you should try the command line parameter "clk_ignore_unused"
+until you get things running with your 2 controllers.
+
+>
+> On 2019/9/29 17:38, Jian Hu wrote:
 >>
->> UDMA-P is introduced as part of the K3 architecture and can be found in
->> AM654 and j721e.
 >>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> ---
->>  .../devicetree/bindings/dma/ti/k3-udma.txt    | 185 ++++++++++++++++++
->>  include/dt-bindings/dma/k3-udma.h             |  10 +
->>  2 files changed, 195 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-udma.txt
->>  create mode 100644 include/dt-bindings/dma/k3-udma.h
->>
->> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-udma.txt b/Documentation/devicetree/bindings/dma/ti/k3-udma.txt
->> new file mode 100644
->> index 000000000000..3a8816ec9ce0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/ti/k3-udma.txt
->> @@ -0,0 +1,185 @@
->> +* Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P)
->> +
->> +The UDMA-P is intended to perform similar (but significantly upgraded) functions
->> +as the packet-oriented DMA used on previous SoC devices. The UDMA-P module
->> +supports the transmission and reception of various packet types. The UDMA-P is
->> +architected to facilitate the segmentation and reassembly of SoC DMA data
->> +structure compliant packets to/from smaller data blocks that are natively
->> +compatible with the specific requirements of each connected peripheral. Multiple
->> +Tx and Rx channels are provided within the DMA which allow multiple segmentation
->> +or reassembly operations to be ongoing. The DMA controller maintains state
->> +information for each of the channels which allows packet segmentation and
->> +reassembly operations to be time division multiplexed between channels in order
->> +to share the underlying DMA hardware. An external DMA scheduler is used to
->> +control the ordering and rate at which this multiplexing occurs for Transmit
->> +operations. The ordering and rate of Receive operations is indirectly controlled
->> +by the order in which blocks are pushed into the DMA on the Rx PSI-L interface.
->> +
->> +The UDMA-P also supports acting as both a UTC and UDMA-C for its internal
->> +channels. Channels in the UDMA-P can be configured to be either Packet-Based or
->> +Third-Party channels on a channel by channel basis.
->> +
->> +All transfers within NAVSS is done between PSI-L source and destination threads.
->> +The peripherals serviced by UDMA can be PSI-L native (sa2ul, cpsw, etc) or
->> +legacy, non PSI-L native peripherals. In the later case a special, small PDMA is
->> +tasked to act as a bridge between the PSI-L fabric and the legacy peripheral.
->> +
->> +PDMAs can be configured via UDMAP peer registers to match with the configuration
->> +of the legacy peripheral.
->> +
->> +Required properties:
->> +--------------------
->> +- compatible:		Should be
->> +			"ti,am654-navss-main-udmap" for am654 main NAVSS UDMAP
->> +			"ti,am654-navss-mcu-udmap" for am654 mcu NAVSS UDMAP
->> +			"ti,j721e-navss-main-udmap" for j721e main NAVSS UDMAP
->> +			"ti,j721e-navss-mcu-udmap" for j721e mcu NAVSS UDMAP
->> +- #dma-cells:		Should be set to <3>.
->> +			- The first parameter is a phandle to the remote PSI-L
->> +			  endpoint
->> +			- The second parameter is the thread offset within the
->> +			  remote thread ID range
->> +			- The third parameter is the channel direction.
->> +- reg:			Memory map of UDMAP
->> +- reg-names:		"gcfg", "rchanrt", "tchanrt"
->> +- msi-parent:		phandle for "ti,sci-inta" interrupt controller
->> +- ti,ringacc:		phandle for the ring accelerator node
->> +- ti,psil-base:		PSI-L thread ID base of the UDMAP channels
->> +- ti,sci:		phandle on TI-SCI compatible System controller node
->> +- ti,sci-dev-id:	TI-SCI device id
->> +- ti,sci-rm-range-tchan: UDMA tchan resource list in pairs of type and subtype
->> +- ti,sci-rm-range-rchan: UDMA rchan resource list in pairs of type and subtype
->> +- ti,sci-rm-range-rflow: UDMA rflow resource list in pairs of type and subtype
->> +
->> +For PSI-L thread management the parent NAVSS node must have:
->> +- ti,sci:		phandle on TI-SCI compatible System controller node
->> +- ti,sci-dev-id:	TI-SCI device id of the NAVSS instance
->> +
->> +Remote PSI-L endpoint
->> +
->> +Required properties:
->> +--------------------
->> +- ti,psil-base:		PSI-L thread ID base of the endpoint
->> +
->> +Within the PSI-L endpoint node thread configuration subnodes must present with:
->> +psil-configX naming convention, where X is the thread ID offset.
->> +
->> +Configuration node Optional properties:
->> +--------------------
->> +- ti,pdma-statictr-type:In case the remote endpoint (PDMAs) requires StaticTR
->> +			configuration:
->> +			- PSIL_STATIC_TR_XY (1): XY type of StaticTR
->> +			For endpoints without StaticTR the property is not
->> +			needed or to be set PSIL_STATIC_TR_NONE (0).
->> +- ti,pdma-enable-acc32:	Force 32 bit access on peripheral port. Only valid for
->> +			XY type StaticTR, not supported on am654.
->> +			Must be enabled for threads servicing McASP with AFIFO
->> +			bypass mode.
->> +- ti,pdma-enable-burst:	Enable burst access on peripheral port. Only valid for
->> +			XY type StaticTR, not supported on am654.
->> +- ti,channel-tpl:	Channel Throughput level:
->> +			0 / or not present - normal channel
->> +			1 - High Throughput channel
->> +			2 - Ultra High Throughput channel (j721e only)
->> +- ti,needs-epib:	If the endpoint require EPIB to be present in the
->> +			descriptor.
->> +- ti,psd-size:		Size of the Protocol Specific Data section of the
->> +			descriptor.
->> +- ti,notdpkt:		The Teardown Completion Message on the thread must be
->> +			suppressed.
->> +
->> +Example:
->> +
->> +main_navss: main_navss {
->> +	compatible = "simple-bus";
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +	dma-coherent;
->> +	dma-ranges;
->> +	ranges;
->> +
->> +	ti,sci = <&dmsc>;
->> +	ti,sci-dev-id = <118>;
->> +
->> +	main_udmap: dma-controller@31150000 {
->> +		compatible = "ti,j721e-navss-main-udmap";
->> +		reg =	<0x0 0x31150000 0x0 0x100>,
->> +			<0x0 0x34000000 0x0 0x100000>,
->> +			<0x0 0x35000000 0x0 0x100000>;
->> +		reg-names = "gcfg", "rchanrt", "tchanrt";
->> +		#dma-cells = <3>;
->> +
->> +		ti,ringacc = <&main_ringacc>;
->> +		ti,psil-base = <0x1000>;
->> +
->> +		interrupt-parent = <&main_udmass_inta>;
->> +
->> +		ti,sci = <&dmsc>;
->> +		ti,sci-dev-id = <212>;
->> +
->> +		ti,sci-rm-range-tchan = <0x0d>, /* TX_CHAN */
->> +					<0x0f>, /* TX_HCHAN */
->> +					<0x10>; /* TX_UHCHAN */
->> +		ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
->> +					<0x0b>, /* RX_HCHAN */
->> +					<0x0c>; /* RX_UHCHAN */
->> +		ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
->> +	};
->> +};
->> +
->> +psilss@340c000 {
->> +	/* PSILSS1 AASRC */
->> +	compatible = "ti,j721e-psilss";
->> +	reg = <0x0 0x0340c000 0x0 0x1000>;
->> +	reg-names = "config";
->> +
->> +	pdma_main_mcasp_g0: pdma_main_mcasp_g0 {
->> +		/* PDMA6 (PDMA_MCASP_G0) */
->> +		ti,psil-base = <0x4400>;
->> +
->> +		/* psil-config0 */
->> +		psil-config0 {
->> +			ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
->> +			ti,pdma-enable-acc32;
->> +			ti,pdma-enable-burst;
->> +		};
->> +	};
->> +};
->> +
->> +mcasp0: mcasp@02B00000 {
->> +...
->> +	/* tx: PDMA_MAIN_MCASP_G0-0, rx: PDMA_MAIN_MCASP_G0-0 */
->> +	dmas = <&main_udmap &pdma_main_mcasp_g0 0 UDMA_DIR_TX>,
->> +	       <&main_udmap &pdma_main_mcasp_g0 0 UDMA_DIR_RX>;
->> +	dma-names = "tx", "rx";
->> +...
->> +};
->> +
->> +crypto: crypto@4E00000 {
->> +	compatible = "ti,sa2ul-crypto";
->> +...
->> +
->> +	/* tx: crypto_pnp-1, rx: crypto_pnp-1 */
->> +	dmas = <&main_udmap &crypto 0 UDMA_DIR_TX>,
->> +	       <&main_udmap &crypto 0 UDMA_DIR_RX>,
->> +	       <&main_udmap &crypto 1 UDMA_DIR_RX>;
-> 
-> I asked before if the first cell is the client and you said no.
+>> On 2019/9/27 21:32, Jerome Brunet wrote:
+>>>
+>>> On Fri 27 Sep 2019 at 11:52, Jian Hu <jian.hu@amlogic.com> wrote:
+>>>
+>>>> Hi, Jerome
+>>>>
+>>>> Thank you for review.
+>>>>
+>>>> On 2019/9/25 23:09, Jerome Brunet wrote:
+>>>>> On Wed 25 Sep 2019 at 19:44, Jian Hu <jian.hu@amlogic.com> wrote:
+>>>>>
+>>>>>> The Amlogic A1 clock includes three parts:
+>>>>>> peripheral clocks, pll clocks, CPU clocks.
+>>>>>> sys pll and CPU clocks will be sent in next patch.
+>>>>>>
+>>>>>> Unlike the previous series, there is no EE/AO domain
+>>>>>> in A1 CLK controllers.
+>>>>>>
+>>>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>>>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>>>>>> ---
+>>>>>>    arch/arm64/Kconfig.platforms |    1 +
+>>>>>>    drivers/clk/meson/Kconfig    |   10 +
+>>>>>>    drivers/clk/meson/Makefile   |    1 +
+>>>>>>    drivers/clk/meson/a1.c       | 2617
+>>>>>> ++++++++++++++++++++++++++++++++++++++++++
+>>>>>>    drivers/clk/meson/a1.h       |  172 +++
+>>>>>>    5 files changed, 2801 insertions(+)
+>>>>>>    create mode 100644 drivers/clk/meson/a1.c
+>>>>>>    create mode 100644 drivers/clk/meson/a1.h
+>>>>>>
+> [...]
+>>>>>> diff --git a/drivers/clk/meson/a1.c b/drivers/clk/meson/a1.c
+>>>>>> new file mode 100644
+>>>>>> index 0000000..26edae0f
+>>>>>> --- /dev/null
+>>>>>> +++ b/drivers/clk/meson/a1.c
+>>>>>> @@ -0,0 +1,2617 @@
+>>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>>>> +/*
+>>>>>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>>>>>> + */
+>>>>>> +
+>>>>>> +#include <linux/clk-provider.h>
+>>>>>> +#include <linux/init.h>
+>>>>>> +#include <linux/of_device.h>
+>>>>>> +#include <linux/platform_device.h>
+>>>>>> +#include <linux/of_address.h>
+>>>>>> +#include "clk-mpll.h"
+>>>>>> +#include "clk-pll.h"
+>>>>>> +#include "clk-regmap.h"
+>>>>>> +#include "vid-pll-div.h"
+>>>>>> +#include "clk-dualdiv.h"
+>>>>>> +#include "meson-eeclk.h"
+>>>>>> +#include "a1.h"
+>>>>>> +
+>>>>>> +/* PLLs clock in gates, its parent is xtal */
+>>>>>> +static struct clk_regmap a1_xtal_clktree =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 0,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_clktree",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>
+>>>>> Is CCF even expected to touch this ever ? what about RO ops ?
+>>>>> Please review your other clocks with this in mind
+>>>>>
+>>>> the clock should not be changed at runtime.clk_regmap_gate_ro_ops
+>>>> is a good idea. Set RO ops and remove the CLK_IS_CRITICAL flag.
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_xtal_fixpll =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 1,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_fixpll",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_xtal_usb_phy =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 2,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_usb_phy",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>
+>>>>> How is an USB clock critical to the system ?
+>>>>> Please review your other clocks with comment in mind ...
+>>>> the usb clock does not affect the system,
+>>>> remove the CLK_IS_CRITICAL flag
+>>>>>
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_xtal_usb_ctrl =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 3,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_usb_ctrl",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>> the usb clock does not affect the system,
+>>>> remove the CLK_IS_CRITICAL flag
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_xtal_hifipll =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 4,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_hifipll",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>> CLK_IS_CRITICAL is need to lock hifi pll.
+>>>
+>>> That's not how CCF works, this falg is not ok here.
+>>> CCF will enable this clock before calling enable on your hifi pll
+>>>
+>> ok=EF=BC=8C I will remove it.
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_xtal_syspll =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 5,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_syspll",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>> when CPU clock is at fixed clock, sys pll
+>>>> will be disabled, xtal_syspll will be disabled too.
+>>>> when setting sys pll, call clk_set_rate to lock
+>>>> sys pll, add RO ops to avoid disabling the clock
+>>>
+>>> Again not Ok.
+>>> If you mechanism to lock the PLL is properly implemented in the enable
+>>> callback of the sys pll, still kind of work around are not needed
+>>>
+>>> This has worked on the pll we had so far.
+>>>
+>> ok, I will remove it.
+>>>>
+>>>>>> +static struct clk_regmap a1_xtal_dds =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D SYS_OSCIN_CTRL,
+>>>>>> +        .bit_idx =3D 6,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "xtal_dds",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_data =3D &(const struct clk_parent_data) {
+>>>>>> +            .fw_name =3D "xtal",
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>> CLK_IS_CRITICAL is need to lock dds
+>>>>>> +
+>>>>>> +/* fixed pll =3D 1536M
+>>>>>> + *
+>>>>>> + * fixed pll ----- fclk_div2 =3D 768M
+>>>>>> + *           |
+>>>>>> + *           ----- fclk_div3 =3D 512M
+>>>>>> + *           |
+>>>>>> + *           ----- fclk_div5 =3D 307.2M
+>>>>>> + *           |
+>>>>>> + *           ----- fclk_div7 =3D 219.4M
+>>>>>> + */
+>>>>>
+>>>>> The framework will make those calculation ... you can remove this
+>>>>>
+>>>> ok, I will remote the comment.
+>>>>>> +static struct clk_regmap a1_fixed_pll_dco =3D {
+>>>>>> +    .data =3D &(struct meson_clk_pll_data){
+>>>>>> +        .en =3D {
+>>>>>> +            .reg_off =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +            .shift   =3D 28,
+>>>>>> +            .width   =3D 1,
+>>>>>> +        },
+>>>>>> +        .m =3D {
+>>>>>> +            .reg_off =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +            .shift   =3D 0,
+>>>>>> +            .width   =3D 8,
+>>>>>> +        },
+>>>>>> +        .n =3D {
+>>>>>> +            .reg_off =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +            .shift   =3D 10,
+>>>>>> +            .width   =3D 5,
+>>>>>> +        },
+>>>>>> +        .frac =3D {
+>>>>>> +            .reg_off =3D ANACTRL_FIXPLL_CTRL1,
+>>>>>> +            .shift   =3D 0,
+>>>>>> +            .width   =3D 19,
+>>>>>> +        },
+>>>>>> +        .l =3D {
+>>>>>> +            .reg_off =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +            .shift   =3D 31,
+>>>>>> +            .width   =3D 1,
+>>>>>> +        },
+>>>>>> +        .rst =3D {
+>>>>>> +            .reg_off =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +            .shift   =3D 29,
+>>>>>> +            .width   =3D 1,
+>>>>>> +        },
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fixed_pll_dco",
+>>>>>> +        .ops =3D &meson_clk_pll_ro_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_xtal_fixpll.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_fixed_pll =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +        .bit_idx =3D 20,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data) {
+>>>>>> +        .name =3D "fixed_pll",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fixed_pll_dco.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        .flags =3D CLK_IGNORE_UNUSED,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static const struct pll_params_table a1_hifi_pll_params_table[] =3D=
+ {
+>>>>>> +    PLL_PARAMS(128, 5), /* DCO =3D 614.4M */
+>>>>>> +};
+>>>>>> +
+>>>>>> +static const struct reg_sequence a1_hifi_init_regs[] =3D {
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL1,    .def =3D 0x01800000 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL2,    .def =3D 0x00001100 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL3,    .def =3D 0x10022200 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL4,    .def =3D 0x00301000 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL0, .def =3D 0x01f19480 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL0, .def =3D 0x11f19480, .delay_u=
+s =3D
+>>>>>> 10 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL0,    .def =3D 0x15f11480, .dela=
+y_us
+>>>>>> =3D 40 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL2,    .def =3D 0x00001140 },
+>>>>>> +    { .reg =3D ANACTRL_HIFIPLL_CTRL2,    .def =3D 0x00001100 },
+>>>>>> +};
+>>>>>> +
+>>>>>> +/*
+>>>>>> + * The Meson A1 HIFI PLL is 614.4M, it requires
+>>>>>> + * a strict register sequence to enable the PLL.
+>>>>>> + * set meson_clk_pcie_pll_ops as its ops
+>>>>>> + */
+>>>>>
+>>>>> Could you elaborate on this ? What need to be done to enable the clock
+>>>>> ?
+>>>>> Also the HIFI PLL used to be able to do a *LOT* of different rate whi=
+ch
+>>>>> might be desirable for audio use case. Why is this one restricted to
+>>>>> one
+>>>>> particular rate ?
+>>>>>
+>>>> The audio working frequency are 44.1khz, 48khz and 192khz.
+>>>>
+>>>> 614.4M can meet the three frequency.
+>>>>
+>>>> after the hifi pll, there are two dividers in Audio clock.
+>>>>
+>>>> 614.4M/3200 =3D 192khz
+>>>>
+>>>> 614.4M/12800 =3D 48khz
+>>>>
+>>>> 614,4M/13932 =3D 44.0999khz
+>>>
+>>> It does not really answer my question though.
+>>> You are locking a use case here, which is 32 bit sample width
+>>>
+>>> We have other constraint with the upstream audio driver, and we usually
+>>> looking for base frequency that a multiple of 768 (24*32).
+>>>
+>>> If you need your PLL to be set to a particular rate for a use case, the
+>>> correct way is "assigned-rate" in DT
+>>>
+>>> so the question still stands, the HIFI pll before was pretty easy to set
+>>> at a wide variety of rate (same as GP0) ... is it not the case anymore ?
+>>> If yes, could you decribe the constraints.
+>>>
+>>> All this took us a long time to figure out on our own, which is why I'd
+>>> prefer to get the proper constraints in from the beginning this time
+>>>
+>> ok, I will verify it and  describe the constraints about it
+>>>
+>>>>
+>>>>>> +static struct clk_regmap a1_hifi_pll =3D {
+>>>>>> +    .data =3D &(struct meson_clk_pll_data){
+>>>>>> +        .en =3D {
+>>>>>> +            .reg_off =3D ANACTRL_HIFIPLL_CTRL0,
+>>>>>> +            .shift   =3D 28,
+>>>>>> +            .width   =3D 1,
+>>>>>> +        },
+>>>>>> +        .m =3D {
+>>>>>> +            .reg_off =3D ANACTRL_HIFIPLL_CTRL0,
+>>>>>> +            .shift   =3D 0,
+>>>>>> +            .width   =3D 8,
+>>>>>> +        },
+>>>>>> +        .n =3D {
+>>>>>> +            .reg_off =3D ANACTRL_HIFIPLL_CTRL0,
+>>>>>> +            .shift   =3D 10,
+>>>>>> +            .width   =3D 5,
+>>>>>> +        },
+>>>>>> +        .frac =3D {
+>>>>>> +            .reg_off =3D ANACTRL_HIFIPLL_CTRL1,
+>>>>>> +            .shift   =3D 0,
+>>>>>> +            .width   =3D 19,
+>>>>>> +        },
+>>>>>> +        .l =3D {
+>>>>>> +            .reg_off =3D ANACTRL_HIFIPLL_STS,
+>>>>>> +            .shift   =3D 31,
+>>>>>> +            .width   =3D 1,
+>>>>>> +        },
+>>>>>> +        .table =3D a1_hifi_pll_params_table,
+>>>>>> +        .init_regs =3D a1_hifi_init_regs,
+>>>>>> +        .init_count =3D ARRAY_SIZE(a1_hifi_init_regs),
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "hifi_pll",
+>>>>>> +        .ops =3D &meson_clk_pcie_pll_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_xtal_hifipll.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_fixed_factor a1_fclk_div2_div =3D {
+>>>>>> +    .mult =3D 1,
+>>>>>> +    .div =3D 2,
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div2_div",
+>>>>>> +        .ops =3D &clk_fixed_factor_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fixed_pll.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_fclk_div2 =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +        .bit_idx =3D 21,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div2",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fclk_div2_div.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        /*
+>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
+>>>>>> core
+>>>>>> +         * or its children clocks.
+>>>>>> +         */
+>>>>>
+>>>>> The meaning of this flag is already documented in clk-provider.h
+>>>>> The reason why you need this flag is lot more interesting here ...
+>>>>>
+>>>>> Same below
+>>>> ok, I will replace new comments here.
+>>>>>
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_fixed_factor a1_fclk_div3_div =3D {
+>>>>>> +    .mult =3D 1,
+>>>>>> +    .div =3D 3,
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div3_div",
+>>>>>> +        .ops =3D &clk_fixed_factor_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fixed_pll.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_fclk_div3 =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +        .bit_idx =3D 22,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div3",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fclk_div3_div.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        /*
+>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
+>>>>>> core
+>>>>>> +         * its children clocks.
+>>>>>> +         */
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_fixed_factor a1_fclk_div5_div =3D {
+>>>>>> +    .mult =3D 1,
+>>>>>> +    .div =3D 5,
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div5_div",
+>>>>>> +        .ops =3D &clk_fixed_factor_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fixed_pll.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_fclk_div5 =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +        .bit_idx =3D 23,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div5",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fclk_div5_div.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        /*
+>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
+>>>>>> core
+>>>>>> +         * its children clocks.
+>>>>>> +         */
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_fixed_factor a1_fclk_div7_div =3D {
+>>>>>> +    .mult =3D 1,
+>>>>>> +    .div =3D 7,
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div7_div",
+>>>>>> +        .ops =3D &clk_fixed_factor_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fixed_pll.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+>>>>>> +static struct clk_regmap a1_fclk_div7 =3D {
+>>>>>> +    .data =3D &(struct clk_regmap_gate_data){
+>>>>>> +        .offset =3D ANACTRL_FIXPLL_CTRL0,
+>>>>>> +        .bit_idx =3D 23,
+>>>>>> +    },
+>>>>>> +    .hw.init =3D &(struct clk_init_data){
+>>>>>> +        .name =3D "fclk_div7",
+>>>>>> +        .ops =3D &clk_regmap_gate_ops,
+>>>>>> +        .parent_hws =3D (const struct clk_hw *[]) {
+>>>>>> +            &a1_fclk_div7_div.hw
+>>>>>> +        },
+>>>>>> +        .num_parents =3D 1,
+>>>>>> +        /*
+>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
+>>>>>> core
+>>>>>> +         * or its children clock.
+>>>>>> +         */
+>>>>>> +        .flags =3D CLK_IS_CRITICAL,
+>>>>>> +    },
+>>>>>> +};
+>>>>>> +
+> [...]
+>>>>>> --=20
+>>>>>> 1.9.1
+>>>>>
+>>>>> .
+>>>>>
+>>>
+>>> .
+>>>
 
-Correct, it is not the client. It is the node of the PSI-L gasket which
-in case of native PSI-L peripherals happens to be the same node as the
-client's
-In K3 DMA architecture the data is moved along PSI-L threads. The
-threads are formed when two PSI-L (source and destination) thread ID is
-paired.
-Since sa2ul is native PSI-L peripheral, the first cell (the phandle to
-the PSI-L remove gasket from UDMAP point of view) is pointing to itself.
-
-McASP on the other hand is not native PSI-L, it needs a PDMA to be
-serviced (PDMA is a native PSI-L peripheral), so the first cell for
-McASP is a phandle to the PDMA gasket which is tasked to service it.
-
-> But this 
-> shows it clearly is. Or '...' omits a lot more than just some node 
-> properties and 'dmas' is not a property in 'crypto' node.
-
-I only omitted properties like clocks, power, regs. As I said the first
-call is a phandle to the PSI-L gasket for the peripheral which happens
-to be the same in this case as it is a native PSI-L peripheral.
-
-> Having the consumer phandle here looks like a hack to me and I can't 
-> think of ever seeing such a case before.
-
-We never had a DMA architecture like what we have here either. The DMA
-gives extreme flexibility on how peripherals are configured, parameterized.
-The UDMAP replaces the generic system DMA (EDMA/sDMA) and the packet
-based networking DMAs as a single entity.
-All channels are capable to act on behalf of a completely different DMA
-and the only thing which dictates the channel configuration is the
-properties of the remote endpoint.
-
-This is on hardware level. On top of this flexibility almost every task
-can be implemented in at least two different, but valid ways. Cyclic DMA
-for audio for example can be implemented in four ways and all of them
-would work just fine.
-
-> I don't think we want to start now. 
-
-Hrm, we have a hardware which gives flexibility to hw designers to have
-different features and parameters per PSI-L remote thread IDs. Most of
-the networking peripherals are using 16 bytes of Protocol Specific data,
-sa2ul uses 64 bytes for the same. For legacy peripherals (via PDMAs) PS
-data is not used.
-And there are other features for the DMA per threads that somehow needs
-to be described and might apply or not apply at all to a given thread.
-
-> First, it's redundant. The code parsing 'dmas' already knows what node 
-> it is in. I guess this is lost in Linux when the args are passed to 
-> main_udmap's translate function, but that's Linux's problem and not a DT 
-> problem. I haven't looked at the code, but I'm guessing you want crypto 
-> phandle to go read these psil-config nodes.
-
-It is not redundant. McASP for example is not a PSI-L native peripheral,
-so it can not have PSI-L configuration nodes. The binding needs to point
-to the PSI-L gasket's node, for McASP is is a PDMA, for sa2ul it is itself.
-
-> Second, If we ever rev the FDT format to have type information 
-> maintained, we could find each phandle and not have to parse #*-cells to 
-> walk these properties.
-> 
-> 
->> +	dma-names = "tx", "rx1", "rx2";
->> +...
->> +	psil-config0 {
->> +		ti,needs-epib;
->> +		ti,psd-size = <64>;
->> +		ti,notdpkt;
->> +	};
-> 
-> I still don't like this either. Your choices are:
-> 
-> Put into dma cells. Yes, that's not easily expanded as you said, but 
-> your bindings shouldn't really be expanding either.
-
-This is not going to work with the flexibility and the wide range of
-endpoint parameters, configuration we need for the channel.
-
-> Don't put into DT. Not everything has to go into DT. What changes per 
-> board/customer? Limit DT data to that. What data is fixed based on the 
-> client or SoC? That can reside in the drivers. There's less value in 
-> that data being in DT unless it is standard like interrupts, clocks, 
-> etc. Maybe the DMA api needs some way for clients to provide the 
-> provider with additional configuration information.
-
-I have already moved the TR vs Packet mode channel selection, which does
-make sense as it was Linux's choice to use TR for certain cases.
-
-If I move these to code then we need to have big tables
-struct psil_config am654_psil[32767] = {};
-struct psil_config j721e_psil[32767] = {};
-
-and for each new family member a new one.
-
-Also, if we want add DMA support for a new peripheral we would need to
-modify the kernel and the DT in sync (well, kernel first, than DT).
-
-> Or do some combination of the above. 
-
-What about this:
-create a new dtsi file per SoC (k3-am654-psil.dtsi, k3-k721e-psil.dtsi)
-for the PSI-L threads and inside something like this:
-
-psil-threads: psil-threads {
-	...
-	/* SA2UL: 0x4000 - 0x4003 */
-	ti,psil-config-4000 {
-		linux,udma-mode = <UDMA_PKT_MODE>;
-		ti,needs-epib;
-		ti,psd-size = <64>;
-		ti,notdpkt;
-	};
-
-	ti,psil-config-4001 {
-		linux,udma-mode = <UDMA_PKT_MODE>;
-		ti,needs-epib;
-		ti,psd-size = <64>;
-		ti,notdpkt;
-	};
-
-	ti,psil-config-4002 {
-		linux,udma-mode = <UDMA_PKT_MODE>;
-		ti,needs-epib;
-		ti,psd-size = <64>;
-		ti,notdpkt;
-	};
-
-	...
-	/* PDMA6 (PDMA_MCASP_G0): 0x4400 - 0x4402 */
-	thread-4400 {
-		ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
-		ti,pdma-enable-acc32;
-		ti,pdma-enable-burst;
-	};
-
-	thread-4401 {
-		ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
-		ti,pdma-enable-acc32;
-		ti,pdma-enable-burst;
-	};
-
-	thread-4402 {
-		ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
-		ti,pdma-enable-acc32;
-		ti,pdma-enable-burst;
-	};
-
-	...
-};
-
-Then the binding would look like this for sa2ul:
-
-/* tx: crypto_pnp-1, rx: crypto_pnp-1 */
-dmas = <&main_udmap 0x4000 UDMA_DIR_TX>,
-       <&main_udmap 0x4000 UDMA_DIR_RX>,
-       <&main_udmap 0x4001 UDMA_DIR_RX>;
-dma-names = "tx", "rx1", "rx2";
-
-for McASP:
-dmas = <&main_udmap 0x4400 UDMA_DIR_TX>,
-       <&main_udmap 0x4400 UDMA_DIR_RX>;
-dma-names = "tx", "rx";
-
-Then either we can have phandle in the udmap nodes to the psil-threads,
-or just find it from the root when needed.
-
-> Sorry I don't have specific suggestions, but I just see lots of properties 
-> and complexity, and I don't really understand the h/w here. Putting the 
-> complexity in what is an ABI is generally not a good plan.
-
-The complexity is coming from the hardware itself. If I can not describe
-the hardware than it is not going to be easy for the software to figure
-out what it is dealing with.
-
-> And I don't 
-> have the bandwidth to study and understand the complexities of your h/w 
-> (and everyone elses), so just more explanations are not likely to really 
-> help.
-
-Sure, I understand.
-
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
