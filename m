@@ -2,171 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 750D7D4003
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E9EFD406A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 15:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727909AbfJKM4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 08:56:31 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:35518 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727589AbfJKM4b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 08:56:31 -0400
-Received: from dhcp-172-31-174-146.wireless.concordia.ca (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B259C290FCB;
-        Fri, 11 Oct 2019 13:56:28 +0100 (BST)
-Date:   Fri, 11 Oct 2019 14:56:25 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [RESEND PATCH v2 2/4] media: dt-bindings: rockchip: Document
- RK3399 Video Decoder bindings
-Message-ID: <20191011145625.694238b1@dhcp-172-31-174-146.wireless.concordia.ca>
-In-Reply-To: <CAL_JsqL_6xPyb4kTDR3dbLc4Uptwox=1F4zaGjHVmahNyk25=w@mail.gmail.com>
-References: <20191011093342.3471-1-boris.brezillon@collabora.com>
-        <20191011093342.3471-3-boris.brezillon@collabora.com>
-        <CAL_JsqL_6xPyb4kTDR3dbLc4Uptwox=1F4zaGjHVmahNyk25=w@mail.gmail.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727950AbfJKNHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 09:07:16 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:54945 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727709AbfJKNHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 09:07:16 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9BD6lwL021879;
+        Fri, 11 Oct 2019 15:07:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=klfGUH5dxwRvx6PXzWgeW52/ZQWuSqdDdFx4SGnAlS4=;
+ b=RZB1+1VtH8UvSPqj7nDzvpZlumAZiVIzoig/VFcxT54qxXkZWDZON8vjwBaTLhl5PlGJ
+ WDWaMKcgESwxdVae5WLci4JjHy5lB8wUTumrgkEHc1xRJ3PWE+r4tmjPxckHkIUuhYf9
+ 5TK0GxjGBS912OgSj9qSUli+xSB2IyM5KMpRghBRfIkNw5XRDJBuBciZzdjbe3TNUspc
+ GUKxKsMMGusLEhzzc8obDfM6Gz7l0Qr3pA612YQ24qYXwo9JFTxJwc4ktPl53anyEyLw
+ BouNE3Oxaiq/wF87KVUr3WZOonHy5YInEJVYit9LFLJe7C+tepsJtPs07FwqgjPxgTaI WQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vegxw9x0p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Oct 2019 15:07:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8B3D7100034;
+        Fri, 11 Oct 2019 15:07:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 781192BE25F;
+        Fri, 11 Oct 2019 15:07:01 +0200 (CEST)
+Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS21.st.com
+ (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 11 Oct
+ 2019 15:07:01 +0200
+Received: from localhost (10.201.20.122) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 11 Oct 2019 15:07:00
+ +0200
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <alexandre.torgue@st.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH] ARM: dts: stm32f469: remove useless interrupt from dsi node
+Date:   Fri, 11 Oct 2019 15:06:58 +0200
+Message-ID: <20191011130658.23670-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.122]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-11_08:2019-10-10,2019-10-11 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 07:50:16 -0500
-Rob Herring <robh+dt@kernel.org> wrote:
+DSI driver doesn't use interrupt, remove it from the node since it
+breaks yaml check.
 
-> On Fri, Oct 11, 2019 at 4:33 AM Boris Brezillon
-> <boris.brezillon@collabora.com> wrote:
-> >
-> > Document the Rockchip RK3399 Video Decoder bindings.  
-> 
-> You need some more headers for the example (or drop defines):
-> 
-> Error: Documentation/devicetree/bindings/media/rockchip,vdec.example.dts:23.28-29
-> syntax error
-> FATAL ERROR: Unable to parse input tree
-> scripts/Makefile.lib:321: recipe for target
-> 'Documentation/devicetree/bindings/media/rockchip,vdec.example.dt.yaml'
-> failed
-> make[1]: *** [Documentation/devicetree/bindings/media/rockchip,vdec.example.dt.yaml]
-> Error 1
-> Makefile:1282: recipe for target 'dt_binding_check' failed
-> make: *** [dt_binding_check] Error 2
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+---
+ arch/arm/boot/dts/stm32f469.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Will fix that. BTW, I tried running make dtbs_check and faced a few
-errors on other yaml files (which is why I ended up sending the patch
-without fully validating the schema). Maybe those have been fixed (I'm
-based on the media tree which is based on 5.4-rc1).
-
-Oh, and I also noticed that the generated example has
-#address-cells = <1>, #size-cells = <1> in the parent node, while my
-example expects <2>. Is there any way I can specify that somewhere, or
-should I just tweak the example to use 1 cell instead?
-
-> 
-> >
-> > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-> > ---
-> >  .../bindings/media/rockchip,vdec.yaml         | 71 +++++++++++++++++++
-> >  1 file changed, 71 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> > new file mode 100644
-> > index 000000000000..7167c3d6a389
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> > @@ -0,0 +1,71 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/rockchip,vdec.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip Video Decoder (VDec) Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +
-> > +description: |-
-> > +  The Rockchip rk3399 has a stateless Video Decoder that can decodes H.264,
-> > +  HEVC an VP9 streams.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: rockchip,rk3399-vdec
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: The Video Decoder AXI interface clock
-> > +      - description: The Video Decoder AHB interface clock
-> > +      - description: The Video Decoded CABAC clock
-> > +      - description: The Video Decoder core clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aclk
-> > +      - const: iface
-> > +      - const: cabac
-> > +      - const: core
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - power-domains
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    vdec: video-codec@ff660000 {
-> > +        compatible = "rockchip,rk3399-vdec";
-> > +        reg = <0x0 0xff660000 0x0 0x400>;
-> > +        interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        clocks = <&cru ACLK_VDU>, <&cru HCLK_VDU>,
-> > +                 <&cru SCLK_VDU_CA>, <&cru SCLK_VDU_CORE>;
-> > +        clock-names = "aclk", "iface", "cabac", "core";
-> > +        power-domains = <&power RK3399_PD_VDU>;
-> > +        iommus = <&vdec_mmu>;
-> > +    };
-> > +
-> > +...
-> > --
-> > 2.21.0
-> >  
+diff --git a/arch/arm/boot/dts/stm32f469.dtsi b/arch/arm/boot/dts/stm32f469.dtsi
+index 5ae5213f68cb..be002e8a78ac 100644
+--- a/arch/arm/boot/dts/stm32f469.dtsi
++++ b/arch/arm/boot/dts/stm32f469.dtsi
+@@ -8,7 +8,6 @@
+ 		dsi: dsi@40016c00 {
+ 			compatible = "st,stm32-dsi";
+ 			reg = <0x40016c00 0x800>;
+-			interrupts = <92>;
+ 			resets = <&rcc STM32F4_APB2_RESET(DSI)>;
+ 			reset-names = "apb";
+ 			clocks = <&rcc 1 CLK_F469_DSI>, <&clk_hse>;
+-- 
+2.15.0
 
