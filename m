@@ -2,122 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D991D46DE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 19:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CEB8D4705
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 19:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728474AbfJKRqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 13:46:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36744 "EHLO mail.kernel.org"
+        id S1728602AbfJKR5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 13:57:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38316 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728470AbfJKRqY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 13:46:24 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        id S1728374AbfJKR5H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 13:57:07 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CC72221835;
-        Fri, 11 Oct 2019 17:46:22 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9C0B521835;
+        Fri, 11 Oct 2019 17:57:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570815982;
-        bh=cCan5WfHyvTySsprLa8MG8Pk1yN1pL0Z22pVSVDHh+Q=;
+        s=default; t=1570816626;
+        bh=SObEEAc6zI0j5H5m9jLmy2w0NgYlIpfEcaRb3ydotPA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kcGnYOdV0Afs5sCaIDGthExPA/LdjfuVpPz8r6/CNgjKpA1ovDmjO7x3Hqnbn0YFZ
-         3+GAwzd8KrSWa8Q7Qhx1pOhdgOlXyfNkZSp32SKCAAMlBojSTo64A+kVaoI44xDRDI
-         OgSm5uOMzRQNbEkT5JiXmYrSsneal+N5vUmp7BPw=
-Received: by mail-qk1-f170.google.com with SMTP id x4so5719325qkx.5;
-        Fri, 11 Oct 2019 10:46:22 -0700 (PDT)
-X-Gm-Message-State: APjAAAWIaAbUueCaNEvXda/fZdl6OHQpOWlhWNiRSljXu8lj2fuQTQ31
-        /vsX7u4thkxsyWJgElhR51lUCMTMWrw3/7h2Yg==
-X-Google-Smtp-Source: APXvYqx8NWxIkgR2gwBZKvDxeeXE3vkunAfy2ZjWqHue5z6OeFFUywQNqB23lykYwT24W4jiQ/KDjMZvYec9Euj/cdE=
-X-Received: by 2002:a37:98c1:: with SMTP id a184mr15759520qke.119.1570815981911;
- Fri, 11 Oct 2019 10:46:21 -0700 (PDT)
+        b=Lt/DCW1vRF3k063Akb79j35F8iGpAAtftvFkNFSslSvW1i3mF6lC2JoAUefz+uT3q
+         FxdrzYFn44DRnT17XiTwTVDMZkFtTZ5JPfVQVTY5Wg+RgPUq6HY2nyuIZSE5TZDmbD
+         tnGQNdrW/aDzpxbNLeARHUn9wG+x1GTj/NjqZOmw=
+Received: by mail-qk1-f172.google.com with SMTP id u184so9700002qkd.4;
+        Fri, 11 Oct 2019 10:57:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAXvjoM5i3GNFEW1v/MP9cyxza84Mybddn3VNuZdyUlXqKDDdEiw
+        hlsr0BrjY+exO3AqvNpfSvOOhdJR44/WzPjUaA==
+X-Google-Smtp-Source: APXvYqzfirT8CwFQsBvNkzgWwfbtb9jNrANMi1nJuuxFtGGswdD+eerzYcuDeoWIMKhpFN3OKv+AcPBF/srpOGdqoGU=
+X-Received: by 2002:a37:9847:: with SMTP id a68mr17321115qke.223.1570816625730;
+ Fri, 11 Oct 2019 10:57:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <1569527977-21213-1-git-send-email-ykaneko0929@gmail.com>
- <20191010220709.GA1314@bogus> <CAMuHMdWR3HnT1-yp+i0OXAr2xF-6MANJDuXz1hj9WC1eUJjRAQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWR3HnT1-yp+i0OXAr2xF-6MANJDuXz1hj9WC1eUJjRAQ@mail.gmail.com>
+References: <20190913211349.28245-1-robh@kernel.org> <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
+ <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com>
+ <7672dd2f651bfdcdb1615ab739e36a381b2535b1.camel@perches.com> <CAL_JsqKAbP6KYjiJ6dLr=dpFG-j-e4rJPCKZ0+pZrDjsSPAUPQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqKAbP6KYjiJ6dLr=dpFG-j-e4rJPCKZ0+pZrDjsSPAUPQ@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 11 Oct 2019 12:46:10 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+9Am1KPE_=TX7_c+sdMt09hPzxXfz0kk53+pF13WtVxw@mail.gmail.com>
-Message-ID: <CAL_Jsq+9Am1KPE_=TX7_c+sdMt09hPzxXfz0kk53+pF13WtVxw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: irqchip: renesas: intc-irqpin: convert
- bindings to json-schema
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+Date:   Fri, 11 Oct 2019 12:56:54 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJiV-L14tQte0tZXq+-TRTXGOFW62EsSobu3cFGA8rJDw@mail.gmail.com>
+Message-ID: <CAL_JsqJiV-L14tQte0tZXq+-TRTXGOFW62EsSobu3cFGA8rJDw@mail.gmail.com>
+Subject: Re: [PATCH] checkpatch: Warn if DT bindings are not in schema format
+To:     Joe Perches <joe@perches.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andy Whitcroft <apw@canonical.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 11, 2019 at 1:57 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On Fri, Sep 27, 2019 at 10:39 AM Rob Herring <robh@kernel.org> wrote:
 >
-> Hi Rob, Kaneko-san,
->
-> On Fri, Oct 11, 2019 at 12:07 AM Rob Herring <robh@kernel.org> wrote:
-> > On Fri, Sep 27, 2019 at 04:59:37AM +0900, Yoshihiro Kaneko wrote:
-> > > Convert R-/SH-Mobile IRQPin Controller bindings documentation to json-schema.
-> > >
-> > > Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
->
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
-> > > @@ -0,0 +1,102 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/interrupt-controller/renesas,intc-irqpin.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: DT bindings for the R-/SH-Mobile irqpin controller
-> > > +
-> > > +maintainers:
-> > > +  - Geert Uytterhoeven <geert+renesas@glider.be>
->
-> Looks like I received many maintainerships recently ;-)
-
-Maybe I should have called it something else, but I view this as who's
-the owner not who applies it. There are lots of binding files with no
-maintainer, so it's me by default. I wanted to avoid that and not by
-having 4K MAINTAINERS entries.
-
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - renesas,intc-irqpin-r8a7740  # R-Mobile A1
-> > > +          - renesas,intc-irqpin-r8a7778  # R-Car M1A
-> > > +          - renesas,intc-irqpin-r8a7779  # R-Car H1
-> > > +          - renesas,intc-irqpin-sh73a0   # SH-Mobile AG5
-> > > +      - const: renesas,intc-irqpin
-> > > +
-> > > +  reg:
-> > > +    # Base address and length of each register bank used by the external
-> > > +    # IRQ pins driven by the interrupt controller hardware module. The base
-> > > +    # addresses, length and number of required register banks varies with
-> > > +    # soctype.
-> > > +    minItems: 1
->
-> minItems: 5
->
-> > > +    maxItems: 6
+> On Fri, Sep 27, 2019 at 9:29 AM Joe Perches <joe@perches.com> wrote:
 > >
-> > Every entry is the same thing?
+> > On Fri, 2019-09-27 at 09:02 -0500, Rob Herring wrote:
+> > > On Fri, Sep 13, 2019 at 4:48 PM Joe Perches <joe@perches.com> wrote:
+> > > > On Fri, 2019-09-13 at 16:13 -0500, Rob Herring wrote:
+> > > > > DT bindings are moving to using a json-schema based schema format
+> > > > > instead of freeform text. Add a checkpatch.pl check to encourage using
+> > > > > the schema for new bindings. It's not yet a requirement, but is
+> > > > > progressively being required by some maintainers.
+> > > > []
+> > > > > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > > > []
+> > > > > @@ -2822,6 +2822,14 @@ sub process {
+> > > > >                            "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
+> > > > >               }
+> > > > >
+> > > > > +# Check for adding new DT bindings not in schema format
+> > > > > +             if (!$in_commit_log &&
+> > > > > +                 ($line =~ /^new file mode\s*\d+\s*$/) &&
+> > > > > +                 ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
+> > > > > +                     WARN("DT_SCHEMA_BINDING_PATCH",
+> > > > > +                          "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
+> > > > > +             }
+> > > > > +
+> > > >
+> > > > As this already seems to be git dependent, perhaps
+> > >
+> > > It's quite rare to see a non git generated diff these days.
+> > >
+> > > > it's easier to read with a single line test like:
+> > > >
+> > > >                 if ($line =~ m{^\s*create mode\s*\d+\s*Documentation/devicetree/bindings/.*\.txt$}) {
+> > > >                         etc...
+> > > >                 }
+> > >
+> > > I frequently do 'git show $commit | scripts/checkpatch.pl' and this
+> > > doesn't work with that. I really should have a '--pretty=email' in
+> > > there, but I just ignore the commit msg warnings. In any case, that
+> > > still doesn't help because there's no diffstat. There's probably some
+> > > way to turn that on or just use git-format-patch, but really we want
+> > > this to work with any git diff.
+> >
+> > I don't understand your argument against what I proposed at all.
 >
-> No they're not.
+> It is dependent on the commit message rather than the diff itself. I
+> want it to work with or without a diffstat.
 >
-> First entry is the Interrupt control register.
-> Second entry is the Interrupt priority register.
-> Third entry is the Interrupt source register.
-> Fourth entry is the Interrupt mask register.
-> Fifth entry is the Interrupt mask clear register.
-> Sixth entry is the optional Interrupt control register for ICR0 with IRLM bit.
+> > and btw:
+> >
+> > $ git format-patch -1 --stdout <commit> | ./scripts/checkpatch.pl
+>
+> Yes, I stated this was possible. My concern is there are lots of ways
+> to generate a diff in git. My way works for *all* of them. Yours
+> doesn't.
 
-So this should be an 'items' list with these descriptions.
+Joe, are you okay with this?
 
 Rob
