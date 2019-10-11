@@ -2,68 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1793D444D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71828D44A6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:44:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727399AbfJKPbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 11:31:17 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:36653 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726728AbfJKPbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:31:17 -0400
-Received: by mail-oi1-f196.google.com with SMTP id k20so8341927oih.3;
-        Fri, 11 Oct 2019 08:31:16 -0700 (PDT)
+        id S1726692AbfJKPos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 11:44:48 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:45418 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726666AbfJKPos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:44:48 -0400
+Received: by mail-wr1-f66.google.com with SMTP id r5so12423693wrm.12
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 08:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kvfCxVclTy6ShzV/vDD4x14oYnHfjCHog9kicmW4dcM=;
+        b=UxN1NFTc47siaqQofM9vtgi+trRicCmJOy0vprOyEv1qhi6BHxkXaXA/2b02UUh0Mt
+         tYwxRkBK3tE71JJtISGt0m4royxB+4o9x4Ox7RcFiGh7LiLzT84IO7z7ffGNgReKWtMN
+         3dcMaxEYTuD7fkjQVVooBjt6JISkUED3abo8L3H9cmGjoJRYFNybplWC2k084IPjGXoX
+         oQomlBvIjM750TSEz/ulYnH/4UfIOrIdO5J1jQ37XGH7iweoklsJmMppGms98b7AZmd2
+         Mnu/2UgrZN9E0vfDmsuUOltT7ZfEFo7tkwWKfQJ7XenrOSe8GnLqG1lC7KR8P1gQeDHH
+         5p6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lZBxUgx9Vl2v4FPUyNZy1vxnwneedhV9vcSMUHf/Uks=;
-        b=I3UWvZAgzFnKeXSccG/lMgWLz6PFCy4nk2tmY7PL6Pbk6/fReg2A5jGa0MfAlB0qWN
-         Z/zSjV3/2n3SY5O7U6GrAHJAuAz0VwoxcAX3Xq4wgQepqnT++FO5wKsuI7e4G5W2dhhh
-         ExjRtrJt2DP80OL9C5L64xPRP2hWQ37eJIT1h+R2nGCsyTKH0l7U+mc/TGU0Xzudvm6m
-         o5OEH5vaUecOrxr3DeuCfxzmY8z2LaN4LzYUvgFxshJ3nHkcWdA6Vf3qHu+UEGrgnIsk
-         W24k/cj2892jneIHHggU+vMy/XMRo/KVOFsg726lZpvtozO65E8FePCIaT5BM1rErIym
-         F0tg==
-X-Gm-Message-State: APjAAAWvYO8ObGFEx3+kQjMbZoj7Et0TJos1ejae1uehsuuv3SDOxGIz
-        ZheFdTuPy718QJeY8Kp2aQ==
-X-Google-Smtp-Source: APXvYqzMBwoebZPW21tZSXxF+eFrIe/IalA9934WUv0jd+BqnLTSpIqETXg/pzIyOuxUT6FoQ8E53g==
-X-Received: by 2002:aca:1a0b:: with SMTP id a11mr13082342oia.138.1570807875938;
-        Fri, 11 Oct 2019 08:31:15 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 34sm2773765otf.55.2019.10.11.08.31.14
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kvfCxVclTy6ShzV/vDD4x14oYnHfjCHog9kicmW4dcM=;
+        b=YmucoZ4YtcZGitA72Etw4OkZ94NtE2HlDqaBsSRzM9U6d8NbryrH+Iyfo1akxH8SCw
+         TERTHyQGTLNg2wTZ1PcrCIxZvHgKhN7wFJanUNzueRFuuI2hJw4yDylLwUr7Z6uKRkHn
+         DmTbT/x9LYn1aw65smkjubE4eVyJmGJvzbYMgraftlDFk/9F0cB43Os3W6rLoFV/NCAg
+         UR0TmIQwKUYIL9t7mHLL6NVrw9h/vPXBQHrrv18I/KIdRIzXTD00duHDOrEh4TJVRT+l
+         uGnSnS/Ln7795RfIUDc/WtmOwsE4IIJuQrSNR5hOEDUGkdjKvUIkl71FLDePWrG6HlEh
+         IFcQ==
+X-Gm-Message-State: APjAAAVd3fHU80CW9VkudYC9PCNBvy3nAyHUCjTvOZAGZIyZ7cd1rRW9
+        YVsZWo0c4YoZnYSUPx0SKbBPGQ==
+X-Google-Smtp-Source: APXvYqwIhb0tYcjlG6emnKIqHFasuJrequA13bxaiRFpYFxvsgNTAQ0iUDkvvpWFO/LV54MurBnajQ==
+X-Received: by 2002:adf:e646:: with SMTP id b6mr13267380wrn.373.1570808686953;
+        Fri, 11 Oct 2019 08:44:46 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id y3sm3453044wro.36.2019.10.11.08.44.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 08:31:15 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 10:31:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     ars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
-        alexandru.Ardelean@analog.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: light: Add binding for ADUX1020
-Message-ID: <20191011153114.GA12208@bogus>
-References: <20191007153917.13611-1-manivannan.sadhasivam@linaro.org>
- <20191007153917.13611-2-manivannan.sadhasivam@linaro.org>
+        Fri, 11 Oct 2019 08:44:46 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh@kernel.org, vkoul@kernel.org
+Cc:     broonie@kernel.org, bgoswami@codeaurora.org,
+        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, spapothi@codeaurora.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 0/2] soundwire: Add support to Qualcomm SoundWire master
+Date:   Fri, 11 Oct 2019 16:44:21 +0100
+Message-Id: <20191011154423.2506-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191007153917.13611-2-manivannan.sadhasivam@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  7 Oct 2019 21:09:16 +0530, Manivannan Sadhasivam wrote:
-> Add devicetree binding for Analog Devices ADUX1020 Photometric
-> sensor.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../bindings/iio/light/adux1020.yaml          | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/adux1020.yaml
-> 
+Thanks for reviewing the v2 patchset.
+Here is new patchset addressing all the comments from v2
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This patchset adds support for Qualcomm SoundWire Master Controller
+found in most of Qualcomm SoCs and WCD audio codecs.
+
+This driver along with WCD934x codec and WSA881x Class-D Smart Speaker
+Amplifier drivers is tested on on DragonBoard DB845c based of SDM845
+SoC and Lenovo YOGA C630 Laptop based on SDM850.
+
+SoundWire controller on SDM845 is integrated in WCD934x audio codec via
+SlimBus interface.
+
+Currently this driver is very minimal and only supports PDM.
+
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
+
+TODO:
+	Test and add PCM support.
+
+Thanks,
+srini
+
+Changes since v2:
+- Added support to set_sdw_stream
+
+Srinivas Kandagatla (2):
+  dt-bindings: soundwire: add bindings for Qcom controller
+  soundwire: qcom: add support for SoundWire controller
+
+ .../bindings/soundwire/qcom,sdw.txt           | 167 ++++
+ drivers/soundwire/Kconfig                     |   9 +
+ drivers/soundwire/Makefile                    |   4 +
+ drivers/soundwire/qcom.c                      | 935 ++++++++++++++++++
+ 4 files changed, 1115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+ create mode 100644 drivers/soundwire/qcom.c
+
+-- 
+2.21.0
+
