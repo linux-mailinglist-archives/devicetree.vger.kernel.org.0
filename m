@@ -2,205 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0200CD4AFF
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 01:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7437DD4B3E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 01:56:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727402AbfJKXdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 19:33:43 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:35821 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726354AbfJKXdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 19:33:42 -0400
-Received: by mail-io1-f67.google.com with SMTP id q10so25060547iop.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 16:33:40 -0700 (PDT)
+        id S1728396AbfJKX4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 19:56:01 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:33043 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728392AbfJKX4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 19:56:00 -0400
+Received: by mail-pg1-f196.google.com with SMTP id i76so6668348pgc.0;
+        Fri, 11 Oct 2019 16:55:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DhU8DoXtvT6nY6FZrwH3JiEC75JYN6COLoYwLtTluLM=;
-        b=aaqNIwa2wGY1EAmYaZGEK5+bBWU+p7RokpN7Vx7xVDmPhXie4/4Wp0GqYHK02GcUZ/
-         92v7PnnbqvMPyf2dFQ3IF8fuFP/CpjGgzlo3D3hZSlnFGxmSpcy7h73yLbnJ13kHfQTO
-         +Z1MCeEcsFcM8uGtlvpASDW3YnBJosUZyZWV2vuzKgu2cmNt5tn1/ERApMgD+lc/kleL
-         UwwXPK3DxtVKlmzSFFqWZ8BmglvOaqaOHuRt5zGmyYwOIVlYPmQTlqXsMCpmbsTDW13E
-         f6UN0eAn2e4PANpEzA4KshefB99HU6KF8ZqO6SIPJPV34Ibhg4WiRHGNJsQlBdDkkL26
-         ZvLw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=B53cihCDlQEMDEXWkPSpWvvJvFe4J1DmTtw67eP/AR8=;
+        b=focYvhDusq7k7Sglq+SIQ8pVkuU3dKBEqSJ35alrt50LvSHfrQWxNay7wgpupYLQSG
+         6uMdheHpg/2DhAWDIuxvXJrcFjL9nUCd4pKzlZsiZvmX9JpRvn0SSA83m9DC5QNkJGaN
+         04lt3hs9g6a/yr/VWcV+/5Z5hpkxBHrSsEzk0uvDU7SY8oIXGbSnX8+B6PVpLiLbsgrY
+         zgf/0+fhrHM9kp14pAEz5SG59oEj85K0WxS/wqYKcHoJqNBCVFUMyO+u2fGQHK0Mjwvd
+         i29oRue0YJI2wFfoJcUg4IRt9fqMeHklgvR/KLHGzXw8NnUbf7qro7qdHXTdQXX9ynJw
+         xE2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DhU8DoXtvT6nY6FZrwH3JiEC75JYN6COLoYwLtTluLM=;
-        b=UNBPghGj5Rj/9RWDPzvgOs+vmNUtbCSzWsHPXQP8OlHSyYnpejsntm4GyjsICQ/ZbD
-         Y6/DKN2lax8F7iWz+FnmPoSMdjdPYjLx1mnT8KBithr2hxOTVgzwrL1BEdVcsiVwWjcH
-         R2wNA3SP5IGS6xY8hOvR9qsU+Se8msc+hFiVtcOeEYVF9QPlVhRxFOaJrmANzvpSARx9
-         Ot4VB5dwJTRfxTJIdTXw2edFs/3lV+8lkXg9kszgIXtQ7Ey5a8Sqcdo1FhFyt+pupLyn
-         BFxiPhwcy5JKEUsHppKgXl7R7DfDwP/bBOsMhSZzcd1T9r1nEmmnVp6n5vD/2+dL8H7v
-         oQwg==
-X-Gm-Message-State: APjAAAWT8sLGuZn92sPCFLeTXorQIS7Uc/DDSNEiRIdLkqqdK+f+zLOa
-        /yc/CZmYhDY0D7eHEjDqiPFxIZnRw9XQ4eO9cC+26w==
-X-Google-Smtp-Source: APXvYqzW44dX95eCnEg2VO7DD/v5I6ZMqvXUqkxHcehC3uRrsssurGlQ19W/1llqjn1erhUcV0lTP4iDdXET9SSTeHE=
-X-Received: by 2002:a02:52c4:: with SMTP id d187mr21531168jab.127.1570836820066;
- Fri, 11 Oct 2019 16:33:40 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=B53cihCDlQEMDEXWkPSpWvvJvFe4J1DmTtw67eP/AR8=;
+        b=GlXt6VCSAJqb1isYmmPfvzorQIjdBRDMleNAnUSEVVHamc6BAOPf8eKsm7UJheTe23
+         /rK6XjPJhZfpEqM4hSgH8tdVDBGjnpu0mxMBu99yvUPsM1Yg2Fw4O1VNWU0nC9mrrU/U
+         laN3H7FW+V6JCvxDV0pxTWZTDFv2WNC2OnzQc4Lpgig6St/DkScIVfw+n/vsae+sD3Rv
+         3Lm1w/a7qE5DfeZHoaVEhHpYFZiHDEd6zYvaKhMeoIgihqmp5zjfFPLWwDD4x6axpsVy
+         grebanaamnSNt45WMr4emT9HXxgWsyeZGSX9tV94RKbnQzvBkChSp/8mVAKbk94wbdjC
+         3vug==
+X-Gm-Message-State: APjAAAX0WkxSJfKW7Kb0dn2KU2eDFUA3IPPT8SkFs4YyqGOpvzb1Qp4q
+        uId0c3bnvDyoSAg0S+wwCyI=
+X-Google-Smtp-Source: APXvYqykbanmhecTAUKKoCbXPpv7i5TVrqw+8GQSS1J+dImn1y1yvpKb9BgeUI0Fa24oEauLCUbPHw==
+X-Received: by 2002:a62:d402:: with SMTP id a2mr19167165pfh.115.1570838158481;
+        Fri, 11 Oct 2019 16:55:58 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id g12sm16155270pfb.97.2019.10.11.16.55.57
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 11 Oct 2019 16:55:58 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 16:55:25 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        will@kernel.org, vdumpa@nvidia.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/2] iommu/arm-smmu: Add an optional "input-address-size"
+ property
+Message-ID: <20191011235524.GA20683@Asurada-Nvidia.nvidia.com>
+References: <20191011034609.13319-1-nicoleotsuka@gmail.com>
+ <e99e07c2-88c6-e4d8-af80-c46d36bc6cd0@arm.com>
 MIME-Version: 1.0
-References: <20191010012523.14426-1-rjones@gateworks.com> <20191010175648.10830-1-rjones@gateworks.com>
- <20191010175648.10830-2-rjones@gateworks.com> <20191011135811.GA23962@bogus>
-In-Reply-To: <20191011135811.GA23962@bogus>
-From:   Bobby Jones <rjones@gateworks.com>
-Date:   Fri, 11 Oct 2019 16:33:29 -0700
-Message-ID: <CALAE=UCcEd_pyjG+80EDBgGKsJfaCM0fvHAwEdnhf5G9-Ns+ig@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: add fxos8700 imu binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Mark Rutland <mark.rutland@arm.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e99e07c2-88c6-e4d8-af80-c46d36bc6cd0@arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 11, 2019 at 6:58 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Oct 10, 2019 at 10:56:47AM -0700, Robert Jones wrote:
-> > This adds documentation for the Freescale FXOS8700 Inertial Measurement Unit
-> > device-tree bindings.
-> >
-> > Signed-off-by: Robert Jones <rjones@gateworks.com>
-> > ---
-> >  .../devicetree/bindings/iio/imu/nxp,fxos8700.yaml  | 69 ++++++++++++++++++++++
-> >  1 file changed, 69 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-> > new file mode 100644
-> > index 0000000..d33a1cc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/imu/fxos8700.yaml#
->
-> Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml: $id:
-> path/filename 'iio/imu/fxos8700.yaml' doesn't match actual filename
->
-> Test your binding with 'make dt_binding_check'.
+On Fri, Oct 11, 2019 at 10:16:28AM +0100, Robin Murphy wrote:
+> On 2019-10-11 4:46 am, Nicolin Chen wrote:
+> > This series of patches add an optional DT property to allow an SoC to
+> > specify how many bits being physically connected to its SMMU instance,
+> > depending on the SoC design.
+> 
+> This has come up before, and it doesn't work in general because a single
+> SMMU instance can have many master interfaces, with potentially different
+> sizes of address bus wired up to each. It's also a conceptually-wrong
+> approach anyway, since this isn't a property of the SMMU; it's a property of
+> the interconnect(s) upstream of the SMMU.
+> 
+> IIRC you were working on Tegra - if so, Thierry already has a plan, see this
+> thread:
+> https://lore.kernel.org/linux-arm-kernel/20190930133510.GA1904140@ulmo/
 
-Sorry about that, I had tried running that check previously but was
-struggling through some python environment/set-up problems.
-Additionally I did not realize that my path was incomplete until I
-read your github's readme line "Ensure ~/.local/bin is in the PATH". I
-don't utilize the python install on my machine frequently so I'm not
-sure if that should be obvious. It might be helpful to have that line
-in the Documentation/devicetree/writing-schema.md as well.
-Anyways I've got it running now.
-
->
->
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale FXOS8700 Inertial Measurement Unit
-> > +
-> > +maintainers:
-> > +  - Robert Jones <rjones@gateworks.com>
-> > +
-> > +description: |
-> > +  Accelerometer and magnetometer combo device with an i2c and SPI interface.
-> > +  https://www.nxp.com/products/sensors/motion-sensors/6-axis/digital-motion-sensor-3d-accelerometer-2g-4g-8g-plus-3d-magnetometer:FXOS8700CQ
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nxp,fxos8700
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 2
-> > +
-> > +  interrupt-names:
-> > +    maxItems: 2
-> > +    items:
-> > +      - const: INT1
-> > +      - const: INT2
->
-> This doesn't match the example now. You need 'minItems: 1' if you need
-> to support 1 or 2 interrupts. If it can be either one, then you need:
->
-> items:
->   enum: [ INT1, INT2 ]
-I'm trying to compare against other .yaml examples in the tree but
-without scouring datasheets to find a device with similar interrupt
-capabilities I'm just guessing at how this should be defined.
-The device has 2 interrupt pins as you've read (INT1 and INT2), and
-0-2 of them can be used depending on what's been configured. Given
-what you've explained so far would this be the proper definition?:
-
-  interrupts:
-    minItems: 1
-    maxItems: 2
-
-  interrupt-names:
-    minItems: 1
-    maxItems: 2
-    items:
-      enum:
-        - INT1
-        - INT2
-
-Thanks
-
->
-> > +
-> > +  drive-open-drain:
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        fxos8700@1e {
-> > +          compatible = "nxp,fxos8700";
-> > +          reg = <0x1e>;
-> > +
-> > +          interrupt-parent = <&gpio2>;
-> > +          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
-> > +          interrupt-names = "INT1";
-> > +        };
-> > +    };
-> > +  - |
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        fxos8700@1e {
-> > +          compatible = "nxp,fxos8700";
-> > +          reg = <0x1e>;
->
-> I guess you could have SPI chip select # 30...
-
-Absolutely, and definitely not a hasty copy and paste error :)
-
-
-
->
-> > +
-> > +          interrupt-parent = <&gpio2>;
-> > +          spi-max-frequency = <1000000>
-> > +          interrupts = <7 IRQ_TYPE_EDGE_RISING>;
-> > +          interrupt-names = "INT1";
-> > +        };
-> > +    };
-> > --
-> > 2.9.2
-> >
+Thanks for the reply and link!
