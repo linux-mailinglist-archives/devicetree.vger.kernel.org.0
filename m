@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EA3D4879
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 21:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F0BD4AC9
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 01:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728851AbfJKTdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 15:33:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54356 "EHLO mail.kernel.org"
+        id S1726603AbfJKXPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 19:15:19 -0400
+Received: from mout.gmx.net ([212.227.15.15]:53513 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728799AbfJKTdA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 15:33:00 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DD62B218AC;
-        Fri, 11 Oct 2019 19:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570822379;
-        bh=uSHigDuoBkOef46f47ltxjTSdcoO9upwPANgWU6/D9E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0wH7kDliiES45/qF6O+0x/bik1ElV2yR2zkp4ybgHXZ5fXxXB5KNRQO+WOpWVSm0N
-         mK8DxNBgbXtqvMsEo8lB6pju+OdYRxlBrDAtkDP/CFGXR+G87Q2PtplnMYjxfIQPsT
-         cE4glGu2aoA6KOhz5eNEww4oZ1i0akNm+MqU4MU0=
-Received: by mail-qt1-f174.google.com with SMTP id u22so15435281qtq.13;
-        Fri, 11 Oct 2019 12:32:58 -0700 (PDT)
-X-Gm-Message-State: APjAAAW7RqQqiDglzXd12kLZb9a0aDE0I4nujYW4bvxJKWntA5aGA2N6
-        XjXAmGDB6BlSADQ9yDrh/Mn74ZCt5FXn3/JcPA==
-X-Google-Smtp-Source: APXvYqwIjsTIx4gE6GsG6zQAJr8JfQ6D5bTKreNB1Ug8rxT51XsikLFA1aNRUj4oItqJYQKqCFfL/6sYmmsielYsPDQ=
-X-Received: by 2002:ac8:44d9:: with SMTP id b25mr19411003qto.300.1570822378023;
- Fri, 11 Oct 2019 12:32:58 -0700 (PDT)
+        id S1726521AbfJKXPS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 19:15:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1570835365;
+        bh=5gB1OCM/eHUoF4+pE9h4tGD6did33KyXZQ7I6/0pCLU=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=I/GOFBvsXIboHGynN2mYSVXzwdIBKfSeUNMbgC3ZmtGfkTIJdQ6Zy84OQojyywLxf
+         7eM0YTeCPKP1MEwJY1l+TsumTlgikYB/1d8ntKmy57Jb1TrtezT+djMB13d8BjrS3o
+         cyGseQy18NpYsE96j3LAP4l51sQ2RyF9MDbRKy+Y=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.162] ([37.4.249.112]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M72oH-1iR33i0RZv-008cZL; Sat, 12
+ Oct 2019 01:09:25 +0200
+Subject: Re: [PATCH v1 3/3] ARM: dts: bcm2711: Enable GENET support for the
+ RPi4
+To:     matthias.bgg@kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <mbrugger@suse.com>,
+        Eric Anholt <eric@anholt.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20191011184822.866-1-matthias.bgg@kernel.org>
+ <20191011184822.866-4-matthias.bgg@kernel.org>
+From:   Stefan Wahren <wahrenst@gmx.net>
+Message-ID: <dfe9062b-1960-f67b-2a9e-864c0680f5d3@gmx.net>
+Date:   Sat, 12 Oct 2019 01:09:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20190913211349.28245-1-robh@kernel.org> <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
- <CAL_JsqLtEM9+LK=3YDLnoZbC1v09R9-qfFNEH-gTWj94FAjnyg@mail.gmail.com>
- <7672dd2f651bfdcdb1615ab739e36a381b2535b1.camel@perches.com>
- <CAL_JsqKAbP6KYjiJ6dLr=dpFG-j-e4rJPCKZ0+pZrDjsSPAUPQ@mail.gmail.com>
- <CAL_JsqJiV-L14tQte0tZXq+-TRTXGOFW62EsSobu3cFGA8rJDw@mail.gmail.com> <a6933fa81cf1510528ed7a4cfa55f57900800fc6.camel@perches.com>
-In-Reply-To: <a6933fa81cf1510528ed7a4cfa55f57900800fc6.camel@perches.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 11 Oct 2019 14:32:45 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+YHDRkPYQwMWAvXM8kPz92AVYuaiLKAbZwhYeufFJQvw@mail.gmail.com>
-Message-ID: <CAL_Jsq+YHDRkPYQwMWAvXM8kPz92AVYuaiLKAbZwhYeufFJQvw@mail.gmail.com>
-Subject: Re: [PATCH] checkpatch: Warn if DT bindings are not in schema format
-To:     Joe Perches <joe@perches.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andy Whitcroft <apw@canonical.com>,
-        Andrew Morton <akpm@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20191011184822.866-4-matthias.bgg@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Provags-ID: V03:K1:hXCsfi0YzRPmoFypWyfnvbO4N7BdVxoeOYAzqfPcBP1vircEceh
+ 5/gp4HUDZbiVzRFNAraPoYeULEiS7pg/NXBuAyRCOMdrkpXK0OQ4Stl6pf8E52jOsx2fc5u
+ qQmvIDtmTSod/RhKuofbxsYfY1Z80h4EbuwqHZFOosz8q3Cr4WkqG08p9zxoXvmye5G59jM
+ Pko4MF7b2PlzF2rWIrfmg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:hioaaoAal40=:B4AdG8yOarUZYruTvKzKW9
+ O6NhUfcFJuvBB6mewzVfICNLAu2JaVBVynV1qeVUxIlbZ753ObmgpRtOPMgt8eThT0m02EyR+
+ 3yFmPVLKK73vR5RuVxSz4/RaFIph129QOk+XbZk3nS3cB8VfIjtdEQBdnLRlj+DWq95AsRS5M
+ JE8yhLb5koUbSkaVFzr1j7TiOekkJqXdujFGg5J41jfPufT0hC4duVn4V5sgVnVRBBffvXAVv
+ Li4tHsSziRkTqQkLwRgJQCNZsKBfN1G2p9iNB3QOTFucCBUlJ8KyRiChJpEhsXIu34TCuI47V
+ NebesUtHLbV2z/6pZTa9kufjyV6fNgDt7L6Z76Gp9ly5XFXoVGpkDqy0GkFOoH6shacPOm3Uq
+ rY8oX2NFt5Our/vUqhO8UJd6Nlb7lVuX1I1ZQvRX5efkPyIMK4MeXZOWYNFd/49fHM6WOu1zr
+ jWwJJli4OuJqeTzHxXAjDYXp54pCVVFCJFkoutjoUCJAyuIxoT/pqgje9/jcKywv+UdUpgbYK
+ ud7Kql66eDPRukrt5JpZYwUzeOjVyrAkYPsSY0E0u+/glVi2BE0yuI+Lrxt/BpdLZMhVC8ckp
+ MBYbrpQTFnn5pdXqQ1aw0R6OcCQPSNM41z/1xpIuKbEVRfFqZuJPssQgXy+rq+VJ0F18b5IOn
+ cstZHafaMYsqYylJrOheFRum7c46HvfA+xZhFpFKheFIMHNOefFM90DIKwECxwjnRCJc+A1P5
+ hFWlGLh7W27xXLJfkqAWtTec4Bj6tpo0aZ7hfon9/NFLoSWuDC5gTDVcdBeqsUOiKfSVbhfhn
+ N+ByNpUvsAgjIXyQ8uow044WCrdAoNMuTUcvXhVfCp6pAZ9RdZhx/XXxNmWEFIWmkyKuIYynB
+ m/43Tfr7JqlNYwqtoMcuUGEOK+j4e6aJiXDkNmbpHP3aic2rI5krd/fv3tr6BJAsQS0nquGKA
+ v2KGo75smbnL31aNACNvedR8XumobvIoh+YqFDkj9R+KaM1D3HdpqqSXm1Ejt0svl3VgUnv+m
+ jc9YWHX+JM0al4G3uyVHqQDZXxCW7fQ0mSWo8LSL8K/eN+9/3v0gyiJID/zMcLlDYOqSMmyMT
+ lh1ZcMDGoUXwIpBY5IiaD/fB5tGQs2vJiX4+P5dRyenHg4GITUfq7v9BPMnOz0U2qSyx7Ag2b
+ Yi0UneKJUl0KAfeEbGVZUR9vHEW1aSZ0gyCLnYv4B0AstLu4+F0u5q56ceOTgL3FUdXVJGPkR
+ zxhRo3oUMEIT18dZOZgN8O7FD44USQk3dfla4R14H0Jtwe2yZN2pEn6NHwrA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 11, 2019 at 1:02 PM Joe Perches <joe@perches.com> wrote:
+Am 11.10.19 um 20:48 schrieb matthias.bgg@kernel.org:
+> From: Matthias Brugger <mbrugger@suse.com>
 >
-> On Fri, 2019-10-11 at 12:56 -0500, Rob Herring wrote:
-> > On Fri, Sep 27, 2019 at 10:39 AM Rob Herring <robh@kernel.org> wrote:
-> > > On Fri, Sep 27, 2019 at 9:29 AM Joe Perches <joe@perches.com> wrote:
-> > > > On Fri, 2019-09-27 at 09:02 -0500, Rob Herring wrote:
-> > > > > On Fri, Sep 13, 2019 at 4:48 PM Joe Perches <joe@perches.com> wrote:
-> > > > > > On Fri, 2019-09-13 at 16:13 -0500, Rob Herring wrote:
-> > > > > > > DT bindings are moving to using a json-schema based schema format
-> > > > > > > instead of freeform text. Add a checkpatch.pl check to encourage using
-> > > > > > > the schema for new bindings. It's not yet a requirement, but is
-> > > > > > > progressively being required by some maintainers.
-> > > > > > []
-> > > > > > > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> > > > > > []
-> > > > > > > @@ -2822,6 +2822,14 @@ sub process {
-> > > > > > >                            "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
-> > > > > > >               }
-> > > > > > >
-> > > > > > > +# Check for adding new DT bindings not in schema format
-> > > > > > > +             if (!$in_commit_log &&
-> > > > > > > +                 ($line =~ /^new file mode\s*\d+\s*$/) &&
-> > > > > > > +                 ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
-> > > > > > > +                     WARN("DT_SCHEMA_BINDING_PATCH",
-> > > > > > > +                          "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
-> > > > > > > +             }
-> > > > > > > +
-> > > > > >
-> > > > > > As this already seems to be git dependent, perhaps
-> > > > >
-> > > > > It's quite rare to see a non git generated diff these days.
-> > > > >
-> > > > > > it's easier to read with a single line test like:
-> > > > > >
-> > > > > >                 if ($line =~ m{^\s*create mode\s*\d+\s*Documentation/devicetree/bindings/.*\.txt$}) {
-> > > > > >                         etc...
-> > > > > >                 }
-> > > > >
-> > > > > I frequently do 'git show $commit | scripts/checkpatch.pl' and this
-> > > > > doesn't work with that. I really should have a '--pretty=email' in
-> > > > > there, but I just ignore the commit msg warnings. In any case, that
-> > > > > still doesn't help because there's no diffstat. There's probably some
-> > > > > way to turn that on or just use git-format-patch, but really we want
-> > > > > this to work with any git diff.
-> > > >
-> > > > I don't understand your argument against what I proposed at all.
-> > >
-> > > It is dependent on the commit message rather than the diff itself. I
-> > > want it to work with or without a diffstat.
-> > >
-> > > > and btw:
-> > > >
-> > > > $ git format-patch -1 --stdout <commit> | ./scripts/checkpatch.pl
-> > >
-> > > Yes, I stated this was possible. My concern is there are lots of ways
-> > > to generate a diff in git. My way works for *all* of them. Yours
-> > > doesn't.
-> >
-> > Joe, are you okay with this?
->
-> Sure, Andrew Morton does most of the checkpatch upstreaming, but
-> if you want to send your own pull request, I've no objection.
+> Enable Gigabit Ethernet support on the Raspberry Pi 4
+> Model B.
 
-Thanks, I've applied this to the DT tree.
+I asked some questions about genet to the RPi guys [1] which are
+relevant to this patch (missing clocks and interrupt, MAC address
+assignment) but i didn't get an answer yet.
 
-Rob
+During my tests with a similiar patch series i noticed that the driver
+won't probe without a MAC address.
+
+How does it get into DT (via U-Boot)?
+
+[1] -
+https://github.com/raspberrypi/linux/issues/3101#issuecomment-534665860
+
