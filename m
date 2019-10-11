@@ -2,86 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE42D4245
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A50C5D4298
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 16:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728268AbfJKOGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 10:06:16 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:37624 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728483AbfJKOGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 10:06:15 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9BDuP5F008342;
-        Fri, 11 Oct 2019 16:05:41 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=X2MS2dG8XiA3LBnlrQGs02rZISjkvk2yFLJA4idPnL4=;
- b=Munmuilwc1UmIcseIEJAD8efaUj9y6slZeTesd7CZgqCl+PiswJ2JcsHR/1DgKPJM0mW
- IBqBOzedqFx2MkLPt+eIzYtDy8FWjcG3u27nDmdbFNbQ9Lmmb1Uqa8M2abtS0LZcpovV
- UhXsdcLvSx37jpaNp8d64S+9JVh9ODsRKOOl1dubfGJemORltTc+GwqrKkr+0FlRgrJS
- 6jG5zMFegf2z4vnnKkZGEdRgxesoFNhp2eYH6n80O98wEoyJ9WVW5BXRe8U86lSh+dak
- CUiq8xt+J1xYlaJir//H28W5VGMhAnXp3v6zoKr+zjWBCrEz9b1+PdDMz/KBE4HiLpo9 pA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vegn1a8r1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Oct 2019 16:05:41 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3FA0C10002A;
-        Fri, 11 Oct 2019 16:05:41 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 329A82AD739;
-        Fri, 11 Oct 2019 16:05:41 +0200 (CEST)
-Received: from localhost (10.75.127.51) by SFHDAG6NODE2.st.com (10.75.127.17)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 11 Oct 2019 16:05:40
- +0200
-From:   Pascal Paillet <p.paillet@st.com>
-To:     <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <p.paillet@st.com>
-Subject: [PATCH 4/4] ARM: dts: stm32: disable active-discharge for vbus_otg on stm32mp157a-avenger96
-Date:   Fri, 11 Oct 2019 16:05:33 +0200
-Message-ID: <20191011140533.32619-5-p.paillet@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191011140533.32619-1-p.paillet@st.com>
-References: <20191011140533.32619-1-p.paillet@st.com>
+        id S1728368AbfJKOTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 10:19:14 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:39176 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728138AbfJKOTO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 10:19:14 -0400
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iIvl8-0002aN-FF; Fri, 11 Oct 2019 16:19:10 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add Beelink A1
+Date:   Fri, 11 Oct 2019 16:19:09 +0200
+Message-ID: <5779329.sYoq9m6zvk@diego>
+In-Reply-To: <4c490e48-7a85-4ef9-771c-165defde39cc@arm.com>
+References: <9037b7edbbb41cbbf699ebe3a511daf22d886e7d.1570444695.git.robin.murphy@arm.com> <CAL_JsqKBy+i+=gGyYhBgcMUYsWd_CL_GnEoQqALBb+Gy7Ogb6A@mail.gmail.com> <4c490e48-7a85-4ef9-771c-165defde39cc@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG4NODE3.st.com (10.75.127.12) To SFHDAG6NODE2.st.com
- (10.75.127.17)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-11_08:2019-10-10,2019-10-11 signatures=0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Active discharge is not needed on vbus_otg and generate unneeded current
-consumption.
+Am Freitag, 11. Oktober 2019, 14:20:38 CEST schrieb Robin Murphy:
+> On 07/10/2019 13:53, Rob Herring wrote:
+> > On Mon, Oct 7, 2019 at 6:33 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> >>
+> >> Beelink A1 is a TV box implementing the higher-end options of the
+> >> RK3328 reference design - the DTB from the stock Android firmware is
+> >> clearly the "rk3328-box-plus" variant from the Rockchip 3.10 BSP with
+> >> minor modifications to accommodate the USB WiFi module and additional
+> >> VFD-style LED driver. It features:
+> >>
+> >> - 4GB of 32-bit LPDDR3
+> >> - 16GB of HS200 eMMC (newer models with 32GB also exist)
+> >> - Realtek RTL8211F phy for gigabit ethernet
+> >> - Fn-Link 6221E-UUC module (RealTek RTL8821CU) for 11ac WiFi and Bluetooth 4.2
+> >> - HDMI and analog A/V
+> >> - 1x USB 3.0 type A host, 1x USB 2.0 type A OTG, 1x micro SD
+> >> - IR receiver and a neat little LED clock display.
+> >>
+> >> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> >> ---
+> >>
+> >> One question I'm wondering about is whether it's worth pushing the HDMI
+> >> and analog codec audio cards down into rk3328.dtsi (as with HDMI audio
+> >> on RK3399), since those audio pipelines are internal to the SoC and the
+> >> board only really governs whether the outputs are wired up or not.
+> > 
+> > Seems reasonable. One other candidate below.
+> > 
+> >>
+> >>   .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> > 
+> > In the future, please split bindings to a separate patch.
+> 
+> Ha, busted! I thought this might be trivial enough to slip through, but 
+> I'll split it out if you prefer.
+> 
+> >>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >>   arch/arm64/boot/dts/rockchip/rk3328-a1.dts    | 399 ++++++++++++++++++
+> >>   3 files changed, 405 insertions(+)
+> >>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> >> index c82c5e57d44c..f27f7805f57e 100644
+> >> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> >> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> >> @@ -40,6 +40,11 @@ properties:
+> >>             - const: asus,rk3288-tinker-s
+> >>             - const: rockchip,rk3288
+> >>
+> >> +      - description: Beelink A1
+> >> +        items:
+> >> +          - const: azw,beelink-a1
+> >> +          - const: rockchip,rk3328
+> >> +
+> >>         - description: bq Curie 2 tablet
+> >>           items:
+> >>             - const: mundoreader,bq-curie2
+> >> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> >> index 1f18a9392d15..a6f250e7cde2 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> >> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> >> @@ -1,5 +1,6 @@
+> >>   # SPDX-License-Identifier: GPL-2.0
+> >>   dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
+> >> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
+> >>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
+> >>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
+> >>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> >> new file mode 100644
+> >> index 000000000000..03ad663ff821
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> >> @@ -0,0 +1,399 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> >> +// Copyright (c) 2017-2019 Arm Ltd.
+> >> +
+> >> +/dts-v1/;
+> >> +#include "rk3328.dtsi"
+> >> +
+> >> +/ {
+> >> +       model = "Beelink A1";
+> >> +       compatible = "azw,beelink-a1", "rockchip,rk3328";
+> >> +
+> >> +       /*
+> >> +        * UART pins, as viewed with bottom of case removed:
+> >> +        *
+> >> +        *           Front
+> >> +        *        /-------
+> >> +        *  L    / o <- Gnd
+> >> +        *  e   / o <-- Rx
+> >> +        *  f  / o <--- Tx
+> >> +        *  t / o <---- +3.3v
+> >> +        *    |
+> >> +        */
+> >> +       chosen {
+> >> +               stdout-path = "serial2:1500000n8";
+> >> +       };
+> >> +
+> >> +       gmac_clkin: external-gmac-clock {
+> >> +               compatible = "fixed-clock";
+> >> +               clock-frequency = <125000000>;
+> >> +               clock-output-names = "gmac_clkin";
+> >> +               #clock-cells = <0>;
+> >> +       };
+> >> +
+> >> +       vcc_host_5v: usb3-current-switch {
+> >> +               compatible = "regulator-fixed";
+> >> +               enable-active-high;
+> >> +               gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+> >> +               pinctrl-names = "default";
+> >> +               pinctrl-0 = <&usb30_host_drv>;
+> >> +               regulator-name = "vcc_host_5v";
+> >> +               vin-supply = <&vcc_sys>;
+> >> +       };
+> >> +
+> >> +       vcc_sys: vcc-sys {
+> >> +               compatible = "regulator-fixed";
+> >> +               regulator-name = "vcc_sys";
+> >> +               regulator-min-microvolt = <5000000>;
+> >> +               regulator-max-microvolt = <5000000>;
+> >> +       };
+> >> +
+> >> +       cpus {
+> >> +               idle-states {
+> >> +                       entry-method = "arm,psci";
+> >> +
+> >> +                       cpu_sleep: cpu-sleep {
+> >> +                               compatible = "arm,idle-state";
+> >> +                               arm,psci-suspend-param = <0x0010000>;
+> >> +                               local-timer-stop;
+> >> +                               entry-latency-us = <120>;
+> >> +                               exit-latency-us = <250>;
+> >> +                               min-residency-us = <900>;
+> > 
+> > This doesn't seem like something that's board specific, but I guess
+> > the regulator could have some influence on these times. If so, the
+> > board file could always override a default.
+> 
+> True, this is traceable back to the Rockchip Android BSP where it's 
+> actually applied to the entire SoC family[1]. I don't know if there's 
+> likely to be any difference between the downstream "RKTRUST" firmware 
+> binaries (which this nominally represents) and upstream ATF in terms of 
+> their PSCI implementation/performance.
+> 
+> I've not got round to properly tinkering with suspend/resume and power 
+> management stuff yet, so I guess another option would be to just forget 
+> about this part for now - Heiko, any opinions?
 
-Signed-off-by: Pascal Paillet <p.paillet@st.com>
----
- arch/arm/boot/dts/stm32mp157a-avenger96.dts | 1 -
- 1 file changed, 1 deletion(-)
+I think nobody actually knows what goes on in Rockchip's binary ATF
+variant, which is the reason I dislike it so much ;-) .
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-avenger96.dts b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-index d1cc42a92d3f..628c74a45a25 100644
---- a/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-@@ -252,7 +252,6 @@
- 				regulator-name = "vbus_otg";
- 				interrupts = <IT_OCP_OTG 0>;
- 				interrupt-parent = <&pmic>;
--				regulator-active-discharge = <1>;
- 			};
- 
- 			vbus_sw: pwr_sw2 {
--- 
-2.17.1
+What's in the upstream sources should always take precedent. Looking
+at rk3399 as an example where they had oversight from ChromeOS people
+there are idle-states in rk3399.dtsi and I guess there should be a
+counterpart int ATF.
+
+The idle-state values also match rk3399's cpu-sleep, so seem pretty
+standard. So should just go into rk3328.dtsi after someone could verify
+that this works with upstream ATF.
+
+Heiko
+
+
 
