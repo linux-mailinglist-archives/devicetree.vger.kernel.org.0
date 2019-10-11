@@ -2,106 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A57D3D74
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 12:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5865D3E0D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 13:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727638AbfJKKdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 06:33:55 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:24709 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726290AbfJKKdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 06:33:54 -0400
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
-  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Ludovic.Desroches@microchip.com";
-  x-sender="Ludovic.Desroches@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Ludovic.Desroches@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: PCihShyUn8uVWBomvDgUNav7+OHOSHa/nxBu41vWn6NUxDVv8dzEOQ4Xxln35ijvXHULUT2H7/
- hHE0LCnJ58zi9lTosXYFaUDmB5l10Heay0kJxpyYbElNz4O6L7EHWU2NKFQDhnghShp7OX4BMy
- TnznvxAmO56KpVuV8wGfBxe+hSFHr07bZ2WfTMOq8PrVIkwiw/50if/cNOcN7xhvjPIINCfpR0
- rskOZhGk7wKXmwCrUCsts9Wx1qGeD9Z76SeARSZkXzAZMa5iMyko1hrCMesPXFB61lQ2drE7fm
- 77E=
-X-IronPort-AV: E=Sophos;i="5.67,283,1566889200"; 
-   d="scan'208";a="51107515"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Oct 2019 03:33:54 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 11 Oct 2019 03:33:52 -0700
-Received: from M43218.corp.atmel.com (10.10.85.251) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Fri, 11 Oct 2019 03:33:50 -0700
-From:   Ludovic Desroches <ludovic.desroches@microchip.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <ulf.hansson@linaro.org>, <nicolas.ferre@microchip.com>,
-        <adrian.hunter@intel.com>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <claudiu.beznea@microchip.com>, <Eugen.Hristev@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>
-Subject: [PATCH v2 3/3] ARM: dts: at91: sama5d2: set the sdmmc gclk frequency
-Date:   Fri, 11 Oct 2019 12:33:39 +0200
-Message-ID: <20191011103340.26749-3-ludovic.desroches@microchip.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191011103340.26749-1-ludovic.desroches@microchip.com>
-References: <20191011103340.26749-1-ludovic.desroches@microchip.com>
+        id S1727549AbfJKLPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 07:15:47 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:34352 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726935AbfJKLPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 07:15:47 -0400
+Received: from dhcp-172-31-174-146.wireless.concordia.ca (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 0621728D208;
+        Fri, 11 Oct 2019 12:15:44 +0100 (BST)
+Date:   Fri, 11 Oct 2019 13:15:40 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [RESEND PATCH v2 3/4] media: rockchip: Add the rkvdec driver
+Message-ID: <20191011131540.002a61a9@dhcp-172-31-174-146.wireless.concordia.ca>
+In-Reply-To: <8d3abbd9-f27d-f17f-8298-b0cc7c63ab3e@xs4all.nl>
+References: <20191011093342.3471-1-boris.brezillon@collabora.com>
+        <20191011093342.3471-4-boris.brezillon@collabora.com>
+        <8d3abbd9-f27d-f17f-8298-b0cc7c63ab3e@xs4all.nl>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the frequency of the generated clock used by sdmmc devices in order
-to not rely on the configuration done by previous components.
+Hi Hans,
 
-Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
----
+On Fri, 11 Oct 2019 12:06:35 +0200
+Hans Verkuil <hverkuil@xs4all.nl> wrote:
 
-Changes:
--v2: none
+> > diff --git a/drivers/staging/media/rockchip/Kconfig b/drivers/staging/media/rockchip/Kconfig
+> > new file mode 100644
+> > index 000000000000..8c617ae2c84f
+> > --- /dev/null
+> > +++ b/drivers/staging/media/rockchip/Kconfig
+> > @@ -0,0 +1,16 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +config VIDEO_ROCKCHIP
+> > +	bool "Rockchip Video Devices"
+> > +	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> > +	help
+> > +	  If you have a Rockchip SoC based embedding a video codec.
+> > +
+> > +	  Note that this option doesn't include new drivers in the
+> > +	  kernel: saying N will just cause Kconfig to skip all the
+> > +	  questions about Allwinner media devices.
+> > +
+> > +if VIDEO_ROCKCHIP
+> > +
+> > +source "drivers/staging/media/rockchip/vdec/Kconfig"
+> > +
+> > +endif  
+> 
+> Is this really necessary? I think the 'source' line can just be added to
+> drivers/staging/media/Kconfig. This config option here is rather vague.
 
- arch/arm/boot/dts/sama5d2.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+I based it on the Allwinner/Cedrus model (even left an 'Allwinner' in
+the description :)), but I can definitely move the source line in
+drivers/staging/media/Kconfig or even get rid of the rockchip dir if
+you prefer.
 
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index 565204816e34..7665263af907 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -300,6 +300,8 @@
- 			interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 31>, <&pmc PMC_TYPE_GCK 31>, <&pmc PMC_TYPE_CORE PMC_MAIN>;
- 			clock-names = "hclock", "multclk", "baseclk";
-+			assigned-clocks = <&pmc PMC_TYPE_GCK 31>;
-+			assigned-clock-rates = <480000000>;
- 			status = "disabled";
- 		};
- 
-@@ -309,6 +311,8 @@
- 			interrupts = <32 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&pmc PMC_TYPE_PERIPHERAL 32>, <&pmc PMC_TYPE_GCK 32>, <&pmc PMC_TYPE_CORE PMC_MAIN>;
- 			clock-names = "hclock", "multclk", "baseclk";
-+			assigned-clocks = <&pmc PMC_TYPE_GCK 32>;
-+			assigned-clock-rates = <480000000>;
- 			status = "disabled";
- 		};
- 
--- 
-2.23.0
+> 
+> > diff --git a/drivers/staging/media/rockchip/Makefile b/drivers/staging/media/rockchip/Makefile
+> > new file mode 100644
+> > index 000000000000..b3705b51f1b9
+> > --- /dev/null
+> > +++ b/drivers/staging/media/rockchip/Makefile
+> > @@ -0,0 +1,2 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +obj-$(CONFIG_VIDEO_ROCKCHIP_VDEC) += vdec/
+> > diff --git a/drivers/staging/media/rockchip/vdec/Kconfig b/drivers/staging/media/rockchip/vdec/Kconfig
+> > new file mode 100644
+> > index 000000000000..329b4a813c47
+> > --- /dev/null
+> > +++ b/drivers/staging/media/rockchip/vdec/Kconfig
+> > @@ -0,0 +1,14 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +config VIDEO_ROCKCHIP_VDEC
+> > +	tristate "Rockchip Video Decoder driver"
+> > +	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> > +	depends on VIDEO_DEV && VIDEO_V4L2 && MEDIA_CONTROLLER
+> > +	depends on MEDIA_CONTROLLER_REQUEST_API
+> > +	select VIDEOBUF2_DMA_CONTIG
+> > +	select VIDEOBUF2_VMALLOC
+> > +	select V4L2_MEM2MEM_DEV
+> > +	help
+> > +	  Support for the Rockchip Video Decoder IP present on Rockchip SoC,
+> > +	  which accelerates video decoding.
+> > +	  To compile this driver as a module, choose M here: the module
+> > +	  will be called hantro-vpu.  
+> 
+> hantro-vpu? Not rkvdec?
 
+Should be rkvdec, indeed. That's what happens when you copy things from
+an existing driver :-).
+
+
+> > +
+> > +/* Constant CABAC table. */
+> > +static const u32 rkvdec_h264_cabac_table[] = {  
+> 
+> Where does this table come from? It needs some provenance.
+
+Chromeos kernels [1] and MPP code base [2]. I'll add a comment pointing
+to those trees.
+
+[...]
+
+> > +
+> > +struct rkvdec_h264_reflist_builder {
+> > +	const struct v4l2_h264_dpb_entry *dpb;
+> > +	s32 pocs[RKVDEC_H264_DPB_SIZE];
+> > +	u8 unordered_reflist[RKVDEC_H264_DPB_SIZE];
+> > +	int frame_nums[RKVDEC_H264_DPB_SIZE];
+> > +	s32 curpoc;
+> > +	u8 num_valid;
+> > +};  
+> 
+> What's a 'poc'? Perhaps this can use some comments.
+
+Picture Order Count. I'll add comment.
+
+> 
+> It looks like code is copied from hantro_h264.c. Is there anything that
+> can be reasonably shared between the two drivers?
+
+I was planning on exporting those helpers at some point, but I'd like
+the reflist creation logic to settle before doing (we still need to fix
+things for interlaced streams, which is what Jonas is working on).
+
+
+
+> > +
+> > +static int p_ref_list_cmp(const void *ptra, const void *ptrb, const void *data)
+> > +{
+> > +	const struct rkvdec_h264_reflist_builder *builder = data;
+> > +	const struct v4l2_h264_dpb_entry *a, *b;
+> > +	u8 idxa, idxb;
+> > +
+> > +	idxa = *((u8 *)ptra);
+> > +	idxb = *((u8 *)ptrb);
+> > +	a = &builder->dpb[idxa];
+> > +	b = &builder->dpb[idxb];
+> > +
+> > +	if ((a->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM) !=
+> > +	    (b->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM)) {
+> > +		/* Short term pics firt. */  
+> 
+> firt -> first
+
+Will fix the typo.
+
+> 
+> > +		if (!(a->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM))
+> > +			return -1;
+> > +		else
+> > +			return 1;
+> > +	}
+> > +
+> > +	/*
+> > +	 * Short term pics in descending pic num order, long term ones in
+> > +	 * ascending order.
+> > +	 */
+> > +	if (!(a->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM)) {
+> > +		int frame_num_a, frame_num_b;
+> > +
+> > +		frame_num_a = builder->frame_nums[idxa];
+> > +		frame_num_b = builder->frame_nums[idxb];
+> > +		return frame_num_b > frame_num_a ? 1 : -1;
+> > +	}
+> > +
+> > +	return a->pic_num > b->pic_num ? 1 : -1;
+> > +}
+> > +
+> > +static int b0_ref_list_cmp(const void *ptra, const void *ptrb, const void *data)
+> > +{
+> > +	const struct rkvdec_h264_reflist_builder *builder = data;
+> > +	const struct v4l2_h264_dpb_entry *a, *b;
+> > +	s32 poca, pocb;
+> > +	u8 idxa, idxb;
+> > +
+> > +	idxa = *((u8 *)ptra);
+> > +	idxb = *((u8 *)ptrb);
+> > +	a = &builder->dpb[idxa];
+> > +	b = &builder->dpb[idxb];
+> > +
+> > +	if ((a->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM) !=
+> > +	    (b->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM)) {
+> > +		/* Short term pics firt. */  
+> 
+> Ditto. Check the code for this typo. It's in the hantro code as well.
+
+Will do.
+
+> 
+> > +		if (!(a->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM))
+> > +			return -1;
+> > +		else
+> > +			return 1;
+> > +	}
+> > +
+> > +	/* Long term pics in ascending pic num order. */
+> > +	if (a->flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM)
+> > +		return a->pic_num > b->pic_num ? 1 : -1;
+> > +
+> > +	poca = builder->pocs[idxa];
+> > +	pocb = builder->pocs[idxb];
+> > +
+> > +	/*
+> > +	 * Short term pics with POC < cur POC first in POC descending order
+> > +	 * followed by short term pics with POC > cur POC in POC ascending
+> > +	 * order.
+> > +	 */
+> > +	if ((poca < builder->curpoc) != (pocb < builder->curpoc))
+> > +		return poca > pocb ? 1 : -1;
+> > +	else if (poca < builder->curpoc)
+> > +		return pocb > poca ? 1 : -1;
+> > +
+> > +	return poca > pocb ? 1 : -1;
+> > +}
+
+> > +static void rkvdec_reset_fmt(struct rkvdec_ctx *ctx, struct v4l2_format *f,
+> > +			     u32 fourcc)
+> > +{
+> > +	memset(f, 0, sizeof(*f));
+> > +	f->fmt.pix_mp.pixelformat = fourcc;
+> > +	f->fmt.pix_mp.field = V4L2_FIELD_NONE;
+> > +	f->fmt.pix_mp.colorspace = V4L2_COLORSPACE_JPEG,  
+> 
+> Don't use this colorspace. I see it is also used in the hantro driver, that should
+> be corrected as well.
+> 
+> The colorimetry comes from the stream metadata, and for a stateless driver I
+> assume that it is userspace that parses that.
+> 
+> V4L2_COLORSPACE_JPEG should only be used by (M)JPEG codecs. And even there is it
+> dubious. See section 2.17.10 in the spec for more info.
+
+What should I use when the formats are reset then?
+
+Thanks for the prompt review!
+
+Boris
+
+[1]https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/heads/chromeos-4.4/drivers/media/platform/rockchip-vpu/rk3399_vdec_hw_h264d.c#45
+[2]https://github.com/rockchip-linux/mpp/blob/release/mpp/hal/rkdec/h264d/hal_h264d_rkv_reg.c#L67
