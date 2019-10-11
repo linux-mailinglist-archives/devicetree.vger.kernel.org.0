@@ -2,245 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5529CD43AF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D50D43BD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726829AbfJKPDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 11:03:46 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:44623 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726331AbfJKPDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:03:46 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w6so8211697oie.11;
-        Fri, 11 Oct 2019 08:03:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zf/wVL1pxkzfv+aCf542wtXl7xxXSJSAoS259hxFzdU=;
-        b=ZT5G1Ep9m9sdmxD9aRrI7JBV+1iAH1nziaVnT5UuhjykMWAH0y43egukN3LdF+HdLF
-         hgg9kq6479FfkTH2hVxTQ5TMvdgUw0FQ8SnAPr8n8E9GSe0x6dw8mqvoUqX0m4G91oGj
-         6aZ69DB5gBW9HrrQQujqCjFx//kQOgHlIcEjtf5mSm1xRGmUqn8PGr8qXqIpAxxQrHz5
-         2JdSSjr7vEuXJ84R8UtRSHmDkU9XvIG7G087MV+HPwzJcVy+YFZuD9B6t+lv0/EAeW/X
-         4MfZmXmLSLQwoteKTwnCZHibAkVIOqVxSnBoh0GHS1CnbYsAqW7gIaiiC4In1pImA+0y
-         acwA==
-X-Gm-Message-State: APjAAAXU5Jerg4nkTnRn4lU7BKjsh5kzsq5okUOAKcLbtTQo+r5mPaoH
-        Q0Wts09wFLHAdcackwUKxQ==
-X-Google-Smtp-Source: APXvYqyV76Nvy442IRIoZov+TB1OwfgmfaBvOSHiGvU7dcH19CN5WjOOfWxDjsuT1iB1kLR3NqyaCA==
-X-Received: by 2002:aca:5786:: with SMTP id l128mr12933151oib.34.1570806222672;
-        Fri, 11 Oct 2019 08:03:42 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l47sm2791691ota.56.2019.10.11.08.03.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 08:03:39 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 10:03:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, etnaviv@lists.freedesktop.org,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: Convert Generic Power Domain
- bindings to json-schema
-Message-ID: <20191011150339.GA16245@bogus>
-References: <20191002160632.11140-1-krzk@kernel.org>
+        id S1726631AbfJKPGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 11:06:17 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:53308 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726595AbfJKPGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 11:06:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Type:MIME-Version:References:
+        In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=oFnh+7aofaF0FzctP338voKSyncR9/qqjW/7qmv+uiI=; b=d+8mNidNz2g3CT4o7emVa8Iv9
+        j4mlf6bjNdTPBL6ebgONqPnBkPA4X2BnpvGPs8RpZLkZDOHEzE1xl4SKtDn/FV3olLmSNsafpsl3m
+        oxBlYV4T3I+iCYIBwhsjqlT08Qg/jpeTmwflO6zo1G6uYgW9Xa7QtwUQ9v7LvM9v7gijg=;
+Received: from p5dcb30f2.dip0.t-ipconnect.de ([93.203.48.242] helo=localhost)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iIwUX-0004ul-2F; Fri, 11 Oct 2019 17:06:05 +0200
+Received: from localhost ([::1])
+        by localhost with esmtp (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iIwUV-0008KW-R0; Fri, 11 Oct 2019 17:06:03 +0200
+Date:   Fri, 11 Oct 2019 17:05:53 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
+        marex@denx.de, angus@akkea.ca, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        j.neuschaefer@gmx.net,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Subject: Re: [PATCH v3 2/3] ARM: dts: add Netronix E60K02 board common file
+Message-ID: <20191011170147.1b3c4b25@kemnade.info>
+In-Reply-To: <20191011142927.GA11490@bogus>
+References: <20191010192357.27884-1-andreas@kemnade.info>
+        <20191010192357.27884-3-andreas@kemnade.info>
+        <20191011065609.6irap7elicatmsgg@pengutronix.de>
+        <20191011094148.1376430e@aktux>
+        <20191011142927.GA11490@bogus>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191002160632.11140-1-krzk@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/pKsq_nhga4Bcf+WxR+iqaqg"; protocol="application/pgp-signature"
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 02, 2019 at 06:06:30PM +0200, Krzysztof Kozlowski wrote:
-> Convert Generic Power Domain bindings to DT schema format using
-> json-schema.  The consumer bindings are split to separate file.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Select all nodes for consumers,
-> 2. Remove from consumers duplicated properties with dt-schema,
-> 3. Fix power domain pattern,
-> 4. Remove unneeded types.
-> ---
->  .../devicetree/bindings/arm/arm,scmi.txt      |   2 +-
->  .../devicetree/bindings/arm/arm,scpi.txt      |   2 +-
->  .../bindings/arm/freescale/fsl,scu.txt        |   2 +-
->  .../bindings/clock/clk-exynos-audss.txt       |   2 +-
->  .../bindings/clock/exynos5433-clock.txt       |   4 +-
->  .../bindings/clock/renesas,cpg-mssr.txt       |   2 +-
->  .../clock/renesas,r8a7778-cpg-clocks.txt      |   2 +-
->  .../clock/renesas,r8a7779-cpg-clocks.txt      |   2 +-
->  .../clock/renesas,rcar-gen2-cpg-clocks.txt    |   2 +-
->  .../bindings/clock/renesas,rz-cpg-clocks.txt  |   2 +-
->  .../bindings/clock/ti/davinci/psc.txt         |   2 +-
->  .../bindings/display/etnaviv/etnaviv-drm.txt  |   2 +-
->  .../devicetree/bindings/display/msm/dpu.txt   |   2 +-
->  .../devicetree/bindings/display/msm/mdp5.txt  |   2 +-
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      |   2 +-
->  .../firmware/nvidia,tegra186-bpmp.txt         |   2 +-
->  .../bindings/media/imx7-mipi-csi2.txt         |   3 +-
->  .../bindings/media/mediatek-jpeg-decoder.txt  |   3 +-
->  .../bindings/media/mediatek-mdp.txt           |   3 +-
->  .../bindings/opp/qcom-nvmem-cpufreq.txt       |   2 +-
->  .../devicetree/bindings/pci/pci-keystone.txt  |   2 +-
->  .../bindings/phy/ti,phy-am654-serdes.txt      |   2 +-
->  .../bindings/power/amlogic,meson-gx-pwrc.txt  |   2 +-
->  .../devicetree/bindings/power/fsl,imx-gpc.txt |   2 +-
->  .../bindings/power/fsl,imx-gpcv2.txt          |   2 +-
->  .../power/power-domain-consumers.yaml         | 105 +++++++++
->  .../bindings/power/power-domain.yaml          | 134 ++++++++++++
->  .../bindings/power/power_domain.txt           | 205 ------------------
->  .../devicetree/bindings/power/qcom,rpmpd.txt  |   2 +-
->  .../bindings/power/renesas,rcar-sysc.txt      |   2 +-
->  .../bindings/power/renesas,sysc-rmobile.txt   |   2 +-
->  .../bindings/power/xlnx,zynqmp-genpd.txt      |   2 +-
->  .../bindings/soc/bcm/brcm,bcm2835-pm.txt      |   2 +-
->  .../bindings/soc/mediatek/scpsys.txt          |   2 +-
->  .../bindings/soc/ti/sci-pm-domain.txt         |   2 +-
->  .../bindings/usb/nvidia,tegra124-xusb.txt     |   4 +-
->  MAINTAINERS                                   |   2 +-
->  37 files changed, 278 insertions(+), 241 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/power/power-domain-consumers.yaml
->  create mode 100644 Documentation/devicetree/bindings/power/power-domain.yaml
->  delete mode 100644 Documentation/devicetree/bindings/power/power_domain.txt
+--Sig_/pKsq_nhga4Bcf+WxR+iqaqg
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, 11 Oct 2019 09:29:27 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-> diff --git a/Documentation/devicetree/bindings/power/power-domain-consumers.yaml b/Documentation/devicetree/bindings/power/power-domain-consumers.yaml
-> new file mode 100644
-> index 000000000000..f65078e1260e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/power-domain-consumers.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/power-domain-consumers.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PM domain consumers
-> +
-> +maintainers:
-> +  - Rafael J. Wysocki <rjw@rjwysocki.net>
-> +  - Kevin Hilman <khilman@kernel.org>
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-> +
-> +description: |+
-> +  See power-domain.yaml
-> +
-> +select: true
-> +
-> +allOf:
-> +  - $ref: /schemas/power-domain/power-domain-consumer.yaml
+> On Fri, Oct 11, 2019 at 09:41:48AM +0200, Andreas Kemnade wrote:
+> > On Fri, 11 Oct 2019 08:56:09 +0200
+> > Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >  =20
+> > > Hi Andreas,
+> > >=20
+> > > On 19-10-10 21:23, Andreas Kemnade wrote: =20
+> > > > The Netronix board E60K02 can be found some several Ebook-Readers,
+> > > > at least the Kobo Clara HD and the Tolino Shine 3. The board
+> > > > is equipped with different SoCs requiring different pinmuxes.
+> > > >=20
+> > > > For now the following peripherals are included:
+> > > > - LED
+> > > > - Power Key
+> > > > - Cover (gpio via hall sensor)
+> > > > - RC5T619 PMIC (the kernel misses support for rtc and charger
+> > > >   subdevices).
+> > > > - Backlight via lm3630a
+> > > > - Wifi sdio chip detection (mmc-powerseq and stuff)
+> > > >=20
+> > > > It is based on vendor kernel but heavily reworked due to many
+> > > > changed bindings.
+> > > >=20
+> > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > > > ---
+> > > > Changes in v3:
+> > > > - better led name
+> > > > - correct memory size
+> > > > - comments about missing devices
+> > > >=20
+> > > > Changes in v2:
+> > > > - reordered, was 1/3
+> > > > - moved pinmuxes to their actual users, not the parents
+> > > >   of them
+> > > > - removed some already-disabled stuff
+> > > > - minor cleanups   =20
+> > >=20
+> > > You won't change the muxing, so a this dtsi can be self contained?
+> > >  =20
+> > So you want me to put a big=20
+> > #if defined(MX6SLL)  =20
+>=20
+> Not sure what the comment meant, but no, don't do this. C defines in dts=
+=20
+> files are for symbolic names for numbers and assembling bitfields and=20
+> that's it.
 
-I don't like this split. We should move the contents of this file to the 
-above file.
+yes, that is also my opinion. For now, there is only one user
+of this .dtsi, but I have another one in preparation. That is the
+reason for splitting things between .dts and .dtsi to avoid such ugly
+ifdefs
 
-I checked the authorship of the relevant lines and they are all except 
-for a small number of lines from Linaro authors (Viresh and Ulf). I have 
-permission from Linaro to dual license Linaro authored bindings, so it's 
-not a problem to move this. I can do that and you can just drop this file.
+Regards,
+Andreas
 
-> +
-> +properties:
-> +  required-opps:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      This contains phandle to an OPP node in another device's OPP table.
-> +      It may contain an array of phandles, where each phandle points to an OPP
-> +      of a different device. It should not contain multiple phandles to the OPP
-> +      nodes in the same OPP table. This specifies the minimum required OPP
-> +      of the device(s), whose OPP's phandle is present in this property,
-> +      for the functioning of the current device at the current OPP (where this
-> +      property is present).
-> +
-> +examples:
-> +  - |
-> +    leaky-device@12350000 {
-> +      compatible = "foo,i-leak-current";
-> +      reg = <0x12350000 0x1000>;
-> +      power-domains = <&power 0>;
-> +      power-domain-names = "io";
-> +    };
-> +
-> +    leaky-device@12351000 {
-> +      compatible = "foo,i-leak-current";
-> +      reg = <0x12351000 0x1000>;
-> +      power-domains = <&power 0>, <&power 1> ;
-> +      power-domain-names = "io", "clk";
-> +    };
-> +
-> +    // The first example above defines a typical PM domain consumer device, which is
-> +    // located inside a PM domain with index 0 of a power controller represented by a
-> +    // node with the label "power".
-> +    // In the second example the consumer device are partitioned across two PM domains,
-> +    // the first with index 0 and the second with index 1, of a power controller that
-> +    // is represented by a node with the label "power".
-> +
-> +  - |
-> +    // Example with  OPP table for domain provider that provides two domains:
-> +
-> +    domain0_opp_table: opp-table0 {
-> +      compatible = "operating-points-v2";
-> +
-> +      domain0_opp_0: opp-1000000000 {
-> +        opp-hz = /bits/ 64 <1000000000>;
-> +        opp-microvolt = <975000 970000 985000>;
-> +      };
-> +      domain0_opp_1: opp-1100000000 {
-> +        opp-hz = /bits/ 64 <1100000000>;
-> +        opp-microvolt = <1000000 980000 1010000>;
-> +      };
-> +    };
-> +
-> +    domain1_opp_table: opp-table1 {
-> +      compatible = "operating-points-v2";
-> +
-> +      domain1_opp_0: opp-1200000000 {
-> +        opp-hz = /bits/ 64 <1200000000>;
-> +        opp-microvolt = <975000 970000 985000>;
-> +      };
-> +      domain1_opp_1: opp-1300000000 {
-> +        opp-hz = /bits/ 64 <1300000000>;
-> +        opp-microvolt = <1000000 980000 1010000>;
-> +      };
-> +    };
-> +
-> +    power: power-controller@12340000 {
-> +      compatible = "foo,power-controller";
-> +      reg = <0x12340000 0x1000>;
-> +      #power-domain-cells = <1>;
-> +      operating-points-v2 = <&domain0_opp_table>, <&domain1_opp_table>;
-> +    };
-> +
-> +    leaky-device0@12350000 {
-> +      compatible = "foo,i-leak-current";
-> +      reg = <0x12350000 0x1000>;
-> +      power-domains = <&power 0>;
-> +      required-opps = <&domain0_opp_0>;
-> +    };
-> +
-> +    leaky-device1@12350000 {
-> +      compatible = "foo,i-leak-current";
-> +      reg = <0x12350000 0x1000>;
-> +      power-domains = <&power 1>;
-> +      required-opps = <&domain1_opp_1>;
-> +    };
+--Sig_/pKsq_nhga4Bcf+WxR+iqaqg
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEPIWxmAFyOaBcwCpFl4jFM1s/ye8FAl2gmlEACgkQl4jFM1s/
+ye9vKhAAos4YjS29TrFqk0UVc9rEP9svrO1m9mcIy34GAw1S8lPgrTQHk6CxjNYF
+o2gTG/mcofsy1ngPu7kk625wYMDVzwP8ZXtM7N4DxYLS80vEKq56nkhrBnqIUCvb
+Rv+8Sbo0TU4VAES/Hl2yjzl5XBiT6gPajB0BJE4WDSA+lHoZwRDpLz+4QbYlufTG
+wJmiDj03mNOGU+UoQ6oruSYW9TQCbiGyx+W/nQGmxEBsT700acHt9A6WPvLeQBYi
+nqKVtfVpd6uxxe58mJWEePFF9vEJNe2+FkSg9mMvSZd1SwfNfENw3XqYFb0V8xQ3
+ZK8ZWp0ohC5Pa/+fSUlkKFOrPL/PDmK9arKOpj1+IHUg/HIUKW/PN+lzYK8d8Pw/
+XKwmUkf4d8rMUyebbrmZgZmAA1V0lArO63RnWLY1COMo3x8whIx7TEjR7lCwi6ht
+/p0k4uUw6tzdTsNDLhNNZs8jSY1fFWVJYdX5syspQGy9txQHmZCeDI7+qdleskUA
+n7gJj7BslbrK5tmcC6kL2T8ZR8KtrEQjeeHM4UpuNh++7C9tkW44OGN/RP7ytcCr
+4T3r21EoF1vNcIV9baRHD7iu74tbuvV8LW/hhsi7CBl2kKHDA1Q4uRaPIfF30wwD
+8MwIW7K6JPxJvHlMbHOelBk1vI24MbMyXA4KjFewQDmZPfZK5AQ=
+=icrB
+-----END PGP SIGNATURE-----
+
+--Sig_/pKsq_nhga4Bcf+WxR+iqaqg--
