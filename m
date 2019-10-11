@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E1D7D442E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C273D443F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 17:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727453AbfJKP3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 11:29:19 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:37149 "EHLO
+        id S1726757AbfJKPaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 11:30:11 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38802 "EHLO
         mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726328AbfJKP3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:29:19 -0400
-Received: by mail-oi1-f194.google.com with SMTP id i16so8345636oie.4;
-        Fri, 11 Oct 2019 08:29:18 -0700 (PDT)
+        with ESMTP id S1726328AbfJKPaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 11:30:11 -0400
+Received: by mail-oi1-f194.google.com with SMTP id m16so8330153oic.5;
+        Fri, 11 Oct 2019 08:30:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0s3hufvwfwMdyJj0mwE2L9llFOTjdMrZMVagGqojKGE=;
-        b=Q90x6icxmP90WcZa9MqLLwe6UG+Vx/UpC7IwuJKuZIzozPjx4TfuYBkGkNIzh+Hzr+
-         QP7BG7BDIcdkivfeufNgYQ94Mop2YuTTlO/8lKtFp6rAdjfjaK6dUJ/bFgPgTq7nGJkD
-         AScmi+U9UvYw62Y35+bZ4MwyrrHbE1Wj0HO55S2AcLXQIviSUzktwDXH5xYANE6s4XxO
-         Nw/wrAN44bvU0bCuw61/Z/jalGT+xri+L1OwQntqjm+SnhantveeM9R1zLK1/nAhcYys
-         fi6LSs9OWe+ildpFVLz0pTxdTutjF3GIklHDKBamfjfe9ytD6h4op/8n8poH1teMvls0
-         GsXw==
-X-Gm-Message-State: APjAAAUBj+2CqKQTlv22utPwEj8F2JBFavx6grwU8gaDH92QhLQenjxu
-        NywO6uuzxPPdKkzJ5LezxyQSb6A=
-X-Google-Smtp-Source: APXvYqxeDPc60Gv0vPS7Jk4X6ZnvVuf3tdXagFg2ciEOg66lig/oXXT0T5cR1LJ+l+65qGRarYvnIg==
-X-Received: by 2002:a05:6808:249:: with SMTP id m9mr12789827oie.49.1570807758412;
-        Fri, 11 Oct 2019 08:29:18 -0700 (PDT)
+        bh=c0RmIaIYlsHlHoHCRHVl9+9lkSFQiZD24NJsXUdq5dE=;
+        b=I/ihoWihPyGjxIJfndgEkvdWQO+evb+w2VeBPiBuhxgV6Cd6JBElkabTVWUXb7vghU
+         yrsgitPsu8vlABBOpxjsNciXRbOiUlQyW0O7NOWdqNmk5e3/SuYV1dreVxs0A+rTUl6i
+         7vFVCykjGms18SJaSLAzlH9d7ef2F2HI0hj6yi0pwGOxOxRvpO/stPhwCWKFm0A5X9J9
+         EclJYREJ6shwNzWsWdc8ZUMhnerx4JvTaWtOmjb1Odmuux0hdxLca177kYwgJ1W9UpJ7
+         x/8Kup9zK+oKHheictTLd/CGXIby+xA6vbJFSbs7f3uxXGd+eDT2M7pvo/K4WcsvaRw4
+         P64A==
+X-Gm-Message-State: APjAAAVC4CUgAm0fac0k9SfTxylDgQk1FmDqMn1JLSRpuVifzG/gUcix
+        BZ5GZ720vGiNJZ3s/gdG2g==
+X-Google-Smtp-Source: APXvYqxEBkIB8HeA9nyxw2DqeQtU+M0+yBlWyz40opogflPnTQ/+drXWdB97qZnjTL3j/pd9hhE/vQ==
+X-Received: by 2002:a05:6808:114:: with SMTP id b20mr12951071oie.114.1570807810537;
+        Fri, 11 Oct 2019 08:30:10 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 100sm2739791otl.48.2019.10.11.08.29.17
+        by smtp.gmail.com with ESMTPSA id t18sm2819235otd.60.2019.10.11.08.30.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 08:29:17 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 10:29:17 -0500
+        Fri, 11 Oct 2019 08:30:09 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 10:30:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     bjorn.andersson@linaro.org, georgi.djakov@linaro.org,
-        agross@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jonathan@marek.ca
-Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: qcom: add msm8974
- bindings
-Message-ID: <20191011152917.GA28441@bogus>
-References: <20191005114605.5279-1-masneyb@onstation.org>
- <20191005114605.5279-2-masneyb@onstation.org>
+To:     Martin Kaiser <martin@kaiser.cx>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Alexander Shiyan <shc_work@mail.ru>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Martin Kaiser <martin@kaiser.cx>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: imx: fix native-mode setting
+Message-ID: <20191011153009.GA10322@bogus>
+References: <20190918193853.25689-1-martin@kaiser.cx>
+ <20191005130921.12874-1-martin@kaiser.cx>
+ <20191005130921.12874-2-martin@kaiser.cx>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191005114605.5279-2-masneyb@onstation.org>
+In-Reply-To: <20191005130921.12874-2-martin@kaiser.cx>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 05, 2019 at 07:46:04AM -0400, Brian Masney wrote:
-> Add device tree bindings for the Qualcomm MSM8974 interconnect providers
-> that support setting system bandwidth requirements between various
-> network-on-chip fabrics.
+On Sat,  5 Oct 2019 15:09:20 +0200, Martin Kaiser wrote:
+> Move the native-mode setting inside the display-timing node. Outside of
+> display-timing, it is ignored.
 > 
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
+> Signed-off-by: Martin Kaiser <martin@kaiser.cx>
 > ---
-> Rob: I included in the next patch at the top a rough diagram showing the
-> relationship between different buses. I wanted to include that diagram
-> here, however I didn't since I assume that this document will be
-> transformed into HTML. I've seen some of the text bindings in the IIO
-> subsystem have nice ASCII-art diagrams, such as
-> Documentation/devicetree/bindings/iio/dac/dpot-dac.txt. Do you have any
-> suggestions for how this can go in the YAML bindings? Prefix the line
-> with four spaces, similiar to what is done in markdown?
-
-The long term plan (dream?) is to extract schema into rST and there's 
-been some experimenting with embedded rST into description which seems 
-to work. But I don't see that happening anytime soon really. We've got 
-3500 bindings to convert...
-
-So put whatever you like in the description as long as it's parseable 
-yaml.
-
+> changes in v2
+>  move parts of the commit message into the cover letter
 > 
-> Changes since v1:
-> - Don't include all compatibles in the examples. Removed interconnect
->   GPU client from example as well.
-> - Dual license header file: BSD or GPL 2.0
+>  Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->  .../bindings/interconnect/qcom,msm8974.yaml   |  62 ++++++++
->  .../dt-bindings/interconnect/qcom,msm8974.h   | 146 ++++++++++++++++++
->  2 files changed, 208 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,msm8974.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,msm8974.h
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
+
+Rob
