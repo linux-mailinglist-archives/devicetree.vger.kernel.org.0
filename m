@@ -2,209 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F775D456E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DB35D4594
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 18:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728112AbfJKQaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 12:30:03 -0400
-Received: from foss.arm.com ([217.140.110.172]:37184 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726331AbfJKQaD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Oct 2019 12:30:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3AD8528;
-        Fri, 11 Oct 2019 09:30:02 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5FBDA3F71A;
-        Fri, 11 Oct 2019 09:30:01 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: rockchip: Add Beelink A1
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <9037b7edbbb41cbbf699ebe3a511daf22d886e7d.1570444695.git.robin.murphy@arm.com>
- <CAL_JsqKBy+i+=gGyYhBgcMUYsWd_CL_GnEoQqALBb+Gy7Ogb6A@mail.gmail.com>
- <4c490e48-7a85-4ef9-771c-165defde39cc@arm.com> <5779329.sYoq9m6zvk@diego>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <881153a5-3baf-3af1-2960-460abc83598d@arm.com>
-Date:   Fri, 11 Oct 2019 17:30:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727149AbfJKQir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 12:38:47 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:34052 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728106AbfJKQiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 12:38:46 -0400
+Received: by mail-pl1-f193.google.com with SMTP id k7so4721165pll.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 09:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=d9D6lFg9ebu4gPBMPEW9KZsZlytCnwresNqqZUf2J+s=;
+        b=J6lWuLfdFVrlUVULxk+l2etb6PL+JArTgXdVjR2JIBUwGb/1F//pIFHsbTBggMGu7u
+         7uYmw8ml94Oc+9RtrlJiLMtEKPibq8uL7foy4JBqRmV16ZfKPit2mCFTdEQIGd3ohbHp
+         lQT0UnAVpVKzUtwbD/Dicpx0cP0FzJh9lPo4TnewZoC2OWmmZiKMfas82zlCz15GzBzs
+         HHYmgTgcP+G5MosjX/6xny/IdNZAbal2pwIooduCmGKDRFRDOz5Wb9Leyl0Xb9EtbKAF
+         4gVL3weoN1jf4nH4c+HWVSlpHQI5563+0Kee6U611wurfGwlcI0IsOC3+P3I2SxCxrYC
+         vHAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=d9D6lFg9ebu4gPBMPEW9KZsZlytCnwresNqqZUf2J+s=;
+        b=IOkcWzPJeqzcN3eNVcj78pP2eIoa+zjslgNpIoYjLSgXFZeYkgozkwAOp+UrHZkRtG
+         ojncQdYi5fNdPnHyetZgB/5ya0L12lIUcMjBYclh2PohIs8RD7klm4HQEnyB4XMF5MOB
+         YRtbMoGaM0ZiPvVHfvr3HMgHuPp+lwMC2Gl8plj+rszYgl8Vb3HtefNvFIsM3nYfSwDt
+         icHL3htCU0YlqiNXRqD32cH6Sw4MG4IRHwL9ENZplfUl8C5uMLQSS0OVanDDb/9cgMU8
+         NbQ21ykbEDjYrut6w6mHfps0Q7FzyxgoSgkIb9y05WBR39pD2gbUhJ8n21TLrz8IlDY0
+         Sllw==
+X-Gm-Message-State: APjAAAXGAbOg6xBOEXSG2rbYUybFw3bIGeYQ2lVSOoUzfxiLIRQSFF+B
+        Q2zJtaCbQhRM2+CF6W/RQnIozw==
+X-Google-Smtp-Source: APXvYqx+MSSduwRPhQ5pAr+oDEo555huaEW2g0mklAaMnapke/+c90o5c+w9qkpcKVjCWHPtYZKDfg==
+X-Received: by 2002:a17:902:a5c9:: with SMTP id t9mr14578581plq.99.1570811925126;
+        Fri, 11 Oct 2019 09:38:45 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id i16sm8215488pfa.184.2019.10.11.09.38.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2019 09:38:44 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 09:38:41 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Loic Poulain <loic.poulain@linaro.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, jhugo@codeaurora.org,
+        David Brown <david.brown@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Paolo Pisati <p.pisati@gmail.com>,
+        Brian Masney <masneyb@onstation.org>
+Subject: Re: [PATCH] arm64: dts: apq8096-db820c: Increase load on l21 for
+ SDCARD
+Message-ID: <20191011163841.GR6390@tuxbook-pro>
+References: <1544634806-1037-1-git-send-email-loic.poulain@linaro.org>
+ <8c92dc30-cfbe-00e2-ae70-243455549ecd@codeaurora.org>
+ <CAMZdPi8-9d11FXKJinpJkJyhi8fcysbYVDjG8aDwbY3s=mLarw@mail.gmail.com>
+ <aea60b4c-f651-5e5a-c363-f7da9a8ed838@codeaurora.org>
+ <CAD=FV=WeS5h6SEe01ey8zEOs=1DqO5-31iZWazARtrp4xM3wkA@mail.gmail.com>
+ <CAMZdPi8VpY82JWT1pstsgPV=P3ZuXnX7P=oTdTVJGdYr+DzBKA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <5779329.sYoq9m6zvk@diego>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMZdPi8VpY82JWT1pstsgPV=P3ZuXnX7P=oTdTVJGdYr+DzBKA@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2019 15:19,  wrote:
-> Am Freitag, 11. Oktober 2019, 14:20:38 CEST schrieb Robin Murphy:
->> On 07/10/2019 13:53, Rob Herring wrote:
->>> On Mon, Oct 7, 2019 at 6:33 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>>>
->>>> Beelink A1 is a TV box implementing the higher-end options of the
->>>> RK3328 reference design - the DTB from the stock Android firmware is
->>>> clearly the "rk3328-box-plus" variant from the Rockchip 3.10 BSP with
->>>> minor modifications to accommodate the USB WiFi module and additional
->>>> VFD-style LED driver. It features:
->>>>
->>>> - 4GB of 32-bit LPDDR3
->>>> - 16GB of HS200 eMMC (newer models with 32GB also exist)
->>>> - Realtek RTL8211F phy for gigabit ethernet
->>>> - Fn-Link 6221E-UUC module (RealTek RTL8821CU) for 11ac WiFi and Bluetooth 4.2
->>>> - HDMI and analog A/V
->>>> - 1x USB 3.0 type A host, 1x USB 2.0 type A OTG, 1x micro SD
->>>> - IR receiver and a neat little LED clock display.
->>>>
->>>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->>>> ---
->>>>
->>>> One question I'm wondering about is whether it's worth pushing the HDMI
->>>> and analog codec audio cards down into rk3328.dtsi (as with HDMI audio
->>>> on RK3399), since those audio pipelines are internal to the SoC and the
->>>> board only really governs whether the outputs are wired up or not.
->>>
->>> Seems reasonable. One other candidate below.
->>>
->>>>
->>>>    .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->>>
->>> In the future, please split bindings to a separate patch.
->>
->> Ha, busted! I thought this might be trivial enough to slip through, but
->> I'll split it out if you prefer.
->>
->>>>    arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>>>    arch/arm64/boot/dts/rockchip/rk3328-a1.dts    | 399 ++++++++++++++++++
->>>>    3 files changed, 405 insertions(+)
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-a1.dts
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> index c82c5e57d44c..f27f7805f57e 100644
->>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> @@ -40,6 +40,11 @@ properties:
->>>>              - const: asus,rk3288-tinker-s
->>>>              - const: rockchip,rk3288
->>>>
->>>> +      - description: Beelink A1
->>>> +        items:
->>>> +          - const: azw,beelink-a1
->>>> +          - const: rockchip,rk3328
->>>> +
->>>>          - description: bq Curie 2 tablet
->>>>            items:
->>>>              - const: mundoreader,bq-curie2
->>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
->>>> index 1f18a9392d15..a6f250e7cde2 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>>> @@ -1,5 +1,6 @@
->>>>    # SPDX-License-Identifier: GPL-2.0
->>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += px30-evb.dtb
->>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
->>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
->>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
->>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
->>>> new file mode 100644
->>>> index 000000000000..03ad663ff821
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
->>>> @@ -0,0 +1,399 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->>>> +// Copyright (c) 2017-2019 Arm Ltd.
->>>> +
->>>> +/dts-v1/;
->>>> +#include "rk3328.dtsi"
->>>> +
->>>> +/ {
->>>> +       model = "Beelink A1";
->>>> +       compatible = "azw,beelink-a1", "rockchip,rk3328";
->>>> +
->>>> +       /*
->>>> +        * UART pins, as viewed with bottom of case removed:
->>>> +        *
->>>> +        *           Front
->>>> +        *        /-------
->>>> +        *  L    / o <- Gnd
->>>> +        *  e   / o <-- Rx
->>>> +        *  f  / o <--- Tx
->>>> +        *  t / o <---- +3.3v
->>>> +        *    |
->>>> +        */
->>>> +       chosen {
->>>> +               stdout-path = "serial2:1500000n8";
->>>> +       };
->>>> +
->>>> +       gmac_clkin: external-gmac-clock {
->>>> +               compatible = "fixed-clock";
->>>> +               clock-frequency = <125000000>;
->>>> +               clock-output-names = "gmac_clkin";
->>>> +               #clock-cells = <0>;
->>>> +       };
->>>> +
->>>> +       vcc_host_5v: usb3-current-switch {
->>>> +               compatible = "regulator-fixed";
->>>> +               enable-active-high;
->>>> +               gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
->>>> +               pinctrl-names = "default";
->>>> +               pinctrl-0 = <&usb30_host_drv>;
->>>> +               regulator-name = "vcc_host_5v";
->>>> +               vin-supply = <&vcc_sys>;
->>>> +       };
->>>> +
->>>> +       vcc_sys: vcc-sys {
->>>> +               compatible = "regulator-fixed";
->>>> +               regulator-name = "vcc_sys";
->>>> +               regulator-min-microvolt = <5000000>;
->>>> +               regulator-max-microvolt = <5000000>;
->>>> +       };
->>>> +
->>>> +       cpus {
->>>> +               idle-states {
->>>> +                       entry-method = "arm,psci";
->>>> +
->>>> +                       cpu_sleep: cpu-sleep {
->>>> +                               compatible = "arm,idle-state";
->>>> +                               arm,psci-suspend-param = <0x0010000>;
->>>> +                               local-timer-stop;
->>>> +                               entry-latency-us = <120>;
->>>> +                               exit-latency-us = <250>;
->>>> +                               min-residency-us = <900>;
->>>
->>> This doesn't seem like something that's board specific, but I guess
->>> the regulator could have some influence on these times. If so, the
->>> board file could always override a default.
->>
->> True, this is traceable back to the Rockchip Android BSP where it's
->> actually applied to the entire SoC family[1]. I don't know if there's
->> likely to be any difference between the downstream "RKTRUST" firmware
->> binaries (which this nominally represents) and upstream ATF in terms of
->> their PSCI implementation/performance.
->>
->> I've not got round to properly tinkering with suspend/resume and power
->> management stuff yet, so I guess another option would be to just forget
->> about this part for now - Heiko, any opinions?
-> 
-> I think nobody actually knows what goes on in Rockchip's binary ATF
-> variant, which is the reason I dislike it so much ;-) .
-> 
-> What's in the upstream sources should always take precedent. Looking
-> at rk3399 as an example where they had oversight from ChromeOS people
-> there are idle-states in rk3399.dtsi and I guess there should be a
-> counterpart int ATF.
-> 
-> The idle-state values also match rk3399's cpu-sleep, so seem pretty
-> standard. So should just go into rk3328.dtsi after someone could verify
-> that this works with upstream ATF.
+On Fri 11 Oct 05:55 PDT 2019, Loic Poulain wrote:
 
-OK, I'll drop this from the board DTS and have a crack at building some 
-new firmware to investigate adding it to the SoC DTSI.
+> Hi Andy, Rob,
+> 
+> Could any of you take this patch?
+> 
 
-Cheers,
-Robin.
+I've applied the patch now.
+
+Thanks,
+Bjorn
+
+> On Thu, 13 Dec 2018 at 20:14, Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Thu, Dec 13, 2018 at 6:46 AM Jeffrey Hugo <jhugo@codeaurora.org> wrote:
+> > >
+> > > On 12/13/2018 12:55 AM, Loic Poulain wrote:
+> > > > Hi Jeffrey,
+> > > >
+> > > >
+> > > > On Wed, 12 Dec 2018 at 18:23, Jeffrey Hugo <jhugo@codeaurora.org
+> > > > <mailto:jhugo@codeaurora.org>> wrote:
+> > > >
+> > > >     On 12/12/2018 10:13 AM, Loic Poulain wrote:
+> > > >      > In the same way as for msm8974-hammerhead, l21 load, used for SDCARD
+> > > >      > VMMC, needs to be increased in order to prevent any voltage drop
+> > > >     issues
+> > > >      > (due to limited current) happening with some SDCARDS or during
+> > > >     specific
+> > > >      > operations (e.g. write).
+> > > >      >
+> > > >      > Fixes: 660a9763c6a9 (arm64: dts: qcom: db820c: Add pm8994
+> > > >     regulator node)
+> > > >      > Signed-off-by: Loic Poulain <loic.poulain@linaro.org
+> > > >     <mailto:loic.poulain@linaro.org>>
+> > > >      > ---
+> > > >      >   arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 2 ++
+> > > >      >   1 file changed, 2 insertions(+)
+> > > >      >
+> > > >      > diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> > > >     b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> > > >      > index 104cad9..c15e2c0 100644
+> > > >      > --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> > > >      > +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> > > >      > @@ -634,6 +634,8 @@
+> > > >      >                               l21 {
+> > > >      >                                       regulator-min-microvolt =
+> > > >     <2950000>;
+> > > >      >                                       regulator-max-microvolt =
+> > > >     <2950000>;
+> > > >      > +                                     regulator-allow-set-load;
+> > > >      > +                                     regulator-system-load =
+> > > >     <200000>;
+> > > >      >                               };
+> > > >      >                               l22 {
+> > > >      >                                       regulator-min-microvolt =
+> > > >     <3300000>;
+> > > >      >
+> > > >
+> > > >     I'm curious, why not update sdhci-msm to set the load on the regulator?
+> > > >
+> > > >
+> > > > Yes you're right, and I saw that there is ongoing work:
+> > > > https://patchwork.kernel.org/patch/10630731/
+> > > >
+> > > > Howerver I thought this change would be a quicker fix and easier to
+> > > > backport in stable trees.
+> > > > I assume all the device-tree vmmc loads will be removed at some point
+> > > > when driven from sdhci.
+> > > >
+> > >
+> > > I hadn't seen that.  Ok, seems good to me.
+> >
+> > NOTE: I'm personally not convinced that adding the "set_load" calls
+> > into the SDHCI driver actually makes any sense.  I believe it adds
+> > complexity for no benefit.  The only time you ever need to should ever
+> > be fiddling with "set_load" calls is if the rail you're controlling
+> > has some hope of being able to run at a lower power mode.  If there's
+> > no hope of it being at a lower power mode then the constraints on the
+> > rail should just force it to high power mode and be done with it.  The
+> > patch here (using regulator-system-load) is one way to force it to a
+> > high power mode and seems fine, but there are other ways.  See a
+> > previous discussion [1].
+> >
+> > NOTE: IIRC the "ongoing work" patch you pointed at always sets the
+> > load to a fixed level to turn it to "high power mode" when the
+> > regulator is turned on and undoes that set_load when the regulator is
+> > turned off.  That's no longer needed as of commit 5451781dadf8
+> > ("regulator: core: Only count load for enabled consumers").  If
+> > someone comes up with a case where it's useful to keep the SD card
+> > rail turned on but in "low power mode" _then_ we should actually
+> > consider adding set_load to the SD card driver.
+> >
+> > [1] https://lkml.kernel.org/r/CAD=FV=V4WFYoKLQ72pico4HCGgLDTae7xougivv6VWOSoPhLpg@mail.gmail.com
+> >
+> > -Doug
