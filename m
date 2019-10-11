@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 544FED47ED
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 20:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D081D47F0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 20:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728945AbfJKStF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 14:49:05 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:32879 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728603AbfJKStF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 14:49:05 -0400
-Received: by mail-pg1-f193.google.com with SMTP id i76so6296396pgc.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 11:49:04 -0700 (PDT)
+        id S1728963AbfJKStL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 14:49:11 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:46479 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728374AbfJKStL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 14:49:11 -0400
+Received: by mail-pf1-f193.google.com with SMTP id q5so6570683pfg.13
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 11:49:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=3hh4TNXeWC2abuzUA3dw2QguzTS8GrKE46mE5KRqr2A=;
-        b=YAVjU4WBuFGNK4F38f6RI358mzpqqVlbvkTNULkaE7tTcQ0/6vTYJtMYdTLojfXP8R
-         t762Azd2ip6Kfx/3uiO91biwKIV2KnzUryzQfitLyK/WwWiBy7LCzFrOdZ99LeJJFXov
-         j+rpsa14OrgmMqhLmcn6VXKgc2xDgkA2+BnaqapTcZrwKXQZS7K2qsZfOkdGaby3Qubg
-         kkm5o+RuBMKI58xWsXHZgzhb36O1IIzHTKQvuLX6PKg59WKQ0w+31v2OkTo46mKQyrfB
-         kAGYNKpVHa/oTIofk/o6kqs+tduuIaAHCUDuNCjjUUXXDkVve1PcXGSfGbdRxfYAd0I1
-         uofg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=UBpxkrL7tKtRXDCw9jTxzLjYHb3eYmsJbnS949ORXyY=;
+        b=wR7b4t8wiKB1zRfIkb8Ljj8NDXM8pfWH1+h6ohkMaqOTccYaQbclt3YjdbDEixiooF
+         IDrKFliJUFwWCgTS8nsd5hVivMEZZ2FXCWbfK6EZU0LW/dZdye3VbqMlsjvefV7AWN9M
+         Yit4F6mdtbNSxanYWJMLq8DnMRSV7xLA4XFQ2McB0jIL+db/X1Qwb+UT7KdzJtvez9wp
+         XJzHJnI8f7+F1n8s2VXVCP/mI3/GPj8xGTCriPly2jTdxtIyhpELEv31o71IIKYovCj2
+         Xqn+zRTbs9/TeMzrMY61Fzq4yWXMJPKLPNB+SibztJMogoCwuz3B1DsXnJwgROY0nq/9
+         3Rlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=3hh4TNXeWC2abuzUA3dw2QguzTS8GrKE46mE5KRqr2A=;
-        b=NQdAXGB/ELrHmEU/4pArUO/eGh6qhuTl7jTuoagG8bTj65qYagQQRo0u82RHcJCx0o
-         HfvEjTYnmGJ/EGspZwqBzJD4u4NYmgb3cdUruSrLhJsyyI+E7Zx/o8ItG1T3SwDVFcVD
-         UAKV07ujDMkGnpGOuO4/6CfPhOsiOP8ns+h4CCO+yZdh7R7OfrkZxL3mL1AxbRbI8UKN
-         I3D6OUqss1/wo8ICfAKKc7uaqkKKu+qbFpELF2VL/4GnH6nTo6nZgRh6Rh9tEawQziV9
-         3t8y01gJqS9WaFNQf5YhZPVzqdoZUBGUqEVwJGgIWZqjcyXHD7GVMbMk31pSrD8VRTV9
-         t59g==
-X-Gm-Message-State: APjAAAVtXPZDEbqC/V5PqtAQwk5+E1eJl9UfXOosfzmZDvDNRwjMXrRj
-        TmtkE+1nDUS9n2TqUeUbhEfV
-X-Google-Smtp-Source: APXvYqwbU1T1lDyiLexli5AHsFB8JJxIeao+xaaGAaJCT6SgjtII8kFWdRUAOXPbiGX+WZzsGNkUkA==
-X-Received: by 2002:aa7:870f:: with SMTP id b15mr18293731pfo.123.1570819744225;
-        Fri, 11 Oct 2019 11:49:04 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=UBpxkrL7tKtRXDCw9jTxzLjYHb3eYmsJbnS949ORXyY=;
+        b=I6PJKKVJQhG4b+Uqck+gmq2HM0fbKj367VwcMfET1X+UHCzFU/iDhcMkO/PpLOX4G0
+         pNGtUQ0ETowAeidmZksGiuAZHsvRcLutkek5T/M0W/aBlTc/a82UT6zdp7sOPzZINF2x
+         MQgyJKfXI4hpCe4CCFUOV4g92ZFM3Cm99ZnHa1eScpjBsutIEz9/kKeNQAmfa8CpfgFX
+         xKGvMbD7lcfnX6wGCOPKHlzveoOKEFzNEKU6YKH6G2bkIG8l5uSdeQKvMzjfrGu0xER+
+         Dt/Ycnj9p+ay1k+dgfVzxO4UYCZi+ZlGf+iAWKzwUwZ4YRyqHhT2K0ECd3aRxxOOIpZk
+         LjOA==
+X-Gm-Message-State: APjAAAW9J+7dp5SY8gS8y6g2IYJ+Go6K0GfM8Nfho+o39fcQuCRzsw0C
+        qG5Q6RxGkoz0pRX7Hbil7B2I
+X-Google-Smtp-Source: APXvYqxXIGdsoCVaSN/Uh4svgs7Yp0VbyU4voFE9v2eBu03uRl7ePFdrB717TH3GAR3dAYW/1TO97Q==
+X-Received: by 2002:a65:4188:: with SMTP id a8mr17912797pgq.81.1570819749573;
+        Fri, 11 Oct 2019 11:49:09 -0700 (PDT)
 Received: from localhost.localdomain ([2409:4072:6407:a090:18a3:ff6e:e66c:65b0])
-        by smtp.gmail.com with ESMTPSA id 68sm10031497pgb.39.2019.10.11.11.48.57
+        by smtp.gmail.com with ESMTPSA id 68sm10031497pgb.39.2019.10.11.11.49.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2019 11:49:03 -0700 (PDT)
+        Fri, 11 Oct 2019 11:49:09 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
         knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org
 Cc:     alexandru.Ardelean@analog.com, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 0/2] Add support for ADUX1020 sensor
-Date:   Sat, 12 Oct 2019 00:18:50 +0530
-Message-Id: <20191011184852.12202-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 1/2] dt-bindings: iio: light: Add binding for ADUX1020
+Date:   Sat, 12 Oct 2019 00:18:51 +0530
+Message-Id: <20191011184852.12202-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191011184852.12202-1-manivannan.sadhasivam@linaro.org>
+References: <20191011184852.12202-1-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Add devicetree binding for Analog Devices ADUX1020 Photometric
+sensor.
 
-This patchset adds initial IIO driver support for ADUX1020 Photometric
-sensor from Analog Devices. This sensor is usable for multiple optical
-measurement applications, including gesture control and proximity sensing.
-
-This initial driver includes support for only proximity mode with event
-based interrupt. The driver validation has been performed using Shiratech
-LTE mezzanine [1] connected to 96Boards Dragonboard410c [2].
-
-Thanks,
-Mani
-
-[1] https://www.96boards.org/product/shiratech-lte/
-[2] https://www.96boards.org/product/dragonboard410c/
-
-Changes in v3:
-
-Based on the review by Ardelean and Jonathan:
-
-* Added error checks for regmap calls
-* Added mutex locks where applicable
-* Switched to devm_iio API
-* Misc changes to the driver
-* Added Reivewed-by tag from Rob for the bindings patch
-
-Changes in v2:
-
-* Converted the devicetree binding to YAML
-
-Manivannan Sadhasivam (2):
-  dt-bindings: iio: light: Add binding for ADUX1020
-  iio: light: Add support for ADUX1020 sensor
-
- .../bindings/iio/light/adux1020.yaml          |  47 +
- drivers/iio/light/Kconfig                     |  11 +
- drivers/iio/light/Makefile                    |   1 +
- drivers/iio/light/adux1020.c                  | 849 ++++++++++++++++++
- 4 files changed, 908 insertions(+)
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/iio/light/adux1020.yaml          | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/light/adux1020.yaml
- create mode 100644 drivers/iio/light/adux1020.c
 
+diff --git a/Documentation/devicetree/bindings/iio/light/adux1020.yaml b/Documentation/devicetree/bindings/iio/light/adux1020.yaml
+new file mode 100644
+index 000000000000..69bd5c06319d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/adux1020.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/adux1020.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices ADUX1020 Photometric sensor
++
++maintainers:
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
++
++description: |
++  Photometric sensor over an i2c interface.
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ADUX1020.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,adux1020
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adux1020@64 {
++                compatible = "adi,adux1020";
++                reg = <0x64>;
++                interrupt-parent = <&msmgpio>;
++                interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
++        };
++    };
++...
 -- 
 2.17.1
 
