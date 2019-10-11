@@ -2,126 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EF7BD3F86
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC91D3F95
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2019 14:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727750AbfJKMaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 08:30:23 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36821 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727709AbfJKMaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 08:30:23 -0400
-Received: by mail-wr1-f65.google.com with SMTP id y19so11736845wrd.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2019 05:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=eUAVKWO5tGOGok/vKm5I9Fla/1z4P3pvPIySfc1WbLY=;
-        b=RNtV53yjZdIOhcHzhhnYIbDQbJJ7VLlvGAzwvvD7Iz76cQbWeEsAAgKU1UR+xBYFbD
-         lTQhpVC6KvASGkVqJcSNfXZ/GTqhbSdUv8IG0CQGmGNDckpp6soaH5cLty0VtOsEsyfW
-         bs5sbmKzARNsPY/zhYADlpWpebgW5RjvmCEwfBToNFd+nDMpLYY92kmn+8tnJTWP1HsO
-         9BtBLlg5UjgSUmztX1EnqGaORzA7BZSjQYHtLB6/ec9ZaWSFwbAdmhjHwMFoc0acGGvq
-         BmJqKwLrbeoLV3+S6GDB4j/73HchdsOTO6JU/1xHhUl5XUkjmyf0qOTNi8UQA/IDUEiv
-         j2Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eUAVKWO5tGOGok/vKm5I9Fla/1z4P3pvPIySfc1WbLY=;
-        b=ppk4mPVps8EHX5nw9ECSTGZUUh2cmN03gu45uPti0xkEU8A2KO5tNP+xBHpvHjHHqA
-         wC37J93/hYK5v5G7fIHdP4CVv51Xx/jrzdLVlQmZ1szyV/VREljA2oEXg91HvTYAbyXj
-         iQVqynPVD9o/9Oe6CudbA20DwN3NKWXwFhHAyeJ+lCc49udpI+Iuzqs8TZbB8anusYXQ
-         ocIRDSFAIK/7/JLh5xICt2f4SKwwBe3slE+yEimLVeg/vR5o9KGbBh7VfOYR0LTRLpEM
-         id/jhrA+hms6UpHjRAlFXh1l6wWBBkFITYw/Zyq1M6t0ibUoVMURMZedXAsG6yx84rNS
-         nQsg==
-X-Gm-Message-State: APjAAAXUD/GZi61mWqiE1l8ekdWGhgBWgcVnedw3p2QPsJL8+KrQC14y
-        MDt68X79fIeoh2b2DALmfYVJvA==
-X-Google-Smtp-Source: APXvYqx1rdX0PmyUW4J4n+ZmiD+1KiVOhomZpcCLUgiE5LNwHT/pvqwwgRHD7MkrHSBvv4avhMCG2Q==
-X-Received: by 2002:adf:f4c2:: with SMTP id h2mr13353630wrp.69.1570797021729;
-        Fri, 11 Oct 2019 05:30:21 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id t123sm14523710wma.40.2019.10.11.05.30.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 11 Oct 2019 05:30:20 -0700 (PDT)
-Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
- snd_soc_dai_get_sdw_stream()
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
-        plai@codeaurora.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        spapothi@codeaurora.org
-References: <20190813191827.GI5093@sirena.co.uk>
- <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
- <20190813195804.GL5093@sirena.co.uk>
- <20190814041142.GU12733@vkoul-mobl.Dlink>
- <99d35a9d-cbd8-f0da-4701-92ef650afe5a@linux.intel.com>
- <5e08f822-3507-6c69-5d83-4ce2a9f5c04f@linaro.org>
- <53bb3105-8e85-a972-fce8-a7911ae4d461@linux.intel.com>
- <95870089-25da-11ea-19fd-0504daa98994@linaro.org>
- <2326a155-332e-fda0-b7a2-b48f348e1911@linux.intel.com>
- <34e4cde8-f2e5-0943-115a-651d86f87c1a@linaro.org>
- <20191010120337.GB31391@ediswmail.ad.cirrus.com>
- <22eff3aa-dfd6-1ee5-8f22-2af492286053@linux.intel.com>
- <e671930b-645a-7ee3-6926-eea39626c0a3@linaro.org>
- <c9203f7f-f360-0ede-d351-cfdbec03299c@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <dbb25f4c-7198-ef28-ec6a-9ac5676122b6@linaro.org>
-Date:   Fri, 11 Oct 2019 13:30:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728056AbfJKMfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 08:35:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34852 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727198AbfJKMft (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Oct 2019 08:35:49 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A1D6621D7E;
+        Fri, 11 Oct 2019 12:35:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570797348;
+        bh=VNgydY1ynFilVs3+OYEfBMfTmvBOmjLQ3dKDPAsRGJk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ebAStlb6ubOzdbNbYRAVygtpjFLr4okk4rxF/Lpg17JMqyoumehNIPoLFtLGLLo2n
+         s5UKLrYfdkyy0+L0988pgbQ8OY722qLzYrkCj5wSnQss5JSQOPMyMIsc4k0hQrA/sY
+         9ZVZaBJysaaLkUyIzlKv/NzHGQFUt3EGc73zZMvU=
+Received: by mail-qt1-f176.google.com with SMTP id t20so8249968qtr.10;
+        Fri, 11 Oct 2019 05:35:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAWV+LtA2IgYU70gvWU7n+/0hBih1awHP2B1etZfBft9GOISukdD
+        492/mfFkZ6UWaSg7b2yG9EbYYgXVaH/U340NEA==
+X-Google-Smtp-Source: APXvYqxPjHzWRhCEa77RLK5XieEQ5KWLu1XccZ9gxrD6cMKqUVp2wpc3H9eDAX5iDitxTvNlqnuBjyFuEMYz2Q5ML9o=
+X-Received: by 2002:a0c:ed4f:: with SMTP id v15mr765035qvq.136.1570797347661;
+ Fri, 11 Oct 2019 05:35:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <c9203f7f-f360-0ede-d351-cfdbec03299c@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20191002151442.15428-1-benjamin.gaignard@st.com>
+In-Reply-To: <20191002151442.15428-1-benjamin.gaignard@st.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 11 Oct 2019 07:35:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKW91A96NXy8kwPp2mdgiifaqJyCQ0n5Mc=zZzoU4VzDg@mail.gmail.com>
+Message-ID: <CAL_JsqKW91A96NXy8kwPp2mdgiifaqJyCQ0n5Mc=zZzoU4VzDg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: media: Convert stm32 dcmi bindings to json-schema
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Hugues Fruchet <hugues.fruchet@st.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 2, 2019 at 10:14 AM Benjamin Gaignard
+<benjamin.gaignard@st.com> wrote:
+>
+> Convert the STM32 dcmi binding to DT schema format using json-schema
+>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+> ---
+>  .../devicetree/bindings/media/st,stm32-dcmi.txt    | 45 ----------
+>  .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 97 ++++++++++++++++++++++
+>  2 files changed, 97 insertions(+), 45 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt b/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
+> deleted file mode 100644
+> index 3122ded82eb4..000000000000
+> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.txt
+> +++ /dev/null
+> @@ -1,45 +0,0 @@
+> -STMicroelectronics STM32 Digital Camera Memory Interface (DCMI)
+> -
+> -Required properties:
+> -- compatible: "st,stm32-dcmi"
+> -- reg: physical base address and length of the registers set for the device
+> -- interrupts: should contain IRQ line for the DCMI
+> -- resets: reference to a reset controller,
+> -          see Documentation/devicetree/bindings/reset/st,stm32-rcc.txt
+> -- clocks: list of clock specifiers, corresponding to entries in
+> -          the clock-names property
+> -- clock-names: must contain "mclk", which is the DCMI peripherial clock
+> -- pinctrl: the pincontrol settings to configure muxing properly
+> -           for pins that connect to DCMI device.
+> -           See Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml.
+> -- dmas: phandle to DMA controller node,
+> -        see Documentation/devicetree/bindings/dma/stm32-dma.txt
+> -- dma-names: must contain "tx", which is the transmit channel from DCMI to DMA
+> -
+> -DCMI supports a single port node with parallel bus. It should contain one
+> -'port' child node with child 'endpoint' node. Please refer to the bindings
+> -defined in Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -
+> -Example:
+> -
+> -       dcmi: dcmi@50050000 {
+> -               compatible = "st,stm32-dcmi";
+> -               reg = <0x50050000 0x400>;
+> -               interrupts = <78>;
+> -               resets = <&rcc STM32F4_AHB2_RESET(DCMI)>;
+> -               clocks = <&rcc 0 STM32F4_AHB2_CLOCK(DCMI)>;
+> -               clock-names = "mclk";
+> -               pinctrl-names = "default";
+> -               pinctrl-0 = <&dcmi_pins>;
+> -               dmas = <&dma2 1 1 0x414 0x3>;
+> -               dma-names = "tx";
+> -               port {
+> -                       dcmi_0: endpoint {
+> -                               remote-endpoint = <...>;
+> -                               bus-width = <8>;
+> -                               hsync-active = <0>;
+> -                               vsync-active = <0>;
+> -                               pclk-sample = <1>;
+> -                       };
+> -               };
+> -       };
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> new file mode 100644
+> index 000000000000..50e8cfed06f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/st,stm32-dcmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32 Digital Camera Memory Interface (DCMI) binding
+> +
+> +maintainers:
+> +  - Hugues Fruchet <hugues.fruchet@st.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stm32-dcmi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Module Clock
 
+'maxItems: 1' is sufficient here as the description doesn't add anything.
 
-On 10/10/2019 16:49, Pierre-Louis Bossart wrote:
-> 
-> 
->> I still need to figure out prefixing multiple instances of this 
->> Amplifier controls with "Left" and "Right"
-> 
-> FWIW we use the "snd_codec_conf" stuff to add a prefix for each 
-> amplifier, so that the controls are not mixed up between instances of 
-> the same amp, see e.g.
-> 
-Thanks Pierre for the inputs.
-Am using Documentation/devicetree/bindings/sound/name-prefix.txt for dt 
-and it works!
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+> +
+> +  pinctrl-names: true
 
-I will send new set of patches by dropping this patch!
+This gets added automatically.
 
---srini
-> 
-> static struct snd_soc_codec_conf codec_conf[] = {
->      {
->          .dev_name = "sdw:0:25d:711:0:1",
->          .name_prefix = "rt711",
->      },
->      {
->          .dev_name = "sdw:1:25d:1308:0:0",
->          .name_prefix = "rt1308-1",
->      },
->      {
->          .dev_name = "sdw:2:25d:1308:0:2",
->          .name_prefix = "rt1308-2",
->      },
->      {
->          .dev_name = "sdw:3:25d:715:0:1",
->          .name_prefix = "rt715",
->      },
-> };
-> 
-> 
-> https://github.com/thesofproject/linux/pull/1142/commits/9ff9cf9d8994333df2250641c95431261bc66d69#diff-892560f80d603420baec7395e0b45d81R212 
-> 
+> +
+> +  dmas:
+> +    description:
+> +      One DMA channel specifier following the convention outlined
+> +      in bindings/dma/dma.txt
+
+Drop this.
+
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    description:
+> +      There must be one channel named "tx" for transmit
+
+The schema says all this already.
+
+> +    maxItems: 1
+
+This is implied.
+
+> +    additionalItems: true
+
+This is wrong. You can't have more items because you set the max to 1.
+
+> +    items:
+> +      - const: tx
+> +
+> +  resets:
+> +        maxItems: 1
+
+Inconsistent indentation.
+
+> +
+> +  port:
+> +    type: object
+> +    description:
+> +      DCMI supports a single port node with parallel bus. It should contain
+> +      one 'port' child node with child 'endpoint' node. Please refer to the
+> +      bindings defined in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+> +patternProperties:
+> +  "^pinctrl-[0-9]+$": true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - dmas
+> +  - dma-names
+> +  - port
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    dcmi: dcmi@4c006000 {
+> +        compatible = "st,stm32-dcmi";
+> +        reg = <0x4c006000 0x400>;
+> +        interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> +        resets = <&rcc CAMITF_R>;
+> +        clocks = <&rcc DCMI>;
+> +        clock-names = "mclk";
+> +        dmas = <&dmamux1 75 0x400 0x0d>;
+> +        dma-names = "tx";
+> +
+> +        port {
+> +             dcmi_0: endpoint {
+> +                   remote-endpoint = <&ov5640_0>;
+> +                   bus-width = <8>;
+> +                   hsync-active = <0>;
+> +                   vsync-active = <0>;
+> +                   pclk-sample = <1>;
+> +             };
+> +        };
+> +    };
+> +
+> +...
+> --
+> 2.15.0
+>
