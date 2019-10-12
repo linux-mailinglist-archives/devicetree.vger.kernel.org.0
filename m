@@ -2,59 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 096DCD4C7B
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 05:38:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 993BDD4CC4
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 06:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728089AbfJLDiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 23:38:14 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:55226 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726391AbfJLDiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 23:38:13 -0400
-Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id D377B14FD3304;
-        Fri, 11 Oct 2019 20:38:12 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 20:38:12 -0700 (PDT)
-Message-Id: <20191011.203812.1828730130029996774.davem@davemloft.net>
-To:     andrew@aj.id.au
-Cc:     netdev@vger.kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        joel@jms.id.au, benh@kernel.crashing.org,
-        linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH v2 0/3] net: ftgmac100: Ungate RCLK for RMII on ASPEED
- MACs
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20191010020756.4198-1-andrew@aj.id.au>
-References: <20191010020756.4198-1-andrew@aj.id.au>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 11 Oct 2019 20:38:13 -0700 (PDT)
+        id S1726751AbfJLEYy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 12 Oct 2019 00:24:54 -0400
+Received: from sender4-op-o14.zoho.com ([136.143.188.14]:17455 "EHLO
+        sender4-op-o14.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726278AbfJLEYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Oct 2019 00:24:54 -0400
+X-Greylist: delayed 903 seconds by postgrey-1.27 at vger.kernel.org; Sat, 12 Oct 2019 00:24:54 EDT
+ARC-Seal: i=1; a=rsa-sha256; t=1570853383; cv=none; 
+        d=zoho.com; s=zohoarc; 
+        b=oXaclZr+VrF425thVZGSlC3VqKjp/BQxbM4FYqQAS14LUohnYwbk4K35IMa8Sx2oO8QmP5fR89JHs3idumWrMOCnXqHfsWWqrmIzbyED/6blLYgRq6bc9fDjdBzn000CXm1+6keP2DB3FgLkmubS1Ne8kQEJWO54XPPvZFB098M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
+        t=1570853383; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=3t0KcqUengCbxkgvjOossht4GKUHcCzitqU1dmTGMJU=; 
+        b=E8fMBJcZovgqbB4aw92vOIb8MnH4U532hxyw268keKxk/NfHcw3ZvJEr19FhJevMT+uCYBLtOiZtJfGG2+XoEIQhvhOe1S4RO31QExRFiiTkFlE4f7/q6lIwQ6oUBzyho9AcnSauUq3jz/pJYVq9nM2nuV7zUoU88cQKFC2r4qg=
+ARC-Authentication-Results: i=1; mx.zoho.com;
+        dkim=pass  header.i=dlrobertson.com;
+        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
+        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
+Received: from nessie.verizon.net (pool-100-15-144-194.washdc.fios.verizon.net [100.15.144.194]) by mx.zohomail.com
+        with SMTPS id 1570853381986565.1916973927841; Fri, 11 Oct 2019 21:09:41 -0700 (PDT)
+From:   Dan Robertson <dan@dlrobertson.com>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, Dan Robertson <dan@dlrobertson.com>
+Message-ID: <20191012035420.13904-1-dan@dlrobertson.com>
+Subject: [PATCH v2 0/2] iio: add driver for Bosch BMA400 accelerometer
+Date:   Sat, 12 Oct 2019 03:54:18 +0000
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
+X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Jeffery <andrew@aj.id.au>
-Date: Thu, 10 Oct 2019 12:37:53 +1030
+This patchset adds a IIO driver for the Bosch BMA400 3-axes ultra low-power
+accelerometer.  The initial implementation of the driver adds read support for
+the acceleration and temperature data registers. The driver also has support
+for reading and writing to the output data rate, oversampling ratio, and scale
+configuration registers.
 
-> This series slightly extends the devicetree binding and driver for the
-> FTGMAC100 to describe an optional RMII RCLK gate in the clocks property.
-> Currently it's necessary for the kernel to ungate RCLK on the AST2600 in NCSI
-> configurations as u-boot does not yet support NCSI (which uses the
-> R(educed)MII).
-> 
-> v2:
-> * Clear up Reduced vs Reversed MII in the cover letter
-> * Mitigate anxiety in the commit message for 1/3 
-> * Clarify that AST2500 is also affected in the clocks property description in
->   2/3
-> * Rework the error paths and update some comments in 3/3
-> 
-> v1 can be found here: https://lore.kernel.org/netdev/20191008115143.14149-1-andrew@aj.id.au/
+A huge thanks to the reviewers of the first version of the patchet!
 
-Series applied to net-next, thank you.
+Cheers,
+
+ - Dan
+
+Changes in v2:
+
+ * Implemented iio_info -> read_avail
+ * Stylistic changes
+ * Implemented devicetree bindings
+
+Dan Robertson (2):
+  dt-bindings: iio: accel: bma400: add bindings
+  iio: (bma400) add driver for the BMA400
+
+ .../devicetree/bindings/iio/accel/bma400.txt  |  16 +
+ drivers/iio/accel/Kconfig                     |  19 +
+ drivers/iio/accel/Makefile                    |   2 +
+ drivers/iio/accel/bma400.h                    |  86 ++
+ drivers/iio/accel/bma400_core.c               | 839 ++++++++++++++++++
+ drivers/iio/accel/bma400_i2c.c                |  58 ++
+ 6 files changed, 1020 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bma400.txt
+ create mode 100644 drivers/iio/accel/bma400.h
+ create mode 100644 drivers/iio/accel/bma400_core.c
+ create mode 100644 drivers/iio/accel/bma400_i2c.c
+
+
+
