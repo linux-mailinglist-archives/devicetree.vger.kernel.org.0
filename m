@@ -2,101 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32369D4FD0
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 14:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432D5D500A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 15:23:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727115AbfJLMyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 08:54:06 -0400
-Received: from bsmtp.bon.at ([213.33.87.14]:14632 "EHLO bsmtp.bon.at"
+        id S1727642AbfJLNXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 09:23:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51940 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726793AbfJLMyG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Oct 2019 08:54:06 -0400
-Received: from dx.site (unknown [93.83.142.38])
-        by bsmtp.bon.at (Postfix) with ESMTPSA id 46r4Wr6HpJz5tl9;
-        Sat, 12 Oct 2019 14:54:00 +0200 (CEST)
-Received: from [IPv6:::1] (localhost [IPv6:::1])
-        by dx.site (Postfix) with ESMTP id 581821C93;
-        Sat, 12 Oct 2019 14:54:00 +0200 (CEST)
-Subject: Re: [PATCH] userdiff: Fix some corner cases in dts regex
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     git@vger.kernel.org, Adrian Johnson <ajohnson@redneon.com>,
-        William Duclot <william.duclot@ensimag.grenoble-inp.fr>,
-        Matthieu Moy <matthieu.moy@grenoble-inp.fr>,
-        Junio C Hamano <gitster@pobox.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20191004213029.145027-1-sboyd@kernel.org>
- <c3a054d9-2646-e440-40c5-b0aecf21e690@kdbg.org>
- <20191008144306.B2B0820659@mail.kernel.org>
-From:   Johannes Sixt <j6t@kdbg.org>
-Message-ID: <ab9b0dba-5c5b-5a97-07c5-ce8344cd74cd@kdbg.org>
-Date:   Sat, 12 Oct 2019 14:54:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S1726839AbfJLNXY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Oct 2019 09:23:24 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E9C612087E;
+        Sat, 12 Oct 2019 13:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570886604;
+        bh=LeXnAiJm88QvFHwnWGZQ1G2GMcsvJcbDbZ03laAOCEs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=TIuCHLxUyUt/h3TR3okqYiUXPUZ1w8rwzuZkZiW58u1i7ENA4ij3zvL3pvGC7NtPH
+         mgZgY4piIeDlNdHsWJP134XEHfoZW/J4NEH+IGxwcI2yTgATmYRijUFElqW01OTOiW
+         flJtKY+yk1kEWHkIzzQqY/jiRpAwso2C35g+CcSo=
+Date:   Sat, 12 Oct 2019 14:23:18 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andreas Klinger <ak@it-klinger.de>, robh+dt@kernel.org,
+        mark.rutland@arm.com, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: maxbotix,mb1232.yaml: transform to
+ yaml
+Message-ID: <20191012142318.03057c61@archlinux>
+In-Reply-To: <20191010205328.GA19956@bogus>
+References: <20191007170219.xfipsry5nk4raiem@arbad>
+        <20191010205328.GA19956@bogus>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20191008144306.B2B0820659@mail.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 08.10.19 um 16:43 schrieb Stephen Boyd:
-> Quoting Johannes Sixt (2019-10-05 07:09:11)
->> Am 04.10.19 um 23:30 schrieb Stephen Boyd:
->>> --- /dev/null
->>> +++ b/t/t4018/dts-nodes-multiline-prop
->>> @@ -0,0 +1,12 @@
->>> +/ {
->>> +     label_1: node1@ff00 {
->>> +             RIGHT@deadf00,4000 {
->>> +                     multilineprop = <3>,
->>> +                                     <4>;
->>
->> You could insert more lines to demonstrate that "<x>," on a line by
->> itself is not picked up.
+On Thu, 10 Oct 2019 15:53:28 -0500
+Rob Herring <robh@kernel.org> wrote:
+
+> On Mon, 7 Oct 2019 19:02:20 +0200, Andreas Klinger wrote:
+> > transform existing documentation of maxbotix,mb1232 ultrasonic ranger
+> > from text documentation format into yaml.
+> > 
+> > Changes in v3:
+> > - add a i2c node around device node to set up #address-cells and
+> >   #size-cells for omitting error during make dt_binding_check
+> > 
+> > Changes in v2:
+> > - removed description of reg property
+> > - added a line:
+> >   additionalProperties: false
+> > 
+> > Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> > ---
+> >  .../bindings/iio/proximity/maxbotix,mb1232.txt     | 29 -----------
+> >  .../bindings/iio/proximity/maxbotix,mb1232.yaml    | 60 ++++++++++++++++++++++
+> >  2 files changed, 60 insertions(+), 29 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.txt
+> >  create mode 100644 Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+> >   
 > 
-> Maybe I should add another test?
+> Reviewed-by: Rob Herring <robh@kernel.org>
+Applied to the togreg branch of iio.git and pushed out as testing for the 
+autobuilders to play with it.
 
-This is is the _multi_line test case, right? ;) Just add one or two
-lines between the <3> and the <4> that look like common real-world cases
-to show that those lines won't be picked up. I don't think that another
-test file is required.
+Thanks,
 
->>> +/ { RIGHT /* Technically just supposed to be a slash and brace */
->>
->> Devil's advocate here: insert ';' or '=' in the comment, and the line
->> would not be picked up. Does that hurt in practice?
-> 
-> I don't think it hurts in practice so I'd like to ignore it.
+Jonathan
 
-Sure, no problem.
 
->>>  PATTERNS("dts",
->>>        "!;\n"
->>> +      "!.*=.*\n"
->>
->> This behaves the same way as just
->>
->>         "!=\n"
->>
->> no?
->>
-> 
-> Not exactly. Properties don't always get assigned.
-
-I was just refering to the added line, not the combination of the two lines.
-
-But while you are speaking of it:
-
-> There are boolean
-> properties that can be tested for by the presence of some string with an
-> ending semi-colon, like 'this-is-true;'. If we just check for not equal
-> to a line with a semicolon and newline then we'll see boolean
-> properties. Should I add that as another test?
-
-I agree that a test case with a Boolean property would be great.
-
--- Hannes
