@@ -2,44 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47516D4F5F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 13:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CACD4F7D
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 14:01:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729279AbfJLLfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 07:35:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42116 "EHLO mail.kernel.org"
+        id S1727231AbfJLMB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 08:01:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44920 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728636AbfJLLfA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Oct 2019 07:35:00 -0400
+        id S1727265AbfJLL72 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Oct 2019 07:59:28 -0400
 Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 299462089C;
-        Sat, 12 Oct 2019 11:34:58 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C043420673;
+        Sat, 12 Oct 2019 11:59:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570880100;
-        bh=M8pIuI3N9q6O19inwH7iwVRpRXidMZc87RjRVHszNGA=;
+        s=default; t=1570881566;
+        bh=9exQG7nr3/lBFBoQlVSUc3OlNg8VsRMGFm1wTu5IZlA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Agu+IATAylmCBlT5b/EgQcCruhFS4xRBrIagE47BvVsQdvK2+f01Klj3luzu7i7H5
-         vfdtPY3aTojd4PoJSU/pvuDiXL8MigMgKGIpVYpO5mykAJhjZzBXNKoygiqR6hH/XK
-         WTbaksUlStkjqZqm5ILC1KCZx4DZ+lI0zfL65Sbc=
-Date:   Sat, 12 Oct 2019 12:34:55 +0100
+        b=MB1IHdrhZiJ1u2/UEUf/EsywsbLh1XeaHjt/hDbdw9ic3Ndz11qNvzyV9nzfaI2YW
+         vHBptnfNuIrlEtqM2OnaorTbnBj0KHlwmwGqLtZL3SdjdZqG1PUgqqPiYTWCaM3nNH
+         gchu3XELBmGNWy3KZrpzjapsm8QFzbuiyXFrvsSc=
+Date:   Sat, 12 Oct 2019 12:59:21 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 2/8] iio: adc: max1027: Make it optional to use
- interrupts
-Message-ID: <20191012123455.7317c298@archlinux>
-In-Reply-To: <20191011144347.19146-3-miquel.raynal@bootlin.com>
-References: <20191011144347.19146-1-miquel.raynal@bootlin.com>
-        <20191011144347.19146-3-miquel.raynal@bootlin.com>
+To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
+Cc:     "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "knaack.h@gmx.de" <knaack.h@gmx.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/2] iio: light: Add support for ADUX1020 sensor
+Message-ID: <20191012125921.4cf04474@archlinux>
+In-Reply-To: <391446566afd59da7d94e8af5c7ecd13b57e1540.camel@analog.com>
+References: <20191007101027.8383-1-manivannan.sadhasivam@linaro.org>
+        <20191007101027.8383-3-manivannan.sadhasivam@linaro.org>
+        <30c4a0f9aff5a40879d6839ad8a5ce40565f0923.camel@analog.com>
+        <20191009094524.GA17962@Mani-XPS-13-9360>
+        <391446566afd59da7d94e8af5c7ecd13b57e1540.camel@analog.com>
 X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -49,94 +52,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 16:43:41 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+On Wed, 9 Oct 2019 10:21:27 +0000
+"Ardelean, Alexandru" <alexandru.Ardelean@analog.com> wrote:
 
-> The chip has a 'start conversion' and a 'end of conversion' pair of
-> pins. They can be used but this is absolutely not mandatory as regular
-> polling of the value is totally fine with the current internal
-> clocking setup. Turn the interrupts optional and do not error out if
-> they are not inquired in the device tree. This has the effect to
-> prevent triggered buffers use though.
+> On Wed, 2019-10-09 at 15:15 +0530, Manivannan Sadhasivam wrote:
+> > [External]
+> > 
+> > Hi Ardelean,
+
+For some reason, my email client decided not to filter this thread
+correctly so I didn't realise so much discussion had gone on when
+I applied the newer version earlier today.  Oops.  Hopefully
+there was nothing major outstanding.  Let me know if there was
+as it's not yet in a non rebasing tree...
+
+I've cropped to just where my name got mentioned ;)
+
+..
+
+> >   
+> > > - Just curios here: there is gesture mode as well; will that be
+> > > implemented
+> > > later? Or will there be other modes implemented?  
+> > 
+> > Currently only proximity mode is implemented. There are gesture and
+> > sample
+> > modes and I left those as a TODO. But I'm not sure whether IIO is
+> > supporting
+> > gesture mode properly or not.  
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Applied.
+> I don't have any input on this at the moment [about gesture support & IIO].
+> I'd have to investigate.
+> Maybe Jonathan has some thoughts.
 
-Thanks,
+Properly is a hard term for gesture support.  The issue has always
+been that every device does it slightly differently.  There are
+way too many types of gesture that a device 'might' use.
 
-> ---
->  drivers/iio/adc/max1027.c | 57 +++++++++++++++++++++------------------
->  1 file changed, 31 insertions(+), 26 deletions(-)
+We do have some drivers (IIRC) doing some gesture sensing, but you may
+well find places where things need to expand!
+
+...
+> > > > +static int adux1020_read_raw(struct iio_dev *indio_dev,
+> > > > +			     struct iio_chan_spec const *chan,
+> > > > +			     int *val, int *val2, long mask)
+> > > > +{
+> > > > +	struct adux1020_data *data = iio_priv(indio_dev);
+> > > > +	u16 buf[3];  
+> > > 
+> > > This buffer looks a bit weird. [8]
+> > > It's 3 elements-wide and passed without any information about size.
+> > > And only the first element is used.
+> > > So, maybe just convert u16 buf[3] -> u16 buf?
+> > >   
+> > 
+> > The buffer declaration is based on the hardware buffer available. It
+> > is 3 elements wide since the remaining 2 elements will be used by other
+> > modes. The idea here is to reuse the adux1020_measure() API for all 3
+> > modes (which has varying buffer sizes).  
 > 
-> diff --git a/drivers/iio/adc/max1027.c b/drivers/iio/adc/max1027.c
-> index 6cdfe9ef73fc..823223b77a70 100644
-> --- a/drivers/iio/adc/max1027.c
-> +++ b/drivers/iio/adc/max1027.c
-> @@ -430,35 +430,40 @@ static int max1027_probe(struct spi_device *spi)
->  		return -ENOMEM;
->  	}
->  
-> -	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-> -					&iio_pollfunc_store_time,
-> -					&max1027_trigger_handler, NULL);
-> -	if (ret < 0) {
-> -		dev_err(&indio_dev->dev, "Failed to setup buffer\n");
-> -		return ret;
-> -	}
-> +	if (spi->irq) {
-> +		ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-> +						      &iio_pollfunc_store_time,
-> +						      &max1027_trigger_handler,
-> +						      NULL);
-> +		if (ret < 0) {
-> +			dev_err(&indio_dev->dev, "Failed to setup buffer\n");
-> +			return ret;
-> +		}
->  
-> -	st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-trigger",
-> -							indio_dev->name);
-> -	if (st->trig == NULL) {
-> -		ret = -ENOMEM;
-> -		dev_err(&indio_dev->dev, "Failed to allocate iio trigger\n");
-> -		return ret;
-> -	}
-> +		st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-trigger",
-> +						  indio_dev->name);
-> +		if (st->trig == NULL) {
-> +			ret = -ENOMEM;
-> +			dev_err(&indio_dev->dev,
-> +				"Failed to allocate iio trigger\n");
-> +			return ret;
-> +		}
->  
-> -	st->trig->ops = &max1027_trigger_ops;
-> -	st->trig->dev.parent = &spi->dev;
-> -	iio_trigger_set_drvdata(st->trig, indio_dev);
-> -	iio_trigger_register(st->trig);
-> +		st->trig->ops = &max1027_trigger_ops;
-> +		st->trig->dev.parent = &spi->dev;
-> +		iio_trigger_set_drvdata(st->trig, indio_dev);
-> +		iio_trigger_register(st->trig);
->  
-> -	ret = devm_request_threaded_irq(&spi->dev, spi->irq,
-> -					iio_trigger_generic_data_rdy_poll,
-> -					NULL,
-> -					IRQF_TRIGGER_FALLING,
-> -					spi->dev.driver->name, st->trig);
-> -	if (ret < 0) {
-> -		dev_err(&indio_dev->dev, "Failed to allocate IRQ.\n");
-> -		return ret;
-> +		ret = devm_request_threaded_irq(&spi->dev, spi->irq,
-> +						iio_trigger_generic_data_rdy_poll,
-> +						NULL,
-> +						IRQF_TRIGGER_FALLING,
-> +						spi->dev.driver->name,
-> +						st->trig);
-> +		if (ret < 0) {
-> +			dev_err(&indio_dev->dev, "Failed to allocate IRQ.\n");
-> +			return ret;
-> +		}
->  	}
->  
->  	/* Disable averaging */
+> The only thought I have left about this buffer [and forgot to mention it
+> earlier], is whether this should be cacheline aligned [or not].
+> If it has to be, then maybe it shouldn't be stored on the stack and moved
+> to a malloc-ed buffer [on "struct adux1020_data"].
+> Cacheline aligned stuff typically deals with potential DMA issues. The DMA
+> issues [in this case] could be coming from i2c controllers that can do DMA.
+> 
+> Jonathan may have more input here.
+> 
+The i2c subsystem in general doesn't assume that buffers are dma safe
+though it would like to ;)
+
+Wolfram did a good presentation on his efforts to sort that out at
+ELCE 2018
+
+https://www.youtube.com/watch?v=JDwaMClvV-s
 
