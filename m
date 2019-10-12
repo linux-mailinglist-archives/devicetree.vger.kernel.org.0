@@ -2,71 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C32DCD504E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 16:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF1A1D5086
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 16:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729223AbfJLOJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 10:09:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55744 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727265AbfJLOJ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Oct 2019 10:09:26 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 021FF2087E;
-        Sat, 12 Oct 2019 14:09:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570889366;
-        bh=yhjv4gNucK6hAVURbYYazULVvJU9TPLkIhSRULYnJUg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QZ1u4QqC/EmGer2tn9h4PR2yz4ldnPlWF8eNhVstJ9C0aUL9mC7/rfUiT8HUj0982
-         2R3JpBCyhU9ouAt90O40zt89jB3jCiv30HGWId6rK3VvI6Q28/VMj9fftdtN4KHd+U
-         H3Cgn+fTc5UJ7QqcZdymdioDpH2zxSIADwIC7zfo=
-Date:   Sat, 12 Oct 2019 15:09:21 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     linux-iio@vger.kernel.org, martin@geanix.com,
-        lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add lsm6ds0
- device bindings
-Message-ID: <20191012150921.6988ca5b@archlinux>
-In-Reply-To: <86786d8de65eb1c2b16e8433aa673d217cc27dcd.1570441034.git.lorenzo@kernel.org>
-References: <cover.1570441034.git.lorenzo@kernel.org>
-        <86786d8de65eb1c2b16e8433aa673d217cc27dcd.1570441034.git.lorenzo@kernel.org>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728111AbfJLO6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 10:58:36 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:43876 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727115AbfJLO6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Oct 2019 10:58:36 -0400
+Received: by mail-lj1-f196.google.com with SMTP id n14so12516056ljj.10;
+        Sat, 12 Oct 2019 07:58:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HrLiuXk6l7SBWQR/FCMK363GSw8hqDIyi5NTJpfi314=;
+        b=iCaBwwXyKPJMg1mxYoSRXQD/mncQ1z96UvDtS8jEzgZITzuq4gpgXTzU0offq3wurE
+         MEZwnpqibgg5BQzSLhS9d9BL/dkJC/Vss8N0a8vWXmICnhqAbx9zyLqKbHDdDv+D2q8i
+         QKylPi+m9O+rkIQWXNkSr0AaEpW8crubfVQJPttMzrPJCICM5E970Oqr61AIfjVTXYWx
+         HO0GJyO+jmjuoOAPp7BeaR/14jCDg0Wbe27wlumM0VwPrMhB3SQXtHAlVPh0Ju9wqGgf
+         Z/fYEv5cKX7yhIpfbFvqpk0syBEj5BIw7VdcwNhhypBMCPZ9Wk2sl0z0HDgQQecgyZeQ
+         kVPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HrLiuXk6l7SBWQR/FCMK363GSw8hqDIyi5NTJpfi314=;
+        b=UvrzPMIL0b3Cce96jaOoxzChnALp22qLnRIM58m/sxgJPFrXLgJDrqxtqblgUtdvJV
+         wdzP0J6H/dbMNRx9Nd2W8XcHyOc+YRVg/lBW9xzLq0wSgsTWdyD1ssoeYNgFb2GB95ih
+         bQMNBYytd5tlrSmBcqZRG1kCCBC0/2O67LPtvy+RvbrA4n4+sdu1LkubJJfvRJmSkYjW
+         QHmCKqhfiU16GEOQ3eEq+2bGCx2rpGUrxaX8941vzwleHQqvsEBL8062NtTioNyCkdZT
+         gs0VrjzfMQfBGe7IFaaznYRDuXE1Tap8Op43TjsxI6AUTHnTWOG+9t7k7XVUbY8Igzf8
+         a6zA==
+X-Gm-Message-State: APjAAAVa7K/wF5I1OExBL58JOJrY40X9dTVbSE9vksRFtJ4mS2VThIle
+        jmYmRQ3M9WkrHyzG0bc3sX8=
+X-Google-Smtp-Source: APXvYqx6lwhG+N0xzxU05Kphy8LHfZrbnQCsHxSlgS+fhatMJ1vOIhpMriusddYyEHoUWBVgGCfaPQ==
+X-Received: by 2002:a2e:6c15:: with SMTP id h21mr12681149ljc.86.1570892314106;
+        Sat, 12 Oct 2019 07:58:34 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:540:3f08:6700:a54a:5215:2ca7:fec9])
+        by smtp.gmail.com with ESMTPSA id t4sm2599764lji.40.2019.10.12.07.58.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Oct 2019 07:58:33 -0700 (PDT)
+From:   nikitos.tr@gmail.com
+To:     agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stephan@gerhold.net,
+        Nikita Travkin <nikitos.tr@gmail.com>
+Subject: [PATCH 1/2] arm64: dts: msm8916-longcheer-l8150: Enable WCNSS for WiFi and BT
+Date:   Sat, 12 Oct 2019 19:58:20 +0500
+Message-Id: <20191012145821.20846-1-nikitos.tr@gmail.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  7 Oct 2019 11:43:38 +0200
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+From: Nikita Travkin <nikitos.tr@gmail.com>
 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Applied.
+WCNSS is used on L8150 for WiFi and BT.
+Its firmware isn't relocatable and must be loaded at specific address.
 
-Now a yaml conversion would be cool if you happened to get bored ;)
+Signed-off-by: Nikita Travkin <nikitos.tr@gmail.com>
+---
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-Jonathan
-
-> ---
->  Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> index 1a07d38c813f..fc018ecba086 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> +++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> @@ -14,6 +14,7 @@ Required properties:
->    "st,lsm6ds3tr-c"
->    "st,ism330dhcx"
->    "st,lsm9ds1-imu"
-> +  "st,lsm6ds0"
->  - reg: i2c address of the sensor / spi cs line
->  
->  Optional properties:
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index 2b28e383fd0b..e4d467e7dedb 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -18,6 +18,16 @@
+ 		stdout-path = "serial0";
+ 	};
+ 
++	reserved-memory {
++		// wcnss.mdt is not relocatable, so it must be loaded at 0x8b600000
++		/delete-node/ wcnss@89300000;
++
++		wcnss_mem: wcnss@8b600000 {
++			reg = <0x0 0x8b600000 0x0 0x600000>;
++			no-map;
++		};
++	};
++
+ 	soc {
+ 		sdhci@7824000 {
+ 			status = "okay";
+@@ -68,6 +78,10 @@
+ 			};
+ 		};
+ 
++		wcnss@a21b000 {
++			status = "okay";
++		};
++
+ 		/*
+ 		 * Attempting to enable these devices causes a "synchronous
+ 		 * external abort". Suspected cause is that the debug power
+-- 
+2.19.1
 
