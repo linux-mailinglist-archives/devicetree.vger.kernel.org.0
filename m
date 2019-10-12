@@ -2,93 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FDC9D4E08
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 09:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88BC6D4E24
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 09:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727117AbfJLHkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 03:40:08 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:33201 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727014AbfJLHkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Oct 2019 03:40:07 -0400
-Received: by mail-pg1-f196.google.com with SMTP id i76so7098975pgc.0;
-        Sat, 12 Oct 2019 00:40:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=G4TDuPQi287pEOKB5KDxBxduuED1DoZ5ekjPeswwjz8=;
-        b=LsKM1f3FbF6OHL1tNl/PxgPPPztiIcuum+4w1rji5Yk8tqvR3cQRcmFt/lBOzvkiok
-         wR8RTuoEuLBZs2R4QWBcCQlm+IABIX5BrEQKwMbZkmiL65Y9dBhFua9TqyxCCOhjPkw+
-         K0DzvrTIvi+buWy+H9Hi3MRGXUfq6hGlO6Jxu3LUJfVjw0A4XoTW6bzefZu8gKm/AVrZ
-         7VHZZo77uxQ8RAWkloEDgL3/zIa1FXuMeh2VSWsZG20L3TQsg49NbVsvhuSp1H5ExlqI
-         3pHMuJtd6JWUtrouisaTk1KU2C172bmFuNHjRCtrgucss5q/8pAkLPAHNoX0PMQXK5A/
-         OdeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=G4TDuPQi287pEOKB5KDxBxduuED1DoZ5ekjPeswwjz8=;
-        b=fetXoQaEgALCAVjJUyQAYC2N2fJD35dSP/ym+cF6ghNqdbA0bi72vXU2iW5O67RAjD
-         ClQBP0ncK/FuK8KJN8e4HmupLC56oUb/bcFw5jHvNV+QVHHKsEFLLuo7hNtzFMeg/Vsc
-         74Km2zKV1wcFEQSUuUch+o9Z/FAmT9ydrQQ6B4YtS7P/AV3X2DLQdEFBKVzfOfmqTZJx
-         Vb2HNF+JoNY/ZWD7PTMp7GFqq1VOGGBzAmG0WdCW+fmJw6In136hf83M/gCSfAnVenHi
-         NOKNm30zjrOeAVQFip+rZDmUPOp3qVNg/TybreXG2qAsXyv4eO6nPRgdiWvgq3n3u47P
-         kpjA==
-X-Gm-Message-State: APjAAAWUNAJLDmhorgfL/hG+o9plAjHB0urrj4IWblvhuIdePkI0rtYw
-        fWg8yA3I+6CPz2OYfEh+fXHhaVs644Dv/pmNbhM=
-X-Google-Smtp-Source: APXvYqwfmCVkEWAsj6lmyugjeKaYtOhruRdv352/bSJ8pJfsVuQYh5jAatnO3LWV27Y7Y4E3MEhIGO1Mz7qXq1cxFME=
-X-Received: by 2002:a17:90a:b391:: with SMTP id e17mr23177858pjr.132.1570866006928;
- Sat, 12 Oct 2019 00:40:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191012035420.13904-1-dan@dlrobertson.com> <20191012035420.13904-3-dan@dlrobertson.com>
- <d6f44aea-81b9-eb5f-71e2-637246c89491@infradead.org>
-In-Reply-To: <d6f44aea-81b9-eb5f-71e2-637246c89491@infradead.org>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 12 Oct 2019 10:39:54 +0300
-Message-ID: <CAHp75VeBrR0Ln5XOw5zA+JSoXM9BdoYw7p9D5c7u+2=Lfht75w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: (bma400) add driver for the BMA400
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     Dan Robertson <dan@dlrobertson.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728399AbfJLHwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 03:52:49 -0400
+Received: from hera.iit.uni-miskolc.hu ([193.6.5.4]:44428 "EHLO
+        hera.iit.uni-miskolc.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728111AbfJLHwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Oct 2019 03:52:49 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by hera.iit.uni-miskolc.hu (Postfix) with ESMTP id 0683F12A;
+        Sat, 12 Oct 2019 09:52:46 +0200 (CEST)
+X-Virus-Scanned: Kamavis at iit.uni-miskolc.hu
+Received: from hera.iit.uni-miskolc.hu ([127.0.0.1])
+        by localhost (hera.iit.uni-miskolc.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id wMQPC2Y434Ps; Sat, 12 Oct 2019 09:52:37 +0200 (CEST)
+Received: from titan.hitronhub.home (unknown [IPv6:2a02:8109:a180:54c:226:9eff:fe30:2af8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: szucst@iit.uni-miskolc.hu)
+        by hera.iit.uni-miskolc.hu (Postfix) with ESMTPSA id 47339125;
+        Sat, 12 Oct 2019 09:52:37 +0200 (CEST)
+From:   =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>
+Subject: [PATCH 0/1] arm64: tegra: enable SDIO on Jetson Nano M.2 Key E
+Date:   Sat, 12 Oct 2019 09:52:12 +0200
+Message-Id: <20191012075213.4880-1-tszucs@protonmail.ch>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 12, 2019 at 10:07 AM Randy Dunlap <rdunlap@infradead.org> wrote:
-> On 10/11/19 8:54 PM, Dan Robertson wrote:
+Hi All,
 
-> > +config BMA400_I2C
-> > +     tristate
-> > +     depends on BMA400
-> > +     depends on I2C
-> > +     select REGMAP_I2C
-> > +
->
-> The bma400_i2c driver seems to use some OF interfaces.
-> Should it also depend on OF?
+Changes here have been tested with various u-blox SDIO Wi-Fi modules.
+It would be great to have support upstream.
 
-Please, avoid unnecessary and strict dependencies when it's limiting
-the area of use the driver.
-The driver does not depend to OF. Why to stick with OF?
+Kind regards,
+Tamas
 
-The actual change has to be done is to switch from
+Tamás Szűcs (1):
+  arm64: tegra: enable SDIO on Jetson Nano M.2 Key E
 
-> #include <linux/of.h>
-
-to
-
-#include <linux/mod_devicetable.h>
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.20.1
+
