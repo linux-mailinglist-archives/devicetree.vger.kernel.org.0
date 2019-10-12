@@ -2,99 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BE27D5144
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 19:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D698CD51D8
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 20:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728888AbfJLRKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 13:10:55 -0400
-Received: from mout.gmx.net ([212.227.15.18]:36599 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729069AbfJLRKz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Oct 2019 13:10:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1570899908;
-        bh=WThmjchEV2vzAfou34wsoexJ0904q7Zea1RHmt1M0OE=;
-        h=X-UI-Sender-Class:Subject:From:To:Cc:References:Date:In-Reply-To;
-        b=DwTTL9LZ/P3ZtHGHGrPnmR3fUQTLV35vGi1ykO4JnzH+4YSoWwCwENM2WQX5FDRdI
-         M/K2VsaTpxQkH72xRvvoS+kEUHbG12FEnAmKhxwpe3E5VBNzwPoAtWd+k1YoOO8GEp
-         aFmq1tvoRqZCNXwb85mNaV8BI/arkoyKXEWptrqA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.1.162] ([37.4.249.112]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MSKuA-1iURhc069Y-00Sbmb; Sat, 12
- Oct 2019 19:05:08 +0200
-Subject: Re: [PATCH v1 3/3] ARM: dts: bcm2711: Enable GENET support for the
- RPi4
-From:   Stefan Wahren <wahrenst@gmx.net>
-To:     matthias.bgg@kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Eric Anholt <eric@anholt.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20191011184822.866-1-matthias.bgg@kernel.org>
- <20191011184822.866-4-matthias.bgg@kernel.org>
- <dfe9062b-1960-f67b-2a9e-864c0680f5d3@gmx.net>
-Message-ID: <bc741ef2-64aa-562c-69cc-f787b35c1058@gmx.net>
-Date:   Sat, 12 Oct 2019 19:05:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1729523AbfJLStC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 14:49:02 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:41080 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729324AbfJLStB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Oct 2019 14:49:01 -0400
+Received: by mail-wr1-f66.google.com with SMTP id q9so15251534wrm.8;
+        Sat, 12 Oct 2019 11:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mHmZ3uVIQl1nvwGBNhAHxx/afaDHfmZCLHq24Dj1FMI=;
+        b=q+Ha2zc+dWj+dyzbrh3ZNn1S+Bzn1xBq2dQzR3LCeh7MYXCZ4IFdppgnp6Wg/6w9Rg
+         Vmyv7xd7xbLmPYLCMpnBnsx2+UgB2fiZQxKDTpl9kuZcfOcxFt/lOm+4QGVn1zStLSJG
+         S/eoaVnaDDHrzYOIxStNfytJfsmztaB0vR9bWPPTo3jxct8fncUfaUpHnuaaDo7UZKle
+         +e+QnAcWbX8VtW0gg0Pdo14r1Un9fv+UnBwyx9Tl7cPfQO2/mG1+n6EBQmcnhjDXAm7a
+         Xu1KQKlZ51z0ncJI5QDaLmRs2/vlxJWPxmI5mL77uv6jjkyiC0k3bwlczGEX0kFW6OzI
+         Ujpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mHmZ3uVIQl1nvwGBNhAHxx/afaDHfmZCLHq24Dj1FMI=;
+        b=rc55dCWpXvj5aB0fZHDCdIfIBf8SleL/dYCOrc06yaGTAfZMzjapwVbx2y7KWOaYxp
+         j1OBMUNoXuVEgfncaKXC/PcH3MP58LKVd7/Cjqn9hEFgDYs7+8XMb1EKRrD3xcMQyCOl
+         p3QUpKto849h3uNgGvvrI1IN3HdrOGCIKnlV+JOAi9APy6b6lsw3IP19G8ZBq+HcSz3p
+         YIzWijRbJs5vYtX/1unXperixfmiXQcwIgESLUDZAVJNTF20wAnV+u2w3b7sw50x5KEF
+         tKE4EFiKvx7pyf7QwgAH325hPxrDZYrCoqhCGI/chCe21DTIkKnjWVTvFc8CtR364PU/
+         krMA==
+X-Gm-Message-State: APjAAAU8Yk8+yoWaYIxn1YMCRPXuYY8+v1eLAxJW+Q+dyvATFn0bKThM
+        5oAG1JCllCeP34j/81bxeoI=
+X-Google-Smtp-Source: APXvYqwnVp1c9C0rNWKN0cNV/Ida3rboGEScQOkBtQkk8V3Zds5+oSLMnivS1fle7h5/sTJfT3lBVg==
+X-Received: by 2002:adf:ff82:: with SMTP id j2mr19206357wrr.356.1570906136564;
+        Sat, 12 Oct 2019 11:48:56 -0700 (PDT)
+Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id a13sm33670580wrf.73.2019.10.12.11.48.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Oct 2019 11:48:55 -0700 (PDT)
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     catalin.marinas@arm.com, davem@davemloft.net,
+        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
+        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
+        wens@csie.org, will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: [PATCH v4 00/11] crypto: add sun8i-ce driver for Allwinner crypto engine
+Date:   Sat, 12 Oct 2019 20:48:41 +0200
+Message-Id: <20191012184852.28329-1-clabbe.montjoie@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <dfe9062b-1960-f67b-2a9e-864c0680f5d3@gmx.net>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Provags-ID: V03:K1:TOY8axM0tJeh2ZJQi9bkb+Z/Lu9KtfC8Aq/2aZuGRApGXwwMKVT
- DsmnYbDjr/1UDJ5oTeuAK8MgubkKE0RJNoIuEyqYT9L3NckFkQsWrgUzysDPWsLmkCSTuer
- wGwsyt62YfRmKgYCA3bSLh6SM3vgSGfKWRX8E8sRaG/+5lAL+eonlZmJ/lVOXUmbTsC330H
- vsbFJeUNXCi0+abkU+CPw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:2MuRQWHyKLs=:IcfwFc4ZLH+uLpnNutppBy
- iVDysOqZ8lvADJrDHiUQrak2+buixxUIYJp045C7Pc8Uq9gJVtq5ngEZc1shkKGHG8COkQ9Cd
- fCQBrAjRd2uTXcravu0eM6c5ZnIxEYiFFFBQMHvGA5PwwkdH5PAOQzE9qB9XU5sYSg1aHxMZI
- OcPFNIIYoAl4zjfTFs3ap8EhMSdaC9u58LFRTkDmEPOCYO/RFT2ce0SMgav3xI4cHRvID0UeW
- vRxc5ierCN+cHPTiaecN9qRsMiRwhsj9TTvrluGa+lKvnOaZNxSC3puExNlktTtuxy8hf2gzR
- A4QZ1DSXgfk6BrQ9dNWkYP46LiSQz8MT4zvho2hZyuTyqOyuAP4IOKl/8BEcznbxxFmwwTDyE
- SiPoV/Q7VqQqVaPdL4el7hCtjbMegzzCYoOTKuEhhnn207dFSa+Wu9iTP5jOu2l7FmBbiClqC
- PALbFAJ+1EjMKqlF2iflm/HTLXBWhTNmmQIiHtFjbRINBQ7eCu5QE6RE4NJ+6YJmkfxy0XxTq
- tHabEciCXCVWcuyW33U9nu0F/5biV3DNmEoIKIwJGPtVqOQg0Hn6QBBtoPjA/Xi+TlCYEHy5J
- zMScV4SdLyM+RIwzeBH1Aapb3MOmHkASGFWlexXYaWIuvZ8PLO3vtMb8zhLXHH6AB7hqBFdix
- jebEUQYZ/qvHDDBbHSff4gL0Q1r5KquYbjtxRnz/Emut1FpdHlw4WFynb+cXklmbdpTuD7miy
- bhN/gK/IpDOHP6lWikd1iFPE5sqFNQDRLLGNIYvSWciwdqUvo+xAcmFIvGLVlQw/gkk7T+Rba
- 7s9Ih5b3QfOuAjCaz3Oqfd9ChesR3g6Pu+i71ygJLtp0oWyqHtqOhQYr2/cj9Z38fkQbbxKAc
- pAM67Yl1ppvecGWIcOPPLj9WhV6G1WrMwlygtexgUF/ViEOX70J9qU6NrBLARBioRQ3xNIp83
- iI2wYYm/E8UFdBOekrdkp2x9LYn/bSkWYZKLrNZBd8MhkoclBdOS8RFhvKx9PHkOinRYmSckc
- 7MX/X4jAWmXNrnVp4djip/U2/Y2nEhbtC+pQzQxQ6jOb0gsUrFALjGmmraVFZU4Z+m+S5X9Be
- epNbwCyXAzmSMwux/n3qs+rARBD2Mf5Wa0dT4BJ48VsXJ3VsqGLtJFVZzTx2P+SQ2IZ59/H7w
- QLxwLPUYu+b5O56a/8SvKTHF0oCLVvLyyNyq1V+4Com7jUw5/pJm1K+orGOgMF8q6f60NonjV
- w9Hyqu23kHQeAIHEjlZmQ2Opr2nC1lBV88TnxkLOMcxJowPZNUp+hmxtvrNc=
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 12.10.19 um 01:09 schrieb Stefan Wahren:
-> Am 11.10.19 um 20:48 schrieb matthias.bgg@kernel.org:
->> From: Matthias Brugger <mbrugger@suse.com>
->>
->> Enable Gigabit Ethernet support on the Raspberry Pi 4
->> Model B.
-> I asked some questions about genet to the RPi guys [1] which are
-> relevant to this patch (missing clocks and interrupt, MAC address
-> assignment) but i didn't get an answer yet.
->
-> During my tests with a similiar patch series i noticed that the driver
-> won't probe without a MAC address.
->
-> How does it get into DT (via U-Boot)?
-Okay, the bootloader uses the ethernet0 alias for the genet DT node. So
-this should also be added to the RPi 4 DTS. But i consider the MAC
-randomize patch still helpful.
->
-> [1] -
-> https://github.com/raspberrypi/linux/issues/3101#issuecomment-534665860
->
+Hello
+
+This patch serie adds support for the Allwinner crypto engine.
+The Crypto Engine is the third generation of Allwinner cryptogaphic offloader.
+The first generation is the Security System already handled by the
+sun4i-ss driver.
+The second is named also Security System and is present on A80 and A83T
+SoCs, originaly this driver supported it also, but supporting both IP bringing
+too much complexity and another driver (sun8i-ss) will came for it.
+
+For the moment, the driver support only DES3/AES in ECB/CBC mode.
+Patchs for CTR/CTS/XTS, RSA and RNGs will came later.
+
+This serie is tested with CRYPTO_MANAGER_EXTRA_TESTS
+and tested on:
+sun50i-a64-bananapi-m64
+sun50i-a64-pine64-plus
+sun50i-h5-libretech-all-h3-cc
+sun50i-h6-pine-h64
+sun8i-h2-plus-libretech-all-h3-cc
+sun8i-h2-plus-orangepi-r1
+sun8i-h2-plus-orangepi-zero
+sun8i-h3-libretech-all-h3-cc
+sun8i-h3-orangepi-pc
+sun8i-r40-bananapi-m2-ultra
+
+Regards
+
+Changes since v3:
+- removed need of reset-names
+- switched from optional reset to mandatory
+
+Changes since v2:
+- changed additionalproperties
+- splited fallbacks functions out of sun8i_ce_cipher()
+- changed variant "model" to "has_t_dlen_in_bytes"
+- splited sun8i_ce_register_algs/sun8i_ce_get_clks out of sun8i_ce_probe()
+
+Changes since v1:
+- Add sun4i-ss to allwinner directory
+- Cleaned variant structure
+- Renamed clock name from ahb to bus (and mbus to ram)
+- Fixed DT bindings problem reported by mripard
+- Cleaned unneeded status = ""  in R40 DT
+- Removed old unnecessary interrupt_names in A64 DT
+- Added arm64 defconfig
+- Added support for PM functions
+- Splitted probe functions
+- Reworked clock settings
+- made reset mandatory
+
+Corentin Labbe (11):
+  crypto: Add allwinner subdirectory
+  crypto: Add Allwinner sun8i-ce Crypto Engine
+  dt-bindings: crypto: Add DT bindings documentation for sun8i-ce Crypto
+    Engine
+  ARM: dts: sun8i: R40: add crypto engine node
+  ARM: dts: sun8i: H3: Add Crypto Engine node
+  ARM64: dts: allwinner: sun50i: Add Crypto Engine node on A64
+  ARM64: dts: allwinner: sun50i: Add crypto engine node on H5
+  ARM64: dts: allwinner: sun50i: Add Crypto Engine node on H6
+  sunxi_defconfig: add new Allwinner crypto options
+  arm64: defconfig: add new Allwinner crypto options
+  crypto: sun4i-ss: Move to Allwinner directory
+
+ .../bindings/crypto/allwinner,sun8i-ce.yaml   |  88 +++
+ MAINTAINERS                                   |   4 +-
+ arch/arm/boot/dts/sun8i-h3.dtsi               |   9 +
+ arch/arm/boot/dts/sun8i-r40.dtsi              |   9 +
+ arch/arm/configs/sunxi_defconfig              |   2 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |   9 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |   9 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   9 +
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/crypto/Kconfig                        |  28 +-
+ drivers/crypto/Makefile                       |   2 +-
+ drivers/crypto/allwinner/Kconfig              |  60 ++
+ drivers/crypto/allwinner/Makefile             |   2 +
+ .../{sunxi-ss => allwinner/sun4i-ss}/Makefile |   0
+ .../sun4i-ss}/sun4i-ss-cipher.c               |   0
+ .../sun4i-ss}/sun4i-ss-core.c                 |   0
+ .../sun4i-ss}/sun4i-ss-hash.c                 |   0
+ .../sun4i-ss}/sun4i-ss-prng.c                 |   0
+ .../sun4i-ss}/sun4i-ss.h                      |   0
+ drivers/crypto/allwinner/sun8i-ce/Makefile    |   2 +
+ .../allwinner/sun8i-ce/sun8i-ce-cipher.c      | 434 +++++++++++
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c | 677 ++++++++++++++++++
+ drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h  | 254 +++++++
+ 23 files changed, 1571 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
+ create mode 100644 drivers/crypto/allwinner/Kconfig
+ create mode 100644 drivers/crypto/allwinner/Makefile
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/Makefile (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-cipher.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-core.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-hash.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-prng.c (100%)
+ rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss.h (100%)
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/Makefile
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+ create mode 100644 drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
+
+-- 
+2.21.0
+
