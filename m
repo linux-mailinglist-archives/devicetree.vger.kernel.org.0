@@ -2,84 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7437DD4B3E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 01:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 096DCD4C7B
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 05:38:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728396AbfJKX4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Oct 2019 19:56:01 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:33043 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728392AbfJKX4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 19:56:00 -0400
-Received: by mail-pg1-f196.google.com with SMTP id i76so6668348pgc.0;
-        Fri, 11 Oct 2019 16:55:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=B53cihCDlQEMDEXWkPSpWvvJvFe4J1DmTtw67eP/AR8=;
-        b=focYvhDusq7k7Sglq+SIQ8pVkuU3dKBEqSJ35alrt50LvSHfrQWxNay7wgpupYLQSG
-         6uMdheHpg/2DhAWDIuxvXJrcFjL9nUCd4pKzlZsiZvmX9JpRvn0SSA83m9DC5QNkJGaN
-         04lt3hs9g6a/yr/VWcV+/5Z5hpkxBHrSsEzk0uvDU7SY8oIXGbSnX8+B6PVpLiLbsgrY
-         zgf/0+fhrHM9kp14pAEz5SG59oEj85K0WxS/wqYKcHoJqNBCVFUMyO+u2fGQHK0Mjwvd
-         i29oRue0YJI2wFfoJcUg4IRt9fqMeHklgvR/KLHGzXw8NnUbf7qro7qdHXTdQXX9ynJw
-         xE2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=B53cihCDlQEMDEXWkPSpWvvJvFe4J1DmTtw67eP/AR8=;
-        b=GlXt6VCSAJqb1isYmmPfvzorQIjdBRDMleNAnUSEVVHamc6BAOPf8eKsm7UJheTe23
-         /rK6XjPJhZfpEqM4hSgH8tdVDBGjnpu0mxMBu99yvUPsM1Yg2Fw4O1VNWU0nC9mrrU/U
-         laN3H7FW+V6JCvxDV0pxTWZTDFv2WNC2OnzQc4Lpgig6St/DkScIVfw+n/vsae+sD3Rv
-         3Lm1w/a7qE5DfeZHoaVEhHpYFZiHDEd6zYvaKhMeoIgihqmp5zjfFPLWwDD4x6axpsVy
-         grebanaamnSNt45WMr4emT9HXxgWsyeZGSX9tV94RKbnQzvBkChSp/8mVAKbk94wbdjC
-         3vug==
-X-Gm-Message-State: APjAAAX0WkxSJfKW7Kb0dn2KU2eDFUA3IPPT8SkFs4YyqGOpvzb1Qp4q
-        uId0c3bnvDyoSAg0S+wwCyI=
-X-Google-Smtp-Source: APXvYqykbanmhecTAUKKoCbXPpv7i5TVrqw+8GQSS1J+dImn1y1yvpKb9BgeUI0Fa24oEauLCUbPHw==
-X-Received: by 2002:a62:d402:: with SMTP id a2mr19167165pfh.115.1570838158481;
-        Fri, 11 Oct 2019 16:55:58 -0700 (PDT)
-Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id g12sm16155270pfb.97.2019.10.11.16.55.57
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 11 Oct 2019 16:55:58 -0700 (PDT)
-Date:   Fri, 11 Oct 2019 16:55:25 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        will@kernel.org, vdumpa@nvidia.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] iommu/arm-smmu: Add an optional "input-address-size"
- property
-Message-ID: <20191011235524.GA20683@Asurada-Nvidia.nvidia.com>
-References: <20191011034609.13319-1-nicoleotsuka@gmail.com>
- <e99e07c2-88c6-e4d8-af80-c46d36bc6cd0@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e99e07c2-88c6-e4d8-af80-c46d36bc6cd0@arm.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1728089AbfJLDiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Oct 2019 23:38:14 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:55226 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726391AbfJLDiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Oct 2019 23:38:13 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id D377B14FD3304;
+        Fri, 11 Oct 2019 20:38:12 -0700 (PDT)
+Date:   Fri, 11 Oct 2019 20:38:12 -0700 (PDT)
+Message-Id: <20191011.203812.1828730130029996774.davem@davemloft.net>
+To:     andrew@aj.id.au
+Cc:     netdev@vger.kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        joel@jms.id.au, benh@kernel.crashing.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 0/3] net: ftgmac100: Ungate RCLK for RMII on ASPEED
+ MACs
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20191010020756.4198-1-andrew@aj.id.au>
+References: <20191010020756.4198-1-andrew@aj.id.au>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 11 Oct 2019 20:38:13 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 11, 2019 at 10:16:28AM +0100, Robin Murphy wrote:
-> On 2019-10-11 4:46 am, Nicolin Chen wrote:
-> > This series of patches add an optional DT property to allow an SoC to
-> > specify how many bits being physically connected to its SMMU instance,
-> > depending on the SoC design.
-> 
-> This has come up before, and it doesn't work in general because a single
-> SMMU instance can have many master interfaces, with potentially different
-> sizes of address bus wired up to each. It's also a conceptually-wrong
-> approach anyway, since this isn't a property of the SMMU; it's a property of
-> the interconnect(s) upstream of the SMMU.
-> 
-> IIRC you were working on Tegra - if so, Thierry already has a plan, see this
-> thread:
-> https://lore.kernel.org/linux-arm-kernel/20190930133510.GA1904140@ulmo/
+From: Andrew Jeffery <andrew@aj.id.au>
+Date: Thu, 10 Oct 2019 12:37:53 +1030
 
-Thanks for the reply and link!
+> This series slightly extends the devicetree binding and driver for the
+> FTGMAC100 to describe an optional RMII RCLK gate in the clocks property.
+> Currently it's necessary for the kernel to ungate RCLK on the AST2600 in NCSI
+> configurations as u-boot does not yet support NCSI (which uses the
+> R(educed)MII).
+> 
+> v2:
+> * Clear up Reduced vs Reversed MII in the cover letter
+> * Mitigate anxiety in the commit message for 1/3 
+> * Clarify that AST2500 is also affected in the clocks property description in
+>   2/3
+> * Rework the error paths and update some comments in 3/3
+> 
+> v1 can be found here: https://lore.kernel.org/netdev/20191008115143.14149-1-andrew@aj.id.au/
+
+Series applied to net-next, thank you.
