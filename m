@@ -2,47 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20CACD4F7D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 14:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4675BD4F85
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 14:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727231AbfJLMB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 08:01:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44920 "EHLO mail.kernel.org"
+        id S1727083AbfJLMIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 08:08:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45606 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727265AbfJLL72 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Oct 2019 07:59:28 -0400
+        id S1729220AbfJLMIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Oct 2019 08:08:24 -0400
 Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C043420673;
-        Sat, 12 Oct 2019 11:59:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5CA45206CD;
+        Sat, 12 Oct 2019 12:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1570881566;
-        bh=9exQG7nr3/lBFBoQlVSUc3OlNg8VsRMGFm1wTu5IZlA=;
+        s=default; t=1570882103;
+        bh=USnPmxdjZ7UIUVwD3R0fU1cD8ej32sGxsaFaPxcTZpA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=MB1IHdrhZiJ1u2/UEUf/EsywsbLh1XeaHjt/hDbdw9ic3Ndz11qNvzyV9nzfaI2YW
-         vHBptnfNuIrlEtqM2OnaorTbnBj0KHlwmwGqLtZL3SdjdZqG1PUgqqPiYTWCaM3nNH
-         gchu3XELBmGNWy3KZrpzjapsm8QFzbuiyXFrvsSc=
-Date:   Sat, 12 Oct 2019 12:59:21 +0100
+        b=w4nnUGQepm6HLxpWFFr8JDlGpiPK5DQMeGMU1JCgr8zxaN8e48+0MxjyR2oGF8OW9
+         jssIe+327XGmD6wBVxIpEiUWatq2VjMI+EDb3k+7AZ8n7lZpKbja6LV9XBc4/Z483j
+         yPWYhFPf6qyVm6T9DIfjZ2rbsDYCh37K+KUAJGPo=
+Date:   Sat, 12 Oct 2019 13:08:19 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-Cc:     "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/2] iio: light: Add support for ADUX1020 sensor
-Message-ID: <20191012125921.4cf04474@archlinux>
-In-Reply-To: <391446566afd59da7d94e8af5c7ecd13b57e1540.camel@analog.com>
-References: <20191007101027.8383-1-manivannan.sadhasivam@linaro.org>
-        <20191007101027.8383-3-manivannan.sadhasivam@linaro.org>
-        <30c4a0f9aff5a40879d6839ad8a5ce40565f0923.camel@analog.com>
-        <20191009094524.GA17962@Mani-XPS-13-9360>
-        <391446566afd59da7d94e8af5c7ecd13b57e1540.camel@analog.com>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     linux-iio@vger.kernel.org, sean@geanix.com, martin@geanix.com,
+        rjones@gateworks.com, lorenzo.bianconi@redhat.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/13] iio: imu: st_lsm6dsx: use st_lsm6dsx_read_locked
+ in st_lsm6dsx_report_motion_event
+Message-ID: <20191012130819.0951432b@archlinux>
+In-Reply-To: <a837aedc32b5726e09b14ae6a883655576184869.1570367532.git.lorenzo@kernel.org>
+References: <cover.1570367532.git.lorenzo@kernel.org>
+        <a837aedc32b5726e09b14ae6a883655576184869.1570367532.git.lorenzo@kernel.org>
 X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -52,79 +44,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Oct 2019 10:21:27 +0000
-"Ardelean, Alexandru" <alexandru.Ardelean@analog.com> wrote:
+On Sun,  6 Oct 2019 15:21:55 +0200
+Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-> On Wed, 2019-10-09 at 15:15 +0530, Manivannan Sadhasivam wrote:
-> > [External]
-> > 
-> > Hi Ardelean,
-
-For some reason, my email client decided not to filter this thread
-correctly so I didn't realise so much discussion had gone on when
-I applied the newer version earlier today.  Oops.  Hopefully
-there was nothing major outstanding.  Let me know if there was
-as it's not yet in a non rebasing tree...
-
-I've cropped to just where my name got mentioned ;)
-
-..
-
-> >   
-> > > - Just curios here: there is gesture mode as well; will that be
-> > > implemented
-> > > later? Or will there be other modes implemented?  
-> > 
-> > Currently only proximity mode is implemented. There are gesture and
-> > sample
-> > modes and I left those as a TODO. But I'm not sure whether IIO is
-> > supporting
-> > gesture mode properly or not.  
+> Rely on st_lsm6dsx_read_locked in st_lsm6dsx_report_motion_event since
+> it can run concurrently with sensor hub configuration. Move event
+> related code in st_lsm6dsx_report_motion_event
 > 
-> I don't have any input on this at the moment [about gesture support & IIO].
-> I'd have to investigate.
-> Maybe Jonathan has some thoughts.
+> Fixes: 1aabad1fb5e9 ("iio: imu: st_lsm6dsx: add motion report function and call from interrupt")
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-Properly is a hard term for gesture support.  The issue has always
-been that every device does it slightly differently.  There are
-way too many types of gesture that a device 'might' use.
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to play with it.
 
-We do have some drivers (IIRC) doing some gesture sensing, but you may
-well find places where things need to expand!
+Thanks,
 
-...
-> > > > +static int adux1020_read_raw(struct iio_dev *indio_dev,
-> > > > +			     struct iio_chan_spec const *chan,
-> > > > +			     int *val, int *val2, long mask)
-> > > > +{
-> > > > +	struct adux1020_data *data = iio_priv(indio_dev);
-> > > > +	u16 buf[3];  
-> > > 
-> > > This buffer looks a bit weird. [8]
-> > > It's 3 elements-wide and passed without any information about size.
-> > > And only the first element is used.
-> > > So, maybe just convert u16 buf[3] -> u16 buf?
-> > >   
-> > 
-> > The buffer declaration is based on the hardware buffer available. It
-> > is 3 elements wide since the remaining 2 elements will be used by other
-> > modes. The idea here is to reuse the adux1020_measure() API for all 3
-> > modes (which has varying buffer sizes).  
+Jonathan
+
+> ---
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c | 34 ++++++++++++--------
+>  1 file changed, 20 insertions(+), 14 deletions(-)
 > 
-> The only thought I have left about this buffer [and forgot to mention it
-> earlier], is whether this should be cacheline aligned [or not].
-> If it has to be, then maybe it shouldn't be stored on the stack and moved
-> to a malloc-ed buffer [on "struct adux1020_data"].
-> Cacheline aligned stuff typically deals with potential DMA issues. The DMA
-> issues [in this case] could be coming from i2c controllers that can do DMA.
-> 
-> Jonathan may have more input here.
-> 
-The i2c subsystem in general doesn't assume that buffers are dma safe
-though it would like to ;)
-
-Wolfram did a good presentation on his efforts to sort that out at
-ELCE 2018
-
-https://www.youtube.com/watch?v=JDwaMClvV-s
+> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
+> index 8a813ddba19c..df270905f21d 100644
+> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
+> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
+> @@ -1757,10 +1757,23 @@ static struct iio_dev *st_lsm6dsx_alloc_iiodev(struct st_lsm6dsx_hw *hw,
+>  	return iio_dev;
+>  }
+>  
+> -static void st_lsm6dsx_report_motion_event(struct st_lsm6dsx_hw *hw, int data)
+> +static bool
+> +st_lsm6dsx_report_motion_event(struct st_lsm6dsx_hw *hw)
+>  {
+> -	s64 timestamp = iio_get_time_ns(hw->iio_devs[ST_LSM6DSX_ID_ACC]);
+> +	const struct st_lsm6dsx_event_settings *event_settings;
+> +	int err, data;
+> +	s64 timestamp;
+>  
+> +	if (!hw->enable_event)
+> +		return false;
+> +
+> +	event_settings = &hw->settings->event_settings;
+> +	err = st_lsm6dsx_read_locked(hw, event_settings->wakeup_src_reg,
+> +				     &data, sizeof(data));
+> +	if (err < 0)
+> +		return false;
+> +
+> +	timestamp = iio_get_time_ns(hw->iio_devs[ST_LSM6DSX_ID_ACC]);
+>  	if ((data & hw->settings->event_settings.wakeup_src_z_mask) &&
+>  	    (hw->enable_event & BIT(IIO_MOD_Z)))
+>  		iio_push_event(hw->iio_devs[ST_LSM6DSX_ID_ACC],
+> @@ -1790,30 +1803,23 @@ static void st_lsm6dsx_report_motion_event(struct st_lsm6dsx_hw *hw, int data)
+>  						  IIO_EV_TYPE_THRESH,
+>  						  IIO_EV_DIR_EITHER),
+>  						  timestamp);
+> +
+> +	return data & event_settings->wakeup_src_status_mask;
+>  }
+>  
+>  static irqreturn_t st_lsm6dsx_handler_thread(int irq, void *private)
+>  {
+>  	struct st_lsm6dsx_hw *hw = private;
+> +	bool event;
+>  	int count;
+> -	int data, err;
+> -
+> -	if (hw->enable_event) {
+> -		err = regmap_read(hw->regmap,
+> -				  hw->settings->event_settings.wakeup_src_reg,
+> -				  &data);
+> -		if (err < 0)
+> -			return IRQ_NONE;
+>  
+> -		if (data & hw->settings->event_settings.wakeup_src_status_mask)
+> -			st_lsm6dsx_report_motion_event(hw, data);
+> -	}
+> +	event = st_lsm6dsx_report_motion_event(hw);
+>  
+>  	mutex_lock(&hw->fifo_lock);
+>  	count = hw->settings->fifo_ops.read_fifo(hw);
+>  	mutex_unlock(&hw->fifo_lock);
+>  
+> -	return count ? IRQ_HANDLED : IRQ_NONE;
+> +	return count || event ? IRQ_HANDLED : IRQ_NONE;
+>  }
+>  
+>  static int st_lsm6dsx_irq_setup(struct st_lsm6dsx_hw *hw)
 
