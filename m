@@ -2,229 +2,616 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D369D51C8
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 20:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E7CD5234
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 21:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729711AbfJLStT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 14:49:19 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38813 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729678AbfJLStO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Oct 2019 14:49:14 -0400
-Received: by mail-wr1-f65.google.com with SMTP id y18so5795042wrn.5;
-        Sat, 12 Oct 2019 11:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xny3+0qxlx0WLzPWUnZ12AS5CLUaaEllWg//GVJhObk=;
-        b=iqbyxVCC4MadmNqVLvb7WyJdBYuxYb6l3BUucbf/6offPgnM0CV27rR0bAnqZD1lMT
-         8BLFwHvTqigQqEAhKBNayxeKJfYyrWIgfTL+SeqgmH59GaEdWXF5U/QmwEPclv/8/Xla
-         Zq1kclLaIqEmt3zfMJSyzJRM5ndq1w+QQ7LM5lD9786vW3Hsv34FEifhjm8fgfrHk/2S
-         kd3bAHqfHbwj7Fl5pVIDSZOjCuRYinSbbsd9q80vkpjwmRjP2oth2WLTJHXzMWJCv7Ve
-         x2nz3bWun4UQCFQOsSSguHDrQDxXxmvoR3HUg8osXj/vm6kRuZfnw6AnX4kl1JcV12YZ
-         3maQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xny3+0qxlx0WLzPWUnZ12AS5CLUaaEllWg//GVJhObk=;
-        b=As3ylY2/zFffwB1iOLhxJB2xlGpnv6vqQ4olIJqPsXz+S10vxumG55owY7Kt0mgJCl
-         +emcHnbueHVrtjiyE9nzq4apnowjsrfeQjD0u0cw2dP1HFOeVPLfG+PegBEWeT9MDUTv
-         TxULz1UHBuo/loOZfk7eG8QIm432cAm+k5J2t+X9zny7hfGjgW0KEOmN3SuL3vv9wpHM
-         sU4npak33zB7MnixhFqtq5A4uiEKb0RU4fde+Og45h3ld7x1Z1o4wd1IPvhW2FVOqS2i
-         oZlmeTfBb9Dq0h7ehDRAjSYuqqbMBWEDaDz5RgFUrpVFEXUrBzF9xXoNAcJ9J5EWhbvL
-         lx0w==
-X-Gm-Message-State: APjAAAXZ7dLQfN61NJ+gWjjG9ZW+M9F5sbbP+H/nTT4VpT0LrKn+Y9jN
-        50ZiQ8td0vmvqH/j8rLFXO0=
-X-Google-Smtp-Source: APXvYqwClq4f1+1p/pO/eGkXtqHMozFJi+q0ZF+mNt0QgkpBorCpwyqaD0DBupXxhp1LWjCEm7nt8A==
-X-Received: by 2002:a5d:51c8:: with SMTP id n8mr18329267wrv.228.1570906151574;
-        Sat, 12 Oct 2019 11:49:11 -0700 (PDT)
-Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id a13sm33670580wrf.73.2019.10.12.11.49.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Oct 2019 11:49:11 -0700 (PDT)
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     catalin.marinas@arm.com, davem@davemloft.net,
-        herbert@gondor.apana.org.au, linux@armlinux.org.uk,
-        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
-        wens@csie.org, will@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: [PATCH v4 11/11] crypto: sun4i-ss: Move to Allwinner directory
-Date:   Sat, 12 Oct 2019 20:48:52 +0200
-Message-Id: <20191012184852.28329-12-clabbe.montjoie@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191012184852.28329-1-clabbe.montjoie@gmail.com>
-References: <20191012184852.28329-1-clabbe.montjoie@gmail.com>
+        id S2387394AbfJLTai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Oct 2019 15:30:38 -0400
+Received: from mxb1.seznam.cz ([77.75.78.89]:26657 "EHLO mxb1.seznam.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387393AbfJLTah (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Oct 2019 15:30:37 -0400
+Received: from email.seznam.cz
+        by email-smtpc14b.ko.seznam.cz (email-smtpc14b.ko.seznam.cz [10.53.14.165])
+        id 442665561f28313f458fa908;
+        Sat, 12 Oct 2019 21:30:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1570908630; bh=3P3DKjMifSRxjqMitfu8uEHWG7D1TnKkysZFDMQB7FM=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Type:Content-Transfer-Encoding;
+        b=NGlwRKnwzQtVb969dCU+AHM/rx/HNXDuEBlRu7rbTIwSlcornc38OTKdu+HimgB9J
+         gIUyC3idtcPWpBBmeMLyAaX+S7VVF5u4STacpOmx/SzHOuEbaVT/5GPKtgBv9Bjjli
+         Ch9zXVuta3HSbFH17s2MAcpQVYfS+x7VmSypRz8E=
+Received: from localhost.localdomain (212.69.128.228 [212.69.128.228])
+        by email-relay8.ko.seznam.cz (Seznam SMTPD 1.3.108) with ESMTP;
+        Sat, 12 Oct 2019 21:30:26 +0200 (CEST)  
+From:   michael.srba@seznam.cz
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Srba <Michael.Srba@seznam.cz>
+Subject: [PATCH 1/2] Input: add zinitix touchscreen driver
+Date:   Sat, 12 Oct 2019 21:27:38 +0200
+Message-Id: <20191012192739.10261-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since we have a dedicated Allwinner directory for crypto driver, move
-the sun4i-ss driver in it.
+From: Michael Srba <Michael.Srba@seznam.cz>
 
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+Add support for the bt541 touchscreen IC from zinitix, loosely based
+on downstream driver. The driver currently supports multitouch (5 touch points).
+The bt541 seems to support touch keys, but the support was not added because 
+that functionality is not being utilized by the touchscreen used for testing.
+Based on the similartities between downstream drivers, it seems likely that 
+other similar touchscreen ICs can be supported with this driver in the future.
+
+Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 ---
- MAINTAINERS                                   |  6 -----
- drivers/crypto/Kconfig                        | 26 ------------------
- drivers/crypto/Makefile                       |  1 -
- drivers/crypto/allwinner/Kconfig              | 27 +++++++++++++++++++
- drivers/crypto/allwinner/Makefile             |  1 +
- .../{sunxi-ss => allwinner/sun4i-ss}/Makefile |  0
- .../sun4i-ss}/sun4i-ss-cipher.c               |  0
- .../sun4i-ss}/sun4i-ss-core.c                 |  0
- .../sun4i-ss}/sun4i-ss-hash.c                 |  0
- .../sun4i-ss}/sun4i-ss-prng.c                 |  0
- .../sun4i-ss}/sun4i-ss.h                      |  0
- 11 files changed, 28 insertions(+), 33 deletions(-)
- rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/Makefile (100%)
- rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-cipher.c (100%)
- rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-core.c (100%)
- rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-hash.c (100%)
- rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss-prng.c (100%)
- rename drivers/crypto/{sunxi-ss => allwinner/sun4i-ss}/sun4i-ss.h (100%)
+ bt541 is used in the Samsung Galaxy A3 (2015) that has recently gained 
+ mainline support [1].
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 78bc109aba98..36c5d6ee01f9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -684,12 +684,6 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/opp/sun50i-nvmem-cpufreq.txt
- F:	drivers/cpufreq/sun50i-cpufreq-nvmem.c
+ The downstream driver this is loosely based on: 
+ https://github.com/msm8916-mainline/android_kernel_qcom_msm8916/tree/SM-A300FU/drivers/input/touchscreen/zinitix
+
+ [1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1329c1ab0730b521e6cd3051c56a2ff3d55f21e6
+
+ drivers/input/touchscreen/Kconfig   |  12 +
+ drivers/input/touchscreen/Makefile  |   1 +
+ drivers/input/touchscreen/zinitix.c | 508 ++++++++++++++++++++++++++++
+ 3 files changed, 521 insertions(+)
+ create mode 100644 drivers/input/touchscreen/zinitix.c
+
+diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+index 46ad9090493b..6203e0764d5f 100644
+--- a/drivers/input/touchscreen/Kconfig
++++ b/drivers/input/touchscreen/Kconfig
+@@ -1314,4 +1314,16 @@ config TOUCHSCREEN_IQS5XX
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called iqs5xx.
  
--ALLWINNER SECURITY SYSTEM
--M:	Corentin Labbe <clabbe.montjoie@gmail.com>
--L:	linux-crypto@vger.kernel.org
--S:	Maintained
--F:	drivers/crypto/sunxi-ss/
--
- ALLWINNER CRYPTO DRIVERS
- M:	Corentin Labbe <clabbe.montjoie@gmail.com>
- L:	linux-crypto@vger.kernel.org
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 610bb52d77d6..9f08ed72eae8 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -659,32 +659,6 @@ config CRYPTO_DEV_IMGTEC_HASH
- 	  hardware hash accelerator. Supporting MD5/SHA1/SHA224/SHA256
- 	  hashing algorithms.
- 
--config CRYPTO_DEV_SUN4I_SS
--	tristate "Support for Allwinner Security System cryptographic accelerator"
--	depends on ARCH_SUNXI && !64BIT
--	depends on PM
--	select CRYPTO_MD5
--	select CRYPTO_SHA1
--	select CRYPTO_AES
--	select CRYPTO_LIB_DES
--	select CRYPTO_BLKCIPHER
--	help
--	  Some Allwinner SoC have a crypto accelerator named
--	  Security System. Select this if you want to use it.
--	  The Security System handle AES/DES/3DES ciphers in CBC mode
--	  and SHA1 and MD5 hash algorithms.
--
--	  To compile this driver as a module, choose M here: the module
--	  will be called sun4i-ss.
--
--config CRYPTO_DEV_SUN4I_SS_PRNG
--	bool "Support for Allwinner Security System PRNG"
--	depends on CRYPTO_DEV_SUN4I_SS
--	select CRYPTO_RNG
--	help
--	  Select this option if you want to provide kernel-side support for
--	  the Pseudo-Random Number Generator found in the Security System.
--
- config CRYPTO_DEV_ROCKCHIP
- 	tristate "Rockchip's Cryptographic Engine driver"
- 	depends on OF && ARCH_ROCKCHIP
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 90d60eff5ecc..79e2da4a51e4 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -40,7 +40,6 @@ obj-$(CONFIG_CRYPTO_DEV_ROCKCHIP) += rockchip/
- obj-$(CONFIG_CRYPTO_DEV_S5P) += s5p-sss.o
- obj-$(CONFIG_CRYPTO_DEV_SAHARA) += sahara.o
- obj-$(CONFIG_ARCH_STM32) += stm32/
--obj-$(CONFIG_CRYPTO_DEV_SUN4I_SS) += sunxi-ss/
- obj-$(CONFIG_CRYPTO_DEV_TALITOS) += talitos.o
- obj-$(CONFIG_CRYPTO_DEV_UX500) += ux500/
- obj-$(CONFIG_CRYPTO_DEV_VIRTIO) += virtio/
-diff --git a/drivers/crypto/allwinner/Kconfig b/drivers/crypto/allwinner/Kconfig
-index 2d901d5d995a..1cd42f13a58a 100644
---- a/drivers/crypto/allwinner/Kconfig
-+++ b/drivers/crypto/allwinner/Kconfig
-@@ -5,6 +5,33 @@ config CRYPTO_DEV_ALLWINNER
- 	help
- 	  Say Y here to get to see options for Allwinner hardware crypto devices
- 
-+config CRYPTO_DEV_SUN4I_SS
-+	tristate "Support for Allwinner Security System cryptographic accelerator"
-+	depends on ARCH_SUNXI && !64BIT
-+	depends on PM
-+	depends on CRYPTO_DEV_ALLWINNER
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA1
-+	select CRYPTO_AES
-+	select CRYPTO_LIB_DES
-+	select CRYPTO_BLKCIPHER
++config TOUCHSCREEN_ZINITIX
++	tristate "Zinitix touchscreen support"
++	depends on I2C
 +	help
-+	  Some Allwinner SoC have a crypto accelerator named
-+	  Security System. Select this if you want to use it.
-+	  The Security System handle AES/DES/3DES ciphers in CBC mode
-+	  and SHA1 and MD5 hash algorithms.
++	  Say Y here if you have a touchscreen using Zinitix bt541,
++	  or something similar enough.
 +
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called sun4i-ss.
++	  If unsure, say N.
 +
-+config CRYPTO_DEV_SUN4I_SS_PRNG
-+	bool "Support for Allwinner Security System PRNG"
-+	depends on CRYPTO_DEV_SUN4I_SS
-+	select CRYPTO_RNG
-+	help
-+	  Select this option if you want to provide kernel-side support for
-+	  the Pseudo-Random Number Generator found in the Security System.
++	  To compile this driver as a module, choose M here: the
++	  module will be called zinitix.
 +
- config CRYPTO_DEV_SUN8I_CE
- 	tristate "Support for Allwinner Crypto Engine cryptographic offloader"
- 	select CRYPTO_BLKCIPHER
-diff --git a/drivers/crypto/allwinner/Makefile b/drivers/crypto/allwinner/Makefile
-index 11f02db9ee06..fdb720c5bcc7 100644
---- a/drivers/crypto/allwinner/Makefile
-+++ b/drivers/crypto/allwinner/Makefile
-@@ -1 +1,2 @@
-+obj-$(CONFIG_CRYPTO_DEV_SUN4I_SS) += sun4i-ss/
- obj-$(CONFIG_CRYPTO_DEV_SUN8I_CE) += sun8i-ce/
-diff --git a/drivers/crypto/sunxi-ss/Makefile b/drivers/crypto/allwinner/sun4i-ss/Makefile
-similarity index 100%
-rename from drivers/crypto/sunxi-ss/Makefile
-rename to drivers/crypto/allwinner/sun4i-ss/Makefile
-diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-cipher.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c
-similarity index 100%
-rename from drivers/crypto/sunxi-ss/sun4i-ss-cipher.c
-rename to drivers/crypto/allwinner/sun4i-ss/sun4i-ss-cipher.c
-diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-similarity index 100%
-rename from drivers/crypto/sunxi-ss/sun4i-ss-core.c
-rename to drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-hash.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-similarity index 100%
-rename from drivers/crypto/sunxi-ss/sun4i-ss-hash.c
-rename to drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-prng.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-prng.c
-similarity index 100%
-rename from drivers/crypto/sunxi-ss/sun4i-ss-prng.c
-rename to drivers/crypto/allwinner/sun4i-ss/sun4i-ss-prng.c
-diff --git a/drivers/crypto/sunxi-ss/sun4i-ss.h b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-similarity index 100%
-rename from drivers/crypto/sunxi-ss/sun4i-ss.h
-rename to drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
+ endif
+diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+index 94c6162409b3..bafe9d76ed03 100644
+--- a/drivers/input/touchscreen/Makefile
++++ b/drivers/input/touchscreen/Makefile
+@@ -110,3 +110,4 @@ obj-$(CONFIG_TOUCHSCREEN_COLIBRI_VF50)	+= colibri-vf50-ts.o
+ obj-$(CONFIG_TOUCHSCREEN_ROHM_BU21023)	+= rohm_bu21023.o
+ obj-$(CONFIG_TOUCHSCREEN_RASPBERRYPI_FW)	+= raspberrypi-ts.o
+ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
++obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
+diff --git a/drivers/input/touchscreen/zinitix.c b/drivers/input/touchscreen/zinitix.c
+new file mode 100644
+index 000000000000..55b1816b39d4
+--- /dev/null
++++ b/drivers/input/touchscreen/zinitix.c
+@@ -0,0 +1,508 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include <linux/kernel.h>
++#include <linux/i2c.h>
++#include <linux/input.h>
++#include <linux/input/mt.h>
++#include <linux/input/touchscreen.h>
++#include <linux/module.h>
++#include <linux/delay.h>
++#include <linux/irq.h>
++#include <linux/interrupt.h>
++#include <linux/regulator/consumer.h>
++#include <linux/slab.h>
++#include <linux/of.h>
++#include <asm/unaligned.h>
++
++/* Register Map */
++
++#define BT541_SWRESET_CMD			0x0000
++#define BT541_WAKEUP_CMD			0x0001
++
++#define BT541_IDLE_CMD				0x0004
++#define BT541_SLEEP_CMD				0x0005
++
++#define BT541_CLEAR_INT_STATUS_CMD		0x0003
++#define BT541_CALIBRATE_CMD			0x0006
++#define BT541_SAVE_STATUS_CMD			0x0007
++#define BT541_SAVE_CALIBRATION_CMD		0x0008
++#define BT541_RECALL_FACTORY_CMD		0x000f
++
++#define BT541_THRESHOLD				0x0020
++
++#define BT541_LARGE_PALM_REJECT_AREA_TH		0x003F
++
++#define BT541_DEBUG_REG				0x0115 /* 0~7 */
++
++#define BT541_TOUCH_MODE			0x0010
++#define BT541_CHIP_REVISION			0x0011
++#define BT541_FIRMWARE_VERSION			0x0012
++
++#define ZINITIX_USB_DETECT			0x116
++
++#define BT541_MINOR_FW_VERSION			0x0121
++
++#define BT541_VENDOR_ID				0x001C
++#define BT541_HW_ID				0x0014
++
++#define BT541_DATA_VERSION_REG			0x0013
++#define BT541_SUPPORTED_FINGER_NUM		0x0015
++#define BT541_EEPROM_INFO			0x0018
++#define BT541_INITIAL_TOUCH_MODE		0x0019
++
++#define BT541_TOTAL_NUMBER_OF_X			0x0060
++#define BT541_TOTAL_NUMBER_OF_Y			0x0061
++
++#define BT541_DELAY_RAW_FOR_HOST		0x007f
++
++#define BT541_BUTTON_SUPPORTED_NUM		0x00B0
++#define BT541_BUTTON_SENSITIVITY		0x00B2
++#define BT541_DUMMY_BUTTON_SENSITIVITY		0X00C8
++
++#define BT541_X_RESOLUTION			0x00C0
++#define BT541_Y_RESOLUTION			0x00C1
++
++#define BT541_POINT_STATUS_REG			0x0080
++#define BT541_ICON_STATUS_REG			0x00AA
++
++#define BT541_POINT_COORD_REG			(BT541_POINT_STATUS_REG + 2)
++
++#define BT541_AFE_FREQUENCY			0x0100
++#define BT541_DND_N_COUNT			0x0122
++#define BT541_DND_U_COUNT			0x0135
++
++#define BT541_RAWDATA_REG			0x0200
++
++#define BT541_EEPROM_INFO_REG			0x0018
++
++#define BT541_INT_ENABLE_FLAG			0x00f0
++#define BT541_PERIODICAL_INTERRUPT_INTERVAL	0x00f1
++
++#define BT541_BTN_WIDTH				0x016d
++
++#define BT541_CHECKSUM_RESULT			0x012c
++
++#define BT541_INIT_FLASH			0x01d0
++#define BT541_WRITE_FLASH			0x01d1
++#define BT541_READ_FLASH			0x01d2
++
++#define ZINITIX_INTERNAL_FLAG_02		0x011e
++#define ZINITIX_INTERNAL_FLAG_03		0x011f
++
++#define ZINITIX_I2C_CHECKSUM_WCNT		0x016a
++#define ZINITIX_I2C_CHECKSUM_RESULT		0x016c
++
++/* Interrupt & status register flags */
++
++#define BIT_PT_CNT_CHANGE	BIT(0)
++#define BIT_DOWN		BIT(1)
++#define BIT_MOVE		BIT(2)
++#define BIT_UP			BIT(3)
++#define BIT_PALM		BIT(4)
++#define BIT_PALM_REJECT		BIT(5)
++#define BIT_RESERVED_0		BIT(6)
++#define BIT_RESERVED_1		BIT(7)
++#define BIT_WEIGHT_CHANGE	BIT(8)
++#define BIT_PT_NO_CHANGE	BIT(9)
++#define BIT_REJECT		BIT(10)
++#define BIT_PT_EXIST		BIT(11)
++#define BIT_RESERVED_2		BIT(12)
++#define BIT_ERROR		BIT(13)
++#define BIT_DEBUG		BIT(14)
++#define BIT_ICON_EVENT		BIT(15)
++
++#define SUB_BIT_EXIST		BIT(0)
++#define SUB_BIT_DOWN		BIT(1)
++#define SUB_BIT_MOVE		BIT(2)
++#define SUB_BIT_UP		BIT(3)
++#define SUB_BIT_UPDATE		BIT(4)
++#define SUB_BIT_WAIT		BIT(5)
++
++#define TOUCH_POINT_MODE		1
++#define MAX_SUPPORTED_FINGER_NUM	5
++
++#define CHIP_ON_DELAY	15 // ms
++#define FIRMWARE_ON_DELAY 40 // ms
++
++#define DELAY_FOR_TRANSACTION		50 // μs
++#define DELAY_FOR_POST_TRANSCATION	10 // μs
++
++struct point_coord {
++	__le16	x;
++	__le16	y;
++	u8	width;
++	u8	sub_status;
++	// not used on this model, but needed as padding:
++	u8	minor_width;
++	u8	angle;
++} __packed;
++
++struct point_status {
++	__le16	status;
++	__le16	event_flag;
++} __packed;
++
++struct bt541_ts_data {
++	struct i2c_client *client;
++	struct input_dev *input_dev;
++	struct touchscreen_properties prop;
++	struct regulator_bulk_data supplies[2];
++};
++
++static inline s32 zinitix_read_data(struct i2c_client *client,
++				    u16 reg, u8 *values, u16 length)
++{
++	int ret;
++	__le16 reg_le = cpu_to_le16(reg);
++
++	ret = i2c_master_send(client, (u8 *)&reg_le, sizeof(reg_le));
++	if (ret < 0)
++		return ret;
++
++	udelay(DELAY_FOR_TRANSACTION);
++	ret = i2c_master_recv(client, values, length);
++	if (ret < 0)
++		return ret;
++
++	udelay(DELAY_FOR_POST_TRANSCATION);
++	return 0;
++}
++
++static inline s32 zinitix_write_data(struct i2c_client *client,
++				     u16 reg, u8 *values, u16 length)
++{
++	int ret;
++	u8 *packet;
++	__le16 reg_le = cpu_to_le16(reg);
++
++	packet = kmalloc(length + sizeof(reg_le), GFP_KERNEL);
++	memcpy(packet, (u8 *)&reg_le, sizeof(reg_le));
++	memcpy(packet + sizeof(reg_le), values, length);
++
++	ret = i2c_master_send(client, packet, length + sizeof(reg_le));
++	kfree(packet);
++	if (ret < 0)
++		return ret;
++
++	udelay(DELAY_FOR_POST_TRANSCATION);
++	return 0;
++}
++
++static inline s32 zinitix_write_u16(struct i2c_client *client, u16 reg, u16 value)
++{
++	__le16 value_le = cpu_to_le16(value);
++
++	return zinitix_write_data(client, reg, (u8 *)&value_le, sizeof(reg));
++}
++
++static inline s32 zinitix_write_cmd(struct i2c_client *client, u16 reg)
++{
++	int ret;
++	__le16 reg_le = cpu_to_le16(reg);
++
++	ret = i2c_master_send(client, (u8 *)&reg_le, sizeof(reg_le));
++	if (ret < 0)
++		return ret;
++
++	udelay(DELAY_FOR_POST_TRANSCATION);
++	return 0;
++}
++
++static bool zinitix_init_touch(struct bt541_ts_data *bt541)
++{
++	struct i2c_client *client = bt541->client;
++	int i;
++	int ret;
++
++	ret = zinitix_write_cmd(client, BT541_SWRESET_CMD);
++	if (ret) {
++		dev_err(&client->dev, "Failed to write reset command\n");
++		return ret;
++	}
++
++	ret = zinitix_write_u16(client, BT541_INT_ENABLE_FLAG, 0x0);
++	if (ret) {
++		dev_err(&client->dev, "failed to reset interrupt enable flag\n");
++		return ret;
++	}
++
++	/* initialize */
++	ret = zinitix_write_u16(client, BT541_X_RESOLUTION, (u16)bt541->prop.max_x);
++	if (ret)
++		return ret;
++
++	ret = zinitix_write_u16(client, BT541_Y_RESOLUTION, (u16)bt541->prop.max_y);
++	if (ret)
++		return ret;
++
++	ret = zinitix_write_u16(client, BT541_SUPPORTED_FINGER_NUM,
++				(u16)MAX_SUPPORTED_FINGER_NUM);
++	if (ret)
++		return ret;
++
++	ret = zinitix_write_u16(client, BT541_INITIAL_TOUCH_MODE, TOUCH_POINT_MODE);
++	if (ret)
++		return ret;
++
++	ret = zinitix_write_u16(client, BT541_TOUCH_MODE, TOUCH_POINT_MODE);
++	if (ret)
++		return ret;
++
++	ret = zinitix_write_u16(client, BT541_INT_ENABLE_FLAG,
++				BIT_PT_CNT_CHANGE | BIT_DOWN | BIT_MOVE | BIT_UP);
++	if (ret)
++		return ret;
++
++	/* clear queue */
++	for (i = 0; i < 10; i++) {
++		zinitix_write_cmd(client, BT541_CLEAR_INT_STATUS_CMD);
++		udelay(10);
++	}
++
++	return 0;
++}
++
++static int zinitix_init_regulators(struct bt541_ts_data *bt541)
++{
++	struct i2c_client *client = bt541->client;
++	int ret;
++
++	bt541->supplies[0].supply = "vdd";
++	bt541->supplies[1].supply = "vddo";
++	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(bt541->supplies),
++				      bt541->supplies);
++	if (ret < 0) {
++		dev_err(&client->dev, "Failed to get regulators: %d\n", ret);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int zinitix_send_power_on_sequence(struct bt541_ts_data *bt541)
++{
++	int ret;
++	struct i2c_client *client = bt541->client;
++
++	ret = zinitix_write_u16(client, 0xc000, 0x0001);
++	if (ret) {
++		dev_err(&client->dev, "Failed to send power sequence(vendor cmd enable)\n");
++		return ret;
++	}
++	udelay(10);
++
++	ret = zinitix_write_cmd(client, 0xc004);
++	if (ret) {
++		dev_err(&client->dev, "Failed to send power sequence(intn clear)\n");
++		return ret;
++	}
++	udelay(10);
++
++	ret = zinitix_write_u16(client, 0xc002, 0x0001);
++	if (ret) {
++		dev_err(&client->dev, "Failed to send power sequence(nvm init)\n");
++		return ret;
++	}
++	mdelay(2);
++
++	ret = zinitix_write_u16(client, 0xc001, 0x0001);
++	if (ret) {
++		dev_err(&client->dev, "Failed to send power sequence(program start)\n");
++		return ret;
++	}
++	msleep(FIRMWARE_ON_DELAY);	/* wait for checksum cal */
++
++	return 0;
++}
++
++static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
++{
++	struct bt541_ts_data *bt541 = (struct bt541_ts_data *)bt541_handler;
++	struct i2c_client *client = bt541->client;
++	int i;
++	int ret;
++	struct point_status point_status;
++	struct point_coord point_coord[MAX_SUPPORTED_FINGER_NUM] = {0};
++
++	memset(&point_status, 0, sizeof(struct point_status));
++
++	ret = zinitix_read_data(bt541->client, BT541_POINT_STATUS_REG,
++				(u8 *)&point_status, sizeof(struct point_status));
++	if (ret) {
++		dev_err(&client->dev, "%s: Failed to read point status\n", __func__);
++
++		zinitix_write_cmd(bt541->client, BT541_CLEAR_INT_STATUS_CMD);
++		return IRQ_HANDLED;
++	}
++
++	for (i = 0; i < MAX_SUPPORTED_FINGER_NUM; i++) {
++		if (!(le16_to_cpu(point_status.event_flag) & BIT(i)))
++			continue;
++
++		ret = zinitix_read_data(bt541->client, BT541_POINT_COORD_REG +
++					(i * sizeof(struct point_coord) / sizeof(u16)),
++					(u8 *)&point_coord[i], sizeof(struct point_coord));
++		if (ret) {
++			dev_err(&client->dev, "%s: Failed to read point info\n", __func__);
++
++			zinitix_write_cmd(bt541->client, BT541_CLEAR_INT_STATUS_CMD);
++			return IRQ_HANDLED;
++		}
++
++		if (!(point_coord[i].sub_status & SUB_BIT_EXIST))
++			continue;
++
++		input_mt_slot(bt541->input_dev, i);
++		input_mt_report_slot_state(bt541->input_dev, MT_TOOL_FINGER, true);
++		touchscreen_report_pos(bt541->input_dev, &bt541->prop,
++				       le16_to_cpu(point_coord[i].x),
++				       le16_to_cpu(point_coord[i].y), true);
++		input_report_abs(bt541->input_dev, ABS_MT_TOUCH_MAJOR, point_coord[i].width);
++		input_report_abs(bt541->input_dev, ABS_MT_WIDTH_MAJOR, point_coord[i].width);
++	}
++
++	zinitix_write_cmd(bt541->client, BT541_CLEAR_INT_STATUS_CMD);
++
++	input_mt_sync_frame(bt541->input_dev);
++	input_sync(bt541->input_dev);
++
++	return IRQ_HANDLED;
++}
++
++static int zinitix_init_input_dev(struct bt541_ts_data *bt541)
++{
++	int ret;
++
++	bt541->input_dev = devm_input_allocate_device(&bt541->client->dev);
++	if (!bt541->input_dev) {
++		dev_err(&bt541->client->dev, "Failed to allocate input device.");
++		return -ENOMEM;
++	}
++
++	bt541->input_dev->name = "Zinitix Capacitive TouchScreen";
++	bt541->input_dev->phys = "input/ts";
++	bt541->input_dev->id.bustype = BUS_I2C;
++
++	input_set_capability(bt541->input_dev, EV_ABS, ABS_MT_POSITION_X);
++	input_set_capability(bt541->input_dev, EV_ABS, ABS_MT_POSITION_Y);
++	input_set_abs_params(bt541->input_dev, ABS_MT_WIDTH_MAJOR, 0, 255, 0, 0);
++	input_set_abs_params(bt541->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
++
++	touchscreen_parse_properties(bt541->input_dev, true, &bt541->prop);
++
++	if (!bt541->prop.max_x || !bt541->prop.max_y) {
++		dev_err(&bt541->client->dev, "touchscreen-size-x and/or touchscreen-size-y not set in dts\n");
++		return -EINVAL;
++	}
++
++	ret = input_mt_init_slots(bt541->input_dev, MAX_SUPPORTED_FINGER_NUM,
++				  INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
++	if (ret) {
++		dev_err(&bt541->client->dev,
++			"Failed to initialize MT slots: %d", ret);
++		return ret;
++	}
++
++	ret = input_register_device(bt541->input_dev);
++	if (ret) {
++		dev_err(&bt541->client->dev,
++			"Failed to register input device: %d", ret);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int zinitix_ts_probe(struct i2c_client *client, const struct i2c_device_id *id)
++{
++	struct bt541_ts_data *bt541;
++	int ret;
++
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
++		dev_err(&client->dev, "I2C check functionality failed.\n");
++		return -ENXIO;
++	}
++
++	bt541 = devm_kzalloc(&client->dev, sizeof(*bt541), GFP_KERNEL);
++	if (!bt541)
++		return -ENOMEM;
++
++	bt541->client = client;
++	i2c_set_clientdata(client, bt541);
++
++	ret = zinitix_init_regulators(bt541);
++	if (ret) {
++		dev_err(&client->dev, "regulator initialization failed: %d\n", ret);
++		return ret;
++	}
++
++	ret = regulator_bulk_enable(ARRAY_SIZE(bt541->supplies), bt541->supplies);
++	if (ret < 0) {
++		dev_err(&client->dev, "Failed to enable regulators: %d\n", ret);
++		return ret;
++	}
++
++	msleep(CHIP_ON_DELAY);
++
++	ret = zinitix_send_power_on_sequence(bt541);
++	if (ret) {
++		dev_err(&client->dev, "sending power-on sequence failed: %d\n", ret);
++		return ret;
++	}
++
++	ret = zinitix_init_input_dev(bt541);
++	if (ret) {
++		dev_err(&client->dev, "input dev initialization failed: %d\n", ret);
++		return ret;
++	}
++
++	ret = zinitix_init_touch(bt541);
++	if (ret) {
++		dev_err(&client->dev, "Failed to init touchscreen ic\n");
++		return ret;
++	}
++
++	ret = devm_request_threaded_irq(&bt541->client->dev, bt541->client->irq,
++					NULL, zinitix_ts_irq_handler,
++					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
++					bt541->client->name, bt541);
++	if (ret) {
++		dev_err(&client->dev, "request IRQ failed: %d\n", ret);
++		return ret;
++	}
++
++	dev_info(&client->dev, "initialized a zinitix touchscreen\n");
++
++	return 0;
++}
++
++static int zinitix_ts_remove(struct i2c_client *client)
++{
++	struct bt541_ts_data *bt541 = i2c_get_clientdata(client);
++
++	regulator_bulk_disable(ARRAY_SIZE(bt541->supplies), bt541->supplies);
++
++	return 0;
++}
++
++#ifdef CONFIG_OF
++static const struct of_device_id zinitix_of_match[] = {
++	{ .compatible = "zinitix,bt541" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, zinitix_of_match);
++#endif
++
++static struct i2c_driver zinitix_ts_driver = {
++	.probe = zinitix_ts_probe,
++	.remove = zinitix_ts_remove,
++	.driver = {
++		.name = "Zinitix-TS",
++		.of_match_table = of_match_ptr(zinitix_of_match),
++	},
++};
++module_i2c_driver(zinitix_ts_driver);
++
++MODULE_AUTHOR("Michael Srba <Michael.Srba@seznam.cz>");
++MODULE_DESCRIPTION("Zinitix touchscreen driver");
++MODULE_LICENSE("GPL v2");
 -- 
-2.21.0
+2.23.0
 
