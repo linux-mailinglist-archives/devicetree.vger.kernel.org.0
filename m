@@ -2,56 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ABFD5814
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 22:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9415D585F
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 23:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729012AbfJMUZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Oct 2019 16:25:37 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:50178 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728902AbfJMUZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 13 Oct 2019 16:25:37 -0400
-Received: from i59f7e23a.versanet.de ([89.247.226.58] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iJkQY-0004d0-4f; Sun, 13 Oct 2019 22:25:18 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1729374AbfJMVtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Oct 2019 17:49:42 -0400
+Received: from 2.mo173.mail-out.ovh.net ([178.33.251.49]:39252 "EHLO
+        2.mo173.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728982AbfJMVtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Oct 2019 17:49:42 -0400
+X-Greylist: delayed 579 seconds by postgrey-1.27 at vger.kernel.org; Sun, 13 Oct 2019 17:49:42 EDT
+Received: from player793.ha.ovh.net (unknown [10.109.160.12])
+        by mo173.mail-out.ovh.net (Postfix) with ESMTP id 30CE511AE13
+        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2019 23:40:02 +0200 (CEST)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+        (Authenticated sender: andi@etezian.org)
+        by player793.ha.ovh.net (Postfix) with ESMTPSA id E1807AE3A080;
+        Sun, 13 Oct 2019 21:39:51 +0000 (UTC)
+Date:   Mon, 14 Oct 2019 00:39:50 +0300
+From:   Andi Shyti <andi@etezian.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Andi Shyti <andi@etezian.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Simon Shields <simon@lineageos.org>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
-Date:   Sun, 13 Oct 2019 22:25:06 +0200
-Message-ID: <10075567.55hLz0bBqu@phil>
-In-Reply-To: <20191010194351.17940-4-ezequiel@collabora.com>
-References: <20191010194351.17940-1-ezequiel@collabora.com> <20191010194351.17940-4-ezequiel@collabora.com>
+Subject: Re: [PATCH 3/3] Input: mms114 - add support for mms345l
+Message-ID: <20191013213950.GB16344@jack.zhora.eu>
+References: <20191007203343.101466-1-stephan@gerhold.net>
+ <20191007205021.104402-1-stephan@gerhold.net>
+ <20191008220014.GI22365@dtor-ws>
+ <20191009072612.GA2814@jack.zhora.eu>
+ <20191009204017.GK22365@dtor-ws>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191009204017.GK22365@dtor-ws>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Ovh-Tracer-Id: 11074914435028337306
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrjedtgddtudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 10. Oktober 2019, 21:43:51 CEST schrieb Ezequiel Garcia:
-> RK3288 SoC VOPs have optional support Gamma LUT setting,
-> which requires specifying the Gamma LUT address in the devicetree.
+Hi Dmitry,
+
+> > > > There was a related patch [2] that removes I2C_M_NOSTART for all models,
+> > > > but it seems abandoned and I do not have any other model for testing.
+> > > > Therefore, this patch implements the least instrusive solution
+> > > > and only removes I2C_M_NOSTART for MMS345L.
+> > > 
+> > > Hmm,  at this point I am inclined to pick up Andi's patch since it seems
+> > > to work for you and him and it looks like Android drivers are not using
+> > > I2C_M_NOSTART. I wonder if this was some quirk/big on the platform where
+> > > it was originally developed.
+> > 
+> > I completely forgot about that patch :)
+> > 
+> > I should refresh some old work on that device which was left
+> > undone.
+> > 
+> > > Any objections?
+> > 
+> > It's OK for me. If you can just update my e-mail, please, when
+> > applying the patch to "andi@etezian.org". Thanks!
 > 
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Andi, any chance you could resend it with the new email? One thing that
+> I try to avoid modifying whenever I can is S-O-B strings...
 
-applied for 5.5
+sure, I will resend the patches, but it might take some time (a
+few days I hope) because I don't have the devices with me right
+now for testing (and I added some small fixes, as well)
 
-Thanks
-Heiko
-
-
+Thanks,
+Andi
