@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1A49D52F5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2019 23:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59C8BD553D
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 10:08:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727939AbfJLVvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Oct 2019 17:51:52 -0400
-Received: from [206.81.8.171] ([206.81.8.171]:53234 "EHLO varon.localdomain"
-        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727262AbfJLVvv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Oct 2019 17:51:51 -0400
-X-Greylist: delayed 99825 seconds by postgrey-1.27 at vger.kernel.org; Sat, 12 Oct 2019 17:51:51 EDT
-Received: from 127.0.0.1 (varon [127.0.0.1])
-        by varon.localdomain (Postfix) with SMTP id 18D12555B26;
-        Fri, 11 Oct 2019 10:20:36 +0000 (UTC)
-Received: from [130.51.84.26] by 127.0.0.1 id <5196171-12137>; Fri, 11 Oct 2019 10:19:41 +0000
-Message-ID: <5$-p2$v9m4$--l0tj-4$8@4jn62.56.s4w>
-From:   "Mr Barrister Hans Erich" <dave@dbsoundfactory.com>
-Reply-To: "Mr Barrister Hans Erich" <dave@dbsoundfactory.com>
-To:     detlef.preiss@db.com
-Subject: RE:PERSONAL LETTER FROM MRS RASHIA AMIRA ??
-Date:   Fri, 11 Oct 19 10:19:41 GMT
-X-Mailer: Microsoft Outlook Express 5.00.2919.6700
+        id S1728855AbfJMIIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Oct 2019 04:08:12 -0400
+Received: from onstation.org ([52.200.56.107]:42484 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728789AbfJMIIM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 13 Oct 2019 04:08:12 -0400
+Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id EF29B3E993;
+        Sun, 13 Oct 2019 08:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1570954091;
+        bh=Q1QTREatWmcWuGTDA0ElcXg0wWej7VbC08GBo5YXAHQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZaGF8T4vpKrrGUrNyeA8jhpMrE8Jac/Mznd1mgq/5iu9E93q4+or9qbCUNg56fQTH
+         LRsBjEtggJ8LKP6wF9jx/lcfICTAs2vtlxecgO/pEC+YJhv7uqqWKraVITbUxduWVU
+         1aG3MQBpcKIWHJlxMLOAgoXlcTDN4L1v71+Pn24s=
+From:   Brian Masney <masneyb@onstation.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] ARM: qcom: add defconfig items and dts nodes
+Date:   Sun, 13 Oct 2019 04:07:59 -0400
+Message-Id: <20191013080804.10231-1-masneyb@onstation.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-        boundary="C.F387.BA..3D"
-X-Priority: 3
-X-MSMail-Priority: Normal
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Here's a small patch series that adds support for the On Chip MEMory
+(OCMEM) and msm8974 interconnect support to qcom_defconfig and to
+qcom-msm8974.dtsi. The OCMEM driver is already in linux-next and it
+looks like the interconnect support should be merged soon:
+https://lore.kernel.org/lkml/20191005114605.5279-1-masneyb@onstation.org/
 
---C.F387.BA..3D
-Content-Type: text/plain;
-Content-Transfer-Encoding: quoted-printable
+I have some work in progress patches for the HDMI bridge that's found
+on the Nexus 5 and this series adds the necessary driver to
+qcom_defconfig.
 
-Greetings
+Brian Masney (5):
+  ARM: qcom_defconfig: add ocmem support
+  ARM: qcom_defconfig: add msm8974 interconnect support
+  ARM: qcom_defconfig: add anx78xx HDMI bridge support
+  ARM: dts: qcom: msm8974: add ocmem node
+  ARM: dts: qcom: msm8974: add interconnect nodes
 
-My name is Barrister Hans Erich.
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 79 +++++++++++++++++++++++++++++
+ arch/arm/configs/qcom_defconfig     |  5 ++
+ 2 files changed, 84 insertions(+)
 
-I have a client who is interested to invest in your country, she is a well=
- known politician in her country and deserve a lucrative investment partne=
-rship with you outside her country without any delay   Please can you mana=
-ge such investment please Kindly reply for further details.
-
-Your full nameS -----------
-
-
-Your urgent response will be appreciated
-
-Thank you and God bless you.
-
-Barrister Hans Erich
-
-Yours sincerely,
-Barrister Hans Erich
-
---C.F387.BA..3D--
+-- 
+2.21.0
 
