@@ -2,61 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 076DDD5727
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 19:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6ACCD573E
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 20:16:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727141AbfJMRuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Oct 2019 13:50:46 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:50907 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727382AbfJMRup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Oct 2019 13:50:45 -0400
-Received: by mail-wm1-f66.google.com with SMTP id 5so14906815wmg.0
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2019 10:50:41 -0700 (PDT)
+        id S1728592AbfJMSQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Oct 2019 14:16:26 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:51902 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728408AbfJMSQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Oct 2019 14:16:26 -0400
+Received: by mail-wm1-f67.google.com with SMTP id 7so14933427wme.1
+        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2019 11:16:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=LjWHEui5KbMjdWxLyYsLgc3yhdD3VXZGVXxTC/Ih0U4=;
-        b=iSuSA1gc1SU8KL7lfb1eeD+SlDU1JynjCe4wE5VkhiKN3VRqgm2rAmf22nBhnixGXk
-         tCivWps1xt6oB/6DuPdBcarpXOsFNBiGoxTy4Q5tWf7vR/3NEGw10RPTeCSL/HcE1j+7
-         lMhFfIkICh7JbI5WTn07QxgKD3dX+QHGkycoJMRk5VS0pVRkDGPWyvqUzCx3Q4hs4klO
-         yvp3dYuWrIMI20wU5ALeJPEnpKm1RgI9HGok7etdyOSi2jxu4l7btQ5FbrjjjfEMDbBf
-         JE/XsM8TzOHv+iQAwaRrTf/weaxgaLyXRniBrT2eF1EmmqKPdeJiETjS0dELVQzV5h08
-         izpA==
+        bh=3du7zrJPYa9bai5KTbjsGUEscrMzjFvnMUx5E9QNbfM=;
+        b=vZcO/7F0OzBhtKsHmZsLzSWgPv52Z2kVhjyuefuF63UhcZnc+qTXNaENBCFK2IH9/i
+         h9u0ZMEF0okbxMzInJOgKMPlLl26KEXoyfEWbiPuLPy6+VCPMXkG/zBzpGtc9/8HK7zc
+         8KDZnDIGFT96BfdFBdZ57JcVkokj220wAA/eOPw0Au5Ix59dl3cTS1MQHzAnpM6GB189
+         YnSiIPuTtuLJubR39l0YlkVz9Vu3CjCzd/PunyEVi2IzM6Mv+dKhBjjnkyt9KXBdR6RU
+         hHDHgCabwSr4lkm1y8DxfxQJoRUmzBpi3//oike2Xrv14qoJs4sn5gRHGCQlLRPZY1kY
+         A70w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=LjWHEui5KbMjdWxLyYsLgc3yhdD3VXZGVXxTC/Ih0U4=;
-        b=Uvm7HUWzyGcNmSfDBSKp1UUsbF2KrgbRtjzyV9ydYCuOWzLTTjdOllh6c7Mr24Wn3v
-         8IMysvXJ+Hj3mUwDqyqvtPPcMXRI46EVmmxv5eTEG9i/IYUy5jk2xGsOw3vGEa59pA04
-         nRWhvx+jAOlOJLmfZ62Cx8t0wuC3QAmGU6ZiId7V1oCrRrI+WkbBtbAI2cah7jbVcoX7
-         knNvn+wzHWXo9+RnEv2pEWMeWuBMpkgldGngixUN5FOrnPeM3XaQkHmveEmBXd283csp
-         TOyQeCRDosrYrduOudFTTLO2abjMNOGW9F0Ltt76hUhjG4KMjFJQPdhcZtwZA37UTuW2
-         nrrw==
-X-Gm-Message-State: APjAAAXSTh4KCjS/XdcN/G2NEKZWeksrTW67lSTfUEuIDK42AgQ4RZqk
-        b5h9lcKzqFnbFodDhSbmdZXrCA==
-X-Google-Smtp-Source: APXvYqz0G37ngn7Y5rYMqx6MdOgxYAedIFsMCqhaubvx9ap4msB33S1j+JdOB/1hWVRMU8EstVrrFw==
-X-Received: by 2002:a1c:106:: with SMTP id 6mr11138661wmb.134.1570989040354;
-        Sun, 13 Oct 2019 10:50:40 -0700 (PDT)
+        bh=3du7zrJPYa9bai5KTbjsGUEscrMzjFvnMUx5E9QNbfM=;
+        b=qYR1v7PbPMAtTIXV/n8Dj+RfSk9kbIMEEk/fxJC2aMVm8SuJRu3QePbVUEWCyV3fr7
+         n0N2daxe2quL8EaylAS2GN8OHeZR4LTKzSXww1Aai8wSoUuyWTH64vIonRPyJH03J8dj
+         rIu7FGtOprRhP+JupUzq5XyCjBrylknuc+PC19P+s7Q9LKQKsvU3jN+8pGqjL5mUQCNV
+         fw/SgYeanBM+y4boitNWqJ3Bc4PecOnnt/4QQWofib1nCbjC5n8qb0bls0vhtJ/n4Dci
+         yUV91TUO3u00bCHFem6OAYy8ZFPRD7mpYWAskQYH+nrkNv5Zx/m86W4PPyLa/HnNsHyW
+         v+PA==
+X-Gm-Message-State: APjAAAUWv7/xaetuWISiFJjpFOBWB7NLYydzkqxU6c8SAPvXF/DtgFUj
+        lGeCKMBXPrf7YY1jvS9yuc1OPQ==
+X-Google-Smtp-Source: APXvYqyuLHKT3GuUWvYb05VhAc9jt26Lra2TQXrvFA5Ov9ho97G1yd7XcmA7KEwV9anT/2Fwmr+vyg==
+X-Received: by 2002:a1c:1d41:: with SMTP id d62mr12564188wmd.143.1570990582288;
+        Sun, 13 Oct 2019 11:16:22 -0700 (PDT)
 Received: from ?IPv6:2a01:e34:ed2f:f020:70b8:791d:9c4e:9b63? ([2a01:e34:ed2f:f020:70b8:791d:9c4e:9b63])
-        by smtp.googlemail.com with ESMTPSA id f83sm25864246wmf.43.2019.10.13.10.50.38
+        by smtp.googlemail.com with ESMTPSA id y186sm32284556wmd.26.2019.10.13.11.16.11
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 13 Oct 2019 10:50:39 -0700 (PDT)
-Subject: Re: [RESEND PATCH] thermal: mediatek: add suspend/resume callback
-To:     michael.kao@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Louis Yu <louis.yu@mediatek.com>
-References: <1570613704-16609-1-git-send-email-michael.kao@mediatek.com>
+        Sun, 13 Oct 2019 11:16:21 -0700 (PDT)
+Subject: Re: [PATCH 0/7] add support for clocksource/clockevent DT selection
+To:     Claudiu.Beznea@microchip.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux@armlinux.org.uk, nsekhar@ti.com,
+        bgolaszewski@baylibre.com, monstr@monstr.eu, john@phrozen.org,
+        ralf@linux-mips.org, paul.burton@mips.com, jhogan@kernel.org,
+        lftan@altera.com, tglx@linutronix.de, vgupta@synopsys.com,
+        marc.zyngier@arm.com, patrice.chotard@st.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        eric@anholt.net, wahrenst@gmx.net, f.fainelli@gmail.com,
+        rjui@broadcom.com, sbranden@broadcom.com,
+        bcm-kernel-feedback-list@broadcom.com, linus.walleij@linaro.org,
+        shc_work@mail.ru, kgene@kernel.org, krzk@kernel.org,
+        ysato@users.sourceforge.jp, liviu.dudau@arm.com,
+        sudeep.holla@arm.com, lorenzo.pieralisi@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, baohua@kernel.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        Ludovic.Desroches@microchip.com, baruch@tkos.co.il,
+        u.kleine-koenig@pengutronix.de, guoren@kernel.org,
+        kaloz@openwrt.org, khalasa@piap.pl, ssantosh@kernel.org,
+        vz@mleia.com, slemieux.tyco@gmail.com, khilman@baylibre.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        afaerber@suse.de, manivannan.sadhasivam@linaro.org,
+        narmstrong@baylibre.com, agross@kernel.org, palmer@sifive.com,
+        aou@eecs.berkeley.edu, heiko@sntech.de, orsonzhai@gmail.com,
+        baolin.wang@linaro.org, zhang.lyra@gmail.com,
+        maxime.ripard@bootlin.com, wens@csie.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux@prisktech.co.nz,
+        john.stultz@linaro.org, sboyd@kernel.org, matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        nios2-dev@lists.rocketboards.org,
+        linux-snps-arc@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        uclinux-h8-devel@lists.sourceforge.jp,
+        linux-amlogic@lists.infradead.org, openbmc@lists.ozlabs.org,
+        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
+        linux-unisoc@lists.infradead.org, linux-riscv@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+ <c3a68a08-d134-cd28-c8af-f757628e07f1@linaro.org>
+ <72edc5fd-df05-cba5-5aa7-39da1709415b@microchip.com>
+ <620a19d5-73b8-709d-9eec-49274ac23e51@microchip.com>
+ <187d7020-fbe9-7984-2358-8a70faef019f@microchip.com>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
 Openpgp: preference=signencrypt
 Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
@@ -147,12 +184,12 @@ Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
  y0s5uI05ZSXhqFs9iLlh3zNU1i6J1cdzA8BReoa3cKz4UiGKEffT857iMvT/ZmgSdYY57EgV
  UWm57SN2ok2Ii8AXlanH5SJPkbwJZhiB7kO0cjebmoA/1SA+5yTc3zEKKFuxcpfiXxt0d/OJ
  om6jCJ5/uKB5Cz9bJj0WdlvS2Xb11Jrs90MoVa74H5me4jOw7m9Yyg3qExOFOXUPFL6N
-Message-ID: <a0af0b72-dbc3-f284-34b7-fc94bbe349a4@linaro.org>
-Date:   Sun, 13 Oct 2019 19:50:37 +0200
+Message-ID: <14df6e5d-19ef-4ebc-fd11-9953bc3fc44e@linaro.org>
+Date:   Sun, 13 Oct 2019 20:16:10 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1570613704-16609-1-git-send-email-michael.kao@mediatek.com>
+In-Reply-To: <187d7020-fbe9-7984-2358-8a70faef019f@microchip.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -161,23 +198,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/10/2019 11:35, michael.kao@mediatek.com wrote:
-> From: Louis Yu <louis.yu@mediatek.com>
-> 
-> Add suspend/resume callback to disable/enable Mediatek thermal sensor
-> respectively. Since thermal power domain is off in suspend, thermal driver
-> needs re-initialization during resume.
-> 
-> Signed-off-by: Louis Yu <louis.yu@mediatek.com>
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> ---
-> This patch series base on these patches [1][2].
-> 
-> [1]thermal: mediatek: mt8183: fix bank number settings (https://patchwork.kernel.org/patch/10938817/)
-> [2]thermal: mediatek: add another get_temp ops for thermal sensors (https://patchwork.kernel.org/patch/10938829/)
 
-There is no new version with the comments take into account. Did I miss
-something?
+Hi Claudiu,
+
+sorry for the delay, I was OoO again.
+
+On 03/10/2019 12:43, Claudiu.Beznea@microchip.com wrote:
+> 
+> 
+> On 02.10.2019 16:35, Claudiu Beznea wrote:
+>> Hi Daniel,
+>>
+>> Taking into account that Rob doesn't agree with the solution proposed in
+>> this series do you think there is a chance to merge this driver as is?
+> 
+> Sorry, I was talking here about the driver at [1].
+> 
+> [1] https://lore.kernel.org/lkml/1552580772-8499-1-git-send-email-claudiu.beznea@microchip.com/
+
+Damn! 7 months old. I'm truly sorry we do not have progress on this. Let
+fix this once and for all.
+
+In the driver:
+
+ret = of_property_read_u32(node, "clock-frequency", &freq);
+
+It is unclear how is used this property. It should be the frequency
+driving the timer, but can we get from a clk_get_rate() and a fixed divider?
 
 
 -- 
