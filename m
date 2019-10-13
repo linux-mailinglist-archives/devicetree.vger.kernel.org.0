@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B67ED5628
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 14:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA6C6D5654
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2019 15:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729193AbfJMMLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Oct 2019 08:11:17 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:41997 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729143AbfJMMLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Oct 2019 08:11:17 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 32CB38025E; Sun, 13 Oct 2019 14:10:59 +0200 (CEST)
-Date:   Sun, 13 Oct 2019 14:11:10 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Oleh Kravchenko <oleg@kaa.org.ua>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v9 1/2] dt-bindings: Add docs for EL15203000
-Message-ID: <20191013121110.GP5653@amd>
-References: <20190918105250.22855-1-oleg@kaa.org.ua>
- <20190918105250.22855-2-oleg@kaa.org.ua>
- <5219879e-84af-a98e-2fca-10684548d416@gmail.com>
- <2ac88d9d-afe6-9629-eb11-28dff59461eb@kaa.org.ua>
+        id S1729032AbfJMNFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Oct 2019 09:05:01 -0400
+Received: from mga18.intel.com ([134.134.136.126]:25489 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728478AbfJMNFA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 13 Oct 2019 09:05:00 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Oct 2019 06:05:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,292,1566889200"; 
+   d="scan'208";a="346492348"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 13 Oct 2019 06:04:56 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1iJdYN-000ApH-EF; Sun, 13 Oct 2019 21:04:55 +0800
+Date:   Sun, 13 Oct 2019 21:04:47 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Green Wan <green.wan@sifive.com>
+Cc:     kbuild-all@lists.01.org, linux-hackers@sifive.com,
+        Green Wan <green.wan@sifive.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] dmaengine: sf-pdma: add platform DMA support for
+ HiFive Unleashed A00
+Message-ID: <201910132151.A52iK7nK%lkp@intel.com>
+References: <20191003090945.29210-4-green.wan@sifive.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="gQt10JDuGyDb0HQ5"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2ac88d9d-afe6-9629-eb11-28dff59461eb@kaa.org.ua>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20191003090945.29210-4-green.wan@sifive.com>
+X-Patchwork-Hint: ignore
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Green,
 
---gQt10JDuGyDb0HQ5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch! Perhaps something to improve:
 
-Hi!
+[auto build test WARNING on linus/master]
+[cannot apply to v5.4-rc2 next-20191011]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-> > Regarding this ASCII art - I presume you wanted to follow
-> > Documentation/devicetree/bindings/leds/leds-trigger-pattern.txt.
-> >=20
-> > It was added to bindings because we support 'pattern' value
-> > for linux,default-trigger, which in turn looks for 'led-pattern'
-> > property, whose format needs to be documented in the LED bindings.
-> >=20
-> > leds-trigger-pattern.txt documents only common syntax for software
-> > pattern engine. Currently we don't have a means to setup hw_pattern
-> > for the pattern trigger from DT, which is obvious omission and your
-> > patch just brings it to light.
-> >=20
-> > That said, I propose to fix it alongside and introduce led-hw-pattern
-> > property. When present, ledtrig-pattern would setup the pattern
-> > using pattern_set op, similarly as if it was set via sysfs hw_pattern
-> > file.
-> >=20
-> > Only in this case placing the pattern depiction here would be justified.
-> > Otherwise, it would have to land in the ABI documentation.
->=20
-> You are okay, if I move it to Documentation/ABI/testing/sysfs-class-led-d=
-river-el15203000 ?
+url:    https://github.com/0day-ci/linux/commits/Green-Wan/dmaengine-sf-pdma-Add-platform-dma-driver/20191003-172343
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-rc1-43-g0ccb3b4-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
 
-I don't see if this got a reply. Yes,
-Documentation/ABI/testing/sysfs-class-led-driver-el15203000 sounds
-like a right place for the sysfs description.
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
 
-Best regards,
-								Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
 
---gQt10JDuGyDb0HQ5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+sparse warnings: (new ones prefixed by >>)
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+>> drivers/dma/sf-pdma/sf-pdma.c:100:6: sparse: sparse: symbol 'sf_pdma_disclaim_chan' was not declared. Should it be static?
+>> drivers/dma/sf-pdma/sf-pdma.c:107:32: sparse: sparse: symbol 'sf_pdma_prep_dma_memcpy' was not declared. Should it be static?
 
-iEYEARECAAYFAl2jFF4ACgkQMOfwapXb+vIaZQCgr6IJKemp2lsU7hH6fuadU6Lx
-/5kAoJAeFC1LOjO6ltqebBcz5OjB05RH
-=4791
------END PGP SIGNATURE-----
+Please review and possibly fold the followup patch.
 
---gQt10JDuGyDb0HQ5--
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
