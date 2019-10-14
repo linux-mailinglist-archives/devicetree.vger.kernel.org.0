@@ -2,157 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BFB5D6B0E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 23:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23C81D6B47
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 23:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732254AbfJNVGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 17:06:31 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:43881 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726304AbfJNVGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 17:06:31 -0400
-Received: by mail-ed1-f65.google.com with SMTP id r9so15984257edl.10;
-        Mon, 14 Oct 2019 14:06:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=x9ockYP1+BmQj621KtYqZs8B3/GWqAGczAzI5iUAWRw=;
-        b=OEO9wXFnCJwat3sRy/K8V5vm/cPyvPBdevw/VU7ygiCSQzFodpMz0uiBqeZ3v/Wnrz
-         egb+i1v75SC/vErryPQ6upIFeR8Wviucv2h05Yu2WoVQxrXtTD+pPd9s70F207XrC2em
-         DzXSxRMgfwwv3urvWsyE8Rhd3Am0LNbYf+mL8UDC6p9O0NoYTbBzcX2A2PGN4bBuMAsh
-         Y+q3BgdLUI0crxlFo0183TNmH0oFRfh9pYOKioMRNJ7t35hkF3FZmk8jMJrh5Mfg/lj/
-         EJ3cSdWcGPzVRAxCMpqsERUAmrwRbrex1FkTxQsdv/oaykbZ8NOr30S4Tp93trMXfx8U
-         KYLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=x9ockYP1+BmQj621KtYqZs8B3/GWqAGczAzI5iUAWRw=;
-        b=dvw0nhCTS6Lgm+OOsmdIHEwwuRmt2K5Jy6AE5+01W5qE1ZQVIPTFYB4nt39MzxyZ6h
-         KZEdaJ65UCivkgwnnndwNEd1ssNYkGdDu0cuxRd4gNK9f0Yn3IctpaaTGMuvllRsoDuH
-         rJL2snWU+U6wOK0qIdcnGJHManjpUmIxOl4Y7cB0ECan43TGaTz/UFxcs1AcTuit/odo
-         XI4jBlU29i/1zQxuBebsmlnHQX58rNXv8lYyCpTEJ4lp8YBnRv+X/lr3BOy2vUOzKrwG
-         dgfuqujiGWUdKHPAihLWQVrDU4vMiQjYwda7mYt2lG5wjWSPt+28xIYfEPzQ6GQcJcwl
-         6g/g==
-X-Gm-Message-State: APjAAAXmHo7AHcCvB3hjEhteGXJy026gv+w8ZJXuuY2kH/njrdF9l4hb
-        MLTFEcbbOJmK4QSFyu8m4wo=
-X-Google-Smtp-Source: APXvYqy0OUC8jXYlII8DhITV2pund1WqtG58pZL6x+LXKrLsB325rkU4DCULRlppkR3UWN6HWRqqCQ==
-X-Received: by 2002:aa7:d5d3:: with SMTP id d19mr29637012eds.213.1571087189200;
-        Mon, 14 Oct 2019 14:06:29 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id y29sm3366939edd.7.2019.10.14.14.06.28
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 14 Oct 2019 14:06:28 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: rockchip: remove some tabs and spaces from dtsi files
-Date:   Mon, 14 Oct 2019 23:06:19 +0200
-Message-Id: <20191014210619.12778-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191014174521.11611-1-jbx6244@gmail.com>
-References: <20191014174521.11611-1-jbx6244@gmail.com>
+        id S2388978AbfJNV1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 17:27:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33668 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731967AbfJNV0s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 17:26:48 -0400
+Received: from earth.universe (eth-west-pareq2-46-193-2-41.wb.wifirst.net [46.193.2.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B3DD220650;
+        Mon, 14 Oct 2019 21:26:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571088406;
+        bh=+lFIzC8nwcFgT0bS6CLGv5ajlQHk5Qi8YrW2qfw1KQU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aGW8350aqDpJ9vKAVgGscRQHllSKdI8koknozbpeArVMJJ8jASoXjaKidiRcPhlzt
+         FuXg0gpDqYU/RKfMta7y7JZq+j9OtrD+Oe+qZGeI+x3zCDmmUdHOu3cUhyr64QC1Eb
+         hQa9Ss1VV7XwCwTXdGLoFUXad893Ei+Ciu7iYJi4=
+Received: by earth.universe (Postfix, from userid 1000)
+        id 7579A3C0CA5; Mon, 14 Oct 2019 06:32:25 +0200 (CEST)
+Date:   Mon, 14 Oct 2019 06:32:25 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [PATCH 4/6] dt-bindings: power: max77650: convert the binding
+ document to yaml
+Message-ID: <20191014043225.ejpyccvo3jpkvz2r@earth.universe>
+References: <20190930130246.4860-1-brgl@bgdev.pl>
+ <20190930130246.4860-5-brgl@bgdev.pl>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lvytl443p4a5vq52"
+Content-Disposition: inline
+In-Reply-To: <20190930130246.4860-5-brgl@bgdev.pl>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup the Rockchip dtsi files a little bit
-by removing some tabs and spaces.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rk3036.dtsi           |  4 ++--
- arch/arm/boot/dts/rk3288-rock2-som.dtsi |  8 ++++----
- arch/arm/boot/dts/rk3288-tinker.dtsi    | 14 +++++---------
- 3 files changed, 11 insertions(+), 15 deletions(-)
+--lvytl443p4a5vq52
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index c776321b2..c70182c5a 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -696,8 +696,8 @@
- 
- 		hdmi {
- 			hdmi_ctl: hdmi-ctl {
--				rockchip,pins = <1 RK_PB0  1 &pcfg_pull_none>,
--						<1 RK_PB1  1 &pcfg_pull_none>,
-+				rockchip,pins = <1 RK_PB0 1 &pcfg_pull_none>,
-+						<1 RK_PB1 1 &pcfg_pull_none>,
- 						<1 RK_PB2 1 &pcfg_pull_none>,
- 						<1 RK_PB3 1 &pcfg_pull_none>;
- 			};
-diff --git a/arch/arm/boot/dts/rk3288-rock2-som.dtsi b/arch/arm/boot/dts/rk3288-rock2-som.dtsi
-index 9f9e2bfd1..44bb5e6f8 100644
---- a/arch/arm/boot/dts/rk3288-rock2-som.dtsi
-+++ b/arch/arm/boot/dts/rk3288-rock2-som.dtsi
-@@ -230,14 +230,14 @@
- 	};
- 
- 	emmc {
--			emmc_reset: emmc-reset {
--				rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
--			};
-+		emmc_reset: emmc-reset {
-+			rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- 
- 	gmac {
- 		phy_rst: phy-rst {
--			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO  &pcfg_output_high>;
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_output_high>;
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-index 81e4e953d..0aeef23ca 100644
---- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-@@ -382,18 +382,15 @@
- 
- 	pmic {
- 		pmic_int: pmic-int {
--			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO \
--					&pcfg_pull_up>;
-+			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 
- 		dvs_1: dvs-1 {
--			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO \
--					&pcfg_pull_down>;
-+			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
- 
- 		dvs_2: dvs-2 {
--			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO \
--					&pcfg_pull_down>;
-+			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
- 	};
- 
-@@ -406,8 +403,7 @@
- 		};
- 
- 		sdmmc_clk: sdmmc-clk {
--			rockchip,pins = <6 RK_PC4 1 \
--					&pcfg_pull_none_drv_8ma>;
-+			rockchip,pins = <6 RK_PC4 1 &pcfg_pull_none_drv_8ma>;
- 		};
- 
- 		sdmmc_cmd: sdmmc-cmd {
-@@ -432,7 +428,7 @@
- 	sdio {
- 		wifi_enable: wifi-enable {
- 			rockchip,pins = <4 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>,
--				<4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-+					<4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- };
--- 
-2.11.0
+Hi,
 
+On Mon, Sep 30, 2019 at 03:02:44PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+>=20
+> Convert the binding document for max77650 charger module to yaml.
+>=20
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> ---
+
+Assuming, that Rob will merge the series:
+
+Acked-by: Sebastian Reichel <sre@kernel.org>
+
+-- Sebastian
+
+>  .../power/supply/max77650-charger.txt         | 29 +------------
+>  .../power/supply/max77650-charger.yaml        | 42 +++++++++++++++++++
+>  2 files changed, 43 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/max776=
+50-charger.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/max77650-char=
+ger.txt b/Documentation/devicetree/bindings/power/supply/max77650-charger.t=
+xt
+> index e6d0fb6ff94e..fbab7d3ac8e3 100644
+> --- a/Documentation/devicetree/bindings/power/supply/max77650-charger.txt
+> +++ b/Documentation/devicetree/bindings/power/supply/max77650-charger.txt
+> @@ -1,28 +1 @@
+> -Battery charger driver for MAX77650 PMIC from Maxim Integrated.
+> -
+> -This module is part of the MAX77650 MFD device. For more details
+> -see Documentation/devicetree/bindings/mfd/max77650.txt.
+> -
+> -The charger is represented as a sub-node of the PMIC node on the device =
+tree.
+> -
+> -Required properties:
+> ---------------------
+> -- compatible:		Must be "maxim,max77650-charger"
+> -
+> -Optional properties:
+> ---------------------
+> -- input-voltage-min-microvolt:	Minimum CHGIN regulation voltage. Must be=
+ one
+> -				of: 4000000, 4100000, 4200000, 4300000,
+> -				4400000, 4500000, 4600000, 4700000.
+> -- input-current-limit-microamp:	CHGIN input current limit (in microamps)=
+=2E Must
+> -				be one of: 95000, 190000, 285000, 380000,
+> -				475000.
+> -
+> -Example:
+> ---------
+> -
+> -	charger {
+> -		compatible =3D "maxim,max77650-charger";
+> -		input-voltage-min-microvolt =3D <4200000>;
+> -		input-current-limit-microamp =3D <285000>;
+> -	};
+> +This file was moved to max77650-charger.yaml.
+> diff --git a/Documentation/devicetree/bindings/power/supply/max77650-char=
+ger.yaml b/Documentation/devicetree/bindings/power/supply/max77650-charger.=
+yaml
+> new file mode 100644
+> index 000000000000..9dd0dad0f948
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/max77650-charger.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/max77650-charger.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Battery charger driver for MAX77650 PMIC from Maxim Integrated.
+> +
+> +maintainers:
+> +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> +
+> +description: |
+> +  This module is part of the MAX77650 MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/max77650.txt.
+> +
+> +  The charger is represented as a sub-node of the PMIC node on the devic=
+e tree.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77650-charger
+> +
+> +  input-voltage-min-microvolt:
+> +    description:
+> +      Minimum CHGIN regulation voltage.
+> +    enum: [ 4000000, 4100000, 4200000, 4300000,
+> +            4400000, 4500000, 4600000, 4700000 ]
+> +
+> +  input-current-limit-microamp:
+> +    description:
+> +      CHGIN input current limit (in microamps).
+> +    enum: [ 95000, 190000, 285000, 380000, 475000 ]
+> +
+> +required:
+> +  - compatible
+> +
+> +examples:
+> +  - |
+> +    charger {
+> +        compatible =3D "maxim,max77650-charger";
+> +        input-voltage-min-microvolt =3D <4200000>;
+> +        input-current-limit-microamp =3D <285000>;
+> +    };
+> --=20
+> 2.23.0
+>=20
+
+--lvytl443p4a5vq52
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl2j+lkACgkQ2O7X88g7
++pomCA/7BKT68Dw2GbwGBoG4yadDJGw3mu+fWzAQF5R76k+9J5ic2r+Q/Gr1M3rZ
+zbwH0Isgl1RCAa/usmx1lDMG/CWPivdz4ofnr2sX1SLYNNz/fmtcrt3TtlyXwhxs
+3DR5eQQz9lOjcF5EVMptxaYNaoQtRV6Ptu7KFf5+graYuJ9U8Zvcb7P/gfzEKMTW
+tImGYv3ZqvQye1u5OaqgZrYgnULyB1Pibjz9FFTM6EjPomJP++9+T8MSLHV3wZEA
+bhy+e6cqIrEVfCy9f9t6a9y5PyvhuAVb59AKo3e6atYa4WwKObr47iCdI2GTcg+G
+5hLD80c3tS28T0LbKgtrHrOsA3V/0qY14tlWZvnrFpoDwKy5+hGTDVsXSXAE5whj
+hpyqYEQNWy8zYsZ+F73xGGqzGPWv/MoA4mBpvTLe9fuf+TN0M35p2nbycKReW4+a
+k0pnlPDfzwmfNiEmdl3UYJkMfLZk488ljkJe1tww0d4+LKQqtVb9w9bKVxxARVtg
+F3KXegzxNjnNNl584ucPZLZwGhJzNSJ9zwMbE6GDRJFCmH4MEkrWLnaTqesk9xLn
+3+M1A3PL9Cehdt0aAqU5bzFKYbPBLgk2b4UCxl1UL6nTLgM9KS8bd05zMMDYJJfs
++GS5YKf1vPTceX6j0kDzV/kmJTQhESPw00rZ3b4jwNpETP7GMkw=
+=MbIN
+-----END PGP SIGNATURE-----
+
+--lvytl443p4a5vq52--
