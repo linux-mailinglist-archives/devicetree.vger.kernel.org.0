@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB4FD5FF8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 12:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9BFFD5FF9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 12:21:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731393AbfJNKV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 06:21:26 -0400
-Received: from mail-qk1-f201.google.com ([209.85.222.201]:36939 "EHLO
-        mail-qk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731305AbfJNKV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 06:21:26 -0400
-Received: by mail-qk1-f201.google.com with SMTP id o133so16542121qke.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 03:21:24 -0700 (PDT)
+        id S1731307AbfJNKVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 06:21:31 -0400
+Received: from mail-pl1-f201.google.com ([209.85.214.201]:48606 "EHLO
+        mail-pl1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731305AbfJNKVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 06:21:31 -0400
+Received: by mail-pl1-f201.google.com with SMTP id g20so9817941plj.15
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 03:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=nmBXtRd1btomJP4ZZllwxH2lrIxzbkXaw1IqhxBhTF0=;
-        b=Yr85AqAvJWBmDneXiupilpQx+CJWMAHGLVwqp+9mtGkG+M+8SNjBKyvtglcJoJ+v4g
-         xAK5fQ93ys6lrzgSKpVVoidvYpfWsN5vzeNuQVI6TZIfFZbYT99RJLKfJykTh6mObtWu
-         ICF0JN7qO+cc3hjN3uo+uOZFXt6D8oETVFwQ+vDXOnaGaP+vQ8bbjmObSUNtBCGD38gX
-         AU4AQCWgKC/mIESbHX97LX+d3uUrLn7ftAnuArN+QxUoCu49efVRoPptcvjdvxXhDisL
-         S4ufTsVPvIVu1tF3qKoFwJx4ilgq566mgVkklcv6SzBV1J7B84KZpVkhj1hemtwRqLTc
-         a3gw==
+        bh=TGRk5VKUseteFNz9IdieAorUl/jPsDxLvDx05ItO45s=;
+        b=RV4T7j5Vhr3Wq6JOwSEbLmQu0HchKMynfCJCEr+FDn6XpVhhmE1Rg/gN5yRNqJn2w7
+         aE4LxnLOcuTgENXBnTIg4hcFJJ0nJelOaNVSyhLxRwFYy29nv5MW8+A3uS99NgCrDBFU
+         VCgut6JPOikiNwAHlEqvDg7LKmgS6NmpAN8/trcGwlzVb3HxQNHcGd+Zsg/lBSt17V3P
+         pxhNUx6HL/K/rME89Vd8toaZtZxiNcs9Ot6zr5n2t9pMZAj1cOWu8MdyFvw0IHnzIsOj
+         Dd6/j61yDQ1dmPh/IZpZORHst/Cx6sxLwOW7aUjBoVz1mUrLBlr+iSHOPh2K4EBH+XfK
+         CZbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=nmBXtRd1btomJP4ZZllwxH2lrIxzbkXaw1IqhxBhTF0=;
-        b=SNx+o36lame0tXas3JOzVa+ux0nSylhSkgBp/fviGDMoibWlhi2gMyDkhn5L5HTQfd
-         YM9z3R2/H1I3Rrf2Ta1JCVeG+MnCV/4eb82H5k15fmKn3hdh+at9af88pg61paen1+EY
-         UJjnmNYpOT3aGUGL6aTyMXxSIj+maJY00LfYjKj5gagJAbdgVpTtZSwWmwLvlDlTY4tE
-         f2dLuBKR8zPdQN/gvaPtYEnbBs3qXqlgCc3feC+gkBFR8H/vGB3wFCKwm58MKFQu9Ohl
-         T/u1WvwaGViyNZCje+uuQmd0mTEjgNUIX8bDkWMdphAx+Zc4zTmnaCW+Z/sv6m9AZ4xT
-         8nAg==
-X-Gm-Message-State: APjAAAVDYgkhET60dVqIA1IlEDAUZ+9htO+GrVZS1Gvo5ZZCUwL0Fiv4
-        FXETiigcEoyh1vo4eawPy1j8bAE7vh/+
-X-Google-Smtp-Source: APXvYqxCQxEF4WkRp3fE1f3Ve4rBD9HVpeROxjrJ3RzKYMNtIFWmpMLXZIcX7NU71OZRYFRGUS1onV06xzdL
-X-Received: by 2002:a05:620a:a8e:: with SMTP id v14mr29790321qkg.215.1571048483769;
- Mon, 14 Oct 2019 03:21:23 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 18:20:21 +0800
+        bh=TGRk5VKUseteFNz9IdieAorUl/jPsDxLvDx05ItO45s=;
+        b=B3IJcnmeCJp6v4fXRjQ8OqvK4Fzpf+OMyN61QgfsbUCbECOLHJL4bDGlIoXHVuhZU2
+         NZChcYVGlUjbLZ/axP3b6D9qo8xFU+Ef4ufVZGc8icjNbykj1Dy2aUjZ6TA52jPS4Nsv
+         m+WQ+gkOxC2EIT5Gkq7cnEbyPNp42r47qLvtr8/rO5RA+Oa1DoBbvtPHDoFxKIenxIQ/
+         FvvmCzrldGrL3YVrLZhHvVdn0FRNrSSg1e1SbKcLYaDEo3MvuY/p5oeUSpYNGIvxyoWq
+         I44vnSoYW/ntcT5/pL8Tq6V3mzPVSjiCeC0FjuoBFyGWiqXqpoTu3a7mW5G53HFCxxav
+         tt8A==
+X-Gm-Message-State: APjAAAXogt0Pst5kJlVsbI+2oduOOOnvylJ6MNzI3nZM6VI7KT808RWo
+        t+fXxc4mOHzTVFWD89UHg/ndQFloMrxb
+X-Google-Smtp-Source: APXvYqxdjXmfjzMWkkrpMbIh8ZFqL8/PJsfbzoiXUmNkbqu13cy9Ifq/KU8zgxnSlDAOLu9kmSKOl6ZNacoY
+X-Received: by 2002:a65:5b05:: with SMTP id y5mr32923119pgq.48.1571048488530;
+ Mon, 14 Oct 2019 03:21:28 -0700 (PDT)
+Date:   Mon, 14 Oct 2019 18:20:22 +0800
 In-Reply-To: <20191014102022.236013-1-tzungbi@google.com>
-Message-Id: <20191014180059.09.Iec97a3f137148cdf316056612590b3e0b302f5f3@changeid>
+Message-Id: <20191014180059.10.Ibf012d0cd8679d846213606dc5f426aea1ff590a@changeid>
 Mime-Version: 1.0
 References: <20191014102022.236013-1-tzungbi@google.com>
 X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
-Subject: [PATCH v3 09/10] ASoC: dt-bindings: mt8183: add ec-codec
+Subject: [PATCH v3 10/10] ASoC: mediatek: mt8183: support WoV
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     broonie@kernel.org
 Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
@@ -59,34 +59,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an optional property "ec-codec".  If specified, mt8183 could use the
-"wake on voice" feature offered by EC codec.
+Add DAI link and pin muxing for wake on voice.
 
 Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 ---
- .../bindings/sound/mt8183-mt6358-ts3a227-max98357.txt          | 3 +++
- 1 file changed, 3 insertions(+)
+ sound/soc/mediatek/Kconfig                    |  1 +
+ .../mt8183/mt8183-mt6358-ts3a227-max98357.c   | 70 ++++++++++++++++++-
+ 2 files changed, 68 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
-index 17ff3892f439..decaa013a07e 100644
---- a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
-+++ b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
-@@ -6,12 +6,15 @@ Required properties:
+diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
+index 111e44b64b38..8b29f3979899 100644
+--- a/sound/soc/mediatek/Kconfig
++++ b/sound/soc/mediatek/Kconfig
+@@ -125,6 +125,7 @@ config SND_SOC_MT8183_MT6358_TS3A227E_MAX98357A
+ 	select SND_SOC_MAX98357A
+ 	select SND_SOC_BT_SCO
+ 	select SND_SOC_TS3A227E
++	select SND_SOC_CROS_EC_CODEC
+ 	help
+ 	  This adds ASoC driver for Mediatek MT8183 boards
+ 	  with the MT6358 TS3A227E MAX98357A audio codec.
+diff --git a/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c b/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
+index bb9cdc0d6552..0555f7d73d05 100644
+--- a/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
++++ b/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
+@@ -19,11 +19,12 @@ enum PINCTRL_PIN_STATE {
+ 	PIN_STATE_DEFAULT = 0,
+ 	PIN_TDM_OUT_ON,
+ 	PIN_TDM_OUT_OFF,
++	PIN_WOV,
+ 	PIN_STATE_MAX
+ };
  
- Optional properties:
- - mediatek,headset-codec: the phandles of ts3a227 codecs
-+- mediatek,ec-codec: the phandle of EC codecs.
-+                     See google,cros-ec-codec.txt for more details.
+ static const char * const mt8183_pin_str[PIN_STATE_MAX] = {
+-	"default", "aud_tdm_out_on", "aud_tdm_out_off",
++	"default", "aud_tdm_out_on", "aud_tdm_out_off", "wov",
+ };
  
- Example:
+ struct mt8183_mt6358_ts3a227_max98357_priv {
+@@ -142,6 +143,11 @@ SND_SOC_DAILINK_DEFS(playback_hdmi,
+ 	DAILINK_COMP_ARRAY(COMP_DUMMY()),
+ 	DAILINK_COMP_ARRAY(COMP_EMPTY()));
  
- 	sound {
- 		compatible = "mediatek,mt8183_mt6358_ts3a227_max98357";
- 		mediatek,headset-codec = <&ts3a227>;
-+		mediatek,ec-codec = <&ec_codec>;
- 		mediatek,platform = <&afe>;
- 	};
++SND_SOC_DAILINK_DEFS(wake_on_voice,
++	DAILINK_COMP_ARRAY(COMP_DUMMY()),
++	DAILINK_COMP_ARRAY(COMP_DUMMY()),
++	DAILINK_COMP_ARRAY(COMP_EMPTY()));
++
+ /* BE */
+ SND_SOC_DAILINK_DEFS(primary_codec,
+ 	DAILINK_COMP_ARRAY(COMP_CPU("ADDA")),
+@@ -229,6 +235,41 @@ static struct snd_soc_ops mt8183_mt6358_tdm_ops = {
+ 	.shutdown = mt8183_mt6358_tdm_shutdown,
+ };
  
++static int
++mt8183_mt6358_ts3a227_max98357_wov_startup(
++	struct snd_pcm_substream *substream)
++{
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_card *card = rtd->card;
++	struct mt8183_mt6358_ts3a227_max98357_priv *priv =
++			snd_soc_card_get_drvdata(card);
++
++	return pinctrl_select_state(priv->pinctrl,
++				    priv->pin_states[PIN_WOV]);
++}
++
++static void
++mt8183_mt6358_ts3a227_max98357_wov_shutdown(
++	struct snd_pcm_substream *substream)
++{
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_card *card = rtd->card;
++	struct mt8183_mt6358_ts3a227_max98357_priv *priv =
++			snd_soc_card_get_drvdata(card);
++	int ret;
++
++	ret = pinctrl_select_state(priv->pinctrl,
++				   priv->pin_states[PIN_STATE_DEFAULT]);
++	if (ret)
++		dev_err(card->dev, "%s failed to select state %d\n",
++			__func__, ret);
++}
++
++static const struct snd_soc_ops mt8183_mt6358_ts3a227_max98357_wov_ops = {
++	.startup = mt8183_mt6358_ts3a227_max98357_wov_startup,
++	.shutdown = mt8183_mt6358_ts3a227_max98357_wov_shutdown,
++};
++
+ static struct snd_soc_dai_link
+ mt8183_mt6358_ts3a227_max98357_dai_links[] = {
+ 	/* FE */
+@@ -306,6 +347,15 @@ mt8183_mt6358_ts3a227_max98357_dai_links[] = {
+ 		.dpcm_playback = 1,
+ 		SND_SOC_DAILINK_REG(playback_hdmi),
+ 	},
++	{
++		.name = "Wake on Voice",
++		.stream_name = "Wake on Voice",
++		.ignore_suspend = 1,
++		.ignore = 1,
++		SND_SOC_DAILINK_REG(wake_on_voice),
++		.ops = &mt8183_mt6358_ts3a227_max98357_wov_ops,
++	},
++
+ 	/* BE */
+ 	{
+ 		.name = "Primary Codec",
+@@ -429,7 +479,7 @@ static int
+ mt8183_mt6358_ts3a227_max98357_dev_probe(struct platform_device *pdev)
+ {
+ 	struct snd_soc_card *card = &mt8183_mt6358_ts3a227_max98357_card;
+-	struct device_node *platform_node;
++	struct device_node *platform_node, *ec_codec;
+ 	struct snd_soc_dai_link *dai_link;
+ 	struct mt8183_mt6358_ts3a227_max98357_priv *priv;
+ 	int ret;
+@@ -444,10 +494,24 @@ mt8183_mt6358_ts3a227_max98357_dev_probe(struct platform_device *pdev)
+ 		return -EINVAL;
+ 	}
+ 
++	ec_codec = of_parse_phandle(pdev->dev.of_node, "mediatek,ec-codec", 0);
++
+ 	for_each_card_prelinks(card, i, dai_link) {
+ 		if (dai_link->platforms->name)
+ 			continue;
+-		dai_link->platforms->of_node = platform_node;
++
++		if (ec_codec && strcmp(dai_link->name, "Wake on Voice") == 0) {
++			dai_link->cpus[0].name = NULL;
++			dai_link->cpus[0].of_node = ec_codec;
++			dai_link->cpus[0].dai_name = NULL;
++			dai_link->codecs[0].name = NULL;
++			dai_link->codecs[0].of_node = ec_codec;
++			dai_link->codecs[0].dai_name = "Wake on Voice";
++			dai_link->platforms[0].of_node = ec_codec;
++			dai_link->ignore = 0;
++		} else {
++			dai_link->platforms->of_node = platform_node;
++		}
+ 	}
+ 
+ 	mt8183_mt6358_ts3a227_max98357_headset_dev.dlc.of_node =
 -- 
 2.23.0.700.g56cf767bdb-goog
 
