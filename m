@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3AA2D632E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 14:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E369D6357
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 15:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730331AbfJNM7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 08:59:08 -0400
-Received: from mail.kmu-office.ch ([178.209.48.109]:54866 "EHLO
+        id S1730896AbfJNNFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 09:05:38 -0400
+Received: from mail.kmu-office.ch ([178.209.48.109]:54954 "EHLO
         mail.kmu-office.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730102AbfJNM7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 08:59:08 -0400
+        with ESMTP id S1730386AbfJNNFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 09:05:38 -0400
 Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
-        by mail.kmu-office.ch (Postfix) with ESMTPSA id 5F42A5C0D8D;
-        Mon, 14 Oct 2019 14:59:05 +0200 (CEST)
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id B60D05C0D8D;
+        Mon, 14 Oct 2019 15:05:33 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-        t=1571057945;
+        t=1571058333;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=IrIk/+NuneeimSRaD+CUqurgwLLXMUHt9TmXZu2aqpA=;
-        b=Xv4aMsJ9afzK00Ld1FLFhDFzXUNX9iYwatA5qEdjd+uXiJ+2IJv8fm/mhS/0MqSvOEZPpp
-        CA8HQH5Ct1Gby0YK3hpwVfSxDkq7VbMJ609XS//x1ShVd4oDcy4EpZ1FceBBGhKlkP0uD3
-        n28S1auNMXzYIssL/sGaCXW1ba7sxYA=
+        bh=kZd7XBX9aEBfupYIDrL6C3iWlKimqPnjge24gYsrWBI=;
+        b=uVAmm5MtRkmGnn/nVge4cUF0Bxhk87yUE7hLXFeamzFbwksekZQzEtF3cA/sJlazPCZvf5
+        VPz+GHOO07OyUH2QabwXy3kNh89dZLTg2wr0gr9Fo+dNq1LcA2GIseN3PKWwS4avru2xlN
+        sO8B+7553/LeTLzD0gmnSIN+wsHJvYM=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Date:   Mon, 14 Oct 2019 14:59:05 +0200
+Date:   Mon, 14 Oct 2019 15:05:33 +0200
 From:   Stefan Agner <stefan@agner.ch>
 To:     Robert Chiras <robert.chiras@nxp.com>
 Cc:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
@@ -42,12 +42,12 @@ Cc:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
         NXP Linux Team <linux-imx@nxp.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 04/14] drm/mxsfb: Reset vital registers for a proper
- initialization
-In-Reply-To: <1567078215-31601-5-git-send-email-robert.chiras@nxp.com>
+Subject: Re: [PATCH v4 05/14] drm/mxsfb: Update register definitions using bit
+ manipulation defines
+In-Reply-To: <1567078215-31601-6-git-send-email-robert.chiras@nxp.com>
 References: <1567078215-31601-1-git-send-email-robert.chiras@nxp.com>
- <1567078215-31601-5-git-send-email-robert.chiras@nxp.com>
-Message-ID: <29759c86d92f5f59da16a2ae2438c649@agner.ch>
+ <1567078215-31601-6-git-send-email-robert.chiras@nxp.com>
+Message-ID: <d8f114db8b81ca5a6d78debaf946e4de@agner.ch>
 X-Sender: stefan@agner.ch
 User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
@@ -56,67 +56,195 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 2019-08-29 13:30, Robert Chiras wrote:
-> Some of the registers, like LCDC_CTRL, CTRL2_OUTSTANDING_REQS and
-> CTRL1_RECOVERY_ON_UNDERFLOW needs to be properly cleared/initialized
-> for a better start and stop routine.
-
-
-This patch uses CTRL2_OUTSTANDING_REQS which is only introduced in the
-next patch. This breaks bisectability.
-
---
-Stefan
-
+> Use BIT(x) and GEN_MASK(h, l) for better representation the inside of
+> various registers.
 > 
 > Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
 > Tested-by: Guido Günther <agx@sigxcpu.org>
 > ---
->  drivers/gpu/drm/mxsfb/mxsfb_crtc.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/gpu/drm/mxsfb/mxsfb_regs.h | 151 ++++++++++++++++++++++---------------
+>  1 file changed, 89 insertions(+), 62 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-> b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-> index b69ace8..5e44f57 100644
-> --- a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-> +++ b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
-> @@ -127,6 +127,10 @@ static void mxsfb_enable_controller(struct
-> mxsfb_drm_private *mxsfb)
->  		clk_prepare_enable(mxsfb->clk_disp_axi);
->  	clk_prepare_enable(mxsfb->clk);
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_regs.h
+> b/drivers/gpu/drm/mxsfb/mxsfb_regs.h
+> index 71426aa..9fcb1db 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_regs.h
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_regs.h
+> @@ -40,66 +40,93 @@
+>  #define LCDC_AS_BUF			0x220
+>  #define LCDC_AS_NEXT_BUF		0x230
 >  
-> +	if (mxsfb->devdata->ipversion >= 4)
-> +		writel(CTRL2_OUTSTANDING_REQS(REQ_16),
-> +		       mxsfb->base + LCDC_V4_CTRL2 + REG_SET);
+> -#define CTRL_SFTRST			(1 << 31)
+> -#define CTRL_CLKGATE			(1 << 30)
+> -#define CTRL_BYPASS_COUNT		(1 << 19)
+> -#define CTRL_VSYNC_MODE			(1 << 18)
+> -#define CTRL_DOTCLK_MODE		(1 << 17)
+> -#define CTRL_DATA_SELECT		(1 << 16)
+> -#define CTRL_SET_BUS_WIDTH(x)		(((x) & 0x3) << 10)
+> -#define CTRL_GET_BUS_WIDTH(x)		(((x) >> 10) & 0x3)
+> -#define CTRL_BUS_WIDTH_MASK		(0x3 << 10)
+> -#define CTRL_SET_WORD_LENGTH(x)		(((x) & 0x3) << 8)
+> -#define CTRL_GET_WORD_LENGTH(x)		(((x) >> 8) & 0x3)
+> -#define CTRL_MASTER			(1 << 5)
+> -#define CTRL_DF16			(1 << 3)
+> -#define CTRL_DF18			(1 << 2)
+> -#define CTRL_DF24			(1 << 1)
+> -#define CTRL_RUN			(1 << 0)
+> -
+> -#define CTRL1_RECOVERY_ON_UNDERFLOW	(1 << 24)
+> -#define CTRL1_FIFO_CLEAR		(1 << 21)
+> -#define CTRL1_SET_BYTE_PACKAGING(x)	(((x) & 0xf) << 16)
+> -#define CTRL1_GET_BYTE_PACKAGING(x)	(((x) >> 16) & 0xf)
+> -#define CTRL1_CUR_FRAME_DONE_IRQ_EN	(1 << 13)
+> -#define CTRL1_CUR_FRAME_DONE_IRQ	(1 << 9)
+> -
+> -#define CTRL2_OUTSTANDING_REQS__REQ_16		(4 << 21)
+> -
+
+This is introduced two patches earlier just to be removed here. I
+suggest to reorder this patch in front of "drm/mxsfb: Add defines for
+the rest of registers", basically convert first to using BIT/GENMASK
+etc, and then introduce the new request.
+
+
+> -#define TRANSFER_COUNT_SET_VCOUNT(x)	(((x) & 0xffff) << 16)
+> -#define TRANSFER_COUNT_GET_VCOUNT(x)	(((x) >> 16) & 0xffff)
+> -#define TRANSFER_COUNT_SET_HCOUNT(x)	((x) & 0xffff)
+> -#define TRANSFER_COUNT_GET_HCOUNT(x)	((x) & 0xffff)
+> -
+> -#define VDCTRL0_ENABLE_PRESENT		(1 << 28)
+> -#define VDCTRL0_VSYNC_ACT_HIGH		(1 << 27)
+> -#define VDCTRL0_HSYNC_ACT_HIGH		(1 << 26)
+> -#define VDCTRL0_DOTCLK_ACT_FALLING	(1 << 25)
+> -#define VDCTRL0_ENABLE_ACT_HIGH		(1 << 24)
+> -#define VDCTRL0_VSYNC_PERIOD_UNIT	(1 << 21)
+> -#define VDCTRL0_VSYNC_PULSE_WIDTH_UNIT	(1 << 20)
+> -#define VDCTRL0_HALF_LINE		(1 << 19)
+> -#define VDCTRL0_HALF_LINE_MODE		(1 << 18)
+> -#define VDCTRL0_SET_VSYNC_PULSE_WIDTH(x) ((x) & 0x3ffff)
+> -#define VDCTRL0_GET_VSYNC_PULSE_WIDTH(x) ((x) & 0x3ffff)
+> -
+> -#define VDCTRL2_SET_HSYNC_PERIOD(x)	((x) & 0x3ffff)
+> -#define VDCTRL2_GET_HSYNC_PERIOD(x)	((x) & 0x3ffff)
+> -
+> -#define VDCTRL3_MUX_SYNC_SIGNALS	(1 << 29)
+> -#define VDCTRL3_VSYNC_ONLY		(1 << 28)
+> -#define SET_HOR_WAIT_CNT(x)		(((x) & 0xfff) << 16)
+> -#define GET_HOR_WAIT_CNT(x)		(((x) >> 16) & 0xfff)
+> -#define SET_VERT_WAIT_CNT(x)		((x) & 0xffff)
+> -#define GET_VERT_WAIT_CNT(x)		((x) & 0xffff)
+> -
+> -#define VDCTRL4_SET_DOTCLK_DLY(x)	(((x) & 0x7) << 29) /* v4 only */
+> -#define VDCTRL4_GET_DOTCLK_DLY(x)	(((x) >> 29) & 0x7) /* v4 only */
+> -#define VDCTRL4_SYNC_SIGNALS_ON		(1 << 18)
+> -#define SET_DOTCLK_H_VALID_DATA_CNT(x)	((x) & 0x3ffff)
+> -
+> -#define DEBUG0_HSYNC			(1 < 26)
+> -#define DEBUG0_VSYNC			(1 < 25)
+> +/* reg bit manipulation */
+> +#define REG_PUT(x, h, l) (((x) << (l)) & GENMASK(h, l))
+> +#define REG_GET(x, h, l) (((x) & GENMASK(h, l)) >> (l))
 > +
->  	/* If it was disabled, re-enable the mode again */
->  	writel(CTRL_DOTCLK_MODE, mxsfb->base + LCDC_CTRL + REG_SET);
->  
-> @@ -136,12 +140,19 @@ static void mxsfb_enable_controller(struct
-> mxsfb_drm_private *mxsfb)
->  	writel(reg, mxsfb->base + LCDC_VDCTRL4);
->  
->  	writel(CTRL_RUN, mxsfb->base + LCDC_CTRL + REG_SET);
-> +	writel(CTRL1_RECOVERY_ON_UNDERFLOW, mxsfb->base + LCDC_CTRL1 + REG_SET);
->  }
->  
->  static void mxsfb_disable_controller(struct mxsfb_drm_private *mxsfb)
->  {
->  	u32 reg;
->  
-> +	if (mxsfb->devdata->ipversion >= 4)
-> +		writel(CTRL2_OUTSTANDING_REQS(0x7),
-> +		       mxsfb->base + LCDC_V4_CTRL2 + REG_CLR);
+> +#define CTRL_SFTRST			BIT(31)
+> +#define CTRL_CLKGATE			BIT(30)
+> +#define CTRL_SHIFT_DIR(x)		REG_PUT((x), 26, 26)
+> +#define CTRL_SHIFT_NUM(x)		REG_PUT((x), 25, 21)
+> +#define CTRL_BYPASS_COUNT		BIT(19)
+> +#define CTRL_VSYNC_MODE			BIT(18)
+> +#define CTRL_DOTCLK_MODE		BIT(17)
+> +#define CTRL_DATA_SELECT		BIT(16)
+> +#define CTRL_INPUT_SWIZZLE(x)		REG_PUT((x), 15, 14)
+> +#define CTRL_CSC_SWIZZLE(x)		REG_PUT((x), 13, 12)
+> +#define CTRL_SET_BUS_WIDTH(x)		REG_PUT((x), 11, 10)
+> +#define CTRL_GET_BUS_WIDTH(x)		REG_GET((x), 11, 10)
+> +#define CTRL_BUS_WIDTH_MASK		REG_PUT((0x3), 11, 10)
+> +#define CTRL_SET_WORD_LENGTH(x)		REG_PUT((x), 9, 8)
+> +#define CTRL_GET_WORD_LENGTH(x)		REG_GET((x), 9, 8)
+> +#define CTRL_MASTER			BIT(5)
+> +#define CTRL_DF16			BIT(3)
+> +#define CTRL_DF18			BIT(2)
+> +#define CTRL_DF24			BIT(1)
+> +#define CTRL_RUN			BIT(0)
 > +
-> +	writel(CTRL_RUN, mxsfb->base + LCDC_CTRL + REG_CLR);
+> +#define CTRL1_RECOVERY_ON_UNDERFLOW	BIT(24)
+> +#define CTRL1_FIFO_CLEAR		BIT(21)
 > +
->  	/*
->  	 * Even if we disable the controller here, it will still continue
->  	 * until its FIFOs are running out of data
-> @@ -295,6 +306,7 @@ void mxsfb_crtc_enable(struct mxsfb_drm_private *mxsfb)
->  	dma_addr_t paddr;
+> +/*
+> + * BYTE_PACKAGING
+> + *
+> + * This bitfield is used to show which data bytes in a 32-bit word area valid.
+> + * Default value 0xf indicates that all bytes are valid. For 8-bit transfers,
+> + * any combination in this bitfield will mean valid data is present in the
+> + * corresponding bytes. In the 16-bit mode, a 16-bit half-word is valid only if
+> + * adjacent bits [1:0] or [3:2] or both are 1. A value of 0x0 will mean that
+> + * none of the bytes are valid and should not be used. For example, set the bit
+> + * field value to 0x7 if the display data is arranged in the 24-bit unpacked
+> + * format (A-R-G-B where A value does not have be transmitted).
+> + */
+> +#define CTRL1_SET_BYTE_PACKAGING(x)	REG_PUT((x), 19, 16)
+> +#define CTRL1_GET_BYTE_PACKAGING(x)	REG_GET((x), 19, 16)
+> +
+> +#define CTRL1_CUR_FRAME_DONE_IRQ_EN	BIT(13)
+> +#define CTRL1_CUR_FRAME_DONE_IRQ	BIT(9)
+> +
+> +#define CTRL2_OUTSTANDING_REQS(x)	REG_PUT((x), 23, 21)
+> +#define REQ_1	0
+> +#define REQ_2	1
+> +#define REQ_4	2
+> +#define REQ_8	3
+> +#define REQ_16	4
+
+Can you prefix them with CTRL2_? I think it is more in line with other
+defines.
+
+--
+Stefan
+
+> +
+> +#define TRANSFER_COUNT_SET_VCOUNT(x)	REG_PUT((x), 31, 16)
+> +#define TRANSFER_COUNT_GET_VCOUNT(x)	REG_GET((x), 31, 16)
+> +#define TRANSFER_COUNT_SET_HCOUNT(x)	REG_PUT((x), 15, 0)
+> +#define TRANSFER_COUNT_GET_HCOUNT(x)	REG_GET((x), 15, 0)
+> +
+> +#define VDCTRL0_ENABLE_PRESENT		BIT(28)
+> +#define VDCTRL0_VSYNC_ACT_HIGH		BIT(27)
+> +#define VDCTRL0_HSYNC_ACT_HIGH		BIT(26)
+> +#define VDCTRL0_DOTCLK_ACT_FALLING	BIT(25)
+> +#define VDCTRL0_ENABLE_ACT_HIGH		BIT(24)
+> +#define VDCTRL0_VSYNC_PERIOD_UNIT	BIT(21)
+> +#define VDCTRL0_VSYNC_PULSE_WIDTH_UNIT	BIT(20)
+> +#define VDCTRL0_HALF_LINE		BIT(19)
+> +#define VDCTRL0_HALF_LINE_MODE		BIT(18)
+> +#define VDCTRL0_SET_VSYNC_PULSE_WIDTH(x) REG_PUT((x), 17, 0)
+> +#define VDCTRL0_GET_VSYNC_PULSE_WIDTH(x) REG_GET((x), 17, 0)
+> +
+> +#define VDCTRL2_SET_HSYNC_PERIOD(x)	REG_PUT((x), 15, 0)
+> +#define VDCTRL2_GET_HSYNC_PERIOD(x)	REG_GET((x), 15, 0)
+> +
+> +#define VDCTRL3_MUX_SYNC_SIGNALS	BIT(29)
+> +#define VDCTRL3_VSYNC_ONLY		BIT(28)
+> +#define SET_HOR_WAIT_CNT(x)		REG_PUT((x), 27, 16)
+> +#define GET_HOR_WAIT_CNT(x)		REG_GET((x), 27, 16)
+> +#define SET_VERT_WAIT_CNT(x)		REG_PUT((x), 15, 0)
+> +#define GET_VERT_WAIT_CNT(x)		REG_GET((x), 15, 0)
+> +
+> +#define VDCTRL4_SET_DOTCLK_DLY(x)	REG_PUT((x), 31, 29) /* v4 only */
+> +#define VDCTRL4_GET_DOTCLK_DLY(x)	REG_GET((x), 31, 29) /* v4 only */
+> +#define VDCTRL4_SYNC_SIGNALS_ON		BIT(18)
+> +#define SET_DOTCLK_H_VALID_DATA_CNT(x)	REG_PUT((x), 17, 0)
+> +
+> +#define DEBUG0_HSYNC			BIT(26)
+> +#define DEBUG0_VSYNC			BIT(25)
 >  
->  	mxsfb_enable_axi_clk(mxsfb);
-> +	writel(0, mxsfb->base + LCDC_CTRL);
->  	mxsfb_crtc_mode_set_nofb(mxsfb);
+>  #define MXSFB_MIN_XRES			120
+>  #define MXSFB_MIN_YRES			120
+> @@ -116,7 +143,7 @@
+>  #define STMLCDIF_18BIT 2 /* pixel data bus to the display is of 18 bit width */
+>  #define STMLCDIF_24BIT 3 /* pixel data bus to the display is of 24 bit width */
 >  
->  	/* Write cur_buf as well to avoid an initial corrupt frame */
+> -#define MXSFB_SYNC_DATA_ENABLE_HIGH_ACT	(1 << 6)
+> -#define MXSFB_SYNC_DOTCLK_FALLING_ACT	(1 << 7) /* negative edge sampling */
+> +#define MXSFB_SYNC_DATA_ENABLE_HIGH_ACT	BIT(6)
+> +#define MXSFB_SYNC_DOTCLK_FALLING_ACT	BIT(7) /* negative edge sampling */
+>  
+>  #endif /* __MXSFB_REGS_H__ */
