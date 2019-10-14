@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A47A7D589A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 00:22:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7106D5904
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 02:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729495AbfJMWWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Oct 2019 18:22:54 -0400
-Received: from 14.mo7.mail-out.ovh.net ([178.33.251.19]:33373 "EHLO
-        14.mo7.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728762AbfJMWWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Oct 2019 18:22:54 -0400
-Received: from player692.ha.ovh.net (unknown [10.108.42.168])
-        by mo7.mail-out.ovh.net (Postfix) with ESMTP id 2C4D5136332
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2019 23:05:07 +0200 (CEST)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
-        (Authenticated sender: andi@etezian.org)
-        by player692.ha.ovh.net (Postfix) with ESMTPSA id D37F7AC93ED3;
-        Sun, 13 Oct 2019 21:04:56 +0000 (UTC)
-Date:   Mon, 14 Oct 2019 00:04:55 +0300
-From:   Andi Shyti <andi@etezian.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi@etezian.org>,
-        Simon Shields <simon@lineageos.org>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] Input: mms114 - add support for mms345l
-Message-ID: <20191013210455.GA16344@jack.zhora.eu>
-References: <20191007203343.101466-1-stephan@gerhold.net>
- <20191007205021.104402-1-stephan@gerhold.net>
- <20191008220014.GI22365@dtor-ws>
- <20191009104740.GA107000@gerhold.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191009104740.GA107000@gerhold.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Ovh-Tracer-Id: 10484942885523210989
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrieelgdduheejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+        id S1729652AbfJNAZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Oct 2019 20:25:32 -0400
+Received: from lucky1.263xmail.com ([211.157.147.130]:58006 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728691AbfJNAZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Oct 2019 20:25:31 -0400
+Received: from localhost (unknown [192.168.167.231])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 5A06972204;
+        Mon, 14 Oct 2019 08:25:27 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P27735T140015220799232S1571012724759633_;
+        Mon, 14 Oct 2019 08:25:26 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <a4a69567aa61d2612998615e528684d3>
+X-RL-SENDER: jay.xu@rock-chips.com
+X-SENDER: xjq@rock-chips.com
+X-LOGIN-NAME: jay.xu@rock-chips.com
+X-FST-TO: linus.walleij@linaro.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+From:   Jianqun Xu <jay.xu@rock-chips.com>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Jianqun Xu <jay.xu@rock-chips.com>
+Subject: [PATCH v2 0/2] pinctrl: rockchip: support rk3308 SoC
+Date:   Mon, 14 Oct 2019 08:25:21 +0800
+Message-Id: <20191014002523.4540-1-jay.xu@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191012061528.27821-1-jay.xu@rock-chips.com>
+References: <20191012061528.27821-1-jay.xu@rock-chips.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
+Add support for rk3308 SoC from rockchip.
 
-> > > There was a related patch [2] that removes I2C_M_NOSTART for all models,
-> > > but it seems abandoned and I do not have any other model for testing.
-> > > Therefore, this patch implements the least instrusive solution
-> > > and only removes I2C_M_NOSTART for MMS345L.
-> > 
-> > Hmm,  at this point I am inclined to pick up Andi's patch since it seems
-> > to work for you and him and it looks like Android drivers are not using
-> > I2C_M_NOSTART. I wonder if this was some quirk/big on the platform where
-> > it was originally developed.
-> > 
-> > Any objections?
-> 
-> I cannot really speak for any of the other models, but no objections for
-> removing I2C_M_NOSTART from my side. I'm actually rather confused by it
-> since it is used on the first partial message.
-> 
-> The documentation [1] says:
->   If you set the I2C_M_NOSTART variable for the first partial message,
->   we do not generate Addr, but we do generate the startbit S.
->   ** This will probably confuse all other clients on your bus,
->   so don't try this. **
-> 
-> Yet, someone felt like trying this here. ;)
+Jianqun Xu (2):
+  dt-bindings: pinctrl: rockchip: add rk3308 SoC support
+  pinctrl: rockchip: add rk3308 SoC support
 
-still it should be specified in the i2c protocol of the device,
-if it's not, then most probably it's not needed, I guess.
+ .../bindings/pinctrl/rockchip,pinctrl.txt     |   1 +
+ drivers/pinctrl/pinctrl-rockchip.c            | 377 ++++++++++++++++++
+ 2 files changed, 378 insertions(+)
 
-Andi
+--
+changes since v1:
+- add Reviewed-by: Heiko Stuebner <heiko@sntech.de>, thanks Heiko
+
+2.17.1
+
+
+
