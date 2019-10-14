@@ -2,206 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BFFD5FF9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 12:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E91CD6003
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 12:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731307AbfJNKVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 06:21:31 -0400
-Received: from mail-pl1-f201.google.com ([209.85.214.201]:48606 "EHLO
-        mail-pl1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731305AbfJNKVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 06:21:31 -0400
-Received: by mail-pl1-f201.google.com with SMTP id g20so9817941plj.15
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 03:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=TGRk5VKUseteFNz9IdieAorUl/jPsDxLvDx05ItO45s=;
-        b=RV4T7j5Vhr3Wq6JOwSEbLmQu0HchKMynfCJCEr+FDn6XpVhhmE1Rg/gN5yRNqJn2w7
-         aE4LxnLOcuTgENXBnTIg4hcFJJ0nJelOaNVSyhLxRwFYy29nv5MW8+A3uS99NgCrDBFU
-         VCgut6JPOikiNwAHlEqvDg7LKmgS6NmpAN8/trcGwlzVb3HxQNHcGd+Zsg/lBSt17V3P
-         pxhNUx6HL/K/rME89Vd8toaZtZxiNcs9Ot6zr5n2t9pMZAj1cOWu8MdyFvw0IHnzIsOj
-         Dd6/j61yDQ1dmPh/IZpZORHst/Cx6sxLwOW7aUjBoVz1mUrLBlr+iSHOPh2K4EBH+XfK
-         CZbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=TGRk5VKUseteFNz9IdieAorUl/jPsDxLvDx05ItO45s=;
-        b=B3IJcnmeCJp6v4fXRjQ8OqvK4Fzpf+OMyN61QgfsbUCbECOLHJL4bDGlIoXHVuhZU2
-         NZChcYVGlUjbLZ/axP3b6D9qo8xFU+Ef4ufVZGc8icjNbykj1Dy2aUjZ6TA52jPS4Nsv
-         m+WQ+gkOxC2EIT5Gkq7cnEbyPNp42r47qLvtr8/rO5RA+Oa1DoBbvtPHDoFxKIenxIQ/
-         FvvmCzrldGrL3YVrLZhHvVdn0FRNrSSg1e1SbKcLYaDEo3MvuY/p5oeUSpYNGIvxyoWq
-         I44vnSoYW/ntcT5/pL8Tq6V3mzPVSjiCeC0FjuoBFyGWiqXqpoTu3a7mW5G53HFCxxav
-         tt8A==
-X-Gm-Message-State: APjAAAXogt0Pst5kJlVsbI+2oduOOOnvylJ6MNzI3nZM6VI7KT808RWo
-        t+fXxc4mOHzTVFWD89UHg/ndQFloMrxb
-X-Google-Smtp-Source: APXvYqxdjXmfjzMWkkrpMbIh8ZFqL8/PJsfbzoiXUmNkbqu13cy9Ifq/KU8zgxnSlDAOLu9kmSKOl6ZNacoY
-X-Received: by 2002:a65:5b05:: with SMTP id y5mr32923119pgq.48.1571048488530;
- Mon, 14 Oct 2019 03:21:28 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 18:20:22 +0800
-In-Reply-To: <20191014102022.236013-1-tzungbi@google.com>
-Message-Id: <20191014180059.10.Ibf012d0cd8679d846213606dc5f426aea1ff590a@changeid>
-Mime-Version: 1.0
-References: <20191014102022.236013-1-tzungbi@google.com>
-X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
-Subject: [PATCH v3 10/10] ASoC: mediatek: mt8183: support WoV
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     broonie@kernel.org
-Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, enric.balletbo@collabora.com,
-        bleung@google.com, gwendal@google.com, drinkcat@google.com,
-        cychiang@google.com, dgreid@google.com, tzungbi@google.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1731451AbfJNKXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 06:23:21 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:53574 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731119AbfJNKXV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 06:23:21 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 1878A602F7; Mon, 14 Oct 2019 10:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571048600;
+        bh=8piCiOB8eIACAjj5PWqPvcKs+w1USlF97iqVUTDHXtc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=c7nvhrGL3te4WTFWGoD8HqYHsk93AuR6+QlmpMPWXx/0CIEsTaGAPc7gxlpsDu8nL
+         0/CXW2r6rhiex+rbSOe2LVNvzvsk83FiggJ12O6P4GlNvNzS1CidENEzCDH2jkTTJ0
+         UjqsPkHff6oi+f64E5zSGFBxFU0pdiOmoyb511MI=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5359E602F7;
+        Mon, 14 Oct 2019 10:23:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571048599;
+        bh=8piCiOB8eIACAjj5PWqPvcKs+w1USlF97iqVUTDHXtc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZEsqo6CCBsjptzjwhPCmUPZqQ2gVzxX9Jskjr25zZRraYZf8YE17My3hoIhZqkOCS
+         qHcN/Av3Aj5UxyWSmnzDnW/Jo7belI659KCVuax+IJWgfwUWqTFmmVwIBxPmeePncs
+         I+gbj41e7wd11VWuLLDvQUn1kkdj3gdzZwDKF1gs=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5359E602F7
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v4 0/5] Add Global Clock controller (GCC) driver for SC7180
+Date:   Mon, 14 Oct 2019 15:53:03 +0530
+Message-Id: <20191014102308.27441-1-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DAI link and pin muxing for wake on voice.
+[v4]
+  * convert current documentation to YAML schemas.
+  * Update license to use GPL-2.0-only.
+  * define nvmem-cells/nvmem-cell-names only for the required compatible.
+  * split the dt-bindings for SC7180 to a separate patch.
+  * remove registering the CRITICAL clocks to clock provider and leave them
+    always ON from the GCC probe.
+  * Return NULL from qcom_cc_clk_hw_get where clk hw is not registered.
+  * gcc_sc7180_init moved from subsys to core init.
 
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
----
- sound/soc/mediatek/Kconfig                    |  1 +
- .../mt8183/mt8183-mt6358-ts3a227-max98357.c   | 70 ++++++++++++++++++-
- 2 files changed, 68 insertions(+), 3 deletions(-)
+[v3]
+  * Remove old documentation and fix comments for binding.
+  * Cleanup few CRITICAL clocks and add comments for the CRITICAL clocks.
+  * Add reference clocks for UFS & USB.
 
-diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-index 111e44b64b38..8b29f3979899 100644
---- a/sound/soc/mediatek/Kconfig
-+++ b/sound/soc/mediatek/Kconfig
-@@ -125,6 +125,7 @@ config SND_SOC_MT8183_MT6358_TS3A227E_MAX98357A
- 	select SND_SOC_MAX98357A
- 	select SND_SOC_BT_SCO
- 	select SND_SOC_TS3A227E
-+	select SND_SOC_CROS_EC_CODEC
- 	help
- 	  This adds ASoC driver for Mediatek MT8183 boards
- 	  with the MT6358 TS3A227E MAX98357A audio codec.
-diff --git a/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c b/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
-index bb9cdc0d6552..0555f7d73d05 100644
---- a/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
-+++ b/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
-@@ -19,11 +19,12 @@ enum PINCTRL_PIN_STATE {
- 	PIN_STATE_DEFAULT = 0,
- 	PIN_TDM_OUT_ON,
- 	PIN_TDM_OUT_OFF,
-+	PIN_WOV,
- 	PIN_STATE_MAX
- };
- 
- static const char * const mt8183_pin_str[PIN_STATE_MAX] = {
--	"default", "aud_tdm_out_on", "aud_tdm_out_off",
-+	"default", "aud_tdm_out_on", "aud_tdm_out_off", "wov",
- };
- 
- struct mt8183_mt6358_ts3a227_max98357_priv {
-@@ -142,6 +143,11 @@ SND_SOC_DAILINK_DEFS(playback_hdmi,
- 	DAILINK_COMP_ARRAY(COMP_DUMMY()),
- 	DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
-+SND_SOC_DAILINK_DEFS(wake_on_voice,
-+	DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+	DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+	DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
- /* BE */
- SND_SOC_DAILINK_DEFS(primary_codec,
- 	DAILINK_COMP_ARRAY(COMP_CPU("ADDA")),
-@@ -229,6 +235,41 @@ static struct snd_soc_ops mt8183_mt6358_tdm_ops = {
- 	.shutdown = mt8183_mt6358_tdm_shutdown,
- };
- 
-+static int
-+mt8183_mt6358_ts3a227_max98357_wov_startup(
-+	struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_card *card = rtd->card;
-+	struct mt8183_mt6358_ts3a227_max98357_priv *priv =
-+			snd_soc_card_get_drvdata(card);
-+
-+	return pinctrl_select_state(priv->pinctrl,
-+				    priv->pin_states[PIN_WOV]);
-+}
-+
-+static void
-+mt8183_mt6358_ts3a227_max98357_wov_shutdown(
-+	struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_card *card = rtd->card;
-+	struct mt8183_mt6358_ts3a227_max98357_priv *priv =
-+			snd_soc_card_get_drvdata(card);
-+	int ret;
-+
-+	ret = pinctrl_select_state(priv->pinctrl,
-+				   priv->pin_states[PIN_STATE_DEFAULT]);
-+	if (ret)
-+		dev_err(card->dev, "%s failed to select state %d\n",
-+			__func__, ret);
-+}
-+
-+static const struct snd_soc_ops mt8183_mt6358_ts3a227_max98357_wov_ops = {
-+	.startup = mt8183_mt6358_ts3a227_max98357_wov_startup,
-+	.shutdown = mt8183_mt6358_ts3a227_max98357_wov_shutdown,
-+};
-+
- static struct snd_soc_dai_link
- mt8183_mt6358_ts3a227_max98357_dai_links[] = {
- 	/* FE */
-@@ -306,6 +347,15 @@ mt8183_mt6358_ts3a227_max98357_dai_links[] = {
- 		.dpcm_playback = 1,
- 		SND_SOC_DAILINK_REG(playback_hdmi),
- 	},
-+	{
-+		.name = "Wake on Voice",
-+		.stream_name = "Wake on Voice",
-+		.ignore_suspend = 1,
-+		.ignore = 1,
-+		SND_SOC_DAILINK_REG(wake_on_voice),
-+		.ops = &mt8183_mt6358_ts3a227_max98357_wov_ops,
-+	},
-+
- 	/* BE */
- 	{
- 		.name = "Primary Codec",
-@@ -429,7 +479,7 @@ static int
- mt8183_mt6358_ts3a227_max98357_dev_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card = &mt8183_mt6358_ts3a227_max98357_card;
--	struct device_node *platform_node;
-+	struct device_node *platform_node, *ec_codec;
- 	struct snd_soc_dai_link *dai_link;
- 	struct mt8183_mt6358_ts3a227_max98357_priv *priv;
- 	int ret;
-@@ -444,10 +494,24 @@ mt8183_mt6358_ts3a227_max98357_dev_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
-+	ec_codec = of_parse_phandle(pdev->dev.of_node, "mediatek,ec-codec", 0);
-+
- 	for_each_card_prelinks(card, i, dai_link) {
- 		if (dai_link->platforms->name)
- 			continue;
--		dai_link->platforms->of_node = platform_node;
-+
-+		if (ec_codec && strcmp(dai_link->name, "Wake on Voice") == 0) {
-+			dai_link->cpus[0].name = NULL;
-+			dai_link->cpus[0].of_node = ec_codec;
-+			dai_link->cpus[0].dai_name = NULL;
-+			dai_link->codecs[0].name = NULL;
-+			dai_link->codecs[0].of_node = ec_codec;
-+			dai_link->codecs[0].dai_name = "Wake on Voice";
-+			dai_link->platforms[0].of_node = ec_codec;
-+			dai_link->ignore = 0;
-+		} else {
-+			dai_link->platforms->of_node = platform_node;
-+		}
- 	}
- 
- 	mt8183_mt6358_ts3a227_max98357_headset_dev.dlc.of_node =
--- 
-2.23.0.700.g56cf767bdb-goog
+[v2]
+ * Update the DFS macro for RCG to reflect the hw init similar to clock
+   name.
+ * Update the Documentation binding of GCC to YAML schemas.
+ * Add comments for CRITICAL clocks, remove PLL forward declarations and
+   unwanted comments/prints.
+
+[v1]
+  * Add driver support for Global Clock controller for SC7180 and also
+    update device tree bindings for the various clocks supported in the
+    clock controller.
+
+Taniya Das (5):
+  clk: qcom: rcg: update the DFS macro for RCG
+  clk: qcom: common: Return NULL from clk_hw OF provider
+  dt-bindings: clock: Add YAML schemas for the QCOM GCC clock bindings
+  dt-bindings: clock: Introduce QCOM GCC clock bindings
+  clk: qcom: Add Global Clock controller (GCC) driver for SC7180
+
+ .../devicetree/bindings/clock/qcom,gcc.txt    |   94 -
+ .../devicetree/bindings/clock/qcom,gcc.yaml   |  188 ++
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-rcg.h                    |    2 +-
+ drivers/clk/qcom/common.c                     |    2 +-
+ drivers/clk/qcom/gcc-sc7180.c                 | 2450 +++++++++++++++++
+ drivers/clk/qcom/gcc-sdm845.c                 |   96 +-
+ include/dt-bindings/clock/qcom,gcc-sc7180.h   |  155 ++
+ 9 files changed, 2853 insertions(+), 144 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sc7180.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
