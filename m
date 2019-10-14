@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30FC2D6160
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90957D6174
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730031AbfJNLdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 07:33:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38128 "EHLO mail.kernel.org"
+        id S1730331AbfJNLhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 07:37:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39120 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729930AbfJNLdE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 07:33:04 -0400
+        id S1730178AbfJNLhV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 07:37:21 -0400
 Received: from dragon (li937-157.members.linode.com [45.56.119.157])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5D7A2206A3;
-        Mon, 14 Oct 2019 11:32:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8D42F20854;
+        Mon, 14 Oct 2019 11:37:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571052784;
-        bh=FSljipgj28Jh531QTYWyNWy84keWUIqkOhpaU8aRBic=;
+        s=default; t=1571053040;
+        bh=403xwyP/70Kt8i9pVbIBhgksMRYP8QYUMAOP8FwfGbM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f7wNMYV2ne00JOhb796Z8tyUFSjnyzPW6imfoRacHOloX0vYCqWJieivDji1GxSb8
-         cib3dPUITid2TtczHaYgqz58cRQ2fKGO2SNTulJsfhGDP94nzGxD/jBXRebRqlVOU1
-         jeA9+zacLu4ynvmPM3ep/VDk+wZonBk2sbUg2RiY=
-Date:   Mon, 14 Oct 2019 19:32:41 +0800
+        b=kOEa0ECOOFqA8ukLjf2YFtheiYS3OyEbJEfnYEdWEwJl3fa0yGyKUVzAVZkHZjgwp
+         uPAd6w40HDZXc/ehyoYRBufeqO+CUmFprrfbsUI5KPJOVOZAF9K1NeL/fcH2IHKJBk
+         gcx5hohZ3SCzfvPFF1B+ym0OC26vKeor/Hl+/OMw=
+Date:   Mon, 14 Oct 2019 19:37:06 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Andrey Smirnov <andrew.smirnov@gmail.com>
+Cc:     Chris Healy <cphealy@gmail.com>, Cory Tusar <cory.tusar@zii.aero>,
+        Jeff White <jeff.white@zii.aero>,
+        Rick Ramstetter <rick@anteaterllc.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 06/10] ARM: dts: imx: Rename "iram" node to "sram"
-Message-ID: <20191014113240.GN12262@dragon>
-References: <20191002164316.14905-1-krzk@kernel.org>
- <20191002164316.14905-6-krzk@kernel.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: vf610-zii-scu4-aib: Specify
+ 'i2c-mux-idle-disconnect'
+Message-ID: <20191014113704.GO12262@dragon>
+References: <20191004054115.26082-1-andrew.smirnov@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191002164316.14905-6-krzk@kernel.org>
+In-Reply-To: <20191004054115.26082-1-andrew.smirnov@gmail.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 02, 2019 at 06:43:12PM +0200, Krzysztof Kozlowski wrote:
-> The device node name should reflect generic class of a device so rename
-> the "iram" node to "sram".  This will be also in sync with upcoming DT
-> schema.  No functional change.
+On Thu, Oct 03, 2019 at 10:41:15PM -0700, Andrey Smirnov wrote:
+> Specify 'i2c-mux-idle-disconnect' for both I2C switches present on the
+> board, since both are connected to the same parent bus and all of
+> their children have the same I2C address.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Fixes: ca4b4d373fcc ("ARM: dts: vf610: Add ZII SCU4 AIB board")
+> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Chris Healy <cphealy@gmail.com>
+> Cc: Cory Tusar <cory.tusar@zii.aero>
+> Cc: Jeff White <jeff.white@zii.aero>
+> Cc: Rick Ramstetter <rick@anteaterllc.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+> Shawn:
+> 
+> If this is possible, I'd like this one to go into 5.4.
 
-Acked-by: Shawn Guo <shawnguo@kernel.org>
-
-Let me know if you want it go through IMX tree.
+Okay, applied as fix.
 
 Shawn
