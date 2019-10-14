@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D24A7D6922
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F913D6927
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732924AbfJNSJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 14:09:50 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:46752 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732710AbfJNSJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:09:49 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 89so14555409oth.13;
-        Mon, 14 Oct 2019 11:09:49 -0700 (PDT)
+        id S1732998AbfJNSKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 14:10:20 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:42446 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732457AbfJNSKU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:10:20 -0400
+Received: by mail-oi1-f193.google.com with SMTP id i185so14479225oif.9;
+        Mon, 14 Oct 2019 11:10:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=63o5PcHaDJUmkAXGwWJp9biK2A6MeDJVIPuekW55gGQ=;
-        b=ZoLHEj/XiRbtX1bniFmHdb03RnIj+usQvsJSM49CWvFYe70r0UrCYnNQz3VXlEZuNc
-         SoIWqHUCJfRX6cNGAt6scfnaH5OClWp3TtTU9LOKuu0bGjJICMhcTvUu53g8NYdVRlk0
-         aE3ApLuWHHS5QP3bbTjgfntvGbmzbCkgf6HOKuTlN7NPUwoyFl2CfjiZpWRAYGjPB0tU
-         q8RuycaDWy562F1hxeI418rLUdN5EEVdGD8SbNvOWNc84toeLOdWwe7FUgo7OQh5ZnJD
-         cuULo/eIuG0jEjeqiPcIvoZMQVrm3Oc6gJ9jLo5jQX/LQRCnr2mtVPDw7xoepNMbIf4i
-         4Opw==
-X-Gm-Message-State: APjAAAXGTMqYx35kbv0UwUX5Nzntvh4Kcsgyb6yNBUvJejyCyOZUlR70
-        S9XMUlJgAiYr4MS7Apah0w==
-X-Google-Smtp-Source: APXvYqyr2RmoUKIYmcnbAUSCFIfE6p1qnvVMPgpyHtdQ2kdChxIgS9ZhVEHvmg5e7YvJGI9H9K+GDA==
-X-Received: by 2002:a9d:684c:: with SMTP id c12mr26129585oto.341.1571076588764;
-        Mon, 14 Oct 2019 11:09:48 -0700 (PDT)
+        bh=/QGWbxMgyMyTdIAESXcdM36ks75xNEHCQzWTM00H660=;
+        b=NyrhzbxE21xepZcRfpfp2HWJZrUfYK/4+nTb4Ihd26T8I9fkGwfFiUUBt9mz2/QZd6
+         oQhzdCTCV3ErPNpfqwjiyAeFpEa9NHbomOdhPYbzHpwH0vSB9dzpXgHp0Qp2ZLU/sT9z
+         DdB2G00I3UbDaYOebULtwJ/VQJSDAqFC512fE0SJF+DhVhAnpXeycekwJknyktlYqDCN
+         MQc0Ans/gFFhqGW7qWCdcf//8ltl30iSqxrpkSZNCvvigJ9GyBxC7LpQp1a6mdPt1r6c
+         yeR0T3LLq0FTe//Q8HGViwG21phlcf+oekcY1bsVoIZVwbTtsGM/Ci+PIMlPuH0aUNp9
+         DSVA==
+X-Gm-Message-State: APjAAAXsZaqsYwACxS+yEgcFegVRh4ui7xy2XnOlQHbbf5IXHi8SFGzo
+        vuSOiX3Z3pkayAIfGRjd/w==
+X-Google-Smtp-Source: APXvYqw22ZyOSAvp+Y75buzau5AuW+mFqDrz6vb6hKzzOzFK9zoEYkfe/z2qUzWP8ZyjEaKTbvF80A==
+X-Received: by 2002:a05:6808:a83:: with SMTP id q3mr25395976oij.12.1571076617934;
+        Mon, 14 Oct 2019 11:10:17 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 109sm5884056otc.52.2019.10.14.11.09.48
+        by smtp.gmail.com with ESMTPSA id i13sm5938339otj.58.2019.10.14.11.10.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2019 11:09:48 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 13:09:47 -0500
+        Mon, 14 Oct 2019 11:10:17 -0700 (PDT)
+Date:   Mon, 14 Oct 2019 13:10:16 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, jejb@linux.ibm.com,
-        Martin K Petersen <martin.petersen@oracle.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        Janek Kotas <jank@cadence.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>, nsekhar@ti.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: ti,j721e-ufs.yaml: Add binding
- for TI UFS wrapper
-Message-ID: <20191014180947.GA881@bogus>
-References: <20191010083357.28982-1-vigneshr@ti.com>
- <20191010083357.28982-2-vigneshr@ti.com>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: can: rcar_can: Add r8a774b1
+ support
+Message-ID: <20191014181016.GA1927@bogus>
+References: <1570717560-7431-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1570717560-7431-2-git-send-email-fabrizio.castro@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191010083357.28982-2-vigneshr@ti.com>
+In-Reply-To: <1570717560-7431-2-git-send-email-fabrizio.castro@bp.renesas.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Oct 2019 14:03:56 +0530, Vignesh Raghavendra wrote:
-> Add binding documentation of TI wrapper for Cadence UFS Controller.
+On Thu, 10 Oct 2019 15:25:58 +0100, Fabrizio Castro wrote:
+> Document RZ/G2N (r8a774b1) SoC specific bindings.
 > 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
+> v1->v2:
+> * No change
 > 
-> v2:
-> Define Cadence UFS controller as child node of the wrapper as suggested
-> by Rob H
-> 
->  .../devicetree/bindings/ufs/ti,j721e-ufs.yaml | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml
+>  Documentation/devicetree/bindings/net/can/rcar_can.txt | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
