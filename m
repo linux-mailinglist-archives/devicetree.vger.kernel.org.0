@@ -2,125 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81BF2D5C12
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2024D5C44
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:24:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730318AbfJNHP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 03:15:29 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:61513 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730265AbfJNHP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 03:15:29 -0400
-X-UUID: a34fba46a10641c8b6329ad044c76f52-20191014
-X-UUID: a34fba46a10641c8b6329ad044c76f52-20191014
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <mark-mc.lee@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1988080015; Mon, 14 Oct 2019 15:15:20 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 14 Oct 2019 15:15:17 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 14 Oct 2019 15:15:18 +0800
-From:   MarkLee <Mark-MC.Lee@mediatek.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>,
-        Nelson Chang <nelson.chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1730161AbfJNHYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 03:24:25 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51228 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730143AbfJNHYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 03:24:24 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1C11020037F;
+        Mon, 14 Oct 2019 09:24:23 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C26DF2000B6;
+        Mon, 14 Oct 2019 09:24:18 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2892D402FF;
+        Mon, 14 Oct 2019 15:24:13 +0800 (SGT)
+From:   Wen He <wen.he_1@nxp.com>
+To:     linux-devel@linux.nxdi.nxp.com, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rene van Dorst <opensource@vdorst.com>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jakub Kicinski <jakub.kicinski@netronome.com>,
-        MarkLee <Mark-MC.Lee@mediatek.com>
-Subject: [PATCH net,v3 2/2] arm: dts: mediatek: Update mt7629 dts to reflect the latest dt-binding
-Date:   Mon, 14 Oct 2019 15:15:18 +0800
-Message-ID: <20191014071518.11923-3-Mark-MC.Lee@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20191014071518.11923-1-Mark-MC.Lee@mediatek.com>
-References: <20191014071518.11923-1-Mark-MC.Lee@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Wen He <wen.he_1@nxp.com>
+Subject: [v3] arm64: dts: ls1028a: Update the property of the DT node dpclk
+Date:   Mon, 14 Oct 2019 15:13:27 +0800
+Message-Id: <20191014071327.28961-1-wen.he_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Removes mediatek,physpeed property from dtsi that is useless in PHYLINK
-* Use the fixed-link property speed = <2500> to set the phy in 2.5Gbit.
-* Set gmac1 to gmii mode that connect to a internal gphy
+Update the property #clock-cells = <1> to #clock-cells = <0> of the
+dpclk, since the Display output pixel clock driver provides single
+clock output.
 
-Signed-off-by: MarkLee <Mark-MC.Lee@mediatek.com>
---
-v2->v3:
-* no change
-v1->v2:
-* SGMII port only support BASE-X at 2.5Gbit.
+Signed-off-by: Wen He <wen.he_1@nxp.com>
 ---
- arch/arm/boot/dts/mt7629-rfb.dts | 13 ++++++++++++-
- arch/arm/boot/dts/mt7629.dtsi    |  2 --
- 2 files changed, 12 insertions(+), 3 deletions(-)
+change in v3:
+        - according the maintainer correction node name
+        - update the commit message
 
-diff --git a/arch/arm/boot/dts/mt7629-rfb.dts b/arch/arm/boot/dts/mt7629-rfb.dts
-index 3621b7d2b22a..9980c10c6e29 100644
---- a/arch/arm/boot/dts/mt7629-rfb.dts
-+++ b/arch/arm/boot/dts/mt7629-rfb.dts
-@@ -66,9 +66,21 @@
- 	pinctrl-1 = <&ephy_leds_pins>;
- 	status = "okay";
- 
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "2500base-x";
-+		fixed-link {
-+			speed = <2500>;
-+			full-duplex;
-+			pause;
-+		};
-+	};
-+
- 	gmac1: mac@1 {
- 		compatible = "mediatek,eth-mac";
- 		reg = <1>;
-+		phy-mode = "gmii";
- 		phy-handle = <&phy0>;
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 51fa8f57fdac..616b150a15aa 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -82,7 +82,7 @@
+ 	dpclk: clock-controller@f1f0000 {
+ 		compatible = "fsl,ls1028a-plldig";
+ 		reg = <0x0 0xf1f0000 0x0 0xffff>;
+-		#clock-cells = <1>;
++		#clock-cells = <0>;
+ 		clocks = <&osc_27m>;
  	};
  
-@@ -78,7 +90,6 @@
- 
- 		phy0: ethernet-phy@0 {
- 			reg = <0>;
--			phy-mode = "gmii";
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-index 9608bc2ccb3f..867b88103b9d 100644
---- a/arch/arm/boot/dts/mt7629.dtsi
-+++ b/arch/arm/boot/dts/mt7629.dtsi
-@@ -468,14 +468,12 @@
- 			compatible = "mediatek,mt7629-sgmiisys", "syscon";
- 			reg = <0x1b128000 0x3000>;
- 			#clock-cells = <1>;
--			mediatek,physpeed = "2500";
- 		};
- 
- 		sgmiisys1: syscon@1b130000 {
- 			compatible = "mediatek,mt7629-sgmiisys", "syscon";
- 			reg = <0x1b130000 0x3000>;
- 			#clock-cells = <1>;
--			mediatek,physpeed = "2500";
- 		};
- 	};
- };
+@@ -665,7 +665,7 @@
+ 		interrupts = <0 222 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <0 223 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "DE", "SE";
+-		clocks = <&dpclk 0>, <&clockgen 2 2>, <&clockgen 2 2>,
++		clocks = <&dpclk>, <&clockgen 2 2>, <&clockgen 2 2>,
+ 			 <&clockgen 2 2>;
+ 		clock-names = "pxlclk", "mclk", "aclk", "pclk";
+ 		arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
 -- 
 2.17.1
 
