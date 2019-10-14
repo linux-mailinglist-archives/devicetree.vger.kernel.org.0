@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 993E3D5B6E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 08:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBA3D5B75
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 08:38:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729708AbfJNGf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 02:35:57 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:38807 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729839AbfJNGf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 02:35:56 -0400
-Received: by mail-wr1-f66.google.com with SMTP id y18so8737468wrn.5
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2019 23:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=GvpQINBRtnsk3Hgc3bizCMfarTOiEUB/HuuJj/ggrWU=;
-        b=nOs8xNNfP5A0QMSW5zsDOZjJp+utPBfYPsBSPF/uk3DzbcwiGmcKhanUNGdIYx8E0f
-         iQf6iYwosenEaOPuJzeEjdXEzrrZunh/iHI6GdzKCsHq8JcHnaedcnGjzCA6LSL/cRvq
-         /F6MXsVF/1XmTNW3fl9RcI/UNjjsNDj46gv1xnFatsz/KBaQJqp5MIhZdJoiD9og9alw
-         +808tRm0w5rl9Aram+vg9HWqdjiMgXnYQ3fBI4j4Rvqkgrp4lMxdhG7MZuV6xxmAdarX
-         spNze2nlC4WFSJsUxNvi643yqZD7QFR0MMDxCe3yGcj0reqjUMvf86oHXllHgRH031gk
-         Orbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=GvpQINBRtnsk3Hgc3bizCMfarTOiEUB/HuuJj/ggrWU=;
-        b=mVwLUybrimezKht1J/UQ64X5Pab5qB7mTDmwJhe8Nz8RA2xOUdVGvX/auJ4RZwL9g4
-         lPJZZkJ/7puyWAdhA7OpCXA+xi89tgQd5LPwX64gPX38DrpMfDqpL4vq1Y9IJVhWjGVm
-         TbXn2srXvgqwadMMFMBeLpoKK63qfC1Zwy1+bbxyUP0aavTzm5GZFabMQOqdevi8DQAj
-         4gMDZMYsScN0LBnE0mlP0ANnmrKZv96SEgRenfwuiJT+BZ03TjA9seoVbxaXXagg5FlP
-         oBJG/UfaZknFk1NjHzjGY5sN/m3kfXNGfM/UbscVe/nhqtt8D+8jGAv4fAP1DBu4zFNc
-         ATvw==
-X-Gm-Message-State: APjAAAX0070aUXaxgkDWvS7cdtI7MQJAKpK24bUWCDgtkwSEAlRMZW+G
-        vupue+31Bz/iJsphvOel2Rp22g==
-X-Google-Smtp-Source: APXvYqy3wWPhvikBho5fzy4fPTMUVp7W/hmEmfUL8Jw/xKFwppmve6yfrbW+zi5LpCX9adYitQJ4Dw==
-X-Received: by 2002:adf:f452:: with SMTP id f18mr23583380wrp.187.1571034953291;
-        Sun, 13 Oct 2019 23:35:53 -0700 (PDT)
-Received: from dell ([2.27.167.11])
-        by smtp.gmail.com with ESMTPSA id c17sm20111997wrc.60.2019.10.13.23.35.52
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 13 Oct 2019 23:35:52 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 07:35:53 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Kiran Gunda <kgunda@codeaurora.org>, bjorn.andersson@linaro.org,
-        jingoohan1@gmail.com, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
-        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dan Murphy <dmurphy@ti.com>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V6 2/8] backlight: qcom-wled: restructure the qcom-wled
- bindings
-Message-ID: <20191014063553.GA4545@dell>
-References: <1569825553-26039-1-git-send-email-kgunda@codeaurora.org>
- <1569825553-26039-3-git-send-email-kgunda@codeaurora.org>
- <20191013121045.GN5653@amd>
+        id S1726618AbfJNGiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 02:38:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55168 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726406AbfJNGiu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 02:38:50 -0400
+Received: from dragon (li937-157.members.linode.com [45.56.119.157])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6F21A205C9;
+        Mon, 14 Oct 2019 06:38:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571035130;
+        bh=Pv06LrYxjw3dHimznfA8fTDJTvLiXVi82RdsmJkilkE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ym2zzes0RgPVlJ41alo9e1pNe5Qf3s7zFAPxMepB3RtBqegaPeXybOPzzIpmG0TJ1
+         LSr5uCoUiiaRbILPn7fNnqhYRxcSssqzA4YEaw6aDgsprEg8VtLKm9Lq68JdG3OAhx
+         Mroj1/L0ashHD5GNl001HEb+1+AV5+5C4fnuFReI=
+Date:   Mon, 14 Oct 2019 14:38:07 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     =?iso-8859-1?Q?S=E9bastien?= Szymanski 
+        <sebastien.szymanski@armadeus.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Julien Boibessot <julien.boibessot@armadeus.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/1] ARM: dts: imx28: add poweroff support
+Message-ID: <20191014063801.GD12262@dragon>
+References: <20190923091700.22517-1-sebastien.szymanski@armadeus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191013121045.GN5653@amd>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190923091700.22517-1-sebastien.szymanski@armadeus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Oct 2019, Pavel Machek wrote:
-
-> On Mon 2019-09-30 12:09:07, Kiran Gunda wrote:
-> > Restructure the qcom-wled bindings for the better readability.
-> > 
-> > Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-> > Acked-by: Pavel Machek <pavel@ucw.cz>
+On Mon, Sep 23, 2019 at 11:17:00AM +0200, S�bastien Szymanski wrote:
+> This add poweroff support using the generic syscon-poweroff driver.
 > 
-> I applied 1,2 to my branch, it should appear in -next shortly.
-
-Doesn't patch 1 have outstanding review comments on it from Dan?
-
-If you're going to apply them, you need to send out an immutable
-branch for me to pull from.
-
-> yaml conversion can be done in a followup...
+> Signed-off-by: S�bastien Szymanski <sebastien.szymanski@armadeus.com>
+> ---
+>  arch/arm/boot/dts/imx28.dtsi | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
 > 
-> Best regards,
+> diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
+> index e14d8ef0158b..37fa8131a022 100644
+> --- a/arch/arm/boot/dts/imx28.dtsi
+> +++ b/arch/arm/boot/dts/imx28.dtsi
+> @@ -1114,8 +1114,16 @@
+>  			};
+>  
+>  			power: power@80044000 {
+> +				compatible = "syscon", "simple-mfd";
+>  				reg = <0x80044000 0x2000>;
+> -				status = "disabled";
+> +
+> +				mxs_poweroff: mxs-poweroff {
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Node name should be generic.  So 'poweroff' might be better.
+
+> +					compatible = "syscon-poweroff";
+> +					regmap = <&power>;
+> +					offset = <0x104>;
+> +					value = <0x3E770001>;
+
+Use lowercase for hex value.
+
+> +					status = "disabled";
+
+Why need to disable it by default?
+
+Shawn
+
+> +				};
+>  			};
+>  
+>  			saif1: saif@80046000 {
+> -- 
+> 2.21.0
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
