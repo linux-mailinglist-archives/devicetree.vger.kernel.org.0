@@ -2,67 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98BACD6863
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 19:24:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D36D6887
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 19:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388277AbfJNRXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 13:23:39 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:42372 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726637AbfJNRXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 13:23:38 -0400
-Received: by mail-ot1-f67.google.com with SMTP id c10so14460301otd.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 10:23:38 -0700 (PDT)
+        id S1730197AbfJNRev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 13:34:51 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:36864 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730177AbfJNRev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 13:34:51 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p14so20682159wro.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 10:34:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=goZ9xr3ZvDzSv2nJz6yrf4HXNzE2UZomKxVxc5DO9BY=;
+        b=vHl8FZk3irxNcBHFS6WDvNRLbzSI+2dM7zbxblpP7TrH699NnU4A9rTupP3aIW6xLI
+         1s3nVKqg749HwtV8wrwNj90Rz/dzdgcEmIkULO5n8TlL+B6U1do2uDthDToVn3+D0YP2
+         9KgM6aqtUcji4E1xaPX9PywJHKS7Cs+v8hJnM9lZJWyE2XoCv2GwTYJru5+SC4Z8hfl/
+         rv+8BvLK+Z/9arnhKtio+xT6q+iTiwV6I9bGi04EUmqVK2PkXEHChONF6QBNgpvEGZB4
+         wKKgOeuVaw+6Alc/huUKGS08Csjskopiso9M5JfZMRrALxCYDFSX/ZxvrWlPdwdadWeU
+         8vGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=JD69k1IYmv5zIeXa6Z5TEDaM3nDtNwvQeDBrSGHbMgQ=;
-        b=sEA7RcGeF0csFBY0G3Y0+U+H1oWM6O15MOsbF6BMZsc9H1ZDj+gx/xpjwLJwHZ45zk
-         OhVkIfoGo1Intni3+Ec+/pKFXEEFt7BdwPzIMIemdu0ssPS2Dv2+zXN5ocRGIuyxKfDZ
-         hP1523p77qWgU7FHOSStBlNoLSrg64xDh7qKHHTpOX352DSXEdM7U8AO0xpKsy1ZJV0M
-         OpySfVEvQkPR6LVhg4N/PZiJ/RivSqDnH4BqbXOlw2vHEosORjaWmoK9CZoYhg3A2ze2
-         JJ5jQFucd/UPTfp9GQn1gzlskCgTZvedBtd8QcL1ZB7I+DkKLLh0Shz0BzgRyMq+FbRz
-         J9WQ==
-X-Gm-Message-State: APjAAAX3g3C9Sd9xXxWinLVoGhIFi/7mHuidKYuWA0uHKaOrRWzV3TpZ
-        mW7O62nSfqQ8Kale1dYwMg==
-X-Google-Smtp-Source: APXvYqxHRdJmQOPrisxteYs0+w/NF0pxpsJM37YdctdK9XWzKLaQy61q28m3ATRWNm92Z8t2U3b56w==
-X-Received: by 2002:a9d:7dd6:: with SMTP id k22mr1957125otn.256.1571073817986;
-        Mon, 14 Oct 2019 10:23:37 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x80sm5679259oia.37.2019.10.14.10.23.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2019 10:23:37 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 12:23:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     broonie@kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, bleung@google.com,
-        gwendal@google.com, drinkcat@google.com, cychiang@google.com,
-        dgreid@google.com, tzungbi@google.com
-Subject: Re: [PATCH v3 09/10] ASoC: dt-bindings: mt8183: add ec-codec
-Message-ID: <20191014172336.GA16992@bogus>
-References: <20191014102022.236013-1-tzungbi@google.com>
- <20191014180059.09.Iec97a3f137148cdf316056612590b3e0b302f5f3@changeid>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=goZ9xr3ZvDzSv2nJz6yrf4HXNzE2UZomKxVxc5DO9BY=;
+        b=cNtTFTnGSsN+MRCMhTk5knBsidhDBlb/jTEFMtpGbm+aSPMle0hEY5AB3h9KJWhBtx
+         3oyk6U8SE+Oe5IBhYELfd2hnosdK92hxPjgZ97Na+W9CvcT74j0nkimLhE5TQtVs1e4z
+         LhQNYcko7xeyyyXXecLOYwXdWBvwdBoh65akhuIvnUsofFFNC7R1AnFui2QWWx2oWRWy
+         +BwSenZY345/U2SRX8UxoomSt6J/9W8hGKVMcsM7+1DAW/QG87b06lFBYCTzBlAlqst3
+         bK4wY/MzNLGBrjFqy1mnvH1GcIc3kNk7zr9LKg+3nLsANKyVgVJgoxo5UZjKyWfXayaa
+         12MQ==
+X-Gm-Message-State: APjAAAXfyOhWLXE6RbYgkI00gE6iPsCjddV2I51bG8vNZpGT5DEAsR3T
+        LmHruPlk4Su7eLxxlAuyM0q+oQ==
+X-Google-Smtp-Source: APXvYqx6o+W6CiM2QYYNE1LOP02RBlpY0Gjx6cCk2+/iSWkz3HaCQgW35hyYYEVSjE7RAe42vaKioA==
+X-Received: by 2002:a05:6000:1204:: with SMTP id e4mr12865496wrx.23.1571074488594;
+        Mon, 14 Oct 2019 10:34:48 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id g185sm26164302wme.10.2019.10.14.10.34.47
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Oct 2019 10:34:47 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] dt-bindings: soundwire: add bindings for Qcom
+ controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     vkoul@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
+        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, spapothi@codeaurora.org
+References: <20191011154423.2506-1-srinivas.kandagatla@linaro.org>
+ <20191011154423.2506-2-srinivas.kandagatla@linaro.org>
+ <20191014171241.GA24989@bogus>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <76be1a0d-43ea-44c3-ef6c-9f9a2025c7a2@linaro.org>
+Date:   Mon, 14 Oct 2019 18:34:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191014180059.09.Iec97a3f137148cdf316056612590b3e0b302f5f3@changeid>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191014171241.GA24989@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Oct 2019 18:20:21 +0800, Tzung-Bi Shih wrote:
-> Add an optional property "ec-codec".  If specified, mt8183 could use the
-> "wake on voice" feature offered by EC codec.
+Thanks Rob for taking time to review,
+
+On 14/10/2019 18:12, Rob Herring wrote:
+> On Fri, Oct 11, 2019 at 04:44:22PM +0100, Srinivas Kandagatla wrote:
+>> This patch adds bindings for Qualcomm soundwire controller.
+>>
+>> Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
+>> either integrated as part of WCD audio codecs via slimbus or
+>> as part of SOC I/O.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   .../bindings/soundwire/qcom,sdw.txt           | 167 ++++++++++++++++++
+>>   1 file changed, 167 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
 > 
-> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
-> ---
->  .../bindings/sound/mt8183-mt6358-ts3a227-max98357.txt          | 3 +++
->  1 file changed, 3 insertions(+)
+> Next time, do a DT schema.
+> 
+Sure! I can do that in next version!
+
+>> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+>> new file mode 100644
+>> index 000000000000..436547f3b155
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+>> @@ -0,0 +1,167 @@
+>> +Qualcomm SoundWire Controller Bindings
+>> +
+>> +
+>> +This binding describes the Qualcomm SoundWire Controller along with its
+>> +board specific bus parameters.
+>> +
+>> +- compatible:
+>> +	Usage: required
+>> +	Value type: <stringlist>
+>> +	Definition: must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
+>> +		    Example:
+>> +			"qcom,soundwire-v1.3.0"
+>> +			"qcom,soundwire-v1.5.0"
+>> +			"qcom,soundwire-v1.6.0"
+> 
+> This needs to be the actual versions supported, not examples. Elsewhere
+> in QCom bindings, we've used standard SoC specific compatibles as there
+> never tends to be many SoCs with the same version. Anything different
+> here?
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+These values of MAJOR MINOR and STEP are defined as part of IP spec. And 
+most of the QCom IPs follow such scheme. We can read back these values 
+from the Hardware registers.
+
+Having SoC Names here might not be very efficient here.
+We have used such compatibles on may QCom IPs, like BAM DMA, SLIMBus and 
+other drivers.
+
+>> +- reg:
+>> +	Usage: required
+>> +	Value type: <prop-encoded-array>
+>> +	Definition: the base address and size of SoundWire controller
+>> +		    address space.
+>> +
+>> +- interrupts:
+>> +	Usage: required
+>> +	Value type: <prop-encoded-array>
+>> +	Definition: should specify the SoundWire Controller IRQ
+>> +
+>> +- clock-names:
+>> +	Usage: required
+>> +	Value type: <stringlist>
+>> +	Definition: should be "iface" for SoundWire Controller interface clock
+>> +
+>> +- clocks:
+>> +	Usage: required
+>> +	Value type: <prop-encoded-array>
+>> +	Definition: should specify the SoundWire Controller interface clock
+>> +
+>> +- #sound-dai-cells:
+>> +	Usage: required
+>> +	Value type: <u32>
+>> +	Definition: must be 1 for digital audio interfaces on the controller.
+>> +
+>> +- qcom,dout-ports:
+>> +	Usage: required
+>> +	Value type: <u32>
+>> +	Definition: must be count of data out ports
+> 
+> Up to how many?
+> 
+>> +
+>> +- qcom,din-ports:
+>> +	Usage: required
+>> +	Value type: <u32>
+>> +	Definition: must be count of data in ports
+> 
+> Up to how many?
+
+Up to 15 data ports in total
+
+> 
+>> +
+...
+
+>> +Note:
+>> +	More Information on detail of encoding of these fields can be
+>> +found in MIPI Alliance SoundWire 1.0 Specifications.
+>> +
+>> += SoundWire devices
+>> +Each subnode of the bus represents SoundWire device attached to it.
+>> +The properties of these nodes are defined by the individual bindings.
+> 
+> Is there some sort of addressing that needs to be defined?
+> 
+Thanks, Looks like I missed that here.
+
+it should be something like this,
+
+#address-cells = <2>;
+#size-cells = <0>;
+
+Will add the in next version.
+
+
+>> +
+>> += EXAMPLE
+>> +The following example represents a SoundWire controller on DB845c board
+>> +which has controller integrated inside WCD934x codec on SDM845 SoC.
+>> +
+>> +soundwire: soundwire@c85 {
+>> +	compatible = "qcom,soundwire-v1.3.0";
+>> +	reg = <0xc85 0x20>;
+>> +	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
+>> +	clocks = <&wcc>;
+>> +	clock-names = "iface";
+>> +	#sound-dai-cells = <1>;
+>> +	qcom,dports-type = <0>;
+>> +	qcom,dout-ports	= <6>;
+>> +	qcom,din-ports	= <2>;
+>> +	qcom,ports-sinterval-low = /bits/ 8  <0x07 0x1F 0x3F 0x7 0x1F 0x3F 0x0F 0x0F>;
+>> +	qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0C 0x6 0x12 0x0D 0x07 0x0A >;
+>> +	qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1F 0x00 0x00 0x1F 0x00 0x00>;
+>> +
+>> +	/* Left Speaker */
+>> +	left{
+> 
+> space       ^
+>> +		....
+>> +	};
+>> +
+>> +	/* Right Speaker */
+>> +	right{
+> 
+> ditto
+> 
+>> +		....
+>> +	};
+>> +};
+>> -- 
+>> 2.21.0
+>>
