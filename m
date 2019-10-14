@@ -2,89 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F22D68C1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 19:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF376D68F7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:01:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731465AbfJNRmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 13:42:04 -0400
-Received: from sender4-op-o14.zoho.com ([136.143.188.14]:17433 "EHLO
-        sender4-op-o14.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731171AbfJNRmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 13:42:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1571074914; cv=none; 
-        d=zoho.com; s=zohoarc; 
-        b=UoaKiyg+jQdvyC/HhihkyXN4vATpVe1FzZda6S9x50vCOlNQChj6l5iHpkER9D0llDqinnyxy87QDh7AsSbYI1R6tUS+Yc9N7XUd++mhMtwEWC+9LCdXQcb9LeLrP0ZdX4fxoCd47YXj6CNUBOKbiY5hUS2bVtB9waqVcpz06YA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
-        t=1571074914; h=Content-Type:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=sz/CQBl0duYZalGaCIYiBg7xruUCOAaCokFPhXphtJM=; 
-        b=MIsc+Kk2VqXzXnM1/cUjHBsaqsKYgb2HxWrSK+t+42eapnh/VsbfRGsIXElno0vaxJa1iowXYn4GToHUFGt38z6/otN6+GyHtkfx6HBY0NnXaSehiir4wtcEnVozzp+HZhYuTXTAL9zh1KqHpQPbRvGTTnuK/VaYCyvTnxwobak=
-ARC-Authentication-Results: i=1; mx.zoho.com;
-        dkim=pass  header.i=dlrobertson.com;
-        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
-        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
-Received: from nessie (pool-100-15-144-194.washdc.fios.verizon.net [100.15.144.194]) by mx.zohomail.com
-        with SMTPS id 1571074913103134.03014784679272; Mon, 14 Oct 2019 10:41:53 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 17:27:31 +0000
-From:   Dan Robertson <dan@dlrobertson.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1731065AbfJNSA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 14:00:57 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:46348 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726589AbfJNSA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:00:57 -0400
+Received: by mail-ed1-f66.google.com with SMTP id r18so3903762eds.13;
+        Mon, 14 Oct 2019 11:00:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=vQyWa6OC5nMW2WVQGplpiKZG6tNwtAjnKydlEJdldAw=;
+        b=BTzV7avy5noZHilLMuFTcRNQXWljNOYgVVEISOo4CIuNeMPYmYvkmc+E/+sM0qFxob
+         2QIZZ+7tVLh1r7eJeQbRJNqkJK677TXDLTAQ8JXVLoHJI60hxbKBPIe3xIlMDyvVKRTi
+         ao9rFGkwYRWddLkWtMkRiySDsJZp30eWmE0MouGZLlTWvmM4fJvkngSBdta5iWlEFZlO
+         Ibwi08nb8Y/qM0MVN3/V1CG9caENKLDQ/N4drou4MUkFEcI4kLq9o+GT+SP0iTtqOyU/
+         w6DTx/Kz+JlmaP9wxMTkhBczLMeINCbO8r/Qkc/ZuXpmj/jNFcJHZ3DWOgycCA1Qn9IS
+         r7kA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=vQyWa6OC5nMW2WVQGplpiKZG6tNwtAjnKydlEJdldAw=;
+        b=Ifu88pRvuAFO9vC28C6TmMS7lQYFFhfDVDWTqEu+ltyH3LzKJc4Lli2Buh4ifj+omi
+         bU2MLucDqVlTjNpC5eBNeYaoqZnEjg9nsssuJ7w39icLRLq5wC3FTPcrRxh5O336bGc3
+         jgqeGK3nex6kWlXEh8x8Q3uIyCrdYYDY6itE8FUFpkHO4MlbZl4TJhWuPp5sejRj36L6
+         ijDgrxEPewmZ7E0o8jSB4AmWHsVT4JFb0GUwmh8jQaPiUwSW5gkOPvgIJf1dmPItbUhm
+         mLZa0KKS8IGp24GqMS6QCHLYQkaOysLWPk9gxcSHDBNYXqX9aYP7vVstRIZxxqKBCT3b
+         sSwQ==
+X-Gm-Message-State: APjAAAW8r18k1HrAhWz5QGSVmdJ2+weukTjLrdnKbX6TppNmjDbdUeJ4
+        VbCNh75MGNhrDe3oZSzUDBGG+rdo
+X-Google-Smtp-Source: APXvYqykC7fDAqxl/5vUmUxhu3JBS7WBVVkSY/ZrTMq1S7z2QoVnj2FLqEDT+SMFdU7++K3zrHxhgQ==
+X-Received: by 2002:aa7:ca52:: with SMTP id j18mr29318868edt.299.1571076056199;
+        Mon, 14 Oct 2019 11:00:56 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id j9sm3255183edt.15.2019.10.14.11.00.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Oct 2019 11:00:55 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: accel: bma400: add bindings
-Message-ID: <20191014172731.GA30646@nessie>
-References: <20191012192525.21040-1-dan@dlrobertson.com>
- <20191012192525.21040-2-dan@dlrobertson.com>
- <20191014171521.GA29335@bogus>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
-Content-Disposition: inline
-In-Reply-To: <20191014171521.GA29335@bogus>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Zoho-Virus-Status: 1
-X-ZohoMailClient: External
+Subject: [PATCH] ARM: dts: rockchip: remove some tabs and spaces from dtsi files
+Date:   Mon, 14 Oct 2019 20:00:45 +0200
+Message-Id: <20191014180045.11804-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Cleanup the Rockchip dtsi files a little bit
+by removing some tabs and spaces.
 
---cNdxnHkX5QqsyA0e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3036.dtsi           |  4 ++--
+ arch/arm/boot/dts/rk3288-rock2-som.dtsi |  2 +-
+ arch/arm/boot/dts/rk3288-tinker.dtsi    | 14 +++++---------
+ 3 files changed, 8 insertions(+), 12 deletions(-)
 
-> Fails 'make dt_binding_check':
-
-Thanks for the note. Should running `make dt_binding_check` be added to
-`Documentation/devicetree/bindings/submitting-patches.rst`?
-
-Cheers,
-
- - Dan
-
---cNdxnHkX5QqsyA0e
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEF5dO2RaKc5C+SCJ9RcSmUsR+QqUFAl2kr/cACgkQRcSmUsR+
-QqWFXg/9FsPJaiW55rPeVJ+BAFKW2BQd/QKN+TynZB/aEydTO/ohevd2G/u2C2Ak
-4z1zFgAqBumsGcEeoy7P1PpIaqLiJ1WBOr4H87bGGIRvjHvyTVStldh6hIQ/k7PI
-WbK9+no+FJ/Wwjgdcyty1Ni6lp8shMtJexTynIeymvYPKnC9LvdUp5buGe7FylRS
-F69iFget4xN9QciFFr27mq0wx+RtSOM5L42stvTjz8SBj/TMTUt9ROuwgr3TlPUN
-lUJT+nOQAhZZPT4vXsAgte5D2Fl+KmOi459cmqoshotihZnmZRmWYgLHpKFM4dju
-AEl4acLIMopFdBM9jFBJCLBb/lQbIlX3mf4E6rR2bBGt49Vc3x/yGKgddj9s+wyp
-8Xq5rlAplIZf+enrooHLxAXeUM2I1IizdZooGFY00zAXo7ZxpwNcyvL2g4iC/ezY
-wuNjaKuboGWCLbnKYi5CJrTSTUSt8pqVH+KFm58W5gPQrW2ZwFilDZYs1ZqM2inM
-/hhGAgBHP0U7p7cQZr4jr+qp6Idinns3RQCsYcZv1iRre4MSnmx3B5i7iOjjzlcn
-HCofz25ssaz6fDOA1bRhl6bhPhlXeQ5JGc+q1ELIp4Bawoc/05LtAPznIOlBEEqj
-UMO5CAycCKUG5FdtrTLXOYaHOsYHM9biuBKIuXd/ZxipDQ/VSQA=
-=36QZ
------END PGP SIGNATURE-----
-
---cNdxnHkX5QqsyA0e--
+diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
+index c776321b2..c70182c5a 100644
+--- a/arch/arm/boot/dts/rk3036.dtsi
++++ b/arch/arm/boot/dts/rk3036.dtsi
+@@ -696,8 +696,8 @@
+ 
+ 		hdmi {
+ 			hdmi_ctl: hdmi-ctl {
+-				rockchip,pins = <1 RK_PB0  1 &pcfg_pull_none>,
+-						<1 RK_PB1  1 &pcfg_pull_none>,
++				rockchip,pins = <1 RK_PB0 1 &pcfg_pull_none>,
++						<1 RK_PB1 1 &pcfg_pull_none>,
+ 						<1 RK_PB2 1 &pcfg_pull_none>,
+ 						<1 RK_PB3 1 &pcfg_pull_none>;
+ 			};
+diff --git a/arch/arm/boot/dts/rk3288-rock2-som.dtsi b/arch/arm/boot/dts/rk3288-rock2-som.dtsi
+index 9f9e2bfd1..14aebd447 100644
+--- a/arch/arm/boot/dts/rk3288-rock2-som.dtsi
++++ b/arch/arm/boot/dts/rk3288-rock2-som.dtsi
+@@ -237,7 +237,7 @@
+ 
+ 	gmac {
+ 		phy_rst: phy-rst {
+-			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO  &pcfg_output_high>;
++			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_output_high>;
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
+index 81e4e953d..0aeef23ca 100644
+--- a/arch/arm/boot/dts/rk3288-tinker.dtsi
++++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
+@@ -382,18 +382,15 @@
+ 
+ 	pmic {
+ 		pmic_int: pmic-int {
+-			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO \
+-					&pcfg_pull_up>;
++			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
+ 		};
+ 
+ 		dvs_1: dvs-1 {
+-			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO \
+-					&pcfg_pull_down>;
++			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_down>;
+ 		};
+ 
+ 		dvs_2: dvs-2 {
+-			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO \
+-					&pcfg_pull_down>;
++			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_down>;
+ 		};
+ 	};
+ 
+@@ -406,8 +403,7 @@
+ 		};
+ 
+ 		sdmmc_clk: sdmmc-clk {
+-			rockchip,pins = <6 RK_PC4 1 \
+-					&pcfg_pull_none_drv_8ma>;
++			rockchip,pins = <6 RK_PC4 1 &pcfg_pull_none_drv_8ma>;
+ 		};
+ 
+ 		sdmmc_cmd: sdmmc-cmd {
+@@ -432,7 +428,7 @@
+ 	sdio {
+ 		wifi_enable: wifi-enable {
+ 			rockchip,pins = <4 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>,
+-				<4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
++					<4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ };
+-- 
+2.11.0
 
