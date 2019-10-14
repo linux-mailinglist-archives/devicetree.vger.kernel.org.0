@@ -2,93 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 547E7D6A8E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 22:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC14D6AC0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 22:23:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731520AbfJNUEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 16:04:39 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49648 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730668AbfJNUEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 16:04:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=zIcLhqWDCIkIt0Dfh0/Dq1+XX6MY1i6Jb4ML8wWZQlc=; b=JFV3oHbBByqVDYYgDS0apQ367
-        Wwdh126w0/GuA7Hei6HED09hiWOCoVX1mmMsIGqz07L1MH6PMBQq8+fQE19/hn34kLeLa2+2OD759
-        rzKFy8nKWAW3Y+il2C1wuQJuYMwGiuV9NbigWu2vtOL8owF0HLQHOBoEwZ4rs0ZOFNAPA=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iK6a1-0000Hs-Jz; Mon, 14 Oct 2019 20:04:33 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 15F762741EF2; Mon, 14 Oct 2019 21:04:33 +0100 (BST)
-Date:   Mon, 14 Oct 2019 21:04:33 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Simon Horman <horms+renesas@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: spi: sh-msiof: Convert bindings to
- json-schema
-Message-ID: <20191014200432.GF4826@sirena.co.uk>
-References: <20190926102533.17829-1-horms+renesas@verge.net.au>
- <20191014195451.GA22084@bogus>
- <20191014195844.GE4826@sirena.co.uk>
- <CAL_JsqJe0+QHs=jfF8e6rSJMAy8=UpbtdPqy6aP2LeEQ974Hog@mail.gmail.com>
+        id S1731037AbfJNUXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 16:23:24 -0400
+Received: from mail.kmu-office.ch ([178.209.48.109]:59732 "EHLO
+        mail.kmu-office.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729667AbfJNUXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 16:23:24 -0400
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id 2994A5C1173;
+        Mon, 14 Oct 2019 22:23:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+        t=1571084600;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=P+rXe5gqDkpR/ocxB4jA4wn6gLVIHyh3cCV/a77qceY=;
+        b=gBYlwscWUPHbKxkp6VSFsPahfglZNpR4LUY6VaSqswdF2KOS+4LpuZzGSDbS6X177L3Byp
+        sD0yyz/kS2E1E2R0cmXu7Dy00K2WcXMtPucfckKM7ljgYofFzsZw3NYO/9M4EMryccoah+
+        IhBToOeeVVxL61+x9+heWTnHJ2wRysk=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="GUPx2O/K0ibUojHx"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJe0+QHs=jfF8e6rSJMAy8=UpbtdPqy6aP2LeEQ974Hog@mail.gmail.com>
-X-Cookie: Androphobia:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Date:   Mon, 14 Oct 2019 22:23:20 +0200
+From:   Stefan Agner <stefan@agner.ch>
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 01/14] drm/mxsfb: Update mxsfb to support a bridge
+In-Reply-To: <1567078215-31601-2-git-send-email-robert.chiras@nxp.com>
+References: <1567078215-31601-1-git-send-email-robert.chiras@nxp.com>
+ <1567078215-31601-2-git-send-email-robert.chiras@nxp.com>
+Message-ID: <4138bd0cea847abb60888a50236c2aa4@agner.ch>
+X-Sender: stefan@agner.ch
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2019-08-29 13:30, Robert Chiras wrote:
+> Currently, the MXSFB DRM driver only supports a panel. But, its output
+> display signal can also be redirected to another encoder, like a DSI
+> controller. In this case, that DSI controller may act like a drm_bridge.
+> In order support this use-case too, this patch adds support for drm_bridge
+> in mxsfb.
+> 
+> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+> Tested-by: Guido Günther <agx@sigxcpu.org>
 
---GUPx2O/K0ibUojHx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied to the drm-misc-next branch.
 
-On Mon, Oct 14, 2019 at 03:02:53PM -0500, Rob Herring wrote:
-> On Mon, Oct 14, 2019 at 2:58 PM Mark Brown <broonie@kernel.org> wrote:
+--
+Stefan
 
-> > I've been sitting on this (and another ASoC conversion) waiting for you
-> > to review them - in particular with this one I've got another patch
-> > queued up which depends on it so it'd be good to apply it to my tree.
-
-> Okay, dropped then.
-
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Thanks!
-
---GUPx2O/K0ibUojHx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2k1NAACgkQJNaLcl1U
-h9DjZQf/b2BSRbJD2zkKH6TB+rh2HDygl7MRYsb5OaP3iFgWEfgpmQPQ6gvfHY/v
-pEJ6LZ3ChLWjZCkb3h/+K8xXWQUGmJcbBuckNjMIvDcpGWvJP5bUsPVbXKi9PEGt
-r4X39b+S/b9cXmU52qjAPBLBwXExOQC94nCLlBmoy+yL9yX9URRgkjuqlwZDImUR
-5/chjuwy2hqeumjHuxYXefhEFapQO+TMz+Z1s2YF5Klcqa99XitxqZl7F2wM1CsP
-r/BpQCvl1q7/cNUGD4BTkIn9VWO5RJSz6kEVLK5VyFCkhKA5ntaEq2Zild7aKiQK
-9pEFrzbZ+UNgTI+6Fc5pGZ56qH/5iA==
-=GQnS
------END PGP SIGNATURE-----
-
---GUPx2O/K0ibUojHx--
+> ---
+>  drivers/gpu/drm/mxsfb/mxsfb_crtc.c | 17 +++++++++++---
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c  | 46 +++++++++++++++++++++++++++++++++-----
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.h  |  4 +++-
+>  drivers/gpu/drm/mxsfb/mxsfb_out.c  | 26 +++++++++++----------
+>  4 files changed, 72 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
+> b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
+> index 1242156..de09b93 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
+> @@ -95,8 +95,11 @@ static void mxsfb_set_bus_fmt(struct
+> mxsfb_drm_private *mxsfb)
+>  
+>  	reg = readl(mxsfb->base + LCDC_CTRL);
+>  
+> -	if (mxsfb->connector.display_info.num_bus_formats)
+> -		bus_format = mxsfb->connector.display_info.bus_formats[0];
+> +	if (mxsfb->connector->display_info.num_bus_formats)
+> +		bus_format = mxsfb->connector->display_info.bus_formats[0];
+> +
+> +	DRM_DEV_DEBUG_DRIVER(drm->dev, "Using bus_format: 0x%08X\n",
+> +			     bus_format);
+>  
+>  	reg &= ~CTRL_BUS_WIDTH_MASK;
+>  	switch (bus_format) {
+> @@ -204,8 +207,9 @@ static dma_addr_t mxsfb_get_fb_paddr(struct
+> mxsfb_drm_private *mxsfb)
+>  
+>  static void mxsfb_crtc_mode_set_nofb(struct mxsfb_drm_private *mxsfb)
+>  {
+> +	struct drm_device *drm = mxsfb->pipe.crtc.dev;
+>  	struct drm_display_mode *m = &mxsfb->pipe.crtc.state->adjusted_mode;
+> -	const u32 bus_flags = mxsfb->connector.display_info.bus_flags;
+> +	const u32 bus_flags = mxsfb->connector->display_info.bus_flags;
+>  	u32 vdctrl0, vsync_pulse_len, hsync_pulse_len;
+>  	int err;
+>  
+> @@ -229,6 +233,13 @@ static void mxsfb_crtc_mode_set_nofb(struct
+> mxsfb_drm_private *mxsfb)
+>  
+>  	clk_set_rate(mxsfb->clk, m->crtc_clock * 1000);
+>  
+> +	DRM_DEV_DEBUG_DRIVER(drm->dev, "Pixel clock: %dkHz (actual: %dkHz)\n",
+> +			     m->crtc_clock,
+> +			     (int)(clk_get_rate(mxsfb->clk) / 1000));
+> +	DRM_DEV_DEBUG_DRIVER(drm->dev, "Connector bus_flags: 0x%08X\n",
+> +			     bus_flags);
+> +	DRM_DEV_DEBUG_DRIVER(drm->dev, "Mode flags: 0x%08X\n", m->flags);
+> +
+>  	writel(TRANSFER_COUNT_SET_VCOUNT(m->crtc_vdisplay) |
+>  	       TRANSFER_COUNT_SET_HCOUNT(m->crtc_hdisplay),
+>  	       mxsfb->base + mxsfb->devdata->transfer_count);
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> index e850633..497cf44 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> @@ -101,9 +101,25 @@ static void mxsfb_pipe_enable(struct
+> drm_simple_display_pipe *pipe,
+>  			      struct drm_crtc_state *crtc_state,
+>  			      struct drm_plane_state *plane_state)
+>  {
+> +	struct drm_connector *connector;
+>  	struct mxsfb_drm_private *mxsfb = drm_pipe_to_mxsfb_drm_private(pipe);
+>  	struct drm_device *drm = pipe->plane.dev;
+>  
+> +	if (!mxsfb->connector) {
+> +		list_for_each_entry(connector,
+> +				    &drm->mode_config.connector_list,
+> +				    head)
+> +			if (connector->encoder == &mxsfb->pipe.encoder) {
+> +				mxsfb->connector = connector;
+> +				break;
+> +			}
+> +	}
+> +
+> +	if (!mxsfb->connector) {
+> +		dev_warn(drm->dev, "No connector attached, using default\n");
+> +		mxsfb->connector = &mxsfb->panel_connector;
+> +	}
+> +
+>  	pm_runtime_get_sync(drm->dev);
+>  	drm_panel_prepare(mxsfb->panel);
+>  	mxsfb_crtc_enable(mxsfb);
+> @@ -129,6 +145,9 @@ static void mxsfb_pipe_disable(struct
+> drm_simple_display_pipe *pipe)
+>  		drm_crtc_send_vblank_event(crtc, event);
+>  	}
+>  	spin_unlock_irq(&drm->event_lock);
+> +
+> +	if (mxsfb->connector != &mxsfb->panel_connector)
+> +		mxsfb->connector = NULL;
+>  }
+>  
+>  static void mxsfb_pipe_update(struct drm_simple_display_pipe *pipe,
+> @@ -226,16 +245,33 @@ static int mxsfb_load(struct drm_device *drm,
+> unsigned long flags)
+>  
+>  	ret = drm_simple_display_pipe_init(drm, &mxsfb->pipe, &mxsfb_funcs,
+>  			mxsfb_formats, ARRAY_SIZE(mxsfb_formats), NULL,
+> -			&mxsfb->connector);
+> +			mxsfb->connector);
+>  	if (ret < 0) {
+>  		dev_err(drm->dev, "Cannot setup simple display pipe\n");
+>  		goto err_vblank;
+>  	}
+>  
+> -	ret = drm_panel_attach(mxsfb->panel, &mxsfb->connector);
+> -	if (ret) {
+> -		dev_err(drm->dev, "Cannot connect panel\n");
+> -		goto err_vblank;
+> +	/*
+> +	 * Attach panel only if there is one.
+> +	 * If there is no panel attach, it must be a bridge. In this case, we
+> +	 * need a reference to its connector for a proper initialization.
+> +	 * We will do this check in pipe->enable(), since the connector won't
+> +	 * be attached to an encoder until then.
+> +	 */
+> +
+> +	if (mxsfb->panel) {
+> +		ret = drm_panel_attach(mxsfb->panel, mxsfb->connector);
+> +		if (ret) {
+> +			dev_err(drm->dev, "Cannot connect panel: %d\n", ret);
+> +			goto err_vblank;
+> +		}
+> +	} else if (mxsfb->bridge) {
+> +		ret = drm_simple_display_pipe_attach_bridge(&mxsfb->pipe,
+> +							    mxsfb->bridge);
+> +		if (ret) {
+> +			dev_err(drm->dev, "Cannot connect bridge: %d\n", ret);
+> +			goto err_vblank;
+> +		}
+>  	}
+>  
+>  	drm->mode_config.min_width	= MXSFB_MIN_XRES;
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.h
+> b/drivers/gpu/drm/mxsfb/mxsfb_drv.h
+> index d975300..0b65b51 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.h
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.h
+> @@ -27,8 +27,10 @@ struct mxsfb_drm_private {
+>  	struct clk			*clk_disp_axi;
+>  
+>  	struct drm_simple_display_pipe	pipe;
+> -	struct drm_connector		connector;
+> +	struct drm_connector		panel_connector;
+> +	struct drm_connector		*connector;
+>  	struct drm_panel		*panel;
+> +	struct drm_bridge		*bridge;
+>  };
+>  
+>  int mxsfb_setup_crtc(struct drm_device *dev);
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> b/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> index be36f4d..4eb9474 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> @@ -21,7 +21,8 @@
+>  static struct mxsfb_drm_private *
+>  drm_connector_to_mxsfb_drm_private(struct drm_connector *connector)
+>  {
+> -	return container_of(connector, struct mxsfb_drm_private, connector);
+> +	return container_of(connector, struct mxsfb_drm_private,
+> +			    panel_connector);
+>  }
+>  
+>  static int mxsfb_panel_get_modes(struct drm_connector *connector)
+> @@ -76,22 +77,23 @@ static const struct drm_connector_funcs
+> mxsfb_panel_connector_funcs = {
+>  int mxsfb_create_output(struct drm_device *drm)
+>  {
+>  	struct mxsfb_drm_private *mxsfb = drm->dev_private;
+> -	struct drm_panel *panel;
+>  	int ret;
+>  
+> -	ret = drm_of_find_panel_or_bridge(drm->dev->of_node, 0, 0, &panel, NULL);
+> +	ret = drm_of_find_panel_or_bridge(drm->dev->of_node, 0, 0,
+> +					  &mxsfb->panel, &mxsfb->bridge);
+>  	if (ret)
+>  		return ret;
+>  
+> -	mxsfb->connector.dpms = DRM_MODE_DPMS_OFF;
+> -	mxsfb->connector.polled = 0;
+> -	drm_connector_helper_add(&mxsfb->connector,
+> -			&mxsfb_panel_connector_helper_funcs);
+> -	ret = drm_connector_init(drm, &mxsfb->connector,
+> -				 &mxsfb_panel_connector_funcs,
+> -				 DRM_MODE_CONNECTOR_Unknown);
+> -	if (!ret)
+> -		mxsfb->panel = panel;
+> +	if (mxsfb->panel) {
+> +		mxsfb->connector = &mxsfb->panel_connector;
+> +		mxsfb->connector->dpms = DRM_MODE_DPMS_OFF;
+> +		mxsfb->connector->polled = 0;
+> +		drm_connector_helper_add(mxsfb->connector,
+> +					 &mxsfb_panel_connector_helper_funcs);
+> +		ret = drm_connector_init(drm, mxsfb->connector,
+> +					 &mxsfb_panel_connector_funcs,
+> +					 DRM_MODE_CONNECTOR_Unknown);
+> +	}
+>  
+>  	return ret;
+>  }
