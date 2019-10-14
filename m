@@ -2,167 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B03B4D61AA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5EED61C8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731070AbfJNLsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 07:48:55 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:3750 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730300AbfJNLsz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 07:48:55 -0400
-Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id BFCF8377902FCE19D856;
-        Mon, 14 Oct 2019 19:48:50 +0800 (CST)
-Received: from localhost (10.202.226.61) by DGGEMS401-HUB.china.huawei.com
- (10.3.19.201) with Microsoft SMTP Server id 14.3.439.0; Mon, 14 Oct 2019
- 19:48:47 +0800
-Date:   Mon, 14 Oct 2019 12:48:35 +0100
-From:   Jonathan Cameron <jonathan.cameron@huawei.com>
-To:     Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-CC:     <jic23@kernel.org>, <dragos.bogdan@analog.com>,
-        <alexandru.ardelean@analog.com>, <stefan.popa@analog.com>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: Add DT docs for AD7292
-Message-ID: <20191014124835.00005645@huawei.com>
-In-Reply-To: <20191013141345.uctcutryo7pmdkem@smtp.gmail.com>
-References: <20191013141345.uctcutryo7pmdkem@smtp.gmail.com>
-Organization: Huawei
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1730846AbfJNL5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 07:57:12 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49108 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731183AbfJNL5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 07:57:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=jIj/NmY+eyECv3y+bNn8jTjJhywyBUZaIyrJ62db62Y=; b=VUryfWb7iW/HUzgEfXisB6nFM
+        8Nd1kC1Yz7pcGsfKBvwBfL4mcWp+8hirqhUrBmCrEToeay24b9nXEsxPLIIxfT2eokan9Q4P2rMNz
+        hiGsI6fp4sKiAyloGyJN/7oRf0FOfl9Q9KJ5P5SK3lFQ9ujfJauD6Q7joVxcxHbXwEaMQ=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iJyxo-0007VP-0K; Mon, 14 Oct 2019 11:56:36 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 3C3552741EED; Mon, 14 Oct 2019 12:56:35 +0100 (BST)
+Date:   Mon, 14 Oct 2019 12:56:35 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [RFC PATCH 2/2] ASoC: simple-card: Add documentation for
+ force-dpcm property
+Message-ID: <20191014115635.GB4826@sirena.co.uk>
+References: <20191013190014.32138-1-daniel.baluta@nxp.com>
+ <20191013190014.32138-3-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.61]
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8GpibOaaTibBMecb"
+Content-Disposition: inline
+In-Reply-To: <20191013190014.32138-3-daniel.baluta@nxp.com>
+X-Cookie: Androphobia:
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Oct 2019 11:13:47 -0300
-Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
 
-> Add a device tree binding doc for AD7292 monitor and control system.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-> ---
->  .../bindings/iio/adc/adi,ad7292.yaml          | 71 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
-> new file mode 100644
-> index 000000000000..16be9ea4194d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7292.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7292 10-Bit Monitor and Control System
-> +
-> +maintainers:
-> +  - Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-> +
-> +description: |
-> +  Analog Devices AD7292 10-Bit Monitor and Control System with ADC, DACs,
-> +  Temperature Sensor, and GPIOs
-> +
-> +  Specifications about the part can be found at:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7292.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7292
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vref-supply:
-> +    description: |
-> +      The regulator supply for ADC and DAC reference voltage.
-> +    maxItems: 1
-> +
-> +  spi-cpha:
-> +    description: |
-> +      See Documentation/devicetree/bindings/spi/spi-controller.yaml
-> +    maxItems: 1
-> +
-> +  diff-channels:
-> +    description: |
-> +      Empty property to tell whether VIN0 and VIN1 shall work as differential
-> +      inputs.
-> +    maxItems: 1
+--8GpibOaaTibBMecb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This looks like a nice general interface, but really isn't as it only applies
-to the first two channels.
+On Sun, Oct 13, 2019 at 10:00:14PM +0300, Daniel Baluta wrote:
 
-Can you use the standard channel defintions
-Documentation/devicetree/bindings/iio/adc.txt
-to specify this?
+> This property can be global in which case all links created will be DPCM
+> or present in certian dai-link subnode in which case only that specific
+> link is forced to be DPCM.
 
-It may seem overly complex, but it has the benefit of being generic.
+> +- force-dpcm				: Indicates dai-link is always DPCM.
 
-Would be something like:
+DPCM is an implementation detail of Linux (and one that we want to phase
+out going forwards too), we shouldn't be putting it in the DT bindings
+where it becomes an ABI.
 
-channel@0 {
-	diff-channels = < 0 1 >
-};
-channel@2 {
-};
-vs all the channels being present, none set as diff.
+--8GpibOaaTibBMecb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks,
+-----BEGIN PGP SIGNATURE-----
 
-Jonathan
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2kYnIACgkQJNaLcl1U
+h9AJzAf+L30WoNHHnOrkkpLMsmM6uZcu7czOKRKOJyZ35878jKwHbjZap1z9TOLG
+ivJDyoiRoLYg4twQJcl7Rt/I7WytvqTEkhzju5+LWpRuB+fFtdBjwK0p0rXZbj1E
+6wWWkfnGi5NgxPGa0FSCwLUkIwPtrsd3Rwxbwk6n+kekbJxEYK9UzkGOydcIIgez
+ie6lZRh515nxc2sohfBhM3//verg1jHxxG6sA0cMQ+hHwdzgIzfXzsHXlYw9M/pm
+Z9KNu7+EiJ0gefb6XXCbqfJQ+B37sibpl+10EeiUIHIW2bjOl1w+LJgRJzb6nFK8
+j60W+/cODoUMQWboKCkQ+oTUEHuDXg==
+=SivO
+-----END PGP SIGNATURE-----
 
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    spi0 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      ad7292: ad7292@0 {
-> +        compatible = "adi,ad7292";
-> +        reg = <0>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        spi-max-frequency = <25000000>;
-> +        vref-supply = <&adc_vref>;
-> +        spi-cpha;
-> +        diff-channels;
-> +      };
-> +    }
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e78317a5f4f1..5941cfc0d6f7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -819,6 +819,7 @@ L:	linux-iio@vger.kernel.org
->  W:	http://ez.analog.com/community/linux-device-drivers
->  S:	Supported
->  F:	drivers/iio/adc/ad7292.c
-> +F:	Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
->  
->  ANALOG DEVICES INC AD7606 DRIVER
->  M:	Stefan Popa <stefan.popa@analog.com>
-
-
+--8GpibOaaTibBMecb--
