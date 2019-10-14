@@ -2,144 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF376D68F7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D24A7D6922
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731065AbfJNSA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 14:00:57 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:46348 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726589AbfJNSA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:00:57 -0400
-Received: by mail-ed1-f66.google.com with SMTP id r18so3903762eds.13;
-        Mon, 14 Oct 2019 11:00:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=vQyWa6OC5nMW2WVQGplpiKZG6tNwtAjnKydlEJdldAw=;
-        b=BTzV7avy5noZHilLMuFTcRNQXWljNOYgVVEISOo4CIuNeMPYmYvkmc+E/+sM0qFxob
-         2QIZZ+7tVLh1r7eJeQbRJNqkJK677TXDLTAQ8JXVLoHJI60hxbKBPIe3xIlMDyvVKRTi
-         ao9rFGkwYRWddLkWtMkRiySDsJZp30eWmE0MouGZLlTWvmM4fJvkngSBdta5iWlEFZlO
-         Ibwi08nb8Y/qM0MVN3/V1CG9caENKLDQ/N4drou4MUkFEcI4kLq9o+GT+SP0iTtqOyU/
-         w6DTx/Kz+JlmaP9wxMTkhBczLMeINCbO8r/Qkc/ZuXpmj/jNFcJHZ3DWOgycCA1Qn9IS
-         r7kA==
+        id S1732924AbfJNSJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 14:09:50 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:46752 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732710AbfJNSJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:09:49 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 89so14555409oth.13;
+        Mon, 14 Oct 2019 11:09:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=vQyWa6OC5nMW2WVQGplpiKZG6tNwtAjnKydlEJdldAw=;
-        b=Ifu88pRvuAFO9vC28C6TmMS7lQYFFhfDVDWTqEu+ltyH3LzKJc4Lli2Buh4ifj+omi
-         bU2MLucDqVlTjNpC5eBNeYaoqZnEjg9nsssuJ7w39icLRLq5wC3FTPcrRxh5O336bGc3
-         jgqeGK3nex6kWlXEh8x8Q3uIyCrdYYDY6itE8FUFpkHO4MlbZl4TJhWuPp5sejRj36L6
-         ijDgrxEPewmZ7E0o8jSB4AmWHsVT4JFb0GUwmh8jQaPiUwSW5gkOPvgIJf1dmPItbUhm
-         mLZa0KKS8IGp24GqMS6QCHLYQkaOysLWPk9gxcSHDBNYXqX9aYP7vVstRIZxxqKBCT3b
-         sSwQ==
-X-Gm-Message-State: APjAAAW8r18k1HrAhWz5QGSVmdJ2+weukTjLrdnKbX6TppNmjDbdUeJ4
-        VbCNh75MGNhrDe3oZSzUDBGG+rdo
-X-Google-Smtp-Source: APXvYqykC7fDAqxl/5vUmUxhu3JBS7WBVVkSY/ZrTMq1S7z2QoVnj2FLqEDT+SMFdU7++K3zrHxhgQ==
-X-Received: by 2002:aa7:ca52:: with SMTP id j18mr29318868edt.299.1571076056199;
-        Mon, 14 Oct 2019 11:00:56 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id j9sm3255183edt.15.2019.10.14.11.00.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 14 Oct 2019 11:00:55 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: rockchip: remove some tabs and spaces from dtsi files
-Date:   Mon, 14 Oct 2019 20:00:45 +0200
-Message-Id: <20191014180045.11804-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=63o5PcHaDJUmkAXGwWJp9biK2A6MeDJVIPuekW55gGQ=;
+        b=ZoLHEj/XiRbtX1bniFmHdb03RnIj+usQvsJSM49CWvFYe70r0UrCYnNQz3VXlEZuNc
+         SoIWqHUCJfRX6cNGAt6scfnaH5OClWp3TtTU9LOKuu0bGjJICMhcTvUu53g8NYdVRlk0
+         aE3ApLuWHHS5QP3bbTjgfntvGbmzbCkgf6HOKuTlN7NPUwoyFl2CfjiZpWRAYGjPB0tU
+         q8RuycaDWy562F1hxeI418rLUdN5EEVdGD8SbNvOWNc84toeLOdWwe7FUgo7OQh5ZnJD
+         cuULo/eIuG0jEjeqiPcIvoZMQVrm3Oc6gJ9jLo5jQX/LQRCnr2mtVPDw7xoepNMbIf4i
+         4Opw==
+X-Gm-Message-State: APjAAAXGTMqYx35kbv0UwUX5Nzntvh4Kcsgyb6yNBUvJejyCyOZUlR70
+        S9XMUlJgAiYr4MS7Apah0w==
+X-Google-Smtp-Source: APXvYqyr2RmoUKIYmcnbAUSCFIfE6p1qnvVMPgpyHtdQ2kdChxIgS9ZhVEHvmg5e7YvJGI9H9K+GDA==
+X-Received: by 2002:a9d:684c:: with SMTP id c12mr26129585oto.341.1571076588764;
+        Mon, 14 Oct 2019 11:09:48 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 109sm5884056otc.52.2019.10.14.11.09.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2019 11:09:48 -0700 (PDT)
+Date:   Mon, 14 Oct 2019 13:09:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, jejb@linux.ibm.com,
+        Martin K Petersen <martin.petersen@oracle.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Pedro Sousa <pedrom.sousa@synopsys.com>,
+        Janek Kotas <jank@cadence.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>, nsekhar@ti.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: ti,j721e-ufs.yaml: Add binding
+ for TI UFS wrapper
+Message-ID: <20191014180947.GA881@bogus>
+References: <20191010083357.28982-1-vigneshr@ti.com>
+ <20191010083357.28982-2-vigneshr@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191010083357.28982-2-vigneshr@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup the Rockchip dtsi files a little bit
-by removing some tabs and spaces.
+On Thu, 10 Oct 2019 14:03:56 +0530, Vignesh Raghavendra wrote:
+> Add binding documentation of TI wrapper for Cadence UFS Controller.
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+> 
+> v2:
+> Define Cadence UFS controller as child node of the wrapper as suggested
+> by Rob H
+> 
+>  .../devicetree/bindings/ufs/ti,j721e-ufs.yaml | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml
+> 
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rk3036.dtsi           |  4 ++--
- arch/arm/boot/dts/rk3288-rock2-som.dtsi |  2 +-
- arch/arm/boot/dts/rk3288-tinker.dtsi    | 14 +++++---------
- 3 files changed, 8 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index c776321b2..c70182c5a 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -696,8 +696,8 @@
- 
- 		hdmi {
- 			hdmi_ctl: hdmi-ctl {
--				rockchip,pins = <1 RK_PB0  1 &pcfg_pull_none>,
--						<1 RK_PB1  1 &pcfg_pull_none>,
-+				rockchip,pins = <1 RK_PB0 1 &pcfg_pull_none>,
-+						<1 RK_PB1 1 &pcfg_pull_none>,
- 						<1 RK_PB2 1 &pcfg_pull_none>,
- 						<1 RK_PB3 1 &pcfg_pull_none>;
- 			};
-diff --git a/arch/arm/boot/dts/rk3288-rock2-som.dtsi b/arch/arm/boot/dts/rk3288-rock2-som.dtsi
-index 9f9e2bfd1..14aebd447 100644
---- a/arch/arm/boot/dts/rk3288-rock2-som.dtsi
-+++ b/arch/arm/boot/dts/rk3288-rock2-som.dtsi
-@@ -237,7 +237,7 @@
- 
- 	gmac {
- 		phy_rst: phy-rst {
--			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO  &pcfg_output_high>;
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_output_high>;
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-index 81e4e953d..0aeef23ca 100644
---- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-@@ -382,18 +382,15 @@
- 
- 	pmic {
- 		pmic_int: pmic-int {
--			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO \
--					&pcfg_pull_up>;
-+			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 
- 		dvs_1: dvs-1 {
--			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO \
--					&pcfg_pull_down>;
-+			rockchip,pins = <0 RK_PB3 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
- 
- 		dvs_2: dvs-2 {
--			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO \
--					&pcfg_pull_down>;
-+			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
- 	};
- 
-@@ -406,8 +403,7 @@
- 		};
- 
- 		sdmmc_clk: sdmmc-clk {
--			rockchip,pins = <6 RK_PC4 1 \
--					&pcfg_pull_none_drv_8ma>;
-+			rockchip,pins = <6 RK_PC4 1 &pcfg_pull_none_drv_8ma>;
- 		};
- 
- 		sdmmc_cmd: sdmmc-cmd {
-@@ -432,7 +428,7 @@
- 	sdio {
- 		wifi_enable: wifi-enable {
- 			rockchip,pins = <4 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>,
--				<4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-+					<4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- };
--- 
-2.11.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
