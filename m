@@ -2,68 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6421FD6561
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 16:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C879D6576
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 16:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732771AbfJNOks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 10:40:48 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:46652 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731121AbfJNOks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 10:40:48 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 89so13964138oth.13;
-        Mon, 14 Oct 2019 07:40:48 -0700 (PDT)
+        id S1732928AbfJNOon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 10:44:43 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:39669 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732924AbfJNOom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 10:44:42 -0400
+Received: by mail-pg1-f193.google.com with SMTP id p12so919910pgn.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 07:44:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=bNRsloUe1+m4c9HwAHy8LRzIsaF4TY0K3ozGxhA8oJE=;
+        b=EwxHdjjNsqta9UkaQIFxIfnG0B6BAXf96vujfejhhkvHxVRBeQJgGrK9iYGgytgIEp
+         9jm7sveUEd3k0Of2wyL6yDBybU1TWyg5lKWEjTIIelCia+RL1q6CrR0ZTmYBbAFRr46R
+         82EZYjy6E2P2VFQAk+sZ0NkdG4Bmy1z3VzmSgaBqAhbMIPSgFUXiwirEu2ePF5hq8scJ
+         bR47FX/znhoRxEHlW6LjlbtkjQD/8jKZwFjqomoa+4FY973w7sHWCxRFpMhxD67LbH9U
+         0dZibsYhA/CwgcIkSqFv/IQIkeFjp6PDfUZcseqBC+qIr+hmerTNNTaFbRj27GitbON7
+         0DUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rLrRGqFZt1p0PLygZY0bZGBBrDuXlpvEtk83drT5qNA=;
-        b=uPz89mGm5n4lGtmtcXz7yXVLCKHwvqnkyt4DP4Aj6MXiCfyrtWbiqb+uO4vSzCow1H
-         2Zj1Yy3skT8/rNdJtFKBtubHZdvGLB81WJN5tXkqLuiM6nMS6cYBk5NBxyBERorsoHhp
-         TlryM/9EnY/V2VZJYlIW2jjjTvDEu5TiVNc9TLKXRoDChs2OCSy9GXRdJDpGhFyRoFhg
-         suckjUPA9BlYpO5EXpAOMxg7PldXbXiIbbIY23k3kpPgY8nW7AcxyHvcERTcWN423xc/
-         zXKfWvrxmrzXXT6zNSe8UMC/J73aLHZ81Czu96ZavHYfCOfNFNNod9QJQ2rJ5n7G2gcK
-         Vc/g==
-X-Gm-Message-State: APjAAAW8Ol10LjixWIh3c1U9S/DxfneLBfNKx7u4I9mKjogbR/w+5AFF
-        yt7Bcmxi3CxoN9olxkgcog==
-X-Google-Smtp-Source: APXvYqztWmaWZJARjqFjThQ4FwgtdG5tL2swxxJ7bQZ2NmrMfIERNofp7HVxfpHfZ/vtatSEGEuTQQ==
-X-Received: by 2002:a9d:684c:: with SMTP id c12mr25367239oto.341.1571064047696;
-        Mon, 14 Oct 2019 07:40:47 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n39sm5714031ota.33.2019.10.14.07.40.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2019 07:40:47 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 09:40:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Govind Singh <govinds@codeaurora.org>
-Cc:     robh@kernel.org, sboyd@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        Govind Singh <govinds@codeaurora.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock
- controller bindings
-Message-ID: <20191014144046.GA23210@bogus>
-References: <20191011132928.9388-1-govinds@codeaurora.org>
- <20191011132928.9388-2-govinds@codeaurora.org>
+        bh=bNRsloUe1+m4c9HwAHy8LRzIsaF4TY0K3ozGxhA8oJE=;
+        b=X5p8MO0Eh/ZlVC0L3W1Uk0oOyP0Vgi03axo01mJO0qjUfaptQTx52PEtDtL2cRVHCl
+         iYCjllJ7Ok3p2+cpe1bL/alQsjuZ//hW5b6GMNnsekrycbRmkzTxtYfWvmIFxrjMeJtV
+         6+JlPH9VcgFbmIxzjWxPny+to989lxXvf6aunsxOeEeGinjzLeFvsBK3J2cfQSHfTAHQ
+         wi9eSFSJTHF9gbCzpTYseYkqRhpjGfJZHMQBPIU0EuT9Xbmr1EhRb0VRtlIatkT6mtpG
+         vEKex8DeGH3bDSMYx8HUR2s9sjYdz7AOZpXbl2ojzhRuDkkh7p1zh15Z5QPA2nJg9FH1
+         KZ/A==
+X-Gm-Message-State: APjAAAXSP6e8fTVtBgV9qdLdQwk58JFmthf9XVHbaj8ZoLG/g+GO2J8Y
+        kE63HQDBinXgB+/mlx6oXgKq
+X-Google-Smtp-Source: APXvYqyaDf+8FJSPKt0DRGHMoHpd4vlbdM2vJwLkBbOx/vnNENq1hbKjckJw85Fgl07ugMHoEKf38Q==
+X-Received: by 2002:a63:5423:: with SMTP id i35mr34670105pgb.128.1571064281958;
+        Mon, 14 Oct 2019 07:44:41 -0700 (PDT)
+Received: from mani ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id y8sm14852113pgs.34.2019.10.14.07.44.37
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 14 Oct 2019 07:44:41 -0700 (PDT)
+Date:   Mon, 14 Oct 2019 20:14:32 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     ulf.hansson@linaro.org, afaerber@suse.de, robh+dt@kernel.org,
+        sboyd@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 3/7] arm64: dts: actions: Add MMC controller support
+ for S900
+Message-ID: <20191014144432.GA8583@mani>
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org>
+ <20190916154546.24982-4-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191011132928.9388-2-govinds@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190916154546.24982-4-manivannan.sadhasivam@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 18:59:27 +0530, Govind Singh wrote:
-> Add devicetree binding for the Q6SSTOP clock controller found in QCS404.
+On Mon, Sep 16, 2019 at 09:15:42PM +0530, Manivannan Sadhasivam wrote:
+> Add MMC controller support for Actions Semi S900 SoC. There are 4 MMC
+> controllers in this SoC which can be used for accessing SD/MMC/SDIO cards.
 > 
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
-> ---
->  .../bindings/clock/qcom,q6sstopcc.yaml        | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
-> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied for v5.5.
+
+Thanks,
+Mani
+
+> ---
+>  arch/arm64/boot/dts/actions/s900.dtsi | 45 +++++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/actions/s900.dtsi b/arch/arm64/boot/dts/actions/s900.dtsi
+> index df3a68a3ac97..eb35cf78ab73 100644
+> --- a/arch/arm64/boot/dts/actions/s900.dtsi
+> +++ b/arch/arm64/boot/dts/actions/s900.dtsi
+> @@ -4,6 +4,7 @@
+>   */
+>  
+>  #include <dt-bindings/clock/actions,s900-cmu.h>
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/reset/actions,s900-reset.h>
+>  
+> @@ -284,5 +285,49 @@
+>  			dma-requests = <46>;
+>  			clocks = <&cmu CLK_DMAC>;
+>  		};
+> +
+> +		mmc0: mmc@e0330000 {
+> +			compatible = "actions,owl-mmc";
+> +			reg = <0x0 0xe0330000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD0>;
+> +			resets = <&cmu RESET_SD0>;
+> +			dmas = <&dma 2>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc1: mmc@e0334000 {
+> +			compatible = "actions,owl-mmc";
+> +			reg = <0x0 0xe0334000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD1>;
+> +			resets = <&cmu RESET_SD1>;
+> +			dmas = <&dma 3>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc2: mmc@e0338000 {
+> +			compatible = "actions,owl-mmc";
+> +			reg = <0x0 0xe0338000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD2>;
+> +			resets = <&cmu RESET_SD2>;
+> +			dmas = <&dma 4>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc3: mmc@e033c000 {
+> +			compatible = "actions,owl-mmc";
+> +			reg = <0x0 0xe033c000 0x0 0x4000>;
+> +			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_SD3>;
+> +			resets = <&cmu RESET_SD3>;
+> +			dmas = <&dma 46>;
+> +			dma-names = "mmc";
+> +			status = "disabled";
+> +		};
+>  	};
+>  };
+> -- 
+> 2.17.1
+> 
