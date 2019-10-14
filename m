@@ -2,150 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4D2D6431
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 15:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF59D643F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 15:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731743AbfJNNhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 09:37:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39134 "EHLO mail.kernel.org"
+        id S1732168AbfJNNkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 09:40:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40246 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730922AbfJNNhm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 09:37:42 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        id S1727789AbfJNNku (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 09:40:50 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ABBBB21721;
-        Mon, 14 Oct 2019 13:37:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4F66E21835;
+        Mon, 14 Oct 2019 13:40:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571060260;
-        bh=MW3Nl5vBGYEP1r6pB6vRm4kt3sl+T74xXBxnQcnxDJg=;
+        s=default; t=1571060450;
+        bh=R2o6W0/0TblgmHzx3gM9A0NpSoKcJqRz6eDlfXz6XN4=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=2sXMPsUme561CeAMCgWM/oIn3ONLM16BXu712sOBkRiFSP7Q5C1T3nxOSvvhYH/Na
-         ukNTVuStrnmrJDOjJStTKxCJ6vVZfMwSR/VmUJ148mc6xAqYi9BtHgDUX06XlL+dai
-         b4kFaH5VeadhseiphEg6MvdBAlF9dJqAQEp/6dAI=
-Received: by mail-qt1-f175.google.com with SMTP id 3so25514336qta.1;
-        Mon, 14 Oct 2019 06:37:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAW4NwxjNsz6y300aspgq2YmgEPDY22CWZmsY3R57t4MJK+I/qar
-        kC5R50rreQib1zaqzcqgeBl3JJfUAv78JRu6ug==
-X-Google-Smtp-Source: APXvYqyHFikaVR1Zfh90uFQZ9+z/7Kmft2jWrHcMSksG+OdljBmXXe7LqVnEZ1a4Pk6UQblcYb5b+jQDp2XvV1p3oNo=
-X-Received: by 2002:a0c:e606:: with SMTP id z6mr29909915qvm.135.1571060259750;
- Mon, 14 Oct 2019 06:37:39 -0700 (PDT)
+        b=U2+L9VzboJXV0N3iftjQmcLOkVpTPd5h8a/0GAviicYaukfL5/dLsE4lf7lSH0ACk
+         Vv4eA6G7K/0BV90zL5Z+XEIGJo7fPNvZGdrSU3v/Aja4yzQzJCYCa+YZVDD//0Q0qb
+         tQUbwRrDRcdblcJEiUnn2SZTwWu3zI8ltJPTG6yc=
+Received: by mail-qk1-f171.google.com with SMTP id x4so11974170qkx.5;
+        Mon, 14 Oct 2019 06:40:50 -0700 (PDT)
+X-Gm-Message-State: APjAAAU6wAFIi4jnw/WgdKxCBemFbs4TOzsdjLJrUKtfZPZ9+3rlgLUK
+        Su/yeDfyXX7rHfLb8SRU8LdZyIfk8CLgxVbrhA==
+X-Google-Smtp-Source: APXvYqw/XEhT9N8hvT14EapDveukSRwkiTGjVKsI0xDGkASddUPwUJUAUDUmd6r/1mVppKuUWMVz+jQgVxNyuUJCq6I=
+X-Received: by 2002:a37:98c1:: with SMTP id a184mr27642670qke.119.1571060449437;
+ Mon, 14 Oct 2019 06:40:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191010012523.14426-1-rjones@gateworks.com> <20191010175648.10830-1-rjones@gateworks.com>
- <20191010175648.10830-2-rjones@gateworks.com> <20191011135811.GA23962@bogus> <CALAE=UCcEd_pyjG+80EDBgGKsJfaCM0fvHAwEdnhf5G9-Ns+ig@mail.gmail.com>
-In-Reply-To: <CALAE=UCcEd_pyjG+80EDBgGKsJfaCM0fvHAwEdnhf5G9-Ns+ig@mail.gmail.com>
+References: <20191009024343.30218-1-jckuo@nvidia.com> <20191009024343.30218-4-jckuo@nvidia.com>
+ <20191009233900.GA9109@bogus> <20191014131752.GF422231@ulmo>
+In-Reply-To: <20191014131752.GF422231@ulmo>
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 14 Oct 2019 08:37:28 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+_XXKJkHGB1vD=qM418NL-6MP7Qyx7cWDeM_wt5H-Lfg@mail.gmail.com>
-Message-ID: <CAL_Jsq+_XXKJkHGB1vD=qM418NL-6MP7Qyx7cWDeM_wt5H-Lfg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: add fxos8700 imu binding
-To:     Bobby Jones <rjones@gateworks.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
+Date:   Mon, 14 Oct 2019 08:40:37 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+aKxfAir3skanfqmM+nFFzXPFL4eMa-+pq1kH-90YTbg@mail.gmail.com>
+Message-ID: <CAL_Jsq+aKxfAir3skanfqmM+nFFzXPFL4eMa-+pq1kH-90YTbg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: phy: tegra: Add Tegra194 support
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     JC Kuo <jckuo@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-tegra@vger.kernel.org,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Nagarjuna Kristam <nkristam@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 11, 2019 at 6:33 PM Bobby Jones <rjones@gateworks.com> wrote:
+On Mon, Oct 14, 2019 at 8:17 AM Thierry Reding <thierry.reding@gmail.com> wrote:
 >
-> On Fri, Oct 11, 2019 at 6:58 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Oct 10, 2019 at 10:56:47AM -0700, Robert Jones wrote:
-> > > This adds documentation for the Freescale FXOS8700 Inertial Measurement Unit
-> > > device-tree bindings.
+> On Wed, Oct 09, 2019 at 06:39:00PM -0500, Rob Herring wrote:
+> > On Wed, Oct 09, 2019 at 10:43:41AM +0800, JC Kuo wrote:
+> > > Extend the bindings to cover the set of features found in Tegra194.
+> > > Note that, technically, there are four more supplies connected to the
+> > > XUSB pad controller (DVDD_PEX, DVDD_PEX_PLL, HVDD_PEX and HVDD_PEX_PLL)
+> > > , but the power sequencing requirements of Tegra194 require these to be
+> > > under the control of the PMIC.
 > > >
-> > > Signed-off-by: Robert Jones <rjones@gateworks.com>
-> > > ---
-> > >  .../devicetree/bindings/iio/imu/nxp,fxos8700.yaml  | 69 ++++++++++++++++++++++
-> > >  1 file changed, 69 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-> > > new file mode 100644
-> > > index 0000000..d33a1cc
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-> > > @@ -0,0 +1,69 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/imu/fxos8700.yaml#
+> > > Tegra194 XUSB PADCTL supports up to USB 3.1 Gen 2 speed, however, it is
+> > > possible for some platforms have long signal trace that could not
+> > > provide sufficient electrical environment for Gen 2 speed. To deal with
+> > > this, a new device node property "nvidia,disable-gen2" was added to
+> > > Tegra194 that be used to specifically disable Gen 2 speed for a
+> > > particular USB 3.0 port so that the port can be limited to Gen 1 speed
+> > > and avoid the instability.
 > >
-> > Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml: $id:
-> > path/filename 'iio/imu/fxos8700.yaml' doesn't match actual filename
-> >
-> > Test your binding with 'make dt_binding_check'.
+> > I suspect this may be a common issue and we should have a common
+> > property. Typically, this kind of property is in the controller though
+> > and supports multiple speed limits. See PCI bindings for inspiration.
 >
-> Sorry about that, I had tried running that check previously but was
-> struggling through some python environment/set-up problems.
-> Additionally I did not realize that my path was incomplete until I
-> read your github's readme line "Ensure ~/.local/bin is in the PATH". I
-> don't utilize the python install on my machine frequently so I'm not
-> sure if that should be obvious. It might be helpful to have that line
-> in the Documentation/devicetree/writing-schema.md as well.
-> Anyways I've got it running now.
-
-Thanks for the input, will add something.
-
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Freescale FXOS8700 Inertial Measurement Unit
-> > > +
-> > > +maintainers:
-> > > +  - Robert Jones <rjones@gateworks.com>
-> > > +
-> > > +description: |
-> > > +  Accelerometer and magnetometer combo device with an i2c and SPI interface.
-> > > +  https://www.nxp.com/products/sensors/motion-sensors/6-axis/digital-motion-sensor-3d-accelerometer-2g-4g-8g-plus-3d-magnetometer:FXOS8700CQ
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - nxp,fxos8700
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 2
-> > > +
-> > > +  interrupt-names:
-> > > +    maxItems: 2
-> > > +    items:
-> > > +      - const: INT1
-> > > +      - const: INT2
-> >
-> > This doesn't match the example now. You need 'minItems: 1' if you need
-> > to support 1 or 2 interrupts. If it can be either one, then you need:
-> >
-> > items:
-> >   enum: [ INT1, INT2 ]
-> I'm trying to compare against other .yaml examples in the tree but
-> without scouring datasheets to find a device with similar interrupt
-> capabilities I'm just guessing at how this should be defined.
-> The device has 2 interrupt pins as you've read (INT1 and INT2), and
-> 0-2 of them can be used depending on what's been configured. Given
-> what you've explained so far would this be the proper definition?:
+> Given that support for gen 2 speeds is dependent on signal trace length,
+> it doesn't really make sense to restrict the whole controller to a given
+> speed if only the signal trace for a single port exceeds the limit for
+> which gen 2 would work.
 >
->   interrupts:
->     minItems: 1
->     maxItems: 2
->
->   interrupt-names:
->     minItems: 1
->     maxItems: 2
->     items:
->       enum:
->         - INT1
->         - INT2
+> Also, the USB PHYs are in a different hardware block than the USB
+> controller, so this really is a property of the PHY block, not the USB
+> controller.
 
-Yes, that's good.
+Okay, but still should be common for USB PHYs IMO.
 
 Rob
