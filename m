@@ -2,80 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D81D6930
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A818D693C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 20:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732883AbfJNSLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 14:11:39 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:38694 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732772AbfJNSLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:11:39 -0400
-Received: by mail-ot1-f68.google.com with SMTP id e11so14581076otl.5;
-        Mon, 14 Oct 2019 11:11:36 -0700 (PDT)
+        id S1733130AbfJNSON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 14:14:13 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:44731 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732330AbfJNSON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 14:14:13 -0400
+Received: by mail-ot1-f66.google.com with SMTP id 21so14575591otj.11;
+        Mon, 14 Oct 2019 11:14:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vnVDhuScvkPvo4RwDVc8DWG75Gjqf1s3V7qBRLbqCOQ=;
-        b=dau4JhbTv7pwHuRl0tCYRlrnrNNJaVui80UTEaIMoVgJqMObrDNPpF5+B382NHtybm
-         IOlVn2NTbvUTTVBt+DBgacmt4qnEZaST/7DUIJkLQK6bpngaSMr0PYtkwQA9voNvRh31
-         WDf4ovetqra4AeD/xsU0W0p52Jqdu7I2VGOaehbwtkN0YNzVyqV+fT11l8OTavfFIuhp
-         q4kzq/5qvHr8vkOxOlfbwFxlJg26vOJGy46IMd6u/6HnSYnY1YiuVIAZSQxJWWmqg871
-         EmLIi1vP2haZl62GfQcBVG0TilcTdLm+WUcwU7lfVLP0674EV/oMyUGYmrBORlpZsk5s
-         ZjFg==
-X-Gm-Message-State: APjAAAWaSQJ22A6rcTWKM1cRxknVvBel0XiQoJJ/PU2aUjcmQXWECkLi
-        jAan80yEDcvGFD9wkwq7IQ==
-X-Google-Smtp-Source: APXvYqwt3ZBPq4LqtpgI59FJFua/51xF4TfLIs6OjOADJgM4VMCS2ku/+KVb7nuJpUHzNQheLssvAg==
-X-Received: by 2002:a05:6830:1be3:: with SMTP id k3mr26208614otb.180.1571076696479;
-        Mon, 14 Oct 2019 11:11:36 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=N/oP1f1HUsAcWz240lSJUR0uNH2aOpDS9BJ9NO93YYs=;
+        b=WH4alCtbSXdwqupx3OAF3b7QHkEbCYgUpczj6CV6uukWlDlvO9kSvwAVRWGclGMiXU
+         SIFTLVmDIN+nGfh79Kkv197TayLqtB7LCeF9t9TEvZ6NUd/3KOE4WOn5R9pCSM/AIHui
+         GY3ICH0W3Sm5DADTcSjo3Wjcd8lRcIPL/JVGp84emblb4yngxXNLCNdOhLy49eyqkb7C
+         3wmZ80du3KvX5SQ3EvLLq0EuO2dqNwkeUmZdDARgAaSnRmpXwdzHgeydRCCun4h1giUH
+         WDFPG0igFGUE4g3kyIqxuRHb7zL5IMpFq6pcqjR+knVb8yWopZrn6IWT2+zKCQASQYGb
+         K59Q==
+X-Gm-Message-State: APjAAAU9lNb5C3ljokDSVwp7nQPqXKGU+gLiU2jIT7S2zFHSoyAfOsiI
+        ccafE+OfUAfkbww6Rzm/vw==
+X-Google-Smtp-Source: APXvYqzzl16ke1YkGnRrU5ok5zwZXAS87U+RbEYstUfUhMyQVoHEJPA74WCoLvI7GZ7F7ocOuynEpw==
+X-Received: by 2002:a9d:7f8d:: with SMTP id t13mr26232221otp.369.1571076852390;
+        Mon, 14 Oct 2019 11:14:12 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t10sm5581297oib.49.2019.10.14.11.11.35
+        by smtp.gmail.com with ESMTPSA id r26sm5304386oij.46.2019.10.14.11.14.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2019 11:11:35 -0700 (PDT)
-Date:   Mon, 14 Oct 2019 13:11:35 -0500
+        Mon, 14 Oct 2019 11:14:11 -0700 (PDT)
+Date:   Mon, 14 Oct 2019 13:14:11 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
-        nicolas.ferre@microchip.com, adrian.hunter@intel.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, claudiu.beznea@microchip.com,
-        Eugen.Hristev@microchip.com,
-        Ludovic Desroches <ludovic.desroches@microchip.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: sdhci-of-at91: new compatible string
- and update properties
-Message-ID: <20191014181135.GA4428@bogus>
-References: <20191011103340.26749-1-ludovic.desroches@microchip.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: Add ltc2947 documentation
+Message-ID: <20191014181411.GA9019@bogus>
+References: <20191011114853.159327-1-nuno.sa@analog.com>
+ <20191011114853.159327-2-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20191011103340.26749-1-ludovic.desroches@microchip.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191011114853.159327-2-nuno.sa@analog.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 12:33:37 +0200, Ludovic Desroches wrote:
-> There is a new compatible string for the SAM9X60 sdhci device. It involves
-> an update of the properties about the clocks stuff.
+On Fri, 11 Oct 2019 13:48:53 +0200, =?UTF-8?q?Nuno=20S=C3=A1?= wrote:
+> Document the LTC2947 device devicetree bindings.
 > 
-> Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
+> Changes in v2:
+>  * Add license identifier;
+>  * Fix the uint32-array properties;
+>  * Set maximum at the same indent as allOf in adi,accumulation-deadband-microamp;
+>  * Set enum at the same indent as allOf in adi,gpio-out-pol;
+>  * Use spi instead of spi0 on the example;
 > 
-> Changes:
-> - v2: remove the extra example and fix node label
-> 
-> This patch conflicts with Nicolas' one: "dt-bindings: sdhci-of-at91: add
-> the microchip,sdcal-inverted property". Let me know which one has to be
-> rebased or you can handle it.
-> 
-> Ludovic
-> 
-> 
->  .../devicetree/bindings/mmc/sdhci-atmel.txt       | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
+>  .../bindings/hwmon/adi,ltc2947.yaml           | 104 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
