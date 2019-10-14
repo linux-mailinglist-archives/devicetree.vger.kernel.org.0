@@ -2,61 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 097E2D5D7F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 10:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 036ADD5DD8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 10:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730457AbfJNIav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 04:30:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56922 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725936AbfJNIau (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 04:30:50 -0400
-Received: from dragon (li937-157.members.linode.com [45.56.119.157])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5443B207FF;
-        Mon, 14 Oct 2019 08:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571041850;
-        bh=p7mjM/EcKkarwYBL8yjO5OkJb2HPOW4/n1CL+uOOlMU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RTnfmVLrzT1mElpLV1XpxtXmAYaHC4vXjDk1D8B2kTsZLHBXEuOXdUn57LgcXb0Ej
-         h3mpF2mTZzuwOHBrv9gd3TZkQ4d/61IzyEHJNqi+GNSCzH6D3Q9rxbNjPNVhwsqsHm
-         enxUHSuGte972ZNKUuW2YUasfYnn5BuldVKKqFww=
-Date:   Mon, 14 Oct 2019 16:29:28 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
-        Li Yang <leoyang.li@nxp.com>, mbrugger@suse.com,
-        robin.murphy@arm.com, f.fainelli@gmail.com,
-        james.quinlan@broadcom.com, wahrenst@gmx.net,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH 08/11] dts: arm64: layerscape: add dma-ranges property to
- pcie nodes
-Message-ID: <20191014082924.GI12262@dragon>
-References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
- <20190924181244.7159-9-nsaenzjulienne@suse.de>
+        id S1730605AbfJNItP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 04:49:15 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:36601 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730476AbfJNItP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 04:49:15 -0400
+Received: by mail-ot1-f66.google.com with SMTP id 67so13137687oto.3;
+        Mon, 14 Oct 2019 01:49:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sHUOzEM8408QtReDEYnlN2fQ7S9od5yj7y894mX8AyY=;
+        b=WrjMlvagSBM9oWeJq9GPGtcQnBe5ceGIn3l5vNCayUm5u9efbDjeyLoqcwEB1o8SY3
+         NnErzyu+JkAenYyuX/AFwt3YEZSAe8pIwbMQj2hsK2rKFMQ79NFS8Ha89gIJNuej9vao
+         q7Wd2SqgkPwi5/xglGUk/R5UkTT+KcUBMidNr7TiYuoaGrpfQHRmdCUcVxz3Dd5HgMQf
+         /FvWq+OvuugUlWxgwlI9yXMuXwnpm6tuSbTK1ykCkvKm26Xr8G9kShCU6M5pKt613AGQ
+         FSSpdNakv7THcxazpJ0tso11fGDz5oDTHi2HI+J4gBmynleMjmL9YrmR3YH2v6eYFcW1
+         enUA==
+X-Gm-Message-State: APjAAAXyrr9f9huBtdsisRp4W3/lEWzgNef8IkXnurdJ5kl0EuKlaSeb
+        x1KQUR9hvm8RGgp652bXZMYJLMVIJrt7tChgOhI=
+X-Google-Smtp-Source: APXvYqx6seOUQFOoO3JBxG2sL+Teqj0vkwCSvRcx4J0jdoKSUSOXCUPajOcoR2m0ZsBLLCmEDSKkcqkmc+kS7m2YJZ8=
+X-Received: by 2002:a05:6830:1544:: with SMTP id l4mr9074793otp.297.1571042952900;
+ Mon, 14 Oct 2019 01:49:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190924181244.7159-9-nsaenzjulienne@suse.de>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <1570717560-7431-1-git-send-email-fabrizio.castro@bp.renesas.com> <1570717560-7431-4-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1570717560-7431-4-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Oct 2019 10:49:01 +0200
+Message-ID: <CAMuHMdWtK1+3AZ734j8rLsAx-b873Gxaif5g0+J4UVPLRR9X6g@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: r8a774b1: Add CAN and CAN FD support
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 24, 2019 at 08:12:39PM +0200, Nicolas Saenz Julienne wrote:
-> The bus behind the board's PCIe core has DMA addressing limitations. Add
-> an empty 'dma-ranges' property on all PCIe bus descriptions to inform
-> the OF core that a translation is due further down the line.
-> 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On Thu, Oct 10, 2019 at 4:26 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Add CAN and CAN FD support to the RZ/G2N SoC specific dtsi.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Applied, thanks.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
