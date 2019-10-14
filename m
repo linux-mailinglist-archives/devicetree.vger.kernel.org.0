@@ -2,93 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5F3D5AC6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 07:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7CDD5ADD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 07:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728765AbfJNFcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 01:32:21 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54091 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729706AbfJNFcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 01:32:09 -0400
-Received: by mail-wm1-f67.google.com with SMTP id i16so15729288wmd.3
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2019 22:32:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZPt3z/LPUQkZF7XPmauch+PD9uKUNhmmb16ZUBya544=;
-        b=NNRfug62qVkpYI5/OmgtlawaQdrdObsbLahRD4b1X+pEB4TI3PY+sWHTOXSyOHOirm
-         Ce+H6/yjXGCfFtDG8W+U0RwGTH0O0IiPBEoiApb41LtzjOwhmtzx08jFXjIe68DoKmCZ
-         9UdgBZxg/+LRD26L/G+jStWdo1BiiIo81MeQ5jbi7DjnH+5261kWY2Po2gKqatvHmYqV
-         ERG7ggaNVspcKlrQbgdFFoZsiFoimeA5urMrQCEWdNENKrRaI2h6094spyqFLco8xDip
-         NdVqD66DChwE+0vFHkAYgEXQdHywk55nQo9jO9CqejbyW6D0dN9No68dgAPHLKRtacPn
-         HQhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ZPt3z/LPUQkZF7XPmauch+PD9uKUNhmmb16ZUBya544=;
-        b=g9dlEMvrJ46F/N7X1chK4sJCVGb7s/lsBOJR5J0kQMoCbKdeDo9iCZmgUz+3c+Q03K
-         pM2oMnn1Tup0SCYFVV2KmzckmwcEpMPYucc/um1mhMJJKcxirjKwpDvnCxjF4LmlqvJn
-         TZd92az1jlQdhlCjaSgIEaXDl9zw9CZOG24MDC+kTvPGwyx4Oif21ID0KnB6mNVlsxPb
-         B80XnlSCfsUdkfGQP6e9lDY3rcMjxozSibP4RWfTxtu+16RjJteOK7FpCIGaiEW47Esu
-         5xqrPHxlUB+f14fTd+NJXlAE3eQwd5J8UR3XPMePDR9TI5VAge5BWAIprcTfpNvh57AZ
-         5EVA==
-X-Gm-Message-State: APjAAAUsYlJOGy16ij/54sEARAc1gGmr92uSorWKp6Y3N5qGusdlA3B9
-        arHN3s8h3Toc6sVyFxCM7dzpfQ==
-X-Google-Smtp-Source: APXvYqyjAenIih3BVCa7xP8YhcqlBP28JppFbg1KMQZ9deITlv3xYcilyH/KYDEuYgH3Y9jQjhqckg==
-X-Received: by 2002:a7b:c006:: with SMTP id c6mr13743896wmb.45.1571031127404;
-        Sun, 13 Oct 2019 22:32:07 -0700 (PDT)
-Received: from localhost.localdomain ([51.15.160.169])
-        by smtp.googlemail.com with ESMTPSA id o18sm44238772wrw.90.2019.10.13.22.32.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sun, 13 Oct 2019 22:32:06 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        khilman@baylibre.com, mark.rutland@arm.com, robh+dt@kernel.org,
+        id S1726304AbfJNFlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 01:41:10 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:37662 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725798AbfJNFlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 01:41:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=AI8EfTeODgLvLyZXkT+wBeWstD/BS6tQHgRMlH3pY2k=; b=LuK3iUxUmZAB6J9sYijmNHSU2
+        6Rrp6Rw+FIkUStG7/Lb8Jf13fRsZDSjH0PFVjTwxZpe7IaNvq6UXA/D2es8JQfrOGAW8WnYbDf/ZS
+        nI0ELJQbZkbvTeJZsVVHPaHeXKVANzJy+N+qHEXIMzS2c0SoZjBbstvo+oHxCc8szD+kVRKPTIRzk
+        XlQoIdGz3mERL7yP7ceE56QiLMG42TjQxZ+fbIhw0sjtzUlANxEq5yBGj4+8inMcjgeyfiiCCfYxw
+        7Jx7ldxiaK7Ke5ue4ZC+1z9n2lP7z1O7cBqwvhF/R9zbaE6eiIKQbhpy2YPmmQNEcu8OdcLbsYp9K
+        C6GZcYN/w==;
+Received: from [2601:1c0:6280:3f0::9ef4]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1iJt6S-0001Ax-Ej; Mon, 14 Oct 2019 05:41:08 +0000
+Subject: Re: [PATCH v2 3/4] crypto: amlogic: Add crypto accelerator for
+ amlogic GXL
+To:     Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
+        herbert@gondor.apana.org.au, khilman@baylibre.com,
+        mark.rutland@arm.com, robh+dt@kernel.org,
         martin.blumenstingl@googlemail.com
 Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2 4/4] ARM64: dts: amlogic: adds crypto hardware node
-Date:   Mon, 14 Oct 2019 05:31:44 +0000
-Message-Id: <1571031104-6880-5-git-send-email-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1571031104-6880-1-git-send-email-clabbe@baylibre.com>
+        linux-kernel@vger.kernel.org
 References: <1571031104-6880-1-git-send-email-clabbe@baylibre.com>
+ <1571031104-6880-4-git-send-email-clabbe@baylibre.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <8f9be4a8-ed6c-a2bd-f3ba-df22752e7172@infradead.org>
+Date:   Sun, 13 Oct 2019 22:41:06 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
+MIME-Version: 1.0
+In-Reply-To: <1571031104-6880-4-git-send-email-clabbe@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the GXL crypto hardware node for all GXL SoCs.
+Hi,
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On 10/13/19 10:31 PM, Corentin Labbe wrote:
+> diff --git a/drivers/crypto/amlogic/Kconfig b/drivers/crypto/amlogic/Kconfig
+> new file mode 100644
+> index 000000000000..9c4bf96afeb3
+> --- /dev/null
+> +++ b/drivers/crypto/amlogic/Kconfig
+> @@ -0,0 +1,24 @@
+> +config CRYPTO_DEV_AMLOGIC_GXL
+> +	tristate "Support for amlogic cryptographic offloader"
+> +	default y if ARCH_MESON
+> +	select CRYPTO_BLKCIPHER
+> +	select CRYPTO_ENGINE
+> +	select CRYPTO_ECB
+> +	select CRYPTO_CBC
+> +	select CRYPTO_AES
+> +	help
+> +	  Select y here for having support for the cryptographic offloader
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 49ff0a7d0210..ed33d8efaf62 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -36,6 +36,16 @@
- 				phys = <&usb3_phy>, <&usb2_phy0>, <&usb2_phy1>;
- 			};
- 		};
-+
-+		crypto: crypto@c883e000 {
-+			compatible = "amlogic,gxl-crypto";
-+			reg = <0x0 0xc883e000 0x0 0x36>;
-+			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc CLKID_BLKMV>;
-+			clock-names = "blkmv";
-+			status = "okay";
-+		};
- 	};
- };
- 
+	                to have support for
+
+> +	  availlable on Amlogic GXL SoC.
+
+	  available
+
+> +	  This hardware handle AES ciphers in ECB/CBC mode.
+
+	                handles
+
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called amlogic-crypto.
+
+That module name does not match the Makefile's name.
+
+> +
+> +config CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+> +	bool "Enabled amlogic stats"
+
+	      Enable
+
+> +	depends on CRYPTO_DEV_AMLOGIC_GXL
+> +	depends on DEBUG_FS
+> +	help
+> +	  Say y to enabled amlogic-crypto debug stats.
+
+	           enable
+
+> +	  This will create /sys/kernel/debug/gxl-crypto/stats for displaying
+> +	  the number of requests per flow and per algorithm.
+> diff --git a/drivers/crypto/amlogic/Makefile b/drivers/crypto/amlogic/Makefile
+> new file mode 100644
+> index 000000000000..39057e62c13e
+> --- /dev/null
+> +++ b/drivers/crypto/amlogic/Makefile
+> @@ -0,0 +1,2 @@
+> +obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic-gxl-crypto.o
+> +amlogic-gxl-crypto-y := amlogic-gxl-core.o amlogic-gxl-cipher.o
+
+
 -- 
-2.21.0
-
+~Randy
