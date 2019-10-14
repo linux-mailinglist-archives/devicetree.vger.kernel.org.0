@@ -2,281 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F978D647E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 15:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31D94D64E2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 16:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732072AbfJNN50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 09:57:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43302 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730477AbfJNN50 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 09:57:26 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 86B2D21A4A;
-        Mon, 14 Oct 2019 13:57:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571061444;
-        bh=LLH2uQ5gYg+SBXTksDYlU+T3+fs82qQa6ba8XCr/GLI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WhWA0Z26YBfhBAV8RCEZEMYp1v+sqt+colar2WnzuXDlL8iW6T6nbdwUUz7lR8xRD
-         k0e4PvOQpMwHU+2BFSDNQzxl86uVe5XU5vttQ3NcDIoX47dI8JTqJVYmbE02q9jLiH
-         nUhPVzxIyECh8oC7bBNWteH980agEaehLbva3a1w=
-Received: by mail-qt1-f177.google.com with SMTP id w14so25522096qto.9;
-        Mon, 14 Oct 2019 06:57:24 -0700 (PDT)
-X-Gm-Message-State: APjAAAUVQuV76dR08KCLMQTH23BGbX7FB9mZsU9tnsOwYQ8kycto0+SB
-        tzW383NdNFW3i8apbb9zfzaEA8sEQ3Py/znyEA==
-X-Google-Smtp-Source: APXvYqwX1KUTrKD9PfICXLuavHN6lAAtm6esRog7N3VFNyl9RY+ZCu7FqNsYVhKlnuWqdkfPcoK1JtogLpjhrB86EEs=
-X-Received: by 2002:ac8:6782:: with SMTP id b2mr32574382qtp.143.1571061443573;
- Mon, 14 Oct 2019 06:57:23 -0700 (PDT)
+        id S1732628AbfJNORZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 10:17:25 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:40541 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731121AbfJNORZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 10:17:25 -0400
+Received: by mail-wr1-f66.google.com with SMTP id h4so19979136wrv.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 07:17:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wMvLKdMW2yszyQrYkGsmywM/YMlu6KRc8iq2yfQBOJU=;
+        b=eY5Ijx4QWTlhlQGgOpdrVKEgjA20rWFw2eiZwRKaJUwJG/7aYuLbxNjxklme848/FJ
+         bZIENnbseJ8mKmmwXVSzonk7Ng1vb6vhsbHBsJNqNAmUllpNX8AX1ucQG8nUQtVatNSn
+         sFOIgOQ9gV9zZjtGU0jIjQTaRE9DBPg+HEMIyXkmO2VTK/khiMwWsvhrac4wYFbgq+Z3
+         vE5xtZZ0RJ1pMA7JuOvXzAaOGtggmD2NXmqcdm4f6tWycPkf8RLCBBUsj+BrcLeomLtJ
+         mR19XkB+Lfc1ufptniAr2amT/joX/dioGuQbWLAGoXf3f64nUyhxO6JQtw6i4rFn3BMz
+         quqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wMvLKdMW2yszyQrYkGsmywM/YMlu6KRc8iq2yfQBOJU=;
+        b=QnuCRsbnMK2ORmRcWTliZg5aldXP8mSN1mRhIaOzgJINcdTAsTEJcu/llaFb4awb4z
+         ZrZp77osFCJ74O98Hti0LvEo1MtYQdgsKKuoSaXJiL1sH2xyvVPKKLcu8tMKp2Gk4hcp
+         k1GWcNOJWEczQwZr0E+GDYmPIMJHzTw/62kWhC9p1iKghGxSvcZvx9ko5t7xO8CBcw7h
+         NM1EoiRNJaHtBz/0IfUy4Yo/zeCQid3CQ6tudhiUkGe3QrCiLYoLiggMqqGknXu2xvq0
+         VBpn/Q+pWWzUq5UGG/I1/1w28KZnjFN6EjxWjx1d98X+D92+dOyJKtUYG6MK/lhrPtcK
+         f4gw==
+X-Gm-Message-State: APjAAAVz2dhy2lPMkdVpubS+fBy1RIvp8XM625Nrg0RJvDPJV+o+0Rhf
+        K1Kgl6bZlqPc8Cw8BDbTiB2BbQ==
+X-Google-Smtp-Source: APXvYqxYpJiFTdR6oysIP3BylyvjHRtG6AcTsX9/NO35uydOOjXlwBQ3nkYdCfVqNkSILXSLfHU1UA==
+X-Received: by 2002:adf:8526:: with SMTP id 35mr300767wrh.266.1571062641346;
+        Mon, 14 Oct 2019 07:17:21 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id t83sm42708624wmt.18.2019.10.14.07.17.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2019 07:17:20 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     balbi@kernel.org, khilman@baylibre.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Dongjin Kim <tobetter@gmail.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>, Tim <elatllat@gmail.com>
+Subject: [PATCH 1/3] doc: dt: bindings: usb: dwc3: Update entries for disabling SS instances in park mode
+Date:   Mon, 14 Oct 2019 16:17:16 +0200
+Message-Id: <20191014141718.22603-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20191014141718.22603-1-narmstrong@baylibre.com>
+References: <20191014141718.22603-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20191014091622.23562-1-benjamin.gaignard@st.com>
-In-Reply-To: <20191014091622.23562-1-benjamin.gaignard@st.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 14 Oct 2019 08:57:11 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Z7G31vBhHn_csntOsBLnZoLFU0qZHk67kdC1kahd4kQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+Z7G31vBhHn_csntOsBLnZoLFU0qZHk67kdC1kahd4kQ@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: display: Convert stm32 display bindings
- to json-schema
-To:     Benjamin Gaignard <benjamin.gaignard@st.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 14, 2019 at 4:16 AM Benjamin Gaignard
-<benjamin.gaignard@st.com> wrote:
->
-> Convert the STM32 display binding to DT schema format using json-schema.
-> Split the original bindings in two yaml files:
-> - one for display controller (ltdc)
-> - one for DSI controller
->
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> ---
-> changes in v3:
-> - use (GPL-2.0-only OR BSD-2-Clause) license
->
-> changes in v2:
-> - use BSD-2-Clause license
-> - add panel property
-> - fix identation
-> - remove pinctrl-names: true
-> - remove pinctrl-[0-9]+: true
-> - rework ports block to include port@0 and port@1
-> - use const for #adress-cells and #size-cells
-> - add additionalProperties: false
->
->  .../devicetree/bindings/display/st,stm32-dsi.yaml  | 151 +++++++++++++++++++++
->  .../devicetree/bindings/display/st,stm32-ltdc.txt  | 144 --------------------
->  .../devicetree/bindings/display/st,stm32-ltdc.yaml |  81 +++++++++++
->  3 files changed, 232 insertions(+), 144 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
->  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-> new file mode 100644
-> index 000000000000..8dd727c7533e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-> @@ -0,0 +1,151 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/st,stm32-dsi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 DSI host controller
-> +
-> +maintainers:
-> +  - Philippe Cornu <philippe.cornu@st.com>
-> +  - Yannick Fertre <yannick.fertre@st.com>
-> +
-> +description:
-> +  The STMicroelectronics STM32 DSI controller uses the Synopsys DesignWare MIPI-DSI host controller.
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32-dsi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Module Clock
-> +      - description: DSI bus clock
-> +      - description: Pixel clock
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: ref
-> +      - const: px_clk
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: apb
-> +
-> +  phy-dsi-supply:
-> +    maxItems: 1
-> +    description:
-> +        Phandle of the regulator that provides the supply voltage.
-> +
-> +  ports:
-> +    type: object
-> +    description:
-> +      A node containing DSI input & output port nodes with endpoint
-> +      definitions as documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +      Documentation/devicetree/bindings/graph.txt
-> +    properties:
-> +      port@0:
-> +        type: object
-> +        description:
-> +          DSI input port node, connected to the ltdc rgb output port.
-> +
-> +      port@1:
-> +        type: object
-> +        description:
-> +          DSI output port node, connected to a panel or a bridge input port"
-> +
-> +patternProperties:
-> +  "^(panel|panel-dsi)@[0-9]$":
-> +    type: object
-> +    description:
-> +      A node containing the panel or bridge description as documented in
-> +      Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
-> +    properties:
-> +      port@0:
+This patch updates the documentation with the information related
+to the quirks that needs to be added for disabling all SuperSpeed XHCi
+instances in park mode.
 
-You can drop this. The unit address for the panel port is decided by
-the panel binding, not this one.
+CC: Dongjin Kim <tobetter@gmail.com>
+Cc: Jianxin Pan <jianxin.pan@amlogic.com>
+Reported-by: Tim <elatllat@gmail.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/usb/dwc3.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +        type: object
-> +        description:
-> +          Panel or bridge port node, connected to the DSI output port (port@1)
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 66780a47ad85..c977a3ba2f35 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -75,6 +75,8 @@ Optional properties:
+ 			from P0 to P1/P2/P3 without delay.
+  - snps,dis-tx-ipgap-linecheck-quirk: when set, disable u2mac linestate check
+ 			during HS transmit.
++ - snps,parkmode-disable-ss-quirk: when set, all SuperSpeed bus instances in
++			park mode are disabled.
+  - snps,dis_metastability_quirk: when set, disable metastability workaround.
+ 			CAUTION: use only if you are absolutely sure of it.
+  - snps,is-utmi-l1-suspend: true when DWC3 asserts output signal
+-- 
+2.22.0
 
-[...]
-
-> diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-> new file mode 100644
-> index 000000000000..94a4137f7236
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/st,stm32-ltdc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 lcd-tft display controller
-> +
-> +maintainers:
-> +  - Philippe Cornu <philippe.cornu@st.com>
-> +  - Yannick Fertre <yannick.fertre@st.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32-ltdc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 2
-
-Need to describe what each interrupt is.
-
-items:
-  - description: ...
-  - description: ...
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: lcd
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  port:
-> +    type: object
-> +    description:
-> +      "Video port for DPI RGB output.
-> +      ltdc has one video port with up to 2 endpoints:
-> +      - for external dpi rgb panel or bridge, using gpios.
-> +      - for internal dpi input of the MIPI DSI host controller.
-> +      Note: These 2 endpoints cannot be activated simultaneously.
-> +      Please refer to the bindings defined in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt."
-> +
-> +  dma-ranges:
-> +    maxItems: 1
-
-dma-ranges goes in bus nodes, not device nodes.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/stm32mp1-clks.h>
-> +    #include <dt-bindings/reset/stm32mp1-resets.h>
-> +    ltdc: display-controller@40016800 {
-> +        compatible = "st,stm32-ltdc";
-> +        reg = <0x5a001000 0x400>;
-> +        interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&rcc LTDC_PX>;
-> +        clock-names = "lcd";
-> +        resets = <&rcc LTDC_R>;
-> +
-> +        port {
-> +             ltdc_out_dsi: endpoint {
-> +                     remote-endpoint = <&dsi_in>;
-> +             };
-> +        };
-> +    };
-> +
-> +...
-> +
-> --
-> 2.15.0
->
