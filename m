@@ -2,95 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AB90D66E4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 18:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE31D675D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 18:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733231AbfJNQLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 12:11:04 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52190 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731121AbfJNQLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 12:11:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=LhyxX5ncwWMkRp8vxryZGyvmWf4LnTI5tug7GizY/50=; b=gCSqGd0X/lKA22S45zRpWVRww
-        Yqlyvdl4tbX4tq+o/FF58x/P67M/w0rSKsXkCXNEaYmeaLVkK8qEBcP1PuAaF7xu/m6tzf50CKHaB
-        6kcY1DDhrBy8BKb6psQGhsnoOppsyZQFuoP6I/19mS9I69/n82QxnIpVlUDHmf65I7NXU=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iK2vv-0007yQ-Vm; Mon, 14 Oct 2019 16:10:56 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id DDA3B2741EF2; Mon, 14 Oct 2019 17:10:54 +0100 (BST)
-Date:   Mon, 14 Oct 2019 17:10:54 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Guido Roncarolo <guido.roncarolo@nxp.com>,
-        Jerome Laclavere <jerome.laclavere@nxp.com>
-Subject: Re: [alsa-devel] [RFC PATCH 2/2] ASoC: simple-card: Add
- documentation for force-dpcm property
-Message-ID: <20191014161054.GD4826@sirena.co.uk>
-References: <20191013190014.32138-1-daniel.baluta@nxp.com>
- <20191013190014.32138-3-daniel.baluta@nxp.com>
- <20191014115635.GB4826@sirena.co.uk>
- <CAEnQRZDbXZUhix_aR_DCUzFn1NYz1Zh7MxW5uwnuycps9PNohw@mail.gmail.com>
+        id S1730852AbfJNQcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 12:32:54 -0400
+Received: from mga01.intel.com ([192.55.52.88]:55171 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726637AbfJNQcy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 12:32:54 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 14 Oct 2019 09:32:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,296,1566889200"; 
+   d="scan'208";a="201505679"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 14 Oct 2019 09:32:51 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1iK3H8-000Eb3-R2; Tue, 15 Oct 2019 00:32:50 +0800
+Date:   Tue, 15 Oct 2019 00:32:42 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc:     kbuild-all@lists.01.org, catalin.marinas@arm.com,
+        davem@davemloft.net, herbert@gondor.apana.org.au,
+        linux@armlinux.org.uk, mark.rutland@arm.com, mripard@kernel.org,
+        robh+dt@kernel.org, wens@csie.org, will@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: Re: [PATCH v4 02/11] crypto: Add Allwinner sun8i-ce Crypto Engine
+Message-ID: <201910150009.4PL0gO1Q%lkp@intel.com>
+References: <20191012184852.28329-3-clabbe.montjoie@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Dzs2zDY0zgkG72+7"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAEnQRZDbXZUhix_aR_DCUzFn1NYz1Zh7MxW5uwnuycps9PNohw@mail.gmail.com>
-X-Cookie: Androphobia:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191012184852.28329-3-clabbe.montjoie@gmail.com>
+X-Patchwork-Hint: ignore
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Corentin,
 
---Dzs2zDY0zgkG72+7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I love your patch! Perhaps something to improve:
 
-On Mon, Oct 14, 2019 at 04:17:31PM +0300, Daniel Baluta wrote:
-> On Mon, Oct 14, 2019 at 2:57 PM Mark Brown <broonie@kernel.org> wrote:
+[auto build test WARNING on cryptodev/master]
+[cannot apply to v5.4-rc3 next-20191014]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-> > DPCM is an implementation detail of Linux (and one that we want to phase
-> > out going forwards too), we shouldn't be putting it in the DT bindings
-> > where it becomes an ABI.
+url:    https://github.com/0day-ci/linux/commits/Corentin-Labbe/crypto-add-sun8i-ce-driver-for-Allwinner-crypto-engine/20191014-104401
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-rc1-43-g0ccb3b4-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
 
-> I see your point. This is way I marked the patch series as RFC. I need to find
-> another way to reuse simple-card as machine driver for SOF.
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
 
-Have a look at the way the Renesas systems are using this and the audio
-graph card - they have DPCM.
 
---Dzs2zDY0zgkG72+7
-Content-Type: application/pgp-signature; name="signature.asc"
+sparse warnings: (new ones prefixed by >>)
 
------BEGIN PGP SIGNATURE-----
+>> drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c:415:25: sparse: sparse: symbol 'sun8i_ce_pm_ops' was not declared. Should it be static?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2kng4ACgkQJNaLcl1U
-h9AY3Qf+KqjpJbSFjgUExOknWKmIQsHL8qO28Dh8CbziYGq/2T/5n/myzuBq77rJ
-Jsf5asU3PTubpf1TQOytAog3UDtT69cqu4JIgAu2GCv7HrX7aZ7keiAlw5rlH8OC
-wh5SxpbIgE959u5iOlD3l5e+koSPk+nnpiZAXfq8faWGDcbsA4OlzNqxq5kEX3j6
-wQxJwGKHX73MatU5AF2IEBdZQeyg1eygBqNLvAyLp8//NdN/TijgVQbpxK2ZVeCL
-RRtZDUu+j2yIvXE6ugzHd/6RQD0VnCZmAXfA/R5hgKIaNVJeyJ6hXZJ3sW7Go4Iu
-1DzGwQiDN5A8JadoizM4L/L9L7MAKA==
-=ZL3b
------END PGP SIGNATURE-----
+Please review and possibly fold the followup patch.
 
---Dzs2zDY0zgkG72+7--
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
