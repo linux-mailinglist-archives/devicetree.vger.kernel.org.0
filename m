@@ -2,230 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99D36D6887
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 19:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9BBBD689D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 19:39:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730197AbfJNRev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 13:34:51 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:36864 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730177AbfJNRev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 13:34:51 -0400
-Received: by mail-wr1-f66.google.com with SMTP id p14so20682159wro.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 10:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=goZ9xr3ZvDzSv2nJz6yrf4HXNzE2UZomKxVxc5DO9BY=;
-        b=vHl8FZk3irxNcBHFS6WDvNRLbzSI+2dM7zbxblpP7TrH699NnU4A9rTupP3aIW6xLI
-         1s3nVKqg749HwtV8wrwNj90Rz/dzdgcEmIkULO5n8TlL+B6U1do2uDthDToVn3+D0YP2
-         9KgM6aqtUcji4E1xaPX9PywJHKS7Cs+v8hJnM9lZJWyE2XoCv2GwTYJru5+SC4Z8hfl/
-         rv+8BvLK+Z/9arnhKtio+xT6q+iTiwV6I9bGi04EUmqVK2PkXEHChONF6QBNgpvEGZB4
-         wKKgOeuVaw+6Alc/huUKGS08Csjskopiso9M5JfZMRrALxCYDFSX/ZxvrWlPdwdadWeU
-         8vGA==
+        id S1730590AbfJNRjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 13:39:03 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:46475 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730466AbfJNRjD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 13:39:03 -0400
+Received: by mail-oi1-f195.google.com with SMTP id k25so14405212oiw.13;
+        Mon, 14 Oct 2019 10:39:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=goZ9xr3ZvDzSv2nJz6yrf4HXNzE2UZomKxVxc5DO9BY=;
-        b=cNtTFTnGSsN+MRCMhTk5knBsidhDBlb/jTEFMtpGbm+aSPMle0hEY5AB3h9KJWhBtx
-         3oyk6U8SE+Oe5IBhYELfd2hnosdK92hxPjgZ97Na+W9CvcT74j0nkimLhE5TQtVs1e4z
-         LhQNYcko7xeyyyXXecLOYwXdWBvwdBoh65akhuIvnUsofFFNC7R1AnFui2QWWx2oWRWy
-         +BwSenZY345/U2SRX8UxoomSt6J/9W8hGKVMcsM7+1DAW/QG87b06lFBYCTzBlAlqst3
-         bK4wY/MzNLGBrjFqy1mnvH1GcIc3kNk7zr9LKg+3nLsANKyVgVJgoxo5UZjKyWfXayaa
-         12MQ==
-X-Gm-Message-State: APjAAAXfyOhWLXE6RbYgkI00gE6iPsCjddV2I51bG8vNZpGT5DEAsR3T
-        LmHruPlk4Su7eLxxlAuyM0q+oQ==
-X-Google-Smtp-Source: APXvYqx6o+W6CiM2QYYNE1LOP02RBlpY0Gjx6cCk2+/iSWkz3HaCQgW35hyYYEVSjE7RAe42vaKioA==
-X-Received: by 2002:a05:6000:1204:: with SMTP id e4mr12865496wrx.23.1571074488594;
-        Mon, 14 Oct 2019 10:34:48 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id g185sm26164302wme.10.2019.10.14.10.34.47
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 14 Oct 2019 10:34:47 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: soundwire: add bindings for Qcom
- controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     vkoul@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, spapothi@codeaurora.org
-References: <20191011154423.2506-1-srinivas.kandagatla@linaro.org>
- <20191011154423.2506-2-srinivas.kandagatla@linaro.org>
- <20191014171241.GA24989@bogus>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <76be1a0d-43ea-44c3-ef6c-9f9a2025c7a2@linaro.org>
-Date:   Mon, 14 Oct 2019 18:34:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WreGjKNejizDLrH2DJ0lAxbkyZ+jrNSgTeuzICqx9Z4=;
+        b=Ps+BXYSncxtbGCQ/GHAeLojTLAhVtin33gIyD+TrRbs37kMSMo2NurG7cCWFw79dKM
+         R4uIkUu+wSZofGcOljMq78mPQ0C15PEh6rK/0LJaXHxagVn+Paw9+5T0/ybMBcc6WhXM
+         9ekXSjbiCNLoHLQUxvb7FsWMQ3h1jG4i7njjq1U3+V6ccixmwXjKRn+Bq/3kHrnvOdcn
+         bsMVCQ6EPRndVRmW/PaBWjRWeJENPPU6NIAcOsYogRO5myerD0RSlWs01Mx11aLQ1Jws
+         p5e86swtgGsFdNXfmfHhwg/zI4eUgzGOsdxv0nv00K6DIPpIzGEy6m5845COWIxhpbiu
+         3Ghg==
+X-Gm-Message-State: APjAAAURg4u9TZjnm+g91+opGlQ9xE84rw4vRTj1DS4c1ztlOmmnC+QP
+        JZITTjVPtJDZ85xzdqjMPw==
+X-Google-Smtp-Source: APXvYqwdJv5xXQGlATBAH3wK/IT/WCXKxGy8SwE92PGPwmCT2Qv3DTyiAPc8LtnULM3NF1dE3Xu3gQ==
+X-Received: by 2002:aca:da41:: with SMTP id r62mr24442959oig.47.1571074742140;
+        Mon, 14 Oct 2019 10:39:02 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u141sm5690928oie.40.2019.10.14.10.39.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2019 10:39:01 -0700 (PDT)
+Date:   Mon, 14 Oct 2019 12:39:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jianxin Pan <jianxin.pan@amlogic.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+Subject: Re: [PATCH RESEND v2 1/4] dt-bindings: power: add Amlogic secure
+ power domains bindings
+Message-ID: <20191014173900.GA6886@bogus>
+References: <1570695678-42623-1-git-send-email-jianxin.pan@amlogic.com>
+ <1570695678-42623-2-git-send-email-jianxin.pan@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20191014171241.GA24989@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1570695678-42623-2-git-send-email-jianxin.pan@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Rob for taking time to review,
-
-On 14/10/2019 18:12, Rob Herring wrote:
-> On Fri, Oct 11, 2019 at 04:44:22PM +0100, Srinivas Kandagatla wrote:
->> This patch adds bindings for Qualcomm soundwire controller.
->>
->> Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
->> either integrated as part of WCD audio codecs via slimbus or
->> as part of SOC I/O.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   .../bindings/soundwire/qcom,sdw.txt           | 167 ++++++++++++++++++
->>   1 file changed, 167 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+On Thu, Oct 10, 2019 at 04:21:15AM -0400, Jianxin Pan wrote:
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
 > 
-> Next time, do a DT schema.
+> The bindings targets the Amlogic A1 and C1 compatible SoCs, in which the
+> power domain registers are in secure world.
 > 
-Sure! I can do that in next version!
-
->> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->> new file mode 100644
->> index 000000000000..436547f3b155
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->> @@ -0,0 +1,167 @@
->> +Qualcomm SoundWire Controller Bindings
->> +
->> +
->> +This binding describes the Qualcomm SoundWire Controller along with its
->> +board specific bus parameters.
->> +
->> +- compatible:
->> +	Usage: required
->> +	Value type: <stringlist>
->> +	Definition: must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
->> +		    Example:
->> +			"qcom,soundwire-v1.3.0"
->> +			"qcom,soundwire-v1.5.0"
->> +			"qcom,soundwire-v1.6.0"
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     | 42 ++++++++++++++++++++++
+>  include/dt-bindings/power/meson-a1-power.h         | 32 +++++++++++++++++
+>  2 files changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+>  create mode 100644 include/dt-bindings/power/meson-a1-power.h
 > 
-> This needs to be the actual versions supported, not examples. Elsewhere
-> in QCom bindings, we've used standard SoC specific compatibles as there
-> never tends to be many SoCs with the same version. Anything different
-> here?
-> 
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> new file mode 100644
+> index 00000000..88d8261
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +# Copyright (c) 2019 Amlogic, Inc
+> +# Author: Jianxin Pan <jianxin.pan@amlogic.com>
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson Secure Power Domains
+> +
+> +maintainers:
+> +  - Jianxin Pan <jianxin.pan@amlogic.com>
+> +
+> +description: |+
+> +  Meson Secure Power Domains used in A1/C1 SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-pwrc
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +  secure-monitor:
+> +    description: phandle to the secure-monitor node
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-These values of MAJOR MINOR and STEP are defined as part of IP spec. And 
-most of the QCom IPs follow such scheme. We can read back these values 
-from the Hardware registers.
+Why not just a child node of this node?
 
-Having SoC Names here might not be very efficient here.
-We have used such compatibles on may QCom IPs, like BAM DMA, SLIMBus and 
-other drivers.
-
->> +- reg:
->> +	Usage: required
->> +	Value type: <prop-encoded-array>
->> +	Definition: the base address and size of SoundWire controller
->> +		    address space.
->> +
->> +- interrupts:
->> +	Usage: required
->> +	Value type: <prop-encoded-array>
->> +	Definition: should specify the SoundWire Controller IRQ
->> +
->> +- clock-names:
->> +	Usage: required
->> +	Value type: <stringlist>
->> +	Definition: should be "iface" for SoundWire Controller interface clock
->> +
->> +- clocks:
->> +	Usage: required
->> +	Value type: <prop-encoded-array>
->> +	Definition: should specify the SoundWire Controller interface clock
->> +
->> +- #sound-dai-cells:
->> +	Usage: required
->> +	Value type: <u32>
->> +	Definition: must be 1 for digital audio interfaces on the controller.
->> +
->> +- qcom,dout-ports:
->> +	Usage: required
->> +	Value type: <u32>
->> +	Definition: must be count of data out ports
-> 
-> Up to how many?
-> 
->> +
->> +- qcom,din-ports:
->> +	Usage: required
->> +	Value type: <u32>
->> +	Definition: must be count of data in ports
-> 
-> Up to how many?
-
-Up to 15 data ports in total
-
-> 
->> +
-...
-
->> +Note:
->> +	More Information on detail of encoding of these fields can be
->> +found in MIPI Alliance SoundWire 1.0 Specifications.
->> +
->> += SoundWire devices
->> +Each subnode of the bus represents SoundWire device attached to it.
->> +The properties of these nodes are defined by the individual bindings.
-> 
-> Is there some sort of addressing that needs to be defined?
-> 
-Thanks, Looks like I missed that here.
-
-it should be something like this,
-
-#address-cells = <2>;
-#size-cells = <0>;
-
-Will add the in next version.
-
-
->> +
->> += EXAMPLE
->> +The following example represents a SoundWire controller on DB845c board
->> +which has controller integrated inside WCD934x codec on SDM845 SoC.
->> +
->> +soundwire: soundwire@c85 {
->> +	compatible = "qcom,soundwire-v1.3.0";
->> +	reg = <0xc85 0x20>;
->> +	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
->> +	clocks = <&wcc>;
->> +	clock-names = "iface";
->> +	#sound-dai-cells = <1>;
->> +	qcom,dports-type = <0>;
->> +	qcom,dout-ports	= <6>;
->> +	qcom,din-ports	= <2>;
->> +	qcom,ports-sinterval-low = /bits/ 8  <0x07 0x1F 0x3F 0x7 0x1F 0x3F 0x0F 0x0F>;
->> +	qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0C 0x6 0x12 0x0D 0x07 0x0A >;
->> +	qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1F 0x00 0x00 0x1F 0x00 0x00>;
->> +
->> +	/* Left Speaker */
->> +	left{
-> 
-> space       ^
->> +		....
->> +	};
->> +
->> +	/* Right Speaker */
->> +	right{
-> 
-> ditto
-> 
->> +		....
->> +	};
->> +};
->> -- 
->> 2.21.0
->>
+Rob
