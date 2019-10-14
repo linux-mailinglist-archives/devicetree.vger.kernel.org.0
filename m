@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C46D5CE0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 850B2D5CE5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729880AbfJNH6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 03:58:30 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:42350 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730150AbfJNH63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 03:58:29 -0400
-Received: by mail-pl1-f194.google.com with SMTP id e5so7646899pls.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 00:58:29 -0700 (PDT)
+        id S1730287AbfJNH6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 03:58:40 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:38377 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730246AbfJNH6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 03:58:39 -0400
+Received: by mail-pg1-f195.google.com with SMTP id w3so2706937pgt.5
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 00:58:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=RoLTcDXevgrBk0cPxImrXSQB650BgpVWWTWZfcg9k7g=;
-        b=ZDFa3M3vzS9eSdA3uEcRGaERyso/RAE0I9rzowdu2DiynsrrBk/5P/SW+3FcaW4p+I
-         l80/46yx3MeUTyzGTPHQ6+uVjVorGRfCIPq+u1GHN+5ej1DAkVp63/NlREYxcetta9oP
-         UqGKHWlfrBYx6UvRl1IDHSFQPMRRi08rbTJmw=
+        bh=QVRHT5pDxuvkIfhkJROJMokZUW2BLlyY/F+bHkNxqRo=;
+        b=Hw6W642xH1aROaObhBlIVPsu/fTpXv1b3H39oxGbXRFLKlZMFQNVzm/PeUsIRcyVO1
+         zFSz5IqF/qhd7w/CIawaKAsOENgjYRt3UFZqRFFTL49U+18twCrxef7/EDjwtrx2KMDs
+         /Wr+mDjiRbrgNYuI0LhMdjB3jrNL9ioEZ3sBA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=RoLTcDXevgrBk0cPxImrXSQB650BgpVWWTWZfcg9k7g=;
-        b=fbdr+aT3qCLOjPfGJv30xePL7z6Pa8ltAMNNzhaWwlM+5FPaA0QYMQ5xIpi224/q3I
-         wYHKYpvu1PcC9sM/tRomSN121XTRkR6E9KqmYE14mBi2g8TPONQ1lgVMybsXfGReuEK0
-         PEdXEPcxHhcYxp/g5vQ6sTXj1hwJ7nqLo7ba0mfIMEyYSVghAqaxrETDDBgVDdTKSLgl
-         yto2PsXRY32o/G7Zgba+zBL6yB5asl/t/3SSJlu5gSOGbQbr2JVTvaj3NM6vaLZrnLt6
-         tOsCdI90sd+NQFnsaU4kurjqBHWsqdwZGrAr4+K0OF9FNu195IoCcqcuH3TDGmbVn+0F
-         csTg==
-X-Gm-Message-State: APjAAAVWQcfpqtv+gVtM5m/1XymJ39DF0MkLx7/UYqHbuxT8U7LNk5yv
-        ZB/2YRn6KliEpFWu9f7CxpbLjQ==
-X-Google-Smtp-Source: APXvYqzxOi3qsmmD13lzmgWeKmLblbUGcBQHAJG0proj9EHyiNN1q/oNb/wc6i7hbeVFXK+LlMi+Cw==
-X-Received: by 2002:a17:902:8608:: with SMTP id f8mr27938903plo.185.1571039908818;
-        Mon, 14 Oct 2019 00:58:28 -0700 (PDT)
+        bh=QVRHT5pDxuvkIfhkJROJMokZUW2BLlyY/F+bHkNxqRo=;
+        b=Pv2NqD6GcEQOEnM11JxYsMlKrzjkVXyhQxHWeSTAwLXvbDjlPHIWdCO7/fKZ/1W2nf
+         pLWQRn9kAReycEvRgi1a4Kp8QRpbpx26QTyFWiwwlAEqIkAh1WSBCtoZiUoAicYC5cVz
+         bQOXtBE/xxNe95JsckCTOJKwv88evqn2TM08LBkfQEt6jCFD2TXsLIliERmrIm3GasoG
+         lqyidEW7smx0XMOVvsRXxyqjBoqWso7sXwFJM4RPghpttU1w1ijhhX66qPk2xHIFEDwE
+         B6//D5tnVqZIDZ3VazUlUAk2LepvVZIZvEL0CVqH1H3843IW9CArQwh24VjZrG4tEFBm
+         CU4w==
+X-Gm-Message-State: APjAAAWkYsVpMPdXscPG7OJyN6YUzk8APx8ASaOV6G+cAh3U4a/F6jCx
+        6RKf3wh2D25V8GbIWpXb6zlkUA==
+X-Google-Smtp-Source: APXvYqyX//1pTCjDs2s0kZc2grJXGSArCyBFdJ8I3SvUS7+iXEEXvhoXvyTt3zB+/7qKoGAQmAo4Uw==
+X-Received: by 2002:a17:90a:6302:: with SMTP id e2mr33759632pjj.20.1571039918605;
+        Mon, 14 Oct 2019 00:58:38 -0700 (PDT)
 Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
-        by smtp.googlemail.com with ESMTPSA id q76sm36695998pfc.86.2019.10.14.00.58.26
+        by smtp.googlemail.com with ESMTPSA id q76sm36695998pfc.86.2019.10.14.00.58.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2019 00:58:28 -0700 (PDT)
+        Mon, 14 Oct 2019 00:58:38 -0700 (PDT)
 From:   Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>, Erin Lo <erin.lo@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Erin Lo <erin.lo@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-remoteproc@vger.kernel.org (open list:REMOTE PROCESSOR
-        (REMOTEPROC) SUBSYSTEM),
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
         DEVICE TREE BINDINGS),
         linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
         support),
         linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
         support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v20 1/4] dt-bindings: Add a binding for Mediatek SCP
-Date:   Mon, 14 Oct 2019 15:58:06 +0800
-Message-Id: <20191014075812.181942-2-pihsun@chromium.org>
+Subject: [PATCH v20 4/4] arm64: dts: mt8183: add scp node
+Date:   Mon, 14 Oct 2019 15:58:09 +0800
+Message-Id: <20191014075812.181942-5-pihsun@chromium.org>
 X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
 In-Reply-To: <20191014075812.181942-1-pihsun@chromium.org>
 References: <20191014075812.181942-1-pihsun@chromium.org>
@@ -71,84 +68,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Erin Lo <erin.lo@mediatek.com>
+From: Eddie Huang <eddie.huang@mediatek.com>
 
-Add a DT binding documentation of SCP for the
-MT8183 SoC from Mediatek.
+Add scp node to mt8183 and mt8183-evb
 
 Signed-off-by: Erin Lo <erin.lo@mediatek.com>
 Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
 ---
-Changes from v19 ... v6:
+Changes from v19 ... v14:
  - No change.
 
-Changes from v5:
- - Remove dependency on CONFIG_RPMSG_MTK_SCP.
+Changes from v13:
+ - Change the size of the cfg register region.
 
-Changes from v4:
- - Add detail of more properties.
- - Document the usage of mtk,rpmsg-name in subnode from the new design.
-
-Changes from v3:
+Changes from v12 ... v10:
  - No change.
 
-Changes from v2:
- - No change. I realized that for this patch series, there's no need to
-   add anything under the mt8183-scp node (neither the mt8183-rpmsg or
-   the cros-ec-rpmsg) for them to work, since mt8183-rpmsg is added
-   directly as a rproc_subdev by code, and cros-ec-rpmsg is dynamically
-   created by SCP name service.
+Changes from v9:
+ - Remove extra reserve-memory-vpu_share node.
 
-Changes from v1:
- - No change.
+Changes from v8:
+ - New patch.
 ---
- .../bindings/remoteproc/mtk,scp.txt           | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 11 +++++++++++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 12 ++++++++++++
+ 2 files changed, 23 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
-new file mode 100644
-index 000000000000..3ba668bab14b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
-@@ -0,0 +1,36 @@
-+Mediatek SCP Bindings
-+----------------------------------------
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+index 1fb195c683c3..ddb7a7ac9655 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+@@ -24,6 +24,17 @@ memory@40000000 {
+ 	chosen {
+ 		stdout-path = "serial0:921600n8";
+ 	};
 +
-+This binding provides support for ARM Cortex M4 Co-processor found on some
-+Mediatek SoCs.
-+
-+Required properties:
-+- compatible		Should be "mediatek,mt8183-scp"
-+- reg			Should contain the address ranges for the two memory
-+			regions, SRAM and CFG.
-+- reg-names		Contains the corresponding names for the two memory
-+			regions. These should be named "sram" & "cfg".
-+- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
-+- clock-names		Contains the corresponding name for the clock. This
-+			should be named "main".
-+
-+Subnodes
-+--------
-+
-+Subnodes of the SCP represent rpmsg devices. The names of the devices are not
-+important. The properties of these nodes are defined by the individual bindings
-+for the rpmsg devices - but must contain the following property:
-+
-+- mtk,rpmsg-name	Contains the name for the rpmsg device. Used to match
-+			the subnode to rpmsg device announced by SCP.
-+
-+Example:
-+
-+	scp: scp@10500000 {
-+		compatible = "mediatek,mt8183-scp";
-+		reg = <0 0x10500000 0 0x80000>,
-+		      <0 0x105c0000 0 0x5000>;
-+		reg-names = "sram", "cfg";
-+		clocks = <&infracfg CLK_INFRA_SCPSYS>;
-+		clock-names = "main";
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++		scp_mem_reserved: scp_mem_region {
++			compatible = "shared-dma-pool";
++			reg = <0 0x50000000 0 0x2900000>;
++			no-map;
++		};
 +	};
+ };
+ 
+ &auxadc {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 97f84aa9fc6e..3dd1b76bbaf5 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -269,6 +269,18 @@ clocks = <&topckgen CLK_TOP_MUX_PMICSPI>,
+ 			clock-names = "spi", "wrap";
+ 		};
+ 
++		scp: scp@10500000 {
++			compatible = "mediatek,mt8183-scp";
++			reg = <0 0x10500000 0 0x80000>,
++			      <0 0x105c0000 0 0x19080>;
++			reg-names = "sram", "cfg";
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&infracfg CLK_INFRA_SCPSYS>;
++			clock-names = "main";
++			memory-region = <&scp_mem_reserved>;
++			status = "disabled";
++		};
++
+ 		auxadc: auxadc@11001000 {
+ 			compatible = "mediatek,mt8183-auxadc",
+ 				     "mediatek,mt8173-auxadc";
 -- 
 2.23.0.700.g56cf767bdb-goog
 
