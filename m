@@ -2,114 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D076D60D0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72151D60F3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:09:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731305AbfJNLAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 07:00:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60764 "EHLO mail.kernel.org"
+        id S1731729AbfJNLJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 07:09:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34026 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731676AbfJNLAJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 07:00:09 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1731686AbfJNLJb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 07:09:31 -0400
+Received: from dragon (li937-157.members.linode.com [45.56.119.157])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 61F9C207FF;
-        Mon, 14 Oct 2019 11:00:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 912D420650;
+        Mon, 14 Oct 2019 11:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571050808;
-        bh=ZlGSWdazyQ+VJGnSWXQEMdj9sn2sA7OLQ6nosjRvcVs=;
+        s=default; t=1571051370;
+        bh=IGUjFKwdFvBuHDUBTTMUkHOqWN+qrspmIFd3EP+r5D0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ARrkQrHoYCU2xerLQcqUwNA9j7VvNbBzkuJMrer7cqklB+5MhejFy6YoIEB7gUDGM
-         6YyDja4j4e5cnKK6dFQ6VOGvaa+354POwCSP8t12y3RLqXS2cfH3RTWsEH6xX/09ob
-         oeAR8H4mMIvyHAuu5DkVYaEWkuGPrvuF1n1qy8eU=
-Date:   Mon, 14 Oct 2019 13:00:06 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v10 1/6] dt-bindings: sun6i-dsi: Add A64 MIPI-DSI
- compatible
-Message-ID: <20191014110006.b324hccd52u7fotw@gilmour>
-References: <20191005141913.22020-1-jagan@amarulasolutions.com>
- <20191005141913.22020-2-jagan@amarulasolutions.com>
- <20191007093122.ixrpzvy6ynh6vuir@gilmour>
- <CAMty3ZA1azP3kkJPw6oZudcSQksF6i+STeW=oOh65cfHsj0QrQ@mail.gmail.com>
+        b=u6lV4BvTYW8QqsNve4UmSk9Z5IRL6ls+Ne+fUJeDqE/2kdCy6p2B3zszdb8a3CGfJ
+         zIUWNfhvJGX46ZQKGt0ADXS2mmtAPaMYHIMnAOQtJjH2drVoNnJIyH6+M8bbZA9fir
+         CCH+HHdvDRmqPLE15mDMW7UZttO+u5rVp++pF3JE=
+Date:   Mon, 14 Oct 2019 19:09:12 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        frowand.list@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>, mbrugger@suse.com,
+        robin.murphy@arm.com, f.fainelli@gmail.com,
+        james.quinlan@broadcom.com, wahrenst@gmx.net,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 07/11] dts: arm64: layerscape: add dma-ranges property to
+ qoric-mc node
+Message-ID: <20191014110911.GL12262@dragon>
+References: <20190924181244.7159-1-nsaenzjulienne@suse.de>
+ <20190924181244.7159-8-nsaenzjulienne@suse.de>
+ <20191014082847.GH12262@dragon>
+ <f6262e61f858c6f50164416f4ea816e203c0704f.camel@suse.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ictolke544mhfqmp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZA1azP3kkJPw6oZudcSQksF6i+STeW=oOh65cfHsj0QrQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <f6262e61f858c6f50164416f4ea816e203c0704f.camel@suse.de>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 14, 2019 at 12:00:25PM +0200, Nicolas Saenz Julienne wrote:
+> On Mon, 2019-10-14 at 16:28 +0800, Shawn Guo wrote:
+> > On Tue, Sep 24, 2019 at 08:12:38PM +0200, Nicolas Saenz Julienne wrote:
+> > > qoriq-mc's dpmacs DMA configuration is inherited from their parent node,
+> > > which acts a bus in this regard. So far it maked all devices as
+> > > dma-coherent but no dma-ranges recommendation is made.
+> > > 
+> > > The truth is that the underlying interconnect has DMA constraints, so
+> > > add an empty dma-ranges in qoriq-mc's node in order for DT's DMA
+> > > configuration code to get the DMA constraints from it.
+> > > 
+> > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > 
+> > Updated subject prefix as 'arm64: dts: ...', and applied the patch.
+> 
+> Hi Shawn,
+> these two patches are no longer needed. This series has been superseded by this
+> patch[1] 951d48855d ('of: Make of_dma_get_range() work on bus nodes', available
+> in linux-next) which fixed the issue directly in OF code.
+> 
+> Sorry for the noise.
 
---ictolke544mhfqmp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Okay, thanks for letting me know.  Dropped them.
 
-On Sun, Oct 13, 2019 at 10:32:18PM +0530, Jagan Teki wrote:
-> On Mon, Oct 7, 2019 at 3:01 PM Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > On Sat, Oct 05, 2019 at 07:49:08PM +0530, Jagan Teki wrote:
-> > > The MIPI DSI controller in Allwinner A64 is similar to A33.
-> > >
-> > > But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
-> > > to with separate compatible for A64 on the same driver.
-> > >
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > ---
-> > >  .../bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml        | 4 +++-
-> > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > index dafc0980c4fa..cfcc84d38084 100644
-> > > --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > @@ -15,7 +15,9 @@ properties:
-> > >    "#size-cells": true
-> > >
-> > >    compatible:
-> > > -    const: allwinner,sun6i-a31-mipi-dsi
-> > > +    enum:
-> > > +      - const: allwinner,sun6i-a31-mipi-dsi
-> > > +      - const: allwinner,sun50i-a64-mipi-dsi
-> >
-> > How did you test this? It will report an error when running the
-> > validation
->
-> I did follow the v9 comments [1] and forgot to do dt-doc-validate.
-> will send the v11 for this patch alone, will that be okay?
->
-> [1] https://patchwork.freedesktop.org/patch/307499/
-
-There's some changes to the DTSI to do as well, so please do them,
-check that the device trees are validated properly, and send a new
-version.
-
-Maxime
-
---ictolke544mhfqmp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXaRVNgAKCRDj7w1vZxhR
-xdlEAP9MkHQgcCclQKzguGiRxdmXCb+BVwkeOWiDgHEs4bDIXgD/eQbRbeTOq1NN
-hIPooMFntNFWHosHxRdy9yw7y56jfg0=
-=FNyg
------END PGP SIGNATURE-----
-
---ictolke544mhfqmp--
+Shawn
