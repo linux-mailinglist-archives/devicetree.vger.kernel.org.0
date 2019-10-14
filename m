@@ -2,144 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 850B2D5CE5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ACC0D5D0B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 10:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730287AbfJNH6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 03:58:40 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:38377 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730246AbfJNH6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 03:58:39 -0400
-Received: by mail-pg1-f195.google.com with SMTP id w3so2706937pgt.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 00:58:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QVRHT5pDxuvkIfhkJROJMokZUW2BLlyY/F+bHkNxqRo=;
-        b=Hw6W642xH1aROaObhBlIVPsu/fTpXv1b3H39oxGbXRFLKlZMFQNVzm/PeUsIRcyVO1
-         zFSz5IqF/qhd7w/CIawaKAsOENgjYRt3UFZqRFFTL49U+18twCrxef7/EDjwtrx2KMDs
-         /Wr+mDjiRbrgNYuI0LhMdjB3jrNL9ioEZ3sBA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QVRHT5pDxuvkIfhkJROJMokZUW2BLlyY/F+bHkNxqRo=;
-        b=Pv2NqD6GcEQOEnM11JxYsMlKrzjkVXyhQxHWeSTAwLXvbDjlPHIWdCO7/fKZ/1W2nf
-         pLWQRn9kAReycEvRgi1a4Kp8QRpbpx26QTyFWiwwlAEqIkAh1WSBCtoZiUoAicYC5cVz
-         bQOXtBE/xxNe95JsckCTOJKwv88evqn2TM08LBkfQEt6jCFD2TXsLIliERmrIm3GasoG
-         lqyidEW7smx0XMOVvsRXxyqjBoqWso7sXwFJM4RPghpttU1w1ijhhX66qPk2xHIFEDwE
-         B6//D5tnVqZIDZ3VazUlUAk2LepvVZIZvEL0CVqH1H3843IW9CArQwh24VjZrG4tEFBm
-         CU4w==
-X-Gm-Message-State: APjAAAWkYsVpMPdXscPG7OJyN6YUzk8APx8ASaOV6G+cAh3U4a/F6jCx
-        6RKf3wh2D25V8GbIWpXb6zlkUA==
-X-Google-Smtp-Source: APXvYqyX//1pTCjDs2s0kZc2grJXGSArCyBFdJ8I3SvUS7+iXEEXvhoXvyTt3zB+/7qKoGAQmAo4Uw==
-X-Received: by 2002:a17:90a:6302:: with SMTP id e2mr33759632pjj.20.1571039918605;
-        Mon, 14 Oct 2019 00:58:38 -0700 (PDT)
-Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
-        by smtp.googlemail.com with ESMTPSA id q76sm36695998pfc.86.2019.10.14.00.58.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2019 00:58:38 -0700 (PDT)
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v20 4/4] arm64: dts: mt8183: add scp node
-Date:   Mon, 14 Oct 2019 15:58:09 +0800
-Message-Id: <20191014075812.181942-5-pihsun@chromium.org>
-X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
-In-Reply-To: <20191014075812.181942-1-pihsun@chromium.org>
-References: <20191014075812.181942-1-pihsun@chromium.org>
+        id S1729044AbfJNIDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 04:03:32 -0400
+Received: from mail-eopbgr80083.outbound.protection.outlook.com ([40.107.8.83]:44263
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725936AbfJNIDc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Oct 2019 04:03:32 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dFaigwrMYoPlv6wmn9ArzBfArZNTpR9NZsN2S3A+HLOU7Df7Rpho4Cubpc68PArUPmlp8ZRpczCphJfAvI/fq6DxAm2TGrz5/VW27/uEctvwnQniEIXUBfe/BDdBSn59ltDQVPlRsSfI3dDx9/s6TTW9sqEttl8KzDOEDKedE3BptMEOTCYsEEWGZ79JBDBWyzZ4WYPigIdv/cSxqTO6SNPzzvNfcQJcF/gG7GHXesCt4BZhM8R9vUehBcXGPAHRAGXejtm3YtwUwGtpjorbfOh+WkYA9pjaOYVZqe8ieNFYjYCzx/rbU4NBuubmoAnMf1frs+RBFdwJmRn+5x8edg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mghH0qUr+aorSqe0THnJLTPlSNTh3RUcYxaLM12aSqg=;
+ b=ZZJkOTr+p/A2Mp5PzNMP1chgFQ2kzMort4oOlm9q59Po5SdMXyVuzzvxKVjlxPZKK8ejOCAa5C5w1HAwH/yvK4BkQBatNIUOUWb16rGFzlEnIfOel/3+32uCNFIh+cAmjFGEdy4LshEHMbEl2PYVVVJ91gny2xutXNP01k+QEjXmPyni4O3a4WE+hvqzYDB1q88/RfF4YgEx3h6vwc/bLTZDhoExHrXtE1GXOuU7gloSlQaMDNOvXhDHYDqcsdBuupfVVz8bFKA0dGaOU80PSzf4mxMQxXOaacJkbuId//8uzESwLxDMgTwg+dwZSB+m1pdnmV8PXP7yc0uqOtniOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mghH0qUr+aorSqe0THnJLTPlSNTh3RUcYxaLM12aSqg=;
+ b=ei7q9Pw8+3BkU3lr+V0PB6WAdDZf4j2F/jWc/6gGYSAK1QVyKvo1Ktc8oVXETf3C31v/bYBORwlBJd0NvapxqfO2QkpCKn4iURRM83gy99IzcqjdhnlaNJG5rV4+0F379qJYR5LPKz1nP88qgLV+zaQaD0h0wdDxdqn7aSZoPGc=
+Received: from VI1PR04MB6237.eurprd04.prod.outlook.com (20.179.24.74) by
+ VI1PR04MB5951.eurprd04.prod.outlook.com (20.178.123.85) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.16; Mon, 14 Oct 2019 08:03:28 +0000
+Received: from VI1PR04MB6237.eurprd04.prod.outlook.com
+ ([fe80::79d2:e4fd:999e:51d2]) by VI1PR04MB6237.eurprd04.prod.outlook.com
+ ([fe80::79d2:e4fd:999e:51d2%5]) with mapi id 15.20.2347.021; Mon, 14 Oct 2019
+ 08:03:28 +0000
+From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: Re: [PATCH v2 4/5] dt-bindings: display: imx: add bindings for
+ DCSS
+Thread-Topic: Re: [PATCH v2 4/5] dt-bindings: display: imx: add bindings for
+ DCSS
+Thread-Index: AQHVgmXcD7fEdW9cjEycMUHo/JX/xA==
+Date:   Mon, 14 Oct 2019 08:03:28 +0000
+Message-ID: <20191014080327.GB14065@fsr-ub1664-121>
+References: <1570025100-5634-1-git-send-email-laurentiu.palcu@nxp.com>
+ <1570025100-5634-5-git-send-email-laurentiu.palcu@nxp.com>
+ <20191011145042.GA15680@bogus>
+In-Reply-To: <20191011145042.GA15680@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=laurentiu.palcu@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4d4f8dc8-13c3-4863-f606-08d7507cff54
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: VI1PR04MB5951:|VI1PR04MB5951:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB5951CB33C3E06507F2EFA00BFF900@VI1PR04MB5951.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1728;
+x-forefront-prvs: 01901B3451
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(7916004)(4636009)(366004)(346002)(376002)(396003)(39860400002)(136003)(189003)(199004)(6916009)(7416002)(26005)(305945005)(486006)(44832011)(4326008)(316002)(99286004)(76176011)(7736002)(1076003)(54906003)(4744005)(5660300002)(25786009)(11346002)(476003)(2906002)(33656002)(446003)(6506007)(6116002)(3846002)(86362001)(186003)(102836004)(478600001)(256004)(91956017)(81156014)(66946007)(8676002)(81166006)(6512007)(14454004)(9686003)(71190400001)(71200400001)(6436002)(66556008)(66476007)(66446008)(64756008)(229853002)(33716001)(66066001)(6486002)(6246003)(8936002)(76116006);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5951;H:VI1PR04MB6237.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 96R1WNudbfmRGzJC1us6rdE+Rrzr34AJCNDKE1nyzby7agLzgIknfOzboUsgmDvgQW2h2anKnQvRHA44kNp3gyHVxzSZcktdWv9B1rbmo60lzB7661qnIjNl+78x5JvzxTmEJTAhgZIOcMy1Bp0NYxkdtC0A/ApVoqoV6cF6d8wE0gGd4uXLeQRh7voTY0qulkVFGaJNppuVzgrqN1Tbt8rtjJHuELvDu6dklIKpLQHzNJWw5W3kDo6k5o5dj08mgwOTg0Izq7SEzhpZfZDQns3QZ3UmGXzgs1NdiFubZPpsVCvWiVmKEExAxF1HIa6uAAZp/3TlZoFoIEgk1r9P0XTxC6ELAsA6wlAsySGwotcO3W8OHBBN/Q5YecQk2+UEbHBoSwpojK+EmtxS+H8Ve1qMgO4KqR7Q3gOVaZ1tyvg=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3066FF801F56084A93888E509A157F7D@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d4f8dc8-13c3-4863-f606-08d7507cff54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2019 08:03:28.4140
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pIsxVCLvXl77z3Sf9FdPJg8coHy0fLA+0Z+H9EN6vOBWwlTQ5yuzf6WV0xywMFBZSyYoOGUABLjHyFWsUC3MMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5951
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eddie Huang <eddie.huang@mediatek.com>
-
-Add scp node to mt8183 and mt8183-evb
-
-Signed-off-by: Erin Lo <erin.lo@mediatek.com>
-Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
----
-Changes from v19 ... v14:
- - No change.
-
-Changes from v13:
- - Change the size of the cfg register region.
-
-Changes from v12 ... v10:
- - No change.
-
-Changes from v9:
- - Remove extra reserve-memory-vpu_share node.
-
-Changes from v8:
- - New patch.
----
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 11 +++++++++++
- arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 12 ++++++++++++
- 2 files changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-index 1fb195c683c3..ddb7a7ac9655 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-@@ -24,6 +24,17 @@ memory@40000000 {
- 	chosen {
- 		stdout-path = "serial0:921600n8";
- 	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		scp_mem_reserved: scp_mem_region {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x50000000 0 0x2900000>;
-+			no-map;
-+		};
-+	};
- };
- 
- &auxadc {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 97f84aa9fc6e..3dd1b76bbaf5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -269,6 +269,18 @@ clocks = <&topckgen CLK_TOP_MUX_PMICSPI>,
- 			clock-names = "spi", "wrap";
- 		};
- 
-+		scp: scp@10500000 {
-+			compatible = "mediatek,mt8183-scp";
-+			reg = <0 0x10500000 0 0x80000>,
-+			      <0 0x105c0000 0 0x19080>;
-+			reg-names = "sram", "cfg";
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_SCPSYS>;
-+			clock-names = "main";
-+			memory-region = <&scp_mem_reserved>;
-+			status = "disabled";
-+		};
-+
- 		auxadc: auxadc@11001000 {
- 			compatible = "mediatek,mt8183-auxadc",
- 				     "mediatek,mt8173-auxadc";
--- 
-2.23.0.700.g56cf767bdb-goog
-
+SGkgUm9iLA0KDQpPbiBGcmksIE9jdCAxMSwgMjAxOSBhdCAwOTo1MDo0MkFNIC0wNTAwLCBSb2Ig
+SGVycmluZyB3cm90ZToNCj4gOnU/d2M/P201P14/456+P300LT8/entiPz8/cj8rP9eAdT8/P9in
+Pz8/PyMXPz8DPz9layA/Pz8/P1c/Sj8/Pz9ePyg/Pz9ofT8/LT8/entiPz8/cj9aPz8/Pys/alcu
+PxpcP2/bindiPyA/dispPz8/P2x/PxpiPx8mPz8sPyY/P86+Pz8/Pz8/Pz8/Pz8/Pz8/P1c/Pz8h
+anged86iP8erPyonPz8reT9ePz9eP006Pz8/cumentatPz8/dT8/cT9reT/bindiPyA/dispPz8/
+P2x/PxpiPx8mPz8sPyY/Pxc/Pz8edT8/Pz/erj8/Pz8bP0c/Pz9oDQoNCk9rISBOb3Qgc3VyZSBo
+b3cgdG8gYWRkcmVzcyB0aGlzIHRob3VnaC4uLiA6KQ0KDQpUaGFua3MsDQpsYXVyZW50aXU=
