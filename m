@@ -2,133 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBDCED5CB9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:53:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB7BD5CC8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 09:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728811AbfJNHxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 03:53:08 -0400
-Received: from mail-eopbgr130088.outbound.protection.outlook.com ([40.107.13.88]:34978
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726646AbfJNHxI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Oct 2019 03:53:08 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aK1P4g5BxS5/Va2Iik81EQBl3F5wU4pdKkzTyFb4JrL21IIcYiX9cUX/hNGRLbFWQOE62y6GaPVifYrE/+yT9CWaPZNq07Fw2zz6XNRO7SPxe8Fdcu1/OZuMbjA2YFBAyUFfg4CgxjxkpY4Nu5pgpdAiJhwY8XHdisrbDt3dORvKl0LRjAziQdDC3wLn7KV+M9TwYw0K+8Ne27ohYyYs8O7hN4D1Y9/3TzPquJhtcBAnduJmX0i1mJlIXDcUubGc/whUFLRwyi9k3vOK9975aa4SZxhOoiqmXcNnBQtakauPWG4+XAWUjbk7XvkC6mI54YkdbHG9bJnW5gqT6rmzqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V3nMl3+je2ubQcbmj8p/o+Ncf+w94rV1fgFhFVXhg4w=;
- b=EeMziutkc/bZL7hhJbq1wAWlrd+xDVxbuYmGGncDqH5vABbZ4DuW9duATwKAIEeGhyurRudCePeKRm/3xASa5sh0UMBRDyDnWA0EnrHRKKKwO4B4zgoQhGnQ8lLvy9rD5kHAj7qhc6blWr0aqrpT5F/02hAqxJqBpDG+7SW7Z7PgbvGRE7KBnJAFzgNJsKC4k8KA876bfiAXa6cqSxsEVI+hAYw5HB6hnw2A4HQDg/mEev3NUazicd4N/rHP8j2Z4NkHzVX/eDGtq5lO9sqZ3nR4gXT5WC1Zw47uZZ+Pi4/PkZBYudbXvRjRJmoz9DytjYod5Mk1x2PlE89qQ+YzhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V3nMl3+je2ubQcbmj8p/o+Ncf+w94rV1fgFhFVXhg4w=;
- b=SsXuZgdLgF+TgFOA8meccynx56LaPiKH6JSbnX1sLiyfKHO47w0TqUI4iPVEa3pfXff5+XJt83dAFfGygNFBLkdXnxtyGrQ7sZdUlb/9oN7emv45NQNkI93vpqkNRPgT2gGpSvqdkG7VST1MkcLH4hCCpnBcpxcVRq7PFjnV4wM=
-Received: from VI1PR04MB4158.eurprd04.prod.outlook.com (52.133.13.28) by
- VI1PR04MB5536.eurprd04.prod.outlook.com (20.178.122.202) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.18; Mon, 14 Oct 2019 07:52:52 +0000
-Received: from VI1PR04MB4158.eurprd04.prod.outlook.com
- ([fe80::dda8:5c80:4c09:4ff1]) by VI1PR04MB4158.eurprd04.prod.outlook.com
- ([fe80::dda8:5c80:4c09:4ff1%6]) with mapi id 15.20.2347.021; Mon, 14 Oct 2019
- 07:52:52 +0000
-From:   Yinbo Zhu <yinbo.zhu@nxp.com>
-To:     Yinbo Zhu <yinbo.zhu@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     Xiaobo Xie <xiaobo.xie@nxp.com>, Jiafei Pan <jiafei.pan@nxp.com>,
-        Ran Wang <ran.wang_1@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3] arm64: dts: enable otg mode for dwc3 usb ip on
- layerscape
-Thread-Topic: [PATCH v3] arm64: dts: enable otg mode for dwc3 usb ip on
- layerscape
-Thread-Index: AQHVfYPlUjQ8Kn7Ms0S5umQCEfgqlKdZzGRg
-Date:   Mon, 14 Oct 2019 07:52:52 +0000
-Message-ID: <VI1PR04MB41580274F127E4C4B85071DBE9900@VI1PR04MB4158.eurprd04.prod.outlook.com>
-References: <20191008025642.19519-1-yinbo.zhu@nxp.com>
-In-Reply-To: <20191008025642.19519-1-yinbo.zhu@nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yinbo.zhu@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 85451887-2b68-469a-18ae-08d7507b8418
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: VI1PR04MB5536:|VI1PR04MB5536:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB5536EA4B85B855853DA70F23E9900@VI1PR04MB5536.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01901B3451
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(366004)(376002)(346002)(136003)(39860400002)(199004)(189003)(13464003)(71200400001)(71190400001)(55016002)(9686003)(53546011)(44832011)(476003)(486006)(2906002)(446003)(76176011)(52536014)(6436002)(66066001)(6506007)(4326008)(76116006)(66946007)(99286004)(66476007)(66556008)(64756008)(14454004)(6116002)(3846002)(66446008)(11346002)(478600001)(256004)(33656002)(54906003)(14444005)(7736002)(305945005)(7696005)(74316002)(110136005)(316002)(229853002)(5660300002)(186003)(81166006)(81156014)(8676002)(8936002)(6246003)(25786009)(86362001)(102836004)(26005);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5536;H:VI1PR04MB4158.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Nj7MCeRPDgRHixMprtWE0y7tKElmElr50JXGGxYuakHHnQbxIxjj7fQgR/tpwjFdgH7TsfBweR66iL9fyNJrinlBeRcSGg3FGC+78G4HIdC+bo3w8aerJ8RNmkP+eazikAxmXruGMAsyL1zc8Z8JUNnyXTgCMS09Z9iHfxgPXPubA2ghGM8Q1pBK6hKUj1bYS8I94Nt4Sd9rnGoh4slfDY5NazxuYsx2kyZrwuItZSKckM7BaPxoZSplO2z7Aq+MCkXQnPZLDJzrax5y6cNGV7WOlNiM3TisTsu3EFwHew7iCKBUZyhgcK10Pl2kluF49jWoNMfk8E+dj7h+c9Ll15Qbg+UfLm3YNRzvC4qhHVbc7yUxTum3SSRHR2SLzzoCapjW0lgj1IpOGcMFovrF+9f0sn92SDClBOgUX6l3bRw=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85451887-2b68-469a-18ae-08d7507b8418
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2019 07:52:52.1936
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TGw3vutk/BwwKN91/h1IV4Is9ixJXQ4AmPN3mjSXtMXIqnPbEbc8OP1T8KOkxl2mxz0kPDQK1wpb47ILveNP0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5536
+        id S1729054AbfJNHzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 03:55:36 -0400
+Received: from mail-pg1-f174.google.com ([209.85.215.174]:40061 "EHLO
+        mail-pg1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728854AbfJNHzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 03:55:36 -0400
+Received: by mail-pg1-f174.google.com with SMTP id e13so1409302pga.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 00:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=MNI5mn/r/9PEydTyYbiuaqnRTU24OX4PsHrUiRu8H1E=;
+        b=XjAHdaytuN27WH+qMN1Na/Sgfty15Gq3pXeDtv7UFpL81s6ZtkFfeO0KjOh3WUkY79
+         sUj8Ee/viGjKBeLPGQXAGXB4GlpXIEVqBTlC26OlXDppd6hQX5QvLbA+6mF1xtZRhQWe
+         NsIGAp+t2mrThJhYbXYPlD8T01d/KURE0l7NVvvUPU75RWEi/xKU/L15mJtODActLRtF
+         NReuM+P21xepmbaAC2XnD4jqORJHpW7vB5UZc5iRv0c3ylYtqnnFsRWQ/7PPRrUBDd3W
+         Dhu77b2z3sSC3OplJ4XBYa5Uz0JRt7VZJ0F9DKWyanlFrS/VlEV0qjF5Y/tuQxlkaQLj
+         pO/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=MNI5mn/r/9PEydTyYbiuaqnRTU24OX4PsHrUiRu8H1E=;
+        b=ZE22yCZ9WqVaDO6y2fRK4CHVdv7Emp8VtnZduFKjxv0MWb4m2iMZ6o38eTBgp5s0nM
+         rDnz478MUooQn/XqA4igeqKEUZJEuZau8WqUG05dpZcrlnL3QEBsGmOVGCzYnkhHQ/mG
+         cCHGnmC8quJFf8HqLZtouTfD+U4maL9cmnaJUX6a4bXDHIFcc//cHRcZ4NCFyyzQYwac
+         m7QVtlDTX7SCoF04vbMvp/b8050qnCcMGL3NJw4vkjdMEMXHKtUOwxu/gsutdYyW/ui/
+         3mcOLjWscmpSTW7ueHRKl8a1fgCrgNh7KmEZJK/W5QfweU9L3s01nxBUPnB2+VRIFROF
+         JSUw==
+X-Gm-Message-State: APjAAAUJzv3Qsqd6frjL9I7ZmWCbw7WaRlGQ5mlGSysThHTOI1ngay0+
+        BHevmYd+rxzTippqQVISzI9aMg==
+X-Google-Smtp-Source: APXvYqzjZQsECmJcjeJL+Kb/fahhGk640iRkKNvonQHNJJ4VgDDn32GAg0181aKdTuVxeQDLgKWDVg==
+X-Received: by 2002:a17:90a:b391:: with SMTP id e17mr35586164pjr.132.1571039734974;
+        Mon, 14 Oct 2019 00:55:34 -0700 (PDT)
+Received: from localhost.localdomain (111-241-168-233.dynamic-ip.hinet.net. [111.241.168.233])
+        by smtp.gmail.com with ESMTPSA id j126sm16583137pfb.186.2019.10.14.00.55.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2019 00:55:33 -0700 (PDT)
+From:   Green Wan <green.wan@sifive.com>
+Cc:     linux-hackers@sifive.com, Green Wan <green.wan@sifive.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [RFC v2 0/4] dmaengine: sf-pdma: Add platform dma driver
+Date:   Mon, 14 Oct 2019 15:54:23 +0800
+Message-Id: <20191014075502.15105-1-green.wan@sifive.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU2hhd24gR3VvLA0KDQpQbGVhc2UgY2hlY2sgdGhpcyB2ZXJzaW9uIGNvZGUgcGF0Y2guDQoN
-ClRoYW5rcywNClJlZ2FyZHMsDQpZaW5ibyBaaHUNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCkZyb206IFlpbmJvIFpodSA8eWluYm8uemh1QG54cC5jb20+IA0KU2VudDogMjAxOcTqMTDU
-wjjI1SAxMDo1Nw0KVG86IFNoYXduIEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz47IExlbyBMaSA8
-bGVveWFuZy5saUBueHAuY29tPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IE1h
-cmsgUnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+DQpDYzogWWluYm8gWmh1IDx5aW5iby56
-aHVAbnhwLmNvbT47IFhpYW9ibyBYaWUgPHhpYW9iby54aWVAbnhwLmNvbT47IEppYWZlaSBQYW4g
-PGppYWZlaS5wYW5AbnhwLmNvbT47IFJhbiBXYW5nIDxyYW4ud2FuZ18xQG54cC5jb20+OyBsaW51
-eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwu
-b3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnDQpTdWJqZWN0OiBbUEFUQ0ggdjNdIGFy
-bTY0OiBkdHM6IGVuYWJsZSBvdGcgbW9kZSBmb3IgZHdjMyB1c2IgaXAgb24gbGF5ZXJzY2FwZQ0K
-DQpsYXllcnNjYXBlIG90ZyBmdW5jdGlvbiBzaG91bGQgYmUgc3VwcG9ydGVkIEhOUCBTUlAgYW5k
-IEFEUCBwcm90b2NvbCBhY2Nyb2luZyB0byBybSBkb2MsIGJ1dCBkd2MzIGNvZGUgbm90IHJlYWxp
-emUgaXQgYW5kIHVzZSBpZCBwaW4gdG8gZGV0ZWN0IHdobyBpcyBob3N0IG9yIGRldmljZSgwIGlz
-IGhvc3QgMSBpcyBkZXZpY2UpIHRoaXMgcGF0Y2ggaXMgdG8gZW5hYmxlIE9URyBtb2RlIG9uIGxz
-MTAyOGFyZGIgbHMxMDg4YXJkYiBhbmQgbHMxMDQ2YXJkYiBpbiBkdHMNCg0KU2lnbmVkLW9mZi1i
-eTogWWluYm8gWmh1IDx5aW5iby56aHVAbnhwLmNvbT4NCi0tLQ0KQ2hhbmdlZCBpbiB2MzoNCgkJ
-dXBkYXRlZCB0aGUgcGF0Y2ggdGl0bGUgd2l0aCAiYXJtNjQ6IGR0cyINCg0KIGFyY2gvYXJtNjQv
-Ym9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXJkYi5kdHMgfCA0ICsrKysgIGFyY2gvYXJt
-NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwNDZhLXJkYi5kdHMgfCA0ICsrKysgIGFyY2gv
-YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwODhhLXJkYi5kdHMgfCAxICsNCiAzIGZp
-bGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXJkYi5kdHMNCmluZGV4IDlmYjkxMTMuLjA3NmNhYzYg
-MTAwNjQ0DQotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1y
-ZGIuZHRzDQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1y
-ZGIuZHRzDQpAQCAtMTcxLDMgKzE3MSw3IEBADQogJnNhdGEgew0KIAlzdGF0dXMgPSAib2theSI7
-DQogfTsNCisNCismdXNiMSB7DQorCWRyX21vZGUgPSAib3RnIjsNCit9Ow0KZGlmZiAtLWdpdCBh
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwNDZhLXJkYi5kdHMgYi9hcmNo
-L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQ2YS1yZGIuZHRzDQppbmRleCA2YTY1
-MTRkLi4wYzc0MmJlIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
-ZnNsLWxzMTA0NmEtcmRiLmR0cw0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
-ZnNsLWxzMTA0NmEtcmRiLmR0cw0KQEAgLTEyMiw2ICsxMjIsMTAgQEANCiAJfTsNCiB9Ow0KIA0K
-KyZ1c2IxIHsNCisJZHJfbW9kZSA9ICJvdGciOw0KK307DQorDQogI2luY2x1ZGUgImZzbC1sczEw
-NDYtcG9zdC5kdHNpIg0KIA0KICZmbWFuMCB7DQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
-L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTA4OGEtcmRiLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-ZnJlZXNjYWxlL2ZzbC1sczEwODhhLXJkYi5kdHMNCmluZGV4IDhlOTI1ZGYuLjkwYjE5ODkgMTAw
-NjQ0DQotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDg4YS1yZGIu
-ZHRzDQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDg4YS1yZGIu
-ZHRzDQpAQCAtOTUsNSArOTUsNiBAQA0KIH07DQogDQogJnVzYjEgew0KKwlkcl9tb2RlID0gIm90
-ZyI7DQogCXN0YXR1cyA9ICJva2F5IjsNCiB9Ow0KLS0NCjIuOS41DQoNCg==
+Add PDMA driver support for SiFive HiFive Unleashed RevA00 board. Mainly follows
+DMAengine controller doc[1] to implement and take other DMA drivers as reference.
+Such as
+
+  - drivers/dma/fsl-edma.c
+  - drivers/dma/dw-edma/
+  - drivers/dma/pxa-dma.c
+
+Using DMA test client[2] to test. Detailed datasheet is doc[3]. Driver supports:
+
+ - 4 physical DMA channels, share same DONE and error interrupt handler. 
+ - Support MEM_TO_MEM
+ - Tested by DMA test client
+ - patches include DT Bindgins document and dts for fu450-c000 SoC. Separate dts
+   patch for easier review and apply to different branch or SoC platform.
+ - retry 1 time if DMA error occurs.
+
+[Reference Doc]
+ [1] ./Documentation/driver-api/dmaengine/provider.rst
+ [2] ./Documentation/driver-api/dmaengine/dmatest.rst
+ [3] https://static.dev.sifive.com/FU540-C000-v1.0.pdf 
+
+[Simple steps to test of DMA Test client]
+ $ echo 1 > /sys/module/dmatest/parameters/iterations
+ $ echo dma0chan0 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan1 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan2 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan3 > /sys/module/dmatest/parameters/channel
+ $ echo 1 > /sys/module/dmatest/parameters/run
+
+[Expected test result]
+[  267.563323] dmatest: dma0chan0-copy0: summary 45629 tests, 0 failures 38769.01 iops 309661 KB/s (0)
+[  267.572427] dmatest: dma0chan1-copy0: summary 45863 tests, 0 failures 40286.85 iops 321643 KB/s (0)
+[  267.581392] dmatest: dma0chan2-copy0: summary 45975 tests, 0 failures 41178.48 iops 328740 KB/s (0)
+[  267.590542] dmatest: dma0chan3-copy0: summary 44768 tests, 0 failures 38560.29 iops 307726 KB/s (0)
+
+Green Wan (4):
+  dt-bindings: dmaengine: sf-pdma: add bindins for SiFive PDMA
+  riscv: dts: add support for PDMA device of HiFive Unleashed Rev A00
+  dmaengine: sf-pdma: add platform DMA support for HiFive Unleashed A00
+  MAINTAINERS: Add Green as SiFive PDMA driver maintainer
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  55 ++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |   7 +
+ drivers/dma/Kconfig                           |   2 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/sf-pdma/Kconfig                   |   6 +
+ drivers/dma/sf-pdma/Makefile                  |   1 +
+ drivers/dma/sf-pdma/sf-pdma.c                 | 601 ++++++++++++++++++
+ drivers/dma/sf-pdma/sf-pdma.h                 | 124 ++++
+ 9 files changed, 803 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+ create mode 100644 drivers/dma/sf-pdma/Kconfig
+ create mode 100644 drivers/dma/sf-pdma/Makefile
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.c
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.h
+
+
+base-commit: 4f5cafb5cb8471e54afdc9054d973535614f7675
+-- 
+2.17.1
+
