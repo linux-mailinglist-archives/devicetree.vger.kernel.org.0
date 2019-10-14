@@ -2,85 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE5EED61C8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 13:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18B51D6208
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2019 14:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730846AbfJNL5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Oct 2019 07:57:12 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49108 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731183AbfJNL5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 07:57:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=jIj/NmY+eyECv3y+bNn8jTjJhywyBUZaIyrJ62db62Y=; b=VUryfWb7iW/HUzgEfXisB6nFM
-        8Nd1kC1Yz7pcGsfKBvwBfL4mcWp+8hirqhUrBmCrEToeay24b9nXEsxPLIIxfT2eokan9Q4P2rMNz
-        hiGsI6fp4sKiAyloGyJN/7oRf0FOfl9Q9KJ5P5SK3lFQ9ujfJauD6Q7joVxcxHbXwEaMQ=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iJyxo-0007VP-0K; Mon, 14 Oct 2019 11:56:36 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 3C3552741EED; Mon, 14 Oct 2019 12:56:35 +0100 (BST)
-Date:   Mon, 14 Oct 2019 12:56:35 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [RFC PATCH 2/2] ASoC: simple-card: Add documentation for
- force-dpcm property
-Message-ID: <20191014115635.GB4826@sirena.co.uk>
-References: <20191013190014.32138-1-daniel.baluta@nxp.com>
- <20191013190014.32138-3-daniel.baluta@nxp.com>
+        id S1731767AbfJNMIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Oct 2019 08:08:04 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:33912 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730300AbfJNMIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Oct 2019 08:08:04 -0400
+Received: by mail-io1-f67.google.com with SMTP id q1so37414090ion.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 05:08:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6crmpTwGnz+uFcnLN62tbtxngSexhL6XeYQRkm/JhoY=;
+        b=gQEUAXsMwogpgVvZgUXndfP8Yx1YL+c7KNJMu+nO1RwHxW4SfBzwf+tTSjUdob83Lt
+         8bjCllxos6er4GVPWpid4x2QZH+CKRzOyTW+27zQjnfWvMatBzD0PFfILP+3UmKhPM8Z
+         CoPSGPu5lzhnetQrfUKDbabRzqD5JKJCzT9Pw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6crmpTwGnz+uFcnLN62tbtxngSexhL6XeYQRkm/JhoY=;
+        b=LxO1eGPbOXuV4aikwE4wN6z7NMHuLy/juWSMTIC9m7SV0iUbLkCF6zQR2vWgZHpBlI
+         IiY9Ife712cOctJOQQ97J5e2ThQbHgKrgD9L9eKCl6qip9dUOn8PUrg/0ksMA9jYqYni
+         mC3zfBCXYnUOnyOlHutxTZVXvcJ6M3hNqC2g0JwtEHG9ENLVmfY63fouiU8dXdr+dpXi
+         fjmbVSLStA9ST6PZrMgRSzF+fyMB47VnTAINUIRGbU44r+zMVkvO4iFYY6qTZkGYtJaW
+         YF0hbtzfJI1F9dSsaROEzXcOlJSJ5IqPFM5SbRGj+WHLacyeYBuwl/g7gD9Ct+ezz0Uk
+         gzQA==
+X-Gm-Message-State: APjAAAUtHXaarAcLmcide0qqDzLSPwUm4oSfva6VdTHdPyCsq0MaQbKe
+        q+eRH8ShHEpxrIkjI10MD8XHqqJh4luo7A+72C6KxQ==
+X-Google-Smtp-Source: APXvYqxpgGP82G+0e/506RQFRNOo+V1cYmj86xwy/H75qzek0TZSuNPkcdhhBjRp/kGb802FWG6ooo62z42OJaaLFpU=
+X-Received: by 2002:a6b:37c6:: with SMTP id e189mr18175247ioa.61.1571054882584;
+ Mon, 14 Oct 2019 05:08:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8GpibOaaTibBMecb"
-Content-Disposition: inline
-In-Reply-To: <20191013190014.32138-3-daniel.baluta@nxp.com>
-X-Cookie: Androphobia:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20191005141913.22020-1-jagan@amarulasolutions.com>
+ <20191005141913.22020-6-jagan@amarulasolutions.com> <20191007105708.raxavxk4n7bvxh7x@gilmour>
+In-Reply-To: <20191007105708.raxavxk4n7bvxh7x@gilmour>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 14 Oct 2019 17:37:50 +0530
+Message-ID: <CAMty3ZCiwOGgwbsjTHvEZhwHGhsgb6_FeBs9hHgLai9=rV2_HQ@mail.gmail.com>
+Subject: Re: [PATCH v10 5/6] arm64: dts: allwinner: a64: Add MIPI DSI pipeline
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 7, 2019 at 4:27 PM Maxime Ripard <mripard@kernel.org> wrote:
+>
+> On Sat, Oct 05, 2019 at 07:49:12PM +0530, Jagan Teki wrote:
+> > Add MIPI DSI pipeline for Allwinner A64.
+> >
+> > - dsi node, with A64 compatible since it doesn't support
+> >   DSI_SCLK gating unlike A33
+> > - dphy node, with A64 compatible with A33 fallback since
+> >   DPHY on A64 and A33 is similar
+> > - finally, attach the dsi_in to tcon0 for complete MIPI DSI
+> >
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > Tested-by: Merlijn Wajer <merlijn@wizzup.org>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 +++++++++++++++++++
+> >  1 file changed, 38 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > index 69128a6dfc46..ad4170b8aee0 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > @@ -382,6 +382,12 @@
+> >                                       #address-cells = <1>;
+> >                                       #size-cells = <0>;
+> >                                       reg = <1>;
+> > +
+> > +                                     tcon0_out_dsi: endpoint@1 {
+> > +                                             reg = <1>;
+> > +                                             remote-endpoint = <&dsi_in_tcon0>;
+> > +                                             allwinner,tcon-channel = <1>;
+> > +                                     };
+> >                               };
+> >                       };
+> >               };
+> > @@ -1003,6 +1009,38 @@
+> >                       status = "disabled";
+> >               };
+> >
+> > +             dsi: dsi@1ca0000 {
+> > +                     compatible = "allwinner,sun50i-a64-mipi-dsi";
+> > +                     reg = <0x01ca0000 0x1000>;
+> > +                     interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks = <&ccu CLK_BUS_MIPI_DSI>;
+> > +                     clock-names = "bus";
+>
+> This won't validate with the bindings you have either here, since it
+> still expects bus and mod.
+>
+> I guess in that cas, we can just drop clock-names, which will require
+> a bit of work on the driver side as well.
 
---8GpibOaaTibBMecb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Sun, Oct 13, 2019 at 10:00:14PM +0300, Daniel Baluta wrote:
-
-> This property can be global in which case all links created will be DPCM
-> or present in certian dai-link subnode in which case only that specific
-> link is forced to be DPCM.
-
-> +- force-dpcm				: Indicates dai-link is always DPCM.
-
-DPCM is an implementation detail of Linux (and one that we want to phase
-out going forwards too), we shouldn't be putting it in the DT bindings
-where it becomes an ABI.
-
---8GpibOaaTibBMecb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2kYnIACgkQJNaLcl1U
-h9AJzAf+L30WoNHHnOrkkpLMsmM6uZcu7czOKRKOJyZ35878jKwHbjZap1z9TOLG
-ivJDyoiRoLYg4twQJcl7Rt/I7WytvqTEkhzju5+LWpRuB+fFtdBjwK0p0rXZbj1E
-6wWWkfnGi5NgxPGa0FSCwLUkIwPtrsd3Rwxbwk6n+kekbJxEYK9UzkGOydcIIgez
-ie6lZRh515nxc2sohfBhM3//verg1jHxxG6sA0cMQ+hHwdzgIzfXzsHXlYw9M/pm
-Z9KNu7+EiJ0gefb6XXCbqfJQ+B37sibpl+10EeiUIHIW2bjOl1w+LJgRJzb6nFK8
-j60W+/cODoUMQWboKCkQ+oTUEHuDXg==
-=SivO
------END PGP SIGNATURE-----
-
---8GpibOaaTibBMecb--
+Okay.
+mod clock is not required for a64, ie reason we have has_mod_clk quirk
+patch. Adjust the clock-names: on dt-bindings would make sense here,
+what do you think?
