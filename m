@@ -2,140 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBACCD75AD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 13:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3225D75C1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 14:04:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729763AbfJOL7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 07:59:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37322 "EHLO mail.kernel.org"
+        id S1728432AbfJOMEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 08:04:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39936 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729411AbfJOL7e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 07:59:34 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        id S1726540AbfJOMEw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 08:04:52 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 194EC21A49
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 11:59:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8771921D7E;
+        Tue, 15 Oct 2019 12:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571140773;
-        bh=P9hmIOQRJU1ioDVTNeU3qPnzy7l3RxwS6/vcyFV4idQ=;
+        s=default; t=1571141091;
+        bh=Af6D4mZ/pAOp+0vxSjhgtzL8DdJ7w/JcKlLEB64bg40=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nmKKD8BHMqJhAVIN/DHtIXuW0tr2sujhlgUMFm1zbDNuB3/IRFxnJxqC2Z/je2f4l
-         /4QlUNvvHVdS3bNLMV8YxEZBcKhuKRAvKPZAUjcGgckyxn7UwZtgXbWB6q1oDQryiz
-         uCRQwVrlpZYmmjK5y4LfrDBXHtu9nlrNJ6be3HOE=
-Received: by mail-qk1-f182.google.com with SMTP id y189so18873377qkc.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 04:59:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAVaPuVTm59+RPImbaU5nXk9C3mn1fYzPh9CVWP6BnXQmxSORKNl
-        zSt5Ijd1YqXwuPV41wHOo/RdCy8Yyg1BuRACyg==
-X-Google-Smtp-Source: APXvYqzNmdpQLv1ZY4dfXYstvDGi8i0lhQoVAv4EDAOUiKb/kipWtgsZg9Ajty5FutZsbgWLBR0tMAU7hcKcVUfh5qs=
-X-Received: by 2002:a37:9847:: with SMTP id a68mr35615608qke.223.1571140772087;
- Tue, 15 Oct 2019 04:59:32 -0700 (PDT)
+        b=vbUfGVlHWGmDXNlB+xK0XO0bQJ0Zil7F2AT3RwASF6CrCmzbfpxKjVH7hkv7zqWrt
+         TsaJKjJAc3h+oKPBPdJooYP9SyRBdX3GlamtjLvEOndPEi+Xyy0OzKzi4dy84sgT97
+         rU25VTT1baoFL9eMGBo4xJ7uzH1oULgaa+icytkc=
+Received: by mail-qk1-f170.google.com with SMTP id 201so18853182qkd.13;
+        Tue, 15 Oct 2019 05:04:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAU4hWzb+KumagBOW0IJizP5g3e1erjXYhola8pRlbs+BSkrIqod
+        fr1/UDBXc2/UFp90hZgMxpqSCM0VL2MZXTEWoQ==
+X-Google-Smtp-Source: APXvYqz9VdxmwoAHoBVcG9POQFt15AQvDXliJoTvoymJwUK2yJYHzGHFF68s8mYbG89XcQYTMs3JdOvwQioW54ma03E=
+X-Received: by 2002:a05:620a:12f1:: with SMTP id f17mr3721782qkl.152.1571141090652;
+ Tue, 15 Oct 2019 05:04:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191015082811.29497-1-linus.walleij@linaro.org>
-In-Reply-To: <20191015082811.29497-1-linus.walleij@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 15 Oct 2019 06:59:20 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJXES8CHGHtyhHo5CWrRjx9QgUVEpHCPc5miN7wEPv8sQ@mail.gmail.com>
-Message-ID: <CAL_JsqJXES8CHGHtyhHo5CWrRjx9QgUVEpHCPc5miN7wEPv8sQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3 v2] drm/panel: Add generic DSI panel YAML bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
+References: <20191011191521.179614-1-saravanak@google.com> <20191011191521.179614-2-saravanak@google.com>
+In-Reply-To: <20191011191521.179614-2-saravanak@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 15 Oct 2019 07:04:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKCLnmLDCC3UKqpKDTysiM=w78wTCwbrsmQ39oQUg=+ww@mail.gmail.com>
+Message-ID: <CAL_JsqKCLnmLDCC3UKqpKDTysiM=w78wTCwbrsmQ39oQUg=+ww@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] of: property: Minor code formatting/style clean ups
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 15, 2019 at 3:28 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Fri, Oct 11, 2019 at 2:15 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> This adds a starting point for processing and defining generic
-> bindings used by DSI panels. We just define one single bool
-> property to force the panel into video mode for now.
+> Better variable and function names. Remove "," after the sentinel in an
+> array initialization list.
 >
-> Cc: devicetree@vger.kernel.org
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 > ---
-> ChangeLog v1->v2:
-> - New patch after feedback.
-> ---
->  .../display/panel/panel-dsi-common.yaml       | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dsi-common.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dsi-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-dsi-common.yaml
-> new file mode 100644
-> index 000000000000..4242dc25c917
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-dsi-common.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: GPL-2.0
+>  drivers/of/property.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
 
-(GPL-2.0-only OR BSD-2-Clause) for new bindings.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-dsi-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common Properties for DSI Display Panels
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  This document defines device tree properties common to DSI, Display
-> +  Serial Interface panels. It doesn't constitue a device tree binding
-
-constitute
-
-> +  specification by itself but is meant to be referenced by device tree
-> +  bindings.
-> +
-> +  When referenced from panel device tree bindings the properties defined in
-> +  this document are defined as follows. The panel device tree bindings are
-> +  responsible for defining whether each property is required or optional.
-> +
-> +properties:
-> +
-> +  enforce-video-mode:
-
-As all DSI panels are a child of DSI controllers (unless perhaps if
-they are video mode only), I think this schema needs to define the DSI
-controller and panel (i.e. the bus) structure. Then this property can
-be under the child node schema.
-
-So something like this:
-
-properties:
-  $nodename:
-    pattern: "^dsi-controller@"
-  "#address-cells":
-    const: 1
-  "#size-cells":
-    const: 1
-patternProperties:
-  "^panel@[0-9]$": # not sure what's the range of addresses...
-    type: object
-    properties:
-      reg:
-        maxItems: 1
-        items:
-          - maximum: ??
-      enforce-video-mode:
-        ...
-
-
-> +    type: boolean
-> +    description:
-> +      The best option is usually to run a panel in command mode, as this
-> +      gives better control over the panel hardware. However for different
-> +      reasons like broken hardware, missing features or testing, it may be
-> +      useful to be able to force a command mode-capable panel into video
-> +      mode.
-> --
-> 2.21.0
->
+Acked-by: Rob Herring <robh@kernel.org>
