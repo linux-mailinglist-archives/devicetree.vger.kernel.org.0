@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D63A9D79EB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 17:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3103D7A9A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 17:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727639AbfJOPh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 11:37:27 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:34105 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726231AbfJOPh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 11:37:26 -0400
-Received: by mail-ot1-f66.google.com with SMTP id m19so17331997otp.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 08:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cgNM0n5gGfcK7ckXF49wd8P15GFoQ8+bReW9zILWg9Q=;
-        b=XgpucEunT3K6pX5ErPI6Wn+W0xlCbsc7WiKcxyEvdXZKAwGdGprhSgYi2SFRsIzoZY
-         S9yz5o6ITvJawDH4K4rU5vXRK9KwEay/uKmLzPuYGcX3ldv2jHavQm5wgfvbyXIZ/jMh
-         +w5rpwQuyMbqnhHAHz02NJdZ76o8rQPJOK2dZ3x27deuED/Ey41iqCmBy+FZoxlVLr1L
-         GYI5nw2WvBk5mHxGH4/pu1lDCWwHqNGYvMNeBKiv7yddiRXeWYixYQggIgo6KurmLGCK
-         1AnVQlthnckQAokX3wYX9Wht5MHsd/LxEa6OpILGleosdgIDTA4YX/cgoaJ0toeAD4lj
-         5URQ==
+        id S1732659AbfJOPyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 11:54:36 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:42729 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728197AbfJOPyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 11:54:36 -0400
+Received: by mail-ot1-f68.google.com with SMTP id c10so17371548otd.9;
+        Tue, 15 Oct 2019 08:54:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cgNM0n5gGfcK7ckXF49wd8P15GFoQ8+bReW9zILWg9Q=;
-        b=kkqgHriZSbeLgv4jpepiLK/gY6r90rzlJFgTKkBtWbKlNBYo3/Pt32Tm3yz5WC7G9h
-         vNHAwbVHIzkqax0lECK5rIvZvpYuUvtAjj1dNOMjVp+7ir54WpjCqQyRiTznJp3uWwpS
-         3ImGurnWIghFTbbnJQ1AaddCptWTpaZw/wuJ4Im+pc4OFloJO8OcqAhEYPU7pEOAFXLb
-         dEfjsvNnOphHTpfzshLwbNwWDvJ6C8xFpqJ1SIMIlZOch7qKdOVe05taaRsv4AvSBDu7
-         I6hB6DSZ8DVkNdxDEBuCx0+2fiBajPeRBHNOuOJb7A82GHvmnm6cQ9iRcYEaoa7lxSu+
-         yhgQ==
-X-Gm-Message-State: APjAAAWvQf2H913HvhllpweutdClp/5qKZhHTLE2xmLoShuFP2UeZb/c
-        lPU/OPc/mG660ac/NNzbAgIDOBJOFBuMdGImVOmbTQ==
-X-Google-Smtp-Source: APXvYqyqTW0ikCL03cio+d+Gzmk4cTMFD83hv3qpHaLEzcsV2fmsdLrCaYZWZY0tNV/gtoVbZOAtyOnX7jjws/nqq2o=
-X-Received: by 2002:a05:6830:14ca:: with SMTP id t10mr13652260otq.182.1571153843870;
- Tue, 15 Oct 2019 08:37:23 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+qhKK3H7JHx9Pg9rqpVbjQ8Fqzdg622NRYKtEz3pOpY=;
+        b=UM+NOX/2ooHc5rvjlcwZPc5pvWMlxN2Vl0/JHZ8Xua+GefiYLwD/2a10/81nuKFQ/L
+         8rGMhMnaWmHeS2vBJujMfbwJ0AtLBMim7MI5Vz63Jn+C4HM2NeYVPgnRjrWmaUMy0zYW
+         nbIiH72KmM86XKZgh/yKKsbo1nJwk6C/pzgG43u9UimqstpgniCLyer1YYRYiKjM9icI
+         HtwtgcwHfK2EWeneuKB/JfdP7WDKeVB+GiMZugtBPy6HKrvqK6UaMQUv4Tirn/w8oPZu
+         VZ/BUCMqtL+QbnKCAboua2bttpO/WKPMxp3RITHvC37qegqt8QaK2qKzFhRvVJqgbhDi
+         NmRQ==
+X-Gm-Message-State: APjAAAUoWR20xcNVsYCTYewcmEzA4lIH9RWWPkknCZZaA4taMjplDPQr
+        UOpna3AO2Ml+94P7Llf3K6/5C5o=
+X-Google-Smtp-Source: APXvYqzl97gscGI19gtvshAXHiRZe7RDUF1en6rFopsA1RXXpXv4IuPAtA5BF/7n06btN4F5+XXLDg==
+X-Received: by 2002:a9d:7d16:: with SMTP id v22mr1008454otn.331.1571154874589;
+        Tue, 15 Oct 2019 08:54:34 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id y137sm6633719oie.53.2019.10.15.08.54.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 08:54:34 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Robert Jones <rjones@gateworks.com>
+Subject: [PATCH 1/2] dt: writing-schema: Add a note about tools PATH setup
+Date:   Tue, 15 Oct 2019 10:54:32 -0500
+Message-Id: <20191015155433.25359-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20191014102022.236013-1-tzungbi@google.com> <20191014180059.01.I374c311eaca0d47944a37b07acbe48fdb74f734d@changeid>
- <20191015114854.GB4030@sirena.co.uk>
-In-Reply-To: <20191015114854.GB4030@sirena.co.uk>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Tue, 15 Oct 2019 23:37:12 +0800
-Message-ID: <CA+Px+wXoLTdSYQLsg9oTXOW3r9=xqCU4evNcbDjoTcctrtVbPw@mail.gmail.com>
-Subject: Re: [PATCH v3 01/10] platform/chrome: cros_ec: remove unused EC feature
-To:     Mark Brown <broonie@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     ALSA development <alsa-devel@alsa-project.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, Benson Leung <bleung@google.com>,
-        Gwendal Grignou <gwendal@google.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Dylan Reid <dgreid@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 15, 2019 at 7:49 PM Mark Brown <broonie@kernel.org> wrote:
->
-> On Mon, Oct 14, 2019 at 06:20:13PM +0800, Tzung-Bi Shih wrote:
-> > Remove unused EC_FEATURE_AUDIO_CODEC.
->
-> What's the route to getting these platform/chrome changes reviewed?
-> They don't seem to have got any attention thus far and this one is right
-> at the start of the series.
+Users without an existing python install may not have their PATH setup
+for pip installed python programs already. Add a note about having the
+DT validation programs in the PATH.
 
-Enric, could you help to review the "platform/chrome" changes in this
-series?  All changes have merged in the EC firmware code
-(https://chromium.googlesource.com/chromiumos/platform/ec/+/refs/heads/master/include/ec_commands.h).
+Reported-by: Robert Jones <rjones@gateworks.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/writing-schema.rst | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
+index f4a638072262..3fce61cfd649 100644
+--- a/Documentation/devicetree/writing-schema.rst
++++ b/Documentation/devicetree/writing-schema.rst
+@@ -117,6 +117,9 @@ project can be installed with pip::
+ 
+     pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
+ 
++Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
++installed. Ensure they are in your PATH (~/.local/bin by default).
++
+ dtc must also be built with YAML output support enabled. This requires that
+ libyaml and its headers be installed on the host system.
+ 
+-- 
+2.20.1
+
