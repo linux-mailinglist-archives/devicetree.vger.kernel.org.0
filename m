@@ -2,163 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 18EFFD753F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 13:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C69D7584
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 13:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727524AbfJOLkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 07:40:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32854 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726472AbfJOLkb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 07:40:31 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 09A4821A49;
-        Tue, 15 Oct 2019 11:40:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571139631;
-        bh=oGPUs6ScsKBWjiqXvGtsLhcAYD8CQlphpe25WiR9FGY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IuhXmlHj2PRLsBZj2269HsoFFYUJrFjAzqKrBXSsQ2lsXfxkAooLORx/ALjRhk/av
-         ERpKqQNIxKws3tEloX9E5mfprd62BzVlhogQ3aOrpQrb9cxxE3XPXOK00XeBGl973Y
-         lVbRtilHoNYYolWIarpI02u6whi0mzrqQRS4oax4=
-Received: by mail-qt1-f177.google.com with SMTP id m15so30074401qtq.2;
-        Tue, 15 Oct 2019 04:40:31 -0700 (PDT)
-X-Gm-Message-State: APjAAAWhL/rI0qhYBfHM8DEWfMzO3/NGgv2BBnIN9oadhCsnWZsUElaV
-        kUZYni865pnk1Tn40DT44LkSodXNUr2N3MsQyg==
-X-Google-Smtp-Source: APXvYqwOmCf+8YOVZvLtKg632W0xW7C6kdgWWv1JJ/jsejb6F+m2ruoP20gZce1ZKtzSOkNUWHdYVGoH9vEkkWJApFc=
-X-Received: by 2002:ac8:44d9:: with SMTP id b25mr39160131qto.300.1571139630214;
- Tue, 15 Oct 2019 04:40:30 -0700 (PDT)
+        id S1728391AbfJOLtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 07:49:01 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55450 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728386AbfJOLtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 07:49:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=XovC9Fd62XjhLfN4wCR5FJF9dddJmhaM10zo4oaQMis=; b=sQoy2DFY0zkS3ePUwfkRWD7LN
+        XjF9F8jGJERwMETzWX1PuuIpZXZTP74UEfqAXPHaA7phXtj59ymChM5SGU558P0lK9SIf1AXHbF2K
+        OYbftzuPJLrEUBucULM0d/XPKlHgKrzn8o2zBHJP1bMRVpkFoncCTAZfzAhVMwb2f3lmk=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iKLJv-00027Q-NP; Tue, 15 Oct 2019 11:48:55 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id BB07127419E4; Tue, 15 Oct 2019 12:48:54 +0100 (BST)
+Date:   Tue, 15 Oct 2019 12:48:54 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, enric.balletbo@collabora.com,
+        bleung@google.com, gwendal@google.com, drinkcat@google.com,
+        cychiang@google.com, dgreid@google.com
+Subject: Re: [PATCH v3 01/10] platform/chrome: cros_ec: remove unused EC
+ feature
+Message-ID: <20191015114854.GB4030@sirena.co.uk>
+References: <20191014102022.236013-1-tzungbi@google.com>
+ <20191014180059.01.I374c311eaca0d47944a37b07acbe48fdb74f734d@changeid>
 MIME-Version: 1.0
-References: <20191007175553.66940-1-john.stultz@linaro.org>
- <20191007175553.66940-5-john.stultz@linaro.org> <CAL_JsqJLY2n7hfneNptAGswVZtGm3vJbSR6W2wUG+ZTzMN8wZA@mail.gmail.com>
- <CALAqxLWB7Vd-H70LLLSW0Fv=_4-saQ9CE2k3-L_43E+F8mLj2w@mail.gmail.com>
- <CAL_JsqJ9uUtqTDEkLi86-BCvW+wM6Pgz_K+JuTsuOqHfFOHStA@mail.gmail.com>
- <CALAqxLVpPvHf2RpwjHh5v9cnQm9CLtj0HHaqVH=EFQJk-GhaPQ@mail.gmail.com>
- <20191011155123.GA14272@bogus> <CALAqxLUbh7_PkOwh9NrS_+sgLDZMHndbp44jVQkB=WqOhKUotA@mail.gmail.com>
-In-Reply-To: <CALAqxLUbh7_PkOwh9NrS_+sgLDZMHndbp44jVQkB=WqOhKUotA@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 15 Oct 2019 06:40:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLB_Pruk0n0jS0B-uB74R=pE7aOhoo5FU191Hg3wsd7XA@mail.gmail.com>
-Message-ID: <CAL_JsqLB_Pruk0n0jS0B-uB74R=pE7aOhoo5FU191Hg3wsd7XA@mail.gmail.com>
-Subject: Re: [RFC][PATCH v2 4/5] dt-bindings: usb: dwc3: of-simple: add
- compatible for HiSi
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dc+cDN39EJAMEtIO"
+Content-Disposition: inline
+In-Reply-To: <20191014180059.01.I374c311eaca0d47944a37b07acbe48fdb74f734d@changeid>
+X-Cookie: Yes, but which self do you want to be?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 14, 2019 at 10:57 PM John Stultz <john.stultz@linaro.org> wrote:
->
-> On Fri, Oct 11, 2019 at 8:51 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Oct 07, 2019 at 04:00:24PM -0700, John Stultz wrote:
-> > > On Mon, Oct 7, 2019 at 2:11 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > >
-> > > > On Mon, Oct 7, 2019 at 2:07 PM John Stultz <john.stultz@linaro.org> wrote:
-> > > > >
-> > > > > On Mon, Oct 7, 2019 at 11:38 AM Rob Herring <robh+dt@kernel.org> wrote:
-> > > > > >
-> > > > > > On Mon, Oct 7, 2019 at 12:56 PM John Stultz <john.stultz@linaro.org> wrote:
-> > > > > > >
-> > > > > > > Add necessary compatible flag for HiSi's DWC3 so
-> > > > > > > dwc3-of-simple will probe.
-> > > > > > >
-> > > > > > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > > > > > Cc: Felipe Balbi <balbi@kernel.org>
-> > > > > > > Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > > > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > > > > Cc: Mark Rutland <mark.rutland@arm.com>
-> > > > > > > Cc: Yu Chen <chenyu56@huawei.com>
-> > > > > > > Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> > > > > > > Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > > > > > Cc: linux-usb@vger.kernel.org
-> > > > > > > Cc: devicetree@vger.kernel.org
-> > > > > > > Signed-off-by: John Stultz <john.stultz@linaro.org>
-> > > > > > > ---
-> > > > > > > v2: Tweaked clock names as clk_usb3phy_ref didn't seem right.
-> > > > > > > ---
-> > > > > > >  .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
-> > > > > > >  1 file changed, 52 insertions(+)
-> > > > > > >  create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
-> > > > > >
-> > > > > > Can you make this a schema.
-> > > > >
-> > > > > Sorry, I'm not sure exactly what you're asking. I'm guessing from
-> > > > > grepping around you want the bindings in yaml instead (I see a few
-> > > > > examples)?
-> > > >
-> > > > Yes.
-> > > >
-> > > > > Is there some pointer to documentation? The
-> > > > > Documentation/devicetree/bindings/writing-bindings.txt file doesn't
-> > > > > seem to say much on it.
-> > > >
-> > > > You mean Documentation/devicetree/writing-schemas.rst? There's that
-> > > > and Documentation/devicetree/bindings/example-schema.yaml which has a
-> > > > bunch of annotations on what each part means.
-> > >
-> > > Ah! Sorry for missing that. Thanks for the pointer, though I may get
-> > > away with dropping this one.
-> > >
-> > > > > > If it's only clocks and resets for the wrapper node, just make this
-> > > > > > all one node.
-> > > > >
-> > > > > Just to make sure I'm following, you're suggesting I put all the
-> > > > > clocks/resets in the dwc3 node (renamed to usb for the node name) and
-> > > > > not add the wrapper?
-> > > >
-> > > > Yes.
-> > > >
-> > > > > I'll have to see if that's possible. The generic dwc3 binding wants 3
-> > > > > clocks, but I only have two in the code I've worked with (similarly it
-> > > > > seems to only want two resets, not 4) so I'll have to see if I can
-> > > > > figure out how to adapt that.
-> > > >
-> > > > Possible since commit fe8abf332b8f ("usb: dwc3: support clocks and
-> > > > resets for DWC3 core").
-> > >
-> > > Ok. It *seems* like I can get it working with the existing binding
-> > > then. There's a little funkiness with the core expecting three clocks
-> > > while I only have two (currently I'm duplicating the "bus_early" clk
-> > > for "suspend". Is there a preferred way to do this sort of hack?), and
-> > > I'm a little worried that only the first reset is being used (instead
-> > > of the 4 specified), but it seems to work so far.
-> >
-> > I would assume that you simply don't know how the 'suspend' clock is
-> > connected rather than you don't have one. But that's maybe not a
-> > problem you can fix.
-> >
-> > I would make dwc3 use devm_clk_bulk_get_all and allow for less than 3
-> > clocks. And do a similar change for resets.
->
-> So got a chance to start implementing this and it seems like it will
-> work. That said, it feels like I'm duplicating logic already in the
-> dwc-of-simple.c implementation (which already handles arbitrary clks
-> and resets), particularly if I try to implement the device specific
-> need_reset quirk used by HiKey960 (and rk3399).
->
-> Do you feel having that logic copied is worth avoiding the extra
-> bindings? Or is it too duplicative?
 
-We already have reset and clock setup in 2 places, so it's already
-kind of duplicated.
+--dc+cDN39EJAMEtIO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Why not refactor into a helper that both can use?
+On Mon, Oct 14, 2019 at 06:20:13PM +0800, Tzung-Bi Shih wrote:
+> Remove unused EC_FEATURE_AUDIO_CODEC.
 
-Rob
+What's the route to getting these platform/chrome changes reviewed?
+They don't seem to have got any attention thus far and this one is right
+at the start of the series.
+
+--dc+cDN39EJAMEtIO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2lsiUACgkQJNaLcl1U
+h9BH+Af/VoQYmxlIIQ22+R99CZ1J66203wVcnQ5aT5edsF12LFEwx/4iG4dKU6t8
+xf0JGlUi/3Yfi+UVq/g2k+Zd5zPCK6j4ydCbrLiK8kCn8SNu+6w+2KcqC44rwcw0
++2UyLZKc8svUgtjpjvrmHOM2rJAAOP9ga8EGQEkCpv37+1q7mB9V/CxVm4LiTEbu
+qtytgfntxj1STs+bKuLAAEaY7lEm7qVnA1qvBHhoI94LyDRLNEj3UC9f9jBXKZwX
+4m67h40ZI/71kw+BYwZuif96uCPA9Yaryow0z3a1EMAWSjT9ZunKOUjs9KVovDPN
+UFb+uRtknxPygNRWavTEI0rUt3F4Ng==
+=lh/o
+-----END PGP SIGNATURE-----
+
+--dc+cDN39EJAMEtIO--
