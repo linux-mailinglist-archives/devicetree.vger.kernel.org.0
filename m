@@ -2,91 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDBAD7B6B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 18:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA911D7CF0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 19:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728764AbfJOQ2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 12:28:34 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:37744 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728687AbfJOQ2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 12:28:34 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id EDCC060BE7; Tue, 15 Oct 2019 16:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1571156913;
-        bh=KOeIw3gkdA6lhYkuGUW1LTe0NI6YnsNCGDr0ZnO6Mk8=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=cKzFdjlLgaErSB4sPznCi+BheW8s+h/Mu5k81fmYlSPCe3TaCvjICWk+bu4Xtl2ex
-         gu3k+7egf+sB9Xn4HGqd5qhpv429moKJ04Brs4+usoyYc27zbmp0+x10kzVGxfMqc5
-         Mse7oDYBdfGkIuP2m0tBrUHBGWECXqw4Lw4p3Ayc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from x230.qca.qualcomm.com (85-76-79-201-nat.elisa-mobile.fi [85.76.79.201])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 81BFF60B6C;
-        Tue, 15 Oct 2019 16:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1571156912;
-        bh=KOeIw3gkdA6lhYkuGUW1LTe0NI6YnsNCGDr0ZnO6Mk8=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=bIrLcz7COORdGWYbbfTYuOMyXkjcAcvj8aF9Q531hE2qXGhU1YO8EgeJd3Q6FU/6a
-         xvms0ujDc0Opbc6o5sApZgM7ZCU1rYbZho0JWF4QgWJ/Iv6d4GF3XPO02WQWMe3fDw
-         8mVP3dxvIABTEj4Xd4STfTHf2+OxV13tqlAOFjis=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 81BFF60B6C
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Sven Eckelmann <sven@narfation.org>
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-        <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
-        <1635460.phzPRRphLd@bentobox>
-Date:   Tue, 15 Oct 2019 19:28:27 +0300
-In-Reply-To: <1635460.phzPRRphLd@bentobox> (Sven Eckelmann's message of "Wed,
-        21 Aug 2019 08:16:27 +0200")
-Message-ID: <87d0eym0r8.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1727150AbfJORJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 13:09:20 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:45400 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726470AbfJORJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 13:09:20 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 41so17589780oti.12;
+        Tue, 15 Oct 2019 10:09:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=JHMlVw4tvcimgqLNE6cW+4izJ5ZEdiASsMVMnyNWIFE=;
+        b=koQy+GHTtbCT+IzxVvnGOCZxIBEqWR0dzqDxlOMt2tPU2TzFErwyF2yJnh9gByBrOr
+         PQnZQdHPnokIRDzj8yrpdzch4bzFexF8oyoTmAACJFHC6KR+fzXzCswsqT+TWR1zuNZJ
+         w6j69mal2a9l4xzngk7Gkch+op+YX+7fNgOuC4XBcKS6gHx6LshtJXGeZpspLkyfkHZ7
+         5wKYSKkJGk4ilNdduc4H7lYNAHLLGHmhpmAHNmNCwEo6XGt8QMsI61sMPNgXD9LTLnX1
+         dap5/tPe5x9U6H/fQ0Af6MHZF67lVhD+Q1y5fLDB28La1S2AsTLcEDLBokRD3JSzaqk5
+         IJWA==
+X-Gm-Message-State: APjAAAXm5kIiKNplGnIvvQAqcimlU0yOSWZtQ9HVziX4Dl9f661K45F7
+        5Aq6U1t83nQa4CeYYYQX0A==
+X-Google-Smtp-Source: APXvYqy2X9I15W25gmPVuvvFHsnO6LRLZtuacdrohlwkKPnx10p92ZlfGBeUKRra5d48a54FxaB9Kg==
+X-Received: by 2002:a9d:70c3:: with SMTP id w3mr22943854otj.246.1571159359034;
+        Tue, 15 Oct 2019 10:09:19 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o184sm6585474oia.28.2019.10.15.10.09.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 10:09:18 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 12:09:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        mark.rutland@arm.com, alexandre.torgue@st.com,
+        yannick.fertre@st.com, philippe.cornu@st.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: Re: [PATCH v4] dt-bindings: display: Convert stm32 display bindings
+ to json-schema
+Message-ID: <20191015170917.GA8078@bogus>
+References: <20191015123151.14828-1-benjamin.gaignard@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191015123151.14828-1-benjamin.gaignard@st.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sven Eckelmann <sven@narfation.org> writes:
+On Tue, 15 Oct 2019 14:31:51 +0200, Benjamin Gaignard wrote:
+> Convert the STM32 display binding to DT schema format using json-schema.
+> Split the original bindings in two yaml files:
+> - one for display controller (ltdc)
+> - one for DSI controller
+> 
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+> ---
+> changes in v4:
+> - describe interruptions items
+> - remove unit address from port property
+> - remove dma-ranges (DT patches send too)
+> 
+> changes in v3:
+> - use (GPL-2.0-only OR BSD-2-Clause) license
+> 
+> changes in v2:
+> - use BSD-2-Clause license
+> - add panel property
+> - fix identation
+> - remove pinctrl-names: true
+> - remove pinctrl-[0-9]+: true
+> - rework ports block to include port@0 and port@1
+> - use const for #adress-cells and #size-cells
+> - add additionalProperties: false
+>  .../devicetree/bindings/display/st,stm32-dsi.yaml  | 151 +++++++++++++++++++++
+>  .../devicetree/bindings/display/st,stm32-ltdc.txt  | 144 --------------------
+>  .../devicetree/bindings/display/st,stm32-ltdc.yaml |  81 +++++++++++
+>  3 files changed, 232 insertions(+), 144 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> 
 
-> On Tuesday, 20 August 2019 17:47:57 CEST Kalle Valo wrote:
->> +static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
->> +                                     struct ieee80211_vif *vif,
->> +                                     struct ieee80211_sta *sta,
->> +                                     struct peer_assoc_params *arg)
->> +{
->> +       struct ath11k_vif *arvif = (void *)vif->drv_priv;
->> +       struct wmi_rate_set_arg *rateset = &arg->peer_legacy_rates;
->> +       struct cfg80211_chan_def def;
->> +       const struct ieee80211_supported_band *sband;
->> +       const struct ieee80211_rate *rates;
->> +       enum nl80211_band band;
->> +       u32 ratemask;
->> +       u8 rate;
->
-> rate has to be u32 [1].
->
-> Kind regards,
-> 	Sven
->
-> [1] https://patchwork.kernel.org/patch/11089507/
+Applied, thanks.
 
-I have applied this now.
-
--- 
-Kalle Valo
+Rob
