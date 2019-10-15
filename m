@@ -2,218 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C6305D71CF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 11:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C95D6D71DE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 11:12:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728868AbfJOJIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 05:08:18 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:37150 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726373AbfJOJIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 05:08:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=PE8+nIoxzD1zQdezsHIaVtBqecbIPWzv31qj99+GMFI=; b=rHXUMkGeY1/C+REceyjWg+4Rm
-        01qjEdQ6LSV1hNiGadSYIGoQaUN97i2TAxt77SO9nWKaaBDGqACYgzfg6kiZjoOfvDWHvfW5yh1aY
-        KyV9+zesdK06b1T11yiw+ZF81rVkFrdjOfPZvHvwd0E4nEU2l9/M9Paq2TFNVojY4Q5osIbiipDKg
-        C3reJlQ+75m6pOM9628sIktXXyQ0osAu8zYoVXCqAMPh8wkWAeNjueaE0aZLD6rBfiWQeCIBm9EFW
-        OoTv9Gvz2PNSeTmiyuvOIpKzXV3yiPEFR1Hr4a6hsnvTB5AJ5c4w1JjHh6QDxGQYDHfmJwnmvDQMd
-        E4DF8O0lA==;
-Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:43732)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1iKIoB-0003R7-Is; Tue, 15 Oct 2019 10:07:59 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1iKIo8-0005B3-As; Tue, 15 Oct 2019 10:07:56 +0100
-Date:   Tue, 15 Oct 2019 10:07:56 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     "Z.q. Hou" <zhiqiang.hou@nxp.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/6] PCI: mobiveil: Add PCIe Gen4 EP driver for NXP
- Layerscape SoCs
-Message-ID: <20191015090756.GS25745@shell.armlinux.org.uk>
-References: <20190916021742.22844-1-xiaowei.bao@nxp.com>
- <20190916021742.22844-4-xiaowei.bao@nxp.com>
- <20190924163850.GY25745@shell.armlinux.org.uk>
- <AM5PR04MB32991D0D69769CE29E0F8DAEF5930@AM5PR04MB3299.eurprd04.prod.outlook.com>
+        id S1726139AbfJOJMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 05:12:53 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:40511 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725911AbfJOJMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 05:12:53 -0400
+Received: by mail-pf1-f195.google.com with SMTP id x127so12054472pfb.7
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 02:12:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Rf1SPo8jSbclnL68w3kPZWDHp5EjIwxlxaCjEEaF3ww=;
+        b=WufZ5SDj02M2JAFBlDcELeVF2+PmKLvtdlP75T8D3XdGvm4FgSQgKtUr+EhHduz9DX
+         cte2d1NuKF2h8y/ZMwzn/HVKizccjFnrYxaUFy74vwuVPEMwHO3rvF4LgiBZkGSnksZ+
+         +YJyK6E5hVygq53F5fznysuIWag2x5aPQ3kcA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Rf1SPo8jSbclnL68w3kPZWDHp5EjIwxlxaCjEEaF3ww=;
+        b=CijjdTFtdp2rNOw9on/1wAMOV9NgQWAQWJRksm0Bh90ANFgT9Lq6RAapPavpIKyyMu
+         YmnEL/TGeq2rRfzrimxat9aoJ+tkGgm6VB+cthSFSojUkFlPTH2OiQ4RBftp46lB07Z4
+         n+p0gHmkQsxVdzRfkZGKi2VDYrtIRURRYtBUgCelKmt6rHLY7MDZe6IBpzSfZicRxN+g
+         OElY36vRbbhVe5Ww9fl2+qSfyaDwGuKXp6pTIRCNtZSWquVXgFU1aAsl2BF2ub1zFYZa
+         tH4coPl9XeES88VYZUi4iiMYp9aOlbfawnrNL+Tb6sa4EUmF8WcBljsSuZAZBoI7PRPH
+         gETg==
+X-Gm-Message-State: APjAAAUmIKgKO0YwmVleuTrt80grfeubmKoHs2wfq3GOQ3EQyUvv22Al
+        71KAOT5ejgn33Hx04Mi4bH0UTw==
+X-Google-Smtp-Source: APXvYqxffEHyfX+IF2fUlaWSiq/XhGbB5uF69E3BwSP/NRWHM1cb1V9qggTUOmYq6dhb4mG8juFE9Q==
+X-Received: by 2002:a63:1c06:: with SMTP id c6mr38053409pgc.417.1571130772225;
+        Tue, 15 Oct 2019 02:12:52 -0700 (PDT)
+Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
+        by smtp.googlemail.com with ESMTPSA id a8sm19778744pff.5.2019.10.15.02.12.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 02:12:51 -0700 (PDT)
+From:   Pi-Hsun Shih <pihsun@chromium.org>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support),
+        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: mt8183: add dpi node to mt8183
+Date:   Tue, 15 Oct 2019 17:12:29 +0800
+Message-Id: <20191015091229.91814-1-pihsun@chromium.org>
+X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM5PR04MB32991D0D69769CE29E0F8DAEF5930@AM5PR04MB3299.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 15, 2019 at 07:46:12AM +0000, Xiaowei Bao wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
-> > Sent: 2019年9月25日 0:39
-> > To: Xiaowei Bao <xiaowei.bao@nxp.com>
-> > Cc: Z.q. Hou <zhiqiang.hou@nxp.com>; bhelgaas@google.com;
-> > robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo Li
-> > <leoyang.li@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com; M.h. Lian
-> > <minghuan.lian@nxp.com>; andrew.murray@arm.com; Mingkai Hu
-> > <mingkai.hu@nxp.com>; linux-pci@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
-> > linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH 3/6] PCI: mobiveil: Add PCIe Gen4 EP driver for NXP
-> > Layerscape SoCs
-> > 
-> > On Mon, Sep 16, 2019 at 10:17:39AM +0800, Xiaowei Bao wrote:
-> > > This PCIe controller is based on the Mobiveil GPEX IP, it work in EP
-> > > mode if select this config opteration.
-> > >
-> > > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> > > ---
-> > >  MAINTAINERS                                        |   2 +
-> > >  drivers/pci/controller/mobiveil/Kconfig            |  17 ++-
-> > >  drivers/pci/controller/mobiveil/Makefile           |   1 +
-> > >  .../controller/mobiveil/pcie-layerscape-gen4-ep.c  | 156
-> > > +++++++++++++++++++++
-> > >  4 files changed, 173 insertions(+), 3 deletions(-)  create mode
-> > > 100644 drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS index b997056..0858b54 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -12363,11 +12363,13 @@ F:
-> > 	drivers/pci/controller/dwc/*layerscape*
-> > >
-> > >  PCI DRIVER FOR NXP LAYERSCAPE GEN4 CONTROLLER
-> > >  M:	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > > +M:	Xiaowei Bao <xiaowei.bao@nxp.com>
-> > >  L:	linux-pci@vger.kernel.org
-> > >  L:	linux-arm-kernel@lists.infradead.org
-> > >  S:	Maintained
-> > >  F:	Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
-> > >  F:	drivers/pci/controller/mobibeil/pcie-layerscape-gen4.c
-> > > +F:	drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
-> > >
-> > >  PCI DRIVER FOR GENERIC OF HOSTS
-> > >  M:	Will Deacon <will@kernel.org>
-> > > diff --git a/drivers/pci/controller/mobiveil/Kconfig
-> > > b/drivers/pci/controller/mobiveil/Kconfig
-> > > index 2054950..0696b6e 100644
-> > > --- a/drivers/pci/controller/mobiveil/Kconfig
-> > > +++ b/drivers/pci/controller/mobiveil/Kconfig
-> > > @@ -27,13 +27,24 @@ config PCIE_MOBIVEIL_PLAT
-> > >  	  for address translation and it is a PCIe Gen4 IP.
-> > >
-> > >  config PCIE_LAYERSCAPE_GEN4
-> > > -	bool "Freescale Layerscape PCIe Gen4 controller"
-> > > +	bool "Freescale Layerscpe PCIe Gen4 controller in RC mode"
-> > >  	depends on PCI
-> > >  	depends on OF && (ARM64 || ARCH_LAYERSCAPE)
-> > >  	depends on PCI_MSI_IRQ_DOMAIN
-> > >  	select PCIE_MOBIVEIL_HOST
-> > >  	help
-> > >  	  Say Y here if you want PCIe Gen4 controller support on
-> > > -	  Layerscape SoCs. The PCIe controller can work in RC or
-> > > -	  EP mode according to RCW[HOST_AGT_PEX] setting.
-> > > +	  Layerscape SoCs. And the PCIe controller work in RC mode
-> > > +	  by setting the RCW[HOST_AGT_PEX] to 0.
-> > > +
-> > > +config PCIE_LAYERSCAPE_GEN4_EP
-> > > +	bool "Freescale Layerscpe PCIe Gen4 controller in EP mode"
-> > > +	depends on PCI
-> > > +	depends on OF && (ARM64 || ARCH_LAYERSCAPE)
-> > > +	depends on PCI_ENDPOINT
-> > > +	select PCIE_MOBIVEIL_EP
-> > > +	help
-> > > +	  Say Y here if you want PCIe Gen4 controller support on
-> > > +	  Layerscape SoCs. And the PCIe controller work in EP mode
-> > > +	  by setting the RCW[HOST_AGT_PEX] to 1.
-> > >  endmenu
-> > > diff --git a/drivers/pci/controller/mobiveil/Makefile
-> > > b/drivers/pci/controller/mobiveil/Makefile
-> > > index 686d41f..6f54856 100644
-> > > --- a/drivers/pci/controller/mobiveil/Makefile
-> > > +++ b/drivers/pci/controller/mobiveil/Makefile
-> > > @@ -4,3 +4,4 @@ obj-$(CONFIG_PCIE_MOBIVEIL_HOST) +=
-> > > pcie-mobiveil-host.o
-> > >  obj-$(CONFIG_PCIE_MOBIVEIL_EP) += pcie-mobiveil-ep.o
-> > >  obj-$(CONFIG_PCIE_MOBIVEIL_PLAT) += pcie-mobiveil-plat.o
-> > >  obj-$(CONFIG_PCIE_LAYERSCAPE_GEN4) += pcie-layerscape-gen4.o
-> > > +obj-$(CONFIG_PCIE_LAYERSCAPE_GEN4_EP) +=
-> > pcie-layerscape-gen4-ep.o
-> > > diff --git a/drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
-> > > b/drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
-> > > new file mode 100644
-> > > index 0000000..7bfec51
-> > > --- /dev/null
-> > > +++ b/drivers/pci/controller/mobiveil/pcie-layerscape-gen4-ep.c
-> > > @@ -0,0 +1,156 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * PCIe controller EP driver for Freescale Layerscape SoCs
-> > > + *
-> > > + * Copyright (C) 2019 NXP Semiconductor.
-> > > + *
-> > > + * Author: Xiaowei Bao <xiaowei.bao@nxp.com>  */
-> > > +
-> > > +#include <linux/kernel.h>
-> > > +#include <linux/init.h>
-> > > +#include <linux/of_pci.h>
-> > > +#include <linux/of_platform.h>
-> > > +#include <linux/of_address.h>
-> > > +#include <linux/pci.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/resource.h>
-> > > +
-> > > +#include "pcie-mobiveil.h"
-> > > +
-> > > +#define PCIE_LX2_BAR_NUM	4
-> > > +
-> > > +#define to_ls_pcie_g4_ep(x)	dev_get_drvdata((x)->dev)
-> > > +
-> > > +struct ls_pcie_g4_ep {
-> > > +	struct mobiveil_pcie		*mv_pci;
-> > > +};
-> > > +
-> > > +static const struct of_device_id ls_pcie_g4_ep_of_match[] = {
-> > > +	{ .compatible = "fsl,lx2160a-pcie-ep",},
-> > > +	{ },
-> > > +};
-> > > +
-> > > +static const struct pci_epc_features ls_pcie_g4_epc_features = {
-> > > +	.linkup_notifier = false,
-> > > +	.msi_capable = true,
-> > > +	.msix_capable = true,
-> > > +	.reserved_bar = (1 << BAR_4) | (1 << BAR_5),
-> > 
-> > 			BIT(BAR_4) | BIT(BAR_5) ?
-> 
-> I think use .reserved_bar = (1 << BAR_4) | (1 << BAR_5), is better, because BAR_4 
-> is not a bit of register.
+Add dpi node to mt8183.
 
-Why is whether it's a register or not relevent?
+Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+---
+This depends on https://patchwork.kernel.org/cover/11081047/ (for the
+dpi driver on mt8183) and https://patchwork.kernel.org/cover/11118371/
+(for the scpsys node).
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 6cbbd7726d36..42c3a6b3cfc7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -642,6 +642,17 @@ mmsys: syscon@14000000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
++		dpi0: dpi@14015000 {
++			compatible = "mediatek,mt8183-dpi";
++			reg = <0 0x14015000 0 0x1000>;
++			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
++			power-domains = <&scpsys MT8183_POWER_DOMAIN_DISP>;
++			clocks = <&mmsys CLK_MM_DPI_IF>,
++				 <&mmsys CLK_MM_DPI_MM>,
++				 <&apmixedsys CLK_APMIXED_TVDPLL>;
++			clock-names = "pixel", "engine", "pll";
++		};
++
+ 		smi_common: smi@14019000 {
+ 			compatible = "mediatek,mt8183-smi-common", "syscon";
+ 			reg = <0 0x14019000 0 0x1000>;
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+2.23.0.700.g56cf767bdb-goog
+
