@@ -2,492 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3221D769B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 14:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9ACD76DF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 14:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729672AbfJOMcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 08:32:11 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:46896 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729435AbfJOMcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 08:32:11 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9FCGHo3016309;
-        Tue, 15 Oct 2019 14:31:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=lImVIfYBUEVEkfU6Ia97XOrBXJoPptRFFfB5A9emcnw=;
- b=FnQFzkE9VIYUDqgEltbABTIzrhHZOHOIwxO/iVSBiCo1hBNSa/kjM6gQ0pbVdKTlV0tA
- CesvYcYVgI0X+L0DhPH7e6n6vZzcIjsAfl74GqwguyGKWNPCpsmBIlT3j7wJkq/KTZTL
- QwCtSvNnlk9UE9pL+bKIUAbw/4BWumNEBeRRkxddjQxxOCL0Uyw7KFK9F/gHbvF77Gw7
- wlLBDV4AJ23KRrBTA4h0vwMr52/gLaH5kZl4a+AirL1TV9WPwXDfAwr8YVC/rc3CgTI3
- 6npU8GPYCnWhNypkN7JEpFq/oERU79rcl5Yw8I8jbXryBMAeB+NmB80B+GpbclfhTMx9 3w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2vk5qj86dj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 15 Oct 2019 14:31:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 19111100038;
-        Tue, 15 Oct 2019 14:31:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0ADE62C7EAB;
-        Tue, 15 Oct 2019 14:31:54 +0200 (CEST)
-Received: from SAFEX1HUBCAS21.st.com (10.75.90.44) by Safex1hubcas24.st.com
- (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 15 Oct
- 2019 14:31:53 +0200
-Received: from localhost (10.129.4.186) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 15 Oct 2019 14:31:53
- +0200
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <alexandre.torgue@st.com>,
-        <yannick.fertre@st.com>, <philippe.cornu@st.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH v4] dt-bindings: display: Convert stm32 display bindings to json-schema
-Date:   Tue, 15 Oct 2019 14:31:51 +0200
-Message-ID: <20191015123151.14828-1-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
+        id S1726638AbfJOMwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 08:52:38 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:55110 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbfJOMwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 08:52:38 -0400
+Received: from [192.168.0.20] (cpc89242-aztw30-2-0-cust488.18-1.cable.virginm.net [86.31.129.233])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CC79C324;
+        Tue, 15 Oct 2019 14:52:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1571143953;
+        bh=1aKucOk2h/oCtJg0twcZEVkJejTDtUaSm4RIl8SFyhY=;
+        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=phbd9OHrGyuMR+WYkIeQn53m/2Vrx7R77hYqQYrQjf5shQgFMf4HwA4pY/1VOAMVt
+         aH1bEEJ5cSWtU04qj/rgneEUg59HZaJlSuRX6ICd2TpwO1oA8kf/CIn+IyKz/cl2yp
+         GITrapsoaHJ9DVuYDOFbWSFTIYjMiaMkgssMnJ34=
+Reply-To: kieran.bingham+renesas@ideasonboard.com
+Subject: Re: [PATCH v5 7/8] arm64: dts: renesas: Add CMM units to Gen3 SoCs
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        laurent.pinchart@ideasonboard.com, geert@linux-m68k.org,
+        horms@verge.net.au, uli+renesas@fpond.eu,
+        VenkataRajesh.Kalakodima@in.bosch.com
+Cc:     airlied@linux.ie, daniel@ffwll.ch, koji.matsuoka.xm@renesas.com,
+        muroya@ksk.co.jp, Harsha.ManjulaMallikarjun@in.bosch.com,
+        ezequiel@collabora.com, seanpaul@chromium.org,
+        linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com
+References: <20191015104621.62514-1-jacopo+renesas@jmondi.org>
+ <20191015104621.62514-8-jacopo+renesas@jmondi.org>
+From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Organization: Ideas on Board
+Message-ID: <84f7b344-6a3a-edcc-3f3d-588825516bc2@ideasonboard.com>
+Date:   Tue, 15 Oct 2019 13:52:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.129.4.186]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-15_05:2019-10-15,2019-10-15 signatures=0
+In-Reply-To: <20191015104621.62514-8-jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 display binding to DT schema format using json-schema.
-Split the original bindings in two yaml files:
-- one for display controller (ltdc)
-- one for DSI controller
+Hi Jacopo,
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
-changes in v4:
-- describe interruptions items
-- remove unit address from port property
-- remove dma-ranges (DT patches send too)
+On 15/10/2019 11:46, Jacopo Mondi wrote:
+> Add CMM units to Renesas R-Car Gen3 SoC that support it, and reference them
+> from the Display Unit they are connected to.
+> 
+> Sort the 'vsps', 'renesas,cmm' and 'status' properties in the DU unit
+> consistently in all the involved DTS.
+> 
 
-changes in v3:
-- use (GPL-2.0-only OR BSD-2-Clause) license
+Going through this, I think I'm happy, except for a 'future' gotcha
+detailed below.
 
-changes in v2:
-- use BSD-2-Clause license
-- add panel property
-- fix identation
-- remove pinctrl-names: true
-- remove pinctrl-[0-9]+: true
-- rework ports block to include port@0 and port@1
-- use const for #adress-cells and #size-cells
-- add additionalProperties: false
- .../devicetree/bindings/display/st,stm32-dsi.yaml  | 151 +++++++++++++++++++++
- .../devicetree/bindings/display/st,stm32-ltdc.txt  | 144 --------------------
- .../devicetree/bindings/display/st,stm32-ltdc.yaml |  81 +++++++++++
- 3 files changed, 232 insertions(+), 144 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
- create mode 100644 Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+The H3-N is possibly going to cause some issues (not
+supporting/connecting/using the CMM2) ... but as we don't really have
+that yet ... I'm going to say "la la la " ... and put this here:
 
-diff --git a/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-new file mode 100644
-index 000000000000..a99532b38589
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/st,stm32-dsi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 DSI host controller
-+
-+maintainers:
-+  - Philippe Cornu <philippe.cornu@st.com>
-+  - Yannick Fertre <yannick.fertre@st.com>
-+
-+description:
-+  The STMicroelectronics STM32 DSI controller uses the Synopsys DesignWare MIPI-DSI host controller.
-+
-+properties:
-+  compatible:
-+    const: st,stm32-dsi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Module Clock
-+      - description: DSI bus clock
-+      - description: Pixel clock
-+    minItems: 2
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: ref
-+      - const: px_clk
-+    minItems: 2
-+    maxItems: 3
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: apb
-+
-+  phy-dsi-supply:
-+    maxItems: 1
-+    description:
-+        Phandle of the regulator that provides the supply voltage.
-+
-+  ports:
-+    type: object
-+    description:
-+      A node containing DSI input & output port nodes with endpoint
-+      definitions as documented in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+      Documentation/devicetree/bindings/graph.txt
-+    properties:
-+      port@0:
-+        type: object
-+        description:
-+          DSI input port node, connected to the ltdc rgb output port.
-+
-+      port@1:
-+        type: object
-+        description:
-+          DSI output port node, connected to a panel or a bridge input port"
-+
-+patternProperties:
-+  "^(panel|panel-dsi)@[0-9]$":
-+    type: object
-+    description:
-+      A node containing the panel or bridge description as documented in
-+      Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
-+    properties:
-+      port:
-+        type: object
-+        description:
-+          Panel or bridge port node, connected to the DSI output port (port@1)
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+required:
-+  - "#address-cells"
-+  - "#size-cells"
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    #include <dt-bindings/reset/stm32mp1-resets.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    dsi: dsi@5a000000 {
-+        compatible = "st,stm32-dsi";
-+        reg = <0x5a000000 0x800>;
-+        clocks = <&rcc DSI_K>, <&clk_hse>, <&rcc DSI_PX>;
-+        clock-names = "pclk", "ref", "px_clk";
-+        resets = <&rcc DSI_R>;
-+        reset-names = "apb";
-+        phy-dsi-supply = <&reg18>;
-+        
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              port@0 {
-+                    reg = <0>;
-+                    dsi_in: endpoint {
-+                        remote-endpoint = <&ltdc_ep1_out>;
-+                    };
-+              };
-+
-+              port@1 {
-+                    reg = <1>;
-+                    dsi_out: endpoint {
-+                        remote-endpoint = <&panel_in>;
-+                    };
-+              };
-+        };
-+
-+        panel-dsi@0 {
-+              compatible = "orisetech,otm8009a";
-+              reg = <0>;
-+              reset-gpios = <&gpioe 4 GPIO_ACTIVE_LOW>;
-+              power-supply = <&v3v3>;
-+
-+              port {
-+                    panel_in: endpoint {
-+                        remote-endpoint = <&dsi_out>;
-+                    };
-+              };
-+        };
-+    };
-+
-+...
-+
-+
-diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.txt b/Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
-deleted file mode 100644
-index 60c54da4e526..000000000000
---- a/Documentation/devicetree/bindings/display/st,stm32-ltdc.txt
-+++ /dev/null
-@@ -1,144 +0,0 @@
--* STMicroelectronics STM32 lcd-tft display controller
--
--- ltdc: lcd-tft display controller host
--  Required properties:
--  - compatible: "st,stm32-ltdc"
--  - reg: Physical base address of the IP registers and length of memory mapped region.
--  - clocks: A list of phandle + clock-specifier pairs, one for each
--    entry in 'clock-names'.
--  - clock-names: A list of clock names. For ltdc it should contain:
--      - "lcd" for the clock feeding the output pixel clock & IP clock.
--  - resets: reset to be used by the device (defined by use of RCC macro).
--  Required nodes:
--  - Video port for DPI RGB output: ltdc has one video port with up to 2
--    endpoints:
--      - for external dpi rgb panel or bridge, using gpios.
--      - for internal dpi input of the MIPI DSI host controller.
--      Note: These 2 endpoints cannot be activated simultaneously.
--
--* STMicroelectronics STM32 DSI controller specific extensions to Synopsys
--  DesignWare MIPI DSI host controller
--
--The STMicroelectronics STM32 DSI controller uses the Synopsys DesignWare MIPI
--DSI host controller. For all mandatory properties & nodes, please refer
--to the related documentation in [5].
--
--Mandatory properties specific to STM32 DSI:
--- #address-cells: Should be <1>.
--- #size-cells: Should be <0>.
--- compatible: "st,stm32-dsi".
--- clock-names:
--  - phy pll reference clock string name, must be "ref".
--- resets: see [5].
--- reset-names: see [5].
--
--Mandatory nodes specific to STM32 DSI:
--- ports: A node containing DSI input & output port nodes with endpoint
--  definitions as documented in [3] & [4].
--  - port@0: DSI input port node, connected to the ltdc rgb output port.
--  - port@1: DSI output port node, connected to a panel or a bridge input port.
--- panel or bridge node: A node containing the panel or bridge description as
--  documented in [6].
--  - port: panel or bridge port node, connected to the DSI output port (port@1).
--Optional properties:
--- phy-dsi-supply: phandle of the regulator that provides the supply voltage.
--
--Note: You can find more documentation in the following references
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--[2] Documentation/devicetree/bindings/reset/reset.txt
--[3] Documentation/devicetree/bindings/media/video-interfaces.txt
--[4] Documentation/devicetree/bindings/graph.txt
--[5] Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt
--[6] Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
--
--Example 1: RGB panel
--/ {
--	...
--	soc {
--	...
--		ltdc: display-controller@40016800 {
--			compatible = "st,stm32-ltdc";
--			reg = <0x40016800 0x200>;
--			interrupts = <88>, <89>;
--			resets = <&rcc STM32F4_APB2_RESET(LTDC)>;
--			clocks = <&rcc 1 CLK_LCD>;
--			clock-names = "lcd";
--
--			port {
--				ltdc_out_rgb: endpoint {
--				};
--			};
--		};
--	};
--};
--
--Example 2: DSI panel
--
--/ {
--	...
--	soc {
--	...
--		ltdc: display-controller@40016800 {
--			compatible = "st,stm32-ltdc";
--			reg = <0x40016800 0x200>;
--			interrupts = <88>, <89>;
--			resets = <&rcc STM32F4_APB2_RESET(LTDC)>;
--			clocks = <&rcc 1 CLK_LCD>;
--			clock-names = "lcd";
--
--			port {
--				ltdc_out_dsi: endpoint {
--					remote-endpoint = <&dsi_in>;
--				};
--			};
--		};
--
--
--		dsi: dsi@40016c00 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			compatible = "st,stm32-dsi";
--			reg = <0x40016c00 0x800>;
--			clocks = <&rcc 1 CLK_F469_DSI>, <&clk_hse>;
--			clock-names = "pclk", "ref";
--			resets = <&rcc STM32F4_APB2_RESET(DSI)>;
--			reset-names = "apb";
--			phy-dsi-supply = <&reg18>;
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
--					dsi_in: endpoint {
--						remote-endpoint = <&ltdc_out_dsi>;
--					};
--				};
--
--				port@1 {
--					reg = <1>;
--					dsi_out: endpoint {
--						remote-endpoint = <&dsi_in_panel>;
--					};
--				};
--
--			};
--
--			panel-dsi@0 {
--				reg = <0>; /* dsi virtual channel (0..3) */
--				compatible = ...;
--				enable-gpios = ...;
--
--				port {
--					dsi_in_panel: endpoint {
--						remote-endpoint = <&dsi_out>;
--					};
--				};
--
--			};
--
--		};
--
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-new file mode 100644
-index 000000000000..a40197ab281e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/st,stm32-ltdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 lcd-tft display controller
-+
-+maintainers:
-+  - Philippe Cornu <philippe.cornu@st.com>
-+  - Yannick Fertre <yannick.fertre@st.com>
-+
-+properties:
-+  compatible:
-+    const: st,stm32-ltdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: events interrupt line.
-+      - description: errors interrupt line.
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: lcd
-+
-+  resets:
-+    maxItems: 1
-+
-+  port:
-+    type: object
-+    description:
-+      "Video port for DPI RGB output. 
-+      ltdc has one video port with up to 2 endpoints:
-+      - for external dpi rgb panel or bridge, using gpios.
-+      - for internal dpi input of the MIPI DSI host controller.
-+      Note: These 2 endpoints cannot be activated simultaneously.
-+      Please refer to the bindings defined in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt."
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    #include <dt-bindings/reset/stm32mp1-resets.h>
-+    ltdc: display-controller@40016800 {
-+        compatible = "st,stm32-ltdc";
-+        reg = <0x5a001000 0x400>;
-+        interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&rcc LTDC_PX>;
-+        clock-names = "lcd";
-+        resets = <&rcc LTDC_R>;
-+
-+        port {
-+             ltdc_out_dsi: endpoint {
-+                     remote-endpoint = <&dsi_in>;
-+             };
-+        };
-+    };
-+
-+...
-+
--- 
-2.15.0
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+
+
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> ---
+>  arch/arm64/boot/dts/renesas/r8a7795.dtsi  | 39 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/renesas/r8a7796.dtsi  | 31 +++++++++++++++++-
+>  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 31 +++++++++++++++++-
+>  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 21 ++++++++++++
+>  arch/arm64/boot/dts/renesas/r8a77995.dtsi | 21 ++++++++++++
+>  5 files changed, 141 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a7795.dtsi b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> index 6675462f7585..e16757af8c27 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> @@ -2939,6 +2939,42 @@
+>  			iommus = <&ipmmu_vi1 10>;
+>  		};
+> 
+> +		cmm0: cmm@fea40000 {
+> +			compatible = "renesas,r8a7795-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea40000 0 0x1000>;
+> +			power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 711>;
+> +			resets = <&cpg 711>;
+> +		};
+> +
+> +		cmm1: cmm@fea50000 {
+> +			compatible = "renesas,r8a7795-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea50000 0 0x1000>;
+> +			power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 710>;
+> +			resets = <&cpg 710>;
+> +		};
+> +
+> +		cmm2: cmm@fea60000 {
+> +			compatible = "renesas,r8a7795-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea60000 0 0x1000>;
+> +			power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 709>;
+> +			resets = <&cpg 709>;
+> +		};
+
+Yeouch. CMM2 is not available on the H3-N - but as far as I can tell the
+H3-N is an R8A7795 ...
+
+Geert, How will we differentiate this, or perhaps it just won't matter.
+
+The key part here will be handling it in the DU perhaps anyway.
+
+
+> +
+> +		cmm3: cmm@fea70000 {
+> +			compatible = "renesas,r8a7795-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea70000 0 0x1000>;
+> +			power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 708>;
+> +			resets = <&cpg 708>;
+> +		};
+> +
+>  		csi20: csi2@fea80000 {
+>  			compatible = "renesas,r8a7795-csi2";
+>  			reg = <0 0xfea80000 0 0x10000>;
+> @@ -3142,7 +3178,10 @@
+>  				 <&cpg CPG_MOD 722>,
+>  				 <&cpg CPG_MOD 721>;
+>  			clock-names = "du.0", "du.1", "du.2", "du.3";
+> +
+> +			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm2>, <&cmm3>;
+>  			vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd0 1>;
+> +
+>  			status = "disabled";
+> 
+>  			ports {
+> diff --git a/arch/arm64/boot/dts/renesas/r8a7796.dtsi b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
+> index 822c96601d3c..597c47f3f994 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a7796.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
+> @@ -2641,6 +2641,33 @@
+>  			renesas,fcp = <&fcpvi0>;
+>  		};
+> 
+> +		cmm0: cmm@fea40000 {
+> +			compatible = "renesas,r8a7796-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea40000 0 0x1000>;
+> +			power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 711>;
+> +			resets = <&cpg 711>;
+> +		};
+> +
+> +		cmm1: cmm@fea50000 {
+> +			compatible = "renesas,r8a7796-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea50000 0 0x1000>;
+> +			power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 710>;
+> +			resets = <&cpg 710>;
+> +		};
+> +
+> +		cmm2: cmm@fea60000 {
+> +			compatible = "renesas,r8a7796-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea60000 0 0x1000>;
+> +			power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 709>;
+> +			resets = <&cpg 709>;
+> +		};
+> +
+>  		csi20: csi2@fea80000 {
+>  			compatible = "renesas,r8a7796-csi2";
+>  			reg = <0 0xfea80000 0 0x10000>;
+> @@ -2791,10 +2818,12 @@
+>  				 <&cpg CPG_MOD 723>,
+>  				 <&cpg CPG_MOD 722>;
+>  			clock-names = "du.0", "du.1", "du.2";
+> -			status = "disabled";
+> 
+> +			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm2>;
+>  			vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
+> 
+> +			status = "disabled";
+> +
+>  			ports {
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+> index 4ae163220f60..c3da8d26ccba 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+> @@ -2320,6 +2320,33 @@
+>  			resets = <&cpg 611>;
+>  		};
+> 
+> +		cmm0: cmm@fea40000 {
+> +			compatible = "renesas,r8a77965-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea40000 0 0x1000>;
+> +			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 711>;
+> +			resets = <&cpg 711>;
+> +		};
+> +
+> +		cmm1: cmm@fea50000 {
+> +			compatible = "renesas,r8a77965-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea50000 0 0x1000>;
+> +			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 710>;
+> +			resets = <&cpg 710>;
+> +		};
+> +
+> +		cmm3: cmm@fea70000 {
+> +			compatible = "renesas,r8a77965-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea70000 0 0x1000>;
+> +			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 708>;
+> +			resets = <&cpg 708>;
+> +		};
+> +
+>  		csi20: csi2@fea80000 {
+>  			compatible = "renesas,r8a77965-csi2";
+>  			reg = <0 0xfea80000 0 0x10000>;
+> @@ -2467,10 +2494,12 @@
+>  				 <&cpg CPG_MOD 723>,
+>  				 <&cpg CPG_MOD 721>;
+>  			clock-names = "du.0", "du.1", "du.3";
+> -			status = "disabled";
+> 
+> +			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm3>;
+>  			vsps = <&vspd0 0>, <&vspd1 0>, <&vspd0 1>;
+> 
+> +			status = "disabled";
+> +
+>  			ports {
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> index 455954c3d98e..bab9b7f96c72 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> @@ -1727,6 +1727,24 @@
+>  			iommus = <&ipmmu_vi0 9>;
+>  		};
+> 
+> +		cmm0: cmm@fea40000 {
+> +			compatible = "renesas,r8a77990-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea40000 0 0x1000>;
+> +			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 711>;
+> +			resets = <&cpg 711>;
+> +		};
+> +
+> +		cmm1: cmm@fea50000 {
+> +			compatible = "renesas,r8a77990-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea50000 0 0x1000>;
+> +			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 710>;
+> +			resets = <&cpg 710>;
+> +		};
+> +
+>  		csi40: csi2@feaa0000 {
+>  			compatible = "renesas,r8a77990-csi2";
+>  			reg = <0 0xfeaa0000 0 0x10000>;
+> @@ -1768,7 +1786,10 @@
+>  			clock-names = "du.0", "du.1";
+>  			resets = <&cpg 724>;
+>  			reset-names = "du.0";
+> +
+> +			renesas,cmms = <&cmm0>, <&cmm1>;
+>  			vsps = <&vspd0 0>, <&vspd1 0>;
+> +
+>  			status = "disabled";
+> 
+>  			ports {
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77995.dtsi b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+> index 183fef86cf7c..871c70cc2d2e 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+> @@ -993,6 +993,24 @@
+>  			iommus = <&ipmmu_vi0 9>;
+>  		};
+> 
+> +		cmm0: cmm@fea40000 {
+> +			compatible = "renesas,r8a77995-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea40000 0 0x1000>;
+> +			power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 711>;
+> +			resets = <&cpg 711>;
+> +		};
+> +
+> +		cmm1: cmm@fea50000 {
+> +			compatible = "renesas,r8a77995-cmm",
+> +				     "renesas,rcar-gen3-cmm";
+> +			reg = <0 0xfea50000 0 0x1000>;
+> +			power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 710>;
+> +			resets = <&cpg 710>;
+> +		};
+> +
+>  		du: display@feb00000 {
+>  			compatible = "renesas,du-r8a77995";
+>  			reg = <0 0xfeb00000 0 0x40000>;
+> @@ -1003,7 +1021,10 @@
+>  			clock-names = "du.0", "du.1";
+>  			resets = <&cpg 724>;
+>  			reset-names = "du.0";
+> +
+> +			renesas,cmms = <&cmm0>, <&cmm1>;
+>  			vsps = <&vspd0 0>, <&vspd1 0>;
+> +
+>  			status = "disabled";
+> 
+>  			ports {
+> --
+> 2.23.0
+> 
 
