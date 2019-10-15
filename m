@@ -2,217 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92AD4D7DC2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 19:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7898AD7E7A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 20:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388748AbfJOR3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 13:29:50 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:52392 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730734AbfJOR3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 13:29:50 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9FHTXFQ085986;
-        Tue, 15 Oct 2019 12:29:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571160573;
-        bh=KrgWh3TYfGhwD7OfEBPyzWk6XjSnfwlDaFgeUWGRq+4=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=L1gtts7qAYQjzYbF+sV9wfqa36DIJryMOvxkH5mko3FySUga9Qv0Ryz9RwRoaqamS
-         H9ZKjoBMctkL1BsrCqknon/FODW30FoI6MktcLlD77XWoZwCjgM0G8/RTcnMektaHw
-         gxwd0TSqbVxFCU9w4vc9/HCRI1Ym8atG/0w0fKpU=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9FHTX9g073402
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Oct 2019 12:29:33 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 15
- Oct 2019 12:29:33 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 15 Oct 2019 12:29:26 -0500
-Received: from [192.168.2.10] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9FHTTnV090514;
-        Tue, 15 Oct 2019 12:29:29 -0500
-Subject: Re: [PATCH v3 07/14] dt-bindings: dma: ti: Add document for K3 UDMA
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <j-keerthy@ti.com>, <linux-kernel@vger.kernel.org>,
-        <t-kristo@ti.com>, <tony@atomide.com>, <vkoul@kernel.org>,
-        <ssantosh@kernel.org>, <dmaengine@vger.kernel.org>,
-        <dan.j.williams@intel.com>, <linux-arm-kernel@lists.infradead.org>
-References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
- <20191001061704.2399-8-peter.ujfalusi@ti.com> <20191010175232.GA24556@bogus>
- <ef07299b-eb43-d582-adb8-46f46681f9a5@ti.com>
-Message-ID: <d53f3bd7-d331-33c8-5232-c8f3cc9ac708@ti.com>
-Date:   Tue, 15 Oct 2019 20:30:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2389077AbfJOSIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 14:08:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40134 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725820AbfJOSIy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 14:08:54 -0400
+Received: from localhost (unknown [38.98.37.135])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2210920659;
+        Tue, 15 Oct 2019 18:08:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571162933;
+        bh=72Jhf2gCfLKMsgroJ+dspsUWbLqIIaKdSi3E4kfQTHg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NxpiRKvyPENu5nqLqiiuFfvP8HewQgS0FRdSFH07T5l3FMQbOQO44QHVHBgUFam0F
+         eXDUI/uT1ldmjFXmLTQEiewhqryQ4Ac5n4vAV3hlsaHuBZOZnyuDDJRKQN+Wqkhlgx
+         swd+tFNGfcfgwhilnMLjyfPZwq0ztzgXzUO+HuSs=
+Date:   Tue, 15 Oct 2019 19:58:20 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nagarjuna Kristam <nkristam@nvidia.com>, jonathanh@nvidia.com,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [Patch V10 0/8] Tegra XUSB gadget driver support
+Message-ID: <20191015175820.GC1072965@kroah.com>
+References: <1569227152-3030-1-git-send-email-nkristam@nvidia.com>
+ <20191014100257.GB419598@ulmo>
 MIME-Version: 1.0
-In-Reply-To: <ef07299b-eb43-d582-adb8-46f46681f9a5@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191014100257.GB419598@ulmo>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
+On Mon, Oct 14, 2019 at 12:02:57PM +0200, Thierry Reding wrote:
+> On Mon, Sep 23, 2019 at 01:55:44PM +0530, Nagarjuna Kristam wrote:
+> > Patches 1-3 are phy driver changes to add support for device
+> > mode.
+> > Patches 4-7 are changes related to XUSB device mode
+> > controller driver.
+> > Patch 8 is to enable drivers for XUDC support in defconfig
+> > 
+> > Test Steps(USB 2.0):
+> > - Enable "USB Gadget precomposed configurations" in defconfig
+> > - Build, flash and boot Jetson TX1
+> > - Connect Jetson TX1 and Ubuntu device using USB A to Micro B
+> >   cable
+> > - After boot on Jetson TX1 terminal usb0 network device should be
+> >   enumerated
+> > - Assign static ip to usb0 on Jetson TX1 and corresponding net
+> >   device on ubuntu
+> > - Run ping test and transfer test(used scp) to check data transfer
+> >   communication
+> 
+> Hi Felipe, Kishon, Greg,
+> 
+> Patches 1-3 provide new API that is required by patch 7, so I think
+> patches 1, 2, 3, 4 and 7 should probably all go through a single tree to
+> avoid having to model the dependencies using stable branches.
+> 
+> Kishon, patches 1-3 have gone through several rounds of review already,
+> but do you have any remaining concerns on them? If not, it'd be great if
+> you could ack them. Felipe and Greg could then pick them up along with
+> patches 4 and 7 into the USB tree.
+> 
+> Felipe, Greg, does that sound like a reasonable plan?
 
-On 10/11/19 10:30 AM, Peter Ujfalusi wrote:
-> 
-> I have already moved the TR vs Packet mode channel selection, which does
-> make sense as it was Linux's choice to use TR for certain cases.
-> 
-> If I move these to code then we need to have big tables
-> struct psil_config am654_psil[32767] = {};
-> struct psil_config j721e_psil[32767] = {};
+Fine with me.
 
-After thinking about this a bit more, I think we can move all the PSI-L
-endpoint configuration to the kernel as not all the 32767 threads are
-actually in use. Sure it is going to be some amount of static data in
-the kernel, but it is an acceptable compromise.
+> I should also mention that while waiting for review, Nagarjuna has been
+> able to extend support for the XUDC driver to Tegra186 but has so far
+> been holding back on sending them out so as to not needlessly hold up
+> progress on this series. However, given the interdependencies, I've come
+> to think that it may be preferable to merge everything in one go instead
+> of revisiting this in a couple of weeks.
+> 
+> If you guys prefer, Nagarjuna could send out v11 of the series and
+> integrate Tegra186 support.
 
-The DMA binding can look like this:
+That's also fine.
 
-dmas = <&main_udmap 0xc400>,
-       <&main_udmap 0x4400>;
-dma-names = "tx", "rx";
+thanks,
 
-or
-dmas = <&main_udmap 0x4400 UDMA_DIR_TX>,
-       <&main_udmap 0x4400 UDMA_DIR_RX>;
-dma-names = "tx", "rx";
-
-If I keep the direction.
-0xc400 is destination ID, which is 0x4400 | 0x8000 as per PSI-L
-specification.
-In the TRM only the source threads can be found as a map (thread IDs <
-0x7fff), but the binding document can cover this.
-
-This way we don't need another dtsi file and I can create the map in the
-kernel.
-
-This will hide some details of the HW from DT, but since the PSI-L
-thread configuration is static in hardware I believe it is acceptable.
-
-However we still have uncovered features in the binding or in code, like
-a case when the RX does not have access to the DMA channel, only flows.
-Not sure if I should reserve the direction parameter as an indication to
-this or find other way.
-Basically we communicate on the given PSI-L thread without having a DMA
-channel as other core is owning the channel.
-
-What do you think?
-
-> 
-> and for each new family member a new one.
-> 
-> Also, if we want add DMA support for a new peripheral we would need to
-> modify the kernel and the DT in sync (well, kernel first, than DT).
-> 
->> Or do some combination of the above. 
-> 
-> What about this:
-> create a new dtsi file per SoC (k3-am654-psil.dtsi, k3-k721e-psil.dtsi)
-> for the PSI-L threads and inside something like this:
-> 
-> psil-threads: psil-threads {
-> 	...
-> 	/* SA2UL: 0x4000 - 0x4003 */
-> 	ti,psil-config-4000 {
-> 		linux,udma-mode = <UDMA_PKT_MODE>;
-> 		ti,needs-epib;
-> 		ti,psd-size = <64>;
-> 		ti,notdpkt;
-> 	};
-> 
-> 	ti,psil-config-4001 {
-> 		linux,udma-mode = <UDMA_PKT_MODE>;
-> 		ti,needs-epib;
-> 		ti,psd-size = <64>;
-> 		ti,notdpkt;
-> 	};
-> 
-> 	ti,psil-config-4002 {
-> 		linux,udma-mode = <UDMA_PKT_MODE>;
-> 		ti,needs-epib;
-> 		ti,psd-size = <64>;
-> 		ti,notdpkt;
-> 	};
-> 
-> 	...
-> 	/* PDMA6 (PDMA_MCASP_G0): 0x4400 - 0x4402 */
-> 	thread-4400 {
-> 		ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
-> 		ti,pdma-enable-acc32;
-> 		ti,pdma-enable-burst;
-> 	};
-> 
-> 	thread-4401 {
-> 		ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
-> 		ti,pdma-enable-acc32;
-> 		ti,pdma-enable-burst;
-> 	};
-> 
-> 	thread-4402 {
-> 		ti,pdma-statictr-type = <PDMA_STATIC_TR_XY>;
-> 		ti,pdma-enable-acc32;
-> 		ti,pdma-enable-burst;
-> 	};
-> 
-> 	...
-> };
-> 
-> Then the binding would look like this for sa2ul:
-> 
-> /* tx: crypto_pnp-1, rx: crypto_pnp-1 */
-> dmas = <&main_udmap 0x4000 UDMA_DIR_TX>,
->        <&main_udmap 0x4000 UDMA_DIR_RX>,
->        <&main_udmap 0x4001 UDMA_DIR_RX>;
-> dma-names = "tx", "rx1", "rx2";
-> 
-> for McASP:
-> dmas = <&main_udmap 0x4400 UDMA_DIR_TX>,
->        <&main_udmap 0x4400 UDMA_DIR_RX>;
-> dma-names = "tx", "rx";
-> 
-> Then either we can have phandle in the udmap nodes to the psil-threads,
-> or just find it from the root when needed.
-> 
->> Sorry I don't have specific suggestions, but I just see lots of properties 
->> and complexity, and I don't really understand the h/w here. Putting the 
->> complexity in what is an ABI is generally not a good plan.
-> 
-> The complexity is coming from the hardware itself. If I can not describe
-> the hardware than it is not going to be easy for the software to figure
-> out what it is dealing with.
-> 
->> And I don't 
->> have the bandwidth to study and understand the complexities of your h/w 
->> (and everyone elses), so just more explanations are not likely to really 
->> help.
-> 
-> Sure, I understand.
-> 
-> - Péter
-> 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-
-- Peter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+greg k-h
