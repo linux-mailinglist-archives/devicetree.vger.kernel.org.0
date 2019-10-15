@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F67D802F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702ACD8035
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732136AbfJOTZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 15:25:42 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45908 "EHLO
+        id S1731968AbfJOT0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 15:26:05 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:43396 "EHLO
         mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731968AbfJOTZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 15:25:41 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 41so17979879oti.12;
-        Tue, 15 Oct 2019 12:25:41 -0700 (PDT)
+        with ESMTP id S1731021AbfJOT0E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 15:26:04 -0400
+Received: by mail-ot1-f67.google.com with SMTP id o44so17971601ota.10
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 12:26:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SGcPWV+a3flesjj4mbDC6c0zlcD6MWrmIaFVWNKrxv8=;
-        b=RbCZ51114p98bZDl1nBqp70LCGm/OWBxOpeLQlX34680N69zPq1N5yuJDNt1yYhiVZ
-         1ebrJ9tMa8EQVoIwcz5mWfu17qy6LYtR+pGpwIoWWbHqBP2DIQJ5QBdN7l264LryIPTD
-         4tv1jyT2aLDaoGWXO+8Flk71Aw3OJXpKI6kHV16m2sIVrukRdsHfIzjGuQZfs0fNNsrm
-         mKktOQ9LerVQH4Zs3EGfDkV7rDKO0fr9aYW1vBG3ra5ihhG7CSi4L7wcD/tBl6QawF2+
-         K69QTaJavfLWJdLyqM83YWhxHifnzIzDpsIUvM9I2beNRkAJv0f/ISjII7FtRD2H+KZy
-         NbNg==
-X-Gm-Message-State: APjAAAUdFi7YwuEMMV5ABMl/3hMvIn59/zT4ImTckQtWVVZWOIjG+G5f
-        gpKpusIHPjEt/nBffVfArQ==
-X-Google-Smtp-Source: APXvYqwzb/cAnrXU5arNN28F0oXmazdVgAUawVvNKIfx6DNM+H5v1g+C5k2gwX/8EP5dl/+KZVzOOg==
-X-Received: by 2002:a05:6830:45b:: with SMTP id d27mr7145687otc.367.1571167540551;
-        Tue, 15 Oct 2019 12:25:40 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=bMN7HsXxW10Z/AXt6bsUTKC+n3cllPgUCAnFiYh55f4=;
+        b=JEu6YTf8nDHJOq6IioonDa2dZxq42qMsCtDzrGHM+idv7q5O7aS56NiTVY1htjI+50
+         qiXXGYKTEd6xtdLBALr+B9rtIHy1ekndsu/XFtH4sXLOgDlYHmUMDD8UzEe1FXyk5e7g
+         sXBpnKnfmcr9tM9imzi97AMcg/WyhiMd3k4kv9DuvoonvzYEWrTPahF4USmfLtIstD6l
+         RjW7sFS05/8mMuDVyAEuCPs7+p3JqEB3a9MPe813NZyOA/0OG+0vOEJm03djErRRoDAs
+         4Q8GnLTiSYVeigamsoVTQ984x0Wx18K8F+RTON2IGzh1uISkPystgHBEa9NjnS+oPviN
+         kVOQ==
+X-Gm-Message-State: APjAAAUwEefqiqJN1OV8TyGbIl8w1h+6LZVfOrUBa7XTe1EUAG/1zCxi
+        NYyj5wjUH5kTUmql8yGEew==
+X-Google-Smtp-Source: APXvYqwlp5+8r2qKOXYzE3/Ug0686nB0PMhOBNsopPiUJRsFnUZMpsYTSVwqINAlrTQju3xmJY1Q9g==
+X-Received: by 2002:a9d:66c5:: with SMTP id t5mr30074981otm.225.1571167563870;
+        Tue, 15 Oct 2019 12:26:03 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 13sm6309372oij.25.2019.10.15.12.25.39
+        by smtp.gmail.com with ESMTPSA id i2sm7329212otf.19.2019.10.15.12.26.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 12:25:39 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 14:25:39 -0500
+        Tue, 15 Oct 2019 12:26:02 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 14:26:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>, xu_shunji@hoperun.com
-Subject: Re: [PATCH 3/7] dt-bindings: PCI: rcar: Add device tree support for
- r8a774b1
-Message-ID: <20191015192539.GA1694@bogus>
-References: <1570178133-21532-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1570178133-21532-4-git-send-email-fabrizio.castro@bp.renesas.com>
+To:     =?iso-8859-1?Q?C=E9dric?= Le Goater <clg@kaod.org>
+Cc:     linux-mtd@lists.infradead.org,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Richard Weinberger <richard@nod.at>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        linux-arm-kernel@lists.infradead.org,
+        =?iso-8859-1?Q?C=E9dric?= Le Goater <clg@kaod.org>
+Subject: Re: [PATCH 11/16] dt-bindings: mtd: aspeed-smc: Add new comptatible
+ for  AST2600
+Message-ID: <20191015192602.GA2299@bogus>
+References: <20191004115919.20788-1-clg@kaod.org>
+ <20191004115919.20788-12-clg@kaod.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1570178133-21532-4-git-send-email-fabrizio.castro@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191004115919.20788-12-clg@kaod.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  4 Oct 2019 09:35:29 +0100, Fabrizio Castro wrote:
-> Add PCIe support for the RZ/G2N (a.k.a. R8A774B1).
+On Fri,  4 Oct 2019 13:59:14 +0200, =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= wrote:
+> The SMC controllers on the AST2600 SoC are very similar to the the
+> AST2500. The SoC has one Firmware Memory Controller and two SPI flash
+> memory controllers.
 > 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Cédric Le Goater <clg@kaod.org>
 > ---
->  Documentation/devicetree/bindings/pci/rcar-pci.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mtd/aspeed-smc.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Applied, thanks.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
