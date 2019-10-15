@@ -2,69 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94FB0D807A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA343D80B6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 22:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727927AbfJOTlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 15:41:08 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:42186 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727856AbfJOTlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 15:41:07 -0400
-Received: by mail-oi1-f193.google.com with SMTP id i185so17860309oif.9;
-        Tue, 15 Oct 2019 12:41:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dYr5YHDW3PpOfxrfTITzHIyYd4WqoilUYd2hAnALyj4=;
-        b=LSZqEUWCFmaepVOFhBNPPE6MG7nAb5rAcPPSF3ZfroRIovkq2FfdRFq7OQW2/9UtaB
-         HpytoOT7x1ts79e779/Vqsp/TUz9XeRwCzl/B+iymSSuAjyK+tooID1+XMebEuiTEsRN
-         qGKaunqcBaTRi0hCWpdzz/r7nMO0X60EfwLIua5WnpECjIi4Pt/rbdwktFg85EchJBVb
-         OsthpsT8Zqt5uKwZ1c1q94r/7aSc7c20Y3nVoNj/q+5tGjJVp3QA5549gPgg34bFxZH5
-         6Lk2Ux3gZ5O/w7psHUf3zJtOwufBQyz/mCTLVkFS/5g6GtoYbGLVOpslLgFUIkaGqLju
-         SSqg==
-X-Gm-Message-State: APjAAAXQ5rzuYPeIS9Gr3P/6mWW/oJQapyCOb4ZUEIx9oeuRkeeBmsNb
-        21hNSBAZuR1tJcarcUOjo3rhiU8=
-X-Google-Smtp-Source: APXvYqx89oy1Ch87hKjVGrKdExTcjDGJBEM33RGUrBGSXq7zjricuAxlTAS2si4uuKG9LJragplpVA==
-X-Received: by 2002:a05:6808:689:: with SMTP id k9mr220151oig.58.1571168466497;
-        Tue, 15 Oct 2019 12:41:06 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t17sm6633499otk.14.2019.10.15.12.41.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 12:41:05 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 14:41:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Navid Emamdoost <navid.emamdoost@gmail.com>
-Cc:     emamd001@umn.edu, kjlu@umn.edu, smccaman@umn.edu,
-        Navid Emamdoost <navid.emamdoost@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: unittest: fix memory leak in unittest_data_add
-Message-ID: <20191015194105.GA24758@bogus>
-References: <20191004185847.14074-1-navid.emamdoost@gmail.com>
+        id S1728101AbfJOUKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 16:10:54 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:39266 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726717AbfJOUKy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 16:10:54 -0400
+Received: from remote.shanghaihotelholland.com ([46.44.148.63] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iKT9c-00080l-5K; Tue, 15 Oct 2019 22:10:48 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] include: dt-bindings: rockchip: remove RK_FUNC defines
+Date:   Tue, 15 Oct 2019 22:10:42 +0200
+Message-ID: <2236841.lnJlJmhppS@phil>
+In-Reply-To: <20191015191000.2890-2-jbx6244@gmail.com>
+References: <20191015191000.2890-1-jbx6244@gmail.com> <20191015191000.2890-2-jbx6244@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191004185847.14074-1-navid.emamdoost@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  4 Oct 2019 13:58:43 -0500, Navid Emamdoost wrote:
-> In unittest_data_add, a copy buffer is created via kmemdup. This buffer
-> is leaked if of_fdt_unflatten_tree fails. The release for the
-> unittest_data buffer is added.
-> 
-> Fixes: b951f9dc7f25 ("Enabling OF selftest to run without machine's devicetree")
-> Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
+Hi Johan,
+
+Am Dienstag, 15. Oktober 2019, 21:10:00 CEST schrieb Johan Jonker:
+> The defines RK_FUNC_1, RK_FUNC_2, RK_FUNC_3 and RK_FUNC_4
+> are no longer used, so remove them to prevent
+> that someone start using them again.
+
+That won't work. Devicetree provides a slightly flexible promise of
+backwards compatibilty. So a new kernel should still work old devicetrees.
+(not exactly sure if this means dt-binaries and sources or only binaries)
+
+So while I think RK_FUNC_0-n should not be used anymore, we should
+probably just mark them as "deprecated" in a first step.
+
+
+Heiko
+
+
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  drivers/of/unittest.c | 1 +
->  1 file changed, 1 insertion(+)
+>  include/dt-bindings/pinctrl/rockchip.h | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
+> diff --git a/include/dt-bindings/pinctrl/rockchip.h b/include/dt-bindings/pinctrl/rockchip.h
+> index dc5c1c73d..2798b6c03 100644
+> --- a/include/dt-bindings/pinctrl/rockchip.h
+> +++ b/include/dt-bindings/pinctrl/rockchip.h
+> @@ -50,9 +50,5 @@
+>  #define RK_PD7		31
+>  
+>  #define RK_FUNC_GPIO	0
+> -#define RK_FUNC_1	1
+> -#define RK_FUNC_2	2
+> -#define RK_FUNC_3	3
+> -#define RK_FUNC_4	4
+>  
+>  #endif
 > 
 
-Applied, thanks.
 
-Rob
+
+
