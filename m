@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A46D7B40
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 18:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E777AD7B55
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 18:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387681AbfJOQXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 12:23:24 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:55795 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387939AbfJOQXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 12:23:15 -0400
-Received: by mail-wm1-f66.google.com with SMTP id a6so21529421wma.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 09:23:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=02ptUi820rtgb1rVywdXHHVh+A6FBo6gb2V5cVn00l4=;
-        b=MtpXMuoLIGOHdIDmPktqqAnPBBGdTjagnzKbds+7qPmfpcLGCESELR2gYmKw+dAlsH
-         GALZyOdhrfBMu5kJ+9Xdwc10r7YixnzgTtoEN+sXwjbniUhbJe7QvOO/aAIzGpPEh7wf
-         tfCJUfOOWUzVdJeNCG6CFQB8dEnEzKFW+8j2U5xtaG1G3ZhP43Ie0qhZ8IVGsF0AXBnv
-         DMOWQaRx3fOEAAcptWX7okOpspg4CH1Ta5qXiMV2qqrxphCM/NqNvepzLTjUnEvCyNA1
-         1AfGvqLU5KqSe4tJuDyCVpvjoNHpQNhZx5ieCd6JnQGy7BJrhwx+i3RBcBCT1IEoLoes
-         Zqtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=02ptUi820rtgb1rVywdXHHVh+A6FBo6gb2V5cVn00l4=;
-        b=lKxzc5KHA3KhWYk0B8hCtfaioFSzOyZcPjPgLAOKwoZbEFnQ1hYkcQhtBm6GpXheKv
-         eLtGWvaax5erz/Qh1cvk5was/XruWPZD2sZPz57uWE7WsYpHT93RXIxNmsPcLlva6uiS
-         7gN7xFhwOZGAAAp3BUWJOlUMHbSnvSXVhksuSccuUGwARkxfFeUG0q4vugc+vOYyT0Vu
-         e3KYoBGG2Ya8XSC33mMtUr/z8x1TUnFo7qO/JeMM85V74GPFbOAHF3Qydqo6Dv61+cWT
-         HzGPl+om+nbx87aXr/y7u9R6GCcRUwMkEoRBnysaRuj4XrFoPQwczP/+GnKk8hiNCtY1
-         XOqg==
-X-Gm-Message-State: APjAAAXKIMUPIzQ+eP89w4/Wti3wbV+Ufm/tQ/55dfi52oJkRfF7QAHD
-        1xsTBaFxPgK4R8vUJj8ik5H/MoUMreI=
-X-Google-Smtp-Source: APXvYqyezfzjgdEUemMJTrQBNb59P7iN2VRfn6C43WnRKbQCCmslDGhSYjUP8u7dsDPSEr9csaBvYw==
-X-Received: by 2002:a1c:e08a:: with SMTP id x132mr19703933wmg.155.1571156593871;
-        Tue, 15 Oct 2019 09:23:13 -0700 (PDT)
-Received: from debian-brgl.home ([2a01:cb1d:af:5b00:6d6c:8493:1ab5:dad7])
-        by smtp.gmail.com with ESMTPSA id x129sm41427605wmg.8.2019.10.15.09.23.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 09:23:13 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [PATCH v2 6/6] MAINTAINERS: update the list of maintained files for max77650
-Date:   Tue, 15 Oct 2019 18:23:00 +0200
-Message-Id: <20191015162300.22024-7-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191015162300.22024-1-brgl@bgdev.pl>
-References: <20191015162300.22024-1-brgl@bgdev.pl>
+        id S1726244AbfJOQYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 12:24:38 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:35390 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726200AbfJOQYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 12:24:37 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id D622C60BEA; Tue, 15 Oct 2019 16:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571156677;
+        bh=TLXzKaLgAlXy4RnEdq1+kK9xYyxZfCis3fJ9E8UWSc4=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=A5tX6D+sC/m1Fgcjf5DxqWmh6cSVveSWyx+6t0/zQt6/aCvWMtYftGFLwOMhN0tde
+         Ekj6sXb8306mlZRDxnEspKj9uRYDnEVPkO+R4g3AM/+gg6p5NHWAM1SuJOoD9Y5usd
+         g4FqS2s9WNtToslBvLwWDS4UXxyPNLqHgP3Bkcpo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from x230.qca.qualcomm.com (85-76-79-201-nat.elisa-mobile.fi [85.76.79.201])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2755260BEA;
+        Tue, 15 Oct 2019 16:24:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571156675;
+        bh=TLXzKaLgAlXy4RnEdq1+kK9xYyxZfCis3fJ9E8UWSc4=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=mMPeemZpQQq6uVOxx8hGlc3an876I99Rp8OAasBUM3ZLKhc/Rskb95EK03asp2hl3
+         XQ/MaPJrcEQr/MwdG3sLRMQ2N1LCGUNKyRCMhoVF5bjSxhClGDNC0/HJ9botmw1s9+
+         Wc0JNS/a3PJuM5Z4aAbwDIhj9O3dpo/KFmznxpeQ=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2755260BEA
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH 08/49] ath11k: add core.c
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+        <1566316095-27507-9-git-send-email-kvalo@codeaurora.org>
+        <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
+Date:   Tue, 15 Oct 2019 19:24:29 +0300
+In-Reply-To: <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
+        (Johannes Berg's message of "Tue, 20 Aug 2019 22:32:45 +0200")
+Message-ID: <87h84am0xu.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Johannes Berg <johannes@sipsolutions.net> writes:
 
-The DT bindings for MAX77650 MFD have now been converted to YAML.
-Update the MAINTAINERS entry for this set of drivers.
+>> +module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
+>> +
+>> +MODULE_PARM_DESC(debug_mask, "Debugging mask");
+>> +
+>> +static const struct ath11k_hw_params ath11k_hw_params = {
+>> +			.name = "ipq8074",
+>
+> indentation here seems a bit too much
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I'll fix that. I'll also group the module parameter macros above next to
+each other.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a69e6db80c79..c05e6fd6aedb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9903,8 +9903,8 @@ MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <bgolaszewski@baylibre.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/*/*max77650.txt
--F:	Documentation/devicetree/bindings/*/max77650*.txt
-+F:	Documentation/devicetree/bindings/*/*max77650.yaml
-+F:	Documentation/devicetree/bindings/*/max77650*.yaml
- F:	include/linux/mfd/max77650.h
- F:	drivers/mfd/max77650.c
- F:	drivers/regulator/max77650-regulator.c
+>> +MODULE_LICENSE("Dual BSD/GPL");
+>
+> All your files state "ISC", shouldn't that be reflected here?
+
+AFAIK MODULE_LICENSE() macro does not support ISC. AFAIK this is what
+all ISC wireless drivers have.
+
+Related to this, we now changed the license in ath11k to
+BSD-3-Clause-Clear.
+
 -- 
-2.23.0
-
+Kalle Valo
