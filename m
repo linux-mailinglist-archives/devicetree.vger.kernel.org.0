@@ -2,66 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBEA6D8407
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 00:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2814D8437
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 01:04:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390072AbfJOWsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 18:48:36 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:46144 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725991AbfJOWsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 18:48:35 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 89so18423435oth.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 15:48:35 -0700 (PDT)
+        id S1728244AbfJOXEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 19:04:36 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:39610 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726640AbfJOXEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 19:04:36 -0400
+Received: by mail-io1-f68.google.com with SMTP id a1so50588081ioc.6;
+        Tue, 15 Oct 2019 16:04:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OMEog+wPJDcpfHAz1VlWbAAsJEgb+2P3a4y6+6INojk=;
+        b=GBy7Tojzyuh3LBnx3XMAb8N6tVMOpYI3ENvomU1LDqz4tw5pB4anuTXNH95ihqU9tO
+         8EbpEbxrj1/zP989X6Xmw+0rjv+B1Smrw+u1B+mm1MTe3espVYjx3pDz7kQ9/BFRlA7K
+         IBNGnKVqhHwj2NTytrFxF/xCUyPgmfJ8yI1KU1O0iuowbOc/v12drXde6Fy4TQ4O1pKB
+         zm9fqzXYetxvtaGrNbGceSq6ghpGZWt6U7r/aKjDEHDmAyx8ZNhyWfLb5cal+mU5+8cm
+         vPZlJcN17b3FQAWkmlizaW+injhx64njtwFbW7IjLPofaQoIon3jtlzE3n1PQniMuJ65
+         GKDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=VXXXgfaRs0fRYb5MfNDLzUAfZ9uiwu8dv9B5jD48jZE=;
-        b=aocGzxEFcnr08fh7UzdFaix6iH4O2rwoi1+2iEEa1fikXZHAGK7vLtxC+LxSWSzFXO
-         41nYngG4ZPsyUJ9aVwSB9tyL106csBajE1E5WPqos32rAfrm9oNUBAFgiUb1wyIFXlKP
-         9wIkF8NV0tgrsdbV052AIZekK/UJgVQ+kUHfrERLW/JKGQ5HYucZvh42zhpU+MqWvvML
-         ptaEslr1RqRzJ96FTV9a9p2EMygCtFHN4R/ESSYo0kmtbh/J1GcbuxgfTiMuoWMrXmzb
-         xxtxXvmkEreml21FkVT9UK+hGurvp2UnO8LjSUU7qfG64mz1qiTNyBViiopWbJV7QMb7
-         0cZQ==
-X-Gm-Message-State: APjAAAWKzpCEngliyX8BsWilOQZ1MbV0grSMl7AIeF99rZ47dlrOD8rF
-        Y+uWnv5oyE90+geKKAojgg==
-X-Google-Smtp-Source: APXvYqxgUj5HD8FnhJ04YByPQz/f5VlgGXVtmKJG3CQumR9dS3mjjn5FauT/umy7rGiEV7kXQ6hMcQ==
-X-Received: by 2002:a9d:5f93:: with SMTP id g19mr2089596oti.260.1571179715119;
-        Tue, 15 Oct 2019 15:48:35 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y18sm6788795oto.2.2019.10.15.15.48.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 15:48:34 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 17:48:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Markus Niebel <Markus.Niebel@tq-group.com>,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: arm: fsl: Add TQ TQMa6{S,Q,QP} on MBa6x
-Message-ID: <20191015224833.GA15598@bogus>
-References: <20191011143651.6424-1-p.zabel@pengutronix.de>
- <20191011143651.6424-3-p.zabel@pengutronix.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OMEog+wPJDcpfHAz1VlWbAAsJEgb+2P3a4y6+6INojk=;
+        b=gB1c8aY4YGROge38CM2QwQUx4+EYHN4gT+Q9wlJ1bHqOnu3KvYZOyx3wv6G7cwR68C
+         c0IFZwcTk6Pm9RRTlfah+ZWmzbP9MY9asr3utyes/bYcC6VfXi1AZ4haXiNE9tIyt4sc
+         S1gNwKZ7AJU+IteaK/ekKztqrJhpz87Sa0REFdXO7ovFvtSjpgzDp9duslXNn3Wc7DBf
+         LeCNnFRpr/chPfV2mM5OHRwN5s1rhQNFPIarT22lUtQqNZv5jXwe+sbgd/cDGz3cnGw6
+         uf5QbhfdOoPfAN0ncwlEWJLhhViWRrD6SG7wAMnSBomSm1T7SqfEo5CyO6TKJ+awCMXd
+         pyTQ==
+X-Gm-Message-State: APjAAAVvbij0x/6PgPcYpNHxcr0OJBliaztF7QqOaqdK3shTPf6Dc83Q
+        dm4mMvcCblFUtTbYhTwAQ6Xtr+FA3r1GI5K9x1k=
+X-Google-Smtp-Source: APXvYqyAkKfWw91fNt9acZ0ggGpKVfsdElaKZqDrMgeJhsX3kIbaPP6Oz/3n0UI7fRmVIdKLKMyr1yzMfCv4UK97Hrg=
+X-Received: by 2002:a02:7741:: with SMTP id g62mr5970832jac.3.1571180673056;
+ Tue, 15 Oct 2019 16:04:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191011143651.6424-3-p.zabel@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20191001233923.16514-1-aford173@gmail.com> <20191001233923.16514-5-aford173@gmail.com>
+ <20191009233130.GA1002@bogus>
+In-Reply-To: <20191009233130.GA1002@bogus>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 15 Oct 2019 18:04:21 -0500
+Message-ID: <CAHCN7xLCvN1v00H10KUX625awz+nea6rhA_LYnftspjaZ+od-g@mail.gmail.com>
+Subject: Re: [PATCH V4 2/3] dt-bindings: Add Logic PD Type 28 display panel
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 16:36:51 +0200, Philipp Zabel wrote:
-> Add binding documentation for the TQ MBa6x mainboard with TQMa6S,
-> TQMa6Q, or TQMa6QP SoM.
-> 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+On Wed, Oct 9, 2019 at 6:31 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Oct 01, 2019 at 06:39:22PM -0500, Adam Ford wrote:
+> > This patch adds documentation of device tree bindings for the WVGA panel
+> > Logic PD Type 28 display.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> > V4:  Update per Rob H's suggestions and copy other panel yaml example from 5.4-rc1
+> > V3:  Correct build errors from 'make dt_binding_check'
+>
+> The example still fails to build here.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I cannot replicate the build error on 5.4-RC3 at least for this
+binding on V4 of the patch.  I get build error on other bindings.
+
+$ make dt_binding_check ARCH=arm
+scripts/kconfig/conf  --syncconfig Kconfig
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+/home/aford/src/linux/Documentation/devicetree/bindings/net/adi,adin.yaml:
+ignoring, error in schema 'adi,rx-internal-delay-ps'
+warning: no schema found in file:
+Documentation/devicetree/bindings/net/adi,adin.yaml
+/home/aford/src/linux/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml:
+ignoring, error in schema '0'
+warning: no schema found in file:
+Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+  CHKDT   Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+  ....
+  CHKDT   Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml
+  CHKDT   Documentation/devicetree/bindings/display/panel/ampire,am-480272h3tmqw-t01h.yaml
+  CHKDT   Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+  CHKDT   Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
+ ...
+ CHKDT   Documentation/devicetree/bindings/media/allwinner,sun4i-a10-ir.yaml
+  CHKDT   Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
+Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml:
+$id: path/filename 'arm/allwinner,sun4i-a10-csi.yaml' doesn't match
+actual filename
+Documentation/devicetree/bindings/Makefile:12: recipe for target
+'Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts'
+failed
+make[1]: *** [Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts]
+Error 1
+Makefile:1263: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
+
+
+I took out some of the logs to make it less chatty.  I don't know
+anything about yaml or what the expectations are, so if there is a
+test beyond 'make dt_binding_check' please let me know.
+
+Thank you,
+
+adam
+
+>
+> > V2:  Use YAML instead of TXT for binding
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> > new file mode 100644
+> > index 000000000000..e2c62e8f1db4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> > @@ -0,0 +1,42 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
+> > +
+> > +maintainers:
+> > +  - Adam Ford <aford173@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: logicpd,type28
+> > +
+> > +  power-supply: true
+> > +  enable-gpios: true
+> > +  backlight: true
+> > +  port: true
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    lcd0: display {
+> > +      compatible = "logicpd,type28";
+> > +      enable-gpios = <&gpio5 27 GPIO_ACTIVE_HIGH>;
+> > +      backlight = <&backlight>;
+> > +      port {
+> > +        lcd_in: endpoint {
+> > +          remote-endpoint = <&dpi_out>;
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.17.1
+> >
