@@ -2,138 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A0DD7F89
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4437D7F9B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389100AbfJOTFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 15:05:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52796 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729457AbfJOTFB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 15:05:01 -0400
-Received: from localhost (unknown [38.98.37.135])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 81CDC20663;
-        Tue, 15 Oct 2019 19:04:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571166298;
-        bh=ZIaAvZnbtHuEZ4yVB6QTkkDmhzPaea3XJQXci8c1v1Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ysEUE+w2/SUgcm+INApP0pKGfkn+eJIxJi0wsXYoMDuLs+6Ztvx6GN0NKN8SFGtqf
-         4b8liCT/Ywy9rBuFRUtBwHV8L4DFP1e6xlDxdltbzrGGrg5vlR9JPadIZVZgiyzjLr
-         q4S3RCcNutRbS11kdKfgZo/W1BHLrQXFP92HiGIU=
-Date:   Tue, 15 Oct 2019 21:01:55 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     corbet@lwn.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
-        leoyang.li@nxp.com, jslaby@suse.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 3/5] serial: fsl_linflexuart: Be consistent with the
- name
-Message-ID: <20191015190155.GA1140159@kroah.com>
-References: <1570726348-6420-1-git-send-email-stefan-gabriel.mirea@nxp.com>
- <1570726348-6420-4-git-send-email-stefan-gabriel.mirea@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1570726348-6420-4-git-send-email-stefan-gabriel.mirea@nxp.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        id S1726478AbfJOTKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 15:10:13 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:52770 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389296AbfJOTKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 15:10:12 -0400
+Received: by mail-wm1-f67.google.com with SMTP id r19so243735wmh.2;
+        Tue, 15 Oct 2019 12:10:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=q85wWT1Ntix0umS+jHesJR+Bc8njDJ95cdjzzQg8isg=;
+        b=Qtue6CQgRcmNCCevDgHkx1nw6nwFmlUixidcjbgaIDm4CTFvf9nEgb5BaqJwTwk33t
+         qDClhJVxShLHZtTLCcaqSqt1ubXo5CHnT1ckRwUGXiQb06xdXNw8cAWPvChjA/mQidDW
+         3Xa6unKQyCYmR+lI0WDYtykal4JiuA690wKtJ8Kmclf0Ot8Lajas8/OG3zshPSp044Gd
+         ZuUssuVp1oVhFQyWdfoCXOa5v6ofDAuiaou4inXUVvR/KbSVqwpwI4hAr9oDnrnJaCj6
+         +PxyeVYecH51/ZEKinF324uy+IMrEfsgDT5hV3ha/+xaBnEGP22pQplalarGlqT19JF3
+         vldA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=q85wWT1Ntix0umS+jHesJR+Bc8njDJ95cdjzzQg8isg=;
+        b=FDhgsged6qpW4RbYoOnEmLdMWB3ge7impcfuEYBN7CkJ7+Txlrti1BAmFKmKA0xj93
+         hJl8yn1G4vaWxucY9c9jsKwzOE/OWvO5ZWUuY9GjblvtlgHmlvgcp2wKjjQovYsYLWV4
+         xAcR2lx6r9Bv6kr1NRdHLg/pRzYJFY9+KtIPx5sUh86+GmpQK4i8R1mMO6XOS0q78oQu
+         zFH1479Dtzfa9tbKwB3vcGlHpUiAvUvJ9apGzRPME7JnJq20nrq+tYfTjgA60ne2HZyQ
+         xVuUUPj/PWvM/TdDbC+zl+q3VxxCHE/7YG+HfSowrrGyj5MaNK2maSfidtPv7VuMCsuW
+         ZSXA==
+X-Gm-Message-State: APjAAAV7oMxq3ENDGaAJ/sjzqQdBGkz8+VAz5J3N0ce99a0l053/PjqC
+        BydJEWx7SsGfLpFaHXOn7vfrCyO8
+X-Google-Smtp-Source: APXvYqzKZdq6eLHh6x7PFZAJKQx0U0RnCiTFPg+KYwQ0VlKMan5QzmHnChRFPM30ZpQC7osTfYxqhA==
+X-Received: by 2002:a7b:cd87:: with SMTP id y7mr61400wmj.93.1571166610784;
+        Tue, 15 Oct 2019 12:10:10 -0700 (PDT)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u26sm25089984wrd.87.2019.10.15.12.10.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 15 Oct 2019 12:10:10 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: rockchip: rk3399-rock-pi-4: restyle rockchip,pins
+Date:   Tue, 15 Oct 2019 21:09:59 +0200
+Message-Id: <20191015191000.2890-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 10, 2019 at 07:52:26PM +0300, Stefan-Gabriel Mirea wrote:
-> For consistency reasons, spell the controller name as "LINFlexD" in
-> comments and documentation.
-> 
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> ---
->  Documentation/admin-guide/kernel-parameters.txt | 2 +-
->  drivers/tty/serial/Kconfig                      | 8 ++++----
->  drivers/tty/serial/fsl_linflexuart.c            | 4 ++--
->  include/uapi/linux/serial_core.h                | 2 +-
->  4 files changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> index c7ac2f3ac99f..666326d74415 100644
-> --- a/Documentation/admin-guide/kernel-parameters.txt
-> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> @@ -1101,7 +1101,7 @@
->  			mapped with the correct attributes.
->  
->  		linflex,<addr>
-> -			Use early console provided by Freescale LinFlex UART
-> +			Use early console provided by Freescale LINFlexD UART
->  			serial driver for NXP S32V234 SoCs. A valid base
->  			address must be provided, and the serial port must
->  			already be setup and configured.
-> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> index 4789b5d62f63..c8e11f62ea19 100644
-> --- a/drivers/tty/serial/Kconfig
-> +++ b/drivers/tty/serial/Kconfig
-> @@ -1391,19 +1391,19 @@ config SERIAL_FSL_LPUART_CONSOLE
->  	  you can make it the console by answering Y to this option.
->  
->  config SERIAL_FSL_LINFLEXUART
-> -	tristate "Freescale linflexuart serial port support"
-> +	tristate "Freescale LINFlexD UART serial port support"
->  	depends on PRINTK
->  	select SERIAL_CORE
->  	help
-> -	  Support for the on-chip linflexuart on some Freescale SOCs.
-> +	  Support for the on-chip LINFlexD UART on some Freescale SOCs.
->  
->  config SERIAL_FSL_LINFLEXUART_CONSOLE
-> -	bool "Console on Freescale linflexuart serial port"
-> +	bool "Console on Freescale LINFlexD UART serial port"
->  	depends on SERIAL_FSL_LINFLEXUART=y
->  	select SERIAL_CORE_CONSOLE
->  	select SERIAL_EARLYCON
->  	help
-> -	  If you have enabled the linflexuart serial port on the Freescale
-> +	  If you have enabled the LINFlexD UART serial port on the Freescale
->  	  SoCs, you can make it the console by answering Y to this option.
->  
->  config SERIAL_CONEXANT_DIGICOLOR
-> diff --git a/drivers/tty/serial/fsl_linflexuart.c b/drivers/tty/serial/fsl_linflexuart.c
-> index 68d74f2b5106..2d39e13176e1 100644
-> --- a/drivers/tty/serial/fsl_linflexuart.c
-> +++ b/drivers/tty/serial/fsl_linflexuart.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-or-later
->  /*
-> - * Freescale linflexuart serial port driver
-> + * Freescale LINFlexD UART serial port driver
->   *
->   * Copyright 2012-2016 Freescale Semiconductor, Inc.
->   * Copyright 2017-2018 NXP
-> @@ -933,5 +933,5 @@ static void __exit linflex_serial_exit(void)
->  module_init(linflex_serial_init);
->  module_exit(linflex_serial_exit);
->  
-> -MODULE_DESCRIPTION("Freescale linflex serial port driver");
-> +MODULE_DESCRIPTION("Freescale LINFlexD serial port driver");
->  MODULE_LICENSE("GPL v2");
-> diff --git a/include/uapi/linux/serial_core.h b/include/uapi/linux/serial_core.h
-> index 0f4f87a6fd54..49e61963e754 100644
-> --- a/include/uapi/linux/serial_core.h
-> +++ b/include/uapi/linux/serial_core.h
-> @@ -290,7 +290,7 @@
->  /* Sunix UART */
->  #define PORT_SUNIX	121
->  
-> -/* Freescale Linflex UART */
-> +/* Freescale LINFlexD UART */
->  #define PORT_LINFLEXUART	121
->  
->  #endif /* _UAPILINUX_SERIAL_CORE_H */
-> -- 
-> 2.22.0
-> 
+The define RK_FUNC_1 is no longer used,
+so restyle the rockchip,pins definitions.
 
-This patch does not apply to my tree :(
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts | 18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+index 1ae1ebd4e..188d9dfc2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+@@ -486,21 +486,18 @@
+ 
+ 	sdio0 {
+ 		sdio0_bus4: sdio0-bus4 {
+-			rockchip,pins =
+-				<2 20 RK_FUNC_1 &pcfg_pull_up_20ma>,
+-				<2 21 RK_FUNC_1 &pcfg_pull_up_20ma>,
+-				<2 22 RK_FUNC_1 &pcfg_pull_up_20ma>,
+-				<2 23 RK_FUNC_1 &pcfg_pull_up_20ma>;
++			rockchip,pins = <2 RK_PC4 1 &pcfg_pull_up_20ma>,
++					<2 RK_PC5 1 &pcfg_pull_up_20ma>,
++					<2 RK_PC6 1 &pcfg_pull_up_20ma>,
++					<2 RK_PC7 1 &pcfg_pull_up_20ma>;
+ 		};
+ 
+ 		sdio0_cmd: sdio0-cmd {
+-			rockchip,pins =
+-				<2 24 RK_FUNC_1 &pcfg_pull_up_20ma>;
++			rockchip,pins = <2 RK_PD0 1 &pcfg_pull_up_20ma>;
+ 		};
+ 
+ 		sdio0_clk: sdio0-clk {
+-			rockchip,pins =
+-				<2 25 RK_FUNC_1 &pcfg_pull_none_20ma>;
++			rockchip,pins = <2 RK_PD1 1 &pcfg_pull_none_20ma>;
+ 		};
+ 	};
+ 
+@@ -532,8 +529,7 @@
+ 
+ 	wifi {
+ 		wifi_enable_h: wifi-enable-h {
+-			rockchip,pins =
+-				<0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+ 		wifi_host_wake_l: wifi-host-wake-l {
+-- 
+2.11.0
 
