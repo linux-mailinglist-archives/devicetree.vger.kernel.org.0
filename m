@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3EAD7CFA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 19:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3E7D7CFF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 19:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727993AbfJORJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 13:09:44 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:37913 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726470AbfJORJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 13:09:44 -0400
-Received: by mail-ot1-f65.google.com with SMTP id e11so17584838otl.5;
-        Tue, 15 Oct 2019 10:09:43 -0700 (PDT)
+        id S1728117AbfJORKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 13:10:50 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:45820 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727810AbfJORKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 13:10:50 -0400
+Received: by mail-oi1-f195.google.com with SMTP id o205so17462108oib.12;
+        Tue, 15 Oct 2019 10:10:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=r4m4ztFRVJREZvvAzKgEyEDcwgtV2Rxd/pgAgtcgzCk=;
-        b=RNPAPdO+Z+bT6TVIQ18Y977X2u8DX4HGWwC5Pm/ZGuxwQ2gxYigr2ua96oJiPF38fX
-         Qvul3xhujQj5WuIOfX6j8wq0LQsPGfkhB8Oav0k738dJxmCiqXEVT6aaw0ZPnUWB3VhJ
-         12NLqTfAcADH4/IZveaLXc0wlj0f2m5e0abPkNOcmGAzZavuEGtlf1gmEBjHcG2DUog5
-         1uz1pNDkBEf+UUZCKF2rB+brwXQv/iqkmhE4eWcBOpIyV6yAjLBAtMuhhhjh0lS29KN9
-         /MpigWryQxVI1qLRbwbLiLu9vYiAY2ptnhOEHowTuxRTdHzPtayMoDpgo1wFML0vszgd
-         AbfQ==
-X-Gm-Message-State: APjAAAUFApZKrTNkj509jIGNF76jIwGJumtXU3AT0e6l12MCd7tegZZt
-        7Z8Tloj3wq02gDQzlV5F7NxPQ2k=
-X-Google-Smtp-Source: APXvYqwhdx77gfk1a6QK5izjA81UZqxl6F9iGcwDONqsSdoALxs7FicmBNSHjrzOmaBQ30bjBdCMhg==
-X-Received: by 2002:a9d:69c7:: with SMTP id v7mr4207160oto.357.1571159383555;
-        Tue, 15 Oct 2019 10:09:43 -0700 (PDT)
+        bh=MuM5OXPQEf/qQaZDX6U88QiRRUcUu9cQvoANannVLLg=;
+        b=f9dFBLTg/nyxklKIG/IbWsoWkAZnfBJzBWpdXdavLSfGmiyLiia8m6EVTqCnWpie8b
+         MAUTLwRzRrSLoad0hSCyJDIUp3qcA6cMlAs8Xe9t7WW217/jYqRS9mOyD9hNg65/cmjs
+         y+wnuc1fyUFJmm6gb4cFM8hwdMKQ3n0Zx8WMQBDsWp0PsSaOIqbuir8SzHFQa5twZ76E
+         GYbf9oheO8ogbARb4KgKkdLz4WRli/jlgz/QIdP2UkEcaOBAW4HPX8xyZumhFrExowpY
+         C+WVWyjcEYlbHS6MUhrzIzkiXgSH4mRnQiR/cnO6y4Q2354Yv5PLidu9rq1eJ1h+JzJg
+         rjLg==
+X-Gm-Message-State: APjAAAUm9UUEUCOBO9w0kA/ZHK4nkNemuvaDXHO81GPyiLbvPIDZYrOv
+        CVkSFYDEt4pPVTm1O3GiCHXuB9g=
+X-Google-Smtp-Source: APXvYqzaGxPe8TwkXiP2OfuHpB4m420Ks0jDce+UGmdVQ7BdQQbg5qasG/3Db5bbjpGHHy65AoHC5g==
+X-Received: by 2002:a05:6808:9:: with SMTP id u9mr30411976oic.98.1571159449283;
+        Tue, 15 Oct 2019 10:10:49 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 67sm6935799otj.21.2019.10.15.10.09.42
+        by smtp.gmail.com with ESMTPSA id n27sm6583417otr.32.2019.10.15.10.10.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 10:09:42 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 12:09:41 -0500
+        Tue, 15 Oct 2019 10:10:48 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 12:10:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     dmitry.torokhov@gmail.com, Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH] dt-bindings: serio: Convert Allwinner PS2 controller to
- a schema
-Message-ID: <20191015170941.GA8898@bogus>
-References: <20191002120645.102805-1-mripard@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: samsung: Indent examples with four
+ spaces
+Message-ID: <20191015171048.GA10675@bogus>
+References: <20191002160744.11307-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191002120645.102805-1-mripard@kernel.org>
+In-Reply-To: <20191002160744.11307-1-krzk@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  2 Oct 2019 14:06:45 +0200, Maxime Ripard wrote:
-> The older Allwinner SoCs have a PS2 controller that is supported in Linux,
-> with a matching Device Tree binding.
+On Wed,  2 Oct 2019 18:07:41 +0200, Krzysztof Kozlowski wrote:
+> Change the indentation of examples used in json-schema bindings from two
+> to four spaces as this makes the code easier to read and seems to be
+> preferred in other files.
 > 
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for that controller over to a YAML schemas.
-> 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  .../serio/allwinner,sun4i-a10-ps2.yaml        | 51 +++++++++++++++++++
->  .../bindings/serio/allwinner,sun4i-ps2.txt    | 22 --------
->  2 files changed, 51 insertions(+), 22 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/serio/allwinner,sun4i-a10-ps2.yaml
->  delete mode 100644 Documentation/devicetree/bindings/serio/allwinner,sun4i-ps2.txt
+>  .../bindings/arm/samsung/exynos-chipid.yaml   |  4 +-
+>  .../bindings/iio/adc/samsung,exynos-adc.yaml  | 64 +++++++++----------
+>  .../bindings/power/reset/syscon-poweroff.yaml |  8 +--
+>  .../bindings/power/reset/syscon-reboot.yaml   |  8 +--
+>  .../devicetree/bindings/rtc/s3c-rtc.yaml      | 12 ++--
+>  5 files changed, 48 insertions(+), 48 deletions(-)
 > 
 
 Applied, thanks.
