@@ -2,76 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CD9D8448
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 01:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F103D8461
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 01:20:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387517AbfJOXOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 19:14:30 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:36420 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbfJOXOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 19:14:30 -0400
-Received: by mail-pf1-f194.google.com with SMTP id y22so13446954pfr.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 16:14:29 -0700 (PDT)
+        id S2390206AbfJOXUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 19:20:44 -0400
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:42544 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390205AbfJOXUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 19:20:44 -0400
+Received: by mail-vs1-f66.google.com with SMTP id m22so14332010vsl.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 16:20:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=zLV3yZ6h2VhlVH0j1u0lOQc1Y/lKJBR2XtrZuFRMBMk=;
-        b=OOE3vB0RTLjbdD4WdZ7Yh1rDjVBnFHH2oxAzyS/B8CSHPB0lZu/pujtKnXcL4KJfk9
-         PE8CEV19Ain5Ca3NRt73MMoYvvxSDAtOWRfKpHDErRckinETWQRTdWb1accSsQFIjbY5
-         BDBNdx+WOQ+K2CHBK4fUmxDefTK4Ql68HHgE0MDAR5EOi5S84kO5NAg/Iap8/r8GlgBZ
-         1IT4thOJjFkPa52nBFYS2rQAtNBm6Gg6EhDlYipI4VFKX52Rcfr72hXSOGz/ulDhgo8n
-         Xl6Tc0Ov7cwvk18/molH8SgYFrjjrrtmtrotqN8HQ6Zj25ybRWefLK6DUgXHsm2H9UAQ
-         4nYw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7Luzeu61JUpCQk5lttonbL70KSFby5OvdNNxzg/MFQ8=;
+        b=eDOzDhVMybk0i/+feqo0X+49gsS5JqJW8Ry8hE/JpXVc3WdVLD8WqJn9dDxRuwCehy
+         QvBk66yW4mH2kDlYuzMBwPUkP7IEFj9ZOCyD/4jTGGzyqm14Z6beV+SiRvogqh3bul4S
+         iB5C2XFuK7HRXnTP1fLCtCvORAdxwIVNNPgEfK7/yPQBrFJLj5U8IlVLAnGbma2My+bA
+         WBSOGcGHMJNm8DROoKh3HDAVOdcniv422vxJwA1eHO+j7o/CCl3KJUcbsWYelqWlID+T
+         ADHbasV+eQpUbByIGOW8dLaZ/+35eAnKAiGRw80ERMmbEtCmUY0OfB7tcC1PPQ9bI1JZ
+         KYPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=zLV3yZ6h2VhlVH0j1u0lOQc1Y/lKJBR2XtrZuFRMBMk=;
-        b=cq6RrS9/BG1P1LhdD93PeqsAw9QiwBq+FHwbMeexvbzyqY3dC0Z0/uTQj/LxlDuXRi
-         ba8Mwbvd7+Ec0b3sWp4zAJfHfnLTdtfniNZBTeMEv6oYUtv1mZaIK7CAaP5J3ySmIFVY
-         I6XlKGeJleloL3u6m07vDOnAUCUTX20Ww76do2+70UtnGu+kaK/ZU5GKST4VWuwAqx/8
-         Fam8ehdMOzTKgxzbCzGrPdXLU65uus5M+ZIM3M8ut6A7/+XYO9PhiHsxhKv5+a/1HyXN
-         4bFWdK9aTwEpjE+FmdiWMhZOzTSJzs8Dv/bvr/UTg6bpL705TKn7t34d5VnCH0WuZAaM
-         XWlg==
-X-Gm-Message-State: APjAAAUO25TPgdhKRQfcoWrC7Eet04vVX8vCJyHNZiA5Gc+dNXIrQobM
-        XhNdVDuDf0B7gpk2GdEMou0=
-X-Google-Smtp-Source: APXvYqwJh/NSmepIzfPjD1ixc8XzbisZGJ3HyZZXYeyrMdtGSVdvaTtJP+PJ6ytQaTj/Y11G7LCGJw==
-X-Received: by 2002:a62:6546:: with SMTP id z67mr41818426pfb.32.1571181269162;
-        Tue, 15 Oct 2019 16:14:29 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id k124sm11301445pga.83.2019.10.15.16.14.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 16:14:28 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Dan Haab <riproute@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dan Haab <dan.haab@legrand.com>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Luxul XWC-2000
-Date:   Tue, 15 Oct 2019 16:14:12 -0700
-Message-Id: <20191015231412.5637-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <1570031846-8330-1-git-send-email-dan.haab@luxul.com>
-References: <1570031846-8330-1-git-send-email-dan.haab@luxul.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7Luzeu61JUpCQk5lttonbL70KSFby5OvdNNxzg/MFQ8=;
+        b=jPeS+3+7j0aDVMMU+7p6DOHq5wf5h9HEQZ6+AGe/wQWbgLau2Ri3NmU/lOtrmyUSI5
+         H6wXblbVMwlsiTD41Guuv/q2hVr/wTUtsDvrmKzW57caaqNgAArNeSM3dQcAHZXequMj
+         atuX57tj2CZ3IGqIzUGdsU4BqWapISrPsP3iQgfTLUUzFaJrSEf06nBKbyz6zd0YnoV+
+         gwpUoKMMCjtItAOLSOettKELGDIrVQxmZBGkLCHNToF6Fam0x2oTFF3KGhTAtEK7F9Jx
+         S00INxl7aLOpwS3fzO9IsgbOI8ZLpuyFNopf2HSrrgHQGkYnxaWYFzVvp323yIlWnnC0
+         xwMQ==
+X-Gm-Message-State: APjAAAU3Njd55CSQikdLWrJq1joSy14ova5fyT8QIW0502x4kTIUsZo9
+        xMJCly6ao+d2kp+C7hv6Zmzn+LbmcaRgLSREUX89YA==
+X-Google-Smtp-Source: APXvYqygrun7u9zevVDKfu0sa7amxsriNbVYF4wbVRpuSP6Re4yc+jB0Mmyyr6iQQ2WpPrkisEClAIRglX6AbvGsZDk=
+X-Received: by 2002:a67:dc16:: with SMTP id x22mr1767729vsj.159.1571181642542;
+ Tue, 15 Oct 2019 16:20:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191004090114.30694-1-glaroque@baylibre.com> <20191004090114.30694-5-glaroque@baylibre.com>
+In-Reply-To: <20191004090114.30694-5-glaroque@baylibre.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Wed, 16 Oct 2019 04:50:31 +0530
+Message-ID: <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
+Subject: Re: [PATCH v7 4/7] arm64: dts: meson: g12: Add minimal thermal zone
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        lakml <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  2 Oct 2019 09:57:26 -0600, Dan Haab <riproute@gmail.com> wrote:
-> From: Dan Haab <dan.haab@legrand.com>
-> 
-> It's a simple network device based on BCM47094 with just a single
-> Ethernet port.
-> 
-> Signed-off-by: Dan Haab <dan.haab@legrand.com>
+On Fri, Oct 4, 2019 at 2:31 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+>
+> Add minimal thermal zone for two temperature sensor
+> One is located close to the DDR and the other one is
+> located close to the PLLs (between the CPU and GPU)
+>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 0660d9ef6a86..a98c16e163c2 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -12,6 +12,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+>  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>
+>  / {
+>         interrupt-parent = <&gic>;
+> @@ -94,6 +95,61 @@
+>                 #size-cells = <2>;
+>                 ranges;
+>
+> +               thermal-zones {
+> +                       cpu_thermal: cpu-thermal {
+> +                               polling-delay = <1000>;
+> +                               polling-delay-passive = <100>;
 
-Applied to devicetree/next, thanks!
---
-Florian
+Ordinarily, you would need to set these delays to 0 in interrupt mode
+to prevent polling overhead. I've just submitted a patch to of-thermal
+that should fix this requirement. Could you check if it works for you?
+
+> +                               thermal-sensors = <&cpu_temp>;
+> +
+> +                               trips {
+> +                                       cpu_passive: cpu-passive {
+> +                                               temperature = <85000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "passive";
+> +                                       };
+> +
+> +                                       cpu_hot: cpu-hot {
+> +                                               temperature = <95000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "hot";
+> +                                       };
+> +
+> +                                       cpu_critical: cpu-critical {
+> +                                               temperature = <110000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "critical";
+> +                                       };
+> +                               };
+> +                       };
+> +
+> +                       ddr_thermal: ddr-thermal {
+> +                               polling-delay = <1000>;
+> +                               polling-delay-passive = <100>;
+> +                               thermal-sensors = <&ddr_temp>;
+> +
+> +                               trips {
+> +                                       ddr_passive: ddr-passive {
+> +                                               temperature = <85000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "passive";
+> +                                       };
+> +
+> +                                       ddr_critical: ddr-critical {
+> +                                               temperature = <110000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "critical";
+> +                                       };
+> +                               };
+> +
+> +                               cooling-maps {
+> +                                       map {
+> +                                               trip = <&ddr_passive>;
+> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
+>                 ethmac: ethernet@ff3f0000 {
+>                         compatible = "amlogic,meson-axg-dwmac",
+>                                      "snps,dwmac-3.70a",
+> @@ -2412,6 +2468,7 @@
+>                         assigned-clock-rates = <0>, /* Do Nothing */
+>                                                <800000000>,
+>                                                <0>; /* Do Nothing */
+> +                       #cooling-cells = <2>;
+>                 };
+>         };
+>
+> --
+> 2.17.1
+>
