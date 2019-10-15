@@ -2,152 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3907FD753A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 13:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18EFFD753F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 13:40:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728553AbfJOLjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 07:39:05 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54618 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726927AbfJOLjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 07:39:05 -0400
-Received: from [192.168.0.20] (cpc89242-aztw30-2-0-cust488.18-1.cable.virginm.net [86.31.129.233])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF960324;
-        Tue, 15 Oct 2019 13:39:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1571139542;
-        bh=yoPsqnguXofm64qXBaPQ6QLvJoVxEAIjVYEFwiQ79VI=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=YM/HSvh9aRCsibtOOiXQFe+YmDHCnEcfYjBb147pA0B6/MBqt3+bkBvTZ2rkwcMWw
-         N/4AFHgP2TzQ6AmWRQKo+xYHbNCiKPEtk6v+Yf5557i1KaafWEDTnySU7r0V5X3zb4
-         YJ4I4UejFCBGUdxu/XaXhAQpiHb+y6rSL9SLas6c=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v5 1/8] dt-bindings: display: renesas,cmm: Add R-Car CMM
- documentation
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        laurent.pinchart@ideasonboard.com, geert@linux-m68k.org,
-        horms@verge.net.au, uli+renesas@fpond.eu,
-        VenkataRajesh.Kalakodima@in.bosch.com
-Cc:     airlied@linux.ie, daniel@ffwll.ch, koji.matsuoka.xm@renesas.com,
-        muroya@ksk.co.jp, Harsha.ManjulaMallikarjun@in.bosch.com,
-        ezequiel@collabora.com, seanpaul@chromium.org,
-        linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com
-References: <20191015104621.62514-1-jacopo+renesas@jmondi.org>
- <20191015104621.62514-2-jacopo+renesas@jmondi.org>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <ef8e16cf-a1ef-6cf7-8735-b620a3d8f318@ideasonboard.com>
-Date:   Tue, 15 Oct 2019 12:38:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727524AbfJOLkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 07:40:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32854 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726472AbfJOLkb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 07:40:31 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 09A4821A49;
+        Tue, 15 Oct 2019 11:40:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571139631;
+        bh=oGPUs6ScsKBWjiqXvGtsLhcAYD8CQlphpe25WiR9FGY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IuhXmlHj2PRLsBZj2269HsoFFYUJrFjAzqKrBXSsQ2lsXfxkAooLORx/ALjRhk/av
+         ERpKqQNIxKws3tEloX9E5mfprd62BzVlhogQ3aOrpQrb9cxxE3XPXOK00XeBGl973Y
+         lVbRtilHoNYYolWIarpI02u6whi0mzrqQRS4oax4=
+Received: by mail-qt1-f177.google.com with SMTP id m15so30074401qtq.2;
+        Tue, 15 Oct 2019 04:40:31 -0700 (PDT)
+X-Gm-Message-State: APjAAAWhL/rI0qhYBfHM8DEWfMzO3/NGgv2BBnIN9oadhCsnWZsUElaV
+        kUZYni865pnk1Tn40DT44LkSodXNUr2N3MsQyg==
+X-Google-Smtp-Source: APXvYqwOmCf+8YOVZvLtKg632W0xW7C6kdgWWv1JJ/jsejb6F+m2ruoP20gZce1ZKtzSOkNUWHdYVGoH9vEkkWJApFc=
+X-Received: by 2002:ac8:44d9:: with SMTP id b25mr39160131qto.300.1571139630214;
+ Tue, 15 Oct 2019 04:40:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20191015104621.62514-2-jacopo+renesas@jmondi.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20191007175553.66940-1-john.stultz@linaro.org>
+ <20191007175553.66940-5-john.stultz@linaro.org> <CAL_JsqJLY2n7hfneNptAGswVZtGm3vJbSR6W2wUG+ZTzMN8wZA@mail.gmail.com>
+ <CALAqxLWB7Vd-H70LLLSW0Fv=_4-saQ9CE2k3-L_43E+F8mLj2w@mail.gmail.com>
+ <CAL_JsqJ9uUtqTDEkLi86-BCvW+wM6Pgz_K+JuTsuOqHfFOHStA@mail.gmail.com>
+ <CALAqxLVpPvHf2RpwjHh5v9cnQm9CLtj0HHaqVH=EFQJk-GhaPQ@mail.gmail.com>
+ <20191011155123.GA14272@bogus> <CALAqxLUbh7_PkOwh9NrS_+sgLDZMHndbp44jVQkB=WqOhKUotA@mail.gmail.com>
+In-Reply-To: <CALAqxLUbh7_PkOwh9NrS_+sgLDZMHndbp44jVQkB=WqOhKUotA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 15 Oct 2019 06:40:18 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLB_Pruk0n0jS0B-uB74R=pE7aOhoo5FU191Hg3wsd7XA@mail.gmail.com>
+Message-ID: <CAL_JsqLB_Pruk0n0jS0B-uB74R=pE7aOhoo5FU191Hg3wsd7XA@mail.gmail.com>
+Subject: Re: [RFC][PATCH v2 4/5] dt-bindings: usb: dwc3: of-simple: add
+ compatible for HiSi
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+On Mon, Oct 14, 2019 at 10:57 PM John Stultz <john.stultz@linaro.org> wrote:
+>
+> On Fri, Oct 11, 2019 at 8:51 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Oct 07, 2019 at 04:00:24PM -0700, John Stultz wrote:
+> > > On Mon, Oct 7, 2019 at 2:11 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > >
+> > > > On Mon, Oct 7, 2019 at 2:07 PM John Stultz <john.stultz@linaro.org> wrote:
+> > > > >
+> > > > > On Mon, Oct 7, 2019 at 11:38 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > > >
+> > > > > > On Mon, Oct 7, 2019 at 12:56 PM John Stultz <john.stultz@linaro.org> wrote:
+> > > > > > >
+> > > > > > > Add necessary compatible flag for HiSi's DWC3 so
+> > > > > > > dwc3-of-simple will probe.
+> > > > > > >
+> > > > > > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > > > > > Cc: Felipe Balbi <balbi@kernel.org>
+> > > > > > > Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > > > > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > > > > > Cc: Mark Rutland <mark.rutland@arm.com>
+> > > > > > > Cc: Yu Chen <chenyu56@huawei.com>
+> > > > > > > Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> > > > > > > Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > > > > > Cc: linux-usb@vger.kernel.org
+> > > > > > > Cc: devicetree@vger.kernel.org
+> > > > > > > Signed-off-by: John Stultz <john.stultz@linaro.org>
+> > > > > > > ---
+> > > > > > > v2: Tweaked clock names as clk_usb3phy_ref didn't seem right.
+> > > > > > > ---
+> > > > > > >  .../devicetree/bindings/usb/hisi,dwc3.txt     | 52 +++++++++++++++++++
+> > > > > > >  1 file changed, 52 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/usb/hisi,dwc3.txt
+> > > > > >
+> > > > > > Can you make this a schema.
+> > > > >
+> > > > > Sorry, I'm not sure exactly what you're asking. I'm guessing from
+> > > > > grepping around you want the bindings in yaml instead (I see a few
+> > > > > examples)?
+> > > >
+> > > > Yes.
+> > > >
+> > > > > Is there some pointer to documentation? The
+> > > > > Documentation/devicetree/bindings/writing-bindings.txt file doesn't
+> > > > > seem to say much on it.
+> > > >
+> > > > You mean Documentation/devicetree/writing-schemas.rst? There's that
+> > > > and Documentation/devicetree/bindings/example-schema.yaml which has a
+> > > > bunch of annotations on what each part means.
+> > >
+> > > Ah! Sorry for missing that. Thanks for the pointer, though I may get
+> > > away with dropping this one.
+> > >
+> > > > > > If it's only clocks and resets for the wrapper node, just make this
+> > > > > > all one node.
+> > > > >
+> > > > > Just to make sure I'm following, you're suggesting I put all the
+> > > > > clocks/resets in the dwc3 node (renamed to usb for the node name) and
+> > > > > not add the wrapper?
+> > > >
+> > > > Yes.
+> > > >
+> > > > > I'll have to see if that's possible. The generic dwc3 binding wants 3
+> > > > > clocks, but I only have two in the code I've worked with (similarly it
+> > > > > seems to only want two resets, not 4) so I'll have to see if I can
+> > > > > figure out how to adapt that.
+> > > >
+> > > > Possible since commit fe8abf332b8f ("usb: dwc3: support clocks and
+> > > > resets for DWC3 core").
+> > >
+> > > Ok. It *seems* like I can get it working with the existing binding
+> > > then. There's a little funkiness with the core expecting three clocks
+> > > while I only have two (currently I'm duplicating the "bus_early" clk
+> > > for "suspend". Is there a preferred way to do this sort of hack?), and
+> > > I'm a little worried that only the first reset is being used (instead
+> > > of the 4 specified), but it seems to work so far.
+> >
+> > I would assume that you simply don't know how the 'suspend' clock is
+> > connected rather than you don't have one. But that's maybe not a
+> > problem you can fix.
+> >
+> > I would make dwc3 use devm_clk_bulk_get_all and allow for less than 3
+> > clocks. And do a similar change for resets.
+>
+> So got a chance to start implementing this and it seems like it will
+> work. That said, it feels like I'm duplicating logic already in the
+> dwc-of-simple.c implementation (which already handles arbitrary clks
+> and resets), particularly if I try to implement the device specific
+> need_reset quirk used by HiKey960 (and rk3399).
+>
+> Do you feel having that logic copied is worth avoiding the extra
+> bindings? Or is it too duplicative?
 
-On 15/10/2019 11:46, Jacopo Mondi wrote:
-> Add device tree bindings documentation for the Renesas R-Car Display
-> Unit Color Management Module.
-> 
-> CMM is the image enhancement module available on each R-Car DU video
-> channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
-> 
+We already have reset and clock setup in 2 places, so it's already
+kind of duplicated.
 
-LGTM. Good to see how we get started with the new yaml bindings. I guess
-we've got plenty of conversion work to do there ..
+Why not refactor into a helper that both can use?
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  .../bindings/display/renesas,cmm.yaml         | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/renesas,cmm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,cmm.yaml b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
-> new file mode 100644
-> index 000000000000..a57037b9e9ba
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/renesas,cmm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas R-Car Color Management Module (CMM)
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +  - Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo+renesas@jmondi.org>
-> +
-> +description: |+
-> +  Renesas R-Car color management module connected to R-Car DU video channels.
-> +  It provides image enhancement functions such as 1-D look-up tables (LUT),
-> +  3-D look-up tables (CLU), 1D-histogram generation (HGO), and color
-> +  space conversion (CSC).
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +          - renesas,r8a7795-cmm
-> +          - renesas,r8a7796-cmm
-> +          - renesas,r8a77965-cmm
-> +          - renesas,r8a77990-cmm
-> +          - renesas,r8a77995-cmm
-> +        - const: renesas,rcar-gen3-cmm
-> +      - items:
-> +        - const: renesas,rcar-gen2-cmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
-> +    #include <dt-bindings/power/r8a7796-sysc.h>
-> +
-> +    cmm0: cmm@fea40000 {
-> +         compatible = "renesas,r8a7796-cmm",
-> +                      "renesas,rcar-gen3-cmm";
-> +         reg = <0 0xfea40000 0 0x1000>;
-> +         power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
-> +         clocks = <&cpg CPG_MOD 711>;
-> +         resets = <&cpg 711>;
-> +    };
-> --
-> 2.23.0
-> 
-
+Rob
