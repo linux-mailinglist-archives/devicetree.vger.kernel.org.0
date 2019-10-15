@@ -2,88 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9143DD8044
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73171D805E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 21:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732242AbfJOT2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 15:28:46 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:50568 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730550AbfJOT2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 15:28:46 -0400
-Received: by mail-wm1-f66.google.com with SMTP id 5so301865wmg.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 12:28:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=netronome-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :organization:mime-version:content-transfer-encoding;
-        bh=EbAnyTOslp6v1Q8FsmUFH6BpJr8FNaYvIMIlQEjnqCI=;
-        b=G90I0dyrX3/1JAVSlVemOrG13hF203/pZ3Lk38+XtGFF4rkUlZ/iPoV1/27W04fCiN
-         rLpCP/3Dz4tB/k9Gq51AKs4+FJ1LW3x+x/bQdVmWSl036tb3ZB/sSuRMc0A3vXrj25ZN
-         i7dh49TtP7P6EGenJ5aLCCZT9aHDh8pSWd5g04fxKv3T+uQL22Cn0LUD4jDYyOAnZllD
-         1kjxE3kIPbGN3ZQR9vPIA6GQAbuZE/2M2uwOgW7IFirWuitnCb86tY9t2WShf+n+d/by
-         vvR7SIag0PpihD6oqYflk2DE7u4BsxgixPGQTxK/LkrkBW4o7ur01/8OJwnqNhUXb1Py
-         QjCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:organization:mime-version:content-transfer-encoding;
-        bh=EbAnyTOslp6v1Q8FsmUFH6BpJr8FNaYvIMIlQEjnqCI=;
-        b=qEpqwHwyyoS9qe5jQRIKhUlTTiSGUfi0C9jYJNnm3zH3KBkJNs7lv8XBucJpZOWiqa
-         nEZjmi3l/N+k7ZyOYA1AHh7an7vIpDFma1oLwcwvkPKhjyTFYRUiHDPNDLNZQdTFPxGQ
-         Ecf+0Re1xwGjlqlX6FofvkvkaeUzdP6SOQYLxX1ulf9giSc1mgPDpScgqS2h/5pSv88O
-         veljMEjI1VRWEsXaL162WZTOmrf3Ou+g1/ySXffzGiSgLPMq5ps3TLDL7OX+AFCYug3c
-         o63HQTGQwhPkXnq+mCr57EIwRicrn443fc8WGiOPqavXRvUiGQkp7jNhHg6VuoWc1va1
-         wr1w==
-X-Gm-Message-State: APjAAAWZv09BFfh0SBkVU4Kh8jOZX9k40frzZTHp1W5tWLY1K7dVlmTl
-        2mBuzuEbotQfdxHOkF/HDD36cw==
-X-Google-Smtp-Source: APXvYqz7nP0l7vdHzimkwgpLFEg+eNxzWXUfJJzNLYDn7AUPiBz5wwZf6tij4i9ykaeLXoR8PZtrxQ==
-X-Received: by 2002:a05:600c:2318:: with SMTP id 24mr60488wmo.146.1571167724173;
-        Tue, 15 Oct 2019 12:28:44 -0700 (PDT)
-Received: from cakuba.netronome.com ([66.60.152.14])
-        by smtp.gmail.com with ESMTPSA id i1sm342582wmb.19.2019.10.15.12.28.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 12:28:43 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 12:28:36 -0700
-From:   Jakub Kicinski <jakub.kicinski@netronome.com>
-To:     MarkLee <Mark-MC.Lee@mediatek.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>,
-        Nelson Chang <nelson.chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rene van Dorst <opensource@vdorst.com>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net,v3 1/2] net: ethernet: mediatek: Fix MT7629 missing
- GMII mode support
-Message-ID: <20191015122836.78bff48f@cakuba.netronome.com>
-In-Reply-To: <20191014071518.11923-2-Mark-MC.Lee@mediatek.com>
-References: <20191014071518.11923-1-Mark-MC.Lee@mediatek.com>
-        <20191014071518.11923-2-Mark-MC.Lee@mediatek.com>
-Organization: Netronome Systems, Ltd.
+        id S1726920AbfJOTgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 15:36:13 -0400
+Received: from mout.gmx.net ([212.227.15.18]:40803 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726837AbfJOTgN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 15:36:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1571168148;
+        bh=8CtZdk//uT3mD5UzLBd+cEolu2bZMY/XSWPKvl77iw0=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=GtKf/9+n3AwqBfQQfX9adpD3gPsyKPR2YKPBuvzNb5Qd3jN8m0kO9xrMsMNxbeERW
+         y27/AeTxcmP5rcgwgWWPNyGMDCISMV8/p7yeARZymdLWC5Y6TpLcsHfKh66lYdUm8K
+         JkkHCq8aDPiNal0Zt/OS73x4NFmqvqy0Tr/g5pJE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.162] ([37.4.249.112]) by mail.gmx.com (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MJmKh-1iearN1SK9-00K63U; Tue, 15
+ Oct 2019 21:35:48 +0200
+Subject: Re: [PATCH v1 3/3] ARM: dts: bcm2711: Enable GENET support for the
+ RPi4
+To:     Florian Fainelli <f.fainelli@gmail.com>, matthias.bgg@kernel.org,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Matthias Brugger <mbrugger@suse.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-kernel@vger.kernel.org, Eric Anholt <eric@anholt.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20191011184822.866-1-matthias.bgg@kernel.org>
+ <20191011184822.866-4-matthias.bgg@kernel.org>
+ <a514751e-e82a-b5ea-34d3-46468c851a80@gmail.com>
+From:   Stefan Wahren <wahrenst@gmx.net>
+Message-ID: <7ac16f46-8f75-a91a-c096-7645da8f044a@gmx.net>
+Date:   Tue, 15 Oct 2019 21:35:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <a514751e-e82a-b5ea-34d3-46468c851a80@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Provags-ID: V03:K1:WJUZ0VvS2rEzkhQZcFikR4IvYJzLmGQBvy4te06VSqGg/4lR+v8
+ gH+1SiXGIh2ZeN2Bidjxg1HQMyO8XuwtSk5bAflNdJx3XLft2M4Y7VrABhA9dFsMVpSqBGP
+ wgvvuLzS03PwqHCefpFa8n4CkYSy+c7kvVEntLdYiPuSySrVcsYiYmkplEDK9LJ3BNpbMBN
+ 6NBpyK9r3gyxIzqAgeg0Q==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6NCl5YU0F1c=:UqxKtymJXFQBSh/VJde4rl
+ H/4yHI7y4KLeiL0vJQbqhPKjoE9y4ynssQ5MG6pWmiQqRa9B1T1FW7QZMJmydiX+Z2nkdjpcI
+ qHjtTP4DxUMM+WehFU9H9uq4Qtgd1muixOn8U9C+BHzha/coD2kyz3vH2px0d+Qn2N5ITyx/9
+ 0l5hbATotfHHCkRyX1ARgtaDhNX+tifYuySkq996cDYbNwSkf7oSVO2hakgL2NF9ffGpkKD8L
+ YTURIf8B0wQ7aQqW81v2St891OWA5G7ZhNqlpCpgsFE/Rl4NlX5pX6fxrz8MYbSpRZ0rCdAbF
+ 8YCnV44MjA2rVMD9FxuL7Ym40V+KeCEkXNa44ssHhr/YlXln1dIehgfrpUHHXJd4VKi0yQklR
+ CseAlSLrfvLhIeBAeEcR/Ew7H6OtTGzNmUw2Hg/hIFNoUmAQTm/TXxIondk9SeQh07pg24/sO
+ oA8FgvvoQNokuC26xvilTkWAk8wwY2bNVKh/y/7REgn8wsVx/vPTRHfp248ONJIi2sgJVVq6f
+ PXufm7dVLil8xugop8WIDpoL5PL1mIufaLsKcIj9fR0HjifASfA2saId8BOOMDrckVV38ZZO0
+ wz8jQU8Q1uFwycupylT5wQPDLQpJv5WFs7dmiBJew7qGNih/0kJsCTuWhG8YaQ5/V3D8EwC5k
+ kO9rUFFYigyhaDonSx8dtI+HVb3OWrjtf+CYgNJQIdIKh1uIKdKsNpC2cOKS+MuXBME/onRhL
+ XKCIB78Zt8p1JZFJEWGvdGeHZooVU3M+NRt37XoTqGpwKq16aRnucUuTwWYBWT2fA9auE1BGg
+ Hnmen07mk/6KU/20M9pXaEyb8OjnBM7VUL9EorseyP+QaXYnPprjowfyb++2kfSEdgCrrxnJX
+ uOilv3uXgpLjr8SyDkrbo//hWsPDt6XqnwECfZSOqHAWI6I3kLubW1Ft5BNLQqOt32ufdRBrv
+ QRdqyVGuZ9G73mpGhnHY6hzF8StoProePrni/iXcjXZc+pKZrRyDup/pZ2VtnzcIAzTDst3ah
+ Ovzmw66eyn77d2PcJjn394+z/FZB1TH8+rrc4Qd8EVR7PX5w8QDFY9BE5WaAg1eUEloKCfGM6
+ PckBgSsdP/1QEObbrkRbRFIya9m0Z20YHaQeybgvGdxoxK+MS3fVH/n/Ln4LvaXdbVw5e7fZG
+ bd7WEfN3DfcSYsEkVPGWrJJg4FUFZjFwrrGn6/K2j+AJItPawInKiZvACqKNH8LiLAs/3kRnD
+ K/udraqJUtuwlkHnJOUaXcuYuwHQmORb5o7aDGltEGhMfUJVjbdXs2qIPp+s=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Oct 2019 15:15:17 +0800, MarkLee wrote:
-> In the original design, mtk_phy_connect function will set ge_mode=1
-> if phy-mode is GMII(PHY_INTERFACE_MODE_GMII) and then set the correct
-> ge_mode to ETHSYS_SYSCFG0 register. This logic was broken after apply  
-> mediatek PHYLINK patch(Fixes tag), the new mtk_mac_config function will
-> not set ge_mode=1 for GMII mode hence the final ETHSYS_SYSCFG0 setting 
-> will be incorrect for mt7629 GMII mode. This patch add the missing logic
-> back to fix it.
-> 			 
-> Fixes: b8fc9f30821e ("net: ethernet: mediatek: Add basic PHYLINK support")
-> Signed-off-by: MarkLee <Mark-MC.Lee@mediatek.com>
+Hi Florian,
 
-LGTM, thanks
+Am 11.10.19 um 21:31 schrieb Florian Fainelli:
+> On 10/11/19 11:48 AM, matthias.bgg@kernel.org wrote:
+>> From: Matthias Brugger <mbrugger@suse.com>
+>>
+>> Enable Gigabit Ethernet support on the Raspberry Pi 4
+>> Model B.
+>>
+>> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+>>
+>> ---
+>>
+>>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 22 ++++++++++++++++++++++
+>>  arch/arm/boot/dts/bcm2711.dtsi        | 18 ++++++++++++++++++
+>>  2 files changed, 40 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/=
+bcm2711-rpi-4-b.dts
+>> index cccc1ccd19be..958553d62670 100644
+>> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+>> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+>> @@ -97,6 +97,28 @@
+>>  	status =3D "okay";
+>>  };
+>>
+>> +&genet {
+>> +	phy-handle =3D <&phy1>;
+>> +	phy-mode =3D "rgmii";
+> Can you check that things still work against David Miller's net-next?
+> Tree, in particular the BCM54213PE PHY might be matched by the BCM54210E
+> entry in drivers/net/phy/broadcom.c and I just fixed an issue in how
+> RGMII delays were configured:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git/commi=
+t/?id=3Dfea7fda7f50a6059220f83251e70709e45cc8040
+>
+> This might require you to change the 'phy-mode' property to what is
+> appropriate.
+
+since i didn't get a reply from the Pi folks yet, i tried all the other
+rgmii variants on top of this branch [1].
+
+But none of them worked.
+
+In case of "rgmii-id" i'm getting:
+
+unknown phy mode: 9
+
+and for "rgmii-rxid":
+
+unknown phy mode: 10
+
+In those cases the PHY didn't even probe. Did i missed something?
+
+[1] - https://github.com/lategoodbye/rpi-zero/commits/bcm2711-genet
+
