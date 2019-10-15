@@ -2,141 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E395D7F3D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 20:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F424D7F69
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 20:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731612AbfJOSmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 14:42:47 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:33399 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbfJOSmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 14:42:47 -0400
-Received: by mail-oi1-f194.google.com with SMTP id a15so17765334oic.0;
-        Tue, 15 Oct 2019 11:42:45 -0700 (PDT)
+        id S1728858AbfJOS4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 14:56:25 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:46847 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727923AbfJOS4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 14:56:24 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 89so17875609oth.13;
+        Tue, 15 Oct 2019 11:56:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GAHrLiAFlazwlF31Anvci8d6QY+LhAJg86S630nwFns=;
-        b=hL/tauRjah5rVImtp8vS/9VeejEN8woHZBR1hPjhrKQ7TwzXztTrmmEVVKlknoNf/i
-         kvPVPD3gaHqG1flXSvriGWutrhu/ERuOVLohVtHNgrev3J3/kc34Tr6t2/c+sotV6ere
-         bEVpCowUoHcNZxd6mtgaVRMb1D/c3kpNt7P4CbtoG2qsF8XvJMR6Z77W45oQ/C8rO4ex
-         DeIUnrb7WxbiPSvUVOlHWn/QI0wmUka4S6i6ueKFzxRPD5RDWqinZ18ecct/NuWeWoUD
-         LxUKqMK6c6410By2aO4zQm4t2BGahgf6xgEPc90jWqlrSUcVXR66LxHiG158FV/3S6VP
-         eM4w==
-X-Gm-Message-State: APjAAAXcIsazgYCnw4QNhQ/Nfy6uYfvpCX746PmGfDnzFN2LJ2bvbitR
-        Hwi9bSQQgEhVzPpSBt4k4Q==
-X-Google-Smtp-Source: APXvYqwfHoEV7ttuKqHdAbUE09Jpc6mRk4X+QQqULjfnpK4q+69BAnmHmrAl97D3fg6fznbpbVrX0Q==
-X-Received: by 2002:aca:d19:: with SMTP id 25mr15150oin.64.1571164964933;
-        Tue, 15 Oct 2019 11:42:44 -0700 (PDT)
+        bh=HHTFz9uSwh4OuUts3UgqslOAVdahwqh8IjC9kodDCZI=;
+        b=KfDFXVmFe1US8DJ9dBiepi0vx39H5RRAcOzPlUY+MENMrqKV/YLk/o41CpjI7eZqCz
+         IrANqph7JQmvDQejHewAkK6jt8hpCvrs9DxrNVdoAWKd9DFTcv2mHvA5bj30RwYwn94/
+         93t0fKRFacDoQU9bTcDDZHbbPIZoqcvIXocdEhqVWifkcgK+1UXadyYx8GqxZ4IvrSdc
+         AZhNs9KdFeECt+TTYYpts0wTIG5hXpNwQmcbpNN0+rl3ARtNemDhfxI0vTRHkCb3fQwH
+         x6M6tNZM8Zrh1FBLMTN8vOArStO7TIZM5jTxWMZGDVfIT8EMLGeKCTqbphuqoQ0j3phy
+         CiQQ==
+X-Gm-Message-State: APjAAAWfQUXLIm7cCUjQZefcw3V48isNIFdnTrCVCs8Tk+oiQy7HmHfA
+        wO7FIxZ0kXG2AWu4LH24Yg==
+X-Google-Smtp-Source: APXvYqzcgr8bvUAb/uvZB4lhcUUCtQIoS4GH/lbZI/6dKUGnytDajQC2KeD4gr+ONlprmtGvzHSmFw==
+X-Received: by 2002:a9d:6e92:: with SMTP id a18mr3410641otr.313.1571165783758;
+        Tue, 15 Oct 2019 11:56:23 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l19sm6293550oie.22.2019.10.15.11.42.44
+        by smtp.gmail.com with ESMTPSA id d95sm7324238otb.25.2019.10.15.11.56.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 11:42:44 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 13:42:43 -0500
+        Tue, 15 Oct 2019 11:56:23 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 13:56:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Jonathan Corbet <corbet@lwn.net>, Jon Mason <jdmason@kudzu.us>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Allen Hubbe <allenbh@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pci@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-ntb@googlegroups.com
-Subject: Re: [RFC PATCH 02/21] dt-bindings: PCI: Endpoint: Add DT bindings
- for PCI EPF Device
-Message-ID: <20191015184243.GA10228@bogus>
-References: <20190926112933.8922-1-kishon@ti.com>
- <20190926112933.8922-3-kishon@ti.com>
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: Re: [PATCH 1/4] dt-bindings: display: renesas: du: Document the
+ r8a774b1 bindings
+Message-ID: <20191015185622.GA21864@bogus>
+References: <1569834905-42868-1-git-send-email-biju.das@bp.renesas.com>
+ <1569834905-42868-2-git-send-email-biju.das@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190926112933.8922-3-kishon@ti.com>
+In-Reply-To: <1569834905-42868-2-git-send-email-biju.das@bp.renesas.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 26, 2019 at 04:59:14PM +0530, Kishon Vijay Abraham I wrote:
-> Add device tree bindings for PCI endpoint function device. The
-> nodes for PCI endpoint function device should be attached to
-> PCI endpoint function bus.
+On Mon, 30 Sep 2019 10:15:02 +0100, Biju Das wrote:
+> Document the RZ/G2N (R8A774B1) SoC in the R-Car DU bindings.
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 > ---
->  .../bindings/pci/endpoint/pci-epf.txt         | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
-
-This and the previous patch for the bus should be combined and please 
-convert to a schema.
-
+>  Documentation/devicetree/bindings/display/renesas,du.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt b/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
-> new file mode 100644
-> index 000000000000..f006395fd526
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
-> @@ -0,0 +1,28 @@
-> +PCI Endpoint Function Device
-> +
-> +This describes the generic bindings to be used when a device has to be
-> +exposed to the remote host over PCIe. The device could be an actual
-> +peripheral in the platform or a virtual device created by the software.
-> +
-> +epcs : phandle to the endpoint controller device
-> +epc-names : the names of the endpoint controller device corresponding
-> +	    to the EPCs present in the *epcs* phandle
 
-Other than the NTB case, I'd expect the parent device to be the 
-controller. Let's make NTB the exception...
-
-
-> +vendor-id: used to identify device manufacturer
-> +device-id: used to identify a particular device
-> +baseclass-code: used to classify the type of function the device performs
-> +subclass-code: used to identify more specifically the function of the device
-
-Are these codes standard?
-
-Powerpc has "class-code" already...
-
-> +subsys-vendor-id: used to identify vendor of the add-in card or subsystem
-
-Powerpc has "subsystem-vendor-id" already...
-
-> +subsys-id: used to specify an id that is specific to a vendor
-> +
-> +Example:
-> +Following is an example of NTB device exposed to the remote host.
-> +
-> +ntb {
-
-This is going to need some sort of addressing (which implies 'reg')? If 
-not, I don't understand why you have 2 levels.
-
-> +	compatible = "pci-epf-ntb";
-> +	epcs = <&pcie0_ep>, <&pcie1_ep>;
-> +	epc-names = "primary", "secondary";
-> +	vendor-id = /bits/ 16 <0x104c>;
-> +	device-id = /bits/ 16 <0xb00d>;
-
-These have a long history in OF and should be 32-bits (yes, we've let 
-some cases of 16-bit creep in).
-
-> +	num-mws = <4>;
-
-Doesn't this apply to more than NTB?
-
-Can't you just get the length of 'mws-size'?
-
-> +	mws-size = <0x100000>, <0x100000>, <0x100000>, <0x100000>;
-
-Need to support 64-bit sizes?
-
-> +};
-> -- 
-> 2.17.1
-> 
+Acked-by: Rob Herring <robh@kernel.org>
