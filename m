@@ -2,149 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 535C8D6E6D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 06:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD16FD6F40
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 07:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728120AbfJOE7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 00:59:39 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49602 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726825AbfJOE7j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 00:59:39 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 35EBE1A043F;
-        Tue, 15 Oct 2019 06:59:36 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1488D1A00FD;
-        Tue, 15 Oct 2019 06:59:32 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id F12394030B;
-        Tue, 15 Oct 2019 12:59:26 +0800 (SGT)
-From:   Biwen Li <biwen.li@nxp.com>
-To:     peda@axentia.se, leoyang.li@nxp.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
-Subject: [v2,2/2] i2c: mux: pca954x: add property idle-state
-Date:   Tue, 15 Oct 2019 12:48:39 +0800
-Message-Id: <20191015044839.23746-2-biwen.li@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20191015044839.23746-1-biwen.li@nxp.com>
-References: <20191015044839.23746-1-biwen.li@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725933AbfJOFkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 01:40:06 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:43287 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbfJOFkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 01:40:06 -0400
+Received: by mail-wr1-f65.google.com with SMTP id j18so22119535wrq.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 22:40:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cgXIwZUEBFUFxozlcJa8pF4R5hS6O4lvi7YgXVTtNrg=;
+        b=wobk7zeU2Qq4Iw4VYGauePPRVllk+oX4BOTXW4dqIuZOU65i669vY0sI98tfrYcOZ5
+         SshO5hlj9xhcyL22b4GpHbRJWWe/55C0R23E2Q4WjVy/Td59knbs3xvJ4MPctCSIG7Jw
+         f2yddxGid5Qylc/tlOo6/r7RWlnkAq64dhtH9MlpO1G1QqQNndYMQLGyhR9QBN6Qi90W
+         JeURaeQ+4gEghE38gdiQujzUV1xWBCPxHAWgFJJpCzDWm2Dcm1rIU0OWeVsPemcPcJrL
+         TU5gIu9NjSC9kgfQ0mht0q61rqiJQtnsqYYzrKuJVWnvcXb8qz2NhTj1DOCbX5ewie5Y
+         QpAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cgXIwZUEBFUFxozlcJa8pF4R5hS6O4lvi7YgXVTtNrg=;
+        b=NaZNYTb4J7ohlRlbajyRRvwAwv+9CLIClyPxd7fZ257QhSsOY1GqyW4QcWvTWI15S2
+         0sP4FnAlSxY++fJMciRLRL8OWJKtRwmDcL5/iUcBT9jg1RuTg9VWasg3Y5hKeM0xZgf0
+         6AQHspoyVCwFoCO7F1r08gbCESfHUpm+Q/s3FdeDUJTx5UKqhUVhJqgSP4gMf7cAmWfo
+         QajLOEOxIFrP6N7SHoq8ytnG0I1/WEZjlx1nrghiuBvSbq6Q2yNLfh4ggTFs2s4HcQK2
+         mLfTqSTQ1Y8egapjuygCC3jXrPK6yokw4wtfa2aY1B/fuLFvoLAJAsLHQPKC9lZc+ifg
+         3G5w==
+X-Gm-Message-State: APjAAAX3fSz7MrSe6zQQ4T7Cxmy/ttvzPr2F5jI/QuSfClQSZNrghaNz
+        v8XYlKWCA//wkZEF5rReqDFq8drBwX8rzd4i+yXi3g==
+X-Google-Smtp-Source: APXvYqw22c6HVZZ+Kpi/RqnTBbP1ROHewS5lJFHx9CR+JR4q2hJYAD5M98Q9ue9e4uA7Wv2AfuCyqpA1kNE9d99rEbk=
+X-Received: by 2002:a5d:50c9:: with SMTP id f9mr27636293wrt.36.1571118003994;
+ Mon, 14 Oct 2019 22:40:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191002231617.3670-1-john.stultz@linaro.org> <20191002231617.3670-3-john.stultz@linaro.org>
+ <2e369349-41f6-bd15-2829-fa886f209b39@redhat.com> <CALAqxLVcQ7yZuJCUEqGmvqcz5u0Gd=xJzqLbmiXKR+LJrOhvMQ@mail.gmail.com>
+ <b8695418-9d3a-96a6-9587-c9a790f49740@redhat.com>
+In-Reply-To: <b8695418-9d3a-96a6-9587-c9a790f49740@redhat.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Mon, 14 Oct 2019 22:39:51 -0700
+Message-ID: <CALAqxLVh6GbiKmuK60e6f+_dWh-TS2ZLrwx0WsSo5bKp-F3iLA@mail.gmail.com>
+Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds property idle-state
+On Thu, Oct 3, 2019 at 1:51 PM Hans de Goede <hdegoede@redhat.com> wrote:
+> On 03-10-2019 22:37, John Stultz wrote:
+> > Fair point. I'm sort of taking a larger patchset and trying to break
+> > it up into more easily reviewable chunks, but I guess here I mis-cut.
+> >
+> > The user is the hikey960 gpio hub driver here:
+> >    https://git.linaro.org/people/john.stultz/android-dev.git/commit/?id=b06158a2d3eb00c914f12c76c93695e92d9af00f
+>
+> Hmm, that seems to tie the TypeC data-role to the power-role, which
+> is not going to work with role swapping.
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
-Change in v2:
-	- update subject and description
-	- add property idle-state
+Thanks again for the feedback here. Sorry for the slow response. Been
+reworking some of the easier changes but am starting to look at how to
+address your feedback here.
 
- drivers/i2c/muxes/i2c-mux-pca954x.c | 47 ++++++++++++++++++-----------
- 1 file changed, 30 insertions(+), 17 deletions(-)
+> What is controlling the usb-role-switch, and thus ultimately
+> causing the notifier you are suggesting to get called ?
 
-diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c b/drivers/i2c/muxes/i2c-mux-pca954x.c
-index 923aa3a5a3dc..8ec586342b92 100644
---- a/drivers/i2c/muxes/i2c-mux-pca954x.c
-+++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
-@@ -86,7 +86,7 @@ struct pca954x {
- 
- 	u8 last_chan;		/* last register value */
- 	/* MUX_IDLE_AS_IS, MUX_IDLE_DISCONNECT or >= 0 for channel */
--	s8 idle_state;
-+	s32 idle_state;
- 
- 	struct i2c_client *client;
- 
-@@ -256,7 +256,7 @@ static int pca954x_deselect_mux(struct i2c_mux_core *muxc, u32 chan)
- {
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 	struct i2c_client *client = data->client;
--	s8 idle_state;
-+	s32 idle_state;
- 
- 	idle_state = READ_ONCE(data->idle_state);
- 	if (idle_state >= 0)
-@@ -402,6 +402,25 @@ static void pca954x_cleanup(struct i2c_mux_core *muxc)
- 	i2c_mux_del_adapters(muxc);
- }
- 
-+static int pca954x_init(struct i2c_client *client, struct pca954x *data)
-+{
-+	/*
-+	 * Write the mux register at addr to verify
-+	 * that the mux is in fact present. This also
-+	 * initializes the mux to disconnected state.
-+	 */
-+	if (data->idle_state >= 0) {
-+		/* Always enable multiplexer */
-+		if (data->chip->muxtype == pca954x_ismux)
-+			data->last_chan = data->idle_state | data->chip->enable;
-+		else
-+			data->last_chan = 1 << data->idle_state;
-+	} else {
-+		/* Disconnect multiplexer */
-+		data->last_chan = 0; /* force the first selection */
-+	}
-+	return i2c_smbus_write_byte(client, data->last_chan);
-+}
- /*
-  * I2C init/probing/exit functions
-  */
-@@ -411,7 +430,6 @@ static int pca954x_probe(struct i2c_client *client,
- 	struct i2c_adapter *adap = client->adapter;
- 	struct device *dev = &client->dev;
- 	struct device_node *np = dev->of_node;
--	bool idle_disconnect_dt;
- 	struct gpio_desc *gpio;
- 	struct i2c_mux_core *muxc;
- 	struct pca954x *data;
-@@ -462,22 +480,18 @@ static int pca954x_probe(struct i2c_client *client,
- 		}
- 	}
- 
--	/* Write the mux register at addr to verify
--	 * that the mux is in fact present. This also
--	 * initializes the mux to disconnected state.
--	 */
--	if (i2c_smbus_write_byte(client, 0) < 0) {
-+	if (of_property_read_u32(np, "idle-state", &data->idle_state))
-+		data->idle_state = MUX_IDLE_AS_IS;
-+
-+	if (of_property_read_bool(np, "i2c-mux-idle-disconnect"))
-+		data->idle_state = MUX_IDLE_DISCONNECT;
-+
-+	ret = pca954x_init(client, data);
-+	if (ret < 0) {
- 		dev_warn(dev, "probe failed\n");
- 		return -ENODEV;
- 	}
- 
--	data->last_chan = 0;		   /* force the first selection */
--	data->idle_state = MUX_IDLE_AS_IS;
--
--	idle_disconnect_dt = np &&
--		of_property_read_bool(np, "i2c-mux-idle-disconnect");
--	if (idle_disconnect_dt)
--		data->idle_state = MUX_IDLE_DISCONNECT;
- 
- 	ret = pca954x_irq_setup(muxc);
- 	if (ret)
-@@ -531,8 +545,7 @@ static int pca954x_resume(struct device *dev)
- 	struct i2c_mux_core *muxc = i2c_get_clientdata(client);
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 
--	data->last_chan = 0;
--	return i2c_smbus_write_byte(client, 0);
-+	return pca954x_init(client, data);
- }
- #endif
- 
--- 
-2.17.1
+The tcpm_mux_set() call via tcpm_state_machine_work()
 
+> Things like TYPEC_VBUS_POWER_OFF and TYPEC_VBUS_POWER_ON
+> really beg to be modeled as a regulator and then the
+> Type-C controller (using e.g. the drivers/usb/typec/tcpm/tcpm.c
+> framework) can use that regulator to control things.
+> in case of the tcpm.c framework it can then use that
+> regulator to implement the set_vbus callback.
+
+So I'm looking at the bindings and I'm not sure exactly how to tie a
+regulator style driver into the tcpm for this?
+Looking at the driver I just see this commented out bit:
+   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/typec/tcpm/tcpm.c#n3075
+
+Do you happen to have a pointer to something closer to what you are describing?
+
+thanks
+-john
