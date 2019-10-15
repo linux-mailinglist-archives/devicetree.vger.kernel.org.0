@@ -2,107 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD16FD6F40
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 07:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC439D6F52
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 07:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725933AbfJOFkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 01:40:06 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:43287 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725802AbfJOFkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 01:40:06 -0400
-Received: by mail-wr1-f65.google.com with SMTP id j18so22119535wrq.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2019 22:40:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cgXIwZUEBFUFxozlcJa8pF4R5hS6O4lvi7YgXVTtNrg=;
-        b=wobk7zeU2Qq4Iw4VYGauePPRVllk+oX4BOTXW4dqIuZOU65i669vY0sI98tfrYcOZ5
-         SshO5hlj9xhcyL22b4GpHbRJWWe/55C0R23E2Q4WjVy/Td59knbs3xvJ4MPctCSIG7Jw
-         f2yddxGid5Qylc/tlOo6/r7RWlnkAq64dhtH9MlpO1G1QqQNndYMQLGyhR9QBN6Qi90W
-         JeURaeQ+4gEghE38gdiQujzUV1xWBCPxHAWgFJJpCzDWm2Dcm1rIU0OWeVsPemcPcJrL
-         TU5gIu9NjSC9kgfQ0mht0q61rqiJQtnsqYYzrKuJVWnvcXb8qz2NhTj1DOCbX5ewie5Y
-         QpAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cgXIwZUEBFUFxozlcJa8pF4R5hS6O4lvi7YgXVTtNrg=;
-        b=NaZNYTb4J7ohlRlbajyRRvwAwv+9CLIClyPxd7fZ257QhSsOY1GqyW4QcWvTWI15S2
-         0sP4FnAlSxY++fJMciRLRL8OWJKtRwmDcL5/iUcBT9jg1RuTg9VWasg3Y5hKeM0xZgf0
-         6AQHspoyVCwFoCO7F1r08gbCESfHUpm+Q/s3FdeDUJTx5UKqhUVhJqgSP4gMf7cAmWfo
-         QajLOEOxIFrP6N7SHoq8ytnG0I1/WEZjlx1nrghiuBvSbq6Q2yNLfh4ggTFs2s4HcQK2
-         mLfTqSTQ1Y8egapjuygCC3jXrPK6yokw4wtfa2aY1B/fuLFvoLAJAsLHQPKC9lZc+ifg
-         3G5w==
-X-Gm-Message-State: APjAAAX3fSz7MrSe6zQQ4T7Cxmy/ttvzPr2F5jI/QuSfClQSZNrghaNz
-        v8XYlKWCA//wkZEF5rReqDFq8drBwX8rzd4i+yXi3g==
-X-Google-Smtp-Source: APXvYqw22c6HVZZ+Kpi/RqnTBbP1ROHewS5lJFHx9CR+JR4q2hJYAD5M98Q9ue9e4uA7Wv2AfuCyqpA1kNE9d99rEbk=
-X-Received: by 2002:a5d:50c9:: with SMTP id f9mr27636293wrt.36.1571118003994;
- Mon, 14 Oct 2019 22:40:03 -0700 (PDT)
+        id S1726175AbfJOFu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 01:50:58 -0400
+Received: from mail-eopbgr80071.outbound.protection.outlook.com ([40.107.8.71]:19072
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725810AbfJOFu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 01:50:58 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ELY57xr4yMUOlNEOd55lrSTnLP+CE1iPJ0oA1jpi56WYxPum2cShYZtdTGfOU4QbXQlLHy5SjNG/dbfyPzW65DPq1L57dut8Prz0UjABv5uzTEkg3Bk7CcKC324rG0nyyAu1WzZUqZ69lZnTf9yGM9DRL+elK6DnaxBkOZLiWuxmNgYxJoZlD5LyDjbnqNDFAvgj4HPhllb1jjK3PmqFCVJJNdnRrbUVPM8hocLRYfzmHSYlf5cceVyVFvNF1kpKTe+zetDVN1dp465Ir0b4vBe3/viI6JdK4aMDUQnmsnVr71cFWMDLtpvbt3H7Vi2p/zuHREy8jDqpVK1Z4E6q7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WjzFNTHCG23SlbeJl0H44Z+zJGpZV2SGgKGWxjZmLdk=;
+ b=Hw/UBx5XZXMmmeG/uJro/25KUWCYXPzPOU+gzGUQbKxkYlLeIyAF1dm5AgszK0CZAA9xgPLrCFk4aG9jAD4Q+ffOC7rrVlmKLWzJeCb3f/IneJpGl86n0KyagxLM5aL7pdeaxRJf5AKad6yf8fQ/EVmz1BhqbDJExVIIk8rj5PfjNeZvA5Offoi5XdmF/ZfXMBy9aEj6KrAFcGY50UsJ7BpM+Un0CoGf3ibWODP9yTGw3MT2leRnFFjg/V9evZWATI07MARu56cnkd4E1qKtnVPf0zkgsNWk5vjAIEEbHrqGRGmYWY88LhzItSjJSx5cEBsAYpf3wdVOkzmCCHXZQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WjzFNTHCG23SlbeJl0H44Z+zJGpZV2SGgKGWxjZmLdk=;
+ b=X8nT/XO1PfCFYPQ6JU+1J0Mdgk7FiwEZLgOcLEhFSQgr/S/2Ew+c1jZicgKRvORVz3nV8awqnRpZfBTIYdBP3VNFzWyZI//FEufs9KPsxdYDf/Ieo2uemyPIsJuk2iCmJuDFjS0wD4y8ejqe7aAxwHO6rTQixh+lbCbIOMviAWU=
+Received: from VI1PR04MB6237.eurprd04.prod.outlook.com (20.179.24.74) by
+ VI1PR04MB3312.eurprd04.prod.outlook.com (10.170.228.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.17; Tue, 15 Oct 2019 05:50:54 +0000
+Received: from VI1PR04MB6237.eurprd04.prod.outlook.com
+ ([fe80::79d2:e4fd:999e:51d2]) by VI1PR04MB6237.eurprd04.prod.outlook.com
+ ([fe80::79d2:e4fd:999e:51d2%5]) with mapi id 15.20.2347.023; Tue, 15 Oct 2019
+ 05:50:54 +0000
+From:   Laurentiu Palcu <laurentiu.palcu@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: Re: Re: [PATCH v2 4/5] dt-bindings: display: imx: add bindings
+ for DCSS
+Thread-Topic: Re: Re: [PATCH v2 4/5] dt-bindings: display: imx: add bindings
+ for DCSS
+Thread-Index: AQHVgxyBUXlZiNASZka8wKs20g3JQw==
+Date:   Tue, 15 Oct 2019 05:50:53 +0000
+Message-ID: <20191015055052.GC14065@fsr-ub1664-121>
+References: <1570025100-5634-1-git-send-email-laurentiu.palcu@nxp.com>
+ <1570025100-5634-5-git-send-email-laurentiu.palcu@nxp.com>
+ <20191011145042.GA15680@bogus> <20191014080327.GB14065@fsr-ub1664-121>
+ <CAL_JsqJZHq=jDoK66bTHK+oqSvdrFh9x5a_cNe1hkFdALfs8vw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJZHq=jDoK66bTHK+oqSvdrFh9x5a_cNe1hkFdALfs8vw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=laurentiu.palcu@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8d26cc2f-ee70-479e-d529-08d75133a46f
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: VI1PR04MB3312:|VI1PR04MB3312:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB33129D0523297C5207D2471CFF930@VI1PR04MB3312.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:655;
+x-forefront-prvs: 01917B1794
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(7916004)(346002)(396003)(136003)(366004)(376002)(39860400002)(189003)(199004)(5660300002)(4744005)(102836004)(446003)(11346002)(305945005)(476003)(1076003)(6916009)(44832011)(26005)(186003)(486006)(6116002)(3846002)(7416002)(316002)(54906003)(6512007)(9686003)(33716001)(229853002)(6436002)(6486002)(86362001)(7736002)(2906002)(33656002)(66066001)(76176011)(99286004)(4326008)(25786009)(6246003)(14454004)(53546011)(6506007)(478600001)(8936002)(8676002)(81156014)(81166006)(71190400001)(71200400001)(66446008)(64756008)(256004)(66946007)(66556008)(66476007)(91956017)(76116006);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3312;H:VI1PR04MB6237.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AFihUvc/61t9AzaMQn9gWN6VkriSOoXvruI8M82kzB7ldwzy60zcqSKOWCrOOtYiAHyAQELrWWUS2CFmMjdPsK9GPmyBcQTEuuyzqCKQfmMJvlfQOoAkq48er7BZ6/zeTNRN1FXNu0xmsruZuiQkQIsUFG8TDPNV88QfMDUELLFEesKgVtatMQapdMBcWsKm+t/dNogpt9XpZvg0lA4YHW03J5qOfxGfrOhH1Jcqlyz8VRNGZ0sMu1L+JJYfft3sRwJPC5+3DJTHxQ0P72u7Vi4uHauAWsKYFs1QNDLrlzv95aZTqI5lXjTHZxNTVjIzHAZHeGCERVxK4kibmiOeoS5Rz2XgCrtTBq4IpNwJnfp0DDq0dYVgIzKyI/pPMRZSoQrsrDIbtUnuZyfzgCiYPytK4V3sbDxc2ToKbZDZeB8=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <6BC6007A97DA9349A753B4E9FAA529AB@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20191002231617.3670-1-john.stultz@linaro.org> <20191002231617.3670-3-john.stultz@linaro.org>
- <2e369349-41f6-bd15-2829-fa886f209b39@redhat.com> <CALAqxLVcQ7yZuJCUEqGmvqcz5u0Gd=xJzqLbmiXKR+LJrOhvMQ@mail.gmail.com>
- <b8695418-9d3a-96a6-9587-c9a790f49740@redhat.com>
-In-Reply-To: <b8695418-9d3a-96a6-9587-c9a790f49740@redhat.com>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Mon, 14 Oct 2019 22:39:51 -0700
-Message-ID: <CALAqxLVh6GbiKmuK60e6f+_dWh-TS2ZLrwx0WsSo5bKp-F3iLA@mail.gmail.com>
-Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d26cc2f-ee70-479e-d529-08d75133a46f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2019 05:50:53.9469
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JAkTkge+ikPFISRJD77jeYUKqTVBMm7m6FFyGmoEqPL6Cvosc92iaqNaHNTxiRH7m3V3mAtRpSVuTFJVNPK3Cw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3312
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 3, 2019 at 1:51 PM Hans de Goede <hdegoede@redhat.com> wrote:
-> On 03-10-2019 22:37, John Stultz wrote:
-> > Fair point. I'm sort of taking a larger patchset and trying to break
-> > it up into more easily reviewable chunks, but I guess here I mis-cut.
-> >
-> > The user is the hikey960 gpio hub driver here:
-> >    https://git.linaro.org/people/john.stultz/android-dev.git/commit/?id=b06158a2d3eb00c914f12c76c93695e92d9af00f
->
-> Hmm, that seems to tie the TypeC data-role to the power-role, which
-> is not going to work with role swapping.
-
-Thanks again for the feedback here. Sorry for the slow response. Been
-reworking some of the easier changes but am starting to look at how to
-address your feedback here.
-
-> What is controlling the usb-role-switch, and thus ultimately
-> causing the notifier you are suggesting to get called ?
-
-The tcpm_mux_set() call via tcpm_state_machine_work()
-
-> Things like TYPEC_VBUS_POWER_OFF and TYPEC_VBUS_POWER_ON
-> really beg to be modeled as a regulator and then the
-> Type-C controller (using e.g. the drivers/usb/typec/tcpm/tcpm.c
-> framework) can use that regulator to control things.
-> in case of the tcpm.c framework it can then use that
-> regulator to implement the set_vbus callback.
-
-So I'm looking at the bindings and I'm not sure exactly how to tie a
-regulator style driver into the tcpm for this?
-Looking at the driver I just see this commented out bit:
-   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/typec/tcpm/tcpm.c#n3075
-
-Do you happen to have a pointer to something closer to what you are describing?
-
-thanks
--john
+SGkgUm9iLA0KDQpPbiBNb24sIE9jdCAxNCwgMjAxOSBhdCAwODoyMzo1MUFNIC0wNTAwLCBSb2Ig
+SGVycmluZyB3cm90ZToNCj4gT24gTW9uLCBPY3QgMTQsIDIwMTkgYXQgMzowMyBBTSBMYXVyZW50
+aXUgUGFsY3UgPGxhdXJlbnRpdS5wYWxjdUBueHAuY29tPiB3cm90ZToNCj4gPg0KPiA+IEhpIFJv
+YiwNCj4gPg0KPiA+IE9uIEZyaSwgT2N0IDExLCAyMDE5IGF0IDA5OjUwOjQyQU0gLTA1MDAsIFJv
+YiBIZXJyaW5nIHdyb3RlOg0KPiA+ID4gOnU/d2M/P201P14/456+P300LT8/entiPz8/cj8rP9eA
+dT8/P9inPz8/PyMgPz8gPz9layA/Pz8/P1c/Sj8/Pz9ePyg/Pz9ofT8/LT8/entiPz8/cj9aPz8/
+Pys/alcuPyBcP2/bindiPyA/dispPz8/P2wgPyBiPyAmPz8sPyY/P86+Pz8/Pz8/Pz8/Pz8/Pz8/
+P1c/Pz8hanggd86iP8erPyonPz8reT9ePz9eP006Pz8/cumentatPz8/dT8/cT9reT/bindiPyA/
+dispPz8/P2wgPyBiPyAmPz8sPyY/PyA/Pz8gdT8/Pz/erj8/Pz8gP0c/Pz9oDQo+ID4NCj4gPiBP
+ayEgTm90IHN1cmUgaG93IHRvIGFkZHJlc3MgdGhpcyB0aG91Z2guLi4gOikNCj4gDQo+IFlvdXIg
+bWFpbCB3YXMgYmFzZTY0IHdoaWNoIGlkZWFsbHkgc2hvdWxkIGJlIGF2b2lkZWQgb24gbWFpbGxp
+c3RzLiBNeQ0KPiBzY3JpcHRpbmcgdHJpZXMgdG8gZGVhbCB3aXRoIGl0LCBidXQgZmFpbGVkIG9i
+dmlvdXNseS4NCg0KU29ycnkgYWJvdXQgdGhhdC4uLiA6LyBXZSd2ZSBoYWQgdGhpcyBpc3N1ZSBm
+b3IgYSB3aGlsZSBub3cgYW5kIEkNCnRob3VnaHQgaXQgZ290IGZpeGVkLiBPdXIgZW1haWwgc2Vy
+dmVyIGJlaW5nIHRvbyAic21hcnQiLi4uDQoNClRoYW5rcywNCkxhdXJlbnRpdQ0KDQo+IFdoYXQg
+SSBzYWlkDQo+IHdhczoNCj4gDQo+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJu
+ZWwub3JnPg==
