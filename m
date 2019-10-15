@@ -2,120 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE6CD7787
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 15:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF229D77C0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 15:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731999AbfJONgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 09:36:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32964 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728880AbfJONgx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 09:36:53 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 09CD321A49;
-        Tue, 15 Oct 2019 13:36:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571146612;
-        bh=Lh3gUOxuzxYIzfbryzFH5J8YBK8MTzOYjOrLSH1iECQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SVdKnnRtv6N+AuRGXmT+CvC20RbJvOKot2xgYuMq/RpeAQtfMWF0SDW5rI8S4oiyj
-         783MHOK0MeowEn1QmynwKJS5kH+7ig+RbSPpaQpU/Y1FYLuBNG32oEjt6FFGKkh+vC
-         qSMVGlxG7opZINeoK0zcStHvzDntbyrWMN08u5SU=
-Received: by mail-qk1-f170.google.com with SMTP id f16so19152385qkl.9;
-        Tue, 15 Oct 2019 06:36:52 -0700 (PDT)
-X-Gm-Message-State: APjAAAWR7HJRWAg1v3seqP5GRVy7Z0mHyd1NOZ+8YJpAVY4ywnolD3mE
-        WcIO9ZeaJqkdLvCN0Kfc+pQv0sACCOJ7CS0s/A==
-X-Google-Smtp-Source: APXvYqypirVCKVCRTL7nRtAYwMId0v/R2tSXy313ZY3pYHRXJuh7KZFwlJGt2xV9T7SPrVcWBZmRcO4Mo8Wu7toa2tg=
-X-Received: by 2002:a05:620a:12f1:: with SMTP id f17mr4163163qkl.152.1571146611108;
- Tue, 15 Oct 2019 06:36:51 -0700 (PDT)
+        id S1732214AbfJONx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 09:53:27 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:38175 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728880AbfJONx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 09:53:27 -0400
+Received: by mail-pg1-f195.google.com with SMTP id w3so5289301pgt.5;
+        Tue, 15 Oct 2019 06:53:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QhHgBu9DtlVuSa/jKN81LxnRQ5IePxEDrqTOOn2qwlc=;
+        b=oKjy0lXqfaBGQOGxCfyXjK5IpuMO/YOWCF5nkjtbivKJ5HRGK6luMngGsN9xTcQq23
+         2krqRfsoPw28MJcSKfyxYGQjH2hqwBkP+qygdHQapWzARXN0xn5zyr2s/zOcMIWYajDL
+         0ufPvELGFhkOlnpI+Ydymyi7FwXQ+9ap+zpW6wY/O0gn1ZNIixNKIRHDF7SmBxLWZu3Z
+         qzIFUJMub6bE+NZgTwew5E31oxZjyzk7CIqg7lqKbSzO/3j1bjzxabtnkg2BMZlMX79C
+         Jv4P/XpW9ksJ8iQu0iMgboaSQr9NzD0MntkcvM0WhdgoGjuFoPzzPbPBwv34r3ZGZoAh
+         FR2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QhHgBu9DtlVuSa/jKN81LxnRQ5IePxEDrqTOOn2qwlc=;
+        b=Y2ejVFrZ4hz1EBNCTxtFvEyCTAFKxzgpCjLHZ+O3anAFk7rPeJK1kfTiv4TKWUJ/Sg
+         2lGZ7w8yRQkm39ySTXG3RNWi1FlfvJALeYCyHJvZo81KWwzJuDSdQtI3jCCX4rIAgG15
+         qnvY+4uTxvpMpndOKy61jgexNQPHCuYtW1MwYgGkjGVAwIyEKjiq4WjhFkpbDPn3PnXo
+         f0eCyHN46QLcw6ZsX8uv1EjlyEGB7unMPbXTP+HZQKKxQuTMkvU9LwAVKY8QBL3XjaN8
+         vib8glQKDSxTw+hfI2GtbdRzIqcghEX/3zTAcBIkEz0BsJ71VYAmlVKZUFZ2M3Xnoh6O
+         rkxQ==
+X-Gm-Message-State: APjAAAVX0r5N9BjgU2zjW8ayzFYpBerqVH9HfXXhpw5UL1kWYspQqEl1
+        l1VY+MpGZjSJoIOjMn/IWTCdnxNB5/dnjvKyqcY=
+X-Google-Smtp-Source: APXvYqyuQKWewX3MTgBBY9LImkYYICsBBlZXn7ZhrfDVATCJxjHgqylTK7hQwpt/Bk5EGGJetAsik/a2Fy6Yjpul6E0=
+X-Received: by 2002:a62:e206:: with SMTP id a6mr38798141pfi.64.1571147606854;
+ Tue, 15 Oct 2019 06:53:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191011154423.2506-1-srinivas.kandagatla@linaro.org>
- <20191011154423.2506-2-srinivas.kandagatla@linaro.org> <20191014171241.GA24989@bogus>
- <76be1a0d-43ea-44c3-ef6c-9f9a2025c7a2@linaro.org> <CAL_Jsq+ZBhh2A3yLtOyReHHAET_bvM-ygBtRXeFihAxf0jvDKQ@mail.gmail.com>
- <f7977140-c103-7d0d-9523-2212e1029598@linaro.org>
-In-Reply-To: <f7977140-c103-7d0d-9523-2212e1029598@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 15 Oct 2019 08:36:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJLmPGBxEkmZMTBMpp5xsnHq0SYg8+RQPsjnUfbHrrf5Q@mail.gmail.com>
-Message-ID: <CAL_JsqJLmPGBxEkmZMTBMpp5xsnHq0SYg8+RQPsjnUfbHrrf5Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: soundwire: add bindings for Qcom controller
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Vinod <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        spapothi@codeaurora.org
+References: <20191012035420.13904-3-dan@dlrobertson.com> <201910150017.MkSBCEcB%lkp@intel.com>
+In-Reply-To: <201910150017.MkSBCEcB%lkp@intel.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 15 Oct 2019 16:53:16 +0300
+Message-ID: <CAHp75VeyB2rZXXF34cUKp2iBfJMeN3fw8SfBMW=13sZY3z2DNA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: (bma400) add driver for the BMA400
+To:     kbuild test robot <lkp@intel.com>
+Cc:     Dan Robertson <dan@dlrobertson.com>, kbuild-all@lists.01.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 15, 2019 at 7:22 AM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
->
->
->
-> On 15/10/2019 12:35, Rob Herring wrote:
-> > On Mon, Oct 14, 2019 at 12:34 PM Srinivas Kandagatla
-> > <srinivas.kandagatla@linaro.org> wrote:
-> >>
-> >> Thanks Rob for taking time to review,
-> >>
-> >> On 14/10/2019 18:12, Rob Herring wrote:
-> >>> On Fri, Oct 11, 2019 at 04:44:22PM +0100, Srinivas Kandagatla wrote:
-> >>>> This patch adds bindings for Qualcomm soundwire controller.
-> >>>>
-> >>>> Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
-> >>>> either integrated as part of WCD audio codecs via slimbus or
-> >>>> as part of SOC I/O.
-> >>>>
-> >>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >>>> ---
-> >>>>    .../bindings/soundwire/qcom,sdw.txt           | 167 ++++++++++++++++++
-> >>>>    1 file changed, 167 insertions(+)
-> >>>>    create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> >>>
-> >>> Next time, do a DT schema.
-> >>>
-> >> Sure! I can do that in next version!
-> >
-> > I meant the next binding you write, not v4. However, ...
-> >
-> > [...]
-> >
-> >>>> += SoundWire devices
-> >>>> +Each subnode of the bus represents SoundWire device attached to it.
-> >>>> +The properties of these nodes are defined by the individual bindings.
-> >>>
-> >>> Is there some sort of addressing that needs to be defined?
-> >>>
-> >> Thanks, Looks like I missed that here.
-> >>
-> >> it should be something like this,
-> >>
-> >> #address-cells = <2>;
-> >> #size-cells = <0>;
-> >>
-> >> Will add the in next version.
-> >
-> > You need a common soundwire binding for this. You also need to define
-> > the format of 'reg' and unit addresses. And it needs to be a schema.
-> > So perhaps this binding too should be.
->
-> We already have a common SoundWire bindings in mainline for this
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml?h=v5.4-rc3
+On Tue, Oct 15, 2019 at 12:25 AM kbuild test robot <lkp@intel.com> wrote:
 
-Indeed... :)
+> smatch warnings:
+> drivers/iio/accel/bma400_core.c:422 bma400_set_accel_oversampling_ratio() warn: unsigned 'acc_config' is never less than zero.
 
-> Should this binding just make a reference to it instead of duplicating
-> this same info here?
+>    420                  ret = regmap_read(data->regmap, BMA400_ACC_CONFIG0_REG,
+>    421                                    &acc_config);
+>  > 422                  if (acc_config < 0)
+>    423                          return acc_config;
 
-Yes, that should be sufficient.
+Obvious typo, has to be if (ret < 0)
 
-Rob
+>    424
+>    425                  ret = regmap_write(data->regmap, BMA400_ACC_CONFIG0_REG,
+>    426                                     (acc_config & ~BMA400_LP_OSR_MASK) |
+>    427                                     (val << BMA400_LP_OSR_SHIFT));
+>    428                  if (ret < 0) {
+>    429                          dev_err(data->dev, "Failed to write out OSR");
+>    430                          return ret;
+>    431                  }
+
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
