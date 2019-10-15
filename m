@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3994CD7D88
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 19:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1D1BD7DA3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 19:26:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731600AbfJORYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 13:24:03 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:41346 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727387AbfJORYD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 13:24:03 -0400
-Received: by mail-ot1-f65.google.com with SMTP id g13so17625721otp.8;
-        Tue, 15 Oct 2019 10:24:02 -0700 (PDT)
+        id S1727242AbfJORZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 13:25:55 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:43894 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388722AbfJORZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 13:25:52 -0400
+Received: by mail-oi1-f195.google.com with SMTP id t84so17518073oih.10;
+        Tue, 15 Oct 2019 10:25:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=AMnuJgHGU6R0IzytORO8cFlW8ykU5YUSocCPPL5eBC4=;
-        b=UEiJXYbXmrIOZRPiKZBaVt+kyPYDy/vH44IePvqy+WVoUHfMvdBLwewfDrU+AXGbHE
-         HZMSpz5R6JKF+dm7tDI+Ndb1dfJXp/pvyua/GsbHHvCIcW6lBm69Dx7xDI0JMzK3is/c
-         Ssza4d3tM6KkMgDHcsEMMquLa9Ohi1qDbvFeC0cLPqD0P4t0rlYAx9moGLkpO2IrK2yL
-         Xsnw36SjMUdcfZ0mbjJr7OdUQ+fQIQbbZ6Xz7uk2k+dpMhwHjB/th0vLgC0Sby8wvWCe
-         83dqm79YKPYEJY1k3EBM3tUG3wQjhd1Atow79jcDilPXXI9Il9mXlfVIe4oWFZIS0wrY
-         GSrQ==
-X-Gm-Message-State: APjAAAWK+pLUUAUEF8UGmGyhLy08rzhj5kn8AXMlWWsWzE97lpoQgw9N
-        XS48O1KcJ9uqhV6RUgpARA==
-X-Google-Smtp-Source: APXvYqxeAQyn2woHyJsNz/1A9Qqotnbqgu/lYixgaEz9AtYG4uiKdx1AbMY3H/CJDkTrB7+S/N/KHQ==
-X-Received: by 2002:a05:6830:22ce:: with SMTP id q14mr3987927otc.115.1571160242078;
-        Tue, 15 Oct 2019 10:24:02 -0700 (PDT)
+        bh=TuLY0T5XCanlGHWiiteaVAS0AqJDC0pQFFmFd4/UATA=;
+        b=LtEsW1HuAp629IJBd5FW9dHUPIb4l5EnwWl+sfRYkdmdM2grT341mwT8OajDN4PY7x
+         74/Y8NSxupWgMgoKv5fuKst7tC9zlyDAxGmwqHDmq0RNB3itHcPC+bJI7M3prVQqmUp+
+         DPrWHvW9aQ88NRAUzKiMelc7MmQ9Q1KeD3W4v18cNguVYi0+//FG/u08TkOrlemhNLaW
+         hahReiOYAm7+dzF774Gm6p8ERkZMhkjoGKXqlk+Ji9H4Rri9xzVlPkWuW4xC2Om610bv
+         2XF74BCNDnOP6z998nmTTWyOKNRDlsmFRtlZdfpTPJnH1EoTzC2feGv6qEpIkrqiKxDU
+         pfew==
+X-Gm-Message-State: APjAAAU2VHyVKywH5zahLcvcgxJ6UykF6j3cnGIfDeu2tV06JLQPbn/X
+        i7v8gWGRhdcgokH0zcgnRg==
+X-Google-Smtp-Source: APXvYqyh/AJuW5SKmbZ5+aKVbLFBePskQhmFvgqaWcF+4jvMRtRbccQskyol9LKjgN6XrE7Ol69g6A==
+X-Received: by 2002:aca:2807:: with SMTP id 7mr30578217oix.99.1571160351713;
+        Tue, 15 Oct 2019 10:25:51 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d194sm6658461oib.47.2019.10.15.10.24.01
+        by smtp.gmail.com with ESMTPSA id y18sm6549012oto.2.2019.10.15.10.25.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 10:24:01 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 12:24:00 -0500
+        Tue, 15 Oct 2019 10:25:51 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 12:25:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: usb: generic-ehci: Add "companion" entry
-Message-ID: <20191015172400.GA724@bogus>
-References: <20191007134410.10337-1-alexandre.torgue@st.com>
- <20191007134410.10337-4-alexandre.torgue@st.com>
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: Convert sharp,ld-d5116z01b panel
+ to DT schema
+Message-ID: <20191015172550.GA4197@bogus>
+References: <20191010210654.37426-1-jeffrey.l.hugo@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191007134410.10337-4-alexandre.torgue@st.com>
+In-Reply-To: <20191010210654.37426-1-jeffrey.l.hugo@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Oct 2019 15:44:10 +0200, Alexandre Torgue wrote:
-> "companion" entry is present in "generic.txt" usb binding file. This commit
-> adds it also in generic-ehci yaml binding.
+On Thu, 10 Oct 2019 14:06:54 -0700, Jeffrey Hugo wrote:
+> Convert the sharp,ld-d5116z01b panel binding to DT schema.
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> ---
+>  .../display/panel/sharp,ld-d5116z01b.txt      | 26 ----------------
+>  .../display/panel/sharp,ld-d5116z01b.yaml     | 30 +++++++++++++++++++
+>  2 files changed, 30 insertions(+), 26 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.yaml
 > 
 
 Applied, thanks.
