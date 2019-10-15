@@ -2,138 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8353DD7666
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 14:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65754D7693
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 14:31:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727383AbfJOMW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 08:22:56 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:41375 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727254AbfJOMW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 08:22:56 -0400
-Received: by mail-wr1-f67.google.com with SMTP id p4so7723335wrm.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 05:22:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bDfGVQjLwucspFf3MSlUAeaaGSMNhHbSYDBFpj+ymqQ=;
-        b=ha9SgCIwrZh2MxtJXScwcMKk6Va0RXRm1tLKRoE4JY6yiwQgEzIbYwWG0rpoD+tORx
-         jRKFisDpTw3E6Eht/caO/XXZotqXmx/Hp1Gvebglm16WMWdgb5gTyc+qZICe7KHXMy67
-         g6/p1arXdEU83/5CuMLwO9Ua3JeFtoGFaziC2CCKVbWEszTcBVKl0W5GnC6J6D4yl39J
-         PUKNGXJIlTuxS26cNZmhEBNsd26Ektr83Arl/THp2M/Xf+KJNWKCiqBMmBZ8DhPOQAhU
-         BUfGekft5l5pXkNomIK9cN6WGOJa9T4Kp1juWhgDM7PGdwcbZ6g0o4SoPrjwsxXDq8DI
-         byiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bDfGVQjLwucspFf3MSlUAeaaGSMNhHbSYDBFpj+ymqQ=;
-        b=F1m+86iE/fByolZEbMUx2k0TPlKCT8EZoUQLSRNS/+ciKIfQrY4Hy65IU5o9RgG3C8
-         2rk5eaZQhDAhwl8EhZUtKKrexNDPaWNOI3uX8sLWHeYxrKOcHmXrNTmKdWwSWplywjXC
-         hBaQhwphn15Lg/xEglggkIcoEb+506k83TLUVv4b96+tfZRNZL4FUZBPTXQ8xCzARO4O
-         40QVya0we9w4iQQNqd/S6H1w8lHz/9mQMJ1dCN+mODQg3U+wLJyrc7TjEU/WsCyo1HWZ
-         bypD7Ry/jWj0Q6aAw9gsg02tRscO0pSfmeidYLuAqMWL4RldEZDHlpqO6/wQ7dRHYbsw
-         Q7MA==
-X-Gm-Message-State: APjAAAXjTOD4/6Q48tA+7fQz2Fac+05TNBBQmnXe9hlGKrKPlFk3Bq1B
-        qCbRYb5X5HuW+kHcLdAT/WMruQ==
-X-Google-Smtp-Source: APXvYqw0QWG1LAvYnp2xS0NK5ksIEqdxTKAD+EuCuDvTOJZxyO2DJb/fvjjDXQBy9kl6PqYPyaH4mQ==
-X-Received: by 2002:adf:fad2:: with SMTP id a18mr4206443wrs.279.1571142174186;
-        Tue, 15 Oct 2019 05:22:54 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id e18sm30040325wrv.63.2019.10.15.05.22.52
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 15 Oct 2019 05:22:53 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: soundwire: add bindings for Qcom
- controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        spapothi@codeaurora.org
-References: <20191011154423.2506-1-srinivas.kandagatla@linaro.org>
- <20191011154423.2506-2-srinivas.kandagatla@linaro.org>
- <20191014171241.GA24989@bogus>
- <76be1a0d-43ea-44c3-ef6c-9f9a2025c7a2@linaro.org>
- <CAL_Jsq+ZBhh2A3yLtOyReHHAET_bvM-ygBtRXeFihAxf0jvDKQ@mail.gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <f7977140-c103-7d0d-9523-2212e1029598@linaro.org>
-Date:   Tue, 15 Oct 2019 13:22:52 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726441AbfJOMbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 08:31:20 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1271 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725871AbfJOMbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 08:31:20 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9FCFiFX020740;
+        Tue, 15 Oct 2019 14:31:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=C/kzveCydwhm/NSFFbbmhm40wMyVsaHpKZ6dysDlYG0=;
+ b=qyuKPHoeTpOW3iueqds4b/gZvPAxhVUcK9So+HFG+eldZacdjcWHeND1gDmE85oUoSYn
+ UJ5DieWVV5C73w8PSyW5bCGbC9eFU/it5YT7dZqaEhoqEniIJqr4bpEvtPFAxw7UuJwK
+ bKefzXdgx9k7WWSktRdMQ9QEC8IecSV0pUNPaYiO++nMUImGpAn41CSY87abBH+PGYc9
+ bJONXibjSpSo1HnKljA0SOF05ESnvCO+4GvyYdxy8eFhUqugk4Ia1fIxNZWv4bCsYMqm
+ xqDW+YeICJBOMPF+CKqUwbzvxs3h2F6uwy+VrIhB46w/VRbTuCYVgjyVBlye1of6INU3 kQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vk4kx04f4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Oct 2019 14:31:05 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 24DA6100034;
+        Tue, 15 Oct 2019 14:31:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 106AA2C7EA9;
+        Tue, 15 Oct 2019 14:31:05 +0200 (CEST)
+Received: from SAFEX1HUBCAS21.st.com (10.75.90.44) by Safex1hubcas22.st.com
+ (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 15 Oct
+ 2019 14:31:05 +0200
+Received: from localhost (10.129.4.186) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 15 Oct 2019 14:31:04
+ +0200
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <alexandre.torgue@st.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH] ARM: dts: stm32f429: remove useless dma-ranges property
+Date:   Tue, 15 Oct 2019 14:30:57 +0200
+Message-ID: <20191015123058.14669-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+ZBhh2A3yLtOyReHHAET_bvM-ygBtRXeFihAxf0jvDKQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.129.4.186]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-15_05:2019-10-15,2019-10-15 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Remove dma-ranges from ltdc node since it is already set
+on bus node.
 
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+---
+ arch/arm/boot/dts/stm32429i-eval.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-On 15/10/2019 12:35, Rob Herring wrote:
-> On Mon, Oct 14, 2019 at 12:34 PM Srinivas Kandagatla
-> <srinivas.kandagatla@linaro.org> wrote:
->>
->> Thanks Rob for taking time to review,
->>
->> On 14/10/2019 18:12, Rob Herring wrote:
->>> On Fri, Oct 11, 2019 at 04:44:22PM +0100, Srinivas Kandagatla wrote:
->>>> This patch adds bindings for Qualcomm soundwire controller.
->>>>
->>>> Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
->>>> either integrated as part of WCD audio codecs via slimbus or
->>>> as part of SOC I/O.
->>>>
->>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>> ---
->>>>    .../bindings/soundwire/qcom,sdw.txt           | 167 ++++++++++++++++++
->>>>    1 file changed, 167 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->>>
->>> Next time, do a DT schema.
->>>
->> Sure! I can do that in next version!
-> 
-> I meant the next binding you write, not v4. However, ...
-> 
-> [...]
-> 
->>>> += SoundWire devices
->>>> +Each subnode of the bus represents SoundWire device attached to it.
->>>> +The properties of these nodes are defined by the individual bindings.
->>>
->>> Is there some sort of addressing that needs to be defined?
->>>
->> Thanks, Looks like I missed that here.
->>
->> it should be something like this,
->>
->> #address-cells = <2>;
->> #size-cells = <0>;
->>
->> Will add the in next version.
-> 
-> You need a common soundwire binding for this. You also need to define
-> the format of 'reg' and unit addresses. And it needs to be a schema.
-> So perhaps this binding too should be.
+diff --git a/arch/arm/boot/dts/stm32429i-eval.dts b/arch/arm/boot/dts/stm32429i-eval.dts
+index ba08624c6237..21bc657f21c3 100644
+--- a/arch/arm/boot/dts/stm32429i-eval.dts
++++ b/arch/arm/boot/dts/stm32429i-eval.dts
+@@ -234,7 +234,6 @@
+ 	status = "okay";
+ 	pinctrl-0 = <&ltdc_pins>;
+ 	pinctrl-names = "default";
+-	dma-ranges;
+ 
+ 	port {
+ 		ltdc_out_rgb: endpoint {
+-- 
+2.15.0
 
-We already have a common SoundWire bindings in mainline for this
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml?h=v5.4-rc3
-
-Should this binding just make a reference to it instead of duplicating 
-this same info here?
-
---srini
-
-
-> 
-> Rob
-> 
