@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1C28D8388
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 00:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D8E6D838F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 00:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732046AbfJOWVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 18:21:38 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39853 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726417AbfJOWVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 18:21:38 -0400
-Received: by mail-ot1-f65.google.com with SMTP id s22so18389073otr.6;
-        Tue, 15 Oct 2019 15:21:38 -0700 (PDT)
+        id S2389741AbfJOWYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 18:24:19 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:34090 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732312AbfJOWYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 18:24:19 -0400
+Received: by mail-oi1-f193.google.com with SMTP id 83so18306904oii.1;
+        Tue, 15 Oct 2019 15:24:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TQVKfQ0EPrH9rwXUS6s9Y7ThrS4ruNqIvq5HwSXIrek=;
-        b=dtUKOGJ01PN8kuhaX5l30/hcl8WfPRJoMSuURQwAIARrU27EALZhCbbRoooIhsEBLs
-         DOD8d6MNAepG/cYDIXyiTNdhYxWeUbOAusP7Dre9IdWLiVUTsptye5cxZYfaj2dOGXrl
-         HflIzpPXz6p35GaxC+lRA95aoutPm3DOLvWLoh94SU+s1rVINz8a/CG5bHbxHh7wTvOQ
-         ZKb8aCuN5GovMM9RfawM8hrSACPjRfPVWJoTRSA1Eby2L0TyC2aYdFpZSTPI1BriXoph
-         junB0Z2OAMkjPZ/mvHwLsZkqA6De7J0qyi0U5sIYxL5fq6csaZxGHt+S0KXKLg0TgNsa
-         ChTw==
-X-Gm-Message-State: APjAAAWYkQgml05nJ8vNrpbITUbRVZ2HJSG1JfJ7802kmrFdX10V2a+Y
-        nkTjUckMljX5TnuuuTOtYw==
-X-Google-Smtp-Source: APXvYqx0UaqLhY/bEIQPxb4fE5uWfzu7ziGYgSUyLujfrv/qLO2LOhU/6Y0BrO/FaaIpEiRN5xx+Wg==
-X-Received: by 2002:a9d:6ad9:: with SMTP id m25mr17660619otq.181.1571178097586;
-        Tue, 15 Oct 2019 15:21:37 -0700 (PDT)
+        bh=nK0aavkV2vBesQcv0AgqoDNcvg469f2OzuJk5GeXGKE=;
+        b=tm3NVTLbuROFoKpV12NBTzuQkEpufJ6jXkk/a0zACWGzx2a2sXFydOMMhcIYAwqfW9
+         1mcYcarXVSubjdSwL5FUt+/rX5iqTjB6ycXPVdaUGTqLrJhrrtEZe2iHL4uR3B/5SltF
+         W7wOkq3EkYmW38uh6PhjvRbsvZImP7dvUdrF2WAzW/UskQ4hiIIlm//KkmBQ5uzSAODJ
+         vCA3TjGg/KP65cPs5iIYKyLqCRz5IxQ+sxGT32XDUqWAJ9hwjNiWBHsM5g9vp5eJY8/6
+         TnAkbkDs+7cKRXRVP1KDswCdvDBcHem2ivB6ighRO6jVjhBqXt2ffOK3eWgtFxqO3GvZ
+         l/tg==
+X-Gm-Message-State: APjAAAWtVvZyt7/m+oxfW/CBag/ABH1kLt748S2T4ykwTNMap0y0OBXj
+        r+uJ6u4+g7+2re4Wdnmekw==
+X-Google-Smtp-Source: APXvYqw2zlzetx+asQEISLHCoq9N6nsXVVk1APE2KhuoS0Weh/DxpADYhOg0xmTVQQw+4Z3eMZTbng==
+X-Received: by 2002:aca:3b84:: with SMTP id i126mr785946oia.28.1571178256967;
+        Tue, 15 Oct 2019 15:24:16 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d69sm6745459oig.32.2019.10.15.15.21.36
+        by smtp.gmail.com with ESMTPSA id m20sm6622503oih.43.2019.10.15.15.24.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 15:21:36 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 17:21:36 -0500
+        Tue, 15 Oct 2019 15:24:16 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 17:24:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi@etezian.org>,
-        Andi Shyti <andi.shyti@samsung.com>,
-        Simon Shields <simon@lineageos.org>,
-        linux-input@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH 2/3] dt-bindings: mms114: document melfas,mms345l binding
-Message-ID: <20191015222136.GA6924@bogus>
-References: <20191007203343.101466-1-stephan@gerhold.net>
- <20191007203343.101466-3-stephan@gerhold.net>
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        johnny_huang@aspeedtech.com, ryanchen.aspeed@gmail.com
+Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: aspeed-g6: Rework SD3 function
+ and groups
+Message-ID: <20191015222415.GA10977@bogus>
+References: <20191008044153.12734-1-andrew@aj.id.au>
+ <20191008044153.12734-2-andrew@aj.id.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191007203343.101466-3-stephan@gerhold.net>
+In-Reply-To: <20191008044153.12734-2-andrew@aj.id.au>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  7 Oct 2019 22:33:42 +0200, Stephan Gerhold wrote:
-> The mms114 driver now supports MMS345L; document the
-> melfas,mms345l binding that is used for it.
+On Tue,  8 Oct 2019 15:11:47 +1030, Andrew Jeffery wrote:
+> Rename SD3 functions and groups to EMMC to better reflect their intended
+> use before the binding escapes too far into the wild. Also clean up the
+> SD3 pin groups to eliminate some silliness that slipped through the
+> cracks (SD3DAT[4-7]) by unifying them into three new groups: EMMCG1,
+> EMMCG4 and EMMCG8 for 1, 4 and 8-bit data buses respectively.
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 > ---
->  Documentation/devicetree/bindings/input/touchscreen/mms114.txt | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> Unfortunately reflowing the list creates a lot of noise in this change. As
+> mentioned the SD3DAT[4-7] groups are renamed, as is the SD3 function. There
+> should be no functional changes beyond that.
+> 
+>  .../pinctrl/aspeed,ast2600-pinctrl.yaml       | 86 +++++++++----------
+>  1 file changed, 42 insertions(+), 44 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
