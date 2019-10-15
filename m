@@ -2,91 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E22E2D8160
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 22:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 693CFD8185
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2019 23:13:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388464AbfJOU7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 16:59:04 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:33950 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387762AbfJOU7E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 16:59:04 -0400
-Received: by mail-wm1-f66.google.com with SMTP id y135so3166835wmc.1;
-        Tue, 15 Oct 2019 13:59:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ogtau3Uh0A4ADmjc9/qgEzfRMjPeR7tQvaVRI8Bj8aM=;
-        b=q0mEzJ+xvj7olp4fPt3m+zHUwJMGxg/yurUQobCwB1fAMuyL4TEC8sOeswPQG6WCx8
-         judxGSBphzglY4itOq0X4MUtb+oSRTj993jh6Dcn53VeVZooGDolngXdz+eZbzi5w2F2
-         Yys4GXk4SVwk3PLNHURny2IbE6Hp8UvjPAYPLfERyNs5dT4lYg5sAS/UxqRFHL7Jq8pq
-         xvVw6gKmbziszw2y0ocg2J4laEQeIr82cgQAHxr6eZZ+gkl4yzseePteZ5Lr8WU0qkeT
-         eYxb7ENCg7NO4Y02QH1r6JCuqCujvviqrwAbkQYRbzv81mCGnsFXgi54SXo812x/D9BX
-         5C7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ogtau3Uh0A4ADmjc9/qgEzfRMjPeR7tQvaVRI8Bj8aM=;
-        b=Iy/Ifq80vXrb3UxW8Ae5po0VyLkl3HwIZ0wNMEp0TKyZMp4x4kwJONOmCL51MVx74a
-         1LD0rz8TEb5q6iZYu2zc3VwNkY77D9i9s68phlzByYWNSP6PAszfYjHyGh4FCVWynkQg
-         LFSOqnf8L2FaBI3nk+d+COPU7/+zbkOtkHzcHZZiqLC+kugZxQNFhYFf6KnncUmY49LW
-         CO6hPsE6nJ/qPuTQmf/bmrkQCM/g4+teLc0VZqam0mwA7owSalKXkyyBzDMFlnL5u+x9
-         bVmCRY8Ctxj1v0PO0XZc++TC2ZdSLnLy8nGQjZMUWieZcojjqATk2DKYfp4n/RATdYhW
-         NCxw==
-X-Gm-Message-State: APjAAAVLgbaPMqoRfkqPDwIlPIUGyFlGNio16JBP0Wn/ltjMvz99gNk0
-        BsnxuC1X1RjFvVnAl/1D53g=
-X-Google-Smtp-Source: APXvYqzlLqMWB6ZoWhuayr8R9lneMMXByJF4r2POBJBFL/aXpfLfbf+owDml9VFIq2cXb25zvzih6A==
-X-Received: by 2002:a05:600c:21d2:: with SMTP id x18mr397536wmj.146.1571173141891;
-        Tue, 15 Oct 2019 13:59:01 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id j18sm19216963wrs.85.2019.10.15.13.59.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 15 Oct 2019 13:59:01 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] include: dt-bindings: rockchip: mark RK_FUNC defines as deprecated
-Date:   Tue, 15 Oct 2019 22:58:52 +0200
-Message-Id: <20191015205852.4200-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191015205852.4200-1-jbx6244@gmail.com>
-References: <20191015191000.2890-1-jbx6244@gmail.com>
- <20191015205852.4200-1-jbx6244@gmail.com>
+        id S1726665AbfJOVNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 17:13:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52022 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726293AbfJOVNR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 17:13:17 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BD8062168B;
+        Tue, 15 Oct 2019 21:13:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571173995;
+        bh=HJVfx0qraMvuuMLZzhNC9btRgIHEXiyCNSL/C+C6Qxo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=C66u0c1yyINa0hcqT4JcZbugTLbq3fLsxufOVpuH2SlBVIX214TfjcnrbeXYjS4OA
+         0gshGH607BJ8LIOqLSbe8g6ofovIBf6g3+gj5Th3f6U0bbq1deH3s0oAekQKnK8mxT
+         C6F8xVsX+WsJ+KZgknVkZ22gNOBJiCz8AvysD8RI=
+Received: by mail-qt1-f177.google.com with SMTP id n17so13439771qtr.4;
+        Tue, 15 Oct 2019 14:13:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAX96G2gfZUD+sXo6i9e+eYLcZHNQri4PtqjShH1KHVXwcVhxmwA
+        CncHaD+f+rA+6mSb1ZcX17k/iR2nB1pr4jsQUw==
+X-Google-Smtp-Source: APXvYqwScYelT0zfAWBhgX1CBaYGJb7woplnj45bvSqWKWHTsqdVt/NwsjjaJIojq28e119Knusj0IJuPtlKAbokxwA=
+X-Received: by 2002:a05:6214:407:: with SMTP id z7mr38220174qvx.79.1571173994745;
+ Tue, 15 Oct 2019 14:13:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191015162300.22024-1-brgl@bgdev.pl> <20191015162300.22024-2-brgl@bgdev.pl>
+In-Reply-To: <20191015162300.22024-2-brgl@bgdev.pl>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 15 Oct 2019 16:13:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKHVL=hoxH+nxiU6397PX3rzDNDv3C3evrd8bON-=YJUg@mail.gmail.com>
+Message-ID: <CAL_JsqKHVL=hoxH+nxiU6397PX3rzDNDv3C3evrd8bON-=YJUg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: max77650: convert the binding
+ document to yaml
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The defines RK_FUNC_1, RK_FUNC_2, RK_FUNC_3 and RK_FUNC_4
-are no longer used. Mark them as "deprecated"
-to prevent that someone start using them again.
+On Tue, Oct 15, 2019 at 11:23 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+>
+> Convert the binding document for MAX77650 core MFD module to YAML.
+>
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> ---
+>  .../devicetree/bindings/mfd/max77650.txt      | 47 +----------
+>  .../devicetree/bindings/mfd/max77650.yaml     | 83 +++++++++++++++++++
+>  2 files changed, 84 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/max77650.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/max77650.txt b/Documentation/devicetree/bindings/mfd/max77650.txt
+> index b529d8d19335..080871686b3b 100644
+> --- a/Documentation/devicetree/bindings/mfd/max77650.txt
+> +++ b/Documentation/devicetree/bindings/mfd/max77650.txt
+> @@ -1,46 +1 @@
+> -MAX77650 ultra low-power PMIC from Maxim Integrated.
+> -
+> -Required properties:
+> --------------------
+> -- compatible:          Must be "maxim,max77650"
+> -- reg:                 I2C device address.
+> -- interrupts:          The interrupt on the parent the controller is
+> -                       connected to.
+> -- interrupt-controller: Marks the device node as an interrupt controller.
+> -- #interrupt-cells:    Must be <2>.
+> -
+> -- gpio-controller:     Marks the device node as a gpio controller.
+> -- #gpio-cells:         Must be <2>. The first cell is the pin number and
+> -                       the second cell is used to specify the gpio active
+> -                       state.
+> -
+> -Optional properties:
+> ---------------------
+> -gpio-line-names:       Single string containing the name of the GPIO line.
+> -
+> -The GPIO-controller module is represented as part of the top-level PMIC
+> -node. The device exposes a single GPIO line.
+> -
+> -For device-tree bindings of other sub-modules (regulator, power supply,
+> -LEDs and onkey) refer to the binding documents under the respective
+> -sub-system directories.
+> -
+> -For more details on GPIO bindings, please refer to the generic GPIO DT
+> -binding document <devicetree/bindings/gpio/gpio.txt>.
+> -
+> -Example:
+> ---------
+> -
+> -       pmic@48 {
+> -               compatible = "maxim,max77650";
+> -               reg = <0x48>;
+> -
+> -               interrupt-controller;
+> -               interrupt-parent = <&gpio2>;
+> -               #interrupt-cells = <2>;
+> -               interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> -
+> -               gpio-controller;
+> -               #gpio-cells = <2>;
+> -               gpio-line-names = "max77650-charger";
+> -       };
+> +This file has been moved to max77650.yaml.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- include/dt-bindings/pinctrl/rockchip.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+We do this for common files with lots of references. I don't think
+that applies here.
 
-diff --git a/include/dt-bindings/pinctrl/rockchip.h b/include/dt-bindings/pinctrl/rockchip.h
-index dc5c1c73d..6d6bac1c2 100644
---- a/include/dt-bindings/pinctrl/rockchip.h
-+++ b/include/dt-bindings/pinctrl/rockchip.h
-@@ -50,9 +50,9 @@
- #define RK_PD7		31
- 
- #define RK_FUNC_GPIO	0
--#define RK_FUNC_1	1
--#define RK_FUNC_2	2
--#define RK_FUNC_3	3
--#define RK_FUNC_4	4
-+#define RK_FUNC_1	1 /* deprecated */
-+#define RK_FUNC_2	2 /* deprecated */
-+#define RK_FUNC_3	3 /* deprecated */
-+#define RK_FUNC_4	4 /* deprecated */
- 
- #endif
--- 
-2.11.0
+> diff --git a/Documentation/devicetree/bindings/mfd/max77650.yaml b/Documentation/devicetree/bindings/mfd/max77650.yaml
+> new file mode 100644
+> index 000000000000..5186ad287ec7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/max77650.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/max77650.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MAX77650 ultra low-power PMIC from Maxim Integrated.
+> +
+> +maintainers:
+> +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> +
+> +description: |
+> +  This document describes the DT properties of the core MFD controller.
+> +
+> +  The GPIO-controller module is represented as part of the top-level PMIC
+> +  node. The device exposes a single GPIO line.
+> +
+> +  For device-tree bindings of other sub-modules (regulator, power supply,
+> +  LEDs and onkey) refer to the binding documents under the respective
+> +  sub-system directories.
+> +
+> +  For more details on GPIO bindings, please refer to the generic GPIO DT
+> +  binding document <devicetree/bindings/gpio/gpio.txt>.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77650
+> +
+> +  reg:
+> +    description:
+> +      I2C device address.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      The interrupt on the parent the controller is connected to.
 
+No need for 'description' if there's only one entry and you have
+nothing specific about this device.
+
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +    description:
+> +      The first cell is the IRQ number, the second cell is the trigger type.
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +    description:
+> +      The first cell is the pin number and the second cell is used to specify
+> +      the gpio active state.
+> +
+> +  gpio-line-names:
+> +    $ref: '/schemas/types.yaml#/definitions/string-array'
+
+*-names already has a type, so you can drop this.
+
+> +    maxItems: 1
+> +    description:
+> +      Single string containing the name of the GPIO line.
+
+You need to link all the child node schemas into here. Something like this:
+
+onkey:
+  $ref: ../input/max77650-onkey.yaml
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +
+> +examples:
+> +  - |
+> +    pmic@48 {
+> +        compatible = "maxim,max77650";
+> +        reg = <0x48>;
+> +
+> +        interrupt-controller;
+> +        interrupt-parent = <&gpio2>;
+> +        #interrupt-cells = <2>;
+> +        interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-line-names = "max77650-charger";
+
+I'd prefer to see a complete example here rather than piecemeal
+examples scattered.
+
+Rob
+
+> +    };
+> --
+> 2.23.0
+>
