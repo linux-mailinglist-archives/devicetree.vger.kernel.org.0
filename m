@@ -2,200 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39624D8AFE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A76ED8B09
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731327AbfJPIb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:31:29 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39479 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726092AbfJPIb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:31:29 -0400
-Received: by mail-ot1-f68.google.com with SMTP id s22so19411264otr.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:31:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=TaAko0rHRb4gyBH2lBWVYnJuZHP/kcOSHoWKD/0YW+0=;
-        b=uqwzsV6OK3KphoWbeGbFhcWhYjV9Jubd8rt5VmBD5qSpRmrGE/3/lstncLn/ole9qk
-         j0iwCAs3bdFZeO79+dh2d+v1jLnSkh4ZqDXFOWimb6GQP4pQ4fMiIvbDciukoNihRaIz
-         44kzIDO1nkMbOK9JHJ7CQkkvLHFqk3sXb7/swrQqkv6ZPZvrz6dMvy2Q6FaIRTDOUo7H
-         cNpQD2NKK3jyfPuZUa0bxTCVNQYQlw2zhBKt0kuIOExdefo7hkSiof5+XpOu/aY/Tdck
-         D2gERzMdFQrJsrqYbmF+uudNRJkZHa8oNdDBCU0SQUs9Oi5t6fQTSoA9oWl57XDqapqE
-         Ivjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TaAko0rHRb4gyBH2lBWVYnJuZHP/kcOSHoWKD/0YW+0=;
-        b=jm8jpk4MNFMCogW9kxcdogwZb7riXvcQZtQ84qDHTed/940ZCGRvvhjHKeV10Q36SV
-         8TMqbGyQeQVpM5M8Lv9DylC78yW2pAjVaGX00SLoF13CkCpboya6R6lypXRGS9DuvpCy
-         VD6abKySVfYR5el0HC9zei8dS1unxQcckBTHAenyXvsuMlOiaEbkVQs98x5n2ADkrw8J
-         ZcnlwvXZHxNpNSwOq8OCpGM55zmnY5nrjKaNjtmyADUhr44O4PGRav3UR6kN3B3OPfnS
-         5mu28I2XpmLlB8LUP7hcJ467bBNaj2oc7FZP6pie3+j8kYNr7vtLMFTeqvJuFCnS1n/L
-         fMZA==
-X-Gm-Message-State: APjAAAXWQFVxhvD1OzD/sEdj9UgbNyxmciL101Dnr3DpR3eBafpvnIQm
-        kzJdOvBFBHqJqNpYkRCcLg0rEzGuy4fCxoR9O07g2g==
-X-Google-Smtp-Source: APXvYqzjLLdNQ3WjVdvOT/4N0uavAJR6Mv4Jgxn5lrygES8vBTMlSZ0M5fHGe1wdjBwZwcW06xlKs32f4hJ3sJgiAfQ=
-X-Received: by 2002:a9d:344a:: with SMTP id v68mr33650170otb.85.1571214688147;
- Wed, 16 Oct 2019 01:31:28 -0700 (PDT)
+        id S2388475AbfJPIdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:33:07 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:39400 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388364AbfJPIdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:33:06 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9G8WSR3035081;
+        Wed, 16 Oct 2019 03:32:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571214748;
+        bh=s39FpZDsIVijRksoigZfypRpHO/kfg6d4vyQscJS4zg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=LIpQPLqRojaXAO9e6h2CjCm6EfW3BMXspS/9xYx3A4KALSm/3UDMadNC/jHJ+JW3d
+         oz8i6my0ueNEkbJRnwRO1wIN7oXK9JDg3SJ6K+NdhJTDqGFwTk7szvxN8BTnjpEb1/
+         m/YZuQGEOOFhtM3zGDYHW4/jTkdakRyh2jXAUF1E=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9G8WSmb033171
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Oct 2019 03:32:28 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 16
+ Oct 2019 03:32:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 16 Oct 2019 03:32:28 -0500
+Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9G8WKU2052788;
+        Wed, 16 Oct 2019 03:32:22 -0500
+Subject: Re: [PATCH v3 2/3] mtd: spi-nor: cadence-quadspi: Disable the DAC for
+ Intel LGM SoC
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dwmw2@infradead.org>, <computersforpeace@gmail.com>,
+        <richard@nod.at>, <jwboyer@gmail.com>,
+        <boris.brezillon@free-electrons.com>, <cyrille.pitchen@atmel.com>,
+        <david.oberhollenzer@sigma-star.at>, <miquel.raynal@bootlin.com>,
+        <tudor.ambarus@gmail.com>, <andriy.shevchenko@intel.com>,
+        <cheol.yong.kim@intel.com>, <qi-ming.wu@intel.com>
+References: <20190909104733.14273-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190909104733.14273-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <85355c80-1344-db22-ae31-0f20f30b9754@ti.com>
+Date:   Wed, 16 Oct 2019 14:02:50 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20191015162300.22024-1-brgl@bgdev.pl> <20191015162300.22024-5-brgl@bgdev.pl>
- <20191015191837.jd6lbk3qbsmzuwfu@earth.universe>
-In-Reply-To: <20191015191837.jd6lbk3qbsmzuwfu@earth.universe>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 16 Oct 2019 10:31:17 +0200
-Message-ID: <CAMpxmJXH6k7PqEE_VfRZ-k1eL+7NSPRuZY8yP8XbYzgVdOAvJQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: power: max77650: convert the binding
- document to yaml
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        linux-pm <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190909104733.14273-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-wt., 15 pa=C5=BA 2019 o 21:18 Sebastian Reichel <sre@kernel.org> napisa=C5=
-=82(a):
->
-> Hi,
->
-> On Tue, Oct 15, 2019 at 06:22:58PM +0200, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> >
-> > Convert the binding document for MAX77650 charger module to YAML.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > ---
->
-> Looks sensible to me. Assuming this goes through Rob:
->
-> Acked-by: Sebastian Reichel <sre@kernel.org>
 
-Oops, I added your ack for v1 to the leds patch in v2 by mistake.
-There'll be a v3 though so no worries.
 
-Thanks!
-Bart
+On 09/09/19 4:17 PM, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> 
+> on Intel's Lightning Mountain(LGM) SoCs QSPI controller do not use
 
->
-> -- Sebastian
->
-> >  .../power/supply/max77650-charger.txt         | 29 +------------
-> >  .../power/supply/max77650-charger.yaml        | 42 +++++++++++++++++++
-> >  2 files changed, 43 insertions(+), 28 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/max7=
-7650-charger.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/supply/max77650-ch=
-arger.txt b/Documentation/devicetree/bindings/power/supply/max77650-charger=
-.txt
-> > index e6d0fb6ff94e..fbab7d3ac8e3 100644
-> > --- a/Documentation/devicetree/bindings/power/supply/max77650-charger.t=
-xt
-> > +++ b/Documentation/devicetree/bindings/power/supply/max77650-charger.t=
-xt
-> > @@ -1,28 +1 @@
-> > -Battery charger driver for MAX77650 PMIC from Maxim Integrated.
-> > -
-> > -This module is part of the MAX77650 MFD device. For more details
-> > -see Documentation/devicetree/bindings/mfd/max77650.txt.
-> > -
-> > -The charger is represented as a sub-node of the PMIC node on the devic=
-e tree.
-> > -
-> > -Required properties:
-> > ---------------------
-> > -- compatible:                Must be "maxim,max77650-charger"
-> > -
-> > -Optional properties:
-> > ---------------------
-> > -- input-voltage-min-microvolt:       Minimum CHGIN regulation voltage.=
- Must be one
-> > -                             of: 4000000, 4100000, 4200000, 4300000,
-> > -                             4400000, 4500000, 4600000, 4700000.
-> > -- input-current-limit-microamp:      CHGIN input current limit (in mic=
-roamps). Must
-> > -                             be one of: 95000, 190000, 285000, 380000,
-> > -                             475000.
-> > -
-> > -Example:
-> > ---------
-> > -
-> > -     charger {
-> > -             compatible =3D "maxim,max77650-charger";
-> > -             input-voltage-min-microvolt =3D <4200000>;
-> > -             input-current-limit-microamp =3D <285000>;
-> > -     };
-> > +This file was moved to max77650-charger.yaml.
-> > diff --git a/Documentation/devicetree/bindings/power/supply/max77650-ch=
-arger.yaml b/Documentation/devicetree/bindings/power/supply/max77650-charge=
-r.yaml
-> > new file mode 100644
-> > index 000000000000..9dd0dad0f948
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/supply/max77650-charger.y=
-aml
-> > @@ -0,0 +1,42 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/supply/max77650-charger.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Battery charger driver for MAX77650 PMIC from Maxim Integrated.
-> > +
-> > +maintainers:
-> > +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > +
-> > +description: |
-> > +  This module is part of the MAX77650 MFD device. For more details
-> > +  see Documentation/devicetree/bindings/mfd/max77650.txt.
-> > +
-> > +  The charger is represented as a sub-node of the PMIC node on the dev=
-ice tree.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: maxim,max77650-charger
-> > +
-> > +  input-voltage-min-microvolt:
-> > +    description:
-> > +      Minimum CHGIN regulation voltage.
-> > +    enum: [ 4000000, 4100000, 4200000, 4300000,
-> > +            4400000, 4500000, 4600000, 4700000 ]
-> > +
-> > +  input-current-limit-microamp:
-> > +    description:
-> > +      CHGIN input current limit (in microamps).
-> > +    enum: [ 95000, 190000, 285000, 380000, 475000 ]
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +examples:
-> > +  - |
-> > +    charger {
-> > +        compatible =3D "maxim,max77650-charger";
-> > +        input-voltage-min-microvolt =3D <4200000>;
-> > +        input-current-limit-microamp =3D <285000>;
-> > +    };
-> > --
-> > 2.23.0
-> >
+s/on/On
+
+> Direct Access Controller(DAC).
+> 
+> This patch introduces to properly disable the Direct Access Controller
+
+"This patch adds a quirk to disable..." or something something similar
+
+> for data transfer instead it uses indirect data transfer.
+> 
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> ---
+>  drivers/mtd/spi-nor/Kconfig           |  2 +-
+>  drivers/mtd/spi-nor/cadence-quadspi.c | 21 +++++++++++++++++++++
+>  2 files changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mtd/spi-nor/Kconfig b/drivers/mtd/spi-nor/Kconfig
+> index 6de83277ce8b..ba2e372ae514 100644
+> --- a/drivers/mtd/spi-nor/Kconfig
+> +++ b/drivers/mtd/spi-nor/Kconfig
+> @@ -34,7 +34,7 @@ config SPI_ASPEED_SMC
+>  
+>  config SPI_CADENCE_QUADSPI
+>  	tristate "Cadence Quad SPI controller"
+> -	depends on OF && (ARM || ARM64 || COMPILE_TEST)
+> +	depends on OF && (ARM || ARM64 || COMPILE_TEST || X86)
+>  	help
+>  	  Enable support for the Cadence Quad SPI Flash controller.
+>  
+> diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
+> index 67f15a1f16fd..73b9fbd1508a 100644
+> --- a/drivers/mtd/spi-nor/cadence-quadspi.c
+> +++ b/drivers/mtd/spi-nor/cadence-quadspi.c
+> @@ -33,6 +33,7 @@
+>  
+>  /* Quirks */
+>  #define CQSPI_NEEDS_WR_DELAY		BIT(0)
+> +#define CQSPI_DISABLE_DAC_MODE		BIT(1)
+>  
+>  /* Capabilities mask */
+>  #define CQSPI_BASE_HWCAPS_MASK					\
+> @@ -609,6 +610,13 @@ static int cqspi_write_setup(struct spi_nor *nor)
+>  	struct cqspi_st *cqspi = f_pdata->cqspi;
+>  	void __iomem *reg_base = cqspi->iobase;
+>  
+> +	/* Disable direct access controller */
+> +	if (!f_pdata->use_direct_mode) {
+> +		reg = readl(reg_base + CQSPI_REG_CONFIG);
+> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
+> +		writel(reg, reg_base + CQSPI_REG_CONFIG);
+> +	}
+> +
+>  	/* Set opcode. */
+>  	reg = nor->program_opcode << CQSPI_REG_WR_INSTR_OPCODE_LSB;
+>  	writel(reg, reg_base + CQSPI_REG_WR_INSTR);
+> @@ -1328,6 +1336,7 @@ static int cqspi_probe(struct platform_device *pdev)
+>  	struct resource *res_ahb;
+>  	struct reset_control *rstc, *rstc_ocp;
+>  	const struct cqspi_driver_platdata *ddata;
+> +	struct cqspi_flash_pdata *f_pdata;
+>  	int ret;
+>  	int irq;
+>  
+> @@ -1436,6 +1445,9 @@ static int cqspi_probe(struct platform_device *pdev)
+>  		goto probe_setup_failed;
+>  	}
+>  
+> +	if (ddata && (ddata->quirks & CQSPI_DISABLE_DAC_MODE))
+> +		f_pdata->use_direct_mode = false;
+> +
+
+If you do this here, you will still end up acquiring a DMA channel in
+cqspi_request_mmap_dma() (called from cqspi_setup_flash()). So, please
+move the check to cqspi_setup_flash().
+
+>  	return ret;
+>  probe_setup_failed:
+>  	cqspi_controller_enable(cqspi, 0);
+> @@ -1510,6 +1522,11 @@ static const struct cqspi_driver_platdata am654_ospi = {
+>  	.quirks = CQSPI_NEEDS_WR_DELAY,
+>  };
+>  
+> +static const struct cqspi_driver_platdata intel_lgm_qspi = {
+> +	.hwcaps_mask = CQSPI_BASE_HWCAPS_MASK,
+> +	.quirks = CQSPI_DISABLE_DAC_MODE,
+> +};
+> +
+>  static const struct of_device_id cqspi_dt_ids[] = {
+>  	{
+>  		.compatible = "cdns,qspi-nor",
+> @@ -1523,6 +1540,10 @@ static const struct of_device_id cqspi_dt_ids[] = {
+>  		.compatible = "ti,am654-ospi",
+>  		.data = &am654_ospi,
+>  	},
+> +	{
+> +		.compatible = "intel,lgm-qspi",
+> +		.data = &intel_lgm_qspi,
+> +	},
+>  	{ /* end of table */ }
+>  };
+>  
+> 
+
+-- 
+Regards
+Vignesh
