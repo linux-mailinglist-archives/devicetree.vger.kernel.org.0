@@ -2,135 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 290DDD9B24
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 22:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0252CD9B49
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 22:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388974AbfJPUL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 16:11:58 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:38808 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727018AbfJPUL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 16:11:58 -0400
-Received: by mail-wr1-f68.google.com with SMTP id y18so20041637wrn.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 13:11:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0edoD8qXLxIMb9lHusA8ctqCBdpgHnIWpnlud4IpS5A=;
-        b=D0+TbLXKv4nLHH1PICBuG4OHzzfCNolpysA0NdqnggM3oNHvONZBsSdcdyYHeY9PTX
-         BP6Q63iG+P0ZkFrmsMgZT2VJOejwCv/iBGW5e0FpACARXwR8xLRqsCvBYYKdlB1L+noa
-         Lx/omyHvcnCfCbRtMo6vA/PY8I3hPfWaxFVsbLjbAfNU6LF/WG20V9YcGalaWYe7Hd0u
-         EdO3lyIna8hymw4xsraJB5FfvRxQTbWl+aeoUziSGcsuQ2Edln+e7pMsaNFPqtxmKqEo
-         p8/mYJAKLUed5W2eaIdkVXtkgFPBl/9U2+YXsjyAHA+8A0PaKzQC/8Q1eBg9jfscJ+Sz
-         hVGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0edoD8qXLxIMb9lHusA8ctqCBdpgHnIWpnlud4IpS5A=;
-        b=Q2cAxun13t0QNzl/vkNXgRAXIcVRJMd28/fF0b54SUmsLS233ZK0yeeNXy5YJK2Giu
-         NZzksWAo7R13IeM5C30tceSn8bliugH8bAnPxUyzVnZTSsjW+nQfeKHENfU1jYNV9zFy
-         kVI/HoKBfMllC8vuGXMzcDz4pSVETKj7iRw29aTRi+jMrW9NkDZmnebM7gYSe9O+Tpa/
-         g0kCsKgqPanlW0VG4lkE8l20ZtrY2H1vuPpZY2EWAxNywnse7fIIBUsc47OqSLR8ygzC
-         XZ+S67HgleFqWM7naCbLJ/DOAHeXrPojupudgtZUcuZJ/7QROihp2vd2FTkNnO1qVJMG
-         TcTw==
-X-Gm-Message-State: APjAAAX+X2nrRQfVdDXvEdjMNwZ7sq3P8Y+rJn0Yl5EXhkczMR4ouOcK
-        uVGODZyaCfGw7StDTJ+etHmJ+Q==
-X-Google-Smtp-Source: APXvYqw8vdKpG2sCTiy78c9P1m7wEQV56IyUIiYGlFpvMM6Z1PosXut/bgrU1zDYkR1e8mM7XnTE5A==
-X-Received: by 2002:adf:ed49:: with SMTP id u9mr4127114wro.229.1571256716203;
-        Wed, 16 Oct 2019 13:11:56 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id l18sm29539138wrc.18.2019.10.16.13.11.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2019 13:11:55 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 22:11:52 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        khilman@baylibre.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] crypto: amlogic: Add crypto accelerator for
- amlogic GXL
-Message-ID: <20191016201152.GA31674@Red>
-References: <1571031104-6880-1-git-send-email-clabbe@baylibre.com>
- <1571031104-6880-4-git-send-email-clabbe@baylibre.com>
- <8f9be4a8-ed6c-a2bd-f3ba-df22752e7172@infradead.org>
+        id S1732873AbfJPUPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 16:15:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55476 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732607AbfJPUPG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 16:15:06 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8810120659;
+        Wed, 16 Oct 2019 20:15:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571256904;
+        bh=RKuiPtNCZS/1l7g/H5esKdXCQ13IvDoiKYefxqGO+rE=;
+        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
+        b=dsobUYKKZjaVAYCLzAVo2RAlCOYiB9KRVsKDDq+u9RbLCkjf1T8X37qZ+akdIwmHi
+         2TPsyunRS5GLZ/4PXt4qg5ezfuiuCJ/kaRV3GraZIR+hUlz/+pevd0C0MGPIevzwrw
+         gqa2hQ8446Y1FNGtq+LfbQUQc+y/8bql+JxmqIhw=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f9be4a8-ed6c-a2bd-f3ba-df22752e7172@infradead.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAGETcx-FjF+bktBgL6h0ORH3MU4vMM9JNC2oB8Myn8KqvnmhDg@mail.gmail.com>
+References: <20190904211126.47518-1-saravanak@google.com> <20190904211126.47518-4-saravanak@google.com> <20190911102926.A9F8D2082C@mail.kernel.org> <20191004153750.GB823823@kroah.com> <20191008145304.2BD54205F4@mail.kernel.org> <CAGETcx-FjF+bktBgL6h0ORH3MU4vMM9JNC2oB8Myn8KqvnmhDg@mail.gmail.com>
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-acpi@vger.kernel.org,
+        clang-built-linux <clang-built-linux@googlegroups.com>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        kbuild test robot <lkp@intel.com>
+Subject: Re: [PATCH v11 3/6] of: property: Add functional dependency link from DT bindings
+User-Agent: alot/0.8.1
+Date:   Wed, 16 Oct 2019 13:15:03 -0700
+Message-Id: <20191016201504.8810120659@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 13, 2019 at 10:41:06PM -0700, Randy Dunlap wrote:
-> Hi,
-> 
-> On 10/13/19 10:31 PM, Corentin Labbe wrote:
-> > diff --git a/drivers/crypto/amlogic/Kconfig b/drivers/crypto/amlogic/Kconfig
-> > new file mode 100644
-> > index 000000000000..9c4bf96afeb3
-> > --- /dev/null
-> > +++ b/drivers/crypto/amlogic/Kconfig
-> > @@ -0,0 +1,24 @@
-> > +config CRYPTO_DEV_AMLOGIC_GXL
-> > +	tristate "Support for amlogic cryptographic offloader"
-> > +	default y if ARCH_MESON
-> > +	select CRYPTO_BLKCIPHER
-> > +	select CRYPTO_ENGINE
-> > +	select CRYPTO_ECB
-> > +	select CRYPTO_CBC
-> > +	select CRYPTO_AES
-> > +	help
-> > +	  Select y here for having support for the cryptographic offloader
-> 
-> 	                to have support for
-> 
-> > +	  availlable on Amlogic GXL SoC.
-> 
-> 	  available
-> 
-> > +	  This hardware handle AES ciphers in ECB/CBC mode.
-> 
-> 	                handles
-> 
-> > +
-> > +	  To compile this driver as a module, choose M here: the module
-> > +	  will be called amlogic-crypto.
-> 
-> That module name does not match the Makefile's name.
-> 
-> > +
-> > +config CRYPTO_DEV_AMLOGIC_GXL_DEBUG
-> > +	bool "Enabled amlogic stats"
-> 
-> 	      Enable
-> 
-> > +	depends on CRYPTO_DEV_AMLOGIC_GXL
-> > +	depends on DEBUG_FS
-> > +	help
-> > +	  Say y to enabled amlogic-crypto debug stats.
-> 
-> 	           enable
-> 
-> > +	  This will create /sys/kernel/debug/gxl-crypto/stats for displaying
-> > +	  the number of requests per flow and per algorithm.
-> > diff --git a/drivers/crypto/amlogic/Makefile b/drivers/crypto/amlogic/Makefile
-> > new file mode 100644
-> > index 000000000000..39057e62c13e
-> > --- /dev/null
-> > +++ b/drivers/crypto/amlogic/Makefile
-> > @@ -0,0 +1,2 @@
-> > +obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic-gxl-crypto.o
-> > +amlogic-gxl-crypto-y := amlogic-gxl-core.o amlogic-gxl-cipher.o
-> 
+Quoting Saravana Kannan (2019-10-08 11:57:49)
+> On Tue, Oct 8, 2019 at 7:53 AM Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Quoting Greg Kroah-Hartman (2019-10-04 08:37:50)
+> > > On Wed, Sep 11, 2019 at 03:29:25AM -0700, Stephen Boyd wrote:
+> > > > Quoting Saravana Kannan (2019-09-04 14:11:22)
+> > > > > +       int ret =3D 0;
+> > > > > +       struct device_node *tmp_np =3D sup_np;
+> > > > > +
+> > > > > +       of_node_get(sup_np);
+> > > > > +       /*
+> > > > > +        * Find the device node that contains the supplier phandl=
+e.  It may be
+> > > > > +        * @sup_np or it may be an ancestor of @sup_np.
+> > > > > +        */
+> > > > > +       while (sup_np && !of_find_property(sup_np, "compatible", =
+NULL))
+> > > > > +               sup_np =3D of_get_next_parent(sup_np);
+> > > >
+> > > > I don't get this. This is assuming that drivers are only probed for
+> > > > device nodes that have a compatible string? What about drivers that=
+ make
+> > > > sub-devices for clk support that have drivers in drivers/clk/ that =
+then
+> > > > attach at runtime later? This happens sometimes for MFDs that want =
+to
+> > > > split the functionality across the driver tree to the respective
+> > > > subsystems.
+> > >
+> > > For that, the link would not be there, correct?
+> >
+> > The parent device (MFD) would have the links because that is the device
+> > node with the provider property like '#clock-cells'. The child clk
+> > device that's populated by the MFD would be the one actually providing
+> > the clk via a driver that may probe any time later, or never, depending
+> > on if the clk driver is configured as a module or not. I fail to see how
+> > this will work for these cases.
+> >
+> > Is this logic there to find the parent of a regulator phandle and match
+> > that to some driver? It looks like it.
+>=20
+> In the case of an MFD creating "fake" children devices, the parent MFD
+> device's driver is responsible for handling the sync state callback.
+> It'll get the sync_state callback after all the child devices'
+> consumers have probed. The MFD driver will need to do the sync state
+> clean up for the children devices or pass it on to the child devices'
+> drivers (whatever makes sense for that specific MFD) by whatever means
+> those specific drivers talk to each other (direct calls, registering
+> callbacks, etc).
+>=20
+> If they are real sub-devices, then they should really be captured in
+> DT as child devices and then the child device's drivers will get the
+> sync state callback directly.
 
-Thanks, I fixed it
+It seems sort of hand-wavy at the moment. Is the plan to actually
+implement this for MFDs that are doing these things? It's really hard to
+understand this patch series without any actual users.
 
-Regards
+From my perspective using driver probe as the signal that some resource
+like clks or regulators has been consumed and configured into the proper
+state is completely wrong. It makes a large assumption that driver probe
+is actually putting the device into some state that has taken over
+ownership of the device state by the time probe returns. That isn't
+always the case when you consider things like the display or GPU don't
+do much until their device is opened by userspace.
+
+It would be better to involve the various kernel frameworks in this
+decision by having those frameworks intercept the acquisition of the
+resources they provide and track consumers to the point where we can be
+certain all consumers have requested and configured the resources they
+need to operate properly without something go wrong. Maybe we need
+drivers to indicate this to frameworks somehow so that we don't turn the
+regulator off for the screen when the screen driver probes but the GPU
+driver hasn't started drawing anything there because userspace isn't
+running yet?
+
+I'm trying to take a step back and understand the bigger picture here.
+From what I can tell we're trying to answer the question "When have all
+the consumers of this resource put their constraints in place?" This is
+because we want to actively cleanup resources that have been left on or
+misconfigured by bootloader/firmware code but we can't be certain when
+to do that and if we should do that at all. Is that right?
+
