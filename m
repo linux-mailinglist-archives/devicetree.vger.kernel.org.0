@@ -2,92 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A71D7D8F64
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 13:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA4F4D8F7B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 13:31:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404926AbfJPL0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 07:26:44 -0400
-Received: from mail-sh.amlogic.com ([58.32.228.43]:51854 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404922AbfJPL0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 07:26:43 -0400
-Received: from [10.18.29.227] (10.18.29.227) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 16 Oct
- 2019 19:26:50 +0800
-Subject: Re: [PATCH RESEND v2 1/4] dt-bindings: power: add Amlogic secure
- power domains bindings
-To:     Rob Herring <robh@kernel.org>
-CC:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-References: <1570695678-42623-1-git-send-email-jianxin.pan@amlogic.com>
- <1570695678-42623-2-git-send-email-jianxin.pan@amlogic.com>
- <20191014173900.GA6886@bogus>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <622c7785-8254-5473-6b35-7287830f3c60@amlogic.com>
-Date:   Wed, 16 Oct 2019 19:26:49 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2404965AbfJPLbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 07:31:51 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:34116 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728372AbfJPLbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 07:31:51 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9GBVnhp081730;
+        Wed, 16 Oct 2019 06:31:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571225509;
+        bh=WUkid3uSZ5G9AdqsLWEwpgjUhaC3e/yVM4i69sFJaYw=;
+        h=From:To:CC:Subject:Date;
+        b=yLN4r97fgZWw1+eTcy7QebJzucU6++uY+O4ikm+OtLMmw5SAaSp1q22ciUywHeoaJ
+         Dyxkh3hwY+4pKKn1VyW7TsGtVOGofyVBBONVrQOzxtO90KtfZRveqtfLqeEQfORXUs
+         wbeDzCW8M9Um6S3NPSTW3IoyT6HHuiS/EJBx9qaA=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9GBVnx0079808
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Oct 2019 06:31:49 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 16
+ Oct 2019 06:31:49 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 16 Oct 2019 06:31:42 -0500
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9GBVkm4097485;
+        Wed, 16 Oct 2019 06:31:47 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Roger Quadros <rogerq@ti.com>, Jyri Sarha <jsarha@ti.com>
+CC:     Anil Varughese <aniljoy@cadence.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH 00/13] PHY: Add support for SERDES in TI's J721E SoC
+Date:   Wed, 16 Oct 2019 17:01:04 +0530
+Message-ID: <20191016113117.12370-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20191014173900.GA6886@bogus>
-Content-Type: text/plain; charset="UTF-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.227]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+TI's J721E SoC uses Cadence Sierra SERDES for USB, PCIe and SGMII.
+TI has a wrapper named WIZ to control input signals to Sierra and
+Torrent SERDES.
 
-On 2019/10/15 1:39, Rob Herring wrote:
-> On Thu, Oct 10, 2019 at 04:21:15AM -0400, Jianxin Pan wrote:
->> Add the bindings for the Amlogic Secure power domains, controlling the
->> secure power domains.
->>
->> The bindings targets the Amlogic A1 and C1 compatible SoCs, in which the
->> power domain registers are in secure world.
->>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     | 42 ++++++++++++++++++++++
->>  include/dt-bindings/power/meson-a1-power.h         | 32 +++++++++++++++++
->>  2 files changed, 74 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->> +
->> +  secure-monitor:
->> +    description: phandle to the secure-monitor node
->> +    $ref: /schemas/types.yaml#/definitions/phandle
-> 
-> Why not just a child node of this node?
-> 
-Thanks for the review.
+This patch series:
+ 1) Add support to WIZ module present in TI's J721E SoC
+ 2) Adapt Cadence Sierra PHY driver to be used for J721E SoC
 
-I followed the style of the previous series of meson：
+Anil Varughese (1):
+  phy: cadence: Sierra: Configure both lane cdb and common cdb registers
+    for external SSC
 
-  46         efuse: efuse {                                                           
-  47                 compatible = "amlogic,meson-gxbb-efuse";                         
-  48                 clocks = <&clkc CLKID_EFUSE>;                                    
-  49                 #address-cells = <1>;                                            
-  50                 #size-cells = <1>;                                               
-  51                 read-only;                                                       
-  52                 secure-monitor = <&sm>;                                          
-  53         };
+Kishon Vijay Abraham I (12):
+  dt-bindings: phy: Sierra: Add bindings for Sierra in TI's J721E
+  phy: cadence: Sierra: Make "phy_clk" and "sierra_apb" optional
+    resources
+  phy: cadence: Sierra: Use "regmap" for read and write to Sierra
+    registers
+  phy: cadence: Sierra: Add support for SERDES_16G used in J721E SoC
+  phy: cadence: Sierra: Make cdns_sierra_phy_init() as phy_ops
+  phy: cadence: Sierra: Modify register macro names to be in sync with
+    Sierra user guide
+  phy: cadence: Sierra: Get reset control "array" for each link
+  phy: cadence: Sierra: Check for PLL lock during PHY power on
+  phy: cadence: Sierra: Change MAX_LANES of Sierra to 16
+  phy: cadence: Sierra: Set cmn_refclk/cmn_refclk1 frequency to 25MHz
+  dt-bindings: phy: Document WIZ (SERDES wrapper) bindings
+  phy: ti: j721e-wiz: Add support for WIZ module present in TI J721E SoC
 
-> Rob
-> 
-> .
-> 
+ .../bindings/phy/phy-cadence-sierra.txt       |  13 +-
+ .../bindings/phy/ti,phy-j721e-wiz.txt         |  95 ++
+ drivers/phy/cadence/phy-cadence-sierra.c      | 695 +++++++++++---
+ drivers/phy/ti/Kconfig                        |  15 +
+ drivers/phy/ti/Makefile                       |   1 +
+ drivers/phy/ti/phy-j721e-wiz.c                | 904 ++++++++++++++++++
+ 6 files changed, 1585 insertions(+), 138 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.txt
+ create mode 100644 drivers/phy/ti/phy-j721e-wiz.c
+
+-- 
+2.17.1
 
