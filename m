@@ -2,102 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C8DD8B32
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBBF2D8B38
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391644AbfJPIkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:40:19 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:46036 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389897AbfJPIkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:40:17 -0400
-Received: by mail-oi1-f195.google.com with SMTP id o205so19310966oib.12
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:40:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=r6Gil0nV1oJlSHhPc8F9mMAK15KjeTWA4dUOWUcVhrM=;
-        b=do2vvA8WtatqVlG+eQenz0+AlOmiqZ7N7XRO1ruvISfeyW8O0r3Q7REKkjXdfnHs4Q
-         /s0Qolk+yNepA2krhz/dBjXydRi9kLc1KIC7vu+rrHHuobAgmYxczG908pbUqNM15czH
-         sBvecNnzmtcd6QuncFCOB+0laahrSg+6I59tqxU/WYYb7iPZpWxo01KJiSRAOZ4cOvV/
-         uC4c2zXRMjD4rgE04+kP++GbodfIWLSulU6eoZqb/fSaeSMg5g+zUpqiZ08OUfb6oiF7
-         4WjPtEN3rJhdA9JD39bMx/j/rVvmbCmy+pGa+ekO2hojfn2UiHrI09abVYMuLSDnpwwm
-         tk2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=r6Gil0nV1oJlSHhPc8F9mMAK15KjeTWA4dUOWUcVhrM=;
-        b=KFxcCAIpJ7G5u8zrnIoE5EJjKF6lkZUTNr56XAHWFflCgY+ye/cRODCJlfQ8Wr5UmL
-         R4IYm3+uooC59ljVlBwCcfKAVkI1A2RNbrGSZKDSiBxAXP9w+71Mb4HazG9UB7pwnujB
-         5UlY+WeRs4TG6b/97kU9DotFrbuvajrNUv8uvXlySZSquRxFzxSDp6fJFChb66Fu65V8
-         6vqGfu4yE5o7wz198dXuScYOf7VvHRtrL1EmNkBMKIEAproMHJd5WqAKBwSBlyx/i1Y6
-         aFMorkjw1Kdr+u/q3Yn7rXltrkesmvhAT82d+WSRPKAG10s18aHk6kukZzxA8PmH10s3
-         c3XA==
-X-Gm-Message-State: APjAAAUnKuHlyDNNPHG7ZcRg+mH6prK0miZWZkjmY11wLLbv6SQjTIdJ
-        RQyz+NT8/7oejKNogfgD/OErcmIjuH7iDiRdOTUsQQ==
-X-Google-Smtp-Source: APXvYqxdnjfmifOIHa0R3ggacAc4Q+59Qoeu943dwI/Wb8XKTPXGrysFVnRpa+YhtyCQ44DEc7y6+uzy8n9QT/jf+Pc=
-X-Received: by 2002:aca:4584:: with SMTP id s126mr2443772oia.21.1571215217337;
- Wed, 16 Oct 2019 01:40:17 -0700 (PDT)
+        id S2389334AbfJPIkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:40:37 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:52044 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389094AbfJPIkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:40:37 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9G8e7Dh061401;
+        Wed, 16 Oct 2019 03:40:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571215207;
+        bh=FzydHRoxz6F3DddJ3LSZU2cJWwW/1+9y2x9SP14HWoc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=zVRRtR+UOjB0rQk11SdMmU1yNPLFd0Yw6hDA+wOfxU9pHoxKROtwcxaK46DvD2E2p
+         b2cHXcxU5uQZNENkM7smTZTWg/A8LMNIY54UXJ8TM1kY+/PRXWKW0q63HWPOPHSAsw
+         lo1VwDVUdhmZHpLMZo2VjYuIystAlju/gwy98jKI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9G8e7Ux122410
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Oct 2019 03:40:07 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 16
+ Oct 2019 03:40:00 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 16 Oct 2019 03:40:00 -0500
+Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9G8e1vE114960;
+        Wed, 16 Oct 2019 03:40:02 -0500
+Subject: Re: [PATCH v3 3/3] mtd: spi-nor: cadence-quadspi: disable the
+ auto-poll for Intel LGM
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dwmw2@infradead.org>, <computersforpeace@gmail.com>,
+        <richard@nod.at>, <jwboyer@gmail.com>,
+        <boris.brezillon@free-electrons.com>, <cyrille.pitchen@atmel.com>,
+        <david.oberhollenzer@sigma-star.at>, <miquel.raynal@bootlin.com>,
+        <tudor.ambarus@gmail.com>, <andriy.shevchenko@intel.com>,
+        <cheol.yong.kim@intel.com>, <qi-ming.wu@intel.com>
+References: <20190909104733.14273-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190909104733.14273-4-vadivel.muruganx.ramuthevar@linux.intel.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <a4d45efe-907f-6c87-c650-5ad19942f0e4@ti.com>
+Date:   Wed, 16 Oct 2019 14:10:31 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20191016075110.8240-1-bibby.hsieh@mediatek.com> <20191016075110.8240-2-bibby.hsieh@mediatek.com>
-In-Reply-To: <20191016075110.8240-2-bibby.hsieh@mediatek.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 16 Oct 2019 10:40:06 +0200
-Message-ID: <CAMpxmJWiSaXiPeDFOZvx5krp31wJmMuRM4iV-O6fHqBN_nQz7g@mail.gmail.com>
-Subject: Re: [PATCH v1] dt-binding: eeprom: at24: add supply properties
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-Cc:     linux-i2c <linux-i2c@vger.kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190909104733.14273-4-vadivel.muruganx.ramuthevar@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=C5=9Br., 16 pa=C5=BA 2019 o 09:51 Bibby Hsieh <bibby.hsieh@mediatek.com> n=
-apisa=C5=82(a):
->
-> In some platforms, they disable the power-supply of eeprom
-> and i2c due to power consumption reduction.
->
-> This patch add two supply properties: power-supply, i2c-supply.
->
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+
+
+On 09/09/19 4:17 PM, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> 
+> On Intel's Lightning Mountain(LGM) SoC QSPI controller do not auto-poll.
+> This patch introduces to properly disable the auto-polling feature to
+
+This patch disables auto polling when direct access mode is disabled
+which should be noted in the commit message.
+
+> improve the performance of cadence-quadspi.
+
+How does this improve performance of cadence-quadspi? I would expect HW
+auto-polling to be faster than SW polling.
+
+> 
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > ---
->  Documentation/devicetree/bindings/eeprom/at24.txt | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Document=
-ation/devicetree/bindings/eeprom/at24.txt
-> index 22aead844d0f..71a534577bcf 100644
-> --- a/Documentation/devicetree/bindings/eeprom/at24.txt
-> +++ b/Documentation/devicetree/bindings/eeprom/at24.txt
-> @@ -78,6 +78,10 @@ Optional properties:
->
->    - num-addresses: total number of i2c slave addresses this device takes
->
-> +  - power-supply: phandle of the regulator that provides the supply volt=
-age.
-
-The pin is called vcc in the datasheet, I think it would be better to
-reflect that here.
-
-Bart
-
+>  drivers/mtd/spi-nor/cadence-quadspi.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
+> index 73b9fbd1508a..60998eaad1cc 100644
+> --- a/drivers/mtd/spi-nor/cadence-quadspi.c
+> +++ b/drivers/mtd/spi-nor/cadence-quadspi.c
+> @@ -135,6 +135,8 @@ struct cqspi_driver_platdata {
+>  #define CQSPI_REG_RD_INSTR_TYPE_DATA_MASK	0x3
+>  #define CQSPI_REG_RD_INSTR_DUMMY_MASK		0x1F
+>  
+> +#define CQSPI_REG_WR_COMPLETION_CTRL		0x38
+> +#define CQSPI_REG_WR_COMPLETION_DISABLE_AUTO_POLL	BIT(14)
+>  #define CQSPI_REG_WR_INSTR			0x08
+>  #define CQSPI_REG_WR_INSTR_OPCODE_LSB		0
+>  #define CQSPI_REG_WR_INSTR_TYPE_ADDR_LSB	12
+> @@ -471,6 +473,18 @@ static int cqspi_command_write_addr(struct spi_nor *nor,
+>  	return cqspi_exec_flash_cmd(cqspi, reg);
+>  }
+>  
+> +static int cqspi_disable_auto_poll(struct cqspi_st *cqspi)
+> +{
+> +	void __iomem *reg_base = cqspi->iobase;
+> +	unsigned int reg;
 > +
-> +  - i2c-supply: phandle to the regulator that provides power to i2c.
+> +	reg = readl(reg_base + CQSPI_REG_WR_COMPLETION_CTRL);
+> +	reg |= CQSPI_REG_WR_COMPLETION_DISABLE_AUTO_POLL;
+> +	writel(reg, reg_base + CQSPI_REG_WR_COMPLETION_CTRL);
 > +
->  Example:
->
->  eeprom@52 {
-> --
-> 2.18.0
->
+> +	return 0;
+> +}
+> +
+>  static int cqspi_read_setup(struct spi_nor *nor)
+>  {
+>  	struct cqspi_flash_pdata *f_pdata = nor->priv;
+> @@ -508,6 +522,11 @@ static int cqspi_read_setup(struct spi_nor *nor)
+>  	reg &= ~CQSPI_REG_SIZE_ADDRESS_MASK;
+>  	reg |= (nor->addr_width - 1);
+>  	writel(reg, reg_base + CQSPI_REG_SIZE);
+> +
+> +	/* Disable auto-polling */
+> +	if (!f_pdata->use_direct_mode)
+> +		cqspi_disable_auto_poll(cqspi);
+> +
+>  	return 0;
+>  }
+>  
+
+Hmmm.. There is no need to disable polling for every read/write
+operation. It should be enough to do it once in cqspi_controller_init()
+
+
+
+> @@ -627,6 +646,11 @@ static int cqspi_write_setup(struct spi_nor *nor)
+>  	reg &= ~CQSPI_REG_SIZE_ADDRESS_MASK;
+>  	reg |= (nor->addr_width - 1);
+>  	writel(reg, reg_base + CQSPI_REG_SIZE);
+> +
+> +	/* Disable auto-polling */
+> +	if (!f_pdata->use_direct_mode)
+> +		cqspi_disable_auto_poll(cqspi);
+> +
+>  	return 0;
+>  }
+>  
+> 
+
+-- 
+Regards
+Vignesh
