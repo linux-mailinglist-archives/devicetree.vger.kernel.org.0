@@ -2,128 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 241EBD8BD4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47956D8C0C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404080AbfJPIy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:54:58 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:46209 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732135AbfJPIy6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:54:58 -0400
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 553CC24000C;
-        Wed, 16 Oct 2019 08:54:53 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     laurent.pinchart@ideasonboard.com,
-        kieran.bingham+renesas@ideasonboard.com, geert@linux-m68k.org,
-        horms@verge.net.au, uli+renesas@fpond.eu
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, airlied@linux.ie,
-        daniel@ffwll.ch, linux-renesas-soc@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Subject: [PATCH v6 1/8] dt-bindings: display: renesas,cmm: Add R-Car CMM documentation
-Date:   Wed, 16 Oct 2019 10:55:41 +0200
-Message-Id: <20191016085548.105703-2-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191016085548.105703-1-jacopo+renesas@jmondi.org>
-References: <20191016085548.105703-1-jacopo+renesas@jmondi.org>
+        id S2389871AbfJPJAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 05:00:19 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:46788 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389810AbfJPJAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:00:18 -0400
+Received: by mail-wr1-f65.google.com with SMTP id o18so27011477wrv.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 02:00:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=FWwSZ7wVHB66iuc6hwPySPcSnpuZXmN+p1/bCDDEZAo=;
+        b=UDSYSJtEKugyDuq3KMpdtgOOFzhbwAnFU4ZHVk/+xe+ABJ96+ug84qKCiMiV2jqyQa
+         Njv7sRzHFCpauHdKZFWwRP0m+5MVLn4AhaVYieFt49Ho2dYnBY0vn7k5Ug+Nl/Ghq+o6
+         nveOswF2JtJ4xceyVyyooCOCmvd8HTws5+h5VU6uUQThGLvMa+oqwNKyS+7Twodw3CjA
+         48R3xyCTlsZ47z46SHSH/GQ8WYVK6Xlejnmg/w+peYethFa0qHtGR+77fN48BWDtdUO0
+         srnSh4tnrIuhDEiNUJc01vM7ctZtyAV1kuVzeIJ37ajYYxFRR/T1MHZm8DsbfAfdWTrX
+         9SfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=FWwSZ7wVHB66iuc6hwPySPcSnpuZXmN+p1/bCDDEZAo=;
+        b=IYTCkuH8u/SbS1+0eMFxOorh8Tvkc9v6dyF2XpWZI3BNaq7iceAhI1vsU1Aw2ZYXg7
+         RjCGHJ8znq826+h8zrWRkSgXIV8Xf3Pl0pnBdPi6Lh+pA4LRw+ZqpJHwo5x3u3Q1QqwU
+         nJleiAlvwY4dVH1yEHahV8ku81c3nfhA3Lns6zjQkfMHGjGW+h3HegdaMaX0H0Xarg1c
+         0Wi/90bZpbV8DkTAYDA1B0+0RAncstBCDAxU3iE1nvfVO80eJB6+XLgtISzMmTSGjDun
+         0xuTkQnaPXYGzYFrB5cE04V/wK4LdMBMdce03OeRi9TvjWFE0RfoTuKlBwb3lC23oazg
+         Am2A==
+X-Gm-Message-State: APjAAAURFOYPivEyKZPIknZ4c+qMAf4LBgayTVD67WhOQK0wf8edcW6p
+        ocPv6fngXS1LMFoWsIbhaY0s4g==
+X-Google-Smtp-Source: APXvYqy8jmTWK22einYBZkkJUT3gZQaCWv3cRPLnG6y72qAhJWTSUhHTPba7TgOkJn0GB6oggXGTqA==
+X-Received: by 2002:a05:6000:11cd:: with SMTP id i13mr1616456wrx.197.1571216414621;
+        Wed, 16 Oct 2019 02:00:14 -0700 (PDT)
+Received: from [10.1.4.98] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id p85sm2026845wme.23.2019.10.16.02.00.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 16 Oct 2019 02:00:13 -0700 (PDT)
+Subject: Re: [PATCH v7 4/7] arm64: dts: meson: g12: Add minimal thermal zone
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        lakml <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org
+References: <20191004090114.30694-1-glaroque@baylibre.com>
+ <20191004090114.30694-5-glaroque@baylibre.com>
+ <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
+From:   guillaume La Roque <glaroque@baylibre.com>
+Message-ID: <347c0fe0-62de-8ef5-c1ca-8958fef81820@baylibre.com>
+Date:   Wed, 16 Oct 2019 11:00:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings documentation for the Renesas R-Car Display
-Unit Color Management Module.
+Hi,
 
-CMM is the image enhancement module available on each R-Car DU video
-channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
+On 10/16/19 1:20 AM, Amit Kucheria wrote:
+> On Fri, Oct 4, 2019 at 2:31 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+>> Add minimal thermal zone for two temperature sensor
+>> One is located close to the DDR and the other one is
+>> located close to the PLLs (between the CPU and GPU)
+>>
+>> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+>> Tested-by: Kevin Hilman <khilman@baylibre.com>
+>> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+>> ---
+>>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 57 +++++++++++++++++++
+>>  1 file changed, 57 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+>> index 0660d9ef6a86..a98c16e163c2 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+>> @@ -12,6 +12,7 @@
+>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+>>  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>>
+>>  / {
+>>         interrupt-parent = <&gic>;
+>> @@ -94,6 +95,61 @@
+>>                 #size-cells = <2>;
+>>                 ranges;
+>>
+>> +               thermal-zones {
+>> +                       cpu_thermal: cpu-thermal {
+>> +                               polling-delay = <1000>;
+>> +                               polling-delay-passive = <100>;
+> Ordinarily, you would need to set these delays to 0 in interrupt mode
+> to prevent polling overhead. I've just submitted a patch to of-thermal
+> that should fix this requirement. Could you check if it works for you?
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
----
- .../bindings/display/renesas,cmm.yaml         | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/renesas,cmm.yaml
+it's working for me.
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,cmm.yaml b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
-new file mode 100644
-index 000000000000..a57037b9e9ba
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/renesas,cmm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas R-Car Color Management Module (CMM)
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+  - Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-+  - Jacopo Mondi <jacopo+renesas@jmondi.org>
-+
-+description: |+
-+  Renesas R-Car color management module connected to R-Car DU video channels.
-+  It provides image enhancement functions such as 1-D look-up tables (LUT),
-+  3-D look-up tables (CLU), 1D-histogram generation (HGO), and color
-+  space conversion (CSC).
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+        - enum:
-+          - renesas,r8a7795-cmm
-+          - renesas,r8a7796-cmm
-+          - renesas,r8a77965-cmm
-+          - renesas,r8a77990-cmm
-+          - renesas,r8a77995-cmm
-+        - const: renesas,rcar-gen3-cmm
-+      - items:
-+        - const: renesas,rcar-gen2-cmm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - resets
-+  - power-domains
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
-+    #include <dt-bindings/power/r8a7796-sysc.h>
-+
-+    cmm0: cmm@fea40000 {
-+         compatible = "renesas,r8a7796-cmm",
-+                      "renesas,rcar-gen3-cmm";
-+         reg = <0 0xfea40000 0 0x1000>;
-+         power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
-+         clocks = <&cpg CPG_MOD 711>;
-+         resets = <&cpg 711>;
-+    };
---
-2.23.0
+thanks for your review.
 
+>> +                               thermal-sensors = <&cpu_temp>;
+>> +
+>> +                               trips {
+>> +                                       cpu_passive: cpu-passive {
+>> +                                               temperature = <85000>; /* millicelsius */
+>> +                                               hysteresis = <2000>; /* millicelsius */
+>> +                                               type = "passive";
+>> +                                       };
+>> +
+>> +                                       cpu_hot: cpu-hot {
+>> +                                               temperature = <95000>; /* millicelsius */
+>> +                                               hysteresis = <2000>; /* millicelsius */
+>> +                                               type = "hot";
+>> +                                       };
+>> +
+>> +                                       cpu_critical: cpu-critical {
+>> +                                               temperature = <110000>; /* millicelsius */
+>> +                                               hysteresis = <2000>; /* millicelsius */
+>> +                                               type = "critical";
+>> +                                       };
+>> +                               };
+>> +                       };
+>> +
+>> +                       ddr_thermal: ddr-thermal {
+>> +                               polling-delay = <1000>;
+>> +                               polling-delay-passive = <100>;
+>> +                               thermal-sensors = <&ddr_temp>;
+>> +
+>> +                               trips {
+>> +                                       ddr_passive: ddr-passive {
+>> +                                               temperature = <85000>; /* millicelsius */
+>> +                                               hysteresis = <2000>; /* millicelsius */
+>> +                                               type = "passive";
+>> +                                       };
+>> +
+>> +                                       ddr_critical: ddr-critical {
+>> +                                               temperature = <110000>; /* millicelsius */
+>> +                                               hysteresis = <2000>; /* millicelsius */
+>> +                                               type = "critical";
+>> +                                       };
+>> +                               };
+>> +
+>> +                               cooling-maps {
+>> +                                       map {
+>> +                                               trip = <&ddr_passive>;
+>> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +                                       };
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>>                 ethmac: ethernet@ff3f0000 {
+>>                         compatible = "amlogic,meson-axg-dwmac",
+>>                                      "snps,dwmac-3.70a",
+>> @@ -2412,6 +2468,7 @@
+>>                         assigned-clock-rates = <0>, /* Do Nothing */
+>>                                                <800000000>,
+>>                                                <0>; /* Do Nothing */
+>> +                       #cooling-cells = <2>;
+>>                 };
+>>         };
+>>
+>> --
+>> 2.17.1
+>>
