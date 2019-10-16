@@ -2,64 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F222BD8A83
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8B4D8A9B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:14:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727671AbfJPIIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:08:05 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:34287 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727646AbfJPIIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:08:04 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 770F6C000C;
-        Wed, 16 Oct 2019 08:08:02 +0000 (UTC)
-Date:   Wed, 16 Oct 2019 10:08:02 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Kamel Bouhara <kamel.bouhara@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add new Overkiz Kizbox3 support
-Message-ID: <20191016080802.GY3125@piout.net>
-References: <20191011125022.16329-1-kamel.bouhara@bootlin.com>
+        id S2389641AbfJPIOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:14:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54956 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727050AbfJPIOK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 04:14:10 -0400
+Received: from localhost (unknown [171.76.123.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8CFAD2064B;
+        Wed, 16 Oct 2019 08:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571213649;
+        bh=e94qyOW697j6Brhk1x91YtKXnJ2xd1o6sJyUcSKS//Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Z97qQvbgnu8PYacVWHANHonUj8ddq5C7zHqQa80FkkFfSEkvw66E5b7Ghf5rZVQjQ
+         sReLGNAMwosk+b+dOZGNykmUgDT+fcr/N8iXKlnLXPH21WvogC+IaO4n0Ev1BzdO8y
+         Kj7/dWaJlT97a4c1xlLOaQsfFBzkv0OzFqC79B8k=
+Date:   Wed, 16 Oct 2019 13:44:01 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs404-evb: Set vdd_apc regulator in
+ high power mode
+Message-ID: <20191016081401.GI2654@vkoul-mobl>
+References: <20191014120920.12691-1-niklas.cassel@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191011125022.16329-1-kamel.bouhara@bootlin.com>
+In-Reply-To: <20191014120920.12691-1-niklas.cassel@linaro.org>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2019 14:50:19+0200, Kamel Bouhara wrote:
-> Add support for the Kizbox3 Overkiz SAS boards.
-> Those boards are based on the Atmel SAMA5D27 SoC.
+On 14-10-19, 14:09, Niklas Cassel wrote:
+> vdd_apc is the regulator that supplies the main CPU cluster.
 > 
-> Kamel Bouhara (3):
->   dt-bindings: Add vendor prefix for Overkiz SAS
->   dt-bindings: arm: at91: Document Kizbox3 HS board binding
->   ARM: at91: add Overkiz KIZBOX3 board
+> At sudden CPU load changes, we have noticed invalid page faults on
+> addresses with all bits shifted, as well as on addresses with individual
+> bits flipped.
 > 
->  .../devicetree/bindings/arm/atmel-at91.yaml   |   7 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm/boot/dts/Makefile                    |   1 +
->  arch/arm/boot/dts/at91-kizbox3-hs.dts         | 309 +++++++++++++
->  arch/arm/boot/dts/at91-kizbox3_common.dtsi    | 412 ++++++++++++++++++
->  5 files changed, 731 insertions(+)
->  create mode 100644 arch/arm/boot/dts/at91-kizbox3-hs.dts
->  create mode 100644 arch/arm/boot/dts/at91-kizbox3_common.dtsi
-> 
+> By putting the vdd_apc regulator in high power mode, the voltage drops
+> during sudden load changes will be less severe, and we have not been able
+> to reproduce the invalid page faults with the regulator in this mode.
 
-All applied, thanks.
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+
+This seems a good bug fix, maybe CC stable?
+
+> 
+> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> index 501a7330dbc8..522d3ef72df5 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> @@ -73,6 +73,7 @@
+>  		regulator-always-on;
+>  		regulator-boot-on;
+>  		regulator-name = "vdd_apc";
+> +		regulator-initial-mode = <1>;
+>  		regulator-min-microvolt = <1048000>;
+>  		regulator-max-microvolt = <1384000>;
+>  	};
+> -- 
+> 2.21.0
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+~Vinod
