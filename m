@@ -2,122 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AE8D941B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 16:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA23D9456
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 16:52:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405726AbfJPOkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 10:40:24 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:38954 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405214AbfJPOkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 10:40:23 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 34F3C9F4;
-        Wed, 16 Oct 2019 16:40:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1571236821;
-        bh=Ix3XoJ8c2YHEbbRw/h23s9VQOlN2/0+X/ZG7Iozx4OM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t2WIQRuEIMiyqAfhI9K8seGMZLbuogVv7sRdQ7WqmidxqES1u0zjmgqsIAcvtNU0X
-         7hOxXRHo7DR3i+oByIuV5RL8j6//k0NHBiGcO2C9kzqa9jMY4EOZznm/CB7A/E20Et
-         OKbsxfLMRm3Payf72G5DnLmaBjHgn8ddDYDVKxHs=
-Date:   Wed, 16 Oct 2019 17:40:18 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-omap@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S2388751AbfJPOwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 10:52:14 -0400
+Received: from albert.telenet-ops.be ([195.130.137.90]:44024 "EHLO
+        albert.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390719AbfJPOwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 10:52:14 -0400
+Received: from ramsan ([84.194.98.4])
+        by albert.telenet-ops.be with bizsmtp
+        id EEsA2100Z05gfCL06EsALn; Wed, 16 Oct 2019 16:52:10 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1iKkeo-0003ry-Bc; Wed, 16 Oct 2019 16:52:10 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1iKkeo-0007l2-9Q; Wed, 16 Oct 2019 16:52:10 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V5 2/3] dt-bindings: Add Logic PD Type 28 display panel
-Message-ID: <20191016144018.GG5175@pendragon.ideasonboard.com>
-References: <20191016135147.7743-1-aford173@gmail.com>
- <20191016135147.7743-2-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191016135147.7743-2-aford173@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: clock: renesas: Remove R-Car Gen2 legacy DT bindings
+Date:   Wed, 16 Oct 2019 16:52:07 +0200
+Message-Id: <20191016145207.29779-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+As of commit 362b334b17943d84 ("ARM: dts: r8a7791: Convert to new
+CPG/MSSR bindings"), all upstream R-Car Gen2 device tree source files
+use the unified "Renesas Clock Pulse Generator / Module Standby and
+Software Reset" DT bindings.
 
-Thank you for the patch.
+Hence remove the old R-Car Gen2 DT bindings describing a hierarchical
+representation of the various CPG and MSTP clocks.
 
-On Wed, Oct 16, 2019 at 08:51:46AM -0500, Adam Ford wrote:
-> This patch adds documentation of device tree bindings for the WVGA panel
-> Logic PD Type 28 display.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> V5:  Replace GPIO_ACTIVE_HIGH with 0 to fix make dt_binding_check -k
-> V4:  Update per Rob H's suggestions and copy other panel yaml example from 5.4-rc1
-> V3:  Correct build errors from 'make dt_binding_check'
-> V2:  Use YAML instead of TXT for binding
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> new file mode 100644
-> index 000000000000..2834287b8d88
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
-> +
-> +maintainers:
-> +  - Adam Ford <aford173@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: logicpd,type28
-> +
-> +  power-supply: true
-> +  enable-gpios: true
-> +  backlight: true
-> +  port: true
-> +
-> +required:
-> +  - compatible
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+To be queued in clk-renesas-for-v5.5.
 
-Should the port be required too ? Apart from that,
+The abovementioned commit was part of the v4.15 release.
+The conversion was backported to v4.14.75-ltsi, and included in any
+R-Car BSP based on v4.14 (rcar-3.6.0 and later).
+---
+ .../clock/renesas,rcar-gen2-cpg-clocks.txt    | 60 -------------------
+ 1 file changed, 60 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    lcd0: display {
-> +      compatible = "logicpd,type28";
-> +      enable-gpios = <&gpio5 27 0>;
-> +      backlight = <&backlight>;
-> +      port {
-> +        lcd_in: endpoint {
-> +          remote-endpoint = <&dpi_out>;
-> +        };
-> +      };
-> +    };
-> +
-> +...
-
+diff --git a/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt b/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt
+deleted file mode 100644
+index f8c05bb4116eae54..0000000000000000
+--- a/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt
++++ /dev/null
+@@ -1,60 +0,0 @@
+-* Renesas R-Car Gen2 Clock Pulse Generator (CPG)
+-
+-The CPG generates core clocks for the R-Car Gen2 SoCs. It includes three PLLs
+-and several fixed ratio dividers.
+-The CPG also provides a Clock Domain for SoC devices, in combination with the
+-CPG Module Stop (MSTP) Clocks.
+-
+-Required Properties:
+-
+-  - compatible: Must be one of
+-    - "renesas,r8a7790-cpg-clocks" for the r8a7790 CPG
+-    - "renesas,r8a7791-cpg-clocks" for the r8a7791 CPG
+-    - "renesas,r8a7792-cpg-clocks" for the r8a7792 CPG
+-    - "renesas,r8a7793-cpg-clocks" for the r8a7793 CPG
+-    - "renesas,r8a7794-cpg-clocks" for the r8a7794 CPG
+-    and "renesas,rcar-gen2-cpg-clocks" as a fallback.
+-
+-  - reg: Base address and length of the memory resource used by the CPG
+-
+-  - clocks: References to the parent clocks: first to the EXTAL clock, second
+-    to the USB_EXTAL clock
+-  - #clock-cells: Must be 1
+-  - clock-output-names: The names of the clocks. Supported clocks are "main",
+-    "pll0", "pll1", "pll3", "lb", "qspi", "sdh", "sd0", "sd1", "z", "rcan", and
+-    "adsp"
+-  - #power-domain-cells: Must be 0
+-
+-SoC devices that are part of the CPG/MSTP Clock Domain and can be power-managed
+-through an MSTP clock should refer to the CPG device node in their
+-"power-domains" property, as documented by the generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
+-
+-
+-Examples
+---------
+-
+-  - CPG device node:
+-
+-	cpg_clocks: cpg_clocks@e6150000 {
+-		compatible = "renesas,r8a7790-cpg-clocks",
+-			     "renesas,rcar-gen2-cpg-clocks";
+-		reg = <0 0xe6150000 0 0x1000>;
+-		clocks = <&extal_clk &usb_extal_clk>;
+-		#clock-cells = <1>;
+-		clock-output-names = "main", "pll0, "pll1", "pll3",
+-				     "lb", "qspi", "sdh", "sd0", "sd1", "z",
+-				     "rcan", "adsp";
+-		#power-domain-cells = <0>;
+-	};
+-
+-
+-  - CPG/MSTP Clock Domain member device node:
+-
+-	thermal@e61f0000 {
+-		compatible = "renesas,thermal-r8a7790", "renesas,rcar-thermal";
+-		reg = <0 0xe61f0000 0 0x14>, <0 0xe61f0100 0 0x38>;
+-		interrupts = <0 69 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&mstp5_clks R8A7790_CLK_THERMAL>;
+-		power-domains = <&cpg_clocks>;
+-	};
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
