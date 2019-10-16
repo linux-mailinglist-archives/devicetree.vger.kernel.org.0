@@ -2,176 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3622D9128
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E69D9140
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393151AbfJPMk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:40:29 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54377 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393144AbfJPMk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:40:26 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1iKibB-00066E-DR; Wed, 16 Oct 2019 14:40:17 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1iKib9-0006aS-8m; Wed, 16 Oct 2019 14:40:15 +0200
-Date:   Wed, 16 Oct 2019 14:40:15 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Chris Snook <chris.snook@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] dt-bindings: net: dsa: qca,ar9331 switch
- documentation
-Message-ID: <20191016124015.joawodelm23xkzga@pengutronix.de>
-References: <20191014061549.3669-1-o.rempel@pengutronix.de>
- <20191014061549.3669-3-o.rempel@pengutronix.de>
- <20191016122152.GE4780@lunn.ch>
+        id S1727991AbfJPMou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:44:50 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:32973 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726985AbfJPMou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:44:50 -0400
+Received: by mail-qk1-f194.google.com with SMTP id x134so22594091qkb.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:44:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4K7B+uLfKEBGyGYLI2L9ifLhMu932uDK9Ftu5vsTLNM=;
+        b=TdEFBc1a1GhmOYAW2VtSm1o1gnQZkZwCc844SMM9XvDj5O96l/doIHiYscKqhjxk8c
+         uunW6zvZyzSv90+FN0ByJ81MsiIQ+EdX1idYLnIEfIH29ecKHXYSLlWeO0rSBlRw30zJ
+         xk43RxIDcXygry3uhKq1xbOt6FK7sHVII7pGy//MlKP4rMGy9xMxxjEdj/9VUV4RZPZx
+         Yr/uPni/tyEG2zRjgof177N3oFQ4bX8meJn/QWXrdELUf0J8ypfwOa3ne05f1/BWGGMg
+         WgQHfe13moWhf+DxVSs2o4pqtcK49LvS5YhXM0ILQv39atV1VQ088PQtUKIm821tofwL
+         yYZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4K7B+uLfKEBGyGYLI2L9ifLhMu932uDK9Ftu5vsTLNM=;
+        b=pcwVIds0O8ycQUi83chRzPRUMDaseJYXwB90JUypEmmeYN7vv9vqnnLIV9ZLKi4equ
+         VbYhH2aBXqrcYaJwTM6233vjLxmCLSeHs1AEpElikSrJYr/NoJt7+bRQHt/v8TVLkNim
+         5ljhreGJ0hcWuozQwdJT9jKStHCIAWf5ivGIEwl3UsCdTxSwINrf3wUBk5KIQB3brrUO
+         /WtskPX+q+nGUhV19chUs44BDhX7gaosAe+wyN4bqkXBLDJeyhFbwe0RiLGiUk5vG8/I
+         VNhQocz4TeD7GMrtKs3gGwv/HHVDgKGzluLYl3VShrKbEncwMH+Ol03hdqsyXRYqCOeH
+         oLag==
+X-Gm-Message-State: APjAAAWmJMAxhc5vrK/xTzIV9IsvjbHegF0klcW9VJlnHxNoFfhRF1qP
+        2o54yyvAQ+XJoA4JLNLfmxjGb5pQ5vAupfgmO0YaNA==
+X-Google-Smtp-Source: APXvYqwTM8BkVjUwYymUoCEI4D83P7/A66wqA+dK+mNJipK7M/FV7PxzP6J1Gjw69MjqnyvjKRuCo11TD2KiTz+ravM=
+X-Received: by 2002:a37:bf02:: with SMTP id p2mr41057686qkf.42.1571229889157;
+ Wed, 16 Oct 2019 05:44:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191016122152.GE4780@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:34:15 up 151 days, 18:52, 100 users,  load average: 0.13, 0.06,
- 0.02
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20191015091708.7934-1-jay.xu@rock-chips.com> <20191015091708.7934-2-jay.xu@rock-chips.com>
+In-Reply-To: <20191015091708.7934-2-jay.xu@rock-chips.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 16 Oct 2019 14:44:37 +0200
+Message-ID: <CACRpkda+gVxBHU=UZTqfgasOYKpGJ4QSp07-TH-QrTQ7Urm5DA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: rockchip: add rk3308 SoC support
+To:     Jianqun Xu <jay.xu@rock-chips.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 02:21:52PM +0200, Andrew Lunn wrote:
-> On Mon, Oct 14, 2019 at 08:15:47AM +0200, Oleksij Rempel wrote:
-> > Atheros AR9331 has built-in 5 port switch. The switch can be configured
-> > to use all 5 or 4 ports. One of built-in PHYs can be used by first built-in
-> > ethernet controller or to be used directly by the switch over second ethernet
-> > controller.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > ---
-> >  .../devicetree/bindings/net/dsa/ar9331.txt    | 155 ++++++++++++++++++
-> >  1 file changed, 155 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/dsa/ar9331.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/ar9331.txt b/Documentation/devicetree/bindings/net/dsa/ar9331.txt
-> > new file mode 100644
-> > index 000000000000..b0f95fd19584
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/dsa/ar9331.txt
-> > @@ -0,0 +1,155 @@
-> > +Atheros AR9331 built-in switch
-> > +=============================
-> > +
-> > +It is a switch built-in to Atheros AR9331 WiSoC and addressable over internal
-> > +MDIO bus. All PHYs are build-in as well. 
-> > +
-> > +Required properties:
-> > +
-> > + - compatible: should be: "qca,ar9331-switch" 
-> > + - reg: Address on the MII bus for the switch.
-> > + - resets : Must contain an entry for each entry in reset-names.
-> > + - reset-names : Must include the following entries: "switch"
-> > + - interrupt-parent: Phandle to the parent interrupt controller
-> > + - interrupts: IRQ line for the switch
-> > + - interrupt-controller: Indicates the switch is itself an interrupt
-> > +   controller. This is used for the PHY interrupts.
-> > + - #interrupt-cells: must be 1
-> > + - mdio: Container of PHY and devices on the switches MDIO bus.
-> > +
-> > +See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
-> > +required and optional properties.
-> > +Examples:
-> > +
-> > +eth0: ethernet@19000000 {
-> > +	compatible = "qca,ar9330-eth";
-> > +	reg = <0x19000000 0x200>;
-> > +	interrupts = <4>;
-> > +
-> > +	resets = <&rst 9>, <&rst 22>;
-> > +	reset-names = "mac", "mdio";
-> > +	clocks = <&pll ATH79_CLK_AHB>, <&pll ATH79_CLK_AHB>;
-> > +	clock-names = "eth", "mdio";
-> > +
-> > +	phy-mode = "mii";
-> > +	phy-handle = <&phy_port4>;
-> 
-> This does not seem like a valid example. If phy_port4 is listed here,
-> i would expect switch_port 5 to be totally missing?
+On Tue, Oct 15, 2019 at 11:17 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
 
-hm... right.
-phy4 can be used with switch_port 5 or eth0. Should i remove completely
-switch_port 5 node or it is enough to "disable" it.
+> Add rk3308 SoC support to rockchip pinctrl.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
 
-> > +};
-> > +
-> > +eth1: ethernet@1a000000 {
-> > +	compatible = "qca,ar9330-eth";
-> > +	reg = <0x1a000000 0x200>;
-> > +	interrupts = <5>;
-> > +	resets = <&rst 13>, <&rst 23>;
-> > +	reset-names = "mac", "mdio";
-> > +	clocks = <&pll ATH79_CLK_AHB>, <&pll ATH79_CLK_AHB>;
-> > +	clock-names = "eth", "mdio";
-> > +
-> > +	phy-mode = "gmii";
-> > +	phy-handle = <&switch_port0>;
-> > +
-> > +	fixed-link {
-> > +		speed = <1000>;
-> > +		full-duplex;
-> > +	};
-> 
-> You also cannot have both a fixed-link and a phy-handle.
+Patch applied.
 
-ok.
-
-> 
-> > +
-> > +	mdio {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		switch10: switch@10 {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			compatible = "qca,ar9331-switch";
-> > +			reg = <16>;
-> 
-> Maybe don't mix up hex and decimal? switch16: switch@16.
-
-ok. will fix it. What is actually proper way to set the reg of switch?
-This switch is responding on range of phy addresses: any of two high bits of 5
-bit phy address.
-
-Regards,
-Oleksij
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Yours,
+Linus Walleij
