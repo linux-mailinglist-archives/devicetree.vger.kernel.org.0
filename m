@@ -2,112 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80253D865F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 05:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B43C2D86C3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 05:35:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390930AbfJPDZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 23:25:19 -0400
-Received: from mail-eopbgr130075.outbound.protection.outlook.com ([40.107.13.75]:32833
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2390917AbfJPDZS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 23:25:18 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kViF3jUByFRMzBPPh67sYrIchayv7H8Od732y1yNAomMoaOHslyhUCHL/2sFKjRfAqjlbB4T9q5iTaFkCufEZrkpoxSzTsK4adYBZM+7W2eDwh6Z9uGP9J6DL4mGkrHLf1qmaMJczwmkUMNHDECFNhuQCm38TNhZO5GGHBXRRoJNkQyBHBPbOnC7b8dzp91zjGTg5exeaX8R3mWVRnvF435mX2rZtputNXhPVlxIongcJMTKVs7RyptCFPbXkJIS0hQHqZ2rwhKIUyURMYwwSBNGqBbEdgxCb1G2y0VmWBZuqvu8X7pzjUt3gCeBCczgqOjvELv0ug9P7Irl0k60IQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3J0Edr48mYO0h8oHxz5tnmEKIJxtso1t3vzY3ny4ejE=;
- b=n+3aSG2q/ftPuu+NFbx3iqETC/3sb/vHZ4jK2lUP1WyXOWeeq0flC26LPotJOl1oiZb/zORJKQhDIUIlUA/9Irr2c+uHdKKGC0aIqyKlIUrTLODthL2q32j7W82k8dRAE7gp8o669E6ynbE7/pjb1q0YRUrsUXzN5+9aoGduqfX+QBappNJ+CFqWR22NEc8Z9HLF7o6OJinQSpf+Pxpf518UrbzFCmff75rt070TgRSuaSuWBZ5u4cguHGbr1gL4c7yWRmTZh0NvCkJb7Lk48cvtwlj+0ZnuXD8EnbLMun7kFljq/D4wzPdpg3/3f7uT1IGRjzQKis8vdE3leYPc4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3J0Edr48mYO0h8oHxz5tnmEKIJxtso1t3vzY3ny4ejE=;
- b=Tap8MQ3gd1SyZvpsnUktqV5am42c1hc+VqA7wPHsACRd9enRWD4jnxg9AeZ9Ob7KQAe3WphYJ5FmxCLDgaPjvc36OBhWGIlHXgViLkNxgcjsBHUddaSIM12JmWZij+DfA/AOCD3+ormm/hkGECFaWo4DSIXqb0wlucmA5wQzIGw=
-Received: from DB7PR04MB4490.eurprd04.prod.outlook.com (52.135.138.150) by
- DB7PR04MB5148.eurprd04.prod.outlook.com (20.176.233.13) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.22; Wed, 16 Oct 2019 03:25:11 +0000
-Received: from DB7PR04MB4490.eurprd04.prod.outlook.com
- ([fe80::7804:558a:eef9:cc11]) by DB7PR04MB4490.eurprd04.prod.outlook.com
- ([fe80::7804:558a:eef9:cc11%7]) with mapi id 15.20.2347.023; Wed, 16 Oct 2019
- 03:25:11 +0000
-From:   Biwen Li <biwen.li@nxp.com>
-To:     Peter Rosin <peda@axentia.se>, Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-CC:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [EXT] Re: [v2,1/2] dt-bindings: i2c: add property idle-state
-Thread-Topic: [EXT] Re: [v2,1/2] dt-bindings: i2c: add property idle-state
-Thread-Index: AQHVgxVYqJHX3ILyNkyr9awgyttOV6db0HsAgADL5PA=
-Date:   Wed, 16 Oct 2019 03:25:11 +0000
-Message-ID: <DB7PR04MB4490AFF4CA990D3F2C2F51C38F920@DB7PR04MB4490.eurprd04.prod.outlook.com>
-References: <20191015044839.23746-1-biwen.li@nxp.com>
- <996277d6-1c0b-6080-4565-ce3aad77e09e@axentia.se>
-In-Reply-To: <996277d6-1c0b-6080-4565-ce3aad77e09e@axentia.se>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biwen.li@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bb774d58-f53d-4dec-254b-08d751e873f0
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: DB7PR04MB5148:|DB7PR04MB5148:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB51481C2F393D6A866044564B8F920@DB7PR04MB5148.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 0192E812EC
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(376002)(136003)(346002)(39860400002)(396003)(37524003)(189003)(199004)(66066001)(81156014)(14444005)(2906002)(5660300002)(186003)(316002)(110136005)(54906003)(6246003)(55016002)(9686003)(6116002)(256004)(476003)(8936002)(76116006)(26005)(33656002)(11346002)(81166006)(66446008)(64756008)(66476007)(66946007)(52536014)(446003)(66556008)(99286004)(71200400001)(44832011)(4326008)(486006)(102836004)(7736002)(53546011)(4001150100001)(3846002)(6506007)(7696005)(71190400001)(6436002)(76176011)(2501003)(478600001)(86362001)(305945005)(8676002)(74316002)(229853002)(25786009)(14454004);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB5148;H:DB7PR04MB4490.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KJpgPD2i9tQ/B+2wA8DnD59h47PGbLS9K+Sw+gtnjgL5PBSiPSXhrr+i+SiXfypTV5UFyJbB7NDpb6wY+N5BXcnhtHRFGqAQdFz0xOXuaafQz8s6ivxmvPKpOw6T2vB/rosM7d6rey+5zrIujFNexMqfvUxBmYMyBFvdUX+zFIl0rqzRaH4Ih7wuf5glc1iGQUZIsCuIRtnO8YJbBja7WW4cbTotJhY0oKvypfKWgp5Ba3U7rkVn+8gTH2GtwbLJPjg1WacnDDJKAhGDPRCD4lFdQrvVVFXU8/4Cs5RDpwkbJslVBJSBWJSWg7Tro0WJXVfZDajSh/scgBaEqHw+YKwkueKZFIhRQcC+CQg5eigUgWS704tdI8Dkw3F5hKAQ+5s+VLoWdMl+b4qjDqHg7AaJjY9nNszRPVljLVjPYpk=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb774d58-f53d-4dec-254b-08d751e873f0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2019 03:25:11.4165
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zRA7Flq0tQHTaPpfDiZYE6Ap1D6//FkHBbVGuWkv8e8Drdv2zL5KmyXRprwWMICg+wKJavWcNzQnAxahGbSCtg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5148
+        id S2403809AbfJPDdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 23:33:46 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:43426 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403801AbfJPDdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 23:33:45 -0400
+Received: by mail-pg1-f196.google.com with SMTP id i32so13390594pgl.10
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 20:33:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=t2p37ay5nCl2I96qOVhX0P3NjGh9D6Cr7Q7PF/xIWq4=;
+        b=CZiMrOj22KpXig6mUpaY9hbB9sHO+MhThVOQ64XRj3wpJWeBR+AJrWQuPn1sQz1fTo
+         9Ji4ZiOWf/zF8m8UU3517d0lQfbwTLvOxMsLwiIO/O5U/9w0WerrI6nsDQRwscldQTl9
+         jefXLMtsGdYavyw1U08uI6lZCGJoViEYfYmkqWJvhXNORoitZg2tfhFahziV9Vlid/0q
+         7/Cv3cpjUDo0h6vJHGhCyfqSX6njRAsocdpPread36r9t0TypKcUxpF4pSimCu2KMS0p
+         w5r4WFQOKbyWDUnh0GiqHq71y6j8bubKR3lzjPFPvZHkC9GGQTsAmpBbkcw9XPlAVwbP
+         qTgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=t2p37ay5nCl2I96qOVhX0P3NjGh9D6Cr7Q7PF/xIWq4=;
+        b=AHlSG081kGaPK+KpP3eBKt9aa5OTZ+71XfJ9ZuvHvzNFhXjzDno0nudZMSiitdTNZA
+         0YoK+EmgqIOFjhcWCG+FMFgsct7iI/xO8LgGFLTd+7t34Ym4OHzTUCvuHNs3BIp1wxZS
+         jDm90S13WozqitJdK/ecTFV+JevFLFkLCtRF2B1Hei+BMgABe9ih0v6WNtx0bOGAvXZE
+         ZFAIYStR94oKXcb5CjfZII2QeP7LbCSn15yu7EMBqZBAeK9vj40jBR/8Tz1+Gproq4Yc
+         SNM7wwFzMOu+7M3p+INj/PPKr+amyC9uktIGUlOOt+iobyK7Zt/+fi5+pkfWVKyyfr7M
+         iXrA==
+X-Gm-Message-State: APjAAAViIL9BsjlMpYUQUcfJNcCW4EMy66XvjxRjbpOIOX7EvY3ePrZV
+        FiV8pKUm+lUh7E6F8589Tbm8Uw==
+X-Google-Smtp-Source: APXvYqzq0GZIVD2ew73AOT8Th33vq83I60KpAorY2062fa7GN5oPZBwvcUv/DhrYc1lqYdEHwGgmGw==
+X-Received: by 2002:a62:685:: with SMTP id 127mr40218403pfg.227.1571196823357;
+        Tue, 15 Oct 2019 20:33:43 -0700 (PDT)
+Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
+        by smtp.gmail.com with ESMTPSA id l23sm748356pjy.12.2019.10.15.20.33.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 20:33:42 -0700 (PDT)
+From:   John Stultz <john.stultz@linaro.org>
+To:     lkml <linux-kernel@vger.kernel.org>
+Cc:     John Stultz <john.stultz@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        ShuFan Lee <shufan_lee@richtek.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Yu Chen <chenyu56@huawei.com>, Felipe Balbi <balbi@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Jack Pham <jackp@codeaurora.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [RFC][PATCH v3 00/11] HiKey960 USB support
+Date:   Wed, 16 Oct 2019 03:33:29 +0000
+Message-Id: <20191016033340.1288-1-john.stultz@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiANCj4gT24gMjAxOS0xMC0xNSAwNjo0OCwgQml3ZW4gTGkgd3JvdGU6DQo+ID4gVGhpcyBhZGRz
-IHByb3BlcnR5IGlkbGUtc3RhdGUNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEJpd2VuIExpIDxi
-aXdlbi5saUBueHAuY29tPg0KPiA+IC0tLQ0KPiA+IENoYW5nZSBpbiB2MjoNCj4gPiAgICAgICAt
-IHVwZGF0ZSBzdWJqZWN0IGFuZCBkZXNjcmlwdGlvbg0KPiA+ICAgICAgIC0gYWRkIHByb3BlcnR5
-IGlkbGUtc3RhdGUNCj4gPg0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-aTJjL2kyYy1tdXgtcGNhOTU0eC50eHQgfCAxICsNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5z
-ZXJ0aW9uKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2kyYy9pMmMtbXV4LXBjYTk1NHgudHh0DQo+ID4gYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tdXgtcGNhOTU0eC50eHQNCj4gPiBpbmRleCAzMGFj
-NmE2MGYwNDEuLjJjNzg3NWQzMzhmYiAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tdXgtcGNhOTU0eC50eHQNCj4gPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tdXgtcGNhOTU0eC50eHQNCj4g
-PiBAQCAtMzQsNiArMzQsNyBAQCBPcHRpb25hbCBQcm9wZXJ0aWVzOg0KPiA+ICAgICAgLSBmaXJz
-dCBjZWxsIGlzIHRoZSBwaW4gbnVtYmVyDQo+ID4gICAgICAtIHNlY29uZCBjZWxsIGlzIHVzZWQg
-dG8gc3BlY2lmeSBmbGFncy4NCj4gPiAgICAgIFNlZSBhbHNvDQo+ID4gRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2ludGVycnVwdHMudHh0DQo+
-ID4gKyAgLSBpZGxlLXN0YXRlOiBQbGVhc2UgcmVmZXIgdG8NCj4gPiArIERvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9tdXgvbXV4LWNvbnRyb2xsZXIudHh0DQo+ID4NCj4gPiAgRXhh
-bXBsZToNCj4gPg0KPiA+DQo+IA0KPiBBcyBwZXIgbXkgY29tbWVudHMgb24gdGhlIGNvZGUsIHlv
-dSBzaG91bGQgbWVudGlvbiB0aGF0IGlkbGUtc3RhdGUsIGlmDQo+IHByZXNlbnQsIG92ZXJyaWRl
-cyBpMmMtbXV4LWlkbGUtZGlzY29ubmVjdC4gSSBhbHNvIHRoaW5rIHlvdSBzaG91bGQga2VlcA0K
-PiBpZGxlLXN0YXRlIGFuZCBpMmMtbXV4LWlkbGUtZGlzY29ubmVjdCByaWdodCBuZXh0IHRvIGVh
-Y2ggb3RoZXIuDQpHb3QgaXQsIEkgd2lsbCBhZGp1c3QgaXQgaW4gdjMuDQo+IA0KPiBDaGVlcnMs
-DQo+IFBldGVyDQo=
+I'm just trying to pick up a patch series submitted previously
+by Yu Chen to get HiKey960 dev-board's USB functionality
+working.
+
+The current full patchset can be found here:
+  https://git.linaro.org/people/john.stultz/android-dev.git/log/?id=305b332b46901c82d762e44d2ef8c96107a0c94e
+
+Previously I sent this series out as two separate series, to
+try to make the review a little easier. However, the partial
+series was causing some confusion as well, so this time I've
+sent almost all of it in one go.
+
+NOTE: I unfortunately don't have any deep knowledge of the
+hardware other then the previously submitted code  and what I
+can intuit from testing, but I tried to document the previously
+undocumented bindings as best I could, fixed up a few minor
+checkpatch issues and tried to address previous feedback as best
+I could.
+
+I'd greatly appreciate feedback or thoughts!
+
+thanks
+-john
+
+New in v3:
+* Avoiding adding a hisi specific dwc3 binding and instead
+  trying to make the dwc core binding more flexible as suggsted
+  by Rob Herring.
+
+* Made the GCTL soft reset unconditional as suggested by
+  Jack Pham.
+
+* Given the negative feedback on the usb class role-switch
+  notifier method for the hub logic to hook into, I've reworked
+  the hub logic to be an usb-role-switch intermediary.
+
+* Lots of minor fixups and cleanups, some reported by the
+  kbuild test robot <lkp@intel.com>
+
+
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+CC: ShuFan Lee <shufan_lee@richtek.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Yu Chen <chenyu56@huawei.com>
+Cc: Felipe Balbi <balbi@kernel.org>
+Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Jun Li <lijun.kernel@gmail.com>
+Cc: Valentin Schneider <valentin.schneider@arm.com>
+Cc: Jack Pham <jackp@codeaurora.org>
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+
+John Stultz (6):
+  dt-bindings: usb: rt1711h: Add connector bindings
+  dt-bindings: usb: dwc3: Allow clock list & resets to be more flexible
+  usb: dwc3: Rework clock initialization to be more flexible
+  usb: dwc3: Rework resets initialization to be more flexible
+  dt-bindings: usb: generic: Add role-switch-default-host binding
+  usb: dwc3: Add host-mode as default support
+
+Yu Chen (5):
+  usb: dwc3: Execute GCTL Core Soft Reset while switch modes
+  usb: dwc3: Increase timeout for CmdAct cleared by device controller
+  usb: dwc3: Registering a role switch in the DRD code.
+  dt-bindings: misc: Add bindings for HiSilicon usb hub and data role
+    switch functionality on HiKey960
+  misc: hisi_hikey_usb: Driver to support usb functionality of Hikey960
+
+ .../bindings/misc/hisilicon-hikey-usb.txt     |  40 ++++
+ .../devicetree/bindings/usb/dwc3.txt          |   5 +-
+ .../devicetree/bindings/usb/generic.txt       |   5 +
+ .../bindings/usb/richtek,rt1711h.txt          |  29 +++
+ drivers/misc/Kconfig                          |   6 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/hisi_hikey_usb.c                 | 178 ++++++++++++++++++
+ drivers/usb/dwc3/Kconfig                      |   1 +
+ drivers/usb/dwc3/core.c                       |  38 ++--
+ drivers/usb/dwc3/core.h                       |   6 +
+ drivers/usb/dwc3/drd.c                        |  78 +++++++-
+ drivers/usb/dwc3/gadget.c                     |   2 +-
+ 12 files changed, 369 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
+ create mode 100644 drivers/misc/hisi_hikey_usb.c
+
+-- 
+2.17.1
+
