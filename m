@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47956D8C0C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ACBCD8C2A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389871AbfJPJAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 05:00:19 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:46788 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389810AbfJPJAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:00:18 -0400
-Received: by mail-wr1-f65.google.com with SMTP id o18so27011477wrv.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 02:00:15 -0700 (PDT)
+        id S1732058AbfJPJIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 05:08:30 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:35645 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727399AbfJPJIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:08:30 -0400
+Received: by mail-vs1-f67.google.com with SMTP id s7so15124590vsl.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 02:08:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=FWwSZ7wVHB66iuc6hwPySPcSnpuZXmN+p1/bCDDEZAo=;
-        b=UDSYSJtEKugyDuq3KMpdtgOOFzhbwAnFU4ZHVk/+xe+ABJ96+ug84qKCiMiV2jqyQa
-         Njv7sRzHFCpauHdKZFWwRP0m+5MVLn4AhaVYieFt49Ho2dYnBY0vn7k5Ug+Nl/Ghq+o6
-         nveOswF2JtJ4xceyVyyooCOCmvd8HTws5+h5VU6uUQThGLvMa+oqwNKyS+7Twodw3CjA
-         48R3xyCTlsZ47z46SHSH/GQ8WYVK6Xlejnmg/w+peYethFa0qHtGR+77fN48BWDtdUO0
-         srnSh4tnrIuhDEiNUJc01vM7ctZtyAV1kuVzeIJ37ajYYxFRR/T1MHZm8DsbfAfdWTrX
-         9SfA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NdVzA6qPVlAmhSw+AF0RzsUEa7rtQhimXzVFQeLQmeY=;
+        b=zYuc2eZ9oGLA1uBehnPVw3qQghPYysUXj+5+wQkhQ8Q0vhUZYyls8WZWwVTpZaz/f0
+         xx8XuURCVETsEjW7RrxU1lVytuaF9SDoyRLW/7wZZGtdLI8npkck9Gwy33hWjJsm9t8V
+         HNuJYmlMK0sCHnbt1jceoZARW15VMQkafTKURVi4D+6C9YBX2PowbgGNj8IZdSgFQXQy
+         /kELXCPaXG+99tz2Wh2H+ep7a8hf4uHc7CHJoWN2CoezsBwtXMFbvWs0xSs7WBraLDdG
+         sXnrjlzPIDxhfFwhCBi1hoys4BDH/gpaAv4sVVTUG00b5u/K0RO0PDYFLJ6I94sGrokH
+         L3pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=FWwSZ7wVHB66iuc6hwPySPcSnpuZXmN+p1/bCDDEZAo=;
-        b=IYTCkuH8u/SbS1+0eMFxOorh8Tvkc9v6dyF2XpWZI3BNaq7iceAhI1vsU1Aw2ZYXg7
-         RjCGHJ8znq826+h8zrWRkSgXIV8Xf3Pl0pnBdPi6Lh+pA4LRw+ZqpJHwo5x3u3Q1QqwU
-         nJleiAlvwY4dVH1yEHahV8ku81c3nfhA3Lns6zjQkfMHGjGW+h3HegdaMaX0H0Xarg1c
-         0Wi/90bZpbV8DkTAYDA1B0+0RAncstBCDAxU3iE1nvfVO80eJB6+XLgtISzMmTSGjDun
-         0xuTkQnaPXYGzYFrB5cE04V/wK4LdMBMdce03OeRi9TvjWFE0RfoTuKlBwb3lC23oazg
-         Am2A==
-X-Gm-Message-State: APjAAAURFOYPivEyKZPIknZ4c+qMAf4LBgayTVD67WhOQK0wf8edcW6p
-        ocPv6fngXS1LMFoWsIbhaY0s4g==
-X-Google-Smtp-Source: APXvYqy8jmTWK22einYBZkkJUT3gZQaCWv3cRPLnG6y72qAhJWTSUhHTPba7TgOkJn0GB6oggXGTqA==
-X-Received: by 2002:a05:6000:11cd:: with SMTP id i13mr1616456wrx.197.1571216414621;
-        Wed, 16 Oct 2019 02:00:14 -0700 (PDT)
-Received: from [10.1.4.98] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id p85sm2026845wme.23.2019.10.16.02.00.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 16 Oct 2019 02:00:13 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NdVzA6qPVlAmhSw+AF0RzsUEa7rtQhimXzVFQeLQmeY=;
+        b=YC1NCd2jkFbkZgvKpc8+OIdrR+4LOPRr9GpV7haSeJOC7u2F6OMrz6DhM9+tQaepi6
+         NCoNdUCRXdktnrO3Wjltk7XgWWznlKw1irca2jvOYRABv2A+NfQW9l2gq7Kldj2+GAJZ
+         ogMBQOiC/itlAJ5MdAlNZFnVtkOlCL9MjxoSh5YS0vMqAU/OUcpwWkCfxssxsewqFXA3
+         +cLG4nJw+68CP1BllH30g4+67ehjkyryR9gl06kSnh2WyDTvAtM01FMmUiZRsFa8r84m
+         p3nemqJFeu2J1wWO32TvMeTNOIvRfTWRC/bra1tS0ioxc8v86iVZR/Z4V5Rx8R00hIIR
+         OxmA==
+X-Gm-Message-State: APjAAAXZa7SvlxUA7f+7SIfIBtP+6E5ab8PWKoIrNBbtglZmM5d2w2g1
+        qjPqd6ZOGvs2OvLHmNrjsHLIJelEeckkYKTQhnHwnQ==
+X-Google-Smtp-Source: APXvYqzUUdjO1L90uCeShcgC6GevLXtyLsvHvDJTSP9JdgM4/IYVfwW7FFgabsmOFF/VTLlGKr6pTf/ZFohS3hAj90I=
+X-Received: by 2002:a67:edce:: with SMTP id e14mr16990631vsp.182.1571216909051;
+ Wed, 16 Oct 2019 02:08:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191004090114.30694-1-glaroque@baylibre.com> <20191004090114.30694-5-glaroque@baylibre.com>
+In-Reply-To: <20191004090114.30694-5-glaroque@baylibre.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Wed, 16 Oct 2019 14:38:18 +0530
+Message-ID: <CAHLCerN+SCuWZJw4OgR7KuDWpkXf5xo-1q=pe0axH2W=DffUXw@mail.gmail.com>
 Subject: Re: [PATCH v7 4/7] arm64: dts: meson: g12: Add minimal thermal zone
-To:     Amit Kucheria <amit.kucheria@linaro.org>
+To:     Guillaume La Roque <glaroque@baylibre.com>
 Cc:     Zhang Rui <rui.zhang@intel.com>,
         Eduardo Valentin <edubezval@gmail.com>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
@@ -55,131 +56,112 @@ Cc:     Zhang Rui <rui.zhang@intel.com>,
         <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
         lakml <linux-arm-kernel@lists.infradead.org>,
         linux-amlogic@lists.infradead.org
-References: <20191004090114.30694-1-glaroque@baylibre.com>
- <20191004090114.30694-5-glaroque@baylibre.com>
- <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
-From:   guillaume La Roque <glaroque@baylibre.com>
-Message-ID: <347c0fe0-62de-8ef5-c1ca-8958fef81820@baylibre.com>
-Date:   Wed, 16 Oct 2019 11:00:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Oct 4, 2019 at 2:31 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+>
+> Add minimal thermal zone for two temperature sensor
+> One is located close to the DDR and the other one is
+> located close to the PLLs (between the CPU and GPU)
+>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 
-On 10/16/19 1:20 AM, Amit Kucheria wrote:
-> On Fri, Oct 4, 2019 at 2:31 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
->> Add minimal thermal zone for two temperature sensor
->> One is located close to the DDR and the other one is
->> located close to the PLLs (between the CPU and GPU)
->>
->> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
->> Tested-by: Kevin Hilman <khilman@baylibre.com>
->> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
->> ---
->>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 57 +++++++++++++++++++
->>  1 file changed, 57 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->> index 0660d9ef6a86..a98c16e163c2 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
->> @@ -12,6 +12,7 @@
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
->>  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
->> +#include <dt-bindings/thermal/thermal.h>
->>
->>  / {
->>         interrupt-parent = <&gic>;
->> @@ -94,6 +95,61 @@
->>                 #size-cells = <2>;
->>                 ranges;
->>
->> +               thermal-zones {
->> +                       cpu_thermal: cpu-thermal {
->> +                               polling-delay = <1000>;
->> +                               polling-delay-passive = <100>;
-> Ordinarily, you would need to set these delays to 0 in interrupt mode
-> to prevent polling overhead. I've just submitted a patch to of-thermal
-> that should fix this requirement. Could you check if it works for you?
+Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
 
-it's working for me.
-
-thanks for your review.
-
->> +                               thermal-sensors = <&cpu_temp>;
->> +
->> +                               trips {
->> +                                       cpu_passive: cpu-passive {
->> +                                               temperature = <85000>; /* millicelsius */
->> +                                               hysteresis = <2000>; /* millicelsius */
->> +                                               type = "passive";
->> +                                       };
->> +
->> +                                       cpu_hot: cpu-hot {
->> +                                               temperature = <95000>; /* millicelsius */
->> +                                               hysteresis = <2000>; /* millicelsius */
->> +                                               type = "hot";
->> +                                       };
->> +
->> +                                       cpu_critical: cpu-critical {
->> +                                               temperature = <110000>; /* millicelsius */
->> +                                               hysteresis = <2000>; /* millicelsius */
->> +                                               type = "critical";
->> +                                       };
->> +                               };
->> +                       };
->> +
->> +                       ddr_thermal: ddr-thermal {
->> +                               polling-delay = <1000>;
->> +                               polling-delay-passive = <100>;
->> +                               thermal-sensors = <&ddr_temp>;
->> +
->> +                               trips {
->> +                                       ddr_passive: ddr-passive {
->> +                                               temperature = <85000>; /* millicelsius */
->> +                                               hysteresis = <2000>; /* millicelsius */
->> +                                               type = "passive";
->> +                                       };
->> +
->> +                                       ddr_critical: ddr-critical {
->> +                                               temperature = <110000>; /* millicelsius */
->> +                                               hysteresis = <2000>; /* millicelsius */
->> +                                               type = "critical";
->> +                                       };
->> +                               };
->> +
->> +                               cooling-maps {
->> +                                       map {
->> +                                               trip = <&ddr_passive>;
->> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> +                                       };
->> +                               };
->> +                       };
->> +               };
->> +
->>                 ethmac: ethernet@ff3f0000 {
->>                         compatible = "amlogic,meson-axg-dwmac",
->>                                      "snps,dwmac-3.70a",
->> @@ -2412,6 +2468,7 @@
->>                         assigned-clock-rates = <0>, /* Do Nothing */
->>                                                <800000000>,
->>                                                <0>; /* Do Nothing */
->> +                       #cooling-cells = <2>;
->>                 };
->>         };
->>
->> --
->> 2.17.1
->>
+> ---
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 0660d9ef6a86..a98c16e163c2 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -12,6 +12,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+>  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>
+>  / {
+>         interrupt-parent = <&gic>;
+> @@ -94,6 +95,61 @@
+>                 #size-cells = <2>;
+>                 ranges;
+>
+> +               thermal-zones {
+> +                       cpu_thermal: cpu-thermal {
+> +                               polling-delay = <1000>;
+> +                               polling-delay-passive = <100>;
+> +                               thermal-sensors = <&cpu_temp>;
+> +
+> +                               trips {
+> +                                       cpu_passive: cpu-passive {
+> +                                               temperature = <85000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "passive";
+> +                                       };
+> +
+> +                                       cpu_hot: cpu-hot {
+> +                                               temperature = <95000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "hot";
+> +                                       };
+> +
+> +                                       cpu_critical: cpu-critical {
+> +                                               temperature = <110000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "critical";
+> +                                       };
+> +                               };
+> +                       };
+> +
+> +                       ddr_thermal: ddr-thermal {
+> +                               polling-delay = <1000>;
+> +                               polling-delay-passive = <100>;
+> +                               thermal-sensors = <&ddr_temp>;
+> +
+> +                               trips {
+> +                                       ddr_passive: ddr-passive {
+> +                                               temperature = <85000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "passive";
+> +                                       };
+> +
+> +                                       ddr_critical: ddr-critical {
+> +                                               temperature = <110000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "critical";
+> +                                       };
+> +                               };
+> +
+> +                               cooling-maps {
+> +                                       map {
+> +                                               trip = <&ddr_passive>;
+> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
+>                 ethmac: ethernet@ff3f0000 {
+>                         compatible = "amlogic,meson-axg-dwmac",
+>                                      "snps,dwmac-3.70a",
+> @@ -2412,6 +2468,7 @@
+>                         assigned-clock-rates = <0>, /* Do Nothing */
+>                                                <800000000>,
+>                                                <0>; /* Do Nothing */
+> +                       #cooling-cells = <2>;
+>                 };
+>         };
+>
+> --
+> 2.17.1
+>
