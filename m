@@ -2,150 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 102BED8BB2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 783B6D8BBC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728464AbfJPIt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:49:58 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:40443 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726530AbfJPIt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:49:58 -0400
-Received: by mail-io1-f66.google.com with SMTP id h144so52716986iof.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:49:56 -0700 (PDT)
+        id S2390125AbfJPIwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:52:06 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:40124 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733175AbfJPIwF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:52:05 -0400
+Received: by mail-ot1-f66.google.com with SMTP id y39so19452171ota.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:52:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nkFKCgNZd30QrMCh3RiyW6uUTpINk4yhCuU9i7apvF8=;
-        b=oDLHRvC6Da2CfSONZTkFu1bX2HUbVJbI71A8Kmnp8x1j9NKcOadDyR4zX0/SUlCeDW
-         6EP3b8kcsQfyUBkTYAd4jBTbJotQJjQ39oVD+mG36pdochYrgL1N9fvZ+4W/6s0/hKDV
-         BglF9H8nLhQu+PPWgzunU49/vZjl42IXUCUpU=
+         :cc:content-transfer-encoding;
+        bh=dPjxIqYiQMK7Ofdf/JlPzBSeuo9jOahvRGdRDASGN2s=;
+        b=SFdfarNnHtNI12aadwAX1PA+lcyBra2O93CQ5jgTksmGrPBuUX2j7KjE1zMCJV6NCq
+         2NwmnApS/gGaghIMth4CIP7UV0aFL+o5UzAtPYpsQ2RDacaIs7n64yYylopV1qye4ggg
+         D6tbvpJRhy5PRwb0ReYlt3BBwnZFEWtClyFf89dU8ea7acAQ6qFNayeus+wG52MveEsY
+         OKfV17lSo3IOHrU8Y+UPnQ4bm8tmSBmXnYg3elJRDCu9xSv+YV+46eVOhTSlpc/yOk7B
+         gDX7eqAcrxTMXcj8qZ1U+hmo0NOEDJB9+jX0wFcCGz5mVKH6tazSFuWqWyRRFgbEySWP
+         tkrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nkFKCgNZd30QrMCh3RiyW6uUTpINk4yhCuU9i7apvF8=;
-        b=PwEl6d4jv2SFuM+bUhcd2FgC33gGyZ7ueK+t4QKruHhQVcS6saojIcfFyL3hPUG1MS
-         gtwqCQSwn420qngwTIf4EAbarx+PRfvHCUzG2FNkySpgca8OHUamd8Deql3tFyn6EXiB
-         dzMj13lGxugX3fgiIIcqJuZ6djDB3R7DRaXd5kgEea36jfWaaCYu0lcSDfqTsx4I9OI8
-         WUnh1K3i0/gRbOR3vAvvynBtLLuaDU0rv25JcVIey0sXbzPQmkIoSLWkQvBn5xMcjG82
-         gWu+XQE3TI5jGF1bo9kf1E1iVvsOM8Q7IqXs8AxjVT96meC7vChGVnGwuLwr4D+hzK2l
-         TYjA==
-X-Gm-Message-State: APjAAAWX/m3xFenUfvjwO/HCJUTLb9y6s8kMVmMGg+ghmmpzN9jmGSUF
-        feW2G6cYxlkNAjXXextZzMCNG8ug/+OyyLxYNZC4Cg==
-X-Google-Smtp-Source: APXvYqwM/YfYZ+riS2Cum5gGH058KHcCEur2jM3FQN+H7YrTWDuxynyVSyvoqlYwq/gm6khtHfKG1I7SfwJJ3PPT7kg=
-X-Received: by 2002:a6b:5c0f:: with SMTP id z15mr8252242ioh.173.1571215796031;
- Wed, 16 Oct 2019 01:49:56 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dPjxIqYiQMK7Ofdf/JlPzBSeuo9jOahvRGdRDASGN2s=;
+        b=kGk303Ht9V29XTuHUme/rh+5QZPyHjL+HB38swZ5JI6P3/Pr3qDT9Tybb0aOpzqZvE
+         /pK6P0Z6JpCXMETlGUZr1sHyoCcsgFx8VQYvouKCCXvSkSJ3E68Q+c+HXwnQzev48wZL
+         7cCXnMom0WjR1Lq2Sw7uHpYXvgnsaHEFI67QmGKCZs8y9JwZeLWomq6nWYLdKySWvPO5
+         BogSxb7Tkfxadx0XxoDkIwN5GK+78fxj6/5p2xGHEZxVk8BAEH1qt/7Zz14G0k722qgy
+         T7dqq3/mQxevdR/OMeGDc3WqUaZbNvvnPJqQd3VZsKiHStkiv8p0WI1AOEejSS6SeC94
+         CZeA==
+X-Gm-Message-State: APjAAAWY1gUZQY8uw0vRubiyUcj/5Gw1INQr7h6YcGWDTDvfUIcdZFsF
+        983WCAHp8Fk+IkoeeLn/qs9xldHZM5rqJVWb5Mavfw==
+X-Google-Smtp-Source: APXvYqxblxvM0RvE21tzdlGawQKnicY3rYBnxOfyuVfeGdaMwjfElinoWHn2qUXT+uKhp7VX24vqtv0plGLv/rHukO8=
+X-Received: by 2002:a9d:7dd6:: with SMTP id k22mr8950112otn.256.1571215924573;
+ Wed, 16 Oct 2019 01:52:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191005141913.22020-1-jagan@amarulasolutions.com>
- <20191005141913.22020-6-jagan@amarulasolutions.com> <20191007105708.raxavxk4n7bvxh7x@gilmour>
- <CAMty3ZCiwOGgwbsjTHvEZhwHGhsgb6_FeBs9hHgLai9=rV2_HQ@mail.gmail.com> <20191016080306.44pmo3rfmtnkgosq@gilmour>
-In-Reply-To: <20191016080306.44pmo3rfmtnkgosq@gilmour>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 16 Oct 2019 14:19:44 +0530
-Message-ID: <CAMty3ZCTE=W+TNRvdowec-eYB625j97uG8F3fzVMtRFsKsqFFQ@mail.gmail.com>
-Subject: Re: [PATCH v10 5/6] arm64: dts: allwinner: a64: Add MIPI DSI pipeline
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20191016075110.8240-1-bibby.hsieh@mediatek.com>
+In-Reply-To: <20191016075110.8240-1-bibby.hsieh@mediatek.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 16 Oct 2019 10:51:53 +0200
+Message-ID: <CAMpxmJUrvZ2Vwk5p8ky8WD-buNZk2b+3vDzj9+D9VqBpd4XtRA@mail.gmail.com>
+Subject: Re: [PATCH v3] misc: eeprom: at24: support pm_runtime control
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+Cc:     linux-i2c <linux-i2c@vger.kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+        linux-devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 1:33 PM Maxime Ripard <mripard@kernel.org> wrote:
+=C5=9Br., 16 pa=C5=BA 2019 o 09:51 Bibby Hsieh <bibby.hsieh@mediatek.com> n=
+apisa=C5=82(a):
 >
-> On Mon, Oct 14, 2019 at 05:37:50PM +0530, Jagan Teki wrote:
-> > On Mon, Oct 7, 2019 at 4:27 PM Maxime Ripard <mripard@kernel.org> wrote:
-> > >
-> > > On Sat, Oct 05, 2019 at 07:49:12PM +0530, Jagan Teki wrote:
-> > > > Add MIPI DSI pipeline for Allwinner A64.
-> > > >
-> > > > - dsi node, with A64 compatible since it doesn't support
-> > > >   DSI_SCLK gating unlike A33
-> > > > - dphy node, with A64 compatible with A33 fallback since
-> > > >   DPHY on A64 and A33 is similar
-> > > > - finally, attach the dsi_in to tcon0 for complete MIPI DSI
-> > > >
-> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > Tested-by: Merlijn Wajer <merlijn@wizzup.org>
-> > > > ---
-> > > >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 +++++++++++++++++++
-> > > >  1 file changed, 38 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > > > index 69128a6dfc46..ad4170b8aee0 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > > > @@ -382,6 +382,12 @@
-> > > >                                       #address-cells = <1>;
-> > > >                                       #size-cells = <0>;
-> > > >                                       reg = <1>;
-> > > > +
-> > > > +                                     tcon0_out_dsi: endpoint@1 {
-> > > > +                                             reg = <1>;
-> > > > +                                             remote-endpoint = <&dsi_in_tcon0>;
-> > > > +                                             allwinner,tcon-channel = <1>;
-> > > > +                                     };
-> > > >                               };
-> > > >                       };
-> > > >               };
-> > > > @@ -1003,6 +1009,38 @@
-> > > >                       status = "disabled";
-> > > >               };
-> > > >
-> > > > +             dsi: dsi@1ca0000 {
-> > > > +                     compatible = "allwinner,sun50i-a64-mipi-dsi";
-> > > > +                     reg = <0x01ca0000 0x1000>;
-> > > > +                     interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +                     clocks = <&ccu CLK_BUS_MIPI_DSI>;
-> > > > +                     clock-names = "bus";
-> > >
-> > > This won't validate with the bindings you have either here, since it
-> > > still expects bus and mod.
-> > >
-> > > I guess in that cas, we can just drop clock-names, which will require
-> > > a bit of work on the driver side as well.
-> >
-> > Okay.
-> > mod clock is not required for a64, ie reason we have has_mod_clk quirk
-> > patch. Adjust the clock-names: on dt-bindings would make sense here,
-> > what do you think?
+> Although in the most platforms, the power of eeprom and i2c
+> are alway on, some platforms disable the eeprom and i2c power
+> in order to meet low power request.
+> This patch add the pm_runtime ops to control power to support
+> all platforms.
 >
-> I'm confused, what are you suggesting?
+> Changes since v2:
+>  - rebase onto v5.4-rc1
+>  - add pm_runtime_disable and regulator_bulk_disable at
+>    err return in probe function
+>
+> Changes since v1:
+>  - remove redundant code
+>  - fixup coding style
+>
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+>  drivers/misc/eeprom/at24.c | 63 +++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 62 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+> index 2cccd82a3106..7ff614aef301 100644
+> --- a/drivers/misc/eeprom/at24.c
+> +++ b/drivers/misc/eeprom/at24.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/nvmem-provider.h>
+>  #include <linux/regmap.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/gpio/consumer.h>
+>
+>  /* Address pointer is 16 bit. */
+> @@ -67,6 +68,12 @@
+>   * which won't work on pure SMBus systems.
+>   */
+>
+> +static const char * const at24_supply_names[] =3D {
+> +       "power", "i2c",
+> +};
+> +
+> +#define AT24_NUM_SUPPLIES ARRAY_SIZE(at24_supply_names)
+> +
+>  struct at24_client {
+>         struct i2c_client *client;
+>         struct regmap *regmap;
+> @@ -91,6 +98,8 @@ struct at24_data {
+>
+>         struct gpio_desc *wp_gpio;
+>
+> +       bool has_supplies;
+> +       struct regulator_bulk_data supplies[AT24_NUM_SUPPLIES];
+>         /*
+>          * Some chips tie up multiple I2C addresses; dummy devices reserv=
+e
+>          * them for us, and we'll use them with SMBus calls.
+> @@ -662,6 +671,15 @@ static int at24_probe(struct i2c_client *client)
+>         at24->client[0].client =3D client;
+>         at24->client[0].regmap =3D regmap;
+>
+> +       for (i =3D 0; i < AT24_NUM_SUPPLIES; i++)
+> +               at24->supplies[i].supply =3D at24_supply_names[i];
 
-Sorry for the confusion.
+Please use regulator_bulk_set_supply_names() here.
 
-The mod clock is not required for A64 and we have a patch for handling
-mod clock using has_mod_clk quirk(on the series), indeed the mod clock
-is available in A31 and not needed for A64. So, to satisfy this
-requirement the clock-names on dt-bindings can update to make mod
-clock-name is optional and bus clock is required.
+Bart
 
-I'm not exactly sure, this is correct but trying to understand if it
-is possible or not? something like
-
-   clocks:
-      minItems: 1
-      maxItems: 2
-     items:
-       - description: Bus Clock
-       - description: Module Clock
-
-   clock-names:
-      minItems: 1
-      maxItems: 2
-     items:
-       - const: bus
-       - const: mod
+> +
+> +       err =3D  devm_regulator_bulk_get(&at24->client[0].client->dev,
+> +                                      AT24_NUM_SUPPLIES, at24->supplies)=
+;
+> +       if (err =3D=3D -EPROBE_DEFER)
+> +               return err;
+> +       at24->has_supplies =3D !err;
+> +
+>         at24->wp_gpio =3D devm_gpiod_get_optional(dev, "wp", GPIOD_OUT_HI=
+GH);
+>         if (IS_ERR(at24->wp_gpio))
+>                 return PTR_ERR(at24->wp_gpio);
+> @@ -704,14 +722,26 @@ static int at24_probe(struct i2c_client *client)
+>         /* enable runtime pm */
+>         pm_runtime_set_active(dev);
+>         pm_runtime_enable(dev);
+> +       pm_runtime_get_sync(dev);
+> +       if (at24->has_supplies) {
+> +               err =3D regulator_bulk_enable(AT24_NUM_SUPPLIES, at24->su=
+pplies);
+> +               if (err) {
+> +                       dev_err(dev, "Failed to enable power regulators\n=
+");
+> +                       pm_runtime_disable(dev);
+> +                       return err;
+> +               }
+> +       }
+>
+>         /*
+>          * Perform a one-byte test read to verify that the
+>          * chip is functional.
+>          */
+>         err =3D at24_read(at24, 0, &test_byte, 1);
+> -       pm_runtime_idle(dev);
+> +       pm_runtime_put(dev);
+>         if (err) {
+> +               if (at24->has_supplies)
+> +                       regulator_bulk_disable(AT24_NUM_SUPPLIES,
+> +                                              at24->supplies);
+>                 pm_runtime_disable(dev);
+>                 return -ENODEV;
+>         }
+> @@ -725,15 +755,46 @@ static int at24_probe(struct i2c_client *client)
+>
+>  static int at24_remove(struct i2c_client *client)
+>  {
+> +       struct at24_data *at24 =3D i2c_get_clientdata(client);
+> +
+>         pm_runtime_disable(&client->dev);
+>         pm_runtime_set_suspended(&client->dev);
+> +       if (at24->has_supplies)
+> +               regulator_bulk_disable(AT24_NUM_SUPPLIES, at24->supplies)=
+;
+>
+>         return 0;
+>  }
+>
+> +static int __maybe_unused at24_suspend(struct device *dev)
+> +{
+> +       struct i2c_client *client =3D to_i2c_client(dev);
+> +       struct at24_data *at24 =3D i2c_get_clientdata(client);
+> +
+> +       if (at24->has_supplies)
+> +               return regulator_bulk_disable(AT24_NUM_SUPPLIES,
+> +                                             at24->supplies);
+> +
+> +       return 0;
+> +}
+> +
+> +static int __maybe_unused at24_resume(struct device *dev)
+> +{
+> +       struct i2c_client *client =3D to_i2c_client(dev);
+> +       struct at24_data *at24 =3D i2c_get_clientdata(client);
+> +
+> +       if (at24->has_supplies)
+> +               return regulator_bulk_enable(AT24_NUM_SUPPLIES,
+> +                                            at24->supplies);
+> +
+> +       return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(at24_pm_ops, at24_suspend, at24_resume);
+> +
+>  static struct i2c_driver at24_driver =3D {
+>         .driver =3D {
+>                 .name =3D "at24",
+> +               .pm =3D &at24_pm_ops,
+>                 .of_match_table =3D at24_of_match,
+>                 .acpi_match_table =3D ACPI_PTR(at24_acpi_ids),
+>         },
+> --
+> 2.18.0
+>
