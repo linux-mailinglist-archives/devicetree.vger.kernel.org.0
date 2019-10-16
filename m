@@ -2,52 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DAF9BD852A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 03:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B98D8532
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 03:06:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390423AbfJPBD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 21:03:58 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:42652 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726315AbfJPBD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 21:03:58 -0400
-Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id CD32A1265001C;
-        Tue, 15 Oct 2019 18:03:56 -0700 (PDT)
-Date:   Tue, 15 Oct 2019 18:03:56 -0700 (PDT)
-Message-Id: <20191015.180356.268577945716013325.davem@davemloft.net>
-To:     Mark-MC.Lee@mediatek.com
-Cc:     sean.wang@mediatek.com, john@phrozen.org,
-        nelson.chang@mediatek.com, matthias.bgg@gmail.com, andrew@lunn.ch,
-        robh+dt@kernel.org, mark.rutland@arm.com, opensource@vdorst.com,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jakub.kicinski@netronome.com
-Subject: Re: [PATCH net,v3 0/2] Update MT7629 to support PHYLINK API
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20191014071518.11923-1-Mark-MC.Lee@mediatek.com>
-References: <20191014071518.11923-1-Mark-MC.Lee@mediatek.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Tue, 15 Oct 2019 18:03:57 -0700 (PDT)
+        id S1730479AbfJPBGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 21:06:00 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:32942 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730786AbfJPBF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 21:05:58 -0400
+Received: by mail-pg1-f193.google.com with SMTP id i76so13217153pgc.0;
+        Tue, 15 Oct 2019 18:05:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=ZGa/e8ScYFo0O0ofE/HYTLUJXgs85jMHJAoOtTpoL4A=;
+        b=s8542C+T1nvH48+/1s6d3Xekjoe2EDEc+K6WurUBiDeTR3Nghfdcrf7bDoH76cOrtY
+         4TjcKrfCtWSmiVTGaNU+g/vOKYFE/N9iHkJv51qPAKJjKED21ERvREaG5pxAt1qezxmt
+         VIpE9b2I5zkSqk6IQXIRc/lHK3fFho0ZQ03XMh0R9UhbORRgE4lN49XfzAjfbLm90yAv
+         3Ac4jwRxX2rvfR0AnFUElfc/nKLj3Pl2ZLZojkWa4AhWuYBpTKijvwKjG8tKDQ96DYh1
+         QhT0dyPv7CM/g798VyLVKCHDicsjKiPE9XlRwRrzBVDniK1vexzQDDfDvYUMhzMlcr4g
+         z4Zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=ZGa/e8ScYFo0O0ofE/HYTLUJXgs85jMHJAoOtTpoL4A=;
+        b=uC6RaVfXcJsYwKbLv8vfG0tneUAMCvcdH344T7USq3sOEfaMSkXV1oD27MkYkBBH1i
+         sZsjrWUsrQdVYq7VOkB2Wp9LyDeZzUDxEnSGiOOuooRYyPH5Y/t2zx0edE9f40fB9Oyj
+         +49DL9FJvSySp7e+dYyM5XooWpDLz3o3o0T4vq3cWDpL7IqsIX3HWYi8vkUVQNcz0a9E
+         f9O7Gg1KpQN6/wZ8RSu3DgM4Iub96Tqera54r2z3dO8BbmZjz9HBUEVjVz31lGDF3EaG
+         nr5kgwxsMsaTgtLj/SaG82j0lbQOJ0GGBwl3q7N/SuygEmhoeph47E9/l2rCFFukNhCQ
+         +Ziw==
+X-Gm-Message-State: APjAAAUn+afHJ+pD9shuAjKDP93LPoLdIN6Aq9Uew7LE67TE7E0N3s1G
+        y+SRdAD35fFcBxKPUnKmo4s=
+X-Google-Smtp-Source: APXvYqya1S4ppX7c9j/nZ9F987416mfu5NR9idjjbi0YlAVSoDy4n57Uews0z1b09VTxy5KpMBEWKw==
+X-Received: by 2002:a17:90a:d991:: with SMTP id d17mr1654428pjv.73.1571187957506;
+        Tue, 15 Oct 2019 18:05:57 -0700 (PDT)
+Received: from majic.sklembedded.com (c-73-202-231-77.hsd1.ca.comcast.net. [73.202.231.77])
+        by smtp.googlemail.com with ESMTPSA id n15sm453714pjt.13.2019.10.15.18.05.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 18:05:56 -0700 (PDT)
+From:   Steve Longerbeam <slongerbeam@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel@vger.kernel.org (open list:CLOCKSOURCE, CLOCKEVENT DRIVERS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
+        / MXC ARM ARCHITECTURE)
+Cc:     Steve Longerbeam <slongerbeam@gmail.com>
+Subject: [PATCH 2/2] dt-bindings: timer: imx: gpt: Add pin group bindings for input capture
+Date:   Tue, 15 Oct 2019 18:05:44 -0700
+Message-Id: <20191016010544.14561-3-slongerbeam@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191016010544.14561-1-slongerbeam@gmail.com>
+References: <20191016010544.14561-1-slongerbeam@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: MarkLee <Mark-MC.Lee@mediatek.com>
-Date: Mon, 14 Oct 2019 15:15:16 +0800
+Add pin group bindings to support input capture function of the i.MX
+GPT.
 
-> This patch set has two goals :
-> 	1. Fix mt7629 GMII mode issue after apply mediatek
-> 	   PHYLINK support patch.
-> 	2. Update mt7629 dts to reflect the latest dt-binding
-> 	   with PHYLINK support.
+Signed-off-by: Steve Longerbeam <slongerbeam@gmail.com>
+---
+ .../devicetree/bindings/timer/fsl,imxgpt.txt  | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-Series applied, thank you.
+diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt b/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt
+index 5d8fd5b52598..32797b7b0d02 100644
+--- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt
++++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt
+@@ -33,6 +33,13 @@ Required properties:
+            an entry for each entry in clock-names.
+ - clock-names : must include "ipg" entry first, then "per" entry.
+ 
++Optional properties:
++
++- pinctrl-0: For the i.MX GPT to support the Input Capture function,
++  	     the input capture channel pin groups must be listed here.
++- pinctrl-names: must be "default".
++
++
+ Example:
+ 
+ gpt1: timer@10003000 {
+@@ -43,3 +50,24 @@ gpt1: timer@10003000 {
+ 		 <&clks IMX27_CLK_PER1_GATE>;
+ 	clock-names = "ipg", "per";
+ };
++
++
++Example with input capture channel 0 support:
++
++pinctrl_gpt_input_capture0: gptinputcapture0grp {
++	fsl,pins = <
++		MX6QDL_PAD_SD1_DAT0__GPT_CAPTURE1 0x1b0b0
++	>;
++};
++
++gpt: gpt@2098000 {
++	compatible = "fsl,imx6q-gpt", "fsl,imx31-gpt";
++	reg = <0x02098000 0x4000>;
++	interrupts = <0 55 IRQ_TYPE_LEVEL_HIGH>;
++	clocks = <&clks IMX6QDL_CLK_GPT_IPG>,
++		<&clks IMX6QDL_CLK_GPT_IPG_PER>,
++		<&clks IMX6QDL_CLK_GPT_3M>;
++	clock-names = "ipg", "per", "osc_per";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpt_input_capture0>;
++};
+-- 
+2.17.1
+
