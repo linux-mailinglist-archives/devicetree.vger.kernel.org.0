@@ -2,96 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1239D85D2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 04:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE66AD8611
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 04:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390157AbfJPCRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 22:17:46 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:39850 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732007AbfJPCRp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Oct 2019 22:17:45 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1EF0E200923;
-        Wed, 16 Oct 2019 04:17:44 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 30C8D20093E;
-        Wed, 16 Oct 2019 04:17:27 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7911F40342;
-        Wed, 16 Oct 2019 10:17:09 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        jun.li@nxp.com, ping.bai@nxp.com, daniel.baluta@nxp.com,
-        leonard.crestez@nxp.com, daniel.lezcano@linaro.org,
-        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
-        andrew.smirnov@gmail.com, jon@solid-run.com, baruch@tkos.co.il,
-        angus@akkea.ca, pavel@ucw.cz, agx@sigxcpu.org,
-        troy.kisky@boundarydevices.com, gary.bisson@boundarydevices.com,
-        dafna.hirschfeld@collabora.com, richard.hu@technexion.com,
-        andradanciu1997@gmail.com, manivannan.sadhasivam@linaro.org,
-        aisheng.dong@nxp.com, peng.fan@nxp.com, fugang.duan@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 5/5] ARM: dts: imx7ulp: Move usdhc clocks assignment to board DT
-Date:   Wed, 16 Oct 2019 10:14:27 +0800
-Message-Id: <1571192067-19600-5-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1571192067-19600-1-git-send-email-Anson.Huang@nxp.com>
-References: <1571192067-19600-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1732170AbfJPCwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 22:52:30 -0400
+Received: from mail-qk1-f179.google.com ([209.85.222.179]:46929 "EHLO
+        mail-qk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729606AbfJPCw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 22:52:29 -0400
+Received: by mail-qk1-f179.google.com with SMTP id e66so791278qkf.13;
+        Tue, 15 Oct 2019 19:52:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :user-agent;
+        bh=bUPgOrzO03ynjh7f8hMryc9lj72KYAMDsgA/uPPC8XM=;
+        b=gYNRTX88YXnJAS4PWAu/QZoCvEfhgvphEAR8wIr+TnZn0wLvA4DO6bFaDdC6koJnyq
+         f50wrcrBEgUntsBq7BHlSVi6NfK0vh9OV3142qYQ7xMJ4Yp+5e3AActXpNxPnFA+7Jf+
+         kRJf3AbqM6o5Ze96RA0IhYtRgfNbIcPqfW0BZfJBcRZFHuoKt5RimUY7jyDmhI8vRy1t
+         B3f56psva5uHsCzJwZO+E2D9TFrWKEOzKLm1lrW9KV6vcPGQas4XaTquynlvMOZa6nR3
+         WEFeF343VuYBCXRjucVWFE952OWK5s8mwJcLtihVpmNwgENoRkANM03vnhU3y4W8WBfn
+         wxHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=bUPgOrzO03ynjh7f8hMryc9lj72KYAMDsgA/uPPC8XM=;
+        b=kuV+KuXpjTgin2u+6skFh+FwfnhyAX1ZBkjW8PGv/xLD6R2TmnCEQ0OZGbzdCIYsD6
+         HaP1Mca2pf4nrXXKcnC0tHFyJ/jlofIj9E05Lg3FadRHiilPzG9MTZuDq1tsvjZPCA/M
+         wD1A7tyZQQhOSvoWAC98dPvfz3oxoEuxda0oVXTvgO6CCJVLqbG6Lk3XObmOUNvhAUAU
+         04UNQKicuBlmuZO+/2R/MQqj/ptTcntt4vUngCeUu/CN6AFxyKv7n/6/HBSJedvFDZZL
+         kOpU1sBI4qdkY76NvRsy39lLRZbKx+3Nd7MCCjJkcjn/XmJlojo/nysFRNr39uTup2Mz
+         p8TA==
+X-Gm-Message-State: APjAAAWBR5bCdLM1XTFjBagm05kMa5wYCleoj+RUlGDPAxPh7NUteoAh
+        b4RAz6+uUMEvo+KFPnab4Qw=
+X-Google-Smtp-Source: APXvYqyIv/kjCfPmmI1ZZH1sTicpI04pvyW71VV9KONREQ4437Jw3v70SYAVIrXdkVem9he1PZGXGg==
+X-Received: by 2002:a37:4703:: with SMTP id u3mr39297600qka.130.1571194348643;
+        Tue, 15 Oct 2019 19:52:28 -0700 (PDT)
+Received: from smtp.gmail.com ([2804:d43:421:ecd6:45ed:dc65:8f65:8e1])
+        by smtp.gmail.com with ESMTPSA id v7sm10850321qte.29.2019.10.15.19.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 19:52:28 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 23:52:23 -0300
+From:   Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To:     jic23@kernel.org
+Cc:     dragos.bogdan@analog.com, alexandru.ardelean@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel-usp@googlegroups.com
+Subject: [PATCH v2 2/2] dt-bindings: iio: adc: Add DT docs for AD7292
+Message-ID: <20191016025220.td3xb7oxlfkznxl6@smtp.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-usdhc's clock rate is different according to different devices
-connected, so clock rate assignment should be placed in board
-DT according to different devices connected on each usdhc port.
+Add a device tree binding doc for AD7292 monitor and control system.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Signed-off-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
 ---
- arch/arm/boot/dts/imx7ulp-evk.dts | 2 ++
- arch/arm/boot/dts/imx7ulp.dtsi    | 4 ----
- 2 files changed, 2 insertions(+), 4 deletions(-)
+ .../bindings/iio/adc/adi,ad7292.yaml          | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 108 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
 
-diff --git a/arch/arm/boot/dts/imx7ulp-evk.dts b/arch/arm/boot/dts/imx7ulp-evk.dts
-index 4245b33..f1093d2 100644
---- a/arch/arm/boot/dts/imx7ulp-evk.dts
-+++ b/arch/arm/boot/dts/imx7ulp-evk.dts
-@@ -77,6 +77,8 @@
- };
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+new file mode 100644
+index 000000000000..40028332d9e2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7292.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7292 10-Bit Monitor and Control System
++
++maintainers:
++  - Marcelo Schmitt <marcelo.schmitt1@gmail.com>
++
++description: |
++  Analog Devices AD7292 10-Bit Monitor and Control System with ADC, DACs,
++  Temperature Sensor, and GPIOs
++
++  Specifications about the part can be found at:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7292.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7292
++
++  reg:
++    maxItems: 1
++
++  vref-supply:
++    description: |
++      The regulator supply for ADC and DAC reference voltage.
++    maxItems: 1
++
++  spi-cpha:
++    description: |
++      See Documentation/devicetree/bindings/spi/spi-controller.yaml
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++patternProperties:
++  "^channel@[0-7]$":
++    type: object
++    description: |
++      Represents the external channels which are connected to the ADC.
++      See Documentation/devicetree/bindings/iio/adc/adc.txt.
++
++    properties:
++      reg:
++        description: |
++          The channel number. It can have up to 8 channels numbered from 0 to 7.
++        maxItems: 1
++
++      diff-channels:
++        description: see Documentation/devicetree/bindings/iio/adc/adc.txt
++        maxItems: 1
++
++    required:
++      - reg
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      ad7292: ad7292@0 {
++        compatible = "adi,ad7292";
++        reg = <0>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        spi-max-frequency = <25000000>;
++        vref-supply = <&adc_vref>;
++        spi-cpha;
++
++        channel@0 {
++          reg = <0>;
++          diff-channels = <0 1>;
++        };
++        channel@2 {
++          reg = <2>;
++        };
++        channel@3 {
++          reg = <3>;
++        };
++        channel@4 {
++          reg = <4>;
++        };
++        channel@5 {
++          reg = <5>;
++        };
++        channel@6 {
++          reg = <6>;
++        };
++        channel@7 {
++          reg = <7>;
++        };
++      };
++    }
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e78317a5f4f1..5941cfc0d6f7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -819,6 +819,7 @@ L:	linux-iio@vger.kernel.org
+ W:	http://ez.analog.com/community/linux-device-drivers
+ S:	Supported
+ F:	drivers/iio/adc/ad7292.c
++F:	Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
  
- &usdhc0 {
-+	assigned-clocks = <&pcc2 IMX7ULP_CLK_USDHC0>;
-+	assigned-clock-parents = <&scg1 IMX7ULP_CLK_NIC1_DIV>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_usdhc0>;
- 	cd-gpios = <&gpio_ptc 10 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-index 25e6f09..d37a192 100644
---- a/arch/arm/boot/dts/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/imx7ulp.dtsi
-@@ -223,8 +223,6 @@
- 				 <&scg1 IMX7ULP_CLK_NIC1_DIV>,
- 				 <&pcc2 IMX7ULP_CLK_USDHC0>;
- 			clock-names = "ipg", "ahb", "per";
--			assigned-clocks = <&pcc2 IMX7ULP_CLK_USDHC0>;
--			assigned-clock-parents = <&scg1 IMX7ULP_CLK_NIC1_DIV>;
- 			bus-width = <4>;
- 			fsl,tuning-start-tap = <20>;
- 			fsl,tuning-step = <2>;
-@@ -239,8 +237,6 @@
- 				 <&scg1 IMX7ULP_CLK_NIC1_DIV>,
- 				 <&pcc2 IMX7ULP_CLK_USDHC1>;
- 			clock-names = "ipg", "ahb", "per";
--			assigned-clocks = <&pcc2 IMX7ULP_CLK_USDHC1>;
--			assigned-clock-parents = <&scg1 IMX7ULP_CLK_NIC1_DIV>;
- 			bus-width = <4>;
- 			fsl,tuning-start-tap = <20>;
- 			fsl,tuning-step = <2>;
+ ANALOG DEVICES INC AD7606 DRIVER
+ M:	Stefan Popa <stefan.popa@analog.com>
 -- 
-2.7.4
+2.23.0
 
