@@ -2,168 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F103D8461
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 01:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C2ED84C6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 02:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390206AbfJOXUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 19:20:44 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:42544 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390205AbfJOXUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 19:20:44 -0400
-Received: by mail-vs1-f66.google.com with SMTP id m22so14332010vsl.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 16:20:43 -0700 (PDT)
+        id S2388060AbfJPAXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 20:23:33 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:46683 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388055AbfJPAXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 20:23:33 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q5so13502203pfg.13;
+        Tue, 15 Oct 2019 17:23:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7Luzeu61JUpCQk5lttonbL70KSFby5OvdNNxzg/MFQ8=;
-        b=eDOzDhVMybk0i/+feqo0X+49gsS5JqJW8Ry8hE/JpXVc3WdVLD8WqJn9dDxRuwCehy
-         QvBk66yW4mH2kDlYuzMBwPUkP7IEFj9ZOCyD/4jTGGzyqm14Z6beV+SiRvogqh3bul4S
-         iB5C2XFuK7HRXnTP1fLCtCvORAdxwIVNNPgEfK7/yPQBrFJLj5U8IlVLAnGbma2My+bA
-         WBSOGcGHMJNm8DROoKh3HDAVOdcniv422vxJwA1eHO+j7o/CCl3KJUcbsWYelqWlID+T
-         ADHbasV+eQpUbByIGOW8dLaZ/+35eAnKAiGRw80ERMmbEtCmUY0OfB7tcC1PPQ9bI1JZ
-         KYPA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=w/0NNjZTTRzygNruX3+tb9DR5aFHlsjqWF+laA/0wOw=;
+        b=lBBLAc/yj2i06gSUC9ce8AFd26klCFmFUF/isgFFJy5uu2uxvwHPVhl8ZCJBVgiNBS
+         cJKYwX0kMk/ZKHppUWvOPIZl82RfpuyWE2RnD/cRTRmpDEUw0bB7UnZwBLyiyH2W/DyC
+         N28FlE+zCE4IYGsHAR+EOmnBfGknMRjbewrSNzLSnjlwON/0awOmbOVdeJJJgjN6IAyN
+         AeyLXzEhz8PPAYfGETW70cgbj8dwjvBEdjff0c72rCVcGAQ56M/ZwsNu4m0VJPDXN8oh
+         faYhkKWJe9jDRtWHwcULvwwwE2y/kMBXix/ibzKMDyzmFsLlVqj1bTyKMWPDoVQl8jGa
+         +7iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7Luzeu61JUpCQk5lttonbL70KSFby5OvdNNxzg/MFQ8=;
-        b=jPeS+3+7j0aDVMMU+7p6DOHq5wf5h9HEQZ6+AGe/wQWbgLau2Ri3NmU/lOtrmyUSI5
-         H6wXblbVMwlsiTD41Guuv/q2hVr/wTUtsDvrmKzW57caaqNgAArNeSM3dQcAHZXequMj
-         atuX57tj2CZ3IGqIzUGdsU4BqWapISrPsP3iQgfTLUUzFaJrSEf06nBKbyz6zd0YnoV+
-         gwpUoKMMCjtItAOLSOettKELGDIrVQxmZBGkLCHNToF6Fam0x2oTFF3KGhTAtEK7F9Jx
-         S00INxl7aLOpwS3fzO9IsgbOI8ZLpuyFNopf2HSrrgHQGkYnxaWYFzVvp323yIlWnnC0
-         xwMQ==
-X-Gm-Message-State: APjAAAU3Njd55CSQikdLWrJq1joSy14ova5fyT8QIW0502x4kTIUsZo9
-        xMJCly6ao+d2kp+C7hv6Zmzn+LbmcaRgLSREUX89YA==
-X-Google-Smtp-Source: APXvYqygrun7u9zevVDKfu0sa7amxsriNbVYF4wbVRpuSP6Re4yc+jB0Mmyyr6iQQ2WpPrkisEClAIRglX6AbvGsZDk=
-X-Received: by 2002:a67:dc16:: with SMTP id x22mr1767729vsj.159.1571181642542;
- Tue, 15 Oct 2019 16:20:42 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=w/0NNjZTTRzygNruX3+tb9DR5aFHlsjqWF+laA/0wOw=;
+        b=P0Kb3XJBqcMEpMCRWSA8RWokRzJZXQSYcm17+1asEXM74gCG8B++EGiu19ujTY5H8J
+         NygNi3YcA+aYdXY0aAeeae+p2HhBYWWiumj7ECt1CN96JHNnv6aCz144SnT05g2vCflM
+         qjq0I8OYauAxkOBDJOhvO/tOt8+eA/67HbqWTfel1d5+CpvLWP1JLTegWe3ipjjH4SvD
+         BWpNikZ9NPi423cFYllWONUteMAzs2DapggEWt9Doe/6xGuKrdGPhWzvdEiH/6IDWqkN
+         MZgpCBHOW1cxGu2z14pgBqs8qm1xCNG/RQO9RuXYv4WnjZe9lH4Bpi1jNOUfceWZiuLF
+         SUnQ==
+X-Gm-Message-State: APjAAAVuxTEcbDUsSt4qcqbRS72ktLjM27VpDLBCqEbXw8DEoUzShIKN
+        f3JVDjrRFvjYzA2JNko2oaUPvX/F
+X-Google-Smtp-Source: APXvYqwC+wjxbfMy2WAXu0bueat9paoo3FeKRKQpcvvlZd1fECIKrRk9z/O7SPxyXgpRTEs3pY/9gQ==
+X-Received: by 2002:a65:6394:: with SMTP id h20mr40985351pgv.272.1571185411778;
+        Tue, 15 Oct 2019 17:23:31 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id q15sm20647893pgl.12.2019.10.15.17.23.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2019 17:23:30 -0700 (PDT)
+Date:   Tue, 15 Oct 2019 17:23:28 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: input: Add poll-interval property
+Message-ID: <20191016002328.GJ105649@dtor-ws>
+References: <1570083176-8231-1-git-send-email-michal.vokac@ysoft.com>
+ <1570083176-8231-4-git-send-email-michal.vokac@ysoft.com>
+ <20191010194036.GA16869@bogus>
+ <20191010200136.GA229325@dtor-ws>
+ <1616be35-c06a-db84-bc6e-045195f163d7@ysoft.com>
 MIME-Version: 1.0
-References: <20191004090114.30694-1-glaroque@baylibre.com> <20191004090114.30694-5-glaroque@baylibre.com>
-In-Reply-To: <20191004090114.30694-5-glaroque@baylibre.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Wed, 16 Oct 2019 04:50:31 +0530
-Message-ID: <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
-Subject: Re: [PATCH v7 4/7] arm64: dts: meson: g12: Add minimal thermal zone
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        lakml <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1616be35-c06a-db84-bc6e-045195f163d7@ysoft.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 4, 2019 at 2:31 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
->
-> Add minimal thermal zone for two temperature sensor
-> One is located close to the DDR and the other one is
-> located close to the PLLs (between the CPU and GPU)
->
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> ---
->  .../boot/dts/amlogic/meson-g12-common.dtsi    | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 0660d9ef6a86..a98c16e163c2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
->  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
-> +#include <dt-bindings/thermal/thermal.h>
->
->  / {
->         interrupt-parent = <&gic>;
-> @@ -94,6 +95,61 @@
->                 #size-cells = <2>;
->                 ranges;
->
-> +               thermal-zones {
-> +                       cpu_thermal: cpu-thermal {
-> +                               polling-delay = <1000>;
-> +                               polling-delay-passive = <100>;
+On Fri, Oct 11, 2019 at 10:03:25AM +0200, Michal Vokáč wrote:
+> On 10. 10. 19 22:01, Dmitry Torokhov wrote:
+> > On Thu, Oct 10, 2019 at 02:40:36PM -0500, Rob Herring wrote:
+> > > On Thu, Oct 03, 2019 at 08:12:54AM +0200, Michal Vokáč wrote:
+> > > > Add an option to periodicaly poll the device to get state of the inputs
+> > > > as the interrupt line may not be used on some platforms.
+> > > > 
+> > > > Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> > > > ---
+> > > > Changes since v2:
+> > > >   - None
+> > > > 
+> > > > Changes since v1:
+> > > >   - Use poll-interval instead of linux,poll-interval.
+> > > >   - Place the poll-interval binding into the common schema.
+> > > >   - Properly describe that either interrupts or poll-interval property is
+> > > >     required.
+> > > >   - Fix the example to pass validation.
+> > > > 
+> > > >   .../bindings/input/fsl,mpr121-touchkey.yaml        | 25 +++++++++++++++++++++-
+> > > >   Documentation/devicetree/bindings/input/input.yaml |  4 ++++
+> > > >   2 files changed, 28 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> > > > index c6fbcdf78556..035b2fee4491 100644
+> > > > --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> > > > +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> > > > @@ -17,6 +17,10 @@ description: |
+> > > >   allOf:
+> > > >     - $ref: input.yaml#
+> > > > +oneOf:
+> > > 
+> > > It should be valid to have both properties present, right?
+> > 
+> > The poll does not really sense and does not have any effect when
+> > interrupt is supplied.
+> 
+> From technical point of view, yes it is possible to have both
+> properties. But I agree that it does not really make sense to
+> use both at the same time.
+> 
+> > > The h/w description can't know what the OS supports.
+> > 
+> > It also has no idea what OS does at all and whether it even pays
+> > attention to any of these properties. We are just trying to say here "I
+> > do not have an interrupt wired, so for this device's primary use case
+> > (that is coupled with a certain $PRIMARY OS) we need to poll the
+> > controller ever so often to handle our use case".
+> 
+> If I understand correctly the relationship between Linux and DT
+> binding, in Linux we are free to implement just part of all the
+> possible configuration options described by the binding.
+> 
+> In this case if somebody would enable both interrupt and polling,
+> we will happily use the interrupt mode only. Maybe it would be nice
+> to at least print a message that the poll-intervall is ignored?
+> 
+> > > In that case, we should use 'anyOf' here instead.
+> 
+> What I am afraid of is that some DT writers may really use both
+> properties and expect that Linux will actually do something useful
+> in this case. Anyway, I am OK with that.
 
-Ordinarily, you would need to set these delays to 0 in interrupt mode
-to prevent polling overhead. I've just submitted a patch to of-thermal
-that should fix this requirement. Could you check if it works for you?
+OK, I changed it to "anyOf", folded into driver change and applied.
 
-> +                               thermal-sensors = <&cpu_temp>;
-> +
-> +                               trips {
-> +                                       cpu_passive: cpu-passive {
-> +                                               temperature = <85000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "passive";
-> +                                       };
-> +
-> +                                       cpu_hot: cpu-hot {
-> +                                               temperature = <95000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "hot";
-> +                                       };
-> +
-> +                                       cpu_critical: cpu-critical {
-> +                                               temperature = <110000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "critical";
-> +                                       };
-> +                               };
-> +                       };
-> +
-> +                       ddr_thermal: ddr-thermal {
-> +                               polling-delay = <1000>;
-> +                               polling-delay-passive = <100>;
-> +                               thermal-sensors = <&ddr_temp>;
-> +
-> +                               trips {
-> +                                       ddr_passive: ddr-passive {
-> +                                               temperature = <85000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "passive";
-> +                                       };
-> +
-> +                                       ddr_critical: ddr-critical {
-> +                                               temperature = <110000>; /* millicelsius */
-> +                                               hysteresis = <2000>; /* millicelsius */
-> +                                               type = "critical";
-> +                                       };
-> +                               };
-> +
-> +                               cooling-maps {
-> +                                       map {
-> +                                               trip = <&ddr_passive>;
-> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +
->                 ethmac: ethernet@ff3f0000 {
->                         compatible = "amlogic,meson-axg-dwmac",
->                                      "snps,dwmac-3.70a",
-> @@ -2412,6 +2468,7 @@
->                         assigned-clock-rates = <0>, /* Do Nothing */
->                                                <800000000>,
->                                                <0>; /* Do Nothing */
-> +                       #cooling-cells = <2>;
->                 };
->         };
->
-> --
-> 2.17.1
->
+-- 
+Dmitry
