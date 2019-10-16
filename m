@@ -2,84 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AFEB3D9A0D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 21:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24593D9A32
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 21:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436773AbfJPT2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 15:28:38 -0400
-Received: from mailoutvs50.siol.net ([185.57.226.241]:46392 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2436772AbfJPT2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 15:28:36 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id A44FE52462C;
-        Wed, 16 Oct 2019 21:28:31 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id I-E62lmLyREJ; Wed, 16 Oct 2019 21:28:31 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 5DC0F5241BC;
-        Wed, 16 Oct 2019 21:28:31 +0200 (CEST)
-Received: from localhost.localdomain (cpe-86-58-59-25.static.triera.net [86.58.59.25])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id 10E8952462C;
-        Wed, 16 Oct 2019 21:28:29 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, mchehab@kernel.org,
-        hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH v3 6/6] dts: arm: sun8i: h3: Enable deinterlace unit
-Date:   Wed, 16 Oct 2019 21:28:07 +0200
-Message-Id: <20191016192807.1278987-7-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191016192807.1278987-1-jernej.skrabec@siol.net>
-References: <20191016192807.1278987-1-jernej.skrabec@siol.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        id S2389265AbfJPTha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 15:37:30 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:34114 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728779AbfJPTh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 15:37:29 -0400
+Received: by mail-qt1-f193.google.com with SMTP id 3so37961413qta.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 12:37:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=mJHOakKVvshLG3Rzud38KEbOaNx+SThGCVNUUHA+c8k=;
+        b=w5G4rO6cnoFzj2kF84Hr/GZtHT1Zve5j9WyjVpVK9JFX1mk/AvbZfE6glsJsrQ2bHZ
+         d5BOsKSptJU5C1rkmoLn0qoBb/KDjamoVhNZQGaVK8YXrI5KcY4G4SHD3Y4lnNwXm4zd
+         NmfTkknFJgHcYV9nVtUW8GTl+JrglpLjDPrfw5xC5bCBkIMICrkq32IqMFGPeZ+Rzc7t
+         VZrraGhKRx+Z7vFexQpkgnUDhj+9WXA2uS/1/4J+kd1U2cQhs9M1HOwkxln44HNgMUiW
+         GJ/mMZoochmYSU5FNxeRWPETGriXjfl6QqyVWhLFx8gwcRWSDYZb6/Wn+LJrVuDrsRtW
+         /v7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mJHOakKVvshLG3Rzud38KEbOaNx+SThGCVNUUHA+c8k=;
+        b=dq7/oPpRZHeRJZ+rZrJ4jAyCItu+Uklh1zzWtzTdPZ0MrbP1b8uUTrzzAhK6HJQ7Mg
+         Wa/rSGDQvcmCwgXswxLMX5Gd1t5ktTkxdf2gw7VMT9aGWrhoSUfujOf6I5FamabsTT7W
+         LMFWTLTSN+YqE6l8mVf3W/ywgdlr/uZL8ZiJZ1zO65SvKNBZBGv3q/CusMdVrLYCij16
+         ekt9LQFNdUxNsTEX/XbfpGGWrw55LbxS7VWlW/tP+N5/1ww6Tyn2RIHV816OfW5egWMv
+         9ZiMT9AADZ0u04Au4tsh5zmyUrlblJbeedRwENw31SAp1nYlsgYeBQh8MqqzpJ0QSRTx
+         bmyg==
+X-Gm-Message-State: APjAAAVYVWg2iMClaa3i2Cp7CSURMsPq/eL6Tpe1bjgeQGiM1ieKlpgT
+        vlQFnplHpwEi2p7lq79uNb0RMg==
+X-Google-Smtp-Source: APXvYqxksfg5j666p6bPfX8pfqyE2zz9v/AOGwzl9RkscOjeUr/PexA0qh0wHbZrIjzQkfl9oeTToQ==
+X-Received: by 2002:a0c:c10d:: with SMTP id f13mr44317850qvh.88.1571254648443;
+        Wed, 16 Oct 2019 12:37:28 -0700 (PDT)
+Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
+        by smtp.googlemail.com with ESMTPSA id 54sm16246030qts.75.2019.10.16.12.37.22
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 16 Oct 2019 12:37:27 -0700 (PDT)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     edubezval@gmail.com, rui.zhang@intel.com, ulf.hansson@linaro.org,
+        daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
+        agross@kernel.org
+Cc:     amit.kucheria@verdurent.com, mark.rutland@arm.com,
+        rjw@rjwysocki.net, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7]Introduce Power domain based warming device driver
+Date:   Wed, 16 Oct 2019 15:37:14 -0400
+Message-Id: <1571254641-13626-1-git-send-email-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.1.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner H3 SoC contains deinterlace unit, which can be used in
-combination with VPU unit to decode and process interlaced videos.
+Certain resources modeled as a generic power domain in linux kernel
+can be used to warm up the SoC (mx power domain on sdm845)
+if the temperature falls below certain threshold. These power domains
+can be considered as thermal warming devices.
+(opposite of thermal cooling devices).
 
-Add a node for it.
+In kernel, these warming devices can be modeled as a
+thermal cooling device. Since linux kernel today has
+no instance of a resource modeled as a power domain acting as a
+thermal warming device, a generic power domain based thermal warming device
+driver that can be used pan-Socs is the approach taken in this
+patch series. Since thermal warming devices can be thought of as the
+mirror opposite of thermal cooling devices, this patch series re-uses
+thermal cooling device framework. To use these power domains as warming
+devices require further tweaks in the thermal framework which are out of
+scope of this patch series. These tweaks have been posted as a separate
+series[1].
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm/boot/dts/sun8i-h3.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+The first patch in this series extends the genpd framework to export out
+the performance states of a power domain so that when a power
+domain is modeled as a cooling device, the number of possible states and
+current state of the cooling device can be retrieved from the genpd
+framework.
 
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3=
-.dtsi
-index e37c30e811d3..7a59c57d2114 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -120,6 +120,19 @@
- 	};
-=20
- 	soc {
-+		deinterlace: deinterlace@1400000 {
-+			compatible =3D "allwinner,sun8i-h3-deinterlace";
-+			reg =3D <0x01400000 0x20000>;
-+			clocks =3D <&ccu CLK_BUS_DEINTERLACE>,
-+				 <&ccu CLK_DEINTERLACE>,
-+				 <&ccu CLK_DRAM_DEINTERLACE>;
-+			clock-names =3D "bus", "mod", "ram";
-+			resets =3D <&ccu RST_BUS_DEINTERLACE>;
-+			interrupts =3D <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-+			interconnects =3D <&mbus 9>;
-+			interconnect-names =3D "dma-mem";
-+		};
-+
- 		syscon: system-control@1c00000 {
- 			compatible =3D "allwinner,sun8i-h3-system-control";
- 			reg =3D <0x01c00000 0x1000>;
---=20
-2.23.0
+The second patch implements the newly added genpd callback for Qualcomm
+RPMH power domain driver which hosts the mx power domain.
+
+The third patch introduces late init ops for thermal cooling device that
+is called after the cooling device is created and registered but before
+binding it to a thermal zone for specific initializations.
+
+The fourth patch introduces the generic power domain warming device driver.
+
+The fifth patch extends Qualcomm RPMh power controller driver to register
+mx power domain as a thermal warming device in the kernel.
+
+The sixth patch describes the dt binding extensions for mx power domain to
+be a thermal warming device.
+
+The seventh patch introduces the DT entreis for sdm845 to register mx power
+domain as a thermal warming device.
+
+v1->v2:
+        - Rename the patch series from
+        "qcom: Model RPMH power domains as thermal cooling devices" to
+        "Introduce Power domain based thermal warming devices" as it is
+        more appropriate.
+        - Introduce a new patch(patch 3) describing the dt-bindings for
+	generic power domain warming device.
+        - Patch specific changes mentioned in respective patches.
+
+v2->v3:
+	- Changed power domain warming device from a virtual device node
+	entry in DT to being a subnode of power domain controller binding
+	following Rob's review comments.
+	- Implemented Ulf's review comments.
+	- The changes above introduced two new patches (patch 3 and 4)
+
+1. https://lkml.org/lkml/2019/9/18/1180
+Thara Gopinath (7):
+  PM/Domains: Add support for retrieving genpd performance states
+    information
+  soc: qcom: rpmhpd: Introduce function to retrieve power domain
+    performance state count
+  thermal: core: Add late init hook to cooling device ops
+  thermal: Add generic power domain warming device driver.
+  soc: qcom: Extend RPMh power controller driver to register warming
+    devices.
+  dt-bindings: soc: qcom: Extend RPMh power controller binding to
+    describe thermal warming device
+  arm64: dts: qcom: Add mx power domain as thermal warming device.
+
+ .../devicetree/bindings/power/qcom,rpmpd.txt       |  10 ++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   5 +
+ drivers/base/power/domain.c                        |  37 ++++++
+ drivers/soc/qcom/rpmhpd.c                          |  30 ++++-
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   2 +
+ drivers/thermal/pwr_domain_warming.c               | 136 +++++++++++++++++++++
+ drivers/thermal/thermal_core.c                     |  13 ++
+ include/linux/pm_domain.h                          |  13 ++
+ include/linux/pwr_domain_warming.h                 |  31 +++++
+ include/linux/thermal.h                            |   1 +
+ 11 files changed, 287 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/thermal/pwr_domain_warming.c
+ create mode 100644 include/linux/pwr_domain_warming.h
+
+-- 
+2.1.4
 
