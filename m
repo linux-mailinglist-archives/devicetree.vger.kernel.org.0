@@ -2,157 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 50742D8E0A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D02E4D8E35
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:43:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388697AbfJPKgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 06:36:10 -0400
-Received: from mail-eopbgr50048.outbound.protection.outlook.com ([40.107.5.48]:20247
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729559AbfJPKgK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 06:36:10 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TphEzX1WGSBq3X3polQkmoyerqg4CaUvjCUWZr5O0pO8BqSXeLlOVH/oTJpHARh+kCjkusvya9UcqClea8UxTgjzqGAGOjk07Rj18e1cLDW+rEU2Ey1yG0VP6kWrx4FY6vPnOzhz0MSp0eBKdsJINIS66PW0VC2Gdb47trAMc0VF7tmy/Bc7WcWZICzq06v4VVqtCSuQKrHVtlCOugBkhMIqv/cSoS5qz01lD18F3Jo029G648aAYzP/7SXXgjEYcrK3aefw5oAtpGjD48oKVAcGl3WxscQuiTMP1wSHfNsM5gH+OHeleYaB6Se7NTubLCKlaMwxCGgRZMawd8Hs7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8BPlfa9H0xqu9yfqTMuB0WEmh4SUQ8MIR1A1jzuoTwY=;
- b=X1FOaP8CZ5yGyawAtgildYpbYJPAIPk31BmyGYr8WFKIS1CRngXDBWjfDFUeeOAy3W+V/w005sqcyHU0UaR9XG2fmEDs9zpEX/herYqcbizLPzn+nZ6l/pzTEMBzZ4gtIsBzvvQ3HY1iO5fsVeZ5LVYRM9ssKnPVnHeR6GRuLU6OpMyDh0Z0IuOzPv9Se3DQreBikdPreeJOEmepNkLbdSOfDeAhAdnAvf1y5J79N6yntWYg9gQsh8OCOiQjQXdXSks7Q/OrWuuDKjzxW6qcwpnwU2uCHsTAcmq6XChVUa+GoeEdQiC7lLXG+8e0I8F5/IPdOZkH7NxOcEuiI0Tx1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8BPlfa9H0xqu9yfqTMuB0WEmh4SUQ8MIR1A1jzuoTwY=;
- b=lYuDi8gyHvsu06m2rrtE1MKf606hX0LnhDN6saf/+zf9kD1DVECgvrQ0hEBB42hIqmaZygqWGVt5r2WCe0Z4qkMDAOoYFCSNW6xLkA/RjWPDxxix+eKsJEY/9TRFrx1iq+G3tM2pdH67AQb66o8aFiCiMQGgzYEMDBBhJx3FwHw=
-Received: from VE1PR04MB6479.eurprd04.prod.outlook.com (20.179.232.225) by
- VE1PR04MB6685.eurprd04.prod.outlook.com (20.179.233.217) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.18; Wed, 16 Oct 2019 10:36:06 +0000
-Received: from VE1PR04MB6479.eurprd04.prod.outlook.com
- ([fe80::e052:9278:76a3:27c]) by VE1PR04MB6479.eurprd04.prod.outlook.com
- ([fe80::e052:9278:76a3:27c%6]) with mapi id 15.20.2347.023; Wed, 16 Oct 2019
- 10:36:06 +0000
-From:   "S.j. Wang" <shengjiu.wang@nxp.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Jun Li <jun.li@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ARM64: dts: imx8mm-evk: Assigned clocks for audio plls
-Thread-Topic: [PATCH] ARM64: dts: imx8mm-evk: Assigned clocks for audio plls
-Thread-Index: AQHVhA2D/VrUFzy1602vrssfnC7nGg==
-Date:   Wed, 16 Oct 2019 10:36:05 +0000
-Message-ID: <20191016103513.13088-1-shengjiu.wang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.21.0
-x-clientproxiedby: HK0PR03CA0080.apcprd03.prod.outlook.com
- (2603:1096:203:72::20) To VE1PR04MB6479.eurprd04.prod.outlook.com
- (2603:10a6:803:11c::33)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=shengjiu.wang@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 36756735-579c-4453-57e9-08d75224a64e
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: VE1PR04MB6685:|VE1PR04MB6685:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB6685FD371C21F557286C884FE3920@VE1PR04MB6685.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1360;
-x-forefront-prvs: 0192E812EC
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(346002)(366004)(376002)(396003)(39860400002)(199004)(189003)(7736002)(71190400001)(7416002)(36756003)(2501003)(71200400001)(8676002)(52116002)(2906002)(5660300002)(102836004)(386003)(186003)(26005)(99286004)(6506007)(14454004)(6512007)(1076003)(81166006)(6436002)(305945005)(478600001)(66066001)(81156014)(256004)(50226002)(66446008)(66476007)(64756008)(66946007)(110136005)(6486002)(66556008)(2616005)(25786009)(476003)(86362001)(8936002)(6116002)(316002)(2201001)(3846002)(486006)(32563001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6685;H:VE1PR04MB6479.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: j9hl6cXmZZCnAUE9i5G6000BpEFll9DfAHceVrUdPvcAROPfoSWocgNPeS1+rePJDeVpNTsfpaxEFOb2Myn3ucleR8uj6iCxtpMrKXGkM8x7FDlsyrP8Zt6kZzDQUHWqjxXAoBWcFYu6I8VPxZAgr6n9r+5VB9ylwh6S9jI2IX9/x8FBQeutHeOWawwe/jA7SYwR7jxHF5T5hbLOJmaZmi7KZcHboaeygfly3WGGhQanXccEliRiiWrRQGp3lrbQJSmQze47+EOenr/dq0gjgNRE4XrrEB/X9X5u7unjE3JOjyEkAJBGiJYx5LC4VasV4E7hphnV8At/K9m5b7DA3R9lHUbfar0SYrtmghop45Az0/MwX3mCD90BHsQDzApenGC3eRTq3H0+4hcuWEjIMP4n5Yoaya3qK8RrVvurWTM=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S2390511AbfJPKnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 06:43:09 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:36050 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389345AbfJPKnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 06:43:09 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 7630160540; Wed, 16 Oct 2019 10:43:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571222588;
+        bh=Gnx0VU9W9M2MKA7f69n4Pw5dV4fGPZ3KgNoNOQDCD8s=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=QGoMybTg6SSF1woDJvQLNmzZLLWK/T77+4ZJ3251sxIIyTnZBAvJcC8fXOA0uY1C3
+         sttPgwqIUWLbkqsTMCvt3B+ZZ04mhVqVZulCo8Q4x/m9vXth/71Ipg9OQPqCZTzWGG
+         7A04pNk5chTOjLDw4p70tdG5aeSgKlrUq/TFDoSg=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.0.104] (unknown [183.83.146.112])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 218BF602C8;
+        Wed, 16 Oct 2019 10:43:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571222588;
+        bh=Gnx0VU9W9M2MKA7f69n4Pw5dV4fGPZ3KgNoNOQDCD8s=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=QGoMybTg6SSF1woDJvQLNmzZLLWK/T77+4ZJ3251sxIIyTnZBAvJcC8fXOA0uY1C3
+         sttPgwqIUWLbkqsTMCvt3B+ZZ04mhVqVZulCo8Q4x/m9vXth/71Ipg9OQPqCZTzWGG
+         7A04pNk5chTOjLDw4p70tdG5aeSgKlrUq/TFDoSg=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 218BF602C8
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH 2/2] arm64: dts: sc7180: Add minimal dts/dtsi files for
+ SC7180 soc
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>, agross@kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20191015103358.17550-1-rnayak@codeaurora.org>
+ <20191015103358.17550-2-rnayak@codeaurora.org>
+ <20191016052535.GC2654@vkoul-mobl>
+ <89225569-1cd3-ae0e-94ed-bbb2b3dd8e9c@codeaurora.org>
+ <20191016082432.GL2654@vkoul-mobl>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <79b24548-dc69-b09d-55d2-6a370446abdf@codeaurora.org>
+Date:   Wed, 16 Oct 2019 16:13:01 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36756735-579c-4453-57e9-08d75224a64e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2019 10:36:06.0515
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wjr4aR42le1D9J4VIXdU5NVl7N8S0H6SgXwiM2NSgFhr1SvX7OEJQRdjvgZFRuGi8D7Vywa6CvHyCzZzM7gULw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6685
+In-Reply-To: <20191016082432.GL2654@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assign clocks and clock-rates for audio plls, that audio
-drivers can utilize them.
 
-Add dai-tdm-slot-num and dai-tdm-slot-width for sound-wm8524,
-that sai driver can generate correct bit clock.
+>>>> +		xo_board: xo-board {
+>>>> +			compatible = "fixed-clock";
+>>>> +			clock-frequency = <38400000>;
+>>>> +			clock-output-names = "xo_board";
+>>>> +			#clock-cells = <0>;
+>>>> +		};
+>>>> +
+>>>> +		sleep_clk: sleep-clk {
+>>>> +			compatible = "fixed-clock";
+>>>> +			clock-frequency = <32764>;
+>>>> +			clock-output-names = "sleep_clk";
+>>>> +			#clock-cells = <0>;
+>>>> +		};
+>>>> +
+>>>> +		bi_tcxo: bi_tcxo {
+>>>
+>>> why is this a clock defined here? Isnt this gcc clock?
+>>
+>> This is a RPMH-controlled clock and not from GCC. It is the parent clock for
+>> GCC RCGs/PLLs.
+> 
+> Yes right!
+> 
+>> Once the RPMH clock support is added these would be removed.
+> 
+> Wont it make sense to keep this bit not upstream and then remove that
+> part when you have rpmh support available. Reduces the churn upstream!
+> 
+> The parent can be xo_board till then!
+> 
 
-Fixes: 13f3b9fdef6c ("arm64: dts: imx8mm-evk: Enable audio codec wm8524")
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 2 ++
- arch/arm64/boot/dts/freescale/imx8mm.dtsi    | 8 ++++++--
- 2 files changed, 8 insertions(+), 2 deletions(-)
+The xo_board is 38.4MHz and bi_tcxo (xo/2), which needs to be updated 
+anyways :).
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot=
-/dts/freescale/imx8mm-evk.dts
-index f7a15f3904c2..13137451b438 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-@@ -62,6 +62,8 @@
-=20
- 		cpudai: simple-audio-card,cpu {
- 			sound-dai =3D <&sai3>;
-+			dai-tdm-slot-num =3D <2>;
-+			dai-tdm-slot-width =3D <32>;
- 		};
-=20
- 		simple-audio-card,codec {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dt=
-s/freescale/imx8mm.dtsi
-index 5f9d0da196e1..2139c0a9c495 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -479,14 +479,18 @@
- 						<&clk IMX8MM_CLK_AUDIO_AHB>,
- 						<&clk IMX8MM_CLK_IPG_AUDIO_ROOT>,
- 						<&clk IMX8MM_SYS_PLL3>,
--						<&clk IMX8MM_VIDEO_PLL1>;
-+						<&clk IMX8MM_VIDEO_PLL1>,
-+						<&clk IMX8MM_AUDIO_PLL1>,
-+						<&clk IMX8MM_AUDIO_PLL2>;
- 				assigned-clock-parents =3D <&clk IMX8MM_SYS_PLL3_OUT>,
- 							 <&clk IMX8MM_SYS_PLL1_800M>;
- 				assigned-clock-rates =3D <0>,
- 							<400000000>,
- 							<400000000>,
- 							<750000000>,
--							<594000000>;
-+							<594000000>,
-+							<393216000>,
-+							<361267200>;
- 			};
-=20
- 			src: reset-controller@30390000 {
---=20
-2.21.0
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
+--
