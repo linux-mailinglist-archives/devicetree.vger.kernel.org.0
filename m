@@ -2,143 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED447D9756
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 18:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F772D9798
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 18:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404760AbfJPQ2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 12:28:49 -0400
-Received: from mail-eopbgr30127.outbound.protection.outlook.com ([40.107.3.127]:36480
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2404056AbfJPQ2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 12:28:48 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T4XIA9QH5uxGOZ+JeporiFSHKvU19eu4hU+429EBsajvVIdjyHU1PN6arHKGyWhsvTek0mKtKOJu/dHq7rr1PujPqZfHpK3zeXnZsAbni4C/D1Iubq5zaUNO6r7cIneqV32V5yHsMvKqdK2RnLQ1QpSsONYU2NGYn4gbdDTgYGAB86BCLAn5SBeorlNWWd0QRlxLmidqmoHV2wUZFSYjdHog9q4TsRGirkJfey6cjxc16stk1X+jBIvXjZFM5UKj6QhXM/kmlMwm3aanSQk/HDSs6nAnLKZwK8KvTheuPz7DH/2u6t8Gcf95eUXp+CclBBEj5kKDPmQaQYoSfe/8GQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EljIL6vBnzA0UbaGNyDZQxy2ZR+kT+6Lb4aBMLRCIf4=;
- b=C7CDCJqQK1MhwePC6j2ij69FxXRtNn+QgGPPyLwozuJAWaQzjrNewjVO47lagqsNJ1zHtU5D+ksVtqKD0ZWW57j6p2dK9sK1C7oZst7r7rzcNNnpfTzejmEUf6fx5SEJLPP+G2isieP+URFYL0QkXPf34NocRJuGXP4xPbIUayP6Spk3ANHA5kCaRnLJKqoysD9vhy/9AWaWm4sZ7ya5KEppkxQKDCffFewBJdHnw3ZsG3vQgPM5MB9+e+mAKpoLo06VxZWKKOoV6v9jDSp/EFTQBUryXzEZmJOgL46L0cMjaPmmKXoyOjPy5vJXpjpUoAuai74JAcSbzADoVDAF7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EljIL6vBnzA0UbaGNyDZQxy2ZR+kT+6Lb4aBMLRCIf4=;
- b=lS7aToNdkm6QKIWiv6+TEdSCUS+HAdz2UVvQJW6oYjUbT9vFUTjUECkWjh0gcvGkGbDRhKSLwvyDY1RXdYSP4mJoM0JepQAejv5vfwV8lgdvzoqCXuqnJvietbaiBQcpQMzdEiwkfwqSqf/lu0pmvbGBVOvTOWgcHTtDVl/qf20=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.19.20) by
- VI1PR0502MB3629.eurprd05.prod.outlook.com (52.134.7.28) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.21; Wed, 16 Oct 2019 16:28:44 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f427:26bb:85cf:abad]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f427:26bb:85cf:abad%7]) with mapi id 15.20.2347.023; Wed, 16 Oct 2019
- 16:28:44 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-CC:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Luka Pivk <luka.pivk@toradex.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v1 2/2] arm: dts: vf-colibri: add recovery mode to i2c
-Thread-Topic: [PATCH v1 2/2] arm: dts: vf-colibri: add recovery mode to i2c
-Thread-Index: AQHVhD7H8G6VDxhlKU2zTwJWkgHwYQ==
-Date:   Wed, 16 Oct 2019 16:28:44 +0000
-Message-ID: <20191016162833.1893-2-philippe.schenker@toradex.com>
-References: <20191016162833.1893-1-philippe.schenker@toradex.com>
-In-Reply-To: <20191016162833.1893-1-philippe.schenker@toradex.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM0PR02CA0006.eurprd02.prod.outlook.com
- (2603:10a6:208:3e::19) To VI1PR0502MB3965.eurprd05.prod.outlook.com
- (2603:10a6:803:26::20)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.23.0
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 72a7f2c7-4080-4be9-3a74-08d75255e98c
-x-ms-traffictypediagnostic: VI1PR0502MB3629:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB3629D6F2504775636C87C829F4920@VI1PR0502MB3629.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:626;
-x-forefront-prvs: 0192E812EC
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(136003)(346002)(396003)(376002)(39850400004)(189003)(199004)(66066001)(26005)(86362001)(54906003)(36756003)(8676002)(7736002)(4326008)(66946007)(71190400001)(71200400001)(478600001)(6512007)(256004)(14444005)(44832011)(386003)(66556008)(66446008)(66476007)(2906002)(64756008)(6506007)(5660300002)(102836004)(99286004)(316002)(11346002)(186003)(446003)(25786009)(4744005)(1076003)(486006)(14454004)(8936002)(2501003)(81156014)(3846002)(2616005)(50226002)(305945005)(6116002)(76176011)(476003)(6436002)(81166006)(52116002)(110136005)(6486002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3629;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: B9ZOc+bfuQlrryLjwVFKbjTzv7lgnTLAuglU6L0sxKgVQnaWELhkzPZlCwAcuhfSA1qJoQ3F7DPmHFY7v1mHqftiCt6OMj3jpjJAYNcQ7P7TLZ/HpIRataYUc7S/QfPXcgYC6nad75SmqjrrCs6Sr2/CCmhi6YxjEgg0ZsWmXgUDu5vrD3JoaPvceFHX2E3dn50vNZZcSSqBKbFZpGfWcUguS8Aq3vzAePNh33rLsHggbgI+LNw6eGtU52j8SnydJECd9NUhTX53tCTPi/5gnqdfjZcIUtLqaIMkfGECYZmkWGKVMS3j4Nckizif0+uPo1MDQ54mkZvoRNXjj1E4oa6/hTzIUQh0eYqSqxr66b8hQNoZxuQrbiLoc5lGc+04sXUe0rON3hX6MhfHtPvMin52hlt1uzlP+CCpIQqQw14=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S2406372AbfJPQjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 12:39:05 -0400
+Received: from mail-pg1-f176.google.com ([209.85.215.176]:38133 "EHLO
+        mail-pg1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406385AbfJPQjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 12:39:04 -0400
+Received: by mail-pg1-f176.google.com with SMTP id w3so7693655pgt.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 09:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=uj62At7arnilFOJJbl5N7a5EkMRk8gmjDj29tsswWIE=;
+        b=rBya5PBO6sZHChGDQpT99l/deboFxP1XaW8i/9Ff0L5lelkWO7f2RuzRS3/wLiXWVb
+         XjdRwrYeSFsiAoPnxaDseJgPW0UZlbFWO5u33OaphuTGKfM2k7rEFGs8wPKGYjYIE49h
+         dORi5YyWTorA+d6D6zuQRS+tX15uEph0kH8P5A2mxeJLAIjUm3w6yQJ6yGrHKsH+OVDE
+         TlP3iEvahZXKpwACmvuRDomjXkvEREPVhWSABCM+nEe2wRs+zIvkicRGDPQep9OMWLF9
+         YI3u2S5W/FmHu/LpjWTcKfjs+P2CCCQ4Hqi4PYUuRYqGerDiMmRFcFHJDVsMeWEGscu6
+         C3bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=uj62At7arnilFOJJbl5N7a5EkMRk8gmjDj29tsswWIE=;
+        b=rh5ClMiUoRYWVwilTxFRBI2DmP8Cx3UWg0H82K4j3/Nf3ukaFgXTHSU8XtviaannB3
+         m1UnP4XWFjPDBfPyBiUP7fNNG+7BjBBdDVS5Eu00r4MszwLvUbK0P9nkB5lB5TnNVkPG
+         6KyJhJSDZXW8g/vbpVbhjGvitRczUIYiqa/rsarytrlPHuMQHm3BrzAR5zQJQsWk2GMG
+         L86NK1vpG6Km10SbI0zv2zwQfsVcs7E7Ytac0Ph18R9nn/snQb17g/2h0flcZZ5jFJyN
+         bYnwxAC7eRD+XrATZWrD1Ay3dSolSAlPBvqOgsT1U4WSR789BzKvtiKLf7Rgz+QJHlvH
+         tUMA==
+X-Gm-Message-State: APjAAAXaLZuAmnqaSXm0oQFYvXXOeOQoiO6nPFTWxW8p+KaWePw2WQqs
+        2O+ENuWf2iEXAQ4ql0uMMhSUUQ==
+X-Google-Smtp-Source: APXvYqy7cm/gQHTfBaihNUxg/kpuNUjJHhY1iUPuIbJzt/XJ4Le3qA+lNeFhKinPwgh0xJasS1A49w==
+X-Received: by 2002:a17:90a:2ec5:: with SMTP id h5mr6266957pjs.87.1571243941981;
+        Wed, 16 Oct 2019 09:39:01 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id z4sm29661708pfn.45.2019.10.16.09.39.01
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 16 Oct 2019 09:39:01 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     edubezval@gmail.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org,
+        Guillaume La Roque <glaroque@baylibre.com>,
+        amit.kucheria@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org
+Subject: Re: [PATCH v7 0/7] Add support of New Amlogic temperature sensor for G12 SoCs
+In-Reply-To: <20191004090114.30694-1-glaroque@baylibre.com>
+References: <20191004090114.30694-1-glaroque@baylibre.com>
+Date:   Wed, 16 Oct 2019 09:39:00 -0700
+Message-ID: <7hwod4fxwb.fsf@baylibre.com>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72a7f2c7-4080-4be9-3a74-08d75255e98c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2019 16:28:44.2522
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YiCLaikWFDhQE9ks6aGZk9XsEVXi8K9PZ7bQ7v2tc39va7SVZMMaHLSZSyGvUZDwgaEDw5sdnMqI6YW1lbHmgGtsr+RAwRvxpQfvNi/yx8A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3629
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables the recovery mode now available.
+Eduardo,
 
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+Guillaume La Roque <glaroque@baylibre.com> writes:
 
----
+> This patchs series add support of New Amlogic temperature sensor and minimal
+> thermal zone for SEI510 and ODROID-N2 boards.
 
- arch/arm/boot/dts/vf-colibri.dtsi | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+[...]
 
-diff --git a/arch/arm/boot/dts/vf-colibri.dtsi b/arch/arm/boot/dts/vf-colib=
-ri.dtsi
-index b6a1eeeb2bb4..254402c4f872 100644
---- a/arch/arm/boot/dts/vf-colibri.dtsi
-+++ b/arch/arm/boot/dts/vf-colibri.dtsi
-@@ -129,8 +129,9 @@
-=20
- &i2c0 {
- 	clock-frequency =3D <400000>;
--	pinctrl-names =3D "default";
-+	pinctrl-names =3D "default", "gpio";
- 	pinctrl-0 =3D <&pinctrl_i2c0>;
-+	pinctrl-1 =3D <&pinctrl_i2c0_gpio>;
- };
-=20
- &nfc {
-@@ -308,6 +309,13 @@
- 			>;
- 		};
-=20
-+		pinctrl_i2c0_gpio: i2c0gpiogrp {
-+			fsl,pins =3D <
-+				VF610_PAD_PTB14__GPIO_36		0x37ff
-+				VF610_PAD_PTB15__GPIO_37		0x37ff
-+			>;
-+		};
-+
- 		pinctrl_nfc: nfcgrp {
- 			fsl,pins =3D <
- 				VF610_PAD_PTD23__NF_IO7		0x28df
---=20
-2.23.0
+> Guillaume La Roque (7):
+>   dt-bindings: thermal: Add DT bindings documentation for Amlogic
+>     Thermal
+>   thermal: amlogic: Add thermal driver to support G12 SoCs
+>   arm64: dts: amlogic: g12: add temperature sensor
+>   arm64: dts: meson: g12: Add minimal thermal zone
+>   arm64: dts: amlogic: g12a: add cooling properties
+>   arm64: dts: amlogic: g12b: add cooling properties
+>   MAINTAINERS: add entry for Amlogic Thermal driver
 
+This has now been thorougly reviewed/tested.
+
+I've queued all the "arm64: dts:" patches via my amlogic tree for v5.5.
+Can you please queue up the driver, bindings and MAINTAINERS patch?
+
+Thanks,
+
+Kevin
