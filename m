@@ -2,77 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA21D9238
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73954D924A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733271AbfJPNRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 09:17:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726530AbfJPNRa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 09:17:30 -0400
-Received: from localhost (unknown [209.136.236.94])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 638072064A;
-        Wed, 16 Oct 2019 13:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571231848;
-        bh=7ICZu5U89hohYmbn6gUIgQxhJVCaU/53F1xp5OJCAdw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eunc4yEZFEINPkgHN8b4Tbj6+hH1biz99q2FXxR7IDh5zAgJi8zK2UH+lYxO3ePXc
-         1L4L9fjwTz9sbtvSVgHYS7ATAQyL4PTv+mHRir5ttKx8fj4Cc+ene2SaYhlFb5jjzo
-         pcUTb19YqjH+ArFzlqcanlrooE3Xi81U/oYfy+ck=
-Date:   Wed, 16 Oct 2019 06:17:28 -0700
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     corbet@lwn.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
-        leoyang.li@nxp.com, jslaby@suse.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 0/5] Add initial support for S32V234-EVB
-Message-ID: <20191016131728.GA56859@kroah.com>
-References: <1571230107-8493-1-git-send-email-stefan-gabriel.mirea@nxp.com>
+        id S2393570AbfJPNUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 09:20:08 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:48022 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388141AbfJPNUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 09:20:08 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9GDK2GC110727;
+        Wed, 16 Oct 2019 08:20:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571232002;
+        bh=pn1VJ6hcp1F1tZLG4xpI8lS3IUjFzRCxzxKnmp0Jaq0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=KxCHByEfMBLsRmBAXWWcNQCupC/BZCNyKovmhaDakle728gy820EYYpkqCx+5Gxz+
+         J6ADvghlRoDdaFgX1JeCBynrO9CXqIUI354FGvtcr/PNJYwGAzY8Jkb5P6vfvtSitX
+         6K/r3+FOBiSWAevhohiFBj5UMuPEShDYjikPgM/k=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9GDK2Jl111013
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Oct 2019 08:20:02 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 16
+ Oct 2019 08:20:01 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 16 Oct 2019 08:20:01 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with SMTP id x9GDK1N8027346;
+        Wed, 16 Oct 2019 08:20:01 -0500
+Date:   Wed, 16 Oct 2019 08:22:39 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>,
+        <linux-omap@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [Patch 1/3] dt-bindings: media: ti-vpe: Document VPE driver
+Message-ID: <20191016132239.ufptwl44ktmhvylo@ti.com>
+References: <20191009175628.20570-1-bparrot@ti.com>
+ <20191009175628.20570-2-bparrot@ti.com>
+ <20191015222947.GA13388@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1571230107-8493-1-git-send-email-stefan-gabriel.mirea@nxp.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+In-Reply-To: <20191015222947.GA13388@bogus>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 03:48:22PM +0300, Stefan-Gabriel Mirea wrote:
-> Hello,
+Rob Herring <robh@kernel.org> wrote on Tue [2019-Oct-15 17:29:47 -0500]:
+> On Wed, Oct 09, 2019 at 12:56:26PM -0500, Benoit Parrot wrote:
+> > Device Tree bindings for the Video Processing Engine (VPE) driver.
+> > 
+> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> > ---
+> >  .../devicetree/bindings/media/ti-vpe.txt      | 48 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/ti-vpe.txt
 > 
-> NXP's S32V234[1] ("Treerunner") vision microprocessors are targeted for
-> high-performance, computationally intensive vision and sensor fusion
-> applications that require automotive safety levels. They include leading
-> edge Camera Vision modules like APEX-2, ISP and GPU. The S32V234-EVB and
-> S32V234-SBC boards are available for customer evaluation.
-> 
-> The following patch series introduces minimal enablement support for the
-> NXP S32V234-EVB2[2] board, which leverages most of the SoC capabilities.
-> Up to v2, this series also included the fsl_linflexuart driver, which has
-> been included in Linux 5.4-rc1[3].
-> 
-> In the future, we aim to submit multiple drivers upstream, which can be
-> found in the kernel of our Auto Linux BSP[4] ("ALB"), starting with basic
-> pinmuxing, clock and uSDHC drivers.
-> 
-> For validation, you can use the U-Boot bootloader in the ALB[5], which we
-> build and test with our patched version of the Linaro GCC 6.3.1 2017.05
-> toolchain for ARM 64-bit, with sources available on [6].
-> 
-> Changes in v7:
-> * Rebase the patch 'serial: fsl_linflexuart: Be consistent with the name'
->   on the tty-next branch in Greg's tty git tree.
+> Please convert to DT schema format.
 
-I've taken patch 3 in my tty-next tree.  The others should probably go
-through an arm-specific tree, right?
+I can do that.
+Before posting/merging a .yaml, are we supposed to be able to pass these?
+# make dt_binding_check
+# make dtbs_check
 
-thanks,
+Because currently with 5.4-rc3 these fails.
 
-greg k-h
+Is there a way to run these "test command" target a specific .yaml and not
+the whole set?
+
+> 
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/ti-vpe.txt b/Documentation/devicetree/bindings/media/ti-vpe.txt
+> > new file mode 100644
+> > index 000000000000..b2942fa8c3ea
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/ti-vpe.txt
+> > @@ -0,0 +1,48 @@
+> > +Texas Instruments DRA7x VIDEO PROCESSING ENGINE (VPE)
+> > +------------------------------------------------------
+> > +
+> > +The Video Processing Engine (VPE) is a key component for image post
+> > +processing applications. VPE consist of a single memory to memory
+> > +path which can perform chroma up/down sampling, deinterlacing,
+> > +scaling and color space conversion.
+> > +
+> > +Required properties:
+> > +- compatible: must be "ti,vpe"
+> 
+> Needs to have SoC specific compatibles.
+
+Yes, I'll fix that.
+
+> 
+> > +- reg:	physical base address and length of the registers set for the 4
+> > +	memory regions required;
+> > +- reg-names: name associated with the memory regions described is <reg>;
+> 
+> The names need to be documented.
+
+Ok.
+
+> 
+> > +- interrupts: should contain IRQ line for VPE;
+> > +
+> > +Example:
+> > +
+> > +	target-module@1d0010 {                  /* 0x489d0000, ap 27 30.0 */
+> > +		compatible = "ti,sysc-omap4", "ti,sysc";
+> > +		reg = <0x1d0010 0x4>;
+> > +		reg-names = "sysc";
+> > +		ti,sysc-midle = <SYSC_IDLE_FORCE>,
+> > +				<SYSC_IDLE_NO>,
+> > +				<SYSC_IDLE_SMART>;
+> > +		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+> > +				<SYSC_IDLE_NO>,
+> > +				<SYSC_IDLE_SMART>;
+> > +		clocks = <&vpe_clkctrl DRA7_VPE_VPE_CLKCTRL 0>;
+> > +		clock-names = "fck";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		ranges = <0x0 0x1d0000 0x10000>;
+> 
+> All this is outside the scope of this binding.
+
+OK I was not sure if the whole interconnect thing was needed in the example
+or not.
+
+> 
+> > +
+> > +		vpe: vpe@0 {
+> > +			compatible = "ti,vpe";
+> > +			reg = <0x0000 0x120>,
+> > +			      <0x0700 0x80>,
+> > +			      <0x5700 0x18>,
+> > +			      <0xd000 0x400>;
+> > +			reg-names = "vpe_top",
+> > +				    "sc",
+> > +				    "csc",
+> > +				    "vpdma";
+> > +			interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> 
+> Not documented, nor needed as there are no child nodes.
+
+Yeah, I'll remove that.
+
+> 
+> > +		};
+> > +	};
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 8598f49fa2c8..63dcda51f8ae 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -16299,6 +16299,7 @@ W:	http://linuxtv.org/
+> >  Q:	http://patchwork.linuxtv.org/project/linux-media/list/
+> >  S:	Maintained
+> >  F:	drivers/media/platform/ti-vpe/
+> > +F:	Documentation/devicetree/bindings/media/ti-vpe.txt
+
+Now with the dt_schemas, I noticed that the maintainer's name is part of
+the yaml file. Do we still need to add this to the MAINTAINERS file as
+well?
+
+Benoit
+
+
+> >  
+> >  TI WILINK WIRELESS DRIVERS
+> >  L:	linux-wireless@vger.kernel.org
+> > -- 
+> > 2.17.1
+> > 
