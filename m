@@ -2,22 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A91D954D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 17:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57587D954E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 17:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404324AbfJPPRJ convert rfc822-to-8bit (ORCPT
+        id S2404644AbfJPPRJ convert rfc822-to-8bit (ORCPT
         <rfc822;lists+devicetree@lfdr.de>); Wed, 16 Oct 2019 11:17:09 -0400
-Received: from skedge04.snt-world.com ([91.208.41.69]:44108 "EHLO
+Received: from skedge04.snt-world.com ([91.208.41.69]:44106 "EHLO
         skedge04.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392751AbfJPPRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 11:17:08 -0400
-Received: from sntmail12r.snt-is.com (unknown [10.203.32.182])
+        with ESMTP id S2392704AbfJPPRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 11:17:09 -0400
+X-Greylist: delayed 586 seconds by postgrey-1.27 at vger.kernel.org; Wed, 16 Oct 2019 11:17:07 EDT
+Received: from sntmail10s.snt-is.com (unknown [10.203.32.183])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by skedge04.snt-world.com (Postfix) with ESMTPS id CAE587CDEC4;
-        Wed, 16 Oct 2019 17:07:29 +0200 (CEST)
-Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail12r.snt-is.com
- (10.203.32.182) with Microsoft SMTP Server (version=TLS1_2,
+        by skedge04.snt-world.com (Postfix) with ESMTPS id 1F6EA7CDEC5;
+        Wed, 16 Oct 2019 17:07:30 +0200 (CEST)
+Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail10s.snt-is.com
+ (10.203.32.183) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 16 Oct
  2019 17:07:29 +0200
 Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
@@ -37,13 +38,13 @@ CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH 06/10] ARM: dts: imx6ul-kontron-n6x1x-s: Specify bus-width for
- SD card and eMMC
-Thread-Topic: [PATCH 06/10] ARM: dts: imx6ul-kontron-n6x1x-s: Specify
- bus-width for SD card and eMMC
-Thread-Index: AQHVhDNtCK3cHQsRjEOH4zlGh0nbNA==
+Subject: [PATCH 07/10] ARM: dts: imx6ul-kontron-n6x1x-s: Add vbus-supply and
+ overcurrent polarity to usb nodes
+Thread-Topic: [PATCH 07/10] ARM: dts: imx6ul-kontron-n6x1x-s: Add vbus-supply
+ and overcurrent polarity to usb nodes
+Thread-Index: AQHVhDNtcWNwI7uv4EKgHVctQq99lQ==
 Date:   Wed, 16 Oct 2019 15:07:29 +0000
-Message-ID: <20191016150622.21753-7-frieder.schrempf@kontron.de>
+Message-ID: <20191016150622.21753-8-frieder.schrempf@kontron.de>
 References: <20191016150622.21753-1-frieder.schrempf@kontron.de>
 In-Reply-To: <20191016150622.21753-1-frieder.schrempf@kontron.de>
 Accept-Language: de-DE, en-US
@@ -57,7 +58,7 @@ Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
 X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: CAE587CDEC4.A341F
+X-SnT-MailScanner-ID: 1F6EA7CDEC5.A22E5
 X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
 X-SnT-MailScanner-SpamCheck: 
 X-SnT-MailScanner-From: frieder.schrempf@kontron.de
@@ -74,34 +75,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Both, the SD card and the eMMC are connected to the usdhc controller
-by four data lines. Therefore we set 'bus-width = <4>' for both
-interfaces.
+To silence the warnings shown by the driver at boot time, we add a
+fixed regulator for the 5V supply of usbotg2 and specify the polarity
+of the overcurrent signal for usbotg1.
 
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi b/arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi
-index 08a326ce2cbe..779d75f42268 100644
+index 779d75f42268..a2393568488f 100644
 --- a/arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi
 +++ b/arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi
-@@ -207,6 +207,7 @@
- 	wakeup-source;
- 	vmmc-supply = <&reg_3v3>;
- 	voltage-ranges = <3300 3300>;
-+	bus-width = <4>;
- 	no-1-8-v;
+@@ -43,6 +43,13 @@
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+ 
++	reg_5v: regulator-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "5v";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
+ 	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "usb_otg1_vbus";
+@@ -189,6 +196,7 @@
+ 	srp-disable;
+ 	hnp-disable;
+ 	adp-disable;
++	over-current-active-low;
+ 	vbus-supply = <&reg_usb_otg1_vbus>;
  	status = "okay";
  };
-@@ -221,6 +222,7 @@
- 	wakeup-source;
- 	vmmc-supply = <&reg_3v3>;
- 	voltage-ranges = <3300 3300>;
-+	bus-width = <4>;
- 	no-1-8-v;
+@@ -196,6 +204,7 @@
+ &usbotg2 {
+ 	dr_mode = "host";
+ 	disable-over-current;
++	vbus-supply = <&reg_5v>;
  	status = "okay";
  };
+ 
 -- 
 2.17.1
