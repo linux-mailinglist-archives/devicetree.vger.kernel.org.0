@@ -2,123 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 025ABD9275
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E01D9285
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405335AbfJPN3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 09:29:25 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:34309 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730142AbfJPN3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 09:29:25 -0400
-Received: by mail-lj1-f195.google.com with SMTP id j19so24061140lja.1;
-        Wed, 16 Oct 2019 06:29:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0zuQ6WlphP3GLKAO64VehzUGUxpcevfofxKNJyniNKY=;
-        b=ip5/2yuI67JEFe/mVoBmH4WWKAZPlmVUJvh65wnYuCA4EcZZqWNujbRa5T6z94wnTo
-         dt47qXlThCanJRW+YOoy6SjpIpmhBBEhi37X3zRWN5HuqH6QUbFskNiYOROl/7ikk+H4
-         X7PoIsY0uWEOF8Bzv8Qt11UX99eQ2yQf3ioZ5LaTo4Kdt25bp5eD+zitb7Owk6sfXwwA
-         YGCBwAvbT3EZvrjAT79dYkGM1UZ10cbYafDAKa0byZXEtWYUGsfCetcPdRDEDTK5VCai
-         H4XZaX/y00MKZ2pd3r233U2qf659JVx0m1MhIQnBupPPaYFRZKbhTw6z/I671OL2D+MC
-         fJxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=0zuQ6WlphP3GLKAO64VehzUGUxpcevfofxKNJyniNKY=;
-        b=qymmdYDuonH82hJiHtzTApSA++brwN6do1GyfL+3oxNwBATN9Pnd7t3Vh70BDKaUwh
-         DvF/Y0kDOq6hZ1cl3+wWWVd866b3PSu9CsYUY0do1Cn4N5WV9xxC8wJT1C8K+xdFj5/m
-         8aT6b+GjSITuX4z9i0mQYcesLs3r6MazR9l6czpUtPDkNjHOCkHZzsGfTjqmi10jsT6t
-         56ijsylOSzgB/LNLTzd5pxUYWjPdH5NWdJ2E0+duwW1tnxSidYZD92SG0o3fzQJ/rEV7
-         VI21LqcC2XEKl4Fi2LDx17vwkmmpoyPT0ixLc984IJvLndQL1iuPlAoPWXLKr9h9szgN
-         eHsw==
-X-Gm-Message-State: APjAAAVZBQt3boC/T5vxb81GXEyLBqDgSC4BBlWZGcGVG7CXW6YOS5GS
-        NypOJhy4FoIRnL5+qouHe5Gsa6MX
-X-Google-Smtp-Source: APXvYqwlcIVCIDajACVzs0yXeLGMk4o/kTl6pSqxAdmgs6AzOAeh0m77uNfrHbodavkF4OBPNTAHzQ==
-X-Received: by 2002:a2e:569a:: with SMTP id k26mr26062243lje.256.1571232562125;
-        Wed, 16 Oct 2019 06:29:22 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.10.250])
-        by smtp.googlemail.com with ESMTPSA id z8sm7740724lfg.18.2019.10.16.06.29.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Oct 2019 06:29:21 -0700 (PDT)
-Subject: Re: [PATCH v1 07/17] cpufreq: tegra20: Use generic cpufreq-dt driver
- (Tegra30 supported now)
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        id S2405366AbfJPNcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 09:32:31 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:48400 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405363AbfJPNcb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 09:32:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=bI3j/lNqd37v2UjsCOVjDYtbKavFToQzGAe5GTYyiDo=; b=CB6a2dFSBDFrSxogDUqW0XQkV4
+        hHU+dY+NSZ+cmUosWV13i2DVtvZfDilF3/4Uj3BHJxP182Rl6Evg77wG49m1LMzsbNMkQDLdGg8HV
+        vWP9jgzqcESxYmMq3VDDSign3wN24T7rzoGhxSHDLUTJXfkiZO/uNVXpEF4hGcA0FMRo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1iKjPT-0007bb-8z; Wed, 16 Oct 2019 15:32:15 +0200
+Date:   Wed, 16 Oct 2019 15:32:15 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Chris Snook <chris.snook@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20191015211618.20758-1-digetx@gmail.com>
- <20191015211618.20758-8-digetx@gmail.com>
- <20191016051802.rrxv56vtvxfm6qqe@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <13a9ebd6-8dce-0217-d306-defb8eb6fb96@gmail.com>
-Date:   Wed, 16 Oct 2019 16:29:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] net: ag71xx: port to phylink
+Message-ID: <20191016133215.GA17013@lunn.ch>
+References: <20191014061549.3669-1-o.rempel@pengutronix.de>
+ <20191014061549.3669-2-o.rempel@pengutronix.de>
+ <20191016121216.GD4780@lunn.ch>
+ <20191016122401.jnldnlwruv7h5kgy@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20191016051802.rrxv56vtvxfm6qqe@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191016122401.jnldnlwruv7h5kgy@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.10.2019 08:18, Viresh Kumar пишет:
-> On 16-10-19, 00:16, Dmitry Osipenko wrote:
->> Re-parenting to intermediate clock is supported now by the clock driver
->> and thus there is no need in a customized CPUFreq driver, all that code
->> is common for both Tegra20 and Tegra30. The available CPU freqs are now
->> specified in device-tree in a form of OPPs, all users should update their
->> device-trees.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  drivers/cpufreq/Kconfig.arm          |   4 +-
->>  drivers/cpufreq/cpufreq-dt-platdev.c |   2 +
->>  drivers/cpufreq/tegra20-cpufreq.c    | 236 ++++++---------------------
->>  3 files changed, 55 insertions(+), 187 deletions(-)
->>
->> diff --git a/drivers/cpufreq/Kconfig.arm b/drivers/cpufreq/Kconfig.arm
->> index a905796f7f85..2118c45d0acd 100644
->> --- a/drivers/cpufreq/Kconfig.arm
->> +++ b/drivers/cpufreq/Kconfig.arm
->> @@ -301,8 +301,8 @@ config ARM_TANGO_CPUFREQ
->>  	default y
->>  
->>  config ARM_TEGRA20_CPUFREQ
->> -	tristate "Tegra20 CPUFreq support"
->> -	depends on ARCH_TEGRA
->> +	bool "Tegra20 CPUFreq support"
+On Wed, Oct 16, 2019 at 02:24:01PM +0200, Oleksij Rempel wrote:
+> On Wed, Oct 16, 2019 at 02:12:16PM +0200, Andrew Lunn wrote:
+> > On Mon, Oct 14, 2019 at 08:15:46AM +0200, Oleksij Rempel wrote:
+> > > The port to phylink was done as close as possible to initial
+> > > functionality.
+> > > Theoretically this HW can support flow control, practically seems to be not
+> > > enough to just enable it. So, more work should be done.
+> > > 
+> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > 
+> > Hi Oleksij
+> > 
+> > Please include Russell King in Cc: in future.
 > 
-> Google is currently working on the GKI (generic kernel image) project where they
-> want to use a single kernel image with modules for all kind of android devices.
-> And for that they need all such drivers to be built as module. Since this is
-> already an module, I would ask you to keep it as is instead of moving it to bool
-> here. Else some google guy will switch it back as module later on.
-> 
-> LGTM otherwise. Nice work. Thanks.
-> 
+> He was included in To:. Do you mean, I need to move him from To to Cc?
 
-Okay, I'll keep the modularity in v2.
+Ah, sorry. Missed him among all the other To:
 
-Although, tegra20-cpufreq isn't a driver anymore because now it merely
-prepares OPP table for the cpufreq-dt driver, which is really a one-shot
-action that is enough to do during boot and thus modularity is a bit
-redundant here.
+I don't know if there are any strict rules, but i tend to use To: for
+the maintainer you expect to merge the patch, and Cc: for everybody
+else, and the lists.
+
+    Andrew
