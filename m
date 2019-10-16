@@ -2,75 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEEE0D914C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72C17D916D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:48:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393229AbfJPMpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:45:51 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:38802 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393228AbfJPMpu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:45:50 -0400
-Received: by mail-qk1-f194.google.com with SMTP id p4so2025113qkf.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i4Tlr8aaqHcqUHLIi1olwgg1FH4Wnc+VjJ6hwR+CHZ4=;
-        b=UKDHkw+AsWNstYEdbran6nGCcRGuySyOhWzrs1M+lF6UxheGXfo+LcAWpEEbBx+GjI
-         HjCtcPXBKQn4jwJy1cZJVsUKfW7IO6g+YkpfauBjo4HyT9qSp02EWBGyi3sOIeJrqugJ
-         aNGP9AwBpU3FcCHdLXdwuvd0t0yyMgPBETbTKtu2DJj+lWiGvu+3fDWYAeAUK+WOEA4H
-         F8rc+vcjQUPehy7NV4y5BA6xRXQqtAm5Nw1nm8zc582Y3Dcivh6Z7Y2lxO5s11cE/WnM
-         Jkct9SJXs7YpPuGDgp+lQ+hSbBaEXPMKYZarrYIGCt8VYRjlw3XqOdiH5adCuAlguYgC
-         XyWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i4Tlr8aaqHcqUHLIi1olwgg1FH4Wnc+VjJ6hwR+CHZ4=;
-        b=m6G75yC9rVSbbXVhFmc7JAl3aCvlmCPUss5288rDVXgpzWyXO5mxH93K//KWQttzp+
-         qHA8wK4aO3yoXO3EJZgjOC19iFUbHUZFdJd6ZeKt1GWdNLWFX42ICBO4OubwxQ+7zq9a
-         S8F7AhWhwlTH7tkgXSR2yiefMDjDvPO014j32x0ozmpncWlXgOOlD+/Aw0rap2YYJiBF
-         z6nO+Bwwj8Bh0bNjicWB2OTijzM0Qv6pkWpzKNKt3hAdjFBk4QeoesJAR1DeG58WL4j1
-         6xIBu1EEjkL8ouyRkkeTIUrcMkcsrDk5zbXnVUWXSmhG8nflC8rxg/GuYf8PIE4wPQka
-         fLzg==
-X-Gm-Message-State: APjAAAUBEJ/XFUhFr8Wtg1MFohSla28fAtccewm+x2SFMC1EVNY2iASD
-        B0cpuHAzCej3buGolaExh7icfrHxkkY2SIiBFn0VGFnL
-X-Google-Smtp-Source: APXvYqwOzWo5VbcvN0U8TDnN+1xwjUKgMyRheHPwsr6x9P70GL0NWL/tbYoCuW4aAJr51oKXjooJFWTyMu0zdWYL5a0=
-X-Received: by 2002:a05:620a:751:: with SMTP id i17mr39890335qki.340.1571229949254;
- Wed, 16 Oct 2019 05:45:49 -0700 (PDT)
+        id S2393271AbfJPMsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:48:33 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:56930 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390608AbfJPMsc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 08:48:32 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DF2B21A0542;
+        Wed, 16 Oct 2019 14:48:28 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D0CBE1A001A;
+        Wed, 16 Oct 2019 14:48:28 +0200 (CEST)
+Received: from fsr-ub1664-026.ea.freescale.net (fsr-ub1664-026.ea.freescale.net [10.171.81.59])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 24F1D205D2;
+        Wed, 16 Oct 2019 14:48:28 +0200 (CEST)
+From:   Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+To:     corbet@lwn.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com
+Cc:     jslaby@suse.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v7 0/5] Add initial support for S32V234-EVB
+Date:   Wed, 16 Oct 2019 15:48:22 +0300
+Message-Id: <1571230107-8493-1-git-send-email-stefan-gabriel.mirea@nxp.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20191015091708.7934-1-jay.xu@rock-chips.com> <20191015091708.7934-3-jay.xu@rock-chips.com>
-In-Reply-To: <20191015091708.7934-3-jay.xu@rock-chips.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 16 Oct 2019 14:45:38 +0200
-Message-ID: <CACRpkdbtfamz4H-RNUfdSz7eAOzRMgu-QPbVAVZKtC+Lg5VP9g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] pinctrl: rockchip: add rk3308 SoC support
-To:     Jianqun Xu <jay.xu@rock-chips.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 15, 2019 at 11:17 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
+Hello,
 
-> This patch do support pinctrl for RK3308 SoCs.
->
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+NXP's S32V234[1] ("Treerunner") vision microprocessors are targeted for
+high-performance, computationally intensive vision and sensor fusion
+applications that require automotive safety levels. They include leading
+edge Camera Vision modules like APEX-2, ISP and GPU. The S32V234-EVB and
+S32V234-SBC boards are available for customer evaluation.
 
-Patch applied!
+The following patch series introduces minimal enablement support for the
+NXP S32V234-EVB2[2] board, which leverages most of the SoC capabilities.
+Up to v2, this series also included the fsl_linflexuart driver, which has
+been included in Linux 5.4-rc1[3].
 
-Yours,
-Linus Walleij
+In the future, we aim to submit multiple drivers upstream, which can be
+found in the kernel of our Auto Linux BSP[4] ("ALB"), starting with basic
+pinmuxing, clock and uSDHC drivers.
+
+For validation, you can use the U-Boot bootloader in the ALB[5], which we
+build and test with our patched version of the Linaro GCC 6.3.1 2017.05
+toolchain for ARM 64-bit, with sources available on [6].
+
+Changes in v7:
+* Rebase the patch 'serial: fsl_linflexuart: Be consistent with the name'
+  on the tty-next branch in Greg's tty git tree.
+
+Changes in v6:
+* In the patch 'serial: fsl_linflexuart: Be consistent with the name',
+  avoid updating the definition of PORT_LINFLEXUART; that was an
+  independent fix which has been submitted and accepted[9] separately;
+* Avoid using 'base64' as 'Content-Transfer-Encoding'.
+
+Changes in v5:
+* Remove the patch 'dt-bindings: serial: Document Freescale LINFlexD UART'
+  following its acceptance in Linux 5.4-rc1[8];
+* Rebase the other patches on v5.4-rc1.
+
+Changes in v4:
+* Remove the patch 'serial: fsl_linflexuart: Update compatible string'
+  following its acceptance[7];
+* Rebase the patch 'serial: fsl_linflexuart: Be consistent with the name'
+  on the tty-next branch in Greg's tty git tree.
+
+Changes in v3:
+* Remove the patch 'tty: serial: Add linflexuart driver for S32V234'
+  following its acceptance[3];
+* Replace 'Freescale' with 'NXP' in the ARCH_S32 config definition and the
+  'model' property from the device tree;
+* Remove the 'fsl-' prefixes from the dtsi and dts file names;
+* Move the 'model' property from (fsl-)s32v234.dtsi to s32v234-evb.dts;
+* Add newlines between the cpu nodes in s32v234.dtsi;
+* Make use of GIC_SPI, GIC_PPI, GIC_CPU_MASK_SIMPLE and IRQ_TYPE_* in the
+  'interrupts' tuples;
+* Move the 'timer' and 'interrupt-controller' nodes before 'soc' in
+  s32v234.dtsi;
+* Be consistent with the 'LINFlexD' spelling in documentation, strings and
+  comments; add new patch 'serial: fsl_linflexuart: Be consistent with the
+  name' to update the LINFlexD driver as well;
+* Remove from fsl,s32-linflexuart.txt a statement regarding the limitation
+  to UART mode;
+* Make the compatible string SoC specific ("fsl,s32v234-linflexuart"); add
+  new patch 'serial: fsl_linflexuart: Update compatible string' to update
+  the LINFlexD driver as well;
+* In the LINFlexD binding documentation, insert a space between label and
+  node name and remove the 'status' property.
+
+Changes in v2:
+* Update the entry in fsl.yaml to apply to all S32V234 based boards;
+* Add chosen node to dts, with a 'stdout-path' property for earlycon;
+* Remove linflex_verify_port(), because it was only called from
+  uart_set_info(), which was going to always fail at the "baud_base < 9600"
+  check, as we are not using uartclk from uart_port yet;
+* Fix compatible string used in OF_EARLYCON_DECLARE.
+
+[1] https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/s32-automotive-platform/vision-processor-for-front-and-surround-view-camera-machine-learning-and-sensor-fusion:S32V234
+[2] https://www.nxp.com/support/developer-resources/evaluation-and-development-boards/ultra-reliable-dev-platforms/s32v-mpus-platforms/s32v-vision-and-sensor-fusion-evaluation-system:S32V234EVB
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=09864c1cdf5c537bd01bff45181406e422ea988c
+[4] https://source.codeaurora.org/external/autobsps32/linux/
+[5] https://source.codeaurora.org/external/autobsps32/u-boot/
+[6] https://source.codeaurora.org/external/s32ds/compiler/gcc/
+[7] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2bd3661ea0eb2056852cbc58c5d96bb4df2f164f
+[8] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0e16feab6cce2b91d2996d4bc4eff01ece577c4a
+[9] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9050079719021776e48437827eb9d5986b6e45d4
+
+Eddy Petrișor (1):
+  dt-bindings: arm: fsl: Add the S32V234-EVB board
+
+Mihaela Martinas (2):
+  arm64: Introduce config for S32
+  arm64: defconfig: Enable configs for S32V234
+
+Stefan-Gabriel Mirea (1):
+  serial: fsl_linflexuart: Be consistent with the name
+
+Stoica Cosmin-Stefan (1):
+  arm64: dts: fsl: Add device tree for S32V234-EVB
+
+ .../admin-guide/kernel-parameters.txt         |   2 +-
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/Kconfig.platforms                  |   5 +
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +
+ arch/arm64/boot/dts/freescale/s32v234-evb.dts |  25 ++++
+ arch/arm64/boot/dts/freescale/s32v234.dtsi    | 139 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/tty/serial/Kconfig                    |   8 +-
+ drivers/tty/serial/fsl_linflexuart.c          |   4 +-
+ include/uapi/linux/serial_core.h              |   2 +-
+ 10 files changed, 188 insertions(+), 8 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/s32v234-evb.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/s32v234.dtsi
+
+-- 
+2.22.0
+
