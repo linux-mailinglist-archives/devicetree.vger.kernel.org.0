@@ -2,115 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 554E3D9057
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7401D9076
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388559AbfJPMF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:05:28 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:42408 "EHLO
+        id S2388047AbfJPMLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:11:06 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:38862 "EHLO
         mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727470AbfJPMF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:05:27 -0400
-Received: by mail-lf1-f68.google.com with SMTP id c195so17255625lfg.9
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:05:26 -0700 (PDT)
+        with ESMTP id S2392896AbfJPMLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:11:06 -0400
+Received: by mail-lf1-f68.google.com with SMTP id u28so17272392lfc.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:11:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=1lgzvy+YBsjp8TqyBMT1f57Vy5UY6TJqL/3/rtY6CCA=;
-        b=tsZg08CYSu9U7QMMHAV/L/3H4qD8TVH1FP0EVjQ2VibIOBTO/NhQ6vAUOFp+GBgG5U
-         NFzDX98f6laZrG6QuCJtGv9Px7J6uIJRw5O8sxuoehgEIdNnQbKDEjcqkce39nr0r/aQ
-         OM7nEKT/ZjS1p8UpjKK4QkfrUAmOgrKoSWZW/dLJXux/OHn6SRe6wHPAK0X+vawesW5z
-         jjl/7AI6fKYVlR2XCKW/2R9xY04XbWNIMWPG31Cqh8M7C6/At72hqtJJLvItrB4wtHBz
-         pD9B8dQg1pA8wXveuGCMk9G0cR6D3fDVznRLtQ4bFYwgHCVT8WaHnvVuhoAa5Xc+aDcY
-         Zsvg==
+        bh=zAcMglJ0sMZP7+r5P2KE/QX2T7ue0jf4q4Bd1DSk2+o=;
+        b=kPp2LbyytXuiszE7XqY4dsXBc5wTYwqSTDkG2glMbJy8Pzs+bcaA9exT6sjDt6XIxI
+         zbDgBJPyZkMVp/13P/6/lt/Am7sHZmwIQXCDGs9gNOmVqkTKc0ASGOUrz1Tkxf1vOdUG
+         3+hgdaFZVjnoJgKTORduGR9Px142SvukOwkjnhZ4d/pZsRSWfTcFrMzxMkiLgF3hLe3K
+         Csr2B0hlXr5Td3UaKF3awDZKfKY9cC+CvK4bTh/rFyvf7V3iRGlJ4QDYS8RZ6m3014HP
+         um/NzdbRHbtwz3zKwxhUh1JOv7s0RkC9B3V8DxhSywbPSF9Nz4ktSeYRwZ9gBWRlA9fA
+         ee0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1lgzvy+YBsjp8TqyBMT1f57Vy5UY6TJqL/3/rtY6CCA=;
-        b=YKhiNnIMWLN/vXUhqPQWAi0q1y1o/v9tm7+vxyLvzKQpHob+0DTDgRGsekHmVYcmrP
-         SrcoT/CCKtkovkLO8e8ueb0uxaAY8cVxhNQ8JggWbdP2gN+z1ziEe4jRnV4+l1TKf7z5
-         uyUTgV/44M5xEj/EjdCvTFOZgOLySYP98FfpwZ6A98jAkOUrcqx68C1JyJgOxfl6gGuf
-         NRPZAmGDZrBT+RbYk3MUUJrwPq9X9GxstW4gDbXfobw5RHsqMpkoC2uzan9bf5hrmZSn
-         OtEBdby2K9cGkZhYDCY/iyr18CrgWyJA+IYBqy5uaiSvmXcVq87QHPM4Gv1bvaQk/8Ni
-         LsaQ==
-X-Gm-Message-State: APjAAAVzuEQhZoYvhwUzAIZgvVIC7J+fLFyOdMYfN9hClmC6tuRNBuCs
-        7Fd6yv0tXWFO1n/vUwOHZP/Wn+SXdOChRl8y8lvxqw==
-X-Google-Smtp-Source: APXvYqxGRhrVxtU32F5Zq/TVBo0846dyytMuOUvb1dZY2mOZsVy3P2HV6Dq97F/HSFJq7W5/iOGwluUUDPICS163Jpk=
-X-Received: by 2002:a19:c505:: with SMTP id w5mr24686046lfe.115.1571227525264;
- Wed, 16 Oct 2019 05:05:25 -0700 (PDT)
+        bh=zAcMglJ0sMZP7+r5P2KE/QX2T7ue0jf4q4Bd1DSk2+o=;
+        b=WqeRGqC25K8OBv9RMshhdviJtjFEFhSetyi9J4Bzq3ih7EbkIGrcfTNnGS0YVFhlgr
+         SY+30DViw7pn9ELF8d416LVvCe7VwGm6ZLZyHq+63GMY0unbaARlmR8THeovW+xxEZ2H
+         rXwrMgRin9bGfQQzLbkUrw0KHCysv57a7d8N6YY6Avk3/UriTnZZsaAvgASKHdHZT7a8
+         u48JjwRnu6OnTOUlHk0aE9fpzem3GhpPHRXrXAVTWdLi3jF09OsT9x6e6wvltbkbtst8
+         +aH7YnTFsa6+gU0p/iDDVELI1oXlxPtiV4pRKHmoR5YjTCEn2A7rQVqZfSyC6WviXNGh
+         Xe3w==
+X-Gm-Message-State: APjAAAUv/zDkQNS6bcBZpo/RAMFdJyrm2PV9G9bnIou3767ORw/RIzLN
+        hrd9kjW7LwOEIJfKMgPV6PPwbbxnYjkvYm166quy/g==
+X-Google-Smtp-Source: APXvYqyC/8s5wFJQZ84rZaLlU3QiDyhyWI8h+dFx0LNQamFK0NlRVzDmYzTFmoBGE7Ny04pOfYsYDfSM9SKQDobKlpU=
+X-Received: by 2002:ac2:43c2:: with SMTP id u2mr2022223lfl.61.1571227863019;
+ Wed, 16 Oct 2019 05:11:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
- <65898579e78b4b3bb5db9ddc884a818046c1eb4c.1568274587.git.rahul.tanwar@linux.intel.com>
- <CACRpkdbFDTR140_a1FabyjCP2MnBTg-xo2BWnchEvCP161cFLw@mail.gmail.com> <f4cf3553-be3b-ffed-e801-ecb698309a63@linux.intel.com>
-In-Reply-To: <f4cf3553-be3b-ffed-e801-ecb698309a63@linux.intel.com>
+References: <20191011005643.41007-1-hui.song_1@nxp.com>
+In-Reply-To: <20191011005643.41007-1-hui.song_1@nxp.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 16 Oct 2019 14:05:12 +0200
-Message-ID: <CACRpkdZHKm_f04X16w6=Gfa20DVXTWV_KaHO-Esw7RAEKd5pjw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] pinctrl: Add pinmux & GPIO controller driver for
- new SoC
-To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 16 Oct 2019 14:10:51 +0200
+Message-ID: <CACRpkdaU82GHxRbWqF-CxHdsJJ02YHtdA0kWvZz-8eCWXNxHAA@mail.gmail.com>
+Subject: Re: [PATCH v8] gpio/mpc8xxx: change irq handler from chained to normal
+To:     Hui Song <hui.song_1@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Andriy Shevchenko <andriy.shevchenko@intel.com>,
-        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
-        cheol.yong.kim@intel.com
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 10, 2019 at 6:35 AM Tanwar, Rahul
-<rahul.tanwar@linux.intel.com> wrote:
+On Fri, Oct 11, 2019 at 3:07 AM Hui Song <hui.song_1@nxp.com> wrote:
 
-> My understanding is
-> that GPIO_GENERIC can support a max of 64 consecutive bits representing
-> GPIO lines.
+> More than one gpio controllers can share one interrupt, change the
+> driver to request shared irq.
+>
+> While this will work, it will mess up userspace accounting of the number
+> of interrupts per second in tools such as vmstat.  The reason is that
+> for every GPIO interrupt, /proc/interrupts records the count against GIC
+> interrupt 68 or 69, as well as the GPIO itself.  So, for every GPIO
+> interrupt, the total number of interrupts that the system has seen
+> increments by two.
+>
+> Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
+> Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
+> Signed-off-by: Song Hui <hui.song_1@nxp.com>
+> ---
+> Changes in v8:
+>         - merge two lines as one line to fit 80 characters.
 
-Correct, it also demand that all GPIOs are accessed in a single
-register of 8, 16, 32 or 64 bits.
-
-> We have more than 100 GPIO's and they are spread out across
-> 4 different banks with non consecutive registers i.e. DATA_IN_0~31@offset0x0,
-> DATA_IN_32~63@offset0x100 and so on. In other words, i think we can not
-> support memory mapped GPIO controller.
-
-But why can't you just create one device and thus one gpio_chip
-per bank?
-
-This is what most drivers do, it also often makes things easier.
-
-The main reason for not doing this is usually something like
-that some registers are shared inbetween the banks, or their
-registers are mingled in the same MMIO region or so.
-
-If they are just in different memory chunks then create
-one device per bank, and all gets much simpler.
-
-> As mentioned above, we cannot use GPIO_GENERIC. And there was no specific
-> reason/motivation for us to use regmap-mmio because most of the driver's
-> that we referenced were using readl()/write(). Do you recommend us to remove
-> readl()/writel() and switch to regmap-mmio based design ?
-
-I don't really know, usually whatever makes for the simplest
-code. But check if you can use GPIO_GENERIC first.
-
-> Just to clarify, we have 4 different GPIO banks and each GPIO bank is
-> implemented as a separate gpio_chip. So we have 4 instances of gpio_desc
-> each one having its own gpio_chip. What i mean to say is that gpio_desc
-> is actually not a per-line state container, its a per gpio_chip container.
-
-As you're already creating one gpio_chip per bank using GPIO_GENERIC
-should be simple.
-
-Just reference the memory cells directly when calling bgpio_init() for each
-mmio address, you're already half done.
+Patch applied.
 
 Yours,
 Linus Walleij
