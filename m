@@ -2,125 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21B98D8532
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 03:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A184AD85C9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 04:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730479AbfJPBGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Oct 2019 21:06:00 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:32942 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730786AbfJPBF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Oct 2019 21:05:58 -0400
-Received: by mail-pg1-f193.google.com with SMTP id i76so13217153pgc.0;
-        Tue, 15 Oct 2019 18:05:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZGa/e8ScYFo0O0ofE/HYTLUJXgs85jMHJAoOtTpoL4A=;
-        b=s8542C+T1nvH48+/1s6d3Xekjoe2EDEc+K6WurUBiDeTR3Nghfdcrf7bDoH76cOrtY
-         4TjcKrfCtWSmiVTGaNU+g/vOKYFE/N9iHkJv51qPAKJjKED21ERvREaG5pxAt1qezxmt
-         VIpE9b2I5zkSqk6IQXIRc/lHK3fFho0ZQ03XMh0R9UhbORRgE4lN49XfzAjfbLm90yAv
-         3Ac4jwRxX2rvfR0AnFUElfc/nKLj3Pl2ZLZojkWa4AhWuYBpTKijvwKjG8tKDQ96DYh1
-         QhT0dyPv7CM/g798VyLVKCHDicsjKiPE9XlRwRrzBVDniK1vexzQDDfDvYUMhzMlcr4g
-         z4Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ZGa/e8ScYFo0O0ofE/HYTLUJXgs85jMHJAoOtTpoL4A=;
-        b=uC6RaVfXcJsYwKbLv8vfG0tneUAMCvcdH344T7USq3sOEfaMSkXV1oD27MkYkBBH1i
-         sZsjrWUsrQdVYq7VOkB2Wp9LyDeZzUDxEnSGiOOuooRYyPH5Y/t2zx0edE9f40fB9Oyj
-         +49DL9FJvSySp7e+dYyM5XooWpDLz3o3o0T4vq3cWDpL7IqsIX3HWYi8vkUVQNcz0a9E
-         f9O7Gg1KpQN6/wZ8RSu3DgM4Iub96Tqera54r2z3dO8BbmZjz9HBUEVjVz31lGDF3EaG
-         nr5kgwxsMsaTgtLj/SaG82j0lbQOJ0GGBwl3q7N/SuygEmhoeph47E9/l2rCFFukNhCQ
-         +Ziw==
-X-Gm-Message-State: APjAAAUn+afHJ+pD9shuAjKDP93LPoLdIN6Aq9Uew7LE67TE7E0N3s1G
-        y+SRdAD35fFcBxKPUnKmo4s=
-X-Google-Smtp-Source: APXvYqya1S4ppX7c9j/nZ9F987416mfu5NR9idjjbi0YlAVSoDy4n57Uews0z1b09VTxy5KpMBEWKw==
-X-Received: by 2002:a17:90a:d991:: with SMTP id d17mr1654428pjv.73.1571187957506;
-        Tue, 15 Oct 2019 18:05:57 -0700 (PDT)
-Received: from majic.sklembedded.com (c-73-202-231-77.hsd1.ca.comcast.net. [73.202.231.77])
-        by smtp.googlemail.com with ESMTPSA id n15sm453714pjt.13.2019.10.15.18.05.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 18:05:56 -0700 (PDT)
-From:   Steve Longerbeam <slongerbeam@gmail.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel@vger.kernel.org (open list:CLOCKSOURCE, CLOCKEVENT DRIVERS),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE)
-Cc:     Steve Longerbeam <slongerbeam@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: timer: imx: gpt: Add pin group bindings for input capture
-Date:   Tue, 15 Oct 2019 18:05:44 -0700
-Message-Id: <20191016010544.14561-3-slongerbeam@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191016010544.14561-1-slongerbeam@gmail.com>
-References: <20191016010544.14561-1-slongerbeam@gmail.com>
+        id S1730681AbfJPCRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Oct 2019 22:17:32 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:57544 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730455AbfJPCRc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Oct 2019 22:17:32 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 17F481A0854;
+        Wed, 16 Oct 2019 04:17:30 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 205311A04F9;
+        Wed, 16 Oct 2019 04:17:12 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DC22C402B3;
+        Wed, 16 Oct 2019 10:16:58 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        jun.li@nxp.com, ping.bai@nxp.com, daniel.baluta@nxp.com,
+        leonard.crestez@nxp.com, daniel.lezcano@linaro.org,
+        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
+        andrew.smirnov@gmail.com, jon@solid-run.com, baruch@tkos.co.il,
+        angus@akkea.ca, pavel@ucw.cz, agx@sigxcpu.org,
+        troy.kisky@boundarydevices.com, gary.bisson@boundarydevices.com,
+        dafna.hirschfeld@collabora.com, richard.hu@technexion.com,
+        andradanciu1997@gmail.com, manivannan.sadhasivam@linaro.org,
+        aisheng.dong@nxp.com, peng.fan@nxp.com, fugang.duan@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/5] arm64: dts: imx8qxp: Move usdhc clocks assignment to board DT
+Date:   Wed, 16 Oct 2019 10:14:23 +0800
+Message-Id: <1571192067-19600-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin group bindings to support input capture function of the i.MX
-GPT.
+usdhc's clock rate is different according to different devices
+connected, so clock rate assignment should be placed in board
+DT according to different devices connected on each usdhc port.
 
-Signed-off-by: Steve Longerbeam <slongerbeam@gmail.com>
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
- .../devicetree/bindings/timer/fsl,imxgpt.txt  | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts | 4 ++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts   | 4 ++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi      | 6 ------
+ 3 files changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt b/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt
-index 5d8fd5b52598..32797b7b0d02 100644
---- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt
-+++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.txt
-@@ -33,6 +33,13 @@ Required properties:
-            an entry for each entry in clock-names.
- - clock-names : must include "ipg" entry first, then "per" entry.
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts b/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
+index 91eef97..a3f8cf1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
+@@ -133,6 +133,8 @@
+ &usdhc1 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
++	assigned-clocks = <&clk IMX_CONN_SDHC0_CLK>;
++	assigned-clock-rates = <200000000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc1>;
+ 	bus-width = <4>;
+@@ -149,6 +151,8 @@
  
-+Optional properties:
-+
-+- pinctrl-0: For the i.MX GPT to support the Input Capture function,
-+  	     the input capture channel pin groups must be listed here.
-+- pinctrl-names: must be "default".
-+
-+
- Example:
- 
- gpt1: timer@10003000 {
-@@ -43,3 +50,24 @@ gpt1: timer@10003000 {
- 		 <&clks IMX27_CLK_PER1_GATE>;
- 	clock-names = "ipg", "per";
+ /* SD */
+ &usdhc2 {
++	assigned-clocks = <&clk IMX_CONN_SDHC1_CLK>;
++	assigned-clock-rates = <200000000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc2>;
+ 	bus-width = <4>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+index 88dd9132..d3d26cc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+@@ -137,6 +137,8 @@
  };
-+
-+
-+Example with input capture channel 0 support:
-+
-+pinctrl_gpt_input_capture0: gptinputcapture0grp {
-+	fsl,pins = <
-+		MX6QDL_PAD_SD1_DAT0__GPT_CAPTURE1 0x1b0b0
-+	>;
-+};
-+
-+gpt: gpt@2098000 {
-+	compatible = "fsl,imx6q-gpt", "fsl,imx31-gpt";
-+	reg = <0x02098000 0x4000>;
-+	interrupts = <0 55 IRQ_TYPE_LEVEL_HIGH>;
-+	clocks = <&clks IMX6QDL_CLK_GPT_IPG>,
-+		<&clks IMX6QDL_CLK_GPT_IPG_PER>,
-+		<&clks IMX6QDL_CLK_GPT_3M>;
-+	clock-names = "ipg", "per", "osc_per";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpt_input_capture0>;
-+};
+ 
+ &usdhc1 {
++	assigned-clocks = <&clk IMX_CONN_SDHC0_CLK>;
++	assigned-clock-rates = <200000000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc1>;
+ 	bus-width = <8>;
+@@ -147,6 +149,8 @@
+ };
+ 
+ &usdhc2 {
++	assigned-clocks = <&clk IMX_CONN_SDHC1_CLK>;
++	assigned-clock-rates = <200000000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc2>;
+ 	bus-width = <4>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+index 2d69f1a..9646a41 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -368,8 +368,6 @@
+ 				 <&conn_lpcg IMX_CONN_LPCG_SDHC0_PER_CLK>,
+ 				 <&conn_lpcg IMX_CONN_LPCG_SDHC0_HCLK>;
+ 			clock-names = "ipg", "per", "ahb";
+-			assigned-clocks = <&clk IMX_CONN_SDHC0_CLK>;
+-			assigned-clock-rates = <200000000>;
+ 			power-domains = <&pd IMX_SC_R_SDHC_0>;
+ 			status = "disabled";
+ 		};
+@@ -383,8 +381,6 @@
+ 				 <&conn_lpcg IMX_CONN_LPCG_SDHC1_PER_CLK>,
+ 				 <&conn_lpcg IMX_CONN_LPCG_SDHC1_HCLK>;
+ 			clock-names = "ipg", "per", "ahb";
+-			assigned-clocks = <&clk IMX_CONN_SDHC1_CLK>;
+-			assigned-clock-rates = <200000000>;
+ 			power-domains = <&pd IMX_SC_R_SDHC_1>;
+ 			fsl,tuning-start-tap = <20>;
+ 			fsl,tuning-step= <2>;
+@@ -400,8 +396,6 @@
+ 				 <&conn_lpcg IMX_CONN_LPCG_SDHC2_PER_CLK>,
+ 				 <&conn_lpcg IMX_CONN_LPCG_SDHC2_HCLK>;
+ 			clock-names = "ipg", "per", "ahb";
+-			assigned-clocks = <&clk IMX_CONN_SDHC2_CLK>;
+-			assigned-clock-rates = <200000000>;
+ 			power-domains = <&pd IMX_SC_R_SDHC_2>;
+ 			status = "disabled";
+ 		};
 -- 
-2.17.1
+2.7.4
 
