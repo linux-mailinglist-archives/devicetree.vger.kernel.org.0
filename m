@@ -2,444 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDAA0D8E39
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91CA6D8EBA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389533AbfJPKoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 06:44:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45862 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389345AbfJPKoD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 06:44:03 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 20ABB2168B;
-        Wed, 16 Oct 2019 10:44:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571222641;
-        bh=Sg5D34GnHEWc66UOrTDBpqCvV3gIlQjrJcuLuidVbQk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=OoVBpgu5xWSD6KRAwpxjFGmRsQdb1ZsEZYmSRwhMu6VxTD5JCe/PG4sCz9zWgT8aZ
-         D5T6KpfOy8jF20KpsbAaFULilkgW9ud63c03zoyVPFLThXYvFRlaAPYsenVkPsrcdB
-         guMIpCXdhYLdzCF1rWbZH07xX6FryErjHgMFk5Os=
-From:   Maxime Ripard <mripard@kernel.org>
-To:     lgirdwood@gmail.com, broonie@kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3] ASoC: dt-bindings: Convert Allwinner A10 codec to a schema
-Date:   Wed, 16 Oct 2019 12:43:55 +0200
-Message-Id: <20191016104355.65169-1-mripard@kernel.org>
-X-Mailer: git-send-email 2.23.0
+        id S2404214AbfJPK4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 06:56:51 -0400
+Received: from mail-eopbgr740041.outbound.protection.outlook.com ([40.107.74.41]:38112
+        "EHLO NAM01-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726083AbfJPK4v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 06:56:51 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jwWXQAcfD2/YoGE/wAbAFa8+UvYPR+3E/zXjVXhuXe4zo+iJR7e13TCihwEnSuJXbFBisFIzlTgF3QlW0Qaj01Sh4PP5sC/JI8i9+vEn7V8Hr2vZ/O8V6mVLoZEHvHz4veh+Tr1i2lTzp7bqESdbLjP0UY7K7/fUuJnkuTh6l9KFxrWpdpRsoNHg2YLKyQ5uxEoHxPEBYFtijj5tJPpBMkHq2rL2aHMGaPsC/gi96AoJKlSB4Qh4ifuDU1Ij6HCWR4Ip1iQPdJsUmo7Z6GiM4OnPBdbw9PFRCd4ojjx4rya/LvhucRVUDX0Nu/kw9wPZSG2ar1DQ8k8I23OWWc4hZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=++B+ydka1g41fIu7Ox/Ms6mOQ5TA5T48D86VqWS/dOA=;
+ b=m9gjC6dl150aW+33AqgMSaW/bI7XzUcRcu6dVXI+X7NF1SMoJ+LeM+TMTW7UE7rNGoNB8d7x1fkBU6JW9XQKvgxsTkoIX6Xw+uTxIfU48Aj6t7C6gOp8Zy9SFMfAePloI5vsu12NznMLAmelWKVOqLeaF48AJ9W1dLruZOzdzi9gW4q9+FE2y39k8kMNawhGwplLj8kK24jVVxFbHwu2sJKDke5IBDY8cY+L4KHrLW4Te0VVs6HEtEUMKPyllbOgEhF5pzPNvE/MW2nR09Xi8rgqJvWa3eXPYhn8z/NPrJOCFXZTyaD4GJ+XfRfoiTW+/OaXfQ5OoTSEeTs6Jtft6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=++B+ydka1g41fIu7Ox/Ms6mOQ5TA5T48D86VqWS/dOA=;
+ b=qAfErY00l/+l12nBM1ZreTv2w4mn0lEE4uhcpCrBCK6BcsR/WbE9VTIeaerKJMEBpwhP9EfcHsknBjZ9gGkBg7esvn//3M0qzxplkt9t+XaB9L9pnd2e/g/H/O6w73Ww+z6HTXBiT7BEorhe4WMWUtli6sORlGp2LJYXhSjH93o=
+Received: from MWHPR0201CA0102.namprd02.prod.outlook.com
+ (2603:10b6:301:75::43) by BL0PR02MB4803.namprd02.prod.outlook.com
+ (2603:10b6:208:5d::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.17; Wed, 16 Oct
+ 2019 10:56:48 +0000
+Received: from SN1NAM02FT064.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::209) by MWHPR0201CA0102.outlook.office365.com
+ (2603:10b6:301:75::43) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2347.16 via Frontend
+ Transport; Wed, 16 Oct 2019 10:56:47 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT064.mail.protection.outlook.com (10.152.72.143) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2347.16
+ via Frontend Transport; Wed, 16 Oct 2019 10:56:47 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1iKgz0-0006CF-NR; Wed, 16 Oct 2019 03:56:46 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1iKgyv-0002aI-K4; Wed, 16 Oct 2019 03:56:41 -0700
+Received: from xsj-pvapsmtp01 (smtp.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x9GAuUEf027448;
+        Wed, 16 Oct 2019 03:56:30 -0700
+Received: from [172.30.17.123]
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <michals@xilinx.com>)
+        id 1iKgyk-0002Ya-Ho; Wed, 16 Oct 2019 03:56:30 -0700
+Subject: Re: [PATCH v2 0/2] drivers: firmware: xilinx: Add support for versal
+ soc
+To:     Jolly Shah <jolly.shah@xilinx.com>, ard.biesheuvel@linaro.org,
+        mingo@kernel.org, gregkh@linuxfoundation.org,
+        matt@codeblueprint.co.uk, sudeep.holla@arm.com,
+        hkallweit1@gmail.com, keescook@chromium.org,
+        dmitry.torokhov@gmail.com, michal.simek@xilinx.com,
+        robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     rajanv@xilinx.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1570474343-21524-1-git-send-email-jolly.shah@xilinx.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <7d1939c2-ad64-87d0-3ad7-b7de2400065d@xilinx.com>
+Date:   Wed, 16 Oct 2019 12:56:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1570474343-21524-1-git-send-email-jolly.shah@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(376002)(39860400002)(136003)(189003)(199004)(65956001)(70206006)(70586007)(4326008)(230700001)(6246003)(65806001)(2486003)(23676004)(7416002)(47776003)(36386004)(76176011)(50466002)(478600001)(426003)(305945005)(126002)(476003)(106002)(11346002)(2616005)(446003)(9786002)(316002)(31686004)(31696002)(486006)(44832011)(336012)(8676002)(58126008)(26005)(8936002)(186003)(5660300002)(36756003)(81156014)(4744005)(2906002)(229853002)(6666004)(356004)(81166006)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4803;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cf4ebe50-c1fc-45a2-db1a-08d752278a3b
+X-MS-TrafficTypeDiagnostic: BL0PR02MB4803:
+X-Microsoft-Antispam-PRVS: <BL0PR02MB480344F7A5A67F09E7A046DCC6920@BL0PR02MB4803.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Forefront-PRVS: 0192E812EC
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GaJw5ZJd9eUkskWw45tmr/jNw8/1GFTtg95vzO/FfWUyf4cm7NfBF7YxACUHBqsxx0cohgaqlPuGyug/cRK/T13aZELEVEHMGH8RElSh/T06dRAzr62Rz7UwZ+PKO9BBdHI/3RSeKQbhMfWXZYPLk/z5GR28XkrMtunMp7g/oUsN1IH76f+tG0Fa1L0Wti+AIhPwZX1Qk3m21djXafZGZpinl3An5AOJMkjqTkmxp1q2yD51ONxgYvwk3xHucK9QkbLbXGLMbPAKU+diPvOsZjsxA7WkO5I1PYEDx/Ob6TgaA74AnLuZtlV5TbqAIEHtmduwU//MJU4Dd26b5OwWawADDXsky6LeOQx8OjhryFCKOJ64kRx0QN/a2dCLinp1/GmjYkYj03blOfhz5Dh6kv5o+v7wXtzz/vBJlgszVg4=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2019 10:56:47.1464
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf4ebe50-c1fc-45a2-db1a-08d752278a3b
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4803
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner SoCs have an embedded audio codec that is supported in Linux,
-with a matching Device Tree binding.
+On 07. 10. 19 20:52, Jolly Shah wrote:
+> Versal is xilinx's next generation soc. This patch adds
+> driver support required to be compatible with versal device
+> 
+> v2:
+>   No changes. Resending to include DT maintaners
+> 
+> Jolly Shah (2):
+>   dt-bindings: firmware: Add bindings for Versal firmware
+>   drivers: firmware: xilinx: Add support for versal soc
+> 
+>  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.txt    | 16 +++++++++++++++-
+>  drivers/firmware/xilinx/zynqmp.c                         |  8 ++++++--
+>  2 files changed, 21 insertions(+), 3 deletions(-)
+> 
 
-Now that we have the DT validation in place, let's convert the device tree
-bindings for that controller over to a YAML schemas.
+Applied both.
+I just removed drivers from subject of 2/2.
 
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
-
----
-
-Changes from v2:
-  - Change the audio-routing values to an enum, and enforce boundaries on
-    the size
-  - Add restrictions to the possible values of audio-routing
-
-Changes from v1:
-  - Fix subject prefix
----
- .../sound/allwinner,sun4i-a10-codec.yaml      | 267 ++++++++++++++++++
- .../devicetree/bindings/sound/sun4i-codec.txt |  94 ------
- 2 files changed, 267 insertions(+), 94 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/sun4i-codec.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-new file mode 100644
-index 000000000000..b8f89c7258eb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-@@ -0,0 +1,267 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/allwinner,sun4i-a10-codec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Allwinner A10 Codec Device Tree Bindings
-+
-+maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
-+  - Maxime Ripard <maxime.ripard@bootlin.com>
-+
-+properties:
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  compatible:
-+    enum:
-+      - allwinner,sun4i-a10-codec
-+      - allwinner,sun6i-a31-codec
-+      - allwinner,sun7i-a20-codec
-+      - allwinner,sun8i-a23-codec
-+      - allwinner,sun8i-h3-codec
-+      - allwinner,sun8i-v3s-codec
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Bus Clock
-+      - description: Module Clock
-+
-+  clock-names:
-+    items:
-+      - const: apb
-+      - const: codec
-+
-+  dmas:
-+    items:
-+      - description: RX DMA Channel
-+      - description: TX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+  resets:
-+    maxItems: 1
-+
-+  allwinner,audio-routing:
-+    description: |-
-+      A list of the connections between audio components.  Each entry
-+      is a pair of strings, the first being the connection's sink, the
-+      second being the connection's source.
-+    allOf:
-+      - $ref: /schemas/types.yaml#definitions/non-unique-string-array
-+      - minItems: 2
-+        maxItems: 18
-+        items:
-+          enum:
-+            # Audio Pins on the SoC
-+            - HP
-+            - HPCOM
-+            - LINEIN
-+            - LINEOUT
-+            - MIC1
-+            - MIC2
-+            - MIC3
-+
-+            # Microphone Biases from the SoC
-+            - HBIAS
-+            - MBIAS
-+
-+            # Board Connectors
-+            - Headphone
-+            - Headset Mic
-+            - Line In
-+            - Line Out
-+            - Mic
-+            - Speaker
-+
-+  allwinner,codec-analog-controls:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the codec analog controls in the PRCM
-+
-+  allwinner,pa-gpios:
-+    description: GPIO to enable the external amplifier
-+
-+required:
-+  - "#sound-dai-cells"
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun6i-a31-codec
-+            - allwinner,sun8i-a23-codec
-+            - allwinner,sun8i-h3-codec
-+            - allwinner,sun8i-v3s-codec
-+
-+    then:
-+      if:
-+        properties:
-+          compatible:
-+            const: allwinner,sun6i-a31-codec
-+
-+      then:
-+        required:
-+          - resets
-+          - allwinner,audio-routing
-+
-+      else:
-+        required:
-+          - resets
-+          - allwinner,audio-routing
-+          - allwinner,codec-analog-controls
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun6i-a31-codec
-+
-+    then:
-+      properties:
-+        allwinner,audio-routing:
-+          items:
-+            enum:
-+              - HP
-+              - HPCOM
-+              - LINEIN
-+              - LINEOUT
-+              - MIC1
-+              - MIC2
-+              - MIC3
-+              - HBIAS
-+              - MBIAS
-+              - Headphone
-+              - Headset Mic
-+              - Line In
-+              - Line Out
-+              - Mic
-+              - Speaker
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun8i-a23-codec
-+
-+    then:
-+      properties:
-+        allwinner,audio-routing:
-+          items:
-+            enum:
-+              - HP
-+              - HPCOM
-+              - LINEIN
-+              - MIC1
-+              - MIC2
-+              - HBIAS
-+              - MBIAS
-+              - Headphone
-+              - Headset Mic
-+              - Line In
-+              - Line Out
-+              - Mic
-+              - Speaker
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun8i-h3-codec
-+
-+    then:
-+      properties:
-+        allwinner,audio-routing:
-+          items:
-+            enum:
-+              - HP
-+              - HPCOM
-+              - LINEIN
-+              - LINEOUT
-+              - MIC1
-+              - MIC2
-+              - HBIAS
-+              - MBIAS
-+              - Headphone
-+              - Headset Mic
-+              - Line In
-+              - Line Out
-+              - Mic
-+              - Speaker
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun8i-v3s-codec
-+
-+    then:
-+      properties:
-+        allwinner,audio-routing:
-+          items:
-+            enum:
-+              - HP
-+              - HPCOM
-+              - MIC1
-+              - HBIAS
-+              - Headphone
-+              - Headset Mic
-+              - Line In
-+              - Line Out
-+              - Mic
-+              - Speaker
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    codec@1c22c00 {
-+        #sound-dai-cells = <0>;
-+        compatible = "allwinner,sun7i-a20-codec";
-+        reg = <0x01c22c00 0x40>;
-+        interrupts = <0 30 4>;
-+        clocks = <&apb0_gates 0>, <&codec_clk>;
-+        clock-names = "apb", "codec";
-+        dmas = <&dma 0 19>, <&dma 0 19>;
-+        dma-names = "rx", "tx";
-+    };
-+
-+  - |
-+    codec@1c22c00 {
-+        #sound-dai-cells = <0>;
-+        compatible = "allwinner,sun6i-a31-codec";
-+        reg = <0x01c22c00 0x98>;
-+        interrupts = <0 29 4>;
-+        clocks = <&ccu 61>, <&ccu 135>;
-+        clock-names = "apb", "codec";
-+        resets = <&ccu 42>;
-+        dmas = <&dma 15>, <&dma 15>;
-+        dma-names = "rx", "tx";
-+        allwinner,audio-routing =
-+            "Headphone", "HP",
-+            "Speaker", "LINEOUT",
-+            "LINEIN", "Line In",
-+            "MIC1", "MBIAS",
-+            "MIC1", "Mic",
-+            "MIC2", "HBIAS",
-+            "MIC2", "Headset Mic";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/sound/sun4i-codec.txt b/Documentation/devicetree/bindings/sound/sun4i-codec.txt
-deleted file mode 100644
-index 66579bbd3294..000000000000
---- a/Documentation/devicetree/bindings/sound/sun4i-codec.txt
-+++ /dev/null
-@@ -1,94 +0,0 @@
--* Allwinner A10 Codec
--
--Required properties:
--- compatible: must be one of the following compatibles:
--		- "allwinner,sun4i-a10-codec"
--		- "allwinner,sun6i-a31-codec"
--		- "allwinner,sun7i-a20-codec"
--		- "allwinner,sun8i-a23-codec"
--		- "allwinner,sun8i-h3-codec"
--		- "allwinner,sun8i-v3s-codec"
--- reg: must contain the registers location and length
--- interrupts: must contain the codec interrupt
--- dmas: DMA channels for tx and rx dma. See the DMA client binding,
--	Documentation/devicetree/bindings/dma/dma.txt
--- dma-names: should include "tx" and "rx".
--- clocks: a list of phandle + clock-specifer pairs, one for each entry
--  in clock-names.
--- clock-names: should contain the following:
--   - "apb": the parent APB clock for this controller
--   - "codec": the parent module clock
--
--Optional properties:
--- allwinner,pa-gpios: gpio to enable external amplifier
--
--Required properties for the following compatibles:
--		- "allwinner,sun6i-a31-codec"
--		- "allwinner,sun8i-a23-codec"
--		- "allwinner,sun8i-h3-codec"
--		- "allwinner,sun8i-v3s-codec"
--- resets: phandle to the reset control for this device
--- allwinner,audio-routing: A list of the connections between audio components.
--			   Each entry is a pair of strings, the first being the
--			   connection's sink, the second being the connection's
--			   source. Valid names include:
--
--			   Audio pins on the SoC:
--			   "HP"
--			   "HPCOM"
--			   "LINEIN"	(not on sun8i-v3s)
--			   "LINEOUT"	(not on sun8i-a23 or sun8i-v3s)
--			   "MIC1"
--			   "MIC2"	(not on sun8i-v3s)
--			   "MIC3"	(sun6i-a31 only)
--
--			   Microphone biases from the SoC:
--			   "HBIAS"
--			   "MBIAS"	(not on sun8i-v3s)
--
--			   Board connectors:
--			   "Headphone"
--			   "Headset Mic"
--			   "Line In"
--			   "Line Out"
--			   "Mic"
--			   "Speaker"
--
--Required properties for the following compatibles:
--		- "allwinner,sun8i-a23-codec"
--		- "allwinner,sun8i-h3-codec"
--		- "allwinner,sun8i-v3s-codec"
--- allwinner,codec-analog-controls: A phandle to the codec analog controls
--				   block in the PRCM.
--
--Example:
--codec: codec@1c22c00 {
--	#sound-dai-cells = <0>;
--	compatible = "allwinner,sun7i-a20-codec";
--	reg = <0x01c22c00 0x40>;
--	interrupts = <0 30 4>;
--	clocks = <&apb0_gates 0>, <&codec_clk>;
--	clock-names = "apb", "codec";
--	dmas = <&dma 0 19>, <&dma 0 19>;
--	dma-names = "rx", "tx";
--};
--
--codec: codec@1c22c00 {
--	#sound-dai-cells = <0>;
--	compatible = "allwinner,sun6i-a31-codec";
--	reg = <0x01c22c00 0x98>;
--	interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&ccu CLK_APB1_CODEC>, <&ccu CLK_CODEC>;
--	clock-names = "apb", "codec";
--	resets = <&ccu RST_APB1_CODEC>;
--	dmas = <&dma 15>, <&dma 15>;
--	dma-names = "rx", "tx";
--	allwinner,audio-routing =
--		"Headphone", "HP",
--		"Speaker", "LINEOUT",
--		"LINEIN", "Line In",
--		"MIC1",	"MBIAS",
--		"MIC1", "Mic",
--		"MIC2", "HBIAS",
--		"MIC2", "Headset Mic";
--};
--- 
-2.23.0
-
+Thanks,
+Michal
