@@ -2,95 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3F63D881C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 07:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7D24D8841
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 07:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728230AbfJPF1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 01:27:19 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:42458 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727368AbfJPF1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 01:27:19 -0400
-Received: by mail-pg1-f196.google.com with SMTP id f14so8444752pgi.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 22:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=c+hURjTVo/aYLCfa/Hz0445uoq4DnBCPweYQaNg80RE=;
-        b=YwMFAoU0heHyDD3IBl2x1cf1ZtcwEVCpkffQekoavrEeeW4lA1h7ksu5E+baEG875m
-         /NQrOSXT5b6WEePqqi5KsA2ojc3RGJDXXkFUqDv9QW+u2IyGhO7DpJqzls4jo8vOztPn
-         wFLEIdRAB9XNWMneT1KITqtxNPhB4hg7K2L2QLdA1TU/R58JNVLMeWyUz2Xg6BfhVK1B
-         V2JoUByRubqBAg/2Q1oBbeFLTAPA4jyc6BXISrwjDmSxZ+fgUK8hJgIK0bSMjROSAgct
-         qJ2c2Jk6LRa9rzSy1R+gQuKACuJOnHRUjAyifzTQJvo9dwZpYYbN8SVYPIH78QT7LjvX
-         C72w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=c+hURjTVo/aYLCfa/Hz0445uoq4DnBCPweYQaNg80RE=;
-        b=lJhHWiAD5UL3R3IGZEsKiJGOYbLmmL6zhCyy/UKdruuPyJt1+mSjIeLyJRR3ZRLtPh
-         ALRFgCxx1jffneJ+cJ53TDHRO+F8HHc58viFM6zWDrkD7fHCcAF15wkx3nQdhb9YT3wP
-         RnB9f9/IeaZx/SNmg9tXfm+2J5AI3iLeow4CXm4au1onIXXgQfPVRN82V7GUBu/2Yh/b
-         /TBhkz5lzV3TG3aC517l/wZhSB1pRC25xnE0nbZD8S8KfklC0mn/xseJ1u1Kw6qCuzgv
-         vNbY80wWZpWtcvm9KNLTvv9DTibGt+asU6TdTf3qww1qGLqw6nRvikplEEaIlVaG8LwJ
-         JdvQ==
-X-Gm-Message-State: APjAAAUnQ3fH0QvcHaJ+CTCpEAQb2HbGgtWOdHfYW701J0r0EXISCALF
-        oLJU2tK5ze7H/rJterAPARTPqA==
-X-Google-Smtp-Source: APXvYqwrC2hWVKfaRMlzUy8HycPTVMe+xH1vrIClOSut973FStL2ZIohmrOuxo+UhtZHAyb3vUdqTg==
-X-Received: by 2002:a63:4d61:: with SMTP id n33mr41993243pgl.158.1571203638688;
-        Tue, 15 Oct 2019 22:27:18 -0700 (PDT)
-Received: from localhost ([122.172.151.112])
-        by smtp.gmail.com with ESMTPSA id x65sm18642216pgb.75.2019.10.15.22.27.17
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 15 Oct 2019 22:27:18 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 10:57:16 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 00/17] NVIDIA Tegra20 CPUFreq driver major update
-Message-ID: <20191016052716.yipztnpg7bcuzhfn@vireshk-i7>
-References: <20191015211618.20758-1-digetx@gmail.com>
+        id S2387873AbfJPFwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 01:52:54 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:47780 "EHLO uho.ysoft.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387661AbfJPFwx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 01:52:53 -0400
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id 4F297A332A;
+        Wed, 16 Oct 2019 07:52:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1571205171;
+        bh=BGXrI9oHCGBnvTdNo/Ur+xdpJIItkNoUzFwqdKtrgNE=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=iDZyYrpt0T+c/LqE80hTXuNl9zTQUzDkxkKoPBiYUWUBVhuubF9RosMOT1PoIJv1P
+         bcIUvBFeoN14AEboqFMETHOso3k4ooTTQyIKCEpvf2OfG9Q70frzWlpVV4gvOpwyej
+         sB9RN35w8GWOCa9wHU7EXLV5U417sK6jRO5sA1Ro=
+Subject: Re: [PATCH v3 3/5] dt-bindings: input: Add poll-interval property
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+References: <1570083176-8231-1-git-send-email-michal.vokac@ysoft.com>
+ <1570083176-8231-4-git-send-email-michal.vokac@ysoft.com>
+ <20191010194036.GA16869@bogus> <20191010200136.GA229325@dtor-ws>
+ <1616be35-c06a-db84-bc6e-045195f163d7@ysoft.com>
+ <20191016002328.GJ105649@dtor-ws>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Message-ID: <f7dc4c5b-1947-0955-19c3-e96041ffaf68@ysoft.com>
+Date:   Wed, 16 Oct 2019 07:52:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191015211618.20758-1-digetx@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20191016002328.GJ105649@dtor-ws>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-10-19, 00:16, Dmitry Osipenko wrote:
-> Hello,
+On 16. 10. 19 2:23, Dmitry Torokhov wrote:
+> On Fri, Oct 11, 2019 at 10:03:25AM +0200, Michal Vokáč wrote:
+>> On 10. 10. 19 22:01, Dmitry Torokhov wrote:
+>>> On Thu, Oct 10, 2019 at 02:40:36PM -0500, Rob Herring wrote:
+>>>> On Thu, Oct 03, 2019 at 08:12:54AM +0200, Michal Vokáč wrote:
+>>>>> Add an option to periodicaly poll the device to get state of the inputs
+>>>>> as the interrupt line may not be used on some platforms.
+>>>>>
+>>>>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+>>>>> ---
+>>>>> Changes since v2:
+>>>>>    - None
+>>>>>
+>>>>> Changes since v1:
+>>>>>    - Use poll-interval instead of linux,poll-interval.
+>>>>>    - Place the poll-interval binding into the common schema.
+>>>>>    - Properly describe that either interrupts or poll-interval property is
+>>>>>      required.
+>>>>>    - Fix the example to pass validation.
+>>>>>
+>>>>>    .../bindings/input/fsl,mpr121-touchkey.yaml        | 25 +++++++++++++++++++++-
+>>>>>    Documentation/devicetree/bindings/input/input.yaml |  4 ++++
+>>>>>    2 files changed, 28 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>>>>> index c6fbcdf78556..035b2fee4491 100644
+>>>>> --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>>>>> @@ -17,6 +17,10 @@ description: |
+>>>>>    allOf:
+>>>>>      - $ref: input.yaml#
+>>>>> +oneOf:
+>>>>
+>>>> It should be valid to have both properties present, right?
+>>>
+>>> The poll does not really sense and does not have any effect when
+>>> interrupt is supplied.
+>>
+>>  From technical point of view, yes it is possible to have both
+>> properties. But I agree that it does not really make sense to
+>> use both at the same time.
+>>
+>>>> The h/w description can't know what the OS supports.
+>>>
+>>> It also has no idea what OS does at all and whether it even pays
+>>> attention to any of these properties. We are just trying to say here "I
+>>> do not have an interrupt wired, so for this device's primary use case
+>>> (that is coupled with a certain $PRIMARY OS) we need to poll the
+>>> controller ever so often to handle our use case".
+>>
+>> If I understand correctly the relationship between Linux and DT
+>> binding, in Linux we are free to implement just part of all the
+>> possible configuration options described by the binding.
+>>
+>> In this case if somebody would enable both interrupt and polling,
+>> we will happily use the interrupt mode only. Maybe it would be nice
+>> to at least print a message that the poll-intervall is ignored?
+>>
+>>>> In that case, we should use 'anyOf' here instead.
+>>
+>> What I am afraid of is that some DT writers may really use both
+>> properties and expect that Linux will actually do something useful
+>> in this case. Anyway, I am OK with that.
 > 
-> This series moves intermediate-clk handling from tegra20-cpufreq into
-> tegra-clk driver, this allows us to switch to generic cpufreq-dt driver
-> which brings voltage scaling, per-hardware OPPs and Tegra30 support out
-> of the box. All boards need to adopt CPU OPPs in their device-trees in
-> order to get cpufreq support. This series adds OPPs only to selective
-> boards because there is assumption in a current device-trees that CPU
-> voltage is set for 1GHz freq and this won't work for those CPUs that
-> can go over 1GHz and thus require voltage regulators to be set up for
-> voltage scaling support (CC'ed Marcel for Toradex boards). We could
-> probably add delete-node for OPPs over 1GHz if there are not actively
-> maintained boards.
+> OK, I changed it to "anyOf", folded into driver change and applied.
 
-How do you want to get these patches merged ? Can I just pick the cpufreq bits
-alone ?
+AFAIK this is discouraged and DT binding changes and driver changes
+should ideally be kept as separate patches. Separating the binding
+from driver changes makes is easier for other projects to reuse
+the binding.
 
--- 
-viresh
+The other thing is, Rob reviewed just the binding part, not the driver
+change, but now his tag covers both changes.
+
+Michal
+
