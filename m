@@ -2,171 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 668C8D8B2A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C8DD8B32
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731854AbfJPIh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:37:57 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:39171 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726231AbfJPIh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:37:57 -0400
-Received: by mail-pf1-f195.google.com with SMTP id v4so14260594pff.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:37:57 -0700 (PDT)
+        id S2391644AbfJPIkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:40:19 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:46036 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389897AbfJPIkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:40:17 -0400
+Received: by mail-oi1-f195.google.com with SMTP id o205so19310966oib.12
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:40:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=WWx1FFGKOuJRMtTkmthoLwPW2Kzf5U2CvR5+YTbodjA=;
-        b=xAo6znHjl9Ltmw0vFumuJohwKsXKRXzV5r7dKsvyLhx07WH33ymhlFmV5JYx4A6Q/P
-         dwNiGyzV4LQPENRdjWLcE+KhysJS+FpDi7o7o1LqTO89hSS/57UbHIwL9OkUrBtm9d9Z
-         seJvCEGO6N7Z5WbVVOV4j1xbr+cxt2cddiTtV825tcj+vOPJuzATkOhvRzXgOIOYOkEO
-         j2iZyGrgrp5+fE48Ue6kUdwTtf+itGbLbuv1nBwIjSmnDorusk8z1dCLe8vzNLvzqh9A
-         yk9JYyZhinPISSSBTv7ZRuQzRp9Oan1cEIyciN76kcIEluvWjdvQo/Lb+u7966xVJ8PC
-         oBHg==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=r6Gil0nV1oJlSHhPc8F9mMAK15KjeTWA4dUOWUcVhrM=;
+        b=do2vvA8WtatqVlG+eQenz0+AlOmiqZ7N7XRO1ruvISfeyW8O0r3Q7REKkjXdfnHs4Q
+         /s0Qolk+yNepA2krhz/dBjXydRi9kLc1KIC7vu+rrHHuobAgmYxczG908pbUqNM15czH
+         sBvecNnzmtcd6QuncFCOB+0laahrSg+6I59tqxU/WYYb7iPZpWxo01KJiSRAOZ4cOvV/
+         uC4c2zXRMjD4rgE04+kP++GbodfIWLSulU6eoZqb/fSaeSMg5g+zUpqiZ08OUfb6oiF7
+         4WjPtEN3rJhdA9JD39bMx/j/rVvmbCmy+pGa+ekO2hojfn2UiHrI09abVYMuLSDnpwwm
+         tk2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WWx1FFGKOuJRMtTkmthoLwPW2Kzf5U2CvR5+YTbodjA=;
-        b=qhC3vPcnCaslBpFuC8a0Kyq4EOcWHu+0RTdI+KH9rk6nTGgFsm9YRxfuMkROqSbWQB
-         EiwgVRuoAJjepaM/WQp9DxbsT0YniwNaQ4up4H+VEIiROwVamud5nUm50rwkEiPypbk/
-         MYY0y6De61mWg9Zwaru61cj2BjGSwKZoefVZM+eVKnyDlkRfkoqrU8v4+QblyLM239Vp
-         vnMM1yvycOyMathnui45RVVJC+5MkkSYk/AdqsWm6rf9geQpnSEhlUf8EIa2zWjGy61m
-         zBLyuMjfx2qgvHJ1KsUSf2ajkbo1mVAo1V4kVmZNKVA5HgFIAEeJuyTL6RG8TWLbcVUl
-         ABVA==
-X-Gm-Message-State: APjAAAWpcUFoAM+wd8IDArik7kLBkGUCvnsI79KnqnB4d/4wdscdocMv
-        zXV9MFVL5XbKc4IpaKOhEgZk
-X-Google-Smtp-Source: APXvYqywjX6EG0Vqzgqg0Uy+SXn8Ybru/4U99k3x4yloIPg3KKmXpn26QBKc4s/l+yy1i0k3CZZVSw==
-X-Received: by 2002:a17:90a:246e:: with SMTP id h101mr3523435pje.133.1571215076312;
-        Wed, 16 Oct 2019 01:37:56 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:6099:7d36:58bc:3eb9:a64a:7942])
-        by smtp.gmail.com with ESMTPSA id v8sm4594520pje.6.2019.10.16.01.37.50
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Oct 2019 01:37:55 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 14:07:48 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     mchehab@kernel.org, sakari.ailus@iki.fi,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor
- binding
-Message-ID: <20191016083748.GA2288@Mani-XPS-13-9360>
-References: <20191011035613.13598-1-manivannan.sadhasivam@linaro.org>
- <20191011035613.13598-2-manivannan.sadhasivam@linaro.org>
- <20191015224554.GA5634@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=r6Gil0nV1oJlSHhPc8F9mMAK15KjeTWA4dUOWUcVhrM=;
+        b=KFxcCAIpJ7G5u8zrnIoE5EJjKF6lkZUTNr56XAHWFflCgY+ye/cRODCJlfQ8Wr5UmL
+         R4IYm3+uooC59ljVlBwCcfKAVkI1A2RNbrGSZKDSiBxAXP9w+71Mb4HazG9UB7pwnujB
+         5UlY+WeRs4TG6b/97kU9DotFrbuvajrNUv8uvXlySZSquRxFzxSDp6fJFChb66Fu65V8
+         6vqGfu4yE5o7wz198dXuScYOf7VvHRtrL1EmNkBMKIEAproMHJd5WqAKBwSBlyx/i1Y6
+         aFMorkjw1Kdr+u/q3Yn7rXltrkesmvhAT82d+WSRPKAG10s18aHk6kukZzxA8PmH10s3
+         c3XA==
+X-Gm-Message-State: APjAAAUnKuHlyDNNPHG7ZcRg+mH6prK0miZWZkjmY11wLLbv6SQjTIdJ
+        RQyz+NT8/7oejKNogfgD/OErcmIjuH7iDiRdOTUsQQ==
+X-Google-Smtp-Source: APXvYqxdnjfmifOIHa0R3ggacAc4Q+59Qoeu943dwI/Wb8XKTPXGrysFVnRpa+YhtyCQ44DEc7y6+uzy8n9QT/jf+Pc=
+X-Received: by 2002:aca:4584:: with SMTP id s126mr2443772oia.21.1571215217337;
+ Wed, 16 Oct 2019 01:40:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191015224554.GA5634@bogus>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20191016075110.8240-1-bibby.hsieh@mediatek.com> <20191016075110.8240-2-bibby.hsieh@mediatek.com>
+In-Reply-To: <20191016075110.8240-2-bibby.hsieh@mediatek.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 16 Oct 2019 10:40:06 +0200
+Message-ID: <CAMpxmJWiSaXiPeDFOZvx5krp31wJmMuRM4iV-O6fHqBN_nQz7g@mail.gmail.com>
+Subject: Re: [PATCH v1] dt-binding: eeprom: at24: add supply properties
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+Cc:     linux-i2c <linux-i2c@vger.kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+=C5=9Br., 16 pa=C5=BA 2019 o 09:51 Bibby Hsieh <bibby.hsieh@mediatek.com> n=
+apisa=C5=82(a):
+>
+> In some platforms, they disable the power-supply of eeprom
+> and i2c due to power consumption reduction.
+>
+> This patch add two supply properties: power-supply, i2c-supply.
+>
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/eeprom/at24.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.txt b/Document=
+ation/devicetree/bindings/eeprom/at24.txt
+> index 22aead844d0f..71a534577bcf 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.txt
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.txt
+> @@ -78,6 +78,10 @@ Optional properties:
+>
+>    - num-addresses: total number of i2c slave addresses this device takes
+>
+> +  - power-supply: phandle of the regulator that provides the supply volt=
+age.
 
-On Tue, Oct 15, 2019 at 05:45:54PM -0500, Rob Herring wrote:
-> On Fri, Oct 11, 2019 at 09:26:12AM +0530, Manivannan Sadhasivam wrote:
-> > Add devicetree binding for IMX296 CMOS image sensor.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  .../devicetree/bindings/media/i2c/imx296.txt  | 55 +++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx296.txt
-> 
-> You should know by now, use DT schema format please.
-> 
+The pin is called vcc in the datasheet, I think it would be better to
+reflect that here.
 
-I know for other subsystems but by having a vague look at the existing bindings
-I thought media subsystem is still using .txt. But I now see few yaml bindings
-in linux-next and will switch over this.
+Bart
 
-Btw, is it mandatory now to use YAML bindings for all subsystems? I don't
-see any issue (instead I prefer) but I remember that you defer to the preference
-of the subsystem maintainers before!
-
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx296.txt b/Documentation/devicetree/bindings/media/i2c/imx296.txt
-> > new file mode 100644
-> > index 000000000000..25d3b15162c1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/imx296.txt
-> > @@ -0,0 +1,55 @@
-> > +* Sony IMX296 1/2.8-Inch CMOS Image Sensor
-> > +
-> > +The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
-> > +sensor with square pixel array and 1.58 M effective pixels. This chip features
-> > +a global shutter with variable charge-integration time. It is programmable
-> > +through I2C and 4-wire interfaces. The sensor output is available via CSI-2
-> > +serial data output (1 Lane).
-> > +
-> > +Required Properties:
-> > +- compatible: Should be "sony,imx296"
-> > +- reg: I2C bus address of the device
-> > +- clocks: Reference to the mclk clock.
-> > +- clock-names: Should be "mclk".
-> > +- clock-frequency: Frequency of the mclk clock in Hz.
-> > +- vddo-supply: Interface power supply.
-> > +- vdda-supply: Analog power supply.
-> > +- vddd-supply: Digital power supply.
-> > +
-> > +Optional Properties:
-> > +- reset-gpios: Sensor reset GPIO
-> > +
-> > +The imx296 device node should contain one 'port' child node with
-> > +an 'endpoint' subnode. For further reading on port node refer to
-> > +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > +
-> > +Required Properties on endpoint:
-> > +- data-lanes: check ../video-interfaces.txt
-> 
-> This should only be required when not using all the lanes on the device.
-> 
-
-This is a bit weird! How will someone know how many lanes the device is using
-by looking at the binding? He can anyway refer the datasheet but still...
-
-> > +- remote-endpoint: check ../video-interfaces.txt
-> 
-> Don't really need to document this.
-> 
-
-okay.
-
-Thanks,
-Mani
-
-> > +
-> > +Example:
-> > +	&i2c1 {
-> > +		...
-> > +		imx296: camera-sensor@1a {
-> > +			compatible = "sony,imx296";
-> > +			reg = <0x1a>;
-> > +
-> > +			reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-> > +			pinctrl-names = "default";
-> > +			pinctrl-0 = <&camera_rear_default>;
-> > +
-> > +			clocks = <&gcc GCC_CAMSS_MCLK0_CLK>;
-> > +			clock-names = "mclk";
-> > +			clock-frequency = <37125000>;
-> > +
-> > +			vddo-supply = <&camera_vddo_1v8>;
-> > +			vdda-supply = <&camera_vdda_3v3>;
-> > +			vddd-supply = <&camera_vddd_1v2>;
-> > +
-> > +			port {
-> > +				imx296_ep: endpoint {
-> > +					data-lanes = <1>;
-> > +					remote-endpoint = <&csiphy0_ep>;
-> > +				};
-> > +			};
-> > +		};
-> > -- 
-> > 2.17.1
-> > 
+> +
+> +  - i2c-supply: phandle to the regulator that provides power to i2c.
+> +
+>  Example:
+>
+>  eeprom@52 {
+> --
+> 2.18.0
+>
