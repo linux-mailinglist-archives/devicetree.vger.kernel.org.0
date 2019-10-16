@@ -2,133 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 365F1D8A6F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F222BD8A83
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390614AbfJPIDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:03:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52574 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390608AbfJPIDL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 04:03:11 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 95F022168B;
-        Wed, 16 Oct 2019 08:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571212990;
-        bh=wM/nUTK3S5psgEypnAz0OtgZ+jpM99/JuUjxmXaJLbI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QCPGi1WVH+6Crkf1iDbM7YIS4z1GKzHDuhctLzfeInuMMn5u5nDXy5q+iDHNmXvrb
-         M2GYnuqAUqL+5tCNIq8sknLo9+qH3E7ER6Gi7uJGEPEhb4YoZL80odrE/w5vwRzqYJ
-         KnYL7dFRNfLvSpXT4Csnnc3JMz0IYoC5vjRwliAg=
-Date:   Wed, 16 Oct 2019 10:03:06 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v10 5/6] arm64: dts: allwinner: a64: Add MIPI DSI pipeline
-Message-ID: <20191016080306.44pmo3rfmtnkgosq@gilmour>
-References: <20191005141913.22020-1-jagan@amarulasolutions.com>
- <20191005141913.22020-6-jagan@amarulasolutions.com>
- <20191007105708.raxavxk4n7bvxh7x@gilmour>
- <CAMty3ZCiwOGgwbsjTHvEZhwHGhsgb6_FeBs9hHgLai9=rV2_HQ@mail.gmail.com>
+        id S1727671AbfJPIIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:08:05 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:34287 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727646AbfJPIIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:08:04 -0400
+X-Originating-IP: 86.207.98.53
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 770F6C000C;
+        Wed, 16 Oct 2019 08:08:02 +0000 (UTC)
+Date:   Wed, 16 Oct 2019 10:08:02 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] Add new Overkiz Kizbox3 support
+Message-ID: <20191016080802.GY3125@piout.net>
+References: <20191011125022.16329-1-kamel.bouhara@bootlin.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="daxw7i7armk2zq3y"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZCiwOGgwbsjTHvEZhwHGhsgb6_FeBs9hHgLai9=rV2_HQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20191011125022.16329-1-kamel.bouhara@bootlin.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/10/2019 14:50:19+0200, Kamel Bouhara wrote:
+> Add support for the Kizbox3 Overkiz SAS boards.
+> Those boards are based on the Atmel SAMA5D27 SoC.
+> 
+> Kamel Bouhara (3):
+>   dt-bindings: Add vendor prefix for Overkiz SAS
+>   dt-bindings: arm: at91: Document Kizbox3 HS board binding
+>   ARM: at91: add Overkiz KIZBOX3 board
+> 
+>  .../devicetree/bindings/arm/atmel-at91.yaml   |   7 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  arch/arm/boot/dts/at91-kizbox3-hs.dts         | 309 +++++++++++++
+>  arch/arm/boot/dts/at91-kizbox3_common.dtsi    | 412 ++++++++++++++++++
+>  5 files changed, 731 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/at91-kizbox3-hs.dts
+>  create mode 100644 arch/arm/boot/dts/at91-kizbox3_common.dtsi
+> 
 
---daxw7i7armk2zq3y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+All applied, thanks.
 
-On Mon, Oct 14, 2019 at 05:37:50PM +0530, Jagan Teki wrote:
-> On Mon, Oct 7, 2019 at 4:27 PM Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > On Sat, Oct 05, 2019 at 07:49:12PM +0530, Jagan Teki wrote:
-> > > Add MIPI DSI pipeline for Allwinner A64.
-> > >
-> > > - dsi node, with A64 compatible since it doesn't support
-> > >   DSI_SCLK gating unlike A33
-> > > - dphy node, with A64 compatible with A33 fallback since
-> > >   DPHY on A64 and A33 is similar
-> > > - finally, attach the dsi_in to tcon0 for complete MIPI DSI
-> > >
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > Tested-by: Merlijn Wajer <merlijn@wizzup.org>
-> > > ---
-> > >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 +++++++++++++++++++
-> > >  1 file changed, 38 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > > index 69128a6dfc46..ad4170b8aee0 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > > @@ -382,6 +382,12 @@
-> > >                                       #address-cells = <1>;
-> > >                                       #size-cells = <0>;
-> > >                                       reg = <1>;
-> > > +
-> > > +                                     tcon0_out_dsi: endpoint@1 {
-> > > +                                             reg = <1>;
-> > > +                                             remote-endpoint = <&dsi_in_tcon0>;
-> > > +                                             allwinner,tcon-channel = <1>;
-> > > +                                     };
-> > >                               };
-> > >                       };
-> > >               };
-> > > @@ -1003,6 +1009,38 @@
-> > >                       status = "disabled";
-> > >               };
-> > >
-> > > +             dsi: dsi@1ca0000 {
-> > > +                     compatible = "allwinner,sun50i-a64-mipi-dsi";
-> > > +                     reg = <0x01ca0000 0x1000>;
-> > > +                     interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                     clocks = <&ccu CLK_BUS_MIPI_DSI>;
-> > > +                     clock-names = "bus";
-> >
-> > This won't validate with the bindings you have either here, since it
-> > still expects bus and mod.
-> >
-> > I guess in that cas, we can just drop clock-names, which will require
-> > a bit of work on the driver side as well.
->
-> Okay.
-> mod clock is not required for a64, ie reason we have has_mod_clk quirk
-> patch. Adjust the clock-names: on dt-bindings would make sense here,
-> what do you think?
-
-I'm confused, what are you suggesting?
-
-Maxime
-
---daxw7i7armk2zq3y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXabOugAKCRDj7w1vZxhR
-xaRxAQCMC8f5R5O0x3PDOXjho8DhgMeHnD0ME5PLyqwkpk557QD+JbRITmjTlYf0
-FHZLWNsA4avNld7ActyJrkctTuut3AM=
-=aBRs
------END PGP SIGNATURE-----
-
---daxw7i7armk2zq3y--
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
