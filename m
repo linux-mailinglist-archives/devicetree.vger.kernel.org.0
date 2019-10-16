@@ -2,185 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F92D8733
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 06:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C5ED87A2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 06:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389254AbfJPEUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 00:20:22 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:54778 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733032AbfJPEUV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 00:20:21 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 170201A01F0;
-        Wed, 16 Oct 2019 06:20:19 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EF9941A01AD;
-        Wed, 16 Oct 2019 06:20:14 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DEF08402C7;
-        Wed, 16 Oct 2019 12:20:09 +0800 (SGT)
-From:   Biwen Li <biwen.li@nxp.com>
-To:     peda@axentia.se, leoyang.li@nxp.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
-Subject: [v3,2/2] i2c: mux: pca954x: support property idle-state
-Date:   Wed, 16 Oct 2019 12:09:20 +0800
-Message-Id: <20191016040920.8511-2-biwen.li@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20191016040920.8511-1-biwen.li@nxp.com>
-References: <20191016040920.8511-1-biwen.li@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2391136AbfJPEqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 00:46:12 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50834 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391117AbfJPEqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 00:46:12 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9G4k1Q9130349;
+        Tue, 15 Oct 2019 23:46:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571201161;
+        bh=2e1ep+jz9ThULjwuPHURE/WBfxKsgQ0iJmPcL/PVeZo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SfJcnijlf1XwiD6nqRxlO3e9zzuqWTguFxaNWOVio66d/ssT0/dJd4IzEZMiEqzea
+         KRFef42cOE1obpQC6z4BX4mf0X6fh08o33i9nOX+whSfsc1OK5JIeVQqRZuvJSc7ph
+         cP+UWXKr3skoqMbAefp3lWgOo0a1IVNdamID15UA=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9G4k1NQ001573
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Oct 2019 23:46:01 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 15
+ Oct 2019 23:45:54 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 15 Oct 2019 23:46:00 -0500
+Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9G4jqTh107770;
+        Tue, 15 Oct 2019 23:45:54 -0500
+Subject: Re: [RFC PATCH 02/21] dt-bindings: PCI: Endpoint: Add DT bindings for
+ PCI EPF Device
+To:     Rob Herring <robh@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Jonathan Corbet <corbet@lwn.net>, Jon Mason <jdmason@kudzu.us>,
+        Dave Jiang <dave.jiang@intel.com>,
+        Allen Hubbe <allenbh@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-ntb@googlegroups.com>
+References: <20190926112933.8922-1-kishon@ti.com>
+ <20190926112933.8922-3-kishon@ti.com> <20191015184243.GA10228@bogus>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <af3483e0-0533-4b13-64d1-b2cd6fedf514@ti.com>
+Date:   Wed, 16 Oct 2019 10:15:23 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20191015184243.GA10228@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This supports property idle-state
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
-Change in v3:
-	- update subject and description
-	- add a helper function pca954x_calculate_chan()
 
-Change in v2:
-	- update subject and description
-	- add property idle-state
+On 16/10/19 12:12 AM, Rob Herring wrote:
+> On Thu, Sep 26, 2019 at 04:59:14PM +0530, Kishon Vijay Abraham I wrote:
+>> Add device tree bindings for PCI endpoint function device. The
+>> nodes for PCI endpoint function device should be attached to
+>> PCI endpoint function bus.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../bindings/pci/endpoint/pci-epf.txt         | 28 +++++++++++++++++++
+>>  1 file changed, 28 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
+> 
+> This and the previous patch for the bus should be combined and please 
+> convert to a schema.
 
- drivers/i2c/muxes/i2c-mux-pca954x.c | 64 ++++++++++++++++++-----------
- 1 file changed, 39 insertions(+), 25 deletions(-)
+Sure Rob. Thanks for the review.
 
-diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c b/drivers/i2c/muxes/i2c-mux-pca954x.c
-index 923aa3a5a3dc..8777d429269c 100644
---- a/drivers/i2c/muxes/i2c-mux-pca954x.c
-+++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
-@@ -86,7 +86,7 @@ struct pca954x {
- 
- 	u8 last_chan;		/* last register value */
- 	/* MUX_IDLE_AS_IS, MUX_IDLE_DISCONNECT or >= 0 for channel */
--	s8 idle_state;
-+	s32 idle_state;
- 
- 	struct i2c_client *client;
- 
-@@ -229,22 +229,25 @@ static int pca954x_reg_write(struct i2c_adapter *adap,
- 				I2C_SMBUS_BYTE, &dummy);
- }
- 
-+static int pca954x_calculate_chan(struct pca954x *data, u32 chan)
-+{
-+	/* we make switches look like muxes, not sure how to be smarter */
-+	if (data->chip->muxtype == pca954x_ismux)
-+		return chan | data->chip->enable;
-+	else
-+		return 1 << chan;
-+}
-+
- static int pca954x_select_chan(struct i2c_mux_core *muxc, u32 chan)
- {
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 	struct i2c_client *client = data->client;
--	const struct chip_desc *chip = data->chip;
- 	u8 regval;
- 	int ret = 0;
- 
--	/* we make switches look like muxes, not sure how to be smarter */
--	if (chip->muxtype == pca954x_ismux)
--		regval = chan | chip->enable;
--	else
--		regval = 1 << chan;
--
-+	regval = pca954x_calculate_chan(data, chan);
- 	/* Only select the channel if its different from the last channel */
--	if (data->last_chan != regval) {
-+	if ((data->last_chan & 0xff) != regval) {
- 		ret = pca954x_reg_write(muxc->parent, client, regval);
- 		data->last_chan = ret < 0 ? 0 : regval;
- 	}
-@@ -256,7 +259,7 @@ static int pca954x_deselect_mux(struct i2c_mux_core *muxc, u32 chan)
- {
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 	struct i2c_client *client = data->client;
--	s8 idle_state;
-+	s32 idle_state;
- 
- 	idle_state = READ_ONCE(data->idle_state);
- 	if (idle_state >= 0)
-@@ -402,6 +405,23 @@ static void pca954x_cleanup(struct i2c_mux_core *muxc)
- 	i2c_mux_del_adapters(muxc);
- }
- 
-+static int pca954x_init(struct i2c_client *client, struct pca954x *data)
-+{
-+	/*
-+	 * Write the mux register at addr to verify
-+	 * that the mux is in fact present. This also
-+	 * initializes the mux to a channel
-+	 * or disconnected state.
-+	 */
-+	if (data->idle_state >= 0) {
-+		data->last_chan = pca954x_calculate_chan(data, data->idle_state);
-+	} else {
-+		/* Disconnect multiplexer */
-+		data->last_chan = 0;
-+	}
-+	return i2c_smbus_write_byte(client, data->last_chan);
-+}
-+
- /*
-  * I2C init/probing/exit functions
-  */
-@@ -411,7 +431,6 @@ static int pca954x_probe(struct i2c_client *client,
- 	struct i2c_adapter *adap = client->adapter;
- 	struct device *dev = &client->dev;
- 	struct device_node *np = dev->of_node;
--	bool idle_disconnect_dt;
- 	struct gpio_desc *gpio;
- 	struct i2c_mux_core *muxc;
- 	struct pca954x *data;
-@@ -462,22 +481,18 @@ static int pca954x_probe(struct i2c_client *client,
- 		}
- 	}
- 
--	/* Write the mux register at addr to verify
--	 * that the mux is in fact present. This also
--	 * initializes the mux to disconnected state.
--	 */
--	if (i2c_smbus_write_byte(client, 0) < 0) {
-+	data->idle_state = MUX_IDLE_AS_IS;
-+	if (np && of_property_read_u32(np, "idle-state", &data->idle_state)) {
-+		if (np && of_property_read_bool(np, "i2c-mux-idle-disconnect"))
-+			data->idle_state = MUX_IDLE_DISCONNECT;
-+	}
-+
-+	ret = pca954x_init(client, data);
-+	if (ret < 0) {
- 		dev_warn(dev, "probe failed\n");
- 		return -ENODEV;
- 	}
- 
--	data->last_chan = 0;		   /* force the first selection */
--	data->idle_state = MUX_IDLE_AS_IS;
--
--	idle_disconnect_dt = np &&
--		of_property_read_bool(np, "i2c-mux-idle-disconnect");
--	if (idle_disconnect_dt)
--		data->idle_state = MUX_IDLE_DISCONNECT;
- 
- 	ret = pca954x_irq_setup(muxc);
- 	if (ret)
-@@ -531,8 +546,7 @@ static int pca954x_resume(struct device *dev)
- 	struct i2c_mux_core *muxc = i2c_get_clientdata(client);
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 
--	data->last_chan = 0;
--	return i2c_smbus_write_byte(client, 0);
-+	return pca954x_init(client, data);
- }
- #endif
- 
--- 
-2.17.1
-
+-Kishon
+> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt b/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
+>> new file mode 100644
+>> index 000000000000..f006395fd526
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
+>> @@ -0,0 +1,28 @@
+>> +PCI Endpoint Function Device
+>> +
+>> +This describes the generic bindings to be used when a device has to be
+>> +exposed to the remote host over PCIe. The device could be an actual
+>> +peripheral in the platform or a virtual device created by the software.
+>> +
+>> +epcs : phandle to the endpoint controller device
+>> +epc-names : the names of the endpoint controller device corresponding
+>> +	    to the EPCs present in the *epcs* phandle
+> 
+> Other than the NTB case, I'd expect the parent device to be the 
+> controller. Let's make NTB the exception...
+> 
+> 
+>> +vendor-id: used to identify device manufacturer
+>> +device-id: used to identify a particular device
+>> +baseclass-code: used to classify the type of function the device performs
+>> +subclass-code: used to identify more specifically the function of the device
+> 
+> Are these codes standard?
+> 
+> Powerpc has "class-code" already...
+> 
+>> +subsys-vendor-id: used to identify vendor of the add-in card or subsystem
+> 
+> Powerpc has "subsystem-vendor-id" already...
+> 
+>> +subsys-id: used to specify an id that is specific to a vendor
+>> +
+>> +Example:
+>> +Following is an example of NTB device exposed to the remote host.
+>> +
+>> +ntb {
+> 
+> This is going to need some sort of addressing (which implies 'reg')? If 
+> not, I don't understand why you have 2 levels.
+> 
+>> +	compatible = "pci-epf-ntb";
+>> +	epcs = <&pcie0_ep>, <&pcie1_ep>;
+>> +	epc-names = "primary", "secondary";
+>> +	vendor-id = /bits/ 16 <0x104c>;
+>> +	device-id = /bits/ 16 <0xb00d>;
+> 
+> These have a long history in OF and should be 32-bits (yes, we've let 
+> some cases of 16-bit creep in).
+> 
+>> +	num-mws = <4>;
+> 
+> Doesn't this apply to more than NTB?
+> 
+> Can't you just get the length of 'mws-size'?
+> 
+>> +	mws-size = <0x100000>, <0x100000>, <0x100000>, <0x100000>;
+> 
+> Need to support 64-bit sizes?
+> 
+>> +};
+>> -- 
+>> 2.17.1
+>>
