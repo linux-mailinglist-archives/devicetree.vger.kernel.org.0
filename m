@@ -2,140 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE3A2D931D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:56:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C60D9330
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 16:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393742AbfJPN4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 09:56:02 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:40885 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388087AbfJPN4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 09:56:02 -0400
-Received: by mail-il1-f194.google.com with SMTP id o16so2676860ilq.7;
-        Wed, 16 Oct 2019 06:56:00 -0700 (PDT)
+        id S2405684AbfJPOAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 10:00:39 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:41046 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405682AbfJPOAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 10:00:39 -0400
+Received: by mail-qk1-f194.google.com with SMTP id p10so22810531qkg.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 07:00:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9evKAakxTzcQ7kdnAG8O0duW0PQfeoTSmI1HDrhmXzs=;
-        b=Husn15unpBnUiUApRTjryg0iOFD/ZK/bLuqbpAPz1y8/BIXb3io3FkV5CUojUXZ6qH
-         uVvs4/pOdYWTADJVc5t8EFH8a8FQc6wf/WFnunoJ+N+Dz0F2zyPUuIe8IfEojjAghKUD
-         iKroHh+kGvUwsxahclwyS0d/8QrbQWzSpx8fkFwDVFuzMrdaJAafYPpfO7WYaGRDhqYB
-         iY/VS4F2aOH++PsfXp2d9npik0xMU8ghyZa2D440LmTLKXYH1piRBkP30RpnT9O9j2DE
-         vwISrPEn4qbcfa0Lf263v6DODZ8U0mEUOQcX//5oOpq+YZfX+7U3Bml0ddWlzKdIyNfk
-         ejyA==
+        bh=gqml278NTu5znyLj4o9Te22EdTDlURV2Qw1cIDtLTt4=;
+        b=VTvgClYQ4A/Fh9y5c/hd9xtq28k1VhkkJC6Lae1lj1lS9CSeatI4xJUFt7aVOZWMpC
+         c70NFA/b7hFsue6/wOXLILAIv1rMEqDmIBvWLgw6pEyTOArvK00uv3y2ezSbJfK//Mo4
+         i5r/NkgWwB3lrYFwN5LcQ2tCGu8aeZgWrDRUWzHNOOQGwGamIoEpvEQqymVoEvVUbbPM
+         BMHUwKj6KZhVgqPx3JZOk8L73cAWjLzEeo4NDhHQfPwLXBPLSaQKGY3a2evpL/0tLBHW
+         9QGKALZPSodLHlZ5Ia7E3FjNomYdIpr+7Yb013hif8sY1MGNRGE4+poi7QzFf+5L98II
+         qPDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9evKAakxTzcQ7kdnAG8O0duW0PQfeoTSmI1HDrhmXzs=;
-        b=DSDZO6Z+Wl3oqS7rpcszUjBTVLAICh4tjZ4jgv/n5Fm9M4sWIzM1gPneXFi+sMEgbt
-         v58mJgqAxdjJb23QQBR92XHkrCo+znCGOUDAvOsDNQ78LcZZShjNIp0BzZVWkuhXp5Xx
-         +Lm0zDJtrWW9By2vTuR92bMLzxvU7lj1Kp3y2wKzSmA6KYWolnP7IhTf0rqhP9dMH1DV
-         iWUE6wVp2RgEu3VQnvNsRYjiNQv9ppw8w2Y7sR2jGp3lQdrtMp+6NdUxLvIV9f45WePu
-         PQq63SFmu2UY6EwFCXy3HtwEv14baAmT5zBqDNTR+T/SA98iCjAMDrQdDZlabw26MO3M
-         hHAg==
-X-Gm-Message-State: APjAAAW27ii1urg6ksLs4fTVivlinVRLkk3g01D9nthFnyZ/ikCOYvCK
-        WgFF7cjfe+/pcBbabJFD6qKTTba9uqTn9giQWyc=
-X-Google-Smtp-Source: APXvYqz6T1Cj2dTtiLoaoLYVvqyfZ7Zqfc1a9CSHlOX32P7IvKsXtPYe1zmRiq06cQd+YD+kYrow42edQZqwlqMfuCQ=
-X-Received: by 2002:a92:8384:: with SMTP id p4mr11801473ilk.276.1571234159767;
- Wed, 16 Oct 2019 06:55:59 -0700 (PDT)
+        bh=gqml278NTu5znyLj4o9Te22EdTDlURV2Qw1cIDtLTt4=;
+        b=Y3CluiF0FY3ZQ1Pc2S5Xw05YywbtaN16Vep8Trm2ctBNBq/9Cl4SIV0pc/NQMN39zV
+         apjy59Z8L8axmfAeg+DvfZhhb6MZ9WWOrEYfy1hbMVu1xt2N6LR6HnjscZNKN/PxTaIq
+         qImVm+cJf/QHwiV438CIlWd8M0SGBg1twvMiffeQSSA4Mlh4ktIoOLNn7I49coLbK/Hl
+         +8z2QGw45Dlj0R/7In6fxa0q9azWfeizV+Y+oReh3nEKZbbP65VeTJYUyt8iH9y9+sIS
+         PY4MyMYaQnYOBOl+4sTyuWsBLPwrujD6DX+Z7F9SZyELkGVvXrjFtJluWBRUoVDaT+Jv
+         XnlQ==
+X-Gm-Message-State: APjAAAUIOVA/hLlmYCFxE2yz3Kr3QB10kIt/5HbfRdWlC1fdqPxVxu5D
+        cG5fvTzn/287oq0JuGtvZv+nSh4c2N1OrcxLWOGnmA==
+X-Google-Smtp-Source: APXvYqxE/W8Wym2zPEoThfzgBl+Y8q8y0M/tZiDg5SGuXU2OGToGJCLrZSvaS15buTSq1qqdW86Kkg/8vbhVY6QMYW4=
+X-Received: by 2002:a05:620a:34b:: with SMTP id t11mr38547340qkm.213.1571234438671;
+ Wed, 16 Oct 2019 07:00:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191001233923.16514-1-aford173@gmail.com> <20191001233923.16514-5-aford173@gmail.com>
- <20191009233130.GA1002@bogus> <CAHCN7xLCvN1v00H10KUX625awz+nea6rhA_LYnftspjaZ+od-g@mail.gmail.com>
- <CAL_JsqJoPda6Oj14WTdm737Mydn+pzvdqkyCPry+zU7drheq=g@mail.gmail.com>
-In-Reply-To: <CAL_JsqJoPda6Oj14WTdm737Mydn+pzvdqkyCPry+zU7drheq=g@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 16 Oct 2019 08:55:48 -0500
-Message-ID: <CAHCN7xLN99HyZRBr-CkxvkZntx3LfBd5ELcdLPjPRH7kLKr2uw@mail.gmail.com>
-Subject: Re: [PATCH V4 2/3] dt-bindings: Add Logic PD Type 28 display panel
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20191008044153.12734-1-andrew@aj.id.au> <CACRpkda5cWaA7R3XzyiERCCgwUrjnXd+wCBeKvt-wtjex7wNDg@mail.gmail.com>
+ <2de90789-c374-4821-89f9-5d5f01e7d2d6@www.fastmail.com>
+In-Reply-To: <2de90789-c374-4821-89f9-5d5f01e7d2d6@www.fastmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 16 Oct 2019 16:00:26 +0200
+Message-ID: <CACRpkdbmbyNmW8tL_L0agBajomPybXsjn9ix_F5-B3fZnfuW9A@mail.gmail.com>
+Subject: Re: [PATCH 0/7] pinctrl: Fixes for AST2600 support
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Joel Stanley <joel@jms.id.au>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Johnny Huang <johnny_huang@aspeedtech.com>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 8:15 AM Rob Herring <robh@kernel.org> wrote:
+On Wed, Oct 16, 2019 at 1:42 PM Andrew Jeffery <andrew@aj.id.au> wrote:
+
+> I was hoping to get them into the 5.4 fixes branch: I consider them all fixes
+
+OK I moved them all to fixes.
+
+> > I need a shortlist of anything that should go into v5.4 if anything.
 >
-> On Tue, Oct 15, 2019 at 6:04 PM Adam Ford <aford173@gmail.com> wrote:
-> >
-> > On Wed, Oct 9, 2019 at 6:31 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Tue, Oct 01, 2019 at 06:39:22PM -0500, Adam Ford wrote:
-> > > > This patch adds documentation of device tree bindings for the WVGA panel
-> > > > Logic PD Type 28 display.
-> > > >
-> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > > ---
-> > > > V4:  Update per Rob H's suggestions and copy other panel yaml example from 5.4-rc1
-> > > > V3:  Correct build errors from 'make dt_binding_check'
-> > >
-> > > The example still fails to build here.
-> >
-> > I cannot replicate the build error on 5.4-RC3 at least for this
-> > binding on V4 of the patch.  I get build error on other bindings.
-> >
-> > $ make dt_binding_check ARCH=arm
-> > scripts/kconfig/conf  --syncconfig Kconfig
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
-> > /home/aford/src/linux/Documentation/devicetree/bindings/net/adi,adin.yaml:
-> > ignoring, error in schema 'adi,rx-internal-delay-ps'
-> > warning: no schema found in file:
-> > Documentation/devicetree/bindings/net/adi,adin.yaml
-> > /home/aford/src/linux/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml:
-> > ignoring, error in schema '0'
-> > warning: no schema found in file:
-> > Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> >   CHKDT   Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-> >   ....
-> >   CHKDT   Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml
-> >   CHKDT   Documentation/devicetree/bindings/display/panel/ampire,am-480272h3tmqw-t01h.yaml
-> >   CHKDT   Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> >   CHKDT   Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
-> >  ...
-> >  CHKDT   Documentation/devicetree/bindings/media/allwinner,sun4i-a10-ir.yaml
-> >   CHKDT   Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml:
-> > $id: path/filename 'arm/allwinner,sun4i-a10-csi.yaml' doesn't match
-> > actual filename
-> > Documentation/devicetree/bindings/Makefile:12: recipe for target
-> > 'Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts'
-> > failed
-> > make[1]: *** [Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts]
-> > Error 1
-> > Makefile:1263: recipe for target 'dt_binding_check' failed
-> > make: *** [dt_binding_check] Error 2
-> >
-> >
-> > I took out some of the logs to make it less chatty.  I don't know
-> > anything about yaml or what the expectations are, so if there is a
-> > test beyond 'make dt_binding_check' please let me know.
->
-> Perhaps 'make -k' is needed because of the other failures. Or try on
-> top of linux-next which should all be fixed.
+> IMO all of them should go into 5.4, as above.
 
-Thanks.  I didn't know about the '-k'  I replaced GPIO_ACTIVE_HIGH
-with 0 and it seems to have fixed the error.
-Sorry about all the noise.  Hopefully I did it right.  There is a V5
-patch waiting now starting at [1]
+OK
 
-[1] - https://patchwork.kernel.org/patch/11193399/
+>  It's there something I can do in the future to communicate this better?
 
-adam
+Nah it is a complicated process, things need to be done manually
+at times, overly obsessing with process is counterproductive.
 
-
-
-
->
-> Rob
+Yours,
+Linus Walleij
