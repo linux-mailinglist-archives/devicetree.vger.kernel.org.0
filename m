@@ -2,184 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB89D8D59
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39A16D8D76
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388365AbfJPKJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 06:09:13 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:6866 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727235AbfJPKJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 06:09:13 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9G9vJSb022321;
-        Wed, 16 Oct 2019 12:08:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=DRK6nnWxIpQcRpa27goNNKQ6VsydMmtRJ5E896Ce4Mg=;
- b=bgO95zmf6k2aVs9w1Xi40fm7M97azWEHfHLRVkbo0ZJC5b8wbkMYjy3JqcGa/3hDtU0V
- a05oW0Z2xC+WtxdaqXmFvJSIC5d8mRebsgQ2gbwHQCcHBrjAlDqrdLtQG869tjSoHhtP
- bB9U3dxRq3HkKMd4MSk5tFrPp0gemXEoUjf8Chyhjstyx9zuSluokafzcfjR6hcdMNUH
- ZTTJ/EKLLxFqT+Wx4Y/tB9Go12HCV/e7mZuqVVqTs6yBEmPhYXEb0NDZ/5mVM9AcTrOZ
- yBiTzslx4ssweZHkXlP4z3lwYc8XBKg+K4PgT3xZQFZtj0PaIz3KNoZS0hOVI8iOVFPq GA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vk4kx5eyf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Oct 2019 12:08:57 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 07B0410002A;
-        Wed, 16 Oct 2019 12:08:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C67EE205D2C;
-        Wed, 16 Oct 2019 12:08:56 +0200 (CEST)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.46) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 16 Oct
- 2019 12:08:56 +0200
-Received: from [10.48.0.192] (10.48.0.192) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 16 Oct 2019 12:08:56
- +0200
-Subject: Re: [PATCH v2 3/3] pwm: stm32: add power management support
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <alexandre.torgue@st.com>, <mark.rutland@arm.com>,
-        <mcoquelin.stm32@gmail.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <benjamin.gaignard@st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1570193633-6600-1-git-send-email-fabrice.gasnier@st.com>
- <1570193633-6600-4-git-send-email-fabrice.gasnier@st.com>
- <20191016070635.GC1296874@ulmo>
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-Message-ID: <15371530-a932-08b7-dd78-a7e20d213203@st.com>
-Date:   Wed, 16 Oct 2019 12:08:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20191016070635.GC1296874@ulmo>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.48.0.192]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-16_03:2019-10-15,2019-10-16 signatures=0
+        id S2404528AbfJPKOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 06:14:07 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:48614 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727451AbfJPKOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 06:14:07 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id B5144607C3; Wed, 16 Oct 2019 10:14:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571220845;
+        bh=XJgNG9009diU9oqaJQDCi/V2yYlvtSwWohQ7wEW/wos=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HYbTuT6/0+LaYGv704o1rsL1nKJPYQETS5poTVDj7m1DAbQuz1ASZTIZiqd/mZj3J
+         Ad4Wa2kCyj6MIN11gX+xBR6TsS3+qaehiWcuICCdqGBlVaY74GNtI1aB1YFgjXQg1p
+         Fgrl0wGDqXS49rbWwgCoqNto4a8psbry40kDNjV0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from kgunda-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C8A78601D4;
+        Wed, 16 Oct 2019 10:13:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571220844;
+        bh=XJgNG9009diU9oqaJQDCi/V2yYlvtSwWohQ7wEW/wos=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fo4cTaF8PfH7j5yLfcxSIWTUyg2oE2u+B1JOfkDObzK6U46gmeohl+J5Fd80hF+uq
+         b8+jXQEQ/VY0EQ6FaIHAMbKeYafLAsd3D1Ja0GPP73CN3lHhJClSs5p+SkqRcStm9o
+         H6m8774NPSEyYIhxNicvHj/fcaAtvapcEmbOqvKU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C8A78601D4
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V7 0/6] backlight: qcom-wled: Support for QCOM wled driver
+Date:   Wed, 16 Oct 2019 15:43:40 +0530
+Message-Id: <1571220826-7740-1-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/16/19 9:06 AM, Thierry Reding wrote:
-> On Fri, Oct 04, 2019 at 02:53:53PM +0200, Fabrice Gasnier wrote:
->> Add suspend/resume PM sleep ops. When going to low power, enforce the PWM
->> channel isn't active. Let the PWM consumers disable it during their own
->> suspend sequence, see [1]. So, perform a check here, and handle the
->> pinctrl states. Also restore the break inputs upon resume, as registers
->> content may be lost when going to low power mode.
->>
->> [1] https://lkml.org/lkml/2019/2/5/770
->>
->> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
->> ---
->> Changes in v2:
->> Follow Uwe suggestions/remarks:
->> - Add a precursor patch to ease reviewing
->> - Use registers read instead of pwm_get_state
->> - Add a comment to mention registers content may be lost in low power mode
->> ---
->>  drivers/pwm/pwm-stm32.c | 38 ++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 38 insertions(+)
-> 
-> Applied, thanks. I made two minor changes, though, see below.
-> 
->>
->> diff --git a/drivers/pwm/pwm-stm32.c b/drivers/pwm/pwm-stm32.c
->> index cf8658c..546b661 100644
->> --- a/drivers/pwm/pwm-stm32.c
->> +++ b/drivers/pwm/pwm-stm32.c
->> @@ -12,6 +12,7 @@
->>  #include <linux/mfd/stm32-timers.h>
->>  #include <linux/module.h>
->>  #include <linux/of.h>
->> +#include <linux/pinctrl/consumer.h>
->>  #include <linux/platform_device.h>
->>  #include <linux/pwm.h>
->>  
->> @@ -655,6 +656,42 @@ static int stm32_pwm_remove(struct platform_device *pdev)
->>  	return 0;
->>  }
->>  
->> +static int __maybe_unused stm32_pwm_suspend(struct device *dev)
->> +{
->> +	struct stm32_pwm *priv = dev_get_drvdata(dev);
->> +	unsigned int ch;
-> 
-> I renamed this to just "i", which is more idiomatic for loop variables.
-> The function is small enough not to need to differentiate between loop
-> variables.
-> 
->> +	u32 ccer, mask;
->> +
->> +	/* Look for active channels */
->> +	ccer = active_channels(priv);
->> +
->> +	for (ch = 0; ch < priv->chip.npwm; ch++) {
->> +		mask = TIM_CCER_CC1E << (ch * 4);
->> +		if (ccer & mask) {
->> +			dev_err(dev, "The consumer didn't stop us (%s)\n",
->> +				priv->chip.pwms[ch].label);
-> 
-> Changed this to:
-> 
-> 	"PWM %u still in use by consumer %s\n", i, priv->chip.pwms[i].label
-> 
-> I think that might help clarify which PWM is still enabled in case the
-> consumers don't set a label.
+This patch series renames the pm8941-wled.c driver to qcom-wled.c to add
+the support for multiple PMICs supported by qualcomm. This patch series
+supports both PM8941 and PMI8998 WLED. The PMI8998 WLED has the support
+to handle the OVP (over voltage protection) and the SC (short circuit
+protection)
+interrupts. It also has the auto string detection algorithm support to
+configure the right strings if the user specified string configuration
+is in-correct. These three features are added in this series for PMI8998.
 
-Hi Thierry,
+changes from v1:
+   - Fixed the commit message for
+   - backlight: qcom-wled: Rename pm8941-wled.c to qcom-wled.c
 
-Many thanks for all the improvements on this series!
+Changes from v2:
+   - Fixed bjorn and other reviewer's comments
+   - Seperated the device tree bindings
+   - Splitted out the WLED4 changes in seperate patch
+   - Merged OVP and auto string detection patch
 
-Best Regards,
-Fabrice
+Changes from v3:
+  - Added Reviewed-by/Acked-by tags
+  - Fixed comments from Bjorn/Vinod/Rob
+  - Splitting the "backlight: qcom-wled: Add support for WLED4 peripheral" patch
+    to seperate the WLED3 specific restructure.
 
-> 
-> Thierry
-> 
->> +			return -EBUSY;
->> +		}
->> +	}
->> +
->> +	return pinctrl_pm_select_sleep_state(dev);
->> +}
->> +
->> +static int __maybe_unused stm32_pwm_resume(struct device *dev)
->> +{
->> +	struct stm32_pwm *priv = dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	ret = pinctrl_pm_select_default_state(dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* restore breakinput registers that may have been lost in low power */
->> +	return stm32_pwm_apply_breakinputs(priv);
->> +}
->> +
->> +static SIMPLE_DEV_PM_OPS(stm32_pwm_pm_ops, stm32_pwm_suspend, stm32_pwm_resume);
->> +
->>  static const struct of_device_id stm32_pwm_of_match[] = {
->>  	{ .compatible = "st,stm32-pwm",	},
->>  	{ /* end node */ },
->> @@ -667,6 +704,7 @@ static struct platform_driver stm32_pwm_driver = {
->>  	.driver	= {
->>  		.name = "stm32-pwm",
->>  		.of_match_table = stm32_pwm_of_match,
->> +		.pm = &stm32_pwm_pm_ops,
->>  	},
->>  };
->>  module_platform_driver(stm32_pwm_driver);
->> -- 
->> 2.7.4
->>
+Changes from v4:
+  - Added reviewed-by/Acked-by tags
+  - Fixed comments from Bjorn/Daniel/Pavel
+
+Changes from v5:
+  - Fixed comments from Bjorn/Pavel
+
+Changes from v5/v6:
+  - Fixed comments from Bjorn/Pavel on V5 series, which were missed in V6 series
+  - Patch 1 and 2, mentioned below, from V6 series are picked by Pavel In next.
+    Hence, dropped them in this series.
+    https://lore.kernel.org/patchwork/patch/1132467/
+    https://lore.kernel.org/patchwork/patch/1132468/
+
+Kiran Gunda (6):
+  backlight: qcom-wled: Add new properties for PMI8998
+  backlight: qcom-wled: Rename PM8941* to WLED3.
+  backlight: qcom-wled: Restructure the driver for WLED3
+  backlight: qcom-wled: Add support for WLED4 peripheral.
+  backlight: qcom-wled: add support for short circuit handling.
+  backlight: qcom-wled: Add auto string detection logic
+
+ .../bindings/leds/backlight/qcom-wled.txt          |   74 +-
+ drivers/video/backlight/qcom-wled.c                | 1256 +++++++++++++++++---
+ 2 files changed, 1126 insertions(+), 204 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
+
