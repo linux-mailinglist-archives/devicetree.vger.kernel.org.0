@@ -2,156 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B02AD9BDC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 22:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 690ADD9C3B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 23:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437207AbfJPUcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 16:32:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60610 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2437206AbfJPUcl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 16:32:41 -0400
-Received: from mail.kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E256521835;
-        Wed, 16 Oct 2019 20:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571257960;
-        bh=ElojbImnshP0TRo09IZ/1koEsDY7xKuUkzV0BSp1hnQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=C/DqzyeQX7UcuZh6nAZP4mLJqqu6ZtDtOVWa2eI9KbFUa/akgBj92iWvNjj/TSbms
-         YbrZ7/BabJjCUC+B0swDDtegepTqQoNxp7nbx4bq79WeGdj4ZS81EokkMgfsmIOo3J
-         YtEMf1D8F9gQI8Ig6wFDCK+nHHfid1ZZbC1eQ19E=
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     git@vger.kernel.org
-Cc:     Adrian Johnson <ajohnson@redneon.com>,
-        William Duclot <william.duclot@ensimag.grenoble-inp.fr>,
-        Johannes Sixt <j6t@kdbg.org>,
-        Matthieu Moy <matthieu.moy@grenoble-inp.fr>,
-        Junio C Hamano <gitster@pobox.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH v2] userdiff: Fix some corner cases in dts regex
-Date:   Wed, 16 Oct 2019 13:32:39 -0700
-Message-Id: <20191016203239.212174-1-sboyd@kernel.org>
-X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
+        id S2437378AbfJPVGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 17:06:50 -0400
+Received: from mail-yb1-f195.google.com ([209.85.219.195]:41291 "EHLO
+        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437377AbfJPVGt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 17:06:49 -0400
+Received: by mail-yb1-f195.google.com with SMTP id 206so8820ybc.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 14:06:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=poorly.run; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kn9kClYfIjMlLMagVsf7O1jgmGEjbDUjXt8o0wKyeA8=;
+        b=MW+sMuq6Y9qrP0acv8qEivB67behGKZEpyPRPODPpJik/T8wUY6SFwrl4SbmV5JSii
+         c/fAssXNhAURnnHERFaecM5FPDISVOX2dAMFMl6FOPU2ad3vm8S5O96clQAbmYvaOpOK
+         9Xt2YOwWbhqiKK3mMqK/3TKZ9IztqcBCHVzNOU+98JpvHZe99z7Snhkq/fwusi2/tGMI
+         0YT95AvtyjpE6PNW9xtWk4OWvhs+L8XK5JmhA1oKtNR/QkKw59clevqzV+EwQ8ny5ohz
+         L0rBBmgZCkODDlJ2epNSm7wmv3s82uYAy0Ejmx0+HzGUcg8E4P5XZ+EySSeDlZDXi1kD
+         U2aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kn9kClYfIjMlLMagVsf7O1jgmGEjbDUjXt8o0wKyeA8=;
+        b=bsYCP5up2cJ+wCgI7axC0wGIOt7yb3jv1rot9fsU9o3ENbNv/BL7TTWMCWlqIiO9YW
+         sOx/3WMRErHqWZvpzYTSt9Z/2HJxchVILaysfg86IQXtzfhNTjDPVyseETJfT6LlkoT6
+         Fhwj5uCNy01fF9HgDJwUpMHSuZKPja3L/QrHhqSE1SAF+NnslesyncO5Wx+VZQ1yDq6/
+         Kms0y2MuhuinVODXLF3sZn+QIUg//oYt7hOsXKIBr6muZC07V3E4MbxDx41eZ5INNO9E
+         PclHE9rIOO3McBRjZ/FlnU3ADrr5lqDdRq7qHdrYRFgidJ0mbtXOr0M7jYJBwKtYTxWs
+         JVhw==
+X-Gm-Message-State: APjAAAU/Kiw4YCeZYqXPzk7N6dHTLlIAn7XIA92hdCTW68eqf0cu/Ns2
+        Y5n01Gxre5VsNX4EtHEZHsUbzgaHoInnmZ80gMkB3A==
+X-Google-Smtp-Source: APXvYqxu5GBkccY4WdK2iDDUA7D2q8HiB4K/u7G+ap2c79C1tbteJwfc3KKqH97NEgtgjyyUiBtZg6c+czBJGTUnfag=
+X-Received: by 2002:a25:348e:: with SMTP id b136mr441806yba.159.1571260008543;
+ Wed, 16 Oct 2019 14:06:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190910075913.17650-1-wen.he_1@nxp.com>
+In-Reply-To: <20190910075913.17650-1-wen.he_1@nxp.com>
+From:   Sean Paul <sean@poorly.run>
+Date:   Wed, 16 Oct 2019 17:06:12 -0400
+Message-ID: <CAMavQKLx4QoA4+JCiERY02i+O44yYH7u7BK07R4z7stjWtps3A@mail.gmail.com>
+Subject: Re: [v5 1/2] dt/bindings: display: Add optional property node define
+ for Mali DP500
+To:     Wen He <wen.he_1@nxp.com>
+Cc:     linux-devel@linux.nxdi.nxp.com, Liviu Dudau <liviu.dudau@arm.com>,
+        Brian Starkey <brian.starkey@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, leoyang.li@nxp.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While reviewing some dts diffs recently I noticed that the hunk header
-logic was failing to find the containing node. This is because the regex
-doesn't consider properties that may span multiple lines, i.e.
+On Tue, Sep 10, 2019 at 4:10 AM Wen He <wen.he_1@nxp.com> wrote:
+>
+> Add optional property node 'arm,malidp-arqos-value' for the Mali DP500.
+> This property describe the ARQoS levels of DP500's QoS signaling.
+>
+> Signed-off-by: Wen He <wen.he_1@nxp.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-	property = <something>,
-		   <something_else>;
+Liviu, I see you applied 2/2, but didn't apply this patch. Any
+particular reason, or just missed it?
 
-and it got hung up on comments inside nodes that look like the root node
-because they start with '/*'. Add tests for these cases and update the
-regex to find them. Maybe detecting the root node is too complicated but
-forcing it to be a backslash with any amount of whitespace up to an open
-bracket seemed OK. I tried to detect that a comment is in-between the
-two parts but I wasn't happy so I just dropped it.
+Thanks,
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Stephen Boyd <sboyd@kernel.org>
----
+Sean
 
-Changes from v1:
- * Added a new boolean property unit test
- * Updated the regex to simplify multi-line property skipping
- * Added some space to multieline prop test between cells in
-   first property
-
- t/t4018/dts-nodes-boolean-prop   |  9 +++++++++
- t/t4018/dts-nodes-multiline-prop | 14 ++++++++++++++
- t/t4018/dts-root                 |  2 +-
- t/t4018/dts-root-comment         |  8 ++++++++
- userdiff.c                       |  3 ++-
- 5 files changed, 34 insertions(+), 2 deletions(-)
- create mode 100644 t/t4018/dts-nodes-boolean-prop
- create mode 100644 t/t4018/dts-nodes-multiline-prop
- create mode 100644 t/t4018/dts-root-comment
-
-diff --git a/t/t4018/dts-nodes-boolean-prop b/t/t4018/dts-nodes-boolean-prop
-new file mode 100644
-index 000000000000..afc6b5b404e4
---- /dev/null
-+++ b/t/t4018/dts-nodes-boolean-prop
-@@ -0,0 +1,9 @@
-+/ {
-+	label_1: node1@ff00 {
-+		RIGHT@deadf00,4000 {
-+			boolean-prop1;
-+
-+			ChangeMe;
-+		};
-+	};
-+};
-diff --git a/t/t4018/dts-nodes-multiline-prop b/t/t4018/dts-nodes-multiline-prop
-new file mode 100644
-index 000000000000..db4b4bdda686
---- /dev/null
-+++ b/t/t4018/dts-nodes-multiline-prop
-@@ -0,0 +1,14 @@
-+/ {
-+	label_1: node1@ff00 {
-+		RIGHT@deadf00,4000 {
-+			multilineprop = <3>,
-+
-+
-+					<4>;
-+
-+
-+
-+			ChangeMe = <0xffeedd00>;
-+		};
-+	};
-+};
-diff --git a/t/t4018/dts-root b/t/t4018/dts-root
-index 2ef9e6ffaa2c..4353b8220c91 100644
---- a/t/t4018/dts-root
-+++ b/t/t4018/dts-root
-@@ -1,4 +1,4 @@
--/RIGHT { /* Technically just supposed to be a slash */
-+/ { RIGHT /* Technically just supposed to be a slash and brace */
- 	#size-cells = <1>;
- 
- 	ChangeMe = <0xffeedd00>;
-diff --git a/t/t4018/dts-root-comment b/t/t4018/dts-root-comment
-new file mode 100644
-index 000000000000..333a625c7007
---- /dev/null
-+++ b/t/t4018/dts-root-comment
-@@ -0,0 +1,8 @@
-+/ { RIGHT /* Technically just supposed to be a slash and brace */
-+	#size-cells = <1>;
-+
-+	/* This comment should be ignored */
-+
-+	some-property = <40+2>;
-+	ChangeMe = <0xffeedd00>;
-+};
-diff --git a/userdiff.c b/userdiff.c
-index 86e3244e15dd..e187d356f6ff 100644
---- a/userdiff.c
-+++ b/userdiff.c
-@@ -25,8 +25,9 @@ IPATTERN("ada",
- 	 "|=>|\\.\\.|\\*\\*|:=|/=|>=|<=|<<|>>|<>"),
- PATTERNS("dts",
- 	 "!;\n"
-+	 "!=\n"
- 	 /* lines beginning with a word optionally preceded by '&' or the root */
--	 "^[ \t]*((/|&?[a-zA-Z_]).*)",
-+	 "^[ \t]*((/[ \t]*\\{|&?[a-zA-Z_]).*)",
- 	 /* -- */
- 	 /* Property names and math operators */
- 	 "[a-zA-Z0-9,._+?#-]+"
--- 
-Sent by a computer through tubes
-
+> ---
+>  Documentation/devicetree/bindings/display/arm,malidp.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.txt b/Documentation/devicetree/bindings/display/arm,malidp.txt
+> index 2f7870983ef1..7a97a2b48c2a 100644
+> --- a/Documentation/devicetree/bindings/display/arm,malidp.txt
+> +++ b/Documentation/devicetree/bindings/display/arm,malidp.txt
+> @@ -37,6 +37,8 @@ Optional properties:
+>      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
+>      to be used for the framebuffer; if not present, the framebuffer may
+>      be located anywhere in memory.
+> +  - arm,malidp-arqos-high-level: integer of u32 value describing the ARQoS
+> +    levels of DP500's QoS signaling.
+>
+>
+>  Example:
+> @@ -54,6 +56,7 @@ Example:
+>                 clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
+>                 clock-names = "pxlclk", "mclk", "aclk", "pclk";
+>                 arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
+> +               arm,malidp-arqos-high-level = <0xd000d000>;
+>                 port {
+>                         dp0_output: endpoint {
+>                                 remote-endpoint = <&tda998x_2_input>;
+> --
+> 2.17.1
+>
