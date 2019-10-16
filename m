@@ -2,73 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9FCD9313
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE3A2D931D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393731AbfJPNxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 09:53:46 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:43308 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393730AbfJPNxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 09:53:46 -0400
-Received: by mail-qk1-f194.google.com with SMTP id h126so22782898qke.10
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 06:53:45 -0700 (PDT)
+        id S2393742AbfJPN4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 09:56:02 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:40885 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388087AbfJPN4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 09:56:02 -0400
+Received: by mail-il1-f194.google.com with SMTP id o16so2676860ilq.7;
+        Wed, 16 Oct 2019 06:56:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=W3MpqWuXCuED4lPwTmYmfLDrEaS8sTh/GqrnlfZctaE=;
-        b=ZTpnmoyqnGgVdoOocqBKv1ocwCh2S7f0PpiyMV4dIdRuoP/uwZW5d6ztsvG0pAgtSw
-         y7sVez2MZV86WJ5SQ1FShYHwPnWzykBrjjxkc4rCYBN3SCav7pp+VHGTtX9rAVrtAK4H
-         ujkbkv5zB+bU8JukhvrmMxuKH7g0lukQWC8MJVPgkJDaWnaU8fRWA92YNR41ZCoVw0nX
-         0AxbTtXKFIFMGENcQziYHggTX3O3CZiFjFIoz4Drfop4J4isyb9btpuo2RobmLyWxqOt
-         MUbZdLOH/rpwVQrKtXY5M+h3A9UpdQ1cSCRJ4bwACNIwr+oNXke5DTIyNS0CrGofY8cb
-         /67Q==
+        bh=9evKAakxTzcQ7kdnAG8O0duW0PQfeoTSmI1HDrhmXzs=;
+        b=Husn15unpBnUiUApRTjryg0iOFD/ZK/bLuqbpAPz1y8/BIXb3io3FkV5CUojUXZ6qH
+         uVvs4/pOdYWTADJVc5t8EFH8a8FQc6wf/WFnunoJ+N+Dz0F2zyPUuIe8IfEojjAghKUD
+         iKroHh+kGvUwsxahclwyS0d/8QrbQWzSpx8fkFwDVFuzMrdaJAafYPpfO7WYaGRDhqYB
+         iY/VS4F2aOH++PsfXp2d9npik0xMU8ghyZa2D440LmTLKXYH1piRBkP30RpnT9O9j2DE
+         vwISrPEn4qbcfa0Lf263v6DODZ8U0mEUOQcX//5oOpq+YZfX+7U3Bml0ddWlzKdIyNfk
+         ejyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=W3MpqWuXCuED4lPwTmYmfLDrEaS8sTh/GqrnlfZctaE=;
-        b=i6P0FMaYr13kS5NBZi+UdLyo+8sBCFp1mn5BRYr54rePfcC9+EwMqFs4/ffwLXIf02
-         3wJZEhB694HtB7uxChooQ3lq4VjNrV3EnoSO486yCKfHMiXYleN0wh1givvJmdSJFBiO
-         R2oGtobhfp6Jo0SwpII4RzhFVkoh1gNeTGb/VAt+b9vcym0Uh3GINuUJtROAwtH9LZFZ
-         mQ9Xm5DjakcaNE+ANDZbqBjEz68XrHSoO3qe8B0IY0mpioOzBIjrGGDsxDlrr/IrcC5G
-         a3x148P75UnSyIgFnsZu+j/OyE0ni24/qHf5lK69bBcp8+kyvSiRNjdZPiK8HzXVWiK+
-         lAcQ==
-X-Gm-Message-State: APjAAAWSYoWJz3LB8E0SeVFNcU5/Xug6n7KFErDtJZgMDWFtIxM/1AFX
-        Ywxd39LTkrafVNEPolo0IaOK5jHoEa75o0Z/WPjMofVf
-X-Google-Smtp-Source: APXvYqzLuVyub2/mFLs66z7+S1u7CxXVvwqKq63XhUOVOUahZi0oy4vFqDFB8kLVPHKNosuPfckb+bt652CkfqxFknM=
-X-Received: by 2002:a05:620a:751:: with SMTP id i17mr40220819qki.340.1571234025322;
- Wed, 16 Oct 2019 06:53:45 -0700 (PDT)
+        bh=9evKAakxTzcQ7kdnAG8O0duW0PQfeoTSmI1HDrhmXzs=;
+        b=DSDZO6Z+Wl3oqS7rpcszUjBTVLAICh4tjZ4jgv/n5Fm9M4sWIzM1gPneXFi+sMEgbt
+         v58mJgqAxdjJb23QQBR92XHkrCo+znCGOUDAvOsDNQ78LcZZShjNIp0BzZVWkuhXp5Xx
+         +Lm0zDJtrWW9By2vTuR92bMLzxvU7lj1Kp3y2wKzSmA6KYWolnP7IhTf0rqhP9dMH1DV
+         iWUE6wVp2RgEu3VQnvNsRYjiNQv9ppw8w2Y7sR2jGp3lQdrtMp+6NdUxLvIV9f45WePu
+         PQq63SFmu2UY6EwFCXy3HtwEv14baAmT5zBqDNTR+T/SA98iCjAMDrQdDZlabw26MO3M
+         hHAg==
+X-Gm-Message-State: APjAAAW27ii1urg6ksLs4fTVivlinVRLkk3g01D9nthFnyZ/ikCOYvCK
+        WgFF7cjfe+/pcBbabJFD6qKTTba9uqTn9giQWyc=
+X-Google-Smtp-Source: APXvYqz6T1Cj2dTtiLoaoLYVvqyfZ7Zqfc1a9CSHlOX32P7IvKsXtPYe1zmRiq06cQd+YD+kYrow42edQZqwlqMfuCQ=
+X-Received: by 2002:a92:8384:: with SMTP id p4mr11801473ilk.276.1571234159767;
+ Wed, 16 Oct 2019 06:55:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191005105936.31216-1-kholk11@gmail.com> <20191005105936.31216-3-kholk11@gmail.com>
-In-Reply-To: <20191005105936.31216-3-kholk11@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 16 Oct 2019 15:53:31 +0200
-Message-ID: <CACRpkdZRdSo+4ZrSbt+4FzRD7X5PaPQCX4A9eLnw5=Aa4bdfMQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: Add MSM8976 driver bindings and documentation
-To:     kholk11@gmail.com
-Cc:     MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, marijns95@gmail.com
+References: <20191001233923.16514-1-aford173@gmail.com> <20191001233923.16514-5-aford173@gmail.com>
+ <20191009233130.GA1002@bogus> <CAHCN7xLCvN1v00H10KUX625awz+nea6rhA_LYnftspjaZ+od-g@mail.gmail.com>
+ <CAL_JsqJoPda6Oj14WTdm737Mydn+pzvdqkyCPry+zU7drheq=g@mail.gmail.com>
+In-Reply-To: <CAL_JsqJoPda6Oj14WTdm737Mydn+pzvdqkyCPry+zU7drheq=g@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 16 Oct 2019 08:55:48 -0500
+Message-ID: <CAHCN7xLN99HyZRBr-CkxvkZntx3LfBd5ELcdLPjPRH7kLKr2uw@mail.gmail.com>
+Subject: Re: [PATCH V4 2/3] dt-bindings: Add Logic PD Type 28 display panel
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 5, 2019 at 12:59 PM <kholk11@gmail.com> wrote:
-
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+On Wed, Oct 16, 2019 at 8:15 AM Rob Herring <robh@kernel.org> wrote:
 >
-> Add the documentation for this new driver for pin configuration
-> with the pinctrl framework on MSM8976/56 and its APQ variants.
+> On Tue, Oct 15, 2019 at 6:04 PM Adam Ford <aford173@gmail.com> wrote:
+> >
+> > On Wed, Oct 9, 2019 at 6:31 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Tue, Oct 01, 2019 at 06:39:22PM -0500, Adam Ford wrote:
+> > > > This patch adds documentation of device tree bindings for the WVGA panel
+> > > > Logic PD Type 28 display.
+> > > >
+> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > ---
+> > > > V4:  Update per Rob H's suggestions and copy other panel yaml example from 5.4-rc1
+> > > > V3:  Correct build errors from 'make dt_binding_check'
+> > >
+> > > The example still fails to build here.
+> >
+> > I cannot replicate the build error on 5.4-RC3 at least for this
+> > binding on V4 of the patch.  I get build error on other bindings.
+> >
+> > $ make dt_binding_check ARCH=arm
+> > scripts/kconfig/conf  --syncconfig Kconfig
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+> > /home/aford/src/linux/Documentation/devicetree/bindings/net/adi,adin.yaml:
+> > ignoring, error in schema 'adi,rx-internal-delay-ps'
+> > warning: no schema found in file:
+> > Documentation/devicetree/bindings/net/adi,adin.yaml
+> > /home/aford/src/linux/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml:
+> > ignoring, error in schema '0'
+> > warning: no schema found in file:
+> > Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> >   CHKDT   Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+> >   ....
+> >   CHKDT   Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml
+> >   CHKDT   Documentation/devicetree/bindings/display/panel/ampire,am-480272h3tmqw-t01h.yaml
+> >   CHKDT   Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
+> >   CHKDT   Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
+> >  ...
+> >  CHKDT   Documentation/devicetree/bindings/media/allwinner,sun4i-a10-ir.yaml
+> >   CHKDT   Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
+> > Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml:
+> > $id: path/filename 'arm/allwinner,sun4i-a10-csi.yaml' doesn't match
+> > actual filename
+> > Documentation/devicetree/bindings/Makefile:12: recipe for target
+> > 'Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts'
+> > failed
+> > make[1]: *** [Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.example.dts]
+> > Error 1
+> > Makefile:1263: recipe for target 'dt_binding_check' failed
+> > make: *** [dt_binding_check] Error 2
+> >
+> >
+> > I took out some of the logs to make it less chatty.  I don't know
+> > anything about yaml or what the expectations are, so if there is a
+> > test beyond 'make dt_binding_check' please let me know.
+>
+> Perhaps 'make -k' is needed because of the other failures. Or try on
+> top of linux-next which should all be fixed.
 
-Fixed up the tags including SoB and applied!
+Thanks.  I didn't know about the '-k'  I replaced GPIO_ACTIVE_HIGH
+with 0 and it seems to have fixed the error.
+Sorry about all the noise.  Hopefully I did it right.  There is a V5
+patch waiting now starting at [1]
 
-Thanks!
-Linus Walleij
+[1] - https://patchwork.kernel.org/patch/11193399/
+
+adam
+
+
+
+
+>
+> Rob
