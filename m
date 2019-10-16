@@ -2,104 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEBDD8C58
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF38D8C68
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391903AbfJPJQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 05:16:17 -0400
-Received: from foss.arm.com ([217.140.110.172]:33476 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391680AbfJPJQR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 05:16:17 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36DE5142F;
-        Wed, 16 Oct 2019 02:16:16 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 357283F6C4;
-        Wed, 16 Oct 2019 02:16:14 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 10:16:07 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Srinath Mannam <srinath.mannam@broadcom.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] PAXB INTx support with proper model
-Message-ID: <20191016091607.GA22848@e121166-lin.cambridge.arm.com>
-References: <1566982488-9673-1-git-send-email-srinath.mannam@broadcom.com>
- <107116f2-a5ff-c545-1864-eb5885c4c60e@gmail.com>
- <88449493-4a32-1eda-434d-317b149173eb@gmail.com>
+        id S1729783AbfJPJV2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 16 Oct 2019 05:21:28 -0400
+Received: from mail.savoirfairelinux.com ([208.88.110.44]:55206 "EHLO
+        mail.savoirfairelinux.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726480AbfJPJV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:21:28 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id 7DD609C02F3;
+        Wed, 16 Oct 2019 05:21:26 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id HYlKbr2B05BK; Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id CCB989C03A3;
+        Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id DtRpUWLBM3Fo; Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id 900CB9C02F3;
+        Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+Date:   Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+From:   Gilles Doffe <gilles.doffe@savoirfairelinux.com>
+To:     shawnguo <shawnguo@kernel.org>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        rennes <rennes@savoirfairelinux.com>,
+        =?utf-8?Q?J=C3=A9rome?= Oufella 
+        <jerome.oufella@savoirfairelinux.com>,
+        robh+dt <robh+dt@kernel.org>,
+        mark rutland <mark.rutland@arm.com>,
+        s hauer <s.hauer@pengutronix.de>,
+        kernel <kernel@pengutronix.de>, festevam <festevam@gmail.com>,
+        linux-imx <linux-imx@nxp.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Message-ID: <1837032218.9373931.1571217685548.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <20191007112430.GD7150@dragon>
+References: <20190916104353.7278-1-gilles.doffe@savoirfairelinux.com> <20191007112430.GD7150@dragon>
+Subject: Re: [PATCH v3] ARM: dts: imx6qdl-rex: add gpio expander pca9535
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <88449493-4a32-1eda-434d-317b149173eb@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Mailer: Zimbra 8.8.11_GA_3737 (ZimbraWebClient - GC76 (Linux)/8.8.11_GA_3737)
+Thread-Topic: imx6qdl-rex: add gpio expander pca9535
+Thread-Index: 0SgUHsAJvXpg4HUlY55gc/ziL2JF9g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 15, 2019 at 10:28:24AM -0700, Florian Fainelli wrote:
-> On 9/4/19 10:16 AM, Florian Fainelli wrote:
-> > On 8/28/19 1:54 AM, Srinath Mannam wrote:
-> >> This patch series adds PCIe legacy interrupt (INTx) support to the iProc
-> >> PCIe driver by modeling it with its own IRQ domain. All 4 interrupts INTA,
-> >> INTB, INTC, INTD share the same interrupt line connected to the GIC
-> >> in the system. This is now modeled by using its own IRQ domain.
-> >>
-> >> Also update all relevant devicetree files to adapt to the new model.
-> >>
-> >> This patch set is based on Linux-5.2-rc4.
-> >>
-> >> Changes from v1:
-> >>   - Addressed Rob, Lorenzo, Arnd's comments
-> >>     - Used child node for interrupt controller.
-> >>   - Addressed Andy Shevchenko's comments
-> >>     - Replaced while loop with do-while.
-> > 
-> > Lorenzo, Bjorn, if you are good with the binding and PCI host driver
-> > changes, you can take patches 1-2 through your tree, and I will queue up
-> > the others through the Broadcom ARM SoC pull requests. If not, please
-> > feel free to add a:
-> > 
-> > Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+----- Le 7 Oct 19, à 13:24, shawnguo shawnguo@kernel.org a écrit :
+
+> On Mon, Sep 16, 2019 at 12:43:53PM +0200, Gilles DOFFE wrote:
+>> The pca9535 gpio expander is present on the Rex baseboard, but missing
+>> from the dtsi.
+>> The pca9535 is on i2c2 bus which is common to the three SOM
+>> variants (Basic/Pro/Ultra), thus it is activated by default.
+>> 
+>> Add also the new gpio controller and the associated interrupt line
+>> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
+>> 
+>> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+>> ---
+>>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
+>>  1 file changed, 19 insertions(+)
+>> 
+>> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> index 97f1659144ea..8a748ca1b108 100644
+>> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> @@ -132,6 +132,19 @@
+>>  	pinctrl-0 = <&pinctrl_i2c2>;
+>>  	status = "okay";
+>>  
+>> +	pca9535: gpio8@27 {
 > 
-> I am starting to queue Device Tree patches for 5.5 and I need to know
-> whether I should be picking up patches 2 through 6, or if you are going
-> to do this, thank you.
-
-I am going to do this but I have comments on the patches they will
-have to be updated anyway.
-
-Thanks and apologies for the delay.
-
-Lorenzo
-
-> >> Ray Jui (6):
-> >>   dt-bindings: pci: Update iProc PCI binding for INTx support
-> >>   PCI: iproc: Add INTx support with better modeling
-> >>   arm: dts: Change PCIe INTx mapping for Cygnus
-> >>   arm: dts: Change PCIe INTx mapping for NSP
-> >>   arm: dts: Change PCIe INTx mapping for HR2
-> >>   arm64: dts: Change PCIe INTx mapping for NS2
-> >>
-> >>  .../devicetree/bindings/pci/brcm,iproc-pcie.txt    |  48 ++++++++--
-> >>  arch/arm/boot/dts/bcm-cygnus.dtsi                  |  30 ++++++-
-> >>  arch/arm/boot/dts/bcm-hr2.dtsi                     |  30 ++++++-
-> >>  arch/arm/boot/dts/bcm-nsp.dtsi                     |  45 ++++++++--
-> >>  arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi   |  28 +++++-
-> >>  drivers/pci/controller/pcie-iproc.c                | 100 ++++++++++++++++++++-
-> >>  drivers/pci/controller/pcie-iproc.h                |   6 ++
-> >>  7 files changed, 260 insertions(+), 27 deletions(-)
-> >>
-> > 
-> > 
+> gpio-expander might be a better node name?
 > 
+> Shawn
+
+Indeed, v4 incoming. ;)
+
+Thank you Shawn.
+
 > 
-> -- 
-> Florian
+>> +		compatible = "nxp,pca9535";
+>> +		reg = <0x27>;
+>> +		gpio-controller;
+>> +		#gpio-cells = <2>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_pca9535>;
+>> +		interrupt-parent = <&gpio6>;
+>> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <2>;
+>> +	};
+>> +
+>>  	eeprom@57 {
+>>  		compatible = "atmel,24c02";
+>>  		reg = <0x57>;
+>> @@ -237,6 +250,12 @@
+>>  			>;
+>>  		};
+>>  
+>> +		pinctrl_pca9535: pca9535 {
+>> +			fsl,pins = <
+>> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x17059
+>> +		   >;
+>> +		};
+>> +
+>>  		pinctrl_uart1: uart1grp {
+>>  			fsl,pins = <
+>>  				MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0b1
+>> --
+>> 2.20.1
