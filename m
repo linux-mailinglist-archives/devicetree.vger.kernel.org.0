@@ -2,81 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 84077DA211
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 01:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2D2DA21A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 01:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387412AbfJPXXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 19:23:35 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:39388 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbfJPXXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 19:23:34 -0400
-Received: by mail-pg1-f195.google.com with SMTP id p12so148743pgn.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 16:23:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:from:to:cc:subject:user-agent:date;
-        bh=9c4iNU9+F4vQHS+rhuD2o7V6W1JHSYQ5AwGRnQjJVSU=;
-        b=cpwsSY3cxaC+AvG5nAQgo8Lxf3AgMApPUEHILYJe/GN2QimuVwPsACi/mIlXQ9GJbF
-         lhj/NWfFuUvIrFQFbIkALnnvIA7HiER7GaYJRw+uTshHR/YZ8B9Ksnj6iDowVb0b3eYI
-         YUgErSTcMlz3r6Taf6lfKRgOkl7htWZ1alVD0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
-         :user-agent:date;
-        bh=9c4iNU9+F4vQHS+rhuD2o7V6W1JHSYQ5AwGRnQjJVSU=;
-        b=tZF+lkvM1eYSeyglztt1EM5MZVIaBCsCXIxfrZKJl1FqfeNb+gJu2xd84HQpE9qpLb
-         TwF6U0trT8Awwvf9BCNCm75TRwtMH/THHE/6kkVFmP/jBA8NlyKqVZ17aynKwnKfX3vb
-         6SsBrUxk/tEkZkEONSbG/OWfdMFJq9HsJudUmEkT3uk9Zk0+qKE3RvSEVVar9CGTiBry
-         I/FwD2Q3/2A/ao8N9IgbRaGqM8fMpeOGlVHxboUb4Pn1miVVQwMMP2fxEIukwfWUIx5b
-         vOIhkJy4a//62ZLUDHPk2TTwPUbL12WbVJ+m4ayE65qjNmgtggx9mVK6I4xUTkB2e9ah
-         LmXg==
-X-Gm-Message-State: APjAAAX7NktujF85PbCg85gN8thVw0xxMzlf7si2BbMSuYAVFVQSLuDo
-        /KwjM+Yv8X3OJt1iqICNXjyi2A==
-X-Google-Smtp-Source: APXvYqy2MyiabuqklmTwv+qDXfjWg6yfSVYMYgw5kTlmIQsp6x1u9ITQHeC8Fgp9LYNpgQtsR8bvcg==
-X-Received: by 2002:a17:90a:ab0e:: with SMTP id m14mr597622pjq.78.1571268213946;
-        Wed, 16 Oct 2019 16:23:33 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id 126sm132231pgg.10.2019.10.16.16.23.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2019 16:23:33 -0700 (PDT)
-Message-ID: <5da7a675.1c69fb81.a888.0911@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20191016143142.28854-1-geert+renesas@glider.be>
-References: <20191016143142.28854-1-geert+renesas@glider.be>
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH] of: unittest: Use platform_get_irq_optional() for non-existing interrupt
-User-Agent: alot/0.8.1
-Date:   Wed, 16 Oct 2019 16:23:32 -0700
+        id S1726533AbfJPXZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 19:25:51 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:59849 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726595AbfJPXZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 19:25:51 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E4BBF71D9;
+        Wed, 16 Oct 2019 19:25:49 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 16 Oct 2019 19:25:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=PyvonOcPHFz8rKcmNUUFHGzSVRwDPRH
+        8KZMA87K8oiQ=; b=fKdKzNRokgPjUVrX9f1xJPPL5FlrS4plG8on1QguhO/iuAm
+        Lo5Bj90672xyJdYbVyUa3VgU+Y+2HxL9CkP0vDPDXqrFPk+HkdlPyJ4zBZOv6xbR
+        AC06UzWdsdc6mXOjcwLUnmdpUOsjkr4FOvdCxovZ3hqBTA0w1TGdN2G30G0VO3RL
+        y+DaHnPWZIefPFmx6XBoejbEezNpp+qPUdeq4tbizZE0+K4cemSW7YXaAZ1uQ9J6
+        8Va/knlMgkD3GnObd56nZ5XAmwW1JTMe+VDA8wFrthzeujiwezQhlsCJ5LH0EZHV
+        ajOg3EZJo/sEcpxTujDRiODK+6fjOKw7+beFf4A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=PyvonO
+        cPHFz8rKcmNUUFHGzSVRwDPRH8KZMA87K8oiQ=; b=omb7k96+2VHVf6VjCeeafg
+        0siHqz/O6s1Oy7hU2nmQ2wlCw8vd3jsuThXLkkCGtgONeG8jLeNFNxXPzZe7+OKn
+        T/7e/jEO//cUsQpRyq8dul+GAUJ3agO093ZnPtkKuf73btmkch0y6Efs/TIK6gtP
+        kVQZpB24Tnqbs+4tnsWgzLDWBwGCUPly78dIr64T4MDegNqzj2pE8BaAug0Fm8OK
+        bv6VUc/RuGRqXlPU+DPQzz2eLqBkn0NHbCZFSNi670PzweDU9nYRrT+Od8LsXGTL
+        dx07/zq5jEtosWNBfLbr8XI27LOg+bN/6TW0mlO2mGuCSkWtAjN9cFveoc2MyShw
+        ==
+X-ME-Sender: <xms:_aanXUngCArMrXAA7-s9c4Qrm5auYWXdza9M0WOYns1PrME8q-OgOQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrjeeigddvtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
+    ufhiiigvpedt
+X-ME-Proxy: <xmx:_aanXSOwracCb3LzQKBJVZOovmxxNA0-0f4Zw9_sMVL51RQo6XuC5g>
+    <xmx:_aanXat8h366CpTcUuN8cE1t1VuiwpVN_HSoPB3fEVwg1In-bqXS2w>
+    <xmx:_aanXVw3N8k8rS7lIIEsu9nO1S99HVu_3B09uTkoA1XFM6F3kpdcWQ>
+    <xmx:_aanXTz6edeXMD7h5uZtGS_XNOlxgfyiI49h0Dnq5VCKKbB13GyWCg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id E351AE00BE; Wed, 16 Oct 2019 19:25:48 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.7-360-g7dda896-fmstable-20191004v2
+Mime-Version: 1.0
+Message-Id: <5fc76c3b-4727-4c4b-88a1-59c9618ccb30@www.fastmail.com>
+In-Reply-To: <CACRpkdbmbyNmW8tL_L0agBajomPybXsjn9ix_F5-B3fZnfuW9A@mail.gmail.com>
+References: <20191008044153.12734-1-andrew@aj.id.au>
+ <CACRpkda5cWaA7R3XzyiERCCgwUrjnXd+wCBeKvt-wtjex7wNDg@mail.gmail.com>
+ <2de90789-c374-4821-89f9-5d5f01e7d2d6@www.fastmail.com>
+ <CACRpkdbmbyNmW8tL_L0agBajomPybXsjn9ix_F5-B3fZnfuW9A@mail.gmail.com>
+Date:   Thu, 17 Oct 2019 09:56:45 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Linus Walleij" <linus.walleij@linaro.org>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Johnny Huang" <johnny_huang@aspeedtech.com>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>
+Subject: Re: [PATCH 0/7] pinctrl: Fixes for AST2600 support
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Geert Uytterhoeven (2019-10-16 07:31:42)
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 9efae29722588a35..34da22f8b0660989 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -1121,7 +1121,7 @@ static void __init of_unittest_platform_populate(vo=
-id)
->                 np =3D of_find_node_by_path("/testcase-data/testcase-devi=
-ce2");
->                 pdev =3D of_find_device_by_node(np);
->                 unittest(pdev, "device 2 creation failed\n");
-> -               irq =3D platform_get_irq(pdev, 0);
-> +               irq =3D platform_get_irq_optional(pdev, 0);
->                 unittest(irq < 0 && irq !=3D -EPROBE_DEFER,
 
-This is a test to make sure that irq failure doesn't return probe defer.
-Do we want to silence the error message that we're expecting to see?
 
+On Thu, 17 Oct 2019, at 00:30, Linus Walleij wrote:
+> On Wed, Oct 16, 2019 at 1:42 PM Andrew Jeffery <andrew@aj.id.au> wrote:
+> 
+> > I was hoping to get them into the 5.4 fixes branch: I consider them all fixes
+> 
+> OK I moved them all to fixes.
+
+Thanks.
+
+> 
+> > > I need a shortlist of anything that should go into v5.4 if anything.
+> >
+> > IMO all of them should go into 5.4, as above.
+> 
+> OK
+> 
+> >  It's there something I can do in the future to communicate this better?
+> 
+> Nah it is a complicated process, things need to be done manually
+> at times, overly obsessing with process is counterproductive.
+
+No worries, happy to carry on as is.
+
+Andrew
