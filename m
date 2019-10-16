@@ -2,169 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B95D889D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 08:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A79C8D88D7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 08:59:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388566AbfJPG1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 02:27:23 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:38032 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388555AbfJPG1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 02:27:23 -0400
-Received: by mail-pl1-f194.google.com with SMTP id w8so10759505plq.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 23:27:22 -0700 (PDT)
+        id S2387860AbfJPG7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 02:59:53 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:47001 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387777AbfJPG7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 02:59:53 -0400
+Received: by mail-wr1-f68.google.com with SMTP id o18so26566140wrv.13;
+        Tue, 15 Oct 2019 23:59:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:from:to:cc:subject:user-agent:date;
-        bh=xcdwT4cF2V+pOFpto6g1hLsKYDE91tN3/jlyW1Fe6XM=;
-        b=NDFsVTzR4A7J/IjHujREEahybZdPIx81kKZJfQf9vrZWcp0Xvh0Y3IY/NPtNxtpUTL
-         DL6CDSipP//uBcELpJWx1twdiIirLRhmrMU3hAjrhPoFCkQI69yJKB0L8AzIGdHqS4R2
-         6D8n2hhpUUCEsJ/3hdBIrLYgexAkwibos7Zrg=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=diX73upTDH+Le9kcw7/XCVjA0EDthPi0kI1j7qCDE7U=;
+        b=D45DQTXRZHpHqmNV1ZHx/1jV+zI72KyaocnL5qI5Bhvrm4gLEuEFtVXPXUYWHUfG35
+         fLqAhBs2BjHNKQ05KN9EFlH1euiZStEoZRRO7IMq2A9pM2HV115cXo36Eb4MAh9aOKTu
+         rbYX09lp4sO4fuO/YdzCEurFqJQduJanR1vYdAVt4095ahIb3hjimbmyLZJyo/QPn0V5
+         PQ1E02E0nlbssAYBvHNoZHIu2+ahFhCHowIj/ClyCk2I2DI5+URuXjr7+bHBt1Jl7BN5
+         Y1Yex9kIG9e0r9el3lhHv5C9AJ8x9RIGOQARUt1X7CSZGRdtqFTvMuBsWMSVKiHMjZhy
+         VnzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:from:to:cc:subject
-         :user-agent:date;
-        bh=xcdwT4cF2V+pOFpto6g1hLsKYDE91tN3/jlyW1Fe6XM=;
-        b=QzsrzTshk/4YgJ1lb5GXXdkckYHbF/Ev0HGwJdK0dpVkR0UVD/h4jSIlXUNcl9qkES
-         3vHNTvUvVlIg7PneX25KLHQ9sJPko6I3w8JyXFX6KEy8N+50a62l9+IR0qMKMYYZlmZh
-         gZo98szqvGbI+V+9OYNYYS2PXISHaWZLaSku8ZHapEy2O/WQd24xA5ls7DToME+jap5v
-         szMYDXEFGU7pqb5qyezZHoP8ohQcOzAqqbC//tX0gbtRq61/bpIXQU3/CmnGkW+GenpY
-         oJ8UMEqapm/jS8RIAWS50M5FzV0Xw0ZJuFFxy81zEkrqOPE1TTR8sh99ppHUXqujSEJw
-         3RnA==
-X-Gm-Message-State: APjAAAVpug0sl+jZ03qIqDZhLFjLHy0NGA9xly6E8Joc+JBtWZdvG4ow
-        DL5V8SZJeNCFXLwxkeoL2kcNUA==
-X-Google-Smtp-Source: APXvYqw35UsGC1shtlHLmY97gFEhNOpvQbnF+X0xZdpfm3AC4KGJTc7/ShcSDiJwNixAk6+nO3HRxQ==
-X-Received: by 2002:a17:902:b109:: with SMTP id q9mr39203001plr.306.1571207241975;
-        Tue, 15 Oct 2019 23:27:21 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id v4sm22330420pff.181.2019.10.15.23.27.21
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=diX73upTDH+Le9kcw7/XCVjA0EDthPi0kI1j7qCDE7U=;
+        b=sebAGfZkICGwEQOY4/BVZnAM2x144+Hc7F661/9JM536h39VTvRuGon9hQHqCscden
+         P/jDLoEtYN7bH7xO5u5ANeBF/UOWzWTWx1GkEzFi1NMFL4M7cjMupTZa1i6YaUr/9n5u
+         MWvYVacea97VBaz+cH1+ZPxB6ZTcnKJFDE9/22uUYBFnyvmGJg5NiI3S9rj7f5xCt6Ry
+         L5RLXiTNaiF92VJyDRANZ9gg/vTJCuMcH1K+SHh0lW++zCOuD4r0HEWevQiBs7hiR9iX
+         NV624b97Umn6rw+AI9mrcVlVGlpuP/3e5ogMNxtluuNa/pvVBNKdXI+NQNi9NCocjAJY
+         xqbA==
+X-Gm-Message-State: APjAAAX2q0t+w1Vi6uRHWqk9GT6VhYOlSr3X93FfwW4D6MCxZjBI9UpO
+        GqCh5/bbpYrYPFp4y1Ia52I=
+X-Google-Smtp-Source: APXvYqzw7i7UVTV7xJwRgPRf9mHmCqNLbvW5Tm4FhWaG2fTixmFPnl/QWZqe/Xpc2GrgzM2xBXPoUg==
+X-Received: by 2002:adf:fa87:: with SMTP id h7mr1308017wrr.304.1571209189718;
+        Tue, 15 Oct 2019 23:59:49 -0700 (PDT)
+Received: from localhost ([46.91.226.206])
+        by smtp.gmail.com with ESMTPSA id k24sm6060907wmi.1.2019.10.15.23.59.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2019 23:27:21 -0700 (PDT)
-Message-ID: <5da6b849.1c69fb81.a9b04.1b9f@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        Tue, 15 Oct 2019 23:59:47 -0700 (PDT)
+Date:   Wed, 16 Oct 2019 08:59:45 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Fabrice Gasnier <fabrice.gasnier@st.com>
+Cc:     robh+dt@kernel.org, u.kleine-koenig@pengutronix.de,
+        alexandre.torgue@st.com, mark.rutland@arm.com,
+        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, benjamin.gaignard@st.com,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm-stm32: document pinctrl sleep
+ state
+Message-ID: <20191016065945.GA1296874@ulmo>
+References: <1570193633-6600-1-git-send-email-fabrice.gasnier@st.com>
+ <1570193633-6600-2-git-send-email-fabrice.gasnier@st.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <5d92829e.1c69fb81.d860a.9096@mx.google.com>
-References: <1568411962-1022-1-git-send-email-ilina@codeaurora.org> <1568411962-1022-7-git-send-email-ilina@codeaurora.org> <5d92829e.1c69fb81.d860a.9096@mx.google.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Lina Iyer <ilina@codeaurora.org>, evgreen@chromium.org,
-        linus.walleij@linaro.org, maz@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 06/14] dt-bindings/interrupt-controller: pdc: add SPI config register
-User-Agent: alot/0.8.1
-Date:   Tue, 15 Oct 2019 23:27:20 -0700
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Dxnq1zWXvFF0Q93v"
+Content-Disposition: inline
+In-Reply-To: <1570193633-6600-2-git-send-email-fabrice.gasnier@st.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Stephen Boyd (2019-09-30 15:33:01)
-> Quoting Lina Iyer (2019-09-13 14:59:14)
-> > In addition to configuring the PDC, additional registers that interface
-> > the GIC have to be configured to match the GPIO type. The registers on
-> > some QCOM SoCs are access restricted, while on other SoCs are not. They
-> > SoCs with access restriction to these SPI registers need to be written
-> > from the firmware using the SCM interface. Add a flag to indicate if the
-> > register is to be written using SCM interface.
-> >=20
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Lina Iyer <ilina@codeaurora.org>
-> > ---
-> >  .../devicetree/bindings/interrupt-controller/qcom,pdc.txt   | 13 +++++=
-+++++++-
-> >  1 file changed, 12 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/qco=
-m,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc=
-.txt
-> > index 8e0797c..e329f8d 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.t=
-xt
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.t=
-xt
-> > @@ -24,6 +24,9 @@ Properties:
-> >         Usage: required
-> >         Value type: <prop-encoded-array>
-> >         Definition: Specifies the base physical address for PDC hardwar=
-e.
-> > +                   Optionally, specify the PDC's GIC interface registe=
-rs that
-> > +                   need to be configured for wakeup capable GPIOs rout=
-ed to
-> > +                   the PDC.
-> > =20
-> >  - interrupt-cells:
-> >         Usage: required
-> > @@ -50,15 +53,23 @@ Properties:
-> >                     The second element is the GIC hwirq number for the =
-PDC port.
-> >                     The third element is the number of interrupts in se=
-quence.
-> > =20
-> > +- qcom,scm-spi-cfg:
-> > +       Usage: optional
-> > +       Value type: <bool>
-> > +       Definition: Specifies if the SPI configuration registers have t=
-o be
-> > +                   written from the firmware. Sometimes the PDC interf=
-ace
-> > +                   register to the GIC can only be written from the fi=
-rmware.
-> > +
-> >  Example:
-> > =20
-> >         pdc: interrupt-controller@b220000 {
-> >                 compatible =3D "qcom,sdm845-pdc";
-> > -               reg =3D <0xb220000 0x30000>;
-> > +               reg =3D <0 0x0b220000 0 0x30000>, <0 0x179900f0 0 0x60>;
-> >                 qcom,pdc-ranges =3D <0 512 94>, <94 641 15>, <115 662 7=
->;
-> >                 #interrupt-cells =3D <2>;
-> >                 interrupt-parent =3D <&intc>;
-> >                 interrupt-controller;
-> > +               qcom,scm-spi-cfg;
-> >         };
->=20
-> This overlaps register region with the mailbox node. That node is
-> actually a pile of random "CPU" registers used to ping remote processors
-> and apparently control how the PDC interacts with the GIC. Maybe this
-> can be changed to a phandle and then the driver can interogate the
-> phandle to determine if it's the SCM firmware or if it's the shared
-> mailbox register? If it's a shared mailbox then it can write to it at
-> the offset it knows about (because it's sdm845 compatible specific) and
-> if it's SCM then it can use the hardcoded address as well?
->=20
-> Basically I'm saying that it just needs a phandle.
->=20
->         qcom,spi-cfg =3D <&scm>;
->=20
-> or
->=20
->         qcom,spi-cfg =3D <&mailbox>;
->=20
-> and then driver knows how to use that to write into random registers.
-> Maybe we can have an API in regmap that finds the regmap for a given
-> device node? That way we don't have to funnel everything through syscon
-> for this.
->=20
->         of_get_regmap(struct device_node *np, const char *name);
->=20
-> Where NULL name means "first available" and then do the devres search
-> otherwise for a device that has the matching node pointer.
->=20
 
-I had another idea the other day. Maybe a better approach would be to
-make the mailbox or SCM code an interrupt controller with the
-appropriate functions to poke the bits necessary to make the interrupts
-work. Then we can make it a chip in the hierarchy between the GIC and
-PDC and make the interrupts call through from PDC to GIC. The locking
-could be handled in each respective driver if necessary, and otherwise
-we don't have to use a regmap or remap the same registers (except we may
-need to describe if the parent is the mailbox node or the scm fimware
-node).
+--Dxnq1zWXvFF0Q93v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Oct 04, 2019 at 02:53:51PM +0200, Fabrice Gasnier wrote:
+> Add documentation for pinctrl sleep state that can be used by
+> STM32 timers PWM.
+>=20
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-stm32.txt | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+
+Applied, thanks.
+
+Thierry
+
+--Dxnq1zWXvFF0Q93v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2mv98ACgkQ3SOs138+
+s6HF3BAAmYT8qlTIl02DuYkZiIEEQt9hsB26Q0G5lb9hNoOoKx6lZQ+fH6rl2YGG
+4qNTgV7tO6d2L3ip18Khcwjix/qAMIquiQS7X98cRjYA72kq3zwY5hj6pRxwF0Z5
+qdY0aTeeN2YpT9rhOR0vjmMfVGDgds9wfCLZXvkYGJ1eIHlrWD7MTDBcQeResxLk
+IGpnF6avlEnIlnaVKhUExslBOfivCtPho2GT8mXRQwR2UEjT2hQwJf+Sx98retQ9
+C9rrKMP900bMgeyBzQ0AZbZk1/U6wW1yeJaIITR0wJFLN+Gg+FMS+lb/fhGYMKwu
+9uQUNAYK03J0FUEZp8Esp1W36ua2XVlmEd+7meqo1OQXBG3uVPpIwTJrBmbPON7s
+Q5wHH96B8zjwGdwaVXi/opEDrRezm5c3Ek2bE5cuKfE1grspT0TIqrxmfKnJjzEY
+p12kGLnyp7UCaRV8EpUlVDo74koFoMtsCJMNB+PkeZfJEcpoAE1P+gJtt7mWzrXa
+dH/ZR6ezffrGbHvH9xKqWLoYSBv1r6PbAiNTJLFCzfWUGBujwQut3bTMNJQoEC4Y
+cYPLZnLDnw4Sv7tRoF3nlz3zI5RmQy6qQ0ycz/0CXNv1+W5LVgBa1izwHJ5g1Civ
++vcMdBtQEl6PC4APpHq3jfKFRnO/LOfYRuh8YFl0IwUa9dURl2Q=
+=xIm6
+-----END PGP SIGNATURE-----
+
+--Dxnq1zWXvFF0Q93v--
