@@ -2,101 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 362EDD919B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A44F0D91A1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391407AbfJPMxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:53:51 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:36103 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389772AbfJPMxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:53:51 -0400
-Received: by mail-qt1-f196.google.com with SMTP id o12so35916180qtf.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:53:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=P/sRs2+kPjcvwd2trmOBWPVdM0AxawvVsZ+s8sAO7/4=;
-        b=TsPMzUgWcdtdkasHhYq577HFiCkshIqaxslChEP+do1RFpTIxW2jQRhCLSPwbd5x8i
-         U7niU6BZWK/agFFkyA+6MFgZbwkW60EosnfY+llAQGBocfTcp4KRF8J/zJn8tfy+Xn4R
-         ND/tIJ4q5KZ7QKtwldwq2k59a5s7at2G3Hi8BXC6iZm33w3oVf21uxvJWvsoT6eTs4Vn
-         WDL+yMSxQwFiUsYSJ7A7I+v43eHl0YHYHoIzhjWanzIpiZ7RpplDgnbKGyR9Qf/+l5dt
-         /jBMTe3E/dc+CJIqaHslN4E+fQmzn4yXKprR+7pYhIDJP/ZUFpJZXfCOGoH5zVOCAejO
-         Ui3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P/sRs2+kPjcvwd2trmOBWPVdM0AxawvVsZ+s8sAO7/4=;
-        b=dT2OLkkhhWW8EQZ1Cnma9qy57IA0Q/3EE9IaTTJAb8dZj1E8K+4jcfemMyRlh7Gofr
-         Vfws864CmdLb0KEtS3UvpdL2DIDxG9YUD+0BqW9JkDUq5BQgm5mnANGK0WWVBYl/t13S
-         SLTPGebZ/wdlf0YLCuwjG7/mW3fyO0ICnh+h74oyKfbaJoOMyHfYNFMU251G2sn03Xls
-         +sUaTk0IjDJYCWcvCiQxHPLJ+0cycaAOe+bFZUhiT2OEkbMRYh0gyNTP8cxNzzm2fruN
-         sWiSg5pkjdT477fpilwLD8II7hmHTF7GHBdQnaICOSOAwsgogHzWZxkPuzPiaC+B4C0s
-         +tRg==
-X-Gm-Message-State: APjAAAXZcHL4eX5Dp4f8jL5oec+ZgfaMBmGvFNsD4N4TgpuFwZiO4eZp
-        qSfTUFxgjk2J21d6W+TI7tXD7I0jMXP1b+TxlrVi5A==
-X-Google-Smtp-Source: APXvYqxRmpmcyaCxmLmkEi0JWpxgYlv/RpJs/yNT3A1lP3hXCkiugyGea31zdLuV3cm9n/Bm5GfFph4HfEVVYNrBVag=
-X-Received: by 2002:ac8:3ac6:: with SMTP id x64mr33736244qte.51.1571230430797;
- Wed, 16 Oct 2019 05:53:50 -0700 (PDT)
+        id S2391570AbfJPMzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:55:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727881AbfJPMzr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 08:55:47 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A5BA621928;
+        Wed, 16 Oct 2019 12:55:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571230546;
+        bh=rbNfYXot6B4phReyHmLnQcdB4k3mkqDFtqJzuIKNx7k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XdSjKEi9tZBvfFVluQBY8ZfCuOD+oIR57IeVyfwjlx6GIgIi3A+DhZkxbR/h1DASb
+         1ctAvNbkHWVLFXCpiRE7G5GbHBKiI1I4PaowB7mc/J2DnT1sjm30bW8acSAmRzvp4t
+         arDx5HApCJcjpawgUhzMuhiVHzeJ7c6Nmi/p7YAQ=
+Received: by mail-qk1-f172.google.com with SMTP id e66so2039022qkf.13;
+        Wed, 16 Oct 2019 05:55:46 -0700 (PDT)
+X-Gm-Message-State: APjAAAWjRqzxT2mKsLXqhGAxBxuCqsKc/0Q8UKmlISABSsEH8/1FMbUs
+        hV6IIpPB4SABZeyLkGOu1sVio+A7Twj+2BvBdQ==
+X-Google-Smtp-Source: APXvYqyHpwl4TJsuFh51VNkoTIXF81m9R20b8MuJFddby8fvhPaJ+qBhaekdeVTmRlfflsNXkX7+A/Hlapw8uVeC2/0=
+X-Received: by 2002:a37:98c1:: with SMTP id a184mr5337384qke.119.1571230545772;
+ Wed, 16 Oct 2019 05:55:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191004012525.26647-1-chris.packham@alliedtelesis.co.nz>
- <20191004012525.26647-3-chris.packham@alliedtelesis.co.nz>
- <CACRpkdYWLTjiSQo_VTeReL1CfEO3h_8ONbdCk=PD1x+oc2ggCg@mail.gmail.com> <628c495994a0648d956bc663ea8fdcfa6f439802.camel@alliedtelesis.co.nz>
-In-Reply-To: <628c495994a0648d956bc663ea8fdcfa6f439802.camel@alliedtelesis.co.nz>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 16 Oct 2019 14:53:39 +0200
-Message-ID: <CACRpkdb8o9UU0W1FJ4=KYiV3CUEUkXbR4CFY7XKdJG2O8sSJFA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] gpio: Add xgs-iproc driver
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "bcm-kernel-feedback-list@broadcom.com" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "rjui@broadcom.com" <rjui@broadcom.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Richard Laing <Richard.Laing@alliedtelesis.co.nz>,
-        "sbranden@broadcom.com" <sbranden@broadcom.com>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
+References: <20191010175648.10830-1-rjones@gateworks.com> <20191014184921.22524-1-rjones@gateworks.com>
+ <20191014184921.22524-2-rjones@gateworks.com>
+In-Reply-To: <20191014184921.22524-2-rjones@gateworks.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 16 Oct 2019 07:55:34 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+yspnFz5PTW9WU1LRgKv5SpmsBuPs-4qCgjYfaLvoWwg@mail.gmail.com>
+Message-ID: <CAL_Jsq+yspnFz5PTW9WU1LRgKv5SpmsBuPs-4qCgjYfaLvoWwg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: imu: add fxos8700 imu binding
+To:     Robert Jones <rjones@gateworks.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 14, 2019 at 12:08 AM Chris Packham
-<Chris.Packham@alliedtelesis.co.nz> wrote:
-Me:
-
-> > I think this should be a chained interrupt handler (see below how to
-> > register it).
-> >
-> > See e.g. drivers/gpio/gpio-ftgpio010.c for an example:
-> > change function prototype, no return value, use
-> > chained_irq_enter/exit(irqchip, desc); etc.
-> >
+On Mon, Oct 14, 2019 at 1:49 PM Robert Jones <rjones@gateworks.com> wrote:
 >
-> I don't think a chained interrupt handler can work. The problem is that
-> the parent irq on the SoC is shared between the gpio and uart0 (why
-> it's this way with two IP blocks in the same SoC I'll never know). When
-> a chained interrupt handler is registered I lose the serial interrupts.
-> Please correct me if there is some way to make the chained handlers
-> deal with sharing interrupts.
+> This adds documentation for the Freescale FXOS8700 Inertial Measurement Unit
+> device-tree bindings.
+>
+> Signed-off-by: Robert Jones <rjones@gateworks.com>
+> ---
+>  .../devicetree/bindings/iio/imu/nxp,fxos8700.yaml  | 76 ++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
 
-Aha I see. Look at:
-drivers/gpio/gpio-mt7621.c
-
-And how that driver sets the parent handler to NULL in order
-to still exploit the core helpers.
-
-I will refactor this to some more elegant API at some point when
-I get there, for now follow the example of mt7621.
-
-Yours,
-Linus Walleij
+Reviewed-by: Rob Herring <robh@kernel.org>
