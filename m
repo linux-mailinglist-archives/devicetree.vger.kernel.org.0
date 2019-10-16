@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E69D9140
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEEE0D914C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:45:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727991AbfJPMou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:44:50 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:32973 "EHLO
+        id S2393229AbfJPMpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:45:51 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:38802 "EHLO
         mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726985AbfJPMou (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:44:50 -0400
-Received: by mail-qk1-f194.google.com with SMTP id x134so22594091qkb.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:44:49 -0700 (PDT)
+        with ESMTP id S2393228AbfJPMpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:45:50 -0400
+Received: by mail-qk1-f194.google.com with SMTP id p4so2025113qkf.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:45:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=4K7B+uLfKEBGyGYLI2L9ifLhMu932uDK9Ftu5vsTLNM=;
-        b=TdEFBc1a1GhmOYAW2VtSm1o1gnQZkZwCc844SMM9XvDj5O96l/doIHiYscKqhjxk8c
-         uunW6zvZyzSv90+FN0ByJ81MsiIQ+EdX1idYLnIEfIH29ecKHXYSLlWeO0rSBlRw30zJ
-         xk43RxIDcXygry3uhKq1xbOt6FK7sHVII7pGy//MlKP4rMGy9xMxxjEdj/9VUV4RZPZx
-         Yr/uPni/tyEG2zRjgof177N3oFQ4bX8meJn/QWXrdELUf0J8ypfwOa3ne05f1/BWGGMg
-         WgQHfe13moWhf+DxVSs2o4pqtcK49LvS5YhXM0ILQv39atV1VQ088PQtUKIm821tofwL
-         yYZQ==
+        bh=i4Tlr8aaqHcqUHLIi1olwgg1FH4Wnc+VjJ6hwR+CHZ4=;
+        b=UKDHkw+AsWNstYEdbran6nGCcRGuySyOhWzrs1M+lF6UxheGXfo+LcAWpEEbBx+GjI
+         HjCtcPXBKQn4jwJy1cZJVsUKfW7IO6g+YkpfauBjo4HyT9qSp02EWBGyi3sOIeJrqugJ
+         aNGP9AwBpU3FcCHdLXdwuvd0t0yyMgPBETbTKtu2DJj+lWiGvu+3fDWYAeAUK+WOEA4H
+         F8rc+vcjQUPehy7NV4y5BA6xRXQqtAm5Nw1nm8zc582Y3Dcivh6Z7Y2lxO5s11cE/WnM
+         Jkct9SJXs7YpPuGDgp+lQ+hSbBaEXPMKYZarrYIGCt8VYRjlw3XqOdiH5adCuAlguYgC
+         XyWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=4K7B+uLfKEBGyGYLI2L9ifLhMu932uDK9Ftu5vsTLNM=;
-        b=pcwVIds0O8ycQUi83chRzPRUMDaseJYXwB90JUypEmmeYN7vv9vqnnLIV9ZLKi4equ
-         VbYhH2aBXqrcYaJwTM6233vjLxmCLSeHs1AEpElikSrJYr/NoJt7+bRQHt/v8TVLkNim
-         5ljhreGJ0hcWuozQwdJT9jKStHCIAWf5ivGIEwl3UsCdTxSwINrf3wUBk5KIQB3brrUO
-         /WtskPX+q+nGUhV19chUs44BDhX7gaosAe+wyN4bqkXBLDJeyhFbwe0RiLGiUk5vG8/I
-         VNhQocz4TeD7GMrtKs3gGwv/HHVDgKGzluLYl3VShrKbEncwMH+Ol03hdqsyXRYqCOeH
-         oLag==
-X-Gm-Message-State: APjAAAWmJMAxhc5vrK/xTzIV9IsvjbHegF0klcW9VJlnHxNoFfhRF1qP
-        2o54yyvAQ+XJoA4JLNLfmxjGb5pQ5vAupfgmO0YaNA==
-X-Google-Smtp-Source: APXvYqwTM8BkVjUwYymUoCEI4D83P7/A66wqA+dK+mNJipK7M/FV7PxzP6J1Gjw69MjqnyvjKRuCo11TD2KiTz+ravM=
-X-Received: by 2002:a37:bf02:: with SMTP id p2mr41057686qkf.42.1571229889157;
- Wed, 16 Oct 2019 05:44:49 -0700 (PDT)
+        bh=i4Tlr8aaqHcqUHLIi1olwgg1FH4Wnc+VjJ6hwR+CHZ4=;
+        b=m6G75yC9rVSbbXVhFmc7JAl3aCvlmCPUss5288rDVXgpzWyXO5mxH93K//KWQttzp+
+         qHA8wK4aO3yoXO3EJZgjOC19iFUbHUZFdJd6ZeKt1GWdNLWFX42ICBO4OubwxQ+7zq9a
+         S8F7AhWhwlTH7tkgXSR2yiefMDjDvPO014j32x0ozmpncWlXgOOlD+/Aw0rap2YYJiBF
+         z6nO+Bwwj8Bh0bNjicWB2OTijzM0Qv6pkWpzKNKt3hAdjFBk4QeoesJAR1DeG58WL4j1
+         6xIBu1EEjkL8ouyRkkeTIUrcMkcsrDk5zbXnVUWXSmhG8nflC8rxg/GuYf8PIE4wPQka
+         fLzg==
+X-Gm-Message-State: APjAAAUBEJ/XFUhFr8Wtg1MFohSla28fAtccewm+x2SFMC1EVNY2iASD
+        B0cpuHAzCej3buGolaExh7icfrHxkkY2SIiBFn0VGFnL
+X-Google-Smtp-Source: APXvYqwOzWo5VbcvN0U8TDnN+1xwjUKgMyRheHPwsr6x9P70GL0NWL/tbYoCuW4aAJr51oKXjooJFWTyMu0zdWYL5a0=
+X-Received: by 2002:a05:620a:751:: with SMTP id i17mr39890335qki.340.1571229949254;
+ Wed, 16 Oct 2019 05:45:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191015091708.7934-1-jay.xu@rock-chips.com> <20191015091708.7934-2-jay.xu@rock-chips.com>
-In-Reply-To: <20191015091708.7934-2-jay.xu@rock-chips.com>
+References: <20191015091708.7934-1-jay.xu@rock-chips.com> <20191015091708.7934-3-jay.xu@rock-chips.com>
+In-Reply-To: <20191015091708.7934-3-jay.xu@rock-chips.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 16 Oct 2019 14:44:37 +0200
-Message-ID: <CACRpkda+gVxBHU=UZTqfgasOYKpGJ4QSp07-TH-QrTQ7Urm5DA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: rockchip: add rk3308 SoC support
+Date:   Wed, 16 Oct 2019 14:45:38 +0200
+Message-ID: <CACRpkdbtfamz4H-RNUfdSz7eAOzRMgu-QPbVAVZKtC+Lg5VP9g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pinctrl: rockchip: add rk3308 SoC support
 To:     Jianqun Xu <jay.xu@rock-chips.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -65,13 +65,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, Oct 15, 2019 at 11:17 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
 
-> Add rk3308 SoC support to rockchip pinctrl.
+> This patch do support pinctrl for RK3308 SoCs.
 >
-> Acked-by: Rob Herring <robh@kernel.org>
 > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 > Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
 
-Patch applied.
+Patch applied!
 
 Yours,
 Linus Walleij
