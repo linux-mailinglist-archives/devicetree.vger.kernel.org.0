@@ -2,155 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C5ED87A2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 06:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99913D87D4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 07:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391136AbfJPEqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 00:46:12 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50834 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391117AbfJPEqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 00:46:12 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9G4k1Q9130349;
-        Tue, 15 Oct 2019 23:46:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571201161;
-        bh=2e1ep+jz9ThULjwuPHURE/WBfxKsgQ0iJmPcL/PVeZo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=SfJcnijlf1XwiD6nqRxlO3e9zzuqWTguFxaNWOVio66d/ssT0/dJd4IzEZMiEqzea
-         KRFef42cOE1obpQC6z4BX4mf0X6fh08o33i9nOX+whSfsc1OK5JIeVQqRZuvJSc7ph
-         cP+UWXKr3skoqMbAefp3lWgOo0a1IVNdamID15UA=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9G4k1NQ001573
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Oct 2019 23:46:01 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 15
- Oct 2019 23:45:54 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 15 Oct 2019 23:46:00 -0500
-Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9G4jqTh107770;
-        Tue, 15 Oct 2019 23:45:54 -0500
-Subject: Re: [RFC PATCH 02/21] dt-bindings: PCI: Endpoint: Add DT bindings for
- PCI EPF Device
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Jonathan Corbet <corbet@lwn.net>, Jon Mason <jdmason@kudzu.us>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Allen Hubbe <allenbh@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-ntb@googlegroups.com>
-References: <20190926112933.8922-1-kishon@ti.com>
- <20190926112933.8922-3-kishon@ti.com> <20191015184243.GA10228@bogus>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <af3483e0-0533-4b13-64d1-b2cd6fedf514@ti.com>
-Date:   Wed, 16 Oct 2019 10:15:23 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727484AbfJPFNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 01:13:42 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:45743 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726365AbfJPFNm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 01:13:42 -0400
+Received: by mail-pg1-f195.google.com with SMTP id r1so12348748pgj.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 22:13:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=w+Rj9dDSu4Prlbf7aohHd+8lxC4U2wt8p6F4POWRpt8=;
+        b=qJMe9z87QwXlwlOeBABdBYMVJvXMNjg8iOqa73HijnEX8AuDrSIp1A6WWgQDbiS4N6
+         /xRt5gqnGLLUJHcPK1EHNb9U/G8bv9WDNNUSrfATjZqSf/wuOaI2IuRrlTnneAVlBlSv
+         1mW9oCAnlRrsEmfNf6MN0WlqIBhmmWZ5AGgX8hbwka6xRHrormrpqzhVBKVJAWe+G3x2
+         uY4R96H4PT8tSdVFYSzTvPCI+QH6rM6n5aLW2OQvvneC2/+hdkygZhj5bKXaOYNKbl0P
+         wOu/rnuRHiqokIMAI5B8hAS2jyptFyVjrJYj97V7iq+0/l+iSkdo5WBsotUxB/UC05nf
+         m8Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=w+Rj9dDSu4Prlbf7aohHd+8lxC4U2wt8p6F4POWRpt8=;
+        b=FhKn9IOHKzZoSId0S8AUj64Frc+r7bzCWjZ/fJGd80GPAdLoQJeC2kDWqfp1G4BEOT
+         Ny3U0bXpLqts+gS+q79ZK2GpTugh6wmuCb85RL0Tn2Vo+f2Stg7l0EilNWa0s/N5lkUT
+         F2ApaZ3nSL+Ai6phtN3YxTUjggci3Mjahyz8FLE27+eFl0PZTNwuXuWHHuVBfuPJimQu
+         XuAujWd2tgZUEfktIdX4Sq18agtw6MmymeWU6nReXNwRXgiFmldG2lYzvzVKKxHRXS/V
+         fO7JeAmIczJAS0WswZV0NO9+gfKkpOSf00d0nfaWoZHEScGdfz49+FJp+vSzyv9XnJsB
+         gWdA==
+X-Gm-Message-State: APjAAAUzSAVKRE5iJudSeJCpOdeuS9U/M/xvRZxJV/AlbzbJlrDBcM2V
+        VpayEmUp0Uhllp4znciRjsIJ7A==
+X-Google-Smtp-Source: APXvYqxuNTGN2Dq2fak0p1ansmU90Xg0vdIQGYqqBDnCMBnDUbyxkrVukendgHwS0p5cV7WGoEEDjw==
+X-Received: by 2002:a17:90a:6346:: with SMTP id v6mr2652941pjs.4.1571202819923;
+        Tue, 15 Oct 2019 22:13:39 -0700 (PDT)
+Received: from localhost ([122.172.151.112])
+        by smtp.gmail.com with ESMTPSA id o11sm20085141pgp.13.2019.10.15.22.13.38
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 15 Oct 2019 22:13:38 -0700 (PDT)
+Date:   Wed, 16 Oct 2019 10:43:36 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 06/17] dt-bindings: cpufreq: Add binding for NVIDIA
+ Tegra20/30
+Message-ID: <20191016051336.oeyz56sdh3cae5yn@vireshk-i7>
+References: <20191015211618.20758-1-digetx@gmail.com>
+ <20191015211618.20758-7-digetx@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20191015184243.GA10228@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191015211618.20758-7-digetx@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16-10-19, 00:16, Dmitry Osipenko wrote:
+> Add device-tree binding that describes CPU frequency-scaling hardware
+> found on NVIDIA Tegra20/30 SoCs.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../cpufreq/nvidia,tegra20-cpufreq.txt        | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/nvidia,tegra20-cpufreq.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/nvidia,tegra20-cpufreq.txt b/Documentation/devicetree/bindings/cpufreq/nvidia,tegra20-cpufreq.txt
+> new file mode 100644
+> index 000000000000..daeca6ae6b76
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/nvidia,tegra20-cpufreq.txt
+> @@ -0,0 +1,56 @@
+> +Binding for NVIDIA Tegra20 CPUFreq
+> +==================================
+> +
+> +Required properties:
+> +- clocks: Must contain an entry for the CPU clock.
+> +  See ../clocks/clock-bindings.txt for details.
+> +- operating-points-v2: See ../bindings/opp/opp.txt for details.
+> +- #cooling-cells: Should be 2. See ../thermal/thermal.txt for details.
+> +
+> +For each opp entry in 'operating-points-v2' table:
+> +- opp-supported-hw: Two bitfields indicating:
+> +	On Tegra20:
+> +	1. CPU process ID mask
+> +	2. SoC speedo ID mask
+> +
+> +	On Tegra30:
+> +	1. CPU process ID mask
+> +	2. CPU speedo ID mask
+> +
+> +	A bitwise AND is performed against these values and if any bit
+> +	matches, the OPP gets enabled.
+> +
+> +- opp-microvolt: CPU voltage triplet.
+> +
+> +Optional properties:
+> +- cpu-supply: Phandle to the CPU power supply.
+> +
+> +Example:
+> +	regulators {
+> +		cpu_reg: regulator0 {
+> +			regulator-name = "vdd_cpu";
+> +		};
+> +	};
+> +
+> +	cpu0_opp_table: opp_table0 {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp@456000000 {
+> +			clock-latency-ns = <125000>;
+> +			opp-microvolt = <825000 825000 1125000>;
+> +			opp-supported-hw = <0x03 0x0001>;
+> +			opp-hz = /bits/ 64 <456000000>;
+> +		};
+> +
+> +		...
+> +	};
+> +
+> +	cpus {
+> +		cpu@0 {
+> +			compatible = "arm,cortex-a9";
+> +			clocks = <&tegra_car TEGRA20_CLK_CCLK>;
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +			cpu-supply = <&cpu_reg>;
+> +			#cooling-cells = <2>;
+> +		};
+> +	};
 
+LGTM.
 
-On 16/10/19 12:12 AM, Rob Herring wrote:
-> On Thu, Sep 26, 2019 at 04:59:14PM +0530, Kishon Vijay Abraham I wrote:
->> Add device tree bindings for PCI endpoint function device. The
->> nodes for PCI endpoint function device should be attached to
->> PCI endpoint function bus.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  .../bindings/pci/endpoint/pci-epf.txt         | 28 +++++++++++++++++++
->>  1 file changed, 28 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
-> 
-> This and the previous patch for the bus should be combined and please 
-> convert to a schema.
-
-Sure Rob. Thanks for the review.
-
--Kishon
-> 
->>
->> diff --git a/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt b/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
->> new file mode 100644
->> index 000000000000..f006395fd526
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pci/endpoint/pci-epf.txt
->> @@ -0,0 +1,28 @@
->> +PCI Endpoint Function Device
->> +
->> +This describes the generic bindings to be used when a device has to be
->> +exposed to the remote host over PCIe. The device could be an actual
->> +peripheral in the platform or a virtual device created by the software.
->> +
->> +epcs : phandle to the endpoint controller device
->> +epc-names : the names of the endpoint controller device corresponding
->> +	    to the EPCs present in the *epcs* phandle
-> 
-> Other than the NTB case, I'd expect the parent device to be the 
-> controller. Let's make NTB the exception...
-> 
-> 
->> +vendor-id: used to identify device manufacturer
->> +device-id: used to identify a particular device
->> +baseclass-code: used to classify the type of function the device performs
->> +subclass-code: used to identify more specifically the function of the device
-> 
-> Are these codes standard?
-> 
-> Powerpc has "class-code" already...
-> 
->> +subsys-vendor-id: used to identify vendor of the add-in card or subsystem
-> 
-> Powerpc has "subsystem-vendor-id" already...
-> 
->> +subsys-id: used to specify an id that is specific to a vendor
->> +
->> +Example:
->> +Following is an example of NTB device exposed to the remote host.
->> +
->> +ntb {
-> 
-> This is going to need some sort of addressing (which implies 'reg')? If 
-> not, I don't understand why you have 2 levels.
-> 
->> +	compatible = "pci-epf-ntb";
->> +	epcs = <&pcie0_ep>, <&pcie1_ep>;
->> +	epc-names = "primary", "secondary";
->> +	vendor-id = /bits/ 16 <0x104c>;
->> +	device-id = /bits/ 16 <0xb00d>;
-> 
-> These have a long history in OF and should be 32-bits (yes, we've let 
-> some cases of 16-bit creep in).
-> 
->> +	num-mws = <4>;
-> 
-> Doesn't this apply to more than NTB?
-> 
-> Can't you just get the length of 'mws-size'?
-> 
->> +	mws-size = <0x100000>, <0x100000>, <0x100000>, <0x100000>;
-> 
-> Need to support 64-bit sizes?
-> 
->> +};
->> -- 
->> 2.17.1
->>
+-- 
+viresh
