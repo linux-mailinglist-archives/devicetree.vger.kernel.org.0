@@ -2,107 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9428D8ADF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52B13D8B0E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391578AbfJPI1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:27:08 -0400
-Received: from smtp2.goneo.de ([85.220.129.33]:55104 "EHLO smtp2.goneo.de"
+        id S2388727AbfJPIdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:33:35 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:44302 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726092AbfJPI1I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 04:27:08 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by smtp2.goneo.de (Postfix) with ESMTP id 6F2A823F823;
-        Wed, 16 Oct 2019 10:27:05 +0200 (CEST)
-X-Virus-Scanned: by goneo
-X-Spam-Flag: NO
-X-Spam-Score: -3.082
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.082 tagged_above=-999 tests=[ALL_TRUSTED=-1,
-        AWL=-0.182, BAYES_00=-1.9] autolearn=ham
-Received: from smtp2.goneo.de ([127.0.0.1])
-        by localhost (smtp2.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id w3S4VUh7oJUr; Wed, 16 Oct 2019 10:27:04 +0200 (CEST)
-Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
-        by smtp2.goneo.de (Postfix) with ESMTPA id 17AFD23FF79;
-        Wed, 16 Oct 2019 10:27:04 +0200 (CEST)
-From:   Lars Poeschel <poeschel@lemonage.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "GitAuthor: Lars Poeschel" <poeschel@lemonage.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/3] auxdisplay: lcd2s DT binding doc
-Date:   Wed, 16 Oct 2019 10:26:47 +0200
-Message-Id: <20191016082654.6173-1-poeschel@lemonage.de>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191016082430.5955-1-poeschel@lemonage.de>
-References: <20191016082430.5955-1-poeschel@lemonage.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2388364AbfJPIdf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 04:33:35 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B98321A0501;
+        Wed, 16 Oct 2019 10:33:34 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 48A391A052D;
+        Wed, 16 Oct 2019 10:33:31 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 166AA402B3;
+        Wed, 16 Oct 2019 16:33:27 +0800 (SGT)
+From:   Peter Chen <peter.chen@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, linux-imx@nxp.com,
+        Peter Chen <peter.chen@nxp.com>
+Subject: [PATCH 1/1] ARM: dts: imx6ul-14x14-evk.dtsi: configure USBOTG1 ID pinctrl
+Date:   Wed, 16 Oct 2019 16:31:05 +0800
+Message-Id: <1571214665-26402-1-git-send-email-peter.chen@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding doc for the modtronix lcd2s auxdisplay driver. It also
-adds modtronix to the list of known vendor-prefixes.
+Without configuring this pinctrl, the ID value can't be got correctly,
+then, the dual-role switch can't work well.
 
-Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
+Reviewed-by: Jun Li <jun.li@nxp.com>
+Signed-off-by: Peter Chen <peter.chen@nxp.com>
 ---
- .../bindings/auxdisplay/modtronix,lcd2s.txt   | 24 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- 2 files changed, 26 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.txt
+ arch/arm/boot/dts/imx6ul-14x14-evk.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.txt b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.txt
-new file mode 100644
-index 000000000000..2d4235482658
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.txt
-@@ -0,0 +1,24 @@
-+DT bindings for the LCD2S Character LCD Display
-+
-+The LCD2S is a Character LCD Display manufactured by Modtronix Engineering.
-+The display supports a serial I2C and SPI interface. The driver currently
-+only supports the I2C interface.
-+
-+Required properties:
-+  - compatible: Must contain "modtronix,lcd2s",
-+  - reg: I2C bus address of the display,
-+  - display-height-chars: Height of the display, in character cells,
-+  - display-width-chars: Width of the display, in character cells.
-+
-+Example:
-+
-+i2c1: i2c@0 {
-+	compatible = "ti,omap3-i2c";
-+
-+	lcd2s: auxdisplay@28 {
-+		reg = <0x28>;
-+		compatible = "modtronix,lcd2s";
-+		display-height-chars = <4>;
-+		display-width-chars = <20>;
+diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+index c2a9dd57e56a..ed3d993c25f7 100644
+--- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
++++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+@@ -266,6 +266,8 @@
+ 
+ &usbotg1 {
+ 	dr_mode = "otg";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usb_otg1>;
+ 	status = "okay";
+ };
+ 
+@@ -499,6 +501,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_usb_otg1: usbotg1grp {
++		fsl,pins = <
++			MX6UL_PAD_GPIO1_IO00__ANATOP_OTG1_ID	0x17059
++		>;
 +	};
-+};
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 967e78c5ec0a..b853974956f1 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -603,6 +603,8 @@ patternProperties:
-     description: MiraMEMS Sensing Technology Co., Ltd.
-   "^mitsubishi,.*":
-     description: Mitsubishi Electric Corporation
-+  "^modtronix,.*":
-+    description: Modtronix Engineering
-   "^mosaixtech,.*":
-     description: Mosaix Technologies, Inc.
-   "^motorola,.*":
++
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+ 			MX6UL_PAD_SD1_CMD__USDHC1_CMD     	0x17059
 -- 
-2.23.0
+2.17.1
 
