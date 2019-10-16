@@ -2,192 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD55D8CEA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CB89D8D59
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729617AbfJPJvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 05:51:18 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53734 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729546AbfJPJvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:51:18 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9G9pB1C025774;
-        Wed, 16 Oct 2019 04:51:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571219471;
-        bh=P0xrDOLVQ/vankA69ekSgNkW1nIAIUG0Uxb4YWDc/OA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=HeMkc98qTYxa1FlugAOz1mMMT13HSrf0hBGKgz5ZkDkIxYz7Os/2IAWQKauxxTMwd
-         UtNG5GuUyLAWf4J6+jfM5CPAkFGhLZlGMq7YQquY4MgfJjR5CI2UvT3xIhk4j3u2IY
-         lLW8cwlaceIfW9Er8nKaJ6mhyBW8vbWT16l7OlAI=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9G9pBn1027303
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Oct 2019 04:51:11 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 16
- Oct 2019 04:51:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 16 Oct 2019 04:51:09 -0500
-Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9G9p70c116258;
-        Wed, 16 Oct 2019 04:51:08 -0500
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add binding for the TI wrapper for
- Cadence USB3 controller
-To:     Rob Herring <robh@kernel.org>
-CC:     <felipe.balbi@linux.intel.com>, <gregkh@linuxfoundation.org>,
-        <pawell@cadence.com>, <nsekhar@ti.com>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20191007114142.5182-1-rogerq@ti.com>
- <20191007114142.5182-2-rogerq@ti.com> <20191015212931.GA8031@bogus>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <06c2ecb0-74ce-5b34-9b71-d734706739d7@ti.com>
-Date:   Wed, 16 Oct 2019 12:51:07 +0300
+        id S2388365AbfJPKJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 06:09:13 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:6866 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727235AbfJPKJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 06:09:13 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9G9vJSb022321;
+        Wed, 16 Oct 2019 12:08:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=DRK6nnWxIpQcRpa27goNNKQ6VsydMmtRJ5E896Ce4Mg=;
+ b=bgO95zmf6k2aVs9w1Xi40fm7M97azWEHfHLRVkbo0ZJC5b8wbkMYjy3JqcGa/3hDtU0V
+ a05oW0Z2xC+WtxdaqXmFvJSIC5d8mRebsgQ2gbwHQCcHBrjAlDqrdLtQG869tjSoHhtP
+ bB9U3dxRq3HkKMd4MSk5tFrPp0gemXEoUjf8Chyhjstyx9zuSluokafzcfjR6hcdMNUH
+ ZTTJ/EKLLxFqT+Wx4Y/tB9Go12HCV/e7mZuqVVqTs6yBEmPhYXEb0NDZ/5mVM9AcTrOZ
+ yBiTzslx4ssweZHkXlP4z3lwYc8XBKg+K4PgT3xZQFZtj0PaIz3KNoZS0hOVI8iOVFPq GA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vk4kx5eyf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Oct 2019 12:08:57 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 07B0410002A;
+        Wed, 16 Oct 2019 12:08:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C67EE205D2C;
+        Wed, 16 Oct 2019 12:08:56 +0200 (CEST)
+Received: from SAFEX1HUBCAS23.st.com (10.75.90.46) by SAFEX1HUBCAS21.st.com
+ (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 16 Oct
+ 2019 12:08:56 +0200
+Received: from [10.48.0.192] (10.48.0.192) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 16 Oct 2019 12:08:56
+ +0200
+Subject: Re: [PATCH v2 3/3] pwm: stm32: add power management support
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>,
+        <alexandre.torgue@st.com>, <mark.rutland@arm.com>,
+        <mcoquelin.stm32@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <benjamin.gaignard@st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <1570193633-6600-1-git-send-email-fabrice.gasnier@st.com>
+ <1570193633-6600-4-git-send-email-fabrice.gasnier@st.com>
+ <20191016070635.GC1296874@ulmo>
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+Message-ID: <15371530-a932-08b7-dd78-a7e20d213203@st.com>
+Date:   Wed, 16 Oct 2019 12:08:54 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20191015212931.GA8031@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20191016070635.GC1296874@ulmo>
+Content-Type: text/plain; charset="windows-1252"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [10.48.0.192]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-16_03:2019-10-15,2019-10-16 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 16/10/2019 00:29, Rob Herring wrote:
-> On Mon, Oct 07, 2019 at 02:41:41PM +0300, Roger Quadros wrote:
->> TI platforms have a wrapper module around the Cadence USB3
->> controller. Add binding information for that.
+On 10/16/19 9:06 AM, Thierry Reding wrote:
+> On Fri, Oct 04, 2019 at 02:53:53PM +0200, Fabrice Gasnier wrote:
+>> Add suspend/resume PM sleep ops. When going to low power, enforce the PWM
+>> channel isn't active. Let the PWM consumers disable it during their own
+>> suspend sequence, see [1]. So, perform a check here, and handle the
+>> pinctrl states. Also restore the break inputs upon resume, as registers
+>> content may be lost when going to low power mode.
 >>
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+>> [1] https://lkml.org/lkml/2019/2/5/770
+>>
+>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
 >> ---
->>   .../devicetree/bindings/usb/cdns-usb3-ti.txt  | 59 +++++++++++++++++++
->>   1 file changed, 59 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/usb/cdns-usb3-ti.txt
+>> Changes in v2:
+>> Follow Uwe suggestions/remarks:
+>> - Add a precursor patch to ease reviewing
+>> - Use registers read instead of pwm_get_state
+>> - Add a comment to mention registers content may be lost in low power mode
+>> ---
+>>  drivers/pwm/pwm-stm32.c | 38 ++++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 38 insertions(+)
 > 
-> Please convert to DT schema.
+> Applied, thanks. I made two minor changes, though, see below.
 > 
->> diff --git a/Documentation/devicetree/bindings/usb/cdns-usb3-ti.txt b/Documentation/devicetree/bindings/usb/cdns-usb3-ti.txt
->> new file mode 100644
->> index 000000000000..12c7c903e6da
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/cdns-usb3-ti.txt
->> @@ -0,0 +1,59 @@
->> +Binding for the TI specific wrapper for the Cadence USBSS-DRD controller
+>>
+>> diff --git a/drivers/pwm/pwm-stm32.c b/drivers/pwm/pwm-stm32.c
+>> index cf8658c..546b661 100644
+>> --- a/drivers/pwm/pwm-stm32.c
+>> +++ b/drivers/pwm/pwm-stm32.c
+>> @@ -12,6 +12,7 @@
+>>  #include <linux/mfd/stm32-timers.h>
+>>  #include <linux/module.h>
+>>  #include <linux/of.h>
+>> +#include <linux/pinctrl/consumer.h>
+>>  #include <linux/platform_device.h>
+>>  #include <linux/pwm.h>
+>>  
+>> @@ -655,6 +656,42 @@ static int stm32_pwm_remove(struct platform_device *pdev)
+>>  	return 0;
+>>  }
+>>  
+>> +static int __maybe_unused stm32_pwm_suspend(struct device *dev)
+>> +{
+>> +	struct stm32_pwm *priv = dev_get_drvdata(dev);
+>> +	unsigned int ch;
+> 
+> I renamed this to just "i", which is more idiomatic for loop variables.
+> The function is small enough not to need to differentiate between loop
+> variables.
+> 
+>> +	u32 ccer, mask;
 >> +
->> +Required properties:
->> +  - compatible: Should contain "ti,j721e-usb"
->> +  - reg: Physical base address and size of the wrappers register area.
->> +  - power-domains: Should contain a phandle to a PM domain provider node
->> +                   and an args specifier containing the USB device id
->> +                   value. This property is as per the binding documentation:
->> +                   Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
->> +  - clocks: Clock phandles to usb2_refclk and lpm_clk
->> +  - clock-names: Should contain "usb2_refclk" and "lpm_clk"
-> 
-> _clk is redundant. 'ref' amd 'lpm' is sufficient.
-> 
+>> +	/* Look for active channels */
+>> +	ccer = active_channels(priv);
 >> +
->> +Optional properties:
->> + - ti,usb2-only: If present, it restricts the controller to USB2.0 mode of
->> +		 operation. Must be present if USB3 PHY is not available
->> +		 for USB.
+>> +	for (ch = 0; ch < priv->chip.npwm; ch++) {
+>> +		mask = TIM_CCER_CC1E << (ch * 4);
+>> +		if (ccer & mask) {
+>> +			dev_err(dev, "The consumer didn't stop us (%s)\n",
+>> +				priv->chip.pwms[ch].label);
 > 
-> Seems like this should be discoverable based on describing the phy
-> connections.
-
-I don't think so. the PHY connections are in the child node.
-
+> Changed this to:
 > 
->> + - ti,modestrap-host: Set controller modestrap to HOST mode.
->> + - ti,modestrap-peripheral: Set controller modestrap to PERIPHERAL mode.
+> 	"PWM %u still in use by consumer %s\n", i, priv->chip.pwms[i].label
 > 
-> What does modestrap mean? Fixed to the mode or that's the default? For
-> default, John Stultz sent a similar binding. Seems we need something
-> common.
+> I think that might help clarify which PWM is still enabled in case the
+> consumers don't set a label.
 
-It means if the controller needs to be hard-wired (using a register bit)
-to be either host or peripheral.
+Hi Thierry,
 
-I think that this will not really be used so I'll get rid of it. It was mostly
-used for initial debug.
+Many thanks for all the improvements on this series!
 
-The controller is dual-role and the role can be set to either host or peripheral
-using the operational registers.
+Best Regards,
+Fabrice
 
 > 
->> + - ti,vbus-divider: Should be present if USB VBUS line is connected to the
->> +		 VBUS pin of the SoC via a 1/3 voltage divider.
+> Thierry
+> 
+>> +			return -EBUSY;
+>> +		}
+>> +	}
 >> +
->> +Sub-nodes:
->> +The USB2 PHY and the Cadence USB3 controller should be the sub-nodes.
+>> +	return pinctrl_pm_select_sleep_state(dev);
+>> +}
 >> +
->> +Example:
+>> +static int __maybe_unused stm32_pwm_resume(struct device *dev)
+>> +{
+>> +	struct stm32_pwm *priv = dev_get_drvdata(dev);
+>> +	int ret;
 >> +
->> +	ti_usb0: cdns_usb@4104000 {
->> +		compatible = "ti,j721e-usb";
->> +		reg = <0x00 0x4104000 0x00 0x100>;
->> +		power-domains = <&k3_pds 288 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 288 15>, <&k3_clks 288 3>;
->> +		clock-names = "usb2_refclk", "lpm_clk";
->> +		assigned-clocks = <&k3_clks 288 15>;	/* USB2_REFCLK */
->> +		assigned-clock-parents = <&k3_clks 288 16>; /* HFOSC0 */
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
+>> +	ret = pinctrl_pm_select_default_state(dev);
+>> +	if (ret)
+>> +		return ret;
 >> +
->> +		phy@4108000 {
->> +			compatible = "ti,j721e-usb2-phy";
->> +			reg = <0x00 0x4108000 0x00 0x400>;
->> +		};
-> 
-> Why is this a child node? Use the phy binding.
-> 
-
-This is a USB2 PHY that physically sits within the ti_usb0 wrapper module that
-controls power and clock to it.
-
-There isn't a device driver required for it so should I just get rid of it?
-Or can it just live there? what can the compatible be?
-Or we can add it later if at all a driver is needed.
-
+>> +	/* restore breakinput registers that may have been lost in low power */
+>> +	return stm32_pwm_apply_breakinputs(priv);
+>> +}
 >> +
->> +		usb0: usb@6000000 {
->> +			compatible = "cdns,usb3-1.0.1";
-> 
-> Not documented.
-
-should be
-	compatible = "cdns,usb3";
-> 
->> +			reg = <0x00 0x6000000 0x00 0x10000>,
->> +			      <0x00 0x6010000 0x00 0x10000>,
->> +			      <0x00 0x6020000 0x00 0x10000>;
->> +			reg-names = "otg", "xhci", "dev";
->> +			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,	/* irq.0 */
->> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,	/* irq.6 */
->> +				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;	/* otgirq.0 */
->> +			interrupt-names = "host",
->> +					  "peripheral",
->> +					  "otg";
->> +			maximum-speed = "super-speed";
->> +			dr_mode = "otg";
->> +		};
->> +	};
-
--- 
-cheers,
--roger
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>> +static SIMPLE_DEV_PM_OPS(stm32_pwm_pm_ops, stm32_pwm_suspend, stm32_pwm_resume);
+>> +
+>>  static const struct of_device_id stm32_pwm_of_match[] = {
+>>  	{ .compatible = "st,stm32-pwm",	},
+>>  	{ /* end node */ },
+>> @@ -667,6 +704,7 @@ static struct platform_driver stm32_pwm_driver = {
+>>  	.driver	= {
+>>  		.name = "stm32-pwm",
+>>  		.of_match_table = stm32_pwm_of_match,
+>> +		.pm = &stm32_pwm_pm_ops,
+>>  	},
+>>  };
+>>  module_platform_driver(stm32_pwm_driver);
+>> -- 
+>> 2.7.4
+>>
