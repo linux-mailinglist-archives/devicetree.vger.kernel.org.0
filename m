@@ -2,111 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 876CDD907A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2543D9089
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731368AbfJPMMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:12:34 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:48196 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727791AbfJPMMd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 08:12:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=LqCWfNLeIi/lU1VYcedAQODf4QQxGIAREfNdlGzSHew=; b=Ur7ReQofDILOMURmgfTUs0ScfS
-        z4vEDKGLC33wWTQgeHTIwMV3JdPbpSHhIH0o3kb6KDthCVjs/b1Gp9mxADwejzMpYhpDWmdVRqQF9
-        7vjb66LCaLqRunlt7At/tQ3MXtwIuzm87UwG9R8Mb6tbXW2N3MQ9jJrWySIo6eIYir14=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1iKiA4-0007FJ-Cm; Wed, 16 Oct 2019 14:12:16 +0200
-Date:   Wed, 16 Oct 2019 14:12:16 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Chris Snook <chris.snook@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
+        id S2405092AbfJPMON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:14:13 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:22208 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1731285AbfJPMON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 08:14:13 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9GCBKXh016165;
+        Wed, 16 Oct 2019 14:13:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=Ez0GavI0R2gyUyK3i2b9o2TNl6w+iegZF0LD+Nt0+s0=;
+ b=MX+pb3AsQ6p30uX/kZiGuk4jtLPNLRaFrJgnN46h7Rl5eleOK8D2NqliskyPVcx58rmu
+ v743d868MOmr5mrsJzXqfG7KN81s3oMO199Y4vXr5C3ilKnex4Wd3Bny2nvZdM2bYuln
+ 5bnuOhKX2NaA3YWfaHEoR1IA4vbh8NASw9WYKkTky+EK3huFlnG01u7NtIkVql3PjJOO
+ D/6u1JH4gUK2oy0bLiYMb1b5iWxcaB1eF34VZYVTD+mikfmAMaFlNbYUqwzjGkui7sST
+ U/U01H/myp+obbjG+4u9XImgxiQEYoMXMCmk0mZRyFRaCR4fkPhtxjumNBNBb3agMcdW OQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2vk3y9xf8d-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Oct 2019 14:13:58 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 499F4100034;
+        Wed, 16 Oct 2019 14:13:58 +0200 (CEST)
+Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 31DDD20A92D;
+        Wed, 16 Oct 2019 14:13:58 +0200 (CEST)
+Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by Safex1hubcas22.st.com
+ (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 16 Oct
+ 2019 14:13:58 +0200
+Received: from localhost (10.201.23.25) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 16 Oct 2019 14:13:57
+ +0200
+From:   Fabien Dessenne <fabien.dessenne@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v1 1/4] net: ag71xx: port to phylink
-Message-ID: <20191016121216.GD4780@lunn.ch>
-References: <20191014061549.3669-1-o.rempel@pengutronix.de>
- <20191014061549.3669-2-o.rempel@pengutronix.de>
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC:     Fabien Dessenne <fabien.dessenne@st.com>
+Subject: [PATCH 0/2] mailbox: stm32-ipcc: rework wakeup
+Date:   Wed, 16 Oct 2019 14:13:47 +0200
+Message-ID: <1571228029-31652-1-git-send-email-fabien.dessenne@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191014061549.3669-2-o.rempel@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.201.23.25]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-16_04:2019-10-16,2019-10-16 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 14, 2019 at 08:15:46AM +0200, Oleksij Rempel wrote:
-> The port to phylink was done as close as possible to initial
-> functionality.
-> Theoretically this HW can support flow control, practically seems to be not
-> enough to just enable it. So, more work should be done.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Remove the dedicated wakeup IRQ as wakeup can be handled by the RX IRQ.
 
-Hi Oleksij
+Fabien Dessenne (2):
+  dt-bindings: mailbox: stm32-ipcc: Updates for wakeup management
+  mailbox: stm32-ipcc: Update wakeup management
 
-Please include Russell King in Cc: in future.
+ .../devicetree/bindings/mailbox/stm32-ipcc.txt     |  4 +--
+ drivers/mailbox/stm32-ipcc.c                       | 36 +++++-----------------
+ 2 files changed, 9 insertions(+), 31 deletions(-)
 
-> -static void ag71xx_phy_link_adjust(struct net_device *ndev)
-> +static void ag71xx_mac_validate(struct phylink_config *config,
-> +			    unsigned long *supported,
-> +			    struct phylink_link_state *state)
->  {
-> -	struct ag71xx *ag = netdev_priv(ndev);
-> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask) = { 0, };
-> +
-> +	if (state->interface != PHY_INTERFACE_MODE_NA &&
-> +	    state->interface != PHY_INTERFACE_MODE_GMII &&
-> +	    state->interface != PHY_INTERFACE_MODE_MII) {
-> +		bitmap_zero(supported, __ETHTOOL_LINK_MODE_MASK_NBITS);
-> +		return;
-> +	}
-> +
-> +	phylink_set(mask, MII);
-> +
-> +	/* flow control is not supported */
->  
-> -	ag71xx_link_adjust(ag, true);
-> +	phylink_set(mask, 10baseT_Half);
-> +	phylink_set(mask, 10baseT_Full);
-> +	phylink_set(mask, 100baseT_Half);
-> +	phylink_set(mask, 100baseT_Full);
-> +
-> +	phylink_set(mask, 1000baseT_Full);
-> +	phylink_set(mask, 1000baseX_Full);
-
-Can the MAC/PHY dynamically switch between MII and GMII? Maybe you
-should only add 1G support when interface is GMII?
-
-> @@ -1239,6 +1255,13 @@ static int ag71xx_open(struct net_device *ndev)
->  	unsigned int max_frame_len;
->  	int ret;
->  
-> +	ret = phylink_of_phy_connect(ag->phylink, ag->pdev->dev.of_node, 0);
-> +	if (ret) {
-> +		netif_info(ag, link, ndev, "phylink_of_phy_connect filed with err: %i\n",
-> +			   ret);
-
-netif_info seems wrong. _err()?
-
-	   Andrew
+-- 
+2.7.4
 
