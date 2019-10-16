@@ -2,123 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF38D8C68
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68782D8C70
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 11:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729783AbfJPJV2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 16 Oct 2019 05:21:28 -0400
-Received: from mail.savoirfairelinux.com ([208.88.110.44]:55206 "EHLO
+        id S1730396AbfJPJXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 05:23:07 -0400
+Received: from mail.savoirfairelinux.com ([208.88.110.44]:55352 "EHLO
         mail.savoirfairelinux.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726480AbfJPJV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:21:28 -0400
+        with ESMTP id S1726480AbfJPJXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 05:23:07 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id 7DD609C02F3;
-        Wed, 16 Oct 2019 05:21:26 -0400 (EDT)
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id BAB1A9C02F3;
+        Wed, 16 Oct 2019 05:23:06 -0400 (EDT)
 Received: from mail.savoirfairelinux.com ([127.0.0.1])
         by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id HYlKbr2B05BK; Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+        with ESMTP id KxQAsgQNqEKS; Wed, 16 Oct 2019 05:23:05 -0400 (EDT)
 Received: from localhost (localhost [127.0.0.1])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id CCB989C03A3;
-        Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id 8348F9C03A3;
+        Wed, 16 Oct 2019 05:23:05 -0400 (EDT)
 X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
 Received: from mail.savoirfairelinux.com ([127.0.0.1])
         by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id DtRpUWLBM3Fo; Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id 900CB9C02F3;
-        Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
-Date:   Wed, 16 Oct 2019 05:21:25 -0400 (EDT)
-From:   Gilles Doffe <gilles.doffe@savoirfairelinux.com>
-To:     shawnguo <shawnguo@kernel.org>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        rennes <rennes@savoirfairelinux.com>,
-        =?utf-8?Q?J=C3=A9rome?= Oufella 
-        <jerome.oufella@savoirfairelinux.com>,
-        robh+dt <robh+dt@kernel.org>,
-        mark rutland <mark.rutland@arm.com>,
-        s hauer <s.hauer@pengutronix.de>,
-        kernel <kernel@pengutronix.de>, festevam <festevam@gmail.com>,
-        linux-imx <linux-imx@nxp.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Message-ID: <1837032218.9373931.1571217685548.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20191007112430.GD7150@dragon>
-References: <20190916104353.7278-1-gilles.doffe@savoirfairelinux.com> <20191007112430.GD7150@dragon>
-Subject: Re: [PATCH v3] ARM: dts: imx6qdl-rex: add gpio expander pca9535
+        with ESMTP id 0pumkyatRjoz; Wed, 16 Oct 2019 05:23:05 -0400 (EDT)
+Received: from gdo-sfl-laptop.home (lfbn-1-7821-217.w92-167.abo.wanadoo.fr [92.167.224.217])
+        by mail.savoirfairelinux.com (Postfix) with ESMTPSA id F31FA9C02F3;
+        Wed, 16 Oct 2019 05:23:03 -0400 (EDT)
+From:   Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+To:     devicetree@vger.kernel.org
+Cc:     jerome.oufella@savoirfairelinux.com, rennes@savoirfairelinux.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4] ARM: dts: imx6qdl-rex: add gpio expander pca9535
+Date:   Wed, 16 Oct 2019 11:22:55 +0200
+Message-Id: <20191016092255.19223-1-gilles.doffe@savoirfairelinux.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Mailer: Zimbra 8.8.11_GA_3737 (ZimbraWebClient - GC76 (Linux)/8.8.11_GA_3737)
-Thread-Topic: imx6qdl-rex: add gpio expander pca9535
-Thread-Index: 0SgUHsAJvXpg4HUlY55gc/ziL2JF9g==
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
------ Le 7 Oct 19, à 13:24, shawnguo shawnguo@kernel.org a écrit :
+The pca9535 gpio expander is present on the Rex baseboard, but missing
+from the dtsi.
+The pca9535 is on i2c2 bus which is common to the three SOM
+variants (Basic/Pro/Ultra), thus it is activated by default.
 
-> On Mon, Sep 16, 2019 at 12:43:53PM +0200, Gilles DOFFE wrote:
->> The pca9535 gpio expander is present on the Rex baseboard, but missing
->> from the dtsi.
->> The pca9535 is on i2c2 bus which is common to the three SOM
->> variants (Basic/Pro/Ultra), thus it is activated by default.
->> 
->> Add also the new gpio controller and the associated interrupt line
->> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
->> 
->> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
->> ---
->>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
->>  1 file changed, 19 insertions(+)
->> 
->> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> b/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> index 97f1659144ea..8a748ca1b108 100644
->> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> @@ -132,6 +132,19 @@
->>  	pinctrl-0 = <&pinctrl_i2c2>;
->>  	status = "okay";
->>  
->> +	pca9535: gpio8@27 {
-> 
-> gpio-expander might be a better node name?
-> 
-> Shawn
+Add also the new gpio controller and the associated interrupt line
+MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
 
-Indeed, v4 incoming. ;)
+Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+---
+ arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Thank you Shawn.
+diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi b/arch/arm/boot/dts/imx6q=
+dl-rex.dtsi
+index 97f1659144ea..305b57fadc60 100644
+--- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+@@ -132,6 +132,19 @@
+ 	pinctrl-0 =3D <&pinctrl_i2c2>;
+ 	status =3D "okay";
+=20
++	pca9535: gpio-expander@27 {
++		compatible =3D "nxp,pca9535";
++		reg =3D <0x27>;
++		gpio-controller;
++		#gpio-cells =3D <2>;
++		pinctrl-names =3D "default";
++		pinctrl-0 =3D <&pinctrl_pca9535>;
++		interrupt-parent =3D <&gpio6>;
++		interrupts =3D <16 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#interrupt-cells =3D <2>;
++	};
++
+ 	eeprom@57 {
+ 		compatible =3D "atmel,24c02";
+ 		reg =3D <0x57>;
+@@ -237,6 +250,12 @@
+ 			>;
+ 		};
+=20
++		pinctrl_pca9535: pca9535 {
++			fsl,pins =3D <
++				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x17059
++		   >;
++		};
++
+ 		pinctrl_uart1: uart1grp {
+ 			fsl,pins =3D <
+ 				MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0b1
+--=20
+2.20.1
 
-> 
->> +		compatible = "nxp,pca9535";
->> +		reg = <0x27>;
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_pca9535>;
->> +		interrupt-parent = <&gpio6>;
->> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->>  	eeprom@57 {
->>  		compatible = "atmel,24c02";
->>  		reg = <0x57>;
->> @@ -237,6 +250,12 @@
->>  			>;
->>  		};
->>  
->> +		pinctrl_pca9535: pca9535 {
->> +			fsl,pins = <
->> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x17059
->> +		   >;
->> +		};
->> +
->>  		pinctrl_uart1: uart1grp {
->>  			fsl,pins = <
->>  				MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0b1
->> --
->> 2.20.1
