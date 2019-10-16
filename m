@@ -2,180 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A76ED8B09
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51AF6D8B1B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:35:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388475AbfJPIdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:33:07 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:39400 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388364AbfJPIdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:33:06 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9G8WSR3035081;
-        Wed, 16 Oct 2019 03:32:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571214748;
-        bh=s39FpZDsIVijRksoigZfypRpHO/kfg6d4vyQscJS4zg=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=LIpQPLqRojaXAO9e6h2CjCm6EfW3BMXspS/9xYx3A4KALSm/3UDMadNC/jHJ+JW3d
-         oz8i6my0ueNEkbJRnwRO1wIN7oXK9JDg3SJ6K+NdhJTDqGFwTk7szvxN8BTnjpEb1/
-         m/YZuQGEOOFhtM3zGDYHW4/jTkdakRyh2jXAUF1E=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9G8WSmb033171
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Oct 2019 03:32:28 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 16
- Oct 2019 03:32:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 16 Oct 2019 03:32:28 -0500
-Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9G8WKU2052788;
-        Wed, 16 Oct 2019 03:32:22 -0500
-Subject: Re: [PATCH v3 2/3] mtd: spi-nor: cadence-quadspi: Disable the DAC for
- Intel LGM SoC
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dwmw2@infradead.org>, <computersforpeace@gmail.com>,
-        <richard@nod.at>, <jwboyer@gmail.com>,
-        <boris.brezillon@free-electrons.com>, <cyrille.pitchen@atmel.com>,
-        <david.oberhollenzer@sigma-star.at>, <miquel.raynal@bootlin.com>,
-        <tudor.ambarus@gmail.com>, <andriy.shevchenko@intel.com>,
-        <cheol.yong.kim@intel.com>, <qi-ming.wu@intel.com>
-References: <20190909104733.14273-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190909104733.14273-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <85355c80-1344-db22-ae31-0f20f30b9754@ti.com>
-Date:   Wed, 16 Oct 2019 14:02:50 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2391395AbfJPIfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:35:32 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:45990 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388823AbfJPIfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:35:32 -0400
+Received: by mail-qk1-f195.google.com with SMTP id z67so21945123qkb.12
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=GmuC3zn8bALphH5r2b0Q1YLWOrBX5XjvTZ9/8xPZZN4=;
+        b=ezJ2leywNfinL5V540/jApDr2GEu4Od6OcnKeW75/FAlBxgP8+aMmrW3ENWC8EVwIK
+         bbUw8QHOWvqgI2Rn//zRyqpUTL/bgIoOrv05RXTa9DixIYgal1j03iYpAo+OCXxHXxtH
+         B8duz5djvIIx5kmVYxdveo8+w2jLJwZDXppqJReOWwEh8AeAClRF/5D52vfw2aGa3z0Y
+         vtbc65QrHG7hThQJpg36B1viWx0nFYWkAjoJuEQQ6gaP2+c5X7XDi1pgQdA82zDpOsVv
+         hgd4qZSz+RrWQucvq75ZkaN4bgVA8dU6IoKzIX419wej4sUDk/qe07R8NcEFU5ms2+tr
+         /bQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=GmuC3zn8bALphH5r2b0Q1YLWOrBX5XjvTZ9/8xPZZN4=;
+        b=ed8AkAwDdor4WRoDE3YS8mzS/IgHudQv9LW4mvAmYief3OZ3d4rEZVV1x+94kXxGob
+         FY3i2Vl0axxhrw4KoyIeVKa97hff69gHF+H7TPWPTTanmdnkvYihSbfjsSVoHCEzxlBm
+         y8SFp+G7xnqe8+FrO5JU6vevOxa7e5d7BmpidU94TFzLPuXxdb4KzmT4plz0AjkxHbOL
+         tDi6WE+bVum3ToChqQMdcQcR3T+6VcBnkEQTX/Qmosrtlqjfq2sE2U1UDHAu8qWVvBH0
+         cQgn38J+Zk8E8ACwtl7JfEpmBQWwwrxe3iPtzCeX3czfNg7CySqcdfCFzbtNdFzn/BcZ
+         EWLA==
+X-Gm-Message-State: APjAAAV1R404vBVjPlYd/KPFgca94WuddzzLxZcz37R2N+fGvEIP1+Ni
+        856hBKH1dWDgcBtZ6/u5R6FhK58cfk6RG6OcsuoKFA==
+X-Google-Smtp-Source: APXvYqzGRMvNTAJKYa1IF/vPfb2c7W0O+r3HJGpQGbPndIgkhES6jDxA2LF0IZi6nk9B8YFGFFqvF/SXFonIwxR9VZo=
+X-Received: by 2002:a37:8806:: with SMTP id k6mr39103180qkd.127.1571214930602;
+ Wed, 16 Oct 2019 01:35:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190909104733.14273-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <cover.1571210269.git.amit.kucheria@linaro.org> <6e6c6da8-0948-581c-a4a3-7a2617ac5dd0@linaro.org>
+In-Reply-To: <6e6c6da8-0948-581c-a4a3-7a2617ac5dd0@linaro.org>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Wed, 16 Oct 2019 14:05:19 +0530
+Message-ID: <CAP245DXOoRoCogZzgG7ss-bVSmE-FfeP3fxV3Vrya+_c1ew7dA@mail.gmail.com>
+Subject: Re: [PATCH 00/15] thermal: qcom: tsens: Add interrupt support
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Brian Masney <masneyb@onstation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 16, 2019 at 1:29 PM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On 16/10/2019 09:33, Amit Kucheria wrote:
+> > Hi Thermal and MSM maintainers,
+> >
+> > I believe this series is now ready to be merged. The DT bindings and dr=
+iver
+> > changes should go through the thermal tree and the changes to the DT fi=
+les
+> > themselves should go through the MSM tree. There is no hard ordering
+> > dependency because we're adding a new property to the driver. It would =
+help
+> > to soak in linux-next for a few weeks to catch anything on kernelci.org=
+.
+>
+> So the ones going to thermal are:
+>
+> 1-7, 14, 15 right ?
 
+1-4, 7, 14, 15 =3D> thermal tree
+5, 6, 8-13 =3D> msm tree
 
-On 09/09/19 4:17 PM, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> 
-> on Intel's Lightning Mountain(LGM) SoCs QSPI controller do not use
+I guess I could have ordered it better for merging :-/
 
-s/on/On
-
-> Direct Access Controller(DAC).
-> 
-> This patch introduces to properly disable the Direct Access Controller
-
-"This patch adds a quirk to disable..." or something something similar
-
-> for data transfer instead it uses indirect data transfer.
-> 
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> ---
->  drivers/mtd/spi-nor/Kconfig           |  2 +-
->  drivers/mtd/spi-nor/cadence-quadspi.c | 21 +++++++++++++++++++++
->  2 files changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mtd/spi-nor/Kconfig b/drivers/mtd/spi-nor/Kconfig
-> index 6de83277ce8b..ba2e372ae514 100644
-> --- a/drivers/mtd/spi-nor/Kconfig
-> +++ b/drivers/mtd/spi-nor/Kconfig
-> @@ -34,7 +34,7 @@ config SPI_ASPEED_SMC
->  
->  config SPI_CADENCE_QUADSPI
->  	tristate "Cadence Quad SPI controller"
-> -	depends on OF && (ARM || ARM64 || COMPILE_TEST)
-> +	depends on OF && (ARM || ARM64 || COMPILE_TEST || X86)
->  	help
->  	  Enable support for the Cadence Quad SPI Flash controller.
->  
-> diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
-> index 67f15a1f16fd..73b9fbd1508a 100644
-> --- a/drivers/mtd/spi-nor/cadence-quadspi.c
-> +++ b/drivers/mtd/spi-nor/cadence-quadspi.c
-> @@ -33,6 +33,7 @@
->  
->  /* Quirks */
->  #define CQSPI_NEEDS_WR_DELAY		BIT(0)
-> +#define CQSPI_DISABLE_DAC_MODE		BIT(1)
->  
->  /* Capabilities mask */
->  #define CQSPI_BASE_HWCAPS_MASK					\
-> @@ -609,6 +610,13 @@ static int cqspi_write_setup(struct spi_nor *nor)
->  	struct cqspi_st *cqspi = f_pdata->cqspi;
->  	void __iomem *reg_base = cqspi->iobase;
->  
-> +	/* Disable direct access controller */
-> +	if (!f_pdata->use_direct_mode) {
-> +		reg = readl(reg_base + CQSPI_REG_CONFIG);
-> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
-> +		writel(reg, reg_base + CQSPI_REG_CONFIG);
-> +	}
-> +
->  	/* Set opcode. */
->  	reg = nor->program_opcode << CQSPI_REG_WR_INSTR_OPCODE_LSB;
->  	writel(reg, reg_base + CQSPI_REG_WR_INSTR);
-> @@ -1328,6 +1336,7 @@ static int cqspi_probe(struct platform_device *pdev)
->  	struct resource *res_ahb;
->  	struct reset_control *rstc, *rstc_ocp;
->  	const struct cqspi_driver_platdata *ddata;
-> +	struct cqspi_flash_pdata *f_pdata;
->  	int ret;
->  	int irq;
->  
-> @@ -1436,6 +1445,9 @@ static int cqspi_probe(struct platform_device *pdev)
->  		goto probe_setup_failed;
->  	}
->  
-> +	if (ddata && (ddata->quirks & CQSPI_DISABLE_DAC_MODE))
-> +		f_pdata->use_direct_mode = false;
-> +
-
-If you do this here, you will still end up acquiring a DMA channel in
-cqspi_request_mmap_dma() (called from cqspi_setup_flash()). So, please
-move the check to cqspi_setup_flash().
-
->  	return ret;
->  probe_setup_failed:
->  	cqspi_controller_enable(cqspi, 0);
-> @@ -1510,6 +1522,11 @@ static const struct cqspi_driver_platdata am654_ospi = {
->  	.quirks = CQSPI_NEEDS_WR_DELAY,
->  };
->  
-> +static const struct cqspi_driver_platdata intel_lgm_qspi = {
-> +	.hwcaps_mask = CQSPI_BASE_HWCAPS_MASK,
-> +	.quirks = CQSPI_DISABLE_DAC_MODE,
-> +};
-> +
->  static const struct of_device_id cqspi_dt_ids[] = {
->  	{
->  		.compatible = "cdns,qspi-nor",
-> @@ -1523,6 +1540,10 @@ static const struct of_device_id cqspi_dt_ids[] = {
->  		.compatible = "ti,am654-ospi",
->  		.data = &am654_ospi,
->  	},
-> +	{
-> +		.compatible = "intel,lgm-qspi",
-> +		.data = &intel_lgm_qspi,
-> +	},
->  	{ /* end of table */ }
->  };
->  
-> 
-
--- 
-Regards
-Vignesh
+> > Changes since v4:
+> > - Change to of-thermal core[1] to force interrupts w/o changing polling=
+-delay DT
+> >   parameter
+> > - Corresponding changes to DT files to remove the hunks setting the val=
+ues
+> >   to 0
+> > - Collected reviews and acks
+> >
+> > Changes since v3:
+> > - Fix up the YAML definitions based on Rob's review
+> >
+> > Changes since v2:
+> > - Addressed Stephen's review comment
+> > - Moved the dt-bindings to yaml (This throws up some new warnings in va=
+rious QCOM
+> > devicetrees. I'll send out a separate series to fix them up)
+> > - Collected reviews and acks
+> > - Added the dt-bindings to MAINTAINERS
+> >
+> > Changes since v1:
+> > - Collected reviews and acks
+> > - Addressed Stephen's review comments (hopefully I got them all).
+> > - Completely removed critical interrupt infrastructure from this series=
+.
+> >   Will post that separately.
+> > - Fixed a bug in sign-extension of temperature.
+> > - Fixed DT bindings to use the name of the interrupt e.g. "uplow" and u=
+se
+> >   platform_get_irq_byname().
+> >
+> > Add interrupt support to TSENS. The first 6 patches are general fixes a=
+nd
+> > cleanups to the driver before interrupt support is introduced.
+> >
+> > [1] https://lore.kernel.org/linux-arm-msm/1b53ef537203e629328285b4597a0=
+9e4a586d688.1571181041.git.amit.kucheria@linaro.org/
+> >
+> > Amit Kucheria (15):
+> >   drivers: thermal: tsens: Get rid of id field in tsens_sensor
+> >   drivers: thermal: tsens: Simplify code flow in tsens_probe
+> >   drivers: thermal: tsens: Add __func__ identifier to debug statements
+> >   drivers: thermal: tsens: Add debugfs support
+> >   arm: dts: msm8974: thermal: Add thermal zones for each sensor
+> >   arm64: dts: msm8916: thermal: Fixup HW ids for cpu sensors
+> >   dt-bindings: thermal: tsens: Convert over to a yaml schema
+> >   arm64: dts: sdm845: thermal: Add interrupt support
+> >   arm64: dts: msm8996: thermal: Add interrupt support
+> >   arm64: dts: msm8998: thermal: Add interrupt support
+> >   arm64: dts: qcs404: thermal: Add interrupt support
+> >   arm: dts: msm8974: thermal: Add interrupt support
+> >   arm64: dts: msm8916: thermal: Add interrupt support
+> >   drivers: thermal: tsens: Create function to return sign-extended
+> >     temperature
+> >   drivers: thermal: tsens: Add interrupt support
+> >
+> >  .../bindings/thermal/qcom-tsens.txt           |  55 --
+> >  .../bindings/thermal/qcom-tsens.yaml          | 168 ++++++
+> >  MAINTAINERS                                   |   1 +
+> >  arch/arm/boot/dts/qcom-msm8974.dtsi           |  92 +++
+> >  arch/arm64/boot/dts/qcom/msm8916.dtsi         |   6 +-
+> >  arch/arm64/boot/dts/qcom/msm8996.dtsi         |   4 +
+> >  arch/arm64/boot/dts/qcom/msm8998.dtsi         |   6 +-
+> >  arch/arm64/boot/dts/qcom/qcs404.dtsi          |   2 +
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   4 +
+> >  drivers/thermal/qcom/tsens-8960.c             |   4 +-
+> >  drivers/thermal/qcom/tsens-common.c           | 529 ++++++++++++++++--
+> >  drivers/thermal/qcom/tsens-v0_1.c             |  11 +
+> >  drivers/thermal/qcom/tsens-v1.c               |  29 +
+> >  drivers/thermal/qcom/tsens-v2.c               |  13 +
+> >  drivers/thermal/qcom/tsens.c                  |  58 +-
+> >  drivers/thermal/qcom/tsens.h                  | 286 ++++++++--
+> >  16 files changed, 1102 insertions(+), 166 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsen=
+s.txt
+> >  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsen=
+s.yaml
+> >
+>
+>
+> --
+>  <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for A=
+RM SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
+>
