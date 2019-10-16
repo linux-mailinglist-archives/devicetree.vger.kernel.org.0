@@ -2,111 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C059D880C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 07:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44519D8814
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 07:25:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731399AbfJPFX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 01:23:28 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:36604 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726052AbfJPFX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 01:23:28 -0400
-Received: by mail-pf1-f195.google.com with SMTP id y22so13945107pfr.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2019 22:23:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=saoyAGsKjDvsSfjCA3zQdLH5MPFlT8Eo8WfiHM6JM8o=;
-        b=PDcpx0nQR0OqGsEB4yG6vkxy48xHjjJeP0Jw2SJQ0QMf5Z3+Sbof0vkXDD3Ig7W0LU
-         N4ShRgxolreDnGeu6EPvbi0GFIeez8L4jq77E0vvdQ1OXsvyU13hMz5Dy/3BGOMZrFBE
-         gFlboTcZufi+A+nfIv+54/cpQKfxk9lSFyIzpU/EL7AYPvPFMMUu9CPXbgapX4Ehy1C+
-         ec8kfnp4XH6zOxZWSbRsutzzMTVZzYfWbRicUOlR4xErWsJUDKDtZHNFPP/FRARARjca
-         yKt21E/zpTd+HOjkVX/hH0jEuWAyw1D8gsKOH9hmro5fwlPfKeJOvTrLZ3OIWUvTFFz/
-         Bxcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=saoyAGsKjDvsSfjCA3zQdLH5MPFlT8Eo8WfiHM6JM8o=;
-        b=ROiiDY1WvIHCsCcpocM/EIioroXCHvjMcl6wwRDLHT8sdk5QktYotik0sIq2WovdC0
-         kRBAZn7ePmbMhHAaEBBWdMR1IpSWo1LFV+OyskIP9mm7Ih6OR/XfiQylwM8svLA3DAIK
-         McLhnG/fwFFjLiZT0tWypGc2GNP272KpneMv8FFsZd2d0HZwL3tMiPQzqsW3hDIUml7x
-         EzyyPlwnpLhFXel+19MQl52mrd/6rEDJ35IP0ztldAvgLKDlRN/XRsgDpXuhwyTQZav8
-         LwmxgY918X9FoCVqIt4MxycfUsdV0ngKklK4rQ6blPJxWb+GXhJ7Qq84alNEGsGn5ufI
-         YSXw==
-X-Gm-Message-State: APjAAAXbCjkFd1M8cNndtZzdMlj7XeLAtiJDoBbzCXS6UwdNZAf9cMLO
-        Bvrdzf/aFBzCHakHsvcZTFuc9w==
-X-Google-Smtp-Source: APXvYqxJXrMIsdHO4Rsjym8iDMxG0peczoTX8o2q55MtDIt8QZRw17a5QLaERi2EsvfikM/HZIzraw==
-X-Received: by 2002:aa7:86cb:: with SMTP id h11mr43684402pfo.59.1571203405710;
-        Tue, 15 Oct 2019 22:23:25 -0700 (PDT)
-Received: from localhost ([122.172.151.112])
-        by smtp.gmail.com with ESMTPSA id 22sm24303865pfo.131.2019.10.15.22.23.24
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 15 Oct 2019 22:23:24 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 10:53:23 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 11/17] ARM: dts: tegra20: Add CPU Operating
- Performance Points
-Message-ID: <20191016052323.w6hav4qqn3ybt55q@vireshk-i7>
-References: <20191015211618.20758-1-digetx@gmail.com>
- <20191015211618.20758-12-digetx@gmail.com>
+        id S1731999AbfJPFZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 01:25:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49486 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726052AbfJPFZk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 01:25:40 -0400
+Received: from localhost (unknown [171.76.123.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D786C2067D;
+        Wed, 16 Oct 2019 05:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571203539;
+        bh=CpGwGpjKAHqQTYg4UEjE/y+LBALFEvwCQFezYmpRHmc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jdquSlDc2kLy//rFgmAZqpUHPrBi3e8qwVeDKI6ASf/dfL486KtD3J3qGdFeYvgdp
+         yhJlWc3/oV2Ful+EVx8LMUIXTLPKAboBauaJManjt3qxzKuXvsmVg8CgBmrnIIMIGE
+         0f3nMgJt1e0cV0SbQm79bPAwck/U3KFcitPDRaE4=
+Date:   Wed, 16 Oct 2019 10:55:35 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <tdas@codeaurora.org>
+Subject: Re: [PATCH 2/2] arm64: dts: sc7180: Add minimal dts/dtsi files for
+ SC7180 soc
+Message-ID: <20191016052535.GC2654@vkoul-mobl>
+References: <20191015103358.17550-1-rnayak@codeaurora.org>
+ <20191015103358.17550-2-rnayak@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191015211618.20758-12-digetx@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20191015103358.17550-2-rnayak@codeaurora.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-10-19, 00:16, Dmitry Osipenko wrote:
-> Operating Point are specified per HW version. The OPP voltages are kept
-> in a separate DTSI file because some boards may not define CPU regulator
-> in their device-tree if voltage scaling isn't necessary, like for example
-> in a case of tegra20-trimslice which is outlet-powered device.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../boot/dts/tegra20-cpu-opp-microvolt.dtsi   | 201 ++++++++++++
->  arch/arm/boot/dts/tegra20-cpu-opp.dtsi        | 302 ++++++++++++++++++
->  2 files changed, 503 insertions(+)
->  create mode 100644 arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi
->  create mode 100644 arch/arm/boot/dts/tegra20-cpu-opp.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi b/arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi
-> new file mode 100644
-> index 000000000000..e85ffdbef876
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi
-> @@ -0,0 +1,201 @@
-> +// SPDX-License-Identifier: GPL-2.0
+On 15-10-19, 16:03, Rajendra Nayak wrote:
+
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
+> +	};
 > +
-> +/ {
-> +	cpu0_opp_table: cpu_opp_table0 {
-> +		opp@216000000_750 {
+> +	clocks {
 
-Maybe just drop the _750 (i.e. voltage) from the names as we don't generally
-follow it :)
+Can we have these sorted alphabetically please
 
-> +			opp-microvolt = <750000 750000 1125000>;
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <38400000>;
+> +			clock-output-names = "xo_board";
+> +			#clock-cells = <0>;
 > +		};
+> +
+> +		sleep_clk: sleep-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <32764>;
+> +			clock-output-names = "sleep_clk";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		bi_tcxo: bi_tcxo {
+
+why is this a clock defined here? Isnt this gcc clock?
 
 -- 
-viresh
+~Vinod
