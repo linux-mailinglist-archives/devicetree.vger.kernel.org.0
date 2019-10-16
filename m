@@ -2,80 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0890ED96C5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 18:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30A15D96CC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 18:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393387AbfJPQQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 12:16:27 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:37318 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390076AbfJPQQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 12:16:26 -0400
-Received: by mail-pl1-f193.google.com with SMTP id u20so11506025plq.4
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 09:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=ResC/hhiygB40CQNO8g6ikuMbA0ju2V41a3xODY1vVE=;
-        b=Ha6hDOJlpfX3oR0Lo71lCcmpwUHRfznUaoRUnv6VA0oW8DYo3V3iOQyLrQhSnQHMDH
-         1ZqNiwjWcgmcyZNCR5vx+Haaa5wXkWQpq6vttdANH4PDcoef4Xkwm1JLMkYH177KuT9U
-         aE0h4rllUx2sP597BRDIh2bm46Peqp4URVGQAF0COhIR3qBtfppzGOgxAypDH0WUJ9Bd
-         u3jfndnQaIm/XpKsIRf/sfxd0Nq6lXDXR4k1bVCGe3GEm+2qA8S2Mo2JeuPHeSk8I8Q/
-         XUMLkJAyfF6Cgy7WQ4R3zO49FexD4uBIReK0ZZeILFTcqg6NC6smoewkpTm81cIregw/
-         3/fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=ResC/hhiygB40CQNO8g6ikuMbA0ju2V41a3xODY1vVE=;
-        b=oc+r/3piAkSoNkQJZCX5x89XSVAu2zqmrcGBdFnPSNXUwnYz2hXs3hDSLTOruMEHXH
-         LURxTtYx85jrZRwO2me5OL2BYdtI8WOjZuk3Q2Gcap82q4iNPFy7j8nrA/9pDPDlDcdB
-         G3ythLeWv7QadTJGILeznYpSWdaWuo28/R0ShWYLS0Shnqw6EDG38Xy5gIh4sy4LB1Ol
-         06MxM16R34KJe9jqIbD2mnHF4OSu3fdm+kFwSzb381iv+u4RZKgTM11koRXauhZc7lAo
-         clPIxn3e/qk2MUQoAqOj77FV6BzdWRDkgO5VNEGBqc9D7IiOolJSpT20xD1jvRTRYRAJ
-         KxLQ==
-X-Gm-Message-State: APjAAAXDjWpIaR9FbdVbZ1TRVLH2m+T9vOTi8NPjCAyjotB5g79yP9N9
-        cmFkBC5VzQBWV3hbjg+gjUVrVzue34E=
-X-Google-Smtp-Source: APXvYqzcmnTEOiuKSt7BT2tO2CZWNSW1Cst0QeV7AzXL8vZ26nPCMzLc9eVwAlMHXVXLysywqp/i0A==
-X-Received: by 2002:a17:902:a5c3:: with SMTP id t3mr42557480plq.335.1571242585996;
-        Wed, 16 Oct 2019 09:16:25 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id e10sm34459145pfh.77.2019.10.16.09.16.25
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Oct 2019 09:16:25 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: sm1: add audio support
-In-Reply-To: <20191009082708.6337-1-jbrunet@baylibre.com>
-References: <20191009082708.6337-1-jbrunet@baylibre.com>
-Date:   Wed, 16 Oct 2019 09:16:24 -0700
-Message-ID: <7h7e54hdif.fsf@baylibre.com>
+        id S2390591AbfJPQQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 12:16:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60570 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728316AbfJPQQ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 12:16:57 -0400
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9BFB02168B;
+        Wed, 16 Oct 2019 16:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571242616;
+        bh=NDlN1NhoxOUb6sQg78if7MeDpGfgM15YqoKkPUVkIOc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BPCNecFFtHLJh8YGydUcErcc9GHraZuwNukQ3UMRUO2pxiNWCiPqiTmtFhlKsk/dp
+         JFax8Yiqgy+0IVhI2mxBFa5iv5SJtJNtA0kFEHnc86CRGZc91g56stXYM9C9BZGSfQ
+         9IFgMowfJDceUeRB9g9lP8B/Rmr49u71VLZpZIxM=
+Received: by mail-lj1-f182.google.com with SMTP id y23so24599585lje.9;
+        Wed, 16 Oct 2019 09:16:56 -0700 (PDT)
+X-Gm-Message-State: APjAAAU6G5JT3s4+0UAy+NDaUhHouuV5llj8bKAQOuDgFmpNkZN2LNL7
+        pvRexXObQduIojV8atT0PQ3akiRKqqxJEwU3dW0=
+X-Google-Smtp-Source: APXvYqwCOKkrXmNKQSP499CXhlqBMZpMhDnOgQ3rTLtNunGGURcys1oCywZ9m+kRVId/EhZGWzjROCb4rQ5GKxsDtwg=
+X-Received: by 2002:a2e:1b52:: with SMTP id b79mr26755456ljb.225.1571242614784;
+ Wed, 16 Oct 2019 09:16:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <CGME20191016145812eucas1p1a3cf3f44a2cff4c32a2270334630c4a2@eucas1p1.samsung.com>
+ <20191016145756.16004-1-s.nawrocki@samsung.com> <20191016145756.16004-3-s.nawrocki@samsung.com>
+In-Reply-To: <20191016145756.16004-3-s.nawrocki@samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 16 Oct 2019 19:16:41 +0300
+X-Gmail-Original-Message-ID: <CAJKOXPeagcSRUm2Qwwby=NHfWGdQ6KVZ2htb3UmnU2GfX+Ckcg@mail.gmail.com>
+Message-ID: <CAJKOXPeagcSRUm2Qwwby=NHfWGdQ6KVZ2htb3UmnU2GfX+Ckcg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] dt-bindings: arm: samsung: Update the CHIPID
+ binding for ASV
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     vireshk@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        roger.lu@mediatek.com, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, devicetree@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+On Wed, 16 Oct 2019 at 17:58, Sylwester Nawrocki <s.nawrocki@samsung.com> wrote:
+>
+> This patch adds documentation of new optional "samsung,asv-bin"
+> property in the chipid device node and documents requirement of
+> "syscon" compatible string.  These additions are needed to support
+> Exynos ASV (Adaptive Supply Voltage) feature.
+>
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> Depends on patch ("8d0daa4c89c9 dt-bindings: arm: samsung: Convert
+> Exynos Chipid bindings to json-schema") already applied to Rob's
+> dt/next.
+>
+> Changes since v4:
+>  - converted to YAML
+>
+> Changes since v3:
+>  - none
+>
+> Changes since v2:
+>  - corrected patch summary line prefix, the patch moved in the
+>    sequence
+>
+> Changes since v1 (RFC):
+>  - new patch
+>
+>  .../bindings/arm/samsung/exynos-chipid.yaml   | 31 +++++++++++++++++--
+>  1 file changed, 28 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+> index 9c573ad7dc7d..df84d9e9f4c2 100644
+> --- a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+> +++ b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+> @@ -9,17 +9,42 @@ title: Samsung Exynos SoC series Chipid driver
+>  maintainers:
+>    - Krzysztof Kozlowski <krzk@kernel.org>
+>
+> +# Custom select to avoid matching all nodes with 'syscon'
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: samsung,exynos4210-chipid
+> +  required:
+> +    - compatible
+> +
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: samsung,exynos4210-chipid
+> +    allOf:
 
-> This patchset adds audio support on the sm1 SoC family and the
-> sei610 platform
+I think it was my mistake to use allOf in other Exynos bindings. It
+should not be needed.
 
-Queued for v5.5.
+Rest looks good so with allOf removal:
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> Kevin, The patchset depends on:
->  - The ARB binding merged by Philipp [0]
->  - The audio clock controller bindings I just applied. A tag is
->    available for you here [1]
-
-I've pulled both of those into v5.5/dt64 so that branch is buildable
-standlone.
-
-Thanks for details on the dependencies.
-
-Kevin
+Best regards,
+Krzysztof
