@@ -2,143 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91A50D8BC4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:53:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 241EBD8BD4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:54:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733175AbfJPIxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:53:24 -0400
-Received: from mga02.intel.com ([134.134.136.20]:5536 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726640AbfJPIxY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 04:53:24 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 16 Oct 2019 01:53:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,303,1566889200"; 
-   d="scan'208";a="202015647"
-Received: from linux.intel.com ([10.54.29.200])
-  by FMSMGA003.fm.intel.com with ESMTP; 16 Oct 2019 01:53:22 -0700
-Received: from [10.226.38.27] (unknown [10.226.38.27])
-        by linux.intel.com (Postfix) with ESMTP id 8C3135803C5;
-        Wed, 16 Oct 2019 01:53:18 -0700 (PDT)
-Subject: Re: [PATCH v3 3/3] mtd: spi-nor: cadence-quadspi: disable the
- auto-poll for Intel LGM
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, computersforpeace@gmail.com, richard@nod.at,
-        jwboyer@gmail.com, boris.brezillon@free-electrons.com,
-        cyrille.pitchen@atmel.com, david.oberhollenzer@sigma-star.at,
-        miquel.raynal@bootlin.com, tudor.ambarus@gmail.com,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-References: <20190909104733.14273-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190909104733.14273-4-vadivel.muruganx.ramuthevar@linux.intel.com>
- <a4d45efe-907f-6c87-c650-5ad19942f0e4@ti.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <888a5cfa-7ded-938a-cdd6-cc11068117e4@linux.intel.com>
-Date:   Wed, 16 Oct 2019 16:53:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2404080AbfJPIy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:54:58 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:46209 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732135AbfJPIy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:54:58 -0400
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 553CC24000C;
+        Wed, 16 Oct 2019 08:54:53 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     laurent.pinchart@ideasonboard.com,
+        kieran.bingham+renesas@ideasonboard.com, geert@linux-m68k.org,
+        horms@verge.net.au, uli+renesas@fpond.eu
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>, airlied@linux.ie,
+        daniel@ffwll.ch, linux-renesas-soc@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Subject: [PATCH v6 1/8] dt-bindings: display: renesas,cmm: Add R-Car CMM documentation
+Date:   Wed, 16 Oct 2019 10:55:41 +0200
+Message-Id: <20191016085548.105703-2-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191016085548.105703-1-jacopo+renesas@jmondi.org>
+References: <20191016085548.105703-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-In-Reply-To: <a4d45efe-907f-6c87-c650-5ad19942f0e4@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vignesh,
+Add device tree bindings documentation for the Renesas R-Car Display
+Unit Color Management Module.
 
-      Thank you for the review comments.
+CMM is the image enhancement module available on each R-Car DU video
+channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
 
-On 16/10/2019 4:40 PM, Vignesh Raghavendra wrote:
->
-> On 09/09/19 4:17 PM, Ramuthevar,Vadivel MuruganX wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> On Intel's Lightning Mountain(LGM) SoC QSPI controller do not auto-poll.
->> This patch introduces to properly disable the auto-polling feature to
-> This patch disables auto polling when direct access mode is disabled
-> which should be noted in the commit message.
-will add it.
->> improve the performance of cadence-quadspi.
-> How does this improve performance of cadence-quadspi? I would expect HW
-> auto-polling to be faster than SW polling.
-During the bring-up time observed this, once again verify it on my setup.
-Agreed, you are correct HW auto-polling is faster than SW polling.
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->>   drivers/mtd/spi-nor/cadence-quadspi.c | 24 ++++++++++++++++++++++++
->>   1 file changed, 24 insertions(+)
->>
->> diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
->> index 73b9fbd1508a..60998eaad1cc 100644
->> --- a/drivers/mtd/spi-nor/cadence-quadspi.c
->> +++ b/drivers/mtd/spi-nor/cadence-quadspi.c
->> @@ -135,6 +135,8 @@ struct cqspi_driver_platdata {
->>   #define CQSPI_REG_RD_INSTR_TYPE_DATA_MASK	0x3
->>   #define CQSPI_REG_RD_INSTR_DUMMY_MASK		0x1F
->>   
->> +#define CQSPI_REG_WR_COMPLETION_CTRL		0x38
->> +#define CQSPI_REG_WR_COMPLETION_DISABLE_AUTO_POLL	BIT(14)
->>   #define CQSPI_REG_WR_INSTR			0x08
->>   #define CQSPI_REG_WR_INSTR_OPCODE_LSB		0
->>   #define CQSPI_REG_WR_INSTR_TYPE_ADDR_LSB	12
->> @@ -471,6 +473,18 @@ static int cqspi_command_write_addr(struct spi_nor *nor,
->>   	return cqspi_exec_flash_cmd(cqspi, reg);
->>   }
->>   
->> +static int cqspi_disable_auto_poll(struct cqspi_st *cqspi)
->> +{
->> +	void __iomem *reg_base = cqspi->iobase;
->> +	unsigned int reg;
->> +
->> +	reg = readl(reg_base + CQSPI_REG_WR_COMPLETION_CTRL);
->> +	reg |= CQSPI_REG_WR_COMPLETION_DISABLE_AUTO_POLL;
->> +	writel(reg, reg_base + CQSPI_REG_WR_COMPLETION_CTRL);
->> +
->> +	return 0;
->> +}
->> +
->>   static int cqspi_read_setup(struct spi_nor *nor)
->>   {
->>   	struct cqspi_flash_pdata *f_pdata = nor->priv;
->> @@ -508,6 +522,11 @@ static int cqspi_read_setup(struct spi_nor *nor)
->>   	reg &= ~CQSPI_REG_SIZE_ADDRESS_MASK;
->>   	reg |= (nor->addr_width - 1);
->>   	writel(reg, reg_base + CQSPI_REG_SIZE);
->> +
->> +	/* Disable auto-polling */
->> +	if (!f_pdata->use_direct_mode)
->> +		cqspi_disable_auto_poll(cqspi);
->> +
->>   	return 0;
->>   }
->>   
-> Hmmm.. There is no need to disable polling for every read/write
-> operation. It should be enough to do it once in cqspi_controller_init()
-sure, move to cqspi_controller_init() .
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 ---
-Regards
-Vadivel
->
->
->> @@ -627,6 +646,11 @@ static int cqspi_write_setup(struct spi_nor *nor)
->>   	reg &= ~CQSPI_REG_SIZE_ADDRESS_MASK;
->>   	reg |= (nor->addr_width - 1);
->>   	writel(reg, reg_base + CQSPI_REG_SIZE);
->> +
->> +	/* Disable auto-polling */
->> +	if (!f_pdata->use_direct_mode)
->> +		cqspi_disable_auto_poll(cqspi);
->> +
->>   	return 0;
->>   }
->>   
->>
+ .../bindings/display/renesas,cmm.yaml         | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,cmm.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/renesas,cmm.yaml b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
+new file mode 100644
+index 000000000000..a57037b9e9ba
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/renesas,cmm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Car Color Management Module (CMM)
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++  - Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
++  - Jacopo Mondi <jacopo+renesas@jmondi.org>
++
++description: |+
++  Renesas R-Car color management module connected to R-Car DU video channels.
++  It provides image enhancement functions such as 1-D look-up tables (LUT),
++  3-D look-up tables (CLU), 1D-histogram generation (HGO), and color
++  space conversion (CSC).
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++        - enum:
++          - renesas,r8a7795-cmm
++          - renesas,r8a7796-cmm
++          - renesas,r8a77965-cmm
++          - renesas,r8a77990-cmm
++          - renesas,r8a77995-cmm
++        - const: renesas,rcar-gen3-cmm
++      - items:
++        - const: renesas,rcar-gen2-cmm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - resets
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
++    #include <dt-bindings/power/r8a7796-sysc.h>
++
++    cmm0: cmm@fea40000 {
++         compatible = "renesas,r8a7796-cmm",
++                      "renesas,rcar-gen3-cmm";
++         reg = <0 0xfea40000 0 0x1000>;
++         power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
++         clocks = <&cpg CPG_MOD 711>;
++         resets = <&cpg 711>;
++    };
+--
+2.23.0
+
