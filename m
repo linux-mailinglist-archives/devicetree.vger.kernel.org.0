@@ -2,72 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21581D92B4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78DCAD92E5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 15:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393631AbfJPNji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 09:39:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44244 "EHLO mail.kernel.org"
+        id S2405505AbfJPNtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 09:49:40 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:39680 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391938AbfJPNji (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 09:39:38 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 75D5D2168B;
-        Wed, 16 Oct 2019 13:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571233178;
-        bh=dDExEC2557cmtq3X/4XRJPOkG/r/cnDMPOGXwrWXLoM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L+FbZCkdkd9GpK7nEZefieerlnRs7S6ZXE6J7iRlAmUzCy5s6bxANCkhxRUWZGaKI
-         sBeLWzxWO4IglbGp0fJVwJQB3DSlTbZ+iVw1IhX0xQvB+Uno4HRiWKjmkaYR9jpDX0
-         yX5gKWGo/5MvUHFZt7/oeBJu1lkFh0OKHV7dWFbY=
-Date:   Wed, 16 Oct 2019 15:39:35 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 0/4] crypto: add sun8i-ss driver for Allwinner Security
- System
-Message-ID: <20191016133935.e67kevjyugxn5rki@gilmour>
-References: <20191016133345.9076-1-clabbe.montjoie@gmail.com>
+        id S1726689AbfJPNtj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 09:49:39 -0400
+Received: from iota-build.ysoft.local (unknown [10.1.5.151])
+        by uho.ysoft.cz (Postfix) with ESMTP id 4B6DBA26C1;
+        Wed, 16 Oct 2019 15:49:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1571233778;
+        bh=oavljzM6Dv7QE7Rmd/6PUWCvDbTXzVq4czozbuvmcbs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HTI94LuDeTAU922Hi1QsSz6Gp+dLWtt79pIt5wZr8DXQ1bvkrmvLP1OZRkfo2XEyw
+         XfEDMUJuZ5l6IbHThBdU1XL9NvhnGLp06C3qNzUe8NH23SRC1Z4ckRn2B0MUCxeceD
+         wKg1mLmApTiE6mpnGZ9Fj4R3nTAYDrJ2UrwZ0g0Q=
+From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH] ARM: dts: imx6dl-yapp4: Enable UART2
+Date:   Wed, 16 Oct 2019 15:49:22 +0200
+Message-Id: <1571233762-4444-1-git-send-email-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191016133345.9076-1-clabbe.montjoie@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 03:33:41PM +0200, Corentin Labbe wrote:
-> Hello
->
-> This patch serie adds support for the second version of Allwinner Security System.
-> The first generation of the Security System is already handled by the sun4i-ss driver.
-> Due to major change, the first driver cannot handle the second one.
-> This new Security System is present on A80 and A83T SoCs.
->
-> For the moment, the driver support only DES3/AES in ECB/CBC mode.
-> Patchs for CTR/CTS, RSA and RNGs will came later.
->
-> This serie is tested with CRYPTO_MANAGER_EXTRA_TESTS
-> and tested on:
-> sun8i-a83t-bananapi-m3
-> sun9i-a80-cubieboard4
->
-> This serie is based on top of the "crypto: add sun8i-ce driver for
-> Allwinner crypto engine" serie.
+The second UART is needed for 3D or MFD printer control.
 
-For the crypto part,
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+---
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-I'll apply patches 3 and 4 once Herbert will have merged the patches 1 and 2
+diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+index e8d800fec637..663a72a96b6c 100644
+--- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
++++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+@@ -447,6 +447,13 @@
+ 		>;
+ 	};
+ 
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX6QDL_PAD_GPIO_7__UART2_TX_DATA	0x1b098
++			MX6QDL_PAD_GPIO_8__UART2_RX_DATA	0x1b098
++		>;
++	};
++
+ 	pinctrl_usbh1: usbh1grp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_EIM_D30__USB_H1_OC	0x1b098
+@@ -532,6 +539,12 @@
+ 	status = "okay";
+ };
+ 
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	status = "okay";
++};
++
+ &usbh1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usbh1>;
+-- 
+2.1.4
 
-Thanks!
-Maxime
