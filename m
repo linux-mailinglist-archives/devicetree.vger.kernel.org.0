@@ -2,68 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D24D9BB5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 22:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B3A4D9BB9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 22:24:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390898AbfJPUYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 16:24:12 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:49306 "EHLO vps0.lunn.ch"
+        id S2394723AbfJPUYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 16:24:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59168 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388251AbfJPUYM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 16:24:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=lp9sGSeBUfNCINz8D0KXuszYBQzAqsZQkv+K4LudJSs=; b=l+GxzaXFjS8l3ToLipq/WrGhgo
-        8vvhof4mQ7FXr+CAR85chuh6HDr9DMnMBjTDb1eTmX4fZ9vysDuZgTkA5SGMU7GoKLD5AhbLjPWYb
-        yV1LrfjlU0Zo0E10BjUkZs0FtGhiCZOT9eUBDaPhWb0PNQHYKhZ9PvGMLMhosMCtMYqs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1iKpps-00017G-Bz; Wed, 16 Oct 2019 22:23:56 +0200
-Date:   Wed, 16 Oct 2019 22:23:56 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Chris Snook <chris.snook@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] dt-bindings: net: dsa: qca,ar9331 switch
- documentation
-Message-ID: <20191016202356.GM17013@lunn.ch>
-References: <20191014061549.3669-1-o.rempel@pengutronix.de>
- <20191014061549.3669-3-o.rempel@pengutronix.de>
+        id S2388251AbfJPUYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 16:24:24 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3B5FF21835;
+        Wed, 16 Oct 2019 20:24:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571257463;
+        bh=654k4bM86cMPVbhxD+IMxc4Z4DAQA6mCjJMdgRCfKwk=;
+        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
+        b=xKlgv2aIYZ2rSMV2vshSW0PI7TjlcA8FrFs50XNIfy3Jzy08Vuk4oxt84OOnXk8kS
+         soz0lBlZl1HaeSVzadyUNpMK7n18PUVVLE/6HyZ2xqxfTZ6qRLmK/BVVJ3xUDC3NjT
+         doRa/y7B6bSHLRSpQUKY8a+WdJ6sf99nQHM3MuWM=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191014061549.3669-3-o.rempel@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ab9b0dba-5c5b-5a97-07c5-ce8344cd74cd@kdbg.org>
+References: <20191004213029.145027-1-sboyd@kernel.org> <c3a054d9-2646-e440-40c5-b0aecf21e690@kdbg.org> <20191008144306.B2B0820659@mail.kernel.org> <ab9b0dba-5c5b-5a97-07c5-ce8344cd74cd@kdbg.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Johannes Sixt <j6t@kdbg.org>
+Cc:     git@vger.kernel.org, Adrian Johnson <ajohnson@redneon.com>,
+        William Duclot <william.duclot@ensimag.grenoble-inp.fr>,
+        Matthieu Moy <matthieu.moy@grenoble-inp.fr>,
+        Junio C Hamano <gitster@pobox.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH] userdiff: Fix some corner cases in dts regex
+User-Agent: alot/0.8.1
+Date:   Wed, 16 Oct 2019 13:24:22 -0700
+Message-Id: <20191016202423.3B5FF21835@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 14, 2019 at 08:15:47AM +0200, Oleksij Rempel wrote:
-> Atheros AR9331 has built-in 5 port switch. The switch can be configured
-> to use all 5 or 4 ports. One of built-in PHYs can be used by first built-in
-> ethernet controller or to be used directly by the switch over second ethernet
-> controller.
+Quoting Johannes Sixt (2019-10-12 05:54:00)
+> Am 08.10.19 um 16:43 schrieb Stephen Boyd:
+> > Quoting Johannes Sixt (2019-10-05 07:09:11)
+> >> Am 04.10.19 um 23:30 schrieb Stephen Boyd:
+> >>> --- /dev/null
+> >>> +++ b/t/t4018/dts-nodes-multiline-prop
+> >>> @@ -0,0 +1,12 @@
+> >>> +/ {
+> >>> +     label_1: node1@ff00 {
+> >>> +             RIGHT@deadf00,4000 {
+> >>> +                     multilineprop =3D <3>,
+> >>> +                                     <4>;
+> >>
+> >> You could insert more lines to demonstrate that "<x>," on a line by
+> >> itself is not picked up.
+> >=20
+> > Maybe I should add another test?
+>=20
+> This is is the _multi_line test case, right? ;) Just add one or two
+> lines between the <3> and the <4> that look like common real-world cases
+> to show that those lines won't be picked up. I don't think that another
+> test file is required.
 
-Hi Oleksij
+Ok got it!
 
-How exactly is this phy sharing controlled? I did not see anything in
-the driver. Is there a mux we need to set?
+>=20
+> >>> +/ { RIGHT /* Technically just supposed to be a slash and brace */
+> >>
+> >> Devil's advocate here: insert ';' or '=3D' in the comment, and the line
+> >> would not be picked up. Does that hurt in practice?
+> >=20
+> > I don't think it hurts in practice so I'd like to ignore it.
+>=20
+> Sure, no problem.
+>=20
+> >>>  PATTERNS("dts",
+> >>>        "!;\n"
+> >>> +      "!.*=3D.*\n"
+> >>
+> >> This behaves the same way as just
+> >>
+> >>         "!=3D\n"
+> >>
+> >> no?
+> >>
+> >=20
+> > Not exactly. Properties don't always get assigned.
+>=20
+> I was just refering to the added line, not the combination of the two lin=
+es.
 
-    Andrew
+Ah ok. I'll reduce the line as you suggest then. Thanks.
+
+>=20
+> But while you are speaking of it:
+>=20
+> > There are boolean
+> > properties that can be tested for by the presence of some string with an
+> > ending semi-colon, like 'this-is-true;'. If we just check for not equal
+> > to a line with a semicolon and newline then we'll see boolean
+> > properties. Should I add that as another test?
+>=20
+> I agree that a test case with a Boolean property would be great.
+>=20
+
+Alright I'll work on that and resend.
+
