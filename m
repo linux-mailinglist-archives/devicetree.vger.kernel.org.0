@@ -2,182 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51AF6D8B1B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:35:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 668C8D8B2A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 10:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391395AbfJPIfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 04:35:32 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:45990 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388823AbfJPIfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:35:32 -0400
-Received: by mail-qk1-f195.google.com with SMTP id z67so21945123qkb.12
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:35:31 -0700 (PDT)
+        id S1731854AbfJPIh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 04:37:57 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:39171 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726231AbfJPIh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 04:37:57 -0400
+Received: by mail-pf1-f195.google.com with SMTP id v4so14260594pff.6
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 01:37:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=GmuC3zn8bALphH5r2b0Q1YLWOrBX5XjvTZ9/8xPZZN4=;
-        b=ezJ2leywNfinL5V540/jApDr2GEu4Od6OcnKeW75/FAlBxgP8+aMmrW3ENWC8EVwIK
-         bbUw8QHOWvqgI2Rn//zRyqpUTL/bgIoOrv05RXTa9DixIYgal1j03iYpAo+OCXxHXxtH
-         B8duz5djvIIx5kmVYxdveo8+w2jLJwZDXppqJReOWwEh8AeAClRF/5D52vfw2aGa3z0Y
-         vtbc65QrHG7hThQJpg36B1viWx0nFYWkAjoJuEQQ6gaP2+c5X7XDi1pgQdA82zDpOsVv
-         hgd4qZSz+RrWQucvq75ZkaN4bgVA8dU6IoKzIX419wej4sUDk/qe07R8NcEFU5ms2+tr
-         /bQg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=WWx1FFGKOuJRMtTkmthoLwPW2Kzf5U2CvR5+YTbodjA=;
+        b=xAo6znHjl9Ltmw0vFumuJohwKsXKRXzV5r7dKsvyLhx07WH33ymhlFmV5JYx4A6Q/P
+         dwNiGyzV4LQPENRdjWLcE+KhysJS+FpDi7o7o1LqTO89hSS/57UbHIwL9OkUrBtm9d9Z
+         seJvCEGO6N7Z5WbVVOV4j1xbr+cxt2cddiTtV825tcj+vOPJuzATkOhvRzXgOIOYOkEO
+         j2iZyGrgrp5+fE48Ue6kUdwTtf+itGbLbuv1nBwIjSmnDorusk8z1dCLe8vzNLvzqh9A
+         yk9JYyZhinPISSSBTv7ZRuQzRp9Oan1cEIyciN76kcIEluvWjdvQo/Lb+u7966xVJ8PC
+         oBHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=GmuC3zn8bALphH5r2b0Q1YLWOrBX5XjvTZ9/8xPZZN4=;
-        b=ed8AkAwDdor4WRoDE3YS8mzS/IgHudQv9LW4mvAmYief3OZ3d4rEZVV1x+94kXxGob
-         FY3i2Vl0axxhrw4KoyIeVKa97hff69gHF+H7TPWPTTanmdnkvYihSbfjsSVoHCEzxlBm
-         y8SFp+G7xnqe8+FrO5JU6vevOxa7e5d7BmpidU94TFzLPuXxdb4KzmT4plz0AjkxHbOL
-         tDi6WE+bVum3ToChqQMdcQcR3T+6VcBnkEQTX/Qmosrtlqjfq2sE2U1UDHAu8qWVvBH0
-         cQgn38J+Zk8E8ACwtl7JfEpmBQWwwrxe3iPtzCeX3czfNg7CySqcdfCFzbtNdFzn/BcZ
-         EWLA==
-X-Gm-Message-State: APjAAAV1R404vBVjPlYd/KPFgca94WuddzzLxZcz37R2N+fGvEIP1+Ni
-        856hBKH1dWDgcBtZ6/u5R6FhK58cfk6RG6OcsuoKFA==
-X-Google-Smtp-Source: APXvYqzGRMvNTAJKYa1IF/vPfb2c7W0O+r3HJGpQGbPndIgkhES6jDxA2LF0IZi6nk9B8YFGFFqvF/SXFonIwxR9VZo=
-X-Received: by 2002:a37:8806:: with SMTP id k6mr39103180qkd.127.1571214930602;
- Wed, 16 Oct 2019 01:35:30 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WWx1FFGKOuJRMtTkmthoLwPW2Kzf5U2CvR5+YTbodjA=;
+        b=qhC3vPcnCaslBpFuC8a0Kyq4EOcWHu+0RTdI+KH9rk6nTGgFsm9YRxfuMkROqSbWQB
+         EiwgVRuoAJjepaM/WQp9DxbsT0YniwNaQ4up4H+VEIiROwVamud5nUm50rwkEiPypbk/
+         MYY0y6De61mWg9Zwaru61cj2BjGSwKZoefVZM+eVKnyDlkRfkoqrU8v4+QblyLM239Vp
+         vnMM1yvycOyMathnui45RVVJC+5MkkSYk/AdqsWm6rf9geQpnSEhlUf8EIa2zWjGy61m
+         zBLyuMjfx2qgvHJ1KsUSf2ajkbo1mVAo1V4kVmZNKVA5HgFIAEeJuyTL6RG8TWLbcVUl
+         ABVA==
+X-Gm-Message-State: APjAAAWpcUFoAM+wd8IDArik7kLBkGUCvnsI79KnqnB4d/4wdscdocMv
+        zXV9MFVL5XbKc4IpaKOhEgZk
+X-Google-Smtp-Source: APXvYqywjX6EG0Vqzgqg0Uy+SXn8Ybru/4U99k3x4yloIPg3KKmXpn26QBKc4s/l+yy1i0k3CZZVSw==
+X-Received: by 2002:a17:90a:246e:: with SMTP id h101mr3523435pje.133.1571215076312;
+        Wed, 16 Oct 2019 01:37:56 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6099:7d36:58bc:3eb9:a64a:7942])
+        by smtp.gmail.com with ESMTPSA id v8sm4594520pje.6.2019.10.16.01.37.50
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 16 Oct 2019 01:37:55 -0700 (PDT)
+Date:   Wed, 16 Oct 2019 14:07:48 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     mchehab@kernel.org, sakari.ailus@iki.fi,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com
+Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor
+ binding
+Message-ID: <20191016083748.GA2288@Mani-XPS-13-9360>
+References: <20191011035613.13598-1-manivannan.sadhasivam@linaro.org>
+ <20191011035613.13598-2-manivannan.sadhasivam@linaro.org>
+ <20191015224554.GA5634@bogus>
 MIME-Version: 1.0
-References: <cover.1571210269.git.amit.kucheria@linaro.org> <6e6c6da8-0948-581c-a4a3-7a2617ac5dd0@linaro.org>
-In-Reply-To: <6e6c6da8-0948-581c-a4a3-7a2617ac5dd0@linaro.org>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Wed, 16 Oct 2019 14:05:19 +0530
-Message-ID: <CAP245DXOoRoCogZzgG7ss-bVSmE-FfeP3fxV3Vrya+_c1ew7dA@mail.gmail.com>
-Subject: Re: [PATCH 00/15] thermal: qcom: tsens: Add interrupt support
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191015224554.GA5634@bogus>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 1:29 PM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On 16/10/2019 09:33, Amit Kucheria wrote:
-> > Hi Thermal and MSM maintainers,
-> >
-> > I believe this series is now ready to be merged. The DT bindings and dr=
-iver
-> > changes should go through the thermal tree and the changes to the DT fi=
-les
-> > themselves should go through the MSM tree. There is no hard ordering
-> > dependency because we're adding a new property to the driver. It would =
-help
-> > to soak in linux-next for a few weeks to catch anything on kernelci.org=
-.
->
-> So the ones going to thermal are:
->
-> 1-7, 14, 15 right ?
+Hi Rob,
 
-1-4, 7, 14, 15 =3D> thermal tree
-5, 6, 8-13 =3D> msm tree
+On Tue, Oct 15, 2019 at 05:45:54PM -0500, Rob Herring wrote:
+> On Fri, Oct 11, 2019 at 09:26:12AM +0530, Manivannan Sadhasivam wrote:
+> > Add devicetree binding for IMX296 CMOS image sensor.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  .../devicetree/bindings/media/i2c/imx296.txt  | 55 +++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx296.txt
+> 
+> You should know by now, use DT schema format please.
+> 
 
-I guess I could have ordered it better for merging :-/
+I know for other subsystems but by having a vague look at the existing bindings
+I thought media subsystem is still using .txt. But I now see few yaml bindings
+in linux-next and will switch over this.
 
-> > Changes since v4:
-> > - Change to of-thermal core[1] to force interrupts w/o changing polling=
--delay DT
-> >   parameter
-> > - Corresponding changes to DT files to remove the hunks setting the val=
-ues
-> >   to 0
-> > - Collected reviews and acks
-> >
-> > Changes since v3:
-> > - Fix up the YAML definitions based on Rob's review
-> >
-> > Changes since v2:
-> > - Addressed Stephen's review comment
-> > - Moved the dt-bindings to yaml (This throws up some new warnings in va=
-rious QCOM
-> > devicetrees. I'll send out a separate series to fix them up)
-> > - Collected reviews and acks
-> > - Added the dt-bindings to MAINTAINERS
-> >
-> > Changes since v1:
-> > - Collected reviews and acks
-> > - Addressed Stephen's review comments (hopefully I got them all).
-> > - Completely removed critical interrupt infrastructure from this series=
-.
-> >   Will post that separately.
-> > - Fixed a bug in sign-extension of temperature.
-> > - Fixed DT bindings to use the name of the interrupt e.g. "uplow" and u=
-se
-> >   platform_get_irq_byname().
-> >
-> > Add interrupt support to TSENS. The first 6 patches are general fixes a=
-nd
-> > cleanups to the driver before interrupt support is introduced.
-> >
-> > [1] https://lore.kernel.org/linux-arm-msm/1b53ef537203e629328285b4597a0=
-9e4a586d688.1571181041.git.amit.kucheria@linaro.org/
-> >
-> > Amit Kucheria (15):
-> >   drivers: thermal: tsens: Get rid of id field in tsens_sensor
-> >   drivers: thermal: tsens: Simplify code flow in tsens_probe
-> >   drivers: thermal: tsens: Add __func__ identifier to debug statements
-> >   drivers: thermal: tsens: Add debugfs support
-> >   arm: dts: msm8974: thermal: Add thermal zones for each sensor
-> >   arm64: dts: msm8916: thermal: Fixup HW ids for cpu sensors
-> >   dt-bindings: thermal: tsens: Convert over to a yaml schema
-> >   arm64: dts: sdm845: thermal: Add interrupt support
-> >   arm64: dts: msm8996: thermal: Add interrupt support
-> >   arm64: dts: msm8998: thermal: Add interrupt support
-> >   arm64: dts: qcs404: thermal: Add interrupt support
-> >   arm: dts: msm8974: thermal: Add interrupt support
-> >   arm64: dts: msm8916: thermal: Add interrupt support
-> >   drivers: thermal: tsens: Create function to return sign-extended
-> >     temperature
-> >   drivers: thermal: tsens: Add interrupt support
-> >
-> >  .../bindings/thermal/qcom-tsens.txt           |  55 --
-> >  .../bindings/thermal/qcom-tsens.yaml          | 168 ++++++
-> >  MAINTAINERS                                   |   1 +
-> >  arch/arm/boot/dts/qcom-msm8974.dtsi           |  92 +++
-> >  arch/arm64/boot/dts/qcom/msm8916.dtsi         |   6 +-
-> >  arch/arm64/boot/dts/qcom/msm8996.dtsi         |   4 +
-> >  arch/arm64/boot/dts/qcom/msm8998.dtsi         |   6 +-
-> >  arch/arm64/boot/dts/qcom/qcs404.dtsi          |   2 +
-> >  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   4 +
-> >  drivers/thermal/qcom/tsens-8960.c             |   4 +-
-> >  drivers/thermal/qcom/tsens-common.c           | 529 ++++++++++++++++--
-> >  drivers/thermal/qcom/tsens-v0_1.c             |  11 +
-> >  drivers/thermal/qcom/tsens-v1.c               |  29 +
-> >  drivers/thermal/qcom/tsens-v2.c               |  13 +
-> >  drivers/thermal/qcom/tsens.c                  |  58 +-
-> >  drivers/thermal/qcom/tsens.h                  | 286 ++++++++--
-> >  16 files changed, 1102 insertions(+), 166 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsen=
-s.txt
-> >  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsen=
-s.yaml
-> >
->
->
-> --
->  <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for A=
-RM SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
->
+Btw, is it mandatory now to use YAML bindings for all subsystems? I don't
+see any issue (instead I prefer) but I remember that you defer to the preference
+of the subsystem maintainers before!
+
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx296.txt b/Documentation/devicetree/bindings/media/i2c/imx296.txt
+> > new file mode 100644
+> > index 000000000000..25d3b15162c1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/imx296.txt
+> > @@ -0,0 +1,55 @@
+> > +* Sony IMX296 1/2.8-Inch CMOS Image Sensor
+> > +
+> > +The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
+> > +sensor with square pixel array and 1.58 M effective pixels. This chip features
+> > +a global shutter with variable charge-integration time. It is programmable
+> > +through I2C and 4-wire interfaces. The sensor output is available via CSI-2
+> > +serial data output (1 Lane).
+> > +
+> > +Required Properties:
+> > +- compatible: Should be "sony,imx296"
+> > +- reg: I2C bus address of the device
+> > +- clocks: Reference to the mclk clock.
+> > +- clock-names: Should be "mclk".
+> > +- clock-frequency: Frequency of the mclk clock in Hz.
+> > +- vddo-supply: Interface power supply.
+> > +- vdda-supply: Analog power supply.
+> > +- vddd-supply: Digital power supply.
+> > +
+> > +Optional Properties:
+> > +- reset-gpios: Sensor reset GPIO
+> > +
+> > +The imx296 device node should contain one 'port' child node with
+> > +an 'endpoint' subnode. For further reading on port node refer to
+> > +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > +
+> > +Required Properties on endpoint:
+> > +- data-lanes: check ../video-interfaces.txt
+> 
+> This should only be required when not using all the lanes on the device.
+> 
+
+This is a bit weird! How will someone know how many lanes the device is using
+by looking at the binding? He can anyway refer the datasheet but still...
+
+> > +- remote-endpoint: check ../video-interfaces.txt
+> 
+> Don't really need to document this.
+> 
+
+okay.
+
+Thanks,
+Mani
+
+> > +
+> > +Example:
+> > +	&i2c1 {
+> > +		...
+> > +		imx296: camera-sensor@1a {
+> > +			compatible = "sony,imx296";
+> > +			reg = <0x1a>;
+> > +
+> > +			reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&camera_rear_default>;
+> > +
+> > +			clocks = <&gcc GCC_CAMSS_MCLK0_CLK>;
+> > +			clock-names = "mclk";
+> > +			clock-frequency = <37125000>;
+> > +
+> > +			vddo-supply = <&camera_vddo_1v8>;
+> > +			vdda-supply = <&camera_vdda_3v3>;
+> > +			vddd-supply = <&camera_vddd_1v2>;
+> > +
+> > +			port {
+> > +				imx296_ep: endpoint {
+> > +					data-lanes = <1>;
+> > +					remote-endpoint = <&csiphy0_ep>;
+> > +				};
+> > +			};
+> > +		};
+> > -- 
+> > 2.17.1
+> > 
