@@ -2,91 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C50E1D89C0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 09:35:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10EA3D8A40
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 09:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390725AbfJPHfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 03:35:12 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:45097 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390650AbfJPHfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 03:35:11 -0400
-Received: by mail-pf1-f195.google.com with SMTP id y72so14138814pfb.12
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 00:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=03jpeb+1aJx4bxpcdPiavfJJhVJ5WBvL1EOxBoz3J+I=;
-        b=X4D5Ac/vX8qbhhnG/SRIM90B0+FmV6AycTSj/JtrullgPcisRI70iJjTkjiIMfyi/H
-         QhssR6y42idqaSNfRGO5AVREd9915qBuIXFx5EV+4gIzMHAQr/p1a8REtGA9cfSZKsmI
-         PWp5a2RaRyTOA8Ki2AoHQ3/WAxaO3Rg2RGtb1Z1GvMXas458/hA1SSPuRzfojyFyWFL7
-         td8pqUQrvLIhjkogvgzcfK4BGdZzYFhJsEFJxSn26/snm4bs1h1urgmrwhLPPNyIxmWz
-         ONpJaLJ3eApPbWqGwuOBFv5BOLamb9huJXIkx7cabTmnkVM7sFciLLaBHM7zV6jpwMvN
-         g+ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=03jpeb+1aJx4bxpcdPiavfJJhVJ5WBvL1EOxBoz3J+I=;
-        b=EdJYn1nlgniQgUAURaxw9zi1Yb42P17KYRWAXuc7LO28FV3KzQRQ/BXZwlZYcuYLNe
-         UWJnGYv5ntgX4at/QOmj1j0279pqr5Uq8/bZyrBes7I6pwNeXBbxZbFqEc4WiLN3QDBd
-         YZ+rpj8WN0LXpMs0wShv6kD00nV7AY2MjOkUl7Hs9DqFQHZrVLzNllW9E7tIe5JpYMcb
-         wG/4LLgAHIcc6n7VZGnCJ23Cu75Goc3tQTocwXabmj5w5jW//7wDr2xOCjP+iV84wbUn
-         y/Syz3gbNqFj0mJG0pkgeK+38blNHEK3m1q3Ka3xB4TkoYYeFcOz6nvhvk8gqUBgK7x6
-         5ErQ==
-X-Gm-Message-State: APjAAAWb7tFbPAFg/qjonpMgJCnsMQ1wEEc8Y7aEposvzPObp+rJeBnk
-        JTXA/rt0P9587autLX2Y7kK+1A==
-X-Google-Smtp-Source: APXvYqxLAdFUelj0nGlA72+kn0HnBJlREcJf6ke7gmZg2QchUPKPdi3nc8YGKl4qzUSdSd5kYYWf0Q==
-X-Received: by 2002:a63:c748:: with SMTP id v8mr43605412pgg.348.1571211310066;
-        Wed, 16 Oct 2019 00:35:10 -0700 (PDT)
-Received: from localhost ([49.248.175.127])
-        by smtp.gmail.com with ESMTPSA id z4sm27413149pfn.45.2019.10.16.00.35.09
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Oct 2019 00:35:09 -0700 (PDT)
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, edubezval@gmail.com, agross@kernel.org,
-        masneyb@onstation.org, swboyd@chromium.org,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     devicetree@vger.kernel.org
-Subject: [PATCH 13/15] arm64: dts: msm8916: thermal: Add interrupt support
-Date:   Wed, 16 Oct 2019 13:04:12 +0530
-Message-Id: <88eff964b708c8aff57b24370d2e14389ace09e9.1571210269.git.amit.kucheria@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1571210269.git.amit.kucheria@linaro.org>
-References: <cover.1571210269.git.amit.kucheria@linaro.org>
-In-Reply-To: <cover.1571210269.git.amit.kucheria@linaro.org>
-References: <cover.1571210269.git.amit.kucheria@linaro.org>
+        id S2388653AbfJPHvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 03:51:19 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40859 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2388496AbfJPHvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 03:51:19 -0400
+X-UUID: bf77dcd34c9d40a8baabe5b1b626d298-20191016
+X-UUID: bf77dcd34c9d40a8baabe5b1b626d298-20191016
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1935190265; Wed, 16 Oct 2019 15:51:12 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 16 Oct 2019 15:51:09 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 16 Oct 2019 15:51:09 +0800
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        <linux-i2c@vger.kernel.org>
+CC:     <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <srv_heupstream@mediatek.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>
+Subject: [PATCH v3] misc: eeprom: at24: support pm_runtime control
+Date:   Wed, 16 Oct 2019 15:51:09 +0800
+Message-ID: <20191016075110.8240-1-bibby.hsieh@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register upper-lower interrupt for the tsens controller.
+Although in the most platforms, the power of eeprom and i2c
+are alway on, some platforms disable the eeprom and i2c power
+in order to meet low power request.
+This patch add the pm_runtime ops to control power to support
+all platforms.
 
-Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+Changes since v2:
+ - rebase onto v5.4-rc1
+ - add pm_runtime_disable and regulator_bulk_disable at
+   err return in probe function
+
+Changes since v1:
+ - remove redundant code
+ - fixup coding style
+
+Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/misc/eeprom/at24.c | 63 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 62 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 8686e101905c..807f86a4535e 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -816,6 +816,8 @@
- 			nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
- 			nvmem-cell-names = "calib", "calib_sel";
- 			#qcom,sensors = <5>;
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow";
- 			#thermal-sensor-cells = <1>;
- 		};
+diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+index 2cccd82a3106..7ff614aef301 100644
+--- a/drivers/misc/eeprom/at24.c
++++ b/drivers/misc/eeprom/at24.c
+@@ -22,6 +22,7 @@
+ #include <linux/nvmem-provider.h>
+ #include <linux/regmap.h>
+ #include <linux/pm_runtime.h>
++#include <linux/regulator/consumer.h>
+ #include <linux/gpio/consumer.h>
  
+ /* Address pointer is 16 bit. */
+@@ -67,6 +68,12 @@
+  * which won't work on pure SMBus systems.
+  */
+ 
++static const char * const at24_supply_names[] = {
++	"power", "i2c",
++};
++
++#define AT24_NUM_SUPPLIES ARRAY_SIZE(at24_supply_names)
++
+ struct at24_client {
+ 	struct i2c_client *client;
+ 	struct regmap *regmap;
+@@ -91,6 +98,8 @@ struct at24_data {
+ 
+ 	struct gpio_desc *wp_gpio;
+ 
++	bool has_supplies;
++	struct regulator_bulk_data supplies[AT24_NUM_SUPPLIES];
+ 	/*
+ 	 * Some chips tie up multiple I2C addresses; dummy devices reserve
+ 	 * them for us, and we'll use them with SMBus calls.
+@@ -662,6 +671,15 @@ static int at24_probe(struct i2c_client *client)
+ 	at24->client[0].client = client;
+ 	at24->client[0].regmap = regmap;
+ 
++	for (i = 0; i < AT24_NUM_SUPPLIES; i++)
++		at24->supplies[i].supply = at24_supply_names[i];
++
++	err =  devm_regulator_bulk_get(&at24->client[0].client->dev,
++				       AT24_NUM_SUPPLIES, at24->supplies);
++	if (err == -EPROBE_DEFER)
++		return err;
++	at24->has_supplies = !err;
++
+ 	at24->wp_gpio = devm_gpiod_get_optional(dev, "wp", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(at24->wp_gpio))
+ 		return PTR_ERR(at24->wp_gpio);
+@@ -704,14 +722,26 @@ static int at24_probe(struct i2c_client *client)
+ 	/* enable runtime pm */
+ 	pm_runtime_set_active(dev);
+ 	pm_runtime_enable(dev);
++	pm_runtime_get_sync(dev);
++	if (at24->has_supplies) {
++		err = regulator_bulk_enable(AT24_NUM_SUPPLIES, at24->supplies);
++		if (err) {
++			dev_err(dev, "Failed to enable power regulators\n");
++			pm_runtime_disable(dev);
++			return err;
++		}
++	}
+ 
+ 	/*
+ 	 * Perform a one-byte test read to verify that the
+ 	 * chip is functional.
+ 	 */
+ 	err = at24_read(at24, 0, &test_byte, 1);
+-	pm_runtime_idle(dev);
++	pm_runtime_put(dev);
+ 	if (err) {
++		if (at24->has_supplies)
++			regulator_bulk_disable(AT24_NUM_SUPPLIES,
++					       at24->supplies);
+ 		pm_runtime_disable(dev);
+ 		return -ENODEV;
+ 	}
+@@ -725,15 +755,46 @@ static int at24_probe(struct i2c_client *client)
+ 
+ static int at24_remove(struct i2c_client *client)
+ {
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
+ 	pm_runtime_disable(&client->dev);
+ 	pm_runtime_set_suspended(&client->dev);
++	if (at24->has_supplies)
++		regulator_bulk_disable(AT24_NUM_SUPPLIES, at24->supplies);
+ 
+ 	return 0;
+ }
+ 
++static int __maybe_unused at24_suspend(struct device *dev)
++{
++	struct i2c_client *client = to_i2c_client(dev);
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
++	if (at24->has_supplies)
++		return regulator_bulk_disable(AT24_NUM_SUPPLIES,
++					      at24->supplies);
++
++	return 0;
++}
++
++static int __maybe_unused at24_resume(struct device *dev)
++{
++	struct i2c_client *client = to_i2c_client(dev);
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
++	if (at24->has_supplies)
++		return regulator_bulk_enable(AT24_NUM_SUPPLIES,
++					     at24->supplies);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(at24_pm_ops, at24_suspend, at24_resume);
++
+ static struct i2c_driver at24_driver = {
+ 	.driver = {
+ 		.name = "at24",
++		.pm = &at24_pm_ops,
+ 		.of_match_table = at24_of_match,
+ 		.acpi_match_table = ACPI_PTR(at24_acpi_ids),
+ 	},
 -- 
-2.17.1
+2.18.0
 
