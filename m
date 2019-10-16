@@ -2,136 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91CA6D8EBA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 12:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D38D8EF8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 13:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404214AbfJPK4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 06:56:51 -0400
-Received: from mail-eopbgr740041.outbound.protection.outlook.com ([40.107.74.41]:38112
-        "EHLO NAM01-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726083AbfJPK4v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 06:56:51 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jwWXQAcfD2/YoGE/wAbAFa8+UvYPR+3E/zXjVXhuXe4zo+iJR7e13TCihwEnSuJXbFBisFIzlTgF3QlW0Qaj01Sh4PP5sC/JI8i9+vEn7V8Hr2vZ/O8V6mVLoZEHvHz4veh+Tr1i2lTzp7bqESdbLjP0UY7K7/fUuJnkuTh6l9KFxrWpdpRsoNHg2YLKyQ5uxEoHxPEBYFtijj5tJPpBMkHq2rL2aHMGaPsC/gi96AoJKlSB4Qh4ifuDU1Ij6HCWR4Ip1iQPdJsUmo7Z6GiM4OnPBdbw9PFRCd4ojjx4rya/LvhucRVUDX0Nu/kw9wPZSG2ar1DQ8k8I23OWWc4hZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=++B+ydka1g41fIu7Ox/Ms6mOQ5TA5T48D86VqWS/dOA=;
- b=m9gjC6dl150aW+33AqgMSaW/bI7XzUcRcu6dVXI+X7NF1SMoJ+LeM+TMTW7UE7rNGoNB8d7x1fkBU6JW9XQKvgxsTkoIX6Xw+uTxIfU48Aj6t7C6gOp8Zy9SFMfAePloI5vsu12NznMLAmelWKVOqLeaF48AJ9W1dLruZOzdzi9gW4q9+FE2y39k8kMNawhGwplLj8kK24jVVxFbHwu2sJKDke5IBDY8cY+L4KHrLW4Te0VVs6HEtEUMKPyllbOgEhF5pzPNvE/MW2nR09Xi8rgqJvWa3eXPYhn8z/NPrJOCFXZTyaD4GJ+XfRfoiTW+/OaXfQ5OoTSEeTs6Jtft6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=++B+ydka1g41fIu7Ox/Ms6mOQ5TA5T48D86VqWS/dOA=;
- b=qAfErY00l/+l12nBM1ZreTv2w4mn0lEE4uhcpCrBCK6BcsR/WbE9VTIeaerKJMEBpwhP9EfcHsknBjZ9gGkBg7esvn//3M0qzxplkt9t+XaB9L9pnd2e/g/H/O6w73Ww+z6HTXBiT7BEorhe4WMWUtli6sORlGp2LJYXhSjH93o=
-Received: from MWHPR0201CA0102.namprd02.prod.outlook.com
- (2603:10b6:301:75::43) by BL0PR02MB4803.namprd02.prod.outlook.com
- (2603:10b6:208:5d::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.17; Wed, 16 Oct
- 2019 10:56:48 +0000
-Received: from SN1NAM02FT064.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::209) by MWHPR0201CA0102.outlook.office365.com
- (2603:10b6:301:75::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2347.16 via Frontend
- Transport; Wed, 16 Oct 2019 10:56:47 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- SN1NAM02FT064.mail.protection.outlook.com (10.152.72.143) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2347.16
- via Frontend Transport; Wed, 16 Oct 2019 10:56:47 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1iKgz0-0006CF-NR; Wed, 16 Oct 2019 03:56:46 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1iKgyv-0002aI-K4; Wed, 16 Oct 2019 03:56:41 -0700
-Received: from xsj-pvapsmtp01 (smtp.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x9GAuUEf027448;
-        Wed, 16 Oct 2019 03:56:30 -0700
-Received: from [172.30.17.123]
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <michals@xilinx.com>)
-        id 1iKgyk-0002Ya-Ho; Wed, 16 Oct 2019 03:56:30 -0700
-Subject: Re: [PATCH v2 0/2] drivers: firmware: xilinx: Add support for versal
- soc
-To:     Jolly Shah <jolly.shah@xilinx.com>, ard.biesheuvel@linaro.org,
-        mingo@kernel.org, gregkh@linuxfoundation.org,
-        matt@codeblueprint.co.uk, sudeep.holla@arm.com,
-        hkallweit1@gmail.com, keescook@chromium.org,
-        dmitry.torokhov@gmail.com, michal.simek@xilinx.com,
-        robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     rajanv@xilinx.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1570474343-21524-1-git-send-email-jolly.shah@xilinx.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <7d1939c2-ad64-87d0-3ad7-b7de2400065d@xilinx.com>
-Date:   Wed, 16 Oct 2019 12:56:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2392612AbfJPLIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 07:08:41 -0400
+Received: from condef-10.nifty.com ([202.248.20.75]:28406 "EHLO
+        condef-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728406AbfJPLIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 07:08:41 -0400
+Received: from conssluserg-01.nifty.com ([10.126.8.80])by condef-10.nifty.com with ESMTP id x9GB3lD5004290
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 20:03:47 +0900
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43]) (authenticated)
+        by conssluserg-01.nifty.com with ESMTP id x9GB3Ka9025407;
+        Wed, 16 Oct 2019 20:03:20 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com x9GB3Ka9025407
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1571223801;
+        bh=CZS/GBm12+BcQahpwNBxwpIrzDOrM5ncaaZ4Hdi5fxQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=1HVgYGrgJuqrnsFm151Rr+/Ybj/6G/6A5CDaKqgjkNSW6mBkkrOdP+bIIbGO3HOoJ
+         WnTqwTDHR2MnEEuHR3UiBAZmidhAQF05xoY3OLg83RY1CCBZr8JmLtEAnNIjYo9fdE
+         1zVqX5OgWlTDstIUkdpQ1WaSztMdZibwcbal9Qg+x3GWdF1dgDlwU/F5uT5Gsn2VUN
+         D42EaCMOj+qH4AsLbpQbTjumFONOBmarRGWxBCzTSR1sLkssX2kYWAigly4G6FIl2r
+         aYrHG2aF9qCQ3tCD7nrGHOi7GohhOlhh2LbBpRW2R24a/nkdtx2DlK9gLfFsS+Fgsk
+         5rknQ5sUraqFQ==
+X-Nifty-SrcIP: [209.85.217.43]
+Received: by mail-vs1-f43.google.com with SMTP id y129so15296207vsc.6;
+        Wed, 16 Oct 2019 04:03:20 -0700 (PDT)
+X-Gm-Message-State: APjAAAVfu0ALrjk8WuhlJ8a9IAS2DSSrPFW/4Y2PF1bQelVwE7wSyXV6
+        EYs8GlC26IXKTx6dg0ARMS40rGgTN6bKt+GPkHs=
+X-Google-Smtp-Source: APXvYqwi2NOARFdiIeiefPcsQM9QE7f5KDMvhzleVf/yNku4VncLL4mmJysOK+WrOjI4KTTDWV6CdUJJKviU0KwCJo0=
+X-Received: by 2002:a67:ff86:: with SMTP id v6mr23079325vsq.181.1571223799384;
+ Wed, 16 Oct 2019 04:03:19 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1570474343-21524-1-git-send-email-jolly.shah@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(376002)(39860400002)(136003)(189003)(199004)(65956001)(70206006)(70586007)(4326008)(230700001)(6246003)(65806001)(2486003)(23676004)(7416002)(47776003)(36386004)(76176011)(50466002)(478600001)(426003)(305945005)(126002)(476003)(106002)(11346002)(2616005)(446003)(9786002)(316002)(31686004)(31696002)(486006)(44832011)(336012)(8676002)(58126008)(26005)(8936002)(186003)(5660300002)(36756003)(81156014)(4744005)(2906002)(229853002)(6666004)(356004)(81166006)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4803;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cf4ebe50-c1fc-45a2-db1a-08d752278a3b
-X-MS-TrafficTypeDiagnostic: BL0PR02MB4803:
-X-Microsoft-Antispam-PRVS: <BL0PR02MB480344F7A5A67F09E7A046DCC6920@BL0PR02MB4803.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-Forefront-PRVS: 0192E812EC
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GaJw5ZJd9eUkskWw45tmr/jNw8/1GFTtg95vzO/FfWUyf4cm7NfBF7YxACUHBqsxx0cohgaqlPuGyug/cRK/T13aZELEVEHMGH8RElSh/T06dRAzr62Rz7UwZ+PKO9BBdHI/3RSeKQbhMfWXZYPLk/z5GR28XkrMtunMp7g/oUsN1IH76f+tG0Fa1L0Wti+AIhPwZX1Qk3m21djXafZGZpinl3An5AOJMkjqTkmxp1q2yD51ONxgYvwk3xHucK9QkbLbXGLMbPAKU+diPvOsZjsxA7WkO5I1PYEDx/Ob6TgaA74AnLuZtlV5TbqAIEHtmduwU//MJU4Dd26b5OwWawADDXsky6LeOQx8OjhryFCKOJ64kRx0QN/a2dCLinp1/GmjYkYj03blOfhz5Dh6kv5o+v7wXtzz/vBJlgszVg4=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2019 10:56:47.1464
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf4ebe50-c1fc-45a2-db1a-08d752278a3b
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4803
+References: <20190617162123.24920-1-yamada.masahiro@socionext.com>
+ <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com> <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
+In-Reply-To: <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Wed, 16 Oct 2019 20:01:46 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
+Message-ID: <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
+Subject: Re: [PATCH] libfdt: reduce the number of headers included from libfdt_env.h
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07. 10. 19 20:52, Jolly Shah wrote:
-> Versal is xilinx's next generation soc. This patch adds
-> driver support required to be compatible with versal device
-> 
-> v2:
->   No changes. Resending to include DT maintaners
-> 
-> Jolly Shah (2):
->   dt-bindings: firmware: Add bindings for Versal firmware
->   drivers: firmware: xilinx: Add support for versal soc
-> 
->  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.txt    | 16 +++++++++++++++-
->  drivers/firmware/xilinx/zynqmp.c                         |  8 ++++++--
->  2 files changed, 21 insertions(+), 3 deletions(-)
-> 
+Hi Andrew,
 
-Applied both.
-I just removed drivers from subject of 2/2.
+Could you pick up this to akpm tree?
+https://lore.kernel.org/patchwork/patch/1089856/
 
-Thanks,
-Michal
+I believe this is correct, and a good clean-up.
+
+I pinged the DT maintainers, but they did not respond.
+
+Thanks.
+
+
+
+
+On Mon, Aug 19, 2019 at 1:36 PM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
+>
+> On Thu, Aug 1, 2019 at 11:30 AM Masahiro Yamada
+> <yamada.masahiro@socionext.com> wrote:
+> >
+> > On Tue, Jun 18, 2019 at 1:21 AM Masahiro Yamada
+> > <yamada.masahiro@socionext.com> wrote:
+> > >
+> > > Currently, libfdt_env.h includes <linux/kernel.h> just for INT_MAX.
+> > >
+> > > <linux/kernel.h> pulls in a lots of broat.
+> > >
+> > > Thanks to commit 54d50897d544 ("linux/kernel.h: split *_MAX and *_MIN
+> > > macros into <linux/limits.h>"), <linux/kernel.h> can be replaced with
+> > > <linux/limits.h>.
+> > >
+> > > This saves including dozens of headers.
+> > >
+> > > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > > ---
+> >
+> > ping?
+>
+> ping x2.
+>
+>
+>
+>
+> >
+> >
+> > >  include/linux/libfdt_env.h | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/include/linux/libfdt_env.h b/include/linux/libfdt_env.h
+> > > index edb0f0c30904..2231eb855e8f 100644
+> > > --- a/include/linux/libfdt_env.h
+> > > +++ b/include/linux/libfdt_env.h
+> > > @@ -2,7 +2,7 @@
+> > >  #ifndef LIBFDT_ENV_H
+> > >  #define LIBFDT_ENV_H
+> > >
+> > > -#include <linux/kernel.h>      /* For INT_MAX */
+> > > +#include <linux/limits.h>      /* For INT_MAX */
+> > >  #include <linux/string.h>
+> > >
+> > >  #include <asm/byteorder.h>
+> > > --
+> > > 2.17.1
+> > >
+> >
+> >
+> > --
+> > Best Regards
+> > Masahiro Yamada
+>
+>
+>
+> --
+> Best Regards
+> Masahiro Yamada
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
