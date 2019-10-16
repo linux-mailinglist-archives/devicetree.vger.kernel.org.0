@@ -2,270 +2,475 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1744AD935B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 16:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D28D937C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 16:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393822AbfJPOJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 10:09:22 -0400
-Received: from node.akkea.ca ([192.155.83.177]:42402 "EHLO node.akkea.ca"
+        id S2392272AbfJPOQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 10:16:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52750 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728316AbfJPOJW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 10:09:22 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id BF7914E2006;
-        Wed, 16 Oct 2019 14:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1571234960; bh=SySZbeA7Bkl9noJf9M1eRU1GR1VJDQ6GBVN3/8gwzls=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References;
-        b=E//vSzIc0HA0XOLiPmdNI94K0FsgDWS0JFdxfVGP1lGhrPxfNGSu1gfD6Hvxg1TcK
-         ykUphFTB6HPrkGXg6EtINPvmHQwUJv5WVajCAnb6CPhfUiShH2JocEzLkZLrhSPiD7
-         UQXfWr8oNaaFFsMHtDxvF7+w6FCYpWFcWfMWR+rM=
-X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
-Received: from node.akkea.ca ([127.0.0.1])
-        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id LbAwgwHeKEyA; Wed, 16 Oct 2019 14:09:20 +0000 (UTC)
-Received: from www.akkea.ca (node.akkea.ca [192.155.83.177])
-        by node.akkea.ca (Postfix) with ESMTPSA id 1C7094E2003;
-        Wed, 16 Oct 2019 14:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1571234960; bh=SySZbeA7Bkl9noJf9M1eRU1GR1VJDQ6GBVN3/8gwzls=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References;
-        b=E//vSzIc0HA0XOLiPmdNI94K0FsgDWS0JFdxfVGP1lGhrPxfNGSu1gfD6Hvxg1TcK
-         ykUphFTB6HPrkGXg6EtINPvmHQwUJv5WVajCAnb6CPhfUiShH2JocEzLkZLrhSPiD7
-         UQXfWr8oNaaFFsMHtDxvF7+w6FCYpWFcWfMWR+rM=
+        id S2390615AbfJPOQt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 10:16:49 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6E5DA21848;
+        Wed, 16 Oct 2019 14:16:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571235408;
+        bh=IBl8pE4uMMQ0lkhbEM9I8IuFc8JWZ1DPZ9gay44XCMc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PpRI1OvdT3K5A31hQzgmvmJDtbqGcbL+Twh5q38n0sbuugyBWcIvbiwpEd6tQ+vTD
+         N0II1MsIdIBeFxeoEC/5mz82zvhsvghSa/fhKM9DPiJBPy7z0R8YfX45g3Afg/6Uls
+         2k8Hho1tksjppjjDgOfpfdqZiOB50cToGZPVyZ+E=
+From:   Maxime Ripard <mripard@kernel.org>
+To:     linus.walleij@linaro.org
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: [PATCH] dt-bindings: pinctrl: Convert Allwinner Pin Controller to a schema
+Date:   Wed, 16 Oct 2019 16:16:44 +0200
+Message-Id: <20191016141644.81210-1-mripard@kernel.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 16 Oct 2019 07:09:20 -0700
-From:   Angus Ainslie <angus@akkea.ca>
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     Jacky Bai <ping.bai@nxp.com>, Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Artur_=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        dl-linux-imx <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        kernel@pengutronix.de, Fabio Estevam <fabio.estevam@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        linux-pm-owner@vger.kernel.org
-Subject: Re: [RFCv3 3/3] interconnect: imx: Add platform driver for imx8mm
-In-Reply-To: <VI1PR04MB70231CD1535CBCB699F045D4EE930@VI1PR04MB7023.eurprd04.prod.outlook.com>
-References: <cover.1565088423.git.leonard.crestez@nxp.com>
- <cf265add1502a75c4d6e6261ab1570c665e82c83.1565088423.git.leonard.crestez@nxp.com>
- <a2e09a9b-574f-8410-423e-0b0d8ea5c2ab@posteo.de>
- <VI1PR04MB7023E441FEE0D9288CAC0F44EEAA0@VI1PR04MB7023.eurprd04.prod.outlook.com>
- <be41481b-5184-7878-b25e-41b7a1e1b2d5@posteo.de>
- <7c1452f3d8c13aeadcabf7807049092c@akkea.ca>
- <VI1PR04MB70231CD1535CBCB699F045D4EE930@VI1PR04MB7023.eurprd04.prod.outlook.com>
-Message-ID: <68e456574e2072740f41fac8c9c2377b@akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.3.6
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-10-15 07:05, Leonard Crestez wrote:
-> On 10.10.2019 17:43, Angus Ainslie wrote:
->> 
->> I've integrated your u-boot and ATF on our board and I have a couple 
->> of
->> questions. Our board is running imx8mq B0 (Rev 2.0) silicon.
->> 
->> It looks like this line limits the training frequencies to 800 MHz and
->> 166 MHz
-> 
-> Yes! This is due to a hardware errata which was solved in B1: DRAM pll
-> can't be disabled. This means that instead of 25/100/800 freqs are
-> 166/800, and this requires code changes.
-> 
->> Does 100 MHz and 25 MHz not work on B0 ?
-> 
-> No, lower rates require dram clk from a composite slice (dram_alt_root)
-> 
->> I added the ddrc_and noc opp as well as the 166MHz opp
->> 
->> I also added the interconnects ( do we need them on imx8mq ? )
-> 
-> The interconnect stuff is not required to switch dram frequency, it's
-> for device to make minimum bandwidth requests. It an additional feature
-> on top.
-> 
-> As a hack I configured FEC to do so but a saner example would be to
-> request bandwidth based on display resolution and color depth.
-> 
->> I had to add a hack as the PM QoS was limiting the bus speed to 399MHz 
->> ,
->> if you have any ideas why that would be appreciated.
-> 
-> You probably need to set ethernet down (which is awkward) or better 
-> just
-> drop the interconnect properties and test using the devfreq userspace
-> governor.
-> 
->> The driver is probing
->> 
->> [   12.136537] bus: 'platform': driver_probe_device: matched device
->> 3d400000.dram-controller with driver imx-ddrc-devfrq
->> [   12.147259] bus: 'platform': really_probe: probing driver
->> imx-ddrc-devfreq with device 3d400000.dram-controller
->> [   12.157382] imx-ddrc-devfreq 3d400000.dram-controller: no pinctrl
->> handle
->> [   12.164197] arm_smcc rate 0 800000000
->> [   12.167880] arm_smcc rate 1 166750000
->> [   12.171778] of: _opp_add_static_v2: turbo:0 rate:25000000 uv:0
->> uvmin:0 uvmax:0 latency:0
->> [   12.179994] of: _opp_add_static_v2: turbo:0 rate:100000000 uv:0
->> uvmin:0 uvmax:0 latency:0
->> [   12.188311] of: _opp_add_static_v2: turbo:0 rate:166750000 uv:0
->> uvmin:0 uvmax:0 latency:0
->> [   12.196606] of: _opp_add_static_v2: turbo:0 rate:800000000 uv:0
->> uvmin:0 uvmax:0 latency:0
->> [   12.204930] imx-ddrc-devfreq 3d400000.dram-controller: events from
->> pmu imx8_ddr0
->> [   12.212403] Added freq 0 25000000
->> [   12.215742] Added freq 1 100000000
->> [   12.219177] Added freq 2 166750000
->> [   12.222648] Added freq 3 800000000
->> [   12.226105] device: 'devfreq0': device_add
->> [   12.230287] PM: Adding info for No Bus:devfreq0
->> [   12.234864] driver: 'imx-ddrc-devfreq': driver_bound: bound to 
->> device
->> '3d400000.dram-controller'
->> [   12.243699] bus: 'platform': really_probe: bound device
->> 3d400000.dram-controller to driver imx-ddrc-devfreq
->> 
->> Add seems to run correctly until it tries to adjust the clock to 
->> 166MHz
->> 
->> [   19.555482] ddrc checking rate 800000000 166750000
->> [   19.555489] ddrc checking rate 166750000 166750000
->> [   19.560442] bus: 'usb-serial': really_probe: bound device ttyUSB0 
->> to
->> driver option1
->> [   19.568751] imx-ddrc-devfreq 3d400000.dram-controller: ddrc about 
->> to
->> change freq 800000000 to 166750000
->> 
->> And the board hangs there. Any ideas on how to get past this ?
-> 
-> Please try this ATF patch:
-> 
-> https://github.com/cdleonard/arm-trusted-firmware/commit/783fc2b2c4266bfdb5218e4d9b6b2bc90849e0e9
-> 
+The Allwinner SoCs have a pin controller supported in Linux, with a
+matching Device Tree binding.
 
-Ok applied this to the tree we're using
+Now that we have the DT validation in place, let's convert the device tree
+bindings for that controller over to a YAML schemas.
 
-https://source.puri.sm/Librem5/arm-trusted-firmware/commit/783fc2b2c4266bfdb5218e4d9b6b2bc90849e0e9
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+ .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml  | 239 ++++++++++++++++++
+ .../pinctrl/allwinner,sunxi-pinctrl.txt       | 164 ------------
+ 2 files changed, 239 insertions(+), 164 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/allwinner,sunxi-pinctrl.txt
 
-> I tested switching on imx8mq-evk with B0 SoC but a few additional
-> changes are required in kernel to support switching between rates which
-> are both backed by PLL:
-> 
-> * Mark the PLL CLK_GET_RATE_NOCACHE
-
-Is this what you meant ?
-
-diff --git a/drivers/clk/imx/clk-imx8mq.c b/drivers/clk/imx/clk-imx8mq.c
-index 2813884f69c1..e5f50cf8a264 100644
---- a/drivers/clk/imx/clk-imx8mq.c
-+++ b/drivers/clk/imx/clk-imx8mq.c
-@@ -345,7 +345,7 @@ static int imx8mq_clocks_probe(struct 
-platform_device *pdev)
-         clks[IMX8MQ_SYS1_PLL_OUT] = imx_clk_sccg_pll("sys1_pll_out", 
-sys1_pll_out_sels, ARRAY_SIZE(sys1_pll_out_sels), 0, 0, 0, base + 0x30, 
-CLK_IS_CRITICAL);
-         clks[IMX8MQ_SYS2_PLL_OUT] = imx_clk_sccg_pll("sys2_pll_out", 
-sys2_pll_out_sels, ARRAY_SIZE(sys2_pll_out_sels), 0, 0, 1, base + 0x3c, 
-CLK_IS_CRITICAL);
-         clks[IMX8MQ_SYS3_PLL_OUT] = imx_clk_sccg_pll("sys3_pll_out", 
-sys3_pll_out_sels, ARRAY_SIZE(sys3_pll_out_sels), 0, 0, 1, base + 0x48, 
-CLK_IS_CRITICAL);
--       clks[IMX8MQ_DRAM_PLL_OUT] = imx_clk_sccg_pll("dram_pll_out", 
-dram_pll_out_sels, ARRAY_SIZE(dram_pll_out_sels), 0, 0, 0, base + 0x60, 
-CLK_IS_CRITICAL);
-+       clks[IMX8MQ_DRAM_PLL_OUT] = imx_clk_sccg_pll("dram_pll_out", 
-dram_pll_out_sels, ARRAY_SIZE(dram_pll_out_sels), 0, 0, 0, base + 0x60, 
-CLK_IS_CRITICAL|CLK_GET_RATE_NOCACHE);
-
-         /* SYS PLL1 fixed output */
-         clks[IMX8MQ_SYS1_PLL_40M_CG] = imx_clk_gate("sys1_pll_40m_cg", 
-"sys1_pll_out", base + 0x30, 9);
-
-> * Set the rate to 166935483 exactly (to match clk_get_rate)
-
-Okay I hacked that in
-
-diff --git a/drivers/devfreq/imx-ddrc.c b/drivers/devfreq/imx-ddrc.c
-index 4eed6f50bb8d..a832768a865f 100644
---- a/drivers/devfreq/imx-ddrc.c
-+++ b/drivers/devfreq/imx-ddrc.c
-@@ -436,6 +436,10 @@ static int imx_ddrc_init_freq_info(struct device 
-*dev)
-                         return -ENODEV;
-                 }
-
-+               /* B0 hack */
-+               if ( freq->rate == 166750000 )
-+                       freq->rate = 166935483;
+diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+new file mode 100644
+index 000000000000..11edbbc5c1d2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+@@ -0,0 +1,239 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/allwinner,sun4i-a10-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-                 pr_err( "arm_smcc rate %d %lu\n", index, freq->rate );
-         }
++title: Allwinner A10 Pin Controller Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++properties:
++  "#gpio-cells":
++    const: 3
++    description:
++      GPIO consumers must use three arguments, first the number of the
++      bank, then the pin number inside that bank, and finally the GPIO
++      flags.
++
++  "#interrupt-cells":
++    const: 3
++    description:
++      Interrupts consumers must use three arguments, first the number
++      of the bank, then the pin number inside that bank, and finally
++      the interrupts flags.
++
++  compatible:
++    enum:
++      - allwinner,sun4i-a10-pinctrl
++      - allwinner,sun5i-a10s-pinctrl
++      - allwinner,sun5i-a13-pinctrl
++      - allwinner,sun6i-a31-pinctrl
++      - allwinner,sun6i-a31-r-pinctrl
++      - allwinner,sun6i-a31s-pinctrl
++      - allwinner,sun7i-a20-pinctrl
++      - allwinner,sun8i-a23-pinctrl
++      - allwinner,sun8i-a23-r-pinctrl
++      - allwinner,sun8i-a33-pinctrl
++      - allwinner,sun8i-a83t-pinctrl
++      - allwinner,sun8i-a83t-r-pinctrl
++      - allwinner,sun8i-h3-pinctrl
++      - allwinner,sun8i-h3-r-pinctrl
++      - allwinner,sun8i-r40-pinctrl
++      - allwinner,sun8i-v3-pinctrl
++      - allwinner,sun8i-v3s-pinctrl
++      - allwinner,sun9i-a80-pinctrl
++      - allwinner,sun9i-a80-r-pinctrl
++      - allwinner,sun50i-a64-pinctrl
++      - allwinner,sun50i-a64-r-pinctrl
++      - allwinner,sun50i-h5-pinctrl
++      - allwinner,sun50i-h6-pinctrl
++      - allwinner,sun50i-h6-r-pinctrl
++      - allwinner,suniv-f1c100s-pinctrl
++      - nextthing,gr8-pinctrl
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 5
++
++  clocks:
++    items:
++      - description: Bus Clock
++      - description: High Frequency Oscillator
++      - description: Low Frequency Oscillator
++
++  clock-names:
++    items:
++      - const: apb
++      - const: hosc
++      - const: losc
++
++  resets:
++    maxItems: 1
++
++  gpio-controller: true
++  interrupt-controller: true
++  gpio-line-names: true
++
++  input-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      Debouncing periods in microseconds, one period per interrupt
++      bank found in the controller
++
++patternProperties:
++  # It's pretty scary, but the basic idea is that:
++  #   - One node name can start with either s- or r- for PRCM nodes,
++  #   - Then, the name itself can be any repetition of <string>- (to
++  #     accomodate with nodes like uart4-rts-cts-pins), where each
++  #     string can be either starting with 'p' but in a string longer
++  #     than 3, or something that doesn't start with 'p',
++  #   - Then, the bank name is optional and will be between pa and pg,
++  #     pl or pm. Some pins groups that have several options will have
++  #     the pin numbers then,
++  #   - Finally, the name will end with either -pin or pins.
++
++  "^([rs]-)?(([a-z0-9]{3,}|[a-oq-z][a-z0-9]*?)?-)+?(p[a-ilm][0-9]*?-)??pins?$":
++    type: object
++
++    properties:
++      pins: true
++      function: true
++      bias-disable: true
++      bias-pull-up: true
++      bias-pull-down: true
++
++      drive-strength:
++        allOf:
++          - $ref: /schemas/types.yaml#/definitions/uint32
++          - enum: [ 10, 20, 30, 40 ]
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
++  "^vcc-p[a-hlm]-supply$":
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Regulators used by the framebuffer. These should be named
++      according to the names in the device design.
++
++required:
++  - "#gpio-cells"
++  - "#interrupt-cells"
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - gpio-controller
++  - interrupt-controller
++
++allOf:
++  # FIXME: We should have the pin bank supplies here, but not a lot of
++  # boards are defining it at the moment so it would generate a lot of
++  # warnings.
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - allwinner,sun9i-a80-pinctrl
++
++    then:
++      properties:
++        interrupts:
++          minItems: 5
++          maxItems: 5
++
++    else:
++      if:
++        properties:
++          compatible:
++            enum:
++              - allwinner,sun6i-a31-pinctrl
++              - allwinner,sun6i-a31s-pinctrl
++              - allwinner,sun50i-h6-pinctrl
++
++      then:
++        properties:
++          interrupts:
++            minItems: 4
++            maxItems: 4
++
++      else:
++        if:
++          properties:
++            compatible:
++              enum:
++                - allwinner,sun8i-a23-pinctrl
++                - allwinner,sun8i-a83t-pinctrl
++                - allwinner,sun50i-a64-pinctrl
++                - allwinner,sun50i-h5-pinctrl
++                - allwinner,suniv-f1c100s-pinctrl
++
++        then:
++          properties:
++            interrupts:
++              minItems: 3
++              maxItems: 3
++
++        else:
++          if:
++            properties:
++              compatible:
++                enum:
++                  - allwinner,sun6i-a31-r-pinctrl
++                  - allwinner,sun8i-a33-pinctrl
++                  - allwinner,sun8i-h3-pinctrl
++                  - allwinner,sun8i-v3-pinctrl
++                  - allwinner,sun8i-v3s-pinctrl
++                  - allwinner,sun9i-a80-r-pinctrl
++                  - allwinner,sun50i-h6-r-pinctrl
++
++          then:
++            properties:
++              interrupts:
++                minItems: 2
++                maxItems: 2
++
++          else:
++            properties:
++              interrupts:
++                minItems: 1
++                maxItems: 1
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/sun5i-ccu.h>
++
++    pio: pinctrl@1c20800 {
++        compatible = "allwinner,sun5i-a13-pinctrl";
++        reg = <0x01c20800 0x400>;
++        interrupts = <28>;
++        clocks = <&ccu CLK_APB0_PIO>, <&osc24M>, <&osc32k>;
++        clock-names = "apb", "hosc", "losc";
++        gpio-controller;
++        interrupt-controller;
++        #interrupt-cells = <3>;
++        #gpio-cells = <3>;
++
++        uart1_pe_pins: uart1-pe-pins {
++            pins = "PE10", "PE11";
++            function = "uart1";
++        };
++
++        uart1_pg_pins: uart1-pg-pins {
++            pins = "PG3", "PG4";
++            function = "uart1";
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sunxi-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/allwinner,sunxi-pinctrl.txt
+deleted file mode 100644
+index 328585c6da58..000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/allwinner,sunxi-pinctrl.txt
++++ /dev/null
+@@ -1,164 +0,0 @@
+-* Allwinner A1X Pin Controller
+-
+-The pins controlled by sunXi pin controller are organized in banks,
+-each bank has 32 pins.  Each pin has 7 multiplexing functions, with
+-the first two functions being GPIO in and out. The configuration on
+-the pins includes drive strength and pull-up.
+-
+-Required properties:
+-- compatible: Should be one of the following (depending on your SoC):
+-  "allwinner,sun4i-a10-pinctrl"
+-  "allwinner,sun5i-a10s-pinctrl"
+-  "allwinner,sun5i-a13-pinctrl"
+-  "allwinner,sun6i-a31-pinctrl"
+-  "allwinner,sun6i-a31s-pinctrl"
+-  "allwinner,sun6i-a31-r-pinctrl"
+-  "allwinner,sun7i-a20-pinctrl"
+-  "allwinner,sun8i-a23-pinctrl"
+-  "allwinner,sun8i-a23-r-pinctrl"
+-  "allwinner,sun8i-a33-pinctrl"
+-  "allwinner,sun9i-a80-pinctrl"
+-  "allwinner,sun9i-a80-r-pinctrl"
+-  "allwinner,sun8i-a83t-pinctrl"
+-  "allwinner,sun8i-a83t-r-pinctrl"
+-  "allwinner,sun8i-h3-pinctrl"
+-  "allwinner,sun8i-h3-r-pinctrl"
+-  "allwinner,sun8i-r40-pinctrl"
+-  "allwinner,sun8i-v3-pinctrl"
+-  "allwinner,sun8i-v3s-pinctrl"
+-  "allwinner,sun50i-a64-pinctrl"
+-  "allwinner,sun50i-a64-r-pinctrl"
+-  "allwinner,sun50i-h5-pinctrl"
+-  "allwinner,sun50i-h6-pinctrl"
+-  "allwinner,sun50i-h6-r-pinctrl"
+-  "allwinner,suniv-f1c100s-pinctrl"
+-  "nextthing,gr8-pinctrl"
+-
+-- reg: Should contain the register physical address and length for the
+-  pin controller.
+-
+-- clocks: phandle to the clocks feeding the pin controller:
+-  - "apb": the gated APB parent clock
+-  - "hosc": the high frequency oscillator in the system
+-  - "losc": the low frequency oscillator in the system
+-
+-Note: For backward compatibility reasons, the hosc and losc clocks are only
+-required if you need to use the optional input-debounce property. Any new
+-device tree should set them.
+-
+-Each pin bank, depending on the SoC, can have an associated regulator:
+-
+-- vcc-pa-supply: for the A10, A20, A31, A31s, A80 and R40 SoCs
+-- vcc-pb-supply: for the A31, A31s, A80 and V3s SoCs
+-- vcc-pc-supply: for the A10, A20, A31, A31s, A64, A80, H5, R40 and V3s SoCs
+-- vcc-pd-supply: for the A23, A31, A31s, A64, A80, A83t, H3, H5 and R40 SoCs
+-- vcc-pe-supply: for the A10, A20, A31, A31s, A64, A80, R40 and V3s SoCs
+-- vcc-pf-supply: for the A10, A20, A31, A31s, A80, R40 and V3s SoCs
+-- vcc-pg-supply: for the A10, A20, A31, A31s, A64, A80, H3, H5, R40 and V3s SoCs
+-- vcc-ph-supply: for the A31, A31s and A80 SoCs
+-- vcc-pl-supply: for the r-pinctrl of the A64, A80 and A83t SoCs
+-- vcc-pm-supply: for the r-pinctrl of the A31, A31s and A80 SoCs
+-
+-Optional properties:
+-  - input-debounce: Array of debouncing periods in microseconds. One period per
+-    irq bank found in the controller. 0 if no setup required.
+-
+-
+-Please refer to pinctrl-bindings.txt in this directory for details of the
+-common pinctrl bindings used by client devices.
+-
+-A pinctrl node should contain at least one subnodes representing the
+-pinctrl groups available on the machine. Each subnode will list the
+-pins it needs, and how they should be configured, with regard to muxer
+-configuration, drive strength and pullups. If one of these options is
+-not set, its actual value will be unspecified.
+-
+-Allwinner A1X Pin Controller supports the generic pin multiplexing and
+-configuration bindings. For details on each properties, you can refer to
+- ./pinctrl-bindings.txt.
+-
+-Required sub-node properties:
+-  - pins
+-  - function
+-
+-Optional sub-node properties:
+-  - bias-disable
+-  - bias-pull-up
+-  - bias-pull-down
+-  - drive-strength
+-
+-*** Deprecated pin configuration and multiplexing binding
+-
+-Required subnode-properties:
+-
+-- allwinner,pins: List of strings containing the pin name.
+-- allwinner,function: Function to mux the pins listed above to.
+-
+-Optional subnode-properties:
+-- allwinner,drive: Integer. Represents the current sent to the pin
+-    0: 10 mA
+-    1: 20 mA
+-    2: 30 mA
+-    3: 40 mA
+-- allwinner,pull: Integer.
+-    0: No resistor
+-    1: Pull-up resistor
+-    2: Pull-down resistor
+-
+-Examples:
+-
+-pio: pinctrl@1c20800 {
+-	compatible = "allwinner,sun5i-a13-pinctrl";
+-	reg = <0x01c20800 0x400>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	uart1_pins_a: uart1@0 {
+-		allwinner,pins = "PE10", "PE11";
+-		allwinner,function = "uart1";
+-		allwinner,drive = <0>;
+-		allwinner,pull = <0>;
+-	};
+-
+-	uart1_pins_b: uart1@1 {
+-		allwinner,pins = "PG3", "PG4";
+-		allwinner,function = "uart1";
+-		allwinner,drive = <0>;
+-		allwinner,pull = <0>;
+-	};
+-};
+-
+-
+-GPIO and interrupt controller
+------------------------------
+-
+-This hardware also acts as a GPIO controller and an interrupt
+-controller.
+-
+-Consumers that would want to refer to one or the other (or both)
+-should provide through the usual *-gpios and interrupts properties a
+-cell with 3 arguments, first the number of the bank, then the pin
+-inside that bank, and finally the flags for the GPIO/interrupts.
+-
+-Example:
+-
+-xio: gpio@38 {
+-	compatible = "nxp,pcf8574a";
+-	reg = <0x38>;
+-
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-
+-	interrupt-parent = <&pio>;
+-	interrupts = <6 0 IRQ_TYPE_EDGE_FALLING>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-};
+-
+-reg_usb1_vbus: usb1-vbus {
+-	compatible = "regulator-fixed";
+-	regulator-name = "usb1-vbus";
+-	regulator-min-microvolt = <5000000>;
+-	regulator-max-microvolt = <5000000>;
+-	gpio = <&pio 7 6 GPIO_ACTIVE_HIGH>;
+-};
+-- 
+2.23.0
 
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -211,7 +211,7 @@
-                         opp-hz = /bits/ 64 <100000000>;
-                 };
-                 opp-166M {
--                       opp-hz = /bits/ 64 <166750000>;
-+                       opp-hz = /bits/ 64 <166935483>;
-                 };
-                 opp-800M {
-                         opp-hz = /bits/ 64 <800000000>;
-
-
-> * Make the rounding in imx-ddrc more generous.
-
-Sorry I don't understand what you mean by this.
-
-Adding the other changes the board no longer hangs when trying to change 
-frequencies but it also doesn't seem to actually change the frequency.
-
-[    3.076426] ddrc checking rate 800000000 166935483
-[    3.081290] ddrc checking rate 166935483 166935483
-[    3.086225] imx-ddrc-devfreq 3d400000.dram-controller: ddrc about to 
-change freq 800000000 to 166935483
-[    3.086891] imx-ddrc-devfreq 3d400000.dram-controller: ddrc changed 
-freq 800000000 to 166935483
-
-root@pureos:~# cat /sys/class/devfreq/devfreq0/cur_freq
-800000000
-root@pureos:~# cat /sys/class/devfreq/devfreq0/target_freq
-166935483
-
-Is this the missing rounding or is there something else missing ?
-
-Thanks
-Angus
-
-
-> 
-> I will integrate these changes into the next version.
-> 
-> --
-> Regards,
-> Leonard
