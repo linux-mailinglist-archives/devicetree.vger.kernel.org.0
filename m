@@ -2,78 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76DC6D9168
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 362EDD919B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2019 14:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393289AbfJPMse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 08:48:34 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:57012 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2393267AbfJPMse (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Oct 2019 08:48:34 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9715D1A009E;
-        Wed, 16 Oct 2019 14:48:32 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 89EB61A001A;
-        Wed, 16 Oct 2019 14:48:32 +0200 (CEST)
-Received: from fsr-ub1664-026.ea.freescale.net (fsr-ub1664-026.ea.freescale.net [10.171.81.59])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id CB94D205D2;
-        Wed, 16 Oct 2019 14:48:31 +0200 (CEST)
-From:   Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-To:     corbet@lwn.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com
-Cc:     jslaby@suse.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "Stoica Cosmin-Stefan" <cosmin.stoica@nxp.com>
-Subject: [PATCH v7 5/5] arm64: defconfig: Enable configs for S32V234
-Date:   Wed, 16 Oct 2019 15:48:27 +0300
-Message-Id: <1571230107-8493-6-git-send-email-stefan-gabriel.mirea@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1571230107-8493-1-git-send-email-stefan-gabriel.mirea@nxp.com>
-References: <1571230107-8493-1-git-send-email-stefan-gabriel.mirea@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2391407AbfJPMxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 08:53:51 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:36103 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389772AbfJPMxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 08:53:51 -0400
+Received: by mail-qt1-f196.google.com with SMTP id o12so35916180qtf.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 05:53:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=P/sRs2+kPjcvwd2trmOBWPVdM0AxawvVsZ+s8sAO7/4=;
+        b=TsPMzUgWcdtdkasHhYq577HFiCkshIqaxslChEP+do1RFpTIxW2jQRhCLSPwbd5x8i
+         U7niU6BZWK/agFFkyA+6MFgZbwkW60EosnfY+llAQGBocfTcp4KRF8J/zJn8tfy+Xn4R
+         ND/tIJ4q5KZ7QKtwldwq2k59a5s7at2G3Hi8BXC6iZm33w3oVf21uxvJWvsoT6eTs4Vn
+         WDL+yMSxQwFiUsYSJ7A7I+v43eHl0YHYHoIzhjWanzIpiZ7RpplDgnbKGyR9Qf/+l5dt
+         /jBMTe3E/dc+CJIqaHslN4E+fQmzn4yXKprR+7pYhIDJP/ZUFpJZXfCOGoH5zVOCAejO
+         Ui3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=P/sRs2+kPjcvwd2trmOBWPVdM0AxawvVsZ+s8sAO7/4=;
+        b=dT2OLkkhhWW8EQZ1Cnma9qy57IA0Q/3EE9IaTTJAb8dZj1E8K+4jcfemMyRlh7Gofr
+         Vfws864CmdLb0KEtS3UvpdL2DIDxG9YUD+0BqW9JkDUq5BQgm5mnANGK0WWVBYl/t13S
+         SLTPGebZ/wdlf0YLCuwjG7/mW3fyO0ICnh+h74oyKfbaJoOMyHfYNFMU251G2sn03Xls
+         +sUaTk0IjDJYCWcvCiQxHPLJ+0cycaAOe+bFZUhiT2OEkbMRYh0gyNTP8cxNzzm2fruN
+         sWiSg5pkjdT477fpilwLD8II7hmHTF7GHBdQnaICOSOAwsgogHzWZxkPuzPiaC+B4C0s
+         +tRg==
+X-Gm-Message-State: APjAAAXZcHL4eX5Dp4f8jL5oec+ZgfaMBmGvFNsD4N4TgpuFwZiO4eZp
+        qSfTUFxgjk2J21d6W+TI7tXD7I0jMXP1b+TxlrVi5A==
+X-Google-Smtp-Source: APXvYqxRmpmcyaCxmLmkEi0JWpxgYlv/RpJs/yNT3A1lP3hXCkiugyGea31zdLuV3cm9n/Bm5GfFph4HfEVVYNrBVag=
+X-Received: by 2002:ac8:3ac6:: with SMTP id x64mr33736244qte.51.1571230430797;
+ Wed, 16 Oct 2019 05:53:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191004012525.26647-1-chris.packham@alliedtelesis.co.nz>
+ <20191004012525.26647-3-chris.packham@alliedtelesis.co.nz>
+ <CACRpkdYWLTjiSQo_VTeReL1CfEO3h_8ONbdCk=PD1x+oc2ggCg@mail.gmail.com> <628c495994a0648d956bc663ea8fdcfa6f439802.camel@alliedtelesis.co.nz>
+In-Reply-To: <628c495994a0648d956bc663ea8fdcfa6f439802.camel@alliedtelesis.co.nz>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 16 Oct 2019 14:53:39 +0200
+Message-ID: <CACRpkdb8o9UU0W1FJ4=KYiV3CUEUkXbR4CFY7XKdJG2O8sSJFA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: Add xgs-iproc driver
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "bcm-kernel-feedback-list@broadcom.com" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "rjui@broadcom.com" <rjui@broadcom.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Richard Laing <Richard.Laing@alliedtelesis.co.nz>,
+        "sbranden@broadcom.com" <sbranden@broadcom.com>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mihaela Martinas <Mihaela.Martinas@freescale.com>
+On Mon, Oct 14, 2019 at 12:08 AM Chris Packham
+<Chris.Packham@alliedtelesis.co.nz> wrote:
+Me:
 
-Enable support for the S32V234 SoC, including the previously added UART
-driver.
+> > I think this should be a chained interrupt handler (see below how to
+> > register it).
+> >
+> > See e.g. drivers/gpio/gpio-ftgpio010.c for an example:
+> > change function prototype, no return value, use
+> > chained_irq_enter/exit(irqchip, desc); etc.
+> >
+>
+> I don't think a chained interrupt handler can work. The problem is that
+> the parent irq on the SoC is shared between the gpio and uart0 (why
+> it's this way with two IP blocks in the same SoC I'll never know). When
+> a chained interrupt handler is registered I lose the serial interrupts.
+> Please correct me if there is some way to make the chained handlers
+> deal with sharing interrupts.
 
-Signed-off-by: Mihaela Martinas <Mihaela.Martinas@freescale.com>
-Signed-off-by: Adrian.Nitu <adrian.nitu@freescale.com>
-Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Aha I see. Look at:
+drivers/gpio/gpio-mt7621.c
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c9a867ac32d4..bc14d95c1665 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -48,6 +48,7 @@ CONFIG_ARCH_MXC=y
- CONFIG_ARCH_QCOM=y
- CONFIG_ARCH_RENESAS=y
- CONFIG_ARCH_ROCKCHIP=y
-+CONFIG_ARCH_S32=y
- CONFIG_ARCH_SEATTLE=y
- CONFIG_ARCH_STRATIX10=y
- CONFIG_ARCH_SYNQUACER=y
-@@ -352,6 +353,8 @@ CONFIG_SERIAL_XILINX_PS_UART=y
- CONFIG_SERIAL_XILINX_PS_UART_CONSOLE=y
- CONFIG_SERIAL_FSL_LPUART=y
- CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
-+CONFIG_SERIAL_FSL_LINFLEXUART=y
-+CONFIG_SERIAL_FSL_LINFLEXUART_CONSOLE=y
- CONFIG_SERIAL_MVEBU_UART=y
- CONFIG_SERIAL_DEV_BUS=y
- CONFIG_VIRTIO_CONSOLE=y
--- 
-2.22.0
+And how that driver sets the parent handler to NULL in order
+to still exploit the core helpers.
 
+I will refactor this to some more elegant API at some point when
+I get there, for now follow the example of mt7621.
+
+Yours,
+Linus Walleij
