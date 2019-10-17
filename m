@@ -2,198 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 984EBDABA7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 14:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 870AADABD1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 14:17:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502168AbfJQMBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 08:01:36 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:43159 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502217AbfJQMBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 08:01:36 -0400
-Received: by mail-wr1-f66.google.com with SMTP id j18so2019162wrq.10;
-        Thu, 17 Oct 2019 05:01:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Ez9CbL63sX7gDGh2tYpWp8dJ1bNhw8H/uQewxmgXJH0=;
-        b=j72IxVpRwR2WtFRCiH85HtKgQidkglY9F1ZTbkFhzRVXYtHCSVjqmXfrSlLzw+Fiit
-         C+w67spnL5+ezkB5aaoCF/SuBVhkF8F2WKRpUkLAhptxAvxbcXRjrtdyFzlL7WyKcNCI
-         anGdB+rrahzlKDTc+UXVw2VvBglXcD1GdMGLV0tYOPfI18gs1JPcNBWhepCXu4QQBsw1
-         RK9aPFm4OKRpN46A20GHLdhJg1JeixMj6rcnvwPhOEKvKZ/XonvQe4yqVy1sVtSQXf5e
-         op3/6jLGHpmbxW5XaQDdfwKCmK+evW+MZplTmhGoVqRoHmUYwAWmcNMJynPKfJRYRk7A
-         +1TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ez9CbL63sX7gDGh2tYpWp8dJ1bNhw8H/uQewxmgXJH0=;
-        b=siz48idrHtkXiCoZOqm+6dZWFUoPZOrNYBKtcVtEmc1TTeo/dOO3eC/aKAsZ6edIcg
-         z44qtFXWSmvl4ihrXyJk2FVfLG0U/9cmtbCA5Il9c+V4edF+cQNdyimJV5r1CQs4bUnh
-         lmzraPXdrj4qqOupXsCdtETOqmH1uCZ+n8Xf26AdKjg71c6jofRzeQyt4qH2AclgMzYJ
-         y/tlOAEddWCyVxbJURTPYA631gn0Q6zCHrv/fUSwHLEd1QRfM09uGYGoznqbWtClGVWj
-         aho8xwiDhvVh3XTTWehK8q7dRDcQvhxIz3L+6uAdyy0ejRJlMPL1CjWiuS+196PubvZh
-         l3kQ==
-X-Gm-Message-State: APjAAAX5xfdqsL3WIllw7DOYcYk9yQck82bBn1fMf6aqjjZnggTYV9D1
-        2OJpgODx8OFWhRsLOabaEWM=
-X-Google-Smtp-Source: APXvYqzYQd9TKwpkKLqmNcrY3grnLtu5vU4vNyoc+UoM+SlJAjn5JTdas8JauIoD8/BhDV9KbpjcPg==
-X-Received: by 2002:a5d:4142:: with SMTP id c2mr2590018wrq.208.1571313693027;
-        Thu, 17 Oct 2019 05:01:33 -0700 (PDT)
-Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
-        by smtp.gmail.com with ESMTPSA id n1sm2094533wrg.67.2019.10.17.05.01.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 05:01:29 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 14:01:28 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>, Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-tegra@vger.kernel.org,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Nagarjuna Kristam <nkristam@nvidia.com>
-Subject: Re: [PATCH v4 3/5] dt-bindings: phy: tegra: Add Tegra194 support
-Message-ID: <20191017120128.GE3122066@ulmo>
-References: <20191009024343.30218-1-jckuo@nvidia.com>
- <20191009024343.30218-4-jckuo@nvidia.com>
- <20191009233900.GA9109@bogus>
- <20191014131752.GF422231@ulmo>
- <CAL_Jsq+aKxfAir3skanfqmM+nFFzXPFL4eMa-+pq1kH-90YTbg@mail.gmail.com>
- <57692050-8284-a31f-71fd-7441823f3f2b@nvidia.com>
+        id S2393171AbfJQMRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 08:17:53 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:59052 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731634AbfJQMRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 08:17:53 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 942CF60B16; Thu, 17 Oct 2019 12:17:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571314671;
+        bh=fsLi8zg/9WbhFgBBMcLFgTLCZlbnzv150ryvbRkBxIA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=mBAxVCGPhEK9shE0KKoiAFaPV6PEjEILHCdZNKI9+O65GNYBz88duFFGLAeuobI+A
+         R2m1X69z21mdSIR053ICGQx2BkrShSYOU2ssuB36sY7JsCrMkWHMlPH5EyZ1qJICxB
+         1Z8T1QFXYmBOaVoEFIARu+FcRqVayHh1iH7+TgwQ=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 8D58360B69;
+        Thu, 17 Oct 2019 12:17:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571314669;
+        bh=fsLi8zg/9WbhFgBBMcLFgTLCZlbnzv150ryvbRkBxIA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=mm0UqB8w/zaHSXX1qisLmk7qxgN3JHjNBfXHCFJ0TO0qbq67QdBsELuzoAgzEoLMj
+         QXij8a76b7qWGGZsxqfZbap97WyjO5MYMh5b9bIbsRlp2V6EJeXinrdm+AZuqx3oNh
+         AC9qm7o1iZqKrqpIEDRcVdV2pYA9BKOnio+GTqC4=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="HeFlAV5LIbMFYYuh"
-Content-Disposition: inline
-In-Reply-To: <57692050-8284-a31f-71fd-7441823f3f2b@nvidia.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 17 Oct 2019 17:47:47 +0530
+From:   kgunda@codeaurora.org
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH V7 6/6] backlight: qcom-wled: Add auto string detection
+ logic
+In-Reply-To: <20191017112941.qqvgboyambzw63i3@holly.lan>
+References: <1571220826-7740-1-git-send-email-kgunda@codeaurora.org>
+ <1571220826-7740-7-git-send-email-kgunda@codeaurora.org>
+ <20191017112941.qqvgboyambzw63i3@holly.lan>
+Message-ID: <fa32f7ec727cb2626ad877a6cef32a1b@codeaurora.org>
+X-Sender: kgunda@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2019-10-17 16:59, Daniel Thompson wrote:
+> On Wed, Oct 16, 2019 at 03:43:46PM +0530, Kiran Gunda wrote:
+>> The auto string detection algorithm checks if the current WLED
+>> sink configuration is valid. It tries enabling every sink and
+>> checks if the OVP fault is observed. Based on this information
+>> it detects and enables the valid sink configuration.
+>> Auto calibration will be triggered when the OVP fault interrupts
+>> are seen frequently thereby it tries to fix the sink configuration.
+>> 
+>> The auto-detection also kicks in when the connected LED string
+>> of the display-backlight malfunctions (because of damage) and
+>> requires the damaged string to be turned off to prevent the
+>> complete panel and/or board from being damaged.
+>> 
+>> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+> 
+> It's a complex bit of code but I'm OK with it in principle. Everything
+> below is about small details and/or nitpicking.
+> 
+> 
+>> +static void wled_ovp_work(struct work_struct *work)
+>> +{
+>> +	struct wled *wled = container_of(work,
+>> +					 struct wled, ovp_work.work);
+>> +	enable_irq(wled->ovp_irq);
+>> +}
+>> +
+> 
+> A bit of commenting about why we have to wait 10ms before enabling the
+> OVP interrupt would be appreciated.
+> 
+> 
+Sure. Will add the comment in the next series.
+>> +static irqreturn_t wled_ovp_irq_handler(int irq, void *_wled)
+>> +{
+>> +	struct wled *wled = _wled;
+>> +	int rc;
+>> +	u32 int_sts, fault_sts;
+>> +
+>> +	rc = regmap_read(wled->regmap,
+>> +			 wled->ctrl_addr + WLED3_CTRL_REG_INT_RT_STS, &int_sts);
+>> +	if (rc < 0) {
+>> +		dev_err(wled->dev, "Error in reading WLED3_INT_RT_STS rc=%d\n",
+>> +			rc);
+>> +		return IRQ_HANDLED;
+>> +	}
+>> +
+>> +	rc = regmap_read(wled->regmap, wled->ctrl_addr +
+>> +			 WLED3_CTRL_REG_FAULT_STATUS, &fault_sts);
+>> +	if (rc < 0) {
+>> +		dev_err(wled->dev, "Error in reading WLED_FAULT_STATUS rc=%d\n",
+>> +			rc);
+>> +		return IRQ_HANDLED;
+>> +	}
+>> +
+>> +	if (fault_sts &
+>> +		(WLED3_CTRL_REG_OVP_FAULT_BIT | WLED3_CTRL_REG_ILIM_FAULT_BIT))
+>> +		dev_dbg(wled->dev, "WLED OVP fault detected, int_sts=%x fault_sts= 
+>> %x\n",
+>> +			int_sts, fault_sts);
+>> +
+>> +	if (fault_sts & WLED3_CTRL_REG_OVP_FAULT_BIT) {
+>> +		mutex_lock(&wled->lock);
+>> +		disable_irq_nosync(wled->ovp_irq);
+> 
+> We're currently running the threaded ISR for this irq. Do we really 
+> need
+> to disable it?
+> 
+We need to disable this IRQ, during the auto string detection logic. 
+Because
+in the auto string detection we configure the current sinks one by one 
+and check the
+status register for the OVPs and set the right string configuration. We 
+enable it later after
+the auto string detection is completed.
+>> +
+>> +		if (wled_auto_detection_required(wled))
+>> +			wled_auto_string_detection(wled);
+>> +
+>> +		enable_irq(wled->ovp_irq);
+>> +
+>> +		mutex_unlock(&wled->lock);
+>> +	}
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+> 
+> Snip.
+> 
+> 
+>> +static int wled_remove(struct platform_device *pdev)
+>> +{
+>> +	struct wled *wled = dev_get_drvdata(&pdev->dev);
+>> +
+>> +	cancel_delayed_work_sync(&wled->ovp_work);
+>> +	mutex_destroy(&wled->lock);
+> 
+> Have the irq handlers been disabled at this point?
+> 
+Ok.. may not be. I will disable the irq's here in next series.
 
---HeFlAV5LIbMFYYuh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Oct 17, 2019 at 03:48:52PM +0800, JC Kuo wrote:
-> Hi Thierry, Hi Rob, Hi Kishon,
-> Please let me know your thoughts of the below implementation.
->=20
-> 1. Add a "bool disable_gen2" to "phy->attrs" structure.
-> 2. In _of_phy_get() of phy-core.c to add the follow to parse a generic pr=
-operty.
->=20
-> 	phy->attrs.disable_gen2 =3D of_property_read_bool(args.np,
-> 							"usb-disable-gen2");
-
-Regarding this, I'm not sure how Rob imagined the generic properties to
-work. Perhaps he was thinking about something like the max-link-speed
-property found in the PCI bindings.
-
-We could have something like this:
-
-  - max-link-speed:
-      If present this property specifies the USB generation supported on
-      the PHY/port. Must be:
-        1: for USB 3.1 Gen 1 (a.k.a. USB 3.0)
-        2: for USB 3.1 Gen 2
-
-I'm not sure if we need to consider anything prior to USB 3.0. I suppose
-we could do a similar mapping to what I proposed for the PHY ->set_mode
-callback:
-
-  - max-link-speed:
-      If present this property specifies the USB generation supported on
-      the PHY/port. Must be:
-        0x0100: for USB 1.0 (Low-Speed)
-        0x0101: for USB 1.1 (Full-Speed)
-        0x0200: for USB 2.0 (Hi-Speed)
-        0x0300: for USB 3.0 (SuperSpeed) (a.k.a. USB 3.1 Gen 1)
-        0x0301: for USB 3.1 (SuperSpeed 10 Gbit/s) (a.k.a. USB 3.1 Gen 2)
-        0x0302: for USB 3.2 (SuperSpeed 20 Gbit/s) (a.k.a. USB 3.2 Gen 2 x =
-2)
-        ...
-
-Or those could just be sequentially enumerated, like in the above
-example.
-
-Rob, any thoughts?
-
-Thierry
-
-> 3. In individual phy driver, to add SOC/PHY specific programming accordin=
-gly.
->=20
-> Thanks,
-> JC
->=20
-> On 10/14/19 9:40 PM, Rob Herring wrote:
-> > On Mon, Oct 14, 2019 at 8:17 AM Thierry Reding <thierry.reding@gmail.co=
-m> wrote:
-> >>
-> >> On Wed, Oct 09, 2019 at 06:39:00PM -0500, Rob Herring wrote:
-> >>> On Wed, Oct 09, 2019 at 10:43:41AM +0800, JC Kuo wrote:
-> >>>> Extend the bindings to cover the set of features found in Tegra194.
-> >>>> Note that, technically, there are four more supplies connected to the
-> >>>> XUSB pad controller (DVDD_PEX, DVDD_PEX_PLL, HVDD_PEX and HVDD_PEX_P=
-LL)
-> >>>> , but the power sequencing requirements of Tegra194 require these to=
- be
-> >>>> under the control of the PMIC.
-> >>>>
-> >>>> Tegra194 XUSB PADCTL supports up to USB 3.1 Gen 2 speed, however, it=
- is
-> >>>> possible for some platforms have long signal trace that could not
-> >>>> provide sufficient electrical environment for Gen 2 speed. To deal w=
-ith
-> >>>> this, a new device node property "nvidia,disable-gen2" was added to
-> >>>> Tegra194 that be used to specifically disable Gen 2 speed for a
-> >>>> particular USB 3.0 port so that the port can be limited to Gen 1 spe=
-ed
-> >>>> and avoid the instability.
-> >>>
-> >>> I suspect this may be a common issue and we should have a common
-> >>> property. Typically, this kind of property is in the controller though
-> >>> and supports multiple speed limits. See PCI bindings for inspiration.
-> >>
-> >> Given that support for gen 2 speeds is dependent on signal trace lengt=
-h,
-> >> it doesn't really make sense to restrict the whole controller to a giv=
-en
-> >> speed if only the signal trace for a single port exceeds the limit for
-> >> which gen 2 would work.
-> >>
-> >> Also, the USB PHYs are in a different hardware block than the USB
-> >> controller, so this really is a property of the PHY block, not the USB
-> >> controller.
-> >=20
-> > Okay, but still should be common for USB PHYs IMO.
-> >=20
-> > Rob
-> >=20
-
---HeFlAV5LIbMFYYuh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2oWBUACgkQ3SOs138+
-s6H6Lg//Z16LUbdt8qinrY+mOKkJzVJyY9gk+oxK+7eqnRev93F97H/5xmv+XL4y
-WL5gKVxkEzbuca0zrpU/nK0xxNRVQhCXQkCv7ao2dc4M16ZxUUKG6Hskgv1Pa4Ll
-nHcmxN6lNmnCH+RVmYM+AoojBUAmaxbga1atV96DBY/6lqxUl3CtkHNFzSyfGw1S
-TQ5er1i1HpEuHOqY1Fsx2XTo0x3akWJgtPL/wvnw/exNN+tPXOdgXqJXvU3LF8S1
-3bFVF/o23jN6FBnVtzTsaLR5lZyOc5HhvDiwtOUWptck0wmWmeOiL4G5QGj0Cks4
-pN5BVm7Of69i5YLWWJWM6VWX8Mo27l+/u/fUkqvyp5QpTpGdrArVbOWhZg+iqpsH
-gSeU7Uhw6xdvTrgqnH+5wKH6vdb82W19SQ+xeu01mEiMHsUp0CneAxoafQrH5DIy
-TKDfegIEfEGzEbDNYUn1k7ZMjF+5tO1JCOQ6ExLpIknbShWJG7cCi0w0qpeni83F
-73H7Sk/32VjO4TJDUe6PbdEBrmGDWHDU3S6cZpgOTujd+tbD+1TNTL3rA40pRXoo
-8ikBMJlfKDlnKjhdCtIrtT+OgOlSeA6poK73FfK/I2pvqZuCGNoGuubsvyel1xoK
-3egGGoIm5LMurdn4oazcaMcPJt2/YABalS1AYgoJ+6Y+y+oKWnw=
-=wH+F
------END PGP SIGNATURE-----
-
---HeFlAV5LIbMFYYuh--
+> Also, if you want to destroy the mutex shouldn't that code be
+> introduced in the same patch that introduces the mutex?
+Ok.. I will move it to the same patch where the mutex introduced in next 
+series.
+>> +
+>> +	return 0;
+>> +}
+> 
+> 
+> Daniel.
