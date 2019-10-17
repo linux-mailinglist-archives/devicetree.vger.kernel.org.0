@@ -2,130 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E72BDB02E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 16:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E6B3DB03A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 16:39:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403797AbfJQOhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 10:37:41 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:40278 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726583AbfJQOhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 10:37:40 -0400
-Received: by mail-ot1-f67.google.com with SMTP id y39so2078450ota.7;
-        Thu, 17 Oct 2019 07:37:40 -0700 (PDT)
+        id S2406438AbfJQOjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 10:39:53 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:35474 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403882AbfJQOjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 10:39:53 -0400
+Received: by mail-ot1-f66.google.com with SMTP id z6so2109168otb.2;
+        Thu, 17 Oct 2019 07:39:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=EVefoS1uox1PXbNp8a2dEzENp3d5CAL7i63ZLMJgDfE=;
-        b=ouZRnhvp200sk7eGPGvKGLsf8vspduaNXWgvCMORq3OgQ4m/FOEwzbr1xuOr+AT/uL
-         wkfRLAobQO7LI6VSUl/Rg9Hk15/nrJTL4uOKgwOKsRabEkJ80spTN8ROnNHVADRFD3eF
-         pS3CaX2Ruidk6IGWFxSQD8oOvo9d7xZOI+bu/K4UGgxhmYVRpPaSdmoDO9JFtLheCLaB
-         d+2xwyYtWsBhBx/E1G4Io7NYbBA6bFNoSS/XONOWn2kthiioU9QR+fSDKquvdkc+0n5c
-         oho8r/G3UEJ8+A+LSy2+ag4tuUtCHVU+cm9sZSrsCMvzrNE43KRgoSh2q9U5yU22XjOp
-         Wxtw==
-X-Gm-Message-State: APjAAAUMxsELcUg2sMAy6ng2iojN4sEyYgpGvpYePEB+T1FDySkTXycb
-        H6d5tkOaRQt4YPVh+unoQrzdy04=
-X-Google-Smtp-Source: APXvYqwMb70hm3fWXirGCzrqwCzu4GcP6vYWFZa5Tyv1x+cngwflxxpcOVSGp1wCM55OXRAM1LbZUg==
-X-Received: by 2002:a05:6830:17db:: with SMTP id p27mr3446871ota.258.1571323059553;
-        Thu, 17 Oct 2019 07:37:39 -0700 (PDT)
+        bh=XKvgXvqjjk8TiIeEIKyQ/yG8pWMIH1hEHS2GUYJicX0=;
+        b=lZJ6836OI2pn12aL9PXTWeUTOzXE0J5n7XVlvoTCNoIwnIxK8Xvj4RdzXEn6ftbK46
+         3UF+8s5d2F9IEDUe3e5Z7at+zUaFMAxFXavbyasPb3N/GlL4g3kImnBJkgXOjDzm/dI1
+         hQxlfuFx8RFV1aqsUS8ffCGfzJ3AWxeyZsILv+D9UchXb0UY09oE9JpOBDiyMV5LFVAn
+         kzaftBvRAkedL9oEFpik3VqHM5Qk22VsDAGQE54EE1UgbpO7jBCkEXRGEjrZGenwLkkK
+         t8+Jjmo7n15+SzoKtaHglifBWdWJe4x006uKtgIkh+Kei4UsPhQJV+3VLriUw3rsqMMs
+         qneg==
+X-Gm-Message-State: APjAAAXPABB4f9qID33UKIwyk3G+WfeN2eV/p/0/TMM5gGhUgsrCB02r
+        ueOBujpfL8FS2UcSPnzF1g==
+X-Google-Smtp-Source: APXvYqyTwFiv7B8kcSPfWUsuQZ0ie4KxRI5EDe1Qf5K0ko9ok+SIKpmViiaHcvqOyxD96G6OJvSekQ==
+X-Received: by 2002:a9d:37a1:: with SMTP id x30mr3504866otb.49.1571323192328;
+        Thu, 17 Oct 2019 07:39:52 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x140sm560586oix.42.2019.10.17.07.37.38
+        by smtp.gmail.com with ESMTPSA id w33sm647877otb.68.2019.10.17.07.39.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 07:37:38 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 09:37:38 -0500
+        Thu, 17 Oct 2019 07:39:51 -0700 (PDT)
+Date:   Thu, 17 Oct 2019 09:39:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V5 2/3] dt-bindings: Add Logic PD Type 28 display panel
-Message-ID: <20191017143738.GA10960@bogus>
-References: <20191016135147.7743-1-aford173@gmail.com>
- <20191016135147.7743-2-aford173@gmail.com>
- <20191016144018.GG5175@pendragon.ideasonboard.com>
- <CAHCN7xJhHHoia_o4rb0VgvCP71X94Pvem684F2quMijNNpNxVA@mail.gmail.com>
+        ShuFan Lee <shufan_lee@richtek.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Yu Chen <chenyu56@huawei.com>, Felipe Balbi <balbi@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Jack Pham <jackp@codeaurora.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC][PATCH v3 04/11] dt-bindings: usb: dwc3: Allow clock list &
+ resets to be more flexible
+Message-ID: <20191017143950.GA11204@bogus>
+References: <20191016033340.1288-1-john.stultz@linaro.org>
+ <20191016033340.1288-5-john.stultz@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHCN7xJhHHoia_o4rb0VgvCP71X94Pvem684F2quMijNNpNxVA@mail.gmail.com>
+In-Reply-To: <20191016033340.1288-5-john.stultz@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 09:55:11AM -0500, Adam Ford wrote:
-> On Wed, Oct 16, 2019 at 9:40 AM Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-> >
-> > Hi Adam,
-> >
-> > Thank you for the patch.
-> >
-> > On Wed, Oct 16, 2019 at 08:51:46AM -0500, Adam Ford wrote:
-> > > This patch adds documentation of device tree bindings for the WVGA panel
-> > > Logic PD Type 28 display.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > ---
-> > > V5:  Replace GPIO_ACTIVE_HIGH with 0 to fix make dt_binding_check -k
-> > > V4:  Update per Rob H's suggestions and copy other panel yaml example from 5.4-rc1
-> > > V3:  Correct build errors from 'make dt_binding_check'
-> > > V2:  Use YAML instead of TXT for binding
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> > > new file mode 100644
-> > > index 000000000000..2834287b8d88
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/panel/logicpd,type28.yaml
-> > > @@ -0,0 +1,42 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/panel/logicpd,type28.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Logic PD Type 28 4.3" WQVGA TFT LCD panel
-> > > +
-> > > +maintainers:
-> > > +  - Adam Ford <aford173@gmail.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: panel-common.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: logicpd,type28
-> > > +
-> > > +  power-supply: true
-> > > +  enable-gpios: true
-> > > +  backlight: true
-> > > +  port: true
-> > > +
-> > > +required:
-> > > +  - compatible
-> >
-> > Should the port be required too ? Apart from that,
+On Wed, Oct 16, 2019 at 03:33:33AM +0000, John Stultz wrote:
+> Rather then adding another device specific binding to support
+> hikey960, Rob Herring suggested we expand the current dwc3
+> binding to allow for variable numbers of clocks and resets.
 > 
-> I supposed that's true, but I used ampire,am-480272h3tmqw-t01h.yaml as
-> the example, and it doesn't list it as a required item.
-> Is there anything else I need to address?  I feel like I'm trying to
-> hit a moving target.
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> CC: ShuFan Lee <shufan_lee@richtek.com>
+> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Cc: Yu Chen <chenyu56@huawei.com>
+> Cc: Felipe Balbi <balbi@kernel.org>
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Cc: Jun Li <lijun.kernel@gmail.com>
+> Cc: Valentin Schneider <valentin.schneider@arm.com>
+> Cc: Jack Pham <jackp@codeaurora.org>
+> Cc: linux-usb@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Suggested-by: Rob Herring <Rob.Herring@arm.com>
 
-'port' can be omitted because the panel can be a child node of 
-the display controller instead. That's decided by the display controller 
-binding, not the panel binding.
+Use my kernel.org email please.
+
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/usb/dwc3.txt | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-
-Rob
