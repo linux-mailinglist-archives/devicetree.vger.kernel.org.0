@@ -2,261 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A44D7DA972
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 11:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31BE5DA993
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 12:05:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393997AbfJQJ5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 05:57:18 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:32778 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727873AbfJQJ5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 05:57:17 -0400
-Received: by mail-lf1-f68.google.com with SMTP id y127so1391816lfc.0;
-        Thu, 17 Oct 2019 02:57:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fxrh3VfweY/VOlzg8y3ruaAR2SY+6ZO2U5B2i1hYopQ=;
-        b=BEC0zPdac9TSbvNJ6IJsTEr9QcyNWUo4X7HiY1HTOnO/KGGY4g/Q2/UbKli9/8KqGC
-         f5Cfu01l5th0S0XcjFXu+sqZoMf2HVUdj1roOs5K/sIVATIBKTnoWE89cT7E387QC6nd
-         nedoZhyaH9TcnB3F25LB7FzRVfMeEE/v9SC9rqBOfEV8XKyyc5bEXLOGbw4okU385pBr
-         zljpAD6aNJ5Ouk/GeiTPrh6KSMiINOkwWP7KEvXunAN2oTDzjwbSs/fwuAfdmoN9xF8+
-         HWr0cOw9tmoKowsLZ5h+r2zsF2uLy0c/nvncXbcRIjWgbnC6cR8bT6DhVhbuY8VG3Trf
-         xRlA==
-X-Gm-Message-State: APjAAAWJUGZzIrcUzLtuw1kOykQGvyvf08Uh3hXI7uh6sSfwtnkN7y59
-        h4NCOtp9r1iOKjzZKssGsvA=
-X-Google-Smtp-Source: APXvYqw+bcJB2igbukyiePXd5Dxh73+KoCskq6LH6L44L68fjx40J1kn4yowZBPcTh1TA3c+lxufjg==
-X-Received: by 2002:a19:3fcd:: with SMTP id m196mr8688lfa.118.1571306234015;
-        Thu, 17 Oct 2019 02:57:14 -0700 (PDT)
-Received: from localhost.localdomain ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id v203sm1084674lfa.25.2019.10.17.02.57.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 02:57:13 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 12:57:00 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S2408720AbfJQKFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 06:05:17 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:33863 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404789AbfJQKFR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 06:05:17 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20191017100515euoutp0134b171c16ad959eed6ebfbdedfa360f6~OZyHgiIOm0774307743euoutp015
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 10:05:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20191017100515euoutp0134b171c16ad959eed6ebfbdedfa360f6~OZyHgiIOm0774307743euoutp015
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1571306715;
+        bh=WZzHqq1DVw7L/gU03idhKnRpdfEeIrjG/o5hYZyD5YI=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=agjScbwsSzh4afHs0XsUpjzKcamQ8yFlyI9kTIbWCWaz9SixrT7lrUhGbbXyAxIlO
+         NngDEzSih31gaK4BJyoFavUd6OCGqVJ434pDdoZlVSwCpi/SO/4V7de3U9NPXoUbdu
+         zH3ua0Z6S3chxZRKzdMt9/n7ezXp9LExz2RwUIFU=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20191017100514eucas1p134d3dcf94ce16229e1732bdec6aa6be9~OZyHFrQpE2229722297eucas1p1f;
+        Thu, 17 Oct 2019 10:05:14 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 8D.7B.04309.ADC38AD5; Thu, 17
+        Oct 2019 11:05:14 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20191017100514eucas1p2e189e26e887c9cdd2209357c91846641~OZyGyuWql2843028430eucas1p2R;
+        Thu, 17 Oct 2019 10:05:14 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20191017100514eusmtrp1efebf268c33c61a8dfbc80fa7073cf98~OZyGx_qTC0791507915eusmtrp1A;
+        Thu, 17 Oct 2019 10:05:14 +0000 (GMT)
+X-AuditID: cbfec7f4-ae1ff700000010d5-43-5da83cda55ed
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 96.06.04117.ADC38AD5; Thu, 17
+        Oct 2019 11:05:14 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20191017100513eusmtip176430d2a89cb3f0183793dcb1118bfe0~OZyGLXaaA1893918939eusmtip1w;
+        Thu, 17 Oct 2019 10:05:13 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Mark Brown <broonie@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: [RFC PATCH 13/13] dt-bindings: regulator: Document ROHM BD71282
- regulator bindings
-Message-ID: <1c239d578ac853ed0dab9a43521f528b07cc24e1.1571302099.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1571302099.git.matti.vaittinen@fi.rohmeurope.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1571302099.git.matti.vaittinen@fi.rohmeurope.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Maciej Falkowski <m.falkowski@samsung.com>
+Subject: [PATCH v3] dt-bindings: sound: Convert Samsung Exynos5433 TM2(E)
+ audio complex with WM5110 codec to dt-schema
+Date:   Thu, 17 Oct 2019 12:05:06 +0200
+Message-Id: <20191017100506.4036-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgleLIzCtJLcpLzFFi42LZduznOd1bNitiDdYe0ba4cvEQk8XGGetZ
+        LaY+fMJmMf/IOVaL8+c3sFt8u9LBZHF51xw2ixnn9zFZPGhex2ax9shddov/e3awWxx+087q
+        wOOx4XMTm8fOWXfZPTat6mTz6NuyitHj8ya5ANYoLpuU1JzMstQifbsErozvF+4xFxzRqXh9
+        4xZjA+MfxS5GTg4JAROJ5jUTmLsYuTiEBFYwSmyavpMdwvnCKPHs4mVWkCohgc+MEh+WwXV8
+        +XYWqmg5o0TXnRcIHbPuHwLrYBMwlOh628UGYosI1EmcPXOEEcRmFrjEJLFlIyeILSxQIbHy
+        RidYnEVAVWL/orvsIDavgI3EvH0QvRIC8hKrNxwAu09C4D+bxL7WxywQCReJZ70bmSFsYYlX
+        x7ewQ9gyEqcn97BANDQzSjw8t5YdwulhlLjcNIMRospa4vDxi0CncgCdpCmxfpc+RNhR4tS5
+        tYwgYQkBPokbbwUhjuaTmLRtOjNEmFeio00IolpNYtbxdXBrD164BHWOh8SGNU8ZISEXK/Fr
+        +w72CYxysxB2LWBkXMUonlpanJueWmyUl1quV5yYW1yal66XnJ+7iRGYPk7/O/5lB+OuP0mH
+        GAU4GJV4eF8wL48VYk0sK67MPcQowcGsJMI7v2VJrBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHe
+        aoYH0UIC6YklqdmpqQWpRTBZJg5OqQZG60smH+J3BB4STr1/+toHptNPVRLlhepW+cd/971w
+        ujG8OnVancy0utxUzqaPaed5mnOv1EpaPZ3bL91+R/TWFO8Pt34q6zbo2tX31asZ/b568uFz
+        2zbhsO5PCozlnGJloue+h+kwZi5TnJLB4Xfzg/WPzYd+u5xsu3u1MEu26U2l5t15744rsRRn
+        JBpqMRcVJwIA7YPiyhsDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPLMWRmVeSWpSXmKPExsVy+t/xu7q3bFbEGpw6L2px5eIhJouNM9az
+        Wkx9+ITNYv6Rc6wW589vYLf4dqWDyeLyrjlsFjPO72OyeNC8js1i7ZG77Bb/9+xgtzj8pp3V
+        gcdjw+cmNo+ds+6ye2xa1cnm0bdlFaPH501yAaxRejZF+aUlqQoZ+cUltkrRhhZGeoaWFnpG
+        JpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehnfL9xjLjiiU/H6xi3GBsY/il2MnBwSAiYSX76d
+        Ze9i5OIQEljKKLH55UFGiISMxMlpDawQtrDEn2tdbBBFnxglFjbsZwZJsAkYSnS9hUiICDQx
+        ShzbPJMFxGEWuMEksX9OB5DDwSEsUCbRtNIFpIFFQFVi/6K77CA2r4CNxLx9IM0gG+QlVm84
+        wDyBkWcBI8MqRpHU0uLc9NxiI73ixNzi0rx0veT83E2MwMDdduznlh2MXe+CDzEKcDAq8fC+
+        YF4eK8SaWFZcmXuIUYKDWUmEd37Lklgh3pTEyqrUovz4otKc1OJDjKZAyycyS4km5wOjKq8k
+        3tDU0NzC0tDc2NzYzEJJnLdD4GCMkEB6YklqdmpqQWoRTB8TB6dUA+OEmZrJNWffS835m7Zr
+        5T7fJRviXffcWK3+9pHZNAYLZk3xhzE9ckEXHrB+XatkvZfvzeoD/2a4iFifZs4Krd+7ceZu
+        026G+OPX3eufTclyWshRfqoqOO5a6D2xddxLXvqGzYi+tNCEP9ZiJ7ftI9/3F1bJnWZ08zjc
+        /Eyr5cTNc2o973fu9hJWYinOSDTUYi4qTgQA5RldUXICAAA=
+X-CMS-MailID: 20191017100514eucas1p2e189e26e887c9cdd2209357c91846641
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20191017100514eucas1p2e189e26e887c9cdd2209357c91846641
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20191017100514eucas1p2e189e26e887c9cdd2209357c91846641
+References: <CGME20191017100514eucas1p2e189e26e887c9cdd2209357c91846641@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document ROHM BD71828 PMIC regulator device tree bindings.
+From: Maciej Falkowski <m.falkowski@samsung.com>
 
-Add binding document for regulators on ROHM BD71828 PMIC
+Convert Samsung Exynos5433 TM2(E) audio complex with WM5110 codec to
+newer dt-schema format.
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+[mszyprow: reordered non-standard properties, added list of values
+ for widgets, minor other fixes]
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 ---
- .../regulator/rohm,bd71828-regulator.txt      | 164 ++++++++++++++++++
- 1 file changed, 164 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.txt
+ .../bindings/sound/samsung,tm2-audio.txt      | 42 --------
+ .../bindings/sound/samsung,tm2-audio.yaml     | 99 +++++++++++++++++++
+ 2 files changed, 99 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
 
-diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.txt b/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.txt
+diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
+deleted file mode 100644
+index f5ccc12ddc00..000000000000
+--- a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Samsung Exynos5433 TM2(E) audio complex with WM5110 codec
+-
+-Required properties:
+-
+- - compatible		 : "samsung,tm2-audio"
+- - model		 : the user-visible name of this sound complex
+- - audio-codec		 : the first entry should be phandle of the wm5110 audio
+-			   codec node, as described in ../mfd/arizona.txt;
+-			   the second entry should be phandle of the HDMI
+-			   transmitter node
+- - i2s-controller	 : the list of phandle and argument tuples pointing to
+-			   I2S controllers, the first entry should be I2S0 and
+-			   the second one I2S1
+- - audio-amplifier	 : the phandle of the MAX98504 amplifier
+- - samsung,audio-routing : a list of the connections between audio components;
+-			   each entry is a pair of strings, the first being the
+-			   connection's sink, the second being the connection's
+-			   source; valid names for sources and sinks are the
+-			   WM5110's and MAX98504's pins and the jacks on the
+-			   board: HP, SPK, Main Mic, Sub Mic, Third Mic,
+-			   Headset Mic
+- - mic-bias-gpios	 : GPIO pin that enables the Main Mic bias regulator
+-
+-
+-Example:
+-
+-sound {
+-	compatible = "samsung,tm2-audio";
+-	audio-codec = <&wm5110>, <&hdmi>;
+-	i2s-controller = <&i2s0 0>, <&i2s1 0>;
+-	audio-amplifier = <&max98504>;
+-	mic-bias-gpios = <&gpr3 2 0>;
+-	model = "wm5110";
+-	samsung,audio-routing =
+-		"HP", "HPOUT1L",
+-		"HP", "HPOUT1R",
+-		"SPK", "SPKOUT",
+-		"SPKOUT", "HPOUT2L",
+-		"SPKOUT", "HPOUT2R",
+-		"Main Mic", "MICBIAS2",
+-		"IN1R", "Main Mic";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
 new file mode 100644
-index 000000000000..cf6a5123b98d
+index 000000000000..c9178d928ad4
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.txt
-@@ -0,0 +1,164 @@
-+ROHM BD71828 Power Management Integrated Circuit regulator bindings
++++ b/Documentation/devicetree/bindings/sound/samsung,tm2-audio.yaml
+@@ -0,0 +1,99 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/samsung,tm2-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+Required properties:
-+ - regulator-name: should be "buck1", ..., "buck7", and "ldo1", ..., "ldo7"
++title: Samsung Exynos SoC Exynos5433 TM2(E) audio complex with WM5110 codec
 +
-+List of regulators provided by this controller. BD71828 regulators node
-+should be sub node of the BD71828 MFD node. See BD71828 MFD bindings at
-+Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.txt
-+Regulator nodes should be named to BUCK_<number> and LDO_<number>. The
-+definition for each of these nodes is defined using the standard
-+binding for regulators at
-+Documentation/devicetree/bindings/regulator/regulator.txt.
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++  - Sylwester Nawrocki <s.nawrocki@samsung.com>
 +
-+The valid names for BD71828 regulator nodes are:
-+BUCK1, BUCK2, BUCK3, BUCK4, BUCK5, BUCK6, BUCK7
-+LDO1, LDO2, LDO3, LDO4, LDO5, LDO6, LDO7
++properties:
++  compatible:
++    const: samsung,tm2-audio
 +
-+Optional properties:
-+- rohm,dvs-run-voltage		: PMIC default "RUN" state voltage in uV.
-+				  See below table for bucks which support this.
-+- rohm,dvs-idle-voltage		: PMIC default "IDLE" state voltage in uV.
-+				  See below table for bucks which support this.
-+- rohm,dvs-suspend-voltage	: PMIC default "SUSPEND" state voltage in uV.
-+				  See below table for bucks which support this.
-+- rohm,dvs-lpsr-voltage		: PMIC default "LPSR" state voltage in uV.
-+- rohm,dvs-runlvl-ctrl		: buck control is done based on run-level.
-+				  Regulator is not individually controllable.
-+				  See ../mfd/rohm,bd71828-pmic.txt for how to
-+				  specify run-level control mechanism. Only
-+				  bucks 1, 2, 6 and 7 support this.
-+- rohm,dvs-runlevel0-voltage    : voltage for run-level 0. Microvolts.
-+- rohm,dvs-runlevel1-voltage	: voltage for run-level 1. Microvolts.
-+- rohm,dvs-runlevel2-voltage	: voltage for run-level 2. Microvolts.
-+- rohm,dvs-runlevel3-voltage	: voltage for run-level 3. Microvolts.
++  model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: The user-visible name of this sound complex.
 +
-+- Any optional property defined in bindings/regulator/regulator.txt
++  i2s-controller:
++    allOf:
++    - $ref: /schemas/types.yaml#/definitions/phandle-array
++    - items:
++       - description: phandle of the I2S0.
++       - description: phandle of the I2S1.
 +
-+Supported default DVS states:
++  audio-codec:
++    allOf:
++    - $ref: /schemas/types.yaml#/definitions/phandle-array
++    - items:
++       - description: |
++            phandle of the wm5110 audio codec node,
++            as described in ../mfd/arizona.txt;
++       - description: phandle of the HDMI transmitter node.
 +
-+buck		| run		| idle		| suspend	| lpsr
-+-----------------------------------------------------------------------------
-+1, 2, 6, and 7	| supported	| supported	| 	supported (*)
-+----------------------------------------------------------------------------
-+3, 4, and 5	| 			supported (**)
-+----------------------------------------------------------------------------
-+(*)  LPSR and SUSPEND states use same voltage but both states have own enable /
-+     disable settings. Voltage 0 can be specified for a state to make regulator
-+     disabled on that state.
-+(**) All states use same voltage but have own enable / disable settings. Voltage
-+     0 can be specified for a state to make regulator disabled on that state.
++  audio-amplifier:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle of the MAX98504 amplifier.
 +
-+Example:
-+regulators {
-+	buck1: BUCK1 {
-+		regulator-name = "buck1";
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <2000000>;
-+		regulator-ramp-delay = <2500>;
-+		rohm,dvs-runlvl-ctrl;
-+		rohm,dvs-runlevel0-voltage = <500000>;
-+		rohm,dvs-runlevel1-voltage = <506250>;
-+		rohm,dvs-runlevel2-voltage = <512500>;
-+		rohm,dvs-runlevel3-voltage = <518750>;
-+		regulator-boot-on;
-+	};
-+	buck2: BUCK2 {
-+		regulator-name = "buck2";
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <2000000>;
-+		regulator-ramp-delay = <2500>;
-+		rohm,dvs-runlvl-ctrl;
-+		rohm,dvs-runlevel0-voltage = <500000>;
-+		rohm,dvs-runlevel1-voltage = <506250>;
-+		rohm,dvs-runlevel2-voltage = <512500>;
-+		rohm,dvs-runlevel3-voltage = <518750>;
-+		regulator-boot-on;
-+	};
-+	buck3: BUCK3 {
-+		regulator-name = "buck3";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <2000000>;
-+		regulator-boot-on;
-+	};
-+	buck4: BUCK4 {
-+		regulator-name = "buck4";
-+		regulator-min-microvolt = <1000000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+	};
-+	buck5: BUCK5 {
-+		regulator-name = "buck5";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+	buck6: BUCK6 {
-+		regulator-name = "buck6";
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <2000000>;
-+		regulator-ramp-delay = <2500>;
-+		rohm,dvs-runlvl-ctrl;
-+		rohm,dvs-runlevel0-voltage = <500000>;
-+		rohm,dvs-runlevel1-voltage = <506250>;
-+		rohm,dvs-runlevel2-voltage = <512500>;
-+		rohm,dvs-runlevel3-voltage = <518750>;
-+		regulator-boot-on;
-+	};
-+	buck7: BUCK7 {
-+		regulator-name = "buck7";
-+		regulator-min-microvolt = <500000>;
-+		regulator-max-microvolt = <2000000>;
-+		regulator-ramp-delay = <2500>;
-+		rohm,dvs-runlvl-ctrl;
-+		rohm,dvs-runlevel0-voltage = <500000>;
-+		rohm,dvs-runlevel1-voltage = <506250>;
-+		rohm,dvs-runlevel2-voltage = <512500>;
-+		rohm,dvs-runlevel3-voltage = <518750>;
-+		regulator-boot-on;
-+	};
-+	ldo1: LDO1 {
-+		regulator-name = "ldo1";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+	ldo2: LDO2 {
-+		regulator-name = "ldo2";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+	ldo3: LDO3 {
-+		regulator-name = "ldo3";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+	ldo4: LDO4 {
-+		regulator-name = "ldo4";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+	ldo5: LDO5 {
-+		regulator-name = "ldo5";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+	ldo6: LDO6 {
-+		regulator-name = "ldo6";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+	};
-+	ldo7_reg: LDO7 {
-+		regulator-name = "ldo7";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+};
++  mic-bias-gpios:
++    description: GPIO pin that enables the Main Mic bias regulator.
++    maxItems: 1
 +
++  samsung,audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      List of the connections between audio components.
++      Each entry is a pair of strings, the first being the
++      connection's sink, the second being the connection's
++      source. Valid names for sources and sinks are:
++      the WM5110's pins:
++         "HPOUT1L",
++         "HPOUT1R",
++         "HPOUT2L",
++         "HPOUT2R",
++         "HPOUT3L",
++         "HPOUT3R",
++      MAX98504's pins:
++         "SPKOUT"
++      and the jacks on the board:
++         "HP",
++         "SPK",
++         "RCV",
++         "Main Mic",
++         "Sub Mic",
++         "Third Mic",
++         "Headset Mic".
++
++required:
++  - compatible
++  - model
++  - i2s-controller
++  - audio-codec
++  - audio-amplifier
++  - mic-bias-gpios
++  - samsung,audio-routing
++
++additionalProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "samsung,tm2-audio";
++        model = "wm5110";
++        i2s-controller = <&i2s0 0>, <&i2s1 0>;
++        audio-codec = <&wm5110>, <&hdmi>;
++        audio-amplifier = <&max98504>;
++        mic-bias-gpios = <&gpr3>;
++        samsung,audio-routing =
++                "HP", "HPOUT1L",
++                "HP", "HPOUT1R",
++                "SPK", "SPKOUT",
++                "SPKOUT", "HPOUT2L",
++                "SPKOUT", "HPOUT2R",
++                "Main Mic", "MICBIAS2",
++                "IN1R", "Main Mic";
++    };
 +
 -- 
-2.21.0
+2.17.1
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
