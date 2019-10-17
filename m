@@ -2,101 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC89DB1B0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14AB6DB1F7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394068AbfJQQA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 12:00:28 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:36386 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436715AbfJQQA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:00:27 -0400
-Received: by mail-wm1-f68.google.com with SMTP id m18so3121867wmc.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:00:24 -0700 (PDT)
+        id S2440230AbfJQQKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 12:10:20 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:42736 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439778AbfJQQKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:10:19 -0400
+Received: by mail-qt1-f196.google.com with SMTP id w14so4337211qto.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:10:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=K92xI+/RkXkPNl+cGfvbqFzqM/p/1yJ006GVWjx3IVs=;
-        b=CggdjClIWcSoRXgef5gv0ShuIOG24Za8FzwWf9E4ClyF7n+mPqXeJ+FYEV/bIW1lnx
-         nAc/I/Iq4ZR73NYNSACNxdqyFO39HgzTtoQT/r5XTknAPVFalD3lDMOvpaxTbAQJTp+w
-         us20Uh8RDWgTOgAD0JxhShJoOFBAidBAO5YK6k3Y0ynId+jEVP9jeQgHk+FBqiuPezbE
-         SQfo1I0Q2muik78pHRAXWiFsoKyGUMi9pg/ZCDOgNOiBeF2Awq/HcccVeXQKOtlbWCvO
-         oxPi6LgaOFvLUEmQdOOuqwqw806kCTizmxPdN53ELPDSOdUt3b7sh5t2h33BzZoGGYj5
-         t3VA==
+        d=linaro.org; s=google;
+        h=subject:to:references:cc:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding;
+        bh=Ny/2VRd+nYPZUv6lS3IfSjlpgoq8xpi9csSapod3I6s=;
+        b=l6pUbq9ZGqeQIvaa+cnqcCYOZi3/jNJwbPMtbnUlqNj5QrnM7UA5gdH8mg31AIVZw7
+         xbDPlG5/P/SVpJ9MZJuRe5wCTxjXPIoTALKfEwdgVOUU2bOqWVeNWrb4KMd+gwGckI0w
+         wsFgaQ19vhES8njgHStqgeVRteJmqB8m7rfbo9PPz3Ntl/JoqGDsLYq31epfCFEonk/4
+         bU0kmkmCDnUxhGPOcmSg4klgOzFoTMIWpdzpvFEzAU+h0INKwg9Gz8Gj5GpjqKVf66VF
+         5j+Su/AzFBvV1tpBywTqzx7NbzMKjLHaKwZuDVUyNBAPtDB8/d2ze4SAhyy+Zr4/57kn
+         mtJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=K92xI+/RkXkPNl+cGfvbqFzqM/p/1yJ006GVWjx3IVs=;
-        b=onlbdY90CH7SS0Ecnt/XVYBO0umzBJPp5B6Glx9GRCZD0oIm6w+vg6mPzN6mnd7XjU
-         CYBrfTWMmOR52+4fzXnZUez/vOwiA6H/HxVzfgonrK5Vf6Hzfi3TopxQ1xRvfI5sU+wr
-         ZFYUdlaSg4oG9uV4K9WVMIhzZh7m5cWgYJjhWxofMSeC22Itp6gintFufP5iIN6RT8wJ
-         O6G388Q7OsgeHvei16sDAL5fIFWZFCw0V9q+k4ufRcLkSgt/oufOQFi3OnSlkTU8WZE3
-         ERglV9/djQshtj/X7HxXKUaxfZdhV0BH26ANLy7hBureoqgpZUgDdM79AdWTd5Fybb1z
-         Ls8g==
-X-Gm-Message-State: APjAAAXfv9l8V/XEIm5ip+ZUqQg0ZcriyPBY/+NtBUCgVDCzfMbKznzZ
-        0PBnG0GJJ7ab1AxtEyijlaQYIw==
-X-Google-Smtp-Source: APXvYqxU9x5KGD/Ua0mSg1w0b4PXk+F6jDtTrWq3r+9vIpk0bZLy8thz/z4qpoSUhgJ4QRtxB4X/Jw==
-X-Received: by 2002:a1c:20d8:: with SMTP id g207mr3538145wmg.79.1571328023876;
-        Thu, 17 Oct 2019 09:00:23 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id z13sm2538882wrq.51.2019.10.17.09.00.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 09:00:22 -0700 (PDT)
-References: <20191009082708.6337-1-jbrunet@baylibre.com> <7h7e54hdif.fsf@baylibre.com> <7ho8ygfxo7.fsf@baylibre.com>
-User-agent: mu4e 1.3.3; emacs 26.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: sm1: add audio support
-In-reply-to: <7ho8ygfxo7.fsf@baylibre.com>
-Date:   Thu, 17 Oct 2019 18:00:21 +0200
-Message-ID: <1j1rvb2wh6.fsf@starbuckisacylon.baylibre.com>
+        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
+        bh=Ny/2VRd+nYPZUv6lS3IfSjlpgoq8xpi9csSapod3I6s=;
+        b=MgSbECqc3HZYrD9zzddjFTlu5MGfXg7A1gUoZpFdRa6rcGx623zXVzbOszHZUrAD05
+         g7pJkd5gx+maS9Glp+Ipo1U0gCNeVM8IcGohMxbp+rgVubXywRaXit0mt6kB9u3zoOSK
+         5IrTl/M8nAwuTRSUafyxDKUCQcZaB6NjhACPhVi8epWxp1OhGKYPrXZi4VIF/AAtS8b+
+         kCJCj6E9/jxhuXm9J+q3MxgtfeIjip7Tm/qTI59opk6C+wLxXl2hoadOZcwbLlbb40N9
+         b3yDr/W8Z0GhPWLXCEt8WxCaI/ZwUXzPc9LjhWwEa9BfMKs3r0Fm+Elx+6Rx9/frDvtJ
+         n0ZA==
+X-Gm-Message-State: APjAAAUkfoTKfDxE/UYlHAGWjUd7vNH3hGzftLl1mmaTm5rHRcYJdydu
+        2aGWN9kmGjBG60p/CUV5iVoftA==
+X-Google-Smtp-Source: APXvYqx7+OyfLaAXGwBd1NAptH2mQwrN3MtccpUFsF1to9AWMls4vwHB38FXDo1TgrgbkHExtFCy9A==
+X-Received: by 2002:ac8:3ac6:: with SMTP id x64mr4619046qte.51.1571328618066;
+        Thu, 17 Oct 2019 09:10:18 -0700 (PDT)
+Received: from [192.168.1.169] (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
+        by smtp.gmail.com with ESMTPSA id m15sm984714qka.104.2019.10.17.09.10.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Oct 2019 09:10:16 -0700 (PDT)
+Subject: Re: [PATCH v3 6/7] dt-bindings: soc: qcom: Extend RPMh power
+ controller binding to describe thermal warming device
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+References: <1571254641-13626-1-git-send-email-thara.gopinath@linaro.org>
+ <1571254641-13626-7-git-send-email-thara.gopinath@linaro.org>
+ <CAPDyKFqcKfmnNJ7j4Jb+JH739FBcHg5NBD6aR4H_N=zWGwm1ww@mail.gmail.com>
+ <5DA88892.5000408@linaro.org>
+ <CAPDyKFpYG7YADb6Xmm=8ug5=5X3d1y+JdkRvrnvtroeV3Yj62Q@mail.gmail.com>
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, amit.kucheria@verdurent.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <5DA89267.30806@linaro.org>
+Date:   Thu, 17 Oct 2019 12:10:15 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.1
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <CAPDyKFpYG7YADb6Xmm=8ug5=5X3d1y+JdkRvrnvtroeV3Yj62Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed 16 Oct 2019 at 18:43, Kevin Hilman <khilman@baylibre.com> wrote:
-
-> Kevin Hilman <khilman@baylibre.com> writes:
->
->> Jerome Brunet <jbrunet@baylibre.com> writes:
+On 10/17/2019 11:43 AM, Ulf Hansson wrote:
+> On Thu, 17 Oct 2019 at 17:28, Thara Gopinath <thara.gopinath@linaro.org> wrote:
 >>
->>> This patchset adds audio support on the sm1 SoC family and the
->>> sei610 platform
+>> Hello Ulf,
+>> Thanks for the review!
 >>
->> Queued for v5.5.
->>
->>> Kevin, The patchset depends on:
->>>  - The ARB binding merged by Philipp [0]
->>>  - The audio clock controller bindings I just applied. A tag is
->>>    available for you here [1]
->>
->> I've pulled both of those into v5.5/dt64 so that branch is buildable
->> standlone.
->>
->> Thanks for details on the dependencies.
->
-> Just noticed that all of these had "meson" in the subject instead of
-> "amlogic".  Fixed up when applying.
+>> On 10/17/2019 05:04 AM, Ulf Hansson wrote:
+>>> On Wed, 16 Oct 2019 at 21:37, Thara Gopinath <thara.gopinath@linaro.org> wrote:
+>>>>
+>>>> RPMh power controller hosts mx domain that can be used as thermal
+>>>> warming device. Add a sub-node to specify this.
+>>>>
+>>>> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/power/qcom,rpmpd.txt | 10 ++++++++++
+>>>>  1 file changed, 10 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+>>>> index eb35b22..fff695d 100644
+>>>> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+>>>> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+>>>> @@ -18,6 +18,16 @@ Required Properties:
+>>>>  Refer to <dt-bindings/power/qcom-rpmpd.h> for the level values for
+>>>>  various OPPs for different platforms as well as Power domain indexes
+>>>>
+>>>> += SUBNODES
+>>>> +RPMh alsp hosts power domains that can behave as thermal warming device.
+>>>> +These are expressed as subnodes of the RPMh. The name of the node is used
+>>>> +to identify the power domain and must therefor be "mx".
+>>>> +
+>>>> +- #cooling-cells:
+>>>> +       Usage: optional
+>>>> +       Value type: <u32>
+>>>> +       Definition: must be 2
+>>>> +
+>>>
+>>> Just wanted to express a minor thought about this. In general we use
+>>> subnodes of PM domain providers to represent the topology of PM
+>>> domains (subdomains), this is something different, which I guess is
+>>> fine.
+>>>
+>>> I assume the #cooling-cells is here tells us this is not a PM domain
+>>> provider, but a "cooling device provider"?
+>> Yep.
+>>>
+>>> Also, I wonder if it would be fine to specify "power-domains" here,
+>>> rather than using "name" as I think that is kind of awkward!?
+>> Do you mean "power-domain-names" ? I am using this to match against the
+>> genpd names defined in the provider driver.
+> 
+> No. If you are using "power-domains" it means that you allow to
+> describe the specifier for the provider.
+Yep. But won't this look funny in DT ? The provider node will have a sub
+node with a power domain referencing to itself Like below: Is this ok ?
 
-From what I can see in the git history I have always used
-"arm64: dts: meson:" in the subject.
+rpmhpd: power-controller {
+                                compatible = "qcom,sdm845-rpmhpd";
+                                #power-domain-cells = <1>;
 
-Did we decide to that change this recently ?
+			...
+			...
+				mx_cdev: mx {
+                                        #cooling-cells = <2>;
+                                        power-domains = <&rpmhpd	SDM845_MX>;
+                                };
+				
+> 
+> From Linux point of view, it means you can use dev_pm_domain_attach()
+> to hook up the corresponding device with the PM domain.
 
-If so
- * Sorry I missed that discussion
- * Should MAINTAINERS be updated to grep on "amlogic" as well as "meson" ?
+Yes. Only the thermal framework does not populate cdev->dev->of_node.
+But it should be a trivial thing to fix it. Also if I end up creating a
+separate device, it should not matter.
+> 
+> Using "power-domain-names" is just to allow to specify a name rather
+> than an index, which makes sense if there is more than one index.
+> Perhaps you can state that the "power-domain-names" should be there
+> anyway, to be a little bit future proof if ever multiple index
+> (multiple PM domains).
+> 
+> Kind regards
+> Uffe
+> 
 
->
-> Thanks,
->
-> Kevin
 
+-- 
+Warm Regards
+Thara
