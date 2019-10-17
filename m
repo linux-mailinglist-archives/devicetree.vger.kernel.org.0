@@ -2,185 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64DB4DB0ED
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 17:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C88DB117
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 17:28:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405672AbfJQPRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 11:17:52 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38563 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404909AbfJQPRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 11:17:52 -0400
-Received: by mail-oi1-f195.google.com with SMTP id k10so171967oij.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 08:17:51 -0700 (PDT)
+        id S2407587AbfJQP2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 11:28:22 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:45211 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406301AbfJQP2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 11:28:22 -0400
+Received: by mail-qk1-f196.google.com with SMTP id z67so2210236qkb.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 08:28:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=6tlDHmC6wlZ5TK6UmlVKTwMVjF5/yhTWEc3F91aKg24=;
-        b=kVFYtNMLoieGIHim43g4qoHdRv+TfrHMppysmtPYdQmFpQ8AAVGtvOS5SFDe79ELLD
-         ZFC8PJZL31LKEnbLFaAcMHxM840aoGBhMAdxX1rue5Y+DvX0cEwvXPD+cNjQWnaaVvLX
-         EKxymEzRR+BQLmhWQ2OwFbhclVX08imRm3wWFjPC5dOYVKgxolaO89nSjbayGcm30K8/
-         MO0u6oDdsGptvpsxhQcv+TfONcrc+qFTYiG2AtYBkuJf/+jsOCxVUH91gM+DS+uO+eEj
-         pTXgyRSSd9bx2uQThNkVkAfoQUroVL82i7pvZRsnTn9MOvig2YisHYB5Ba7eVqupy6pB
-         Tadg==
+        d=linaro.org; s=google;
+        h=subject:to:references:cc:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding;
+        bh=HxxMlxSnOHFXolbR3XOteHFHB5Y0fMxkCzdRoCJf6PE=;
+        b=xgGpKj4TXIiDL2Gz1GlKIH2KXJ8E6eseq0BY8b2KgfYyfK58FKJ11SlPKH8K1smi82
+         L35ggCBPhbbXjWHssTvzJuk2pRSddXo67qbvFKhD+7P7wfVM9p3w003AYYu8QtKBaLJz
+         2SJRD9C4OCcncGkLr7jZ2LP3TOFI8Sp+9Xk2N2oJ+ONxCVLOy74EoTgOEUOE+XXMxYRa
+         ISeYQhHPojhyy3MYnhOZ0R3NAvNFbQSY0iurBuFneYei4WRR+xP9dr2kzGnCDdO6RPm7
+         XLA9Vf5fWpP8i8KPY1PnpPutVSmCO3oIC/2fxPyaK+tVs2q+0oPxB5/iKp+Q8A+wOtjT
+         MxBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=6tlDHmC6wlZ5TK6UmlVKTwMVjF5/yhTWEc3F91aKg24=;
-        b=cYJ0VCmqHwAv8Eg5RZXiTi/M4LeauO/oX+oGd6U6rxE07euOvG8WtcHQwZufZlcEo4
-         +n2J9mrmJRmySRTJzidYttHLfqSkUxHkDsjRIJqJqS4lHo9I/vR7LoaQspaW4SVSNzp7
-         r9RPXC1I7RjE4pv40RtHHWRLrIc1hgvaj79+2lMmWZZG7eUVdJS54Na/T2YvoBxqYZQk
-         PXjSf38fRXLyqZIbaodwINGeBD+GIsLzk5ARPVAUB4Vkm0bOzAUCMHWWUSDuFwIpP596
-         YN1x4+7GF/jJtFBALBJ1aL2BRzX0CPRpKYxGaNc6M8feT2po7ryibPKKFJw+Ev6mDegz
-         jo0A==
-X-Gm-Message-State: APjAAAU0YoaIsmWygjU5CuLov228knD1dpBMC16ZijfcDWZa7RXoC7cm
-        fiT1vJsZxZDJ7wz4qd0Q2uMlXc709TmtPKTlOwJArA==
-X-Google-Smtp-Source: APXvYqxiWsXZ2j9DUQLFGq87hxZDl0mle0KZeE0MzrbCxrr1SAMYc1t/T3AwFp1T5iXEUyNqtcAKVA1xZBO4JVtcpiU=
-X-Received: by 2002:a05:6808:114:: with SMTP id b20mr3772123oie.114.1571325471084;
- Thu, 17 Oct 2019 08:17:51 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
+        bh=HxxMlxSnOHFXolbR3XOteHFHB5Y0fMxkCzdRoCJf6PE=;
+        b=FJwRjBY6SsOBo08LFut7g8aE+rBS7eMJcOr+wuzpA/o/DKFhg9Myd5Tg6tbps9tRgk
+         NZhx38Oy9xn65zOTPm1QNKLUhzU+g/T8hIidjT6L1tIlRDF+Q7L4JWhlsIuCXNiHYrny
+         6Np5C8UlFfdYa7MWP99YDdJQCkZFt07x+Bo9Slu7ZRSdCAzvKbA7t2ejDCZimg9Gp5uJ
+         ATYHeCqqvkQEnlUm0Itn6yqTIrCo9LjQ2vRhqK96gv2pz1cfBHSbGL464q2WosJbjnYZ
+         6OgBDKpT9Inikc7oWjJ3ikESEeOPu5QahuOPKK1nOxeidjxA8piQz/6t4CaMUxNXN/9w
+         4GjA==
+X-Gm-Message-State: APjAAAXFUp6YSnyAlJjhOotUIsexUAYe4MzoUEfXxiuHaiVEJn/jljOF
+        TVUlOCqHQSQLtrxmhQAEtu3DKw==
+X-Google-Smtp-Source: APXvYqyp4wRR1ov3vJ/c6kD326l229dgP5IfCEwdoMk3qpE+kXLbkjhLaTm41gj0At0tLw14+faOlw==
+X-Received: by 2002:a37:98c1:: with SMTP id a184mr3628260qke.119.1571326100082;
+        Thu, 17 Oct 2019 08:28:20 -0700 (PDT)
+Received: from [192.168.1.169] (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
+        by smtp.gmail.com with ESMTPSA id q200sm1230672qke.114.2019.10.17.08.28.18
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Oct 2019 08:28:19 -0700 (PDT)
+Subject: Re: [PATCH v3 6/7] dt-bindings: soc: qcom: Extend RPMh power
+ controller binding to describe thermal warming device
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+References: <1571254641-13626-1-git-send-email-thara.gopinath@linaro.org>
+ <1571254641-13626-7-git-send-email-thara.gopinath@linaro.org>
+ <CAPDyKFqcKfmnNJ7j4Jb+JH739FBcHg5NBD6aR4H_N=zWGwm1ww@mail.gmail.com>
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, amit.kucheria@verdurent.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <5DA88892.5000408@linaro.org>
+Date:   Thu, 17 Oct 2019 11:28:18 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.1
 MIME-Version: 1.0
-References: <20191017031051.20366-1-chris.packham@alliedtelesis.co.nz> <20191017031051.20366-2-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20191017031051.20366-2-chris.packham@alliedtelesis.co.nz>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 17 Oct 2019 17:17:40 +0200
-Message-ID: <CAMpxmJUY3_Fv6mMw=ARAedXUM611Mr91UZrQpPAz28i2=Q_srQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: brcm: Add bindings for xgs-iproc
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, rjui@broadcom.com,
-        sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAPDyKFqcKfmnNJ7j4Jb+JH739FBcHg5NBD6aR4H_N=zWGwm1ww@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-czw., 17 pa=C5=BA 2019 o 05:11 Chris Packham
-<chris.packham@alliedtelesis.co.nz> napisa=C5=82(a):
->
-> This GPIO controller is present on a number of Broadcom switch ASICs
-> with integrated SoCs. It is similar to the nsp-gpio and iproc-gpio
-> blocks but different enough to require a separate driver.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->
-> Notes:
->     Changes in v2:
->     - Document as DT schema
->     - Include ngpios, #gpio-cells and gpio-controller properties
->
->  .../bindings/gpio/brcm,xgs-iproc.yaml         | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/brcm,xgs-iproc=
-.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc.yaml b=
-/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc.yaml
-> new file mode 100644
-> index 000000000000..71998551209e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/brcm,xgs-iproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom XGS iProc GPIO controller
-> +
-> +maintainers:
-> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-> +
-> +description: |
-> +  This controller is the Chip Common A GPIO present on a number of Broad=
-com
-> +  switch ASICs with integrated SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - brcm,iproc-gpio-cca
+Hello Ulf,
+Thanks for the review!
 
-I believe this should be:
+On 10/17/2019 05:04 AM, Ulf Hansson wrote:
+> On Wed, 16 Oct 2019 at 21:37, Thara Gopinath <thara.gopinath@linaro.org> wrote:
+>>
+>> RPMh power controller hosts mx domain that can be used as thermal
+>> warming device. Add a sub-node to specify this.
+>>
+>> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/power/qcom,rpmpd.txt | 10 ++++++++++
+>>  1 file changed, 10 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+>> index eb35b22..fff695d 100644
+>> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+>> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+>> @@ -18,6 +18,16 @@ Required Properties:
+>>  Refer to <dt-bindings/power/qcom-rpmpd.h> for the level values for
+>>  various OPPs for different platforms as well as Power domain indexes
+>>
+>> += SUBNODES
+>> +RPMh alsp hosts power domains that can behave as thermal warming device.
+>> +These are expressed as subnodes of the RPMh. The name of the node is used
+>> +to identify the power domain and must therefor be "mx".
+>> +
+>> +- #cooling-cells:
+>> +       Usage: optional
+>> +       Value type: <u32>
+>> +       Definition: must be 2
+>> +
+> 
+> Just wanted to express a minor thought about this. In general we use
+> subnodes of PM domain providers to represent the topology of PM
+> domains (subdomains), this is something different, which I guess is
+> fine.
+> 
+> I assume the #cooling-cells is here tells us this is not a PM domain
+> provider, but a "cooling device provider"?
+Yep.
+> 
+> Also, I wonder if it would be fine to specify "power-domains" here,
+> rather than using "name" as I think that is kind of awkward!?
+Do you mean "power-domain-names" ? I am using this to match against the
+genpd names defined in the provider driver.
 
-    const: brcm,iproc-gpio-cca
+Warm Regards
+Thara
 
-Bart
-
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
-> +    description:
-> +      The first region defines the base I/O address containing
-> +      the GPIO controller registers. The second region defines
-> +      the I/O address containing the Chip Common A interrupt
-> +      registers.
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +      const: 2
-> +
-> +  ngpios:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 32
-> +
-> +  interrupt-controller:
-> +    type: boolean
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +
-> +allOf:
-> + - if:
-> +     properties:
-> +       interrupt-controller:
-> +         contains:
-> +           const: true
-> +   then:
-> +     required:
-> +       - interrupts
-> +       - '#interrupt-cells'
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    gpio@18000060 {
-> +        compatible =3D "brcm,iproc-gpio-cca";
-> +        #gpio-cells =3D <2>;
-> +        reg =3D <0x18000060 0x50>,
-> +              <0x18000000 0x50>;
-> +        ngpios =3D <12>;
-> +        gpio-controller;
-> +        interrupt-controller;
-> +        #interrupt-cells =3D <2>;
-> +        interrupts =3D <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> +
-> +
-> +...
-> --
-> 2.23.0
->
