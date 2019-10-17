@@ -2,152 +2,590 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0293DA43B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 05:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C26DDA443
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 05:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390685AbfJQDMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 23:12:22 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:44108 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388274AbfJQDMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 23:12:22 -0400
-Received: by mail-pg1-f196.google.com with SMTP id e10so429374pgd.11
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 20:12:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YxR7QauPFIpwu18IaJ9ziXnYejBxNJ9VobKL+Ge/XjA=;
-        b=kud9+88JoM80HNaxVPp9bA8aFysc53m1u/lEZf1JMDZiN9XECzPAaakFzGRQ+K/6Mf
-         hoPI0HqzDInnIBXW7V8vxBo62kioTgEtvchOr2k39qUzo76bHg5tCwIxS2kbSyrMIOnq
-         snJ457KW5y2WJFx+1/o/nKYrXyDKC4zPfjvT9Aje2DxQVCR6i3cdCfwtpgKrhG97UUew
-         7cqLLEB7wsyRsI0oWCcwiWq9IpAhy6Og+TcT7qDUmidiPsuHvh2aj/YUry+hVMTr4YKb
-         OdDknLg146HhsBJOP/ZLJGXXy5/R/2PbglRgeUYC7JmwxwQsD2MiY9gV6wEB8DgWvbXu
-         jQAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YxR7QauPFIpwu18IaJ9ziXnYejBxNJ9VobKL+Ge/XjA=;
-        b=N87bmrpf4njE9eNDDoVm4jBn1RfOOvET4hfwM7DUt/3XoGoTn3a0VDixbjZrABVFmS
-         8x42nvHfpa79wguiPn0snUqqvgHHf2xYMPkp0Otry/G5xLUS5ra2I2iSXDXQEmjp26nF
-         ZcFjFoP4bDu5iZgeEj4wSB6kJqDKbh4UQXDic4qUl5AMfvuceuFrs8MkjocWE+yuf57Y
-         EQKqsuliTZ0jlPuVNsQG3bNncwsAm0ooypmfPI5DEQKZiuqRPeq+OgfFRMh4rlAjJDtz
-         Ul7E27l5cc9BGbWDXOGS3vdwsXTpl8+T2Jhxs6dSsKyEdEVUlqSd56mRgYsKUhQndpQp
-         NOwA==
-X-Gm-Message-State: APjAAAXoPGe9fHJO3Vl3gM9i9Z8LXn7TvnHgcuqR8L1OXnbBiNgbBBK6
-        MJ6qF4whC3UCkHsSUZcHHXrDig==
-X-Google-Smtp-Source: APXvYqz33U+X+A3OXDiRRBXsBWjDrHmBMXo3JmS2uzTGkzCx5K9nErCtmSPEZRFpECSSomyuV4Q2pA==
-X-Received: by 2002:a62:7a8c:: with SMTP id v134mr1162146pfc.134.1571281940447;
-        Wed, 16 Oct 2019 20:12:20 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:bc61:d85d:eb16:9036])
-        by smtp.gmail.com with ESMTPSA id i16sm546637pfa.184.2019.10.16.20.12.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2019 20:12:19 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 20:12:14 -0700
-From:   Benson Leung <bleung@google.com>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     broonie@kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, gwendal@google.com,
-        drinkcat@google.com, cychiang@google.com, dgreid@google.com
-Subject: Re: [PATCH v3 06/10] ASoC: dt-bindings: cros_ec_codec: add SHM
- bindings
-Message-ID: <20191017031214.GA78044@google.com>
-References: <20191014102022.236013-1-tzungbi@google.com>
- <20191014180059.06.I0df85fe54162426e31f60a589d9b461c65df2faa@changeid>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4Ckj6UjgE2iN1+kY"
-Content-Disposition: inline
-In-Reply-To: <20191014180059.06.I0df85fe54162426e31f60a589d9b461c65df2faa@changeid>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2395373AbfJQDQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 23:16:03 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:50194 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387811AbfJQDQC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Oct 2019 23:16:02 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3596C2005C8;
+        Thu, 17 Oct 2019 05:15:58 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 81DD5200021;
+        Thu, 17 Oct 2019 05:15:49 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 87FF4402AE;
+        Thu, 17 Oct 2019 11:15:38 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
+        aisheng.dong@nxp.com, sebastien.szymanski@armadeus.com,
+        leoyang.li@nxp.com, pramod.kumar_1@nxp.com, l.stach@pengutronix.de,
+        ping.bai@nxp.com, bhaskar.upadhaya@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/3] arm64: dts: imx8mn: Create EVK dtsi file for common use
+Date:   Thu, 17 Oct 2019 11:13:02 +0800
+Message-Id: <1571281984-7125-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+i.MX8MN has different EVK boards to support different DDR types,
+the ONLY differences are DDR chips and PMIC, so most of the devices
+can be shared between these EVK boards, create a EVK dtsi file for
+common use.
 
---4Ckj6UjgE2iN1+kY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+	- This patch is based on https://patchwork.kernel.org/patch/11192221/
+---
+ arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 241 +--------------------
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi     | 252 ++++++++++++++++++++++
+ 2 files changed, 253 insertions(+), 240 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
 
-On Mon, Oct 14, 2019 at 06:20:18PM +0800, Tzung-Bi Shih wrote:
-> - Add "reg" for binding to shared memory exposed by EC.
-> - Add "memory-region" for binding to memory region shared by AP.
->=20
-> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+index 5c96203..0719494 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+@@ -6,71 +6,18 @@
+ /dts-v1/;
+ 
+ #include "imx8mn.dtsi"
++#include "imx8mn-evk.dtsi"
+ 
+ / {
+ 	model = "NXP i.MX8MNano DDR4 EVK board";
+ 	compatible = "fsl,imx8mn-ddr4-evk", "fsl,imx8mn";
+-
+-	chosen {
+-		stdout-path = &uart2;
+-	};
+-
+-	gpio-leds {
+-		compatible = "gpio-leds";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_gpio_led>;
+-
+-		status {
+-			label = "yellow:status";
+-			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
+-		};
+-	};
+-
+-	reg_usdhc2_vmmc: regulator-usdhc2 {
+-		compatible = "regulator-fixed";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+-		regulator-name = "VSD_3V3";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-	};
+ };
+ 
+ &A53_0 {
+ 	cpu-supply = <&buck2_reg>;
+ };
+ 
+-&fec1 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_fec1>;
+-	phy-mode = "rgmii-id";
+-	phy-handle = <&ethphy0>;
+-	fsl,magic-packet;
+-	status = "okay";
+-
+-	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		ethphy0: ethernet-phy@0 {
+-			compatible = "ethernet-phy-ieee802.3-c22";
+-			reg = <0>;
+-			at803x,led-act-blind-workaround;
+-			at803x,eee-disabled;
+-			at803x,vddio-1p8v;
+-		};
+-	};
+-};
+-
+ &i2c1 {
+-	clock-frequency = <400000>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_i2c1>;
+-	status = "okay";
+-
+ 	pmic@4b {
+ 		compatible = "rohm,bd71847";
+ 		reg = <0x4b>;
+@@ -175,196 +122,10 @@
+ 	};
+ };
+ 
+-&snvs_pwrkey {
+-	status = "okay";
+-};
+-
+-&uart2 { /* console */
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_uart2>;
+-	status = "okay";
+-};
+-
+-&usdhc2 {
+-	assigned-clocks = <&clk IMX8MN_CLK_USDHC2>;
+-	assigned-clock-rates = <200000000>;
+-	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+-	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+-	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
+-	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+-	cd-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+-	bus-width = <4>;
+-	vmmc-supply = <&reg_usdhc2_vmmc>;
+-	status = "okay";
+-};
+-
+-&usdhc3 {
+-	assigned-clocks = <&clk IMX8MN_CLK_USDHC3_ROOT>;
+-	assigned-clock-rates = <400000000>;
+-	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+-	pinctrl-0 = <&pinctrl_usdhc3>;
+-	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+-	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+-	bus-width = <8>;
+-	non-removable;
+-	status = "okay";
+-};
+-
+-&wdog1 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_wdog>;
+-	fsl,ext-reset-output;
+-	status = "okay";
+-};
+-
+ &iomuxc {
+-	pinctrl-names = "default";
+-
+-	pinctrl_fec1: fec1grp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_ENET_MDC_ENET1_MDC		0x3
+-			MX8MN_IOMUXC_ENET_MDIO_ENET1_MDIO	0x3
+-			MX8MN_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
+-			MX8MN_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
+-			MX8MN_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
+-			MX8MN_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
+-			MX8MN_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
+-			MX8MN_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
+-			MX8MN_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
+-			MX8MN_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
+-			MX8MN_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
+-			MX8MN_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
+-			MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
+-			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
+-			MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22	0x19
+-		>;
+-	};
+-
+-	pinctrl_gpio_led: gpioledgrp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_NAND_READY_B_GPIO3_IO16	0x19
+-		>;
+-	};
+-
+-	pinctrl_i2c1: i2c1grp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
+-			MX8MN_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
+-		>;
+-	};
+-
+ 	pinctrl_pmic: pmicirq {
+ 		fsl,pins = <
+ 			MX8MN_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x41
+ 		>;
+ 	};
+-
+-	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmc {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
+-		>;
+-	};
+-
+-	pinctrl_uart2: uart2grp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
+-			MX8MN_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
+-		>;
+-	};
+-
+-	pinctrl_usdhc2_gpio: usdhc2grpgpio {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x1c4
+-		>;
+-	};
+-
+-	pinctrl_usdhc2: usdhc2grp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
+-			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
+-			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
+-			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
+-			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
+-			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
+-			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
+-		>;
+-	};
+-
+-	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
+-			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
+-			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
+-			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
+-			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
+-			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
+-			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
+-		>;
+-	};
+-
+-	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
+-			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
+-			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
+-			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
+-			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
+-			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
+-			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
+-		>;
+-	};
+-
+-	pinctrl_usdhc3: usdhc3grp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000190
+-			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
+-			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
+-			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
+-			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
+-			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
+-			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
+-			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
+-			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
+-			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
+-			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
+-		>;
+-	};
+-
+-	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000194
+-			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
+-			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
+-			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
+-			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
+-			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
+-			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
+-			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
+-			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
+-			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
+-			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
+-		>;
+-	};
+-
+-	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000196
+-			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
+-			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
+-			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
+-			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
+-			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
+-			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
+-			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
+-			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
+-			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
+-			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
+-		>;
+-	};
+-
+-	pinctrl_wdog: wdoggrp {
+-		fsl,pins = <
+-			MX8MN_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
+-		>;
+-	};
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+new file mode 100644
+index 0000000..fa9c7cd
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+@@ -0,0 +1,252 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2019 NXP
++ */
++
++#include "imx8mn.dtsi"
++
++/ {
++	chosen {
++		stdout-path = &uart2;
++	};
++
++	gpio-leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_led>;
++
++		status {
++			label = "yellow:status";
++			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++	};
++
++	reg_usdhc2_vmmc: regulator-usdhc2 {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
++		regulator-name = "VSD_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec1>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy0>;
++	fsl,magic-packet;
++	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <0>;
++			at803x,led-act-blind-workaround;
++			at803x,eee-disabled;
++			at803x,vddio-1p8v;
++		};
++	};
++};
++
++&i2c1 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	status = "okay";
++};
++
++&snvs_pwrkey {
++	status = "okay";
++};
++
++&uart2 { /* console */
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	status = "okay";
++};
++
++&usdhc2 {
++	assigned-clocks = <&clk IMX8MN_CLK_USDHC2>;
++	assigned-clock-rates = <200000000>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
++	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
++	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
++	cd-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
++	bus-width = <4>;
++	vmmc-supply = <&reg_usdhc2_vmmc>;
++	status = "okay";
++};
++
++&usdhc3 {
++	assigned-clocks = <&clk IMX8MN_CLK_USDHC3_ROOT>;
++	assigned-clock-rates = <400000000>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc3>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl-names = "default";
++
++	pinctrl_fec1: fec1grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_ENET_MDC_ENET1_MDC		0x3
++			MX8MN_IOMUXC_ENET_MDIO_ENET1_MDIO	0x3
++			MX8MN_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
++			MX8MN_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
++			MX8MN_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
++			MX8MN_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
++			MX8MN_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
++			MX8MN_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
++			MX8MN_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
++			MX8MN_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
++			MX8MN_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
++			MX8MN_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
++			MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
++			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
++			MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22	0x19
++		>;
++	};
++
++	pinctrl_gpio_led: gpioledgrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_NAND_READY_B_GPIO3_IO16	0x19
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
++			MX8MN_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
++		>;
++	};
++
++	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmc {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
++		>;
++	};
++
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
++			MX8MN_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
++		>;
++	};
++
++	pinctrl_usdhc2_gpio: usdhc2grpgpio {
++		fsl,pins = <
++			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x1c4
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
++			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
++			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
++			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
++			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
++			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
++			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
++		>;
++	};
++
++	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
++			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
++			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
++			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
++			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
++			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
++			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
++		>;
++	};
++
++	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
++			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
++			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
++			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
++			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
++			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
++			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
++		>;
++	};
++
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000190
++			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
++			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
++			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
++			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
++			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
++			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
++			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
++			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
++			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
++			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000194
++			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
++			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
++			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
++			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
++			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
++			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
++			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
++			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
++			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
++			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_NAND_WE_B_USDHC3_CLK		0x40000196
++			MX8MN_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
++			MX8MN_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
++			MX8MN_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
++			MX8MN_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
++			MX8MN_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
++			MX8MN_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
++			MX8MN_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
++			MX8MN_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
++			MX8MN_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
++			MX8MN_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
++		>;
++	};
++};
+-- 
+2.7.4
 
-Acked-By: Benson Leung <bleung@chromium.org>
-
-
-> ---
->  .../bindings/sound/google,cros-ec-codec.txt   | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec=
-=2Etxt b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
-> index 0ce9fafc78e2..8ca52dcc5572 100644
-> --- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
-> +++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
-> @@ -10,8 +10,26 @@ Required properties:
->  - compatible: Must contain "google,cros-ec-codec"
->  - #sound-dai-cells: Should be 1. The cell specifies number of DAIs.
-> =20
-> +Optional properties:
-> +- reg: Pysical base address and length of shared memory region from EC.
-> +       It contains 3 unsigned 32-bit integer.  The first 2 integers
-> +       combine to become an unsigned 64-bit physical address.  The last
-> +       one integer is length of the shared memory.
-> +- memory-region: Shared memory region to EC.  A "shared-dma-pool".  See
-> +                 ../reserved-memory/reserved-memory.txt for details.
-> +
->  Example:
-> =20
-> +{
-> +	...
-> +
-> +	reserved_mem: reserved_mem {
-> +		compatible =3D "shared-dma-pool";
-> +		reg =3D <0 0x52800000 0 0x100000>;
-> +		no-map;
-> +	};
-> +}
-> +
->  cros-ec@0 {
->  	compatible =3D "google,cros-ec-spi";
-> =20
-> @@ -20,5 +38,7 @@ cros-ec@0 {
->  	cros_ec_codec: ec-codec {
->  		compatible =3D "google,cros-ec-codec";
->  		#sound-dai-cells =3D <1>;
-> +		reg =3D <0x0 0x10500000 0x80000>;
-> +		memory-region =3D <&reserved_mem>;
->  	};
->  };
-> --=20
-> 2.23.0.700.g56cf767bdb-goog
->=20
-
---=20
-Benson Leung
-Staff Software Engineer
-Chrome OS Kernel
-Google Inc.
-bleung@google.com
-Chromium OS Project
-bleung@chromium.org
-
---4Ckj6UjgE2iN1+kY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCXafcDgAKCRBzbaomhzOw
-wiE+AQDn54dzQxcEyRftrbS/aZzrkxXRGTsnsPmW/XHWbSppWAD9EZ2ZFfd4P/Jh
-6gRW/3o1LSOPemVd4DvkSc5TJH2n+gI=
-=3vz8
------END PGP SIGNATURE-----
-
---4Ckj6UjgE2iN1+kY--
