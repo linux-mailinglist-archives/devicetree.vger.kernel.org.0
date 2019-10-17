@@ -2,96 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83783DA5A0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 08:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35C59DA5B2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 08:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392750AbfJQGbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 02:31:07 -0400
-Received: from mail-pf1-f181.google.com ([209.85.210.181]:45409 "EHLO
-        mail-pf1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392723AbfJQGbH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 02:31:07 -0400
-Received: by mail-pf1-f181.google.com with SMTP id y72so939188pfb.12
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 23:31:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=fw1yYhZZ5QW5zX6QjJLpyykgbadh0BT1jKFS5XpcQIg=;
-        b=YO85IQp6MRTrBiWnmv/pN2umttDZqF6DIetl5Fvi9BEt4iJSw8UM8eoknkoagueGLY
-         CIJTyaS6OStNG8ys8xYrcccIgYObVbNMMjxpSr6tgEOpXy/SmmYrB4DgAd8gs4Ahuuzb
-         MfcxPHi8vDOYUpDdJteDOFT/k5y8sKH7J2v5BvMRVtaF/zbv4QG3jhke6rNpYrBEfxM6
-         IV4vl76nOIa7hxntrMiC/HUk0uj1isvhX9qQMdbLdZh+ENlyE4LGid2NH3UYnBPF/YuR
-         A2XKvvlvWd9fIAu7e58oAdWtP4NUTfuwGcLDk0lPPbT6HqugJf/ljpz4Co6zKEBuCT6A
-         i/Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fw1yYhZZ5QW5zX6QjJLpyykgbadh0BT1jKFS5XpcQIg=;
-        b=Dao0lu2RCceXcPpY9VipwTxoKcIImBGbJFl8vqj43QF4mbTQTNbDuPORRLN+wyk+Xx
-         A2fNPWQE/c+BlCOqb4JhGVzreGDu97TmVzl1Taez8gMkmwk4hINryOAds5ZaAoCRoRI1
-         eHCcF3cUIQw2TTeSAbf6mMXUHYVuftClDvdW7u6rqoNWDWhx1LjCg2fm6OScSnycyP+g
-         vOB/iUnO9cdQHYDQbdUX1zGIFCPHQOPQl9HrLgQelwA3SbID0rjnxEdvHy3yTFeX/dLl
-         Ark+l/iQ5q0mxqWksj50rh9nuZZMHorR91wCSW7l95RpFDndAXMiklqs48Mqoa8Av7et
-         dJ4g==
-X-Gm-Message-State: APjAAAUW0MjoJaIMyDaNo5pV0qzsSgML0GVYIJvLhv23Ks9j/gvZU1V4
-        T7b3kM5DMv7Zv9+taBz3iwccdA==
-X-Google-Smtp-Source: APXvYqy/3dKlQYrAL5ENKYviVbasbExy0Ou4NP5sDQoUA4ILd4XMCDRpjzbTMymafYYiopd0yHpkMw==
-X-Received: by 2002:a63:4046:: with SMTP id n67mr2177350pga.200.1571293866371;
-        Wed, 16 Oct 2019 23:31:06 -0700 (PDT)
-Received: from localhost ([122.172.151.112])
-        by smtp.gmail.com with ESMTPSA id r24sm1484239pgo.58.2019.10.16.23.31.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 16 Oct 2019 23:31:04 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 12:01:02 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     "andrew-sh.cheng" <andrew-sh.cheng@mediatek.com>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2392558AbfJQGmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 02:42:18 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:54171 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392487AbfJQGmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 02:42:18 -0400
+Received: from soja.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:13da])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <o.rempel@pengutronix.de>)
+        id 1iKzUG-0004o0-Ih; Thu, 17 Oct 2019 08:42:16 +0200
+Subject: Re: [PATCH v1 2/4] dt-bindings: net: dsa: qca,ar9331 switch
+ documentation
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Chris Snook <chris.snook@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Fan Chen =?utf-8?B?KOmZs+WHoSk=?= <fan.chen@mediatek.com>
-Subject: Re: [v4, 7/8] cpufreq: mediatek: add opp notification for SVS support
-Message-ID: <20191017063102.4jirlphdxdydl2bm@vireshk-i7>
-References: <1565703113-31479-1-git-send-email-andrew-sh.cheng@mediatek.com>
- <1565703113-31479-8-git-send-email-andrew-sh.cheng@mediatek.com>
- <20190820033927.72muldasu4xd6wb7@vireshk-i7>
- <1571193828.22071.5.camel@mtksdaap41>
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20191014061549.3669-1-o.rempel@pengutronix.de>
+ <20191014061549.3669-3-o.rempel@pengutronix.de>
+ <20191016202356.GM17013@lunn.ch>
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+Message-ID: <3944e911-8eaf-1c57-14de-0998b3245225@pengutronix.de>
+Date:   Thu, 17 Oct 2019 08:42:11 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1571193828.22071.5.camel@mtksdaap41>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20191016202356.GM17013@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:13da
+X-SA-Exim-Mail-From: o.rempel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-10-19, 10:43, andrew-sh.cheng wrote:
-> This is due to SVS feature need to fix Vproc for calibration.
-> When SVS calibration, it want to disable all opp items, except one with
-> voltae 1.0V. (SVS will change the voltage field of that opp item, if the
-> corresponding voltage is not 1.0V)
-> In this way, SVS can make sure there is no other module, include
-> thermal, will change Vproc by DVFS driver.
-> After SVS calibration done, SVS will enable those disabled opp items
-> back.
 
-But why is this required to be done this way ? Why can't we just update the
-voltages without doing this disable/enable dance ?
+
+On 16.10.19 22:23, Andrew Lunn wrote:
+> On Mon, Oct 14, 2019 at 08:15:47AM +0200, Oleksij Rempel wrote:
+>> Atheros AR9331 has built-in 5 port switch. The switch can be configured
+>> to use all 5 or 4 ports. One of built-in PHYs can be used by first built-in
+>> ethernet controller or to be used directly by the switch over second ethernet
+>> controller.
+> 
+> Hi Oleksij
+> 
+> How exactly is this phy sharing controlled? I did not see anything in
+> the driver. Is there a mux we need to set?
+
+Currently it is not controlled at all, eth0 should be disabled and switch port5 enabled 
+(or other way around) in devicetree. If both are enabled, it will be some how brocken.  I 
+don't know how to properly implement it.
+I assume, it should not be controlled by devicetree configuration and user should be able 
+to do it dynamically from user space.
+
+Ideas, suggestions?
+
+Kind regards,
+Oleksij Rempel
 
 -- 
-viresh
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
