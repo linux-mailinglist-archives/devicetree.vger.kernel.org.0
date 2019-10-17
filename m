@@ -2,210 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32FFFDB142
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 17:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBE1DB156
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 17:43:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404133AbfJQPkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 11:40:16 -0400
-Received: from mail-eopbgr150109.outbound.protection.outlook.com ([40.107.15.109]:40802
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388925AbfJQPkQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 11:40:16 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iwP9ye7Fslw9QBkS0FzkLAlGNwyd6UFP0qmTG1hRL547ZjhjlT5TOjptqZlcUUNWD5EXl2/gQDBy0kgH66Z4DFxrcutMd/VHsG9MmWYlGfzxj7ZDnKK2Y/OtR2rk/uNB2erDBNqWpkpCko+0ssG8k2JZtN+kCHCU45GkkI/hfGb9jSHhAYEPGmTvJ/rpObgJGhx/AXYw4a2UDlHTtU9WCTgoyff8F6hQod77BSOD4zoR6SN0X2ibPChi1a/7uSoI0wC0HrzbhEys/7cd84OB/qo+qeqyA6iVPzZ3DE0B2MNlO6yZDGnDZ9s5qsL2DeBFB5VbqDEUcIRN2yYkvVeX+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c5jxiLgn3ZC7LFT5BPGW6dtjWMslniqEwUltMvqxbSQ=;
- b=McjoZDe028XwtEIcCEUjPcvHDQhQsSiZ2OqE11VrueLmZb1QlLkkVLv6frzyDWr/pvoAzeCg03ZLOIqPpE0vXiCu4yAhaLIwCpJup+IX86nIZWZN046QfyO7jGThI4tak87ul70xO9PZtADkvPW2ZKpSZZ4Cwl5FM3Q9OYs1hwwP+NpSS3StmAnSZ4TIdgMxnm34vpDrBwneipagleWBszviSROdJzbURUc0DNQNIPZJEG5cN4Yf0oVA3I0fEh77XOmHaiWJheVs7X9juroIjSbcxppL+4k/Bon/3vmC86nMHXJ06JL82etnTuTUuk+P1b+s5NQPBUmRZMr4GSW6/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c5jxiLgn3ZC7LFT5BPGW6dtjWMslniqEwUltMvqxbSQ=;
- b=JWB7BlxdOBacFYVFK18ynN1UZHHpNYPdZT17yy1W27iQOrYZ0Pq5EZqKuR1ROODUQUJSUlTL5huaUQzYODAZk9RkrzXKS8oqo/VCqAMloKLXTnkk3hTUG3c6sX8Q82c+Uz9tXjTLR303KSzXNGrxrXvyDFLwnmz+RE9e1MsmEus=
-Received: from DB3PR0202MB3434.eurprd02.prod.outlook.com (52.134.66.158) by
- DB3PR0202MB3484.eurprd02.prod.outlook.com (52.134.65.30) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.21; Thu, 17 Oct 2019 15:40:08 +0000
-Received: from DB3PR0202MB3434.eurprd02.prod.outlook.com
- ([fe80::c5b8:6014:87a4:1afe]) by DB3PR0202MB3434.eurprd02.prod.outlook.com
- ([fe80::c5b8:6014:87a4:1afe%7]) with mapi id 15.20.2347.023; Thu, 17 Oct 2019
- 15:40:08 +0000
-From:   Peter Rosin <peda@axentia.se>
-To:     Biwen Li <biwen.li@nxp.com>,
-        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-CC:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [v3,2/2] i2c: mux: pca954x: support property idle-state
-Thread-Topic: [v3,2/2] i2c: mux: pca954x: support property idle-state
-Thread-Index: AQHVg9kH6uFlq+R5DEebJ8YiUL6ka6de+pgA
-Date:   Thu, 17 Oct 2019 15:40:08 +0000
-Message-ID: <6e2fb6b9-4ffe-e6de-744f-a2bfe66a1b6c@axentia.se>
-References: <20191016040920.8511-1-biwen.li@nxp.com>
- <20191016040920.8511-2-biwen.li@nxp.com>
-In-Reply-To: <20191016040920.8511-2-biwen.li@nxp.com>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-x-originating-ip: [213.112.138.100]
-x-clientproxiedby: HE1PR0202CA0008.eurprd02.prod.outlook.com
- (2603:10a6:3:8c::18) To DB3PR0202MB3434.eurprd02.prod.outlook.com
- (2603:10a6:8:5::30)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peda@axentia.se; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dec02fbe-081e-4b3a-f175-08d753184a02
-x-ms-traffictypediagnostic: DB3PR0202MB3484:
-x-microsoft-antispam-prvs: <DB3PR0202MB3484B6DAD59D02E5555D203CBC6D0@DB3PR0202MB3484.eurprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 01930B2BA8
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(39830400003)(136003)(366004)(396003)(376002)(189003)(199004)(52116002)(2501003)(81156014)(6486002)(110136005)(6116002)(54906003)(8676002)(31696002)(66476007)(81166006)(14444005)(3846002)(66446008)(64756008)(14454004)(316002)(4326008)(256004)(5660300002)(36756003)(6246003)(58126008)(66556008)(66946007)(6436002)(6512007)(2906002)(4001150100001)(65806001)(229853002)(71190400001)(66066001)(476003)(186003)(11346002)(2616005)(25786009)(102836004)(26005)(65956001)(508600001)(86362001)(53546011)(76176011)(8936002)(6506007)(486006)(99286004)(386003)(7736002)(305945005)(71200400001)(446003)(31686004);DIR:OUT;SFP:1102;SCL:1;SRVR:DB3PR0202MB3484;H:DB3PR0202MB3434.eurprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: axentia.se does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: drP0TeKHk9Yz3SOLmvFZ5TT7ZV2JpHj4Ff4Zs4XOtAaK37QBnYbRJxw0tkVa6d/a4yZw3eAzf75AIVdOvFxFz5cCcB8pOuqu9MCW9kTYAkdUfjQrXRTMwHc0hHOFygzyZvKhDUq5UHlZNM/YX/l1G24ocH90Lniw5fIUOhKxExJ96IpcK3G8jfXxX4cdZpSZRRnkZs9DsScQ5vk9Cv07g1JLIY6UeLNEAp9ncRiAnLIprKWZ455tkjuBEJ14WgDcDFWhFO/z0qWbU33ACd9zrhbP92cqxVE09BQ/ee5r8j+rDu2yiiw/IUG45SOAHVzQGBOmukoyh0jen/hutJbT6PFmztlJ8rbqK/++WTV+0mm3fi8ontaVgjibYw0335BqbypBiGAJJBW8NSi4UTMUphTbM3VRtnRqL+GaDleXJN0=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <41D30080DD7E814495EDEFF2DCC53F84@eurprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1727291AbfJQPnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 11:43:45 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:45678 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407675AbfJQPnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 11:43:45 -0400
+Received: by mail-vk1-f196.google.com with SMTP id q25so624646vkn.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 08:43:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9cPCkoWUtN/mgY5EDGDopreFb0szGU5fkwoJ47zwfPo=;
+        b=MTHKy8u0XqikOxEYya8246NAjzWcNntEUXhTxkxFVqzTMaYoVEBeZXjNk0FHbzdnKN
+         0N3Whx01EUOQi+X52WYuVqZziQ3loO+xUt0O+Bu+bc3wIyCqlFh3X0TC2udeTOyEeDX8
+         pGdXdUlSP1FE3aG9PtQ6bgrL5EdUzHXyyMn19xZF9SJ40XnSYyFk3LDzqCiey7VfEYD0
+         rng6yXn7zCmTS6aMr67NSuUztzm2JInboiuigxcYTTwP4a49QrjaPeC8bkHSRiTLId6p
+         XLpmHTegDAIezM4pqQOuSz0h0+43h9CdDvXoxOPWia4qV8yznSGdO8TZgSWYvZheZfZC
+         Ie+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9cPCkoWUtN/mgY5EDGDopreFb0szGU5fkwoJ47zwfPo=;
+        b=pmYDrROXAX2cDNZdOVa/wh5hxltVUm7Uix7jAoiQwYxAINiJ+4IKhIgCc0kHitarP+
+         JahN7X0CPpjjuvmIQOPWnsGjLh50dF18cG1ZLLuLUXpSqnWBcg6AsgIYHLtyAJlTVAE5
+         bf1zltPDCgeWsY4jxv0hdI+5dBhfZuBsbochXqTQ92lB0KVI5x+dtOUdcVJKmwD96pL8
+         PTjjQQ5R7rgq7nbTTMs536mDUpOlBG6gYwABnehph+STIFAJYYZKD8oeqQ9OYPIzCYuz
+         1q7C0mLg20IuFJ75k15Ut2eFneosNXM4fO0OWQQjCuUCT6AZm+PYn20zPhOqkbEsQoWU
+         AlGw==
+X-Gm-Message-State: APjAAAXed+CkzYmqpnY88RTRBV0mXYVArJQu4LrcK5ULL/tTtdMt70nT
+        tPSZpEJpcPxaXf5UbUWyE08T0Nlo6kWj/UGAv2fflQ==
+X-Google-Smtp-Source: APXvYqzCMxkr3FQElBCVQfH8au6MF/yRHYSwhLVuExQHapPedkdyeqQ70PUUZ9KNUkOTqzAiQVBqcfLfYi3jP+lvsIc=
+X-Received: by 2002:a1f:b202:: with SMTP id b2mr2307071vkf.59.1571327024388;
+ Thu, 17 Oct 2019 08:43:44 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: dec02fbe-081e-4b3a-f175-08d753184a02
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2019 15:40:08.3821
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tUib6QT81t8uCp+UCqpOEuwM1E+7oWO8/PPW3lf3/Xm4BvQ9z/VVy6JQkVpEp6aw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0202MB3484
+References: <1571254641-13626-1-git-send-email-thara.gopinath@linaro.org>
+ <1571254641-13626-7-git-send-email-thara.gopinath@linaro.org>
+ <CAPDyKFqcKfmnNJ7j4Jb+JH739FBcHg5NBD6aR4H_N=zWGwm1ww@mail.gmail.com> <5DA88892.5000408@linaro.org>
+In-Reply-To: <5DA88892.5000408@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 17 Oct 2019 17:43:08 +0200
+Message-ID: <CAPDyKFpYG7YADb6Xmm=8ug5=5X3d1y+JdkRvrnvtroeV3Yj62Q@mail.gmail.com>
+Subject: Re: [PATCH v3 6/7] dt-bindings: soc: qcom: Extend RPMh power
+ controller binding to describe thermal warming device
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, amit.kucheria@verdurent.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjAxOS0xMC0xNiAwNjowOSwgQml3ZW4gTGkgd3JvdGU6DQo+IFRoaXMgc3VwcG9ydHMgcHJv
-cGVydHkgaWRsZS1zdGF0ZQ0KPiANCj4gU2lnbmVkLW9mZi1ieTogQml3ZW4gTGkgPGJpd2VuLmxp
-QG54cC5jb20+DQo+IC0tLQ0KPiBDaGFuZ2UgaW4gdjM6DQo+IAktIHVwZGF0ZSBzdWJqZWN0IGFu
-ZCBkZXNjcmlwdGlvbg0KPiAJLSBhZGQgYSBoZWxwZXIgZnVuY3Rpb24gcGNhOTU0eF9jYWxjdWxh
-dGVfY2hhbigpDQo+IA0KPiBDaGFuZ2UgaW4gdjI6DQo+IAktIHVwZGF0ZSBzdWJqZWN0IGFuZCBk
-ZXNjcmlwdGlvbg0KPiAJLSBhZGQgcHJvcGVydHkgaWRsZS1zdGF0ZQ0KPiANCj4gIGRyaXZlcnMv
-aTJjL211eGVzL2kyYy1tdXgtcGNhOTU0eC5jIHwgNjQgKysrKysrKysrKysrKysrKysrLS0tLS0t
-LS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAzOSBpbnNlcnRpb25zKCspLCAyNSBkZWxldGlvbnMo
-LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2kyYy9tdXhlcy9pMmMtbXV4LXBjYTk1NHgu
-YyBiL2RyaXZlcnMvaTJjL211eGVzL2kyYy1tdXgtcGNhOTU0eC5jDQo+IGluZGV4IDkyM2FhM2E1
-YTNkYy4uODc3N2Q0MjkyNjljIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2kyYy9tdXhlcy9pMmMt
-bXV4LXBjYTk1NHguYw0KPiArKysgYi9kcml2ZXJzL2kyYy9tdXhlcy9pMmMtbXV4LXBjYTk1NHgu
-Yw0KPiBAQCAtODYsNyArODYsNyBAQCBzdHJ1Y3QgcGNhOTU0eCB7DQo+ICANCj4gIAl1OCBsYXN0
-X2NoYW47CQkvKiBsYXN0IHJlZ2lzdGVyIHZhbHVlICovDQo+ICAJLyogTVVYX0lETEVfQVNfSVMs
-IE1VWF9JRExFX0RJU0NPTk5FQ1Qgb3IgPj0gMCBmb3IgY2hhbm5lbCAqLw0KPiAtCXM4IGlkbGVf
-c3RhdGU7DQo+ICsJczMyIGlkbGVfc3RhdGU7DQo+ICANCj4gIAlzdHJ1Y3QgaTJjX2NsaWVudCAq
-Y2xpZW50Ow0KPiAgDQo+IEBAIC0yMjksMjIgKzIyOSwyNSBAQCBzdGF0aWMgaW50IHBjYTk1NHhf
-cmVnX3dyaXRlKHN0cnVjdCBpMmNfYWRhcHRlciAqYWRhcCwNCj4gIAkJCQlJMkNfU01CVVNfQllU
-RSwgJmR1bW15KTsNCj4gIH0NCj4gIA0KPiArc3RhdGljIGludCBwY2E5NTR4X2NhbGN1bGF0ZV9j
-aGFuKHN0cnVjdCBwY2E5NTR4ICpkYXRhLCB1MzIgY2hhbikNCg0KU2hvdWxkIHJldHVybiB1OCwg
-YW5kICJjaGFuIiBpcyBub3Qgd2hhdCBpcyBjYWxjdWxhdGVkLiBQZXJoYXBzIG5hbWUNCnRoZSBm
-dW5jdGlvbiBwY2E5NTR4X3JlZ3ZhbD8NCg0KKFllcywgbGFzdF9jaGFuIGlzIGFsc28gY2xlYXJs
-eSBhIGJhZCBuYW1lLCBhbmQgSSBzdXNwZWN0IHlvdSBtYXkgaGF2ZQ0KIGJhc2VkIHRoaXMgbmFt
-ZSBvbiBpdCwgYnV0IGNoYW5naW5nIHRoYXQgaXMgYSBzZXBhcmF0ZSBwYXRjaC4pDQoNCj4gK3sN
-Cj4gKwkvKiB3ZSBtYWtlIHN3aXRjaGVzIGxvb2sgbGlrZSBtdXhlcywgbm90IHN1cmUgaG93IHRv
-IGJlIHNtYXJ0ZXIgKi8NCj4gKwlpZiAoZGF0YS0+Y2hpcC0+bXV4dHlwZSA9PSBwY2E5NTR4X2lz
-bXV4KQ0KPiArCQlyZXR1cm4gY2hhbiB8IGRhdGEtPmNoaXAtPmVuYWJsZTsNCj4gKwllbHNlDQo+
-ICsJCXJldHVybiAxIDw8IGNoYW47DQo+ICt9DQo+ICsNCj4gIHN0YXRpYyBpbnQgcGNhOTU0eF9z
-ZWxlY3RfY2hhbihzdHJ1Y3QgaTJjX211eF9jb3JlICptdXhjLCB1MzIgY2hhbikNCj4gIHsNCj4g
-IAlzdHJ1Y3QgcGNhOTU0eCAqZGF0YSA9IGkyY19tdXhfcHJpdihtdXhjKTsNCj4gIAlzdHJ1Y3Qg
-aTJjX2NsaWVudCAqY2xpZW50ID0gZGF0YS0+Y2xpZW50Ow0KPiAtCWNvbnN0IHN0cnVjdCBjaGlw
-X2Rlc2MgKmNoaXAgPSBkYXRhLT5jaGlwOw0KPiAgCXU4IHJlZ3ZhbDsNCj4gIAlpbnQgcmV0ID0g
-MDsNCj4gIA0KPiAtCS8qIHdlIG1ha2Ugc3dpdGNoZXMgbG9vayBsaWtlIG11eGVzLCBub3Qgc3Vy
-ZSBob3cgdG8gYmUgc21hcnRlciAqLw0KPiAtCWlmIChjaGlwLT5tdXh0eXBlID09IHBjYTk1NHhf
-aXNtdXgpDQo+IC0JCXJlZ3ZhbCA9IGNoYW4gfCBjaGlwLT5lbmFibGU7DQo+IC0JZWxzZQ0KPiAt
-CQlyZWd2YWwgPSAxIDw8IGNoYW47DQo+IC0NCj4gKwlyZWd2YWwgPSBwY2E5NTR4X2NhbGN1bGF0
-ZV9jaGFuKGRhdGEsIGNoYW4pOw0KDQpJIHRoaW5rIEkgd291bGQgaGF2ZSBrZXB0IHRoZSBlbXB0
-eSBsaW5lIGhlcmUuIE5vdCBpbXBvcnRhbnQuLi4NCg0KPiAgCS8qIE9ubHkgc2VsZWN0IHRoZSBj
-aGFubmVsIGlmIGl0cyBkaWZmZXJlbnQgZnJvbSB0aGUgbGFzdCBjaGFubmVsICovDQo+IC0JaWYg
-KGRhdGEtPmxhc3RfY2hhbiAhPSByZWd2YWwpIHsNCj4gKwlpZiAoKGRhdGEtPmxhc3RfY2hhbiAm
-IDB4ZmYpICE9IHJlZ3ZhbCkgew0KDQpUaGUgY2hhbmdlcyBvbiB0aGlzIGxpbmUgYXJlIG5vdCBu
-ZWVkZWQgKGxhc3RfY2hhbiBhbmQgcmVndmFsIGFyZQ0KYm90aCB1OCkgYW5kIGp1c3QgY2x1dHRl
-cnMgdXAgdGhlIGNvZGUuDQoNCj4gIAkJcmV0ID0gcGNhOTU0eF9yZWdfd3JpdGUobXV4Yy0+cGFy
-ZW50LCBjbGllbnQsIHJlZ3ZhbCk7DQo+ICAJCWRhdGEtPmxhc3RfY2hhbiA9IHJldCA8IDAgPyAw
-IDogcmVndmFsOw0KPiAgCX0NCj4gQEAgLTI1Niw3ICsyNTksNyBAQCBzdGF0aWMgaW50IHBjYTk1
-NHhfZGVzZWxlY3RfbXV4KHN0cnVjdCBpMmNfbXV4X2NvcmUgKm11eGMsIHUzMiBjaGFuKQ0KPiAg
-ew0KPiAgCXN0cnVjdCBwY2E5NTR4ICpkYXRhID0gaTJjX211eF9wcml2KG11eGMpOw0KPiAgCXN0
-cnVjdCBpMmNfY2xpZW50ICpjbGllbnQgPSBkYXRhLT5jbGllbnQ7DQo+IC0JczggaWRsZV9zdGF0
-ZTsNCj4gKwlzMzIgaWRsZV9zdGF0ZTsNCj4gIA0KPiAgCWlkbGVfc3RhdGUgPSBSRUFEX09OQ0Uo
-ZGF0YS0+aWRsZV9zdGF0ZSk7DQo+ICAJaWYgKGlkbGVfc3RhdGUgPj0gMCkNCj4gQEAgLTQwMiw2
-ICs0MDUsMjMgQEAgc3RhdGljIHZvaWQgcGNhOTU0eF9jbGVhbnVwKHN0cnVjdCBpMmNfbXV4X2Nv
-cmUgKm11eGMpDQo+ICAJaTJjX211eF9kZWxfYWRhcHRlcnMobXV4Yyk7DQo+ICB9DQo+ICANCj4g
-K3N0YXRpYyBpbnQgcGNhOTU0eF9pbml0KHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQsIHN0cnVj
-dCBwY2E5NTR4ICpkYXRhKQ0KPiArew0KPiArCS8qDQo+ICsJICogV3JpdGUgdGhlIG11eCByZWdp
-c3RlciBhdCBhZGRyIHRvIHZlcmlmeQ0KPiArCSAqIHRoYXQgdGhlIG11eCBpcyBpbiBmYWN0IHBy
-ZXNlbnQuIFRoaXMgYWxzbw0KPiArCSAqIGluaXRpYWxpemVzIHRoZSBtdXggdG8gYSBjaGFubmVs
-DQo+ICsJICogb3IgZGlzY29ubmVjdGVkIHN0YXRlLg0KPiArCSAqLw0KDQpBZ2FpbiwgdGhpcyBj
-b21tZW50IGJlbG9uZ3MgaW4gcGNhOTU0eF9wcm9iZSBiZWZvcmUgdGhlIGNhbGwgdG8gdGhpcyBm
-dW5jdGlvbi4NCkl0IGRvZXMgbm90IGFwcGx5IChhdCBsZWFzdCBub3QgdGhlIGZpcnN0IHNlbnRl
-bmNlKSB3aGVuIHBjYTk1NHhfaW5pdCBpcyBjYWxsZWQNCmZyb20gcGNhOTU0eF9yZXN1bWUuDQoN
-CkhtbW0sIGl0IGNvdWxkIGJlIGFyZ3VlZCB0aGF0IHNwZWNpZnlpbmcgTVVYX0lETEVfQVNfSVMg
-c2hvdWxkIG5vdCB0cmlnZ2VyIGENCmRpc2Nvbm5lY3Qgb24gaW5pdCAoc2luY2UgdGhlIG11eCBp
-cyBhbHdheXMgaWRsZSBhdCBpbml0KSBhbmQgdGhhdCBzb21lIG90aGVyDQptZXRob2Qgc2hvdWxk
-IGJlIHVzZWQgdG8gZGV0ZXJtaW5lIGlmIHRoZSBjaGlwIGlzIHByZXNlbnQuIFRoZSBkaWZmZXJl
-bmNlIGlzDQp0aGF0IHdpdGggdGhlIGlkbGUtc3RhdGUgcHJvcGVydHkgeW91IGNhbiBleHBsaWNp
-dGx5IHJlcXVlc3QgTVVYX0lETEVfQVNfSVMsDQp3aGlsZSB0aGUgb2xkIGNvZGUgb25seSBoYWQg
-c29tZSBkZWZhdWx0IGJlaGF2aW9yIGlmIGkyYy1tdXgtaWRsZS1kaXNjb25uZWN0DQp3YXMgbm90
-IHByZXNlbnQuDQoNClRoZSBlYXN5IHdheSBvdXQgb2YgdGhpcyBpcyB0bywgaW4gdGhlIGJpbmRp
-bmcsIGRvY3VtZW50IHRoZSBzaXR1YXRpb24gYW5kDQpzYXkgdGhhdCAiaWRsZS1zdGF0ZSA9IDxN
-VVhfSURMRV9BU19JUz47IiBpcyBub3Qgc3VwcG9ydGVkIGJ1dCB0aGF0IHNpbWlsYXINCmZ1bmN0
-aW9uYWxpdHkgY2FuIGJlIG9idGFpbmVkIGJ5IGxlYXZpbmcgb3V0IGJvdGggdGhlIGkyYy1tdXgt
-aWRsZS1kaXNjb25uZWN0DQphbmQgaWRsZS1zdGF0ZSBwcm9wZXJ0aWVzLg0KDQo+ICsJaWYgKGRh
-dGEtPmlkbGVfc3RhdGUgPj0gMCkgew0KPiArCQlkYXRhLT5sYXN0X2NoYW4gPSBwY2E5NTR4X2Nh
-bGN1bGF0ZV9jaGFuKGRhdGEsIGRhdGEtPmlkbGVfc3RhdGUpOw0KPiArCX0gZWxzZSB7DQo+ICsJ
-CS8qIERpc2Nvbm5lY3QgbXVsdGlwbGV4ZXIgKi8NCj4gKwkJZGF0YS0+bGFzdF9jaGFuID0gMDsN
-Cj4gKwl9DQo+ICsJcmV0dXJuIGkyY19zbWJ1c193cml0ZV9ieXRlKGNsaWVudCwgZGF0YS0+bGFz
-dF9jaGFuKTsNCj4gK30NCj4gKw0KPiAgLyoNCj4gICAqIEkyQyBpbml0L3Byb2JpbmcvZXhpdCBm
-dW5jdGlvbnMNCj4gICAqLw0KPiBAQCAtNDExLDcgKzQzMSw2IEBAIHN0YXRpYyBpbnQgcGNhOTU0
-eF9wcm9iZShzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50LA0KPiAgCXN0cnVjdCBpMmNfYWRhcHRl
-ciAqYWRhcCA9IGNsaWVudC0+YWRhcHRlcjsNCj4gIAlzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmY2xp
-ZW50LT5kZXY7DQo+ICAJc3RydWN0IGRldmljZV9ub2RlICpucCA9IGRldi0+b2Zfbm9kZTsNCj4g
-LQlib29sIGlkbGVfZGlzY29ubmVjdF9kdDsNCj4gIAlzdHJ1Y3QgZ3Bpb19kZXNjICpncGlvOw0K
-PiAgCXN0cnVjdCBpMmNfbXV4X2NvcmUgKm11eGM7DQo+ICAJc3RydWN0IHBjYTk1NHggKmRhdGE7
-DQo+IEBAIC00NjIsMjIgKzQ4MSwxOCBAQCBzdGF0aWMgaW50IHBjYTk1NHhfcHJvYmUoc3RydWN0
-IGkyY19jbGllbnQgKmNsaWVudCwNCj4gIAkJfQ0KPiAgCX0NCj4gIA0KPiAtCS8qIFdyaXRlIHRo
-ZSBtdXggcmVnaXN0ZXIgYXQgYWRkciB0byB2ZXJpZnkNCj4gLQkgKiB0aGF0IHRoZSBtdXggaXMg
-aW4gZmFjdCBwcmVzZW50LiBUaGlzIGFsc28NCj4gLQkgKiBpbml0aWFsaXplcyB0aGUgbXV4IHRv
-IGRpc2Nvbm5lY3RlZCBzdGF0ZS4NCj4gLQkgKi8NCj4gLQlpZiAoaTJjX3NtYnVzX3dyaXRlX2J5
-dGUoY2xpZW50LCAwKSA8IDApIHsNCj4gKwlkYXRhLT5pZGxlX3N0YXRlID0gTVVYX0lETEVfQVNf
-SVM7DQo+ICsJaWYgKG5wICYmIG9mX3Byb3BlcnR5X3JlYWRfdTMyKG5wLCAiaWRsZS1zdGF0ZSIs
-ICZkYXRhLT5pZGxlX3N0YXRlKSkgew0KPiArCQlpZiAobnAgJiYgb2ZfcHJvcGVydHlfcmVhZF9i
-b29sKG5wLCAiaTJjLW11eC1pZGxlLWRpc2Nvbm5lY3QiKSkNCg0KWW91IGRvIG5vdCBuZWVkIHRv
-IGRvIHRoZSAibnAgJiYiIHBhcnQgZm9yIGJvdGggaWZzLCBzaW5jZSBpdCdzIGFscmVhZHkga25v
-dw0KdGhhdCBucCBpcyBub24tTlVMTCB3aGVuIHlvdSBoaXQgdGhlIHNlY29uZCBpZi4gQnV0LCBp
-dCdzIGEgTk9QIGluIHRoZQ0KZmlyc3QgaWYsIHNpbmNlIG9mX3Byb3BlcnR5X3JlYWRfdTMyIHJl
-dHVybnMgLUVJTlZBTCBpZiBpdCBpcy4gU28sIEkgc3VnZ2VzdA0KDQoJaWYgKG9mX3Byb3BlcnR5
-X3JlYWRfdTMyKG5wLCAiaWRsZS1zdGF0ZSIsICZkYXRhLT5pZGxlX3N0YXRlKSkgew0KCQlpZiAo
-bnAgJiYgb2ZfcHJvcGVydHlfcmVhZF9ib29sKG5wLCAiaTJjLW11eC1pZGxlLWRpc2Nvbm5lY3Qi
-KSkNCg0KQ2hlZXJzLA0KUGV0ZXINCg0KPiArCQkJZGF0YS0+aWRsZV9zdGF0ZSA9IE1VWF9JRExF
-X0RJU0NPTk5FQ1Q7DQo+ICsJfQ0KPiArDQo+ICsJcmV0ID0gcGNhOTU0eF9pbml0KGNsaWVudCwg
-ZGF0YSk7DQo+ICsJaWYgKHJldCA8IDApIHsNCj4gIAkJZGV2X3dhcm4oZGV2LCAicHJvYmUgZmFp
-bGVkXG4iKTsNCj4gIAkJcmV0dXJuIC1FTk9ERVY7DQo+ICAJfQ0KPiAgDQo+IC0JZGF0YS0+bGFz
-dF9jaGFuID0gMDsJCSAgIC8qIGZvcmNlIHRoZSBmaXJzdCBzZWxlY3Rpb24gKi8NCj4gLQlkYXRh
-LT5pZGxlX3N0YXRlID0gTVVYX0lETEVfQVNfSVM7DQo+IC0NCj4gLQlpZGxlX2Rpc2Nvbm5lY3Rf
-ZHQgPSBucCAmJg0KPiAtCQlvZl9wcm9wZXJ0eV9yZWFkX2Jvb2wobnAsICJpMmMtbXV4LWlkbGUt
-ZGlzY29ubmVjdCIpOw0KPiAtCWlmIChpZGxlX2Rpc2Nvbm5lY3RfZHQpDQo+IC0JCWRhdGEtPmlk
-bGVfc3RhdGUgPSBNVVhfSURMRV9ESVNDT05ORUNUOw0KPiAgDQo+ICAJcmV0ID0gcGNhOTU0eF9p
-cnFfc2V0dXAobXV4Yyk7DQo+ICAJaWYgKHJldCkNCj4gQEAgLTUzMSw4ICs1NDYsNyBAQCBzdGF0
-aWMgaW50IHBjYTk1NHhfcmVzdW1lKHN0cnVjdCBkZXZpY2UgKmRldikNCj4gIAlzdHJ1Y3QgaTJj
-X211eF9jb3JlICptdXhjID0gaTJjX2dldF9jbGllbnRkYXRhKGNsaWVudCk7DQo+ICAJc3RydWN0
-IHBjYTk1NHggKmRhdGEgPSBpMmNfbXV4X3ByaXYobXV4Yyk7DQo+ICANCj4gLQlkYXRhLT5sYXN0
-X2NoYW4gPSAwOw0KPiAtCXJldHVybiBpMmNfc21idXNfd3JpdGVfYnl0ZShjbGllbnQsIDApOw0K
-PiArCXJldHVybiBwY2E5NTR4X2luaXQoY2xpZW50LCBkYXRhKTsNCj4gIH0NCj4gICNlbmRpZg0K
-PiAgDQo+IA0KDQo=
+On Thu, 17 Oct 2019 at 17:28, Thara Gopinath <thara.gopinath@linaro.org> wrote:
+>
+> Hello Ulf,
+> Thanks for the review!
+>
+> On 10/17/2019 05:04 AM, Ulf Hansson wrote:
+> > On Wed, 16 Oct 2019 at 21:37, Thara Gopinath <thara.gopinath@linaro.org> wrote:
+> >>
+> >> RPMh power controller hosts mx domain that can be used as thermal
+> >> warming device. Add a sub-node to specify this.
+> >>
+> >> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> >> ---
+> >>  Documentation/devicetree/bindings/power/qcom,rpmpd.txt | 10 ++++++++++
+> >>  1 file changed, 10 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+> >> index eb35b22..fff695d 100644
+> >> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+> >> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+> >> @@ -18,6 +18,16 @@ Required Properties:
+> >>  Refer to <dt-bindings/power/qcom-rpmpd.h> for the level values for
+> >>  various OPPs for different platforms as well as Power domain indexes
+> >>
+> >> += SUBNODES
+> >> +RPMh alsp hosts power domains that can behave as thermal warming device.
+> >> +These are expressed as subnodes of the RPMh. The name of the node is used
+> >> +to identify the power domain and must therefor be "mx".
+> >> +
+> >> +- #cooling-cells:
+> >> +       Usage: optional
+> >> +       Value type: <u32>
+> >> +       Definition: must be 2
+> >> +
+> >
+> > Just wanted to express a minor thought about this. In general we use
+> > subnodes of PM domain providers to represent the topology of PM
+> > domains (subdomains), this is something different, which I guess is
+> > fine.
+> >
+> > I assume the #cooling-cells is here tells us this is not a PM domain
+> > provider, but a "cooling device provider"?
+> Yep.
+> >
+> > Also, I wonder if it would be fine to specify "power-domains" here,
+> > rather than using "name" as I think that is kind of awkward!?
+> Do you mean "power-domain-names" ? I am using this to match against the
+> genpd names defined in the provider driver.
+
+No. If you are using "power-domains" it means that you allow to
+describe the specifier for the provider.
+
+From Linux point of view, it means you can use dev_pm_domain_attach()
+to hook up the corresponding device with the PM domain.
+
+Using "power-domain-names" is just to allow to specify a name rather
+than an index, which makes sense if there is more than one index.
+Perhaps you can state that the "power-domain-names" should be there
+anyway, to be a little bit future proof if ever multiple index
+(multiple PM domains).
+
+Kind regards
+Uffe
