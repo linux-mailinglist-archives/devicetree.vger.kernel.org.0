@@ -2,30 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8766CDB7F4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09FA3DB7FE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440437AbfJQTov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 15:44:51 -0400
-Received: from muru.com ([72.249.23.125]:38010 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389248AbfJQTou (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 15:44:50 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id D3A03816A;
-        Thu, 17 Oct 2019 19:45:23 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Ankur Tyagi <ankur.tyagi@gallagher.com>,
-        Keerthy <j-keerthy@ti.com>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 21/21] ARM: OMAP2+: Drop legacy platform data for omap5 wdt
-Date:   Thu, 17 Oct 2019 12:44:11 -0700
-Message-Id: <20191017194411.18258-22-tony@atomide.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191017194411.18258-1-tony@atomide.com>
-References: <20191017194411.18258-1-tony@atomide.com>
+        id S2394690AbfJQTtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 15:49:22 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:37156 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389032AbfJQTtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 15:49:21 -0400
+Received: by mail-ot1-f51.google.com with SMTP id k32so2968177otc.4;
+        Thu, 17 Oct 2019 12:49:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rKf+TvXQTdvhCSr97ET7nrM7ndk5bzLwGtaQj1lzb7w=;
+        b=cVc4Ivqb5Ui6FPtR8JVxo1PM8nY6Ux0ToP0uZW4lVOThMBn1ciVr6FFsDSAVnJ2atk
+         d8Mk67ao5Os75tzTKbb7tgRG5lea+0q2xQiJRQD1kakcW5fbn7YcbNtD/J6Xx9puu+Lf
+         z5c3NdYEvjPRGPz2PD/PKzoUC8TXoejFB709ZKbA/N5ryXz5ew8khIIwtUdvBl/IdyUJ
+         PiGzcdm3cY8a6FNaJ9t9K41uepmpbmsj3ZXZ41EjxfE6y4qmPT17LuD+TwGQqcmDvYzr
+         SckvZ2u8/jdlWObytwblTLN4BC7nbRmnjIGN0Nn1WC8W24BcqjBHYJR1dcwESeDWl3gd
+         pdyA==
+X-Gm-Message-State: APjAAAXC9x68S4EozRWSghFf9u596cjcGrOJdjALyDsYZUR6Sjggi+EM
+        SKw6k6u3t7ZmfENGWViXsSoB7F0=
+X-Google-Smtp-Source: APXvYqxmGNTSkP0amvesxTZNgskxmL7YCSudNZFXfg4QBuArpON4424uoubxmMPhnGsnrbcTq9jGCA==
+X-Received: by 2002:a9d:286:: with SMTP id 6mr4590504otl.192.1571341759884;
+        Thu, 17 Oct 2019 12:49:19 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id i4sm841448oto.43.2019.10.17.12.49.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2019 12:49:18 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: example-schema: Add some additional examples and commentary
+Date:   Thu, 17 Oct 2019 14:49:16 -0500
+Message-Id: <20191017194916.10166-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -33,108 +47,146 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now probe devices with ti-sysc interconnect driver and dts
-data. Let's drop the related platform data and custom ti,hwmods
-dts property.
+Add examples for properties with standard units, child nodes,
+dependencies, and if/then schema. Also, make some minor updates based on
+common questions and review issues.
 
-As we're just dropping data, and the early platform data init
-is based on the custom ti,hwmods property, we want to drop both
-the platform data and ti,hwmods property in a single patch.
-
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm/boot/dts/omap5-l4.dtsi            |  1 -
- arch/arm/mach-omap2/omap_hwmod_54xx_data.c | 47 ----------------------
- 2 files changed, 48 deletions(-)
+ .../devicetree/bindings/example-schema.yaml   | 81 +++++++++++++++++--
+ 1 file changed, 74 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/boot/dts/omap5-l4.dtsi b/arch/arm/boot/dts/omap5-l4.dtsi
---- a/arch/arm/boot/dts/omap5-l4.dtsi
-+++ b/arch/arm/boot/dts/omap5-l4.dtsi
-@@ -2302,7 +2302,6 @@
+diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
+index c43819c2783a..4ddcf709cc3c 100644
+--- a/Documentation/devicetree/bindings/example-schema.yaml
++++ b/Documentation/devicetree/bindings/example-schema.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # Copyright 2018 Linaro Ltd.
+ %YAML 1.2
+ ---
+@@ -71,7 +71,7 @@ properties:
+     # minItems/maxItems equal to 2 is implied
  
- 		target-module@4000 {			/* 0x4ae14000, ap 7 14.0 */
- 			compatible = "ti,sysc-omap2", "ti,sysc";
--			ti,hwmods = "wd_timer2";
- 			reg = <0x4000 0x4>,
- 			      <0x4010 0x4>,
- 			      <0x4014 0x4>;
-diff --git a/arch/arm/mach-omap2/omap_hwmod_54xx_data.c b/arch/arm/mach-omap2/omap_hwmod_54xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_54xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_54xx_data.c
-@@ -24,7 +24,6 @@
- #include "cm1_54xx.h"
- #include "cm2_54xx.h"
- #include "prm54xx.h"
--#include "wd_timer.h"
+   reg-names:
+-    # The core schema enforces this is a string array
++    # The core schema enforces this (*-names) is a string array
+     items:
+       - const: core
+       - const: aux
+@@ -79,7 +79,8 @@ properties:
+   clocks:
+     # Cases that have only a single entry just need to express that with maxItems
+     maxItems: 1
+-    description: bus clock
++    description: bus clock. A description is only needed for a single item if
++      there's something unique to add.
  
- /* Base offset for all OMAP5 interrupts external to MPUSS */
- #define OMAP54XX_IRQ_GIC_START	32
-@@ -1280,43 +1279,6 @@ static struct omap_hwmod omap54xx_usb_otg_ss_hwmod = {
- 	.opt_clks_cnt	= ARRAY_SIZE(usb_otg_ss_opt_clks),
- };
+   clock-names:
+     items:
+@@ -127,6 +128,14 @@ properties:
+     maxItems: 1
+     description: A connection of the 'foo' gpio line.
  
--/*
-- * 'wd_timer' class
-- * 32-bit watchdog upward counter that generates a pulse on the reset pin on
-- * overflow condition
-- */
--
--static struct omap_hwmod_class_sysconfig omap54xx_wd_timer_sysc = {
--	.rev_offs	= 0x0000,
--	.sysc_offs	= 0x0010,
--	.syss_offs	= 0x0014,
--	.sysc_flags	= (SYSC_HAS_EMUFREE | SYSC_HAS_SIDLEMODE |
--			   SYSC_HAS_SOFTRESET | SYSS_HAS_RESET_STATUS),
--	.idlemodes	= (SIDLE_FORCE | SIDLE_NO | SIDLE_SMART |
--			   SIDLE_SMART_WKUP),
--	.sysc_fields	= &omap_hwmod_sysc_type1,
--};
--
--static struct omap_hwmod_class omap54xx_wd_timer_hwmod_class = {
--	.name		= "wd_timer",
--	.sysc		= &omap54xx_wd_timer_sysc,
--	.pre_shutdown	= &omap2_wd_timer_disable,
--};
--
--/* wd_timer2 */
--static struct omap_hwmod omap54xx_wd_timer2_hwmod = {
--	.name		= "wd_timer2",
--	.class		= &omap54xx_wd_timer_hwmod_class,
--	.clkdm_name	= "wkupaon_clkdm",
--	.main_clk	= "sys_32k_ck",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = OMAP54XX_CM_WKUPAON_WD_TIMER2_CLKCTRL_OFFSET,
--			.context_offs = OMAP54XX_RM_WKUPAON_WD_TIMER2_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_SWCTRL,
--		},
--	},
--};
++  # *-supply is always a single phandle, so nothing more to define.
++  foo-supply: true
++
++  # Vendor specific properties
++  #
++  # Vendor specific properties have slightly different schema requirements than
++  # common properties. They must have at least a type definition and
++  # 'description'.
+   vendor,int-property:
+     description: Vendor specific properties must have a description
+     # 'allOf' is the json-schema way of subclassing a schema. Here the base
+@@ -137,9 +146,9 @@ properties:
+       - enum: [2, 4, 6, 8, 10]
  
- /*
-  * 'ocp2scp' class
-@@ -1803,14 +1765,6 @@ static struct omap_hwmod_ocp_if omap54xx_l4_cfg__usb_otg_ss = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
+   vendor,bool-property:
+-    description: Vendor specific properties must have a description
+-    # boolean properties is one case where the json-schema 'type' keyword
+-    # can be used directly
++    description: Vendor specific properties must have a description. Boolean
++      properties are one case where the json-schema 'type' keyword can be used
++      directly.
+     type: boolean
  
--/* l4_wkup -> wd_timer2 */
--static struct omap_hwmod_ocp_if omap54xx_l4_wkup__wd_timer2 = {
--	.master		= &omap54xx_l4_wkup_hwmod,
--	.slave		= &omap54xx_wd_timer2_hwmod,
--	.clk		= "wkupaon_iclk_mux",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- static struct omap_hwmod_ocp_if *omap54xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap54xx_l3_main_1__dmm,
- 	&omap54xx_l3_main_3__l3_instr,
-@@ -1863,7 +1817,6 @@ static struct omap_hwmod_ocp_if *omap54xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap54xx_l4_cfg__usb_host_hs,
- 	&omap54xx_l4_cfg__usb_tll_hs,
- 	&omap54xx_l4_cfg__usb_otg_ss,
--	&omap54xx_l4_wkup__wd_timer2,
- 	&omap54xx_l4_cfg__ocp2scp3,
- 	&omap54xx_l4_cfg__sata,
- 	NULL,
+   vendor,string-array-property:
+@@ -151,14 +160,72 @@ properties:
+           - enum: [ foo, bar ]
+           - enum: [ baz, boo ]
+ 
++  vendor,property-in-standard-units-microvolt:
++    description: Vendor specific properties having a standard unit suffix
++      don't need a type.
++    enum: [ 100, 200, 300 ]
++
++  child-node:
++    description: Child nodes are just another property from a json-schema
++      perspective.
++    type: object  # DT nodes are json objects
++    properties:
++      vendor,a-child-node-property:
++        description: Child node properties have all the same schema
++          requirements.
++        type: boolean
++
++    required:
++      - vendor,a-child-node-property
++
++# Describe the relationship between different properties
++dependencies:
++  # 'vendor,bool-property' is only allowed when 'vendor,string-array-property'
++  # is present
++  vendor,bool-property: [ vendor,string-array-property ]
++  # Expressing 2 properties in both orders means all of the set of properties
++  # must be present or none of them.
++  vendor,string-array-property: [ vendor,bool-property ]
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - interrupt-controller
+ 
++# if/then schema can be used to handle conditions on a property affecting
++# another property. A typical case is a specific 'compatible' value changes the
++# constraints on other properties.
++#
++# For multiple 'if' schema, group them under an 'allOf'.
++#
++# If the conditionals become too unweldy, then it may be better to just split
++# the binding into separate schema documents.
++if:
++  properties:
++    compatible:
++      contains:
++        const: vendor,soc2-ip
++then:
++  required:
++    - foo-supply
++
++# Ideally, the schema should have this line otherwise any other properties
++# present are allowed. There's a few common properties such as 'status' and
++# 'pinctrl-*' which are added automatically by the tooling.
++#
++# This can't be used in cases where another schema is referenced
++# (i.e. allOf: [{$ref: ...}]).
++additionalProperties: false
++
+ examples:
+-  # Examples are now compiled with dtc
++  # Examples are now compiled with dtc and validated against the schemas
++  #
++  # Examples have a default #address-cells and #size-cells value of 1. This can
++  # be overridden or an appropriate parent bus node should be shown (such as on
++  # i2c buses).
++  #
++  # Any includes used have to be explicitly included.
+   - |
+     node@1000 {
+           compatible = "vendor,soc4-ip", "vendor,soc1-ip";
 -- 
-2.23.0
+2.20.1
+
