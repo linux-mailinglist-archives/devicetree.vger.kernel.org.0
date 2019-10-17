@@ -2,129 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92BEEDA3AC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 04:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED94DA3B9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 04:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404271AbfJQCZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 22:25:24 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:37972 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727328AbfJQCZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 22:25:24 -0400
-Received: by mail-pg1-f195.google.com with SMTP id w3so383103pgt.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 19:25:23 -0700 (PDT)
+        id S2404182AbfJQC3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 22:29:01 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:43518 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406843AbfJQC3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 22:29:00 -0400
+Received: by mail-pl1-f194.google.com with SMTP id f21so344427plj.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 19:28:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=STJjBhLE/m01ejeTMTB4LbJYMiaVitAPLxfsmldrX+w=;
-        b=T2rGOkQ+VUFpK/WVOfmLr8Mh2huxuf6moXfqKu86NtPV3dpGQTIlm4yCPBUE5PwYWD
-         hca+W7gYNsvl8M/ZeU98q0+B3yFGS/L7EUF/9KsomtmSaX+GhaR1D4dtSDmcIf8KQfzi
-         ybkoXQ+K5AbRTJu2equUDWhzY7qXgW27w+fOTMTS15zCXSOFe5WUH42pPZf7v3WgFeFj
-         VOsy6Z3ngBlx15Ao9qAmGYuXDaKVGlDwlcurS3+PvQcJ7KYAaqbXqk6rfoXuyjQ94ULG
-         OqZRPXfKeyvGVrJJQ9DgmDFWUXZaY7TlfiPlpQlrRm38dRhBgBTzznMPFsJyeXSzTYRu
-         aVaw==
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=mJUTEhX3TFcHtz27+83IOXuwWGxntrc9pvOqZY1hpgM=;
+        b=AaHywvkMSuy9OnV8rJbxorKjDSfBfAc1ciKJafM0KBuyZdEKajDgUAPvSRruvLwpUd
+         s+rQUukzTiEgkCgX9ldvv6cMt0gbvjKrDpPBLWtGtzHtvrxbH6RduRz8o7Oz8xGeausy
+         afnLLUqD6xKhLvHoiWflgql6wLjsl8xZjnq+1wfnTXNgfug7Z3XMLWGm51c5WHMjk8X8
+         rcUDp/d+Q9Gki6VzIj0FBWno9kMjvauIXpvrMUSWpe9GKmQ4rGGYIJ7VhHK+9ozUOm14
+         rg76exgPb9QRPsqoIquFELofX0VLBSiNdb5Efoqxmpwjvl2+q2cHgVZx0N6AEYiP7+5i
+         mUKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=STJjBhLE/m01ejeTMTB4LbJYMiaVitAPLxfsmldrX+w=;
-        b=XWRlmD2xJfHLtrLkHCmn/F7jcAkek9BMWNVwwYJh6IZLllrPTeE6bkWsGPhBHOLhTJ
-         2b9cz7W1pJQeMw274w1WYKG8OdYAno6Gfc9mgwElKoPoO6EPTzMThnAwH67yVVs1FL/I
-         of6HulXqNYyia1wsKzajkwDHX2xHi79XuE1zEhmkglZzkhOriYXYqDCEfEYc/7/eRFU+
-         Az3Vy9DYyZWBguaYB2RgTlWSLULShgqK5/BMTMy2VyQefeR0SJCel9y2a0pf8p10iSaX
-         TE5eGVHfjEVc5Fhmoz/ZP2TYgbqQVjcDtOTiKvi8yu934wdxvmY2MrR1auyuZxs0SywU
-         uItA==
-X-Gm-Message-State: APjAAAVTGz1KWkZVUPANbYlCqMo4Vc7FDYLNzPXniKjV868ssvesXnLA
-        K8BCA49PcRSOgc/w8npOlf8r9w==
-X-Google-Smtp-Source: APXvYqyvS2ZY7GaiHnRo9+9V5MBhCVFCjVMj2z2fV6My8g6R8J1Y2WkKdysTUlHk8e2d4Zd6ofBpRA==
-X-Received: by 2002:a62:1953:: with SMTP id 80mr954802pfz.173.1571279122230;
-        Wed, 16 Oct 2019 19:25:22 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:bc61:d85d:eb16:9036])
-        by smtp.gmail.com with ESMTPSA id y10sm435680pfe.148.2019.10.16.19.25.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2019 19:25:21 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 19:25:16 -0700
-From:   Benson Leung <bleung@google.com>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     broonie@kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, gwendal@google.com,
-        drinkcat@google.com, cychiang@google.com, dgreid@google.com
-Subject: Re: [PATCH v3 01/10] platform/chrome: cros_ec: remove unused EC
- feature
-Message-ID: <20191017022516.GA60797@google.com>
-References: <20191014102022.236013-1-tzungbi@google.com>
- <20191014180059.01.I374c311eaca0d47944a37b07acbe48fdb74f734d@changeid>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=mJUTEhX3TFcHtz27+83IOXuwWGxntrc9pvOqZY1hpgM=;
+        b=Agp/AUYwBcN7I835rcNTtI0qWcOavFxkzgiM/N4+x9P10B0ieZ0uZ3mPL8/43PkR93
+         ki+i8JNvhWx+890zNk9Dzy91V5SNEMGJgaVjUIG/LrzPsnTMyTDdegd210207IBdtkf2
+         k8p+8qOa6B1RIUOAmEEhgh6jVJ64I/Gy9wlnHZww/1US0FWXFrGPDtyrpc94lt4/X8xI
+         XqI3O4eDUc9tDI78mZZfp7+JgRYMpfsQDx4bmrmdlltqzqHzk1hQ4P0CQ2YQVPYXwxfW
+         WUrOyawocuC280BBvjcFA19C6Mmxj76Xi12JfZrzNpPDD7MogzI/P7aag0IzKoE+J88v
+         hiQA==
+X-Gm-Message-State: APjAAAXASBEjjD1OeP0/bfjAm9eXUK84q7JfmMAC7nxrjToSpd2ToLoG
+        iQ7AP1J/uRcLDOilTcc/l8hNoA==
+X-Google-Smtp-Source: APXvYqwNFLKLkCxw5ab420MkNxcVkjXE2Jlq4h5pXqtFv2s2iZhgQ3vv70QHp3Lxt9QjQiam6DFvtw==
+X-Received: by 2002:a17:902:d90e:: with SMTP id c14mr1427032plz.91.1571279337923;
+        Wed, 16 Oct 2019 19:28:57 -0700 (PDT)
+Received: from localhost ([122.172.151.112])
+        by smtp.gmail.com with ESMTPSA id x10sm448224pfr.44.2019.10.16.19.28.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 16 Oct 2019 19:28:56 -0700 (PDT)
+Date:   Thu, 17 Oct 2019 07:58:54 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 11/17] ARM: dts: tegra20: Add CPU Operating
+ Performance Points
+Message-ID: <20191017022854.c23zgp3th7v4afa4@vireshk-i7>
+References: <20191015211618.20758-1-digetx@gmail.com>
+ <20191015211618.20758-12-digetx@gmail.com>
+ <20191016052323.w6hav4qqn3ybt55q@vireshk-i7>
+ <ba9d6de0-38dc-a851-cf0a-fb9d06461671@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="G4iJoqBmSsgzjUCe"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20191014180059.01.I374c311eaca0d47944a37b07acbe48fdb74f734d@changeid>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ba9d6de0-38dc-a851-cf0a-fb9d06461671@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16-10-19, 16:21, Dmitry Osipenko wrote:
+> 16.10.2019 08:23, Viresh Kumar пишет:
+> > On 16-10-19, 00:16, Dmitry Osipenko wrote:
+> >> Operating Point are specified per HW version. The OPP voltages are kept
+> >> in a separate DTSI file because some boards may not define CPU regulator
+> >> in their device-tree if voltage scaling isn't necessary, like for example
+> >> in a case of tegra20-trimslice which is outlet-powered device.
+> >>
+> >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >> ---
+> >>  .../boot/dts/tegra20-cpu-opp-microvolt.dtsi   | 201 ++++++++++++
+> >>  arch/arm/boot/dts/tegra20-cpu-opp.dtsi        | 302 ++++++++++++++++++
+> >>  2 files changed, 503 insertions(+)
+> >>  create mode 100644 arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi
+> >>  create mode 100644 arch/arm/boot/dts/tegra20-cpu-opp.dtsi
+> >>
+> >> diff --git a/arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi b/arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi
+> >> new file mode 100644
+> >> index 000000000000..e85ffdbef876
+> >> --- /dev/null
+> >> +++ b/arch/arm/boot/dts/tegra20-cpu-opp-microvolt.dtsi
+> >> @@ -0,0 +1,201 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +
+> >> +/ {
+> >> +	cpu0_opp_table: cpu_opp_table0 {
+> >> +		opp@216000000_750 {
+> > 
+> > Maybe just drop the _750 (i.e. voltage) from the names as we don't generally
+> > follow it :)
+> 
+> The reason for the _750 postfix is that there are multiple OPPs for
+> 216MHz and they have different voltages for different versions of
+> hardware, thus those are separate OPPs and they can't be squashed into a
+> single OPP node.
 
---G4iJoqBmSsgzjUCe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ah, okay. I missed that you are using supported-hw bindings.
 
-Hi Tzung-Bi,
-
-On Mon, Oct 14, 2019 at 06:20:13PM +0800, Tzung-Bi Shih wrote:
-> Remove unused EC_FEATURE_AUDIO_CODEC.
->=20
-> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
-
-Acked-By: Benson Leung <bleung@chromium.org>
-
-Thanks,
-Benson
-
-> ---
->  include/linux/platform_data/cros_ec_commands.h | 2 --
->  1 file changed, 2 deletions(-)
->=20
-> diff --git a/include/linux/platform_data/cros_ec_commands.h b/include/lin=
-ux/platform_data/cros_ec_commands.h
-> index 98415686cbfa..43b8f7dae4cc 100644
-> --- a/include/linux/platform_data/cros_ec_commands.h
-> +++ b/include/linux/platform_data/cros_ec_commands.h
-> @@ -1277,8 +1277,6 @@ enum ec_feature_code {
->  	 * MOTIONSENSE_CMD_TABLET_MODE_LID_ANGLE.
->  	 */
->  	EC_FEATURE_REFINED_TABLET_MODE_HYSTERESIS =3D 37,
-> -	/* EC supports audio codec. */
-> -	EC_FEATURE_AUDIO_CODEC =3D 38,
->  	/* The MCU is a System Companion Processor (SCP). */
->  	EC_FEATURE_SCP =3D 39,
->  	/* The MCU is an Integrated Sensor Hub */
-> --=20
-> 2.23.0.700.g56cf767bdb-goog
->=20
-
---=20
-Benson Leung
-Staff Software Engineer
-Chrome OS Kernel
-Google Inc.
-bleung@google.com
-Chromium OS Project
-bleung@chromium.org
-
---G4iJoqBmSsgzjUCe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCXafRDAAKCRBzbaomhzOw
-woOiAQCH3Gf3aTm2PrJBGeHQ5DpoqTKLs7JbIZM9UJV32p34mAD/eZrQnbHqDjDb
-Z8tl7YvqZ3afE1nuEWCuA1W3gxUipAg=
-=f/vt
------END PGP SIGNATURE-----
-
---G4iJoqBmSsgzjUCe--
+-- 
+viresh
