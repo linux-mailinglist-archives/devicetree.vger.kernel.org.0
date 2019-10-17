@@ -2,145 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 970DBDA72F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 10:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2B8DA736
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 10:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408215AbfJQIYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 04:24:36 -0400
-Received: from skedge03.snt-world.com ([91.208.41.68]:58852 "EHLO
-        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387581AbfJQIYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 04:24:36 -0400
-Received: from sntmail10s.snt-is.com (unknown [10.203.32.183])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by skedge03.snt-world.com (Postfix) with ESMTPS id 2BE8A80315A;
-        Thu, 17 Oct 2019 10:24:28 +0200 (CEST)
-Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail10s.snt-is.com
- (10.203.32.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 17 Oct
- 2019 10:24:27 +0200
-Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
- sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
- 15.01.1713.004; Thu, 17 Oct 2019 10:24:27 +0200
-From:   Schrempf Frieder <frieder.schrempf@kontron.de>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "NXP Linux Team" <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 00/10] Add support for more Kontron i.MX6UL/ULL SoMs and
- boards
-Thread-Topic: [PATCH 00/10] Add support for more Kontron i.MX6UL/ULL SoMs and
- boards
-Thread-Index: AQHVhDNGmnCbI2WJmkisIF0qUQi7cqdeW9UAgAAC0AA=
-Date:   Thu, 17 Oct 2019 08:24:27 +0000
-Message-ID: <6e6f9cf4-85b3-35e3-1238-11e39855bc08@kontron.de>
-References: <20191016150622.21753-1-frieder.schrempf@kontron.de>
- <20191017081422.65m5dtqznsanfftp@pengutronix.de>
-In-Reply-To: <20191017081422.65m5dtqznsanfftp@pengutronix.de>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.9.193]
-x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <BA37A90C250EE84C8A16A2B38DF077EF@snt-world.com>
-Content-Transfer-Encoding: base64
+        id S2390082AbfJQI0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 04:26:20 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:30197 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387581AbfJQI0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 04:26:20 -0400
+X-UUID: ac8042f2d8c74c4bab2f984771d7d9bd-20191017
+X-UUID: ac8042f2d8c74c4bab2f984771d7d9bd-20191017
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <min.guo@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1164182793; Thu, 17 Oct 2019 16:26:08 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 17 Oct 2019 16:26:04 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 17 Oct 2019 16:26:03 +0800
+From:   <min.guo@mediatek.com>
+To:     Bin Liu <b-liu@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        <chunfeng.yun@mediatek.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <tony@atomide.com>,
+        <hdegoede@redhat.com>, Min Guo <min.guo@mediatek.com>
+Subject: [PATCH RESEND v7 0/6] Add MediaTek MUSB Controller Driver
+Date:   Thu, 17 Oct 2019 16:25:48 +0800
+Message-ID: <20191017082554.27953-1-min.guo@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: 2BE8A80315A.ADCFA
-X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
-X-SnT-MailScanner-SpamCheck: 
-X-SnT-MailScanner-From: frieder.schrempf@kontron.de
-X-SnT-MailScanner-To: aisheng.dong@nxp.com, andrew.smirnov@gmail.com,
-        davem@davemloft.net, devicetree@vger.kernel.org, festevam@gmail.com,
-        gregkh@linuxfoundation.org, jonathan.cameron@huawei.com,
-        kernel@pengutronix.de, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, m.felsch@pengutronix.de,
-        manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
-        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
-        robh+dt@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org
-X-Spam-Status: No
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 5873172F392C39E2384854588EDDAB7493890FBB8452BFEB0DE11811A9F88D1E2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTWFyY28sDQoNCk9uIDE3LjEwLjE5IDEwOjE0LCBNYXJjbyBGZWxzY2ggd3JvdGU6DQo+IEhp
-IEZyaWVkZXIsDQo+IA0KPiBPbiAxOS0xMC0xNiAxNTowNiwgU2NocmVtcGYgRnJpZWRlciB3cm90
-ZToNCj4+IEZyb206IEZyaWVkZXIgU2NocmVtcGYgPGZyaWVkZXIuc2NocmVtcGZAa29udHJvbi5k
-ZT4NCj4+DQo+PiBJbiBvcmRlciB0byBzdXBwb3J0IG1vcmUgb2YgdGhlIGkuTVg2VUwvVUxMLWJh
-c2VkIFNvTXMgYW5kIGJvYXJkcyBieQ0KPj4gS29udHJvbiBFbGVjdHJvbmljcyBHbWJILCB3ZSBy
-ZXN0cnVjdHVyZSB0aGUgZGV2aWNldHJlZXMgdG8gc2hhcmUgY29tbW9uDQo+PiBwYXJ0cyBhbmQg
-YWRkIG5ldyBkZXZpY2V0cmVlcyBmb3IgdGhlIG1pc3NpbmcgYm9hcmRzLg0KPj4NCj4+IEN1cnJl
-bnRseSB0aGVyZSBhcmUgdGhlIGZvbGxvd2luZyBTb00gZmxhdm9yczoNCj4+ICAgICogTjYzMTA6
-IFNvTSB3aXRoIGkuTVg2VUwtMiwgMjU2TUIgUkFNLCAyNTZNQiBTUEkgTkFORA0KPj4gICAgKiBO
-NjMxMTogU29NIHdpdGggaS5NWDZVTC0yLCA1MTJNQiBSQU0sIDUxMk1CIFNQSSBOQU5EIChuZXcp
-DQo+PiAgICAqIE42NDExOiBTb00gd2l0aCBpLk1YNlVMTCwgNTEyTUIgUkFNLCA1MTJNQiBTUEkg
-TkFORCAobmV3KQ0KPj4NCj4+IEVhY2ggb2YgdGhlIFNvTXMgYWxzbyBmZWF0dXJlcyAxTUIgU1BJ
-IE5PUiBhbmQgYW4gRXRoZXJuZXQgUEhZLiBUaGUgY2Fycmllcg0KPj4gYm9hcmQgZm9yIHRoZSBl
-dmFsa2l0IGlzIHRoZSBzYW1lIGZvciBhbGwgU29Ncy4NCj4+DQo+PiBGcmllZGVyIFNjaHJlbXBm
-ICgxMCk6DQo+PiAgICBBUk06IGR0czogaW14NnVsLWtvbnRyb24tbjYzMTA6IE1vdmUgY29tbW9u
-IFNvTSBub2RlcyB0byBhIHNlcGFyYXRlDQo+PiAgICAgIGZpbGUNCj4+ICAgIEFSTTogZHRzOiBB
-ZGQgc3VwcG9ydCBmb3IgdHdvIG1vcmUgS29udHJvbiBTb01zIE42MzExIGFuZCBONjQxMQ0KPj4g
-ICAgQVJNOiBkdHM6IGlteDZ1bC1rb250cm9uLW42MzEwLXM6IE1vdmUgY29tbW9uIG5vZGVzIHRv
-IGEgc2VwYXJhdGUgZmlsZQ0KPj4gICAgQVJNOiBkdHM6IEFkZCBzdXBwb3J0IGZvciB0d28gbW9y
-ZSBLb250cm9uIGV2YWxraXQgYm9hcmRzICdONjMxMSBTJw0KPj4gICAgICBhbmQgJ042NDExIFMn
-DQo+PiAgICBBUk06IGR0czogaW14NnVsLWtvbnRyb24tbjZ4MXg6IEFkZCAnY2hvc2VuJyBub2Rl
-IHdpdGggJ3N0ZG91dC1wYXRoJw0KPj4gICAgQVJNOiBkdHM6IGlteDZ1bC1rb250cm9uLW42eDF4
-LXM6IFNwZWNpZnkgYnVzLXdpZHRoIGZvciBTRCBjYXJkIGFuZA0KPj4gICAgICBlTU1DDQo+PiAg
-ICBBUk06IGR0czogaW14NnVsLWtvbnRyb24tbjZ4MXgtczogQWRkIHZidXMtc3VwcGx5IGFuZCBv
-dmVyY3VycmVudA0KPj4gICAgICBwb2xhcml0eSB0byB1c2Igbm9kZXMNCj4+ICAgIEFSTTogZHRz
-OiBpbXg2dWwta29udHJvbi1uNngxeC1zOiBSZW1vdmUgYW4gb2Jzb2xldGUgY29tbWVudCBhbmQg
-Zml4DQo+PiAgICAgIGluZGVudGF0aW9uDQo+PiAgICBkdC1iaW5kaW5nczogYXJtOiBmc2w6IEFk
-ZCBtb3JlIEtvbnRyb24gaS5NWDZVTC9VTEwgY29tcGF0aWJsZXMNCj4+ICAgIE1BSU5UQUlORVJT
-OiBBZGQgYW4gZW50cnkgZm9yIEtvbnRyb24gRWxlY3Ryb25pY3MgQVJNIGJvYXJkIHN1cHBvcnQN
-Cj4gDQo+IERpZCB5b3Ugc2VuZCBhbGwgcGF0Y2hlcyB0byBzYW1lIFRvOiBhbmQgQ2M6Pw0KDQpO
-bywgSSBoYXZlIGEgc2NyaXB0IHRoYXQgcnVucyBnZXRfbWFpbnRhaW5lci5wbCBmb3IgZWFjaCBw
-YXRjaC4gU28gdGhlIA0KcmVjaXBpZW50cyBtaWdodCBkaWZmZXIuIEkgb25seSBoYWQgS3J6eXN6
-dG9mIGFuZCBSb2IgYXMgaGFyZC1jb2RlZCANCnJlY2lwaWVudHMgZm9yIHRoZSB3aG9sZSBzZXJp
-ZXMuDQoNCkRvIHlvdSB0aGluayBJIHNob3VsZCBjaGFuZ2UgdGhpcyBzbyBlYWNoIHJlY2lwaWVu
-dCByZWNlaXZlcyB0aGUgd2hvbGUgDQpzZXJpZXM/DQoNClRoYW5rcywNCkZyaWVkZXINCg0KPiAN
-Cj4gUmVnYXJkcywNCj4gICAgTWFyY28NCj4gDQo+Pg0KPj4gICAuLi4vZGV2aWNldHJlZS9iaW5k
-aW5ncy9hcm0vZnNsLnlhbWwgICAgICAgICAgfCAgMTQgKw0KPj4gICBNQUlOVEFJTkVSUyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDYgKw0KPj4gICBhcmNoL2FybS9ib290
-L2R0cy9pbXg2dWwta29udHJvbi1uNjMxMC1zLmR0cyAgfCA0MDUgKy0tLS0tLS0tLS0tLS0tLS0N
-Cj4+ICAgLi4uL2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42MzEwLXNvbS5kdHNpICAgIHwgIDk1
-ICstLS0NCj4+ICAgYXJjaC9hcm0vYm9vdC9kdHMvaW14NnVsLWtvbnRyb24tbjYzMTEtcy5kdHMg
-IHwgIDE2ICsNCj4+ICAgLi4uL2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42MzExLXNvbS5kdHNp
-ICAgIHwgIDQwICsrDQo+PiAgIGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42eDF4
-LXMuZHRzaSB8IDQyMiArKysrKysrKysrKysrKysrKysNCj4+ICAgLi4uL2R0cy9pbXg2dWwta29u
-dHJvbi1uNngxeC1zb20tY29tbW9uLmR0c2kgIHwgMTI5ICsrKysrKw0KPj4gICBhcmNoL2FybS9i
-b290L2R0cy9pbXg2dWxsLWtvbnRyb24tbjY0MTEtcy5kdHMgfCAgMTYgKw0KPj4gICAuLi4vYm9v
-dC9kdHMvaW14NnVsbC1rb250cm9uLW42NDExLXNvbS5kdHNpICAgfCAgNDAgKysNCj4+ICAgMTAg
-ZmlsZXMgY2hhbmdlZCwgNjg1IGluc2VydGlvbnMoKyksIDQ5OCBkZWxldGlvbnMoLSkNCj4+ICAg
-Y3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42MzEx
-LXMuZHRzDQo+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybS9ib290L2R0cy9pbXg2dWwt
-a29udHJvbi1uNjMxMS1zb20uZHRzaQ0KPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0v
-Ym9vdC9kdHMvaW14NnVsLWtvbnRyb24tbjZ4MXgtcy5kdHNpDQo+PiAgIGNyZWF0ZSBtb2RlIDEw
-MDY0NCBhcmNoL2FybS9ib290L2R0cy9pbXg2dWwta29udHJvbi1uNngxeC1zb20tY29tbW9uLmR0
-c2kNCj4+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bGwta29u
-dHJvbi1uNjQxMS1zLmR0cw0KPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9k
-dHMvaW14NnVsbC1rb250cm9uLW42NDExLXNvbS5kdHNpDQo+Pg0KPj4gLS0gDQo+PiAyLjE3LjEN
-Cj4+DQo+Pg0KPiA=
+From: Min Guo <min.guo@mediatek.com>
+
+These patches introduce the MediaTek MUSB controller driver.
+
+The driver can be configured as Dual-Role Device (DRD),
+Peripheral Only and Host Only modes. This has beed tested on
+MT2701 with a variety of devices in host mode and with the 
+f_mass gadget driver in peripheral mode, plugging otg cables
+in/out a lot of times in all possible imaginable plug orders.
+
+changes in v7:
+changes of dt-bindings and DTS:
+1. Change compatible string
+2. Change usb connector child node compatible as "gpio-usb-b-connector" 
+
+changes in v6:
+changes of dt-bindings:
+1. Modify usb connector child node
+changes of DTS:
+1. Modify usb connector child node
+changes of driver:
+1. Add of_platform_populate in probe to populate connector platform_devices
+   from device tree data
+2. Replace extcon with usb role switch mechanism to support dual-role mode,
+   depends on [1]
+3. Remove set vbus function
+
+    [1] [v6,09/10] usb: roles: add USB Type-B GPIO connector driver
+        https://patchwork.kernel.org/patch/10966361/
+
+changes in v5:
+changes of dt-bindings suggested by Rob:
+1. Modify compatible as 
+- compatible : should be one of:
+               "mediatek,mt-2701"
+               ...
+               followed by "mediatek,mtk-musb"
+2. Add usb connector child node
+changes of DTS:
+1. Add usb connector child node
+changes of driver suggested by Bin:
+1. Replace musb_readb() with musb_clearb() to clear dma pending interrupts
+2. Replace musb_readb() with musb_clearb() to clear common/tx/rx pending interrupts
+3. Make musb_clearb/w() return the value of musb_readb/w()
+
+changes in v4:
+changes of dt-bindings suggested by Sergei:
+1. String alignment
+changes of driver suggested by Tony and Bin:
+1. Add a new patch for set/get_toggle()
+2. Add a new patch for noirq type of dma
+3. Add a new patch musb_clearb/w()
+4. Abondon patch "usb: musb: Delete the const attribute of addr parameter in readb/w/l hooks"
+
+changes in v3:
+changes of driver suggested by Bin:
+1. Add a new patch for musb_readb/w/l() to remove const attribute 
+2. Use is_out as function parameter in set_toggle/get_toggle() hooks
+3. Remove 'u8/u16 data' parameter in clearb/w() hooks
+4. Remove musb_default_clearb/w()
+5. Replace musb_readb/w() with musb_clearb/w() to clear pending interrupts 
+6. Add comments to clearb/w() hooks
+7. Replace musb_save_toggle() with musb->io.get_toggle()
+8. Replace musb_set_toggle() with musb->io.set_toggle()
+
+changes in v2:
+changes of dt-bindings suggested by Rob and Bin:
+1. Modify DRC to DRD
+2. Drop the "<soc-model>-musb" in compatible
+3. Remove phy-names
+4. Add space after comma in clock-names
+dtsi:
+1. Remove phy-names
+changes of driver suggested by Bin:
+1. Add a new patch for musb_set_toggle
+2. Add summarize of MediaTek musb controller differences in the commit log
+3. Abondon patch "usb: musb: Move musbhsdma macro definition to musb_dma.h"
+4. Add "|| COMPILE_TEST" in Kconfig
+5. Add musb_clearb() and musb_clearw() hooks
+6. Add get_toggle() and set_toggle() hooks
+7. Replace musb_readl() with musb_readw() to read 16bit toggle register
+8. Move MediaTek's private toggle registers from musb_regs.h to mediatek.c
+9. Create musbhs_dma_controller_create_noirq()
+
+Min Guo (6):
+  dt-bindings: usb: musb: Add support for MediaTek musb controller
+  arm: dts: mt2701: Add usb2 device nodes
+  usb: musb: Add get/set toggle hooks
+  usb: musb: Add noirq type of dma create interface
+  usb: musb: Add musb_clearb/w() interface
+  usb: musb: Add support for MediaTek musb controller
+
+ .../devicetree/bindings/usb/mediatek,musb.txt      |  55 ++
+ arch/arm/boot/dts/mt2701-evb.dts                   |  21 +
+ arch/arm/boot/dts/mt2701.dtsi                      |  33 ++
+ drivers/usb/musb/Kconfig                           |   9 +-
+ drivers/usb/musb/Makefile                          |   1 +
+ drivers/usb/musb/mediatek.c                        | 582 +++++++++++++++++++++
+ drivers/usb/musb/musb_core.c                       |  74 ++-
+ drivers/usb/musb/musb_core.h                       |  13 +-
+ drivers/usb/musb/musb_dma.h                        |   9 +
+ drivers/usb/musb/musb_host.c                       |  46 +-
+ drivers/usb/musb/musb_io.h                         |  12 +-
+ drivers/usb/musb/musbhsdma.c                       |  56 +-
+ drivers/usb/musb/sunxi.c                           |   4 +-
+ drivers/usb/musb/tusb6010.c                        |   2 +-
+ 14 files changed, 845 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/mediatek,musb.txt
+ create mode 100644 drivers/usb/musb/mediatek.c
+
+-- 
+1.9.1
+
