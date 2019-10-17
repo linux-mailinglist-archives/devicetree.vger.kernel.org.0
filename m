@@ -2,168 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D3FDAB33
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 13:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E159DDAB5F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 13:43:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439699AbfJQL3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 07:29:46 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:56272 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2409087AbfJQL3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 07:29:46 -0400
-Received: by mail-wm1-f67.google.com with SMTP id a6so2158993wma.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 04:29:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=y25SQvHW6/7riw64/wdhH01byzi//dz718QUhzJWQoM=;
-        b=LZ2BxUT3XYkN17tFc8dU93+VqpMf/c0mPGTp3UVIyg3upGlb3iY+XDdf1yfAjNQUV9
-         MEbhUG/4TIwoL/i8Lg8m5fewSbe3O7KW9XX4meNTSrHGz/tZpRsIOHp0b43jn04q0XCI
-         lO2jcDZa4Y8HiPEG3fP63QY6pTT7blXEh1CEunMeL+cA/8ticCfbt7sVTYaoXZEXw1ke
-         5sRkxNtiy98Ej84gJCr8gbkGZ+Xxk1gqz+P34xf6RGTNU0XuTkJ9F5jUvo8ZbLcpK/t2
-         wEUD0CrW6jFNo5lUiEKuA4upAA7nY7xJYPs35VaGodmJRe61wsS6q1Mh0BQ+ZhYxEVZu
-         Z/lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=y25SQvHW6/7riw64/wdhH01byzi//dz718QUhzJWQoM=;
-        b=aEgiCO9xoy7f/UjA7WhFfbMgMmcUL3SqjgtPYu1GNEk8sfTY+kY/VxHEa2L2D3NtCN
-         f45XkSVChwDASqCmSYiqD/1RnGw0hpd5aviz0JSMYgg6b4vIZD8jMnrqgmlfg32Z0Qui
-         dGyqm872gJR67XZVUb6Qa29tshqW49vZN4ggmHeL1p99r/ePvAO33/3lG24QgPOKutZk
-         hfe1LJdfjdJ/epPWHAAM/kCIQt05+NDPnuZ40oNL1o4szsFL+gbra7N90eK6WV8+nf+N
-         gKnk0LZbXjKyDrJdDrKT3avHMYLRuCGD+ay0dHQRcAqzHFL952fuL2M7J0Z69iy0h7wt
-         7KdQ==
-X-Gm-Message-State: APjAAAV8VCtitp8jbhjnPML3tJjACJHggXrWdk2mqgczDOiMTr8UY7Y2
-        96tRzCbRAqhjgHoHAHKmf9DuqkrVWDCnvA==
-X-Google-Smtp-Source: APXvYqy315waZYadAwtLx/wuKd4IUjaUiXe5iNXNBULrE+UNqPPTqxikRQdXUrJkHirN8ZpFE3jJ2w==
-X-Received: by 2002:a1c:e057:: with SMTP id x84mr2365727wmg.72.1571311784048;
-        Thu, 17 Oct 2019 04:29:44 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id q22sm1795666wmj.5.2019.10.17.04.29.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 04:29:43 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 12:29:41 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Kiran Gunda <kgunda@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
-        lee.jones@linaro.org, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH V7 6/6] backlight: qcom-wled: Add auto string detection
- logic
-Message-ID: <20191017112941.qqvgboyambzw63i3@holly.lan>
-References: <1571220826-7740-1-git-send-email-kgunda@codeaurora.org>
- <1571220826-7740-7-git-send-email-kgunda@codeaurora.org>
+        id S2405982AbfJQLnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 07:43:13 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57252 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727991AbfJQLnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 07:43:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=fLFd7LzF6yq9UZSwX1XeG9QvY/4tQpRIA8giSgYZH9Q=; b=BnAw9avpmlEstxbFUi4F2lH9M
+        kswYTuDgvgJuSt4yuRpikoUxBKl6HEdT/g5Nlz9N+kblWycf/P/Oe5s6dboVnXTwe7uVbNcQd+492
+        0760QGFvuLkB/mYVJ8koh3k+zL9n10/vUJHrWqBoSBD059V9VK/w10bvzOFgwzeVNXh74=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iL4BL-0000rn-3v; Thu, 17 Oct 2019 11:43:03 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 56B7B27429C0; Thu, 17 Oct 2019 12:43:02 +0100 (BST)
+Date:   Thu, 17 Oct 2019 12:43:02 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     kbuild test robot <lkp@intel.com>, kbuild-all@lists.01.org,
+        Gwendal Grignou <gwendal@google.com>,
+        devicetree@vger.kernel.org,
+        ALSA development <alsa-devel@alsa-project.org>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Nicolas Boichat <drinkcat@google.com>, robh+dt@kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Benson Leung <bleung@google.com>,
+        Dylan Reid <dgreid@google.com>
+Subject: Re: [alsa-devel] [PATCH v3 07/10] ASoC: cros_ec_codec: support WoV
+Message-ID: <20191017114302.GE4976@sirena.co.uk>
+References: <20191014180059.07.I5388b69a7a9c551078fed216a77440cee6dedf49@changeid>
+ <201910150924.II2vi71d%lkp@intel.com>
+ <CA+Px+wXEpPbWgsQcrz3YVbH1-3z9Jgy3KM3H8o=O6T3M2Gbb2A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="WK3l2KTTmXPVedZ6"
 Content-Disposition: inline
-In-Reply-To: <1571220826-7740-7-git-send-email-kgunda@codeaurora.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <CA+Px+wXEpPbWgsQcrz3YVbH1-3z9Jgy3KM3H8o=O6T3M2Gbb2A@mail.gmail.com>
+X-Cookie: Shut off engine before fueling.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 16, 2019 at 03:43:46PM +0530, Kiran Gunda wrote:
-> The auto string detection algorithm checks if the current WLED
-> sink configuration is valid. It tries enabling every sink and
-> checks if the OVP fault is observed. Based on this information
-> it detects and enables the valid sink configuration.
-> Auto calibration will be triggered when the OVP fault interrupts
-> are seen frequently thereby it tries to fix the sink configuration.
-> 
-> The auto-detection also kicks in when the connected LED string
-> of the display-backlight malfunctions (because of damage) and
-> requires the damaged string to be turned off to prevent the
-> complete panel and/or board from being damaged.
-> 
-> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
 
-It's a complex bit of code but I'm OK with it in principle. Everything
-below is about small details and/or nitpicking.
+--WK3l2KTTmXPVedZ6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Tue, Oct 15, 2019 at 02:49:41PM +0800, Tzung-Bi Shih wrote:
+> On Tue, Oct 15, 2019 at 9:34 AM kbuild test robot <lkp@intel.com> wrote:
 
-> +static void wled_ovp_work(struct work_struct *work)
-> +{
-> +	struct wled *wled = container_of(work,
-> +					 struct wled, ovp_work.work);
-> +	enable_irq(wled->ovp_irq);
-> +}
-> +
+> >       priv->ec_shm_addr = of_read_number(regaddr_p, 2);
+> >                           ^~~~~~~~~~~~~~
+> >                           wov_read_audio
+> >    cc1: some warnings being treated as errors
 
-A bit of commenting about why we have to wait 10ms before enabling the
-OVP interrupt would be appreciated.
+> The error is caused by EC_CODEC=y but CONFIG_OF is not set:
+> $ grep -e 'CONFIG_OF.*' -e 'EC_CODEC' config
+> # CONFIG_OF is not set
+> CONFIG_SND_SOC_CROS_EC_CODEC=y
 
+If that can happen there's missing dependencies in Kconfig or missing
+ifdefs in the code.
 
-> +static irqreturn_t wled_ovp_irq_handler(int irq, void *_wled)
-> +{
-> +	struct wled *wled = _wled;
-> +	int rc;
-> +	u32 int_sts, fault_sts;
-> +
-> +	rc = regmap_read(wled->regmap,
-> +			 wled->ctrl_addr + WLED3_CTRL_REG_INT_RT_STS, &int_sts);
-> +	if (rc < 0) {
-> +		dev_err(wled->dev, "Error in reading WLED3_INT_RT_STS rc=%d\n",
-> +			rc);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	rc = regmap_read(wled->regmap, wled->ctrl_addr +
-> +			 WLED3_CTRL_REG_FAULT_STATUS, &fault_sts);
-> +	if (rc < 0) {
-> +		dev_err(wled->dev, "Error in reading WLED_FAULT_STATUS rc=%d\n",
-> +			rc);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	if (fault_sts &
-> +		(WLED3_CTRL_REG_OVP_FAULT_BIT | WLED3_CTRL_REG_ILIM_FAULT_BIT))
-> +		dev_dbg(wled->dev, "WLED OVP fault detected, int_sts=%x fault_sts= %x\n",
-> +			int_sts, fault_sts);
-> +
-> +	if (fault_sts & WLED3_CTRL_REG_OVP_FAULT_BIT) {
-> +		mutex_lock(&wled->lock);
-> +		disable_irq_nosync(wled->ovp_irq);
+--WK3l2KTTmXPVedZ6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-We're currently running the threaded ISR for this irq. Do we really need
-to disable it?
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +		if (wled_auto_detection_required(wled))
-> +			wled_auto_string_detection(wled);
-> +
-> +		enable_irq(wled->ovp_irq);
-> +
-> +		mutex_unlock(&wled->lock);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2oU8UACgkQJNaLcl1U
+h9A7/wf+LvKUAV7H+vgj/Q6qc7dRiYEn9n3hdiKSBQN1pDXOxHlDbTFhg21WyZOZ
+IcmOiGga1iRv7w3qV5geKJGXnR0W5WwTcmiwOYRhBlTjO/0C8wvnWn9PnpGZTR4i
+VxidkVnUx67DATwTDwbcHnXS0QSGNZOJofa84byEy2Rn/Ctd1c84dNzFbsxQxHDV
+rC25xFZLE+CkFAo8+MN00xW0ZR14YzhrGyJvIwbapx9NThyuf03Tx4CnHWyz1/ia
+klhfcyX9Gaozl5mkGTcLSpk3+rO/VZUwK99XrheSXHwsyGKJAvffg+VeL5lUQDAu
+IexVAZk0pMTQVnB20o/LoHcirDt0iw==
+=V6Ke
+-----END PGP SIGNATURE-----
 
-Snip.
-
-
-> +static int wled_remove(struct platform_device *pdev)
-> +{
-> +	struct wled *wled = dev_get_drvdata(&pdev->dev);
-> +
-> +	cancel_delayed_work_sync(&wled->ovp_work);
-> +	mutex_destroy(&wled->lock);
-
-Have the irq handlers been disabled at this point?
-
-Also, if you want to destroy the mutex shouldn't that code be 
-introduced in the same patch that introduces the mutex?
-> +
-> +	return 0;
-> +}
-
-
-Daniel.
+--WK3l2KTTmXPVedZ6--
