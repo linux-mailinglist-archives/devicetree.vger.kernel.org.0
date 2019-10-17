@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69490DB759
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D9ADB7C8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbfJQTVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 15:21:07 -0400
-Received: from mga12.intel.com ([192.55.52.136]:22068 "EHLO mga12.intel.com"
+        id S2389408AbfJQToS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 15:44:18 -0400
+Received: from muru.com ([72.249.23.125]:37858 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727397AbfJQTVH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 15:21:07 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Oct 2019 12:21:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,308,1566889200"; 
-   d="scan'208";a="397690533"
-Received: from marshy.an.intel.com ([10.122.105.159])
-  by fmsmga006.fm.intel.com with ESMTP; 17 Oct 2019 12:21:06 -0700
-From:   richard.gong@linux.intel.com
-To:     dinguyen@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     richard.gong@linux.intel.com, Richard Gong <richard.gong@intel.com>
-Subject: [PATCHv1] arm64: dts: agilex: add service layer, fpga manager and fpga region
-Date:   Thu, 17 Oct 2019 14:34:40 -0500
-Message-Id: <1571340880-18421-1-git-send-email-richard.gong@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726590AbfJQToS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Oct 2019 15:44:18 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 427F8804F;
+        Thu, 17 Oct 2019 19:44:51 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Ankur Tyagi <ankur.tyagi@gallagher.com>,
+        Keerthy <j-keerthy@ti.com>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 00/21] Drop more legacy platform data for omaps
+Date:   Thu, 17 Oct 2019 12:43:50 -0700
+Message-Id: <20191017194411.18258-1-tony@atomide.com>
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Gong <richard.gong@intel.com>
+Hi all,
 
-Add service layer, fpga manager and fpga region to the device tree
-on Intel Agilex platform.
+Here's a series of changes to remove more legacy platform data and
+ti,hwmods devitree property for omap variants.
 
-Signed-off-by: Richard Gong <richard.gong@intel.com>
----
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 32 +++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+The patches are against v5.4-rc1, but please note that the watchdog
+changes depend on the following patch:
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index 36abc25..94090c6 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -12,6 +12,19 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		service_reserved: svcbuffer@0 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x0 0x0 0x1000000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -81,6 +94,13 @@
- 		interrupt-parent = <&intc>;
- 		ranges = <0 0 0 0xffffffff>;
- 
-+		base_fpga_region {
-+			#address-cells = <0x1>;
-+			#size-cells = <0x1>;
-+			compatible = "fpga-region";
-+			fpga-mgr = <&fpga_mgr>;
-+		};
-+
- 		gmac0: ethernet@ff800000 {
- 			compatible = "altr,socfpga-stmmac", "snps,dwmac-3.74a", "snps,dwmac";
- 			reg = <0xff800000 0x2000>;
-@@ -442,5 +462,17 @@
- 
- 			status = "disabled";
- 		};
-+
-+		firmware {
-+			svc {
-+				compatible = "intel,stratix10-svc";
-+				method = "smc";
-+				memory-region = <&service_reserved>;
-+
-+				fpga_mgr: fpga-mgr {
-+					compatible = "intel,stratix10-soc-fpga-mgr";
-+				};
-+			};
-+		};
- 	};
- };
+[PATCH] bus: ti-sysc: Fix watchdog quirk handling
+
+Regards,
+
+Tony
+
+
+Tony Lindgren (21):
+  ARM: OMAP2+: Drop legacy platform data for am3 and am4 gpio
+  ARM: dts: Drop custom hwmod property for omap4 gpio
+  ARM: dts: Drop custom hwmod property for omap5 gpio
+  ARM: OMAP2+: Drop legacy platform data for dra7 mailbox
+  ARM: OMAP2+: Drop legacy platform data for am3 and am4 mailbox
+  ARM: OMAP2+: Drop legacy platform data for omap4 mailbox
+  ARM: OMAP2+: Drop legacy platform data for omap5 mailbox
+  ARM: dts: Drop custom hwmod property for omap5 mcspi
+  ARM: OMAP2+: Drop legacy platform data for omap5 mcspi
+  ARM: dts: Drop custom hwmod property for am33xx uart
+  ARM: dts: Drop custom hwmod property for am4 uart
+  ARM: dts: Drop custom hwmod property for omap5 uart
+  ARM: dts: Drop custom hwmod property for am3 i2c
+  ARM: dts: Drop custom hwmod property for am4 i2c
+  ARM: dts: Drop custom hwmod property for omap5 i2c
+  ARM: dts: Drop custom hwmod property for am3 mmc
+  ARM: dts: Drop custom hwmod property for am4 mmc
+  ARM: dts: Drop custom hwmod property for omap5 mmc
+  ARM: OMAP2+: Drop legacy platform data for am3 and am4 wdt
+  ARM: OMAP2+: Drop legacy platform data for dra7 wdt
+  ARM: OMAP2+: Drop legacy platform data for omap5 wdt
+
+ arch/arm/boot/dts/am33xx-l4.dtsi              |  17 -
+ arch/arm/boot/dts/am33xx.dtsi                 |   1 -
+ arch/arm/boot/dts/am4372.dtsi                 |   1 -
+ arch/arm/boot/dts/am437x-l4.dtsi              |  19 -
+ arch/arm/boot/dts/dra7-l4.dtsi                |  14 -
+ arch/arm/boot/dts/omap4-l4.dtsi               |  11 -
+ arch/arm/boot/dts/omap5-l4.dtsi               |  30 --
+ .../omap_hwmod_33xx_43xx_common_data.h        |   3 -
+ .../omap_hwmod_33xx_43xx_interconnect_data.c  |   8 -
+ .../omap_hwmod_33xx_43xx_ipblock_data.c       | 157 --------
+ arch/arm/mach-omap2/omap_hwmod_33xx_data.c    |  11 -
+ arch/arm/mach-omap2/omap_hwmod_43xx_data.c    |   9 -
+ arch/arm/mach-omap2/omap_hwmod_44xx_data.c    |  41 --
+ arch/arm/mach-omap2/omap_hwmod_54xx_data.c    | 204 ----------
+ arch/arm/mach-omap2/omap_hwmod_7xx_data.c     | 352 ------------------
+ 15 files changed, 878 deletions(-)
+
 -- 
-2.7.4
-
+2.23.0
