@@ -2,200 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B52DAEFB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 16:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9607DAEFC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 16:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439759AbfJQOBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 10:01:16 -0400
-Received: from mail-qk1-f201.google.com ([209.85.222.201]:52632 "EHLO
-        mail-qk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437401AbfJQOBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 10:01:16 -0400
-Received: by mail-qk1-f201.google.com with SMTP id g65so2165378qkf.19
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 07:01:15 -0700 (PDT)
+        id S2439760AbfJQOBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 10:01:22 -0400
+Received: from mail-vs1-f74.google.com ([209.85.217.74]:50555 "EHLO
+        mail-vs1-f74.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437401AbfJQOBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 10:01:22 -0400
+Received: by mail-vs1-f74.google.com with SMTP id w22so468269vsw.17
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 07:01:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=l9WiDUTny0kvEFJ+UrSdznP6U/Ro/IVKndhC9isHzdk=;
-        b=wA4gOEIzWGRBPEyG2R466fq25DAHISMpQI9TSJE+z9F0wMEOVQFyvHDCo5kk4p0bGX
-         HVcEuMkz6pglnmHqj15ZBIUCqua/ipYdLnYeqcwlVOPu9PjoU1F+VWuXK3VXng1mGFxJ
-         3nyo77giFndzm2El2Th1W3esnu2Zg4XFPkxyfJn/zc5CGd7lERQPQFZcQ/0B+6n7XRRZ
-         c9y1aQORGqWOczVPJ4RrJ9jx2K+j8U2xBtxpsUMRXevjIw6KXSeF7obaK6Zlyg2NLsj0
-         HYidJmtMNV+p1Pfsl7WLaWZqwd7s8Fcf3PnVJ823BrdcgxQgWWku8iA0Vh8rhlApCbVX
-         PmTw==
+        bh=8XXPJEKmRQHJ260AjlgjGDf0xJK5vMVAKae8lLscoNA=;
+        b=GS4q6NINjE4xmnov9Tj1ZS/4JK8l9aGi1ykJcDV+DhEns0zPmLcnxU4YJ6gJc2Ugo3
+         A2MOVp/YJUc0sSR4QcuGvH/N0d4R+2DSO3r13spwS9WCjhI3P8uEUPAi1PaT2ze0rznP
+         ghjZD7kPcxtZ0A8INTl0VB/NmbEbUIPEbVnYp1uNf3rKmJIcVeBor4C0m/c36zUrn8HI
+         PllDvLoHoaNTjKD7Dj/j9cfj65qLcUtvvw+9DaSQOzuXzulLyz2yjxNPaceMQERfeVch
+         zqcOBFRnhvbZ+hRM944VMMGT1YZMxdXboF2s1zLnv2C31O5zH3cyMZJwNzCBOjbLgfRF
+         pZgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=l9WiDUTny0kvEFJ+UrSdznP6U/Ro/IVKndhC9isHzdk=;
-        b=HRICj42xCqzOiQTZOd/EmfVFblSsXzXfZ28jIJhed81LJVk3hfHYaUMBB9euaqGnq/
-         hfjHezLRGSaO2mWPfEKbZwonZIpTV9p+AhtydYvB27uUZYnsQNUrsXt2Iai8jORSoDRn
-         3VV1GkH5kYVhmyzWyMuqCe/5pb/bNBn20frbqvt/QMTD9Q4sZ7lXlelDOdo/ntfQlK5o
-         M2nMRhiWaOlpDK2Xqt8bYioN3t+ffZJaJEVtsHO6h5tgTfKszYn5wCVgswtywjZRkAEp
-         3Tej856x0xao+KxO5CYpCnq1GZp6PruCDxOXJONufuu1/GfYNlY6sorwywnDknsoMc0M
-         weBg==
-X-Gm-Message-State: APjAAAWKG49IdVYFz5APEeB8WNXx/Zc2+blPGEhJO3RnrJuGGAyg8SvA
-        8sR1dpuo8w3LsUGw4T0HHhPlvzaXhG+p
-X-Google-Smtp-Source: APXvYqzC1axFTdCc4MAZN4YTrE9AbR43xyZ7gV+JyhLLWBjp4kdeK/FMyYgpVX6GU3TitHdkSzGUMErl/vYc
-X-Received: by 2002:a37:4e81:: with SMTP id c123mr3249378qkb.468.1571320874664;
- Thu, 17 Oct 2019 07:01:14 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 22:00:13 +0800
+        bh=8XXPJEKmRQHJ260AjlgjGDf0xJK5vMVAKae8lLscoNA=;
+        b=JAZ4Dw6wYEjH/nN90tNzrhfgseAQdWWUs/Y+YCAfASwDGs/rR/jlXxkBzx11FXzAa7
+         JywFNwByA0kAIsjx5WLcwD/fkRnvnhyLIja82qadgthBiYENUxzcbV7SoOmFsPwkfLcV
+         +Fh5ArSRYawvjltFVR8qLutfF1GP09SNto7bDjnQXFcNLkAK7AcIp59YAEaQX/Nymyar
+         xzgXRuDT01hBh6CxMs9/eU+fE1kaj5ds/53yvhIeEIenLxteQn22mrrydglji4GPuihA
+         fuIQUA6rkBGOTxraZ7HjntvVnJPKKUAUNJAaUb8hwj611IOvzik4YQ2dZEpGXBrquHUv
+         UcxQ==
+X-Gm-Message-State: APjAAAX513bM/5AiNKTAzjV5hXxmrN46Gb64tMxRmfSNBY9YPQ3Uq88J
+        6UAzxBvyU6wu/pyu2QZtz+wYl/WGGrga
+X-Google-Smtp-Source: APXvYqwpVGe41Ec51jUiFN3Y7Lw5cwYf7xP9Z7G806scmiFjMPVFlEkaDEETTRRW6AvS2uVmHPj6zSsS1l5y
+X-Received: by 2002:a1f:3a15:: with SMTP id h21mr2067933vka.17.1571320879606;
+ Thu, 17 Oct 2019 07:01:19 -0700 (PDT)
+Date:   Thu, 17 Oct 2019 22:00:14 +0800
 In-Reply-To: <20191017213539.00-tzungbi@google.com>
-Message-Id: <20191017213539.08.I57266d36564f393e9d701c9db648cc2efb0346fc@changeid>
+Message-Id: <20191017213539.09.Iec97a3f137148cdf316056612590b3e0b302f5f3@changeid>
 Mime-Version: 1.0
 References: <20191017213539.00-tzungbi@google.com>
 X-Mailer: git-send-email 2.23.0.700.g56cf767bdb-goog
-Subject: [PATCH v4 08/10] ASoC: mediatek: mt6358: support WoV
+Subject: [PATCH v4 09/10] ASoC: dt-bindings: mt8183: add ec-codec
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     broonie@kernel.org
 Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
         devicetree@vger.kernel.org, enric.balletbo@collabora.com,
         bleung@google.com, gwendal@google.com, drinkcat@google.com,
-        cychiang@google.com, dgreid@google.com, tzungbi@google.com
+        cychiang@google.com, dgreid@google.com, tzungbi@google.com,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch mono DMIC on to support wake-on-voice.
+Add an optional property "ec-codec".  If specified, mt8183 could use the
+"wake on voice" feature offered by EC codec.
 
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 ---
- sound/soc/codecs/mt6358.c | 105 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 105 insertions(+)
+ .../bindings/sound/mt8183-mt6358-ts3a227-max98357.txt          | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/sound/soc/codecs/mt6358.c b/sound/soc/codecs/mt6358.c
-index bb737fd678cc..1b830ea4f6ed 100644
---- a/sound/soc/codecs/mt6358.c
-+++ b/sound/soc/codecs/mt6358.c
-@@ -93,6 +93,8 @@ struct mt6358_priv {
- 	int mtkaif_protocol;
+diff --git a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
+index 17ff3892f439..decaa013a07e 100644
+--- a/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
++++ b/Documentation/devicetree/bindings/sound/mt8183-mt6358-ts3a227-max98357.txt
+@@ -6,12 +6,15 @@ Required properties:
  
- 	struct regulator *avdd_reg;
-+
-+	int wov_enabled;
- };
+ Optional properties:
+ - mediatek,headset-codec: the phandles of ts3a227 codecs
++- mediatek,ec-codec: the phandle of EC codecs.
++                     See google,cros-ec-codec.txt for more details.
  
- int mt6358_set_mtkaif_protocol(struct snd_soc_component *cmpnt,
-@@ -464,6 +466,106 @@ static int mt6358_put_volsw(struct snd_kcontrol *kcontrol,
- 	return ret;
- }
+ Example:
  
-+static void mt6358_restore_pga(struct mt6358_priv *priv);
-+
-+static int mt6358_enable_wov_phase2(struct mt6358_priv *priv)
-+{
-+	/* analog */
-+	regmap_update_bits(priv->regmap, MT6358_AUDDEC_ANA_CON13,
-+			   0xffff, 0x0000);
-+	regmap_update_bits(priv->regmap, MT6358_DCXO_CW14, 0xffff, 0xa2b5);
-+	regmap_update_bits(priv->regmap, MT6358_AUDENC_ANA_CON1,
-+			   0xffff, 0x0800);
-+	mt6358_restore_pga(priv);
-+
-+	regmap_update_bits(priv->regmap, MT6358_DCXO_CW13, 0xffff, 0x9929);
-+	regmap_update_bits(priv->regmap, MT6358_AUDENC_ANA_CON9,
-+			   0xffff, 0x0025);
-+	regmap_update_bits(priv->regmap, MT6358_AUDENC_ANA_CON8,
-+			   0xffff, 0x0005);
-+
-+	/* digital */
-+	regmap_update_bits(priv->regmap, MT6358_AUD_TOP_CKPDN_CON0,
-+			   0xffff, 0x0000);
-+	regmap_update_bits(priv->regmap, MT6358_GPIO_MODE3, 0xffff, 0x0120);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG0, 0xffff, 0xffff);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG1, 0xffff, 0x0200);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG2, 0xffff, 0x2424);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG3, 0xffff, 0xdbac);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG4, 0xffff, 0x029e);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG5, 0xffff, 0x0000);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_POSDIV_CFG0,
-+			   0xffff, 0x0000);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_HPF_CFG0,
-+			   0xffff, 0x0451);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_TOP, 0xffff, 0x68d1);
-+
-+	return 0;
-+}
-+
-+static int mt6358_disable_wov_phase2(struct mt6358_priv *priv)
-+{
-+	/* digital */
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_TOP, 0xffff, 0xc000);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_HPF_CFG0,
-+			   0xffff, 0x0450);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_POSDIV_CFG0,
-+			   0xffff, 0x0c00);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG5, 0xffff, 0x0100);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG4, 0xffff, 0x006c);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG3, 0xffff, 0xa879);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG2, 0xffff, 0x2323);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG1, 0xffff, 0x0400);
-+	regmap_update_bits(priv->regmap, MT6358_AFE_VOW_CFG0, 0xffff, 0x0000);
-+	regmap_update_bits(priv->regmap, MT6358_GPIO_MODE3, 0xffff, 0x02d8);
-+	regmap_update_bits(priv->regmap, MT6358_AUD_TOP_CKPDN_CON0,
-+			   0xffff, 0x0000);
-+
-+	/* analog */
-+	regmap_update_bits(priv->regmap, MT6358_AUDENC_ANA_CON8,
-+			   0xffff, 0x0004);
-+	regmap_update_bits(priv->regmap, MT6358_AUDENC_ANA_CON9,
-+			   0xffff, 0x0000);
-+	regmap_update_bits(priv->regmap, MT6358_DCXO_CW13, 0xffff, 0x9829);
-+	regmap_update_bits(priv->regmap, MT6358_AUDENC_ANA_CON1,
-+			   0xffff, 0x0000);
-+	mt6358_restore_pga(priv);
-+	regmap_update_bits(priv->regmap, MT6358_DCXO_CW14, 0xffff, 0xa2b5);
-+	regmap_update_bits(priv->regmap, MT6358_AUDDEC_ANA_CON13,
-+			   0xffff, 0x0010);
-+
-+	return 0;
-+}
-+
-+static int mt6358_get_wov(struct snd_kcontrol *kcontrol,
-+			  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *c = snd_soc_kcontrol_component(kcontrol);
-+	struct mt6358_priv *priv = snd_soc_component_get_drvdata(c);
-+
-+	ucontrol->value.integer.value[0] = priv->wov_enabled;
-+	return 0;
-+}
-+
-+static int mt6358_put_wov(struct snd_kcontrol *kcontrol,
-+			  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *c = snd_soc_kcontrol_component(kcontrol);
-+	struct mt6358_priv *priv = snd_soc_component_get_drvdata(c);
-+	int enabled = ucontrol->value.integer.value[0];
-+
-+	if (priv->wov_enabled != enabled) {
-+		if (enabled)
-+			mt6358_enable_wov_phase2(priv);
-+		else
-+			mt6358_disable_wov_phase2(priv);
-+
-+		priv->wov_enabled = enabled;
-+	}
-+
-+	return 0;
-+}
-+
- static const DECLARE_TLV_DB_SCALE(playback_tlv, -1000, 100, 0);
- static const DECLARE_TLV_DB_SCALE(pga_tlv, 0, 600, 0);
+ 	sound {
+ 		compatible = "mediatek,mt8183_mt6358_ts3a227_max98357";
+ 		mediatek,headset-codec = <&ts3a227>;
++		mediatek,ec-codec = <&ec_codec>;
+ 		mediatek,platform = <&afe>;
+ 	};
  
-@@ -483,6 +585,9 @@ static const struct snd_kcontrol_new mt6358_snd_controls[] = {
- 			     MT6358_AUDENC_ANA_CON0, MT6358_AUDENC_ANA_CON1,
- 			     8, 4, 0,
- 			     snd_soc_get_volsw, mt6358_put_volsw, pga_tlv),
-+
-+	SOC_SINGLE_BOOL_EXT("Wake-on-Voice Phase2 Switch", 0,
-+			    mt6358_get_wov, mt6358_put_wov),
- };
- 
- /* MUX */
 -- 
 2.23.0.700.g56cf767bdb-goog
 
