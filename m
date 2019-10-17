@@ -2,71 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1446ADB6C9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A657DB6DD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503241AbfJQTFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 15:05:51 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:45794 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2503244AbfJQTFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 15:05:50 -0400
-Received: by mail-oi1-f193.google.com with SMTP id o205so3079476oib.12;
-        Thu, 17 Oct 2019 12:05:50 -0700 (PDT)
+        id S2439194AbfJQTIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 15:08:21 -0400
+Received: from mail-yb1-f195.google.com ([209.85.219.195]:35785 "EHLO
+        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2441359AbfJQTIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 15:08:21 -0400
+Received: by mail-yb1-f195.google.com with SMTP id i6so1057121ybe.2;
+        Thu, 17 Oct 2019 12:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/XGjJBGWBzNHoBfXlGLk+OFOUnYWPc8VecafOj7/Jo8=;
+        b=VhSJpgBrLMCK1kZpbEwgcDek/uMN0XUbiXNrZCe8gK9eZn7uvq7SKxl4VmPjSHioUh
+         KJtE7K/HQddcP2uXNS/wLBzBQmEOzHAr8XxoK4n4lhOEGrqcvgaN3FVcxNDCin9KlP+6
+         /Au77xgl+afURlUk0KY+dBCYlIe5+tSLx0qgaQ72mtDzLQAFTHTkZmmZPB2qZzstRL40
+         BQIVyO4jnQedWySrc7E2azJUqKYnNgGjqcCJOIhd3o97oR5knc3xGUW2Wo8qhmVfT+tp
+         B5vNK3n/DVpe9UWyglHNgBRv4ghi8TLU3jkbuDmKnh0dzNuoUq1ujVav0akjEE3NeLk5
+         X+5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=pIwNPuLqrVC0vwajFKZ34bu7NezvOZ+RIARbVf4/Xog=;
-        b=dnf1vF0tzUMvxCfwtQYoYLqceRmtAv0WeLil0SG5pqEa/p1BEzOctS9MLSmCVWY4Rx
-         9rhkYkjpkau2VM9DsELYIg7tS+oh90AKTjELPOdN/RhmtuRTEjzpQsLTUX87+L34WO4M
-         LpNxHxFIbB+vmDVif3ylCEuiS2LyxTYJ7K1ICALRXfM5Yb8CknTgjz+o0q6NJPJgmDX2
-         1sJ3+L2KYDrJo+MRs8O7eXn3g4nMpAD6Fzzca0XzeGMZsS5NF3TMO06dj0n33+zVrMIh
-         KmWd+cPuunGJ6mfS4huMSspEkg4Q8ZjNqt41/FQROxSJDbqe+f17nIEg7grtB2icMdks
-         ii1w==
-X-Gm-Message-State: APjAAAVodctno7nVy/wpBz6kOUl8bYPk3PQ//J6YLzTjunlpK69rG8T7
-        dkJNm8muRqHIryQ1pHJa0A==
-X-Google-Smtp-Source: APXvYqxqoO+d64tKehv+8gK5U/uIPPyn1squ0aYUSe8BE5CEimvcE3Sd6bk4nkwIseCWIpcr3b3B5w==
-X-Received: by 2002:a05:6808:917:: with SMTP id w23mr4405839oih.68.1571339149780;
-        Thu, 17 Oct 2019 12:05:49 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z16sm799423otq.78.2019.10.17.12.05.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 12:05:48 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 14:05:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     kholk11@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
-        agross@kernel.org, bjorn.andersson@linaro.org, marijns95@gmail.com,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: Document MSM8976 gcc
- compatible
-Message-ID: <20191017190547.GA10490@bogus>
-References: <20191015103221.51345-1-kholk11@gmail.com>
- <20191015103221.51345-3-kholk11@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/XGjJBGWBzNHoBfXlGLk+OFOUnYWPc8VecafOj7/Jo8=;
+        b=CzLs/KTgO5rdZC4rKkeuTN3V6W7yV/DfnVqEcHbL+r/2lsg1N01I3m5CwcU0lMpyOt
+         T9RCe23/FKh6CDpkYsBqMkK8/jE7wM5wAVzC4OiYfijWifes7yiesyF6Fr3y9T80Fhmd
+         fxcUYySE3GqRFrs7zS4+/esIcTDpYTp1KYS0PMorppgeEcZIFKMJRzmF8XE3qjDP+Ps8
+         lOWH2d+nUZLJ0FRhmImO0c/m6NW3xb26tbmWNMm2QChwURC8MFGbxyXyrS1PlO/Dr+6I
+         Fx+Jr4Xk+0GuPLFCCd9J9N4frnNJFvZxiZo+lbwoC7dY+veHGtHmmva0s/fTSBWY0l2f
+         VYvA==
+X-Gm-Message-State: APjAAAXKCidn12MtgMzCeTldgagbF8wXagOWQwoo5tj3EkjBLl+1qLC6
+        83xtMel9Y7KcMeE5XJI2PkAFw4Cv
+X-Google-Smtp-Source: APXvYqwJLh+hMtSO+Bw+p8QZlDDig5Lb+bOqC9lSM8DmwCTTMj+7tQTS3nDUweew7iQSoT3+AbNLvg==
+X-Received: by 2002:a25:cf01:: with SMTP id f1mr3556762ybg.386.1571339300559;
+        Thu, 17 Oct 2019 12:08:20 -0700 (PDT)
+Received: from [192.168.1.62] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
+        by smtp.gmail.com with ESMTPSA id a64sm737640ywe.92.2019.10.17.12.08.19
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Oct 2019 12:08:19 -0700 (PDT)
+Subject: Re: [PATCH] dtc: fix spelling mistake "mmory" -> "memory"
+To:     Colin King <colin.king@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20190911093123.11312-1-colin.king@canonical.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <4aa3bcde-1ad1-98ec-8deb-4a8ab1bbb41c@gmail.com>
+Date:   Thu, 17 Oct 2019 14:08:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191015103221.51345-3-kholk11@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190911093123.11312-1-colin.king@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Oct 2019 12:32:21 +0200, kholk11@gmail.com wrote:
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Hi Rob,
+
+
+On 09/11/2019 04:31, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
 > 
-> Document the Global Clock Controller driver (gcc-msm8976)
-> compatible string.
-> This driver is valid for MSM8976, MSM8956 and APQ variants.
+> There is a spelling mistake in an error message. Fix it.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,gcc.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  scripts/dtc/fdtput.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/scripts/dtc/fdtput.c b/scripts/dtc/fdtput.c
+> index a363c3cabc59..3755e5f68a5a 100644
+> --- a/scripts/dtc/fdtput.c
+> +++ b/scripts/dtc/fdtput.c
+> @@ -84,7 +84,7 @@ static int encode_value(struct display_info *disp, char **arg, int arg_count,
+>  			value_size = (upto + len) + 500;
+>  			value = realloc(value, value_size);
+>  			if (!value) {
+> -				fprintf(stderr, "Out of mmory: cannot alloc "
+> +				fprintf(stderr, "Out of memory: cannot alloc "
+>  					"%d bytes\n", value_size);
+>  				return -1;
+>  			}
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+This is a very old version of the upstream file.  update-dtc-source.sh does
+not pull new versions of this file.
+
+We don't actually build fdtput, is there any reason to not just remove
+scripts/dtc/fdtput.c?
+
+-Frank
