@@ -2,68 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F189EDB33B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 19:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE847DB4D5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 19:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436760AbfJQRZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 13:25:45 -0400
-Received: from mail-yb1-f195.google.com ([209.85.219.195]:35669 "EHLO
-        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728639AbfJQRZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 13:25:44 -0400
-Received: by mail-yb1-f195.google.com with SMTP id i6so956263ybe.2;
-        Thu, 17 Oct 2019 10:25:44 -0700 (PDT)
+        id S1732708AbfJQRwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 13:52:02 -0400
+Received: from mail-yb1-f193.google.com ([209.85.219.193]:33734 "EHLO
+        mail-yb1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731507AbfJQRwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 13:52:02 -0400
+Received: by mail-yb1-f193.google.com with SMTP id h7so985037ybp.0;
+        Thu, 17 Oct 2019 10:52:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nWD5b0MoHbCvknNDVqGUV4RSB9C7rG67yURZlZ2XgzA=;
-        b=Z8XikbH2kKqHlcdWTq2QIIbLlUSDX/B2oHZLUObTv0rBEsOrumWXRzudmwQW4zfmWr
-         KVdOdZlOes8/9Sac5RM3G3OziBnfyqfzB564WFUFY3/VWhPXyBLWmEzPlZ/y3nR2vr+s
-         YNberX7IP0ygJfoFWsMXLCwpPov7b+f0aCO29uCle8XqXI8eW+9Srt3ACm9S/3UbSZZ2
-         enigaXnxyNSpLEElb+EfWPGHBCkpZ1h/VTj2DE/8rAtbQ7Volb0K0O6tRRhsNM7WJcEd
-         DEVo+lKrwDRHAnhRWoWbmbJrVSDjo1VNmfgGefWNilULpJQ6y7SfY7hGPUwutCLhSanZ
-         krMg==
+        bh=6Y+ZwNbvDgBSzQVKHdX0fwos/mJZYR5WoyveqVfS1nI=;
+        b=hrgOx2BW7c9paa25PYU8TkqKkBUyoDNTJgrZdCxqC6tzleyg/+9TLcsbhCRix45vy0
+         S4js+1MENCUK1An61x04rGWacyC4T30NzcnnLFSs3DAC+NeTB8c+fw302gYJr61OhPaR
+         IYOH1T8HRl9/XstjQrInWC2HiPKAO+Ph/S6+TY2qiOenHy5+2gE9NRLKtdk9iazYbyGT
+         LdzYDvyiwdZL+AKzzESaCpqU5eCDYyH8FctAVXIqxv46AYnEAKgu7zE38KM/0F3vfvtq
+         SjZDbSeqjurYQMNMKp6hHyWJM2SROHHb+5iVE6azQUYfVmD90DooLcVCbirp48hHcqVd
+         1aKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=nWD5b0MoHbCvknNDVqGUV4RSB9C7rG67yURZlZ2XgzA=;
-        b=sbnUD/0w2awEvEikqPAt4Mu/cc4fuHIhiVHtOkqXmdzLsGehrICQrHQ5mn+6k6MeQR
-         /Sdi5d46BpK0UAv3t6KB1kUCRa4p4Iv0S/pLSoDnQ0hUiLYA/ebFE2pHQO4RPGUF046U
-         gpeKPR/ZLELCO0voBEN+erP5McPf/geLRgaoNLK9VRhRCPRURCdXk+//p76uLwvsmfBE
-         +12ZGbxoYGxedpiuXv9LShJbmgYwV5oZizhRCukzpjjWa2mvQCkBAKlDqeB4FwSUf8Mc
-         AE7JzF5G4QtTxIzM5guQwWh21uxGyTFdwgBYKvBof431DxYKNQk4KbRyWdb+rn1ahU6S
-         hx3A==
-X-Gm-Message-State: APjAAAXZqIUHINtW/dE9FnE/maseqnzFx7imqnbc+QK15+jhaKOMh/Ip
-        CHZBhjrUmoaOifrasuG642Y=
-X-Google-Smtp-Source: APXvYqy2XqFyvoko2lzT+4eV2PuLy4fUgikaTdLvK0VHRBqXvVAnllKP2ZFhRSq8ubkCvFkDzH1TBQ==
-X-Received: by 2002:a25:d24b:: with SMTP id j72mr3062785ybg.158.1571333143962;
-        Thu, 17 Oct 2019 10:25:43 -0700 (PDT)
+        bh=6Y+ZwNbvDgBSzQVKHdX0fwos/mJZYR5WoyveqVfS1nI=;
+        b=ndVxLgG6GH819GQEiuY+q4mvev+2xD04yGDuOe2zz3c4tRXwWAhc/8cSwXzv5cg/N6
+         dSLjvrRKkV88tqqUe+8msyqTS+/dW+cBMGsxP21FgY9+cCvN5pt0P9eiMVcs5biqSV4i
+         AkZLUjFKRl5Ogy1nBdwaxol8+/WcpUt8lMyYU58ApqFZD9ngQZHHHa/xFw89A80JkhY0
+         gTCeNw14zuq380UElKB5QnA5MTbcgMd6txmvcndb+n8Xj+Kf9Hme5VKouGLnC5y2EWHW
+         9a08SrjZqWUBt3jg/Q4lyqWXrWviy2UqiBiYDporeQ35fBvWSu7/qeeeZuXl+vo7MNVd
+         ebBg==
+X-Gm-Message-State: APjAAAWa+imt2CFKu4kxaq/fJnmaGSTpK8SLIpbczXikXFE5hw4+pfUK
+        T4++Lxt1HX/aiHohTtMi3AuIC43l
+X-Google-Smtp-Source: APXvYqx47R2Mzj1mI0CyeN1V3OZmrTNj71UhsM+SdJuHR+2Z1YzBpsFr+vO0xnCD2roudDZ1i23avA==
+X-Received: by 2002:a25:514:: with SMTP id 20mr3353863ybf.422.1571334721244;
+        Thu, 17 Oct 2019 10:52:01 -0700 (PDT)
 Received: from [192.168.1.62] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
-        by smtp.gmail.com with ESMTPSA id 80sm697943ywp.56.2019.10.17.10.25.43
+        by smtp.gmail.com with ESMTPSA id z66sm39771ywz.78.2019.10.17.10.52.00
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 17 Oct 2019 10:25:43 -0700 (PDT)
-Subject: Re: [PATCH] libfdt: reduce the number of headers included from
- libfdt_env.h
+        Thu, 17 Oct 2019 10:52:00 -0700 (PDT)
+Subject: Re: [PATCH] of: unittest: fix memory leak in unittest_data_add
 To:     Rob Herring <robh@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-References: <20190617162123.24920-1-yamada.masahiro@socionext.com>
- <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
- <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
- <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
- <20191017163414.GA4205@bogus>
+        Navid Emamdoost <navid.emamdoost@gmail.com>
+Cc:     emamd001@umn.edu, kjlu@umn.edu, smccaman@umn.edu,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20191004185847.14074-1-navid.emamdoost@gmail.com>
+ <20191015194105.GA24758@bogus>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <5b5ece90-0b9f-38e4-8c23-3c9ea4105c79@gmail.com>
-Date:   Thu, 17 Oct 2019 12:25:36 -0500
+Message-ID: <2558667a-6820-fd68-bd03-64b9fb467c7a@gmail.com>
+Date:   Thu, 17 Oct 2019 12:51:53 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
  Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <20191017163414.GA4205@bogus>
+In-Reply-To: <20191015194105.GA24758@bogus>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,26 +67,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/17/2019 11:34, Rob Herring wrote:
-> On Wed, Oct 16, 2019 at 08:01:46PM +0900, Masahiro Yamada wrote:
->> Hi Andrew,
+On 10/15/2019 14:41, Rob Herring wrote:
+> On Fri,  4 Oct 2019 13:58:43 -0500, Navid Emamdoost wrote:
+>> In unittest_data_add, a copy buffer is created via kmemdup. This buffer
+>> is leaked if of_fdt_unflatten_tree fails. The release for the
+>> unittest_data buffer is added.
 >>
->> Could you pick up this to akpm tree?
->> https://lore.kernel.org/patchwork/patch/1089856/
+>> Fixes: b951f9dc7f25 ("Enabling OF selftest to run without machine's devicetree")
+>> Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
+>> ---
+>>  drivers/of/unittest.c | 1 +
+>>  1 file changed, 1 insertion(+)
 >>
->> I believe this is correct, and a good clean-up.
->>
->> I pinged the DT maintainers, but they did not respond.
 > 
-> Sorry I missed this. Things outside my normal paths fall thru the 
-> cracks.
-> 
-> I'll apply it now.
+> Applied, thanks.
 > 
 > Rob
 > 
 
-Looks like my reply crossed with Rob's.  Rob, shouldn't
-scripts/dtc/update-dtc-source.sh make this change?
+Academic since already applied, but:
 
--Frank
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
