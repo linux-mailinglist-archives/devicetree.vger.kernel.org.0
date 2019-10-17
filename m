@@ -2,315 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89EDDDA420
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 05:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34B2FDA42F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 05:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392332AbfJQDH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Oct 2019 23:07:26 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:38299 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392090AbfJQDHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 23:07:25 -0400
-Received: by mail-pg1-f196.google.com with SMTP id w3so439208pgt.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 20:07:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KTFtxZWUiTYJpaSQJ40/68ZXAzUIZdoELBfsk84v/dU=;
-        b=cmOrM9Whxk4C0Tv6yhZEoY2DaawAKw1kETwNd+i4BmUcvaPI7+ENbykiQEjMddJQ42
-         G4OYhCTF/OadnzpUxCReLOtyUR2Tw5/UPtE5GcRoUHm7Z4suC3PZlaIwiKoYj8rkI5Ze
-         QczzUmg/Hl6US9GE+v6s3HqZgwk8B//EU5OK6EJxy6Uvt2omRgmeevVMrL03do1FFKnO
-         uzBNKi7kDgWU2HH6HZajhf/CrUAd1PLvk18QaRSMCXPmPW8vABifWRIAKMn7BEUGBWex
-         Og9A9cJbpaQHWrhZgTUUe9cz+23Y8nF4eRpYhQKWL694fizwd+UWfmRW/xfrxlsoGwY+
-         CjQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KTFtxZWUiTYJpaSQJ40/68ZXAzUIZdoELBfsk84v/dU=;
-        b=p8esZ5jJySmizWBsY+/PBfH7DWefPvBe5qWAIOdWylHv0vySTUKOZG5M4vQC7eriVX
-         eKMPY4ftzLBwUFTIMgpYYLtUeCzrTrZju86Uo9iQQtZb240wukcCGn1CZ7K7w0DBjJeW
-         snV8dFcul05jFHFwnWx248ZKjJvhgvjLsZx9utEDGhrjFF0LJjQsfRor1SocSAWmV7Eb
-         sqeyELO1Y2V4a7RokPia+ZRY0cffA0dq2wHEST9N7r6mriusjzXTZUHyuO9iGqD/hAvy
-         ziwMsPQfXQrnNaz5owfqkSo4Mz0v/v0PghCa1OZLIFCCcm3iXrzLt2U7N2jRs6bbdr0l
-         D8IQ==
-X-Gm-Message-State: APjAAAV3V/6q1TEtlE1qKWdS1egIzymg9wQvnHVgaWcLCVszp42Vhysk
-        MqbTrLH0jQ87YXd9XoeVEghL79xD64M=
-X-Google-Smtp-Source: APXvYqw/b14sA0N/0grsvirjONGwcqjGUivg3DcbdXo//zLwyjheZwvwp1kvH4lfXI7SGA9nRI9z6Q==
-X-Received: by 2002:a63:5423:: with SMTP id i35mr1638361pgb.128.1571281643033;
-        Wed, 16 Oct 2019 20:07:23 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:bc61:d85d:eb16:9036])
-        by smtp.gmail.com with ESMTPSA id e10sm569507pfh.77.2019.10.16.20.07.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2019 20:07:22 -0700 (PDT)
-Date:   Wed, 16 Oct 2019 20:07:17 -0700
-From:   Benson Leung <bleung@google.com>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     broonie@kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, gwendal@google.com,
-        drinkcat@google.com, cychiang@google.com, dgreid@google.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 05/10] ASoC: cros_ec_codec: read max DMIC gain from EC
- codec
-Message-ID: <20191017030717.GC72195@google.com>
-References: <20191014102022.236013-1-tzungbi@google.com>
- <20191014180059.05.Id4657c864d544634f2b5c1c9b34fa8232ecba44d@changeid>
+        id S2404445AbfJQDLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Oct 2019 23:11:01 -0400
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:48888 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732713AbfJQDLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Oct 2019 23:11:01 -0400
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 204C0891AA;
+        Thu, 17 Oct 2019 16:10:58 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1571281858;
+        bh=xrGrisgeEZb88kf6xkzyTFrAcQCeEBWEESK0FoOUtc0=;
+        h=From:To:Cc:Subject:Date;
+        b=nGz6gBJikh0TD1nGhHqEvLqBtod+Rtybh67nBDFjCW+RnMliQrAguKs8rqbfty/xh
+         VgbdhQaPX6z4SnGwoPPhcNnbFE3u+HkyJGR+joemN6fUKkaI1wbes5ueOUOF6LVD89
+         ctf+IEHEGbf5om0m3x/no1SM7eNo0ETZ5D/Gp69wViSLCcm+1+NqZwnokvs5VQCweX
+         dOhgOAIggoESB8D61WFw+cZDiD1FHI2/VUXv3rLNU9e3u4x9zaw10Tivb5umTmzqi9
+         LFxAiyR+gD19tPHfu4vdB2OQYYAM+dkBn1X329l1Kt6n0WczPlSkJBiBPxjOa4LAMe
+         0aA+ra1qvzbfQ==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5da7dbc20000>; Thu, 17 Oct 2019 16:10:58 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by smtp (Postfix) with ESMTP id E94B713EEB6;
+        Thu, 17 Oct 2019 16:11:01 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id D3787280059; Thu, 17 Oct 2019 16:10:57 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, rjui@broadcom.com,
+        sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2 0/2] gpio: brcm: XGS iProc GPIO driver
+Date:   Thu, 17 Oct 2019 16:10:49 +1300
+Message-Id: <20191017031051.20366-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZmUaFz6apKcXQszQ"
-Content-Disposition: inline
-In-Reply-To: <20191014180059.05.Id4657c864d544634f2b5c1c9b34fa8232ecba44d@changeid>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is ported this from Broadcom's XLDK (now heavily modified). There se=
+em to
+be 3 different IP blocks for 3 separate banks of GPIOs in the iProc chips=
+.
 
---ZmUaFz6apKcXQszQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I've dropped everything except support for the Chip Common A GPIO
+controller because the other blocks actually seem to be supportable with
+other drivers. The driver itself is halfway between pinctrl-nsp-gpio.c
+and pinctrl-iproc-gpio.c.
 
-On Mon, Oct 14, 2019 at 06:20:17PM +0800, Tzung-Bi Shih wrote:
-> Read max DMIC gain from EC codec instead of DTS.  Also removes the
-> dt-binding of max-dmic-gain.
->=20
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+Chris Packham (2):
+  dt-bindings: gpio: brcm: Add bindings for xgs-iproc
+  gpio: Add xgs-iproc driver
 
-Acked-By: Benson Leung <bleung@chromium.org>
-
-
-> ---
->  .../bindings/sound/google,cros-ec-codec.txt   |  4 +-
->  .../linux/platform_data/cros_ec_commands.h    | 43 +++++++++++----
->  sound/soc/codecs/cros_ec_codec.c              | 53 ++++++++++++++-----
->  3 files changed, 73 insertions(+), 27 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec=
-=2Etxt b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
-> index 1084f7f22eea..0ce9fafc78e2 100644
-> --- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
-> +++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
-> @@ -1,4 +1,4 @@
-> -* Audio codec controlled by ChromeOS EC
-> +Audio codec controlled by ChromeOS EC
-> =20
->  Google's ChromeOS EC codec is a digital mic codec provided by the
->  Embedded Controller (EC) and is controlled via a host-command interface.
-> @@ -9,7 +9,6 @@ Documentation/devicetree/bindings/mfd/cros-ec.txt).
->  Required properties:
->  - compatible: Must contain "google,cros-ec-codec"
->  - #sound-dai-cells: Should be 1. The cell specifies number of DAIs.
-> -- max-dmic-gain: A number for maximum gain in dB on digital microphone.
-> =20
->  Example:
-> =20
-> @@ -21,6 +20,5 @@ cros-ec@0 {
->  	cros_ec_codec: ec-codec {
->  		compatible =3D "google,cros-ec-codec";
->  		#sound-dai-cells =3D <1>;
-> -		max-dmic-gain =3D <43>;
->  	};
->  };
-> diff --git a/include/linux/platform_data/cros_ec_commands.h b/include/lin=
-ux/platform_data/cros_ec_commands.h
-> index 3ca0fa9e92a7..21db0d4d4025 100644
-> --- a/include/linux/platform_data/cros_ec_commands.h
-> +++ b/include/linux/platform_data/cros_ec_commands.h
-> @@ -4530,30 +4530,53 @@ struct __ec_align4 ec_response_ec_codec_get_shm_a=
-ddr {
->  #define EC_CMD_EC_CODEC_DMIC 0x00BD
-> =20
->  enum ec_codec_dmic_subcmd {
-> -	EC_CODEC_DMIC_SET_GAIN =3D 0x0,
-> -	EC_CODEC_DMIC_GET_GAIN =3D 0x1,
-> +	EC_CODEC_DMIC_GET_MAX_GAIN =3D 0x0,
-> +	EC_CODEC_DMIC_SET_GAIN_IDX =3D 0x1,
-> +	EC_CODEC_DMIC_GET_GAIN_IDX =3D 0x2,
->  	EC_CODEC_DMIC_SUBCMD_COUNT,
->  };
-> =20
-> -struct __ec_align1 ec_param_ec_codec_dmic_set_gain {
-> -	uint8_t left;
-> -	uint8_t right;
-> +enum ec_codec_dmic_channel {
-> +	EC_CODEC_DMIC_CHANNEL_0 =3D 0x0,
-> +	EC_CODEC_DMIC_CHANNEL_1 =3D 0x1,
-> +	EC_CODEC_DMIC_CHANNEL_2 =3D 0x2,
-> +	EC_CODEC_DMIC_CHANNEL_3 =3D 0x3,
-> +	EC_CODEC_DMIC_CHANNEL_4 =3D 0x4,
-> +	EC_CODEC_DMIC_CHANNEL_5 =3D 0x5,
-> +	EC_CODEC_DMIC_CHANNEL_6 =3D 0x6,
-> +	EC_CODEC_DMIC_CHANNEL_7 =3D 0x7,
-> +	EC_CODEC_DMIC_CHANNEL_COUNT,
-> +};
-> +
-> +struct __ec_align1 ec_param_ec_codec_dmic_set_gain_idx {
-> +	uint8_t channel; /* enum ec_codec_dmic_channel */
-> +	uint8_t gain;
->  	uint8_t reserved[2];
->  };
-> =20
-> +struct __ec_align1 ec_param_ec_codec_dmic_get_gain_idx {
-> +	uint8_t channel; /* enum ec_codec_dmic_channel */
-> +	uint8_t reserved[3];
-> +};
-> +
->  struct __ec_align4 ec_param_ec_codec_dmic {
->  	uint8_t cmd; /* enum ec_codec_dmic_subcmd */
->  	uint8_t reserved[3];
-> =20
->  	union {
-> -		struct ec_param_ec_codec_dmic_set_gain
-> -				set_gain_param;
-> +		struct ec_param_ec_codec_dmic_set_gain_idx
-> +				set_gain_idx_param;
-> +		struct ec_param_ec_codec_dmic_get_gain_idx
-> +				get_gain_idx_param;
->  	};
->  };
-> =20
-> -struct __ec_align1 ec_response_ec_codec_dmic_get_gain {
-> -	uint8_t left;
-> -	uint8_t right;
-> +struct __ec_align1 ec_response_ec_codec_dmic_get_max_gain {
-> +	uint8_t max_gain;
-> +};
-> +
-> +struct __ec_align1 ec_response_ec_codec_dmic_get_gain_idx {
-> +	uint8_t gain;
->  };
-> =20
->  /***********************************************************************=
-******/
-> diff --git a/sound/soc/codecs/cros_ec_codec.c b/sound/soc/codecs/cros_ec_=
-codec.c
-> index c19c7fe42e2e..3d4f9e82d6e9 100644
-> --- a/sound/soc/codecs/cros_ec_codec.c
-> +++ b/sound/soc/codecs/cros_ec_codec.c
-> @@ -65,18 +65,26 @@ static int dmic_get_gain(struct snd_kcontrol *kcontro=
-l,
->  	struct cros_ec_codec_priv *priv =3D
->  		snd_soc_component_get_drvdata(component);
->  	struct ec_param_ec_codec_dmic p;
-> -	struct ec_response_ec_codec_dmic_get_gain r;
-> +	struct ec_response_ec_codec_dmic_get_gain_idx r;
->  	int ret;
-> =20
-> -	p.cmd =3D EC_CODEC_DMIC_GET_GAIN;
-> +	p.cmd =3D EC_CODEC_DMIC_GET_GAIN_IDX;
-> +	p.get_gain_idx_param.channel =3D EC_CODEC_DMIC_CHANNEL_0;
->  	ret =3D send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
->  				   (uint8_t *)&p, sizeof(p),
->  				   (uint8_t *)&r, sizeof(r));
->  	if (ret < 0)
->  		return ret;
-> +	ucontrol->value.integer.value[0] =3D r.gain;
-> =20
-> -	ucontrol->value.integer.value[0] =3D r.left;
-> -	ucontrol->value.integer.value[1] =3D r.right;
-> +	p.cmd =3D EC_CODEC_DMIC_GET_GAIN_IDX;
-> +	p.get_gain_idx_param.channel =3D EC_CODEC_DMIC_CHANNEL_1;
-> +	ret =3D send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
-> +				   (uint8_t *)&p, sizeof(p),
-> +				   (uint8_t *)&r, sizeof(r));
-> +	if (ret < 0)
-> +		return ret;
-> +	ucontrol->value.integer.value[1] =3D r.gain;
-> =20
->  	return 0;
->  }
-> @@ -94,15 +102,24 @@ static int dmic_put_gain(struct snd_kcontrol *kcontr=
-ol,
->  	int left =3D ucontrol->value.integer.value[0];
->  	int right =3D ucontrol->value.integer.value[1];
->  	struct ec_param_ec_codec_dmic p;
-> +	int ret;
-> =20
->  	if (left > max_dmic_gain || right > max_dmic_gain)
->  		return -EINVAL;
-> =20
->  	dev_dbg(component->dev, "set mic gain to %u, %u\n", left, right);
-> =20
-> -	p.cmd =3D EC_CODEC_DMIC_SET_GAIN;
-> -	p.set_gain_param.left =3D left;
-> -	p.set_gain_param.right =3D right;
-> +	p.cmd =3D EC_CODEC_DMIC_SET_GAIN_IDX;
-> +	p.set_gain_idx_param.channel =3D EC_CODEC_DMIC_CHANNEL_0;
-> +	p.set_gain_idx_param.gain =3D left;
-> +	ret =3D send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
-> +				   (uint8_t *)&p, sizeof(p), NULL, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	p.cmd =3D EC_CODEC_DMIC_SET_GAIN_IDX;
-> +	p.set_gain_idx_param.channel =3D EC_CODEC_DMIC_CHANNEL_1;
-> +	p.set_gain_idx_param.gain =3D right;
->  	return send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
->  				    (uint8_t *)&p, sizeof(p), NULL, 0);
->  }
-> @@ -125,19 +142,27 @@ static int dmic_probe(struct snd_soc_component *com=
-ponent)
->  	struct cros_ec_codec_priv *priv =3D
->  		snd_soc_component_get_drvdata(component);
->  	struct device *dev =3D priv->dev;
-> -	int ret, val;
->  	struct soc_mixer_control *control;
-> +	struct ec_param_ec_codec_dmic p;
-> +	struct ec_response_ec_codec_dmic_get_max_gain r;
-> +	int ret;
-> =20
-> -	ret =3D device_property_read_u32(dev, "max-dmic-gain", &val);
-> -	if (ret) {
-> -		dev_err(dev, "Failed to read 'max-dmic-gain'\n");
-> -		return ret;
-> +	p.cmd =3D EC_CODEC_DMIC_GET_MAX_GAIN;
-> +
-> +	ret =3D send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
-> +				   (uint8_t *)&p, sizeof(p),
-> +				   (uint8_t *)&r, sizeof(r));
-> +	if (ret < 0) {
-> +		dev_warn(dev, "get_max_gain() unsupported\n");
-> +		return 0;
->  	}
-> =20
-> +	dev_dbg(dev, "max gain =3D %d\n", r.max_gain);
-> +
->  	control =3D (struct soc_mixer_control *)
->  		dmic_controls[DMIC_CTL_GAIN].private_value;
-> -	control->max =3D val;
-> -	control->platform_max =3D val;
-> +	control->max =3D r.max_gain;
-> +	control->platform_max =3D r.max_gain;
-> =20
->  	return snd_soc_add_component_controls(component,
->  			&dmic_controls[DMIC_CTL_GAIN], 1);
-> --=20
-> 2.23.0.700.g56cf767bdb-goog
->=20
+ .../bindings/gpio/brcm,xgs-iproc.yaml         |  83 +++++
+ drivers/gpio/Kconfig                          |   9 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-xgs-iproc.c                 | 301 ++++++++++++++++++
+ 4 files changed, 394 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/brcm,xgs-iproc=
+.yaml
+ create mode 100644 drivers/gpio/gpio-xgs-iproc.c
 
 --=20
-Benson Leung
-Staff Software Engineer
-Chrome OS Kernel
-Google Inc.
-bleung@google.com
-Chromium OS Project
-bleung@chromium.org
+2.23.0
 
---ZmUaFz6apKcXQszQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCXafa5QAKCRBzbaomhzOw
-wr4mAQDuC5y7ZMEeY8/PgCSIspIVZSHeEdSxMUMU9MJFpkHGnAD/XI/NmylzfEeZ
-iMtw43rtMbtr2tTa9rBtrTxQ8eUdgQY=
-=42mO
------END PGP SIGNATURE-----
-
---ZmUaFz6apKcXQszQ--
