@@ -2,86 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35C59DA5B2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 08:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDEA3DA5B8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 08:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392558AbfJQGmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 02:42:18 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54171 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392487AbfJQGmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 02:42:18 -0400
-Received: from soja.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:13da])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <o.rempel@pengutronix.de>)
-        id 1iKzUG-0004o0-Ih; Thu, 17 Oct 2019 08:42:16 +0200
-Subject: Re: [PATCH v1 2/4] dt-bindings: net: dsa: qca,ar9331 switch
- documentation
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Chris Snook <chris.snook@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20191014061549.3669-1-o.rempel@pengutronix.de>
- <20191014061549.3669-3-o.rempel@pengutronix.de>
- <20191016202356.GM17013@lunn.ch>
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-Message-ID: <3944e911-8eaf-1c57-14de-0998b3245225@pengutronix.de>
-Date:   Thu, 17 Oct 2019 08:42:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2404773AbfJQGnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 02:43:02 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:46369 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406808AbfJQGnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 02:43:02 -0400
+Received: by mail-pg1-f195.google.com with SMTP id e15so719871pgu.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2019 23:43:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=v1tsE/i22fykGeq4lfZ46USRZ236n/tqtjmeKNn1XGw=;
+        b=B8sekKbZBmry7+sPAy9q+xCmQ6T0Z7VUGC5wIGJnLggtOWKj7ZZDni9IeYm2gtextx
+         ukuKpDtv3M1hCZMSWYPXTz2Et8wjkOq2y2Tk06Uazd3src3zT51nBeNYFHwoot6QNaeE
+         Pn9JzFI31+vZzBBGZJZmeBTNH+Auu/4Vq8rzLb7URIZnH0wnyp5BkKlTtlNTP5wLMwvC
+         fObndpRt2n20mfUGLtSIdMoNCzzmhN7kzUo0O6S9cbXxNosRajdtjzlHUEECP0OACP3G
+         0IqVWEg5pE8Cl81gMff6IzlQXycwa5Vwx/iJ0R8LeHp2SCij4zgNqjWHHZ4fsV2YtiKT
+         TKTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=v1tsE/i22fykGeq4lfZ46USRZ236n/tqtjmeKNn1XGw=;
+        b=meIYJgGPQzUh+OEYr3B7jRixF3kasXasNugutWuC6l84a9FItL/G2JG54iO2zaxV+a
+         IqdpQXGMb7wIufL4GzeoYlKf9z8Y9/Es9pEGYGhg0DniXJOYe/CGvC8rNe1QvUPgor8Y
+         dkw53noHbgLroM06Drado7cyzvbBqMXGsZSJ9ngMUsAk4O009w9lETrTtxtri2/I6iz7
+         HLd/Phecgo9AV6860g/qxPlVgo7wi4RdDtBclJOn6B8h4hoZKMIUngrq28+3zU5HNPAh
+         Zlu+BzQo7sj5STi2yd5sUJTiGyf1umjtP0vE+6tYxGdAbELCUEZy52asgNSILnT2Kl1c
+         XVhg==
+X-Gm-Message-State: APjAAAXvMhWoSA3v+LCuurP0gGVrQni7le6ieUy8DB+YnSeW17NSdkHD
+        8D/g7s8XdAEALRE0haU9CGJbkw==
+X-Google-Smtp-Source: APXvYqyRtngW2yMCZZkoEQXLA1L6wPdZIAWGztmKH1IGUnDAdstQ8/PHr2ntupuE+fzATQ+j5fa0zA==
+X-Received: by 2002:a63:e802:: with SMTP id s2mr2362627pgh.188.1571294581697;
+        Wed, 16 Oct 2019 23:43:01 -0700 (PDT)
+Received: from localhost ([122.172.151.112])
+        by smtp.gmail.com with ESMTPSA id v4sm1426983pff.181.2019.10.16.23.43.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 16 Oct 2019 23:43:00 -0700 (PDT)
+Date:   Thu, 17 Oct 2019 12:12:58 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     krzk@kernel.org, vireshk@kernel.org, robh+dt@kernel.org,
+        sboyd@kernel.org, roger.lu@mediatek.com, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        Stephen Boyd <sboyd@codeaurora.org>
+Subject: Re: [PATCH v5 1/4] PM / OPP: Support adjusting OPP voltages at
+ runtime
+Message-ID: <20191017064258.yfbh7iz3pbzfhdvr@vireshk-i7>
+References: <20191016145756.16004-1-s.nawrocki@samsung.com>
+ <CGME20191016145810eucas1p1b31400c9b2e7f30cdf6deeb4ccee2788@eucas1p1.samsung.com>
+ <20191016145756.16004-2-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20191016202356.GM17013@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:13da
-X-SA-Exim-Mail-From: o.rempel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191016145756.16004-2-s.nawrocki@samsung.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16.10.19 22:23, Andrew Lunn wrote:
-> On Mon, Oct 14, 2019 at 08:15:47AM +0200, Oleksij Rempel wrote:
->> Atheros AR9331 has built-in 5 port switch. The switch can be configured
->> to use all 5 or 4 ports. One of built-in PHYs can be used by first built-in
->> ethernet controller or to be used directly by the switch over second ethernet
->> controller.
+On 16-10-19, 16:57, Sylwester Nawrocki wrote:
+> From: Stephen Boyd <sboyd@codeaurora.org>
 > 
-> Hi Oleksij
+> On some SoCs the Adaptive Voltage Scaling (AVS) technique is
+> employed to optimize the operating voltage of a device. At a
+> given frequency, the hardware monitors dynamic factors and either
+> makes a suggestion for how much to adjust a voltage for the
+> current frequency, or it automatically adjusts the voltage
+> without software intervention. Add an API to the OPP library for
+> the former case, so that AVS type devices can update the voltages
+> for an OPP when the hardware determines the voltage should
+> change. The assumption is that drivers like CPUfreq or devfreq
+> will register for the OPP notifiers and adjust the voltage
+> according to suggestions that AVS makes.
 > 
-> How exactly is this phy sharing controlled? I did not see anything in
-> the driver. Is there a mux we need to set?
+> This patch is derived from [1] submitted by Stephen.
+> [1] https://lore.kernel.org/patchwork/patch/599279/
+> 
+> Signed-off-by: Stephen Boyd <sboyd@codeaurora.org>
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> [s.nawrocki@samsung.com: added handling of OPP min/max voltage]
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+>  drivers/opp/core.c     | 69 ++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/pm_opp.h | 13 ++++++++
+>  2 files changed, 82 insertions(+)
 
-Currently it is not controlled at all, eth0 should be disabled and switch port5 enabled 
-(or other way around) in devicetree. If both are enabled, it will be some how brocken.  I 
-don't know how to properly implement it.
-I assume, it should not be controlled by devicetree configuration and user should be able 
-to do it dynamically from user space.
-
-Ideas, suggestions?
-
-Kind regards,
-Oleksij Rempel
+Applied. Thanks.
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+viresh
