@@ -2,111 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A1EDB681
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 20:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F2D4DB690
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 20:51:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406761AbfJQSqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 14:46:15 -0400
-Received: from mail-yb1-f193.google.com ([209.85.219.193]:34875 "EHLO
-        mail-yb1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388823AbfJQSqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 14:46:15 -0400
-Received: by mail-yb1-f193.google.com with SMTP id i6so1035601ybe.2;
-        Thu, 17 Oct 2019 11:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=OM/S3lsFh+azFkd7x8LBwq6ZVZrV5M0QSAG7uJDmnRk=;
-        b=Nt6Lz1vJUocf3260cbfS+m4Ma8HkJwjhVujx1dzWZRaeHi2gaDr5WJJEl+D8Sy/7kA
-         3+C1eyDt9stz/AqFoXOwX6ws+UzvvkmV2GrEPvxaHThc8O3wWD2AHgjTg34u6VpCXSUx
-         wkdZQ+tXKLMKZ4x72KHKzTWbj/ChMnjaNLGg2K0jKKIbyu6ESc51cte0qWIBs1TtgRj+
-         ZjzL6vn8JfJ6Oxgvx4nki8ndGF4Ycn9wkQ7vIWsooSGRog0zExm/gUgB7YXhRme+5HQQ
-         DGwCNySlNBrkStUIDfnLr4JJSGQr6Lghzl0PAJvNbifUqA6Y7KWvXf3SkB0Q3kTdnyEZ
-         IwFQ==
+        id S2406635AbfJQSvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 14:51:21 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33312 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388823AbfJQSvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 14:51:21 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 60so2836784otu.0;
+        Thu, 17 Oct 2019 11:51:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=OM/S3lsFh+azFkd7x8LBwq6ZVZrV5M0QSAG7uJDmnRk=;
-        b=q01cIqinVOCsy88DZ9qszpDd2BCNTvbLjrZixslt3ONdavhP8Pdw1rXVRWacEU8QxY
-         2wOBNCJDYP8lxBll9tIBzo7BAiLhcHSTw9OrttH0VGRxzCwZrf+71m/3CWRihWkJj+Ch
-         lsnvKdQQt9UMpLT6jo0jBg10nuHeoLe5qvBPVkq61OkdjTosGRpHXWL6+/IKHPwCu+67
-         XT6pyNUJlJWNpcHIMkQkgsnk0J1avQ+aJ7NQkPU5yEukSbipzMEmDMzvDDZjh/dIKD1g
-         BL6FKx3TKpTk7kSShYVcOvjEZ6nu+TkjglkxQ7xafa4nGoqO3tph1zKl9sS1dlPFo7xC
-         dePw==
-X-Gm-Message-State: APjAAAW7sGpxsy2QziyVNPk0WcE7IY1/srbKj+sRz/21MRG909reeU3O
-        vT/gKqTj4iVyenANVeB1DII=
-X-Google-Smtp-Source: APXvYqwudHjq2c/EpVr+nuwySedX+dRgV0lUf5486GSBdOemPI2HmAgVLe0pRZjtkUb1YrrJPawlew==
-X-Received: by 2002:a25:248a:: with SMTP id k132mr3464263ybk.243.1571337974592;
-        Thu, 17 Oct 2019 11:46:14 -0700 (PDT)
-Received: from [192.168.1.62] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
-        by smtp.gmail.com with ESMTPSA id y63sm698731ywg.5.2019.10.17.11.46.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 17 Oct 2019 11:46:14 -0700 (PDT)
-Subject: Re: [PATCH] libfdt: reduce the number of headers included from
- libfdt_env.h
-To:     Rob Herring <robh@kernel.org>
-Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20190617162123.24920-1-yamada.masahiro@socionext.com>
- <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
- <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
- <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
- <20191017163414.GA4205@bogus>
- <5b5ece90-0b9f-38e4-8c23-3c9ea4105c79@gmail.com>
- <CAL_JsqJHGcbf-p7D=MvSRiX_7CVY0Kj9bRKybhbWG=4MxaxGiw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <fcba8d22-008a-58b7-57ae-ef5fbc6234bc@gmail.com>
-Date:   Thu, 17 Oct 2019 13:46:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.7.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=uQYP/0Fr9W3z7AH2U3KxlY2QC+oTwq0Ok9HJ6oW23Oo=;
+        b=kqifvuy1xpTCrGsb6usx5RT1exc91YnpZaw9jsX5hPADI2pTFo15hc9jmfzKAdgB6f
+         xy172VOkSmUqp2jnWmsaY+PTxTM/tiM8m98bbCUBkhDJI+QKOPORAszA0XZOVY2dPz9V
+         bBK6u0HkXZyLJQ/Blx76hsBYGRTmob/Siy/sckcY5JeAVZy+dB8H3b0G2zy1p7XYr6Lr
+         iV3yeSFkGm74BOIORldvyYYeiZl2LbhV6QltFkBU56pBelg/+CuMVtBoAFozweOcM/bV
+         gIu3X8mjZIO0TW3KBxU5gfd5RWwh+00AlA+Zm+MzpmUzgxP/eW2UcuWham6hH3B+6xDc
+         yVOw==
+X-Gm-Message-State: APjAAAW+2I7B8BhrLmMppGp9/LI0FKdxqzIfHETF7rfdTYSxrQ9DsLFt
+        oCAMXTH9bkdIKoORP+d62UhosM0=
+X-Google-Smtp-Source: APXvYqxHWeIp566bMef8Qjtvxkh468x/vVId7yRzAFfnsxxaEdu+fAz577HEprAedk4SvNVjed19yA==
+X-Received: by 2002:a9d:6e92:: with SMTP id a18mr4130227otr.313.1571338279403;
+        Thu, 17 Oct 2019 11:51:19 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w25sm816876oth.39.2019.10.17.11.51.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2019 11:51:18 -0700 (PDT)
+Date:   Thu, 17 Oct 2019 13:51:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [PATCH v3 5/6] dt-bindings: leds: max77650: convert the binding
+ document to yaml
+Message-ID: <20191017185117.GA30431@bogus>
+References: <20191017071234.8719-1-brgl@bgdev.pl>
+ <20191017071234.8719-6-brgl@bgdev.pl>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJHGcbf-p7D=MvSRiX_7CVY0Kj9bRKybhbWG=4MxaxGiw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191017071234.8719-6-brgl@bgdev.pl>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/17/2019 12:52, Rob Herring wrote:
-> On Thu, Oct 17, 2019 at 12:25 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> On 10/17/2019 11:34, Rob Herring wrote:
->>> On Wed, Oct 16, 2019 at 08:01:46PM +0900, Masahiro Yamada wrote:
->>>> Hi Andrew,
->>>>
->>>> Could you pick up this to akpm tree?
->>>> https://lore.kernel.org/patchwork/patch/1089856/
->>>>
->>>> I believe this is correct, and a good clean-up.
->>>>
->>>> I pinged the DT maintainers, but they did not respond.
->>>
->>> Sorry I missed this. Things outside my normal paths fall thru the
->>> cracks.
->>>
->>> I'll apply it now.
->>>
->>> Rob
->>>
->>
->> Looks like my reply crossed with Rob's.  Rob, shouldn't
->> scripts/dtc/update-dtc-source.sh make this change?
+On Thu, Oct 17, 2019 at 09:12:33AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 > 
-> No, the includes in include/linux are kernel files which wrap/replace
-> the upstream ones.
+> Convert the binding document for MAX77650 LED module to YAML.
 > 
-> Rob
+> Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> ---
+>  .../bindings/leds/leds-max77650.txt           | 57 ------------------
+>  .../bindings/leds/leds-max77650.yaml          | 58 +++++++++++++++++++
+>  2 files changed, 58 insertions(+), 57 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-max77650.txt
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-max77650.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-max77650.txt b/Documentation/devicetree/bindings/leds/leds-max77650.txt
+> deleted file mode 100644
+> index 3a67115cc1da..000000000000
+> --- a/Documentation/devicetree/bindings/leds/leds-max77650.txt
+> +++ /dev/null
+> @@ -1,57 +0,0 @@
+> -LED driver for MAX77650 PMIC from Maxim Integrated.
+> -
+> -This module is part of the MAX77650 MFD device. For more details
+> -see Documentation/devicetree/bindings/mfd/max77650.txt.
+> -
+> -The LED controller is represented as a sub-node of the PMIC node on
+> -the device tree.
+> -
+> -This device has three current sinks.
+> -
+> -Required properties:
+> ---------------------
+> -- compatible:		Must be "maxim,max77650-led"
+> -- #address-cells:	Must be <1>.
+> -- #size-cells:		Must be <0>.
+> -
+> -Each LED is represented as a sub-node of the LED-controller node. Up to
+> -three sub-nodes can be defined.
+> -
+> -Required properties of the sub-node:
+> -------------------------------------
+> -
+> -- reg:			Must be <0>, <1> or <2>.
+> -
+> -Optional properties of the sub-node:
+> -------------------------------------
+> -
+> -- label:		See Documentation/devicetree/bindings/leds/common.txt
+> -- linux,default-trigger: See Documentation/devicetree/bindings/leds/common.txt
+> -
+> -For more details, please refer to the generic GPIO DT binding document
+> -<devicetree/bindings/gpio/gpio.txt>.
+> -
+> -Example:
+> ---------
+> -
+> -	leds {
+> -		compatible = "maxim,max77650-led";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		led@0 {
+> -			reg = <0>;
+> -			label = "blue:usr0";
+> -		};
+> -
+> -		led@1 {
+> -			reg = <1>;
+> -			label = "red:usr1";
+> -			linux,default-trigger = "heartbeat";
+> -		};
+> -
+> -		led@2 {
+> -			reg = <2>;
+> -			label = "green:usr2";
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/leds/leds-max77650.yaml b/Documentation/devicetree/bindings/leds/leds-max77650.yaml
+> new file mode 100644
+> index 000000000000..5a1e256185bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-max77650.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-max77650.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LED driver for MAX77650 PMIC from Maxim Integrated.
+> +
+> +maintainers:
+> +  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> +
+> +description: |
+> +  This module is part of the MAX77650 MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/max77650.txt.
+> +
+> +  The LED controller is represented as a sub-node of the PMIC node on
+> +  the device tree.
+> +
+> +  This device has three current sinks.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77650-led
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^led@[0-2]$":
+> +    type: object
+> +    description: |
+> +      Properties for a single LED.
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          Index of the LED.
+> +        maxItems: 1
+> +        minimum: 0
+> +        maximum: 2
 
-Right you are, I overlooked the "include/linux" in the file name
-instead of "scripts/dtc/libfdt/".
+Mixing array and scalar constraints. Just need (dropping maxItems):
 
--Frank
+items:
+  - minimum: 0
+    maximum: 2
+
+> +
+> +      label:
+> +        $ref: "/schemas/types.yaml#/definitions/string"
+
+Globally defined as a string already.
+
+> +        description:
+> +          The label of this LED.
+> +
+> +      linux,default-trigger:
+> +        $ref: "/schemas/types.yaml#/definitions/string"
+
+Assume this gets a common binding.
+
+So just 'true' is sufficient for both of these.
+
+> +        description:
+> +          String defining the default trigger assigned to this LED.
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> -- 
+> 2.23.0
+> 
