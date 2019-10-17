@@ -2,191 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09FA3DB7FE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B82ACDB8BA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 22:58:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394690AbfJQTtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 15:49:22 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:37156 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389032AbfJQTtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 15:49:21 -0400
-Received: by mail-ot1-f51.google.com with SMTP id k32so2968177otc.4;
-        Thu, 17 Oct 2019 12:49:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rKf+TvXQTdvhCSr97ET7nrM7ndk5bzLwGtaQj1lzb7w=;
-        b=cVc4Ivqb5Ui6FPtR8JVxo1PM8nY6Ux0ToP0uZW4lVOThMBn1ciVr6FFsDSAVnJ2atk
-         d8Mk67ao5Os75tzTKbb7tgRG5lea+0q2xQiJRQD1kakcW5fbn7YcbNtD/J6Xx9puu+Lf
-         z5c3NdYEvjPRGPz2PD/PKzoUC8TXoejFB709ZKbA/N5ryXz5ew8khIIwtUdvBl/IdyUJ
-         PiGzcdm3cY8a6FNaJ9t9K41uepmpbmsj3ZXZ41EjxfE6y4qmPT17LuD+TwGQqcmDvYzr
-         SckvZ2u8/jdlWObytwblTLN4BC7nbRmnjIGN0Nn1WC8W24BcqjBHYJR1dcwESeDWl3gd
-         pdyA==
-X-Gm-Message-State: APjAAAXC9x68S4EozRWSghFf9u596cjcGrOJdjALyDsYZUR6Sjggi+EM
-        SKw6k6u3t7ZmfENGWViXsSoB7F0=
-X-Google-Smtp-Source: APXvYqxmGNTSkP0amvesxTZNgskxmL7YCSudNZFXfg4QBuArpON4424uoubxmMPhnGsnrbcTq9jGCA==
-X-Received: by 2002:a9d:286:: with SMTP id 6mr4590504otl.192.1571341759884;
-        Thu, 17 Oct 2019 12:49:19 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id i4sm841448oto.43.2019.10.17.12.49.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 12:49:18 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: example-schema: Add some additional examples and commentary
-Date:   Thu, 17 Oct 2019 14:49:16 -0500
-Message-Id: <20191017194916.10166-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S2502838AbfJQU6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 16:58:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60774 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2502112AbfJQU6I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Oct 2019 16:58:08 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 20FC021D7C;
+        Thu, 17 Oct 2019 20:58:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571345887;
+        bh=ywi2EpqPucJm9ZZBw+AB50L0TzlMJToc3qwSE+LhbPY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NSbA2lObggeWzo7orpBJZuEDbJoBePoyCuk7fdcpdksuvCAdILLv7G9ToI5VFarmN
+         5CPING3o/snHI5gZUPhkzXx5ZsYwRvZ0IJSot0ZSUjUf73H+rRmhfCzV/j6U+5nnQd
+         aVx4DeST9p4L4pIna3E6KyBbmdvse8tApQFUoSLE=
+Date:   Thu, 17 Oct 2019 21:58:01 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Lechner <david@lechnology.com>,
+        linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] bus/ti-pwmss: move TI PWMSS driver from PWM to
+ bus subsystem
+Message-ID: <20191017215751.7d05170c@archlinux>
+In-Reply-To: <20190908194447.GM52127@atomide.com>
+References: <20190901225827.12301-1-david@lechnology.com>
+        <20190901225827.12301-2-david@lechnology.com>
+        <20190902150245.GE1445@ulmo>
+        <20190908121524.49b4874d@archlinux>
+        <20190908194447.GM52127@atomide.com>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add examples for properties with standard units, child nodes,
-dependencies, and if/then schema. Also, make some minor updates based on
-common questions and review issues.
+On Sun, 8 Sep 2019 12:44:48 -0700
+Tony Lindgren <tony@atomide.com> wrote:
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/example-schema.yaml   | 81 +++++++++++++++++--
- 1 file changed, 74 insertions(+), 7 deletions(-)
+> * Jonathan Cameron <jic23@jic23.retrosnub.co.uk> [190908 11:16]:
+> > On Mon, 2 Sep 2019 17:02:45 +0200
+> > Thierry Reding <thierry.reding@gmail.com> wrote:
+> >   
+> > > On Sun, Sep 01, 2019 at 05:58:22PM -0500, David Lechner wrote:  
+> > > > The TI PWMSS driver is a simple bus driver for providing power
+> > > > power management for the PWM peripherals on TI AM33xx SoCs, namely
+> > > > eCAP, eHRPWM and eQEP. The eQEP is a counter rather than a PWM, so
+> > > > it does not make sense to have the bus driver in the PWM subsystem
+> > > > since the PWMSS is not exclusive to PWM devices.
+> > > > 
+> > > > Signed-off-by: David Lechner <david@lechnology.com>
+> > > > ---
+> > > > 
+> > > > v3 changes:
+> > > > - none
+> > > > v2 changes:
+> > > > - new patch
+> > > > 
+> > > >  drivers/bus/Kconfig                           | 9 +++++++++
+> > > >  drivers/bus/Makefile                          | 1 +
+> > > >  drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} | 0
+> > > >  drivers/pwm/Kconfig                           | 9 ---------
+> > > >  drivers/pwm/Makefile                          | 1 -
+> > > >  5 files changed, 10 insertions(+), 10 deletions(-)
+> > > >  rename drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} (100%)    
+> > > 
+> > > Acked-by: Thierry Reding <thierry.reding@gmail.com>  
+> > 
+> > Do we need an immutable branch for these precursor patches to the
+> > driver addition? It's not going to make 5.4 via my tree as cutting it
+> > too fine so we'll be in the position of holding these in a non obvious
+> > tree for a whole cycle.   
+> 
+> Sure an immutable branch would be nice in case of unlikely
+> dts file conflicts. And yeah no need to try to rush to v5.4.
+> 
+> Regards,
+> 
+> Tony
+immutable branch created based on 5.4-rc1 at:
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=ib-ti-eqep-5.4-rc1
 
-diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
-index c43819c2783a..4ddcf709cc3c 100644
---- a/Documentation/devicetree/bindings/example-schema.yaml
-+++ b/Documentation/devicetree/bindings/example-schema.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- # Copyright 2018 Linaro Ltd.
- %YAML 1.2
- ---
-@@ -71,7 +71,7 @@ properties:
-     # minItems/maxItems equal to 2 is implied
- 
-   reg-names:
--    # The core schema enforces this is a string array
-+    # The core schema enforces this (*-names) is a string array
-     items:
-       - const: core
-       - const: aux
-@@ -79,7 +79,8 @@ properties:
-   clocks:
-     # Cases that have only a single entry just need to express that with maxItems
-     maxItems: 1
--    description: bus clock
-+    description: bus clock. A description is only needed for a single item if
-+      there's something unique to add.
- 
-   clock-names:
-     items:
-@@ -127,6 +128,14 @@ properties:
-     maxItems: 1
-     description: A connection of the 'foo' gpio line.
- 
-+  # *-supply is always a single phandle, so nothing more to define.
-+  foo-supply: true
-+
-+  # Vendor specific properties
-+  #
-+  # Vendor specific properties have slightly different schema requirements than
-+  # common properties. They must have at least a type definition and
-+  # 'description'.
-   vendor,int-property:
-     description: Vendor specific properties must have a description
-     # 'allOf' is the json-schema way of subclassing a schema. Here the base
-@@ -137,9 +146,9 @@ properties:
-       - enum: [2, 4, 6, 8, 10]
- 
-   vendor,bool-property:
--    description: Vendor specific properties must have a description
--    # boolean properties is one case where the json-schema 'type' keyword
--    # can be used directly
-+    description: Vendor specific properties must have a description. Boolean
-+      properties are one case where the json-schema 'type' keyword can be used
-+      directly.
-     type: boolean
- 
-   vendor,string-array-property:
-@@ -151,14 +160,72 @@ properties:
-           - enum: [ foo, bar ]
-           - enum: [ baz, boo ]
- 
-+  vendor,property-in-standard-units-microvolt:
-+    description: Vendor specific properties having a standard unit suffix
-+      don't need a type.
-+    enum: [ 100, 200, 300 ]
-+
-+  child-node:
-+    description: Child nodes are just another property from a json-schema
-+      perspective.
-+    type: object  # DT nodes are json objects
-+    properties:
-+      vendor,a-child-node-property:
-+        description: Child node properties have all the same schema
-+          requirements.
-+        type: boolean
-+
-+    required:
-+      - vendor,a-child-node-property
-+
-+# Describe the relationship between different properties
-+dependencies:
-+  # 'vendor,bool-property' is only allowed when 'vendor,string-array-property'
-+  # is present
-+  vendor,bool-property: [ vendor,string-array-property ]
-+  # Expressing 2 properties in both orders means all of the set of properties
-+  # must be present or none of them.
-+  vendor,string-array-property: [ vendor,bool-property ]
-+
- required:
-   - compatible
-   - reg
-   - interrupts
-   - interrupt-controller
- 
-+# if/then schema can be used to handle conditions on a property affecting
-+# another property. A typical case is a specific 'compatible' value changes the
-+# constraints on other properties.
-+#
-+# For multiple 'if' schema, group them under an 'allOf'.
-+#
-+# If the conditionals become too unweldy, then it may be better to just split
-+# the binding into separate schema documents.
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: vendor,soc2-ip
-+then:
-+  required:
-+    - foo-supply
-+
-+# Ideally, the schema should have this line otherwise any other properties
-+# present are allowed. There's a few common properties such as 'status' and
-+# 'pinctrl-*' which are added automatically by the tooling.
-+#
-+# This can't be used in cases where another schema is referenced
-+# (i.e. allOf: [{$ref: ...}]).
-+additionalProperties: false
-+
- examples:
--  # Examples are now compiled with dtc
-+  # Examples are now compiled with dtc and validated against the schemas
-+  #
-+  # Examples have a default #address-cells and #size-cells value of 1. This can
-+  # be overridden or an appropriate parent bus node should be shown (such as on
-+  # i2c buses).
-+  #
-+  # Any includes used have to be explicitly included.
-   - |
-     node@1000 {
-           compatible = "vendor,soc4-ip", "vendor,soc1-ip";
--- 
-2.20.1
+I'll pull it into IIO in a few minutes as have one more of these
+to do at the same time.  Includes patches 1-4 of this series.
+
+Thanks,
+
+Jonathan
 
