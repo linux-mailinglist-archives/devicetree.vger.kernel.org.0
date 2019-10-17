@@ -2,83 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE737DB77C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69490DB759
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 21:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391075AbfJQT2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 15:28:16 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34427 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393438AbfJQT2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 15:28:16 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 83so3193567oii.1;
-        Thu, 17 Oct 2019 12:28:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SqAFHmUiEpU5rAmf8Tug9HDaQyGE8/7zvO3FldJ1AqM=;
-        b=Wka6aIl5cs5n1XdkVNOuJhfT8xZbmwZdcn6nCgs7yi91vRG8g3T18SKf9px3rtNoGM
-         oYtV2gI5irD7APhSu2G2Xqjd+gSM/EIzVF6Sxuj9U5kNxKgiWf9PYuAsnWDQwRGi/pSn
-         7D/y+ZUVN4h7AhBYFQTi1t4RVnMToOwg4b5fEaTM6d2/59NxCKWHij0m+mXl9YngB4lE
-         jn/3nL8QrQAhqYU+qwvp9CXN9YitjZ6pZUP3Oan9NLrF/n9jEE2oWqD2R2wqSI/J1aZq
-         xUaFU89UsXEMy2jmCXNo/dH91lvdGptjQsSWaKZOu59xaxJhv1z5N3KB7jK7Ti46s3e/
-         B/Ig==
-X-Gm-Message-State: APjAAAWCxeQ5XZ6P6sKLPc3UoGJoIRimlTyBHvKbr+JRnUoPy78ie2+L
-        Bz4sIXcnnzK/OtGTI/Ast0mPG08=
-X-Google-Smtp-Source: APXvYqwB11uurv4LKiBTMRl3GG7b35sfh5jfB3nvxXh730JUGJ8/aXCy41c7F0cQoRKMXbYcf965bg==
-X-Received: by 2002:a54:4582:: with SMTP id z2mr4497593oib.53.1571340495419;
-        Thu, 17 Oct 2019 12:28:15 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b31sm818240otc.70.2019.10.17.12.28.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 12:28:14 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 14:28:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Maciej Falkowski <m.falkowski@samsung.com>
-Subject: Re: [PATCH v2] dt-bindings: sound: Convert Samsung Exynos Odroid
-  XU3/XU4 audio complex to dt-schema
-Message-ID: <20191017192814.GA11356@bogus>
-References: <CGME20191017100534eucas1p1407cf6ef5606d6bd6a4140502cc95984@eucas1p1.samsung.com>
- <20191017100529.4183-1-m.szyprowski@samsung.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191017100529.4183-1-m.szyprowski@samsung.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726689AbfJQTVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 15:21:07 -0400
+Received: from mga12.intel.com ([192.55.52.136]:22068 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727397AbfJQTVH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Oct 2019 15:21:07 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Oct 2019 12:21:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,308,1566889200"; 
+   d="scan'208";a="397690533"
+Received: from marshy.an.intel.com ([10.122.105.159])
+  by fmsmga006.fm.intel.com with ESMTP; 17 Oct 2019 12:21:06 -0700
+From:   richard.gong@linux.intel.com
+To:     dinguyen@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     richard.gong@linux.intel.com, Richard Gong <richard.gong@intel.com>
+Subject: [PATCHv1] arm64: dts: agilex: add service layer, fpga manager and fpga region
+Date:   Thu, 17 Oct 2019 14:34:40 -0500
+Message-Id: <1571340880-18421-1-git-send-email-richard.gong@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Oct 2019 12:05:29 +0200, Marek Szyprowski wrote:
-> From: Maciej Falkowski <m.falkowski@samsung.com>
-> 
-> Convert Samsung Exynos Odroid XU3/XU4 audio complex with MAX98090 codec
-> to newer dt-schema format.
-> 
-> 'clocks' property is unneeded in the bindings and is left undefined in 'properties'.
-> 
-> 'samsung,audio-widgets' and 'samsung,audio-routing' are optional from driver
-> perspective and they are set as unrequired.
-> 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> [mszyprow: reordered non-standard properties]
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->  .../bindings/sound/samsung,odroid.txt         | 54 -----------
->  .../bindings/sound/samsung,odroid.yaml        | 91 +++++++++++++++++++
->  2 files changed, 91 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/samsung,odroid.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/samsung,odroid.yaml
-> 
+From: Richard Gong <richard.gong@intel.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Add service layer, fpga manager and fpga region to the device tree
+on Intel Agilex platform.
+
+Signed-off-by: Richard Gong <richard.gong@intel.com>
+---
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 32 +++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index 36abc25..94090c6 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -12,6 +12,19 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		service_reserved: svcbuffer@0 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x0 0x0 0x1000000>;
++			alignment = <0x1000>;
++			no-map;
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -81,6 +94,13 @@
+ 		interrupt-parent = <&intc>;
+ 		ranges = <0 0 0 0xffffffff>;
+ 
++		base_fpga_region {
++			#address-cells = <0x1>;
++			#size-cells = <0x1>;
++			compatible = "fpga-region";
++			fpga-mgr = <&fpga_mgr>;
++		};
++
+ 		gmac0: ethernet@ff800000 {
+ 			compatible = "altr,socfpga-stmmac", "snps,dwmac-3.74a", "snps,dwmac";
+ 			reg = <0xff800000 0x2000>;
+@@ -442,5 +462,17 @@
+ 
+ 			status = "disabled";
+ 		};
++
++		firmware {
++			svc {
++				compatible = "intel,stratix10-svc";
++				method = "smc";
++				memory-region = <&service_reserved>;
++
++				fpga_mgr: fpga-mgr {
++					compatible = "intel,stratix10-soc-fpga-mgr";
++				};
++			};
++		};
+ 	};
+ };
+-- 
+2.7.4
+
