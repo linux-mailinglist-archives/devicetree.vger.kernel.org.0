@@ -2,118 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41A5FDA646
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 09:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEB3BDA671
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 09:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408085AbfJQHUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 03:20:19 -0400
-Received: from mga12.intel.com ([192.55.52.136]:33969 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408044AbfJQHUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 03:20:18 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Oct 2019 00:20:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,306,1566889200"; 
-   d="scan'208";a="186404307"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by orsmga007.jf.intel.com with ESMTP; 17 Oct 2019 00:20:13 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     linux-mtd@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, computersforpeace@gmail.com, richard@nod.at,
-        jwboyer@gmail.com, boris.brezillon@free-electrons.com,
-        cyrille.pitchen@atmel.com, david.oberhollenzer@sigma-star.at,
-        miquel.raynal@bootlin.com, tudor.ambarus@gmail.com,
-        vigneshr@ti.com, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        Ramuthevar Vadivel Murugan 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Subject: [PATCH v4 2/2] mtd: spi-nor: cadence-quadspi: Disable the auto-poll for Intel LGM SoC
-Date:   Thu, 17 Oct 2019 15:20:00 +0800
-Message-Id: <20191017072000.48860-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191017072000.48860-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20191017072000.48860-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S2387570AbfJQH25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 03:28:57 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:40898 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389406AbfJQH2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 03:28:54 -0400
+Received: by mail-wr1-f66.google.com with SMTP id o28so1053559wro.7
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 00:28:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=lF+fgIZSn/XvW94K1ywke5vKThCmmdz9k3RaVW32JlY=;
+        b=xWq5Hkde3q45K4PbAUMZnkHurefRtmRtgiCvKkBapdsqHhyI8Ee7NQgVyP0caZIy8i
+         SkmQ1egZd2Ipk6BGM4y6AVJW9nvC+Xn8N8JdeokHXHBrBw4QK+COO33atNrzxg5d5lav
+         nShDhgKGvxrmhHC9vz8BbXNWLBmsygaC5TapuRj9Lr9nwSYxpai6/9KlgrpXoTYA5lqH
+         OEvuPup2lrG4cV2HbEGs8pg6Rhl7OlfjgoiMTd8ia7/O0zkZLEgPWYTKYVTKHGVrScGl
+         6AeR9WuzrW03UrS+S7023opAzP3oRUr//UNnL+2NOnOuZLLH1pcxvM7LRDRO/YGJw6dG
+         +Iqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=lF+fgIZSn/XvW94K1ywke5vKThCmmdz9k3RaVW32JlY=;
+        b=CuOW2idQT1cc1o3nVe1Z/fXgHSfC8ATaOJXdxNpyKsyY3dFYdFFsYdU1QuZ/KGamZQ
+         l6gdUdx5ixjxDLn3YQEog6vfZ7N1Io0be2JpcxnstNnW0eih0o8I6Wl0+dPHdhTE3AO2
+         Po4irRzo4Ts7Sh31dKMhG345gYbL+e2CrE72Xi94cbJoWMcYJWBGa3EFHp3xBaeikEFs
+         dLuSB7LhMvBjXctyRVxuqDmvpexL/qoQJyuiMHHoF9aAEbaNaExmKck9+0+2Yia5hH7V
+         FgzvEl/TjVMMIG9LCFrkY5sxVoC+Xz5Zhaf8iFYeeEGvJMR18XXZN4Ad2s56gkZ950Pp
+         a+/A==
+X-Gm-Message-State: APjAAAVWi8SvbtVk9W7V6LYYjyHmnhuDIoscy2hcWaZJ/6khvXbER6PT
+        7hxMvvpwxIQu9RZOp5D+/1ML3w==
+X-Google-Smtp-Source: APXvYqxLpxoVGENRd1K1D0H43oFwhZes7gObxyyPv4AuhrB11kRaylbvgtEsJSg5Sud7bDf5lrdTVg==
+X-Received: by 2002:a5d:6709:: with SMTP id o9mr1655680wru.116.1571297331032;
+        Thu, 17 Oct 2019 00:28:51 -0700 (PDT)
+Received: from dell ([95.149.164.47])
+        by smtp.gmail.com with ESMTPSA id r140sm1610799wme.47.2019.10.17.00.28.50
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 17 Oct 2019 00:28:50 -0700 (PDT)
+Date:   Thu, 17 Oct 2019 08:28:49 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Wen Su <Wen.Su@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, wsd_upstream@mediatek.com
+Subject: Re: [PATCH 2/4] mfd: Add for PMIC MT6359 registers definition
+Message-ID: <20191017072849.GL4365@dell>
+References: <1571218786-15073-1-git-send-email-Wen.Su@mediatek.com>
+ <1571218786-15073-3-git-send-email-Wen.Su@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1571218786-15073-3-git-send-email-Wen.Su@mediatek.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+On Wed, 16 Oct 2019, Wen Su wrote:
 
-On Intel Lightning Mountain SoCs QSPI controller do not use auto-poll.
-This patch disables auto polling when direct access mode is disabled
+> From: "wen.su" <wen.su@mediatek.com>
 
-Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
----
- drivers/mtd/spi-nor/cadence-quadspi.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Should be:
 
-diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
-index 0ad076eaa81b..c2333f0473e3 100644
---- a/drivers/mtd/spi-nor/cadence-quadspi.c
-+++ b/drivers/mtd/spi-nor/cadence-quadspi.c
-@@ -88,6 +88,7 @@ struct cqspi_st {
- 	bool			rclk_en;
- 	u32			trigger_address;
- 	u32			wr_delay;
-+	bool			auto_poll;
- 	struct cqspi_flash_pdata f_pdata[CQSPI_MAX_CHIPSELECT];
- };
- 
-@@ -136,6 +137,8 @@ struct cqspi_driver_platdata {
- #define CQSPI_REG_RD_INSTR_TYPE_DATA_MASK	0x3
- #define CQSPI_REG_RD_INSTR_DUMMY_MASK		0x1F
- 
-+#define CQSPI_REG_WR_COMPLETION_CTRL			0x38
-+#define CQSPI_REG_WR_COMPLETION_DISABLE_AUTO_POLL	BIT(14)
- #define CQSPI_REG_WR_INSTR			0x08
- #define CQSPI_REG_WR_INSTR_OPCODE_LSB		0
- #define CQSPI_REG_WR_INSTR_TYPE_ADDR_LSB	12
-@@ -1175,6 +1178,18 @@ static int cqspi_of_get_pdata(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static int cqspi_disable_auto_poll(struct cqspi_st *cqspi)
-+{
-+	void __iomem *reg_base = cqspi->iobase;
-+	unsigned int reg;
-+
-+	reg = readl(reg_base + CQSPI_REG_WR_COMPLETION_CTRL);
-+	reg |= CQSPI_REG_WR_COMPLETION_DISABLE_AUTO_POLL;
-+	writel(reg, reg_base + CQSPI_REG_WR_COMPLETION_CTRL);
-+
-+	return 0;
-+}
-+
- static void cqspi_controller_init(struct cqspi_st *cqspi)
- {
- 	u32 reg;
-@@ -1206,6 +1221,10 @@ static void cqspi_controller_init(struct cqspi_st *cqspi)
- 	reg |= CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
- 	writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
- 
-+	/* Disable auto-polling */
-+	if (!cqspi->auto_poll)
-+		cqspi_disable_auto_poll(cqspi);
-+
- 	cqspi_controller_enable(cqspi, 1);
- }
- 
-@@ -1421,6 +1440,9 @@ static int cqspi_probe(struct platform_device *pdev)
- 		cqspi->wr_delay = 5 * DIV_ROUND_UP(NSEC_PER_SEC,
- 						   cqspi->master_ref_clk_hz);
- 
-+	if (ddata && (ddata->quirks & CQSPI_DISABLE_DAC_MODE))
-+		cqspi->auto_poll = false;
-+
- 	ret = devm_request_irq(dev, irq, cqspi_irq_handler, 0,
- 			       pdev->name, cqspi);
- 	if (ret) {
+  From: Wen Su <wen.su@mediatek.com>
+
+> This adds MediaTek PMIC MT6359 registers definition for the
+> following sub modules:
+> 
+> - Regulator
+> - RTC
+> - Interrupt
+> 
+> Signed-off-by: wen.su <wen.su@mediatek.com>
+
+Same here.  Please change your Git config.
+
+> ---
+>  include/linux/mfd/mt6359/registers.h | 531 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 531 insertions(+)
+>  create mode 100644 include/linux/mfd/mt6359/registers.h
+
+Once you've fixed the above, please add my:
+
+For my own reference:
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+
 -- 
-2.11.0
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
