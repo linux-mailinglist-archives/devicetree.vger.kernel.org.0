@@ -2,83 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E96DA5DE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 08:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32A74DA607
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 09:12:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392691AbfJQG7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 02:59:38 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44512 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392672AbfJQG7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 02:59:38 -0400
-Received: by mail-oi1-f195.google.com with SMTP id w6so1217015oie.11;
-        Wed, 16 Oct 2019 23:59:37 -0700 (PDT)
+        id S2407946AbfJQHMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 03:12:41 -0400
+Received: from mail-wr1-f44.google.com ([209.85.221.44]:42783 "EHLO
+        mail-wr1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405013AbfJQHMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 03:12:41 -0400
+Received: by mail-wr1-f44.google.com with SMTP id n14so1001507wrw.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 00:12:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ycUh96qu7Qeb2/OqBRaIXG5bF+f+x1C5nZ4WXE/7KGs=;
+        b=ETXvlQBJ3Y5EkrhzyFRZRu+ng3aMpSuYl30Vc47qL1j2DslM1Vk1igbKojGQ/3yaug
+         tUwSfQLld8axTYQjQYdhv7j3D5AnXc/O1kUfYKmtBDthY7Y3O4tREApuGP283V82ibwI
+         6gVRo8cKQkB77NTN2fuZJjNkBjuSNDdkkCY0cWAoXMQV6lw3ZlwlAwBIm6e1Tv4ffYyH
+         QS9tqCiiZsOWtxuAOp24wmYfxDFIHnIb0XSZAPLTdJO+ehPbE090wF8hsdAwvx2IgW8s
+         hwKeqRqTG62NRRgtIokbPkim6SilSiJsr3Q8jOVgoRoHCLfuG+C+GofArRlH5tdI+ODF
+         9nDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lAM1QnlrpsM8TOCfZsHr08AYy86y8/SONo11Ddop3Cs=;
-        b=b+FAQWEbTlLRU9rkE6MK+AnnO8lChnKASzG5hTShbua64pCKYitUUdUwt3Cmg2Fzel
-         W8SYZCGE1qNsLfyt/LpxYcwaoBk1DFqT1++h0pw9Gn+CI0un7IFRQf60+p4pChvkfQGg
-         2lLPb83vTqbRmt0g2ENd+Xvtsnt6zdlvuQkFAtAxvQ6hZuKD4l/kwNfA+KkuZj6tlN9L
-         6QqNg9OgdyV1HruWECeCdIJQKxJrymOH3wbs98l3Un0zTYffDOOz0V2t0a0Ma7Esfai+
-         CL4tYlxlhNgTobQc0mhyufVLpS/cfIqWY9SQXw4XuylNDwruCYv202++Tyc0xBtvD6J9
-         Ft4A==
-X-Gm-Message-State: APjAAAVmbURUHw9vH/C54Q2Ang5hzV0Z/1abHNyoXd2eH6dPmm9mFVFE
-        L3ojn1j9URlUG2wpV1tjeDYmKhexaZRctpZBYOw=
-X-Google-Smtp-Source: APXvYqwCWIWA46c9+2ibu2lu2wxMYclDxWIc7LElIoklo6xwtdbTkcmnF9WWwh63zDbG9fhts78KRSf4tfIJNtTn9/0=
-X-Received: by 2002:aca:230c:: with SMTP id e12mr1755052oie.153.1571295577291;
- Wed, 16 Oct 2019 23:59:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ycUh96qu7Qeb2/OqBRaIXG5bF+f+x1C5nZ4WXE/7KGs=;
+        b=NEs//MAWJLPQH0PkD+rZBXhNEK5PfVi/DDttvSf1fHTVk5IFDq9e/kGbzkcvGuBQcl
+         9WHn3PNRLYQAUDGaLvcO7D+b/kcxrDsewiQsUJCACqJBD0i+HX4p/CrTJQ2+40jpz3YN
+         ka86SVcQQAwTEZaJI6K8UJ9T26GQviP3ILRNcF0d7q0vIOjVEoXLoK4a6mzb5vLAQH0T
+         EvyK8MFsXBQwcOMpFFeMNodEyHoQ/xZ4n4n6KyYpropdcU5c+eR8cR8At7QIyN1qQYKG
+         TIeQ4nUU2QT5twgGURAzbqttNiQ5TAzefe4YzIvscOfPC7Tex4noIN3II/ErrpFJVPh+
+         6nYQ==
+X-Gm-Message-State: APjAAAWwOOY5CHA/QZyRsW3tBaZPNsNejzTZPCa1Rvnjva09DZ78n1D9
+        1i9v0Vuk5MC2My8Bica7ZYkxSg==
+X-Google-Smtp-Source: APXvYqyuEmEGEmZzcCODblXwV4dNYq8zprqYQKx4JnNQqfOFIAWHDrLQ+JHpjgaTLWfh5BR86lOdcA==
+X-Received: by 2002:a5d:5587:: with SMTP id i7mr1371578wrv.289.1571296358768;
+        Thu, 17 Oct 2019 00:12:38 -0700 (PDT)
+Received: from debian-brgl.home ([2a01:cb1d:af:5b00:6d6c:8493:1ab5:dad7])
+        by smtp.gmail.com with ESMTPSA id n22sm1156689wmk.19.2019.10.17.00.12.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2019 00:12:38 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [PATCH v3 0/6] dt-bindings: max77650: convert the device-tree bindings to yaml
+Date:   Thu, 17 Oct 2019 09:12:28 +0200
+Message-Id: <20191017071234.8719-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <20191016143142.28854-1-geert+renesas@glider.be> <5da7a675.1c69fb81.a888.0911@mx.google.com>
-In-Reply-To: <5da7a675.1c69fb81.a888.0911@mx.google.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 17 Oct 2019 08:59:26 +0200
-Message-ID: <CAMuHMdXnTOaM+4SUkzpYXNeFbJtaG_kRzFLJRhVPCVNcOUB0qA@mail.gmail.com>
-Subject: Re: [PATCH] of: unittest: Use platform_get_irq_optional() for
- non-existing interrupt
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-On Thu, Oct 17, 2019 at 1:23 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> Quoting Geert Uytterhoeven (2019-10-16 07:31:42)
-> > diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> > index 9efae29722588a35..34da22f8b0660989 100644
-> > --- a/drivers/of/unittest.c
-> > +++ b/drivers/of/unittest.c
-> > @@ -1121,7 +1121,7 @@ static void __init of_unittest_platform_populate(void)
-> >                 np = of_find_node_by_path("/testcase-data/testcase-device2");
-> >                 pdev = of_find_device_by_node(np);
-> >                 unittest(pdev, "device 2 creation failed\n");
-> > -               irq = platform_get_irq(pdev, 0);
-> > +               irq = platform_get_irq_optional(pdev, 0);
-> >                 unittest(irq < 0 && irq != -EPROBE_DEFER,
->
-> This is a test to make sure that irq failure doesn't return probe defer.
-> Do we want to silence the error message that we're expecting to see?
+This series converts all DT binding documents for MAX77650 PMIC to YAML.
 
-I think so.  We're not interested in error messages for expected failures,
-only in error messages for unittest() failures.
+v1 -> v2:
+- use upper case for abbreviations in commit messages
 
-Gr{oetje,eeting}s,
+v2 -> v3:
+- pull all example fragments into the binding document for the core MFD module
+- fix all dt_binding_check errors
+- add references to submodules to the main binding document
+- drop the type for gpio-line-names
+- drop the description for the interrupts property
+- completely delete the previous txt files
 
-                        Geert
+Bartosz Golaszewski (6):
+  dt-bindings: mfd: max77650: convert the binding document to yaml
+  dt-bindings: input: max77650: convert the binding document to yaml
+  dt-bindings: regulator: max77650: convert the binding document to yaml
+  dt-bindings: power: max77650: convert the binding document to yaml
+  dt-bindings: leds: max77650: convert the binding document to yaml
+  MAINTAINERS: update the list of maintained files for max77650
+
+ .../bindings/input/max77650-onkey.txt         |  26 ---
+ .../bindings/input/max77650-onkey.yaml        |  35 ++++
+ .../bindings/leds/leds-max77650.txt           |  57 -------
+ .../bindings/leds/leds-max77650.yaml          |  58 +++++++
+ .../devicetree/bindings/mfd/max77650.txt      |  46 ------
+ .../devicetree/bindings/mfd/max77650.yaml     | 151 ++++++++++++++++++
+ .../power/supply/max77650-charger.txt         |  28 ----
+ .../power/supply/max77650-charger.yaml        |  34 ++++
+ .../bindings/regulator/max77650-regulator.txt |  41 -----
+ .../regulator/max77650-regulator.yaml         |  31 ++++
+ MAINTAINERS                                   |   4 +-
+ 11 files changed, 311 insertions(+), 200 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/max77650-onkey.txt
+ create mode 100644 Documentation/devicetree/bindings/input/max77650-onkey.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-max77650.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-max77650.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max77650.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/max77650.yaml
+ delete mode 100644 Documentation/devicetree/bindings/power/supply/max77650-charger.txt
+ create mode 100644 Documentation/devicetree/bindings/power/supply/max77650-charger.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max77650-regulator.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/max77650-regulator.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.23.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
