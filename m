@@ -2,93 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E8FDB2B6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772D3DB2C7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394386AbfJQQqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 12:46:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33046 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390763AbfJQQqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 12:46:03 -0400
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 31D8C21848;
-        Thu, 17 Oct 2019 16:46:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571330762;
-        bh=ST385NSYuwXC3f6iHRWFfEjB9cPothZhVKZ/sW1hOw8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=za4tq5vxbNcSvvLnkN6A9TiO1Idkq04/ElICw324HADDcbqcrZtHySN/UFkGpqzvW
-         5SPz+zqRqt3aBCThINGWrnWstht1//SGm9z4eOMyfns6G03+y9OZvvFhne1HgJfgFe
-         LEDiVOWasXy37i0RToY6/Nr5ZfRTrXe0sEYHiaRk=
-Received: by mail-qt1-f170.google.com with SMTP id m61so4531685qte.7;
-        Thu, 17 Oct 2019 09:46:02 -0700 (PDT)
-X-Gm-Message-State: APjAAAWGsu9DQAHHBggPKhAYq9vG/0ncSmEDj5GLkws++eBUb5vnypRg
-        hJmZiLFN8GtnYkqjZwm1wa6P//ONZSbC72UsbQ==
-X-Google-Smtp-Source: APXvYqwxmloo/IijujMedfKeIrZqpNiMPv1IfUbUmiboin2+5egtsuLRNN7GW7JwEX6FcQMEjc3eB3oVnwY1SUOJQIY=
-X-Received: by 2002:ac8:44d9:: with SMTP id b25mr5010364qto.300.1571330761301;
- Thu, 17 Oct 2019 09:46:01 -0700 (PDT)
+        id S2503028AbfJQQus convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 17 Oct 2019 12:50:48 -0400
+Received: from mailoutvs8.siol.net ([185.57.226.199]:55111 "EHLO mail.siol.net"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2394336AbfJQQus (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Oct 2019 12:50:48 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 30B93521752;
+        Thu, 17 Oct 2019 18:50:44 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id ctlfp8DRqJtw; Thu, 17 Oct 2019 18:50:43 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id AAB075217B6;
+        Thu, 17 Oct 2019 18:50:43 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-86-58-59-25.static.triera.net [86.58.59.25])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id D71F4521752;
+        Thu, 17 Oct 2019 18:50:42 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, mchehab@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v3 5/6] media: sun4i: Add H3 deinterlace driver
+Date:   Thu, 17 Oct 2019 18:50:42 +0200
+Message-ID: <1811024.Ag6lDGI2hk@jernej-laptop>
+In-Reply-To: <d768b2bc-a942-03a6-253d-4bcc31f1b11e@xs4all.nl>
+References: <20191016192807.1278987-1-jernej.skrabec@siol.net> <20191016192807.1278987-6-jernej.skrabec@siol.net> <d768b2bc-a942-03a6-253d-4bcc31f1b11e@xs4all.nl>
 MIME-Version: 1.0
-References: <20191016040920.8511-1-biwen.li@nxp.com> <bfdb97c1-76f4-52d9-7f02-c62bed8192ce@axentia.se>
-In-Reply-To: <bfdb97c1-76f4-52d9-7f02-c62bed8192ce@axentia.se>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 17 Oct 2019 11:45:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK_BOSZ=UNP-L7OpuNsFUAqWBhAjCObex+0xtkYp=7c+A@mail.gmail.com>
-Message-ID: <CAL_JsqK_BOSZ=UNP-L7OpuNsFUAqWBhAjCObex+0xtkYp=7c+A@mail.gmail.com>
-Subject: Re: [v3,1/2] dt-bindings: i2c: support property idle-state
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Biwen Li <biwen.li@nxp.com>,
-        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Transfer-Encoding: 8BIT
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 17, 2019 at 10:38 AM Peter Rosin <peda@axentia.se> wrote:
->
-> On 2019-10-16 06:09, Biwen Li wrote:
-> > This supports property idle-state
-> >
-> > Signed-off-by: Biwen Li <biwen.li@nxp.com>
+Dne četrtek, 17. oktober 2019 ob 09:51:28 CEST je Hans Verkuil napisal(a):
+> On 10/16/19 9:28 PM, Jernej Skrabec wrote:
+> > Allwinner H3 SoC contains deinterlace unit, which has several modes of
+> > operation - bypass, weave, bob and mixed (advanced) mode. I don't know
+> > how mixed mode works, but according to Allwinner it gives best results,
+> > so they use it exclusively. Currently this mode is also hardcoded here.
+> > 
+> > For each interleaved frame queued, this driver produces 2 deinterlaced
+> > frames. Deinterlaced frames are based on 2 consequtive output buffers,
+> > except for the first 2, where same output buffer is given to peripheral
+> > as current and previous.
+> > 
+> > There is no documentation for this core, so register layout and fixed
+> > values were taken from BSP driver.
+> > 
+> > I'm not sure if maximum size of the image unit is capable to process is
+> > governed by size of "flag" buffers, frequency or it really is some HW
+> > limitation. Currently driver can process full HD image in ~15ms (7.5ms
+> > for each capture buffer), which allows to process 1920x1080@60i video
+> > smoothly in real time.
+> > 
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 > > ---
-> > Change in v3:
-> >       - update subject and description
-> >       - add some information for property idle-state
-> >
-> > Change in v2:
-> >       - update subject and description
-> >       - add property idle-state
-> >
-> >  Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt
-> > index 30ac6a60f041..7abda506b828 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt
-> > @@ -25,6 +25,8 @@ Required Properties:
-> >  Optional Properties:
-> >
-> >    - reset-gpios: Reference to the GPIO connected to the reset input.
-> > +  - idle-state: if present, overrides i2c-mux-idle-disconnect,
-> > +    Please refer to Documentation/devicetree/bindings/mux/mux-controller.txt
-> >    - i2c-mux-idle-disconnect: Boolean; if defined, forces mux to disconnect all
-> >      children in idle state. This is necessary for example, if there are several
-> >      multiplexers on the bus and the devices behind them use same I2C addresses.
-> >
->
-> Rob, should i2c-mux-idle-disconnect perhaps be deprecated here? Is that
-> appropriate?
->
-> idle-state provides a super-set of what i2c-mux-idle-disconnect provides.
+> > 
+> >  MAINTAINERS                                   |    7 +
+> >  drivers/media/platform/sunxi/Kconfig          |    1 +
+> >  drivers/media/platform/sunxi/Makefile         |    1 +
+> >  drivers/media/platform/sunxi/sun8i-di/Kconfig |   11 +
+> >  .../media/platform/sunxi/sun8i-di/Makefile    |    2 +
+> >  .../media/platform/sunxi/sun8i-di/sun8i-di.c  | 1020 +++++++++++++++++
+> >  .../media/platform/sunxi/sun8i-di/sun8i-di.h  |  237 ++++
+> >  7 files changed, 1279 insertions(+)
+> >  create mode 100644 drivers/media/platform/sunxi/sun8i-di/Kconfig
+> >  create mode 100644 drivers/media/platform/sunxi/sun8i-di/Makefile
+> >  create mode 100644 drivers/media/platform/sunxi/sun8i-di/sun8i-di.c
+> >  create mode 100644 drivers/media/platform/sunxi/sun8i-di/sun8i-di.h
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index c7b48525822a..c375455125fb 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -4646,6 +4646,13 @@ M:	"Maciej W. Rozycki" <macro@linux-mips.org>
+> > 
+> >  S:	Maintained
+> >  F:	drivers/net/fddi/defxx.*
+> > 
+> > +DEINTERLACE DRIVERS FOR ALLWINNER H3
+> > +M:	Jernej Skrabec <jernej.skrabec@siol.net>
+> > +L:	linux-media@vger.kernel.org
+> > +T:	git git://linuxtv.org/media_tree.git
+> > +S:	Maintained
+> > +F:	drivers/media/platform/sunxi/sun8i-di/
+> > +
+> > 
+> >  DELL SMBIOS DRIVER
+> >  M:	Pali Rohár <pali.rohar@gmail.com>
+> >  M:	Mario Limonciello <mario.limonciello@dell.com>
+> > 
+> > diff --git a/drivers/media/platform/sunxi/Kconfig
+> > b/drivers/media/platform/sunxi/Kconfig index 71808e93ac2e..d7a5621bf327
+> > 100644
+> > --- a/drivers/media/platform/sunxi/Kconfig
+> > +++ b/drivers/media/platform/sunxi/Kconfig
+> > @@ -1,2 +1,3 @@
+> > 
+> >  source "drivers/media/platform/sunxi/sun4i-csi/Kconfig"
+> >  source "drivers/media/platform/sunxi/sun6i-csi/Kconfig"
+> > 
+> > +source "drivers/media/platform/sunxi/sun8i-di/Kconfig"
+> 
+> This is a m2m driver, so this belongs in drivers/media/platform/Kconfig in
+> the Memory-to-memory section.
+> 
+> > diff --git a/drivers/media/platform/sunxi/Makefile
+> > b/drivers/media/platform/sunxi/Makefile index a05127529006..3878cb4efdc2
+> > 100644
+> > --- a/drivers/media/platform/sunxi/Makefile
+> > +++ b/drivers/media/platform/sunxi/Makefile
+> > @@ -1,2 +1,3 @@
+> > 
+> >  obj-y		+= sun4i-csi/
+> >  obj-y		+= sun6i-csi/
+> > 
+> > +obj-y		+= sun8i-di/
+> > diff --git a/drivers/media/platform/sunxi/sun8i-di/Kconfig
+> > b/drivers/media/platform/sunxi/sun8i-di/Kconfig new file mode 100644
+> > index 000000000000..dbd77a61e3b3
+> > --- /dev/null
+> > +++ b/drivers/media/platform/sunxi/sun8i-di/Kconfig
+> > @@ -0,0 +1,11 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +config VIDEO_SUN8I_DEINTERLACE
+> > +	tristate "Allwinner Deinterlace driver"
+> > +	depends on VIDEO_DEV && VIDEO_V4L2
+> > +	depends on HAS_DMA
+> > +	depends on OF
+> > +	depends on PM
+> > +	select VIDEOBUF2_DMA_CONTIG
+> > +	select V4L2_MEM2MEM_DEV
+> > +	help
+> > +	   Support for the Allwinner Deinterlace unit found on some SoCs.
+> 
+> Shouldn't this depend on ARCH_SUNXI || COMPILE_TEST?
+> And also on COMMON_CLK?
 
-Yes, seems like it and it is not too widely used.
+Yes to both. Also I don't see a reason why it would depend on HAS_DMA, so I 
+will remove that.
 
-Rob
+Best regards,
+Jernej
+
+> 
+> Regards,
+> 
+> 	Hans
+
+
+
+
