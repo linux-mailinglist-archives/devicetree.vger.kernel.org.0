@@ -2,142 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3FCDA6C4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 09:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1836DA706
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 10:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392871AbfJQHvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 03:51:35 -0400
-Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:58019 "EHLO
-        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728735AbfJQHvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 03:51:35 -0400
-Received: from [192.168.2.10] ([46.9.232.237])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id L0ZEiNQokPduvL0ZHitZi9; Thu, 17 Oct 2019 09:51:32 +0200
-Subject: Re: [PATCH v3 5/6] media: sun4i: Add H3 deinterlace driver
-To:     Jernej Skrabec <jernej.skrabec@siol.net>, mripard@kernel.org,
-        wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, mchehab@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-References: <20191016192807.1278987-1-jernej.skrabec@siol.net>
- <20191016192807.1278987-6-jernej.skrabec@siol.net>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <d768b2bc-a942-03a6-253d-4bcc31f1b11e@xs4all.nl>
-Date:   Thu, 17 Oct 2019 09:51:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S2389594AbfJQIOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 04:14:43 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:52957 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389225AbfJQIOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 04:14:42 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iL0vR-00060Q-S8; Thu, 17 Oct 2019 10:14:25 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iL0vO-0005qG-7s; Thu, 17 Oct 2019 10:14:22 +0200
+Date:   Thu, 17 Oct 2019 10:14:22 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>
+Cc:     "krzk@kernel.org" <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/10] Add support for more Kontron i.MX6UL/ULL SoMs and
+ boards
+Message-ID: <20191017081422.65m5dtqznsanfftp@pengutronix.de>
+References: <20191016150622.21753-1-frieder.schrempf@kontron.de>
 MIME-Version: 1.0
-In-Reply-To: <20191016192807.1278987-6-jernej.skrabec@siol.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4wfFzjUTWPxOlTU4hlEoCPjG/vSnr5xKQMF8XCQ+SW2mlaLMTpQxaZ4EILqCiVCuh6PT0/ZGWxxDnt9eqTiqgrU30Ii5IcSv5qXVgZKrKwRQi+3s/KXvlH
- cW3X33jRHUWkl54rP0BkXftU0szeQJ0072L78iJO5WHkMZWfgWh3+Eu0GlW9LYPLUreGywKDX382EmsMo//teqCpW8UzBd3qtfur6RZwyfW/PVnpXHTX8w54
- 3NATx7a3KgEanmyT+7lBoLehSIZJPcE3ExuqcJ85gypFZE3mPBaYNeWWbhMdOjn9xy72VKc7+rhYNrXfCbI4r1GAWenmaRGgPck9UZ/QvmmnKfCv6MfEjGzF
- mCa2bWuWOcPyvM0/TmOQgX5PPXzDQLe+f2LNK1WgOHJKCM3W4NGwSwCyk+GUWKj7cdJF40IruCU3/x3I05XQifPut6thHfBVH4LS/N5AEienYd4m/Ga7z/2p
- H1UtYUZCGmnxHATQJZxlSooZhRP/qiBbjU3WvKAlGacH643rIINbhwIy/mE=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191016150622.21753-1-frieder.schrempf@kontron.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:12:59 up 152 days, 14:31, 99 users,  load average: 0.23, 0.11,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/16/19 9:28 PM, Jernej Skrabec wrote:
-> Allwinner H3 SoC contains deinterlace unit, which has several modes of
-> operation - bypass, weave, bob and mixed (advanced) mode. I don't know
-> how mixed mode works, but according to Allwinner it gives best results,
-> so they use it exclusively. Currently this mode is also hardcoded here.
-> 
-> For each interleaved frame queued, this driver produces 2 deinterlaced
-> frames. Deinterlaced frames are based on 2 consequtive output buffers,
-> except for the first 2, where same output buffer is given to peripheral
-> as current and previous.
-> 
-> There is no documentation for this core, so register layout and fixed
-> values were taken from BSP driver.
-> 
-> I'm not sure if maximum size of the image unit is capable to process is
-> governed by size of "flag" buffers, frequency or it really is some HW
-> limitation. Currently driver can process full HD image in ~15ms (7.5ms
-> for each capture buffer), which allows to process 1920x1080@60i video
-> smoothly in real time.
-> 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> ---
->  MAINTAINERS                                   |    7 +
->  drivers/media/platform/sunxi/Kconfig          |    1 +
->  drivers/media/platform/sunxi/Makefile         |    1 +
->  drivers/media/platform/sunxi/sun8i-di/Kconfig |   11 +
->  .../media/platform/sunxi/sun8i-di/Makefile    |    2 +
->  .../media/platform/sunxi/sun8i-di/sun8i-di.c  | 1020 +++++++++++++++++
->  .../media/platform/sunxi/sun8i-di/sun8i-di.h  |  237 ++++
->  7 files changed, 1279 insertions(+)
->  create mode 100644 drivers/media/platform/sunxi/sun8i-di/Kconfig
->  create mode 100644 drivers/media/platform/sunxi/sun8i-di/Makefile
->  create mode 100644 drivers/media/platform/sunxi/sun8i-di/sun8i-di.c
->  create mode 100644 drivers/media/platform/sunxi/sun8i-di/sun8i-di.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c7b48525822a..c375455125fb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4646,6 +4646,13 @@ M:	"Maciej W. Rozycki" <macro@linux-mips.org>
->  S:	Maintained
->  F:	drivers/net/fddi/defxx.*
->  
-> +DEINTERLACE DRIVERS FOR ALLWINNER H3
-> +M:	Jernej Skrabec <jernej.skrabec@siol.net>
-> +L:	linux-media@vger.kernel.org
-> +T:	git git://linuxtv.org/media_tree.git
-> +S:	Maintained
-> +F:	drivers/media/platform/sunxi/sun8i-di/
-> +
->  DELL SMBIOS DRIVER
->  M:	Pali Rohár <pali.rohar@gmail.com>
->  M:	Mario Limonciello <mario.limonciello@dell.com>
-> diff --git a/drivers/media/platform/sunxi/Kconfig b/drivers/media/platform/sunxi/Kconfig
-> index 71808e93ac2e..d7a5621bf327 100644
-> --- a/drivers/media/platform/sunxi/Kconfig
-> +++ b/drivers/media/platform/sunxi/Kconfig
-> @@ -1,2 +1,3 @@
->  source "drivers/media/platform/sunxi/sun4i-csi/Kconfig"
->  source "drivers/media/platform/sunxi/sun6i-csi/Kconfig"
-> +source "drivers/media/platform/sunxi/sun8i-di/Kconfig"
+Hi Frieder,
 
-This is a m2m driver, so this belongs in drivers/media/platform/Kconfig in the
-Memory-to-memory section.
+On 19-10-16 15:06, Schrempf Frieder wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> In order to support more of the i.MX6UL/ULL-based SoMs and boards by
+> Kontron Electronics GmbH, we restructure the devicetrees to share common
+> parts and add new devicetrees for the missing boards.
+> 
+> Currently there are the following SoM flavors:
+>   * N6310: SoM with i.MX6UL-2, 256MB RAM, 256MB SPI NAND
+>   * N6311: SoM with i.MX6UL-2, 512MB RAM, 512MB SPI NAND (new)
+>   * N6411: SoM with i.MX6ULL, 512MB RAM, 512MB SPI NAND (new)
+> 
+> Each of the SoMs also features 1MB SPI NOR and an Ethernet PHY. The carrier
+> board for the evalkit is the same for all SoMs.
+> 
+> Frieder Schrempf (10):
+>   ARM: dts: imx6ul-kontron-n6310: Move common SoM nodes to a separate
+>     file
+>   ARM: dts: Add support for two more Kontron SoMs N6311 and N6411
+>   ARM: dts: imx6ul-kontron-n6310-s: Move common nodes to a separate file
+>   ARM: dts: Add support for two more Kontron evalkit boards 'N6311 S'
+>     and 'N6411 S'
+>   ARM: dts: imx6ul-kontron-n6x1x: Add 'chosen' node with 'stdout-path'
+>   ARM: dts: imx6ul-kontron-n6x1x-s: Specify bus-width for SD card and
+>     eMMC
+>   ARM: dts: imx6ul-kontron-n6x1x-s: Add vbus-supply and overcurrent
+>     polarity to usb nodes
+>   ARM: dts: imx6ul-kontron-n6x1x-s: Remove an obsolete comment and fix
+>     indentation
+>   dt-bindings: arm: fsl: Add more Kontron i.MX6UL/ULL compatibles
+>   MAINTAINERS: Add an entry for Kontron Electronics ARM board support
 
-> diff --git a/drivers/media/platform/sunxi/Makefile b/drivers/media/platform/sunxi/Makefile
-> index a05127529006..3878cb4efdc2 100644
-> --- a/drivers/media/platform/sunxi/Makefile
-> +++ b/drivers/media/platform/sunxi/Makefile
-> @@ -1,2 +1,3 @@
->  obj-y		+= sun4i-csi/
->  obj-y		+= sun6i-csi/
-> +obj-y		+= sun8i-di/
-> diff --git a/drivers/media/platform/sunxi/sun8i-di/Kconfig b/drivers/media/platform/sunxi/sun8i-di/Kconfig
-> new file mode 100644
-> index 000000000000..dbd77a61e3b3
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun8i-di/Kconfig
-> @@ -0,0 +1,11 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config VIDEO_SUN8I_DEINTERLACE
-> +	tristate "Allwinner Deinterlace driver"
-> +	depends on VIDEO_DEV && VIDEO_V4L2
-> +	depends on HAS_DMA
-> +	depends on OF
-> +	depends on PM
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select V4L2_MEM2MEM_DEV
-> +	help
-> +	   Support for the Allwinner Deinterlace unit found on some SoCs.
-
-Shouldn't this depend on ARCH_SUNXI || COMPILE_TEST?
-And also on COMMON_CLK?
+Did you send all patches to same To: and Cc:?
 
 Regards,
+  Marco
 
-	Hans
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |  14 +
+>  MAINTAINERS                                   |   6 +
+>  arch/arm/boot/dts/imx6ul-kontron-n6310-s.dts  | 405 +----------------
+>  .../boot/dts/imx6ul-kontron-n6310-som.dtsi    |  95 +---
+>  arch/arm/boot/dts/imx6ul-kontron-n6311-s.dts  |  16 +
+>  .../boot/dts/imx6ul-kontron-n6311-som.dtsi    |  40 ++
+>  arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi | 422 ++++++++++++++++++
+>  .../dts/imx6ul-kontron-n6x1x-som-common.dtsi  | 129 ++++++
+>  arch/arm/boot/dts/imx6ull-kontron-n6411-s.dts |  16 +
+>  .../boot/dts/imx6ull-kontron-n6411-som.dtsi   |  40 ++
+>  10 files changed, 685 insertions(+), 498 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6311-s.dts
+>  create mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6311-som.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6x1x-s.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6x1x-som-common.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx6ull-kontron-n6411-s.dts
+>  create mode 100644 arch/arm/boot/dts/imx6ull-kontron-n6411-som.dtsi
+> 
+> -- 
+> 2.17.1
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
