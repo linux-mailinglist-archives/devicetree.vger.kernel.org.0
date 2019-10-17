@@ -2,84 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9418DB664
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 20:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A1EDB681
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 20:46:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441417AbfJQSiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 14:38:03 -0400
-Received: from mailoutvs33.siol.net ([185.57.226.224]:38067 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2441410AbfJQSiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 14:38:02 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 1CE4B525415;
-        Thu, 17 Oct 2019 20:37:59 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id UIHukYRoVdRK; Thu, 17 Oct 2019 20:37:58 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id C58B752524F;
-        Thu, 17 Oct 2019 20:37:58 +0200 (CEST)
-Received: from localhost.localdomain (cpe-86-58-59-25.static.triera.net [86.58.59.25])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id 71C6852545C;
-        Thu, 17 Oct 2019 20:37:56 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, mchehab@kernel.org,
-        hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH v4 6/6] dts: arm: sun8i: h3: Enable deinterlace unit
-Date:   Thu, 17 Oct 2019 20:37:38 +0200
-Message-Id: <20191017183738.68069-7-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191017183738.68069-1-jernej.skrabec@siol.net>
-References: <20191017183738.68069-1-jernej.skrabec@siol.net>
+        id S2406761AbfJQSqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 14:46:15 -0400
+Received: from mail-yb1-f193.google.com ([209.85.219.193]:34875 "EHLO
+        mail-yb1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388823AbfJQSqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 14:46:15 -0400
+Received: by mail-yb1-f193.google.com with SMTP id i6so1035601ybe.2;
+        Thu, 17 Oct 2019 11:46:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OM/S3lsFh+azFkd7x8LBwq6ZVZrV5M0QSAG7uJDmnRk=;
+        b=Nt6Lz1vJUocf3260cbfS+m4Ma8HkJwjhVujx1dzWZRaeHi2gaDr5WJJEl+D8Sy/7kA
+         3+C1eyDt9stz/AqFoXOwX6ws+UzvvkmV2GrEPvxaHThc8O3wWD2AHgjTg34u6VpCXSUx
+         wkdZQ+tXKLMKZ4x72KHKzTWbj/ChMnjaNLGg2K0jKKIbyu6ESc51cte0qWIBs1TtgRj+
+         ZjzL6vn8JfJ6Oxgvx4nki8ndGF4Ycn9wkQ7vIWsooSGRog0zExm/gUgB7YXhRme+5HQQ
+         DGwCNySlNBrkStUIDfnLr4JJSGQr6Lghzl0PAJvNbifUqA6Y7KWvXf3SkB0Q3kTdnyEZ
+         IwFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OM/S3lsFh+azFkd7x8LBwq6ZVZrV5M0QSAG7uJDmnRk=;
+        b=q01cIqinVOCsy88DZ9qszpDd2BCNTvbLjrZixslt3ONdavhP8Pdw1rXVRWacEU8QxY
+         2wOBNCJDYP8lxBll9tIBzo7BAiLhcHSTw9OrttH0VGRxzCwZrf+71m/3CWRihWkJj+Ch
+         lsnvKdQQt9UMpLT6jo0jBg10nuHeoLe5qvBPVkq61OkdjTosGRpHXWL6+/IKHPwCu+67
+         XT6pyNUJlJWNpcHIMkQkgsnk0J1avQ+aJ7NQkPU5yEukSbipzMEmDMzvDDZjh/dIKD1g
+         BL6FKx3TKpTk7kSShYVcOvjEZ6nu+TkjglkxQ7xafa4nGoqO3tph1zKl9sS1dlPFo7xC
+         dePw==
+X-Gm-Message-State: APjAAAW7sGpxsy2QziyVNPk0WcE7IY1/srbKj+sRz/21MRG909reeU3O
+        vT/gKqTj4iVyenANVeB1DII=
+X-Google-Smtp-Source: APXvYqwudHjq2c/EpVr+nuwySedX+dRgV0lUf5486GSBdOemPI2HmAgVLe0pRZjtkUb1YrrJPawlew==
+X-Received: by 2002:a25:248a:: with SMTP id k132mr3464263ybk.243.1571337974592;
+        Thu, 17 Oct 2019 11:46:14 -0700 (PDT)
+Received: from [192.168.1.62] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
+        by smtp.gmail.com with ESMTPSA id y63sm698731ywg.5.2019.10.17.11.46.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Oct 2019 11:46:14 -0700 (PDT)
+Subject: Re: [PATCH] libfdt: reduce the number of headers included from
+ libfdt_env.h
+To:     Rob Herring <robh@kernel.org>
+Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20190617162123.24920-1-yamada.masahiro@socionext.com>
+ <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
+ <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
+ <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
+ <20191017163414.GA4205@bogus>
+ <5b5ece90-0b9f-38e4-8c23-3c9ea4105c79@gmail.com>
+ <CAL_JsqJHGcbf-p7D=MvSRiX_7CVY0Kj9bRKybhbWG=4MxaxGiw@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <fcba8d22-008a-58b7-57ae-ef5fbc6234bc@gmail.com>
+Date:   Thu, 17 Oct 2019 13:46:07 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_JsqJHGcbf-p7D=MvSRiX_7CVY0Kj9bRKybhbWG=4MxaxGiw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner H3 SoC contains deinterlace unit, which can be used in
-combination with VPU unit to decode and process interlaced videos.
+On 10/17/2019 12:52, Rob Herring wrote:
+> On Thu, Oct 17, 2019 at 12:25 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 10/17/2019 11:34, Rob Herring wrote:
+>>> On Wed, Oct 16, 2019 at 08:01:46PM +0900, Masahiro Yamada wrote:
+>>>> Hi Andrew,
+>>>>
+>>>> Could you pick up this to akpm tree?
+>>>> https://lore.kernel.org/patchwork/patch/1089856/
+>>>>
+>>>> I believe this is correct, and a good clean-up.
+>>>>
+>>>> I pinged the DT maintainers, but they did not respond.
+>>>
+>>> Sorry I missed this. Things outside my normal paths fall thru the
+>>> cracks.
+>>>
+>>> I'll apply it now.
+>>>
+>>> Rob
+>>>
+>>
+>> Looks like my reply crossed with Rob's.  Rob, shouldn't
+>> scripts/dtc/update-dtc-source.sh make this change?
+> 
+> No, the includes in include/linux are kernel files which wrap/replace
+> the upstream ones.
+> 
+> Rob
+> 
 
-Add a node for it.
+Right you are, I overlooked the "include/linux" in the file name
+instead of "scripts/dtc/libfdt/".
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm/boot/dts/sun8i-h3.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3=
-.dtsi
-index e37c30e811d3..7a59c57d2114 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -120,6 +120,19 @@
- 	};
-=20
- 	soc {
-+		deinterlace: deinterlace@1400000 {
-+			compatible =3D "allwinner,sun8i-h3-deinterlace";
-+			reg =3D <0x01400000 0x20000>;
-+			clocks =3D <&ccu CLK_BUS_DEINTERLACE>,
-+				 <&ccu CLK_DEINTERLACE>,
-+				 <&ccu CLK_DRAM_DEINTERLACE>;
-+			clock-names =3D "bus", "mod", "ram";
-+			resets =3D <&ccu RST_BUS_DEINTERLACE>;
-+			interrupts =3D <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-+			interconnects =3D <&mbus 9>;
-+			interconnect-names =3D "dma-mem";
-+		};
-+
- 		syscon: system-control@1c00000 {
- 			compatible =3D "allwinner,sun8i-h3-system-control";
- 			reg =3D <0x01c00000 0x1000>;
---=20
-2.23.0
-
+-Frank
