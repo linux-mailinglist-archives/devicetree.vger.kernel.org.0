@@ -2,153 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6FFDAE98
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 15:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E7CBDAEB9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 15:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436626AbfJQNj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 09:39:59 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:33204 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436620AbfJQNj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 09:39:59 -0400
-Received: by mail-wr1-f66.google.com with SMTP id b9so2435498wrs.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 06:39:57 -0700 (PDT)
+        id S2436880AbfJQNtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 09:49:19 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:46207 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727368AbfJQNtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 09:49:18 -0400
+Received: by mail-il1-f194.google.com with SMTP id c4so2048705ilq.13
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 06:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=nGdIYkBoWouhui5JZwa5SxA1USJYrGRfLAGOfC1qQUE=;
-        b=EeC7H7ue3oN1wyNo5+y+h/f3QtZwbPbLcR8bvVPiUDCnvQ1Wzzk22Y9y+SWAeu3llf
-         RurKgJ3iIuYu/Et+Jldq3rRCJK+O1oCBGPuIoQNEb/bzD4U2PZFn/hwgLd+zF9vXA3Ij
-         NYkpxgZCWqu4QiJ5veb+lqQbk0AsCybJARVL08fZusOFmSiHSGhiOnk4yOHRhqDmY3tn
-         ZZyKt5J3y+I2fnGBXO+Yca1TaceT4qVU+oy+/27lbS4BQs/tZs2GQzAxgD7jodqHN953
-         qu1oLELMNkcdB2ndjb9exvZknfturibZR8zRbaNgoN/iNeuKYk5KavYeyrGElH8K4Ux9
-         9B0A==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Son4OYF2Y1agrYSzVjXzdtqWR13KfwPc90XQEzvHzJY=;
+        b=R5kUAa28wdXHnMAHTg1Cwt7oJ8I+/1ddwLuXV4RHs0SAknbj80dbqg5xu/VAf+D9k1
+         RRmgg7qu3HyZJqMuguPBKjd67pJbQ7ZUdSgvMuYnwjnjfp6mjYkeDTSXirAxJSpKMJbl
+         ZJoVz77GPl1uI99Vd03i/OxLtuao7qNL307jY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nGdIYkBoWouhui5JZwa5SxA1USJYrGRfLAGOfC1qQUE=;
-        b=TYcI4vPcQ+6+kNhoDA/nCxi9X7XyE7q4x2CNPDhszFO+hYuRL907y13Uo8ffnk0Tv6
-         MoY4D/WMnXVIiBopE122xYviOYFKuEYYlaoTXzDNJjegMTbBiXNzYFn66igjR6br82+t
-         9P6DWB22ghPiJhYrxtSoKle8u7086pvDy9hzxRwE/E8jc8LZEHkDdGMDoGWI6a/2CKRG
-         oqWvCIn/B3McFuXdWA9lgNcVXLManLjDUPASO9u2N+ojWn1K1R2N3Jri9BUmU3PoR4Uz
-         NYuaAycqqMqg5h8/I27vSrYcyoTfxiSaH3nNw3EZ1Iz+j2GW6SJg97aLX1ZwmyLdwKcE
-         NhPA==
-X-Gm-Message-State: APjAAAVzH6gAiD1frcspCi1yYDKdtT7GQ/YGWZ786uXAz5ASM/nn87f0
-        4KmuBvoCiAjvnvHSmETAr5GZ8w==
-X-Google-Smtp-Source: APXvYqy4Lrrg4pMfTd+atu6SWJQ7WAc2FDA1OuzXE16c+jlAXvx7iaUxxV+K+zpm0rWL0ddLU3HqQg==
-X-Received: by 2002:a5d:4644:: with SMTP id j4mr2365010wrs.355.1571319597038;
-        Thu, 17 Oct 2019 06:39:57 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id k8sm777915wrg.15.2019.10.17.06.39.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 06:39:55 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 14:39:54 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     kgunda@codeaurora.org
-Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
-        lee.jones@linaro.org, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH V7 6/6] backlight: qcom-wled: Add auto string detection
- logic
-Message-ID: <20191017133954.7vgqjgwxojmjw446@holly.lan>
-References: <1571220826-7740-1-git-send-email-kgunda@codeaurora.org>
- <1571220826-7740-7-git-send-email-kgunda@codeaurora.org>
- <20191017112941.qqvgboyambzw63i3@holly.lan>
- <fa32f7ec727cb2626ad877a6cef32a1b@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Son4OYF2Y1agrYSzVjXzdtqWR13KfwPc90XQEzvHzJY=;
+        b=Al4GbhmEi7uTqjUAirIh6h/KhufS6n4SRIUtRBYeRd5DYwsTk6GQ3WxrmXujaxxqXS
+         5+ZR4/pDCNRCObQu0ZiEIWx5RCO9YgKyK+1g5GSX9Op0TjYco5roj0AJCC7dlhXcYGxP
+         P3/n+Bos54tb4Pqshe0xwN6VAlKD3QRJmiby+lN0rgKw5/ZHRdDLnuDtlPmYAKkzgtEj
+         ooQDEqqgV6oPS/osevOfWbWDUC7X15uGc+pe3ftKD5fHu3Gjhh53/Ylnp0wW2BsQzHIA
+         YBrAzTFtqkdiWLh22rQ8IQHzQxc4coLTWMMx4Ptm+ORpz/LQhHBGKbRNOxIQVrADey5A
+         FMxw==
+X-Gm-Message-State: APjAAAWztPDF7FZ6beMc6IWgYFvrizobbDeATkdQ4rhtmFxtEYl3SCbK
+        m6OYDARAm4/tqLuQy14BlaD4WTixC3i2jZHZAOyMkENcAi0=
+X-Google-Smtp-Source: APXvYqz6JUSGUI7GEkDLMmO5W2uSstaHjxwDXL88+sXpB3FTcGOaQSu5XtGh0s5YjrEy9ojzal0OC/Xpya/A553NzIo=
+X-Received: by 2002:a92:b604:: with SMTP id s4mr3858585ili.28.1571320156027;
+ Thu, 17 Oct 2019 06:49:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fa32f7ec727cb2626ad877a6cef32a1b@codeaurora.org>
-User-Agent: NeoMutt/20180716
+References: <20190919052822.10403-1-jagan@amarulasolutions.com>
+ <20190919052822.10403-2-jagan@amarulasolutions.com> <6797961.eJj5WIFbM9@phil>
+ <CAMty3ZDKaywoPxCSD-5N2pLjtGmZ-dZ7ZgUOJqiB1V_9rfR26A@mail.gmail.com>
+ <87eezolynl.fsf@archiso.i-did-not-set--mail-host-address--so-tickle-me>
+ <CAMty3ZD8uHsj0Jzs08sKG0JXfC6MU0MHdKs=kw4m5rupnoTtqg@mail.gmail.com> <109d708e-d182-fafa-44ad-0e6e0f813e0d@fivetechno.de>
+In-Reply-To: <109d708e-d182-fafa-44ad-0e6e0f813e0d@fivetechno.de>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 17 Oct 2019 19:19:04 +0530
+Message-ID: <CAMty3ZBu2WRJV9X6_ZAXBfpBs42p04Ph7amFpfO64iOQM-Sw_w@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: rockchip: Fix rk3399-roc-pc pwm2 pin
+To:     Markus Reichl <m.reichl@fivetechno.de>
+Cc:     Levin Du <djw@t-chip.com.cn>, Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Akash Gajjar <akash@openedev.com>,
+        Da Xue <da@lessconfused.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 17, 2019 at 05:47:47PM +0530, kgunda@codeaurora.org wrote:
-> On 2019-10-17 16:59, Daniel Thompson wrote:
-> > On Wed, Oct 16, 2019 at 03:43:46PM +0530, Kiran Gunda wrote:
-> > > The auto string detection algorithm checks if the current WLED
-> > > sink configuration is valid. It tries enabling every sink and
-> > > checks if the OVP fault is observed. Based on this information
-> > > it detects and enables the valid sink configuration.
-> > > Auto calibration will be triggered when the OVP fault interrupts
-> > > are seen frequently thereby it tries to fix the sink configuration.
-> > > 
-> > > The auto-detection also kicks in when the connected LED string
-> > > of the display-backlight malfunctions (because of damage) and
-> > > requires the damaged string to be turned off to prevent the
-> > > complete panel and/or board from being damaged.
-> > > 
-> > > Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
-> > 
-> > It's a complex bit of code but I'm OK with it in principle. Everything
-> > below is about small details and/or nitpicking.
-> > 
-> > 
-> > > +static void wled_ovp_work(struct work_struct *work)
-> > > +{
-> > > +	struct wled *wled = container_of(work,
-> > > +					 struct wled, ovp_work.work);
-> > > +	enable_irq(wled->ovp_irq);
-> > > +}
-> > > +
-> > 
-> > A bit of commenting about why we have to wait 10ms before enabling the
-> > OVP interrupt would be appreciated.
-> > 
-> > 
-> Sure. Will add the comment in the next series.
-> > > +static irqreturn_t wled_ovp_irq_handler(int irq, void *_wled)
-> > > +{
-> > > +	struct wled *wled = _wled;
-> > > +	int rc;
-> > > +	u32 int_sts, fault_sts;
-> > > +
-> > > +	rc = regmap_read(wled->regmap,
-> > > +			 wled->ctrl_addr + WLED3_CTRL_REG_INT_RT_STS, &int_sts);
-> > > +	if (rc < 0) {
-> > > +		dev_err(wled->dev, "Error in reading WLED3_INT_RT_STS rc=%d\n",
-> > > +			rc);
-> > > +		return IRQ_HANDLED;
-> > > +	}
-> > > +
-> > > +	rc = regmap_read(wled->regmap, wled->ctrl_addr +
-> > > +			 WLED3_CTRL_REG_FAULT_STATUS, &fault_sts);
-> > > +	if (rc < 0) {
-> > > +		dev_err(wled->dev, "Error in reading WLED_FAULT_STATUS rc=%d\n",
-> > > +			rc);
-> > > +		return IRQ_HANDLED;
-> > > +	}
-> > > +
-> > > +	if (fault_sts &
-> > > +		(WLED3_CTRL_REG_OVP_FAULT_BIT | WLED3_CTRL_REG_ILIM_FAULT_BIT))
-> > > +		dev_dbg(wled->dev, "WLED OVP fault detected, int_sts=%x
-> > > fault_sts= %x\n",
-> > > +			int_sts, fault_sts);
-> > > +
-> > > +	if (fault_sts & WLED3_CTRL_REG_OVP_FAULT_BIT) {
-> > > +		mutex_lock(&wled->lock);
-> > > +		disable_irq_nosync(wled->ovp_irq);
-> > 
-> > We're currently running the threaded ISR for this irq. Do we really need
-> > to disable it?
-> > 
-> We need to disable this IRQ, during the auto string detection logic. Because
-> in the auto string detection we configure the current sinks one by one and
-> check the
-> status register for the OVPs and set the right string configuration. We
-> enable it later after
-> the auto string detection is completed.
+Hi Markus,
 
-This is a threaded oneshot interrupt handler. Why isn't the framework
-masking sufficient for you here?
+On Thu, Oct 17, 2019 at 6:56 PM Markus Reichl <m.reichl@fivetechno.de> wrote:
+>
+> Hi Jagan,
+>
+> your patch fixes booting my rk3399-roc-pc with 5.4.0-rc3-next-20191017.
+> Without your patch roc-pc hangs here:
+> [    9.703526] pwm-regulator: supplied by regulator-dummy
 
+Thanks for testing this.
 
-Daniel.
+Indeed the same change available in BSP
+https://github.com/FireflyTeam/kernel/blob/stable-4.4-rk3399-linux/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi#L1184
+
+I'm waiting for Levin response on this issue, need to update commit
+information accordingly.
+
+>
+> Am 16.10.19 um 19:09 schrieb Jagan Teki:
+> > Hi Levin,
+> >
+> > On Tue, Oct 8, 2019 at 8:42 AM <djw@t-chip.com.cn> wrote:
+> >>
+> >> Jagan Teki <jagan@amarulasolutions.com> writes:
+> >>
+> >> > Hi Heiko,
+> >> >
+> >> > On Mon, Sep 30, 2019 at 2:51 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> >> >>
+> >> >> Hi Jagan,
+> >> >>
+> >> >> Am Donnerstag, 19. September 2019, 07:28:17 CEST schrieb Jagan Teki:
+> >> >> > ROC-PC is not able to boot linux console if PWM2_d is
+> >> >> > unattached to any pinctrl logic.
+> >> >> >
+> >> >> > To be precise the linux boot hang with last logs as,
+> >> >> > ...
+> >> >> > .....
+> >> >> > [    0.003367] Console: colour dummy device 80x25
+> >> >> > [    0.003788] printk: console [tty0] enabled
+> >> >> > [    0.004178] printk: bootconsole [uart8250] disabled
+> >> >> >
+> >> >> > In ROC-PC the PWM2_d pin is connected to LOG_DVS_PWM of
+> >> >> > VDD_LOG. So, for normal working operations this needs to
+> >> >> > active and pull-down.
+> >> >> >
+> >> >> > This patch fix, by attaching pinctrl active and pull-down
+> >> >> > the pwm2.
+> >> >>
+> >> >> This looks highly dubious on first glance. The pwm subsystem nor
+> >> >> the Rockchip pwm driver do not do any pinctrl handling.
+> >> >>
+> >> >> So I don't really see where that "active" pinctrl state is supposed
+> >> >> to come from.
+> >> >>
+> >> >> Comparing with the pwm driver in the vendor tree I see that there
+> >> >> is such a state defined there. But that code there also looks strange
+> >> >> as that driver never again leaves this active state after entering it.
+> >> >>
+> >> >> Also for example all the Gru devices run with quite a number of pwm-
+> >> >> regulators without needing additional fiddling with the pwm itself, so
+> >> >> I don't really see why that should be different here.
+> >> >
+> >> > I deed, I was supposed to think the same. but the vendor kernel dts
+> >> > from firefly do follow the pwm2 pinctrl [1]. I wouldn't find any
+> >> > information other than this vensor information, ie one of the reason I
+> >> > have marked "Levin Du" who initially supported this board.
+> >> >
+> >> > One, think I have seen was this pinctrl active fixed the boot hang.
+> >> > any inputs from would be very helpful.
+> >> >
+> >> > Levin Du, any inputs?
+> >> >
+> >> > [1] https://github.com/FireflyTeam/kernel/blob/stable-4.4-rk3399-linux/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi#L1184
+> >> >
+> >>
+> >> A grep of the `pwm2` shows that there's such block in rk3399-nanopi4.dtsi:
+> >>
+> >>     &pwm2 {
+> >>             pinctrl-names = "active";
+> >>             pinctrl-0 = <&pwm2_pin_pull_down>;
+> >>             status = "okay";
+> >>     };
+> >>
+> >> But last time I checked, using the mainline U-Boot (the roc-rk3399-pc is
+> >> in mainline now) with mainline linux v5.2-rc7, no such setting is
+> >> necessary, and the board boots happily.
+> >>
+> >> I cannot find the use of "active" pinctrl state in the
+> >> `drivers/pwm/pwm-rockchip.c`. If the pinctrl state needs to be setup as
+> >> default, the `pinctrl-names` needs to be "default" or "init" (see
+> >> `drivers/base/pinctrl.c`) .
+> >>
+> >> Jagan, what version of board do you use? I checked with
+> >> "ROC-RK3399-PC-V1.0-A 2018-07-12".
+> >
+> > I have ROC-RK3399-PC-V1.A 2018.09.25 and powering with TYPE-C0 port.
+> >
+> > And here the boot log
+> >
+> > [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+> > [    0.000000] Linux version 5.4.0-rc3-next-20191016
+> > (jagan@jagan-XPS-13-9350) (gcc version 6.3.1 20170109 (Linaro GCC
+> > 6.3-2017.02)) #1 SMP PREEMPT Wed Oct 16 21:17:23 IST 2019
+> > [    0.000000] Machine model: Firefly ROC-RK3399-PC Board
+> > [    0.000000] earlycon: uart8250 at MMIO32 0x00000000ff1a0000 (options '')
+> > [    0.000000] printk: bootconsole [uart8250] enabled
+> > [    0.000000] efi: Getting EFI parameters from FDT:
+> > [    0.000000] efi: UEFI not found.
+> > [    0.000000] cma: Reserved 32 MiB at 0x000000003e000000
+> > [    0.000000] NUMA: No NUMA configuration found
+> > [    0.000000] NUMA: Faking a node at [mem
+> > 0x0000000000200000-0x00000000f7ffffff]
+> > [    0.000000] NUMA: NODE_DATA [mem 0xf77ef100-0xf77f0fff]
+> > [    0.000000] Zone ranges:
+> > [    0.000000]   DMA      [mem 0x0000000000200000-0x000000003fffffff]
+> > [    0.000000]   DMA32    [mem 0x0000000040000000-0x00000000f7ffffff]
+> > [    0.000000]   Normal   empty
+> > [    0.000000] Movable zone start for each node
+> > [    0.000000] Early memory node ranges
+> > [    0.000000]   node   0: [mem 0x0000000000200000-0x00000000f7ffffff]
+> > [    0.000000] Initmem setup node 0 [mem 0x0000000000200000-0x00000000f7ffffff]
+> > [    0.000000] psci: probing for conduit method from DT.
+> > [    0.000000] psci: PSCIv1.1 detected in firmware.
+> > [    0.000000] psci: Using standard PSCI v0.2 function IDs
+> > [    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+> > [    0.000000] psci: SMC Calling Convention v1.1
+> > [    0.000000] percpu: Embedded 22 pages/cpu s52952 r8192 d28968 u90112
+> > [    0.000000] Detected VIPT I-cache on CPU0
+> > [    0.000000] CPU features: detected: ARM erratum 845719
+> > [    0.000000] CPU features: detected: GIC system register CPU interface
+> > [    0.000000] Speculative Store Bypass Disable mitigation not required
+> > [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 999432
+> > [    0.000000] Policy zone: DMA32
+> > [    0.000000] Kernel command line:
+> > earlycon=uart8250,mmio32,0xff1a0000 root=/dev/mmcblk1p1 rootwait
+> > [    0.000000] Dentry cache hash table entries: 524288 (order: 10,
+> > 4194304 bytes, linear)
+> > [    0.000000] Inode-cache hash table entries: 262144 (order: 9,
+> > 2097152 bytes, linear)
+> > [    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+> > [    0.000000] software IO TLB: mapped [mem 0x3a000000-0x3e000000] (64MB)
+> > [    0.000000] Memory: 3856004K/4061184K available (12028K kernel
+> > code, 1870K rwdata, 6440K rodata, 5056K init, 451K bss, 172412K
+> > reserved, 32768K cma-reserved)
+> > [    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=6, Nodes=1
+> > [    0.000000] rcu: Preemptible hierarchical RCU implementation.
+> > [    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=6.
+> > [    0.000000]  Tasks RCU enabled.
+> > [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay
+> > is 25 jiffies.
+> > [    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=6
+> > [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+> > [    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+> > [    0.000000] GICv3: 256 SPIs implemented
+> > [    0.000000] GICv3: 0 Extended SPIs implemented
+> > [    0.000000] GICv3: Distributor has no Range Selector support
+> > [    0.000000] GICv3: 16 PPIs implemented
+> > [    0.000000] GICv3: no VLPI support, no direct LPI support
+> > [    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x00000000fef00000
+> > [    0.000000] ITS [mem 0xfee20000-0xfee3ffff]
+> > [    0.000000] ITS@0x00000000fee20000: allocated 65536 Devices
+> > @f6880000 (flat, esz 8, psz 64K, shr 0)
+> > [    0.000000] ITS: using cache flushing for cmd queue
+> > [    0.000000] GICv3: using LPI property table @0x00000000f6840000
+> > [    0.000000] GIC: using cache flushing for LPI property table
+> > [    0.000000] GICv3: CPU0: using allocated LPI pending table
+> > @0x00000000f6850000
+> > [    0.000000] GICv3: GIC: PPI partition interrupt-partition-0[0] {
+> > /cpus/cpu@0[0] /cpus/cpu@1[1] /cpus/cpu@2[2] /cpus/cpu@3[3] }
+> > [    0.000000] GICv3: GIC: PPI partition interrupt-partition-1[1] {
+> > /cpus/cpu@100[4] /cpus/cpu@101[5] }
+> > [    0.000000] random: get_random_bytes called from
+> > start_kernel+0x2b8/0x454 with crng_init=0
+> > [    0.000000] arch_timer: cp15 timer(s) running at 24.00MHz (phys).
+> > [    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff
+> > max_cycles: 0x588fe9dc0, max_idle_ns: 440795202592 ns
+> > [    0.000006] sched_clock: 56 bits at 24MHz, resolution 41ns, wraps
+> > every 4398046511097ns
+> > [    0.003201] Console: colour dummy device 80x25
+> > [    0.003624] printk: console [tty0] enabled
+> > [    0.004020] printk: bootconsole [uart8250] disabled
+>
+> I had to put "console=ttyS2,1500000" in kernel command line to get further logging beyond this point.
+
+Noted, thanks.
