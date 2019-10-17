@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40AE4DB321
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 19:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E43DB335
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 19:23:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731889AbfJQRRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 13:17:20 -0400
-Received: from mail-yw1-f66.google.com ([209.85.161.66]:40585 "EHLO
-        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728639AbfJQRRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 13:17:20 -0400
-Received: by mail-yw1-f66.google.com with SMTP id e205so1129686ywc.7;
-        Thu, 17 Oct 2019 10:17:19 -0700 (PDT)
+        id S2440693AbfJQRXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 13:23:46 -0400
+Received: from mail-yb1-f193.google.com ([209.85.219.193]:37177 "EHLO
+        mail-yb1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2440691AbfJQRXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 13:23:46 -0400
+Received: by mail-yb1-f193.google.com with SMTP id z125so949112ybc.4;
+        Thu, 17 Oct 2019 10:23:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+9eX1MUum3PI76hS1tjfDJ+ZIzB1yDgtmV+ggxFwwtM=;
-        b=UqdxRMLrEuLlz104kxAuC02Xt4KZmxvTPqnrgdjPr3YmWGZWEKl65qYYythlichA2B
-         dJ8dklOzPysvkU/8dOHZNxY+gE8w6cIaTSjBYYQThc91zXHF4gOhKTyYoQeXSrPzruaW
-         zjyNq+gysxpvZIHvRXQhhWRdPud6Oq0VssWufPdQ+fuQjuQaO7SZYeiNrhW+Pep7Svwb
-         EgY1i2A/KHtDDdj+I3m4sd7g3DVHNwfKE1j8ECxieeHOcwYGYUbEvZBYZB/oMuNYWyja
-         ldoiJs3YmN+ogZvUMjjops8qRL43FAU9e3Dk8Zup/BFyJ+iwrjJZhpc8f7vXNZSXI3gF
-         GR5w==
+        bh=g4SwHxHxwUtGIc9mmokYvDhJJMdlpqG1ecdzFzwqRlU=;
+        b=h34txVx8ucMiFbmTWddJEkas2yAoXSC+13vmb2G7hCUvp4vaspUU8vFRYqLjm53tDo
+         BDApU8qS7TCyQPBy07RCc5/bDa74S6v04Q8LOgEOGhepumRdKgO1ITXMm1KgGCQrxo9b
+         iw3dQYbeGZjBnw3TBQBm4ZrhAyYpMQrSC5HLNOLSTynKQTH8Dm8zcrcj8+ouR5x89ybV
+         8oKMZ5R+hZBRNAr/4ym7c6DLevjD9+tTVr1wXZ4GflQsIrxU/lS+JXUfL4AVfUJ7nlyO
+         3EJ4Pm2O0/BU9eh5VWtHrP4FBu1J17eVgB9LLCCvOuxapGHx1A71n6QyKHVZ/87TItdb
+         Glzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=+9eX1MUum3PI76hS1tjfDJ+ZIzB1yDgtmV+ggxFwwtM=;
-        b=bLv9ruVNOie8aNmLOgYtvXkO4e86cy2XRUx6HDm08FB0EXoKRbYSwBydhPnF6ldQX3
-         5tqLVfiARarV3ioP/afNrpHMoPv3cvR3V3P+5H0IlDrtyXqciKK9czwGlWW2UbAG79Tb
-         l6Vcz3bNLSEqe21TxaEiS1fj6DVJF1Y1oMSz8Q3ESh1kmexoDbE+Orz9IiHaWmEMgV8J
-         9n0q710MyP+Ij8IJnfITViykI1fan8L7vndoE8OPEDTDpbgARDabaGiFel8OolL9ZACu
-         h9h/zObjUbxL0q0QwI/tkYmLPQnJksLgatzkpGWqtVmOUR3rBy4hGWhUjWEJYrYT+PIq
-         NNsw==
-X-Gm-Message-State: APjAAAVBTUZsHXd6GI/8wQLCuDOUjiw7y0DahLJUp27DOEJtiFpTHdt8
-        ruu81sjVnr/o6t6V8BM54pAsEGEs
-X-Google-Smtp-Source: APXvYqxuximjpgYnrT1kXVim7da4XtaRKQh6Mifj1K/sRgrxcX24CukW4NLVJ/umqwBBgieYtyk8tw==
-X-Received: by 2002:a81:a485:: with SMTP id b127mr3381626ywh.184.1571332639579;
-        Thu, 17 Oct 2019 10:17:19 -0700 (PDT)
+        bh=g4SwHxHxwUtGIc9mmokYvDhJJMdlpqG1ecdzFzwqRlU=;
+        b=TTQoxDUubLwyGyDulhB08IjAtmK/vX6jc+Yw79cItd6YGXylUkw1S4ZqWOes6PL040
+         lRSJoJdUiRTuoCGd/HFecKcva8r78iM8n2XVn9dcje0i83r/8bW1B+WdWd6D+8rX+48B
+         hQMLuV/+eRwisANcIYkSOaAZWFtM7HfyKABkPUgWPQi7ENJwIJc3lxIbO3Yrky/sPbds
+         B6nnZQZ2NEvRwaLK8beLt5X82sjT3PGV1ZEVYWz6L1oORhPTVYgraUFocv45y5tiXrhl
+         TMSofkK9GVYNRfYvRNPJONx8/GHftUZVbC/aaKxNW0QU58XIIxa0a4UlddL9EWgV/cr4
+         +szg==
+X-Gm-Message-State: APjAAAWdC6rTTU4d2u0d3Q/J1RHc4LKx87J0eyqCFqgHvY46BC9nDkyj
+        2qjeakI4CJ+EGLCEfLq8x4I=
+X-Google-Smtp-Source: APXvYqz4/M/zkk0eMGkkmtOXHiC9/m0GHu5KKeC6Y5Iqeve3J9W6tXgs+D8krka7J8mVpWRhc+ApsA==
+X-Received: by 2002:a25:da02:: with SMTP id n2mr2997587ybf.115.1571333025368;
+        Thu, 17 Oct 2019 10:23:45 -0700 (PDT)
 Received: from [192.168.1.62] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
-        by smtp.gmail.com with ESMTPSA id y67sm792211ywd.63.2019.10.17.10.17.18
+        by smtp.gmail.com with ESMTPSA id l24sm658196ywh.108.2019.10.17.10.23.44
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 17 Oct 2019 10:17:19 -0700 (PDT)
-Subject: Re: [PATCH] of: unittest: Use platform_get_irq_optional() for
- non-existing interrupt
-To:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20191016143142.28854-1-geert+renesas@glider.be>
- <5da7a675.1c69fb81.a888.0911@mx.google.com>
- <CAMuHMdXnTOaM+4SUkzpYXNeFbJtaG_kRzFLJRhVPCVNcOUB0qA@mail.gmail.com>
- <CAL_JsqL9YPowxntVPax868hi+sN3vgCa2aSSySzjg==--c7aDA@mail.gmail.com>
+        Thu, 17 Oct 2019 10:23:44 -0700 (PDT)
+Subject: Re: [PATCH] libfdt: reduce the number of headers included from
+ libfdt_env.h
+To:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+References: <20190617162123.24920-1-yamada.masahiro@socionext.com>
+ <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
+ <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
+ <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <d4b336ab-3a80-be4b-7a56-88cf98eb19aa@gmail.com>
-Date:   Thu, 17 Oct 2019 12:17:11 -0500
+Message-ID: <57c33deb-651b-3357-0e5a-95379be8a965@gmail.com>
+Date:   Thu, 17 Oct 2019 12:23:37 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
  Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL9YPowxntVPax868hi+sN3vgCa2aSSySzjg==--c7aDA@mail.gmail.com>
+In-Reply-To: <CAK7LNAS=9yGqMQ9eoM4L0hhvuFRYhg6S4i6J3Ou9vcB1Npj4BQ@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -73,47 +72,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/17/2019 07:51, Rob Herring wrote:
-> On Thu, Oct 17, 2019 at 1:59 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On 10/16/2019 06:01, Masahiro Yamada wrote:
+> Hi Andrew,
+> 
+> Could you pick up this to akpm tree?
+> https://lore.kernel.org/patchwork/patch/1089856/
+> 
+> I believe this is correct, and a good clean-up.
+> 
+> I pinged the DT maintainers, but they did not respond.
+
+Sorry for the delay in responding.
+
+libfdt_env.h is imported from an upstream project, using
+the script scripts/dtc/update-dtc-source.sh.  Inside
+that script are some 'sed' commands to modify the
+imported files before committing them.  Please add
+a sed command to make the change that the proposed
+patch makes.
+
+Thanks,
+
+Frank
+
+> 
+> Thanks.
+> 
+> 
+> 
+> 
+> On Mon, Aug 19, 2019 at 1:36 PM Masahiro Yamada
+> <yamada.masahiro@socionext.com> wrote:
 >>
->> Hi Stephen,
->>
->> On Thu, Oct 17, 2019 at 1:23 AM Stephen Boyd <swboyd@chromium.org> wrote:
->>> Quoting Geert Uytterhoeven (2019-10-16 07:31:42)
->>>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
->>>> index 9efae29722588a35..34da22f8b0660989 100644
->>>> --- a/drivers/of/unittest.c
->>>> +++ b/drivers/of/unittest.c
->>>> @@ -1121,7 +1121,7 @@ static void __init of_unittest_platform_populate(void)
->>>>                 np = of_find_node_by_path("/testcase-data/testcase-device2");
->>>>                 pdev = of_find_device_by_node(np);
->>>>                 unittest(pdev, "device 2 creation failed\n");
->>>> -               irq = platform_get_irq(pdev, 0);
->>>> +               irq = platform_get_irq_optional(pdev, 0);
->>>>                 unittest(irq < 0 && irq != -EPROBE_DEFER,
+>> On Thu, Aug 1, 2019 at 11:30 AM Masahiro Yamada
+>> <yamada.masahiro@socionext.com> wrote:
 >>>
->>> This is a test to make sure that irq failure doesn't return probe defer.
->>> Do we want to silence the error message that we're expecting to see?
-
-No, we do not want to silence an error message that we are expecting to see.
-
-
+>>> On Tue, Jun 18, 2019 at 1:21 AM Masahiro Yamada
+>>> <yamada.masahiro@socionext.com> wrote:
+>>>>
+>>>> Currently, libfdt_env.h includes <linux/kernel.h> just for INT_MAX.
+>>>>
+>>>> <linux/kernel.h> pulls in a lots of broat.
+>>>>
+>>>> Thanks to commit 54d50897d544 ("linux/kernel.h: split *_MAX and *_MIN
+>>>> macros into <linux/limits.h>"), <linux/kernel.h> can be replaced with
+>>>> <linux/limits.h>.
+>>>>
+>>>> This saves including dozens of headers.
+>>>>
+>>>> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+>>>> ---
+>>>
+>>> ping?
 >>
->> I think so.  We're not interested in error messages for expected failures,
->> only in error messages for unittest() failures.
-
-platform_get_irq() is precisely the function that we are trying to test here.
-
-
+>> ping x2.
+>>
+>>
+>>
+>>
+>>>
+>>>
+>>>>  include/linux/libfdt_env.h | 2 +-
+>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/include/linux/libfdt_env.h b/include/linux/libfdt_env.h
+>>>> index edb0f0c30904..2231eb855e8f 100644
+>>>> --- a/include/linux/libfdt_env.h
+>>>> +++ b/include/linux/libfdt_env.h
+>>>> @@ -2,7 +2,7 @@
+>>>>  #ifndef LIBFDT_ENV_H
+>>>>  #define LIBFDT_ENV_H
+>>>>
+>>>> -#include <linux/kernel.h>      /* For INT_MAX */
+>>>> +#include <linux/limits.h>      /* For INT_MAX */
+>>>>  #include <linux/string.h>
+>>>>
+>>>>  #include <asm/byteorder.h>
+>>>> --
+>>>> 2.17.1
+>>>>
+>>>
+>>>
+>>> --
+>>> Best Regards
+>>> Masahiro Yamada
+>>
+>>
+>>
+>> --
+>> Best Regards
+>> Masahiro Yamada
 > 
-> The unittests start with a warning that error messages will be seen.
-> OTOH, we didn't get a message here before.
-Getting error messages from places outside of unittest.c is just the
-nature of the devicetree selftest beast.
-
--Frank
-
 > 
-> Rob
 > 
 
