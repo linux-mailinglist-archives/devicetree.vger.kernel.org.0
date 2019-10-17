@@ -2,956 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F63DA7CE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 10:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E74A6DA7F1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 11:03:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439203AbfJQIyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 04:54:17 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:38561 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439155AbfJQIyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 04:54:16 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: kamel.bouhara@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 0E3FD2000D;
-        Thu, 17 Oct 2019 08:54:12 +0000 (UTC)
-From:   Kamel Bouhara <kamel.bouhara@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kamel Bouhara <kamel.bouhara@bootlin.com>,
-        =?UTF-8?q?K=C3=A9vin=20RAYMOND?= <k.raymond@overkiz.com>,
-        Mickael GARDET <m.gardet@overkiz.com>
-Subject: [PATCH 2/2] ARM: dts: at91: add a common kizbox2 dtsi file
-Date:   Thu, 17 Oct 2019 10:54:05 +0200
-Message-Id: <20191017085405.12599-3-kamel.bouhara@bootlin.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191017085405.12599-1-kamel.bouhara@bootlin.com>
-References: <20191017085405.12599-1-kamel.bouhara@bootlin.com>
+        id S1726728AbfJQJDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 05:03:06 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:37493 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728987AbfJQJDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 05:03:06 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20191017090303euoutp01cce2e5c14602c154bbe9ebe56c7cb5c7~OY70Sadxe1889918899euoutp01b
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:03:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20191017090303euoutp01cce2e5c14602c154bbe9ebe56c7cb5c7~OY70Sadxe1889918899euoutp01b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1571302983;
+        bh=3z0Meifbwr5zG+mE7LdzyRuTTfPqBg1Ea+yb3WOdQ6M=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=B6RpQs+3bIbxe5nbrqwo/7TX6yFC91J3iDB/9DHDOMpf5JJlvIHBnKx6UAhVUGJwA
+         GQH02JYtVURBOxWSAN+Z1ii0SW/e2PT/PGrVrqQMt9zzd5PGeMdITi47G917JDeUv/
+         Nws3WxjY76mtQVJbamXa+GBQRH7gpJalcsCQJlIY=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20191017090303eucas1p16b2cb435692005c820b1b5d9b745397a~OY7z7wYCy2584825848eucas1p1t;
+        Thu, 17 Oct 2019 09:03:03 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 24.13.04374.74E28AD5; Thu, 17
+        Oct 2019 10:03:03 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20191017090302eucas1p17cbcaea2d7e2479d19a60205fe7ba69f~OY7zh1K0b0112301123eucas1p1p;
+        Thu, 17 Oct 2019 09:03:02 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20191017090302eusmtrp2a9e9214e2871787b5e86381e36dafc57~OY7zgzBm52488524885eusmtrp2e;
+        Thu, 17 Oct 2019 09:03:02 +0000 (GMT)
+X-AuditID: cbfec7f5-4ddff70000001116-65-5da82e475026
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 03.B9.04166.64E28AD5; Thu, 17
+        Oct 2019 10:03:02 +0100 (BST)
+Received: from [106.120.51.75] (unknown [106.120.51.75]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20191017090302eusmtip2c6d402ce73ee18fe5039249704c2f539~OY7y-COjD1289712897eusmtip2_;
+        Thu, 17 Oct 2019 09:03:02 +0000 (GMT)
+Subject: Re: [PATCH v5 2/4] dt-bindings: arm: samsung: Update the CHIPID
+ binding for ASV
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-pm@vger.kernel.org,
+        sboyd@kernel.org, vireshk@kernel.org,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>, roger.lu@mediatek.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <e5f441af-a21c-292b-b6ba-7e1e6550f091@samsung.com>
+Date:   Thu, 17 Oct 2019 11:03:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJKOXPeagcSRUm2Qwwby=NHfWGdQ6KVZ2htb3UmnU2GfX+Ckcg@mail.gmail.com>
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJKsWRmVeSWpSXmKPExsWy7djPc7rueitiDbZvErLYOGM9q8X8I+dY
+        Lc6f38BusenxNVaLz71HGC1mnN/HZLH2yF12i9a9R9gtLj/eyGbx79pGFovND46xOXB7bFrV
+        yeaxeUm9R8vJ/SwefVtWMXp83iQXwBrFZZOSmpNZllqkb5fAlTFz1ha2gs/sFd9/ZTcwzmXr
+        YuTkkBAwkfj5s52xi5GLQ0hgBaPE3ssfmUASQgJfGCW+/fOEsD8zSrQtz4FpmPe6jQmiYTmj
+        xIt7Cxkhit4ySrxuMQGxhQWiJA68W8oCYosIaEpc//udFaSBWaCJWeL0qvVgq9kEDCV6j/aB
+        NfMK2Em0n78CZrMIqEpMaP0OZHNwiApESJz+mghRIihxcuYTsJmcAoESN3fOYgWxmQXEJZq+
+        rISy5SW2v53DDHHoJXaJiWskQcZICLhI/N1tDxEWlnh1fAs7hC0j8X/nfLBfJASaGSV6dt9m
+        h3AmMErcP76AEaLKWuLw8YusIIOYgZ5Zv0sfIuwo8eHrckaI+XwSN94KQpzAJzFp23RmiDCv
+        REebEES1isTvVdOZIGwpie4n/1kmMCrNQvLYLCTPzELyzCyEvQsYWVYxiqeWFuempxYb56WW
+        6xUn5haX5qXrJefnbmIEJqjT/45/3cG470/SIUYBDkYlHt4Jj5bHCrEmlhVX5h5ilOBgVhLh
+        nd+yJFaINyWxsiq1KD++qDQntfgQozQHi5I4bzXDg2ghgfTEktTs1NSC1CKYLBMHpxQwyVxR
+        DOdVWvtWibnFamlkh0Dux09eXtOMmEJW/9S9PPFl+numUyF+3oJt+xuPXu5ujy/KmitWv34P
+        r5X5ylXVGxIWXmk+3bCJddPTg1o/jlhfuXjUTcnu4POalNZjZyfqC5WtLvleGiOy+GxOQf4q
+        /yXyfTMFzTW3/18yh3f5PRG2tW5TrwW9V2Ipzkg01GIuKk4EAEcrwptMAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAIsWRmVeSWpSXmKPExsVy+t/xe7pueitiDU680rfYOGM9q8X8I+dY
+        Lc6f38BusenxNVaLz71HGC1mnN/HZLH2yF12i9a9R9gtLj/eyGbx79pGFovND46xOXB7bFrV
+        yeaxeUm9R8vJ/SwefVtWMXp83iQXwBqlZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwe
+        a2VkqqRvZ5OSmpNZllqkb5eglzFz1ha2gs/sFd9/ZTcwzmXrYuTkkBAwkZj3uo2pi5GLQ0hg
+        KaPEtkO32LsYOYASUhLzW5QgaoQl/lzrYoOoec0oMf9RLytIQlggSuLAu6UsILaIgKbE9b/f
+        WUGKmAWamCX+dRxjhujoYJJYvqOFHaSKTcBQovdoHyOIzStgJ9F+/gqYzSKgKjGh9TuYLSoQ
+        IfF8+w2oGkGJkzOfgG3gFAiUuLlzFthmZgF1iT/zLjFD2OISTV9WQsXlJba/ncM8gVFoFpL2
+        WUhaZiFpmYWkZQEjyypGkdTS4tz03GJDveLE3OLSvHS95PzcTYzA2Nx27OfmHYyXNgYfYhTg
+        YFTi4Z3AuDxWiDWxrLgy9xCjBAezkgjv/JYlsUK8KYmVValF+fFFpTmpxYcYTYGem8gsJZqc
+        D0wbeSXxhqaG5haWhubG5sZmFkrivB0CB2OEBNITS1KzU1MLUotg+pg4OKUaGKe5rl31wVaC
+        M/B6ZqrV8X+xdsKm2pIHmBOatWbtFgh4vMuqodYt/ntHdGy8SkzsgVnqnaun3ls4x32W0g7Z
+        1fN/7jUrkjjmvN+N++6ehrtX65orfm/eeT3Ci9NNTG39/IVyv16c/L/ot0jJuvN/l8YdlQwr
+        5YxJ5jj/9GfKzCxl0XWntpYZ8SuxFGckGmoxFxUnAgCOd6+r4wIAAA==
+X-CMS-MailID: 20191017090302eucas1p17cbcaea2d7e2479d19a60205fe7ba69f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20191016145812eucas1p1a3cf3f44a2cff4c32a2270334630c4a2
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20191016145812eucas1p1a3cf3f44a2cff4c32a2270334630c4a2
+References: <CGME20191016145812eucas1p1a3cf3f44a2cff4c32a2270334630c4a2@eucas1p1.samsung.com>
+        <20191016145756.16004-1-s.nawrocki@samsung.com>
+        <20191016145756.16004-3-s.nawrocki@samsung.com>
+        <CAJKOXPeagcSRUm2Qwwby=NHfWGdQ6KVZ2htb3UmnU2GfX+Ckcg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are three different boards available depending on the PCB
-(3 antennas support and several revison). Add a dtsi file to share
-common binding between all kizbox2 boards.
+On 10/16/19 18:16, Krzysztof Kozlowski wrote:
+>> --- a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+>> @@ -9,17 +9,42 @@ title: Samsung Exynos SoC series Chipid driver
 
-Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-Signed-off-by: Kévin RAYMOND <k.raymond@overkiz.com>
-Signed-off-by: Mickael GARDET <m.gardet@overkiz.com>
----
- arch/arm/boot/dts/Makefile                 |   6 +-
- arch/arm/boot/dts/at91-kizbox.dts          | 173 +++++++-------
- arch/arm/boot/dts/at91-kizbox2-0.dts       |  17 ++
- arch/arm/boot/dts/at91-kizbox2-1.dts       |  22 ++
- arch/arm/boot/dts/at91-kizbox2-2.dts       |  26 +++
- arch/arm/boot/dts/at91-kizbox2-3.dts       |  30 +++
- arch/arm/boot/dts/at91-kizbox2-rev2.dts    |  34 +++
- arch/arm/boot/dts/at91-kizbox2.dts         | 244 -------------------
- arch/arm/boot/dts/at91-kizbox2_common.dtsi | 258 +++++++++++++++++++++
- 9 files changed, 477 insertions(+), 333 deletions(-)
- create mode 100644 arch/arm/boot/dts/at91-kizbox2-0.dts
- create mode 100644 arch/arm/boot/dts/at91-kizbox2-1.dts
- create mode 100644 arch/arm/boot/dts/at91-kizbox2-2.dts
- create mode 100644 arch/arm/boot/dts/at91-kizbox2-3.dts
- create mode 100644 arch/arm/boot/dts/at91-kizbox2-rev2.dts
- delete mode 100644 arch/arm/boot/dts/at91-kizbox2.dts
- create mode 100644 arch/arm/boot/dts/at91-kizbox2_common.dtsi
+BTW, I think we should rename the above title to talk about IP block/device
+rather than driver, e.g.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 3bda216c41be..c976b72a4c94 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -45,7 +45,11 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
- 	at91sam9x25ek.dtb \
- 	at91sam9x35ek.dtb
- dtb-$(CONFIG_SOC_SAM_V7) += \
--	at91-kizbox2.dtb \
-+	at91-kizbox2-0.dtb \
-+	at91-kizbox2-1.dtb \
-+	at91-kizbox2-2.dtb \
-+	at91-kizbox2-rev2.dtb \
-+	at91-kizbox2-3.dtb \
- 	at91-kizbox3-hs.dtb \
- 	at91-nattis-2-natte-2.dtb \
- 	at91-sama5d27_som1_ek.dtb \
-diff --git a/arch/arm/boot/dts/at91-kizbox.dts b/arch/arm/boot/dts/at91-kizbox.dts
-index 90996eaf73b2..9eb1ea750159 100644
---- a/arch/arm/boot/dts/at91-kizbox.dts
-+++ b/arch/arm/boot/dts/at91-kizbox.dts
-@@ -28,85 +28,6 @@
- 		};
- 	};
- 
--	ahb {
--		apb {
--			tcb0: timer@fffa0000 {
--				timer@0 {
--					compatible = "atmel,tcb-timer";
--					reg = <0>, <1>;
--				};
--
--				timer@2 {
--					compatible = "atmel,tcb-timer";
--					reg = <2>;
--				};
--			};
--
--			macb0: ethernet@fffc4000 {
--				phy-mode = "mii";
--				pinctrl-0 = <&pinctrl_macb_rmii
--				             &pinctrl_macb_rmii_mii_alt>;
--				status = "okay";
--			};
--
--			usart3: serial@fffd0000 {
--				status = "okay";
--			};
--
--			dbgu: serial@fffff200 {
--				status = "okay";
--			};
--
--			watchdog@fffffd40 {
--				timeout-sec = <15>;
--				atmel,max-heartbeat-sec = <16>;
--				atmel,min-heartbeat-sec = <0>;
--				status = "okay";
--			};
--		};
--
--		usb0: ohci@500000 {
--			num-ports = <1>;
--			status = "okay";
--		};
--
--		ebi: ebi@10000000 {
--			status = "okay";
--
--			nand_controller: nand-controller {
--				status = "okay";
--				pinctrl-0 = <&pinctrl_nand_cs &pinctrl_nand_rb>;
--				pinctrl-names = "default";
--
--				nand@3 {
--					reg = <0x3 0x0 0x800000>;
--					rb-gpios = <&pioC 13 GPIO_ACTIVE_HIGH>;
--					cs-gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
--					nand-bus-width = <8>;
--					nand-ecc-mode = "soft";
--					nand-on-flash-bbt;
--					label = "atmel_nand";
--
--					partitions {
--						compatible = "fixed-partitions";
--						#address-cells = <1>;
--						#size-cells = <1>;
--
--						bootstrap@0 {
--							label = "bootstrap";
--							reg = <0x0 0x20000>;
--						};
--
--						ubi@20000 {
--							label = "ubi";
--							reg = <0x20000 0x7fe0000>;
--						};
--					};
--				};
--			};
--		};
--	};
--
- 	gpio_keys {
- 		compatible = "gpio-keys";
- 		#address-cells = <1>;
-@@ -127,15 +48,6 @@
- 		};
- 	};
- 
--	i2c-gpio-0 {
--		status = "okay";
--
--		rtc: pcf8563@51 {
--			compatible = "nxp,pcf8563";
--			reg = <0x51>;
--		};
--	};
--
- 	pwm_leds {
- 		compatible = "pwm-leds";
- 
-@@ -179,3 +91,88 @@
- 			     &pinctrl_tcb1_tiob0>;
- 	};
- };
-+
-+&tcb0 {
-+	timer@0 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <0>, <1>;
-+	};
-+
-+	timer@2 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <2>;
-+	};
-+};
-+
-+&ebi {
-+	status = "okay";
-+};
-+
-+&nand_controller {
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_nand_cs &pinctrl_nand_rb>;
-+	pinctrl-names = "default";
-+
-+	nand@3 {
-+		reg = <0x3 0x0 0x800000>;
-+		rb-gpios = <&pioC 13 GPIO_ACTIVE_HIGH>;
-+		cs-gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
-+		nand-bus-width = <8>;
-+		nand-ecc-mode = "soft";
-+		nand-on-flash-bbt;
-+		label = "atmel_nand";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			bootstrap@0 {
-+				label = "bootstrap";
-+				reg = <0x0 0x20000>;
-+			};
-+
-+			ubi@20000 {
-+				label = "ubi";
-+				reg = <0x20000 0x7fe0000>;
-+			};
-+		};
-+	};
-+};
-+
-+&macb0 {
-+	phy-mode = "mii";
-+	pinctrl-0 = <&pinctrl_macb_rmii
-+		     &pinctrl_macb_rmii_mii_alt>;
-+	status = "okay";
-+};
-+
-+&usart3 {
-+	status = "okay";
-+};
-+
-+&dbgu {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	timeout-sec = <15>;
-+	atmel,max-heartbeat-sec = <16>;
-+	atmel,min-heartbeat-sec = <0>;
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	num-ports = <1>;
-+	status = "okay";
-+};
-+
-+&i2c-gpio-0 {
-+	status = "okay";
-+
-+	rtc: pcf8563@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-diff --git a/arch/arm/boot/dts/at91-kizbox2-0.dts b/arch/arm/boot/dts/at91-kizbox2-0.dts
-new file mode 100644
-index 000000000000..fd3f81fc0526
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-kizbox2-0.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * at91-kizbox2-0.dts - Device Tree file for the Kizbox 2 board
-+ *
-+ * Copyright (C) 2015 Overkiz SAS
-+ *
-+ * Authors: Antoine Aubert <a.aubert@overkiz.com>
-+ *          Kévin Raymond <k.raymond@overkiz.com>
-+ */
-+/dts-v1/;
-+#include "at91-kizbox2_common.dtsi"
-+
-+/ {
-+	model = "Overkiz Kizbox 2 Mother Board";
-+	compatible = "overkiz,kizbox2-0", "atmel,sama5d31",
-+		     "atmel,sama5d3", "atmel,sama5";
-+};
-diff --git a/arch/arm/boot/dts/at91-kizbox2-1.dts b/arch/arm/boot/dts/at91-kizbox2-1.dts
-new file mode 100644
-index 000000000000..00b26b5be466
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-kizbox2-1.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * at91-kizbox2-1.dts - Device Tree file for the Kizbox 2 with one
-+ * head board
-+ *
-+ * Copyright (C) 2015 Overkiz SAS
-+ *
-+ * Authors: Antoine Aubert <a.aubert@overkiz.com>
-+ *          Kévin Raymond <k.raymond@overkiz.com>
-+ */
-+/dts-v1/;
-+#include "at91-kizbox2_common.dtsi"
-+
-+/ {
-+	model = "Overkiz Kizbox 2 with one head";
-+	compatible = "overkiz,kizbox2-1", "atmel,sama5d31",
-+		     "atmel,sama5d3", "atmel,sama5";
-+};
-+
-+&usart1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/at91-kizbox2-2.dts b/arch/arm/boot/dts/at91-kizbox2-2.dts
-new file mode 100644
-index 000000000000..7251c14878cd
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-kizbox2-2.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * at91-kizbox2-2.dts - Device Tree file for the Kizbox2 with
-+ * two head board
-+ *
-+ * Copyright (C) 2015 Overkiz SAS
-+ *
-+ * Authors: Antoine Aubert <a.aubert@overkiz.com>
-+ *	    Kévin Raymond <k.raymond@overkiz.com>
-+ */
-+/dts-v1/;
-+#include "at91-kizbox2_common.dtsi"
-+
-+/ {
-+	model = "Overkiz Kizbox 2 with two heads";
-+	compatible = "overkiz,kizbox2-2", "atmel,sama5d31",
-+		     "atmel,sama5d3", "atmel,sama5";
-+};
-+
-+&usart1 {
-+	status = "okay";
-+};
-+
-+&usart2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/at91-kizbox2-3.dts b/arch/arm/boot/dts/at91-kizbox2-3.dts
-new file mode 100644
-index 000000000000..004854eae512
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-kizbox2-3.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * at91-kizbox2-3.dts - Device Tree file for the Kizbox2 with three
-+ * heads board
-+ *
-+ * Copyright (C) 2015 Overkiz SAS
-+ *
-+ * Authors: Antoine Aubert <a.aubert@overkiz.com>
-+ *          Kévin Raymond <k.raymond@overkiz.com>
-+ */
-+/dts-v1/;
-+#include "at91-kizbox2_common.dtsi"
-+
-+/ {
-+	model = "Overkiz Kizbox 2 with three heads";
-+	compatible = "overkiz,kizbox2-3", "atmel,sama5d31",
-+		     "atmel,sama5d3", "atmel,sama5";
-+};
-+
-+&usart0 {
-+	status = "okay";
-+};
-+
-+&usart1 {
-+	status = "okay";
-+};
-+
-+&usart2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/at91-kizbox2-rev2.dts b/arch/arm/boot/dts/at91-kizbox2-rev2.dts
-new file mode 100644
-index 000000000000..00d7185e186a
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-kizbox2-rev2.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * at91-kizbox2-rev2.dts - Device Tree file for the Kizbox2 rev2 with
-+ * two heads board
-+ *
-+ * Copyright (C) 2017 Overkiz SAS
-+ *
-+ * Author: Kévin Raymond <k.raymond@overkiz.com>
-+ */
-+/dts-v1/;
-+#include "at91-kizbox2_common.dtsi"
-+
-+/ {
-+	model = "Overkiz Kizbox 2 Rev 2 with two heads";
-+	compatible = "overkiz,kizbox2-rev2", "atmel,sama5d31",
-+		     "atmel,sama5d3", "atmel,sama5";
-+
-+	ahb {
-+		gpio_keys {
-+			user {
-+				status = "disabled";
-+			};
-+		};
-+	};
-+};
-+
-+&usart1 {
-+	status = "okay";
-+};
-+
-+&usart2 {
-+	status = "okay";
-+};
-+
-diff --git a/arch/arm/boot/dts/at91-kizbox2.dts b/arch/arm/boot/dts/at91-kizbox2.dts
-deleted file mode 100644
-index 86d821884bd4..000000000000
---- a/arch/arm/boot/dts/at91-kizbox2.dts
-+++ /dev/null
-@@ -1,244 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-or-later
--/*
-- * at91-kizbox2.dts - Device Tree file for Overkiz Kizbox 2 board
-- *
-- * Copyright (C) 2014 Gaël PORTAY <g.portay@overkiz.com>
-- */
--/dts-v1/;
--#include "sama5d31.dtsi"
--#include <dt-bindings/pwm/pwm.h>
--
--/ {
--	model = "Overkiz Kizbox 2";
--	compatible = "overkiz,kizbox2", "atmel,sama5d31", "atmel,sama5d3", "atmel,sama5";
--
--	chosen {
--		bootargs = "ubi.mtd=ubi";
--		stdout-path = &dbgu;
--	};
--
--	memory {
--		reg = <0x20000000 0x10000000>;
--	};
--
--	clocks {
--		slow_xtal {
--			clock-frequency = <32768>;
--		};
--
--		main_xtal {
--			clock-frequency = <12000000>;
--		};
--	};
--
--	ahb {
--		apb {
--			i2c1: i2c@f0018000 {
--				status = "okay";
--
--				pmic: act8865@5b {
--					compatible = "active-semi,act8865";
--					reg = <0x5b>;
--					status = "okay";
--
--					regulators {
--						vcc_1v8_reg: DCDC_REG1 {
--							regulator-name = "VCC_1V8";
--							regulator-min-microvolt = <1800000>;
--							regulator-max-microvolt = <1800000>;
--							regulator-always-on;
--						};
--
--						vcc_1v2_reg: DCDC_REG2 {
--							regulator-name = "VCC_1V2";
--							regulator-min-microvolt = <1200000>;
--							regulator-max-microvolt = <1200000>;
--							regulator-always-on;
--						};
--
--						vcc_3v3_reg: DCDC_REG3 {
--							regulator-name = "VCC_3V3";
--							regulator-min-microvolt = <3300000>;
--							regulator-max-microvolt = <3300000>;
--							regulator-always-on;
--						};
--
--						vddfuse_reg: LDO_REG1 {
--							regulator-name = "FUSE_2V5";
--							regulator-min-microvolt = <2500000>;
--							regulator-max-microvolt = <2500000>;
--						};
--
--						vddana_reg: LDO_REG2 {
--							regulator-name = "VDDANA";
--							regulator-min-microvolt = <3300000>;
--							regulator-max-microvolt = <3300000>;
--							regulator-always-on;
--						};
--
--						vled_reg: LDO_REG3 {
--							regulator-name = "VLED";
--							regulator-min-microvolt = <3300000>;
--							regulator-max-microvolt = <3300000>;
--							regulator-always-on;
--						};
--
--						v3v8_rf_reg: LDO_REG4 {
--							regulator-name = "V3V8_RF";
--							regulator-min-microvolt = <3800000>;
--							regulator-max-microvolt = <3800000>;
--							regulator-always-on;
--						};
--					};
--				};
--			};
--
--			tcb0: timer@f0010000 {
--				timer@0 {
--					compatible = "atmel,tcb-timer";
--					reg = <0>;
--				};
--
--				timer@1 {
--					compatible = "atmel,tcb-timer";
--					reg = <1>;
--				};
--			};
--
--			usart0: serial@f001c000 {
--				status = "okay";
--			};
--
--			usart1: serial@f0020000 {
--				status = "okay";
--			};
--
--			pwm0: pwm@f002c000 {
--				pinctrl-names = "default";
--				pinctrl-0 = <&pinctrl_pwm0_pwmh0_1
--					     &pinctrl_pwm0_pwmh1_1
--					     &pinctrl_pwm0_pwmh2_0>;
--				status = "okay";
--			};
--
--			adc0: adc@f8018000 {
--				atmel,adc-vref = <3333>;
--				status = "okay";
--			};
--
--			usart2: serial@f8020000 {
--				status = "okay";
--			};
--
--			macb1: ethernet@f802c000 {
--				phy-mode = "rmii";
--				status = "okay";
--			};
--
--			dbgu: serial@ffffee00 {
--				status = "okay";
--			};
--
--			watchdog@fffffe40 {
--				status = "okay";
--			};
--		};
--
--		usb1: ohci@600000 {
--			status = "okay";
--		};
--
--		usb2: ehci@700000 {
--			status = "okay";
--		};
--
--		ebi: ebi@10000000 {
--			pinctrl-0 = <&pinctrl_ebi_nand_addr>;
--			pinctrl-names = "default";
--			status = "okay";
--
--			nand_controller: nand-controller {
--				status = "okay";
--
--				nand@3 {
--					reg = <0x3 0x0 0x2>;
--					atmel,rb = <0>;
--					nand-bus-width = <8>;
--					nand-ecc-mode = "hw";
--					nand-ecc-strength = <4>;
--					nand-ecc-step-size = <512>;
--					nand-on-flash-bbt;
--					label = "atmel_nand";
--
--					partitions {
--						compatible = "fixed-partitions";
--						#address-cells = <1>;
--						#size-cells = <1>;
--
--						bootstrap@0 {
--							label = "bootstrap";
--							reg = <0x0 0x20000>;
--						};
--
--						ubi@20000 {
--							label = "ubi";
--							reg = <0x20000 0x7fe0000>;
--						};
--					};
--				};
--			};
--		};
--	};
--
--	gpio_keys {
--		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		prog {
--			label = "PB_PROG";
--			gpios = <&pioE 27 GPIO_ACTIVE_LOW>;
--			linux,code = <0x102>;
--			wakeup-source;
--		};
--
--		reset {
--			label = "PB_RST";
--			gpios = <&pioE 29 GPIO_ACTIVE_LOW>;
--			linux,code = <0x100>;
--			wakeup-source;
--		};
--
--		user {
--			label = "PB_USER";
--			gpios = <&pioE 31 GPIO_ACTIVE_HIGH>;
--			linux,code = <0x101>;
--			wakeup-source;
--		};
--	};
--
--	pwm_leds {
--		compatible = "pwm-leds";
--
--		blue {
--			label = "pwm:blue:user";
--			pwms = <&pwm0 2 10000000 0>;
--			max-brightness = <255>;
--			linux,default-trigger = "default-on";
--		};
--
--		green {
--			label = "pwm:green:user";
--			pwms = <&pwm0 1 10000000 0>;
--			max-brightness = <255>;
--			linux,default-trigger = "default-on";
--		};
--
--		red {
--			label = "pwm:red:user";
--			pwms = <&pwm0 0 10000000 0>;
--			max-brightness = <255>;
--			linux,default-trigger = "default-on";
--		};
--	};
--};
-diff --git a/arch/arm/boot/dts/at91-kizbox2_common.dtsi b/arch/arm/boot/dts/at91-kizbox2_common.dtsi
-new file mode 100644
-index 000000000000..b8f644e4cf22
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-kizbox2_common.dtsi
-@@ -0,0 +1,258 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * at91-kizbox2_common.dtsi - Device Tree Include file for
-+ * Overkiz Kizbox 2 family SoC
-+ *
-+ * Copyright (C) 2014-2018 Overkiz SAS
-+ *
-+ * Authors: Antoine Aubert <a.aubert@overkiz.com>
-+ *          Gaël Portay <g.portay@overkiz.com>
-+ *          Kévin Raymond <k.raymond@overkiz.com>
-+ */
-+#include "sama5d31.dtsi"
-+
-+/ {
-+	chosen {
-+		bootargs = "ubi.mtd=ubi";
-+		stdout-path = &dbgu;
-+	};
-+
-+	memory {
-+		reg = <0x20000000 0x10000000>;
-+	};
-+
-+	clocks {
-+		slow_xtal {
-+			clock-frequency = <32768>;
-+		};
-+
-+		main_xtal {
-+			clock-frequency = <12000000>;
-+		};
-+	};
-+
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		prog {
-+			label = "PB_PROG";
-+			gpios = <&pioE 27 GPIO_ACTIVE_LOW>;
-+			linux,code = <0x102>;
-+			wakeup-source;
-+		};
-+
-+		reset {
-+			label = "PB_RST";
-+			gpios = <&pioE 29 GPIO_ACTIVE_LOW>;
-+			linux,code = <0x100>;
-+			wakeup-source;
-+		};
-+
-+		user {
-+			label = "PB_USER";
-+			gpios = <&pioE 31 GPIO_ACTIVE_HIGH>;
-+			linux,code = <0x101>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	pwm_leds {
-+		compatible = "pwm-leds";
-+
-+		blue {
-+			label = "pwm:blue:user";
-+			pwms = <&pwm0 2 10000000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "none";
-+		};
-+
-+		green {
-+			label = "pwm:green:user";
-+			pwms = <&pwm0 1 10000000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		red {
-+			label = "pwm:red:user";
-+			pwms = <&pwm0 0 10000000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "default-on";
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	pmic: act8865@5b {
-+		compatible = "active-semi,act8865";
-+		reg = <0x5b>;
-+		status = "okay";
-+
-+		regulators {
-+			vcc_1v8_reg: DCDC_REG1 {
-+				regulator-name = "VCC_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc_1v2_reg: DCDC_REG2 {
-+				regulator-name = "VCC_1V2";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-always-on;
-+			};
-+
-+			vcc_3v3_reg: DCDC_REG3 {
-+				regulator-name = "VCC_3V3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vddfuse_reg: LDO_REG1 {
-+				regulator-name = "FUSE_2V5";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+			};
-+
-+			vddana_reg: LDO_REG2 {
-+				regulator-name = "VDDANA";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vled_reg: LDO_REG3 {
-+				regulator-name = "VLED";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			v3v8_rf_reg: LDO_REG4 {
-+				regulator-name = "V3V8_RF";
-+				regulator-min-microvolt = <3800000>;
-+				regulator-max-microvolt = <3800000>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
-+&usart0 {
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "disabled";
-+};
-+
-+&usart1 {
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "disabled";
-+};
-+
-+&usart2 {
-+	atmel,use-dma-rx;
-+	atmel,use-dma-tx;
-+	status = "disabled";
-+};
-+
-+&pwm0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_pwmh0_1
-+		     &pinctrl_pwm0_pwmh1_1
-+		     &pinctrl_pwm0_pwmh2_0>;
-+	status = "okay";
-+};
-+
-+&adc0 {
-+	atmel,adc-vref = <3333>;
-+	status = "okay";
-+};
-+
-+&macb1 {
-+	phy-mode = "rmii";
-+	status = "okay";
-+};
-+
-+&dbgu {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	pinctrl-0 = <&pinctrl_ebi_nand_addr>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&nand_controller {
-+	status = "okay";
-+
-+	nand@3 {
-+		reg = <0x3 0x0 0x2>;
-+		atmel,rb = <0>;
-+		nand-bus-width = <8>;
-+		nand-ecc-mode = "hw";
-+		nand-ecc-strength = <4>;
-+		nand-ecc-step-size = <512>;
-+		nand-on-flash-bbt;
-+		label = "atmel_nand";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			bootstrap@0 {
-+				label = "bootstrap";
-+				reg = <0x0 0x20000>;
-+			};
-+
-+			ubi@20000 {
-+				label = "ubi";
-+				reg = <0x20000 0x7fe0000>;
-+			};
-+		};
-+	};
-+};
-+
-+&usb1 {
-+	status = "okay";
-+};
-+
-+&usb2 {
-+	status = "okay";
-+};
-+
-+// WMBUS (inverted with IO in the latest schematic)
-+&pinctrl_usart0 {
-+	atmel,pins =
-+		<AT91_PIOD 17 AT91_PERIPH_A AT91_PINCTRL_NONE
-+		 AT91_PIOD 18 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+		 AT91_PIOE 2 AT91_PERIPH_GPIO AT91_PINCTRL_MULTI_DRIVE>;
-+};
-+
-+// RTS
-+&pinctrl_usart1 {
-+	atmel,pins =
-+		<AT91_PIOB 28 AT91_PERIPH_A AT91_PINCTRL_NONE
-+		 AT91_PIOB 29 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+		 AT91_PIOE 7 AT91_PERIPH_GPIO AT91_PINCTRL_MULTI_DRIVE>;
-+};
-+
-+// IO (inverted with WMBUS in the latest schematic)
-+&pinctrl_usart2 {
-+	atmel,pins =
-+		<AT91_PIOE 25 AT91_PERIPH_B AT91_PINCTRL_NONE
-+		 AT91_PIOE 26 AT91_PERIPH_B AT91_PINCTRL_PULL_UP
-+		 AT91_PIOE 8 AT91_PERIPH_GPIO AT91_PINCTRL_MULTI_DRIVE>;
-+};
--- 
-2.23.0
+-SAMSUNG Exynos SoCs Chipid driver.
++SAMSUNG Exynos SoC series CHIPID subsystem
 
+>> +# Custom select to avoid matching all nodes with 'syscon'
+>> +select:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: samsung,exynos4210-chipid
+>> +  required:
+>> +    - compatible
+>> +
+>>  properties:
+>>    compatible:
+>> -    items:
+>> -      - const: samsung,exynos4210-chipid
+>> +    allOf:
+>
+> I think it was my mistake to use allOf in other Exynos bindings. It
+> should not be needed.
+
+Indeed it seems to work well without allOf, I was wondering why we
+needed the custom select above AND allOf.
