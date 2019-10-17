@@ -2,108 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F04DDB200
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBC48DB207
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406398AbfJQQLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 12:11:20 -0400
-Received: from mail-qt1-f194.google.com ([209.85.160.194]:38176 "EHLO
-        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406395AbfJQQLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:11:20 -0400
-Received: by mail-qt1-f194.google.com with SMTP id j31so4378772qta.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:11:19 -0700 (PDT)
+        id S2440445AbfJQQLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 12:11:52 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:33890 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405983AbfJQQLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:11:50 -0400
+Received: by mail-pl1-f196.google.com with SMTP id k7so1362595pll.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:11:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:cc:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding;
-        bh=L9pt9Z55SHz6CG8upac+m8pqudIdzOY9Z9V3JtoTFX8=;
-        b=CWD0eZJmqBiH2XE8MyKfBza0dcM0g01SotBgRXr/jbjJ/BOwr06jeARYbxsc/fJ4k/
-         TReD3Pbkg3ynJIY2bI/So7Q7DG5+/WASBbvlAiMhoGHBHrXWD4m4AFPXTkOF6Hvofd4m
-         OH3eI2jzaBfJx3R8k4uds85G6pKmgdUVzAr5zwjcxExp3qjxJkfqYcKLR5Zq5Ohyy3aE
-         g0fXnM0cjyILXWCs0x0XCoRZ+5yJHf7IIx1+mZoGhm8YQvXiKKt82frSAiBaATeT8D4M
-         sBi4OR+8isHHgHJQfzVq64qsVtKCfCfrKm8iD5Sawsj96w1w0kaklB3kcanvbcmHX11w
-         IbNQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=wqUCKXUJo8X5AAnTpFmKsNohxpW+m6dhYvogWfd9F4U=;
+        b=vLPVBc0jLKrHi5fVflv9YxU/hVeu/thLp/A8Y8zkskX6Ye5Dy5BmCgU3KC62KpH5UH
+         51cd+d34DJAoNncm6/3zAa9GnGflQHLPvRvBm3tMsYg5p7bBWqWsyg+oDbz8kfaC1uJ0
+         JYm8MiUvFwitfQfmeZmHcysj4jHd7g9nj9kDP66XDTCZybnLhlVKdSPQuuS6xmLmevIz
+         dcphuhkju0GyADHd3MBg0wPM1M3B89A1FF+glmpcimwLNMBCm1CWAqk6+5IcSY63yzN2
+         M7+f8NEN+zuoAvlR/dJRptbELXTr3PAx+hA2K9iHhVtMouQnQGdPTynkkPJ2r1DqKw5c
+         vMgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
-        bh=L9pt9Z55SHz6CG8upac+m8pqudIdzOY9Z9V3JtoTFX8=;
-        b=XYPGBxlxEHFVWVNFFUP0EgRcpmRCi7LcbNSv8rKyhxSD5m/zlzt0Yhqxv+Ocw98xm5
-         VqfS02h+Z+JHy9Ea/gPHSfVaEjSl/BE0B8U01S02SgVR19aYCpzUVbRqBHMRDzLp0ex5
-         cqpRdBZBJo4fLIatI+VMqGUOQtLciFAuNsHDunt53rg1kkOOTQmZbRFTnv7UIosHs3Z8
-         F6RTbXtxZiqB+kahSqTsWmX9bpLKuj0r45CSULPje6IxJbfB0sSEs8WoibeHt2IoYPV+
-         2HkY03GFMch+9BWBjHNN1rzo4k6hGWM7KxeDG78pv9vIi2ylhkckLXAnYOY1UzQxd6e6
-         QtxQ==
-X-Gm-Message-State: APjAAAVi0XCxbwdXchT+8zCEi1I8l/QNBdEh64eeMtNIFGnXu2kDGg+4
-        V1ZZoXNkdG6b/KtO9N/ET/Dz1Q==
-X-Google-Smtp-Source: APXvYqxYhvCvZWcFbwrydpNgASDDloMQUYWOtz8vH+NDsrbwUIQjGAXIfppyoDcdfl0T4JGQ5gT6+Q==
-X-Received: by 2002:a05:6214:2c:: with SMTP id b12mr4686466qvr.10.1571328679237;
-        Thu, 17 Oct 2019 09:11:19 -0700 (PDT)
-Received: from [192.168.1.169] (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
-        by smtp.gmail.com with ESMTPSA id g3sm1219423qkb.117.2019.10.17.09.11.17
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 17 Oct 2019 09:11:18 -0700 (PDT)
-Subject: Re: [PATCH v3 1/7] PM/Domains: Add support for retrieving genpd
- performance states information
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-References: <1571254641-13626-1-git-send-email-thara.gopinath@linaro.org>
- <1571254641-13626-2-git-send-email-thara.gopinath@linaro.org>
- <CAPDyKFr76VHypqGxYL-1HS3uu3_KYeO+dGJ7q1Nj=uXiQgY98A@mail.gmail.com>
-Cc:     Eduardo Valentin <edubezval@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, amit.kucheria@verdurent.com,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <5DA892A5.5070007@linaro.org>
-Date:   Thu, 17 Oct 2019 12:11:17 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
- Thunderbird/38.5.1
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=wqUCKXUJo8X5AAnTpFmKsNohxpW+m6dhYvogWfd9F4U=;
+        b=lzlCfWNlG6Coanhj8VuUqZajGyRWDfXBhEF80j5xupHxRhLitdxmKUyZ9fXJUSrjLW
+         Ocli/4MHQMaGJXEwJCBFs2oRD2MNpvfF+kTMKKxzgJ6UXrFL0kPzaYgxRdcqM1FZbL1n
+         Yer20653yK54Q+NFRWTeN+CEfc/71n292cYHtI6ZnX6dhZqGWmZBaqljAvJaWPtE8jr0
+         ejtrUoFOmaiuG1OyaUhdx4EHqGrA7eYO2Sr/MbBRJf5+K/LdrnrzB4hatPamjgMvscvz
+         3Zo3vobIyGCxcASfFHtQ/dtg1VLaJ/11hc/l4fxc7s7hhLKT7dP8/9FvzC7nS5dddR4w
+         LZDw==
+X-Gm-Message-State: APjAAAXRssog8MLnW554pIPKHU9eZlM8HF9/Nt70aNxpsX0/doCRI8i5
+        qQ7PufuG2ahf68LLEEQRikwpTw==
+X-Google-Smtp-Source: APXvYqw6QWneFJB+QPd5Fr8J5Si4FPeSBOTzKJY8p7VwP6wPLB9npxHWIpL+GLPUVWu+FaDir8cNQg==
+X-Received: by 2002:a17:902:9a84:: with SMTP id w4mr4790832plp.186.1571328709262;
+        Thu, 17 Oct 2019 09:11:49 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:d8f2:392e:5b44:157d])
+        by smtp.gmail.com with ESMTPSA id e3sm2578093pjs.15.2019.10.17.09.11.48
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 17 Oct 2019 09:11:48 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: meson: sm1: add audio support
+In-Reply-To: <7ho8ygfxo7.fsf@baylibre.com>
+References: <20191009082708.6337-1-jbrunet@baylibre.com> <7h7e54hdif.fsf@baylibre.com> <7ho8ygfxo7.fsf@baylibre.com>
+Date:   Thu, 17 Oct 2019 09:11:48 -0700
+Message-ID: <7hsgnrbbcr.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFr76VHypqGxYL-1HS3uu3_KYeO+dGJ7q1Nj=uXiQgY98A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/17/2019 04:49 AM, Ulf Hansson wrote:
-> On Wed, 16 Oct 2019 at 21:37, Thara Gopinath <thara.gopinath@linaro.org> wrote:
->>
->> Add two new APIs in the genpd framework,
->> dev_pm_genpd_get_performance_state to return the current performance
->> state of a power domain and dev_pm_genpd_performance_state_count to
->> return the total number of performance states supported by a
->> power domain. Since the genpd framework does not maintain
->> a count of number of performance states supported by a power domain,
->> introduce a new callback(.get_performance_state_count) that can be used
->> to retrieve this information from power domain drivers.
->>
->> These APIs are added to aid the implementation of a power domain as
->> a warming device. Linux kernel cooling device framework(into which
->> warming device can be plugged in) requires during initialization to be
->> provided with the maximum number of states that can be supported. When
->> a power domain acts as a warming device, the max state is the max number
->> of perfomrance states supported by the power domain. The cooling
->> device framework implements API to retrieve the current state of the
->> cooling device. This in turn translates to the current performance
->> state of the power domain.
->>
->> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> 
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> 
-Thanks Ulf! Do you think this patch be merged separate from the series.
-Then I can drop it from the series.
+Kevin Hilman <khilman@baylibre.com> writes:
 
--- 
-Warm Regards
-Thara
+> Kevin Hilman <khilman@baylibre.com> writes:
+>
+>> Jerome Brunet <jbrunet@baylibre.com> writes:
+>>
+>>> This patchset adds audio support on the sm1 SoC family and the
+>>> sei610 platform
+>>
+>> Queued for v5.5.
+>>
+>>> Kevin, The patchset depends on:
+>>>  - The ARB binding merged by Philipp [0]
+>>>  - The audio clock controller bindings I just applied. A tag is
+>>>    available for you here [1]
+>>
+>> I've pulled both of those into v5.5/dt64 so that branch is buildable
+>> standlone.
+>>
+>> Thanks for details on the dependencies.
+>
+> Just noticed that all of these had "meson" in the subject instead of
+> "amlogic".  Fixed up when applying.
+
+Ignore me, "meson" in the original is correct.
+
+Kevin
