@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D553DB184
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 17:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC89DB1B0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731357AbfJQPux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 11:50:53 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:37099 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731326AbfJQPux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 11:50:53 -0400
-Received: by mail-pl1-f193.google.com with SMTP id u20so1328941plq.4
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 08:50:53 -0700 (PDT)
+        id S2394068AbfJQQA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 12:00:28 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36386 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436715AbfJQQA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:00:27 -0400
+Received: by mail-wm1-f68.google.com with SMTP id m18so3121867wmc.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:00:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=b48asfDAC1xOvEXigDKMakB9AKqpopPhTm0c4Dno6I4=;
-        b=Q7IFc7xZihyEUYEqzdNDgyvTR+JI6j7aHEpGPTDNRLWFlTGtfJXqE8f/IF5LuZfSoB
-         NhMzEJiu10zAYXuV2qqebPeZYmcXUWFfJjp5JZfvw0xtruK9pfFNAgwLjaz9XPE15Rf4
-         +eKD6ZUWoxkShEtqkB3h2ossktGrIafeZiDCY5PHSA0JHbswdZku6KKCLRV6GohcJQUD
-         jUSQR0wVwpXS6PUW9keg2SOVAUg11JAnXyN1HctnVfIAN52XRRZoFY2N+mznZ8BTq7Do
-         xw08I2su8MdKZBdsPt1Gjj4wcOZKc/zcOc7Am1lPMNYunCX72Q1tQVOiKaUZPnRVeB7Y
-         C67g==
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=K92xI+/RkXkPNl+cGfvbqFzqM/p/1yJ006GVWjx3IVs=;
+        b=CggdjClIWcSoRXgef5gv0ShuIOG24Za8FzwWf9E4ClyF7n+mPqXeJ+FYEV/bIW1lnx
+         nAc/I/Iq4ZR73NYNSACNxdqyFO39HgzTtoQT/r5XTknAPVFalD3lDMOvpaxTbAQJTp+w
+         us20Uh8RDWgTOgAD0JxhShJoOFBAidBAO5YK6k3Y0ynId+jEVP9jeQgHk+FBqiuPezbE
+         SQfo1I0Q2muik78pHRAXWiFsoKyGUMi9pg/ZCDOgNOiBeF2Awq/HcccVeXQKOtlbWCvO
+         oxPi6LgaOFvLUEmQdOOuqwqw806kCTizmxPdN53ELPDSOdUt3b7sh5t2h33BzZoGGYj5
+         t3VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=b48asfDAC1xOvEXigDKMakB9AKqpopPhTm0c4Dno6I4=;
-        b=KKtUYbIgBTjbFeFhsON5kVODf+lxsAeruiP987H6V8drph54faJjSYqsl7LRXhdziR
-         zVwYUOAjJ16OQAkEMK0KAa3iLAMJDjmAgTgAGf/5PYVCeWtxbkxIga84eZbTfyn1sz2X
-         m6X2ULZvBxoT71dp7taxABufrCpcMqPUIzAhYEG+2+zbjbt3QcxPLmOIB+vtRq/HfCoe
-         rhodaLoYrvSg5v5CuB6n099z35TTUw8BIgA8aPWpQ3nzweOcl6QVXVPXo989X5kBumy4
-         HI3epYoPMuwJIWP13LnDO9su+Wuh9UV6/UYU6iekaWrGoTJkX4wbMWfZEHshc2z7w0X6
-         /K7Q==
-X-Gm-Message-State: APjAAAVM8P+NZVNqbSDP7cG/NgWHbiGnpDCfPSHM+LaUi/O3N2mmTFh7
-        4x1Y6XoefyNUESioXQ8SNgcviw==
-X-Google-Smtp-Source: APXvYqw+ZkikFWm1K6Ej45vWuAlQyN+QOL993PvKnUyJp89FV9RW4sQzKjWGpiIpHo1wns2qTFvzxw==
-X-Received: by 2002:a17:902:728f:: with SMTP id d15mr4802632pll.211.1571327452664;
-        Thu, 17 Oct 2019 08:50:52 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:d8f2:392e:5b44:157d])
-        by smtp.gmail.com with ESMTPSA id z29sm2942555pff.23.2019.10.17.08.50.51
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 17 Oct 2019 08:50:52 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH 0/2] arm64: dts: meson: Tronsmart Vega ir keymap updates
-In-Reply-To: <1571245657-4471-1-git-send-email-christianshewitt@gmail.com>
-References: <1571245657-4471-1-git-send-email-christianshewitt@gmail.com>
-Date:   Thu, 17 Oct 2019 08:50:51 -0700
-Message-ID: <7hwod3bcbo.fsf@baylibre.com>
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=K92xI+/RkXkPNl+cGfvbqFzqM/p/1yJ006GVWjx3IVs=;
+        b=onlbdY90CH7SS0Ecnt/XVYBO0umzBJPp5B6Glx9GRCZD0oIm6w+vg6mPzN6mnd7XjU
+         CYBrfTWMmOR52+4fzXnZUez/vOwiA6H/HxVzfgonrK5Vf6Hzfi3TopxQ1xRvfI5sU+wr
+         ZFYUdlaSg4oG9uV4K9WVMIhzZh7m5cWgYJjhWxofMSeC22Itp6gintFufP5iIN6RT8wJ
+         O6G388Q7OsgeHvei16sDAL5fIFWZFCw0V9q+k4ufRcLkSgt/oufOQFi3OnSlkTU8WZE3
+         ERglV9/djQshtj/X7HxXKUaxfZdhV0BH26ANLy7hBureoqgpZUgDdM79AdWTd5Fybb1z
+         Ls8g==
+X-Gm-Message-State: APjAAAXfv9l8V/XEIm5ip+ZUqQg0ZcriyPBY/+NtBUCgVDCzfMbKznzZ
+        0PBnG0GJJ7ab1AxtEyijlaQYIw==
+X-Google-Smtp-Source: APXvYqxU9x5KGD/Ua0mSg1w0b4PXk+F6jDtTrWq3r+9vIpk0bZLy8thz/z4qpoSUhgJ4QRtxB4X/Jw==
+X-Received: by 2002:a1c:20d8:: with SMTP id g207mr3538145wmg.79.1571328023876;
+        Thu, 17 Oct 2019 09:00:23 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id z13sm2538882wrq.51.2019.10.17.09.00.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2019 09:00:22 -0700 (PDT)
+References: <20191009082708.6337-1-jbrunet@baylibre.com> <7h7e54hdif.fsf@baylibre.com> <7ho8ygfxo7.fsf@baylibre.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: meson: sm1: add audio support
+In-reply-to: <7ho8ygfxo7.fsf@baylibre.com>
+Date:   Thu, 17 Oct 2019 18:00:21 +0200
+Message-ID: <1j1rvb2wh6.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
@@ -63,14 +61,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
 
-> The Tronsmart Vega S95 (S905) and S96 (S912) Android STBs use the
-> same IR remote. The rc-vega-s9x keymap has been accepted for Linux
-> v5.5 [0] so add the keymap to the respective dts.
+On Wed 16 Oct 2019 at 18:43, Kevin Hilman <khilman@baylibre.com> wrote:
 
-Queued for v5.5,
+> Kevin Hilman <khilman@baylibre.com> writes:
+>
+>> Jerome Brunet <jbrunet@baylibre.com> writes:
+>>
+>>> This patchset adds audio support on the sm1 SoC family and the
+>>> sei610 platform
+>>
+>> Queued for v5.5.
+>>
+>>> Kevin, The patchset depends on:
+>>>  - The ARB binding merged by Philipp [0]
+>>>  - The audio clock controller bindings I just applied. A tag is
+>>>    available for you here [1]
+>>
+>> I've pulled both of those into v5.5/dt64 so that branch is buildable
+>> standlone.
+>>
+>> Thanks for details on the dependencies.
+>
+> Just noticed that all of these had "meson" in the subject instead of
+> "amlogic".  Fixed up when applying.
 
-Thanks,
+From what I can see in the git history I have always used
+"arm64: dts: meson:" in the subject.
 
-Kevin
+Did we decide to that change this recently ?
+
+If so
+ * Sorry I missed that discussion
+ * Should MAINTAINERS be updated to grep on "amlogic" as well as "meson" ?
+
+>
+> Thanks,
+>
+> Kevin
+
