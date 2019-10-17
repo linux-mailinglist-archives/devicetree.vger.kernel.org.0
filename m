@@ -2,107 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EBCDB2DC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40AE4DB321
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 19:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440523AbfJQQyz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 17 Oct 2019 12:54:55 -0400
-Received: from mailoutvs57.siol.net ([185.57.226.248]:49257 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1732079AbfJQQyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:54:55 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 3DE9E52402E;
-        Thu, 17 Oct 2019 18:54:52 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id D6UzhXF7HyCW; Thu, 17 Oct 2019 18:54:51 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id DCFF2524BFA;
-        Thu, 17 Oct 2019 18:54:51 +0200 (CEST)
-Received: from jernej-laptop.localnet (cpe-86-58-59-25.static.triera.net [86.58.59.25])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 8A3395247E3;
-        Thu, 17 Oct 2019 18:54:51 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v3 5/6] media: sun4i: Add H3 deinterlace driver
-Date:   Thu, 17 Oct 2019 18:54:51 +0200
-Message-ID: <14416618.qeK7XMoh1f@jernej-laptop>
-In-Reply-To: <20191017092800.old6jcyeoq3ruawv@gilmour>
-References: <20191016192807.1278987-1-jernej.skrabec@siol.net> <20191016192807.1278987-6-jernej.skrabec@siol.net> <20191017092800.old6jcyeoq3ruawv@gilmour>
+        id S1731889AbfJQRRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 13:17:20 -0400
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:40585 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728639AbfJQRRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 13:17:20 -0400
+Received: by mail-yw1-f66.google.com with SMTP id e205so1129686ywc.7;
+        Thu, 17 Oct 2019 10:17:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=+9eX1MUum3PI76hS1tjfDJ+ZIzB1yDgtmV+ggxFwwtM=;
+        b=UqdxRMLrEuLlz104kxAuC02Xt4KZmxvTPqnrgdjPr3YmWGZWEKl65qYYythlichA2B
+         dJ8dklOzPysvkU/8dOHZNxY+gE8w6cIaTSjBYYQThc91zXHF4gOhKTyYoQeXSrPzruaW
+         zjyNq+gysxpvZIHvRXQhhWRdPud6Oq0VssWufPdQ+fuQjuQaO7SZYeiNrhW+Pep7Svwb
+         EgY1i2A/KHtDDdj+I3m4sd7g3DVHNwfKE1j8ECxieeHOcwYGYUbEvZBYZB/oMuNYWyja
+         ldoiJs3YmN+ogZvUMjjops8qRL43FAU9e3Dk8Zup/BFyJ+iwrjJZhpc8f7vXNZSXI3gF
+         GR5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+9eX1MUum3PI76hS1tjfDJ+ZIzB1yDgtmV+ggxFwwtM=;
+        b=bLv9ruVNOie8aNmLOgYtvXkO4e86cy2XRUx6HDm08FB0EXoKRbYSwBydhPnF6ldQX3
+         5tqLVfiARarV3ioP/afNrpHMoPv3cvR3V3P+5H0IlDrtyXqciKK9czwGlWW2UbAG79Tb
+         l6Vcz3bNLSEqe21TxaEiS1fj6DVJF1Y1oMSz8Q3ESh1kmexoDbE+Orz9IiHaWmEMgV8J
+         9n0q710MyP+Ij8IJnfITViykI1fan8L7vndoE8OPEDTDpbgARDabaGiFel8OolL9ZACu
+         h9h/zObjUbxL0q0QwI/tkYmLPQnJksLgatzkpGWqtVmOUR3rBy4hGWhUjWEJYrYT+PIq
+         NNsw==
+X-Gm-Message-State: APjAAAVBTUZsHXd6GI/8wQLCuDOUjiw7y0DahLJUp27DOEJtiFpTHdt8
+        ruu81sjVnr/o6t6V8BM54pAsEGEs
+X-Google-Smtp-Source: APXvYqxuximjpgYnrT1kXVim7da4XtaRKQh6Mifj1K/sRgrxcX24CukW4NLVJ/umqwBBgieYtyk8tw==
+X-Received: by 2002:a81:a485:: with SMTP id b127mr3381626ywh.184.1571332639579;
+        Thu, 17 Oct 2019 10:17:19 -0700 (PDT)
+Received: from [192.168.1.62] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
+        by smtp.gmail.com with ESMTPSA id y67sm792211ywd.63.2019.10.17.10.17.18
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Oct 2019 10:17:19 -0700 (PDT)
+Subject: Re: [PATCH] of: unittest: Use platform_get_irq_optional() for
+ non-existing interrupt
+To:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20191016143142.28854-1-geert+renesas@glider.be>
+ <5da7a675.1c69fb81.a888.0911@mx.google.com>
+ <CAMuHMdXnTOaM+4SUkzpYXNeFbJtaG_kRzFLJRhVPCVNcOUB0qA@mail.gmail.com>
+ <CAL_JsqL9YPowxntVPax868hi+sN3vgCa2aSSySzjg==--c7aDA@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <d4b336ab-3a80-be4b-7a56-88cf98eb19aa@gmail.com>
+Date:   Thu, 17 Oct 2019 12:17:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqL9YPowxntVPax868hi+sN3vgCa2aSSySzjg==--c7aDA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne četrtek, 17. oktober 2019 ob 11:28:00 CEST je Maxime Ripard napisal(a):
-> Hi,
-> 
-> I have a small comment that can definitely be addressed in a subsequent
-> patch
-> On Wed, Oct 16, 2019 at 09:28:06PM +0200, Jernej Skrabec wrote:
-> > +	dev->bus_clk = devm_clk_get(dev->dev, "bus");
-> > +	if (IS_ERR(dev->bus_clk)) {
-> > +		dev_err(dev->dev, "Failed to get bus clock\n");
-> > +
-> > +		return PTR_ERR(dev->bus_clk);
-> > +	}
-> > +
-> > +	dev->mod_clk = devm_clk_get(dev->dev, "mod");
-> > +	if (IS_ERR(dev->mod_clk)) {
-> > +		dev_err(dev->dev, "Failed to get mod clock\n");
-> > +
-> > +		return PTR_ERR(dev->mod_clk);
-> > +	}
-> > +
-> > +	dev->ram_clk = devm_clk_get(dev->dev, "ram");
-> > +	if (IS_ERR(dev->ram_clk)) {
-> > +		dev_err(dev->dev, "Failed to get ram clock\n");
-> > +
-> > +		return PTR_ERR(dev->ram_clk);
-> > +	}
-> > +
-> > +	dev->rstc = devm_reset_control_get(dev->dev, NULL);
-> > +	if (IS_ERR(dev->rstc)) {
-> > +		dev_err(dev->dev, "Failed to get reset control\n");
-> > +
-> > +		return PTR_ERR(dev->rstc);
-> > +	}
-> > +
-> > +	clk_set_rate_exclusive(dev->mod_clk, 300000000);
-> 
-> clk_set_rate_exclusive puts a pretty big constraint on the clock tree,
-> and we shouldn't really enforce it if the device is unused.
+On 10/17/2019 07:51, Rob Herring wrote:
+> On Thu, Oct 17, 2019 at 1:59 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>>
+>> Hi Stephen,
+>>
+>> On Thu, Oct 17, 2019 at 1:23 AM Stephen Boyd <swboyd@chromium.org> wrote:
+>>> Quoting Geert Uytterhoeven (2019-10-16 07:31:42)
+>>>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+>>>> index 9efae29722588a35..34da22f8b0660989 100644
+>>>> --- a/drivers/of/unittest.c
+>>>> +++ b/drivers/of/unittest.c
+>>>> @@ -1121,7 +1121,7 @@ static void __init of_unittest_platform_populate(void)
+>>>>                 np = of_find_node_by_path("/testcase-data/testcase-device2");
+>>>>                 pdev = of_find_device_by_node(np);
+>>>>                 unittest(pdev, "device 2 creation failed\n");
+>>>> -               irq = platform_get_irq(pdev, 0);
+>>>> +               irq = platform_get_irq_optional(pdev, 0);
+>>>>                 unittest(irq < 0 && irq != -EPROBE_DEFER,
+>>>
+>>> This is a test to make sure that irq failure doesn't return probe defer.
+>>> Do we want to silence the error message that we're expecting to see?
 
-That is true in general, but as I said before, that is not really an issue for 
-H3. Deinterlace clock default parent is peripheral clock, which is fixed to 600 
-MHz and doesn't change.
+No, we do not want to silence an error message that we are expecting to see.
+
+
+>>
+>> I think so.  We're not interested in error messages for expected failures,
+>> only in error messages for unittest() failures.
+
+platform_get_irq() is precisely the function that we are trying to test here.
+
 
 > 
-> I guess we should move it to the runtime_pm resume hook (with the
-> put_exclusive call in suspend).
+> The unittests start with a warning that error messages will be seen.
+> OTOH, we didn't get a message here before.
+Getting error messages from places outside of unittest.c is just the
+nature of the devicetree selftest beast.
 
-Ok, I'll move it in case that this deinterlace core is used on other SoCs with 
-non-fixed parent clock.
+-Frank
 
 > 
-> Otherwise, that patch is
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-
-Thanks!
-
-Best regards,
-Jernej
-
-
-
+> Rob
+> 
 
