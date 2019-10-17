@@ -2,85 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70765DB26D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D448DB26E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 18:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392993AbfJQQef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 12:34:35 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:40326 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730640AbfJQQef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 12:34:35 -0400
-Received: by mail-ot1-f68.google.com with SMTP id y39so2435112ota.7
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:34:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=C3mMcajmmWiTF2tnnxoirKHCmnTAKZDTtWXx5ZDHeWs=;
-        b=uGD0tTlFsg4Y/czrpov/h76veh7yF6RUJ1suwAxf+IOoHGpXg7O4S6+ogPQgWO4RpF
-         spkuy3QkYK22JFjy0bIliHoNlwfTguUCEr3bN5aP2PGYgEk1TjCSYhuPgWULdoODFsWz
-         f9fgAYUUhn3Di+fWidQaDvsjT1Mm/WNAlZWw7Gc7Tfw5kFyvBJl2JWwqpMnnQZsv+Vg+
-         z8P7DzLaFiPCKRx8rnBsZo7lcEXPDibkKWaZzmhlGIcRu+lOsA5O3dhDFqyBFws4dGIR
-         nne8w9EEsy8tebJXjF1BNepFXTM5bL8Ogs+RfAjIVYZ3MJNoWlm+N0RR57QeYKTlu9Lj
-         PvCA==
-X-Gm-Message-State: APjAAAXaChUcPz+CLFEyuSov/LOYoYHPk8dLXDXWPR62UbEsoEYHCT31
-        EnA0G0ehzbLjvRDlgyqjwQ==
-X-Google-Smtp-Source: APXvYqxmXr4i5Zk+4RgsYpkljl8yHKw0u/wDt5mYRIh6dw01K8bE2nEDXt13Ws7kQI7FRmola1U7ow==
-X-Received: by 2002:a9d:6a93:: with SMTP id l19mr3934654otq.196.1571330072588;
-        Thu, 17 Oct 2019 09:34:32 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l30sm711247otl.74.2019.10.17.09.34.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 09:34:31 -0700 (PDT)
-Date:   Thu, 17 Oct 2019 11:34:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        id S2408145AbfJQQel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 12:34:41 -0400
+Received: from muru.com ([72.249.23.125]:37814 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730640AbfJQQel (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Oct 2019 12:34:41 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id C458C804F;
+        Thu, 17 Oct 2019 16:35:10 +0000 (UTC)
+Date:   Thu, 17 Oct 2019 09:34:33 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     min.guo@mediatek.com
+Cc:     Bin Liu <b-liu@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3] ASoC: dt-bindings: Convert Allwinner A10 codec to a
- schema
-Message-ID: <20191017163430.GA18716@bogus>
-References: <20191016104355.65169-1-mripard@kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        chunfeng.yun@mediatek.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, hdegoede@redhat.com,
+        Yonglong Wu <yonglong.wu@mediatek.com>
+Subject: Re: [PATCH v8 6/6] usb: musb: Add support for MediaTek musb
+ controller
+Message-ID: <20191017163433.GN5610@atomide.com>
+References: <20191017094126.29045-1-min.guo@mediatek.com>
+ <20191017094126.29045-7-min.guo@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191016104355.65169-1-mripard@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191017094126.29045-7-min.guo@mediatek.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Oct 2019 12:43:55 +0200, Maxime Ripard wrote:
-> The Allwinner SoCs have an embedded audio codec that is supported in Linux,
-> with a matching Device Tree binding.
-> 
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for that controller over to a YAML schemas.
-> 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> 
-> ---
-> 
-> Changes from v2:
->   - Change the audio-routing values to an enum, and enforce boundaries on
->     the size
->   - Add restrictions to the possible values of audio-routing
-> 
-> Changes from v1:
->   - Fix subject prefix
-> ---
->  .../sound/allwinner,sun4i-a10-codec.yaml      | 267 ++++++++++++++++++
->  .../devicetree/bindings/sound/sun4i-codec.txt |  94 ------
->  2 files changed, 267 insertions(+), 94 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/sun4i-codec.txt
-> 
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Just few comments for future changes that might help below.
+
+* min.guo@mediatek.com <min.guo@mediatek.com> [191017 09:42]:
+> --- /dev/null
+> +++ b/drivers/usb/musb/mediatek.c
+> +static int musb_usb_role_sx_set(struct device *dev, enum usb_role role)
+> +{
+> +	struct mtk_glue *glue = dev_get_drvdata(dev);
+> +	struct musb *musb = glue->musb;
+> +	u8 devctl = readb(musb->mregs + MUSB_DEVCTL);
+> +	enum usb_role new_role;
+> +
+> +	if (role == glue->role)
+> +		return 0;
+> +
+> +	switch (role) {
+> +	case USB_ROLE_HOST:
+> +		musb->xceiv->otg->state = OTG_STATE_A_WAIT_VRISE;
+> +		glue->phy_mode = PHY_MODE_USB_HOST;
+> +		new_role = USB_ROLE_HOST;
+> +		if (glue->role == USB_ROLE_NONE)
+> +			phy_power_on(glue->phy);
+> +
+> +		devctl |= MUSB_DEVCTL_SESSION;
+> +		musb_writeb(musb->mregs, MUSB_DEVCTL, devctl);
+> +		MUSB_HST_MODE(musb);
+> +		break;
+> +	case USB_ROLE_DEVICE:
+> +		musb->xceiv->otg->state = OTG_STATE_B_IDLE;
+> +		glue->phy_mode = PHY_MODE_USB_DEVICE;
+> +		new_role = USB_ROLE_DEVICE;
+> +		devctl &= ~MUSB_DEVCTL_SESSION;
+> +		musb_writeb(musb->mregs, MUSB_DEVCTL, devctl);
+> +		if (glue->role == USB_ROLE_NONE)
+> +			phy_power_on(glue->phy);
+> +
+> +		MUSB_DEV_MODE(musb);
+> +		break;
+> +	case USB_ROLE_NONE:
+> +		glue->phy_mode = PHY_MODE_USB_OTG;
+> +		new_role = USB_ROLE_NONE;
+> +		devctl &= ~MUSB_DEVCTL_SESSION;
+> +		musb_writeb(musb->mregs, MUSB_DEVCTL, devctl);
+> +		if (glue->role != USB_ROLE_NONE)
+> +			phy_power_off(glue->phy);
+> +
+> +		break;
+> +	default:
+> +		dev_err(glue->dev, "Invalid State\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	glue->role = new_role;
+> +	phy_set_mode(glue->phy, glue->phy_mode);
+> +
+> +	return 0;
+> +}
+
+For the role change, I recently posted a patch "[PATCH 4/7] usb: musb:
+Add musb_set_host and peripheral and use them for omap2430". That
+should work for you looking at the code above, so later on you might
+want to change to use that. Probably best done as a follow-up patch
+to avoid adding extra dependencies to your series.
+
+Please also note that musb core attempts to do things automagically
+on it's own. So trying to force mode in general does not work reliably.
+This is because VBUS may not yet have risen for example.
+
+The role change is best done based on the USB PHY as then usually
+musb has already switched to the right mode automatically :)
+
+> +static const struct musb_platform_ops mtk_musb_ops = {
+> +	.quirks = MUSB_DMA_INVENTRA,
+> +	.init = mtk_musb_init,
+> +	.get_toggle = mtk_musb_get_toggle,
+> +	.set_toggle = mtk_musb_set_toggle,
+> +	.exit = mtk_musb_exit,
+> +#ifdef CONFIG_USB_INVENTRA_DMA
+> +	.dma_init = musbhs_dma_controller_create_noirq,
+> +	.dma_exit = musbhs_dma_controller_destroy,
+> +#endif
+> +	.clearb = mtk_musb_clearb,
+> +	.clearw = mtk_musb_clearw,
+> +	.busctl_offset = mtk_musb_busctl_offset,
+> +	.set_mode = mtk_musb_set_mode,
+> +};
+
+So you may want to consider getting rid of .set_mode completely
+and rely on USB PHY calls instead.
+
+In some cases you need to use struct phy_companion for set_vbus
+depending how things are wired.
+
+Regards,
+
+Tony
