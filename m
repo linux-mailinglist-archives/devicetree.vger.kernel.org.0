@@ -2,95 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC5FDB8E7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 23:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD172DB9BD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 00:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395096AbfJQVWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 17:22:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39722 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732097AbfJQVWo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 17:22:44 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EF3A821835;
-        Thu, 17 Oct 2019 21:22:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571347363;
-        bh=QPHojZxZwh6JkjwJnMxcwscYkRcsDB6akLK+CAlFzec=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=xpHNkUXk6D4cIqsWk/XgRHOVABOLAo7dM3fd/D728cS+wTT5SW7GQYlfP2RmcFooQ
-         PjetuBxgPa6YDN9I2RRY6VQRtQ7S1m9nJAPXwskP/Zk/deO2DvZ408nEcEe2sIkKtU
-         g1dxcBo62fghkY2zLCY3xRD5FXfqWwgkgIqV0mts=
-Date:   Thu, 17 Oct 2019 22:22:38 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Mboumba Cedric Madianga <cedric.madianga@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/7 v4] mfd: ab8500: augment DT bindings
-Message-ID: <20191017222238.673cd60b@archlinux>
-In-Reply-To: <20191011134449.GA12969@bogus>
-References: <20191011071805.5554-1-linus.walleij@linaro.org>
-        <20191011071805.5554-6-linus.walleij@linaro.org>
-        <20191011134449.GA12969@bogus>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2438634AbfJQW3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 18:29:52 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:38077 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732705AbfJQW3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 18:29:52 -0400
+Received: by mail-il1-f195.google.com with SMTP id y5so3700292ilb.5;
+        Thu, 17 Oct 2019 15:29:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Sk6VG4sPkFCtSFdYjBFAWucSt/q9vykGO3HtJ+wXwcw=;
+        b=m8+M1CyEMie47CcfjRHgp9I62GGOWlCixQQfYsWTGbhgVMsKlMxnc3iFcnrbPBrRdE
+         Z43KJww3Q/StEeMmx5vFcgARfrmDvkdz/HA0nVGsLII4LqC7Qt4rBnABFfo8pxFftHHx
+         Iz1F3kS8OT1l/HYG9XdJuc+UjlZtNsPjBF48Bs75BppxOkNA8Y03/TQTrT3fdTKO27I7
+         7de7z+l79k86jZIp0KnmbOLc9GAX/SlXWeA80In0TFHRiiu69KyI6rU2KDGfh0Wb0E3t
+         XerqW1V7wpu3chSOfbhRsySqBk67W5zq3XgbvsmNnIqQvOPYEOfa1dY2/hN8m/6+qoPI
+         +GwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Sk6VG4sPkFCtSFdYjBFAWucSt/q9vykGO3HtJ+wXwcw=;
+        b=JoANVqQfX1pYCOK5hGNtyb5zSrMgUWhcMa+r+PEI1gOEr0YUYvH4YSBufzvhHXBb1n
+         BOG8GbHRp5CBzzb6dCbmPGIrwuwAm3Z1ZWQXPE/YwplBPwatEsU+87UWak8kGlpCad43
+         FPoJjkNCtTxchruYcqYpGiiuhFuvoloX525XgtBNpFBNjrxlzpcCY4/B245nDjF96/r1
+         pvjwlbVK+nmD7fmE7W+QK6K90tZgx4p5L1+Cc2GPMsyC/O+zoic+YKgQLSkdDtfcEjLk
+         23iBwBdPqCQee6lgpOkgzjdxWdYZUeZzgLp/QMIOhfMgUZN5dBoy3BzsBjyshFmQj3Q7
+         1FMw==
+X-Gm-Message-State: APjAAAUE0jVWl7zV7rHRX0382fRHD5waWQRrbU1nTda2teX6z3OfD2N7
+        L3YuOs4fRaZBLtdu4QxorzDH1lu1NYKELxHjxDvh4A==
+X-Google-Smtp-Source: APXvYqzWxc++Ae1H65S7QcDaepxVthuKMoGg9hJoezwkz13XN/V+fatcHLfCMk0kWRmjcYq1AFRCh8Q11ca/n/FpI6U=
+X-Received: by 2002:a05:6e02:783:: with SMTP id q3mr6246039ils.33.1571351391693;
+ Thu, 17 Oct 2019 15:29:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20190925070328.13554-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20190925070328.13554-1-bjorn.andersson@linaro.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Thu, 17 Oct 2019 16:29:40 -0600
+Message-ID: <CAOCk7No8qtZCZAtcTwMBuQsjV_iox8kkCuHfEmECMfaM06MGfw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: c630: Enable adsp, cdsp and mpss
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 08:44:49 -0500
-Rob Herring <robh@kernel.org> wrote:
+On Thu, Sep 26, 2019 at 3:14 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> Specify the firmware-name for the adsp, cdsp and mpss and enable the
+> nodes.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> On Fri, Oct 11, 2019 at 09:18:03AM +0200, Linus Walleij wrote:
-> > As we migrate the AB8500 GPADC driver to use IIO, we need to augment
-> > the bindings to account for defining the ADC channels in the device
-> > tree.
-> > 
-> > Cc: devicetree@vger.kernel.org
-> > Acked-by: Lee Jones <lee.jones@linaro.org>
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> > ChangeLog v3->v4:
-> > - Fix the nodenames from "foo_node" to "foo-node"  
-> 
-> You forgot to update the example. With that fixed,
-Given the number of these, I'm not that comfortable just
-fixing this up.  Linus could you do me a follow up patch tiding
-up this detail.
-
-I don't want to delay the immutable branch any longer and
-would hope the bindings are stable enough that no one will
-need this little update in their tree as well as mfd 
-(or IIO if Lee doesn't pick up the immutable)
-
-Thanks,
-
-Jonathan
-
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> > - Remove 0 prefix from @0n to @n
-> > ChangeLog v2->v3:
-> > - Change "adc-channel@" to "channel@" as per preferred notation.
-> > - Add some full stops to the end of sentences.
-> > - Reference the new ADC-specific documentation for channel specifier
-> >   etc.
-> > - Collect Lee's ACK.
-> > - Rebased on v5.4-rc1
-> > ChangeLog v1->v2:
-> > - Rebased on v5.3-rc5
-> > ---
-> >  .../devicetree/bindings/mfd/ab8500.txt        | 119 ++++++++++++++++++
-> >  1 file changed, 119 insertions(+)  
-
+Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
