@@ -2,109 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF7ADA845
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 11:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3BBDA84C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2019 11:29:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392048AbfJQJ2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 05:28:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56816 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728150AbfJQJ2E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Oct 2019 05:28:04 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E2D3720869;
-        Thu, 17 Oct 2019 09:28:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571304483;
-        bh=71Gn97Vrnruwg/w4kqqAAh7f+VgYiYJZubzV77QaMxQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OQhpwzDFsBquCNw5d+S8kTpjuEPeg71p5ObVgjp4ZxTk+OSLm0rVlLn/Zo0I4scSc
-         rQauaiEk11f7VlIB0wkdhwDP/qmceaXDUnpUyh9eGx+HkzJ5geqZt3VNhxAb9/6piK
-         tXkh5UN3NfoSm4NL/vX5E6uW36F5cY7AegKTljxM=
-Date:   Thu, 17 Oct 2019 11:28:00 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v3 5/6] media: sun4i: Add H3 deinterlace driver
-Message-ID: <20191017092800.old6jcyeoq3ruawv@gilmour>
-References: <20191016192807.1278987-1-jernej.skrabec@siol.net>
- <20191016192807.1278987-6-jernej.skrabec@siol.net>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="amvhyb5qqkqgtzi2"
-Content-Disposition: inline
-In-Reply-To: <20191016192807.1278987-6-jernej.skrabec@siol.net>
-User-Agent: NeoMutt/20180716
+        id S2405337AbfJQJ34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Oct 2019 05:29:56 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:47961 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392102AbfJQJ34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 05:29:56 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20191017092954euoutp0182a666de4817b4b4147da89171e1ce8b~OZTQW2fu00883208832euoutp01C
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 09:29:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20191017092954euoutp0182a666de4817b4b4147da89171e1ce8b~OZTQW2fu00883208832euoutp01C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1571304594;
+        bh=AZdVAI8mpGcBE9pPmmB/AtQ4Fwrc9hnMXEZrXafSrJk=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=h0ogVYM70aSf7Tp0Rz6S8W67pcy/l8B+nVbg7z0v1OkG5HSfIrF9oES6MYlF2xke/
+         Zv84X7rKYodU1VxBAdS2MnNtwQNUDNslRigi3/OoXSiLBwylMw/ZeYGJ5X9mI5nNdr
+         aXmDlUba/uG+vUFiPAt8X8jMABFtMe+iULH/Cp3E=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20191017092954eucas1p140e423338f18e841fd670ec99aca6734~OZTQBxuxI2126021260eucas1p1V;
+        Thu, 17 Oct 2019 09:29:54 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id A0.96.04469.19438AD5; Thu, 17
+        Oct 2019 10:29:53 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20191017092953eucas1p259c1e03eb2cb4d19aa48eaa2e3cca2dc~OZTPtAhJM0648306483eucas1p2e;
+        Thu, 17 Oct 2019 09:29:53 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20191017092953eusmtrp17f62f839f61fa99d9025415421ea344e~OZTPsTIIP1633216332eusmtrp1K;
+        Thu, 17 Oct 2019 09:29:53 +0000 (GMT)
+X-AuditID: cbfec7f2-54fff70000001175-50-5da83491a45c
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 48.BD.04166.19438AD5; Thu, 17
+        Oct 2019 10:29:53 +0100 (BST)
+Received: from AMDC3061.DIGITAL.local (unknown [106.120.51.75]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20191017092953eusmtip2f4ef56add6868611954ec7fd29136e49~OZTPNNBIX2907729077eusmtip2K;
+        Thu, 17 Oct 2019 09:29:53 +0000 (GMT)
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+To:     robh+dt@kernel.org
+Cc:     krzk@kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Subject: [PATCH v6] dt-bindings: arm: samsung: Update the CHIPID binding for
+ ASV
+Date:   Thu, 17 Oct 2019 11:29:39 +0200
+Message-Id: <20191017092939.25899-1-s.nawrocki@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrAIsWRmVeSWpSXmKPExsWy7djPc7oTTVbEGvRNsrHYOGM9q8X8I+dY
+        Lc6f38BusenxNVaLz71HGC1mnN/HZLH2yF12i9a9R9gtDr9pZ3Xg9Ni0qpPNY/OSeo++LasY
+        PT5vkgtgieKySUnNySxLLdK3S+DKuDt1E3PBVqGKtat7WBoYD/N1MXJySAiYSOyc283YxcjF
+        ISSwglFi+e4HUM4XRokv/WeYIZzPjBL/vj5jhmlZcvMGK0RiOaPE/Ul9YAmwljlbxEBsNgFD
+        id6jfUCjODhEBMQk9q4VBQkzC/xklHj0WgLEFhYIktj9fAsjiM0ioCoxb80ZJpByXgFridat
+        JhCr5CVWbzgAdoOEwH02iWU397NCJFwkpv/cDWULS7w6voUdwpaROD25hwWioZlRomf3bXYI
+        ZwLQoccXMEJUWUscPn6RFWQbs4CmxPpd+hBhR4nl07rBbpYQ4JO48VYQ4mY+iUnbpjNDhHkl
+        OtqEIKpVJH6vms4EYUtJdD/5zwJR4iEx4UcyJEBiJW7M/Mk4gVFuFsKqBYyMqxjFU0uLc9NT
+        iw3zUsv1ihNzi0vz0vWS83M3MQLTwel/xz/tYPx6KekQowAHoxIP7wTG5bFCrIllxZW5hxgl
+        OJiVRHjntyyJFeJNSaysSi3Kjy8qzUktPsQozcGiJM5bzfAgWkggPbEkNTs1tSC1CCbLxMEp
+        1cDYP/nZwoasRSo53RzTKtaf5V3RGuCbufXdAq24LPGfslwf6h/F/Gjcurzh9KJ5MoeqFz6O
+        CsgI3GPjd+xFmUXg5zXrOs7eKQ57WF8xdXtf763G+W83/ji14+rsTfpfd1xbk/XNjdvSsyrk
+        bEJad8udWKXbvr8yfX721BXXP8psusd8k1MrgbtLiaU4I9FQi7moOBEAArexdQMDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOLMWRmVeSWpSXmKPExsVy+t/xe7oTTVbEGmx8o2KxccZ6Vov5R86x
+        Wpw/v4HdYtPja6wWn3uPMFrMOL+PyWLtkbvsFq17j7BbHH7TzurA6bFpVSebx+Yl9R59W1Yx
+        enzeJBfAEqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRv
+        l6CXcXfqJuaCrUIVa1f3sDQwHubrYuTkkBAwkVhy8wZrFyMXh5DAUkaJg71HWLoYOYASUhLz
+        W5QgaoQl/lzrYoOo+cQocfzdcUaQBJuAoUTv0T5GkHoRATGJvWtFQWqYBRqZJG5smwVWIywQ
+        IPHkHUgzJweLgKrEvDVnmEDqeQWsJVq3mkDMl5dYveEA8wRGngWMDKsYRVJLi3PTc4sN9YoT
+        c4tL89L1kvNzNzECA3HbsZ+bdzBe2hh8iFGAg1GJh3cC4/JYIdbEsuLK3EOMEhzMSiK881uW
+        xArxpiRWVqUW5ccXleakFh9iNAXaPZFZSjQ5HxgleSXxhqaG5haWhubG5sZmFkrivB0CB2OE
+        BNITS1KzU1MLUotg+pg4OKUaGJM38n/oc5+cs2Udp0718TYvnTUZtiFiJl1/KqTb513jeND3
+        Z/7VH63Ldye+93h5e/bhCcYvDKOERMvaXR3uPu0R/yt9KTmF337VKn4ft6OHjDzj5Vb1yX1i
+        urv8C+NBvkmZa6a1FqYG/XlgvrBP77WS79uon0z5Bd1ZaqtuHlk2OZNdbOWjG0osxRmJhlrM
+        RcWJAAP7r5xaAgAA
+X-CMS-MailID: 20191017092953eucas1p259c1e03eb2cb4d19aa48eaa2e3cca2dc
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20191017092953eucas1p259c1e03eb2cb4d19aa48eaa2e3cca2dc
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20191017092953eucas1p259c1e03eb2cb4d19aa48eaa2e3cca2dc
+References: <CGME20191017092953eucas1p259c1e03eb2cb4d19aa48eaa2e3cca2dc@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds documentation of new optional "samsung,asv-bin"
+property in the chipid device node and documents requirement of
+"syscon" compatible string.  These additions are needed to support
+Exynos ASV (Adaptive Supply Voltage) feature.
 
---amvhyb5qqkqgtzi2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+---
+Depends on patch ("8d0daa4c89c9 dt-bindings: arm: samsung: Convert
+Exynos Chipid bindings to json-schema") already applied to Rob's
+dt/next.
 
-Hi,
+Changes since v5:
+ - removed uneeded allOf from 'compatible' property section
 
-I have a small comment that can definitely be addressed in a subsequent patch
+Changes since v4:
+ - converted to YAML
 
-On Wed, Oct 16, 2019 at 09:28:06PM +0200, Jernej Skrabec wrote:
-> +	dev->bus_clk = devm_clk_get(dev->dev, "bus");
-> +	if (IS_ERR(dev->bus_clk)) {
-> +		dev_err(dev->dev, "Failed to get bus clock\n");
-> +
-> +		return PTR_ERR(dev->bus_clk);
-> +	}
-> +
-> +	dev->mod_clk = devm_clk_get(dev->dev, "mod");
-> +	if (IS_ERR(dev->mod_clk)) {
-> +		dev_err(dev->dev, "Failed to get mod clock\n");
-> +
-> +		return PTR_ERR(dev->mod_clk);
-> +	}
-> +
-> +	dev->ram_clk = devm_clk_get(dev->dev, "ram");
-> +	if (IS_ERR(dev->ram_clk)) {
-> +		dev_err(dev->dev, "Failed to get ram clock\n");
-> +
-> +		return PTR_ERR(dev->ram_clk);
-> +	}
-> +
-> +	dev->rstc = devm_reset_control_get(dev->dev, NULL);
-> +	if (IS_ERR(dev->rstc)) {
-> +		dev_err(dev->dev, "Failed to get reset control\n");
-> +
-> +		return PTR_ERR(dev->rstc);
-> +	}
-> +
-> +	clk_set_rate_exclusive(dev->mod_clk, 300000000);
+Changes since v3:
+ - none
 
-clk_set_rate_exclusive puts a pretty big constraint on the clock tree,
-and we shouldn't really enforce it if the device is unused.
+Changes since v2:
+ - corrected patch summary line prefix, the patch moved in the
+   sequence
 
-I guess we should move it to the runtime_pm resume hook (with the
-put_exclusive call in suspend).
+Changes since v1 (RFC):
+ - new patch
+---
+ .../bindings/arm/samsung/exynos-chipid.yaml   | 26 ++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-Otherwise, that patch is
-Acked-by: Maxime Ripard <mripard@kernel.org>
+diff --git a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+index 9c573ad7dc7d..c7f06aa1963c 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+@@ -9,17 +9,41 @@ title: Samsung Exynos SoC series Chipid driver
+ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
 
-Maxime
++# Custom select to avoid matching all nodes with 'syscon'
++select:
++  properties:
++    compatible:
++      contains:
++        const: samsung,exynos4210-chipid
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     items:
+       - const: samsung,exynos4210-chipid
++      - const: syscon
 
---amvhyb5qqkqgtzi2
-Content-Type: application/pgp-signature; name="signature.asc"
+   reg:
+     maxItems: 1
 
------BEGIN PGP SIGNATURE-----
++  samsung,asv-bin:
++    description:
++      Adaptive Supply Voltage bin selection. This can be used
++      to determine the ASV bin of an SoC if respective information
++      is missing in the CHIPID registers or in the OTP memory.
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++      - enum: [ 0, 1, 2, 3 ]
++
++required:
++  - compatible
++  - reg
++
+ examples:
+   - |
+     chipid@10000000 {
+-      compatible = "samsung,exynos4210-chipid";
++      compatible = "samsung,exynos4210-chipid", "syscon";
+       reg = <0x10000000 0x100>;
++      samsung,asv-bin = <2>;
+     };
+--
+2.17.1
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXag0IAAKCRDj7w1vZxhR
-xaZsAP4ktQAK6tje3Cb2Qjis6/lKTHrygep8ppy1RAYh+5gmFgD/cmwwWzyQ42I7
-oxbLIVKna9bDTyghs0A+0vE3KpGYPgA=
-=4k1j
------END PGP SIGNATURE-----
-
---amvhyb5qqkqgtzi2--
