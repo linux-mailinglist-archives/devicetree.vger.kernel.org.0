@@ -2,130 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5F68DBC0C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 06:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44BB5DBCA2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 07:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441925AbfJREyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 00:54:33 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:41932 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbfJREyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 00:54:32 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9I4sNWM028876;
-        Thu, 17 Oct 2019 23:54:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571374463;
-        bh=ELJ7+0SBAGHSoJd2lHhMcS3p9GmsFM+eF5H5GeEM8xA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Xdht7JxDnd4IsSGWTfI7BdBe/MhTWXJP/ihAv7l+jgWJhx8hDNZsCL4BI7IGyhWUP
-         gc0qD442G+5RbalhXi91nvX16/EfNGkdrp5FjEN8xpres8yLz4KvocOBx97KcG6Qpb
-         XBfTjDEKbxfMsqgu1mbafqo9QijhOicNgbmL6Aok=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9I4sN7W038806
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Oct 2019 23:54:23 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 17
- Oct 2019 23:54:14 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 17 Oct 2019 23:54:14 -0500
-Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9I4sKGd051205;
-        Thu, 17 Oct 2019 23:54:21 -0500
-Subject: Re: [PATCH 00/21] Drop more legacy platform data for omaps
-To:     Tony Lindgren <tony@atomide.com>, <linux-omap@vger.kernel.org>
-CC:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        <devicetree@vger.kernel.org>,
-        Ankur Tyagi <ankur.tyagi@gallagher.com>,
-        Suman Anna <s-anna@ti.com>
-References: <20191017194411.18258-1-tony@atomide.com>
-From:   Keerthy <j-keerthy@ti.com>
-Message-ID: <291b705f-cfe7-9d22-16c0-90d269cfa799@ti.com>
-Date:   Fri, 18 Oct 2019 10:24:41 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726824AbfJRFId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 01:08:33 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:51219 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726800AbfJRFId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 01:08:33 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1iLKFZ-00046M-Le; Fri, 18 Oct 2019 06:52:29 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1iLKFW-0006rT-3o; Fri, 18 Oct 2019 06:52:26 +0200
+Date:   Fri, 18 Oct 2019 06:52:26 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Chris Snook <chris.snook@gmail.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v1 4/4] net: dsa: add support for Atheros AR9331 build-in
+ switch
+Message-ID: <20191018045226.hi2nybxkwopclajy@pengutronix.de>
+References: <20191014061549.3669-1-o.rempel@pengutronix.de>
+ <20191014061549.3669-5-o.rempel@pengutronix.de>
+ <2ad26bdc-e099-ded6-1337-5793aba0958d@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20191017194411.18258-1-tony@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2ad26bdc-e099-ded6-1337-5793aba0958d@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 06:42:51 up 153 days, 11:01, 96 users,  load average: 0.03, 0.02,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Oct 17, 2019 at 11:35:48AM -0700, Florian Fainelli wrote:
+> 
+> 
+> On 10/13/2019 11:15 PM, Oleksij Rempel wrote:
+> > Provide basic support for Atheros AR9331 build-in switch. So far it
+> > works as port multiplexer without any hardware offloading support.
+> 
+> I glanced through the functional parts of the code, and it looks pretty
+> straight forward, since there is no offloading done so far, do you plan
+> on adding bridge offload eventually if nothing more?
 
+Currently not. There are following reasons:
+- I do it for the Freifunk project. It is currently not clear, what
+  functionality has higher priority.
+- there are not many ar9331 based devices with enough RAM to run any
+  thing modern. There is even less devices using more then one switch
+  port.
+- IPv6 support is important for this project, but old Atheros switches have some
+  known issues with IPv6 packages in hardware bridge mode. So, this
+  functionality will need more testing.
 
-On 18/10/19 1:13 AM, Tony Lindgren wrote:
-> Hi all,
-> 
-> Here's a series of changes to remove more legacy platform data and
-> ti,hwmods devitree property for omap variants.
-> 
-> The patches are against v5.4-rc1, but please note that the watchdog
-> changes depend on the following patch:
-> 
-> [PATCH] bus: ti-sysc: Fix watchdog quirk handling
+> When you submit v2, I would suggest splitting the tagger code from the
+> switch driver code, just to make them easier to review.
 
-Tested with the above on AM33/AM43 for DS0. All working fine
-however this series needs a re base on top of 5.4-rc3 as the patches are 
-not applying cleanly.
+ok.
 
-Also rc1 does not have the remoteproc config fix patch so i added that 
-remoteproc config fix patch on top.
-
-FWIW
-
-Tested-by: Keerthy <j-keerthy@ti.com>
-
-> 
-> Regards,
-> 
-> Tony
-> 
-> 
-> Tony Lindgren (21):
->    ARM: OMAP2+: Drop legacy platform data for am3 and am4 gpio
->    ARM: dts: Drop custom hwmod property for omap4 gpio
->    ARM: dts: Drop custom hwmod property for omap5 gpio
->    ARM: OMAP2+: Drop legacy platform data for dra7 mailbox
->    ARM: OMAP2+: Drop legacy platform data for am3 and am4 mailbox
->    ARM: OMAP2+: Drop legacy platform data for omap4 mailbox
->    ARM: OMAP2+: Drop legacy platform data for omap5 mailbox
->    ARM: dts: Drop custom hwmod property for omap5 mcspi
->    ARM: OMAP2+: Drop legacy platform data for omap5 mcspi
->    ARM: dts: Drop custom hwmod property for am33xx uart
->    ARM: dts: Drop custom hwmod property for am4 uart
->    ARM: dts: Drop custom hwmod property for omap5 uart
->    ARM: dts: Drop custom hwmod property for am3 i2c
->    ARM: dts: Drop custom hwmod property for am4 i2c
->    ARM: dts: Drop custom hwmod property for omap5 i2c
->    ARM: dts: Drop custom hwmod property for am3 mmc
->    ARM: dts: Drop custom hwmod property for am4 mmc
->    ARM: dts: Drop custom hwmod property for omap5 mmc
->    ARM: OMAP2+: Drop legacy platform data for am3 and am4 wdt
->    ARM: OMAP2+: Drop legacy platform data for dra7 wdt
->    ARM: OMAP2+: Drop legacy platform data for omap5 wdt
-> 
->   arch/arm/boot/dts/am33xx-l4.dtsi              |  17 -
->   arch/arm/boot/dts/am33xx.dtsi                 |   1 -
->   arch/arm/boot/dts/am4372.dtsi                 |   1 -
->   arch/arm/boot/dts/am437x-l4.dtsi              |  19 -
->   arch/arm/boot/dts/dra7-l4.dtsi                |  14 -
->   arch/arm/boot/dts/omap4-l4.dtsi               |  11 -
->   arch/arm/boot/dts/omap5-l4.dtsi               |  30 --
->   .../omap_hwmod_33xx_43xx_common_data.h        |   3 -
->   .../omap_hwmod_33xx_43xx_interconnect_data.c  |   8 -
->   .../omap_hwmod_33xx_43xx_ipblock_data.c       | 157 --------
->   arch/arm/mach-omap2/omap_hwmod_33xx_data.c    |  11 -
->   arch/arm/mach-omap2/omap_hwmod_43xx_data.c    |   9 -
->   arch/arm/mach-omap2/omap_hwmod_44xx_data.c    |  41 --
->   arch/arm/mach-omap2/omap_hwmod_54xx_data.c    | 204 ----------
->   arch/arm/mach-omap2/omap_hwmod_7xx_data.c     | 352 ------------------
->   15 files changed, 878 deletions(-)
-> 
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
