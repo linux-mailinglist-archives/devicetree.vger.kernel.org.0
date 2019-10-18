@@ -2,194 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6344EDBA9A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 02:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77211DBB29
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 03:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2503907AbfJRAUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Oct 2019 20:20:14 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:42905 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2503878AbfJRAUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Oct 2019 20:20:13 -0400
-Received: by mail-wr1-f66.google.com with SMTP id n14so4254093wrw.9
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2019 17:20:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GWhC+phGxk4cJHdVi7LihKAUgiJg2uxQnJKT5r5d7UQ=;
-        b=HPGmM9E1W83HgllFgk9pMxwjTYsbQzRckZu/VM7VC6LPNi3RBrdhW9K14HGxL475w1
-         d0kQDj9AIH8llEjBFu7TFoOAshhxYE4kNT1ChG4+rGoOzGTv0wJLd7p36TSfhj8aDL+c
-         /LOXysFNnyYWAGvIRUmU03yEpJzLEK3fka2jYJUOCxrXby2XDCz+xCWjn2pbJtxKdR7i
-         BFLd9g8hwRRxbfwgABRAxB2pBvvLfZXddf828UpwkihvSpHjUxBrMUHeCmjwznUuDu/E
-         /DNMBlvdTWff29L98NL+8nrhAdM/Kn6YgZcJ/iX7jRij8f4q4UbvQoSaLotW0wW71Onw
-         xqiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GWhC+phGxk4cJHdVi7LihKAUgiJg2uxQnJKT5r5d7UQ=;
-        b=J4O1uMlkfa2+J62Qbmh2fJRRHEeh31F4QLeKdGwinqV0j0L/Cjc74M5RW2p3USWGvn
-         vAZDbJl2FGc0GkADsmILzpY0I5zJTe9E2O2DY8tjPp+oDFLv+13HwHdkCv54cSlgGFwz
-         MZGvfVSQlI44pvBXv1ycdlPHFPaZHe1VhUPOHhrwq4FiuBsg0CJYydUTsQRv/+blbmaX
-         T/zVfdtpiTDPVbCUjg50Xsiz2CV60v35+aioXSXssNtqYG9LYfYGMM7cW6bO9voFcjrL
-         scwV35ur9Qab9Ucd43C42wC30gmIt7j1/YMNanhHAEvvY/omwUKehNq0nj5kcYmeN3+H
-         0eHw==
-X-Gm-Message-State: APjAAAUiUl8GuvYXzoC9bSP9P8JemKHh2s3S8sW4Il3WyyEyQviAZHcP
-        ZcC77TgYN8vQI0bSEoeAoKSLIg==
-X-Google-Smtp-Source: APXvYqybeC8LSQnjicpCNQ8RT3mFa3CNGEJdoMQYNaY4Zxg6lBhzZLJJ1+8IBmV+nqcQqJ8s/WD1Lg==
-X-Received: by 2002:adf:f145:: with SMTP id y5mr5032576wro.330.1571358010901;
-        Thu, 17 Oct 2019 17:20:10 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id z189sm4851248wmc.25.2019.10.17.17.20.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2019 17:20:10 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     robh@kernel.org, broonie@kernel.org, linus.walleij@linaro.org,
-        lee.jones@linaro.org
-Cc:     vinod.koul@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        spapothi@codeaurora.org, bgoswami@codeaurora.org,
-        linux-gpio@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 11/11] ASoC: qcom: sdm845: add support to DB845c and Lenovo Yoga
-Date:   Fri, 18 Oct 2019 01:18:49 +0100
-Message-Id: <20191018001849.27205-12-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191018001849.27205-1-srinivas.kandagatla@linaro.org>
-References: <20191018001849.27205-1-srinivas.kandagatla@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2439228AbfJRBBB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 17 Oct 2019 21:01:01 -0400
+Received: from mga18.intel.com ([134.134.136.126]:22373 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2439184AbfJRBBB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Oct 2019 21:01:01 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Oct 2019 18:00:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,309,1566889200"; 
+   d="scan'208";a="221579874"
+Received: from unknown (HELO ubuntu) ([10.226.248.102])
+  by fmsmga004.fm.intel.com with SMTP; 17 Oct 2019 18:00:02 -0700
+Received: by ubuntu (sSMTP sendmail emulation); Fri, 18 Oct 2019 09:00:01 +0800
+Message-ID: <1571360401.2504.3.camel@intel.com>
+Subject: Re: [PATCHv2] arm64: dts: agilex: add QSPI support for Intel Agilex
+From:   Ley Foon Tan <ley.foon.tan@intel.com>
+To:     "Ooi, Joyce" <joyce.ooi@intel.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ong Hean Loong <hean.loong.ong@intel.com>,
+        See Chin Liang <chin.liang.see@intel.com>
+Date:   Fri, 18 Oct 2019 09:00:01 +0800
+In-Reply-To: <1571218846-12306-1-git-send-email-joyce.ooi@intel.com>
+References: <1571218846-12306-1-git-send-email-joyce.ooi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.1 
+Mime-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support to Lenovo Yoga c630 compatible strings
-and related setup to the sound machine driver.
-
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/qcom/sdm845.c | 71 ++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 70 insertions(+), 1 deletion(-)
-
-diff --git a/sound/soc/qcom/sdm845.c b/sound/soc/qcom/sdm845.c
-index 28f3cef696e6..1ed570c19628 100644
---- a/sound/soc/qcom/sdm845.c
-+++ b/sound/soc/qcom/sdm845.c
-@@ -24,6 +24,9 @@
- #define RIGHT_SPK_TDM_TX_MASK   0xC0
- #define SPK_TDM_RX_MASK         0x03
- #define NUM_TDM_SLOTS           8
-+#define SLIM_MAX_TX_PORTS 16
-+#define SLIM_MAX_RX_PORTS 16
-+#define WCD934X_DEFAULT_MCLK_RATE	9600000
- 
- struct sdm845_snd_data {
- 	struct snd_soc_jack jack;
-@@ -36,6 +39,39 @@ struct sdm845_snd_data {
- 
- static unsigned int tdm_slot_offset[8] = {0, 4, 8, 12, 16, 20, 24, 28};
- 
-+static int sdm845_slim_snd_hw_params(struct snd_pcm_substream *substream,
-+				     struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai_link *dai_link = rtd->dai_link;
-+	struct snd_soc_dai *cpu_dai = rtd->cpu_dai;
-+	u32 rx_ch[SLIM_MAX_RX_PORTS], tx_ch[SLIM_MAX_TX_PORTS];
-+	u32 rx_ch_cnt = 0, tx_ch_cnt = 0;
-+	int ret = 0, i;
-+
-+	for (i = 0 ; i < dai_link->num_codecs; i++) {
-+		ret = snd_soc_dai_get_channel_map(rtd->codec_dais[i],
-+				&tx_ch_cnt, tx_ch, &rx_ch_cnt, rx_ch);
-+
-+		if (ret != 0 && ret != -ENOTSUPP) {
-+			pr_err("failed to get codec chan map, err:%d\n", ret);
-+			return ret;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+
-+		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-+			ret = snd_soc_dai_set_channel_map(cpu_dai, 0, NULL,
-+							  rx_ch_cnt, rx_ch);
-+		else
-+			ret = snd_soc_dai_set_channel_map(cpu_dai, tx_ch_cnt,
-+							  tx_ch, 0, NULL);
-+	}
-+
-+	return 0;
-+}
-+
- static int sdm845_tdm_snd_hw_params(struct snd_pcm_substream *substream,
- 					struct snd_pcm_hw_params *params)
- {
-@@ -151,6 +187,9 @@ static int sdm845_snd_hw_params(struct snd_pcm_substream *substream,
- 	case QUATERNARY_TDM_TX_0:
- 		ret = sdm845_tdm_snd_hw_params(substream, params);
- 		break;
-+	case SLIMBUS_0_RX...SLIMBUS_6_TX:
-+		ret = sdm845_slim_snd_hw_params(substream, params);
-+		break;
- 	default:
- 		pr_err("%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
- 		break;
-@@ -173,7 +212,20 @@ static int sdm845_dai_init(struct snd_soc_pcm_runtime *rtd)
- 	struct snd_soc_dai *cpu_dai = rtd->cpu_dai;
- 	struct sdm845_snd_data *pdata = snd_soc_card_get_drvdata(card);
- 	struct snd_jack *jack;
--	int rval;
-+	struct snd_soc_dai_link *dai_link = rtd->dai_link;
-+	/*
-+	 * Codec SLIMBUS configuration
-+	 * RX1, RX2, RX3, RX4, RX5, RX6, RX7, RX8, RX9, RX10, RX11, RX12, RX13
-+	 * TX1, TX2, TX3, TX4, TX5, TX6, TX7, TX8, TX9, TX10, TX11, TX12, TX13
-+	 * TX14, TX15, TX16
-+	 */
-+	unsigned int rx_ch[SLIM_MAX_RX_PORTS] = {144, 145, 146, 147, 148, 149,
-+					150, 151, 152, 153, 154, 155, 156};
-+	unsigned int tx_ch[SLIM_MAX_TX_PORTS] = {128, 129, 130, 131, 132, 133,
-+					    134, 135, 136, 137, 138, 139,
-+					    140, 141, 142, 143};
-+	int rval, i;
-+
- 
- 	if (!pdata->jack_setup) {
- 		rval = snd_soc_card_jack_new(card, "Headset Jack",
-@@ -211,6 +263,21 @@ static int sdm845_dai_init(struct snd_soc_pcm_runtime *rtd)
- 			return rval;
- 		}
- 		break;
-+	case SLIMBUS_0_RX...SLIMBUS_6_TX:
-+		for (i = 0 ; i < dai_link->num_codecs; i++) {
-+			rval = snd_soc_dai_set_channel_map(rtd->codec_dais[i],
-+							  ARRAY_SIZE(tx_ch),
-+							  tx_ch,
-+							  ARRAY_SIZE(rx_ch),
-+							  rx_ch);
-+			if (rval != 0 && rval != -ENOTSUPP)
-+				return rval;
-+
-+			snd_soc_dai_set_sysclk(rtd->codec_dais[i], 0,
-+					       WCD934X_DEFAULT_MCLK_RATE,
-+					       SNDRV_PCM_STREAM_PLAYBACK);
-+		}
-+		break;
- 	default:
- 		break;
- 	}
-@@ -451,6 +518,8 @@ static int sdm845_snd_platform_remove(struct platform_device *pdev)
- 
- static const struct of_device_id sdm845_snd_device_id[]  = {
- 	{ .compatible = "qcom,sdm845-sndcard" },
-+	{ .compatible = "qcom,db845c-sndcard" },
-+	{ .compatible = "lenovo,yoga-c630-sndcard" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sdm845_snd_device_id);
--- 
-2.21.0
-
+On Wed, 2019-10-16 at 02:40 -0700, Ooi, Joyce wrote:
+> This patch adds QSPI flash interface in device tree for Intel Agilex
+> 
+> Signed-off-by: Ooi, Joyce <joyce.ooi@intel.com>
+> ---
+> v2: update the qspi_rootfs partition size
+> ---
+>  arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts | 35
+> ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> index 7814a9e..8de8118 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> @@ -73,3 +73,38 @@
+>  &watchdog0 {
+>  	status = "okay";
+>  };
+> +
+> +&qspi {
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "mt25qu02g";
+> +		reg = <0>;
+> +		spi-max-frequency = <50000000>;
+QSPI can support up to 100MHz.
+> +
+> +		m25p,fast-read;
+> +		cdns,page-size = <256>;
+> +		cdns,block-size = <16>;
+> +		cdns,read-delay = <1>;
+> +		cdns,tshsl-ns = <50>;
+> +		cdns,tsd2d-ns = <50>;
+> +		cdns,tchsh-ns = <4>;
+> +		cdns,tslch-ns = <4>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			qspi_boot: partition@0 {
+> +				label = "Boot and fpga data";
+> +				reg = <0x0 0x034B0000>;
+> +			};
+> +
+> +			qspi_rootfs: partition@34B0000 {
+> +				label = "Root Filesystem - JFFS2";
+> +				reg = <0x034B0000 0x0CB50000>;
+> +			};
+> +		};
+> +	};
+> +};
