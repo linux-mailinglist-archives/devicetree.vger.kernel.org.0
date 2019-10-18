@@ -2,46 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67315DCD85
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 20:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10931DCD4B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 20:07:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406292AbfJRSIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 14:08:44 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44726 "EHLO
+        id S2505691AbfJRSHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 14:07:03 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44654 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2505689AbfJRSHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 14:07:05 -0400
+        with ESMTP id S2505687AbfJRSHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 14:07:03 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=hWN6iotQzqORhI85NQUfvHQlZSBW0NQNxJUWC/ER/MQ=; b=jgcWFtxnHEJu
-        MZv715iujjk/yK4ebDjzI0/uvzNNaHshYcNWieSW6P8gctwJxacbqpbmSfaMRDXLwZfnxLwy/Qu16
-        5ulVRa6/EEUm7cl8XBUXDTIT6qB6E/84KbB+ajCCzRCAMjrCU24fpRqdB2oxSjaiourglMtklczEi
-        jN3M8=;
+        List-Archive; bh=0/hveyck1dnXdr8iG9tezEBcpoCN7kE7Yiz6fCTLXEU=; b=AZWBwilt1rp2
+        b+XMXncGixAdGZCAaJTPGfv2bOqPZ1PXBch+LrclgCliAiOmefxEW8v05AQmfzmqACqLyt2YuQE58
+        gGCshQ4JSDwYHIbujbDH+vEMM3js1ol3nseCKGmTwogQF3fArvC1wza0zf7iRj5Efnz7kliQv9SVN
+        3qx0w=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1iLWeQ-0004Ei-JE; Fri, 18 Oct 2019 18:06:58 +0000
+        id 1iLWeQ-0004Eg-8Z; Fri, 18 Oct 2019 18:06:58 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 091CB2743276; Fri, 18 Oct 2019 19:06:57 +0100 (BST)
+        id 952482743259; Fri, 18 Oct 2019 19:06:57 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     alsa-devel@alsa-project.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: Applied "dt-bindings: sound: Convert Samsung I2S controller to dt-schema" to the asoc tree
-In-Reply-To: <20191004125914.1033-1-m.szyprowski@samsung.com>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     alsa-devel@alsa-project.org, Benson Leung <bleung@chromium.org>,
+        bleung@google.com, broonie@kernel.org, cychiang@google.com,
+        devicetree@vger.kernel.org, dgreid@google.com, drinkcat@google.com,
+        enric.balletbo@collabora.com, gwendal@google.com,
+        Mark Brown <broonie@kernel.org>, robh+dt@kernel.org,
+        Rob Herring <robh@kernel.org>, tzungbi@google.com
+Subject: Applied "ASoC: cros_ec_codec: read max DMIC gain from EC codec" to the asoc tree
+In-Reply-To: <20191017213539.05.Id4657c864d544634f2b5c1c9b34fa8232ecba44d@changeid>
 X-Patchwork-Hint: ignore
-Message-Id: <20191018180658.091CB2743276@ypsilon.sirena.org.uk>
+Message-Id: <20191018180657.952482743259@ypsilon.sirena.org.uk>
 Date:   Fri, 18 Oct 2019 19:06:57 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -50,7 +48,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   dt-bindings: sound: Convert Samsung I2S controller to dt-schema
+   ASoC: cros_ec_codec: read max DMIC gain from EC codec
 
 has been applied to the asoc tree at
 
@@ -75,263 +73,216 @@ to this mail.
 Thanks,
 Mark
 
-From 2d39a1fc19ea2d33fd68f5d02e6136ddaae2ac11 Mon Sep 17 00:00:00 2001
-From: Maciej Falkowski <m.falkowski@samsung.com>
-Date: Fri, 4 Oct 2019 14:59:14 +0200
-Subject: [PATCH] dt-bindings: sound: Convert Samsung I2S controller to
- dt-schema
+From f3e82ad43ca538a7e0db0f310e26c5e75db6ba18 Mon Sep 17 00:00:00 2001
+From: Tzung-Bi Shih <tzungbi@google.com>
+Date: Thu, 17 Oct 2019 22:00:10 +0800
+Subject: [PATCH] ASoC: cros_ec_codec: read max DMIC gain from EC codec
 
-Convert Samsung I2S controller to newer dt-schema format.
+Read max DMIC gain from EC codec instead of DTS.  Also removes the
+dt-binding of max-dmic-gain.
 
-Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-[mszyprow: integrated fix for minor spelling issues]
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/20191004125914.1033-1-m.szyprowski@samsung.com
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Benson Leung <bleung@chromium.org>
+Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+Link: https://lore.kernel.org/r/20191017213539.05.Id4657c864d544634f2b5c1c9b34fa8232ecba44d@changeid
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../devicetree/bindings/sound/samsung-i2s.txt |  84 -----------
- .../bindings/sound/samsung-i2s.yaml           | 138 ++++++++++++++++++
- 2 files changed, 138 insertions(+), 84 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/samsung-i2s.txt
- create mode 100644 Documentation/devicetree/bindings/sound/samsung-i2s.yaml
+ .../bindings/sound/google,cros-ec-codec.txt   |  4 +-
+ .../linux/platform_data/cros_ec_commands.h    | 43 +++++++++++----
+ sound/soc/codecs/cros_ec_codec.c              | 53 ++++++++++++++-----
+ 3 files changed, 73 insertions(+), 27 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/samsung-i2s.txt b/Documentation/devicetree/bindings/sound/samsung-i2s.txt
-deleted file mode 100644
-index a88cb00fa096..000000000000
---- a/Documentation/devicetree/bindings/sound/samsung-i2s.txt
-+++ /dev/null
-@@ -1,84 +0,0 @@
--* Samsung I2S controller
--
--Required SoC Specific Properties:
--
--- compatible : should be one of the following.
--   - samsung,s3c6410-i2s: for 8/16/24bit stereo I2S.
--   - samsung,s5pv210-i2s: for 8/16/24bit multichannel(5.1) I2S with
--     secondary fifo, s/w reset control and internal mux for root clk src.
--   - samsung,exynos5420-i2s: for 8/16/24bit multichannel(5.1) I2S for
--     playback, stereo channel capture, secondary fifo using internal
--     or external dma, s/w reset control, internal mux for root clk src
--     and 7.1 channel TDM support for playback. TDM (Time division multiplexing)
--     is to allow transfer of multiple channel audio data on single data line.
--   - samsung,exynos7-i2s: with all the available features of exynos5 i2s,
--     exynos7 I2S has 7.1 channel TDM support for capture, secondary fifo
--     with only external dma and more no.of root clk sampling frequencies.
--   - samsung,exynos7-i2s1: I2S1 on previous samsung platforms supports
--     stereo channels. exynos7 i2s1 upgraded to 5.1 multichannel with
--     slightly modified bit offsets.
--
--- reg: physical base address of the controller and length of memory mapped
--  region.
--- dmas: list of DMA controller phandle and DMA request line ordered pairs.
--- dma-names: identifier string for each DMA request line in the dmas property.
--  These strings correspond 1:1 with the ordered pairs in dmas.
--- clocks: Handle to iis clock and RCLK source clk.
--- clock-names:
--  i2s0 uses some base clocks from CMU and some are from audio subsystem internal
--  clock controller. The clock names for i2s0 should be "iis", "i2s_opclk0" and
--  "i2s_opclk1" as shown in the example below.
--  i2s1 and i2s2 uses clocks from CMU. The clock names for i2s1 and i2s2 should
--  be "iis" and "i2s_opclk0".
--  "iis" is the i2s bus clock and i2s_opclk0, i2s_opclk1 are sources of the root
--  clk. i2s0 has internal mux to select the source of root clk and i2s1 and i2s2
--  doesn't have any such mux.
--- #clock-cells: should be 1, this property must be present if the I2S device
--  is a clock provider in terms of the common clock bindings, described in
--  ../clock/clock-bindings.txt.
--- clock-output-names (deprecated): from the common clock bindings, names of
--  the CDCLK I2S output clocks, suggested values are "i2s_cdclk0", "i2s_cdclk1",
--  "i2s_cdclk3" for the I2S0, I2S1, I2S2 devices respectively.
--
--There are following clocks available at the I2S device nodes:
-- CLK_I2S_CDCLK    - the CDCLK (CODECLKO) gate clock,
-- CLK_I2S_RCLK_PSR - the RCLK prescaler divider clock (corresponding to the
--		    IISPSR register),
-- CLK_I2S_RCLK_SRC - the RCLKSRC mux clock (corresponding to RCLKSRC bit in
--		    IISMOD register).
--
--Refer to the SoC datasheet for availability of the above clocks.
--The CLK_I2S_RCLK_PSR and CLK_I2S_RCLK_SRC clocks are usually only available
--in the IIS Multi Audio Interface.
--
--Note: Old DTs may not have the #clock-cells property and then not use the I2S
--node as a clock supplier.
--
--Optional SoC Specific Properties:
--
--- samsung,idma-addr: Internal DMA register base address of the audio
--  sub system(used in secondary sound source).
--- pinctrl-0: Should specify pin control groups used for this controller.
--- pinctrl-names: Should contain only one value - "default".
--- #sound-dai-cells: should be 1.
--
--
--Example:
--
--i2s0: i2s@3830000 {
--	compatible = "samsung,s5pv210-i2s";
--	reg = <0x03830000 0x100>;
--	dmas = <&pdma0 10
--		&pdma0 9
--		&pdma0 8>;
--	dma-names = "tx", "rx", "tx-sec";
--	clocks = <&clock_audss EXYNOS_I2S_BUS>,
--		<&clock_audss EXYNOS_I2S_BUS>,
--		<&clock_audss EXYNOS_SCLK_I2S>;
--	clock-names = "iis", "i2s_opclk0", "i2s_opclk1";
--	#clock-cells = <1>;
--	samsung,idma-addr = <0x03000000>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&i2s0_bus>;
--	#sound-dai-cells = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/samsung-i2s.yaml b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
-new file mode 100644
-index 000000000000..53e3bad4178c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/samsung-i2s.yaml
-@@ -0,0 +1,138 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/samsung-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
+index 1084f7f22eea..0ce9fafc78e2 100644
+--- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
++++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
+@@ -1,4 +1,4 @@
+-* Audio codec controlled by ChromeOS EC
++Audio codec controlled by ChromeOS EC
+ 
+ Google's ChromeOS EC codec is a digital mic codec provided by the
+ Embedded Controller (EC) and is controlled via a host-command interface.
+@@ -9,7 +9,6 @@ Documentation/devicetree/bindings/mfd/cros-ec.txt).
+ Required properties:
+ - compatible: Must contain "google,cros-ec-codec"
+ - #sound-dai-cells: Should be 1. The cell specifies number of DAIs.
+-- max-dmic-gain: A number for maximum gain in dB on digital microphone.
+ 
+ Example:
+ 
+@@ -21,6 +20,5 @@ cros-ec@0 {
+ 	cros_ec_codec: ec-codec {
+ 		compatible = "google,cros-ec-codec";
+ 		#sound-dai-cells = <1>;
+-		max-dmic-gain = <43>;
+ 	};
+ };
+diff --git a/include/linux/platform_data/cros_ec_commands.h b/include/linux/platform_data/cros_ec_commands.h
+index 3ca0fa9e92a7..21db0d4d4025 100644
+--- a/include/linux/platform_data/cros_ec_commands.h
++++ b/include/linux/platform_data/cros_ec_commands.h
+@@ -4530,30 +4530,53 @@ struct __ec_align4 ec_response_ec_codec_get_shm_addr {
+ #define EC_CMD_EC_CODEC_DMIC 0x00BD
+ 
+ enum ec_codec_dmic_subcmd {
+-	EC_CODEC_DMIC_SET_GAIN = 0x0,
+-	EC_CODEC_DMIC_GET_GAIN = 0x1,
++	EC_CODEC_DMIC_GET_MAX_GAIN = 0x0,
++	EC_CODEC_DMIC_SET_GAIN_IDX = 0x1,
++	EC_CODEC_DMIC_GET_GAIN_IDX = 0x2,
+ 	EC_CODEC_DMIC_SUBCMD_COUNT,
+ };
+ 
+-struct __ec_align1 ec_param_ec_codec_dmic_set_gain {
+-	uint8_t left;
+-	uint8_t right;
++enum ec_codec_dmic_channel {
++	EC_CODEC_DMIC_CHANNEL_0 = 0x0,
++	EC_CODEC_DMIC_CHANNEL_1 = 0x1,
++	EC_CODEC_DMIC_CHANNEL_2 = 0x2,
++	EC_CODEC_DMIC_CHANNEL_3 = 0x3,
++	EC_CODEC_DMIC_CHANNEL_4 = 0x4,
++	EC_CODEC_DMIC_CHANNEL_5 = 0x5,
++	EC_CODEC_DMIC_CHANNEL_6 = 0x6,
++	EC_CODEC_DMIC_CHANNEL_7 = 0x7,
++	EC_CODEC_DMIC_CHANNEL_COUNT,
++};
 +
-+title: Samsung SoC I2S controller
++struct __ec_align1 ec_param_ec_codec_dmic_set_gain_idx {
++	uint8_t channel; /* enum ec_codec_dmic_channel */
++	uint8_t gain;
+ 	uint8_t reserved[2];
+ };
+ 
++struct __ec_align1 ec_param_ec_codec_dmic_get_gain_idx {
++	uint8_t channel; /* enum ec_codec_dmic_channel */
++	uint8_t reserved[3];
++};
 +
-+maintainers:
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+  - Sylwester Nawrocki <s.nawrocki@samsung.com>
+ struct __ec_align4 ec_param_ec_codec_dmic {
+ 	uint8_t cmd; /* enum ec_codec_dmic_subcmd */
+ 	uint8_t reserved[3];
+ 
+ 	union {
+-		struct ec_param_ec_codec_dmic_set_gain
+-				set_gain_param;
++		struct ec_param_ec_codec_dmic_set_gain_idx
++				set_gain_idx_param;
++		struct ec_param_ec_codec_dmic_get_gain_idx
++				get_gain_idx_param;
+ 	};
+ };
+ 
+-struct __ec_align1 ec_response_ec_codec_dmic_get_gain {
+-	uint8_t left;
+-	uint8_t right;
++struct __ec_align1 ec_response_ec_codec_dmic_get_max_gain {
++	uint8_t max_gain;
++};
 +
-+properties:
-+  compatible:
-+    description: |
-+      samsung,s3c6410-i2s: for 8/16/24bit stereo I2S.
++struct __ec_align1 ec_response_ec_codec_dmic_get_gain_idx {
++	uint8_t gain;
+ };
+ 
+ /*****************************************************************************/
+diff --git a/sound/soc/codecs/cros_ec_codec.c b/sound/soc/codecs/cros_ec_codec.c
+index c19c7fe42e2e..3d4f9e82d6e9 100644
+--- a/sound/soc/codecs/cros_ec_codec.c
++++ b/sound/soc/codecs/cros_ec_codec.c
+@@ -65,18 +65,26 @@ static int dmic_get_gain(struct snd_kcontrol *kcontrol,
+ 	struct cros_ec_codec_priv *priv =
+ 		snd_soc_component_get_drvdata(component);
+ 	struct ec_param_ec_codec_dmic p;
+-	struct ec_response_ec_codec_dmic_get_gain r;
++	struct ec_response_ec_codec_dmic_get_gain_idx r;
+ 	int ret;
+ 
+-	p.cmd = EC_CODEC_DMIC_GET_GAIN;
++	p.cmd = EC_CODEC_DMIC_GET_GAIN_IDX;
++	p.get_gain_idx_param.channel = EC_CODEC_DMIC_CHANNEL_0;
+ 	ret = send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
+ 				   (uint8_t *)&p, sizeof(p),
+ 				   (uint8_t *)&r, sizeof(r));
+ 	if (ret < 0)
+ 		return ret;
++	ucontrol->value.integer.value[0] = r.gain;
+ 
+-	ucontrol->value.integer.value[0] = r.left;
+-	ucontrol->value.integer.value[1] = r.right;
++	p.cmd = EC_CODEC_DMIC_GET_GAIN_IDX;
++	p.get_gain_idx_param.channel = EC_CODEC_DMIC_CHANNEL_1;
++	ret = send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
++				   (uint8_t *)&p, sizeof(p),
++				   (uint8_t *)&r, sizeof(r));
++	if (ret < 0)
++		return ret;
++	ucontrol->value.integer.value[1] = r.gain;
+ 
+ 	return 0;
+ }
+@@ -94,15 +102,24 @@ static int dmic_put_gain(struct snd_kcontrol *kcontrol,
+ 	int left = ucontrol->value.integer.value[0];
+ 	int right = ucontrol->value.integer.value[1];
+ 	struct ec_param_ec_codec_dmic p;
++	int ret;
+ 
+ 	if (left > max_dmic_gain || right > max_dmic_gain)
+ 		return -EINVAL;
+ 
+ 	dev_dbg(component->dev, "set mic gain to %u, %u\n", left, right);
+ 
+-	p.cmd = EC_CODEC_DMIC_SET_GAIN;
+-	p.set_gain_param.left = left;
+-	p.set_gain_param.right = right;
++	p.cmd = EC_CODEC_DMIC_SET_GAIN_IDX;
++	p.set_gain_idx_param.channel = EC_CODEC_DMIC_CHANNEL_0;
++	p.set_gain_idx_param.gain = left;
++	ret = send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
++				   (uint8_t *)&p, sizeof(p), NULL, 0);
++	if (ret < 0)
++		return ret;
 +
-+      samsung,s5pv210-i2s: for 8/16/24bit multichannel (5.1) I2S with
-+      secondary FIFO, s/w reset control and internal mux for root clock
-+      source.
++	p.cmd = EC_CODEC_DMIC_SET_GAIN_IDX;
++	p.set_gain_idx_param.channel = EC_CODEC_DMIC_CHANNEL_1;
++	p.set_gain_idx_param.gain = right;
+ 	return send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
+ 				    (uint8_t *)&p, sizeof(p), NULL, 0);
+ }
+@@ -125,19 +142,27 @@ static int dmic_probe(struct snd_soc_component *component)
+ 	struct cros_ec_codec_priv *priv =
+ 		snd_soc_component_get_drvdata(component);
+ 	struct device *dev = priv->dev;
+-	int ret, val;
+ 	struct soc_mixer_control *control;
++	struct ec_param_ec_codec_dmic p;
++	struct ec_response_ec_codec_dmic_get_max_gain r;
++	int ret;
+ 
+-	ret = device_property_read_u32(dev, "max-dmic-gain", &val);
+-	if (ret) {
+-		dev_err(dev, "Failed to read 'max-dmic-gain'\n");
+-		return ret;
++	p.cmd = EC_CODEC_DMIC_GET_MAX_GAIN;
 +
-+      samsung,exynos5420-i2s: for 8/16/24bit multichannel (5.1) I2S for
-+      playback, stereo channel capture, secondary FIFO using internal
-+      or external DMA, s/w reset control, internal mux for root clock
-+      source and 7.1 channel TDM support for playback; TDM (Time division
-+      multiplexing) is to allow transfer of multiple channel audio data on
-+      single data line.
++	ret = send_ec_host_command(priv->ec_device, EC_CMD_EC_CODEC_DMIC,
++				   (uint8_t *)&p, sizeof(p),
++				   (uint8_t *)&r, sizeof(r));
++	if (ret < 0) {
++		dev_warn(dev, "get_max_gain() unsupported\n");
++		return 0;
+ 	}
+ 
++	dev_dbg(dev, "max gain = %d\n", r.max_gain);
 +
-+      samsung,exynos7-i2s: with all the available features of Exynos5 I2S.
-+      Exynos7 I2S has 7.1 channel TDM support for capture, secondary FIFO
-+      with only external DMA and more number of root clock sampling
-+      frequencies.
-+
-+      samsung,exynos7-i2s1: I2S1 on previous samsung platforms supports
-+      stereo channels. Exynos7 I2S1 upgraded to 5.1 multichannel with
-+      slightly modified bit offsets.
-+    enum:
-+      - samsung,s3c6410-i2s
-+      - samsung,s5pv210-i2s
-+      - samsung,exynos5420-i2s
-+      - samsung,exynos7-i2s
-+      - samsung,exynos7-i2s1
-+
-+  reg:
-+    maxItems: 1
-+
-+  dmas:
-+    minItems: 2
-+    maxItems: 3
-+
-+  dma-names:
-+    oneOf:
-+      - items:
-+          - const: tx
-+          - const: rx
-+      - items:
-+          - const: tx
-+          - const: rx
-+          - const: tx-sec
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    oneOf:
-+      - items:
-+          - const: iis
-+      - items: # for I2S0
-+          - const: iis
-+          - const: i2s_opclk0
-+          - const: i2s_opclk1
-+      - items: # for I2S1 and I2S2
-+          - const: iis
-+          - const: i2s_opclk0
-+    description: |
-+      "iis" is the I2S bus clock and i2s_opclk0, i2s_opclk1 are sources
-+      of the root clock. I2S0 has internal mux to select the source
-+      of root clock and I2S1 and I2S2 doesn't have any such mux.
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clock-output-names:
-+    deprecated: true
-+    oneOf:
-+      - items: # for I2S0
-+          - const: i2s_cdclk0
-+      - items: # for I2S1
-+          - const: i2s_cdclk1
-+      - items: # for I2S2
-+          - const: i2s_cdclk2
-+    description: Names of the CDCLK I2S output clocks.
-+
-+  samsung,idma-addr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Internal DMA register base address of the audio
-+      subsystem (used in secondary sound source).
-+
-+  pinctrl-0:
-+    description: Should specify pin control groups used for this controller.
-+
-+  pinctrl-names:
-+    const: default
-+
-+  "#sound-dai-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - dmas
-+  - dma-names
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/exynos-audss-clk.h>
-+
-+    i2s0: i2s@3830000 {
-+        compatible = "samsung,s5pv210-i2s";
-+        reg = <0x03830000 0x100>;
-+        dmas = <&pdma0 10>,
-+                <&pdma0 9>,
-+                <&pdma0 8>;
-+        dma-names = "tx", "rx", "tx-sec";
-+        clocks = <&clock_audss EXYNOS_I2S_BUS>,
-+                <&clock_audss EXYNOS_I2S_BUS>,
-+                <&clock_audss EXYNOS_SCLK_I2S>;
-+        clock-names = "iis", "i2s_opclk0", "i2s_opclk1";
-+        #clock-cells = <1>;
-+        samsung,idma-addr = <0x03000000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&i2s0_bus>;
-+        #sound-dai-cells = <1>;
-+    };
+ 	control = (struct soc_mixer_control *)
+ 		dmic_controls[DMIC_CTL_GAIN].private_value;
+-	control->max = val;
+-	control->platform_max = val;
++	control->max = r.max_gain;
++	control->platform_max = r.max_gain;
+ 
+ 	return snd_soc_add_component_controls(component,
+ 			&dmic_controls[DMIC_CTL_GAIN], 1);
 -- 
 2.20.1
 
