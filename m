@@ -2,142 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E3AFDCDE6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 20:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51424DCE4C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 20:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502865AbfJRSZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 14:25:00 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:34430 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502836AbfJRSZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 14:25:00 -0400
-Received: by mail-lj1-f195.google.com with SMTP id j19so7181801lja.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 11:24:58 -0700 (PDT)
+        id S2505867AbfJRSjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 14:39:20 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:53262 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2505728AbfJRSjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 14:39:20 -0400
+Received: by mail-wm1-f66.google.com with SMTP id i16so7164102wmd.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 11:39:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YYQD8ZjjV8FYWgYSkKKTS/qtO4T+D7cqMY9D6mPQHr8=;
-        b=kimc05Do/CaE/fiIUHNko2Lc742S8/237oDRPUfI3GEx6oAx9L9lJDf1iB9ZVBvgqr
-         QHI9LXd7JPvAcIL8zQeohj8pqSIe4nKSyTNiX153O98ykn+pcc0mC6UD7j89U/P6K654
-         wXdH5XPyh2zGfOJ3JCCvTD4hpxDtVNzNYM4mpoG7KN810cJKVnXxZud/XLtcFFIeY0wW
-         /iVfomwNt/Sd+lhGoDLSXOItmjkDyAIakZzaekbf2DwspANM3ihx4jgKH8wazzadgrPt
-         PClTRmbx3FQyecschVXDPaHtu5piX9TuDiRTHMHviHbZNAsG9BB+i38YhGgM58jkjt8k
-         rLgw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=f4CnMsn4AbSRNn1EVCaabWmq8sv54L0ZTWdVo5HeLwA=;
+        b=f1TWdlYaruRtAyn1ngSsZ6uQn90ArDxO5LBV1SCnegvCTBjunLuFQdCC5GQcOic5kV
+         XFX4SOPayd3RrflTHaz9+t1hM4dPpdExngdo3PnFxk5kowUq+zvTsVLEbj2AUks6p20x
+         iQHFEDttYjw/iF8/w/yPlasZfFcKXzwcThXlvx8iXO6IZu/+6bD9Si5igH998rahS9kD
+         wCtSdgazQwuBZ7W127ThETW+39wbFdle7JTJlO+jOfYJ/a4KN4EGaVf7O2oRqubH7fEQ
+         XdqNT2/L8jTS95upwtA+kgQwGiJxlXO8kpGvnzsiPJcVm/lBKiwBaH9+SueZ4aw1uEBh
+         zaoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YYQD8ZjjV8FYWgYSkKKTS/qtO4T+D7cqMY9D6mPQHr8=;
-        b=C0rMbZn/2KMmAZ5SFplKT9F/9shiUbrMx/7cfamLDt7PvTRA45rXIBd3hL4PmTYI3/
-         jzRfTlZW7o5D4/DybYUzOa+6AlczpIngSDV6pSZMZh+zmwHfMdkzu5q/ORUUsugcNYDI
-         hEjnjVzo7a4jIwOiA3Q3fK33y9Q81T57s2FLEROrwfRm8E4aVNmDXagsrx1DmgHhIdgm
-         3RhPLauQzNKBB/vS4TjVAoWt/e4JzreohWEOoxM0vDV1y3OgfIHRLizkl1jkAm/IhgDQ
-         r20PiMtyb5BZmk2JOtU+UPk5z9Cm0uIKUAO3uf/QrWFYNs5eQBZoz9sEACesr0pbFCS0
-         tVGw==
-X-Gm-Message-State: APjAAAXUHuKZZTgibKoMFxzugcD4gQkUzpgA/VnUseralKTJ1DTSZb3t
-        6pXpf05PHKsV2B0TLe3atlzDhg==
-X-Google-Smtp-Source: APXvYqxtc8ZUeBcK8hiA5gxckfrSmYQjAwIJX8pQ/ZT8e1aLDLHCnL2gVSUTTfHtu03NaTJV1SDldQ==
-X-Received: by 2002:a2e:29dd:: with SMTP id p90mr7174062ljp.26.1571423098036;
-        Fri, 18 Oct 2019 11:24:58 -0700 (PDT)
-Received: from genomnajs.ideon.se ([85.235.10.227])
-        by smtp.gmail.com with ESMTPSA id g26sm3020617lje.80.2019.10.18.11.24.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2019 11:24:56 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/3 v3] drm/panel: Add DT bindings for Sony ACX424AKP
-Date:   Fri, 18 Oct 2019 20:24:45 +0200
-Message-Id: <20191018182446.26131-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191018182446.26131-1-linus.walleij@linaro.org>
-References: <20191018182446.26131-1-linus.walleij@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f4CnMsn4AbSRNn1EVCaabWmq8sv54L0ZTWdVo5HeLwA=;
+        b=G9nCKZb7z6Uq/H0Jl0vGoymQVbBO8C8c3jY9chaZC4DuUlr6Ro9DK+d7qAQgC0+YbK
+         HjTGosqHmfDbQqxRpv5KpPHmMw6P05grJ47HRP63lLVWocipDi+HS7HjrA5IEueVK4nV
+         B0xzQfpcmjgU1VHY6Ns12UIs+qntqYbsDblmV9+CvSDh507TggSUFqzUltjPCIcWAvYH
+         1wR2BSZC4NZjNekF9uUr2hYhwVpR6ZKZyEKtVqdM3KhEX1Y0zCrMAN3OAn7wvXu0xIWc
+         vPsIWifwfwmsZ8uBgX280MflbBR3RV/9HL0AmfSaEgrcgBGvp5Ouu0HRzxGHqoILuE11
+         tcog==
+X-Gm-Message-State: APjAAAXzxUhIOb9mrryT2Ob5CvfDF+/rRIz2JVIiMRbsVyVOxmohdD1m
+        1p1/zQSC3DY2rVIjbaboRk1ODZyBZfXqirY6Kdtrmw==
+X-Google-Smtp-Source: APXvYqwQBRN+0AP3sy+6+jMt6ece72V8onGhRTBZvT/3iOom/I8z+sXUkSfEcU0M5YrBcGzh2NdoipI884i3PRHW/D4=
+X-Received: by 2002:a1c:f201:: with SMTP id s1mr8322752wmc.59.1571423957896;
+ Fri, 18 Oct 2019 11:39:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191002231617.3670-1-john.stultz@linaro.org> <20191002231617.3670-3-john.stultz@linaro.org>
+ <2e369349-41f6-bd15-2829-fa886f209b39@redhat.com> <CALAqxLVcQ7yZuJCUEqGmvqcz5u0Gd=xJzqLbmiXKR+LJrOhvMQ@mail.gmail.com>
+ <b8695418-9d3a-96a6-9587-c9a790f49740@redhat.com> <CALAqxLVh6GbiKmuK60e6f+_dWh-TS2ZLrwx0WsSo5bKp-F3iLA@mail.gmail.com>
+ <648e2943-42f5-e07d-5bb4-f6fd8b38b726@redhat.com> <CALAqxLWh0=GRod5ORpi+ENpWCkmY39mUw_=NV67sKY8qH_otZw@mail.gmail.com>
+ <f2236442-111d-cd84-fc47-0737df71cf3a@redhat.com>
+In-Reply-To: <f2236442-111d-cd84-fc47-0737df71cf3a@redhat.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Fri, 18 Oct 2019 11:39:06 -0700
+Message-ID: <CALAqxLWHbhst5KXAGCswKVp7ztzFHxdb6nskfze+Jk+xWo2Ssw@mail.gmail.com>
+Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Sony ACX424AKP panel.
-Let's use YAML.
+On Fri, Oct 18, 2019 at 1:06 AM Hans de Goede <hdegoede@redhat.com> wrote:
+> On 18-10-2019 07:55, John Stultz wrote:
+> > On Wed, Oct 16, 2019 at 12:27 AM Hans de Goede <hdegoede@redhat.com> wrote:
+> >> Look at the tcpm_set_vbus implementation in drivers/usb/typec/tcpm/fusb302.c
+> >> you need to do something similar in your Type-C controller driver and
+> >> export the GPIO as as a gpio-controlled regulator and tie the regulator to
+> >> the connector.
+> >
+> > Thanks for the suggestion, I really appreciate it! One more question
+> > though, since I'm using the tcpci_rt1711h driver, which re-uses the
+> > somewhat sparse tcpci.c implementation, would you recommend trying to
+> > add generic regulator support to the tcpci code or trying to extend
+> > the implementation somehow allow the tcpci_rt1711h driver replace just
+> > the set_vbus function?
+>
+> I have the feeling that this is more of a question for Heikki.
+>
+> My first instinct is: if you are using tcpci can't you put all
+> the hacks you need for the usb connection shared between hub
+> and type-c in your firmware ?
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Put the example inside a dsi-controller so we have a complete
-  example that verifies to the DSI panel generic binding.
-ChangeLog v1->v2:
-- Suggest a stand-alone YAML bindings file for DSI panels in
-  a separate patch, and use that to reference the
-  boolean "enforce-video-mode" attribute for DSI panels
----
- .../display/panel/sony,acx424akp.yaml         | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+I appreciate the suggestion, but I'm not aware of any USB firmware for
+the board, nor do I think I have any such source.  :(
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
-new file mode 100644
-index 000000000000..c01eea17b08f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/sony,acx424akp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony ACX424AKP 4" 480x864 AMOLED panel
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+  - $ref: panel-dsi-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: sony,acx424akp
-+  reg: true
-+  port: true
-+  reset-gpios: true
-+  vddi-supply:
-+     description: regulator that supplies the vddi voltage
-+  enforce-video-mode: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - port
-+  - reset-gpios
-+  - power-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dsi-controller@0 {
-+        compatible = "foo";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel {
-+            compatible = "sony,acx424akp";
-+            reg = <0>;
-+            vddi-supply = <&foo>;
-+            reset-gpios = <&foo_gpio 0 GPIO_ACTIVE_LOW>;
-+        };
-+    };
-+
-+...
-\ No newline at end of file
--- 
-2.21.0
-
+thanks
+-john
