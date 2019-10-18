@@ -2,131 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03110DC32C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 12:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86B2ADC345
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 12:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2408500AbfJRK4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 06:56:53 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:34115 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390222AbfJRK4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 06:56:52 -0400
-Received: by mail-ua1-f67.google.com with SMTP id q11so1596715uao.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 03:56:52 -0700 (PDT)
+        id S2404497AbfJRK6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 06:58:48 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:35976 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725924AbfJRK6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 06:58:48 -0400
+Received: by mail-vs1-f67.google.com with SMTP id v19so3745929vsv.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 03:58:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QY7lFyrHaU8+oA6DvMJgP3Iv+qTUAFJEzk1GXAvtrx4=;
-        b=HWwssPuPT5PifwSCD5NhcePRn2f+ZzbP6zPPhLLPIw3Ba+ZwsY64t93AV6ZDoVRf+P
-         GtEcP6AxKbDhZb4aeAXhFJ7LKwzQy18X9mLZzFjg3l69TZM656yqgPbVJe1ph0apblOH
-         zpiHBA9MxyOptlT/ckRWBqs5RnQS0ZwMk32fBgNNHtl1egCvgygXRKzP6q9FYY7GgH4j
-         IX3HP7sAZxr/FF+mPkYQ0A12D/gQTFKYnOU0ckK1PLfd2gCx2OBeFOMah5fjPMGgeYQX
-         s0CdcKW3PYDu6Y1SJvqyv1FCph7SFawKTy3IaAPV+spKaEG5gmDGe/DWTffb4AK+u2zd
-         4lyw==
+        bh=Rio9HHOlkvh+lIpCQASjDvFu34ch6yz1YASODTUfN2A=;
+        b=x+ivwMa1fuOo73+TkPEdt11VJpA5s5IaNM4sh0A4umv+Kpq/SIrNSspl+Tx6BxkHYY
+         RGSVUmvMZ49HKAPY82E2W2EXufUFG0ArEJgsKO2irYjk/IFl7cZriGK8qRvmlpM5DiI4
+         cW4RyJmj6uE0YSjjvo3dcX10dzCulzvu3Wdu8JdDMZA8ZyqvmS1gBcQtAT6sZMSEGUxe
+         b3hhe8+ibWVBQRUWstv/Fvg1kRt6EKrLFHH+vqY7nvhAYcBSj/NDyg1zXhKZySE4005U
+         /Gbap+Mi81K6+uIXOrxUfYlABOUqEqwZBfS0dsqwISFWanRaHb3jm1VdybIarZTQFU0m
+         4jfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QY7lFyrHaU8+oA6DvMJgP3Iv+qTUAFJEzk1GXAvtrx4=;
-        b=W73eJD+v3G/k8Mlpps27gyqu7aAu8em0gxwxpjyIHXzAqGsUBV4puMGyBGbeudbj1L
-         XuNppNf+MB5VHnfOPethgdlSb2tOMLaWBXR/l4ReF9md4IYjMlcnpm1064LRawQPleR+
-         P6WlGNrWSfk7dJXaqJArXo5HclJDBC3o9yvlD8rf1FWHcem3ihkIIH5D4vgGjx+T/OhJ
-         i+AgIerOzWy6V0Ap+FB1BskrJgpTE4xOb22zdxf74MNWEAN+EDFhsu6P5UW5XZaQAA95
-         /o4jLGQCF3iyd58+/07rWWicWRxkWBE1DQn9yAUxKJ2SYNLfGXakNt/AlAxzBuVCjLJe
-         kOsg==
-X-Gm-Message-State: APjAAAWbdHfPQTx3wDHnuTBwq/BBV7BAZxw4pZv5QnsHhHREJ8Pp9HDg
-        NK2NU/f+eNvEg/W04YEwispFuqZTbUQrkURqvoieOQ==
-X-Google-Smtp-Source: APXvYqz/SShoa3XTS8voTIAQNQnZDjh0ea7364t7jbf47xMWfss+qljtsOER3sxNNKKBAIJ9tpVLe1gvmh+l/LbdV7A=
-X-Received: by 2002:ab0:310f:: with SMTP id e15mr5136065ual.19.1571396211823;
- Fri, 18 Oct 2019 03:56:51 -0700 (PDT)
+        bh=Rio9HHOlkvh+lIpCQASjDvFu34ch6yz1YASODTUfN2A=;
+        b=TubuzUvMVbWejK1mIeOsjpmkGy2afu0RsfgqrEqCJz5GBpmeCbhVzRfX9DhVTmdyg4
+         gJDbCN78FME/BoomxwpbF3SGHdG37JMk5s1dGOvkp+2eERK4Cu58xZjX4qTNQzRl7fow
+         VzU/J2UK/lgKIGLwtI2jblBZyFdMXxe+TJdjVk8Q8Ji23DxrSnMQsfvOnXfezmywLSyL
+         xIdwtAA+KCDmoL+1k8yrk6UtaPReH6JxSxVJbhsy717OBr21d5e0wyWI7jKGUPxVi4on
+         N+Kk4NjGGp8vvzIx7GdBhuhMfXuvP9zMcDCbtV9nYMoE1A/3k4i6i7XUdeNTwEWGJTE1
+         /Z5w==
+X-Gm-Message-State: APjAAAVJhkI/2/8PDSuFoKaiSKZz2H+iWPjQ2GaPD4BnVLo7jWhsgkPo
+        5TrlJvgPEr2BGGQm/nxpdW7pZtUaoZia3in0fb+r9g==
+X-Google-Smtp-Source: APXvYqwRBr47REEzkA0e8ZYJ3EAkV4RqwFlssr91UqI3z8UAFs6Fwd6iaf/97SDUNB8MbcQd5ZnSNa99yYm/Z5IUQR4=
+X-Received: by 2002:a67:cf05:: with SMTP id y5mr5230380vsl.34.1571396327014;
+ Fri, 18 Oct 2019 03:58:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191011103340.26749-1-ludovic.desroches@microchip.com>
-In-Reply-To: <20191011103340.26749-1-ludovic.desroches@microchip.com>
+References: <4d269f30b1122487a2b5c8b48e24f78f2b75a509.1570537903.git.nicolas.ferre@microchip.com>
+In-Reply-To: <4d269f30b1122487a2b5c8b48e24f78f2b75a509.1570537903.git.nicolas.ferre@microchip.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 18 Oct 2019 12:56:14 +0200
-Message-ID: <CAPDyKFqxfBG-CDd_O9d8X89GZmNFXh=CoFE2QqptgtLtOU5=_Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: sdhci-of-at91: new compatible string
- and update properties
-To:     Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Date:   Fri, 18 Oct 2019 12:58:10 +0200
+Message-ID: <CAPDyKFqcOKhqza=Gbjbwim1no2_NBLEzrq6JRoK_7U9hGXL5Xg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: sdhci-of-at91: add the
+ microchip,sdcal-inverted property
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         DTML <devicetree@vger.kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        claudiu.beznea@microchip.com, Eugen.Hristev@microchip.com
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 at 12:33, Ludovic Desroches
-<ludovic.desroches@microchip.com> wrote:
+On Tue, 8 Oct 2019 at 14:34, Nicolas Ferre <nicolas.ferre@microchip.com> wrote:
 >
-> There is a new compatible string for the SAM9X60 sdhci device. It involves
-> an update of the properties about the clocks stuff.
+> Add the specific microchip,sdcal-inverted property to at91 sdhci
+> device binding.
+> This optional property describes how the SoC SDCAL pin is connected.
+> It could be handled at SiP, SoM or board level.
 >
-> Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+> This property read by at91 sdhci driver will allow to put in place a
+> software workaround that would reduce power consumption.
+>
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-This doesn't apply any more, can you please re-spin it?
+Applied for next, thanks!
 
 Kind regards
 Uffe
 
 
 > ---
->
-> Changes:
-> - v2: remove the extra example and fix node label
->
-> This patch conflicts with Nicolas' one: "dt-bindings: sdhci-of-at91: add
-> the microchip,sdcal-inverted property". Let me know which one has to be
-> rebased or you can handle it.
->
-> Ludovic
->
->
->  .../devicetree/bindings/mmc/sdhci-atmel.txt       | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/mmc/sdhci-atmel.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
 >
 > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-> index 1b662d7171a0..5d541ad4d4eb 100644
+> index 1b662d7171a0..503c6dbac1b2 100644
 > --- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
 > +++ b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-> @@ -5,17 +5,26 @@ Documentation/devicetree/bindings/mmc/mmc.txt and the properties used by the
->  sdhci-of-at91 driver.
->
->  Required properties:
-> -- compatible:          Must be "atmel,sama5d2-sdhci".
-> +- compatible:          Must be "atmel,sama5d2-sdhci" or "microchip,sam9x60-sdhci".
+> @@ -9,6 +9,11 @@ Required properties:
 >  - clocks:              Phandlers to the clocks.
-> -- clock-names:         Must be "hclock", "multclk", "baseclk";
-> +- clock-names:         Must be "hclock", "multclk", "baseclk" for
-> +                       "atmel,sama5d2-sdhci".
-> +                       Must be "hclock", "multclk" for "microchip,sam9x60-sdhci".
-> +
-> +Optional properties:
-> +- assigned-clocks:     The same with "multclk".
-> +- assigned-clock-rates The rate of "multclk" in order to not rely on the
-> +                       gck configuration set by previous components.
+>  - clock-names:         Must be "hclock", "multclk", "baseclk";
 >
+> +Optional properties:
+> +- microchip,sdcal-inverted: when present, polarity on the SDCAL SoC pin is
+> +  inverted. The default polarity for this signal is described in the datasheet.
+> +  For instance on SAMA5D2, the pin is usually tied to the GND with a resistor
+> +  and a capacitor (see "SDMMC I/O Calibration" chapter).
 >
 >  Example:
 >
-> -sdmmc0: sdio-host@a0000000 {
-> +mmc0: sdio-host@a0000000 {
->         compatible = "atmel,sama5d2-sdhci";
->         reg = <0xa0000000 0x300>;
->         interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
->         clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
->         clock-names = "hclock", "multclk", "baseclk";
-> +       assigned-clocks = <&sdmmc0_gclk>;
-> +       assigned-clock-rates = <480000000>;
->  };
 > --
-> 2.23.0
+> 2.17.1
 >
