@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E6EDCD4A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 20:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19351DCD4C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 20:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505690AbfJRSHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 14:07:03 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44656 "EHLO
+        id S2505692AbfJRSHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 14:07:04 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44712 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2505686AbfJRSHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 14:07:02 -0400
+        with ESMTP id S2505688AbfJRSHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 14:07:04 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=8Jt+TbiinheXcTe1WTC0Ra4cJpH5Mt5CGg3Akl1OuBc=; b=a+LJenjDe2eH
-        aoLdOVf/7uXxiiu8AbrvWTGzT7OOGvQWCP9W/NigQD4DIrgO0j+/d+bntl+AKJAl9D9GjA6vrauYa
-        dfunUVrSRsAXbLgx0tfpViQXw6ra1OgIcyBEUsv9Mbmgo3iR4Bxq7/hKaShVj5WIXTZlToPGyx4AE
-        BFZXk=;
+        List-Archive; bh=5GQOHUytjnNvziv5AdpSLISAIxfQ5LHLzWu62mD/pFA=; b=DVb79npQeARI
+        g+gBs2spgIqnOroY5N74yLfQhuk7XR3/c1lFOO8ARDmvDyjvk7iLZmGA8BgeDe8/qa3I7O40OfjEF
+        /y7XFYsYvMsyB0n8uzQ9Ryh70noNc0n/BJZQsT2ZOTbCiJikXYnvkVGElIRF8xmnupw98Qe4oahQE
+        ZKvLY=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1iLWeQ-0004Eh-MG; Fri, 18 Oct 2019 18:06:58 +0000
+        id 1iLWeQ-0004Ef-8K; Fri, 18 Oct 2019 18:06:58 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id CC3812743273; Fri, 18 Oct 2019 19:06:57 +0100 (BST)
+        id 5DD202741DEA; Fri, 18 Oct 2019 19:06:57 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
 To:     Tzung-Bi Shih <tzungbi@google.com>
 Cc:     alsa-devel@alsa-project.org, Benson Leung <bleung@chromium.org>,
@@ -35,11 +35,11 @@ Cc:     alsa-devel@alsa-project.org, Benson Leung <bleung@chromium.org>,
         devicetree@vger.kernel.org, dgreid@google.com, drinkcat@google.com,
         enric.balletbo@collabora.com, gwendal@google.com,
         Mark Brown <broonie@kernel.org>, robh+dt@kernel.org,
-        tzungbi@google.com
-Subject: Applied "platform/chrome: cros_ec: add common commands for EC codec" to the asoc tree
-In-Reply-To: <20191017213539.04.Idc3c6e1cd94b70bf010249928d4a93c6c90495b7@changeid>
+        Rob Herring <robh@kernel.org>, tzungbi@google.com
+Subject: Applied "ASoC: dt-bindings: cros_ec_codec: add SHM bindings" to the asoc tree
+In-Reply-To: <20191017213539.06.I0df85fe54162426e31f60a589d9b461c65df2faa@changeid>
 X-Patchwork-Hint: ignore
-Message-Id: <20191018180657.CC3812743273@ypsilon.sirena.org.uk>
+Message-Id: <20191018180657.5DD202741DEA@ypsilon.sirena.org.uk>
 Date:   Fri, 18 Oct 2019 19:06:57 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -48,7 +48,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   platform/chrome: cros_ec: add common commands for EC codec
+   ASoC: dt-bindings: cros_ec_codec: add SHM bindings
 
 has been applied to the asoc tree at
 
@@ -73,120 +73,62 @@ to this mail.
 Thanks,
 Mark
 
-From 104c6f8f7ff859ddd53b69c4af11e83f2971f0c4 Mon Sep 17 00:00:00 2001
+From 3fe5a963c63119f2d762327fba8e8b3fdd731fb4 Mon Sep 17 00:00:00 2001
 From: Tzung-Bi Shih <tzungbi@google.com>
-Date: Thu, 17 Oct 2019 22:00:09 +0800
-Subject: [PATCH] platform/chrome: cros_ec: add common commands for EC codec
+Date: Thu, 17 Oct 2019 22:00:11 +0800
+Subject: [PATCH] ASoC: dt-bindings: cros_ec_codec: add SHM bindings
 
-Add the following common commands:
-- GET_CAPABILITIES
-- GET_SHM_ADDR
-- SET_SHM_ADDR
+- Add "reg" for binding to shared memory exposed by EC.
+- Add "memory-region" for binding to memory region shared by AP.
 
+Acked-by: Rob Herring <robh@kernel.org>
 Acked-by: Benson Leung <bleung@chromium.org>
 Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
-Link: https://lore.kernel.org/r/20191017213539.04.Idc3c6e1cd94b70bf010249928d4a93c6c90495b7@changeid
+Link: https://lore.kernel.org/r/20191017213539.06.I0df85fe54162426e31f60a589d9b461c65df2faa@changeid
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/platform/chrome/cros_ec_trace.c       |  1 +
- .../linux/platform_data/cros_ec_commands.h    | 64 ++++++++++++++++++-
- 2 files changed, 63 insertions(+), 2 deletions(-)
+ .../bindings/sound/google,cros-ec-codec.txt   | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/platform/chrome/cros_ec_trace.c b/drivers/platform/chrome/cros_ec_trace.c
-index e73bb6a8b00e..2ea0d4e0d54d 100644
---- a/drivers/platform/chrome/cros_ec_trace.c
-+++ b/drivers/platform/chrome/cros_ec_trace.c
-@@ -98,6 +98,7 @@
- 	TRACE_SYMBOL(EC_CMD_SB_READ_BLOCK), \
- 	TRACE_SYMBOL(EC_CMD_SB_WRITE_BLOCK), \
- 	TRACE_SYMBOL(EC_CMD_BATTERY_VENDOR_PARAM), \
-+	TRACE_SYMBOL(EC_CMD_EC_CODEC), \
- 	TRACE_SYMBOL(EC_CMD_EC_CODEC_DMIC), \
- 	TRACE_SYMBOL(EC_CMD_EC_CODEC_I2S_RX), \
- 	TRACE_SYMBOL(EC_CMD_REBOOT_EC), \
-diff --git a/include/linux/platform_data/cros_ec_commands.h b/include/linux/platform_data/cros_ec_commands.h
-index 58e460c015ef..3ca0fa9e92a7 100644
---- a/include/linux/platform_data/cros_ec_commands.h
-+++ b/include/linux/platform_data/cros_ec_commands.h
-@@ -4466,8 +4466,68 @@ enum mkbp_cec_event {
+diff --git a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
+index 0ce9fafc78e2..8ca52dcc5572 100644
+--- a/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
++++ b/Documentation/devicetree/bindings/sound/google,cros-ec-codec.txt
+@@ -10,8 +10,26 @@ Required properties:
+ - compatible: Must contain "google,cros-ec-codec"
+ - #sound-dai-cells: Should be 1. The cell specifies number of DAIs.
  
- /*****************************************************************************/
++Optional properties:
++- reg: Pysical base address and length of shared memory region from EC.
++       It contains 3 unsigned 32-bit integer.  The first 2 integers
++       combine to become an unsigned 64-bit physical address.  The last
++       one integer is length of the shared memory.
++- memory-region: Shared memory region to EC.  A "shared-dma-pool".  See
++                 ../reserved-memory/reserved-memory.txt for details.
++
+ Example:
  
-+/* Commands for audio codec. */
-+#define EC_CMD_EC_CODEC 0x00BC
++{
++	...
 +
-+enum ec_codec_subcmd {
-+	EC_CODEC_GET_CAPABILITIES = 0x0,
-+	EC_CODEC_GET_SHM_ADDR = 0x1,
-+	EC_CODEC_SET_SHM_ADDR = 0x2,
-+	EC_CODEC_SUBCMD_COUNT,
-+};
-+
-+enum ec_codec_cap {
-+	EC_CODEC_CAP_LAST = 32,
-+};
-+
-+enum ec_codec_shm_id {
-+	EC_CODEC_SHM_ID_LAST,
-+};
-+
-+enum ec_codec_shm_type {
-+	EC_CODEC_SHM_TYPE_EC_RAM = 0x0,
-+	EC_CODEC_SHM_TYPE_SYSTEM_RAM = 0x1,
-+};
-+
-+struct __ec_align1 ec_param_ec_codec_get_shm_addr {
-+	uint8_t shm_id;
-+	uint8_t reserved[3];
-+};
-+
-+struct __ec_align4 ec_param_ec_codec_set_shm_addr {
-+	uint64_t phys_addr;
-+	uint32_t len;
-+	uint8_t shm_id;
-+	uint8_t reserved[3];
-+};
-+
-+struct __ec_align4 ec_param_ec_codec {
-+	uint8_t cmd; /* enum ec_codec_subcmd */
-+	uint8_t reserved[3];
-+
-+	union {
-+		struct ec_param_ec_codec_get_shm_addr
-+				get_shm_addr_param;
-+		struct ec_param_ec_codec_set_shm_addr
-+				set_shm_addr_param;
++	reserved_mem: reserved_mem {
++		compatible = "shared-dma-pool";
++		reg = <0 0x52800000 0 0x100000>;
++		no-map;
 +	};
-+};
++}
 +
-+struct __ec_align4 ec_response_ec_codec_get_capabilities {
-+	uint32_t capabilities;
-+};
-+
-+struct __ec_align4 ec_response_ec_codec_get_shm_addr {
-+	uint64_t phys_addr;
-+	uint32_t len;
-+	uint8_t type;
-+	uint8_t reserved[3];
-+};
-+
-+/*****************************************************************************/
-+
- /* Commands for DMIC on audio codec. */
--#define EC_CMD_EC_CODEC_DMIC 0x00BC
-+#define EC_CMD_EC_CODEC_DMIC 0x00BD
+ cros-ec@0 {
+ 	compatible = "google,cros-ec-spi";
  
- enum ec_codec_dmic_subcmd {
- 	EC_CODEC_DMIC_SET_GAIN = 0x0,
-@@ -4500,7 +4560,7 @@ struct __ec_align1 ec_response_ec_codec_dmic_get_gain {
- 
- /* Commands for I2S RX on audio codec. */
- 
--#define EC_CMD_EC_CODEC_I2S_RX 0x00BD
-+#define EC_CMD_EC_CODEC_I2S_RX 0x00BE
- 
- enum ec_codec_i2s_rx_subcmd {
- 	EC_CODEC_I2S_RX_ENABLE = 0x0,
+@@ -20,5 +38,7 @@ cros-ec@0 {
+ 	cros_ec_codec: ec-codec {
+ 		compatible = "google,cros-ec-codec";
+ 		#sound-dai-cells = <1>;
++		reg = <0x0 0x10500000 0x80000>;
++		memory-region = <&reserved_mem>;
+ 	};
+ };
 -- 
 2.20.1
 
