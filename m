@@ -2,159 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B23A2DBC58
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 07:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D321ADBD01
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 07:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439278AbfJRFDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 01:03:12 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:35342 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726139AbfJRFDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 01:03:11 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3235D611B5; Fri, 18 Oct 2019 05:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1571374990;
-        bh=xkwmYNFg1uTAlzxvBXAlwxTv5Amb5w9CFHuhTI/GUFA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=A3o4N4A+ThwRlG0WSfKtqT+hdLXEqISvjODSLiJHe4LxZGoNQBMc5MIXYw7MF9EVC
-         js9ZQULfDl1XODGzDcP3gvCoVYqwRJaQTvhXuwkCjDGdTQsEZSUQHGcMl+bFYCjy70
-         fxfT6dIU4Pxvz6drxmEw7n86GORXOvEzbRMQxVkc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id F337560614;
-        Fri, 18 Oct 2019 05:03:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1571374989;
-        bh=xkwmYNFg1uTAlzxvBXAlwxTv5Amb5w9CFHuhTI/GUFA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=TRC7FdhxqcvRaLT3Z2cDlrb+g+4pDGxEVYxnLUuUgZoPoO/wtPLN9gVyReShp55gi
-         xZfl6WnVEscRs/4rMCP9o3Hi44mrwgtKDlPFI1iIAUnFJrl48mgT1qNXIlpGaBK86l
-         7u9NU5BBQd7q9vlZZZkKwbJac2wZrnyGnJTpDrlA=
+        id S2391592AbfJRF2w convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Oct 2019 01:28:52 -0400
+Received: from sender4-op-o19.zoho.com ([136.143.188.19]:17941 "EHLO
+        sender4-op-o19.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731644AbfJRF2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 01:28:52 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1571370204; cv=none; 
+        d=zoho.com; s=zohoarc; 
+        b=oDQi8/xhQkWTTInmD3AzONR1BVYPjR9bNxSR6TsXAjPdO3UEdjGm/MucLUFLOcLvwXlJC0cX87KXGHXXwD5a34zmJtwEYVX16xHUTd2Xz8GLyUaZwkWlkOD1vU/1ZtU5TSuag6sq40b2ftkoxmZLc6O4xKKfqFIwOYiOV++YlIw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
+        t=1571370204; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=hMiiW4t4j8256RwQSELEvYtzVLJKHMwLX3bMX/7RPkU=; 
+        b=XdhItdsKdSODfGiX++roAsiJbn2N9LHPpL+33IHwn7hXL4h/GaIxtTyfHupWMqXmFsX+z95MzPkKqsW7OYV5nQaKhCJ0MJC6KcdIZuMEaOdYzfLamBFTbi7PrhS+dGNYT7Wk0owBDgBF7nIfbF9QMnPEmeWAvfQdX7THtqBAfKQ=
+ARC-Authentication-Results: i=1; mx.zoho.com;
+        dkim=pass  header.i=dlrobertson.com;
+        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
+        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
+Received: from nessie.verizon.net (pool-100-15-144-194.washdc.fios.verizon.net [100.15.144.194]) by mx.zohomail.com
+        with SMTPS id 1571370203411431.43176717063875; Thu, 17 Oct 2019 20:43:23 -0700 (PDT)
+From:   Dan Robertson <dan@dlrobertson.com>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Dan Robertson <dan@dlrobertson.com>
+Message-ID: <20191018031848.18538-1-dan@dlrobertson.com>
+Subject: [PATCH v3 0/2] iio: add driver for Bosch BMA400 accelerometer
+Date:   Fri, 18 Oct 2019 03:18:46 +0000
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 18 Oct 2019 10:33:08 +0530
-From:   kgunda@codeaurora.org
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
-        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
-        daniel.thompson@linaro.org, jacek.anaszewski@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [PATCH V7 6/6] backlight: qcom-wled: Add auto string detection
- logic
-In-Reply-To: <20191017133024.GQ4365@dell>
-References: <1571220826-7740-1-git-send-email-kgunda@codeaurora.org>
- <1571220826-7740-7-git-send-email-kgunda@codeaurora.org>
- <20191017122653.GO4365@dell>
- <689831a9d7561f51cdb7ea0a1760d472@codeaurora.org>
- <20191017133024.GQ4365@dell>
-Message-ID: <1b21d0a80847173c4a1ee1943f974bda@codeaurora.org>
-X-Sender: kgunda@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Transfer-Encoding: 8BIT
+X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-10-17 19:00, Lee Jones wrote:
-> On Thu, 17 Oct 2019, kgunda@codeaurora.org wrote:
-> 
->> On 2019-10-17 17:56, Lee Jones wrote:
->> > On Wed, 16 Oct 2019, Kiran Gunda wrote:
->> >
->> > > The auto string detection algorithm checks if the current WLED
->> > > sink configuration is valid. It tries enabling every sink and
->> > > checks if the OVP fault is observed. Based on this information
->> > > it detects and enables the valid sink configuration.
->> > > Auto calibration will be triggered when the OVP fault interrupts
->> > > are seen frequently thereby it tries to fix the sink configuration.
->> > >
->> > > The auto-detection also kicks in when the connected LED string
->> > > of the display-backlight malfunctions (because of damage) and
->> > > requires the damaged string to be turned off to prevent the
->> > > complete panel and/or board from being damaged.
->> > >
->> > > Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
->> > > ---
->> > >  drivers/video/backlight/qcom-wled.c | 410
->> > > +++++++++++++++++++++++++++++++++++-
->> > >  1 file changed, 404 insertions(+), 6 deletions(-)
->> > >
->> > > diff --git a/drivers/video/backlight/qcom-wled.c
->> > > b/drivers/video/backlight/qcom-wled.c
->> > > index b5b125c..ff7c409 100644
->> > > --- a/drivers/video/backlight/qcom-wled.c
->> > > +++ b/drivers/video/backlight/qcom-wled.c
-> 
-> [...]
-> 
->> > > +		if (int_sts & WLED3_CTRL_REG_OVP_FAULT_STATUS)
->> > > +			dev_dbg(wled->dev, "WLED OVP fault detected with SINK %d\n",
->> > > +				i + 1);
->> >
->> > I haven't reviewed the whole patch, but this caught my eye.
->> >
->> > I think this should be upgraded to dev_warn().
->> >
->> Thought of keeping these messages silent, Because the string 
->> configuration
->> will be corrected in this
->> and informing it at end of the auto string detection.
-> 
-> [...]
-> 
->> > > +	} else {
->> > > +		dev_warn(wled->dev, "New WLED string configuration found %x\n",
->> > > +			 sink_valid);
->> >
->> > Why would the user care about this?  Is it not normal?
->> >
->> Actually, it comes here if the user provided string configuration in 
->> the
->> device tree is in-correct.
->> That's why just informing the user about the right string 
->> configuration,
->> after the auto string detection.
-> 
-> Then I think we need to be more forthcoming.  Tell the user the
-> configuration is incorrect and what you've done to rectify it.
-> 
-> "XXX is not a valid configuration - using YYY instead"
-> 
-Sure. Will update it in the next series.
-> [...]
-> 
->> > > +static int wled_configure_ovp_irq(struct wled *wled,
->> > > +				  struct platform_device *pdev)
->> > > +{
->> > > +	int rc;
->> > > +	u32 val;
->> > > +
->> > > +	wled->ovp_irq = platform_get_irq_byname(pdev, "ovp");
->> > > +	if (wled->ovp_irq < 0) {
->> > > +		dev_dbg(&pdev->dev, "ovp irq is not used\n");
->> >
->> > I assume this is optional.  What happens if no IRQ is provided?
->> >
->> Here OVP IRQ is used to detect the wrong string detection. If it is 
->> not
->> provided the auto string detection logic won't work.
-> 
-> "OVP IRQ not found - disabling automatic string detection"
-> 
-Sure. Will update it in the next series.
->> > If, for instance, polling mode is enabled, maybe something like this
->> > would be better?
->> >
->> >       dev_warn(&pdev->dev, "No IRQ found, falling back to polling
->> > mode\n");
+This patchset adds a IIO driver for the Bosch BMA400 3-axes ultra low-power
+accelerometer. The initial implementation of the driver adds read support for
+the acceleration and temperature data registers. The driver also has support
+for reading and writing to the output data rate, oversampling ratio, and scale
+configuration registers.
+
+I've ran some basic tests with libiio and I've run the device tree checks. Are
+there other tests that are recommended to be run for a new device?
+
+Thanks again for the reviews!
+
+Cheers,
+
+ - Dan
+
+
+Changes in v4:
+
+ * Fix error in DT bindings
+ * Fix typo when setting the OSR
+ * Simplified the cached sample frequency
+ * Fix the MODULE_LICENSE
+
+Changes in v3:
+
+ * Use yaml format for DT bindings
+ * Remove strict dependency on OF
+ * Tidy Kconfig dependencies
+ * Stylistic changes
+ * Do not soft-reset device on remove
+
+Changes in v2:
+
+ * Implemented iio_info -> read_avail
+ * Stylistic changes
+ * Implemented devicetree bindings
+
+
+Dan Robertson (2):
+  dt-bindings: iio: accel: bma400: add bindings
+  iio: (bma400) add driver for the BMA400
+
+ .../devicetree/bindings/iio/accel/bma400.yaml |  39 +
+ drivers/iio/accel/Kconfig                     |  18 +
+ drivers/iio/accel/Makefile                    |   2 +
+ drivers/iio/accel/bma400.h                    |  85 ++
+ drivers/iio/accel/bma400_core.c               | 796 ++++++++++++++++++
+ drivers/iio/accel/bma400_i2c.c                |  60 ++
+ 6 files changed, 1000 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bma400.yaml
+ create mode 100644 drivers/iio/accel/bma400.h
+ create mode 100644 drivers/iio/accel/bma400_core.c
+ create mode 100644 drivers/iio/accel/bma400_i2c.c
+
+
+
