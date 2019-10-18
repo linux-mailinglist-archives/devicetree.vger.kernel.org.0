@@ -2,218 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86461DC17E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 11:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2D5DDC1DD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 11:53:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2442394AbfJRJjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 05:39:45 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:36085 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2442383AbfJRJjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 05:39:45 -0400
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1iLOjQ-0006Z9-Ty; Fri, 18 Oct 2019 11:39:36 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1iLOjN-0007h7-Il; Fri, 18 Oct 2019 11:39:33 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>, Chris Snook <chris.snook@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        James Hogan <jhogan@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
+        id S2407778AbfJRJxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 05:53:04 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:33510 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406962AbfJRJxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 05:53:04 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q10so3569705pfl.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 02:53:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=PGk9J+4Cve7nPzhB48lXZkSk8jD7RUn6XtFGq2ZdcE4=;
+        b=n28OxGityoZDMnTZJXc8oRsZQcZHor+VKmgC6rBmcaS7on08zd2eWAFv06U/ZiSHk6
+         9Lw8fUIWzMB6DMmUXmMNoKxdNKX0NF4jQCmhVVthlNpOhD2eKdor/MF6yaXkFzninruu
+         cmzLJ2wHqbw1r9bS+WsEPgxmkgSt/E1yg7CKLON6iqE6joGCQR9KMjskL+l2KsIqdXmR
+         F/VtfVlR4O0W1D9MWmMnF8DFcSRaOM+ZZvYUoJZsat8VUP/QR7rz1p4SE1GJkwYpTN+a
+         X4hbuvWfGb1KTL73kiiUTCAn605J1ZE4Mz5ly7rR37WtyirV/Qs97aNCLdY3VnhQsu34
+         NNlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=PGk9J+4Cve7nPzhB48lXZkSk8jD7RUn6XtFGq2ZdcE4=;
+        b=me8DN5at9tmRfzSX3qgOdYOOLAzZj9jJWLZM5HnaNIJesU1puU6KcPc1Q1AAJ/RPQ1
+         7NEo/Na3DWFxpU6yI2RHzOiIb2mDAW3TUqq+SgblpEoqzX8+Nlhd50Bm6lpwIfgDr9ra
+         SHdPcebXXHui0vDkW+WDHyYKAveHS8ou/yyha6RVt8hdX86kfcYGp4arYBmS1b+tya01
+         kTmJ2DgFyWJvZoM6ttvKHpym7z8YgTOxl8Z+Wf103mqOygaTCS45G/Uqs6+gER/8GBl5
+         9ajsYQGGuYOmO7P5npXM4L8FvkG+tYKP24Bt1KuoRPBje9ewvf64pvJsShpvEA3ouw9b
+         /MYQ==
+X-Gm-Message-State: APjAAAXcR7uD3DMK/rJ1cmy67NrEWssSQEI9n35s9ZIVL+bIrqF+REub
+        FgHfJgXTQEdWjyvOFdYR27qdJXJ1/AU=
+X-Google-Smtp-Source: APXvYqxlPmABURKMNZR4TlIqRnlfd/HOkYCVCXPKQWozAwch1z3PnRODRY9cczTpXXYxPHhWt0UqUQ==
+X-Received: by 2002:a63:ec4f:: with SMTP id r15mr9050130pgj.17.1571392383198;
+        Fri, 18 Oct 2019 02:53:03 -0700 (PDT)
+Received: from localhost ([122.172.151.112])
+        by smtp.gmail.com with ESMTPSA id l62sm6471028pfl.167.2019.10.18.02.53.01
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 18 Oct 2019 02:53:02 -0700 (PDT)
+Date:   Fri, 18 Oct 2019 15:23:00 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     "andrew-sh.cheng" <andrew-sh.cheng@mediatek.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, Russell King <linux@armlinux.org.uk>
-Subject: [PATCH v2 4/5] net: dsa: add support for Atheros AR9331 TAG format
-Date:   Fri, 18 Oct 2019 11:39:28 +0200
-Message-Id: <20191018093929.19299-5-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191018093929.19299-1-o.rempel@pengutronix.de>
-References: <20191018093929.19299-1-o.rempel@pengutronix.de>
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Fan Chen =?utf-8?B?KOmZs+WHoSk=?= <fan.chen@mediatek.com>
+Subject: Re: [v4, 7/8] cpufreq: mediatek: add opp notification for SVS support
+Message-ID: <20191018095300.mtygp2ej7rnz6uzn@vireshk-i7>
+References: <1565703113-31479-1-git-send-email-andrew-sh.cheng@mediatek.com>
+ <1565703113-31479-8-git-send-email-andrew-sh.cheng@mediatek.com>
+ <20190820033927.72muldasu4xd6wb7@vireshk-i7>
+ <1571193828.22071.5.camel@mtksdaap41>
+ <20191017063102.4jirlphdxdydl2bm@vireshk-i7>
+ <1571389431.27207.4.camel@mtksdaap41>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1571389431.27207.4.camel@mtksdaap41>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for tag format used in Atheros AR9331 build-in switch.
+On 18-10-19, 17:03, andrew-sh.cheng wrote:
+> On Thu, 2019-10-17 at 12:01 +0530, Viresh Kumar wrote:
+> > On 16-10-19, 10:43, andrew-sh.cheng wrote:
+> > > This is due to SVS feature need to fix Vproc for calibration.
+> > > When SVS calibration, it want to disable all opp items, except one with
+> > > voltae 1.0V. (SVS will change the voltage field of that opp item, if the
+> > > corresponding voltage is not 1.0V)
+> > > In this way, SVS can make sure there is no other module, include
+> > > thermal, will change Vproc by DVFS driver.
+> > > After SVS calibration done, SVS will enable those disabled opp items
+> > > back.
+> > 
+> > But why is this required to be done this way ? Why can't we just update the
+> > voltages without doing this disable/enable dance ?
+> > 
+> This is because some opp items need voltage larger than 1.0V.
+> We cannot update the voltage to 1.0V.
+> 
+> If we don't disable these opp items, and DVFS policy want to set these
+> high frequencies, dvfs driver will set higher voltage to Vproc and SVS
+> calibration will be fail.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- include/net/dsa.h    |  2 +
- net/dsa/Kconfig      |  6 +++
- net/dsa/Makefile     |  1 +
- net/dsa/tag_ar9331.c | 97 ++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 106 insertions(+)
- create mode 100644 net/dsa/tag_ar9331.c
+Okay.
 
-diff --git a/include/net/dsa.h b/include/net/dsa.h
-index 541fb514e31d..89a334e68d42 100644
---- a/include/net/dsa.h
-+++ b/include/net/dsa.h
-@@ -42,6 +42,7 @@ struct phylink_link_state;
- #define DSA_TAG_PROTO_8021Q_VALUE		12
- #define DSA_TAG_PROTO_SJA1105_VALUE		13
- #define DSA_TAG_PROTO_KSZ8795_VALUE		14
-+#define DSA_TAG_PROTO_AR9331_VALUE		15
- 
- enum dsa_tag_protocol {
- 	DSA_TAG_PROTO_NONE		= DSA_TAG_PROTO_NONE_VALUE,
-@@ -59,6 +60,7 @@ enum dsa_tag_protocol {
- 	DSA_TAG_PROTO_8021Q		= DSA_TAG_PROTO_8021Q_VALUE,
- 	DSA_TAG_PROTO_SJA1105		= DSA_TAG_PROTO_SJA1105_VALUE,
- 	DSA_TAG_PROTO_KSZ8795		= DSA_TAG_PROTO_KSZ8795_VALUE,
-+	DSA_TAG_PROTO_AR9331		= DSA_TAG_PROTO_AR9331_VALUE,
- };
- 
- struct packet_type;
-diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-index 29e2bd5cc5af..617c9607df5f 100644
---- a/net/dsa/Kconfig
-+++ b/net/dsa/Kconfig
-@@ -29,6 +29,12 @@ config NET_DSA_TAG_8021Q
- 
- 	  Drivers which use these helpers should select this as dependency.
- 
-+config NET_DSA_TAG_AR9331
-+	tristate "Tag driver for Atheros AR9331 SoC with build-in switch"
-+	help
-+	  Say Y or M if you want to enable support for tagging frames for
-+	  the Atheros AR9331 SoC with build-in switch.
-+
- config NET_DSA_TAG_BRCM_COMMON
- 	tristate
- 	default n
-diff --git a/net/dsa/Makefile b/net/dsa/Makefile
-index 2c6d286f0511..6f77bdb5c40c 100644
---- a/net/dsa/Makefile
-+++ b/net/dsa/Makefile
-@@ -5,6 +5,7 @@ dsa_core-y += dsa.o dsa2.o master.o port.o slave.o switch.o
- 
- # tagging formats
- obj-$(CONFIG_NET_DSA_TAG_8021Q) += tag_8021q.o
-+obj-$(CONFIG_NET_DSA_TAG_AR9331) += tag_ar9331.o
- obj-$(CONFIG_NET_DSA_TAG_BRCM_COMMON) += tag_brcm.o
- obj-$(CONFIG_NET_DSA_TAG_DSA) += tag_dsa.o
- obj-$(CONFIG_NET_DSA_TAG_EDSA) += tag_edsa.o
-diff --git a/net/dsa/tag_ar9331.c b/net/dsa/tag_ar9331.c
-new file mode 100644
-index 000000000000..40265dd75697
---- /dev/null
-+++ b/net/dsa/tag_ar9331.c
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+ */
-+
-+
-+#include <linux/bitfield.h>
-+#include <linux/etherdevice.h>
-+
-+#include "dsa_priv.h"
-+
-+#define AR9331_HDR_LEN			2
-+#define AR9331_HDR_VERSION		1
-+
-+#define AR9331_HDR_VERSION_MASK		GENMASK(15, 14)
-+#define AR9331_HDR_PRIORITY_MASK	GENMASK(13, 12)
-+#define AR9331_HDR_TYPE_MASK		GENMASK(10, 8)
-+#define AR9331_HDR_BROADCAST		BIT(7)
-+#define AR9331_HDR_FROM_CPU		BIT(6)
-+/* AR9331_HDR_RESERVED - not used or may be version field.
-+ * According to the AR8216 doc it should 0b10. On AR9331 it is 0b11 on RX path
-+ * and should be set to 0b11 to make it work.
-+ */
-+#define AR9331_HDR_RESERVED_MASK	GENMASK(5, 4)
-+#define AR9331_HDR_PORT_NUM_MASK	GENMASK(3, 0)
-+
-+static struct sk_buff *ar9331_tag_xmit(struct sk_buff *skb,
-+				       struct net_device *dev)
-+{
-+	struct dsa_port *dp = dsa_slave_to_port(dev);
-+	__le16 *phdr;
-+	u16 hdr;
-+
-+	if (skb_cow_head(skb, 0) < 0)
-+		return NULL;
-+
-+	phdr = skb_push(skb, AR9331_HDR_LEN);
-+
-+	hdr = FIELD_PREP(AR9331_HDR_VERSION_MASK, AR9331_HDR_VERSION);
-+	hdr |= AR9331_HDR_FROM_CPU | dp->index;
-+	/* 0b10 for AR8216 and 0b11 for AR9331 */
-+	hdr |= AR9331_HDR_RESERVED_MASK;
-+
-+	phdr[0] = cpu_to_le16(hdr);
-+
-+	return skb;
-+}
-+
-+static struct sk_buff *ar9331_tag_rcv(struct sk_buff *skb,
-+				      struct net_device *ndev,
-+				      struct packet_type *pt)
-+{
-+	u8 ver, port;
-+	u16 hdr;
-+
-+	if (unlikely(!pskb_may_pull(skb, AR9331_HDR_LEN)))
-+		return NULL;
-+
-+	hdr = le16_to_cpu(*(__le16 *)skb_mac_header(skb));
-+
-+	ver = FIELD_GET(AR9331_HDR_VERSION_MASK, hdr);
-+	if (unlikely(ver != AR9331_HDR_VERSION)) {
-+		netdev_warn_once(ndev, "%s:%i wrong header version 0x%2x\n",
-+				 __func__, __LINE__, hdr);
-+		return NULL;
-+	}
-+
-+	if (unlikely(hdr & AR9331_HDR_FROM_CPU)) {
-+		netdev_warn_once(ndev, "%s:%i packet should not be from cpu 0x%2x\n",
-+				 __func__, __LINE__, hdr);
-+		return NULL;
-+	}
-+
-+	skb_pull(skb, AR9331_HDR_LEN);
-+	skb_set_mac_header(skb, -ETH_HLEN);
-+
-+	/* Get source port information */
-+	port = FIELD_GET(AR9331_HDR_PORT_NUM_MASK, hdr);
-+
-+	skb->dev = dsa_master_find_slave(ndev, 0, port);
-+	if (!skb->dev)
-+		return NULL;
-+
-+	return skb;
-+}
-+
-+static const struct dsa_device_ops ar9331_netdev_ops = {
-+	.name	= "ar9331",
-+	.proto	= DSA_TAG_PROTO_AR9331,
-+	.xmit	= ar9331_tag_xmit,
-+	.rcv	= ar9331_tag_rcv,
-+	.overhead = AR9331_HDR_LEN,
-+};
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_AR9331);
-+module_dsa_tag_driver(ar9331_netdev_ops);
 -- 
-2.23.0
-
+viresh
