@@ -2,117 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19539DCA4B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 18:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C776DCAA4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 18:14:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394470AbfJRQHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 12:07:41 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:44459 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2501965AbfJRQHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 12:07:41 -0400
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1iLUmx-0002BW-RK; Fri, 18 Oct 2019 18:07:39 +0200
-Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1iLUmw-0004Ar-70; Fri, 18 Oct 2019 18:07:38 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, michal.simek@xilinx.com,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Durga Challa <vnsl.durga.challa@xilinx.com>,
-        Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH 5/5] arm64: zynqmp: Add data cells to access efuse
-Date:   Fri, 18 Oct 2019 18:07:35 +0200
-Message-Id: <20191018160735.15658-6-m.tretter@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191018160735.15658-1-m.tretter@pengutronix.de>
-References: <20191018160735.15658-1-m.tretter@pengutronix.de>
+        id S1732159AbfJRQOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 12:14:17 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:37464 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728594AbfJRQOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 12:14:16 -0400
+Received: by mail-wr1-f68.google.com with SMTP id p14so6890619wro.4
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 09:14:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:subject:in-reply-to:date:message-id
+         :mime-version;
+        bh=0Cv5HxbYsKs88qKdDqqwy2GcVJ7JGGNauSIpovXmWjE=;
+        b=gZNchhaduGtAYNPyOyjo0Q/R9PH//aDDplRrAmvdTTPx0Kmxn8NFK+7uAx8JKgIEeX
+         CmgKuBT7wpTX5XgrppkFVgSvyCiZu9C7R70WHNEiHuYGIAt+FX3H7nG5/jkh44Rz1OeZ
+         +Oo06tmY7t+R2wCBMZC5VxXtyEFPzndgMtS0AaJNXfn7Z92k0ZvHBesNFCCpAyIBKLGr
+         S2lLW1EaKwt8i9PnSNjyZo3zC4zUjbt3z3L0mrfzR6prmno+8o5h44MIVZcom3MjiDPJ
+         giuQ9ZZ5Bvd2l9TyhJ2tWXibsW3ZYIKbYwAhsEv/jwRDgeS+z2dmIppYCe9Hu/GeFRL3
+         hzoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=0Cv5HxbYsKs88qKdDqqwy2GcVJ7JGGNauSIpovXmWjE=;
+        b=eiPTKG/2FNHZRt5nfFEpIMWd0p578lLbTa2zRjO/Ng+s3qRc62rnqdh1+qKS4Be44D
+         FYPQauOdprg2Yclt2IrvswfMHTYXY80bdyT/zCCjzT6fyFWBsTIUJA3JWFY4pEugB2OO
+         w3enqfWqL5/B+Q0fjKxEeJTYIZXUYyI33WRBhOnDCRSDxgaAxnJxLHsxpTNwm489QZZd
+         xIbmfLCeIKd5+kigQqNmKVefFqU5GSk4X0gGsyq29BkJF/HguvILJSfQPY9BUnb67rQ1
+         rsXwEeJ64oA1ooTTbQpewjyQL4UaVANRiitEshA/zBlySGAZ/kZe/BT86H7LisDO5NVX
+         urnw==
+X-Gm-Message-State: APjAAAUrFeGBeOj4yo2huxLZjloLk2xzm8ZEggf1VGjkrYiyiwIhjLFb
+        R74vo3lzVjyMkzo+IGbaOi646Q==
+X-Google-Smtp-Source: APXvYqxahX2Eo67G58sg7nvdDRQg5C58GloUqLjP/ZxQkAa40VhAeVwwcIp6pZ/sy3jdITFMe4NWDg==
+X-Received: by 2002:adf:df05:: with SMTP id y5mr9222772wrl.84.1571415253811;
+        Fri, 18 Oct 2019 09:14:13 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id a204sm7706251wmh.21.2019.10.18.09.14.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2019 09:14:12 -0700 (PDT)
+References: <1571393152-3698-1-git-send-email-christianshewitt@gmail.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson: khadas-vim3l: enable audio
+In-reply-to: <1571393152-3698-1-git-send-email-christianshewitt@gmail.com>
+Date:   Fri, 18 Oct 2019 18:14:11 +0200
+Message-ID: <1jd0euf2uk.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Durga Challa <vnsl.durga.challa@xilinx.com>
 
-This patch adds data cells under nvmem node to
-read efuse memory
+On Fri 18 Oct 2019 at 12:05, Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-Signed-off-by: Durga Challa <vnsl.durga.challa@xilinx.com>
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 48 ++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+> Add and enable the audio nodes on the VIM3L. This is based on the recent
+> submission for the SEI610 device [1] and the existing VIM3 dts.
+>
+> [1] https://patchwork.kernel.org/patch/11180785/
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    | 147 +++++++++++++++++++++
+>  1 file changed, 147 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> index dbbf29a..d07f0cf 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> @@ -8,6 +8,7 @@
+>  
+>  #include "meson-sm1.dtsi"
+>  #include "meson-khadas-vim3.dtsi"
+> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>  
+>  / {
+>  	compatible = "khadas,vim3l", "amlogic,sm1";
+> @@ -31,6 +32,86 @@
+>  		regulator-boot-on;
+>  		regulator-always-on;
+>  	};
+> +
+> +	sound {
+> +		compatible = "amlogic,axg-sound-card";
+> +		model = "SM1-KHADAS-VIM3L";
+> +		audio-aux-devs = <&tdmout_a>, <&tdmout_b>,
+> +				 <&tdmin_a>, <&tdmin_b>;
+> +		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+> +				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
+> +				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
+> +				"TDM_A Playback", "TDMOUT_A OUT",
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 3c731e73903a..73d26177eb96 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -128,6 +128,54 @@
- 				soc_revision: soc_revision@0 {
- 					reg = <0x0 0x4>;
- 				};
-+				efuse_dna: efuse_dna@c {
-+					reg = <0xc 0xc>;
-+				};
-+				efuse_usr0: efuse_usr0@20 {
-+					reg = <0x20 0x4>;
-+				};
-+				efuse_usr1: efuse_usr1@24 {
-+					reg = <0x24 0x4>;
-+				};
-+				efuse_usr2: efuse_usr2@28 {
-+					reg = <0x28 0x4>;
-+				};
-+				efuse_usr3: efuse_usr3@2c {
-+					reg = <0x2c 0x4>;
-+				};
-+				efuse_usr4: efuse_usr4@30 {
-+					reg = <0x30 0x4>;
-+				};
-+				efuse_usr5: efuse_usr5@34 {
-+					reg = <0x34 0x4>;
-+				};
-+				efuse_usr6: efuse_usr6@38 {
-+					reg = <0x38 0x4>;
-+				};
-+				efuse_usr7: efuse_usr7@3c {
-+					reg = <0x3c 0x4>;
-+				};
-+				efuse_miscusr: efuse_miscusr@40 {
-+					reg = <0x40 0x4>;
-+				};
-+				efuse_chash: efuse_chash@50 {
-+					reg = <0x50 0x4>;
-+				};
-+				efuse_pufmisc: efuse_pufmisc@54 {
-+					reg = <0x54 0x4>;
-+				};
-+				efuse_sec: efuse_sec@58 {
-+					reg = <0x58 0x4>;
-+				};
-+				efuse_spkid: efuse_spkid@5c {
-+					reg = <0x5c 0x4>;
-+				};
-+				efuse_ppk0hash: efuse_ppk0hash@a0 {
-+					reg = <0xa0 0x30>;
-+				};
-+				efuse_ppk1hash: efuse_ppk1hash@d0 {
-+					reg = <0xd0 0x30>;
-+				};
- 			};
- 
- 			zynqmp_pcap: pcap {
--- 
-2.20.1
+The route above are useless since you are not using TDM A in this card
+
+> +				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
+> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
+> +				"TDM_B Playback", "TDMOUT_B OUT";
+> +
+> +		assigned-clocks = <&clkc CLKID_MPLL2>,
+> +				  <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&frddr_a>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&frddr_b>;
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&frddr_c>;
+> +		};
+
+You have only one output, so one FRDDR is enough.
+So either enable a put just one, or put them all (including FRDDR D)
+
+> +
+> +		dai-link-3 {
+> +			sound-dai = <&toddr_a>;
+> +		};
+> +
+> +		dai-link-4 {
+> +			sound-dai = <&toddr_b>;
+> +		};
+> +
+> +		dai-link-5 {
+> +			sound-dai = <&toddr_c>;
+> +		};
+
+There is no capture Backend, to the TODDR are useless
+
+> +
+> +		/* 8ch hdmi interface */
+> +		dai-link-6 {
+> +			sound-dai = <&tdmif_b>;
+
+Any particular reason for using TDM B interface ? What is khadas doing
+in there own code ?
+
+> +			dai-format = "i2s";
+> +			dai-tdm-slot-tx-mask-0 = <1 1>;
+> +			dai-tdm-slot-tx-mask-1 = <1 1>;
+> +			dai-tdm-slot-tx-mask-2 = <1 1>;
+> +			dai-tdm-slot-tx-mask-3 = <1 1>;
+> +			mclk-fs = <256>;
+> +
+> +			codec {
+> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+> +			};
+> +		};
+> +
+> +		/* hdmi glue */
+> +		dai-link-7 {
+> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+> +
+> +			codec {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&arb {
+> +	status = "okay";
+> +};
+> +
+> +&clkc_audio {
+> +	status = "okay";
+>  };
+>  
+>  &cpu0 {
+> @@ -61,6 +142,24 @@
+>  	clock-latency = <50000>;
+>  };
+>  
+> +&frddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&pdm {
+> +	pinctrl-0 = <&pdm_din0_z_pins>, <&pdm_dclk_z_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+
+Why do you enable PDM ? does this board provide some digital mics ?
+There is no links using PDM in your card. Please clarify
+
+> +
+>  &pwm_AO_cd {
+>  	pinctrl-0 = <&pwm_ao_d_e_pins>;
+>  	pinctrl-names = "default";
+> @@ -93,3 +192,51 @@
+>  	phy-names = "usb2-phy0", "usb2-phy1";
+>  };
+>   */
+> +
+> +&tdmif_a {
+> +	pinctrl-0 = <&tdm_a_dout0_pins>, <&tdm_a_fs_pins>, <&tdm_a_sclk_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD0>,
+> +			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD0>;
+> +	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
+> +				 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
+> +	assigned-clock-rates = <0>, <0>;
+> +};
+> +
+> +&tdmif_b {
+> +	status = "okay";
+> +};
+> +
+> +&tdmin_a {
+> +	status = "okay";
+> +};
+> +
+> +&tdmin_b {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_a {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_b {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&tohdmitx {
+> +	status = "okay";
+> +};
 
