@@ -2,691 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03D74DBC19
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 06:55:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5C2DBC3C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 06:59:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392980AbfJREzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 00:55:47 -0400
-Received: from mail-sz.amlogic.com ([211.162.65.117]:18375 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726103AbfJREzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 00:55:46 -0400
-Received: from [10.28.19.114] (10.28.19.114) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 18 Oct
- 2019 11:42:02 +0800
-Subject: Re: [PATCH 2/2] clk: meson: a1: add support for Amlogic A1 clock
- driver
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     Neil Armstrong <narmstrong@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        id S2437912AbfJRE6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 00:58:44 -0400
+Received: from mail-eopbgr30041.outbound.protection.outlook.com ([40.107.3.41]:64899
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728791AbfJRE6n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Oct 2019 00:58:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gbmIOQ2dQ8l1p1AQPq5/B4/rgvTsy0Hz0RaNIIDNMoUfYLORbRiWFfTQw7AxcBujXGyv3PLwVHjZ4fOnu8BwzxgOH2PVMKATESrYy+7ualvJxJWHzrknnxZP7xyKPLiotgSqnnhmIqlU6LDsTo5rhW1E7/C6Rgedf8gwJh7VHtoDfzfzBdgDh3AbdU4wreWi3E7SeSp+X9LCAZGVe2Trpbbca6TK5zqK45LZf3au2DOq4lI9IxcepsBkVnCIAyObN50Gg53/GBqBjTun5dkbJPAiskemzby4TREElakSIam0krvCc5hU65VsRkGnxqBVKBCWE7pAjUibyEfmig2cOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4G26r3SV86hOTfiqFqyHzH7rcVO+H2/Kt3qNkGg+zYA=;
+ b=nHaRyDVQZsjDc6LfCnfLDiLgfd5PSAR6eGGaO7S+tF0zFSeTIQmt/a966C+aXWghu3h6HPJviTZ11fUJGtUFrssROTKngGtkJkpBOU2HYRHSKNL1XQ36ZVYZM7AbMuedLNF6IWCB+WHf2hH+fr0obh1OfA5O5phoLoaKTWbz4HP9GO/t3uKTXHBbb2UWfSbcyroDLWz8l9myweK/CiF2ovb9m2o6GdCBT7LnkwQhY6AbyaPUVRuP0OQa8Bs5cP8Mh+fPFnf43PG1G7uT41MK2tsVMBRouGTlDDk+7RtqKSH9oQN8Bh08copyOL5+cIbGRF6zVAXDRYFJ4RfagUuTtQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4G26r3SV86hOTfiqFqyHzH7rcVO+H2/Kt3qNkGg+zYA=;
+ b=VFpuAr9FyVApYStP5zVKx7n5WoOUO1pNS8VJugQJgl7UfV5VnPWo/BEh2mRjh1afwglBGnu741eGU570ga3XayixFSxPJInB5z+fdHPS5Yx7ITtr0AdgxcNSF98VHkwGWGFYfZDmvoZ90JTlb5V7+6+33BlnZQYLcn30sCGpOII=
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
+ AM5PR04MB3220.eurprd04.prod.outlook.com (10.173.255.11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.19; Fri, 18 Oct 2019 03:54:18 +0000
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::204a:79f8:1bb8:f8a8]) by AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::204a:79f8:1bb8:f8a8%7]) with mapi id 15.20.2347.024; Fri, 18 Oct 2019
+ 03:54:18 +0000
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "Z.q. Hou" <zhiqiang.hou@nxp.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        "andrew.murray@arm.com" <andrew.murray@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
- <1569411888-98116-3-git-send-email-jian.hu@amlogic.com>
- <1j1rw4mmzw.fsf@starbuckisacylon.baylibre.com>
- <a830a0d1-680c-86ec-e858-4470c67865e2@amlogic.com>
- <1jimpd27cb.fsf@starbuckisacylon.baylibre.com>
- <5fd57563-0c34-be14-132a-74fd2c5a5275@amlogic.com>
- <052b0a5c-c913-a9ff-65b9-5b7eb0aecd6e@amlogic.com>
- <1jsgnz20jq.fsf@starbuckisacylon.baylibre.com>
- <8ae988c2-68f5-603e-843b-9cd70e4d4349@amlogic.com>
- <1jr23f1imo.fsf@starbuckisacylon.baylibre.com>
-From:   Jian Hu <jian.hu@amlogic.com>
-Message-ID: <ffa9a3ae-52d4-8ac7-534c-87e639b3a51c@amlogic.com>
-Date:   Fri, 18 Oct 2019 11:42:02 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <1jr23f1imo.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 2/6] dt-bindings: Add DT binding for PCIE GEN4 EP of
+ the layerscape
+Thread-Topic: [PATCH v2 2/6] dt-bindings: Add DT binding for PCIE GEN4 EP of
+ the layerscape
+Thread-Index: AQHVgzVEXBWX/Rj7DEeiWUf3Yjv8eKdfNJ4AgACT71A=
+Date:   Fri, 18 Oct 2019 03:54:17 +0000
+Message-ID: <AM5PR04MB3299B26CDCB3528F664AA4D6F56C0@AM5PR04MB3299.eurprd04.prod.outlook.com>
+References: <20191015083702.21792-1-xiaowei.bao@nxp.com>
+ <20191015083702.21792-3-xiaowei.bao@nxp.com> <20191017190310.GA32063@bogus>
+In-Reply-To: <20191017190310.GA32063@bogus>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.28.19.114]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=xiaowei.bao@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9df791df-5ec3-4a36-f8f7-08d7537ed9dc
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: AM5PR04MB3220:|AM5PR04MB3220:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM5PR04MB3220516B5D7EC81F8794414FF56C0@AM5PR04MB3220.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 01949FE337
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(366004)(136003)(39860400002)(346002)(376002)(189003)(13464003)(199004)(54906003)(33656002)(7416002)(9686003)(81156014)(81166006)(316002)(256004)(14444005)(52536014)(25786009)(8936002)(229853002)(6436002)(5660300002)(66066001)(55016002)(66476007)(66556008)(4326008)(3846002)(6116002)(476003)(446003)(11346002)(26005)(186003)(64756008)(6916009)(86362001)(2906002)(66446008)(76116006)(44832011)(6246003)(486006)(66946007)(478600001)(14454004)(99286004)(305945005)(8676002)(7736002)(6506007)(74316002)(53546011)(76176011)(102836004)(7696005)(71190400001)(71200400001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3220;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: vvS/qqucSvQcrcB61Zsx7ZuveDY9hFtlrW7oJsfGC7R+ms7QGn8fUJXba7INOqCemZ+vdqI2RgRK6DLJ8iUWWQ4S7ufll8NWzE+lWfZF6gN9QjUc63mr2SrLH9UAl83kzbI9UGH+681yUPgxij6SoG5upFmcxkcEVjcV9lKykw8YAWkqJML5ZDarVscOmYvy9bxhz7o9XSf0QADG7BGBIxdzHjupVAjVrJHTB3HvPCYae0W0yLsXWd5o/W7E0PXgYvNHby+MbxPEh4SHJqPzEJtn/kGm/2z5JvggiKLIp1ezxPLh+I8RsVrqxF+QZIpEsoPI3rRsiOF7VBbaslm82TMLeak98sqiPQVFBA9Zl/rfUyW/BtvRB3jfo3VtKLG9TNcTyqcWlM3T2u4k8pv98tUXvGlHbA5Zu3MB3xpByoU=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9df791df-5ec3-4a36-f8f7-08d7537ed9dc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2019 03:54:18.0987
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h+n7WyjSZhdD6dLGOAY+BH2ll9+q230wjzLOA1/xQNLneqVKuTpMdshSqQJMwUuDbB0LEYJwtEGlfkLUo/w1XQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3220
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, jerome
-
-On 2019/10/14 22:55, Jerome Brunet wrote:
-> 
-> On Mon 14 Oct 2019 at 15:42, Jian Hu <jian.hu@amlogic.com> wrote:
-> 
->>>> if peripheral clocks probe first, it will fail to get
->>>> fixed_pll clocks. A lot of peripheral clocks parent are fclk_div2/3/5/7.
->>>> and we can not get fclk_div2/3/5/7 clocks.
->>>
->>> What does "fail" mean ?
->>> I intended to get clock using devm_clk_get API in each driver, In this
->> scene，it will get failed because of the clock not being reigstered. In
->> fact, we could not use devm_clk_get.
-> 
-> Unless I missed somthing, I don't see why you would need to call
-> devm_clk_get(). This is now handled directly by the framework.
-> 
-Just my wrong idea，I had not noticed the CCF would do it.
->>>>
->>>> I can think of two solutions:
->>>> 1) Do not describe xtal_fixpll, xtal_hifipll.
->>>>      that is to say, do not decribe the SYS_OSCIN_CTRL register.
->>>>
->>>> 2) Put peripheral and pll clock driver in one driver.
->>>
->>> Those are work arounds. Actually fixing the problem is usually
->>> preferable.
->>>
->>>    So if rephrase your problem:
->>>
->>>    * We have 2 clock controllers (A and B)
->>>    * Clock are passed between the controllers using DT
->>>    * We have a PLL in controller B which is used by clocks in
->>>      controller A.
->>>    * the PLL parent clock is in controller A.
->>>
->> Yeah, it is the scene.
->>> => So if I understand correctly you are saying that it will "fail"
->>> because there is a circular dependency between controller A and B, right
->>> ?
->>>
->>> Do you have evidence that your problem comes from this circular
->>> dependency ?
->>>
->> I have realized the peripheral driver and PLL drivers,
->>
->> PLL driver probes first, Peripheral clock driver is the second.
-> 
-> It should work regarless of the order.
-> 
->>
->> In addition，for A1 SoC， it will not work using meson_clk_pll_ops,
->>
->> it needs strictly sequence，so maybe another ops is required.hifi pll will
->> be sent with sys pll and CPU clock driver.
-> 
-> The PCie PLL has a good reason to have a single frequency, only one is needed
-> 
-> That's the case the case of the HIFI PLL which, as explained in previous
-> mails, needs to provide more that the single frenquency you have described.
-> 
-> If the pll driver needs to extended with new ops that's fine. Please
-> explain this "strict sequence" you are refering too.
-> What is part of the initial settings, what needs to be done each time ?
-> 
-The inital settings is the PLL internal analog modules Power-on 
-sequence, and it is provided by the VLSI colleague.
-
-For A1 PLL, the pll lock monitor block will initialise again in each 
-time. It is the internal principle.It should keep the strict sequence 
-when set one target frequency.
-
->>> AFAIK, CCF will orphan the clock and continue if the parent is not
->>> available. Later, when the parent comes up, the orphan will be
->>> reparented.
->>>
->>> IOW, the problem you are reporting should already be covered by CCF.
->>>
->>>>
->>>> And  which sulution is better above two?
->>>
->>> Neither, I'm afraid
->>>
->>>>
->>>> Or maybe other good ideas for it?
->>>
->>> My bet would be that an important clocks (maybe more than 1) is being
->>> gated during the init process.
->>>
->>> Maybe you should try the command line parameter "clk_ignore_unused"
->>> until you get things running with your 2 controllers.
->>>
->>>>
->>>> On 2019/9/29 17:38, Jian Hu wrote:
->>>>>
->>>>>
->>>>> On 2019/9/27 21:32, Jerome Brunet wrote:
->>>>>>
->>>>>> On Fri 27 Sep 2019 at 11:52, Jian Hu <jian.hu@amlogic.com> wrote:
->>>>>>
->>>>>>> Hi, Jerome
->>>>>>>
->>>>>>> Thank you for review.
->>>>>>>
->>>>>>> On 2019/9/25 23:09, Jerome Brunet wrote:
->>>>>>>> On Wed 25 Sep 2019 at 19:44, Jian Hu <jian.hu@amlogic.com> wrote:
->>>>>>>>
->>>>>>>>> The Amlogic A1 clock includes three parts:
->>>>>>>>> peripheral clocks, pll clocks, CPU clocks.
->>>>>>>>> sys pll and CPU clocks will be sent in next patch.
->>>>>>>>>
->>>>>>>>> Unlike the previous series, there is no EE/AO domain
->>>>>>>>> in A1 CLK controllers.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>>>>>>>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->>>>>>>>> ---
->>>>>>>>>      arch/arm64/Kconfig.platforms |    1 +
->>>>>>>>>      drivers/clk/meson/Kconfig    |   10 +
->>>>>>>>>      drivers/clk/meson/Makefile   |    1 +
->>>>>>>>>      drivers/clk/meson/a1.c       | 2617
->>>>>>>>> ++++++++++++++++++++++++++++++++++++++++++
->>>>>>>>>      drivers/clk/meson/a1.h       |  172 +++
->>>>>>>>>      5 files changed, 2801 insertions(+)
->>>>>>>>>      create mode 100644 drivers/clk/meson/a1.c
->>>>>>>>>      create mode 100644 drivers/clk/meson/a1.h
->>>>>>>>>
->>>> [...]
->>>>>>>>> diff --git a/drivers/clk/meson/a1.c b/drivers/clk/meson/a1.c
->>>>>>>>> new file mode 100644
->>>>>>>>> index 0000000..26edae0f
->>>>>>>>> --- /dev/null
->>>>>>>>> +++ b/drivers/clk/meson/a1.c
->>>>>>>>> @@ -0,0 +1,2617 @@
->>>>>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>>>>>>> +/*
->>>>>>>>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->>>>>>>>> + */
->>>>>>>>> +
->>>>>>>>> +#include <linux/clk-provider.h>
->>>>>>>>> +#include <linux/init.h>
->>>>>>>>> +#include <linux/of_device.h>
->>>>>>>>> +#include <linux/platform_device.h>
->>>>>>>>> +#include <linux/of_address.h>
->>>>>>>>> +#include "clk-mpll.h"
->>>>>>>>> +#include "clk-pll.h"
->>>>>>>>> +#include "clk-regmap.h"
->>>>>>>>> +#include "vid-pll-div.h"
->>>>>>>>> +#include "clk-dualdiv.h"
->>>>>>>>> +#include "meson-eeclk.h"
->>>>>>>>> +#include "a1.h"
->>>>>>>>> +
->>>>>>>>> +/* PLLs clock in gates, its parent is xtal */
->>>>>>>>> +static struct clk_regmap a1_xtal_clktree = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 0,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_clktree",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>
->>>>>>>> Is CCF even expected to touch this ever ? what about RO ops ?
->>>>>>>> Please review your other clocks with this in mind
->>>>>>>>
->>>>>>> the clock should not be changed at runtime.clk_regmap_gate_ro_ops
->>>>>>> is a good idea. Set RO ops and remove the CLK_IS_CRITICAL flag.
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_xtal_fixpll = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 1,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_fixpll",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_xtal_usb_phy = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 2,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_usb_phy",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>
->>>>>>>> How is an USB clock critical to the system ?
->>>>>>>> Please review your other clocks with comment in mind ...
->>>>>>> the usb clock does not affect the system,
->>>>>>> remove the CLK_IS_CRITICAL flag
->>>>>>>>
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_xtal_usb_ctrl = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 3,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_usb_ctrl",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>> the usb clock does not affect the system,
->>>>>>> remove the CLK_IS_CRITICAL flag
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_xtal_hifipll = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 4,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_hifipll",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>> CLK_IS_CRITICAL is need to lock hifi pll.
->>>>>>
->>>>>> That's not how CCF works, this falg is not ok here.
->>>>>> CCF will enable this clock before calling enable on your hifi pll
->>>>>>
->>>>> ok， I will remove it.
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_xtal_syspll = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 5,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_syspll",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>> when CPU clock is at fixed clock, sys pll
->>>>>>> will be disabled, xtal_syspll will be disabled too.
->>>>>>> when setting sys pll, call clk_set_rate to lock
->>>>>>> sys pll, add RO ops to avoid disabling the clock
->>>>>>
->>>>>> Again not Ok.
->>>>>> If you mechanism to lock the PLL is properly implemented in the enable
->>>>>> callback of the sys pll, still kind of work around are not needed
->>>>>>
->>>>>> This has worked on the pll we had so far.
->>>>>>
->>>>> ok, I will remove it.
->>>>>>>
->>>>>>>>> +static struct clk_regmap a1_xtal_dds = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = SYS_OSCIN_CTRL,
->>>>>>>>> +        .bit_idx = 6,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "xtal_dds",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>>>>>> +            .fw_name = "xtal",
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>> CLK_IS_CRITICAL is need to lock dds
->>>>>>>>> +
->>>>>>>>> +/* fixed pll = 1536M
->>>>>>>>> + *
->>>>>>>>> + * fixed pll ----- fclk_div2 = 768M
->>>>>>>>> + *           |
->>>>>>>>> + *           ----- fclk_div3 = 512M
->>>>>>>>> + *           |
->>>>>>>>> + *           ----- fclk_div5 = 307.2M
->>>>>>>>> + *           |
->>>>>>>>> + *           ----- fclk_div7 = 219.4M
->>>>>>>>> + */
->>>>>>>>
->>>>>>>> The framework will make those calculation ... you can remove this
->>>>>>>>
->>>>>>> ok, I will remote the comment.
->>>>>>>>> +static struct clk_regmap a1_fixed_pll_dco = {
->>>>>>>>> +    .data = &(struct meson_clk_pll_data){
->>>>>>>>> +        .en = {
->>>>>>>>> +            .reg_off = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +            .shift   = 28,
->>>>>>>>> +            .width   = 1,
->>>>>>>>> +        },
->>>>>>>>> +        .m = {
->>>>>>>>> +            .reg_off = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +            .shift   = 0,
->>>>>>>>> +            .width   = 8,
->>>>>>>>> +        },
->>>>>>>>> +        .n = {
->>>>>>>>> +            .reg_off = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +            .shift   = 10,
->>>>>>>>> +            .width   = 5,
->>>>>>>>> +        },
->>>>>>>>> +        .frac = {
->>>>>>>>> +            .reg_off = ANACTRL_FIXPLL_CTRL1,
->>>>>>>>> +            .shift   = 0,
->>>>>>>>> +            .width   = 19,
->>>>>>>>> +        },
->>>>>>>>> +        .l = {
->>>>>>>>> +            .reg_off = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +            .shift   = 31,
->>>>>>>>> +            .width   = 1,
->>>>>>>>> +        },
->>>>>>>>> +        .rst = {
->>>>>>>>> +            .reg_off = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +            .shift   = 29,
->>>>>>>>> +            .width   = 1,
->>>>>>>>> +        },
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fixed_pll_dco",
->>>>>>>>> +        .ops = &meson_clk_pll_ro_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_xtal_fixpll.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_fixed_pll = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +        .bit_idx = 20,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data) {
->>>>>>>>> +        .name = "fixed_pll",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fixed_pll_dco.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        .flags = CLK_IGNORE_UNUSED,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static const struct pll_params_table a1_hifi_pll_params_table[] = {
->>>>>>>>> +    PLL_PARAMS(128, 5), /* DCO = 614.4M */
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static const struct reg_sequence a1_hifi_init_regs[] = {
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL1,    .def = 0x01800000 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL2,    .def = 0x00001100 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL3,    .def = 0x10022200 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL4,    .def = 0x00301000 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f19480 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x11f19480, .delay_us =
->>>>>>>>> 10 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL0,    .def = 0x15f11480, .delay_us
->>>>>>>>> = 40 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL2,    .def = 0x00001140 },
->>>>>>>>> +    { .reg = ANACTRL_HIFIPLL_CTRL2,    .def = 0x00001100 },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +/*
->>>>>>>>> + * The Meson A1 HIFI PLL is 614.4M, it requires
->>>>>>>>> + * a strict register sequence to enable the PLL.
->>>>>>>>> + * set meson_clk_pcie_pll_ops as its ops
->>>>>>>>> + */
->>>>>>>>
->>>>>>>> Could you elaborate on this ? What need to be done to enable the clock
->>>>>>>> ?
->>>>>>>> Also the HIFI PLL used to be able to do a *LOT* of different rate which
->>>>>>>> might be desirable for audio use case. Why is this one restricted to
->>>>>>>> one
->>>>>>>> particular rate ?
->>>>>>>>
->>>>>>> The audio working frequency are 44.1khz, 48khz and 192khz.
->>>>>>>
->>>>>>> 614.4M can meet the three frequency.
->>>>>>>
->>>>>>> after the hifi pll, there are two dividers in Audio clock.
->>>>>>>
->>>>>>> 614.4M/3200 = 192khz
->>>>>>>
->>>>>>> 614.4M/12800 = 48khz
->>>>>>>
->>>>>>> 614,4M/13932 = 44.0999khz
->>>>>>
->>>>>> It does not really answer my question though.
->>>>>> You are locking a use case here, which is 32 bit sample width
->>>>>>
->>>>>> We have other constraint with the upstream audio driver, and we usually
->>>>>> looking for base frequency that a multiple of 768 (24*32).
->>>>>>
->>>>>> If you need your PLL to be set to a particular rate for a use case, the
->>>>>> correct way is "assigned-rate" in DT
->>>>>>
->>>>>> so the question still stands, the HIFI pll before was pretty easy to set
->>>>>> at a wide variety of rate (same as GP0) ... is it not the case anymore ?
->>>>>> If yes, could you decribe the constraints.
->>>>>>
->>>>>> All this took us a long time to figure out on our own, which is why I'd
->>>>>> prefer to get the proper constraints in from the beginning this time
->>>>>>
->>>>> ok, I will verify it and  describe the constraints about it
->>>>>>
->>>>>>>
->>>>>>>>> +static struct clk_regmap a1_hifi_pll = {
->>>>>>>>> +    .data = &(struct meson_clk_pll_data){
->>>>>>>>> +        .en = {
->>>>>>>>> +            .reg_off = ANACTRL_HIFIPLL_CTRL0,
->>>>>>>>> +            .shift   = 28,
->>>>>>>>> +            .width   = 1,
->>>>>>>>> +        },
->>>>>>>>> +        .m = {
->>>>>>>>> +            .reg_off = ANACTRL_HIFIPLL_CTRL0,
->>>>>>>>> +            .shift   = 0,
->>>>>>>>> +            .width   = 8,
->>>>>>>>> +        },
->>>>>>>>> +        .n = {
->>>>>>>>> +            .reg_off = ANACTRL_HIFIPLL_CTRL0,
->>>>>>>>> +            .shift   = 10,
->>>>>>>>> +            .width   = 5,
->>>>>>>>> +        },
->>>>>>>>> +        .frac = {
->>>>>>>>> +            .reg_off = ANACTRL_HIFIPLL_CTRL1,
->>>>>>>>> +            .shift   = 0,
->>>>>>>>> +            .width   = 19,
->>>>>>>>> +        },
->>>>>>>>> +        .l = {
->>>>>>>>> +            .reg_off = ANACTRL_HIFIPLL_STS,
->>>>>>>>> +            .shift   = 31,
->>>>>>>>> +            .width   = 1,
->>>>>>>>> +        },
->>>>>>>>> +        .table = a1_hifi_pll_params_table,
->>>>>>>>> +        .init_regs = a1_hifi_init_regs,
->>>>>>>>> +        .init_count = ARRAY_SIZE(a1_hifi_init_regs),
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "hifi_pll",
->>>>>>>>> +        .ops = &meson_clk_pcie_pll_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_xtal_hifipll.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_fixed_factor a1_fclk_div2_div = {
->>>>>>>>> +    .mult = 1,
->>>>>>>>> +    .div = 2,
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div2_div",
->>>>>>>>> +        .ops = &clk_fixed_factor_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fixed_pll.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_fclk_div2 = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +        .bit_idx = 21,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div2",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fclk_div2_div.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        /*
->>>>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
->>>>>>>>> core
->>>>>>>>> +         * or its children clocks.
->>>>>>>>> +         */
->>>>>>>>
->>>>>>>> The meaning of this flag is already documented in clk-provider.h
->>>>>>>> The reason why you need this flag is lot more interesting here ...
->>>>>>>>
->>>>>>>> Same below
->>>>>>> ok, I will replace new comments here.
->>>>>>>>
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_fixed_factor a1_fclk_div3_div = {
->>>>>>>>> +    .mult = 1,
->>>>>>>>> +    .div = 3,
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div3_div",
->>>>>>>>> +        .ops = &clk_fixed_factor_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fixed_pll.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_fclk_div3 = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +        .bit_idx = 22,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div3",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fclk_div3_div.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        /*
->>>>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
->>>>>>>>> core
->>>>>>>>> +         * its children clocks.
->>>>>>>>> +         */
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_fixed_factor a1_fclk_div5_div = {
->>>>>>>>> +    .mult = 1,
->>>>>>>>> +    .div = 5,
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div5_div",
->>>>>>>>> +        .ops = &clk_fixed_factor_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fixed_pll.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_fclk_div5 = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +        .bit_idx = 23,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div5",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fclk_div5_div.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        /*
->>>>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
->>>>>>>>> core
->>>>>>>>> +         * its children clocks.
->>>>>>>>> +         */
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_fixed_factor a1_fclk_div7_div = {
->>>>>>>>> +    .mult = 1,
->>>>>>>>> +    .div = 7,
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div7_div",
->>>>>>>>> +        .ops = &clk_fixed_factor_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fixed_pll.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>>>>>>> +static struct clk_regmap a1_fclk_div7 = {
->>>>>>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>>>>>> +        .offset = ANACTRL_FIXPLL_CTRL0,
->>>>>>>>> +        .bit_idx = 23,
->>>>>>>>> +    },
->>>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>>> +        .name = "fclk_div7",
->>>>>>>>> +        .ops = &clk_regmap_gate_ops,
->>>>>>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>>>>>> +            &a1_fclk_div7_div.hw
->>>>>>>>> +        },
->>>>>>>>> +        .num_parents = 1,
->>>>>>>>> +        /*
->>>>>>>>> +         * add CLK_IS_CRITICAL flag to avoid being disabled by clk
->>>>>>>>> core
->>>>>>>>> +         * or its children clock.
->>>>>>>>> +         */
->>>>>>>>> +        .flags = CLK_IS_CRITICAL,
->>>>>>>>> +    },
->>>>>>>>> +};
->>>>>>>>> +
->>>> [...]
->>>>>>>>> -- 
->>>>>>>>> 1.9.1
->>>>>>>>
->>>>>>>> .
->>>>>>>>
->>>>>>
->>>>>> .
->>>>>>
->>>
->>> .
->>>
-> 
-> .
-> 
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUm9iIEhlcnJpbmcgPHJv
+YmhAa2VybmVsLm9yZz4NCj4gU2VudDogMjAxOcTqMTDUwjE4yNUgMzowMw0KPiBUbzogWGlhb3dl
+aSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQo+IENjOiBaLnEuIEhvdSA8emhpcWlhbmcuaG91
+QG54cC5jb20+OyBiaGVsZ2Fhc0Bnb29nbGUuY29tOw0KPiBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsg
+c2hhd25ndW9Aa2VybmVsLm9yZzsgTGVvIExpDQo+IDxsZW95YW5nLmxpQG54cC5jb20+OyBraXNo
+b25AdGkuY29tOyBsb3JlbnpvLnBpZXJhbGlzaUBhcm0uY29tOyBNLmguIExpYW4NCj4gPG1pbmdo
+dWFuLmxpYW5AbnhwLmNvbT47IGFuZHJldy5tdXJyYXlAYXJtLmNvbTsgTWluZ2thaSBIdQ0KPiA8
+bWluZ2thaS5odUBueHAuY29tPjsgbGludXgtcGNpQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgt
+YXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENI
+IHYyIDIvNl0gZHQtYmluZGluZ3M6IEFkZCBEVCBiaW5kaW5nIGZvciBQQ0lFIEdFTjQgRVAgb2YN
+Cj4gdGhlIGxheWVyc2NhcGUNCj4gDQo+IE9uIFR1ZSwgT2N0IDE1LCAyMDE5IGF0IDA0OjM2OjU4
+UE0gKzA4MDAsIFhpYW93ZWkgQmFvIHdyb3RlOg0KPiA+IEFkZCB0aGUgZG9jdW1lbnRhdGlvbiBm
+b3IgdGhlIERldmljZSBUcmVlIGJpbmRpbmcgb2YgdGhlIGxheWVyc2NhcGUNCj4gPiBQQ0llIEdF
+TjQgY29udHJvbGxlciB3aXRoIEVQIG1vZGUuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBYaWFv
+d2VpIEJhbyA8eGlhb3dlaS5iYW9AbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiB2MjoNCj4gPiAgLSBy
+ZW1vdmUgdGhlIHN0YXR1cyBlbnRyeSBpbiBFUCBFeGFtcGxlLg0KPiA+DQo+ID4gIC4uLi9iaW5k
+aW5ncy9wY2kvbGF5ZXJzY2FwZS1wY2llLWdlbjQudHh0ICAgICAgICAgIHwgMjcNCj4gKysrKysr
+KysrKysrKysrKysrKysrLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwg
+MSBkZWxldGlvbigtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9sYXllcnNjYXBlLXBjaWUtZ2VuNC50eHQNCj4gPiBiL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kvbGF5ZXJzY2FwZS1wY2llLWdlbjQu
+dHh0DQo+ID4gaW5kZXggYjQwZmI1ZC4uMDZmOTMwOSAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL2xheWVyc2NhcGUtcGNpZS1nZW40LnR4dA0K
+PiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kvbGF5ZXJzY2Fw
+ZS1wY2llLWdlbjQudHh0DQo+ID4gQEAgLTMsNiArMyw4IEBAIE5YUCBMYXllcnNjYXBlIFBDSWUg
+R2VuNCBjb250cm9sbGVyICBUaGlzIFBDSWUNCj4gPiBjb250cm9sbGVyIGlzIGJhc2VkIG9uIHRo
+ZSBNb2JpdmVpbCBQQ0llIElQIGFuZCB0aHVzIGluaGVyaXRzIGFsbCAgdGhlDQo+ID4gY29tbW9u
+IHByb3BlcnRpZXMgZGVmaW5lZCBpbiBtb2JpdmVpbC1wY2llLnR4dC4NCj4gPg0KPiA+ICtIT1NU
+IE1PREUNCj4gPiArPT09PT09PT09DQo+ID4gIFJlcXVpcmVkIHByb3BlcnRpZXM6DQo+ID4gIC0g
+Y29tcGF0aWJsZTogc2hvdWxkIGNvbnRhaW4gdGhlIHBsYXRmb3JtIGlkZW50aWZpZXIgc3VjaCBh
+czoNCj4gPiAgICAiZnNsLGx4MjE2MGEtcGNpZSINCj4gPiBAQCAtMjMsNyArMjUsMjAgQEAgUmVx
+dWlyZWQgcHJvcGVydGllczoNCj4gPiAgLSBtc2ktcGFyZW50IDogU2VlIHRoZSBnZW5lcmljIE1T
+SSBiaW5kaW5nIGRlc2NyaWJlZCBpbg0KPiA+ICAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9tc2kudHh0Lg0KPiA+DQo+ID4gLUV4YW1wbGU6
+DQo+ID4gK0RFVklDRSBNT0RFDQo+ID4gKz09PT09PT09PQ0KPiA+ICtSZXF1aXJlZCBwcm9wZXJ0
+aWVzOg0KPiA+ICstIGNvbXBhdGlibGU6IHNob3VsZCBjb250YWluIHRoZSBwbGF0Zm9ybSBpZGVu
+dGlmaWVyIHN1Y2ggYXM6DQo+ID4gKyAgImZzbCxseDIxNjBhLXBjaWUtZXAiDQo+ID4gKy0gcmVn
+OiBiYXNlIGFkZHJlc3NlcyBhbmQgbGVuZ3RocyBvZiB0aGUgUENJZSBjb250cm9sbGVyIHJlZ2lz
+dGVyIGJsb2Nrcy4NCj4gPiArICAicmVncyI6IFBDSWUgY29udHJvbGxlciByZWdpc3RlcnMuDQo+
+ID4gKyAgImFkZHJfc3BhY2UiIEVQIGRldmljZSBDUFUgYWRkcmVzcy4NCj4gPiArLSBhcGlvLXdp
+bnM6IG51bWJlciBvZiByZXF1ZXN0ZWQgYXBpbyBvdXRib3VuZCB3aW5kb3dzLg0KPiA+ICsNCj4g
+PiArT3B0aW9uYWwgUHJvcGVydHk6DQo+ID4gKy0gbWF4LWZ1bmN0aW9uczogTWF4aW11bSBudW1i
+ZXIgb2YgZnVuY3Rpb25zIHRoYXQgY2FuIGJlIGNvbmZpZ3VyZWQNCj4gKGRlZmF1bHQgMSkuDQo+
+ID4gKw0KPiA+ICtSQyBFeGFtcGxlOg0KPiA+DQo+ID4gIAlwY2llQDM0MDAwMDAgew0KPiA+ICAJ
+CWNvbXBhdGlibGUgPSAiZnNsLGx4MjE2MGEtcGNpZSI7DQo+ID4gQEAgLTUwLDMgKzY1LDEzIEBA
+IEV4YW1wbGU6DQo+ID4gIAkJCQk8MDAwMCAwIDAgMyAmZ2ljIDAgMCBHSUNfU1BJIDExMQ0KPiBJ
+UlFfVFlQRV9MRVZFTF9ISUdIPiwNCj4gPiAgCQkJCTwwMDAwIDAgMCA0ICZnaWMgMCAwIEdJQ19T
+UEkgMTEyDQo+IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ICAJfTsNCj4gPiArDQo+ID4gK0VQ
+IEV4YW1wbGU6DQo+ID4gKw0KPiA+ICsJcGNpZV9lcEAzNDAwMDAwIHsNCj4gDQo+IFRvIHJlcGVh
+dCBteSBwcmV2aW91cyBjb21tZW50Og0KDQpTb3JyeSwgSSBtaXNzZWQgdGhpcyBjb21tZW50Lg0K
+DQpUaGFua3MNClhpYW93ZWkNCg0KPiANCj4gcGNpZS1lbmRwb2ludEAuLi4NCj4gDQo+ID4gKwkJ
+Y29tcGF0aWJsZSA9ICJmc2wsbHgyMTYwYS1wY2llLWVwIjsNCj4gPiArCQlyZWcgPSA8MHgwMCAw
+eDAzNDAwMDAwIDB4MCAweDAwMTAwMDAwDQo+ID4gKwkJICAgICAgIDB4ODAgMHgwMDAwMDAwMCAw
+eDggMHgwMDAwMDAwMD47DQo+ID4gKwkJcmVnLW5hbWVzID0gInJlZ3MiLCAiYWRkcl9zcGFjZSI7
+DQo+ID4gKwkJYXBpby13aW5zID0gPDg+Ow0KPiA+ICsJfTsNCj4gPiAtLQ0KPiA+IDIuOS41DQo+
+ID4NCg==
