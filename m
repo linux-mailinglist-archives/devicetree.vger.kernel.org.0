@@ -2,116 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AB5DC3B2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 13:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C61ADC47D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 14:14:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409935AbfJRLLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 07:11:33 -0400
-Received: from dc8-smtprelay2.synopsys.com ([198.182.47.102]:58114 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2409922AbfJRLLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Oct 2019 07:11:32 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 71A4CC0488;
-        Fri, 18 Oct 2019 11:11:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1571397092; bh=HJga7B0ouM1COkEsJgMK2mlF5wYeXphpoMGtMGta1RQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Ze1abby512NWxvUqRr6h+4NwB+YQyfrZpiGDyBUm+7vNoM/qQg3Tnf8Ch488M8u82
-         rPWMyRMHnS0sl9NEWv1tEMJ2dJ+w2Kz83bKqg2zcMmzvuVHb10wqIz2kOi/FlOefzn
-         FlfUDPlFirXImYNcG/s5R54NKx1vkg0dgPY+vODUdzlNnnDL46dDw8hpio/OfS6acm
-         2iqW1LBD4UVrPXX6pFZAf8n85YygkBHLQN3rS2z7c5pKh0NVs8vZpW4RRoxaBWGGP7
-         e6bOB9VWknheqoMIU2YBwAnU39+9L6x9008DWbwZSR4+A+Hln5Ig7U8YhcQlZf6351
-         fuD7h1O9e5CeA==
-Received: from paltsev-e7480.internal.synopsys.com (paltsev-e7480.internal.synopsys.com [10.121.3.73])
-        by mailhost.synopsys.com (Postfix) with ESMTP id AAB22A0065;
-        Fri, 18 Oct 2019 11:11:30 +0000 (UTC)
-From:   Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-To:     linux-snps-arc@lists.infradead.org,
-        Vineet Gupta <Vineet.Gupta1@synopsys.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexey Brodkin <Alexey.Brodkin@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Subject: [PATCH 2/2] ARC: [plat-hsdk]: Enable on-boardi SPI ADC IC
-Date:   Fri, 18 Oct 2019 14:11:26 +0300
-Message-Id: <20191018111126.5246-3-Eugeniy.Paltsev@synopsys.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191018111126.5246-1-Eugeniy.Paltsev@synopsys.com>
-References: <20191018111126.5246-1-Eugeniy.Paltsev@synopsys.com>
+        id S2408147AbfJRMOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 08:14:53 -0400
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:41996 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407755AbfJRMOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 08:14:52 -0400
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="Ludovic.Desroches@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: WpcM4t+h+BiSE5DAkXqotBcFPlp7WhdvXZzB+lFIrne06zK9oZZQtt/2uL6ioL8hRCVMTmzKTY
+ 1I7aE6yfQ7Tvd78K9cB7L7cca9Zpw/cDYRkKA4fQe9wg0cogpmgQUq25RnZ+oiufmSGojNgfux
+ BanWzd7u24H2pi0KDtDD8ycCQA/dPxSXw3myTUhUPk4Qm9Yxl8DWBIrqi/lcQy9BPIPaSRBJlt
+ XD7RgHNjgKOy1nojLVf/1rNcQmMl5c9oQxedlxweIG56qVKoRj75XapEjtthOWIo751UnZNNnk
+ F2M=
+X-IronPort-AV: E=Sophos;i="5.67,311,1566889200"; 
+   d="scan'208";a="53522909"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Oct 2019 05:14:50 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 18 Oct 2019 05:14:49 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Fri, 18 Oct 2019 05:14:50 -0700
+Date:   Fri, 18 Oct 2019 14:15:23 +0200
+From:   Ludovic Desroches <ludovic.desroches@microchip.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        <claudiu.beznea@microchip.com>, <Eugen.Hristev@microchip.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: sdhci-of-at91: new compatible string
+ and update properties
+Message-ID: <20191018121522.vq2co7b42kb2ykox@M43218.corp.atmel.com>
+Mail-Followup-To: Ulf Hansson <ulf.hansson@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, claudiu.beznea@microchip.com,
+        Eugen.Hristev@microchip.com
+References: <20191011103340.26749-1-ludovic.desroches@microchip.com>
+ <CAPDyKFqxfBG-CDd_O9d8X89GZmNFXh=CoFE2QqptgtLtOU5=_Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFqxfBG-CDd_O9d8X89GZmNFXh=CoFE2QqptgtLtOU5=_Q@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HSDK board has adc108s102 SPI ADC IC installed, enable it.
+On Fri, Oct 18, 2019 at 12:56:14PM +0200, Ulf Hansson wrote:
+> On Fri, 11 Oct 2019 at 12:33, Ludovic Desroches
+> <ludovic.desroches@microchip.com> wrote:
+> >
+> > There is a new compatible string for the SAM9X60 sdhci device. It involves
+> > an update of the properties about the clocks stuff.
+> >
+> > Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+> 
+> This doesn't apply any more, can you please re-spin it?
 
-Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
----
- arch/arc/boot/dts/hsdk.dts      | 15 +++++++++++++++
- arch/arc/configs/hsdk_defconfig |  4 ++++
- 2 files changed, 19 insertions(+)
+Sure, I'll rebase these patches and send a v2
 
-diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
-index 9bea5daadd23..9acbeba832c0 100644
---- a/arch/arc/boot/dts/hsdk.dts
-+++ b/arch/arc/boot/dts/hsdk.dts
-@@ -65,6 +65,14 @@
- 		clock-frequency = <33333333>;
- 	};
- 
-+	reg_5v0: regulator-5v0 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "5v0-supply";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
- 	cpu_intc: cpu-interrupt-controller {
- 		compatible = "snps,archs-intc";
- 		interrupt-controller;
-@@ -272,6 +280,13 @@
- 				#size-cells = <1>;
- 				spi-max-frequency = <4000000>;
- 			};
-+
-+			adc@1 {
-+				compatible = "ti,adc108s102";
-+				reg = <1>;
-+				vref-supply = <&reg_5v0>;
-+				spi-max-frequency = <1000000>;
-+			};
- 		};
- 
- 		creg_gpio: gpio@14b0 {
-diff --git a/arch/arc/configs/hsdk_defconfig b/arch/arc/configs/hsdk_defconfig
-index 22fc70396a3b..0974226fab55 100644
---- a/arch/arc/configs/hsdk_defconfig
-+++ b/arch/arc/configs/hsdk_defconfig
-@@ -57,6 +57,8 @@ CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_DWAPB=y
- CONFIG_GPIO_SNPS_CREG=y
- # CONFIG_HWMON is not set
-+CONFIG_REGULATOR=y
-+CONFIG_REGULATOR_FIXED_VOLTAGE=y
- CONFIG_DRM=y
- # CONFIG_DRM_FBDEV_EMULATION is not set
- CONFIG_DRM_UDL=y
-@@ -74,6 +76,8 @@ CONFIG_MMC_SDHCI_PLTFM=y
- CONFIG_MMC_DW=y
- CONFIG_DMADEVICES=y
- CONFIG_DW_AXI_DMAC=y
-+CONFIG_IIO=y
-+CONFIG_TI_ADC108S102=y
- CONFIG_EXT3_FS=y
- CONFIG_VFAT_FS=y
- CONFIG_TMPFS=y
--- 
-2.21.0
+Regards
 
+Ludovic
+
+> 
+> Kind regards
+> Uffe
+> 
+> 
+> > ---
+> >
+> > Changes:
+> > - v2: remove the extra example and fix node label
+> >
+> > This patch conflicts with Nicolas' one: "dt-bindings: sdhci-of-at91: add
+> > the microchip,sdcal-inverted property". Let me know which one has to be
+> > rebased or you can handle it.
+> >
+> > Ludovic
+> >
+> >
+> >  .../devicetree/bindings/mmc/sdhci-atmel.txt       | 15 ++++++++++++---
+> >  1 file changed, 12 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+> > index 1b662d7171a0..5d541ad4d4eb 100644
+> > --- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+> > +++ b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+> > @@ -5,17 +5,26 @@ Documentation/devicetree/bindings/mmc/mmc.txt and the properties used by the
+> >  sdhci-of-at91 driver.
+> >
+> >  Required properties:
+> > -- compatible:          Must be "atmel,sama5d2-sdhci".
+> > +- compatible:          Must be "atmel,sama5d2-sdhci" or "microchip,sam9x60-sdhci".
+> >  - clocks:              Phandlers to the clocks.
+> > -- clock-names:         Must be "hclock", "multclk", "baseclk";
+> > +- clock-names:         Must be "hclock", "multclk", "baseclk" for
+> > +                       "atmel,sama5d2-sdhci".
+> > +                       Must be "hclock", "multclk" for "microchip,sam9x60-sdhci".
+> > +
+> > +Optional properties:
+> > +- assigned-clocks:     The same with "multclk".
+> > +- assigned-clock-rates The rate of "multclk" in order to not rely on the
+> > +                       gck configuration set by previous components.
+> >
+> >
+> >  Example:
+> >
+> > -sdmmc0: sdio-host@a0000000 {
+> > +mmc0: sdio-host@a0000000 {
+> >         compatible = "atmel,sama5d2-sdhci";
+> >         reg = <0xa0000000 0x300>;
+> >         interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
+> >         clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
+> >         clock-names = "hclock", "multclk", "baseclk";
+> > +       assigned-clocks = <&sdmmc0_gclk>;
+> > +       assigned-clock-rates = <480000000>;
+> >  };
+> > --
+> > 2.23.0
+> >
