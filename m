@@ -2,161 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D099DBF65
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 10:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24BEDBFD8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 10:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727888AbfJRIG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 04:06:29 -0400
-Received: from us-smtp-2.mimecast.com ([207.211.31.81]:47552 "EHLO
-        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2442158AbfJRIGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Oct 2019 04:06:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1571385983;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=AueYkt1KhewDQYWLSoW/pmDep2RIg04euyPWY35AI9w=;
-        b=WMsD8L0M8WI+PA/WkCrX8nsg+X+INLOyX9JmfvwlsF4dZC1bHveFHGo2HpIPFcQQSJGSZe
-        VOq8GaPqfGlIAbSTmYHCUxYn4vAFZszi6LVknKLeigu8vxiiicM0Xj/+afaSR/q3GzYa0y
-        T0A0Gp+jt4xzPXL7aeJsfsu66RpQZlc=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-133-sKD69ekiNxyO4glghJhmvw-1; Fri, 18 Oct 2019 04:06:22 -0400
-Received: by mail-wm1-f69.google.com with SMTP id q22so1977964wmc.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 01:06:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VP1zhflDz8B0kkQ83/WshvBQYqQO+15WgGKLtiGwYF0=;
-        b=Wha4LjAA/ZJH1byLqyrDVtqZTF/Pdfp4m54Ko2OdaH6TAdZKJts+t5eay2p2cWA5Bw
-         uSKLVgKe4aA7wEfZ4EP84Tg2qg3Ng1bZiwg0Z+m0Ew3lqNO/hXCRr0mdQC6BZV0bNY42
-         nVpqZCVs757BvBiqTzCjXlOEqKyw7RIadyoR57QR63BnZJaZGSSZcbtEFd27E84sq8B1
-         SFgPyctOzsEW8MQtFVkJjvXeSZR3eoyb62SzXXVXLMlVjqTSPe2xZZPVe20k+/zGlklJ
-         7OSACEN0Js1T32KcHj1kpw8O6rUqvCqSzWIPMiKDIbSK6SEoyD7I81UYlUwms/yRe6mN
-         yOjQ==
-X-Gm-Message-State: APjAAAXW0/b0Hy47RCQSwNOm7+QwrEYvIad9DcUJxe3rQXvEoOz5q6du
-        pdw5UtKdeOhoXgVQV+i5ve8aV2Usi83aAu+HbtAWae2OUhw7YKA/pjhEQtHwvtP57ja0RM1vKoA
-        6mUC7nhpa0Q/mSKvxuYYcKw==
-X-Received: by 2002:a1c:55c4:: with SMTP id j187mr6447032wmb.155.1571385981026;
-        Fri, 18 Oct 2019 01:06:21 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqyZVd1ccyO/Ym3el/1+WjQ1WmMCkhdIX12XtPQT7ZY+XQ7DuXpVt6/IuFyKiUT17eAeClDQkg==
-X-Received: by 2002:a1c:55c4:: with SMTP id j187mr6446987wmb.155.1571385980715;
-        Fri, 18 Oct 2019 01:06:20 -0700 (PDT)
-Received: from shalem.localdomain (2001-1c00-0c14-2800-ec23-a060-24d5-2453.cable.dynamic.v6.ziggo.nl. [2001:1c00:c14:2800:ec23:a060:24d5:2453])
-        by smtp.gmail.com with ESMTPSA id h7sm4729423wrt.17.2019.10.18.01.06.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Oct 2019 01:06:20 -0700 (PDT)
-Subject: Re: [RFC][PATCH 2/3] usb: roles: Add usb role switch notifier.
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20191002231617.3670-1-john.stultz@linaro.org>
- <20191002231617.3670-3-john.stultz@linaro.org>
- <2e369349-41f6-bd15-2829-fa886f209b39@redhat.com>
- <CALAqxLVcQ7yZuJCUEqGmvqcz5u0Gd=xJzqLbmiXKR+LJrOhvMQ@mail.gmail.com>
- <b8695418-9d3a-96a6-9587-c9a790f49740@redhat.com>
- <CALAqxLVh6GbiKmuK60e6f+_dWh-TS2ZLrwx0WsSo5bKp-F3iLA@mail.gmail.com>
- <648e2943-42f5-e07d-5bb4-f6fd8b38b726@redhat.com>
- <CALAqxLWh0=GRod5ORpi+ENpWCkmY39mUw_=NV67sKY8qH_otZw@mail.gmail.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <f2236442-111d-cd84-fc47-0737df71cf3a@redhat.com>
-Date:   Fri, 18 Oct 2019 10:06:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+        id S2632789AbfJRI0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 04:26:05 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:55287 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2505018AbfJRI0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 04:26:05 -0400
+X-UUID: 9d3e8ea6f4eb4433a2f8d4ec13f5a3c0-20191018
+X-UUID: 9d3e8ea6f4eb4433a2f8d4ec13f5a3c0-20191018
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1741489180; Fri, 18 Oct 2019 16:25:59 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 18 Oct 2019 16:25:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 18 Oct 2019 16:25:56 +0800
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        <linux-i2c@vger.kernel.org>
+CC:     <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <srv_heupstream@mediatek.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>
+Subject: [PATCH v4] misc: eeprom: at24: support pm_runtime control
+Date:   Fri, 18 Oct 2019 16:25:56 +0800
+Message-ID: <20191018082557.3696-1-bibby.hsieh@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <CALAqxLWh0=GRod5ORpi+ENpWCkmY39mUw_=NV67sKY8qH_otZw@mail.gmail.com>
-Content-Language: en-US
-X-MC-Unique: sKD69ekiNxyO4glghJhmvw-1
-X-Mimecast-Spam-Score: 0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Although in the most platforms, the power of eeprom and i2c
+are alway on, some platforms disable the eeprom and i2c power
+in order to meet low power request.
+This patch add the pm_runtime ops to control power to support
+all platforms.
 
-On 18-10-2019 07:55, John Stultz wrote:
-> On Wed, Oct 16, 2019 at 12:27 AM Hans de Goede <hdegoede@redhat.com> wrot=
-e:
->> On 10/15/19 7:39 AM, John Stultz wrote:
->>> On Thu, Oct 3, 2019 at 1:51 PM Hans de Goede <hdegoede@redhat.com> wrot=
-e:
->>>> On 03-10-2019 22:37, John Stultz wrote:
->>>>> Fair point. I'm sort of taking a larger patchset and trying to break
->>>>> it up into more easily reviewable chunks, but I guess here I mis-cut.
->>>>>
->>>>> The user is the hikey960 gpio hub driver here:
->>>>>      https://git.linaro.org/people/john.stultz/android-dev.git/commit=
-/?id=3Db06158a2d3eb00c914f12c76c93695e92d9af00f
->>>>
->>>> Hmm, that seems to tie the TypeC data-role to the power-role, which
->>>> is not going to work with role swapping.
->>>
->>> Thanks again for the feedback here. Sorry for the slow response. Been
->>> reworking some of the easier changes but am starting to look at how to
->>> address your feedback here.
->>>
->>>> What is controlling the usb-role-switch, and thus ultimately
->>>> causing the notifier you are suggesting to get called ?
->>>
->>> The tcpm_mux_set() call via tcpm_state_machine_work()
->>>
->>>> Things like TYPEC_VBUS_POWER_OFF and TYPEC_VBUS_POWER_ON
->>>> really beg to be modeled as a regulator and then the
->>>> Type-C controller (using e.g. the drivers/usb/typec/tcpm/tcpm.c
->>>> framework) can use that regulator to control things.
->>>> in case of the tcpm.c framework it can then use that
->>>> regulator to implement the set_vbus callback.
->>>
->>> So I'm looking at the bindings and I'm not sure exactly how to tie a
->>> regulator style driver into the tcpm for this?
->>> Looking at the driver I just see this commented out bit:
->>>      https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git=
-/tree/drivers/usb/typec/tcpm/tcpm.c#n3075
->>>
->>> Do you happen to have a pointer to something closer to what you are des=
-cribing?
->>
->> Look at the tcpm_set_vbus implementation in drivers/usb/typec/tcpm/fusb3=
-02.c
->> you need to do something similar in your Type-C controller driver and
->> export the GPIO as as a gpio-controlled regulator and tie the regulator =
-to
->> the connector.
->=20
-> Thanks for the suggestion, I really appreciate it! One more question
-> though, since I'm using the tcpci_rt1711h driver, which re-uses the
-> somewhat sparse tcpci.c implementation, would you recommend trying to
-> add generic regulator support to the tcpci code or trying to extend
-> the implementation somehow allow the tcpci_rt1711h driver replace just
-> the set_vbus function?
+Changes since v3:
+ - remove redundant calling function
+ - change SIMPLE_DEV_PM_OPS to SET_RUNTIME_PM_OPS
+ - change supply name
 
-I have the feeling that this is more of a question for Heikki.
+Changes since v2:
+ - rebase onto v5.4-rc1
+ - pm_runtime_disable and regulator_bulk_disable at
+   err return in probe function
 
-My first instinct is: if you are using tcpci can't you put all
-the hacks you need for the usb connection shared between hub
-and type-c in your firmware ?
+Changes since v1:
+ - remove redundant code
+ - fixup coding style
 
-Regards,
+Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+---
+ drivers/misc/eeprom/at24.c | 64 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
 
-Hans
+diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+index 2cccd82a3106..68ced4f25916 100644
+--- a/drivers/misc/eeprom/at24.c
++++ b/drivers/misc/eeprom/at24.c
+@@ -22,6 +22,7 @@
+ #include <linux/nvmem-provider.h>
+ #include <linux/regmap.h>
+ #include <linux/pm_runtime.h>
++#include <linux/regulator/consumer.h>
+ #include <linux/gpio/consumer.h>
+ 
+ /* Address pointer is 16 bit. */
+@@ -67,6 +68,12 @@
+  * which won't work on pure SMBus systems.
+  */
+ 
++static const char * const at24_supply_names[] = {
++	"vcc", "i2c",
++};
++
++#define AT24_NUM_SUPPLIES ARRAY_SIZE(at24_supply_names)
++
+ struct at24_client {
+ 	struct i2c_client *client;
+ 	struct regmap *regmap;
+@@ -91,6 +98,8 @@ struct at24_data {
+ 
+ 	struct gpio_desc *wp_gpio;
+ 
++	bool has_supplies;
++	struct regulator_bulk_data supplies[AT24_NUM_SUPPLIES];
+ 	/*
+ 	 * Some chips tie up multiple I2C addresses; dummy devices reserve
+ 	 * them for us, and we'll use them with SMBus calls.
+@@ -662,6 +671,17 @@ static int at24_probe(struct i2c_client *client)
+ 	at24->client[0].client = client;
+ 	at24->client[0].regmap = regmap;
+ 
++	regulator_bulk_set_supply_names(at24->supplies,
++					at24_supply_names, AT24_NUM_SUPPLIES);
++	err =  devm_regulator_bulk_get(&at24->client[0].client->dev,
++				       AT24_NUM_SUPPLIES, at24->supplies);
++	if (err == -ENODEV)
++		at24->has_supplies = NULL;
++	else if (err == 0)
++		at24->has_supplies = !err;
++	else
++		return err;
++
+ 	at24->wp_gpio = devm_gpiod_get_optional(dev, "wp", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(at24->wp_gpio))
+ 		return PTR_ERR(at24->wp_gpio);
+@@ -701,6 +721,14 @@ static int at24_probe(struct i2c_client *client)
+ 
+ 	i2c_set_clientdata(client, at24);
+ 
++	if (at24->has_supplies) {
++		err = regulator_bulk_enable(AT24_NUM_SUPPLIES, at24->supplies);
++		if (err) {
++			dev_err(dev, "Failed to enable power regulators\n");
++			return err;
++		}
++	}
++
+ 	/* enable runtime pm */
+ 	pm_runtime_set_active(dev);
+ 	pm_runtime_enable(dev);
+@@ -713,6 +741,9 @@ static int at24_probe(struct i2c_client *client)
+ 	pm_runtime_idle(dev);
+ 	if (err) {
+ 		pm_runtime_disable(dev);
++		if (at24->has_supplies)
++			regulator_bulk_disable(AT24_NUM_SUPPLIES,
++					       at24->supplies);
+ 		return -ENODEV;
+ 	}
+ 
+@@ -725,15 +756,48 @@ static int at24_probe(struct i2c_client *client)
+ 
+ static int at24_remove(struct i2c_client *client)
+ {
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
+ 	pm_runtime_disable(&client->dev);
+ 	pm_runtime_set_suspended(&client->dev);
++	if (at24->has_supplies)
++		regulator_bulk_disable(AT24_NUM_SUPPLIES, at24->supplies);
++
++	return 0;
++}
++
++static int __maybe_unused at24_suspend(struct device *dev)
++{
++	struct i2c_client *client = to_i2c_client(dev);
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
++	if (at24->has_supplies)
++		return regulator_bulk_disable(AT24_NUM_SUPPLIES,
++					      at24->supplies);
++
++	return 0;
++}
++
++static int __maybe_unused at24_resume(struct device *dev)
++{
++	struct i2c_client *client = to_i2c_client(dev);
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
++	if (at24->has_supplies)
++		return regulator_bulk_enable(AT24_NUM_SUPPLIES,
++					     at24->supplies);
+ 
+ 	return 0;
+ }
+ 
++static const struct dev_pm_ops at24_pm_ops = {
++	SET_RUNTIME_PM_OPS(at24_suspend, at24_resume, NULL)
++};
++
+ static struct i2c_driver at24_driver = {
+ 	.driver = {
+ 		.name = "at24",
++		.pm = &at24_pm_ops,
+ 		.of_match_table = at24_of_match,
+ 		.acpi_match_table = ACPI_PTR(at24_acpi_ids),
+ 	},
+-- 
+2.18.0
 
