@@ -2,273 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C776DCAA4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 18:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2B5DCB93
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 18:34:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732159AbfJRQOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 12:14:17 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:37464 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728594AbfJRQOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 12:14:16 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p14so6890619wro.4
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 09:14:14 -0700 (PDT)
+        id S2439825AbfJRQaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 12:30:46 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:33168 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439782AbfJRQao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 12:30:44 -0400
+Received: by mail-pl1-f193.google.com with SMTP id d22so3110748pls.0;
+        Fri, 18 Oct 2019 09:30:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:subject:in-reply-to:date:message-id
-         :mime-version;
-        bh=0Cv5HxbYsKs88qKdDqqwy2GcVJ7JGGNauSIpovXmWjE=;
-        b=gZNchhaduGtAYNPyOyjo0Q/R9PH//aDDplRrAmvdTTPx0Kmxn8NFK+7uAx8JKgIEeX
-         CmgKuBT7wpTX5XgrppkFVgSvyCiZu9C7R70WHNEiHuYGIAt+FX3H7nG5/jkh44Rz1OeZ
-         +Oo06tmY7t+R2wCBMZC5VxXtyEFPzndgMtS0AaJNXfn7Z92k0ZvHBesNFCCpAyIBKLGr
-         S2lLW1EaKwt8i9PnSNjyZo3zC4zUjbt3z3L0mrfzR6prmno+8o5h44MIVZcom3MjiDPJ
-         giuQ9ZZ5Bvd2l9TyhJ2tWXibsW3ZYIKbYwAhsEv/jwRDgeS+z2dmIppYCe9Hu/GeFRL3
-         hzoQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=ioUxflPJk241Sd8uCqW+4LLu7go7mYYjazg2y5D+euI=;
+        b=Noahe+cw+oe1BNvUPmv9cmXuYAKMcdh3TkhmHpUDgLyEFiBRsD2jru5PXvGJv6MqXD
+         /XE4wG0iZksfhB3BVRXjItDttPFMoTynMQEr4YV3TzLLTmoj2anNAaQxKvmiwQtaGAYW
+         ebL2vANtuNHEEWUB7RMeOcu/IHGCk56GOas1WYXY1J1qi9OmkvE1W1CQ2hLaOSqbZ7wC
+         jfGIXBjPUYCaCteWsopRhzZPIPrQjFGm7/5E1yJI1WYUzlxKDM7ItznQIpyo3BYb58Tu
+         HuaAgYGftDjRcrkxwaBmPCVYz/uxrugxf8eOXf9Ex0kEZJRbcZNZT4JMpBNXeqqjElUq
+         jc3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=0Cv5HxbYsKs88qKdDqqwy2GcVJ7JGGNauSIpovXmWjE=;
-        b=eiPTKG/2FNHZRt5nfFEpIMWd0p578lLbTa2zRjO/Ng+s3qRc62rnqdh1+qKS4Be44D
-         FYPQauOdprg2Yclt2IrvswfMHTYXY80bdyT/zCCjzT6fyFWBsTIUJA3JWFY4pEugB2OO
-         w3enqfWqL5/B+Q0fjKxEeJTYIZXUYyI33WRBhOnDCRSDxgaAxnJxLHsxpTNwm489QZZd
-         xIbmfLCeIKd5+kigQqNmKVefFqU5GSk4X0gGsyq29BkJF/HguvILJSfQPY9BUnb67rQ1
-         rsXwEeJ64oA1ooTTbQpewjyQL4UaVANRiitEshA/zBlySGAZ/kZe/BT86H7LisDO5NVX
-         urnw==
-X-Gm-Message-State: APjAAAUrFeGBeOj4yo2huxLZjloLk2xzm8ZEggf1VGjkrYiyiwIhjLFb
-        R74vo3lzVjyMkzo+IGbaOi646Q==
-X-Google-Smtp-Source: APXvYqxahX2Eo67G58sg7nvdDRQg5C58GloUqLjP/ZxQkAa40VhAeVwwcIp6pZ/sy3jdITFMe4NWDg==
-X-Received: by 2002:adf:df05:: with SMTP id y5mr9222772wrl.84.1571415253811;
-        Fri, 18 Oct 2019 09:14:13 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a204sm7706251wmh.21.2019.10.18.09.14.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2019 09:14:12 -0700 (PDT)
-References: <1571393152-3698-1-git-send-email-christianshewitt@gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ioUxflPJk241Sd8uCqW+4LLu7go7mYYjazg2y5D+euI=;
+        b=oTri8ugRFfZtAXpTDYUBFarwfklJqHb3yEH8lM1VBhkeoNp476+naOrf+2H68QcpB/
+         lqArz4xVfsmN0bS8HEhk301pdqkR9KALbfjkHEwhlzLhPKib47BjJvovvyIY7K1+Y902
+         RaM1ni64zks/SWaJZ0MC2GybBg8VhJRiGRYxUwm1VRV0RvYJHzGOV07zRqiwwHJbkegm
+         0SSjUHE076etyChn2IUnm1RwfsOSD0PUS2qf+5OYPzDiVGSToLImAa8QHb8yCJbbq1in
+         yzqcj18ukkPmhqunEonphZ4V/79gZSJu21/eDD1V7jU5XbLWizxn5wIkIlV8CQJyjNZH
+         URkQ==
+X-Gm-Message-State: APjAAAVOF9cDbA0QTkRdBUBF1UY1AEb/ICH7p+ps6DkNLEliEwu39knI
+        aktZ8t64/LKTlwVKdByG2BM=
+X-Google-Smtp-Source: APXvYqz9AgnO5wJDvm1Pg6p/ZgeOIqLXWnWPY63JzbbCx7GJI5f+EhGIc58hMebd7OYELWuIV0XCUg==
+X-Received: by 2002:a17:902:9682:: with SMTP id n2mr10572124plp.52.1571416243179;
+        Fri, 18 Oct 2019 09:30:43 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+        by smtp.gmail.com with ESMTPSA id u3sm6401575pfn.134.2019.10.18.09.30.36
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 18 Oct 2019 09:30:42 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Kevin Hilman <khilman@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: khadas-vim3l: enable audio
-In-reply-to: <1571393152-3698-1-git-send-email-christianshewitt@gmail.com>
-Date:   Fri, 18 Oct 2019 18:14:11 +0200
-Message-ID: <1jd0euf2uk.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: khadas-vim3: move audio nodes to common dtsi
+Date:   Fri, 18 Oct 2019 20:29:45 +0400
+Message-Id: <1571416185-6449-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Move VIM3 audio nodes to meson-khadas-vim3.dtsi to enable audio for all
+boards in the VIM3 family including VIM3L.
 
-On Fri 18 Oct 2019 at 12:05, Christian Hewitt <christianshewitt@gmail.com> wrote:
+This change depends on [1] being merged/applied first.
 
-> Add and enable the audio nodes on the VIM3L. This is based on the recent
-> submission for the SEI610 device [1] and the existing VIM3 dts.
->
-> [1] https://patchwork.kernel.org/patch/11180785/
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    | 147 +++++++++++++++++++++
->  1 file changed, 147 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-> index dbbf29a..d07f0cf 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-> @@ -8,6 +8,7 @@
->  
->  #include "meson-sm1.dtsi"
->  #include "meson-khadas-vim3.dtsi"
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->  
->  / {
->  	compatible = "khadas,vim3l", "amlogic,sm1";
-> @@ -31,6 +32,86 @@
->  		regulator-boot-on;
->  		regulator-always-on;
->  	};
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "SM1-KHADAS-VIM3L";
-> +		audio-aux-devs = <&tdmout_a>, <&tdmout_b>,
-> +				 <&tdmin_a>, <&tdmin_b>;
-> +		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
-> +				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-> +				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-> +				"TDM_A Playback", "TDMOUT_A OUT",
+[1] https://patchwork.kernel.org/patch/11198535/
 
-The route above are useless since you are not using TDM A in this card
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   | 89 ----------------------
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 88 +++++++++++++++++++++
+ 2 files changed, 88 insertions(+), 89 deletions(-)
 
-> +				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-
-You have only one output, so one FRDDR is enough.
-So either enable a put just one, or put them all (including FRDDR D)
-
-> +
-> +		dai-link-3 {
-> +			sound-dai = <&toddr_a>;
-> +		};
-> +
-> +		dai-link-4 {
-> +			sound-dai = <&toddr_b>;
-> +		};
-> +
-> +		dai-link-5 {
-> +			sound-dai = <&toddr_c>;
-> +		};
-
-There is no capture Backend, to the TODDR are useless
-
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-6 {
-> +			sound-dai = <&tdmif_b>;
-
-Any particular reason for using TDM B interface ? What is khadas doing
-in there own code ?
-
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-7 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
->  };
->  
->  &cpu0 {
-> @@ -61,6 +142,24 @@
->  	clock-latency = <50000>;
->  };
->  
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&pdm {
-> +	pinctrl-0 = <&pdm_din0_z_pins>, <&pdm_dclk_z_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-
-Why do you enable PDM ? does this board provide some digital mics ?
-There is no links using PDM in your card. Please clarify
-
-> +
->  &pwm_AO_cd {
->  	pinctrl-0 = <&pwm_ao_d_e_pins>;
->  	pinctrl-names = "default";
-> @@ -93,3 +192,51 @@
->  	phy-names = "usb2-phy0", "usb2-phy1";
->  };
->   */
-> +
-> +&tdmif_a {
-> +	pinctrl-0 = <&tdm_a_dout0_pins>, <&tdm_a_fs_pins>, <&tdm_a_sclk_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD0>,
-> +			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD0>;
-> +	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-> +				 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
-> +	assigned-clock-rates = <0>, <0>;
-> +};
-> +
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmin_a {
-> +	status = "okay";
-> +};
-> +
-> +&tdmin_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_a {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&toddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&toddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&toddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+index 69019d0..190e934 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+@@ -5,8 +5,6 @@
+  * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
+  */
+ 
+-#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+-
+ / {
+ 	vddcpu_a: regulator-vddcpu-a {
+ 		/*
+@@ -45,69 +43,6 @@
+ 		regulator-boot-on;
+ 		regulator-always-on;
+ 	};
+-
+-	sound {
+-		compatible = "amlogic,axg-sound-card";
+-		model = "G12A-KHADAS-VIM3";
+-		audio-aux-devs = <&tdmout_b>;
+-		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+-				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+-				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
+-				"TDM_B Playback", "TDMOUT_B OUT";
+-
+-		assigned-clocks = <&clkc CLKID_MPLL2>,
+-				  <&clkc CLKID_MPLL0>,
+-				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+-		assigned-clock-rates = <294912000>,
+-				       <270950400>,
+-				       <393216000>;
+-		status = "okay";
+-
+-		dai-link-0 {
+-			sound-dai = <&frddr_a>;
+-		};
+-
+-		dai-link-1 {
+-			sound-dai = <&frddr_b>;
+-		};
+-
+-		dai-link-2 {
+-			sound-dai = <&frddr_c>;
+-		};
+-
+-		/* 8ch hdmi interface */
+-		dai-link-3 {
+-			sound-dai = <&tdmif_b>;
+-			dai-format = "i2s";
+-			dai-tdm-slot-tx-mask-0 = <1 1>;
+-			dai-tdm-slot-tx-mask-1 = <1 1>;
+-			dai-tdm-slot-tx-mask-2 = <1 1>;
+-			dai-tdm-slot-tx-mask-3 = <1 1>;
+-			mclk-fs = <256>;
+-
+-			codec {
+-				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+-			};
+-		};
+-
+-		/* hdmi glue */
+-		dai-link-4 {
+-			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+-
+-			codec {
+-				sound-dai = <&hdmi_tx>;
+-			};
+-		};
+-	};
+-};
+-
+-&arb {
+-	status = "okay";
+-};
+-
+-&clkc_audio {
+-	status = "okay";
+ };
+ 
+ &cpu0 {
+@@ -152,18 +87,6 @@
+ 	clock-latency = <50000>;
+ };
+ 
+-&frddr_a {
+-        status = "okay";
+-};
+-
+-&frddr_b {
+-	status = "okay";
+-};
+-
+-&frddr_c {
+-	status = "okay";
+-};
+-
+ &pwm_ab {
+ 	pinctrl-0 = <&pwm_a_e_pins>;
+ 	pinctrl-names = "default";
+@@ -179,15 +102,3 @@
+ 	clock-names = "clkin1";
+ 	status = "okay";
+ };
+-
+-&tdmif_b {
+-	status = "okay";
+-};
+-
+-&tdmout_b {
+-	status = "okay";
+-};
+-
+-&tohdmitx {
+-	status = "okay";
+-};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 90815fa..3f5c373 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -7,6 +7,7 @@
+ 
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/gpio/meson-g12a-gpio.h>
++#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ 
+ / {
+ 	model = "Khadas VIM3";
+@@ -76,6 +77,61 @@
+ 		clock-names = "ext_clock";
+ 	};
+ 
++	sound {
++		compatible = "amlogic,axg-sound-card";
++		model = "G12A-KHADAS-VIM3";
++		audio-aux-devs = <&tdmout_b>;
++		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
++				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
++				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
++				"TDM_B Playback", "TDMOUT_B OUT";
++
++		assigned-clocks = <&clkc CLKID_MPLL2>,
++				  <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&frddr_a>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&frddr_b>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&frddr_c>;
++		};
++
++		/* 8ch hdmi interface */
++		dai-link-3 {
++			sound-dai = <&tdmif_b>;
++			dai-format = "i2s";
++			dai-tdm-slot-tx-mask-0 = <1 1>;
++			dai-tdm-slot-tx-mask-1 = <1 1>;
++			dai-tdm-slot-tx-mask-2 = <1 1>;
++			dai-tdm-slot-tx-mask-3 = <1 1>;
++			mclk-fs = <256>;
++
++			codec {
++				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
++			};
++		};
++
++		/* hdmi glue */
++		dai-link-4 {
++			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
++
++			codec {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++
+ 	dc_in: regulator-dc_in {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "DC_IN";
+@@ -171,6 +227,14 @@
+ 	};
+ };
+ 
++&arb {
++	status = "okay";
++};
++
++&clkc_audio {
++	status = "okay";
++};
++
+ &cec_AO {
+ 	pinctrl-0 = <&cec_ao_a_h_pins>;
+ 	pinctrl-names = "default";
+@@ -206,6 +270,18 @@
+         amlogic,tx-delay-ns = <2>;
+ };
+ 
++&frddr_a {
++	status = "okay";
++};
++
++&frddr_b {
++	status = "okay";
++};
++
++&frddr_c {
++	status = "okay";
++};
++
+ &hdmi_tx {
+ 	status = "okay";
+ 	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
+@@ -328,6 +404,18 @@
+ 	vqmmc-supply = <&emmc_1v8>;
+ };
+ 
++&tdmif_b {
++	status = "okay";
++};
++
++&tdmout_b {
++	status = "okay";
++};
++
++&tohdmitx {
++	status = "okay";
++};
++
+ &uart_A {
+ 	status = "okay";
+ 	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+-- 
+2.7.4
 
