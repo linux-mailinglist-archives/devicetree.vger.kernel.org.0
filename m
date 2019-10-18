@@ -2,151 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0449DC341
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 12:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3328DC3B5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 13:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728576AbfJRK64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 06:58:56 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:44801 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439355AbfJRK6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 06:58:52 -0400
-Received: by mail-ua1-f66.google.com with SMTP id n2so1579011ual.11
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2019 03:58:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ca95FDLqVIwTMxVi4C0ayivApjVlDjhZW98VO/akMgw=;
-        b=txob3QU1ZZTBr0fz4z1FAnmHKFKvTJ+uRKGQjWfv+3JhC2sJ1lflA9qM3Kst2lbjmb
-         UU2KSKOk2eLmzH1mxykoepji9eYZNIvnZa72C/jt4hcAlBVJleXvYm9YDNZMxvoQWBNO
-         VF4Bxr9D8QmRL2D8MZ9EWW+I3n3etbUrDnpYt/ZC+o0Wj+c+ix3TSf8+Suhyeh115NUC
-         tStpPj7Ror60+sjVEEZQa7O0LtgYRjv0BjsUKjv5uA4fe1Z1Q5ouuTwEVwfx0V85FIZa
-         zWBehNZCpxNuuobsMOgM96pxaT527zwyBf2bM638+HGqDRPGYtoj++kskg67e+ENTC7Y
-         gLLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ca95FDLqVIwTMxVi4C0ayivApjVlDjhZW98VO/akMgw=;
-        b=G/Qw/tYWp+/nSjQaHDx+XrcXnr7zAImp9jy76kjXBZLkWZutb+S89lspyOoR1Yobz7
-         4GzKMKT9/yvFqq/k/q2jFcqDtAYTqjMojQBrLOQDVeEAS0QtFSllOH0Nas9mLWp1+17H
-         1ZJAiOAhlvdaBf41qi+QaL7ZaxKwNMWf6iLhNngVW4GnpkMueUi44Pu7XmeA9f3VwRjS
-         m//jAxKkUi4Li2t14V1sxn42JsGUzRmKqit4x5A+hwRXlfTNRIoDZVpnZ4w5k6cvxzSN
-         psp3zUjiXissVEgwoQ8tGDiXc94+ZQgU84n7oK7vuS05bL7qs1yWqMSRlCpv/JY+Um8E
-         H5kQ==
-X-Gm-Message-State: APjAAAX0ULttmQaQhqRHwjCaND0WzZ4hRpphEPoRp9FRgLhZr7rCptvp
-        3nScXXZzN1yrkhM6chihc8DIwRfqCpOKjoA49ykoB0/P
-X-Google-Smtp-Source: APXvYqziBvPUdA/pLLnCkQCMGiBKL9xGlNYI+FQR3EGKYfmEWMjStiFUlTUn4Sou39IKFohPDlanYzU+rI6rRKbtiJo=
-X-Received: by 2002:ab0:348c:: with SMTP id c12mr534722uar.100.1571396330137;
- Fri, 18 Oct 2019 03:58:50 -0700 (PDT)
+        id S2409947AbfJRLLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 07:11:37 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.47.102]:58120 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2409922AbfJRLLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Oct 2019 07:11:36 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 77C90C038C;
+        Fri, 18 Oct 2019 11:11:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1571397096; bh=e8yggv0btZRuFr6l3qUhzUGs2B07uTUAhsF6E9pwFQ0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JAfzKRqJN/knBHIhtODeGolVsw1cKqnMa1YJSUxdFInIDBEhcjf2RnOv3fPheaafQ
+         104PIuQEajrdUI4Ubn2r10ogn+aNYlNbCqbTX3aEVflgU/lqwcs5rhk9pGIvM+by3J
+         6wcEi7pao5nwpINOCkjQJNfjn2eew+f3yCgwRRjLV/HvQCxoX579aNdElExrV4ReTk
+         NJmxVcAQbpx9tHMHl2JSuSO1F/AnL6BZdlJmVY5dhQpp4FVcWt1RyUh+nVel35VdeI
+         qn4zRKRuHQjm3JeZrhmwC3vJ5DiEFVokTf88garIOFubFPfPwdM6H5FxC+mQdqkQXx
+         4ca00S6sIV5lA==
+Received: from paltsev-e7480.internal.synopsys.com (paltsev-e7480.internal.synopsys.com [10.121.3.73])
+        by mailhost.synopsys.com (Postfix) with ESMTP id EAF6AA005C;
+        Fri, 18 Oct 2019 11:11:28 +0000 (UTC)
+From:   Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+To:     linux-snps-arc@lists.infradead.org,
+        Vineet Gupta <Vineet.Gupta1@synopsys.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexey Brodkin <Alexey.Brodkin@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Subject: [PATCH 0/2] ARC: [plat-hsdk]: enable on-board SPI peripherals
+Date:   Fri, 18 Oct 2019 14:11:24 +0300
+Message-Id: <20191018111126.5246-1-Eugeniy.Paltsev@synopsys.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <4d269f30b1122487a2b5c8b48e24f78f2b75a509.1570537903.git.nicolas.ferre@microchip.com>
- <d25c8f909d039938a5696e8de32396cf2aaf54b7.1570537903.git.nicolas.ferre@microchip.com>
-In-Reply-To: <d25c8f909d039938a5696e8de32396cf2aaf54b7.1570537903.git.nicolas.ferre@microchip.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 18 Oct 2019 12:58:14 +0200
-Message-ID: <CAPDyKFrR810Yb+CqrhvJpSPW0yDEuWsNBysnbEq=3YHcOsVLhw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mmc: sdhci-of-at91: add DT property to enable
- calibration on full reset
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Oct 2019 at 14:34, Nicolas Ferre <nicolas.ferre@microchip.com> wrote:
->
-> Add a property to keep the analog calibration cell powered.
-> This feature is specific to the Microchip SDHCI IP and outside
-> of the standard SDHCI register map.
->
-> By always keeping it on, after a full reset sequence, we make sure
-> that this feature is activated and not disabled.
->
-> We expose a hardware property to the DT as this feature can be used
-> to adapt SDHCI behavior vs. how the SDCAL SoC pin is connected
-> on the board.
->
-> Note that managing properly this property would reduce
-> power consumption on some SAMA5D2 SiP revisions.
->
-> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+HSDK board has SPI flash IC and SPI ADC IC. As all SPI-related
+blocking changes/fixes are finally applied we can enable them.
 
-Applied for next, thanks!
+Eugeniy Paltsev (2):
+  ARC: [plat-hsdk]: Enable on-board SPI NOR flash IC
+  ARC: [plat-hsdk]: Enable on-boardi SPI ADC IC
 
-Kind regards
-Uffe
+ arch/arc/boot/dts/hsdk.dts      | 23 +++++++++++++++++++++++
+ arch/arc/configs/hsdk_defconfig |  6 ++++++
+ 2 files changed, 29 insertions(+)
 
+-- 
+2.21.0
 
-> ---
->  drivers/mmc/host/sdhci-of-at91.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-of-at91.c b/drivers/mmc/host/sdhci-of-at91.c
-> index e7d1920729fb..9571c4a882a9 100644
-> --- a/drivers/mmc/host/sdhci-of-at91.c
-> +++ b/drivers/mmc/host/sdhci-of-at91.c
-> @@ -27,6 +27,9 @@
->  #define SDMMC_CACR     0x230
->  #define                SDMMC_CACR_CAPWREN      BIT(0)
->  #define                SDMMC_CACR_KEY          (0x46 << 8)
-> +#define SDMMC_CALCR    0x240
-> +#define                SDMMC_CALCR_EN          BIT(0)
-> +#define                SDMMC_CALCR_ALWYSON     BIT(4)
->
->  #define SDHCI_AT91_PRESET_COMMON_CONF  0x400 /* drv type B, programmable clock mode */
->
-> @@ -35,6 +38,7 @@ struct sdhci_at91_priv {
->         struct clk *gck;
->         struct clk *mainck;
->         bool restore_needed;
-> +       bool cal_always_on;
->  };
->
->  static void sdhci_at91_set_force_card_detect(struct sdhci_host *host)
-> @@ -116,10 +120,17 @@ static void sdhci_at91_set_uhs_signaling(struct sdhci_host *host,
->
->  static void sdhci_at91_reset(struct sdhci_host *host, u8 mask)
->  {
-> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +       struct sdhci_at91_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> +
->         sdhci_reset(host, mask);
->
->         if (host->mmc->caps & MMC_CAP_NONREMOVABLE)
->                 sdhci_at91_set_force_card_detect(host);
-> +
-> +       if (priv->cal_always_on && (mask & SDHCI_RESET_ALL))
-> +               sdhci_writel(host, SDMMC_CALCR_ALWYSON | SDMMC_CALCR_EN,
-> +                            SDMMC_CALCR);
->  }
->
->  static const struct sdhci_ops sdhci_at91_sama5d2_ops = {
-> @@ -345,6 +356,14 @@ static int sdhci_at91_probe(struct platform_device *pdev)
->
->         priv->restore_needed = false;
->
-> +       /*
-> +        * if SDCAL pin is wrongly connected, we must enable
-> +        * the analog calibration cell permanently.
-> +        */
-> +       priv->cal_always_on =
-> +               device_property_read_bool(&pdev->dev,
-> +                                         "microchip,sdcal-inverted");
-> +
->         ret = mmc_of_parse(host->mmc);
->         if (ret)
->                 goto clocks_disable_unprepare;
-> --
-> 2.17.1
->
