@@ -2,348 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9236DC8B5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 17:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA88DC8DF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 17:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2410715AbfJRPca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 11:32:30 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:40728 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2410707AbfJRPc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 11:32:28 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9IFWRnv002721;
-        Fri, 18 Oct 2019 10:32:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571412747;
-        bh=WCW45BFjyaYF9dFU+6TLiqhLXA6kwWxcmbGkdoJoeto=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=jLqp5H1E4cR8HOR3dLLt7E/aX5o+dSiMXk0tXgLGjqkAfXIRAnDivXZWJxbAsrD2M
-         ghv8l2opGiDIGJZLMQbhQB4vOYTDa7GjYN3SHOr9ohFjn0Bglpf/rEb2HWVGZ99nhg
-         zNHj6wbLdbxPwsY9QAMWDOjYjv0U60azXkW7zkDA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9IFWRKd081245
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Oct 2019 10:32:27 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 18
- Oct 2019 10:32:19 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 18 Oct 2019 10:32:18 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9IFW15X080266;
-        Fri, 18 Oct 2019 10:32:27 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh+dt@kernel.org>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [Patch 19/19] dt-bindings: media: cal: convert binding to yaml
-Date:   Fri, 18 Oct 2019 10:34:37 -0500
-Message-ID: <20191018153437.20614-20-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191018153437.20614-1-bparrot@ti.com>
-References: <20191018153437.20614-1-bparrot@ti.com>
+        id S1732658AbfJRPh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 11:37:58 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:60928 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730468AbfJRPh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 11:37:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1571413074; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yvFr+nNghkKZwR4mawCKvHUmrMBJduw6erMI6YTlcHM=;
+        b=v470AP/WoXYbHAA0MikRhd2C2Q47Jva7B2tAsqSQJh2nMYK2q/AuxV6ILjajalIe9ifrUq
+        QQ5AMEkFZxjYo9B3QckbJkKJ22INg6mA+cpEFKl/QqzArCcPa/pKii/EQODfOjJpBl38Oc
+        nlS76mnfHy2OQjR4ZofesDfcpS7rIQ0=
+Date:   Fri, 18 Oct 2019 17:37:47 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 6/6 v2] MMC: JZ4740: Add support for LPM.
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Zhou Yanjie <zhouyanjie@zoho.com>, linux-mips@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paul.burton@mips.com>,
+        Mark Rutland <mark.rutland@arm.com>, syq@debian.org,
+        Linus Walleij <linus.walleij@linaro.org>, armijn@tjaldur.nl,
+        Thomas Gleixner <tglx@linutronix.de>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Mathieu Malaterre <malat@debian.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Message-Id: <1571413067.3.0@crapouillou.net>
+In-Reply-To: <CAPDyKFo9juNmf6hrcBjzOprS6GwzAPBq8y3ReGu=ry+MdxT9Bg@mail.gmail.com>
+References: <1567669089-88693-1-git-send-email-zhouyanjie@zoho.com>
+        <1570857203-49192-1-git-send-email-zhouyanjie@zoho.com>
+        <1570857203-49192-7-git-send-email-zhouyanjie@zoho.com>
+        <CAPDyKFo9juNmf6hrcBjzOprS6GwzAPBq8y3ReGu=ry+MdxT9Bg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert ti-cal.txt to ti,cal.yaml.
+Hi Uffe,
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- .../devicetree/bindings/media/ti,cal.yaml     | 186 ++++++++++++++++++
- .../devicetree/bindings/media/ti-cal.txt      |  82 --------
- 2 files changed, 186 insertions(+), 82 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/ti,cal.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/ti-cal.txt
 
-diff --git a/Documentation/devicetree/bindings/media/ti,cal.yaml b/Documentation/devicetree/bindings/media/ti,cal.yaml
-new file mode 100644
-index 000000000000..c3fbb22b4571
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/ti,cal.yaml
-@@ -0,0 +1,186 @@
-+# SPDX-License-Identifier: (GPL-2.0)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/ti,cal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL) Device Tree Bindings
-+
-+maintainers:
-+  - Benoit Parrot <bparrot@ti.com>
-+
-+description: |-
-+  The Camera Adaptation Layer (CAL) is a key component for image capture
-+  applications. The capture module provides the system interface and the
-+  processing capability to connect CSI2 image-sensor modules to the
-+  DRA72x device.
-+
-+  CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
-+  should contain a 'port' child node with child 'endpoint' node. Please
-+  refer to the bindings defined in
-+  Documentation/devicetree/bindings/media/video-interfaces.txt.
-+
-+  compatible should be
-+     "ti,dra72-cal", for DRA72 controllers
-+     "ti,dra72-pre-es2-cal", for DRA72 controllers pre ES2.0
-+     "ti,dra76-cal", for DRA76 controllers
-+     "ti,am654-cal", for AM654 controllers
-+
-+properties:
-+  compatible:
-+      items:
-+        - enum:
-+            - ti,dra72-cal
-+            - ti,dra72-pre-es2-cal
-+            - ti,dra76-cal
-+            - ti,am654-cal
-+
-+  reg:
-+    minItems: 2
-+    items:
-+      - description: The CAL main register region
-+      - description: The RX Core0 (DPHY0) register region
-+      - description: The RX Core1 (DPHY1) register region
-+
-+  reg-names:
-+    minItems: 2
-+    items:
-+      - const: cal_top
-+      - const: cal_rx_core0
-+      - const: cal_rx_core1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  syscon-camerrx:
-+    maxItems: 1
-+    items:
-+      - description:
-+           phandle to the device control module and offset to the
-+           control_camerarx_core register
-+
-+  clocks:
-+    maxItems: 1
-+    description: functional clock
-+
-+  clock-names:
-+    items:
-+      - const: fck
-+
-+  power-domains:
-+    description:
-+      List of phandle and PM domain specifier as documented in
-+      Documentation/devicetree/bindings/power/power_domain.txt
-+    maxItems: 1
-+
-+  # See ./video-interfaces.txt for details
-+  ports:
-+    maxItems: 1
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      '^port@[0-9a-fA-F]+$':
-+        minItems: 1
-+        maxItems: 2
-+        type: object
-+        additionalProperties: false
-+
-+        properties:
-+          reg:
-+            minItems: 1
-+            items:
-+              - description: The port id
-+
-+        patternProperties:
-+          '^endpoint@[0-9a-fA-F]+$':
-+            minItems: 1
-+            type: object
-+            additionalProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+              remote-endpoint: true
-+
-+            required:
-+              - remote-endpoint
-+
-+        required:
-+          - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - syscon-camerrx
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    cal: cal@4845b000 {
-+        compatible = "ti,dra72-cal";
-+        reg = <0x4845B000 0x400>,
-+              <0x4845B800 0x40>,
-+              <0x4845B900 0x40>;
-+        reg-names = "cal_top",
-+                    "cal_rx_core0",
-+                    "cal_rx_core1";
-+        interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+        syscon-camerrx = <&scm_conf 0xE94>;
-+
-+        ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              csi2_0: port@0 {
-+                    reg = <0>;
-+                    csi2_phy0: endpoint@0 {
-+                           remote-endpoint = <&csi2_cam0>;
-+                           clock-lanes = <0>;
-+                           data-lanes = <1 2>;
-+                    };
-+              };
-+        };
-+    };
-+
-+    i2c5: i2c@4807c000 {
-+        status = "okay";
-+        clock-frequency = <400000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov5640@3c {
-+               compatible = "ovti,ov5640";
-+               reg = <0x3c>;
-+
-+               clocks = <&clk_ov5640_fixed>;
-+               clock-names = "xclk";
-+
-+               port {
-+                    csi2_cam0: endpoint@0 {
-+                            remote-endpoint = <&csi2_phy0>;
-+                            clock-lanes = <0>;
-+                            data-lanes = <1 2>;
-+                    };
-+               };
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/media/ti-cal.txt b/Documentation/devicetree/bindings/media/ti-cal.txt
-deleted file mode 100644
-index b7bf8492dc2a..000000000000
---- a/Documentation/devicetree/bindings/media/ti-cal.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL)
--------------------------------------------------------
--
--The Camera Adaptation Layer (CAL) is a key component for image capture
--applications. The capture module provides the system interface and the
--processing capability to connect CSI2 image-sensor modules to the
--DRA72x device.
--
--Required properties:
--- compatible:
-- Should be "ti,dra72-cal", for DRA72 controllers
-- Should be "ti,dra72-pre-es2-cal", for DRA72 controllers pre ES2.0
-- Should be "ti,dra76-cal", for DRA76 controllers
-- Should be "ti,am654-cal", for AM654 controllers
--- reg:	CAL Top level, Receiver Core #0, Receiver Core #1 and Camera RX
--	control address space
--- reg-names: cal_top, cal_rx_core0, cal_rx_core1 and camerrx_control
--	     registers
--- interrupts: should contain IRQ line for the CAL;
--- syscon-camerrx: phandle to the device control module and offset to the
--		  control_camerarx_core register
--		  This node is meant to replace the "camerrx_control" reg
--		  entry above but "camerrx_control" is still handled
--		  for backward compatibility.
--
--CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
--should contain a 'port' child node with child 'endpoint' node. Please
--refer to the bindings defined in
--Documentation/devicetree/bindings/media/video-interfaces.txt.
--
--Example:
--	cal: cal@4845b000 {
--		compatible = "ti,dra72-cal";
--		reg = <0x4845B000 0x400>,
--		      <0x4845B800 0x40>,
--		      <0x4845B900 0x40>;
--		reg-names = "cal_top",
--			    "cal_rx_core0",
--			    "cal_rx_core1";
--		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
--		syscon-camerrx = <&scm_conf 0xE94>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			csi2_0: port@0 {
--				reg = <0>;
--				csi2_phy0: endpoint@0 {
--					remote-endpoint = <&csi2_cam0>;
--					clock-lanes = <0>;
--					data-lanes = <1 2>;
--				};
--			};
--			csi2_1: port@1 {
--				reg = <1>;
--			};
--		};
--	};
--
--	i2c5: i2c@4807c000 {
--		status = "okay";
--		clock-frequency = <400000>;
--
--		ov5640@3c {
--			compatible = "ovti,ov5640";
--			reg = <0x3c>;
--
--			clocks = <&clk_ov5640_fixed>;
--			clock-names = "xclk";
--
--			port {
--				csi2_cam0: endpoint {
--					remote-endpoint = <&csi2_phy0>;
--					clock-lanes = <0>;
--					data-lanes = <1 2>;
--				};
--			};
--		};
--	};
--- 
-2.17.1
+Le ven., oct. 18, 2019 at 10:52, Ulf Hansson <ulf.hansson@linaro.org> a=20
+=E9crit :
+> On Sat, 12 Oct 2019 at 07:19, Zhou Yanjie <zhouyanjie@zoho.com> wrote:
+>>=20
+>>  add support for low power mode of Ingenic's MMC/SD Controller.
+>>=20
+>>  Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
+>=20
+> I couldn't find a proper coverletter for the series, please provide
+> that next time as it really helps review. Additionally, it seems like
+> you forgot to change the prefix of the patches to "mmc: jz4740" (or at
+> least you chosed upper case letters), but I will take care of that
+> this time. So, I have applied the series for next, thanks!
+>=20
+> I also have a general question. Should we perhaps rename the driver
+> from jz4740_mmc.c to ingenic.c (and the file for the DT bindings, the
+> Kconfig, etc), as that seems like a more appropriate name? No?
+
+Is there a kernel policy regarding renaming drivers? Since it trashes=20
+the git history. Anyway you're the subsystem maintainer so I guess=20
+that's up to you. I can send a patch to rename it if you want.
+
+Cheers,
+-Paul
+
+
+>=20
+> Kind regards
+> Uffe
+>=20
+>=20
+>>  ---
+>>   drivers/mmc/host/jz4740_mmc.c | 23 +++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>=20
+>>  diff --git a/drivers/mmc/host/jz4740_mmc.c=20
+>> b/drivers/mmc/host/jz4740_mmc.c
+>>  index 44a04fe..4cbe7fb 100644
+>>  --- a/drivers/mmc/host/jz4740_mmc.c
+>>  +++ b/drivers/mmc/host/jz4740_mmc.c
+>>  @@ -43,6 +43,7 @@
+>>   #define JZ_REG_MMC_RESP_FIFO   0x34
+>>   #define JZ_REG_MMC_RXFIFO      0x38
+>>   #define JZ_REG_MMC_TXFIFO      0x3C
+>>  +#define JZ_REG_MMC_LPM         0x40
+>>   #define JZ_REG_MMC_DMAC                0x44
+>>=20
+>>   #define JZ_MMC_STRPCL_EXIT_MULTIPLE BIT(7)
+>>  @@ -102,6 +103,12 @@
+>>   #define JZ_MMC_DMAC_DMA_SEL BIT(1)
+>>   #define JZ_MMC_DMAC_DMA_EN BIT(0)
+>>=20
+>>  +#define        JZ_MMC_LPM_DRV_RISING BIT(31)
+>>  +#define        JZ_MMC_LPM_DRV_RISING_QTR_PHASE_DLY BIT(31)
+>>  +#define        JZ_MMC_LPM_DRV_RISING_1NS_DLY BIT(30)
+>>  +#define        JZ_MMC_LPM_SMP_RISING_QTR_OR_HALF_PHASE_DLY BIT(29)
+>>  +#define        JZ_MMC_LPM_LOW_POWER_MODE_EN BIT(0)
+>>  +
+>>   #define JZ_MMC_CLK_RATE 24000000
+>>=20
+>>   enum jz4740_mmc_version {
+>>  @@ -860,6 +867,22 @@ static int jz4740_mmc_set_clock_rate(struct=20
+>> jz4740_mmc_host *host, int rate)
+>>          }
+>>=20
+>>          writew(div, host->base + JZ_REG_MMC_CLKRT);
+>>  +
+>>  +       if (real_rate > 25000000) {
+>>  +               if (host->version >=3D JZ_MMC_X1000) {
+>>  +                       writel(JZ_MMC_LPM_DRV_RISING_QTR_PHASE_DLY |
+>>  +                                 =20
+>> JZ_MMC_LPM_SMP_RISING_QTR_OR_HALF_PHASE_DLY |
+>>  +                                  JZ_MMC_LPM_LOW_POWER_MODE_EN,
+>>  +                                  host->base + JZ_REG_MMC_LPM);
+>>  +               } else if (host->version >=3D JZ_MMC_JZ4760) {
+>>  +                       writel(JZ_MMC_LPM_DRV_RISING |
+>>  +                                  JZ_MMC_LPM_LOW_POWER_MODE_EN,
+>>  +                                  host->base + JZ_REG_MMC_LPM);
+>>  +               } else if (host->version >=3D JZ_MMC_JZ4725B)
+>>  +                       writel(JZ_MMC_LPM_LOW_POWER_MODE_EN,
+>>  +                                  host->base + JZ_REG_MMC_LPM);
+>>  +       }
+>>  +
+>>          return real_rate;
+>>   }
+>>=20
+>>  --
+>>  2.7.4
+>>=20
+>>=20
+
+=
 
