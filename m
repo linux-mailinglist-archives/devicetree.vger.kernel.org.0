@@ -2,160 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A5ADCB6D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 18:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 301AEDCC87
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 19:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727528AbfJRQcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 12:32:46 -0400
-Received: from muru.com ([72.249.23.125]:38150 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392259AbfJRQcq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Oct 2019 12:32:46 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 9B2558168;
-        Fri, 18 Oct 2019 16:33:19 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 10/10] ARM: OMAP2+: Drop legacy platform data for musb on omap4
-Date:   Fri, 18 Oct 2019 09:32:20 -0700
-Message-Id: <20191018163220.3504-11-tony@atomide.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191018163220.3504-1-tony@atomide.com>
-References: <20191018163220.3504-1-tony@atomide.com>
+        id S2393523AbfJRRW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 13:22:27 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:54284 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406175AbfJRRW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 13:22:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=YEUqwXf68rAn5s1l3tXa9+Nk4NAT0bB7VwakuvjxaLs=; b=qqxu/nOj/LYHzT/4No5A2w9Bt
+        14EqFiyq8GyiJfeDqnzchr+4WwrOpkqpkoRNH8VJqlWa6fu1u4KVKbzZjgy+CiWCXFlb7nqFwNaZx
+        PDCha66YmI8vpPsvEE8MBWHbIQRHMMKZqc6vK0CPeX1afZCocWnikDGFMK8UFOt6POnjA=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iLVxG-00049W-8Z; Fri, 18 Oct 2019 17:22:22 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 166FA2741DEA; Fri, 18 Oct 2019 18:22:21 +0100 (BST)
+Date:   Fri, 18 Oct 2019 18:22:20 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, enric.balletbo@collabora.com,
+        bleung@google.com, gwendal@google.com, drinkcat@google.com,
+        cychiang@google.com, dgreid@google.com
+Subject: Re: [PATCH v4 07/10] ASoC: cros_ec_codec: support WoV
+Message-ID: <20191018172220.GC4828@sirena.co.uk>
+References: <20191017213539.00-tzungbi@google.com>
+ <20191017213539.07.I5388b69a7a9c551078fed216a77440cee6dedf49@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vEao7xgI/oilGqZ+"
+Content-Disposition: inline
+In-Reply-To: <20191017213539.07.I5388b69a7a9c551078fed216a77440cee6dedf49@changeid>
+X-Cookie: Smear the road with a runner!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now probe devices with ti-sysc interconnect driver and dts
-data. Let's drop the related platform data and custom ti,hwmods
-dts property.
 
-As we're just dropping data, and the early platform data init
-is based on the custom ti,hwmods property, we want to drop both
-the platform data and ti,hwmods property in a single patch.
+--vEao7xgI/oilGqZ+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/omap4-l4.dtsi            |  1 -
- arch/arm/mach-omap2/omap_hwmod_44xx_data.c | 63 ----------------------
- 2 files changed, 64 deletions(-)
+On Thu, Oct 17, 2019 at 10:00:12PM +0800, Tzung-Bi Shih wrote:
+> 1. Get EC codec's capabilities.
+> 2. Get and set SHM address if any.
+> 3. Transmit language model to EC codec if needed.
+> 4. Start to read audio data from EC codec if receives host event.
 
-diff --git a/arch/arm/boot/dts/omap4-l4.dtsi b/arch/arm/boot/dts/omap4-l4.dtsi
---- a/arch/arm/boot/dts/omap4-l4.dtsi
-+++ b/arch/arm/boot/dts/omap4-l4.dtsi
-@@ -381,7 +381,6 @@
- 
- 		target-module@2b000 {			/* 0x4a0ab000, ap 84 12.0 */
- 			compatible = "ti,sysc-omap2", "ti,sysc";
--			ti,hwmods = "usb_otg_hs";
- 			reg = <0x2b400 0x4>,
- 			      <0x2b404 0x4>,
- 			      <0x2b408 0x4>;
-diff --git a/arch/arm/mach-omap2/omap_hwmod_44xx_data.c b/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
-@@ -2086,51 +2086,6 @@ static struct omap_hwmod omap44xx_usb_host_hs_hwmod = {
- 	.flags		= HWMOD_SWSUP_SIDLE | HWMOD_SWSUP_MSTANDBY,
- };
- 
--/*
-- * 'usb_otg_hs' class
-- * high-speed on-the-go universal serial bus (usb_otg_hs) controller
-- */
--
--static struct omap_hwmod_class_sysconfig omap44xx_usb_otg_hs_sysc = {
--	.rev_offs	= 0x0400,
--	.sysc_offs	= 0x0404,
--	.syss_offs	= 0x0408,
--	.sysc_flags	= (SYSC_HAS_AUTOIDLE | SYSC_HAS_ENAWAKEUP |
--			   SYSC_HAS_MIDLEMODE | SYSC_HAS_SIDLEMODE |
--			   SYSC_HAS_SOFTRESET | SYSS_HAS_RESET_STATUS),
--	.idlemodes	= (SIDLE_FORCE | SIDLE_NO | SIDLE_SMART |
--			   SIDLE_SMART_WKUP | MSTANDBY_FORCE | MSTANDBY_NO |
--			   MSTANDBY_SMART),
--	.sysc_fields	= &omap_hwmod_sysc_type1,
--};
--
--static struct omap_hwmod_class omap44xx_usb_otg_hs_hwmod_class = {
--	.name	= "usb_otg_hs",
--	.sysc	= &omap44xx_usb_otg_hs_sysc,
--};
--
--/* usb_otg_hs */
--static struct omap_hwmod_opt_clk usb_otg_hs_opt_clks[] = {
--	{ .role = "xclk", .clk = "usb_otg_hs_xclk" },
--};
--
--static struct omap_hwmod omap44xx_usb_otg_hs_hwmod = {
--	.name		= "usb_otg_hs",
--	.class		= &omap44xx_usb_otg_hs_hwmod_class,
--	.clkdm_name	= "l3_init_clkdm",
--	.flags		= HWMOD_SWSUP_SIDLE | HWMOD_SWSUP_MSTANDBY,
--	.main_clk	= "usb_otg_hs_ick",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = OMAP4_CM_L3INIT_USB_OTG_CLKCTRL_OFFSET,
--			.context_offs = OMAP4_RM_L3INIT_USB_OTG_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_HWCTRL,
--		},
--	},
--	.opt_clks	= usb_otg_hs_opt_clks,
--	.opt_clks_cnt	= ARRAY_SIZE(usb_otg_hs_opt_clks),
--};
--
- /*
-  * 'usb_tll_hs' class
-  * usb_tll_hs module is the adapter on the usb_host_hs ports
-@@ -2338,14 +2293,6 @@ static struct omap_hwmod_ocp_if omap44xx_usb_host_hs__l3_main_2 = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
- 
--/* usb_otg_hs -> l3_main_2 */
--static struct omap_hwmod_ocp_if omap44xx_usb_otg_hs__l3_main_2 = {
--	.master		= &omap44xx_usb_otg_hs_hwmod,
--	.slave		= &omap44xx_l3_main_2_hwmod,
--	.clk		= "l3_div_ck",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- /* l3_main_1 -> l3_main_3 */
- static struct omap_hwmod_ocp_if omap44xx_l3_main_1__l3_main_3 = {
- 	.master		= &omap44xx_l3_main_1_hwmod,
-@@ -2970,14 +2917,6 @@ static struct omap_hwmod_ocp_if omap44xx_l4_cfg__usb_host_hs = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
- 
--/* l4_cfg -> usb_otg_hs */
--static struct omap_hwmod_ocp_if omap44xx_l4_cfg__usb_otg_hs = {
--	.master		= &omap44xx_l4_cfg_hwmod,
--	.slave		= &omap44xx_usb_otg_hs_hwmod,
--	.clk		= "l4_div_ck",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- /* l4_cfg -> usb_tll_hs */
- static struct omap_hwmod_ocp_if omap44xx_l4_cfg__usb_tll_hs = {
- 	.master		= &omap44xx_l4_cfg_hwmod,
-@@ -3024,7 +2963,6 @@ static struct omap_hwmod_ocp_if *omap44xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap44xx_l4_cfg__l3_main_2,
- 	/* &omap44xx_usb_host_fs__l3_main_2, */
- 	&omap44xx_usb_host_hs__l3_main_2,
--	&omap44xx_usb_otg_hs__l3_main_2,
- 	&omap44xx_l3_main_1__l3_main_3,
- 	&omap44xx_l3_main_2__l3_main_3,
- 	&omap44xx_l4_cfg__l3_main_3,
-@@ -3104,7 +3042,6 @@ static struct omap_hwmod_ocp_if *omap44xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap44xx_l4_per__timer11,
- 	/* &omap44xx_l4_cfg__usb_host_fs, */
- 	&omap44xx_l4_cfg__usb_host_hs,
--	&omap44xx_l4_cfg__usb_otg_hs,
- 	&omap44xx_l4_cfg__usb_tll_hs,
- 	&omap44xx_mpu__emif1,
- 	&omap44xx_mpu__emif2,
--- 
-2.23.0
+This breaks the build:
+
+ld: sound/soc/codecs/cros_ec_codec.o: in function `calculate_sha256.isra.15':
+cros_ec_codec.c:(.text+0x119d): undefined reference to `crypto_alloc_shash'
+ld: cros_ec_codec.c:(.text+0x11c1): undefined reference to `crypto_shash_digest'
+ld: cros_ec_codec.c:(.text+0x11df): undefined reference to `crypto_destroy_tfm'
+make: *** [Makefile:1094: vmlinux] Error 1
+
+--vEao7xgI/oilGqZ+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2p9MwACgkQJNaLcl1U
+h9C6hQf/WgLMjwUC9ev2n7739zYINOiNlP2HiWhim675Y+ILwL3SO3kAdVwi+Ev5
+IeBwkDqetGni8J+KbGWyYPE2LnmVjvOoCyH+6V8E/fHfkLPtXocG5UZL4DjVstTB
+27MdU4tDUczYrk+mRVuaBnz9f8DHTIufhiaRiiO3r3QI8Kpf1ClZ/gnEez5b+y7T
+lOPOFXopjOoH14AX3CztZbJjnGDJ9k5oFFMMkv7fjqtcnxbDHXCYs4cumAHYeqld
++8aHLp58m4Jcdjq3QYdaV1PTeJP2cGBRXsWoGiMJyYgcH5WALgdS3fLv+yIGSUx5
+qbuLVXUou6jeu+irpsqUkcPm7JQzgw==
+=MH7S
+-----END PGP SIGNATURE-----
+
+--vEao7xgI/oilGqZ+--
