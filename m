@@ -2,127 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ACBDADC995
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 17:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D7FDDCA4D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2019 18:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505525AbfJRPq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Oct 2019 11:46:27 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:49680 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502173AbfJRPq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 11:46:26 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9IFkOe0016686;
-        Fri, 18 Oct 2019 10:46:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571413584;
-        bh=4XFNuK5ltxL4zK2+hVEoqLGhDnmvAy3+zQEpDc7IUK0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yZ3zG/uS6bhU3+mm2eEUwdejaTBaNFKHyzQSoXcCEFiq19m0zf+eno316RrRSVOU3
-         FLOCmWveCpCKjFIQ1QAW/k8EYqMkl8AAZD7z1SdurnFxSXykraYdnk8e3rhRjSyw6u
-         uDemw5yPhBeM6hHJkP9JqMgGYt1aUQ+cdEsUSfXc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9IFkOfF005546
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Oct 2019 10:46:24 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 18
- Oct 2019 10:46:24 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 18 Oct 2019 10:46:15 -0500
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9IFkDAV045642;
-        Fri, 18 Oct 2019 10:46:24 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benoit Parrot <bparrot@ti.com>
-Subject: [Patch 9/9] arm64: dts: k3-am654-base-board: Add CSI2 OV5640 camera
-Date:   Fri, 18 Oct 2019 10:48:49 -0500
-Message-ID: <20191018154849.3127-10-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191018154849.3127-1-bparrot@ti.com>
-References: <20191018154849.3127-1-bparrot@ti.com>
+        id S2502341AbfJRQHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Oct 2019 12:07:43 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:38359 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2501965AbfJRQHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Oct 2019 12:07:43 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1iLUmx-0002BR-RU; Fri, 18 Oct 2019 18:07:39 +0200
+Received: from mtr by dude02.lab.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1iLUmw-0004AF-4q; Fri, 18 Oct 2019 18:07:38 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, michal.simek@xilinx.com,
+        devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Michael Tretter <m.tretter@pengutronix.de>
+Subject: [PATCH 0/5] arm64: zynqmp: add firmware device tree node
+Date:   Fri, 18 Oct 2019 18:07:30 +0200
+Message-Id: <20191018160735.15658-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the OV5640 CSI camera:
-- add the OV5640 nodes
-- add the CAL node linkage
-- enable CAL node
+Hi,
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+this patch series adds the device tree node for the ZynqMP PMU firmware and
+the subnodes for the pcap fpga loader and the efuses to the ZynqMP device
+tree. While the bindings have been mainlined, the actual device tree nodes
+were never added to mainline, but were left in the Xilinx downstream
+repository [0].
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 1102b84f853d..918601c18f85 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -53,6 +53,12 @@
- 			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+
-+	clk_ov5640_fixed: clk_ov5640_fixed {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -184,6 +190,23 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c1_pins_default>;
- 	clock-frequency = <400000>;
-+
-+	ov5640@3c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x3c>;
-+
-+		clocks = <&clk_ov5640_fixed>;
-+		clock-names = "xclk";
-+
-+		port {
-+			csi2_cam0: endpoint {
-+				remote-endpoint = <&csi2_phy0>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+
- };
- 
- &main_i2c2 {
-@@ -280,3 +303,16 @@
- &pcie1_ep {
- 	status = "disabled";
- };
-+
-+&cal {
-+	status = "okay";
-+};
-+
-+&csi2_0 {
-+	csi2_phy0: endpoint@0 {
-+		remote-endpoint = <&csi2_cam0>;
-+		clock-lanes = <0>;
-+		data-lanes = <1 2>;
-+	};
-+};
-+
+I cherry-picked the patches from the downstream repo and slightly adjusted
+them to the mainlined device tree bindings to be able to actually use the
+devices with the mainline kernel and device tree.
+
+Michael
+
+[0] https://github.com/Xilinx/linux-xlnx
+
+Durga Challa (1):
+  arm64: zynqmp: Add data cells to access efuse
+
+Nava kishore Manne (3):
+  arm64: zynqmp: Add support for zynqmp fpga manager
+  arm64: zynqmp: Label whole PL part as fpga_full region
+  arm64: zynqmp: Add support for zynqmp nvmem firmware driver
+
+Rajan Vaja (1):
+  arm64: zynqmp: Add firmware DT node
+
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 77 ++++++++++++++++++++++++++
+ 1 file changed, 77 insertions(+)
+
 -- 
-2.17.1
+2.20.1
 
