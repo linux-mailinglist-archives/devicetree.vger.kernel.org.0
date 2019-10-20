@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1201DDDEC
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2019 12:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 226D3DDEA4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2019 15:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726376AbfJTKGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Oct 2019 06:06:16 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:51896 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726282AbfJTKGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Oct 2019 06:06:16 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 81AF9614BB; Sun, 20 Oct 2019 10:06:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1571565975;
-        bh=VeiYsOiJ34C6mK+O1IMpFSujsRltb99Y7wY7+/sOdn8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SN4xG3rNN/mRNNxob3z/OG3Fpu8csdw2nBry8mtDGWbtbk3sQ6eJvQoCTijbzjWrj
-         Ybv7yCUZcStRwdKfZZ5tRZ+gjZDnYH7m8Vz2O7g2ILB+YEzNhurOytvlJtGkg5A0gF
-         FZgAUirpKTa83HXydD2gGoaPV2EnDLNvTqOsTdWc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from x230.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1726301AbfJTNiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Oct 2019 09:38:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43532 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726296AbfJTNiA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 20 Oct 2019 09:38:00 -0400
+Received: from localhost (unknown [106.51.108.167])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 52D74616E5;
-        Sun, 20 Oct 2019 10:06:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1571565969;
-        bh=VeiYsOiJ34C6mK+O1IMpFSujsRltb99Y7wY7+/sOdn8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aCnQ4heKRUL7VjVmkpyAMdqArLL/QQm987KejCo0S3BcUCvOdbbtu1+mQn+RZt0lJ
-         urgPvBrmPal+MxoYRpo9y32ISFeQ8ShdF44IC4IIq2Cp/lMDPEjjfYu+rZ3K5UlTnj
-         DYpMIhS6xW3cIs1WRvDoMmpa0ZakV2kdQuxrBMG4=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 52D74616E5
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     linux-wireless@vger.kernel.org
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 49/49] MAINTAINERS: add ath11k
-Date:   Sun, 20 Oct 2019 13:04:07 +0300
-Message-Id: <1571565847-10338-50-git-send-email-kvalo@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
-References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 7A7B520679;
+        Sun, 20 Oct 2019 13:37:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571578679;
+        bh=za7ORQM0o/bZx348xhyzmEOt1K2y/INFWAQjAQLu7Rc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Te3mQI4m1f7FRFpyXfamK1Liz3THwRFnb25zjYUCxTz9hQv7WPh1bpZoEZz2iwksV
+         HKrTnxwyfDNOj+RWHCjNYqgPBAiopuG1VbgCLASx2cCbRVTV4u3imx+dzfqfr1kSWG
+         FJ+LwZeQ67ODn/CAg+JwdT3YFqj+3ZU7BpWqM/A0=
+Date:   Sun, 20 Oct 2019 19:07:55 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: Add APSS watchdog node
+Message-ID: <20191020133755.GT2654@vkoul-mobl>
+References: <20191003041345.20912-1-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191003041345.20912-1-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for ath11k to the MAINTAINERS file.
+On 02-10-19, 21:13, Bjorn Andersson wrote:
+> Add a node describing the watchdog found in the application subsystem.
 
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 677ef41cb012..ae00b2c443b6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13028,6 +13028,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
- S:	Supported
- F:	drivers/net/wireless/ath/ath10k/
- 
-+QUALCOMM ATHEROS ATH11K WIRELESS DRIVER
-+M:	Kalle Valo <kvalo@codeaurora.org>
-+L:	ath11k@lists.infradead.org
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
-+S:	Supported
-+F:	drivers/net/wireless/ath/ath11k/
-+
- QUALCOMM ATHEROS ATH9K WIRELESS DRIVER
- M:	QCA ath9k Development <ath9k-devel@qca.qualcomm.com>
- L:	linux-wireless@vger.kernel.org
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index f0b2db34ec4a..23915eab4187 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -3488,6 +3488,12 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		watchdog@17980000 {
+> +			compatible = "qcom,apss-wdt-sdm845", "qcom,kpss-wdt";
+> +			reg = <0 0x17980000 0 0x1000>;
+> +			clocks = <&sleep_clk>;
+> +		};
+> +
+>  		apss_shared: mailbox@17990000 {
+>  			compatible = "qcom,sdm845-apss-shared";
+>  			reg = <0 0x17990000 0 0x1000>;
+> -- 
+> 2.18.0
 
+-- 
+~Vinod
