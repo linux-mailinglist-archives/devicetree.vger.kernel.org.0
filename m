@@ -2,255 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5D9DF1C3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 17:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C6EDF1C8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 17:41:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729488AbfJUPlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 11:41:22 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:23980 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726289AbfJUPlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 11:41:22 -0400
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LFXXGt003599;
-        Mon, 21 Oct 2019 11:40:54 -0400
-Received: from nam05-co1-obe.outbound.protection.outlook.com (mail-co1nam05lp2059.outbound.protection.outlook.com [104.47.48.59])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2vqy46bw0h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Mon, 21 Oct 2019 11:40:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U3Kv+D+zn2/ISQgRg5uQNAuWBTLzRiMJQLbRZHVIj/fhcms0a1tWjOaDlfHMCYXQ3ll5zMm6ooz2WrE3TDmKaOz4zkbM051wuMbsWFgLp3ZpbMmVS0WNvaUwUNcW8PNd4lLgzxVxBt/M2jdxw/b/fzMY+xTETJ6q9p4ybHG/GDRmcWn7rkIxr6ku3ARygX/I9Liv+kGsz7GAAueyXqAVhlgTcoiC2un0ccsoVCJh0mL+80lFvebQtwmNIip/Clhmd/VdunrzIgNYCT+yVlZesfMZ2VYN8tIEGajkegCjtCHXU34w5XPC3UO59nO2xQ1Zt+MhuO8Xg8rNRICYsLd/xw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1jpS+gCEUevYtrwJ2pR1CTP9IKd1jYmFKaMtnaJ1e0U=;
- b=f5oz1Acg5RvdBaBAdBZI2k0q5aeDq/zyMbHwIq1bfE0BDhz4ns7W9aNS2z2ymBDoxSrFqcffE+yEUq0b03n6kpUqGe/J+2lRGRh7vpw9vAiHC68e52RPz/rxFCiEFshcOMdt44P9YfxjL63rjJoUHO88PwKiNEfCcNCwhsIfdzWr0xexubJrOb7Y12ukOXqIEcB+plZCnuTk+ykr2zJKrbwAwJfszRCkg72TcTE2BxDSjbEdixCGgHapS63Yz0Kdvy1kBihOid8rwYEHh9ofAXt2tzgTtZUyT/s/hMDYVmDR3tBD3QkehfEugBEV7YamI9x/zkcM9xKR8tZjP1L2yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 137.71.25.55) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=analog.com;
- dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
- not signed); arc=none
+        id S1729522AbfJUPl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 11:41:59 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:41443 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729447AbfJUPl6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 11:41:58 -0400
+Received: by mail-io1-f68.google.com with SMTP id r144so4605993iod.8;
+        Mon, 21 Oct 2019 08:41:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1jpS+gCEUevYtrwJ2pR1CTP9IKd1jYmFKaMtnaJ1e0U=;
- b=ynArVqbItCwMFzuXskxrLSxiXYWDeoGpF6VDFA5pDVM8f3J8LmXDf7jd/BcOM+hP3rI/tgJP6kHYO7Mzmyr9t9zmHItGXnmszmX6ZJJInXjxZYCwMeHyqEw+dKTAM+aBIm4BrJ8DpOZBTK/TtHb27myV2OPVwz/x0Q38ADudKn8=
-Received: from CY1PR03CA0004.namprd03.prod.outlook.com (2603:10b6:600::14) by
- BYAPR03MB3462.namprd03.prod.outlook.com (2603:10b6:a02:a9::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.21; Mon, 21 Oct 2019 15:40:52 +0000
-Received: from CY1NAM02FT011.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::206) by CY1PR03CA0004.outlook.office365.com
- (2603:10b6:600::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2367.21 via Frontend
- Transport; Mon, 21 Oct 2019 15:40:52 +0000
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
-Received: from nwd2mta1.analog.com (137.71.25.55) by
- CY1NAM02FT011.mail.protection.outlook.com (10.152.75.156) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2367.14
- via Frontend Transport; Mon, 21 Oct 2019 15:40:51 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x9LFepQZ006667
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Mon, 21 Oct 2019 08:40:51 -0700
-Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
- (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 21 Oct
- 2019 11:40:50 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v3 2/2] dt-bindings: hwmon: Add ltc2947 documentation
-Date:   Mon, 21 Oct 2019 17:41:15 +0200
-Message-ID: <20191021154115.319073-2-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191021154115.319073-1-nuno.sa@analog.com>
-References: <20191021154115.319073-1-nuno.sa@analog.com>
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yrezMpUPTuyBffQXpwXrXBC3vhqskF147L+22Fn98BU=;
+        b=EwmNb7cXzst/x89vU6zX83MOOZymhv4R7vncUF7z1tLKjEQC3olmiUnfQla3diTAaY
+         CwxGnWNj4NsBN6ZUzZjBq3ozYbikY1usGQPjjJNT2B6tGiIVTS7QPbyrtamOV8SKH2B6
+         XvM4vy8QY6L3spvc+y6BPseinBCXbXoxo5IezrWm6zw8bIpeoh87tqkE9cj1BEs2gGVs
+         aZGDKqPxfiP4VYqbsGB8dgHSbhD5NDYAIF8tT+X3o3dPr7iF4gr6lCXXFCR5y2eOOMi6
+         BlypA8VwHZxFc8HlZYhZEycLpi+Ml42Mz2S9+ief8wwwPHOzEt3YT9lVze8zUoiUqG2P
+         PGSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yrezMpUPTuyBffQXpwXrXBC3vhqskF147L+22Fn98BU=;
+        b=ZCGEwIH74dAJ8s2mYvJFciE/Q6pKYJwDZY0s/APbgfPAnlYdb5X1aJG6U/YF7uplko
+         L913PkEyk7TUF2mW1dVWE5zegOb+FlwLkWv2D0b6ISSE8XUxf10rdDAbtllHXwpusJyG
+         CUWrdcp7hAAF+h6AIExWb2zRG3kygGKIvhwCSeYyjaU/dem8VkYyoOEx7CeJdZDLGPLY
+         FZFqf1BNWB8tAfmRcCedTarpDrBEogCOACBGMoGynD0Ne9Y7IeYBl3wY2myq+nrO5tzK
+         UcGJIzGF2sz2falQtRqPhfghisjusJP3sbaKpi8v/GM6qYyLDYco4rMEfYw6fww1nbJA
+         zE0Q==
+X-Gm-Message-State: APjAAAUljxGL95LmGz3AE61khV27J9biz6kt/8qeRiHk2+cestMpJSWx
+        PSxnXhAA7eq1BNRB4S33Hepy++dhagr09ClXGlw=
+X-Google-Smtp-Source: APXvYqzSsz0JCUb9Vzflc4VEP6hwCRnJcMI8hMtnlwZ2QZkCnUzhMTr7V+XY5wal8xMfpEGVzAt4PglUUBLaMwmHu0g=
+X-Received: by 2002:a6b:7417:: with SMTP id s23mr17364283iog.221.1571672516254;
+ Mon, 21 Oct 2019 08:41:56 -0700 (PDT)
 MIME-Version: 1.0
+References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+ <7hsgo4cgeg.fsf@baylibre.com> <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+ <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
+ <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
+ <1jwode9lba.fsf@starbuckisacylon.baylibre.com> <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
+ <CAFBinCBdwqxA2kLMAA9gtOcXevYK-J4x12odHwpQOAWakgWiEg@mail.gmail.com>
+ <CANAwSgRs2DUXwvhJD5qpXg04qEdP_Nt-wQqRbD2FpY2SWnHpAA@mail.gmail.com> <1a98c5f0-de8a-53bc-cfb7-c9b3255667c6@baylibre.com>
+In-Reply-To: <1a98c5f0-de8a-53bc-cfb7-c9b3255667c6@baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 21 Oct 2019 21:11:45 +0530
+Message-ID: <CANAwSgRD-Vd-D1H5cDYMyTLRMfzdkrFuiy4KfXYt6S+0goF-2w@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.44.3.90]
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(136003)(376002)(396003)(346002)(189003)(199004)(110136005)(54906003)(305945005)(23676004)(5820100001)(53416004)(7636002)(966005)(7736002)(70206006)(70586007)(6306002)(4326008)(8936002)(50466002)(26005)(8676002)(106002)(316002)(76176011)(50226002)(45776006)(186003)(6666004)(356004)(16526019)(246002)(2870700001)(1076003)(486006)(36756003)(5660300002)(3846002)(446003)(11346002)(2906002)(2616005)(2201001)(86362001)(6116002)(47776003)(478600001)(426003)(336012)(476003)(126002);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR03MB3462;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2003a0ba-1deb-4445-c3c2-08d7563d0dd3
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3462:
-X-MS-Exchange-PUrlCount: 3
-X-Microsoft-Antispam-PRVS: <BYAPR03MB346234A7F412C9D9DBE3503E99690@BYAPR03MB3462.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-Forefront-PRVS: 0197AFBD92
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sL1CJStpItdmYVTbCjjUH95aFkFGRnEU49TtsAMSdslkZvWxyBy+9kzrdTrPojx6LFZoV6thpTENlIIL6o8T+f06cx7hLkDA/c0L8mFIRFuoW2tuflzT/7XEvMpLoUu0L/yTf/rt/YgPNMNy83pPOwK7Zz5IsLg8WCuAPcMxw+y4FgKjecjQswuvesmiCJntHWDjoICJrysKTpJ1g5yRCDLQNJygOO1SjVwsoWKLuYDxaFyb/quEZGSB7jfPkDX3+0BvplBH2mxkiq1zBlEPcHD4LyI9lh8pMDbwu2QidTmZcZReAy8eokxqCMqrD5r7hdu+4c5KRL8KaGD2rgOpQlKKVvIPEXPD/+ZZRBq/FhRoIeISDG3EHXj66w2ws9/hVyA9ay+nf7ek3EGrbqJX+uZDsD2qVBptY2JImZA63SrgeOsVXoyfgcQd6mwsY5DNBJEn36B8t6kdfMirlc6kxWnD9rVKfsYJJAvlsqLvQSs=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2019 15:40:51.9949
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2003a0ba-1deb-4445-c3c2-08d7563d0dd3
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB3462
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-21_04:2019-10-21,2019-10-21 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- spamscore=0 priorityscore=1501 adultscore=0 malwarescore=0 clxscore=1015
- mlxlogscore=999 mlxscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910210147
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the LTC2947 device devicetree bindings.
+Hi Neil,
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
-Changes in v2:
- * Add license identifier;
- * Fix the uint32-array properties;
- * Set maximum at the same indent as allOf in adi,accumulation-deadband-microamp;
- * Set enum at the same indent as allOf in adi,gpio-out-pol;
- * Use spi instead of spi0 on the example;
+On Mon, 21 Oct 2019 at 19:55, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi Anand,
+>
+> On 21/10/2019 16:11, Anand Moon wrote:
+> > Hi Martin,
+> >
+> > On Fri, 18 Oct 2019 at 23:40, Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> >>
+> >> Hi Anand,
+> >>
+> >> On Fri, Oct 18, 2019 at 4:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >> [...]
+> >>>> Next step it to try narrow down the clock causing the issue.
+> >>>> Remove clk_ignore_unused from the command line and add CLK_INGORE_UNUSED
+> >>>> to the flag of some clocks your clock controller (g12a I think) until
+> >>>>
+> >>>> The peripheral clock gates already have this flag (something we should
+> >>>> fix someday) so don't bother looking there.
+> >>>>
+> >>>> Most likely the source of the pwm is getting disabled between the
+> >>>> late_init call and the probe of the PWM module. Since the pwm is already
+> >>>> active (w/o a driver), gating the clock source shuts dowm the power to
+> >>>> the cores.
+> >>>>
+> >>>> Looking a the possible inputs in pwm driver, I'd bet on fdiv4.
+> >>>>
+> >>>
+> >>> I had give this above steps a try but with little success.
+> >>> I am still looking into this much close.
+> >> it's not clear to me if you have only tested with the PWM and/or
+> >> FCLK_DIV4 clocks. can you please describe what you have tested so far?
+> >>
+> > Sorry for delayed response.
+> >
+> > I had just looked into clk related to SD_EMMC_A/B/C,
+> > with adding CLK_IGNORE/CRITICAL.
+> > Also looked into clk_summary for eMMC and microSD card,
+> > to identify the root cause, but I failed to move ahead.
+> >
+> >> for reference - my way of debugging this in the past was:
+> >> 1. add some printks to clk_disable_unused_subtree (right after the
+> >> clk_core_is_enabled check) to see which clocks are being disabled
+> >> 2. add CLK_IGNORE_UNUSED or CLK_IS_CRITICAL to the clocks which are
+> >> being disabled based on the information from step #1
+> >> 3. (at some point I had a working kernel with lots of clocks with
+> >> CLK_IGNORE_UNUSED/CLK_IS_CRITICAL)
+> >> 4. start dropping the CLK_IGNORE_UNUSED/CLK_IS_CRITICAL flags again
+> >> until you have traced it down to the clocks that are the actual issue
+> >> (so far I always had only one clock which caused issues, but it may be
+> >> multiple)
+> >> 5. investigate (and/or ask on the mailing list, Amlogic developers are
+> >> reading the mails here as well) for the few clocks from step #4
+> >>
+> >
+> > Thanks for you valuable suggestion. I have your patch to debug this
+> > [0]  https://patchwork.kernel.org/patch/9725921/mbox/
+> >
+> > So from the fist step I could identify that all the clk were getting closed
+> > after some core cpu clk was failing. Here is the log.
+> >
+> > step1: [1] https://pastebin.com/p13F9HGG
+> >
+> > so I marked these clk as CLK_IGNORE_UNUSED and finally
+> > I made it to boot using microSD card.
+> >
+> > After this just I converted these CLK to CLK_IS_CRITICAL
+> > as mostly these are used the CPU clk for now.
+> > Here is boot log successful for as of now.
+> >
+> > Finally: [2]  https://pastebin.com/qB6pMyGQ
+> >
+> > I know clk maintainer are against marking flags as *CLK_IS_CRITICAL*
+> > But this is just the step to move ahead.
+>
+> Thanks for the extensive debug.
+>
+> >
+> > Attach is my local clk and dts patch.Just for testing.
+> > [3] clk_critical.patch
+>
+>
+> Could you test with only the following changes:
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index ea4c791f106d..f49f5463363e 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -298,6 +298,7 @@ static struct clk_regmap g12a_fclk_div2 = {
+>                         &g12a_fclk_div2_div.hw
+>                 },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>
+> @@ -672,7 +673,7 @@ static struct clk_regmap g12b_cpub_clk = {
+>                         &g12a_sys_pll.hw
+>                 },
+>                 .num_parents = 2,
+> -               .flags = CLK_SET_RATE_PARENT,
+> +               .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+>         },
+>  };
+>
 
-Changes in v3:
- * Nothing changed.
+Yes these changes work at my end,
+I want to narrow down my changes, this looks pretty good.
 
- .../bindings/hwmon/adi,ltc2947.yaml           | 104 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-new file mode 100644
-index 000000000000..ae04903f34bf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bindings/hwmon/adi,ltc2947.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices LTC2947 high precision power and energy monitor
-+
-+maintainers:
-+  - Nuno Sá <nuno.sa@analog.com>
-+
-+description: |
-+  Analog Devices LTC2947 high precision power and energy monitor over SPI or I2C.
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/LTC2947.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ltc2947
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      The LTC2947 uses either a trimmed internal oscillator or an external clock
-+      as the time base for determining the integration period to represent time,
-+      charge and energy. When an external clock is used, this property must be
-+      set accordingly.
-+    maxItems: 1
-+
-+  adi,accumulator-ctl-pol:
-+    description:
-+      This property controls the polarity of current that is accumulated to
-+      calculate charge and energy so that, they can be only accumulated for
-+      positive current for example. Since there are two sets of registers for
-+      the accumulated values, this entry can also have two items which sets
-+      energy1/charge1 and energy2/charger2 respectively. Check table 12 of the
-+      datasheet for more information on the supported options.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32-array
-+      - minItems: 2
-+        maxItems: 2
-+        items:
-+          enum: [0, 1, 2, 3]
-+          default: 0
-+
-+  adi,accumulation-deadband-microamp:
-+    description:
-+      This property controls the Accumulation Dead band which allows to set the
-+      level of current below which no accumulation takes place.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 255
-+    default: 0
-+
-+  adi,gpio-out-pol:
-+    description:
-+      This property controls the GPIO polarity. Setting it to one makes the GPIO
-+      active high, setting it to zero makets it active low. When this property
-+      is present, the GPIO is automatically configured as output and set to
-+      control a fan as a function of measured temperature.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    default: 0
-+
-+  adi,gpio-in-accum:
-+    description:
-+      When set, this property sets the GPIO as input. It is then used to control
-+      the accumulation of charge, energy and time. This function can be
-+      enabled/configured separately for each of the two sets of accumulation
-+      registers. Check table 13 of the datasheet for more information on the
-+      supported options. This property cannot be used together with
-+      adi,gpio-out-pol.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32-array
-+      - minItems: 2
-+        maxItems: 2
-+        items:
-+          enum: [0, 1, 2]
-+          default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+
-+examples:
-+  - |
-+    spi {
-+           #address-cells = <1>;
-+           #size-cells = <0>;
-+
-+           ltc2947_spi: ltc2947@0 {
-+                   compatible = "adi,ltc2947";
-+                   reg = <0>;
-+                   /* accumulation takes place always for energ1/charge1. */
-+                   /* accumulation only on positive current for energy2/charge2. */
-+                   adi,accumulator-ctl-pol = <0 1>;
-+           };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 318332b6a411..e2ba1a182052 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9638,6 +9638,7 @@ F:	drivers/hwmon/ltc2947-core.c
- F:	drivers/hwmon/ltc2947-spi.c
- F:	drivers/hwmon/ltc2947-i2c.c
- F:	drivers/hwmon/ltc2947.h
-+F:	Documentation/devicetree/bindings/hwmon/adi,ltc2947.yaml
- 
- LTC4306 I2C MULTIPLEXER DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
--- 
-2.23.0
-
+Best Regards
+-Anand
