@@ -2,79 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FDFADE5F7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 10:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C047DE60F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 10:15:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726480AbfJUIKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 04:10:52 -0400
-Received: from inca-roads.misterjones.org ([213.251.177.50]:53197 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725972AbfJUIKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 04:10:51 -0400
-Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1iMSm9-0007tu-RH; Mon, 21 Oct 2019 10:10:49 +0200
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH v2 11/13] drivers: irqchip: qcom-pdc: Add irqchip for  sc7180
-X-PHP-Originating-Script: 0:main.inc
+        id S1727569AbfJUIPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 04:15:37 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:40219 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726480AbfJUIPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 04:15:36 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iMSqi-0000ki-3p; Mon, 21 Oct 2019 10:15:32 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iMSqg-0008Os-FJ; Mon, 21 Oct 2019 10:15:30 +0200
+Date:   Mon, 21 Oct 2019 10:15:30 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Robert Jones <rjones@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dt: add fxos8700 on gateworks boards
+Message-ID: <20191021081530.frhbez44x6gwosvi@pengutronix.de>
+References: <20191018232049.4045-1-rjones@gateworks.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 21 Oct 2019 09:10:49 +0100
-From:   Marc Zyngier <maz@kernel.org>
-Cc:     <agross@kernel.org>, <robh+dt@kernel.org>,
-        <bjorn.andersson@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Maulik Shah <mkshah@codeaurora.org>,
-        Lina Iyer <ilina@codeaurora.org>
-In-Reply-To: <20191021065522.24511-12-rnayak@codeaurora.org>
-References: <20191021065522.24511-1-rnayak@codeaurora.org>
- <20191021065522.24511-12-rnayak@codeaurora.org>
-Message-ID: <18195431666bd42aa31cf4ec1eed2881@www.loen.fr>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/0.7.2
-X-SA-Exim-Connect-IP: <locally generated>
-X-SA-Exim-Rcpt-To: rnayak@codeaurora.org, agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mkshah@codeaurora.org, ilina@codeaurora.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191018232049.4045-1-rjones@gateworks.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:09:31 up 156 days, 14:27, 97 users,  load average: 0.16, 0.12,
+ 0.10
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-10-21 07:55, Rajendra Nayak wrote:
-> From: Maulik Shah <mkshah@codeaurora.org>
->
-> Add sc7180 pdc irqchip
->
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> Cc: Lina Iyer <ilina@codeaurora.org>
-> Cc: Marc Zyngier <maz@kernel.org>
+Hi Robert,
+
+please don't use 'ARM: dt: ..' instead you should name it 'ARM: dts:
+imx6qdl-gw5x:'.
+
+On 19-10-18 16:20, Robert Jones wrote:
+> Add fxos8700 iio imu entries for Gateworks SBCs.
+> 
+> Signed-off-by: Robert Jones <rjones@gateworks.com>
 > ---
-> v2: No change
->
->  drivers/irqchip/qcom-pdc.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/irqchip/qcom-pdc.c b/drivers/irqchip/qcom-pdc.c
-> index faa7d61b9d6c..954fb599fa9c 100644
-> --- a/drivers/irqchip/qcom-pdc.c
-> +++ b/drivers/irqchip/qcom-pdc.c
-> @@ -310,3 +310,4 @@ static int qcom_pdc_init(struct device_node
-> *node, struct device_node *parent)
->  }
->
->  IRQCHIP_DECLARE(pdc_sdm845, "qcom,sdm845-pdc", qcom_pdc_init);
-> +IRQCHIP_DECLARE(pdc_sc7180, "qcom,sc7180-pdc", qcom_pdc_init);
+>  arch/arm/boot/dts/imx6qdl-gw52xx.dtsi | 5 +++++
+>  arch/arm/boot/dts/imx6qdl-gw53xx.dtsi | 5 +++++
+>  arch/arm/boot/dts/imx6qdl-gw54xx.dtsi | 5 +++++
+>  3 files changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
+> index 1a9a9d9..ffc4449 100644
+> --- a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
+> @@ -306,6 +306,11 @@
+>  		VDDIO-supply = <&reg_3p3v>;
+>  	};
+>  
+> +	fxos8700@1e {
+> +		compatible = "nxp,fxos8700";
 
-What I gather from these 3 irq-related patches is that as far as
-the PDC is concerned, SDM845/850 and SC7180 are strictly identical.
+I grep'd the whole tree and found no such compatible. I don't know the
+rule but IMHO if there isn't a driver we shouldn't add the compatible
+here.
 
-Why the churn?
+Regards,
+  Marco
 
-         M.
+> +		reg = <0x1e>;
+> +	};
+> +
+>  	touchscreen: egalax_ts@4 {
+>  		compatible = "eeti,egalax_ts";
+>  		reg = <0x04>;
+> diff --git a/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
+> index 54b2bea..ebbd1c8 100644
+> --- a/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
+> @@ -297,6 +297,11 @@
+>  		VDDIO-supply = <&reg_3p3v>;
+>  	};
+>  
+> +	fxos8700@1e {
+> +		compatible = "nxp,fxos8700";
+> +		reg = <0x1e>;
+> +	};
+> +
+>  	touchscreen: egalax_ts@4 {
+>  		compatible = "eeti,egalax_ts";
+>  		reg = <0x04>;
+> diff --git a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
+> index 1b6c133..67d4725 100644
+> --- a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
+> @@ -354,6 +354,11 @@
+>  		VDDIO-supply = <&reg_3p3v>;
+>  	};
+>  
+> +	fxos8700@1e {
+> +		compatible = "nxp,fxos8700";
+> +		reg = <0x1e>;
+> +	};
+> +
+>  	touchscreen: egalax_ts@4 {
+>  		compatible = "eeti,egalax_ts";
+>  		reg = <0x04>;
+> -- 
+> 2.9.2
+> 
+> 
+> 
+
 -- 
-Jazz is not dead. It just smells funny...
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
