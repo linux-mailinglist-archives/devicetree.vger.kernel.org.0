@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A290DEA5A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 13:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D11DEA69
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 13:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727433AbfJULGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 07:06:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45946 "EHLO mail.kernel.org"
+        id S1727889AbfJULIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 07:08:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46920 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727058AbfJULGQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 07:06:16 -0400
+        id S1727433AbfJULId (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Oct 2019 07:08:33 -0400
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8679C2084C;
-        Mon, 21 Oct 2019 11:06:14 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B7BEF206C2;
+        Mon, 21 Oct 2019 11:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571655975;
-        bh=6aIiiW6Oy2Tp3jMHez2uZxsG1cbGxMZp3/IBu+pOkT4=;
+        s=default; t=1571656113;
+        bh=tBYGme/3FWzm/ih6xspHcVw+dNmojtv6QL8gPcuU85U=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SmsbcM7ob9APIInCUIWU9pFZGqvQIzlGXwhVv9ndL0rOALynmG1mW1Lk39mqHaJ+Q
-         TQBh/zNq2g+4biDbSzud0mQktKJ4SKk26i2jhm9Z/4ZJi/BOWEEtnOTVilP/UQOxXA
-         fAORWnAKW7DLCV5+MqTkkoIA0Rta9wHUGhHGt0Sg=
-Date:   Mon, 21 Oct 2019 13:06:12 +0200
+        b=noXYuhgt63hGzvfq+0yDhuJIIJuOJGuJCtc1uk6QM3wFsLHmp6Hzb7cuu47Mlkx1S
+         R1Ki2UTzEUlaHXqCO9R+VpFc/ZT0DR1QVqRh1KZLTLguIqySKkkF3PbOvW/OfglIep
+         1qtIvZNMbkvvBNOZxxdXbzJDWuJtcJshi9w/oXB8=
+Date:   Mon, 21 Oct 2019 13:08:30 +0200
 From:   Maxime Ripard <mripard@kernel.org>
 To:     megous@megous.com
 Cc:     linux-sunxi@googlegroups.com,
@@ -37,16 +37,16 @@ Cc:     linux-sunxi@googlegroups.com,
         Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: Add bindings for USB3 phy on Allwinner
- H6
-Message-ID: <20191021110612.55ym4y3m3xko3kpc@gilmour>
+Subject: Re: [PATCH 2/4] phy: allwinner: add phy driver for USB3 PHY on
+ Allwinner H6 SoC
+Message-ID: <20191021110830.74m4ys7mvztb4nqs@gilmour>
 References: <20191020134229.1216351-1-megous@megous.com>
- <20191020134229.1216351-2-megous@megous.com>
+ <20191020134229.1216351-3-megous@megous.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ewuc6ubrfgaw6qrn"
+        protocol="application/pgp-signature"; boundary="wkap5bf7ph4ddhpj"
 Content-Disposition: inline
-In-Reply-To: <20191020134229.1216351-2-megous@megous.com>
+In-Reply-To: <20191020134229.1216351-3-megous@megous.com>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -54,56 +54,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ewuc6ubrfgaw6qrn
+--wkap5bf7ph4ddhpj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Sun, Oct 20, 2019 at 03:42:26PM +0200, megous@megous.com wrote:
-> From: Ondrej Jirman <megous@megous.com>
+On Sun, Oct 20, 2019 at 03:42:27PM +0200, megous@megous.com wrote:
+> From: Icenowy Zheng <icenowy@aosc.io>
 >
-> The new Allwinner H6 SoC contains a USB3 PHY that is wired to the
-> external USB3 pins of the SoC.
+> Allwinner H6 SoC contains a USB3 PHY (with USB2 DP/DM lines also
+> controlled).
 >
-> Add a device tree binding for the PHY.
+> Add a driver for it.
+>
+> The register operations in this driver is mainly extracted from the BSP
+> USB3 driver.
 >
 > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->  .../phy/allwinner,sun50i-h6-usb3-phy.yaml     | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/allwinner,sun50i-h6-usb3-phy.yaml
->
-> diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun50i-h6-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun50i-h6-usb3-phy.yaml
-> new file mode 100644
-> index 000000000000..2fdc890748db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/allwinner,sun50i-h6-usb3-phy.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 Ondrej Jirman <megous@megous.com>
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/allwinner,sun50i-h6-usb3-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Allwinner sun50i USB3 PHY
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-H6 would be more appropriate here instead of sun50i. There's a bunch
-of sun50i SoCs already, and only one uses it.
-
-With that fixed,
 Acked-by: Maxime Ripard <mripard@kernel.org>
 
 Maxime
 
---ewuc6ubrfgaw6qrn
+--wkap5bf7ph4ddhpj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXa2RJAAKCRDj7w1vZxhR
-xR48AQDAv8g0iblut9ytzfU6bZMgT1D68v8XPkVM2Tm82RTKoAEAn/tXqAEV2OQF
-ePOXBUp1QBOrzVFUJQx03BYGUacvdwI=
-=O92R
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXa2RrgAKCRDj7w1vZxhR
+xUVEAP0UwD5i2m60iQ3FP1B5X7mKnqw6PlzwMDnX4NC+gEbFrQD9Fbgi5TtiREt4
+HRfbtIC6fTm7SkAMo6JU0iYU/DEpTQw=
+=SIZy
 -----END PGP SIGNATURE-----
 
---ewuc6ubrfgaw6qrn--
+--wkap5bf7ph4ddhpj--
