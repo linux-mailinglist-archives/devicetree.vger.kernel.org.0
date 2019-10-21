@@ -2,247 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C45D5DEDB2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 15:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACBC7DEE2E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 15:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728699AbfJUNgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 09:36:23 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:39650 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727322AbfJUNgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 09:36:22 -0400
-Received: by mail-vs1-f68.google.com with SMTP id y129so8860931vsc.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2019 06:36:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MXjl3Qdj6k4PSsOEssi1NBEDlEeNdvwTH033BcyI0qQ=;
-        b=Hso+9CrinK4xZlbaApuYrGSZonV4azH0FJB494beKtvJpcRl8Veanvo9tKNRl7Hd1x
-         4tmspmnmA0Cr3+PVnZpVJ/kh//Qy8fgmmXudTnPcLaULLV/AVkzp926bTQRYB+2cdjZ7
-         D2Gr10VIaRo6QwVbtfNc1HqK26D8ym5oe82dJZdBpwN3+AQ/64P8TQrSoBI326eblL6S
-         Le+iuwOkJkXR+ECvd9X6PwZUqbCReqmk68QHVjx9BJUJ3cnEgYloCebC3Csv1czA2QIe
-         Pop03LroOrf/V2y7qf2Nv1poWAHPtBnNJ071pfZtADDmz3RnX0XW8p/bICpvIBU6NQ0O
-         4uQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MXjl3Qdj6k4PSsOEssi1NBEDlEeNdvwTH033BcyI0qQ=;
-        b=pT6s2dV0DfHU7Xt75GPX7BBnEF4MtJLsdGytRbat8d7Y3FvAXt1zBf2mVNE7pna0kx
-         YWFCQRHCKFS+mqWF++hLWj6s5k6o/QqXwoS/K+w5TCqOSSqc9kV92m7VtJhotmHMRTmF
-         s4YUhITeQtDehT+0rruR2vKce/OvInV+a45Q8N76/yjOjZJS37WGvx6FB43dOJJd6UQd
-         mHGkeyGBVCD2K2+Zjpa8/rcs4jXe0AkbCqPX1vv5JXxFudF1XwQc8oTKHSY/qY9FZ9/L
-         c3gLL9MOiYrMA456aLGUeb2KL46vyeuhMtvS/g3x83sEn+q+KQgy/ogdr5G8kYFnEvtA
-         WT/Q==
-X-Gm-Message-State: APjAAAX3AF2PckWzxToywOzXJ90C35MKqWI9DVa39VauAJcCVVtBd7z2
-        xsxsZx7CqqHDwgkYO2hfKKyxorGeTk6VmwURGQorGA==
-X-Google-Smtp-Source: APXvYqyaD/lVRLAGjdvleYMAYDc5dLlKYIHBFNw9Y8pm/8dJbZCYSSBsihmIjD8/eWFRLVRUnDlcrVW2b1zkXu+Rw1E=
-X-Received: by 2002:a67:ebc2:: with SMTP id y2mr13457816vso.191.1571664981141;
- Mon, 21 Oct 2019 06:36:21 -0700 (PDT)
+        id S1729176AbfJUNjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 09:39:14 -0400
+Received: from [217.140.110.172] ([217.140.110.172]:52882 "EHLO foss.arm.com"
+        rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org with ESMTP
+        id S1729166AbfJUNjN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Oct 2019 09:39:13 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 68E031007;
+        Mon, 21 Oct 2019 06:38:52 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D49FD3F718;
+        Mon, 21 Oct 2019 06:38:51 -0700 (PDT)
+Date:   Mon, 21 Oct 2019 14:38:50 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lorenzo.pieralisi@arm.com, robh@kernel.org,
+        martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+        hch@infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v4 3/3] pci: intel: Add sysfs attributes to configure
+ pcie link
+Message-ID: <20191021133849.GQ47056@e119886-lin.cambridge.arm.com>
+References: <cover.1571638827.git.eswara.kota@linux.intel.com>
+ <d8574605f8e70f41ce1e88ccfb56b63c8f85e4df.1571638827.git.eswara.kota@linux.intel.com>
 MIME-Version: 1.0
-References: <20191011131502.29579-1-ludovic.Barre@st.com> <20191011131502.29579-2-ludovic.Barre@st.com>
-In-Reply-To: <20191011131502.29579-2-ludovic.Barre@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 21 Oct 2019 15:35:44 +0200
-Message-ID: <CAPDyKFqE09nqdev_qewwNzjjUuhm0UUC03tgvY=ZukYY4az7wg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] mmc: add unstuck function if host is in deadlock state
-To:     Ludovic Barre <ludovic.Barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8574605f8e70f41ce1e88ccfb56b63c8f85e4df.1571638827.git.eswara.kota@linux.intel.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Oct 2019 at 15:15, Ludovic Barre <ludovic.Barre@st.com> wrote:
->
-> From: Ludovic Barre <ludovic.barre@st.com>
->
-> After a request a host may be in deadlock state, and wait
-> a specific action to unstuck the hardware block before
-> re-sending a new command.
-
-Rather than talking about "unstuck" and "deadlock", how about instead
-describing that an MMC controller, may end up in an non-functional
-state hanging on something. Then to allow it to serve new requests it
-needs to be reset.
-
->
-> This patch adds an optional callback mmc_hw_unstuck which
-> allows the host to unstuck the controller. In order to avoid
-> a critical context, this callback must be called when the
-> request is completed. Depending the mmc request, the completion
-> function is defined by mrq->done and could be in block.c or core.c.
-
-I think it's important to state exactly what is expected from the core
-perspective, by the mmc host driver when it calls this new host ops.
-We need to clarify that.
-
->
-> mmc_hw_unstuck is called if the host returns an cmd/sbc/stop/data
-> DEADLK error.
-
-To me, this approach seems a bit upside-down. Although, I have to
-admit that I haven't thought through this completely yet.
-
-The thing is, to make this useful for host drivers in general, I
-instead think we need to add timeout to each request that the core
-sends to the host driver. In other words, rather than waiting forever
-in the core for the completion variable to be set, via calling
-wait_for_completion() we could call wait_for_completion_timeout(). The
-tricky part is to figure out what timeout to use for each request.
-Perhaps that is even why you picked the approach as implemented in
-@subject patch instead?
-
-Anyway, the typical scenario I see, is that the host driver is
-hanging, likely waiting for an IRQ that never get raised. So, unless
-it implements it own variant of a "request timeout" mechanism, it
-simple isn't able to call mmc_request_done() to inform the core about
-that the request has failed.
-
-For comments to the code, I defer that to the next step, when we have
-agreed on the way forward.
-
-Kind regards
-Uffe
-
->
-> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+On Mon, Oct 21, 2019 at 02:39:20PM +0800, Dilip Kota wrote:
+> PCIe RC driver on Intel Gateway SoCs have a requirement
+> of changing link width and speed on the fly.
+> So add the sysfs attributes to show and store the link
+> properties.
+> Add the respective link resize function in pcie DesignWare
+> framework so that Intel PCIe driver can use during link
+> width configuration on the fly.
+> 
+> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
 > ---
->  drivers/mmc/core/block.c | 11 +++++++++++
->  drivers/mmc/core/core.c  | 35 +++++++++++++++++++++++++++++++++--
->  include/linux/mmc/core.h |  1 +
->  include/linux/mmc/host.h |  7 +++++++
->  4 files changed, 52 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/mmc/core/block.c b/drivers/mmc/core/block.c
-> index 2c71a434c915..2f723e2f5fde 100644
-> --- a/drivers/mmc/core/block.c
-> +++ b/drivers/mmc/core/block.c
-> @@ -1799,6 +1799,17 @@ static void mmc_blk_mq_rw_recovery(struct mmc_queue *mq, struct request *req)
->         u32 blocks;
->         int err;
->
-> +       /*
-> +        * if the host return a deadlock, it needs to be unstuck
-> +        * before to send a new command.
-> +        */
-> +       if (brq->sbc.error == -EDEADLK || brq->cmd.error == -EDEADLK ||
-> +           brq->stop.error == -EDEADLK || brq->data.error == -EDEADLK) {
-> +               pr_err("%s: host is in bad state, must be unstuck\n",
-> +                      req->rq_disk->disk_name);
-> +               mmc_hw_unstuck(card->host);
-> +       }
-> +
->         /*
->          * Some errors the host driver might not have seen. Set the number of
->          * bytes transferred to zero in that case.
-> diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
-> index 221127324709..43fe59a7403b 100644
-> --- a/drivers/mmc/core/core.c
-> +++ b/drivers/mmc/core/core.c
-> @@ -397,6 +397,7 @@ static int __mmc_start_req(struct mmc_host *host, struct mmc_request *mrq)
->  void mmc_wait_for_req_done(struct mmc_host *host, struct mmc_request *mrq)
->  {
->         struct mmc_command *cmd;
-> +       int sbc_err, stop_err, data_err;
->
->         while (1) {
->                 wait_for_completion(&mrq->completion);
-> @@ -420,8 +421,24 @@ void mmc_wait_for_req_done(struct mmc_host *host, struct mmc_request *mrq)
->                                        mmc_hostname(host), __func__);
->                         }
->                 }
-> -               if (!cmd->error || !cmd->retries ||
-> -                   mmc_card_removed(host->card))
-> +
-> +               sbc_err =  mrq->sbc ? mrq->sbc->error : 0;
-> +               stop_err = mrq->stop ? mrq->stop->error : 0;
-> +               data_err =  mrq->data ? mrq->data->error : 0;
-> +
-> +               /*
-> +                * if the host return a deadlock, it needs to be unstuck
-> +                * before to send a new command.
-> +                */
-> +               if (cmd->error == -EDEADLK || sbc_err == -EDEADLK ||
-> +                   stop_err == -EDEADLK || data_err == -EDEADLK) {
-> +                       pr_debug("%s: host is in bad state, must be unstuck\n",
-> +                                mmc_hostname(host));
-> +                       mmc_hw_unstuck(host);
-> +               }
-> +
-> +               if ((!cmd->error && !sbc_err && !stop_err && !data_err) ||
-> +                   !cmd->retries || mmc_card_removed(host->card))
->                         break;
->
->                 mmc_retune_recheck(host);
-> @@ -430,6 +447,12 @@ void mmc_wait_for_req_done(struct mmc_host *host, struct mmc_request *mrq)
->                          mmc_hostname(host), cmd->opcode, cmd->error);
->                 cmd->retries--;
->                 cmd->error = 0;
-> +               if (mrq->sbc)
-> +                       mrq->sbc->error = 0;
-> +               if (mrq->stop)
-> +                       mrq->stop->error = 0;
-> +               if (mrq->data)
-> +                       mrq->data->error = 0;
->                 __mmc_start_request(host, mrq);
->         }
->
-> @@ -2161,6 +2184,14 @@ int mmc_sw_reset(struct mmc_host *host)
+>  drivers/pci/controller/dwc/pcie-designware.c |   9 +++
+>  drivers/pci/controller/dwc/pcie-designware.h |   3 +
+>  drivers/pci/controller/dwc/pcie-intel-gw.c   | 112 ++++++++++++++++++++++++++-
+>  3 files changed, 123 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 4c391bfd681a..662fdcb4f2d6 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -474,6 +474,15 @@ int dw_pcie_link_up(struct dw_pcie *pci)
+>  		(!(val & PCIE_PORT_DEBUG1_LINK_IN_TRAINING)));
 >  }
->  EXPORT_SYMBOL(mmc_sw_reset);
->
-> +void mmc_hw_unstuck(struct mmc_host *host)
+>  
+> +void dw_pcie_link_width_resize(struct dw_pcie *pci, u32 lane_width)
 > +{
-> +       if (!host->ops->hw_unstuck)
-> +               return;
-> +       host->ops->hw_unstuck(host);
+> +	u32 val;
+> +
+> +	val =  dw_pcie_readl_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL);
+> +	val &= ~(PORT_MLTI_LNK_WDTH_CHNG | PORT_MLTI_LNK_WDTH);
+> +	val |= PORT_MLTI_LNK_WDTH_CHNG | lane_width;
+> +	dw_pcie_writel_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL, val);
 > +}
-> +EXPORT_SYMBOL(mmc_hw_unstuck);
-> +
->  static int mmc_rescan_try_freq(struct mmc_host *host, unsigned freq)
+>  
+>  void dw_pcie_upconfig_setup(struct dw_pcie *pci)
 >  {
->         host->f_init = freq;
-> diff --git a/include/linux/mmc/core.h b/include/linux/mmc/core.h
-> index b7ba8810a3b5..eb10b8194073 100644
-> --- a/include/linux/mmc/core.h
-> +++ b/include/linux/mmc/core.h
-> @@ -173,6 +173,7 @@ void mmc_wait_for_req(struct mmc_host *host, struct mmc_request *mrq);
->  int mmc_wait_for_cmd(struct mmc_host *host, struct mmc_command *cmd,
->                 int retries);
->
-> +void mmc_hw_unstuck(struct mmc_host *host);
->  int mmc_hw_reset(struct mmc_host *host);
->  int mmc_sw_reset(struct mmc_host *host);
->  void mmc_set_data_timeout(struct mmc_data *data, const struct mmc_card *card);
-> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-> index ba703384bea0..8b52cafcd1eb 100644
-> --- a/include/linux/mmc/host.h
-> +++ b/include/linux/mmc/host.h
-> @@ -163,6 +163,13 @@ struct mmc_host_ops {
->         void    (*hw_reset)(struct mmc_host *host);
->         void    (*card_event)(struct mmc_host *host);
->
-> +       /*
-> +        * Optional callback, if your host could be in deadlock after a command
-> +        * and need a specific action to unstuck the controller before sending
-> +        * new command.
-> +        */
-> +       void    (*hw_unstuck)(struct mmc_host *host);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 3beac10e4a4c..fcf0442341fd 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -67,6 +67,8 @@
+>  #define PCIE_MSI_INTR0_STATUS		0x830
+>  
+>  #define PCIE_PORT_MULTI_LANE_CTRL	0x8C0
+> +#define PORT_MLTI_LNK_WDTH		GENMASK(5, 0)
+> +#define PORT_MLTI_LNK_WDTH_CHNG		BIT(6)
+>  #define PORT_MLTI_UPCFG_SUPPORT		BIT(7)
+>  
+>  #define PCIE_ATU_VIEWPORT		0x900
+> @@ -282,6 +284,7 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val);
+>  u32 dw_pcie_read_atu(struct dw_pcie *pci, u32 reg, size_t size);
+>  void dw_pcie_write_atu(struct dw_pcie *pci, u32 reg, size_t size, u32 val);
+>  int dw_pcie_link_up(struct dw_pcie *pci);
+> +void dw_pcie_link_width_resize(struct dw_pcie *pci, u32 lane_width);
+>  void dw_pcie_upconfig_setup(struct dw_pcie *pci);
+>  void dw_pcie_link_speed_change(struct dw_pcie *pci, bool enable);
+>  void dw_pcie_link_set_n_fts(struct dw_pcie *pci, u32 n_fts);
+> diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
+> index 9142c70db808..b9be0921671d 100644
+> --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
+> +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
+> @@ -146,6 +146,22 @@ static void intel_pcie_ltssm_disable(struct intel_pcie_port *lpp)
+>  	pcie_app_wr_mask(lpp, PCIE_APP_CCR_LTSSM_ENABLE, 0, PCIE_APP_CCR);
+>  }
+>  
+> +static const char *pcie_link_gen_to_str(int gen)
+> +{
+> +	switch (gen) {
+> +	case PCIE_LINK_SPEED_GEN1:
+> +		return "2.5";
+> +	case PCIE_LINK_SPEED_GEN2:
+> +		return "5.0";
+> +	case PCIE_LINK_SPEED_GEN3:
+> +		return "8.0";
+> +	case PCIE_LINK_SPEED_GEN4:
+> +		return "16.0";
+> +	default:
+> +		return "???";
+> +	}
+> +}
 > +
->         /*
->          * Optional callback to support controllers with HW issues for multiple
->          * I/O. Returns the number of supported blocks for the request.
-> --
-> 2.17.1
->
+>  static void intel_pcie_link_setup(struct intel_pcie_port *lpp)
+>  {
+>  	u32 val;
+> @@ -444,6 +460,91 @@ static int intel_pcie_host_setup(struct intel_pcie_port *lpp)
+>  	return ret;
+>  }
+>  
+> +static ssize_t pcie_link_status_show(struct device *dev,
+> +				     struct device_attribute *attr, char *buf)
+> +{
+> +	struct intel_pcie_port *lpp = dev_get_drvdata(dev);
+> +	u32 reg, width, gen;
+> +
+> +	reg = pcie_rc_cfg_rd(lpp, PCIE_CAP_OFST + PCI_EXP_LNKCTL);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, reg >> 16);
+> +	gen = FIELD_GET(PCI_EXP_LNKSTA_CLS, reg >> 16);
+> +
+> +	if (gen > lpp->max_speed)
+> +		return -EINVAL;
+> +
+> +	return sprintf(buf, "Port %2u Width x%u Speed %s GT/s\n", lpp->id,
+> +		       width, pcie_link_gen_to_str(gen));
+> +}
+> +static DEVICE_ATTR_RO(pcie_link_status);
+> +
+> +static ssize_t pcie_speed_store(struct device *dev,
+> +				struct device_attribute *attr,
+> +				const char *buf, size_t len)
+> +{
+> +	struct intel_pcie_port *lpp = dev_get_drvdata(dev);
+> +	unsigned long val;
+> +	int ret;
+> +
+> +	ret = kstrtoul(buf, 10, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val > lpp->max_speed)
+> +		return -EINVAL;
+> +
+> +	lpp->link_gen = val;
+> +	intel_pcie_max_speed_setup(lpp);
+> +	dw_pcie_link_speed_change(&lpp->pci, false);
+> +	dw_pcie_link_speed_change(&lpp->pci, true);
+> +
+> +	return len;
+> +}
+> +static DEVICE_ATTR_WO(pcie_speed);
+> +
+> +/*
+> + * Link width change on the fly is not always successful.
+> + * It also depends on the partner.
+> + */
+> +static ssize_t pcie_width_store(struct device *dev,
+> +				struct device_attribute *attr,
+> +				const char *buf, size_t len)
+> +{
+> +	struct intel_pcie_port *lpp = dev_get_drvdata(dev);
+> +	unsigned long val;
+> +	int ret;
+> +
+> +	lpp = dev_get_drvdata(dev);
+> +
+> +	ret = kstrtoul(buf, 10, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val > lpp->max_width)
+> +		return -EINVAL;
+> +
+> +	/* HW auto bandwidth negotiation must be enabled */
+> +	pcie_rc_cfg_wr_mask(lpp, PCI_EXP_LNKCTL_HAWD, 0,
+> +			    PCIE_CAP_OFST + PCI_EXP_LNKCTL);
+> +	dw_pcie_link_width_resize(&lpp->pci, val);
+> +
+> +	return len;
+> +}
+> +static DEVICE_ATTR_WO(pcie_width);
+> +
+> +static struct attribute *pcie_cfg_attrs[] = {
+> +	&dev_attr_pcie_link_status.attr,
+> +	&dev_attr_pcie_speed.attr,
+> +	&dev_attr_pcie_width.attr,
+> +	NULL,
+> +};
+
+Is there a reason that these are limited only to the Intel driver and
+not the wider set of DWC drivers?
+
+Is there anything specific here about the Intel GW driver?
+
+Thanks,
+
+Andrew Murray
+
+> +ATTRIBUTE_GROUPS(pcie_cfg);
+> +
+> +static int intel_pcie_sysfs_init(struct intel_pcie_port *lpp)
+> +{
+> +	return devm_device_add_groups(lpp->pci.dev, pcie_cfg_groups);
+> +}
+> +
+>  static void __intel_pcie_remove(struct intel_pcie_port *lpp)
+>  {
+>  	intel_pcie_core_irq_disable(lpp);
+> @@ -490,8 +591,17 @@ static int intel_pcie_rc_init(struct pcie_port *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>  	struct intel_pcie_port *lpp = dev_get_drvdata(pci->dev);
+> +	int ret;
+>  
+> -	return intel_pcie_host_setup(lpp);
+> +	ret = intel_pcie_host_setup(lpp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = intel_pcie_sysfs_init(lpp);
+> +	if (ret)
+> +		__intel_pcie_remove(lpp);
+> +
+> +	return ret;
+>  }
+>  
+>  int intel_pcie_msi_init(struct pcie_port *pp)
+> -- 
+> 2.11.0
+> 
