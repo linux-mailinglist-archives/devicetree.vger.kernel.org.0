@@ -2,188 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3F96DEE88
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 15:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 379AADEE9B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:00:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728714AbfJUN6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 09:58:22 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:16992 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728812AbfJUN6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 09:58:22 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LDsQgt030658;
-        Mon, 21 Oct 2019 08:58:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=PODMain02222019;
- bh=3e47+2svvldlESGI3TS24HllBKDwYi244Zra1KazakM=;
- b=YspvTl9o/gAS/KBfpjWqcd94oT5WWhjla9Mv3gei2yhmfiaR6Y3rsD2jgIyTAu8KFcqN
- 3WOQWM+P5ubi1Hic3gHYWhZF6uKRHRd2dVeKSd6a5PFcpme+nuHHm4LfwWTU8yVfoBMz
- t3xqIAa2UVNmf17AQHGghSK1n+7hUF/KrKJcAQlaTeyY8kIQg+GmhW2chY3HA/QVcnAv
- R5YOy4UPA8jo5QXWM3USq5ezfqmpIGK00qnjMJP7mRD5Y24r0zdd1b/G0auhCxt+Ap5Z
- yEtFdq+ZDkfl69Tk0Nmkps4h3pqlaUX1RLBv08C92AfwTtBPkAWgqRnXoEQoM7oPVdNa xg== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 2vqxwnjv0v-3
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 21 Oct 2019 08:58:16 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 21 Oct
- 2019 14:58:13 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Mon, 21 Oct 2019 14:58:13 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id B0FC1448;
-        Mon, 21 Oct 2019 13:58:13 +0000 (UTC)
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: [PATCH RESEND v4 3/3] mfd: madera: Add support for requesting the supply clocks
-Date:   Mon, 21 Oct 2019 14:58:13 +0100
-Message-ID: <20191021135813.13571-3-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191021135813.13571-1-ckeepax@opensource.cirrus.com>
-References: <20191021135813.13571-1-ckeepax@opensource.cirrus.com>
+        id S1728696AbfJUOA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 10:00:58 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:33056 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728098AbfJUOA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 10:00:58 -0400
+Received: by mail-wm1-f66.google.com with SMTP id 6so1445874wmf.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2019 07:00:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b4PdhEAPlrJQgSDJoJmuRL85NouJ7ey9Hv6QLfk9XSI=;
+        b=y3Y9t5g8UXkkEk/00dSN4HFMLQNR1yycajblNd55Mh8D4IdBHbxNogOQw5CGlkWQgH
+         YwcR14PT4H4XOyFvcpLXb2jem2PSSobcm/TCiRmHYUETMTAjbhcKpRgg+RXAR31DUH8w
+         LEKk6fiQb9Vv3bXL39T06H2HOUcudGeaO3dCD4xEm5VdtPaYDtn3BXmOlWi/tbCDhzPk
+         a6/lGZIUFpgwK4nchsikZ9XwgrQxydZFvzJlXZ9Au4AzEBHHCaXo6ZywnfrY0FTP9TvE
+         OID99UCsNywxSBSGRKmhM5WLpFU7uedHqlisx7W+DKJoiBOHlHY/fiVOd8ChrhyHNE/1
+         jw9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b4PdhEAPlrJQgSDJoJmuRL85NouJ7ey9Hv6QLfk9XSI=;
+        b=N6GPfPgTCznKjunl5fOw4ykzBgPUnv8oVmmCLcitHmbhHhrGrwad2hdik0ZiJX3+JQ
+         kDrVN6Gbrwtnn/q3tYgM1bfEH3JCYJyl0IFYWU6wftbD4ZYZwQmX+cVaPoIhtl3wcvEz
+         H3Utkx9WIHEnSeFPnxYkZi903vcPZBwNi1YAZt+Iv6RFcBb6BcgnXccZ/Agk77KTbbF3
+         ANEQILLCoZJHTy6p5eU74mPp6W/v6QFVRWcE0yJp1STxXeZVXQbFEQckGEI31/aDVy7w
+         /qmWNAf3+1jwhm6wZVa7i+Gv8oHrBDHkRDz4EDqM9qlaHYXkZ4J3rIP98qdFDWaLEBlX
+         9/8Q==
+X-Gm-Message-State: APjAAAW6NpBNaK4+uAYIvEVPCRWK0FS1vAvCGa8ci8ym9mty1MfXnsvB
+        RSeuY380k0yDNowloguKVp4Kcw==
+X-Google-Smtp-Source: APXvYqzGAP+ASrRHNvDQUcOJw1l35OBgxCv/k+On7Hb80R6kwIsPcNWJRm1NTKq/GbYZO3CC6+L4kw==
+X-Received: by 2002:a1c:68c5:: with SMTP id d188mr3522182wmc.139.1571666455508;
+        Mon, 21 Oct 2019 07:00:55 -0700 (PDT)
+Received: from localhost.localdomain (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id f83sm14859235wmf.43.2019.10.21.07.00.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2019 07:00:55 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Beniamino Galvani <b.galvani@gmail.com>
+Subject: [PATCH] dt-bindings: i2c: meson: convert to yaml
+Date:   Mon, 21 Oct 2019 16:00:53 +0200
+Message-Id: <20191021140053.9525-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 adultscore=0 suspectscore=1
- phishscore=0 malwarescore=0 mlxlogscore=887 impostorscore=0 spamscore=0
- bulkscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1908290000
- definitions=main-1910210132
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ability to get the clock for each clock input pin of the chip
-and enable MCLK2 since that is expected to be a permanently enabled
-32kHz clock.
+Now that we have the DT validation in place, let's convert the device tree
+bindings for the Amlogic I2C Controller over to YAML schemas.
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Beniamino Galvani <b.galvani@gmail.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/mfd/madera-core.c       | 27 ++++++++++++++++++++++++++-
- include/linux/mfd/madera/core.h | 11 +++++++++++
- 2 files changed, 37 insertions(+), 1 deletion(-)
+ .../bindings/i2c/amlogic,meson6-i2c.yaml      | 53 +++++++++++++++++++
+ .../devicetree/bindings/i2c/i2c-meson.txt     | 30 -----------
+ 2 files changed, 53 insertions(+), 30 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-meson.txt
 
-diff --git a/drivers/mfd/madera-core.c b/drivers/mfd/madera-core.c
-index 29540cbf75934..a8cfadc1fc01e 100644
---- a/drivers/mfd/madera-core.c
-+++ b/drivers/mfd/madera-core.c
-@@ -450,6 +450,21 @@ int madera_dev_init(struct madera *madera)
- 		       sizeof(madera->pdata));
- 	}
- 
-+	madera->mclk[MADERA_MCLK1].id = "mclk1";
-+	madera->mclk[MADERA_MCLK2].id = "mclk2";
-+	madera->mclk[MADERA_MCLK3].id = "mclk3";
+diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+new file mode 100644
+index 000000000000..49cad273c8e5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/i2c/amlogic,meson6-i2c.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+	ret = devm_clk_bulk_get_optional(madera->dev, ARRAY_SIZE(madera->mclk),
-+					 madera->mclk);
-+	if (ret) {
-+		dev_err(madera->dev, "Failed to get clocks: %d\n", ret);
-+		return ret;
-+	}
++title: Amlogic Meson I2C Controller
 +
-+	/* Not using devm_clk_get to prevent breakage of existing DTs */
-+	if (!madera->mclk[MADERA_MCLK2].clk)
-+		dev_warn(madera->dev, "Missing MCLK2, requires 32kHz clock\n");
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++  - Beniamino Galvani <b.galvani@gmail.com>
 +
- 	ret = madera_get_reset_gpio(madera);
- 	if (ret)
- 		return ret;
-@@ -660,13 +675,19 @@ int madera_dev_init(struct madera *madera)
- 	}
- 
- 	/* Init 32k clock sourced from MCLK2 */
-+	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2].clk);
-+	if (ret) {
-+		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
-+		goto err_reset;
-+	}
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
 +
- 	ret = regmap_update_bits(madera->regmap,
- 			MADERA_CLOCK_32K_1,
- 			MADERA_CLK_32K_ENA_MASK | MADERA_CLK_32K_SRC_MASK,
- 			MADERA_CLK_32K_ENA | MADERA_32KZ_MCLK2);
- 	if (ret) {
- 		dev_err(madera->dev, "Failed to init 32k clock: %d\n", ret);
--		goto err_reset;
-+		goto err_clock;
- 	}
- 
- 	pm_runtime_set_active(madera->dev);
-@@ -687,6 +708,8 @@ int madera_dev_init(struct madera *madera)
- 
- err_pm_runtime:
- 	pm_runtime_disable(madera->dev);
-+err_clock:
-+	clk_disable_unprepare(madera->mclk[MADERA_MCLK2].clk);
- err_reset:
- 	madera_enable_hard_reset(madera);
- 	regulator_disable(madera->dcvdd);
-@@ -713,6 +736,8 @@ int madera_dev_exit(struct madera *madera)
- 	 */
- 	pm_runtime_disable(madera->dev);
- 
-+	clk_disable_unprepare(madera->mclk[MADERA_MCLK2].clk);
++properties:
++  compatible:
++    enum:
++      - amlogic,meson6-i2c # Meson6, Meson8 and compatible SoCs
++      - amlogic,meson-gxbb-i2c # GXBB and compatible SoCs
++      - amlogic,meson-axg-i2c # AXG and compatible SoCs
 +
- 	regulator_disable(madera->dcvdd);
- 	regulator_put(madera->dcvdd);
- 
-diff --git a/include/linux/mfd/madera/core.h b/include/linux/mfd/madera/core.h
-index 7ffa696cce7ca..ad2c138105d4b 100644
---- a/include/linux/mfd/madera/core.h
-+++ b/include/linux/mfd/madera/core.h
-@@ -8,6 +8,7 @@
- #ifndef MADERA_CORE_H
- #define MADERA_CORE_H
- 
-+#include <linux/clk.h>
- #include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/mfd/madera/pdata.h>
-@@ -29,6 +30,13 @@ enum madera_type {
- 	CS42L92 = 9,
- };
- 
-+enum {
-+	MADERA_MCLK1,
-+	MADERA_MCLK2,
-+	MADERA_MCLK3,
-+	MADERA_NUM_MCLK
-+};
++  reg:
++    maxItems: 1
 +
- #define MADERA_MAX_CORE_SUPPLIES	2
- #define MADERA_MAX_GPIOS		40
- 
-@@ -155,6 +163,7 @@ struct snd_soc_dapm_context;
-  * @irq_dev:		the irqchip child driver device
-  * @irq_data:		pointer to irqchip data for the child irqchip driver
-  * @irq:		host irq number from SPI or I2C configuration
-+ * @mclk:		Structure holding clock supplies
-  * @out_clamp:		indicates output clamp state for each analogue output
-  * @out_shorted:	indicates short circuit state for each analogue output
-  * @hp_ena:		bitflags of enable state for the headphone outputs
-@@ -184,6 +193,8 @@ struct madera {
- 	struct regmap_irq_chip_data *irq_data;
- 	int irq;
- 
-+	struct clk_bulk_data mclk[MADERA_NUM_MCLK];
++  interrupts:
++    maxItems: 1
 +
- 	unsigned int num_micbias;
- 	unsigned int num_childbias[MADERA_MAX_MICBIAS];
- 
++  clocks:
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++examples:
++  - |
++    i2c@c8100500 {
++        compatible = "amlogic,meson6-i2c";
++        reg = <0xc8100500 0x20>;
++        interrupts = <92>;
++        clocks = <&clk81>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        eeprom@52 {
++            compatible = "atmel,24c32";
++            reg = <0x52>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-meson.txt b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
+deleted file mode 100644
+index 13d410de077c..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-meson.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Amlogic Meson I2C controller
+-
+-Required properties:
+- - compatible: must be:
+-	"amlogic,meson6-i2c" for Meson8 and compatible SoCs
+-	"amlogic,meson-gxbb-i2c" for GXBB and compatible SoCs
+-	"amlogic,meson-axg-i2c"for AXG and compatible SoCs
+-
+- - reg: physical address and length of the device registers
+- - interrupts: a single interrupt specifier
+- - clocks: clock for the device
+- - #address-cells: should be <1>
+- - #size-cells: should be <0>
+-
+-For details regarding the following core I2C bindings see also i2c.txt.
+-
+-Optional properties:
+-- clock-frequency: the desired I2C bus clock frequency in Hz; in
+-  absence of this property the default value is used (100 kHz).
+-
+-Examples:
+-
+-	i2c@c8100500 {
+-		compatible = "amlogic,meson6-i2c";
+-		reg = <0xc8100500 0x20>;
+-		interrupts = <0 92 1>;
+-		clocks = <&clk81>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
 -- 
-2.11.0
+2.22.0
 
