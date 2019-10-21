@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D494DEEE0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BFDCDEEDE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:09:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728098AbfJUOJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 10:09:16 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:18612 "EHLO
+        id S1728551AbfJUOJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 10:09:10 -0400
+Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:9734 "EHLO
         mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728851AbfJUOJQ (ORCPT
+        by vger.kernel.org with ESMTP id S1728098AbfJUOJK (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 10:09:16 -0400
-Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LE7o5v004219;
-        Mon, 21 Oct 2019 10:07:53 -0400
-Received: from nam01-sn1-obe.outbound.protection.outlook.com (mail-sn1nam01lp2055.outbound.protection.outlook.com [104.47.32.55])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2vqv8akt8s-1
+        Mon, 21 Oct 2019 10:09:10 -0400
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LE7pOJ022789;
+        Mon, 21 Oct 2019 10:07:55 -0400
+Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2058.outbound.protection.outlook.com [104.47.37.58])
+        by mx0b-00128a01.pphosted.com with ESMTP id 2vqy46bp0q-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Mon, 21 Oct 2019 10:07:53 -0400
+        Mon, 21 Oct 2019 10:07:55 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kaq5rTSzqDTy3LjjfU5cINhRylgSGFcE69AU7lcgELuhDBK56uAtDremftWS9iTqC/QabC/I7SRW9rpa0L7kXs6CBmxubZsST+ER/eFX79A0ZqcRgbr5wPr/cm8pYZzFB8TkWquKc7Q/b44eupCHhTMWcSXqVrhHVmNMA6PY5SFor6izjP5yTbFJdvLgeDNpt6+cKLCkvJsbMTaJrBkOtbuQ8AxmR1zcPTF8IPUUbWuR3v0TulpVBcuyek+j2ZbQ5QT60BZj9dSC2J0h61KXWZam9K3IHU7w6g3jP16J6svuZaGp3LkQl7A2CLG+zpaiNozIcIAsDyeTXbEq9ijkxw==
+ b=IB68ar1xa3tjAEDp59jVFNtPdqcSUjyGlXICKCruitdumcfvLf4Gj+8gXt+Ps+GgAzLJ0bfKOg0450I2qNtibRu2BdFk46ozXO8lO83Jb/iqiOt5mzQJUC88m49sn+jtiO1ncdNl7PMWT4A5ETPgS+k2yOOOgqFfG5OxdgMSt4TG11WzB7X4qb2C/SgMnhWbrrGAdP5IaOHC4Ry33t3VGsVgYO2ppF7jr+yfnnFzpips9iBJA1jbbHm6BHTMIUEJCmeRQyTsYQnmJPku0GThqFCaKded3BUGXUsTdDebPmLbcLd0AFqfSzbTw53LM/w+SfVdSihv0wbr0e0HBGJk3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l+i6sGtZxvcrwzX4SjQToH0Dizu5BMKV9kHoANdcp44=;
- b=mZK1sRBdI2cys8VjvkOsYb1Nbh4yif5T0Gp5w/GH5UYOSgJMcTTYqIe/DBB/Sj6P37Jlezq7h1ctde0r3+yC3znQPPqo7+tvchDqgrh16bZI9Pp4VX3kAobAK+c8WtINzlwVZNH9YTzqeqL2fgBp0Mo6H25Fio0Crk6kn0MqUX/d9EZVvvd8hTvdplBZ6TEnLwbWAXCCWJbPk3H8aALTcxlqAMPOHQLHh5NLlZBohHPByTJBxQMh7Yncx5rkzKRrZaJSBEVoIbXtzZCeKms1yRaITjskHna+i8Y20ZGdkftHf9JO4dMN5zVywi729fTSA/ODO881cUTjINqijLCS2A==
+ bh=xGSbXNynAXMA9ptwnkHijHRJsBV4HRIBhfEXyIf7Mbk=;
+ b=QxJkJ6g8GaWoIrclz/4vaGh4sYgyLvu3U0QHSV1KkbaxaVI0713cM5x/cRJszk015q66Xill9QolTPOemmQA9ALkxlj5UuSC6/nJ88jlmd61163JiOxx/seBai58gZ7oj0kmdRln0LAGW0qcilIM9pOYEF29pZLBx1OGWK0Y2GWW+PG9EmTAzT4JSBtsUzZaQdHf0InB00P12jOYQTmyTUIOcr0a62+/LI6jOQSeFHnZVY0elZVkONcoKoIAvjYWsFo1DHxe6SPrIqVcks0cTiHvZB/JisLjzubj5ge8qrTr2vsLrHSQ85X4l88ArKHK+qwL42K/Yl2SIP82MlhrHg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  137.71.25.57) smtp.rcpttodomain=gmail.com smtp.mailfrom=analog.com;
  dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
@@ -33,32 +33,32 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l+i6sGtZxvcrwzX4SjQToH0Dizu5BMKV9kHoANdcp44=;
- b=nXUr7mZHWxhteC+A1+Cwae7W3PZl5Q1/G/R7k+ggMQVfnvwn1RVpymj76pbqhtD2L2VC7xdFB1NP7Kn4+uYaIuFe+Vrn/9VBMMxUYr+9DBnFkVFKejQlo4SC0BJUQNmK42bAvfFThMFR2KCLFoiqw+7Z31Uc6JAfCFFEztBrl9E=
-Received: from DM6PR03CA0054.namprd03.prod.outlook.com (2603:10b6:5:100::31)
- by CY4PR03MB2855.namprd03.prod.outlook.com (2603:10b6:903:137::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.24; Mon, 21 Oct
- 2019 14:07:52 +0000
-Received: from SN1NAM02FT026.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::206) by DM6PR03CA0054.outlook.office365.com
- (2603:10b6:5:100::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2367.21 via Frontend
- Transport; Mon, 21 Oct 2019 14:07:52 +0000
+ bh=xGSbXNynAXMA9ptwnkHijHRJsBV4HRIBhfEXyIf7Mbk=;
+ b=GUAW8U/FXwKS45GFsJ4FUG/Mf/qVfKw4vTgjSEHpBok1DxutUz/gxHoQzVcdpv6U1CrqX295jGPR1rMdnAgZHxBkZcvuyS4G87CxqFp8CU6o6+69rE2s2cRBCQ+feXMNhqCbRUzKbea2mS2LZouxnqqCGONTUSH7mHpHV3ZSu98=
+Received: from BN3PR03CA0063.namprd03.prod.outlook.com
+ (2a01:111:e400:7a4d::23) by BN7SPR01MB11.namprd03.prod.outlook.com
+ (2603:10b6:406:92::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.20; Mon, 21 Oct
+ 2019 14:07:53 +0000
+Received: from SN1NAM02FT047.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::200) by BN3PR03CA0063.outlook.office365.com
+ (2a01:111:e400:7a4d::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.20 via Frontend
+ Transport; Mon, 21 Oct 2019 14:07:53 +0000
 Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
  137.71.25.57 as permitted sender) receiver=protection.outlook.com;
  client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
 Received: from nwd2mta2.analog.com (137.71.25.57) by
- SN1NAM02FT026.mail.protection.outlook.com (10.152.72.97) with Microsoft SMTP
+ SN1NAM02FT047.mail.protection.outlook.com (10.152.72.201) with Microsoft SMTP
  Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2367.14
- via Frontend Transport; Mon, 21 Oct 2019 14:07:51 +0000
+ via Frontend Transport; Mon, 21 Oct 2019 14:07:53 +0000
 Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x9LE7iIG013900
+        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x9LE7jr9013912
         (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Mon, 21 Oct 2019 07:07:44 -0700
+        Mon, 21 Oct 2019 07:07:45 -0700
 Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
  (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 21 Oct
- 2019 10:07:50 -0400
+ 2019 10:07:52 -0400
 From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
 To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
 CC:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -68,9 +68,9 @@ CC:     Liam Girdwood <lgirdwood@gmail.com>,
         Takashi Iwai <tiwai@suse.com>,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 1/2] dt-bindings: asoc: adau7118: Cleanup
-Date:   Mon, 21 Oct 2019 16:08:15 +0200
-Message-ID: <20191021140816.262401-2-nuno.sa@analog.com>
+Subject: [PATCH 2/2] ASOC: adau7118: Change regulators id
+Date:   Mon, 21 Oct 2019 16:08:16 +0200
+Message-ID: <20191021140816.262401-3-nuno.sa@analog.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191021140816.262401-1-nuno.sa@analog.com>
 References: <20191021140816.262401-1-nuno.sa@analog.com>
@@ -81,104 +81,64 @@ X-Originating-IP: [10.44.3.90]
 X-ADIRoutedOnPrem: True
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(136003)(346002)(39860400002)(376002)(189003)(199004)(446003)(246002)(86362001)(1076003)(356004)(6666004)(50466002)(478600001)(8676002)(8936002)(50226002)(70206006)(426003)(45776006)(70586007)(5820100001)(126002)(486006)(476003)(11346002)(186003)(53416004)(5660300002)(2616005)(26005)(16526019)(336012)(47776003)(76176011)(23676004)(3846002)(7736002)(305945005)(7636002)(6116002)(4326008)(36756003)(2870700001)(106002)(2906002)(54906003)(110136005)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:CY4PR03MB2855;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;MX:1;A:1;
+X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(376002)(346002)(396003)(136003)(199004)(189003)(8936002)(11346002)(246002)(6666004)(8676002)(126002)(3846002)(486006)(356004)(476003)(2870700001)(76176011)(478600001)(86362001)(5820100001)(50226002)(47776003)(53416004)(446003)(45776006)(70206006)(2616005)(70586007)(23676004)(6116002)(426003)(7736002)(36756003)(5660300002)(16526019)(1076003)(316002)(2906002)(50466002)(186003)(4744005)(7636002)(336012)(106002)(26005)(110136005)(54906003)(4326008)(305945005);DIR:OUT;SFP:1101;SCL:1;SRVR:BN7SPR01MB11;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8842ffd0-e0ee-4181-74de-08d756300fd2
-X-MS-TrafficTypeDiagnostic: CY4PR03MB2855:
-X-Microsoft-Antispam-PRVS: <CY4PR03MB28552A51997644968AD7A70899690@CY4PR03MB2855.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
+X-MS-Office365-Filtering-Correlation-Id: 0c094fbb-4a3d-4224-848b-08d7563010a3
+X-MS-TrafficTypeDiagnostic: BN7SPR01MB11:
+X-Microsoft-Antispam-PRVS: <BN7SPR01MB110AC7DF25C42248D2701E99690@BN7SPR01MB11.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:660;
 X-Forefront-PRVS: 0197AFBD92
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R8o6ecUpMD5MzBKQ4hRaM6ccNitxNem/R5tW3tASw3x7rBrTLnFXnxdrI9Y10Jqc6n0Tzp9y22p86D61Kq6Y0OIkM1xy6oXEU4NFNWV5QKvbWFWJ33KvkCv3i+55S6uJkZNs6AEdz7YWA0k/R9fGQ3b6XwAHYyzkDXk7niN3BFEiDburMmcCUzJ6jHfATiyc4ljlz6AgnzqIykgtT85j9VH41LsjlUbZpg61InOzxqRnCFSH1G9B7rXK61Mf7L93+h1s1JO7JYe7zwlt2xTjHsZHNpBktjaRcOmkxx6nkJkOBSaBwv6sSGWS4kp8BOzWhxjDPQhERVkMMgQWghpey5OYRuyHrReWDEfgDlcrYqbWNWe/DNsntzSBfxIHEVgeMvcjXNthdGXMYDTG7VUc1udpys8PllL8Z+yeStfflvgDE+iaHRUxOmmyf0d5kz7E
+X-Microsoft-Antispam-Message-Info: zR178IdzXK7eHerLCMauKEeWxjUFUo+CRrBV4vYaGTS3FIddgr5QkFBThV33dIsJ1gLL2ijvWHHDWThPpev5yRtnLCSH/WqqrXYV+gYfZZRY8NLKZ75l2Pk34tEY4Ma5lsLQKiLlHfJBidhTYjY102E5waN4LUwXtry5ve/5HYVDJKpuMxiy+omPJwrB1pZsTN7vKwvh5NyQ5DpjQJ0U/GQFxtux+m5rDDDemXP3btoZS8vRCT1/IrJ2tylhPxzal47TaQiOEVBOde//qcMihNWsCUx3whB71ppnmv03AosPuGsJ55kUoxHmk/W2bHKFRDggVpf9TW58ngCEPl1ofD05GHAVJqUEKLzUGvkq6ecrD8spfdOUIcO0tjq57Y0XoFJ+FnMf49eGtPNBysP0n5vKiO2PJLGaIgOskpM4FA1bAO+HkDZi59gSL39LqxOf
 X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2019 14:07:51.7432
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2019 14:07:53.2614
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8842ffd0-e0ee-4181-74de-08d756300fd2
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c094fbb-4a3d-4224-848b-08d7563010a3
 X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR03MB2855
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7SPR01MB11
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
  definitions=2019-10-21_04:2019-10-21,2019-10-21 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- spamscore=0 bulkscore=0 clxscore=1015 mlxlogscore=999 priorityscore=1501
- phishscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 malwarescore=0 clxscore=1015
+ mlxlogscore=999 mlxscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-1908290000 definitions=main-1910210134
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This changes are in accordance with the review done to this bindings.
-This is a follow-up patch to 969d49b2cdc8.
+Change the regulators id in accordance with b670e44fc3bd.
 
 Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 ---
- .../bindings/sound/adi,adau7118.yaml          | 25 ++++++++-----------
- 1 file changed, 10 insertions(+), 15 deletions(-)
+ sound/soc/codecs/adau7118.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
-index cfcef602b3d9..c3f10afbdd6f 100644
---- a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
-+++ b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
-@@ -26,13 +26,11 @@ properties:
-   "#sound-dai-cells":
-     const: 0
+diff --git a/sound/soc/codecs/adau7118.c b/sound/soc/codecs/adau7118.c
+index bf5a5d75f81a..841229dcbca1 100644
+--- a/sound/soc/codecs/adau7118.c
++++ b/sound/soc/codecs/adau7118.c
+@@ -463,14 +463,14 @@ static void adau7118_regulator_disable(void *data)
  
--  IOVDD-supply:
-+  iovdd-supply:
-     description: Digital Input/Output Power Supply.
--    $ref: "/schemas/types.yaml#/definitions/phandle"
+ static int adau7118_regulator_setup(struct adau7118_data *st)
+ {
+-	st->iovdd = devm_regulator_get(st->dev, "IOVDD");
++	st->iovdd = devm_regulator_get(st->dev, "iovdd");
+ 	if (IS_ERR(st->iovdd)) {
+ 		dev_err(st->dev, "Could not get iovdd: %ld\n",
+ 			PTR_ERR(st->iovdd));
+ 		return PTR_ERR(st->iovdd);
+ 	}
  
--  DVDD-supply:
-+  dvdd-supply:
-     description: Internal Core Digital Power Supply.
--    $ref: "/schemas/types.yaml#/definitions/phandle"
- 
-   adi,decimation-ratio:
-     description: |
-@@ -58,23 +56,21 @@ properties:
- required:
-   - "#sound-dai-cells"
-   - compatible
--  - IOVDD-supply
--  - DVDD-supply
-+  - iovdd-supply
-+  - dvdd-supply
- 
- examples:
-   - |
--    i2c0 {
-+    i2c {
-         /* example with i2c support */
-         #address-cells = <1>;
-         #size-cells = <0>;
--        status = "okay";
--        adau7118_codec: adau7118-codec@14 {
-+        adau7118_codec: audio-codec@14 {
-                 compatible = "adi,adau7118";
-                 reg = <14>;
-                 #sound-dai-cells = <0>;
--                status = "okay";
--                IOVDD-supply = <&supply>;
--                DVDD-supply = <&supply>;
-+                iovdd-supply = <&supply>;
-+                dvdd-supply = <&supply>;
-                 adi,pdm-clk-map = <1 1 0 0>;
-                 adi,decimation-ratio = <16>;
-         };
-@@ -84,7 +80,6 @@ examples:
-     adau7118_codec_hw: adau7118-codec-hw {
-             compatible = "adi,adau7118";
-             #sound-dai-cells = <0>;
--            status = "okay";
--            IOVDD-supply = <&supply>;
--            DVDD-supply = <&supply>;
-+            iovdd-supply = <&supply>;
-+            dvdd-supply = <&supply>;
-     };
+-	st->dvdd = devm_regulator_get(st->dev, "DVDD");
++	st->dvdd = devm_regulator_get(st->dev, "dvdd");
+ 	if (IS_ERR(st->dvdd)) {
+ 		dev_err(st->dev, "Could not get dvdd: %ld\n",
+ 			PTR_ERR(st->dvdd));
 -- 
 2.23.0
 
