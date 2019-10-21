@@ -2,179 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92342DF644
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 21:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC2FDF65F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 21:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730194AbfJUTtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 15:49:49 -0400
-Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:5198 "EHLO
-        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730065AbfJUTtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 15:49:49 -0400
-Received: from pps.filterd (m0109334.ppops.net [127.0.0.1])
-        by mx0a-00082601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LJmCpU029382
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2019 12:49:48 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=facebook; bh=jWT5CrWJkxGUb7ij8uZJ7HivALz8abhbTyR6lISUR8E=;
- b=ckF0tQsv6NQadBD+cCGD/EtAcF4mPP73P/DOt5ORagmY0/8VtP7LdNoILbT6rmudmIpS
- RbRJai0AnRDda6h+4w/+S8P9Hin0Tq7B8T7ZYHIwKwqx1DePfaeIqXszbEhm6Z8DiGzl
- 7A0bZMzUqB14dLEpJlpxp1i/gLT4eiW2ucc= 
-Received: from maileast.thefacebook.com ([163.114.130.16])
-        by mx0a-00082601.pphosted.com with ESMTP id 2vrj6sp1ku-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2019 12:49:48 -0700
-Received: from 2401:db00:2120:80e1:face:0:29:0 (2620:10d:c0a8:1b::d) by
- mail.thefacebook.com (2620:10d:c0a8:83::7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 21 Oct 2019 12:49:20 -0700
-Received: by devvm1794.vll1.facebook.com (Postfix, from userid 150176)
-        id 0A3E164C3CBA; Mon, 21 Oct 2019 12:49:20 -0700 (PDT)
-Smtp-Origin-Hostprefix: devvm
-From:   Tao Ren <taoren@fb.com>
-Smtp-Origin-Hostname: devvm1794.vll1.facebook.com
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <openbmc@lists.ozlabs.org>
-CC:     Tao Ren <taoren@fb.com>
-Smtp-Origin-Cluster: vll1c12
-Subject: [PATCH 4/4] ARM: dts: aspeed: yamp: include dtsi for common network BMC devices
-Date:   Mon, 21 Oct 2019 12:48:20 -0700
-Message-ID: <20191021194820.293556-5-taoren@fb.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191021194820.293556-1-taoren@fb.com>
-References: <20191021194820.293556-1-taoren@fb.com>
-X-FB-Internal: Safe
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-21_05:2019-10-21,2019-10-21 signatures=0
-X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 suspectscore=0
- adultscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0 phishscore=0
- malwarescore=0 spamscore=0 mlxscore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910210189
-X-FB-Internal: deliver
+        id S1730069AbfJUT6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 15:58:34 -0400
+Received: from mxout2.idt.com ([157.165.5.26]:58754 "EHLO mxout2.idt.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726672AbfJUT6e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Oct 2019 15:58:34 -0400
+Received: from mail6.idt.com (localhost [127.0.0.1])
+        by mxout2.idt.com (8.14.4/8.14.4) with ESMTP id x9LJwKdh002423;
+        Mon, 21 Oct 2019 12:58:20 -0700
+Received: from corpml3.corp.idt.com (corpml3.corp.idt.com [157.165.140.25])
+        by mail6.idt.com (8.14.4/8.14.4) with ESMTP id x9LJwJif008501;
+        Mon, 21 Oct 2019 12:58:19 -0700
+Received: from vcheng-VirtualBox.na.ads.idt.com (corpimss2.corp.idt.com [157.165.141.30])
+        by corpml3.corp.idt.com (8.11.7p1+Sun/8.11.7) with ESMTP id x9LJwHW22079;
+        Mon, 21 Oct 2019 12:58:17 -0700 (PDT)
+From:   vincent.cheng.xh@renesas.com
+To:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, richardcochran@gmail.com,
+        Vincent Cheng <vincent.cheng.xh@renesas.com>
+Subject: [PATCH v3 1/2] dt-bindings: ptp: Add bindings doc for IDT ClockMatrix based PTP clock
+Date:   Mon, 21 Oct 2019 15:57:47 -0400
+Message-Id: <1571687868-22834-1-git-send-email-vincent.cheng.xh@renesas.com>
+X-Mailer: git-send-email 2.7.4
+X-TM-AS-MML: disable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch simplifies Yamp device tree by including dtsi to define
-devices which are common to Facebook AST2500 Network BMC platforms.
+From: Vincent Cheng <vincent.cheng.xh@renesas.com>
 
-Below is the summary of changes comparing with previous dts version:
-  - enabling the second firmware flash.
-  - enabling the emmc device in slot #1.
+Add device tree binding doc for the IDT ClockMatrix PTP clock.
 
-Signed-off-by: Tao Ren <taoren@fb.com>
+Co-developed-by: Richard Cochran <richardcochran@gmail.com>
+Signed-off-by: Richard Cochran <richardcochran@gmail.com>
+Signed-off-by: Vincent Cheng <vincent.cheng.xh@renesas.com>
 ---
- .../arm/boot/dts/aspeed-bmc-facebook-yamp.dts | 62 ++-----------------
- 1 file changed, 5 insertions(+), 57 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts
-index 4e09a9cf32b7..b184fa1abb60 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts
-@@ -2,7 +2,7 @@
- // Copyright (c) 2018 Facebook Inc.
- /dts-v1/;
- 
--#include "aspeed-g5.dtsi"
-+#include "facebook-netbmc-ast2500-common.dtsi"
- 
- / {
- 	model = "Facebook YAMP 100 BMC";
-@@ -23,47 +23,6 @@
- 		stdout-path = &uart5;
- 		bootargs = "console=ttyS0,9600n8 root=/dev/ram rw";
- 	};
--
--	memory@80000000 {
--		reg = <0x80000000 0x20000000>;
--	};
--};
--
--&pinctrl {
--	aspeed,external-nodes = <&gfx &lhc>;
--};
--
--/*
-- * Update reset type to "system" (full chip) to fix warm reboot hang issue
-- * when reset type is set to default ("soc", gated by reset mask registers).
-- */
--&wdt1 {
--	status = "okay";
--	aspeed,reset-type = "system";
--};
--
--/*
-- * wdt2 is not used by Yamp.
-- */
--&wdt2 {
--	status = "disabled";
--};
--
--&fmc {
--	status = "okay";
--	flash@0 {
--		status = "okay";
--		m25p,fast-read;
--		label = "bmc";
--#include "facebook-bmc-flash-layout.dtsi"
--	};
--};
--
--&uart1 {
--	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_txd1_default
--		     &pinctrl_rxd1_default>;
- };
- 
- &uart2 {
-@@ -73,17 +32,6 @@
- 		     &pinctrl_rxd2_default>;
- };
- 
--&uart3 {
--	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_txd3_default
--		     &pinctrl_rxd3_default>;
--};
--
--&uart5 {
--	status = "okay";
--};
--
- &mac0 {
- 	status = "okay";
- 	use-ncsi;
-@@ -92,6 +40,10 @@
- 	pinctrl-0 = <&pinctrl_rmii1_default>;
- };
- 
-+&mac1 {
-+	status = "disabled";
-+};
+Changes since v2:
+ - As suggested by Rob Herring:
+   1. Replace with DT schema
+   2. Remove '-ptp' from compatible string
+   3. Replace wildcard 'x' with the part numbers.
+
+Changes since v1:
+ - No changes
+---
+ .../devicetree/bindings/ptp/ptp-idtcm.yaml         | 63 ++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml
+
+diff --git a/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml b/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml
+new file mode 100644
+index 0000000..d3771e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ptp/ptp-idtcm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- &i2c0 {
- 	status = "okay";
- };
-@@ -154,7 +106,3 @@
- &i2c13 {
- 	status = "okay";
- };
--
--&vhub {
--	status = "okay";
--};
++title: IDT ClockMatrix (TM) PTP Clock Device Tree Bindings
++
++maintainers:
++  - Vincent Cheng <vincent.cheng.xh@renesas.com>
++
++properties:
++  compatible:
++    enum:
++      # For System Synchronizer
++      - idt,8a34000
++      - idt,8a34001
++      - idt,8a34002
++      - idt,8a34003
++      - idt,8a34004
++      - idt,8a34005
++      - idt,8a34006
++      - idt,8a34007
++      - idt,8a34008
++      - idt,8a34009
++      # For Port Synchronizer
++      - idt,8a34010
++      - idt,8a34011
++      - idt,8a34012
++      - idt,8a34013
++      - idt,8a34014
++      - idt,8a34015
++      - idt,8a34016
++      - idt,8a34017
++      - idt,8a34018
++      - idt,8a34019
++      # For Universal Frequency Translator (UFT)
++      - idt,8a34040
++      - idt,8a34041
++      - idt,8a34042
++      - idt,8a34043
++      - idt,8a34044
++      - idt,8a34045
++      - idt,8a34046
++      - idt,8a34047
++      - idt,8a34048
++      - idt,8a34049
++
++  reg:
++    maxItems: 1
++    description:
++      I2C slave address of the device.
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    phc@5b {
++          compatible = "idt,8a34000";
++          reg = <0x5b>;
++    };
 -- 
-2.17.1
+2.7.4
 
