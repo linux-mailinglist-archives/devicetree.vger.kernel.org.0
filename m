@@ -2,114 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8077DE363
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 06:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C131DE377
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 07:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725874AbfJUEoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 00:44:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49034 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725827AbfJUEoK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 00:44:10 -0400
-Received: from localhost (unknown [122.167.89.206])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 102972067B;
-        Mon, 21 Oct 2019 04:44:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571633049;
-        bh=LVlUwIor1Q0zqTd3c1Z8i6+KPgjp8+NUXpE9o1AUPGg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J6WyMO4de+yhu9NJ87JGfUDk+teLPhNjtBP7DfyEfMwcriRxAM0DBKoshvRyAxjT8
-         Rw2crnxAE4eO4ywbrixkkk++fwl0VQ4ay2UipY6mi6JtLiBPAeQ35wGoGk2Gfi2J3p
-         I0GCNmT+kV4uyMNPvoDXLVL7Vqf5oyYwTpo0ocII=
-Date:   Mon, 21 Oct 2019 10:14:05 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     robh@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, spapothi@codeaurora.org
-Subject: Re: [PATCH v3 2/2] soundwire: qcom: add support for SoundWire
- controller
-Message-ID: <20191021044405.GB2654@vkoul-mobl>
-References: <20191011154423.2506-1-srinivas.kandagatla@linaro.org>
- <20191011154423.2506-3-srinivas.kandagatla@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191011154423.2506-3-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        id S1726199AbfJUFF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 01:05:56 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:36859 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725900AbfJUFF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 01:05:56 -0400
+Received: by mail-pg1-f194.google.com with SMTP id 23so7010151pgk.3;
+        Sun, 20 Oct 2019 22:05:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Pxy+SjxJxYfLUhAFsu0Nbm4mmirWGbXqhMNfG1rN5fc=;
+        b=uNPXEVPOhc7PtyHvjnTOr9Tw37fVORVAovKWrb9mkg1g5++6EKEnlZDnc7iOZJ9eXJ
+         jzDVZkD1sFNTDkJPYgvOY2QBJEWbRj45nvsRwXqY3Nlk/vLaZcpjhGVRsW99sHaKGcLW
+         GakTy01QtnKQRDi+JMaaxT8Xv2cPE/KnCMB57/fuArbOZ1+D/hNl3w17duJl7njCPF7j
+         PeIoqIcRGGdUhP37YmBcbQF/e8G8EBWo0Kmo5iVsDMx2fymFWZMuwduY1J1lz2Vu85GP
+         c4WEBsOBYHjiCTk6AQbPZ439y5u7tQ1FP+cVkWPEnpoVQxqeHdJDvLpeDEY8kxbe0opV
+         8JYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Pxy+SjxJxYfLUhAFsu0Nbm4mmirWGbXqhMNfG1rN5fc=;
+        b=UUzWmcY0fPVlMAIx5jRuyYA1fZfOErzB2v3w13reHtkiQilgkGPFRHvUiRQIx+8AHi
+         LsQYJx58cBbrlHqzALZx6Vrn+5acD4RWmj3gL/3f5FvPLSDUeVs1lDgrmzLjf0LOcjqB
+         37yosokuinJv1V4Hxb8f14ozQ3vgvBdBaaLB38IpTu8IX49fe6aMN2yq2evfZ1ETMtD3
+         u70clpJyeGLoGFGjYzhp+2e96P7svPWg7/kp8IYAc6HOaZifcILyJdhcAjhDUUbKZZVP
+         rHGY8ZnPYeOOYqN7HQI9d1IM0TxPLYdBGwx6BviU3DdN2LWT4Ak+zs8IlqeNA3LgJxy2
+         ZCWw==
+X-Gm-Message-State: APjAAAWUllt4KCWL8gHbFUJJuM6clDyxyzp8/G2Ru0t4RiRC80qowvap
+        5+RHQRUTZQXDlKmDtULSSos=
+X-Google-Smtp-Source: APXvYqzkDit0WXzbdvh8WzqFu4bucecX6K6NFb7w5V7MWhpjim8QXFo8+etuqfs/ce9dWcE9Io86Sg==
+X-Received: by 2002:a17:90a:8002:: with SMTP id b2mr404997pjn.39.1571634353641;
+        Sun, 20 Oct 2019 22:05:53 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+        by smtp.gmail.com with ESMTPSA id 127sm13611191pfy.56.2019.10.20.22.05.47
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 20 Oct 2019 22:05:52 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Fix S905D3 ID for VIM3L
+Date:   Mon, 21 Oct 2019 09:04:55 +0400
+Message-Id: <1571634295-20154-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-10-19, 16:44, Srinivas Kandagatla wrote:
+Chip on the board is S905D3 not S905X3.
 
-> +static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct qcom_swrm_ctrl *ctrl = dev_id;
-> +	u32 sts, value;
-> +	unsigned long flags;
-> +
-> +	ctrl->reg_read(ctrl, SWRM_INTERRUPT_STATUS, &sts);
-> +
-> +	if (sts & SWRM_INTERRUPT_STATUS_CMD_ERROR) {
-> +		ctrl->reg_read(ctrl, SWRM_CMD_FIFO_STATUS, &value);
-> +		dev_err_ratelimited(ctrl->dev,
-> +				    "CMD error, fifo status 0x%x\n",
-> +				     value);
-> +		ctrl->reg_write(ctrl, SWRM_CMD_FIFO_CMD, 0x1);
-> +	}
-> +
-> +	if ((sts & SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED) ||
-> +	    sts & SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS)
-> +		schedule_work(&ctrl->slave_work);
+Fixes: 1d7c541b8a5b ("soc: amlogic: meson-gx-socinfo: Add S905X3 ID for VIM3L")
 
-we are in irq thread, so why not do the work here rather than schedule
-it?
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ drivers/soc/amlogic/meson-gx-socinfo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +static int qcom_swrm_compute_params(struct sdw_bus *bus)
-> +{
-> +	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
-> +	struct sdw_master_runtime *m_rt;
-> +	struct sdw_slave_runtime *s_rt;
-> +	struct sdw_port_runtime *p_rt;
-> +	struct qcom_swrm_port_config *pcfg;
-> +	int i = 0;
-> +
-> +	list_for_each_entry(m_rt, &bus->m_rt_list, bus_node) {
-> +		list_for_each_entry(p_rt, &m_rt->port_list, port_node) {
-> +			pcfg = &ctrl->pconfig[p_rt->num - 1];
-> +			p_rt->transport_params.port_num = p_rt->num;
-> +			p_rt->transport_params.sample_interval = pcfg->si + 1;
-> +			p_rt->transport_params.offset1 = pcfg->off1;
-> +			p_rt->transport_params.offset2 = pcfg->off2;
-> +		}
-> +
-> +		list_for_each_entry(s_rt, &m_rt->slave_rt_list, m_rt_node) {
-> +			list_for_each_entry(p_rt, &s_rt->port_list, port_node) {
-> +				pcfg = &ctrl->pconfig[i];
-> +				p_rt->transport_params.port_num = p_rt->num;
-> +				p_rt->transport_params.sample_interval =
-> +					pcfg->si + 1;
-> +				p_rt->transport_params.offset1 = pcfg->off1;
-> +				p_rt->transport_params.offset2 = pcfg->off2;
-> +				i++;
-> +			}
-
-Can you explain this one, am not sure I understood this. This fn is
-supposed to compute and fill up the params, all I can see is filling up!
-
-> +static const struct snd_soc_dai_ops qcom_swrm_pdm_dai_ops = {
-> +	.hw_params = qcom_swrm_hw_params,
-> +	.prepare = qcom_swrm_prepare,
-> +	.hw_free = qcom_swrm_hw_free,
-> +	.startup = qcom_swrm_startup,
-> +	.shutdown = qcom_swrm_shutdown,
-> +        .set_sdw_stream = qcom_swrm_set_sdw_stream,
-
-why does indent look off to me!
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index 87ed558..e612dae 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -69,7 +69,7 @@ static const struct meson_gx_package_id {
+ 	{ "S922X", 0x29, 0x40, 0xf0 },
+ 	{ "A311D", 0x29, 0x10, 0xf0 },
+ 	{ "S905X3", 0x2b, 0x5, 0xf },
+-	{ "S905X3", 0x2b, 0xb0, 0xf2 },
++	{ "S905D3", 0x2b, 0xb0, 0xf2 },
+ 	{ "A113L", 0x2c, 0x0, 0xf8 },
+ };
+ 
 -- 
-~Vinod
+2.7.4
+
