@@ -2,143 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFDCDEEDE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6ADDEEF4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728551AbfJUOJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 10:09:10 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:9734 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728098AbfJUOJK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 10:09:10 -0400
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LE7pOJ022789;
-        Mon, 21 Oct 2019 10:07:55 -0400
-Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2058.outbound.protection.outlook.com [104.47.37.58])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2vqy46bp0q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Mon, 21 Oct 2019 10:07:55 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IB68ar1xa3tjAEDp59jVFNtPdqcSUjyGlXICKCruitdumcfvLf4Gj+8gXt+Ps+GgAzLJ0bfKOg0450I2qNtibRu2BdFk46ozXO8lO83Jb/iqiOt5mzQJUC88m49sn+jtiO1ncdNl7PMWT4A5ETPgS+k2yOOOgqFfG5OxdgMSt4TG11WzB7X4qb2C/SgMnhWbrrGAdP5IaOHC4Ry33t3VGsVgYO2ppF7jr+yfnnFzpips9iBJA1jbbHm6BHTMIUEJCmeRQyTsYQnmJPku0GThqFCaKded3BUGXUsTdDebPmLbcLd0AFqfSzbTw53LM/w+SfVdSihv0wbr0e0HBGJk3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xGSbXNynAXMA9ptwnkHijHRJsBV4HRIBhfEXyIf7Mbk=;
- b=QxJkJ6g8GaWoIrclz/4vaGh4sYgyLvu3U0QHSV1KkbaxaVI0713cM5x/cRJszk015q66Xill9QolTPOemmQA9ALkxlj5UuSC6/nJ88jlmd61163JiOxx/seBai58gZ7oj0kmdRln0LAGW0qcilIM9pOYEF29pZLBx1OGWK0Y2GWW+PG9EmTAzT4JSBtsUzZaQdHf0InB00P12jOYQTmyTUIOcr0a62+/LI6jOQSeFHnZVY0elZVkONcoKoIAvjYWsFo1DHxe6SPrIqVcks0cTiHvZB/JisLjzubj5ge8qrTr2vsLrHSQ85X4l88ArKHK+qwL42K/Yl2SIP82MlhrHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 137.71.25.57) smtp.rcpttodomain=gmail.com smtp.mailfrom=analog.com;
- dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
- not signed); arc=none
+        id S1728096AbfJUOLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 10:11:47 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:42441 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728076AbfJUOLq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 10:11:46 -0400
+Received: by mail-il1-f196.google.com with SMTP id o16so4032656ilq.9;
+        Mon, 21 Oct 2019 07:11:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xGSbXNynAXMA9ptwnkHijHRJsBV4HRIBhfEXyIf7Mbk=;
- b=GUAW8U/FXwKS45GFsJ4FUG/Mf/qVfKw4vTgjSEHpBok1DxutUz/gxHoQzVcdpv6U1CrqX295jGPR1rMdnAgZHxBkZcvuyS4G87CxqFp8CU6o6+69rE2s2cRBCQ+feXMNhqCbRUzKbea2mS2LZouxnqqCGONTUSH7mHpHV3ZSu98=
-Received: from BN3PR03CA0063.namprd03.prod.outlook.com
- (2a01:111:e400:7a4d::23) by BN7SPR01MB11.namprd03.prod.outlook.com
- (2603:10b6:406:92::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.20; Mon, 21 Oct
- 2019 14:07:53 +0000
-Received: from SN1NAM02FT047.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::200) by BN3PR03CA0063.outlook.office365.com
- (2a01:111:e400:7a4d::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.20 via Frontend
- Transport; Mon, 21 Oct 2019 14:07:53 +0000
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- SN1NAM02FT047.mail.protection.outlook.com (10.152.72.201) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2367.14
- via Frontend Transport; Mon, 21 Oct 2019 14:07:53 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x9LE7jr9013912
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Mon, 21 Oct 2019 07:07:45 -0700
-Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
- (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 21 Oct
- 2019 10:07:52 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 2/2] ASOC: adau7118: Change regulators id
-Date:   Mon, 21 Oct 2019 16:08:16 +0200
-Message-ID: <20191021140816.262401-3-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191021140816.262401-1-nuno.sa@analog.com>
-References: <20191021140816.262401-1-nuno.sa@analog.com>
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PjrW/5SskD+8sPt6BPZ8XxiZeheU9jVFZxsNh12g9Z8=;
+        b=vC+B9XfANqrQFOHw4x3PSo6DxLVq9pgqhRyy8/FMDhb2MwI02TG5iYo66jllEXySKU
+         BJivvtSp4QSg+m7DBIsHUQs0taO7Yz9n+SavI00fzj6lWYJ70uj1fDDxFzsRiKLf5Ni6
+         HHBBNHbB70SSadMVDuwjX6FSnl1BLPZLZqGlMvoIi5ExnnenbQYpJafEI0rge3xFoUo5
+         5yBJGYcrT27h+fHACV4j72yYIruEvw5BZFZFmFY+XgSY+acKlUGWGjXzsFgN5OuruPPt
+         DvTVVgdxQruvjtHJYQjSgVZn9GPFMKpOsRN9dTz4pRWRnU9tbcwHuS21oAgWH5kNQkFC
+         cp+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PjrW/5SskD+8sPt6BPZ8XxiZeheU9jVFZxsNh12g9Z8=;
+        b=DL+MG3fiZxc5jgMgHN+ykHv5jkiX7ZjLlTPtpzytPQm8mXCjmKzqkbPc+m9Wa4tiXZ
+         zfan7z/EGlJkIyN07VK0iP5pBItM5rT6D2QiiEmU6LQs6e7NuB8s5u4llHBtsgy5ofZQ
+         l7UeD8uESiqzZtVqBgGikcT3+yeHkY+Sm+GdHWsCllN3c2t2wG2sbE/y2TsQV35rx67V
+         acZkBGLJOm3UfIC0nz03fOrpvOjZQFU8w+OYql0phowNrthcD5LGL7u6KMA2P8f/kiy4
+         MiUYsl1iMAA+XwParzln3Ko8vDdrT0ze5qet2crA0CBdkymgVcEvTqlTnWPBEx5wWG6J
+         6Z4g==
+X-Gm-Message-State: APjAAAXkSGm+/dNcbgetQwkkaNDsZhfsCXIO8Y3fMPlrs6sFrBvsoqwl
+        9pgZzAK3RXJQTizOXp6lJ0SRJlFofbNthZNOgOM=
+X-Google-Smtp-Source: APXvYqxeuHigsAnRBVc/SU84PM+ZFFz5M6oWH5j3i6NUKfOgxMIokeCP8qrGAR4Iyr1erhgn9NBZMGasZgrw6YqhKeQ=
+X-Received: by 2002:a92:7906:: with SMTP id u6mr20294645ilc.75.1571667105558;
+ Mon, 21 Oct 2019 07:11:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.44.3.90]
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(376002)(346002)(396003)(136003)(199004)(189003)(8936002)(11346002)(246002)(6666004)(8676002)(126002)(3846002)(486006)(356004)(476003)(2870700001)(76176011)(478600001)(86362001)(5820100001)(50226002)(47776003)(53416004)(446003)(45776006)(70206006)(2616005)(70586007)(23676004)(6116002)(426003)(7736002)(36756003)(5660300002)(16526019)(1076003)(316002)(2906002)(50466002)(186003)(4744005)(7636002)(336012)(106002)(26005)(110136005)(54906003)(4326008)(305945005);DIR:OUT;SFP:1101;SCL:1;SRVR:BN7SPR01MB11;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0c094fbb-4a3d-4224-848b-08d7563010a3
-X-MS-TrafficTypeDiagnostic: BN7SPR01MB11:
-X-Microsoft-Antispam-PRVS: <BN7SPR01MB110AC7DF25C42248D2701E99690@BN7SPR01MB11.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:660;
-X-Forefront-PRVS: 0197AFBD92
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zR178IdzXK7eHerLCMauKEeWxjUFUo+CRrBV4vYaGTS3FIddgr5QkFBThV33dIsJ1gLL2ijvWHHDWThPpev5yRtnLCSH/WqqrXYV+gYfZZRY8NLKZ75l2Pk34tEY4Ma5lsLQKiLlHfJBidhTYjY102E5waN4LUwXtry5ve/5HYVDJKpuMxiy+omPJwrB1pZsTN7vKwvh5NyQ5DpjQJ0U/GQFxtux+m5rDDDemXP3btoZS8vRCT1/IrJ2tylhPxzal47TaQiOEVBOde//qcMihNWsCUx3whB71ppnmv03AosPuGsJ55kUoxHmk/W2bHKFRDggVpf9TW58ngCEPl1ofD05GHAVJqUEKLzUGvkq6ecrD8spfdOUIcO0tjq57Y0XoFJ+FnMf49eGtPNBysP0n5vKiO2PJLGaIgOskpM4FA1bAO+HkDZi59gSL39LqxOf
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2019 14:07:53.2614
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c094fbb-4a3d-4224-848b-08d7563010a3
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7SPR01MB11
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-21_04:2019-10-21,2019-10-21 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- spamscore=0 priorityscore=1501 adultscore=0 malwarescore=0 clxscore=1015
- mlxlogscore=999 mlxscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1908290000 definitions=main-1910210134
+References: <20191007131649.1768-1-linux.amoon@gmail.com> <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+ <7hsgo4cgeg.fsf@baylibre.com> <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+ <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
+ <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
+ <1jwode9lba.fsf@starbuckisacylon.baylibre.com> <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
+ <CAFBinCBdwqxA2kLMAA9gtOcXevYK-J4x12odHwpQOAWakgWiEg@mail.gmail.com>
+In-Reply-To: <CAFBinCBdwqxA2kLMAA9gtOcXevYK-J4x12odHwpQOAWakgWiEg@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 21 Oct 2019 19:41:34 +0530
+Message-ID: <CANAwSgRs2DUXwvhJD5qpXg04qEdP_Nt-wQqRbD2FpY2SWnHpAA@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="00000000000088532505956c43d2"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change the regulators id in accordance with b670e44fc3bd.
+--00000000000088532505956c43d2
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- sound/soc/codecs/adau7118.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hi Martin,
 
-diff --git a/sound/soc/codecs/adau7118.c b/sound/soc/codecs/adau7118.c
-index bf5a5d75f81a..841229dcbca1 100644
---- a/sound/soc/codecs/adau7118.c
-+++ b/sound/soc/codecs/adau7118.c
-@@ -463,14 +463,14 @@ static void adau7118_regulator_disable(void *data)
- 
- static int adau7118_regulator_setup(struct adau7118_data *st)
- {
--	st->iovdd = devm_regulator_get(st->dev, "IOVDD");
-+	st->iovdd = devm_regulator_get(st->dev, "iovdd");
- 	if (IS_ERR(st->iovdd)) {
- 		dev_err(st->dev, "Could not get iovdd: %ld\n",
- 			PTR_ERR(st->iovdd));
- 		return PTR_ERR(st->iovdd);
- 	}
- 
--	st->dvdd = devm_regulator_get(st->dev, "DVDD");
-+	st->dvdd = devm_regulator_get(st->dev, "dvdd");
- 	if (IS_ERR(st->dvdd)) {
- 		dev_err(st->dev, "Could not get dvdd: %ld\n",
- 			PTR_ERR(st->dvdd));
--- 
-2.23.0
+On Fri, 18 Oct 2019 at 23:40, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Fri, Oct 18, 2019 at 4:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > > Next step it to try narrow down the clock causing the issue.
+> > > Remove clk_ignore_unused from the command line and add CLK_INGORE_UNUSED
+> > > to the flag of some clocks your clock controller (g12a I think) until
+> > >
+> > > The peripheral clock gates already have this flag (something we should
+> > > fix someday) so don't bother looking there.
+> > >
+> > > Most likely the source of the pwm is getting disabled between the
+> > > late_init call and the probe of the PWM module. Since the pwm is already
+> > > active (w/o a driver), gating the clock source shuts dowm the power to
+> > > the cores.
+> > >
+> > > Looking a the possible inputs in pwm driver, I'd bet on fdiv4.
+> > >
+> >
+> > I had give this above steps a try but with little success.
+> > I am still looking into this much close.
+> it's not clear to me if you have only tested with the PWM and/or
+> FCLK_DIV4 clocks. can you please describe what you have tested so far?
+>
+Sorry for delayed response.
 
+I had just looked into clk related to SD_EMMC_A/B/C,
+with adding CLK_IGNORE/CRITICAL.
+Also looked into clk_summary for eMMC and microSD card,
+to identify the root cause, but I failed to move ahead.
+
+> for reference - my way of debugging this in the past was:
+> 1. add some printks to clk_disable_unused_subtree (right after the
+> clk_core_is_enabled check) to see which clocks are being disabled
+> 2. add CLK_IGNORE_UNUSED or CLK_IS_CRITICAL to the clocks which are
+> being disabled based on the information from step #1
+> 3. (at some point I had a working kernel with lots of clocks with
+> CLK_IGNORE_UNUSED/CLK_IS_CRITICAL)
+> 4. start dropping the CLK_IGNORE_UNUSED/CLK_IS_CRITICAL flags again
+> until you have traced it down to the clocks that are the actual issue
+> (so far I always had only one clock which caused issues, but it may be
+> multiple)
+> 5. investigate (and/or ask on the mailing list, Amlogic developers are
+> reading the mails here as well) for the few clocks from step #4
+>
+
+Thanks for you valuable suggestion. I have your patch to debug this
+[0]  https://patchwork.kernel.org/patch/9725921/mbox/
+
+So from the fist step I could identify that all the clk were getting closed
+after some core cpu clk was failing. Here is the log.
+
+step1: [1] https://pastebin.com/p13F9HGG
+
+so I marked these clk as CLK_IGNORE_UNUSED and finally
+I made it to boot using microSD card.
+
+After this just I converted these CLK to CLK_IS_CRITICAL
+as mostly these are used the CPU clk for now.
+Here is boot log successful for as of now.
+
+Finally: [2]  https://pastebin.com/qB6pMyGQ
+
+I know clk maintainer are against marking flags as *CLK_IS_CRITICAL*
+But this is just the step to move ahead.
+
+Attach is my local clk and dts patch.Just for testing.
+[3] clk_critical.patch
+
+Plz share your thought on this.
+
+> > Well I am not the expert in clk or bus configuration.
+> > but after looking into the datasheet of for clk configuration
+> > I found some bus are not configured correctly.
+> did you find any reason which indicates that the problem is related to a bus?
+> the issues I had were due to clocks not being assigned to their
+> consumers in .dts - that can be anything (from a bus to something
+> different).
+>
+
+Yes I feel each core bus should be independent
+as each clk PLL controls these bus.
+
+for example datasheet: *6-5 Clock Connections*
+
+What I feel currently missing with bus are
+clock gating (enable/disable of features).
+clock-controller
+reset-controller
+
+Here is the current overview of bus topology
+using latest u-boot (dm tree).
+
+[4] https://pastebin.com/MZ25bgiP
+
+Bet Regards
+-Anand
+
+--00000000000088532505956c43d2
+Content-Type: application/octet-stream; name="clk_critical.patch"
+Content-Disposition: attachment; filename="clk_critical.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k20hls1l0>
+X-Attachment-Id: f_k20hls1l0
+
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9p
+ZC1uMi5kdHMgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi1vZHJvaWQt
+bjIuZHRzCmluZGV4IDQyZjE1NDA1NzUwYy4uNGY4ZDg5ZjQ3MmEyIDEwMDY0NAotLS0gYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi1vZHJvaWQtbjIuZHRzCisrKyBiL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHMKQEAgLTU0
+LDYgKzU0LDkgQEAKIAkJZ3BpbyA9IDwmZ3Bpb19hbyBHUElPQU9fOCBHUElPX0FDVElWRV9ISUdI
+PjsKIAkJZW5hYmxlLWFjdGl2ZS1oaWdoOwogCQlyZWd1bGF0b3ItYWx3YXlzLW9uOworCisJCS8q
+IEZDODczMS0wOVZGMDVOUlIgKi8KKwkJdmluLXN1cHBseSA9IDwmdmRkYW9fM3YzPjsKIAl9Owog
+CiAJdGZfaW86IGdwaW8tcmVndWxhdG9yLXRmX2lvIHsKQEAgLTY4LDYgKzcxLDggQEAKIAogCQlz
+dGF0ZXMgPSA8MzMwMDAwMCAwPiwKIAkJCSA8MTgwMDAwMCAxPjsKKwkJLyogUlQ5MTc5R0IgKi8K
+KwkJdmluLXN1cHBseSA9IDwmdmNjXzV2PjsKIAl9OwogCiAJZmxhc2hfMXY4OiByZWd1bGF0b3It
+Zmxhc2hfMXY4IHsKQEAgLTQyOSw3ICs0MzQsNiBAQAogCWNkLWdwaW9zID0gPCZncGlvIEdQSU9D
+XzYgR1BJT19BQ1RJVkVfTE9XPjsKIAl2bW1jLXN1cHBseSA9IDwmdGZsYXNoX3ZkZD47CiAJdnFt
+bWMtc3VwcGx5ID0gPCZ0Zl9pbz47Ci0KIH07CiAKIC8qIGVNTUMgKi8KZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvY2xrL21lc29uL2cxMmEuYyBiL2RyaXZlcnMvY2xrL21lc29uL2cxMmEuYwppbmRleCBi
+M2FmNjFjYzZmYjkuLjgxYzZlMzM2MjFkZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9jbGsvbWVzb24v
+ZzEyYS5jCisrKyBiL2RyaXZlcnMvY2xrL21lc29uL2cxMmEuYwpAQCAtMjgzLDYgKzI4Myw4IEBA
+IHN0YXRpYyBzdHJ1Y3QgY2xrX2ZpeGVkX2ZhY3RvciBnMTJhX2ZjbGtfZGl2Ml9kaXYgPSB7CiAJ
+CS5vcHMgPSAmY2xrX2ZpeGVkX2ZhY3Rvcl9vcHMsCiAJCS5wYXJlbnRfaHdzID0gKGNvbnN0IHN0
+cnVjdCBjbGtfaHcgKltdKSB7ICZnMTJhX2ZpeGVkX3BsbC5odyB9LAogCQkubnVtX3BhcmVudHMg
+PSAxLAorCQkvKiBBbmFuZCAqLworCQkuZmxhZ3MgPSBDTEtfSVNfQ1JJVElDQUwsCiAJfSwKIH07
+CiAKQEAgLTI5OCw2ICszMDAsOCBAQCBzdGF0aWMgc3RydWN0IGNsa19yZWdtYXAgZzEyYV9mY2xr
+X2RpdjIgPSB7CiAJCQkmZzEyYV9mY2xrX2RpdjJfZGl2Lmh3CiAJCX0sCiAJCS5udW1fcGFyZW50
+cyA9IDEsCisJCS8qIEFuYW5kICovCisJCS5mbGFncyA9IENMS19JU19DUklUSUNBTCwKIAl9LAog
+fTsKIApAQCAtMzc1LDcgKzM3OSw3IEBAIHN0YXRpYyBzdHJ1Y3QgY2xrX3JlZ21hcCBnMTJhX2Nw
+dV9jbGtfcHJlbXV4MSA9IHsKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMywKIAkJLyogVGhpcyBz
+dWItdHJlZSBpcyB1c2VkIGEgcGFya2luZyBjbG9jayAqLwotCQkuZmxhZ3MgPSBDTEtfU0VUX1JB
+VEVfTk9fUkVQQVJFTlQKKwkJLmZsYWdzID0gQ0xLX1NFVF9SQVRFX05PX1JFUEFSRU5ULAogCX0s
+CiB9OwogCkBAIC02MDQsNyArNjA4LDcgQEAgc3RhdGljIHN0cnVjdCBjbGtfcmVnbWFwIGcxMmJf
+Y3B1Yl9jbGtfcHJlbXV4MSA9IHsKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMywKIAkJLyogVGhp
+cyBzdWItdHJlZSBpcyB1c2VkIGEgcGFya2luZyBjbG9jayAqLwotCQkuZmxhZ3MgPSBDTEtfU0VU
+X1JBVEVfTk9fUkVQQVJFTlQsCisJCS5mbGFncyA9IENMS19TRVRfUkFURV9OT19SRVBBUkVOVCB8
+IENMS19JU19DUklUSUNBTCwKIAl9LAogfTsKIApAQCAtNjIyLDYgKzYyNiw4IEBAIHN0YXRpYyBz
+dHJ1Y3QgY2xrX3JlZ21hcCBnMTJiX2NwdWJfY2xrX211eDFfZGl2ID0gewogCQkJJmcxMmJfY3B1
+Yl9jbGtfcHJlbXV4MS5odwogCQl9LAogCQkubnVtX3BhcmVudHMgPSAxLAorCQkvKiBBbmFuZCAq
+LworCQkuZmxhZ3MgPSBDTEtfSVNfQ1JJVElDQUwsCiAJfSwKIH07CiAKQEAgLTY0MSw3ICs2NDcs
+OCBAQCBzdGF0aWMgc3RydWN0IGNsa19yZWdtYXAgZzEyYl9jcHViX2Nsa19wb3N0bXV4MSA9IHsK
+IAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMiwKIAkJLyogVGhpcyBzdWItdHJlZSBpcyB1c2VkIGEg
+cGFya2luZyBjbG9jayAqLwotCQkuZmxhZ3MgPSBDTEtfU0VUX1JBVEVfTk9fUkVQQVJFTlQsCisJ
+CS8qIEFuYW5kICovCisJCS5mbGFncyA9IENMS19TRVRfUkFURV9OT19SRVBBUkVOVCB8IENMS19J
+U19DUklUSUNBTCwKIAl9LAogfTsKIApAQCAtNjgxLDcgKzY4OCw4IEBAIHN0YXRpYyBzdHJ1Y3Qg
+Y2xrX3JlZ21hcCBnMTJiX2NwdWJfY2xrID0gewogCQkJJmcxMmFfc3lzX3BsbC5odwogCQl9LAog
+CQkubnVtX3BhcmVudHMgPSAyLAotCQkuZmxhZ3MgPSBDTEtfU0VUX1JBVEVfUEFSRU5ULAorCQkv
+KiBBbmFuZCAqLworCQkuZmxhZ3MgPSBDTEtfU0VUX1JBVEVfUEFSRU5UIHwgQ0xLX0lTX0NSSVRJ
+Q0FMLAogCX0sCiB9OwogCkBAIC0xMTUxLDYgKzExNTksOCBAQCBzdGF0aWMgc3RydWN0IGNsa19y
+ZWdtYXAgZzEyYl9jcHViX2Nsa19kaXYxNl9lbiA9IHsKIAkJICogVGhpcyBjbG9jayBpcyB1c2Vk
+IHRvIGRlYnVnIHRoZSBjcHVfY2xrIHJhbmdlCiAJCSAqIExpbnV4IHNob3VsZCBub3QgY2hhbmdl
+IGl0IGF0IHJ1bnRpbWUKIAkJICovCisJCS8qIEFuYW5kICovCisJCS5mbGFncyA9IENMS19JR05P
+UkVfVU5VU0VELAogCX0sCiB9OwogCkBAIC0xMTY0LDYgKzExNzQsOCBAQCBzdGF0aWMgc3RydWN0
+IGNsa19maXhlZF9mYWN0b3IgZzEyYV9jcHVfY2xrX2RpdjE2ID0gewogCQkJJmcxMmFfY3B1X2Ns
+a19kaXYxNl9lbi5odwogCQl9LAogCQkubnVtX3BhcmVudHMgPSAxLAorCQkvKiBBbmFuZCAqLwor
+CQkuZmxhZ3MgPSBDTEtfSVNfQ1JJVElDQUwsCiAJfSwKIH07CiAKQEAgLTExNzcsNiArMTE4OSw4
+IEBAIHN0YXRpYyBzdHJ1Y3QgY2xrX2ZpeGVkX2ZhY3RvciBnMTJiX2NwdWJfY2xrX2RpdjE2ID0g
+ewogCQkJJmcxMmJfY3B1Yl9jbGtfZGl2MTZfZW4uaHcKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0g
+MSwKKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0gQ0xLX0lTX0NSSVRJQ0FMLAogCX0sCiB9Owog
+CkBAIC0xMzM2LDYgKzEzNTAsOCBAQCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9mYWN0b3IgZzEy
+Yl9jcHViX2Nsa19kaXYyID0gewogCQkJJmcxMmJfY3B1Yl9jbGsuaHcKIAkJfSwKIAkJLm51bV9w
+YXJlbnRzID0gMSwKKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0gQ0xLX0lTX0NSSVRJQ0FMLAog
+CX0sCiB9OwogCkBAIC0xMzQ5LDYgKzEzNjUsOCBAQCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9m
+YWN0b3IgZzEyYl9jcHViX2Nsa19kaXYzID0gewogCQkJJmcxMmJfY3B1Yl9jbGsuaHcKIAkJfSwK
+IAkJLm51bV9wYXJlbnRzID0gMSwKKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0gQ0xLX0lTX0NS
+SVRJQ0FMLAogCX0sCiB9OwogCkBAIC0xMzYyLDYgKzEzODAsOCBAQCBzdGF0aWMgc3RydWN0IGNs
+a19maXhlZF9mYWN0b3IgZzEyYl9jcHViX2Nsa19kaXY0ID0gewogCQkJJmcxMmJfY3B1Yl9jbGsu
+aHcKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMSwKKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0g
+Q0xLX0lTX0NSSVRJQ0FMLAogCX0sCiB9OwogCkBAIC0xMzc1LDYgKzEzOTUsOCBAQCBzdGF0aWMg
+c3RydWN0IGNsa19maXhlZF9mYWN0b3IgZzEyYl9jcHViX2Nsa19kaXY1ID0gewogCQkJJmcxMmJf
+Y3B1Yl9jbGsuaHcKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMSwKKwkJLyogQW5hbmQgKi8KKwkJ
+LmZsYWdzID0gQ0xLX0lTX0NSSVRJQ0FMLAogCX0sCiB9OwogCkBAIC0xMzg4LDYgKzE0MTAsOCBA
+QCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9mYWN0b3IgZzEyYl9jcHViX2Nsa19kaXY2ID0gewog
+CQkJJmcxMmJfY3B1Yl9jbGsuaHcKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMSwKKwkJLyogQW5h
+bmQgKi8KKwkJLmZsYWdzID0gQ0xLX0lTX0NSSVRJQ0FMLAogCX0sCiB9OwogCkBAIC0xNDAxLDYg
+KzE0MjUsOCBAQCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9mYWN0b3IgZzEyYl9jcHViX2Nsa19k
+aXY3ID0gewogCQkJJmcxMmJfY3B1Yl9jbGsuaHcKIAkJfSwKIAkJLm51bV9wYXJlbnRzID0gMSwK
+KwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0gQ0xLX0lTX0NSSVRJQ0FMLAogCX0sCiB9OwogCkBA
+IC0xNDE0LDYgKzE0NDAsOCBAQCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9mYWN0b3IgZzEyYl9j
+cHViX2Nsa19kaXY4ID0gewogCQkJJmcxMmJfY3B1Yl9jbGsuaHcKIAkJfSwKIAkJLm51bV9wYXJl
+bnRzID0gMSwKKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0gQ0xLX0lTX0NSSVRJQ0FMLAogCX0s
+CiB9OwogCkBAIC0xNDM4LDYgKzE0NjYsOCBAQCBzdGF0aWMgc3RydWN0IGNsa19yZWdtYXAgZzEy
+Yl9jcHViX2Nsa19hcGJfc2VsID0gewogCQkJJmcxMmJfY3B1Yl9jbGtfZGl2OC5odwogCQl9LAog
+CQkubnVtX3BhcmVudHMgPSA3LAorCQkvKiBBbmFuZCAqLworCQkuZmxhZ3MgPSBDTEtfSVNfQ1JJ
+VElDQUwsCiAJfSwKIH07CiAKQEAgLTE0NTgsNiArMTQ4OCw4IEBAIHN0YXRpYyBzdHJ1Y3QgY2xr
+X3JlZ21hcCBnMTJiX2NwdWJfY2xrX2FwYiA9IHsKIAkJICogVGhpcyBjbG9jayBpcyBzZXQgYnkg
+dGhlIFJPTSBtb25pdG9yIGNvZGUsCiAJCSAqIExpbnV4IHNob3VsZCBub3QgY2hhbmdlIGl0IGF0
+IHJ1bnRpbWUKIAkJICovCisJCS8qIEFuYW5kICovCisJCS5mbGFncyA9IENMS19JU19DUklUSUNB
+TCwKIAl9LAogfTsKIApAQCAtMTQ4MSw2ICsxNTEzLDggQEAgc3RhdGljIHN0cnVjdCBjbGtfcmVn
+bWFwIGcxMmJfY3B1Yl9jbGtfYXRiX3NlbCA9IHsKIAkJCSZnMTJiX2NwdWJfY2xrX2RpdjguaHcK
+IAkJfSwKIAkJLm51bV9wYXJlbnRzID0gNywKKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0gQ0xL
+X0lTX0NSSVRJQ0FMLAogCX0sCiB9OwogCkBAIC0xNTAxLDYgKzE1MzUsOCBAQCBzdGF0aWMgc3Ry
+dWN0IGNsa19yZWdtYXAgZzEyYl9jcHViX2Nsa19hdGIgPSB7CiAJCSAqIFRoaXMgY2xvY2sgaXMg
+c2V0IGJ5IHRoZSBST00gbW9uaXRvciBjb2RlLAogCQkgKiBMaW51eCBzaG91bGQgbm90IGNoYW5n
+ZSBpdCBhdCBydW50aW1lCiAJCSAqLworCQkvKiBBbmFuZCAqLworCQkuZmxhZ3MgPSBDTEtfSVNf
+Q1JJVElDQUwsCiAJfSwKIH07CiAKQEAgLTE1MjQsNiArMTU2MCw4IEBAIHN0YXRpYyBzdHJ1Y3Qg
+Y2xrX3JlZ21hcCBnMTJiX2NwdWJfY2xrX2F4aV9zZWwgPSB7CiAJCQkmZzEyYl9jcHViX2Nsa19k
+aXY4Lmh3CiAJCX0sCiAJCS5udW1fcGFyZW50cyA9IDcsCisJCS8qIEFuYW5kICovCisJCS5mbGFn
+cyA9IENMS19JU19DUklUSUNBTCwKIAl9LAogfTsKIApAQCAtMTU0NCw2ICsxNTgyLDggQEAgc3Rh
+dGljIHN0cnVjdCBjbGtfcmVnbWFwIGcxMmJfY3B1Yl9jbGtfYXhpID0gewogCQkgKiBUaGlzIGNs
+b2NrIGlzIHNldCBieSB0aGUgUk9NIG1vbml0b3IgY29kZSwKIAkJICogTGludXggc2hvdWxkIG5v
+dCBjaGFuZ2UgaXQgYXQgcnVudGltZQogCQkgKi8KKwkJLyogQW5hbmQgKi8KKwkJLmZsYWdzID0g
+Q0xLX0lTX0NSSVRJQ0FMLAogCX0sCiB9OwogCg==
+--00000000000088532505956c43d2--
