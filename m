@@ -2,185 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 005C7DE600
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 10:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADC4DE61D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 10:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727122AbfJUILy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 04:11:54 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:46372 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727399AbfJUILy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 04:11:54 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2B65D20020B;
-        Mon, 21 Oct 2019 10:11:51 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 227322001DC;
-        Mon, 21 Oct 2019 10:11:47 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 25DE7402B6;
-        Mon, 21 Oct 2019 16:11:42 +0800 (SGT)
-From:   Biwen Li <biwen.li@nxp.com>
-To:     peda@axentia.se, leoyang.li@nxp.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
-Subject: [v4,2/2] i2c: mux: pca954x: support property idle-state
-Date:   Mon, 21 Oct 2019 16:00:48 +0800
-Message-Id: <20191021080048.47189-2-biwen.li@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20191021080048.47189-1-biwen.li@nxp.com>
-References: <20191021080048.47189-1-biwen.li@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727110AbfJUIS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 04:18:57 -0400
+Received: from mailgate1.rohmeurope.com ([178.15.145.194]:61500 "EHLO
+        mailgate1.rohmeurope.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725972AbfJUIS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 04:18:57 -0400
+X-Greylist: delayed 901 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Oct 2019 04:18:55 EDT
+X-AuditID: c0a8fbf4-183ff70000001fa6-9f-5dad66691d4b
+Received: from smtp.reu.rohmeu.com (will-cas002.reu.rohmeu.com [192.168.251.178])
+        by mailgate1.rohmeurope.com (Symantec Messaging Gateway) with SMTP id B0.5E.08102.9666DAD5; Mon, 21 Oct 2019 10:03:53 +0200 (CEST)
+Received: from WILL-MAIL002.REu.RohmEu.com ([fe80::e0c3:e88c:5f22:d174]) by
+ WILL-CAS002.REu.RohmEu.com ([fe80::fc24:4cbc:e287:8659%12]) with mapi id
+ 14.03.0439.000; Mon, 21 Oct 2019 10:03:42 +0200
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
+        "dmurphy@ti.com" <dmurphy@ti.com>
+CC:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "pavel@ucw.cz" <pavel@ucw.cz>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>
+Subject: Re: [RFC PATCH 12/13] dt-bindings: mfd: Document ROHM BD71282
+ bindings
+Thread-Topic: [RFC PATCH 12/13] dt-bindings: mfd: Document ROHM BD71282
+ bindings
+Thread-Index: AQHVhNEGlzssJjrQoU6zmYO2K0h2bqdewESAgAXgtIA=
+Date:   Mon, 21 Oct 2019 08:03:42 +0000
+Message-ID: <b8914c554e09c92b5a4602435fd60e314922a9c5.camel@fi.rohmeurope.com>
+References: <cover.1571302099.git.matti.vaittinen@fi.rohmeurope.com>
+         <05841ff33ea166bc6934456a492adc3c67a90670.1571302099.git.matti.vaittinen@fi.rohmeurope.com>
+         <1d2bc596-0329-d090-2e8d-037c8cad0585@ti.com>
+In-Reply-To: <1d2bc596-0329-d090-2e8d-037c8cad0585@ti.com>
+Accept-Language: en-US, de-DE
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [213.255.186.46]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <60A86E1DF0440C4BA4E5F28A4D53E8FA@de.rohmeurope.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Ta0gUURiGOXN3a2LatD3ahdroftnsxqnsRgRjP0INEgLTMafdLd2V2VW0
+        /hhhpXYx6IJDuiLaxUvapmSmWKZmWyRL6hZpthVFkkZoiRnVjGPpr/Oe837v93w/vsPg+l4q
+        hLHanKJkExKNlI54cGPUvdJ6qCJmdeHbFajY20mjUwPXaDSU7yHQJf8HCrman5Mo52k1iV7X
+        VBGo93sLQD86TmPo4q/rGPp25g2J7rh+AfSi7iqFar7cAqi1rINCJT4vhq6WtBHI69mFejwt
+        FMpsaKbR767bxPYgvrygHPBfX2bSfEH5Mf6e3EPz7tIsiu/uqqf4xy/vYvyVghGMv1E2TPOD
+        7rkRuv1TwuIFZ+peq9lm2ho3xVLUfZJOlsm0U+26DHCazAYBDOTWwXNnvYrWMXquC8DW6x6g
+        XdoAfNc3iGUDhqG4MJj9ilYDgdwBeM37kFJrcG6Yhn1yzpgxg4uEraPtpFYUBYff5FKa3gRL
+        z/8hVE1wC+HH6stA1Sy3B57z5Y3DOgAc8vaPGQFK4HKna6wR4ObArIwBTNU4Z4Duj8PjY3Ow
+        uL4d13QQ/Pz+9/i7ETaM+Al1aJxbCivrTJrcDluHDmtd5sOLOX5aG2E6fJL3gcgFM+VJAHki
+        LE+E5UlheVK4EJClACYJ1kSz4BRDV0liyirJbklSjoP2JDfQFmaoFvxpCm8CGAOaQDCDGYNY
+        m6k8Rj8t3p6QbhEcllgpJVF0NAHI4MZAtnt1RYyeTRDSj4qS/Z81iyGMBnax/0KMnlNZR0Qx
+        WZT+ubMZxgjZgINKcLokmsW0Q9ZE54SNMQFqc11IoEO0JYiSkOK0xKrbEetQ1kO1pircx6LK
+        dSQLScqrFvWA5Uzu5/winGnOLynC9YTNbhNDDKwrTinl1FJLiu0/qA8YGGCcwfYmKO5U5df8
+        79OnIDAFURZcpiKcwoQVkgGC49IPx204O1qT2b8biRu3rDRHkFVVC5JPFIeFGr4W765nuVeG
+        zX5n447IJSa7IPSYukR6IG0kevDn2+WGqNDB6HbvvJuf8NQ2Pq9zT38Gueb50eMHZFOqr3JW
+        QaR3p6/wkePdttpn4Wtbsr4t2tVI4EeKXOt95poL4WtK9lXfNxIOixC6DJccwl/439tc8gMA
+        AA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This supports property idle-state
-
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
-Change in v4:
-	- rename function
-	  pca954x_calculate_chan -> pca954x_regval
-
-Change in v3:
-	- update subject and description
-	- add a helper function pca954x_calculate_chan()
-
-Change in v2:
-	- update subject and description
-	- add property idle-state
-
- drivers/i2c/muxes/i2c-mux-pca954x.c | 59 ++++++++++++++++++-----------
- 1 file changed, 36 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c b/drivers/i2c/muxes/i2c-mux-pca954x.c
-index 923aa3a5a3dc..e566c4cd8ba5 100644
---- a/drivers/i2c/muxes/i2c-mux-pca954x.c
-+++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
-@@ -86,7 +86,7 @@ struct pca954x {
- 
- 	u8 last_chan;		/* last register value */
- 	/* MUX_IDLE_AS_IS, MUX_IDLE_DISCONNECT or >= 0 for channel */
--	s8 idle_state;
-+	s32 idle_state;
- 
- 	struct i2c_client *client;
- 
-@@ -229,20 +229,23 @@ static int pca954x_reg_write(struct i2c_adapter *adap,
- 				I2C_SMBUS_BYTE, &dummy);
- }
- 
-+static u8 pca954x_regval(struct pca954x *data, u8 chan)
-+{
-+	/* we make switches look like muxes, not sure how to be smarter */
-+	if (data->chip->muxtype == pca954x_ismux)
-+		return chan | data->chip->enable;
-+	else
-+		return 1 << chan;
-+}
-+
- static int pca954x_select_chan(struct i2c_mux_core *muxc, u32 chan)
- {
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 	struct i2c_client *client = data->client;
--	const struct chip_desc *chip = data->chip;
- 	u8 regval;
- 	int ret = 0;
- 
--	/* we make switches look like muxes, not sure how to be smarter */
--	if (chip->muxtype == pca954x_ismux)
--		regval = chan | chip->enable;
--	else
--		regval = 1 << chan;
--
-+	regval = pca954x_regval(data, (u8)(chan & 0xff));
- 	/* Only select the channel if its different from the last channel */
- 	if (data->last_chan != regval) {
- 		ret = pca954x_reg_write(muxc->parent, client, regval);
-@@ -256,7 +259,7 @@ static int pca954x_deselect_mux(struct i2c_mux_core *muxc, u32 chan)
- {
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 	struct i2c_client *client = data->client;
--	s8 idle_state;
-+	s32 idle_state;
- 
- 	idle_state = READ_ONCE(data->idle_state);
- 	if (idle_state >= 0)
-@@ -402,6 +405,17 @@ static void pca954x_cleanup(struct i2c_mux_core *muxc)
- 	i2c_mux_del_adapters(muxc);
- }
- 
-+static int pca954x_init(struct i2c_client *client, struct pca954x *data)
-+{
-+	if (data->idle_state >= 0) {
-+		data->last_chan = pca954x_regval(data, (u8)(data->idle_state & 0xff));
-+	} else {
-+		/* Disconnect multiplexer */
-+		data->last_chan = 0;
-+	}
-+	return i2c_smbus_write_byte(client, data->last_chan);
-+}
-+
- /*
-  * I2C init/probing/exit functions
-  */
-@@ -411,7 +425,6 @@ static int pca954x_probe(struct i2c_client *client,
- 	struct i2c_adapter *adap = client->adapter;
- 	struct device *dev = &client->dev;
- 	struct device_node *np = dev->of_node;
--	bool idle_disconnect_dt;
- 	struct gpio_desc *gpio;
- 	struct i2c_mux_core *muxc;
- 	struct pca954x *data;
-@@ -462,23 +475,24 @@ static int pca954x_probe(struct i2c_client *client,
- 		}
- 	}
- 
--	/* Write the mux register at addr to verify
-+	data->idle_state = MUX_IDLE_AS_IS;
-+	if (of_property_read_u32(np, "idle-state", &data->idle_state)) {
-+		if (np && of_property_read_bool(np, "i2c-mux-idle-disconnect"))
-+			data->idle_state = MUX_IDLE_DISCONNECT;
-+	}
-+
-+	/*
-+	 * Write the mux register at addr to verify
- 	 * that the mux is in fact present. This also
--	 * initializes the mux to disconnected state.
-+	 * initializes the mux to a channel
-+	 * or disconnected state.
- 	 */
--	if (i2c_smbus_write_byte(client, 0) < 0) {
-+	ret = pca954x_init(client, data);
-+	if (ret < 0) {
- 		dev_warn(dev, "probe failed\n");
- 		return -ENODEV;
- 	}
- 
--	data->last_chan = 0;		   /* force the first selection */
--	data->idle_state = MUX_IDLE_AS_IS;
--
--	idle_disconnect_dt = np &&
--		of_property_read_bool(np, "i2c-mux-idle-disconnect");
--	if (idle_disconnect_dt)
--		data->idle_state = MUX_IDLE_DISCONNECT;
--
- 	ret = pca954x_irq_setup(muxc);
- 	if (ret)
- 		goto fail_cleanup;
-@@ -531,8 +545,7 @@ static int pca954x_resume(struct device *dev)
- 	struct i2c_mux_core *muxc = i2c_get_clientdata(client);
- 	struct pca954x *data = i2c_mux_priv(muxc);
- 
--	data->last_chan = 0;
--	return i2c_smbus_write_byte(client, 0);
-+	return pca954x_init(client, data);
- }
- #endif
- 
--- 
-2.17.1
-
+VGhhbmtzIERhbiwNCg0KT24gVGh1LCAyMDE5LTEwLTE3IGF0IDA5OjE4IC0wNTAwLCBEYW4gTXVy
+cGh5IHdyb3RlOg0KPiBNYXR0DQoNCkJ5IHRoZSB3YXksIGl0cyBNYXR0aSA7KQ0KDQo+IE9uIDEw
+LzE3LzE5IDQ6NTUgQU0sIE1hdHRpIFZhaXR0aW5lbiB3cm90ZToNCj4gPiBST0hNIEJENzE4Mjgg
+UG93ZXIgbWFuYWdlbWVudCBJQyBpbnRlZ3JhdGVzIDcgYnVjayBjb252ZXJ0ZXJzLCA3DQo+ID4g
+TERPcywNCj4gPiBhIHJlYWwtdGltZSBjbG9jayAoUlRDKSwgMyBHUE8vcmVndWxhdG9yIGNvbnRy
+b2wgcGlucywgSEFMTCBpbnB1dA0KPiA+IHBpbg0KPiA+IGFuZCBhIDMyLjc2OCBrSHogY2xvY2sg
+Z2F0ZS4NCj4gPiANCj4gPiBEb2N1bWVudCB0aGUgZHQgYmluZGluZ3MgZHJpdmVycyBhcmUgdXNp
+bmcuDQo+IA0KPiBUaGlzIHNob3VsZCBiZSBwYXRjaCAxIG9mIFgNCg0KSSB3aWxsIHJlYmFzZSA6
+KQ0KDQpCciwNCglNYXR0aSBWYWl0dGluZW4NCg==
