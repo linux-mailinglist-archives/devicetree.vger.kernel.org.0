@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C047DE60F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 10:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15B0DE623
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 10:19:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727569AbfJUIPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 04:15:37 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:40219 "EHLO
+        id S1727656AbfJUITu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 04:19:50 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:42513 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726480AbfJUIPg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 04:15:36 -0400
+        with ESMTP id S1727239AbfJUITu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 04:19:50 -0400
 Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
         by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1iMSqi-0000ki-3p; Mon, 21 Oct 2019 10:15:32 +0200
+        id 1iMSuo-0001Aa-1T; Mon, 21 Oct 2019 10:19:46 +0200
 Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1iMSqg-0008Os-FJ; Mon, 21 Oct 2019 10:15:30 +0200
-Date:   Mon, 21 Oct 2019 10:15:30 +0200
+        id 1iMSun-0008Pf-Bn; Mon, 21 Oct 2019 10:19:45 +0200
+Date:   Mon, 21 Oct 2019 10:19:45 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     Robert Jones <rjones@gateworks.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -31,20 +31,20 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dt: add fxos8700 on gateworks boards
-Message-ID: <20191021081530.frhbez44x6gwosvi@pengutronix.de>
-References: <20191018232049.4045-1-rjones@gateworks.com>
+Subject: Re: [PATCH] ARM: dt: add lsm9ds1 iio imu/magn support to gw553x
+Message-ID: <20191021081945.o7knknxacm6uvd3c@pengutronix.de>
+References: <20191018232124.4126-1-rjones@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191018232049.4045-1-rjones@gateworks.com>
+In-Reply-To: <20191018232124.4126-1-rjones@gateworks.com>
 X-Sent-From: Pengutronix Hildesheim
 X-URL:  http://www.pengutronix.de/
 X-IRC:  #ptxdist @freenode
 X-Accept-Language: de,en
 X-Accept-Content-Type: text/plain
-X-Uptime: 10:09:31 up 156 days, 14:27, 97 users,  load average: 0.16, 0.12,
- 0.10
+X-Uptime: 10:16:17 up 156 days, 14:34, 97 users,  load average: 0.07, 0.08,
+ 0.08
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -57,75 +57,76 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Robert,
 
-please don't use 'ARM: dt: ..' instead you should name it 'ARM: dts:
-imx6qdl-gw5x:'.
+same here, don't name it 'ARM: dt: ...' instead name it 'ARM: dts: imx:
+ventana: ..' or 'ARM: dts: imx: imx6qdl-gw553x: ..'.
 
-On 19-10-18 16:20, Robert Jones wrote:
-> Add fxos8700 iio imu entries for Gateworks SBCs.
+On 19-10-18 16:21, Robert Jones wrote:
+> Add one node for the accel/gyro i2c device and another for the separate
+> magnetometer device in the lsm9ds1.
 > 
 > Signed-off-by: Robert Jones <rjones@gateworks.com>
 > ---
->  arch/arm/boot/dts/imx6qdl-gw52xx.dtsi | 5 +++++
->  arch/arm/boot/dts/imx6qdl-gw53xx.dtsi | 5 +++++
->  arch/arm/boot/dts/imx6qdl-gw54xx.dtsi | 5 +++++
->  3 files changed, 15 insertions(+)
+>  arch/arm/boot/dts/imx6qdl-gw553x.dtsi | 31 +++++++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-> index 1a9a9d9..ffc4449 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-> @@ -306,6 +306,11 @@
->  		VDDIO-supply = <&reg_3p3v>;
->  	};
+> diff --git a/arch/arm/boot/dts/imx6qdl-gw553x.dtsi b/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
+> index a106689..55e6922 100644
+> --- a/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
+> @@ -173,6 +173,25 @@
+>  	pinctrl-0 = <&pinctrl_i2c2>;
+>  	status = "okay";
 >  
-> +	fxos8700@1e {
-> +		compatible = "nxp,fxos8700";
+> +	lsm9ds1_ag@6a {
+> +		compatible = "st,lsm9ds1-imu";
 
-I grep'd the whole tree and found no such compatible. I don't know the
-rule but IMHO if there isn't a driver we shouldn't add the compatible
-here.
+Didn't found this compatible string.
+
+> +		reg = <0x6a>;
+> +		st,drdy-int-pin = <1>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_acc_gyro>;
+> +		interrupt-parent = <&gpio7>;
+> +		interrupts = <13 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	lsm9ds1_m@1c {
+> +		compatible = "st,lsm9ds1-magn";
+> +		reg = <0x1c>;
+
+Nodes are sorted according their i2c-addresses.
 
 Regards,
   Marco
 
-> +		reg = <0x1e>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_mag>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <2 IRQ_TYPE_EDGE_RISING>;
 > +	};
 > +
->  	touchscreen: egalax_ts@4 {
->  		compatible = "eeti,egalax_ts";
->  		reg = <0x04>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
-> index 54b2bea..ebbd1c8 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
-> @@ -297,6 +297,11 @@
->  		VDDIO-supply = <&reg_3p3v>;
+>  	ltc3676: pmic@3c {
+>  		compatible = "lltc,ltc3676";
+>  		reg = <0x3c>;
+> @@ -462,6 +481,18 @@
+>  		>;
 >  	};
 >  
-> +	fxos8700@1e {
-> +		compatible = "nxp,fxos8700";
-> +		reg = <0x1e>;
+> +	pinctrl_acc_gyro: acc_gyrogrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_GPIO_18__GPIO7_IO13		0x1b0b0
+> +		>;
 > +	};
 > +
->  	touchscreen: egalax_ts@4 {
->  		compatible = "eeti,egalax_ts";
->  		reg = <0x04>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-> index 1b6c133..67d4725 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-> @@ -354,6 +354,11 @@
->  		VDDIO-supply = <&reg_3p3v>;
->  	};
->  
-> +	fxos8700@1e {
-> +		compatible = "nxp,fxos8700";
-> +		reg = <0x1e>;
+> +	pinctrl_mag: maggrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x1b0b0
+> +		>;
 > +	};
 > +
->  	touchscreen: egalax_ts@4 {
->  		compatible = "eeti,egalax_ts";
->  		reg = <0x04>;
+>  	pinctrl_pps: ppsgrp {
+>  		fsl,pins = <
+>  			MX6QDL_PAD_ENET_RXD1__GPIO1_IO26	0x1b0b1
 > -- 
 > 2.9.2
 > 
