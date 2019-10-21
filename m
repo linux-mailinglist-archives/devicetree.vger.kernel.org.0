@@ -2,130 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A358DE3D4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 07:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DEB3DE3E3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 07:38:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726039AbfJUFhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 01:37:43 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43288 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725843AbfJUFhn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 01:37:43 -0400
-Received: by mail-pg1-f196.google.com with SMTP id l24so2116970pgh.10
-        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2019 22:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=bbUNWgsRrwJWrwwWTLHk1qwW37wMYMwgF4F15zaUzzU=;
-        b=Q1zKZDQW5gnuspjNs1usaCrevnshmMvuB+xoli4H2diANik/5uAjAPgEbLMBkD0lDa
-         8o6Dd8ct6/mAxIseE5Z4Pol1DHl+4iJAD/z+Uo1asXgjKmqryzqwZqFxtXj8u1ihsD1R
-         wFuCo1iDhx2oyZCFzbbR8F/iPLuJYY99s6YIeQ+MaKkWV/QyduE3uwe78gUvIrwXNdaG
-         rMgJYhe6WqWFWpFFBmMPruuiBewbcm5uK5rmpqBbM8yG9sv/pGuSXx+eHiyK3nqeLvb0
-         q7aesF0odKzoCxrjExAIxs2ucsaVdQkO3t/ZTtT7do3Gd/H0uUn7wvx7R9mHDDwGnmHO
-         N+VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bbUNWgsRrwJWrwwWTLHk1qwW37wMYMwgF4F15zaUzzU=;
-        b=T//wu3Swv2MfLlJHDvXFcycviLR5g3zeBVmjL8HxvtvcLSCdKZosKGejTg9QgOHQF5
-         ZnRexLHL4q65Kpa+6rw10GQ9x2fXZzN2spZswPi4snT1ps+oZxsAGo6/IuHVHKK086jy
-         gs/9EO3+uGx5ztGqIIzUWbAf7WsNtM5pTkM6R+6mdOrDV7U20RDkZ8otDzYaVwu5SPH2
-         vTRcru0e4UP58URD+u3GrePiLLOADtgxb+Lhc126dfH4ZkSjTuSfceJRjPdHEU3Yr6qL
-         JEvzgW5qAPHCT5xcPqJbVungWN4VmqZqWn0/rOh7I1bvUhn3A8jCFjjRQ25/UWUjQKur
-         t53g==
-X-Gm-Message-State: APjAAAXwwCq4HUEG5CxboIwKceVPLJIVxZv7SO3vup0En9CXieorfsJj
-        x9a4Q+8K4U5Tll0nDy37uJnMaw==
-X-Google-Smtp-Source: APXvYqzhJmsEQMl4XlB026kHJLPEEdGs7zYTphM5q2UH7U3e9SwXsDyeDdrVXbgIgVUq2H5mAsxKoA==
-X-Received: by 2002:a65:4c03:: with SMTP id u3mr23643719pgq.440.1571636262410;
-        Sun, 20 Oct 2019 22:37:42 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id h6sm19646988pfg.123.2019.10.20.22.37.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Oct 2019 22:37:41 -0700 (PDT)
-Date:   Sun, 20 Oct 2019 22:37:39 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     kholk11@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ccross@android.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        agross@kernel.org, marijns95@gmail.com
-Subject: Re: [PATCH 2/5] arm64: dts: pm8004: Add SPMI regulator and add
- phandles to lsids
-Message-ID: <20191021053739.GH4500@tuxbook-pro>
-References: <20191020150746.64114-1-kholk11@gmail.com>
- <20191020150746.64114-3-kholk11@gmail.com>
+        id S1727167AbfJUFij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 01:38:39 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57987 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727160AbfJUFi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 01:38:26 -0400
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1iMQOX-0001dY-FG; Mon, 21 Oct 2019 07:38:17 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1iMQOS-0005Ad-KB; Mon, 21 Oct 2019 07:38:12 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>, Chris Snook <chris.snook@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, Russell King <linux@armlinux.org.uk>
+Subject: [PATCH v3 0/5] add dsa switch support for ar9331
+Date:   Mon, 21 Oct 2019 07:38:06 +0200
+Message-Id: <20191021053811.19818-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191020150746.64114-3-kholk11@gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 20 Oct 08:07 PDT 2019, kholk11@gmail.com wrote:
+changes v3:
+- ag71xx: ag71xx_mac_config: ignore MLO_AN_INBAND mode. It is not
+  supported by HW and SW.
+- ag71xx: ag71xx_mac_validate: return all supported bits on
+  PHY_INTERFACE_MODE_NA
 
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> 
-> Add the SPMI regulator node in the PM8004 LSID5 (as there is where
-> it resides basically 99% of the times) and set the nodes to be
-> disabled by default, as not all boards have both or one of the
-> lsids specified in this generic pm8004 DT.
-> 
-> While at it, also add nice phandles to the lsids specified in this
-> DT, so that we can modify their configuration or add nodes to them
-> from other DTs in a nicer and more human readable fashion.
-> 
+changes v2:
+- move Atheros AR9331 TAG format to separate patch
+- use netdev_warn_once in the tag driver to reduce potential message spam
+- typo fixes
+- reorder tag driver alphabetically 
+- configure switch to maximal frame size
+- use mdiobus_read/write
+- fail if mdio sub node is not found
+- add comment for post reset state
+- remove deprecated comment about device id
+- remove phy-handle option for node with fixed-link
+- ag71xx: set 1G support only for GMII mode
 
-Shouldn't all blocks of pm8004 be declared in this file?
+This patch series provides dsa switch support for Atheros ar9331 WiSoC.
+As side effect ag71xx needed to be ported to phylink to make the switch
+driver (as well phylink based) work properly.
 
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/pm8004.dtsi | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8004.dtsi b/arch/arm64/boot/dts/qcom/pm8004.dtsi
-> index 297b57bfa87a..0abd1abe12fc 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8004.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8004.dtsi
-> @@ -4,17 +4,23 @@
->  
->  &spmi_bus {
->  
-> -	pmic@4 {
-> +	pm8004_lsid4: pmic@4 {
->  		compatible = "qcom,pm8004", "qcom,spmi-pmic";
->  		reg = <0x4 SPMI_USID>;
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> +		status = "disabled";
+Oleksij Rempel (5):
+  net: ag71xx: port to phylink
+  dt-bindings: net: dsa: qca,ar9331 switch documentation
+  MIPS: ath79: ar9331: add ar9331-switch node
+  net: dsa: add support for Atheros AR9331 TAG format
+  net: dsa: add support for Atheros AR9331 build-in switch
 
-I think you should just leave this enabled, boards that doesn't have a
-pm8004 should be able to omit the include of this file.
+ .../devicetree/bindings/net/dsa/ar9331.txt    | 148 ++++
+ arch/mips/boot/dts/qca/ar9331.dtsi            | 127 ++-
+ arch/mips/boot/dts/qca/ar9331_dpt_module.dts  |  13 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/qca/Kconfig                   |  11 +
+ drivers/net/dsa/qca/Makefile                  |   2 +
+ drivers/net/dsa/qca/ar9331.c                  | 823 ++++++++++++++++++
+ drivers/net/ethernet/atheros/Kconfig          |   2 +-
+ drivers/net/ethernet/atheros/ag71xx.c         | 146 ++--
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   6 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_ar9331.c                          |  97 +++
+ 14 files changed, 1321 insertions(+), 60 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/ar9331.txt
+ create mode 100644 drivers/net/dsa/qca/Kconfig
+ create mode 100644 drivers/net/dsa/qca/Makefile
+ create mode 100644 drivers/net/dsa/qca/ar9331.c
+ create mode 100644 net/dsa/tag_ar9331.c
 
->  	};
->  
-> -	pmic@5 {
-> +	pm8004_lsid5: pmic@5 {
->  		compatible = "qcom,pm8004", "qcom,spmi-pmic";
->  		reg = <0x5 SPMI_USID>;
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> +		status = "disabled";
-> +
-> +		pm8004_spmi_regulators: regulators {
-> +			compatible = "qcom,pm8004-regulators";
-> +		};
+-- 
+2.23.0
 
-Looks good.
-
-Regards,
-bjorn
-
->  	};
->  };
-> -- 
-> 2.21.0
-> 
