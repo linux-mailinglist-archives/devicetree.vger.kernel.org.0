@@ -2,124 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37616DEEBB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0601DEEDF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 16:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728850AbfJUOFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 10:05:23 -0400
-Received: from sauhun.de ([88.99.104.3]:47916 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727152AbfJUOFX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Oct 2019 10:05:23 -0400
-Received: from localhost (p54B33572.dip0.t-ipconnect.de [84.179.53.114])
-        by pokefinder.org (Postfix) with ESMTPSA id CAB422C0076;
-        Mon, 21 Oct 2019 16:05:20 +0200 (CEST)
-Date:   Mon, 21 Oct 2019 16:05:15 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Eugen.Hristev@microchip.com
-Cc:     peda@axentia.se, mark.rutland@arm.com,
-        Ludovic.Desroches@microchip.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, Nicolas.Ferre@microchip.com
-Subject: Re: [PATCH v5 0/9] i2c: add support for filters
-Message-ID: <20191021140515.GC26782@ninjato>
-References: <1568189911-31641-1-git-send-email-eugen.hristev@microchip.com>
- <c17182ac-67dd-d11f-5daf-066bf446b969@microchip.com>
+        id S1728937AbfJUOJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 10:09:16 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:16468 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728098AbfJUOJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Oct 2019 10:09:16 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9LE7umk018477;
+        Mon, 21 Oct 2019 10:07:58 -0400
+Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2050.outbound.protection.outlook.com [104.47.37.50])
+        by mx0a-00128a01.pphosted.com with ESMTP id 2vqyd6uc1j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Oct 2019 10:07:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QQVCgIOpKvXGuNbLKuBfUL+FdvzdNCZ8VFzC+i/qmNiIbRBZgqQqha1nm4bWNqFRdPJrWLo0se48X+SLurNKYTG7k61PeKxH4u/5v4XHHqyaZuW13I+lQWXWRdM8kbEYCXKzwzxNLo1p2VgfEitKKFKiNbzV1q8zBDfrDGjPQT/XGy8XMNLUblaQ90o7DDPfVdtF3FlhOy6YHG+WJPfxwpuYnaOtenil6T5iO1zasihv/jFf8Xqm43aoqPws4SvZQ2oCMW23ICy8Dt4KXvM6gQ+gEIHGBU5NlCsO58I9ddBhT6caonTuIAE0L1+rUpsQGN3KTbxs43OvId9VsfLn2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qwR4opXVca7mRnWp48Rd5AyHjB0VLg8qiiKJ1YwYdKY=;
+ b=CgLDIq6UN6YwNTVdI3RnaCoo4N7XtLgjQadgJ3+aEL7kJwaTISRuLmIo5ku1tWn+GJV4tKYE65UxLTgKZaEzfcr2uLxPTW1vQIXrZDDvqvJGjOlSQhme7bM4GWY8I/CEbPqUJs1aVQpqpyEGdbjOFwdOQ/qJk3SzpnTXahiAOeyPyb+EAD5Lnfygrq/dooMQn1yOY9QFb05QbjQfHvgL8Jx+Td6DlyR8qLaxKuaj2GtW4NHyJet1NuGSOXv3oqW9zxXShvKRsFXKEiGGFz7uYLrsgWvd/rFnNXOLCFUOV2QeXCf7gPyakJm7OaLvpiyyvjHIeXGayu/go3EcSWPKBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 137.71.25.57) smtp.rcpttodomain=gmail.com smtp.mailfrom=analog.com;
+ dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qwR4opXVca7mRnWp48Rd5AyHjB0VLg8qiiKJ1YwYdKY=;
+ b=APbbG7Zna+5t8Ta0lCqqIVpVbf1u5sDsnaa7yVb1C4G9nW+a2cv+OCPLHlOIvv/JlWKpb1lYXZME1yyDgwVmIGc8tszEmQkYpFtDb5gazYiKWrUIGWSqsns/2aHsC5QF1M9XWfLwyBGD5a4+cJVq1Tytqa5nj3OVW/pbtEslFt4=
+Received: from DM6PR03CA0058.namprd03.prod.outlook.com (2603:10b6:5:100::35)
+ by BY5PR03MB5267.namprd03.prod.outlook.com (2603:10b6:a03:225::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.18; Mon, 21 Oct
+ 2019 14:07:50 +0000
+Received: from SN1NAM02FT003.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::200) by DM6PR03CA0058.outlook.office365.com
+ (2603:10b6:5:100::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.22 via Frontend
+ Transport; Mon, 21 Oct 2019 14:07:50 +0000
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
+Received: from nwd2mta2.analog.com (137.71.25.57) by
+ SN1NAM02FT003.mail.protection.outlook.com (10.152.73.29) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2367.14
+ via Frontend Transport; Mon, 21 Oct 2019 14:07:50 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x9LE7gqJ013891
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Mon, 21 Oct 2019 07:07:42 -0700
+Received: from nsa.sphairon.box (10.44.3.90) by NWD2HUBCAS7.ad.analog.com
+ (10.64.69.107) with Microsoft SMTP Server (TLS) id 14.3.408.0; Mon, 21 Oct
+ 2019 10:07:49 -0400
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 0/2] Update adau7118 dt-bindings
+Date:   Mon, 21 Oct 2019 16:08:14 +0200
+Message-ID: <20191021140816.262401-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MnLPg7ZWsaic7Fhd"
-Content-Disposition: inline
-In-Reply-To: <c17182ac-67dd-d11f-5daf-066bf446b969@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.44.3.90]
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(396003)(346002)(136003)(376002)(199004)(189003)(1076003)(50466002)(106002)(316002)(426003)(54906003)(53416004)(5820100001)(8936002)(47776003)(4744005)(5660300002)(6666004)(356004)(70206006)(70586007)(110136005)(45776006)(2616005)(246002)(2870700001)(36756003)(126002)(3846002)(486006)(26005)(86362001)(6116002)(476003)(23676004)(6306002)(966005)(336012)(478600001)(50226002)(16526019)(186003)(7736002)(305945005)(7636002)(2906002)(4326008)(8676002);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR03MB5267;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f5ab5f28-0d95-4b9b-e630-08d756300eb4
+X-MS-TrafficTypeDiagnostic: BY5PR03MB5267:
+X-MS-Exchange-PUrlCount: 1
+X-Microsoft-Antispam-PRVS: <BY5PR03MB52674A67CB7FA1B65BC4654199690@BY5PR03MB5267.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Forefront-PRVS: 0197AFBD92
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZreHuvVK5wlymkFIYl/37E8saJ7nOeoXBvThKOdEaw16qBX1TIPjvIMkpsyCdAG+fO7hzb8Hop2ls0lSXuIsEd9eXfmviBLQwS6oqT+Hx6oBAeQ0n2juffwzomBgfa2FxYYEhcATnDSAEM042Ai1oVlW86X8VY+4DMF2KBKCCU8OQ9TJ6vkYEJH6/J4OMY8J+YM57z1iUtlOolZsdtI7phejZ4Mm93g4QeN+MRZuPv2vZEKV0KhgoVCPpQ9IYwNDt8ucj/Aaos4dnb1xwAkneP64oEBnmN70m1uDv06k/mLJF40CuMRhbAZv5pcfaOiy4zkwyLgfP8hb8WxIjWBNpzYmZFBsZFj8RVVNMkUEjRT5X5xg0DdP2yBpPT9NxNrDNHh3TTg2+nFCo9Qh22lZHhC5WztJzUy4GpUiI1Bw+eaLBg51SsS4xypk8oWM5Rq8ttpSIHacM93RPddoS5bBwu/JDoZyLIpcLj2YaWyd5ZQ=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2019 14:07:50.0208
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5ab5f28-0d95-4b9b-e630-08d756300eb4
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR03MB5267
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-21_04:2019-10-21,2019-10-21 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ suspectscore=0 impostorscore=0 mlxlogscore=799 spamscore=0 phishscore=0
+ bulkscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1910210134
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a follow-up patch as requested by Rob. The dt-bindings patch for
+this device was applied before Rob's review. Here is the link to the review:
 
---MnLPg7ZWsaic7Fhd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+https://lore.kernel.org/alsa-devel/20191010210850.GA20184@bogus/
 
-On Mon, Oct 07, 2019 at 07:53:21AM +0000, Eugen.Hristev@microchip.com wrote:
->=20
->=20
-> On 11.09.2019 11:24, Eugen Hristev - M18282 wrote:
-> > From: Eugen Hristev <eugen.hristev@microchip.com>
-> >=20
-> > Hello,
-> >=20
-> > This series adds support for analog and digital filters for i2c control=
-lers
-> >=20
-> > This series is based on the series:
-> > [PATCH v2 0/9] i2c: at91: filters support for at91 SoCs
-> > and later
-> > [PATCH v4 0/9] i2c: add support for filters
-> > and enhanced to add the bindings for all controllers plus an extra bind=
-ings
-> > for the width of the spikes in nanoseconds (digital filters) and cut-off
-> > frequency (analog filters)
-> >=20
-> > First, bindings are created for
-> > 'i2c-analog-filter'
-> > 'i2c-digital-filter'
-> > 'i2c-digital-filter-width-ns'
-> > 'i2c-analog-filter-cutoff-frequency'
-> >=20
-> > The support is added in the i2c core to retrieve filter width/cutoff fr=
-equency
-> > and add it to the timings structure.
-> > Next, the at91 driver is enhanced for supporting digital filter, advanc=
-ed
-> > digital filter (with selectable spike width) and the analog filter.
-> >=20
-> > Finally the device tree for two boards are modified to make use of the
-> > new properties.
-> >=20
-> > This series is the result of the comments on the ML in the direction
-> > requested: to make the bindings globally available for i2c drivers.
-> >=20
-> > Changes in v5:
-> > - renamed i2c-filter-width-ns to i2c-digital-filter-width-ns as this
-> > is applicable only to digital filter
-> > - created new binding i2c-digital-filter-width-ns for analog filters.
->=20
-> Hello Wolfram and Peter,
->=20
-> Are you happy with the changes in this version? I haven't heard from you=
-=20
-> since this latest update.
-> I am interested to know if anymore changes are required or maybe we can=
-=20
-> move further with this support.
+Nuno Sá (2):
+  dt-bindings: asoc: adau7118: Cleanup
+  ASOC: adau7118: Change regulators id
 
-So, I had a look now and I am happy. I will give Peter one more day to
-comment, otherwise I'll apply it tomorrow.
+ .../bindings/sound/adi,adau7118.yaml          | 25 ++++++++-----------
+ sound/soc/codecs/adau7118.c                   |  4 +--
+ 2 files changed, 12 insertions(+), 17 deletions(-)
 
-Thanks for your patience and keeping at it!
+-- 
+2.23.0
 
-
---MnLPg7ZWsaic7Fhd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl2tuxsACgkQFA3kzBSg
-KbY6GQ//X5UmvTKTkgT+9BdG4luCpqZEKeKetljuT2RVeGL56TJwBRiOYWymfAa+
-U88PvGx1Q9mmI/E4AvzTAsnwjZiqACFw5n4NG+mWfWmd5H2P7ko6PpgVUL7Lk/0S
-zbP658UBLM1LBHjtDI4n1juS6daxP1m2Z43NaaiskaQFBmvWtPRo5mv0jpDdbYi2
-gMQ2Qo1efHoaBm+bdVu6Z8O71QktM5BhqKgAPxV9vWA0etSNqiDMII9qk9SmpSfE
-4JcqmuAOa0fhDzbc+wKaLZoq3Gk3WiOeTImFHEw5wKZJE80guUBWNiJ2Bl96apQT
-E/+M3VuTnS1VWqkS6w0oJ0lA/un8gf+CtYbZblirG05fv7suBSLGuCe2RZvl9pJM
-t/LHClLyZ/yBcYL9eAeMj1tM14II/rWES1go5UxhukZW2c7Eqep4UOPTtYQg4rwO
-EozMsz3sueMFU5l6llkLW1t+tb8DnLlvlzB6wZtNlLQjL8cYMBfZJrdBy9N0wX1n
-nxWhQVIjer4AluEwqpGXJ0bPDrClRr9zgznUzG4ydGRAKSNHLJ01kvvxgQmTPYr6
-PSCbo+4EZWFVMZNCi0DGWQFeRLCsqoN+NsHhyM0z7wAc6TUbuaviB1qpRq7+ALkp
-GktKG3WXzYEsJmEMiU5ZsJRMC/wIRicGcF7GxqJx1VGO6712MXo=
-=4jBB
------END PGP SIGNATURE-----
-
---MnLPg7ZWsaic7Fhd--
