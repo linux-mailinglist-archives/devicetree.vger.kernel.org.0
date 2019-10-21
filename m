@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ECEDEC7F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 14:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E5C3DECCF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2019 14:53:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728263AbfJUMob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Oct 2019 08:44:31 -0400
-Received: from skedge04.snt-world.com ([91.208.41.69]:60036 "EHLO
-        skedge04.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727322AbfJUMob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Oct 2019 08:44:31 -0400
-Received: from sntmail12r.snt-is.com (unknown [10.203.32.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727985AbfJUMxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Oct 2019 08:53:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52308 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727256AbfJUMxM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Oct 2019 08:53:12 -0400
+Received: from localhost (unknown [122.167.89.206])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by skedge04.snt-world.com (Postfix) with ESMTPS id 071276272E0;
-        Mon, 21 Oct 2019 14:44:29 +0200 (CEST)
-Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail12r.snt-is.com
- (10.203.32.182) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 21 Oct
- 2019 14:44:28 +0200
-Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
- sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
- 15.01.1713.004; Mon, 21 Oct 2019 14:44:28 +0200
-From:   Schrempf Frieder <frieder.schrempf@kontron.de>
-To:     "krzk@kernel.org" <krzk@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 03/10] ARM: dts: imx6ul-kontron-n6310-s: Move common nodes
- to a separate file
-Thread-Topic: [PATCH 03/10] ARM: dts: imx6ul-kontron-n6310-s: Move common
- nodes to a separate file
-Thread-Index: AQHVhDNridwU/x73F0y3lESzDZ9q0qdkzUwAgAAjUoA=
-Date:   Mon, 21 Oct 2019 12:44:28 +0000
-Message-ID: <cb88a237-3d5b-a7b2-8ff9-51d192b5d0d7@kontron.de>
-References: <20191016150622.21753-1-frieder.schrempf@kontron.de>
- <20191016150622.21753-4-frieder.schrempf@kontron.de>
- <20191021103802.GC1934@pi3>
-In-Reply-To: <20191021103802.GC1934@pi3>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.9.193]
-x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FE7C61A8E785454F8AF7F0B5D380FEC3@snt-world.com>
-Content-Transfer-Encoding: base64
+        by mail.kernel.org (Postfix) with ESMTPSA id B670620679;
+        Mon, 21 Oct 2019 12:53:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571662391;
+        bh=uxGrhZDbF2L+yKtpe/kGnfAuBpoA1iG6MrGYbfiPYMY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r4RWmmBtxaaFlwYYdg07Nv47t0QfQGlkcWuDFsx6GsS0CtyZEscBs7zvcW94wE2ML
+         BNBUeJJjg8osPhmy2fXtxoHyXLMXEyHRJZqzRrhO1JJ5un+YrSWsDexBCaz+UPxZh+
+         hxu8etsF5EOf8X+0KJ6IXR8K5+0b/UgnABbLKzQI=
+Date:   Mon, 21 Oct 2019 18:23:07 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Taniya Das <tdas@codeaurora.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette =?iso-8859-1?Q?=A0?= 
+        <mturquette@baylibre.com>, Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v1 3/3] clk: qcom: clk-rpmh: Add support for RPMHCC for
+ SC7180
+Message-ID: <20191021125307.GF2654@vkoul-mobl>
+References: <1571393364-32697-1-git-send-email-tdas@codeaurora.org>
+ <1571393364-32697-4-git-send-email-tdas@codeaurora.org>
 MIME-Version: 1.0
-X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: 071276272E0.A1A22
-X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
-X-SnT-MailScanner-SpamCheck: 
-X-SnT-MailScanner-From: frieder.schrempf@kontron.de
-X-SnT-MailScanner-To: devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-X-Spam-Status: No
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1571393364-32697-4-git-send-email-tdas@codeaurora.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQpPbiAyMS4xMC4xOSAxMjozOCwga3J6a0BrZXJuZWwub3JnIHdyb3Rl
-Og0KPiBPbiBXZWQsIE9jdCAxNiwgMjAxOSBhdCAwMzowNzoyNVBNICswMDAwLCBTY2hyZW1wZiBG
-cmllZGVyIHdyb3RlOg0KPj4gRnJvbTogRnJpZWRlciBTY2hyZW1wZiA8ZnJpZWRlci5zY2hyZW1w
-ZkBrb250cm9uLmRlPg0KPj4NCj4+IFRoZSBiYXNlYm9hcmQgZm9yIHRoZSBLb250cm9uIE42MzEw
-IFNvTSBpcyBhbHNvIHVzZWQgZm9yIG90aGVyIFNvTXMNCj4+IHN1Y2ggYXMgTjYzMTEgYW5kIE42
-NDExLiBJbiBvcmRlciB0byBzaGFyZSB0aGUgY29kZSwgd2UgbW92ZSB0aGUNCj4+IGRlZmluaXRp
-b25zIG9mIHRoZSBiYXNlYm9hcmQgdG8gYSBzZXBhcmF0ZSBkdHNpIGZpbGUuDQo+Pg0KPj4gU2ln
-bmVkLW9mZi1ieTogRnJpZWRlciBTY2hyZW1wZiA8ZnJpZWRlci5zY2hyZW1wZkBrb250cm9uLmRl
-Pg0KPj4gLS0tDQo+PiAgIGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42MzEwLXMu
-ZHRzICB8IDQwNSArLS0tLS0tLS0tLS0tLS0tLQ0KPj4gICBhcmNoL2FybS9ib290L2R0cy9pbXg2
-dWwta29udHJvbi1uNngxeC1zLmR0c2kgfCA0MTIgKysrKysrKysrKysrKysrKysrDQo+PiAgIDIg
-ZmlsZXMgY2hhbmdlZCwgNDEzIGluc2VydGlvbnMoKyksIDQwNCBkZWxldGlvbnMoLSkNCj4+ICAg
-Y3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42eDF4
-LXMuZHRzaQ0KPj4NClsuLi5dDQo+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14
-NnVsLWtvbnRyb24tbjZ4MXgtcy5kdHNpIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnVsLWtvbnRy
-b24tbjZ4MXgtcy5kdHNpDQo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4gaW5kZXggMDAwMDAw
-MDAwMDAwLi4wOGEzMjZjZTJjYmUNCj4+IC0tLSAvZGV2L251bGwNCj4+ICsrKyBiL2FyY2gvYXJt
-L2Jvb3QvZHRzL2lteDZ1bC1rb250cm9uLW42eDF4LXMuZHRzaQ0KPj4gQEAgLTAsMCArMSw0MTIg
-QEANCj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMA0KPj4gKy8qDQo+PiAr
-ICogQ29weXJpZ2h0IChDKSAyMDE3IGV4Y2VldCBlbGVjdHJvbmljcyBHbWJIDQo+PiArICogQ29w
-eXJpZ2h0IChDKSAyMDE4IEtvbnRyb24gRWxlY3Ryb25pY3MgR21iSA0KPj4gKyAqIENvcHlyaWdo
-dCAoYykgMjAxOSBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+PiArICov
-DQo+PiArDQo+IA0KPiBUaGlzIGZpbGUgZG9lcyBub3QgaW5jbHVkZSBhbnl0aGluZyBlbHNlIGJ1
-dCB1c2VzIGRlZmluZXMgKEdQSU8gZmxhZ3MsDQo+IGNsb2NrcywgcGlucykuIFVzdWFsbHkgc291
-cmNlcyBzaG91bGQgbm90IHJlbHkgb24gaW5jbHVzaW9ucyBjb21pbmcgZnJvbQ0KPiB1bnJlbGF0
-ZWQgZmlsZXMgc28gaGVyZSB5b3Ugc2hvdWxkIGluY2x1ZGUgbmVjZXNzYXJ5IGhlYWRlcnMuIElu
-IGNhc2Ugb2YNCj4gZnV0dXJlIHJlZmFjdG9yaW5ncyBvciByZXVzZSBvbmUgbWlnaHQgbm90IGtu
-b3cgd2hpY2ggZGVmaW5lcyB5b3Ugd2FudGVkDQo+IHRvIHVzZSAoaW4gb3RoZXIgcGxhdGZvcm1z
-IGZvciBleGFtcGxlIHRoZXJlIG1pZ2h0IGJlIG11bHRpcGxlIGRlZmluZXMNCj4gaW4gbXVsdGlw
-bGUgaGVhZGVyIGZpbGVzIHdpdGggc2FtZSBuYW1lKS4NCg0KUmlnaHQsIEkgbmVlZCB0byBpbmNs
-dWRlIHRoZSBwcm9wZXIgaGVhZGVycyBoZXJlLiBJIHdpbGwgYWxzbyBjaGVjayB0aGUgDQpvdGhl
-ciBmaWxlcy4NCg0KVGhhbmtzIGZvciByZXZpZXdpbmchDQpGcmllZGVy
+On 18-10-19, 15:39, Taniya Das wrote:
+> Add support for clock RPMh driver to vote for ARC and VRM managed
+> clock resources.
+> 
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> ---
+>  drivers/clk/qcom/clk-rpmh.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> index 96a36f6..7301c77 100644
+> --- a/drivers/clk/qcom/clk-rpmh.c
+> +++ b/drivers/clk/qcom/clk-rpmh.c
+> @@ -391,6 +391,24 @@ static const struct clk_rpmh_desc clk_rpmh_sm8150 = {
+>  	.num_clks = ARRAY_SIZE(sm8150_rpmh_clocks),
+>  };
+> 
+> +static struct clk_hw *sc7180_rpmh_clocks[] = {
+> +	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
+> +	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
+> +	[RPMH_LN_BB_CLK2]	= &sdm845_ln_bb_clk2.hw,
+> +	[RPMH_LN_BB_CLK2_A]	= &sdm845_ln_bb_clk2_ao.hw,
+> +	[RPMH_LN_BB_CLK3]	= &sdm845_ln_bb_clk3.hw,
+> +	[RPMH_LN_BB_CLK3_A]	= &sdm845_ln_bb_clk3_ao.hw,
+> +	[RPMH_RF_CLK1]		= &sdm845_rf_clk1.hw,
+> +	[RPMH_RF_CLK1_A]	= &sdm845_rf_clk1_ao.hw,
+> +	[RPMH_RF_CLK2]		= &sdm845_rf_clk2.hw,
+> +	[RPMH_RF_CLK2_A]	= &sdm845_rf_clk2_ao.hw,
+> +};
+> +
+> +static const struct clk_rpmh_desc clk_rpmh_sc7180 = {
+> +	.clks = sc7180_rpmh_clocks,
+> +	.num_clks = ARRAY_SIZE(sc7180_rpmh_clocks),
+> +};
+> +
+>  static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
+>  					 void *data)
+>  {
+> @@ -471,6 +489,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
+>  static const struct of_device_id clk_rpmh_match_table[] = {
+>  	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
+>  	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
+> +	{ .compatible = "qcom,sc7180-rpmh-clk", .data = &clk_rpmh_sc7180},
+
+Is the table above not same as sm8150, if so cant we reuse that for
+sc7180?
+
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, clk_rpmh_match_table);
+> --
+> Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+> of the Code Aurora Forum, hosted by the  Linux Foundation.
+
+-- 
+~Vinod
