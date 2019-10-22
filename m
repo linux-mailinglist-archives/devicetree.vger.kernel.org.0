@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3262E0344
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 13:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 330A5E0350
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 13:47:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387876AbfJVLoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 07:44:19 -0400
-Received: from mga07.intel.com ([134.134.136.100]:5068 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387444AbfJVLoT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Oct 2019 07:44:19 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Oct 2019 04:44:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,326,1566889200"; 
-   d="scan'208";a="209652734"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga002.jf.intel.com with ESMTP; 22 Oct 2019 04:44:13 -0700
-Received: from andy by smile with local (Exim 4.92.2)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1iMsaD-0002wn-7j; Tue, 22 Oct 2019 14:44:13 +0300
-Date:   Tue, 22 Oct 2019 14:44:13 +0300
-From:   "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "hch@infradead.org" <hch@infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "cheol.yong.kim@intel.com" <cheol.yong.kim@intel.com>,
-        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
-        "qi-ming.wu@intel.com" <qi-ming.wu@intel.com>
-Subject: Re: [PATCH v4 2/3] dwc: PCI: intel: PCIe RC controller driver
-Message-ID: <20191022114413.GG32742@smile.fi.intel.com>
-References: <cover.1571638827.git.eswara.kota@linux.intel.com>
- <c46ba3f4187fe53807948b4f10996b89a75c492c.1571638827.git.eswara.kota@linux.intel.com>
- <CH2PR12MB400751D01BCEE7ABB708280BDA690@CH2PR12MB4007.namprd12.prod.outlook.com>
- <28b5a21b-b636-f7e4-2d27-23c5d900b0d3@linux.intel.com>
- <e86116b7-b65f-f31e-abb7-a4533aa6d592@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e86116b7-b65f-f31e-abb7-a4533aa6d592@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2388136AbfJVLqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 07:46:47 -0400
+Received: from mail-pf1-f201.google.com ([209.85.210.201]:36207 "EHLO
+        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387977AbfJVLqr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 07:46:47 -0400
+Received: by mail-pf1-f201.google.com with SMTP id 194so13189573pfu.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2019 04:46:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=+WgkN+jFywmJXVgKU05Ya5YyFfdneuxiMlHIArCBK5c=;
+        b=spSSgg67SiV5zrSWNM7crPZfxyUeNONQ5ZefWzhiBj0HxsRoKAiVIj19ZUUeQ6gfsT
+         p+4Vx3dMtOzHcYor+2y11h4PSstY+dErlPoSK4VwkFChu2pMI6IlE4ajoQs/dHLWdMNI
+         KqExQndtAmV3SvQUgvYYsUgqjBIpMHH7N1SWBPaU3e4ZX2knnBIgyjUmmn3mU88wGa/7
+         UNLtAgnl6E1XT8FDLbZOvvXCXoLG5Rm389sBg1+HX3AmafYXJ8qcPdbZm8yQ2dAhQ0xB
+         5f16NXoRuTKjugNcj1Gi8Mo7mKo8ikqrtIeHvhyoy6DMBBkzaDYvBgqKqWkFBU0jE/hl
+         JskQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=+WgkN+jFywmJXVgKU05Ya5YyFfdneuxiMlHIArCBK5c=;
+        b=jdvfOW9wgdrlUJjzC38fdwojaJrjecC12jRXJm6p3QSXtpK1i36Qs2/7TL4heaX6VD
+         SmU5UFmhVA0D/UmZIbaJB5CK5i335z6hlWpVzGhV0PzemJ8f9g/oV8MgzJfHJOZN4qmW
+         cU8qYicn7y9pD5oS5WkkH7LUNSoRedkoGbI12C7Td/IJUTtreKpyxHtl/GxqkWkwZPJG
+         JkHoaURndpOwC6BjqO5NbHPY/Re5Be2nfQtcODeXxIuOaF+VzjljhBk+HFY0k5N/wIaU
+         Ubg4E1oY3Jx/tDH3D33nU2sdXnpkbV/MNyfeoiOdgte3tqobHocIK5Yq0e+oCDCpK0fb
+         YLIw==
+X-Gm-Message-State: APjAAAVk8Z3YjSfWtQe1aYMadvHagR+RodbtKNUGxH2byjcOOK5AfD4C
+        azKfHW9Fyq5g/ketC7pbSKWCwkXA6Nj6
+X-Google-Smtp-Source: APXvYqy/ziqoEer4WzV0Nf0anG6/SXW8LGXGMhUoQ0nDrgt9a/HYV7SzXWbn1s5tu4qK4rUZHL44Bfeti+4c
+X-Received: by 2002:a63:9751:: with SMTP id d17mr3414778pgo.427.1571744804770;
+ Tue, 22 Oct 2019 04:46:44 -0700 (PDT)
+Date:   Tue, 22 Oct 2019 19:44:59 +0800
+Message-Id: <20191022114505.196852-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.866.gb869b98d4c-goog
+Subject: [PATCH 0/6] ASoC: mediatek: mt8183: support DP audio
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, narmstrong@baylibre.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@siol.net,
+        dri-devel@lists.freedesktop.org, allen.chen@ite.com.tw,
+        cychiang@google.com, dgreid@google.com, tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 22, 2019 at 06:18:57PM +0800, Dilip Kota wrote:
-> On 10/21/2019 6:44 PM, Dilip Kota wrote:
-> > On 10/21/2019 4:29 PM, Gustavo Pimentel wrote:
-> > > On Mon, Oct 21, 2019 at 7:39:19, Dilip Kota
-> > > <eswara.kota@linux.intel.com>
-> > > wrote:
+(This series depends on https://lore.kernel.org/patchwork/patch/1126819/
+ which has not applied to the maintainer's tree yet.)
 
-First of all, it's a good behaviour to avoid way long quoting.
+This series makes mt8183-mt6358-ts3a227-max98357 support DP (display port)
+audio output.
 
-> > > > +static void pcie_update_bits(void __iomem *base, u32 mask, u32
-> > > > val, u32 ofs)
-> > > > +{
-> > > > +    u32 orig, tmp;
-> > > > +
-> > > > +    orig = readl(base + ofs);
-> > > > +
-> > > > +    tmp = (orig & ~mask) | (val & mask);
-> > > > +
-> > > > +    if (tmp != orig)
-> > > > +        writel(tmp, base + ofs);
-> > > > +}
-> > > I'd suggest to the a take on FIELD_PREP() and FIELD_GET() and use more
-> > > intuitive names such as new and old, instead of orig and tmp.
-> > Sure, i will update it.
-> I tried using FIELD_PREP and FIELD_GET but it is failing because FIELD_PREP
-> and FIELD_GET
-> are expecting mask should be constant macro. u32 or u32 const are not
-> accepted.
+ASoC: hdmi-codec: add PCM trigger operator
+- add a PCM trigger callback if codec driver is interested in PCM events.
 
-If you look at bitfield.h carefully you may find in particular
-u32_replace_bits().
+drm: bridge: it6505: bridge to hdmi-codec
+- add audio feature support of it6505.
+- bridge to hdmi-codec so that ASoC can use the audio feature. 
+- defer the "enabling" after receiving PCM START or RESUME event.
+
+ASoC: dt-bindings: mt8183: add a property "mediatek,hdmi-codec"
+ASoC: mediatek: mt8183: use hdmi-codec
+- bind to hdmi-codec in mt8183-mt6358-ts3a227-max98357.
+
+drm: bridge: it6505: report connector status
+ASoC: mediatek: mt8183: support HDMI jack reporting
+- use the mechanism from the following patch
+https://mailman.alsa-project.org/pipermail/alsa-devel/2019-September/155302.html
+  to report jack status (from DRM to ASoC).
+
+Allen Chen (1):
+  drm: bridge: it6505: bridge to hdmi-codec
+
+Tzung-Bi Shih (5):
+  ASoC: hdmi-codec: add PCM trigger operator
+  ASoC: dt-bindings: mt8183: add a property "mediatek,hdmi-codec"
+  ASoC: mediatek: mt8183: use hdmi-codec
+  drm: bridge: it6505: report connector status
+  ASoC: mediatek: mt8183: support HDMI jack reporting
+
+ .../sound/mt8183-mt6358-ts3a227-max98357.txt  |   2 +
+ drivers/gpu/drm/bridge/ite-it6505.c           | 191 +++++++++++++++++-
+ include/sound/hdmi-codec.h                    |  13 ++
+ sound/soc/codecs/hdmi-codec.c                 |  31 +++
+ sound/soc/mediatek/Kconfig                    |   3 +-
+ .../mt8183/mt8183-mt6358-ts3a227-max98357.c   |  36 +++-
+ 6 files changed, 266 insertions(+), 10 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.23.0.866.gb869b98d4c-goog
 
