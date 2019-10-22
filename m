@@ -2,361 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B6E0E09E0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 18:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2419E09F7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 19:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732951AbfJVQ5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 12:57:40 -0400
-Received: from sender4-pp-o94.zoho.com ([136.143.188.94]:25487 "EHLO
-        sender4-pp-o94.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730432AbfJVQ5k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 12:57:40 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1571763446; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=D/s02LsEajAaoF3QT3njyN8bu204NVX4AGlffUJJBvznlY5z4TuszpCR5fPem7e0ehL92Sj5u9tv1EQrbP9OoJfj1cNOVOBmT0M/ZZeQkKwj0tmCEH5Fow8bQ7AqeBqdkuom0/HtE7UNzd9EWjEqLh7fGIgJXlUAVm3sSosEaOE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1571763446; h=Cc:Date:From:In-Reply-To:Message-ID:References:Subject:To; 
-        bh=uwOEpsBJi8wy4RWezg1zTsH5RrCezPZMo1HoRqxrqYI=; 
-        b=UiVCEQcC44utFYGl9LAlg7ec1uK+/PCyvKsn5HHopiK1jEDF89lXRxnPQA+ZHkMY+CUbs/byoLCjUgfsbzzBWXM3FlJ5YPxrrBuvgnKc6r/I+B7syqUQtTBnXjYziYFfWoLb9uTDdx9JJYLptvgfiIlYxjK8zZJrjyOUzuo0/EE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=zoho.com;
-        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
-        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
-  s=zapps768; d=zoho.com; 
-  h=from:to:cc:subject:date:message-id:in-reply-to:references; 
-  b=IYpuUScx2I3PqVRh2jfxYYuRDrBGb0t06+2hODFLRXQH1PkPHVD/WBk1bvVJkFjHEJLkk8oVMEVu
-    ZL/szkxCeVTH+4NvUTpuwdhN2zg8JVxOCRA++raAI9iYlLkdFXfN  
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1571763446;
-        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References;
-        l=8061; bh=uwOEpsBJi8wy4RWezg1zTsH5RrCezPZMo1HoRqxrqYI=;
-        b=mw3N6qY8JA5kQ6vl/ylPoJGPuf8MAiNqwBIE4hJvIqBVtkisssv0iVhOuFJAI7In
-        Jj8G34MiyLzKXHIDrCOFJVWK3R+u7R/5g/g2Z2ddeWPeq/4B7LKmYSfOFXzOljiXx9V
-        3x2NNYOn/JbO+y2eTKhePIpOoKPZ3JiuNrCgHxT0=
-Received: from localhost.localdomain (171.221.113.199 [171.221.113.199]) by mx.zohomail.com
-        with SMTPS id 1571763445368379.5435379219763; Tue, 22 Oct 2019 09:57:25 -0700 (PDT)
-From:   Zhou Yanjie <zhouyanjie@zoho.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        paul.burton@mips.com, mturquette@baylibre.com, sboyd@kernel.org,
-        mark.rutland@arm.com, paul@crapouillou.net
-Subject: [PATCH 2/2 v2] clk: Ingenic: Add CGU driver for X1000.
-Date:   Wed, 23 Oct 2019 00:56:29 +0800
-Message-Id: <1571763389-43443-3-git-send-email-zhouyanjie@zoho.com>
+        id S1733028AbfJVRA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 13:00:57 -0400
+Received: from mail-eopbgr810075.outbound.protection.outlook.com ([40.107.81.75]:21088
+        "EHLO NAM01-BY2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1732901AbfJVRAo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Oct 2019 13:00:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HNFUQMl7Ear6ArU2DxvaGoyfLdgd3SZAOd2o+07cFAqiiXnRLeKThZZvy/+xCoKvHEA6pE0Dv1FI7VInf5l9qXgVTJOdYh+nTDwrtxTV4/3P3CtTxCVs1r6upMR5zpNZcmteKPUGR7Zos1UQxxrfuuQggcn0d9Fqi6Ancw20bpehejd1cjNXyQHmNn0DspEMEeJqRXCvv2EvexlZmcPFhEqkXi3oxcpP8L50A3Rkr0zvBDEtE8uXopq42OAAXGDOnlW4c0kh/G403jKsY8Zk2TFA9MqjyqQFGlIBaOI4Obj34VzReqFYPnRVw8D+WN+4zSg5wvP1VOOkyYvfLohmWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mv/e1GMX0SeztnCQFk/4xSve8HK350bCNHTx0laONDE=;
+ b=dfk/GsVMjG+HC4esa2DWO2XJweZr1U2ghak3qyk/YfiVlNOBh07bpdWy3/iK77aNm/hfL2EmgARF7+hJNRaR3Ganh8Py37PsuH2WD+NaVcp4I7UF62pVsYUj4KIgQUAiBACpiaXnNsMjsZcsbdi5gj7e7iDrD3zG02rElvD4WjKmwDRLJF0066pUSlsBcQ0IA8h8r1BWmd8i7ovjDl04FxSbpzOFJVJ3SycpWJUc+hPetmaILaHXtDvUgzfqV8C/feXVZbiBrioQdJlI2P6cvWOgbTGDFquc0ohs2dyXZVKhUslnrpfgQWfBwzJR2ez9MCT7SZFzJUEIw2Q8SrESjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mv/e1GMX0SeztnCQFk/4xSve8HK350bCNHTx0laONDE=;
+ b=qiLOxJ95XorhCyq3MSlafeuGgc9BqhCM8wIRUvtfC85/iXQRm1rGTE88wlo+rzK/FPMm2ptzAOm6QBPDg+2rVcNSc9f2wnBlOCt2RaZmKSFqckk4BxCOhRxQq1/1hjT3EYvbicoKB624VIy86gwIyj6iJUAo/s/VGHQTjJPF2AE=
+Received: from BN6PR02CA0030.namprd02.prod.outlook.com (2603:10b6:404:5f::16)
+ by CH2PR02MB6053.namprd02.prod.outlook.com (2603:10b6:610:1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.16; Tue, 22 Oct
+ 2019 17:00:41 +0000
+Received: from SN1NAM02FT033.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::206) by BN6PR02CA0030.outlook.office365.com
+ (2603:10b6:404:5f::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.20 via Frontend
+ Transport; Tue, 22 Oct 2019 17:00:41 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT033.mail.protection.outlook.com (10.152.72.133) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2367.14
+ via Frontend Transport; Tue, 22 Oct 2019 17:00:41 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <radhey.shyam.pandey@xilinx.com>)
+        id 1iMxWS-0006Am-GU; Tue, 22 Oct 2019 10:00:40 -0700
+Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <radhey.shyam.pandey@xilinx.com>)
+        id 1iMxWN-0005DF-4Y; Tue, 22 Oct 2019 10:00:35 -0700
+Received: from xsj-pvapsmtp01 (maildrop.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x9MH0WM1030515;
+        Tue, 22 Oct 2019 10:00:32 -0700
+Received: from [10.140.184.180] (helo=ubuntu)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <radheys@ubuntu>)
+        id 1iMxWJ-00059Y-Hj; Tue, 22 Oct 2019 10:00:31 -0700
+Received: by ubuntu (Postfix, from userid 13245)
+        id BE39C10104D; Tue, 22 Oct 2019 22:30:30 +0530 (IST)
+From:   Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+To:     vkoul@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        dan.j.williams@intel.com, michal.simek@xilinx.com,
+        anirudha.sarangi@xilinx.com, nick.graumann@gmail.com,
+        andrea.merello@gmail.com, appana.durga.rao@xilinx.com,
+        mcgrof@kernel.org
+Cc:     dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Subject: [PATCH -next 0/6] dmaengine: xilinx_dma: Add Xilinx AXI MCDMA Engine driver support
+Date:   Tue, 22 Oct 2019 22:30:16 +0530
+Message-Id: <1571763622-29281-1-git-send-email-radhey.shyam.pandey@xilinx.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1571763389-43443-1-git-send-email-zhouyanjie@zoho.com>
-References: <1571421006-12771-1-git-send-email-zhouyanjie@zoho.com>
- <1571763389-43443-1-git-send-email-zhouyanjie@zoho.com>
-X-ZohoMailClient: External
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-Result: No--6.831-7.0-31-1
+X-imss-scan-details: No--6.831-7.0-31-1;No--6.831-5.0-31-1
+X-TM-AS-User-Approved-Sender: No;No
+X-TM-AS-Result-Xfilter: Match text exemption rules:No
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(136003)(396003)(346002)(376002)(39860400002)(189003)(199004)(2906002)(5660300002)(107886003)(50226002)(16586007)(6266002)(47776003)(14444005)(50466002)(106002)(186003)(478600001)(7416002)(336012)(426003)(966005)(70206006)(6666004)(486006)(476003)(4326008)(6306002)(81156014)(126002)(103686004)(356004)(26005)(48376002)(51416003)(81166006)(316002)(2616005)(36756003)(70586007)(42186006)(8936002)(305945005)(8676002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6053;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e5b8795e-bfb9-4177-a852-08d757115eb6
+X-MS-TrafficTypeDiagnostic: CH2PR02MB6053:
+X-MS-Exchange-PUrlCount: 3
+X-Microsoft-Antispam-PRVS: <CH2PR02MB6053A31784BDF03E71A79C22C7680@CH2PR02MB6053.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Forefront-PRVS: 01986AE76B
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xu2O7nIvjM0cZM7MXPRkLJAcF0qyOkxZBLHegV5vBF8afvtiuvzhtlBh+Z4fQxLv8coOthKHoLmxmQlQj/FOrD+mDF/IlLM6ebF69BlREEGWesUYhY3MHGh3F+s9WdylJmOGiFs9J+yjhYFsUHsJZbC7pO6E7ylPPxr2T5BPzQUKavVIRgfIz6B9oroPCDlSrPogi+4g0eGnTPMBBXzm8y4POZa9dpAACDt0YBCbpfChW8XC6r30kN9a0YgK3NCZGyrUwBSJLGHzfho+VCqg/URkzyjwcjDzCWv7ypWs7qPOIjfFuKYGq9Az7eLz1FX3AnKZ5YSEk9kYg2Hgq8SO7oSMHwHiNvw6XCGoa8OmXP/S5eYtPtixd+3vpLDbDFRUDQmgvx0UyYPqHrWbSyYbKKQw8vjsUbkyOS6eWCj+8IOJV3/3HrkRUBy5jo+P4gK0CAM6DavUZIVJgzqvfQ3iTc9+bu++zh8+aWv69qMNl2k=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2019 17:00:41.0173
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5b8795e-bfb9-4177-a852-08d757115eb6
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6053
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the clocks provided by the CGU in the Ingenic X1000
-SoC, making use of the cgu code to do the heavy lifting.
+This patchset adds Xilinx AXI MCDMA IP support. The AXI MCDMA provides
+high-bandwidth direct memory access between memory and AXI4-Stream target
+peripherals. It supports up to 16 independent read/write channels.
 
-Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
----
- drivers/clk/ingenic/Kconfig     |  10 ++
- drivers/clk/ingenic/Makefile    |   1 +
- drivers/clk/ingenic/x1000-cgu.c | 256 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 267 insertions(+)
- create mode 100644 drivers/clk/ingenic/x1000-cgu.c
+MCDMA IP supports per channel interrupt output but driver support one
+interrupt per channel for simplification. IP specification/programming
+sequence and register description is mentioned in PG [1].
 
-diff --git a/drivers/clk/ingenic/Kconfig b/drivers/clk/ingenic/Kconfig
-index fe8db93..2aebf0d 100644
---- a/drivers/clk/ingenic/Kconfig
-+++ b/drivers/clk/ingenic/Kconfig
-@@ -45,4 +45,14 @@ config INGENIC_CGU_JZ4780
- 
- 	  If building for a JZ4780 SoC, you want to say Y here.
- 
-+config INGENIC_CGU_X1000
-+	bool "Ingenic X1000 CGU driver"
-+	default MACH_X1000
-+	select INGENIC_CGU_COMMON
-+	help
-+	  Support the clocks provided by the CGU hardware on Ingenic X1000
-+	  and compatible SoCs.
-+
-+	  If building for a X1000 SoC, you want to say Y here.
-+
- endmenu
-diff --git a/drivers/clk/ingenic/Makefile b/drivers/clk/ingenic/Makefile
-index 250570a..0f0e784 100644
---- a/drivers/clk/ingenic/Makefile
-+++ b/drivers/clk/ingenic/Makefile
-@@ -4,3 +4,4 @@ obj-$(CONFIG_INGENIC_CGU_JZ4740)	+= jz4740-cgu.o
- obj-$(CONFIG_INGENIC_CGU_JZ4725B)	+= jz4725b-cgu.o
- obj-$(CONFIG_INGENIC_CGU_JZ4770)	+= jz4770-cgu.o
- obj-$(CONFIG_INGENIC_CGU_JZ4780)	+= jz4780-cgu.o
-+obj-$(CONFIG_INGENIC_CGU_X1000)		+= x1000-cgu.o
-diff --git a/drivers/clk/ingenic/x1000-cgu.c b/drivers/clk/ingenic/x1000-cgu.c
-new file mode 100644
-index 00000000..a964911
---- /dev/null
-+++ b/drivers/clk/ingenic/x1000-cgu.c
-@@ -0,0 +1,256 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * X1000 SoC CGU driver
-+ * Copyright (c) 2019 Zhou Yanjie <zhouyanjie@zoho.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/delay.h>
-+#include <linux/of.h>
-+#include <dt-bindings/clock/x1000-cgu.h>
-+#include "cgu.h"
-+#include "pm.h"
-+
-+/* CGU register offsets */
-+#define CGU_REG_CPCCR		0x00
-+#define CGU_REG_APLL		0x10
-+#define CGU_REG_MPLL		0x14
-+#define CGU_REG_CLKGR		0x20
-+#define CGU_REG_OPCR		0x24
-+#define CGU_REG_DDRCDR		0x2c
-+#define CGU_REG_MACPHYCDR	0x54
-+#define CGU_REG_I2SCDR		0x60
-+#define CGU_REG_LPCDR		0x64
-+#define CGU_REG_MSC0CDR		0x68
-+#define CGU_REG_I2SCDR1		0x70
-+#define CGU_REG_SSICDR		0x74
-+#define CGU_REG_CIMCDR		0x7c
-+#define CGU_REG_PCMCDR		0x84
-+#define CGU_REG_MSC1CDR		0xa4
-+#define CGU_REG_CMP_INTR	0xb0
-+#define CGU_REG_CMP_INTRE	0xb4
-+#define CGU_REG_DRCG		0xd0
-+#define CGU_REG_CLOCKSTATUS	0xd4
-+#define CGU_REG_PCMCDR1		0xe0
-+#define CGU_REG_MACPHYC		0xe8
-+
-+/* bits within the OPCR register */
-+#define OPCR_SPENDN0		BIT(7)
-+#define OPCR_SPENDN1		BIT(6)
-+
-+static struct ingenic_cgu *cgu;
-+
-+static const s8 pll_od_encoding[8] = {
-+	0x0, 0x1, -1, 0x2, -1, -1, -1, 0x3,
-+};
-+
-+static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
-+
-+	/* External clocks */
-+
-+	[X1000_CLK_EXCLK] = { "ext", CGU_CLK_EXT },
-+	[X1000_CLK_RTCLK] = { "rtc", CGU_CLK_EXT },
-+
-+	/* PLLs */
-+
-+	[X1000_CLK_APLL] = {
-+		"apll", CGU_CLK_PLL,
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.pll = {
-+			.reg = CGU_REG_APLL,
-+			.m_shift = 24,
-+			.m_bits = 7,
-+			.m_offset = 1,
-+			.n_shift = 18,
-+			.n_bits = 5,
-+			.n_offset = 1,
-+			.od_shift = 16,
-+			.od_bits = 2,
-+			.od_max = 8,
-+			.od_encoding = pll_od_encoding,
-+			.bypass_bit = 9,
-+			.enable_bit = 8,
-+			.stable_bit = 10,
-+		},
-+	},
-+
-+	[X1000_CLK_MPLL] = {
-+		"mpll", CGU_CLK_PLL,
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.pll = {
-+			.reg = CGU_REG_MPLL,
-+			.m_shift = 24,
-+			.m_bits = 7,
-+			.m_offset = 1,
-+			.n_shift = 18,
-+			.n_bits = 5,
-+			.n_offset = 1,
-+			.od_shift = 16,
-+			.od_bits = 2,
-+			.od_max = 8,
-+			.od_encoding = pll_od_encoding,
-+			.bypass_bit = 6,
-+			.enable_bit = 7,
-+			.stable_bit = 0,
-+		},
-+	},
-+
-+	/* Muxes & dividers */
-+
-+	[X1000_CLK_SCLKA] = {
-+		"sclk_a", CGU_CLK_MUX,
-+		.parents = { -1, X1000_CLK_EXCLK, X1000_CLK_APLL, -1 },
-+		.mux = { CGU_REG_CPCCR, 30, 2 },
-+	},
-+
-+	[X1000_CLK_CPUMUX] = {
-+		"cpu_mux", CGU_CLK_MUX,
-+		.parents = { -1, X1000_CLK_SCLKA, X1000_CLK_MPLL, -1 },
-+		.mux = { CGU_REG_CPCCR, 28, 2 },
-+	},
-+
-+	[X1000_CLK_CPU] = {
-+		"cpu", CGU_CLK_DIV,
-+		.parents = { X1000_CLK_CPUMUX, -1, -1, -1 },
-+		.div = { CGU_REG_CPCCR, 0, 1, 4, 22, -1, -1 },
-+	},
-+
-+	[X1000_CLK_L2CACHE] = {
-+		"l2cache", CGU_CLK_DIV,
-+		.parents = { X1000_CLK_CPUMUX, -1, -1, -1 },
-+		.div = { CGU_REG_CPCCR, 4, 1, 4, 22, -1, -1 },
-+	},
-+
-+	[X1000_CLK_AHB0] = {
-+		"ahb0", CGU_CLK_MUX | CGU_CLK_DIV,
-+		.parents = { -1, X1000_CLK_SCLKA, X1000_CLK_MPLL, -1 },
-+		.mux = { CGU_REG_CPCCR, 26, 2 },
-+		.div = { CGU_REG_CPCCR, 8, 1, 4, 21, -1, -1 },
-+	},
-+
-+	[X1000_CLK_AHB2PMUX] = {
-+		"ahb2_apb_mux", CGU_CLK_MUX,
-+		.parents = { -1, X1000_CLK_SCLKA, X1000_CLK_MPLL, -1 },
-+		.mux = { CGU_REG_CPCCR, 24, 2 },
-+	},
-+
-+	[X1000_CLK_AHB2] = {
-+		"ahb2", CGU_CLK_DIV,
-+		.parents = { X1000_CLK_AHB2PMUX, -1, -1, -1 },
-+		.div = { CGU_REG_CPCCR, 12, 1, 4, 20, -1, -1 },
-+	},
-+
-+	[X1000_CLK_PCLK] = {
-+		"pclk", CGU_CLK_DIV,
-+		.parents = { X1000_CLK_AHB2PMUX, -1, -1, -1 },
-+		.div = { CGU_REG_CPCCR, 16, 1, 4, 20, -1, -1 },
-+	},
-+
-+	[X1000_CLK_DDR] = {
-+		"ddr", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { -1, X1000_CLK_SCLKA, X1000_CLK_MPLL, -1 },
-+		.mux = { CGU_REG_DDRCDR, 30, 2 },
-+		.div = { CGU_REG_DDRCDR, 0, 1, 4, 29, 28, 27 },
-+		.gate = { CGU_REG_CLKGR, 31 },
-+	},
-+
-+	[X1000_CLK_MAC] = {
-+		"mac", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL},
-+		.mux = { CGU_REG_MACPHYCDR, 31, 1 },
-+		.div = { CGU_REG_DDRCDR, 0, 1, 8, 29, 28, 27 },
-+		.gate = { CGU_REG_CLKGR, 25 },
-+	},
-+
-+	[X1000_CLK_MSCMUX] = {
-+		"msc_mux", CGU_CLK_MUX,
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL},
-+		.mux = { CGU_REG_MSC0CDR, 31, 1 },
-+	},
-+
-+	[X1000_CLK_MSC0] = {
-+		"msc0", CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { X1000_CLK_MSCMUX, -1, -1, -1 },
-+		.div = { CGU_REG_MSC0CDR, 0, 2, 8, 29, 28, 27 },
-+		.gate = { CGU_REG_CLKGR, 4 },
-+	},
-+
-+	[X1000_CLK_MSC1] = {
-+		"msc1", CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { X1000_CLK_MSCMUX, -1, -1, -1 },
-+		.div = { CGU_REG_MSC1CDR, 0, 2, 8, 29, 28, 27 },
-+		.gate = { CGU_REG_CLKGR, 5 },
-+	},
-+
-+	[X1000_CLK_SSIPLL] = {
-+		"ssi_pll", CGU_CLK_MUX | CGU_CLK_DIV,
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
-+		.mux = { CGU_REG_SSICDR, 31, 1 },
-+		.div = { CGU_REG_SSICDR, 0, 1, 8, 29, 28, 27 },
-+	},
-+
-+	[X1000_CLK_SSIMUX] = {
-+		"ssi_mux", CGU_CLK_MUX,
-+		.parents = { X1000_CLK_EXCLK, X1000_CLK_SSIPLL, -1, -1 },
-+		.mux = { CGU_REG_SSICDR, 30, 1 },
-+	},
-+
-+	/* Gate-only clocks */
-+
-+	[X1000_CLK_SFC] = {
-+		"sfc", CGU_CLK_GATE,
-+		.parents = { X1000_CLK_SSIPLL, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 2 },
-+	},
-+
-+	[X1000_CLK_UART0] = {
-+		"uart0", CGU_CLK_GATE,
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 14 },
-+	},
-+
-+	[X1000_CLK_UART1] = {
-+		"uart1", CGU_CLK_GATE,
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 15 },
-+	},
-+
-+	[X1000_CLK_UART2] = {
-+		"uart2", CGU_CLK_GATE,
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 16 },
-+	},
-+
-+	[X1000_CLK_SSI] = {
-+		"ssi", CGU_CLK_GATE,
-+		.parents = { X1000_CLK_SSIMUX, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 19 },
-+	},
-+
-+	[X1000_CLK_PDMA] = {
-+		"pdma", CGU_CLK_GATE,
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 21 },
-+	},
-+};
-+
-+static void __init x1000_cgu_init(struct device_node *np)
-+{
-+	int retval;
-+
-+	cgu = ingenic_cgu_new(x1000_cgu_clocks,
-+			      ARRAY_SIZE(x1000_cgu_clocks), np);
-+	if (!cgu) {
-+		pr_err("%s: failed to initialise CGU\n", __func__);
-+		return;
-+	}
-+
-+	retval = ingenic_cgu_register_clocks(cgu);
-+	if (retval) {
-+		pr_err("%s: failed to register CGU Clocks\n", __func__);
-+		return;
-+	}
-+
-+	ingenic_cgu_register_syscore_ops(cgu);
-+}
-+CLK_OF_DECLARE_DRIVER(x1000_cgu, "ingenic,x1000-cgu", x1000_cgu_init);
+The driver is tested with xilinx internal dmatest client. In end usecase
+MCDMA will be used by xilinx axiethernet driver using dma API's.
+
+Changes since RFC[2]:
+- Remove xilinx axidma multichannel support.
+- Addressed all RFC comments except modularizing initialization of channel
+  segment is skipped as it would create tight coupling b/w axidma and
+  mcdma internal structures.
+- Include MCDMA IP description in Kconfig.
+- Few regression fixes from xilinx tree.
+
+NOTE: This patchset is based on next and previous[3] axidma series.
+
+[1] https://www.xilinx.com/support/documentation/ip_documentation/axi_mcdma/v1_0/pg288-axi-mcdma.pdf
+[2] https://spinics.net/lists/devicetree/msg242427.html
+[3] https://www.spinics.net/lists/dmaengine/msg19910.html
+
+Radhey Shyam Pandey (6):
+  dt-bindings: dmaengine: xilinx_dma: Remove axidma multichannel support
+  dt-bindings: dmaengine: xilinx_dma: Fix formatting and style
+  dt-bindings: dmaengine: xilinx_dma: Add binding for Xilinx MCDMA IP
+  dmaengine: xilinx_dma: Remove axidma multichannel mode support
+  dmaengine: xilinx_dma: Extend dma_config struct to store irq routine
+    handle
+  dmaengine: xilinx_dma: Add Xilinx AXI MCDMA Engine driver support
+
+ .../devicetree/bindings/dma/xilinx/xilinx_dma.txt  |  24 +-
+ drivers/dma/Kconfig                                |   4 +
+ drivers/dma/xilinx/xilinx_dma.c                    | 517 ++++++++++++++++-----
+ 3 files changed, 431 insertions(+), 114 deletions(-)
+
 -- 
 2.7.4
-
 
