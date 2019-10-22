@@ -2,106 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D730DFDEA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 08:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 182C0DFDFD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 09:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387647AbfJVG7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 02:59:22 -0400
-Received: from mail-vk1-f194.google.com ([209.85.221.194]:37635 "EHLO
-        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731026AbfJVG7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 02:59:21 -0400
-Received: by mail-vk1-f194.google.com with SMTP id v78so3355071vke.4
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2019 23:59:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=48GsjoJkha+FkK4BjEpjxR+SeBNRB+aPyJf6ECBpNI8=;
-        b=hbyPJZlxSdwm88myuhdtJEWIniVP1HiyEFgnExhI8LirSFCoAssFt32rZiA6ATyVm1
-         RfPrjPXMTCjoAwM+OIdY+RZmtVg+qMxVFAFdE1sSNExUcHfa5QU/axOjkyW9NIhXAnMw
-         12HfGq8+/d7D00ifWT3bp1gIIGhSCTcWH+AOmyLfDPf2pm+QQayGYH6BM5PnZcao+fGx
-         EN2Ht1omTOCmgsUVR6YVT2YLw5ezM3kXz8KQFgXSzvnivqvBoEff2XKL34V5JzZ7ygvs
-         6ovL3ZC5dP+zoCqhRdoblDoZCU9DAwv3bVwBcsq87BrFkpXHAkgA+4tHyuorekroJaA5
-         kHPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=48GsjoJkha+FkK4BjEpjxR+SeBNRB+aPyJf6ECBpNI8=;
-        b=V8cQyUirTk/P8NoIOg7hAnmMBl2G6jhbXhZyzj+pAweG1WmwC2Jw7mnTY8LUq/WTyT
-         73O8Vtgq2WDOnw36aCwJhNEk6jJSySd5drZH/ssQHIiLzUWR4NRBACaOYrwWZr4gD0zL
-         zgyFCzfXSniS2TrRYmqcLF665DjK2dyAsOGh+FjW794Hn8/VJdsmKlH6O0ZJA0ctV/vz
-         IzdGu4Zyz/SgJBsxLnw/PXU0h22cUDfaoMQna+896l8yJzKhabJEZc7IxIO70ogFLsla
-         TPTfAB3v93CwyOtwMKJnkYVXXu16NQOaYwV2+hjI2EwDpwcxc9VWVrabkiVuFj3PzbnV
-         xZpA==
-X-Gm-Message-State: APjAAAVSux7olTPGODUQ5TiCeHlC17VWJsk5AWU757S8WiGXKMe2Nf3W
-        6ZdU8OnhqqXuCSMaV1CRcyHbz/Y8vkH3Nz08jjpu4Q==
-X-Google-Smtp-Source: APXvYqyQp/ZBzqbnbb99OA7AcxXgKHIl2AlPbDn895oCL9HPi5AEBH3Op7dbJ+nVlsWjQf3q2l3n/Tbcy8/XA0+cyS0=
-X-Received: by 2002:a1f:a293:: with SMTP id l141mr1033147vke.43.1571727560670;
- Mon, 21 Oct 2019 23:59:20 -0700 (PDT)
+        id S2387898AbfJVHJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 03:09:32 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:18118 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387548AbfJVHJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 03:09:32 -0400
+X-UUID: 72867e2a446a46dbbad2e6d98446e9e1-20191022
+X-UUID: 72867e2a446a46dbbad2e6d98446e9e1-20191022
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1453762036; Tue, 22 Oct 2019 15:09:29 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 22 Oct 2019 15:09:26 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 22 Oct 2019 15:09:27 +0800
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        <linux-i2c@vger.kernel.org>
+CC:     <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <srv_heupstream@mediatek.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>
+Subject: [PATCH v5] misc: eeprom: at24: support pm_runtime control
+Date:   Tue, 22 Oct 2019 15:09:27 +0800
+Message-ID: <20191022070927.15666-1-bibby.hsieh@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <cover.1571510481.git.hns@goldelico.com> <9bd4c0bb0df26523d7f5265cdb06d86d63dafba8.1571510481.git.hns@goldelico.com>
- <20191021143008.GS5610@atomide.com> <3FDBE28F-B2C5-4EDE-905C-687F601462B6@goldelico.com>
- <20191021171104.GY5610@atomide.com>
-In-Reply-To: <20191021171104.GY5610@atomide.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 22 Oct 2019 08:58:44 +0200
-Message-ID: <CAPDyKFryqo3wF-GphhytNqrDL4rbZ7Qou1Ki3e2_5w-yh2o=uw@mail.gmail.com>
-Subject: Re: [PATCH v2 07/11] omap: remove old hsmmc.[ch] and in Makefile
-To:     Tony Lindgren <tony@atomide.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- Trimmed cc-list (could be a good idea for next submission as well)
+Although in the most platforms, the power of eeprom and i2c
+are alway on, some platforms disable the eeprom and i2c power
+in order to meet low power request.
+This patch add the pm_runtime ops to control power to support
+all platforms.
 
-On Mon, 21 Oct 2019 at 19:11, Tony Lindgren <tony@atomide.com> wrote:
->
-> * H. Nikolaus Schaller <hns@goldelico.com> [191021 17:08]:
-> >
-> > > Am 21.10.2019 um 16:30 schrieb Tony Lindgren <tony@atomide.com>:
-> > >
-> > > * H. Nikolaus Schaller <hns@goldelico.com> [191019 18:43]:
-> > >> --- a/arch/arm/mach-omap2/Makefile
-> > >> +++ b/arch/arm/mach-omap2/Makefile
-> > >> @@ -216,7 +216,6 @@ obj-$(CONFIG_MACH_NOKIA_N8X0)          += board-n8x0.o
-> > >>
-> > >> # Platform specific device init code
-> > >>
-> > >> -omap-hsmmc-$(CONFIG_MMC_OMAP_HS)  := hsmmc.o
-> > >> obj-y                                      += $(omap-hsmmc-m) $(omap-hsmmc-y)
-> > >
-> > > The related obj-y line can go now too, right?
-> >
-> > Yes, I think so. It is a construction that I have never seen before :)
-> > Therefore I did not recognize that it is related.
-> >
-> > > And looks like common.h also has struct omap2_hsmmc_info
-> > > so maybe check by grepping for hsmmc_info to see it's gone.
-> >
-> > Yes, it is just a forward-declaration of the struct name with
-> > no user anywhere.
-> >
-> > Scheduled for v3.
-> >
-> > BTW: should this series go through your tree since it is an
-> > omap machine?
->
-> Or MMC tree as that's where the code change really are.
+Changes since v4:
+ - add system sleep PM ops
+ - move regulator_bulk_disable() before
+   pm_runtime_set_suspendedsuspend()
+ - fixes error handling
 
-I am okay with that. I will have a look at the series and provide some comments.
+Changes since v3:
+ - remove redundant calling function
+ - change SIMPLE_DEV_PM_OPS to SET_RUNTIME_PM_OPS
+ - change supply name
 
-Kind regards
-Uffe
+Changes since v2:
+ - rebase onto v5.4-rc1
+ - pm_runtime_disable and regulator_bulk_disable at
+   err return in probe function
+
+Changes since v1:
+ - remove redundant code
+ - fixup coding style
+
+Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+---
+ drivers/misc/eeprom/at24.c | 63 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+
+diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+index 2cccd82a3106..5e7a9cc807ac 100644
+--- a/drivers/misc/eeprom/at24.c
++++ b/drivers/misc/eeprom/at24.c
+@@ -22,6 +22,7 @@
+ #include <linux/nvmem-provider.h>
+ #include <linux/regmap.h>
+ #include <linux/pm_runtime.h>
++#include <linux/regulator/consumer.h>
+ #include <linux/gpio/consumer.h>
+ 
+ /* Address pointer is 16 bit. */
+@@ -67,6 +68,12 @@
+  * which won't work on pure SMBus systems.
+  */
+ 
++static const char * const at24_supply_names[] = {
++	"vcc", "i2c",
++};
++
++#define AT24_NUM_SUPPLIES ARRAY_SIZE(at24_supply_names)
++
+ struct at24_client {
+ 	struct i2c_client *client;
+ 	struct regmap *regmap;
+@@ -91,6 +98,8 @@ struct at24_data {
+ 
+ 	struct gpio_desc *wp_gpio;
+ 
++	bool has_supplies;
++	struct regulator_bulk_data supplies[AT24_NUM_SUPPLIES];
+ 	/*
+ 	 * Some chips tie up multiple I2C addresses; dummy devices reserve
+ 	 * them for us, and we'll use them with SMBus calls.
+@@ -662,6 +671,13 @@ static int at24_probe(struct i2c_client *client)
+ 	at24->client[0].client = client;
+ 	at24->client[0].regmap = regmap;
+ 
++	regulator_bulk_set_supply_names(at24->supplies,
++					at24_supply_names, AT24_NUM_SUPPLIES);
++	err =  devm_regulator_bulk_get(&at24->client[0].client->dev,
++				       AT24_NUM_SUPPLIES, at24->supplies);
++	if (!err)
++		at24->has_supplies = true;
++
+ 	at24->wp_gpio = devm_gpiod_get_optional(dev, "wp", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(at24->wp_gpio))
+ 		return PTR_ERR(at24->wp_gpio);
+@@ -701,6 +717,14 @@ static int at24_probe(struct i2c_client *client)
+ 
+ 	i2c_set_clientdata(client, at24);
+ 
++	if (at24->has_supplies) {
++		err = regulator_bulk_enable(AT24_NUM_SUPPLIES, at24->supplies);
++		if (err) {
++			dev_err(dev, "Failed to enable power regulators\n");
++			return err;
++		}
++	}
++
+ 	/* enable runtime pm */
+ 	pm_runtime_set_active(dev);
+ 	pm_runtime_enable(dev);
+@@ -713,6 +737,9 @@ static int at24_probe(struct i2c_client *client)
+ 	pm_runtime_idle(dev);
+ 	if (err) {
+ 		pm_runtime_disable(dev);
++		if (at24->has_supplies)
++			regulator_bulk_disable(AT24_NUM_SUPPLIES,
++					       at24->supplies);
+ 		return -ENODEV;
+ 	}
+ 
+@@ -725,15 +752,51 @@ static int at24_probe(struct i2c_client *client)
+ 
+ static int at24_remove(struct i2c_client *client)
+ {
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
+ 	pm_runtime_disable(&client->dev);
++	if (at24->has_supplies &&
++	    !pm_runtime_status_suspended(&client->dev))
++		regulator_bulk_disable(AT24_NUM_SUPPLIES, at24->supplies);
+ 	pm_runtime_set_suspended(&client->dev);
+ 
+ 	return 0;
+ }
+ 
++static int __maybe_unused at24_suspend(struct device *dev)
++{
++	struct i2c_client *client = to_i2c_client(dev);
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
++	if (at24->has_supplies)
++		return regulator_bulk_disable(AT24_NUM_SUPPLIES,
++					      at24->supplies);
++
++	return 0;
++}
++
++static int __maybe_unused at24_resume(struct device *dev)
++{
++	struct i2c_client *client = to_i2c_client(dev);
++	struct at24_data *at24 = i2c_get_clientdata(client);
++
++	if (at24->has_supplies)
++		return regulator_bulk_enable(AT24_NUM_SUPPLIES,
++					     at24->supplies);
++
++	return 0;
++}
++
++static const struct dev_pm_ops at24_pm_ops = {
++	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
++				pm_runtime_force_resume)
++	SET_RUNTIME_PM_OPS(at24_suspend, at24_resume, NULL)
++};
++
+ static struct i2c_driver at24_driver = {
+ 	.driver = {
+ 		.name = "at24",
++		.pm = &at24_pm_ops,
+ 		.of_match_table = at24_of_match,
+ 		.acpi_match_table = ACPI_PTR(at24_acpi_ids),
+ 	},
+-- 
+2.18.0
+
