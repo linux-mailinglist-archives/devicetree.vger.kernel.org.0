@@ -2,112 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4394E0998
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 18:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9B91E09C8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 18:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731551AbfJVQru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 12:47:50 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:37768 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732047AbfJVQrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 12:47:49 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9MGlhff069514;
-        Tue, 22 Oct 2019 11:47:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571762863;
-        bh=ce8FOh3cwlWZFfoSK6GpsH7q/F5l+sajBNC3YoD6EF0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=UzHWIWAJiHFTn9e8kB8JI1DOPDWPGdrJ/LSUaNd75bmO4iw7wJw2CWvp7aJFICIdj
-         iD/h0xUS5yfaUS3wio5zR2BRpsf0c5CObYxwU/DwkF25uW4Cu2LlUqN5GBrULrQY3K
-         KVxiWE+qEZM44GZx+mXM58yFxswmoa/5ZHBD7008=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9MGlhxU062175
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Oct 2019 11:47:43 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 22
- Oct 2019 11:47:32 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 22 Oct 2019 11:47:32 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9MGleRO075348;
-        Tue, 22 Oct 2019 11:47:40 -0500
-Subject: Re: [Patch 1/3] ARM: dts: am43xx: add support for clkout1 clock
-To:     Benoit Parrot <bparrot@ti.com>, Tony Lindgren <tony@atomide.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20191016184954.14048-1-bparrot@ti.com>
- <20191016184954.14048-2-bparrot@ti.com> <20191022154816.GO5610@atomide.com>
- <20191022162134.fpawonjdjvd5kxza@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <586dcabb-0400-50d6-5488-16bddc059286@ti.com>
-Date:   Tue, 22 Oct 2019 19:47:39 +0300
+        id S1731781AbfJVQy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 12:54:56 -0400
+Received: from [217.140.110.172] ([217.140.110.172]:57672 "EHLO foss.arm.com"
+        rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org with ESMTP
+        id S1727851AbfJVQy4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Oct 2019 12:54:56 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7CA454AE;
+        Tue, 22 Oct 2019 09:54:36 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 79C2E3F71A;
+        Tue, 22 Oct 2019 09:54:35 -0700 (PDT)
+Subject: Re: [PATCH v2] dt-bindings: iommu: Convert Arm SMMUv3 to DT schema
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Joerg Roedel <joro@8bytes.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Will Deacon <will@kernel.org>, iommu@lists.linux-foundation.org
+References: <20191014191256.12697-1-robh@kernel.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <72f211ff-4d5a-933c-eb08-22916d8f50c7@arm.com>
+Date:   Tue, 22 Oct 2019 17:54:34 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20191022162134.fpawonjdjvd5kxza@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+In-Reply-To: <20191014191256.12697-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/10/2019 19:21, Benoit Parrot wrote:
-> Tony Lindgren <tony@atomide.com> wrote on Tue [2019-Oct-22 08:48:16 -0700]:
->> * Benoit Parrot <bparrot@ti.com> [191016 18:47]:
->>> --- a/arch/arm/boot/dts/am43xx-clocks.dtsi
->>> +++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
->>> @@ -704,6 +704,60 @@
->>>   		ti,bit-shift = <8>;
->>>   		reg = <0x2a48>;
->>>   	};
->>> +
->>> +	clkout1_osc_div_ck: clkout1_osc_div_ck {
->>> +		#clock-cells = <0>;
->>> +		compatible = "ti,divider-clock";
->>> +		clocks = <&sys_clkin_ck>;
->>> +		ti,bit-shift = <20>;
->>> +		ti,max-div = <4>;
->>> +		reg = <0x4100>;
->>> +	};
->>
->> Here too please describe why the clock names are not generic.
+On 14/10/2019 20:12, Rob Herring wrote:
+> Convert the Arm SMMv3 binding to the DT schema format.
 > 
-> Tero originally had this patch in the kernel so this is somewhat of a
-> revert. Since these "clock" were removed. If the name syntax is no longer
-> valid for some reason, then I will need a little more informations to
-> proceed.
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Robin Murphy <Robin.Murphy@arm.com>
+> Cc: iommu@lists.linux-foundation.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+> - Refine interrupt definition based on Robin's comments
 > 
-> Tero, can you assist here?
-
-This one is just following the naming convention of the rest of the 
-clocks atm.
-
-If we need to fix all the underscore name clocks, that requires pretty 
-much complete revamp of both the dts data + clock data under the clock 
-driver, and it is not backwards compatible either. How should we tackle 
-that one?
-
-We could maybe add support code in kernel to do s/-/_/g for the "new" 
-clocks so that their parent-child relationships would be retained, and 
-then convert the clocks in phases.
-
--Tero
-
+>   .../devicetree/bindings/iommu/arm,smmu-v3.txt |  77 --------------
+>   .../bindings/iommu/arm,smmu-v3.yaml           | 100 ++++++++++++++++++
+>   2 files changed, 100 insertions(+), 77 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt
+>   create mode 100644 Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
 > 
-> Benoit
-> 
->>
->> Regards,
->>
->> Tony
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt
+> deleted file mode 100644
+> index c9abbf3e4f68..000000000000
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.txt
+> +++ /dev/null
+> @@ -1,77 +0,0 @@
+> -* ARM SMMUv3 Architecture Implementation
+> -
+> -The SMMUv3 architecture is a significant departure from previous
+> -revisions, replacing the MMIO register interface with in-memory command
+> -and event queues and adding support for the ATS and PRI components of
+> -the PCIe specification.
+> -
+> -** SMMUv3 required properties:
+> -
+> -- compatible        : Should include:
+> -
+> -                      * "arm,smmu-v3" for any SMMUv3 compliant
+> -                        implementation. This entry should be last in the
+> -                        compatible list.
+> -
+> -- reg               : Base address and size of the SMMU.
+> -
+> -- interrupts        : Non-secure interrupt list describing the wired
+> -                      interrupt sources corresponding to entries in
+> -                      interrupt-names. If no wired interrupts are
+> -                      present then this property may be omitted.
+> -
+> -- interrupt-names   : When the interrupts property is present, should
+> -                      include the following:
+> -                      * "eventq"    - Event Queue not empty
+> -                      * "priq"      - PRI Queue not empty
+> -                      * "cmdq-sync" - CMD_SYNC complete
+> -                      * "gerror"    - Global Error activated
+> -                      * "combined"  - The combined interrupt is optional,
+> -				      and should only be provided if the
+> -				      hardware supports just a single,
+> -				      combined interrupt line.
+> -				      If provided, then the combined interrupt
+> -				      will be used in preference to any others.
+> -
+> -- #iommu-cells      : See the generic IOMMU binding described in
+> -                        devicetree/bindings/pci/pci-iommu.txt
+> -                      for details. For SMMUv3, must be 1, with each cell
+> -                      describing a single stream ID. All possible stream
+> -                      IDs which a device may emit must be described.
+> -
+> -** SMMUv3 optional properties:
+> -
+> -- dma-coherent      : Present if DMA operations made by the SMMU (page
+> -                      table walks, stream table accesses etc) are cache
+> -                      coherent with the CPU.
+> -
+> -                      NOTE: this only applies to the SMMU itself, not
+> -                      masters connected upstream of the SMMU.
+> -
+> -- msi-parent        : See the generic MSI binding described in
+> -                        devicetree/bindings/interrupt-controller/msi.txt
+> -                      for a description of the msi-parent property.
+> -
+> -- hisilicon,broken-prefetch-cmd
+> -                    : Avoid sending CMD_PREFETCH_* commands to the SMMU.
+> -
+> -- cavium,cn9900-broken-page1-regspace
+> -                    : Replaces all page 1 offsets used for EVTQ_PROD/CONS,
+> -		      PRIQ_PROD/CONS register access with page 0 offsets.
+> -		      Set for Cavium ThunderX2 silicon that doesn't support
+> -		      SMMU page1 register space.
+> -
+> -** Example
+> -
+> -        smmu@2b400000 {
+> -                compatible = "arm,smmu-v3";
+> -                reg = <0x0 0x2b400000 0x0 0x20000>;
+> -                interrupts = <GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
+> -                             <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>,
+> -                             <GIC_SPI 77 IRQ_TYPE_EDGE_RISING>,
+> -                             <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>;
+> -                interrupt-names = "eventq", "priq", "cmdq-sync", "gerror";
+> -                dma-coherent;
+> -                #iommu-cells = <1>;
+> -                msi-parent = <&its 0xff0000>;
+> -        };
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> new file mode 100644
+> index 000000000000..662cbc4592c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/arm,smmu-v3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM SMMUv3 Architecture Implementation
+> +
+> +maintainers:
+> +  - Will Deacon <will@kernel.org>
+> +  - Robin Murphy <Robin.Murphy@arm.com>
+> +
+> +description: |+
+> +  The SMMUv3 architecture is a significant departure from previous
+> +  revisions, replacing the MMIO register interface with in-memory command
+> +  and event queues and adding support for the ATS and PRI components of
+> +  the PCIe specification.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^iommu@[0-9a-f]*"
+> +  compatible:
+> +    const: arm,smmu-v3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  interrupt-names:
+> +    oneOf:
+> +      - const: combined
+> +        description:
+> +          The combined interrupt is optional, and should only be provided if the
+> +          hardware supports just a single, combined interrupt line.
+> +          If provided, then the combined interrupt will be used in preference to
+> +          any others.
+> +      - items:
+> +          - const: eventq     # Event Queue not empt
+> +          - const: priq       # PRI Queue not empty
+> +          - const: cmdq-sync  # CMD_SYNC complete
+> +          - const: gerror     # Global Error activated
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Isn't this effectively redundant with the 4-item case of the version 
+below? If it's purely about the ordering, and we can't express "one or 
+more of any of:" without spelling out all 64 possible permutations, then 
+TBH I'd rather just settle on a single definition that can work for all 
+current cases and update the Fast Model DT if necessary.
+
+Otherwise, though, this looks like a fair starting point to me;
+
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+
+> +      - minItems: 2
+> +        maxItems: 4
+> +        items:
+> +          - const: eventq
+> +          - const: gerror
+> +          - const: priq
+> +          - const: cmdq-sync
+> +
+> +  '#iommu-cells':
+> +    const: 1
+> +
+> +  dma-coherent:
+> +    description: |
+> +      Present if page table walks made by the SMMU are cache coherent with the
+> +      CPU.
+> +
+> +      NOTE: this only applies to the SMMU itself, not masters connected
+> +      upstream of the SMMU.
+> +
+> +  msi-parent: true
+> +
+> +  hisilicon,broken-prefetch-cmd:
+> +    type: boolean
+> +    description: Avoid sending CMD_PREFETCH_* commands to the SMMU.
+> +
+> +  cavium,cn9900-broken-page1-regspace:
+> +    type: boolean
+> +    description:
+> +      Replaces all page 1 offsets used for EVTQ_PROD/CONS, PRIQ_PROD/CONS
+> +      register access with page 0 offsets. Set for Cavium ThunderX2 silicon that
+> +      doesn't support SMMU page1 register space.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#iommu-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |+
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    iommu@2b400000 {
+> +            compatible = "arm,smmu-v3";
+> +            reg = <0x2b400000 0x20000>;
+> +            interrupts = <GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 77 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-names = "eventq", "priq", "cmdq-sync", "gerror";
+> +            dma-coherent;
+> +            #iommu-cells = <1>;
+> +            msi-parent = <&its 0xff0000>;
+> +    };
+> 
