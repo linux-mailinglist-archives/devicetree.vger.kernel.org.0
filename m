@@ -2,142 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03573E053F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:38:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98FD9E050A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730515AbfJVNiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 09:38:00 -0400
-Received: from 19.mo7.mail-out.ovh.net ([178.33.251.118]:46572 "EHLO
-        19.mo7.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388388AbfJVNiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:38:00 -0400
-X-Greylist: delayed 776 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Oct 2019 09:37:58 EDT
-Received: from player793.ha.ovh.net (unknown [10.108.42.176])
-        by mo7.mail-out.ovh.net (Postfix) with ESMTP id 71E7013895E
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2019 15:19:49 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player793.ha.ovh.net (Postfix) with ESMTPSA id A5AE2B3E4570;
-        Tue, 22 Oct 2019 13:19:35 +0000 (UTC)
-From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Julien Boibessot <julien.boibessot@armadeus.com>,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Subject: [PATCH 9/9] ARM: dts: imx6qdl-apf6dev: use DRM bindings
-Date:   Tue, 22 Oct 2019 15:16:55 +0200
-Message-Id: <20191022131655.25737-10-sebastien.szymanski@armadeus.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191022131655.25737-1-sebastien.szymanski@armadeus.com>
-References: <20191022131655.25737-1-sebastien.szymanski@armadeus.com>
+        id S2388740AbfJVNaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 09:30:25 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:1813 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728346AbfJVNaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:30:21 -0400
+X-UUID: 8b3a63d9d49a40abbc5a661991e2c3c6-20191022
+X-UUID: 8b3a63d9d49a40abbc5a661991e2c3c6-20191022
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1771341005; Tue, 22 Oct 2019 21:30:12 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 22 Oct 2019 21:30:10 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 22 Oct 2019 21:30:09 +0800
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sam Shih <sam.shih@mediatek.com>
+Subject: [RESEMD, PATCH 0/1] Add mt7629 pwm support
+Date:   Tue, 22 Oct 2019 21:30:00 +0800
+Message-ID: <1571751001-28588-1-git-send-email-sam.shih@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 141018965105529925
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrkeejgdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the parallel LCD using simple panel driver.
+A gentle ping on this whole patch series
 
-Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
----
- arch/arm/boot/dts/imx6qdl-apf6dev.dtsi | 50 ++++++++++++++------------
- 1 file changed, 28 insertions(+), 22 deletions(-)
+This adds pwm support for MT7629.
+Separate this dtsi update from pwm patches series,
 
-diff --git a/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi b/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi
-index f617089be9cc..0aae958640db 100644
---- a/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi
-@@ -21,33 +21,27 @@
- 
- 	disp0 {
- 		compatible = "fsl,imx-parallel-display";
--		interface-pix-fmt = "bgr666";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_ipu1_disp1>;
--
--		display-timings {
--			lw700 {
--				clock-frequency = <33000033>;
--				hactive = <800>;
--				vactive = <480>;
--				hback-porch = <96>;
--				hfront-porch = <96>;
--				vback-porch = <20>;
--				vfront-porch = <21>;
--				hsync-len = <64>;
--				vsync-len = <4>;
--				hsync-active = <1>;
--				vsync-active = <1>;
--				de-active = <1>;
--				pixelclk-active = <1>;
--			};
--		};
-+		pinctrl-0 = <&pinctrl_ipu1_disp0>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
- 
--		port {
- 			display_in: endpoint {
- 				remote-endpoint = <&ipu1_di0_disp0>;
- 			};
- 		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
- 	};
- 
- 	gpio-keys {
-@@ -76,6 +70,18 @@
- 		};
- 	};
- 
-+	panel {
-+		compatible = "armadeus,st0700-adapt";
-+		power-supply = <&reg_3p3v>;
-+		backlight = <&backlight>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
- 	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "3P3V";
-@@ -351,7 +357,7 @@
- 		>;
- 	};
- 
--	pinctrl_ipu1_disp1: ipu1disp1grp {
-+	pinctrl_ipu1_disp0: ipu1disp0grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x100b1
- 			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x100b1
+Used:
+https://patchwork.kernel.org/patch/11160851/
+
+Related dependent driver updates have been merged into maintainer's kernel
+source tree.
+
+Sam Shih (1):
+  arm: dts: mediatek: add mt7629 pwm support
+
+ arch/arm/boot/dts/mt7629.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
 -- 
-2.21.0
+2.17.1
 
