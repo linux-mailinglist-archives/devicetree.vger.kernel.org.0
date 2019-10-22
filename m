@@ -2,79 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46A06E08B1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 18:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91E77E08D1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 18:28:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389377AbfJVQW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 12:22:27 -0400
-Received: from muru.com ([72.249.23.125]:39030 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388713AbfJVQW1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Oct 2019 12:22:27 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 4DCDD80FA;
-        Tue, 22 Oct 2019 16:23:01 +0000 (UTC)
-Date:   Tue, 22 Oct 2019 09:22:23 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-omap@vger.kernel.org, adam.ford@logicpd.com,
-        hns@goldelico.com,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] configs: ARM: omap2plus: Enable OMAP3_THERMAL
-Message-ID: <20191022162223.GU5610@atomide.com>
-References: <20191007220540.30690-1-aford173@gmail.com>
+        id S1731488AbfJVQ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 12:28:13 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:55748 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731132AbfJVQ2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 12:28:13 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9MGS6XL109569;
+        Tue, 22 Oct 2019 11:28:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571761686;
+        bh=JvsTsVvNKyEdNQmcoKWgQZvfupVu9GC3u5TfI4yGQMM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=KTr54bVYexkynr4Z7RouTo4jQnbtq7sYxR+gez5C3vs0Jm8GQk/Q0Wm3uCtdw6HDI
+         +ROp7ZMVE86dxBuEzDBRXUo+VDyjSGwaeIICLt0zaC6RLQjV63FKNLFetqvKRkJUn9
+         +awYQorHoibayeRpqbUrO9EzfUfvqD9kD/1nv+Xs=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9MGRpd0078602
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Oct 2019 11:27:51 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 22
+ Oct 2019 11:27:41 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 22 Oct 2019 11:27:41 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with SMTP id x9MGRKBC082935;
+        Tue, 22 Oct 2019 11:27:20 -0500
+Date:   Tue, 22 Oct 2019 11:27:20 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [Patch 0/3] ARM: dts: dra7: add vpe nodes
+Message-ID: <20191022162720.yile7i4qwxgbuuou@ti.com>
+References: <20191009175628.20570-1-bparrot@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20191007220540.30690-1-aford173@gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20191009175628.20570-1-bparrot@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Tony,
 
-* Adam Ford <aford173@gmail.com> [191007 15:06]:
-> The some in the OMAP3 family have a bandgap thermal sensor, but
-> omap2plus has it disabled.
-> 
-> This patch enables the OMAP3_THERMAL by default like the rest of
-> the OMAP family.
+Ping,
 
-Looks like this breaks off mode during idle for omap3, and that's
-probably why it never got enabled. The difference in power
-consumption during idle is about 7mW vs 32mW for the SoC as
-measured from torpedo shunt for main_battery_som.
-
-I think the right fix might be simply to add handling for
-CPU_CLUSTER_PM_ENTER to the related thermal driver to disable
-it during idle like we have for gpio-omap.c for example.
+I already had comments from Rob but i would like your feedback before
+sending a v2.
 
 Regards,
+Benoit
 
-Tony
-
+Benoit Parrot <bparrot@ti.com> wrote on Wed [2019-Oct-09 12:56:25 -0500]:
+> This patch series adds the needed clkctrl and ty-sysc nodes for VPE module.
+> We also document the VPE DT bindings.
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Benoit Parrot (3):
+>   dt-bindings: media: ti-vpe: Document VPE driver
+>   ARM: dts: dra7: add vpe clkctrl node
+>   ARM: dts: dra7: Add ti-sysc node for VPE
 > 
-> diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
-> index 8f1c2b6f9e56..7e14a8c8bb29 100644
-> --- a/arch/arm/configs/omap2plus_defconfig
-> +++ b/arch/arm/configs/omap2plus_defconfig
-> @@ -292,6 +292,7 @@ CONFIG_THERMAL_GOV_FAIR_SHARE=y
->  CONFIG_THERMAL_GOV_USER_SPACE=y
->  CONFIG_CPU_THERMAL=y
->  CONFIG_TI_THERMAL=y
-> +CONFIG_OMAP3_THERMAL=y
->  CONFIG_OMAP4_THERMAL=y
->  CONFIG_OMAP5_THERMAL=y
->  CONFIG_DRA752_THERMAL=y
+>  .../devicetree/bindings/media/ti-vpe.txt      | 48 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  arch/arm/boot/dts/dra7-l4.dtsi                | 30 ++++++++++--
+>  arch/arm/boot/dts/dra7xx-clocks.dtsi          | 18 ++++++-
+>  drivers/clk/ti/clk-7xx.c                      |  6 +++
+>  include/dt-bindings/clock/dra7.h              | 10 ++++
+>  6 files changed, 108 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti-vpe.txt
+> 
 > -- 
 > 2.17.1
 > 
