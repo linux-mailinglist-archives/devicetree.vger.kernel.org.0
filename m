@@ -2,84 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4508E04FE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:30:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00AE1E0552
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731061AbfJVNaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 09:30:21 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:26819 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730981AbfJVNaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:30:20 -0400
-X-UUID: fe6f9d5ca1904e649a664df5bf5a9507-20191022
-X-UUID: fe6f9d5ca1904e649a664df5bf5a9507-20191022
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 522666648; Tue, 22 Oct 2019 21:30:16 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 22 Oct 2019 21:30:14 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 22 Oct 2019 21:30:13 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
+        id S1730945AbfJVNld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 09:41:33 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:52447 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726142AbfJVNlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Oct 2019 09:41:32 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9MDf9EN023993;
+        Tue, 22 Oct 2019 15:41:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=PHnNpeOdbXGQynUc5JNgL2qz+nampoSlHPLGeS01Zp0=;
+ b=FJaqOA+9PRB8vd17zEuNNPHGpg7DCIwXrjIseHdwXWVRkZ4oTEJdBmQihL/jKh+2kcTn
+ 3djoMkk+ReNeJVL2BmdsoMrSBBergpI0ZH7QSsZRPmXQfSPlMtrCKS/BfzuIEJUQ3qv+
+ 7QIRpje2lq024m7G7aSH1cf7c9Af0bRdEGYd9qqX5MfAlPcQ/wD88u3VwJJUpvk+F2W3
+ 9LIch0n/JuZh9VbJJoLBWttHZpA6NHE0EhQsHWep3mHDZHu74xs7CVcc88i/CGlTtBB2
+ zHaWiywNvbid2PwJ0Yn6YKCqUGz/BeJJMx5WWWRAnIiUNLJuz5+JRRzSs/cVCt86pEIV Yw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vqr8w7sra-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Oct 2019 15:41:15 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C2421100034;
+        Tue, 22 Oct 2019 15:41:12 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag5node2.st.com [10.75.127.14])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 91EEE2AE209;
+        Tue, 22 Oct 2019 15:41:12 +0200 (CEST)
+Received: from [10.48.1.171] (10.75.127.48) by SFHDAG5NODE2.st.com
+ (10.75.127.14) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 22 Oct
+ 2019 15:41:11 +0200
+Subject: Re: [PATCH v2] i2c: i2c-stm32f7: remove warning when compiling with
+ W=1
+To:     Alain Volmat <alain.volmat@st.com>, <wsa@the-dreams.de>,
+        <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [RESEND, PATCH 1/1] arm: dts: mediatek: add mt7629 pwm support
-Date:   Tue, 22 Oct 2019 21:30:01 +0800
-Message-ID: <1571751001-28588-2-git-send-email-sam.shih@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1571751001-28588-1-git-send-email-sam.shih@mediatek.com>
-References: <1571751001-28588-1-git-send-email-sam.shih@mediatek.com>
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@st.com>
+References: <1571145118-3522-1-git-send-email-alain.volmat@st.com>
+From:   Pierre Yves MORDRET <pierre-yves.mordret@st.com>
+Message-ID: <c10c0652-3f9e-ea5c-98f2-206af86b0fe4@st.com>
+Date:   Tue, 22 Oct 2019 15:41:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <1571145118-3522-1-git-send-email-alain.volmat@st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG8NODE1.st.com (10.75.127.22) To SFHDAG5NODE2.st.com
+ (10.75.127.14)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-22_03:2019-10-22,2019-10-22 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds pwm support for MT7629.
-Used:
-https://patchwork.kernel.org/patch/11160851/
+Hello
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
----
- arch/arm/boot/dts/mt7629.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Looks good
 
-diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-index 9608bc2ccb3f..24375fc5f936 100644
---- a/arch/arm/boot/dts/mt7629.dtsi
-+++ b/arch/arm/boot/dts/mt7629.dtsi
-@@ -241,6 +241,21 @@
- 			status = "disabled";
- 		};
- 
-+		pwm: pwm@11006000 {
-+			compatible = "mediatek,mt7629-pwm";
-+			reg = <0x11006000 0x1000>;
-+			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_PWM_SEL>,
-+				 <&pericfg CLK_PERI_PWM_PD>,
-+				 <&pericfg CLK_PERI_PWM1_PD>;
-+			clock-names = "top", "main", "pwm1";
-+			assigned-clocks = <&topckgen CLK_TOP_PWM_SEL>;
-+			assigned-clock-parents =
-+					<&topckgen CLK_TOP_UNIVPLL2_D4>;
-+			num-pwms = <1>;
-+			status = "disabled";
-+		};
-+
- 		i2c: i2c@11007000 {
- 			compatible = "mediatek,mt7629-i2c",
- 				     "mediatek,mt2712-i2c";
--- 
-2.17.1
+Reviewed-by: Pierre-Yves MORDRET <pierre-yves.mordret@st.com>
 
+Thx
+Regards
+
+On 10/15/19 3:11 PM, Alain Volmat wrote:
+> Remove the following warning:
+> 
+> drivers/i2c/busses/i2c-stm32f7.c:315:
+> warning: cannot understand function prototype:
+> 'struct stm32f7_i2c_spec i2c_specs[] =
+> 
+> Replace a comment starting with /** by simply /* to avoid having
+> it interpreted as a kernel-doc comment.
+> 
+> Fixes: aeb068c57214 ("i2c: i2c-stm32f7: add driver")
+> Signed-off-by: Alain Volmat <alain.volmat@st.com>
+> ---
+> Changes in v2: update commit description
+> ---
+>  drivers/i2c/busses/i2c-stm32f7.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
+> index d36cf08461f7..7aa4a47792a7 100644
+> --- a/drivers/i2c/busses/i2c-stm32f7.c
+> +++ b/drivers/i2c/busses/i2c-stm32f7.c
+> @@ -305,7 +305,7 @@ struct stm32f7_i2c_dev {
+>  	struct regmap *regmap;
+>  };
+>  
+> -/**
+> +/*
+>   * All these values are coming from I2C Specification, Version 6.0, 4th of
+>   * April 2014.
+>   *
+> 
