@@ -2,111 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E23FBE07A7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 17:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBF0DE07B9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 17:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387731AbfJVPmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 11:42:45 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41192 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387716AbfJVPmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 11:42:45 -0400
-Received: by mail-ot1-f66.google.com with SMTP id g13so14573948otp.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2019 08:42:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jm/Xl9/34Vwl6Ga29hMrEteCAU4iE0Ifnw+ZCozjmqY=;
-        b=NhW+MIN9NBxQj3UlVLFIMOShYenXqKE5K7WlBP5wSNdk7JHAbDvblbrtVnkFb8w7Vw
-         g6WgBlIiG6xLzIKaBeEHtYL+oPHqLC1tOtL8kClpYetNONYFGhpnus9m1zZuFGnrZZ58
-         qN9bEtD81dnVjhXqMZJ/1OiFpDLwSi5j8dFmyL/ArQx3lbxLhFC/UFC5AyR9pp02Ahp3
-         qTR6ed26ffoiwN4MZVTuON4hjij2alEbkNyVKY8w64i1z/zak9+irXraRRmlTPHLgWMu
-         /M5LZLdJXaQzouuqZhgbtDyr6EF/dMekbpd4kSgXHa1WuKrdo8mhtRFfC04seurI0N9l
-         K9eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jm/Xl9/34Vwl6Ga29hMrEteCAU4iE0Ifnw+ZCozjmqY=;
-        b=l0yC51/whw1n7hgkRf9XqVHQzdRf6jDpkJapDsogoeMBk0rCI+QviaXGhZdXCHyrT/
-         bxUUcES74zg2DDsNEUenOFjvvaJPMt+cdOTftefYEQGsdVHEMhfPDSjNwmNDt5LW+sye
-         M91nO52rAttir8gmnKIeF6q1dlBwQMHX4ZKjCtRflU/VhQLEwMh3mUG1NhS/i0uBeeS1
-         pJdy3pAdBC+QtnvYWwseMx8jpGQI4cXrWf2Oy4DHAzbBUQL2ASH7jKyiwk3UC3MoJdqh
-         +8XiCkurWyFfbbyr1tu8NXoi953BRxWmZZp7e83fh9ZkSGEHjVXks9NlS2N3yrz/bSF3
-         5QeQ==
-X-Gm-Message-State: APjAAAVReypSvHQa0h+pm3mdT7wScha339ouzH2PIkeHZfflaO7BKPAf
-        eaNjy+Ym4K7IjNyEToNb5ORpw+jG1RFot4DDLMtWdg==
-X-Google-Smtp-Source: APXvYqxxM4cntE/lC2zDpxcAEH7bAYwyzDXjwtYskjG70T1GIfUcpMm2S3GK7g1oGQoS5xsgdm82LzsXbQ08jRrtN/M=
-X-Received: by 2002:a9d:7d09:: with SMTP id v9mr3346639otn.292.1571758964454;
- Tue, 22 Oct 2019 08:42:44 -0700 (PDT)
+        id S1732551AbfJVPo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 11:44:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45418 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730141AbfJVPo6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Oct 2019 11:44:58 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3122E2086D;
+        Tue, 22 Oct 2019 15:44:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571759097;
+        bh=uB+iJFJC/hVIjUlk10LfhCh+hobudFQOoJDpOyooXkE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0BziVt7kpMMygCTcEdjyfaGeXgAdik+wYQr+mPhwRjhwK9RdDv/0DE2OJjmalwuN5
+         idkYV5wqN7EZdY9hmPYt88huqDJJ5U22/UyduRW2Ljhyf1ReDOIR7IbTRp6zXVG9Bm
+         GtHGa8hC2qL8mWvO+kyun5bPmCR68YLbGpLp7CLA=
+Received: by mail-qt1-f182.google.com with SMTP id m15so27521989qtq.2;
+        Tue, 22 Oct 2019 08:44:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAWskgbcnJnJA+8kLVeDctG2H2vnYoB43dzzo8Hm6i/pjN/nZeuT
+        sZIrO21XrO+RD8R3nDArL/aP97kZdnNZcFqasA==
+X-Google-Smtp-Source: APXvYqyov/Zp05P18+muy5bKvbNnTx96qFTjFGR2D/vBSBLHfsdLmzsSiTpHWl1RItE1SuD/noI1iPC3qzBfZ2ox9oc=
+X-Received: by 2002:a0c:ed4f:: with SMTP id v15mr3617404qvq.136.1571759096365;
+ Tue, 22 Oct 2019 08:44:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191018082557.3696-1-bibby.hsieh@mediatek.com>
- <CAMpxmJUrY9YK==6Mf5MoRTUDwmXJ6v5EM-VLXCNXJ8ZNK+xHyA@mail.gmail.com>
- <CAAFQd5BEcE0m7Jg1ZnmrF+jwH6Yn8+vYqT1L2wc2zkZ5vRCRAg@mail.gmail.com>
- <CAMpxmJU_Vws0oGf+GQCEbs-NHFCniO8c2CbXrKy9oEVC_KUhMQ@mail.gmail.com>
- <CAAFQd5D=T+x7j+Lst8AQt0epLckPJv_bXtNGs3Dk=kbdbfw53Q@mail.gmail.com>
- <20191022111908.GC5554@sirena.co.uk> <CAMpxmJUtYjF7L7W_OG6AP6CuLeW_1JPcgNxyBj201GJKfb+H9w@mail.gmail.com>
- <20191022150346.GF5554@sirena.co.uk>
-In-Reply-To: <20191022150346.GF5554@sirena.co.uk>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Tue, 22 Oct 2019 17:42:33 +0200
-Message-ID: <CAMpxmJUqapF79TuhAbGeaZbnjyHo=-gbb-MT-PkX829myU3kGQ@mail.gmail.com>
-Subject: Re: [PATCH v4] misc: eeprom: at24: support pm_runtime control
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Tomasz Figa <tfiga@chromium.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-devicetree <devicetree@vger.kernel.org>
+References: <1571749873-8964-1-git-send-email-gupt21@gmail.com>
+In-Reply-To: <1571749873-8964-1-git-send-email-gupt21@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 22 Oct 2019 10:44:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ4bGgBBnX2oZ50RaVN36qPZRNS4B7_u0UyqHm30R8SbQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ4bGgBBnX2oZ50RaVN36qPZRNS4B7_u0UyqHm30R8SbQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] dt-bindings: iio: light: add veml6030 ALS bindings
+To:     Rishi Gupta <gupt21@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>, alexios.zavras@intel.com,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-wt., 22 pa=C5=BA 2019 o 17:03 Mark Brown <broonie@kernel.org> napisa=C5=82(=
-a):
+On Tue, Oct 22, 2019 at 8:11 AM Rishi Gupta <gupt21@gmail.com> wrote:
 >
-> On Tue, Oct 22, 2019 at 02:13:29PM +0200, Bartosz Golaszewski wrote:
-> > wt., 22 pa=C5=BA 2019 o 13:19 Mark Brown <broonie@kernel.org> napisa=C5=
-=82(a):
+> This commit adds device tree bindings for veml6030 ambient
+> light sensor.
 >
-> > > The ambiguously named regulator_get_optional().  This should *only* b=
-e
-> > > used for regulators that may be physically absent in the system, othe=
-r
-> > > regulators should use normal regulator_get().  It is vanishingly
-> > > unlikely that all the supplies for a device will be optional.
+> Signed-off-by: Rishi Gupta <gupt21@gmail.com>
+> ---
+> Changes in v5:
+> * None
 >
-> > I take it that this driver should also use regular regulator_bulk_get()=
- then?
+> Changes in v4:
+> * Added enum in reg property
+> * Removed maxItems from reg property
 >
-> It's really up to whoever maintains the driver but I'd recommend it
-> since it tends to be easier.
+> Changes in v3:
+> * None
 >
-> > I think the question about the return value of
-> > regulator_resolve_supply() still stands though: is it normal that it
-> > returns EPROBE_DEFER if it can't resolve the supply on systems without
-> > full_constraints? This will cause the driver to loop on probe
-> > deferral, right?
+> Changes in v2:
+> * Corrected grammatical mistake from 'is' to 'are' in description of bindings
 >
-> Yes, that's right.  The idea is that anything using regulators will call
-> that once it's finished setting up constraints, if you're not using
-> regulators at all you should compile out the API entirely.
+>  .../devicetree/bindings/iio/light/veml6030.yaml    | 62 ++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/veml6030.yaml
 
-Ok, makes sense. Thanks Mark!
-
-I'm just wondering if all boardfile-based systems actually do call it.
-I recently had to sent a fix for old DaVinci boards where the lack of
-this call caused one of the GPIO expanders to fail to probe.
-
-Bibby: in that case please remove the entire has_supplies checking and
-just rely on dummy regulators.
-
-Bartosz
+Reviewed-by: Rob Herring <robh@kernel.org>
