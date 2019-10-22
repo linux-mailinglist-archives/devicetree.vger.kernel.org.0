@@ -2,166 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CC2E04E4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05461E052E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389235AbfJVNXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 09:23:49 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:33030 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389226AbfJVNXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:23:49 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9MDNkTf003907;
-        Tue, 22 Oct 2019 08:23:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571750626;
-        bh=WDj6QPyW6ZuJ8MWf4ORoc/EmksLmyGtH8kZua5ibgLg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=fhnLAxHZYDfYYM2OyO/UElKIsrskrnSj2aYhKyL6+3N3VO1pG7j4DvU8vlBBjTzVM
-         1xSO4d2lsSsAx72glZk7CP2EC7lWk9i6Y0RLP90bAtZtfh86I0VLgv0AX1uTTHb2lY
-         qrbGY09KeuZVPXeHHDpGd/ZKmihcqDIjdpzICJZw=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9MDNVbd068725
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Oct 2019 08:23:31 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 22
- Oct 2019 08:23:21 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 22 Oct 2019 08:23:30 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9MDMplb126427;
-        Tue, 22 Oct 2019 08:22:58 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <kishon@ti.com>
-CC:     <aniljoy@cadence.com>, <adouglas@cadence.com>, <nsekhar@ti.com>,
-        <jsarha@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH 3/3] phy: ti: j721e-wiz: Manage typec-gpio-dir
-Date:   Tue, 22 Oct 2019 16:22:49 +0300
-Message-ID: <20191022132249.869-4-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191022132249.869-1-rogerq@ti.com>
-References: <20191022132249.869-1-rogerq@ti.com>
+        id S1725788AbfJVNfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 09:35:21 -0400
+Received: from 7.mo4.mail-out.ovh.net ([178.33.253.54]:38197 "EHLO
+        7.mo4.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388246AbfJVNfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:35:21 -0400
+X-Greylist: delayed 1058 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Oct 2019 09:35:20 EDT
+Received: from player793.ha.ovh.net (unknown [10.109.146.20])
+        by mo4.mail-out.ovh.net (Postfix) with ESMTP id 4027320CABB
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2019 15:17:41 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player793.ha.ovh.net (Postfix) with ESMTPSA id 3257BB3E3BDA;
+        Tue, 22 Oct 2019 13:17:27 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Julien Boibessot <julien.boibessot@armadeus.com>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH 0/9] ARM: dts: update APF6 / APF6Dev
+Date:   Tue, 22 Oct 2019 15:16:46 +0200
+Message-Id: <20191022131655.25737-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 104990167874753605
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrkeejgdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on this GPIO state we need to configure LN10
-bit to swap lane0 and lane1 if required (flipped connector).
+This patch series updates the APF6 / APF6Dev device trees.
 
-Type-C companions typically need some time after the cable is
-plugged before and before they reflect the correct status of
-Type-C plug orientation on the DIR line.
+Sébastien Szymanski (9):
+  ARM: dts: imx6qdl-{apf6,apf6dev}: switch boards to SPDX identifier
+  ARM: dts: imx6qdl-{apf6,apf6dev}: remove container node around pinctrl
+    nodes
+  ARM: dts: imx6qdl-apf6: add phy to fec
+  ARM: dts: imx6qdl-apf6: add flow control to uart2
+  ARM: dts: imx6qdl-apf6: fix WiFi
+  ARM: dts: imx6qdl-apf6dev: add RTC support
+  ARM: dts: imx6qdl-apf6dev: rename usb-h1-vbus regulator to 5V
+  ARM: dts: imx6qdl-apf6dev: add backlight support
+  ARM: dts: imx6qdl-apf6dev: use DRM bindings
 
-Type-C Spec specifies CC attachment debounce time (tCCDebounce)
-of 100 ms (min) to 200 ms (max).
+ arch/arm/boot/dts/imx6dl-apf6dev.dts   |  49 +--
+ arch/arm/boot/dts/imx6q-apf6dev.dts    |  49 +--
+ arch/arm/boot/dts/imx6qdl-apf6.dtsi    | 200 ++++++------
+ arch/arm/boot/dts/imx6qdl-apf6dev.dtsi | 424 ++++++++++++-------------
+ 4 files changed, 303 insertions(+), 419 deletions(-)
 
-Use the DT property to figure out if we need to add delay
-or not before sampling the Type-C DIR line.
-
-Signed-off-by: Roger Quadros <rogerq@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- drivers/phy/ti/phy-j721e-wiz.c | 41 ++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/drivers/phy/ti/phy-j721e-wiz.c b/drivers/phy/ti/phy-j721e-wiz.c
-index 2a95da843e9f..2becdbcb762a 100644
---- a/drivers/phy/ti/phy-j721e-wiz.c
-+++ b/drivers/phy/ti/phy-j721e-wiz.c
-@@ -9,6 +9,8 @@
- #include <dt-bindings/phy/phy.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/mux/consumer.h>
-@@ -22,6 +24,7 @@
- #define WIZ_SERDES_CTRL		0x404
- #define WIZ_SERDES_TOP_CTRL	0x408
- #define WIZ_SERDES_RST		0x40c
-+#define WIZ_SERDES_TYPEC	0x410
- #define WIZ_LANECTL(n)		(0x480 + (0x40 * (n)))
- 
- #define WIZ_MAX_LANES		4
-@@ -29,6 +32,8 @@
- #define WIZ_DIV_NUM_CLOCKS_16G	2
- #define WIZ_DIV_NUM_CLOCKS_10G	1
- 
-+#define WIZ_SERDES_TYPEC_LN10_SWAP	BIT(30)
-+
- enum wiz_lane_standard_mode {
- 	LANE_MODE_GEN1,
- 	LANE_MODE_GEN2,
-@@ -206,6 +211,8 @@ struct wiz {
- 	u32			num_lanes;
- 	struct platform_device	*serdes_pdev;
- 	struct reset_controller_dev wiz_phy_reset_dev;
-+	struct gpio_desc	*gpio_typec_dir;
-+	int			typec_dir_delay;
- };
- 
- static int wiz_reset(struct wiz *wiz)
-@@ -703,6 +710,21 @@ static int wiz_phy_reset_deassert(struct reset_controller_dev *rcdev,
- 	struct wiz *wiz = dev_get_drvdata(dev);
- 	int ret;
- 
-+	/* if typec-dir gpio was specified, set LN10 SWAP bit based on that */
-+	if (id == 0 && wiz->gpio_typec_dir) {
-+		if (wiz->typec_dir_delay)
-+			msleep_interruptible(wiz->typec_dir_delay);
-+
-+		if (gpiod_get_value_cansleep(wiz->gpio_typec_dir)) {
-+			regmap_update_bits(wiz->regmap, WIZ_SERDES_TYPEC,
-+					   WIZ_SERDES_TYPEC_LN10_SWAP,
-+					   WIZ_SERDES_TYPEC_LN10_SWAP);
-+		} else {
-+			regmap_update_bits(wiz->regmap, WIZ_SERDES_TYPEC,
-+					   WIZ_SERDES_TYPEC_LN10_SWAP, 0);
-+		}
-+	}
-+
- 	if (id == 0) {
- 		ret = regmap_field_write(wiz->phy_reset_n, true);
- 		return ret;
-@@ -789,6 +811,25 @@ static int wiz_probe(struct platform_device *pdev)
- 		goto err_addr_to_resource;
- 	}
- 
-+	wiz->gpio_typec_dir = devm_gpiod_get_optional(dev, "typec-dir",
-+						      GPIOD_IN);
-+	if (IS_ERR(wiz->gpio_typec_dir)) {
-+		ret = PTR_ERR(wiz->gpio_typec_dir);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to request typec-dir gpio: %d\n",
-+				ret);
-+		goto err_addr_to_resource;
-+	}
-+
-+	if (wiz->gpio_typec_dir) {
-+		ret = of_property_read_u32(node, "typec-dir-debounce",
-+					   &wiz->typec_dir_delay);
-+		if (ret && ret != -EINVAL) {
-+			dev_err(dev, "Invalid typec-dir-debounce property\n");
-+			goto err_addr_to_resource;
-+		}
-+	}
-+
- 	wiz->dev = dev;
- 	wiz->regmap = regmap;
- 	wiz->num_lanes = num_lanes;
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.21.0
 
