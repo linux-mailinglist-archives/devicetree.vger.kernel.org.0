@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07709E0594
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03573E053F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 15:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729696AbfJVNyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 09:54:39 -0400
-Received: from 5.mo1.mail-out.ovh.net ([178.33.45.107]:39640 "EHLO
-        5.mo1.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729425AbfJVNyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:54:39 -0400
-X-Greylist: delayed 1800 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Oct 2019 09:54:38 EDT
-Received: from player793.ha.ovh.net (unknown [10.108.42.192])
-        by mo1.mail-out.ovh.net (Postfix) with ESMTP id 2C8B51952CF
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2019 15:19:22 +0200 (CEST)
+        id S1730515AbfJVNiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 09:38:00 -0400
+Received: from 19.mo7.mail-out.ovh.net ([178.33.251.118]:46572 "EHLO
+        19.mo7.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388388AbfJVNiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Oct 2019 09:38:00 -0400
+X-Greylist: delayed 776 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Oct 2019 09:37:58 EDT
+Received: from player793.ha.ovh.net (unknown [10.108.42.176])
+        by mo7.mail-out.ovh.net (Postfix) with ESMTP id 71E7013895E
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2019 15:19:49 +0200 (CEST)
 Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
         (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player793.ha.ovh.net (Postfix) with ESMTPSA id 4DA2BB3E4403;
-        Tue, 22 Oct 2019 13:19:08 +0000 (UTC)
+        by player793.ha.ovh.net (Postfix) with ESMTPSA id A5AE2B3E4570;
+        Tue, 22 Oct 2019 13:19:35 +0000 (UTC)
 From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
         <sebastien.szymanski@armadeus.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -32,16 +32,16 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Julien Boibessot <julien.boibessot@armadeus.com>,
         =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
         <sebastien.szymanski@armadeus.com>
-Subject: [PATCH 7/9] ARM: dts: imx6qdl-apf6dev: rename usb-h1-vbus regulator to 5V
-Date:   Tue, 22 Oct 2019 15:16:53 +0200
-Message-Id: <20191022131655.25737-8-sebastien.szymanski@armadeus.com>
+Subject: [PATCH 9/9] ARM: dts: imx6qdl-apf6dev: use DRM bindings
+Date:   Tue, 22 Oct 2019 15:16:55 +0200
+Message-Id: <20191022131655.25737-10-sebastien.szymanski@armadeus.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20191022131655.25737-1-sebastien.szymanski@armadeus.com>
 References: <20191022131655.25737-1-sebastien.szymanski@armadeus.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 133419140173681733
+X-Ovh-Tracer-Id: 141018965105529925
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
 X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrkeejgdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
@@ -50,50 +50,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This regulator supplies other devices and not only usb host1 so
-rename it.
+Describe the parallel LCD using simple panel driver.
 
 Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 ---
- arch/arm/boot/dts/imx6qdl-apf6dev.dtsi | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/imx6qdl-apf6dev.dtsi | 50 ++++++++++++++------------
+ 1 file changed, 28 insertions(+), 22 deletions(-)
 
 diff --git a/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi b/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi
-index 331d55ae9ac9..9067355d8541 100644
+index f617089be9cc..0aae958640db 100644
 --- a/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi
 +++ b/arch/arm/boot/dts/imx6qdl-apf6dev.dtsi
-@@ -74,11 +74,12 @@
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		regulator-always-on;
-+		vin-supply = <&reg_5v>;
+@@ -21,33 +21,27 @@
+ 
+ 	disp0 {
+ 		compatible = "fsl,imx-parallel-display";
+-		interface-pix-fmt = "bgr666";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_ipu1_disp1>;
+-
+-		display-timings {
+-			lw700 {
+-				clock-frequency = <33000033>;
+-				hactive = <800>;
+-				vactive = <480>;
+-				hback-porch = <96>;
+-				hfront-porch = <96>;
+-				vback-porch = <20>;
+-				vfront-porch = <21>;
+-				hsync-len = <64>;
+-				vsync-len = <4>;
+-				hsync-active = <1>;
+-				vsync-active = <1>;
+-				de-active = <1>;
+-				pixelclk-active = <1>;
+-			};
+-		};
++		pinctrl-0 = <&pinctrl_ipu1_disp0>;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
+ 
+-		port {
+ 			display_in: endpoint {
+ 				remote-endpoint = <&ipu1_di0_disp0>;
+ 			};
+ 		};
++
++		port@1 {
++			reg = <1>;
++
++			display_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
  	};
  
--	reg_usbh1_vbus: regulator-usb-h1-vbus {
-+	reg_5v: regulator-5v {
+ 	gpio-keys {
+@@ -76,6 +70,18 @@
+ 		};
+ 	};
+ 
++	panel {
++		compatible = "armadeus,st0700-adapt";
++		power-supply = <&reg_3p3v>;
++		backlight = <&backlight>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&display_out>;
++			};
++		};
++	};
++
+ 	reg_3p3v: regulator-3p3v {
  		compatible = "regulator-fixed";
--		regulator-name = "usb_h1_vbus";
-+		regulator-name = "5V";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 		regulator-always-on;
-@@ -123,6 +124,7 @@
- &can2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan2>;
-+	xceiver-supply = <&reg_5v>;
- 	status = "okay";
- };
+ 		regulator-name = "3P3V";
+@@ -351,7 +357,7 @@
+ 		>;
+ 	};
  
-@@ -223,7 +225,7 @@
- };
- 
- &usbh1 {
--	vbus-supply = <&reg_usbh1_vbus>;
-+	vbus-supply = <&reg_5v>;
- 	phy_type = "utmi";
- 	status = "okay";
- };
+-	pinctrl_ipu1_disp1: ipu1disp1grp {
++	pinctrl_ipu1_disp0: ipu1disp0grp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x100b1
+ 			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x100b1
 -- 
 2.21.0
 
