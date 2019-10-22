@@ -2,355 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9DEEDFE96
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 09:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0871DFEB3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2019 09:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387893AbfJVHqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Oct 2019 03:46:39 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:39850 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726978AbfJVHqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Oct 2019 03:46:39 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 7D475634C87;
-        Tue, 22 Oct 2019 10:46:24 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1iMos3-0000b4-ID; Tue, 22 Oct 2019 10:46:23 +0300
-Date:   Tue, 22 Oct 2019 10:46:23 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [Patch 19/19] dt-bindings: media: cal: convert binding to yaml
-Message-ID: <20191022074623.GE864@valkosipuli.retiisi.org.uk>
-References: <20191018153437.20614-1-bparrot@ti.com>
- <20191018153437.20614-20-bparrot@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191018153437.20614-20-bparrot@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2387893AbfJVHvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Oct 2019 03:51:53 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:57982 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387938AbfJVHvt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Oct 2019 03:51:49 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AE2E91A0C08;
+        Tue, 22 Oct 2019 09:51:43 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 04A3A1A0E2F;
+        Tue, 22 Oct 2019 09:51:37 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id D4A7D40249;
+        Tue, 22 Oct 2019 15:51:28 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>, Huang Anson <anson.huang@nxp.com>
+Cc:     Li Biwen <biwen.li@nxp.com>, Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH 1/3] PM: wakeup: Add routine to help fetch wakeup source object.
+Date:   Tue, 22 Oct 2019 15:51:21 +0800
+Message-Id: <20191022075123.17057-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benoit,
+Some user might want to go through all registered wakeup sources
+and doing things accordingly. For example, SoC PM driver might need to
+do HW programming to prevent powering down specific IP which wakeup
+source depending on. So add this API to help walk through all registered
+wakeup source objects on that list and return them one by one.
 
-Thanks for the patch.
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+Tested-by: Leonard Crestez <leonard.crestez@nxp.com>
+---
+Change in v8
+	- Rename wakeup_source_get_next() to wakeup_sources_walk_next().
+	- Add wakeup_sources_read_lock() to take over locking job of
+	  wakeup_source_get_star().
+	- Rename wakeup_source_get_start() to wakeup_sources_walk_start().
+	- Replace wakeup_source_get_stop() with wakeup_sources_read_unlock().
+	- Define macro for_each_wakeup_source(ws).
 
-On Fri, Oct 18, 2019 at 10:34:37AM -0500, Benoit Parrot wrote:
-> Convert ti-cal.txt to ti,cal.yaml.
-> 
-> Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> ---
->  .../devicetree/bindings/media/ti,cal.yaml     | 186 ++++++++++++++++++
->  .../devicetree/bindings/media/ti-cal.txt      |  82 --------
->  2 files changed, 186 insertions(+), 82 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/ti,cal.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/ti-cal.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/ti,cal.yaml b/Documentation/devicetree/bindings/media/ti,cal.yaml
-> new file mode 100644
-> index 000000000000..c3fbb22b4571
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/ti,cal.yaml
-> @@ -0,0 +1,186 @@
-> +# SPDX-License-Identifier: (GPL-2.0)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/ti,cal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL) Device Tree Bindings
-> +
-> +maintainers:
-> +  - Benoit Parrot <bparrot@ti.com>
-> +
-> +description: |-
-> +  The Camera Adaptation Layer (CAL) is a key component for image capture
-> +  applications. The capture module provides the system interface and the
-> +  processing capability to connect CSI2 image-sensor modules to the
-> +  DRA72x device.
-> +
-> +  CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
-> +  should contain a 'port' child node with child 'endpoint' node. Please
-> +  refer to the bindings defined in
-> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +
-> +  compatible should be
-> +     "ti,dra72-cal", for DRA72 controllers
-> +     "ti,dra72-pre-es2-cal", for DRA72 controllers pre ES2.0
-> +     "ti,dra76-cal", for DRA76 controllers
-> +     "ti,am654-cal", for AM654 controllers
-> +
-> +properties:
-> +  compatible:
-> +      items:
-> +        - enum:
-> +            - ti,dra72-cal
-> +            - ti,dra72-pre-es2-cal
-> +            - ti,dra76-cal
-> +            - ti,am654-cal
-> +
-> +  reg:
-> +    minItems: 2
-> +    items:
-> +      - description: The CAL main register region
-> +      - description: The RX Core0 (DPHY0) register region
-> +      - description: The RX Core1 (DPHY1) register region
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    items:
-> +      - const: cal_top
-> +      - const: cal_rx_core0
-> +      - const: cal_rx_core1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  syscon-camerrx:
-> +    maxItems: 1
-> +    items:
-> +      - description:
-> +           phandle to the device control module and offset to the
-> +           control_camerarx_core register
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: functional clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fck
-> +
-> +  power-domains:
-> +    description:
-> +      List of phandle and PM domain specifier as documented in
-> +      Documentation/devicetree/bindings/power/power_domain.txt
-> +    maxItems: 1
-> +
-> +  # See ./video-interfaces.txt for details
-> +  ports:
-> +    maxItems: 1
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^port@[0-9a-fA-F]+$':
-> +        minItems: 1
-> +        maxItems: 2
+Change in v7:
+	- Remove define of member *dev in wake_irq to fix conflict with commit 
+	c8377adfa781 ("PM / wakeup: Show wakeup sources stats in sysfs"), user 
+	will use ws->dev->parent instead.
+	- Remove '#include <linux/of_device.h>' because it is not used.
 
-Obviously you need a port node to connect a sensor. But can the device do
-something useful without one? I guess it may be a matter of taste whether
-you require one.
+Change in v6:
+	- Add wakeup_source_get_star() and wakeup_source_get_stop() to aligned 
+	with wakeup_sources_stats_seq_start/nex/stop.
 
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            minItems: 1
-> +            items:
-> +              - description: The port id
-> +
-> +        patternProperties:
-> +          '^endpoint@[0-9a-fA-F]+$':
-> +            minItems: 1
+Change in v5:
+	- Update commit message, add decription of walk through all wakeup
+	source objects.
+	- Add SCU protection in function wakeup_source_get_next().
+	- Rename wakeup_source member 'attached_dev' to 'dev' and move it up
+	(before wakeirq).
 
-The graph bindings allows for no endpoints.
+Change in v4:
+	- None.
 
-> +            type: object
-> +            additionalProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
+Change in v3:
+	- Adjust indentation of *attached_dev;.
 
-Does the device support lane reordering? If not, you could omit the
-clock-lanes property. It wasn't documented earlier either albeit the
-example had it for some reason.
+Change in v2:
+	- None.
 
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              remote-endpoint: true
-> +
-> +            required:
-> +              - remote-endpoint
-> +
-> +        required:
-> +          - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - syscon-camerrx
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    cal: cal@4845b000 {
-> +        compatible = "ti,dra72-cal";
-> +        reg = <0x4845B000 0x400>,
-> +              <0x4845B800 0x40>,
-> +              <0x4845B900 0x40>;
-> +        reg-names = "cal_top",
-> +                    "cal_rx_core0",
-> +                    "cal_rx_core1";
-> +        interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> +        syscon-camerrx = <&scm_conf 0xE94>;
-> +
-> +        ports {
-> +              #address-cells = <1>;
-> +              #size-cells = <0>;
-> +
-> +              csi2_0: port@0 {
-> +                    reg = <0>;
-> +                    csi2_phy0: endpoint@0 {
-> +                           remote-endpoint = <&csi2_cam0>;
-> +                           clock-lanes = <0>;
-> +                           data-lanes = <1 2>;
-> +                    };
-> +              };
-> +        };
-> +    };
-> +
-> +    i2c5: i2c@4807c000 {
-> +        status = "okay";
-> +        clock-frequency = <400000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov5640@3c {
-> +               compatible = "ovti,ov5640";
-> +               reg = <0x3c>;
-> +
-> +               clocks = <&clk_ov5640_fixed>;
-> +               clock-names = "xclk";
-> +
-> +               port {
-> +                    csi2_cam0: endpoint@0 {
-> +                            remote-endpoint = <&csi2_phy0>;
-> +                            clock-lanes = <0>;
-> +                            data-lanes = <1 2>;
-> +                    };
-> +               };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/media/ti-cal.txt b/Documentation/devicetree/bindings/media/ti-cal.txt
-> deleted file mode 100644
-> index b7bf8492dc2a..000000000000
-> --- a/Documentation/devicetree/bindings/media/ti-cal.txt
-> +++ /dev/null
-> @@ -1,82 +0,0 @@
-> -Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL)
-> -------------------------------------------------------
-> -
-> -The Camera Adaptation Layer (CAL) is a key component for image capture
-> -applications. The capture module provides the system interface and the
-> -processing capability to connect CSI2 image-sensor modules to the
-> -DRA72x device.
-> -
-> -Required properties:
-> -- compatible:
-> - Should be "ti,dra72-cal", for DRA72 controllers
-> - Should be "ti,dra72-pre-es2-cal", for DRA72 controllers pre ES2.0
-> - Should be "ti,dra76-cal", for DRA76 controllers
-> - Should be "ti,am654-cal", for AM654 controllers
-> -- reg:	CAL Top level, Receiver Core #0, Receiver Core #1 and Camera RX
-> -	control address space
-> -- reg-names: cal_top, cal_rx_core0, cal_rx_core1 and camerrx_control
-> -	     registers
-> -- interrupts: should contain IRQ line for the CAL;
-> -- syscon-camerrx: phandle to the device control module and offset to the
-> -		  control_camerarx_core register
-> -		  This node is meant to replace the "camerrx_control" reg
-> -		  entry above but "camerrx_control" is still handled
-> -		  for backward compatibility.
-> -
-> -CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
-> -should contain a 'port' child node with child 'endpoint' node. Please
-> -refer to the bindings defined in
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Example:
-> -	cal: cal@4845b000 {
-> -		compatible = "ti,dra72-cal";
-> -		reg = <0x4845B000 0x400>,
-> -		      <0x4845B800 0x40>,
-> -		      <0x4845B900 0x40>;
-> -		reg-names = "cal_top",
-> -			    "cal_rx_core0",
-> -			    "cal_rx_core1";
-> -		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> -		syscon-camerrx = <&scm_conf 0xE94>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		ports {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			csi2_0: port@0 {
-> -				reg = <0>;
-> -				csi2_phy0: endpoint@0 {
-> -					remote-endpoint = <&csi2_cam0>;
-> -					clock-lanes = <0>;
-> -					data-lanes = <1 2>;
-> -				};
-> -			};
-> -			csi2_1: port@1 {
-> -				reg = <1>;
-> -			};
-> -		};
-> -	};
-> -
-> -	i2c5: i2c@4807c000 {
-> -		status = "okay";
-> -		clock-frequency = <400000>;
-> -
-> -		ov5640@3c {
-> -			compatible = "ovti,ov5640";
-> -			reg = <0x3c>;
-> -
-> -			clocks = <&clk_ov5640_fixed>;
-> -			clock-names = "xclk";
-> -
-> -			port {
-> -				csi2_cam0: endpoint {
-> -					remote-endpoint = <&csi2_phy0>;
-> -					clock-lanes = <0>;
-> -					data-lanes = <1 2>;
-> -				};
-> -			};
-> -		};
-> -	};
+ drivers/base/power/wakeup.c | 42 ++++++++++++++++++++++++++++++++++++++++++
+ include/linux/pm_wakeup.h   |  9 +++++++++
+ 2 files changed, 51 insertions(+)
 
+diff --git a/drivers/base/power/wakeup.c b/drivers/base/power/wakeup.c
+index 5817b51..8c7a5f9 100644
+--- a/drivers/base/power/wakeup.c
++++ b/drivers/base/power/wakeup.c
+@@ -248,6 +248,48 @@ void wakeup_source_unregister(struct wakeup_source *ws)
+ EXPORT_SYMBOL_GPL(wakeup_source_unregister);
+ 
+ /**
++ * wakeup_sources_read_lock - Lock wakeup source list for read.
++ */
++int wakeup_sources_read_lock(void)
++{
++	return srcu_read_lock(&wakeup_srcu);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_read_lock);
++
++/**
++ * wakeup_sources_read_unlock - Unlock wakeup source list.
++ */
++void wakeup_sources_read_unlock(int idx)
++{
++	srcu_read_unlock(&wakeup_srcu, idx);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_read_unlock);
++
++/**
++ * wakeup_sources_walk_start - Begin a walk on wakeup source list
++ */
++struct wakeup_source *wakeup_sources_walk_start(void)
++{
++	struct list_head *ws_head = &wakeup_sources;
++
++	return list_entry_rcu(ws_head->next, struct wakeup_source, entry);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_walk_start);
++
++/**
++ * wakeup_sources_walk_next - Get next wakeup source from the list
++ * @ws: Previous wakeup source object
++ */
++struct wakeup_source *wakeup_sources_walk_next(struct wakeup_source *ws)
++{
++	struct list_head *ws_head = &wakeup_sources;
++
++	return list_next_or_null_rcu(ws_head, &ws->entry,
++				struct wakeup_source, entry);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_walk_next);
++
++/**
+  * device_wakeup_attach - Attach a wakeup source object to a device object.
+  * @dev: Device to handle.
+  * @ws: Wakeup source object to attach to @dev.
+diff --git a/include/linux/pm_wakeup.h b/include/linux/pm_wakeup.h
+index 661efa0..aa3da66 100644
+--- a/include/linux/pm_wakeup.h
++++ b/include/linux/pm_wakeup.h
+@@ -63,6 +63,11 @@ struct wakeup_source {
+ 	bool			autosleep_enabled:1;
+ };
+ 
++#define for_each_wakeup_source(ws) \
++	for ((ws) = wakeup_sources_walk_start();	\
++	     (ws);					\
++	     (ws) = wakeup_sources_walk_next((ws)))
++
+ #ifdef CONFIG_PM_SLEEP
+ 
+ /*
+@@ -92,6 +97,10 @@ extern void wakeup_source_remove(struct wakeup_source *ws);
+ extern struct wakeup_source *wakeup_source_register(struct device *dev,
+ 						    const char *name);
+ extern void wakeup_source_unregister(struct wakeup_source *ws);
++extern int wakeup_sources_read_lock(void);
++extern void wakeup_sources_read_unlock(int idx);
++extern struct wakeup_source *wakeup_sources_walk_start(void);
++extern struct wakeup_source *wakeup_sources_walk_next(struct wakeup_source *ws);
+ extern int device_wakeup_enable(struct device *dev);
+ extern int device_wakeup_disable(struct device *dev);
+ extern void device_set_wakeup_capable(struct device *dev, bool capable);
 -- 
-Kind regards,
+2.7.4
 
-Sakari Ailus
