@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81F3AE1FBD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 17:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D96E1FBF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 17:45:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436467AbfJWPp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 11:45:28 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37738 "EHLO
+        id S2436468AbfJWPpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 11:45:30 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:37856 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436464AbfJWPp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 11:45:28 -0400
+        with ESMTP id S2436466AbfJWPpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 11:45:30 -0400
 Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 22D9828F932;
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id F07D928F95D;
         Wed, 23 Oct 2019 16:45:27 +0100 (BST)
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     dri-devel@lists.freedesktop.org
@@ -41,9 +41,9 @@ Cc:     Lucas Stach <l.stach@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org,
         Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v3 11/21] drm/bridge: Patch atomic hooks to take a drm_bridge_state
-Date:   Wed, 23 Oct 2019 17:45:02 +0200
-Message-Id: <20191023154512.9762-12-boris.brezillon@collabora.com>
+Subject: [PATCH v3 12/21] drm/bridge: Add an ->atomic_check() hook
+Date:   Wed, 23 Oct 2019 17:45:03 +0200
+Message-Id: <20191023154512.9762-13-boris.brezillon@collabora.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20191023154512.9762-1-boris.brezillon@collabora.com>
 References: <20191023154512.9762-1-boris.brezillon@collabora.com>
@@ -54,253 +54,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This way the drm_bridge_funcs interface is consistent with the rest of
-the subsystem.
-
-The only driver implementing those hooks (analogix DP) is patched too.
+So that bridge drivers have a way to check/reject an atomic operation.
+The drm_atomic_bridge_chain_check() (which is just a wrapper around
+the ->atomic_check() hook) is called in place of
+drm_bridge_chain_mode_fixup() (when ->atomic_check() is not implemented,
+the core falls back on ->mode_fixup(), so the behavior should stay
+the same for existing bridge drivers).
 
 Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
 ---
 Changes in v3:
-* Old state clarification moved to a separate patch
+* None
 
 Changes in v2:
-* Pass the old bridge state
+* Clarify the fact that ->atomic_check() is replacing ->mode_fixup()
 ---
- .../drm/bridge/analogix/analogix_dp_core.c    | 12 ++--
- drivers/gpu/drm/drm_bridge.c                  | 61 +++++++++++++++----
- include/drm/drm_bridge.h                      | 24 ++++----
- 3 files changed, 69 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/drm_atomic_helper.c | 12 +++---
+ drivers/gpu/drm/drm_bridge.c        | 62 +++++++++++++++++++++++++++++
+ include/drm/drm_bridge.h            | 29 +++++++++++++-
+ 3 files changed, 96 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index bb411fe52ae8..e438e757f2ce 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1290,8 +1290,9 @@ struct drm_crtc *analogix_dp_get_new_crtc(struct analogix_dp_device *dp,
- }
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index de985ba7ce2d..1d0a19511a0d 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -437,12 +437,12 @@ mode_fixup(struct drm_atomic_state *state)
+ 		funcs = encoder->helper_private;
  
- static void analogix_dp_bridge_atomic_pre_enable(struct drm_bridge *bridge,
--						 struct drm_atomic_state *state)
-+						 struct drm_bridge_state *bstate)
- {
-+	struct drm_atomic_state *state = bstate->base.state;
- 	struct analogix_dp_device *dp = bridge->driver_private;
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state;
-@@ -1367,8 +1368,9 @@ static int analogix_dp_set_bridge(struct analogix_dp_device *dp)
- }
+ 		bridge = drm_bridge_chain_get_first_bridge(encoder);
+-		ret = drm_bridge_chain_mode_fixup(bridge,
+-					&new_crtc_state->mode,
+-					&new_crtc_state->adjusted_mode);
+-		if (!ret) {
+-			DRM_DEBUG_ATOMIC("Bridge fixup failed\n");
+-			return -EINVAL;
++		ret = drm_atomic_bridge_chain_check(bridge,
++						    new_crtc_state,
++						    new_conn_state);
++		if (ret) {
++			DRM_DEBUG_ATOMIC("Bridge atomic check failed\n");
++			return ret;
+ 		}
  
- static void analogix_dp_bridge_atomic_enable(struct drm_bridge *bridge,
--					     struct drm_atomic_state *state)
-+					     struct drm_bridge_state *bstate)
- {
-+	struct drm_atomic_state *state = bstate->base.state;
- 	struct analogix_dp_device *dp = bridge->driver_private;
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state;
-@@ -1441,8 +1443,9 @@ static void analogix_dp_bridge_disable(struct drm_bridge *bridge)
- }
- 
- static void analogix_dp_bridge_atomic_disable(struct drm_bridge *bridge,
--					      struct drm_atomic_state *state)
-+					      struct drm_bridge_state *bstate)
- {
-+	struct drm_atomic_state *state = bstate->base.state;
- 	struct analogix_dp_device *dp = bridge->driver_private;
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *new_crtc_state = NULL;
-@@ -1465,8 +1468,9 @@ static void analogix_dp_bridge_atomic_disable(struct drm_bridge *bridge,
- 
- static
- void analogix_dp_bridge_atomic_post_disable(struct drm_bridge *bridge,
--					    struct drm_atomic_state *state)
-+					    struct drm_bridge_state *bstate)
- {
-+	struct drm_atomic_state *state = bstate->base.state;
- 	struct analogix_dp_device *dp = bridge->driver_private;
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *new_crtc_state;
+ 		if (funcs && funcs->atomic_check) {
 diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index ca74bfe028c9..377866e3214f 100644
+index 377866e3214f..990e056296bd 100644
 --- a/drivers/gpu/drm/drm_bridge.c
 +++ b/drivers/gpu/drm/drm_bridge.c
-@@ -468,10 +468,19 @@ void drm_atomic_bridge_chain_disable(struct drm_bridge *bridge,
- 	encoder = bridge->encoder;
- 	list_for_each_entry_reverse(iter, &encoder->bridge_chain,
- 				    chain_node) {
--		if (iter->funcs->atomic_disable)
--			iter->funcs->atomic_disable(iter, old_state);
--		else if (iter->funcs->disable)
-+		if (iter->funcs->atomic_disable) {
-+			struct drm_bridge_state *old_bridge_state;
-+
-+			old_bridge_state =
-+				drm_atomic_get_old_bridge_state(old_state,
-+								iter);
-+			if (WARN_ON(!old_bridge_state))
-+				return;
-+
-+			iter->funcs->atomic_disable(iter, old_bridge_state);
-+		} else if (iter->funcs->disable) {
- 			iter->funcs->disable(iter);
-+		}
- 
- 		if (iter == bridge)
- 			break;
-@@ -503,10 +512,20 @@ void drm_atomic_bridge_chain_post_disable(struct drm_bridge *bridge,
- 	encoder = bridge->encoder;
- 	list_for_each_entry_from(bridge, &encoder->bridge_chain,
- 				 chain_node) {
--		if (bridge->funcs->atomic_post_disable)
--			bridge->funcs->atomic_post_disable(bridge, old_state);
--		else if (bridge->funcs->post_disable)
-+		if (bridge->funcs->atomic_post_disable) {
-+			struct drm_bridge_state *old_bridge_state;
-+
-+			old_bridge_state =
-+				drm_atomic_get_old_bridge_state(old_state,
-+								bridge);
-+			if (WARN_ON(!old_bridge_state))
-+				return;
-+
-+			bridge->funcs->atomic_post_disable(bridge,
-+							   old_bridge_state);
-+		} else if (bridge->funcs->post_disable) {
- 			bridge->funcs->post_disable(bridge);
-+		}
- 	}
- }
- EXPORT_SYMBOL(drm_atomic_bridge_chain_post_disable);
-@@ -536,10 +555,19 @@ void drm_atomic_bridge_chain_pre_enable(struct drm_bridge *bridge,
- 	encoder = bridge->encoder;
- 	list_for_each_entry_reverse(iter, &bridge->encoder->bridge_chain,
- 				    chain_node) {
--		if (iter->funcs->atomic_pre_enable)
--			iter->funcs->atomic_pre_enable(iter, old_state);
--		else if (iter->funcs->pre_enable)
-+		if (iter->funcs->atomic_pre_enable) {
-+			struct drm_bridge_state *old_bridge_state;
-+
-+			old_bridge_state =
-+				drm_atomic_get_old_bridge_state(old_state,
-+								iter);
-+			if (WARN_ON(!old_bridge_state))
-+				return;
-+
-+			iter->funcs->atomic_pre_enable(iter, old_bridge_state);
-+		} else if (iter->funcs->pre_enable) {
- 			iter->funcs->pre_enable(iter);
-+		}
- 
- 		if (iter == bridge)
- 			break;
-@@ -570,10 +598,19 @@ void drm_atomic_bridge_chain_enable(struct drm_bridge *bridge,
- 	encoder = bridge->encoder;
- 	list_for_each_entry_from(bridge, &bridge->encoder->bridge_chain,
- 				 chain_node) {
--		if (bridge->funcs->atomic_enable)
--			bridge->funcs->atomic_enable(bridge, old_state);
--		else if (bridge->funcs->enable)
-+		if (bridge->funcs->atomic_enable) {
-+			struct drm_bridge_state *old_bridge_state;
-+
-+			old_bridge_state =
-+				drm_atomic_get_old_bridge_state(old_state,
-+								bridge);
-+			if (WARN_ON(!old_bridge_state))
-+				return;
-+
-+			bridge->funcs->atomic_enable(bridge, old_bridge_state);
-+		} else if (bridge->funcs->enable) {
- 			bridge->funcs->enable(bridge);
-+		}
- 	}
+@@ -615,6 +615,68 @@ void drm_atomic_bridge_chain_enable(struct drm_bridge *bridge,
  }
  EXPORT_SYMBOL(drm_atomic_bridge_chain_enable);
+ 
++static int drm_atomic_bridge_check(struct drm_bridge *bridge,
++				   struct drm_crtc_state *crtc_state,
++				   struct drm_connector_state *conn_state)
++{
++	if (bridge->funcs->atomic_check) {
++		struct drm_bridge_state *bridge_state;
++		int ret;
++
++		bridge_state = drm_atomic_get_new_bridge_state(crtc_state->state,
++							       bridge);
++		if (WARN_ON(!bridge_state))
++			return -EINVAL;
++
++		ret = bridge->funcs->atomic_check(bridge, bridge_state,
++						  crtc_state, conn_state);
++		if (ret)
++			return ret;
++	} else if (bridge->funcs->mode_fixup) {
++		if (!bridge->funcs->mode_fixup(bridge, &crtc_state->mode,
++					       &crtc_state->adjusted_mode))
++			return -EINVAL;
++	}
++
++	return 0;
++}
++
++/**
++ * drm_atomic_bridge_chain_check() - Do an atomic check on the bridge chain
++ * @bridge: bridge control structure
++ * @crtc_state: new CRTC state
++ * @conn_state: new connector state
++ *
++ * Calls &drm_bridge_funcs.atomic_check() (falls back on
++ * &drm_bridge_funcs.mode_fixup()) op for all the bridges in the encoder chain,
++ * starting from the last bridge to the first. These are called before calling
++ * &drm_encoder_helper_funcs.atomic_check()
++ *
++ * RETURNS:
++ * 0 on success, a negative error code on failure
++ */
++int drm_atomic_bridge_chain_check(struct drm_bridge *bridge,
++				  struct drm_crtc_state *crtc_state,
++				  struct drm_connector_state *conn_state)
++{
++	struct drm_encoder *encoder = bridge->encoder;
++	struct drm_bridge *iter;
++
++	list_for_each_entry_reverse(iter, &encoder->bridge_chain, chain_node) {
++		int ret;
++
++		ret = drm_atomic_bridge_check(iter, crtc_state, conn_state);
++		if (ret)
++			return ret;
++
++		if (iter == bridge)
++			break;
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_atomic_bridge_chain_check);
++
+ /**
+  * drm_atomic_helper_bridge_destroy_state() - Default destroy state helper
+  * @bridge: the bridge this state refers to
 diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index e814e6d6e7c2..b1f557d8dba9 100644
+index b1f557d8dba9..2beb1ef9a733 100644
 --- a/include/drm/drm_bridge.h
 +++ b/include/drm/drm_bridge.h
-@@ -266,8 +266,8 @@ struct drm_bridge_funcs {
- 	 * bridge's @atomic_pre_enable or @pre_enable function. If the preceding
- 	 * element is a &drm_encoder it's called right before the encoder's
- 	 * &drm_encoder_helper_funcs.atomic_enable hook.
--	 * This hook is passed the old atomic state (atomic state after new/old
--	 * states have been swapped).
-+	 * This hook is passed the old bridge state (the new one can be
-+	 * retrieved from bridge->state).
+@@ -127,7 +127,9 @@ struct drm_bridge_funcs {
+ 	 * this function passes all other callbacks must succeed for this
+ 	 * configuration.
  	 *
- 	 * The display pipe (i.e. clocks and timing signals) feeding this bridge
- 	 * will not yet be running when this callback is called. The bridge must
-@@ -283,7 +283,7 @@ struct drm_bridge_funcs {
- 	 * The @atomic_pre_enable callback is optional.
- 	 */
- 	void (*atomic_pre_enable)(struct drm_bridge *bridge,
--				  struct drm_atomic_state *old_state);
-+				  struct drm_bridge_state *old_bridge_state);
+-	 * The @mode_fixup callback is optional.
++	 * The mode_fixup callback is optional. &drm_bridge_funcs.mode_fixup()
++	 * is not called when &drm_bridge_funcs.atomic_check() is implemented,
++	 * so only one of them should be provided.
+ 	 *
+ 	 * NOTE:
+ 	 *
+@@ -391,6 +393,28 @@ struct drm_bridge_funcs {
+ 	void (*atomic_destroy_state)(struct drm_bridge *bridge,
+ 				     struct drm_bridge_state *state);
  
++	/**
++	 * @atomic_check:
++	 *
++	 * This method is responsible for checking bridge state correctness.
++	 * It can also check the state of the surrounding components in chain
++	 * to make sure the whole pipeline can work properly.
++	 *
++	 * &drm_bridge_funcs.atomic_check() hooks are called in reverse
++	 * order (from the last to the first bridge).
++	 *
++	 * This method is optional. &drm_bridge_funcs.mode_fixup() is not
++	 * called when &drm_bridge_funcs.atomic_check() is implemented, so only
++	 * one of them should be provided.
++	 *
++	 * RETURNS:
++	 * zero if the check passed, a negative error code otherwise.
++	 */
++	int (*atomic_check)(struct drm_bridge *bridge,
++			    struct drm_bridge_state *bridge_state,
++			    struct drm_crtc_state *crtc_state,
++			    struct drm_connector_state *conn_state);
++
  	/**
- 	 * @atomic_enable:
-@@ -294,8 +294,8 @@ struct drm_bridge_funcs {
- 	 * bridge's @atomic_enable or @enable function. If the preceding element
- 	 * is a &drm_encoder it's called right after the encoder's
- 	 * &drm_encoder_helper_funcs.atomic_enable hook.
--	 * This hook is passed the old atomic state (atomic state after new/old
--	 * states have been swapped).
-+	 * This hook is passed the old bridge state (the new one can be
-+	 * retrieved from bridge->state).
+ 	 * @atomic_reset:
  	 *
- 	 * The bridge can assume that the display pipe (i.e. clocks and timing
- 	 * signals) feeding it is running when this callback is called. This
-@@ -310,7 +310,7 @@ struct drm_bridge_funcs {
- 	 * The @atomic_enable callback is optional.
- 	 */
- 	void (*atomic_enable)(struct drm_bridge *bridge,
--			      struct drm_atomic_state *old_state);
-+			      struct drm_bridge_state *old_bridge_state);
- 	/**
- 	 * @atomic_disable:
- 	 *
-@@ -320,8 +320,8 @@ struct drm_bridge_funcs {
- 	 * bridge's @atomic_disable or @disable vfunc. If the preceding element
- 	 * is a &drm_encoder it's called right before the
- 	 * &drm_encoder_helper_funcs.atomic_disable hook.
--	 * This hook is passed the old atomic state (atomic state after new/old
--	 * states have been swapped).
-+	 * This hook is passed the old bridge state (the new one can be
-+	 * retrieved from bridge->state).
- 	 *
- 	 * The bridge can assume that the display pipe (i.e. clocks and timing
- 	 * signals) feeding it is still running when this callback is called.
-@@ -335,7 +335,7 @@ struct drm_bridge_funcs {
- 	 * The @atomic_disable callback is optional.
- 	 */
- 	void (*atomic_disable)(struct drm_bridge *bridge,
--			       struct drm_atomic_state *old_state);
-+			       struct drm_bridge_state *old_bridge_state);
+@@ -542,6 +566,9 @@ void drm_bridge_chain_mode_set(struct drm_bridge *bridge,
+ void drm_bridge_chain_pre_enable(struct drm_bridge *bridge);
+ void drm_bridge_chain_enable(struct drm_bridge *bridge);
  
- 	/**
- 	 * @atomic_post_disable:
-@@ -346,8 +346,8 @@ struct drm_bridge_funcs {
- 	 * @atomic_post_disable or @post_disable function. If the preceding
- 	 * element is a &drm_encoder it's called right after the encoder's
- 	 * &drm_encoder_helper_funcs.atomic_disable hook.
--	 * This hook is passed the old atomic state (atomic state after new/old
--	 * states have been swapped).
-+	 * This hook is passed the old bridge state (the new one can be
-+	 * retrieved from bridge->state).
- 	 *
- 	 * The bridge must assume that the display pipe (i.e. clocks and timing
- 	 * signals) feeding it is no longer running when this callback is
-@@ -363,7 +363,7 @@ struct drm_bridge_funcs {
- 	 * The @atomic_post_disable callback is optional.
- 	 */
- 	void (*atomic_post_disable)(struct drm_bridge *bridge,
--				    struct drm_atomic_state *old_state);
-+				    struct drm_bridge_state *old_bridge_state);
- 
- 	/**
- 	 * @atomic_duplicate_state:
++int drm_atomic_bridge_chain_check(struct drm_bridge *bridge,
++				  struct drm_crtc_state *crtc_state,
++				  struct drm_connector_state *conn_state);
+ void drm_atomic_bridge_chain_disable(struct drm_bridge *bridge,
+ 				     struct drm_atomic_state *state);
+ void drm_atomic_bridge_chain_post_disable(struct drm_bridge *bridge,
 -- 
 2.21.0
 
