@@ -2,69 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 035CCE1A9B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 14:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FDE1E1AB0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 14:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390143AbfJWMdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 08:33:50 -0400
-Received: from albert.telenet-ops.be ([195.130.137.90]:44074 "EHLO
-        albert.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391614AbfJWMdq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 08:33:46 -0400
-Received: from ramsan ([84.194.98.4])
-        by albert.telenet-ops.be with bizsmtp
-        id H0Zk2100D05gfCL060Zkk9; Wed, 23 Oct 2019 14:33:44 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iNFpg-0003uI-79; Wed, 23 Oct 2019 14:33:44 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iNFpg-0003Qi-5P; Wed, 23 Oct 2019 14:33:44 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH/LOCAL v2 11/11] arm64: renesas_defconfig: Enable R8A77961 SoC
-Date:   Wed, 23 Oct 2019 14:33:42 +0200
-Message-Id: <20191023123342.13100-12-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191023123342.13100-1-geert+renesas@glider.be>
-References: <20191023123342.13100-1-geert+renesas@glider.be>
+        id S2390039AbfJWMfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 08:35:32 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55154 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389888AbfJWMfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 08:35:32 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9NCZOCf042095;
+        Wed, 23 Oct 2019 07:35:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1571834124;
+        bh=J7vtenKEXuXVl0lBap8CU6gDxo4xRoiS6Zd5T9c5dKg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SFyMEXu20tZIWaqh9ZFMFCk6M9eL4V0NRo7Uw/hCdXSUdVjorjdJqwwfshKplTE0f
+         Or9hPOZLJfuxNUXYKW6OgMTETbPciRm5uHLMo+y8Xxu1Yedhb0XTUUGUvPN+CjBqpl
+         4cCHKmi4zhZK5rIGX9ZErgbyfe2WTGyshfCTUUss=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9NCZNL9010837
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Oct 2019 07:35:23 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 23
+ Oct 2019 07:35:23 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 23 Oct 2019 07:35:13 -0500
+Received: from [10.250.35.43] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9NCZMVS045311;
+        Wed, 23 Oct 2019 07:35:23 -0500
+Subject: Re: [PATCH 2/2] leds: meter: add leds-meter binding
+To:     Akinobu Mita <akinobu.mita@gmail.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Andersson <bjorn@kryo.se>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jean-Jacques Hiblot <jjhiblot@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+References: <1571756812-19005-1-git-send-email-akinobu.mita@gmail.com>
+ <1571756812-19005-3-git-send-email-akinobu.mita@gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <0f58e263-7e56-b4f7-51c1-a37e107a1afe@ti.com>
+Date:   Wed, 23 Oct 2019 07:34:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <1571756812-19005-3-git-send-email-akinobu.mita@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the Renesas R-Car M3-W+ (R8A77961) SoC in the ARM64
-renesas_defconfig.
+Akinobu
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Tested-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
-Not intended for upstream inclusion.
+On 10/22/19 10:06 AM, Akinobu Mita wrote:
+> Add DT binding for leds-meter.
 
-v2:
-  - Add Reviewed-by, Tested-by.
----
- arch/arm64/configs/renesas_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+$subject should be
 
-diff --git a/arch/arm64/configs/renesas_defconfig b/arch/arm64/configs/renesas_defconfig
-index 2ad65929c95b63bf..8c3a3323b1859c7d 100644
---- a/arch/arm64/configs/renesas_defconfig
-+++ b/arch/arm64/configs/renesas_defconfig
-@@ -287,6 +287,7 @@ CONFIG_ARCH_R8A774B1=y
- CONFIG_ARCH_R8A774C0=y
- CONFIG_ARCH_R8A7795=y
- CONFIG_ARCH_R8A7796=y
-+CONFIG_ARCH_R8A77961=y
- CONFIG_ARCH_R8A77965=y
- CONFIG_ARCH_R8A77970=y
- CONFIG_ARCH_R8A77980=y
--- 
-2.17.1
+  dt-bindings: leds: Add leds-meter binding
 
+And this patch should be first in the series
+
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Bjorn Andersson <bjorn@kryo.se>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Cc: Jean-Jacques Hiblot <jjhiblot@ti.com>
+> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Dan Murphy <dmurphy@ti.com>
+> Signed-off-by: Akinobu Mita <akinobu.mita@gmail.com>
+> ---
+>   .../devicetree/bindings/leds/leds-meter.yaml       | 42 ++++++++++++++++++++++
+>   1 file changed, 42 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-meter.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-meter.yaml b/Documentation/devicetree/bindings/leds/leds-meter.yaml
+> new file mode 100644
+> index 0000000..d5dfa261
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-meter.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-meter.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic LED level meter
+> +
+> +maintainers:
+> +  - Akinobu Mita <akinobu.mita@gmail.com>
+> +
+> +description:
+> +  Generic LED level meter consists of multiple LED devices by different drivers.
+> +
+> +properties:
+> +  compatible:
+> +    const: meter-leds
+> +
+> +  leds:
+
+This seems a bit generic for the property name
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    minItems: 1
+> +    description: List of phandles to LED node that are members of a level meter.
+> +
+> +  brightness-weights:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    description: Each integer represents a contribution ratio within a level
+> +      meter.
+
+This description is a bit vague I would not be sure what I would set 
+this to.
+
+Dan
+
+> +
+> +required:
+> + - compatible
+> + - leds
+> +
+> +examples:
+> +  - |
+> +    leds {
+> +        compatible = "meter-leds";
+> +        leds = <&led0>, <&led1>, <&led2>, <&led3>;
+> +        brightness-weights = <3 1 1 1>;
+> +    };
+> +
+> +...
