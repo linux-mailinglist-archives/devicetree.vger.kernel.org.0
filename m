@@ -2,84 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C0B2E2632
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 00:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 610D7E2642
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 00:14:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436758AbfJWWOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 18:14:03 -0400
-Received: from mailoutvs24.siol.net ([185.57.226.215]:47660 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2436743AbfJWWOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 18:14:01 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id BF1F552317E;
-        Thu, 24 Oct 2019 00:13:56 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id gPm0DN_dKb0U; Thu, 24 Oct 2019 00:13:56 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 7F3FF523102;
-        Thu, 24 Oct 2019 00:13:56 +0200 (CEST)
-Received: from localhost.localdomain (cpe-86-58-59-25.static.triera.net [86.58.59.25])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id 387EA52336B;
-        Thu, 24 Oct 2019 00:13:54 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, mchehab@kernel.org,
-        hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH v5 6/6] dts: arm: sun8i: h3: Enable deinterlace unit
-Date:   Thu, 24 Oct 2019 00:13:32 +0200
-Message-Id: <20191023221332.3674175-7-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191023221332.3674175-1-jernej.skrabec@siol.net>
-References: <20191023221332.3674175-1-jernej.skrabec@siol.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        id S2436820AbfJWWO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 18:14:56 -0400
+Received: from mail-il-dmz.mellanox.com ([193.47.165.129]:53267 "EHLO
+        mellanox.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2436772AbfJWWO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 18:14:56 -0400
+Received: from Internal Mail-Server by MTLPINE1 (envelope-from kblaiech@mellanox.com)
+        with ESMTPS (AES256-SHA encrypted); 24 Oct 2019 00:14:53 +0200
+Received: from farm-1.mtbu.labs.mlnx (farm-1.mtbu.labs.mlnx [10.15.2.31])
+        by mtbu-labmailer.labs.mlnx (8.14.4/8.14.4) with ESMTP id x9NMEqtu019145;
+        Wed, 23 Oct 2019 18:14:52 -0400
+Received: (from kblaiech@localhost)
+        by farm-1.mtbu.labs.mlnx (8.14.7/8.13.8/Submit) id x9NMEqbK007588;
+        Wed, 23 Oct 2019 18:14:52 -0400
+From:   Khalil Blaiech <kblaiech@mellanox.com>
+To:     Rob Herring <robh@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        David Woods <dwoods@mellanox.com>
+Cc:     Khalil Blaiech <kblaiech@mellanox.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, arm-soc <arm@kernel.org>
+Subject: [PATCH v6 2/2] dt-bindings: i2c: I2C binding for Mellanox BlueField SoC
+Date:   Wed, 23 Oct 2019 18:14:42 -0400
+Message-Id: <c9c9dee31683c08282150d88301af999b7be6403.1571868492.git.kblaiech@mellanox.com>
+X-Mailer: git-send-email 2.1.2
+In-Reply-To: <cover.1571868492.git.kblaiech@mellanox.com>
+References: <cover.1571868492.git.kblaiech@mellanox.com>
+In-Reply-To: <cover.1571868492.git.kblaiech@mellanox.com>
+References: <cover.1571868492.git.kblaiech@mellanox.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner H3 SoC contains deinterlace unit, which can be used in
-combination with VPU unit to decode and process interlaced videos.
+Added device tree bindings documentation for Mellanox BlueField
+I2C SMBus controller.
 
-Add a node for it.
-
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Khalil Blaiech <kblaiech@mellanox.com>
 ---
- arch/arm/boot/dts/sun8i-h3.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ .../devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
 
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3=
-.dtsi
-index e37c30e811d3..7a59c57d2114 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -120,6 +120,19 @@
- 	};
-=20
- 	soc {
-+		deinterlace: deinterlace@1400000 {
-+			compatible =3D "allwinner,sun8i-h3-deinterlace";
-+			reg =3D <0x01400000 0x20000>;
-+			clocks =3D <&ccu CLK_BUS_DEINTERLACE>,
-+				 <&ccu CLK_DEINTERLACE>,
-+				 <&ccu CLK_DRAM_DEINTERLACE>;
-+			clock-names =3D "bus", "mod", "ram";
-+			resets =3D <&ccu RST_BUS_DEINTERLACE>;
-+			interrupts =3D <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-+			interconnects =3D <&mbus 9>;
-+			interconnect-names =3D "dma-mem";
-+		};
+diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
+new file mode 100644
+index 0000000..566ea86
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
+@@ -0,0 +1,42 @@
++Device tree configuration for the Mellanox I2C SMBus on BlueField SoCs
 +
- 		syscon: system-control@1c00000 {
- 			compatible =3D "allwinner,sun8i-h3-system-control";
- 			reg =3D <0x01c00000 0x1000>;
---=20
-2.23.0
++Required Properties:
++
++- compatible : should be "mellanox,i2c-mlxbf1" or "mellanox,i2c-mlxbf2".
++
++- reg : address offset and length of the device registers. The
++	registers consist of the following set of resources:
++		1) Smbus block registers.
++		2) Cause master registers.
++		3) Cause slave registers.
++		4) Cause coalesce registers (if compatible isn't set
++		   to "mellanox,i2c-mlxbf1").
++
++- interrupts : interrupt number.
++
++Optional Properties:
++
++- clock-frequency : bus frequency used to configure timing registers;
++			allowed values are 100000, 400000 and 1000000;
++			those are expressed in Hz. Default is 100000.
++
++Example:
++
++i2c@2804000 {
++	compatible = "mellanox,i2c-mlxbf1";
++	reg =	<0x02804000 0x800>,
++		<0x02801200 0x020>,
++		<0x02801260 0x020>;
++	interrupts = <57>;
++	clock-frequency = <100000>;
++};
++
++i2c@2808800 {
++	compatible = "mellanox,i2c-mlxbf2";
++	reg =	<0x02808800 0x600>,
++	        <0x02808e00 0x020>,
++		<0x02808e20 0x020>,
++		<0x02808e40 0x010>;
++	interrupts = <57>;
++	clock-frequency = <400000>;
++};
+-- 
+2.1.2
 
