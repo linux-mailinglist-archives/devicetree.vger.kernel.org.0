@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 854E3E1FCA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 17:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B019E1FFF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 17:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406907AbfJWPph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 11:45:37 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37856 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403986AbfJWPpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 11:45:36 -0400
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 5A6C528F98C;
-        Wed, 23 Oct 2019 16:45:35 +0100 (BST)
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Chris Healy <cphealy@gmail.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Clark <robdclark@gmail.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v3 21/21] ARM: dts: imx: imx51-zii-rdu1: Fix the display pipeline definition
-Date:   Wed, 23 Oct 2019 17:45:12 +0200
-Message-Id: <20191023154512.9762-22-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191023154512.9762-1-boris.brezillon@collabora.com>
-References: <20191023154512.9762-1-boris.brezillon@collabora.com>
+        id S2406883AbfJWP5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 11:57:02 -0400
+Received: from muru.com ([72.249.23.125]:39386 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404448AbfJWP5C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Oct 2019 11:57:02 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 3B32F80CF;
+        Wed, 23 Oct 2019 15:57:35 +0000 (UTC)
+Date:   Wed, 23 Oct 2019 08:56:57 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     Benoit Parrot <bparrot@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [Patch 1/3] ARM: dts: am43xx: add support for clkout1 clock
+Message-ID: <20191023155657.GL5610@atomide.com>
+References: <20191016184954.14048-1-bparrot@ti.com>
+ <20191016184954.14048-2-bparrot@ti.com>
+ <20191022154816.GO5610@atomide.com>
+ <20191022162134.fpawonjdjvd5kxza@ti.com>
+ <586dcabb-0400-50d6-5488-16bddc059286@ti.com>
+ <20191022165516.GE5610@atomide.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191022165516.GE5610@atomide.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current definition does not represent the exact display pipeline we
-have on the board: the LVDS panel is actually connected through a
-parallel -> LVDS bridge. Let's fix that so the driver can select the
-proper bus format on the CRTC end.
+* Tony Lindgren <tony@atomide.com> [191022 16:56]:
+> * Tero Kristo <t-kristo@ti.com> [191022 16:48]:
+> > On 22/10/2019 19:21, Benoit Parrot wrote:
+> > > Tony Lindgren <tony@atomide.com> wrote on Tue [2019-Oct-22 08:48:16 -0700]:
+> > > > * Benoit Parrot <bparrot@ti.com> [191016 18:47]:
+> > > > > --- a/arch/arm/boot/dts/am43xx-clocks.dtsi
+> > > > > +++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
+> > > > > @@ -704,6 +704,60 @@
+> > > > >   		ti,bit-shift = <8>;
+> > > > >   		reg = <0x2a48>;
+> > > > >   	};
+> > > > > +
+> > > > > +	clkout1_osc_div_ck: clkout1_osc_div_ck {
+> > > > > +		#clock-cells = <0>;
+> > > > > +		compatible = "ti,divider-clock";
+> > > > > +		clocks = <&sys_clkin_ck>;
+> > > > > +		ti,bit-shift = <20>;
+> > > > > +		ti,max-div = <4>;
+> > > > > +		reg = <0x4100>;
+> > > > > +	};
+> > > > 
+> > > > Here too please describe why the clock names are not generic.
+> > > 
+> > > Tero originally had this patch in the kernel so this is somewhat of a
+> > > revert. Since these "clock" were removed. If the name syntax is no longer
+> > > valid for some reason, then I will need a little more informations to
+> > > proceed.
+> > > 
+> > > Tero, can you assist here?
+> > 
+> > This one is just following the naming convention of the rest of the clocks
+> > atm.
+> > 
+> > If we need to fix all the underscore name clocks, that requires pretty much
+> > complete revamp of both the dts data + clock data under the clock driver,
+> > and it is not backwards compatible either. How should we tackle that one?
+> > 
+> > We could maybe add support code in kernel to do s/-/_/g for the "new" clocks
+> > so that their parent-child relationships would be retained, and then convert
+> > the clocks in phases.
+> 
+> Well some of them can be fixed by configuring things based
+> on the compatible value and then the node name can be just
+> clock like it should be.
+> 
+> Here too one option would be to add custom compatibles like:
+> 
+> compatible = "ti,clkout1-osc-div", "ti,divider-clock";
+> 
+> And then have match data configure the rest.
+> 
+> The other option would be to have lookup tables in the clock
+> driver based on the SoC and reg address.
+> 
+> This is a hidden mine though.. We've hit it already several times,
+> and any dts clean-up effort has a chance of breaking things.
 
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
----
-Changes in v3:
-* None
+Hmm maybe in this case just doing this is enough:
 
-Changes in v2:
-* None
----
- arch/arm/boot/dts/imx51-zii-rdu1.dts | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+clkout1_osc_div_ck: clock@4100 {
+	... 
+}
 
-diff --git a/arch/arm/boot/dts/imx51-zii-rdu1.dts b/arch/arm/boot/dts/imx51-zii-rdu1.dts
-index 3596060f52e7..3fb84ea7f993 100644
---- a/arch/arm/boot/dts/imx51-zii-rdu1.dts
-+++ b/arch/arm/boot/dts/imx51-zii-rdu1.dts
-@@ -95,6 +95,28 @@
- 			reg = <1>;
- 
- 			display_out: endpoint {
-+				remote-endpoint = <&lvds_encoder_in>;
-+			};
-+		};
-+	};
-+
-+	lvds-encoder {
-+		compatible = "lvds-encoder";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			bus-width = <24>;
-+			lvds_encoder_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			data-mapping = "jeida-24";
-+			lvds_encoder_out: endpoint {
- 				remote-endpoint = <&panel_in>;
- 			};
- 		};
-@@ -110,7 +132,7 @@
- 
- 		port {
- 			panel_in: endpoint {
--				remote-endpoint = <&display_out>;
-+				remote-endpoint = <&lvds_encoder_out>;
- 			};
- 		};
- 	};
--- 
-2.21.0
+Or do all the TI clocks we have have a dependency to the
+node naming?
+
+Regards,
+
+Tony
 
