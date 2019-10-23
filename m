@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7DE3E1FC3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 17:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 913DAE1FC7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 17:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436466AbfJWPpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 11:45:33 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37856 "EHLO
+        id S2436470AbfJWPpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 11:45:35 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:37738 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436486AbfJWPpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 11:45:33 -0400
+        with ESMTP id S2436486AbfJWPpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 11:45:34 -0400
 Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id DD2A328F977;
-        Wed, 23 Oct 2019 16:45:31 +0100 (BST)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id A6C5928F907;
+        Wed, 23 Oct 2019 16:45:32 +0100 (BST)
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Lucas Stach <l.stach@pengutronix.de>,
@@ -41,9 +41,9 @@ Cc:     Lucas Stach <l.stach@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org,
         Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v3 17/21] dt-bindings: display: bridge: lvds-transmitter: Add new props
-Date:   Wed, 23 Oct 2019 17:45:08 +0200
-Message-Id: <20191023154512.9762-18-boris.brezillon@collabora.com>
+Subject: [PATCH v3 18/21] drm/bridge: panel: Propage bus format/flags
+Date:   Wed, 23 Oct 2019 17:45:09 +0200
+Message-Id: <20191023154512.9762-19-boris.brezillon@collabora.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20191023154512.9762-1-boris.brezillon@collabora.com>
 References: <20191023154512.9762-1-boris.brezillon@collabora.com>
@@ -54,41 +54,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the data-mapping property to describe the output bus format and
-the bus-width property to describe the input bus format.
+So that the previous bridge element in the chain knows which input
+format the panel bridge expects.
 
 Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
 ---
 Changes in v3:
-* New patch
----
- .../bindings/display/bridge/lvds-transmitter.txt    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+* Adjust things to match the new bus-format negotiation approach
+* Use drm_atomic_helper_bridge_propagate_bus_fmt
+* Don't implement ->atomic_check() (the core now takes care of bus
+  flags propagation)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-transmitter.txt b/Documentation/devicetree/bindings/display/bridge/lvds-transmitter.txt
-index 60091db5dfa5..7b43b6f20279 100644
---- a/Documentation/devicetree/bindings/display/bridge/lvds-transmitter.txt
-+++ b/Documentation/devicetree/bindings/display/bridge/lvds-transmitter.txt
-@@ -36,6 +36,19 @@ graph bindings specified in Documentation/devicetree/bindings/graph.txt.
- - Video port 0 for parallel input
- - Video port 1 for LVDS output
+Changes in v2:
+* Adjust things to match the new bus-format negotiation approach
+---
+ drivers/gpu/drm/bridge/panel.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+index f4e293e7cf64..a70c363a2bd0 100644
+--- a/drivers/gpu/drm/bridge/panel.c
++++ b/drivers/gpu/drm/bridge/panel.c
+@@ -127,6 +127,7 @@ static const struct drm_bridge_funcs panel_bridge_bridge_funcs = {
+ 	.enable = panel_bridge_enable,
+ 	.disable = panel_bridge_disable,
+ 	.post_disable = panel_bridge_post_disable,
++	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
+ };
  
-+Optional port 0 node properties:
-+
-+- bus-width: number of data lines use to transmit the RGB data.
-+	     Can be 18 or 24.
-+
-+Optional port 1 node properties:
-+
-+- data-mapping: see Documentation/devicetree/bindings/display/panel/lvds.yaml
-+		for more details about this LVDS data-mapping property.
-+		Supported values:
-+		"jeida-18"
-+		"jeida-24"
-+		"vesa-24"
- 
- Example
- -------
+ /**
 -- 
 2.21.0
 
