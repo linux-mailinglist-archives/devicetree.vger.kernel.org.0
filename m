@@ -2,245 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2845AE19E7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 14:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7716BE1A08
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 14:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405292AbfJWMWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 08:22:10 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:59511 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726636AbfJWMWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 08:22:09 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iNFeJ-0007BK-Iw; Wed, 23 Oct 2019 14:21:59 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iNFeH-0006U1-9u; Wed, 23 Oct 2019 14:21:57 +0200
-Date:   Wed, 23 Oct 2019 14:21:57 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>, mchehab@kernel.org,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v10 03/14] media: v4l2-fwnode: add initial connector
- parsing support
-Message-ID: <20191023122157.qu3eodamlye5zsax@pengutronix.de>
-References: <20190830101646.6530-1-m.felsch@pengutronix.de>
- <20190830101646.6530-4-m.felsch@pengutronix.de>
- <20191002070303.GK896@valkosipuli.retiisi.org.uk>
- <20191002080735.yyoxo5wg35t7k26x@pengutronix.de>
- <20191023105739.GN5433@paasikivi.fi.intel.com>
+        id S2391302AbfJWM3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 08:29:23 -0400
+Received: from michel.telenet-ops.be ([195.130.137.88]:37368 "EHLO
+        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391304AbfJWM3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 08:29:22 -0400
+Received: from ramsan ([84.194.98.4])
+        by michel.telenet-ops.be with bizsmtp
+        id H0VK2100505gfCL060VKmx; Wed, 23 Oct 2019 14:29:20 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1iNFlP-0000FR-3e; Wed, 23 Oct 2019 14:29:19 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1iNFlP-0003B7-1d; Wed, 23 Oct 2019 14:29:19 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 0/5] dt-bindings: arm: renesas: Add core r8a77961 support
+Date:   Wed, 23 Oct 2019 14:29:06 +0200
+Message-Id: <20191023122911.12166-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191023105739.GN5433@paasikivi.fi.intel.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:17:38 up 158 days, 18:35, 98 users,  load average: 0.09, 0.05,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+	Hi all,
 
-On 19-10-23 13:57, Sakari Ailus wrote:
-> Hi Marco,
-> 
-> Apologies for the delay.
+This patch series updates the Renesas DT binding documentation for core
+components on the new R-Car M3-W+ (R8A77961) SoC, and for the
+Salvator-XS development board equipped with this SoC.
 
-No problem.
+Changes compared to v1[1]:
+  - Split in per-subsystem series,
+  - Add Reviewed-by,
+  - Add board part number.
 
-> On Wed, Oct 02, 2019 at 10:07:35AM +0200, Marco Felsch wrote:
-> > Hi Sakari,
-> > 
-> > On 19-10-02 10:03, Sakari Ailus wrote:
-> > > Hi Marco,
-> > > 
-> > > On Fri, Aug 30, 2019 at 12:16:35PM +0200, Marco Felsch wrote:
-> > > > The patch adds the initial connector parsing code, so we can move from a
-> > > > driver specific parsing code to a generic one. Currently only the
-> > > > generic fields and the analog-connector specific fields are parsed. Parsing
-> > > > the other connector specific fields can be added by a simple callbacks.
-> > > > 
-> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > ---
-> > > > [1] https://patchwork.kernel.org/cover/10794703/
-> > > > 
-> > > > v10:
-> > > > - drop V4L2_CONN_HDMI support
-> > > > - adapt pr_err msg to reflect new state (-> connector is unkown)
-> > > > 
-> > > > v9:
-> > > > - Fix leading semicolon found by kbuild semicolon.cocci
-> > > > 
-> > > > v8:
-> > > > - V4L2_CON_* -> V4L2_CONN_*
-> > > > - tvnorms -> sdtv-standards
-> > > > - adapt to new v4l2_fwnode_connector_analog member
-> > > > - return error in case of V4L2_CONN_HDMI
-> > > > 
-> > > > v7:
-> > > > @Jacopo: I dropped your r b tag becuase of the amount of changes I
-> > > > made..
-> > > > 
-> > > > - drop unnecessary comments
-> > > > - fix commet style
-> > > > - s/v4l2_fwnode_connector_conv.name/v4l2_fwnode_connector_conv.compatible/
-> > > > - make label size variable and drop V4L2_CONNECTOR_MAX_LABEL usage
-> > > > - do not assign a default label in case of no label was specified
-> > > > - remove useless /* fall through */ comments
-> > > > - add support for N connector links
-> > > > - rename local variables to be more meaningful
-> > > > - adjust kernedoc
-> > > > - add v4l2_fwnode_connector_free()
-> > > > - improve error handling (use different error values)
-> > > > - make use of pr_warn_once()
-> > > > 
-> > > > v6:
-> > > > - use unsigned count var
-> > > > - fix comment and style issues
-> > > > - place '/* fall through */' to correct places
-> > > > - fix error handling and cleanup by releasing fwnode
-> > > > - drop vga and dvi parsing support as those connectors are rarely used
-> > > >   these days
-> > > > 
-> > > > v5:
-> > > > - s/strlcpy/strscpy/
-> > > > 
-> > > > v2-v4:
-> > > > - nothing since the patch was squashed from series [1] into this
-> > > >   series.
-> > > > 
-> > > >  drivers/media/v4l2-core/v4l2-fwnode.c | 129 ++++++++++++++++++++++++++
-> > > >  include/media/v4l2-fwnode.h           |  38 ++++++++
-> > > >  2 files changed, 167 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > > index 3bd1888787eb..0bfa7cbf78df 100644
-> > > > --- a/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > > +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > > @@ -595,6 +595,135 @@ void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link)
-> > > >  }
-> > > >  EXPORT_SYMBOL_GPL(v4l2_fwnode_put_link);
-> > > >  
-> > > > +static const struct v4l2_fwnode_connector_conv {
-> > > > +	enum v4l2_connector_type type;
-> > > > +	const char *compatible;
-> > > > +} connectors[] = {
-> > > > +	{
-> > > > +		.type = V4L2_CONN_COMPOSITE,
-> > > > +		.compatible = "composite-video-connector",
-> > > > +	}, {
-> > > > +		.type = V4L2_CONN_SVIDEO,
-> > > > +		.compatible = "svideo-connector",
-> > > > +	},
-> > > > +};
-> > > > +
-> > > > +static enum v4l2_connector_type
-> > > > +v4l2_fwnode_string_to_connector_type(const char *con_str)
-> > > > +{
-> > > > +	unsigned int i;
-> > > > +
-> > > > +	for (i = 0; i < ARRAY_SIZE(connectors); i++)
-> > > > +		if (!strcmp(con_str, connectors[i].compatible))
-> > > > +			return connectors[i].type;
-> > > > +
-> > > > +	return V4L2_CONN_UNKNOWN;
-> > > > +}
-> > > > +
-> > > > +static int
-> > > > +v4l2_fwnode_connector_parse_analog(struct fwnode_handle *fwnode,
-> > > > +				   struct v4l2_fwnode_connector *vc)
-> > > > +{
-> > > > +	u32 stds;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = fwnode_property_read_u32(fwnode, "sdtv-standards", &stds);
-> > > > +
-> > > > +	/* The property is optional. */
-> > > > +	vc->connector.analog.sdtv_stds = ret ? V4L2_STD_ALL : stds;
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > > +void v4l2_fwnode_connector_free(struct v4l2_fwnode_connector *connector)
-> > > > +{
-> > > > +	unsigned int i;
-> > > > +
-> > > > +	if (IS_ERR_OR_NULL(connector))
-> > > > +		return;
-> > > > +
-> > > > +	for (i = 0; i < connector->nr_of_links; i++)
-> > > > +		v4l2_fwnode_put_link(&connector->links[i]);
-> > > > +	kfree(connector->links);
-> > > 
-> > > Please assign connector->links NULL here, and nr_of_links to zero.
-> > 
-> > Okay, I can do that.
-> > 
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_free);
-> > > > +
-> > > > +int v4l2_fwnode_connector_alloc_parse(struct fwnode_handle *fwnode,
-> > > > +				      struct v4l2_fwnode_connector *connector)
-> > > > +{
-> > > > +	struct fwnode_handle *remote_pp, *remote_ep;
-> > > > +	const char *type_name;
-> > > > +	unsigned int i = 0, ep_num = 0;
-> > > > +	int err;
-> > > > +
-> > > > +	memset(connector, 0, sizeof(*connector));
-> > > > +
-> > > > +	remote_pp = fwnode_graph_get_remote_port_parent(fwnode);
-> > > 
-> > > How do you know a remote endpoint is a connector, and not another device's
-> > > endpoint?
-> > 
-> > Well, I think that the caller won't use this function if it isn't a
-> > connector. If it helps I can check if the compatible of the remote ends
-> > with "-connector".
-> 
-> The function is called by a driver. A driver shouldn't know what's at the
-> other end of the graph arc; the information should come from the firmware
-> instead.
-> 
-> On some board there could be another device where you have a connector now.
-> 
-> As the connector has its own compatible string, there could be a connector
-> driver to tell this is actually a connector, even if there's nothing to
-> control. It'd be a very tiny driver.
+I intend to queue this series in renesas-devel for v5.5.
+The last patch will be put on a branch shared between driver and DTS.
 
-Yes I know a connector driver would be the best. This also have the
-advantage to do drop the connector handling in each subdev driver.. But
-unfortunately I haven't the time yet. Would it be okay for you too check
-that the remote is a connector and if not to exit?
+Thanks for your comments!
 
-Regards,
-  Marco
+[1] "[PATCH/RFC 00/19] arm64: dts: renesas: Initial support for R-Car M3-W+"
+    https://lore.kernel.org/linux-renesas-soc/20191007102332.12196-1-geert+renesas@glider.be/
 
-> -- 
-> Regards,
-> 
-> Sakari Ailus
-> 
+Geert Uytterhoeven (5):
+  dt-bindings: arm: renesas: Document R-Car M3-W+ SoC DT bindings
+  dt-bindings: arm: renesas: Add Salvator-XS board with R-Car M3-W+
+  dt-bindings: reset: rcar-rst: Document r8a77961 support
+  dt-bindings: power: rcar-sysc: Document r8a77961 support
+  dt-bindings: power: Add r8a77961 SYSC power domain definitions
+
+ .../devicetree/bindings/arm/renesas.yaml      |  6 ++++
+ .../bindings/power/renesas,rcar-sysc.txt      |  1 +
+ .../devicetree/bindings/reset/renesas,rst.txt |  1 +
+ include/dt-bindings/power/r8a77961-sysc.h     | 32 +++++++++++++++++++
+ 4 files changed, 40 insertions(+)
+ create mode 100644 include/dt-bindings/power/r8a77961-sysc.h
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
