@@ -2,192 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F186E14AC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 10:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F36E150B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2019 11:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390553AbfJWIte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Oct 2019 04:49:34 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47762 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390567AbfJWItb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 04:49:31 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9N8nTkR093741;
-        Wed, 23 Oct 2019 03:49:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571820569;
-        bh=XVlyGMuG7+3U0rgQC9b014GHHO/Le8hO721FgVpW9rE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=iVyDSUh+dGgF6FxIlQArkMUBlrz1l+1DgSywuE1UQBO1lJQE0F8zkGhJuzxJAtOwh
-         EEz7PYDhywWlLT4wAzZ0hQICBIuWmhmMDO75E3TjpfpT0rm2t4ro3m5awhEdXXeq9V
-         MDaQqsTtlOTr5NQvgoD5vtDmi+uHxuVi6Eq6v3mg=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9N8nSYP011837
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 23 Oct 2019 03:49:29 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 23
- Oct 2019 03:49:26 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 23 Oct 2019 03:49:16 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9N8nHVw061069;
-        Wed, 23 Oct 2019 03:49:24 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <kishon@ti.com>
-CC:     <aniljoy@cadence.com>, <adouglas@cadence.com>, <nsekhar@ti.com>,
-        <jsarha@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH v2 3/3] phy: ti: j721e-wiz: Manage typec-gpio-dir
-Date:   Wed, 23 Oct 2019 11:49:16 +0300
-Message-ID: <20191023084916.26895-4-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191023084916.26895-1-rogerq@ti.com>
-References: <20191023084916.26895-1-rogerq@ti.com>
+        id S2390640AbfJWJCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Oct 2019 05:02:42 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:41594 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390590AbfJWJCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Oct 2019 05:02:41 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id B943E60159; Wed, 23 Oct 2019 09:02:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571821360;
+        bh=a2i8iNnZEdkEkPcOqlJ7kkR15XF8PuCT8aN7gkvDOkE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ue4NIj6GzhcUzHsA+Jah0A/LQhAH8zRBxRL+haOQ3EILIOuXJpe2pIz0qubiDj+hF
+         wC7vBsWkztF4JpezCQm7x1mi9GUMxE14qm7Qw2Xspx07tbWP2SabDSMjspmhBwEirN
+         bgifl0mc9BOYZ4QSaJyHA1sIt8Y5iiJtU/3nSD38=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E2E886087F;
+        Wed, 23 Oct 2019 09:02:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571821359;
+        bh=a2i8iNnZEdkEkPcOqlJ7kkR15XF8PuCT8aN7gkvDOkE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LJQ6hs+uPb1ZaKeqrf8hqIPrU52JtU2UOqnApQnarWxIAIY+U597Mtt6YAjksxCwS
+         GV+4Fg7Wk0U8kIKnM+O7EhjXwCZ/YILfBIWP8Vax9N3I/wjbwyIJiYxUOYmSddo+iV
+         E1xxYDHVLcqw/gBPZBmK4IzhD3nKfwPSV8P/gyPA=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E2E886087F
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v3 00/11] Add device tree support for sc7180
+Date:   Wed, 23 Oct 2019 14:32:08 +0530
+Message-Id: <20191023090219.15603-1-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on this GPIO state we need to configure LN10
-bit to swap lane0 and lane1 if required (flipped connector).
+Changes in v3:
+* PATCH 2/11: Updated the qup and uart lables to be consistent
+with the naming convention followed in sdm845 as suggested
+by Matthias
+* Dropped 2 patches from v2 which added the new compatible and
+binding updates for sc7180 pdc and reused sdm845 compatible instead
+as suggested by Marc Z
 
-Type-C companions typically need some time after the cable is
-plugged before and before they reflect the correct status of
-Type-C plug orientation on the DIR line.
+This series adds DT support for basic peripherals on qualcomm's sc7180 SoC,
+drivers for which are already upstream.
 
-Type-C Spec specifies CC attachment debounce time (tCCDebounce)
-of 100 ms (min) to 200 ms (max).
+The series has a dependency on gcc clock driver patches [1]
+to merge first
 
-Use the DT property to figure out if we need to add delay
-or not before sampling the Type-C DIR line.
+[1] https://www.spinics.net/lists/linux-clk/msg41851.html
 
-Signed-off-by: Roger Quadros <rogerq@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- drivers/phy/ti/phy-j721e-wiz.c | 48 ++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Kiran Gunda (3):
+  arm64: dts: qcom: sc7180: Add SPMI PMIC arbiter device
+  arm64: dts: qcom: pm6150: Add PM6150/PM6150L PMIC peripherals
+  arm64: dts: qcom: sc7180-idp: Add RPMh regulators
 
-diff --git a/drivers/phy/ti/phy-j721e-wiz.c b/drivers/phy/ti/phy-j721e-wiz.c
-index 2a95da843e9f..02b949406b7b 100644
---- a/drivers/phy/ti/phy-j721e-wiz.c
-+++ b/drivers/phy/ti/phy-j721e-wiz.c
-@@ -9,6 +9,8 @@
- #include <dt-bindings/phy/phy.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/mux/consumer.h>
-@@ -22,6 +24,7 @@
- #define WIZ_SERDES_CTRL		0x404
- #define WIZ_SERDES_TOP_CTRL	0x408
- #define WIZ_SERDES_RST		0x40c
-+#define WIZ_SERDES_TYPEC	0x410
- #define WIZ_LANECTL(n)		(0x480 + (0x40 * (n)))
- 
- #define WIZ_MAX_LANES		4
-@@ -29,6 +32,8 @@
- #define WIZ_DIV_NUM_CLOCKS_16G	2
- #define WIZ_DIV_NUM_CLOCKS_10G	1
- 
-+#define WIZ_SERDES_TYPEC_LN10_SWAP	BIT(30)
-+
- enum wiz_lane_standard_mode {
- 	LANE_MODE_GEN1,
- 	LANE_MODE_GEN2,
-@@ -94,6 +99,9 @@ static const struct reg_field p_standard_mode[WIZ_MAX_LANES] = {
- 	REG_FIELD(WIZ_LANECTL(3), 24, 25),
- };
- 
-+static const struct reg_field typec_ln10_swap =
-+					REG_FIELD(WIZ_SERDES_TYPEC, 30, 30);
-+
- struct wiz_clk_mux {
- 	struct clk_hw		hw;
- 	struct regmap_field	*field;
-@@ -201,11 +209,14 @@ struct wiz {
- 	struct regmap_field	*pma_cmn_refclk_mode;
- 	struct regmap_field	*pma_cmn_refclk_dig_div;
- 	struct regmap_field	*pma_cmn_refclk1_dig_div;
-+	struct regmap_field	*typec_ln10_swap;
- 
- 	struct device		*dev;
- 	u32			num_lanes;
- 	struct platform_device	*serdes_pdev;
- 	struct reset_controller_dev wiz_phy_reset_dev;
-+	struct gpio_desc	*gpio_typec_dir;
-+	int			typec_dir_delay;
- };
- 
- static int wiz_reset(struct wiz *wiz)
-@@ -404,6 +415,13 @@ static int wiz_regfield_init(struct wiz *wiz)
- 		}
- 	}
- 
-+	wiz->typec_ln10_swap = devm_regmap_field_alloc(dev, regmap,
-+						       typec_ln10_swap);
-+	if (IS_ERR(wiz->typec_ln10_swap)) {
-+		dev_err(dev, "LN10_SWAP reg field init failed\n");
-+		return PTR_ERR(wiz->typec_ln10_swap);
-+	}
-+
- 	return 0;
- }
- 
-@@ -703,6 +721,17 @@ static int wiz_phy_reset_deassert(struct reset_controller_dev *rcdev,
- 	struct wiz *wiz = dev_get_drvdata(dev);
- 	int ret;
- 
-+	/* if typec-dir gpio was specified, set LN10 SWAP bit based on that */
-+	if (id == 0 && wiz->gpio_typec_dir) {
-+		if (wiz->typec_dir_delay)
-+			msleep_interruptible(wiz->typec_dir_delay);
-+
-+		if (gpiod_get_value_cansleep(wiz->gpio_typec_dir))
-+			regmap_field_write(wiz->typec_ln10_swap, 1);
-+		else
-+			regmap_field_write(wiz->typec_ln10_swap, 0);
-+	}
-+
- 	if (id == 0) {
- 		ret = regmap_field_write(wiz->phy_reset_n, true);
- 		return ret;
-@@ -789,6 +818,25 @@ static int wiz_probe(struct platform_device *pdev)
- 		goto err_addr_to_resource;
- 	}
- 
-+	wiz->gpio_typec_dir = devm_gpiod_get_optional(dev, "typec-dir",
-+						      GPIOD_IN);
-+	if (IS_ERR(wiz->gpio_typec_dir)) {
-+		ret = PTR_ERR(wiz->gpio_typec_dir);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to request typec-dir gpio: %d\n",
-+				ret);
-+		goto err_addr_to_resource;
-+	}
-+
-+	if (wiz->gpio_typec_dir) {
-+		ret = of_property_read_u32(node, "typec-dir-debounce",
-+					   &wiz->typec_dir_delay);
-+		if (ret && ret != -EINVAL) {
-+			dev_err(dev, "Invalid typec-dir-debounce property\n");
-+			goto err_addr_to_resource;
-+		}
-+	}
-+
- 	wiz->dev = dev;
- 	wiz->regmap = regmap;
- 	wiz->num_lanes = num_lanes;
+Maulik Shah (3):
+  arm64: dts: qcom: sc7180: Add cmd_db reserved area
+  arm64: dts: qcom: sc7180: Add rpmh-rsc node
+  arm64: dts: qcom: sc7180: Add pdc interrupt controller
+
+Rajendra Nayak (3):
+  dt-bindings: qcom: Add SC7180 bindings
+  arm64: dts: sc7180: Add minimal dts/dtsi files for SC7180 soc
+  dt-bindings: arm-smmu: update binding for qcom sc7180 SoC
+
+Taniya Das (1):
+  arm64: dts: qcom: SC7180: Add node for rpmhcc clock driver
+
+Vivek Gautam (1):
+  arm64: dts: sc7180: Add device node for apps_smmu
+
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ .../devicetree/bindings/iommu/arm,smmu.txt    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |  85 ++++
+ arch/arm64/boot/dts/qcom/pm6150l.dtsi         |  47 ++
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 256 ++++++++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          | 459 ++++++++++++++++++
+ 7 files changed, 851 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm6150.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm6150l.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180.dtsi
+
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
