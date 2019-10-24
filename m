@@ -2,71 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FCFE32B0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 14:47:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8C0E3328
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 14:55:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2501989AbfJXMrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 08:47:31 -0400
-Received: from baptiste.telenet-ops.be ([195.130.132.51]:45336 "EHLO
-        baptiste.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727739AbfJXMrb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 08:47:31 -0400
-Received: from ramsan ([84.195.182.253])
-        by baptiste.telenet-ops.be with bizsmtp
-        id HQnS2100Q5USYZQ01QnSZK; Thu, 24 Oct 2019 14:47:29 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iNcWU-0005zN-E1; Thu, 24 Oct 2019 14:47:26 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iNcWU-0003jQ-CN; Thu, 24 Oct 2019 14:47:26 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Arnd Bergmann <arnd@arndb.de>, Kevin Hilman <khilman@kernel.org>,
-        Olof Johansson <olof@lixom.net>
-Cc:     Chanho Min <chanho.min@lge.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v6] arm64: dts: lg1313: DT fix s/#interrupts-cells/#interrupt-cells/
-Date:   Thu, 24 Oct 2019 14:47:25 +0200
-Message-Id: <20191024124725.14282-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1731298AbfJXMzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 08:55:50 -0400
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:41967 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730113AbfJXMzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Oct 2019 08:55:50 -0400
+X-Greylist: delayed 367 seconds by postgrey-1.27 at vger.kernel.org; Thu, 24 Oct 2019 08:55:48 EDT
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 24 Oct 2019 18:19:41 +0530
+IronPort-SDR: cs4iJpwlc6sky9eVZnBcFDzJWeQ6TgZGw07JErkkrvJvk4COKWh1dr1avRLFEgjENaJNozj8GH
+ k6xQ26UZOfYkwHts1329frty+Q6oBzReUXhctFTwnhwaG5zvZM5xuENxftBFxzJ01xVW/PFMzS
+ iyZhv73knmZW+eOWV5yw9d8Y8AMnfqa1Y0BugNQeUKHcml6dHmFuf0lnBX84VfkB2vf+cJ6PXG
+ Sh0kIFgBIRlsUb/jfFThPqyDFYzx2iHo2nvw+3PqVitb2upIlQmn4YQ2gbyW6QtDbZuKHXaUO/
+ lcM+9rd+RDXwPqcCaergzALP
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 24 Oct 2019 18:19:23 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 85A291941; Thu, 24 Oct 2019 18:19:22 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     agross@kernel.org, balbi@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, mgautam@codeaurora.org,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH 0/2] Add USB DWC3 support for SC7180
+Date:   Thu, 24 Oct 2019 18:18:46 +0530
+Message-Id: <1571921328-13898-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The standard DT property is called "#interrupt-cells".
+Adding compatible for SC7180 in USB DWC3 driver and devicetree bindings
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Chanho Min <chanho.min@lge.com>
----
-Any chance this can be fixed after the 5th submission in 3 years?
-Thanks!
+Sandeep Maheswaram (2):
+  usb: dwc3: Add support for SC7180 SOC
+  dt-bindings: usb: qcom,dwc3: Add compatible for SC7180
 
-v3:
-  - Add Acked-by,
+ Documentation/devicetree/bindings/usb/qcom,dwc3.txt | 1 +
+ drivers/usb/dwc3/dwc3-qcom.c                        | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-v2:
-  - New.
----
- arch/arm64/boot/dts/lg/lg1313.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
-index 82c6645b58b77436..ac23592ab0114c03 100644
---- a/arch/arm64/boot/dts/lg/lg1313.dtsi
-+++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
-@@ -124,7 +124,7 @@
- 	amba {
- 		#address-cells = <2>;
- 		#size-cells = <1>;
--		#interrupts-cells = <3>;
-+		#interrupt-cells = <3>;
- 
- 		compatible = "simple-bus";
- 		interrupt-parent = <&gic>;
 -- 
-2.17.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
