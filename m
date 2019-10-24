@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDDAAE35C2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 16:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21006E35C7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 16:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502873AbfJXOm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 10:42:58 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:42311 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502871AbfJXOm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 10:42:58 -0400
-Received: by mail-pf1-f195.google.com with SMTP id 21so4037063pfj.9
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2019 07:42:56 -0700 (PDT)
+        id S2502887AbfJXOnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 10:43:03 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:42556 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2502826AbfJXOnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 10:43:02 -0400
+Received: by mail-pg1-f194.google.com with SMTP id f14so14368732pgi.9
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2019 07:43:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=NOOJOsxqHyn9AIr6ypTkEVIyD6HHzZy3a7yfdgUD6yA=;
-        b=h6komROc6h8RGeYYNYnFEouCCElzVFdunOny/OFPlTSBbE5B9R5V8n3vP3rMEXKNLh
-         HcgLDIcHgnpiHBDdMc49NZVTwIrypxTd91Vbx2VC3XfN5emIFzMByQfhxcXi1CjlHxKI
-         gp9XINyTt2x2EhOqnng6aYHiOy1L6GIIUySNMpQzQpujU+WCaZbBz2tEAcblutRs3jfR
-         R/YEQWcd6ifqfLES2J7fhvU1g+ShU07BNi6dOyUe0u4wdzNg+p2T2eQQbdAbOi0fwobS
-         10oIsmYkgKrqi4mnE33LkzRtAqfOhvSQLmj/aAqHwvoz7yGXbTFTZWyJred3CsaGL5if
-         gFsA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=2UoSxu4ISRxofxwFZ2v9JG7zQdt9X9lHqu74cjbmWOc=;
+        b=NL9naB86Ee+CKVQ+AxELEdANKhDOXHfV2IVHHFBKwkBqZ7aSoH4ytqXml813h/VULl
+         BiKGsJVwXEbKNHk8oSNT7RIFwz1vjBuMSTr264xnrqHbtNR0543nDpPoucKnDI7X3+TF
+         1iFvC4xwiIffkW60ZxVm51NiUwY6mKJfqEQ6ztvbBSzdxrYgeYRUjRML3KUpCaT8AR4y
+         p8VTGVVbNmeo7KXnYytrJSh/mgS0eaEcEWNMSWLsXfj0dgR8KysPMccpuprVOgBIFur2
+         aAr1OEWxW/cfIuUM9axxN/Lc3LahT1VIObaRh1YZQntZN7IX2TME5WL2TEX8UxZFMJe4
+         Sk3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=NOOJOsxqHyn9AIr6ypTkEVIyD6HHzZy3a7yfdgUD6yA=;
-        b=dEyzYVVqMT12Xuj/hupIWtPLUwCOwYGClJpIwQ4OKQASkrAFAp6z1M72rfixREZd1h
-         x2mjdyCK81ZJDfa6g2OFM7HabDViHlF/NAtLHjazw/dIOfZY1DuP+E2LNZW99CFe6U1/
-         IShj3FfMzvTcHruCSVC63xkD+sVmmgdUdA5+3lE4mlpX1YEJV63nMm6xUXxfnR5dejIt
-         gy9NE+E+uxFBuWOuntOW0LD6Ruq8OLPzvlJBNrlztNz45gxbFeom7a1lxnsaRjNPqHAH
-         cV0wS+OVOeP0zfl6f8Ei81L8+nSKFp2z/U2kFEi6DJ02L9NNK7dVpbf/wcO2o0xXTYGw
-         OYCw==
-X-Gm-Message-State: APjAAAW7dwnrVzHZf2Mer1eqG4z1GC8IR/8vPCPrVVXp8h7SfnNvsNJ4
-        3gnLtWN/4ThB2+iLdRyEhWok
-X-Google-Smtp-Source: APXvYqz/X3rMwuLvNMllP5jTvRzrOorlDB389gW90QS3BAVNtJFKjwn6dyAElAfQ6shN3bCZKMLEAA==
-X-Received: by 2002:a17:90a:c306:: with SMTP id g6mr7494628pjt.38.1571928175650;
-        Thu, 24 Oct 2019 07:42:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=2UoSxu4ISRxofxwFZ2v9JG7zQdt9X9lHqu74cjbmWOc=;
+        b=HV02AzeHc6PEbfc5ytk3/nsNZEg8Gspto9DOXjDL4P0yzryU3h501ztsiqbiFNYhxG
+         8/AGCRPvFOtzzUy2qGYXV/vQkl7JJbZlLQninRmWKu1/N1yHeNpjJg6H1vVg10RGsfd9
+         +GXH66cjc5Y2BkYD8J3isHT0Swdzd76A9C7TgtWtHu/ZNaSMsZ901oIk9vv5doTzpNSL
+         xOf+jIxArlWsHRdBuZtbywmMAgx8yKYrjhJSYrD3skB2uyrtokFgRcqqZMiQwOqfztQ8
+         9dr02wk56jsaSNLkJXQYLgG/V3aJur8PdA4UnJxJfh/eKzoh8zk9c6hw2cNgQNaLu9Ni
+         76qA==
+X-Gm-Message-State: APjAAAUW6Pok+1AkGP21b1t1NbLclSugMVzTBmXWVwufCoaT1D8DeF3X
+        Nx/xovckjc+uEiEcLbGyUrmV
+X-Google-Smtp-Source: APXvYqwKvgKgE4c3s0sCd/U7krExMDS/JsSah401n4Z/IyqsYW8gYj1usJWSIza+wIgKmHUVQZ0QEg==
+X-Received: by 2002:a63:4d61:: with SMTP id n33mr16708322pgl.158.1571928181935;
+        Thu, 24 Oct 2019 07:43:01 -0700 (PDT)
 Received: from localhost.localdomain ([2409:4072:997:a0de:81a:ea25:468a:5918])
-        by smtp.gmail.com with ESMTPSA id 193sm29059810pfc.59.2019.10.24.07.42.48
+        by smtp.gmail.com with ESMTPSA id 193sm29059810pfc.59.2019.10.24.07.42.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2019 07:42:55 -0700 (PDT)
+        Thu, 24 Oct 2019 07:43:01 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     shawnguo@kernel.org, s.hauer@pengutronix.de, robh+dt@kernel.org
 Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
@@ -49,53 +50,37 @@ Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 0/3] Add support for Thor96 board
-Date:   Thu, 24 Oct 2019 20:12:32 +0530
-Message-Id: <20191024144235.3182-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: arm: Add devicetree binding for Thor96 Board
+Date:   Thu, 24 Oct 2019 20:12:33 +0530
+Message-Id: <20191024144235.3182-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191024144235.3182-1-manivannan.sadhasivam@linaro.org>
+References: <20191024144235.3182-1-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Add devicetree binding for Thor96 Board from Einfochips. This board is
+one of the 96Boards Consumer Edition platform powered by NXP i.MX8MQ SoC.
 
-This patchset adds support for Thor96 board from Einfochips. This board is
-one of the 96Boards Consumer Edition platform powered by the NXP i.MX8MQ
-SoC.
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Following are the features supported currently:
-
-1. uSD
-2. WiFi/BT
-3. Ethernet
-4. EEPROM (M24256)
-5. NOR Flash (W25Q256JW)
-6. 2xUSB3.0 ports and 1xUSB2.0 port at HS expansion
-
-More information about this board can be found in Arrow website:
-https://www.arrow.com/en/products/i.imx8-thor96/arrow-development-tools
-
-Link to 96Boards CE Specification: https://linaro.co/ce-specification
-
-Expecting patch 3 to go through MTD tree and 1,2 to go through freescale
-tree.
-
-Thanks,
-Mani
-
-Manivannan Sadhasivam (3):
-  dt-bindings: arm: Add devicetree binding for Thor96 Board
-  arm64: dts: freescale: Add devicetree support for Thor96 board
-  mtd: spi-nor: Add support for w25q256jw
-
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8mq-thor96.dts      | 581 ++++++++++++++++++
- drivers/mtd/spi-nor/spi-nor.c                 |   2 +
- 4 files changed, 585 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1b4b4e6573b5..8016174d5e49 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -239,6 +239,7 @@ properties:
+         items:
+           - enum:
+               - boundary,imx8mq-nitrogen8m # i.MX8MQ NITROGEN Board
++              - einfochips,imx8mq-thor96  # i.MX8MQ Thor96 Board
+               - fsl,imx8mq-evk            # i.MX8MQ EVK Board
+               - purism,librem5-devkit     # Purism Librem5 devkit
+               - solidrun,hummingboard-pulse # SolidRun Hummingboard Pulse
 -- 
 2.17.1
 
