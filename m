@@ -2,124 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17044E2C5E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 10:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 546A5E2C9B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 10:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729882AbfJXIkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 04:40:37 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:32983 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727079AbfJXIkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 04:40:37 -0400
-Received: by mail-oi1-f194.google.com with SMTP id a15so19945345oic.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2019 01:40:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5Y29lD+y9l/40N9G63aNd4c0N7+v5qWTjbp0NVdCeOg=;
-        b=wLp4a/FKLuZENk8SpoANfK1nShox9EtxU3KWDa3FJ1zYjsrPl/BdiwePnYqSTdESIp
-         CiZIk4b5RxbfIStHyryHPw6gkBsgMPb60+heqTDwReQhuAkSXvQN9/lxSuqzOBxl4l3W
-         vBQw6+gBiCDheqvjQhPO9asq5PPkB3ajlVNQgAW9TRB3bI1jSqveF4LjCZRuAFJDLSnO
-         3OPBUIT1hidybdTEUcY+y2kdNO2I4EM0Hf4GdCbrZ8Xdur4JTn/7mWSkYH88KlPzYWO7
-         SDTkJ0NM2dzPfD3OegIKOvAMlU7exbrbYeuVMgt5yOBbBlQtC7k/9UIEY2V5yEJhcvNz
-         W3Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5Y29lD+y9l/40N9G63aNd4c0N7+v5qWTjbp0NVdCeOg=;
-        b=GAsVXQlBGmhTGoWz2Xe1poJho2cz5/YMyQN3mLBOOEp8p4MemdzXm+qMSFl/PJtpkM
-         7NyVhASOB004SS/gKOEHPuImyzVaWxkFEvmnkbmCJlf3NSVFGvs5D8ErqFVncH3a/HT5
-         2qvTaqXt2Z/gt9Wk8O7jjmR2utmXoEO16P3ZT+kMGekcVGwuuqFuEwL7fyzzTarjKckG
-         bEGw8njL8RTvnMhNGSwA0vQsjghM/ye5wgtN5y893rcXK3Vap502CCE9c+a7dvnDXVmK
-         yVT3WK3DpZoqltmf1WTmP60OE7x0zhD3baqlcWpcM2ZINccnXaEOBBkqiGlAgZu2NnN2
-         Zi2A==
-X-Gm-Message-State: APjAAAXAWIMFfmvqXnxV+b2sxVqbvovTfI7ZIW6Eu4kH85f+i89qil/1
-        gUjxYO2Vtq9OM5lwJIh2yu92vWUsUeTpEpid2xJv1g==
-X-Google-Smtp-Source: APXvYqxTxGzNpy22nwQY93zxqZs/zaEL0qNI+Xe6geb5S+xcx7ydhArgCEHxPRxNlv3KpQyTiZzq5x90BHW+X8sV8rE=
-X-Received: by 2002:aca:451:: with SMTP id 78mr2406191oie.170.1571906435377;
- Thu, 24 Oct 2019 01:40:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191018082557.3696-1-bibby.hsieh@mediatek.com>
- <20191018082557.3696-2-bibby.hsieh@mediatek.com> <CAMpxmJW_HQnL8i5FnKcVUs=ZyrnaFe6X+oqG38-v=O05d5vNxw@mail.gmail.com>
- <CAAFQd5CA_53uDo6QdRcvqJ5shUG5K25f+WXCn9OYMHfSgwLMSA@mail.gmail.com>
-In-Reply-To: <CAAFQd5CA_53uDo6QdRcvqJ5shUG5K25f+WXCn9OYMHfSgwLMSA@mail.gmail.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 24 Oct 2019 10:40:24 +0200
-Message-ID: <CAMpxmJWzEER4iBo9-WhmumuH1nmWYvy=xud+=7wzp3op8-P7uw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-binding: eeprom: at24: add supply properties
-To:     Tomasz Figa <tfiga@chromium.org>
-Cc:     Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S2438446AbfJXIvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 04:51:48 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:56520 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2438424AbfJXIvs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Oct 2019 04:51:48 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8FAA71A037E;
+        Thu, 24 Oct 2019 10:51:46 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0FCB31A0B59;
+        Thu, 24 Oct 2019 10:51:42 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2F1B7402D3;
+        Thu, 24 Oct 2019 16:51:36 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/3] ARM: dts: imx6ul-14x14-evk: Add sensors' GPIO regulator
+Date:   Thu, 24 Oct 2019 16:48:38 +0800
+Message-Id: <1571906920-29966-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-czw., 24 pa=C5=BA 2019 o 09:02 Tomasz Figa <tfiga@chromium.org> napisa=C5=
-=82(a):
->
-> On Thu, Oct 24, 2019 at 3:22 PM Bartosz Golaszewski
-> <bgolaszewski@baylibre.com> wrote:
-> >
-> > pt., 18 pa=C5=BA 2019 o 10:26 Bibby Hsieh <bibby.hsieh@mediatek.com> na=
-pisa=C5=82(a):
-> > >
-> > > In some platforms, they disable the power-supply of eeprom and i2c du=
-e
-> > > to power consumption reduction.
-> > >
-> > > This patch add two supply properties: vcc-supply, i2c-supply.
-> > >
-> > > Changes since v1:
-> > >  - change supply name
-> > >  - rebase to next
-> > >
-> > > Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/eeprom/at24.yaml | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Doc=
-umentation/devicetree/bindings/eeprom/at24.yaml
-> > > index e8778560d966..578487a5d9b7 100644
-> > > --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-> > > +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-> > > @@ -167,6 +167,14 @@ properties:
-> > >      minimum: 1
-> > >      maximum: 8
-> > >
-> > > +  vcc-supply:
-> > > +    description:
-> > > +      phandle of the regulator that provides the supply voltage.
-> > > +
-> > > +  i2c-sypply:
-> > > +    description:
-> > > +      phandle to the regulator that provides power to i2c.
-> > > +
-> >
-> > Something was bothering me about this patch so I came back to take a
-> > look. Can you explain what i2c actually stands for in this doc? I hope
-> > I'm misinterpreting something and it isn't that the driver disables
-> > the regulator powering the i2c bus controller?
->
-> In our case it's the regulator that the I2C bus is pulled up to.
->
+On i.MX6UL 14x14 EVK board, sensors' power are controlled
+by GPIO5_IO02, add GPIO regulator for sensors to manage
+their power.
 
-Then it has nothing to do with a generic EEPROM driver IMO. I think
-you need to add the control for this regulator to your i2c controller
-driver and create a power domain where the EEPROM would be lower in
-hierarchy.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm/boot/dts/imx6ul-14x14-evk.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Bart
+diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+index c2a9dd5..4074570 100644
+--- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
++++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+@@ -30,6 +30,16 @@
+ 		enable-active-high;
+ 	};
+ 
++	reg_sensors: regulator-sensors {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_sensors_reg>;
++		regulator-name = "sensors-supply";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio5 2 GPIO_ACTIVE_LOW>;
++	};
++
+ 	reg_can_3v3: regulator-can-3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "can-3v3";
+@@ -448,6 +458,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_sensors_reg: sensorsreggrp {
++		fsl,pins = <
++			MX6UL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x1b0b0
++		>;
++	};
++
+ 	pinctrl_pwm1: pwm1grp {
+ 		fsl,pins = <
+ 			MX6UL_PAD_GPIO1_IO08__PWM1_OUT   0x110b0
+-- 
+2.7.4
 
-> Best regards,
-> Tomasz
