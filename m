@@ -2,125 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E006CE3EF6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 00:18:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE629E3F4F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 00:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730885AbfJXWSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 18:18:03 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:36583 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730812AbfJXWR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 18:17:59 -0400
-Received: by mail-lf1-f65.google.com with SMTP id u16so20423259lfq.3;
-        Thu, 24 Oct 2019 15:17:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SRZiQeucNCGBdlqwTzaIYE1CEk27ias9lFSKqU/IIKA=;
-        b=uHHM44aNEYLJJSFeNN2LlFdNV8YVJN9NHQlXwaQT/IaV7a0m94/bLaBIqRiNdZEzaG
-         EtEbkh6KBT1RczvbjjYpzXtjqE1yj/5qDp0zXLmrAkS8cs5JzIeJkacM7UJkisaFQlGI
-         bUDau8ubRT28Cdg9O/mNm/U/Y/8Z82dC26aSYPIXP9wWKlpoV2CAsp4ofMsqsMaHwzUC
-         DO3j+rkQACBCJSY4FJrWaIv9vRWdwgQMpiZrmp1L6R3dZUXYwpshZCXDCFdQg+xqyYhA
-         OOKw+QbN1PDozRWwrA4ISYZMdPXFsvXaOYm5wUM09BvkbiojW0uD+f7NBG5i4sOqTJ3m
-         akAg==
+        id S1730647AbfJXWW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 18:22:58 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:42709 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729789AbfJXWW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 18:22:58 -0400
+Received: by mail-oi1-f193.google.com with SMTP id i185so24132oif.9;
+        Thu, 24 Oct 2019 15:22:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SRZiQeucNCGBdlqwTzaIYE1CEk27ias9lFSKqU/IIKA=;
-        b=iz4utn+oX7F/wbwjlG+letCmU9S8PF9Rw1RD9xZ1GWHNxDtIy8bQ7SLHtQxLSCn18y
-         YzIccrK3jXV3dR0ClVgFDB34WHnfKiSAGDUO4p1r+jcrNsQiZPCkAo+Y1rBBrVThrfKD
-         AwweSdan7IlBVDfQlZ3y++u82B+EdbztLutA/YnUlyvRm2TmnoEN/qHkus0heaGdJKi/
-         yAcWZiqM4nOqma6LbhP2OemzghIyLRVpGFK4H0Z5TQuqpjjWr43iweKR9wP2uncUWT0p
-         Qpp56SCiWxewr9lHGcYH5+MUk4Iw6Ypse/6eriW2qc0hrNwhl9OczV0nuAKlEvvRL5m7
-         7HOA==
-X-Gm-Message-State: APjAAAWVvPGZLcph0OciloVQv3GfAzmX4u8I9gg1MSCUVuCgZaSY8v4p
-        xgvH05lxDOgs9mJwDpX4U84=
-X-Google-Smtp-Source: APXvYqwZ82ySmk2BMPumPLP/kcKQAnUR5TxNVS4XlEzxyTJb6KeVq3x+/jSGnWqc0xQbCSfpt6YQGg==
-X-Received: by 2002:a19:640c:: with SMTP id y12mr328182lfb.78.1571955476117;
-        Thu, 24 Oct 2019 15:17:56 -0700 (PDT)
-Received: from localhost.localdomain (94-29-10-250.dynamic.spd-mgts.ru. [94.29.10.250])
-        by smtp.gmail.com with ESMTPSA id i6sm11338765lfo.83.2019.10.24.15.17.54
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=HByluYOBZiU98i5lq8f4TYRGZTWms/btKlO2WGzYdh4=;
+        b=ss70mQKDwEGmsaJUS+9a+zgsjZMDCjK7jXbr61Y1dQWSpzkn6EpGK05JgQUDKFhaKR
+         Aoj5PTpEEMr57TFY6KtR0c+DSFDLLyracahnb534a0hcw2AXQrHDHJ5QOOb1u7I1348s
+         pfbyvbwX+ZvbQfSJQPiIxov2l9KVEMm44Hj3IhcsAl6ZETl+JK6aoHyVMQWZguFjGfcS
+         li7KIJ8W5EC1qz6ndzo7zJaf+0g/Oa6/F+6B6QTxdEL8gCP5h//Su+nFHZjORb30MmHP
+         PC/gzsYMqhtpjUKFz5XO1bl+ikaLhj7gTe3lR+fn+6Ap5QEvsC7IBD6TgyLNQBEIG6DD
+         IU3w==
+X-Gm-Message-State: APjAAAUK+khrE+KJ+1fyQ/2KoAHfmvsWYAn3ePDlf4UUrjY5veGzQgBy
+        TmF18XTVo8sYcuG7nkmdk/EW8Qw=
+X-Google-Smtp-Source: APXvYqx6kkm92ig5g9Ejjz9e1DBH2d9WzlX1XrrwKzBxFN04HxzuNd0JzeMBXYlT+pWzcDelYzUc1Q==
+X-Received: by 2002:aca:4142:: with SMTP id o63mr314301oia.81.1571955777098;
+        Thu, 24 Oct 2019 15:22:57 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id c21sm113802otp.15.2019.10.24.15.22.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2019 15:17:55 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Cc:     linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 17/17] ARM: dts: tegra30: cardhu-a04: Add CPU Operating Performance Points
-Date:   Fri, 25 Oct 2019 01:14:16 +0300
-Message-Id: <20191024221416.14197-18-digetx@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191024221416.14197-1-digetx@gmail.com>
-References: <20191024221416.14197-1-digetx@gmail.com>
+        Thu, 24 Oct 2019 15:22:56 -0700 (PDT)
+Date:   Thu, 24 Oct 2019 17:22:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fixes for v5.4, round 2
+Message-ID: <20191024222255.GA25776@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Utilize common Tegra30 CPU OPP table. CPU DVFS is available now on
-cardhu-a04.
+Hi Linus,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra30-cardhu-a04.dts | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Please pull a couple more DT fixes for 5.4.
 
-diff --git a/arch/arm/boot/dts/tegra30-cardhu-a04.dts b/arch/arm/boot/dts/tegra30-cardhu-a04.dts
-index 0d71925d4f0b..9234988624ec 100644
---- a/arch/arm/boot/dts/tegra30-cardhu-a04.dts
-+++ b/arch/arm/boot/dts/tegra30-cardhu-a04.dts
-@@ -2,6 +2,8 @@
- /dts-v1/;
- 
- #include "tegra30-cardhu.dtsi"
-+#include "tegra30-cpu-opp.dtsi"
-+#include "tegra30-cpu-opp-microvolt.dtsi"
- 
- /* This dts file support the cardhu A04 and later versions of board */
- 
-@@ -127,4 +129,26 @@
- 			nvidia,tegra-core-regulator;
- 		};
- 	};
-+
-+	cpus {
-+		cpu0: cpu@0 {
-+			cpu-supply = <&vddctrl_reg>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+		};
-+
-+		cpu@1 {
-+			cpu-supply = <&vddctrl_reg>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+		};
-+
-+		cpu@2 {
-+			cpu-supply = <&vddctrl_reg>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+		};
-+
-+		cpu@3 {
-+			cpu-supply = <&vddctrl_reg>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+		};
-+	};
- };
--- 
-2.23.0
+Rob
 
+
+The following changes since commit f437ade3296bacaddb6d7882ba0515940f01daf4:
+
+  dt-bindings: phy: lantiq: Fix Property Name (2019-10-02 14:14:58 -0500)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.4-2
+
+for you to fetch changes up to 5dba51754b04a941a1064f584e7a7f607df3f9bc:
+
+  of: reserved_mem: add missing of_node_put() for proper ref-counting (2019-10-23 15:15:05 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for 5.4:
+
+Fix a ref count, memory leak, and Risc-V cpu schema warnings.
+
+----------------------------------------------------------------
+Chris Goldsworthy (1):
+      of: reserved_mem: add missing of_node_put() for proper ref-counting
+
+Navid Emamdoost (1):
+      of: unittest: fix memory leak in unittest_data_add
+
+Rob Herring (1):
+      dt-bindings: riscv: Fix CPU schema errors
+
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 29 ++++++++++-------------
+ drivers/of/of_reserved_mem.c                      |  4 +++-
+ drivers/of/unittest.c                             |  1 +
+ 3 files changed, 17 insertions(+), 17 deletions(-)
