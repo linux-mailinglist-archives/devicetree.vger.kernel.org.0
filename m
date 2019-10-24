@@ -2,84 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9C78E2E5A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 12:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 948CEE2E99
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 12:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438650AbfJXKKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 06:10:30 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:41624 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2438612AbfJXKKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 06:10:30 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9OAANZc124464;
-        Thu, 24 Oct 2019 05:10:23 -0500
+        id S2393237AbfJXKRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 06:17:32 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:56684 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393238AbfJXKRb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 06:17:31 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9OAGrZv062102;
+        Thu, 24 Oct 2019 05:16:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1571911823;
-        bh=GF0YCeVR6JL6hzbMYjpu9XNNzB9GXjetMPl8CEuVNls=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=js0nZAfzg33Z5kQcrrIEdTpllx18IHupN/cQzRL4ZTLkbt4brVKmHEmbL4/M4gOq/
-         Fd7ZmbtDeFsSo06sGSY6xxFVFLTiALhEDQJX1S6YU1ccCC5rOPfn1QSBZICOAScUZT
-         cBaCqd4hR9GY0zJj6TXAOIGiKlFYGCrRBYeRBNXk=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9OAANqr123771
+        s=ti-com-17Q1; t=1571912213;
+        bh=EDshKvGHmjEvne+M6Hf6EnpsTzXcgkgN/NsvR3Me/fA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=OrB2X0i9vOq6STYWMQhlOd7VV5xFv+QVlwTG1BAPg777P1hzOCNNZhelH9YhXYCOQ
+         lg1j5kiGCgOF3IDjWqkCya4vuWdak+qw8hK5rFVOpJyMKx/Kp2NE9XeuzJmbiElybP
+         H65Rde5K804+tD8617dKMLFIkhVh6k0S6ftkivYs=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9OAGr9w004417
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Oct 2019 05:10:23 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 24 Oct 2019 05:16:53 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 24
- Oct 2019 05:10:12 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2019 05:16:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 24 Oct 2019 05:10:23 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9OAALUh029093;
-        Thu, 24 Oct 2019 05:10:22 -0500
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-To:     <netdev@vger.kernel.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>,
-        Jiri Pirko <jiri@resnulli.us>
-CC:     Florian Fainelli <f.fainelli@gmail.com>,
-        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH v5 net-next 12/12] arm: omap2plus_defconfig: enable new cpsw switchdev driver
-Date:   Thu, 24 Oct 2019 13:09:14 +0300
-Message-ID: <20191024100914.16840-13-grygorii.strashko@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191024100914.16840-1-grygorii.strashko@ti.com>
-References: <20191024100914.16840-1-grygorii.strashko@ti.com>
+ Frontend Transport; Thu, 24 Oct 2019 05:16:43 -0500
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9OAGose119563;
+        Thu, 24 Oct 2019 05:16:51 -0500
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add binding for the TI wrapper
+ for Cadence USB3 controller
+To:     <felipe.balbi@linux.intel.com>, <gregkh@linuxfoundation.org>
+CC:     <pawell@cadence.com>, <peter.chen@nxp.com>, <nsekhar@ti.com>,
+        <kurahul@cadence.com>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+References: <20191021131305.8689-1-rogerq@ti.com>
+ <20191021131305.8689-2-rogerq@ti.com>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <3fdcbd1f-f9e2-2363-56f4-30d2f8ea4560@ti.com>
+Date:   Thu, 24 Oct 2019 13:16:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20191021131305.8689-2-rogerq@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CONFIG_TI_CPSW_SWITCHDEV option to enable new cpsw switchdev driver
+Hi,
 
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- arch/arm/configs/omap2plus_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On 21/10/2019 16:13, Roger Quadros wrote:
+> TI platforms have a wrapper module around the Cadence USB3
+> controller. Add binding information for that.
 
-diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
-index d3f50971e451..c271d409b610 100644
---- a/arch/arm/configs/omap2plus_defconfig
-+++ b/arch/arm/configs/omap2plus_defconfig
-@@ -554,3 +554,4 @@ CONFIG_DEBUG_INFO_DWARF4=y
- CONFIG_MAGIC_SYSRQ=y
- CONFIG_SCHEDSTATS=y
- # CONFIG_DEBUG_BUGVERBOSE is not set
-+CONFIG_TI_CPSW_SWITCHDEV=y
+Please ignore this. I missed converting this to yaml format.
+Will send v3.
+
+cheers,
+-roger
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+> ---
+>   .../devicetree/bindings/usb/ti,j721e-usb.txt  | 52 +++++++++++++++++++
+>   1 file changed, 52 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/usb/ti,j721e-usb.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.txt b/Documentation/devicetree/bindings/usb/ti,j721e-usb.txt
+> new file mode 100644
+> index 000000000000..bac57c26b09b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.txt
+> @@ -0,0 +1,52 @@
+> +Binding for the TI specific wrapper for the Cadence USBSS-DRD controller
+> +
+> +Required properties:
+> +  - compatible: Should contain "ti,j721e-usb"
+> +  - reg: Physical base address and size of the wrappers register area.
+> +  - power-domains: Should contain a phandle to a PM domain provider node
+> +                   and an args specifier containing the USB device id
+> +                   value. This property is as per the binding documentation:
+> +                   Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
+> +  - clocks: Clock phandles to usb2_refclk and lpm_clk
+> +  - clock-names: Should contain "ref" and "lpm"
+> +
+> +Optional properties:
+> + - ti,usb2-only: If present, it restricts the controller to USB2.0 mode of
+> +		 operation. Must be present if USB3 PHY is not available
+> +		 for USB.
+> + - ti,vbus-divider: Should be present if USB VBUS line is connected to the
+> +		 VBUS pin of the SoC via a 1/3 voltage divider.
+> +
+> +Sub-nodes:
+> +The USB2 PHY and the Cadence USB3 controller should be the sub-nodes.
+> +
+> +Example:
+> +
+> +	ti_usb0: cdns_usb@4104000 {
+> +		compatible = "ti,j721e-usb";
+> +		reg = <0x00 0x4104000 0x00 0x100>;
+> +		power-domains = <&k3_pds 288 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 288 15>, <&k3_clks 288 3>;
+> +		clock-names = "ref", "lpm";
+> +		assigned-clocks = <&k3_clks 288 15>;	/* USB2_REFCLK */
+> +		assigned-clock-parents = <&k3_clks 288 16>; /* HFOSC0 */
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		usb0: usb@6000000 {
+> +			compatible = "cdns,usb3";
+> +			reg = <0x00 0x6000000 0x00 0x10000>,
+> +			      <0x00 0x6010000 0x00 0x10000>,
+> +			      <0x00 0x6020000 0x00 0x10000>;
+> +			reg-names = "otg", "xhci", "dev";
+> +			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,	/* irq.0 */
+> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,	/* irq.6 */
+> +				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;	/* otgirq.0 */
+> +			interrupt-names = "host",
+> +					  "peripheral",
+> +					  "otg";
+> +			maximum-speed = "super-speed";
+> +			dr_mode = "otg";
+> +		};
+> +	};
+> 
+
 -- 
-2.17.1
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
