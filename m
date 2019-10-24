@@ -2,193 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF74E2D27
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 11:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894C9E2D42
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 11:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393062AbfJXJYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 05:24:00 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:38008 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390225AbfJXJX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 05:23:59 -0400
-Received: by mail-ed1-f68.google.com with SMTP id y8so5807586edu.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2019 02:23:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2Fg4OORdS56GYlEdlxxKyHlR08HjtyPW5mXDJkHAU3c=;
-        b=LErg4eJHixvsMHo3T4UdsdOcjyo5lbO9XudSeZq6rpgNnkVpGr/b0G90t4XOSP66/E
-         yPiEP9VtvxDCkUlH7d1janZhA4XnWhbkjvm/cOE2ToCJXuDoxd+uba3V89MU7eceWGgo
-         3dPD97YPgwTyy5neIrYaAT8SNNB8krsO2ClP8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2Fg4OORdS56GYlEdlxxKyHlR08HjtyPW5mXDJkHAU3c=;
-        b=qt1n/9U6Um5z1CkNaZRDWc7U2SsW5ldA8BRuvLA2av32lCSI+sO2WPUVT+9SE9N8P5
-         Akfmn4Q1lRNyltfwjlaHunyrAAJSEBUaC9okbcwtjqfSM/8ndfiJbVwMPvwtii8FSia9
-         m5XiN9OZGA0DBNZzHm1YW8Z6+eGMj9n72K5yiIInReKh/8yeAR+lHv+vplvgYqNlnJrX
-         9A1EzaTrtReHsrF7XGJq2QpsZ2nNaq7ZslIH9awa7PLFVcqMrAk8PoO7cGt5URGBASbE
-         9u+oXbZ70jLVPqpZ4KZsjPyxrUzWk6oDgae2vn3uchnSAXFKdam2rYWLwNFQB5u9I2WN
-         sOPg==
-X-Gm-Message-State: APjAAAVdkd3Z8c5MMOPzWMq9b94Pc5bpfnacDDN7VfahCTkg8UnQTQkZ
-        y9cLuQvWYDF85JNeFwWf5NfB16rDqOhQNg==
-X-Google-Smtp-Source: APXvYqwrVxTOXBhFsZzGueJ0vGWrsElEzfqDAJ7R2u4cXj0RYY0mI2YJvOdJdTqAE67TBbdGQwlxyg==
-X-Received: by 2002:a05:6402:128c:: with SMTP id w12mr42908034edv.284.1571909037677;
-        Thu, 24 Oct 2019 02:23:57 -0700 (PDT)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com. [209.85.221.44])
-        by smtp.gmail.com with ESMTPSA id g43sm473645edb.14.2019.10.24.02.23.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Oct 2019 02:23:56 -0700 (PDT)
-Received: by mail-wr1-f44.google.com with SMTP id z11so1845021wro.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2019 02:23:55 -0700 (PDT)
-X-Received: by 2002:a5d:6a42:: with SMTP id t2mr2809593wrw.155.1571909035112;
- Thu, 24 Oct 2019 02:23:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191017084033.28299-1-xia.jiang@mediatek.com>
- <20191017084033.28299-6-xia.jiang@mediatek.com> <20191023103945.GA41089@chromium.org>
- <1571906317.6254.64.camel@mhfsdcap03>
-In-Reply-To: <1571906317.6254.64.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Thu, 24 Oct 2019 18:23:43 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5DUF90daBAe96Vu46z9HD43AYG+9rK-_r_aWYey8GxpmQ@mail.gmail.com>
-Message-ID: <CAAFQd5DUF90daBAe96Vu46z9HD43AYG+9rK-_r_aWYey8GxpmQ@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] media: platform: Add jpeg dec/enc feature
-To:     Xia Jiang <xia.jiang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rick Chang <rick.chang@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S2408875AbfJXJ0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 05:26:45 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:34544 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2408862AbfJXJ0p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Oct 2019 05:26:45 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1B8E61A019B;
+        Thu, 24 Oct 2019 11:26:42 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 70F8D1A0755;
+        Thu, 24 Oct 2019 11:26:35 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 38581402BC;
+        Thu, 24 Oct 2019 17:26:27 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>, Huang Anson <anson.huang@nxp.com>
+Cc:     Li Biwen <biwen.li@nxp.com>, Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v10 1/3] PM: wakeup: Add routine to help fetch wakeup source object.
+Date:   Thu, 24 Oct 2019 17:26:42 +0800
+Message-Id: <20191024092644.26583-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 24, 2019 at 5:38 PM Xia Jiang <xia.jiang@mediatek.com> wrote:
->
-> On Wed, 2019-10-23 at 19:39 +0900, Tomasz Figa wrote:
-> > Hi Xia,
-> >
-> > On Thu, Oct 17, 2019 at 04:40:38PM +0800, Xia Jiang wrote:
-> > > Add mtk jpeg encode v4l2 driver based on jpeg decode, because that jp=
-eg
-> > > decode and encode have great similarities with function operation.
-> > >
-> > > Signed-off-by: Xia Jiang <xia.jiang@mediatek.com>
-> > > ---
-> > > v4: split mtk_jpeg_try_fmt_mplane() to two functions, one for encoder=
-,
-> > >     one for decoder.
-> > >     split mtk_jpeg_set_default_params() to two functions, one for
-> > >     encoder, one for decoder.
-> > >     add cropping support for encoder in g/s_selection ioctls.
-> > >     change exif mode support by using V4L2_JPEG_ACTIVE_MARKER_APP1.
-> > >     change MTK_JPEG_MAX_WIDTH/MTK_JPEG_MAX_HEIGH from 8192 to 65535 b=
-y
-> > >     specification.
-> > >     move width shifting operation behind aligning operation in
-> > >     mtk_jpeg_try_enc_fmt_mplane() for bug fix.
-> > >     fix user abuseing data_offset issue for DMABUF in
-> > >     mtk_jpeg_set_enc_src().
-> > >     fix kbuild warings: change MTK_JPEG_MIN_HEIGHT/MTK_JPEG_MAX_HEIGH=
-T
-> > >                         and MTK_JPEG_MIN_WIDTH/MTK_JPEG_MAX_WIDTH fro=
-m
-> > >                         'int' type to 'unsigned int' type.
-> > >                         fix msleadingly indented of 'else'.
-> > >
-> > > v3: delete Change-Id.
-> > >     only test once handler->error after the last v4l2_ctrl_new_std().
-> > >     seperate changes of v4l2-ctrls.c and v4l2-controls.h to new patch=
-.
-> > >
-> > > v2: fix compliance test fail, check created buffer size in driver.
-> > > ---
-> > >  drivers/media/platform/mtk-jpeg/Makefile      |   5 +-
-> > >  .../media/platform/mtk-jpeg/mtk_jpeg_core.c   | 731 +++++++++++++++-=
---
-> > >  .../media/platform/mtk-jpeg/mtk_jpeg_core.h   | 123 ++-
-> > >  .../media/platform/mtk-jpeg/mtk_jpeg_dec_hw.h |   7 +-
-> > >  .../media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c | 175 +++++
-> > >  .../media/platform/mtk-jpeg/mtk_jpeg_enc_hw.h |  60 ++
-> > >  .../platform/mtk-jpeg/mtk_jpeg_enc_reg.h      |  49 ++
-> > >  7 files changed, 1004 insertions(+), 146 deletions(-)
-> > >  create mode 100644 drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
-> > >  create mode 100644 drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.h
-> > >  create mode 100644 drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_reg.=
-h
-> > >
-> >
-> > First of all, thanks for the patch!
-> >
-> > Please check my comments below.
-> >
-> > My general feeling about this code is that the encoder hardware block i=
-s
-> > completely orthogonal from the decoder block and there is very little c=
-ode
-> > reuse from the original decoder driver.
-> >
-> > Moreover, a lot of existing code now needs if (decoder) { ... } else {.=
-.. }
-> > segments, which complicates the code.
-> >
-> > Would it perhaps make sense to instead create a separate mtk-jpeg-enc
-> > driver?
-> >
-> Dear Tomasz,
->
-> Thanks for your comments.
->
-> My reasons about the architecture of jpeg enc driver are as follows:
->
-> The first internal design and realization of jpeg enc driver was a
-> separate driver, but found that mtk_jpeg_core.c and mtk_jpeg_enc_core.c
-> have lots of reuse.Because that  the core.c mainly contains realization
-> of v4L2 ioctl functions and some logic which are high similarity between
-> encoder and decoder.
->
-> The jpeg encoder and decoder are two independent hardwares exactly, so
-> the code about hardware specification(register setting) are
-> separated(mtk_jpeg_enc_hw.c and mtk_jpeg_dec_hw.c).
->
-> As for 17 existing code segments contain if(decoder){} else {}, they are
-> not complicated IMHO.The complicated(multilayer nested) functions are
-> separated in V4 version as Hans recommendation.
->
-> By the way,the upstreamed module s5p-jpeg
-> (https://elixir.bootlin.com/linux/latest/source/drivers/media/platform/s5=
-p-jpeg/jpeg-core.c#L1998) also use encoder and decoder mode in the common c=
-ore.c, but their encoder and decoder are the same hardware.Maybe our jpeg e=
-nc and dec are designed into one hardware in the future.In that case the cu=
-rrent architecture is more compatible.
->
-> So I prefer the current design.
->
+Some user might want to go through all registered wakeup sources
+and doing things accordingly. For example, SoC PM driver might need to
+do HW programming to prevent powering down specific IP which wakeup
+source depending on. So add this API to help walk through all registered
+wakeup source objects on that list and return them one by one.
 
-Would you be able to give some numbers to show the code reuse to
-justify using the same driver? From my observation, a new driver would
-result in a significantly cleaner code. If there is a further hardware
-architecture change, that would likely require another driver, because
-it wouldn't be compatible with existing programming model anyway.
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+Tested-by: Leonard Crestez <leonard.crestez@nxp.com>
+Reviewed-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+---
+Change in v10:
+	- Add 'Reviewed-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>'
+	  to commit message.
 
-Regardless of that, if we end up with reusing the same driver, I'd
-like you to fix the issues existing in the current base before adding
-the encoder functionality.
+Change in v9:
+	- Supplement comments for wakeup_sources_read_lock(),
+	  wakeup_sources_read_unlock, wakeup_sources_walk_start and
+	  wakeup_sources_walk_next().
 
-Best regards,
-Tomasz
+Change in v8:
+	- Rename wakeup_source_get_next() to wakeup_sources_walk_next().
+	- Add wakeup_sources_read_lock() to take over locking job of
+	  wakeup_source_get_star().
+	- Rename wakeup_source_get_start() to wakeup_sources_walk_start().
+	- Replace wakeup_source_get_stop() with wakeup_sources_read_unlock().
+	- Define macro for_each_wakeup_source(ws).
+
+Change in v7:
+	- Remove define of member *dev in wake_irq to fix conflict with commit 
+	c8377adfa781 ("PM / wakeup: Show wakeup sources stats in sysfs"), user 
+	will use ws->dev->parent instead.
+	- Remove '#include <linux/of_device.h>' because it is not used.
+
+Change in v6:
+	- Add wakeup_source_get_star() and wakeup_source_get_stop() to aligned 
+	with wakeup_sources_stats_seq_start/nex/stop.
+
+Change in v5:
+	- Update commit message, add decription of walk through all wakeup
+	source objects.
+	- Add SCU protection in function wakeup_source_get_next().
+	- Rename wakeup_source member 'attached_dev' to 'dev' and move it up
+	(before wakeirq).
+
+Change in v4:
+	- None.
+
+Change in v3:
+	- Adjust indentation of *attached_dev;.
+
+Change in v2:
+	- None.
+
+ drivers/base/power/wakeup.c | 54 +++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/pm_wakeup.h   |  9 ++++++++
+ 2 files changed, 63 insertions(+)
+
+diff --git a/drivers/base/power/wakeup.c b/drivers/base/power/wakeup.c
+index 5817b51..70a9edb 100644
+--- a/drivers/base/power/wakeup.c
++++ b/drivers/base/power/wakeup.c
+@@ -248,6 +248,60 @@ void wakeup_source_unregister(struct wakeup_source *ws)
+ EXPORT_SYMBOL_GPL(wakeup_source_unregister);
+ 
+ /**
++ * wakeup_sources_read_lock - Lock wakeup source list for read.
++ *
++ * Returns an index of srcu lock for struct wakeup_srcu.
++ * This index must be passed to the matching wakeup_sources_read_unlock().
++ */
++int wakeup_sources_read_lock(void)
++{
++	return srcu_read_lock(&wakeup_srcu);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_read_lock);
++
++/**
++ * wakeup_sources_read_unlock - Unlock wakeup source list.
++ * @idx: return value from corresponding wakeup_sources_read_lock()
++ */
++void wakeup_sources_read_unlock(int idx)
++{
++	srcu_read_unlock(&wakeup_srcu, idx);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_read_unlock);
++
++/**
++ * wakeup_sources_walk_start - Begin a walk on wakeup source list
++ *
++ * Returns first object of the list of wakeup sources.
++ *
++ * Note that to be safe, wakeup sources list needs to be locked by calling
++ * wakeup_source_read_lock() for this.
++ */
++struct wakeup_source *wakeup_sources_walk_start(void)
++{
++	struct list_head *ws_head = &wakeup_sources;
++
++	return list_entry_rcu(ws_head->next, struct wakeup_source, entry);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_walk_start);
++
++/**
++ * wakeup_sources_walk_next - Get next wakeup source from the list
++ * @ws: Previous wakeup source object
++ *
++ * Note that to be safe, wakeup sources list needs to be locked by calling
++ * wakeup_source_read_lock() for this.
++ */
++struct wakeup_source *wakeup_sources_walk_next(struct wakeup_source *ws)
++{
++	struct list_head *ws_head = &wakeup_sources;
++
++	return list_next_or_null_rcu(ws_head, &ws->entry,
++				struct wakeup_source, entry);
++}
++EXPORT_SYMBOL_GPL(wakeup_sources_walk_next);
++
++/**
+  * device_wakeup_attach - Attach a wakeup source object to a device object.
+  * @dev: Device to handle.
+  * @ws: Wakeup source object to attach to @dev.
+diff --git a/include/linux/pm_wakeup.h b/include/linux/pm_wakeup.h
+index 661efa0..aa3da66 100644
+--- a/include/linux/pm_wakeup.h
++++ b/include/linux/pm_wakeup.h
+@@ -63,6 +63,11 @@ struct wakeup_source {
+ 	bool			autosleep_enabled:1;
+ };
+ 
++#define for_each_wakeup_source(ws) \
++	for ((ws) = wakeup_sources_walk_start();	\
++	     (ws);					\
++	     (ws) = wakeup_sources_walk_next((ws)))
++
+ #ifdef CONFIG_PM_SLEEP
+ 
+ /*
+@@ -92,6 +97,10 @@ extern void wakeup_source_remove(struct wakeup_source *ws);
+ extern struct wakeup_source *wakeup_source_register(struct device *dev,
+ 						    const char *name);
+ extern void wakeup_source_unregister(struct wakeup_source *ws);
++extern int wakeup_sources_read_lock(void);
++extern void wakeup_sources_read_unlock(int idx);
++extern struct wakeup_source *wakeup_sources_walk_start(void);
++extern struct wakeup_source *wakeup_sources_walk_next(struct wakeup_source *ws);
+ extern int device_wakeup_enable(struct device *dev);
+ extern int device_wakeup_disable(struct device *dev);
+ extern void device_set_wakeup_capable(struct device *dev, bool capable);
+-- 
+2.7.4
+
