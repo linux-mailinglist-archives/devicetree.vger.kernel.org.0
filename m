@@ -2,125 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6352E319A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 13:57:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35F43E31B0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 14:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2409255AbfJXL57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 07:57:59 -0400
-Received: from mga11.intel.com ([192.55.52.93]:36153 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726298AbfJXL57 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Oct 2019 07:57:59 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 24 Oct 2019 04:57:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,224,1569308400"; 
-   d="scan'208";a="210141714"
-Received: from jjackiew-mobl1.ger.corp.intel.com (HELO mara.localdomain) ([10.249.148.206])
-  by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2019 04:57:55 -0700
-Received: from sailus by mara.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1iNbli-00013M-EZ; Thu, 24 Oct 2019 14:59:06 +0300
-Date:   Thu, 24 Oct 2019 14:59:05 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v11 11/15] media: tvp5150: add s_power callback
-Message-ID: <20191024115905.GB3966@mara.localdomain>
-References: <20190930093900.16524-1-m.felsch@pengutronix.de>
- <20190930093900.16524-12-m.felsch@pengutronix.de>
+        id S2409287AbfJXL77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 07:59:59 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:43974 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2409273AbfJXL76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 07:59:58 -0400
+Received: by mail-ua1-f66.google.com with SMTP id c25so1766849uap.10
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2019 04:59:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HQknb1r4LbQcuicy72xSu/tgsIIaO3/jaqndS1RuQsc=;
+        b=VFJf8rPVcfBhCVGRiyWkFLZVnbUFpTifhzTj5iKAGigKUYb2mx6ocPrzDzt6IJChrs
+         oOOO15Q/mhQIUzQPhtxvo0TNjytFVHYbU7kRUIRJ9vEQB3hX1ULsEXYVSfyrc3EpN7hf
+         Cw1B4hyYPGiCX+Bqb+qgxl3inKrOU8PJRNFNQSNXyp/nBjSq0ew9NnWXz5IocrCkXRwB
+         hA4KZF1HTMR2ym6jT85fQiHJ5AgYmgXz7ELPcVkznCESu75Xrol0sfEGsse5mdY1+LaR
+         MHx7VEOcg9hUEPRqPuC7CXOjt/MOtoiaAjdLsFOHYcr33rEJl1usNxI1z5roeADziwwk
+         dH/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HQknb1r4LbQcuicy72xSu/tgsIIaO3/jaqndS1RuQsc=;
+        b=F3lb+WBHCX6eHSKZnEyQfkWk2/Glannpx7qdVU/bR5gR1F5bf7cIZabyU0i6nrWROm
+         vfBYjSpPflKVeIF0MCLVsU0l50Ub5kqFMtD6xI5DjUwSvj5X03b2+kJag5ziHnUuuIVx
+         P1b9WFOMownIBsQg8j9z/4NV/34Tfw1IbPTKhTY9E5s9kNpU251FGaUfpHh8CTqm5OID
+         bMnW0K43fqUDbnUdpseQdV5oSRn0S//BPqu5+rP4vgbWjNSyETeeQFWDxMBy78vuKo2V
+         eJ5I9Vi9x40tRgnIk4SfrKYHx0t5OUt1RQHE1quZ28US9uXo34YhSSgBTDz8IEzOCE6j
+         UB3g==
+X-Gm-Message-State: APjAAAVjqX4M0ZyriQRkdPoklBXEDoqxWYPlhC2oNf0dVHj33jMFufom
+        830dzCHZVoR6NTZULfXogzrSGkPIPuW9rD0IkFgXDA==
+X-Google-Smtp-Source: APXvYqx8rjUk6KPqTIkjXHT1x3MUAIDpq7Im00SmJqvx96HxmfrRAzRMzoQEKZ+wnRhBT8VyGXo59Y1YR0OaexZHsWY=
+X-Received: by 2002:ab0:7043:: with SMTP id v3mr8397635ual.84.1571918395846;
+ Thu, 24 Oct 2019 04:59:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190930093900.16524-12-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <cover.1571915550.git.matti.vaittinen@fi.rohmeurope.com> <9b53139b7043572b3846a214694dbf8fe1f56f50.1571915550.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <9b53139b7043572b3846a214694dbf8fe1f56f50.1571915550.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 24 Oct 2019 13:59:44 +0200
+Message-ID: <CACRpkdZ5CC4mtNYrurx_2M_3BN6Tu7rQ=d4-y-HOsDbRteKjjA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 12/13] gpio: bd71828: Initial support for ROHM
+ BD71828 PMIC GPIOs
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Hi Matti,
 
-On Mon, Sep 30, 2019 at 11:38:56AM +0200, Marco Felsch wrote:
-> Don't en-/disable the interrupts during s_stream because someone can
-> disable the stream but wants to get informed if the stream is locked
-> again. So keep the interrupts enabled the whole time the pipeline is
-> opened.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  drivers/media/i2c/tvp5150.c | 23 +++++++++++++++++------
->  1 file changed, 17 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index dda9f0a2995f..4afe2093b950 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -1356,11 +1356,26 @@ static const struct media_entity_operations tvp5150_sd_media_ops = {
->  /****************************************************************************
->  			I2C Command
->   ****************************************************************************/
-> +static int tvp5150_s_power(struct  v4l2_subdev *sd, int on)
-> +{
-> +	struct tvp5150 *decoder = to_tvp5150(sd);
-> +	unsigned int val = 0;
-> +
-> +	if (on)
-> +		val = TVP5150_INT_A_LOCK;
-> +
-> +	if (decoder->irq)
-> +		/* Enable / Disable lock interrupt */
-> +		regmap_update_bits(decoder->regmap, TVP5150_INT_ENABLE_REG_A,
-> +				   TVP5150_INT_A_LOCK, val);
+Thanks for your patch!
 
-Could you use runtime PM to do this instead?
+On Thu, Oct 24, 2019 at 1:51 PM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
 
-> +
-> +	return 0;
-> +}
->  
->  static int tvp5150_s_stream(struct v4l2_subdev *sd, int enable)
->  {
->  	struct tvp5150 *decoder = to_tvp5150(sd);
-> -	unsigned int mask, val = 0, int_val = 0;
-> +	unsigned int mask, val = 0;
->  
->  	mask = TVP5150_MISC_CTL_YCBCR_OE | TVP5150_MISC_CTL_SYNC_OE |
->  	       TVP5150_MISC_CTL_CLOCK_OE;
-> @@ -1373,15 +1388,10 @@ static int tvp5150_s_stream(struct v4l2_subdev *sd, int enable)
->  			val = decoder->lock ? decoder->oe : 0;
->  		else
->  			val = decoder->oe;
-> -		int_val = TVP5150_INT_A_LOCK;
->  		v4l2_subdev_notify_event(&decoder->sd, &tvp5150_ev_fmt);
->  	}
->  
->  	regmap_update_bits(decoder->regmap, TVP5150_MISC_CTL, mask, val);
-> -	if (decoder->irq)
-> -		/* Enable / Disable lock interrupt */
-> -		regmap_update_bits(decoder->regmap, TVP5150_INT_ENABLE_REG_A,
-> -				   TVP5150_INT_A_LOCK, int_val);
->  
->  	return 0;
->  }
-> @@ -1580,6 +1590,7 @@ static const struct v4l2_subdev_core_ops tvp5150_core_ops = {
->  	.g_register = tvp5150_g_register,
->  	.s_register = tvp5150_s_register,
->  #endif
-> +	.s_power = tvp5150_s_power,
->  };
->  
->  static const struct v4l2_subdev_tuner_ops tvp5150_tuner_ops = {
-> -- 
-> 2.20.1
-> 
+> ROHM BD71828 PMIC contains 4 pins which can be configured by OTP
+> to be used for general purposes. First 3 can be used as outputs
+> and 4.th pin can be used as input. Allow them to be controlled
+> via GPIO framework.
+>
+> The driver assumes all of the pins are configured as GPIOs and
+> trusts that the reserved pins in other OTP configurations are
+> excluded from control using "gpio-reserved-ranges" device tree
+> property (or left untouched by GPIO users).
+>
+> Typical use for 4.th pin (input) is to use it as HALL sensor
+> input so that this pin state is toggled when HALL sensor detects
+> LID position change (from close to open or open to close). PMIC
+> HW implements some extra logic which allows PMIC to power-up the
+> system when this pin is toggled. Please see the data sheet for
+> details of GPIO options which can be selcted by OTP settings.
 
--- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+spelling of selected
+
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+
+Overall looks very good.
+
+> +// SPDX-License-Identifier: GPL-2.0
+
+I think they want you to use GPL-2.0-only these days.
+
+> +#define BD71828_OUT 0
+> +#define BD71828_IN 1
+
+These have nothing to do with BD71828, just skip these defines
+and hardcode 0/1 in the code called from gpiolib. If we want defines
+for this they should be generically named and put in
+<linux/gpio/driver.h>
+
+Nice use of the config API!
+
+Yours,
+Linus Walleij
