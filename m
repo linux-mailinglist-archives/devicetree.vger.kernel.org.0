@@ -2,88 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ACFC9E29DC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 07:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06ACDE2A07
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 07:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437483AbfJXF1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 01:27:42 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:9963 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2437484AbfJXF1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 01:27:42 -0400
-X-UUID: c72893a83a2447c38eb22ecb4b75e09e-20191024
-X-UUID: c72893a83a2447c38eb22ecb4b75e09e-20191024
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1708865212; Thu, 24 Oct 2019 13:27:35 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 24 Oct 2019 13:27:32 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 24 Oct 2019 13:27:33 +0800
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>
-Subject: [PATCH v16 5/5] arm64: dts: add gce node for mt8183
-Date:   Thu, 24 Oct 2019 13:27:32 +0800
-Message-ID: <20191024052732.7767-6-bibby.hsieh@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20191024052732.7767-1-bibby.hsieh@mediatek.com>
-References: <20191024052732.7767-1-bibby.hsieh@mediatek.com>
+        id S2406880AbfJXFlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 01:41:46 -0400
+Received: from mailoutvs11.siol.net ([185.57.226.202]:36445 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2406827AbfJXFlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 01:41:46 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 88EFC522F95;
+        Thu, 24 Oct 2019 07:41:42 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id k3lB39qpMVLr; Thu, 24 Oct 2019 07:41:42 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 3B77C522FB0;
+        Thu, 24 Oct 2019 07:41:42 +0200 (CEST)
+Received: from localhost.localdomain (cpe-86-58-59-25.static.triera.net [86.58.59.25])
+        (Authenticated sender: 031275009)
+        by mail.siol.net (Postfix) with ESMTPSA id BABB2522F95;
+        Thu, 24 Oct 2019 07:41:41 +0200 (CEST)
+From:   Jernej Skrabec <jernej.skrabec@siol.net>
+To:     mripard@kernel.org, wens@csie.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Michael Lange <linuxstuff@milaw.biz>
+Subject: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Add IR remote mapping
+Date:   Thu, 24 Oct 2019 07:41:35 +0200
+Message-Id: <20191024054135.3819223-1-jernej.skrabec@siol.net>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add gce device node for mt8183
+Tanix TX6 box comes with a remote. Add a mapping for it.
 
-Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+Suggested-by: Michael Lange <linuxstuff@milaw.biz>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 ---
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 6cbbd7726d36..954bcd766c97 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/power/mt8183-power.h>
-+#include <dt-bindings/gce/mt8183-gce.h>
- #include "mt8183-pinfunc.h"
- 
- / {
-@@ -336,6 +337,15 @@
- 			status = "disabled";
- 		};
- 
-+		gce: mailbox@10238000 {
-+			compatible = "mediatek,mt8183-gce";
-+			reg = <0 0x10238000 0 0x4000>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			#mbox-cells = <3>;
-+			clocks = <&infracfg CLK_INFRA_GCE>;
-+			clock-names = "gce";
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt8183-uart",
- 				     "mediatek,mt6577-uart";
--- 
-2.18.0
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch=
+/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+index 7e7cb10e3d96..e9428ad4266e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+@@ -81,6 +81,7 @@
+ };
+=20
+ &r_ir {
++	linux,rc-map-name =3D "rc-tanix-tx5max";
+ 	status =3D "okay";
+ };
+=20
+--=20
+2.23.0
 
