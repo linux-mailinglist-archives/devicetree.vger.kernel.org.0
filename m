@@ -2,81 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D09DE2F85
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 12:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D59E2FAA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 13:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436936AbfJXKzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 06:55:17 -0400
-Received: from vps.xff.cz ([195.181.215.36]:33904 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2393303AbfJXKzJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Oct 2019 06:55:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1571914508; bh=rvHO6Ql5Z6q6IXgZ/y4EmcuplbV8fwNwaT/xhLAZqRo=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=BvbxtNUueqhappaLJUWDxEGYA7JlQ6HWbKvyK5pHxteWG5EUqDliJiutekRC8TyCP
-         ftpu9j6GMibnxIPHz0SgTtKYZrPlEhgFfX9QxFE9gpJF2J1xgWVrEbTVZVqz3SQcjA
-         FNuLK63+b+fS2vtSzGlN0JNIjGcIFFP1EheeL9iQ=
-From:   Ondrej Jirman <megous@megous.com>
-To:     linux-sunxi@googlegroups.com,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     Ondrej Jirman <megous@megous.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] arm64: dts: allwinner: orange-pi-3: Enable USB 3.0 host support
-Date:   Thu, 24 Oct 2019 12:55:00 +0200
-Message-Id: <20191024105500.2252707-5-megous@megous.com>
-In-Reply-To: <20191024105500.2252707-1-megous@megous.com>
-References: <20191024105500.2252707-1-megous@megous.com>
+        id S2392814AbfJXLAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 07:00:24 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:58618 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730032AbfJXLAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 07:00:23 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 10F6860F6F; Thu, 24 Oct 2019 11:00:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571914823;
+        bh=lF7VPfa990k56WtZ+Go5dWYnjSW2LrwS9wWkHXP4Fz4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Wop/lkRMFXZ5nrTbnlNqKiRR3pM0eIGsKjl5sJfXD6aZfyFUfEkN55fivz7UfYWnD
+         amJ3WW6UZ2zOAYIBDe/GvQ0K2jrmeenXgqBpsx1Ac4dBQaOPqrc3fA82yEciWrNnMY
+         tjNW4MPlE9ScAoKIR4yFYKRZw5OMfTEgbKjQfkWw=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 81C7460F6F;
+        Thu, 24 Oct 2019 11:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1571914821;
+        bh=lF7VPfa990k56WtZ+Go5dWYnjSW2LrwS9wWkHXP4Fz4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=FHXYYpjVhnwjTXVDWJwmM/6h7UrDLlDN593yCL1ElgRD4TwG+aFUs4i5wweheVcsf
+         8vBYWsbmkZs1K9/ang24XNX2vvMfb2OjC9w3kMAFMsxzhFupf+u48MyYjxyTqNexSk
+         5Gyt3BB89Rqn1j+7hYCDaWpefVTsSF02L0TlJWRE=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 24 Oct 2019 16:30:21 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [PATCHv2 0/3] Add LLCC support for SC7180 SoC
+In-Reply-To: <CAL_JsqLzRRQe8UZCxgXArVNhNry7PgMCthAR2aZNcm6CCEpvDA@mail.gmail.com>
+References: <cover.1571484439.git.saiprakash.ranjan@codeaurora.org>
+ <20191021033220.GG4500@tuxbook-pro>
+ <CAL_JsqLzRRQe8UZCxgXArVNhNry7PgMCthAR2aZNcm6CCEpvDA@mail.gmail.com>
+Message-ID: <2fbab8bc38be37fba976d34b2f89e720@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Allwinner's USB 3.0 phy and the host controller. Orange Pi 3
-board has GL3510 USB 3.0 4-port hub connected to the SoC's USB 3.0
-port. All four ports are exposed via USB3-A connectors. VBUS is
-always on, since it's powered directly from DCIN (VCC-5V) and
-not switchable.
+Hi Rob,
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 2019-10-24 01:19, Rob Herring wrote:
+> On Sun, Oct 20, 2019 at 10:32 PM Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+>> 
+>> On Sat 19 Oct 04:37 PDT 2019, Sai Prakash Ranjan wrote:
+>> 
+>> > LLCC behaviour is controlled by the configuration data set
+>> > in the llcc-qcom driver, add the same for SC7180 SoC.
+>> > Also convert the existing bindings to json-schema and add
+>> > the compatible for SC7180 SoC.
+>> >
+>> 
+>> Thanks for the patches and thanks for the review Stephen. Series 
+>> applied
+> 
+> And they break dt_binding_check. Please fix.
+> 
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index eb379cd402ac..259af5b0f1a7 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -94,6 +94,10 @@
- 	status = "okay";
- };
- 
-+&dwc3 {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -285,3 +289,7 @@
- 	usb3_vbus-supply = <&reg_vcc5v>;
- 	status = "okay";
- };
-+
-+&usb3phy {
-+	status = "okay";
-+};
+I did check this and think that the error log from dt_binding_check is 
+not valid because it says cache-level is a required property [1], but 
+there is no such property in LLCC bindings.
+
+[1] - http://patchwork.ozlabs.org/patch/1179800/
+
+-Sai
+
 -- 
-2.23.0
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
