@@ -2,131 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5702E3CD8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 22:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A83FE3CED
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 22:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726893AbfJXUNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 16:13:39 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:57559 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726832AbfJXUNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 16:13:34 -0400
-Received: from localhost (unknown [78.193.40.249])
-        (Authenticated sender: kamel.bouhara@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 343AA240008;
-        Thu, 24 Oct 2019 20:13:32 +0000 (UTC)
-From:   Kamel Bouhara <kamel.bouhara@bootlin.com>
-To:     Wolfram Sang <wsa@the-dreams.de>, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: [PATCH v2 5/5] ARM: at91/dt: sama5d4: add i2c gpio pinctrl
-Date:   Thu, 24 Oct 2019 22:13:02 +0200
-Message-Id: <20191024201302.23376-6-kamel.bouhara@bootlin.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191024201302.23376-1-kamel.bouhara@bootlin.com>
-References: <20191024201302.23376-1-kamel.bouhara@bootlin.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727056AbfJXUO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 16:14:26 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:46223 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726832AbfJXUOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Oct 2019 16:14:25 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n15so16670168wrw.13;
+        Thu, 24 Oct 2019 13:14:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Yngxj6Nhm0QtPDM2fcJZwY2LBQt6q8gsqQNI+1Hz2dI=;
+        b=FisStM4ycetrLzGaMOrX7uAsM04Fn3wkGOnjVxiIJQWWiMx5rZp5dvu7x4kctl1U8d
+         ie5HopsYlzSgEeXyFLtnHgQTvpPf/jll0l8y/jnceLXpj3ZlrPn1bfhOunUs2LIYaO9b
+         uBWTIibk1oJKZhPzDJC3OxHLgTPKTzQl1pejgIedtzUrvqoRKHuER0Nrvqff/4HUPnEN
+         EyohRc6EZminOLaLAlaDDYNmlzmhIfiOJ9qzKkbNQh/c4oF9kooAV+ARIlqrYTG+jkzs
+         n8iDJ7tKQ8nBjAXCPbEw85atol9FV53iayFfPrGQTOjbSf0n89FxzJQwax07tsjvd+tJ
+         jJhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Yngxj6Nhm0QtPDM2fcJZwY2LBQt6q8gsqQNI+1Hz2dI=;
+        b=KU0n3sqUA1R6e6WgAKciZ5jcBnyU2G06R94kMrWZrDEBj4Gz6SbJWVtY82CKWhn5eJ
+         p+0YBg7ZknD5d2/CiCsacCiA/NvGYj2akilt6KU88ihM8DQFwRKr8Bv9vaGI5/o8uzyC
+         fdcIXnVGkj5PZYr2zkv19S0i8OvZl/7N0Tvi6Ah7MyEAf1Uiyptt8Yb1KsWcD8E+lI4Z
+         D7C6TYfBMBBWH9l+jgZzLR2zU3wLvsUUpjV8rPimTHMIR+DKM4botc+vpdBzA0Q3ggEn
+         irJSQKVzWcmb8BX800IcEY3/pZs4BB79MQ7v2SQCL/Bpsrv+cic2IaFAd2yiekbzPtcp
+         ExFQ==
+X-Gm-Message-State: APjAAAW+zT9HZgG0X09PfayGUpzZ+5ZI6zqjAF9O1B+WNcmtGHhQ7FsC
+        3J9CBMgAU8VWjt0NR4rYnQdDHvxO
+X-Google-Smtp-Source: APXvYqyNsu7h5PqWiL8z6FS/qqVVgN60qgeYjMDK0wuaW92hmxafLodk36LwL2TzLwyZFV+66o0pDg==
+X-Received: by 2002:a05:6000:142:: with SMTP id r2mr5405676wrx.30.1571948063666;
+        Thu, 24 Oct 2019 13:14:23 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id u21sm4788536wmu.27.2019.10.24.13.14.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2019 13:14:23 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
+        ARM ARCHITECTURE)
+Subject: [PATCH v3 0/5] irqchip/irq-bcm7038-l1 updates
+Date:   Thu, 24 Oct 2019 13:14:10 -0700
+Message-Id: <20191024201415.23454-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the i2c gpio pinctrls so the i2c bus recovery option can be enabled
+Hi Marc, Jason, Thomas,
 
-Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
----
- arch/arm/boot/dts/sama5d4.dtsi | 33 ++++++++++++++++++++++++++++++---
- 1 file changed, 30 insertions(+), 3 deletions(-)
+This patch series contains some updates from our internal tree to
+support power management and allow configuring specific instances of the
+brcm,bcm7038-l1-intc to leave some interrupts untouched and how the
+firmware might have configured them.
 
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index 6ab27a7b388d..34351baab985 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -458,8 +458,11 @@
- 					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
- 					| AT91_XDMAC_DT_PERID(3))>;
- 				dma-names = "tx", "rx";
--				pinctrl-names = "default";
-+				pinctrl-names = "default", "gpio";
- 				pinctrl-0 = <&pinctrl_i2c0>;
-+				pinctrl-1 = <&pinctrl_i2c0_gpio>;
-+				sda-gpios = <&pioA 30 GPIO_ACTIVE_HIGH>;
-+				scl-gpios = <&pioA 31 GPIO_ACTIVE_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 32>;
-@@ -477,8 +480,11 @@
- 					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
- 					| AT91_XDMAC_DT_PERID(5))>;
- 				dma-names = "tx", "rx";
--				pinctrl-names = "default";
-+				pinctrl-names = "default", "gpio";
- 				pinctrl-0 = <&pinctrl_i2c1>;
-+				pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+				sda-gpios = <&pioE 29 GPIO_ACTIVE_HIGH>;
-+				scl-gpios = <&pioE 30 GPIO_ACTIVE_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 33>;
-@@ -519,8 +525,11 @@
- 					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
- 					| AT91_XDMAC_DT_PERID(7))>;
- 				dma-names = "tx", "rx";
--				pinctrl-names = "default";
-+				pinctrl-names = "default", "gpio";
- 				pinctrl-0 = <&pinctrl_i2c2>;
-+				pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+				sda-gpios = <&pioB 29 GPIO_ACTIVE_HIGH>;
-+				scl-gpios = <&pioB 30 GPIO_ACTIVE_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 34>;
-@@ -1122,6 +1131,12 @@
- 							<AT91_PIOA 30 AT91_PERIPH_A AT91_PINCTRL_NONE
- 							 AT91_PIOA 31 AT91_PERIPH_A AT91_PINCTRL_NONE>;
- 					};
-+
-+					pinctrl_i2c0_gpio: i2c0-gpio {
-+						atmel,pins =
-+							<AT91_PIOA 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
-+							 AT91_PIOA 31 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+					};
- 				};
- 
- 				i2c1 {
-@@ -1130,6 +1145,12 @@
- 							<AT91_PIOE 29 AT91_PERIPH_C AT91_PINCTRL_NONE	/* TWD1, conflicts with UART0 RX and DIBP */
- 							 AT91_PIOE 30 AT91_PERIPH_C AT91_PINCTRL_NONE>;	/* TWCK1, conflicts with UART0 TX and DIBN */
- 					};
-+
-+					pinctrl_i2c1_gpio: i2c1-gpio {
-+						atmel,pins =
-+							<AT91_PIOE 29 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
-+							 AT91_PIOE 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+					};
- 				};
- 
- 				i2c2 {
-@@ -1138,6 +1159,12 @@
- 							<AT91_PIOB 29 AT91_PERIPH_A AT91_PINCTRL_NONE	/* TWD2, conflicts with RD0 and PWML1 */
- 							 AT91_PIOB 30 AT91_PERIPH_A AT91_PINCTRL_NONE>; /* TWCK2, conflicts with RF0 */
- 					};
-+
-+					pinctrl_i2c2_gpio: i2c2-gpio {
-+						atmel,pins =
-+							<AT91_PIOB 29 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
-+							 AT91_PIOB 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+					};
- 				};
- 
- 				isi {
+Changes in v3:
+
+- added Rob's Acked-by to dt-bindings patches
+- avoid registering syscore_ops() unconditionally, do this the first we
+  register a controller instance
+- added locking around the list handling of the controller
+- ensure that irq_fwd_mask gets writtent properly to the hardware during
+  initial configuration and suspend/resume
+- simplified logic around use of irq_fwd_mask
+- added check to refuse mapping of interrupts assigned to firmware
+
+Changes in v2:
+
+- dropped the accidental fixup patch that made it to the list and squash
+  it with patch #1 as it should have
+
+Florian Fainelli (4):
+  dt-bindings: Document brcm,irq-can-wake for brcm,bcm7038-l1-intc.txt
+  irqchip/irq-bcm7038-l1: Enable parent IRQ if necessary
+  dt-bindings: Document brcm,int-fwd-mask property for bcm7038-l1-intc
+  irqchip/irq-bcm7038-l1: Support brcm,int-fwd-mask
+
+Justin Chen (1):
+  irqchip/irq-bcm7038-l1: Add PM support
+
+ .../brcm,bcm7038-l1-intc.txt                  |  11 ++
+ drivers/irqchip/irq-bcm7038-l1.c              | 119 +++++++++++++++++-
+ 2 files changed, 128 insertions(+), 2 deletions(-)
+
 -- 
-2.23.0
+2.17.1
 
