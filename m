@@ -2,64 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C729EE2C9C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 10:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC0FBE2CEB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2019 11:13:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438443AbfJXIvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Oct 2019 04:51:55 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:44724 "EHLO inva021.nxp.com"
+        id S2389207AbfJXJNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Oct 2019 05:13:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42976 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2438453AbfJXIvu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Oct 2019 04:51:50 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B88732000D3;
-        Thu, 24 Oct 2019 10:51:48 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3232420085F;
-        Thu, 24 Oct 2019 10:51:44 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4F778402F0;
-        Thu, 24 Oct 2019 16:51:38 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] ARM: dts: imx6ul-14x14-evk: Assign power supplies for magnetometer
-Date:   Thu, 24 Oct 2019 16:48:40 +0800
-Message-Id: <1571906920-29966-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1571906920-29966-1-git-send-email-Anson.Huang@nxp.com>
-References: <1571906920-29966-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727653AbfJXJNI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Oct 2019 05:13:08 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1F91A2166E;
+        Thu, 24 Oct 2019 09:13:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1571908387;
+        bh=94SGITL+w13cs21+YWm/2mrBkeLrhfSnXixPWxASHZI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e7eBgKB/LnonMT8DJUrTUn7M2Re+QL7lE04vQh3IVdmZgI515HPhtzdWbfAT77KMO
+         l2C9GMpZ6riIM/3taO6yPSL4Kmzao9gbNPNwx4BxuboVrLGUhnnGJyKc3KckYB/nwE
+         u0AXlOCkNvAR4pAEtOfX6eVx3ePI74WKvVbGBJkU=
+Date:   Thu, 24 Oct 2019 11:13:04 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Michael Lange <linuxstuff@milaw.biz>
+Subject: Re: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Add IR remote
+ mapping
+Message-ID: <20191024091304.kx27imohmuzufvtr@gilmour>
+References: <20191024054135.3819223-1-jernej.skrabec@siol.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yoemxlzmfbbaspsf"
+Content-Disposition: inline
+In-Reply-To: <20191024054135.3819223-1-jernej.skrabec@siol.net>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On i.MX6UL 14x14 EVK board, mag3110's power is controlled by
-sensor regulator, assign power supplies for mag3110 driver
-to do power management.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm/boot/dts/imx6ul-14x14-evk.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+--yoemxlzmfbbaspsf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
-index c74ba60..7b155ed 100644
---- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
-@@ -193,6 +193,8 @@
- 	magnetometer@e {
- 		compatible = "fsl,mag3110";
- 		reg = <0x0e>;
-+		vdd-supply = <&reg_sensors>;
-+		vddio-supply = <&reg_sensors>;
- 	};
- };
- 
--- 
-2.7.4
+Hi,
 
+On Thu, Oct 24, 2019 at 07:41:35AM +0200, Jernej Skrabec wrote:
+> Tanix TX6 box comes with a remote. Add a mapping for it.
+>
+> Suggested-by: Michael Lange <linuxstuff@milaw.biz>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> index 7e7cb10e3d96..e9428ad4266e 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> @@ -81,6 +81,7 @@
+>  };
+>
+>  &r_ir {
+> +	linux,rc-map-name = "rc-tanix-tx5max";
+>  	status = "okay";
+>  };
+
+It doesn't look like it's documented in the binding. Please add it
+there as well.
+
+Maxime
+
+--yoemxlzmfbbaspsf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXbFrIAAKCRDj7w1vZxhR
+xSLmAQCrGSV7h6ubrgNIb93gmoTRSxqGtJeh8hrmzYdc3uFNbwD+MBU0i/CRyUNp
+RH2WGZE4M2I578Xre1fIqzZ5VlEiaQk=
+=Wl18
+-----END PGP SIGNATURE-----
+
+--yoemxlzmfbbaspsf--
