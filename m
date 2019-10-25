@@ -2,92 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9983E4A6E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 13:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E41A3E4A94
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 13:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394552AbfJYLtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Oct 2019 07:49:45 -0400
-Received: from mail-sz.amlogic.com ([211.162.65.117]:17053 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730867AbfJYLtn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 07:49:43 -0400
-Received: from localhost.localdomain (10.28.8.19) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 25 Oct 2019
- 19:49:48 +0800
-From:   Qianggui Song <qianggui.song@amlogic.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Qianggui Song <qianggui.song@amlogic.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Carlo Caione <carlo@caione.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v4 4/4] arm64: dts: meson: a1: add pinctrl controller support
-Date:   Fri, 25 Oct 2019 19:49:27 +0800
-Message-ID: <1572004167-24150-5-git-send-email-qianggui.song@amlogic.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1572004167-24150-1-git-send-email-qianggui.song@amlogic.com>
-References: <1572004167-24150-1-git-send-email-qianggui.song@amlogic.com>
+        id S1727283AbfJYL47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Oct 2019 07:56:59 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44184 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726484AbfJYL47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 07:56:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=x/6eiM9BhqvxQhK00NRhiUmYBu8gULRPzd+UFzEpnsc=; b=lySZxGyzza2R5r11U7yL7TzQy
+        mTnQyAl06jrTNSOWQlx5iXyKBFJGrEo/FAz9vlEZXbECYwIjhsbFA/kWXbS5EWYHaXBJs4g5LC7xj
+        2eCgWHrPMzdm/AQ3Zj/oSZzQG9HP5h54YcRzpw4bU61tHwGDVGDWT5BwcTulr11MOEHVc=;
+Received: from 188.30.141.58.threembb.co.uk ([188.30.141.58] helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1iNyDA-0006qe-No; Fri, 25 Oct 2019 11:56:56 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id AF78ED020A1; Fri, 25 Oct 2019 12:56:55 +0100 (BST)
+Date:   Fri, 25 Oct 2019 12:56:55 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Alvaro Gamez Machado <alvaro.gamez@hazent.com>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Shubhrajyoti Datta <shubhraj@xilinx.com>,
+        linux-spi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] spi: set bits_per_word based on controller's
+ bits_per_word_mask
+Message-ID: <20191025115655.GA4568@sirena.org.uk>
+References: <20191024110757.25820-1-alvaro.gamez@hazent.com>
+ <20191024110757.25820-4-alvaro.gamez@hazent.com>
+ <20191024111300.GD5207@sirena.co.uk>
+ <20191024125436.GA8878@salem.gmr.ssr.upm.es>
+ <20191024131129.GE46373@sirena.co.uk>
+ <20191024131856.GA32609@salem.gmr.ssr.upm.es>
+ <20191024134116.GF46373@sirena.co.uk>
+ <20191024140731.GA2950@salem.gmr.ssr.upm.es>
+ <20191024174033.GG46373@sirena.co.uk>
+ <20191025063947.GA19665@salem.gmr.ssr.upm.es>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.28.8.19]
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sm4nu43k4a2Rpi4c"
+Content-Disposition: inline
+In-Reply-To: <20191025063947.GA19665@salem.gmr.ssr.upm.es>
+X-Cookie: Keep out of the sunlight.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add peripheral pinctrl controller to a1 SoC
 
-Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+--sm4nu43k4a2Rpi4c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 7210ad049d1d..0965259af869 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/meson-a1-gpio.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -74,6 +75,23 @@
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
- 
-+			periphs_pinctrl: pinctrl@0400 {
-+				compatible = "amlogic,meson-a1-periphs-pinctrl";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				gpio: bank@0400 {
-+					reg = <0x0 0x0400 0x0 0x003c>,
-+					      <0x0 0x0480 0x0 0x0118>;
-+					reg-names = "mux", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 0 62>;
-+				};
-+
-+			};
-+
- 			uart_AO: serial@1c00 {
- 				compatible = "amlogic,meson-gx-uart",
- 					     "amlogic,meson-ao-uart";
--- 
-1.9.1
+On Fri, Oct 25, 2019 at 08:39:48AM +0200, Alvaro Gamez Machado wrote:
 
+> to claim the specific SPI slave. It may be spidev as in my use case, or it
+> may really be any other driver. But its probe() function is never going to
+> be called because the error is not raised inside the driver, but immediately
+> after forcibly setting the default value to 8 in spi.c
+
+Then you need to extend the validation the core is doing here to
+skip this parameter when registering the device and only enforce
+it after a driver is bound, we don't have a driver at the time we
+initially register the device so we can't enforce this.
+
+> I can't modify spidev because spidev doesn't even know this is happening.
+
+You are, at some point, going to need to set your spidev to 32
+bits per word (spidev does already support this).
+
+--sm4nu43k4a2Rpi4c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl2y4wUACgkQJNaLcl1U
+h9BpgQf/XNJ5nBjhjdIb2Tnl7FFtf6n6D1axZ7AGYAlnL5KAiV+sXtRT4oWE4DGr
++FxtPUOTroHbqtBB7BBqexVPNw1xQYsGFxYbD3gz2Il7USTBzMMDJ/8YVCRtSXzr
+pFZrd7uFHokcKl9r2ca/dPuNWnO5z/7jqnpq4syJ0A+bGJE/DgUmmzdpeBRY42eh
+dAbnJrNF7DWZRcFzXXr6nwYNjFQBWiTwPXAEdCuQp+5G4FrEQMWoAbm4/7xg9IdY
+Cb46HR8VkmtyUCafWgQBeUjVGrMPgsewcFMevjO3WDshe9HOLjFRcgymTgaE0Ds/
+5uFapLE00/Cu2/K8NPYDgmOCaSH6ZQ==
+=9y3V
+-----END PGP SIGNATURE-----
+
+--sm4nu43k4a2Rpi4c--
