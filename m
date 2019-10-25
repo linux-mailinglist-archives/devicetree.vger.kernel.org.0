@@ -2,59 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BF76E432F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 08:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBED9E4369
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 08:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393967AbfJYGFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Oct 2019 02:05:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48312 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2393713AbfJYGFJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Oct 2019 02:05:09 -0400
-Received: from dragon (li937-157.members.linode.com [45.56.119.157])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AEFE621929;
-        Fri, 25 Oct 2019 06:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571983507;
-        bh=fBJRRwheXU1MJ98d8dPNJRL9K8CPlTP6wigRKmHU5H8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CItcbHo19ZH8Tsjrxq66F0Ak0UPU72fpIEjLBf71IiAhSTnjilyrxdbhpXaEkrbx/
-         EEVqNgzKCjJN4DHwBsSbSDkB4IHkyI2ze7TTjScrr+5gfiRzj+XaasvDNI2Cpt+G2m
-         Zjt5zct0NmzVQMqoR5FNSXyJlyFoVicy02V/9Ajo=
-Date:   Fri, 25 Oct 2019 14:04:46 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, l.stach@pengutronix.de,
-        ccaione@baylibre.com, daniel.baluta@nxp.com,
-        andrew.smirnov@gmail.com, abel.vesa@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH] arm64: dts: imx8mq-evk: VDD_ARM power rail is always ON
-Message-ID: <20191025060444.GC3208@dragon>
-References: <1570604659-28314-1-git-send-email-Anson.Huang@nxp.com>
+        id S2404603AbfJYGNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Oct 2019 02:13:11 -0400
+Received: from mail-sz.amlogic.com ([211.162.65.117]:39195 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404602AbfJYGNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 02:13:10 -0400
+Received: from droid12-sz.software.amlogic (10.28.8.22) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 25 Oct 2019
+ 14:13:20 +0800
+From:   Xingyu Chen <xingyu.chen@amlogic.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+CC:     Xingyu Chen <xingyu.chen@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Qianggui Song <qianggui.song@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Jian Hu <jian.hu@amlogic.com>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/4] add meson secure watchdog driver
+Date:   Fri, 25 Oct 2019 14:13:00 +0800
+Message-ID: <1571983984-11771-1-git-send-email-xingyu.chen@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1570604659-28314-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain
+X-Originating-IP: [10.28.8.22]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 09, 2019 at 03:04:19PM +0800, Anson Huang wrote:
-> On i.MX8MQ EVK board, VDD_ARM is from a DC-DC converter which
-> is always ON, the GPIO1_IO13 is ONLY to switch VDD_ARM's voltage
-> between 0.9V and 1V for CPU DVFS, so VDD_ARM's GPIO regulator
-> should be always ON to avoid below confusion after kernel boot
-> up:
-> 
-> imx8mqevk login:
-> [   31.776619] vdd_arm: disabling
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+The watchdog controller on the Meson-A/C series SoCs is moved to secure world,
+We have to call SMC instruction to trap the ATF for watchdog operation. These
+operations are different from previous SoCs, so we introduce a new watchdog
+driver to support this kind of SoCs.
 
-Applied, thanks.
+Changes since v2 at [1]:
+- remove useless dependency in Kconfig
+- return zero when getting left time value fails
+
+Changes since v1 at [0]:
+- add a new dependency in Kconfig
+- simplify/add the return operation
+- remove useless ping operation when setting the timeout
+- fix some return values
+- fix the license statement
+
+[0]:https://lore.kernel.org/linux-amlogic/1570874721-36077-1-git-send-email-xingyu.chen@amlogic.com
+[1]:https://lore.kernel.org/linux-amlogic/1571387622-35132-1-git-send-email-xingyu.chen@amlogic.com
+
+Xingyu Chen (4):
+  firmware: meson_sm: add new SMC ID support for accessing secure
+    watchdog
+  dt-bindings: watchdog: add new binding for meson secure watchdog
+  watchdog: add meson secure watchdog driver
+  arm64: dts: a1: add secure watchdog controller
+
+ .../bindings/watchdog/amlogic,meson-sec-wdt.yaml   |  34 ++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   6 +
+ drivers/firmware/meson/meson_sm.c                  |   1 +
+ drivers/watchdog/Kconfig                           |  16 ++
+ drivers/watchdog/Makefile                          |   1 +
+ drivers/watchdog/meson_sec_wdt.c                   | 187 +++++++++++++++++++++
+ include/linux/firmware/meson/meson_sm.h            |   1 +
+ 7 files changed, 246 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/amlogic,meson-sec-wdt.yaml
+ create mode 100644 drivers/watchdog/meson_sec_wdt.c
+
+-- 
+2.7.4
+
