@@ -2,119 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA77FE4BC5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 15:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBE5E4BD4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 15:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440303AbfJYNHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Oct 2019 09:07:18 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36179 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440294AbfJYNHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 09:07:17 -0400
-Received: by mail-ot1-f66.google.com with SMTP id c7so2043151otm.3;
-        Fri, 25 Oct 2019 06:07:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cjIHQSLxAfrO8r2mYhvtTFdVGXGSg2sOMWkk/+SphrE=;
-        b=qKyYZu//ola0l74wKrpCXJ8hPsd2wrypyXnUv9YlDHhKVgUtocVacIEFrVdrPqaUJH
-         x++6W2rYpqCDAVB+7Z30Ck37xWCuXPK2A9qpP6LH154PFnCgTU9t1ift3+25Uh63RzjZ
-         CJglZJ2M/vb2Uf4Lj7+8NC3kvZn6WEv28bziqn7svyBPtIW4xVlmcsPZtwqAAr0SSe4v
-         jAiblXFoZMh1oSCSbAaPTiLcsVxO2KqibSFcwO75gJ02t8tcKE+F2GH6iG119FEq726j
-         WIZpwId7fiJ2H/3bIQSphKe0lm/3fxrPOFPSKNo8YFfg7QpMHo+ZbkPZvmHUXfDSToJK
-         Hpkw==
-X-Gm-Message-State: APjAAAWubfaFRlp27Xm8BG9zNdrbjXdo6EKBSyAycCrUpQ0vSnYmIW+p
-        J+ictOtQw55ADqYmurotUctScn0cuzZ+DwkD092PB3ty
-X-Google-Smtp-Source: APXvYqzGKbCyS1szfG8o0X910Fume/955nA8LLrYOuI11vgDmVi+31XMEhVH1S52qFAbuu9uH8/7k1ix9oNIdKm0vB4=
-X-Received: by 2002:a9d:6e10:: with SMTP id e16mr2735573otr.297.1572008835268;
- Fri, 25 Oct 2019 06:07:15 -0700 (PDT)
+        id S2393684AbfJYNLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Oct 2019 09:11:31 -0400
+Received: from mga06.intel.com ([134.134.136.31]:29096 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2393640AbfJYNLa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Oct 2019 09:11:30 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 25 Oct 2019 06:11:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,228,1569308400"; 
+   d="scan'208";a="192535951"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 25 Oct 2019 06:11:27 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1iNzNG-00057E-PH; Fri, 25 Oct 2019 21:11:26 +0800
+Date:   Fri, 25 Oct 2019 21:11:25 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     kbuild-all@lists.01.org, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
+        andrew.murray@arm.com, robh@kernel.org,
+        martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+        hch@infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com, Dilip Kota <eswara.kota@linux.intel.com>
+Subject: Re: [PATCH v4 2/3] dwc: PCI: intel: PCIe RC controller driver
+Message-ID: <201910252151.TneNlBhQ%lkp@intel.com>
+References: <c46ba3f4187fe53807948b4f10996b89a75c492c.1571638827.git.eswara.kota@linux.intel.com>
 MIME-Version: 1.0
-References: <20190705164221.4462-1-robh@kernel.org> <20190705164221.4462-2-robh@kernel.org>
-In-Reply-To: <20190705164221.4462-2-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 25 Oct 2019 15:07:04 +0200
-Message-ID: <CAMuHMdW86UOVp5vjdFBzjbqsG_wemjZ77LyVnc+oZ6ZDccv_cA@mail.gmail.com>
-Subject: Re: [PATCH v3 01/13] dt-bindings: display: Convert common panel
- bindings to DT schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c46ba3f4187fe53807948b4f10996b89a75c492c.1571638827.git.eswara.kota@linux.intel.com>
+X-Patchwork-Hint: ignore
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Dilip,
 
-On Fri, Jul 5, 2019 at 6:46 PM Rob Herring <robh@kernel.org> wrote:
-> Convert the common panel bindings to DT schema consolidating scattered
-> definitions to a single schema file.
->
-> The 'simple-panel' binding just a collection of properties and not a
-> complete binding itself. All of the 'simple-panel' properties are
-> covered by the panel-common.txt binding with the exception of the
-> 'no-hpd' property, so add that to the schema.
->
-> As there are lots of references to simple-panel.txt, just keep the file
-> with a reference to common.yaml for now until all the bindings are
-> converted.
->
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Thank you for the patch! Perhaps something to improve:
 
-This is now commit 821a1f7171aeea5e ("dt-bindings: display: Convert
-common panel bindings to DT schema").
+[auto build test WARNING on pci/next]
+[cannot apply to v5.4-rc4 next-20191025]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+url:    https://github.com/0day-ci/linux/commits/Dilip-Kota/PCI-Add-Intel-PCIe-Driver-and-respective-dt-binding-yaml-file/20191024-103204
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git next
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
 
-> +  backlight:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      For panels whose backlight is controlled by an external backlight
-> +      controller, this property contains a phandle that references the
-> +      controller.
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
 
-This paragraph seems to apply to all nodes named "backlight", causing
-e.g. (for ARCH=arm mach_shmobile_defconfig) "make dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/panel/panel-common.yaml"
-to start complaining:
 
-    arch/arm/boot/dts/r8a7740-armadillo800eva.dt.yaml: backlight:
-{'compatible': ['pwm-backlight'], 'pwms': [[40, 2, 33333, 1]],
-'brightness-levels': [[0, 1, 2, 4, 8, 16, 32, 64, 128, 255]],
-'default-brightness-level': [[9]], 'pinctrl-0': [[41]],
-'pinctrl-names': ['default'], 'power-supply': [[42]], 'enable-gpios':
-[[15, 61, 0]]} is not of type 'array'
-    arch/arm/boot/dts/r8a7740-armadillo800eva.dt.yaml: backlight:
-{'groups': ['tpu0_to2_1'], 'function': ['tpu0'], 'phandle': [[41]]} is
-not of type 'array'
+sparse warnings: (new ones prefixed by >>)
 
-Do you know what's wrong?
+>> drivers/pci/controller/dwc/pcie-intel-gw.c:497:5: sparse: sparse: symbol 'intel_pcie_msi_init' was not declared. Should it be static?
+>> drivers/pci/controller/dwc/pcie-intel-gw.c:503:5: sparse: sparse: symbol 'intel_pcie_cpu_addr' was not declared. Should it be static?
 
-Thanks!
+Please review and possibly fold the followup patch.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
