@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1AC2E45AF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 10:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDCD9E45F8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 10:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390248AbfJYI1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Oct 2019 04:27:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51134 "EHLO mail.kernel.org"
+        id S2408113AbfJYImk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Oct 2019 04:42:40 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:46712 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389356AbfJYI1B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Oct 2019 04:27:01 -0400
-Received: from dragon (li937-157.members.linode.com [45.56.119.157])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0ED5920684;
-        Fri, 25 Oct 2019 08:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1571992020;
-        bh=30+L12pvXfxaxXDRXM/+Zl1YsohKs9Lg/WjJFQ9wTPw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RxgTSyEweBrXwKuVu3cb9km3FWD3Eg0gKN82K9DdP9tRKNPER60Bq7QtzyUmdki9L
-         UaC2/v69hAr6C0SGDEHsBR0Fl12GxOlOy6psnUMjhTP6obRzIIaHy1dX5qEW2KcbLe
-         u7UNkTs7HlVJqizXcJQhJBspppwZafSSev7QHA8k=
-Date:   Fri, 25 Oct 2019 16:26:44 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Yuantian Tang <andy.tang@nxp.com>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        id S2407876AbfJYImk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Oct 2019 04:42:40 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C757820043F;
+        Fri, 25 Oct 2019 10:42:38 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8E27720006D;
+        Fri, 25 Oct 2019 10:42:31 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7D3DB402BC;
+        Fri, 25 Oct 2019 16:42:22 +0800 (SGT)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, ping.bai@nxp.com,
+        jun.li@nxp.com, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
+        daniel.lezcano@linaro.org, shengjiu.wang@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: ls1028a: fix a compatible issue
-Message-ID: <20191025082642.GG3208@dragon>
-References: <20191010083334.7037-1-andy.tang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191010083334.7037-1-andy.tang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [PATCH] ARM64: imx8mm: Change compatible string for sdma
+Date:   Fri, 25 Oct 2019 16:39:23 +0800
+Message-Id: <1571992763-31339-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 10, 2019 at 04:33:34PM +0800, Yuantian Tang wrote:
-> The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
-> If the wrong compatible was used, this chip will not be able to
-> be probed correctly and hence fail to work.
-> 
-> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+SDMA in i.MX8MM should use same configuration as i.MX8MQ
+So need to change compatible string to be "fsl,imx8mq-sdma".
 
-Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+Fixes: a05ea40eb384 ("arm64: dts: imx: Add i.mx8mm dtsi support")
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I added the tag and applied the patch.  Please take care of adding Fixes
-tag for fixes in the future.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index 2139c0a9c495..6a54d2a3b19b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -394,7 +394,7 @@
+ 			};
+ 
+ 			sdma2: dma-controller@302c0000 {
+-				compatible = "fsl,imx8mm-sdma", "fsl,imx7d-sdma";
++				compatible = "fsl,imx8mm-sdma", "fsl,imx8mq-sdma";
+ 				reg = <0x302c0000 0x10000>;
+ 				interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clk IMX8MM_CLK_SDMA2_ROOT>,
+@@ -405,7 +405,7 @@
+ 			};
+ 
+ 			sdma3: dma-controller@302b0000 {
+-				compatible = "fsl,imx8mm-sdma", "fsl,imx7d-sdma";
++				compatible = "fsl,imx8mm-sdma", "fsl,imx8mq-sdma";
+ 				reg = <0x302b0000 0x10000>;
+ 				interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clk IMX8MM_CLK_SDMA3_ROOT>,
+@@ -741,7 +741,7 @@
+ 			};
+ 
+ 			sdma1: dma-controller@30bd0000 {
+-				compatible = "fsl,imx8mm-sdma", "fsl,imx7d-sdma";
++				compatible = "fsl,imx8mm-sdma", "fsl,imx8mq-sdma";
+ 				reg = <0x30bd0000 0x10000>;
+ 				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clk IMX8MM_CLK_SDMA1_ROOT>,
+-- 
+2.21.0
 
-Shawn
-
-> ---
-> v2:
-> 	- refine the description
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> index 5e14e5a19744..f5da9e8b0d9d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> @@ -107,7 +107,7 @@
->  	status = "okay";
->  
->  	i2c-mux@77 {
-> -		compatible = "nxp,pca9847";
-> +		compatible = "nxp,pca9547";
->  		reg = <0x77>;
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> -- 
-> 2.17.1
-> 
