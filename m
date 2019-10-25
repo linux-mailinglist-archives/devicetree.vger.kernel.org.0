@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E75E52A6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 19:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6A4FE52A9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 19:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728768AbfJYR4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Oct 2019 13:56:50 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:43297 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728764AbfJYR4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 13:56:49 -0400
-Received: by mail-pg1-f193.google.com with SMTP id l24so1996166pgh.10
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2019 10:56:49 -0700 (PDT)
+        id S1729700AbfJYR45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Oct 2019 13:56:57 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:33826 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729423AbfJYR4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 13:56:55 -0400
+Received: by mail-pl1-f196.google.com with SMTP id k7so1642847pll.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2019 10:56:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SvO1A1WodzP09Lr/d61c8nwX2ky0IL4uKfdfDnxUPmw=;
-        b=I4XfFKf3RnZY4BUBJ06ANjDE0z1GGx0Afz6XL/cNhEQmqi+MUhs+nXMKueeEqbcYv5
-         ivOmHPAV2dOpG6pCDpgF2Vi8AXSwhVaudm6w1kFSZ4SP4AHmdQmdvPl+X9Tas0C6m3A3
-         bFxqOPf/VbzeXjotxsF22smaJJ/2ZV1IjNkqM=
+        bh=lLu60EjnRBnW4wz32/fkJTOsgD5cNWvT5qBN+RYNBTg=;
+        b=nzR3p0+HUwjXCJKFafzIo/pTdfwQapiV5SDEz31AqhqaOqpWV+6AfLRqzgUNU2dQll
+         GQOezQcsxvulPc8HLtausz/BgBiI92Lo/kgjsrUkgENWm4yzLSud7S0aX+UPD7aWADn8
+         3z8WU/qkfRHqIk4IhK1d19jwGUosVM0Ma0W8w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SvO1A1WodzP09Lr/d61c8nwX2ky0IL4uKfdfDnxUPmw=;
-        b=gpd+BHyuUfVOSBiwZDSRSgcAIPiBgXiPuKVe6+PBqm/W6KlaZjvJz/1Nsq9dsmSfXn
-         5YjhnbQiE+S1BI5G1b7x9rgGM+iCYxQUt+gQge8xt4PtgCjcdhLpyc9Sp92MiZ+WUUmr
-         Zxsbb2V1AldunFLHFEv1TCc9SU3VcPJ+6gINYQ3jPMVg++tFJrXVrwGB+emMCv4V3Nbd
-         tVEpXVcLcv1RxhfvN3R7jFjxSlEONl1zdiyD4hNHP5R94rTsblW6ppdrwvXz8qZ86YE1
-         ZmFoa4twg06Q+vh5BKLMjTH2f/3VstnUG3RH9GErlaBCl05N/Xae5bGNeI/vmnaA37p+
-         Fm+w==
-X-Gm-Message-State: APjAAAVYDJiWUhoq6FGIoxYrXQtJHZX0r4/N8HseWjt8JKZryo2c6V7+
-        kVhfPR/zh5Ps5u4rwrJbN1gZPg==
-X-Google-Smtp-Source: APXvYqwtMqZQKmJ6DIKbe31ZyiLHeuFErJqjqH6z2emRh6lR+XJ+rba3bVgZ3LyEV+aTG50TN3A3Rg==
-X-Received: by 2002:a17:90a:fc93:: with SMTP id ci19mr5849047pjb.34.1572026208821;
-        Fri, 25 Oct 2019 10:56:48 -0700 (PDT)
+        bh=lLu60EjnRBnW4wz32/fkJTOsgD5cNWvT5qBN+RYNBTg=;
+        b=MJxWEFesuxXvEHTxfKQm+577x244bsUc3B1+uCbyljhnE1L4zDum/GoMbsk0VaHkyN
+         vJ8O/mPz74K9mcpma7Kq9rYcGG5jjlWYnsLrqptZ7ORSM36K0N48avkeqGlQUTA3qC65
+         8TzOfF53cw/CqNsB8jR2WWIyEkU8JxmFNFuFI4JQvNRe5lsgCtDelJC/oj1O8jSSahYs
+         6CJoBO0O00DoU8iPqGafDHL/mXsbQljIE80y6NvXJMAirbLkUskFtO8nHKJKkyJm8qqg
+         IzHtOEyLPZlGObCRaYK0FnQvvLmpFl1OTUDMn2z3LJw3DDP43SGksHtM6l26Q/3SBhR4
+         UEYg==
+X-Gm-Message-State: APjAAAXUUlOvFOjAjXd3qBoH9ykwPAvYKvJdDNY+nFWriTCCxsdFMrh9
+        psGoDitU4ZHtZ4/HrjbU+ifeDNZBIE8=
+X-Google-Smtp-Source: APXvYqwG2PcwNymr0aLBWSu0Ew+FNG8Zo1et6ICQyCp5D/JHBAhCy2QuD7wY9vd+w8cmoYVE4JztoA==
+X-Received: by 2002:a17:902:304:: with SMTP id 4mr5342476pld.106.1572026214910;
+        Fri, 25 Oct 2019 10:56:54 -0700 (PDT)
 Received: from localhost.localdomain ([115.97.180.31])
-        by smtp.gmail.com with ESMTPSA id n15sm2926580pfq.146.2019.10.25.10.56.43
+        by smtp.gmail.com with ESMTPSA id n15sm2926580pfq.146.2019.10.25.10.56.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2019 10:56:48 -0700 (PDT)
+        Fri, 25 Oct 2019 10:56:54 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         David Airlie <airlied@linux.ie>,
@@ -53,9 +53,9 @@ Cc:     michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v11 1/7] dt-bindings: sun6i-dsi: Document A64 MIPI-DSI controller
-Date:   Fri, 25 Oct 2019 23:26:19 +0530
-Message-Id: <20191025175625.8011-2-jagan@amarulasolutions.com>
+Subject: [PATCH v11 2/7] dt-bindings: sun6i-dsi: Add A64 DPHY compatible (w/ A31 fallback)
+Date:   Fri, 25 Oct 2019 23:26:20 +0530
+Message-Id: <20191025175625.8011-3-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20191025175625.8011-1-jagan@amarulasolutions.com>
 References: <20191025175625.8011-1-jagan@amarulasolutions.com>
@@ -66,77 +66,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MIPI DSI controller in Allwinner A64 is similar to A33.
+The MIPI DSI PHY controller on Allwinner A64 is similar
+on the one on A31.
 
-But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
-to have separate compatible for A64 on the same driver.
-
-DSI_SCLK uses mod clock-names on dt-bindings, so the same
-is not required for A64.
-
-On that note
-- A64 require minimum of 1 clock like the bus clock
-- A33 require minimum of 2 clocks like both bus, mod clocks
-
-So, update dt-bindings so-that it can document both A33,
-A64 bindings requirements.
+Add A64 compatible and append A31 compatible as fallback.
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- .../display/allwinner,sun6i-a31-mipi-dsi.yaml | 20 +++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+ .../bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml         | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-index dafc0980c4fa..2b7016ca382c 100644
---- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-@@ -15,7 +15,9 @@ properties:
-   "#size-cells": true
+diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
+index fa46670de299..8841938050b2 100644
+--- a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
++++ b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
+@@ -15,7 +15,11 @@ properties:
+     const: 0
  
    compatible:
--    const: allwinner,sun6i-a31-mipi-dsi
+-    const: allwinner,sun6i-a31-mipi-dphy
 +    oneOf:
-+      - const: allwinner,sun6i-a31-mipi-dsi
-+      - const: allwinner,sun50i-a64-mipi-dsi
++      - const: allwinner,sun6i-a31-mipi-dphy
++      - items:
++          - const: allwinner,sun50i-a64-mipi-dphy
++          - const: allwinner,sun6i-a31-mipi-dphy
  
    reg:
      maxItems: 1
-@@ -24,6 +26,8 @@ properties:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 1
-+    maxItems: 2
-     items:
-       - description: Bus Clock
-       - description: Module Clock
-@@ -63,13 +67,25 @@ required:
-   - reg
-   - interrupts
-   - clocks
--  - clock-names
-   - phys
-   - phy-names
-   - resets
-   - vcc-dsi-supply
-   - port
- 
-+allOf:
-+  - if:
-+      properties:
-+         compatible:
-+           contains:
-+             const: allwinner,sun6i-a31-mipi-dsi
-+      then:
-+        properties:
-+          clocks:
-+            minItems: 2
-+        required:
-+          - clock-names
-+
- additionalProperties: false
- 
- examples:
 -- 
 2.18.0.321.gffc6fa0e3
 
