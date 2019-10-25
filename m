@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 749E9E52B5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 19:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8828BE52AC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2019 19:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730283AbfJYR5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1730314AbfJYR5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 25 Oct 2019 13:57:14 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:43333 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726575AbfJYR5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 13:57:09 -0400
-Received: by mail-pg1-f193.google.com with SMTP id l24so1996703pgh.10
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2019 10:57:07 -0700 (PDT)
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:44641 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730180AbfJYR5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Oct 2019 13:57:14 -0400
+Received: by mail-pl1-f195.google.com with SMTP id q16so1378646pll.11
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2019 10:57:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=P3Mki6uub+NAK80E3ntfBcsFK0xNEI4Pl6xkUsSgIeM=;
-        b=i3MIHeuYlYEVmU4821ovZp6xUdW9w+0CO4+t4aQLQryHnwktMguR3UUD+Yd9ZkzbTJ
-         4iQrMyZXSu1Za0QtBnk0m4NeXcBDnmIdW7LtsfXsM4RHfFgOEWbXEXuvHz130kkxKtiF
-         fH4VjdQ2kJHmdErld9s1DPCCJz7NeHLkpyWIA=
+        bh=P+ShWs2FSM+vAO8pDJrhjeu0D2BHwDqE1SNacXjaIBI=;
+        b=GCFIrxMGvDu4anO9yWv5FSLPtn8GCu9UGwWlSFs+9Savi7Bbo5hViLED9RYTD7MP6H
+         54jW5B3P3KfDJv9wUhchHXM4A2Thg4kojn3iT/MQ8+92+dzX/eXAyN+wqpiDReGizoaR
+         Bc2Per+UzIOICEBJHScoH1tu4uvnM1QLWBU7A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=P3Mki6uub+NAK80E3ntfBcsFK0xNEI4Pl6xkUsSgIeM=;
-        b=LFHL88kbuqwz8pxgxv6WviiB8s9nOEOtIW4zK+4AwOkkHub8ELnGP1cfAfQOx92c8i
-         Li1+2pmCpJawVMxCRrLKcu140T4vicaWV5wFwT8YRo5Lve4CAfCxDZjPKLESqSZaQVLG
-         qpf9oOEZuNx1oMKSqkIfc/P8X1YKZy41+D1hvFftEHGPA6elCeq+ZY0k9KpX05k+L4lU
-         nQT3EQrVPoxgw4BWN9FUJ5D5LEJlJWKn3vPs0hr690lCDQlKPBWBFafhcZPSELKAnDJ6
-         NSsKyfeDQ3FGsAe4Xh6T1/67qVSQ9hAu9kjpjSwD4YoegTBdl39JhB5vBqNUj9e+X3L4
-         ahRw==
-X-Gm-Message-State: APjAAAUZP8tbFNagKZ41ZcUxWc0ug7i8OQeyFhCmv9yA0Ul7Q+zbvASK
-        /QWWNHLy0i/p0Sc6c703sh3OrQ==
-X-Google-Smtp-Source: APXvYqwQDEhpc37JYujaBlS0c+W1Le7LhGIIS5sXpnrhe8K1umdFkvWh0OaUWV5zfFMK68Yte1XnMQ==
-X-Received: by 2002:a62:58c2:: with SMTP id m185mr6044311pfb.10.1572026227045;
-        Fri, 25 Oct 2019 10:57:07 -0700 (PDT)
+        bh=P+ShWs2FSM+vAO8pDJrhjeu0D2BHwDqE1SNacXjaIBI=;
+        b=fxuofDfQYMYiNmosVReGr/Y39mJVz+jyx4AEks1ZTlz+ZmCwS9q1zmrYDhXcvO4Vkt
+         uLy7qbq+mD9CgjEaTjRowW7sQy34TmADQPayH64LMvr3giDwYwEye2aZERGUFTYpTxCd
+         iKQGwOa//G2Tv9zh245c49dUMt/O4O/+w3elLF2TNeIUJy/z/YPzMlZvHr/ZG5J6KrtU
+         VLETPaBreYiqfl/XQ5nUwUvmlJtBZM7qicsmJdI01Tjc7l+qSLF0zEyKJh2uJIhBSI3V
+         s7NGfRXQl89W2hoxJSXOZB2oz6frgbnfh9qPU0GJBocRnwPYo8gt5gWtcI9qAF5r0AJW
+         YZRg==
+X-Gm-Message-State: APjAAAV6fv6D2UmOeqvGjFW0+YcZ6cia6tfjun2xdttttiRrL+GjnVNp
+        veUZDkfuE+G9T201E/nbE76c7w==
+X-Google-Smtp-Source: APXvYqy2y4it2bBHhmVAciL+iQ/Bchja3gPtyMwHbnVNaDVG+gfU16WxFFqSrCI2gyiaQnXpjxrzxQ==
+X-Received: by 2002:a17:902:6b45:: with SMTP id g5mr5151240plt.336.1572026233355;
+        Fri, 25 Oct 2019 10:57:13 -0700 (PDT)
 Received: from localhost.localdomain ([115.97.180.31])
-        by smtp.gmail.com with ESMTPSA id n15sm2926580pfq.146.2019.10.25.10.57.01
+        by smtp.gmail.com with ESMTPSA id n15sm2926580pfq.146.2019.10.25.10.57.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2019 10:57:06 -0700 (PDT)
+        Fri, 25 Oct 2019 10:57:12 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         David Airlie <airlied@linux.ie>,
@@ -53,81 +53,53 @@ Cc:     michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v11 4/7] =?UTF-8?q?drm/sun4i:=20dsi:=20Handle=20bus=20cloc?= =?UTF-8?q?k=20explicitly=C2=A0?=
-Date:   Fri, 25 Oct 2019 23:26:22 +0530
-Message-Id: <20191025175625.8011-5-jagan@amarulasolutions.com>
+Subject: [PATCH v11 5/7] drm/sun4i: dsi: Add Allwinner A64 MIPI DSI support
+Date:   Fri, 25 Oct 2019 23:26:23 +0530
+Message-Id: <20191025175625.8011-6-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20191025175625.8011-1-jagan@amarulasolutions.com>
 References: <20191025175625.8011-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Usage of clocks are varies between different Allwinner
-DSI controllers. Clocking in A33 would need bus and
-mod clocks where as A64 would need only bus clock.
+The MIPI DSI controller in Allwinner A64 is similar to A33.
 
-To support this kind of clocking structure variants
-in the same dsi driver, explicit handling of common
-clock would require since the A64 doesn't need to
-mention the clock-names explicitly in dts since it
-support only one bus clock.
-
-Also pass clk_id NULL instead "bus" to regmap clock
-init function since the single clock variants no need
-to mention clock-names explicitly.
+But unlike A33, A64 doesn't have DSI_SCLK gating so add compatible
+for Allwinner A64 with uninitialized has_mod_clk driver.
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Tested-by: Merlijn Wajer <merlijn@wizzup.org>
 ---
- drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-index 8c4c541224dd..eacdfcff64ad 100644
+index eacdfcff64ad..4dda96e0febd 100644
 --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
 +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-@@ -1109,7 +1109,7 @@ static int sun6i_dsi_probe(struct platform_device *pdev)
- 		return PTR_ERR(dsi->regulator);
- 	}
+@@ -1251,11 +1251,18 @@ static const struct sun6i_dsi_variant sun6i_a31_mipi_dsi = {
+ 	.has_mod_clk = true,
+ };
  
--	dsi->regs = devm_regmap_init_mmio_clk(dev, "bus", base,
-+	dsi->regs = devm_regmap_init_mmio_clk(dev, NULL, base,
- 					      &sun6i_dsi_regmap_config);
- 	if (IS_ERR(dsi->regs)) {
- 		dev_err(dev, "Couldn't create the DSI encoder regmap\n");
-@@ -1122,6 +1122,12 @@ static int sun6i_dsi_probe(struct platform_device *pdev)
- 		return PTR_ERR(dsi->reset);
- 	}
- 
-+	dsi->bus_clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(dsi->bus_clk)) {
-+		dev_err(dev, "Couldn't get the DSI bus clock\n");
-+		return PTR_ERR(dsi->bus_clk);
-+	}
++static const struct sun6i_dsi_variant sun50i_a64_mipi_dsi = {
++};
 +
- 	if (dsi->variant->has_mod_clk) {
- 		dsi->mod_clk = devm_clk_get(dev, "mod");
- 		if (IS_ERR(dsi->mod_clk)) {
-@@ -1196,6 +1202,7 @@ static int __maybe_unused sun6i_dsi_runtime_resume(struct device *dev)
- 	}
- 
- 	reset_control_deassert(dsi->reset);
-+	clk_prepare_enable(dsi->bus_clk);
- 	if (dsi->variant->has_mod_clk)
- 		clk_prepare_enable(dsi->mod_clk);
- 
-@@ -1227,6 +1234,7 @@ static int __maybe_unused sun6i_dsi_runtime_suspend(struct device *dev)
- 
- 	if (dsi->variant->has_mod_clk)
- 		clk_disable_unprepare(dsi->mod_clk);
-+	clk_disable_unprepare(dsi->bus_clk);
- 	reset_control_assert(dsi->reset);
- 	regulator_disable(dsi->regulator);
- 
+ static const struct of_device_id sun6i_dsi_of_table[] = {
+ 	{
+ 		.compatible = "allwinner,sun6i-a31-mipi-dsi",
+ 		.data = &sun6i_a31_mipi_dsi,
+ 	},
++	{
++		.compatible = "allwinner,sun50i-a64-mipi-dsi",
++		.data = &sun50i_a64_mipi_dsi,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, sun6i_dsi_of_table);
 -- 
 2.18.0.321.gffc6fa0e3
 
