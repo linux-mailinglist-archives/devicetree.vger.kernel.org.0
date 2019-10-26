@@ -2,142 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B91A1E593E
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2019 10:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1A13E5964
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2019 11:09:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726057AbfJZIYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Oct 2019 04:24:35 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:29148 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725996AbfJZIYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Oct 2019 04:24:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1572078269;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=i+MQHbSzYrAECD2i9GTqSSZFbktvxXHglJFMdbybaRE=;
-        b=LNqqwElIvEiAjEsa2LSRu+A6IpBmygpF81iPakauQHuZVCUwGfzXQVv2gK5NtqJSDK
-        E7RwKoB7utIOwMOedtguOI/atFZYOdxSxQFhc3pRVQOWgK7Hm1gLj7Op98hR9aWLfmOf
-        atGTu8l6QR9ploMezQoPI9gSeIxahf0coppzuXAWygrSQwic0+IuaWvcSQp2l7hh2Sns
-        8VI6IxVarZP3brRrUz6nrPl8Ow369ykyONCBib2O+sSz7wH1NTsu4VRkt4happKyNBpg
-        SoYhipHE4YXckL2s8aGjmCh0RCtt65jH89uXnLxS79nkyR3lqKx3eD+XkRa1LO8Iv+rs
-        B6iQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBp5hRw/qOxWRk4dCysP/lx4uw33QyGXuNISy7Vq++g6sYlqLxXuQw="
-X-RZG-CLASS-ID: mo00
-Received: from [IPv6:2001:16b8:2694:9c00:1e1:24c4:3f0e:1772]
-        by smtp.strato.de (RZmta 44.28.1 AUTH)
-        with ESMTPSA id R0b2a8v9Q8Nvkz4
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Sat, 26 Oct 2019 10:23:57 +0200 (CEST)
-Content-Type: text/plain; charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [PATCH v2 01/11] Documentation: dt: wireless: update wl1251 for sdio
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20191025211338.GA20249@bogus>
-Date:   Sat, 26 Oct 2019 10:24:05 +0200
-Cc:     =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        id S1726115AbfJZJJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Oct 2019 05:09:50 -0400
+Received: from mout.perfora.net ([74.208.4.194]:53887 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726057AbfJZJJu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 26 Oct 2019 05:09:50 -0400
+Received: from marcel-nb-toradex-int.cardiotech.int ([81.221.67.182]) by
+ mrelay.perfora.net (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id
+ 1MQdh4-1ib1S01G0U-00Nkh2; Sat, 26 Oct 2019 11:04:18 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        David Sterba <dsterba@suse.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Alexios Zavras <alexios.zavras@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Allison Randal <allison@lohutok.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, letux-kernel@openphoenux.org,
-        linux-mmc@vger.kernel.org, kernel@pyra-handheld.com,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <3A15C879-3A17-4FFC-B41E-0B98B63E8F7C@goldelico.com>
-References: <cover.1571510481.git.hns@goldelico.com> <741828f69eca2a9c9a0a7e80973c91f50cc71f9b.1571510481.git.hns@goldelico.com> <20191025211338.GA20249@bogus>
-To:     Rob Herring <robh@kernel.org>
-X-Mailer: Apple Mail (2.3124)
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Stefan Agner <stefan@agner.ch>
+Subject: [PATCH v2 1/5] arm: dts: vf-colibri: fix typo in top-level module compatible
+Date:   Sat, 26 Oct 2019 11:03:59 +0200
+Message-Id: <20191026090403.3057-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:uCkCQ5TKbiZEPOXRjuUU6qXHkYQrJJn9ygRw5CFh8WqiHqiMNIH
+ 6XJvGd+TbDVJksX+AEQotEHsuk7/gDK7WZjqhVGmXRByJJjpu+ZUZB5+yxbkuyOoioiKtxD
+ 2GKSezcg0OEusEbDk+okfru1hIlQtefsZVgtIxEzrKT14s/bJRgNnVRPWx4jXaZ09R0ZAO8
+ G5mRaDsp4xgCjj4e1g2dQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:TepQZIodI7M=:Px5RUF6fF0wHbFsrTFQJ25
+ GQ4GQEt+p0pCIXrX+GOlLwbi5hqYcyh1qe5brIuxpQos9MHZAoyQ6bZb54SdQY40Jf87ygDb+
+ jVPfkUef37vB7pjLHraBi+mvzl2/g7/ayM5QKlrCiF6tlW+DuVVfgas8+LMYl4aLwZ1KxWPAS
+ kpSE0fkTZj7CWCkB5Fegr6Gdi1/lOnayEFbeCcfDnDMXwN/HoGGTF3Kc0rrTQlSFemKyxYMQm
+ onYNhlig7UEp7TUV22LERnKQZ0e36B7zJN682s6aLlskcEONcw6uOgHhEyg7ph/5iLOC9kT2Y
+ br8APppcdMIFam+IAFvJq/jf9JqjKtZodKl4PgqI3l/SaoEqSoQ8/jxlQzvhOrh5YYIfSJDj9
+ 9JovqizTvae+Q331gaciDT6Ko65gNd0hh6PBBQ6w6Y1pjyUTK76h3MBEInk48XPq6KhOJiCzu
+ Tj+G0PlrEdOZy1HM1nsO/8FPUqvrh+8fQDLMz2W+bjTqxifOgIuqNDyrvKWXd3dhcbKv8foiT
+ j4uFVwedAj9GSVJWKL0D3ZXl1u7ompOOO+7rif8Lr9LzUczKzFqGCzcAHuiQI6AX131qrlokL
+ p3ErQqH63qhoWhTXp3EhpuIYVg8tAJhA4s9Lr+jPvL6Rz4dyaPituQOJlqNWrWTgEUb3brKDJ
+ ya2Za/oepYM2nbX/8cIE+gSCB47pyXKMa4U1HPUG/lrCaQX4YL/ZYCHYgJ8J3OUdW5pEI6H0R
+ GqY1WYwd6fGucXE4frdfR5laHdz6RSIgzFBLEX1fa3ScJwijVU+OTUzGtC80FH87LNTMiD/j6
+ +QiF7Pv0JhIch2j0ZIJul8V23MG37eWzgum1d//q4bC966RzkLYe2KK8XN9J0iXS+kHHxTTgy
+ O/qpW+r2cHBMBherExgBNHVsnXJeQ295WiI9foX4w=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-> Am 25.10.2019 um 23:13 schrieb Rob Herring <robh@kernel.org>:
->=20
-> On Sat, Oct 19, 2019 at 08:41:16PM +0200, H. Nikolaus Schaller wrote:
->> The standard method for sdio devices connected to
->> an sdio interface is to define them as a child node
->> like we can see with wlcore.
->>=20
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> Acked-by: Kalle Valo <kvalo@codeaurora.org>
->> ---
->> .../bindings/net/wireless/ti,wl1251.txt       | 26 =
-+++++++++++++++++++
->> 1 file changed, 26 insertions(+)
->>=20
->> diff --git =
-a/Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt =
-b/Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt
->> index bb2fcde6f7ff..88612ff29f2d 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt
->> +++ b/Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt
->> @@ -35,3 +35,29 @@ Examples:
->> 		ti,power-gpio =3D <&gpio3 23 GPIO_ACTIVE_HIGH>; /* 87 */
->> 	};
->> };
->> +
->> +&mmc3 {
->> +	vmmc-supply =3D <&wlan_en>;
->> +
->> +	bus-width =3D <4>;
->> +	non-removable;
->> +	ti,non-removable;
->> +	cap-power-off-card;
->> +
->> +	pinctrl-names =3D "default";
->> +	pinctrl-0 =3D <&mmc3_pins>;
->=20
-> None of the above are really relevant to this binding.
+Fix typo in top-level module compatible.
 
-Ok, but how and where do we document that they are needed to make both =
-ends of the interface work together?
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
->=20
->> +
->> +	#address-cells =3D <1>;
->> +	#size-cells =3D <0>;
->> +
->> +	wlan: wl1251@1 {
->=20
-> wifi@1
+---
 
-Ok.
+Changes in v2: New patch.
 
->=20
->> +		compatible =3D "ti,wl1251";
->> +
->> +		reg =3D <1>;
->> +
->> +		interrupt-parent =3D <&gpio1>;
->> +		interrupts =3D <21 IRQ_TYPE_LEVEL_HIGH>;	/* =
-GPIO_21 */
->> +
->> +		ti,wl1251-has-eeprom;
->> +	};
->> +};
->> --=20
->> 2.19.1
->>=20
+ arch/arm/boot/dts/vf500-colibri.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-BR and thanks,
-Nikolaus=
+diff --git a/arch/arm/boot/dts/vf500-colibri.dtsi b/arch/arm/boot/dts/vf500-colibri.dtsi
+index 237b0246fa84..92255f8893ce 100644
+--- a/arch/arm/boot/dts/vf500-colibri.dtsi
++++ b/arch/arm/boot/dts/vf500-colibri.dtsi
+@@ -44,7 +44,7 @@
+ 
+ / {
+ 	model = "Toradex Colibri VF50 COM";
+-	compatible = "toradex,vf610-colibri_vf50", "fsl,vf500";
++	compatible = "toradex,vf500-colibri_vf50", "fsl,vf500";
+ 
+ 	memory@80000000 {
+ 		device_type = "memory";
+-- 
+2.21.0
+
