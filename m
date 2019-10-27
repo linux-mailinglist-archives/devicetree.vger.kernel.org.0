@@ -2,143 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 508DAE69B2
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2019 22:38:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DCBCE68B4
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2019 22:32:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729516AbfJ0ViI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Oct 2019 17:38:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49666 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728507AbfJ0VEE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Oct 2019 17:04:04 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 46EB6222BE;
-        Sun, 27 Oct 2019 21:04:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572210243;
-        bh=ejTMU2PKQBIvXRez9MZn4+fwYEV5lq+acuqnLFVTjRk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YS5blBDgCLLdaVUBscufdzFBWqilByx/mzOp2lPJdgTGefAY0qo7zl3CToLksevf5
-         RXNIWsBQgj8DjxJbSlCw5u0MnvbfSlZbd31dvvM2s/w15qFbLDC356zis+nFLypp+y
-         yuu51CWefzALIDqXy6XOnj/tfiMfRjVJ+DlH3lgg=
-Received: by mail-qk1-f180.google.com with SMTP id w2so6699615qkf.2;
-        Sun, 27 Oct 2019 14:04:03 -0700 (PDT)
-X-Gm-Message-State: APjAAAWQjCkEogmbS7F72uuk9gf6P1BLLMRa82DuhREgwqfdZjxmB47d
-        as/hJcrlWEMSmkan7tzNtZ8AFkbXZ01qJPtpjA==
-X-Google-Smtp-Source: APXvYqxH6jcRbIdQqMyzEbVP8RBOqjV1tIloJha8kSXqB1poy40CPrXvcGOaIctBmE89+n7Vi2T5C7riiCYexD1eFZE=
-X-Received: by 2002:a37:9847:: with SMTP id a68mr13244112qke.223.1572210242357;
- Sun, 27 Oct 2019 14:04:02 -0700 (PDT)
+        id S1731102AbfJ0VRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Oct 2019 17:17:42 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:43721 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731093AbfJ0VRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Oct 2019 17:17:39 -0400
+Received: by mail-oi1-f196.google.com with SMTP id s5so4739397oie.10;
+        Sun, 27 Oct 2019 14:17:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/iAJCHmYnu3MN/tSfMGe/nzIlm9sUPVCioEd8t0MfbY=;
+        b=MbgsLCzQdzZ04vpnJakUlV16vgeyRw+UDCUKcRBeGoobsEBCQa0MnCF8L2nGZ+4xbL
+         MtISKGN3IvNPKTnhak0Tv3iUPt9NGUB6ePldoZvOlB7IzbgVa9F3K4RP1Vff8EoZMQGk
+         Bznwg5DSLi2OigPQOqvbIblLI7DsswyVfqhSxiYN/Vg/bXu8L3g1TrKeWgpNYoQeNlj6
+         FJcZIYcA6vrpd9aX5tzXqCmF29cdRQoppoqiqUjGqCFlP2c3HkTdldgYM4bDuZSKXoGZ
+         AWt0OB7rxEKIDOeC9DjAsZFHXPMAgKZDfl2MaebqhNhci69qkWvjcb+/BycBmB2Lx5ql
+         Ml8Q==
+X-Gm-Message-State: APjAAAWXoi+FwyGL5UTM7ooQhJn0VLgoRKtCVKnGtaT/x8Ot+S2AH+uX
+        jndYDqZHJLiG1FRggm+ITw==
+X-Google-Smtp-Source: APXvYqycENxBcO37SRF80CuuH2sAsSU8zEeqdg41f6o3Mskd1ZymMfnokYbEy29NcBFqqvPqzaY4dQ==
+X-Received: by 2002:a54:4484:: with SMTP id v4mr7404163oiv.49.1572211058758;
+        Sun, 27 Oct 2019 14:17:38 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g3sm2960776otg.56.2019.10.27.14.17.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Oct 2019 14:17:37 -0700 (PDT)
+Date:   Sun, 27 Oct 2019 16:17:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        michael@amarulasolutions.com, Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: Re: [PATCH v11 2/7] dt-bindings: sun6i-dsi: Add A64 DPHY compatible
+ (w/ A31 fallback)
+Message-ID: <20191027211737.GA30896@bogus>
+References: <20191025175625.8011-1-jagan@amarulasolutions.com>
+ <20191025175625.8011-3-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-References: <20191021124428.2541-1-brgl@bgdev.pl> <CAMRc=MeYS+rQMCEc_z1FudnremUhUsXnxdcB2heF6qdtOkH9uQ@mail.gmail.com>
-In-Reply-To: <CAMRc=MeYS+rQMCEc_z1FudnremUhUsXnxdcB2heF6qdtOkH9uQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 27 Oct 2019 16:03:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK+6-pz6gQyW3ZEEb6_2AOzwsM0aDZ1PwVCLy-=OeSjhw@mail.gmail.com>
-Message-ID: <CAL_JsqK+6-pz6gQyW3ZEEb6_2AOzwsM0aDZ1PwVCLy-=OeSjhw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/6] dt-bindings: max77650: convert the device-tree
- bindings to yaml
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Linux Input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191025175625.8011-3-jagan@amarulasolutions.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 26, 2019 at 6:54 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> pon., 21 pa=C5=BA 2019 o 14:44 Bartosz Golaszewski <brgl@bgdev.pl> napisa=
-=C5=82(a):
-> >
-> > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> >
-> > This series converts all DT binding documents for MAX77650 PMIC to YAML=
-.
-> >
-> > v1 -> v2:
-> > - use upper case for abbreviations in commit messages
-> >
-> > v2 -> v3:
-> > - pull all example fragments into the binding document for the core MFD=
- module
-> > - fix all dt_binding_check errors
-> > - add references to submodules to the main binding document
-> > - drop the type for gpio-line-names
-> > - drop the description for the interrupts property
-> > - completely delete the previous txt files
-> >
-> > v3 -> v4:
-> > - remove unnecessary parts of descriptions, added details on the chip
-> > - correct file references (.txt -> .yaml)
-> > - fix mixing scalar and array constraints
-> > - dropped type refs for globally defined properties
-> >
-> > Bartosz Golaszewski (6):
-> >   dt-bindings: input: max77650: convert the binding document to yaml
-> >   dt-bindings: regulator: max77650: convert the binding document to yam=
-l
-> >   dt-bindings: power: max77650: convert the binding document to yaml
-> >   dt-bindings: leds: max77650: convert the binding document to yaml
-> >   dt-bindings: mfd: max77650: convert the binding document to yaml
-> >   MAINTAINERS: update the list of maintained files for max77650
-> >
-> >  .../bindings/input/max77650-onkey.txt         |  26 ---
-> >  .../bindings/input/max77650-onkey.yaml        |  35 ++++
-> >  .../bindings/leds/leds-max77650.txt           |  57 -------
-> >  .../bindings/leds/leds-max77650.yaml          |  51 ++++++
-> >  .../devicetree/bindings/mfd/max77650.txt      |  46 ------
-> >  .../devicetree/bindings/mfd/max77650.yaml     | 149 ++++++++++++++++++
-> >  .../power/supply/max77650-charger.txt         |  28 ----
-> >  .../power/supply/max77650-charger.yaml        |  34 ++++
-> >  .../bindings/regulator/max77650-regulator.txt |  41 -----
-> >  .../regulator/max77650-regulator.yaml         |  31 ++++
-> >  MAINTAINERS                                   |   4 +-
-> >  11 files changed, 302 insertions(+), 200 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/input/max77650-on=
-key.txt
-> >  create mode 100644 Documentation/devicetree/bindings/input/max77650-on=
-key.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-max7765=
-0.txt
-> >  create mode 100644 Documentation/devicetree/bindings/leds/leds-max7765=
-0.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/max77650.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/max77650.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/power/supply/max7=
-7650-charger.txt
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/max7=
-7650-charger.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/regulator/max7765=
-0-regulator.txt
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/max7765=
-0-regulator.yaml
-> >
-> > --
-> > 2.23.0
-> >
->
-> Hi Rob,
->
-> thanks for reviewing the series. Can you please take it through your
-> tree for v5.5? I think it'll be easier than bothering all the
-> respective maintainers and it only touches on bindings anyway.
+On Fri, 25 Oct 2019 23:26:20 +0530, Jagan Teki wrote:
+> The MIPI DSI PHY controller on Allwinner A64 is similar
+> on the one on A31.
+> 
+> Add A64 compatible and append A31 compatible as fallback.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  .../bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml         | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 
-Okay, series applied.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Rob
+If a tag was not added on purpose, please state why and what changed.
