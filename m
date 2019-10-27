@@ -2,91 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0534CE6541
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2019 21:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 976FAE6574
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2019 21:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727692AbfJ0UIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Oct 2019 16:08:17 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:33966 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727688AbfJ0UIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Oct 2019 16:08:16 -0400
-Received: by mail-wm1-f68.google.com with SMTP id v3so8104178wmh.1;
-        Sun, 27 Oct 2019 13:08:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uILHnq2ITfdDUPR3qFBlC6hvnz1kzbF3v1izfuQrKFw=;
-        b=KosvU5MG6bLLKxIv6Q1GTSUvZR2Y0/dnt1uUCaeKm23meFQ6ZyXdc5rIx0y4b6mlvr
-         W4G48Tg4nYLf1XzXNokP+Zk16znbBAyuc1shsbomZUzwA95PkYYE3N8qhz41TJOfaQyu
-         Ar5YJOxzgr0RH16u4xoAeNBYiNoEjUouGcqttTEBZD4mc76yvCMGpbKsF+lSwaqS6XL7
-         FF6XFS5X47EjY0XuTf7PgzpnMJnDVM2ZyLBuk8sG3MYf1CGs/TXz1r9A9snvYeow7JV7
-         eZ6M6JHbe/awtIKk1Vyb+PK2N5GeAH98rdpsdh+lyrrgLNU3/K9tw1NR01IpnHHLvs6V
-         1PbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uILHnq2ITfdDUPR3qFBlC6hvnz1kzbF3v1izfuQrKFw=;
-        b=IEiy4uW96cy0OptnSHJ9/d0IjxmvUNvwb/EMPNlL5/8jC3efN6eQk3RpD+D/NRJBkn
-         Ven8PlhlheP4rxwHl+q9BrulpbSjluApT0vv+BJRAYsGvMLeszHMPEWJjXDycbX8DGg6
-         LZ5z05gkuz0HLrA4F60mdoYT0+m8hp1XXGG7G/G+LzldsiU9AmiotsiUyurGpOrqgNj4
-         gdzJdTM76tGVwaz30ObN3A8a86BR7iPPe+d2c6C/SQXHJIX0jIWZ5E2PiZVhgQTdwvZ1
-         JdAhyo5bZpmv8k3HOIZ9SvgsY//j8oPTEYmApMcovkMbtjKYF1VdsoEeerKO8VvMLgi5
-         /GNw==
-X-Gm-Message-State: APjAAAV3oZoGUWIf//fnpU6HnPQXgrIplvlHDhcO3DUBVlKhHsN4LaUA
-        2J6+Se4Q8vQCL5eWFmiVGTwQTdHcOdo=
-X-Google-Smtp-Source: APXvYqwyOASmJjLwg6ZT+C/jtzSWM3AVB0aUtxw+W5AEL7GrQyB/V5+FJN06i2VjrR7nVF3WoGClxg==
-X-Received: by 2002:a1c:2b45:: with SMTP id r66mr11035621wmr.163.1572206894390;
-        Sun, 27 Oct 2019 13:08:14 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id o11sm8539538wmh.28.2019.10.27.13.08.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Oct 2019 13:08:14 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>, Sean Young <sean@mess.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: allwinner: beelink-gs1: Add rc-beelink-gs1 keymap
-Date:   Sun, 27 Oct 2019 21:07:38 +0100
-Message-Id: <20191027200738.24802-2-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191027200738.24802-1-peron.clem@gmail.com>
-References: <20191027200738.24802-1-peron.clem@gmail.com>
+        id S1727756AbfJ0U4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Oct 2019 16:56:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47276 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727702AbfJ0U4m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Oct 2019 16:56:42 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EE90F2070B;
+        Sun, 27 Oct 2019 20:56:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572209802;
+        bh=brHu22CgUlAV8oo+Awhnk9cnfWOJvOQW97kCTXit2WU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Os7jSXBdq+tNAQvsHGTWhUqQJ5w71uHdVTomU37AgfER53r15NwzIcZD8sWwkyYzi
+         3BifG1DGDCiJbgDqnauTpDb2vDODUujJqvUV3cSKuO2oP4WDeJNMgnS+MwcuIeKoGq
+         uAInRHy9HZNPr4AIu1zErZGYp4ZEIehkVHXFabyI=
+Received: by mail-qt1-f175.google.com with SMTP id g50so11713323qtb.4;
+        Sun, 27 Oct 2019 13:56:41 -0700 (PDT)
+X-Gm-Message-State: APjAAAUd7VulgOpSdF4UCZImejxwaIa6sHZ/djIabkGstvqAKf+tZJsZ
+        zVitstGbdiT/wjQjYxsSxEQHs73FJxLKVGR04w==
+X-Google-Smtp-Source: APXvYqxDhNXRbEZ8TgMXoK+AXNhKy2RNanFb613NmTAxbWJ6MlbcBdMf+P31Qz6AiSmpPB5/rmZ/7D4Kvt6H81tju40=
+X-Received: by 2002:a0c:d2b4:: with SMTP id q49mr13714601qvh.135.1572209801059;
+ Sun, 27 Oct 2019 13:56:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
+ <1571565847-10338-2-git-send-email-kvalo@codeaurora.org> <20191025213028.GA5117@bogus>
+ <874kzu9v2g.fsf@kamboji.qca.qualcomm.com>
+In-Reply-To: <874kzu9v2g.fsf@kamboji.qca.qualcomm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Sun, 27 Oct 2019 15:56:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLD5UfSfYtvp62aGJSDC-Cm4ifk_YmNPRNAXQMnJ2CzVA@mail.gmail.com>
+Message-ID: <CAL_JsqLD5UfSfYtvp62aGJSDC-Cm4ifk_YmNPRNAXQMnJ2CzVA@mail.gmail.com>
+Subject: Re: [PATCH v2 01/49] dt: bindings: net: add qcom,ath11k.yaml
+To:     Kalle Valo <kvalo@codeaurora.org>
+Cc:     devicetree@vger.kernel.org,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        ath11k@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Beelink GS1 ships with a NEC remote control.
+On Sun, Oct 27, 2019 at 8:28 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+>
+> Rob Herring <robh@kernel.org> writes:
+>
+> > On Sun, Oct 20, 2019 at 01:03:19PM +0300, Kalle Valo wrote:
+> >> ath11k is a driver for Qualcomm IEEE 802.11ax devices. Add a
+> >> bindings document for the driver, first documenting IPQ8074 which is the
+> >> only device ath11k currently supports.
+> >>
+> >> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> >> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> >> ---
+> >>  .../bindings/net/wireless/qcom,ath11k.yaml         | 277 +++++++++++++++++++++
+> >>  1 file changed, 277 insertions(+)
+> >>
+> >> diff --git
+> >> a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> >> b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> >> new file mode 100644
+> >> index 000000000000..5d25542f85f8
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> >> @@ -0,0 +1,277 @@
+> >> +# SPDX-License-Identifier: BSD-3-Clause-Clear
+> >
+> > (GPL-2.0-only OR BSD-2-Clause) please.
+>
+> I chose BSD-3-Clause-Clear because ath11k uses that license and I would
+> prefer to use the same license throughout the driver.
 
-Add the rc keymap to the device-tree.
+The schema is not the driver.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
- 1 file changed, 1 insertion(+)
+> Also it's
+> categorised as a preferred license:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 1d05d570142f..ce4b0679839d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -252,6 +252,7 @@
- };
- 
- &r_ir {
-+	linux,rc-map-name = "rc-beelink-gs1";
- 	status = "okay";
- };
- 
--- 
-2.20.1
+So are the 2 I listed. (GPL-2.0 is the deprecated version of GPL-2.0-only).
 
+> Any specific reason why you want to change the license?
+
+So that we have some sort of consistency between schemas. It's been a
+free-for-all for licensing dts files, headers and bindings til now,
+and I'm trying to address some of that as we add schema.
+
+Rob
