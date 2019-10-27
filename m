@@ -2,156 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F94DE62A7
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2019 14:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62133E62F2
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2019 15:10:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726713AbfJ0N23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Oct 2019 09:28:29 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:49548 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726549AbfJ0N23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Oct 2019 09:28:29 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 0ACB460D52; Sun, 27 Oct 2019 13:28:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1572182908;
-        bh=9ZZre0NuSoDeFDxf4oUJniz9M2r5yh3TTjgFWZaZdtA=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=LXnDmbXbqE5Pn5kUsfYvei2OaHKhD9g7VEIlFyzgpJSakPUjhAHlisivcsyNsUUMp
-         LRBC+AltQKLPlam6d7Ppk5YBTrfeUQ166iiN4+Om/tAcCAKLocNdHjRK+B7Te0+5lg
-         DVxjEb+a8iuDLb+GmErt/FyrqG+jy4IaBsKrHqaI=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from potku.adurom.net (unknown [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0BFC760BFA;
-        Sun, 27 Oct 2019 13:28:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1572182907;
-        bh=9ZZre0NuSoDeFDxf4oUJniz9M2r5yh3TTjgFWZaZdtA=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=KWV/6SWhNivItb8uhSpxeULt5KHH5YM8fcN677+JgVRn1xDrGiB49kWgNnocXNKUr
-         tw0hh5CheuFdBTGr7bRU9WcYO49ttETTT9Szdz7i8AxkIweHHpeAkj7ZirBr7NOGc9
-         Jevhgcba+2cAAsP/MBO+fEmZ1yWhKyMoPkXIMy2k=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0BFC760BFA
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Subject: Re: [PATCH v2 01/49] dt: bindings: net: add qcom,ath11k.yaml
-References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
-        <1571565847-10338-2-git-send-email-kvalo@codeaurora.org>
-        <20191025213028.GA5117@bogus>
-Date:   Sun, 27 Oct 2019 15:28:23 +0200
-In-Reply-To: <20191025213028.GA5117@bogus> (Rob Herring's message of "Fri, 25
-        Oct 2019 16:30:28 -0500")
-Message-ID: <874kzu9v2g.fsf@kamboji.qca.qualcomm.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S1726687AbfJ0OKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Oct 2019 10:10:00 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:45592 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726541AbfJ0OKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Oct 2019 10:10:00 -0400
+Received: by mail-pf1-f193.google.com with SMTP id c7so3654251pfo.12;
+        Sun, 27 Oct 2019 07:09:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=UI3dLKgfyOyp4aT+UI7pPbeRzP/GQ0hgQ8832KcNALM=;
+        b=Ehmy/hYU5WzuSjc+t1kw1dtyw4PUrpdvooaurTp6jgilTlHyeul5FS0UVzVdjFIFg2
+         D+9uL5oSeHGWmlkUWmnFF19sqM4HgjlJXugueI42xUEYQOFhQvCOtl8/abT0RIQcRujJ
+         8tbumrE1x7ymHMDJahI0bXwyY2OlHOE9bHdaEJ+wtB2R+zsAcOrAN7QhSVq38coMpGa8
+         EazRjO2nCStyuG8vmiTqp/bAwRPj/Lp5/3hqxcE3N9DT7WY8aFwpBycw9vYB28xJkVpe
+         DNKgtGTN9PKCPQh8FPgfwmkphOqJ+vDKAoeDHrjllW3rDRwH7ZIYggnLmTjfLG52YWEA
+         wQTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=UI3dLKgfyOyp4aT+UI7pPbeRzP/GQ0hgQ8832KcNALM=;
+        b=P9WVQO44wE6SzZDNwn9BFPN1AmrDF6L2xs7iMhq5Q/YCa4/qIqMHXHDyho5Q4sJy1b
+         yjz5MKdu4fypkrWYHvQwGIWthivqe75r2qXhm3W7vXVzkQjkaQpNKbW6HzMbTfJHItbE
+         x57uB8YP0WcimgG3ibzN5/T4sgzKsiWdnNmsaR+X5Ww0UFhiG9UtUbM25h8gtLcU/bo1
+         zDVFwBTu6vl61oWsnFtCERmcy0PaUsOokbTHpAfGjmm43efbmZrIVQ5Lin+U8epJdzLN
+         lKxrIFBR1KtltBV1ria6GU99Gjo3SfXWiD+Bp28fjwH1Rq9ctZCN538BSPdJEPPoIOJN
+         FKnQ==
+X-Gm-Message-State: APjAAAVTfLBpTvEyHusO4yuaU4kv3REel0R0TZvn4gFZ7ZbJUadOP6WS
+        F8o0gM7VWJPKEqYrYxRidMl6RVe/
+X-Google-Smtp-Source: APXvYqxuR898N1LLVOeC07L07I/XYcmlO7SBcWehYcxr5g6oBY5YKNpGDXOJZS/OZcXrhTPR6/v4kw==
+X-Received: by 2002:a17:90a:e38c:: with SMTP id b12mr16515902pjz.136.1572185399240;
+        Sun, 27 Oct 2019 07:09:59 -0700 (PDT)
+Received: from localhost.localdomain ([240f:34:212d:1:368e:e048:68f1:84e7])
+        by smtp.gmail.com with ESMTPSA id v10sm6514702pfg.11.2019.10.27.07.09.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 27 Oct 2019 07:09:58 -0700 (PDT)
+From:   Akinobu Mita <akinobu.mita@gmail.com>
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Akinobu Mita <akinobu.mita@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Andersson <bjorn@kryo.se>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Jean-Jacques Hiblot <jjhiblot@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v2 0/2] leds: introduce generic LED level meter driver
+Date:   Sun, 27 Oct 2019 23:09:37 +0900
+Message-Id: <1572185379-21537-1-git-send-email-akinobu.mita@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> writes:
+This introduces a new LED driver that enables us to create a virtual LED
+level meter device that consists of multiple LED devices by different
+drivers.
 
-> On Sun, Oct 20, 2019 at 01:03:19PM +0300, Kalle Valo wrote:
->> ath11k is a driver for Qualcomm IEEE 802.11ax devices. Add a
->> bindings document for the driver, first documenting IPQ8074 which is the
->> only device ath11k currently supports.
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
->> ---
->>  .../bindings/net/wireless/qcom,ath11k.yaml         | 277 +++++++++++++++++++++
->>  1 file changed, 277 insertions(+)
->> 
->> diff --git
->> a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> new file mode 100644
->> index 000000000000..5d25542f85f8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> @@ -0,0 +1,277 @@
->> +# SPDX-License-Identifier: BSD-3-Clause-Clear
->
-> (GPL-2.0-only OR BSD-2-Clause) please.
+Previously I developed the level meter feature for leds-gpio ("leds: gpio:
+support multi-level brightness") [1].  Then I got a feedback from
+Bjorn Andersson and made more generic new driver.  This driver is also
+inspired by led-backlight driver patchset [2] and actually requires
+devm_of_led_get() function provided by the patchset.
 
-I chose BSD-3-Clause-Clear because ath11k uses that license and I would
-prefer to use the same license throughout the driver. Also it's
-categorised as a preferred license:
+[1] https://lore.kernel.org/linux-leds/1570203299-4270-1-git-send-email-akinobu.mita@gmail.com/
+[2] https://lore.kernel.org/linux-leds/20191009085127.22843-1-jjhiblot@ti.com/
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred
+* v2
+- Use proper subject line for dt-binding patch.
+- Swap the patch order.
+- Various fixes noticed by Rob and Dan.
+- Update example usage for brightness-weights property
+- Use unified device proerty interface as much as possible.
+- Support linux,default-trigger and default-state properties.
 
-Any specific reason why you want to change the license?
+Akinobu Mita (2):
+  dt-bindings: leds: Add leds-meter binding
+  leds: Add generic LED level meter driver
 
->> +# Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
->> +
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/wireless/qcom,ath11k.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies ath11k wireless devices Generic Binding
->> +
->> +maintainers:
->> +  - Kalle Valo <kvalo@codeaurora.org>
->> +
->> +description: |
->> + These are dt entries used on ath11k driver. AHB based ipq8074 uses
->> most of the properties defined in this doc.
->
-> Describe the h/w, not what the document is.
->
-> Wrap your lines.
->
->> +
->> +properties:
->> +  compatible:
->> +    const: "qcom,ipq8074-wifi"
->
-> Drop quotes.
->
->> +
->> +  reg:
->> +    description: Address and length of the register set for the device
->
-> Don't need a description.
->
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    minItems: 53
->> +    maxItems: 53
->
-> Assuming the list below has 53 entries min/maxItems is implied.
+ .../devicetree/bindings/leds/leds-meter.yaml       |  67 +++++++++
+ drivers/leds/Kconfig                               |  10 ++
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-meter.c                          | 151 +++++++++++++++++++++
+ 4 files changed, 229 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-meter.yaml
+ create mode 100644 drivers/leds/leds-meter.c
 
-Will fix these.
-
->> +examples:
->> +  - |
->> +
->> +    q6v5_wcss: q6v5_wcss@CD00000 {
->> +    	compatible = "qcom,ipq8074-wcss-pil";
->> +    	reg = <0xCD00000 0x4040>,
->> +    	      <0x4AB000 0x20>;
->> +    	reg-names = "qdsp6",
->> +    		    "rmb";
->
-> Mixed tabs and spaces. YAML needs spaces (at least at the beginning), so 
-> just use spaces. More below...
-
-Ok, I'll remove all the tabs from the doc. Thanks for the review!
-
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Bjorn Andersson <bjorn@kryo.se>
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc: Jean-Jacques Hiblot <jjhiblot@ti.com>
+Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>
+Cc: Dan Murphy <dmurphy@ti.com>
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
+
