@@ -2,97 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D3B7E712B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 13:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D89E7136
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 13:19:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728684AbfJ1MRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 08:17:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35910 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728329AbfJ1MRw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Oct 2019 08:17:52 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9ED0B2086D;
-        Mon, 28 Oct 2019 12:17:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572265071;
-        bh=4kjKjQAdwQg+xIOM1RGhfB1fhC3MB3bGym1xpZl9M4A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FYgnslUuZnLlj9KdLcmMiyHNbPvW79emQLvYDof+rYLD9FbSUFOeZOUyJfQvVpzb4
-         M71yGtlHpkJJJ7G8XUbBeqh1KNBHfiaRS3T3H6S05hoaETGTkjrdfHAHW6e8oFB3Se
-         xrtmTNL7KSHzVqf50nKwWXbQl0q6PNJ1ba5z2Au4=
-Date:   Mon, 28 Oct 2019 20:17:26 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        Anson.Huang@nxp.com, ping.bai@nxp.com, jun.li@nxp.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com,
-        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM64: imx8mm: Change compatible string for sdma
-Message-ID: <20191028121725.GJ16985@dragon>
-References: <1571992763-31339-1-git-send-email-shengjiu.wang@nxp.com>
+        id S1728302AbfJ1MTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 08:19:54 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:39043 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727801AbfJ1MTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 08:19:53 -0400
+Received: by mail-il1-f193.google.com with SMTP id i12so7980608ils.6
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 05:19:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=dc1c8u3hukir3oPx/zrCumMpjl7/p9MlfwHDO0Mnpv8=;
+        b=EpyUtk0gTOfzOAJFTnHDTpoXdwbIYeh8t7J62/VY2aVevHBQGNuN3c1NSQwtKfz5Cx
+         h2zjt5452uhH7qB+ErFvj/LqgzPC9xZC5NsDG5uMgRDWZKWauiAHMWf0gQEjaI4qbk5+
+         IKTfo6IZwNUmAsjwgl4/aXXuZeRvedEI95j+MRsU/xVMn3ngANBkRU2fOo9gD4OzXZQ4
+         C78jtHqrVhoCI1EioFIAqtkUfeoDDpoNvtkEWm1eE3CPeWxRLWCZ8aEvy/Z+7pAE5/kc
+         sggnFuQYBMRUU8UPNgXUMKjww2McSKjxAp1Cka0ZeJtZqcgOM+iRiG2WM8qi8znZYesB
+         K4Mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dc1c8u3hukir3oPx/zrCumMpjl7/p9MlfwHDO0Mnpv8=;
+        b=WQ9WUwYjmEtBcaWh0Mi/Fu+mETb3xd3rb+yjv7kZdPAztkw9P+HSyf2OXqGEcP4mdI
+         DyhWhSqKawIV02wAc0Tlu25YKhoiEgi8WDOkjyHEMIc/dRtBsbW9ToB4icFCU+iVN6WK
+         z7ONHakBMWfCtJqHfr50KYgY5hKX0+HGaHROciTAeXXrjWJVK4ivod5JeQXbrZEBykJr
+         Gsr1JHrz0z6LTNc1AfKRLzHKlQZ3MnJaSMuLiJKFjl7Pz3afZgA5UDLTJeNCf5H7DPao
+         /FFKmWjC+L/OMDo+YLuT68K2XwVQ6tXGDAsyjN+4B+UJgt6fZXHbbSyWtu4z4+QbWhma
+         GppQ==
+X-Gm-Message-State: APjAAAXDV6ueLo3jW1ebUk+0uQbl2kiIDz1tefkN4URY2N46NFNVnQxJ
+        FbY/HUQp4xGRYBahc8o+QY09Sanav9PAr0CyRvA=
+X-Google-Smtp-Source: APXvYqwLLI6KwbQV8tqE2fiuP3DXQup3mYDMcHXvVN0FaWTQwKqpIaCTQP2JKG7nppz5bisbSpgqeqf225/CJoaOOYU=
+X-Received: by 2002:a92:ce44:: with SMTP id a4mr6427947ilr.298.1572265192683;
+ Mon, 28 Oct 2019 05:19:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1571992763-31339-1-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <20191023154512.9762-1-boris.brezillon@collabora.com> <20191023154512.9762-3-boris.brezillon@collabora.com>
+In-Reply-To: <20191023154512.9762-3-boris.brezillon@collabora.com>
+From:   Inki Dae <daeinki@gmail.com>
+Date:   Mon, 28 Oct 2019 21:19:17 +0900
+Message-ID: <CAAQKjZMh3=5=8JzkHYTeEGrOKNfN=eULTuXx1ZTDbsL7u3HQEw@mail.gmail.com>
+Subject: Re: [PATCH v3 02/21] drm/exynos: Don't reset bridge->next
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        kernel@collabora.com, Sam Ravnborg <sam@ravnborg.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chris Healy <cphealy@gmail.com>, devicetree@vger.kernel.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 25, 2019 at 04:39:23PM +0800, Shengjiu Wang wrote:
-> SDMA in i.MX8MM should use same configuration as i.MX8MQ
-> So need to change compatible string to be "fsl,imx8mq-sdma".
-> 
-> Fixes: a05ea40eb384 ("arm64: dts: imx: Add i.mx8mm dtsi support")
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+2019=EB=85=84 10=EC=9B=94 24=EC=9D=BC (=EB=AA=A9) =EC=98=A4=EC=A0=84 12:45,=
+ Boris Brezillon
+<boris.brezillon@collabora.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> bridge->next is only points to the new bridge if drm_bridge_attach()
+> succeeds. No need to reset it manually here.
+>
+> Note that this change is part of the attempt to make the bridge chain
+> a double-linked list. In order to do that we must patch all drivers
+> manipulating the bridge->next field.
+>
+> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes in v2:
+> * Add Laurent's R-b (I'd like to have a R-b from the DRM exynos
+>   maintainers before applying that one)
 
-Updated the subject as below and applied the patch.
+Acked-by: Inki Dae <inki.dae@samsung.com>
 
-  arm64: dts: imx8mm: fix compatible string for sdma
-
-Shawn
+Thanks,
+Inki Dae
 
 > ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index 2139c0a9c495..6a54d2a3b19b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -394,7 +394,7 @@
->  			};
->  
->  			sdma2: dma-controller@302c0000 {
-> -				compatible = "fsl,imx8mm-sdma", "fsl,imx7d-sdma";
-> +				compatible = "fsl,imx8mm-sdma", "fsl,imx8mq-sdma";
->  				reg = <0x302c0000 0x10000>;
->  				interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MM_CLK_SDMA2_ROOT>,
-> @@ -405,7 +405,7 @@
->  			};
->  
->  			sdma3: dma-controller@302b0000 {
-> -				compatible = "fsl,imx8mm-sdma", "fsl,imx7d-sdma";
-> +				compatible = "fsl,imx8mm-sdma", "fsl,imx8mq-sdma";
->  				reg = <0x302b0000 0x10000>;
->  				interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MM_CLK_SDMA3_ROOT>,
-> @@ -741,7 +741,7 @@
->  			};
->  
->  			sdma1: dma-controller@30bd0000 {
-> -				compatible = "fsl,imx8mm-sdma", "fsl,imx7d-sdma";
-> +				compatible = "fsl,imx8mm-sdma", "fsl,imx8mq-sdma";
->  				reg = <0x30bd0000 0x10000>;
->  				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MM_CLK_SDMA1_ROOT>,
-> -- 
+>  drivers/gpu/drm/exynos/exynos_dp.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/exynos/exynos_dp.c b/drivers/gpu/drm/exynos/=
+exynos_dp.c
+> index 1e6aa24bf45e..4785885c0f4f 100644
+> --- a/drivers/gpu/drm/exynos/exynos_dp.c
+> +++ b/drivers/gpu/drm/exynos/exynos_dp.c
+> @@ -110,7 +110,6 @@ static int exynos_dp_bridge_attach(struct analogix_dp=
+_plat_data *plat_data,
+>                 if (ret) {
+>                         DRM_DEV_ERROR(dp->dev,
+>                                       "Failed to attach bridge to drm\n")=
+;
+> -                       bridge->next =3D NULL;
+>                         return ret;
+>                 }
+>         }
+> --
 > 2.21.0
-> 
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
