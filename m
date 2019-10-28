@@ -2,85 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 961C4E772D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 18:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5E1E77AA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 18:35:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403994AbfJ1RDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 13:03:03 -0400
-Received: from mga02.intel.com ([134.134.136.20]:40553 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730463AbfJ1RDD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Oct 2019 13:03:03 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 28 Oct 2019 10:03:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,240,1569308400"; 
-   d="scan'208";a="203319319"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 28 Oct 2019 10:02:57 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
-        (envelope-from <lkp@intel.com>)
-        id 1iP8Pw-0009Bk-RH; Tue, 29 Oct 2019 01:02:56 +0800
-Date:   Tue, 29 Oct 2019 01:02:46 +0800
-From:   kbuild test robot <lkp@intel.com>
-To:     Cheng-Yi Chiang <cychiang@chromium.org>
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org,
-        alsa-devel@alsa-project.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-Subject: [RFC PATCH] ASoC: rockchip_max98090: rk_card_configs[] can be static
-Message-ID: <20191028170246.5uhqmm4gc576yrsh@4978f4969bb8>
-References: <20191025133007.11190-4-cychiang@chromium.org>
+        id S1729804AbfJ1Rfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 13:35:44 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:37853 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbfJ1Rfn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 13:35:43 -0400
+Received: by mail-ed1-f67.google.com with SMTP id e12so8435956edr.4;
+        Mon, 28 Oct 2019 10:35:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9dlbkLkbjNwkW8dWaTCD1qZUiGkWumkyUbrY4hy+PP0=;
+        b=PnottxPjqEi8TbNnyEKb6HLm8XjR8T/0aJm9XOa7YYk9xZm0QZblqiSl3R3Lw6rEeU
+         Hi8CLL4n13+4DjoscXA1xlUEc2RNkPWoHO0y/gTHzG3kUHslIIXIPLgfzGFbCEiYNs+a
+         eFFs7EvnN8RdyFgaDsw8yGImQS3YPhJ/LyGcQm2fYHp9yqhODEasNR5gk0AzaWQSsPJ/
+         R1XadkYa8GUfVDvCv9dVlbeUj/GRBcpJxpCmXO5jpoMkuwqBSyrnB6HrErVi7ubv83M4
+         OwZO7CMS4kX7XgPZyMGLjvNee10fACbJ7C9VHOUxO1QnewwrZjc70/kyExSXiivy65AD
+         X0Yg==
+X-Gm-Message-State: APjAAAWokOPmgnO04exvBVg6+lihM+fkseOC01ZI/FdxFk8pyyjU9iuI
+        3pXO5ruHK9M9ZHRo7hLBCLTvnBtx
+X-Google-Smtp-Source: APXvYqy34BMLtkw8CEAwuKj/UeFjOMF1P1pIJI/GgyugK8iJZkPbVsQ8W9s1ePT5wtn+zaKQGhDcow==
+X-Received: by 2002:a17:906:1c97:: with SMTP id g23mr17892494ejh.66.1572284141338;
+        Mon, 28 Oct 2019 10:35:41 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.180])
+        by smtp.googlemail.com with ESMTPSA id x6sm601095edc.50.2019.10.28.10.35.40
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 28 Oct 2019 10:35:40 -0700 (PDT)
+Date:   Mon, 28 Oct 2019 18:35:38 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org, vireshk@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH 1/3] soc: samsung: Drop "syscon" compatible requirement
+ from the chipid driver
+Message-ID: <20191028173538.GA14395@kozik-lap>
+References: <CGME20191028152057eucas1p1d6b4252e9ce3f15c0d81e6941a62d2be@eucas1p1.samsung.com>
+ <20191028152050.10220-1-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20191025133007.11190-4-cychiang@chromium.org>
-X-Patchwork-Hint: ignore
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20191028152050.10220-1-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 28, 2019 at 04:20:48PM +0100, Sylwester Nawrocki wrote:
+> As we dropped the requirement of "syscon" compatible in the chipid
+> nodes rework code acquiring the regmap to use device_node_to_regmap()
+> rather than syscon_node_to_regmap().
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+>  drivers/soc/samsung/exynos-chipid.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
 
-Fixes: 0cc0922ae849 ("ASoC: rockchip_max98090: Optionally support HDMI use case")
-Signed-off-by: kbuild test robot <lkp@intel.com>
----
- rockchip_max98090.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks, applied.
 
-diff --git a/sound/soc/rockchip/rockchip_max98090.c b/sound/soc/rockchip/rockchip_max98090.c
-index 550e577897198..a476749931387 100644
---- a/sound/soc/rockchip/rockchip_max98090.c
-+++ b/sound/soc/rockchip/rockchip_max98090.c
-@@ -472,7 +472,7 @@ static int snd_rk_mc_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
--struct rk_card_config rk_card_configs[] = {
-+static struct rk_card_config rk_card_configs[] = {
- 	[RK_USE_MAX98090] = {
- 		.usage = RK_USE_MAX98090,
- 		.card = &rockchip_max98090_card,
+Best regards,
+Krzysztof
+
