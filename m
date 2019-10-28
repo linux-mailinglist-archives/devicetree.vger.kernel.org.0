@@ -2,118 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91A87E6C38
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 07:07:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C181E6C48
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 07:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731781AbfJ1GHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 02:07:33 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:6876 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1731788AbfJ1GHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Oct 2019 02:07:33 -0400
-X-IronPort-AV: E=Sophos;i="5.68,238,1569250800"; 
-   d="scan'208";a="29966532"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Oct 2019 15:07:31 +0900
-Received: from localhost.localdomain (unknown [10.166.17.210])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 24C1641715B9;
-        Mon, 28 Oct 2019 15:07:31 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, geert+renesas@glider.be
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2 4/4] clk: renesas: rcar-usb2-clock-sel: Add reset_control
-Date:   Mon, 28 Oct 2019 15:07:30 +0900
-Message-Id: <1572242850-9073-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572242850-9073-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-References: <1572242850-9073-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+        id S1728064AbfJ1GJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 02:09:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48050 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727559AbfJ1GJ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Oct 2019 02:09:59 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6DA4220873;
+        Mon, 28 Oct 2019 06:09:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572242998;
+        bh=T8EqyovEiIZHr2MwOzu+mAUM1YvBcgYwUFn7W1qhsKY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gDHgLhOT45zthwB/Wz8w2XgXHgkmFEakpbyYErk9CC6XetrSbeDwAYVXvNQAPO1Rl
+         h2hYQqAwcn24HTSCvkZufbBBi74prcHczFm86+vaIn1mVmKrTJvM5EBWg1Gft4up84
+         UI+tWDa1QngP7YshW09BIGqpczC3Hr1E8fdUZ+xI=
+Date:   Mon, 28 Oct 2019 14:09:31 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Igor Opaniuk <igor.opaniuk@gmail.com>
+Cc:     linux-usb@vger.kernel.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        Igor Opaniuk <igor.opaniuk@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] ARM: dts: colibri-imx6ull: add extcon for usbotg1
+Message-ID: <20191028060930.GL16985@dragon>
+References: <20191021161654.14353-1-igor.opaniuk@gmail.com>
+ <20191021161654.14353-2-igor.opaniuk@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191021161654.14353-2-igor.opaniuk@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This hardware needs to deassert resets of both host and peripheral.
-So, this patch adds reset control.
+On Mon, Oct 21, 2019 at 07:16:54PM +0300, Igor Opaniuk wrote:
+> From: Igor Opaniuk <igor.opaniuk@toradex.com>
+> 
+> Add extcon usb gpio configuration for support dual roles for usbotg1.
+> 
+> USB host/gadget switching test (1. USB NIC emulation; 2. USB storage):
+> 
+> [   52.491957] ci_hdrc ci_hdrc.1: switching to gadget role
+> [   52.502911] mxs_phy 20c9000.usbphy: vbus is not valid
+> [   56.749160] using random self ethernet address
+> [   56.758637] using random host ethernet address
+> [   65.768968] usb0: HOST MAC 00:14:2d:ff:ff:fe
+> [   65.887980] usb0: MAC 00:14:2d:ff:ff:ff
+> [   66.294961] configfs-gadget gadget: high-speed config #1: c
+> [   78.741971] ci_hdrc ci_hdrc.1: switching to host role
+> [   78.747522] ci_hdrc ci_hdrc.1: EHCI Host Controller
+> [   78.790174] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus
+> number 2
+> [   78.868498] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00
+> 
+> Signed-off-by: Igor Opaniuk <igor.opaniuk@toradex.com>
+> ---
+> 
+>  arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
+> index a78849fd2afa..988f1a800d5a 100644
+> --- a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
+> +++ b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
+> @@ -29,6 +29,14 @@
+>  		clock-frequency = <16000000>;
+>  	};
+>  
+> +	extcon_usbc_det: usbc_det {
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- drivers/clk/renesas/Kconfig               |  1 +
- drivers/clk/renesas/rcar-usb2-clock-sel.c | 15 ++++++++++++++-
- 2 files changed, 15 insertions(+), 1 deletion(-)
+Can we find a more generic name for the node?  Also hyphen is preferred
+over underscore in node name.
 
-diff --git a/drivers/clk/renesas/Kconfig b/drivers/clk/renesas/Kconfig
-index be03bb7..a76d05af 100644
---- a/drivers/clk/renesas/Kconfig
-+++ b/drivers/clk/renesas/Kconfig
-@@ -156,6 +156,7 @@ config CLK_RCAR_GEN3_CPG
- config CLK_RCAR_USB2_CLOCK_SEL
- 	bool "Renesas R-Car USB2 clock selector support"
- 	depends on ARCH_RENESAS || COMPILE_TEST
-+	select RESET_CONTROLLER
- 	help
- 	  This is a driver for R-Car USB2 clock selector
- 
-diff --git a/drivers/clk/renesas/rcar-usb2-clock-sel.c b/drivers/clk/renesas/rcar-usb2-clock-sel.c
-index 4096506..1cdcc8f 100644
---- a/drivers/clk/renesas/rcar-usb2-clock-sel.c
-+++ b/drivers/clk/renesas/rcar-usb2-clock-sel.c
-@@ -19,6 +19,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- 
- #define USB20_CLKSET0		0x00
-@@ -36,6 +37,7 @@ struct usb2_clock_sel_priv {
- 	void __iomem *base;
- 	struct clk_hw hw;
- 	struct clk_bulk_data clks[CLK_NUM];
-+	struct reset_control *rsts;
- 	bool extal;
- 	bool xtal;
- };
-@@ -63,10 +65,16 @@ static int usb2_clock_sel_enable(struct clk_hw *hw)
- 	struct usb2_clock_sel_priv *priv = to_priv(hw);
- 	int ret;
- 
--	ret = clk_bulk_prepare_enable(CLK_NUM, priv->clks);
-+	ret = reset_control_deassert(priv->rsts);
- 	if (ret)
- 		return ret;
- 
-+	ret = clk_bulk_prepare_enable(CLK_NUM, priv->clks);
-+	if (ret) {
-+		reset_control_assert(priv->rsts);
-+		return ret;
-+	}
-+
- 	usb2_clock_sel_enable_extal_only(priv);
- 
- 	return 0;
-@@ -79,6 +87,7 @@ static void usb2_clock_sel_disable(struct clk_hw *hw)
- 	usb2_clock_sel_disable_extal_only(priv);
- 
- 	clk_bulk_disable_unprepare(CLK_NUM, priv->clks);
-+	reset_control_assert(priv->rsts);
- }
- 
- /*
-@@ -154,6 +163,10 @@ static int rcar_usb2_clock_sel_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->clks[CLK_INDEX_HS_USB].clk))
- 		return PTR_ERR(priv->clks[CLK_INDEX_HS_USB].clk);
- 
-+	priv->rsts = devm_reset_control_array_get(dev, true, false);
-+	if (IS_ERR(priv->rsts))
-+		return PTR_ERR(priv->rsts);
-+
- 	pm_runtime_enable(dev);
- 	pm_runtime_get_sync(dev);
- 
--- 
-2.7.4
+Shawn
 
+> +		compatible = "linux,extcon-usb-gpio";
+> +		debounce = <25>;
+> +		id-gpio = <&gpio5 2 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_snvs_usbc_det>;
+> +	};
+> +
+>  	panel: panel {
+>  		compatible = "edt,et057090dhu";
+>  		backlight = <&bl>;
+> @@ -150,6 +158,7 @@
+>  };
+>  
+>  &usbotg1 {
+> +	extcon = <&extcon_usbc_det &extcon_usbc_det>;
+>  	status = "okay";
+>  };
+>  
+> -- 
+> 2.17.1
+> 
