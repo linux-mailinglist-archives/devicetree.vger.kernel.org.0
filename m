@@ -2,133 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABCF4E6CE3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 08:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 750C2E6CCD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 08:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732605AbfJ1HUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 03:20:12 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:46827 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732649AbfJ1HUL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 03:20:11 -0400
-Received: by mail-pf1-f194.google.com with SMTP id b25so6266198pfi.13
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 00:20:10 -0700 (PDT)
+        id S1732435AbfJ1HTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 03:19:40 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:42315 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730751AbfJ1HTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 03:19:40 -0400
+Received: by mail-pg1-f194.google.com with SMTP id f14so6283007pgi.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 00:19:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=HKtGe92TapQ2KIwqzwkswK8RAIuyaGxBvNdNmUU4dN4=;
-        b=v6uDInPrs2q1qq4SFLLdTjpdDc3eS25cnyOgpZtsm/H1e6dUBVUjCnRTrIW9Je4DLe
-         XqJz6uv+N5YdTtXGCsY5Nwk+YABBQWVqJRGdRpgtWscX0dTeHgTPJbLMsxO2Nn6Hjz3S
-         dbBAmtfdRa2obhR4Db360QfEdyh2kQKCBrXYwvs4DQUeecLSmuAgCNg+8vDcZ+byWbxq
-         kvfNWHa1AXgqxiYlqzAl/rAe0f36GBnVfL8P29Oh6h2SM/31I+Xd91PIcC63SXDmcHIo
-         jZzak31XqYgXmaToPXOP0+62BYK/AyoRWAgahLk4g/uE6jWTpMz8/SETq2QRPAsWDrvB
-         +2AQ==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1kARxN4zXqzFWFi9Hzge3EGrR8GY2GeJ7Yqz9IBjLtM=;
+        b=P4SRp8hsDD5IeFRKKfwF24MUFSYWQUG8Pifned/ZXWMMwEDxyNi2fo2IBqSZemeTIr
+         YXzLkF57dbipVFhFy74e+kfK6A+vvnGLJ9qcYvXjfL/f0CZKSBWPERoIjFznbevPjcKy
+         2Yr0AWo8FKDfZP5ZaXkh/LIexFunlbxZ+g2ns=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=HKtGe92TapQ2KIwqzwkswK8RAIuyaGxBvNdNmUU4dN4=;
-        b=W/7ntJUsWJpL7Up9v9XgspAH5/LcP4zkjITFH5CoVi6rzP9C1Imn3nqg9goO/EL4u4
-         ZUM3uH8olE0rdtJlcz7Rbcf6d/Xrt1Tky+6zyAtAPn59S+JCzFKwT/J2lX3KplNsqBMy
-         M87o1O53B3lVkLP0fT4cL3h4ikjtERAga+9mgX40f1CGVe7oc+lrhCOL+4rp7fR6+Xz/
-         HFBtY0p12u8BOwpXyvBMXQnJ5GEfpALGUEXtYPeqgOkdgu0cB8iQYWLv+tnmLNcC0M82
-         R75mqzELT2IArZ49QL/R7/TrGHz4bIz2qfxjdY51UH1v5Ajq+csSUuw8djJB/7eaQFCH
-         Xclg==
-X-Gm-Message-State: APjAAAWt1ZRax8eVz8xpm7jbV9lQ3H7KnXrrSuIadVBLh+DWoxzWYJLh
-        A6J3TMc7G/yb16KHxIzLIGhbzQ==
-X-Google-Smtp-Source: APXvYqy3mTOff/5UucNGniK8fyS/O+Xgm14NgFfPUR1PrG8IBcUY/kuiLl/NHA1b0kfdyxfyfp644Q==
-X-Received: by 2002:a62:108:: with SMTP id 8mr9220601pfb.53.1572247209947;
-        Mon, 28 Oct 2019 00:20:09 -0700 (PDT)
-Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id 13sm11504703pgq.72.2019.10.28.00.20.06
-        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 28 Oct 2019 00:20:09 -0700 (PDT)
-From:   Baolin Wang <baolin.wang@linaro.org>
-To:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, yuanjiang.yu@unisoc.com,
-        baolin.wang@linaro.org, baolin.wang7@gmail.com,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com
-Subject: [PATCH 5/5] power: supply: sc27xx: Calibrate the resistance of coulomb counter
-Date:   Mon, 28 Oct 2019 15:19:01 +0800
-Message-Id: <9c25e3ab9bdba2914b22cfe7495818740437ef27.1572245011.git.baolin.wang@linaro.org>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1572245011.git.baolin.wang@linaro.org>
-References: <cover.1572245011.git.baolin.wang@linaro.org>
-In-Reply-To: <cover.1572245011.git.baolin.wang@linaro.org>
-References: <cover.1572245011.git.baolin.wang@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1kARxN4zXqzFWFi9Hzge3EGrR8GY2GeJ7Yqz9IBjLtM=;
+        b=XdDgSkTPWbZlKuQ8Yy6iegC0blDpxLf8P1SK3bVXEXWD86YaqRCZ9zbxa92phTdZIO
+         4F8/DqZCYsN7zNriFsxeTuv4euyJ9ax9SVQacYRv8m16XSxU/2wHBq9HbEuliT/4NM6V
+         thPA+fuT7PtEqClzyi5A9X2JyzAsuN8FeAic8qns/H6oFGAKAPlpu/Od8SKz4D6fDmxm
+         /dNx4eySIiRLDrJRxZTmht0poGKK2d2qBm98bh8VjElWxRuiHYnD8YJe3F+yGdhBclBv
+         W5V8ZEDR0kUZbqbfNs/JkpbhpvQeCZkiJOJKFKDiE7VG7M+TMFnx1LGwD62gP+DFHj0b
+         1SoQ==
+X-Gm-Message-State: APjAAAUYN0ei63MyPHXWbDpo6msZcfbyarQlUIOUw4mi0sAXeNA/mYxy
+        fmczwhB3S1mpPzFDqgzSMyv1Lw==
+X-Google-Smtp-Source: APXvYqyQ6aIEt1WbaZMUGlnrW1jFW16UZAwHLIo+j1unzlK77i3d3XcL512n21QVNwPfdFP+R7kEQQ==
+X-Received: by 2002:a63:ff56:: with SMTP id s22mr19089316pgk.44.1572247179560;
+        Mon, 28 Oct 2019 00:19:39 -0700 (PDT)
+Received: from localhost ([2401:fa00:1:10:79b4:bd83:e4a5:a720])
+        by smtp.gmail.com with ESMTPSA id h28sm12513742pgn.14.2019.10.28.00.19.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Oct 2019 00:19:38 -0700 (PDT)
+From:   Cheng-Yi Chiang <cychiang@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        alsa-devel@alsa-project.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+Subject: [PATCH v9 0/6] Add HDMI jack support on RK3288
+Date:   Mon, 28 Oct 2019 15:19:24 +0800
+Message-Id: <20191028071930.145899-1-cychiang@chromium.org>
+X-Mailer: git-send-email 2.24.0.rc0.303.g954a862665-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are some deviations between the real resistance and the ideal
-resistance of coulomb counter, which will affect the accuracy of
-the coulomb counter, thus calibrate the real resistance of coulomb
-counter to improve the accuracy.
+This patch series supports HDMI jack reporting on RK3288, which uses
+DRM dw-hdmi driver and hdmi-codec codec driver.
 
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
----
- drivers/power/supply/sc27xx_fuel_gauge.c |   17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+The previous discussion about reporting jack status using hdmi-notifier
+and drm_audio_component is at
 
-diff --git a/drivers/power/supply/sc27xx_fuel_gauge.c b/drivers/power/supply/sc27xx_fuel_gauge.c
-index 221b6fb..f363fa7 100644
---- a/drivers/power/supply/sc27xx_fuel_gauge.c
-+++ b/drivers/power/supply/sc27xx_fuel_gauge.c
-@@ -62,6 +62,8 @@
- 
- #define SC27XX_FGU_CUR_BASIC_ADC	8192
- #define SC27XX_FGU_SAMPLE_HZ		2
-+/* micro Ohms */
-+#define SC27XX_FGU_IDEAL_RESISTANCE	20000
- 
- /*
-  * struct sc27xx_fgu_data: describe the FGU device
-@@ -84,6 +86,7 @@
-  * @resist_table_len: the resistance table length
-  * @cur_1000ma_adc: ADC value corresponding to 1000 mA
-  * @vol_1000mv_adc: ADC value corresponding to 1000 mV
-+ * @calib_resist: the real resistance of coulomb counter chip in mOhm
-  * @cap_table: capacity table with corresponding ocv
-  * @resist_table: resistance percent table with corresponding temperature
-  */
-@@ -108,6 +111,7 @@ struct sc27xx_fgu_data {
- 	int resist_table_len;
- 	int cur_1000ma_adc;
- 	int vol_1000mv_adc;
-+	int calib_resist;
- 	struct power_supply_battery_ocv_table *cap_table;
- 	struct power_supply_resistance_temp_table *resist_table;
- };
-@@ -900,7 +904,9 @@ static int sc27xx_fgu_calibration(struct sc27xx_fgu_data *data)
- 	 */
- 	cal_4200mv = (calib_data & 0x1ff) + 6963 - 4096 - 256;
- 	data->vol_1000mv_adc = DIV_ROUND_CLOSEST(cal_4200mv * 10, 42);
--	data->cur_1000ma_adc = data->vol_1000mv_adc * 4;
-+	data->cur_1000ma_adc =
-+		DIV_ROUND_CLOSEST(data->vol_1000mv_adc * 4 * data->calib_resist,
-+				  SC27XX_FGU_IDEAL_RESISTANCE);
- 
- 	kfree(buf);
- 	return 0;
-@@ -1079,6 +1085,15 @@ static int sc27xx_fgu_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = device_property_read_u32(&pdev->dev,
-+				       "sprd,calib-resistance",
-+				       &data->calib_resist);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"failed to get fgu calibration resistance\n");
-+		return ret;
-+	}
-+
- 	data->channel = devm_iio_channel_get(dev, "bat-temp");
- 	if (IS_ERR(data->channel)) {
- 		dev_err(dev, "failed to get IIO channel\n");
+https://lore.kernel.org/patchwork/patch/1083027/
+
+The new approach is to use a callback mechanism that is
+specific to hdmi-codec.
+
+The dependent change on hdmi-codec.c
+
+commit 6fa5963c37a2 ("ASoC: hdmi-codec: Add an op to set callback function for plug event")
+
+has been merged to upstream.
+
+Changes from v8 to v9:
+
+1. rockchip_max98090:
+   Use the presence of rockchip,audio-codec to determine the presense of max98090
+   in sound card.
+   Use the presence of rockchip,hdmi-codec to determine the presence of HDMI in
+   sound card.
+   Remove the compatible strings added in v8.
+
+2. #include <sound/hdmi-codec.h> should be in the patch of adding HDMI jack support.
+
+Cheng-Yi Chiang (6):
+  drm: bridge: dw-hdmi: Report connector status using callback
+  ASoC: rockchip-max98090: Support usage with and without HDMI
+  ASoC: rockchip_max98090: Optionally support HDMI use case
+  ASoC: rockchip_max98090: Add HDMI jack support
+  ARM: dts: rockchip: Add HDMI support to rk3288-veyron-analog-audio
+  ARM: dts: rockchip: Add HDMI audio support to rk3288-veyron-mickey.dts
+
+ .../bindings/sound/rockchip-max98090.txt      |  27 +-
+ .../boot/dts/rk3288-veyron-analog-audio.dtsi  |   1 +
+ arch/arm/boot/dts/rk3288-veyron-mickey.dts    |   7 +
+ .../drm/bridge/synopsys/dw-hdmi-i2s-audio.c   |  11 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  41 ++-
+ include/drm/bridge/dw_hdmi.h                  |   4 +
+ sound/soc/rockchip/Kconfig                    |   3 +-
+ sound/soc/rockchip/rockchip_max98090.c        | 313 ++++++++++++++----
+ 8 files changed, 338 insertions(+), 69 deletions(-)
+
 -- 
-1.7.9.5
+2.24.0.rc0.303.g954a862665-goog
 
