@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ECD0E6C1E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 07:04:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41286E6C34
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 07:07:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731443AbfJ1GE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 02:04:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46262 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730394AbfJ1GE2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Oct 2019 02:04:28 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9878E20873;
-        Mon, 28 Oct 2019 06:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572242667;
-        bh=fUhaJejjhGsyaU4tabIkYSCff9Y7Eg48Ic6zL2MqL2o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SRAACqR1CDXrg2bu4L31b/LHC6IaB4P5kGU3pzDwgvzrgFyc8Pq90ccfRaMrHTpQV
-         +kyBXHZ4+4TYW845p69iqQKyGpAXX9HPAydspS2eRFKAJeCm+vSlLTPkx5u+pZpcWd
-         5TxrLXpY9qSc4oMVGLxq+ixoE8/n7H6OxCVNg5No=
-Date:   Mon, 28 Oct 2019 14:04:07 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Jun Li <jun.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andy Duan <fugang.duan@nxp.com>
-Subject: Re: [PATCH V2 1/2] arm64: dts: imx8mm-evk: add phy-reset-gpios for
- fec1
-Message-ID: <20191028060406.GK16985@dragon>
-References: <1571652977-4754-1-git-send-email-peng.fan@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1571652977-4754-1-git-send-email-peng.fan@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+        id S1731795AbfJ1GHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 02:07:33 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:6759 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1731561AbfJ1GHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Oct 2019 02:07:32 -0400
+X-IronPort-AV: E=Sophos;i="5.68,238,1569250800"; 
+   d="scan'208";a="30181603"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 28 Oct 2019 15:07:30 +0900
+Received: from localhost.localdomain (unknown [10.166.17.210])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B4A6141715B9;
+        Mon, 28 Oct 2019 15:07:30 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, geert+renesas@glider.be
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v2 0/4] clk: renesas: rcar-usb2-clock-sel: Fix clks/resets handling
+Date:   Mon, 28 Oct 2019 15:07:26 +0900
+Message-Id: <1572242850-9073-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 21, 2019 at 10:19:17AM +0000, Peng Fan wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> We should not rely on bootloader to configure the phy reset.
-> So introduce phy-reset-gpios property to let Linux handle phy reset
-> itself.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+This patch series is based on the latest renesas-drivers.git /
+clk-renesas-for-v5.5 branch.
+The hardware also needs multiple clocks/resets management like
+renesas_usbhs driver [1], so this patch series fixes it.
 
-Applied both, thanks.
+[1]
+3df0e24 usb: renesas_usbhs: Add multiple clocks management
+f181dbb usb: renesas_usbhs: Add reset_control
+
+Changes from v1:
+ - Add Reviewed-by into this series' patch 1/4.
+ - (new) Add resets and power-domains properties into the patch 2/4.
+ - Use clk_bulk_* APIs (except clk_bulk_get() because this driver has
+   4 clocks and used only 2 clocks).
+ - Add "select RESET_CONTROLLER" into Kconfig
+ - Use devm_reset_control_array_get() instead of optional API.
+ https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=192869
+
+Yoshihiro Shimoda (4):
+  dt-bindings: clock: renesas: rcar-usb2-clock-sel: Fix clock[-name]s
+    properties
+  dt-bindings: clock: renesas: rcar-usb2-clock-sel: Add power-domains
+    and resets properties
+  clk: renesas: rcar-usb2-clock-sel: Add multiple clocks management
+  clk: renesas: rcar-usb2-clock-sel: Add reset_control
+
+ .../bindings/clock/renesas,rcar-usb2-clock-sel.txt | 13 +++++--
+ drivers/clk/renesas/Kconfig                        |  1 +
+ drivers/clk/renesas/rcar-usb2-clock-sel.c          | 43 +++++++++++++++++++++-
+ 3 files changed, 52 insertions(+), 5 deletions(-)
+
+-- 
+2.7.4
+
